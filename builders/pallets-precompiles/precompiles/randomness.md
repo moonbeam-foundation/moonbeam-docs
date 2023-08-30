@@ -177,7 +177,7 @@ The contract will include the following functions:
 
 Without further ado, the contract is as follows:
 
-```sol
+```solidity
 --8<-- 'code/randomness/RandomNumber.sol'
 ```
 

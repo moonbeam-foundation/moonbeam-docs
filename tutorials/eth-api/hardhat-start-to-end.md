@@ -87,7 +87,7 @@ To get started, take the following steps:
 3. Copy and paste the contents of [DelegationDAO.sol](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-intro-course-resources/main/delegation-dao-lesson-one/DelegationDAO.sol){target=_blank} into `DelegationDAO.sol`
 
     ??? code "DelegationDAO.sol"
-        ```sol
+        ```solidity
         --8<-- 'code/tutorials/eth-api/hardhat-start-to-end/DelegationDAO.sol'
         ```
 
@@ -101,7 +101,7 @@ To get started, take the following steps:
 
     ??? code "StakingInterface.sol"
 
-        ```sol
+        ```solidity
         --8<-- 'code/precompiles/staking/StakingInterface.sol'
         ```
 

@@ -74,7 +74,7 @@ To get started, let's set up our lottery contract. We'll need to:
 - Inherit the Randomness Consumer interface
 - Create a variable for the Randomness Precompile so we can easily access it's functions later on
 
-```sol
+```solidity
 // SPDX-License-Identifier: GPL-3.0-only
 pragma solidity >=0.8.0;
 
@@ -99,7 +99,7 @@ Next we're going to need to define the rules of our lottery, such as:
 
 Inside of the `Lottery` contract, you can add these parameters:
 
-```sol
+```solidity
 // The number of winners. This number corresponds to how many random words
 // will be requested. Cannot exceed MAX_RANDOM_WORDS (from the Randomness
 // Precompile)
@@ -133,7 +133,7 @@ We will also need to define some parameters specifically related to requesting r
 
 You can go ahead and add these parameters:
 
-```sol
+```solidity
 // The gas limit allowed to be used for the fulfillment, which depends on the
 // code that is executed and the number of words requested. Test and adjust
 // this limit based on the size of the request and the processing of the 
@@ -163,7 +163,7 @@ Aside from these parameters, we'll need to create some variables which will be u
 - The owner of the lottery contract. This is necessary because only the owner of the contract will be allowed to start the lottery
 - The source of randomness (local VRF or BABE epoch) that is being used
 
-```sol
+```solidity
 // The current request id
 uint256 public requestId;
 
@@ -189,7 +189,7 @@ The constructor will accept a *uint8* as the randomness source, which correspond
 
 The [deposit](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/randomness/Randomness.sol#L17){target=_blank} is defined in the Randomness Precompile and is required in addition to the fulfillment fee. The deposit will be refunded to the original requester, which in our case is the owner of the contract, after the request has been fulfilled. If a request never gets fulfilled, it will expire and need to be purged. Once it is purged, the deposit will be returned.
 
-```sol
+```solidity
 constructor(
     Randomness.RandomnessSource source
 ) payable RandomnessConsumer() {
@@ -219,7 +219,7 @@ The `participate` function will include the following logic:
 - Check that the participation fee meets the requirement
 - If both of the above are true, then the participant will be added to the list of participants and their participation fee will be added to the jackpot
 
-```sol
+```solidity
 function participate() external payable {
     // We check that the lottery hasn't started yet
     if (
@@ -262,7 +262,7 @@ The `startLottery` function will include the following logic:
 
 Since the lottery function should only be called by the owner, we'll also add in an `onlyOwner` modifer that requires the `msg.sender` to be the `owner`.
 
-```sol
+```solidity
 function startLottery() external payable onlyOwner {
     // Check we haven't started the randomness request yet
     if (
@@ -329,7 +329,7 @@ For fulfilled requests, the cost of execution will be refunded from the request 
 
 Our `fulfillRandomWords` function defines a callback, the `pickWinners` function, that is responsible for handling the fulfillment. So, in our case, the callback will use the random words to select a winner and payout the winnings. The signature of our `fulfillRandomWords` function must match the signature of the Randomness Consumer's `fulfillRandomWords` function.
 
-```sol
+```solidity
 function fulfillRequest() public {
     randomness.fulfillRequest(requestId);
 }
@@ -358,7 +358,7 @@ The `pickWinners` function contains the following logic:
 - Determine the winners by using the random words
 - Distribute the winnings to each of the winners, making sure to deduct the winnings from the jackpot before transferring them
 
-```sol
+```solidity
 // This function is called only by the fulfillment callback
 function pickWinners(uint256[] memory randomWords) internal {
     // Get the total number of winners to select

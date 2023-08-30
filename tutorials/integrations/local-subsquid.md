@@ -135,7 +135,7 @@ mkdir -p contracts && touch contracts/MyTok.sol
 
 Now we can edit the `MyTok.sol` file to include the following contract, which will mint an initial supply of MYTOKs and allow only the owner of the contract to mint additional tokens:
 
-```sol
+```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.9;
 

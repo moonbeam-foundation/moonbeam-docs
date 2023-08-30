@@ -372,7 +372,7 @@ Now we're ready to start writing our tests!
 
 For our first test, let's make sure that we are minting our new Dizzy Dragon NFT as expected. We'll use the event logs from the transaction to ensure that the `NftMinted` event of the `DizzyDragons` contract has been emitted. The event logs will return the arguments passed to the `NftMinted` event, which will be the token ID:
 
-```sol
+```solidity
 event NftMinted(uint256);
 ```
 
@@ -424,7 +424,7 @@ npx truffle test --network dev
 
 For our next test, we're going to test that we can successfully list our freshly minted NFT using the `listNft` function of the `NftMarketplace` contract. So, again we'll use our event logs to test that the `NftListed` event has been emitted along with the correct state variables such as the seller and token ID. The event logs will return the arguments passed to the `NftMinted` event, which will be the seller's address, the NFT's address, the token ID and the listing price:
 
-```sol
+```solidity
 event NftListed(
     address indexed seller,
     address indexed nftAddress,
@@ -493,7 +493,7 @@ Again, you can run the tests to make sure that the tests pass as expected.
 
 Finally, let's test that an NFT on our marketplace can be purchased using the `purchaseNft` function of the `NftMarketplace` contract. Similarly to our previous tests, we'll use the event logs to test that the `NftPurchased` event has been emitted along with the correct state variables such as the buyer and token ID. The event logs will return the arguments passed to the `NftPurchased` event, which will be the buyer's address, the NFT's address, the token ID and the purchase price:
 
-```sol
+```solidity
 event NftListed(
     address indexed buyer,
     address indexed nftAddress,

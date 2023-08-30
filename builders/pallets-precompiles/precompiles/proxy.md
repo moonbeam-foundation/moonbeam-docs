@@ -46,7 +46,7 @@ The interface includes the following functions:
 
 The `proxyType` parameter is defined by the following `ProxyType` enum, where the values start at `0` with the most permissive proxy type and are represented as `uint8` values:
 
-```sol
+```solidity
 enum ProxyType {
     Any,
     NonTransfer,

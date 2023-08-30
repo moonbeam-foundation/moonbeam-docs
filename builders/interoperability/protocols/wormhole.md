@@ -91,7 +91,7 @@ Wormhole recommends including a whitelisting system in their connected contracts
 
 To add a whitelisted contract, you must invoke the `addTrustedAddress(bytes32 sender, uint16 _chainId)` function, which requires a *bytes32* formatted address and a chain ID. You can find the chain ID in the [table above](#deploying-the-wormhole-contract-with-remix-on-moonbase-alpha) and on [Wormhole’s documentation](https://book.wormhole.com/reference/contracts.html#testnet){target=_blank}.
 
-```sol
+```solidity
 function addTrustedAddress(bytes32 sender, uint16 _chainId) external {
     myTrustedContracts[sender][_chainId] = true;
 }

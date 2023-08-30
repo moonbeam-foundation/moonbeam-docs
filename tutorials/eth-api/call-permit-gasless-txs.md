@@ -218,7 +218,7 @@ Next, we'll need to define the typed data structure. The typed data structure de
 
 If you take a look at the [`dispatch` function of the Call Permit Precompile](/builders/pallets-precompiles/precompiles/call-permit/#the-call-permit-interface){target=_blank}, you'll see that the data that we need to send, along with the associated types, is as follows:
 
-```sol
+```solidity
 function dispatch(
     address from,
     address to,
