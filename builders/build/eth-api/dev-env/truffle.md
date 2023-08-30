@@ -27,7 +27,7 @@ To use the Moonbeam Truffle plugin, you will need to have [Docker](https://docs.
 
 For the following examples, you don't need to have Truffle globally installed, as it is included as a dependency in the Moonbeam Truffle box. However, if you want to use the `truffle` commands directly instead of running `npx truffle` or `./node_modules/.bin/truffle`, you can globally install it by running:
 
-```
+```bash
 npm install -g truffle
 ```
 
@@ -37,7 +37,7 @@ To get started with the Moonbeam Truffle box, you can take the following steps:
 
 1. If you have Truffle installed globally, you can execute:
 
-    ```
+    ```bash
     mkdir moonbeam-truffle-box && cd moonbeam-truffle-box
     truffle unbox moonbeam-foundation/moonbeam-truffle-box
     ```
@@ -46,14 +46,14 @@ To get started with the Moonbeam Truffle box, you can take the following steps:
 
     Otherwise, you can directly clone the following repository:
 
-    ```
+    ```bash
     git clone https://github.com/moonbeam-foundation/moonbeam-truffle-box
     cd moonbeam-truffle-box
-    ``` 
+    ```
 
 2. With the files in your local system, you can install all dependencies by running:
 
-    ```
+    ```bash
     npm install
     ```
 
@@ -75,7 +75,7 @@ To start a Moonbeam development node in your local environment, you need to:
 
 1. Download the corresponding Docker image:
 
-    ```
+    ```bash
     truffle run moonbeam install
     ```
 
@@ -83,7 +83,7 @@ To start a Moonbeam development node in your local environment, you need to:
 
 2. Once downloaded, you can proceed to start the local node with the following command:
 
-    ```
+    ```bash
     truffle run moonbeam start
     ```
 
@@ -93,7 +93,7 @@ To start a Moonbeam development node in your local environment, you need to:
 
 Once you are finished using your Moonbeam development node, you can run the following lines to stop it and remove the Docker image if that is the case:
 
-```
+```bash
 truffle run moonbeam stop && \
 truffle run moonbeam remove
 ```
@@ -102,7 +102,7 @@ truffle run moonbeam remove
 
 You also have the option to pause and unpause your Moonbeam development node:
 
-```
+```bash
 truffle run moonbeam pause
 truffle run moonbeam unpause
 ```
@@ -162,12 +162,13 @@ If you're adapting this guide for Moonbeam, Moonriver, or Moonbase Alpha, you wi
 You'll also need to update the private key to one that has funds on that network:
 
 === "Moonbeam"
-    ```
+
+    ```js
     moonbeam: {
       provider: () => {
         ...
         return new HDWalletProvider(
-          'PRIVATE_KEY_HERE',  // Insert your private key here
+          'INSERT_PRIVATE_KEY',  // Insert your private key here
           '{{ networks.moonbeam.rpc_url }}' // Insert your RPC URL here
         )
       },
@@ -176,12 +177,13 @@ You'll also need to update the private key to one that has funds on that network
     ```
 
 === "Moonriver"
-    ```
+
+    ```js
     moonriver: {
       provider: () => {
         ...
         return new HDWalletProvider(
-          'PRIVATE_KEY_HERE',  // Insert your private key here
+          'INSERT_PRIVATE_KEY',  // Insert your private key here
           '{{ networks.moonriver.rpc_url }}' // Insert your RPC URL here
         )
       },
@@ -190,12 +192,13 @@ You'll also need to update the private key to one that has funds on that network
     ```
 
 === "Moonbase Alpha"
-    ```
+
+    ```js
     moonbase: {
       provider: () => {
         ...
         return new HDWalletProvider(
-          'PRIVATE_KEY_HERE',  // Insert your private key here
+          'INSERT_PRIVATE_KEY',  // Insert your private key here
           '{{ networks.moonbase.rpc_url }}' // Insert your RPC URL here
         )
       },
@@ -247,7 +250,7 @@ Before you can deploy your contracts, you must compile them. As a reminder, you 
 
 1. Compile the contracts:
 
-    ```
+    ```bash
     truffle compile
     ```
 
@@ -258,22 +261,26 @@ Before you can deploy your contracts, you must compile them. As a reminder, you 
 2. Deploy the compiled contracts:
 
     === "Moonbeam"
-        ```
+
+        ```bash
         truffle migrate --network moonbeam
         ```
 
     === "Moonriver"
-        ```
+
+        ```bash
         truffle migrate --network moonriver
         ```
 
     === "Moonbase Alpha"
-        ```
+
+        ```bash
         truffle migrate --network moonbase
         ```
 
     === "Moonbeam Dev Node"
-        ```
+
+        ```bash
         truffle migrate --network dev
         ```
 
@@ -289,7 +296,7 @@ There are some limitations to be aware of when forking with Ganache. Since Ganac
 
 From your Truffle project, you can install Ganache CLI by running:
 
-```
+```bash
 npm install ganache
 ```
 
@@ -331,7 +338,7 @@ When you spin up the forked instance, you'll have 10 development accounts that a
 
 To verify you have forked the network, you can query the latest block number:
 
-```
+```bash
 curl --data '{"method":"eth_blockNumber","params":[],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json" -X POST localhost:8545 
 ```
 
@@ -342,12 +349,14 @@ From here you can deploy new contracts to your forked instance of Moonbeam or in
 To interact with an already deployed contract, you can create a new script in the `scripts` directory using Ethers.js or Web3.js. First, you'll need to install the JavaScript library of your choice:
 
 === "Ethers.js"
-    ```
+
+    ```bash
     npm install ethers
     ```
 
 === "Web3.js"
-    ```
+
+    ```bash
     npm install web3
     ```
 
@@ -391,7 +400,7 @@ Then you can create a new script to access a live contract on the network:
 
 To run the script, you can use the following command:
 
-```
+```bash
 truffle exec INSERT_PATH_TO_FILE
 ```
 

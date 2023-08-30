@@ -29,22 +29,22 @@ Later on in this guide, you have the option of deploying your project to a local
 
 ## Creating a Project {: #creating-a-project }
 
-To get started, you'll need to [create a SubQuery project](https://academy.subquery.network/quickstart/quickstart.html){target=_blank}. You can create a project for Moonbeam, Moonriver, or Moonbase Alpha. For the purposes of this guide, Moonbeam will be used. 
+To get started, you'll need to [create a SubQuery project](https://academy.subquery.network/quickstart/quickstart.html){target=_blank}. You can create a project for Moonbeam, Moonriver, or Moonbase Alpha. For the purposes of this guide, Moonbeam will be used.
 
 In general, you will need to:
 
 1. Globally install the SubQuery CLI:
 
-    ```
+    ```bash
     npm install -g @subql/cli
     ```
 
     !!! note
-        At time of writing this guide, the version used was 1.3.1. 
+        At time of writing this guide, the version used was 1.3.1.
 
 2. Initialize your SubQuery project using the following command:
 
-    ```
+    ```bash
     subql init PROJECT_NAME
     ```
 
@@ -55,20 +55,20 @@ In general, you will need to:
         ![Select Moonbeam](/images/builders/integrations/indexers/subquery/subquery-1.png)
 
     2. The next screen will prompt you to **Select a network**. At time of writing this guide, Moonriver was the only option. You can go ahead and choose **Moonriver**, and it can be adapted for Moonbeam or Moonbase Alpha
-            
-        ![Select moonbeam-starter](/images/builders/integrations/indexers/subquery/subquery-2.png)    
+
+        ![Select moonbeam-starter](/images/builders/integrations/indexers/subquery/subquery-2.png)
 
     3. You'll be prompted to **Select a template project**. You can choose between the EVM starter project or creating a project from a git endpoint. Since this guide will be based off of the Moonriver EVM starter project, you can select **moonriver-evm-starter**
 
-        ![Select moonbeam-starter](/images/builders/integrations/indexers/subquery/subquery-3.png)    
+        ![Select moonbeam-starter](/images/builders/integrations/indexers/subquery/subquery-3.png)
 
     4. The starter project will be cloned, and then you will be prompted to answer a few more questions. For these, you can just hit enter and accept the default or customize them as you see fit
 
-        ![Create project](/images/builders/integrations/indexers/subquery/subquery-4.png)   
+        ![Create project](/images/builders/integrations/indexers/subquery/subquery-4.png)
 
 4. A directory will automatically be created for your SubQuery project. You'll just need to install dependencies from within the project directory:
 
-    ```
+    ```bash
     cd PROJECT_NAME && yarn install
     ```
 
@@ -90,14 +90,15 @@ If you take a look at the `package.json` file, you'll notice that the `chaintype
 
 ## Updating the Network Configuration {: #updating-the-network-configuration }
 
-You'll need to update the `network` config in the `project.yaml` file. The `chainId` field can be used to enter the genesis hash for the network you want to index. 
+You'll need to update the `network` config in the `project.yaml` file. The `chainId` field can be used to enter the genesis hash for the network you want to index.
 
  --8<-- 'text/common/endpoint-examples.md'
 
 The `network` config is as follows for each network:
 
 === "Moonbeam"
-    ```
+
+    ```yaml
     network:
     chainId: '0xfe58ea77779b7abda7da4ec526d14db9b1e9cd40a217c34892af80a9b332b76d'
     endpoint: '{{ networks.moonbeam.rpc_url }}'
@@ -107,6 +108,7 @@ The `network` config is as follows for each network:
     ```
 
 === "Moonriver"
+
     ```yaml
     network:
     chainId: '0x401a1f9dca3da46f5c4091016c8a2f26dcea05865116b286f60f668207d1474b'
@@ -117,13 +119,14 @@ The `network` config is as follows for each network:
     ```
 
 === "Moonbase Alpha"
-    ```
+
+    ```yaml
     network:
     chainId: '0x91bc6e169807aaa54802737e1c504b2577d4fafedd5a02c10293b1cd60e39527'
     endpoint: '{{ networks.moonbase.rpc_url }}'
     dictionary: 'https://api.subquery.network/sq/subquery/moonbase-alpha-dictionary'
     chaintypes:
-      file: ./dist/chaintypes.js    
+      file: ./dist/chaintypes.js
     ```
   
 ## The Moonbeam Custom Data Source {: #moonbeam-custom-data-source }
@@ -132,7 +135,7 @@ You'll also need to update the `dataSources` config which can be found in the `p
 
 SubQuery has created a data processor specifically made to work with Moonbeam’s implementation of [Frontier](https://github.com/paritytech/frontier){target=_blank}. It allows you to reference specific ABI resources used by the processor to parse arguments and the smart contract address that the events are from or the call is made to. In general, it acts as middleware that can provide extra filtering and data transformation. The Frontier EVM processor is already a dependency if you're using the template. If you are starting from scratch, make sure to install it:
 
-```
+```bash
 yarn add @subql/frontier-evm-processor
 ```
 
@@ -151,7 +154,7 @@ The fields in the `dataSources` configuration can be broken down as follows:
 
 In the `schema.graphql` file, the template includes a `Transaction` and `Approval` entity. Later on in the guide, you'll listen for transaction events and approval calls.
 
-```
+```gql
 type Transaction @entity {
   id: ID! # Transaction hash
   value: BigInt!
@@ -171,11 +174,11 @@ type Approval @entity {
 
 To generate the required GraphQL models defined in your schema file, you can run the following:
 
-```
+```bash
 yarn codegen
 ```
 
-![yarn codegen results](/images/builders/integrations/indexers/subquery/subquery-5.png) 
+![yarn codegen results](/images/builders/integrations/indexers/subquery/subquery-5.png)
 
 These models will be used in the mapping handlers covered in the next section.
 
@@ -216,38 +219,38 @@ mapping:
 ```
 
 !!! note
-    You can also use the `filter` field to only listen to certain events or specific function calls. 
+    You can also use the `filter` field to only listen to certain events or specific function calls.
 
 ## Deploying your Project {: #deploying-your-project }
 
 To deploy your project to SubQuery's hosted service, it is mandatory to build your configuration before upload. You can do so by running:
 
-```
+```bash
 yarn build
 ```
 
-![yarn build results](/images/builders/integrations/indexers/subquery/subquery-6.png)   
+![yarn build results](/images/builders/integrations/indexers/subquery/subquery-6.png)
 
 Next you can choose to either [publish your project](https://academy.subquery.network/run_publish/publish.html){target=_blank} to [SubQuery Projects](https://project.subquery.network/){target=_blank} or [run a SubQuery node locally](https://academy.subquery.network/run_publish/run.html){target=_blank} using Docker. To do so you can run:
 
-```
+```bash
 docker-compose pull && docker-compose up
 ```
 
-![docker-compose logs](/images/builders/integrations/indexers/subquery/subquery-7.png)   
+![docker-compose logs](/images/builders/integrations/indexers/subquery/subquery-7.png)
 
 !!! note
     It may take some time to download the required packages for the first time but soon you'll see a running SubQuery node.
 
 It might take a minute or two for your database to spin up and your node to start syncing, but you should eventually see your node start to fetch blocks.
 
-![fetching blocks logs](/images/builders/integrations/indexers/subquery/subquery-8.png)   
+![fetching blocks logs](/images/builders/integrations/indexers/subquery/subquery-8.png)
 
 Now you can query your project by opening your browser to [http://localhost:3000](http://localhost:3000){target=_blank}, where you'll find a GraphQL playground. On the top right of the playground, you'll find a **Docs** button that will open a documentation drawer. This documentation is automatically generated and helps you find what entities and methods you can query.
 
-![GraphQL playground](/images/builders/integrations/indexers/subquery/subquery-9.png)   
+![GraphQL playground](/images/builders/integrations/indexers/subquery/subquery-9.png)
 
-Congratulations! You now have a Moonbeam SubQuery project that accepts GraphQL API queries! Please note that depending on your configured start block, it could take a couple of days to index Moonbeam. 
+Congratulations! You now have a Moonbeam SubQuery project that accepts GraphQL API queries! Please note that depending on your configured start block, it could take a couple of days to index Moonbeam.
 
 ## Example Projects {: #example-projects }
 

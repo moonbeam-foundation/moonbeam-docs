@@ -7,7 +7,7 @@ description: Learn how to use Waffle and Mars to write, compile, test, and deplo
 
 ## Introduction {: #introduction }
 
-[Waffle](https://getwaffle.io/){target=_blank} is a library for compiling and testing smart contracts, and [Mars](https://github.com/EthWorks/Mars){target=_blank} is a deployment manager. Together, Waffle and Mars can be used to write, compile, test, and deploy Ethereum smart contracts. Since Moonbeam is Ethereum compatible, Waffle and Mars can be used to deploy smart contracts to a [Moonbeam development node](/builders/get-started/networks/moonbeam-dev){target=_blank} or the [Moonbase Alpha TestNet](/builders/get-started/networks/moonbase){target=_blank}. 
+[Waffle](https://getwaffle.io/){target=_blank} is a library for compiling and testing smart contracts, and [Mars](https://github.com/EthWorks/Mars){target=_blank} is a deployment manager. Together, Waffle and Mars can be used to write, compile, test, and deploy Ethereum smart contracts. Since Moonbeam is Ethereum compatible, Waffle and Mars can be used to deploy smart contracts to a [Moonbeam development node](/builders/get-started/networks/moonbeam-dev){target=_blank} or the [Moonbase Alpha TestNet](/builders/get-started/networks/moonbase){target=_blank}.
 
 Waffle uses minimal dependencies, has syntax that is easy to learn and extend, and provides fast execution times when compiling and testing smart contracts. Furthermore, it is [TypeScript](https://www.typescriptlang.org/){target=_blank} compatible and uses [Chai matchers](https://ethereum-waffle.readthedocs.io/en/latest/matchers.html){target=_blank} to make tests easy to read and write.
 
@@ -22,7 +22,7 @@ You will need to have the following:
  - MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=_blank}
  - An account with funds.
   --8<-- 'text/faucet/faucet-list-item.md'
- - 
+ -
 --8<-- 'text/common/endpoint-examples.md'
 
 Once you've created an account you'll need to export the private key to be used in this guide.
@@ -33,19 +33,19 @@ To get started, you'll create a TypeScript project and install and configure a f
 
 1. Create the project directory and change to it:
 
-    ```
+    ```bash
     mkdir waffle-mars && cd waffle-mars
     ```
 
 2. Initialize the project. Which will create a `package.json` in the directory:
 
-    ```
+    ```bash
     npm init -y
     ```
 
 3. Install the following dependencies:
 
-    ```
+    ```bash
     npm install ethereum-waffle ethereum-mars ethers \
     @openzeppelin/contracts typescript ts-node chai \
     @types/chai mocha @types/mocha
@@ -64,13 +64,13 @@ To get started, you'll create a TypeScript project and install and configure a f
 
 4. Create a [TypeScript configuration](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html) file:
 
-    ```
+    ```bash
     touch tsconfig.json
     ```
 
 5. Add a basic TypeScript configuration:
 
-    ```
+    ```json
     {
       "compilerOptions": {
         "strict": true,
@@ -89,19 +89,19 @@ To get started, you'll create a TypeScript project and install and configure a f
 
 Now, you should have a basic TypeScript project with the necessary dependencies to get started building with Waffle and Mars.
 
-## Add a Contract {: #add-a-contract } 
+## Add a Contract {: #add-a-contract }
 
 For this guide, you will create an ERC-20 contract that mints a specified amount of tokens to the contract creator. It's based on the OpenZeppelin ERC-20 template.
 
 1. Create a directory to store your contracts and a file for the smart contract:
 
-    ```
+    ```bash
     mkdir contracts && cd contracts && touch MyToken.sol
     ```
 
 2. Add the following contract to `MyToken.sol`:
 
-    ```
+    ```solidity
     pragma solidity ^0.8.0;
 
     import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
@@ -117,15 +117,15 @@ For this guide, you will create an ERC-20 contract that mints a specified amount
 
 In this contract, you are creating an ERC-20 token called MyToken with the symbol MYTOK, that allows you, as the contract creator, to mint as many MYTOKs as desired.
 
-## Use Waffle to Compile and Test {: #use-waffle-to-compile-and-test } 
+## Use Waffle to Compile and Test {: #use-waffle-to-compile-and-test }
 
-### Compile with Waffle {: #compile-with-waffle } 
+### Compile with Waffle {: #compile-with-waffle }
 
 Now that you have written a smart contract, the next step is to use Waffle to compile it. Before diving into compiling your contract, you will need to configure Waffle:
 
 1. Go back to the root project directory and create a `waffle.json` file to configure Waffle:
 
-    ```
+    ```bash
     cd .. && touch waffle.json
     ```
 
@@ -157,7 +157,7 @@ Now that you have written a smart contract, the next step is to use Waffle to co
 
 That is all you need to do to configure Waffle, now you're all set to compile the `MyToken` contract using the `build` script:
 
-```
+```bash
 npm run build
 ```
 
@@ -177,7 +177,7 @@ Since you will be running tests against the TestNet, it might take a couple minu
 
 1. Create a directory to contain your tests and a file to test your `MyToken` contract:
 
-    ```
+    ```bash
     mkdir test && cd test && touch MyToken.test.ts
     ```
 
@@ -243,7 +243,7 @@ Since you will be running tests against the TestNet, it might take a couple minu
 
 5. Before you can run your first test, you'll need to go back to the root direction and add a `.mocharc.json` Mocha configuration file:
 
-    ```
+    ```bash
     cd .. && touch .mocharc.json
     ```
 
@@ -268,7 +268,7 @@ Since you will be running tests against the TestNet, it might take a couple minu
 
 8. You're all set to run the tests, simply use the `test` script you just created and run:
 
-    ```
+    ```bash
     npm run test
     ```
 
@@ -284,7 +284,7 @@ Since you will be running tests against the TestNet, it might take a couple minu
 
 10. If you run the tests again, you should now see one passing test:
 
-    ```
+    ```bash
     npm run test
     ```
 
@@ -342,18 +342,18 @@ describe ('MyToken', () => {
 
 If you want to write more tests on your own, you could consider testing transfers from accounts without any funds or transfers from accounts without enough funds.
 
-## Use Mars to Deploy to Moonbase Alpha {: #use-mars-to-deploy-to-moonbase-alpha } 
+## Use Mars to Deploy to Moonbase Alpha {: #use-mars-to-deploy-to-moonbase-alpha }
 
 After you compile your contracts and before deployment, you will have to generate contract artifacts for Mars. Mars uses the contract artifacts for typechecks in deployments. Then you'll need to create a deployment script and deploy the `MyToken` smart contract.
 
 Remember, you will be deploying to Moonbase Alpha and will need to use the TestNet RPC URL: `{{ networks.moonbase.rpc_url }}`.
 --8<-- 'text/common/endpoint-setup.md'
 
-The deployment will be broken up into three sections: [generate artifacts](#generate-artifacts), [create a deployment script](#create-a-deployment-script), and [deploy with Mars](#deploy-with-mars). 
+The deployment will be broken up into three sections: [generate artifacts](#generate-artifacts), [create a deployment script](#create-a-deployment-script), and [deploy with Mars](#deploy-with-mars).
 
-### Generate Artifacts {: #generate-artifacts } 
+### Generate Artifacts {: #generate-artifacts }
 
-Artifacts need to be generated for Mars so that typechecks are enabled within deployment scripts. 
+Artifacts need to be generated for Mars so that typechecks are enabled within deployment scripts.
 
 1. Update existing script to run Waffle in the `package.json` to include Mars:
 
@@ -366,7 +366,7 @@ Artifacts need to be generated for Mars so that typechecks are enabled within de
 
 2. Generate the artifacts and create the `artifacts.ts` file needed for deployments:
 
-    ```
+    ```bash
     npm run build
     ```
 
@@ -382,7 +382,7 @@ In this step, you'll create the deployment script which will define how the cont
 
 1. Create a `src` directory to contain your deployment scripts and create the script to deploy the `MyToken` contract:
 
-    ```
+    ```bash
     mkdir src && cd src && touch deploy.ts
     ```
 
@@ -429,7 +429,7 @@ You've configured the deployment, now it's time to actually deploy to Moonbase A
 
 1. Deploy the contract using the script you just created:
 
-    ```
+    ```bash
     npm run deploy
     ```
 

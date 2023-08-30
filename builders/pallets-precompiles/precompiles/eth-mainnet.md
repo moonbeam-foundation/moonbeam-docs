@@ -22,13 +22,13 @@ In this guide, you will learn how to use and/or verify these precompiles.
 
 As of writing this guide, the versions used were 15.2.1 and 7.0.8, respectively. You will also need to install the [Web3](https://web3js.readthedocs.io/en/latest/){target=_blank} package by executing:
 
-```
+```bash
 npm install --save web3
 ```
 
 To verify the installed version of Web3, you can use the `ls` command:
 
-```
+```bash
 npm ls web3
 ```
 

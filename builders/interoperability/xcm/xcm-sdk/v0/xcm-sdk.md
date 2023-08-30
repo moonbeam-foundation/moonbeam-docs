@@ -31,7 +31,7 @@ The XCM config package will be used to obtain origin asset and chain information
 
 To install the XCM SDK and XCM config packages, you can run the following command:
 
-```
+```bash
 npm install @moonbeam-network/xcm-sdk @moonbeam-network/xcm-config
 ```
 
@@ -39,7 +39,7 @@ You need to have peer dependencies, like [Ethers.js](https://docs.ethers.io/){ta
 
 You can install them by running the following command:
 
-```
+```bash
 npm i @polkadot/api-augment @polkadot/types @polkadot/util @polkadot/util-crypto ethers
 ```
 

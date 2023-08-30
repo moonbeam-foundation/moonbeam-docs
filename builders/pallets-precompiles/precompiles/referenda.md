@@ -14,17 +14,20 @@ The Referenda Precompile interacts directly with Substrate's [Referenda Pallet](
 The Referenda Precompile is located at the following address:
 
 === "Moonbeam"
-     ```
+
+     ```text
      {{ networks.moonbeam.precompiles.referenda }}
      ```
 
 === "Moonriver"
-     ```
+
+     ```text
      {{ networks.moonriver.precompiles.referenda }}
      ```
 
 === "Moonbase Alpha"
-     ```
+
+     ```text
      {{ networks.moonbase.precompiles.referenda }}
      ```
 
@@ -52,7 +55,7 @@ The Referenda Precompile is located at the following address:
 
 - **referendumStatus**(*uint32* referendumIndex) - a read-only function that returns the status for a given referendum. The `ReferendumStatus` enum defines the possible statuses:
 
-     ```
+     ```solidity
      enum ReferendumStatus {
           Ongoing,
           Approved,

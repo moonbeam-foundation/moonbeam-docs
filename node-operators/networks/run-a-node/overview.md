@@ -105,7 +105,7 @@ Both chains must be in sync at all times, and you should see either `Imported` o
 
 The Moonbase Alpha TestNet may need to be purged and upgraded once in a while. Consequently, you may see the following message:
 
-```
+```text
 DATE [Relaychain] Bootnode with peer id `ID` is on a different
 chain (our genesis: GENESIS_ID theirs: OTHER_GENESIS_ID)
 ```

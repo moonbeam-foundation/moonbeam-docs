@@ -35,7 +35,7 @@ Generally speaking, a JSON-RPC is a remote procedure call (RPC) protocol that ut
 
 To get a JSON-RPC to communicate with a Moonbeam blockchain, you need to run a node. But that can be expensive, complicated, and a hassle. Fortunately, as long as you have *access* to a node, you can interact with the blockchain. Moonbase Alpha has a [handful of free and paid node options](/learn/platform/networks/moonbase/#network-endpoints){target=_blank}. For this tutorial, we will be using the Moonbeam Foundation's public node for Moonbase Alpha, but you are encouraged to get your own [private endpoint](/builders/get-started/endpoints/#endpoint-providers){target=_blank}.  
 
-```
+```text
 {{ networks.moonbase.rpc_url }}
 ```
 
@@ -172,7 +172,8 @@ Let's continue by adding functionality. Add the following constants, errors, eve
 ```
 
 ??? code "MintableERC20.sol file"
-    ```
+
+    ```solidity
     // SPDX-License-Identifier: UNLICENSED
     pragma solidity ^0.8.17;
 
@@ -219,7 +220,7 @@ This function will allow a user to send the native Moonbeam currency (like GLMR,
 
 To make sure that this works, let's use Hardhat again:  
 
-```
+```bash
 npx hardhat compile
 ```
 
@@ -315,7 +316,7 @@ export default App;
 
 You can start the React project by running the following command from within the `frontend` directory:
 
-```
+```bash
 npm run start
 ```
 

@@ -27,13 +27,13 @@ For the examples in this guide, you will need to have the following:
 
 To get started, you can create a directory to store all of the files you'll be creating throughout this guide:
 
-```
+```bash
 mkdir web3-examples && cd web3-examples
 ```
 
 For this guide, you'll need to install the Web3.py library and the Solidity compiler. To install both packages, you can run the following command:
 
-```
+```bash
 pip3 install web3 py-solc-x
 ```
 
@@ -86,7 +86,7 @@ You can also use the balance script to check the account balances after the tran
 
 You'll only need one file to check the balances of both addresses before and after the transaction is sent.  To get started, you can create a `balances.py` file by running:
 
-```
+```bash
 touch balances.py
 ```
 
@@ -102,7 +102,7 @@ Next, you will create the script for this file and complete the following steps:
 
 To run the script and fetch the account balances, you can run the following command:
 
-```
+```bash
 python3 balances.py
 ```
 
@@ -112,7 +112,7 @@ If successful, the balances for the origin and receiving address will be display
 
 You'll only need one file for executing a transaction between accounts. For this example, you'll be transferring 1 DEV token from an origin address (from which you hold the private key) to another address. To get started, you can create a `transaction.py` file by running:
 
-```
+```bash
 touch transaction.py
 ```
 
@@ -131,7 +131,7 @@ Next, you will create the script for this file and complete the following steps:
 
 To run the script, you can run the following command in your terminal:
 
-```
+```bash
 python3 transaction.py
 ```
 
@@ -149,7 +149,7 @@ You can also use the `balances.py` script to check that the balances for the ori
 
 In this section, you'll create a script that uses the Solidity compiler to output the bytecode and interface (ABI) for the `Incrementer.sol` contract. To get started, you can create a `compile.py` file by running:
 
-```
+```bash
 touch compile.py
 ```
 
@@ -168,7 +168,7 @@ Next, you will create the script for this file and complete the following steps:
 
 With the script for compiling the `Incrementer.sol` contract in place, you can then use the results to send a signed transaction that deploys it. To do so, you can create a file for the deployment script called `deploy.py`:
 
-```
+```bash
 touch deploy.py
 ```
 
@@ -188,7 +188,7 @@ Next, you will create the script for this file and complete the following steps:
 
 To run the script, you can enter the following command into your terminal:
 
-```
+```bash
 python3 deploy.py
 ```
 
@@ -202,7 +202,7 @@ Call methods are the type of interaction that don't modify the contract's storag
 
 To get started, you can create a file and name it `get.py`:
 
-```
+```bash
 touch get.py
 ```
 
@@ -220,7 +220,7 @@ Then you can take the following steps to create the script:
 
 To run the script, you can enter the following command in your terminal:
 
-```
+```bash
 python3 get.py
 ```
 
@@ -230,7 +230,7 @@ If successful, the value will be displayed in the terminal.
 
 Send methods are the type of interaction that modify the contract's storage (change variables), meaning a transaction needs to be signed and sent. In this section, you'll create two scripts: one to increment and one to reset the incrementer. To get started, you can create a file for each script and name them `increment.py` and `reset.py`:
 
-```
+```bash
 touch increment.py reset.py
 ```
 
@@ -250,7 +250,7 @@ Open the `increment.py` file and take the following steps to create the script:
 
 To run the script, you can enter the following command in your terminal:
 
-```
+```bash
 python3 increment.py
 ```
 
@@ -274,7 +274,7 @@ Next you can open the `reset.py` file and take the following steps to create the
 
 To run the script, you can enter the following command in your terminal:
 
-```
+```bash
 python3 reset.py
 ```
 

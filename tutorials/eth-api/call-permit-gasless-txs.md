@@ -41,7 +41,7 @@ For this tutorial, you'll need the following:
   --8<-- 'text/faucet/faucet-list-item.md'
 - A project with [Ethers](/builders/build/eth-api/libraries/ethersjs){target=_blank} installed:
 
-    ```
+    ```bash
     npm i ethers
     ```
 
@@ -465,7 +465,7 @@ For this next step, we're going to use our Ethers signer and the `signer.signTyp
 
 The `signTypedData` function will calculate a signature for our data using the following calculation:
 
-```
+```text
 sign(keccak256("\x19\x01" ‖ domainSeparator ‖ hashStruct(message)))
 ```
 

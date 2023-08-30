@@ -1,12 +1,14 @@
 === "Ubuntu"
-    ```
+
+    ```bash
     curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
 
     sudo apt install -y nodejs
     ```
 
 === "MacOS"
-    ```
+
+    ```bash
     # You can use homebrew (https://docs.brew.sh/Installation)
     brew install node
 

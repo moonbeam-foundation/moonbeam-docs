@@ -366,7 +366,7 @@ curl --location --request POST 'https://rpc.api.moonbase.moonbeam.network' \
 
 If the JSON RPC request is sent correctly, the response should look like this:
 
-```JSON
+```json
 {
     "jsonrpc": "2.0",
     "result": {

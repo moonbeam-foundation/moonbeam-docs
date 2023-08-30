@@ -5,13 +5,13 @@ description: Review price feed contracts for Moonbeam-based networks and learn h
 
 # Chainlink Oracle
 
-## Introduction {: #introduction } 
+## Introduction {: #introduction }
 
-Developers can now use [Chainlink's decentralized Oracle network](https://chain.link/){target=_blank} to fetch data from a Moonbeam-based network. There are two main architectures: [Price Feeds](https://docs.chain.link/docs/architecture-decentralized-model){target=_blank} and [Basic Request Model](https://docs.chain.link/architecture-overview/architecture-request-model?parent=gettingStarted){target=_blank}. Price Feeds contain real-time price data that is continuously updated by Oracle operators in a smart contract so that other smart contracts can fetch and consume it. The Basic Request Model describes an on-chain architecture for requesting data from a single oracle source. This guide will show you how to fetch the latest price data using both architectures. 
+Developers can now use [Chainlink's decentralized Oracle network](https://chain.link/){target=_blank} to fetch data from a Moonbeam-based network. There are two main architectures: [Price Feeds](https://docs.chain.link/docs/architecture-decentralized-model){target=_blank} and [Basic Request Model](https://docs.chain.link/architecture-overview/architecture-request-model?parent=gettingStarted){target=_blank}. Price Feeds contain real-time price data that is continuously updated by Oracle operators in a smart contract so that other smart contracts can fetch and consume it. The Basic Request Model describes an on-chain architecture for requesting data from a single oracle source. This guide will show you how to fetch the latest price data using both architectures.
 
 --8<-- 'text/disclaimers/third-party-content-intro.md'
 
-## Price Feeds {: #price-feeds } 
+## Price Feeds {: #price-feeds }
 
 Before going into fetching the data itself, it is important to understand the basics of price feeds.
 
@@ -21,13 +21,13 @@ The end-user can retrieve price feeds with read-only operations via an aggregato
 
 ![Price Feed Diagram](/images/builders/integrations/oracles/chainlink/chainlink-price-feed.png)
 
-### Fetch Price Data {: #fetch-price-data } 
+### Fetch Price Data {: #fetch-price-data }
 
 There are data feed contracts available for Moonbeam-based networks to help simplify the process of requesting price feeds. In the current configuration for Moonbase Alpha, the Moonbeam team is running only one oracle node that fetches the price from a single API source. Price data is checked and updated in the smart contracts every 12 hours. As such, the price feeds on Moonbase Alpha are not authoritative and are for testing purposes only. The Moonbeam and Moonriver data feed contracts are updated by multiple Chainlink nodes on a regular basis.
 
 The data lives in a series of smart contracts (one per price feed) and can be fetched with the aggregator interface:
 
-```
+```solidity
 pragma solidity ^0.8.0;
 
 interface AggregatorV3Interface {
@@ -155,17 +155,20 @@ After creating the file and compiling the contract, you will need to follow thes
 5. Enter the Data Feed contract address corresponding to `BTC to USD` in the **At Address** field and click the **At Address** button:
 
     === "Moonbeam"
-        ```
+
+        ```text
         {{ networks.moonbeam.chainlink.feed.proxy.btc_usd }}
         ```
 
     === "Moonriver"
-        ```
+
+        ```text
         {{ networks.moonriver.chainlink.feed.proxy.btc_usd }}
         ```
 
     === "Moonbase Alpha"
-        ```
+
+        ```text
         {{ networks.moonbase.chainlink.feed.proxy.btc_usd }}
         ```
 
@@ -182,7 +185,7 @@ Note that to obtain the real price, you must account for the decimals of the pri
 
 If there is any specific pair you want to be included, feel free to reach out through [Discord](https://discord.com/invite/PfpUATX){target=_blank}.
 
-## Basic Request Model {: #basic-request-model } 
+## Basic Request Model {: #basic-request-model }
 
 --8<-- 'text/chainlink/brm.md'
 
@@ -372,7 +375,7 @@ For this example, you can go ahead and use the interface contract with the `BTC 
 
 If there is any specific pair you want to be included, feel free to reach out to the Moonbeam team through [Discord](https://discord.com/invite/PfpUATX){target=_blank}.
 
-### Create a Custom Client Contract {: #create-a-custom-client-contract } 
+### Create a Custom Client Contract {: #create-a-custom-client-contract }
 
 If you want to run your own custom client contract but use the oracle node being run by Moonbeam, you can do so with the following information:
 
@@ -385,7 +388,7 @@ If you decide to go this route, please keep in mind that the oracle node only su
 
 To build your own client contract using the `ChainlinkClient`, you'll need to start by importing the contract:
 
-```
+```solidity
 import "https://github.com/smartcontractkit/chainlink/evm-contracts/src/v0.8/ChainlinkClient.sol";
 ```
 
@@ -393,9 +396,9 @@ You can checkout out the [Chainlink documentation on ChainlinkClient API Referen
 
 Keep in mind that the LINK token payment is set to zero.
 
-### Create Custom Contracts using your own Oracle Node {: #create-custom-contracts-using-your-own-oracle-node } 
+### Create Custom Contracts using your own Oracle Node {: #create-custom-contracts-using-your-own-oracle-node }
 
-To get started with your own setup, including your own client contract, oracle contract, and oracle node, you'll need to start off running an oracle node. You can follow the [Run a Chainlink Oracle Node on Moonbeam](/node-operators/oracle-nodes/node-chainlink/){target=_blank} guide to spin up your own oracle node. You'll also learn how to setup your oracle contract and create jobs. 
+To get started with your own setup, including your own client contract, oracle contract, and oracle node, you'll need to start off running an oracle node. You can follow the [Run a Chainlink Oracle Node on Moonbeam](/node-operators/oracle-nodes/node-chainlink/){target=_blank} guide to spin up your own oracle node. You'll also learn how to setup your oracle contract and create jobs.
 
 If you [created a job to be used with any API](/node-operators/oracle-nodes/node-chainlink/#using-any-api){target=_blank}, you can then create a client contract that sets the API endpoint URL to perform the GET request on.
 
@@ -403,7 +406,7 @@ Note that the client contract must have a LINK tokens balance to be able to pay 
 
 The following client contract is an example of how to use any API from within your client contract:
 
-```
+```solidity
 pragma solidity ^0.8.7;
 
 import "@chainlink/contracts/src/v0.8/ChainlinkClient.sol";

@@ -5,19 +5,19 @@ description: Follow this tutorial to learn how to use the Ethereum Ethers.js Lib
 
 # Ethers.js JavaScript Library
 
-## Introduction {: #introduction } 
+## Introduction {: #introduction }
 
 The [Ethers.js](https://docs.ethers.io/){target=_blank} library provides a set of tools to interact with Ethereum Nodes with JavaScript, similar to Web3.js. Moonbeam has an Ethereum-like API available that is fully compatible with Ethereum-style JSON RPC invocations. Therefore, developers can leverage this compatibility and use the Ethers.js library to interact with a Moonbeam node as if they were doing so on Ethereum. You can read more about Ethers.js on this [blog post](https://medium.com/l4-media/announcing-ethers-js-a-web3-alternative-6f134fdd06f3){target=_blank}.
 
 In this guide, you'll learn how to use the Ethers.js library to send a transaction and deploy a contract on Moonbase Alpha. This guide can be adapted for [Moonbeam](/builders/get-started/networks/moonbeam/){target=_blank}, [Moonriver](/builders/get-started/networks/moonriver/){target=_blank}, or a [Moonbeam development node](/builders/get-started/networks/moonbeam-dev/){target=_blank}.
 
-## Checking Prerequisites {: #checking-prerequisites } 
+## Checking Prerequisites {: #checking-prerequisites }
 
 For the examples in this guide, you will need to have the following:
 
  - An account with funds.
   --8<-- 'text/faucet/faucet-list-item.md'
- - 
+ -
 --8<-- 'text/common/endpoint-examples.md'
 
 !!! note
@@ -27,13 +27,13 @@ For the examples in this guide, you will need to have the following:
 
 To get started, you can create a directory to store all of the files you'll be creating throughout this guide:
 
-```
+```bash
 mkdir ethers-examples && cd ethers-examples
 ```
 
 For this guide, you'll need to install the Ethers.js library and the Solidity compiler. To install both NPM packages, you can run the following command:
 
-```
+```bash
 npm install ethers solc@0.8.0
 ```
 
@@ -147,7 +147,7 @@ To create a provider, you can take the following steps:
 
 ## Send a Transaction {: #send-a-transaction }
 
-During this section, you'll be creating a couple of scripts. The first one will be to check the balances of your accounts before trying to send a transaction. The second script will actually send the transaction. 
+During this section, you'll be creating a couple of scripts. The first one will be to check the balances of your accounts before trying to send a transaction. The second script will actually send the transaction.
 
 You can also use the balance script to check the account balances after the transaction has been sent.
 
@@ -155,7 +155,7 @@ You can also use the balance script to check the account balances after the tran
 
 You'll only need one file to check the balances of both addresses before and after the transaction is sent.  To get started, you can create a `balances.js` file by running:
 
-```
+```bash
 touch balances.js
 ```
 
@@ -193,7 +193,7 @@ You can view the [complete script on GitHub](https://raw.githubusercontent.com/m
 
 To run the script and fetch the account balances, you can run the following command:
 
-```
+```bash
 node balances.js
 ```
 
@@ -203,7 +203,7 @@ If successful, the balances for the origin and receiving address will be display
 
 You'll only need one file for executing a transaction between accounts. For this example, you'll be transferring 1 DEV token from an origin address (from which you hold the private key) to another address. To get started, you can create a `transaction.js` file by running:
 
-```
+```bash
 touch transaction.js
 ```
 
@@ -254,7 +254,7 @@ You can view the [complete script on GitHub](https://raw.githubusercontent.com/m
 
 To run the script, you can run the following command in your terminal:
 
-```
+```bash
 node transaction.js
 ```
 
@@ -276,7 +276,7 @@ You can also use the `balances.js` script to check that the balances for the ori
 
 With the script for compiling the `Incrementer.sol` contract in place, you can then use the results to send a signed transaction that deploys it. To do so, you can create a file for the deployment script called `deploy.js`:
 
-```
+```bash
 touch deploy.js
 ```
 
@@ -333,7 +333,7 @@ You can view the [complete script on GitHub](https://raw.githubusercontent.com/m
 
 To run the script, you can enter the following command into your terminal:
 
-```
+```bash
 node deploy.js
 ```
 
@@ -348,7 +348,7 @@ Call methods are the type of interaction that don't modify the contract's storag
 
 To get started, you can create a file and name it `get.js`:
 
-```
+```bash
 touch get.js
 ```
 
@@ -393,7 +393,7 @@ You can view the [complete script on GitHub](https://raw.githubusercontent.com/m
 
 To run the script, you can enter the following command in your terminal:
 
-```
+```bash
 node get.js
 ```
 
@@ -403,7 +403,7 @@ If successful, the value will be displayed in the terminal.
 
 Send methods are the type of interaction that modify the contract's storage (change variables), meaning a transaction needs to be signed and sent. In this section, you'll create two scripts: one to increment and one to reset the incrementer. To get started, you can create a file for each script and name them `increment.js` and `reset.js`:
 
-```
+```bash
 touch increment.js reset.js
 ```
 
@@ -459,7 +459,7 @@ You can view the [complete script on GitHub](https://raw.githubusercontent.com/m
 
 To run the script, you can enter the following command in your terminal:
 
-```
+```bash
 node increment.js
 ```
 
@@ -516,7 +516,7 @@ You can view the [complete script on GitHub](https://raw.githubusercontent.com/m
 
 To run the script, you can enter the following command in your terminal:
 
-```
+```bash
 node reset.js
 ```
 

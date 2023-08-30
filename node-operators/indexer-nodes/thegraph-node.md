@@ -34,14 +34,14 @@ This guide can also be adapted for Moonbeam and Moonriver.
 
 The first step is to clone the [Graph Node repository](https://github.com/graphprotocol/graph-node/){target=_blank}:
 
-```
+```bash
 git clone https://github.com/graphprotocol/graph-node/ \
 && cd graph-node/docker
 ```
 
 Next, execute the `setup.sh` file. This will pull all the necessary Docker images and write the necessary information in the `docker-compose.yml` file.
 
-```
+```bash
 ./setup.sh
 ```
 
@@ -52,28 +52,32 @@ The tail end from the logs of the previous command should look something similar
 Once everything is set up, you need to modify the "Ethereum environment" inside the `docker-compose.yml` file, so that it points to the endpoint of the node you are running this Graph Node against. Note that the `setup.sh` file detects the `Host IP` and writes its value, so you'll need to modify it accordingly.
 
 === "Moonbeam"
-    ```
+
+    ```yaml
     ethereum: 'moonbeam:{{ networks.development.rpc_url }}'
     ```
 
 === "Moonriver"
-    ```
+
+    ```yaml
     ethereum: 'moonriver:{{ networks.development.rpc_url }}'
     ```
 
 === "Moonbase Alpha"
-    ```
+
+    ```yaml
     ethereum: 'mbase:{{ networks.development.rpc_url }}'
     ```
 
 === "Moonbeam Dev Node"
-    ```
+
+    ```yaml
     ethereum: 'mbase:{{ networks.development.rpc_url }}'
     ```
 
 The entire `docker-compose.yml` file should look something similar to:
 
-```
+```yaml
 version: '3'
 services:
   graph-node:
@@ -116,7 +120,7 @@ services:
 
 Lastly, to run the Graph Node, just run the following command:
 
-```
+```bash
 docker-compose up
 ```
 

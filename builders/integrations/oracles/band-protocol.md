@@ -185,13 +185,13 @@ This will create an instance of the demo contract that you can interact with. Us
 
 The helper library also supports a similar `getReferenceData` function. To get started, the library needs to be installed:
 
-```
+```bash
 npm install @bandprotocol/bandchain.js
 ```
 
 The library provides a constructor function that requires an endpoint to point to. This returns an instance that then enables all the necessary methods, such as the `getReferenceData` function.  When querying for information, the function accepts an array where each element is the _base/quote_ pair needed. For example:
 
-```
+```text
 getReferenceData(['BTC/USD', 'BTC/ETH', 'ETH/EUR'])
 ```
 

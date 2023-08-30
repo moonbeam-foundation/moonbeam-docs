@@ -1,4 +1,4 @@
-```
+```gql
 type Transaction @entity {
 
   id: ID! # Transaction hash

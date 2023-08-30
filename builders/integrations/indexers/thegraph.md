@@ -22,25 +22,29 @@ Due to the support of Ethereum tracing modules on Moonbeam, The Graph is capable
 If you're familiar with The Graph and looking to learn how to dive right in on any of the Moonbeam-based networks, you can use the following `network` configurations for your Subgraph manifest (`subgraph.yaml`):
 
 === "Moonbeam"
-    ```
+
+    ```yaml
     dataSources:
       network: moonbeam
     ```
 
 === "Moonriver"
-    ```
+
+    ```yaml
     dataSources:
       network: moonriver
     ```
 
 === "Moonbase Alpha"
-    ```
+
+    ```yaml
     dataSources:
       network: mbase
     ```
 
 === "Moonbeam Dev Node"
-    ```
+
+    ```yaml
     dataSources:
       network: mbase
     ```
@@ -78,14 +82,14 @@ This section goes through the process of creating a Subgraph. For the Lottery Su
 
 To get started, first clone the repository and install the dependencies:
 
-```
+```bash
 git clone https://github.com/papermoonio/moonlotto-subgraph \
 && cd moonlotto-subgraph && yarn
 ```
 
 Now, you can create the TypeScript types for The Graph by running:
 
-```
+```bash
 npx graph codegen --output-dir src/types/
 ```
 
@@ -265,7 +269,7 @@ If you are going to use The Graph API (hosted service), you need to:
 
 Next, in the terminal you can add your access token and deploy your Subgraph:
 
-```
+```bash
 npx graph auth --product hosted-service <access-token>
 npx graph deploy --product hosted-service <username>/<subgraph-name>    
 ```
@@ -283,7 +287,7 @@ Where:
 
 If using a local Graph Node, you can create your Subgraph executing the following code:
 
-```
+```bash
 npx graph create <username>/<subgraph-name> --node <graph-node>
 ```
 
@@ -295,7 +299,7 @@ Where:
 
 Once created, you can deploy your Subgraph by running the following command with the same parameters as before:
 
-```
+```bash
 npx graph deploy <username>/<subgraph-name> \
 --ipfs <ipfs-url> \
 --node <graph-node> \

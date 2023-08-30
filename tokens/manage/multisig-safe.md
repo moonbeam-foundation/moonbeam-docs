@@ -47,7 +47,7 @@ Towards the end of this guide, you will be learning how to interact with a smart
 
 You can head to [Remix](https://remix.ethereum.org/){target=_blank} and create a new file for the following `SetText.sol` contract:
 
-```
+```solidity
 pragma solidity ^0.8.0;
 
 contract SetText {
@@ -319,17 +319,20 @@ Congratulations, you've successfully interacted with a smart contract using the 
 There are APIs available to read from and interact with Moonbeam Safes for Moonbeam, Moonriver, and Moonbase Alpha.
 
 === "Moonbeam"
-     ```
+
+     ```text
      {{networks.moonbeam.multisig.api_page }}
      ```
 
 === "Moonriver"
-     ```
+
+     ```text
      {{networks.moonriver.multisig.api_page}}
      ```
 
 === "Moonbase Alpha"
-     ```
+
+     ```text
      {{networks.moonbase.multisig.api_page}}
      ```
 

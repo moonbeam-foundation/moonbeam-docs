@@ -14,17 +14,20 @@ The Preimage Precompile interacts directly with Substrate's Preimage Pallet. Thi
 The Preimage Precompile is located at the following address:
 
 === "Moonbeam"
-     ```
+
+     ```text
      {{ networks.moonbeam.precompiles.preimage }}
      ```
 
 === "Moonriver"
-     ```
+
+     ```text
      {{ networks.moonriver.precompiles.preimage }}
      ```
 
 === "Moonbase Alpha"
-     ```
+
+     ```text
      {{ networks.moonbase.precompiles.preimage }}
      ```
 

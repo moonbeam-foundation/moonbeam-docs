@@ -76,7 +76,7 @@ You can click on the colored icon next to the multisig account to copy the addre
 
 Now that you've created a multisig account, you can create a multisig call from one of the accounts that make up the multisig. This example will create the call from Alice's account. As such, Alice will need to submit a deposit. The deposit is calculated as follows:
 
-```
+```text
 Deposit = depositBase + threshold * depositFactor
 ```
 
@@ -100,12 +100,14 @@ With the basics out of the way, you can begin to create a multisig call. For thi
 Make sure you've copied and saved the encoded call data and the encoded call hash as you'll need them both to approve the multisig call later on in the tutorial. For this example, the encoded call data and hash are as follows:
 
 === "Encoded call data"
-    ```
+
+    ```text
     0x0300798d4ba9baf0064ec19eb4f0a1a45785ae9d6dfc1300008a5d78456301
     ```
 
 === "Encoded call hash"
-    ```
+
+    ```text
     0x76d1a0a8f6eb177dd7a561ef954e83893823fa5d77f576910f3fdc6cb4666dea
     ```
 

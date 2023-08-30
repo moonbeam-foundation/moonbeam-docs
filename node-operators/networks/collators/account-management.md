@@ -54,17 +54,20 @@ To map your session keys to your account, you need to be inside the [candidate p
 The mapping bond is per session keys registered. The bond for mapping your session keys to your account is as follows:
 
 === "Moonbeam"
-    ```
+
+    ```text
     {{ networks.moonbeam.staking.collator_map_bond }} GLMR
     ```
   
 === "Moonriver"
-    ```
+
+    ```text
     {{ networks.moonriver.staking.collator_map_bond }} MOVR
     ```
 
 === "Moonbase Alpha"
-    ```
+
+    ```text
     {{ networks.moonbase.staking.collator_map_bond }} DEV
     ```
 
@@ -97,7 +100,7 @@ You can check the current on-chain mappings for a specific collator or you can a
 
 To use the `mappingWithDeposit` method to check the mapping for a specific collator, you'll need to get the Nimbus ID. To do so, you can take the first 64 hexadecimal characters of the concatenated public keys to get the Nimbus ID. To verify that the Nimbus ID is correct, you can run the following command with the first 64 characters passed into the `params` array:
 
-```
+```bash
 curl {{ networks.development.rpc_url }} -H "Content-Type:application/json;charset=utf-8" -d   '{
   "jsonrpc":"2.0",
   "id":1,

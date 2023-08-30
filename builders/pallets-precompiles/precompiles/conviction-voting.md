@@ -14,17 +14,20 @@ The Conviction Voting Precompile interacts directly with Substrate's Conviction 
 The Conviction Voting Precompile is located at the following address:
 
 === "Moonbeam"
-     ```
+
+     ```text
      {{ networks.moonbeam.precompiles.conviction_voting }}
      ```
 
 === "Moonriver"
-     ```
+
+     ```text
      {{ networks.moonriver.precompiles.conviction_voting }}
      ```
 
 === "Moonbase Alpha"
-     ```
+
+     ```text
      {{ networks.moonbase.precompiles.conviction_voting }}
      ```
 

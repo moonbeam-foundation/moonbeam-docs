@@ -19,17 +19,20 @@ This guide will show you how to interact with DEV tokens, the native protocol to
 The precompile is located at the following address:
 
 === "Moonbeam"
-     ```
+
+     ```text
      {{networks.moonbeam.precompiles.erc20 }}
      ```
 
 === "Moonriver"
-     ```
+
+     ```text
      {{networks.moonriver.precompiles.erc20 }}
      ```
 
 === "Moonbase Alpha"
-     ```
+
+     ```text
      {{networks.moonriver.precompiles.erc20 }}
      ```
 

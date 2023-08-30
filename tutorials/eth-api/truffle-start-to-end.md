@@ -322,7 +322,7 @@ Truffle also makes testing easier by including a `web3` instance in each test fi
 
 To get started with our tests, we can add our test file, which will start with `test_` to indicate that it's a test file:
 
-```
+```bash
 touch test/test_NftMarketplace.js
 ```
 

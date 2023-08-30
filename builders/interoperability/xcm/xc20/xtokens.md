@@ -92,7 +92,7 @@ To follow along with the examples in this guide, you need to have the following:
 
 To check your xcUNIT balance, you can add the XC-20 to MetaMask with the following address:
 
-```
+```text
 0xFfFFfFff1FcaCBd218EDc0EbA20Fc2308C778080
 ```
 
@@ -306,17 +306,20 @@ Once the transaction is processed, the account on the relay chain should have re
 The X-Tokens Precompile contract allows developers to access XCM token transfer features through the Ethereum API of Moonbeam-based networks. As with other [precompile contracts](/builders/pallets-precompiles/precompiles/){target=_blank}, the X-Tokens Precompile is located at the following addresses:
 
 === "Moonbeam"
-     ```
+
+     ```text
      {{networks.moonbeam.precompiles.xtokens}}
      ```
 
 === "Moonriver"
-     ```
+
+     ```text
      {{networks.moonriver.precompiles.xtokens}}
      ```
 
 === "Moonbase Alpha"
-     ```
+
+     ```text
      {{networks.moonbase.precompiles.xtokens}}
      ```
 

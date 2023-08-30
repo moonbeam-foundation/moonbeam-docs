@@ -21,17 +21,20 @@ This guide will show you how to use the randomness precompile and randomness con
 The randomness precompile is located at the following address:
 
 === "Moonbeam"
-     ```
+
+     ```text
      {{ networks.moonbeam.precompiles.randomness }}
      ```
 
 === "Moonriver"
-     ```
+
+     ```text
      {{ networks.moonriver.precompiles.randomness }}
      ```
 
 === "Moonbase Alpha"
-     ```
+
+     ```text
      {{ networks.moonbase.precompiles.randomness }}
      ```
 

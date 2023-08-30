@@ -14,17 +14,20 @@ The Precompile Registry also serves an additional purpose, as it allows any user
 The Registry Precompile is located at the following address:
 
 === "Moonbeam"
-     ```
+
+     ```text
      {{networks.moonbeam.precompiles.registry }}
      ```
 
 === "Moonriver"
-     ```
+
+     ```text
      {{networks.moonriver.precompiles.registry }}
      ```
 
 === "Moonbase Alpha"
-     ```
+
+     ```text
      {{networks.moonriver.precompiles.registry }}
      ```
 

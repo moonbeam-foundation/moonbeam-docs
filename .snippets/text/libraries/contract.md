@@ -1,6 +1,6 @@
 The contract you'll be compiling and deploying in the next couple of sections is a simple incrementer contract, arbitrarily named `Incrementer.sol`. You can get started by creating a file for the contract:
 
-```
+```bash
 touch Incrementer.sol
 ```
 

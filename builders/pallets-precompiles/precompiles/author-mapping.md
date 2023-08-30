@@ -15,17 +15,20 @@ To become a collator candidate, you must be [running a collator node](/node-oper
 The precompile is located at the following address:
 
 === "Moonbeam"
-     ```
+
+     ```text
      {{networks.moonbeam.precompiles.author_mapping }}
      ```
 
 === "Moonriver"
-     ```
+
+     ```text
      {{networks.moonriver.precompiles.author_mapping }}
      ```
 
 === "Moonbase Alpha"
-     ```
+
+     ```text
      {{networks.moonbase.precompiles.author_mapping }}
      ```
 
@@ -48,34 +51,40 @@ To follow along with this tutorial, you'll need to join the candidate pool and m
 The minimum bond to join the candidate pool is set as follows:
 
 === "Moonbeam"
-    ```
+
+    ```text
     {{ networks.moonbeam.staking.min_can_stk }} GLMR
     ```
 
 === "Moonriver"
-    ```
+
+    ```text
     {{ networks.moonriver.staking.min_can_stk }} MOVR
     ```
 
 === "Moonbase Alpha"
-    ```
+
+    ```text
     {{ networks.moonbase.staking.min_can_stk }} DEV
     ```
 
 There is a bond that is sent when mapping your session keys with your account. This bond is per session keys registered. The bond set is as follows:
 
 === "Moonbeam"
-    ```
+
+    ```text
     {{ networks.moonbeam.staking.collator_map_bond }} GLMR
     ```
   
 === "Moonriver"
-    ```
+
+    ```text
     {{ networks.moonriver.staking.collator_map_bond }} MOVR
     ```
 
 === "Moonbase Alpha"
-    ```
+
+    ```text
     {{ networks.moonbase.staking.collator_map_bond }} DEV
     ```
 

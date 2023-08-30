@@ -69,7 +69,7 @@ Before we start writing the entire project, it's important to note that its fini
 
 To install both dependencies, you can run:
 
-```
+```bash
 npm install @openzeppelin/contracts @layerzerolabs/solidity-examples
 ```
 
@@ -752,7 +752,7 @@ The only issue here is that the gas payment for the cross-chain message's transa
 
 Finally, the last thing to add is a vote mechanism that allows users to vote. This mechanism is nearly exactly the same as the mechanism in the [`GovernorCountingSimple` smart contract](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/governance/extensions/GovernorCountingSimple.sol){target=_blank}, so much of the code can be copied over:  
 
-```
+```solidity
 function castVote(uint256 proposalId, uint8 support) public virtual returns (uint256 balance)
 {
     RemoteProposal storage proposal = proposals[proposalId];

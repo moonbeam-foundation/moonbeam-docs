@@ -32,7 +32,7 @@ To get started indexing Substrate data on Moonbeam, you'll need to create a Subs
 
 1. Create a Subsquid project based on the Substrate template by running:
 
-    ```
+    ```bash
     sqd init <insert-squid-name> --template substrate
     ```
 
@@ -41,24 +41,28 @@ To get started indexing Substrate data on Moonbeam, you'll need to create a Subs
 2. To configure your Subsquid project to run on Moonbeam, you'll need to update the `typegen.json` file. The `typegen.json` file is responsible for generating TypeScript interface classes for your data. Depending on the network you're indexing data on, the `specVersions` value in the `typegen.json` file should be configured as follows:
 
     === "Moonbeam"
-        ```
+
+        ```json
         "specVersions": "https://moonbeam.archive.subsquid.io/graphql",
         ```
 
     === "Moonriver"
-        ```
+
+        ```json
         "specVersions": "https://moonriver.archive.subsquid.io/graphql",
         ```
 
     === "Moonbase Alpha"
-        ```
+
+        ```json
         "specVersions": "https://moonbase.archive.subsquid.io/graphql",
         ```
 
 3. Modify the `src/processor.ts` file, which is where squids instantiate the processor, configure it, and attach handler functions. The processor fetches historical on-chain data from an [Archive](https://docs.subsquid.io/archives/overview/){target=_blank}, which is a specialized data lake. You'll need to configure your processor to pull data from the Archive that corresponds to the network you are indexing data on:
 
     === "Moonbeam"
-        ```
+
+        ```ts
         const processor = new SubstrateBatchProcessor();
         processor.setDataSource({
           chain: {{ networks.moonbeam.rpc_url }},
@@ -68,7 +72,8 @@ To get started indexing Substrate data on Moonbeam, you'll need to create a Subs
         ```
 
     === "Moonriver"
-        ```
+
+        ```ts
         const processor = new SubstrateBatchProcessor();
         processor.setDataSource({
           chain: {{ networks.moonriver.rpc_url }},
@@ -78,7 +83,8 @@ To get started indexing Substrate data on Moonbeam, you'll need to create a Subs
         ```
 
     === "Moonbase Alpha"
-        ```
+
+        ```ts
         const processor = new SubstrateBatchProcessor();
         processor.setDataSource({
           chain: {{ networks.moonbase.rpc_url }},
@@ -96,12 +102,14 @@ To get started indexing EVM data on Moonbeam, you'll need to create a Subsquid p
 1. You can create a Subsquid project for EVM data by using the generic [EVM template](https://github.com/subsquid-labs/squid-evm-template){target=_blank} or you can use the [ABI template](https://github.com/subsquid-labs/squid-abi-template){target=_blank} for indexing data related to a specific contract:
 
     === "EVM"
-        ```
+
+        ```bash
         sqd init <insert-squid-name> --template evm
         ```
 
     === "ABI"
-        ```
+
+        ```bash
         sqd init <insert-squid-name> --template abi
         ```
 
@@ -113,24 +121,28 @@ To get started indexing EVM data on Moonbeam, you'll need to create a Subsquid p
 2. To configure your Subsquid project to run on Moonbeam, you'll need to update the `typegen.json` file. The `typegen.json` file is responsible for generating TypeScript interface classes for your data. Depending on the network you're indexing data on, the `specVersions` value in the `typegen.json` file should be configured as follows:
 
     === "Moonbeam"
-        ```
+
+        ```json
         "specVersions": "https://moonbeam.archive.subsquid.io/graphql",
         ```
 
     === "Moonriver"
-        ```
+
+        ```json
         "specVersions": "https://moonriver.archive.subsquid.io/graphql",
         ```
 
     === "Moonbase Alpha"
-        ```
+
+        ```json
         "specVersions": "https://moonbase.archive.subsquid.io/graphql",
         ```
 
 3. Modify the `src/processor.ts` file, which is where squids instantiate the processor, configure it, and attach handler functions. The processor fetches historical on-chain data from an [Archive](https://docs.subsquid.io/archives/overview/){target=_blank}, which is a specialized data lake. You'll need to configure your processor to pull data from the Archive that corresponds to the network you are indexing data on:
 
     === "Moonbeam"
-        ```
+
+        ```ts
         const processor = new EvmBatchProcessor();
         processor.setDataSource({
           chain: {{ networks.moonbeam.rpc_url }},
@@ -140,7 +152,8 @@ To get started indexing EVM data on Moonbeam, you'll need to create a Subsquid p
         ```
 
     === "Moonriver"
-        ```
+
+        ```ts
         const processor = new EvmBatchProcessor();
         processor.setDataSource({
           chain: {{ networks.moonriver.rpc_url }},
@@ -150,7 +163,8 @@ To get started indexing EVM data on Moonbeam, you'll need to create a Subsquid p
         ```
 
     === "Moonbase Alpha"
-        ```
+
+        ```ts
         const processor = new EvmBatchProcessor();
         processor.setDataSource({
           chain: {{ networks.moonbase.rpc_url }},

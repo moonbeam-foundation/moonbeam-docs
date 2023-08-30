@@ -263,12 +263,14 @@ A proposal (with its preimage) is submitted for the General Admin Track on Moonr
 The Approval and Support percentages can be calculated using the following:
 
 === "Approval"
-    ```
+
+    ```text
     Approval = 100 * ( Total Conviction-weighted "Aye" votes / Total Conviction-weighted votes ) 
     ```
 
 === "Support"
-    ```
+
+    ```text
     Support = 100 * ( Total non-Conviction-weighted votes / Total supply )
     ```
 

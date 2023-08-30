@@ -37,51 +37,60 @@ A private discord group will be created for this program, and most communication
 Orbiter pools are maintained by the Moonbeam Foundation, and will assign authority to each of the orbiters to produce blocks. The maximum number of orbiters per orbiter pool for each network is as follows:
 
 === "Moonbeam"
-    ```
+
+    ```text
     {{ networks.moonbeam.orbiter.max_orbiters_per_collator }} orbiters per pool
     ```
 
 === "Moonriver"
-    ```
+
+    ```text
     {{ networks.moonriver.orbiter.max_orbiters_per_collator }} orbiters per pool
     ```
 
 === "Moonbase Alpha"
-    ```
+
+    ```text
     {{ networks.moonbase.orbiter.max_orbiters_per_collator }} orbiters per pool
     ```
 
 For Moonbeam and Moonriver there is also a maximum number of orbiter pools that will be allowed in the active set. For Moonbase Alpha, there will be as many orbiter pools as needed. The maximum is as follows:
 
 === "Moonbeam"
-    ```
+
+    ```text
     {{ networks.moonbeam.orbiter.max_collators }} orbiter pools
     ```
 
 === "Moonriver"
-    ```
+
+    ```text
     {{ networks.moonriver.orbiter.max_collators }} orbiter pools
     ```
 
 === "Moonbase Alpha"
-    ```
+
+    ```text
     {{ networks.moonbase.orbiter.max_collators }} orbiter pools
     ```
 
 Each orbiter will be active for a certain number of rounds before the next orbiter will take over. The number of active rounds for each network is as follows:
 
 === "Moonbeam"
-    ```
+
+    ```text
     {{ networks.moonbeam.orbiter.active.rounds }} round (~{{ networks.moonbeam.orbiter.active.hours }} hours)
     ```
 
 === "Moonriver"
-    ```
+
+    ```text
     {{ networks.moonriver.orbiter.active.rounds }} rounds (~{{ networks.moonriver.orbiter.active.hours }} hours)
     ```
 
 === "Moonbase Alpha"
-    ```
+
+    ```text
     {{ networks.moonbase.orbiter.active.rounds }} rounds (~{{ networks.moonbase.orbiter.active.hours }} hours)
     ```
 
@@ -111,17 +120,20 @@ An outline of the onboarding process is as follows:
 There is a bond that is sent when mapping your author ID with your account. This bond is per author ID registered. The bond set is as follows:
 
 === "Moonbeam"
-    ```
+
+    ```text
     {{ networks.moonbeam.staking.collator_map_bond }} GLMR
     ```
 
 === "Moonriver"
-    ```
+
+    ```text
     {{ networks.moonriver.staking.collator_map_bond }} MOVR
     ```
 
 === "Moonbase Alpha"
-    ```
+
+    ```text
     {{ networks.moonbase.staking.collator_map_bond }} DEV
     ``` 
 
@@ -130,17 +142,20 @@ There is a bond that is sent when mapping your author ID with your account. This
 As previously mentioned, each orbiter must submit a bond to join the program. This bond differs from the one for the active set as it does not earn any delegation rewards while bonded. The current bonds are as follows:
 
 === "Moonbeam"
-    ```
+
+    ```text
     {{ networks.moonbeam.orbiter.bond }} GLMR
     ```
 
 === "Moonriver"
-    ```
+
+    ```text
     {{ networks.moonriver.orbiter.bond }} MOVR
     ```
 
 === "Moonbase Alpha"
-    ```
+
+    ```text
     {{ networks.moonbase.orbiter.bond }} DEV
     ```
 

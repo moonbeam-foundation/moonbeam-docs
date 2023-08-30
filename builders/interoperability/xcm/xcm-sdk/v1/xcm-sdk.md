@@ -19,13 +19,13 @@ The examples in this guide are shown on Moonbeam, but can be adapted to be used 
 
 To get started with the Moonbeam XCM SDK, you'll need to first install the SDK:
 
-```
+```bash
 npm install @moonbeam-network/xcm-sdk
 ```
 
 You'll also need to install a few additional dependencies that you'll use to interact with the SDK in this guide:
 
-```
+```bash
 npm install ethers@^5.7.2 @polkadot/api @polkadot/util-crypto
 ```
 

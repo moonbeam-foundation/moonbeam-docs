@@ -15,13 +15,13 @@ Overall, Chopsticks aims to simplify the process of building blockchain applicat
 
 To use Chopsticks, you can install it as a package with the [Node package manager](https://nodejs.org/en){target=_blank} or [Yarn](https://yarnpkg.com/){target=_blank}:  
 
-```
+```bash
 npm i @acala-network/chopsticks@latest
 ```
 
 Once installed, you can run commands with the Node package executor. For example, this runs Chopstick's base command:  
 
-```
+```bash
 npx @acala-network/chopsticks
 ```
 
@@ -30,6 +30,7 @@ To run Chopsticks, you will need some sort of configuration, typically through a
 Moonbeam, Moonriver, and Moonbase Alpha all have default files available:  
 
 === "Moonbeam"
+
     ```yaml
     endpoint: wss://wss.api.moonbeam.network
     mock-signature-host: true
@@ -55,6 +56,7 @@ Moonbeam, Moonriver, and Moonbase Alpha all have default files available:
     ```
 
 === "Moonriver"
+
     ```yaml
     endpoint: wss://wss.moonriver.moonbeam.network
     mock-signature-host: true
@@ -80,6 +82,7 @@ Moonbeam, Moonriver, and Moonbase Alpha all have default files available:
     ```
 
 === "Moonbase Alpha"
+
     ```yaml
     endpoint: wss://wss.api.moonbase.moonbeam.network
     mock-signature-host: true
@@ -129,18 +132,21 @@ You can use the configuration file with the base command `npx @acala-network/cho
 You can use a raw GitHub URL of the default configuration files, a path to a local configuration file, or simply use the chain's name for the `--config` flag. For example, the following commands all use Moonbeam's configuration in the same way:  
 
 === "Chain Name"
-    ```
+
+    ```bash
     npx @acala-network/chopsticks --config=moonbeam
     ```
 
 === "GitHub URL"
-    ```
+
+    ```bash
     npx @acala-network/chopsticks \
     --config=https://raw.githubusercontent.com/AcalaNetwork/chopsticks/master/configs/moonbeam.yml
     ```
 
 === "Local File Path"
-    ```
+
+    ```bash
     npx @acala-network/chopsticks --config=configs/moonbeam.yml
     ```
 
@@ -149,7 +155,7 @@ You can use a raw GitHub URL of the default configuration files, a path to a loc
 
 A configuration file is not necessary, however. All of the settings (except `genesis` and `timestamp`) can also be passed as flags to configure the environment completely in the command line. For example, the following command forks Moonbase Alpha at block 100.
 
-```
+```bash
 npx @acala-network/chopsticks --endpoint {{ networks.moonbase.rpc_url }} --block 100
 ```
 
@@ -158,28 +164,31 @@ npx @acala-network/chopsticks --endpoint {{ networks.moonbase.rpc_url }} --block
 The simplest way to fork Moonbeam is through the configuration files that are stored in the Chopsticks GitHub repository:  
 
 === "Moonbeam"
-    ```
+
+    ```bash
     npx @acala-network/chopsticks \
     --config=https://raw.githubusercontent.com/AcalaNetwork/chopsticks/master/configs/moonbeam.yml
     ```
 
 === "Moonriver"
-    ```
+
+    ```bash
     npx @acala-network/chopsticks \
     --config=https://raw.githubusercontent.com/AcalaNetwork/chopsticks/master/configs/moonriver.yml
     ```
 
 === "Moonbase Alpha"
-    ```
+
+    ```bash
     npx @acala-network/chopsticks \
     --config=https://raw.githubusercontent.com/AcalaNetwork/chopsticks/master/configs/moonbase-alpha.yml
     ```
 
 ### Interacting with a Fork {: #interacting-with-a-fork }
 
-When running a fork, by default it will be accessible at: 
+When running a fork, by default it will be accessible at:
 
-```
+```text
 ws://localhost:8000
 ```
 
@@ -217,7 +226,7 @@ In the case where you would like to replay a block and retrieve its information 
 
 For example, running the following command will re-run Moonbeam's block 1000, and write the storage diff and other data in a `moonbeam-output.json` file:  
 
-```
+```bash
 npx @acala-network/chopsticks run-block  \
 --endpoint wss://wss.api.moonbeam.network  \
 --output-path=./moonbeam-output.json  \
@@ -228,7 +237,7 @@ npx @acala-network/chopsticks run-block  \
 
 To test out XCM messages between networks, you can fork multiple parachains and a relay chain locally. For example, the following will fork Moonriver, Karura, and Kusama given that you've downloaded the [`configs` directory from the source GitHub repository](https://github.com/AcalaNetwork/chopsticks/tree/master/configs){target=_blank}:  
 
-```
+```bash
 npx @acala-network/chopsticks xcm \
 --r=kusama.yml \
 --p=moonriver.yml \
@@ -237,7 +246,7 @@ npx @acala-network/chopsticks xcm \
 
 You should see something like the following output:  
 
-```
+```text
 [13:50:57.807] INFO (rpc/64805): Loading config file https://raw.githubusercontent.com/AcalaNetwork/chopsticks/master/configs/moonriver.yml
 [13:50:59.655] INFO (rpc/64805): Moonriver RPC listening on port 8000
 [13:50:59.656] INFO (rpc/64805): Loading config file https://raw.githubusercontent.com/AcalaNetwork/chopsticks/master/configs/karura.yml
@@ -280,12 +289,12 @@ The parameters above are formatted in the following ways:
 
 Each method can be invoked by connecting to the websocket (`ws://localhost:8000` by default) and sending the data and parameters in the following format. Replace `METHOD_NAME` with the name of the method, and replace or delete `PARAMETER_1` and `PARAMETER_2` with the parameter data relevant to the method:  
 
-```
+```json
 {
     "jsonrpc": "2.0",
     "id": 1,
     "method": "METHOD_NAME",
-    "params": [PARAMETER_1, PARAMETER_2...]
+    "params": ["PARAMETER_1", "PARAMETER_2", "..."]
 }
 ```
 

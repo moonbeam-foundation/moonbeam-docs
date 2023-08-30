@@ -17,17 +17,20 @@ For example, Alice signs a call permit and Bob dispatches it and performs the ca
 The Call Permit Precompile is located at the following address:
 
 === "Moonbeam"
-     ```
+
+     ```text
      {{networks.moonbeam.precompiles.call_permit }}
      ```
 
 === "Moonriver"
-     ```
+
+     ```text
      {{networks.moonriver.precompiles.call_permit }}
      ```
 
 === "Moonbase Alpha"
-     ```
+
+     ```text
      {{networks.moonbase.precompiles.call_permit }}
      ```
 
@@ -171,7 +174,7 @@ In order to get the signature arguments (`v`, `r`, and `s`), you'll need to sign
 - `to` - the contract address for the `SetMessage.sol` contract
 - `value` - can be `0` for this example as you'll just be setting a message instead of transferring any funds
 - `data` - you can send any message you would like, you'll just need the hex representation of the message you want to set using the `SetMessage.sol` contract. This will contain the function selector of the `set` function and the string of the message. For this example, you can send `hello world`. To do so, you can use this hex representation:
-     ```
+     ```text
      0x4ed3885e0000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000b68656c6c6f20776f726c64000000000000000000000000000000000000000000
      ```
 - `gasLimit` - `100000` will be enough to send the dispatched call
@@ -215,20 +218,20 @@ Once you've signed the message, go back to JSFiddle and if the console isn't alr
 
 To generate the call permit signature using JavaScript and MetaMask's [`@metamask/eth-sig-util` npm package](https://www.npmjs.com/package/@metamask/eth-sig-util){target=_blank}, you'll first need to create a project locally. You can do so with the following commands:
 
-```
+```bash
 mkdir call-permit-example && cd call-permit-example && touch getSignature.js
 npm init -y
 ```
 
 You should now have a file where you can create the script to get the signature along with a `package.json` file. Open the `package.json` file, and below the `"dependencies"` section, add:
 
-```
+```json
 "type": "module"
 ```
 
 Next, you can install the MetaMask signing library and [Ethers.js](https://docs.ethers.io/){target=_blank}:
 
-```
+```bash
 npm i @metamask/eth-sig-util ethers
 ```
 
@@ -243,7 +246,7 @@ In the `getSignature.js` file, you can copy the following code snippet:
 
 To run the script, use the following command:
 
-```
+```bash
 node getSignature.js
 ```
 
@@ -263,7 +266,7 @@ When you send the `dispatch` function, you'll need the same arguments as you use
 2. Copy and paste the contract address of `SetMessage.sol`
 3. Enter `0` for the **value** field
 4. Enter the hex representation of the function selector for the `set` function and the string you want to set as the message for the `SetMessage.sol` contract. For this example, `hello world` can be used:
-     ```
+     ```text
      0x4ed3885e0000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000b68656c6c6f20776f726c64000000000000000000000000000000000000000000
      ```
 5. Enter `100000` for the **gasLimit** field

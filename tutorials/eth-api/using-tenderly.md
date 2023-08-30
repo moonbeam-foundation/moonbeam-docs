@@ -132,7 +132,7 @@ The [Debugger](https://docs.tenderly.co/debugger/how-to-use-tenderly-debugger){t
 
 In the upper search bar, you can paste a contract address or a transaction hash. Recall that Tenderly supports Moonbeam and Moonriver but does not currently support Moonbase Alpha. Here's an example transaction hash of a GLMR / FRAX swap on StellaSwap:
 
-```
+```text
 0x80c87ab47e077ca491045047389e6bd88a748ca24971a288d09608834a3bda07
 ```
 
