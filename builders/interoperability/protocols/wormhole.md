@@ -1,6 +1,6 @@
 ---
 title: Cross-Chain via Wormhole
-description: Learn how to bridge assets, set up a relayer, and other ways you can connect your Moonbeam dApp to assets and functions on multiple blockchains using Wormhole.
+description: Learn how to bridge assets, set up a relayer, and other ways you can connect your Moonbeam DApp to assets and functions on multiple blockchains using Wormhole.
 ---
 
 # Wormhole Network
@@ -387,9 +387,9 @@ You should see something similar to the logs below in the console.
 
 ![Run the relayer](/images/builders/interoperability/protocols/wormhole/wormhole-7.png)
 
-### Sending a Cross Chain Message from Moonbase with Wormhole {: #send-message-from-moonbase }
+### Sending a Cross-Chain Message from Moonbase with Wormhole {: #send-message-from-moonbase }
 
-Now, to send a cross chain message, you just need to call the `sendMessage(string memory message, address destAddress, uint16 destChainId)` function.
+Now, to send a cross-chain message, you just need to call the `sendMessage(string memory message, address destAddress, uint16 destChainId)` function.
 
 Use the Remix interface. This example is going to send a cross-chain message to the Fantom TestNet, but you can substitute the `destChainId` for whichever EVM you desire. Check the following things:
 

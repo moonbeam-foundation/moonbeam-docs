@@ -1,6 +1,6 @@
 ---
 title: List your DApp on Downtown Moonbeam
-description: How you can list your Moonbeam or Moonriver project on Downtown Moonbeam, a listing platform for smart contracts and dapps deployed to Moonbeam and Moonriver.
+description: How you can list your Moonbeam or Moonriver project on Downtown Moonbeam, a listing platform for smart contracts and DApps deployed to Moonbeam and Moonriver.
 ---
 
 # How to List your Project on Downtown Moonbeam

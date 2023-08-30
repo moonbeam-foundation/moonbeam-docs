@@ -1,6 +1,6 @@
 ---
 title: Verify Smart Contracts with Plugins
-description: Learn about how to verify smart contracts on Moonbeam networks using the Etherscan plugins made available by Hardhat and Truffle.
+description: Learn about how to verify smart contracts on Moonbeam networks using the Etherscan plugins made available by Hardhat, Truffle, and Foundry.
 ---
 
 # Verify Smart Contracts with Etherscan Plugins

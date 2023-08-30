@@ -5,7 +5,7 @@ description: Learn how to connect and use your Trezor hardware wallet to sign tr
 
 # Interacting with Moonbeam Using Trezor Hardware Wallet
 
-## Introduction {: #introduction } 
+## Introduction {: #introduction }
 
 Hardware wallets provide a safer way to store crypto funds because the private key (used for signing transactions) is stored offline. Trezor offers two hardware wallet solutions at the time of writing: Trezor One and Trezor Model T.
 
@@ -17,7 +17,7 @@ Please note that your Trezor device will sign transactions in whichever MetaMask
 
 --8<-- 'text/disclaimers/third-party-content-intro.md'
 
-## Checking Prerequisites {: #checking-prerequisites } 
+## Checking Prerequisites {: #checking-prerequisites }
 
 Before you get started, update [Trezor Suite](https://suite.trezor.io/){target=_blank} to the latest version available. Also, make sure you've your Trezor hardware wallet device running the latest firmware. The Trezor wiki offers tutorials on how to update the firmware of both [Trezor One](https://wiki.trezor.io/User_manual:Updating_the_Trezor_device_firmware__T1){target=_blank} and [Trezor Model T](https://wiki.trezor.io/User_manual:Updating_the_Trezor_device_firmware){target=_blank} devices.
 
@@ -29,7 +29,7 @@ At the time of writing, the following versions were used:
 
 In addition, you'll need MetaMask as an intermediary between your Trezor device and Moonbase Alpha. Make sure that your MetaMask is [connected to Moonbase Alpha](/tokens/connect/metamask/){target=_blank}. Please note that your Trezor device will sign transactions in whichever MetaMask network is connected to.
 
-## Importing your Trezor Account to MetaMask {: #importing-your-trezor-account-to-metamask } 
+## Importing your Trezor Account to MetaMask {: #importing-your-trezor-account-to-metamask }
 
 To get started, you need to have set up a wallet (either standard or a hidden wallet). Once you've connected your Trezor device, unlocked it, and get a wallet setup in Trezor Suite. Next, to import your Trezor Ethereum account to MetaMask, take the following steps:
 
@@ -80,7 +80,7 @@ If you've imported your Trezor Ethereum-styled account successfully, you should 
 
 You've now successfully imported a Moonbeam compatible account from your Trezor device and are now ready to start [signing transactions using your hardware wallet](#signing-a-transaction-using-your-trezor).
 
-## Signing a Transaction Using your Trezor {: #signing-a-transaction-using-your-trezor } 
+## Signing a Transaction Using your Trezor {: #signing-a-transaction-using-your-trezor }
 
 If you've successfully [imported your Trezor account to MetaMask](#importing-your-trezor-account-to-metamask), you are ready to sign transactions on Moonbeam using your Trezor device. This tutorial will show you how to send a simple transaction on the Moonbase Alpha TestNet, but it applies to other Moonbeam ecosystem networks.
 
@@ -106,7 +106,7 @@ Right after you've approved the transaction, MetaMask sends it to the network. O
 
 ![MetaMask Trezor Transaction Wizard](/images/tokens/connect/trezor/trezor-12.png)
 
-And that is it! You've signed a transaction on Moonbase Alpha using your Trezor hardware wallet. 
+And that is it! You've signed a transaction on Moonbase Alpha using your Trezor hardware wallet.
 
 The process of interacting with smart contracts using your Trezor device is similar. Make sure to double-check the data being signed on your Trezor device before confirming the transaction.
 

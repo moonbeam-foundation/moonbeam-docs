@@ -1,6 +1,6 @@
 ---
 title: Proxy Pallet
-description: Learn how to use the available extrinsics, storage methods, and constants in the proxy pallet on Moonbeam to make calls on an account's behalf.
+description: Learn how to use the available extrinsics, storage methods, and constants in the Proxy Pallet on Moonbeam to make calls on an account's behalf.
 keywords: proxy, substrate, moonbeam, polkadot
 ---
 

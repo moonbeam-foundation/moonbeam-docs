@@ -1,6 +1,6 @@
 ---
 title: Index NFT Transfers with Subsquid
-description: Learn how to use Subsquid, a query node framework for Substrate-based chains, to index and process Substrate and EVM data for Moonbeam and Moonriver.
+description: Learn how to use Subsquid, a query node framework for Substrate-based chains, to index and process NFT transfer data for Moonbeam and Moonriver.
 ---
 
 # Indexing NFT Transfers on Moonbeam with Subsquid

@@ -1,11 +1,11 @@
 ---
 title: Razor Network Oracle
-description: How to request data from a Razor Network Oracle in your Moonbeam Ethereum DApp using smart contracts
+description: How to request data from a Razor Network Oracle in your Moonbeam Ethereum DApp using smart contracts.
 ---
 
 # Razor Network Oracle
 
-## Introduction {: #introduction } 
+## Introduction {: #introduction }
 
 Developers can now fetch prices from Razor Network’s oracle using a Bridge contract deployed on the Moonbase Alpha TestNet. This Bridge acts as middleware, and events emitted by it are fetched by the Razor Network's oracle infrastructure, sending prices to the Bridge contract.
 
@@ -17,7 +17,7 @@ To access these price feeds, you need to interact with the Bridge contract addre
 
 --8<-- 'text/disclaimers/third-party-content-intro.md'
 
-## Jobs {: #jobs } 
+## Jobs {: #jobs }
 
 Each data-feed has a Job ID attached to it. For example:
 
@@ -29,7 +29,7 @@ Each data-feed has a Job ID attached to it. For example:
 
 You can check Job IDs for each data-feed on the [Razor Network Explorer](https://razorscan.io/#/custom){target=_blank}. Price feeds are updated every 5 minutes. More information can be found in [Razor's documentation website](https://docs.razor.network/){target=_blank}.
 
-## Get Data From Bridge Contract {: #get-data-from-bridge-contract } 
+## Get Data From Bridge Contract {: #get-data-from-bridge-contract }
 
 Contracts can query on-chain data such as token prices, from Razor Network's oracle by implementing the interface of the Bridge contract, which exposes the `getResult` and `getJob` functions.
 
@@ -48,9 +48,9 @@ The first function, `getResult`, takes the Job ID associated with the data-feed 
 
 The second function, `getJob`, takes the Job ID associated with the data-feed and fetches the general information regarding the data-feed, such as the name of the data-feed, the price, and the URL being used to fetch the prices.
 
-### Example Contract {: #example-contract } 
+### Example Contract {: #example-contract }
 
-There is a predeployed bridge contract in the Moonbase Alpha TestNet (at address `{{ networks.moonbase.razor.bridge_address }}`) so you can quickly check the information fed from Razor Network's oracle. 
+There is a predeployed bridge contract in the Moonbase Alpha TestNet (at address `{{ networks.moonbase.razor.bridge_address }}`) so you can quickly check the information fed from Razor Network's oracle.
 
 The only requirement is the Bridge interface, which defines `getResult` structure and makes the functions available to the contract for queries.
 
@@ -109,7 +109,7 @@ contract Demo {
 }
 ```
 
-### Try it on Moonbase Alpha {: #try-it-on-moonbase-alpha } 
+### Try it on Moonbase Alpha {: #try-it-on-moonbase-alpha }
 
 The easiest way to try their Oracle implementation is by pointing the interface to the Bridge contract deployed at address `{{ networks.moonbase.razor.bridge_address }}`:
 
@@ -129,7 +129,7 @@ With it, you will have two view functions available, very similar to the previou
 
 You can use [Remix](/builders/build/eth-api/dev-env/remix/){target=_blank} to fetch the `BTC` price in `USD`.
 
-After creating the file and compiling the contract, head to the **Deploy and Run Transactions** tab, enter the contract address (`{{ networks.moonbase.razor.bridge_address }}`), and click on **At Address**. Make sure you have set the **ENVIRONMENT** to **Injected Web3** so that you are connected to Moonbase Alpha (through the Web3 provider of the wallet). 
+After creating the file and compiling the contract, head to the **Deploy and Run Transactions** tab, enter the contract address (`{{ networks.moonbase.razor.bridge_address }}`), and click on **At Address**. Make sure you have set the **ENVIRONMENT** to **Injected Web3** so that you are connected to Moonbase Alpha (through the Web3 provider of the wallet).
 
 ![Razor Remix deploy](/images/builders/integrations/oracles/razor/razor-demo-1.png)
 

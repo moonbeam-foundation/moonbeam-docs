@@ -1,6 +1,6 @@
 ---
 title: Parachain Staking Pallet
-description: Learn about the available extrinsics for the parachain staking pallet on Moonbeam and how to interact with them using Polkadot.js Apps and the Polkadot.js API.
+description: Learn about the Parachain Staking Pallet interface on Moonbeam, which can be used to perform delegator and collator activities and retrieve staking information.
 keywords: staking, substrate, pallet, moonbeam, polkadot
 ---
 

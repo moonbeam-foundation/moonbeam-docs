@@ -1,6 +1,6 @@
 ---
 title: Mintable XC-20s
-description: Learn about cross chain assets that can be minted and burned on a Moonbeam-based network, and transferred to other Substrate chains via XCM.
+description: Learn about cross-chain assets that can be minted and burned on a Moonbeam-based network, and transferred to other Substrate chains via XCM.
 ---
 
 # Mintable XC-20s

@@ -1,6 +1,6 @@
 ---
 title: Index a Local Development Node
-description: Improve your dApp development experience by following this guide to learn how to index a dApp deployed locally on a Moonbeam development node with Subsquid!
+description: Improve your DApp development experience by following this guide to learn how to index a DApp deployed locally on a Moonbeam development node with Subsquid!
 ---
 
 # Index a Local Moonbeam Development Node with Subsquid

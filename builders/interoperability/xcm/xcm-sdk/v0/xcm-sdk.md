@@ -1,6 +1,6 @@
 ---
 title: XCM SDK v0
-description: Use the Moonbeam XCM SDK to easily deposit and withdraw cross chain assets to Moonbeam from Polkadot and other parachains in the ecosystem.
+description: Use the Moonbeam XCM SDK to easily deposit and withdraw cross-chain assets to Moonbeam from Polkadot and other parachains in the ecosystem.
 ---
 
 # Using the Moonbeam XCM SDK: v0

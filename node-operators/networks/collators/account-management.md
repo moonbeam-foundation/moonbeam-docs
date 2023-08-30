@@ -1,6 +1,6 @@
 ---
 title: Collator Account Management
-description: Learn how to manage your collator account including generating session keys, mapping Nimbus IDs, setting an identity, and creating proxy accounts.
+description: Learn how to manage your collator account, including generating session keys, mapping Nimbus IDs, setting an identity, and creating proxy accounts.
 ---
 
 # Collator Account Management

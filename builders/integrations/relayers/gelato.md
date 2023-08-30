@@ -1,6 +1,6 @@
 ---
 title: Gelato Ops and Relay SDK
-description: Use Gelato to automate your smart contract interactions and outsource your Moonbeam and Moonriver dev ops needs to the most reliable multi-chain bot network. 
+description: Use Gelato to automate your smart contract interactions and outsource your Moonbeam and Moonriver DevOps needs to the most reliable multi-chain bot network. 
 ---
 
 # Getting Started with Gelato

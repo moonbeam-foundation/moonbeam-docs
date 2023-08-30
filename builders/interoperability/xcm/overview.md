@@ -55,7 +55,7 @@ Furthermore, the two most common use-cases for XCM messages, at least in the ear
 
 A much more detailed article about XCM can be found in the [Polkadot Wiki](https://wiki.polkadot.network/docs/learn-crosschain){target=_blank}.
 
-Initially, Moonbeam will only support remote transfers. All cross-chain assets on Moonbeam will be known as _xc + TokenName_. For example, Polkadot's DOT representation on Moonbeam is known as _xcDOT_ and Kusama's KSM representation on Moonriver is _xcKSM_. You can read more about the XC-20 standard in the [XC-20s and Cross Chain Assets](/builders/interoperability/xcm/xc20){target=_blank} overview.
+Initially, Moonbeam will only support remote transfers. All cross-chain assets on Moonbeam will be known as _xc + TokenName_. For example, Polkadot's DOT representation on Moonbeam is known as _xcDOT_ and Kusama's KSM representation on Moonriver is _xcKSM_. You can read more about the XC-20 standard in the [XC-20s and Cross-Chain Assets](/builders/interoperability/xcm/xc20){target=_blank} overview.
 
 **Developers must understand that sending incorrect XCM messages can result in the loss of funds.** Consequently, it is essential to test XCM features on a TestNet before moving to a production environment.
 

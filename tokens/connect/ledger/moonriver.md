@@ -1,6 +1,6 @@
 ---
 title: Using the Moonriver Ledger App
-description: This guide walks you through how to use your Ledger hardware wallet to sign transactions on Moonriver, using the native Moonriver Ledger Live app.
+description: This guide walks you through how to use your Ledger hardware wallet to sign transactions on Moonriver using the native Moonriver Ledger Live app.
 ---
 
 # Interacting with Moonriver Using Ledger and the Moonriver App
@@ -8,7 +8,7 @@ description: This guide walks you through how to use your Ledger hardware wallet
 <style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/ct4h9MN41j4' frameborder='0' allowfullscreen></iframe></div>
 <style>.caption { font-family: Open Sans, sans-serif; font-size: 0.9em; color: rgba(170, 170, 170, 1); font-style: italic; letter-spacing: 0px; position: relative;}</style>
 
-## Introduction {: #introduction } 
+## Introduction {: #introduction }
 
 Hardware wallets provide a safer way to store crypto funds because the private key (used for signing transactions) is stored offline. Ledger offers two hardware wallet solutions at the time of writing: Ledger Nano S and Ledger Nano X.
 
@@ -16,15 +16,15 @@ You can interact with Moonriver using your Ledger hardware wallet through the Mo
 
 You also have the option of using the Ethereum app to connect to Moonriver. The main difference between using the Moonriver and the Ethereum app is that you have to specify the chain ID when you use the Etheruem app, which is 1285 for Moonriver. If you're interested in using the Ethereum app on Moonriver instead, you can check out the [Interacting with Moonbeam Using Ledger and the Ethereum App](/tokens/connect/ledger/ethereum){target=_blank} guide.
 
-In this tutorial, you will learn how to get started with your Ledger hardware wallet on Moonriver using the Moonriver app. This guide only illustrates the steps for a Ledger Nano X device, but you can follow along with a Ledger Nano S as well. 
+In this tutorial, you will learn how to get started with your Ledger hardware wallet on Moonriver using the Moonriver app. This guide only illustrates the steps for a Ledger Nano X device, but you can follow along with a Ledger Nano S as well.
 
 --8<-- 'text/disclaimers/third-party-content-intro.md'
 
 --8<-- 'text/ledger/checking-prereqs.md'
 
-In addition, you'll need MetaMask as an intermediary between your Ledger device and Moonbeam. Make sure that your MetaMask is [connected to Moonbeam](/tokens/connect/metamask/){target=_blank}. 
+In addition, you'll need MetaMask as an intermediary between your Ledger device and Moonbeam. Make sure that your MetaMask is [connected to Moonbeam](/tokens/connect/metamask/){target=_blank}.
 
-As of [MetaMask version 10.5.0](https://consensys.net/blog/metamask/metamask-and-ledger-integration-fixed/){target=_blank}, connecting your Ledger device with MetaMask on Chrome is easy again. You just need to have the latest version of MetaMask installed. 
+As of [MetaMask version 10.5.0](https://consensys.net/blog/metamask/metamask-and-ledger-integration-fixed/){target=_blank}, connecting your Ledger device with MetaMask on Chrome is easy again. You just need to have the latest version of MetaMask installed.
 
 ## Install the Moonriver Ledger Live App {: install-the-moonriver-ledger-live-app }
 
@@ -33,13 +33,13 @@ The Moonriver app is dependent on the Ethereum app, so first you will need to in
 --8<-- 'text/ledger/install-eth-app.md'
 4. Search for Moonriver (MOVR) in the **App catalog** and click **Install**. Again, your Ledger device will show **Processing** and once complete, the Moonriver app will appear on your Ledger device
 
-In the Ledger Live app, you should see the Ethereum and Moonriver app listed under the **Apps installed** tab on the **Manager** page. After the apps have been successfully installed, you can close out of Ledger Live. 
+In the Ledger Live app, you should see the Ethereum and Moonriver app listed under the **Apps installed** tab on the **Manager** page. After the apps have been successfully installed, you can close out of Ledger Live.
 
 <img src="/images/tokens/connect/ledger/moonriver/ledger-1.png" alt="Moonriver Ledger App Installed" style="width: 50%; display: block; margin-left: auto; margin-right: auto;" />
 
-## Import your Ledger Account to MetaMask {: #import-your-ledger-account-to-metamask } 
+## Import your Ledger Account to MetaMask {: #import-your-ledger-account-to-metamask }
 
-Now that you've installed the Ledger Live apps, you can connect your Ledger to the computer, unlock it, and open the Moonriver app. 
+Now that you've installed the Ledger Live apps, you can connect your Ledger to the computer, unlock it, and open the Moonriver app.
 
 --8<-- 'text/ledger/import-ledger/step-1.md'
 
@@ -75,7 +75,7 @@ You've now successfully imported a Moonriver compatible account from your Ledger
 
 Next, you will need to obtain some MOVR tokens and using the address you just copied, send the tokens to your account. After the transaction has successfully gone through, you will see your balance update.
 
-## Send Tokens {: #send-tokens } 
+## Send Tokens {: #send-tokens }
 
 Next up is sending and signing transactions on Moonriver using your Ledger device. To get started sending a transaction, click on the **Send** button:
 

@@ -1,6 +1,6 @@
 ---
 title: Run a Node on Moonbeam Using Systemd
-description: How to run a full Parachain node so you can have your own RPC endpoint or produce blocks for the Moonbeam Network using Systemd
+description: How to run a full parachain node so you can have your own RPC endpoint or produce blocks for the Moonbeam Network using Systemd.
 ---
 
 # Run a Node on Moonbeam Using Systemd

@@ -1,6 +1,6 @@
 ---
 title: Cross-Chain Integration Plans
-description: Moonbeam's cross-chain integrations will support both Polkadot-based parachains and non-Polkadot chains, like Ethereum.
+description: Moonbeam's cross-chain integrations support both Polkadot-based parachains and non-Polkadot chains, like Ethereum.
 ---
 
 # Cross-Chain Integration Plans
