@@ -448,7 +448,7 @@ If you were just using JSON-RPC, you would use `eth_call` to get this data, but 
 
 So let's start by moving the `MintableERC20.json` file into our frontend directory. Every time you change and recompile the smart contract, you'll have to update the ABI in the frontend as well. Some projects will have developer setups that automatically pull ABIs from the same source, but in this case we will just copy it over:  
 
-```JSON
+```text
 |--artifacts
     |--@openzeppelin
     |--build-info

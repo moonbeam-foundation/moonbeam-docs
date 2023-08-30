@@ -25,7 +25,7 @@ GET /blocks/{blockId}
 
 The block endpoints will return data relevant to one or more blocks. You can read more about the block endpoints on the [official Sidecar documentation](https://paritytech.github.io/substrate-api-sidecar/dist/#operations-tag-blocks){target=_blank}. Read as a JSON object, the relevant nesting structure is as follows:  
 
-```JSON
+```text
 RESPONSE JSON Block Object:
     ...
     |--number
@@ -146,7 +146,7 @@ GET /pallets/transaction-payment/storage/nextFeeMultiplier?at={blockId}
 
 The pallets endpoints for Sidecar returns data relevant to a pallet, such as data in a pallet's storage. You can read more about the pallets endpoint in the [official Sidecar documentation](https://paritytech.github.io/substrate-api-sidecar/dist/#operations-tag-pallets){target=_blank}. The data at hand that's required from storage is the `nextFeeMultiplier`, which can be found in the `transaction-payment` pallet. The stored `nextFeeMultiplier` value can be read directly from the Sidecar storage schema. Read as a JSON object, the relevant nesting structure is as follows:
 
-```JSON
+```text
 RESPONSE JSON Storage Object:
     |--at
         |--hash
