@@ -124,7 +124,11 @@ const balances = async () => {
 balances();
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/web3-tx-local/balances.js){target=_blank}.
+??? code "View the complete script"
+
+    ```js
+    --8<-- 'code/web3-tx-local/balances.js'
+    ```
 
 To run the script and fetch the account balances, you can run the following command:
 
@@ -185,7 +189,11 @@ const send = async () => {
 send();
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/web3-tx-local/transaction.js){target=_blank}.
+??? code "View the complete script"
+
+    ```js
+    --8<-- 'code/web3-tx-local/transaction.js'
+    ```
 
 To run the script, you can run the following command in your terminal:
 
@@ -276,7 +284,11 @@ const deploy = async () => {
 deploy();
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/web3-contract-local/deploy.js){target=_blank}.
+??? code "View the complete script"
+
+    ```js
+    --8<-- 'code/web3-contract-local/deploy.js'
+    ```
 
 To run the script, you can enter the following command into your terminal:
 
@@ -335,7 +347,11 @@ const get = async () => {
 get();
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/web3-contract-local/get.js){target=_blank}.
+??? code "View the complete script"
+
+    ```js
+    --8<-- 'code/web3-contract-local/get.js'
+    ```
 
 To run the script, you can enter the following command in your terminal:
 
@@ -410,7 +426,11 @@ const increment = async () => {
 increment();
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/web3-contract-local/increment.js){target=_blank}.
+??? code "View the complete script"
+
+    ```js
+    --8<-- 'code/web3-contract-local/increment.js'
+    ```
 
 To run the script, you can enter the following command in your terminal:
 
@@ -476,7 +496,11 @@ const reset = async () => {
 reset();
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/web3-contract-local/reset.js){target=_blank}.
+??? code "View the complete script"
+
+    ```js
+    --8<-- 'code/web3-contract-local/reset.js'
+    ```
 
 To run the script, you can enter the following command in your terminal:
 
