@@ -7,7 +7,7 @@ const providerRPC = {
 };
 const web3 = new Web3(providerRPC.development); // Change to correct network
 
-const account_from = {
+const accountFrom = {
   privateKey: 'YOUR-PRIVATE-KEY-HERE',
   address: 'PUBLIC-ADDRESS-OF-PK-HERE',
 };
@@ -15,7 +15,7 @@ const bytecode = contractFile.evm.bytecode.object;
 const abi = contractFile.abi;
 
 const deploy = async () => {
-  console.log(`Attempting to deploy from account ${account_from.address}`);
+  console.log(`Attempting to deploy from account ${accountFrom.address}`);
 
   const incrementer = new web3.eth.Contract(abi);
 
@@ -32,7 +32,9 @@ const deploy = async () => {
     account_from.privateKey
   );
 
-  const createReceipt = await web3.eth.sendSignedTransaction(createTransaction.rawTransaction);
+  const createReceipt = await web3.eth.sendSignedTransaction(
+    createTransaction.rawTransaction
+  );
   console.log(`Contract deployed at address: ${createReceipt.contractAddress}`);
 };
 

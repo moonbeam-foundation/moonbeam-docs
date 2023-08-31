@@ -1,6 +1,8 @@
+// Import ethers and compile
 const ethers = require('ethers');
 const { abi } = require('./compile');
 
+// Define network configurations
 const providerRPC = {
   development: {
     name: 'moonbeam-development',
@@ -13,29 +15,38 @@ const providerRPC = {
     chainId: 1287,
   },
 };
-const provider = new ethers.JsonRpcProvider(providerRPC.development.rpc, {
-  chainId: providerRPC.development.chainId,
-  name: providerRPC.development.name,
+
+// Create ethers provider
+const provider = new ethers.JsonRpcProvider(providerRPC.moonbase.rpc, {
+  chainId: providerRPC.moonbase.chainId,
+  name: providerRPC.moonbase.name,
 }); // Change to correct network
 
-const account_from = {
-  privateKey: 'YOUR-PRIVATE-KEY-HERE',
+// Create variables
+const accountFrom = {
+  privateKey: 'YOUR_PRIVATE_KEY_HERE',
 };
-const contractAddress = 'CONTRACT-ADDRESS-HERE';
+const contractAddress = 'CONTRACT_ADDRESS_HERE';
 const _value = 3;
 
-let wallet = new ethers.Wallet(account_from.privateKey, provider);
+// Create wallet
+let wallet = new ethers.Wallet(accountFrom.privateKey, provider);
 
+// Create contract instance with signer
 const incrementer = new ethers.Contract(contractAddress, abi, wallet);
+
+// Create reset function
 const increment = async () => {
   console.log(
     `Calling the increment by ${_value} function in contract at address: ${contractAddress}`
   );
 
+  // Sign and send tx and wait for receipt
   const createReceipt = await incrementer.increment(_value);
   await createReceipt.wait();
 
   console.log(`Tx successful with hash: ${createReceipt.hash}`);
 };
 
+// Call the reset function
 increment();

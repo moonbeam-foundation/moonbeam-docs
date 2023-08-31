@@ -25,12 +25,12 @@ For the examples in this guide, you will need to have the following:
 !!! note
     --8<-- 'text/common/assumes-mac-or-ubuntu-env.md'
 
-## Create a JavaScript Project {: #create-a-javascript-project }
+## Installing Web3.js {: #install-web3js }
 
-To get started, you can create a directory to store all of the files you'll be creating throughout this guide:
+To get started, you'll need to start a basic JavaScript project. First, create a directory to store all of the files you'll be creating throughout this guide and initialize the project with the following command:
 
 ```
-mkdir web3-examples && cd web3-examples
+mkdir web3-examples && cd web3-examples && npm init --y
 ```
 
 For this guide, you'll need to install the Web3.js library and the Solidity compiler. To install both NPM packages, you can run the following command:
