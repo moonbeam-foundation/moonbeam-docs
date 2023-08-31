@@ -1,11 +1,9 @@
 ---
 title: Gasless Transactions with the Call Permit Precompile
-description: Enable gas-less transactions in your dApp with Moonbeam's Call Permit Precompile! Learn how to implement the Call Permit Precompile to improve user experience.
+description: Enable gas-less transactions in your DApp with Moonbeam's Call Permit Precompile! Learn how to implement the Call Permit Precompile to improve user experience.
 ---
 
 # Use the Call Permit Precompile to Send Gasless Transactions
-
-![Banner Image](/images/tutorials/eth-api/call-permit-gasless-txs/gasless-banner.png)
 
 _by Erin Shaben_
 
@@ -43,7 +41,7 @@ For this tutorial, you'll need the following:
   --8<-- 'text/faucet/faucet-list-item.md'
 - A project with [Ethers](/builders/build/eth-api/libraries/ethersjs){target=_blank} installed:
 
-    ```
+    ```bash
     npm i ethers
     ```
 
@@ -220,7 +218,7 @@ Next, we'll need to define the typed data structure. The typed data structure de
 
 If you take a look at the [`dispatch` function of the Call Permit Precompile](/builders/pallets-precompiles/precompiles/call-permit/#the-call-permit-interface){target=_blank}, you'll see that the data that we need to send, along with the associated types, is as follows:
 
-```sol
+```solidity
 function dispatch(
     address from,
     address to,
@@ -467,7 +465,7 @@ For this next step, we're going to use our Ethers signer and the `signer.signTyp
 
 The `signTypedData` function will calculate a signature for our data using the following calculation:
 
-```
+```text
 sign(keccak256("\x19\x01" ‖ domainSeparator ‖ hashStruct(message)))
 ```
 

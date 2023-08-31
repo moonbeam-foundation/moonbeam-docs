@@ -5,8 +5,6 @@ description: A reference for the interfaces and methods in the Moonbeam XCM SDK 
 
 # Moonbeam XCM SDK Reference: v1
 
-![XCM SDK Banner](/images/builders/interoperability/xcm/sdk/reference-banner.png)
-
 ## Introduction {: #introduction }
 
 The Moonbeam XCM SDK enables developers to easily transfer assets between chains, either between parachains or between a parachain and the relay chain, within the Polkadot/Kusama ecosystem. With the SDK, you don't need to worry about determining the multilocation of the origin or destination assets or which extrinsics are used on which networks to send XCM transfers.

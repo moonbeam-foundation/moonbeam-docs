@@ -5,8 +5,6 @@ description: Learn how to use Foundry, an Ethereum development environment, to c
 
 # Using Foundry to Deploy To Moonbeam
 
-![Foundry Create Project](/images/builders/build/eth-api/dev-env/foundry/foundry-banner.png)
-
 ## Introduction {: #introduction }
 
 [Foundry](https://github.com/foundry-rs/foundry){target=_blank} is an Ethereum development environment written in Rust that helps developers manage dependencies, compile projects, run tests, deploy contracts, and interact with blockchains from the command line. Foundry can directly interact with Moonbeam's Ethereum API so it can be used to deploy smart contracts into Moonbeam.
@@ -24,9 +22,9 @@ This guide will cover how to use Foundry to compile, deploy, and debug Ethereum 
 
 To get started, you will need the following:
 
- - Have an account with funds. 
+ - Have an account with funds.
   --8<-- 'text/faucet/faucet-list-item.md'
- - 
+ -
 --8<-- 'text/common/endpoint-examples.md'
  - Have [Foundry installed](https://book.getfoundry.sh/getting-started/installation){target=_blank}
 
@@ -36,20 +34,20 @@ You will need to create a Foundry project if you don't already have one. You can
 
 1. Install Foundry if you haven't already. If on Linux or MacOS, you can run these commands:
   
-    ```
+    ```bash
     curl -L https://foundry.paradigm.xyz | bash
     foundryup
     ```
 
     If on Windows, you'll have to install Rust & then build Foundry from source:
 
-    ```
+    ```bash
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs/ | sh
     cargo install --git https://github.com/foundry-rs/foundry foundry-cli anvil --bins --locked
     ```
 
 2. Create the project, which will create a folder with three folders within it:
-    ```
+    ```bash
     forge init foundry
     ```
 
@@ -61,11 +59,11 @@ With the default project created, you should see three folders.
 
 In addition to these three folders, a git project will also be created along with a prewritten `.gitignore` file with relevant file types and folders ignored.
 
-## The Source Folder {: #the-src-folder } 
+## The Source Folder {: #the-src-folder }
 
 The `src` folder may already contain `Contract.sol`, a minimal Solidity contract. Feel free to delete it. Instead, you will be deploying an ERC-20 contract. In the contracts directory, you can create the `MyToken.sol` file:
 
-```
+```bash
 cd src
 touch MyToken.sol
 ```
@@ -88,7 +86,7 @@ contract MyToken is ERC20 {
 
 Before you attempt to compile, install OpenZeppelin contracts as a dependency. You may have to commit previous changes to git beforehand. By default, Foundry uses git submodules instead of npm packages, so the traditional npm import path and command are not used. Instead, use the name of OpenZeppelin's Github repository:
 
-```
+```bash
 forge install OpenZeppelin/openzeppelin-contracts
 ```
 
@@ -96,7 +94,7 @@ forge install OpenZeppelin/openzeppelin-contracts
 
 Once all dependencies have been installed, you can compile the contract:
 
-```
+```bash
 forge build
 ```
 
@@ -109,34 +107,38 @@ After compilation, two folders will be created: `out` and `cache`. The ABI and b
 Deploying the contract with Forge takes a single command, but you will need to include an RPC endpoint, a funded private key, and constructor arguments. `MyToken.sol` asks for an initial supply of tokens in its constructor, so each of the following commands include 100 as a constructor argument. You can deploy the `MyToken.sol` contract using the command for the correct network:
 
 === "Moonbeam"
-    ```
+
+    ```bash
     forge create --rpc-url {{ networks.moonbeam.rpc_url }} \
     --constructor-args 100 \
-    --private-key YOUR_PRIVATE_KEY \
+    --private-key INSERT_YOUR_PRIVATE_KEY \
     src/MyToken.sol:MyToken
     ```
 
 === "Moonriver"
-    ```
+
+    ```bash
     forge create --rpc-url {{ networks.moonriver.rpc_url }} \
     --constructor-args 100 \
-    --private-key YOUR_PRIVATE_KEY \
+    --private-key INSERT_YOUR_PRIVATE_KEY \
     src/MyToken.sol:MyToken
     ```
 
 === "Moonbase Alpha"
-    ```
+
+    ```bash
     forge create --rpc-url {{ networks.moonbase.rpc_url }} \
     --constructor-args 100 \
-    --private-key YOUR_PRIVATE_KEY \
+    --private-key INSERT_YOUR_PRIVATE_KEY \
     src/MyToken.sol:MyToken
     ```
 
 === "Moonbeam Dev Node"
-    ```
+
+    ```bash
     forge create --rpc-url {{ networks.development.rpc_url }} \
     --constructor-args 100 \
-    --private-key YOUR_PRIVATE_KEY \
+    --private-key INSERT_YOUR_PRIVATE_KEY \
     src/MyToken.sol:MyToken
     ```
 
@@ -150,30 +152,35 @@ Congratulations, your contract is live! Save the address, as you will use it to 
 
 Foundry includes cast, a CLI for performing Ethereum RPC calls.
 
-Try to retreive your token's name using cast, where `YOUR_CONTRACT_ADDRESS` is the address of the contract that you deployed in the previous section:
+Try to retreive your token's name using cast, where `INSERT_YOUR_CONTRACT_ADDRESS` is the address of the contract that you deployed in the previous section:
 
 === "Moonbeam"
-    ```
-    cast call YOUR_CONTRACT_ADDRESS "name()" --rpc-url {{ networks.moonbeam.rpc_url }}
+
+    ```bash
+    cast call INSERT_YOUR_CONTRACT_ADDRESS "name()" --rpc-url {{ networks.moonbeam.rpc_url }}
     ```
 
 === "Moonriver"
-    ```
-    cast call YOUR_CONTRACT_ADDRESS "name()" --rpc-url {{ networks.moonriver.rpc_url }}
+
+    ```bash
+    cast call INSERT_YOUR_CONTRACT_ADDRESS "name()" --rpc-url {{ networks.moonriver.rpc_url }}
     ```
 
 === "Moonbase Alpha"
-    ```
-    cast call YOUR_CONTRACT_ADDRESS "name()" --rpc-url {{ networks.moonbase.rpc_url }}
+
+    ```bash
+    cast call INSERT_YOUR_CONTRACT_ADDRESS "name()" --rpc-url {{ networks.moonbase.rpc_url }}
     ```
 
 === "Moonbeam Dev Node"
-    ```
-    cast call YOUR_CONTRACT_ADDRESS "name()" --rpc-url {{ networks.development.rpc_url }}
+
+    ```bash
+    cast call INSERT_YOUR_CONTRACT_ADDRESS "name()" --rpc-url {{ networks.development.rpc_url }}
     ```
 
 You should get this data in hexidecimal format:
-```
+
+```text
 0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000074d79546f6b656e00000000000000000000000000000000000000000000000000
 ```
 
@@ -181,45 +188,49 @@ This is far from readable, but you can use cast to convert it into your desired 
 
 ![Foundry Contract View](/images/builders/build/eth-api/dev-env/foundry/foundry-3.png)
 
-```
+```bash
 cast --to-ascii 0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000074d79546f6b656e00000000000000000000000000000000000000000000000000
 ```
 
 You can also mutate data with cast as well. Try burning tokens by sending them to the zero address.
 
 === "Moonbeam"
-    ```
-    cast send --private-key YOUR_PRIVATE_KEY \
+
+    ```bash
+    cast send --private-key INSERT_YOUR_PRIVATE_KEY \
     --rpc-url {{ networks.moonbeam.rpc_url }} \
     --chain {{ networks.moonbeam.chain_id }} \
-    YOUR_CONTRACT_ADDRESS \
+    INSERT_YOUR_CONTRACT_ADDRESS \
     "transfer(address,uint256)" 0x0000000000000000000000000000000000000001 1
     ```
 
 === "Moonriver"
-    ```
-    cast send --private-key YOUR_PRIVATE_KEY \
+
+    ```bash
+    cast send --private-key INSERT_YOUR_PRIVATE_KEY \
     --rpc-url {{ networks.moonriver.rpc_url }} \
     --chain {{ networks.moonriver.chain_id }} \
-    YOUR_CONTRACT_ADDRESS \
+    INSERT_YOUR_CONTRACT_ADDRESS \
     "transfer(address,uint256)" 0x0000000000000000000000000000000000000001 1
     ```
 
 === "Moonbase Alpha"
-    ```
-    cast send --private-key YOUR_PRIVATE_KEY \
+
+    ```bash
+    cast send --private-key INSERT_YOUR_PRIVATE_KEY \
     --rpc-url {{ networks.moonbase.rpc_url }} \
     --chain {{ networks.moonbase.chain_id }} \
-    YOUR_CONTRACT_ADDRESS \
+    INSERT_YOUR_CONTRACT_ADDRESS \
     "transfer(address,uint256)" 0x0000000000000000000000000000000000000001 1
     ```
 
 === "Moonbeam Dev Node"
-    ```
-    cast send --private-key YOUR_PRIVATE_KEY \
+
+    ```bash
+    cast send --private-key INSERT_YOUR_PRIVATE_KEY \
     --rpc-url {{ networks.development.rpc_url }} \
     --chain {{ networks.development.chain_id }} \
-    YOUR_CONTRACT_ADDRESS \
+    INSERT_YOUR_CONTRACT_ADDRESS \
     "transfer(address,uint256)" 0x0000000000000000000000000000000000000001 1
     ```
 
@@ -241,19 +252,19 @@ To fork Moonbeam from the command line, you can run the following command from w
 
 === "Moonbeam"
 
-    ```sh
+    ```bash
     anvil --fork-url {{ networks.moonbeam.rpc_url }}
     ```
 
 === "Moonriver"
 
-    ```sh
+    ```bash
     anvil --fork-url {{ networks.moonriver.rpc_url }}
     ```
 
 === "Moonbase Alpha"
 
-    ```sh
+    ```bash
     anvil --fork-url {{ networks.moonbase.rpc_url }}
     ```
 
@@ -263,7 +274,7 @@ Your forked instance will have 10 development accounts that are pre-funded with 
 
 To verify you have forked the network, you can query the latest block number:
 
-```
+```bash
 curl --data '{"method":"eth_blockNumber","params":[],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json" -X POST localhost:8545 
 ```
 
@@ -271,8 +282,8 @@ If you convert the `result` from [hex to decimal](https://www.rapidtables.com/co
 
 From here you can deploy new contracts to your forked instance of Moonbeam or interact with contracts already deployed. Building off of the previous example in this guide, you can make a call using Cast to check the balance of the minted MYTOK tokens in the account you deployed the contract with:
 
-```
-cast call INSERT-CONTRACT-ADDRESS  "balanceOf(address)(uint256)" INSERT-YOUR-ADDRESS --rpc-url http://localhost:8545
+```bash
+cast call INSERT_CONTRACT_ADDRESS  "balanceOf(address)(uint256)" INSERT-YOUR-ADDRESS --rpc-url http://localhost:8545
 ```
 
 ## Using Chisel {: #using-chisel }
@@ -283,7 +294,7 @@ Since Chisel is mainly useful for quick testing, it can be used outside of a Fou
 
 For this example, you will be testing out some of the features of `abi` within Solidity because it is complex enough to demonstrate how Chisel could be useful. To get started using Chisel, run the following in the command line to start the shell:
 
-```
+```bash
 chisel
 ```
 
@@ -295,7 +306,7 @@ bytes memory myData = abi.encode(100, true, "Develop on Moonbeam");
 
 Let's say you were interested in how `abi` encoded data, because you're looking into how to most efficiently store data on the blockchain and thus save gas. To view how the `myData` is stored in memory, you can use the following command while in the Chisel shell:  
 
-```
+```bash
 !memdump
 ```
 
@@ -305,7 +316,7 @@ Let's say you were interested in how `abi` encoded data, because you're looking 
 
 Fortunately, Chisel lets you easily figure out where this information is stored. Using the `!rawstack` command, you can find the location in the stack where the value of a variable:  
 
-```
+```bash
 !rawstack myData
 ```
 
@@ -315,7 +326,7 @@ In this situation, since bytes is over 32 bytes in length, the memory pointer is
 
 The `!rawstack` command shows that the `myData` variable is stored at `0x80`, so when comparing this with the memory dump retrieved form the `!memdump` command, it looks like `myData` is stored like this:  
 
-```
+```text
 [0x80:0xa0]: 0x00000000000000000000000000000000000000000000000000000000000000a0
 [0xa0:0xc0]: 0x0000000000000000000000000000000000000000000000000000000000000064
 [0xc0:0xe0]: 0x0000000000000000000000000000000000000000000000000000000000000001
@@ -328,13 +339,13 @@ At first glance this makes sense, since `0xa0` has a value of `0x64` which is eq
 
 Since you're done with this code, you can clear the state of Chisel so that it doesn't mess with any future logic that you want to try out (while running the same instance of Chisel):  
 
-```
+```bash
 !clear
 ```
 
 There's an even easier way to test with Chisel. When writing code that ends with a semicolon, `;`, Chisel will run them as a statement, storing its value in Chisel's runtime state. But if you really only needed to see how the ABI-encoded data was represented, then you could get away with running the code as an expression. To try this out with the same `abi` example, write the following in the Chisel shell:  
 
-```
+```bash
 abi.encode(100, true, "Develop on Moonbeam")
 ```
 
@@ -347,34 +358,34 @@ While it doesn't display the data in the same way, you still get the contents of
 By default, when you leave the Chisel shell, none of the data is persisted. But you can instruct chisel to do so. For example, you can take the following steps to store a variable:
 
 1. Store a `uint256` in Chisel
-    ```
+    ```bash
     uint256 myNumber = 101;
     ```
 
 2. Store the session with `!save`. For this example, you can use the number `1` as a save ID
-    ```
+    ```bash
     !save 1
     ```
 
 3. Quit the session  
-    ```
+    ```bash
     !quit
     ```
 
 Then to view and interact with your stored Chisel states, you can take the following steps:
 
 1. View a list of saved Chisel states
-     ```
+     ```bash
      chisel list
      ```
 
 2. Load your stored states
-    ```
+    ```bash
     chisel load
     ```
 
 3. View the `uint256` saved in Chisel from the previous set of steps
-    ```
+    ```bash
     !rawstack myNumber
     ```  
 
@@ -382,13 +393,13 @@ Then to view and interact with your stored Chisel states, you can take the follo
 
 You can even fork networks while using Chisel:
 
-```
+```bash
 !fork {{ networks.moonbase.rpc_url }}
 ```
 
 Then, for example, you can query the balance of one of Moonbase Alpha's collators:  
 
-```
+```text
 0x4c5A56ed5A4FF7B09aA86560AfD7d383F4831Cce.balance
 ```
 
@@ -402,7 +413,7 @@ Often, there will be the case where a project that you wish to integrate with th
 
 To convert your preexisting Foundry project to a hybrid project, you will essentially have to install a Hardhat project into the same folder:  
 
-```sh
+```bash
 npm init
 npm install --save-dev hardhat @nomicfoundation/hardhat-foundry
 npx hardhat
@@ -444,7 +455,7 @@ Both `forge test` and `npx hardhat test` should now be able to access all smart 
 
 You can run this command with:  
 
-```sh
+```bash
 npm run test
 ```
 

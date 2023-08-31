@@ -5,8 +5,6 @@ description: Learn how to use OpenZeppelin products for creating and managing So
 
 # OpenZeppelin
 
-![OpenZeppelin Banner](/images/builders/build/eth-api/dev-env/openzeppelin/openzeppelin-banner.png)
-
 ## Introduction {: #introduction } 
 
 [OpenZeppelin](https://openzeppelin.com/){target=_blank} is well known in the Ethereum developer community as their set of audited smart contracts and libraries are a standard in the industry. For example, most of the tutorials that show developers how to deploy an ERC-20 token use OpenZeppelin contracts.

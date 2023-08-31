@@ -5,8 +5,6 @@ description: A reference for the interfaces and methods in the Moonbeam XCM SDK,
 
 # Moonbeam XCM SDK Reference: v0
 
-![XCM SDK Banner](/images/builders/interoperability/xcm/sdk/reference-banner.png)
-
 ## Introduction {: #introduction }
 
 The Moonbeam XCM SDK enables developers to easily deposit and withdraw assets to Moonbeam/Moonriver from the relay chain and other parachains in the Polkadot/Kusama ecosystem. With the SDK, you don't need to worry about determining the multilocation of the origin or destination assets or which extrinsics are used on which networks to send XCM transfers.

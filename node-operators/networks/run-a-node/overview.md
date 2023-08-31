@@ -1,11 +1,9 @@
 ---
 title: Run a Node
-description: Learn about all of the necessary details to run a full Parachain node for the Moonbeam Network to have your RPC Endpoint or produce blocks
+description: Learn about all of the necessary details to run a full parachain node for the Moonbeam Network to have your RPC endpoint or produce blocks.
 ---
 
 # Run a Node on Moonbeam
-
-![Full Node Moonbeam Banner](/images/node-operators/networks/run-a-node/overview/full-node-banner.png)
 
 ## Introduction {: #introduction }
 
@@ -107,7 +105,7 @@ Both chains must be in sync at all times, and you should see either `Imported` o
 
 The Moonbase Alpha TestNet may need to be purged and upgraded once in a while. Consequently, you may see the following message:
 
-```
+```text
 DATE [Relaychain] Bootnode with peer id `ID` is on a different
 chain (our genesis: GENESIS_ID theirs: OTHER_GENESIS_ID)
 ```

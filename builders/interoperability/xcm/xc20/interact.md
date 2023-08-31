@@ -1,11 +1,9 @@
 ---
 title: Interact with XC-20s
-description: This guide includes everything you need to know to register local and external XC-20s so you can begin transferring assets cross-chain via XCM.
+description: Check out the XC-20 Solidity interfaces, including the ERC-20 and ERC-20 Permit interfaces, and how to interact with external XC-20s using these interfaces.
 ---
 
 # Interact with XC-20s on Moonbeam
-
-![Interact with XC-20s Banner](/images/builders/interoperability/xcm/xc20/interact/interact-banner.png)
 
 ## Introduction {: #introduction }
 

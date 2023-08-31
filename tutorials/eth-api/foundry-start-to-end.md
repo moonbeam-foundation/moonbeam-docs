@@ -5,8 +5,6 @@ description: Follow a step-by-step tutorial on how to use Foundry to build a pro
 
 # Using Foundry Start to End with Moonbeam
 
-![Banner Image](/images/tutorials/eth-api/foundry-start-to-end/foundry-banner.png)
-
 _by Jeremy Boetticher_
 
 ## Introduction {: #introduction }
@@ -50,7 +48,7 @@ forge remappings > remappings.txt
 
 Every line in this file is one of the dependencies that can be referenced in the project's smart contracts. Dependencies can be edited and renamed so that it's easier to reference different folders and files when working on smart contracts. It should look similar to this with OpenZeppelin installed properly:
 
-```
+```text
 ds-test/=lib/forge-std/lib/ds-test/src/
 forge-std/=lib/forge-std/src/
 openzeppelin-contracts/=lib/openzeppelin-contracts/
@@ -447,7 +445,7 @@ touch .env
 
 And within this file, add the following:  
 
-```
+```text
 PRIVATE_KEY=YOUR_PRIVATE_KEY
 MOONSCAN_API_KEY=YOUR_MOONSCAN_API_KEY
 ```

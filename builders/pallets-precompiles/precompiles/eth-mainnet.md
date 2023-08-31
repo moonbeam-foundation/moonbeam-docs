@@ -6,8 +6,6 @@ keywords: ethereum, moonbeam, ecrecover, sha256, sha3FIPS256, ripemd-160, Bn128A
 
 # Ethereum MainNet Precompiled Contracts
 
-![Precompiled Contracts Banner](/images/builders/pallets-precompiles/precompiles/eth-mainnet/eth-mainnet-banner.png)
-
 ## Introduction {: #introduction } 
 
 Precompiled contracts in Ethereum are contracts that include complex cryptographic computations, but do not require the overhead of the EVM. There are nine precompiles that can be used within the EVM that handle specific common operations such as hashing and signature schemes.
@@ -24,13 +22,13 @@ In this guide, you will learn how to use and/or verify these precompiles.
 
 As of writing this guide, the versions used were 15.2.1 and 7.0.8, respectively. You will also need to install the [Web3](https://web3js.readthedocs.io/en/latest/){target=_blank} package by executing:
 
-```
+```bash
 npm install --save web3
 ```
 
 To verify the installed version of Web3, you can use the `ls` command:
 
-```
+```bash
 npm ls web3
 ```
 

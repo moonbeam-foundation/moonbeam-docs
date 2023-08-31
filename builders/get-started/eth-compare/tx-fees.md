@@ -5,8 +5,6 @@ description: Learn about the transaction fee model used in Moonbeam and the diff
 
 # Calculating Transaction Fees on Moonbeam
 
-![Transaction Fees Banner](/images/builders/get-started/eth-compare/tx-fees-banner.png)
-
 ## Introduction {: #introduction }
 
 Similar to [the Ethereum and Substrate APIs for sending transfers](/builders/get-started/eth-compare/transfers-api/){target=_blank} on Moonbeam, the Substrate and EVM layers on Moonbeam also have distinct transaction fee models that developers should be aware of when they need to calculate and keep track of the transaction fees of their transactions.
@@ -21,13 +19,13 @@ You can reference the [Substrate API Sidecar page](/builders/build/substrate-api
 
 All the information around fee data for transactions sent via the Substrate API can be extracted from the following block endpoint:
 
-```
+```text
 GET /blocks/{blockId}
 ```
 
 The block endpoints will return data relevant to one or more blocks. You can read more about the block endpoints on the [official Sidecar documentation](https://paritytech.github.io/substrate-api-sidecar/dist/#operations-tag-blocks){target=_blank}. Read as a JSON object, the relevant nesting structure is as follows:  
 
-```JSON
+```text
 RESPONSE JSON Block Object:
     ...
     |--number
@@ -64,13 +62,13 @@ The object mappings are summarized as follows:
 
 The transaction fee related information can be retrieved under the event of the relevant extrinsic where the `method` field is set to:
 
-```
+```text
 pallet: "transactionPayment", method: "TransactionFeePaid" 
 ```
 
 And then the total transaction fee paid for this extrinsic is mapped to the following field of the block JSON object:
 
-```
+```text
 extrinsics[extrinsic_number].events[event_number].data[1]
 ```
 
@@ -79,18 +77,21 @@ extrinsics[extrinsic_number].events[event_number].data[1]
 To calculate the fee incurred on a Moonbeam transaction sent via the Ethereum API, the following formula can be used:
 
 === "EIP-1559"
-    ```
+
+    ```text
     GasPrice = BaseFee + MaxPriorityFeePerGas < MaxFeePerGas ? 
                 BaseFee + MaxPriorityFeePerGas : 
                 MaxFeePerGas;
     Transaction Fee = (GasPrice * TransactionWeight) / {{ networks.moonbase.tx_weight_to_gas_ratio }}
     ```
 === "Legacy"
-    ```
+
+    ```text
     Transaction Fee = (GasPrice * TransactionWeight) / {{ networks.moonbase.tx_weight_to_gas_ratio }}
     ```
 === "EIP-2930"
-    ```
+
+    ```text
     Transaction Fee = (GasPrice * TransactionWeight) / {{ networks.moonbase.tx_weight_to_gas_ratio }}
     ```
 
@@ -124,31 +125,31 @@ To calculate the dynamic base fee, the following calculation is used:
 
 === "Moonbeam"
 
-    ```
+    ```text
     BaseFee = NextFeeMultiplier * 125000000000 / 10^18
     ```
 
 === "Moonriver"
 
-    ```
+    ```text
     BaseFee = NextFeeMultiplier * 1250000000 / 10^18
     ```
 
 === "Moonbase Alpha"
 
-    ```
+    ```text
     BaseFee = NextFeeMultiplier * 125000000 / 10^18
     ```
 
 The value of `NextFeeMultiplier` can be retrieved from the Substrate Sidecar API, via the following endpoint:
 
-```
+```text
 GET /pallets/transaction-payment/storage/nextFeeMultiplier?at={blockId}
 ```
 
 The pallets endpoints for Sidecar returns data relevant to a pallet, such as data in a pallet's storage. You can read more about the pallets endpoint in the [official Sidecar documentation](https://paritytech.github.io/substrate-api-sidecar/dist/#operations-tag-pallets){target=_blank}. The data at hand that's required from storage is the `nextFeeMultiplier`, which can be found in the `transaction-payment` pallet. The stored `nextFeeMultiplier` value can be read directly from the Sidecar storage schema. Read as a JSON object, the relevant nesting structure is as follows:
 
-```JSON
+```text
 RESPONSE JSON Storage Object:
     |--at
         |--hash
@@ -174,11 +175,11 @@ The values of `GasPrice`, `MaxFeePerGas` and `MaxPriorityFeePerGas` for the appl
 
 The data for an Ethereum transaction in a particular block can be extracted from the following block endpoint:
 
-```
+```text
 GET /blocks/{blockId}
 ```
 
-The paths to the relevant values have also truncated and reproduced below: 
+The paths to the relevant values have also truncated and reproduced below:
 
 === "EIP1559"
     |      EVM Field       |                               Block JSON Field                               |
@@ -200,13 +201,13 @@ The paths to the relevant values have also truncated and reproduced below:
 
 `TransactionWeight` is a Substrate mechanism used to measure the execution time a given transaction takes to be executed within a block. For all transactions types, `TransactionWeight` can be retrieved under the event of the relevant extrinsic where the `method` field is set to:
 
-```
+```text
 pallet: "system", method: "ExtrinsicSuccess" 
 ```
 
 And then `TransactionWeight` is mapped to the following field of the block JSON object:
 
-```
+```text
 extrinsics[extrinsic_number].events[event_number].data[0].weight
 ```
 
@@ -222,13 +223,14 @@ As seen in the sections above, there are some key differences between the transa
 
 ### Fee History Endpoint {: #eth-feehistory-endpoint }
 
-Moonbeam networks implement the [`eth_feeHistory`](https://docs.alchemy.com/reference/eth-feehistory){target_blank} JSON-RPC endpoint as a part of the support for EIP-1559. 
+Moonbeam networks implement the [`eth_feeHistory`](https://docs.alchemy.com/reference/eth-feehistory){target_blank} JSON-RPC endpoint as a part of the support for EIP-1559.
 
-`eth_feeHistory` returns a collection of historical gas information from which you can reference and calculate what to set for the `MaxFeePerGas` and `MaxPriorityFeePerGas` fields when submitting EIP-1559 transactions. 
+`eth_feeHistory` returns a collection of historical gas information from which you can reference and calculate what to set for the `MaxFeePerGas` and `MaxPriorityFeePerGas` fields when submitting EIP-1559 transactions.
 
 The following curl example will return the gas information of the last 10 blocks starting from the latest block on the respective Moonbeam network using `eth_feeHistory`:
 
 === "Moonbeam"
+
     ```sh
     curl --location \
          --request POST '{{ networks.moonbeam.rpc_url }}' \
@@ -241,6 +243,7 @@ The following curl example will return the gas information of the last 10 blocks
          }'
     ```
 === "Moonriver"
+
     ```sh
     curl --location \
          --request POST '{{ networks.moonriver.rpc_url }}' \
@@ -253,6 +256,7 @@ The following curl example will return the gas information of the last 10 blocks
          }'
     ```
 === "Moonbase Alpha"
+
     ```sh
     curl --location \
          --request POST '{{ networks.moonbase.rpc_url }}' \
@@ -265,6 +269,7 @@ The following curl example will return the gas information of the last 10 blocks
          }'
     ```
 === "Moonbeam Dev Node"
+
     ```sh
     curl --location \
          --request POST '{{ networks.development.rpc_url }}' \

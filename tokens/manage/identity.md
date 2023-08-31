@@ -1,13 +1,11 @@
 ---
 title: Managing an Identity
-description: Learn how to create and clear an identity, including personal information such as your name and social handles, on Moonbeam-based networks.
+description: Learn how to create and manage an on-chain identity, which includes personal information such as your name and social handles, on Moonbeam-based networks.
 ---
 
 # Managing your Account Identity
 
-![Managing your Account Identity](/images/tokens/manage/identity/identity-banner.png)
-
-## Introduction {: #introduction } 
+## Introduction {: #introduction }
 
 The [Substrate](/learn/platform/technology/#substrate-framework){target=_blank} Identity pallet is an out-of-the-box solution for adding personal information to your on-chain account. Personal information can include default fields such as your legal name, display name, website, Twitter handle, Riot (now known as Element) name. You can also take advantage of custom fields to include any other relevant information.
 
@@ -17,10 +15,10 @@ This guide will show you how to set an identity, clear it, and request judgement
 
 ## General Definitions {: #general-definitions }
 
-To store your information on-chain, you must bond some funds, which eventually will be returned once the identity has been cleared. There are two categories of fields: default and custom. If custom fields are used, you will be required to submit an additional deposit for each field. 
+To store your information on-chain, you must bond some funds, which eventually will be returned once the identity has been cleared. There are two categories of fields: default and custom. If custom fields are used, you will be required to submit an additional deposit for each field.
 
 - **Default fields include** - your legal name, display name, website, Twitter handle, Riot (now known as Element) name
- 
+
 - **Custom fields include** - any other relevant information. For example, you could include your Discord handle
 
 === "Moonbeam"
@@ -50,7 +48,7 @@ For this guide, you will need the following:
 
 - To connect to the [Moonbase Alpha TestNet](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network){target=_blank} on the Polkadot.js Apps explorer. You can also follow along and adapt the instructions for [Moonbeam](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbeam.network){target=_blank} or [Moonriver](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonriver.moonbeam.network){target=_blank}.
 - To [create or import an account](/tokens/connect/polkadotjs/#creating-or-importing-an-h160-account) into Polkadot.js Apps
-- Make sure you have funded your account. 
+- Make sure you have funded your account.
  --8<-- 'text/faucet/faucet-list-item.md'
 
 ## Get Started {: #get-started }
@@ -68,7 +66,7 @@ If you are looking for a more customizable experience and want to add custom fie
 
 To get started with setting an identity using the Accounts UI, head to the [Accounts tab](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/accounts){target=_blank} on the Polkadot.js Apps explorer.
 
-You should already have an account connected, so you can go ahead and click on your account name to verify and take note of your balances. After you send the transaction to set an identity, the deposit(s) you submitted will be moved from your transferable balance to your reserved balance. 
+You should already have an account connected, so you can go ahead and click on your account name to verify and take note of your balances. After you send the transaction to set an identity, the deposit(s) you submitted will be moved from your transferable balance to your reserved balance.
 
 ![Starting account balances](/images/tokens/manage/identity/identity-1.png)
 
@@ -94,7 +92,7 @@ You should see status notifications pop-up in the top right hand corner. Once th
 
 ![Updated account balances](/images/tokens/manage/identity/identity-4.png)
 
-If the identity information matches what you entered, you’ve successfully set an identity! 
+If the identity information matches what you entered, you’ve successfully set an identity!
 
 Once you clear your identity, the deposit in your reserved balance will get transferred back to your transferable balance. If you need to make changes to your identity, you can go through the process of setting your identity again. Please note that you will need to ensure all fields are re-entered, even if only one field needs to be changed, or they will be overwritten. You will not need to pay another deposit, unless custom fields are used, but you will need to pay gas fees.
 
@@ -115,7 +113,7 @@ You will then be prompted to sign the transaction. If everything looks good, you
 
 You should see status notifications pop-up in the top right hand corner. Once the transaction has been confirmed, you can click on your account name again and the panel will slide out on the right side of the page. You can see your reserved balance was transferred back to your transferable balance, and your identity information has been removed.
 
-That’s it! You’ve successfully cleared your identity. If you want to add a new identity, you can do so at any time. 
+That’s it! You’ve successfully cleared your identity. If you want to add a new identity, you can do so at any time.
 
 ## Manage an Identity via Extrinsics {: #manage-via-extrinsics }
 
@@ -134,7 +132,7 @@ To register an identity using the extrinsics UI, navigate to the [Extrinsics pag
 
 Optionally, if you would like to enter custom fields, you can do so by:
 
-1. Scrolling to the top and clicking on **Add item** 
+1. Scrolling to the top and clicking on **Add item**
 2. Two fields will appear: the first for the field name and the second for the value. Please make sure that for each field and value, your input does not exceed 32 characters. Fill in the field name
     1. Select the format of the data for the field name. Again, you can use **Raw** data
     2. Enter the field name in the selected format
@@ -180,9 +178,9 @@ To clear your identity from the [Extrinsics tab](https://polkadot.js.org/apps/?r
 
 You will then be prompted to sign the transaction. If everything looks good, you can enter your password and click **Sign and Submit** to sign and send the transaction.
 
-You should see status notifications pop-up in the top right hand corner confirming the transaction. 
+You should see status notifications pop-up in the top right hand corner confirming the transaction.
 
-To verify the removal of your identity information, you can follow the steps in the [Confirm an Identity](#confirm-identity-extrinsics) section again. Instead of seeing your identity information, this time you'll get a response of **none**. Meaning, you no longer have any identity information associated with your account. If you check your balances, you should see that the initial deposit for setting your identity has been returned to your transferable balance. That’s it! Your identity has been cleared. 
+To verify the removal of your identity information, you can follow the steps in the [Confirm an Identity](#confirm-identity-extrinsics) section again. Instead of seeing your identity information, this time you'll get a response of **none**. Meaning, you no longer have any identity information associated with your account. If you check your balances, you should see that the initial deposit for setting your identity has been returned to your transferable balance. That’s it! Your identity has been cleared.
 
 ## Identity Judgement {: #identity-judgement }
 
@@ -195,8 +193,8 @@ A registrar will perform proper due dilligence to verify the submitted identity 
 - **Unknown** - no judgement made yet. This is the default value
 - **Fee Paid** - indicates a user has requested judgement and it is in progress
 - **Reasonable** - the information appears reasonable, but no in-depth checks were performed using legal identity documents
-- **Known Good** - the information is correct and is based upon review of legal identity documents 
-- **Out of Date** - the information used to be good, but is now out of date 
+- **Known Good** - the information is correct and is based upon review of legal identity documents
+- **Out of Date** - the information used to be good, but is now out of date
 - **Low Quality** - the information is low quality or imprecise, but can be updated as needed
 - **Erroneous** - the information is erroneous and may indicate malicious intent. This state cannot be modified and can only be removed if the entire identity has been removed
 

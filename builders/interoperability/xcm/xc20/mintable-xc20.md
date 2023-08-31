@@ -1,11 +1,9 @@
 ---
 title: Mintable XC-20s
-description: Learn about cross chain assets that can be minted and burned on a Moonbeam-based network, and transferred to other Substrate chains via XCM.
+description: Learn about cross-chain assets that can be minted and burned on a Moonbeam-based network, and transferred to other Substrate chains via XCM.
 ---
 
 # Mintable XC-20s
-
-![Cross-Chain Assets Precompiled Contracts Banner](/images/builders/interoperability/xcm/xc20/mintable-xc20/mintable-xc20-banner.png)
 
 ## Introduction {: #introduction }
 
@@ -99,7 +97,7 @@ Now that you have retrieved a list of the available mintable XC-20s, before you 
 
 The mintable XC-20 precompile address is calculated using the following:
 
-```
+```text
 address = "0xFFFFFFFE..." + DecimalToHex(AssetId)
 ```
 
@@ -128,17 +126,20 @@ To register a mintable XC-20 on Moonbase Alpha, you'll need to have the followin
 The first step to get your mintable XC-20 registered on Moonbeam is to create a proposal. The creator-role of the asset will need to submit a deposit. The deposit for each network is as follows:
 
 === "Moonbeam"
-    ```
+
+    ```text
     {{ networks.moonbeam.mintable_xc20.asset_deposit }} GLMR
     ```
 
 === "Moonriver"
-    ```
+
+    ```text
     {{ networks.moonriver.mintable_xc20.asset_deposit }} MOVR
     ```
 
 === "Moonbase Alpha"
-    ```
+
+    ```text
     {{ networks.moonbase.mintable_xc20.asset_deposit }} DEV
     ```
 
@@ -174,17 +175,20 @@ Your proposal will then be subject to democracy and on-chain governance, please 
 Once the proposal is approved and enacted, the account you specified as the owner can set the metadata for the asset. The metadata includes the asset name, symbol, and decimals. There is a deposit required to set the metadata, it is as follows for each of the networks:
 
 === "Moonbeam"
-    ```
+
+    ```text
     {{ networks.moonbeam.mintable_xc20.metadata_base_deposit }} GLMR base fee + ({{ networks.moonbeam.mintable_xc20.metadata_byte_deposit }} GLMR x number of bytes stored)
     ```
 
 === "Moonriver"
-    ```
+
+    ```text
     {{ networks.moonriver.mintable_xc20.metadata_base_deposit }} MOVR base fee + ({{ networks.moonriver.mintable_xc20.metadata_byte_deposit }} MOVR x number of bytes stored)
     ```
 
 === "Moonbase Alpha"
-    ```
+
+    ```text
     {{ networks.moonbase.mintable_xc20.metadata_base_deposit }} DEV base fee + ({{ networks.moonbase.mintable_xc20.metadata_byte_deposit }} DEV x number of bytes stored)
     ```
 

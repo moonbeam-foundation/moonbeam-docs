@@ -5,8 +5,6 @@ description: Querying blockchain data such as balances, transactions, transfers,
 
 # Getting Started with the Covalent API
 
-![Covalent on Moonbeam](/images/builders/integrations/indexers/covalent/covalent-banner.png)
-
 ## Introduction {: #introduction }
 
 [Covalent](https://www.covalenthq.com/?utm_source=moonbeam&utm_medium=partner-docs){target=_blank} is a hosted blockchain data solution providing access to historical and current on-chain data for [100+ supported blockchains](https://www.covalenthq.com/docs/networks/?utm_source=moonbeam&utm_medium=partner-docs){target=_blank}, including [Moonbeam, Moonriver, and Moonbase Alpha](https://www.covalenthq.com/docs/networks/moonbeam/?utm_source=moonbeam&utm_medium=partner-docs){target=_blank}. Covalent maintains a full archival copy of every supported blockchain, meaning every balance, transaction, log event, and NFT asset data is available from the genesis block. This data is available via:

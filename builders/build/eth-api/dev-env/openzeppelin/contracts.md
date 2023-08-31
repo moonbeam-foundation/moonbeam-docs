@@ -5,8 +5,6 @@ description:  Learn how to create common OpenZeppelin contracts such as ERC-20, 
 
 # Using OpenZeppelin Contracts and Remix To Deploy To Moonbeam
 
-![OpenZeppelin Contracts Banner](/images/builders/build/eth-api/dev-env/openzeppelin/contracts/oz-contracts-banner.png)
-
 ## Introduction {: #introduction } 
 
 [OpenZeppelin](https://openzeppelin.com/){target=_blank} contracts and libraries have become a standard in the industry. They help developers minimize risk, as their open-source code templates are battle-tested for Ethereum and other blockchains. Their code includes the most used implementations of ERC standards and add-ons and often appears in guides and tutorials around the community.

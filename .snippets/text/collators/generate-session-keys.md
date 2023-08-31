@@ -8,7 +8,7 @@ Next, session keys can be created/rotated by sending an RPC call to the HTTP end
 
 For reference, if your collator's HTTP endpoint is at port `9944`, the JSON-RPC call might look like this:
 
-```
+```bash
 curl http://127.0.0.1:9944 -H \
 "Content-Type:application/json;charset=utf-8" -d \
   '{

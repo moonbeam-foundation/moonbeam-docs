@@ -5,8 +5,6 @@ description: Use Dapplooker to analyze and query on-chain data, and create dashb
 
 # Getting Started with Dapplooker
 
-![Dapplooker Banner](/images/builders/integrations/analytics/dapplooker/dapplooker-banner.png)
-
 ## Introduction {: #introduction }
 
 Developers on Moonriver and Moonbeam can use the [Dapplooker](https://dapplooker.com/){target=_blank} platform to analyze their on-chain data and run SQL queries. The integration gives projects the ability to create charts and dashboards to track their smart contracts and provide feedback on performance and adoption.

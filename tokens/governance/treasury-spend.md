@@ -5,8 +5,6 @@ description: Learn about the full life cycle of a Treasury proposal from the ini
 
 # How to Propose a Treasury Spend
 
-![Governance Moonbeam Banner](/images/tokens/governance/treasury-proposals/treasury-proposal-banner.png)
-
 ## Introduction {: #introduction }
 
 As mentioned in the [Treasury overview page](/learn/features/governance/#definitions){target=_blank}, the Moonbeam Treasury is an on-chain collection of funds that was launched at the genesis of the network. The Treasury was pre-funded with 0.5% of the total token supply at network launch and has been steadily accumulating GLMR from a portion of transaction fees (approx. {{ networks.moonbeam.treasury.tx_fees_allocated }}% of transaction fees go to the Treasury). The Moonbeam Treasury is intended to help fund key projects that help maintain and further the growth of the Moonbeam network.

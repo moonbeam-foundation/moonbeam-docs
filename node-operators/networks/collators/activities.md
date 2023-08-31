@@ -1,11 +1,9 @@
 ---
 title: Moonbeam Collator Activities
-description: Instructions on how to dive in and learn about the related activites for becoming and being a collator in the Moonbeam Network.
+description: Instructions on how to dive in and learn about the related activities for becoming and maintaining a collator node in the Moonbeam Network.
 ---
 
 # Collator Activities
-
-![Collator Activities Banner](/images/node-operators/networks/collators/activities/activities-banner.png)
 
 ## Introduction {: #introduction }
 

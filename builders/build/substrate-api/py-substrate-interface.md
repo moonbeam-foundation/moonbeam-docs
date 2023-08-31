@@ -1,15 +1,13 @@
 ---
 title: How to use the Python Substrate Interface
-description: Learn the basic of how to use the Python Substrate Interface library to query chain data, send transactions, and more on Moonbeam networks.
+description: Learn the basics of how to use the Python Substrate Interface library to query chain data, send transactions, and more on Moonbeam networks.
 ---
 
 # Python Substrate Interface
 
-![Intro diagram](/images/builders/build/substrate-api/py-substrate-interface/py-substrate-interface-banner.png)
-
 ## Introduction {: #introduction }
 
-[Python Substrate Interface](https://github.com/polkascan/py-substrate-interface){target=_blank} library allows application developers to query a Moonbeam node and interact with the node's Polkadot or Substrate features using a native Python interface. Here you will find an overview of the available functionalities and some commonly used code examples to get you started on interacting with Moonbeam networks using Python Substrate Interface. 
+[Python Substrate Interface](https://github.com/polkascan/py-substrate-interface){target=_blank} library allows application developers to query a Moonbeam node and interact with the node's Polkadot or Substrate features using a native Python interface. Here you will find an overview of the available functionalities and some commonly used code examples to get you started on interacting with Moonbeam networks using Python Substrate Interface.
 
 ## Checking Prerequisites {: #checking-prerequisites }
 
@@ -17,24 +15,24 @@ For the examples in this guide, you will need to have the following:
 
  - An account with funds.
   --8<-- 'text/faucet/faucet-list-item.md'
- - 
+ -
 --8<-- 'text/common/endpoint-examples.md'
  - Have [`pip`](https://pypi.org/project/pip/){target=_blank} installed
 
 !!! note
     --8<-- 'text/common/assumes-mac-or-ubuntu-env.md'
 
-### Installing Python Substrate Interface {: #installing-python-substrate-interface } 
+### Installing Python Substrate Interface {: #installing-python-substrate-interface }
 
 You can install Python Substrate Interface library for your project through `pip`. Run the following command in your project directory:
 
-```
+```bash
 pip install substrate-interface
 ```
 
 ## Creating an API Provider Instance {: #creating-an-API-provider-instance }
 
-Similar to ETH API libraries, you must first instantiate an API instance of Python Substrate Interface API. Create the `WsProvider` using the websocket endpoint of the Moonbeam network you wish to interact with. 
+Similar to ETH API libraries, you must first instantiate an API instance of Python Substrate Interface API. Create the `WsProvider` using the websocket endpoint of the Moonbeam network you wish to interact with.
 
 --8<-- 'text/common/endpoint-examples.md'
 
@@ -88,11 +86,11 @@ Similar to ETH API libraries, you must first instantiate an API instance of Pyth
 
 ## Querying for Information {: #querying-for-information }
 
-In this section, you will learn how to query for on-chain information of Moonbeam networks using Python Substrate Interface library. 
+In this section, you will learn how to query for on-chain information of Moonbeam networks using Python Substrate Interface library.
 
 ### Accessing Runtime Constants {: #accessing-runtime-constants }
 
-All runtime constants, such as `BlockWeights`, `DefaultBlocksPerRound` and `ExistentialDeposit`, are provided in the metadata. You can use the [`get_metadata_constants`](https://polkascan.github.io/py-substrate-interface/#substrateinterface.SubstrateInterface.get_metadata_constants){target=_blank} method to see a list of available runtime constants within Moonbeam network's metadata. 
+All runtime constants, such as `BlockWeights`, `DefaultBlocksPerRound` and `ExistentialDeposit`, are provided in the metadata. You can use the [`get_metadata_constants`](https://polkascan.github.io/py-substrate-interface/#substrateinterface.SubstrateInterface.get_metadata_constants){target=_blank} method to see a list of available runtime constants within Moonbeam network's metadata.
 
 Runtime constants available in the metadata can be queried through the [`get_constant`](https://polkascan.github.io/py-substrate-interface/#substrateinterface.SubstrateInterface.get_constant){target=_blank} method.
 
@@ -116,9 +114,9 @@ print(constant.value)
 ```
 ### Retrieving Blocks and Extrinsics {: #retrieving-blocks-and-extrinsics }
 
-You can retrieve basic information about Moonbeam networks, such as blocks and extrinsics, using the Python Substrate Interface API. 
+You can retrieve basic information about Moonbeam networks, such as blocks and extrinsics, using the Python Substrate Interface API.
 
-To retrieve a block, you can use the [`get_block`](https://polkascan.github.io/py-substrate-interface/#substrateinterface.SubstrateInterface.get_block){target=_blank} method. You can also access extrinsics and their data fields inside a block object, which is simply a Python dictionary. 
+To retrieve a block, you can use the [`get_block`](https://polkascan.github.io/py-substrate-interface/#substrateinterface.SubstrateInterface.get_block){target=_blank} method. You can also access extrinsics and their data fields inside a block object, which is simply a Python dictionary.
 
 To retrieve a block header, you can use the [`get_block_header`](https://polkascan.github.io/py-substrate-interface/#substrateinterface.SubstrateInterface.get_block_header){target=_blank} method.  
 
@@ -183,11 +181,11 @@ result = ws_provider.subscribe_block_headers(subscription_handler)
 
 ### Querying for Storage Information {: #querying-for-storage-information }
 
-You can use the [`get_metadata_storage_functions`](https://polkascan.github.io/py-substrate-interface/#substrateinterface.SubstrateInterface.get_metadata_storage_functions){target=_blank} to see a list of available storage functions within Moonbeam network's metadata. 
+You can use the [`get_metadata_storage_functions`](https://polkascan.github.io/py-substrate-interface/#substrateinterface.SubstrateInterface.get_metadata_storage_functions){target=_blank} to see a list of available storage functions within Moonbeam network's metadata.
 
-Chain states that are provided in the metadata through storage functions can be queried through the [`query`](https://polkascan.github.io/py-substrate-interface/#substrateinterface.SubstrateInterface.query){target=_blank} method. 
+Chain states that are provided in the metadata through storage functions can be queried through the [`query`](https://polkascan.github.io/py-substrate-interface/#substrateinterface.SubstrateInterface.query){target=_blank} method.
 
-The Substrate system modules, such as `System`, `Timestamp`, and `Balances`, can be queried to provide basic information such as account nonce and balance. The available storage functions are read from the metadata dynamically, so you can also query for storage information on Moonbeam custom modules, such as `ParachainStaking` and `Democracy`, for state information that's specific to Moonbeam. 
+The Substrate system modules, such as `System`, `Timestamp`, and `Balances`, can be queried to provide basic information such as account nonce and balance. The available storage functions are read from the metadata dynamically, so you can also query for storage information on Moonbeam custom modules, such as `ParachainStaking` and `Democracy`, for state information that's specific to Moonbeam.
 
 ```python
 # Imports
@@ -251,13 +249,13 @@ keypair = Keypair.create_from_mnemonic(mnemonic, crypto_type=KeypairType.ECDSA)
 
 The [`compose_call`](https://polkascan.github.io/py-substrate-interface/#substrateinterface.SubstrateInterface.compose_call){target=_blank} method can be used to compose a call payload which can be used as an unsigned extrinsic or a proposal.
 
-Then the payload can be signed using a keypair through the [`create_signed_extrinsic`](https://polkascan.github.io/py-substrate-interface/#substrateinterface.SubstrateInterface.create_signed_extrinsic){target=_blank} method. 
+Then the payload can be signed using a keypair through the [`create_signed_extrinsic`](https://polkascan.github.io/py-substrate-interface/#substrateinterface.SubstrateInterface.create_signed_extrinsic){target=_blank} method.
 
-The signed extrinsic can then be submitted using the [`submit_extrinsic`](https://polkascan.github.io/py-substrate-interface/#substrateinterface.SubstrateInterface.submit_extrinsic){target=_blank} method. 
+The signed extrinsic can then be submitted using the [`submit_extrinsic`](https://polkascan.github.io/py-substrate-interface/#substrateinterface.SubstrateInterface.submit_extrinsic){target=_blank} method.
 
-This method will also return an `ExtrinsicReceipt` object which contains information about the on-chain execution of the extrinsic. If you need to examine the receipt object, you can set the `wait_for_inclusion` to `True` when submitting the extrinsic to wait until the extrinsic is successfully included into the block. 
+This method will also return an `ExtrinsicReceipt` object which contains information about the on-chain execution of the extrinsic. If you need to examine the receipt object, you can set the `wait_for_inclusion` to `True` when submitting the extrinsic to wait until the extrinsic is successfully included into the block.
 
-The following sample code will show a complete example for sending a transaction. 
+The following sample code will show a complete example for sending a transaction.
 
 ```python
 
@@ -296,7 +294,7 @@ try:
 except SubstrateRequestException as e:
     print("Failed to send: {}".format(e))
 
-``` 
+```
 
 ### Offline Signing {: #offline-signing }
 
@@ -388,14 +386,14 @@ You can sign transaction payloads or any arbitrary data using a keypair object t
 
     # Print the execution result
     print(result.extrinsic_hash)
-    ``` 
+    ```
 
 ## Custom RPC Requests {: #custom-rpc-requests }
 
-You can also make custom RPC requests with the [`rpc_request`](https://polkascan.github.io/py-substrate-interface/#substrateinterface.SubstrateInterface.rpc_request){target=_blank} method. 
+You can also make custom RPC requests with the [`rpc_request`](https://polkascan.github.io/py-substrate-interface/#substrateinterface.SubstrateInterface.rpc_request){target=_blank} method.
 
-This is particularly useful for interacting with Moonbeam's [ETH JSON RPC](/builders/get-started/eth-compare/rpc-support/){target=_blank} endpoints or Moonbeam's [custom RPC](/builders/build/moonbeam-custom-api/){target=_blank} endpoints. 
+This is particularly useful for interacting with Moonbeam's [ETH JSON RPC](/builders/get-started/eth-compare/rpc-support/){target=_blank} endpoints or Moonbeam's [custom RPC](/builders/build/moonbeam-custom-api/){target=_blank} endpoints.
 
-The [Consensus and Finality page](/builders/get-started/eth-compare/consensus-finality/#checking-tx-finality-with-substrate-libraries) has examples for using the custom RPC calls through Python Substrate Interface to check the finality of a transaction given its tx hash. 
+The [Consensus and Finality page](/builders/get-started/eth-compare/consensus-finality/#checking-tx-finality-with-substrate-libraries) has examples for using the custom RPC calls through Python Substrate Interface to check the finality of a transaction given its tx hash.
 
 --8<-- 'text/disclaimers/third-party-content.md'

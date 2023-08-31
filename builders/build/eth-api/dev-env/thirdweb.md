@@ -5,8 +5,6 @@ description: This guide will show you some of thirdweb's features to take advant
 
 # Using thirdweb on Moonbeam
 
-![thirdweb banner](/images/builders/build/eth-api/dev-env/thirdweb/thirdweb-banner.png)
-
 ## Introduction {: #introduction }
 
 [thirdweb](https://thirdweb.com/){target=_blank} is a complete Web3 development framework that provides everything you need to develop smart contracts, build DApps, and more.

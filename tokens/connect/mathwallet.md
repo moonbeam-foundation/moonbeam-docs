@@ -5,8 +5,6 @@ description: This guide walks you through how to connect Mathwallet, a browser-b
 
 # Interacting with Moonbeam Using MathWallet
  
-![Intro banner](/images/tokens/connect/mathwallet/mathwallet-banner.png)
-
 ## Introduction {: #introduction } 
 
 MathWallet [announced](https://mathwallet.org/moonbeam-wallet/en/) that is now natively supporting each of the [Moonbeam-based networks](/learn/platform/networks). This means that you are now able to interact with any of the networks using another wallet besides MetaMask.

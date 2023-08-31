@@ -5,8 +5,6 @@ description: How to do remote calls to smart contracts on Moonbeam EVM through X
 
 # Remote EVM Calls Through XCM
 
-![Remote EVM Calls Banner](/images/builders/interoperability/xcm/remote-evm-calls/xcmevm-banner.png)
-
 ## Introduction {: #introduction}
 
 The [XCM Transactor Pallet](/builders/interoperability/xcm/xcm-transactor/){target=_blank} provides a simple interface to perform remote cross-chain calls through XCM. However, this does not consider the possibility of doing remote calls to Moonbeam's EVM, only to Substrate specific pallets (functionalities).
@@ -368,7 +366,7 @@ curl --location --request POST 'https://rpc.api.moonbase.moonbeam.network' \
 
 If the JSON RPC request is sent correctly, the response should look like this:
 
-```JSON
+```json
 {
     "jsonrpc": "2.0",
     "result": {

@@ -5,8 +5,6 @@ description: In this step-by-step tutorial, you'll learn about connected contrac
 
 # Building a Cross-Chain DAO with OpenZeppelin's Governor Contract
 
-![Banner Image](/images/tutorials/interoperability/cross-chain-dao/cross-chain-dao-banner.png)
-
 _by Jeremy Boetticher_
 
 ## Introduction {: #introduction }
@@ -38,11 +36,11 @@ Let's take a look at the phases that a proposal in a DAO like Compound Finance's
 3. **Timelock** — an optional period that allows users to exit the ecosystem (sell their tokens) before the proposal can be executed
 4. **Execution** — if the vote is successful, any user can trustlessly execute it
 
-But what about a cross-chain DAO? In a cross chain DAO, the actions that you would typically take should also be available cross-chain: proposals, votes, executions, cancellations, etc. This requires a more complex architecture since a lot of information has to be replicated across chains.  
+But what about a cross-chain DAO? In a cross-chain DAO, the actions that you would typically take should also be available cross-chain: proposals, votes, executions, cancellations, etc. This requires a more complex architecture since a lot of information has to be replicated across chains.  
 
 There are many ways to architect a cross-chain DApp. You could make a more distributed system, where data and logic are distributed to multiple chains to maximize their use. On the other end of the spectrum, you could use a hub-and-spoke model, where the main logic and data are stored on a single chain and cross-chain messages will interact with it.  
 
-![Cross Chain DAO](/images/tutorials/interoperability/cross-chain-dao/cross-chain-dao-2.png)
+![Cross-Chain DAO](/images/tutorials/interoperability/cross-chain-dao/cross-chain-dao-2.png)
 
 Let's break down some of the steps in more detail:  
 
@@ -50,7 +48,7 @@ Let's break down some of the steps in more detail:
 2. **Voting** — after a voting delay time period, a voting period opens, which allows users to vote with their voting weight on every chain. The voting weight is determined by a cross-chain token's balance on each chain at a certain timestamp between the proposal start and end  
 3. **Collection** — after the voting period, the cross-chain DAO on the **hub** chain sends a request to the **spoke** chains to send the voting results of each chain to the **hub** chain  
 4. **Timelock** — an optional period that allows users to exit the ecosystem (sell their tokens) before the proposal can be executed  
-5. **Execution** — if the vote is successful, any user can execute it trustlessly on the **hub** chain   
+5. **Execution** — if the vote is successful, any user can execute it trustlessly on the **hub** chain
 
 !!! note
     Take note of the new collection phase. This is where the cross-chain aspect changes the logic the most. Essentially, the votes on each spoke chain must be collected and submitted to the hub chain after the voting period is over.
@@ -71,7 +69,7 @@ Before we start writing the entire project, it's important to note that its fini
 
 To install both dependencies, you can run:
 
-```
+```bash
 npm install @openzeppelin/contracts @layerzerolabs/solidity-examples
 ```
 
@@ -85,7 +83,7 @@ The `IVotes` interface requires a lot of different functions to represent the di
 
 Recall [from earlier](#intuition-and-planning){target=_blank} that we intend to have users vote on each chain and to only send voting data to the hub chain during the collection phase. This means that the voting weights must be stored on each chain. This is very easy, since all we have to do is ensure that the `ERC20Votes` contract is deployed on each chain, or, in other words, make the DAO token a cross-chain token.  
 
-Previously, it was mentioned that LayerZero is being used as the cross-chain protocol for this tutorial. LayerZero was chosen because of their [OFT contract](https://github.com/LayerZero-Labs/solidity-examples/blob/main/contracts/token/oft/OFT.sol){target=_blank}, which makes it extremely easy to make an ERC-20 token cross chain. This doesn't mean that you have to use LayerZero, though; every other cross-chain protocol has its own methods and the ability to create cross-chain assets.  
+Previously, it was mentioned that LayerZero is being used as the cross-chain protocol for this tutorial. LayerZero was chosen because of their [OFT contract](https://github.com/LayerZero-Labs/solidity-examples/blob/main/contracts/token/oft/OFT.sol){target=_blank}, which makes it extremely easy to make an ERC-20 token cross-chain. This doesn't mean that you have to use LayerZero, though; every other cross-chain protocol has its own methods and the ability to create cross-chain assets.  
 
 We will create a new file named `OFTVotes.sol`:  
 
@@ -102,7 +100,7 @@ import "@layerzerolabs/solidity-examples/contracts/token/oft/OFTCore.sol";
 abstract contract OFTVotes is OFTCore, ERC20Votes, IOFT {
     constructor(string memory _name, string memory _symbol, address _lzEndpoint) ERC20(_name, _symbol) OFTCore(_lzEndpoint) {}
 }
-``` 
+```
 
 As you can see, `OFTVotes` is an abstract smart contract that inherits from the `OFTCore`, `ERC20Votes`, and `IOFT` smart contracts. If properly implemented, this will give it both cross-chain ERC-20 properties as well as voting properties. Let's add the following function overrides to the `OFTVotes` smart contract:  
 
@@ -132,7 +130,7 @@ function _creditTo(uint16, address _toAddress, uint _amount) internal virtual ov
 }
 ```
 
-The first few functions are just ensuring compatibility with the smart contracts that they inherit from. 
+The first few functions are just ensuring compatibility with the smart contracts that they inherit from.
 
 The `_debitFrom` function is a little spicier: it includes logic to burn tokens so that the token bridge works. Similarly, the `_creditTo` function includes logic to mint tokens. These two functions are required by the `OFTCore` smart contract. If you are wondering why minting and burning are involved when most bridges wrap, it's because OFT [teleports assets](/builders/interoperability/xcm/overview/#xcm-transport-protocols){target=_blank} instead of wrapping them (similar to one of the XCM asset protocols).  
 
@@ -274,7 +272,7 @@ contract CrossChainDAO is Governor, GovernorSettings, GovernorCountingSimple, Go
 
 We will come back to fully implement the `_nonblockingLzReceive` function when implementing the collection phase. Just understand that it is the interface by which LayerZero's cross-chain protocol interacts with when there are incoming messages.  
 
-### Counting Votes with Cross Chain Governor Counting Contract {: #counting-votes-with-cross-chain-governor-counting-contract }
+### Counting Votes with Cross-Chain Governor Counting Contract {: #counting-votes-with-cross-chain-governor-counting-contract }
 
 We intend to receive cross-chain voting data via `_nonblockingLzReceive`, but that is pointless if it is not stored or counted. This logic and data will be housed in a parent contract of the `CrossChainDAO`. So let's implement this parent contract before beginning to write the `_nonblockinglzReceive` function.  
 
@@ -321,7 +319,7 @@ abstract contract CrossChainGovernorCountingSimple is Governor {
 
 !!! challenge
     In a production-ready cross-chain DAO, you would make the spoke chains modifiable by governance instead of keeping it static. Can you add an additional function that would make this possible? Which address should have access to this function?  
-    
+
     *Hint: replace the array with a mapping.*
 
 You might notice that the `SpokeProposalVote` is based off of the [`ProposalVote` struct](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/dfcc1d16c5efd0fd2a7abac56680810c861a9cd3/contracts/governance/extensions/GovernorCountingSimple.sol#L23){target=_blank} in `GovernorCountingSimple`. The first difference is that the new struct includes a `bool` called `initialized` so that it's possible to check whether or not data was received from the spoke chain by retrieving the struct from the `spokeVotes` map. The second difference is that `SpokeProposalVote` does not include a map of users to votes because that information stays on the spoke chains and is not necessary for the calculations of whether or not a vote succeeded.
@@ -388,9 +386,9 @@ contract CrossChainDAO is Governor, GovernorSettings, CrossChainGovernorCounting
 
 If you recall from the initial conception, a new collection phase should be added in between the voting period and the proposal's execution. During this phase:  
 
-1. Execution must be postponed 
-2. The hub chain must request voting data from the spoke chains 
-3. The spoke chain must subsequently send the voting data   
+1. Execution must be postponed
+2. The hub chain must request voting data from the spoke chains
+3. The spoke chain must subsequently send the voting data
 
 #### Defining the Collection Phase and Preventing Execution {: #defining-the-collection-phase-and-preventing-execution }
 
@@ -478,12 +476,12 @@ This function allows any user to start the collection process for a specific `pr
 1. The voting phase for the proposal has finished
 2. The collection phase has not yet started
 
-Recall that each spoke chain will have a `DAOSatellite` smart contract associated with it that can also receive and send cross-chain messages. This function sends a cross-chain message to every registered spoke chain's `DAOSatellite` during the collection phase. The message contains a function selector, `1`, and a proposal ID. The function selector is used to request voting data for the given proposal instead of some other action (we will revisit [this concept very soon](#receiving-votes-from-spoke-chains)) from the destination `DAOSatellite` contract. 
+Recall that each spoke chain will have a `DAOSatellite` smart contract associated with it that can also receive and send cross-chain messages. This function sends a cross-chain message to every registered spoke chain's `DAOSatellite` during the collection phase. The message contains a function selector, `1`, and a proposal ID. The function selector is used to request voting data for the given proposal instead of some other action (we will revisit [this concept very soon](#receiving-votes-from-spoke-chains)) from the destination `DAOSatellite` contract.
 
 !!! note
-    By using LayerZero, multiple messages must be sent in a single transaction so that every spoke chain can receive data. LayerZero, along with other cross-chain protocols, [is **unicast** instead of **multicast**](https://layerzero.gitbook.io/docs/faq/messaging-properties#multicast){target=_blank}. As in, a cross-chain message can only arrive to a single destination. When designing a hub-and-spoke architecture, research if your [protocol supports multicast messaging](https://book.wormhole.com/wormhole/3_coreLayerContracts.html?highlight=multicast#multicasting){target=_blank}, as it may be more succinct. 
+    By using LayerZero, multiple messages must be sent in a single transaction so that every spoke chain can receive data. LayerZero, along with other cross-chain protocols, [is **unicast** instead of **multicast**](https://layerzero.gitbook.io/docs/faq/messaging-properties#multicast){target=_blank}. As in, a cross-chain message can only arrive to a single destination. When designing a hub-and-spoke architecture, research if your [protocol supports multicast messaging](https://book.wormhole.com/wormhole/3_coreLayerContracts.html?highlight=multicast#multicasting){target=_blank}, as it may be more succinct.
 
-This should be it for requesting data, since most of the logic afterwards will be hosted within the [DAO Satellite](#dao-satellite-contract). Just understand that when sending the proposal to the   
+This should be it for requesting data, since most of the logic afterwards will be hosted within the [DAO Satellite](#dao-satellite-contract). Just understand that when sending the proposal to the
 
 #### Receiving Votes from Spoke Chains {: #receiving-votes-from-spoke-chains }
 
@@ -496,7 +494,7 @@ Let's think about the EVM. How does a smart contract know that a transaction wan
 
 We'll update the `_nonblockingLzReceive` function as follows:
 
-1. Define the function selector as a `uint16` variable stored at the start of the bytes payload. From here on out, we will ensure in our design that **every cross-chain message sent will have this `uint16` function selector at the start of its payload**. 
+1. Define the function selector as a `uint16` variable stored at the start of the bytes payload. From here on out, we will ensure in our design that **every cross-chain message sent will have this `uint16` function selector at the start of its payload**.
 2. Use assembly to load data at `payload's address + 32 bytes` into the `option` variable. Understanding why this is necessary requires a bit of understanding of how `abi.encode` works. The first 32 bytes of an ABI encoded payload are dedicated to information on the entire payload's size. After these first 32 bytes, the rest of the information is stored, which in this case is the function selector
 3. Based on the input of the `option` variable, perform some type of cross-chain action. For this example, the number `0` maps to the option to receive the voting data from the other chains. You could add additional functionality to the next number, `1`, such as proposing or executing
 4. If the `option` is `0`, we'll need to add functionality to receive the voting data. So, we'll call a function that will receive the voting data and pass in the `_srcChainId` and the newly unwrapped `payload` to this function. We'll create this function in the following steps
@@ -607,7 +605,7 @@ function crossChainPropose(address[] memory targets, uint256[] memory values, by
 
 Remember when we designed the `CrossChainDAO` smart contract's `_nonblockingLzReceive` function to expect a function selector? This is the same idea, except now we're expecting the satellite smart contract to also implement these features. So in this case, we've defined `0` as receiving a new proposal. We did the same thing when [requesting voting information](#requesting-votes-from-spoke-chains){target=_blank} from spoke chains.  
 
-At this point, the `CrossChainDAO.sol` smart contract is finished! If you want to view the completed smart contract, it is available in its [GitHub repository](https://github.com/jboetticher/cross-chain-dao/blob/main/contracts/CrossChainDAO.sol){target=_blank}. 
+At this point, the `CrossChainDAO.sol` smart contract is finished! If you want to view the completed smart contract, it is available in its [GitHub repository](https://github.com/jboetticher/cross-chain-dao/blob/main/contracts/CrossChainDAO.sol){target=_blank}.
 
 ## Writing the DAO Satellite Contract {: #dao-satellite-contract }
 
@@ -693,7 +691,7 @@ function _nonblockingLzReceive(uint16 _srcChainId, bytes memory, uint64, bytes m
 }
 ```
 
-Let's tackle the first action, `if (option == 0)`, beginning a proposal on the local chain: 
+Let's tackle the first action, `if (option == 0)`, beginning a proposal on the local chain:
 
 1. Decode the payload, which includes a proposal ID and the timestamp of when the proposal was made as mentioned in the [CrossChainDAO section](#making-proposals-cross-chain)
 2. Perform some funky calculations to generate a `cutOffBlockEstimation` by subtracting blocks from the current block based on the timestamp and a predetermined seconds-per-block estimate
@@ -754,7 +752,7 @@ The only issue here is that the gas payment for the cross-chain message's transa
 
 Finally, the last thing to add is a vote mechanism that allows users to vote. This mechanism is nearly exactly the same as the mechanism in the [`GovernorCountingSimple` smart contract](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/governance/extensions/GovernorCountingSimple.sol){target=_blank}, so much of the code can be copied over:  
 
-```
+```solidity
 function castVote(uint256 proposalId, uint8 support) public virtual returns (uint256 balance)
 {
     RemoteProposal storage proposal = proposals[proposalId];
@@ -809,7 +807,7 @@ As a reminder, **this tutorial's smart contracts are not tested or recommended f
 
 ## Caveats and Other Designs {: #caveats-and-other-designs }
 
-Every single part of the smart contract system has been written, and if you got through it all, good job! It's a lot to soak in, and there are still parts that need to be developed for it to be production-ready.    
+Every single part of the smart contract system has been written, and if you got through it all, good job! It's a lot to soak in, and there are still parts that need to be developed for it to be production-ready.
 
 The design of this cross-chain DAO was created off of OpenZeppelin's Governor base, but that doesn't mean that it's flawless. It's good to work off of preexisting smart contracts for a version 1 cross-chain DApp, but as you get closer to production-ready code, it's best to start from scratch and leave only the parts that are still relevant to the design. Working off of logic that's meant for single-chain can get in the way several times, which you will find a common occurrence when working with cross-chain smart contracts.  
 
@@ -854,7 +852,7 @@ Conceivably, the same description and transaction details could be sent on both 
 
 ### Double-Weight Attack from Snapshot Mismatch {: #double-weight-attack-from-snapshot-mismatch }
 
-One primary issue with the distribution of voting weight across chains via the `CrossChainDAOToken` is that blocks are not properly aligned across networks. This can cause a situation where the vote snapshots between multiple chains are not close together enough, resulting in a situation where voting weight is doubled when a cross-chain transfer of the DAO token front-runs a new proposal's voting weight snapshot.   
+One primary issue with the distribution of voting weight across chains via the `CrossChainDAOToken` is that blocks are not properly aligned across networks. This can cause a situation where the vote snapshots between multiple chains are not close together enough, resulting in a situation where voting weight is doubled when a cross-chain transfer of the DAO token front-runs a new proposal's voting weight snapshot.
 
 One option is using an oracle that aligns blocks with timestamps to ensure that snapshots on spoke chains are as close to the hub chain's timestamp as possible.
 

@@ -5,11 +5,9 @@ description: This tutorial shows you how to integrate MetaMask into a DApp and a
 
 # Integrate MetaMask into a DApp
 
-![Intro banner](/images/builders/integrations/wallets/metamask/metamask-banner.png)
+## Introduction {: #introduction }
 
-## Introduction {: #introduction } 
-
-With the release of MetaMask's [Custom Networks API](https://consensys.net/blog/metamask/connect-users-to-layer-2-networks-with-the-metamask-custom-networks-api/){target=_blank}, users can be prompted to add Moonbeam's Testnet, Moonbase Alpha. 
+With the release of MetaMask's [Custom Networks API](https://consensys.net/blog/metamask/connect-users-to-layer-2-networks-with-the-metamask-custom-networks-api/){target=_blank}, users can be prompted to add Moonbeam's Testnet, Moonbase Alpha.
 
 This section will take you through the process of adding a "Connect to Moonbase Alpha" button that will prompt users to connect their MetaMask account(s) to Moonbase Alpha. Your users will no longer need to know or worry about Moonbase Alpha's network configurations and adding a custom network to MetaMask. To interact with Moonbeam from your dApp, all users will need to do is click a few buttons to connect to Moonbase Alpha and get started.
 
@@ -21,19 +19,19 @@ MetaMask injects a global Ethereum API into websites users visit at `window.ethe
 
 This guide is divided into two sections. First, it'll cover adding a button that will be used to trigger MetaMask to pop-up and connect to Moonbase Alpha. The second part of the guide will create the logic for connecting the user to MetaMask. This way when you click the button you can actually test the functionality as you go through the guide.
 
-## Checking Prerequisites {: #checking-prerequisites } 
+## Checking Prerequisites {: #checking-prerequisites }
 
 To add the Connect MetaMask button you'll need a JavaScript project and the MetaMask browser extension installed for local testing.
 
 It's recommended to use MetaMask's `detect-provider` utility package to detect the provider injected at `window.ethereum`. The package handles detecting the provider for the MetaMask extension and MetaMask Mobile. To install the package in your JavaScript project, run:
 
-```
+```bash
 npm install @metamask/detect-provider
 ```
 
-## Add a Button {: #add-a-button } 
+## Add a Button {: #add-a-button }
 
-You'll start off by adding a button that will be used to connect MetaMask to Moonbase Alpha. You want to start with the button so when you create the logic in the next step you can test the code as you make your way through the guide. 
+You'll start off by adding a button that will be used to connect MetaMask to Moonbase Alpha. You want to start with the button so when you create the logic in the next step you can test the code as you make your way through the guide.
 
 The function you will create in the next section of the guide will be called `configureMoonbaseAlpha`. So the button on click should call `configureMoonbaseAlpha`.
 
@@ -41,9 +39,9 @@ The function you will create in the next section of the guide will be called `co
 <button onClick={configureMoonbaseAlpha()}>Connect to Moonbase Alpha</button>
 ```
 
-## Add Logic {: #add-logic } 
+## Add Logic {: #add-logic }
 
-Now that you have created the button, you need to add the `configureMoonbaseAlpha` function that will be used on click. 
+Now that you have created the button, you need to add the `configureMoonbaseAlpha` function that will be used on click.
 
 1. Detect the provider at `window.ethereum` and check if it's MetaMask. If you want a simple solution you can directly access `window.ethereum`. Or you can use MetaMask's `detect-provider` package and it will detect the provider for MetaMask extension and MetaMask Mobile for you
 
@@ -115,9 +113,9 @@ Now that you have created the button, you need to add the `configureMoonbaseAlph
 
     ![Add and switch networks in MetaMask](/images/builders/integrations/wallets/metamask/metamask-2.png)
 
-So, now you should have a button that, on click, walks users through the entire process of connecting their MetaMask accounts to Moonbase Alpha. 
+So, now you should have a button that, on click, walks users through the entire process of connecting their MetaMask accounts to Moonbase Alpha.
 
-### Confirm Connection {: #confirm-connection } 
+### Confirm Connection {: #confirm-connection }
 
 It's possible that you'll have logic that relies on knowing whether a user is connected to Moonbase Alpha or not. Perhaps you want to disable the button if the user is already connected. To confirm a user is connected to Moonbase Alpha, you can call `eth_chainId`, which will return the users current chain ID:
 
@@ -133,7 +131,7 @@ It's possible that you'll have logic that relies on knowing whether a user is co
     }
 ```
 
-## Listen to Account Changes {: #listen-to-account-changes } 
+## Listen to Account Changes {: #listen-to-account-changes }
 
 To ensure that your project or dApp is staying up to date with the latest account information, you can add the `accountsChanged` event listener that MetaMask provides. MetaMask emits this event when the return value of `eth_accounts` changes. If an address is returned, it is your user's most recent account that provided access permissions. If no address is returned, that means the user has not provided any accounts with access permissions.
 
@@ -146,7 +144,7 @@ To ensure that your project or dApp is staying up to date with the latest accoun
     })
 ```
 
-## Listen to Chain Changes {: #listen-to-chain-changes } 
+## Listen to Chain Changes {: #listen-to-chain-changes }
 
 To keep your project or dApp up to date with any changes to the connected chain, you'll want to subscribe to the `chainChanged` event. MetaMask emits this event every time the connected chain changes.
 

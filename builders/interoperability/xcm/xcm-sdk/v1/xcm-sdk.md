@@ -5,8 +5,6 @@ description: Use the Moonbeam XCM SDK to easily transfer cross-chain assets betw
 
 # Using the Moonbeam XCM SDK: v1
 
-![XCM SDK Banner](/images/builders/interoperability/xcm/sdk/xcm-sdk-banner.png)
-
 ## Introduction {: #introduction }
 
 The Moonbeam XCM SDK enables developers to easily transfer assets between chains, either between parachains or between a parachain and the relay chain, within the Polkadot/Kusama ecosystem. With the SDK, you don't need to worry about determining the multilocation of the origin or destination assets or which extrinsics are used on which networks to send XCM transfers.
@@ -21,13 +19,13 @@ The examples in this guide are shown on Moonbeam, but can be adapted to be used 
 
 To get started with the Moonbeam XCM SDK, you'll need to first install the SDK:
 
-```
+```bash
 npm install @moonbeam-network/xcm-sdk
 ```
 
 You'll also need to install a few additional dependencies that you'll use to interact with the SDK in this guide:
 
-```
+```bash
 npm install ethers@^5.7.2 @polkadot/api @polkadot/util-crypto
 ```
 

@@ -5,8 +5,6 @@ description: Learn how to vote on referenda, set up voting delegations, and more
 
 # Interacting with the Conviction Voting Precompile
 
-![Precomiled Contracts Banner](/images/builders/pallets-precompiles/precompiles/conviction-voting/conviction-voting-banner.png)
-
 ## Introduction {: #introduction }
 
 As a Polkadot parachain and decentralized network, Moonbeam features native on-chain governance that enables stakeholders to participate in the direction of the network. With the introduction of OpenGov, also referred to as Governance v2, the Conviction Voting Pallet allows token holders to make, delegate, and manage Conviction-weighted votes on referenda. To learn more about Moonbeam's governance system, such as an overview of related terminology, principles, mechanics, and more, please refer to the [Governance on Moonbeam](/learn/features/governance){target=_blank} page.
@@ -16,17 +14,20 @@ The Conviction Voting Precompile interacts directly with Substrate's Conviction 
 The Conviction Voting Precompile is located at the following address:
 
 === "Moonbeam"
-     ```
+
+     ```text
      {{ networks.moonbeam.precompiles.conviction_voting }}
      ```
 
 === "Moonriver"
-     ```
+
+     ```text
      {{ networks.moonriver.precompiles.conviction_voting }}
      ```
 
 === "Moonbase Alpha"
-     ```
+
+     ```text
      {{ networks.moonbase.precompiles.conviction_voting }}
      ```
 

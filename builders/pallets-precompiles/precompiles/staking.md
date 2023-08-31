@@ -6,8 +6,6 @@ keywords: solidity, ethereum, staking, moonbeam, precompiled, contracts
 
 # Interacting with the Staking Precompile
 
-![Staking Moonbeam Banner](/images/builders/pallets-precompiles/precompiles/staking/staking-banner.png)
-
 ## Introduction {: #introduction }
 
 Moonbeam uses a Delegated Proof of Stake system through the [Parachain Staking](/builders/pallets-precompiles/pallets/staking){target=_blank} Pallet, allowing token holders (delegators) to express exactly which collator candidates they would like to support and with what quantity of stake. The design of the Parachain Staking Pallet is such that it enforces shared risk/reward on chain between delegators and candidates. For general information on staking, such as general terminology, staking variables, and more, please refer to the [Staking on Moonbeam](/learn/features/staking){target=_blank} page.

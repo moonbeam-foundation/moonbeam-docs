@@ -1,11 +1,9 @@
 ---
 title: How to use Ethers.rs Ethereum Library
-description: Learn how to use the Ethereum EthersRS Library to send transactions and deploy Solidity smart contracts to Moonbeam via the Rust language.
+description: Learn how to use the Ethereum Ethers.rs Library to send transactions and deploy Solidity smart contracts to Moonbeam via the Rust language.
 ---
 
 # Ethers.rs Rust Library
-
-![Intro diagram](/images/builders/build/eth-api/libraries/ethersrs/ethers-rust-banner.png)
 
 ## Introduction {: #introduction }
 
@@ -19,7 +17,7 @@ For the examples in this guide, you will need to have the following:
 
  - An account with funds.
   --8<-- 'text/faucet/faucet-list-item.md'
- - 
+ -
 --8<-- 'text/common/endpoint-examples.md'
  - Have [Rust installed](https://www.rust-lang.org/tools/install){target=_blank} on your device
  - Have [solc installed](https://docs.soliditylang.org/en/v0.8.9/installing-solidity.html) on your device. Using [solc-select](https://github.com/crytic/solc-select){target=_blank} is recommended by the Ethers.rs package
@@ -31,7 +29,7 @@ For the examples in this guide, you will need to have the following:
 
 To get started, you can create a new Rust project with the Cargo tool:
 
-```
+```bash
 cargo init ethers-examples && cd ethers-examples
 ```
 
@@ -55,7 +53,7 @@ This example is using the `ethers` and `ethers-solc` crate versions `1.0.2` for 
 
 If this is your first time using `solc-select`, you'll need to install and configure the Solidity version using the following commands:
 
-```
+```bash
 solc-select install 0.8.17 && solc-select use 0.8.17
 ```
 
@@ -261,7 +259,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 For this example, you'll be transferring 1 DEV from an origin address (of which you hold the private key) to another address.  
 
 1. Create a new asynchronous function named `send_transaction` that takes a client object's reference and the sending and receiving addresses as input
-2. Create the transaction object, and include the `to`, `value`, and `from`. When writing the `value` input, use the `ethers::utils::parse_ether` function 
+2. Create the transaction object, and include the `to`, `value`, and `from`. When writing the `value` input, use the `ethers::utils::parse_ether` function
 3. Use the `client` object to send the transaction
 4. Print the transaction after it is confirmed
 5. Call the `send_transaction` function in the `main` function
@@ -306,7 +304,7 @@ You can view the [complete script on GitHub](https://raw.githubusercontent.com/m
 
 To run the script, which will send the transaction and then check the balances once the transaction has been sent, you can run the following command:
 
-```
+```bash
 cargo run
 ```
 
@@ -334,10 +332,10 @@ The `ethers_solc` import will be used to compile the smart contract. The `prelud
 
 ### Compile and Deploy Contract Script {: #compile-and-deploy-contract-script }
 
-This example function will compile and deploy the `Incrementer.sol` smart contract you created in the previous section. The `Incrementer.sol` smart contract should be in the root directory. In the `main.rs` file, you can take the following steps: 
+This example function will compile and deploy the `Incrementer.sol` smart contract you created in the previous section. The `Incrementer.sol` smart contract should be in the root directory. In the `main.rs` file, you can take the following steps:
 
 1. Create a new asynchronous function named `compile_deploy_contract` that takes a client object's reference as input, and returns an address in the form of `H160`
-2. Define a variable named `source` as the path for the directory that hosts all of the smart contracts that should be compiled, which is the root directory 
+2. Define a variable named `source` as the path for the directory that hosts all of the smart contracts that should be compiled, which is the root directory
 3. Use the `Solc` crate to compile all of the smart contracts in the root directory
 4. Get the ABI and bytecode from the compiled result, searching for the `Incrementer.sol` contract
 5. Create a contract factory for the smart contract using the ABI, bytecode, and client. The client must be wrapped into an `Arc` type for thread safety
@@ -396,7 +394,7 @@ Call methods are the type of interaction that don't modify the contract's storag
 
 Rust is typesafe, which is why the ABI for the `Incrementer.sol` contract is required to generate a typesafe Rust struct. For this example, you should create a new file in the root of the Cargo project called `Incrementer_ABI.json`:
 
-```
+```bash
 touch Incrementer_ABI.json
 ```
 
@@ -492,7 +490,7 @@ You can view the [complete script on GitHub](https://raw.githubusercontent.com/m
 
 To run the script, which will deploy the contract and return the current value stored in the `Incrementer` contract, you can enter the following command into your terminal:
 
-```
+```bash
 cargo run
 ```
 
@@ -553,11 +551,11 @@ You can view the [complete script on GitHub](https://raw.githubusercontent.com/m
 
 To run the script, you can enter the following command into your terminal:
 
-```
+```bash
 cargo run
 ```
 
-If successful, the transaction receipt will be displayed in the terminal. You can use the `read_number` function in the `main` function to make sure that value is changing as expected. If you're using the `read_number` function after incrementing, you'll also see the incremented number, which should be `10`. 
+If successful, the transaction receipt will be displayed in the terminal. You can use the `read_number` function in the `main` function to make sure that value is changing as expected. If you're using the `read_number` function after incrementing, you'll also see the incremented number, which should be `10`.
 
 ![Terminal logs from incrementing the number](/images/builders/build/eth-api/libraries/ethersrs/ethersrs-3.png)
 
@@ -566,7 +564,7 @@ Next you can interact with the `reset` function:
 1. Ensure that the abigen macro is called for the `Incrementer_ABI.json` somewhere in the `main.rs` file (if it is already in the `main.rs` file, you do not have to have a second one)
 2. Create a new asynchronous function named `reset` that takes a client object's reference and an address as input
 3. Create a new instance of the `Incrementer` object generated by the abigen macro with the client and contract address values
-4. Call the `reset` function in the new `Incrementer` object 
+4. Call the `reset` function in the new `Incrementer` object
 5. Call the `reset` function in `main`
 
 ```rust
@@ -606,7 +604,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 }
 ```
 
-If successful, the transaction receipt will be displayed in the terminal. You can use the `read_number` function in the `main` function to make sure that value is changing as expected. If you're using the `read_number` function after resetting the number, you should see `0` printed to the terminal. 
+If successful, the transaction receipt will be displayed in the terminal. You can use the `read_number` function in the `main` function to make sure that value is changing as expected. If you're using the `read_number` function after resetting the number, you should see `0` printed to the terminal.
 
 ![Terminal logs from resetting the number](/images/builders/build/eth-api/libraries/ethersrs/ethersrs-4.png)
 

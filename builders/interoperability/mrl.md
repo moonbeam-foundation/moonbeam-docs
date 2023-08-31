@@ -5,8 +5,6 @@ description: Learn how to receive Moonbeam Routed Liquidity after establishing a
 
 # Moonbeam Routed Liquidity
 
-![XCM Overview Banner](/images/builders/interoperability/xcm/xc-integration/xc-integration-banner.png)
-
 ## Introduction {: #introduction }
 
 Moonbeam Routed Liquidity (MRL) refers to a Moonbeam use case in which liquidity in any blockchain ecosystem that Moonbeam is connected to can be routed to Polkadot parachains. This is possible because of multiple components that work together:

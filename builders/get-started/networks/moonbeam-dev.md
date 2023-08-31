@@ -1,6 +1,6 @@
 ---
 title: Run a Moonbeam Development Node
-description: Follow this tutorial to learn how to set up your first Moonbeam node. You’ll also learn how to connect it to and control it with the Polkadot.js GUI.
+description: Follow this tutorial to learn how to spin up your first Moonbeam development node, how to configure it for development purposes, and connect to it.
 ---
 
 # Getting Started with a Moonbeam Development Node
@@ -28,7 +28,7 @@ Using Docker enables you to spin up a node in a matter of seconds. Once you have
 
 1. Execute the following command to download the latest Moonbeam image:
 
-    ```
+    ```bash
     docker pull purestake/moonbeam:{{ networks.development.build_tag }}
     ```
 
@@ -39,21 +39,24 @@ Using Docker enables you to spin up a node in a matter of seconds. Once you have
 2. Spin up a Moonbeam development node by running the following Docker command, which will launch the node in instant seal mode for local testing so that blocks are authored instantly as transactions are received:
 
     === "Ubuntu"
-        ```
+
+        ```bash
         docker run --rm --name {{ networks.development.container_name }} --network host \
         purestake/moonbeam:{{ networks.development.build_tag }} \
         --dev
         ```
 
     === "MacOS"
-        ```
+
+        ```bash
         docker run --rm --name {{ networks.development.container_name }} -p 9944:9944 \
         purestake/moonbeam:{{ networks.development.build_tag }} \
         --dev --ws-external --rpc-external
         ```
 
     === "Windows"
-        ```
+
+        ```bash
         docker run --rm --name {{ networks.development.container_name }} -p 9944:9944 ^
         purestake/moonbeam:{{ networks.development.build_tag }} ^
         --dev --ws-external --rpc-external
@@ -65,7 +68,7 @@ Using Docker enables you to spin up a node in a matter of seconds. Once you have
 
 For more information on some of the flags and options used in the example, check out [Flags](#node-flags) and [Options](#node-options). If you want to see a complete list of all of the flags, options, and subcommands, open the help menu by running:
 
-```
+```bash
 docker run --rm --name {{ networks.development.container_name }} \
 purestake/moonbeam \
 --help
@@ -82,20 +85,20 @@ To build the binary file, you can take the following steps:
 
 1. Clone a specific tag of the Moonbeam repo, which you can find on the [Moonbeam GitHub repository](https://github.com/moonbeam-foundation/moonbeam/){target=_blank}:
 
-    ```
+    ```bash
     git clone -b {{ networks.development.build_tag }} https://github.com/moonbeam-foundation/moonbeam
     cd moonbeam
     ```
 
 2. If you already have Rust installed, you can skip the next two steps. Otherwise, install Rust and its prerequisites [via Rust's recommended method](https://www.rust-lang.org/tools/install){target=_blank} by executing:
 
-    ```
+    ```bash
     --8<-- 'code/setting-up-node/installrust.md'
     ```
 
 3. Update your PATH environment variable by running:
 
-    ```
+    ```bash
     --8<-- 'code/setting-up-node/updatepath.md'
     ```
 
@@ -104,11 +107,11 @@ To build the binary file, you can take the following steps:
     !!! note
         If you are using Ubuntu 20.04 or 22.04, then you will need to install these additional dependencies before building the binary:
 
-        ```
+        ```bash
         apt install clang protobuf-compiler libprotobuf-dev -y 
         ```
 
-    ```
+    ```bash
     --8<-- 'code/setting-up-node/build.md'
     ```
 
@@ -121,7 +124,7 @@ To build the binary file, you can take the following steps:
 
 Then, you will want to run the node in development mode using the following command:
 
-```
+```bash
 --8<-- 'code/setting-up-node/runnode.md'
 ```
 
@@ -134,7 +137,7 @@ You should see an output that looks like the following, showing an idle state wa
 
 For more information on some of the flags and options used in the example, check out the [Flags](#node-flags) and [Options](#node-options). If you want to see a complete list of all of the flags, options, and subcommands, open the help menu by running:
 
-```
+```bash
 ./target/release/moonbeam --help
 ```
 
@@ -146,7 +149,7 @@ Now that you know how to get a standard Moonbeam development node up and running
 
 Flags do not take an argument. To use a flag, add it to the end of a command. For example:
 
-```
+```bash
 --8<-- 'code/setting-up-node/runnode.md'
 ```
 
@@ -159,7 +162,7 @@ Flags do not take an argument. To use a flag, add it to the end of a command. Fo
 
 Options accept an argument to the right of the option. For example:
 
-```
+```bash
 --8<-- 'code/setting-up-node/runnodewithsealinginterval.md'
 ```
 
@@ -185,13 +188,13 @@ The `--sealing` flag accepts any of the following arguments:
 
 The flag should be appended to the start-up command in the following format:
 
-```
+```text
 --sealing <interval>
 ```
 
 If you choose `manual`, you'll need to manually create the blocks yourself, which can be done with the `engine_createBlock` JSON RPC method:
 
-```
+```text
 engine_createBlock(createEmpty: *bool*, finalize: *bool*, parentHash?: *BlockHash*)
 ```
 
@@ -229,7 +232,7 @@ Moonbeam has a [unified accounts](/learn/features/unified-accounts){target=_blan
 
 Your Moonbeam development node comes with ten prefunded Ethereum-styled accounts for development. The addresses are derived from Substrate's canonical development mnemonic:
 
-```
+```text
 bottom drive obey lake curtain smoke basket hold race lonely fit walk
 ```
 
@@ -247,12 +250,14 @@ You can connect any of these accounts to [MetaMask](/tokens/connect/metamask/){t
 You can access your Moonbeam development node using the following RPC and WSS endpoints:
 
 === "HTTP"
-    ```
+
+    ```text
     {{ networks.development.rpc_url }}
     ```
 
 === "WSS"
-    ```
+
+    ```text
     {{ networks.development.wss_url }}
     ```
 
@@ -277,13 +282,13 @@ If you want to remove data associated with your node, you can purge it. The inst
 
 If you spun up your node using Docker along with the `-v` flag to specify a mounted directory for your container, you will need to purge that directory. To do so, you can run the following command:
 
-```
+```bash
 sudo rm -rf {{ networks.moonbase.node_directory }}/*
 ```
 
 If you followed the instructions in this guide and did not use the `-v` flag, you can stop and remove the Docker container. The associated data will be removed along with it. To do so, you can run the following command:
 
-```
+```bash
 sudo docker stop `CONTAINER_ID` && docker rm `CONTAINER_ID`
 ```
 
@@ -291,7 +296,7 @@ sudo docker stop `CONTAINER_ID` && docker rm `CONTAINER_ID`
 
 When running a node via the binary file, data is stored in a local directory, typically located in `~/.local/shared/moonbeam/chains/development/db`. If you want to start a fresh instance of the node, you can either delete the content of the folder or run the following command inside the `moonbeam` folder:
 
-```
+```bash
 ./target/release/moonbeam purge-chain --dev -y
 ```
 

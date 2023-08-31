@@ -6,8 +6,6 @@ keywords: solidity, ethereum, proxy, moonbeam, precompiled, contracts, substrate
 
 # Interacting with the Proxy Precompile
 
-![Proxy Moonbeam Banner](/images/builders/pallets-precompiles/precompiles/proxy/proxy-banner.png)
-
 ## Introduction {: #introduction }
 
 The Proxy Precompile on Moonbeam allows accounts to set proxy accounts that can perform specific limited actions on their behalf, such as governance, staking, or balance transfers.
@@ -21,15 +19,18 @@ To learn more about proxy accounts and how to set them up for your own purposes 
 The Proxy Precompile is located at the following address:
 
 === "Moonbeam"
-     ```
+
+     ```text
      {{networks.moonbeam.precompiles.proxy}}
      ```
 === "Moonriver"
-     ```
+
+     ```text
      {{networks.moonriver.precompiles.proxy}}
      ```
 === "Moonbase Alpha"
-     ```
+
+     ```text
      {{networks.moonbase.precompiles.proxy}}
      ```
 
@@ -48,7 +49,7 @@ The interface includes the following functions:
 
 The `proxyType` parameter is defined by the following `ProxyType` enum, where the values start at `0` with the most permissive proxy type and are represented as `uint8` values:
 
-```sol
+```solidity
 enum ProxyType {
     Any,
     NonTransfer,

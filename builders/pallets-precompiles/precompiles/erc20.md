@@ -6,8 +6,6 @@ keywords: solidity, ethereum, native, token, moonbeam, precompiled, contracts
 
 #  Native Token ERC-20 Precompile
 
-![Precompiled Contracts Banner](/images/builders/pallets-precompiles/precompiles/erc20/erc20-banner.png)
-
 ## Introduction {: #introduction }
 
 The native token ERC-20 precompiled contract on Moonbeam allows developers to interact with the native protocol token through an ERC-20 interface. Although GLMR and MOVR are not ERC-20 tokens, now you can interact with them as if they were native ERC-20s!
@@ -21,17 +19,20 @@ This guide will show you how to interact with DEV tokens, the native protocol to
 The precompile is located at the following address:
 
 === "Moonbeam"
-     ```
+
+     ```text
      {{networks.moonbeam.precompiles.erc20 }}
      ```
 
 === "Moonriver"
-     ```
+
+     ```text
      {{networks.moonriver.precompiles.erc20 }}
      ```
 
 === "Moonbase Alpha"
-     ```
+
+     ```text
      {{networks.moonriver.precompiles.erc20 }}
      ```
 

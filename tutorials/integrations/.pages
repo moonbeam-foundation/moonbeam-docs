@@ -2,4 +2,7 @@ title: Integrations
 hide: false
 nav:
   - index.md
-  - indexers
+  - 'Use Indexers to Query Chain Data':
+    - 'indexers.index.md'
+    - '[Subsquid] Index a Local Dev Node': 'local-subsquid.md'
+    - '[Subsquid] Index NFT Transfers': 'nft-subsquid.md'

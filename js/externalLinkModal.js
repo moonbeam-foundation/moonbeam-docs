@@ -12,7 +12,7 @@ const externalLinkAnchor = document.createElement('a');
 /** Add classes to modal elements so we can find and update as needed */
 externalLinkModalContainer.className = 'external-link-modal-container';
 externalLinkModalHeader.className = 'external-link-modal-header';
-externalLinkModal.className = 'external-link-modal';
+externalLinkModal.className = 'external-link-modal md-typeset';
 externalLinkModalMessage.className = 'external-link-message';
 closeExternalLinkModal.className = 'close-modal';
 
@@ -26,10 +26,10 @@ externalLinkModalMessage.innerHTML =
 
 /** Set button text and classes */
 cancelButton.innerHTML = 'Cancel';
-cancelButton.classList.add('pink-secondary-button', 'md-button');
+cancelButton.classList.add('md-button');
 
 continueToExternalButton.innerHTML = 'Continue to External Site';
-continueToExternalButton.classList.add('pink-primary-button', 'md-button');
+continueToExternalButton.classList.add('md-button');
 
 buttonWrapper.classList.add('row', 'modal-buttons');
 

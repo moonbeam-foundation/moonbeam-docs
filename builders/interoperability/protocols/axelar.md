@@ -1,11 +1,9 @@
 ---
 title: Cross-Chain Via Axelar
-description: Learn how to bridge assets, plus other ways you can connect your Moonbeam dApp to assets and functions on multiple blockchains using Axelar network & APIs.
+description: Learn about Axelar, a GMP protocol for cross-chain asset transfers, and how to get started building cross-chain applications with Axelar on Moonbeam.
 ---
 
 # Axelar Network
-
-![Axelar Moonbeam banner](/images/builders/interoperability/protocols/axelar/axelar-banner.png)
 
 ## Introduction {: #introduction }
 

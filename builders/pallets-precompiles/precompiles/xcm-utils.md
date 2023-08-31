@@ -6,8 +6,6 @@ keywords: solidity, ethereum, xcm, utils, moonbeam, precompiled, contracts
 
 # Interacting with the XCM Utilities Precompile
 
-![Precomiled XCM Utilities Banner](/images/builders/pallets-precompiles/precompiles/xcm-utils/xcm-utils-banner.png)
-
 ## Introduction {: #xcmutils-precompile}
 
 The XCM Utilities Precompile contract gives developers XCM-related utility functions directly within the EVM. This allows for easier transactions and interactions with other XCM-related precompiles.
@@ -15,17 +13,20 @@ The XCM Utilities Precompile contract gives developers XCM-related utility funct
 Similar to other [precompile contracts](/builders/pallets-precompiles/precompiles/){target=_blank}, the XCM Utilities Precompile is located at the following addresses:
 
 === "Moonbeam"
-     ```
+
+     ```text
      {{networks.moonbeam.precompiles.xcm_utils }}
      ```
 
 === "Moonriver"
-     ```
+
+     ```text
      {{networks.moonriver.precompiles.xcm_utils }}
      ```
 
 === "Moonbase Alpha"
-     ```
+
+     ```text
      {{networks.moonbase.precompiles.xcm_utils}}
      ```
 

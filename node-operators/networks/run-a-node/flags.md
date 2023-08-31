@@ -5,8 +5,6 @@ description: A list of helpful flags for spinning up a full parachain node on Mo
 
 # Helpful Flags for Running a Node on Moonbeam
 
-![Full Node Moonbeam Banner](/images/node-operators/networks/run-a-node/flags/flags-banner.png)
-
 ## Introduction {: #introduction }
 
 When spinning up your own Moonbeam node, there are some required and optional flags that can be used.

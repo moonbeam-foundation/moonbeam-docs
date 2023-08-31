@@ -5,8 +5,6 @@ description: Learn about the XCM instructions involved in handling XCM execution
 
 # XCM Fees on Moonbeam
 
-![XCM Fees Banner](/images/builders/interoperability/xcm/fees/fees-banner.png)
-
 ## Introduction {: #introduction}
 
 XCM aims to be a language that communicates ideas between consensus systems. Sending an XCM message consists of a series of instructions that are executed in both the origin and the destination chain. The combination of XCM instructions results in actions such as token transfers. In order to process and execute each XCM instruction, there are typically associated fees that must be paid.

@@ -5,8 +5,6 @@ description: Follow these step-by-step instructions to learn how to submit a Dem
 
 # How to Propose an Action in OpenGov (Governance v2)
 
-![Governance Moonbeam Banner](/images/tokens/governance/proposals/governance-proposal-banner.png)
-
 ## Introduction {: #introduction }
 
 A proposal is a submission to the chain in which a token holder suggests for an action to be enacted by the system. Proposals are one of the core elements of the governance system because they are the main tool for community members to propose actions/changes, which other token holders then vote on.

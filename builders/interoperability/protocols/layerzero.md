@@ -1,11 +1,9 @@
 ---
 title: Cross-Chain Via LayerZero
-description: Learn how to bridge assets, plus other ways you can connect your Moonbeam dApp to assets and functions on multiple blockchains using LayerZero protocol & APIs.
+description: Learn about LayerZero, a GMP protocol for cross-chain asset transfers, and how to get started building cross-chain applications with LayerZero on Moonbeam.
 ---
 
 # LayerZero Protocol
-
-![LayerZero Moonbeam banner](/images/builders/interoperability/protocols/layerzero/layerzero-banner.png)
 
 ## Introduction {: #introduction }
 

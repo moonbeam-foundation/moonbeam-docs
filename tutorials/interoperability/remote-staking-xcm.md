@@ -6,7 +6,6 @@ template: main.html
 
 # Remote Staking via XCM
 
-![Banner Image](/images/tutorials/interoperability/remote-staking-via-xcm/remote-staking-via-xcm-banner.png)
 _by Kevin Neilson_
 
 ## Introduction {: #introduction }

@@ -1,11 +1,9 @@
 ---
 title: Add WalletConnect to a DApp
-description: Learn how to integrate WalletConnect into a dApp built on any of the Moonbeam networks, specifically so users can connect with their mobile wallets.
+description: Learn how to integrate WalletConnect into a DApp built on any of the Moonbeam networks, specifically so users can connect with their mobile wallets.
 ---
 
 # Integrate WalletConnect into a DApp
-
-![WalletConnect Banner](/images/builders/integrations/wallets/walletconnect/walletconnect-banner.png)
 
 ## Introduction {: #introduction }
 
@@ -92,7 +90,7 @@ If you already have a DApp with WalletConnect support, and just want to add Moon
 
 Throughout this guide, you'll use a simple front-end DApp built with [React](https://reactjs.org/){target=_blank} to connect to a mobile wallet via WalletConnect. So you will need a React project and the MetaMask mobile app installed for testing purposes. A template has been created that includes the required packages, some basic styling, and placeholders where logic and UI elements will need to be added. However, if you would to use your own DApp, you'll need to install the following required dependencies:
 
-```
+```bash
 npm install ethers @walletconnect/client @walletconnect/qrcode-modal
 ```
 

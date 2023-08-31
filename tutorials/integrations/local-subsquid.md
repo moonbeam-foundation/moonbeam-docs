@@ -1,11 +1,9 @@
 ---
 title: Index a Local Development Node
-description: Improve your dApp development experience by following this guide to learn how to index a dApp deployed locally on a Moonbeam development node with Subsquid!
+description: Improve your DApp development experience by following this guide to learn how to index a DApp deployed locally on a Moonbeam development node with Subsquid!
 ---
 
 # Index a Local Moonbeam Development Node with Subsquid
-
-![Subsquid Banner](/images/tutorials/integrations/local-subsquid/local-subsquid-banner.png)
 
 _by Erin Shaben_
 
@@ -137,7 +135,7 @@ mkdir -p contracts && touch contracts/MyTok.sol
 
 Now we can edit the `MyTok.sol` file to include the following contract, which will mint an initial supply of MYTOKs and allow only the owner of the contract to mint additional tokens:
 
-```sol
+```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.9;
 

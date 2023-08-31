@@ -1,11 +1,9 @@
 ---
 title: Verify Smart Contracts on Block Explorers
-description: Learn how to verify smart contracts on Moonbeam-based networks using one of the available block explorers such as Moonscan. 
+description: Learn how to verify smart contracts on Moonbeam-based networks using one of the available block explorers, such as Moonscan. 
 ---
 
 # Verify Smart Contracts using Block Explorers
-
-![Explorer Banner](/images/builders/build/eth-api/verify-contracts/block-explorers/verify-contract-banner.png)
 
 ## Introduction {: #introduction } 
 
@@ -33,7 +31,7 @@ You will need to collect some information related to the contract's compiler and
 
 1. Take note of the Solidity compiler version used to compile and deploy the contract. The Solidity compiler version can usually be selected or specified in the deployment tool used
 2. Take note of any SPDX license identifier used at the beginning of the Solidity source file (the example uses MIT license):
-    ```
+    ```solidity
     // SPDX-License-Identifier: MIT
     ```
 3. (Optional) If optimization is enabled during compilation, take note of the value of the optimization runs parameter

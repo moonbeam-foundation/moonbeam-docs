@@ -1,11 +1,9 @@
 ---
 title: Run a Node on Moonbeam Using Systemd
-description: How to run a full Parachain node so you can have your own RPC endpoint or produce blocks for the Moonbeam Network using Systemd
+description: How to run a full parachain node so you can have your own RPC endpoint or produce blocks for the Moonbeam Network using Systemd.
 ---
 
 # Run a Node on Moonbeam Using Systemd
-
-![Full Node Moonbeam Banner](/images/node-operators/networks/run-a-node/systemd/systemd-banner.png)
 
 ## Introduction {: #introduction }
 
@@ -47,17 +45,20 @@ To get started use `wget` to grab the latest [release binary](https://github.com
 To verify that you have downloaded the correct version, you can run `sha256sum moonbeam` in your terminal, you should receive the following output:
 
 === "Moonbeam"
-    ```
+
+    ```text
     {{ networks.moonbeam.parachain_sha256sum }}
     ```
 
 === "Moonriver"
-    ```
+
+    ```text
     {{ networks.moonriver.parachain_sha256sum }}
     ```
 
 === "Moonbase Alpha"
-    ```
+
+    ```text
     {{ networks.moonbase.parachain_sha256sum }}
     ```
 
@@ -99,7 +100,7 @@ The following commands will build the latest release of the Moonbeam parachain.
     !!! note
         If you are using Ubuntu 20.04 or 22.04, then you will need to install these additional dependencies before building the binary:
 
-        ```
+        ```bash
         apt install clang protobuf-compiler libprotobuf-dev -y 
         ```
 
