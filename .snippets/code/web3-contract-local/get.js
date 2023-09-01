@@ -7,7 +7,7 @@ const providerRPC = {
 };
 const web3 = new Web3(providerRPC.development); // Change to correct network
 
-const contractAddress = 'CONTRACT-ADDRESS-HERE';
+const contractAddress = 'INSERT_CONTRACT_ADDRESS';
 
 const incrementer = new web3.eth.Contract(abi, contractAddress);
 

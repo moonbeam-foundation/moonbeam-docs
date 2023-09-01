@@ -7,10 +7,10 @@ const providerRPC = {
 };
 const web3 = new Web3(providerRPC.development); //Change to correct network
 
-const account_from = {
-  privateKey: 'YOUR-PRIVATE-KEY-HERE',
+const accountFrom = {
+  privateKey: 'INSERT_YOUR_PRIVATE_KEY',
 };
-const contractAddress = 'CONTRACT-ADDRESS-HERE';
+const contractAddress = 'INSERT_CONTRACT_ADDRESS';
 const _value = 3;
 
 const incrementer = new web3.eth.Contract(abi, contractAddress);
@@ -26,7 +26,7 @@ const increment = async () => {
       data: incrementTx.encodeABI(),
       gas: await incrementTx.estimateGas(),
     },
-    account_from.privateKey
+    accountFrom.privateKey
   );
 
   const createReceipt = await web3.eth.sendSignedTransaction(createTransaction.rawTransaction);

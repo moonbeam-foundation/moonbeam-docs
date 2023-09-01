@@ -11,10 +11,10 @@ web3 = Web3(Web3.HTTPProvider(provider_rpc['development']))  # Change to correct
 
 # 3. Create variables
 account_from = {
-    'private_key': 'YOUR_PRIVATE_KEY_HERE',
-    'address': 'PUBLIC_ADDRESS_OF_PK_HERE',
+    'private_key': 'INSERT_YOUR_PRIVATE_KEY',
+    'address': 'INSERT_PUBLIC_ADDRESS_OF_PK',
 }
-contract_address = 'CONTRACT_ADDRESS_HERE'
+contract_address = 'INSERT_CONTRACT_ADDRESS'
 
 print(f'Calling the reset function in contract at address: { contract_address }')
 

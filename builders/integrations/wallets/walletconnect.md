@@ -339,7 +339,7 @@ You can test this logic out by refreshing the page after establishing a connecti
 
 ## Add Account Balance {: #add-account-balance }
 
-Depending on your needs, you might want to show the connected account's balance for the connected network. To do so, you can use [Ethers](https://docs.ethers.io/){target=_blank} to create a provider which can then be used to fetch the balance of the connected account.
+Depending on your needs, you might want to show the connected account's balance for the connected network. To do so, you can use [Ethers](https://docs.ethers.org/){target=_blank} to create a provider which can then be used to fetch the balance of the connected account.
 
 You can start by adding another state variable for `balance`.
 

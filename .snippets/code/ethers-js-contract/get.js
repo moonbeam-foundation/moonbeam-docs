@@ -22,7 +22,7 @@ const provider = new ethers.JsonRpcProvider(providerRPC.moonbase.rpc, {
 }); // Change to correct network
 
 // Contract address variable
-const contractAddress = 'CONTRACT_ADDRESS_HERE';
+const contractAddress = 'INSERT_CONTRACT_ADDRESS';
 
 // Create contract instance
 const incrementer = new ethers.Contract(contractAddress, abi, provider);

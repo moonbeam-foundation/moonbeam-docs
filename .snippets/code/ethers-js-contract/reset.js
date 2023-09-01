@@ -24,9 +24,9 @@ const provider = new ethers.JsonRpcProvider(providerRPC.moonbase.rpc, {
 
 // Create variables
 const accountFrom = {
-  privateKey: 'YOUR_PRIVATE_KEY_HERE',
+  privateKey: 'INSERT_YOUR_PRIVATE_KEY',
 };
-const contractAddress = 'CONTRACT_ADDRESS_HERE';
+const contractAddress = 'INSERT_CONTRACT_ADDRESS';
 
 // Create wallet
 let wallet = new ethers.Wallet(accountFrom.privateKey, provider);

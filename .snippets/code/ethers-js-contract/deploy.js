@@ -23,10 +23,10 @@ const provider = new ethers.JsonRpcProvider(providerRPC.moonbase.rpc, {
 }); // Change to correct network
 
 // Define accounts and wallet
-const account_from = {
-  privateKey: 'YOUR-PRIVATE-KEY-HERE',
+const accountFrom = {
+  privateKey: 'INSERT_YOUR_PRIVATE_KEY',
 };
-let wallet = new ethers.Wallet(account_from.privateKey, provider);
+let wallet = new ethers.Wallet(accountFrom.privateKey, provider);
 
 // Load contract info
 const bytecode = contractFile.evm.bytecode.object;

@@ -22,8 +22,8 @@ const provider = new ethers.JsonRpcProvider(providerRPC.moonbase.rpc, {
 }); // Change to correct network
 
 // Define addresses
-const addressFrom = 'ADDRESS_FROM_HERE';
-const addressTo = 'ADDRESS_TO_HERE';
+const addressFrom = 'INSERT_FROM_ADDRESS';
+const addressTo = 'INSERT_TO_ADDRESS';
 
 // Create balances function
 const balances = async () => {

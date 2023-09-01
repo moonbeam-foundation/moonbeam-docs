@@ -8,8 +8,8 @@ const providerRPC = {
 const web3 = new Web3(providerRPC.development); // Change to correct network
 
 const accountFrom = {
-  privateKey: 'YOUR-PRIVATE-KEY-HERE',
-  address: 'PUBLIC-ADDRESS-OF-PK-HERE',
+  privateKey: 'INSERT_YOUR_PRIVATE_KEY',
+  address: 'INSERT_PUBLIC_ADDRESS_OF_PK',
 };
 const bytecode = contractFile.evm.bytecode.object;
 const abi = contractFile.abi;
@@ -29,7 +29,7 @@ const deploy = async () => {
       data: incrementerTx.encodeABI(),
       gas: await incrementerTx.estimateGas(),
     },
-    account_from.privateKey
+    accountFrom.privateKey
   );
 
   const createReceipt = await web3.eth.sendSignedTransaction(

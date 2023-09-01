@@ -6,14 +6,14 @@ const providerRPC = {
 };
 const web3 = new Web3(providerRPC.development); // Change to correct network
 
-const account_from = {
-  privateKey: 'YOUR-PRIVATE-KEY-HERE',
-  address: 'PUBLIC-ADDRESS-OF-PK-HERE',
+const accountFrom = {
+  privateKey: 'INSERT_YOUR_PRIVATE_KEY',
+  address: 'INSERT_PUBLIC_ADDRESS_OF_PK',
 };
-const addressTo = 'ADDRESS-TO-HERE';
+const addressTo = 'INSERT_TO_ADDRESS';
 
 const send = async () => {
-  console.log(`Attempting to send transaction from ${account_from.address} to ${addressTo}`);
+  console.log(`Attempting to send transaction from ${accountFrom.address} to ${addressTo}`);
 
   const createTransaction = await web3.eth.accounts.signTransaction(
     {
@@ -21,7 +21,7 @@ const send = async () => {
       to: addressTo,
       value: web3.utils.toWei('1', 'ether'),
     },
-    account_from.privateKey
+    accountFrom.privateKey
   );
 
   const createReceipt = await web3.eth.sendSignedTransaction(createTransaction.rawTransaction);
