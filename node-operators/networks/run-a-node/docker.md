@@ -134,7 +134,7 @@ Now, execute the docker run command. If you are setting up a collator node, make
         ```bash
         docker run -p 9944:9944 -v "/var/lib/moonbeam-data:/data" \
         -u $(id -u ${USER}):$(id -g ${USER}) \
-        purestake/moonbeam:v0.32.2 \
+        purestake/moonbeam:{{ networks.moonbeam.parachain_release_tag }} \
         --base-path=/data \
         --chain moonbeam \
         --name="YOUR-NODE-NAME" \
@@ -149,7 +149,7 @@ Now, execute the docker run command. If you are setting up a collator node, make
         ```bash
         docker run -p 9944:9944 -v "/var/lib/moonriver-data:/data" \
         -u $(id -u ${USER}):$(id -g ${USER}) \
-        purestake/moonbeam:v0.32.2 \
+        purestake/moonbeam:{{ networks.moonriver.parachain_release_tag }} \
         --base-path=/data \
         --chain moonriver \
         --name="YOUR-NODE-NAME" \
@@ -164,7 +164,7 @@ Now, execute the docker run command. If you are setting up a collator node, make
         ```bash
         docker run -p 9944:9944 -v "/var/lib/alphanet-data:/data" \
         -u $(id -u ${USER}):$(id -g ${USER}) \
-        purestake/moonbeam:v0.32.2 \
+        purestake/moonbeam:{{ networks.moonbase.parachain_release_tag }} \
         --base-path=/data \
         --chain alphanet \
         --name="YOUR-NODE-NAME" \
@@ -236,7 +236,7 @@ Now, execute the docker run command. If you are setting up a collator node, make
         ```bash
         docker run -p 9944:9944 -v "/var/lib/moonbeam-data:/data" \
         -u $(id -u ${USER}):$(id -g ${USER}) \
-        purestake/moonbeam:v0.32.2 \
+        purestake/moonbeam:{{ networks.moonbeam.parachain_release_tag }} \
         --base-path=/data \
         --chain moonbeam \
         --name="YOUR-NODE-NAME" \
@@ -251,7 +251,7 @@ Now, execute the docker run command. If you are setting up a collator node, make
         ```bash
         docker run -p 9944:9944 -v "/var/lib/moonriver-data:/data" \
         -u $(id -u ${USER}):$(id -g ${USER}) \
-        purestake/moonbeam:v0.32.2 \
+        purestake/moonbeam:{{ networks.moonriver.parachain_release_tag }} \
         --base-path=/data \
         --chain moonriver \
         --name="YOUR-NODE-NAME" \
@@ -266,7 +266,7 @@ Now, execute the docker run command. If you are setting up a collator node, make
         ```bash
         docker run -p 9944:9944 -v "/var/lib/alphanet-data:/data" \
         -u $(id -u ${USER}):$(id -g ${USER}) \
-        purestake/moonbeam:v0.32.2 \
+        purestake/moonbeam:{{ networks.moonbase.parachain_release_tag }} \
         --base-path=/data \
         --chain alphanet \
         --name="YOUR-NODE-NAME" \
