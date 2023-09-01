@@ -8,7 +8,7 @@ const providerRPC = {
   development: 'http://localhost:9944',
   moonbase: 'https://rpc.api.moonbase.moonbeam.network',
 };
-const web3 = new Web3(providerRPC.development); // Change to correct network
+const web3 = new Web3(providerRPC.moonbase); // Change to correct network
 
 // 3. Create address variables
 const accountFrom = {
