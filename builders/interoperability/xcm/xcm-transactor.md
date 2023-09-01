@@ -73,7 +73,7 @@ Where the inputs that need to be provided can be defined as:
      - **overallWeight** — the total weight the XCM Transactor extrinsic can use. This includes all the XCM instructions plus the weight of the call itself (**transactRequiredWeightAtMost**)
  - **call** — similar to `innerCall`, but it is not wrapped with the `asDerivative` extrinsic
  - **feePayer** — the address that will pay for the remote XCM execution in the transact through sovereign extrinsic. The fee is charged in the corresponding [XC-20 token](/builders/interoperability/xcm/xc20/overview/){target=_blank}
- - **originKind** — dispatcher of the remote call in the destination chain. There are [four types of dispatchers](https://github.com/paritytech/polkadot/blob/0a34022e31c85001f871bb4067b7d5f5cab91207/xcm/src/v0/mod.rs#L60){target=_blank} available
+ - **originKind** — dispatcher of the remote call in the destination chain. There are [four types of dispatchers](https://github.com/paritytech/polkadot-sdk/blob/master/polkadot/xcm/src/v2/mod.rs#L84){target=_blank} available
 
 ### Storage Methods {: #storage-methods }
 
