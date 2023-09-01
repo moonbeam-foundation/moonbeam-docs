@@ -88,6 +88,8 @@ The simplest way to get started with each of the networks is as follows:
     const web3 = new Web3('{{ networks.development.rpc_url }}');
     ```
 
+Save this code snippet as you'll need it for the scripts that are used in the following sections.
+
 ## Send a Transaction {: #send-a-transaction }
 
 During this section, you'll be creating a couple of scripts. The first one will be to check the balances of your accounts before trying to send a transaction. The second script will actually send the transaction.
