@@ -176,7 +176,7 @@ The [API3 Market](https://market.api3.org/dapis){target=_blank} enables users to
 
 You can then decide if you want to use self-funded or managed dAPIs.
 
-![API3 Dapi Page](/images/builders/integrations/oracles/api3/api3-dapi-page.png)
+![API3 Dapi Page](/images/builders/integrations/oracles/api3/api3-5.png)
 
 #### Fund a Sponsor Wallet {: #fund-sponsor-wallet }
 
@@ -187,11 +187,11 @@ Once you have selected your dAPI, you can activate it by using the [API3 Market]
 
 To fund the dAPI, you need to click on the **Fund Gas** button. Depending upon if a proxy contract is already deployed, you will see a different UI.
 
-![API3 Remix deploy](/images/builders/integrations/oracles/api3/api3-5.png)
+![API3 Remix deploy](/images/builders/integrations/oracles/api3/api3-6.png)
 
 Use the gas estimator to select how much gas is needed by the dAPI. Click on **Send DEV** to send the entered amount to the sponsor wallet of the respective dAPI.
 
-![API3 Remix deploy](/images/builders/integrations/oracles/api3/api3-6.png)
+![API3 Remix deploy](/images/builders/integrations/oracles/api3/api3-7.png)
 
 Once the transaction is broadcasted & confirmed on the blockchain a transaction confirmation screen will appear.
 
@@ -204,7 +204,7 @@ Smart contracts can interact and read values from contracts that are already dep
 
 If you are deploying a proxy contract during the funding process, clicking on the **Get proxy** button will initiate a transaction to your wallet that will deploy a proxy contract.
 
-![API3 Remix deploy](/images/builders/integrations/oracles/api3/api3-7.png)
+![API3 Remix deploy](/images/builders/integrations/oracles/api3/api3-8.png)
 
 Once the transaction is broadcasted & confirmed on the blockchain, the proxy contract address will be shown on the UI.
 
