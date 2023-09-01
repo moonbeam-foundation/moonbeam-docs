@@ -89,7 +89,7 @@ You can also try [deploying the example contract on Remix](https://remix.ethereu
 
 ### Contract Addresses {: #contract-addresses }
 
-The `_rrpAddress` is the main `airnodeRrpAddress`. The RRP Contracts have already been deployed on-chain. The [addresses for the `_rrpcAddress`](https://docs.api3.org/reference/airnode/latest/){target=_blank} on Moonbeam networks are as follows: 
+The `_rrpAddress` is the main `airnodeRrpAddress`. The RRP Contracts have already been deployed on-chain. The [addresses for the `_rrpcAddress`](https://docs.api3.org/reference/airnode/latest/){target=_blank} on Moonbeam networks are as follows:
 
 === "Moonbeam"
 
@@ -141,32 +141,25 @@ Due to being composed of first-party data feeds, dAPIs offer security, transpare
 
 *To learn more about how dAPIs work, please refer to [API3's documentation*](https://docs.api3.org/explore/dapis/what-are-dapis.html){target=_blank}*.
 
-### Types of dAPIs
+### Types of dAPIs {: #types-of-dapis }
 
-#### Self-funded dAPIs
-[Self-funded dAPIs](https://docs.api3.org/reference/dapis/understand/self-funded.html) are single-source data feeds that can be funded by the users with
-their own funds. The amount of gas supplied determines how long the dAPI will be
-available to use. If it runs out of gas, the dAPI will no longer be updated
-unless it is funded again.
+There are two types of dAPIs: [self-funded](https://docs.api3.org/reference/dapis/understand/self-funded.html){target=_blank} and [managed](https://docs.api3.org/reference/dapis/understand/managed.html){target=_blank}. Managed dAPIs are only available on MainNets, and self-funded dAPIs are available on both MainNets and TestNets. The process to read from a dAPI proxy remains the same for both self-funded and managed dAPIs.
 
-[Click here to read more about Self-funded dAPIs](https://docs.api3.org/guides/dapis/subscribing-self-funded-dapis/).
+#### Self-funded dAPIs {: #self-funded-dapis }
 
-#### Managed dAPIs
-[Managed dAPIs](https://docs.api3.org/reference/dapis/understand/managed.html) are sourced directly from mulitple [first-party](https://docs.api3.org/explore/airnode/why-first-party-oracles.html) data providers
-running an Airnode and aggregated using Airnode's signed data using
-a median function. The gas costs
-and avaibality of Managed dAPIs is managed by the [API3 DAO](https://docs.api3.org/explore/dao-members/).
-
-[Click here to read more about Managed dAPIs](https://docs.api3.org/reference/dapis/understand/managed.html).
-
-### Access Self-Funded dAPIs {: #self-funded-dapis}
-
-!!! note
-    While Managed dAPIs are just available on mainnets, Self-funded dAPIs are available on both mainnets and testnets. The process to read from a dAPI proxy remains same for both Self-funded and Managed dAPIs.
-
-Self-funded dAPIs offer developers the opportunity to experience data feeds with minimal up-front commitment, providing a low-risk option prior to using managed dAPIs
+[Self-funded dAPIs](https://docs.api3.org/reference/dapis/understand/self-funded.html){target=_blank} are single-source data feeds that are funded by the users with their own funds. They offer developers the opportunity to experience data feeds with minimal up-front commitment, providing a low-risk option prior to using managed dAPIs.
 
 With self-funded dAPIs, you can fund the dAPI with your own funds. The amount of gas you supply will determine how long your dAPI will be available for use. If you run out of gas, you can fund the dAPI again to keep it available for use.
+
+You can read more about [self-funded dAPIs on API3's documentation site](https://docs.api3.org/guides/dapis/subscribing-self-funded-dapis/){target=_blank}.
+
+#### Managed dAPIs {: #managed-dapis }
+
+[Managed dAPIs](https://docs.api3.org/reference/dapis/understand/managed.html) are sourced directly from multiple [first-party](https://docs.api3.org/explore/airnode/why-first-party-oracles.html){target=_blank} data providers running an Airnode and aggregated using Airnode's signed data using a median function. The gas costs and availability of managed dAPIs are managed by the [API3 DAO](https://docs.api3.org/explore/dao-members/){target=_blank}.
+
+You can read more about [managed dAPIs on API3's documentation site](https://docs.api3.org/reference/dapis/understand/managed.html){target=_blank}.
+
+### Access Self-Funded dAPIs {: #self-funded-dapis}
 
 The process for accessing self-funded data feeds is as follows:
 
@@ -181,7 +174,7 @@ The process for accessing self-funded data feeds is as follows:
 
 The [API3 Market](https://market.api3.org/dapis){target=_blank} enables users to connect to a dAPI and access the associated data feed services. It provides a list of all of the dAPIs available across multiple chains including testnets. You can filter the list by chains and data providers. You can also search for a specific dAPI by name. You can click on a dAPI to land on the details page where you can find more information about the dAPI.
 
-You can then decide if you want to use Self-funded or Managed dAPIs.
+You can then decide if you want to use self-funded or managed dAPIs.
 
 ![API3 Dapi Page](/images/builders/integrations/oracles/api3/api3-dapi-page.png)
 
@@ -217,14 +210,9 @@ Once the transaction is broadcasted & confirmed on the blockchain, the proxy con
 
 ### Access Managed dAPIs {: #managed-dapis}
 
-If you are trying to access Managed dAPIs, 
-once you have selected your dAPI, you will then be presented with an option to
-choose from either **Managed** or **Self-funded**. Select Managed dAPIs.
+If you are trying to access managed dAPIs, once you have selected your dAPI, you will then be presented with the option to choose from either **Managed** or **Self-funded**. Select **Managed dAPIs**.
 
-Managed dAPIs gives you an option to configure the dAPI's
-[devation threshold](https://docs.api3.org/reference/dapis/understand/deviations.html) and
-[heartbeat](https://docs.api3.org/reference/dapis/understand/deviations.html#heartbeat). For Managed
-dAPIs, you will have the following options to choose from:
+Managed dAPIs give you the option to configure the dAPI's [devation threshold](https://docs.api3.org/reference/dapis/understand/deviations.html){target=_blank} and [heartbeat](https://docs.api3.org/reference/dapis/understand/deviations.html#heartbeat){target=_blank}. For managed dAPIs, you will have the following options to choose from:
 
 | Deviation | Heartbeat |
 | --------- | --------- |
@@ -234,17 +222,11 @@ dAPIs, you will have the following options to choose from:
 | 1%        | 24 hours  |
 
 !!! note
-    Not all dAPIs support all the configurations. It depends on the asset and chain.
-    Check the [API3 Market](https://market.api3.org) for more info.
+    Not all dAPIs support all the configurations. It depends on the asset and chain. Check the [API3 Market](https://market.api3.org){target=_blank} for more information.
 
-After selecting the required deviation threshold and heartbeat, check the final price, and select **Add to Cart**. You can add more dAPIs on the same network to your cart. Once you are done, click on **Checkout**.
+After selecting the required deviation threshold and heartbeat, check the final price, and select **Add to Cart**. You can add more dAPIs on the same network to your cart. Once you are done, click on **Checkout**. Make sure you check the order details and the final price on the payment page. Once you are ready, connect your wallet and pay for the order.
 
-Make sure you check the order details and the final price on the payments page. Once you are ready, connect your wallet and pay for the order.
-
-After placing the order, you will have to wait for the dAPI to get updated. It
-usually takes 5 business days for the dAPI team to update the dAPI for the
-requested configuration. Once the dAPI is updated, you can start using it in
-your dApp.
+After placing the order, you will have to wait for the dAPI to get updated. It usually takes five business days for the dAPI team to update the dAPI for the requested configuration. Once the dAPI is updated, you can start using it in your dApp.
 
 #### Read From a dAPI {: #read-dapis }
 
@@ -366,7 +348,7 @@ contract RemixQrngExample is RrpRequesterV0 {
 
 The example contract contains these three functions:
 
-- `setRequestParameters` - accepts and sets the following three request parameters: 
+- `setRequestParameters` - accepts and sets the following three request parameters:
     - `airnode` - address of an Airnode that will be called to retrieve QRNG data
     - `endpointIdUint256` - the endpoint ID of the Airnode
     - `sponsorWallet` - the address of the sponsor wallet
