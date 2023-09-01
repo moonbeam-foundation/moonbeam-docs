@@ -303,7 +303,7 @@ Next, you will create the script for this file and complete the following steps:
 1. Import the contract file from `compile.js`
 2. [Set up the Ethers provider](#setting-up-the-ethers-provider)
 3. Define the `privateKey` for the origin account. The private key is required to create a wallet instance. **Note: This is for example purposes only. Never store your private keys in a JavaScript file**
-3. Create a wallet using the `privateKey` and `provider` from the previous steps. The wallet instance is used to sign transactions
+4. Create a wallet using the `privateKey` and `provider` from the previous steps. The wallet instance is used to sign transactions
 5. Load the contract `bytecode` and `abi` for the compiled contract
 6. Create a contract instance with signer using the `ethers.ContractFactory` function, providing the `abi`, `bytecode`, and `wallet` as parameters
 7. Create the asynchronous `deploy` function that will be used to deploy the contract
