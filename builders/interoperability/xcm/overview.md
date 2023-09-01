@@ -101,7 +101,7 @@ In general, asset registration can happen at a runtime level, which means that a
 When registering an XCM asset, the extrinsic must include (among other things):
 
 - Parachain ID of where the origin asset is located
-- Type of asset. At the time of writing, you can register either the native parachain token or an asset created via the [Pallet Assets](https://github.com/paritytech/substrate/blob/master/frame/assets/src/lib.rs){target=_blank}, by providing its index
+- Type of asset. At the time of writing, you can register either the native parachain token or an asset created via the [Pallet Assets](https://github.com/paritytech/polkadot-sdk/blob/master/substrate/frame/assets/src/lib.rs){target=_blank}, by providing its index
 - An asset name, symbol, and decimal count
 - Minimum balance
 
