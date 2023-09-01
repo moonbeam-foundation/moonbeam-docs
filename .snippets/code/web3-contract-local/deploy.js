@@ -12,8 +12,8 @@ const web3 = new Web3(providerRPC.moonbase); // Change to correct network
 
 // 3. Create address variables
 const accountFrom = {
-  privateKey: 'YOUR_PRIVATE_KEY_HERE',
-  address: 'PUBLIC_ADDRESS_OF_PK_HERE',
+  privateKey: 'INSERT_YOUR_PRIVATE_KEY',
+  address: 'INSERT_PUBLIC_ADDRESS_OF_PK',
 };
 
 // 4. Get the bytecode and API

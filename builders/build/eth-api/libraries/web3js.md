@@ -23,12 +23,12 @@ For the examples in this guide, you will need to have the following:
 !!! note
     --8<-- 'text/common/assumes-mac-or-ubuntu-env.md'
 
-## Create a JavaScript Project {: #create-a-javascript-project }
+## Installing Web3.js {: #install-web3js }
 
-To get started, you can create a directory to store all of the files you'll be creating throughout this guide:
+To get started, you'll need to start a basic JavaScript project. First, create a directory to store all of the files you'll be creating throughout this guide and initialize the project with the following command:
 
 ```bash
-mkdir web3-examples && cd web3-examples
+mkdir web3-examples && cd web3-examples && npm init --y
 ```
 
 For this guide, you'll need to install the Web3.js library and the Solidity compiler. To install both NPM packages, you can run the following command:
@@ -115,8 +115,8 @@ Next, you will create the script for this file and complete the following steps:
 // {...}
 
 // 2. Create address variables
-const addressFrom = 'ADDRESS_FROM_HERE';
-const addressTo = 'ADDRESS_TO_HERE';
+const addressFrom = 'INSERT_FROM_ADDRESS';
+const addressTo = 'INSERT_TO_ADDRESS';
 
 // 3. Create balances function
 const balances = async () => {
@@ -169,10 +169,10 @@ Next, you will create the script for this file and complete the following steps:
 
 // 2. Create account variables
 const accountFrom = {
-  privateKey: 'YOUR_PRIVATE_KEY_HERE',
-  address: 'PUBLIC_ADDRESS_OF_PK_HERE',
+  privateKey: 'INSERT_YOUR_PRIVATE_KEY',
+  address: 'INSERT_PUBLIC_ADDRESS_OF_PK',
 };
-const addressTo = 'ADDRESS_TO_HERE'; // Change addressTo
+const addressTo = 'INSERT_TO_ADDRESS'; // Change addressTo
 
 // 3. Create send function
 const send = async () => {
@@ -253,8 +253,8 @@ const contractFile = require('./compile');
 
 // 3. Create address variables
 const accountFrom = {
-  privateKey: 'YOUR_PRIVATE_KEY_HERE',
-  address: 'PUBLIC_ADDRESS_OF_PK_HERE',
+  privateKey: 'INSERT_YOUR_PRIVATE_KEY',
+  address: 'INSERT_PUBLIC_ADDRESS_OF_PK',
 };
 
 // 4. Get the bytecode and API
@@ -336,7 +336,7 @@ const { abi } = require('./compile');
 // {...}
 
 // 3. Create address variables
-const contractAddress = 'CONTRACT_ADDRESS_HERE';
+const contractAddress = 'INSERT_CONTRACT_ADDRESS';
 
 // 4. Create contract instance
 const incrementer = new web3.eth.Contract(abi, contractAddress);
@@ -398,9 +398,9 @@ const { abi } = require('./compile');
 
 // 3. Create variables
 const accountFrom = {
-  privateKey: 'YOUR_PRIVATE_KEY_HERE',
+  privateKey: 'INSERT_YOUR_PRIVATE_KEY',
 };
-const contractAddress = 'CONTRACT_ADDRESS_HERE';
+const contractAddress = 'INSERT_CONTRACT_ADDRESS';
 const _value = 3;
 
 // 4. Create contract instance
@@ -471,9 +471,9 @@ const { abi } = require('./compile');
 
 // 3. Create variables
 const accountFrom = {
-  privateKey: 'YOUR_PRIVATE_KEY_HERE',
+  privateKey: 'INSERT_YOUR_PRIVATE_KEY',
 };
-const contractAddress = 'CONTRACT_ADDRESS_HERE';
+const contractAddress = 'INSERT_CONTRACT_ADDRESS';
 
 // 4. Create Contract Instance
 const incrementer = new web3.eth.Contract(abi, contractAddress);

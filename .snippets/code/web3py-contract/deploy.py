@@ -11,8 +11,8 @@ web3 = Web3(Web3.HTTPProvider(provider_rpc['development']))  # Change to correct
 
 # 3. Create address variable
 account_from = {
-    'private_key': 'YOUR_PRIVATE_KEY_HERE',
-    'address': 'PUBLIC_ADDRESS_OF_PK_HERE',
+    'private_key': 'INSERT_YOUR_PRIVATE_KEY',
+    'address': 'INSERT_PUBLIC_ADDRESS_OF_PK',
 }
 
 print(f'Attempting to deploy from account: { account_from["address"] }')

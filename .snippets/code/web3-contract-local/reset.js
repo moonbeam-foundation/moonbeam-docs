@@ -11,9 +11,9 @@ const web3 = new Web3(providerRPC.moonbase); // Change to correct network
 
 // 3. Create variables
 const accountFrom = {
-  privateKey: 'YOUR_PRIVATE_KEY_HERE',
+  privateKey: 'INSERT_YOUR_PRIVATE_KEY',
 };
-const contractAddress = 'CONTRACT_ADDRESS_HERE';
+const contractAddress = 'INSERT_CONTRACT_ADDRESS';
 
 // 4. Create Contract Instance
 const incrementer = new web3.eth.Contract(abi, contractAddress);

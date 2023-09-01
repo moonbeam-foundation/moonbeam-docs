@@ -8,8 +8,8 @@ const providerRPC = {
 const web3 = new Web3(providerRPC.moonbase); // Change to correct network
 
 // 2. Create address variables
-const addressFrom = 'ADDRESS_FROM_HERE';
-const addressTo = 'ADDRESS_TO_HERE';
+const addressFrom = 'INSERT_FROM_ADDRESS';
+const addressTo = 'INSERT_TO_ADDRESS';
 
 // 3. Create balances function
 const balances = async () => {

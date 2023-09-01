@@ -10,7 +10,7 @@ const providerRPC = {
 const web3 = new Web3(providerRPC.moonbase); // Change to correct network
 
 // 3. Create address variables
-const contractAddress = 'CONTRACT_ADDRESS_HERE';
+const contractAddress = 'INSERT_CONTRACT_ADDRESS';
 
 // 4. Create contract instance
 const incrementer = new web3.eth.Contract(abi, contractAddress);

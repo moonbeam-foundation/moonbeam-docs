@@ -9,8 +9,8 @@ provider_rpc = {
 web3 = Web3(Web3.HTTPProvider(provider_rpc['development']))  # Change to correct network
 
 # 2. Create address variables
-address_from = 'ADDRESS_FROM_HERE'
-address_to = 'ADDRESS_TO_HERE'
+address_from = 'INSERT_FROM_ADDRESS'
+address_to = 'INSERT_TO_ADDRESS'
 
 # 3. Fetch balance data
 balance_from = web3.from_wei(web3.eth.getBalance(address_from), 'ether')

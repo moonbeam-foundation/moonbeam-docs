@@ -9,10 +9,10 @@ const web3 = new Web3(providerRPC.moonbase); // Change to correct network
 
 // 2. Create account variables
 const accountFrom = {
-  privateKey: 'YOUR_PRIVATE_KEY_HERE',
-  address: 'PUBLIC_ADDRESS_OF_PK_HERE',
+  privateKey: 'INSERT_YOUR_PRIVATE_KEY',
+  address: 'INSERT_PUBLIC_ADDRESS_OF_PK',
 };
-const addressTo = 'ADDRESS_TO_HERE';
+const addressTo = 'INSERT_TO_ADDRESS';
 
 // 3. Create send function
 const send = async () => {
