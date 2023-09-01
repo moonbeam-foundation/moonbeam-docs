@@ -39,7 +39,7 @@ const deploy = async () => {
       data: incrementerTx.encodeABI(),
       gas: await incrementerTx.estimateGas(),
     },
-    account_from.privateKey
+    accountFrom.privateKey
   );
 
   // 9. Send tx and wait for receipt

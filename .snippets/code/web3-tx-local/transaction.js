@@ -8,7 +8,7 @@ const providerRPC = {
 const web3 = new Web3(providerRPC.development); // Change to correct network
 
 // 2. Create account variables
-const account_from = {
+const accountFrom = {
   privateKey: 'YOUR_PRIVATE_KEY_HERE',
   address: 'PUBLIC_ADDRESS_OF_PK_HERE',
 };
@@ -16,7 +16,7 @@ const addressTo = 'ADDRESS_TO_HERE';
 
 // 3. Create send function
 const send = async () => {
-  console.log(`Attempting to send transaction from ${account_from.address} to ${addressTo}`);
+  console.log(`Attempting to send transaction from ${accountFrom.address} to ${addressTo}`);
 
   // 4. Prepare and sign tx with PK
   const createTransaction = await web3.eth.accounts.signTransaction(
@@ -25,7 +25,7 @@ const send = async () => {
       to: addressTo,
       value: web3.utils.toWei('1', 'ether'),
     },
-    account_from.privateKey
+    accountFrom.privateKey
   );
 
   // 5. Send tx and wait for receipt

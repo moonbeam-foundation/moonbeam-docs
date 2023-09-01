@@ -10,7 +10,7 @@ const providerRPC = {
 const web3 = new Web3(providerRPC.development); // Change to correct network
 
 // 3. Create variables
-const account_from = {
+const accountFrom = {
   privateKey: 'YOUR_PRIVATE_KEY_HERE',
 };
 const contractAddress = 'CONTRACT_ADDRESS_HERE';
@@ -32,7 +32,7 @@ const reset = async () => {
       data: resetTx.encodeABI(),
       gas: await resetTx.estimateGas(),
     },
-    account_from.privateKey
+    accountFrom.privateKey
   );
 
   // 8. Send tx and wait for receipt
