@@ -33,9 +33,17 @@ mkdir web3-examples && cd web3-examples && npm init --y
 
 For this guide, you'll need to install the Web3.js library and the Solidity compiler. To install both NPM packages, you can run the following command:
 
-```bash
-npm install web3 solc@0.8.0
-```
+=== "npm"
+
+    ```bash
+    npm install web3 solc@0.8.0
+    ```
+
+=== "yarn"
+
+    ```bash
+    yarn add web3 solc@0.8.0
+    ```
 
 ## Setup Web3.js with Moonbeam {: #setup-web3-with-moonbeam }
 
@@ -99,7 +107,7 @@ Next, you will create the script for this file and complete the following steps:
 1. [Set up the Web3 provider](#setup-web3-with-moonbeam)
 2. Define the `addressFrom` and `addressTo` variables
 3. Create the asynchronous `balances` function which wraps the `web3.eth.getBalance` method
-4. Use the `web3.eth.getBalance` function to fetch the balances for the `addressFrom` and `addressTo` addresses. You can also leverage the `web3.utils.fromWei` function to transform the balance into a more readable number in ETH
+4. Use the `web3.eth.getBalance` function to fetch the balances for the `addressFrom` and `addressTo` addresses. You can also leverage the `web3.utils.fromWei` function to transform the balance into a more readable number in DEV
 5. Lastly, run the `balances` function
 
 ```js
@@ -116,15 +124,19 @@ const balances = async () => {
   const balanceFrom = web3.utils.fromWei(await web3.eth.getBalance(addressFrom), 'ether');
   const balanceTo = web3.utils.fromWei(await web3.eth.getBalance(addressTo), 'ether');
 
-  console.log(`The balance of ${addressFrom} is: ${balanceFrom} ETH`);
-  console.log(`The balance of ${addressTo} is: ${balanceTo} ETH`);
+  console.log(`The balance of ${addressFrom} is: ${balanceFrom} DEV`);
+  console.log(`The balance of ${addressTo} is: ${balanceTo} DEV`);
 };
 
 // 5. Call balances function
 balances();
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/web3-tx-local/balances.js){target=_blank}.
+??? code "View the complete script"
+
+    ```js
+    --8<-- 'code/web3-tx-local/balances.js'
+    ```
 
 To run the script and fetch the account balances, you can run the following command:
 
@@ -132,7 +144,7 @@ To run the script and fetch the account balances, you can run the following comm
 node balances.js
 ```
 
-If successful, the balances for the origin and receiving address will be displayed in your terminal in ETH.
+If successful, the balances for the origin and receiving address will be displayed in your terminal in DEV.
 
 ### Send Transaction Script {: #send-transaction-script }
 
@@ -185,7 +197,11 @@ const send = async () => {
 send();
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/web3-tx-local/transaction.js){target=_blank}.
+??? code "View the complete script"
+
+    ```js
+    --8<-- 'code/web3-tx-local/transaction.js'
+    ```
 
 To run the script, you can run the following command in your terminal:
 
@@ -276,7 +292,11 @@ const deploy = async () => {
 deploy();
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/web3-contract-local/deploy.js){target=_blank}.
+??? code "View the complete script"
+
+    ```js
+    --8<-- 'code/web3-contract-local/deploy.js'
+    ```
 
 To run the script, you can enter the following command into your terminal:
 
@@ -335,7 +355,11 @@ const get = async () => {
 get();
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/web3-contract-local/get.js){target=_blank}.
+??? code "View the complete script"
+
+    ```js
+    --8<-- 'code/web3-contract-local/get.js'
+    ```
 
 To run the script, you can enter the following command in your terminal:
 
@@ -391,7 +415,7 @@ const increment = async () => {
     `Calling the increment by ${_value} function in contract at address: ${contractAddress}`
   );
 
-  // Sign Tx with PK
+  // 7. Prepare and Sign Tx with PK
   const createTransaction = await web3.eth.accounts.signTransaction(
     {
       to: contractAddress,
@@ -401,7 +425,7 @@ const increment = async () => {
     accountFrom.privateKey
   );
 
-  // Send Tx and Wait for Receipt
+  // 8. Send Tx and Wait for Receipt
   const createReceipt = await web3.eth.sendSignedTransaction(createTransaction.rawTransaction);
   console.log(`Tx successful with hash: ${createReceipt.transactionHash}`);
 };
@@ -410,7 +434,11 @@ const increment = async () => {
 increment();
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/web3-contract-local/increment.js){target=_blank}.
+??? code "View the complete script"
+
+    ```js
+    --8<-- 'code/web3-contract-local/increment.js'
+    ```
 
 To run the script, you can enter the following command in your terminal:
 
@@ -476,7 +504,11 @@ const reset = async () => {
 reset();
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/web3-contract-local/reset.js){target=_blank}.
+??? code "View the complete script"
+
+    ```js
+    --8<-- 'code/web3-contract-local/reset.js'
+    ```
 
 To run the script, you can enter the following command in your terminal:
 
