@@ -33,13 +33,13 @@ Create a local directory to store the chain data:
     mkdir {{ networks.moonbase.node_directory }}
     ```
 
-Next, make sure you set the ownership and permissions accordingly for the local directory that stores the chain data. In this case, set the necessary permissions either for a specific or current user (replace `DOCKER_USER` for the actual user that will run the `docker` command):
+Next, make sure you set the ownership and permissions accordingly for the local directory that stores the chain data. In this case, set the necessary permissions either for a specific or current user (replace `INSERT_DOCKER_USER` for the actual user that will run the `docker` command):
 
 === "Moonbeam"
 
     ```bash
     # chown to a specific user
-    chown DOCKER_USER {{ networks.moonbeam.node_directory }}
+    chown INSERT_DOCKER_USER {{ networks.moonbeam.node_directory }}
 
     # chown to current user
     sudo chown -R $(id -u):$(id -g) {{ networks.moonbeam.node_directory }}
@@ -49,7 +49,7 @@ Next, make sure you set the ownership and permissions accordingly for the local 
 
     ```bash
     # chown to a specific user
-    chown DOCKER_USER {{ networks.moonriver.node_directory }}
+    chown INSERT_DOCKER_USER {{ networks.moonriver.node_directory }}
 
     # chown to current user
     sudo chown -R $(id -u):$(id -g) {{ networks.moonriver.node_directory }}
@@ -59,7 +59,7 @@ Next, make sure you set the ownership and permissions accordingly for the local 
 
     ```bash
     # chown to a specific user
-    chown DOCKER_USER {{ networks.moonbase.node_directory }}
+    chown INSERT_DOCKER_USER {{ networks.moonbase.node_directory }}
 
     # chown to current user
     sudo chown -R $(id -u):$(id -g) {{ networks.moonbase.node_directory }}
@@ -67,7 +67,7 @@ Next, make sure you set the ownership and permissions accordingly for the local 
 
 Now, execute the docker run command. If you are setting up a collator node, make sure to follow the code snippets for [Collator](#collator--collator). Note that you have to:
 
- - Replace `YOUR-NODE-NAME` in two different places
+ - Replace `INSERT_YOUR_NODE_NAME` in two different places
  - Replace `<50% RAM in MB>` for 50% of the actual RAM your server has. For example, for 32 GB RAM, the value must be set to `16000`. The minimum value is `2000`, but it is below the recommended specs
 
 !!! note
@@ -87,12 +87,12 @@ Now, execute the docker run command. If you are setting up a collator node, make
         purestake/moonbeam:{{ networks.moonbeam.parachain_release_tag }} \
         --base-path=/data \
         --chain {{ networks.moonbeam.chain_spec }} \
-        --name="YOUR-NODE-NAME" \
+        --name="INSERT_YOUR_NODE_NAME" \
         --state-pruning archive \
         --trie-cache-size 1073741824 \
         --db-cache <50% RAM in MB> \
         -- \
-        --name="YOUR-NODE-NAME (Embedded Relay)"
+        --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
         ```
 
     === "Moonriver"
@@ -103,12 +103,12 @@ Now, execute the docker run command. If you are setting up a collator node, make
         purestake/moonbeam:{{ networks.moonriver.parachain_release_tag }} \
         --base-path=/data \
         --chain {{ networks.moonriver.chain_spec }} \
-        --name="YOUR-NODE-NAME" \
+        --name="INSERT_YOUR_NODE_NAME" \
         --state-pruning archive \
         --trie-cache-size 1073741824 \
         --db-cache <50% RAM in MB> \
         -- \
-        --name="YOUR-NODE-NAME (Embedded Relay)"
+        --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
         ```
 
     === "Moonbase Alpha"
@@ -119,12 +119,12 @@ Now, execute the docker run command. If you are setting up a collator node, make
         purestake/moonbeam:{{ networks.moonbase.parachain_release_tag }} \
         --base-path=/data \
         --chain {{ networks.moonbase.chain_spec }} \
-        --name="YOUR-NODE-NAME" \
+        --name="INSERT_YOUR_NODE_NAME" \
         --state-pruning archive \
         --trie-cache-size 1073741824 \
         --db-cache <50% RAM in MB> \
         -- \
-        --name="YOUR-NODE-NAME (Embedded Relay)"
+        --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
         ```
 
 ??? code "MacOS snippets"
@@ -137,11 +137,11 @@ Now, execute the docker run command. If you are setting up a collator node, make
         purestake/moonbeam:{{ networks.moonbeam.parachain_release_tag }} \
         --base-path=/data \
         --chain moonbeam \
-        --name="YOUR-NODE-NAME" \
+        --name="INSERT_YOUR_NODE_NAME" \
         --state-pruning archive \
         --trie-cache-size 1073741824 \
         -- \
-        --name="YOUR-NODE-NAME (Embedded Relay)"
+        --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
         ```
 
     === "Moonriver"
@@ -152,11 +152,11 @@ Now, execute the docker run command. If you are setting up a collator node, make
         purestake/moonbeam:{{ networks.moonriver.parachain_release_tag }} \
         --base-path=/data \
         --chain moonriver \
-        --name="YOUR-NODE-NAME" \
+        --name="INSERT_YOUR_NODE_NAME" \
         --state-pruning archive \
         --trie-cache-size 1073741824 \
         -- \
-        --name="YOUR-NODE-NAME (Embedded Relay)"
+        --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
         ```
 
     === "Moonbase Alpha"
@@ -167,11 +167,11 @@ Now, execute the docker run command. If you are setting up a collator node, make
         purestake/moonbeam:{{ networks.moonbase.parachain_release_tag }} \
         --base-path=/data \
         --chain alphanet \
-        --name="YOUR-NODE-NAME" \
+        --name="INSERT_YOUR_NODE_NAME" \
         --state-pruning archive \
         --trie-cache-size 1073741824 \
         -- \
-        --name="YOUR-NODE-NAME (Embedded Relay)"
+        --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
         ```
 
 !!! note
@@ -189,12 +189,12 @@ Now, execute the docker run command. If you are setting up a collator node, make
         purestake/moonbeam:{{ networks.moonbeam.parachain_release_tag }} \
         --base-path=/data \
         --chain {{ networks.moonbeam.chain_spec }} \
-        --name="YOUR-NODE-NAME" \
+        --name="INSERT_YOUR_NODE_NAME" \
         --collator \
         --trie-cache-size 1073741824 \
         --db-cache <50% RAM in MB> \
         -- \
-        --name="YOUR-NODE-NAME (Embedded Relay)"
+        --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
         ```
 
     === "Moonriver"
@@ -205,12 +205,12 @@ Now, execute the docker run command. If you are setting up a collator node, make
         purestake/moonbeam:{{ networks.moonriver.parachain_release_tag }} \
         --base-path=/data \
         --chain {{ networks.moonriver.chain_spec }} \
-        --name="YOUR-NODE-NAME" \
+        --name="INSERT_YOUR_NODE_NAME" \
         --collator \
         --trie-cache-size 1073741824 \
         --db-cache <50% RAM in MB> \
         -- \
-        --name="YOUR-NODE-NAME (Embedded Relay)"
+        --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
         ```
 
     === "Moonbase Alpha"
@@ -221,12 +221,12 @@ Now, execute the docker run command. If you are setting up a collator node, make
         purestake/moonbeam:{{ networks.moonbase.parachain_release_tag }} \
         --base-path=/data \
         --chain {{ networks.moonbase.chain_spec }} \
-        --name="YOUR-NODE-NAME" \
+        --name="INSERT_YOUR_NODE_NAME" \
         --collator \
         --trie-cache-size 1073741824 \
         --db-cache <50% RAM in MB> \
         -- \
-        --name="YOUR-NODE-NAME (Embedded Relay)"
+        --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
         ```
 
 ??? code "MacOS snippets"
@@ -239,11 +239,11 @@ Now, execute the docker run command. If you are setting up a collator node, make
         purestake/moonbeam:{{ networks.moonbeam.parachain_release_tag }} \
         --base-path=/data \
         --chain moonbeam \
-        --name="YOUR-NODE-NAME" \
+        --name="INSERT_YOUR_NODE_NAME" \
         --collator \
         --trie-cache-size 1073741824 \
         -- \
-        --name="YOUR-NODE-NAME (Embedded Relay)"
+        --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
         ```
 
     === "Moonriver"
@@ -254,11 +254,11 @@ Now, execute the docker run command. If you are setting up a collator node, make
         purestake/moonbeam:{{ networks.moonriver.parachain_release_tag }} \
         --base-path=/data \
         --chain moonriver \
-        --name="YOUR-NODE-NAME" \
+        --name="INSERT_YOUR_NODE_NAME" \
         --collator \
         --trie-cache-size 1073741824 \
         -- \
-        --name="YOUR-NODE-NAME (Embedded Relay)"
+        --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
         ```
 
     === "Moonbase Alpha"
@@ -269,11 +269,11 @@ Now, execute the docker run command. If you are setting up a collator node, make
         purestake/moonbeam:{{ networks.moonbase.parachain_release_tag }} \
         --base-path=/data \
         --chain alphanet \
-        --name="YOUR-NODE-NAME" \
+        --name="INSERT_YOUR_NODE_NAME" \
         --collator \
         --trie-cache-size 1073741824 \
         -- \
-        --name="YOUR-NODE-NAME (Embedded Relay)"
+        --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
         ```
 
 !!! note
@@ -308,7 +308,7 @@ As Moonbeam development continues, it will sometimes be necessary to upgrade you
 1. Stop the docker container:
 
     ```bash
-    sudo docker stop `CONTAINER_ID`
+    sudo docker stop INSERT_CONTAINER_ID
     ```
 
 2. Get the latest version of Moonbeam from the [Moonbeam GitHub Release](https://github.com/moonbeam-foundation/moonbeam/releases/){target=_blank} page
@@ -324,7 +324,7 @@ If you need a fresh instance of your Moonbeam node, you can purge your node by r
 You'll first need to stop the Docker container:
 
 ```bash
-  sudo docker stop `CONTAINER_ID`
+  sudo docker stop INSERT_CONTAINER_ID
 ```
 
 If you did not use the `-v` flag to specify a local directory for storing your chain data when you spun up your node, then the data folder is related to the Docker container itself. Therefore, removing the Docker container will remove the chain data.
