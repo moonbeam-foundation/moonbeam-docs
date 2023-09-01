@@ -407,7 +407,7 @@ const increment = async () => {
     `Calling the increment by ${_value} function in contract at address: ${contractAddress}`
   );
 
-  // Sign Tx with PK
+  // 7. Prepare and Sign Tx with PK
   const createTransaction = await web3.eth.accounts.signTransaction(
     {
       to: contractAddress,
@@ -417,7 +417,7 @@ const increment = async () => {
     accountFrom.privateKey
   );
 
-  // Send Tx and Wait for Receipt
+  // 8. Send Tx and Wait for Receipt
   const createReceipt = await web3.eth.sendSignedTransaction(createTransaction.rawTransaction);
   console.log(`Tx successful with hash: ${createReceipt.transactionHash}`);
 };
