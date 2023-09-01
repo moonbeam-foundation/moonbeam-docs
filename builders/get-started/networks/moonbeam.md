@@ -1,6 +1,6 @@
 ---
 title: Get Started with Moonbeam
-description: Learn how to get started and connect to Moonbeam, the deployment on Polkadot, via RPC and WSS endpoints.
+description: Learn how to connect to Moonbeam via RPC and WSS endpoints, how to connect MetaMask to Moonbeam, and about the available Moonbeam block explorers.
 ---
 
 # Get Started with Moonbeam

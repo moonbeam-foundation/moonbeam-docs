@@ -5,8 +5,6 @@ description: How to request data from a Band Protocol Oracle in your Moonbeam Et
 
 # Band Protocol Oracle
 
-![Band Protocol Moonbeam Diagram](/images/builders/integrations/oracles/band/band-banner.png)
-
 ## Introduction {: #introduction } 
 Developers have two ways to fetch prices from Band’s oracle infrastructure. On one hand, they can use Band’s smart contracts on Moonbeam. Doing so, they access data that is on-chain and is updated either at regular intervals or when price slippage is more than a target amount (different for each token). On the other hand, devs can use the JavaScript helper library, which uses an API endpoint to fetch the data using similar functions as those from the smart contracts, but this implementation bypasses the blockchain entirely.  This can be useful if your DApp front-end needs direct access to the data.
 
@@ -187,13 +185,13 @@ This will create an instance of the demo contract that you can interact with. Us
 
 The helper library also supports a similar `getReferenceData` function. To get started, the library needs to be installed:
 
-```
+```bash
 npm install @bandprotocol/bandchain.js
 ```
 
 The library provides a constructor function that requires an endpoint to point to. This returns an instance that then enables all the necessary methods, such as the `getReferenceData` function.  When querying for information, the function accepts an array where each element is the _base/quote_ pair needed. For example:
 
-```
+```text
 getReferenceData(['BTC/USD', 'BTC/ETH', 'ETH/EUR'])
 ```
 

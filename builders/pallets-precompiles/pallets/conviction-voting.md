@@ -6,8 +6,6 @@ keywords: democracy, substrate, pallet, moonbeam, polkadot, voting, vote, refere
 
 # The Conviction Voting Pallet
 
-![Conviction Voting Moonbeam Banner](/images/builders/pallets-precompiles/pallets/conviction-voting-banner.png)
-
 ## Introduction {: #introduction }
 
 The Conviction Voting Pallet allows token holders to make, delegate, and manage Conviction-weighted votes on referenda.

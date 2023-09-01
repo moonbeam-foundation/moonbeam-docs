@@ -5,8 +5,6 @@ description: Learn how you can use OpenAI's ChatGPT (GPT-4) generative AI LLM to
 
 # Using GPT-4 to Write and Debug Solidity Smart Contracts
 
-![Banner Image](/images/tutorials/eth-api/chatgpt/chatgpt-banner.png)
-
 _by Kevin Neilson_
 
 ## Introduction {: #introduction }
@@ -63,7 +61,7 @@ To start interacting with [ChatGPT](https://chat.openai.com/?model=gpt-4){target
 
 For our first prompt, we'll ask ChatGPT to create an ERC-20 token, specifying the name of the token, the token symbol, and an initial supply. Your prompt doesn't need to match the one below - feel free to tailor it to suit your preferences.
 
-```
+```text
 I would like to create an ERC-20 token called "KevinToken" 
 with the symbol "KEV" and an initial supply of 40000000.
 ```
@@ -77,7 +75,7 @@ This is a great start. ChatGPT has produced for us a simple yet functional ERC-2
 
 ChatGPT is perfectly happy to revise and expand upon the contract that was created. As long as you stay within the same chat window (i.e., don't click new chat), ChatGPT will be aware of its prior output. As an example, let's now ask ChatGPT to revise our token to be both mintable and burnable:
 
-```
+```text
 This looks great, but I'd really like my ERC-20 to be both mintable and burnable. 
 ```
 
@@ -89,7 +87,7 @@ ChatGPT is happy to oblige. Notice how it maintains the parameters we specified 
 
 This section is named carefully to avoid implying that ChatGPT will be doing the deployment for us. ChatGPT does not have internet access and cannot interact with blockchain networks directly, but it can give us detailed instructions explaining how we can do so ourselves. Let's ask ChatGPT for instructions on deploying the recently created ERC20 contract. For this example, let's ask ChatGPT for [Hardhat deployment instructions](/builders/build/eth-api/dev-env/hardhat/){target=_blank}:
 
-```
+```text
 I would like to use Hardhat to compile and deploy
  this smart contract to the Moonbase Alpha network.  
 ```
@@ -100,7 +98,7 @@ And to no surprise, ChatGPT provides us with a detailed series of deployment ste
 
 Another observation is that the RPC URL it generated is outdated, although still functional. This oversight is due to ChatGPT's knowledge cutoff date of September 2021, before the updated RPC URL was published. The current RPC URL for Moonbase Alpha is:
 
-```
+```text
 {{ networks.moonbase.rpc_url }}
 ```
 
@@ -113,7 +111,7 @@ Code snippets of ChatGPT's output are intentionally omitted to encourage you to 
 
 By now, you're nearly a ChatGPT savant. So it should come as no surprise that ChatGPT's capabilities extend to writing test cases for your smart contracts, and all you need to do is ask:
 
-```
+```text
 Hey GPT4 can you help me write some tests for the smart contract above?  
 ```
 

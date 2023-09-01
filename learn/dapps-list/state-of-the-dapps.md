@@ -1,11 +1,9 @@
 ---
 title: List your Dapp on State of the DApps
-description: How you can list your Moonbeam or Moonriver project on State of the DApps, a listing and ranking platform for smart contracts and dapps deployed to Moonbeam.
+description: How you can list your Moonbeam or Moonriver project on State of the DApps, a listing and ranking platform for smart contracts and DApps deployed to Moonbeam.
 ---
 
 # How to List your Project on State of the DApps
-
-![State of the DApps banner image](/images/learn/dapps-list/state-of-the-dapps/state-of-the-dapps-banner.png)
 
 ## Introduction to State of the DApps {: #introduction-to-state-of-the-dapps }
 

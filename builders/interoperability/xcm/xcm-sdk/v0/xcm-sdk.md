@@ -1,11 +1,9 @@
 ---
 title: XCM SDK v0
-description: Use the Moonbeam XCM SDK to easily deposit and withdraw cross chain assets to Moonbeam from Polkadot and other parachains in the ecosystem.
+description: Use the Moonbeam XCM SDK to easily deposit and withdraw cross-chain assets to Moonbeam from Polkadot and other parachains in the ecosystem.
 ---
 
 # Using the Moonbeam XCM SDK: v0
-
-![XCM SDK Banner](/images/builders/interoperability/xcm/sdk/xcm-sdk-banner.png)
 
 ## Introduction {: #introduction }
 
@@ -33,7 +31,7 @@ The XCM config package will be used to obtain origin asset and chain information
 
 To install the XCM SDK and XCM config packages, you can run the following command:
 
-```
+```bash
 npm install @moonbeam-network/xcm-sdk @moonbeam-network/xcm-config
 ```
 
@@ -41,7 +39,7 @@ You need to have peer dependencies, like [Ethers.js](https://docs.ethers.io/){ta
 
 You can install them by running the following command:
 
-```
+```bash
 npm i @polkadot/api-augment @polkadot/types @polkadot/util @polkadot/util-crypto ethers
 ```
 

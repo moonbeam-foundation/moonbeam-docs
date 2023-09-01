@@ -5,8 +5,6 @@ description: Learn about the requirements for becoming and maintaining a collato
 
 # Collator Requirements
 
-![Collator Requirements Banner](/images/node-operators/networks/collators/requirements-banner.png)
-
 ## Introduction {: #introduction }
 
 There are some requirements to keep in mind before diving into running a collator node. Primarily, you need to follow the community guidelines and meet the technical requirements. You should have top of the line hardware, securely created and stored accounts, meet bonding requirements, and fill out a collator questionnaire.
@@ -76,7 +74,7 @@ Once you’ve downloaded the tool, ensure you have the correct access permission
 
 For Linux-based systems such as Ubuntu, open the terminal and head to the folder where the moonkey binary file is located. Once there, you can use the sha256sum tool to calculate the SHA256 hash:
 
-```
+```text
 019c3de832ded3fccffae950835bb455482fca92714448cc0086a7c5f3d48d3e
 ```
 

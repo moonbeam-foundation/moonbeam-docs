@@ -6,8 +6,6 @@ description: Discover Polkadot's Substrate developer framework and how it shapes
 
 # Polkadot's Substrate on Moonbeam
 
-![Substrate banner](/images/builders/build/substrate-api/substrate/substrate-banner.png)
-
 ## What is Substrate? {: #what-is-substrate }
 
 Polkadot's Substrate is an open-source, modular SDK for building blockchains in Rust. It is developed by Parity Technologies, the same team behind Polkadot.  

@@ -5,8 +5,6 @@ description: It can seem daunting to move to a Polkadot parachain if you’re us
 
 # Ethereum Compatibility
 
-![Ethereum Compatibility Banner](/images/learn/features/eth-compatibility/banner-image.png)
-
 ## Differences Between Moonbeam and Ethereum {: #differences-between-moonbeam-and-ethereum } 
 
 While Moonbeam strives to be compatible with Ethereum’s Web3 API and EVM, there are a number of important Moonbeam differences.

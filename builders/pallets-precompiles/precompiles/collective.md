@@ -1,12 +1,10 @@
 ---
 title:  Collective Precompile Contract
-description: Learn how to use the Moonbeam Collective Precompile to perform democracy functions through the council, Technical Committee or Treasury Council collective.
+description: Learn how to use the Moonbeam Collective Precompile to perform democracy functions through any of the collectives on Moonbeam, such as the Treasury Council.
 keywords: solidity, ethereum, collective, proposal, council technical, committee, moonbeam, precompiled, contracts
 ---
 
 # Interacting with the Collective Precompile
-
-![Precomiled Contracts Banner](/images/builders/pallets-precompiles/precompiles/collective/collective-banner.png)
 
 ## Introduction {: #introduction }
 

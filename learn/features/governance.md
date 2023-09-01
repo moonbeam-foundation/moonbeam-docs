@@ -5,8 +5,6 @@ description: As a Polkadot parachain, Moonbeam uses an on-chain governance syste
 
 # Governance on Moonbeam
 
-![Governance Moonbeam Banner](/images/learn/features/governance/governance-overview-banner.png)
-
 ## Introduction {: #introduction }
 
 The goal of Moonbeam’s governance mechanism is to advance the protocol according to the desires of the community. In that shared mission, the governance process seeks to include all token holders. Any and all changes to the protocol must go through a referendum so that all token holders, weighted by stake, can have input on the decision.
@@ -265,12 +263,14 @@ A proposal (with its preimage) is submitted for the General Admin Track on Moonr
 The Approval and Support percentages can be calculated using the following:
 
 === "Approval"
-    ```
+
+    ```text
     Approval = 100 * ( Total Conviction-weighted "Aye" votes / Total Conviction-weighted votes ) 
     ```
 
 === "Support"
-    ```
+
+    ```text
     Support = 100 * ( Total non-Conviction-weighted votes / Total supply )
     ```
 
@@ -298,8 +298,8 @@ The OpenGov Technical Committee is made up of members of the community who have 
 
 For related guides on submitting and voting on referenda on Moonbeam with OpenGov, please check the following guides:
 
- - [How to Submit a Proposal](/tokens/governance/proposals/opengov-proposals){target=_blank}
- - [How to Vote on a Proposal](/tokens/governance/voting/opengov-voting){target=_blank}
+ - [How to Submit a Proposal](/tokens/governance/proposals){target=_blank}
+ - [How to Vote on a Proposal](/tokens/governance/voting){target=_blank}
  - [Interact with the Preimages Precompiled Contract (Solidity Interface)](/builders/pallets-precompiles/precompiles/preimage/){target=_blank}
  - [Interact with the Referenda Precompiled Contract (Solidity Interface)](/builders/pallets-precompiles/precompiles/referenda/){target=_blank}
  - [Interact with the Conviction Voting Precompiled Contract (Solidity Interface)](/builders/pallets-precompiles/precompiles/conviction-voting/){target=_blank}

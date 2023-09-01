@@ -5,8 +5,6 @@ description: Learn how to use API3 to request and receive off-chain data from wi
 
 # Use API3 To Request Off-Chain Data on Moonbeam
 
-![API3 Moonbeam Diagram](/images/builders/integrations/oracles/api3/api3-banner.png)
-
 ## Introduction {: #introduction }
 
 API3 is a decentralized solution for delivering traditional API services to smart contract platforms in an easily accessible and scalable way. It is governed by a Decentralized Autonomous Organization (DAO), known as the API3 DAO. API3 enables developers to access off-chain resources from within their smart contracts without worrying about security implications. API3 makes this possible through Airnodes, which are first-party oracles, and on-chain data feeds sourced from these oracles.

@@ -5,15 +5,15 @@ description: Use Ethereum-like publish-subscribe functionality to subscribe to s
 
 # Subscribe to Events
 
-## Introduction {: #introduction } 
+## Introduction {: #introduction }
 
 Moonbeam supports events subscription for Ethereum-style events. This allows you to wait for events and handle them accordingly instead of polling for them.
 
-It works by subscribing to particular events and for each subscription an id is returned. For each event that matches the subscription a notification with relevant data is sent together with the subscription id. 
+It works by subscribing to particular events and for each subscription an id is returned. For each event that matches the subscription a notification with relevant data is sent together with the subscription id.
 
 In this guide, you will learn how to subscribe to event logs, incoming pending transactions, and incoming block headers on Moonbase Alpha. This guide can also be adapted for Moonbeam or Moonriver.
 
-## Checking Prerequisites {: #checking-prerequisites } 
+## Checking Prerequisites {: #checking-prerequisites }
 
 The examples in this guide are based on an Ubuntu 18.04 environment. You will also need the following:
 
@@ -26,19 +26,19 @@ The examples in this guide are based on an Ubuntu 18.04 environment. You will al
 
 As of writing this guide, the versions used were 14.6.0 and 6.14.6, respectively. You will also need to install the Web3 package by executing:
 
-```
+```bash
 npm install --save web3
 ```
 
 To verify the installed version of Web3, you can use the `ls` command:
 
-```
+```bash
 npm ls web3
 ```
 
-As of writing this guide, the version used was 1.3.0. 
+As of writing this guide, the version used was 1.3.0.
 
-## Subscribe to Event Logs {: #subscribing-to-event-logs-in-moonbase-alpha } 
+## Subscribe to Event Logs {: #subscribing-to-event-logs-in-moonbase-alpha }
 
 Any contract that follows the ERC-20 token standard emits an event related to a transfer of tokens, that is, `event Transfer(address indexed from, address indexed to, uint256 value)`. For this example, you will subscribe to the logs of such events. Using the Web3.js library, you need the following piece of code:
 
@@ -85,7 +85,7 @@ The target event sends two pieces of indexed information: the `from` and `to` ad
 
 ![Description of LOG3](/images/builders/build/eth-api/pubsub/pubsub-3.png)
 
-Consequently, you can see that the `from` and `to` addresses are contained inside the topics returned by the logs. Ethereum addresses are 40 hex characters long (1 hex character is 4 bits, hence 160 bits or H160 format). Thus, the extra 24 zeros are needed to fill the gap to H256, which is 64 hex characters long. 
+Consequently, you can see that the `from` and `to` addresses are contained inside the topics returned by the logs. Ethereum addresses are 40 hex characters long (1 hex character is 4 bits, hence 160 bits or H160 format). Thus, the extra 24 zeros are needed to fill the gap to H256, which is 64 hex characters long.
 
 Unindexed data is returned in the `data` field of the logs, but this is encoded in bytes32/hex. To decode it you can use, for example, this [Web3 Type Converter tool](https://web3-type-converter.onbrn.com/){target=_blank}, and verify that the `data` is in fact 1 (plus 18 zeros).
 
@@ -134,7 +134,7 @@ As shown, after you provided the two addresses with conditional formatting, you 
 
 This example showed how you could subscribe to just the event logs of a specific contract, but the Web3.js library provides other subscription types that will be covered in the following sections.
 
-## Subscribe to Incoming Pending Transactions {: #subscribe-to-incoming-pending-transactions } 
+## Subscribe to Incoming Pending Transactions {: #subscribe-to-incoming-pending-transactions }
 
 In order to subscribe to pending transactions, you can use the `web3.eth.subscribe(‘pendingTransactions’, [, callback])` method, implementing the same callback function to check for the response. This is much simpler than the previous example, and it returns the transaction hash of the pending transactions.
 
@@ -142,7 +142,7 @@ In order to subscribe to pending transactions, you can use the `web3.eth.subscri
 
 You can verify that this transaction hash is the same as that shown in MetaMask (or Remix).
 
-## Subscribe to Incoming Block Headers {: #subscribe-to-incoming-block-headers } 
+## Subscribe to Incoming Block Headers {: #subscribe-to-incoming-block-headers }
 
 Another type available under the Web3.js library is to subscribe to new block headers. To do so, you can use the `web3.eth.subscribe('newBlockHeaders' [, callback])` method, implementing the same callback function to check for the response. This subscription provides incoming block headers and can be used to track changes in the blockchain.
 
@@ -150,9 +150,9 @@ Another type available under the Web3.js library is to subscribe to new block he
 
 Note that only one block header is shown in the image. These messages are displayed for every block produced so they can fill up the terminal quite fast.
 
-## Check if a Node is Synchronized with the Network {: #check-if-a-node-is-synchronized-with-the-network } 
+## Check if a Node is Synchronized with the Network {: #check-if-a-node-is-synchronized-with-the-network }
 
-With pub/sub it is also possible to check whether a particular node you are subscribed to is currently synchronizing with the network. For that, we can leverage the [`web3.eth.subscribe(‘syncing' [, callback])`](https://web3js.readthedocs.io/en/v1.2.11/web3-eth-subscribe.html#subscribe-syncing){target=_blank} method, implementing the same callback function to check for the response. This subscription will either return a boolean when `syncing` is false, or an object describing the syncing progress when `syncing` is true, as seen below. 
+With pub/sub it is also possible to check whether a particular node you are subscribed to is currently synchronizing with the network. For that, we can leverage the [`web3.eth.subscribe(‘syncing' [, callback])`](https://web3js.readthedocs.io/en/v1.2.11/web3-eth-subscribe.html#subscribe-syncing){target=_blank} method, implementing the same callback function to check for the response. This subscription will either return a boolean when `syncing` is false, or an object describing the syncing progress when `syncing` is true, as seen below.
 
 ![Subscribe to syncing response](/images/builders/build/eth-api/pubsub/pubsub-7.png)
 

@@ -1,11 +1,9 @@
 ---
 title: Add WalletConnect to a DApp
-description: Learn how to integrate WalletConnect into a dApp built on any of the Moonbeam networks, specifically so users can connect with their mobile wallets.
+description: Learn how to integrate WalletConnect into a DApp built on any of the Moonbeam networks, specifically so users can connect with their mobile wallets.
 ---
 
 # Integrate WalletConnect into a DApp
-
-![WalletConnect Banner](/images/builders/integrations/wallets/walletconnect/walletconnect-banner.png)
 
 ## Introduction {: #introduction }
 
@@ -92,7 +90,7 @@ If you already have a DApp with WalletConnect support, and just want to add Moon
 
 Throughout this guide, you'll use a simple front-end DApp built with [React](https://reactjs.org/){target=_blank} to connect to a mobile wallet via WalletConnect. So you will need a React project and the MetaMask mobile app installed for testing purposes. A template has been created that includes the required packages, some basic styling, and placeholders where logic and UI elements will need to be added. However, if you would to use your own DApp, you'll need to install the following required dependencies:
 
-```
+```bash
 npm install ethers @walletconnect/client @walletconnect/qrcode-modal
 ```
 
@@ -142,7 +140,7 @@ const connect = async () => {
 
 Now that you have the `connect` function setup, you can create a **Connect Wallet** button that will call it `onClick`. You can replace the `{/* buttons and network details will go here */}` comment in the [template](https://github.com/papermoonio/moonbeam-walletconnect-template/blob/main/src/App.js#L124){target=_blank} with the following button:
 
-```jsx
+```js
 <Button onClick={connect}>Connect Wallet</Button>
 ```
 
@@ -202,7 +200,7 @@ const killSession = () => {
 
 Now that you have all of the logic required to handle the disconnection, you will need the **Disconnect** button that `onClick` will call the `killSession` function. Since you only want to display the **Disconnect** button once a user is connected, you can use [conditional renderering](https://reactjs.org/docs/conditional-rendering.html){target=_blank}. Conditional rendering allows you to check against certain variables and if a condition applies you can render one element or another. In this case, if you are not fetching the initial connection and the connector exists, you can render the **Disconnect** button, otherwise render the **Connect Wallet** button. You can replace the existing `<Button>` with the following:
 
-```jsx
+```js
 {connector && !fetching ? (
   <OutlinedButton onClick={killSession}>Disconnect</OutlinedButton>
 ) : (
@@ -290,7 +288,7 @@ useEffect(() => {
 
 Then to render these state variables on the page, you can include additional UI elements alongside the **Disconnect** button. Again, you can use conditional rendering to display specific details or an error message if the network is supported or not.
 
-```jsx
+```js
 {connector && !fetching ? (
   <LoadedData>
     <Data>
@@ -401,7 +399,7 @@ if ((!chainId || !account || !balance) && connector.connected) {
 
 Finally, you can display the account balance if the user is connected to a supported network. You can use the `symbol` state variable that was created earlier on in the guide to show the balance in **DEV** for Moonbase Alpha.
 
-```jsx
+```js
 {supported ? (
   <>
     <Data>
@@ -439,7 +437,7 @@ const sendTransaction = async () => {
 
 To initiate the transaction from the DApp, you will need to create a button, that `onClick` calls the `sendTransaction` function. This should only be done if the connected network is a supported network.
 
-```jsx
+```js
 {supported ? (
   <>
     <Data>

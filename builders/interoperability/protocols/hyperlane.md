@@ -1,11 +1,9 @@
 ---
 title: Cross-Chain Via Hyperlane
-description: Learn how to bridge assets, plus other ways you can connect your Moonbeam dApp to assets and functions on multiple blockchains using Hyperlane protocol & APIs.
+description: Learn about Hyperlane, a GMP protocol for cross-chain asset transfers, and how to get started building cross-chain applications with Hyperlane on Moonbeam.
 ---
 
 # Hyperlane Protocol
-
-![Hyperlane Moonbeam banner](/images/builders/interoperability/protocols/hyperlane/hyperlane-banner.png)
 
 ## Introduction {: #introduction }
 

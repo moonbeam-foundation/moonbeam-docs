@@ -1,6 +1,6 @@
 ---
 title: Utility Tokens
-description: Each of the Moonbeam networks will require a utility token to function. Glimmer (GLMR) for Moonbeam on Polkadot and Moonriver (MOVR) for Moonriver on Kusama.
+description: Each of the Moonbeam networks require a utility token to function. Glimmer (GLMR) for Moonbeam on Polkadot and Moonriver (MOVR) for Moonriver on Kusama.
 ---
 
 # Introduction
@@ -16,13 +16,13 @@ This token is central to the design of Moonbeam and cannot be removed without sa
 
 ## Glimmer Token {: #glimmer-token } 
 
-In the Moonbeam deployment on Polkadot MainNet, this token is called Glimmer, as in, “that smart contract call will cost 3 Glimmer.”  The token symbol is GLMR.
+In the Moonbeam deployment on Polkadot MainNet, this token is called Glimmer, as in, “that smart contract call will cost 0.3 Glimmer.”  The token symbol is GLMR.
 
 You can find more information about Glimmer on the [Moonbeam Foundation](https://moonbeam.foundation/glimmer-token/) website.
 
 ## Moonriver Token {: #moonriver-token } 
 
-In the Moonbeam deployment on Kusama (called Moonriver), this token is called Moonriver, as in, “that smart contract call will cost 3 Moonriver.”  The token symbol will be MOVR.
+In the Moonbeam deployment on Kusama (called Moonriver), this token is called Moonriver, as in, “that smart contract call will cost 0.003 Moonriver.”  The token symbol will be MOVR.
 
 You can find more information about Moonriver on the [Moonbeam Foundation](https://moonbeam.foundation/moonriver-token/) website.
 

@@ -5,8 +5,6 @@ description: Moonbeam provides staking features where token holders delegate col
 
 # Staking on Moonbeam
 
-![Staking Moonbeam Banner](/images/learn/features/staking/staking-overview-banner.png)
-
 ## Introduction {: #introduction } 
 
 Moonbeam uses a block production mechanism based on [Polkadot's Proof-of-Stake model](https://wiki.polkadot.network/docs/learn-consensus){target=_blank}, where there are collators and validators. [Collators](https://wiki.polkadot.network/docs/learn-collator){target=_blank} maintain parachains (in this case, Moonbeam) by collecting transactions from users and producing state transition proofs for the relay chain [validators](https://wiki.polkadot.network/docs/learn-validator){target=_blank}.

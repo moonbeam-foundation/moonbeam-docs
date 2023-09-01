@@ -5,8 +5,6 @@ description: Develop your own blockchain game on Moonbeam using MetaFab! MetaFab
 
 # Build Web3 Games on Moonbeam with MetaFab's Developer Toolkit
 
-![MetaFab Moonbeam Banner](/images/builders/integrations/gaming/metafab/metafab-banner.png)
-
 ## Introduction {: #introduction } 
 
 Build frictionless blockchain games with [MetaFab](https://www.trymetafab.com/){target=_blank}’s API, the free, end-to-end, self-serve solution for games and gamified apps to integrate robust blockchain infrastructure in minutes, not months.

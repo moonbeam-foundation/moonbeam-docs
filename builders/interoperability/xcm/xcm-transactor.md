@@ -5,8 +5,6 @@ description: Learn how to perform remote XCM execution from Moonbeam to other ch
 
 # Using the XCM Transactor Pallet for Remote Executions
 
-![XCM Transactor Precompile Contracts Banner](/images/builders/interoperability/xcm/xcm-transactor/xcmtransactor-banner.png)
-
 ## Introduction {: #introduction }
 
 XCM messages are comprised of a [series of instructions](/builders/interoperability/xcm/overview/#xcm-instructions){target=_blank} that are executed by the Cross-Consensus Virtual Machine (XCVM). Combinations of these instructions result in predetermined actions such as cross-chain token transfers and, more interestingly, remote cross-chain execution.
@@ -198,34 +196,40 @@ Once the transaction is processed, Alice should've received one token in her add
 The XCM Transactor Precompile contract allows developers to access the XCM Transactor Pallet features through the Ethereum API of Moonbeam-based networks. Similar to other [precompile contracts](/builders/pallets-precompiles/precompiles/){target=_blank}, the XCM Transactor Precompile is located at the following addresses:
 
 === "Moonbeam"
-     ```
+
+     ```text
      {{networks.moonbeam.precompiles.xcm_transactor}}
      ```
 
 === "Moonriver"
-     ```
+
+     ```text
      {{networks.moonriver.precompiles.xcm_transactor}}
      ```
 
 === "Moonbase Alpha"
-     ```
+
+     ```text
      {{networks.moonbase.precompiles.xcm_transactor}}
      ```
 
 The XCM Transactor Legacy Precompile is still available on all Moonbeam-based networks. However, **the legacy version will be deprecated in the near future**, so all implementations must migrate to the newer interface. The XCM Transactor Legacy Precompile is located at the following addresses:
 
 === "Moonbeam"
-     ```
+
+     ```text
      {{networks.moonbeam.precompiles.xcm_transactor_legacy}}
      ```
 
 === "Moonriver"
-     ```
+
+     ```text
      {{networks.moonriver.precompiles.xcm_transactor_legacy}}
      ```
 
 === "Moonbase Alpha"
-     ```
+
+     ```text
      {{networks.moonbase.precompiles.xcm_transactor_legacy}}
      ```
 

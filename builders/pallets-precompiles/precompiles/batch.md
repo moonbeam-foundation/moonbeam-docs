@@ -1,12 +1,10 @@
 ---
 title:  Batch Precompile Contract
-description:  Learn how to transact multiple transfers & contract interactions at once with Moonbeam's precompiled batch contract.
+description: Learn how to transact multiple transfers and contract interactions at once via a Solidity interface with Moonbeam's Batch Precompile contract.
 keywords: solidity, ethereum, batch, transaction, moonbeam, precompiled, contracts
 ---
 
 # Interacting with the Batch Precompile
-
-![Precomiled Contracts Banner](/images/builders/pallets-precompiles/precompiles/batch/batch-banner.png)
 
 ## Introduction {: #introduction }
 
@@ -19,17 +17,20 @@ The precompile interacts directly with [Substrate's EVM pallet](/learn/features/
 The precompile is located at the following address:
 
 === "Moonbeam"
-     ```
+
+     ```text
      {{networks.moonbeam.precompiles.batch }}
      ```
 
 === "Moonriver"
-     ```
+
+     ```text
      {{networks.moonriver.precompiles.batch }}
      ```
 
 === "Moonbase Alpha"
-     ```
+
+     ```text
      {{networks.moonbase.precompiles.batch }}
      ```
 
@@ -133,7 +134,7 @@ Once the transaction is complete, be sure to check both of the accounts' balance
 
 ### Find a Contract Interaction's Call Data {: #find-a-contract-interactions-call-data }
 
-Visual interfaces like [Remix](/builders/build/eth-api/dev-env/remix){target=_blank} and handy libraries like [Ethers.js](/builders/build/eth-api/libraries/ethersjs){target=_blank} hide the way that Ethereum transactions interact with Solidity smart contracts. The name and input types of a function are hashed into a [function selector](https://docs.soliditylang.org/en/latest/abi-spec.html#function-selector-and-argument-encoding){target=_blank} and the input data is encoded. These two pieces are then combined and sent as the transaction's call data. To send a subtransaction within a batch transaction, the sender needs to know its call data beforehand. 
+Visual interfaces like [Remix](/builders/build/eth-api/dev-env/remix){target=_blank} and handy libraries like [Ethers.js](/builders/build/eth-api/libraries/ethersjs){target=_blank} hide the way that Ethereum transactions interact with Solidity smart contracts. The name and input types of a function are hashed into a [function selector](https://docs.soliditylang.org/en/latest/abi-spec.html#function-selector-and-argument-encoding){target=_blank} and the input data is encoded. These two pieces are then combined and sent as the transaction's call data. To send a subtransaction within a batch transaction, the sender needs to know its call data beforehand.
 
 Try finding a transaction's call data using Remix:
 
@@ -164,13 +165,13 @@ The `callData` and `gasLimit` fields are more relevant for subtransactions that 
 
 To use the precompile to send an atomic batch transaction, take the following steps:
 
-1. Copy the `SimpleContract.sol` contract's address with the copy button on the right side of its header. Be sure to also have the [call data from the previous section](#finding-a-contract-interactions-call-data) 
+1. Copy the `SimpleContract.sol` contract's address with the copy button on the right side of its header. Be sure to also have the [call data from the previous section](#finding-a-contract-interactions-call-data)
 2. Expand the batch contract under **Deployed Contracts**
 3. Expand the **batchAll** function
 4. For the **to** input, insert the address of the `SimpleContract.sol` contract that you previously copied in the following format: `["SIMPLE-CONTRACT-ADDRESS-HERE"]`
 5. For the value input, since `SimpleContract.sol` does not require any native currency to be paid to it, insert `["0"]` for 0 Wei
 6. For the **callData** input, insert your call data from the previous section in the following format: `["CALL-DATA-HERE"]`
-7. For the **gasLimit** input, insert `[]`. You can put in a gas limit value, but it is optional 
+7. For the **gasLimit** input, insert `[]`. You can put in a gas limit value, but it is optional
 8. Press **transact**
 9. Press **Confirm** in the MetaMask extension to confirm the transaction
 
@@ -194,23 +195,23 @@ The following four strings can be combined as inputs for a batch transaction. Th
 
 There are three subtransactions, so there are three addresses in the `to` input array. The first is the public Gerald account, the next two are a predeployed `SimpleContract.sol` contract. You can replace the last two with your own instance of `SimpleContract.sol` if you wish. Or, replace only one: you can interact with multiple contracts in a single message.
 
-```
+```text
 [
   "0x6Be02d1d3665660d22FF9624b7BE0551ee1Ac91b",
   "0xd14b70a55F6cBAc06d4FA49b99be0370D0e1BD39", 
   "0xd14b70a55F6cBAc06d4FA49b99be0370D0e1BD39"
 ]
-``` 
+```
 
 There will also be three values for the `value` array. The first address in the `to` input array has to do with sending 1 DEV, so 1 DEV in Wei is within the array. The following two values are 0 because the function that their subtransactions are interacting with do not accept or require native currency.  
 
-```
+```text
 ["1000000000000000000", "0", "0"]
 ```
 
 You will need three values for the `callData` array. Since transferring native currency does not require call data, the string is simply blank. The second and third values in the array correspond to invokations of **setMessage** that set messages to ids 5 and 6.
 
-```
+```text
 [
   "0x", 
   "0x648345c8000000000000000000000000000000000000000000000000000000000000000500000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000009796f752061726520610000000000000000000000000000000000000000000000", 
@@ -220,7 +221,7 @@ You will need three values for the `callData` array. Since transferring native c
 
 The final input is for `gas_input`. This array will be left empty to forward all remaining gas to each subtransaction.
 
-```
+```text
 []
 ```
 

@@ -5,19 +5,17 @@ description: Add token information and create a token profile on Moonscan for ER
 
 # Add Token Information on Moonscan
 
-![Explorer Banner](/images/builders/get-started/explorers/explorers-banner.png)
-
 ## Introduction {: #introduction }
 
-This tutorial will guide you through the process of adding a profile for your ERC-20, ERC-721, or ERC-1155 tokens to [Moonscan](https://moonscan.io){target=_blank}. 
+This tutorial will guide you through the process of adding a profile for your ERC-20, ERC-721, or ERC-1155 tokens to [Moonscan](https://moonscan.io){target=_blank}.
 
-​​Moonscan is a block explorer and analytics platform for EVM-compatible chains. It is an integration of Moonbeam and Etherscan, and it allows users and developers to have access to developer tools and network statistics that provide granular insights into the EVM of Moonriver and Moonbeam. 
+​​Moonscan is a block explorer and analytics platform for EVM-compatible chains. It is an integration of Moonbeam and Etherscan, and it allows users and developers to have access to developer tools and network statistics that provide granular insights into the EVM of Moonriver and Moonbeam.
 
 Developers can create a profile for their tokens on Moonriver and Moonbeam. The profile captures basic information about the project behind the token, social media links, links to price data, and other information pertaining to the project’s token sales.
 
 ![Example token profile](/images/builders/get-started/token-profile/profile-1.png)
 
-This tutorial will show you how to create a profile on Moonscan of a sample ERC-20 token, called DemoToken (DEMO), deployed to Moonriver. These instructions can be adapted for any of the Moonbeam-based networks, as well as for an ERC-721 or ERC-1155 token. 
+This tutorial will show you how to create a profile on Moonscan of a sample ERC-20 token, called DemoToken (DEMO), deployed to Moonriver. These instructions can be adapted for any of the Moonbeam-based networks, as well as for an ERC-721 or ERC-1155 token.
 
 ## Checking Prerequisites {: #checking-prerequisites }
 
@@ -25,7 +23,7 @@ To follow along with this tutorial, you will need to have the following:
 
 - A [Moonscan Account](https://moonscan.io/register){target=_blank}
 
-You will need to verify ownership of the token contract address later on in this guide. You can either do this manually or automatically, but if you choose to do it automatically you'll also need the following: 
+You will need to verify ownership of the token contract address later on in this guide. You can either do this manually or automatically, but if you choose to do it automatically you'll also need the following:
 
 - Access to the account that deployed the token contract, so you can sign messages as the owner
 - MetaMask installed and connected to the network where the token is deployed to
@@ -35,21 +33,24 @@ You will need to verify ownership of the token contract address later on in this
 To get started, you'll need to make sure that you are logged into your Moonscan account. Once you’re signed into your account, you can go to the token page of the token you want to add a profile for. For ERC-20s, you can search the name of the token in the search bar. Or for any token, you can manually enter in the URL.
 
 === "Moonbeam"
-    ```
-    https://moonscan.io/token/<insert-contract-address>
+
+    ```text
+    https://moonscan.io/token/INSERT_CONTRACT_ADDRESS
     ```
 
 === "Moonriver"
-    ```
-    https://moonriver.moonscan.io/token/<insert-contract-address> 
+
+    ```text
+    https://moonriver.moonscan.io/token/INSERT_CONTRACT_ADDRESS 
     ```
 
 === "Moonbase Alpha"
-    ```
-    https://moonbase.moonscan.io/token/<insert-contract-address>
+
+    ```text
+    https://moonbase.moonscan.io/token/INSERT_CONTRACT_ADDRESS
     ```
 
-Next to Social Profiles, you can click on **Update**. 
+Next to Social Profiles, you can click on **Update**.
 
 ![Update token](/images/builders/get-started/token-profile/profile-2.png)
 
@@ -60,7 +61,7 @@ If you haven’t verified your contract source code yet, you will need to do so 
 ## Verifying Contract Source Code {: #verifying-contract-source-code }
 
 You can verify your contract source code a couple of ways. You can directly verify it from Moonscan, or if you developed the contract with Hardhat or Truffle, you can also use their corresponding [Etherscan plugins](/builders/build/eth-api/verify-contracts/etherscan-plugins/){target=_blank}.
- 
+
 To verify your contract source code directly from Moonscan, you can click on the **tool** link.
 
 ![Token update application form](/images/builders/get-started/token-profile/profile-3.png)
@@ -100,13 +101,13 @@ You’ll be taken to the **Verify Address Ownership** page, where you can choose
 
 ### Sign Message Manually {: #sign-message-manually }
 
-If you wish to verify ownership manually, you’ll need the message signature hash. If you have calculated the hash yourself, you can click **Sign Message Manually**, enter the **Message Signature Hash**, and click **Verify Ownership**. 
+If you wish to verify ownership manually, you’ll need the message signature hash. If you have calculated the hash yourself, you can click **Sign Message Manually**, enter the **Message Signature Hash**, and click **Verify Ownership**.
 
 ![Manually verify address ownership](/images/builders/get-started/token-profile/profile-8.png)
 
 ### Connect to Web3 {: #connect-to-web3 }
 
-You can easily calculate the message signature hash using MetaMask. You will need to have the account you deployed the contract with loaded into MetaMask. Then you can click on **Connect to Web3** and MetaMask will pop-up. 
+You can easily calculate the message signature hash using MetaMask. You will need to have the account you deployed the contract with loaded into MetaMask. Then you can click on **Connect to Web3** and MetaMask will pop-up.
 
 1. Select the account to connect with, which should be the account you used to deploy the contract
 2. Connect to the account
@@ -126,7 +127,7 @@ Once you’ve signed the message, you can then click **Click to Proceed**. You s
 
 ## Creating the Profile {: #creating-the-profile }
 
-Now you can start filling in the necessary information to build the token profile, including project information, social media links, price data links, and more. You should make sure that all the links provided are working and are safe to visit before submitting. 
+Now you can start filling in the necessary information to build the token profile, including project information, social media links, price data links, and more. You should make sure that all the links provided are working and are safe to visit before submitting.
 
 At a minimum you will need to fill in the following information:
 

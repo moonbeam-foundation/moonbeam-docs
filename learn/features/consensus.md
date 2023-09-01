@@ -1,11 +1,9 @@
 ---
 title: Moonbeam's Nimbus Consensus Framework
-description: Learn about all the parts of Moonbeam's Nimbus consensus framework and how it works as part of the Polkadot's shared security model
+description: Learn about all the parts of Moonbeam's Nimbus consensus framework and how it works as part of Polkadot's shared security model.
 ---
 
 # Nimbus Parachain Consensus Framework
-
-![Moonbeam Consensus Banner](/images/learn/features/consensus/consensus-banner.png)
 
 ## Introduction {: #introduction } 
 

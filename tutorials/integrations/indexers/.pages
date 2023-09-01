@@ -1,6 +1,0 @@
-title: Use Indexers to Query Chain Data
-hide: false
-nav:
-  - index.md
-  - '[Subsquid] Index a Local Dev Node': '/tutorials/integrations/local-subsquid'
-  - '[Subsquid] Index NFT Transfers': '/tutorials/integrations/nft-subsquid'

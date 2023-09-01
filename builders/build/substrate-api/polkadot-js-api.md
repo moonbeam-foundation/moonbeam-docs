@@ -5,8 +5,6 @@ description: Learn how to use the Polkadot.js API to interact with a Moonbeam no
 
 # Polkadot.js API Library
 
-![Intro diagram](/images/builders/build/substrate-api/polkadot-js-api/polkadot-js-api-banner.png)
-
 ## Introduction {: #introduction }
 
 [Polkadot.js](https://wiki.polkadot.network/docs/polkadotjs){target=_blank} is a collection of tools that allow you to interact with Polkadot and its parachains, such as Moonbeam. The [Polkadot.js API](https://polkadot.js.org/docs/api/){target=_blank} is one component of Polkadot.js and is a library that allows application developers to query a Moonbeam node and interact with the node's Substrate interfaces using JavaScript, enabling you to read and write data to the network.

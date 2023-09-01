@@ -5,8 +5,6 @@ description: An overview of the currently available block explorers that may be 
 
 # Block Explorers
 
-![Explorer Banner](/images/builders/get-started/explorers/explorers-banner.png)
-
 ## Introduction {: #introduction } 
 
 Block explorers can be thought of as search engines for the blockchain. They allow users to search information such as balances, contracts, and transactions. More advanced block explorers even offer indexing capabilities, which enable them to provide a complete set of information, such as ERC-20 tokens in the network. They might even offer API services to access it via external services.

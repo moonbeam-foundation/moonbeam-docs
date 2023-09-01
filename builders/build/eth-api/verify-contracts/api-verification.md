@@ -5,8 +5,6 @@ description: Learn how to verify smart contracts on Moonbeam-based networks usin
 
 # API-based Contract Verification
 
-![API Verification Banner](/images/builders/build/eth-api/verify-contracts/api-verification/api-verification-banner.png)
-
 ## Introduction {: #introduction } 
 
 Verifying smart contracts greatly improves their transparency and security.  Smart contracts deployed on Moonbeam networks can be verified through API-based tools, including Moonscan API and Sourcify. 
@@ -28,17 +26,20 @@ Before using the Moonscan API, you need to generate a Moonscan API key. Please f
 The Moonscan API URL for Moonbeam networks is as follows:
 
 === "Moonbeam"
-    ```
+
+    ```text
     https://api-moonbeam.moonscan.io/api
     ```
 
 === "Moonriver"
-    ```
+
+    ```text
     https://api-moonriver.moonscan.io/api
     ```
 
 === "Moonbase Alpha"
-    ```
+
+    ```text
     https://api-moonbase.moonscan.io/api
     ```
 
@@ -458,7 +459,7 @@ Foundry's Forge tool has built-in support for Sourcify verification similar to h
 
 A Foundry project that uses Sourcify must have their compiler emit metadata files. This can be configured in the `foundry.toml` file:
 
-```
+```toml
 [profile.default]
 # Input your custom or default config options here
 extra_output_files = ["metadata"]
@@ -466,31 +467,34 @@ extra_output_files = ["metadata"]
 
 If you have already deployed the example contract, you can verify it with the `verify-contract` command. Before you can verify the contract, you will need to ABI-encode the constructor arguments. To do so for the example contract, you can run the following command:
 
-```
+```bash
 cast abi-encode "constructor(uint256)" 100
 ```
 
 The result should be `0x0000000000000000000000000000000000000000000000000000000000000064`. You can then verify the contract using the following command:
 
 === "Moonbeam"
-    ```
+
+    ```bash
     forge verify-contract --chain-id {{ networks.moonbeam.chain_id }} \
     --constructor-args 0x0000000000000000000000000000000000000000000000000000000000000064 \
-    --verifier sourcify YOUR_CONTRACT_ADDRESS src/MyToken.sol:MyToken 
+    --verifier sourcify INSERT_YOUR_CONTRACT_ADDRESS src/MyToken.sol:MyToken 
     ```
 
 === "Moonriver"
-    ```
+
+    ```bash
     forge verify-contract --chain-id {{ networks.moonriver.chain_id }} \
     --constructor-args 0x0000000000000000000000000000000000000000000000000000000000000064 \
-    --verifier sourcify YOUR_CONTRACT_ADDRESS src/MyToken.sol:MyToken 
+    --verifier sourcify INSERT_YOUR_CONTRACT_ADDRESS src/MyToken.sol:MyToken 
     ```
 
 === "Moonbase Alpha"
-    ```
+
+    ```bash
     forge verify-contract --chain-id {{ networks.moonbase.chain_id }} \
     --constructor-args 0x0000000000000000000000000000000000000000000000000000000000000064 \
-    --verifier sourcify YOUR_CONTRACT_ADDRESS src/MyToken.sol:MyToken 
+    --verifier sourcify INSERT_YOUR_CONTRACT_ADDRESS src/MyToken.sol:MyToken 
     ```
 
 ![Foundry Verify](/images/builders/build/eth-api/verify-contracts/api-verification/api-1.png)
@@ -498,31 +502,33 @@ The result should be `0x00000000000000000000000000000000000000000000000000000000
 If you wanted to deploy the example contract and verify at the same time, then you would use the following command:
 
 === "Moonbeam"
-    ```
+
+    ```bash
     forge create --rpc-url {{ networks.moonbeam.rpc_url }} \
     --constructor-args 100 \
     --verify --verifier sourcify \
-    --private-key YOUR_PRIVATE_KEY \
+    --private-key INSERT_YOUR_PRIVATE_KEY \
     src/MyToken.sol:MyToken  
     ```
 
 === "Moonriver"
-    ```
+
+    ```bash
     forge create --rpc-url {{ networks.moonriver.rpc_url }} \
     --constructor-args 100 \
     --verify --verifier sourcify \
-    --private-key YOUR_PRIVATE_KEY \
+    --private-key INSERT_YOUR_PRIVATE_KEY \
     src/MyToken.sol:MyToken  
     ```
 
 === "Moonbase Alpha"
-    ```
+
+    ```bash
     forge create --rpc-url {{ networks.moonbase.rpc_url }} \
     --constructor-args 100 \
     --verify --verifier sourcify \
-    --private-key YOUR_PRIVATE_KEY \
-    src/MyToken.sol:MyToken    
+    --private-key INSERT_YOUR_PRIVATE_KEY \
+    src/MyToken.sol:MyToken
     ```
 
 ![Foundry Contract Deploy and Verify](/images/builders/build/eth-api/verify-contracts/api-verification/api-2.png)
-

@@ -5,8 +5,6 @@ description: Learn how to use and manage funds with the Moonbeam Safe. Create a 
 
 # Interacting with Moonbeam Safe
 
-![Moonbeam Multisig Safe Banner](/images/tokens/manage/multisig-safe/safe-banner.png)
-
 ## Introduction {: #introduction } 
 
 A single-signature wallet, or singlesig for short, is a wallet in which only one owner holds the private key, and therefore has control over all the assets that account holds. Moreover, if the private key is lost, then access to the wallet and the funds are lost forever. 
@@ -49,7 +47,7 @@ Towards the end of this guide, you will be learning how to interact with a smart
 
 You can head to [Remix](https://remix.ethereum.org/){target=_blank} and create a new file for the following `SetText.sol` contract:
 
-```
+```solidity
 pragma solidity ^0.8.0;
 
 contract SetText {
@@ -321,17 +319,20 @@ Congratulations, you've successfully interacted with a smart contract using the 
 There are APIs available to read from and interact with Moonbeam Safes for Moonbeam, Moonriver, and Moonbase Alpha.
 
 === "Moonbeam"
-     ```
+
+     ```text
      {{networks.moonbeam.multisig.api_page }}
      ```
 
 === "Moonriver"
-     ```
+
+     ```text
      {{networks.moonriver.multisig.api_page}}
      ```
 
 === "Moonbase Alpha"
-     ```
+
+     ```text
      {{networks.moonbase.multisig.api_page}}
      ```
 

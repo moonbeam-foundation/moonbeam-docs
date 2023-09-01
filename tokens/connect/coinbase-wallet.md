@@ -5,8 +5,6 @@ description: This guide walks you through how to configure the Coinbase Wallet e
 
 # Interacting with Moonbeam Using the Coinbase Wallet Mobile App  
 
-![Coinbase Wallet Banner](/images/tokens/connect/coinbase-wallet/coinbase-wallet-banner.png)
-
 ## Introduction {: #introduction } 
 
 [Coinbase Wallet](https://wallet.coinbase.com/?_branch_match_id=977295450874474909&_branch_referrer=H4sIAAAAAAAAA8soKSkottLXT8%2FXS07SLddLzs%2FVD8%2FJynFKSy02zE4CAFZ0JzQfAAAA){target=_blank} is a self-custody (non-custodial) wallet like [MetaMask](/tokens/connect/metamask/){target=_blank} available as a mobile application for iOS and Android. There is also a browser extension version of Coinbase Wallet, but the extension does not support the addition of custom networks and is thus incompatible with Moonbeam at this time. Coinbase Wallet is an entirely different product from Coinbase Exchange, a custodial platform for buying and selling cryptocurrency. You can interact with Moonbeam, Moonriver, and the Moonbase Alpha testnet in Coinbase Wallet after adding them as custom networks.

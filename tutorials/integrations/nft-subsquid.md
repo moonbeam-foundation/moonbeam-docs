@@ -1,11 +1,9 @@
 ---
 title: Index NFT Transfers with Subsquid
-description: Learn how to use Subsquid, a query node framework for Substrate-based chains, to index and process Substrate and EVM data for Moonbeam and Moonriver.
+description: Learn how to use Subsquid, a query node framework for Substrate-based chains, to index and process NFT transfer data for Moonbeam and Moonriver.
 ---
 
 # Indexing NFT Transfers on Moonbeam with Subsquid
-
-![Subsquid Banner](/images/tutorials/integrations/nft-subsquid/nft-subsquid-banner.png)
 
 _by Massimo Luraschi_
 
@@ -155,7 +153,8 @@ Not much needs to be changed here, except adapting the template code to handle t
 If you are adapting this guide for Moonriver or Moonbase Alpha, be sure to update the data source to the correct network:
 
 === "Moonbeam"
-    ```
+
+    ```ts
     processor.setDataSource({
       chain: process.env.RPC_ENDPOINT, // TODO: Add the endpoint to your .env file
       archive: lookupArchive("moonbeam", {type: "Substrate"}),
@@ -163,7 +162,8 @@ If you are adapting this guide for Moonriver or Moonbase Alpha, be sure to updat
     ```
 
 === "Moonriver"
-    ```
+
+    ```ts
     processor.setDataSource({
       chain: process.env.RPC_ENDPOINT, // TODO: Add the endpoint to your .env file
       archive: lookupArchive("moonriver", {type: "Substrate"}),
@@ -171,7 +171,8 @@ If you are adapting this guide for Moonriver or Moonbase Alpha, be sure to updat
     ```
 
 === "Moonbase Alpha"
-    ```
+
+    ```ts
     processor.setDataSource({
       chain: process.env.RPC_ENDPOINT, // TODO: Add the endpoint to your .env file
       archive: lookupArchive("moonbase", {type: "Substrate"}),

@@ -1,12 +1,10 @@
 ---
 title:  Author Mapping Precompile
-description: A guide for collators to learn how to use the author mapping solidity interface to map session keys to a Moonbeam address where block rewards are paid out. 
+description: A guide for collators to learn how to use the Author Mapping Solidity interface to map session keys to a Moonbeam address where block rewards are paid out. 
 keywords: solidity, ethereum, author mapping, collator, moonbeam, precompiled, contracts, block producer
 ---
 
 # Interacting with the Author Mapping Precompile
-
-![Precomiled Contracts Banner](/images/builders/pallets-precompiles/precompiles/author-mapping/author-mapping-banner.png)
 
 ## Introduction {: #introduction }
 
@@ -17,17 +15,20 @@ To become a collator candidate, you must be [running a collator node](/node-oper
 The precompile is located at the following address:
 
 === "Moonbeam"
-     ```
+
+     ```text
      {{networks.moonbeam.precompiles.author_mapping }}
      ```
 
 === "Moonriver"
-     ```
+
+     ```text
      {{networks.moonriver.precompiles.author_mapping }}
      ```
 
 === "Moonbase Alpha"
-     ```
+
+     ```text
      {{networks.moonbase.precompiles.author_mapping }}
      ```
 
@@ -50,34 +51,40 @@ To follow along with this tutorial, you'll need to join the candidate pool and m
 The minimum bond to join the candidate pool is set as follows:
 
 === "Moonbeam"
-    ```
+
+    ```text
     {{ networks.moonbeam.staking.min_can_stk }} GLMR
     ```
 
 === "Moonriver"
-    ```
+
+    ```text
     {{ networks.moonriver.staking.min_can_stk }} MOVR
     ```
 
 === "Moonbase Alpha"
-    ```
+
+    ```text
     {{ networks.moonbase.staking.min_can_stk }} DEV
     ```
 
 There is a bond that is sent when mapping your session keys with your account. This bond is per session keys registered. The bond set is as follows:
 
 === "Moonbeam"
-    ```
+
+    ```text
     {{ networks.moonbeam.staking.collator_map_bond }} GLMR
     ```
   
 === "Moonriver"
-    ```
+
+    ```text
     {{ networks.moonriver.staking.collator_map_bond }} MOVR
     ```
 
 === "Moonbase Alpha"
-    ```
+
+    ```text
     {{ networks.moonbase.staking.collator_map_bond }} DEV
     ```
 

@@ -1,12 +1,10 @@
 ---
 title: Randomness Pallet
-description: Learn about the available extrinsics, storage methods, and constants in the randomness pallet on Moonbeam to retrieve data on randomness requests and results.
+description: Learn about the available extrinsics, storage methods, and constants in the Randomness Pallet on Moonbeam to retrieve data on randomness requests and results.
 keywords: randomness, VRF, substrate, pallet, moonbeam, polkadot
 ---
 
 # The Randomness Pallet
-
-![Randomness Moonbeam Banner](/images/builders/pallets-precompiles/pallets/randomness-banner.png)
 
 ## Introduction {: #introduction }
 

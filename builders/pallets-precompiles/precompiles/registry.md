@@ -5,8 +5,6 @@ description: Learn how to access and interact with the Precompile Registry on Mo
 
 # Precompile Registry on Moonbeam
 
-![Precompiled Contracts Banner](/images/builders/pallets-precompiles/precompiles/registry/registry-banner.png)
-
 ## Introduction {: #introduction }
 
 The Precompile Registry serves as a single source of truth for the available [precompiles on Moonbeam](/builders/pallets-precompiles/precompiles/overview){target=_blank}. The Precompile Registry can be used to determine if an address corresponds to a precompile and whether or not a precompile is active or deprecated. This is particularly useful when there are upstream changes within the Substrate and Polkadot ecosystems that result in backward-incompatible changes to precompiles. Developers can design an exit strategy to ensure their dApp recovers gracefully in these scenarios.
@@ -16,17 +14,20 @@ The Precompile Registry also serves an additional purpose, as it allows any user
 The Registry Precompile is located at the following address:
 
 === "Moonbeam"
-     ```
+
+     ```text
      {{networks.moonbeam.precompiles.registry }}
      ```
 
 === "Moonriver"
-     ```
+
+     ```text
      {{networks.moonriver.precompiles.registry }}
      ```
 
 === "Moonbase Alpha"
-     ```
+
+     ```text
      {{networks.moonriver.precompiles.registry }}
      ```
 
@@ -38,7 +39,7 @@ The Registry Precompile is located at the following address:
 
 ??? code "PrecompileRegistry.sol"
 
-    ```sol
+    ```solidity
     --8<-- 'code/precompiles/registry/PrecompileRegistry.sol'
     ```
 
