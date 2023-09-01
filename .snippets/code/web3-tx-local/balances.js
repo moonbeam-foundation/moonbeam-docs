@@ -5,7 +5,7 @@ const providerRPC = {
   development: 'http://localhost:9944',
   moonbase: 'https://rpc.api.moonbase.moonbeam.network',
 };
-const web3 = new Web3(providerRPC.development); // Change to correct network
+const web3 = new Web3(providerRPC.moonbase); // Change to correct network
 
 // 2. Create address variables
 const addressFrom = 'ADDRESS_FROM_HERE';
@@ -17,8 +17,8 @@ const balances = async () => {
   const balanceFrom = web3.utils.fromWei(await web3.eth.getBalance(addressFrom), 'ether');
   const balanceTo = web3.utils.fromWei(await web3.eth.getBalance(addressTo), 'ether');
 
-  console.log(`The balance of ${addressFrom} is: ${balanceFrom} ETH`);
-  console.log(`The balance of ${addressTo} is: ${balanceTo} ETH`);
+  console.log(`The balance of ${addressFrom} is: ${balanceFrom} DEV`);
+  console.log(`The balance of ${addressTo} is: ${balanceTo} DEV`);
 };
 
 // 5. Call balances function

@@ -11,7 +11,7 @@ const providerRPC = {
 const web3 = new Web3(providerRPC.development); // Change to correct network
 
 // 3. Create address variables
-const account_from = {
+const accountFrom = {
   privateKey: 'YOUR_PRIVATE_KEY_HERE',
   address: 'PUBLIC_ADDRESS_OF_PK_HERE',
 };
@@ -22,7 +22,7 @@ const abi = contractFile.abi;
 
 // 5. Create deploy function
 const deploy = async () => {
-  console.log(`Attempting to deploy from account ${account_from.address}`);
+  console.log(`Attempting to deploy from account ${accountFrom.address}`);
 
   // 6. Create contract instance
   const incrementer = new web3.eth.Contract(abi);
