@@ -70,8 +70,6 @@ Now, execute the docker run command. If you are setting up a collator node, make
  - Replace `YOUR-NODE-NAME` in two different places
  - Replace `<50% RAM in MB>` for 50% of the actual RAM your server has. For example, for 32 GB RAM, the value must be set to `16000`. The minimum value is `2000`, but it is below the recommended specs
 
-If you're using MacOS, there are adapted [code snippets](https://www.github.com/moonbeam-foundation/moonbeam-docs/blob/master/.snippets/text/full-node/macos-node.md){target=_blank} specific for MacOS which can be used instead.
-
 !!! note
     For client versions prior to v0.27.0, the `--state-pruning` flag was named `--pruning`.
 
@@ -79,106 +77,204 @@ If you're using MacOS, there are adapted [code snippets](https://www.github.com/
 
 ### Full Node {: #full-node }
 
-=== "Moonbeam"
+???+ code "Linux snippets"
 
-    ```bash
-    docker run --network="host" -v "{{ networks.moonbeam.node_directory }}:/data" \
-    -u $(id -u ${USER}):$(id -g ${USER}) \
-    purestake/moonbeam:{{ networks.moonbeam.parachain_release_tag }} \
-    --base-path=/data \
-    --chain {{ networks.moonbeam.chain_spec }} \
-    --name="YOUR-NODE-NAME" \
-    --state-pruning archive \
-    --trie-cache-size 1073741824 \
-    --db-cache <50% RAM in MB> \
-    -- \
-    --name="YOUR-NODE-NAME (Embedded Relay)"
-    ```
+    === "Moonbeam"
 
-=== "Moonriver"
+        ```bash
+        docker run --network="host" -v "{{ networks.moonbeam.node_directory }}:/data" \
+        -u $(id -u ${USER}):$(id -g ${USER}) \
+        purestake/moonbeam:{{ networks.moonbeam.parachain_release_tag }} \
+        --base-path=/data \
+        --chain {{ networks.moonbeam.chain_spec }} \
+        --name="YOUR-NODE-NAME" \
+        --state-pruning archive \
+        --trie-cache-size 1073741824 \
+        --db-cache <50% RAM in MB> \
+        -- \
+        --name="YOUR-NODE-NAME (Embedded Relay)"
+        ```
 
-    ```bash
-    docker run --network="host" -v "{{ networks.moonriver.node_directory }}:/data" \
-    -u $(id -u ${USER}):$(id -g ${USER}) \
-    purestake/moonbeam:{{ networks.moonriver.parachain_release_tag }} \
-    --base-path=/data \
-    --chain {{ networks.moonriver.chain_spec }} \
-    --name="YOUR-NODE-NAME" \
-    --state-pruning archive \
-    --trie-cache-size 1073741824 \
-    --db-cache <50% RAM in MB> \
-    -- \
-    --name="YOUR-NODE-NAME (Embedded Relay)"
-    ```
+    === "Moonriver"
 
-=== "Moonbase Alpha"
+        ```bash
+        docker run --network="host" -v "{{ networks.moonriver.node_directory }}:/data" \
+        -u $(id -u ${USER}):$(id -g ${USER}) \
+        purestake/moonbeam:{{ networks.moonriver.parachain_release_tag }} \
+        --base-path=/data \
+        --chain {{ networks.moonriver.chain_spec }} \
+        --name="YOUR-NODE-NAME" \
+        --state-pruning archive \
+        --trie-cache-size 1073741824 \
+        --db-cache <50% RAM in MB> \
+        -- \
+        --name="YOUR-NODE-NAME (Embedded Relay)"
+        ```
 
-    ```bash
-    docker run --network="host" -v "{{ networks.moonbase.node_directory }}:/data" \
-    -u $(id -u ${USER}):$(id -g ${USER}) \
-    purestake/moonbeam:{{ networks.moonbase.parachain_release_tag }} \
-    --base-path=/data \
-    --chain {{ networks.moonbase.chain_spec }} \
-    --name="YOUR-NODE-NAME" \
-    --state-pruning archive \
-    --trie-cache-size 1073741824 \
-    --db-cache <50% RAM in MB> \
-    -- \
-    --name="YOUR-NODE-NAME (Embedded Relay)"
-    ```
+    === "Moonbase Alpha"
+
+        ```bash
+        docker run --network="host" -v "{{ networks.moonbase.node_directory }}:/data" \
+        -u $(id -u ${USER}):$(id -g ${USER}) \
+        purestake/moonbeam:{{ networks.moonbase.parachain_release_tag }} \
+        --base-path=/data \
+        --chain {{ networks.moonbase.chain_spec }} \
+        --name="YOUR-NODE-NAME" \
+        --state-pruning archive \
+        --trie-cache-size 1073741824 \
+        --db-cache <50% RAM in MB> \
+        -- \
+        --name="YOUR-NODE-NAME (Embedded Relay)"
+        ```
+
+??? code "MacOS snippets"
+
+    === "Moonbeam"
+
+        ```bash
+        docker run -p 9944:9944 -v "/var/lib/moonbeam-data:/data" \
+        -u $(id -u ${USER}):$(id -g ${USER}) \
+        purestake/moonbeam:v0.32.2 \
+        --base-path=/data \
+        --chain moonbeam \
+        --name="YOUR-NODE-NAME" \
+        --state-pruning archive \
+        --trie-cache-size 1073741824 \
+        -- \
+        --name="YOUR-NODE-NAME (Embedded Relay)"
+        ```
+
+    === "Moonriver"
+
+        ```bash
+        docker run -p 9944:9944 -v "/var/lib/moonriver-data:/data" \
+        -u $(id -u ${USER}):$(id -g ${USER}) \
+        purestake/moonbeam:v0.32.2 \
+        --base-path=/data \
+        --chain moonriver \
+        --name="YOUR-NODE-NAME" \
+        --state-pruning archive \
+        --trie-cache-size 1073741824 \
+        -- \
+        --name="YOUR-NODE-NAME (Embedded Relay)"
+        ```
+
+    === "Moonbase Alpha"
+
+        ```bash
+        docker run -p 9944:9944 -v "/var/lib/alphanet-data:/data" \
+        -u $(id -u ${USER}):$(id -g ${USER}) \
+        purestake/moonbeam:v0.32.2 \
+        --base-path=/data \
+        --chain alphanet \
+        --name="YOUR-NODE-NAME" \
+        --state-pruning archive \
+        --trie-cache-size 1073741824 \
+        -- \
+        --name="YOUR-NODE-NAME (Embedded Relay)"
+        ```
 
 !!! note
     If you want to run an RPC endpoint, to connect Polkadot.js Apps, or to run your own application, use the flags `--unsafe-rpc-external` and/or `--unsafe-ws-external` to run the full node with external access to the RPC ports.  More details are available by running `moonbeam --help`. This is **not** recommended for Collators.
 
 ### Collator {: #collator }
 
-=== "Moonbeam"
+???+ code "Linux snippets"
 
-    ```bash
-    docker run --network="host" -v "{{ networks.moonbeam.node_directory }}:/data" \
-    -u $(id -u ${USER}):$(id -g ${USER}) \
-    purestake/moonbeam:{{ networks.moonbeam.parachain_release_tag }} \
-    --base-path=/data \
-    --chain {{ networks.moonbeam.chain_spec }} \
-    --name="YOUR-NODE-NAME" \
-    --collator \
-    --trie-cache-size 1073741824 \
-    --db-cache <50% RAM in MB> \
-    -- \
-    --name="YOUR-NODE-NAME (Embedded Relay)"
-    ```
+    === "Moonbeam"
 
-=== "Moonriver"
+        ```bash
+        docker run --network="host" -v "{{ networks.moonbeam.node_directory }}:/data" \
+        -u $(id -u ${USER}):$(id -g ${USER}) \
+        purestake/moonbeam:{{ networks.moonbeam.parachain_release_tag }} \
+        --base-path=/data \
+        --chain {{ networks.moonbeam.chain_spec }} \
+        --name="YOUR-NODE-NAME" \
+        --collator \
+        --trie-cache-size 1073741824 \
+        --db-cache <50% RAM in MB> \
+        -- \
+        --name="YOUR-NODE-NAME (Embedded Relay)"
+        ```
 
-    ```bash
-    docker run --network="host" -v "{{ networks.moonriver.node_directory }}:/data" \
-    -u $(id -u ${USER}):$(id -g ${USER}) \
-    purestake/moonbeam:{{ networks.moonriver.parachain_release_tag }} \
-    --base-path=/data \
-    --chain {{ networks.moonriver.chain_spec }} \
-    --name="YOUR-NODE-NAME" \
-    --collator \
-    --trie-cache-size 1073741824 \
-    --db-cache <50% RAM in MB> \
-    -- \
-    --name="YOUR-NODE-NAME (Embedded Relay)"
-    ```
+    === "Moonriver"
 
-=== "Moonbase Alpha"
+        ```bash
+        docker run --network="host" -v "{{ networks.moonriver.node_directory }}:/data" \
+        -u $(id -u ${USER}):$(id -g ${USER}) \
+        purestake/moonbeam:{{ networks.moonriver.parachain_release_tag }} \
+        --base-path=/data \
+        --chain {{ networks.moonriver.chain_spec }} \
+        --name="YOUR-NODE-NAME" \
+        --collator \
+        --trie-cache-size 1073741824 \
+        --db-cache <50% RAM in MB> \
+        -- \
+        --name="YOUR-NODE-NAME (Embedded Relay)"
+        ```
 
-    ```bash
-    docker run --network="host" -v "{{ networks.moonbase.node_directory }}:/data" \
-    -u $(id -u ${USER}):$(id -g ${USER}) \
-    purestake/moonbeam:{{ networks.moonbase.parachain_release_tag }} \
-    --base-path=/data \
-    --chain {{ networks.moonbase.chain_spec }} \
-    --name="YOUR-NODE-NAME" \
-    --collator \
-    --trie-cache-size 1073741824 \
-    --db-cache <50% RAM in MB> \
-    -- \
-    --name="YOUR-NODE-NAME (Embedded Relay)"
-    ```
+    === "Moonbase Alpha"
+
+        ```bash
+        docker run --network="host" -v "{{ networks.moonbase.node_directory }}:/data" \
+        -u $(id -u ${USER}):$(id -g ${USER}) \
+        purestake/moonbeam:{{ networks.moonbase.parachain_release_tag }} \
+        --base-path=/data \
+        --chain {{ networks.moonbase.chain_spec }} \
+        --name="YOUR-NODE-NAME" \
+        --collator \
+        --trie-cache-size 1073741824 \
+        --db-cache <50% RAM in MB> \
+        -- \
+        --name="YOUR-NODE-NAME (Embedded Relay)"
+        ```
+
+??? code "MacOS snippets"
+
+    === "Moonbeam"
+
+        ```bash
+        docker run -p 9944:9944 -v "/var/lib/moonbeam-data:/data" \
+        -u $(id -u ${USER}):$(id -g ${USER}) \
+        purestake/moonbeam:v0.32.2 \
+        --base-path=/data \
+        --chain moonbeam \
+        --name="YOUR-NODE-NAME" \
+        --collator \
+        --trie-cache-size 1073741824 \
+        -- \
+        --name="YOUR-NODE-NAME (Embedded Relay)"
+        ```
+
+    === "Moonriver"
+
+        ```bash
+        docker run -p 9944:9944 -v "/var/lib/moonriver-data:/data" \
+        -u $(id -u ${USER}):$(id -g ${USER}) \
+        purestake/moonbeam:v0.32.2 \
+        --base-path=/data \
+        --chain moonriver \
+        --name="YOUR-NODE-NAME" \
+        --collator \
+        --trie-cache-size 1073741824 \
+        -- \
+        --name="YOUR-NODE-NAME (Embedded Relay)"
+        ```
+
+    === "Moonbase Alpha"
+
+        ```bash
+        docker run -p 9944:9944 -v "/var/lib/alphanet-data:/data" \
+        -u $(id -u ${USER}):$(id -g ${USER}) \
+        purestake/moonbeam:v0.32.2 \
+        --base-path=/data \
+        --chain alphanet \
+        --name="YOUR-NODE-NAME" \
+        --collator \
+        --trie-cache-size 1073741824 \
+        -- \
+        --name="YOUR-NODE-NAME (Embedded Relay)"
+        ```
 
 !!! note
     For an overview of the above flags, please refer to the [Flags](/node-operators/networks/run-a-node/flags){target=_blank} page of our documentation.
