@@ -114,7 +114,7 @@ The XCM SDK is based on the premise of defining an asset to transfer and then de
     |:-----------------------:|:-------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------:|
     |        `balance`        | *AssetAmount* |                                           The balance of the asset being transferred for the source address                                            |
     |         `chain`         |  *AnyChain*   |                                                              The source chain information                                                              |
-    | `destinationFeeBalance` | *AssetAmount* |                                         The balance of the asset used to pay for fees in the desintation chain                                         |
+    | `destinationFeeBalance` | *AssetAmount* |                                         The balance of the asset used to pay for fees in the destination chain                                         |
     |  `existentialDeposit`   | *AssetAmount* |                                      The existential deposit for the asset being transferred on the source chain                                       |
     |          `fee`          | *AssetAmount* |                                         The amount of fees for the asset being transferred on the source chain                                         |
     |      `feeBalance`       | *AssetAmount* |                                             The balance of the asset being transferred on the source chain                                             |
