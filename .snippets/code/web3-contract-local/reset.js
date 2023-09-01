@@ -15,7 +15,7 @@ const accountFrom = {
 };
 const contractAddress = 'INSERT_CONTRACT_ADDRESS';
 
-// 4. Create Contract Instance
+// 4. Create contract instance
 const incrementer = new web3.eth.Contract(abi, contractAddress);
 
 // 5. Build reset tx
@@ -25,7 +25,7 @@ const resetTx = incrementer.methods.reset();
 const reset = async () => {
   console.log(`Calling the reset function in contract at address: ${contractAddress}`);
 
-  // 7. Prepare and Sign Tx with PK
+  // 7. Prepare and sign tx with PK
   const createTransaction = await web3.eth.accounts.signTransaction(
     {
       to: contractAddress,
