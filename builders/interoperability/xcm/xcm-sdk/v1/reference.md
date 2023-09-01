@@ -220,7 +220,7 @@ When building transfer data with the `Sdk().assets()` function, you'll use multi
         |:----------:|:--------:|:---------------------------------------------------------------------------------------------:|
         | `accounts` | function | Sets the source address, the destination address, and the signer(s) required for the transfer |
 
-- `accounts()` - sets the source address, the destination address, and the signer(s) required for the transfer. **Must call `destionation()` first**
+- `accounts()` - sets the source address, the destination address, and the signer(s) required for the transfer. **Must call `destination()` first**
 
     ??? code "Parameters"
         |         Name         |        Type        |                          Description                          |
