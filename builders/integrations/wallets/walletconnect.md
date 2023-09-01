@@ -140,7 +140,7 @@ const connect = async () => {
 
 Now that you have the `connect` function setup, you can create a **Connect Wallet** button that will call it `onClick`. You can replace the `{/* buttons and network details will go here */}` comment in the [template](https://github.com/papermoonio/moonbeam-walletconnect-template/blob/main/src/App.js#L124){target=_blank} with the following button:
 
-```jsx
+```js
 <Button onClick={connect}>Connect Wallet</Button>
 ```
 
@@ -200,7 +200,7 @@ const killSession = () => {
 
 Now that you have all of the logic required to handle the disconnection, you will need the **Disconnect** button that `onClick` will call the `killSession` function. Since you only want to display the **Disconnect** button once a user is connected, you can use [conditional renderering](https://reactjs.org/docs/conditional-rendering.html){target=_blank}. Conditional rendering allows you to check against certain variables and if a condition applies you can render one element or another. In this case, if you are not fetching the initial connection and the connector exists, you can render the **Disconnect** button, otherwise render the **Connect Wallet** button. You can replace the existing `<Button>` with the following:
 
-```jsx
+```js
 {connector && !fetching ? (
   <OutlinedButton onClick={killSession}>Disconnect</OutlinedButton>
 ) : (
@@ -288,7 +288,7 @@ useEffect(() => {
 
 Then to render these state variables on the page, you can include additional UI elements alongside the **Disconnect** button. Again, you can use conditional rendering to display specific details or an error message if the network is supported or not.
 
-```jsx
+```js
 {connector && !fetching ? (
   <LoadedData>
     <Data>
@@ -399,7 +399,7 @@ if ((!chainId || !account || !balance) && connector.connected) {
 
 Finally, you can display the account balance if the user is connected to a supported network. You can use the `symbol` state variable that was created earlier on in the guide to show the balance in **DEV** for Moonbase Alpha.
 
-```jsx
+```js
 {supported ? (
   <>
     <Data>
@@ -437,7 +437,7 @@ const sendTransaction = async () => {
 
 To initiate the transaction from the DApp, you will need to create a button, that `onClick` calls the `sendTransaction` function. This should only be done if the connected network is a supported network.
 
-```jsx
+```js
 {supported ? (
   <>
     <Data>
