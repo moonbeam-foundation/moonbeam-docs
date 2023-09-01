@@ -107,8 +107,8 @@ Next, you will create the script for this file and complete the following steps:
 // {...}
 
 // 2. Create address variables
-const addressFrom = 'ADDRESS-FROM-HERE';
-const addressTo = 'ADDRESS-TO-HERE';
+const addressFrom = 'ADDRESS_FROM_HERE';
+const addressTo = 'ADDRESS_TO_HERE';
 
 // 3. Create balances function
 const balances = async () => {
@@ -161,10 +161,10 @@ Next, you will create the script for this file and complete the following steps:
 
 // 2. Create account variables
 const accountFrom = {
-  privateKey: 'YOUR-PRIVATE-KEY-HERE',
-  address: 'PUBLIC-ADDRESS-OF-PK-HERE',
+  privateKey: 'YOUR_PRIVATE_KEY_HERE',
+  address: 'PUBLIC_ADDRESS_OF_PK_HERE',
 };
-const addressTo = 'ADDRESS-TO-HERE'; // Change addressTo
+const addressTo = 'ADDRESS_TO_HERE'; // Change addressTo
 
 // 3. Create send function
 const send = async () => {
@@ -245,8 +245,8 @@ const contractFile = require('./compile');
 
 // 3. Create address variables
 const accountFrom = {
-  privateKey: 'YOUR-PRIVATE-KEY-HERE',
-  address: 'PUBLIC-ADDRESS-OF-PK-HERE',
+  privateKey: 'YOUR_PRIVATE_KEY_HERE',
+  address: 'PUBLIC_ADDRESS_OF_PK_HERE',
 };
 
 // 4. Get the bytecode and API
@@ -328,7 +328,7 @@ const { abi } = require('./compile');
 // {...}
 
 // 3. Create address variables
-const contractAddress = 'CONTRACT-ADDRESS-HERE';
+const contractAddress = 'CONTRACT_ADDRESS_HERE';
 
 // 4. Create contract instance
 const incrementer = new web3.eth.Contract(abi, contractAddress);
@@ -390,9 +390,9 @@ const { abi } = require('./compile');
 
 // 3. Create variables
 const accountFrom = {
-  privateKey: 'YOUR-PRIVATE-KEY-HERE',
+  privateKey: 'YOUR_PRIVATE_KEY_HERE',
 };
-const contractAddress = 'CONTRACT-ADDRESS-HERE';
+const contractAddress = 'CONTRACT_ADDRESS_HERE';
 const _value = 3;
 
 // 4. Create contract instance
@@ -463,9 +463,9 @@ const { abi } = require('./compile');
 
 // 3. Create variables
 const accountFrom = {
-  privateKey: 'YOUR-PRIVATE-KEY-HERE',
+  privateKey: 'YOUR_PRIVATE_KEY_HERE',
 };
-const contractAddress = 'CONTRACT-ADDRESS-HERE';
+const contractAddress = 'CONTRACT_ADDRESS_HERE';
 
 // 4. Create Contract Instance
 const incrementer = new web3.eth.Contract(abi, contractAddress);
