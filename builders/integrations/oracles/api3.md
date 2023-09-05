@@ -159,7 +159,7 @@ You can read more about [self-funded dAPIs on API3's documentation site](https:/
 
 You can read more about [managed dAPIs on API3's documentation site](https://docs.api3.org/reference/dapis/understand/managed.html){target=_blank}.
 
-### Access Self-Funded dAPIs {: #self-funded-dapis}
+### Access Self-Funded dAPIs {: #access-self-funded-dapis }
 
 The process for accessing self-funded data feeds is as follows:
 
@@ -208,7 +208,7 @@ If you are deploying a proxy contract during the funding process, clicking on th
 
 Once the transaction is broadcasted & confirmed on the blockchain, the proxy contract address will be shown on the UI.
 
-### Access Managed dAPIs {: #managed-dapis}
+### Access Managed dAPIs {: #access-managed-dapis }
 
 If you are trying to access managed dAPIs, once you have selected your dAPI, you will then be presented with the option to choose from either **Managed** or **Self-funded**. Select **Managed dAPIs**.
 
