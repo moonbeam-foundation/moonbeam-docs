@@ -125,7 +125,7 @@ The parachain staking pallet includes the following read-only functions to obtai
 - **minCandidateStk**() - returns the minimum stake required for a candidate to be a collator candidate
 - **minCollatorStk**() - *deprecated as of runtime 2400* - returns the minimum stake required for a candidate to be in the active set
 - **minDelegation**() - returns the minimum delegation amount
-- **minDelegatorStk**() - returns the minimum stake for an account to be a delegator
+- **minDelegatorStk**() - *deprecated as of runtime 2500* - returns the minimum stake for an account to be a delegator
 - **minSelectedCandidates**() - returns the minimum number of selected candidates in the active set every round
 - **revokeDelegationDelay**() - returns the number of rounds that must be waited before a scheduled request to revoke a delegation can be executed
 - **rewardPaymentDelay**() - returns the number of rounds that must be waited after which block authors are rewarded
