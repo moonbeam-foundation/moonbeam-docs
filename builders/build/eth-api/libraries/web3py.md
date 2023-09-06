@@ -178,7 +178,7 @@ Next, you will create the script for this file and complete the following steps:
 --8<-- 'code/web3py-contract/compile.py'
 ```
 !!! note
-    If you see an error stating that `Solc is not installed`, uncomment the step 2 described in the code snippet.
+    If you see an error stating that `Solc is not installed`, uncomment step 2 described in the code snippet.
 
 ### Deploy Contract Script {: #deploy-contract-script }
 
