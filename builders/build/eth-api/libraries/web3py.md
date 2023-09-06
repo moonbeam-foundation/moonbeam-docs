@@ -1,5 +1,5 @@
 ---
-title: Send Transactions & Deploy Contracts with Web3.py
+title: How to use Web3.py Ethereum Library
 description: Follow this tutorial to learn how to use the Ethereum Web3 Python Library to to send transactions and deploy Solidity smart contracts to Moonbeam.
 ---
 
@@ -226,7 +226,7 @@ Then you can take the following steps to create the script:
 
 1. Add imports, including Web3.py and the ABI of the `Incrementer.sol` contract
 2. [Set up the Web3 provider](#setup-web3-with-moonbeam)
-3. Define the `account_from`, including the `private_key`. The private key is required to sign the transaction. **Note: This is for example purposes only. Never store your private keys in a Python file**
+3. Define the `contract_address` of the deployed contract
 4. Create a contract instance using the `web3.eth.contract` function and passing in the ABI and address of the deployed contract
 5. Using the contract instance, you can then call the `number` function
 
