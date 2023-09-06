@@ -39,7 +39,7 @@ pip3 install web3 py-solc-x
 
 ## Setup Web3.py with Moonbeam {: #setup-web3-with-moonbeam }
 
-Throughout this guide, you'll be creating a bunch of scripts that provide different functionality such as sending a transaction, deploying a contract, and interacting with a deployed contract. In most of these scripts you'll need to create an [Web3.py provider](https://web3py.readthedocs.io/en/stable/providers.html){target=_blank} to interact with the network.
+Throughout this guide, you'll be creating a bunch of scripts that provide different functionalities, such as sending a transaction, deploying a contract, and interacting with a deployed contract. In most of these scripts, you'll need to create a [Web3.py provider](https://web3py.readthedocs.io/en/stable/providers.html){target=_blank} to interact with the network.
 
 --8<-- 'text/common/endpoint-setup.md'
 
