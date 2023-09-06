@@ -88,7 +88,7 @@ To create a provider, you can take the following steps:
     web3 = Web3(Web3.HTTPProvider('{{ networks.development.rpc_url }}'))
     ```
 
-Save this code snippet as you'll need it for the scripts that are used in the following sections.
+Save this code snippet, as you'll need it for the scripts that are used in the following sections.
 
 ## Send a Transaction {: #send-a-transaction }
 
