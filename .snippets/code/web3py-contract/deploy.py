@@ -5,9 +5,9 @@ from web3 import Web3
 # 2. Add the Web3 provider logic here:
 provider_rpc = {
     'development': 'http://localhost:9944',
-    'alphanet': 'https://rpc.api.moonbase.moonbeam.network',
+    'moonbase': 'https://rpc.api.moonbase.moonbeam.network',
 }
-web3 = Web3(Web3.HTTPProvider(provider_rpc['development']))  # Change to correct network
+web3 = Web3(Web3.HTTPProvider(provider_rpc['moonbase']))  # Change to correct network
 
 # 3. Create address variable
 account_from = {

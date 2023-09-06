@@ -1,6 +1,6 @@
 ---
 title: Send Transactions & Deploy Contracts with Web3.py
-description: Follow this tutorial to learn how to use the Ethereum Web3 Python Library to deploy Solidity smart contracts to Moonbeam.
+description: Follow this tutorial to learn how to use the Ethereum Web3 Python Library to to send transactions and deploy Solidity smart contracts to Moonbeam.
 ---
 
 # Web3.py Python Library
@@ -39,42 +39,56 @@ pip3 install web3 py-solc-x
 
 ## Setup Web3.py with Moonbeam {: #setup-web3-with-moonbeam }
 
-You can configure Web3.py to work with any of the Moonbeam networks.
+Throughout this guide, you'll be creating a bunch of scripts that provide different functionality such as sending a transaction, deploying a contract, and interacting with a deployed contract. In most of these scripts you'll need to create an [Web3.py provider](https://web3py.readthedocs.io/en/stable/providers.html){target=_blank} to interact with the network.
+
 --8<-- 'text/common/endpoint-setup.md'
 
-The simplest way to get started with each of the networks is as follows:
+To create a provider, you can take the following steps:
+
+1. Import the `web3` library
+2. Create the `web3` provider suing using the `Web3(Web3.HTTPProvider()))` method and providing the endpoint URL
 
 === "Moonbeam"
 
     ```python
+    # 1. Import web3.py
     from web3 import Web3
 
+    # 2. Create web3.py provider
     web3 = Web3(Web3.HTTPProvider('{{ networks.moonbeam.rpc_url }}')) # Insert your RPC URL here
     ```
 
 === "Moonriver"
 
     ```python
+    # 1. Import web3.py
     from web3 import Web3
 
+    # 2. Create web3.py provider
     web3 = Web3(Web3.HTTPProvider('{{ networks.moonriver.rpc_url }}')) # Insert your RPC URL here
     ```
 
 === "Moonbase Alpha"
 
     ```python
+    # 1. Import web3.py
     from web3 import Web3
 
+    # 2. Create web3.py provider
     web3 = Web3(Web3.HTTPProvider('{{ networks.moonbase.rpc_url }}'))
     ```
 
 === "Moonbeam Dev Node"
 
     ```python
+    # 1. Import web3.py
     from web3 import Web3
 
+    # 2. Create web3.py provider
     web3 = Web3(Web3.HTTPProvider('{{ networks.development.rpc_url }}'))
     ```
+
+Save this code snippet as you'll need it for the scripts that are used in the following sections.
 
 ## Send a Transaction {: #send-a-transaction }
 
@@ -163,6 +177,8 @@ Next, you will create the script for this file and complete the following steps:
 ```python
 --8<-- 'code/web3py-contract/compile.py'
 ```
+!!! note
+    If you see an error stating that `Solc is not installed`, uncomment the step 2 described in the code snippet.
 
 ### Deploy Contract Script {: #deploy-contract-script }
 
