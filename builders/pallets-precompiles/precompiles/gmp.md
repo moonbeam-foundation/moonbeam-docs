@@ -87,7 +87,7 @@ The following multilocation templates target accounts on other parachains with M
 === "AccountKey20"
 
     ```js
-    v1: {
+    {
       parents: 1,
       interior: {
         X2: [
