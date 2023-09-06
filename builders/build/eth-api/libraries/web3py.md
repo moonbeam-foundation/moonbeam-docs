@@ -46,7 +46,7 @@ Throughout this guide, you'll be creating a bunch of scripts that provide differ
 To create a provider, you can take the following steps:
 
 1. Import the `web3` library
-2. Create the `web3` provider suing using the `Web3(Web3.HTTPProvider()))` method and providing the endpoint URL
+2. Create the `web3` provider using the `Web3(Web3.HTTPProvider())` method and providing the endpoint URL
 
 === "Moonbeam"
 
