@@ -48,7 +48,7 @@ The most common instance that a user will have to interact with the precompile i
 
 Currently the GMP precompile only supports sending liquidity with Wormhole, through Moonbeam, and into other parachains. The GMP precompile does not assist with a route from parachains back to Moonbeam and subsequently Wormhole connected chains.  
 
-To send liquidity from a Wormhole-connected origin chain like Ethereum, users must invoke the [`transferTokensWithPayload` method](https://book.wormhole.com/technical/evm/tokenLayer.html#contract-controlled-transfer){target=_blank} on the [origin-chain's deployment](https://book.wormhole.com/reference/contracts.html#token-bridge){target=_blank} of the [WormholeTokenBridge smart contract](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/interfaces/ITokenBridge.sol){target=_blank}. This function requires a bytes payload, which must be formatted as a SCALE encoded multilocation object wrapped within [another precompile-specific versioned type](https://github.com/moonbeam-foundation/moonbeam/blob/runtime-2400/precompiles/gmp/src/types.rs#L25-L39){target=_blank}.  
+To send liquidity from a Wormhole-connected origin chain like Ethereum, users must invoke the [`transferTokensWithPayload` method](https://book.wormhole.com/technical/evm/tokenLayer.html#contract-controlled-transfer){target=_blank} on the [origin-chain's deployment](https://book.wormhole.com/reference/contracts.html#token-bridge){target=_blank} of the [WormholeTokenBridge smart contract](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/interfaces/ITokenBridge.sol){target=_blank}. This function requires a bytes payload, which must be formatted as a SCALE encoded multilocation object wrapped within [another precompile-specific versioned type](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbase.spec_version }}/precompiles/gmp/src/types.rs#L25-L48){target=_blank}.
 
 You may be unfamiliar with both SCALE encoding and multilocations if you are not familiar with the Polkadot ecosystem. [SCALE encoding](https://docs.substrate.io/reference/scale-codec/){target=_blank} is a compact form of encoding that Polkadot uses. The [`MultiLocation` type](https://wiki.polkadot.network/docs/learn-xcvm){target=_blank} is used to define a relative point in Polkadot, such as a specific account on a specific parachain (Polkadot blockchain).  
 
@@ -68,88 +68,153 @@ The following multilocation templates target accounts on other parachains with M
 
 === "AccountId32"
 
-    ```json
+    ```js
     {
-        "parents": 1,
-        "interior": {
-            "X2": [
-                { "Parachain": "INSERT_PARACHAIN_ID" },
-                { 
-                    "AccountId32": { 
-                        "id": "INSERT_ADDRESS" 
-                    } 
-                }
-            ]
-        }
+      parents: 1,
+      interior: {
+        X2: [
+          { Parachain: 'INSERT_PARACHAIN_ID' },
+          {
+            AccountId32: {
+              id: 'INSERT_ADDRESS',
+            },
+          },
+        ],
+      },
     }
     ```
 
 === "AccountKey20"
 
-    ```json
-    {
-        "parents": 1,
-        "interior": {
-            "X2": [
-                { "Parachain": "INSERT_PARACHAIN_ID" },
-                { 
-                    "AccountKey20": { 
-                        "key": "INSERT_ADDRESS" 
-                    } 
-                }
-            ]
-        }
-    }
-    ```
-
-It can be difficult to correctly SCALE encode the entire payload without the right tools, especially due to the [custom types expected by the precompile](https://github.com/moonbeam-foundation/moonbeam/blob/runtime-2400/precompiles/gmp/src/types.rs#L25-L39){target=_blank}. Fortunately, there are Polkadot JavaScript packages that can assist with this, such as [`@polkadot/types`](https://www.npmjs.com/package/@polkadot/types){target=_blank}. The following script shows how to create a `Uint8Array` that can be used as a payload for the GMP precompile:  
-
-```javascript
-import { TypeRegistry, Enum, Struct } from '@polkadot/types';
-
-// Creates a type registry to properly work with the precompile's input types
-const registry = new TypeRegistry();
-
-// Define the precompile's input types VersionedUserAction and XcmRoutingUserAction
-class VersionedUserAction extends Enum {
- constructor(value) {
-   super(registry, { V1: XcmRoutingUserAction }, value);
- }
-}
-class XcmRoutingUserAction extends Struct {
- constructor(value) {
-   super(registry, { destination: 'VersionedMultiLocation' }, value);
- }
-}
-
-// A function that creates a SCALE encoded payload to use with transferTokensWithPayload
-function createMRLPayload(parachainId, account, isEthereumStyle) {
-  // Create a multilocation object based on the target parachain's account type
-  const versionedMultiLocation = { 
+    ```js
     v1: {
       parents: 1,
       interior: {
         X2: [
-          { Parachain: parachainId },
-          isEthereumStyle ? 
-            { AccountKey20: { key: account } } : 
-            { AccountId32: { id: account }
-        }]
+          { Parachain: 'INSERT_PARACHAIN_ID' },
+          {
+            AccountKey20: {
+              key: 'INSERT_ADDRESS',
+            },
+          },
+        ],
+      },
+    }
+    ```
+
+It can be difficult to correctly SCALE encode the entire payload without the right tools, especially due to the [custom types expected by the precompile](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbase.spec_version }}/precompiles/gmp/src/types.rs#L25-L48){target=_blank}. Fortunately, there are Polkadot JavaScript packages that can assist with this, such as [`@polkadot/types`](https://www.npmjs.com/package/@polkadot/types){target=_blank}.
+
+The versioned user action expected by the precompile accepts two versions: V1 and V2. V1 accepts the `XcmRoutingUserAction` type, which attempts to route the transferred assets to the destination defined by the multilocation. V2 accepts the `XcmRoutingUserActionWithFee` type, which also attempts to route the transferred assets to the destination but also allows a fee to be paid. Relayers can use V2 to specify a fee to charge on Moonbeam to relay the transaction to the given destination.
+
+The following script shows how to create a `Uint8Array` that can be used as a payload for the GMP precompile:  
+
+=== "V1"
+
+    ```javascript
+    import { TypeRegistry, Enum, Struct } from '@polkadot/types';
+
+    // Creates a type registry to properly work with the precompile's input types
+    const registry = new TypeRegistry();
+
+    // Define the precompile's input types VersionedUserAction and XcmRoutingUserAction
+    class VersionedUserAction extends Enum {
+      constructor(value) {
+        super(registry, { V1: XcmRoutingUserAction }, value);
       }
     }
-  };
+    class XcmRoutingUserAction extends Struct {
+      constructor(value) {
+        super(registry, { destination: 'VersionedMultiLocation' }, value);
+      }
+    }
 
-  // Format multilocation object as a Polkadot.js type
-  const destination = registry.createType('VersionedMultiLocation', versionedMultiLocation);
+    // A function that creates a SCALE encoded payload to use with transferTokensWithPayload
+    function createMRLPayload(parachainId, account, isEthereumStyle) {
+      // Create a multilocation object based on the target parachain's account type
+      const versionedMultiLocation = {
+        v1: {
+          parents: 1,
+          interior: {
+            X2: [
+              { Parachain: parachainId },
+              isEthereumStyle
+                ? { AccountKey20: { key: account } }
+                : { AccountId32: { id: account } },
+            ],
+          },
+        },
+      };
 
-  // Wrap and format the multiLocation object into the precompile's input type
-  const userAction = new XcmRoutingUserAction({ destination });
-  const versionedUserAction = new VersionedUserAction({ V1: userAction });
+      // Format multilocation object as a Polkadot.js type
+      const destination = registry.createType(
+        'VersionedMultiLocation',
+        versionedMultiLocation
+      );
 
-  // SCALE encode resultant precompile formatted objects
-  return versionedUserAction.toU8a();
-}
-```
+      // Wrap and format the multiLocation object into the precompile's input type
+      const userAction = new XcmRoutingUserAction({ destination });
+      const versionedUserAction = new VersionedUserAction({ V1: userAction });
+
+      // SCALE encode resultant precompile formatted objects
+      return versionedUserAction.toU8a();
+    }
+    ```
+
+=== "V2"
+
+    ```javascript
+    import { TypeRegistry, Enum, Struct } from '@polkadot/types';
+
+    // Creates a type registry to properly work with the precompile's input types
+    const registry = new TypeRegistry();
+
+    // Define the precompile's input types VersionedUserAction and XcmRoutingUserActionWithFee
+    class VersionedUserAction extends Enum {
+      constructor(value) {
+        super(registry, { V2: XcmRoutingUserActionWithFee }, value);
+      }
+    }
+    class XcmRoutingUserActionWithFee extends Struct {
+      constructor(value) {
+        super(
+          registry,
+          { destination: 'VersionedMultiLocation', fee: 'u256' },
+          value
+        );
+      }
+    }
+
+    // A function that creates a SCALE encoded payload to use with transferTokensWithPayload
+    function createMRLPayload(parachainId, account, isEthereumStyle, fee) {
+      // Create a multilocation object based on the target parachain's account type
+      const versionedMultiLocation = {
+        v1: {
+          parents: 1,
+          interior: {
+            X2: [
+              { Parachain: parachainId },
+              isEthereumStyle
+                ? { AccountKey20: { key: account } }
+                : { AccountId32: { id: account } },
+            ],
+          },
+        },
+      };
+
+      // Format multilocation object as a Polkadot.js type
+      const destination = registry.createType(
+        'VersionedMultiLocation',
+        versionedMultiLocation
+      );
+
+      // Wrap and format the multiLocation object into the precompile's input type
+      const userAction = new XcmRoutingUserActionWithFee({ destination, fee });
+      const versionedUserAction = new VersionedUserAction({ V2: userAction });
+
+      // SCALE encode resultant precompile formatted objects
+      return versionedUserAction.toU8a();
+    }
+    ```
 
 ## Restrictions {: #restrictions }
 
