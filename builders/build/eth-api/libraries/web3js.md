@@ -23,19 +23,27 @@ For the examples in this guide, you will need to have the following:
 !!! note
     --8<-- 'text/common/assumes-mac-or-ubuntu-env.md'
 
-## Create a JavaScript Project {: #create-a-javascript-project }
+## Installing Web3.js {: #install-web3js }
 
-To get started, you can create a directory to store all of the files you'll be creating throughout this guide:
+To get started, you'll need to start a basic JavaScript project. First, create a directory to store all of the files you'll be creating throughout this guide and initialize the project with the following command:
 
 ```bash
-mkdir web3-examples && cd web3-examples
+mkdir web3-examples && cd web3-examples && npm init --y
 ```
 
 For this guide, you'll need to install the Web3.js library and the Solidity compiler. To install both NPM packages, you can run the following command:
 
-```bash
-npm install web3 solc@0.8.0
-```
+=== "npm"
+
+    ```bash
+    npm install web3 solc@0.8.0
+    ```
+
+=== "yarn"
+
+    ```bash
+    yarn add web3 solc@0.8.0
+    ```
 
 ## Setup Web3.js with Moonbeam {: #setup-web3-with-moonbeam }
 
@@ -80,6 +88,8 @@ The simplest way to get started with each of the networks is as follows:
     const web3 = new Web3('{{ networks.development.rpc_url }}');
     ```
 
+Save this code snippet as you'll need it for the scripts that are used in the following sections.
+
 ## Send a Transaction {: #send-a-transaction }
 
 During this section, you'll be creating a couple of scripts. The first one will be to check the balances of your accounts before trying to send a transaction. The second script will actually send the transaction.
@@ -99,7 +109,7 @@ Next, you will create the script for this file and complete the following steps:
 1. [Set up the Web3 provider](#setup-web3-with-moonbeam)
 2. Define the `addressFrom` and `addressTo` variables
 3. Create the asynchronous `balances` function which wraps the `web3.eth.getBalance` method
-4. Use the `web3.eth.getBalance` function to fetch the balances for the `addressFrom` and `addressTo` addresses. You can also leverage the `web3.utils.fromWei` function to transform the balance into a more readable number in ETH
+4. Use the `web3.eth.getBalance` function to fetch the balances for the `addressFrom` and `addressTo` addresses. You can also leverage the `web3.utils.fromWei` function to transform the balance into a more readable number in DEV
 5. Lastly, run the `balances` function
 
 ```js
@@ -107,8 +117,8 @@ Next, you will create the script for this file and complete the following steps:
 // {...}
 
 // 2. Create address variables
-const addressFrom = 'ADDRESS-FROM-HERE';
-const addressTo = 'ADDRESS-TO-HERE';
+const addressFrom = 'INSERT_FROM_ADDRESS';
+const addressTo = 'INSERT_TO_ADDRESS';
 
 // 3. Create balances function
 const balances = async () => {
@@ -116,15 +126,19 @@ const balances = async () => {
   const balanceFrom = web3.utils.fromWei(await web3.eth.getBalance(addressFrom), 'ether');
   const balanceTo = web3.utils.fromWei(await web3.eth.getBalance(addressTo), 'ether');
 
-  console.log(`The balance of ${addressFrom} is: ${balanceFrom} ETH`);
-  console.log(`The balance of ${addressTo} is: ${balanceTo} ETH`);
+  console.log(`The balance of ${addressFrom} is: ${balanceFrom} DEV`);
+  console.log(`The balance of ${addressTo} is: ${balanceTo} DEV`);
 };
 
 // 5. Call balances function
 balances();
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/web3-tx-local/balances.js){target=_blank}.
+??? code "View the complete script"
+
+    ```js
+    --8<-- 'code/web3-tx-local/balances.js'
+    ```
 
 To run the script and fetch the account balances, you can run the following command:
 
@@ -132,7 +146,7 @@ To run the script and fetch the account balances, you can run the following comm
 node balances.js
 ```
 
-If successful, the balances for the origin and receiving address will be displayed in your terminal in ETH.
+If successful, the balances for the origin and receiving address will be displayed in your terminal in DEV.
 
 ### Send Transaction Script {: #send-transaction-script }
 
@@ -157,10 +171,10 @@ Next, you will create the script for this file and complete the following steps:
 
 // 2. Create account variables
 const accountFrom = {
-  privateKey: 'YOUR-PRIVATE-KEY-HERE',
-  address: 'PUBLIC-ADDRESS-OF-PK-HERE',
+  privateKey: 'INSERT_YOUR_PRIVATE_KEY',
+  address: 'INSERT_PUBLIC_ADDRESS_OF_PK',
 };
-const addressTo = 'ADDRESS-TO-HERE'; // Change addressTo
+const addressTo = 'INSERT_TO_ADDRESS'; // Change addressTo
 
 // 3. Create send function
 const send = async () => {
@@ -185,7 +199,11 @@ const send = async () => {
 send();
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/web3-tx-local/transaction.js){target=_blank}.
+??? code "View the complete script"
+
+    ```js
+    --8<-- 'code/web3-tx-local/transaction.js'
+    ```
 
 To run the script, you can run the following command in your terminal:
 
@@ -237,8 +255,8 @@ const contractFile = require('./compile');
 
 // 3. Create address variables
 const accountFrom = {
-  privateKey: 'YOUR-PRIVATE-KEY-HERE',
-  address: 'PUBLIC-ADDRESS-OF-PK-HERE',
+  privateKey: 'INSERT_YOUR_PRIVATE_KEY',
+  address: 'INSERT_PUBLIC_ADDRESS_OF_PK',
 };
 
 // 4. Get the bytecode and API
@@ -276,7 +294,11 @@ const deploy = async () => {
 deploy();
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/web3-contract-local/deploy.js){target=_blank}.
+??? code "View the complete script"
+
+    ```js
+    --8<-- 'code/web3-contract-local/deploy.js'
+    ```
 
 To run the script, you can enter the following command into your terminal:
 
@@ -316,7 +338,7 @@ const { abi } = require('./compile');
 // {...}
 
 // 3. Create address variables
-const contractAddress = 'CONTRACT-ADDRESS-HERE';
+const contractAddress = 'INSERT_CONTRACT_ADDRESS';
 
 // 4. Create contract instance
 const incrementer = new web3.eth.Contract(abi, contractAddress);
@@ -335,7 +357,11 @@ const get = async () => {
 get();
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/web3-contract-local/get.js){target=_blank}.
+??? code "View the complete script"
+
+    ```js
+    --8<-- 'code/web3-contract-local/get.js'
+    ```
 
 To run the script, you can enter the following command in your terminal:
 
@@ -374,9 +400,9 @@ const { abi } = require('./compile');
 
 // 3. Create variables
 const accountFrom = {
-  privateKey: 'YOUR-PRIVATE-KEY-HERE',
+  privateKey: 'INSERT_YOUR_PRIVATE_KEY',
 };
-const contractAddress = 'CONTRACT-ADDRESS-HERE';
+const contractAddress = 'INSERT_CONTRACT_ADDRESS';
 const _value = 3;
 
 // 4. Create contract instance
@@ -391,7 +417,7 @@ const increment = async () => {
     `Calling the increment by ${_value} function in contract at address: ${contractAddress}`
   );
 
-  // Sign Tx with PK
+  // 7. Prepare and Sign Tx with PK
   const createTransaction = await web3.eth.accounts.signTransaction(
     {
       to: contractAddress,
@@ -401,7 +427,7 @@ const increment = async () => {
     accountFrom.privateKey
   );
 
-  // Send Tx and Wait for Receipt
+  // 8. Send Tx and Wait for Receipt
   const createReceipt = await web3.eth.sendSignedTransaction(createTransaction.rawTransaction);
   console.log(`Tx successful with hash: ${createReceipt.transactionHash}`);
 };
@@ -410,7 +436,11 @@ const increment = async () => {
 increment();
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/web3-contract-local/increment.js){target=_blank}.
+??? code "View the complete script"
+
+    ```js
+    --8<-- 'code/web3-contract-local/increment.js'
+    ```
 
 To run the script, you can enter the following command in your terminal:
 
@@ -443,9 +473,9 @@ const { abi } = require('./compile');
 
 // 3. Create variables
 const accountFrom = {
-  privateKey: 'YOUR-PRIVATE-KEY-HERE',
+  privateKey: 'INSERT_YOUR_PRIVATE_KEY',
 };
-const contractAddress = 'CONTRACT-ADDRESS-HERE';
+const contractAddress = 'INSERT_CONTRACT_ADDRESS';
 
 // 4. Create Contract Instance
 const incrementer = new web3.eth.Contract(abi, contractAddress);
@@ -476,7 +506,11 @@ const reset = async () => {
 reset();
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/web3-contract-local/reset.js){target=_blank}.
+??? code "View the complete script"
+
+    ```js
+    --8<-- 'code/web3-contract-local/reset.js'
+    ```
 
 To run the script, you can enter the following command in your terminal:
 
