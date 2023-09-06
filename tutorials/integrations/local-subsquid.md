@@ -35,7 +35,7 @@ We'll use the following commands when starting up our node:
 
 - `--dev` - specifies to use a development chain
 - `--sealing 4000` - seals a block every four seconds (4000 milliseconds)
-- `--ws-external` - listen to all WebSocket interfaces
+- `--rpc-external` - listen to all HTTP and WebSocket interfaces
 
 To spin up a development node, which will pull the latest Docker image for Moonbeam, you can run the following command:
 
@@ -44,7 +44,7 @@ To spin up a development node, which will pull the latest Docker image for Moonb
     ```bash
     docker run --rm --name {{ networks.development.container_name }} --network host \
     purestake/moonbeam:{{ networks.development.build_tag }} \
-    --dev --sealing 4000 --ws-external --rpc-external
+    --dev --sealing 4000 --rpc-external
     ```
 
 === "MacOS"
@@ -52,7 +52,7 @@ To spin up a development node, which will pull the latest Docker image for Moonb
     ```bash
     docker run --rm --name {{ networks.development.container_name }} -p 9944:9944 \
     purestake/moonbeam:{{ networks.development.build_tag }} \
-    --dev --sealing 4000 --ws-external --rpc-external
+    --dev --sealing 4000 --rpc-external
     ```
 
 === "Windows"
@@ -60,7 +60,7 @@ To spin up a development node, which will pull the latest Docker image for Moonb
     ```bash
     docker run --rm --name {{ networks.development.container_name }} -p 9944:9944 ^
     purestake/moonbeam:{{ networks.development.build_tag }} ^
-    --dev --sealing 4000 --ws-external --rpc-external
+    --dev --sealing 4000 --rpc-external
     ```
 
 This will start up our development node, which can be accessed on port 9944.

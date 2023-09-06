@@ -212,10 +212,7 @@ The next step is to create the systemd configuration file. If you are setting up
  - Double-check the base path if you've used a different directory
  - Name the file `/etc/systemd/system/moonbeam.service`
 
-!!! note
-    For client versions prior to v0.27.0, the `--state-pruning` flag was named `--pruning`.
-
-    For client versions prior to v0.30.0, `--rpc-port` was used to specify the port for HTTP connections and `--ws-port` was used to specify the port for WS connections. As of client v0.30.0, the `--rpc-port` has been deprecated and the `--ws-port` flag is for both HTTP and WS connections. Similarly, the `--rpc-max-connections` flag has been deprecated and is now hardcoded to 100. You can use `--ws-max-connections` to adjust the combined HTTP and WS connection limit.
+--8<-- 'text/node-operators/client-changes.md'
 
 ### Full Node {: #full-node }
 
@@ -310,7 +307,7 @@ The next step is to create the systemd configuration file. If you are setting up
     ```
 
 !!! note
-    If you want to run an RPC endpoint, to connect Polkadot.js Apps, or to run your own application, use the flags `--unsafe-rpc-external` and/or `--unsafe-ws-external` to run the full node with external access to the RPC ports. More details are available by running `moonbeam --help`. This is **not** recommended for Collators. For an overview of the available flags, please refer to the [Flags](/node-operators/networks/run-a-node/flags){target=_blank} page of our documentation.
+    If you want to run an RPC endpoint, to connect Polkadot.js Apps, or to run your own application, use the `--unsafe-rpc-external` flag to run the full node with external access to the RPC ports. More details are available by running `moonbeam --help`. This is **not** recommended for Collators. For an overview of the available flags, please refer to the [Flags](/node-operators/networks/run-a-node/flags){target=_blank} page of our documentation.
 
 ### Collator {: #collator }
 

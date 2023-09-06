@@ -51,7 +51,7 @@ Using Docker enables you to spin up a node in a matter of seconds. Once you have
         ```bash
         docker run --rm --name {{ networks.development.container_name }} -p 9944:9944 \
         purestake/moonbeam:{{ networks.development.build_tag }} \
-        --dev --ws-external --rpc-external
+        --dev --rpc-external
         ```
 
     === "Windows"
@@ -59,7 +59,7 @@ Using Docker enables you to spin up a node in a matter of seconds. Once you have
         ```bash
         docker run --rm --name {{ networks.development.container_name }} -p 9944:9944 ^
         purestake/moonbeam:{{ networks.development.build_tag }} ^
-        --dev --ws-external --rpc-external
+        --dev --rpc-external
         ```
 
     If successful, you should see an output showing an idle state waiting for blocks to be authored:
@@ -156,7 +156,6 @@ Flags do not take an argument. To use a flag, add it to the end of a command. Fo
 - **`--dev`** - specifies the development chain
 - **`--tmp`** - runs a temporary node in which all of the configuration will be deleted at the end of the process
 - **`--rpc-external`** - listen to all RPC interfaces
-- **`--ws-external`** - listen to all Websocket interfaces
 
 ### Common Options to Configure your Node {: #node-options }
 
@@ -168,10 +167,10 @@ Options accept an argument to the right of the option. For example:
 
 - **`-l <log pattern>` or `--log <log pattern>`** - sets a custom logging filter. The syntax for the log pattern is `<target>=<level>`. For example, to print all of the JSON RPC logs, the command would look like this: `-l json=trace`
 - **`--sealing <interval>`** - when blocks should be sealed in the dev service. Accepted arguments for interval: `instant`, `manual`, or a number representing the timer interval in milliseconds (for example, `6000` will have the node produce blocks every 6 seconds). Default is `instant`. Please refer to the [Configure Block Production](#configure-block-production) section below for more information
-- **`--rpc-port <port>`** - *deprecated as of [client v0.30.0](https://github.com/moonbeam-foundation/moonbeam/releases/tag/v0.30.0){target=_blank}, use `--ws-port` for HTTP and WS connections instead* - sets the HTTP RPC server TCP port. Accepts a port as the argument
-- **`--ws-port <port>`**: sets the WebSockets RPC server TCP port. As of [client v0.30.0](https://github.com/moonbeam-foundation/moonbeam/releases/tag/v0.30.0){target=_blank}, the WS port is a unified port for both HTTP and WS connections. Accepts a port as the argument. Default is {{ networks.parachain.ws }}
-- **`--rpc-max-connections <connections>`** - *deprecated as of [client v0.30.0](https://github.com/moonbeam-foundation/moonbeam/releases/tag/v0.30.0){target=_blank}, this value has been hardcoded to 100. Use `--ws-max-connections` to adjust the combined HTTP and WS connection limit instead* - specifies the maximum number of HTTP RPC server connections 
-- **`--ws-max-connections <connections>`** - specifies the maximum number of WS RPC server connections. As of [client v0.30.0](https://github.com/moonbeam-foundation/moonbeam/releases/tag/v0.30.0){target=_blank}, this flag adjusts the combined HTTP and WS connection limit. Default is 100 connections
+- **`--rpc-port <port>`** - sets the unified port for HTTP and WS connections. Accepts a port as the argument. Default is {{ networks.parachain.rpc }}
+- **`--ws-port <port>`** - *deprecated as of [client v0.33.0](https://github.com/moonbeam-foundation/moonbeam/releases/tag/v0.33.0){target=_blank}, use `--rpc-port` for HTTP and WS connections instead* sets the WebSockets RPC server TCP port. As of [client v0.30.0](https://github.com/moonbeam-foundation/moonbeam/releases/tag/v0.30.0){target=_blank}, sets the unified port for both HTTP and WS connections. Accepts a port as the argument
+- **`--rpc-max-connections <connections>`** - specifies the combined HTTP and WS connection limit. Default is 100 connections
+- **`--ws-max-connections <connections>`** - *deprecated as of [client v0.33.0](https://github.com/moonbeam-foundation/moonbeam/releases/tag/v0.33.0){target=_blank}, use `--rpc-max-connections` to limit the HTTP and WS connections instead* - this flag adjusts the combined HTTP and WS connection limit. Default is 100 connections
 - **`--rpc-cors <origins>`** - specifies the browser origins allowed to access the HTTP and WS RPC servers. The origins can be a comma-separated list of the origins to allow access or you can also specify `null`. When running a development node, the default is to allow all origins
 
 For a complete list of flags and options, spin up your Moonbeam development node with `--help` added to the end of the command.
