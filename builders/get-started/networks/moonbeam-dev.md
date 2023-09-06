@@ -155,7 +155,7 @@ Flags do not take an argument. To use a flag, add it to the end of a command. Fo
 
 - **`--dev`** - specifies the development chain
 - **`--tmp`** - runs a temporary node in which all of the configuration will be deleted at the end of the process
-- **`--rpc-external`** - listen to all RPC interfaces
+- **`--rpc-external`** - listen to all RPC and WebSocket interfaces
 
 ### Common Options to Configure your Node {: #node-options }
 
