@@ -260,7 +260,7 @@ The interface varies slightly from version to version. You can find an overview 
 
 === "V3 (Moonbase Alpha only)"
 
-    The V3 interface adds support for Weights V2, which updates the `Weight` type to represent proof size, in addition to computational time. As such, this requires that a `refTime` and `proofSize` be defined, where `refTime` is the amount of computational time that can be used for execution and `proofSize` is the amount of storage in bytes that can be used. 
+    The V3 interface adds support for Weights V2, which updates the `Weight` type to represent proof size in addition to computational time. As such, this requires that `refTime` and `proofSize` be defined, where `refTime` is the amount of computational time that can be used for execution and `proofSize` is the amount of storage in bytes that can be used. 
     
     The following struct was added to the XCM Transactor Precompile to support Weights V2:
 
@@ -271,7 +271,7 @@ The interface varies slightly from version to version. You can find an overview 
     }
     ```
 
-    Additionally, support for the `RefundSurplus` and `DepositAsset` instructions were added. To append the `RefundSurplus` instruction to the XCM message, you can use the `refund` parameter, which will refund any leftover funds not used for the `Transact` if set to `true`.
+    Additionally, support for the `RefundSurplus` and `DepositAsset` instructions was added. To append the `RefundSurplus` instruction to the XCM message, you can use the `refund` parameter, which will refund any leftover funds not used for the `Transact` if set to `true`.
 
     The V3 interface includes the following functions:
 
