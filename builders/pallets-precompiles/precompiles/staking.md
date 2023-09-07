@@ -113,7 +113,7 @@ As of runtime 2400, the following methods are **deprecated**:
 
  - **delegate**(*address* candidate, *uint256* amount, *uint256* candidateDelegationCount, *uint256* delegatorDelegationCount) - makes a delegation in support of a collator candidate and automatically sets the percent of rewards to auto-compound to `0`. Use `delegateWithAutoCompound` instead
 
-As of runtime 1800, the following methods are **deprecated**:
+As of runtime 1800, the following methods are **deprecated** and, as of runtime 2500, have been removed:
 
  - **scheduleLeaveDelegators**() — schedules a request to leave the set of delegators and revoke all ongoing delegations. Scheduling the request does not automatically execute it. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `executeLeaveDelegators` extrinsic. Use the [batch utility](/builders/pallets-precompiles/precompiles/batch){target=_blank} with `scheduleRevokeDelegation` for all delegations instead
  - **executeLeaveDelegators**(*address* delegator, *uint256* delegatorDelegationCount) - executes the due request to leave the set of delegators and revoke all delegations. Use the [batch utility](/builders/pallets-precompiles/precompiles/batch){target=_blank} with `executeDelegationRequest` for all delegations instead
