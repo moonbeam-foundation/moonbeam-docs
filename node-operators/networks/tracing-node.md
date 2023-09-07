@@ -55,13 +55,13 @@ If you haven't previously run a standard full Moonbeam node, you will need to se
     mkdir {{ networks.moonbase.node_directory }}
     ```
 
-Before getting started, you'll need to set the necessary permissions either for a specific or current user (replace `DOCKER_USER` for the actual user that will run the `docker` command):
+Before getting started, you'll need to set the necessary permissions either for a specific or current user (replace `INSERT_DOCKER_USER` for the actual user that will run the `docker` command):
 
 === "Moonbeam"
 
     ```bash
     # chown to a specific user
-    chown DOCKER_USER {{ networks.moonbeam.node_directory }}
+    chown INSERT_DOCKER_USER {{ networks.moonbeam.node_directory }}
 
     # chown to current user
     sudo chown -R $(id -u):$(id -g) {{ networks.moonbeam.node_directory }}
@@ -71,7 +71,7 @@ Before getting started, you'll need to set the necessary permissions either for 
 
     ```bash
     # chown to a specific user
-    chown DOCKER_USER {{ networks.moonriver.node_directory }}
+    chown INSERT_DOCKER_USER {{ networks.moonriver.node_directory }}
 
     # chown to current user
     sudo chown -R $(id -u):$(id -g) {{ networks.moonriver.node_directory }}
@@ -81,7 +81,7 @@ Before getting started, you'll need to set the necessary permissions either for 
 
     ```bash
     # chown to a specific user
-    chown DOCKER_USER {{ networks.moonbase.node_directory }}
+    chown INSERT_DOCKER_USER {{ networks.moonbase.node_directory }}
 
     # chown to current user
     sudo chown -R $(id -u):$(id -g) {{ networks.moonbase.node_directory }}
@@ -91,7 +91,7 @@ Instead of the standard `purestake/moonbeam` docker image, you will need to use 
 
 Now, execute the docker run command. Note that you have to:
 
- - Replace `YOUR-NODE-NAME` in two different places
+ - Replace `INSERT_YOUR_NODE_NAME` in two different places
  - Replace `<50% RAM in MB>` for 50% of the actual RAM your server has. For example, for 32 GB RAM, the value must be set to `16000`. The minimum value is `2000`, but it is below the recommended specs
 
 --8<-- 'text/node-operators/client-changes.md'
@@ -106,7 +106,7 @@ The complete command for running a tracing node is as follows:
     {{ networks.moonbeam.tracing_tag }} \
     --base-path=/data \
     --chain {{ networks.moonbeam.chain_spec }} \
-    --name="YOUR-NODE-NAME" \
+    --name="INSERT_YOUR_NODE_NAME" \
     --state-pruning archive \
     --trie-cache-size 1073741824 \
     --db-cache <50% RAM in MB> \
@@ -114,7 +114,7 @@ The complete command for running a tracing node is as follows:
     --wasm-runtime-overrides=/moonbeam/moonbeam-substitutes-tracing \
     --runtime-cache-size 64 \
     -- \
-    --name="YOUR-NODE-NAME (Embedded Relay)"
+    --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
     ```
 
 === "Moonriver"
@@ -125,7 +125,7 @@ The complete command for running a tracing node is as follows:
     {{ networks.moonriver.tracing_tag }} \
     --base-path=/data \
     --chain {{ networks.moonriver.chain_spec }} \
-    --name="YOUR-NODE-NAME" \
+    --name="INSERT_YOUR_NODE_NAME" \
     --state-pruning archive \
     --trie-cache-size 1073741824 \
     --db-cache <50% RAM in MB> \
@@ -133,7 +133,7 @@ The complete command for running a tracing node is as follows:
     --wasm-runtime-overrides=/moonbeam/moonriver-substitutes-tracing \
     --runtime-cache-size 64 \
     -- \
-    --name="YOUR-NODE-NAME (Embedded Relay)"
+    --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
     ```
 
 === "Moonbase Alpha"
@@ -144,7 +144,7 @@ The complete command for running a tracing node is as follows:
     {{ networks.moonbase.tracing_tag }} \
     --base-path=/data \
     --chain {{ networks.moonbase.chain_spec }} \
-    --name="YOUR-NODE-NAME" \
+    --name="INSERT_YOUR_NODE_NAME" \
     --state-pruning archive \
     --trie-cache-size 1073741824 \
     --db-cache <50% RAM in MB> \
@@ -152,7 +152,7 @@ The complete command for running a tracing node is as follows:
     --wasm-runtime-overrides=/moonbeam/moonbase-substitutes-tracing \
     --runtime-cache-size 64 \
     -- \
-    --name="YOUR-NODE-NAME (Embedded Relay)"
+    --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
     ```
 
 === "Moonbeam Dev Node"
@@ -161,7 +161,7 @@ The complete command for running a tracing node is as follows:
     docker run --network="host" \
     -u $(id -u ${USER}):$(id -g ${USER}) \
     {{ networks.development.tracing_tag }} \
-    --name="YOUR-NODE-NAME" \
+    --name="INSERT_YOUR_NODE_NAME" \
     --ethapi=debug,trace,txpool \
     --wasm-runtime-overrides=/moonbeam/moonbase-substitutes-tracing \
     --runtime-cache-size 64 \
@@ -260,7 +260,7 @@ You can clone the repository to any location on your local machine. For simplici
 
 The next step is to create the systemd configuration file, you'll need to:
 
- - Replace `YOUR-NODE-NAME` in two different places
+ - Replace `INSERT_YOUR_NODE_NAME` in two different places
  - Replace `<50% RAM in MB>` for 50% of the actual RAM your server has. For example, for 32 GB RAM, the value must be set to `16000`. The minimum value is `2000`, but it is below the recommended specs
  - Double-check that the binary is in the proper path as described below (_ExecStart_)
  - Double-check the base path if you've used a different directory
@@ -293,9 +293,9 @@ The next step is to create the systemd configuration file, you'll need to:
          --wasm-runtime-overrides={{ networks.moonbeam.node_directory }}/wasm \
          --runtime-cache-size 64 \
          --chain {{ networks.moonbeam.chain_spec }} \
-         --name "YOUR-NODE-NAME" \
+         --name "INSERT_YOUR_NODE_NAME" \
          -- \
-         --name="YOUR-NODE-NAME (Embedded Relay)"
+         --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
     
     [Install]
     WantedBy=multi-user.target
@@ -326,9 +326,9 @@ The next step is to create the systemd configuration file, you'll need to:
          --wasm-runtime-overrides={{ networks.moonriver.node_directory }}/wasm \
          --runtime-cache-size 64 \
          --chain {{ networks.moonriver.chain_spec }} \
-         --name "YOUR-NODE-NAME" \
+         --name "INSERT_YOUR_NODE_NAME" \
          -- \
-         --name="YOUR-NODE-NAME (Embedded Relay)"
+         --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
     
     [Install]
     WantedBy=multi-user.target
@@ -359,9 +359,9 @@ The next step is to create the systemd configuration file, you'll need to:
          --wasm-runtime-overrides={{ networks.moonbase.node_directory }}/wasm \
          --runtime-cache-size 64 \
          --chain {{ networks.moonbase.chain_spec }} \
-         --name "YOUR-NODE-NAME" \
+         --name "INSERT_YOUR_NODE_NAME" \
          -- \
-         --name="YOUR-NODE-NAME (Embedded Relay)"
+         --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
 
     [Install]
     WantedBy=multi-user.target

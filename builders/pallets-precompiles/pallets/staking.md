@@ -56,7 +56,6 @@ The parachain staking pallet provides the following extrinsics (functions):
 - **cancelCandidateBondLess**() - cancels a pending scheduled request to decrease a candidate's self bond amount
 - **cancelDelegationRequest**(candidate) - cancels any pending delegation requests provided the address of a candidate
 - **cancelLeaveCandidates**(candidateCount) - cancels a candidate's pending scheduled request to leave the candidate pool given the current number of candidates in the pool
-- **cancelLeaveDelegators**() - *deprecated as of runtime 1800* - cancels a pending scheduled request to leave the set of delegators. Use the [batch utility](/builders/pallets-precompiles/pallets/utility/#using-the-batch-extrinsics){target=_blank} with `cancelDelegationRequest` for all delegations instead
 - **candidateBondMore**(more) - request to increase a candidate's self bond by a specified amount
 - **delegate**(candidate, amount, candidateDelegationCount, delegationCount) - *deprecated as of runtime 2400* - request to add a delegation to a specific candidate for a given amount. Use the `delegateWithAutoCompound` extrinsic instead
 - **delegateWithAutoCompound**(candidate, amount, autoCompound, candidateDelegationCount, candidateAutoCompoundingDelegationCount, delegationCount) - delegates a collator candidate and sets the percentage of rewards to auto-compound given an integer (no decimals) for the `amount` between 0-100. If the caller is not a delegator, this function adds them to the set of delegators. If the caller is already a delegator, then it adjusts their delegation amount
@@ -64,14 +63,12 @@ The parachain staking pallet provides the following extrinsics (functions):
 - **executeCandidateBondLess**(candidate) - executes any scheduled due requests to decrease a candidate's self bond amount
 - **executeDelegationRequest**(delegator, candidate) - executes any scheduled due delegation requests for a specific delegator provided the address of the candidate
 - **executeLeaveCandidates**(candidate, candidateDelegationCount) - executes any scheduled due requests to leave the set of collator candidates
-- **executeLeaveDelegators**(delegator, delegationCount) - *deprecated as of runtime 1800* -  executes a scheduled due request to leave the set of delegators and revoke all delegations. Use the [batch utility](/builders/pallets-precompiles/pallets/utility/#using-the-batch-extrinsics){target=_blank} with `executeDelegationRequest` for all delegations instead
 - **goOffline**() - allows a collator candidate to temporarily leave the pool of candidates without unbonding
 - **goOnline**() - allows a collator candidate to rejoin the pool of candidates after previously calling `goOffline()`
 - **joinCandidates**(bond, candidateCount) - request to join the set of collator candidates with a specified bond amount and provided the current candidate count
 - **scheduleCandidateBondLess**(less) - schedules a request to decrease a candidate's self bond by a specified amount. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `executeCandidateBondLess` extrinsic
 - **scheduleDelegatorBondLess**(candidate, less) - schedules a request for a delegator to bond less with respect to a specific candidate. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `executeDelegationRequest` extrinsic
 - **scheduleLeaveCandidates**(candidateCount) - schedules a request for a candidate to remove themselves from the candidate pool. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `executeLeaveCandidates` extrinsic
-- **scheduleLeaveDelegators**() - *deprecated as of runtime 1800* - schedules a request to leave the set of delegators and revoke all ongoing delegations. Use the [batch utility](/builders/pallets-precompiles/pallets/utility/#using-the-batch-extrinsics){target=_blank} with `scheduleRevokeDelegation` for all delegations instead
 - **scheduleRevokeDelegation**(collator) - schedules a request to revoke a delegation given the address of a candidate. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `executeDelegationRequest` extrinsic
 - **setAutoCompound**(candidate, value, candidateAutoCompoundingDelegationCountHint, delegationCountHint) - sets the percentage of rewards to be auto-compounded for an existing delegation given an integer (no decimals) for the `value` between 0-100
 - **setBlocksPerRound**(new) - sets the blocks per round. If the `new` value is less than the length of the current round, the next block will transition immediately
@@ -128,7 +125,7 @@ The parachain staking pallet includes the following read-only functions to obtai
 - **minCandidateStk**() - returns the minimum stake required for a candidate to be a collator candidate
 - **minCollatorStk**() - *deprecated as of runtime 2400* - returns the minimum stake required for a candidate to be in the active set
 - **minDelegation**() - returns the minimum delegation amount
-- **minDelegatorStk**() - returns the minimum stake for an account to be a delegator
+- **minDelegatorStk**() - *deprecated as of runtime 2500* - returns the minimum stake for an account to be a delegator
 - **minSelectedCandidates**() - returns the minimum number of selected candidates in the active set every round
 - **revokeDelegationDelay**() - returns the number of rounds that must be waited before a scheduled request to revoke a delegation can be executed
 - **rewardPaymentDelay**() - returns the number of rounds that must be waited after which block authors are rewarded
