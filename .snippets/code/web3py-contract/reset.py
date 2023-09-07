@@ -11,10 +11,10 @@ web3 = Web3(Web3.HTTPProvider(provider_rpc["moonbase"]))  # Change to correct ne
 
 # 3. Create variables
 account_from = {
-    "private_key": "INSERT_YOUR_PRIVATE_KEY",
-    "address": "INSERT_PUBLIC_ADDRESS_OF_PK",
+    'private_key': 'INSERT_YOUR_PRIVATE_KEY',
+    'address': 'INSERT_PUBLIC_ADDRESS_OF_PK',
 }
-contract_address = "INSERT_CONTRACT_ADDRESS"
+contract_address = 'INSERT_CONTRACT_ADDRESS'
 
 print(f"Calling the reset function in contract at address: { contract_address }")
 

@@ -108,15 +108,16 @@ The XCM SDK is based on the premise of defining an asset to transfer and then de
 
 - `SourceChainTransferData` -  defines the source chain data for the transfer
 
-    |         Name         |     Type      |                                                                      Description                                                                       |
-    |:--------------------:|:-------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------:|
-    |      `balance`       | *AssetAmount* |                                           The balance of the asset being transferred for the source address                                            |
-    |       `chain`        |  *AnyChain*   |                                                              The source chain information                                                              |
-    | `existentialDeposit` | *AssetAmount* |                                      The existential deposit for the asset being transferred on the source chain                                       |
-    |        `fee`         | *AssetAmount* |                                         The amount of fees for the asset being transferred on the source chain                                         |
-    |     `feeBalance`     | *AssetAmount* |                                             The balance of the asset being transferred on the source chain                                             |
-    |        `min`         | *AssetAmount* | The minimum amount of the asset that should be kept on the source chain, taking into consideration the `existentialDeposit` and `fee` for the transfer |
-    |        `max`         | *AssetAmount* |                                               The maximum amount of the asset that *can* be transferred                                                |
+    |          Name           |     Type      |                                                                      Description                                                                       |
+    |:-----------------------:|:-------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------:|
+    |        `balance`        | *AssetAmount* |                                           The balance of the asset being transferred for the source address                                            |
+    |         `chain`         |  *AnyChain*   |                                                              The source chain information                                                              |
+    | `destinationFeeBalance` | *AssetAmount* |                                         The balance of the asset used to pay for fees in the destination chain                                         |
+    |  `existentialDeposit`   | *AssetAmount* |                                      The existential deposit for the asset being transferred on the source chain                                       |
+    |          `fee`          | *AssetAmount* |                                         The amount of fees for the asset being transferred on the source chain                                         |
+    |      `feeBalance`       | *AssetAmount* |                                             The balance of the asset being transferred on the source chain                                             |
+    |          `min`          | *AssetAmount* | The minimum amount of the asset that should be kept on the source chain, taking into consideration the `existentialDeposit` and `fee` for the transfer |
+    |          `max`          | *AssetAmount* |                                               The maximum amount of the asset that *can* be transferred                                                |
 
 ## Core Methods {: #core-sdk-methods }
 
@@ -217,7 +218,7 @@ When building transfer data with the `Sdk().assets()` function, you'll use multi
         |:----------:|:--------:|:---------------------------------------------------------------------------------------------:|
         | `accounts` | function | Sets the source address, the destination address, and the signer(s) required for the transfer |
 
-- `accounts()` - sets the source address, the destination address, and the signer(s) required for the transfer. **Must call `destionation()` first**
+- `accounts()` - sets the source address, the destination address, and the signer(s) required for the transfer. **Must call `destination()` first**
 
     ??? code "Parameters"
         |         Name         |        Type        |                          Description                          |

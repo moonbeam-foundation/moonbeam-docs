@@ -10,7 +10,7 @@ provider_rpc = {
 web3 = Web3(Web3.HTTPProvider(provider_rpc["moonbase"]))  # Change to correct network
 
 # 3. Create address variable
-contract_address = "INSERT_CONTRACT_ADDRESS"
+contract_address = 'INSERT_CONTRACT_ADDRESS'
 
 print(f"Making a call to contract at address: { contract_address }")
 

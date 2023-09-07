@@ -1,6 +1,8 @@
+// Import ethers and compile
 const ethers = require('ethers');
 const { abi } = require('./compile');
 
+// Define network configurations
 const providerRPC = {
   development: {
     name: 'moonbeam-development',
@@ -13,21 +15,27 @@ const providerRPC = {
     chainId: 1287,
   },
 };
-const provider = new ethers.JsonRpcProvider(providerRPC.development.rpc, {
-  chainId: providerRPC.development.chainId,
-  name: providerRPC.development.name,
+
+const provider = new ethers.JsonRpcProvider(providerRPC.moonbase.rpc, {
+  chainId: providerRPC.moonbase.chainId,
+  name: providerRPC.moonbase.name,
 }); // Change to correct network
 
-const contractAddress = 'CONTRACT-ADDRESS-HERE';
+// Contract address variable
+const contractAddress = 'INSERT_CONTRACT_ADDRESS';
 
+// Create contract instance
 const incrementer = new ethers.Contract(contractAddress, abi, provider);
 
+// Create get function
 const get = async () => {
   console.log(`Making a call to contract at address: ${contractAddress}`);
 
+  // Call contract
   const data = await incrementer.number();
 
   console.log(`The current number stored is: ${data}`);
 };
 
+// Call get function
 get();

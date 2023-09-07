@@ -7,7 +7,7 @@ description: Follow this tutorial to learn how to use the Ethereum Ethers.js Lib
 
 ## Introduction {: #introduction }
 
-The [Ethers.js](https://docs.ethers.io/){target=_blank} library provides a set of tools to interact with Ethereum Nodes with JavaScript, similar to Web3.js. Moonbeam has an Ethereum-like API available that is fully compatible with Ethereum-style JSON RPC invocations. Therefore, developers can leverage this compatibility and use the Ethers.js library to interact with a Moonbeam node as if they were doing so on Ethereum. You can read more about Ethers.js on this [blog post](https://medium.com/l4-media/announcing-ethers-js-a-web3-alternative-6f134fdd06f3){target=_blank}.
+The [Ethers.js](https://docs.ethers.org/){target=_blank} library provides a set of tools to interact with Ethereum Nodes with JavaScript, similar to Web3.js. Moonbeam has an Ethereum-like API available that is fully compatible with Ethereum-style JSON RPC invocations. Therefore, developers can leverage this compatibility and use the Ethers.js library to interact with a Moonbeam node as if they were doing so on Ethereum. For more information on Ethers.js, check their [documentation site](https://docs.ethers.org/v6/){target=_blank}.
 
 In this guide, you'll learn how to use the Ethers.js library to send a transaction and deploy a contract on Moonbase Alpha. This guide can be adapted for [Moonbeam](/builders/get-started/networks/moonbeam/){target=_blank}, [Moonriver](/builders/get-started/networks/moonriver/){target=_blank}, or a [Moonbeam development node](/builders/get-started/networks/moonbeam-dev/){target=_blank}.
 
@@ -23,23 +23,31 @@ For the examples in this guide, you will need to have the following:
 !!! note
     --8<-- 'text/common/assumes-mac-or-ubuntu-env.md'
 
-## Create a JavaScript Project {: #create-a-javascript-project }
+## Installing Ethers.js {: #install-ethersjs }
 
-To get started, you can create a directory to store all of the files you'll be creating throughout this guide:
+To get started, you'll need to start a basic JavaScript project. First, create a directory to store all of the files you'll be creating throughout this guide and initialize the project with the following command:
 
 ```bash
-mkdir ethers-examples && cd ethers-examples
+mkdir ethers-examples && cd ethers-examples && npm init --y
 ```
 
 For this guide, you'll need to install the Ethers.js library and the Solidity compiler. To install both NPM packages, you can run the following command:
 
-```bash
-npm install ethers solc@0.8.0
-```
+=== "npm"
+
+    ```bash
+    npm install ethers solc@0.8.0
+    ```
+
+=== "yarn"
+
+    ```bash
+    yarn add ethers solc@0.8.0
+    ```
 
 ## Setting up the Ethers Provider {: #setting-up-the-ethers-provider }
 
-Throughout this guide, you'll be creating a bunch of scripts that provide different functionality such as sending a transaction, deploying a contract, and interacting with a deployed contract. In most of these scripts you'll need to create an [Ethers provider](https://docs.ethers.io/v6/api/providers/){target=_blank} to interact with the network.
+Throughout this guide, you'll be creating a bunch of scripts that provide different functionality such as sending a transaction, deploying a contract, and interacting with a deployed contract. In most of these scripts you'll need to create an [Ethers provider](https://docs.ethers.org/v6/api/providers/){target=_blank} to interact with the network.
 
 --8<-- 'text/common/endpoint-setup.md'
 
@@ -145,6 +153,8 @@ To create a provider, you can take the following steps:
     );
     ```
 
+Save this code snippet as you'll need it for the scripts that are used in the following sections.
+
 ## Send a Transaction {: #send-a-transaction }
 
 During this section, you'll be creating a couple of scripts. The first one will be to check the balances of your accounts before trying to send a transaction. The second script will actually send the transaction.
@@ -172,8 +182,8 @@ Next, you will create the script for this file and complete the following steps:
 // {...}
 
 // 2. Create address variables
-const addressFrom = 'ADDRESS-FROM-HERE';
-const addressTo = 'ADDRESS-TO-HERE';
+const addressFrom = 'INSERT_FROM_ADDRESS';
+const addressTo = 'INSERT_TO_ADDRESS';
 
 // 3. Create balances function
 const balances = async () => {
@@ -181,15 +191,19 @@ const balances = async () => {
   const balanceFrom = ethers.formatEther(await provider.getBalance(addressFrom));
   const balanceTo = ethers.formatEther(await provider.getBalance(addressTo));
 
-  console.log(`The balance of ${addressFrom} is: ${balanceFrom} ETH`);
-  console.log(`The balance of ${addressTo} is: ${balanceTo} ETH`);
+  console.log(`The balance of ${addressFrom} is: ${balanceFrom} DEV`);
+  console.log(`The balance of ${addressTo} is: ${balanceTo} DEV`);
 };
 
 // 5. Call the balances function
 balances();
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/ethers-tx-local/balances.js){target=_blank}.
+??? code "View the complete script"
+
+    ```js
+    --8<-- 'code/ethers-js-tx/balances.js'
+    ```
 
 To run the script and fetch the account balances, you can run the following command:
 
@@ -197,7 +211,7 @@ To run the script and fetch the account balances, you can run the following comm
 node balances.js
 ```
 
-If successful, the balances for the origin and receiving address will be displayed in your terminal in ETH.
+If successful, the balances for the origin and receiving address will be displayed in your terminal in DEV.
 
 ### Send Transaction Script {: #send-transaction-script }
 
@@ -222,13 +236,13 @@ Next, you will create the script for this file and complete the following steps:
 // {...}
 
 // 2. Create account variables
-const account_from = {
-  privateKey: 'YOUR-PRIVATE-KEY-HERE',
+const accountFrom = {
+  privateKey: 'INSERT_YOUR_PRIVATE_KEY',
 };
-const addressTo = 'ADDRESS-TO-HERE';
+const addressTo = 'INSERT_TO_ADDRESS';
 
 // 3. Create wallet
-let wallet = new ethers.Wallet(account_from.privateKey, provider);
+let wallet = new ethers.Wallet(accountFrom.privateKey, provider);
 
 // 4. Create send function
 const send = async () => {
@@ -250,7 +264,11 @@ const send = async () => {
 send();
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/ethers-tx-local/transaction.js){target=_blank}.
+??? code "View the complete script"
+
+    ```js
+    --8<-- 'code/ethers-js-tx/transaction.js'
+    ```
 
 To run the script, you can run the following command in your terminal:
 
@@ -285,8 +303,8 @@ Next, you will create the script for this file and complete the following steps:
 1. Import the contract file from `compile.js`
 2. [Set up the Ethers provider](#setting-up-the-ethers-provider)
 3. Define the `privateKey` for the origin account. The private key is required to create a wallet instance. **Note: This is for example purposes only. Never store your private keys in a JavaScript file**
-4. Save the `bytecode` and `abi` for the compiled contract
-5. Create a wallet using the `privateKey` and `provider` from the previous steps. The wallet instance is used to sign transactions
+4. Create a wallet using the `privateKey` and `provider` from the previous steps. The wallet instance is used to sign transactions
+5. Load the contract `bytecode` and `abi` for the compiled contract
 6. Create a contract instance with signer using the `ethers.ContractFactory` function, providing the `abi`, `bytecode`, and `wallet` as parameters
 7. Create the asynchronous `deploy` function that will be used to deploy the contract
 8. Within the `deploy` function, use the `incrementer` contract instance to call `deploy` and pass in the initial value. For this example, you can set the initial value to `5`. This will send the transaction for contract deployment. To wait for a transaction receipt you can use the `deployed` method of the contract deployment transaction
@@ -300,16 +318,16 @@ const contractFile = require('./compile');
 // {...}
 
 // 3. Create account variables
-const account_from = {
-  privateKey: 'YOUR-PRIVATE-KEY-HERE',
+const accountFrom = {
+  privateKey: 'INSERT_YOUR_PRIVATE_KEY',
 };
 
-// 4. Save the bytecode and ABI
+// 4. Create wallet
+let wallet = new ethers.Wallet(accountFrom.privateKey, provider);
+
+// 5. Load contract information
 const bytecode = contractFile.evm.bytecode.object;
 const abi = contractFile.abi;
-
-// 5. Create wallet
-let wallet = new ethers.Wallet(account_from.privateKey, provider);
 
 // 6. Create contract instance with signer
 const incrementer = new ethers.ContractFactory(abi, bytecode, wallet);
@@ -329,7 +347,11 @@ const deploy = async () => {
 deploy();
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/ethers-contract-local/deploy.js){target=_blank}.
+??? code "View the complete script"
+
+    ```js
+    --8<-- 'code/ethers-js-contract/deploy.js'
+    ```
 
 To run the script, you can enter the following command into your terminal:
 
@@ -340,7 +362,6 @@ node deploy.js
 If successful, the contract's address will be displayed in the terminal.
 
 ![Deploy Contract Etherjs](/images/builders/build/eth-api/libraries/ethers/ethers-2.png)
-
 
 ### Read Contract Data (Call Methods) {: #read-contract-data }
 
@@ -370,7 +391,7 @@ const { abi } = require('./compile');
 // {...}
 
 // 3. Contract address variable
-const contractAddress = 'CONTRACT-ADDRESS-HERE';
+const contractAddress = 'INSERT_CONTRACT_ADDRESS';
 
 // 4. Create contract instance
 const incrementer = new ethers.Contract(contractAddress, abi, provider);
@@ -389,7 +410,11 @@ const get = async () => {
 get();
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/ethers-contract-local/get.js){target=_blank}.
+??? code "View the complete script"
+
+    ```js
+    --8<-- 'code/ethers-js-contract/get.js'
+    ```
 
 To run the script, you can enter the following command in your terminal:
 
@@ -426,14 +451,14 @@ const { abi } = require('./compile');
 // {...}
 
 // 3. Create variables
-const account_from = {
-  privateKey: 'YOUR-PRIVATE-KEY-HERE',
+const accountFrom = {
+  privateKey: 'INSERT_YOUR_PRIVATE_KEY',
 };
-const contractAddress = 'CONTRACT-ADDRESS-HERE';
+const contractAddress = 'INSERT_CONTRACT_ADDRESS';
 const _value = 3;
 
 // 4. Create wallet
-let wallet = new ethers.Wallet(account_from.privateKey, provider);
+let wallet = new ethers.Wallet(accountFrom.privateKey, provider);
 
 // 5. Create contract instance with signer
 const incrementer = new ethers.Contract(contractAddress, abi, wallet);
@@ -455,7 +480,11 @@ const increment = async () => {
 increment();
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/ethers-contract-local/increment.js){target=_blank}.
+??? code "View the complete script"
+
+    ```js
+    --8<-- 'code/ethers-js-contract/increment.js'
+    ```
 
 To run the script, you can enter the following command in your terminal:
 
@@ -486,13 +515,13 @@ const { abi } = require('./compile');
 // {...}
 
 // 3. Create variables
-const account_from = {
-  privateKey: 'YOUR-PRIVATE-KEY-HERE',
+const accountFrom = {
+  privateKey: 'INSERT_YOUR_PRIVATE_KEY',
 };
-const contractAddress = 'CONTRACT-ADDRESS-HERE';
+const contractAddress = 'INSERT_CONTRACT_ADDRESS';
 
 // 4. Create wallet
-let wallet = new ethers.Wallet(account_from.privateKey, provider);
+let wallet = new ethers.Wallet(accountFrom.privateKey, provider);
 
 // 5. Create contract instance with signer
 const incrementer = new ethers.Contract(contractAddress, abi, wallet);
@@ -512,7 +541,11 @@ const reset = async () => {
 reset();
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/ethers-contract-local/reset.js){target=_blank}.
+??? code "View the complete script"
+
+    ```js
+    --8<-- 'code/ethers-js-contract/reset.js'
+    ```
 
 To run the script, you can enter the following command in your terminal:
 

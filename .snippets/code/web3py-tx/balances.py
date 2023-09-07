@@ -9,8 +9,8 @@ provider_rpc = {
 web3 = Web3(Web3.HTTPProvider(provider_rpc["moonbase"]))  # Change to correct network
 
 # 2. Create address variables
-address_from = "INSERT_ADDRESS_FROM"
-address_to = "INSERT_ADDRESS_TO"
+address_from = 'INSERT_FROM_ADDRESS'
+address_to = 'INSERT_TO_ADDRESS'
 
 # 3. Fetch balance data
 balance_from = web3.from_wei(
