@@ -1054,7 +1054,7 @@ networks:
     prometheus: 9616
   parachain:
     p2p: 30333
-    rpc: 9933
+    rpc: 9944
     ws: 9944
     prometheus: 9615
   polkadot:
