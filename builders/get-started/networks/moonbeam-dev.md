@@ -43,7 +43,7 @@ Using Docker enables you to spin up a node in a matter of seconds. Once you have
         ```bash
         docker run --rm --name {{ networks.development.container_name }} --network host \
         purestake/moonbeam:{{ networks.development.build_tag }} \
-        --dev
+        --dev --rpc-external
         ```
 
     === "MacOS"
