@@ -322,15 +322,9 @@ const asset = {
             { PalletInstance: 48 },
             { AccountKey20: { key: 'INSERT_ERC_20_ADDRESS' } },
             { 
-              GeneralKey: {
-                // The byte array represents: 
-                // 'gas_limit:' + 300000 (little endian) + zeros padding
-                data: [
-                  103, 97, 115, 95, 108, 105, 109, 105, 116, 58, 224, 147, 4, 0,
-                  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                ],
-                length: 32,
-              },
+              // gas_limit: 300000 (zero-padded)
+              GeneralKey:
+                '0x6761735f6c696d69743ae0930400000000000000000000000000000000000000'
             },
           ],
         },
