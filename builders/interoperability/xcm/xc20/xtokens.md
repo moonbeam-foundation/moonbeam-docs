@@ -323,8 +323,10 @@ const asset = {
             { AccountKey20: { key: 'INSERT_ERC_20_ADDRESS' } },
             { 
               // gas_limit: 300000 (zero-padded)
-              GeneralKey:
-                '0x6761735f6c696d69743ae0930400000000000000000000000000000000000000'
+              GeneralKey: {
+                data: '0x6761735f6c696d69743ae0930400000000000000000000000000000000000000',
+                length: 32,
+              },
             },
           ],
         },
