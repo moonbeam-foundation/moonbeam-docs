@@ -182,7 +182,7 @@ Now that you have the values for each of the parameters, you can write the scrip
 
 Once the transaction is processed, the target account on the relay chain should have received the transferred amount minus a small fee that is deducted to execute the XCM on the destination chain.
 
-### X-Tokens Transfer MultiAsset Function {: #xtokens-transfer-multiasset-function}
+### X-Tokens Transfer Multiasset Function {: #xtokens-transfer-multiasset-function}
 
 In this example, you'll build an XCM message to transfer xcUNIT from Moonbase Alpha back to its relay chain using the `transferMultiasset` function of the X-Tokens Pallet.
 
