@@ -26,7 +26,7 @@ If you already have MetaMask installed, you can easily connect MetaMask to the n
 </div>
 
 !!! note
-    MetaMask will pop up asking for permission to add a a custom network. Once you approve permissions, MetaMask will switch your current network.
+    MetaMask will pop up asking for permission to add a custom network. Once you approve permissions, MetaMask will switch your current network.
 
 Learn [how to integrate a Connect MetaMask button](/builders/integrations/wallets/metamask/){target=_blank} into your dApp, so that users can connect to Moonbase Alpha with a simple click of a button. The guide can also be adapted for the other Moonbeam-based networks.
 
@@ -38,7 +38,7 @@ First, you'll start with a fresh and default [MetaMask](https://metamask.io/){ta
 
 ## Setup a Wallet {: #setup-a-wallet } 
 
-After installing [MetaMask](https://metamask.io){target=_blank}, the setup will automatically open a new task with a welcome screen. Here, you are oferred two options:
+After installing [MetaMask](https://metamask.io){target=_blank}, the setup will automatically open a new task with a welcome screen. Here, you are offered two options:
 
 - **Create a new wallet** - you'll go through some steps to get a new seed phrase. Ensure you store this phrase securely and you don't share it publicly
 - **Import an existing wallet** - you already have a seed phrase stored, and you want to restore an account from that recovery phrase
@@ -76,14 +76,14 @@ You should end up with an imported **Account 2** that looks like this:
 
 ## Connect MetaMask to Moonbeam {: #connect-metamask-to-moonbeam } 
 
-Once you have [MetaMask](https://metamask.io/){target=_blank} installed and have created or imported an account, you can connect it to any Moonbeam-based Network. To do so, take the following steps:
+Once you have [MetaMask](https://metamask.io/){target=_blank} installed and have created or imported an account, you can connect it to any Moonbeam-based network. To do so, take the following steps:
 
 1. Click in the upper left network selector menu
-2. Select **Add Network**.
+2. Select **Add Network**
 
 ![Add new network in Metamask menu](/images/tokens/connect/metamask/new/metamask-6.png)
 
-Next, go to the bottom of the page and click on **Add network manually**:
+Next, go to the bottom of the page and click on **Add a network manually**:
 
 ![Add network manually in Metamask](/images/tokens/connect/metamask/new/metamask-7.png)
 
@@ -129,20 +129,20 @@ To do so, fill in the following information:
 
 1. **Network name** - name that represents the network you are connecting to
 2. **RPC URL** - [RPC endpoint](https://docs.moonbeam.network/builders/get-started/endpoints/){target=_blank} of the network 
-3. **Chain ID** - Chain ID
+3. **Chain ID** - chain ID of the Ethereum compatible network
 4. **Symbol** - (optional) symbol of the native token of the network. For example, for Moonbeam, the value would be **GLMR**
 5. **Block Explorer** - (optional) URL of the [block explorer](https://docs.moonbeam.network/builders/get-started/explorers/){target=_blank}
 6. Once you've verified all the information, click on **Save**
 
 ![Add network in Metamask](/images/tokens/connect/metamask/new/metamask-8.png)
 
-Once you've added the network, you'll be redirected to a screen stating that you've successfully added a network. Furthermore, you'll be prompted a button to **Switch to Moonbase Alpha**, the network added in this example.
+Once you've added the network, you'll be redirected to a screen stating that you've successfully added a network. Furthermore, you'll be prompted to **Switch to Moonbase Alpha**, the network added in this example.
 
 ![Successfully added a network in Metamask](/images/tokens/connect/metamask/new/metamask-9.png)
 
 ## Interact with the Network {: #interact-with-network } 
 
-Once you've [connected Metamask](#connect-metamask-to-moonbeam) to any Moonbeam-based Network, you can start using your wallet by:
+Once you've [connected Metamask](#connect-metamask-to-moonbeam) to any Moonbeam-based network, you can start using your wallet by:
 
 - Sending a token transfer to another address
 - Adding ERC-20s to Metamask and interacting with them
@@ -156,7 +156,7 @@ To do so, take the following steps:
 
 1. Ensure you are connected to the correct network
 2. Ensure you have selected the account you want to use for the transfer
-3. In the main screen of your Metamask wallet, click on **Send**
+3. On the main screen of your Metamask wallet, click on **Send**
 
 ![Initiate balance transfer in Metamask](/images/tokens/connect/metamask/new/metamask-10.png)
 
@@ -164,7 +164,7 @@ Next, you can enter the address to which you want to send the tokens. For this e
 
 ![Select account to send tokens to in Metamask](/images/tokens/connect/metamask/new/metamask-11.png)
 
-In the next screen, take the following steps:
+On the next screen, take the following steps:
 
 1. Enter the number of tokens you want to send
 2. Verify that all the information is correct, and click on **Next**
