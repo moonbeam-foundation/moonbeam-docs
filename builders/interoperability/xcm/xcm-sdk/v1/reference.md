@@ -144,7 +144,7 @@ The SDK provides the following core methods:
         |:-----------------------:|:--------------------------------:|:--------------------------------------------------------------------------------------:|
         |  `destinationAddress`   |             *string*             |             The address of the receiving account on the destination chain              |
         | `destinationKeyorChain` |       *string \| AnyChain*       |                   The key or `Chain` data for the destination chain                    |
-        |     `evmSigner?`     |          *EthersSigner | WalletClient*          | The signer for Ethereum-compatible chains that use H160 Ethereum-style accounts. Can be either an ethers Signer or a viem WalletClient |
+        |     `evmSigner?`     |          *EthersSigner | WalletClient*          | The signer for Ethereum-compatible chains that use H160 Ethereum-style accounts. Can be either an Ethers Signer or a viem WalletClient |
         |      `keyOrAsset`       |        *string \| Asset*         |                The key or `Asset` data for the asset being transferred                 |
         |    `polkadotSigner?`    | *PolkadotSigner \| IKeyringPair* |                          The Polkadot signer or Keyring pair                           |
         |     `sourceAddress`     |             *string*             |                 The address of the sending account on the source chain                 |
