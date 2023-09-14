@@ -128,7 +128,7 @@ The SDK provides the following core methods:
     ??? code "Parameters"
         |    Name    |     Type     |                         Description                         |
         |:----------:|:------------:|:-----------------------------------------------------------:|
-        | `options?` | *SdkOptions* | Allows you to specify an `ethersSigner` or `polkadotSigner` |
+        | `options?` | *SdkOptions* | Allows you to specify an `evmSigner` or `polkadotSigner` |
 
     ??? code "Returns"
         |       Name        |   Type   |                                                        Description                                                         |
@@ -143,7 +143,7 @@ The SDK provides the following core methods:
         |:-----------------------:|:--------------------------------:|:--------------------------------------------------------------------------------------:|
         |  `destinationAddress`   |             *string*             |             The address of the receiving account on the destination chain              |
         | `destinationKeyorChain` |       *string \| AnyChain*       |                   The key or `Chain` data for the destination chain                    |
-        |     `ethersSigner?`     |          *EthersSigner*          | The Ethers signer for Ethereum-compatible chains that use H160 Ethereum-style accounts |
+        |     `evmSigner?`     |          *EthersSigner | WalletClient*          | The signer for Ethereum-compatible chains that use H160 Ethereum-style accounts. Can be either an Ethers Signer or a viem WalletClient |
         |      `keyOrAsset`       |        *string \| Asset*         |                The key or `Asset` data for the asset being transferred                 |
         |    `polkadotSigner?`    | *PolkadotSigner \| IKeyringPair* |                          The Polkadot signer or Keyring pair                           |
         |     `sourceAddress`     |             *string*             |                 The address of the sending account on the source chain                 |
