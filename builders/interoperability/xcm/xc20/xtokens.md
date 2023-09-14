@@ -308,7 +308,41 @@ If you are transferring a local XC-20, the default units of gas is as follows fo
     {{ networks.moonbase.erc20_xcm.transfer_gas_limit }}
     ```
 
-You can override the default gas limit using an additional junction when you create the multilocation for the local XC-20. To do so, you'll need to use the `GeneralKey` junction. The following is an example on how to set the gas limit to `300000`:
+You can override the default gas limit using an additional junction when you create the multilocation for the local XC-20. To do so, you'll need to use the `GeneralKey` junction, which accepts two arguments: `data` and `length`.
+
+For example, to set the gas limit to `300000`, you'll need to set the `length` to `32`, and for the `data`, you'll need to pass in `gas_limit: 300000`. However, you can't simply pass in the value for `data` in text; you'll need to properly format it to a 32-byte zero-padded hex string, where the value for the gas limit is in little-endian format. To properly format the `data`, you can take the following steps:
+
+1. Convert `gas_limit:` to its byte representation
+2. Convert the value for the gas limit into its little-endian byte representation
+3. Concatenate the two byte representations into a single value padded to 32 bytes
+4. Convert the bytes to a hex string
+
+Using the `@polkadot/util` library, these steps are as follows:
+
+```js
+import { numberToU8a, stringToU8a, u8aToHex } from '@polkadot/util';
+
+// 1. Convert `gas_limit:` to bytes
+const gasLimitString = 'gas_limit:';
+const u8aGasLimit = stringToU8a(gasLimitString);
+
+// 2. Convert the gas value to little-endian formatted bytes
+const gasLimitValue = 300000;
+const u8aGasLimitValue = numberToU8a(gasLimitValue);
+const littleEndianValue = u8aGasLimitValue.reverse();
+
+// 3. Combine and zero pad the gas limit string and the gas limit 
+// value to 32 bytes
+const u8aCombinedGasLimit = new Uint8Array(32);
+u8aCombinedGasLimit.set(u8aGasLimit, 0);
+u8aCombinedGasLimit.set(littleEndianValue, u8aGasLimit.length);
+
+// 4. Convert the bytes to a hex string
+const data = u8aToHex(u8aCombinedGasLimit);
+console.log(`The GeneralKey data is: ${data}`);
+```
+
+The following is an example multilocation with the gas limit set to `300000`:
 
 ```js
 // Multilocation for a local XC-20 on Moonbeam
@@ -322,8 +356,8 @@ const asset = {
             { PalletInstance: 48 },
             { AccountKey20: { key: 'INSERT_ERC_20_ADDRESS' } },
             { 
-              // gas_limit: 300000 (zero-padded)
               GeneralKey: {
+                // gas_limit: 300000
                 data: '0x6761735f6c696d69743ae0930400000000000000000000000000000000000000',
                 length: 32,
               },
