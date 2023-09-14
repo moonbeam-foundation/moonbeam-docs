@@ -222,6 +222,6 @@ The GMP precompile is currently in its early stages. There are many restrictions
 
 - There is currently no fee mechanism. Relayers that run the forwarding of liquidity on Moonbeam to a parachain will be subsidizing transactions. This may change in the future
 - The precompile does not check to ensure that the destination chain supports the token that is being sent to it. **Incorrect multilocations may result in loss of funds**
-- Errors in constructing a multilocation will result in reverts, which will trap tokens and a loss of funds
+- Errors in constructing a multilocation will result in reverts, which will trap tokens and result in a loss of funds
 - There is currently no recommended path backwards, from parachains to other chains like Ethereum. There is additional protocol level work that must be done before a one-click method can be realized
   - Due to a restriction with the ERC-20 XC-assets, the only way to send tokens from a parachain back through Moonbeam is to have xcGLMR on the origin parachain and use it as a fee asset when sending tokens back  
