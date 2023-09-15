@@ -23,26 +23,40 @@ To get started with the Moonbeam XCM SDK, you'll need to first install the SDK:
 npm install @moonbeam-network/xcm-sdk
 ```
 
-You'll also need to install a few additional dependencies that you'll use to interact with the SDK in this guide:
+You'll also need to install a few additional dependencies that you'll use to interact with the SDK in this guide. You'll need the Polkadot.js API to create a Polkadot signer:
 
 ```bash
-npm install ethers@^5.7.2 @polkadot/api @polkadot/util-crypto
+npm install @polkadot/api @polkadot/util-crypto
 ```
+
+You'll also need an Ethereum signer if you're interacting with an Ethereum-compatible chain like Moonbeam. This guide will cover using Ethers.js and viem. You'll need to install whichever library you want to use:
+
+=== "Ethers.js"
+
+    ```bash
+    npm install ethers@^5.7.2
+    ```
+
+=== "viem"
+
+    ```bash
+    npm install
+    ```
 
 ## Create Signers {: #create-signers }
 
-When transferring assets between chains, you'll need signers in place to sign the transactions. If you're interacting with an Ethereum-compatible chain that uses standard Ethereum-style H160 addresses, such as Moonbeam, you'll need to have an Ethereum signer, which can be an [Ethers.js](https://docs.ethers.org/v5/){target=_blank} signer, or a [viem Wallet Client](https://viem.sh/docs/clients/wallet.html){target=_blank}. To interact with the relay chain or other parachains, you'll need a [Polkadot](https://polkadot.js.org/docs/api/){target=_blank} signer.
+When transferring assets between chains, you'll need signers in place to sign the transactions. If you're interacting with an Ethereum-compatible chain that uses standard Ethereum-style H160 addresses, such as Moonbeam, you'll need to have an Ethereum signer, which can be an [Ethers.js](https://docs.ethers.org/v5/){target=_blank} signer or a [viem Wallet Client](https://viem.sh/docs/clients/wallet.html){target=_blank}. To interact with the relay chain or other parachains, you'll need a [Polkadot](https://polkadot.js.org/docs/api/){target=_blank} signer.
 
-You can pass, for example, a [MetaMask signer into Ethers](https://docs.ethers.org/v5/getting-started/#getting-started--connecting){target=_blank} or another compatible wallet. Similarly, with Polkadot, you can [pass a compatible wallet to the signer using the `@polkadot/extension-dapp` library](https://polkadot.js.org/docs/extension/){target=_blank}.
+You can pass, for example, a [browser extension wallet as a signer into Ethers](https://docs.ethers.org/v5/getting-started/#getting-started--connecting){target=_blank} or [viem](https://viem.sh/docs/clients/wallet.html#json-rpc-accounts){target=_blank}, such as MetaMask. Similarly, with Polkadot, you can [pass a compatible wallet to the signer using the `@polkadot/extension-dapp` library](https://polkadot.js.org/docs/extension/){target=_blank}.
 
-To create a signer for EVM and Polkadot.js, you can refer to the following sections.
+To create an EVM signer and a Polkadot signer, you can refer to the following sections.
 
 !!! remember
     **Never store your private key or mnemonic in a JavaScript or TypeScript file.**
 
 ### Create a EVM Signer {: #create-a-evm-signer }
 
-To create a Ethers signer, you can use the following code snippet:
+To create an Ethers signer, you can use the following code snippet:
 
 ```js
 import { ethers } from 'ethers';
@@ -52,7 +66,7 @@ const provider = new ethers.providers.WebSocketProvider('INSERT_WS_ENDPOINT', {
   chainId: 'INSERT_CHAIN_ID',
   name: 'INSERT_CHAIN_NAME',
 });
-const ethersSigner = new ethers.Wallet(privateKey, provider);
+const evmSigner = new ethers.Wallet(privateKey, provider);
 ```
 
 For Moonbeam specifically, you can use the following configurations:
@@ -70,7 +84,7 @@ For Moonbeam specifically, you can use the following configurations:
         name: 'moonbeam',
       }
     );
-    const ethersSigner = new ethers.Wallet(privateKey, provider);
+    const evmSigner = new ethers.Wallet(privateKey, provider);
     ```
 
 === "Moonriver"
@@ -86,7 +100,7 @@ For Moonbeam specifically, you can use the following configurations:
         name: 'moonriver',
       }
     );
-    const ethersSigner = new ethers.Wallet(privateKey, provider);
+    const evmSigner = new ethers.Wallet(privateKey, provider);
     ```
 
 === "Moonbase Alpha"
@@ -102,45 +116,98 @@ For Moonbeam specifically, you can use the following configurations:
         name: 'moonbase',
       }
     );
-    const ethersSigner = new ethers.Wallet(privateKey, provider);
+    const evmSigner = new ethers.Wallet(privateKey, provider);
     ```
 
-Alternatively, you can create a viem Wallet Client to pass as EVM Signer
+Alternatively, you can create a viem Wallet Client to pass as EVM signer:
 
 === "Moonbeam"
 
     ```js
-    import { createWalletClient, custom } from 'viem'
-    import { moonbeam } from 'viem/chains'
+    import { createWalletClient, http } from 'viem';
+    import { privateKeyToAccount } from 'viem/accounts' 
+    import { moonbeam } from 'viem/chains';
 
-    const client = createWalletClient({
+    const privateKey = 'INSERT_PRIVATE_KEY';
+    const account = privateKeyToAccount(privateKey);
+
+    const evmSigner = createWalletClient({
+      account,
       chain: moonbeam,
-      transport: custom(window.ethereum)
-    })
+      transport: http(),
+    });
     ```
 
 === "Moonriver"
 
     ```js
-    import { createWalletClient, custom } from 'viem'
-    import { moonriver } from 'viem/chains'
+    import { createWalletClient, http } from 'viem';
+    import { privateKeyToAccount } from 'viem/accounts' 
+    import { moonriver } from 'viem/chains';
 
-    const client = createWalletClient({
+    const privateKey = 'INSERT_PRIVATE_KEY';
+    const account = privateKeyToAccount(privateKey);
+
+    const evmSigner = createWalletClient({
+      account,
       chain: moonriver,
-      transport: custom(window.ethereum)
-    })
+      transport: http(),
+    });
     ```
 
 === "Moonbase Alpha"
 
     ```js
-    import { createWalletClient, custom } from 'viem'
-    import { moonbase } from 'viem/chains'
+    import { createWalletClient, http } from 'viem';
+    import { privateKeyToAccount } from 'viem/accounts' 
+    import { moonbaseAlpha } from 'viem/chains';
 
-    const client = createWalletClient({
-      chain: moonbase,
-      transport: custom(window.ethereum)
-    })
+    const privateKey = 'INSERT_PRIVATE_KEY';
+    const account = privateKeyToAccount(privateKey);
+
+    const evmSigner = createWalletClient({
+      account,
+      chain: moonbaseAlpha,
+      transport: http(),
+    });
+    ```
+
+If you want to pass in a browser extension wallet to viem, you can use the following code:
+
+=== "Moonbeam"
+
+    ```js
+    import { createWalletClient, custom } from 'viem';
+    import { moonbeam } from 'viem/chains';
+
+    const evmSigner = createWalletClient({
+      chain: moonbeam,
+      transport: custom(window.ethereum),
+    });
+    ```
+
+=== "Moonriver"
+
+    ```js
+    import { createWalletClient, custom } from 'viem';
+    import { moonriver } from 'viem/chains';
+
+    const evmSigner = createWalletClient({
+      chain: moonriver,
+      transport: custom(window.ethereum),
+    });
+    ```
+
+=== "Moonbase Alpha"
+
+    ```js
+    import { createWalletClient, custom } from 'viem';
+    import { moonbaseAlpha } from 'viem/chains';
+
+    const evmSigner = createWalletClient({
+      chain: moonbaseAlpha,
+      transport: custom(window.ethereum),
+    });
     ```
 
 !!! note
@@ -242,9 +309,13 @@ const fromPolkadot = async() => {
     .asset('dot')
     .source('polkadot')
     .destination('moonbeam')
-    .accounts(pair.address, evmSigner.address {
-      pair,
-    });
+    .accounts(
+      pair.address, 
+      evmSigner.address, // If using viem, use evmSigner.account.address
+      {
+        pair,
+      }
+    );
 }
 
 fromPolkadot();
@@ -260,7 +331,7 @@ import { Sdk } from '@moonbeam-network/xcm-sdk';
 
 const fromPolkadot = async() => {
   const data = await Sdk().getTransferData({
-    destinationAddress: evmSigner.address,
+    destinationAddress: evmSigner.address, // If using viem, use evmSigner.account.address
     destinationKeyOrChain: 'moonbeam',
     keyOrAsset: 'dot',
     polkadotSigner: pair,
