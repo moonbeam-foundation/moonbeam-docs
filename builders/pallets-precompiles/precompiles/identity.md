@@ -46,11 +46,11 @@ The Identity Precompile is located at the following address:
 The Identity Precompile contains some functions that can be called by anyone and some judgment-related functions that must be called by a registrar. The functions that can be called by anyone are as follows:
 
 - **identity**(*address* who) - returns registration information for a given account
-- **superOf**(*address* who) - retrieves the super account for a sub account. If the given account is not a sub account, the address returned is `0x0000000000000000000000000000000000000000`
-- **subsOf**(*address* who) - returns the sub accounts for a given account. If the given account doesn't have any sub accounts, an empty array is returned (`[]`)
+- **superOf**(*address* who) - retrieves the super account for a sub-account. If the given account is not a sub-account, the address returned is `0x0000000000000000000000000000000000000000`
+- **subsOf**(*address* who) - returns the sub-accounts for a given account. If the given account doesn't have any sub-accounts, an empty array is returned (`[]`)
 - **registrars**() - returns the list of registrars
 - **setIdentity**(*IdentityInfo memory* info) - sets the identity for the caller
-- **setSubs**(*SubAccount[] memory* subs) - sets the sub accounts for the caller
+- **setSubs**(*SubAccount[] memory* subs) - sets the sub-accounts for the caller
 - **clearIdentity**() - clears the identity for the caller
 - **requestJudgement**(*uint32* regIndex, *uint256* maxFee) - requests judgment from a given registrar along with the maximum fee the caller is willing to pay
 - **cancelRequest**(*uint32* regIndex) - cancels the caller's request for judgment from a given registrar
