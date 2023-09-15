@@ -52,19 +52,19 @@ The Identity Precompile contains some functions that can be called by anyone and
 - **setIdentity**(*IdentityInfo memory* info) - sets the identity for the caller
 - **setSubs**(*SubAccount[] memory* subs) - sets the sub accounts for the caller
 - **clearIdentity**() - clears the identity for the caller
-- **requestJudgement**(*uint32* regIndex, *uint256* maxFee) - requests judgement from a given registrar along with the maximum fee the caller is willing to pay
-- **cancelRequest**(*uint32* regIndex) - cancels the caller's request for judgement from a given registrar
-- **addSub**(*address* sub, *Data memory* data) - adds a sub identity account for the caller
-- **renameSub**(*address* sub, *Data memory* data) - renames a sub identity account for the caller
+- **requestJudgement**(*uint32* regIndex, *uint256* maxFee) - requests judgment from a given registrar along with the maximum fee the caller is willing to pay
+- **cancelRequest**(*uint32* regIndex) - cancels the caller's request for judgment from a given registrar
+- **addSub**(*address* sub, *Data memory* data) - adds a sub-identity account for the caller
+- **renameSub**(*address* sub, *Data memory* data) - renames a sub-identity account for the caller
 - **removeSub**(*address* sub) - removes a sub identity account for the caller
-- **quitSub**(*address* sub) - removes the caller as a sub identity account
+- **quitSub**(*address* sub) - removes the caller as a sub-identity account
 
-The judgment-related functions that must be called by a registrar, and the caller must be the registrar account that corresponds to the `regIndex`, are:
+The judgment-related functions that must be called by a registrar and the caller must be the registrar account that corresponds to the `regIndex` are:
 
 - **setFee**(*uint32* regIndex, *uint256* fee) - sets the fee for a registar
 - **setAccountId**(*uint32* regIndex, *address* newAccount) - sets a new account for a registrar
 - **setFields**(*uint32* regIndex, *IdentityFields memory* fields) - sets the registrar's identity
-- **provideJudgement**(*uint32* regIndex, *address* target, *Judgement memory* judgement, *bytes32* identity) - provides judgement on an account's identity
+- **provideJudgement**(*uint32* regIndex, *address* target, *Judgement memory* judgement, *bytes32* identity) - provides judgment on an account's identity
 
 ## Interact with the Solidity Interface {: #interact-with-interface }
 
