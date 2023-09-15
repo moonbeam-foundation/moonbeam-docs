@@ -2,6 +2,7 @@ title: Pallets
 nav:
   - index.md
   - 'Conviction Voting': 'conviction-voting.md'
+  - 'Identity': 'identity.md'
   - 'Multisig': 'multisig.md'
   - 'Parachain Staking': 'staking.md'
   - 'Preimage': 'preimage.md'
