@@ -805,3 +805,5 @@ The `fee` property returns the amount of fees to be paid along with information 
 
 !!! note
     For more information on assets and asset amounts, including fees, please refer to the [XCM SDK Reference](/builders/interoperability/xcm/xcm-sdk/v1/reference#assets){target=_blank}.
+  
+--8<-- 'text/disclaimers/third-party-content.md'
