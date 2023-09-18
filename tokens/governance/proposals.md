@@ -35,7 +35,7 @@ This guide will cover the first few steps outlined in the proposal roadmap, as h
 
 You can find a full explanation in the [Roadmap of a Proposal](/learn/features/governance/#roadmap-of-a-proposal-v2){target=_blank} section on the Governance overview page.
 
-![Proposal Roadmap](/images/tokens/governance/proposals/proposal-roadmap.png)
+![Proposal Roadmap](/images/tokens/governance/proposals/proposals-roadmap.png)
 
 ## Submit your Idea to the Community Forum {: #submitting-your-idea-to-the-forum }
 
