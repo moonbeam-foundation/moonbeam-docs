@@ -1,6 +1,6 @@
 ---
 title: Using Tenderly to Debug and Simulate Transactions
-description: Follow a step-by-step tutorial on how to get started with Tenderly including using the Debugger, forking and simulating transactions, and monitoring smart contracts.
+description: Follow this tutorial on how to get started with Tenderly including using the Debugger, forking and simulating transactions, and monitoring smart contracts.
 ---
 
 # Using Tenderly to Simulate and Debug Transactions
