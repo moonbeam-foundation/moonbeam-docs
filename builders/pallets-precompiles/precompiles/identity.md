@@ -43,7 +43,7 @@ The Identity Precompile is located at the following address:
     --8<-- 'code/precompiles/identity/Identity.sol'
     ```
 
-The Identity Precompile contains some functions that can be called by anyone and some judgment-related functions that must be called by a registrar. The functions that can be called by anyone are as follows:
+The Identity Precompile contains some functions that can be called by anyone and some judgment-related functions that can only be called by a registrar. The functions that can be called by anyone are as follows:
 
 - **identity**(*address* who) - returns registration information for a given account
 - **superOf**(*address* who) - retrieves the super account for a sub-account. If the given account is not a sub-account, the address returned is `0x0000000000000000000000000000000000000000`
@@ -73,7 +73,7 @@ The following sections will cover how to interact with the Identity Precompile u
 The examples in this guide will be on Moonbase Alpha.
 --8<-- 'text/common/endpoint-examples.md'
 
-### Using Ethereuem Libraries {: #use-ethereum-libraries }
+### Using Ethereum Libraries {: #use-ethereum-libraries }
 
 To interact with the Identity Precompile's Solidity interface with an Ethereum library, you'll need the Identity Precompile's ABI.
 
