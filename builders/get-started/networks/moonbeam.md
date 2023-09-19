@@ -12,7 +12,6 @@ description: Learn how to connect to Moonbeam via RPC and WSS endpoints, how to 
 For Moonbeam, you can use any of the following block explorers:
 
  - **Ethereum API (Etherscan Equivalent)** — [Moonscan](https://moonbeam.moonscan.io/){target=_blank}
- - **Ethereum API with Indexing** — [Blockscout](https://blockscout.moonbeam.network/){target=_blank}
  - **Ethereum API JSON-RPC based** — [Moonbeam Basic Explorer](https://moonbeam-explorer.netlify.app/?network=Moonbeam){target=_blank}
  - **Substrate API** — [Subscan](https://moonbeam.subscan.io/){target=_blank} or [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbeam.network#/explorer){target=_blank}
 
