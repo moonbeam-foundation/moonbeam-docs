@@ -241,7 +241,7 @@ import { Sdk } from '@moonbeam-network/xcm-sdk';
 const { assets, getTransferData } = Sdk();
 ```
 
-You can choose either method, as both will return the data necessary to initiate an asset transfer between the source chain and the destination chain. Using `assets` will provide additional data along the way, including the list of supported assets and, once an asset is selected, the supported source and estination chains that are able to send and receive the asset.
+You can choose either method, as both will return the data necessary to initiate an asset transfer between the source chain and the destination chain. Using `assets` will provide additional data along the way, including the list of supported assets and, once an asset is selected, the supported source and destination chains that are able to send and receive the asset.
 
 The process for using `assets` to build the transfer data is as follows:
 
