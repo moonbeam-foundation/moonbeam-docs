@@ -42,8 +42,8 @@ The entire process of getting started with Moonbase Alpha can be summarized as f
 7. For testing the XCM integration, please send some tokens to:
 
     ```text
-    AccoundId: 5GWpSdqkkKGZmdKQ9nkSF7TmHp6JWt28BMGQNuG4MXtSvq3e
-    Hex:       0xc4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a063
+    AccoundId (Encoded): 5GWpSdqkkKGZmdKQ9nkSF7TmHp6JWt28BMGQNuG4MXtSvq3e
+    Decoded (32-Bytes):  0xc4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a063
     ```
 
 8. Test the XCM integration
@@ -108,8 +108,8 @@ The process can be summarized in the following steps:
 5. Exchange $50 worth of tokens for testing the XCM integration. Please send the tokens to:
 
     ```text
-    AccoundId: 5DnP2NuCTxfW4E9rJvzbt895sEsYRD7HC9QEgcqmNt7VWkD4
-    Hex:       0x4c0524ef80ae843b694b225880e50a7a62a6b86f7fb2af3cecd893deea80b926
+    AccoundId (Encoded): 5E6kHM4zFdH5KEJE3YEzX5QuqoETVKUQadeY8LVmeh2HyHGt
+    Decoded (32-Bytes):  0x5a071f642798f89d68b050384132eea7b65db483b00dbb05548d3ce472cfef48
     ```
 
 6. Provide an Ethereum-styled address for MOVR/GLMR
