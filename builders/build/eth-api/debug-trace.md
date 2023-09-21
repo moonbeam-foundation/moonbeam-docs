@@ -7,7 +7,7 @@ description:  Learn how to leverage Geth's Debug and Txpool APIs, and OpenEthere
 
 ## Introduction {: #introduction }
 
-Geth's `debug` and `txpool` APIs and OpenEthereum's `trace` module provide non-standard RPC methods for getting a deeper insight into transaction processing. As part of Moonbeam's goal of providing a seamless Ethereum experience for developers, there is support for some of these non-standard RPC methods. Supporting these RPC methods is an important milestone because many projects, such as [The Graph](https://thegraph.com/){target=_blank} or [Blockscout](https://docs.blockscout.com/){target=_blank}, rely on them to index blockchain data.
+Geth's `debug` and `txpool` APIs and OpenEthereum's `trace` module provide non-standard RPC methods for getting a deeper insight into transaction processing. As part of Moonbeam's goal of providing a seamless Ethereum experience for developers, there is support for some of these non-standard RPC methods. Supporting these RPC methods is an important milestone because many projects, such as [The Graph](https://thegraph.com/){target=_blank}, rely on them to index blockchain data.
 
 To view a list of tracing RPC providers, please check out the [Network Endpoints](/builders/get-started/endpoints#tracing-providers){target=_blank} page.
 
