@@ -62,9 +62,14 @@ Using Docker enables you to spin up a node in a matter of seconds. Once you have
         --dev --rpc-external
         ```
 
-    If successful, you should see an output showing an idle state waiting for blocks to be authored:
+!!! note
+    On macOS with silicon chips, Docker images may perform poorly. To improve performance, try [spinning up a Node with a Binary File](#getting-started-with-the-binary-file).
 
-    ![Docker - output shows blocks being produced](/images/builders/get-started/networks/moonbeam-dev/moonbeam-dev-2.png)
+
+
+If successful, you should see an output showing an idle state waiting for blocks to be authored:
+
+![Docker - output shows blocks being produced](/images/builders/get-started/networks/moonbeam-dev/moonbeam-dev-2.png)
 
 For more information on some of the flags and options used in the example, check out [Flags](#node-flags) and [Options](#node-options). If you want to see a complete list of all of the flags, options, and subcommands, open the help menu by running:
 
@@ -90,6 +95,9 @@ To build the binary file, you can take the following steps:
     cd moonbeam
     ```
 
+    !!! note
+        Space in the installation file path will cause an compilation error.
+
 2. If you already have Rust installed, you can skip the next two steps. Otherwise, install Rust and its prerequisites [via Rust's recommended method](https://www.rust-lang.org/tools/install){target=_blank} by executing:
 
     ```bash
@@ -109,6 +117,13 @@ To build the binary file, you can take the following steps:
 
         ```bash
         apt install clang protobuf-compiler libprotobuf-dev -y 
+        ```
+
+        For MacOS users, these dependencies can be installed via homebrew:
+
+        ```bash
+        brew install llvm
+        brew install protobuf
         ```
 
     ```bash
