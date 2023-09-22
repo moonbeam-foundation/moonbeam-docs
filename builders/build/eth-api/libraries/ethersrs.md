@@ -314,7 +314,7 @@ If the transaction was succesful, in your terminal you'll see the transaction de
 
 ## Deploy a Contract {: #deploy-a-contract }
 
---8<-- 'text/libraries/contract.md'
+--8<-- 'text/eth-api/libraries/contract.md'
 
 During the rest of this section, you'll be creating a couple of functions, which will be contained in the `main.rs` file to avoid additional complexity from implementing modules. The first function will be to compile and deploy the contract. The remaining functions will interact with the deployed contract.  
 

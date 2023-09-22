@@ -18,7 +18,7 @@ For the examples in this guide, you will need to have the following:
  - An account with funds.
   --8<-- 'text/faucet/faucet-list-item.md'
  - 
---8<-- 'text/common/endpoint-examples.md'
+--8<-- 'text/common/endpoint-examples-list-item.md'
 
 !!! note
     --8<-- 'text/common/assumes-mac-or-ubuntu-env.md'
@@ -157,7 +157,7 @@ You can also use the `balances.py` script to check that the balances for the ori
 
 ## Deploy a Contract {: #deploy-a-contract }
 
---8<-- 'text/libraries/contract.md'
+--8<-- 'text/eth-api/libraries/contract.md'
 
 ### Compile Contract Script {: #compile-contract-script }
 
