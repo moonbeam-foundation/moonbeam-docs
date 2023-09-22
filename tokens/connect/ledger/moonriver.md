@@ -18,9 +18,9 @@ You also have the option of using the Ethereum app to connect to Moonriver. The 
 
 In this tutorial, you will learn how to get started with your Ledger hardware wallet on Moonriver using the Moonriver app. This guide only illustrates the steps for a Ledger Nano X device, but you can follow along with a Ledger Nano S as well.
 
---8<-- 'text/disclaimers/third-party-content-intro.md'
+--8<-- 'text/_disclaimers/third-party-content-intro.md'
 
---8<-- 'text/ledger/checking-prereqs.md'
+--8<-- 'text/tokens/connect/ledger/checking-prereqs.md'
 
 In addition, you'll need MetaMask as an intermediary between your Ledger device and Moonbeam. Make sure that your MetaMask is [connected to Moonbeam](/tokens/connect/metamask/){target=_blank}.
 
@@ -30,7 +30,7 @@ As of [MetaMask version 10.5.0](https://consensys.net/blog/metamask/metamask-and
 
 The Moonriver app is dependent on the Ethereum app, so first you will need to install the Ethereum app. Once the Ethereum app is installed you will be able to install the Moonriver app without a problem. Please note that the Moonriver app is only for the Moonriver network, it will not work for Moonbeam or Moonbase Alpha.
 
---8<-- 'text/ledger/install-eth-app.md'
+--8<-- 'text/tokens/connect/ledger/install-eth-app.md'
 4. Search for Moonriver (MOVR) in the **App catalog** and click **Install**. Again, your Ledger device will show **Processing** and once complete, the Moonriver app will appear on your Ledger device
 
 In the Ledger Live app, you should see the Ethereum and Moonriver app listed under the **Apps installed** tab on the **Manager** page. After the apps have been successfully installed, you can close out of Ledger Live.
@@ -41,23 +41,23 @@ In the Ledger Live app, you should see the Ethereum and Moonriver app listed und
 
 Now that you've installed the Ledger Live apps, you can connect your Ledger to the computer, unlock it, and open the Moonriver app.
 
---8<-- 'text/ledger/import-ledger/step-1.md'
+--8<-- 'text/tokens/connect/ledger/import-ledger/step-1.md'
 
 ![MetaMask Connect Hardware Wallet](/images/tokens/connect/ledger/moonriver/ledger-2.png)
 
---8<-- 'text/ledger/import-ledger/step-2.md'
+--8<-- 'text/tokens/connect/ledger/import-ledger/step-2.md'
 
 ![MetaMask Select Ledger Hardware Wallet](/images/tokens/connect/ledger/moonriver/ledger-3.png)
 
---8<-- 'text/ledger/import-ledger/step-3.md'
+--8<-- 'text/tokens/connect/ledger/import-ledger/step-3.md'
 
 ![Ledger on Chrome](/images/tokens/connect/ledger/moonriver/ledger-4.png)
 
---8<-- 'text/ledger/import-ledger/step-4.md'
+--8<-- 'text/tokens/connect/ledger/import-ledger/step-4.md'
 
 If MetaMask was able to connect successfully to your Ledger device, you should see a list of five Moonriver/Ethereum-styled accounts. If not, double-check that Ledger Live is closed, you've connected your Ledger device to the computer, unlocked it, and have the Moonriver app open.
 
---8<-- 'text/ledger/import-accounts.md'
+--8<-- 'text/tokens/connect/ledger/import-accounts.md'
 
 ![MetaMask Select Ethereum Accounts to Import](/images/tokens/connect/ledger/moonriver/ledger-5.png)
 
@@ -69,7 +69,7 @@ You can switch accounts in MetaMask at any time to view the balance of your othe
 
 You've now successfully imported a Moonriver compatible account from your Ledger device and are now ready to start interacting with your Ledger device.
 
---8<-- 'text/ledger/receive-tokens.md'
+--8<-- 'text/tokens/connect/ledger/receive-tokens.md'
 
 ![MetaMask Copy Account](/images/tokens/connect/ledger/moonriver/ledger-7.png)
 
@@ -81,8 +81,8 @@ Next up is sending and signing transactions on Moonriver using your Ledger devic
 
 ![MetaMask Ledger Account Funded](/images/tokens/connect/ledger/moonriver/ledger-8.png)
 
---8<-- 'text/ledger/send-tokens/set-of-steps-1.md'
---8<-- 'text/ledger/send-tokens/set-of-steps-2.md'
+--8<-- 'text/tokens/connect/ledger/send-tokens/set-of-steps-1.md'
+--8<-- 'text/tokens/connect/ledger/send-tokens/set-of-steps-2.md'
 
 ![MetaMask Ledger Transaction Wizard](/images/tokens/connect/ledger/moonriver/ledger-9.png)
 
@@ -92,8 +92,8 @@ Right after you've approved the transaction, MetaMask sends it to the network. O
 
 And that is it! You've signed a transaction and sent some MOVR tokens using your Ledger hardware wallet!
 
---8<-- 'text/ledger/blind-signing.md'
+--8<-- 'text/tokens/connect/ledger/blind-signing.md'
 
 ![MetaMask Ledger Allow Contracts Tx](/images/tokens/connect/ledger/moonriver/ledger-11.png)
 
---8<-- 'text/disclaimers/third-party-content.md'
+--8<-- 'text/_disclaimers/third-party-content.md'

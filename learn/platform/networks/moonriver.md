@@ -43,7 +43,7 @@ Some important variables/configurations to note include:
 
 _*Read more about [token denominations](#token-denominations)_
 
---8<-- 'text/moonriver/connect.md'
+--8<-- 'text/builders/get-started/networks/moonriver/connect.md'
 
 ## Telemetry {: #telemetry } 
 

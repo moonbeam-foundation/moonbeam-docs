@@ -15,7 +15,7 @@ Furthermore, developers can build APIs, called Subgraphs. Users or other develop
 
 Due to the support of Ethereum tracing modules on Moonbeam, The Graph is capable of indexing blockchain data on Moonbeam. This guide takes you through the creation of a simple subgraph for a Lottery contract on Moonbase Alpha. This guide can be adapted for Moonbeam and Moonriver.
 
---8<-- 'text/disclaimers/third-party-content-intro.md'
+--8<-- 'text/_disclaimers/third-party-content-intro.md'
 
 ## Quick Start
 
@@ -320,4 +320,4 @@ The logs from the previous command should look similar to:
 
 DApps can now use the Subgraph endpoints to fetch the data indexed by The Graph protocol.
 
---8<-- 'text/disclaimers/third-party-content.md'
+--8<-- 'text/_disclaimers/third-party-content.md'

@@ -18,17 +18,17 @@ You also have the option of using the Ethereum app to connect to Moonbeam. The m
 
 In this tutorial, you will learn how to get started with your Ledger hardware wallet on Moonbeam using the Moonbeam app. This guide only illustrates the steps for a Ledger Nano X device, but you can follow along with a Ledger Nano S as well. 
 
---8<-- 'text/disclaimers/third-party-content-intro.md'
+--8<-- 'text/_disclaimers/third-party-content-intro.md'
 
---8<-- 'text/ledger/checking-prereqs.md'
+--8<-- 'text/tokens/connect/ledger/checking-prereqs.md'
 
---8<-- 'text/ledger/checking-prereqs-ll.md'
+--8<-- 'text/tokens/connect/ledger/checking-prereqs-ll.md'
 
 ## Install the Moonbeam Ledger Live App {: install-the-moonbeam-ledger-live-app }
 
 The Moonbeam app is dependent on the Ethereum app, so first you will need to install the Ethereum app. Once the Ethereum app is installed you will be able to install the Moonbeam app without a problem. Please note that the Moonbeam app is only for the Moonbeam network, it will not work for Moonriver or Moonbase Alpha.
 
---8<-- 'text/ledger/install-eth-app.md'
+--8<-- 'text/tokens/connect/ledger/install-eth-app.md'
 4. Search for Moonbeam (GLMR) in the **App catalog** and click **Install**. Again, your Ledger device will show **Processing** and once complete, the Moonbeam app will appear on your Ledger device
 
 In the Ledger Live app, you should see the Ethereum and Moonbeam app listed under the **Apps installed** tab on the **Manager** page. After the apps have been successfully installed, you can close out of Ledger Live. 
@@ -39,23 +39,23 @@ In the Ledger Live app, you should see the Ethereum and Moonbeam app listed unde
 
 Now that you've installed the Ledger Live apps, you can connect your Ledger to the computer, unlock it, and open the Moonbeam app. 
 
---8<-- 'text/ledger/import-ledger/step-1.md'
+--8<-- 'text/tokens/connect/ledger/import-ledger/step-1.md'
 
 ![MetaMask Connect Hardware Wallet](/images/tokens/connect/ledger/moonbeam/ledger-2.png)
 
---8<-- 'text/ledger/import-ledger/step-2.md'
+--8<-- 'text/tokens/connect/ledger/import-ledger/step-2.md'
 
 ![MetaMask Select Ledger Hardware Wallet](/images/tokens/connect/ledger/moonbeam/ledger-3.png)
 
---8<-- 'text/ledger/import-ledger/step-3.md'
+--8<-- 'text/tokens/connect/ledger/import-ledger/step-3.md'
 
 ![Ledger on Chrome](/images/tokens/connect/ledger/moonbeam/ledger-4.png)
 
---8<-- 'text/ledger/import-ledger/step-4.md'
+--8<-- 'text/tokens/connect/ledger/import-ledger/step-4.md'
 
 If MetaMask was able to connect successfully to your Ledger device, you should see a list of five Moonbeam/Ethereum-styled accounts. If not, double-check that Ledger Live is closed, you've connected your Ledger device to the computer, unlocked it, and have the Moonbeam app open.
 
---8<-- 'text/ledger/import-accounts.md'
+--8<-- 'text/tokens/connect/ledger/import-accounts.md'
 
 ![MetaMask Select Ethereum Accounts to Import](/images/tokens/connect/ledger/moonbeam/ledger-5.png)
 
@@ -67,7 +67,7 @@ You can switch accounts in MetaMask at any time to view the balance of your othe
 
 You've now successfully imported a Moonbeam compatible account from your Ledger device and are now ready to start interacting with your Ledger device.
 
---8<-- 'text/ledger/receive-tokens.md'
+--8<-- 'text/tokens/connect/ledger/receive-tokens.md'
 
 ![MetaMask Copy Account](/images/tokens/connect/ledger/moonbeam/ledger-7.png)
 
@@ -79,8 +79,8 @@ Next up is sending and signing transactions on Moonbeam using your Ledger device
 
 ![MetaMask Ledger Account Funded](/images/tokens/connect/ledger/moonbeam/ledger-8.png)
 
---8<-- 'text/ledger/send-tokens/set-of-steps-1.md'
---8<-- 'text/ledger/send-tokens/set-of-steps-2.md'
+--8<-- 'text/tokens/connect/ledger/send-tokens/set-of-steps-1.md'
+--8<-- 'text/tokens/connect/ledger/send-tokens/set-of-steps-2.md'
 
 ![MetaMask Ledger Transaction Wizard](/images/tokens/connect/ledger/moonbeam/ledger-9.png)
 
@@ -90,10 +90,10 @@ Right after you've approved the transaction, MetaMask sends it to the network. O
 
 And that is it! You've signed a transaction and sent some GLMR tokens using your Ledger hardware wallet!
 
---8<-- 'text/ledger/blind-signing.md'
+--8<-- 'text/tokens/connect/ledger/blind-signing.md'
 
 ![MetaMask Ledger Allow Contracts Tx](/images/tokens/connect/ledger/moonbeam/ledger-11.png)
 
---8<-- 'text/ledger/ledger-live.md'
+--8<-- 'text/tokens/connect/ledger/ledger-live.md'
 
---8<-- 'text/disclaimers/third-party-content.md'
+--8<-- 'text/_disclaimers/third-party-content.md'

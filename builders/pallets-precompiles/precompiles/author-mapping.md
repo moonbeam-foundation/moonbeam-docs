@@ -32,7 +32,7 @@ The precompile is located at the following address:
      {{networks.moonbase.precompiles.author_mapping }}
      ```
 
---8<-- 'text/precompiles/security.md'
+--8<-- 'text/builders/pallet-precompiles/precompiles/security.md'
 
 ## The Author Mapping Solidity Interface {: #the-solidity-interface }
 
@@ -103,7 +103,7 @@ As previously mentioned, you can use a Ledger by connecting it to MetaMask, plea
 
 ### Generate Session Keys {: #generate-session-keys }
 
---8<-- 'text/collators/generate-session-keys.md'
+--8<-- 'text/node-operators/networks/collators/account-management/generate-session-keys.md'
 
 ### Remix Set Up {: #remix-set-up }
 

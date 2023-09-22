@@ -298,6 +298,6 @@ In summary, delegators will earn rewards based on their stake of the total deleg
 
 Delegators can choose to auto-compound their rewards so that their rewards are automatically applied to their total delegation amount. If a delegator has multiple delegations, auto-compounding will need to be set for each delegation.
 
---8<-- 'text/disclaimers/staking-risks.md'
+--8<-- 'text/_disclaimers/staking-risks.md'
 *Staked MOVR/GLMR tokens are locked up, and retrieving them requires a {{ networks.moonriver.delegator_timings.del_bond_less.days }} day/{{ networks.moonbeam.delegator_timings.del_bond_less.days }} day waiting period .*
---8<-- 'text/disclaimers/staking-risks-part-2.md'
+--8<-- 'text/_disclaimers/staking-risks-part-2.md'

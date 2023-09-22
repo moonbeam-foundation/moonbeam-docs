@@ -13,7 +13,7 @@ Moonbeam provides two different kind of explorers: ones to query the Ethereum AP
 
 ## Quick Links {: #quick-links }
 
---8<-- 'text/explorers/explorers.md'
+--8<-- 'text/builders/get-started/explorers/explorers.md'
 
 ## Ethereum API {: #ethereum-api }
 

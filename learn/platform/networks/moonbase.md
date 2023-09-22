@@ -45,7 +45,7 @@ Some important variables/configurations to note include:
     |           Bond duration           |               delegation takes effect in the next round (funds are withdrawn immediately)               |
     |          Unbond duration          |                  {{ networks.moonbase.delegator_timings.del_bond_less.rounds }} rounds                  |
 
---8<-- 'text/testnet/connect.md'
+--8<-- 'text/builders/get-started/networks/moonbase/connect.md'
 
 ## Alphanet Relay Chain {: #relay-chain }
 

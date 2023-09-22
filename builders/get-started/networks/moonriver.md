@@ -5,7 +5,7 @@ description: Learn how to connect to Moonriver via RPC and WSS endpoints, how to
 
 # Get Started with Moonriver
 
---8<-- 'text/moonriver/connect.md'
+--8<-- 'text/builders/get-started/networks/moonriver/connect.md'
 
 ## Block Explorers {: #block-explorers }
 

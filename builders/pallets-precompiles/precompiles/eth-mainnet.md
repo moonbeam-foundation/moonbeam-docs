@@ -18,7 +18,7 @@ In this guide, you will learn how to use and/or verify these precompiles.
 
 ## Checking Prerequisites {: #checking-prerequisites } 
 
---8<-- 'text/common/install-nodejs.md'
+--8<-- 'text/_common/install-nodejs.md'
 
 As of writing this guide, the versions used were 15.2.1 and 7.0.8, respectively. You will also need to install the [Web3](https://web3js.readthedocs.io/en/latest/){target=_blank} package by executing:
 
@@ -34,7 +34,7 @@ npm ls web3
 
 As of writing this guide, the version used was 1.3.0. You will be also using [Remix](/builders/build/eth-api/dev-env/remix/){target=_blank}, connecting it to the Moonbase Alpha TestNet via [MetaMask](/tokens/connect/metamask/){target=_blank}.
 
---8<-- 'text/common/endpoint-examples.md'
+--8<-- 'text/_common/endpoint-examples.md'
 
 ## Verify Signatures with ECRECOVER {: #verify-signatures-with-ecrecover } 
 
@@ -42,15 +42,15 @@ The main function of this precompile is to verify the signature of a message. In
 
 The following will be a small example to showcase how to leverage this precompiled function. You'll need to retrieve the transaction's signature values (`v`, `r`, `s`). Therefore, you'll sign and retrieve the signed message where these values are:
 
---8<-- 'code/precompiles/ecrecover.md'
+--8<-- 'code/builders/pallets-precompiles/precompiles/eth-mainnet/ecrecover.md'
 
 This code will return the following object in the terminal:
 
---8<-- 'code/precompiles/ecrecoverresult.md'
+--8<-- 'code/builders/pallets-precompiles/precompiles/eth-mainnet/ecrecoverresult.md'
 
 With the necessary values, you can go to [Remix](/builders/build/eth-api/dev-env/remix/){target=_blank} to test the precompiled contract. Note that this can also be verified with the Web3.js library, but in this case, you can go to Remix to be sure that it is using the precompiled contract on the blockchain. The Solidity code you can use to verify the signature is the following:
 
---8<-- 'code/precompiles/ecrecoverremix.md'
+--8<-- 'code/builders/pallets-precompiles/precompiles/eth-mainnet/ecrecoverremix.md'
 
 Using the [Remix compiler and deployment](/builders/build/eth-api/dev-env/remix){target=_blank} and with [MetaMask pointing to Moonbase Alpha](/tokens/connect/metamask/){target=_blank}, you can deploy the contract and call the `verify()` method that returns **true** if the address returned by `ecrecover` is equal to the address used to sign the message (related to the private key and needs to be manually set in the contract).
 
@@ -58,7 +58,7 @@ Using the [Remix compiler and deployment](/builders/build/eth-api/dev-env/remix)
 
 This hashing function returns the SHA256 hash from the given data. To test this precompile, you can use this [SHA256 Hash Calculator tool](https://md5calc.com/hash/sha256){target=_blank} to calculate the SHA256 hash of any string you want. In this case, you'll do so with `Hello World!`. You can head directly to Remix and deploy the following code, where the calculated hash is set for the `expectedHash` variable:
 
---8<-- 'code/precompiles/sha256.md'
+--8<-- 'code/builders/pallets-precompiles/precompiles/eth-mainnet/sha256.md'
 
 Once the contract is deployed, you can call the `checkHash()` method that returns **true** if the hash returned by `calculateHash()` is equal to the hash provided.
 
@@ -68,7 +68,7 @@ SHA3-256 is part of the SHA-3 family of cryptographic hashes codified in [FIPS20
 
 Currently there is no SHA3-256 support in Solidity, so it needs to be called with inline assembly. The following sample code can be used to call this precompile.
 
---8<-- 'code/precompiles/sha3fips.md'
+--8<-- 'code/builders/pallets-precompiles/precompiles/eth-mainnet/sha3fips.md'
 
 Using the [Remix compiler and deployment](/builders/build/eth-api/dev-env/remix/){target=_blank} and with [MetaMask pointing to Moonbase Alpha](/tokens/connect/metamask/){target=_blank}, you can deploy the contract and call the `sha3fips(bytes memory data)` method to return the encoded string of the data parameter.
 
@@ -76,7 +76,7 @@ Using the [Remix compiler and deployment](/builders/build/eth-api/dev-env/remix/
 
 This hashing function returns a RIPEMD160 hash from the given data. To test this precompile, you can use this [RIPEMD160 Hash Calculator tool](https://md5calc.com/hash/ripemd160){target=_blank} to calculate the RIPEMD160 hash of any string. In this case, you'll do so again with `Hello World!`. You'll reuse the same code as before, but use the `ripemd160` function. Note that it returns a `bytes20` type variable:
 
---8<-- 'code/precompiles/ripemd160.md'
+--8<-- 'code/builders/pallets-precompiles/precompiles/eth-mainnet/ripemd160.md'
 
 With the contract deployed, you can call the `checkHash()` method that returns **true** if the hash returned by `calculateHash()` is equal to the hash provided.
 
@@ -86,7 +86,7 @@ The BN128Add precompile implements a native elliptic curve point addition. It re
 
 Currently there is no BN128Add support in Solidity, so it needs to be called with inline assembly. The following sample code can be used to call this precompile.
 
---8<-- 'code/precompiles/bn128add.md'
+--8<-- 'code/builders/pallets-precompiles/precompiles/eth-mainnet/bn128add.md'
 
 Using the [Remix compiler and deployment](/builders/build/eth-api/dev-env/remix/){target=_blank} and with [MetaMask pointing to Moonbase Alpha](/tokens/connect/metamask/){target=_blank}, you can deploy the contract and call the `callBn256Add(bytes32 ax, bytes32 ay, bytes32 bx, bytes32 by)` method to return the result of the operation.
 
@@ -96,7 +96,7 @@ The BN128Mul precompile implements a native elliptic curve multiplication with a
 
 Currently there is no BN128Mul support in Solidity, so it needs to be called with inline assembly. The following sample code can be used to call this precompile.
 
---8<-- 'code/precompiles/bn128mul.md'
+--8<-- 'code/builders/pallets-precompiles/precompiles/eth-mainnet/bn128mul.md'
 
 Using the [Remix compiler and deployment](/builders/build/eth-api/dev-env/remix/){target=_blank} and with [MetaMask pointing to Moonbase Alpha](/tokens/connect/metamask/){target=_blank}, you can deploy the contract and call the `callBn256ScalarMul(bytes32 x, bytes32 y, bytes32 scalar)` method to return the result of the operation.
 
@@ -106,7 +106,7 @@ The BN128Pairing precompile implements elliptic curve paring operation to perfor
 
 Currently there is no BN128Pairing support in Solidity, so it needs to be called with inline assembly. The following sample code can be used to call this precompile.
 
---8<-- 'code/precompiles/bn128pairing.md'
+--8<-- 'code/builders/pallets-precompiles/precompiles/eth-mainnet/bn128pairing.md'
 
 Using the [Remix compiler and deployment](/builders/build/eth-api/dev-env/remix/){target=_blank} and with [MetaMask pointing to Moonbase Alpha](/tokens/connect/metamask/){target=_blank}, you can deploy the contract and call the `function callBn256Pairing(bytes memory input)` method to return the result of the operation.
 
@@ -116,7 +116,7 @@ Also known as datacopy, this function serves as a cheaper way to copy data in me
 
 Currently there is no Identity Function support in Solidity, so it needs to be called with inline assembly. The following sample code (adapted to Solidity), can be used to call this precompiled contract:
 
---8<-- 'code/precompiles/identity.md'
+--8<-- 'code/builders/pallets-precompiles/precompiles/eth-mainnet/identity.md'
 
 You can use this [Web3 Type Converter tool](https://web3-type-converter.onbrn.com/){target=_blank} to get bytes from any string, as this is the input of the `callDataCopy()` method.
 
@@ -128,7 +128,7 @@ This precompile calculates the remainder when an integer `b` (base) is raised to
 
 The Solidity compiler does not support it, so it needs to be called with inline assembly. The following code was simplified to show the functionality of this precompile:
 
---8<-- 'code/precompiles/modularexp.md'
+--8<-- 'code/builders/pallets-precompiles/precompiles/eth-mainnet/modularexp.md'
 
 You can try this in [Remix](/builders/build/eth-api/dev-env/remix/){target=_blank}. Use the function `verify()`, passing the base, exponent, and modulus. The function will store the value in the `checkResult` variable. 
 

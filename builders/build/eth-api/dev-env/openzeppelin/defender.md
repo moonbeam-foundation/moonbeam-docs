@@ -137,4 +137,4 @@ This will initiate a transaction that needs to be signed using MetaMask, after w
 
 You can also see that the contract's status has changed from **Running** to **Paused**. Great! You now know how to use the Admin component to manage your smart contracts. 
 
---8<-- 'text/disclaimers/third-party-content.md'
+--8<-- 'text/_disclaimers/third-party-content.md'

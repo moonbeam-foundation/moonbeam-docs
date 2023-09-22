@@ -34,7 +34,7 @@ The Call Permit Precompile is located at the following address:
      {{networks.moonbase.precompiles.call_permit }}
      ```
 
---8<-- 'text/precompiles/security.md'
+--8<-- 'text/builders/pallet-precompiles/precompiles/security.md'
 
 ## The Call Permit Solidity Interface {: #the-call-permit-interface }
 
@@ -56,7 +56,7 @@ The interface includes the following functions:
 - **nonces**(*address* owner) - returns the current nonce for given owner
 - **DOMAIN_SEPARATOR**() - returns the EIP-712 domain separator which is used to avoid replay attacks. It follows the [EIP-2612](https://eips.ethereum.org/EIPS/eip-2612#specification){target=_blank} implementation
 
---8<-- 'text/precompiles/call-permit/domain-separator.md'
+--8<-- 'text/builders/pallets-precompiles/precompiles/call-permit/domain-separator.md'
 
 When `dispatch` is called, the permit needs to be verified before the call is dispatched. The first step is to [compute the domain separator](https://github.com/moonbeam-foundation/moonbeam/blob/ae705bb2e9652204ace66c598a00dcd92445eb81/precompiles/call-permit/src/lib.rs#L138){target=_blank}. The calculation can be seen in [Moonbeam's implementation](https://github.com/moonbeam-foundation/moonbeam/blob/ae705bb2e9652204ace66c598a00dcd92445eb81/precompiles/call-permit/src/lib.rs#L112-L126){target=_blank} or you can check out a practical example in [OpenZeppelin's EIP712 contract](ttps://github.com/OpenZeppelin/openzeppelin-contracts/blob/4a9cc8b4918ef3736229a5cc5a310bdc17bf759f/contracts/utils/cryptography/draft-EIP712.sol#L70-L84){target=_blank}.
 
@@ -79,7 +79,7 @@ To follow along with this tutorial, you will need to have:
 - [MetaMask installed and connected to Moonbase Alpha](/tokens/connect/metamask/){target=_blank}
 - Create or have two accounts on Moonbase Alpha to test out the different features in the Call Permit Precompile
 - At least one of the accounts will need to be funded with `DEV` tokens.
- --8<-- 'text/faucet/faucet-list-item.md'
+ --8<-- 'text/_common/faucet/faucet-list-item.md'
 
 ### Example Contract {: #example-contract }
 
@@ -203,7 +203,7 @@ The CDN for Ethers.js will appear in the list of libraries under **Resources**.
 In the **Javascript** code box, copy and paste the following JavaScript snippet, making sure to replace the `to` variables (and any other variables as you see fit):
 
 ```js
---8<-- 'code/precompiles/call-permit/browser-getSignature.js'
+--8<-- 'code/builders/pallets-precompiles/precompiles/call-permit/browser-getSignature.js'
 ```
 
 To run the code, click **Run** at the top of the page (or you can also use `control` and `s`). MetaMask should pop up and prompt you to connect an account. Make sure to choose the account you want to sign the message with. Then go ahead and sign the message.
@@ -241,7 +241,7 @@ npm i @metamask/eth-sig-util ethers
 In the `getSignature.js` file, you can copy the following code snippet:
 
 ```js
---8<-- 'code/precompiles/call-permit/getSignature.js'
+--8<-- 'code/builders/pallets-precompiles/precompiles/call-permit/getSignature.js'
 ```
 
 To run the script, use the following command:

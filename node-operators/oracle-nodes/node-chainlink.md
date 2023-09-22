@@ -14,11 +14,11 @@ This article provides an overview in regards to setting up a Chainlink oracle on
 !!! note
     The examples provided are for demonstration purposes only. Passwords **MUST** be managed securely and never stored in plaintext. These examples assume an Ubuntu 18.04-based environment, but call-outs for MacOS are included. This guide is for a development setup only, do not use this for a production environment.
 
---8<-- 'text/disclaimers/third-party-content-intro.md'
+--8<-- 'text/_disclaimers/third-party-content-intro.md'
 
 ## Basic Request Model {: #basic-request-model }
 
---8<-- 'text/chainlink/brm.md'
+--8<-- 'text/builders/integrations/oracles/chainlink/brm.md'
 
 ## Advanced Users {: #advanced-users }
 
@@ -29,7 +29,7 @@ If you are familiar with running Chainlink oracle nodes, this information will g
  - Moonbase Alpha ChainId: `{{ networks.moonbase.chain_id }}` (hex: `{{ networks.moonbase.hex_chain_id}}`)
  - LINK Token on Moonbase Alpha: `0xa36085F69e2889c224210F603D836748e7dC0088`
  -
- --8<-- 'text/faucet/faucet-list-item.md'
+ --8<-- 'text/_common/faucet/faucet-list-item.md'
 
 ## Checking Prerequisites {: #checking-prerequisites }
 
@@ -37,7 +37,7 @@ To follow along with this guide, you will need to have:
 
  - [Docker installed](https://docs.docker.com/get-docker/){target=_blank} for running Postgres DB and ChainLink node containers
  - An account with funds. You can create one with [MetaMask](/tokens/connect/metamask/){target=_blank}.
- --8<-- 'text/faucet/faucet-list-item.md'
+ --8<-- 'text/_common/faucet/faucet-list-item.md'
  - Access to the [Remix IDE](https://remix.ethereum.org/){target=_blank} in case you want to use it to deploy the oracle contract. For more information you can check out the [Using Remix to Deploy to Moonbeam](/builders/build/eth-api/dev-env/remix/){target=_blank} tutorial
 
 ## Getting Started {: #getting-started }
@@ -153,7 +153,7 @@ With the oracle node running, you can start to configure the smart contract side
 
 2. Go to the **Configuration Page** and copy the node address
 3. Fund the node.
- --8<-- 'text/faucet/faucet-list-item.md'
+ --8<-- 'text/_common/faucet/faucet-list-item.md'
 
     ![Chainlink address](/images/node-operators/oracle-nodes/chainlink/chainlink-node-3.png)
 
@@ -267,4 +267,4 @@ If you need a more custom solution, you can check out Chainlink's documentation 
 
 To verify the oracle is up and answering requests, follow the [using a Chainlink Oracle](/builders/integrations/oracles/chainlink/) tutorial. The main idea is to deploy a client contract that makes requests to the oracle, and the oracle writes the requested data into the contract's storage.
 
---8<-- 'text/disclaimers/third-party-content.md'
+--8<-- 'text/_disclaimers/third-party-content.md'

@@ -211,7 +211,7 @@ If you want to pass in a browser extension wallet to viem, you can use the follo
     ```
 
 !!! note
-    --8<-- 'text/common/endpoint-setup.md'
+    --8<-- 'text/_common/endpoint-setup.md'
 
 ### Create a Polkadot Signer {: #create-a-polkadot-signer }
 
@@ -806,4 +806,4 @@ The `fee` property returns the amount of fees to be paid along with information 
 !!! note
     For more information on assets and asset amounts, including fees, please refer to the [XCM SDK Reference](/builders/interoperability/xcm/xcm-sdk/v1/reference#assets){target=_blank}.
   
---8<-- 'text/disclaimers/third-party-content.md'
+--8<-- 'text/_disclaimers/third-party-content.md'

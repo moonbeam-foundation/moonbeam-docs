@@ -19,13 +19,13 @@ For more information on Moonbeam's governance system, please refer to the [Gover
 
 Some of the key parameters for this guide are the following:
 
---8<-- 'text/governance/proposal-definitions.md'
+--8<-- 'text/learn/features/governance/proposal-definitions.md'
 
---8<-- 'text/governance/preimage-definitions.md'
+--8<-- 'text/learn/features/governance/preimage-definitions.md'
 
  - **Submission Deposit** - the minimum deposit amount for submitting a public referendum proposal
 
---8<-- 'text/governance/lead-in-definitions.md'
+--8<-- 'text/learn/features/governance/lead-in-definitions.md'
 
 Make sure you check the [Governance Parameters](/learn/features/governance/#governance-parameters-v2){target=_blank} for each network and track.
 

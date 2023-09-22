@@ -49,7 +49,7 @@ For this guide, you will need the following:
 - To connect to the [Moonbase Alpha TestNet](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network){target=_blank} on the Polkadot.js Apps explorer. You can also follow along and adapt the instructions for [Moonbeam](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbeam.network){target=_blank} or [Moonriver](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonriver.moonbeam.network){target=_blank}.
 - To [create or import an account](/tokens/connect/polkadotjs/#creating-or-importing-an-h160-account) into Polkadot.js Apps
 - Make sure you have funded your account.
- --8<-- 'text/faucet/faucet-list-item.md'
+ --8<-- 'text/_common/faucet/faucet-list-item.md'
 
 ## Get Started {: #get-started }
 

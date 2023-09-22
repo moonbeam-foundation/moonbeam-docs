@@ -19,7 +19,7 @@ To run The Graph component of Scaffold-ETH, you also need to have the following 
  - [Docker Compose](https://docs.docker.com/compose/install/){target=_blank}
  - [JQ](https://stedolan.github.io/jq/download/){target=_blank}
 
---8<-- 'text/common/endpoint-examples.md'
+--8<-- 'text/_common/endpoint-examples.md'
 
 ### Installing Scaffold-ETH {: #installing-scaffold-eth }
 
@@ -45,7 +45,7 @@ Once the dependencies have been installed without any errors in the console outp
 
 You need to make modifications to the configurations of the three major components that make up Scaffold-ETH.
 
---8<-- 'text/common/endpoint-examples.md'
+--8<-- 'text/_common/endpoint-examples.md'
 
 ### Hardhat Component {: #hardhat-component }
 
@@ -313,4 +313,4 @@ After a short wait, the console output will display the verification result and 
 
 For more information about verifying smart contracts on Moonbeam using Hardhat Etherscan plugin, please refer to the [Etherscan Plugins page](/builders/build/eth-api/verify-contracts/etherscan-plugins/#using-the-hardhat-etherscan-plugin){target=_blank}.
 
---8<-- 'text/disclaimers/third-party-content.md'
+--8<-- 'text/_disclaimers/third-party-content.md'

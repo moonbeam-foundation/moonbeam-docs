@@ -13,7 +13,7 @@ Subsquid has native and full support for both Ethereum Virtual Machine (EVM) and
 
 This guide will show you how to create Substrate and EVM projects with Subsquid and configure it to index data on Moonbeam. 
 
---8<-- 'text/disclaimers/third-party-content-intro.md'
+--8<-- 'text/_disclaimers/third-party-content-intro.md'
 
 ## Checking Prerequisites {: #checking-prerequisites }
 
@@ -177,4 +177,4 @@ And that's all you have to do to configure your Subsquid project to index EVM da
 
 If you're interested in a step-by-step tutorial to get started indexing data on Moonbeam, you can check out the [Index NFT Token Transfers on Moonbeam with Subsquid](/tutorials/integrations/nft-subsquid){target=_blank} tutorial!
 
---8<-- 'text/disclaimers/third-party-content.md'
+--8<-- 'text/_disclaimers/third-party-content.md'

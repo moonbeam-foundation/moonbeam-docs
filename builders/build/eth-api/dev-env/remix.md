@@ -30,7 +30,7 @@ Your development node comes with 10 pre-funded accounts. You should have MetaMas
 ![MetaMask installation with a balance](/images/builders/build/eth-api/dev-env/remix/using-remix-2.png)
 
 If you're adapting this guide for Moonbeam, Moonriver, or Moonbase Alpha make sure you are connected to the correct network and have an account with funds.  
---8<-- 'text/faucet/faucet-sentence.md'
+--8<-- 'text/_common/faucet/faucet-sentence.md'
 
 ## Getting Started with Remix {: #getting-started-with-remix } 
 
@@ -45,7 +45,7 @@ You will create a new file to save the Solidity smart contract. Hit the **+** bu
 Next, paste the following smart contract into the editor tab:
 
 ```solidity
---8<-- 'code/remix-local/contract.md'
+--8<-- 'code/builders/build/eth-api/dev-env/remix/MyToken.sol'
 ```
 
 ![Paste the contract into the editor](/images/builders/build/eth-api/dev-env/remix/using-remix-5.png)
@@ -148,7 +148,7 @@ It's that easy! Once the contract is deployed, you'll see the address and all av
 
 The Moonbeam Remix plugin works seamlessly with Remix so you can freely switch between using the traditional Remix compile and deploy tabs and the Moonbeam Remix plugin.
 
---8<-- 'text/disclaimers/third-party-content.md'
+--8<-- 'text/_disclaimers/third-party-content.md'
 
 
 

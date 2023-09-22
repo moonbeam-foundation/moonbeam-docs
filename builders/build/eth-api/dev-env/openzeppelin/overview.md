@@ -29,4 +29,4 @@ You will find a corresponding tutorial for each product in the following links:
  - [**Contracts & libraries**](/builders/build/eth-api/dev-env/openzeppelin/contracts/#deploying-openzeppelin-contracts-on-moonbeam) — where you'll find tutorials to deploy the most common token contracts using OpenZeppelin's templates: ERC-20, ERC-721 and ERC-1155
  - [**Defender**](/builders/build/eth-api/dev-env/openzeppelin/defender/) — where you'll find a guide on how to use OpenZeppelin Defender to manage your smart contracts in the Moonbase Alpha TestNet. This guide can also be adapted for Moonbeam and Moonriver
 
---8<-- 'text/disclaimers/third-party-content.md'
+--8<-- 'text/_disclaimers/third-party-content.md'

@@ -94,7 +94,7 @@ Now, execute the docker run command. Note that you have to:
  - Replace `INSERT_YOUR_NODE_NAME` in two different places
  - Replace `<50% RAM in MB>` for 50% of the actual RAM your server has. For example, for 32 GB RAM, the value must be set to `16000`. The minimum value is `2000`, but it is below the recommended specs
 
---8<-- 'text/node-operators/client-changes.md'
+--8<-- 'text/node-operators/networks/run-a-node/client-changes.md'
 
 The complete command for running a tracing node is as follows:
 
@@ -266,7 +266,7 @@ The next step is to create the systemd configuration file, you'll need to:
  - Double-check the base path if you've used a different directory
  - Name the file `/etc/systemd/system/moonbeam.service`
 
---8<-- 'text/node-operators/client-changes.md'
+--8<-- 'text/node-operators/networks/run-a-node/client-changes.md'
 
 === "Moonbeam"
 
@@ -372,7 +372,7 @@ The next step is to create the systemd configuration file, you'll need to:
 
 ### Run the Service {: #run-the-service }
 
---8<-- 'text/systemd/run-service.md'
+--8<-- 'text/node-operators/networks/run-a-node/systemd/run-service.md'
 
 ![Service Status](/images/node-operators/networks/tracing-node/tracing-1.png)
 

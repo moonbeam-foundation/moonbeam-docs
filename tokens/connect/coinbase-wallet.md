@@ -11,7 +11,7 @@ description: This guide walks you through how to configure the Coinbase Wallet e
     
 In this guide, you'll go through the process of setting up the Coinbase Wallet mobile application and configuring it for the Moonbeam Network. 
 
---8<-- 'text/disclaimers/third-party-content-intro.md'
+--8<-- 'text/_disclaimers/third-party-content-intro.md'
 
 ## Install the Coinbase Wallet App {: #install-the-coinbase-wallet-app } 
 
@@ -110,4 +110,4 @@ And that's it! You've successfully set up your Coinbase Wallet app, connected it
  - [Coinbase Wallet Getting Started Guide](https://www.coinbase.com/wallet/getting-started-mobile){target=_blank}
 
 
---8<-- 'text/disclaimers/third-party-content.md'
+--8<-- 'text/_disclaimers/third-party-content.md'

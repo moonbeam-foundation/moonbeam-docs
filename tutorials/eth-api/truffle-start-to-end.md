@@ -19,7 +19,7 @@ For this tutorial, you'll need the following:
 
 - Have [Docker installed](https://docs.docker.com/get-docker/){target=_blank}
 - An account funded with DEV tokens to be used on the Moonbase Alpha TestNet and GLMR tokens to be used on Moonbeam MainNet.
-  --8<-- 'text/faucet/faucet-list-item.md'
+  --8<-- 'text/_common/faucet/faucet-list-item.md'
 - Your own endpoint and API key for Moonbeam, which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=_blank}
 - To [generate a Moonscan API key](https://docs.moonbeam.network/builders/build/eth-api/verify-contracts/etherscan-plugins/#generating-a-moonscan-api-key){target=_blank} that will be used to verify our contracts
 
@@ -674,6 +674,6 @@ For reference, you can check out how the verified contracts will look on Moonsca
 
 And that's it! You've successfully deployed your contracts to Moonbeam MainNet after thoroughly testing them out on a local Moonbeam development node and the Moonbase Alpha TestNet! Congrats! You've gone through the entire development life cycle using Truffle!
 
---8<-- 'text/disclaimers/educational-tutorial.md'
+--8<-- 'text/_disclaimers/educational-tutorial.md'
 
---8<-- 'text/disclaimers/third-party-content.md'
+--8<-- 'text/_disclaimers/third-party-content.md'

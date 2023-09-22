@@ -52,5 +52,5 @@ Submissions are reviewed by the DappRadar team and will be published if the DApp
 
 <div class="page-disclaimer">
   DappRadar contains user-generated content and Moonbeam Foundation has not vetted such user-generated content and Moonbeam does not endorse the project.
-  --8<-- 'text/disclaimers/user-generated-content.md'
+  --8<-- 'text/_disclaimers/user-generated-content.md'
 </div>

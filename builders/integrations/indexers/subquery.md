@@ -15,7 +15,7 @@ For example, SubQuery can filter and query EVM logs and transactions in addition
 
 Throughout this guide, you'll learn how to create a SubQuery project that indexes ERC-20 transfer and approvals on Moonbeam. More specifically, this guide will cover indexing `Transfer` events and `approve` function calls.
 
---8<-- 'text/disclaimers/third-party-content-intro.md'
+--8<-- 'text/_disclaimers/third-party-content-intro.md'
 
 ## Checking Prerequisites {: #checking-prerequisites }
 
@@ -92,7 +92,7 @@ If you take a look at the `package.json` file, you'll notice that the `chaintype
 
 You'll need to update the `network` config in the `project.yaml` file. The `chainId` field can be used to enter the genesis hash for the network you want to index.
 
- --8<-- 'text/common/endpoint-examples.md'
+ --8<-- 'text/_common/endpoint-examples.md'
 
 The `network` config is as follows for each network:
 
@@ -262,4 +262,4 @@ If you have any questions about this make sure you check out the [SubQuery docum
 
 SubQuery joined the [Moonbuilders workshop](https://www.crowdcast.io/e/moonbuilders-ws/10){target=_blank} in December to show off live how to create a simple SubQuery project. You can try out the [resulting sample project](https://github.com/stwiname/moonbuilders-demo){target=_blank} by yourself.
 
---8<-- 'text/disclaimers/third-party-content.md'
+--8<-- 'text/_disclaimers/third-party-content.md'

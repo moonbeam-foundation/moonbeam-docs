@@ -30,7 +30,7 @@ Similar to other [precompile contracts](/builders/pallets-precompiles/precompile
      {{networks.moonbase.precompiles.xcm_utils}}
      ```
 
---8<-- 'text/precompiles/security.md'
+--8<-- 'text/builders/pallet-precompiles/precompiles/security.md'
 
 ## The XCM Utilities Solidity Interface {: #xcmutils-solidity-interface }
 

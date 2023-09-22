@@ -13,7 +13,7 @@ Wormhole consists of multiple modular swap-in components that can be leveraged i
 
 ![Wormhole Technology Stack diagram](/images/builders/interoperability/protocols/wormhole/wormhole-1.png)
 
---8<-- 'text/disclaimers/third-party-content-intro.md'
+--8<-- 'text/_disclaimers/third-party-content-intro.md'
 
 ## Getting Started {: #getting-started }
 
@@ -44,7 +44,7 @@ To follow along with this tutorial, you will need to have:
 - [MetaMask installed and connected to Moonbase Alpha](/tokens/connect/metamask/){target=_blank}
 - [Docker installed](https://docs.docker.com/get-docker/){target=_blank}
 - Have an account be funded with `DEV` tokens.
- --8<-- 'text/faucet/faucet-list-item.md'
+ --8<-- 'text/_common/faucet/faucet-list-item.md'
 - Have the same account be funded with native currency from a Wormhole connected EVM of your choice. Faucets [are in the table below](#deploying-the-wormhole-contract-with-remix-on-moonbase-alpha)
 
 ### Deploying the Wormhole Contract with Remix on Moonbase Alpha {:deploying-the-wormhole-contract-with-remix-on-moonbase-alpha}
@@ -412,4 +412,4 @@ Wormhole will provide liquidity to parachains through the Moonbeam Routed Liquid
 
 [MRL](/builders/interoperability/mrl){target=_blank} utilizes the [GMP Precompile](/builders/pallets-precompiles/precompiles/gmp){target=_blank}, whose documentation explains how cross-chain messages should be constructed to properly use the precompile.
 
---8<-- 'text/disclaimers/third-party-content.md'
+--8<-- 'text/_disclaimers/third-party-content.md'

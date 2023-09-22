@@ -15,7 +15,7 @@ An on-chain smart contract makes a request in the [RRP (Request Response Protoco
 
 ![API3 Airnode](/images/builders/integrations/oracles/api3/api3-1.png)
 
---8<-- 'text/disclaimers/third-party-content-intro.md'
+--8<-- 'text/_disclaimers/third-party-content-intro.md'
 
 ## Request Off-Chain Data From an Airnode {: #calling-an-airnode }
 
@@ -403,4 +403,4 @@ Here are some additional developer resources:
 - [API3 Medium](https://medium.com/api3){target=_blank}
 - [API3 YouTube](https://www.youtube.com/API3DAO){target=_blank}
 
---8<-- 'text/disclaimers/third-party-content.md'
+--8<-- 'text/_disclaimers/third-party-content.md'

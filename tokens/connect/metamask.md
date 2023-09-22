@@ -30,7 +30,7 @@ If you already have MetaMask installed, you can easily connect MetaMask to the n
 
 Learn [how to integrate a Connect MetaMask button](/builders/integrations/wallets/metamask/){target=_blank} into your dApp, so that users can connect to Moonbase Alpha with a simple click of a button. The guide can also be adapted for the other Moonbeam-based networks.
 
---8<-- 'text/disclaimers/third-party-content-intro.md'
+--8<-- 'text/_disclaimers/third-party-content-intro.md'
 
 ## Install the MetaMask Extension {: #install-the-metamask-extension } 
 
@@ -65,8 +65,8 @@ Next, click on **Import Account**.
 Finally, enter the private keys of the account you are trying to import. For example, you can use one of the accounts prefunded in the Moonbeam development node. This guide uses Gerald's key. Once you've entered the private key, click on **Import**.
 
 ??? note "Development account addresses and private keys"
-    --8<-- 'code/setting-up-node/dev-accounts.md'
-    --8<-- 'code/setting-up-node/dev-testing-account.md'
+    --8<-- 'code/builders/get-started/networks/moonbeam-dev/dev-accounts.md'
+    --8<-- 'code/builders/get-started/networks/moonbeam-dev/dev-testing-account.md'
 
 ![Paste your account key into MetaMask](/images/tokens/connect/metamask/new/metamask-4.png)
 
@@ -179,4 +179,4 @@ Once you've confirmed your transaction, you are taken back to the main screen of
 
 ![Transaction confirmed in Metamask](/images/tokens/connect/metamask/new/metamask-14.png)
 
---8<-- 'text/disclaimers/third-party-content.md'
+--8<-- 'text/_disclaimers/third-party-content.md'

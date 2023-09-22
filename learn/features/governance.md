@@ -47,9 +47,9 @@ This section will cover everything you need to know about OpenGov on Moonbeam.
 
 ### General Definitions {: #general-definitions-gov2 }
 
---8<-- 'text/governance/proposal-definitions.md'
+--8<-- 'text/learn/features/governance/proposal-definitions.md'
 
---8<-- 'text/governance/preimage-definitions.md'
+--8<-- 'text/learn/features/governance/preimage-definitions.md'
 
  - **Origin** - an authorization-based dispatch source for an operation, which is used to determine the Track that a referendum is posted under
  - **Track** - an Origin-specific pipeline that outlines the life cycle of proposals. Currently, there are five Tracks:
@@ -62,18 +62,18 @@ This section will cover everything you need to know about OpenGov on Moonbeam.
     | Emergency Canceller |          For cancellation of a referendum. Decision Deposit is refunded          |                    Wrongly constructed referendum                    |
     |  Emergency Killer   |       For killing of bad/malicious referendum. Decision Deposit is slashed       |                         Malicious referendum                         |
 
---8<-- 'text/governance/vote-conviction-definitions.md'
+--8<-- 'text/learn/features/governance/vote-conviction-definitions.md'
 
---8<-- 'text/governance/approval-support-definitions.md'
+--8<-- 'text/learn/features/governance/approval-support-definitions.md'
 
---8<-- 'text/governance/lead-in-definitions.md'
+--8<-- 'text/learn/features/governance/lead-in-definitions.md'
     Please refer to the [Governance Parameters](#governance-parameters-v2) section for more information
 
  - **Decide Period** - token holders continue to vote on the referendum. If a referendum does not pass by the end of the period, it will be rejected, and the Decision Deposit will be refunded
  - **Confirm Period** - a period of time within the Decide Period where the referendum needs to have maintained enough Approval and Support to be approved and move to the Enactment Period
  - **Enactment Period** - a specified time, which is defined at the time the proposal was created, that an approved referendum waits before it can be dispatched. There is a minimum amount of time for each Track
 
---8<-- 'text/governance/delegation-definitions.md'
+--8<-- 'text/learn/features/governance/delegation-definitions.md'
 
 ### Governance Parameters {: #governance-parameters-v2 }
 

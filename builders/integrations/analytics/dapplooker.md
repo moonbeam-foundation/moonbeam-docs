@@ -13,7 +13,7 @@ Dapplooker analytics platform complements Moonbeam-based networks by helping use
 
 This guide will cover all of the details needed to register your project with the Dapplooker platform and how to build analytics using SQL editor. This guide can be adapted for use on Moonbeam, Moonriver, or Moonbase Alpha.
 
---8<-- 'text/disclaimers/third-party-content-intro.md'
+--8<-- 'text/_disclaimers/third-party-content-intro.md'
 
 ## Checking Prerequisites {: #checking-prerequisites }
 
@@ -88,4 +88,4 @@ Another place you can start to view and build off of data is from the list of [M
 - [Dapplooker Explorer for Moonriver](https://dapplooker.com/category/moonriver?type=dashboard){target=_blank} - find popular dashboards on Moonriver
 
 
---8<-- 'text/disclaimers/third-party-content.md'
+--8<-- 'text/_disclaimers/third-party-content.md'

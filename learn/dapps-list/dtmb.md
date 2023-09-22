@@ -49,5 +49,5 @@ Submissions are reviewed by the Downtown Moonbeam team and will be published if 
 
 <div class="page-disclaimer">
   Downtown Moonbeam contains user-generated content and Moonbeam Foundation has not vetted such user-generated content and Moonbeam does not endorse the project.
-  --8<-- 'text/disclaimers/user-generated-content.md'
+  --8<-- 'text/_disclaimers/user-generated-content.md'
 </div>

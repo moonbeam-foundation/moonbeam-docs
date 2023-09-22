@@ -15,7 +15,7 @@ To access these price feeds, you need to interact with the Bridge contract addre
 |:--------------:|:------------------------------------------:|
 | Moonbase Alpha | 0x53f7660Ea48289B5DA42f1d79Eb9d4F5eB83D3BE |
 
---8<-- 'text/disclaimers/third-party-content-intro.md'
+--8<-- 'text/_disclaimers/third-party-content-intro.md'
 
 ## Jobs {: #jobs }
 
@@ -137,4 +137,4 @@ This will create an instance of the demo contract that you can interact with. Us
 
 ![Razor check price](/images/builders/integrations/oracles/razor/razor-demo-2.png)
 
---8<-- 'text/disclaimers/third-party-content.md'
+--8<-- 'text/_disclaimers/third-party-content.md'

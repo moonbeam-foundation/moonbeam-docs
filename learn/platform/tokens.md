@@ -30,5 +30,5 @@ You can find more information about Moonriver on the [Moonbeam Foundation](https
 
 In the Moonbeam TestNet (called Moonbase Alpha), the token is called DEV. This token can be acquired freely, as its only purpose is to drive development and testing on Moonbase Alpha.
 
---8<-- 'text/faucet/faucet-sentence.md'
+--8<-- 'text/_common/faucet/faucet-sentence.md'
 

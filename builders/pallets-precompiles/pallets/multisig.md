@@ -70,7 +70,7 @@ Now, the ABC multisig account will appear under the **multisig** section on the 
 ![View the multisig account on the Accounts page of Polkadot.js Apps](/images/builders/pallets-precompiles/pallets/multisig/multisig-3.png)
 
 You can click on the colored icon next to the multisig account to copy the address and fund it with DEV tokens.
---8<-- 'text/faucet/faucet-sentence.md'
+--8<-- 'text/_common/faucet/faucet-sentence.md'
 
 ## How to Create a Multisig Transaction {: #create-a-multisig-transaction }
 

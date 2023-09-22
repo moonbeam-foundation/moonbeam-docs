@@ -119,7 +119,7 @@ To register a mintable XC-20 on Moonbase Alpha, you'll need to have the followin
 
 - [MetaMask installed and connected to the Moonbase Alpha](/tokens/connect/metamask/){target=_blank} TestNet
 - An account funded with `DEV` tokens.
- --8<-- 'text/faucet/faucet-list-item.md'
+ --8<-- 'text/_common/faucet/faucet-list-item.md'
 
 ### Create a Proposal {: #create-a-proposal }
 

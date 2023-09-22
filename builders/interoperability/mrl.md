@@ -108,7 +108,7 @@ For this example, the `xTokens.transferMultiassets` extrinsic will look like the
 ???+ code "Transfer multiassets logic"
 
     ```js
-    --8<-- 'code/mrl/transfer-multiassets.js'
+    --8<-- 'code/builders/interoperability/mrl/transfer-multiassets.js'
     ```
 
 To modify the script for Moonbeam, you'll use the following configurations:
@@ -130,19 +130,19 @@ To create the batch transaction and wrap it in a remote EVM call to be executed 
     ??? code "ERC-20 Interface ABI"
 
         ```js
-        --8<-- 'code/mrl/abi/ERC20.js'
+        --8<-- 'code/builders/interoperability/mrl/abi/ERC20.js'
         ```
 
     ??? code "TokenBridge Relayer ABI"
 
         ```js
-        --8<-- 'code/mrl/abi/TokenRelayer.js'
+        --8<-- 'code/builders/interoperability/mrl/abi/TokenRelayer.js'
         ```
 
     ??? code "Batch Precompile ABI"
 
         ```js
-        --8<-- 'code/mrl/abi/Batch.js'
+        --8<-- 'code/builders/interoperability/mrl/abi/Batch.js'
         ```
 
     For this particular example in Moonbase Alpha, you'll also need the address of a Wormhole relayer. You can use:
@@ -160,7 +160,7 @@ To create the batch transaction and wrap it in a remote EVM call to be executed 
 ???+ code "Create remote EVM call logic"
 
     ```js
-    --8<-- 'code/mrl/evm-tx.js'
+    --8<-- 'code/builders/interoperability/mrl/evm-tx.js'
     ```
 
 Next, you'll need to create the extrinsic to send the remote EVM call to Moonbeam. To do so, you'll want to send an XCM message such that the `Transact` XCM instruction gets successfully executed. The most common method to do this is through `polkadotXcm.send` and sending the `WithdrawAsset`, `BuyExecution`, and `Transact` instructions. `RefundSurplus` and `DepositAsset` can also be used to ensure no assets get trapped, but they are technically optional.
@@ -168,7 +168,7 @@ Next, you'll need to create the extrinsic to send the remote EVM call to Moonbea
 ???+ code "Send remote EVM call logic"
 
     ```js
-    --8<-- 'code/mrl/polkadotxcm-send.js'
+    --8<-- 'code/builders/interoperability/mrl/polkadotxcm-send.js'
     ```
 
 #### Build the Batch Extrinsic {: #build-batch-extrinsic }
@@ -178,13 +178,13 @@ To ensure that both the `xTokens.transferMultiassets` and the `polkadotXcm.send`
 ???+ code "Batch the transfer multiassets and send remote EVM calls"
 
     ```js
-    --8<-- 'code/mrl/batch-extrinsics.js'
+    --8<-- 'code/builders/interoperability/mrl/batch-extrinsics.js'
     ```
 
 ??? code "View the complete script"
 
     ```js
-    --8<-- 'code/mrl/complete-script.js'
+    --8<-- 'code/builders/interoperability/mrl/complete-script.js'
     ```
 
 If you would like to see an example project that fully implements this, an example is available in a [GitHub repository](https://github.com/jboetticher/mrl-reverse){target=_blank}.
@@ -214,4 +214,4 @@ While Wormhole has the technical capability to bridge any token across chains, r
 
 Please take the time to verify that these assets are still Wormhole assets on Moonbeam by using the [Wormhole asset verifier](https://www.portalbridge.com/#/token-origin-verifier){target=_blank}.
 
---8<-- 'text/disclaimers/third-party-content.md'
+--8<-- 'text/_disclaimers/third-party-content.md'

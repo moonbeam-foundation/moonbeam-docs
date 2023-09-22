@@ -17,9 +17,9 @@ Here you will find an overview of the available functionalities and some commonl
 
 Installing and using Polkadot.js API library requires Node.js to be installed.
 
---8<-- 'text/common/install-nodejs.md'
+--8<-- 'text/_common/install-nodejs.md'
 
---8<-- 'text/common/endpoint-examples.md'
+--8<-- 'text/_common/endpoint-examples.md'
 
 ### Install Polkadot.js API {: #installing-polkadot.js-api-library }
 
@@ -43,7 +43,7 @@ The library also includes other core components like Keyring for account managem
 
 Similar to [Ethereum API libraries](/builders/build/eth-api/libraries/){target=_blank}, you must first instantiate an API instance of the Polkadot.js API. Create the `WsProvider` using the WebSocket endpoint of the Moonbeam network you wish to interact with.
 
---8<-- 'text/common/endpoint-examples.md'
+--8<-- 'text/_common/endpoint-examples.md'
 
 === "Moonbeam"
 
@@ -170,7 +170,7 @@ console.log(`${now}: balance of ${balance.free} and a current nonce of ${nonce}`
 ??? code "View the complete script"
 
     ```js
-    --8<-- 'code/substrate-api/state-queries.js'
+    --8<-- 'code/builders/build/substrate-api/polkadot-js-api/state-queries.js'
     ```
 
 ### Moonbeam RPC Queries {: #rpc-queries }
@@ -197,7 +197,7 @@ console.log(`${chain}: last block #${lastHeader.number} has hash ${lastHeader.ha
 ??? code "View the complete script"
 
     ```js
-    --8<-- 'code/substrate-api/rpc-queries.js'
+    --8<-- 'code/builders/build/substrate-api/polkadot-js-api/rpc-queries.js'
     ```
 
 ### Query Subscriptions {: #query-subscriptions }
@@ -235,7 +235,7 @@ await api.query.system.account(addr, ({ nonce, data: balance }) => {
 ??? code "View the complete script"
 
     ```js
-    --8<-- 'code/substrate-api/query-subscriptions.js'
+    --8<-- 'code/builders/build/substrate-api/polkadot-js-api/query-subscriptions.js'
     ```
 
 ## Create a Keyring for a Moonbeam Account {: #keyrings }
@@ -261,13 +261,13 @@ There are a number of ways to add an account to the keyring instance, including 
 === "From Mnemonic"
 
     ```javascript
-    --8<-- 'code/substrate-api/adding-accounts-mnemonic.js'
+    --8<-- 'code/builders/build/substrate-api/polkadot-js-api/adding-accounts-mnemonic.js'
     ```
 
 === "From Private Key"
 
     ```javascript
-    --8<-- 'code/substrate-api/adding-accounts-private-key.js'
+    --8<-- 'code/builders/build/substrate-api/polkadot-js-api/adding-accounts-private-key.js'
     ```
 
 ## Send Transactions on Moonbeam  {: #transactions }
@@ -306,7 +306,7 @@ console.log(`Submitted with hash ${txHash}`);
 ??? code "View the complete script"
 
     ```js
-    --8<-- 'code/substrate-api/basic-transactions.js'
+    --8<-- 'code/builders/build/substrate-api/polkadot-js-api/basic-transactions.js'
     ```
 
 Note that the `signAndSend` function can also accept optional parameters, such as the `nonce`. For example, `signAndSend(alice, { nonce: aliceNonce })`. You can use the [sample code from the State Queries](/builders/build/substrate-api/polkadot-js-api/#state-queries){target=_blank} section to retrieve the correct nonce, including transactions in the mempool.
@@ -333,7 +333,7 @@ console.log(`Transaction fee: ${partialFee.toHuman()}`);
 ??? code "View the complete script"
 
     ```js
-    --8<-- 'code/substrate-api/payment-info.js'
+    --8<-- 'code/builders/build/substrate-api/polkadot-js-api/payment-info.js'
     ```
 
 ### Transaction Events {: #transaction-events }
@@ -382,7 +382,7 @@ api.tx.utility
 ??? code "View the complete script"
 
     ```js
-    --8<-- 'code/substrate-api/batch-transactions.js'
+    --8<-- 'code/builders/build/substrate-api/polkadot-js-api/batch-transactions.js'
     ```
 
 !!! note
@@ -483,4 +483,4 @@ console.log(keccakAsHex(encoded_tx))
 
 You can check the respective [NPM repository page](https://www.npmjs.com/package/@polkadot/util-crypto/v/0.32.19){target=_blank} for a list of available methods in the `@polkadot/util-crypto` library and their descriptions.
 
---8<-- 'text/disclaimers/third-party-content.md'
+--8<-- 'text/_disclaimers/third-party-content.md'

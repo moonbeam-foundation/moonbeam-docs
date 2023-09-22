@@ -36,7 +36,7 @@ The Polkadot XCM Pallet includes the following relevant read-only storage method
 To follow along with this guide, you will need the following:
 
 - Your account must be funded with DEV tokens.
-  --8<-- 'text/faucet/faucet-list-item.md'
+  --8<-- 'text/_common/faucet/faucet-list-item.md'
 
 ## Execute an XCM Message Locally {: #execute-an-xcm-message-locally }
 
@@ -121,7 +121,7 @@ Now that you have the values for each of the parameters, you can write the scrip
     This is for demo purposes only. Never store your private key in a JavaScript file.
 
 ```js
---8<-- 'code/polkadotXcm/xcmExecute/executeWithPolkadot.js'
+--8<-- 'code/builders/interoperability/xcm/send-execute-xcm/execute/executeWithPolkadot.js'
 ```
 
 !!! note
@@ -157,7 +157,7 @@ To get the encoded calldata of the XCM message, you can create a script similar 
 The entire script is as follows:
 
 ```js
---8<-- 'code/polkadotXcm/xcmExecute/generateEncodedCalldata.js'
+--8<-- 'code/builders/interoperability/xcm/send-execute-xcm/execute/generateEncodedCalldata.js'
 ```
 
 #### Execute the XCM Message {: #execute-xcm-message }
@@ -175,19 +175,19 @@ Now that you have the SCALE encoded XCM message, you can use the following code 
 === "Ethers.js"
 
     ```js
-    --8<-- 'code/polkadotXcm/xcmExecute/ethers.js'
+    --8<-- 'code/builders/interoperability/xcm/send-execute-xcm/execute/ethers.js'
     ```
 
 === "Web3.js"
 
     ```js
-    --8<-- 'code/polkadotXcm/xcmExecute/web3.js'
+    --8<-- 'code/builders/interoperability/xcm/send-execute-xcm/execute/web3.js'
     ```
 
 === "Web3.py"
 
     ```py
-    --8<-- 'code/polkadotXcm/xcmExecute/web3.py'
+    --8<-- 'code/builders/interoperability/xcm/send-execute-xcm/execute/web3.py'
     ```
 
 And that's it! You've successfully used the Polkadot XCM Pallet and the XCM Utilities Precompile to execute a custom XCM message locally on Moonbase Alpha!
@@ -292,7 +292,7 @@ Now that you have the values for each of the parameters, you can write the scrip
     This is for demo purposes only. Never store your private key in a JavaScript file.
 
 ```js
---8<-- 'code/polkadotXcm/xcmSend/sendWithPolkadot.js'
+--8<-- 'code/builders/interoperability/xcm/send-execute-xcm/send/sendWithPolkadot.js'
 ```
 
 !!! note
@@ -330,7 +330,7 @@ To get the encoded calldata of the XCM message, you can create a script similar 
 The entire script is as follows:
 
 ```js
---8<-- 'code/polkadotXcm/xcmSend/generateEncodedCalldata.js'
+--8<-- 'code/builders/interoperability/xcm/send-execute-xcm/send/generateEncodedCalldata.js'
 ```
 
 #### Send the XCM Message {: #send-xcm-message }
@@ -357,19 +357,19 @@ Now that you have the SCALE encoded XCM message and the destination multilocatio
 === "Ethers.js"
 
     ```js
-    --8<-- 'code/polkadotXcm/xcmSend/ethers.js'
+    --8<-- 'code/builders/interoperability/xcm/send-execute-xcm/send/ethers.js'
     ```
 
 === "Web3.js"
 
     ```js
-    --8<-- 'code/polkadotXcm/xcmSend/web3.js'
+    --8<-- 'code/builders/interoperability/xcm/send-execute-xcm/send/web3.js'
     ```
 
 === "Web3.py"
 
     ```py
-    --8<-- 'code/polkadotXcm/xcmSend/web3.py'
+    --8<-- 'code/builders/interoperability/xcm/send-execute-xcm/send/web3.py'
     ```
 
 And that's it! You've successfully used the Polkadot XCM Pallet and the XCM Utilities Precompile to send a message from Moonbase Alpha to another chain!

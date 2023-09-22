@@ -158,6 +158,6 @@ Finally, you'll see a **Gas Profiler**, which will give you a visual representat
 
 For a more detailed look at how to use the Tenderly Debugger, be sure to check out [Tenderly's Debugger guide](https://docs.tenderly.co/debugger/how-to-use-tenderly-debugger){target=_blank}. And that's it! You're well on your way to mastering Tenderly, which is sure to save you time and simplify your development experience building dApps on Moonbeam.
 
---8<-- 'text/disclaimers/educational-tutorial.md'
+--8<-- 'text/_disclaimers/educational-tutorial.md'
 
---8<-- 'text/disclaimers/third-party-content.md'
+--8<-- 'text/_disclaimers/third-party-content.md'

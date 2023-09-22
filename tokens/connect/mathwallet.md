@@ -11,7 +11,7 @@ MathWallet [announced](https://mathwallet.org/moonbeam-wallet/en/) that is now n
 
 In this tutorial, we'll go through how to setup MathWallet to connect to each of the networks: [Moonbeam](#connect-to-moonbeam), [Moonriver](#connect-to-moonriver), and [Moonbase Alpha](#connect-to-moonbase-alpha). We'll also present a brief example of using MathWallet as a Web3 provider for other tools such as [Remix](/builders/build/eth-api/dev-env/remix/).
 
---8<-- 'text/disclaimers/third-party-content-intro.md'
+--8<-- 'text/_disclaimers/third-party-content-intro.md'
 
 ## Checking Prerequisites {: #checking-prerequisites } 
 
@@ -107,4 +107,4 @@ For example, in Remix, when deploying a smart contract to Moonbase Alpha, make s
 
 By clicking on **Accept** you are signing this transaction, and the contract will be deployed to the Moonbase Alpha TestNet.
 
---8<-- 'text/disclaimers/third-party-content.md'
+--8<-- 'text/_disclaimers/third-party-content.md'

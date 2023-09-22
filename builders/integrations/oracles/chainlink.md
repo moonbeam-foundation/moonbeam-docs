@@ -9,7 +9,7 @@ description: Review price feed contracts for Moonbeam-based networks and learn h
 
 Developers can now use [Chainlink's decentralized Oracle network](https://chain.link/){target=_blank} to fetch data from a Moonbeam-based network. There are two main architectures: [Price Feeds](https://docs.chain.link/docs/architecture-decentralized-model){target=_blank} and [Basic Request Model](https://docs.chain.link/architecture-overview/architecture-request-model?parent=gettingStarted){target=_blank}. Price Feeds contain real-time price data that is continuously updated by Oracle operators in a smart contract so that other smart contracts can fetch and consume it. The Basic Request Model describes an on-chain architecture for requesting data from a single oracle source. This guide will show you how to fetch the latest price data using both architectures.
 
---8<-- 'text/disclaimers/third-party-content-intro.md'
+--8<-- 'text/_disclaimers/third-party-content-intro.md'
 
 ## Price Feeds {: #price-feeds }
 
@@ -187,7 +187,7 @@ If there is any specific pair you want to be included, feel free to reach out th
 
 ## Basic Request Model {: #basic-request-model }
 
---8<-- 'text/chainlink/brm.md'
+--8<-- 'text/builders/integrations/oracles/chainlink/brm.md'
 
 ### Fetching Data {: #fetching-data }
 
@@ -475,4 +475,4 @@ contract Client is ChainlinkClient {
 
 Once you've deployed the contract on Remix, you can begin to request the volume data. After you make a request, you can check the status of the job by going to the [**Jobs** section of your node](http://localhost:6688/jobs){target=_blank}.
 
---8<-- 'text/disclaimers/third-party-content.md'
+--8<-- 'text/_disclaimers/third-party-content.md'

@@ -5,7 +5,7 @@ description: Moonbeam provides staking features where token holders delegate col
 
 # Staking on Moonbeam
 
-## Introduction {: #introduction } 
+## Introduction {: #introduction }
 
 Moonbeam uses a block production mechanism based on [Polkadot's Proof-of-Stake model](https://wiki.polkadot.network/docs/learn-consensus){target=_blank}, where there are collators and validators. [Collators](https://wiki.polkadot.network/docs/learn-collator){target=_blank} maintain parachains (in this case, Moonbeam) by collecting transactions from users and producing state transition proofs for the relay chain [validators](https://wiki.polkadot.network/docs/learn-validator){target=_blank}.
 
@@ -15,9 +15,24 @@ Collator candidates (and token holders if they delegate) have a stake in the net
 
 To easily manage staking related actions, you can visit the [Moonbeam Network DApp](https://apps.moonbeam.network/){target=_blank} and use the network tabs at the top of the page to easily switch between Moonbeam networks. To learn how to use the DApp, you can check out the [How to Stake MOVR Tokens](https://moonbeam.network/tutorial/stake-movr/){target=_blank} guide or or [video tutorial](https://www.youtube.com/watch?v=8GwetYmzEJM){target=_blank}, both of which can be adapted for the Moonbeam and the Moonbase Alpha TestNet.
 
-## General Definitions {: #general-definitions } 
+## General Definitions {: #general-definitions }
 
---8<-- 'text/staking/staking-definitions.md'
+Some important parameters to understand in relation to the staking system on Moonbeam include:
+
+ - **Round** — a specific number of blocks around which staking actions are enforced. For example, new delegations are enacted when the next round starts. When bonding less or revoking delegations, funds are returned after a certain amount of rounds
+ - **Candidates** - node operators that are eligible to become block producers if they can acquire enough stake to be in the active set
+ - **Collators** — active set of candidates that are selected to be block producers. They collect transactions from users and produce state transition proofs for the relay chain to validate
+ - **Delegators** — token holders who stake tokens, vouching for specific collator candidates. Any user that holds a minimum amount of tokens as [free balance](https://wiki.polkadot.network/docs/learn-accounts#balance-types) can become a delegator
+ - **Minimum delegation per candidate** — minimum amount of tokens to delegate candidates once a user is in the set of delegators
+ - **Maximum delegators per candidate** — maximum number of delegators, by staked amount, that a candidate can have which are eligible to receive staking rewards
+ - **Maximum delegations** — maximum number of candidates a delegator can delegate
+ - **Exit delay** - an exit delay is the amount of rounds before a candidate or delegator can execute a scheduled request to decrease or revoke a bond, or leave the set of candidates or delegators
+ - **Reward payout delay** - a certain amount of rounds must pass before staking rewards are distributed automatically to the free balance
+ - **Reward pool** - a portion of the annual inflation that is set aside for collators and delegators
+ - **Collator commission** - default fixed percent a collator takes off the top of the due staking rewards. Not related to the reward pool
+ - **Delegator rewards** — the aggregate delegator rewards distributed over all eligible delegators, taking into account the relative size of stakes ([read more](/learn/features/staking/#reward-distribution))
+ - **Auto-compounding** - a setting that automatically applies a percentage of a delegator's rewards to their total amount delegated
+ - **Slashing** — a mechanism to discourage collator misbehavior, where typically the collator and their delegators get slashed by losing a percentage of their stake. Currently, there is no slashing but this can be changed through governance. Collators who produce blocks that are not finalized by the relay chain won't receive rewards
 
 ## Quick Reference {: #quick-reference }
 
@@ -46,7 +61,7 @@ To easily manage staking related actions, you can visit the [Moonbeam Network DA
     |    Decrease delegation delay     |      {{ networks.moonriver.delegator_timings.del_bond_less.rounds }} rounds ({{ networks.moonriver.delegator_timings.del_bond_less.hours }} hours)      |
     |     Revoke delegations delay     | {{ networks.moonriver.delegator_timings.revoke_delegations.rounds }} rounds ({{ networks.moonriver.delegator_timings.revoke_delegations.hours }} hours) |
     |      Leave delegators delay      |   {{ networks.moonriver.delegator_timings.leave_delegators.rounds }} rounds ({{ networks.moonriver.delegator_timings.leave_delegators.hours }} hours)   |
-    
+
 === "Moonbase Alpha"
     |             Variable             |                                                                         Value                                                                         |
     |:--------------------------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------:|
@@ -59,8 +74,8 @@ To easily manage staking related actions, you can visit the [Moonbeam Network DA
     |    Decrease delegation delay     |      {{ networks.moonbase.delegator_timings.del_bond_less.rounds }} rounds ({{ networks.moonbase.delegator_timings.del_bond_less.hours }} hours)      |
     |     Revoke delegations delay     | {{ networks.moonbase.delegator_timings.revoke_delegations.rounds }} rounds ({{ networks.moonbase.delegator_timings.revoke_delegations.hours }} hours) |
     |      Leave delegators delay      |   {{ networks.moonbase.delegator_timings.leave_delegators.rounds }} rounds ({{ networks.moonbase.delegator_timings.leave_delegators.hours }} hours)   |
-    
-To learn how to get the current value of any of the parameters around staking, check out the [Retrieving Staking Parameters](/tokens/staking/stake/#retrieving-staking-parameters){target=_blank} section of the [How to Stake your Tokens](/tokens/staking/stake/){target=_blank} guide. 
+
+To learn how to get the current value of any of the parameters around staking, check out the [Retrieving Staking Parameters](/tokens/staking/stake/#retrieving-staking-parameters){target=_blank} section of the [How to Stake your Tokens](/tokens/staking/stake/){target=_blank} guide.
 
 If you're looking for candidate or collator-specific requirements and information, you can take a look at the [Collators](/node-operators/networks/collators/requirements/#bonding-requirements){target=_blank} guide.
 
@@ -101,7 +116,7 @@ There are a few resources you can check out to help you select a collator to del
 - You can consider collator performance by reviewing the number of blocks each collator has produced recently
 - You can set up auto-compounding which will automatically restake a specified percentage of your delegation rewards
 
-## Reward Distribution {: #reward-distribution } 
+## Reward Distribution {: #reward-distribution }
 
 Rewards for collators and their delegators are calculated at the start of every round for their work prior to the [reward payout delay](#quick-reference). For example, on Moonriver the rewards are calculated for the collators work from {{ networks.moonriver.delegator_timings.rewards_payouts.rounds }} rounds ago.
 
@@ -153,6 +168,6 @@ For each delegator, the reward distribution (per block proposed and finalized by
 
 Where `amount_due` is the corresponding inflation being distributed in a specific block, the `stake` corresponds to the amount of tokens bonded by each delegator in respect to the total stake of that collator.
 
---8<-- 'text/disclaimers/staking-risks.md'
+--8<-- 'text/_disclaimers/staking-risks.md'
 *Staked MOVR/GLMR tokens are locked up, and retrieving them requires a {{ networks.moonriver.delegator_timings.del_bond_less.days }} day/{{ networks.moonbeam.delegator_timings.del_bond_less.days }} day waiting period .*
---8<-- 'text/disclaimers/staking-risks-part-2.md'
+--8<-- 'text/_disclaimers/staking-risks-part-2.md'

@@ -5,7 +5,7 @@ description: Learn how to connect to Moonbeam via RPC and WSS endpoints, how to 
 
 # Get Started with Moonbeam
 
---8<-- 'text/moonbeam/connect.md'
+--8<-- 'text/builders/get-started/networks/moonbeam/connect.md'
 
 ## Block Explorers {: #block-explorers }
 

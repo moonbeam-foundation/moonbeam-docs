@@ -13,7 +13,7 @@ As a Polkadot parachain, Moonbeam uses a [unified account structure](/learn/feat
 
 This guide will include all of the steps for setting up an account in Talisman and using it to interact with Moonbeam through Polkadot.js Apps.
 
---8<-- 'text/disclaimers/third-party-content-intro.md'
+--8<-- 'text/_disclaimers/third-party-content-intro.md'
 
 ## Setting up Talisman {: #setting-up-talisman }
 
@@ -105,4 +105,4 @@ After the transaction is confirmed, you should see the balances updated for each
 
 And that is it! These steps have demonstrated the ease coupled with the robust security of interacting with injected H160 accounts in Polkadot.js Apps with Talisman. All of this is possible because of Moonbeam's unified account structure, a great example of Moonbeam's commitment to providing the best user experience.
 
---8<-- 'text/disclaimers/third-party-content.md'
+--8<-- 'text/_disclaimers/third-party-content.md'
