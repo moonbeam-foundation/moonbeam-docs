@@ -19,7 +19,7 @@ Both types of XC-20s have the standard ERC-20 interface. In addition, all extern
 
 As mentioned, you can interact with XC-20s via an ERC-20 interface. The [ERC20.sol](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/assets-erc20/ERC20.sol){target=_blank} interface on Moonbeam follows the [EIP-20 Token Standard](https://eips.ethereum.org/EIPS/eip-20){target=_blank}, which is the standard API interface for tokens within smart contracts. The standard defines the required functions and events that a token contract must implement to be interoperable with different applications.
 
---8<-- 'text/builders/pallets-precompiles/precompiles/erc20/erc20-interface/erc20-interface.md'
+--8<-- 'text/builders/pallets-precompiles/precompiles/erc20/erc20-interface.md'
 
 ### The ERC-20 Permit Solidity Interface {: #the-erc20-permit-interface }
 
