@@ -211,7 +211,7 @@ And then `TransactionWeight` is mapped to the following field of the block JSON 
 extrinsics[extrinsic_number].events[event_number].data[0].weight
 ```
 
-### Key Differences with Ethereum {: #ethereum-api-transaction-fees}
+### Key Differences with Ethereum {: #key-differences-with-ethereum}
 
 As seen in the sections above, there are some key differences between the transaction fee model on Moonbeam and the one on Ethereum that developers should be mindful of when developing on Moonbeam:
 
