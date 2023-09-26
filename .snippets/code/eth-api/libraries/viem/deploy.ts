@@ -5,6 +5,7 @@ import { moonbaseAlpha } from 'viem/chains';
 import contractFile from './compile';
 
 // 2. Create a wallet client for writing chain data
+// The private key must be prepended with `0x` to avoid errors
 const account = privateKeyToAccount('INSERT_PRIVATE_KEY');
 const rpcUrl = 'https://rpc.api.moonbase.moonbeam.network';
 const walletClient = createWalletClient({
