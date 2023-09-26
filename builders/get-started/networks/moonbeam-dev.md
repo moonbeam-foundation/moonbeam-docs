@@ -3,7 +3,7 @@ title: Run a Moonbeam Development Node
 description: Follow this tutorial to learn how to spin up your first Moonbeam development node, how to configure it for development purposes, and connect to it.
 ---
 
-# Getting Started with a Moonbeam Development Node
+# Getting Started with a Local Moonbeam Development Node
 
 <style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/-bRooBW2g0o' frameborder='0' allowfullscreen></iframe></div>
 <style>.caption { font-family: Open Sans, sans-serif; font-size: 0.9em; color: rgba(170, 170, 170, 1); font-style: italic; letter-spacing: 0px; position: relative;}</style>
