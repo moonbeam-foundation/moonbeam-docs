@@ -119,7 +119,7 @@ To build the binary file, you can take the following steps:
         apt install clang protobuf-compiler libprotobuf-dev -y 
         ```
 
-        For MacOS users, these dependencies can be installed via homebrew:
+        For MacOS users, these dependencies can be installed via Homebrew:
 
         ```bash
         brew install llvm
