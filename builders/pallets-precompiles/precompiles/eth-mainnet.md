@@ -6,7 +6,7 @@ keywords: ethereum, moonbeam, ecrecover, sha256, sha3FIPS256, ripemd-160, Bn128A
 
 # Ethereum MainNet Precompiled Contracts
 
-## Introduction {: #introduction } 
+## Introduction {: #introduction }
 
 Precompiled contracts in Ethereum are contracts that include complex cryptographic computations, but do not require the overhead of the EVM. There are nine precompiles that can be used within the EVM that handle specific common operations such as hashing and signature schemes.
 
@@ -16,7 +16,7 @@ These precompiles are natively available on Ethereum and, to maintain Ethereum c
 
 In this guide, you will learn how to use and/or verify these precompiles.
 
-## Checking Prerequisites {: #checking-prerequisites } 
+## Checking Prerequisites {: #checking-prerequisites }
 
 --8<-- 'text/_common/install-nodejs.md'
 
@@ -36,7 +36,7 @@ As of writing this guide, the version used was 1.3.0. You will be also using [Re
 
 --8<-- 'text/_common/endpoint-examples.md'
 
-## Verify Signatures with ECRECOVER {: #verify-signatures-with-ecrecover } 
+## Verify Signatures with ECRECOVER {: #verify-signatures-with-ecrecover }
 
 The main function of this precompile is to verify the signature of a message. In general terms, you feed `ecrecover` the transaction's signature values and it returns an address. The signature is verified if the address returned is the same as the public address that sent the transaction.
 
@@ -54,7 +54,7 @@ With the necessary values, you can go to [Remix](/builders/build/eth-api/dev-env
 
 Using the [Remix compiler and deployment](/builders/build/eth-api/dev-env/remix){target=_blank} and with [MetaMask pointing to Moonbase Alpha](/tokens/connect/metamask/){target=_blank}, you can deploy the contract and call the `verify()` method that returns **true** if the address returned by `ecrecover` is equal to the address used to sign the message (related to the private key and needs to be manually set in the contract).
 
-## Hashing with SHA256 {: #hashing-with-sha256 } 
+## Hashing with SHA256 {: #hashing-with-sha256 }
 
 This hashing function returns the SHA256 hash from the given data. To test this precompile, you can use this [SHA256 Hash Calculator tool](https://md5calc.com/hash/sha256){target=_blank} to calculate the SHA256 hash of any string you want. In this case, you'll do so with `Hello World!`. You can head directly to Remix and deploy the following code, where the calculated hash is set for the `expectedHash` variable:
 
@@ -72,7 +72,7 @@ Currently there is no SHA3-256 support in Solidity, so it needs to be called wit
 
 Using the [Remix compiler and deployment](/builders/build/eth-api/dev-env/remix/){target=_blank} and with [MetaMask pointing to Moonbase Alpha](/tokens/connect/metamask/){target=_blank}, you can deploy the contract and call the `sha3fips(bytes memory data)` method to return the encoded string of the data parameter.
 
-## Hashing with RIPEMD160 {: #hashing-with-ripemd-160 } 
+## Hashing with RIPEMD160 {: #hashing-with-ripemd-160 }
 
 This hashing function returns a RIPEMD160 hash from the given data. To test this precompile, you can use this [RIPEMD160 Hash Calculator tool](https://md5calc.com/hash/ripemd160){target=_blank} to calculate the RIPEMD160 hash of any string. In this case, you'll do so again with `Hello World!`. You'll reuse the same code as before, but use the `ripemd160` function. Note that it returns a `bytes20` type variable:
 
@@ -82,7 +82,7 @@ With the contract deployed, you can call the `checkHash()` method that returns *
 
 ## BN128Add {: #bn128add }
 
-The BN128Add precompile implements a native elliptic curve point addition. It returns an elliptic curve point representing `(ax, ay) + (bx, by)` such that `(ax, ay)` and `(bx, by)` are valid points on the curve BN256. 
+The BN128Add precompile implements a native elliptic curve point addition. It returns an elliptic curve point representing `(ax, ay) + (bx, by)` such that `(ax, ay)` and `(bx, by)` are valid points on the curve BN256.
 
 Currently there is no BN128Add support in Solidity, so it needs to be called with inline assembly. The following sample code can be used to call this precompile.
 
@@ -92,7 +92,7 @@ Using the [Remix compiler and deployment](/builders/build/eth-api/dev-env/remix/
 
 ## BN128Mul {: #bn128mul }
 
-The BN128Mul precompile implements a native elliptic curve multiplication with a scalar value. It returns an elliptic curve point representing `scalar * (x, y)` such that `(x, y)` is a valid curve point on the curve BN256. 
+The BN128Mul precompile implements a native elliptic curve multiplication with a scalar value. It returns an elliptic curve point representing `scalar * (x, y)` such that `(x, y)` is a valid curve point on the curve BN256.
 
 Currently there is no BN128Mul support in Solidity, so it needs to be called with inline assembly. The following sample code can be used to call this precompile.
 
@@ -102,7 +102,7 @@ Using the [Remix compiler and deployment](/builders/build/eth-api/dev-env/remix/
 
 ## BN128Pairing {: #bn128pairing }
 
-The BN128Pairing precompile implements elliptic curve paring operation to perform zkSNARK verification. For more information, check out the [EIP-197 standard](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-197.md){target=_blank}. 
+The BN128Pairing precompile implements elliptic curve pairing operation to perform zkSNARK verification. For more information, check out the [EIP-197 standard](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-197.md){target=_blank}.
 
 Currently there is no BN128Pairing support in Solidity, so it needs to be called with inline assembly. The following sample code can be used to call this precompile.
 
@@ -110,9 +110,9 @@ Currently there is no BN128Pairing support in Solidity, so it needs to be called
 
 Using the [Remix compiler and deployment](/builders/build/eth-api/dev-env/remix/){target=_blank} and with [MetaMask pointing to Moonbase Alpha](/tokens/connect/metamask/){target=_blank}, you can deploy the contract and call the `function callBn256Pairing(bytes memory input)` method to return the result of the operation.
 
-## The Identity Function {: #the-identity-function } 
+## The Identity Function {: #the-identity-function }
 
-Also known as datacopy, this function serves as a cheaper way to copy data in memory. 
+Also known as datacopy, this function serves as a cheaper way to copy data in memory.
 
 Currently there is no Identity Function support in Solidity, so it needs to be called with inline assembly. The following sample code (adapted to Solidity), can be used to call this precompiled contract:
 
@@ -122,7 +122,7 @@ You can use this [Web3 Type Converter tool](https://web3-type-converter.onbrn.co
 
 With the contract deployed, you can call the `callDataCopy()` method and verify if `memoryStored` matches the bytes that you pass in as an input of the function.
 
-## Modular Exponentiation {: #modular-exponentiation } 
+## Modular Exponentiation {: #modular-exponentiation }
 
 This precompile calculates the remainder when an integer `b` (base) is raised to the `e`-th power (the exponent), and is divided by a positive integer `m` (the modulus).
 
@@ -130,5 +130,5 @@ The Solidity compiler does not support it, so it needs to be called with inline 
 
 --8<-- 'code/builders/pallets-precompiles/precompiles/eth-mainnet/modularexp.md'
 
-You can try this in [Remix](/builders/build/eth-api/dev-env/remix/){target=_blank}. Use the function `verify()`, passing the base, exponent, and modulus. The function will store the value in the `checkResult` variable. 
+You can try this in [Remix](/builders/build/eth-api/dev-env/remix/){target=_blank}. Use the function `verify()`, passing the base, exponent, and modulus. The function will store the value in the `checkResult` variable.
 
