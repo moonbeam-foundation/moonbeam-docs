@@ -7,7 +7,7 @@ description:  Learn how to leverage Geth's Debug and Txpool APIs, and OpenEthere
 
 ## Introduction {: #introduction }
 
-Geth's `debug` and `txpool` APIs and OpenEthereum's `trace` module provide non-standard RPC methods for getting a deeper insight into transaction processing. As part of Moonbeam's goal of providing a seamless Ethereum experience for developers, there is support for some of these non-standard RPC methods. Supporting these RPC methods is an important milestone because many projects, such as [The Graph](https://thegraph.com/){target=_blank}, rely on them to index blockchain data.
+Geth's debug and txpool APIs and OpenEthereum's trace module provide non-standard RPC methods for getting a deeper insight into transaction processing. As part of Moonbeam's goal of providing a seamless Ethereum experience for developers, there is support for some of these non-standard RPC methods. Supporting these RPC methods is an important milestone because many projects, such as [The Graph](https://thegraph.com/){target=_blank}, rely on them to index blockchain data.
 
 To view a list of tracing RPC providers, please check out the [Network Endpoints](/builders/get-started/endpoints#tracing-providers){target=_blank} page.
 
@@ -30,8 +30,8 @@ The following RPC methods are available:
 The debug RPC implementations follow [Geth's debug API guidelines](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-debug){target=_blank}:
 
   - **[`debug_traceTransaction`](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-debug#debugtracetransaction){target=_blank}** - requires the hash of the transaction to be traced
-  - **[`debug_traceBlockByNumber`](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-debug#debugtraceblockbynumber){target=_blank}** - requires the block number of the block to be traced and an additional parameter that sets the tracer to `callTracer` (i.e. `{"tracer": "callTracer"}`)
-  - **[`debug_traceBlockByHash`](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-debug#debugtraceblockbyhash){target=_blank}** - requires the hash of the block to be traced and an additional parameter that sets the tracer to `callTracer` (i.e. `{"tracer": "callTracer"}`)
+  - **[`debug_traceBlockByNumber`](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-debug#debugtraceblockbynumber){target=_blank}** - requires the block number of the block to be traced and an additional parameter that sets the tracer to `callTracer` (i.e., `{"tracer": "callTracer"}`)
+  - **[`debug_traceBlockByHash`](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-debug#debugtraceblockbyhash){target=_blank}** - requires the hash of the block to be traced and an additional parameter that sets the tracer to `callTracer` (i.e., `{"tracer": "callTracer"}`)
 
 As *optional* parameters for the supported debug methods, you can provide the following:
 
@@ -51,23 +51,23 @@ The txpool RPC implementations follow [Geth's txpool API guidelines](https://get
 
 The [`trace_filter`](https://openethereum.github.io/JSONRPC-trace-module#trace_filter){target=_blank} RPC implementation follows [OpenEthereum's trace module guidelines](https://openethereum.github.io/JSONRPC-trace-module){target=_blank}. The RPC method requires any of the following *optional* parameters:
 
- - **fromBlock**(*uint* blockNumber) — either block number (`hex`), `earliest` which is the genesis block or `latest` (default) best block available. Trace starting block
- - **toBlock**(*uint* blockNumber) — either block number (`hex`), `earliest` which is the genesis block or `latest` best block available. Trace ending block
- - **fromAddress**(*array* addresses) — filter transactions done from these addresses only. If an empty array is provided, no filtering is done with this field
- - **toAddress**(*array* addresses) — filter transactions done from these addresses only. If an empty array is provided, no filtering is done with this field
- - **after**(*uint* offset) — default offset is `0`. Trace offset (or starting) number
+ - **fromBlock**(*uint* blockNumber) — either block number (`hex`), `earliest`, which is the genesis block, or `latest` (default), which is the best block available. The trace starting block
+ - **toBlock**(*uint* blockNumber) — either block number (`hex`), `earliest`, which is the genesis block, or `latest`, which is the best block available. The trace ending block
+ - **fromAddress**(*array* addresses) — filter transactions from these addresses only. If an empty array is provided, no filtering is done with this field
+ - **toAddress**(*array* addresses) — filter transactions to these addresses only. If an empty array is provided, no filtering is done with this field
+ - **after**(*uint* offset) — default offset is `0`. The trace offset (or starting) number
  - **count**(*uint* numberOfTraces) — number of traces to display in a batch
 
 There are a couple default values that you should be aware of:
 
  - The maximum number of trace entries a single request of `trace_filter` is allowed to return is `500`. A request exceeding this limit will return an error
- - Blocks processed by requests are temporarily stored on cache for `300` seconds, after which they are deleted
+ - Blocks processed by requests are temporarily stored in the cache for `300` seconds, after which they are deleted
 
-To change the default values you can add [Additional Flags](/node-operators/networks/tracing-node/#additional-flags){target=_blank} when spinning up your tracing node.
+To change the default values, you can add [Additional Flags](/node-operators/networks/tracing-node/#additional-flags){target=_blank} when spinning up your tracing node.
 
 ## Checking Prerequisites {: #checking-prerequisites }
 
-For this guide, you will need to have a locally running instance of a Moonbase Alpha tracing node with the `debug`, `txpool`, and `tracing` flags enabled for this guide. You can also adapt the instructions for Moonbeam and Moonriver.
+For this guide, you will need to have a locally running instance of a Moonbase Alpha tracing node with the `debug`, `txpool`, and `tracing` flags enabled. You can also adapt the instructions for Moonbeam and Moonriver.
 
 If you haven't already done so, you can follow the guide on [Running a Tracing Node](/node-operators/networks/tracing-node/){target=_blank}. The RPC HTTP endpoint should be at `{{ networks.development.rpc_url }}`.
 
@@ -89,7 +89,7 @@ curl {{ networks.development.rpc_url }} -H "Content-Type:application/json;charse
   }'
 ```
 
-The node responds with the step-by-step replayed transaction information (response was cropped as it is quite long):
+The node responds with the step-by-step replayed transaction information (the response was cropped as it is quite long):
 
 ![Trace Debug Node Running](/images/builders/build/eth-api/debug-trace/debug-trace-2.png)
 
@@ -107,7 +107,7 @@ curl {{ networks.development.rpc_url }} -H "Content-Type:application/json;charse
 
 ## Using the Tracing Module {: #using-the-tracing-module }
 
-For the `trace_filter` call, you can make the following JSON-RPC request in your terminal (in this case, the filter is from block 20000 to 25000, only for transactions where the recipient is  `0x4E0078423a39EfBC1F8B5104540aC2650a756577`, it will start with a zero offset and provide the first 20 traces):
+For the `trace_filter` call, you can make the following JSON-RPC request in your terminal (in this case, the filter is from block 20000 to 25000, only for transactions where the recipient is  `0x4E0078423a39EfBC1F8B5104540aC2650a756577`; it will start with a zero offset and provide the first 20 traces):
 
 ```sh
 curl {{ networks.development.rpc_url }} -H "Content-Type:application/json;charset=utf-8" -d \
@@ -118,7 +118,7 @@ curl {{ networks.development.rpc_url }} -H "Content-Type:application/json;charse
   }'
 ```
 
-The node responds with the trace information corresponding to the filter (response was cropped as it is quite long).
+The node responds with the trace information corresponding to the filter (the response was cropped as it is quite long).
 
 ![Trace Filter Node Running](/images/builders/build/eth-api/debug-trace/debug-trace-3.png)
 
