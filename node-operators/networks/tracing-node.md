@@ -7,7 +7,7 @@ description: Learn how to leverage Geth's Debug and Txpool APIs, and OpenEthereu
 
 ## Introduction {: #introduction }
 
-Geth's `debug` and `txpool` APIs and OpenEthereum's `trace` module provide non-standard RPC methods for getting a deeper insight into transaction processing. As part of Moonbeam's goal of providing a seamless Ethereum experience for developers, there is support for some of these non-standard RPC methods. Supporting these RPC methods is an important milestone because many projects, such as [The Graph](https://thegraph.com/){target=_blank} or [Blockscout](https://docs.blockscout.com/){target=_blank}, rely on them to index blockchain data.
+Geth's `debug` and `txpool` APIs and OpenEthereum's `trace` module provide non-standard RPC methods for getting a deeper insight into transaction processing. As part of Moonbeam's goal of providing a seamless Ethereum experience for developers, there is support for some of these non-standard RPC methods. Supporting these RPC methods is an important milestone because many projects, such as [The Graph](https://thegraph.com/){target=_blank}, rely on them to index blockchain data.
 
 To use the supported RPC methods, you need to run a tracing node, which is slightly different than running a full node. There is a different Docker image, called `purestake/moonbeam-tracing` that needs to be used for tracing. Additional flags will also need to be used to tell the node which of the non-standard features to support.
 
@@ -31,7 +31,7 @@ Spinning up a `debug`, `txpool`, or `tracing` node is similar to [running a full
   - **`-ethapi-trace-cache-duration <uint>`** — sets the duration (in seconds) after which the cache of `trace_filter,` for a given block, is discarded. The default amount of time blocks are stored in the cache is `300` seconds
 
 !!! note
-    If you want to run an RPC endpoint, to connect to Polkadot.js Apps, or to run your own application, use the flags `--unsafe-rpc-external` and/or `--unsafe-ws-external` to run the full node with external access to the RPC ports.  More details are available by running `moonbeam --help`.  
+    If you want to run an RPC endpoint, to connect to Polkadot.js Apps, or to run your own application, use the `--unsafe-rpc-external` flag to run the full node with external access to the RPC ports.  More details are available by running `moonbeam --help`.  
 
 ## Run a Tracing Node with Docker {: #run-a-tracing-node-with-docker }
 
@@ -55,13 +55,13 @@ If you haven't previously run a standard full Moonbeam node, you will need to se
     mkdir {{ networks.moonbase.node_directory }}
     ```
 
-Before getting started, you'll need to set the necessary permissions either for a specific or current user (replace `DOCKER_USER` for the actual user that will run the `docker` command):
+Before getting started, you'll need to set the necessary permissions either for a specific or current user (replace `INSERT_DOCKER_USER` for the actual user that will run the `docker` command):
 
 === "Moonbeam"
 
     ```bash
     # chown to a specific user
-    chown DOCKER_USER {{ networks.moonbeam.node_directory }}
+    chown INSERT_DOCKER_USER {{ networks.moonbeam.node_directory }}
 
     # chown to current user
     sudo chown -R $(id -u):$(id -g) {{ networks.moonbeam.node_directory }}
@@ -71,7 +71,7 @@ Before getting started, you'll need to set the necessary permissions either for 
 
     ```bash
     # chown to a specific user
-    chown DOCKER_USER {{ networks.moonriver.node_directory }}
+    chown INSERT_DOCKER_USER {{ networks.moonriver.node_directory }}
 
     # chown to current user
     sudo chown -R $(id -u):$(id -g) {{ networks.moonriver.node_directory }}
@@ -81,7 +81,7 @@ Before getting started, you'll need to set the necessary permissions either for 
 
     ```bash
     # chown to a specific user
-    chown DOCKER_USER {{ networks.moonbase.node_directory }}
+    chown INSERT_DOCKER_USER {{ networks.moonbase.node_directory }}
 
     # chown to current user
     sudo chown -R $(id -u):$(id -g) {{ networks.moonbase.node_directory }}
@@ -91,13 +91,10 @@ Instead of the standard `purestake/moonbeam` docker image, you will need to use 
 
 Now, execute the docker run command. Note that you have to:
 
- - Replace `YOUR-NODE-NAME` in two different places
+ - Replace `INSERT_YOUR_NODE_NAME` in two different places
  - Replace `<50% RAM in MB>` for 50% of the actual RAM your server has. For example, for 32 GB RAM, the value must be set to `16000`. The minimum value is `2000`, but it is below the recommended specs
 
-!!! note
-    For client versions prior to v0.27.0, the `--state-pruning` flag was named `--pruning`.
-
-    For client versions prior to v0.30.0, `--rpc-port` was used to specify the port for HTTP connections and `--ws-port` was used to specify the port for WS connections. As of client v0.30.0, the `--rpc-port` has been deprecated and the `--ws-port` flag is for both HTTP and WS connections. Similarly, the `--rpc-max-connections` flag has been deprecated and is now hardcoded to 100. You can use `--ws-max-connections` to adjust the combined HTTP and WS connection limit.
+--8<-- 'text/node-operators/client-changes.md'
 
 The complete command for running a tracing node is as follows:
 
@@ -109,7 +106,7 @@ The complete command for running a tracing node is as follows:
     {{ networks.moonbeam.tracing_tag }} \
     --base-path=/data \
     --chain {{ networks.moonbeam.chain_spec }} \
-    --name="YOUR-NODE-NAME" \
+    --name="INSERT_YOUR_NODE_NAME" \
     --state-pruning archive \
     --trie-cache-size 1073741824 \
     --db-cache <50% RAM in MB> \
@@ -117,7 +114,7 @@ The complete command for running a tracing node is as follows:
     --wasm-runtime-overrides=/moonbeam/moonbeam-substitutes-tracing \
     --runtime-cache-size 64 \
     -- \
-    --name="YOUR-NODE-NAME (Embedded Relay)"
+    --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
     ```
 
 === "Moonriver"
@@ -128,7 +125,7 @@ The complete command for running a tracing node is as follows:
     {{ networks.moonriver.tracing_tag }} \
     --base-path=/data \
     --chain {{ networks.moonriver.chain_spec }} \
-    --name="YOUR-NODE-NAME" \
+    --name="INSERT_YOUR_NODE_NAME" \
     --state-pruning archive \
     --trie-cache-size 1073741824 \
     --db-cache <50% RAM in MB> \
@@ -136,7 +133,7 @@ The complete command for running a tracing node is as follows:
     --wasm-runtime-overrides=/moonbeam/moonriver-substitutes-tracing \
     --runtime-cache-size 64 \
     -- \
-    --name="YOUR-NODE-NAME (Embedded Relay)"
+    --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
     ```
 
 === "Moonbase Alpha"
@@ -147,7 +144,7 @@ The complete command for running a tracing node is as follows:
     {{ networks.moonbase.tracing_tag }} \
     --base-path=/data \
     --chain {{ networks.moonbase.chain_spec }} \
-    --name="YOUR-NODE-NAME" \
+    --name="INSERT_YOUR_NODE_NAME" \
     --state-pruning archive \
     --trie-cache-size 1073741824 \
     --db-cache <50% RAM in MB> \
@@ -155,7 +152,7 @@ The complete command for running a tracing node is as follows:
     --wasm-runtime-overrides=/moonbeam/moonbase-substitutes-tracing \
     --runtime-cache-size 64 \
     -- \
-    --name="YOUR-NODE-NAME (Embedded Relay)"
+    --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
     ```
 
 === "Moonbeam Dev Node"
@@ -164,7 +161,7 @@ The complete command for running a tracing node is as follows:
     docker run --network="host" \
     -u $(id -u ${USER}):$(id -g ${USER}) \
     {{ networks.development.tracing_tag }} \
-    --name="YOUR-NODE-NAME" \
+    --name="INSERT_YOUR_NODE_NAME" \
     --ethapi=debug,trace,txpool \
     --wasm-runtime-overrides=/moonbeam/moonbase-substitutes-tracing \
     --runtime-cache-size 64 \
@@ -263,16 +260,13 @@ You can clone the repository to any location on your local machine. For simplici
 
 The next step is to create the systemd configuration file, you'll need to:
 
- - Replace `YOUR-NODE-NAME` in two different places
+ - Replace `INSERT_YOUR_NODE_NAME` in two different places
  - Replace `<50% RAM in MB>` for 50% of the actual RAM your server has. For example, for 32 GB RAM, the value must be set to `16000`. The minimum value is `2000`, but it is below the recommended specs
  - Double-check that the binary is in the proper path as described below (_ExecStart_)
  - Double-check the base path if you've used a different directory
  - Name the file `/etc/systemd/system/moonbeam.service`
 
-!!! note
-    For client versions prior to v0.27.0, the `--state-pruning` flag was named `--pruning`.
-
-    For client versions prior to v0.30.0, `--rpc-port` was used to specify the port for HTTP connections and `--ws-port` was used to specify the port for WS connections. As of client v0.30.0, the `--rpc-port` has been deprecated and the `--ws-port` flag is for both HTTP and WS connections. Similarly, the `--rpc-max-connections` flag has been deprecated and is now hardcoded to 100. You can use `--ws-max-connections` to adjust the combined HTTP and WS connection limit.
+--8<-- 'text/node-operators/client-changes.md'
 
 === "Moonbeam"
 
@@ -299,9 +293,9 @@ The next step is to create the systemd configuration file, you'll need to:
          --wasm-runtime-overrides={{ networks.moonbeam.node_directory }}/wasm \
          --runtime-cache-size 64 \
          --chain {{ networks.moonbeam.chain_spec }} \
-         --name "YOUR-NODE-NAME" \
+         --name "INSERT_YOUR_NODE_NAME" \
          -- \
-         --name="YOUR-NODE-NAME (Embedded Relay)"
+         --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
     
     [Install]
     WantedBy=multi-user.target
@@ -332,9 +326,9 @@ The next step is to create the systemd configuration file, you'll need to:
          --wasm-runtime-overrides={{ networks.moonriver.node_directory }}/wasm \
          --runtime-cache-size 64 \
          --chain {{ networks.moonriver.chain_spec }} \
-         --name "YOUR-NODE-NAME" \
+         --name "INSERT_YOUR_NODE_NAME" \
          -- \
-         --name="YOUR-NODE-NAME (Embedded Relay)"
+         --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
     
     [Install]
     WantedBy=multi-user.target
@@ -365,16 +359,16 @@ The next step is to create the systemd configuration file, you'll need to:
          --wasm-runtime-overrides={{ networks.moonbase.node_directory }}/wasm \
          --runtime-cache-size 64 \
          --chain {{ networks.moonbase.chain_spec }} \
-         --name "YOUR-NODE-NAME" \
+         --name "INSERT_YOUR_NODE_NAME" \
          -- \
-         --name="YOUR-NODE-NAME (Embedded Relay)"
+         --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
 
     [Install]
     WantedBy=multi-user.target
     ```
 
 !!! note
-    If you want to run an RPC endpoint, to connect polkadot.js.org, or to run your own application, use the flags `--unsafe-rpc-external` and/or `--unsafe-ws-external` to run the full node with external access to the RPC ports. More details are available by running `moonbeam --help`.
+    If you want to run an RPC endpoint, to connect polkadot.js.org, or to run your own application, use the `--unsafe-rpc-external` flag to run the full node with external access to the RPC ports. More details are available by running `moonbeam --help`.
 
 ### Run the Service {: #run-the-service }
 

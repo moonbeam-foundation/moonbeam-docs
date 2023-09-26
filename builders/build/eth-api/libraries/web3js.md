@@ -1,5 +1,5 @@
 ---
-title: Send Transactions & Deploy Contracts with Web3.js
+title: How to use Web3.js Ethereum Library
 description: Follow this tutorial to learn how to use the Ethereum Web3 JavaScript Library to deploy Solidity smart contracts to Moonbeam.
 ---
 
@@ -15,10 +15,10 @@ In this guide, you'll learn how to use the Web3.js library to send a transaction
 
 For the examples in this guide, you will need to have the following:
 
- - An account with funds.
+- An account with funds.
   --8<-- 'text/faucet/faucet-list-item.md'
- -
---8<-- 'text/common/endpoint-examples.md'
+- 
+  --8<-- 'text/common/endpoint-examples-list-item.md'
 
 !!! note
     --8<-- 'text/common/assumes-mac-or-ubuntu-env.md'
@@ -219,11 +219,16 @@ You can also use the `balances.js` script to check that the balances for the ori
 
 ## Deploy a Contract {: #deploy-a-contract }
 
---8<-- 'text/libraries/contract.md'
+--8<-- 'text/eth-api/libraries/contract.md'
 
 ### Compile Contract Script {: #compile-contract-script }
 
---8<-- 'text/libraries/compile.md'
+--8<-- 'text/eth-api/libraries/compile-js.md'
+--8<-- 'text/eth-api/libraries/compile.md'
+
+```js
+--8<-- 'code/eth-api/libraries/compile.js'
+```
 
 ### Deploy Contract Script {: #deploy-contract-script }
 

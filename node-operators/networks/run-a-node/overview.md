@@ -59,8 +59,7 @@ As stated before, the relay/parachain nodes will listen on multiple ports. The d
 
 The only ports that need to be open for incoming traffic are those designated for P2P. **Collators must not have RPC or WS ports opened**.
 
-!!! note
-    As of [client v0.30.0](https://github.com/moonbeam-foundation/moonbeam/releases/tag/v0.30.0){target=_blank}, the HTTP RPC endpoint at port {{ networks.parachain.rpc }} has been deprecated. The WS RPC endpoint at port {{ networks.parachain.ws }} should be used for both HTTP and WS connections.
+--8<-- 'text/node-operators/client-changes.md'
 
 ### Default Ports for a Parachain Full-Node {: #default-ports-for-a-parachain-full-node }
 

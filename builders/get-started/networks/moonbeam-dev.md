@@ -3,7 +3,7 @@ title: Run a Moonbeam Development Node
 description: Follow this tutorial to learn how to spin up your first Moonbeam development node, how to configure it for development purposes, and connect to it.
 ---
 
-# Getting Started with a Moonbeam Development Node
+# Getting Started with a Local Moonbeam Development Node
 
 <style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/-bRooBW2g0o' frameborder='0' allowfullscreen></iframe></div>
 <style>.caption { font-family: Open Sans, sans-serif; font-size: 0.9em; color: rgba(170, 170, 170, 1); font-style: italic; letter-spacing: 0px; position: relative;}</style>
@@ -43,7 +43,7 @@ Using Docker enables you to spin up a node in a matter of seconds. Once you have
         ```bash
         docker run --rm --name {{ networks.development.container_name }} --network host \
         purestake/moonbeam:{{ networks.development.build_tag }} \
-        --dev
+        --dev --rpc-external
         ```
 
     === "MacOS"
@@ -51,7 +51,7 @@ Using Docker enables you to spin up a node in a matter of seconds. Once you have
         ```bash
         docker run --rm --name {{ networks.development.container_name }} -p 9944:9944 \
         purestake/moonbeam:{{ networks.development.build_tag }} \
-        --dev --ws-external --rpc-external
+        --dev --rpc-external
         ```
 
     === "Windows"
@@ -59,12 +59,17 @@ Using Docker enables you to spin up a node in a matter of seconds. Once you have
         ```bash
         docker run --rm --name {{ networks.development.container_name }} -p 9944:9944 ^
         purestake/moonbeam:{{ networks.development.build_tag }} ^
-        --dev --ws-external --rpc-external
+        --dev --rpc-external
         ```
 
-    If successful, you should see an output showing an idle state waiting for blocks to be authored:
+!!! note
+    On MacOS with silicon chips, Docker images may perform poorly. To improve performance, try [spinning up a Node with a Binary File](#getting-started-with-the-binary-file).
 
-    ![Docker - output shows blocks being produced](/images/builders/get-started/networks/moonbeam-dev/moonbeam-dev-2.png)
+
+
+If successful, you should see an output showing an idle state waiting for blocks to be authored:
+
+![Docker - output shows blocks being produced](/images/builders/get-started/networks/moonbeam-dev/moonbeam-dev-2.png)
 
 For more information on some of the flags and options used in the example, check out [Flags](#node-flags) and [Options](#node-options). If you want to see a complete list of all of the flags, options, and subcommands, open the help menu by running:
 
@@ -90,6 +95,9 @@ To build the binary file, you can take the following steps:
     cd moonbeam
     ```
 
+    !!! note
+        Space in the installation file path will cause a compilation error.
+
 2. If you already have Rust installed, you can skip the next two steps. Otherwise, install Rust and its prerequisites [via Rust's recommended method](https://www.rust-lang.org/tools/install){target=_blank} by executing:
 
     ```bash
@@ -109,6 +117,13 @@ To build the binary file, you can take the following steps:
 
         ```bash
         apt install clang protobuf-compiler libprotobuf-dev -y 
+        ```
+
+        For MacOS users, these dependencies can be installed via Homebrew:
+
+        ```bash
+        brew install llvm
+        brew install protobuf
         ```
 
     ```bash
@@ -155,8 +170,7 @@ Flags do not take an argument. To use a flag, add it to the end of a command. Fo
 
 - **`--dev`** - specifies the development chain
 - **`--tmp`** - runs a temporary node in which all of the configuration will be deleted at the end of the process
-- **`--rpc-external`** - listen to all RPC interfaces
-- **`--ws-external`** - listen to all Websocket interfaces
+- **`--rpc-external`** - listen to all RPC and WebSocket interfaces
 
 ### Common Options to Configure your Node {: #node-options }
 
@@ -168,10 +182,10 @@ Options accept an argument to the right of the option. For example:
 
 - **`-l <log pattern>` or `--log <log pattern>`** - sets a custom logging filter. The syntax for the log pattern is `<target>=<level>`. For example, to print all of the JSON RPC logs, the command would look like this: `-l json=trace`
 - **`--sealing <interval>`** - when blocks should be sealed in the dev service. Accepted arguments for interval: `instant`, `manual`, or a number representing the timer interval in milliseconds (for example, `6000` will have the node produce blocks every 6 seconds). Default is `instant`. Please refer to the [Configure Block Production](#configure-block-production) section below for more information
-- **`--rpc-port <port>`** - *deprecated as of [client v0.30.0](https://github.com/moonbeam-foundation/moonbeam/releases/tag/v0.30.0){target=_blank}, use `--ws-port` for HTTP and WS connections instead* - sets the HTTP RPC server TCP port. Accepts a port as the argument
-- **`--ws-port <port>`**: sets the WebSockets RPC server TCP port. As of [client v0.30.0](https://github.com/moonbeam-foundation/moonbeam/releases/tag/v0.30.0){target=_blank}, the WS port is a unified port for both HTTP and WS connections. Accepts a port as the argument. Default is {{ networks.parachain.ws }}
-- **`--rpc-max-connections <connections>`** - *deprecated as of [client v0.30.0](https://github.com/moonbeam-foundation/moonbeam/releases/tag/v0.30.0){target=_blank}, this value has been hardcoded to 100. Use `--ws-max-connections` to adjust the combined HTTP and WS connection limit instead* - specifies the maximum number of HTTP RPC server connections 
-- **`--ws-max-connections <connections>`** - specifies the maximum number of WS RPC server connections. As of [client v0.30.0](https://github.com/moonbeam-foundation/moonbeam/releases/tag/v0.30.0){target=_blank}, this flag adjusts the combined HTTP and WS connection limit. Default is 100 connections
+- **`--rpc-port <port>`** - sets the unified port for HTTP and WS connections. Accepts a port as the argument. Default is {{ networks.parachain.rpc }}
+- **`--ws-port <port>`** - *deprecated as of [client v0.33.0](https://github.com/moonbeam-foundation/moonbeam/releases/tag/v0.33.0){target=_blank}, use `--rpc-port` for HTTP and WS connections instead* sets the WebSockets RPC server TCP port. As of [client v0.30.0](https://github.com/moonbeam-foundation/moonbeam/releases/tag/v0.30.0){target=_blank}, sets the unified port for both HTTP and WS connections. Accepts a port as the argument
+- **`--rpc-max-connections <connections>`** - specifies the combined HTTP and WS connection limit. Default is 100 connections
+- **`--ws-max-connections <connections>`** - *deprecated as of [client v0.33.0](https://github.com/moonbeam-foundation/moonbeam/releases/tag/v0.33.0){target=_blank}, use `--rpc-max-connections` to limit the HTTP and WS connections instead* - this flag adjusts the combined HTTP and WS connection limit. Default is 100 connections
 - **`--rpc-cors <origins>`** - specifies the browser origins allowed to access the HTTP and WS RPC servers. The origins can be a comma-separated list of the origins to allow access or you can also specify `null`. When running a development node, the default is to allow all origins
 
 For a complete list of flags and options, spin up your Moonbeam development node with `--help` added to the end of the command.

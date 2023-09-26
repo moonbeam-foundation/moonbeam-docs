@@ -126,9 +126,9 @@ The SDK provides the following core methods:
 - `Sdk()` - exposes the methods of the XCM SDK. **Must be called first to access other SDK methods**
 
     ??? code "Parameters"
-        |    Name    |     Type     |                         Description                         |
-        |:----------:|:------------:|:-----------------------------------------------------------:|
-        | `options?` | *SdkOptions* | Allows you to specify an `ethersSigner` or `polkadotSigner` |
+        |    Name    |     Type     |                       Description                        |
+        |:----------:|:------------:|:--------------------------------------------------------:|
+        | `options?` | *SdkOptions* | Allows you to specify an `evmSigner` or `polkadotSigner` |
 
     ??? code "Returns"
         |       Name        |   Type   |                                                        Description                                                         |
@@ -139,15 +139,15 @@ The SDK provides the following core methods:
 - `getTransferData()` - builds the data necessary to transfer an asset between a source chain and a destination chain
 
     ??? code "Parameters"
-        |          Name           |               Type               |                                      Description                                       |
-        |:-----------------------:|:--------------------------------:|:--------------------------------------------------------------------------------------:|
-        |  `destinationAddress`   |             *string*             |             The address of the receiving account on the destination chain              |
-        | `destinationKeyorChain` |       *string \| AnyChain*       |                   The key or `Chain` data for the destination chain                    |
-        |     `ethersSigner?`     |          *EthersSigner*          | The Ethers signer for Ethereum-compatible chains that use H160 Ethereum-style accounts |
-        |      `keyOrAsset`       |        *string \| Asset*         |                The key or `Asset` data for the asset being transferred                 |
-        |    `polkadotSigner?`    | *PolkadotSigner \| IKeyringPair* |                          The Polkadot signer or Keyring pair                           |
-        |     `sourceAddress`     |             *string*             |                 The address of the sending account on the source chain                 |
-        |   `sourceKeyOrChain`    |       *string \| AnyChain*       |                      The key or `Chain` data for the source chain                      |
+        |          Name           |               Type               |                                                               Description                                                               |
+        |:-----------------------:|:--------------------------------:|:---------------------------------------------------------------------------------------------------------------------------------------:|
+        |  `destinationAddress`   |             *string*             |                                      The address of the receiving account on the destination chain                                      |
+        | `destinationKeyorChain` |       *string \| AnyChain*       |                                            The key or `Chain` data for the destination chain                                            |
+        |      `evmSigner?`       | *EthersSigner  \| WalletClient*  | The signer for Ethereum-compatible chains that use H160 Ethereum-style accounts. Can be either an Ethers signer or a viem Wallet Client |
+        |      `keyOrAsset`       |        *string \| Asset*         |                                         The key or `Asset` data for the asset being transferred                                         |
+        |    `polkadotSigner?`    | *PolkadotSigner \| IKeyringPair* |                                                   The Polkadot signer or Keyring pair                                                   |
+        |     `sourceAddress`     |             *string*             |                                         The address of the sending account on the source chain                                          |
+        |   `sourceKeyOrChain`    |       *string \| AnyChain*       |                                              The key or `Chain` data for the source chain                                               |
 
     ??? code "Returns"
         |       Name       |              Type              |                                       Description                                       |
