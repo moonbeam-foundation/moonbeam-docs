@@ -7,15 +7,15 @@ description: A description of the main differences that Ethereum developers need
 
 ## Introduction {: #introduction }
 
-While Moonbeam strives to be compatible with Ethereum's Web3 API and EVM, there are some important Moonbeam differences that developers should know and understand in terms of the [Ethereum API JSON-RPC](https://eth.wiki/json-rpc/API#json-rpc-methods){target=_blank} support.
+While Moonbeam strives to be compatible with Ethereum's Web3 API and EVM, there are some important differences that developers should know and understand in terms of the [Ethereum API JSON-RPC](https://eth.wiki/json-rpc/API#json-rpc-methods){target=_blank} support on Moonbeam.
 
-The Moonbeam team has collaborated closely with [Parity](https://www.parity.io/){target=_blank} on developing [Frontier](/learn/features/eth-compatibility/#frontier){target=_blank}. Frontier is the Ethereum compatibility layer for Substrate based chains, and it is what allows developers to run unmodified Ethereum DApps.
+The Moonbeam team has collaborated closely with [Parity](https://www.parity.io/){target=_blank} on developing [Frontier](/learn/features/eth-compatibility/#frontier){target=_blank}. Frontier is the Ethereum compatibility layer for Substrate-based chains, and it is what allows developers to run unmodified Ethereum DApps.
 
-Nevertheless, not all of the Ethereum JSON RPC methods are supported, and some of the supported ones return default values (those related to Ethereum's PoW consensus mechanism in particular). This guide will outline some of these main differences around Ethereum RPC support and what to expect when using Moonbeam for the first time.
+Nevertheless, not all of the Ethereum JSON-RPC methods are supported, and some of the supported ones return default values (those related to Ethereum's PoW consensus mechanism in particular). This guide will outline some of these main differences around Ethereum RPC support and what to expect when using Moonbeam for the first time.
 
-## Basic Ethereum JSON RPC Methods {: #basic-rpc-methods }
+## Basic Ethereum JSON-RPC Methods {: #basic-rpc-methods }
 
-At the time of writing, the basic JSON RPC methods from the Ethereum API supported by Moonbeam are:
+The basic JSON-RPC methods from the Ethereum API supported by Moonbeam are:
 
 - **[eth_protocolVersion](https://eth.wiki/json-rpc/API#eth_protocolversion){target=_blank}** — returns `1` by default
 - **[eth_syncing](https://eth.wiki/json-rpc/API#eth_syncing){target=_blank}** — returns an object with data about the sync status or `false`
@@ -52,9 +52,9 @@ At the time of writing, the basic JSON RPC methods from the Ethereum API support
 - **[eth_submitWork](https://eth.wiki/json-rpc/API#eth_submitwork){target=_blank}** — not supported on Moonbeam
 - **[eth_submitHashrate](https://eth.wiki/json-rpc/API#eth_submithashrate){target=_blank}** — not supported on Moonbeam
 
-## Filter-related Ethereum JSON RPC Methods {: #filter-rpc-methods }
+## Filter-related Ethereum JSON-RPC Methods {: #filter-rpc-methods }
 
-At the time of writing, the filter-related JSON RPC methods from the Ethereum API supported by Moonbeam are:
+The filter-related JSON-RPC methods from the Ethereum API supported by Moonbeam are:
 
 - **[eth_newFilter](https://eth.wiki/json-rpc/API#eth_newfilter){target=_blank}** — creates a filter object based on the input provided. Returns a filter ID
 - **[eth_newBlockFilter](https://eth.wiki/json-rpc/API#eth_newblockfilter){target=_blank}** — creates a filter in the node to notify when a new block arrives. Returns a filter id
@@ -62,16 +62,16 @@ At the time of writing, the filter-related JSON RPC methods from the Ethereum AP
 - **[eth_getFilterLogs](https://eth.wiki/json-rpc/API#eth_getfilterlogs){target=_blank}** — returns an array of all the logs matching the filter with a given ID
 - **[eth_uninstallFilter](https://eth.wiki/json-rpc/API#eth_uninstallfilter){target=_blank}** — uninstall a filter with a given ID. Should be used when polling is no longer needed. Filters timeout when they are not requested using `eth_getFilterChanges` after a period of time
 
-## Event Subscription Ethereum JSON RPC Methods {: #event-subscription-rpc-methods }
+## Event Subscription Ethereum JSON-RPC Methods {: #event-subscription-rpc-methods }
 
-At the time of writing, the [event subscription JSON RPC methods](https://geth.ethereum.org/docs/interacting-with-geth/rpc/pubsub#create-subscriptions){target=_blank} from the Ethereum API supported by Moonbeam are:
+The [event subscription JSON-RPC methods](https://geth.ethereum.org/docs/interacting-with-geth/rpc/pubsub#create-subscriptions){target=_blank} from the Ethereum API supported by Moonbeam are:
 
 - **[eth_subscribe](https://geth.ethereum.org/docs/interacting-with-geth/rpc/pubsub#create-subscriptions){target=_blank}** — creates a subscription for a given subscription name. If successful, returns the subscription ID
 - **[eth_unsubscribe](https://geth.ethereum.org/docs/interacting-with-geth/rpc/pubsub#cancel-subscriptions){target=_blank}** — cancels the subscription given by its ID
 
 ### Supported Subscription Parameters {: #supported-subscription }
 
-At the time of writing, the [supported subscriptions](https://geth.ethereum.org/docs/interacting-with-geth/rpc/pubsub#create-subscriptions#supported-subscriptions){target=_blank} are:
+The [supported subscriptions](https://geth.ethereum.org/docs/interacting-with-geth/rpc/pubsub#create-subscriptions#supported-subscriptions){target=_blank} are:
 
 - **[newHeads](https://geth.ethereum.org/docs/interacting-with-geth/rpc/pubsub#newheads){target=_blank}** — triggers a notification each time a new header is appended to the chain
 - **[logs](https://geth.ethereum.org/docs/interacting-with-geth/rpc/pubsub#logs){target=_blank}** — returns logs that are included in new imported blocks, and match a given filter criteria
@@ -80,7 +80,7 @@ At the time of writing, the [supported subscriptions](https://geth.ethereum.org/
 
 For a dedicated tutorial for these subscriptions, check out the [Events Subscription](/builders/build/eth-api/pubsub/){target=_blank} guide.
 
-## Debug and Trace JSON RPC Methods {: #debug-trace }
+## Debug and Trace JSON-RPC Methods {: #debug-trace }
 
 The supported methods from Geth's [debug](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-debug){target=_blank} and [txpool](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-txpool){target=_blank} APIs and OpenEthereum's [trace](https://openethereum.github.io/JSONRPC-trace-module){target=_blank} module are as follows:
 
