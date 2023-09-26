@@ -63,7 +63,7 @@ Using Docker enables you to spin up a node in a matter of seconds. Once you have
         ```
 
 !!! note
-    On macOS with silicon chips, Docker images may perform poorly. To improve performance, try [spinning up a Node with a Binary File](#getting-started-with-the-binary-file).
+    On MacOS with silicon chips, Docker images may perform poorly. To improve performance, try [spinning up a Node with a Binary File](#getting-started-with-the-binary-file).
 
 
 
