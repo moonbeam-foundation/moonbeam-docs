@@ -61,7 +61,7 @@ The `20,000,000,000` weight limit per XCM message constrains the gas limit avail
 In summary, these are the main differences between regular and remote EVM calls:
 
 - Remote EVM calls use a global nonce (owned by the [Ethereum-XCM pallet](https://github.com/moonbeam-foundation/moonbeam/tree/master/pallets/ethereum-xcm){target=_blank}) instead of a nonce per account
-- The `v-r-s` values of the signature for remote EVM calls are `0x1`. The sender can't be retrieved from the signature through standard methods (for example, through [ECRECOVER](/builders/pallets-precompiles/precompiles/eth-mainnet/#verify-signatures-with-ecrecover){target=_blank}). Nevertheless, the `from` is included in both the transaction receipt and when getting the transaction by hash (using the Ethereum JSON RPC)
+- The `v-r-s` values of the signature for remote EVM calls are `0x1`. The sender can't be retrieved from the signature through standard methods (for example, through [ECRECOVER](/builders/pallets-precompiles/precompiles/eth-mainnet/#verify-signatures-with-ecrecover){target=_blank}). Nevertheless, the `from` is included in both the transaction receipt and when getting the transaction by hash (using the Ethereum JSON-RPC)
 - The gas price for all remote EVM calls is zero. The EVM execution is charged at an XCM execution level and not at an EVM level
 - The current maximum gas limit you can set for a remote EVM call is `720,000` gas units
 
@@ -182,7 +182,7 @@ For the action to be executed, you'll be performing a contract interaction with 
 
 The encoded call data of the interaction with the `increment` function is `0xd09de08a`, which is the first eight hexadecimal characters (or 4 bytes) of the keccak256 hash of `increment()`. If you choose to interact with a function that has input parameters, they also need to be encoded. The easiest way to get the encoded call data is to emulate a transaction either in [Remix](/builders/build/eth-api/dev-env/remix/#interacting-with-a-moonbeam-based-erc-20-from-metamask){target=_blank} or [Moonscan](https://moonbase.moonscan.io/address/0xa72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8#code){target=_blank}. Next, in Metamask, check the **HEX DATA: 4 BYTES** selector under the **HEX** tab before signing it. You don't need to sign the transaction.
 
-Now that you have the encoded contract interaction data, you can determine the gas limit for this call using the [`eth_estimateGas` JSON RPC method](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_estimategas){target=_blank}. For this example, you can set the gas limit to `155000`.
+Now that you have the encoded contract interaction data, you can determine the gas limit for this call using the [`eth_estimateGas` JSON-RPC method](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_estimategas){target=_blank}. For this example, you can set the gas limit to `155000`.
 
 For the value, you can set it to `0` since this particular interaction does not need DEV (or GLMR/MOVR for Moonbeam/Moonriver). For an interaction that requires DEV, you'll need to modify this value accordingly.
 
@@ -348,7 +348,7 @@ To verify that the remote EVM call through XCM was successful, you can head to t
 
 ## Remote EVM Call Transaction by Hash {: #remove-evm-call-txhash}
 
-As mentioned before, there are some [differences between regular and remote XCM EVM calls]( #differences-regular-remote-evm). Some main differences can be seen when retrieving the transaction by its hash using the Ethereum JSON RPC.
+As mentioned before, there are some [differences between regular and remote XCM EVM calls]( #differences-regular-remote-evm). Some main differences can be seen when retrieving the transaction by its hash using the Ethereum JSON-RPC.
 
 To do so, you first need to retrieve the transaction hash you want to query. For this example, you can use the transaction hash from the [previous section](#build-remove-evm-call-xcm), which is [0x753588d6e59030eeffd31aabccdd0fb7c92db836fcaa8ad71512cf3a7d0cb97f](https://moonbase.moonscan.io/tx/0x753588d6e59030eeffd31aabccdd0fb7c92db836fcaa8ad71512cf3a7d0cb97f){target=_blank}. Open the terminal, and execute the following command:
 
@@ -364,7 +364,7 @@ curl --location --request POST 'https://rpc.api.moonbase.moonbeam.network' \
 '
 ```
 
-If the JSON RPC request is sent correctly, the response should look like this:
+If the JSON-RPC request is sent correctly, the response should look like this:
 
 ```json
 {

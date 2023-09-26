@@ -7,7 +7,7 @@ description: Learn how to use the Ethereum Ethers.rs Library to send transaction
 
 ## Introduction {: #introduction }
 
-The [Ethers.rs](https://ethers.rs){target=_blank} library provides a set of tools to interact with Ethereum Nodes via the Rust programming language that works similar to [Ethers.js](/builders/build/eth-api/libraries/ethersjs){target=_blank}. Moonbeam has an Ethereum-like API available that is fully compatible with Ethereum-style JSON RPC invocations. Therefore, developers can leverage this compatibility and use the Ethers.rs library to interact with a Moonbeam node as if they were doing so on Ethereum. You can read more about how to use Ethers.rs on their [official crate documentation](https://docs.rs/crate/ethers/latest){target=_blank}.
+The [Ethers.rs](https://ethers.rs){target=_blank} library provides a set of tools to interact with Ethereum Nodes via the Rust programming language that works similar to [Ethers.js](/builders/build/eth-api/libraries/ethersjs){target=_blank}. Moonbeam has an Ethereum-like API available that is fully compatible with Ethereum-style JSON-RPC invocations. Therefore, developers can leverage this compatibility and use the Ethers.rs library to interact with a Moonbeam node as if they were doing so on Ethereum. You can read more about how to use Ethers.rs on their [official crate documentation](https://docs.rs/crate/ethers/latest){target=_blank}.
 
 In this guide, you'll learn how to use the Ethers.rs library to send a transaction and deploy a contract on Moonbase Alpha. This guide can be adapted for [Moonbeam](/builders/get-started/networks/moonbeam/){target=_blank}, [Moonriver](/builders/get-started/networks/moonriver/){target=_blank}, or a [Moonbeam development node](/builders/get-started/networks/moonbeam-dev/){target=_blank}.
 
@@ -68,7 +68,7 @@ There are multiple ways to create a provider and signer, but the easiest way is 
 1. Import `Provider` and `Http` from the `ethers` crate
 2. Add a `Client` type for convenience, which will be used once you start to create the functions for sending a transaction and deploying a contract
 3. Add a `tokio` attribute above `async fn main()` for asynchronous excution
-4. Use `try_from` to attempt to instantiate a JSON RPC provider object from an RPC endpoint
+4. Use `try_from` to attempt to instantiate a JSON-RPC provider object from an RPC endpoint
 5. Use a private key to create a wallet object (the private key will be used to sign transactions). **Note: This is for example purposes only. Never store your private keys in a plain Rust file**
 6. Wrap the provider and wallet together into a client by providing them to a `SignerMiddleware` object
 

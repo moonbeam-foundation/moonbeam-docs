@@ -17,9 +17,9 @@ This guide will outline some of the main differences between both APIs for base-
 
 ## Ethereum Transfers {: #ethereum-transfers }
 
-A simple balance transfer using the Ethereum API relies on the `eth_sendRawTransaction` JSON RPC. This can be done directly from one account to another or via a smart contract.
+A simple balance transfer using the Ethereum API relies on the `eth_sendRawTransaction` JSON-RPC. This can be done directly from one account to another or via a smart contract.
 
-There are different strategies to listen for transfers or balance changes on Ethereum, which are not covered in this documentation. But they are all focused on different strategies using the Ethereum JSON RPC.
+There are different strategies to listen for transfers or balance changes on Ethereum, which are not covered in this documentation. But they are all focused on different strategies using the Ethereum JSON-RPC.
 
 ## Moonbeam Transfers {: #moonbeam-transfers }
 
@@ -47,7 +47,7 @@ The following code samples will demonstrate how to listen to both types of nativ
 
 The [Polkadot.js API package](https://polkadot.js.org/docs/api/start){target=_blank} provides developers a way to interact with Substrate chains using JavaScript.
 
-The following code snippet uses [`subscribeFinalizedHeads`](https://polkadot.js.org/docs/substrate/rpc/#subscribefinalizedheads-header){target=_blank} to subscribe to new finalized block headers, loops through extrinsics fetched from the block, and retrieves the events of each extrinsic. Then, it checks if any event corresponds to a `balances.Transfer` event. If so, it will extract the `from`, `to`, `amount`, and the `tx hash` of the transfer and display it on the console. Note that the `amount` is shown in the smallest unit (Wei).  You can find all the available information about Polkadot.js and the Substrate JSON RPC on their [official documentation site](https://polkadot.js.org/docs/substrate/rpc){target=_blank}.
+The following code snippet uses [`subscribeFinalizedHeads`](https://polkadot.js.org/docs/substrate/rpc/#subscribefinalizedheads-header){target=_blank} to subscribe to new finalized block headers, loops through extrinsics fetched from the block, and retrieves the events of each extrinsic. Then, it checks if any event corresponds to a `balances.Transfer` event. If so, it will extract the `from`, `to`, `amount`, and the `tx hash` of the transfer and display it on the console. Note that the `amount` is shown in the smallest unit (Wei).  You can find all the available information about Polkadot.js and the Substrate JSON-RPC on their [official documentation site](https://polkadot.js.org/docs/substrate/rpc){target=_blank}.
 
 --8<-- 'code/vs-ethereum/transfers-api/balance-event.md'
 

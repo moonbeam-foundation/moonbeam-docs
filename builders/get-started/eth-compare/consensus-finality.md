@@ -113,7 +113,7 @@ Given a transaction hash (`tx_hash`), the following code snippets fetch the curr
 - `chain_getHeader` - the second request gets the block header for a given block hash
 - `eth_getTransactionReceipt` - this retrieves the transaction receipt given the transaction hash
 
-You can find more information about Polkadot.js and the Substrate JSON RPC in the [official Polkadot.js documentation site](https://polkadot.js.org/docs/substrate/rpc){target=_blank}, and more about Python Substrate Interface in the [official PySubstrate documentation site](https://polkascan.github.io/py-substrate-interface/){target=_blank}.
+You can find more information about Polkadot.js and the Substrate JSON-RPC in the [official Polkadot.js documentation site](https://polkadot.js.org/docs/substrate/rpc){target=_blank}, and more about Python Substrate Interface in the [official PySubstrate documentation site](https://polkascan.github.io/py-substrate-interface/){target=_blank}.
 
 === "Polkadot.js"
 
