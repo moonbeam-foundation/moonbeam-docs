@@ -9,6 +9,7 @@ nav:
   - 'Conviction Voting': 'conviction-voting.md'
   - 'Ethereum Native': 'eth-mainnet.md'
   - 'GMP': 'gmp.md'
+  - 'Identity': 'identity.md'
   - 'Native Token ERC-20': 'erc20.md'
   - 'Precompile Registry': 'registry.md'
   - 'Preimage': 'preimage.md'
