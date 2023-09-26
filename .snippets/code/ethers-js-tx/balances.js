@@ -27,7 +27,7 @@ const addressTo = 'INSERT_TO_ADDRESS';
 
 // Create balances function
 const balances = async () => {
-  // 6. Fetch balances
+  // Fetch balances
   const balanceFrom = ethers.formatEther(
     await provider.getBalance(addressFrom)
   );
