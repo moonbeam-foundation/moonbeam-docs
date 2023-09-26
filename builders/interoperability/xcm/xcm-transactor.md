@@ -11,10 +11,9 @@ XCM messages are comprised of a [series of instructions](/builders/interoperabil
 
 Nevertheless, building an XCM message from scratch is somewhat tricky. Moreover, XCM messages are sent to other participants in the ecosystem from the root account (that is, SUDO or through a democratic vote), which is not ideal for projects that want to leverage remote cross-chain calls via a simple transaction.
 
-To overcome these issues, developers can leverage wrapper functions/pallets to use XCM features on Polkadot/Kusama, such as the [XCM Transactor Pallet](https://github.com/moonbeam-foundation/moonbeam/blob/master/pallets/xcm-transactor/src/lib.rs){target=_blank}. In that aspect, the XCM Transactor Pallet allows users to perform remote cross-chain calls through simple a simple transaction in the origin chain.
+To overcome these issues, developers can leverage wrapper functions/pallets to use XCM features on Polkadot/Kusama, such as the [XCM Transactor Pallet](https://github.com/moonbeam-foundation/moonbeam/blob/master/pallets/xcm-transactor/src/lib.rs){target=_blank}. In that aspect, the XCM Transactor Pallet allows users to perform remote cross-chain calls through a simple transaction in the origin chain.
 
 The two main extrinsics of the pallet allow transacting on a remote chain either through the sovereign account (which should only be allowed through governance) or through a [computed origin](#general-xcm-definitions) on the destination chain. Separate extrinsics are provided for each case.
-
 
 This guide will show you how to use the XCM Transactor Pallet to send XCM messages from a Moonbeam-based network to other chains in the ecosystem (relay chain/parachains). In addition, you'll also learn how to use the XCM Transactor Precompile to perform the same actions via the Ethereum API.
 
@@ -38,10 +37,10 @@ When the XCM message built by the XCM Transactor Pallet is executed, fees must b
  --8<-- 'text/xcm/general-xcm-definitions2.md'
 
  - **Computed origin** —  an account computed when executing the XCM, set by the [Descend Origin](https://github.com/paritytech/xcm-format#descendorigin){target=_blank} XCM instruction and the provided multilocation, which is typically the sovereign account from which the XCM originated. Computed origins are keyless (the private key is unknown). Consequently, computed origins can only be accessed through XCM extrinsics.
- 
-     The XCM call [origin conversion](https://github.com/paritytech/polkadot-sdk/blob/polkadot-v1.1.0/polkadot/xcm/xcm-executor/src/lib.rs#L556){target=_blank} happens when the `Transact` instruction gets executed. The new origin is the one that pays for the fees of XCM execution.
 
-     Moonbeam-based networks follow [the computed origins standard set by Polkadot](https://github.com/paritytech/polkadot-sdk/blob/master/polkadot/xcm/xcm-builder/src/location_conversion.rs){target=_blank}, that is, through a `blake2` hash of a data structure that depends on the origin of the XCM message. However, because Moonbeam uses Ethereum-styled accounts, computed origins are truncated to 20 bytes. 
+     The XCM call [origin conversion](https://github.com/paritytech/polkadot-sdk/blob/polkadot-v1.1.0/polkadot/xcm/xcm-executor/src/lib.rs#L556){target=_blank} happens when the `Transact` instruction gets executed. The new origin is the one that pays for the fees for XCM execution.
+
+     Moonbeam-based networks follow [the computed origins standard set by Polkadot](https://github.com/paritytech/polkadot-sdk/blob/master/polkadot/xcm/xcm-builder/src/location_conversion.rs){target=_blank}, that is, through a `blake2` hash of a data structure that depends on the origin of the XCM message. However, because Moonbeam uses Ethereum-styled accounts, computed origins are truncated to 20 bytes
 
  - **Transact information** — relates to extra weight and fee information for the XCM remote execution part of the XCM Transactor extrinsic. This is needed because the XCM transaction fee is paid by the sovereign account. Therefore, XCM Transactor calculates what this fee is and charges the sender of the XCM Transactor extrinsic the estimated amount in the corresponding [XC-20 token](/builders/interoperability/xcm/xc20/overview/){target=_blank} to repay the sovereign account
 
