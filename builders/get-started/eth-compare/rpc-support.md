@@ -82,12 +82,14 @@ For a dedicated tutorial for these subscriptions, check out the [Events Subscrip
 
 ## Debug and Trace JSON RPC Methods {: #debug-trace }
 
+The supported methods from Geth's [debug](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-debug){target=_blank} and [txpool](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-txpool){target=_blank} APIs and OpenEthereum's [trace](https://openethereum.github.io/JSONRPC-trace-module){target=_blank} module are as follows:
+
 - **[debug_traceTransaction](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-debug#debugtracetransaction){target=_blank}** - given a transaction hash, this method attempts to replay a transaction in the exact same manner as it was executed on the network
 - **[debug_traceBlockByNumber](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-debug#debug_traceblockbynumber){target=_blank}** - given a block number, this method attempts to replay a block in the exact same manner as it was executed on the network
 - **[debug_traceBlockByHash](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-debug#debug_traceblockbyhash){target=_blank}** - given a block hash, this method attempts to replay a block in the exact same manner as it was executed on the network
 - **[trace_filter](https://openethereum.github.io/JSONRPC-trace-module#trace_filter){target=_blank}** - given a filter, this method returns matching traces
-- **[txpool_content](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-txpool#txpool-content){target=_blank}** - returns the details for all of the transactions that are currently pending, waiting to be included in the next block(s), and queued transactions for future execution
-- **[txpool_inspect](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-txpool#txpool-inspect){target=_blank}** - returns a summary of all of the transactions that are currently pending, waiting to be included in the next block(s), and queued transactions for future execution
-- **[txpool_status](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-txpool#txpool-status){target=_blank}** - returns the total number of transactions currently pending, waiting to be included in the next block(s), and queued transactions for future execution
+- **[txpool_content](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-txpool#txpool-content){target=_blank}** - returns the details for all of the transactions that are currently pending, waiting to be included in the next block(s), and queued for future execution
+- **[txpool_inspect](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-txpool#txpool-inspect){target=_blank}** - returns a summary of all of the transactions that are currently pending, waiting to be included in the next block(s), and queued for future execution
+- **[txpool_status](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-txpool#txpool-status){target=_blank}** - returns the total number of transactions currently pending, waiting to be included in the next block(s), and queued for future execution
 
 For a dedicated tutorial for these debug and trace methods, check out the [Debug API & Trace Module](/builders/build/eth-api/debug-trace/){target=_blank} guide.
