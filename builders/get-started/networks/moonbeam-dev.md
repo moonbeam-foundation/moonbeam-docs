@@ -96,7 +96,7 @@ To build the binary file, you can take the following steps:
     ```
 
     !!! note
-        Space in the installation file path will cause an compilation error.
+        Space in the installation file path will cause a compilation error.
 
 2. If you already have Rust installed, you can skip the next two steps. Otherwise, install Rust and its prerequisites [via Rust's recommended method](https://www.rust-lang.org/tools/install){target=_blank} by executing:
 
