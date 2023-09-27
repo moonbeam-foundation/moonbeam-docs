@@ -180,7 +180,7 @@ Options accept an argument to the right of the option. For example:
 --8<-- 'code/setting-up-node/runnodewithsealinginterval.md'
 ```
 
-- **`-l <log pattern>` or `--log <log pattern>`** - sets a custom logging filter. The syntax for the log pattern is `<target>=<level>`. For example, to print all of the JSON RPC logs, the command would look like this: `-l json=trace`
+- **`-l <log pattern>` or `--log <log pattern>`** - sets a custom logging filter. The syntax for the log pattern is `<target>=<level>`. For example, to print all of the JSON-RPC logs, the command would look like this: `-l json=trace`
 - **`--sealing <interval>`** - when blocks should be sealed in the dev service. Accepted arguments for interval: `instant`, `manual`, or a number representing the timer interval in milliseconds (for example, `6000` will have the node produce blocks every 6 seconds). Default is `instant`. Please refer to the [Configure Block Production](#configure-block-production) section below for more information
 - **`--rpc-port <port>`** - sets the unified port for HTTP and WS connections. Accepts a port as the argument. Default is {{ networks.parachain.rpc }}
 - **`--ws-port <port>`** - *deprecated as of [client v0.33.0](https://github.com/moonbeam-foundation/moonbeam/releases/tag/v0.33.0){target=_blank}, use `--rpc-port` for HTTP and WS connections instead* sets the WebSockets RPC server TCP port. As of [client v0.30.0](https://github.com/moonbeam-foundation/moonbeam/releases/tag/v0.30.0){target=_blank}, sets the unified port for both HTTP and WS connections. Accepts a port as the argument
@@ -206,13 +206,13 @@ The flag should be appended to the start-up command in the following format:
 --sealing <interval>
 ```
 
-If you choose `manual`, you'll need to manually create the blocks yourself, which can be done with the `engine_createBlock` JSON RPC method:
+If you choose `manual`, you'll need to manually create the blocks yourself, which can be done with the `engine_createBlock` JSON-RPC method:
 
 ```text
 engine_createBlock(createEmpty: *bool*, finalize: *bool*, parentHash?: *BlockHash*)
 ```
 
-For example, you can use the following snippet to manually create a block using [Ethers.js](/builders/build/eth-api/libraries/ethersjs){target=_blank}, an Ethereum library that makes it easy to interact with JSON RPC methods:
+For example, you can use the following snippet to manually create a block using [Ethers.js](/builders/build/eth-api/libraries/ethersjs){target=_blank}, an Ethereum library that makes it easy to interact with JSON-RPC methods:
 
 ```js
 import { ethers } from 'ethers';
