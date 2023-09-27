@@ -152,6 +152,7 @@ To create a client for reading chain data, you can take the following steps:
 
     ```ts
     import { createWalletClient, http } from 'viem';
+    import { privateKeyToAccount } from 'viem/accounts';
     import { moonriver } from 'viem/chains';
 
     const account = privateKeyToAccount('INSERT_PRIVATE_KEY');
@@ -167,6 +168,7 @@ To create a client for reading chain data, you can take the following steps:
 
     ```ts
     import { createWalletClient, http } from 'viem';
+    import { privateKeyToAccount } from 'viem/accounts';
     import { moonbaseAlpha } from 'viem/chains';
 
     const account = privateKeyToAccount('INSERT_PRIVATE_KEY');
@@ -182,6 +184,7 @@ To create a client for reading chain data, you can take the following steps:
 
     ```ts
     import { createWalletClient, http } from 'viem';
+    import { privateKeyToAccount } from 'viem/accounts';
     import { moonbeamDev } from 'viem/chains';
 
     const account = privateKeyToAccount('INSERT_PRIVATE_KEY');
