@@ -36,7 +36,7 @@ The precompile is located at the following address:
      {{networks.moonriver.precompiles.erc20 }}
      ```
 
---8<-- 'text/builders/pallet-precompiles/precompiles/security.md'
+--8<-- 'text/builders/pallets-precompiles/precompiles/security.md'
 
 ## The ERC-20 Solidity Interface {: #the-erc20-interface }
 

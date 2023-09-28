@@ -28,7 +28,7 @@ If you are familiar with running Chainlink oracle nodes, this information will g
  - Moonbase Alpha WSS EndPoint: `wss://wss.api.moonbase.moonbeam.network`
  - Moonbase Alpha ChainId: `{{ networks.moonbase.chain_id }}` (hex: `{{ networks.moonbase.hex_chain_id}}`)
  - LINK Token on Moonbase Alpha: `0xa36085F69e2889c224210F603D836748e7dC0088`
- -
+ - 
  --8<-- 'text/_common/faucet/faucet-list-item.md'
 
 ## Checking Prerequisites {: #checking-prerequisites }

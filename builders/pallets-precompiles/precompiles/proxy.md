@@ -34,7 +34,7 @@ The Proxy Precompile is located at the following address:
      {{networks.moonbase.precompiles.proxy}}
      ```
 
---8<-- 'text/builders/pallet-precompiles/precompiles/security.md'
+--8<-- 'text/builders/pallets-precompiles/precompiles/security.md'
 
 ## The Proxy Solidity Interface {: #the-proxy-solidity-interface }
 

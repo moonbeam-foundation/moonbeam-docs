@@ -18,8 +18,8 @@ To get started, you will need the following:
 - Have MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=_blank}
 - Have an account with funds.
   --8<-- 'text/_common/faucet/faucet-list-item.md'
-
---8<-- 'text/_common/endpoint-examples.md'
+- 
+  --8<-- 'text/_common/endpoint-examples-list-item.md'
 
 ## Creating a Hardhat Project {: #creating-a-hardhat-project }
 

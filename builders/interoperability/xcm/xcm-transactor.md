@@ -233,7 +233,7 @@ The XCM Transactor Legacy Precompile is still available on all Moonbeam-based ne
      {{networks.moonbase.precompiles.xcm_transactor_legacy}}
      ```
 
---8<-- 'text/builders/pallet-precompiles/precompiles/security.md'
+--8<-- 'text/builders/pallets-precompiles/precompiles/security.md'
 
 ### The XCM Transactor Solidity Interface {: #xcmtrasactor-solidity-interface }
 

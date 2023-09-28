@@ -17,7 +17,7 @@ The Moonbeam-specific precompiles can be interacted with through familiar and ea
 
 ![Precompiled Contracts Diagram](/images/builders/pallets-precompiles/precompiles/overview/overview-1.png)
 
---8<-- 'text/builders/pallet-precompiles/precompiles/security.md'
+--8<-- 'text/builders/pallets-precompiles/precompiles/security.md'
 
 ## Precompiled Contract Addresses {: #precompiled-contract-addresses }
 

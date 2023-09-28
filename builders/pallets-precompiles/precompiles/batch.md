@@ -34,7 +34,7 @@ The precompile is located at the following address:
      {{networks.moonbase.precompiles.batch }}
      ```
 
---8<-- 'text/builders/pallet-precompiles/precompiles/security.md'
+--8<-- 'text/builders/pallets-precompiles/precompiles/security.md'
 
 ## The Batch Solidity Interface {: #the-batch-interface }
 

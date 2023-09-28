@@ -31,7 +31,7 @@ The Conviction Voting Precompile is located at the following address:
      {{ networks.moonbase.precompiles.conviction_voting }}
      ```
 
---8<-- 'text/builders/pallet-precompiles/precompiles/security.md'
+--8<-- 'text/builders/pallets-precompiles/precompiles/security.md'
 
 ## The Conviction Voting Solidity Interface {: #the-conviction-voting-solidity-interface }
 

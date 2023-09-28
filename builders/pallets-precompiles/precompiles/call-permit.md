@@ -34,7 +34,7 @@ The Call Permit Precompile is located at the following address:
      {{networks.moonbase.precompiles.call_permit }}
      ```
 
---8<-- 'text/builders/pallet-precompiles/precompiles/security.md'
+--8<-- 'text/builders/pallets-precompiles/precompiles/security.md'
 
 ## The Call Permit Solidity Interface {: #the-call-permit-interface }
 
