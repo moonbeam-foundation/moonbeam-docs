@@ -25,7 +25,7 @@ For this tutorial, you'll need the following:
 
 - Create or have three accounts on Moonbase Alpha to test out the lottery contract
 - All of the accounts will need to be funded with `DEV` tokens.
- --8<-- 'text/faucet/faucet-list-item.md'
+ --8<-- 'text/_common/faucet/faucet-list-item.md'
 - An empty Hardhat project that is configured for the Moonbase Alpha TestNet. For step-by-step instructions, please refer to the [Creating a Hardhat Project](/builders/build/eth-api/dev-env/hardhat/#creating-a-hardhat-project){target=_blank} and the [Hardhat Configuration File](/builders/build/eth-api/dev-env/hardhat/#hardhat-configuration-file){target=_blank} sections of our Hardhat documentation page
 - Install the [Hardhat Ethers plugin](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-ethers){target=_blank}. This provides a convenient way to use the [Ethers.js](/builders/build/eth-api/libraries/ethersjs/){target=_blank} library to interact with the network from your Hardhat project:
 
@@ -34,7 +34,7 @@ For this tutorial, you'll need the following:
     ```
 
 !!! note
-    --8<-- 'text/common/endpoint-examples.md'
+    --8<-- 'text/_common/endpoint-examples.md'
 
 ## Contract Setup {: #contracts }
 
@@ -505,6 +505,6 @@ The transaction hash will be printed to the console. You can use the hash to loo
 
 And that's it! You can feel free to continue creating additional scripts to perform the next steps of the lottery, such as starting the lottery and picking the winners.
 
---8<-- 'text/disclaimers/educational-tutorial.md'
+--8<-- 'text/_disclaimers/educational-tutorial.md'
 
---8<-- 'text/disclaimers/third-party-content.md'
+--8<-- 'text/_disclaimers/third-party-content.md'

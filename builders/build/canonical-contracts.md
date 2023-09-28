@@ -52,9 +52,9 @@ There are a set of precompiled contracts included on Moonbeam, Moonriver, and Mo
 - **1024-2047** - precompiles that are [not in Ethereum and not Moonbeam specific](#non-moonbeam-specific-nor-ethereum-precomiles)
 - **2048-4095** - [Moonbeam specific precompiles](#moonbeam-specific-precompiles)
 
---8<-- 'text/precompiles/eth-mainnet.md'
+--8<-- 'text/builders/build/canonical-contracts/eth-mainnet.md'
 
---8<-- 'text/precompiles/non-specific.md'
+--8<-- 'text/builders/build/canonical-contracts/non-specific.md'
 
 ### Moonbeam-Specific Precompiles {: #moonbeam-specific-precompiles }
 

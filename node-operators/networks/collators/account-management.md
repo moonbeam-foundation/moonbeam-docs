@@ -25,7 +25,7 @@ Each step of the process is outlined in the following sections.
 
 ## Generate Session Keys {: #session-keys }
 
---8<-- 'text/collators/generate-session-keys.md'
+--8<-- 'text/node-operators/networks/collators/account-management/generate-session-keys.md'
 
 ## Manage Session Keys {: #manage-session-keys }
 

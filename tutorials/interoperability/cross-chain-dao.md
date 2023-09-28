@@ -15,7 +15,7 @@ In this tutorial, we will work through a thought process of writing smart contra
 
 The purpose of this tutorial is not to be the end-all, be-all definition of what a cross-chain DAO would be like, but instead to provide an example of thinking about the intricacies of writing a significantly complex cross-chain DApp. The focus of this tutorial will be on architecture, specifically cross-chain smart contract logic, instead of deploying and testing. **The following smart contracts are not tested or recommended for production use**. That being said, feel free to take inspiration from some of the design choices if you decide to write your cross-chain DAO. The full code base and demonstration of the DAO is available in a [GitHub repository](https://github.com/jboetticher/cross-chain-dao){target=_blank}, with relevant instructions.  
 
---8<-- 'text/disclaimers/third-party-content-intro.md'
+--8<-- 'text/_disclaimers/third-party-content-intro.md'
 
 ## Intuition And Planning {: #intuition-and-planning }
 
@@ -879,6 +879,6 @@ In case you want to be safe and you believe that a spoke chain might stall or ev
 
 For example, the hub chain would wait 30 blocks before disregarding voting data from spoke chains. And if the DAO's participants believe that chain A should be removed from future voting, they could start a proposal to do so, similar to OpenZeppelin's `GovernorSettings` contract.  
 
---8<-- 'text/disclaimers/educational-tutorial.md'
+--8<-- 'text/_disclaimers/educational-tutorial.md'
 
---8<-- 'text/disclaimers/third-party-content.md'
+--8<-- 'text/_disclaimers/third-party-content.md'

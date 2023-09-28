@@ -31,7 +31,7 @@ The Registry Precompile is located at the following address:
      {{networks.moonriver.precompiles.registry }}
      ```
 
---8<-- 'text/precompiles/security.md'
+--8<-- 'text/builders/pallet-precompiles/precompiles/security.md'
 
 ## The Precompile Registry Solidity Interface {: #the-solidity-interface }
 
@@ -40,7 +40,7 @@ The Registry Precompile is located at the following address:
 ??? code "PrecompileRegistry.sol"
 
     ```solidity
-    --8<-- 'code/precompiles/registry/PrecompileRegistry.sol'
+    --8<-- 'code/builders/pallets-precompiles/precompiles/registry/PrecompileRegistry.sol'
     ```
 
 - **isPrecompile**(*address* a) - returns a *bool* indicating whether a given address is a precompile or not. Returns `true` for active and deprecated precompiles
@@ -52,7 +52,7 @@ The Registry Precompile is located at the following address:
 The following sections will cover how to interact with the Registry Precompile from [Remix](/builders/build/eth-api/dev-env/remix){target=_blank} and [Ethereum libraries](/builders/build/eth-api/libraries/){target=_blank}, such as [Ethers.js](/builders/build/eth-api/libraries/ethersjs){target=_blank}, [Web3.js](/builders/build/eth-api/libraries/web3js){target=_blank}, and [Web3.py](/builders/build/eth-api/libraries/web3py){target=_blank}.
 
 The examples in this guide will be on Moonbase Alpha.
---8<-- 'text/common/endpoint-examples.md'
+--8<-- 'text/_common/endpoint-examples.md'
 
 ### Use Remix to Interact with the Precompile Registry {: #use-remix }
 
@@ -86,7 +86,7 @@ To interact with the Precompile Registry's Solidity interface with an Ethereum l
 ??? code "Precompile Registry ABI"
 
     ```js
-    --8<-- 'code/precompiles/registry/abi.js'
+    --8<-- 'code/builders/pallets-precompiles/precompiles/registry/abi.js'
     ```
 
 Once you have the ABI, you can interact with the Registry using the Ethereum library of your choice. Generally speaking, you'll take the following steps:
@@ -101,17 +101,17 @@ Once you have the ABI, you can interact with the Registry using the Ethereum lib
 === "Ethers.js"
 
     ```js
-    --8<-- 'code/precompiles/registry/ethers.js'
+    --8<-- 'code/builders/pallets-precompiles/precompiles/registry/ethers.js'
     ```
 
 === "Web3.js"
 
     ```js
-    --8<-- 'code/precompiles/registry/web3.js'
+    --8<-- 'code/builders/pallets-precompiles/precompiles/registry/web3.js'
     ```
 
 === "Web3.py"
 
     ```py
-    --8<-- 'code/precompiles/registry/web3.py'
+    --8<-- 'code/builders/pallets-precompiles/precompiles/registry/web3.py'
     ```

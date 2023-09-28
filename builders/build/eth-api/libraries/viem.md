@@ -16,12 +16,12 @@ In this guide, you'll learn how to use viem to send a transaction and deploy a c
 For the examples in this guide, you will need to have the following:
 
 - An account with funds.
-  --8<-- 'text/faucet/faucet-list-item.md'
+  --8<-- 'text/_common/faucet/faucet-list-item.md'
 - 
-  --8<-- 'text/common/endpoint-examples-list-item.md'
+  --8<-- 'text/_common/endpoint-examples-list-item.md'
 
 !!! note
-    --8<-- 'text/common/assumes-mac-or-ubuntu-env.md'
+    --8<-- 'text/_common/assumes-mac-or-ubuntu-env.md'
 
 ## Installing viem {: #installing-viem }
 
@@ -234,7 +234,7 @@ Next, you will create the script for this file and complete the following steps:
 6. Lastly, run the `balances` function
 
 ```ts
---8<-- 'code/eth-api/libraries/viem/balances.ts'
+--8<-- 'code/builders/build/eth-api/libraries/viem/balances.ts'
 ```
 
 To run the script and fetch the account balances, you can run the following command:
@@ -267,7 +267,7 @@ Next, you will create the script for this file and complete the following steps:
 8. Lastly, run the `send` function
 
 ```ts
---8<-- 'code/eth-api/libraries/viem/transaction.ts'
+--8<-- 'code/builders/build/eth-api/libraries/viem/transaction.ts'
 ```
 
 To run the script, you can run the following command in your terminal:
@@ -284,15 +284,15 @@ You can also use the `balances.ts` script to check that the balances for the ori
 
 ## Deploy a Contract {: #deploy-contract }
 
---8<-- 'text/eth-api/libraries/contract.md'
+--8<-- 'text/builders/build/eth-api/libraries/contract.md'
 
 ### Compile Contract Script {: #compile-contract-script }
 
---8<-- 'text/eth-api/libraries/compile-ts.md'
---8<-- 'text/eth-api/libraries/compile.md'
+--8<-- 'text/builders/build/eth-api/libraries/compile-ts.md'
+--8<-- 'text/builders/build/eth-api/libraries/compile.md'
 
 ```js
---8<-- 'code/eth-api/libraries/compile.ts'
+--8<-- 'code/builders/build/eth-api/libraries/compile.ts'
 ```
 
 ### Deploy Contract Script {: #deploy-contract-script }
@@ -315,7 +315,7 @@ Next, you will create the script for this file and complete the following steps:
 8. Lastly, run the `deploy` function
 
 ```ts
---8<-- 'code/eth-api/libraries/viem/deploy.ts'
+--8<-- 'code/builders/build/eth-api/libraries/viem/deploy.ts'
 ```
 
 To run the script, you can enter the following command into your terminal:
@@ -348,7 +348,7 @@ Then you can take the following steps to create the script:
 6. Lastly, call the `get` function
 
 ```ts
---8<-- 'code/eth-api/libraries/viem/get.ts'
+--8<-- 'code/builders/build/eth-api/libraries/viem/get.ts'
 ```
 
 To run the script, you can enter the following command in your terminal:
@@ -381,7 +381,7 @@ Open the `increment.ts` file and take the following steps to create the script:
 8. Lastly, call the `increment` function
 
 ```js
---8<-- 'code/eth-api/libraries/viem/increment.ts'
+--8<-- 'code/builders/build/eth-api/libraries/viem/increment.ts'
 ```
 
 To run the script, you can enter the following command in your terminal:
@@ -406,7 +406,7 @@ Next, you can open the `reset.ts` file and take the following steps to create th
 8. Lastly, call the `reset` function
 
 ```ts
---8<-- 'code/eth-api/libraries/viem/reset.ts'
+--8<-- 'code/builders/build/eth-api/libraries/viem/reset.ts'
 ```
 
 To run the script, you can enter the following command in your terminal:
@@ -419,4 +419,4 @@ If successful, the transaction hash will be displayed in the terminal. You can u
 
 ![The result of running the reset and get scripts in the terminal](/images/builders/build/eth-api/libraries/viem/viem-6.png)
 
---8<-- 'text/disclaimers/third-party-content.md'
+--8<-- 'text/_disclaimers/third-party-content.md'

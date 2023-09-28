@@ -34,7 +34,7 @@ When the XCM message built by the XCM Transactor Pallet is executed, fees must b
 
 ## Relevant XCM Definitions {: #general-xcm-definitions }
 
- --8<-- 'text/xcm/general-xcm-definitions2.md'
+ --8<-- 'text/builders/interoperability/xcm/general-xcm-definitions2.md'
 
  - **Multilocation-derivative account** —  an account derivated from the new origin set by the [Descend Origin](https://github.com/paritytech/xcm-format#descendorigin){target=_blank} XCM instruction and the provided multilocation, which is typically the sovereign account from which the XCM originated. Derivative accounts are keyless (the private key is unknown). Consequently, derivative accounts related to XCM-specific use cases can only be accessed through XCM extrinsics. For Moonbeam-based networks, [the derivation method](https://github.com/moonbeam-foundation/moonbeam/blob/master/primitives/xcm/src/location_conversion.rs#L31-L37){target=_blank} is calculating the `blake2` hash of the multilocation, which includes the origin parachain ID, and truncating the hash to the correct length (20 bytes for an Ethereum-styled account). The XCM call [origin conversion](https://github.com/paritytech/polkadot-sdk/blob/master/polkadot/xcm/xcm-executor/src/lib.rs#L343){target=_blank} happens when the `Transact` instruction gets executed. Consequently, each parachain can convert the origin with its own desired procedure, so the user who initiated the transaction might have a different derivative account per parachain. This derivative account pays for transaction fees, and it is set as the dispatcher of the call
  - **Transact information** — relates to extra weight and fee information for the XCM remote execution part of the XCM Transactor extrinsic. This is needed because the XCM transaction fee is paid by the sovereign account. Therefore, XCM Transactor calculates what this fee is and charges the sender of the XCM Transactor extrinsic the estimated amount in the corresponding [XC-20 token](/builders/interoperability/xcm/xc20/overview/){target=_blank} to repay the sovereign account
@@ -183,7 +183,7 @@ Now that you have the values for each of the parameters, you can write the scrip
     This is for demo purposes only. Never store your private key in a JavaScript file.
 
 ```js
---8<-- 'code/xcm-transactor/transact-signed.js'
+--8<-- 'code/builders/interoperability/xcm/xcm-transactor/transact-signed.js'
 ```
 
 !!! note
@@ -233,7 +233,7 @@ The XCM Transactor Legacy Precompile is still available on all Moonbeam-based ne
      {{networks.moonbase.precompiles.xcm_transactor_legacy}}
      ```
 
---8<-- 'text/precompiles/security.md'
+--8<-- 'text/builders/pallet-precompiles/precompiles/security.md'
 
 ### The XCM Transactor Solidity Interface {: #xcmtrasactor-solidity-interface }
 
@@ -255,7 +255,7 @@ The interface includes the following functions:
 
 In the XCM Transactor Precompile interface, the `Multilocation` structure is defined as follows:
 
---8<-- 'text/xcm/xcm-precompile-multilocation.md'
+--8<-- 'text/builders/interoperability/xcm/xcm-precompile-multilocation.md'
 
 The following code snippet goes through some examples of `Multilocation` structures, as they would need to be fed into the XCM Transactor Precompile functions:
 

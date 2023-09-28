@@ -133,7 +133,7 @@ To fetch a list of the currently available external XC-20s along with their asso
 3. Iterate over the list of assets to get all of the asset IDs along with their associated metadata
 
 ```js
---8<-- 'code/xc20/retrieve-xc20s.js'
+--8<-- 'code/builders/interoperability/xcm/xc20/overview/retrieve-xc20s.js'
 ```
 
 The result will display the asset ID along with some additional information for all of the registered external XC-20s.

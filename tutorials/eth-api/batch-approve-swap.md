@@ -22,10 +22,10 @@ In this tutorial, we'll dive into the process of batching an approval and swap i
 For this tutorial, you'll need the following:
 
 - An account with funds.
-  --8<-- 'text/faucet/faucet-list-item.md'
+  --8<-- 'text/_common/faucet/faucet-list-item.md'
 - An empty Hardhat project that is configured for the Moonbase Alpha TestNet. For step-by-step instructions, please refer to the [Creating a Hardhat Project](/builders/build/eth-api/dev-env/hardhat/#creating-a-hardhat-project){target=_blank} and the [Hardhat Configuration File](/builders/build/eth-api/dev-env/hardhat/#hardhat-configuration-file){target=_blank} sections of our Hardhat documentation page
 
---8<-- 'text/common/endpoint-examples.md'
+--8<-- 'text/_common/endpoint-examples.md'
 
 ### Install Dependencies {: #install-dependencies }
 
@@ -264,7 +264,7 @@ So instead of calling `demoToken.approve(spender, amount)` and then `simpleDex.s
 
 Once we have the encoded call data, we can use it to call the `batchAll` function of the batch precompile. This function performs multiple calls atomically, where the same index of each array combine into the information required for a single subcall. If a subcall reverts, all subcalls will revert. The following parameters are required by the `batchAll` function:
 
---8<-- 'text/batch/batch-parameters.md'
+--8<-- 'text/builders/pallets-precompiles/precompiles/batch/batch-parameters.md'
 
 So, the first index of each array will correspond to the approval and the second will correspond to the swap.
 
@@ -401,5 +401,5 @@ main();
 
 This will result in the approval and swap being batched into a single transaction and the transaction hash will be printed to the console. You can now adapt and apply this logic to your Uniswap V2-style application!
 
---8<-- 'text/disclaimers/educational-tutorial.md'
---8<-- 'text/disclaimers/third-party-content.md'
+--8<-- 'text/_disclaimers/educational-tutorial.md'
+--8<-- 'text/_disclaimers/third-party-content.md'

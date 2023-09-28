@@ -56,5 +56,5 @@ Submissions are typically reviewed by the State of the DApps team in one busines
 
 <div class="page-disclaimer">
   The State of Dapps contains user-generated content and Moonbeam Foundation has not vetted such user-generated content and Moonbeam does not endorse the project.
-  --8<-- 'text/disclaimers/user-generated-content.md'
+  --8<-- 'text/_disclaimers/user-generated-content.md'
 </div>

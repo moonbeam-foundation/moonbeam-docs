@@ -36,13 +36,13 @@ The precompile is located at the following address:
      {{networks.moonriver.precompiles.erc20 }}
      ```
 
---8<-- 'text/precompiles/security.md'
+--8<-- 'text/builders/pallet-precompiles/precompiles/security.md'
 
 ## The ERC-20 Solidity Interface {: #the-erc20-interface }
 
 The [`ERC20.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/balances-erc20/ERC20.sol){target=_blank} interface on Moonbeam follows the [EIP-20 Token Standard](https://eips.ethereum.org/EIPS/eip-20){target=_blank} which is the standard API interface for tokens within smart contracts. The standard defines the required functions and events that a token contract must implement to be interoperable with different applications.
 
---8<-- 'text/erc20-interface/erc20-interface.md'
+--8<-- 'text/builders/pallets-precompiles/precompiles/erc20/erc20-interface.md'
 
 !!! note
     The ERC-20 precompile does not include `deposit` and `withdraw` functions and subsequent events that are expected from a wrapped token contract, such as WETH.
@@ -56,7 +56,7 @@ To follow along with this tutorial, you will need to have:
 - [MetaMask installed and connected to Moonbase Alpha](/tokens/connect/metamask/){target=_blank}
 - Create or have two accounts on Moonbase Alpha to test out the different features in the ERC-20 precompile
 - At least one of the accounts will need to be funded with `DEV` tokens.
- --8<-- 'text/faucet/faucet-list-item.md'
+ --8<-- 'text/_common/faucet/faucet-list-item.md'
 
 ### Add Token to MetaMask {: #add-token-to-metamask }
 

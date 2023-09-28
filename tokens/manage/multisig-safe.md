@@ -15,7 +15,7 @@ To help manage singlesig and multisig wallets, [Gnosis Safe](https://gnosis-safe
 
 This guide will show you how to create a multisig Safe on the Moonbase Alpha TestNet. You will also learn how to send DEV and ERC-20 tokens to and from the Safe, and how to interact with smart contracts using the Safe. This guide can be adapted for Moonbeam and Moonriver.
 
---8<-- 'text/disclaimers/third-party-content-intro.md'
+--8<-- 'text/_disclaimers/third-party-content-intro.md'
 
 ## Checking Prerequisites {: #checking-prerequisites }
 
@@ -27,7 +27,7 @@ For this guide, you will be creating a Safe on Moonbase Alpha to interact and ma
 
  - MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=_blank}
  - At least two accounts each loaded with funds.
- --8<-- 'text/faucet/faucet-list-item.md'
+ --8<-- 'text/_common/faucet/faucet-list-item.md'
 
 You will need at least two accounts because you will be setting up a multisig Safe with 3 owners, and 2/3 confirmations for any transaction to get executed. Therefore, throughout this guide you will need to switch back and forth between at least two of the accounts to be able to confirm and send transactions. 
 
@@ -358,4 +358,4 @@ A large **Execute** button should appear in the panel.
 
 Congratulations! You have successfully used the API for Moonbeam Safes. There are still many other endpoints to use, either for convenience or to add into your own app.
 
---8<-- 'text/disclaimers/third-party-content.md'
+--8<-- 'text/_disclaimers/third-party-content.md'

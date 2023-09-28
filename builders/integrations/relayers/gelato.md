@@ -11,7 +11,7 @@ description: Use Gelato to automate your smart contract interactions and outsour
 
 Gelato is live on both Moonbeam and Moonriver, enabling developers and end-users to automate smart contract interactions with Gelato Ops and the Gelato Relay SDK. First, this guide will demonstrate a step-by-step tutorial to automating a smart contract interaction with Gelato Ops. Next, you'll interact with the Gelato Relay SDK via a hands-on demo.
 
---8<-- 'text/disclaimers/third-party-content-intro.md'
+--8<-- 'text/_disclaimers/third-party-content-intro.md'
 
 ## Gelato Ops {: #gelato-ops }
 
@@ -308,4 +308,4 @@ const forwardRequestExample = async () => {
 forwardRequestExample();
 ```
 
---8<-- 'text/disclaimers/third-party-content.md'
+--8<-- 'text/_disclaimers/third-party-content.md'

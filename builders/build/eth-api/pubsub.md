@@ -19,10 +19,10 @@ The examples in this guide are based on an Ubuntu 18.04 environment. You will al
 
  - Have MetaMask installed and [connected to Moonbase](/tokens/connect/metamask/){target=_blank}
  - Have an account with funds.
-  --8<-- 'text/faucet/faucet-list-item.md'
+  --8<-- 'text/_common/faucet/faucet-list-item.md'
  - Deploy your own ERC-20 token on Moonbase. You can do following [our Remix tutorial](/builders/build/eth-api/dev-env/remix/){target=_blank}, while first pointing MetaMask to Moonbase
 
---8<-- 'text/common/install-nodejs.md'
+--8<-- 'text/_common/install-nodejs.md'
 
 As of writing this guide, the versions used were 14.6.0 and 6.14.6, respectively. You will also need to install the Web3 package by executing:
 

@@ -16,7 +16,7 @@ If you follow this guide to the end, you will have a Moonbeam development node r
 
 !!! note
     This tutorial was created using the {{ networks.development.build_tag }} tag of [Moonbase Alpha](https://github.com/moonbeam-foundation/moonbeam/releases/tag/{{ networks.development.build_tag }}){target=_blank}. The Moonbeam platform and the [Frontier](https://github.com/paritytech/frontier){target=_blank} components it relies on for Substrate-based Ethereum compatibility are still under very active development.
-    --8<-- 'text/common/assumes-mac-or-ubuntu-env.md'
+    --8<-- 'text/_common/assumes-mac-or-ubuntu-env.md'
 
 ## Spin up a Moonbeam Development Node {: #spin-up-a-node }
 
@@ -101,13 +101,13 @@ To build the binary file, you can take the following steps:
 2. If you already have Rust installed, you can skip the next two steps. Otherwise, install Rust and its prerequisites [via Rust's recommended method](https://www.rust-lang.org/tools/install){target=_blank} by executing:
 
     ```bash
-    --8<-- 'code/setting-up-node/installrust.md'
+    --8<-- 'code/builders/get-started/networks/moonbeam-dev/installrust.md'
     ```
 
 3. Update your PATH environment variable by running:
 
     ```bash
-    --8<-- 'code/setting-up-node/updatepath.md'
+    --8<-- 'code/builders/get-started/networks/moonbeam-dev/updatepath.md'
     ```
 
 4. Build the development node by running:
@@ -127,7 +127,7 @@ To build the binary file, you can take the following steps:
         ```
 
     ```bash
-    --8<-- 'code/setting-up-node/build.md'
+    --8<-- 'code/builders/get-started/networks/moonbeam-dev/build.md'
     ```
 
     Here is what the tail end of the build output should look like:
@@ -140,7 +140,7 @@ To build the binary file, you can take the following steps:
 Then, you will want to run the node in development mode using the following command:
 
 ```bash
---8<-- 'code/setting-up-node/runnode.md'
+--8<-- 'code/builders/get-started/networks/moonbeam-dev/runnode.md'
 ```
 
 !!! note
@@ -165,7 +165,7 @@ Now that you know how to get a standard Moonbeam development node up and running
 Flags do not take an argument. To use a flag, add it to the end of a command. For example:
 
 ```bash
---8<-- 'code/setting-up-node/runnode.md'
+--8<-- 'code/builders/get-started/networks/moonbeam-dev/runnode.md'
 ```
 
 - **`--dev`** - specifies the development chain
@@ -177,7 +177,7 @@ Flags do not take an argument. To use a flag, add it to the end of a command. Fo
 Options accept an argument to the right of the option. For example:
 
 ```bash
---8<-- 'code/setting-up-node/runnodewithsealinginterval.md'
+--8<-- 'code/builders/get-started/networks/moonbeam-dev/runnodewithsealinginterval.md'
 ```
 
 - **`-l <log pattern>` or `--log <log pattern>`** - sets a custom logging filter. The syntax for the log pattern is `<target>=<level>`. For example, to print all of the JSON-RPC logs, the command would look like this: `-l json=trace`
@@ -251,11 +251,11 @@ bottom drive obey lake curtain smoke basket hold race lonely fit walk
 ```
 
 ??? note "Development account addresses and private keys"
-    --8<-- 'code/setting-up-node/dev-accounts.md'
+    --8<-- 'code/builders/get-started/networks/moonbeam-dev/dev-accounts.md'
 
 Also included with the development node is an additional prefunded account used for testing purposes:
 
---8<-- 'code/setting-up-node/dev-testing-account.md'
+--8<-- 'code/builders/get-started/networks/moonbeam-dev/dev-testing-account.md'
 
 You can connect any of these accounts to [MetaMask](/tokens/connect/metamask/){target=_blank}, [Talisman](/tokens/connect/talisman/){target=_blank}, [Polkadot.js Apps](/tokens/connect/polkadotjs/){target=_blank}, etc., using their private keys.
 

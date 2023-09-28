@@ -21,7 +21,7 @@ This guide assumes you have a basic understanding of XCM. If not, please take ti
 
 For this guide specifically, you'll need to have an understanding of the following definitions:
 
---8<-- 'text/xcm/general-xcm-definitions2.md'
+--8<-- 'text/builders/interoperability/xcm/general-xcm-definitions2.md'
 
 ## X-Tokens Pallet Interface {: #x-tokens-pallet-interface }
 
@@ -93,7 +93,7 @@ You'll be transferring xcUNIT tokens, which are the [XC-20](/builders/interopera
 To follow along with the examples in this guide, you need to have the following:
 
 - An account with funds.
- --8<-- 'text/faucet/faucet-list-item.md'
+ --8<-- 'text/_common/faucet/faucet-list-item.md'
 - Some xcUNIT tokens. You can swap DEV tokens (Moonbase Alpha's native token) for xcUNITs on [Moonbeam-Swap](https://moonbeam-swap.netlify.app/#/swap){target=_blank}, a demo Uniswap-V2 clone on Moonbase Alpha
 
     ![Moonbeam Swap xcUNIT](/images/builders/interoperability/xcm/xc20/xtokens/xtokens-1.png)
@@ -182,7 +182,7 @@ Now that you have the values for each of the parameters, you can write the scrip
     This is for demo purposes only. Never store your private key in a JavaScript file.
 
 ```js
---8<-- 'code/xtokens/transfer.js'
+--8<-- 'code/builders/interoperability/xcm/xc20/xtokens/transfer.js'
 ```
 
 !!! note
@@ -286,7 +286,7 @@ Now that you have the values for each of the parameters, you can write the scrip
     This is for demo purposes only. Never store your private key in a JavaScript file.
 
 ```js
---8<-- 'code/xtokens/transferMultiAsset.js'
+--8<-- 'code/builders/interoperability/xcm/xc20/xtokens/transferMultiAsset.js'
 ```
 
 !!! note
@@ -403,7 +403,7 @@ The X-Tokens Precompile contract allows developers to access XCM token transfer 
      {{networks.moonbase.precompiles.xtokens}}
      ```
 
---8<-- 'text/precompiles/security.md'
+--8<-- 'text/builders/pallet-precompiles/precompiles/security.md'
 
 ### The X-Tokens Solidity Interface {: #xtokens-solidity-interface }
 
@@ -424,7 +424,7 @@ The interface includes the following functions:
 
 In the X-Tokens Precompile interface, the `Multilocation` structure is defined as follows:
 
---8<-- 'text/xcm/xcm-precompile-multilocation.md'
+--8<-- 'text/builders/interoperability/xcm/xcm-precompile-multilocation.md'
 
 The following code snippet goes through some examples of `Multilocation` structures, as they would need to be fed into the X-Tokens Precompile functions:
 
@@ -458,24 +458,24 @@ The following code snippet goes through some examples of `Multilocation` structu
 
 ### Using Libraries to Interact with X-Tokens {: #using-libraries-to-interact-with-xtokens}
 
-The Multilocation structs can be formatted like any other struct when using libraries to interact with the Ethereum API. The following code snippet include the previous [X-Tokens transfer function](#xtokens-transfer-function), the [X-Tokens multiasset transfer function](#xtokens-transfer-multiasset-function), and sample Multilocation struct examples. You can find the [X-Tokens ABI on Github](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/xtokens/abi.js){target=_blank}.
+The Multilocation structs can be formatted like any other struct when using libraries to interact with the Ethereum API. The following code snippet include the previous [X-Tokens transfer function](#xtokens-transfer-function), the [X-Tokens multiasset transfer function](#xtokens-transfer-multiasset-function), and sample Multilocation struct examples. You can find the [X-Tokens ABI on Github](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/builders/interoperability/xcm/xc20/xtokens/abi.js){target=_blank}.
 
 === "Ethers.js"
 
     ```js
-    --8<-- 'code/xtokens/ethers.js'
+    --8<-- 'code/builders/interoperability/xcm/xc20/xtokens/ethers.js'
     ```
 
 === "Web3.js"
 
     ```js
-    --8<-- 'code/xtokens/web3.js'
+    --8<-- 'code/builders/interoperability/xcm/xc20/xtokens/web3.js'
     ```
 
 === "Web3.py"
 
     ```py
-    --8<-- 'code/xtokens/web3.py'
+    --8<-- 'code/builders/interoperability/xcm/xc20/xtokens/web3.py'
     ```
 
 !!! note

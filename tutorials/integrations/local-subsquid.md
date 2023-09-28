@@ -70,7 +70,7 @@ This will start up our development node, which can be accessed on port 9944.
 Our development node comes with 10 prefunded accounts.
 
 ??? note "Development account addresses and private keys"
-    --8<-- 'code/setting-up-node/dev-accounts.md'
+    --8<-- 'code/builders/get-started/networks/moonbeam-dev/dev-accounts.md'
 
 For more information on running a Moonbeam development node, please refer to the [Getting Started with a Moonbeam Development Node](/builders/get-started/networks/moonbeam-dev){target=_blank} guide.
 
@@ -588,6 +588,6 @@ All of the transfers will be returned, including the transfer of the initial sup
 
 And that's it! You've successfully used Subsquid to index data on a local Moonbeam development node! You can view the entire project on [GitHub](https://github.com/eshaben/local-squid-demo){target=_blank}.
 
---8<-- 'text/disclaimers/educational-tutorial.md'
+--8<-- 'text/_disclaimers/educational-tutorial.md'
 
---8<-- 'text/disclaimers/third-party-content.md'
+--8<-- 'text/_disclaimers/third-party-content.md'

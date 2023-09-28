@@ -39,7 +39,7 @@ The Collective Precompiles are located at the following addresses:
      |      Treasury Council       |        {{networks.moonbase.precompiles.collective_treasury }}        |
      | OpenGov Technical Committee | {{networks.moonbase.precompiles.collective_opengov_tech_committee }} |
 
---8<-- 'text/precompiles/security.md'
+--8<-- 'text/builders/pallet-precompiles/precompiles/security.md'
 
 ## The Collective Solidity Interface {: #the-call-permit-interface }
 
@@ -84,7 +84,7 @@ To get started, you will need to have the following:
 
  - Have MetaMask installed and [connected to one of the Moonbeam-based networks](/tokens/connect/metamask/){target=_blank}
  - Have an account with funds. If using a Moonbeam development node, the development accounts are pre-funded. For Moonbeam, Moonriver, or Moonbase Alpha, you'll need to fund your account.
-  --8<-- 'text/faucet/faucet-list-item.md'
+  --8<-- 'text/_common/faucet/faucet-list-item.md'
 
 If you're using a Moonbeam development node and the development accounts, you'll also need to do the following:
 

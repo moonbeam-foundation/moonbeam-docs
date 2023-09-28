@@ -7,13 +7,13 @@ description: An overview of the currently available block explorers that may be 
 
 ## Introduction {: #introduction }
 
-Block explorers can be thought of as search engines for the blockchain. They allow users to search information such as balances, contracts, and transactions. More advanced block explorers even offer indexing capabilities, which enable them to provide a complete set of information, such as ERC-20 tokens in the network. They might even offer API services to access it via external services.
+Block explorers can be thought of as search engines for the blockchain. They allow users to search for information such as balances, contracts, and transactions. More advanced block explorers even offer indexing capabilities, which enable them to provide a complete set of information, such as ERC-20 tokens in the network. They might even offer API services to access it via external services.
 
-Moonbeam provides two different kind of explorers: ones to query the Ethereum API, and others  dedicated to the Substrate API. All EVM-based transactions are accessible via the Ethereum API wheras the Substrate API can be relied upon for Substrate-native functions such as governance and staking. The Substrate API also includes information about the EVM-based transactions, but only limited information is shown.
+Moonbeam provides two different kinds of explorers: ones to query the Ethereum API and others  dedicated to the Substrate API. All EVM-based transactions are accessible via the Ethereum API, while the Substrate API can be relied upon for Substrate-native functions such as governance and staking. The Substrate API also includes information about the EVM-based transactions, but only limited information is shown.
 
 ## Quick Links {: #quick-links }
 
---8<-- 'text/explorers/explorers.md'
+--8<-- 'text/builders/get-started/explorers/explorers.md'
 
 ## Ethereum API {: #ethereum-api }
 

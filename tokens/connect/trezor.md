@@ -15,7 +15,7 @@ This tutorial shows you how to get started with your Trezor hardware wallet on M
 
 Please note that your Trezor device will sign transactions in whichever MetaMask network is connected to.
 
---8<-- 'text/disclaimers/third-party-content-intro.md'
+--8<-- 'text/_disclaimers/third-party-content-intro.md'
 
 ## Checking Prerequisites {: #checking-prerequisites }
 
@@ -110,4 +110,4 @@ And that is it! You've signed a transaction on Moonbase Alpha using your Trezor 
 
 The process of interacting with smart contracts using your Trezor device is similar. Make sure to double-check the data being signed on your Trezor device before confirming the transaction.
 
---8<-- 'text/disclaimers/third-party-content.md'
+--8<-- 'text/_disclaimers/third-party-content.md'

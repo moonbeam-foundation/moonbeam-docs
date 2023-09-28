@@ -5,7 +5,7 @@ description: The Moonbeam TestNet, named Moonbase Alpha, is the easiest way to g
 
 # Get Started with Moonbase Alpha
 
---8<-- 'text/testnet/connect.md'
+--8<-- 'text/builders/get-started/networks/moonbase/connect.md'
 
 ## Block Explorers
 
