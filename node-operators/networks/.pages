@@ -3,4 +3,5 @@ nav:
   - index.md
   - run-a-node
   - 'Run a Tracing Node': 'tracing-node.md'
+  - 'SQL Backend for Nodes': 'sql-backend.md'
   - collators
