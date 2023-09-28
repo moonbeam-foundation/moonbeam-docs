@@ -71,6 +71,14 @@ The X-Tokens Pallet includes the following read-only functions to obtain pallet 
 - **baseXcmWeight**() - returns the base XCM weight required for execution
 - **selfLocation**() - returns the multilocation of the chain
 
+## XCM Instructions for Transfers via X-Tokens {: #xcm-instructions }
+
+The XCM instructions used for the X-Tokens Pallet extrinsics are defined in the [X-Tokens Open Runtime Module Library](https://github.com/open-web3-stack/open-runtime-module-library/tree/polkadot-{{networks.polkadot.spec_version}}/xtokens){target=_blank} repository.
+
+Regardless of which transfer extrinsic is used, the instructions are the same for sending the native asset back to its origin chain, such as xcDOT from Moonbeam back to Polkadot, and sending the native asset from the origin chain to a destination chain, such as DOT from Polkadot to Moonbeam.
+
+--8<-- 'text/x-tokens/xcm-instructions.md'
+
 ## Building an XCM Message with the X-Tokens Pallet {: #build-xcm-xtokens-pallet}
 
 This guide covers the process of building an XCM message using the X-Tokens Pallet, more specifically, with the `transfer` and `transferMultiasset` functions. Nevertheless, these two cases can be extrapolated to the other functions, especially once you become familiar with multilocations.
