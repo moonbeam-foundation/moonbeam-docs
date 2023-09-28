@@ -4,12 +4,4 @@ Next, you will create the script for this file and complete the following steps:
 2. Using the `fs.readFileSync` function, you'll read and save the file contents of `Incrementer.sol` to `source`
 3. Build the `input` object for the Solidity compiler by specifying the `language`, `sources`, and `settings` to be used
 4. Using the `input` object, you can compile the contract using `solc.compile`
-<<<<<<<< HEAD:.snippets/text/builders/build/eth-api/libraries/compile.md
 5. Extract the compiled contract file and export it to be used in the deployment script
-
-```js
---8<-- 'code/builders/build/eth-api/libraries/web3-js/compile.js'
-```
-========
-5. Extract the compiled contract file and export it to be used in the deployment script
->>>>>>>> origin:.snippets/text/eth-api/libraries/compile.md

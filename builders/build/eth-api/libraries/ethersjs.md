@@ -284,7 +284,7 @@ You can also use the `balances.js` script to check that the balances for the ori
 
 ## Deploy a Contract {: #deploy-a-contract }
 
---8<-- 'text/eth-api/libraries/contract.md'
+--8<-- 'text/builders/build/eth-api/libraries/contract.md'
 
 ### Compile Contract Script {: #compile-contract-script }
 

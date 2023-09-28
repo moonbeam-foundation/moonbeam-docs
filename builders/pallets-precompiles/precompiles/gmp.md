@@ -111,13 +111,13 @@ The following script shows how to create a `Uint8Array` that can be used as a pa
 === "V1"
 
     ```typescript
-    --8<-- 'code/precompiles/gmp/v1-payload.ts'
+    --8<-- 'code/builders/pallets-precompiles/precompiles/gmp/v1-payload.ts'
     ```
 
 === "V2"
 
     ```typescript
-    --8<-- 'code/precompiles/gmp/v2-payload.ts'
+    --8<-- 'code/builders/pallets-precompiles/precompiles/gmp/v2-payload.ts'
     ```
 
 ## Restrictions {: #restrictions }
