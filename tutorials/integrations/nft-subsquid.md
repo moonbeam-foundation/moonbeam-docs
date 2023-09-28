@@ -9,7 +9,7 @@ _by Massimo Luraschi_
 
 ## Introduction {: #introduction }
 
-[Subsquid](https://subsquid.io){target=_blank} is a full-stack blockchain indexing SDK with specialized data lakes (Archives) optimized for the extraction of large volumes of historical on-chain data.
+[Subsquid](https://subsquid.io){target=_blank} is a data network that allows rapid and cost-efficient retrieval of blockchain data from 100+ chains using Subsquid’s decentralized data lake and open-source SDK.
 
 The SDK offers a highly customizable Extract-Transform-Load-Query stack and indexing speeds of up to and beyond 50,000 blocks per second when indexing events and transactions.
 

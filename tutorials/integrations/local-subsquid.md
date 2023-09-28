@@ -11,7 +11,7 @@ _by Erin Shaben_
 
 When developing a dApp, it's beneficial to develop smart contracts using a local development environment as opposed to a live network, such as a TestNet or MainNet. Local development removes some of the hassles involved with developing on a live network, like having to fund development accounts and waiting for blocks to be produced. On Moonbeam, developers can spin up their own local [Moonbeam development node](/builders/get-started/networks/moonbeam-dev){target=_blank} to quickly and easily build and test applications.
 
-But what about dApps that rely on indexers to index blockchain data? How can developers of these applications streamline the development process? Thanks to [Subsquid](/builders/integrations/indexers/subsquid){target=_blank}, a query node framework for Substrate-based blockchains like Moonbeam, it is now possible to index blocks on a local development environment, such as your Moonbeam development node!
+But what about dApps that rely on indexers to index blockchain data? How can developers of these applications streamline the development process? Thanks to [Subsquid](/builders/integrations/indexers/subsquid){target=_blank}, a data network for retrieving data from 100+ chains, it is now possible to index blocks on a local development environment, such as your Moonbeam development node!
 
 This tutorial will walk you through the process of indexing data on a local Moonbeam development node using Subsquid. We'll create an ERC-20 contract and use Subsquid to index transfers of our ERC-20.
 

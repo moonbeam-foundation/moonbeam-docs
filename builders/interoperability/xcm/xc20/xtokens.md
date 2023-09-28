@@ -101,26 +101,6 @@ To check your xcUNIT balance, you can add the XC-20 to MetaMask with the followi
 
 You can adapt this guide for another [external XC-20 or a local XC-20](/builders/interoperability/xcm/xc20/overview){target=_blank}. If you're adapting this guide for another external XC-20, you'll need to have the asset ID of the asset you're transferring and the number of decimals the asset has, which you can get by following the [Retrieve List of External XC-20s](/builders/interoperability/xcm/xc20/overview/#list-xchain-assets){target=_blank} guide. If you're adapting this guide for a local XC-20, you'll need to have the contract address of the XC-20.
 
-If you are transferring a local XC-20, please be aware that transfers are limited to the following units of gas per each network:
-
-=== "Moonbeam"
-
-    ```text
-    {{ networks.moonbeam.erc20_xcm.transfer_gas_limit }}
-    ```
-
-=== "Moonriver"
-
-    ```text
-    {{ networks.moonriver.erc20_xcm.transfer_gas_limit }}
-    ```
-
-=== "Moonbase Alpha"
-
-    ```text
-    {{ networks.moonbase.erc20_xcm.transfer_gas_limit }}
-    ```
-
 ### X-Tokens Transfer Function {: #xtokens-transfer-function}
 
 In this example, you'll build an XCM message to transfer xcUNIT from Moonbase Alpha back to its relay chain through the `transfer` function of the X-Tokens Pallet. To do this, you can use the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api){target=_blank}.
@@ -202,7 +182,7 @@ Now that you have the values for each of the parameters, you can write the scrip
 
 Once the transaction is processed, the target account on the relay chain should have received the transferred amount minus a small fee that is deducted to execute the XCM on the destination chain.
 
-### X-Tokens Transfer MultiAsset Function {: #xtokens-transfer-multiasset-function}
+### X-Tokens Transfer Multiasset Function {: #xtokens-transfer-multiasset-function}
 
 In this example, you'll build an XCM message to transfer xcUNIT from Moonbase Alpha back to its relay chain using the `transferMultiasset` function of the X-Tokens Pallet.
 
@@ -239,7 +219,10 @@ Since you'll be interacting with the `transferMultiasset` function of the X-Toke
               Concrete: {
                 parents: 0,
                 interior: {
-                  X2: [{ PalletInstance: 48 }, { AccountKey20: { key: 'INSERT_ERC_20_ADDRESS' } }],
+                  X2: [
+                    { PalletInstance: 48 },
+                    { AccountKey20: { key: 'INSERT_ERC_20_ADDRESS' } },
+                  ],
                 },
               },
             },
@@ -250,8 +233,10 @@ Since you'll be interacting with the `transferMultiasset` function of the X-Toke
         };
         ```
 
+        For information on the default gas limit for local XC-20 transfers and how to override the default, please refer to the following section: [Override Local XC-20 Gas Limits](#override-local-xc20-gas-limits).
+
 2. Define the XCM destination multilocation of the `dest`, which will target an account in the relay chain from Moonbase Alpha as the origin:
-    
+
     ```js
     const dest = {
       V3: {
@@ -300,6 +285,93 @@ Now that you have the values for each of the parameters, you can write the scrip
     You can view an example of the above script, which sends 1 xcUNIT to Alice's account on the relay chain, on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/extrinsics/decode/0x1e010300010000070010a5d4e80301010100c4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a06300){target=_blank} using the following encoded calldata: `0x1e010300010000070010a5d4e80301010100c4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a06300`
 
 Once the transaction is processed, the account on the relay chain should have received the transferred amount minus a small fee that is deducted to execute the XCM on the destination chain.
+
+#### Override Local XC-20 Gas Limits {: #override-local-xc20-gas-limits }
+
+If you are transferring a local XC-20, the default units of gas is as follows for each network:
+
+=== "Moonbeam"
+
+    ```text
+    {{ networks.moonbeam.erc20_xcm.transfer_gas_limit }}
+    ```
+
+=== "Moonriver"
+
+    ```text
+    {{ networks.moonriver.erc20_xcm.transfer_gas_limit }}
+    ```
+
+=== "Moonbase Alpha"
+
+    ```text
+    {{ networks.moonbase.erc20_xcm.transfer_gas_limit }}
+    ```
+
+You can override the default gas limit using an additional junction when you create the multilocation for the local XC-20. To do so, you'll need to use the `GeneralKey` junction, which accepts two arguments: `data` and `length`.
+
+For example, to set the gas limit to `300000`, you'll need to set the `length` to `32`, and for the `data`, you'll need to pass in `gas_limit: 300000`. However, you can't simply pass in the value for `data` in text; you'll need to properly format it to a 32-byte zero-padded hex string, where the value for the gas limit is in little-endian format. To properly format the `data`, you can take the following steps:
+
+1. Convert `gas_limit:` to its byte representation
+2. Convert the value for the gas limit into its little-endian byte representation
+3. Concatenate the two byte representations into a single value padded to 32 bytes
+4. Convert the bytes to a hex string
+
+Using the `@polkadot/util` library, these steps are as follows:
+
+```js
+import { numberToU8a, stringToU8a, u8aToHex } from '@polkadot/util';
+
+// 1. Convert `gas_limit:` to bytes
+const gasLimitString = 'gas_limit:';
+const u8aGasLimit = stringToU8a(gasLimitString);
+
+// 2. Convert the gas value to little-endian formatted bytes
+const gasLimitValue = 300000;
+const u8aGasLimitValue = numberToU8a(gasLimitValue);
+const littleEndianValue = u8aGasLimitValue.reverse();
+
+// 3. Combine and zero pad the gas limit string and the gas limit 
+// value to 32 bytes
+const u8aCombinedGasLimit = new Uint8Array(32);
+u8aCombinedGasLimit.set(u8aGasLimit, 0);
+u8aCombinedGasLimit.set(littleEndianValue, u8aGasLimit.length);
+
+// 4. Convert the bytes to a hex string
+const data = u8aToHex(u8aCombinedGasLimit);
+console.log(`The GeneralKey data is: ${data}`);
+```
+
+The following is an example multilocation with the gas limit set to `300000`:
+
+```js
+// Multilocation for a local XC-20 on Moonbeam
+const asset = {
+  V3: {
+    id: {
+      Concrete: {
+        parents: 0,
+        interior: {
+          X2: [
+            { PalletInstance: 48 },
+            { AccountKey20: { key: 'INSERT_ERC_20_ADDRESS' } },
+            { 
+              GeneralKey: {
+                // gas_limit: 300000
+                data: '0x6761735f6c696d69743ae0930400000000000000000000000000000000000000',
+                length: 32,
+              },
+            },
+          ],
+        },
+      },
+    },
+    fun: {
+      Fungible: { Fungible: 1000000000000000000n }, // 1 token
+    },
+  },
+};
+```
 
 ## X-Tokens Precompile {: #xtokens-precompile}
 

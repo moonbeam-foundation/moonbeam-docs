@@ -10,7 +10,7 @@ RPC_address = 'INSERT_RPC_API_ENDPOINT'
 # Define the Web3 provider
 web3_provider = Web3(Web3.HTTPProvider(RPC_address))
 
-# Asynchronous JSON RPC API request
+# Asynchronous JSON-RPC API request
 def custom_web3_request(method, params):
     response = web3_provider.provider.make_request(method, params)
     return response
