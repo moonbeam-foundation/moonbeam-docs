@@ -147,17 +147,17 @@ The following is an example that retrieves the asset metadata for the [Jupiter t
 === "Ethers.js"
 
     ```js
-    --8<-- 'code/xc20/local-xc20s/ethers.js'
+    --8<-- 'code/builders/interoperability/xcm/xc20/overview/local-xc20s/ethers.js'
     ```
 
 === "Web3.js"
 
     ```js
-    --8<-- 'code/xc20/local-xc20s/web3.js'
+    --8<-- 'code/builders/interoperability/xcm/xc20/overview/local-xc20s/web3.js'
     ```
 
 === "Web3.py"
 
     ```py
-    --8<-- 'code/xc20/local-xc20s/web3.py'
+    --8<-- 'code/builders/interoperability/xcm/xc20/overview/local-xc20s/web3.py'
     ```
