@@ -31,7 +31,7 @@ The Preimage Precompile is located at the following address:
      {{ networks.moonbase.precompiles.preimage }}
      ```
 
---8<-- 'text/builders/pallet-precompiles/precompiles/security.md'
+--8<-- 'text/builders/pallets-precompiles/precompiles/security.md'
 
 ## The Preimage Solidity Interface {: #the-preimage-solidity-interface }
 

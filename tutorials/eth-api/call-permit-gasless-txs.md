@@ -44,9 +44,8 @@ For this tutorial, you'll need the following:
     ```bash
     npm i ethers
     ```
-
 - 
---8<-- 'text/_common/endpoint-examples.md'
+ --8<-- 'text/_common/endpoint-examples-list-item.md'
 
 ## Configure your Project {: #configure-your-project }
 

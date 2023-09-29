@@ -32,7 +32,7 @@ The staking module is coded in Rust and it is part of a pallet that is normally 
 
 This guide will cover the available methods in the staking precompile interface. In addition, it will show you how to interact with the Parachain Staking Pallet through the staking precompile and the Ethereum API. The examples in this guide are done on Moonbase Alpha, but they can be adapted for Moonbeam or Moonriver.
 
---8<-- 'text/builders/pallet-precompiles/precompiles/security.md'
+--8<-- 'text/builders/pallets-precompiles/precompiles/security.md'
 
 ## Exit Delays {: #exit-delays }
 

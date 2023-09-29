@@ -23,8 +23,8 @@ To get started, you will need the following:
   --8<-- 'text/_common/faucet/faucet-list-item.md'
  - A [Moonscan API Key](/builders/build/eth-api/verify-contracts/etherscan-plugins/#generating-a-moonscan-api-key){target=_blank}
  - For the [Testing section](#running-your-tests), you'll need to have [a local Moonbeam node up and running](/builders/get-started/networks/moonbeam-dev/){target=_blank}
-
---8<-- 'text/_common/endpoint-examples.md'
+ - 
+  --8<-- 'text/_common/endpoint-examples-list-item.md'
 
 ## Creating a Hardhat Project {: #creating-a-hardhat-project }
 

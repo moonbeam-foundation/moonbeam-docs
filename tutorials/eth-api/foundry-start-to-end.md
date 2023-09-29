@@ -19,7 +19,7 @@ To get started, you will need the following:
 
  - Have an account with funds.
   --8<-- 'text/_common/faucet/faucet-list-item.md'
- -
+ - 
 --8<-- 'text/_common/endpoint-examples.md'
  - Have [Foundry installed](https://book.getfoundry.sh/getting-started/installation){target=_blank}
  - Have a [Moonscan API Key](/builders/build/eth-api/verify-contracts/api-verification/#generating-a-moonscan-api-key){target=_blank}

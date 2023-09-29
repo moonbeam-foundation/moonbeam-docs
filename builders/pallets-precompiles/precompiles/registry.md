@@ -31,7 +31,7 @@ The Registry Precompile is located at the following address:
      {{networks.moonriver.precompiles.registry }}
      ```
 
---8<-- 'text/builders/pallet-precompiles/precompiles/security.md'
+--8<-- 'text/builders/pallets-precompiles/precompiles/security.md'
 
 ## The Precompile Registry Solidity Interface {: #the-solidity-interface }
 

@@ -24,8 +24,8 @@ To get started, you will need the following:
 
  - Have an account with funds.
   --8<-- 'text/_common/faucet/faucet-list-item.md'
- -
---8<-- 'text/_common/endpoint-examples.md'
+ - 
+--8<-- 'text/_common/endpoint-examples-list-item.md'
  - Have [Foundry installed](https://book.getfoundry.sh/getting-started/installation){target=_blank}
 
 ## Creating a Foundry Project {: #creating-a-foundry-project }

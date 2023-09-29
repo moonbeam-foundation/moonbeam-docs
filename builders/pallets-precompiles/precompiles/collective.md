@@ -39,7 +39,7 @@ The Collective Precompiles are located at the following addresses:
      |      Treasury Council       |        {{networks.moonbase.precompiles.collective_treasury }}        |
      | OpenGov Technical Committee | {{networks.moonbase.precompiles.collective_opengov_tech_committee }} |
 
---8<-- 'text/builders/pallet-precompiles/precompiles/security.md'
+--8<-- 'text/builders/pallets-precompiles/precompiles/security.md'
 
 ## The Collective Solidity Interface {: #the-call-permit-interface }
 

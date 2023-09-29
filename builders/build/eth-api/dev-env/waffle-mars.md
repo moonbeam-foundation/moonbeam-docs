@@ -22,8 +22,8 @@ You will need to have the following:
  - MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=_blank}
  - An account with funds.
   --8<-- 'text/_common/faucet/faucet-list-item.md'
- -
---8<-- 'text/_common/endpoint-examples.md'
+ - 
+--8<-- 'text/_common/endpoint-examples-list-item.md'
 
 Once you've created an account you'll need to export the private key to be used in this guide.
 
@@ -346,7 +346,12 @@ If you want to write more tests on your own, you could consider testing transfer
 
 After you compile your contracts and before deployment, you will have to generate contract artifacts for Mars. Mars uses the contract artifacts for typechecks in deployments. Then you'll need to create a deployment script and deploy the `MyToken` smart contract.
 
-Remember, you will be deploying to Moonbase Alpha and will need to use the TestNet RPC URL: `{{ networks.moonbase.rpc_url }}`.
+Remember, you will be deploying to Moonbase Alpha and will need to use the TestNet RPC URL: 
+
+```text
+{{ networks.moonbase.rpc_url }}
+```
+
 --8<-- 'text/_common/endpoint-setup.md'
 
 The deployment will be broken up into three sections: [generate artifacts](#generate-artifacts), [create a deployment script](#create-a-deployment-script), and [deploy with Mars](#deploy-with-mars).

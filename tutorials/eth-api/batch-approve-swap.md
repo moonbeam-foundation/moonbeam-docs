@@ -24,8 +24,8 @@ For this tutorial, you'll need the following:
 - An account with funds.
   --8<-- 'text/_common/faucet/faucet-list-item.md'
 - An empty Hardhat project that is configured for the Moonbase Alpha TestNet. For step-by-step instructions, please refer to the [Creating a Hardhat Project](/builders/build/eth-api/dev-env/hardhat/#creating-a-hardhat-project){target=_blank} and the [Hardhat Configuration File](/builders/build/eth-api/dev-env/hardhat/#hardhat-configuration-file){target=_blank} sections of our Hardhat documentation page
-
---8<-- 'text/_common/endpoint-examples.md'
+- 
+  --8<-- 'text/_common/endpoint-examples-list-item.md'
 
 ### Install Dependencies {: #install-dependencies }
 

@@ -222,7 +222,7 @@ The XCM Transactor Precompile contract allows developers to access the XCM Trans
     |   V2    | <pre>```{{ networks.moonbase.precompiles.xcm_transactor_v2 }}```</pre> |
     |   V3    | <pre>```{{ networks.moonbase.precompiles.xcm_transactor_v3 }}```</pre> |
 
---8<-- 'text/builders/pallet-precompiles/precompiles/security.md'
+--8<-- 'text/builders/pallets-precompiles/precompiles/security.md'
 
 ### The XCM Transactor Solidity Interface {: #xcmtrasactor-solidity-interface }
 

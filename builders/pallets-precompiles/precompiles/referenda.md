@@ -31,7 +31,7 @@ The Referenda Precompile is located at the following address:
      {{ networks.moonbase.precompiles.referenda }}
      ```
 
---8<-- 'text/builders/pallet-precompiles/precompiles/security.md'
+--8<-- 'text/builders/pallets-precompiles/precompiles/security.md'
 
 ## The Referenda Solidity Interface {: #the-referenda-solidity-interface }
 
