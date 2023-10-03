@@ -1,4 +1,4 @@
-# Introduction to DIA
+# Introduction to DIA Oracles
 
 ## Requesting a custom oracle
 
