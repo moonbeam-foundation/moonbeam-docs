@@ -55,6 +55,75 @@ DIA NFT floor price feeds provide smart contracts with real-time price informati
 
 DIA also supports API endpoints to return cryptocurrency price data. Developers can directly access the example endpoints listed below or [visit the DIA Documentation](https://docs.diadata.org/products/nft-floor-price-feeds/access-api-endpoints) to see all API endpoints.
 
+# 🎲 Random Number Generation
+DIA xRandom provides smart contracts with unpredictable and unbiased random numbers, facilitating the development of on-chain use cases such as lotteries, prediction markets, NFT launches and more.
+## Understanding Randomness
+DIA leverages the Drand public randomness beacon, and updates its oracle with round numbers, randomness and a signature. Drand runs distributed nodes to produce their randomness beacon. Drand uses [Pedersen's DKG (Distributed Key Generation) protocol](https://drand.love/docs/cryptography/#distributed-key-generation-dkg) to create collective private/public keys. Participants in their League of Entropy then generate randomness in rounds and broadcast it together with its signature.
+To learn more about Drand’s randomness beacon, watch the [following DIA tutorial](https://youtu.be/7HALDJr8V3g) and read [Drand’s documentation](https://drand.love/docs/overview/#how-drand-works).
+## How to use the DIA Randomness Oracle
+Anyone can access published random values via round ID.
+```
+{
+	"round": 1597683,
+	"randomness": "24138936fcbf7fc3951c928158be6998cee3af622142d0790333608d17a5c5f6",
+	"signature": "8c04905c0adf34f1fb007915d9ccc7d07b97305fc63952726f9367c87f36ab687c5e190c151f6ac4d760a9e009fc54230adb8513885449d649a229bc727be9ff347bdbce1c609cebf993b6ae57133fbcf23f96b15dbd3510cb5f2ade6b30b647",
+	"previous_signature": "ada42197a2db89866da4c44348f77f7868e41e961ec32e636b912d43c625386afae9e54944ac573047dbd227ee495b52059586c8d8cd0edfe18cc15ca0666a66651da1d62b12af2d0fac19735bed9298690a593571965c3ad7c7b11947e76ec0"
+}
+```
+
+
+The DIA randomness smart contract is structured as follows
+```pragma solidity ^0.8.0;
+contract DIARandomOracle {
+struct Random {
+string randomness;
+string signature;
+string previousSignature;
+}
+mapping (uint256 => Random) public values;
+uint256 public lastRound = 0;
+address public oracleUpdater;
+event OracleUpdate(string key, uint128 value, uint128 timestamp);
+event UpdaterAddressChange(address newUpdater);
+constructor() {
+oracleUpdater = msg.sender;
+}
+function setRandomValue(uint256 _round, string memory _randomness, string memory _signature, string memory _previousSignature) public {
+require(msg.sender == oracleUpdater,"not a updater");
+require(lastRound<_round, "old round");
+lastRound = _round;
+values[_round] = Random(_randomness, _signature, _previousSignature);
+}
+function getValue(uint256 _round) external view returns (Random memory) {
+return values[_round];
+}
+function updateOracleUpdaterAddress(address newOracleUpdaterAddress) public {
+require(msg.sender == oracleUpdater,"not a updater");
+oracleUpdater = newOracleUpdaterAddress;
+emit UpdaterAddressChange(newOracleUpdaterAddress);
+}
+function getRandomValueFromRound(uint256 _round) external view returns (string memory) {
+return values[_round].randomness;
+}
+function getRandomValueFromRoundWithSignature(uint256 _round) external view returns (Random memory) {
+return values[_round];
+}
+function getLastRound() public view returns(uint256) {
+return lastRound;
+}
+}
+```
+
+Users can call `getLastRound()`to obtain the ID of the latest published round. To obtain the randomness of a certain round, users can call `getRandomValueFromRound(uint256 _round)` using the obtained round ID.
+
+The signature can also be requested by calling `getRandomValueFromRoundWithSignature(uint256 _round)`.
+
+## Video Tutorial: Deploying a randomness-consuming smart contract on an EVM chain
+https://youtu.be/BzN-tBgW-xs
+
+
+> ⚠️ **Note:** DApps can request a dedicated, production-ready oracle for their dApp with custom price feeds and configuration settings. [Learn: requesting an oracle](https://docs.google.com/document/d/1Rbeic7f3e5an-ZT7rJSB_svCBRWTlSISsmnpOo18HQ0/edit#heading=h.ysc3hbr0lfty).
+
 
 # Learn more about DIA
 
