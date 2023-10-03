@@ -37,6 +37,7 @@ DIA has deployed the following demo oracles for the Moonbeam community. It provi
 | Network        | Contract address      
 | -------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
 | Moonbeam Alpha  | [`0xe23d8713aa3a0a2c102af772d2467064821b8d46`](https://moonbase.moonscan.io/address/0xe23d8713aa3a0a2c102af772d2467064821b8d46)        |
+| Moonriver  | [`0x11f74b94afb5968119c98ea277a2b73208bb39ab`](https://moonriver.moonscan.io/address/0x11f74b94afb5968119c98ea277a2b73208bb39ab)        |
 
 ### Included Price Feeds
 
