@@ -41,7 +41,7 @@ The exact process for Alice's transfer is as follows:
 ### XCM Instructions {: #xcm-instructions }
 
 An XCM message is comprised of a series of XCM instructions. As a result, different combinations of XCM instructions result in different actions. 
---8<-- 'text/x-tokens/xcm-instructions.md'
+--8<-- 'text/builders/interoperability/xcm/xc20/x-tokens/xcm-instructions.md'
 
 ## Relay Chain XCM Fee Calculation  {: #rel-chain-xcm-fee-calc }
 

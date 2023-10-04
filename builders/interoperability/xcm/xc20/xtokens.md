@@ -77,7 +77,7 @@ The XCM instructions used for the X-Tokens Pallet extrinsics are defined in the 
 
 Regardless of which transfer extrinsic is used, the instructions are the same for sending the native asset back to its origin chain, such as xcDOT from Moonbeam back to Polkadot, and sending the native asset from the origin chain to a destination chain, such as DOT from Polkadot to Moonbeam.
 
---8<-- 'text/x-tokens/xcm-instructions.md'
+--8<-- 'text/builders/interoperability/xcm/xc20/x-tokens/xcm-instructions.md'
 
 ## Building an XCM Message with the X-Tokens Pallet {: #build-xcm-xtokens-pallet}
 
