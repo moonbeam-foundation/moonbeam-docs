@@ -7,70 +7,184 @@ description: Learn about the transaction fee model used in Moonbeam and the diff
 
 ## Introduction {: #introduction }
 
-Similar to [the Ethereum and Substrate APIs for sending transfers](/builders/get-started/eth-compare/transfers-api/){target=_blank} on Moonbeam, the Substrate and EVM layers on Moonbeam also have distinct transaction fee models that developers should be aware of when they need to calculate and keep track of the transaction fees of their transactions.
+Similar to [the Ethereum and Substrate APIs for sending transfers](/builders/get-started/eth-compare/transfers-api/){target=_blank} on Moonbeam, the Substrate and EVM layers on Moonbeam also have distinct transaction fee models that developers should be aware of when they need to calculate and keep track of transaction fees for their transactions.
 
-This guide assumes you are interacting with Moonbeam blocks via [the Substrate API Sidecar](/builders/build/substrate-api/sidecar/){target=_blank} service. There are other ways of interacting with Moonbeam blocks, such as using [the Polkadot.js API library](/builders/build/substrate-api/polkadot-js-api/){target=_blank}. The logic is identical once the blocks are retrieved.
+For starters, Ethereum transactions consume gas units based on their computational complexity and data storage requirements. On the other hand, Substrate transactions use the concept of "weight" to determine fees. In this guide, you'll learn how to calculate the transaction fees for both Substrate and Ethereum transactions. In terms of Ethereum transactions, you'll also learn about the key differences between how transaction fees are calculated on Moonbeam and Ethereum.
 
-You can reference the [Substrate API Sidecar page](/builders/build/substrate-api/sidecar/){target=_blank} for information on installing and running your own Sidecar service instance, as well as more details on how to decode Sidecar blocks for Moonbeam transactions.
+### Key Differences with Ethereum {: #key-differences-with-ethereum}
 
-**Note that the information on this page assumes you are running version {{ networks.moonbase.substrate_api_sidecar.stable_version }} of the Substrate Sidecar REST API.**
+There are some key differences between the transaction fee model on Moonbeam and the one on Ethereum that developers should be mindful of when developing on Moonbeam:
 
-## Substrate API Transaction Fees {: #substrate-api-transaction-fees }
+  - The [dynamic fee mechanism](https://forum.moonbeam.foundation/t/proposal-status-idea-dynamic-fee-mechanism-for-moonbeam-and-moonriver/241){target=_blank} resembles that of [EIP-1559](https://eips.ethereum.org/EIPS/eip-1559){target=_blank} but the implementation is different
 
-All the information around fee data for transactions sent via the Substrate API can be extracted from the following block endpoint:
+  - The amount of gas used in Moonbeam's transaction fee model is mapped from the transaction's Substrate extrinsic weight value via a fixed factor of {{ networks.moonbase.tx_weight_to_gas_ratio }}. This value is then multiplied with the unit gas price to calculate the transaction fee. This fee model means it can potentially be significantly cheaper to send transactions such as basic balance transfers via the Ethereum API than the Substrate API
 
-```text
-GET /blocks/{blockId}
-```
+  - The EVM is designed to solely have capacity for gas and Moonbeam requires additional metrics outside of gas. In particular, Moonbeam needs the ability to record proof size, which is the amount of storage required on Moonbeam for a relay chain validator to verify a state transition. When the capacity limit for proof size has been reached for the current block, which is 25% of the block limit, an "Out of Gas" error will be thrown. This can happen even if there is remaining *legacy* gas in the gasometer. This additional metric also impacts refunds. Refunds are based on the more consumed resource after the execution. In other words, if more proof size has been consumed proportionally than legacy gas, the refund will be calculated using proof size
 
-The block endpoints will return data relevant to one or more blocks. You can read more about the block endpoints on the [official Sidecar documentation](https://paritytech.github.io/substrate-api-sidecar/dist/#operations-tag-blocks){target=_blank}. Read as a JSON object, the relevant nesting structure is as follows:  
+  - Moonbeam has implemented a new mechanism defined in [MBIP-5](https://github.com/moonbeam-foundation/moonbeam/blob/master/MBIPS/MBIP-5.md){target=_blank} that limits block storage and increases gas usage for transactions that result in an increase in storage. Please note that this feature is only enabled on Moonbase Alpha at this time
 
-```text
-RESPONSE JSON Block Object:
-    ...
-    |--number
-    |--extrinsics
-        |--{extrinsic_number}
-            |--method
-            |--signature
-            |--nonce
-            |--args
-            |--tip           
-            |--hash
-            |--info
-            |--era
-            |--events
-                |--{event_number}
-                    |--method
-                        |--pallet: "transactionPayment"
-                        |--method: "TransactionFeePaid"
-                    |--data
-                        |--0
-                        |--1
-                        |--2
-    ...
+## Overview of MBIP-5 {: #overview-of-mbip-5 }
 
-```
+MBIP-5 introduced changes to Moonbeam's fee mechanism that account for storage growth on the network, which deviates from the way Ethereum handles fees. By raising the gas needed to execute transactions that increase chain state and by establishing a block storage limit, it controls storage growth.
 
-The object mappings are summarized as follows:
+This impacts contract deployments that add to the chain state, transactions that create new storage entries, and precompiled contract calls that result in the creation of new accounts.
 
-|   Tx Information   |                      Block JSON Field                       |
-|:------------------:|:-----------------------------------------------------------:|
-| Fee paying account | `extrinsics[extrinsic_number].events[event_number].data[0]` |
-|  Total fees paid   | `extrinsics[extrinsic_number].events[event_number].data[1]` |
-|        Tip         | `extrinsics[extrinsic_number].events[event_number].data[2]` |
+The block storage limit prevents transactions in a single block from collectively increasing the storage state by more than 40KB.
 
-The transaction fee related information can be retrieved under the event of the relevant extrinsic where the `method` field is set to:
+To determine the amount of gas for storage in bytes, there is a ratio that is defined as:
 
 ```text
-pallet: "transactionPayment", method: "TransactionFeePaid" 
+Ratio = Block Gas Limit / (Block Storage Limit * 1024 Bytes)
 ```
 
-And then the total transaction fee paid for this extrinsic is mapped to the following field of the block JSON object:
+Given the block gas limit of 15,000,000 and the block storage limit of 40KB per block, the ratio between gas and storage is 366, which is calculated like this:
 
 ```text
-extrinsics[extrinsic_number].events[event_number].data[1]
+Ratio = 15000000 / (40 * 1024)
+Ratio = 366
 ```
+
+Then, you can take the storage growth in bytes for a given transaction and multiply it by the gas-to-storage growth ratio to determine how many units of gas to add to the transaction. For example, if you execute a transaction that increases the storage by 500 bytes, the following calculation is used to determine the units of gas to add:
+
+```text
+Additional Gas = 500 * 366
+Additional Gas = 183000
+```
+
+To see how this MBIP differentiates Moonbeam from Ethereum firsthand, you can estimate the gas for two different contract interactions on both networks: one that modifies an item in the chain state and one that doesn't. For example, you can use a greeting contract that allows you to store a name and then use the name to say "Hello".
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract SayHello {
+    mapping(address => string) public addressToName;
+
+    constructor(string memory _name) {
+        addressToName[msg.sender] = _name;
+    }
+
+    // Store a name associated to the address of the sender
+    function setName(string memory _name) public {
+        addressToName[msg.sender] = _name;
+    } 
+
+    // Use the name in storage associated to the sender
+    function sayHello() external view returns (string memory) {
+        return string(abi.encodePacked("Hello ", addressToName[msg.sender]));
+    }
+}
+```
+
+You can deploy this contract on both Moonbeam's TestNet, Moonbase Alpha, and Ethereum's TestNet, Sepolia, or feel free to access the contracts that have already been deployed to each network:
+
+=== "Moonbase Alpha"
+
+    ```text
+    0xDFF8E772A9B212dc4FbA19fa650B440C5c7fd7fd
+    ```
+
+=== "Sepolia"
+
+    ```text
+    0x8D0C059d191011E90b963156569A8299d7fE777d
+    ```
+
+Next, you can use the `eth_estimateGas` method to check the gas estimate for calling the `setName` and `sayHello` functions on each network. To do so, you'll need the bytecode for each transaction, which includes the function selector, and for the `setName` function, the name to be set. This example bytecode sets the name to "Chloe":
+
+=== "Set Name"
+
+    ```text
+    0xc47f00270000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000543686c6f65000000000000000000000000000000000000000000000000000000
+    ```
+
+=== "Say Hello"
+
+    ```text
+    0xef5fb05b
+    ```
+
+Now, you can use the following curl commands on Moonbase Alpha to return the gas estimate:
+
+=== "Set Name"
+
+    ```sh
+    curl {{ networks.moonbase.rpc_url }} -H "Content-Type:application/json;charset=utf-8" -d \
+    '{
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "eth_estimateGas",
+        "params":[{
+            "to": "0xDFF8E772A9B212dc4FbA19fa650B440C5c7fd7fd",
+            "data": "0xc47f00270000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000543686c6f65000000000000000000000000000000000000000000000000000000"
+        }]
+    }'
+    ```
+
+=== "Say Hello"
+
+    ```sh
+    curl {{ networks.moonbase.rpc_url }} -H "Content-Type:application/json;charset=utf-8" -d \
+    '{
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "eth_estimateGas",
+        "params":[{
+            "to": "0xDFF8E772A9B212dc4FbA19fa650B440C5c7fd7fd",
+            "data": "0xef5fb05b"
+        }]
+    }'
+    ```
+
+Then on Sepolia, you can use the same bytecode for the `data` and modify the RPC URL and contract address to target the contract deployed to Sepolia:
+
+=== "Set Name"
+
+    ```sh
+    curl https://sepolia.publicgoods.network -H "Content-Type:application/json;charset=utf-8" -d \
+    '{
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "eth_estimateGas",
+        "params":[{
+            "to": "0x8D0C059d191011E90b963156569A8299d7fE777d",
+            "data": "0xc47f00270000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000543686c6f65000000000000000000000000000000000000000000000000000000"
+        }]
+    }'
+    ```
+
+=== "Say Hello"
+
+    ```sh
+    curl https://sepolia.publicgoods.network -H "Content-Type:application/json;charset=utf-8" -d \
+    '{
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "eth_estimateGas",
+        "params":[{
+            "to": "0x8D0C059d191011E90b963156569A8299d7fE777d",
+            "data": "0xef5fb05b"
+        }]
+    }'
+    ```
+
+At the time of writing, the gas estimates for both networks are as follows:
+
+=== "Moonbase Alpha"
+
+    |   Method   | Gas Estimate |
+    |:----------:|:------------:|
+    |  `setName` |     45977    |
+    | `sayHello` |     25938    |
+
+=== "Sepolia"
+
+    |   Method   | Gas Estimate |
+    |:----------:|:------------:|
+    |  `setName` |     21520    |
+    | `sayHello` |     21064    |
+
+You'll see that on Sepolia, the gas estimates for both calls are very similar, whereas on Moonbase Alpha, there is a noticeable difference between the calls and that the `setName` call, which modifies the storage, uses more gas than the `sayHello` call.
 
 ## Ethereum API Transaction Fees {: #ethereum-api-transaction-fees }
 
@@ -84,11 +198,13 @@ To calculate the fee incurred on a Moonbeam transaction sent via the Ethereum AP
                 MaxFeePerGas;
     Transaction Fee = (GasPrice * TransactionWeight) / {{ networks.moonbase.tx_weight_to_gas_ratio }}
     ```
+
 === "Legacy"
 
     ```text
     Transaction Fee = (GasPrice * TransactionWeight) / {{ networks.moonbase.tx_weight_to_gas_ratio }}
     ```
+
 === "EIP-2930"
 
     ```text
@@ -211,16 +327,6 @@ And then `TransactionWeight` is mapped to the following field of the block JSON 
 extrinsics[extrinsic_number].events[event_number].data[0].weight
 ```
 
-### Key Differences with Ethereum {: #ethereum-api-transaction-fees}
-
-As seen in the sections above, there are some key differences between the transaction fee model on Moonbeam and the one on Ethereum that developers should be mindful of when developing on Moonbeam:
-
-  - The [dynamic fee mechanism](https://forum.moonbeam.foundation/t/proposal-status-idea-dynamic-fee-mechanism-for-moonbeam-and-moonriver/241){target=_blank} resembles that of [EIP-1559](https://eips.ethereum.org/EIPS/eip-1559){target=_blank} but the implementation is different
-
-  - The amount of gas used in Moonbeam's transaction fee model is mapped from the transaction's Substrate extrinsic weight value via a fixed factor of {{ networks.moonbase.tx_weight_to_gas_ratio }}. This value is then multiplied with the unit gas price to calculate the transaction fee. This fee model means it can potentially be significantly cheaper to send transactions such as basic balance transfers via the Ethereum API than the Substrate API
-
-  - The EVM is designed to solely have capacity for gas and Moonbeam requires additional metrics outside of gas. In particular, Moonbeam needs the ability to record proof size, which is the amount of storage required on Moonbeam for a relay chain validator to verify a state transition. When the capacity limit for proof size has been reached for the current block, which is 25% of the block limit, an "Out of Gas" error will be thrown. This can happen even if there is remaining *legacy* gas in the gasometer. This additional metric also impacts refunds. Refunds are based on the more consumed resource after the execution. In other words, if more proof size has been consumed proportionally than legacy gas, the refund will be calculated using proof size
-
 ### Fee History Endpoint {: #eth-feehistory-endpoint }
 
 Moonbeam networks implement the [`eth_feeHistory`](https://docs.alchemy.com/reference/eth-feehistory){target_blank} JSON-RPC endpoint as a part of the support for EIP-1559.
@@ -293,6 +399,69 @@ The following code sample is for demo purposes only and should not be used witho
 
 You can use the following snippet for any Moonbeam-based network, but you'll need to modify the `baseFee` accordingly. You can refer back to the [Base Fee](#base-fee) section to get the calculation for each network.
 
---8<-- 'code/builders/get-started/eth-compare/tx-fees/tx-fees-block-dynamic.md'
+--8<-- 'code/vs-ethereum/tx-fees/tx-fees-block-dynamic.md'
 
---8<-- 'text/_disclaimers/third-party-content.md'
+## Substrate API Transaction Fees {: #substrate-api-transaction-fees }
+
+This section of the guide assumes you are interacting with Moonbeam blocks via [the Substrate API Sidecar](/builders/build/substrate-api/sidecar/){target=_blank} service. There are other ways of interacting with Moonbeam blocks, such as using [the Polkadot.js API library](/builders/build/substrate-api/polkadot-js-api/){target=_blank}. The logic is identical once the blocks are retrieved.
+
+You can reference the [Substrate API Sidecar page](/builders/build/substrate-api/sidecar/){target=_blank} for information on installing and running your own Sidecar service instance, as well as more details on how to decode Sidecar blocks for Moonbeam transactions.
+
+**Note that the information in this section assumes you are running version {{ networks.moonbase.substrate_api_sidecar.stable_version }} of the Substrate Sidecar REST API.**
+
+All the information around fee data for transactions sent via the Substrate API can be extracted from the following block endpoint:
+
+```text
+GET /blocks/{blockId}
+```
+
+The block endpoints will return data relevant to one or more blocks. You can read more about the block endpoints on the [official Sidecar documentation](https://paritytech.github.io/substrate-api-sidecar/dist/#operations-tag-blocks){target=_blank}. Read as a JSON object, the relevant nesting structure is as follows:  
+
+```text
+RESPONSE JSON Block Object:
+    ...
+    |--number
+    |--extrinsics
+        |--{extrinsic_number}
+            |--method
+            |--signature
+            |--nonce
+            |--args
+            |--tip           
+            |--hash
+            |--info
+            |--era
+            |--events
+                |--{event_number}
+                    |--method
+                        |--pallet: "transactionPayment"
+                        |--method: "TransactionFeePaid"
+                    |--data
+                        |--0
+                        |--1
+                        |--2
+    ...
+
+```
+
+The object mappings are summarized as follows:
+
+|   Tx Information   |                      Block JSON Field                       |
+|:------------------:|:-----------------------------------------------------------:|
+| Fee paying account | `extrinsics[extrinsic_number].events[event_number].data[0]` |
+|  Total fees paid   | `extrinsics[extrinsic_number].events[event_number].data[1]` |
+|        Tip         | `extrinsics[extrinsic_number].events[event_number].data[2]` |
+
+The transaction fee related information can be retrieved under the event of the relevant extrinsic where the `method` field is set to:
+
+```text
+pallet: "transactionPayment", method: "TransactionFeePaid" 
+```
+
+And then the total transaction fee paid for this extrinsic is mapped to the following field of the block JSON object:
+
+```text
+extrinsics[extrinsic_number].events[event_number].data[1]
+```
+
+--8<-- 'text/disclaimers/third-party-content.md'
