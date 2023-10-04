@@ -43,10 +43,10 @@ So now you have a URL. How do you use it? Over `HTTPS`, JSON-RPC requests are `P
 
 ```json
 {
-  "jsonrpc": "2.0",
-  "id": 1,
-  "method": "eth_getBalance",
-  "params": ["0xf24FF3a9CF04c71Dbc94D0b566f7A27B94566cac", "latest"]
+    "jsonrpc": "2.0",
+    "id": 1,
+    "method": "eth_getBalance",
+    "params": ["0xf24FF3a9CF04c71Dbc94D0b566f7A27B94566cac", "latest"]
 }
 ```
 
@@ -100,7 +100,7 @@ module.exports = {
     moonbase: {
       url: '{{ networks.moonbase.rpc_url }}',
       chainId: {{ networks.moonbase.chain_id }},
-      accounts: ['YOUR_PRIVATE_KEY']
+      accounts: ['INSERT_YOUR_PRIVATE_KEY']
     }
   }
 };
@@ -472,14 +472,14 @@ Now that we have the ABI, we can use it to create a contract instance of `Mintab
 
 #### Create a Smart Contract Instance {: #create-a-contract-instance }
 
-Let's import the JSON file and the Ethers `Contract` object within `App.js`. We can create a contract object instance with an address and ABI, so replace `YOUR_CONTRACT_ADDRESS_HERE` with the address of the contract that you copied [back when you deployed it](#deploying-smart-contracts):
+Let's import the JSON file and the Ethers `Contract` object within `App.js`. We can create a contract object instance with an address and ABI, so replace `INSERT_CONTRACT_ADDRESS` with the address of the contract that you copied [back when you deployed it](#deploying-smart-contracts):
 
 ```javascript
 // ... other imports
 import MintableERC20 from './MintableERC20.json'; 
 import { Contract } from 'ethers';
 
-const contractAddress = 'YOUR_CONTRACT_ADDRESS_HERE';
+const contractAddress = 'INSERT_CONTRACT_ADDRESS';
 
 function App() {
   const contract = new Contract(contractAddress, MintableERC20.abi);
@@ -503,7 +503,7 @@ function App() {
       alignCenter: { textAlign: 'center' },
     };
 
-    const contractAddress = 'YOUR_CONTRACT_ADDRESS_HERE';
+    const contractAddress = 'INSERT_CONTRACT_ADDRESS';
 
     function App() {
       const contract = new Contract(contractAddress, MintableERC20.abi);
@@ -611,7 +611,7 @@ function App() {
       card: { borderRadius: 4, padding: 4, maxWidth: '550px', width: '100%' },
       alignCenter: { textAlign: 'center' },
     };
-    const contractAddress = 'YOUR_CONTRACT_ADDRESS_HERE';
+    const contractAddress = 'INSERT_CONTRACT_ADDRESS';
 
     function App() {
       const { activateBrowserWallet, deactivate, account } = useEthers();
@@ -668,7 +668,6 @@ If you recall from our smart contract, we want to mint some tokens by calling th
 2. A button that lets the user initiate the transaction signature
 
 Let's create a new component called `MintingComponent` in a new file called `MintingComponent.js`. First, we'll tackle the text input, which will require us to add the logic to store the number of tokens to mint and a text field element.
-
 
 ```javascript
 import { useState } from 'react';
@@ -818,7 +817,7 @@ function App() {
     import { Button, Grid, Card } from '@mui/material';
     import { Box } from '@mui/system';
     import { Contract } from 'ethers';
-    import MintableERC20 from './MintableERC20.json'; 
+    import MintableERC20 from './MintableERC20.json';
     import SupplyComponent from './SupplyComponent';
     import MintingComponent from './MintingComponent';
 
@@ -828,7 +827,7 @@ function App() {
       card: { borderRadius: 4, padding: 4, maxWidth: '550px', width: '100%' },
       alignCenter: { textAlign: 'center' },
     };
-    const contractAddress = 'YOUR_CONTRACT_ADDRESS_HERE';
+    const contractAddress = 'INSERT_CONTRACT_ADDRESS';
 
     function App() {
       const { activateBrowserWallet, deactivate, account } = useEthers();
@@ -1056,7 +1055,7 @@ function App() {
       card: { borderRadius: 4, padding: 4, maxWidth: '550px', width: '100%' },
       alignCenter: { textAlign: 'center' },
     };
-    const contractAddress = 'YOUR_CONTRACT_ADDRESS_HERE';
+    const contractAddress = 'INSERT_CONTRACT_ADDRESS';
 
     function App() {
       const { activateBrowserWallet, deactivate, account } = useEthers();

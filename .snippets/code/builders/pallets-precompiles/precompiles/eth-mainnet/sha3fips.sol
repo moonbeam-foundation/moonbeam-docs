@@ -1,4 +1,3 @@
-```solidity
 pragma solidity >=0.4.21;
 
 contract Precompiles {
@@ -14,5 +13,3 @@ contract Precompiles {
         return h[0];
     }
 }
-
-```

@@ -72,18 +72,18 @@ To get started, you'll create a TypeScript project and install and configure a f
 
     ```json
     {
-      "compilerOptions": {
-        "strict": true,
-        "target": "ES2019",
-        "moduleResolution": "node",
-        "resolveJsonModule": true,
-        "esModuleInterop": true,
-        "module": "CommonJS",
-        "composite": true,
-        "sourceMap": true,
-        "declaration": true,
-        "noEmit": true
-      }
+        "compilerOptions": {
+            "strict": true,
+            "target": "ES2019",
+            "moduleResolution": "node",
+            "resolveJsonModule": true,
+            "esModuleInterop": true,
+            "module": "CommonJS",
+            "composite": true,
+            "sourceMap": true,
+            "declaration": true,
+            "noEmit": true
+        }
     }
     ```
 
@@ -133,17 +133,17 @@ Now that you have written a smart contract, the next step is to use Waffle to co
 
     ```json
     {
-      "compilerType": "solcjs",
-      "compilerVersion": "0.8.0",
-      "compilerOptions": {
-        "optimizer": {
-          "enabled": true,
-          "runs": 20000
+        "compilerType": "solcjs",
+        "compilerVersion": "0.8.0",
+        "compilerOptions": {
+            "optimizer": {
+                "enabled": true,
+                "runs": 20000
+            }
         },
-      },
-      "sourceDirectory": "./contracts",
-      "outputDirectory": "./build",
-      "typechainEnabled": true
+        "sourceDirectory": "./contracts",
+        "outputDirectory": "./build",
+        "typechainEnabled": true
     }
     ```
 
@@ -151,7 +151,7 @@ Now that you have written a smart contract, the next step is to use Waffle to co
 
     ```json
     "scripts": {
-      "build": "waffle"
+        "build": "waffle"
     },
     ```
 
@@ -215,9 +215,9 @@ Since you will be running tests against the TestNet, it might take a couple minu
     ```typescript
       beforeEach(async () => {
         // This is for demo purposes only. Never store your private key in a JavaScript/TypeScript file
-        const PRIVATE_KEY = 'INSERT_PRIVATE_KEY'
+        const privateKey = 'INSERT_PRIVATE_KEY'
         // Create a wallet instance using your private key & connect it to the provider
-        wallet = new Wallet(PRIVATE_KEY).connect(provider);
+        wallet = new Wallet(privateKey).connect(provider);
 
         // Create a random account to transfer tokens to & connect it to the provider
         walletTo = Wallet.createRandom().connect(provider);
@@ -251,9 +251,9 @@ Since you will be running tests against the TestNet, it might take a couple minu
 
     ```json
     {
-      "require": "ts-node/register/transpile-only",
-      "timeout": 600000,
-      "extension": "test.ts"
+        "require": "ts-node/register/transpile-only",
+        "timeout": 600000,
+        "extension": "test.ts"
     }
     ```
 
@@ -261,8 +261,8 @@ Since you will be running tests against the TestNet, it might take a couple minu
 
     ```json
     "scripts": {
-      "build": "waffle",
-      "test": "mocha"
+        "build": "waffle",
+        "test": "mocha"
     },
     ```
 
@@ -311,7 +311,7 @@ import { MyToken, MyTokenFactory } from '../build/types';
 
 use(solidity);
 
-describe ('MyToken', () => {
+describe('MyToken', () => {
   let provider: Provider = new ethers.providers.JsonRpcProvider(
     '{{ networks.moonbase.rpc_url }}'
   );
@@ -321,8 +321,8 @@ describe ('MyToken', () => {
 
   beforeEach(async () => {
     // For demo purposes only. Never store your private key in a JavaScript/TypeScript file
-    const PRIVATE_KEY = 'INSERT_PRIVATE_KEY'
-    wallet = new Wallet(PRIVATE_KEY).connect(provider);
+    const privateKey = 'INSERT_PRIVATE_KEY';
+    wallet = new Wallet(privateKey).connect(provider);
     walletTo = Wallet.createRandom().connect(provider);
     token = await new MyTokenFactory(wallet).deploy();
     let contractTransaction = await token.initialize(10);
@@ -337,7 +337,7 @@ describe ('MyToken', () => {
     await (await token.transfer(walletTo.address, 7)).wait();
     expect(await token.balanceOf(walletTo.address)).to.equal(7);
   });
-})
+});
 ```
 
 If you want to write more tests on your own, you could consider testing transfers from accounts without any funds or transfers from accounts without enough funds.
@@ -346,7 +346,7 @@ If you want to write more tests on your own, you could consider testing transfer
 
 After you compile your contracts and before deployment, you will have to generate contract artifacts for Mars. Mars uses the contract artifacts for typechecks in deployments. Then you'll need to create a deployment script and deploy the `MyToken` smart contract.
 
-Remember, you will be deploying to Moonbase Alpha and will need to use the TestNet RPC URL: 
+Remember, you will be deploying to Moonbase Alpha and will need to use the TestNet RPC URL:
 
 ```text
 {{ networks.moonbase.rpc_url }}
@@ -364,8 +364,8 @@ Artifacts need to be generated for Mars so that typechecks are enabled within de
 
     ```json
     "scripts": {
-      "build": "waffle && mars",
-      "test": "mocha"
+        "build": "waffle && mars",
+        "test": "mocha"
     },
     ```
 
@@ -398,9 +398,12 @@ In this step, you'll create the deployment script which will define how the cont
 
     // For demo purposes only. Never store your private key in a JavaScript/TypeScript file
     const privateKey = 'INSERT_PRIVATE_KEY';
-    deploy({network: '{{ networks.moonbase.rpc_url }}', privateKey},(deployer) => {
-      // Deployment logic will go here
-    });
+    deploy(
+      { network: '{{ networks.moonbase.rpc_url }}', privateKey },
+      (deployer) => {
+        // Deployment logic will go here
+      }
+    );
     ```
 
 3. Set up the `deploy` function to deploy the `MyToken` contract created in the previous steps:
@@ -411,7 +414,7 @@ In this step, you'll create the deployment script which will define how the cont
 
     // For demo purposes only. Never store your private key in a JavaScript/TypeScript file
     const privateKey = 'INSERT_PRIVATE_KEY';
-    deploy({network: '{{ networks.moonbase.rpc_url }}', privateKey}, () => {
+    deploy({ network: '{{ networks.moonbase.rpc_url }}', privateKey }, () => {
       contract('myToken', MyToken);
     });
     ```
@@ -419,11 +422,11 @@ In this step, you'll create the deployment script which will define how the cont
 4. Add a deploy script to the `scripts` object in the `package.json`:
 
     ```json
-      "scripts": {
+    "scripts": {
         "build": "waffle && mars",
         "test": "mocha",
         "deploy": "ts-node src/deploy.ts"
-      },
+    }
     ```
 
 So far, you should have created a deployment script in `deploy.ts` that will deploy the `MyToken` contract to Moonbase Alpha, and added the ability to easily call the script and deploy the contract.

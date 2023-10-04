@@ -35,7 +35,7 @@ You can try out these endpoints with the following curl examples. These examples
             "jsonrpc":"2.0",
             "id":"1",
             "method":"moon_isBlockFinalized",
-            "params":["Put-Block-Hash-Here"
+            "params":["INSERT_BLOCK_HASH"
         ]}]' 
         {{ networks.moonbase.rpc_url }}
     ```
@@ -48,7 +48,7 @@ You can try out these endpoints with the following curl examples. These examples
             "jsonrpc":"2.0",
             "id":"1",
             "method":"moon_isTxFinalized",
-            "params":["Put-Tx-Hash-Here"
+            "params":["INSERT_TX_HASH"
         ]}]' 
         {{ networks.moonbase.rpc_url }}
     ```

@@ -55,7 +55,7 @@ To create a provider, you can take the following steps:
     from web3 import Web3
 
     # 2. Create web3.py provider
-    web3 = Web3(Web3.HTTPProvider('{{ networks.moonbeam.rpc_url }}')) # Insert your RPC URL here
+    web3 = Web3(Web3.HTTPProvider("{{ networks.moonbeam.rpc_url }}")) # Insert your RPC URL here
     ```
 
 === "Moonriver"
@@ -65,7 +65,7 @@ To create a provider, you can take the following steps:
     from web3 import Web3
 
     # 2. Create web3.py provider
-    web3 = Web3(Web3.HTTPProvider('{{ networks.moonriver.rpc_url }}')) # Insert your RPC URL here
+    web3 = Web3(Web3.HTTPProvider("{{ networks.moonriver.rpc_url }}")) # Insert your RPC URL here
     ```
 
 === "Moonbase Alpha"
@@ -75,7 +75,7 @@ To create a provider, you can take the following steps:
     from web3 import Web3
 
     # 2. Create web3.py provider
-    web3 = Web3(Web3.HTTPProvider('{{ networks.moonbase.rpc_url }}'))
+    web3 = Web3(Web3.HTTPProvider("{{ networks.moonbase.rpc_url }}"))
     ```
 
 === "Moonbeam Dev Node"
@@ -85,14 +85,14 @@ To create a provider, you can take the following steps:
     from web3 import Web3
 
     # 2. Create web3.py provider
-    web3 = Web3(Web3.HTTPProvider('{{ networks.development.rpc_url }}'))
+    web3 = Web3(Web3.HTTPProvider("{{ networks.development.rpc_url }}"))
     ```
 
 Save this code snippet, as you'll need it for the scripts that are used in the following sections.
 
 ## Send a Transaction {: #send-a-transaction }
 
-During this section, you'll be creating a couple of scripts. The first one will be to check the balances of your accounts before trying to send a transaction. The second script will actually send the transaction. 
+During this section, you'll be creating a couple of scripts. The first one will be to check the balances of your accounts before trying to send a transaction. The second script will actually send the transaction.
 
 You can also use the balance script to check the account balances after the transaction has been sent.
 
@@ -177,6 +177,7 @@ Next, you will create the script for this file and complete the following steps:
 ```python
 --8<-- 'code/builders/build/eth-api/libraries/web3-py/compile.py'
 ```
+
 !!! note
     If you see an error stating that `Solc is not installed`, uncomment step 2 described in the code snippet.
 

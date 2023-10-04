@@ -142,8 +142,8 @@ To get started, make sure you have a project with Ethers installed, as specified
 As previously mentioned, there are several ways to set up gasless transactions. For the purposes of this tutorial, we'll assume that there is a third-party account that pays the fees. As such, you'll need to have a signer for the user of the dApp, which is connected to your user's wallet, and a signer for the third-party account paying for the transaction fees. This tutorial assumes that you already have these signers in place, but if needed, you can set up the following generic signers for testing purposes:
 
 ```js
-const userSigner = new ethers.Wallet('INSERT-PRIVATE-KEY', provider);
-const thirdPartyGasSigner = new ethers.Wallet('INSERT-PRIVATE-KEY', provider);
+const userSigner = new ethers.Wallet('INSERT_PRIVATE_KEY', provider);
+const thirdPartyGasSigner = new ethers.Wallet('INSERT_PRIVATE_KEY', provider);
 ```
 
 !!! remember
@@ -371,9 +371,9 @@ import abi from './callPermitABI.js'
 ...
 
 const callPermit = new ethers.Contract(
-    '{{ networks.moonbeam.precompiles.call_permit }}', 
-    abi, 
-    thirdPartyGasSigner
+  '{{ networks.moonbeam.precompiles.call_permit }}', 
+  abi, 
+  thirdPartyGasSigner,
 );
 
 const nonce = await callPermit.nonces(userSigner.address);
@@ -399,8 +399,8 @@ const nonce = await callPermit.nonces(userSigner.address);
     });
 
     // Insert your own signer logic or use the following for testing purposes
-    const userSigner = new ethers.Wallet('INSERT-PRIVATE-KEY', provider);
-    const thirdPartyGasSigner = new ethers.Wallet('INSERT-PRIVATE-KEY', provider);
+    const userSigner = new ethers.Wallet('INSERT_PRIVATE_KEY', provider);
+    const thirdPartyGasSigner = new ethers.Wallet('INSERT_PRIVATE_KEY', provider);
 
     const domain = {
       name: 'Call Permit Precompile',
@@ -437,7 +437,7 @@ const nonce = await callPermit.nonces(userSigner.address);
     const callPermit = new ethers.Contract(
       '{{ networks.moonbeam.precompiles.call_permit }}', 
       abi, 
-      thirdPartyGasSigner
+      thirdPartyGasSigner,
     );
 
     const nonce = await callPermit.nonces(userSigner.address);
@@ -481,7 +481,7 @@ Now that we have an understanding of what the `signTypedData` function does, we 
 const signature = await signer.signTypedData(
   domain, // The domain separator
   types, // The typed data structure
-  message // The message data
+  message, // The message data
 );
 console.log(`Signature hash: ${signature}`);
 ```
@@ -516,6 +516,7 @@ console.log(`Transaction hash: ${dispatch.hash}`);
 ```
 
 ??? code "View the complete script"
+
     ```js
     --8<-- 'code/builders/pallets-precompiles/precompiles/call-permit/dispatch-call-permit.js'
     ```

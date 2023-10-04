@@ -1,16 +1,18 @@
-```solidity
 pragma solidity ^0.7.0;
 
 contract ModularCheck {
-
     uint public checkResult;
 
     // Function to Verify ModExp Result
-    function verify( uint _base, uint _exp, uint _modulus) public {
+    function verify(uint _base, uint _exp, uint _modulus) public {
         checkResult = modExp(_base, _exp, _modulus);
     }
 
-    function modExp(uint256 _b, uint256 _e, uint256 _m) public returns (uint256 result) {
+    function modExp(
+        uint256 _b,
+        uint256 _e,
+        uint256 _m
+    ) public returns (uint256 result) {
         assembly {
             // Free memory pointer
             let pointer := mload(0x40)
@@ -32,4 +34,3 @@ contract ModularCheck {
         }
     }
 }
-```

@@ -116,10 +116,12 @@ require('@nomicfoundation/hardhat-ethers');
 module.exports = {
   solidity: '0.8.17',
   networks: {
-    dev: { 
+    dev: {
       url: '{{ networks.development.rpc_url }}',
       chainId: {{ networks.development.chain_id }}, // (hex: {{ networks.development.hex_chain_id }}),
-      accounts: ['0x5fb92d6e98884f76de468fa3f6278f8807c48bebc13595d45af5bdc4da702133'], // Alith's private key
+      accounts: [
+        '0x5fb92d6e98884f76de468fa3f6278f8807c48bebc13595d45af5bdc4da702133',
+      ], // Alith's private key
     },
   },
 };
@@ -245,28 +247,42 @@ Since we'll be indexing `Transfer` events for our ERC-20, we'll need to send a f
       const MyTok = await hre.ethers.getContractFactory('MyTok');
 
       // Plug ABI to Address
-      const myTok = await MyTok.attach('0xc01Ee7f10EA4aF4673cFff62710E1D7792aBa8f3');
+      const myTok = await MyTok.attach(
+        '0xc01Ee7f10EA4aF4673cFff62710E1D7792aBa8f3'
+      );
 
       const value = hre.ethers.utils.parseUnits('10', 'ether');
 
       let tx;
       // Transfer to Baltathar
-      tx = await myTok.transfer('0x3Cd0A705a2DC65e5b1E1205896BaA2be8A07c6e0', value);
+      tx = await myTok.transfer(
+        '0x3Cd0A705a2DC65e5b1E1205896BaA2be8A07c6e0',
+        value
+      );
       await tx.wait();
       console.log(`Transfer to Baltathar with TxHash ${tx.hash}`);
 
       // Transfer to Charleth
-      tx = await myTok.transfer('0x798d4Ba9baf0064Ec19eB4F0a1a45785ae9D6DFc', value);
+      tx = await myTok.transfer(
+        '0x798d4Ba9baf0064Ec19eB4F0a1a45785ae9D6DFc',
+        value
+      );
       await tx.wait();
       console.log(`Transfer to Charleth with TxHash ${tx.hash}`);
 
       // Transfer to Dorothy
-      tx = await myTok.transfer('0x773539d4Ac0e786233D90A233654ccEE26a613D9', value);
+      tx = await myTok.transfer(
+        '0x773539d4Ac0e786233D90A233654ccEE26a613D9',
+        value
+      );
       await tx.wait();
       console.log(`Transfer to Dorothy with TxHash ${tx.hash}`);
 
       // Transfer to Ethan
-      tx = await myTok.transfer('0xFf64d3F6efE2317EE2807d223a0Bdc4c0c49dfDB', value);
+      tx = await myTok.transfer(
+        '0xFf64d3F6efE2317EE2807d223a0Bdc4c0c49dfDB',
+        value
+      );
       await tx.wait();
       console.log(`Transfer to Ethan with TxHash ${tx.hash}`);
     }
@@ -374,17 +390,28 @@ To easily run our Archive, let's update the preexisting `commands.json` file, wh
 {
     "$schema": "https://cdn.subsquid.io/schemas/commands.json",
     "commands": {
-      "archive-up": {
-        "description": "Start local Moonbeam Archive",
-        "cmd": ["docker-compose", "-f", "archive/docker-compose.archive.yml", "up", "-d"]
-      },
-      "archive-down": {
-        "description": "Stop local Moonbeam Archive",
-        "cmd": ["docker-compose", "-f", "archive/docker-compose.archive.yml", "down"]
-      },
-      // ...
+        "archive-up": {
+            "description": "Start local Moonbeam Archive",
+            "cmd": [
+                "docker-compose",
+                "-f",
+                "archive/docker-compose.archive.yml",
+                "up",
+                "-d"
+            ]
+        },
+        "archive-down": {
+            "description": "Stop local Moonbeam Archive",
+            "cmd": [
+                "docker-compose",
+                "-f",
+                "archive/docker-compose.archive.yml",
+                "down"
+            ]
+        },
+        // ...
     }
-  }
+}
 ```
 
 !!! note
@@ -457,7 +484,8 @@ import { EvmBatchProcessor } from '@subsquid/evm-processor';
 import { Transfer } from './model';
 import { events } from './abi/MyTok';
 
-const contractAddress = '0xc01Ee7f10EA4aF4673cFff62710E1D7792aBa8f3'.toLowerCase();
+const contractAddress =
+  '0xc01Ee7f10EA4aF4673cFff62710E1D7792aBa8f3'.toLowerCase();
 const processor = new EvmBatchProcessor()
   .setDataSource({
     chain: 'http://localhost:9944', // Local development node
@@ -471,33 +499,37 @@ const processor = new EvmBatchProcessor()
         data: true,
       },
       transaction: {
-        hash: true
-      }
-    }
+        hash: true,
+      },
+    },
   });
 
 processor.run(new TypeormDatabase(), async (ctx) => {
-  const transfers: Transfer[] = []
+  const transfers: Transfer[] = [];
   for (let c of ctx.blocks) {
     for (let i of c.items) {
-
-      if (i.address === contractAddress && i.kind === 'evmLog'){
-          if (i.transaction){
-            const { from, to, value } = events.Transfer.decode(i.evmLog)
-            transfers.push(new Transfer({
-              id: `${String(c.header.height).padStart(10, '0')}-${i.transaction.hash.slice(3,8)}`,
+      if (i.address === contractAddress && i.kind === 'evmLog') {
+        if (i.transaction) {
+          const { from, to, value } = events.Transfer.decode(i.evmLog);
+          transfers.push(
+            new Transfer({
+              id: `${String(c.header.height).padStart(
+                10,
+                '0'
+              )}-${i.transaction.hash.slice(3, 8)}`,
               block: c.header.height,
               from: from,
               to: to,
               value: value.toBigInt(),
               timestamp: BigInt(c.header.timestamp),
-              txHash: i.transaction.hash
-            }))
-          }
+              txHash: i.transaction.hash,
+            })
+          );
+        }
       }
     }
-   }
-   await ctx.store.save(transfers)
+  }
+  await ctx.store.save(transfers);
 });
 ```
 

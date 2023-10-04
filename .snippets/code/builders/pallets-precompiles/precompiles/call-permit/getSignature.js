@@ -1,14 +1,14 @@
 import { ethers } from 'ethers';
 import { signTypedData, SignTypedDataVersion } from '@metamask/eth-sig-util';
 
-const from = 'INSERT-FROM-ADDRESS-HERE';
-const to = 'INSERT-TO-ADDRESS-HERE';
+const from = 'INSERT_FROM_ADDRESS';
+const to = 'INSERT_TO_ADDRESS';
 const value = 0;
 const data =
   '0x4ed3885e0000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000b68656c6c6f20776f726c64000000000000000000000000000000000000000000';
 const gaslimit = 100000;
-const nonce = 'INSERT-SIGNERS-NONCE-HERE';
-const deadline = 'INSERT-DEADLINE-HERE';
+const nonce = 'INSERT_SIGNERS_NONCE';
+const deadline = 'INSERT_DEADLINE';
 
 const createPermitMessageData = () => {
   const message = {
@@ -59,7 +59,7 @@ const messageData = createPermitMessageData();
 
 // For demo purposes only. Never store your private key in a JavaScript/TypeScript file
 const signature = signTypedData({
-  privateKey: Buffer.from('INSERT-FROM-ACCOUNT-PRIVATE-KEY', 'hex'),
+  privateKey: Buffer.from('INSERT_FROM_ACCOUNT_PRIVATE_KEY', 'hex'),
   data: messageData.typedData,
   version: SignTypedDataVersion.V4,
 });

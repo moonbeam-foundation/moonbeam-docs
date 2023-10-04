@@ -1,14 +1,14 @@
 import ABI from './xcmUtilsABI.js'; // Import the XCM Utilities Precompile ABI
 import { ethers } from 'ethers'; // Import Ethers library
 
-const PRIVATE_KEY = 'INSERT_YOUR_PRIVATE_KEY';
+const privateKey = 'INSERT_YOUR_PRIVATE_KEY';
 const xcmUtilsAddress = '0x000000000000000000000000000000000000080C';
 
 /* Create Ethers provider and signer */
 const provider = new ethers.JsonRpcProvider(
   'https://rpc.api.moonbase.moonbeam.network'
 );
-const signer = new ethers.Wallet(PRIVATE_KEY, provider);
+const signer = new ethers.Wallet(privateKey, provider);
 
 /* Create contract instance of the XCM Utilities Precompile */
 const xcmUtils = new ethers.Contract(

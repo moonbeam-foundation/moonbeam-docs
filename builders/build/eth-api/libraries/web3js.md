@@ -123,8 +123,14 @@ const addressTo = 'INSERT_TO_ADDRESS';
 // 3. Create balances function
 const balances = async () => {
   // 4. Fetch balance info
-  const balanceFrom = web3.utils.fromWei(await web3.eth.getBalance(addressFrom), 'ether');
-  const balanceTo = web3.utils.fromWei(await web3.eth.getBalance(addressTo), 'ether');
+  const balanceFrom = web3.utils.fromWei(
+    await web3.eth.getBalance(addressFrom),
+    'ether'
+  );
+  const balanceTo = web3.utils.fromWei(
+    await web3.eth.getBalance(addressTo),
+    'ether'
+  );
 
   console.log(`The balance of ${addressFrom} is: ${balanceFrom} DEV`);
   console.log(`The balance of ${addressTo} is: ${balanceTo} DEV`);
@@ -178,7 +184,9 @@ const addressTo = 'INSERT_TO_ADDRESS'; // Change addressTo
 
 // 3. Create send function
 const send = async () => {
-  console.log(`Attempting to send transaction from ${accountFrom.address} to ${addressTo}`);
+  console.log(
+    `Attempting to send transaction from ${accountFrom.address} to ${addressTo}`
+  );
 
   // 4. Sign tx with PK
   const createTransaction = await web3.eth.accounts.signTransaction(
@@ -191,8 +199,12 @@ const send = async () => {
   );
 
   // 5. Send tx and wait for receipt
-  const createReceipt = await web3.eth.sendSignedTransaction(createTransaction.rawTransaction);
-  console.log(`Transaction successful with hash: ${createReceipt.transactionHash}`);
+  const createReceipt = await web3.eth.sendSignedTransaction(
+    createTransaction.rawTransaction
+  );
+  console.log(
+    `Transaction successful with hash: ${createReceipt.transactionHash}`
+  );
 };
 
 // 6. Call send function
@@ -291,7 +303,9 @@ const deploy = async () => {
   );
 
   // 9. Send tx and wait for receipt
-  const createReceipt = await web3.eth.sendSignedTransaction(createTransaction.rawTransaction);
+  const createReceipt = await web3.eth.sendSignedTransaction(
+    createTransaction.rawTransaction
+  );
   console.log(`Contract deployed at address: ${createReceipt.contractAddress}`);
 };
 
@@ -433,7 +447,9 @@ const increment = async () => {
   );
 
   // 8. Send Tx and Wait for Receipt
-  const createReceipt = await web3.eth.sendSignedTransaction(createTransaction.rawTransaction);
+  const createReceipt = await web3.eth.sendSignedTransaction(
+    createTransaction.rawTransaction
+  );
   console.log(`Tx successful with hash: ${createReceipt.transactionHash}`);
 };
 
@@ -490,7 +506,9 @@ const resetTx = incrementer.methods.reset();
 
 // 6. Create reset function
 const reset = async () => {
-  console.log(`Calling the reset function in contract at address: ${contractAddress}`);
+  console.log(
+    `Calling the reset function in contract at address: ${contractAddress}`
+  );
 
   // 7. Sign tx with PK
   const createTransaction = await web3.eth.accounts.signTransaction(
@@ -503,7 +521,9 @@ const reset = async () => {
   );
 
   // 8. Send tx and wait for receipt
-  const createReceipt = await web3.eth.sendSignedTransaction(createTransaction.rawTransaction);
+  const createReceipt = await web3.eth.sendSignedTransaction(
+    createTransaction.rawTransaction
+  );
   console.log(`Tx successful with hash: ${createReceipt.transactionHash}`);
 };
 

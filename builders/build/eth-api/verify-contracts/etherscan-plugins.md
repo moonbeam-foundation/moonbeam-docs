@@ -72,8 +72,8 @@ module.exports = {
       moonbeam: 'INSERT_MOONSCAN_API_KEY', // Moonbeam Moonscan API Key
       moonriver: 'INSERT_MOONSCAN_API_KEY', // Moonriver Moonscan API Key
       moonbaseAlpha: 'INSERT_MOONSCAN_API_KEY', // Moonbeam Moonscan API Key    
-    }
-  }
+    },
+  },
 };
 ```
 

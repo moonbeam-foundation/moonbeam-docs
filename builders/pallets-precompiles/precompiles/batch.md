@@ -70,7 +70,9 @@ To follow along with this tutorial, you will need to have:
 
 The contract `SimpleContract.sol` will be used as an example of batching contract interactions, but in practice, any contract can be interacted with.
 
- --8<-- 'code/builders/pallets-precompiles/precompiles/batch/simple-contract.md'
+```solidity
+--8<-- 'code/builders/pallets-precompiles/precompiles/batch/simple-contract.sol'
+```
 
 ### Remix Set Up {: #remix-set-up }
 
@@ -132,7 +134,7 @@ Try transferring native currency to two wallets of your choice via the batch pre
 1. Make sure that you have at least 0.5 DEV in your connected wallet
 2. Expand the batch contract under **Deployed Contracts**
 3. Expand the **batchAll** function
-4. For the **to** input, insert your addresses in the following format: `["ADDRESS-1-HERE", "ADDRESS-2-HERE"]`, where the first address corresponds to the first wallet of your choice and the second address corresponds to the second wallet of your choice
+4. For the **to** input, insert your addresses in the following format: `["INSERT_ADDRESS_1", "INSERT_ADDRESS_2"]`, where the first address corresponds to the first wallet of your choice and the second address corresponds to the second wallet of your choice
 5. For the **value** input, insert the amount you wish to transfer in Wei for each address. For example, `["100000000000000000", "200000000000000000"]` will transfer 0.1 DEV to the first address and 0.2 DEV to the second address
 6. For both of the remaining **callData** and **gasLimit** inputs, insert `[]`. Call data and gas limit are not a concern for transferring native currency
 7. Press **transact**
@@ -160,7 +162,9 @@ Try finding a transaction's call data using Remix:
 
 Now you have the transaction's call data! Considering the example values of `1` and `"moonbeam"`, we can keep an eye out for their encoded values in the call data:
 
- --8<-- 'code/builders/pallets-precompiles/precompiles/batch/simple-message-call-data.md'
+```text
+--8<-- 'code/builders/pallets-precompiles/precompiles/batch/simple-message-call-data.md'
+```
 
 The call data can be broken into five lines, where:
 
@@ -181,9 +185,9 @@ To use the precompile to send an atomic batch transaction, take the following st
 1. Copy the `SimpleContract.sol` contract's address with the copy button on the right side of its header. Be sure to also have the [call data from the previous section](#finding-a-contract-interactions-call-data)
 2. Expand the batch contract under **Deployed Contracts**
 3. Expand the **batchAll** function
-4. For the **to** input, insert the address of the `SimpleContract.sol` contract that you previously copied in the following format: `["SIMPLE-CONTRACT-ADDRESS-HERE"]`
+4. For the **to** input, insert the address of the `SimpleContract.sol` contract that you previously copied in the following format: `["INSERT_SIMPLE_CONTRACT_ADDRESS"]`
 5. For the value input, since `SimpleContract.sol` does not require any native currency to be paid to it, insert `["0"]` for 0 Wei
-6. For the **callData** input, insert your call data from the previous section in the following format: `["CALL-DATA-HERE"]`
+6. For the **callData** input, insert your call data from the previous section in the following format: `["INSERT_CALL_DATA"]`
 7. For the **gasLimit** input, insert `[]`. You can put in a gas limit value, but it is optional
 8. Press **transact**
 9. Press **Confirm** in the MetaMask extension to confirm the transaction
@@ -249,13 +253,22 @@ If you have followed the [Ethers.js tutorial](/builders/build/eth-api/libraries/
 !!! note
     The code snippets presented in the following sections are not meant for production environments. Please make sure you adapt it for each use-case.
 
-=== "Web3.js"
-     --8<-- 'code/builders/pallets-precompiles/precompiles/batch/web3js-batch.md'
-
 === "Ethers.js"
-     --8<-- 'code/builders/pallets-precompiles/precompiles/batch/ethers-batch.md'
+
+     ```js
+     --8<-- 'code/builders/pallets-precompiles/precompiles/batch/ethers-batch.js'
+     ```
+
+=== "Web3.js"
+
+     ```js
+     --8<-- 'code/builders/pallets-precompiles/precompiles/batch/web3js-batch.js'
+     ```
 
 === "Web3.py"
-     --8<-- 'code/builders/pallets-precompiles/precompiles/batch/web3py-batch.md'
+
+     ```py
+     --8<-- 'code/builders/pallets-precompiles/precompiles/batch/web3py-batch.py'
+     ```
 
 Afterwards, you should be all set to interact with the batch precompile as one typically would with a contract in [Ethers](/builders/build/eth-api/libraries/ethersjs){target=_blank}.

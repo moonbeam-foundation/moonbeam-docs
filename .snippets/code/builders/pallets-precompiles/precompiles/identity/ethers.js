@@ -13,7 +13,7 @@ const signer = new ethers.Wallet(privateKey, provider);
 // Create interface for the Identity Precompile
 const identityPrecompile = new ethers.Contract(
   identityPrecompileAddress,
-  IDENTITY_ABI,
+  ABI,
   signer
 );
 

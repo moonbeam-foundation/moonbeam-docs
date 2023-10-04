@@ -287,8 +287,7 @@ An example of the steps described above to build the transfer data to transfer D
 ```js
 import { Sdk } from '@moonbeam-network/xcm-sdk';
 
-const fromPolkadot = async() => {
-
+const fromPolkadot = async () => {
   const { assets, asset } = Sdk.assets();
   console.log(
     `The supported assets are: ${assets.map((asset) => asset.originSymbol)}`
@@ -296,12 +295,18 @@ const fromPolkadot = async() => {
 
   const { sourceChains, source } = Sdk.assets().asset('dot');
   console.log(
-    `The supported source chains are: ${sourceChains.map((chain) => chain.name)}`
+    `The supported source chains are: ${sourceChains.map(
+      (chain) => chain.name
+    )}`
   );
 
-  const { destinationChains, destination } = Sdk.assets().asset('dot').source('polkadot');
+  const { destinationChains, destination } = Sdk.assets()
+    .asset('dot')
+    .source('polkadot');
   console.log(
-    `The supported destination chains are: ${destinationChains.map((chain) => chain.name)}`
+    `The supported destination chains are: ${destinationChains.map(
+      (chain) => chain.name
+    )}`
   );
 
   const data = await Sdk()
@@ -310,13 +315,13 @@ const fromPolkadot = async() => {
     .source('polkadot')
     .destination('moonbeam')
     .accounts(
-      pair.address, 
+      pair.address,
       evmSigner.address, // If using viem, use evmSigner.account.address
       {
         pair,
       }
     );
-}
+};
 
 fromPolkadot();
 ```

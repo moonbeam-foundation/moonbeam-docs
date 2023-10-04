@@ -1,4 +1,3 @@
-```ts
 import axios from 'axios';
 
 // This script will decode all native token transfers (Substrate & Ethereum) in a given Sidecar block, and extract the tx hash. It can be adapted for any Moonbeam network.
@@ -81,4 +80,3 @@ async function main() {
 }
 
 main();
-```

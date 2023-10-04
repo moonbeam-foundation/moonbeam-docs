@@ -219,7 +219,9 @@ import { ethers } from 'ethers';
 
 const produceBlock = async () => {
   // Connect to the Ethereum node (if applicable, replace the URL with your node's address)
-  const provider = new ethers.JsonRpcProvider('{{ networks.development.rpc_url }}');
+  const provider = new ethers.JsonRpcProvider(
+    '{{ networks.development.rpc_url }}'
+  );
 
   // Set the custom JSON-RPC method and parameters
   const method = 'engine_createBlock';
