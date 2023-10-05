@@ -35,13 +35,13 @@ The following commands will build the latest release of the Moonbeam parachain.
 3. If you already have Rust installed, you can skip the next two steps. Otherwise, install Rust and its prerequisites [via Rust's recommended method](https://www.rust-lang.org/tools/install){target=_blank}
 
     ```bash
-    --8<-- 'code/setting-up-node/installrust.md'
+    --8<-- 'code/builders/get-started/networks/moonbeam-dev/installrust.md'
     ```
 
 4. Update your `PATH` environment variable
 
     ```bash
-    --8<-- 'code/setting-up-node/updatepath.md'
+    --8<-- 'code/builders/get-started/networks/moonbeam-dev/updatepath.md'
     ```
 
 5. Build the parachain binary
@@ -62,7 +62,7 @@ The following commands will build the latest release of the Moonbeam parachain.
 If a _cargo not found error_ shows up in the terminal, manually add Rust to your system path or restart your system:
 
 ```bash
---8<-- 'code/setting-up-node/updatepath.md'
+--8<-- 'code/builders/get-started/networks/moonbeam-dev/updatepath.md'
 ```
 
 Now you can use the Moonbeam binary to run a systemd service.
@@ -354,7 +354,7 @@ For an overview of the flags used in the following start-up commands, plus addit
 
 ## Run the Service {: #run-the-service }
 
---8<-- 'text/systemd/run-service.md'
+--8<-- 'text/node-operators/networks/run-a-node/systemd/run-service.md'
 
 ![Service Status](/images/node-operators/networks/run-a-node/compile-binary/full-node-binary-2.png)
 
@@ -496,4 +496,4 @@ For the complete list of available `purge-chain` commands, you can access the he
 ./target/release/moonbeam purge-chain --help
 ```
 
---8<-- 'text/purge-chain/post-purge.md'
+--8<-- 'text/node-operators/networks/run-a-node/post-purge.md'
