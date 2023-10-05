@@ -1,70 +1,77 @@
 ---
-title: Run a Node on Moonbeam Using Systemd
-description: How to run a full parachain node so you can have your own RPC endpoint or produce blocks for the Moonbeam Network using Systemd.
+title: Compile the Binary to Run a Node
+description: Learn how to manually compile the binary to run a full Moonbeam node. Compiling the binary can take around 30 minutes and requires at least 32GB of memory.
 ---
 
-# Run a Node on Moonbeam Using Systemd
+# Manually Compile the Binary to Run a Node on Moonbeam Using Systemd
 
-## Introduction {: #introduction }
+## Introduction
 
 Running a full node on a Moonbeam-based network allows you to connect to the network, sync with a bootnode, obtain local access to RPC endpoints, author blocks on the parachain, and more.
 
-In this guide, you'll learn how to spin up a Moonbeam node using [Systemd](https://systemd.io/){target=_blank} and how to maintain and purge your node.
+This guide is meant for people with experience compiling [Substrate](https://substrate.dev/) based blockchain nodes. A parachain node is similar to a typical Substrate node, but there are some differences. A Substrate parachain node will be a bigger build because it contains code to run the parachain itself, as well as code to sync the relay chain, and facilitate communication between the two. As such, this build is quite large and may take over 30 min and require 32GB of memory.
 
-## Checking Prerequisites {: #checking-prerequisites }
+To get started quickly without the hassle of compiling the binary yourself, you can use [The Release Binary](/node-operators/networks/run-a-node/systemd){target=_blank}.
 
-The following sections go through the process of using the binary and running a Moonbeam full node as a systemd service. To get started, you'll need to:
+## Compile the Binary {: #compile-the-binary }
 
-- Make sure you're running Ubuntu 18.04, 20.04, or 22.04. Moonbeam may work with other Linux flavors, but Ubuntu is currently the only tested version
-- Make sure that your system meets the [requirements](/node-operators/networks/run-a-node/overview#requirements){target=_blank}. When connecting to Moonriver on Kusama or Moonbeam on Polkadot, it will take a few days to completely sync the embedded relay chain
+Manually compiling the binary can take around 30 minutes and requires 32GB of memory.
 
-## Download the Latest Release Binary {: #the-release-binary }
+The following commands will build the latest release of the Moonbeam parachain.
 
-To get started, use `wget` to grab the latest [release binary](https://github.com/moonbeam-foundation/moonbeam/releases):
-
-=== "Moonbeam"
+1. Clone the Moonbeam repo
 
     ```bash
-    wget https://github.com/moonbeam-foundation/moonbeam/releases/download/{{ networks.moonbeam.parachain_release_tag }}/moonbeam
+    git clone https://github.com/moonbeam-foundation/moonbeam
+    cd moonbeam
     ```
 
-=== "Moonriver"
+2. Check out to the latest release
 
     ```bash
-    wget https://github.com/moonbeam-foundation/moonbeam/releases/download/{{ networks.moonriver.parachain_release_tag }}/moonbeam
-    ``` 
+    git checkout tags/$(git describe --tags)
+    ```
 
-=== "Moonbase Alpha"
+3. If you already have Rust installed, you can skip the next two steps. Otherwise, install Rust and its prerequisites [via Rust's recommended method](https://www.rust-lang.org/tools/install){target=_blank}
 
     ```bash
-    wget https://github.com/moonbeam-foundation/moonbeam/releases/download/{{ networks.moonbase.parachain_release_tag }}/moonbeam
+    --8<-- 'code/setting-up-node/installrust.md'
     ```
 
-To verify that you have downloaded the correct version, you can run `sha256sum moonbeam` in your terminal. You should receive the following output:
+4. Update your `PATH` environment variable
 
-=== "Moonbeam"
-
-    ```text
-    {{ networks.moonbeam.parachain_sha256sum }}
+    ```bash
+    --8<-- 'code/setting-up-node/updatepath.md'
     ```
 
-=== "Moonriver"
+5. Build the parachain binary
 
-    ```text
-    {{ networks.moonriver.parachain_sha256sum }}
+    !!! note
+        If you are using Ubuntu 20.04 or 22.04, then you will need to install these additional dependencies before building the binary:
+
+        ```bash
+        apt install clang protobuf-compiler libprotobuf-dev -y 
+        ```
+
+    ```bash
+    cargo build --release
     ```
 
-=== "Moonbase Alpha"
+![Compiling Binary](/images/node-operators/networks/run-a-node/compile-binary/full-node-binary-1.png)
 
-    ```text
-    {{ networks.moonbase.parachain_sha256sum }}
-    ```
+If a _cargo not found error_ shows up in the terminal, manually add Rust to your system path or restart your system:
+
+```bash
+--8<-- 'code/setting-up-node/updatepath.md'
+```
+
+Now you can use the Moonbeam binary to run a systemd service.
 
 ## Setup the Service {: #setup-the-service }
 
-The following commands will set up everything regarding running the service:
+The following commands will set up everything regarding running the service.
 
-1. Create a service account to run the service
+1. Create a service account to run the service:
 
     === "Moonbeam"
 
@@ -84,7 +91,7 @@ The following commands will set up everything regarding running the service:
         adduser moonbase_service --system --no-create-home
         ```
 
-2. Create a directory to store the binary and data (you might need `sudo`)
+2. Create a directory to store the binary and data (you might need `sudo`):
 
     === "Moonbeam"
 
@@ -104,24 +111,24 @@ The following commands will set up everything regarding running the service:
         mkdir {{ networks.moonbase.node_directory }}
         ```
 
-3. Move the binary built in the last section to the created folder (you might need sudo)
+3. Move the binary in the target directory (`./target/release/`) to the folder you just created
 
     === "Moonbeam"
 
         ```bash
-        mv ./{{ networks.moonbeam.binary_name }} {{ networks.moonbeam.node_directory }}
+        mv ./target/release/{{ networks.moonbeam.binary_name }} {{ networks.moonbeam.node_directory }}
         ```
 
     === "Moonriver"
 
         ```bash
-        mv ./{{ networks.moonriver.binary_name }} {{ networks.moonriver.node_directory }}
+        mv ./target/release/{{ networks.moonriver.binary_name }} {{ networks.moonriver.node_directory }}
         ```
 
     === "Moonbase Alpha"
 
         ```bash
-        mv ./{{ networks.moonbase.binary_name }} {{ networks.moonbase.node_directory }}
+        mv ./target/release/{{ networks.moonbase.binary_name }} {{ networks.moonbase.node_directory }}
         ```
 
 4. Make sure you set the ownership and permissions accordingly for the local directory that stores the chain data:
@@ -148,7 +155,7 @@ The following commands will set up everything regarding running the service:
 
 The next step is to create the systemd configuration file. If you are setting up a collator node, make sure to follow the code snippets for [collators](#collator).
 
-First, you'll need to create a file named `/etc/systemd/system/moonbeam.service` to store the configurations.
+First, you'll need to create a file named `/etc/systemd/system/moonbeam.service` to store the configurations in.
 
 Note that in the following start-up configurations, you have to:
 
@@ -349,7 +356,7 @@ For an overview of the flags used in the following start-up commands, plus addit
 
 --8<-- 'text/systemd/run-service.md'
 
-![Service Status](/images/node-operators/networks/run-a-node/systemd/systemd-1.png)
+![Service Status](/images/node-operators/networks/run-a-node/compile-binary/full-node-binary-2.png)
 
 You can also check the logs by executing:
 
@@ -357,9 +364,9 @@ You can also check the logs by executing:
 journalctl -f -u moonbeam.service
 ```
 
-![Service Logs](/images/node-operators/networks/run-a-node/systemd/systemd-2.png)
+![Service Logs](/images/node-operators/networks/run-a-node/compile-binary/full-node-binary-3.png)
 
-During the syncing process, you will see logs from both the embedded relay chain ([Relaychain]) and the parachain ([🌗]). These logs display a target block (live network state) and a best block (local node synced state).
+During the syncing process, you will see logs from both the embedded relay chain ([Relaychain]) and the parachain ([🌗]). Th ese logs display a target block (live network state) and a best block (local node synced state).
 
 !!! note
     It may take a few days to completely sync the embedded relay chain. Make sure that your system meets the [requirements](/node-operators/networks/run-a-node/overview#requirements){target=_blank}.
@@ -376,13 +383,13 @@ As Moonbeam development continues, it will sometimes be necessary to upgrade you
 
 If you want to update your client, you can keep your existing chain data in tact, and only update the binary by following these steps:
 
-1. Stop the systemd service
+1. Stop the systemd service:
 
     ```bash
     sudo systemctl stop moonbeam.service
     ```
 
-2. Remove the old binary file
+2. Remove the old binary file:
 
     === "Moonbeam"
 
@@ -402,35 +409,28 @@ If you want to update your client, you can keep your existing chain data in tact
         rm  {{ networks.moonbase.node_directory }}/moonbeam
         ```
 
-3. Get the latest version of Moonbeam from the [Moonbeam GitHub Release](https://github.com/moonbeam-foundation/moonbeam/releases/) page
-
-4. Update the version
-
-    ```bash
-    wget https://github.com/moonbeam-foundation/moonbeam/releases/download/INSERT_NEW_VERSION_TAG/moonbeam
-    ```
-
-5. Move the binary to the data directory
+3. Compile the latest binary by following the steps in the [Compile the Binary](#compile-the-binary) section
+4. Move the binary to the data directory:
 
     === "Moonbeam"
 
         ```bash
-        mv ./{{ networks.moonbeam.binary_name }} {{ networks.moonbeam.node_directory }}
+        mv ./target/release/{{ networks.moonbeam.binary_name }} {{ networks.moonbeam.node_directory }}
         ```
 
     === "Moonriver"
 
         ```bash
-        mv ./{{ networks.moonriver.binary_name }} {{ networks.moonriver.node_directory }}
+        mv ./target/release/{{ networks.moonriver.binary_name }} {{ networks.moonriver.node_directory }}
         ```
 
     === "Moonbase Alpha"
 
         ```bash
-        mv ./{{ networks.moonbase.binary_name }} {{ networks.moonbase.node_directory }}
+        mv ./target/release/{{ networks.moonbase.binary_name }} {{ networks.moonbase.node_directory }}
         ```
 
-6. Update permissions
+5. Update permissions:
 
     === "Moonbeam"
 
@@ -453,7 +453,7 @@ If you want to update your client, you can keep your existing chain data in tact
         chown moonbase_service moonbeam
         ```
 
-7. Start your service
+6. Start your service:
 
     ```bash
     systemctl start moonbeam.service
@@ -463,72 +463,37 @@ To check the status of the service and/or logs, you can refer to the [commands f
 
 ## Purge Your Node {: #purge-your-node }
 
-If you need a fresh instance of your Moonbeam node, you can purge your node by removing the associated data directory.
-
-You'll first need to stop the systemd service:
+If you want to start a fresh instance of a node, there are a handful of `purge-chain` commands available to you which will remove your previous chain data as specified. The base command which will remove both the parachain and relay chain data is:
 
 ```bash
-sudo systemctl stop moonbeam
+./target/release/moonbeam purge-chain
 ```
 
-To purge your parachain and relay chain data, you can run the following command:
+You can add the following flags to the above command if you want to specify what data should be purged:
 
-=== "Moonbeam"
+- `--parachain` - only deletes the parachain database, keeping the relay chain data in tact
+- `--relaychain` - only deletes the relay chain database, keeping the parachain data in tact
 
-    ```bash
-    sudo rm -rf {{ networks.moonbeam.node_directory }}/*
-    ```
+You can also specify a chain to be removed:
 
-=== "Moonriver"
+- `--chain` - specify the chain using either one of the predefined chains or a path to a file with the chainspec
 
-    ```bash
-    sudo rm -rf {{ networks.moonriver.node_directory }}/*
-    ```
+To purge only your Moonbase Alpha parachain data, for example, you would run the following command:
 
-=== "Moonbase Alpha"
+```bash
+./target/release/moonbeam purge-chain --parachain --chain alphanet
+```
 
-    ```bash
-    sudo rm -rf {{ networks.moonbase.node_directory }}/*
-    ```
+To specify a path to the chainspec for a development chain to be purged, you would run:
 
-To only remove the parachain data for a specific chain, you can run:
+```bash
+./target/release/moonbeam purge-chain --chain example-moonbeam-dev-service.json
+```
 
-=== "Moonbeam"
+For the complete list of available `purge-chain` commands, you can access the help menu by running:
 
-    ```bash
-    sudo rm -rf {{ networks.moonbeam.node_directory }}/chains/*
-    ```
-
-=== "Moonriver"
-
-    ```bash
-    sudo rm -rf {{ networks.moonriver.node_directory }}/chains/*
-    ```
-
-=== "Moonbase Alpha"
-
-    ```bash
-    sudo rm -rf {{ networks.moonbase.node_directory }}/chains/*
-    ```
-
-Similarly, to only remove the relay chain data, you can run:
-
-=== "Moonbeam"
-
-    ```bash
-    sudo rm -rf {{ networks.moonbeam.node_directory }}/polkadot/*
-    ```
-
-=== "Moonriver"
-
-    ```bash
-    sudo rm -rf {{ networks.moonriver.node_directory }}/polkadot/*
-    ```
-
-=== "Moonbase Alpha"
-
-    ```bash
-    sudo rm -rf {{ networks.moonbase.node_directory }}/polkadot/*
-    ```
+```bash
+./target/release/moonbeam purge-chain --help
+```
 
 --8<-- 'text/purge-chain/post-purge.md'
