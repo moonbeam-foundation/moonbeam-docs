@@ -14,7 +14,7 @@ There are two ways you can set up a Graph Node: you can use Docker to run an all
 !!! note
     The steps described in this guide have been tested in both Ubuntu 18.04-based and MacOS environments, and they will need to be adapted accordingly for other systems.
 
---8<-- 'text/disclaimers/third-party-content-intro.md'
+--8<-- 'text/_disclaimers/third-party-content-intro.md'
 
 ## Checking Prerequisites {: #checking-prerequisites } 
 
@@ -28,7 +28,7 @@ Before diving into setting up a Graph Node, you need to have the following insta
 In this guide, you will learn how to run a Graph node against a Moonbase Alpha tracing node with the `tracing` flag enabled. To spin up a full node with the `tracing` flag enabled, check out the [Debug & Trace](/node-operators/networks/tracing-node){target=_blank} guide.
 
 This guide can also be adapted for Moonbeam and Moonriver.
---8<-- 'text/common/endpoint-examples.md'
+--8<-- 'text/_common/endpoint-examples.md'
 
 ## Running a Graph Node {: #running-a-graph-node } 
 
@@ -132,4 +132,4 @@ After a while, you should see logs related to the Graph Node syncing with the la
 
 And that is it! You have a Graph Node running against the Moonbase Alpha TestNet. Feel free to adapt this example for Moonbeam and Moonriver as well.
 
---8<-- 'text/disclaimers/third-party-content.md'
+--8<-- 'text/_disclaimers/third-party-content.md'

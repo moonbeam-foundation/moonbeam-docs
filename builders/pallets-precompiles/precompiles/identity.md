@@ -31,7 +31,7 @@ The Identity Precompile is located at the following address:
      {{networks.moonriver.precompiles.identity }}
      ```
 
---8<-- 'text/precompiles/security.md'
+--8<-- 'text/builders/build/pallets-precompiles/precompiles/security.md'
 
 ## The Identity Precompile Solidity Interface {: #the-solidity-interface }
 
@@ -40,7 +40,7 @@ The Identity Precompile is located at the following address:
 ??? code "Identity.sol"
 
     ```solidity
-    --8<-- 'code/precompiles/identity/Identity.sol'
+    --8<-- 'code/builders/pallets-precompiles/precompiles/identity/Identity.sol'
     ```
 
 The Identity Precompile contains some functions that can be called by anyone and some judgment-related functions that can only be called by a registrar. The functions that can be called by anyone are as follows:
@@ -80,7 +80,7 @@ To interact with the Identity Precompile's Solidity interface with an Ethereum l
 ??? code "Identity Precompile ABI"
 
     ```js
-    --8<-- 'code/precompiles/identity/abi.js'
+    --8<-- 'code/builders/pallets-precompiles/precompiles/identity/abi.js'
     ```
 
 Once you have the ABI, you can interact with the precompile using the Ethereum library of your choice. Generally speaking, you'll take the following steps:
@@ -97,17 +97,17 @@ In the examples below, you'll learn how to assemble the data required to set an 
 === "Ethers.js"
 
     ```js
-    --8<-- 'code/precompiles/identity/ethers.js'
+    --8<-- 'code/builders/pallets-precompiles/precompiles/identity/ethers.js'
     ```
 
 === "Web3.js"
 
     ```js
-    --8<-- 'code/precompiles/identity/web3.js'
+    --8<-- 'code/builders/pallets-precompiles/precompiles/identity/web3.js'
     ```
 
 === "Web3.py"
 
     ```py
-    --8<-- 'code/precompiles/identity/web3.py'
+    --8<-- 'code/builders/pallets-precompiles/precompiles/identity/web3.py'
     ```

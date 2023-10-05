@@ -34,13 +34,26 @@ The precompile is located at the following address:
      {{networks.moonbase.precompiles.batch }}
      ```
 
---8<-- 'text/precompiles/security.md'
+--8<-- 'text/builders/pallets-precompiles/precompiles/security.md'
 
 ## The Batch Solidity Interface {: #the-batch-interface }
 
 [`Batch.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/batch/Batch.sol){target=_blank} is a Solidity interface that allows developers to interact with the precompile's three methods.
 
---8<-- 'text/batch/batch-interface.md'
+The interface includes the following functions:
+
+- **batchSome**(*address[]* to, *uint256[]* value, *bytes[]* callData, *uint64[]* gasLimit) — performs multiple calls, where the same index of each array combine into the information required for a single subcall. If a subcall reverts, following subcalls will still be attempted
+- **batchSomeUntilFailure**(*address[]* to, *uint256[]* value, *bytes[]* callData, *uint64[]* gasLimit) — performs multiple calls, where the same index of each array combine into the information required for a single subcall. If a subcall reverts, no following subcalls will be executed
+- **batchAll**(*address[]* to, *uint256[]* value, *bytes[]* callData, *uint64[]* gasLimit) — performs multiple calls atomically, where the same index of each array combine into the information required for a single subcall. If a subcall reverts, all subcalls will revert
+
+Each of these functions have the following parameters:
+
+--8<-- 'text/builders/pallets-precompiles/precompiles/batch/batch-parameters.md'
+
+The interface also includes the following required events:
+
+- **SubcallSucceeded**(*uint256* index) - emitted when subcall of the given index succeeds
+- **SubcallFailed**(*uint256* index) - emitted when a subcall of the given index  fails
 
 ## Interact with the Solidity Interface {: #interact-with-the-solidity-interface }
 
@@ -51,13 +64,13 @@ To follow along with this tutorial, you will need to have:
 - [MetaMask installed and connected to Moonbase Alpha](/tokens/connect/metamask/){target=_blank}
 - Create or have two accounts on Moonbase Alpha to test out the different features in the batch precompile
 - At least one of the accounts will need to be funded with `DEV` tokens.
- --8<-- 'text/faucet/faucet-list-item.md'
+ --8<-- 'text/_common/faucet/faucet-list-item.md'
 
 ### Example Contract {: #example-contract}
 
 The contract `SimpleContract.sol` will be used as an example of batching contract interactions, but in practice, any contract can be interacted with.
 
- --8<-- 'code/batch/simple-contract.md'
+ --8<-- 'code/builders/pallets-precompiles/precompiles/batch/simple-contract.md'
 
 ### Remix Set Up {: #remix-set-up }
 
@@ -147,7 +160,7 @@ Try finding a transaction's call data using Remix:
 
 Now you have the transaction's call data! Considering the example values of `1` and `"moonbeam"`, we can keep an eye out for their encoded values in the call data:
 
- --8<-- 'code/batch/simple-message-call-data.md'
+ --8<-- 'code/builders/pallets-precompiles/precompiles/batch/simple-message-call-data.md'
 
 The call data can be broken into five lines, where:
 
@@ -237,12 +250,12 @@ If you have followed the [Ethers.js tutorial](/builders/build/eth-api/libraries/
     The code snippets presented in the following sections are not meant for production environments. Please make sure you adapt it for each use-case.
 
 === "Web3.js"
-     --8<-- 'code/batch/web3js-batch.md'
+     --8<-- 'code/builders/pallets-precompiles/precompiles/batch/web3js-batch.md'
 
 === "Ethers.js"
-     --8<-- 'code/batch/ethers-batch.md'
+     --8<-- 'code/builders/pallets-precompiles/precompiles/batch/ethers-batch.md'
 
 === "Web3.py"
-     --8<-- 'code/batch/web3py-batch.md'
+     --8<-- 'code/builders/pallets-precompiles/precompiles/batch/web3py-batch.md'
 
 Afterwards, you should be all set to interact with the batch precompile as one typically would with a contract in [Ethers](/builders/build/eth-api/libraries/ethersjs){target=_blank}.

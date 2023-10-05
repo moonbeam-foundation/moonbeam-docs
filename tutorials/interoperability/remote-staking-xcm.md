@@ -22,11 +22,11 @@ For development purposes this tutorial is written for Moonbase Alpha and Moonbas
 
 - A Moonbase Alpha relay chain account funded with some UNIT, the native token of the Moonbase relay chain. If you have a Moonbase Alpha account funded with DEV tokens, you can swap some DEV for xcUNIT here on [Moonbeam Swap](https://moonbeam-swap.netlify.app/#/swap){target=_blank}. Then withdraw the xcUNIT from Moonbase Alpha to [your account on the Moonbase relay chain](https://polkadot.js.org/apps/?rpc=wss://frag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/accounts){target=_blank} using [apps.moonbeam.network](https://apps.moonbeam.network/moonbase-alpha/){target=_blank}
 - You'll need to [calculate the multilocation derivative account](#calculating-your-multilocation-derivative-account) of your Moonbase Alpha relay chain account and fund it with DEV tokens.
---8<-- 'text/faucet/faucet-list-item.md'
+--8<-- 'text/_common/faucet/faucet-list-item.md'
 
 ## Calculating your Multilocation Derivative Account {: #calculating-your-multilocation-derivative-account }
 
---8<-- 'text/xcm/calculate-multilocation-derivative-account.md'
+--8<-- 'text/builders/interoperability/xcm/calculate-multilocation-derivative-account.md'
 
 Here, we have specified a parents value of `1` because the relay chain is the origin of the request (and the relay chain is considered a parent to the Moonbase alpha parachain). The relay chain does not have a parachain id so that field is omitted.
 
@@ -172,4 +172,4 @@ In the above snippet, besides submitting the remote staking via XCM transaction,
 
 And that’s it! To verify that your delegation was successful, you can visit [Subscan](https://moonbase.subscan.io/){target=_blank} to check your staking balance. Be advised that it may take a few minutes before your staking balance is visible on Subscan. Additionally, be aware that you will not be able to see this staking operation on Moonscan, because we initiated the delegation action directly via the [Parachain Staking Pallet](/builders/pallets-precompiles/pallets/staking){target=_blank} (on the Substrate side) rather than through the [Staking Precompile](/builders/pallets-precompiles/precompiles/staking){target=_blank} (on the EVM).
 
---8<-- 'text/disclaimers/educational-tutorial.md'
+--8<-- 'text/_disclaimers/educational-tutorial.md'

@@ -31,7 +31,7 @@ The Referenda Precompile is located at the following address:
      {{ networks.moonbase.precompiles.referenda }}
      ```
 
---8<-- 'text/precompiles/security.md'
+--8<-- 'text/builders/pallets-precompiles/precompiles/security.md'
 
 ## The Referenda Solidity Interface {: #the-referenda-solidity-interface }
 
@@ -118,7 +118,7 @@ The below example is demonstrated on Moonbase Alpha, however, similar steps can 
 
  - MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=_blank}
  - An account with some DEV tokens.
- --8<-- 'text/faucet/faucet-list-item.md'
+ --8<-- 'text/_common/faucet/faucet-list-item.md'
 
 ### Remix Set Up {: #remix-set-up }
 

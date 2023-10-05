@@ -20,11 +20,11 @@ _The information presented herein is for informational purposes only and has bee
 To get started, you will need the following:
 
  - A Moonbase Alpha account funded with DEV.
-  --8<-- 'text/faucet/faucet-list-item.md'
+  --8<-- 'text/_common/faucet/faucet-list-item.md'
  - A [Moonscan API Key](/builders/build/eth-api/verify-contracts/etherscan-plugins/#generating-a-moonscan-api-key){target=_blank}
  - For the [Testing section](#running-your-tests), you'll need to have [a local Moonbeam node up and running](/builders/get-started/networks/moonbeam-dev/){target=_blank}
-
---8<-- 'text/common/endpoint-examples.md'
+ - 
+  --8<-- 'text/_common/endpoint-examples-list-item.md'
 
 ## Creating a Hardhat Project {: #creating-a-hardhat-project }
 
@@ -102,7 +102,7 @@ To get started, take the following steps:
     ??? code "StakingInterface.sol"
 
         ```solidity
-        --8<-- 'code/precompiles/staking/StakingInterface.sol'
+        --8<-- 'code/builders/pallets-precompiles/precompiles/staking/StakingInterface.sol'
         ```
 
 6. `DelegationDAO.sol` relies on a couple of standard [OpenZeppelin](https://www.openzeppelin.com/){target=_blank} contracts. Add the library with the following command:
@@ -123,7 +123,7 @@ If you're curious about additional Hardhat plugins, here is [a complete list of 
 
 For the examples in this guide, you'll need to add your private keys for your two accounts on Moonbase Alpha. Since some of the testing will be done on a development node, you'll also need to add the private keys of two of the prefunded development node accounts, which for this example, we can use Alice and Bob. In addition, you'll add your Moonscan API key, which can be used for both Moonbase Alpha and Moonbeam.
 
---8<-- 'text/hardhat/hardhat-configuration-file.md'
+--8<-- 'text/builders/build/eth-api/dev-env/hardhat/hardhat-configuration-file.md'
     You can modify the `hardhat.config.js` file to use any of the Moonbeam networks:
 
     === "Moonbeam"
@@ -388,7 +388,7 @@ If you've followed all of the prior sections, your [`Dao.js`](https://raw.github
 ??? code "Dao.js"
 
     ```js
-    --8<-- 'code/hardhat/dao-js-test-file.js'
+    --8<-- 'code/tutorials/eth-api/hardhat-start-to-end/dao-js-test-file.js'
     ```
 
 Since our test cases encompass mostly configuration and setup of the staking DAO and don't involve actual delegation actions, we'll be running our tests on a Moonbeam development node (local node). Remember that Alice (`0xf24FF3a9CF04c71Dbc94D0b566f7A27B94566cac`) is the only collator on a local development node. You can use the flag `--network moonbase` to run the tests using Moonbase Alpha. In that case, be sure that your deployer address is sufficiently funded with DEV tokens.
@@ -571,6 +571,6 @@ And that's it! We covered a lot of ground in this tutorial but there's more reso
 - [Hardhat guide to Testing Contracts](https://hardhat.org/hardhat-runner/docs/guides/test-contracts){target=_blank}
 - [Writing tasks and scripts](https://hardhat.org/hardhat-runner/docs/guides/tasks-and-scripts){target=_blank}
 
---8<-- 'text/disclaimers/educational-tutorial.md'
+--8<-- 'text/_disclaimers/educational-tutorial.md'
 
---8<-- 'text/disclaimers/third-party-content.md'
+--8<-- 'text/_disclaimers/third-party-content.md'

@@ -8,13 +8,13 @@ description: Learn how to use one of the most popular Ethereum developer tools, 
 <style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/NBOLCGT5-ww' frameborder='0' allowfullscreen></iframe></div>
 <style>.caption { font-family: Open Sans, sans-serif; font-size: 0.9em; color: rgba(170, 170, 170, 1); font-style: italic; letter-spacing: 0px; position: relative;}</style>
 
-## Introduction {: #introduction } 
+## Introduction {: #introduction }
 
 [Remix](https://remix.ethereum.org/){target=_blank} is one of the commonly used development environments for smart contracts on Ethereum. Given Moonbeam’s Ethereum compatibility features, Remix can be used directly with any of the Moonbeam networks.
 
 This guide walks through the process of creating and deploying a Solidity-based smart contract to a Moonbeam development node using the Remix IDE. This guide can be adapted for Moonbeam, Moonriver, or Moonbase Alpha.
 
-## Checking Prerequisites {: #checking-prerequisites } 
+## Checking Prerequisites {: #checking-prerequisites }
 
 For the purposes of this guide, you'll need to have the following:
 
@@ -25,14 +25,14 @@ If you followed the guides above, you should have a local Moonbeam node which wi
 
 ![Local Moonbeam node producing blocks](/images/builders/build/eth-api/dev-env/remix/using-remix-1.png)
 
-Your development node comes with 10 pre-funded accounts. You should have MetaMask connected to your Moonbeam development node and have imported at least one of the pre-funded accounts. 
+Your development node comes with 10 pre-funded accounts. You should have MetaMask connected to your Moonbeam development node and have imported at least one of the pre-funded accounts.
 
 ![MetaMask installation with a balance](/images/builders/build/eth-api/dev-env/remix/using-remix-2.png)
 
-If you're adapting this guide for Moonbeam, Moonriver, or Moonbase Alpha make sure you are connected to the correct network and have an account with funds.  
---8<-- 'text/faucet/faucet-sentence.md'
+If you're adapting this guide for Moonbeam, Moonriver, or Moonbase Alpha make sure you are connected to the correct network and have an account with funds.
+--8<-- 'text/_common/faucet/faucet-sentence.md'
 
-## Getting Started with Remix {: #getting-started-with-remix } 
+## Getting Started with Remix {: #getting-started-with-remix }
 
 Now, you can head to [Remix](https://remix.ethereum.org/){target=_blank} to get started. In the main screen, under **Featured Plugins**, select **SOLIDITY** to configure Remix for Solidity development, then navigate to the **File Explorers** view.
 
@@ -45,7 +45,7 @@ You will create a new file to save the Solidity smart contract. Hit the **+** bu
 Next, paste the following smart contract into the editor tab:
 
 ```solidity
---8<-- 'code/remix-local/contract.md'
+--8<-- 'code/builders/build/eth-api/dev-env/remix/MyToken.sol'
 ```
 
 ![Paste the contract into the editor](/images/builders/build/eth-api/dev-env/remix/using-remix-5.png)
@@ -91,7 +91,7 @@ Drill down on the contract under **Deployed Contracts**. Clicking on **name**, *
 
 ![Interact with the contract from Remix](/images/builders/build/eth-api/dev-env/remix/using-remix-11.png)
 
-## Interacting with a Moonbeam-based ERC-20 from MetaMask {: #interacting-with-a-moonbeam-based-erc-20-from-metamask } 
+## Interacting with a Moonbeam-based ERC-20 from MetaMask {: #interacting-with-a-moonbeam-based-erc-20-from-metamask }
 
 Now, open MetaMask to add the newly deployed ERC-20 tokens. Before doing so, make sure you have copied the contract's address from Remix. Back in MetaMask, click on **Add Token** as shown below. Make sure you are connected to the account that deployed the token contract.
 
@@ -119,7 +119,7 @@ If you own the account that you sent the tokens to, you can add the token asset 
 
 ## Using the Moonbeam Remix Plugin {: #using-the-moonbeam-remix-plugin }
 
-The Moonbeam team has built a Remix plugin that makes it even easier to develop and deploy your Ethereum smart contracts on Moonbeam. The Moonbeam Remix plugin combines all of the important functions needed to compile, deploy, and interact with your smart contracts from one place - no switching tabs needed. The Moonbeam Remix plugin supports Moonbeam, Moonriver, and the Moonbase Alpha TestNet. 
+The Moonbeam team has built a Remix plugin that makes it even easier to develop and deploy your Ethereum smart contracts on Moonbeam. The Moonbeam Remix plugin combines all of the important functions needed to compile, deploy, and interact with your smart contracts from one place - no switching tabs needed. The Moonbeam Remix plugin supports Moonbeam, Moonriver, and the Moonbase Alpha TestNet.
 
 ### Installing the Moonbeam Remix Plugin {: #installing-the-moonbeam-remix-plugin }
 
@@ -148,7 +148,7 @@ It's that easy! Once the contract is deployed, you'll see the address and all av
 
 The Moonbeam Remix plugin works seamlessly with Remix so you can freely switch between using the traditional Remix compile and deploy tabs and the Moonbeam Remix plugin.
 
---8<-- 'text/disclaimers/third-party-content.md'
+--8<-- 'text/_disclaimers/third-party-content.md'
 
 
 

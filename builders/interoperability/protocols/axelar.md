@@ -15,7 +15,7 @@ Axelar is a full-stack transport layer that supports asset transfer, [General Me
 
 The Axelar APIs provide a rich suite for developing Web3 applications, ensuring that developers have the tools they need for building. With these tools and APIs, developers can use the Axelar network and its APIs to write dApps that can be easily deployed across all Axelar-connected ecosystems.  
 
---8<-- 'text/disclaimers/third-party-content-intro.md'
+--8<-- 'text/_disclaimers/third-party-content-intro.md'
 
 ## Getting Started {: #getting-started }
 
@@ -37,4 +37,4 @@ See the list of Axelar contracts deployed to Moonbeam, and the networks connecte
 
 - **TestNet Contracts** - [Moonbase Alpha](https://docs.axelar.dev/dev/reference/testnet-contract-addresses){target=_blank}
 
---8<-- 'text/disclaimers/third-party-content.md'
+--8<-- 'text/_disclaimers/third-party-content.md'

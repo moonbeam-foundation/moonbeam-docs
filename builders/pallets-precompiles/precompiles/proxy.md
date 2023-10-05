@@ -34,7 +34,7 @@ The Proxy Precompile is located at the following address:
      {{networks.moonbase.precompiles.proxy}}
      ```
 
---8<-- 'text/precompiles/security.md'
+--8<-- 'text/builders/pallets-precompiles/precompiles/security.md'
 
 ## The Proxy Solidity Interface {: #the-proxy-solidity-interface }
 
@@ -85,7 +85,7 @@ The below example is demonstrated on Moonbase Alpha, however, similar steps can 
 
  - Have MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=_blank}
  - Have an account with some DEV tokens.
-  --8<-- 'text/faucet/faucet-list-item.md'
+  --8<-- 'text/_common/faucet/faucet-list-item.md'
  - Have a second account that you control to use as a proxy account (funding optional)
 
 ### Remix Set Up {: #remix-set-up }

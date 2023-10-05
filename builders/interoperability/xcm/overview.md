@@ -15,8 +15,8 @@ This page is a brief introduction and overview of XCM and other related elements
 
 ## General XCM Definitions {: #general-xcm-definitions }
 
---8<-- 'text/xcm/general-xcm-definitions.md'
---8<-- 'text/xcm/general-xcm-definitions2.md'
+--8<-- 'text/builders/interoperability/xcm/general-xcm-definitions.md'
+--8<-- 'text/builders/interoperability/xcm/general-xcm-definitions2.md'
 
 ## XCM Instructions {: #xcm-instructions }
 

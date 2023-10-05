@@ -22,7 +22,7 @@ This tutorial will use the same contract as the above deployment tutorial for th
 The contract used is a simple incrementer, arbitrarily named `Incrementer.sol`. The Solidity code is the following:
 
 ```solidity
---8<-- 'code/web3-contract-local/Incrementer.sol'
+--8<-- 'code/builders/build/eth-api/libraries/web3-js/Incrementer.sol'
 ```
 
 ### Collecting Information for Contract Verification

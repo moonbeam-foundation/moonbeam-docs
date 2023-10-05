@@ -17,9 +17,9 @@ To get started, you will need the following:
 
 - Have MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=_blank}
 - Have an account with funds.
-  --8<-- 'text/faucet/faucet-list-item.md'
-
---8<-- 'text/common/endpoint-examples.md'
+  --8<-- 'text/_common/faucet/faucet-list-item.md'
+- 
+  --8<-- 'text/_common/endpoint-examples-list-item.md'
 
 ## Creating a Hardhat Project {: #creating-a-hardhat-project }
 
@@ -107,7 +107,7 @@ contract Box {
 
 Before you can deploy the contract to Moonbase Alpha, you'll need to modify the Hardhat configuration file and create a secure file to store your private key in.
 
---8<-- 'text/hardhat/hardhat-configuration-file.md'
+--8<-- 'text/builders/build/eth-api/dev-env/hardhat/hardhat-configuration-file.md'
     You can modify the `hardhat.config.js` file to use any of the Moonbeam networks:
 
     === "Moonbeam"
@@ -499,4 +499,4 @@ main().catch((error) => {
 });
 ```
 
---8<-- 'text/disclaimers/third-party-content.md'
+--8<-- 'text/_disclaimers/third-party-content.md'

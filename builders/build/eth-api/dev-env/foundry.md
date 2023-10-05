@@ -23,9 +23,9 @@ This guide will cover how to use Foundry to compile, deploy, and debug Ethereum 
 To get started, you will need the following:
 
  - Have an account with funds.
-  --8<-- 'text/faucet/faucet-list-item.md'
- -
---8<-- 'text/common/endpoint-examples.md'
+  --8<-- 'text/_common/faucet/faucet-list-item.md'
+ - 
+--8<-- 'text/_common/endpoint-examples-list-item.md'
  - Have [Foundry installed](https://book.getfoundry.sh/getting-started/installation){target=_blank}
 
 ## Creating a Foundry Project {: #creating-a-foundry-project }
@@ -461,4 +461,4 @@ npm run test
 
 Finally, while not necessary, it could be worthwhile to move all JavaScript scripts from the `scripts` folder into Foundry's `script` folder and delete the `scripts` folder so that you don't have two folders that serve the same purpose.
 
---8<-- 'text/disclaimers/third-party-content.md'
+--8<-- 'text/_disclaimers/third-party-content.md'

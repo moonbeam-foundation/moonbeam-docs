@@ -14,7 +14,7 @@ The Aggregator Contract address can be found in the following table:
 |:--------------:|-|:------------------------------------------:|
 | Moonbase Alpha | | 0xDA7a001b254CD22e46d3eAB04d937489c93174C3 |
 
---8<-- 'text/disclaimers/third-party-content-intro.md'
+--8<-- 'text/_disclaimers/third-party-content-intro.md'
 
 ## Supported Token {: #supported-token } 
 Price queries with any denomination are available as long as the base and quote symbols are supported (_base_/_quote_). For example:
@@ -243,4 +243,4 @@ You can execute this code with a node, and the following `dataQuery` output shou
 
 Note that compared to the request done via smart contracts, the result is given directly in the correct units.
 
---8<-- 'text/disclaimers/third-party-content.md'
+--8<-- 'text/_disclaimers/third-party-content.md'

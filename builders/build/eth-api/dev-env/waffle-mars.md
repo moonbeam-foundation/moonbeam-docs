@@ -21,9 +21,9 @@ You will need to have the following:
 
  - MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=_blank}
  - An account with funds.
-  --8<-- 'text/faucet/faucet-list-item.md'
- -
---8<-- 'text/common/endpoint-examples.md'
+  --8<-- 'text/_common/faucet/faucet-list-item.md'
+ - 
+--8<-- 'text/_common/endpoint-examples-list-item.md'
 
 Once you've created an account you'll need to export the private key to be used in this guide.
 
@@ -171,7 +171,7 @@ Before deploying your contract and sending it off into the wild, you should test
 
 You'll be running tests against the Moonbase Alpha TestNet and will need the corresponding RPC URL to connect to it: `{{ networks.moonbase.rpc_url }}`.
 
---8<-- 'text/common/endpoint-setup.md'
+--8<-- 'text/_common/endpoint-setup.md'
 
 Since you will be running tests against the TestNet, it might take a couple minutes to run all of the tests. If you want a more efficient testing experience, you can [spin up a Moonbeam development node](/builders/get-started/networks/moonbeam-dev/){target=_blank} using [`instant seal`](/builders/get-started/networks/moonbeam-dev/#node-options){target=_blank}. Running a local Moonbeam development node with the `instant seal` feature is similar to the quick and iterative experience you would get with [Ganache](https://www.trufflesuite.com/ganache){target=_blank}.
 
@@ -346,8 +346,13 @@ If you want to write more tests on your own, you could consider testing transfer
 
 After you compile your contracts and before deployment, you will have to generate contract artifacts for Mars. Mars uses the contract artifacts for typechecks in deployments. Then you'll need to create a deployment script and deploy the `MyToken` smart contract.
 
-Remember, you will be deploying to Moonbase Alpha and will need to use the TestNet RPC URL: `{{ networks.moonbase.rpc_url }}`.
---8<-- 'text/common/endpoint-setup.md'
+Remember, you will be deploying to Moonbase Alpha and will need to use the TestNet RPC URL: 
+
+```text
+{{ networks.moonbase.rpc_url }}
+```
+
+--8<-- 'text/_common/endpoint-setup.md'
 
 The deployment will be broken up into three sections: [generate artifacts](#generate-artifacts), [create a deployment script](#create-a-deployment-script), and [deploy with Mars](#deploy-with-mars).
 
@@ -447,4 +452,4 @@ Congratulations! You've deployed a contract to Moonbase Alpha using Waffle and M
 
 If you want to see a completed example of a Waffle and Mars project on Moonbeam, check out the [moonbeam-waffle-mars-example](https://github.com/EthWorks/moonbeam-waffle-mars-example){target=_blank} created by the team behind Waffle and Mars, EthWorks.
 
---8<-- 'text/disclaimers/third-party-content.md'
+--8<-- 'text/_disclaimers/third-party-content.md'

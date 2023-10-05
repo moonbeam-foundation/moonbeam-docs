@@ -11,7 +11,7 @@ As a Polkadot parachain, Moonbeam uses a [unified account structure](/learn/feat
 
 The Polkadot.js Apps interface natively supports H160 addresses and ECDSA keys. So, in this tutorial, you can check out this integration of Ethereum-based accounts on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network%2Fpublic-ws#/accounts){target=_blank}.
 
---8<-- 'text/disclaimers/third-party-content-intro.md'
+--8<-- 'text/_disclaimers/third-party-content-intro.md'
 
 !!! note
     Polkadot.js Apps is phasing out support for accounts stored locally in the browser's cache. Instead, it is recommended that you use a browser extension like [Talisman to inject your accounts into Polkadot.js Apps](/tokens/connect/talisman){target=_blank}.
@@ -98,4 +98,4 @@ Then you'll be prompted to enter your password and sign and submit the transacti
 
 And that is it! We are excited about being able to support H160 accounts in Polkadot.js Apps, as we believe this will greatly enhance the user experience on the Moonbeam Network and its Ethereum compatibility features.
 
---8<-- 'text/disclaimers/third-party-content.md'
+--8<-- 'text/_disclaimers/third-party-content.md'

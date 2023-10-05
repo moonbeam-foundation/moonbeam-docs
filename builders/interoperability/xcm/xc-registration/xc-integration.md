@@ -160,7 +160,7 @@ When a parachain receives an incoming HRMP channel open request from another par
 
 Fortunately, the [xcm-tools](https://github.com/Moonsong-Labs/xcm-tools){target=_blank} GitHub repository's `hrmp-channel-manipulator.ts` script can build the XCM for you!
 
---8<-- 'text/xcm/xc-integration/hrmp-manipulator-args.md'
+--8<-- 'text/builders/interoperability/xcm/xc-registration/xc-integration/hrmp-manipulator-args.md'
 
 Running the following command will provide the encoded calldata to accept an open HRMP channel request on a Moonbeam network. Replace `YOUR_PARACHAIN_ID` with the ID of your parachain:  
 
@@ -206,7 +206,7 @@ Parachains need bidirectional HRMP channels before sending XCM to each other. Th
 
 Fortunately, the [xcm-tools](https://github.com/Moonsong-Labs/xcm-tools){target=_blank} GitHub repository's `hrmp-channel-manipulator.ts` script can build the XCM for you!
 
---8<-- 'text/xcm/xc-integration/hrmp-manipulator-args.md'
+--8<-- 'text/builders/interoperability/xcm/xc-registration/xc-integration/hrmp-manipulator-args.md'
 
 Running the following command will provide the encoded calldata to create the HRMP channel request from a Moonbeam network. The maximum message size and capacity values can be obtained from the relay chain's Configuration Pallet and `activeConfig` extrinsic. Replace `YOUR_PARACHAIN_ID` with the ID of your parachain:  
 

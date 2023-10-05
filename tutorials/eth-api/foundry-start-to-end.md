@@ -18,9 +18,9 @@ In this demonstration, we will deploy two smart contracts. One is a token and an
 To get started, you will need the following:
 
  - Have an account with funds.
-  --8<-- 'text/faucet/faucet-list-item.md'
- -
---8<-- 'text/common/endpoint-examples.md'
+  --8<-- 'text/_common/faucet/faucet-list-item.md'
+ - 
+--8<-- 'text/_common/endpoint-examples.md'
  - Have [Foundry installed](https://book.getfoundry.sh/getting-started/installation){target=_blank}
  - Have a [Moonscan API Key](/builders/build/eth-api/verify-contracts/api-verification/#generating-a-moonscan-api-key){target=_blank}
 
@@ -487,6 +487,6 @@ It's important to note that there are additional, albeit more complex, [ways of 
 
 That's it! You've gone from nothing to a fully tested, deployed, and verified Foundry project. You can now adapt this so that you can use Foundry in your own projects!
 
---8<-- 'text/disclaimers/educational-tutorial.md'
+--8<-- 'text/_disclaimers/educational-tutorial.md'
 
---8<-- 'text/disclaimers/third-party-content.md'
+--8<-- 'text/_disclaimers/third-party-content.md'

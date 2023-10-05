@@ -32,7 +32,7 @@ The staking module is coded in Rust and it is part of a pallet that is normally 
 
 This guide will cover the available methods in the staking precompile interface. In addition, it will show you how to interact with the Parachain Staking Pallet through the staking precompile and the Ethereum API. The examples in this guide are done on Moonbase Alpha, but they can be adapted for Moonbeam or Moonriver.
 
---8<-- 'text/precompiles/security.md'
+--8<-- 'text/builders/pallets-precompiles/precompiles/security.md'
 
 ## Exit Delays {: #exit-delays }
 
@@ -141,7 +141,7 @@ The below example is demonstrated on Moonbase Alpha, however, similar steps can 
 
  - Have MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=_blank}
  - Have an account with at least `{{networks.moonbase.staking.min_del_stake}}` token.
-  --8<-- 'text/faucet/faucet-list-item.md'
+  --8<-- 'text/_common/faucet/faucet-list-item.md'
 
 !!! note
     The example below requires more than `{{networks.moonbase.staking.min_del_stake}}` token due to the minimum delegation amount plus gas fees. If you need more than the faucet dispenses, please contact us on Discord and we will be happy to help you.

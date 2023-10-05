@@ -15,7 +15,7 @@ LayerZero is a transport layer that enables asset transfer with low-level commun
 
 The LayerZero APIs provide a rich suite for developing Web3 applications, ensuring that developers have the tools they need for building. With these tools and APIs, developers can use the LayerZero protocol and its APIs to write dApps that can be easily deployed across all Hyperlane-connected ecosystems.
 
---8<-- 'text/disclaimers/third-party-content-intro.md'
+--8<-- 'text/_disclaimers/third-party-content-intro.md'
 
 ## Getting Started {: #getting-started }
 
@@ -32,4 +32,4 @@ See the list of LayerZero contracts deployed to Moonbeam, and the networks conne
 
 - **TestNet Contracts** - [Moonbase Alpha](https://layerzero.gitbook.io/docs/technical-reference/testnet/testnet-addresses#moonbeam-testnet){target=_blank}
 
---8<-- 'text/disclaimers/third-party-content.md'
+--8<-- 'text/_disclaimers/third-party-content.md'

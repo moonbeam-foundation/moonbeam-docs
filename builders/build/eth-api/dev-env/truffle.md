@@ -19,9 +19,9 @@ This guide will show you how to deploy a contract and interact with it using the
 ## Checking Prerequisites {: #checking-prerequisites }
 
 As this guide will use the Moonbeam Truffle box and the Moonbeam Truffle plugin, you don't have to worry about creating an account and funding it. The Moonbeam development node comes with 10 pre-funded accounts. However, if you're adapting this guide for Moonbeam, Moonriver, or Moonbase Alpha you will need to have an account with funds.
- --8<-- 'text/faucet/faucet-sentence.md'
+ --8<-- 'text/_common/faucet/faucet-sentence.md'
 
---8<-- 'text/common/endpoint-examples.md'
+--8<-- 'text/_common/endpoint-examples.md'
 
 To use the Moonbeam Truffle plugin, you will need to have [Docker](https://docs.docker.com/get-docker/){target=_blank} installed.
 
@@ -158,7 +158,7 @@ module.exports = {
     For the purpose of this guide, some of the configuration file was removed from the above example.
 
 If you're adapting this guide for Moonbeam, Moonriver, or Moonbase Alpha, you will need to update the configuration file with the appropriate network.
---8<-- 'text/common/endpoint-setup.md'
+--8<-- 'text/_common/endpoint-setup.md'
 You'll also need to update the private key to one that has funds on that network:
 
 === "Moonbeam"
@@ -404,4 +404,4 @@ To run the script, you can use the following command:
 truffle exec INSERT_PATH_TO_FILE
 ```
 
---8<-- 'text/disclaimers/third-party-content.md'
+--8<-- 'text/_disclaimers/third-party-content.md'

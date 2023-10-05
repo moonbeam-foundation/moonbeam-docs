@@ -347,7 +347,7 @@ For an overview of the flags used in the following start-up commands, plus addit
 
 ## Run the Service {: #run-the-service }
 
---8<-- 'text/systemd/run-service.md'
+--8<-- 'text/node-operators/networks/run-a-node/systemd/run-service.md'
 
 ![Service Status](/images/node-operators/networks/run-a-node/systemd/systemd-1.png)
 
@@ -531,4 +531,4 @@ Similarly, to only remove the relay chain data, you can run:
     sudo rm -rf {{ networks.moonbase.node_directory }}/polkadot/*
     ```
 
---8<-- 'text/purge-chain/post-purge.md'
+--8<-- 'text/node-operators/networks/run-a-node/post-purge.md'

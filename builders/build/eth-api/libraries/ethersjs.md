@@ -16,12 +16,12 @@ In this guide, you'll learn how to use the Ethers.js library to send a transacti
 For the examples in this guide, you will need to have the following:
 
 - An account with funds.
-  --8<-- 'text/faucet/faucet-list-item.md'
+  --8<-- 'text/_common/faucet/faucet-list-item.md'
 - 
-  --8<-- 'text/common/endpoint-examples-list-item.md'
+  --8<-- 'text/_common/endpoint-examples-list-item.md'
 
 !!! note
-    --8<-- 'text/common/assumes-mac-or-ubuntu-env.md'
+    --8<-- 'text/_common/assumes-mac-or-ubuntu-env.md'
 
 ## Installing Ethers.js {: #install-ethersjs }
 
@@ -49,7 +49,7 @@ For this guide, you'll need to install the Ethers.js library and the Solidity co
 
 Throughout this guide, you'll be creating a bunch of scripts that provide different functionality such as sending a transaction, deploying a contract, and interacting with a deployed contract. In most of these scripts you'll need to create an [Ethers provider](https://docs.ethers.org/v6/api/providers/){target=_blank} to interact with the network.
 
---8<-- 'text/common/endpoint-setup.md'
+--8<-- 'text/_common/endpoint-setup.md'
 
 To create a provider, you can take the following steps:
 
@@ -202,7 +202,7 @@ balances();
 ??? code "View the complete script"
 
     ```js
-    --8<-- 'code/ethers-js-tx/balances.js'
+    --8<-- 'code/builders/build/eth-api/libraries/ethers-js/balances.js'
     ```
 
 To run the script and fetch the account balances, you can run the following command:
@@ -267,7 +267,7 @@ send();
 ??? code "View the complete script"
 
     ```js
-    --8<-- 'code/ethers-js-tx/transaction.js'
+    --8<-- 'code/builders/build/eth-api/libraries/ethers-js/transaction.js'
     ```
 
 To run the script, you can run the following command in your terminal:
@@ -284,15 +284,15 @@ You can also use the `balances.js` script to check that the balances for the ori
 
 ## Deploy a Contract {: #deploy-a-contract }
 
---8<-- 'text/eth-api/libraries/contract.md'
+--8<-- 'text/builders/build/eth-api/libraries/contract.md'
 
 ### Compile Contract Script {: #compile-contract-script }
 
---8<-- 'text/eth-api/libraries/compile-js.md'
---8<-- 'text/eth-api/libraries/compile.md'
+--8<-- 'text/builders/build/eth-api/libraries/compile-js.md'
+--8<-- 'text/builders/build/eth-api/libraries/compile.md'
 
 ```js
---8<-- 'code/eth-api/libraries/compile.js'
+--8<-- 'code/builders/build/eth-api/libraries/compile.js'
 ```
 
 ### Deploy Contract Script {: #deploy-contract-script }
@@ -355,7 +355,7 @@ deploy();
 ??? code "View the complete script"
 
     ```js
-    --8<-- 'code/ethers-js-contract/deploy.js'
+    --8<-- 'code/builders/build/eth-api/libraries/ethers-js/deploy.js'
     ```
 
 To run the script, you can enter the following command into your terminal:
@@ -418,7 +418,7 @@ get();
 ??? code "View the complete script"
 
     ```js
-    --8<-- 'code/ethers-js-contract/get.js'
+    --8<-- 'code/builders/build/eth-api/libraries/ethers-js/get.js'
     ```
 
 To run the script, you can enter the following command in your terminal:
@@ -488,7 +488,7 @@ increment();
 ??? code "View the complete script"
 
     ```js
-    --8<-- 'code/ethers-js-contract/increment.js'
+    --8<-- 'code/builders/build/eth-api/libraries/ethers-js/increment.js'
     ```
 
 To run the script, you can enter the following command in your terminal:
@@ -549,7 +549,7 @@ reset();
 ??? code "View the complete script"
 
     ```js
-    --8<-- 'code/ethers-js-contract/reset.js'
+    --8<-- 'code/builders/build/eth-api/libraries/ethers-js/reset.js'
     ```
 
 To run the script, you can enter the following command in your terminal:
@@ -562,4 +562,4 @@ If successful, the transaction hash will be displayed in the terminal. You can u
 
 ![Reset Contract Ethers](/images/builders/build/eth-api/libraries/ethers/ethers-4.png)
 
---8<-- 'text/disclaimers/third-party-content.md'
+--8<-- 'text/_disclaimers/third-party-content.md'

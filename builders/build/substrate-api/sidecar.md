@@ -17,7 +17,7 @@ There are multiple ways of installing and running the Substrate API Sidecar. Thi
 
 Running this service locally through NPM requires Node.js to be installed.
 
---8<-- 'text/common/install-nodejs.md'
+--8<-- 'text/_common/install-nodejs.md'
 
 ### Installing the Substrate API Sidecar {: #installing-the-substrate-api-sidecar }
 
@@ -314,4 +314,4 @@ The [Transfers API page](/builders/get-started/eth-compare/transfers-api/#using-
 
 For more detailed information and sample code on how to calculate the transaction fees of Moonbeam transactions using Substrate Sidecar API, please check the [Calculating Transaction Fees on Moonbeam](/builders/get-started/eth-compare/tx-fees/){target=_blank} page.
 
---8<-- 'text/disclaimers/third-party-content.md'
+--8<-- 'text/_disclaimers/third-party-content.md'
