@@ -30,26 +30,27 @@ You can try out these endpoints with the following curl examples. These examples
 === "moon_isBlockFinalized"
 
     ```bash
-    curl -H "Content-Type: application/json" -X POST --data 
-        '[{
-            "jsonrpc":"2.0",
-            "id":"1",
-            "method":"moon_isBlockFinalized",
-            "params":["INSERT_BLOCK_HASH"
-        ]}]' 
-        {{ networks.moonbase.rpc_url }}
+    curl -H "Content-Type: application/json" -X POST --data '[
+      {
+        "jsonrpc": "2.0",
+        "id": "1",
+        "method": "moon_isBlockFinalized",
+        "params": ["INSERT_BLOCK_HASH"]
+      }
+    ]'
+    {{ networks.moonbase.rpc_url }}
     ```
 
 === "moon_isTxFinalized"
 
     ```bash
-    curl -H "Content-Type: application/json" -X POST --data 
-        '[{
-            "jsonrpc":"2.0",
-            "id":"1",
-            "method":"moon_isTxFinalized",
-            "params":["INSERT_TX_HASH"
-        ]}]' 
-        {{ networks.moonbase.rpc_url }}
+    curl -H "Content-Type: application/json" -X POST --data '[
+      {
+        "jsonrpc": "2.0",
+        "id": "1",
+        "method": "moon_isTxFinalized",
+        "params": ["INSERT_TX_HASH"]
+      }
+    ]'
+    {{ networks.moonbase.rpc_url }}
     ```
-

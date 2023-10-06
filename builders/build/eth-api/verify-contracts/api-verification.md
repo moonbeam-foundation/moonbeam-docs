@@ -151,7 +151,7 @@ To verify a deployed contract's source code using the Moonscan API, you must for
     }
     ```
 
-=== "Moonbase"
+=== "Moonbase Alpha"
 
     ```javascript
     // Submit Source Code for Verification
@@ -313,13 +313,13 @@ Soucify API endpoints can be accessed through the following public servers:
 
 === "Production"
 
-    ```bash
+    ```text
     https://sourcify.dev/server
     ```
 
 === "Staging"
 
-    ```bash
+    ```text
     https://staging.sourcify.dev/server
     ```
 
@@ -329,17 +329,17 @@ Sourcify uses chain ID's to identify the target network(s) for the request. The 
 
 === "Moonbeam"
 
-    ```bash
+    ```text
     {{ networks.moonbeam.chain_id }}
     ```
 
 === "Moonriver"
 
-    ```bash
+    ```text
     {{ networks.moonriver.chain_id }}
     ```
 
-=== "Moonbase"
+=== "Moonbase Alpha"
 
     ```bash
     {{ networks.moonbase.chain_id }}
@@ -415,7 +415,7 @@ A POST request is used to verify a contract on Sourcify. The following is sample
     }
     ```
 
-=== "Moonbase"
+=== "Moonbase Alpha"
 
     ```javascript
     // Submit Contract Source Code and Metadata for Verification
@@ -508,7 +508,7 @@ There are two variations of this endpoint, one for the source files of perfect m
     curl https://sourcify.dev/server/files/{{ networks.moonriver.chain_id }}/INSERT_CONTRACT_ADDRESS
     ```
 
-=== "Moonbase"
+=== "Moonbase Alpha"
 
     ```bash
     curl https://sourcify.dev/server/files/{{ networks.moonbase.chain_id }}/INSERT_CONTRACT_ADDRESS
@@ -528,7 +528,7 @@ And one for the source files of both perfect and partial matches:
     curl https://sourcify.dev/server/files/any/{{ networks.moonriver.chain_id }}/INSERT_CONTRACT_ADDRESS
     ```
 
-=== "Moonbase"
+=== "Moonbase Alpha"
 
     ```bash
     curl https://sourcify.dev/server/files/any/{{ networks.moonbase.chain_id }}/INSERT_CONTRACT_ADDRESS

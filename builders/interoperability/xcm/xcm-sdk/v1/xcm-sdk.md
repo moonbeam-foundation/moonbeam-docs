@@ -334,7 +334,7 @@ If you don't need any of the asset or chain information, you can use the `getTra
 ```js
 import { Sdk } from '@moonbeam-network/xcm-sdk';
 
-const fromPolkadot = async() => {
+const fromPolkadot = async () => {
   const data = await Sdk().getTransferData({
     destinationAddress: evmSigner.address, // If using viem, use evmSigner.account.address
     destinationKeyOrChain: 'moonbeam',
@@ -343,7 +343,7 @@ const fromPolkadot = async() => {
     sourceAddress: pair.address,
     sourceKeyOrChain: 'polkadot',
   });
-}
+};
 
 fromPolkadot();
 ```

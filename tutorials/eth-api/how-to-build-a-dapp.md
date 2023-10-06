@@ -87,7 +87,7 @@ When creating a JavaScript or TypeScript Hardhat project, you will be asked if y
 npm install --save-dev hardhat @nomicfoundation/hardhat-ethers ethers
 ```
 
-Before we start writing the smart contract, let's add a JSON-RPC URL to the config. Set the `hardhat.config.js` file with the following code, and replace `YOUR_PRIVATE_KEY` with your funded account's private key.
+Before we start writing the smart contract, let's add a JSON-RPC URL to the config. Set the `hardhat.config.js` file with the following code, and replace `INSERT_YOUR_PRIVATE_KEY` with your funded account's private key.
 
 !!! remember
     This is for testing purposes, **never store your private key in plain text with real funds**.  
