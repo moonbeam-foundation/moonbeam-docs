@@ -8,7 +8,6 @@ nav:
     - '[Ethers.js] How to Build a DApp': 'how-to-build-a-dapp.md'
     - '[Foundry] Development Life Cycle from Start to End': 'foundry-start-to-end.md'
     - '[Hardhat] Development Life Cycle from Start to End': 'hardhat-start-to-end.md'
-    - '[Truffle] Development Life Cycle from Start to End': 'truffle-start-to-end.md'
     - '[Tenderly] Using Tenderly to Debug and Simulate Transactions': 'using-tenderly.md'
   - 'Interact with Precompiles':
     - 'precompiles.index.md'

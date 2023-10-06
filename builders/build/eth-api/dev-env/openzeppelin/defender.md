@@ -87,7 +87,7 @@ The first step to using Defender Admin is to add the contract you want to manage
  1. Set a contract name. This is only for display purposes
  2. Select the network where the contract that you want to manage is deployed. This is particularly useful when a contract is deployed with the same address to multiple networks. For this example, enter `Moonbase Alpha`
  3. Enter the contract address
- 4. Paste the contract ABI. This can be obtained either in [Remix](/builders/build/eth-api/dev-env/remix/){target=_blank} or in the `.json` file generally created after the compilation process (for example, in Truffle or Hardhat)
+ 4. Paste the contract ABI. This can be obtained either in [Remix](/builders/build/eth-api/dev-env/remix/){target=_blank} or in the `.json` file generally created after the compilation process (for example, in Hardhat)
  5. Check that the contract features were detected correctly
  6. Once you've checked all the information, click on the **Add** button
 

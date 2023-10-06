@@ -51,6 +51,6 @@ The execution behavior and semantics of Moonbeam-based smart contracts will stri
 
 ![Diagram showing the interactions made possible through Moonbeam's Ethereum compatibility](/images/learn/platform/technology-diagram.png)
 
-A high-level interaction flow is shown above.  A Web3 RPC call from a DApp or existing Ethereum developer tool, such as Truffle, is received by a Moonbeam node.  The node will have both Web3 RPCs and Substrate RPCs available, which means that you can use Ethereum or Substrate tools when interacting with a Moonbeam node.  These RPC calls are handled by associated Substrate runtime functions.  The Substrate runtime checks signatures and handles any extrinsics.  Smart contract calls are ultimately passed to the EVM to execute the state transitions.
+A high-level interaction flow is shown above.  A Web3 RPC call from a DApp or existing Ethereum developer tool, such as Hardhat, is received by a Moonbeam node.  The node will have both Web3 RPCs and Substrate RPCs available, which means that you can use Ethereum or Substrate tools when interacting with a Moonbeam node.  These RPC calls are handled by associated Substrate runtime functions.  The Substrate runtime checks signatures and handles any extrinsics.  Smart contract calls are ultimately passed to the EVM to execute the state transitions.
 
 By basing our EVM implementation on the Substrate Pallet-EVM, we get a full Rust-based EVM implementation and support from the Parity engineering team.

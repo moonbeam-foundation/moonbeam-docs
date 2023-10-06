@@ -1,15 +1,15 @@
 ---
 title: Verify Smart Contracts with Plugins
-description: Learn about how to verify smart contracts on Moonbeam networks using the Etherscan plugins made available by Hardhat, Truffle, and Foundry.
+description: Learn about how to verify smart contracts on Moonbeam networks using the Etherscan plugins made available by Hardhat and Foundry.
 ---
 
 # Verify Smart Contracts with Etherscan Plugins
 
 ## Introduction {: #introduction }
 
-Verifying smart contracts is a great way of improving the transparency and security of contracts deployed on Moonbeam. There are a couple of plugins that integrate with Etherscan's contract verification service, including the [`hardhat-verify` plugin](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-verify){target=_blank} and the [`truffle-plugin-verify` plugin](https://github.com/rkalis/truffle-plugin-verify){target=_blank}. Both plugins can be used to automate the process of verifying contracts by locally detecting which contracts to verify and which Solidity libraries are required, if any.
+Verifying smart contracts is a great way of improving the transparency and security of contracts deployed on Moonbeam. Hardhat and Foundry integrate with Etherscan's contract verification service to automate the process of verifying contracts by locally detecting which contracts to verify and which Solidity libraries are required, if any.
 
-The Hardhat plugin integrates seamlessly into your [Hardhat](https://hardhat.org/){target=_blank} project, and likewise the Truffle plugin integrates into your [Truffle](https://trufflesuite.com/){target=_blank} project. [Foundry](https://github.com/foundry-rs/foundry){target=_blank} also has Etherscan capabilities, but they are built into its Forge tool instead of being included in a separate plugin.
+The Hardhat plugin integrates seamlessly into your [Hardhat](https://hardhat.org/){target=_blank} project. [Foundry](https://github.com/foundry-rs/foundry){target=_blank} also has Etherscan capabilities, but they are built into its Forge tool instead of being included in a separate plugin.
 
 This guide will show you how to use both plugins to verify smart contracts deployed on Moonbase Alpha. This guide can also be adapted for Moonbeam and Moonriver.
 
@@ -100,41 +100,6 @@ Please refer to the [Hardhat Verify documentation](https://hardhat.org/hardhat-r
 - using [multiple API keys](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-verify#multiple-api-keys-and-alternative-block-explorers){target=_blank}
 - using the [`verify` command programmatically](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-verify#using-programmatically){target=_blank}
 - [determining the correct constructor arguments](https://info.etherscan.com/determine-correct-constructor-argument-during-source-code-verification-on-etherscan/){target=_blank}
-
-## Using the Truffle Verify Plugin {: #using-the-truffle-verify-plugin }
-
-The example in this section of the guide will use the `MyToken.sol` contract that was created in the [Using Truffle to Deploy to Moonbeam](/builders/build/eth-api/dev-env/truffle/){target=_blank} guide.
-
-To get started with `truffle-plugin-verify`, open your Truffle project and install the plugin:
-
-```bash
-npm install --save-dev truffle-plugin-verify
-```
-
-Next you'll need to add the plugin to your `truffle-config.js` file and add the Etherscan config. For this example, you'll need a [Moonbeam Moonscan](https://moonscan.io/){target=_blank} API key. If you want to verify a contract on Moonriver, you'll need a [Moonriver Moonscan](https://moonriver.moonscan.io/){target=_blank} API key. The Truffle config should resemble the following:
-
-```js
-module.exports = {
-  networks: { ... },
-  compilers: { ... },
-  plugins: ['moonbeam-truffle-plugin', 'truffle-plugin-verify'],
-  api_keys: {
-    moonscan: 'INSERT_YOUR_MOONSCAN_API_KEY'
-  }
-}
-```
-
-To verify the contract, you will run the `run verify` command and pass in the deployed contract name and the network where it's deployed:
-
-```bash
-truffle run verify MyToken --network moonbase
-```
-
-If the contract verification was successful, in your terminal, you should see **Pass - Verified** with a link to the contract code on [Moonscan for Moonbase Alpha](https://moonbase.moonscan.io/){target=_blank}.
-
-![Successful verification using truffle-verify-plugin](/images/builders/build/eth-api/verify-contracts/etherscan-plugins/plugins-4.png)
-
-For further information on the plugin, please refer to the [README.md file](https://github.com/rkalis/truffle-plugin-verify#readme){target=_blank} of the `truffle-plugin-verify` GitHub repository.
 
 ## Using Foundry to Verify {: #using-foundry-to-verify }
 
