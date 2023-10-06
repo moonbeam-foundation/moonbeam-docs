@@ -21,7 +21,7 @@ Moonbeam supports:
 
  - **Solidity-Based Smart Contracts**
  - **Ecosystem Tools** (e.g., block explorers, front-end development libraries, wallets)
- - **Development Tools** (e.g., Hardhat,Remix, MetaMask)
+ - **Development Tools** (e.g., Hardhat, Remix, MetaMask)
  - **Ethereum Tokens via Bridges** (e.g., token movement, state visibility, message passing)
 
 ## Frontier {: #frontier }
