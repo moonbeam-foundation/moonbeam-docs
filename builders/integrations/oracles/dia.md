@@ -1,139 +1,285 @@
 ---
 title: DIA Oracle
-description: Learn how to request a dedicated DIA oracle for your dApp, enabling access to price data for 2500+ tokens, randomness, and more. 
+description: Learn how to request a dedicated DIA oracle for your dApp, enabling access to price data for 2500+ tokens, randomness, and more.
 ---
 
 # Introduction to DIA Oracles
 
-## Requesting a custom oracle
+## Introduction {: #introduction }
 
-[DIA](https://www.diadata.org/) offers **customizable oracles that are tailored to each dApp’s needs**. Each oracle can be customized in several ways, including data sources, data cleansing filters, pricing and computational methodologies, update mechanisms and more. This ensures that the data and oracle remain robust and resilient to the market conditions and provide a global market price as well as specific individual or cross-chain market prices.
+[DIA](https://www.diadata.org/){target=_blank} offers customizable oracles that are tailored to each dApp’s needs. Each oracle can be customized in several ways, including data sources, data cleansing filters, pricing and computational methodologies, update mechanisms, and more. This ensures that the data and oracle remain robust and resilient to market conditions and provide a global market price as well as specific individual or cross-chain market prices.
 
-By collecting billions of raw trades directly from over **90 sources, including CEXs, DEXs, and NFT marketplaces**, DIA enables full transparency, customization, and control throughout the entire value stack. DIA's data and oracle suite comprise **price feeds for 20,000+ assets** including cryptocurrencies, NFT collections, and liquid-staked tokens, as well as random number generation and other data feed types.
+By collecting billions of raw trades directly from over 90 sources, including CEXs, DEXs, and NFT marketplaces, DIA enables full transparency, customization, and control throughout the entire value stack. DIA's data and oracle suite comprise price feeds for 20,000+ assets, including cryptocurrencies, NFT collections, and liquid-staked tokens, as well as random number generation and other data feed types.
 
-→ [Request a Custom Oracle | DIA Documentation](https://docs.diadata.org/introduction/intro-to-dia-oracles/request-an-oracle)
+You can visit DIA's documentation to learn how to [Request a Custom Oracle](https://docs.diadata.org/introduction/intro-to-dia-oracles/request-an-oracle).
 
-# 🪙 Token Price Feeds
+## Token Price Feeds {: #token-price-feeds }
 
-DIA token price feeds provide smart contracts with real-time price information for [3,000+ cryptocurrencies](https://diadata.org/app/price), sourced transparently from [90+ trusted, high-volume DEXs and CEXs](https://diadata.org/app/source/defi).
+DIA token price feeds provide smart contracts with real-time price information for [3,000+ cryptocurrencies](https://diadata.org/app/price){target=_blank}, sourced transparently from [90+ trusted, high-volume DEXs and CEXs](https://diadata.org/app/source/defi){target=_blank}.
 
-## How to access DIA oracles?
+### Moonbeam Demo Price Oracles {: #moonbeam-demo-price-oracles }
 
-Here is an example of how to access a price value on DIA oracles:
+DIA has deployed the following demo oracles for the Moonbeam community, which provide a limited selection of cryptocurrency price feeds with predefined configuration settings:
 
-1. Access your custom oracle smart contract on Moonbeam.
-2. Call `getValue(pair_name)` with `pair_name` being the full pair name such as `BTC/USD`. You can use the "Read" section on the explorer to execute this call.
-3. The response of the call contains two values:
-- The current asset price in USD with a fix-comma notation of 8 decimals.
-- The UNIX timestamp of the last oracle update.
+|    Network     |                                                                 Contract Address                                                                 |
+|:--------------:|:------------------------------------------------------------------------------------------------------------------------------------------------:|
+|    Moonbeam    |      [`0x1f1BAe8D7a2957CeF5ffA0d957cfEDd6828D728f`](https://moonscan.io/address/0x1f1BAe8D7a2957CeF5ffA0d957cfEDd6828D728f){target=_blank}      |
+|   Moonriver    | [`0x11f74b94afb5968119c98ea277a2b73208bb39ab`](https://moonriver.moonscan.io/address/0x11f74b94afb5968119c98ea277a2b73208bb39ab){target=_blank} |
+| Moonbase Alpha | [`0xe23d8713aa3a0a2c102af772d2467064821b8d46`](https://moonbase.moonscan.io/address/0xe23d8713aa3a0a2c102af772d2467064821b8d46){target=_blank}  |
 
-You can find DIA's oracle integration samples in Solidity and Vyper languages by visiting:
+The demo oracle contracts deployed to Moonbeam are the [DIA Key-Value Oracle Contract V2](https://docs.diadata.org/introduction/intro-to-dia-oracles/oracle-structures/access-the-oracle#dia-key-value-oracle-contract-v2){target=_blank}. The contract is structured as follows:
 
-→ [Access the Oracle | DIA Documentation](https://docs.diadata.org/products/token-price-feeds/access-the-oracle)
+```solidity
+pragma solidity 0.7.4;
 
-## Moonbeam demo price oracles
+contract DIAOracleV2 {
+	mapping (string => uint256) public values;
+	address oracleUpdater;
 
-DIA has deployed the following demo oracles for the Moonbeam community. It provides a limited selection of cryptocurrency price feeds with predefined configuration settings.
+	event OracleUpdate(string key, uint128 value, uint128 timestamp);
+	event UpdaterAddressChange(address newUpdater);
 
-> ⚠️ NOTE: DIA demo oracles are not intended for use in production environments. Developers can request a dedicated, production-ready oracle with custom price feeds and configuration settings. Start the request process: [Request a Custom Oracle | DIA Documentation](https://docs.diadata.org/introduction/intro-to-dia-oracles/request-an-oracle)
+	constructor() {
+		oracleUpdater = msg.sender;
+	}
 
-### Demo Oracle Smart Contracts
+	function setValue(string memory key, uint128 value, uint128 timestamp) public {
+		require(msg.sender == oracleUpdater);
+		uint256 cValue = (((uint256)(value)) << 128) + timestamp;
+		values[key] = cValue;
+		emit OracleUpdate(key, value, timestamp);
+	}
 
-| Network        | Contract address      
-| -------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| Moonbeam Alpha  | [`0xe23d8713aa3a0a2c102af772d2467064821b8d46`](https://moonbase.moonscan.io/address/0xe23d8713aa3a0a2c102af772d2467064821b8d46)        |
-| Moonriver  | [`0x11f74b94afb5968119c98ea277a2b73208bb39ab`](https://moonriver.moonscan.io/address/0x11f74b94afb5968119c98ea277a2b73208bb39ab)        |
+	function getValue(string memory key) external view returns (uint128, uint128) {
+		uint256 cValue = values[key];
+		uint128 timestamp = (uint128)(cValue % 2**128);
+		uint128 value = (uint128)(cValue >> 128);
+		return (value, timestamp);
+	}
 
-### Included Price Feeds
-
-[DIA/USD](https://diadata.org/app/price/asset/Ethereum/0x84cA8bc7997272c7CfB4D0Cd3D55cd942B3c9419/), [BTC/USD](https://diadata.org/app/price/asset/Bitcoin/0x0000000000000000000000000000000000000000/), [USDC/USD](https://diadata.org/app/price/asset/Ethereum/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48/)
-
-## Supported token API endpoints
-
-DIA also supports API and GraphQL endpoints to return cryptocurrency price data. You can [visit the DIA Documentation](https://docs.diadata.org/products/token-price-feeds/access-api-endpoints) to see all API endpoints.
-
-# 🎨 NFT Floor Price Feeds
-
-DIA NFT floor price feeds provide smart contracts with real-time price information of [18,000+ NFT collections](https://diadata.org/app/floor-price), sourced on-chain with 100% transparency from [multiple, cross-chain NFT marketplaces](https://diadata.org/app/source/nft).
-
-## Supported NFT API endpoints
-
-DIA also supports API endpoints to return cryptocurrency price data. Developers can directly access the example endpoints listed below or [visit the DIA Documentation](https://docs.diadata.org/products/nft-floor-price-feeds/access-api-endpoints) to see all API endpoints.
-
-# 🎲 Random Number Generation
-DIA xRandom provides smart contracts with unpredictable and unbiased random numbers, facilitating the development of on-chain use cases such as lotteries, prediction markets, NFT launches and more.
-## Understanding Randomness
-DIA leverages the Drand public randomness beacon, and updates its oracle with round numbers, randomness and a signature. Drand runs distributed nodes to produce their randomness beacon. Drand uses [Pedersen's DKG (Distributed Key Generation) protocol](https://drand.love/docs/cryptography/#distributed-key-generation-dkg) to create collective private/public keys. Participants in their League of Entropy then generate randomness in rounds and broadcast it together with its signature.
-To learn more about Drand’s randomness beacon, watch the [following DIA tutorial](https://youtu.be/7HALDJr8V3g) and read [Drand’s documentation](https://drand.love/docs/overview/#how-drand-works).
-## How to use the DIA Randomness Oracle
-Anyone can access published random values via round ID.
-```
-{
-	"round": 1597683,
-	"randomness": "24138936fcbf7fc3951c928158be6998cee3af622142d0790333608d17a5c5f6",
-	"signature": "8c04905c0adf34f1fb007915d9ccc7d07b97305fc63952726f9367c87f36ab687c5e190c151f6ac4d760a9e009fc54230adb8513885449d649a229bc727be9ff347bdbce1c609cebf993b6ae57133fbcf23f96b15dbd3510cb5f2ade6b30b647",
-	"previous_signature": "ada42197a2db89866da4c44348f77f7868e41e961ec32e636b912d43c625386afae9e54944ac573047dbd227ee495b52059586c8d8cd0edfe18cc15ca0666a66651da1d62b12af2d0fac19735bed9298690a593571965c3ad7c7b11947e76ec0"
+	function updateOracleUpdaterAddress(address newOracleUpdaterAddress) public {
+	  require(msg.sender == oracleUpdater);
+		oracleUpdater = newOracleUpdaterAddress;
+		emit UpdaterAddressChange(newOracleUpdaterAddress);
+	}
 }
 ```
 
+!!! note
+    DIA demo oracles are not intended for use in production environments. Developers can request a dedicated, production-ready oracle with custom price feeds and configuration settings. To start the request process, you can check out the [Request a Custom Oracle](https://docs.diadata.org/introduction/intro-to-dia-oracles/request-an-oracle){target=_blank} documentation.
 
-The DIA randomness smart contract is structured as follows
-```pragma solidity ^0.8.0;
+#### Included Price Feeds {: #price-feeds }
+
+The price feeds included with the demo oracles are:
+
+- [DIA/USD](https://diadata.org/app/price/asset/Ethereum/0x84cA8bc7997272c7CfB4D0Cd3D55cd942B3c9419/){target=_blank}
+- [BTC/USD](https://diadata.org/app/price/asset/Bitcoin/0x0000000000000000000000000000000000000000/){target=_blank}
+- [USDC/USD](https://diadata.org/app/price/asset/Ethereum/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48/){target=_blank}
+
+### How to Access DIA Oracles {: #how-to-access-dia-oracles }
+
+The steps for accessing a price value on DIA oracles are as follows:
+
+1. Access your oracle smart contract on Moonbeam
+2. Call `getValue(pair_name)` with `pair_name` being the full pair name, such as `BTC/USD`. You can use the **Read Contract** functionality under the **Contract** tab of the contract on Moonscan to execute this call
+
+The response contains two values:
+
+- The current asset price in USD with a fix-comma notation of 8 decimals
+- The UNIX timestamp of the last oracle update
+
+You can find DIA's oracle integration samples in Solidity and Vyper languages by visiting the [Access the Oracle](https://docs.diadata.org/products/token-price-feeds/access-the-oracle){target=_blank} guide on DIA's documentation site.
+
+### Supported Token API Endpoints {: #supported-token-api-endpoints }
+
+DIA also supports Rest and GraphQL endpoints to return cryptocurrency price data. You can [visit the DIA documentation](https://docs.diadata.org/products/token-price-feeds/access-api-endpoints){target=_blank} to see all API endpoints.
+
+For example, you can use the following JavaScript scripts to access the [BTC/USD price feed](#price-feeds):
+
+=== "Rest"
+
+    ```js
+    const axios = require('axios');
+
+    const options = {
+      method: 'GET',
+      url: 'https://api.diadata.org/v1/assetQuotation/Bitcoin/0x0000000000000000000000000000000000000000',
+      headers: { 'Content-Type': 'application/json' },
+    };
+
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+    ```
+
+=== "GraphQL"
+
+    ```js
+    const axios = require('axios');
+
+    const url = 'https://api.diadata.org/graphql/query';
+
+    const query = `
+      {
+        GetFeed(
+          Filter: "mair",
+          BlockSizeSeconds: 480,
+          BlockShiftSeconds: 480,
+          StartTime: 1690449575,
+          EndTime: 1690535975,
+          FeedSelection: [
+            {
+              Address: "0x0000000000000000000000000000000000000000",
+              Blockchain:"Bitcoin",
+              Exchangepairs:[],
+            },
+          ],
+        )
+        {
+          Name
+          Time
+          Value
+          Pools
+          Pairs
+        }
+      }`;
+
+    const data = {
+      query: query,
+    };
+
+    axios
+      .post(url, data)
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error('Request failed:', error.message);
+      });
+    ```
+
+You can refer to DIA's documentation on [Rest API Endpoints](https://docs.diadata.org/products/token-price-feeds/access-api-endpoints/api-endpoints){target=_blank} and the [GraphQL Endpoint](https://docs.diadata.org/products/token-price-feeds/access-api-endpoints/graphql-endpoint){target=_blank} for information on the parameters and return data.
+
+## NFT Floor Price Feeds {: #nft-floor-price-feeds }
+
+DIA NFT floor price feeds provide smart contracts with real-time price information for [18,000+ NFT collections](https://diadata.org/app/floor-price){target=_blank}, sourced on-chain with 100% transparency from [multiple cross-chain NFT marketplaces](https://diadata.org/app/source/nft){target=_blank}.
+
+Please refer to DIA's documentation to find out how you can [request a custom NFT oracle](https://docs.diadata.org/products/nft-floor-price-feeds/request-an-nft-oracle){target=_blank} for NFTs on Moonbeam.
+
+### Supported NFT API Endpoints {: #supported-nft-api-endpoints }
+
+DIA also supports API endpoints to return cryptocurrency price data. Developers can directly access the example endpoints listed in [DIA's documentation](https://docs.diadata.org/products/nft-floor-price-feeds/access-api-endpoints){target=_blank}.
+
+## Random Number Generation {: #random-number-generation }
+
+[DIA xRandom](https://docs.diadata.org/products/randomness-oracle){target=_blank} provides smart contracts with unpredictable and unbiased random numbers, facilitating the development of on-chain use cases such as lotteries, prediction markets, NFT launches, and more.
+
+DIA leverages the Drand public randomness beacon, and updates its oracle with round numbers, randomness and a signature. Drand runs distributed nodes to produce their randomness beacon. Drand uses [Pedersen's DKG (Distributed Key Generation) protocol](https://drand.love/docs/cryptography/#distributed-key-generation-dkg){target=_blank} to create collective private and public keys. Participants in their League of Entropy then generate randomness in rounds and broadcast it together with its signature.
+
+To learn more about Drand’s randomness beacon, watch the [On-Chain Randomness Oracle | DIA Developer Tutorial](https://youtu.be/7HALDJr8V3g){target=_blank} and read [Drand’s documentation](https://drand.love/docs/overview/#how-drand-works){target=_blank}.
+
+### Moonbeam Demo Randomness Oracle {: #moonbeam-demo-randomness-oracle }
+
+DIA has deployed a demo oracle on Moonbase Alpha, which can be accessed at the following address:
+
+```text
+0x48d351ab7f8646239bbade95c3cc6de3ef4a6cec
+```
+
+The DIA randomness smart contract is structured as follows:
+
+```solidity
+pragma solidity ^0.8.0;
+
 contract DIARandomOracle {
-struct Random {
-string randomness;
-string signature;
-string previousSignature;
-}
-mapping (uint256 => Random) public values;
-uint256 public lastRound = 0;
-address public oracleUpdater;
-event OracleUpdate(string key, uint128 value, uint128 timestamp);
-event UpdaterAddressChange(address newUpdater);
-constructor() {
-oracleUpdater = msg.sender;
-}
-function setRandomValue(uint256 _round, string memory _randomness, string memory _signature, string memory _previousSignature) public {
-require(msg.sender == oracleUpdater,"not a updater");
-require(lastRound<_round, "old round");
-lastRound = _round;
-values[_round] = Random(_randomness, _signature, _previousSignature);
-}
-function getValue(uint256 _round) external view returns (Random memory) {
-return values[_round];
-}
-function updateOracleUpdaterAddress(address newOracleUpdaterAddress) public {
-require(msg.sender == oracleUpdater,"not a updater");
-oracleUpdater = newOracleUpdaterAddress;
-emit UpdaterAddressChange(newOracleUpdaterAddress);
-}
-function getRandomValueFromRound(uint256 _round) external view returns (string memory) {
-return values[_round].randomness;
-}
-function getRandomValueFromRoundWithSignature(uint256 _round) external view returns (Random memory) {
-return values[_round];
-}
-function getLastRound() public view returns(uint256) {
-return lastRound;
-}
+  struct Random {
+    string randomness;
+    string signature;
+    string previousSignature;
+  }
+
+  mapping(uint256 => Random) public values;
+  uint256 public lastRound = 0;
+  address public oracleUpdater;
+  event OracleUpdate(string key, uint128 value, uint128 timestamp);
+  event UpdaterAddressChange(address newUpdater);
+
+  constructor() {
+      oracleUpdater = msg.sender;
+  }
+
+  function setRandomValue(
+    uint256 _round,
+    string memory _randomness,
+    string memory _signature,
+    string memory _previousSignature
+  ) public {
+    require(msg.sender == oracleUpdater, "not a updater");
+    require(lastRound < _round, "old round");
+    lastRound = _round;
+    values[_round] = Random(_randomness, _signature, _previousSignature);
+  }
+
+  function getValue(uint256 _round) external view returns (Random memory) {
+    return values[_round];
+  }
+
+  function updateOracleUpdaterAddress(address newOracleUpdaterAddress)
+    public
+  {
+    require(msg.sender == oracleUpdater, "not a updater");
+    oracleUpdater = newOracleUpdaterAddress;
+    emit UpdaterAddressChange(newOracleUpdaterAddress);
+  }
+
+  function getRandomValueFromRound(uint256 _round)
+    external
+    view
+    returns (string memory)
+  {
+    return values[_round].randomness;
+  }
+
+  function getRandomValueFromRoundWithSignature(uint256 _round)
+    external
+    view
+    returns (Random memory)
+  {
+    return values[_round];
+  }
+
+    function getLastRound() public view returns (uint256) {
+    return lastRound;
+  }
 }
 ```
 
-Users can call `getLastRound()`to obtain the ID of the latest published round. To obtain the randomness of a certain round, users can call `getRandomValueFromRound(uint256 _round)` using the obtained round ID.
+!!! note
+    DIA demo oracles are not intended for use in production environments. Developers can request a dedicated, production-ready randomness oracle. To start the request process, you can check out the [Request a Random Oracle](https://docs.diadata.org/products/randomness-oracle/request-a-random-oracle){target=_blank} documentation.
 
-The signature can also be requested by calling `getRandomValueFromRoundWithSignature(uint256 _round)`.
+### How to Use the DIA Randomness Oracle {: #how-to-use-the-dia-randomness-oracle }
 
-## Video Tutorial: Deploying a randomness-consuming smart contract on an EVM chain
-https://youtu.be/BzN-tBgW-xs
+The steps for accessing a published random value are as follows:
 
+1. Access your randomness oracle smart contract on Moonbeam
+2. Call `getLastRound()`to obtain the ID of the latest published round. You can use the **Read Contract** functionality under the **Contract** tab of the contract on Moonscan to execute this call
+3. Call `getRandomValueFromRound(uint256 _round)` using the obtained round ID. Again, you can use Moonscan to quickly execute this call
 
-> ⚠️ **Note:** DApps can request a dedicated, production-ready oracle for their dApp with custom price feeds and configuration settings. [Learn: requesting an oracle](https://docs.google.com/document/d/1Rbeic7f3e5an-ZT7rJSB_svCBRWTlSISsmnpOo18HQ0/edit#heading=h.ysc3hbr0lfty).
+The response contains the randomness value.
 
+The signature can also be requested by calling `getRandomValueFromRoundWithSignature(uint256 _round)`, which returns a tuple containing the randomness value, the signature, and the previous signature.
 
-# Learn more about DIA
+To learn how to deploy a randomness-consuming contract on Moonbeam, please refer to the [Deploying a #Randomness Consuming Smart Contract on #EVM chains with DIA xRandom #Oracle](https://youtu.be/BzN-tBgW-xs){target=_blank} video tutorial.
 
-- [Twitter](https://twitter.com/DIAdata_org)
-- [Discord](https://discord.gg/dia-dao)
-- [Website](https://diadata.org/)
-- [Docs](https://docs.diadata.org/)
-- [Explore data](https://www.diadata.org/app/)
+# Learn More About DIA {: #learn-more-about-dia }
+
+- [Twitter](https://twitter.com/DIAdata_org){target=_blank}
+- [Discord](https://discord.gg/dia-dao){target=_blank}
+- [Website](https://diadata.org/){target=_blank}
+- [Docs](https://docs.diadata.org/){target=_blank}
+- [Explore data](https://www.diadata.org/app/){target=_blank}
