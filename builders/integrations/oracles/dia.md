@@ -11,7 +11,9 @@ description: Learn how to request a dedicated DIA oracle for your dApp, enabling
 
 By collecting billions of raw trades directly from over 90 sources, including CEXs, DEXs, and NFT marketplaces, DIA enables full transparency, customization, and control throughout the entire value stack. DIA's data and oracle suite comprise price feeds for 20,000+ assets, including cryptocurrencies, NFT collections, and liquid-staked tokens, as well as random number generation and other data feed types.
 
-You can visit DIA's documentation to learn how to [Request a Custom Oracle](https://docs.diadata.org/introduction/intro-to-dia-oracles/request-an-oracle).
+You can visit DIA's documentation to learn how to [Request a Custom Oracle](https://docs.diadata.org/introduction/intro-to-dia-oracles/request-an-oracle){target=_blank}.
+
+--8<-- 'text/_disclaimers/third-party-content-intro.md'
 
 ## Token Price Feeds {: #token-price-feeds }
 
@@ -283,3 +285,5 @@ To learn how to deploy a randomness-consuming contract on Moonbeam, please refer
 - [Website](https://diadata.org/){target=_blank}
 - [Docs](https://docs.diadata.org/){target=_blank}
 - [Explore data](https://www.diadata.org/app/){target=_blank}
+
+--8<-- 'text/_disclaimers/third-party-content.md'
