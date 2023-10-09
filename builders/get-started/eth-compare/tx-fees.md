@@ -29,7 +29,7 @@ MBIP-5 introduced changes to Moonbeam's fee mechanism that account for storage g
 
 This impacts contract deployments that add to the chain state, transactions that create new storage entries, and precompiled contract calls that result in the creation of new accounts.
 
-The block storage limit prevents transactions in a single block from collectively increasing the storage state by more than 40KB.
+The block storage limit prevents transactions in a single block from collectively increasing the storage state by more than {{ networks.moonbase.mbip_5.block_storage_limit }}KB.
 
 To determine the amount of gas for storage in bytes, there is a ratio that is defined as:
 
@@ -37,18 +37,18 @@ To determine the amount of gas for storage in bytes, there is a ratio that is de
 Ratio = Block Gas Limit / (Block Storage Limit * 1024 Bytes)
 ```
 
-Given the block gas limit of 15,000,000 and the block storage limit of 40KB per block, the ratio between gas and storage is 366, which is calculated like this:
+Given the block gas limit of {{ networks.moonbase.gas_block }} and the block storage limit of {{ networks.moonbase.mbip_5.block_storage_limit }}KB per block, the ratio between gas and storage is {{ networks.moonbase.mbip_5.gas_storage_ratio }}, which is calculated like this:
 
 ```text
-Ratio = 15000000 / (40 * 1024)
-Ratio = 366
+Ratio = {{ networks.moonbase.gas_block_numbers_only }} / ({{ networks.moonbase.mbip_5.block_storage_limit }} * 1024)
+Ratio = {{ networks.moonbase.mbip_5.gas_storage_ratio }} 
 ```
 
-Then, you can take the storage growth in bytes for a given transaction and multiply it by the gas-to-storage growth ratio to determine how many units of gas to add to the transaction. For example, if you execute a transaction that increases the storage by 500 bytes, the following calculation is used to determine the units of gas to add:
+Then, you can take the storage growth in bytes for a given transaction and multiply it by the gas-to-storage growth ratio to determine how many units of gas to add to the transaction. For example, if you execute a transaction that increases the storage by {{ networks.moonbase.mbip_5.example_storage }} bytes, the following calculation is used to determine the units of gas to add:
 
 ```text
-Additional Gas = 500 * 366
-Additional Gas = 183000
+Additional Gas = {{ networks.moonbase.mbip_5.example_storage }} * {{ networks.moonbase.mbip_5.gas_storage_ratio }}
+Additional Gas = {{ networks.moonbase.mbip_5.example_addtl_gas }}
 ```
 
 To see how this MBIP differentiates Moonbeam from Ethereum firsthand, you can estimate the gas for two different contract interactions on both networks: one that modifies an item in the chain state and one that doesn't. For example, you can use a greeting contract that allows you to store a name and then use the name to say "Hello".
