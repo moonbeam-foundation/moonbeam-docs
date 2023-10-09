@@ -7,7 +7,7 @@ description: Learn how to use the Ethereum Ethers.rs Library to send transaction
 
 ## Introduction {: #introduction }
 
-The [Ethers.rs](https://ethers.rs){target=_blank} library provides a set of tools to interact with Ethereum Nodes via the Rust programming language that works similar to [Ethers.js](/builders/build/eth-api/libraries/ethersjs){target=_blank}. Moonbeam has an Ethereum-like API available that is fully compatible with Ethereum-style JSON RPC invocations. Therefore, developers can leverage this compatibility and use the Ethers.rs library to interact with a Moonbeam node as if they were doing so on Ethereum. You can read more about how to use Ethers.rs on their [official crate documentation](https://docs.rs/crate/ethers/latest){target=_blank}.
+The [Ethers.rs](https://ethers.rs){target=_blank} library provides a set of tools to interact with Ethereum Nodes via the Rust programming language that works similar to [Ethers.js](/builders/build/eth-api/libraries/ethersjs){target=_blank}. Moonbeam has an Ethereum-like API available that is fully compatible with Ethereum-style JSON-RPC invocations. Therefore, developers can leverage this compatibility and use the Ethers.rs library to interact with a Moonbeam node as if they were doing so on Ethereum. You can read more about how to use Ethers.rs on their [official crate documentation](https://docs.rs/crate/ethers/latest){target=_blank}.
 
 In this guide, you'll learn how to use the Ethers.rs library to send a transaction and deploy a contract on Moonbase Alpha. This guide can be adapted for [Moonbeam](/builders/get-started/networks/moonbeam/){target=_blank}, [Moonriver](/builders/get-started/networks/moonriver/){target=_blank}, or a [Moonbeam development node](/builders/get-started/networks/moonbeam-dev/){target=_blank}.
 
@@ -16,9 +16,9 @@ In this guide, you'll learn how to use the Ethers.rs library to send a transacti
 For the examples in this guide, you will need to have the following:
 
  - An account with funds.
-  --8<-- 'text/faucet/faucet-list-item.md'
- -
---8<-- 'text/common/endpoint-examples.md'
+  --8<-- 'text/_common/faucet/faucet-list-item.md'
+ - 
+  --8<-- 'text/_common/endpoint-examples-list-item.md'
  - Have [Rust installed](https://www.rust-lang.org/tools/install){target=_blank} on your device
  - Have [solc installed](https://docs.soliditylang.org/en/v0.8.9/installing-solidity.html) on your device. Using [solc-select](https://github.com/crytic/solc-select){target=_blank} is recommended by the Ethers.rs package
 
@@ -61,14 +61,14 @@ solc-select install 0.8.17 && solc-select use 0.8.17
 
 Throughout this guide, you'll be writing multiple functions that provide different functionality such as sending a transaction, deploying a contract, and interacting with a deployed contract. In most of these scripts you'll need to use an [Ethers provider](https://docs.rs/ethers-providers/latest/ethers_providers/index.html){target=_blank} or an [Ethers signer client](https://docs.rs/ethers/1.0.2/ethers/middleware/struct.SignerMiddleware.html){target=_blank} to interact with the network.
 
---8<-- 'text/common/endpoint-setup.md'
+--8<-- 'text/_common/endpoint-setup.md'
 
 There are multiple ways to create a provider and signer, but the easiest way is through `try_from`. In the `src/main.rs` file, you can take the following steps:
 
 1. Import `Provider` and `Http` from the `ethers` crate
 2. Add a `Client` type for convenience, which will be used once you start to create the functions for sending a transaction and deploying a contract
 3. Add a `tokio` attribute above `async fn main()` for asynchronous excution
-4. Use `try_from` to attempt to instantiate a JSON RPC provider object from an RPC endpoint
+4. Use `try_from` to attempt to instantiate a JSON-RPC provider object from an RPC endpoint
 5. Use a private key to create a wallet object (the private key will be used to sign transactions). **Note: This is for example purposes only. Never store your private keys in a plain Rust file**
 6. Wrap the provider and wallet together into a client by providing them to a `SignerMiddleware` object
 
@@ -300,7 +300,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 }
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/ethers-rust/send-tx/main.rs){target=_blank}.
+You can view the [complete script on GitHub](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/builders/build/eth-api/libraries/ethers-rust/send-tx/main.rs){target=_blank}.
 
 To run the script, which will send the transaction and then check the balances once the transaction has been sent, you can run the following command:
 
@@ -314,7 +314,7 @@ If the transaction was succesful, in your terminal you'll see the transaction de
 
 ## Deploy a Contract {: #deploy-a-contract }
 
---8<-- 'text/libraries/contract.md'
+--8<-- 'text/builders/build/eth-api/libraries/contract.md'
 
 During the rest of this section, you'll be creating a couple of functions, which will be contained in the `main.rs` file to avoid additional complexity from implementing modules. The first function will be to compile and deploy the contract. The remaining functions will interact with the deployed contract.  
 
@@ -486,7 +486,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 }
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/ethers-rust/deploy-contract/main.rs){target=_blank}.
+You can view the [complete script on GitHub](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/builders/build/eth-api/libraries/ethers-rust/deploy-contract/main.rs){target=_blank}.
 
 To run the script, which will deploy the contract and return the current value stored in the `Incrementer` contract, you can enter the following command into your terminal:
 
@@ -547,7 +547,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 }
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/ethers-rust/deploy-contract/main.rs){target=_blank}.
+You can view the [complete script on GitHub](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/builders/build/eth-api/libraries/ethers-rust/deploy-contract/main.rs){target=_blank}.
 
 To run the script, you can enter the following command into your terminal:
 
@@ -608,6 +608,6 @@ If successful, the transaction receipt will be displayed in the terminal. You ca
 
 ![Terminal logs from resetting the number](/images/builders/build/eth-api/libraries/ethersrs/ethersrs-4.png)
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/ethers-rust/deploy-contract/main.rs){target=_blank}.
+You can view the [complete script on GitHub](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/builders/build/eth-api/libraries/ethers-rust/deploy-contract/main.rs){target=_blank}.
 
---8<-- 'text/disclaimers/third-party-content.md'
+--8<-- 'text/_disclaimers/third-party-content.md'

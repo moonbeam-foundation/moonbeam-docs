@@ -9,7 +9,7 @@ _by Massimo Luraschi_
 
 ## Introduction {: #introduction }
 
-[Subsquid](https://subsquid.io){target=_blank} is a full-stack blockchain indexing SDK with specialized data lakes (Archives) optimized for the extraction of large volumes of historical on-chain data.
+[Subsquid](https://subsquid.io){target=_blank} is a data network that allows rapid and cost-efficient retrieval of blockchain data from 100+ chains using Subsquid’s decentralized data lake and open-source SDK.
 
 The SDK offers a highly customizable Extract-Transform-Load-Query stack and indexing speeds of up to and beyond 50,000 blocks per second when indexing events and transactions.
 
@@ -17,7 +17,7 @@ Subsquid has native and full support for both the Ethereum Virtual Machine and S
 
 This guide will explain how to create a Subsquid project (also known as a *"squid"*) from a template (indexing Moonsama transfers on Moonriver), and change it to index ERC-721 token transfers on the Moonbeam network. As such, you'll be looking at the `Transfer` EVM event topics. This guide can be adapted for Moonbase Alpha as well.
 
---8<-- 'text/disclaimers/third-party-content-intro.md'
+--8<-- 'text/_disclaimers/third-party-content-intro.md'
 
 ## Checking Prerequisites {: #checking-prerequisites }
 
@@ -148,7 +148,7 @@ The `src/processor.ts` file is where squids instantiate the processor (a `Substr
 
 Not much needs to be changed here, except adapting the template code to handle the Gromlins contract and setting the processor to use the `moonbeam` archive URL retrieved from the [archive registry](https://github.com/subsquid/archive-registry){target=_blank}.
 
---8<-- 'text/common/endpoint-examples.md'
+--8<-- 'text/_common/endpoint-examples.md'
 
 If you are adapting this guide for Moonriver or Moonbase Alpha, be sure to update the data source to the correct network:
 
@@ -288,6 +288,6 @@ You can view the template used here, as well as many other example repositories 
 
 [Subsquid's documentation](https://docs.subsquid.io/){target=_blank} contains informative material, and it's the best place to start, if you are curious about some aspects that were not fully explained in this guide.
 
---8<-- 'text/disclaimers/educational-tutorial.md'
+--8<-- 'text/_disclaimers/educational-tutorial.md'
 
---8<-- 'text/disclaimers/third-party-content.md'
+--8<-- 'text/_disclaimers/third-party-content.md'

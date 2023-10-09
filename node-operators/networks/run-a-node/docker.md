@@ -70,7 +70,7 @@ Now, execute the docker run command. If you are setting up a collator node, make
  - Replace `INSERT_YOUR_NODE_NAME` in two different places
  - Replace `<50% RAM in MB>` for 50% of the actual RAM your server has. For example, for 32 GB RAM, the value must be set to `16000`. The minimum value is `2000`, but it is below the recommended specs
 
---8<-- 'text/node-operators/client-changes.md'
+--8<-- 'text/node-operators/networks/run-a-node/client-changes.md'
 
 ### Full Node {: #full-node }
 
@@ -386,4 +386,4 @@ Similarly, to only remove the relay chain data, you can run:
     sudo rm -rf {{ networks.moonbase.node_directory }}/polkadot/*
     ```
 
---8<-- 'text/purge-chain/post-purge.md'
+--8<-- 'text/node-operators/networks/run-a-node/post-purge.md'

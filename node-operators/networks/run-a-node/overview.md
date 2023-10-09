@@ -59,7 +59,7 @@ As stated before, the relay/parachain nodes will listen on multiple ports. The d
 
 The only ports that need to be open for incoming traffic are those designated for P2P. **Collators must not have RPC or WS ports opened**.
 
---8<-- 'text/node-operators/client-changes.md'
+--8<-- 'text/node-operators/networks/run-a-node/client-changes.md'
 
 ### Default Ports for a Parachain Full-Node {: #default-ports-for-a-parachain-full-node }
 

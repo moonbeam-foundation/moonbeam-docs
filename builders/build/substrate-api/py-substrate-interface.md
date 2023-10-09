@@ -14,13 +14,13 @@ description: Learn the basics of how to use the Python Substrate Interface libra
 For the examples in this guide, you will need to have the following:
 
  - An account with funds.
-  --8<-- 'text/faucet/faucet-list-item.md'
- -
---8<-- 'text/common/endpoint-examples.md'
+  --8<-- 'text/_common/faucet/faucet-list-item.md'
+ - 
+  --8<-- 'text/_common/endpoint-examples-list-item.md'
  - Have [`pip`](https://pypi.org/project/pip/){target=_blank} installed
 
 !!! note
-    --8<-- 'text/common/assumes-mac-or-ubuntu-env.md'
+    --8<-- 'text/_common/assumes-mac-or-ubuntu-env.md'
 
 ### Installing Python Substrate Interface {: #installing-python-substrate-interface }
 
@@ -34,7 +34,7 @@ pip install substrate-interface
 
 Similar to ETH API libraries, you must first instantiate an API instance of Python Substrate Interface API. Create the `WsProvider` using the websocket endpoint of the Moonbeam network you wish to interact with.
 
---8<-- 'text/common/endpoint-examples.md'
+--8<-- 'text/_common/endpoint-examples.md'
 
 === "Moonbeam"
 
@@ -392,8 +392,8 @@ You can sign transaction payloads or any arbitrary data using a keypair object t
 
 You can also make custom RPC requests with the [`rpc_request`](https://polkascan.github.io/py-substrate-interface/#substrateinterface.SubstrateInterface.rpc_request){target=_blank} method.
 
-This is particularly useful for interacting with Moonbeam's [ETH JSON RPC](/builders/get-started/eth-compare/rpc-support/){target=_blank} endpoints or Moonbeam's [custom RPC](/builders/build/moonbeam-custom-api/){target=_blank} endpoints.
+This is particularly useful for interacting with Moonbeam's [ETH JSON-RPC](/builders/get-started/eth-compare/rpc-support/){target=_blank} endpoints or Moonbeam's [custom RPC](/builders/build/moonbeam-custom-api/){target=_blank} endpoints.
 
 The [Consensus and Finality page](/builders/get-started/eth-compare/consensus-finality/#checking-tx-finality-with-substrate-libraries) has examples for using the custom RPC calls through Python Substrate Interface to check the finality of a transaction given its tx hash.
 
---8<-- 'text/disclaimers/third-party-content.md'
+--8<-- 'text/_disclaimers/third-party-content.md'

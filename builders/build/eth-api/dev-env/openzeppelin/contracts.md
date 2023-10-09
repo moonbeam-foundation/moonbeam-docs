@@ -243,4 +243,4 @@ With the contract compiled, next you will need to:
 
 And that is it! You've deployed an ERC-1155 token contract using OpenZeppelin's contracts and libraries. Next, you can interact with your token contract via Remix.
 
---8<-- 'text/disclaimers/third-party-content.md'
+--8<-- 'text/_disclaimers/third-party-content.md'

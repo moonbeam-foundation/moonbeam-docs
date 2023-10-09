@@ -438,3 +438,5 @@ You can use the following multilocation to register a local XC-20:
       }
     }
     ```
+
+Since local XC-20s are ERC-20s on Moonbeam, there are no deposits required to create an ERC-20 on Moonbeam. There may, however, be deposits required to register the asset on another parachain. Please consult with the parachain team you wish to register the asset with for more information.

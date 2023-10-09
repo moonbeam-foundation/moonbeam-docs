@@ -19,7 +19,7 @@ To follow along with this tutorial, you will need to have:
 
 - [MetaMask installed and connected to the Moonbase Alpha](/tokens/connect/metamask/){target=_blank} TestNet
 - An account funded with `DEV` tokens.
- --8<-- 'text/faucet/faucet-list-item.md'
+ --8<-- 'text/_common/faucet/faucet-list-item.md'
 - A Moonscan API key for the network you're trying to verify a contract on. For Moonbeam and Moonbase Alpha, you'll need a [Moonbeam Moonscan](https://moonscan.io/){target=_blank} API key. For Moonriver, you'll need a [Moonriver Moonscan](https://moonriver.moonscan.io/){target=_blank} API key
 - Git installed and configured
 
@@ -157,7 +157,7 @@ The result should be `0x00000000000000000000000000000000000000000000000000000000
     YOUR_CONTRACT_ADDRESS \
     --constructor-args 0x0000000000000000000000000000000000000000000000000000000000000064 \
     src/MyToken.sol:MyToken \
-    INSERT_YOUR_MOONSCAN_API_KEY
+    --etherscan-api-key INSERT_YOUR_MOONSCAN_API_KEY
     ```
 
 === "Moonriver"
@@ -167,7 +167,7 @@ The result should be `0x00000000000000000000000000000000000000000000000000000000
     YOUR_CONTRACT_ADDRESS \
     --constructor-args 0x0000000000000000000000000000000000000000000000000000000000000064 \
     src/MyToken.sol:MyToken \
-    INSERT_YOUR_MOONSCAN_API_KEY
+    --etherscan-api-key INSERT_YOUR_MOONSCAN_API_KEY
     ```
 
 === "Moonbase Alpha"
@@ -177,7 +177,7 @@ The result should be `0x00000000000000000000000000000000000000000000000000000000
     YOUR_CONTRACT_ADDRESS \
     --constructor-args 0x0000000000000000000000000000000000000000000000000000000000000064 \
     src/MyToken.sol:MyToken \
-    INSERT_YOUR_MOONSCAN_API_KEY
+    --etherscan-api-key INSERT_YOUR_MOONSCAN_API_KEY
     ```
 
 ![Foundry Verify](/images/builders/build/eth-api/verify-contracts/etherscan-plugins/plugins-5.png)

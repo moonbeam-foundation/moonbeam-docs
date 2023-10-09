@@ -21,7 +21,7 @@ This guide assumes you have a basic understanding of XCM. If not, please take ti
 
 For this guide specifically, you'll need to have an understanding of the following definitions:
 
---8<-- 'text/xcm/general-xcm-definitions2.md'
+--8<-- 'text/builders/interoperability/xcm/general-xcm-definitions2.md'
 
 ## X-Tokens Pallet Interface {: #x-tokens-pallet-interface }
 
@@ -71,6 +71,14 @@ The X-Tokens Pallet includes the following read-only functions to obtain pallet 
 - **baseXcmWeight**() - returns the base XCM weight required for execution
 - **selfLocation**() - returns the multilocation of the chain
 
+## XCM Instructions for Transfers via X-Tokens {: #xcm-instructions }
+
+The XCM instructions used for the X-Tokens Pallet extrinsics are defined in the [X-Tokens Open Runtime Module Library](https://github.com/open-web3-stack/open-runtime-module-library/tree/polkadot-{{networks.polkadot.spec_version}}/xtokens){target=_blank} repository.
+
+Regardless of which transfer extrinsic is used, the instructions are the same for sending the native asset back to its origin chain, such as xcDOT from Moonbeam back to Polkadot, and sending the native asset from the origin chain to a destination chain, such as DOT from Polkadot to Moonbeam.
+
+--8<-- 'text/builders/interoperability/xcm/xc20/x-tokens/xcm-instructions.md'
+
 ## Building an XCM Message with the X-Tokens Pallet {: #build-xcm-xtokens-pallet}
 
 This guide covers the process of building an XCM message using the X-Tokens Pallet, more specifically, with the `transfer` and `transferMultiasset` functions. Nevertheless, these two cases can be extrapolated to the other functions, especially once you become familiar with multilocations.
@@ -85,7 +93,7 @@ You'll be transferring xcUNIT tokens, which are the [XC-20](/builders/interopera
 To follow along with the examples in this guide, you need to have the following:
 
 - An account with funds.
- --8<-- 'text/faucet/faucet-list-item.md'
+ --8<-- 'text/_common/faucet/faucet-list-item.md'
 - Some xcUNIT tokens. You can swap DEV tokens (Moonbase Alpha's native token) for xcUNITs on [Moonbeam-Swap](https://moonbeam-swap.netlify.app/#/swap){target=_blank}, a demo Uniswap-V2 clone on Moonbase Alpha
 
     ![Moonbeam Swap xcUNIT](/images/builders/interoperability/xcm/xc20/xtokens/xtokens-1.png)
@@ -100,26 +108,6 @@ To check your xcUNIT balance, you can add the XC-20 to MetaMask with the followi
     If you're interested in how the precompile address is calculated, you can check out the [Calculate External XC-20 Precompile Addresses](/builders/interoperability/xcm/xc20/overview/#calculate-xc20-address){target=_blank} guide.
 
 You can adapt this guide for another [external XC-20 or a local XC-20](/builders/interoperability/xcm/xc20/overview){target=_blank}. If you're adapting this guide for another external XC-20, you'll need to have the asset ID of the asset you're transferring and the number of decimals the asset has, which you can get by following the [Retrieve List of External XC-20s](/builders/interoperability/xcm/xc20/overview/#list-xchain-assets){target=_blank} guide. If you're adapting this guide for a local XC-20, you'll need to have the contract address of the XC-20.
-
-If you are transferring a local XC-20, please be aware that transfers are limited to the following units of gas per each network:
-
-=== "Moonbeam"
-
-    ```text
-    {{ networks.moonbeam.erc20_xcm.transfer_gas_limit }}
-    ```
-
-=== "Moonriver"
-
-    ```text
-    {{ networks.moonriver.erc20_xcm.transfer_gas_limit }}
-    ```
-
-=== "Moonbase Alpha"
-
-    ```text
-    {{ networks.moonbase.erc20_xcm.transfer_gas_limit }}
-    ```
 
 ### X-Tokens Transfer Function {: #xtokens-transfer-function}
 
@@ -194,7 +182,7 @@ Now that you have the values for each of the parameters, you can write the scrip
     This is for demo purposes only. Never store your private key in a JavaScript file.
 
 ```js
---8<-- 'code/xtokens/transfer.js'
+--8<-- 'code/builders/interoperability/xcm/xc20/xtokens/transfer.js'
 ```
 
 !!! note
@@ -202,7 +190,7 @@ Now that you have the values for each of the parameters, you can write the scrip
 
 Once the transaction is processed, the target account on the relay chain should have received the transferred amount minus a small fee that is deducted to execute the XCM on the destination chain.
 
-### X-Tokens Transfer MultiAsset Function {: #xtokens-transfer-multiasset-function}
+### X-Tokens Transfer Multiasset Function {: #xtokens-transfer-multiasset-function}
 
 In this example, you'll build an XCM message to transfer xcUNIT from Moonbase Alpha back to its relay chain using the `transferMultiasset` function of the X-Tokens Pallet.
 
@@ -239,7 +227,10 @@ Since you'll be interacting with the `transferMultiasset` function of the X-Toke
               Concrete: {
                 parents: 0,
                 interior: {
-                  X2: [{ PalletInstance: 48 }, { AccountKey20: { key: 'INSERT_ERC_20_ADDRESS' } }],
+                  X2: [
+                    { PalletInstance: 48 },
+                    { AccountKey20: { key: 'INSERT_ERC_20_ADDRESS' } },
+                  ],
                 },
               },
             },
@@ -250,8 +241,10 @@ Since you'll be interacting with the `transferMultiasset` function of the X-Toke
         };
         ```
 
+        For information on the default gas limit for local XC-20 transfers and how to override the default, please refer to the following section: [Override Local XC-20 Gas Limits](#override-local-xc20-gas-limits).
+
 2. Define the XCM destination multilocation of the `dest`, which will target an account in the relay chain from Moonbase Alpha as the origin:
-    
+
     ```js
     const dest = {
       V3: {
@@ -293,13 +286,100 @@ Now that you have the values for each of the parameters, you can write the scrip
     This is for demo purposes only. Never store your private key in a JavaScript file.
 
 ```js
---8<-- 'code/xtokens/transferMultiAsset.js'
+--8<-- 'code/builders/interoperability/xcm/xc20/xtokens/transferMultiAsset.js'
 ```
 
 !!! note
     You can view an example of the above script, which sends 1 xcUNIT to Alice's account on the relay chain, on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/extrinsics/decode/0x1e010300010000070010a5d4e80301010100c4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a06300){target=_blank} using the following encoded calldata: `0x1e010300010000070010a5d4e80301010100c4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a06300`
 
 Once the transaction is processed, the account on the relay chain should have received the transferred amount minus a small fee that is deducted to execute the XCM on the destination chain.
+
+#### Override Local XC-20 Gas Limits {: #override-local-xc20-gas-limits }
+
+If you are transferring a local XC-20, the default units of gas is as follows for each network:
+
+=== "Moonbeam"
+
+    ```text
+    {{ networks.moonbeam.erc20_xcm.transfer_gas_limit }}
+    ```
+
+=== "Moonriver"
+
+    ```text
+    {{ networks.moonriver.erc20_xcm.transfer_gas_limit }}
+    ```
+
+=== "Moonbase Alpha"
+
+    ```text
+    {{ networks.moonbase.erc20_xcm.transfer_gas_limit }}
+    ```
+
+You can override the default gas limit using an additional junction when you create the multilocation for the local XC-20. To do so, you'll need to use the `GeneralKey` junction, which accepts two arguments: `data` and `length`.
+
+For example, to set the gas limit to `300000`, you'll need to set the `length` to `32`, and for the `data`, you'll need to pass in `gas_limit: 300000`. However, you can't simply pass in the value for `data` in text; you'll need to properly format it to a 32-byte zero-padded hex string, where the value for the gas limit is in little-endian format. To properly format the `data`, you can take the following steps:
+
+1. Convert `gas_limit:` to its byte representation
+2. Convert the value for the gas limit into its little-endian byte representation
+3. Concatenate the two byte representations into a single value padded to 32 bytes
+4. Convert the bytes to a hex string
+
+Using the `@polkadot/util` library, these steps are as follows:
+
+```js
+import { numberToU8a, stringToU8a, u8aToHex } from '@polkadot/util';
+
+// 1. Convert `gas_limit:` to bytes
+const gasLimitString = 'gas_limit:';
+const u8aGasLimit = stringToU8a(gasLimitString);
+
+// 2. Convert the gas value to little-endian formatted bytes
+const gasLimitValue = 300000;
+const u8aGasLimitValue = numberToU8a(gasLimitValue);
+const littleEndianValue = u8aGasLimitValue.reverse();
+
+// 3. Combine and zero pad the gas limit string and the gas limit 
+// value to 32 bytes
+const u8aCombinedGasLimit = new Uint8Array(32);
+u8aCombinedGasLimit.set(u8aGasLimit, 0);
+u8aCombinedGasLimit.set(littleEndianValue, u8aGasLimit.length);
+
+// 4. Convert the bytes to a hex string
+const data = u8aToHex(u8aCombinedGasLimit);
+console.log(`The GeneralKey data is: ${data}`);
+```
+
+The following is an example multilocation with the gas limit set to `300000`:
+
+```js
+// Multilocation for a local XC-20 on Moonbeam
+const asset = {
+  V3: {
+    id: {
+      Concrete: {
+        parents: 0,
+        interior: {
+          X2: [
+            { PalletInstance: 48 },
+            { AccountKey20: { key: 'INSERT_ERC_20_ADDRESS' } },
+            { 
+              GeneralKey: {
+                // gas_limit: 300000
+                data: '0x6761735f6c696d69743ae0930400000000000000000000000000000000000000',
+                length: 32,
+              },
+            },
+          ],
+        },
+      },
+    },
+    fun: {
+      Fungible: { Fungible: 1000000000000000000n }, // 1 token
+    },
+  },
+};
+```
 
 ## X-Tokens Precompile {: #xtokens-precompile}
 
@@ -323,7 +403,7 @@ The X-Tokens Precompile contract allows developers to access XCM token transfer 
      {{networks.moonbase.precompiles.xtokens}}
      ```
 
---8<-- 'text/precompiles/security.md'
+--8<-- 'text/builders/pallets-precompiles/precompiles/security.md'
 
 ### The X-Tokens Solidity Interface {: #xtokens-solidity-interface }
 
@@ -344,7 +424,7 @@ The interface includes the following functions:
 
 In the X-Tokens Precompile interface, the `Multilocation` structure is defined as follows:
 
---8<-- 'text/xcm/xcm-precompile-multilocation.md'
+--8<-- 'text/builders/interoperability/xcm/xcm-precompile-multilocation.md'
 
 The following code snippet goes through some examples of `Multilocation` structures, as they would need to be fed into the X-Tokens Precompile functions:
 
@@ -378,24 +458,24 @@ The following code snippet goes through some examples of `Multilocation` structu
 
 ### Using Libraries to Interact with X-Tokens {: #using-libraries-to-interact-with-xtokens}
 
-The Multilocation structs can be formatted like any other struct when using libraries to interact with the Ethereum API. The following code snippet include the previous [X-Tokens transfer function](#xtokens-transfer-function), the [X-Tokens multiasset transfer function](#xtokens-transfer-multiasset-function), and sample Multilocation struct examples. You can find the [X-Tokens ABI on Github](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/xtokens/abi.js){target=_blank}.
+The Multilocation structs can be formatted like any other struct when using libraries to interact with the Ethereum API. The following code snippet include the previous [X-Tokens transfer function](#xtokens-transfer-function), the [X-Tokens multiasset transfer function](#xtokens-transfer-multiasset-function), and sample Multilocation struct examples. You can find the [X-Tokens ABI on Github](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/builders/interoperability/xcm/xc20/xtokens/abi.js){target=_blank}.
 
 === "Ethers.js"
 
     ```js
-    --8<-- 'code/xtokens/ethers.js'
+    --8<-- 'code/builders/interoperability/xcm/xc20/xtokens/ethers.js'
     ```
 
 === "Web3.js"
 
     ```js
-    --8<-- 'code/xtokens/web3.js'
+    --8<-- 'code/builders/interoperability/xcm/xc20/xtokens/web3.js'
     ```
 
 === "Web3.py"
 
     ```py
-    --8<-- 'code/xtokens/web3.py'
+    --8<-- 'code/builders/interoperability/xcm/xc20/xtokens/web3.py'
     ```
 
 !!! note

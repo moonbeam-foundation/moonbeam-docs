@@ -399,7 +399,7 @@ The following code sample is for demo purposes only and should not be used witho
 
 You can use the following snippet for any Moonbeam-based network, but you'll need to modify the `baseFee` accordingly. You can refer back to the [Base Fee](#base-fee) section to get the calculation for each network.
 
---8<-- 'code/vs-ethereum/tx-fees/tx-fees-block-dynamic.md'
+--8<-- 'code/builders/get-started/eth-compare/tx-fees/tx-fees-block-dynamic.md'
 
 ## Substrate API Transaction Fees {: #substrate-api-transaction-fees }
 
@@ -464,4 +464,4 @@ And then the total transaction fee paid for this extrinsic is mapped to the foll
 extrinsics[extrinsic_number].events[event_number].data[1]
 ```
 
---8<-- 'text/disclaimers/third-party-content.md'
+--8<-- 'text/_disclaimers/third-party-content.md'

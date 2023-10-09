@@ -1,6 +1,6 @@
 ---
 title: Moonbeam API Providers and Endpoints
-description: Use one of the supported API providers to connect to a public endpoint or create custom JSON RPC and WSS endpoints for Moonbeam-based networks.
+description: Use one of the supported API providers to connect to a public endpoint or create custom JSON-RPC and WSS endpoints for Moonbeam-based networks.
 ---
 
 # Network Endpoints
@@ -15,15 +15,15 @@ If you are looking for an API provider suitable for production use, you can chec
 
 ### Moonbeam {: #moonbeam }
 
---8<-- 'text/endpoints/moonbeam.md'
+--8<-- 'text/builders/get-started/endpoints/moonbeam.md'
 
 ### Moonriver {: #moonriver }
 
---8<-- 'text/endpoints/moonriver.md'
+--8<-- 'text/builders/get-started/endpoints/moonriver.md'
 
 ### Moonbase Alpha {: #moonbase-alpha }
 
---8<-- 'text/endpoints/moonbase.md'
+--8<-- 'text/builders/get-started/endpoints/moonbase.md'
 
 ## RPC Endpoint Providers {: #endpoint-providers }
 

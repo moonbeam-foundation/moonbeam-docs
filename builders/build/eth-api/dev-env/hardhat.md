@@ -17,9 +17,9 @@ To get started, you will need the following:
 
 - Have MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=_blank}
 - Have an account with funds.
-  --8<-- 'text/faucet/faucet-list-item.md'
-
---8<-- 'text/common/endpoint-examples.md'
+  --8<-- 'text/_common/faucet/faucet-list-item.md'
+- 
+  --8<-- 'text/_common/endpoint-examples-list-item.md'
 
 ## Creating a Hardhat Project {: #creating-a-hardhat-project }
 
@@ -46,7 +46,7 @@ You will need to create a Hardhat project if you don't already have one. You can
 4. Create a project
 
     ```sh
-    npx hardhat
+    npx hardhat init
     ```
 
     !!! note
@@ -82,6 +82,7 @@ Open the file and add the following contract to it:
 
 ```solidity
 // contracts/Box.sol
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.1;
 
 contract Box {
@@ -107,7 +108,7 @@ contract Box {
 
 Before you can deploy the contract to Moonbase Alpha, you'll need to modify the Hardhat configuration file and create a secure file to store your private key in.
 
---8<-- 'text/hardhat/hardhat-configuration-file.md'
+--8<-- 'text/builders/build/eth-api/dev-env/hardhat/hardhat-configuration-file.md'
     You can modify the `hardhat.config.js` file to use any of the Moonbeam networks:
 
     === "Moonbeam"
@@ -286,7 +287,7 @@ Congratulations, you have successfully deployed and interacted with a contract u
 
 ## Hardhat Forking {: #hardhat-forking }
 
-You can [fork](https://hardhat.org/hardhat-network/docs/guides/forking-other-networks){target=_blank} any EVM compatible chain using Hardhat, including Moonbeam. Forking simulates the live Moonbeam network locally, enabling you to interact with deployed contracts on Moonbeam in a local test environment. Since Hardhat forking is based on an EVM implementation, you can interact with the fork using standard Ethereum JSON RPC methods supported by [Moonbeam](/builders/get-started/eth-compare/rpc-support/){target=_blank} and [Hardhat](https://hardhat.org/hardhat-network/docs/reference#json-rpc-methods-support){target=_blank}.
+You can [fork](https://hardhat.org/hardhat-network/docs/guides/forking-other-networks){target=_blank} any EVM compatible chain using Hardhat, including Moonbeam. Forking simulates the live Moonbeam network locally, enabling you to interact with deployed contracts on Moonbeam in a local test environment. Since Hardhat forking is based on an EVM implementation, you can interact with the fork using standard Ethereum JSON-RPC methods supported by [Moonbeam](/builders/get-started/eth-compare/rpc-support/){target=_blank} and [Hardhat](https://hardhat.org/hardhat-network/docs/reference#json-rpc-methods-support){target=_blank}.
 
 There are some limitations to be aware of when using Hardhat forking. You cannot interact with any of the Moonbeam precompiled contracts and their functions. Precompiles are a part of the Substrate implementation and therefore cannot be replicated in the simulated EVM environment. This prohibits you from interacting with cross-chain assets on Moonbeam and Substrate-based functionality such as staking and governance.
 
@@ -499,4 +500,4 @@ main().catch((error) => {
 });
 ```
 
---8<-- 'text/disclaimers/third-party-content.md'
+--8<-- 'text/_disclaimers/third-party-content.md'

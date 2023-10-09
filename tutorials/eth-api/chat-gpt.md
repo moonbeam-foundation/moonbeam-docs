@@ -41,7 +41,7 @@ For this tutorial, you'll need the following:
 
 - A free [OpenAI account to access ChatGPT](https://chat.openai.com/){target=_blank}
 - An account funded with DEV tokens to be used on the Moonbase Alpha TestNet if you'd like to deploy any resulting contracts.
-  --8<-- 'text/faucet/faucet-list-item.md'
+  --8<-- 'text/_common/faucet/faucet-list-item.md'
 
 ## Sign up for an OpenAI Account {: #sign-up-for-an-openai-account }
 
@@ -168,6 +168,6 @@ As you can see, ChatGPT can help you with just about every step of the smart con
 
 It's important to remember that ChatGPT can only act as an aid to a developer and cannot fulfill any sort of audit or review. Developers must be aware that generative AI tools like ChatGPT can produce inaccurate, buggy, or non-working code. Any code produced in this tutorial is for demonstration purposes only and should not be used in a production environment.  
 
---8<-- 'text/disclaimers/educational-tutorial.md'
+--8<-- 'text/_disclaimers/educational-tutorial.md'
 
---8<-- 'text/disclaimers/third-party-content.md'
+--8<-- 'text/_disclaimers/third-party-content.md'

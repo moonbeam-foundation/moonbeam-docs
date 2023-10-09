@@ -5,17 +5,16 @@ description: The Moonbeam TestNet, named Moonbase Alpha, is the easiest way to g
 
 # Get Started with Moonbase Alpha
 
---8<-- 'text/testnet/connect.md'
+--8<-- 'text/builders/get-started/networks/moonbase/connect.md'
 
 ## Block Explorers
 
 For Moonbase Alpha, you can use any of the following block explorers:
 
  - **Ethereum API (Etherscan Equivalent)** — [Moonscan](https://moonbase.moonscan.io/){target=_blank}
- - **Ethereum API with Indexing** — [Blockscout](https://moonbase-blockscout.testnet.moonbeam.network/){target=_blank}
  - **Ethereum API JSON-RPC based** — [Moonbeam Basic Explorer](https://moonbeam-explorer.netlify.app/?network=MoonbaseAlpha){target=_blank}
  - **Substrate API** — [Subscan](https://moonbase.subscan.io/){target=_blank} or [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/explorer){target=_blank}
- 
+
 For more information on each of the available block explorers, please head to the [Block Explorers](/builders/get-started/explorers/){target=_blank} section of the documentation.
 
 ## Connect MetaMask
@@ -31,7 +30,7 @@ If you already have MetaMask installed, you can easily connect MetaMask to the M
 
 If you do not have MetaMask installed, or would like to follow a tutorial to get started, please check out the [Interacting with Moonbeam using MetaMask](/tokens/connect/metamask/){target=_blank} guide.
 
-## Get Tokens {: #get-tokens } 
+## Get Tokens {: #get-tokens }
 
 To start building on Moonbase Alpha, you can get DEV tokens from the Moonbase Alpha Faucet. For specific amounts, you can always reach out directly to us via our community channels.
 

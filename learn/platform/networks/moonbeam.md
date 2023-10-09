@@ -43,7 +43,7 @@ Some important variables/configurations to note include (still subject to change
 
 _*Read more about [token denominations](#token-denominations)_
 
---8<-- 'text/moonbeam/connect.md'
+--8<-- 'text/builders/get-started/networks/moonbeam/connect.md'
 
 ## Telemetry {: #telemetry } 
 

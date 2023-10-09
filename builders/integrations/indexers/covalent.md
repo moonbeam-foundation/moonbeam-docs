@@ -14,7 +14,7 @@ description: Querying blockchain data such as balances, transactions, transfers,
 
 This guide will cover all of the details needed to get started with the [Covalent API](https://www.covalenthq.com/docs/api/){target=_blank} and how to access the API endpoints for Moonbeam using curl commands and JavaScript and Python snippets.
 
---8<-- 'text/disclaimers/third-party-content-intro.md'
+--8<-- 'text/_disclaimers/third-party-content-intro.md'
 
 ## Unified API {: #unified-api }
 
@@ -157,7 +157,7 @@ To get started with the Covalent API, you will need to have the following:
  - A free [Covalent API Key](https://www.covalenthq.com/platform/#/auth/register/){target=_blank}
  - MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=_blank}
  - An account with funds.
-  --8<-- 'text/faucet/faucet-list-item.md'
+  --8<-- 'text/_common/faucet/faucet-list-item.md'
 
 ### Using Curl {: #using-curl }
 
@@ -287,4 +287,4 @@ Increment can be used for:
 - [Browse all data models](https://www.covalenthq.com/platform/increment/#/pages/covalent/chain-gdp/?utm_source=moonbeam&utm_medium=partner-docs){target=_blank}
 - [Interact with a data model](https://www.covalenthq.com/platform/increment/#/sql/query_b6c88fd8604f49d5920ca86fa7/?utm_source=moonbeam&utm_medium=partner-docs){target=_blank}
 
---8<-- 'text/disclaimers/third-party-content.md'
+--8<-- 'text/_disclaimers/third-party-content.md'

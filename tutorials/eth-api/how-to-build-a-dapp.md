@@ -22,7 +22,7 @@ In this tutorial, you'll come face-to-face with each major component by writing 
 To get started, you should have the following:
 
  - A Moonbase Alpha account funded with DEV. 
-  --8<-- 'text/faucet/faucet-list-item.md'
+  --8<-- 'text/_common/faucet/faucet-list-item.md'
  - [Node.js](https://nodejs.org/en/download/){target=_blank} version 16 or newer installed
  - [VS Code](https://code.visualstudio.com/){target=_blank} with Juan Blanco's [Solidity extension](https://marketplace.visualstudio.com/items?itemName=JuanBlanco.solidity){target=_blank} is a recommended IDE
  - Understanding of JavaScript and React
@@ -1122,6 +1122,6 @@ An excellent [Web2 to Web3 blogpost](https://moonbeam.network/blog/web2-vs-web3-
 
 Hopefully, by reading this guide, you'll be well on your way to creating novel DApps on Moonbeam!
 
---8<-- 'text/disclaimers/educational-tutorial.md'
+--8<-- 'text/_disclaimers/educational-tutorial.md'
 
---8<-- 'text/disclaimers/third-party-content.md'
+--8<-- 'text/_disclaimers/third-party-content.md'

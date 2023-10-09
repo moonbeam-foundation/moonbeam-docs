@@ -3,7 +3,7 @@ title: Run a Moonbeam Development Node
 description: Follow this tutorial to learn how to spin up your first Moonbeam development node, how to configure it for development purposes, and connect to it.
 ---
 
-# Getting Started with a Moonbeam Development Node
+# Getting Started with a Local Moonbeam Development Node
 
 <style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/-bRooBW2g0o' frameborder='0' allowfullscreen></iframe></div>
 <style>.caption { font-family: Open Sans, sans-serif; font-size: 0.9em; color: rgba(170, 170, 170, 1); font-style: italic; letter-spacing: 0px; position: relative;}</style>
@@ -16,7 +16,7 @@ If you follow this guide to the end, you will have a Moonbeam development node r
 
 !!! note
     This tutorial was created using the {{ networks.development.build_tag }} tag of [Moonbase Alpha](https://github.com/moonbeam-foundation/moonbeam/releases/tag/{{ networks.development.build_tag }}){target=_blank}. The Moonbeam platform and the [Frontier](https://github.com/paritytech/frontier){target=_blank} components it relies on for Substrate-based Ethereum compatibility are still under very active development.
-    --8<-- 'text/common/assumes-mac-or-ubuntu-env.md'
+    --8<-- 'text/_common/assumes-mac-or-ubuntu-env.md'
 
 ## Spin up a Moonbeam Development Node {: #spin-up-a-node }
 
@@ -62,9 +62,14 @@ Using Docker enables you to spin up a node in a matter of seconds. Once you have
         --dev --rpc-external
         ```
 
-    If successful, you should see an output showing an idle state waiting for blocks to be authored:
+!!! note
+    On MacOS with silicon chips, Docker images may perform poorly. To improve performance, try [spinning up a Node with a Binary File](#getting-started-with-the-binary-file).
 
-    ![Docker - output shows blocks being produced](/images/builders/get-started/networks/moonbeam-dev/moonbeam-dev-2.png)
+
+
+If successful, you should see an output showing an idle state waiting for blocks to be authored:
+
+![Docker - output shows blocks being produced](/images/builders/get-started/networks/moonbeam-dev/moonbeam-dev-2.png)
 
 For more information on some of the flags and options used in the example, check out [Flags](#node-flags) and [Options](#node-options). If you want to see a complete list of all of the flags, options, and subcommands, open the help menu by running:
 
@@ -90,16 +95,19 @@ To build the binary file, you can take the following steps:
     cd moonbeam
     ```
 
+    !!! note
+        Space in the installation file path will cause a compilation error.
+
 2. If you already have Rust installed, you can skip the next two steps. Otherwise, install Rust and its prerequisites [via Rust's recommended method](https://www.rust-lang.org/tools/install){target=_blank} by executing:
 
     ```bash
-    --8<-- 'code/setting-up-node/installrust.md'
+    --8<-- 'code/builders/get-started/networks/moonbeam-dev/installrust.md'
     ```
 
 3. Update your PATH environment variable by running:
 
     ```bash
-    --8<-- 'code/setting-up-node/updatepath.md'
+    --8<-- 'code/builders/get-started/networks/moonbeam-dev/updatepath.md'
     ```
 
 4. Build the development node by running:
@@ -111,8 +119,15 @@ To build the binary file, you can take the following steps:
         apt install clang protobuf-compiler libprotobuf-dev -y 
         ```
 
+        For MacOS users, these dependencies can be installed via Homebrew:
+
+        ```bash
+        brew install llvm
+        brew install protobuf
+        ```
+
     ```bash
-    --8<-- 'code/setting-up-node/build.md'
+    --8<-- 'code/builders/get-started/networks/moonbeam-dev/build.md'
     ```
 
     Here is what the tail end of the build output should look like:
@@ -125,7 +140,7 @@ To build the binary file, you can take the following steps:
 Then, you will want to run the node in development mode using the following command:
 
 ```bash
---8<-- 'code/setting-up-node/runnode.md'
+--8<-- 'code/builders/get-started/networks/moonbeam-dev/runnode.md'
 ```
 
 !!! note
@@ -150,7 +165,7 @@ Now that you know how to get a standard Moonbeam development node up and running
 Flags do not take an argument. To use a flag, add it to the end of a command. For example:
 
 ```bash
---8<-- 'code/setting-up-node/runnode.md'
+--8<-- 'code/builders/get-started/networks/moonbeam-dev/runnode.md'
 ```
 
 - **`--dev`** - specifies the development chain
@@ -162,10 +177,10 @@ Flags do not take an argument. To use a flag, add it to the end of a command. Fo
 Options accept an argument to the right of the option. For example:
 
 ```bash
---8<-- 'code/setting-up-node/runnodewithsealinginterval.md'
+--8<-- 'code/builders/get-started/networks/moonbeam-dev/runnodewithsealinginterval.md'
 ```
 
-- **`-l <log pattern>` or `--log <log pattern>`** - sets a custom logging filter. The syntax for the log pattern is `<target>=<level>`. For example, to print all of the JSON RPC logs, the command would look like this: `-l json=trace`
+- **`-l <log pattern>` or `--log <log pattern>`** - sets a custom logging filter. The syntax for the log pattern is `<target>=<level>`. For example, to print all of the JSON-RPC logs, the command would look like this: `-l json=trace`
 - **`--sealing <interval>`** - when blocks should be sealed in the dev service. Accepted arguments for interval: `instant`, `manual`, or a number representing the timer interval in milliseconds (for example, `6000` will have the node produce blocks every 6 seconds). Default is `instant`. Please refer to the [Configure Block Production](#configure-block-production) section below for more information
 - **`--rpc-port <port>`** - sets the unified port for HTTP and WS connections. Accepts a port as the argument. Default is {{ networks.parachain.rpc }}
 - **`--ws-port <port>`** - *deprecated as of [client v0.33.0](https://github.com/moonbeam-foundation/moonbeam/releases/tag/v0.33.0){target=_blank}, use `--rpc-port` for HTTP and WS connections instead* sets the WebSockets RPC server TCP port. As of [client v0.30.0](https://github.com/moonbeam-foundation/moonbeam/releases/tag/v0.30.0){target=_blank}, sets the unified port for both HTTP and WS connections. Accepts a port as the argument
@@ -191,13 +206,13 @@ The flag should be appended to the start-up command in the following format:
 --sealing <interval>
 ```
 
-If you choose `manual`, you'll need to manually create the blocks yourself, which can be done with the `engine_createBlock` JSON RPC method:
+If you choose `manual`, you'll need to manually create the blocks yourself, which can be done with the `engine_createBlock` JSON-RPC method:
 
 ```text
 engine_createBlock(createEmpty: *bool*, finalize: *bool*, parentHash?: *BlockHash*)
 ```
 
-For example, you can use the following snippet to manually create a block using [Ethers.js](/builders/build/eth-api/libraries/ethersjs){target=_blank}, an Ethereum library that makes it easy to interact with JSON RPC methods:
+For example, you can use the following snippet to manually create a block using [Ethers.js](/builders/build/eth-api/libraries/ethersjs){target=_blank}, an Ethereum library that makes it easy to interact with JSON-RPC methods:
 
 ```js
 import { ethers } from 'ethers';
@@ -236,11 +251,11 @@ bottom drive obey lake curtain smoke basket hold race lonely fit walk
 ```
 
 ??? note "Development account addresses and private keys"
-    --8<-- 'code/setting-up-node/dev-accounts.md'
+    --8<-- 'code/builders/get-started/networks/moonbeam-dev/dev-accounts.md'
 
 Also included with the development node is an additional prefunded account used for testing purposes:
 
---8<-- 'code/setting-up-node/dev-testing-account.md'
+--8<-- 'code/builders/get-started/networks/moonbeam-dev/dev-testing-account.md'
 
 You can connect any of these accounts to [MetaMask](/tokens/connect/metamask/){target=_blank}, [Talisman](/tokens/connect/talisman/){target=_blank}, [Polkadot.js Apps](/tokens/connect/polkadotjs/){target=_blank}, etc., using their private keys.
 

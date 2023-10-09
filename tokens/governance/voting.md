@@ -22,7 +22,7 @@ This guide will outline the process, with step-by-step instructions, of how to v
 
 Some of the key parameters for this guide are the following:
 
---8<-- 'text/governance/vote-conviction-definitions.md'
+--8<-- 'text/learn/features/governance/vote-conviction-definitions.md'
 
  - **Maximum number of votes** — the maximum number of concurrent votes per account
 
@@ -44,15 +44,15 @@ Some of the key parameters for this guide are the following:
         {{ networks.moonbase.governance.max_votes }} votes
         ```
 
---8<-- 'text/governance/approval-support-definitions.md'
+--8<-- 'text/learn/features/governance/approval-support-definitions.md'
 
---8<-- 'text/governance/lead-in-definitions.md'
+--8<-- 'text/learn/features/governance/lead-in-definitions.md'
 
  - **Decide Period** - token holders continue to vote on the referendum. If a referendum does not pass by the end of the period, it will be rejected and the Decision Deposit will be refunded
  - **Confirm Period** - a period of time within the Decide Period where the referendum needs to have maintained enough Approval and Support to be approved and move to the Enactment Period
  - **Enactment Period** - a specified time, which is defined at the time the proposal was created, that meets at least the minimum amount of time that an approved referendum waits before it can be dispatched
 
---8<-- 'text/governance/delegation-definitions.md'
+--8<-- 'text/learn/features/governance/delegation-definitions.md'
 
 For an overview of the Track-specific parameters such as the length of the Decide, Confirm, and Enactment Period, the Approval and Support requirements, and more, please refer to the [Governance Parameters for OpenGov (Governance v2) section of the governance overview page](/learn/features/governance/#governance-parameters-v2){target=_blank}.
 

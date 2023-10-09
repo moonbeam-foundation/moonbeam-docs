@@ -38,15 +38,14 @@ The EIP-712 standard specifies how the message data should be structured by requ
 For this tutorial, you'll need the following:
 
 - An account with funds.
-  --8<-- 'text/faucet/faucet-list-item.md'
+  --8<-- 'text/_common/faucet/faucet-list-item.md'
 - A project with [Ethers](/builders/build/eth-api/libraries/ethersjs){target=_blank} installed:
 
     ```bash
     npm i ethers
     ```
-
 - 
---8<-- 'text/common/endpoint-examples.md'
+ --8<-- 'text/_common/endpoint-examples-list-item.md'
 
 ## Configure your Project {: #configure-your-project }
 
@@ -162,7 +161,7 @@ The domain separator and the typed data structure will be based on the [Call Per
 
 We'll first start off with the domain separator, which will define the Call Permit Precompile as the signing domain. Permits will get dispatched by calling the `dispatch` function of the Call Permit Precompile, which is why the Call Permit Precompile is always going to be the signing domain. As previously mentioned, the goal of the domain separator is to avoid replay attacks. 
 
---8<-- 'text/precompiles/call-permit/domain-separator.md'
+--8<-- 'text/builders/pallets-precompiles/precompiles/call-permit/domain-separator.md'
 
 We're using Ethers in this example, which requires the domain separator to be in the format specified by the [`TypedDataDomain` interface](https://docs.ethers.org/v6/api/hashing/#TypedDataDomain){target=_blank}, but if desired, you could generate the domain separator as a *bytes32* representation using the [`DOMAIN_SEPARATOR()` function of the Call Permit Precompile](/builders/pallets-precompiles/precompiles/call-permit/#:~:text=DOMAIN_SEPARATOR()){target=_blank}.
 
@@ -360,7 +359,7 @@ We'll get the nonce in the next section, and then put all of the arguments toget
 
 Lastly, we'll need to get the `nonce` of the `from` account. As previously mentioned, we can use the `nonces` function of the Call Permit Precompile to get this value. To do so, you'll need to create a contract instance for the Call Permit Precompile:
 
-1. Create a new file in your project that contains the ABI of the Call Permit Precompile. You can find the [ABI on GitHub](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/precompiles/call-permit/abi.js){target=_blank}
+1. Create a new file in your project that contains the ABI of the Call Permit Precompile. You can find the [ABI on GitHub](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/builders/pallets-precompiles/precompiles/call-permit/abi.js){target=_blank}
 2. Import the ABI into your Ethers file
 3. Create an instance of the Call Permit Precompile using the precompile's address and the ABI of the precompile. You can use either a provider or a signer. Since we are dispatching the permit later on in this tutorial, we'll use the signer associated with the third-party account for transaction fees, but if you only needed to access the `nonces` function, you could use a provider instead
 4. Call the `nonces` function and pass in the `signer.account` of the user, which is the same as the `from` account
@@ -518,7 +517,7 @@ console.log(`Transaction hash: ${dispatch.hash}`);
 
 ??? code "View the complete script"
     ```js
-    --8<-- 'code/precompiles/call-permit/dispatch-call-permit.js'
+    --8<-- 'code/builders/pallets-precompiles/precompiles/call-permit/dispatch-call-permit.js'
     ```
 
     !!! remember
@@ -537,5 +536,5 @@ You can view the transaction for the example that we covered in this guide on [M
 
 And that's it! Congrats! You've learned how to implement gasless transactions using the Call Permit Precompile on Moonbeam. You can now adapt the logic in this tutorial for your own dApp!
 
---8<-- 'text/disclaimers/educational-tutorial.md'
---8<-- 'text/disclaimers/third-party-content.md'
+--8<-- 'text/_disclaimers/educational-tutorial.md'
+--8<-- 'text/_disclaimers/third-party-content.md'

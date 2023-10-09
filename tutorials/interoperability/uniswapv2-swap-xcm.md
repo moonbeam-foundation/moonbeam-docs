@@ -31,14 +31,14 @@ With the steps outlined, some prerequisites need to be taken into account, let's
 
 Considering all the steps summarized in the [introduction](#introduction), the following prerequisites need to be accounted for:
 
-- You needs to have UNITs on the relay chain to pay for transaction fees when sending the XCM. If you have a Moonbase Alpha account funded with DEV tokens, you can swap some DEV for xcUNIT here on [Moonbeam Swap](https://moonbeam-swap.netlify.app/#/swap){target=_blank}. Then withdraw the xcUNIT from Moonbase Alpha to [your account on the Moonbase relay chain](https://polkadot.js.org/apps/?rpc=wss://frag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/accounts){target=_blank} using [apps.moonbeam.network](https://apps.moonbeam.network/moonbase-alpha/){target=_blank}
+- You need to have UNITs on the relay chain to pay for transaction fees when sending the XCM. If you have a Moonbase Alpha account funded with DEV tokens, you can swap some DEV for xcUNIT here on [Moonbeam Swap](https://moonbeam-swap.netlify.app/#/swap){target=_blank}. Then withdraw the xcUNIT from Moonbase Alpha to [your account on the Moonbase relay chain](https://polkadot.js.org/apps/?rpc=wss://frag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/accounts){target=_blank} using [apps.moonbeam.network](https://apps.moonbeam.network/moonbase-alpha/){target=_blank}
 - Your [multilocation-derivative account](/builders/interoperability/xcm/xcm-transactor/#general-xcm-definitions){target=_blank} must hold `DEV` tokens to fund the Uniswap V2 swap, and also pay for the XCM execution (although this could be paid in UNIT tokens as `xcUNIT`). We will calculate the multilocation-derivative account address in the next section
 
---8<-- 'text/faucet/faucet-list-item.md'
+--8<-- 'text/_common/faucet/faucet-list-item.md'
 
 ## Calculating your Multilocation-Derivative Account {: #calculating-your-multilocation-derivative-account }
 
---8<-- 'text/xcm/calculate-multilocation-derivative-account.md'
+--8<-- 'text/builders/interoperability/xcm/calculate-multilocation-derivative-account.md'
 
 For our case, we will send the remote EVM call via XCM from Alice's account, which is `5GKh9gMK5dn9SJp6qfMNcJiMMnY7LReYmgug2Fr5fKE64imn`, so the command and response would look like the following image.
 
@@ -55,7 +55,7 @@ The values are all summarized in the following table:
 
 The script will return 32-byte and 20-byte addresses. We’re interested in the Ethereum-style account - the 20-byte one, which is `0x61cd3e07fe7d7f6d4680e3e322986b7877f108dd`. Feel free to look up your multilocation-derivative account on [Moonscan](https://moonbase.moonscan.io/){target=_blank}. Next, you can fund this account with DEV tokens. 
 
---8<-- 'text/faucet/faucet-sentence.md'
+--8<-- 'text/_common/faucet/faucet-sentence.md'
 
 ## Getting the Uniswap V2 Swap Calldata {: #getting-uniswapv2-swap-calldata }
 
@@ -256,4 +256,4 @@ Our XCM was successfully executed! If you visit [Moonbase Alpha Moonscan](https:
 !!! challenge
     Do a Uniswap V2 swap of `MARS` for any other token you want. Note that in this case, you'll have to remotely execute an ERC-20 `approve` via XCM first to allow the Uniswap V2 Router to spend the tokens on your behalf. Once the approval is done, you can send the XCM message for the swap itself.
 
---8<-- 'text/disclaimers/educational-tutorial.md'
+--8<-- 'text/_disclaimers/educational-tutorial.md'

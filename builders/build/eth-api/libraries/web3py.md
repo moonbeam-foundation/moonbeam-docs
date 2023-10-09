@@ -7,7 +7,7 @@ description: Follow this tutorial to learn how to use the Ethereum Web3 Python L
 
 ## Introduction {: #introduction }
 
-[Web3.py](https://web3py.readthedocs.io/) is a set of libraries that allow developers to interact with Ethereum nodes using HTTP, IPC, or WebSocket protocols with Python. Moonbeam has an Ethereum-like API available that is fully compatible with Ethereum-style JSON RPC invocations. Therefore, developers can leverage this compatibility and use the Web3.py library to interact with a Moonbeam python3 as if they were doing so on Ethereum.
+[Web3.py](https://web3py.readthedocs.io/) is a set of libraries that allow developers to interact with Ethereum nodes using HTTP, IPC, or WebSocket protocols with Python. Moonbeam has an Ethereum-like API available that is fully compatible with Ethereum-style JSON-RPC invocations. Therefore, developers can leverage this compatibility and use the Web3.py library to interact with a Moonbeam python3 as if they were doing so on Ethereum.
 
 In this guide, you'll learn how to use the Web3.py library to send a transaction and deploy a contract on Moonbase Alpha. This guide can be adapted for [Moonbeam](/builders/get-started/networks/moonbeam/){target=_blank}, [Moonriver](/builders/get-started/networks/moonriver/){target=_blank}, or a [Moonbeam development node](/builders/get-started/networks/moonbeam-dev/){target=_blank}.
 
@@ -16,12 +16,12 @@ In this guide, you'll learn how to use the Web3.py library to send a transaction
 For the examples in this guide, you will need to have the following:
 
  - An account with funds.
-  --8<-- 'text/faucet/faucet-list-item.md'
+  --8<-- 'text/_common/faucet/faucet-list-item.md'
  - 
---8<-- 'text/common/endpoint-examples.md'
+--8<-- 'text/_common/endpoint-examples-list-item.md'
 
 !!! note
-    --8<-- 'text/common/assumes-mac-or-ubuntu-env.md'
+    --8<-- 'text/_common/assumes-mac-or-ubuntu-env.md'
 
 ## Create a Python Project {: #create-a-python-project }
 
@@ -41,7 +41,7 @@ pip3 install web3 py-solc-x
 
 Throughout this guide, you'll be creating a bunch of scripts that provide different functionalities, such as sending a transaction, deploying a contract, and interacting with a deployed contract. In most of these scripts, you'll need to create a [Web3.py provider](https://web3py.readthedocs.io/en/stable/providers.html){target=_blank} to interact with the network.
 
---8<-- 'text/common/endpoint-setup.md'
+--8<-- 'text/_common/endpoint-setup.md'
 
 To create a provider, you can take the following steps:
 
@@ -111,7 +111,7 @@ Next, you will create the script for this file and complete the following steps:
 3. Get the balance for the accounts using the `web3.eth.get_balance` function and format the results using the `web3.from_wei`
 
 ```python
---8<-- 'code/web3py-tx/balances.py'
+--8<-- 'code/builders/build/eth-api/libraries/web3-py/balances.py'
 ```
 
 To run the script and fetch the account balances, you can run the following command:
@@ -140,7 +140,7 @@ Next, you will create the script for this file and complete the following steps:
 6. Using the signed transaction, you can then send it using the `web3.eth.send_raw_transaction` function and wait for the transaction receipt by using the `web3.eth.wait_for_transaction_receipt` function
 
 ```python
---8<-- 'code/web3py-tx/transaction.py'
+--8<-- 'code/builders/build/eth-api/libraries/web3-py/transaction.py'
 ```
 
 To run the script, you can run the following command in your terminal:
@@ -157,7 +157,7 @@ You can also use the `balances.py` script to check that the balances for the ori
 
 ## Deploy a Contract {: #deploy-a-contract }
 
---8<-- 'text/libraries/contract.md'
+--8<-- 'text/builders/build/eth-api/libraries/contract.md'
 
 ### Compile Contract Script {: #compile-contract-script }
 
@@ -175,7 +175,7 @@ Next, you will create the script for this file and complete the following steps:
 4. Export the contract's ABI and bytecode
 
 ```python
---8<-- 'code/web3py-contract/compile.py'
+--8<-- 'code/builders/build/eth-api/libraries/web3-py/compile.py'
 ```
 !!! note
     If you see an error stating that `Solc is not installed`, uncomment step 2 described in the code snippet.
@@ -199,7 +199,7 @@ Next, you will create the script for this file and complete the following steps:
 7. Using the signed transaction, you can then send it using the `web3.eth.send_raw_transaction` function and wait for the transaction receipt by using the `web3.eth.wait_for_transaction_receipt` function
 
 ```python
---8<-- 'code/web3py-contract/deploy.py'
+--8<-- 'code/builders/build/eth-api/libraries/web3-py/deploy.py'
 ```
 
 To run the script, you can enter the following command into your terminal:
@@ -231,7 +231,7 @@ Then you can take the following steps to create the script:
 5. Using the contract instance, you can then call the `number` function
 
 ```python
---8<-- 'code/web3py-contract/get.py'
+--8<-- 'code/builders/build/eth-api/libraries/web3-py/get.py'
 ```
 
 To run the script, you can enter the following command in your terminal:
@@ -261,7 +261,7 @@ Open the `increment.py` file and take the following steps to create the script:
 7. Using the signed transaction, you can then send it using the `web3.eth.send_raw_transaction` function and wait for the transaction receipt by using the `web3.eth.wait_for_transaction_receipt` function
 
 ```python
---8<-- 'code/web3py-contract/increment.py'
+--8<-- 'code/builders/build/eth-api/libraries/web3-py/increment.py'
 ```
 
 To run the script, you can enter the following command in your terminal:
@@ -285,7 +285,7 @@ Next you can open the `reset.py` file and take the following steps to create the
 7. Using the signed transaction, you can then send it using the `web3.eth.send_raw_transaction` function and wait for the transaction receipt by using the `web3.eth.wait_for_transaction_receipt` function
 
 ```python
---8<-- 'code/web3py-contract/reset.py'
+--8<-- 'code/builders/build/eth-api/libraries/web3-py/reset.py'
 ```
 
 To run the script, you can enter the following command in your terminal:
@@ -298,4 +298,4 @@ If successful, the transaction hash will be displayed in the terminal. You can u
 
 ![Reset Contract Web3py](/images/builders/build/eth-api/libraries/web3py/web3py-4.png)
 
---8<-- 'text/disclaimers/third-party-content.md'
+--8<-- 'text/_disclaimers/third-party-content.md'

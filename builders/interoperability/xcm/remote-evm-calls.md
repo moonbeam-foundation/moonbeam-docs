@@ -28,7 +28,7 @@ This guide will go through the differences between regular and remote EVM calls.
 
 ## Relevant XCM Definitions {: #general-xcm-definitions }
 
---8<-- 'text/xcm/general-xcm-definitions2.md'
+--8<-- 'text/builders/interoperability/xcm/general-xcm-definitions2.md'
 
  - **Multilocation-derivative account** —  an account derivated from the new origin set by the [Descend Origin](https://github.com/paritytech/xcm-format#descendorigin){target=_blank} XCM instruction and the provided multilocation, which is typically the sovereign account from which the XCM originated. Derivative accounts are keyless (the private key is unknown). Consequently, derivative accounts related to XCM-specific use cases can only be accessed through XCM extrinsics. For Moonbeam-based networks, [the derivation method](https://github.com/moonbeam-foundation/moonbeam/blob/master/primitives/xcm/src/location_conversion.rs#L31-L37){target=_blank} is calculating the `blake2` hash of the multilocation, which includes the origin parachain ID, and truncating the hash to the correct length (20 bytes for an Ethereum-styled account). The XCM call [origin conversion](https://github.com/paritytech/polkadot-sdk/blob/master/polkadot/xcm/xcm-executor/src/lib.rs#L343){target=_blank} happens when the `Transact` instruction gets executed. Consequently, each parachain can convert the origin with its own desired procedure, so the user who initiated the transaction might have a different derivative account per parachain. This derivative account pays for transaction fees, and it is set as the dispatcher of the call
  - **Transact information** — relates to extra weight and fee information for the XCM remote execution part of the XCM Transactor extrinsic. This is needed because the sovereign account pays the XCM transaction fee. Therefore, XCM Transactor calculates what the fee is and charges the sender of the XCM Transactor extrinsic the estimated amount in the corresponding [XC-20 token](/builders/interoperability/xcm/xc20/overview/){target=_blank} to repay the sovereign account
@@ -61,7 +61,7 @@ The `20,000,000,000` weight limit per XCM message constrains the gas limit avail
 In summary, these are the main differences between regular and remote EVM calls:
 
 - Remote EVM calls use a global nonce (owned by the [Ethereum-XCM pallet](https://github.com/moonbeam-foundation/moonbeam/tree/master/pallets/ethereum-xcm){target=_blank}) instead of a nonce per account
-- The `v-r-s` values of the signature for remote EVM calls are `0x1`. The sender can't be retrieved from the signature through standard methods (for example, through [ECRECOVER](/builders/pallets-precompiles/precompiles/eth-mainnet/#verify-signatures-with-ecrecover){target=_blank}). Nevertheless, the `from` is included in both the transaction receipt and when getting the transaction by hash (using the Ethereum JSON RPC)
+- The `v-r-s` values of the signature for remote EVM calls are `0x1`. The sender can't be retrieved from the signature through standard methods (for example, through [ECRECOVER](/builders/pallets-precompiles/precompiles/eth-mainnet/#verify-signatures-with-ecrecover){target=_blank}). Nevertheless, the `from` is included in both the transaction receipt and when getting the transaction by hash (using the Ethereum JSON-RPC)
 - The gas price for all remote EVM calls is zero. The EVM execution is charged at an XCM execution level and not at an EVM level
 - The current maximum gas limit you can set for a remote EVM call is `720,000` gas units
 
@@ -141,7 +141,7 @@ When the XCM instruction gets executed in Moonbeam (Moonbase Alpha in this examp
 }
 ```
 
---8<-- 'text/xcm/calculate-multilocation-derivative-account.md'
+--8<-- 'text/builders/interoperability/xcm/calculate-multilocation-derivative-account.md'
 
 For example, for Alice's relay chain account of `5DV1dYwnQ27gKCKwhikaw1rz1bYdvZZUuFkuduB4hEK3FgDT`, you can calculate her Moonbase Alpha **multilocation-derivative account** by running:
 
@@ -182,7 +182,7 @@ For the action to be executed, you'll be performing a contract interaction with 
 
 The encoded call data of the interaction with the `increment` function is `0xd09de08a`, which is the first eight hexadecimal characters (or 4 bytes) of the keccak256 hash of `increment()`. If you choose to interact with a function that has input parameters, they also need to be encoded. The easiest way to get the encoded call data is to emulate a transaction either in [Remix](/builders/build/eth-api/dev-env/remix/#interacting-with-a-moonbeam-based-erc-20-from-metamask){target=_blank} or [Moonscan](https://moonbase.moonscan.io/address/0xa72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8#code){target=_blank}. Next, in Metamask, check the **HEX DATA: 4 BYTES** selector under the **HEX** tab before signing it. You don't need to sign the transaction.
 
-Now that you have the encoded contract interaction data, you can determine the gas limit for this call using the [`eth_estimateGas` JSON RPC method](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_estimategas){target=_blank}. For this example, you can set the gas limit to `155000`.
+Now that you have the encoded contract interaction data, you can determine the gas limit for this call using the [`eth_estimateGas` JSON-RPC method](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_estimategas){target=_blank}. For this example, you can set the gas limit to `155000`.
 
 For the value, you can set it to `0` since this particular interaction does not need DEV (or GLMR/MOVR for Moonbeam/Moonriver). For an interaction that requires DEV, you'll need to modify this value accordingly.
 
@@ -209,7 +209,7 @@ Next, you can write the script to get the encoded call data for the transaction.
  4. Get the encoded call data for the extrinsic. You don't need to sign and send the transaction
 
 ```js
---8<-- 'code/remote-execution/generate-encoded-call-data.js'
+--8<-- 'code/builders/interoperability/xcm/remote-evm-calls/generate-encoded-call-data.js'
 ```
 
 !!! note
@@ -289,7 +289,7 @@ Now that you've generated the [Ethereum XCM pallet](https://github.com/moonbeam-
 
         ??? code "Complete modified script"
             ```js
-            --8<-- 'code/remote-execution/estimate-required-weight.js'
+            --8<-- 'code/builders/interoperability/xcm/remote-evm-calls/estimate-required-weight.js'
             ```
 
         The script, at the time of writing, returns an estimate of `3900000000` for `refTime` and `38750` for `proofSize`.
@@ -329,7 +329,7 @@ Now that you have the values for each of the parameters, you can write the scrip
     This is for demo purposes only. Never store your private key in a JavaScript file.
 
 ```js
---8<-- 'code/remote-execution/send.js'
+--8<-- 'code/builders/interoperability/xcm/remote-evm-calls/send.js'
 ```
 
 !!! note
@@ -348,7 +348,7 @@ To verify that the remote EVM call through XCM was successful, you can head to t
 
 ## Remote EVM Call Transaction by Hash {: #remove-evm-call-txhash}
 
-As mentioned before, there are some [differences between regular and remote XCM EVM calls]( #differences-regular-remote-evm). Some main differences can be seen when retrieving the transaction by its hash using the Ethereum JSON RPC.
+As mentioned before, there are some [differences between regular and remote XCM EVM calls]( #differences-regular-remote-evm). Some main differences can be seen when retrieving the transaction by its hash using the Ethereum JSON-RPC.
 
 To do so, you first need to retrieve the transaction hash you want to query. For this example, you can use the transaction hash from the [previous section](#build-remove-evm-call-xcm), which is [0x753588d6e59030eeffd31aabccdd0fb7c92db836fcaa8ad71512cf3a7d0cb97f](https://moonbase.moonscan.io/tx/0x753588d6e59030eeffd31aabccdd0fb7c92db836fcaa8ad71512cf3a7d0cb97f){target=_blank}. Open the terminal, and execute the following command:
 
@@ -364,7 +364,7 @@ curl --location --request POST 'https://rpc.api.moonbase.moonbeam.network' \
 '
 ```
 
-If the JSON RPC request is sent correctly, the response should look like this:
+If the JSON-RPC request is sent correctly, the response should look like this:
 
 ```json
 {

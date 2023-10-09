@@ -23,9 +23,9 @@ This guide will cover how to use Foundry to compile, deploy, and debug Ethereum 
 To get started, you will need the following:
 
  - Have an account with funds.
-  --8<-- 'text/faucet/faucet-list-item.md'
- -
---8<-- 'text/common/endpoint-examples.md'
+  --8<-- 'text/_common/faucet/faucet-list-item.md'
+ - 
+--8<-- 'text/_common/endpoint-examples-list-item.md'
  - Have [Foundry installed](https://book.getfoundry.sh/getting-started/installation){target=_blank}
 
 ## Creating a Foundry Project {: #creating-a-foundry-project }
@@ -61,7 +61,7 @@ In addition to these three folders, a git project will also be created along wit
 
 ## The Source Folder {: #the-src-folder }
 
-The `src` folder may already contain `Contract.sol`, a minimal Solidity contract. Feel free to delete it. Instead, you will be deploying an ERC-20 contract. In the contracts directory, you can create the `MyToken.sol` file:
+The `src` folder may already contain `Counter.sol`, a minimal Solidity contract. Feel free to delete it. To avoid errors, you should also delete the `Counter.s.sol` file in the `scripts` folder and the `Counter.t.sol` file in the `test` folder. In the following steps, you will be deploying an ERC-20 contract. In the contracts directory, you can create the `MyToken.sol` file:
 
 ```bash
 cd src
@@ -416,7 +416,7 @@ To convert your preexisting Foundry project to a hybrid project, you will essent
 ```bash
 npm init
 npm install --save-dev hardhat @nomicfoundation/hardhat-foundry
-npx hardhat
+npx hardhat init
 ```
 
 For more information, please refer to our documentation on [Creating a Hardhat Project](/builders/build/eth-api/dev-env/hardhat/#creating-a-hardhat-project){target=_blank}.
@@ -461,4 +461,4 @@ npm run test
 
 Finally, while not necessary, it could be worthwhile to move all JavaScript scripts from the `scripts` folder into Foundry's `script` folder and delete the `scripts` folder so that you don't have two folders that serve the same purpose.
 
---8<-- 'text/disclaimers/third-party-content.md'
+--8<-- 'text/_disclaimers/third-party-content.md'

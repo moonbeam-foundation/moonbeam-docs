@@ -38,11 +38,17 @@ The randomness precompile is located at the following address:
      {{ networks.moonbase.precompiles.randomness }}
      ```
 
---8<-- 'text/precompiles/security.md'
+--8<-- 'text/builders/pallets-precompiles/precompiles/security.md'
 
 ## The Randomness Solidity Interface {: #the-randomness-interface }
 
 [Randomness.sol](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/randomness/Randomness.sol){target=_blank} is a Solidity interface that allows developers to interact with the precompile's methods.
+
+??? code "Randomness.sol"
+
+    ```solidity
+    --8<-- 'code/builders/pallets-precompiles/precompiles/randomness/Randomness.sol'
+    ```
 
 The interface includes functions, constants, events, and enums, as covered in the following sections.
 
@@ -122,6 +128,12 @@ The interface includes the following enums:
 
 The [`RandomnessConsumer.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/4e2a5785424be6faa01cd14e90155d9d2ec734ee/precompiles/randomness/RandomnessConsumer.sol){target=_blank} Solidity interface makes it easy for smart contracts to interact with the randomness precompile. Using the randomness consumer ensures the fulfillment comes from the randomness precompile.
 
+??? code "RandomnessConsumer.sol"
+
+    ```solidity
+    --8<-- 'code/builders/pallets-precompiles/precompiles/randomness/Randomness.sol'
+    ```
+
 The consumer interface includes the following functions:
 
 - **fulfillRandomWords**(*uint256* requestId, *uint256[] memory* randomWords) - handles the VRF response for a given request. This method is triggered by a call to `rawFulfillRandomWords`
@@ -163,7 +175,7 @@ For this guide, you will need to have the following:
 
 - [MetaMask installed and connected to Moonbase Alpha](/tokens/connect/metamask/){target=_blank}
 - An account funded with DEV tokens.
- --8<-- 'text/faucet/faucet-list-item.md'
+ --8<-- 'text/_common/faucet/faucet-list-item.md'
 
 ### Create a Random Number Generator Contract {: #create-random-generator-contract }
 
@@ -181,7 +193,7 @@ The contract will include the following functions:
 Without further ado, the contract is as follows:
 
 ```solidity
---8<-- 'code/randomness/RandomNumber.sol'
+--8<-- 'code/builders/pallets-precompiles/precompiles/randomness/RandomNumber.sol'
 ```
 
 As you can see, there are also some constants in the contract that can be edited as you see fit, especially the `SALT_PREFIX` which can be used to produce unique results.

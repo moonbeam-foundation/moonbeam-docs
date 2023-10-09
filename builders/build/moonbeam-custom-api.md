@@ -1,13 +1,13 @@
 ---
 title: Moonbeam-specific RPC Methods
-description: This page contains information on Moonbeam custom API endpoints (JSON RPC methods specific to Moonbeam).
+description: This page contains information on Moonbeam custom API endpoints (JSON-RPC methods specific to Moonbeam).
 ---
 
 # Moonbeam Custom API 
 
 ## Finality RPC Endpoints {: #finality-rpc-endpoints }
 
-Moonbeam node has added support for two custom JSON RPC endpoints, `moon_isBlockFinalized` and `moon_isTxFinalized`, that are useful for checking whether an on-chain event is finalized. The information on these two endpoints are as follows:
+Moonbeam node has added support for two custom JSON-RPC endpoints, `moon_isBlockFinalized` and `moon_isTxFinalized`, that are useful for checking whether an on-chain event is finalized. The information on these two endpoints are as follows:
 
 === "moon_isBlockFinalized"
     |  Variable   |                                                          Value                                                           |

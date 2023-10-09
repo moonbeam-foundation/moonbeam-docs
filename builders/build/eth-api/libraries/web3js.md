@@ -7,7 +7,7 @@ description: Follow this tutorial to learn how to use the Ethereum Web3 JavaScri
 
 ## Introduction {: #introduction }
 
-[Web3.js](https://web3js.readthedocs.io/){target=_blank} is a set of libraries that allow developers to interact with Ethereum nodes using HTTP, IPC, or WebSocket protocols with JavaScript. Moonbeam has an Ethereum-like API available that is fully compatible with Ethereum-style JSON RPC invocations. Therefore, developers can leverage this compatibility and use the Web3.js library to interact with a Moonbeam node as if they were doing so on Ethereum.
+[Web3.js](https://web3js.readthedocs.io/){target=_blank} is a set of libraries that allow developers to interact with Ethereum nodes using HTTP, IPC, or WebSocket protocols with JavaScript. Moonbeam has an Ethereum-like API available that is fully compatible with Ethereum-style JSON-RPC invocations. Therefore, developers can leverage this compatibility and use the Web3.js library to interact with a Moonbeam node as if they were doing so on Ethereum.
 
 In this guide, you'll learn how to use the Web3.js library to send a transaction and deploy a contract on Moonbase Alpha. This guide can be adapted for [Moonbeam](/builders/get-started/networks/moonbeam/){target=_blank}, [Moonriver](/builders/get-started/networks/moonriver/){target=_blank}, or a [Moonbeam development node](/builders/get-started/networks/moonbeam-dev/){target=_blank}.
 
@@ -15,13 +15,13 @@ In this guide, you'll learn how to use the Web3.js library to send a transaction
 
 For the examples in this guide, you will need to have the following:
 
- - An account with funds.
-  --8<-- 'text/faucet/faucet-list-item.md'
- -
---8<-- 'text/common/endpoint-examples.md'
+- An account with funds.
+  --8<-- 'text/_common/faucet/faucet-list-item.md'
+- 
+  --8<-- 'text/_common/endpoint-examples-list-item.md'
 
 !!! note
-    --8<-- 'text/common/assumes-mac-or-ubuntu-env.md'
+    --8<-- 'text/_common/assumes-mac-or-ubuntu-env.md'
 
 ## Installing Web3.js {: #install-web3js }
 
@@ -48,7 +48,7 @@ For this guide, you'll need to install the Web3.js library and the Solidity comp
 ## Setup Web3.js with Moonbeam {: #setup-web3-with-moonbeam }
 
 You can configure Web3.js to work with any of the Moonbeam networks.
---8<-- 'text/common/endpoint-setup.md'
+--8<-- 'text/_common/endpoint-setup.md'
 
 The simplest way to get started with each of the networks is as follows:
 
@@ -137,7 +137,7 @@ balances();
 ??? code "View the complete script"
 
     ```js
-    --8<-- 'code/web3-tx-local/balances.js'
+    --8<-- 'code/builders/build/eth-api/libraries/web3-js/balances.js'
     ```
 
 To run the script and fetch the account balances, you can run the following command:
@@ -202,7 +202,7 @@ send();
 ??? code "View the complete script"
 
     ```js
-    --8<-- 'code/web3-tx-local/transaction.js'
+    --8<-- 'code/builders/build/eth-api/libraries/web3-js/transaction.js'
     ```
 
 To run the script, you can run the following command in your terminal:
@@ -219,11 +219,16 @@ You can also use the `balances.js` script to check that the balances for the ori
 
 ## Deploy a Contract {: #deploy-a-contract }
 
---8<-- 'text/libraries/contract.md'
+--8<-- 'text/builders/build/eth-api/libraries/contract.md'
 
 ### Compile Contract Script {: #compile-contract-script }
 
---8<-- 'text/libraries/compile.md'
+--8<-- 'text/builders/build/eth-api/libraries/compile-js.md'
+--8<-- 'text/builders/build/eth-api/libraries/compile.md'
+
+```js
+--8<-- 'code/builders/build/eth-api/libraries/compile.js'
+```
 
 ### Deploy Contract Script {: #deploy-contract-script }
 
@@ -297,7 +302,7 @@ deploy();
 ??? code "View the complete script"
 
     ```js
-    --8<-- 'code/web3-contract-local/deploy.js'
+    --8<-- 'code/builders/build/eth-api/libraries/web3-js/deploy.js'
     ```
 
 To run the script, you can enter the following command into your terminal:
@@ -360,7 +365,7 @@ get();
 ??? code "View the complete script"
 
     ```js
-    --8<-- 'code/web3-contract-local/get.js'
+    --8<-- 'code/builders/build/eth-api/libraries/web3-js/get.js'
     ```
 
 To run the script, you can enter the following command in your terminal:
@@ -439,7 +444,7 @@ increment();
 ??? code "View the complete script"
 
     ```js
-    --8<-- 'code/web3-contract-local/increment.js'
+    --8<-- 'code/builders/build/eth-api/libraries/web3-js/increment.js'
     ```
 
 To run the script, you can enter the following command in your terminal:
@@ -509,7 +514,7 @@ reset();
 ??? code "View the complete script"
 
     ```js
-    --8<-- 'code/web3-contract-local/reset.js'
+    --8<-- 'code/builders/build/eth-api/libraries/web3-js/reset.js'
     ```
 
 To run the script, you can enter the following command in your terminal:
@@ -522,4 +527,4 @@ If successful, the transaction hash will be displayed in the terminal. You can u
 
 ![Reset Contract Web3js](/images/builders/build/eth-api/libraries/web3js/web3js-4.png)
 
---8<-- 'text/disclaimers/third-party-content.md'
+--8<-- 'text/_disclaimers/third-party-content.md'

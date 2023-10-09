@@ -105,7 +105,7 @@ The current list of available external XC-20 assets per network is as follows:
 
      _*You can check each [Asset ID](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/assets){target=_blank} on Polkadot.js Apps_
 
-### Retrieve List of External XC-20s {: #list-xchain-assets }
+### Retrieve List of External XC-20s and Their Metadata {: #list-xchain-assets }
 
 To fetch a list of the currently available external XC-20s along with their associated metadata, you can query the chain state using the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api){target=_blank}. You'll take the following steps:
 
@@ -133,7 +133,31 @@ To fetch a list of the currently available external XC-20s along with their asso
 3. Iterate over the list of assets to get all of the asset IDs along with their associated metadata
 
 ```js
---8<-- 'code/xc20/retrieve-xc20s.js'
+--8<-- 'code/builders/interoperability/xcm/xc20/overview/retrieve-xc20s.js'
 ```
 
 The result will display the asset ID along with some additional information for all of the registered external XC-20s.
+
+## Retrieve Local XC-20 Metadata {: #retrieve-local-xc20-metadata }
+
+Since local XC-20s are ERC-20s on Moonbeam that can be transferred via XCM to another parachain, you can interact with local XC-20s like you would an ERC-20. As long as you have the address and the ABI of the ERC-20, you can retrieve its metadata by interacting with its ERC-20 interface to retrieve the name, symbol, and decimals for the asset.
+
+The following is an example that retrieves the asset metadata for the [Jupiter token](https://moonbase.moonscan.io/token/0x9aac6fb41773af877a2be73c99897f3ddfacf576){target=_blank} on Moonbase Alpha:
+
+=== "Ethers.js"
+
+    ```js
+    --8<-- 'code/builders/interoperability/xcm/xc20/overview/local-xc20s/ethers.js'
+    ```
+
+=== "Web3.js"
+
+    ```js
+    --8<-- 'code/builders/interoperability/xcm/xc20/overview/local-xc20s/web3.js'
+    ```
+
+=== "Web3.py"
+
+    ```py
+    --8<-- 'code/builders/interoperability/xcm/xc20/overview/local-xc20s/web3.py'
+    ```
