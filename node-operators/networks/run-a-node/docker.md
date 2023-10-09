@@ -81,7 +81,7 @@ To spin up your node, you'll need to execute the `docker run` command. If you're
 Note that in the following start-up command, you have to:
 
 - Replace `INSERT_YOUR_NODE_NAME` with your node name of choice. You'll have to do this in two places: one for the parachain and one for the relay chain
-- Replace `<50% RAM in MB>` for 50% of the actual RAM your server has. For example, for 32GB of RAM, the value must be set to `16000`. The minimum value is `2000`, but it is below the recommended specs
+- Replace `INSERT_RAM_IN_MB` for 50% of the actual RAM your server has. For example, for 32GB of RAM, the value must be set to `16000`. The minimum value is `2000`, but it is below the recommended specs
 
 For an overview of the flags used in the following start-up commands, plus additional commonly used flags, please refer to the [Flags](/node-operators/networks/run-a-node/flags){target=_blank} page of our documentation.
 
@@ -100,7 +100,7 @@ For an overview of the flags used in the following start-up commands, plus addit
         --name="INSERT_YOUR_NODE_NAME" \
         --state-pruning archive \
         --trie-cache-size 1073741824 \
-        --db-cache <50% RAM in MB> \
+        --db-cache INSERT_RAM_IN_MB \
         -- \
         --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
         ```
@@ -116,7 +116,7 @@ For an overview of the flags used in the following start-up commands, plus addit
         --name="INSERT_YOUR_NODE_NAME" \
         --state-pruning archive \
         --trie-cache-size 1073741824 \
-        --db-cache <50% RAM in MB> \
+        --db-cache INSERT_RAM_IN_MB \
         -- \
         --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
         ```
@@ -132,7 +132,7 @@ For an overview of the flags used in the following start-up commands, plus addit
         --name="INSERT_YOUR_NODE_NAME" \
         --state-pruning archive \
         --trie-cache-size 1073741824 \
-        --db-cache <50% RAM in MB> \
+        --db-cache INSERT_RAM_IN_MB \
         -- \
         --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
         ```
@@ -184,7 +184,80 @@ For an overview of the flags used in the following start-up commands, plus addit
         --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
         ```
 
---8<-- 'text/node-operators/networks/run-a-node/highlight-node-options.md'
+--8<-- 'text/node-operators/networks/run-a-node/external-access.md'
+
+??? code "Example start-up command for Moonbeam"
+
+    === "Linux"
+
+        ```bash hl_lines="10"
+        docker run --network="host" -v "{{ networks.moonbeam.node_directory }}:/data" \
+        -u $(id -u ${USER}):$(id -g ${USER}) \
+        purestake/moonbeam:{{ networks.moonbeam.parachain_release_tag }} \
+        --base-path=/data \
+        --chain {{ networks.moonbeam.chain_spec }} \
+        --name="INSERT_YOUR_NODE_NAME" \
+        --state-pruning archive \
+        --trie-cache-size 1073741824 \
+        --db-cache INSERT_RAM_IN_MB \
+        --unsafe-rpc-external \
+        -- \
+        --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
+        ```
+
+    === "MacOS"
+
+        ```bash hl_lines="9"
+        docker run -p 9944:9944 -v "/var/lib/moonbeam-data:/data" \
+        -u $(id -u ${USER}):$(id -g ${USER}) \
+        purestake/moonbeam:{{ networks.moonbeam.parachain_release_tag }} \
+        --base-path=/data \
+        --chain moonbeam \
+        --name="INSERT_YOUR_NODE_NAME" \
+        --state-pruning archive \
+        --trie-cache-size 1073741824 \
+        --unsafe-rpc-external \
+        -- \
+        --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
+        ```
+
+--8<-- 'text/node-operators/networks/run-a-node/sql-backend.md'
+
+??? code "Example start-up command for Moonbeam"
+
+    === "Linux"
+
+        ```bash hl_lines="11"
+        docker run --network="host" -v "{{ networks.moonbeam.node_directory }}:/data" \
+        -u $(id -u ${USER}):$(id -g ${USER}) \
+        purestake/moonbeam:{{ networks.moonbeam.parachain_release_tag }} \
+        --base-path=/data \
+        --chain {{ networks.moonbeam.chain_spec }} \
+        --name="INSERT_YOUR_NODE_NAME" \
+        --state-pruning archive \
+        --trie-cache-size 1073741824 \
+        # This is a comment
+        --db-cache INSERT_RAM_IN_MB \
+        --frontier-backend-type sql \
+        -- \
+        --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
+        ```
+
+    === "MacOS"
+
+        ```bash hl_lines="9"
+        docker run -p 9944:9944 -v "/var/lib/moonbeam-data:/data" \
+        -u $(id -u ${USER}):$(id -g ${USER}) \
+        purestake/moonbeam:{{ networks.moonbeam.parachain_release_tag }} \
+        --base-path=/data \
+        --chain moonbeam \
+        --name="INSERT_YOUR_NODE_NAME" \
+        --state-pruning archive \
+        --trie-cache-size 1073741824 \
+        --frontier-backend-type sql \
+        -- \
+        --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
+        ```
 
 ### Collator Node
 
@@ -201,7 +274,7 @@ For an overview of the flags used in the following start-up commands, plus addit
         --name="INSERT_YOUR_NODE_NAME" \
         --collator \
         --trie-cache-size 1073741824 \
-        --db-cache <50% RAM in MB> \
+        --db-cache INSERT_RAM_IN_MB \
         -- \
         --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
         ```
@@ -217,7 +290,7 @@ For an overview of the flags used in the following start-up commands, plus addit
         --name="INSERT_YOUR_NODE_NAME" \
         --collator \
         --trie-cache-size 1073741824 \
-        --db-cache <50% RAM in MB> \
+        --db-cache INSERT_RAM_IN_MB \
         -- \
         --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
         ```
@@ -233,7 +306,7 @@ For an overview of the flags used in the following start-up commands, plus addit
         --name="INSERT_YOUR_NODE_NAME" \
         --collator \
         --trie-cache-size 1073741824 \
-        --db-cache <50% RAM in MB> \
+        --db-cache INSERT_RAM_IN_MB \
         -- \
         --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
         ```

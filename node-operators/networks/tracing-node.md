@@ -92,7 +92,7 @@ Instead of the standard `purestake/moonbeam` docker image, you will need to use 
 Now, execute the docker run command. Note that you have to:
 
  - Replace `INSERT_YOUR_NODE_NAME` in two different places
- - Replace `<50% RAM in MB>` for 50% of the actual RAM your server has. For example, for 32 GB RAM, the value must be set to `16000`. The minimum value is `2000`, but it is below the recommended specs
+ - Replace `INSERT_RAM_IN_MB` for 50% of the actual RAM your server has. For example, for 32 GB RAM, the value must be set to `16000`. The minimum value is `2000`, but it is below the recommended specs
 
 --8<-- 'text/node-operators/networks/run-a-node/client-changes.md'
 
@@ -109,7 +109,7 @@ The complete command for running a tracing node is as follows:
     --name="INSERT_YOUR_NODE_NAME" \
     --state-pruning archive \
     --trie-cache-size 1073741824 \
-    --db-cache <50% RAM in MB> \
+    --db-cache INSERT_RAM_IN_MB \
     --ethapi=debug,trace,txpool \
     --wasm-runtime-overrides=/moonbeam/moonbeam-substitutes-tracing \
     --runtime-cache-size 64 \
@@ -128,7 +128,7 @@ The complete command for running a tracing node is as follows:
     --name="INSERT_YOUR_NODE_NAME" \
     --state-pruning archive \
     --trie-cache-size 1073741824 \
-    --db-cache <50% RAM in MB> \
+    --db-cache INSERT_RAM_IN_MB \
     --ethapi=debug,trace,txpool \
     --wasm-runtime-overrides=/moonbeam/moonriver-substitutes-tracing \
     --runtime-cache-size 64 \
@@ -147,7 +147,7 @@ The complete command for running a tracing node is as follows:
     --name="INSERT_YOUR_NODE_NAME" \
     --state-pruning archive \
     --trie-cache-size 1073741824 \
-    --db-cache <50% RAM in MB> \
+    --db-cache INSERT_RAM_IN_MB \
     --ethapi=debug,trace,txpool \
     --wasm-runtime-overrides=/moonbeam/moonbase-substitutes-tracing \
     --runtime-cache-size 64 \
@@ -261,7 +261,7 @@ You can clone the repository to any location on your local machine. For simplici
 The next step is to create the systemd configuration file, you'll need to:
 
  - Replace `INSERT_YOUR_NODE_NAME` in two different places
- - Replace `<50% RAM in MB>` for 50% of the actual RAM your server has. For example, for 32 GB RAM, the value must be set to `16000`. The minimum value is `2000`, but it is below the recommended specs
+ - Replace `INSERT_RAM_IN_MB` for 50% of the actual RAM your server has. For example, for 32 GB RAM, the value must be set to `16000`. The minimum value is `2000`, but it is below the recommended specs
  - Double-check that the binary is in the proper path as described below (_ExecStart_)
  - Double-check the base path if you've used a different directory
  - Name the file `/etc/systemd/system/moonbeam.service`
@@ -287,7 +287,7 @@ The next step is to create the systemd configuration file, you'll need to:
     ExecStart={{ networks.moonbeam.node_directory }}/{{ networks.moonbeam.binary_name }} \
          --state-pruning=archive \
          --trie-cache-size 1073741824 \
-         --db-cache <50% RAM in MB> \
+         --db-cache INSERT_RAM_IN_MB \
          --base-path {{ networks.moonbeam.node_directory }} \
          --ethapi=debug,trace,txpool \
          --wasm-runtime-overrides={{ networks.moonbeam.node_directory }}/wasm \
@@ -320,7 +320,7 @@ The next step is to create the systemd configuration file, you'll need to:
     ExecStart={{ networks.moonriver.node_directory }}/{{ networks.moonriver.binary_name }} \
          --state-pruning=archive \
          --trie-cache-size 1073741824 \
-         --db-cache <50% RAM in MB> \
+         --db-cache INSERT_RAM_IN_MB \
          --base-path {{ networks.moonriver.node_directory }} \
          --ethapi=debug,trace,txpool \
          --wasm-runtime-overrides={{ networks.moonriver.node_directory }}/wasm \
@@ -353,7 +353,7 @@ The next step is to create the systemd configuration file, you'll need to:
     ExecStart={{ networks.moonbase.node_directory }}/{{ networks.moonbase.binary_name }} \
          --state-pruning=archive \
          --trie-cache-size 1073741824 \
-         --db-cache <50% RAM in MB> \
+         --db-cache INSERT_RAM_IN_MB \
          --base-path {{ networks.moonbase.node_directory }} \
          --ethapi=debug,trace,txpool \
          --wasm-runtime-overrides={{ networks.moonbase.node_directory }}/wasm \

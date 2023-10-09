@@ -11,6 +11,8 @@ Running a full node on a Moonbeam-based network allows you to connect to the net
 
 In this guide, you'll learn how to spin up a Moonbeam node using [Systemd](https://systemd.io/){target=_blank} and how to maintain and purge your node.
 
+If you're interested in compiling the binary yourself, which may take over 30 min and require 32GB of memory, you can check out the [Manually Compile the Moonbeam Binary](/node-operators/networks/run-a-node/compile-binary){target=_blank} guide.
+
 ## Checking Prerequisites {: #checking-prerequisites }
 
 The following sections go through the process of using the binary and running a Moonbeam full node as a systemd service. To get started, you'll need to:
@@ -153,7 +155,7 @@ First, you'll need to create a file named `/etc/systemd/system/moonbeam.service`
 Note that in the following start-up configurations, you have to:
 
 - Replace `INSERT_YOUR_NODE_NAME` with your node name of choice. You'll have to do this in two places: one for the parachain and one for the relay chain
-- Replace `<50% RAM in MB>` for 50% of the actual RAM your server has. For example, for 32GB of RAM, the value must be set to `16000`. The minimum value is `2000`, but it is below the recommended specs
+- Replace `INSERT_RAM_IN_MB` for 50% of the actual RAM your server has. For example, for 32GB of RAM, the value must be set to `16000`. The minimum value is `2000`, but it is below the recommended specs
 - Double-check that the binary is in the proper path as described below (_ExecStart_)
 - Double-check the base path if you've used a different directory
 
@@ -180,7 +182,7 @@ For an overview of the flags used in the following start-up commands, plus addit
     ExecStart={{ networks.moonbeam.node_directory }}/{{ networks.moonbeam.binary_name }} \
          --state-pruning=archive \
          --trie-cache-size 1073741824 \
-         --db-cache <50% RAM in MB> \
+         --db-cache INSERT_RAM_IN_MB \
          --base-path {{ networks.moonbeam.node_directory }} \
          --chain {{ networks.moonbeam.chain_spec }} \
          --name "INSERT_YOUR_NODE_NAME" \
@@ -210,7 +212,7 @@ For an overview of the flags used in the following start-up commands, plus addit
     ExecStart={{ networks.moonriver.node_directory }}/{{ networks.moonriver.binary_name }} \
          --state-pruning=archive \
          --trie-cache-size 1073741824 \
-         --db-cache <50% RAM in MB> \
+         --db-cache INSERT_RAM_IN_MB \
          --base-path {{ networks.moonriver.node_directory }} \
          --chain {{ networks.moonriver.chain_spec }} \
          --name "INSERT_YOUR_NODE_NAME" \
@@ -240,7 +242,7 @@ For an overview of the flags used in the following start-up commands, plus addit
     ExecStart={{ networks.moonbase.node_directory }}/{{ networks.moonbase.binary_name }} \
          --state-pruning=archive \
          --trie-cache-size 1073741824 \
-         --db-cache <50% RAM in MB> \
+         --db-cache INSERT_RAM_IN_MB \
          --base-path {{ networks.moonbase.node_directory }} \
          --chain {{ networks.moonbase.chain_spec }} \
          --name "INSERT_YOUR_NODE_NAME" \
@@ -251,7 +253,71 @@ For an overview of the flags used in the following start-up commands, plus addit
     WantedBy=multi-user.target
     ```
 
---8<-- 'text/node-operators/networks/run-a-node/highlight-node-options.md'
+--8<-- 'text/node-operators/networks/run-a-node/external-access.md'
+
+??? code "Example start-up command for Moonbeam"
+
+    ```bash
+    [Unit]
+    Description="Moonbeam systemd service"
+    After=network.target
+    StartLimitIntervalSec=0
+
+    [Service]
+    Type=simple
+    Restart=on-failure
+    RestartSec=10
+    User=moonbeam_service
+    SyslogIdentifier=moonbeam
+    SyslogFacility=local7
+    KillSignal=SIGHUP
+    ExecStart={{ networks.moonbeam.node_directory }}/{{ networks.moonbeam.binary_name }} \
+         --state-pruning=archive \
+         --trie-cache-size 1073741824 \
+         --db-cache INSERT_RAM_IN_MB \
+         --base-path {{ networks.moonbeam.node_directory }} \
+         --chain {{ networks.moonbeam.chain_spec }} \
+         --name "INSERT_YOUR_NODE_NAME" \
+         --unsafe-rpc-external \
+         -- \
+         --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
+    
+    [Install]
+    WantedBy=multi-user.target
+    ```
+
+--8<-- 'text/node-operators/networks/run-a-node/sql-backend.md'
+
+??? code "Example start-up command for Moonbeam"
+
+    ```bash
+    [Unit]
+    Description="Moonbeam systemd service"
+    After=network.target
+    StartLimitIntervalSec=0
+
+    [Service]
+    Type=simple
+    Restart=on-failure
+    RestartSec=10
+    User=moonbeam_service
+    SyslogIdentifier=moonbeam
+    SyslogFacility=local7
+    KillSignal=SIGHUP
+    ExecStart={{ networks.moonbeam.node_directory }}/{{ networks.moonbeam.binary_name }} \
+         --state-pruning=archive \
+         --trie-cache-size 1073741824 \
+         --db-cache INSERT_RAM_IN_MB \
+         --base-path {{ networks.moonbeam.node_directory }} \
+         --chain {{ networks.moonbeam.chain_spec }} \
+         --name "INSERT_YOUR_NODE_NAME" \
+         --frontier-backend-type sql \
+         -- \
+         --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
+    
+    [Install]
+    WantedBy=multi-user.target
+    ```
 
 ### Collator {: #collator }
 
@@ -274,7 +340,7 @@ For an overview of the flags used in the following start-up commands, plus addit
     ExecStart={{ networks.moonbeam.node_directory }}/{{ networks.moonbeam.binary_name }} \
          --collator \
          --trie-cache-size 1073741824 \
-         --db-cache <50% RAM in MB> \
+         --db-cache INSERT_RAM_IN_MB \
          --base-path {{ networks.moonbeam.node_directory }} \
          --chain {{ networks.moonbeam.chain_spec }} \
          --name "INSERT_YOUR_NODE_NAME" \
@@ -304,7 +370,7 @@ For an overview of the flags used in the following start-up commands, plus addit
     ExecStart={{ networks.moonriver.node_directory }}/{{ networks.moonriver.binary_name }} \
          --collator \
          --trie-cache-size 1073741824 \
-         --db-cache <50% RAM in MB> \
+         --db-cache INSERT_RAM_IN_MB \
          --base-path {{ networks.moonriver.node_directory }} \
          --chain {{ networks.moonriver.chain_spec }} \
          --name "INSERT_YOUR_NODE_NAME" \
@@ -334,7 +400,7 @@ For an overview of the flags used in the following start-up commands, plus addit
     ExecStart={{ networks.moonbase.node_directory }}/{{ networks.moonbase.binary_name }} \
          --collator \
          --trie-cache-size 1073741824 \
-         --db-cache <50% RAM in MB> \
+         --db-cache INSERT_RAM_IN_MB \
          --base-path {{ networks.moonbase.node_directory }} \
          --chain {{ networks.moonbase.chain_spec }} \
          --name "INSERT_YOUR_NODE_NAME" \
@@ -429,6 +495,9 @@ If you want to update your client, you can keep your existing chain data in tact
         ```bash
         mv ./{{ networks.moonbase.binary_name }} {{ networks.moonbase.node_directory }}
         ```
+
+    !!! note
+        If you [compiled the binary manually](/node-operators/networks/run-a-node/compile-binary){target=_blank}, you'll need to move the binary from `./target/release/{{ networks.moonbeam.binary_name }}` to the data directory.
 
 6. Update permissions
 
