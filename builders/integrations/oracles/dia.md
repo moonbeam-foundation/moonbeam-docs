@@ -276,7 +276,7 @@ The response contains the randomness value.
 
 The signature can also be requested by calling `getRandomValueFromRoundWithSignature(uint256 _round)`, which returns a tuple containing the randomness value, the signature, and the previous signature.
 
-To learn how to deploy a randomness-consuming contract on Moonbeam, please refer to the [Deploying a #Randomness Consuming Smart Contract on #EVM chains with DIA xRandom #Oracle](https://youtu.be/BzN-tBgW-xs){target=_blank} video tutorial.
+To learn how to deploy a randomness-consuming contract on Moonbeam, please refer to the [Deploying a Randomness Consuming Smart Contract on EVM chains with DIA xRandom Oracle](https://youtu.be/BzN-tBgW-xs){target=_blank} video tutorial.
 
 # Learn More About DIA {: #learn-more-about-dia }
 
