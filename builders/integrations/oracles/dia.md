@@ -278,7 +278,7 @@ The signature can also be requested by calling `getRandomValueFromRoundWithSigna
 
 To learn how to deploy a randomness-consuming contract on Moonbeam, please refer to the [Deploying a Randomness Consuming Smart Contract on EVM chains with DIA xRandom Oracle](https://youtu.be/BzN-tBgW-xs){target=_blank} video tutorial.
 
-# Learn More About DIA {: #learn-more-about-dia }
+## Resources {: #resources }
 
 - [Twitter](https://twitter.com/DIAdata_org){target=_blank}
 - [Discord](https://discord.gg/dia-dao){target=_blank}
