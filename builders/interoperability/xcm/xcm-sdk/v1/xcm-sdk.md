@@ -63,7 +63,7 @@ import { ethers } from 'ethers';
 
 const privateKey = 'INSERT_PRIVATE_KEY';
 const provider = new ethers.providers.WebSocketProvider('INSERT_WS_ENDPOINT', {
-  chainId: 'INSERT_CHAIN_ID',
+  chainId: INSERT_CHAIN_ID,
   name: 'INSERT_CHAIN_NAME',
 });
 const evmSigner = new ethers.Wallet(privateKey, provider);
@@ -80,7 +80,7 @@ For Moonbeam specifically, you can use the following configurations:
     const provider = new ethers.providers.WebSocketProvider(
       '{{ networks.moonbeam.wss_url }}', 
       {
-        chainId: '{{ networks.moonbeam.chain_id }}',
+        chainId: {{ networks.moonbeam.chain_id }},
         name: 'moonbeam',
       }
     );
@@ -96,7 +96,7 @@ For Moonbeam specifically, you can use the following configurations:
     const provider = new ethers.providers.WebSocketProvider(
       '{{ networks.moonriver.wss_url }}', 
       {
-        chainId: '{{ networks.moonriver.chain_id }}',
+        chainId: {{ networks.moonriver.chain_id }},
         name: 'moonriver',
       }
     );
@@ -112,7 +112,7 @@ For Moonbeam specifically, you can use the following configurations:
     const provider = new ethers.providers.WebSocketProvider(
       '{{ networks.moonbase.wss_url }}',
       {
-        chainId: '{{ networks.moonbase.chain_id }}',
+        chainId: {{ networks.moonbase.chain_id }},
         name: 'moonbase',
       }
     );
@@ -229,6 +229,9 @@ const keyring = new Keyring({
 const pair = keyring.createFromUri(privateKey);
 ```
 
+!!! note
+    In the above `INSERT_PRIVATE_KEY` field, you can specify a seed phrase instead of a private key.
+
 ## Build XCM Transfer Data {: #build-xcm-transfer-data }
 
 In order to transfer an asset from one chain to another, you'll need to first build the transfer data, which defines the asset to be transferred, the source chain and address, the destination chain and address, and the associated signer for the transaction. Building the transfer data is the first step; in the next section, you'll learn how to use the transfer data to actually transfer the asset.
@@ -287,19 +290,21 @@ An example of the steps described above to build the transfer data to transfer D
 ```js
 import { Sdk } from '@moonbeam-network/xcm-sdk';
 
+const sdkInstance = new Sdk();
+
 const fromPolkadot = async() => {
 
-  const { assets, asset } = Sdk.assets();
+  const { assets, asset } = sdkInstance.assets();
   console.log(
     `The supported assets are: ${assets.map((asset) => asset.originSymbol)}`
   );
 
-  const { sourceChains, source } = Sdk.assets().asset('dot');
+  const { sourceChains, source } = sdkInstance.assets().asset('dot');
   console.log(
     `The supported source chains are: ${sourceChains.map((chain) => chain.name)}`
   );
 
-  const { destinationChains, destination } = Sdk.assets().asset('dot').source('polkadot');
+  const { destinationChains, destination } = sdkInstance.assets().asset('dot').source('polkadot');
   console.log(
     `The supported destination chains are: ${destinationChains.map((chain) => chain.name)}`
   );
@@ -313,9 +318,9 @@ const fromPolkadot = async() => {
       pair.address, 
       evmSigner.address, // If using viem, use evmSigner.account.address
       {
-        pair,
-      }
-    );
+      evmSigner,
+      polkadotSigner: pair,
+    });
 }
 
 fromPolkadot();
@@ -337,6 +342,7 @@ const fromPolkadot = async() => {
     polkadotSigner: pair,
     sourceAddress: pair.address,
     sourceKeyOrChain: 'polkadot',
+    evmSigner,
   });
 }
 
