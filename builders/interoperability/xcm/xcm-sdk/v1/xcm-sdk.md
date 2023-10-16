@@ -298,28 +298,21 @@ const fromPolkadot = async () => {
     `The supported assets are: ${assets.map((asset) => asset.originSymbol)}`
   );
 
-  const { sourceChains, source } = sdkInstance.assets().asset('dot');
+  const { sourceChains, source } = asset('dot');
   console.log(
     `The supported source chains are: ${sourceChains.map(
       (chain) => chain.name
     )}`
   );
 
-  const { destinationChains, destination } = sdkInstance
-    .assets()
-    .asset('dot')
-    .source('polkadot');
+  const { destinationChains, destination } = source('polkadot');
   console.log(
     `The supported destination chains are: ${destinationChains.map(
       (chain) => chain.name
     )}`
   );
 
-  const data = await sdkInstance
-    .assets()
-    .asset('dot')
-    .source('polkadot')
-    .destination('moonbeam')
+  const data = await destination('moonbeam')
     .accounts(
       pair.address,
       evmSigner.address, // If using viem, use evmSigner.account.address
