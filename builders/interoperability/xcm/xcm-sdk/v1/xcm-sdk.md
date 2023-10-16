@@ -315,7 +315,7 @@ const fromPolkadot = async () => {
     )}`
   );
 
-  const data = await sdkInstance()
+  const data = await sdkInstance
     .assets()
     .asset('dot')
     .source('polkadot')
