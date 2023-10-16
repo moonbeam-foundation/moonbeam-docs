@@ -359,7 +359,7 @@ fromPolkadot();
 ```
 
 !!! note
-    For more information on each of the `Sdk().getTransferData()` function, including the parameters and returned data, please refer to the [XCM SDK Reference](/builders/interoperability/xcm/xcm-sdk/v1/reference#core-sdk-methods){target=_blank}.
+    For more information on the `Sdk().getTransferData()` function, including the parameters and returned data, please refer to the [XCM SDK Reference](/builders/interoperability/xcm/xcm-sdk/v1/reference#core-sdk-methods){target=_blank}.
 
 As previously mentioned, regardless of which method you use to build the transfer data, you'll generate the same output.
 
