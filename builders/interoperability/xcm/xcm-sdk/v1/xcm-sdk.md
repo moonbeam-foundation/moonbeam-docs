@@ -251,7 +251,7 @@ The process for using `assets` to build the transfer data is as follows:
 1. Call the `assets` function and optionally pass in the ecosystem that you want to retrieve a list of assets for or that the asset you want to transfer belongs to. The available ecosystems are: `polkadot`, `kusama`, and `alphanet-relay`. For example:
 
     ```js
-    const assets = sdkInstance.assets('polkadot');
+    const { assets, asset } = sdkInstance.assets('polkadot');
     ```
 
     This will return a list of the supported assets and the `asset` function that can be used to define the asset to be transferred
@@ -260,7 +260,7 @@ The process for using `assets` to build the transfer data is as follows:
 
     ```js
     // Using the key
-    const asset = assets.asset('dot');
+    const { sourceChains, source } = asset('dot');
     ```
 
     This will return a list of the supported source chains and the `source` function, which is used to define the source chain to transfer the asset from
@@ -269,7 +269,7 @@ The process for using `assets` to build the transfer data is as follows:
 
     ```js
     // Using the key
-    const asset = assets.asset('dot').source('polkadot');
+    const { destinationChains, destination } = source('polkadot');
     ```
 
     This will return a list of the supported destination chains where there is an open XCM channel from the source chain for the given asset and the `destination` function, which is used to define the destination chain to transfer the asset to
@@ -278,7 +278,7 @@ The process for using `assets` to build the transfer data is as follows:
 
     ```js
     // Using the key
-    const asset = assets.asset('dot').source('polkadot').destination('moonbeam');
+    const { accounts } = destination('moonbeam');
     ```
 
     This will return the `accounts` function, which is used to define the source and destination addresses and the associated signers for each address
@@ -312,15 +312,15 @@ const fromPolkadot = async () => {
     )}`
   );
 
-  const data = await destination('moonbeam')
-    .accounts(
-      pair.address,
-      evmSigner.address, // If using viem, use evmSigner.account.address
-      {
-        evmSigner,
-        polkadotSigner: pair,
-      }
-    );
+  const { accounts } = destination('moonbeam');
+  const data = await accounts(
+    pair.address,
+    evmSigner.address, // If using viem, use evmSigner.account.address
+    {
+      evmSigner,
+      polkadotSigner: pair,
+    }
+  );
 };
 
 fromPolkadot();
