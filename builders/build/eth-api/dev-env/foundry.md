@@ -416,7 +416,7 @@ To convert your preexisting Foundry project to a hybrid project, you will essent
 ```bash
 npm init
 npm install --save-dev hardhat @nomicfoundation/hardhat-foundry
-npx hardhat
+npx hardhat init
 ```
 
 For more information, please refer to our documentation on [Creating a Hardhat Project](/builders/build/eth-api/dev-env/hardhat/#creating-a-hardhat-project){target=_blank}.

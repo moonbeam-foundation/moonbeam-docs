@@ -231,19 +231,19 @@ The XCM Transactor Precompile is a Solidity interface through which developers c
 ??? code "XcmTransactorV1.sol"
 
     ```solidity
-    --8<-- 'code/precompiles/xcm-transactor/XcmTransactorV1.sol'
+    --8<-- 'code/builders/pallets-precompiles/precompiles/xcm-transactor/XcmTransactorV1.sol'
     ```
 
 ??? code "XcmTransactorV2.sol"
 
     ```solidity
-    --8<-- 'code/precompiles/xcm-transactor/XcmTransactorV2.sol'
+    --8<-- 'code/builders/pallets-precompiles/precompiles/xcm-transactor/XcmTransactorV2.sol'
     ```
 
 ??? code "XcmTransactorV3.sol"
 
     ```solidity
-    --8<-- 'code/precompiles/xcm-transactor/XcmTransactorV3.sol'
+    --8<-- 'code/builders/pallets-precompiles/precompiles/xcm-transactor/XcmTransactorV3.sol'
     ```
 
 !!! note

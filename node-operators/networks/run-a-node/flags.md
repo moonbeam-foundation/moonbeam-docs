@@ -46,6 +46,17 @@ This guide will cover some of the most common flags and show you how to access a
     - **`fast`** - downloads blocks without executing them and downloads the latest state with proofs
     - **`fast-unsafe`** - same as `fast`, but skips downloading the state proofs
     - **`warp`** - downloads the latest state and proof
+    - **`--prometheus-port`** - specifies a custom Prometheus port
+
+## Flags for Configuring a SQL Backend {: #flags-for-sql-backend }
+
+- **`--frontier-backend-type`** - sets the Frontier backend type to one of the following options:
+    - **`key-value`** - uses either RocksDB or ParityDB as per interited from the global backend settings. This is the default option and RocksDB is the default backend
+    - **`sql`** - uses a SQL database with custom log indexing
+- **`frontier-sql-backend-pool-size`** - sets the Frontier SQL backend's maximum number of database connections that a connection pool can simultaneously handle. The default is `100`
+- **`frontier-sql-backend-num-ops-timeout`** - sets the Frontier SQL backend's query timeout in number of VM operations. The default is `10000000`
+- **`frontier-sql-backend-thread-count`** - sets the Frontier SQL backend's auxiliary thread limit. The default is `4`
+- **`frontier-sql-backend-cache-size`** - sets the Frontier SQL backend's cache size in bytes. The default value is 200MB, which is `209715200` bytes
 
 ## How to Access All of the Available Flags {: #how-to-access-all-of-the-available-flags }
 

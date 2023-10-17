@@ -5,7 +5,7 @@ systemctl enable moonbeam.service
 systemctl start moonbeam.service
 ```
 
-And lastly, verify the service is running:
+And lastly, verify that the service is running:
 
 ```bash
 systemctl status moonbeam.service
