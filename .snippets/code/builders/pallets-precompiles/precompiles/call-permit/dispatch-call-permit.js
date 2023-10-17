@@ -47,7 +47,7 @@ const data = cartographerInterface.encodeFunctionData('buyVoyages', [
 
 const gasEstimate = await provider.estimateGas({
   from: userSigner.address,
-  to: '0xD1A9bA3e61Ac676f58B29EA0a09Cf5D7f4f35138', // Cartographer V1 contraact
+  to: '0xD1A9bA3e61Ac676f58B29EA0a09Cf5D7f4f35138', // Cartographer V1 contract
   data,
 });
 
