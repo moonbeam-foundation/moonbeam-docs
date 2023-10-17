@@ -251,7 +251,7 @@ export function handlePlayerJoined(event: PlayerJoined): void {
   ticket.isGifted = event.params.isGifted;
   ticket.isWinner = false;
 
-  ticket.save();  
+  ticket.save();
 }
 ```
 

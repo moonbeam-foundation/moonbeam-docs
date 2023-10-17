@@ -245,14 +245,10 @@ Next, you need to write your deployment script. To get started start, take the f
 # scripts/deploy.py
 from brownie import Box, accounts
 
+
 def main():
-    account = accounts.load('alice')
-    return Box.deploy(
-        {
-            'from': account,
-            'gas_limit': '200000'
-        }
-    )
+    account = accounts.load("alice")
+    return Box.deploy({"from": account, "gas_limit": "200000"})
 ```
 
 You can now deploy the `Box.sol` contract using the `run` command and specifying the network:
@@ -362,11 +358,12 @@ Next, you need to write your script that will store and then retrieve a value. T
 # scripts/store-and-retrieve.py
 from brownie import Box, accounts
 
+
 def main():
-    account = accounts.load('alice')
+    account = accounts.load("alice")
     box = Box[0]
-    store = box.store(5, {'from': accounts.load('alice'), 'gas_limit': '50000'})
-    retrieve = box.retrieve({'from': accounts.load('alice')})
+    store = box.store(5, {"from": accounts.load("alice"), "gas_limit": "50000"})
+    retrieve = box.retrieve({"from": accounts.load("alice")})
 
     print("Transaction hash for updating the stored value: " + store)
     print("Stored value: " + retrieve)

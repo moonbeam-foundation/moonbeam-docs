@@ -56,25 +56,25 @@ You can begin with making modifications to the Hardhat component under the `/pac
     === "Moonbeam"
 
         ```js
-        defaultNetwork = "moonbeam";
+        defaultNetwork = 'moonbeam';
         ```
 
     === "Moonriver"
 
         ```js
-        defaultNetwork = "moonriver";
+        defaultNetwork = 'moonriver';
         ```
 
     === "Moonbase Alpha"
 
         ```js
-        defaultNetwork = "moonbaseAlpha";
+        defaultNetwork = 'moonbaseAlpha';
         ```
 
     === "Moonbeam Dev Node"
 
         ```js
-        defaultNetwork = "moonbeamDevNode";
+        defaultNetwork = 'moonbeamDevNode';
         ```
 
 2. Within the same file, under the `module.exports/etherscan/apiKey` section, add the API key for [Moonscan](https://moonscan.io/){target=_blank}, so you can verify the deployed smart contracts. Check this [Etherscan Plugins](/builders/build/eth-api/verify-contracts/etherscan-plugins/#generating-a-moonscan-api-key){target=_blank} section for how to generate a Moonscan API key
@@ -82,7 +82,7 @@ You can begin with making modifications to the Hardhat component under the `/pac
 3. (Optional) Under the `function mnemonic()`, comment out a console warning for when the network is not set to `localhost`
 
     ```js
-    if (defaultNetwork !== "localhost") {
+    if (defaultNetwork !== 'localhost') {
       //console.log(
       //  "☢️ WARNING: No mnemonic file created for a deploy account. Try `yarn run generate` and then `yarn run account`."
       //);
@@ -205,7 +205,7 @@ Next, you need to modify two files in the React component to add Moonbeam networ
 2. Within the same file, `App.jsx`, set `networkOptions` to whichever networks your DApp will support, for example:
 
     ```js
-    const networkOptions = [initialNetwork.name, "moonbeam", "moonriver"];
+    const networkOptions = [initialNetwork.name, 'moonbeam', 'moonriver'];
     ```
 
 ## Deploy and Launch the DApp {: #deploy-and-launch-the-dapp }

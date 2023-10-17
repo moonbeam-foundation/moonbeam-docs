@@ -8,9 +8,9 @@ type Client = SignerMiddleware<Provider<Http>, Wallet<k256::ecdsa::SigningKey>>;
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let provider: Provider<Http> = Provider::<Http>::try_from("https://rpc.api.moonbase.moonbeam.network")?; // Change to correct network
-    // Do not include the private key in plain text in any produciton code. This is just for demonstration purposes
+    // Do not include the private key in plain text in any production code. This is just for demonstration purposes
     // Do not include '0x' at the start of the private key
-    let wallet: LocalWallet = "PRIVATE KEY OF YOUR FROM ADDRESS"
+    let wallet: LocalWallet = "INSERT_PRIVATE_KEY"
         .parse::<LocalWallet>()?
         .with_chain_id(Chain::Moonbase);
     let client = SignerMiddleware::new(provider.clone(), wallet.clone());
@@ -33,7 +33,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 // Need to install solc for this tutorial: https://github.com/crytic/solc-select
 async fn compile_deploy_contract(client: &Client) -> Result<H160, Box<dyn std::error::Error>> {
     // Incrementer.sol is located in the root directory
-    let source = Path::new(&env!("CARGO_MANIFEST_DIR"));
+    let source = Path::new(&env!("INSERT_CARGO_MANIFEST_DIR"));
 
     // Compile it
     let compiled = Solc::default()

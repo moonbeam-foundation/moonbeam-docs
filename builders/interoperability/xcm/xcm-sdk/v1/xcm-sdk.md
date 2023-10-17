@@ -336,7 +336,7 @@ import { Sdk } from '@moonbeam-network/xcm-sdk';
 
 const sdkInstance = new Sdk();
 
-const fromPolkadot = async() => {
+const fromPolkadot = async () => {
   const data = await sdkInstance.getTransferData({
     destinationAddress: evmSigner.address, // If using viem, use evmSigner.account.address
     destinationKeyOrChain: 'moonbeam',
@@ -346,7 +346,7 @@ const fromPolkadot = async() => {
     sourceKeyOrChain: 'polkadot',
     evmSigner,
   });
-}
+};
 
 fromPolkadot();
 ```

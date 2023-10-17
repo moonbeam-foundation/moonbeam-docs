@@ -72,8 +72,8 @@ module.exports = {
       moonbeam: 'INSERT_MOONSCAN_API_KEY', // Moonbeam Moonscan API Key
       moonriver: 'INSERT_MOONSCAN_API_KEY', // Moonriver Moonscan API Key
       moonbaseAlpha: 'INSERT_MOONSCAN_API_KEY', // Moonbeam Moonscan API Key    
-    }
-  }
+    },
+  },
 };
 ```
 
@@ -119,9 +119,9 @@ module.exports = {
   compilers: { ... },
   plugins: ['moonbeam-truffle-plugin', 'truffle-plugin-verify'],
   api_keys: {
-    moonscan: 'INSERT_YOUR_MOONSCAN_API_KEY'
-  }
-}
+    moonscan: 'INSERT_YOUR_MOONSCAN_API_KEY',
+  },
+};
 ```
 
 To verify the contract, you will run the `run verify` command and pass in the deployed contract name and the network where it's deployed:

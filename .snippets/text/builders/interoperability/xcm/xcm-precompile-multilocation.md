@@ -1,4 +1,4 @@
-```js
+```solidity
  struct Multilocation {
     uint8 parents;
     bytes[] interior;

@@ -478,19 +478,22 @@ Then we can add the following code, which will create an instance of the lottery
 
 ```js
 async function participate() {
-    const lottery = await ethers.getContractAt('Lottery', 'INSERT-CONTRACT-ADDRESS');
+  const lottery = await ethers.getContractAt(
+    'Lottery',
+    'INSERT_CONTRACT_ADDRESS'
+  );
 
-    const participationFee = await lottery.PARTICIPATION_FEE();
-    const tx = await lottery.participate({ value: participationFee });
-    console.log('Participation transaction hash:', tx.hash);
+  const participationFee = await lottery.PARTICIPATION_FEE();
+  const tx = await lottery.participate({ value: participationFee });
+  console.log('Participation transaction hash:', tx.hash);
 }
 
 participate()
-    .then(() => process.exit(0))
-    .catch((error) => {
-        console.error(error);
-        process.exit(1);
-    });
+  .then(() => process.exit(0))
+  .catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });
 ```
 
 To run this script, you can use the following command:

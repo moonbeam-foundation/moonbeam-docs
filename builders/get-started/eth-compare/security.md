@@ -78,7 +78,7 @@ function makeArbitraryCall(address _target, bytes calldata _bytes) public {
     }
 
     // Ensure the call data calls an approved and safe function
-    require(selector == INSERT-WHITELISTED-FUNCTION-SELECTOR);
+    require(selector == INSERT_WHITELISTED_FUNCTION_SELECTOR);
 
     // Arbitrary call
     (bool success,) = _target.call(_bytes);
@@ -97,7 +97,7 @@ To whitelist a given contract, you can use the [require function](https://docs.s
 ```solidity
 function makeArbitraryCall(address _target, bytes calldata _bytes) public {
     // Ensure the contract address is safe
-    require(_target == INSERT-CONTRACT-ADDRESS);
+    require(_target == INSERT_CONTRACT_ADDRESS);
 
     // Arbitrary call
     (bool success,) = _target.call(_bytes);

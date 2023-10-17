@@ -322,7 +322,7 @@ Then you can add a script to run Ganache forking in your `package.json` file:
     ...
     ```
     
-=== "Moonbase"
+=== "Moonbase Alpha"
 
     ```json
     ...
