@@ -5,7 +5,7 @@ description: It can seem daunting to move to a Polkadot parachain if you’re us
 
 # Ethereum Compatibility
 
-## Differences Between Moonbeam and Ethereum {: #differences-between-moonbeam-and-ethereum } 
+## Differences Between Moonbeam and Ethereum {: #differences-between-moonbeam-and-ethereum }
 
 While Moonbeam strives to be compatible with Ethereum’s Web3 API and EVM, there are a number of important Moonbeam differences.
 
@@ -13,7 +13,7 @@ First, Moonbeam uses a Proof of Stake-based consensus mechanism, which means tha
 
 Another significant difference between Moonbeam and Ethereum is that Moonbeam includes an extensive set of on-chain governance features based on Substrate functionality. These onchain governance modules include functionality to power upgrades to the blockchain itself based on token weighted voting.
 
-## What Stays the Same {: #what-stays-the-same } 
+## What Stays the Same {: #what-stays-the-same }
 
 If you're moving portions of your existing workloads and state off of Ethereum Layer 1 to Moonbeam, you can expect minimal required changes (aside from the exceptions noted above). Your applications, contracts, and tools will largely remain unchanged.
 
@@ -21,7 +21,7 @@ Moonbeam supports:
 
  - **Solidity-Based Smart Contracts**
  - **Ecosystem Tools** (e.g., block explorers, front-end development libraries, wallets)
- - **Development Tools** (e.g., Truffle, Remix, MetaMask)
+ - **Development Tools** (e.g., Hardhat, Remix, MetaMask)
  - **Ethereum Tokens via Bridges** (e.g., token movement, state visibility, message passing)
 
 ## Frontier {: #frontier }
@@ -37,15 +37,15 @@ Moonbeam uses the EVM and Ethereum pallets to achieve full Ethereum compatibilit
 
 ### EVM Pallet {: #evm-pallet }
 
-The [EVM pallet](https://paritytech.github.io/frontier/frame/evm.html){target=_blank} implements a sandboxed virtual stack machine and uses the [SputnikVM](https://github.com/rust-blockchain/evm){target=_blank} as the underlying EVM engine. 
+The [EVM pallet](https://paritytech.github.io/frontier/frame/evm.html){target=_blank} implements a sandboxed virtual stack machine and uses the [SputnikVM](https://github.com/rust-blockchain/evm){target=_blank} as the underlying EVM engine.
 
-The EVM executes Ethereum smart contract bytecode, of which is typically written in a language like Solidity, and then compiles it to EVM bytecode. The goal of the EVM pallet is to emulate the functionality of executing smart contracts on Ethereum within the Substrate runtime. As such, it allows existing EVM code to be executed in Substrate-based blockchains. 
+The EVM executes Ethereum smart contract bytecode, of which is typically written in a language like Solidity, and then compiles it to EVM bytecode. The goal of the EVM pallet is to emulate the functionality of executing smart contracts on Ethereum within the Substrate runtime. As such, it allows existing EVM code to be executed in Substrate-based blockchains.
 
 Inside of the EVM are standard H160 Ethereum-style accounts, and they have associated data such as the balance and nonce. All of the accounts in the EVM are backed by a Substrate account type, which is configurable. Moonbeam has configured the Substrate account type to be a non-standard H160 account to be fully compatibile with Ethereum. As such, you only need a single account to interact with the Substrate runtime and the EVM. For more information on Moonbeam's account system, please refer to the [Unified Accounts](/learn/features/unified-accounts/){target=_blank} page.
 
-With a unified accounts system, a mapped Substrate account can call the EVM pallet to deposit or withdraw balance from the Substrate-base currency into a different balance managed and used by the EVM pallet. Once a balance exists, smart contracts can be created and interacted with. 
+With a unified accounts system, a mapped Substrate account can call the EVM pallet to deposit or withdraw balance from the Substrate-base currency into a different balance managed and used by the EVM pallet. Once a balance exists, smart contracts can be created and interacted with.
 
-The EVM pallet can also be configured so that no dispatchable calls can cause EVM execution with the exception being from other pallets in the runtime. Moonbeam is configured this way with pallet Ethereum having sole responsibility of EVM execution. Using pallet Ethereum enables EVM interactions through the Ethereum API. 
+The EVM pallet can also be configured so that no dispatchable calls can cause EVM execution with the exception being from other pallets in the runtime. Moonbeam is configured this way with pallet Ethereum having sole responsibility of EVM execution. Using pallet Ethereum enables EVM interactions through the Ethereum API.
 
 If a blockchain doesn't need Ethereum emulation and only needs EVM execution, Substrate uses its account model fully and signs transactions on behalf of EVM accounts. However, in this model Ethereum RPCs are not available, and DApps must write their frontend using the Substrate API.
 
@@ -56,7 +56,7 @@ There are also some [precompiles](https://github.com/paritytech/frontier/tree/4c
 - **[pallet-evm-precompile-simple](https://paritytech.github.io/frontier/rustdocs/pallet_evm_precompile_simple/){target=_blank}** - includes five basic precompiles: ECRecover, ECRecoverPublicKey, Identity, RIPEMD160, SHA256
 - **[pallet-evm-precompile-blake2](https://paritytech.github.io/frontier/rustdocs/pallet_evm_precompile_blake2/struct.Blake2F.html){target=_blank}** - includes the BLAKE2 precompile
 - **[pallet-evm-precompile-bn128](https://paritytech.github.io/frontier/rustdocs/pallet_evm_precompile_bn128/index.html){target=_blank}** - includes three BN128 precompiles: BN128Add, BN128Mul, and BN128Pairing
-- **[pallet-evm-precompile-modexp](https://paritytech.github.io/frontier/rustdocs/pallet_evm_precompile_modexp/struct.Modexp.html){target=_blank}** - includes the modular exponentiation precompile 
+- **[pallet-evm-precompile-modexp](https://paritytech.github.io/frontier/rustdocs/pallet_evm_precompile_modexp/struct.Modexp.html){target=_blank}** - includes the modular exponentiation precompile
 - **[pallet-evm-precompile-sha3fips](https://paritytech.github.io/frontier/rustdocs/pallet_evm_precompile_sha3fips/struct.Sha3FIPS256.html){target=_blank}** -includes the standard SHA3 precompile
 - **[pallet-evm-precompile-dispatch](https://paritytech.github.io/frontier/rustdocs/pallet_evm_precompile_dispatch/struct.Dispatch.html){target=_blank}** - includes the dispatch precompile
 
@@ -68,4 +68,4 @@ The [Ethereum pallet](https://paritytech.github.io/frontier/frame/ethereum.html)
 
 When a user submits a raw Ethereum transaction, it gets converted into a Substrate transaction through the pallet Ethereum's `transact` extrinsic. Using the Ethereum pallet as the sole executor of the EVM pallet, forces all of the data to be stored and transacted with in an Ethereum-compatible way. This enables block explorers such as [Moonscan](/builders/get-started/explorers#moonscan){target=_blank}, which is built by Etherscan, to be able to index block data.
 
-Along with support for Ethereum-style data, the Ethereum pallet combined with the [RPC module](https://github.com/paritytech/frontier/tree/master/client/rpc){target=_blank} provides RPC support. This enables usage of [basic Ethereum JSON-RPC methods](/builders/get-started/eth-compare/rpc-support#basic-ethereum-json-rpc-methods){target=_blank} which ultimately allows existing Ethereum DApps to be deployed to Moonbeam with minimal changes. 
+Along with support for Ethereum-style data, the Ethereum pallet combined with the [RPC module](https://github.com/paritytech/frontier/tree/master/client/rpc){target=_blank} provides RPC support. This enables usage of [basic Ethereum JSON-RPC methods](/builders/get-started/eth-compare/rpc-support#basic-ethereum-json-rpc-methods){target=_blank} which ultimately allows existing Ethereum DApps to be deployed to Moonbeam with minimal changes.

@@ -95,7 +95,6 @@ As Moonbeam is a Substrate-based chain that is fully Ethereum-compatible, you ca
     |        [Remix](/builders/build/eth-api/dev-env/remix){target=_blank}         | Dev Environment |
     | [Scaffold-Eth](/builders/build/eth-api/dev-env/scaffold-eth){target=_blank}  | Dev Environment |
     |     [thirdweb](/builders/build/eth-api/dev-env/thirdweb){target=_blank}      | Dev Environment |
-    |      [Truffle](/builders/build/eth-api/dev-env/truffle){target=_blank}       | Dev Environment |
     | [Waffle & Mars](/builders/build/eth-api/dev-env/waffle-mars){target=_blank}  | Dev Environment |
 
 === "Substrate"

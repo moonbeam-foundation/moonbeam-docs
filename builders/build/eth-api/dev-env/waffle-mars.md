@@ -173,7 +173,7 @@ You'll be running tests against the Moonbase Alpha TestNet and will need the cor
 
 --8<-- 'text/_common/endpoint-setup.md'
 
-Since you will be running tests against the TestNet, it might take a couple minutes to run all of the tests. If you want a more efficient testing experience, you can [spin up a Moonbeam development node](/builders/get-started/networks/moonbeam-dev/){target=_blank} using [`instant seal`](/builders/get-started/networks/moonbeam-dev/#node-options){target=_blank}. Running a local Moonbeam development node with the `instant seal` feature is similar to the quick and iterative experience you would get with [Ganache](https://www.trufflesuite.com/ganache){target=_blank}.
+Since you will be running tests against the TestNet, it might take a couple minutes to run all of the tests. If you want a more efficient testing experience, you can [spin up a Moonbeam development node](/builders/get-started/networks/moonbeam-dev/){target=_blank} using [`instant seal`](/builders/get-started/networks/moonbeam-dev/#node-options){target=_blank}. Running a local Moonbeam development node with the `instant seal` feature is similar to the quick and iterative experience you would get with [Hardhat Network](https://hardhat.org/hardhat-network/docs/overview){target=_blank}.
 
 1. Create a directory to contain your tests and a file to test your `MyToken` contract:
 
