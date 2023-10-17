@@ -399,7 +399,9 @@ The following code sample is for demo purposes only and should not be used witho
 
 You can use the following snippet for any Moonbeam-based network, but you'll need to modify the `baseFee` accordingly. You can refer back to the [Base Fee](#base-fee) section to get the calculation for each network.
 
---8<-- 'code/builders/get-started/eth-compare/tx-fees/tx-fees-block-dynamic.md'
+```js
+--8<-- 'code/builders/get-started/eth-compare/tx-fees/tx-fees-block-dynamic.js'
+```
 
 ## Substrate API Transaction Fees {: #substrate-api-transaction-fees }
 

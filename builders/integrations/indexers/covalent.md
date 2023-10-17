@@ -190,22 +190,22 @@ Copy and paste the below code block into your preferred environment, or [JSFiddl
     const address = '0xFEC4f9D5B322Aa834056E85946A32c35A3f5aDD8'; // example
     const chainId = '{{ networks.moonbase.chain_id }}'; // Moonbase Alpha TestNet chain ID
     const url = new URL(
-        `https://api.covalenthq.com/v1/${chainId}/address/${address}/balances_v2/`
+      `https://api.covalenthq.com/v1/${chainId}/address/${address}/balances_v2/`
     );
 
     url.search = new URLSearchParams({
-        key: apiKey,
+      key: apiKey,
     });
 
     // use fetch API to get Covalent data
     fetch(url)
-        .then((resp) => resp.json())
-        .then(function (data) {
-        const result = data.data;
+      .then((resp) => resp.json())
+      .then(function (data) {
+      const result = data.data;
 
-        console.log(result);
-        return result;
-        });
+      console.log(result);
+      return result;
+      });
     }
 
     getData();
@@ -219,18 +219,18 @@ Copy and paste the below code block into your preferred environment, or [JSFiddl
     const address = '0xFEC4f9D5B322Aa834056E85946A32c35A3f5aDD8'; // example
     const chainId = '{{ networks.moonbase.chain_id }}'; // Moonbase Alpha TestNet chain ID
     const url = new URL(
-    `https://api.covalenthq.com/v1/${chainId}/address/${address}/balances_v2/`
+      `https://api.covalenthq.com/v1/${chainId}/address/${address}/balances_v2/`
     );
 
     url.search = new URLSearchParams({
-    key: apiKey,
+      key: apiKey,
     });
 
     async function getData() {
-    const response = await fetch(url);
-    const result = await response.json();
-    console.log(result);
-    return result;
+      const response = await fetch(url);
+      const result = await response.json();
+      console.log(result);
+      return result;
     }
 
     getData();
@@ -247,16 +247,18 @@ Covalent doesn’t have an official API wrapper. To query the API directly you w
 ```python
 import requests
 
+
 def fetch_wallet_balance(address):
-	api_url = 'https://api.covalenthq.com'
-    endpoint = f'/v1/{{ networks.moonbase.chain_id }}/address/{address}/balances_v2/'
+    api_url = "https://api.covalenthq.com"
+    endpoint = f"/v1/{{ networks.moonbase.chain_id }}/address/{address}/balances_v2/"
     url = api_url + endpoint
-    response = requests.get(url, auth=('INSERT_YOUR_API_KEY',''))
+    response = requests.get(url, auth=("INSERT_YOUR_API_KEY", ""))
     print(response.json())
-    return(response.json())
+    return response.json()
+
 
 # Example address request
-fetch_wallet_balance('0xFEC4f9D5B322Aa834056E85946A32c35A3f5aDD8')
+fetch_wallet_balance("0xFEC4f9D5B322Aa834056E85946A32c35A3f5aDD8")
 ```
 
 !!! note

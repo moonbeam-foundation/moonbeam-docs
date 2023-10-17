@@ -46,19 +46,25 @@ Any contract that follows the ERC-20 token standard emits an event related to a 
 const Web3 = require('web3');
 const web3 = new Web3('wss://wss.api.moonbase.moonbeam.network');
 
-web3.eth.subscribe('logs', {
-    address: 'ContractAddress',
-    topics: ['0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef']
-}, (error, result) => {
-    if (error)
-        console.error(error);
-})
-    .on("connected", function (subscriptionId) {
-        console.log(subscriptionId);
-    })
-    .on("data", function (log) {
-        console.log(log);
-    });
+web3.eth
+  .subscribe(
+    'logs',
+    {
+      address: 'INSERT_CONTRACT_ADDRESS',
+      topics: [
+        '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef',
+      ],
+    },
+    (error, result) => {
+      if (error) console.error(error);
+    }
+  )
+  .on('connected', function (subscriptionId) {
+    console.log(subscriptionId);
+  })
+  .on('data', function (log) {
+    console.log(log);
+  });
 ```
 
 Note that you are connecting to the WebSocket endpoint of Moonbase Alpha. You're using the `web3.eth.subscribe(‘logs’,  options [, callback])` method to subscribe to the logs, filtered by the given options. In this case, the options are the contract’s address where the events are emitted from and the topics used to describe the event. More information about topics can be found in the [Understanding event logs on the Ethereum blockchain](https://medium.com/mycrypto/understanding-event-logs-on-the-ethereum-blockchain-f4ae7ba50378){target=_blank} Medium post. If no topics are included, you subscribe to all events emitted by the contract. In order to only filter the `Transfer` event, you need to include the signature of the event, calculated as:
@@ -102,28 +108,28 @@ const Web3 = require('web3');
 const web3 = new Web3('wss://wss.api.moonbase.moonbeam.network');
 
 web3.eth
-   .subscribe(
-      'logs',
-      {
-         address: 'ContractAddress',
-         topics: [
-            null,
-            [
-               '0x00000000000000000000000044236223aB4291b93EEd10E4B511B37a398DEE55',
-               '0x0000000000000000000000008841701Dba3639B254D9CEe712E49D188A1e941e',
-            ],
-         ],
-      },
-      (error, result) => {
-         if (error) console.error(error);
-      }
-   )
-   .on('connected', function (subscriptionId) {
-      console.log(subscriptionId);
-   })
-   .on('data', function (log) {
-      console.log(log);
-   });
+  .subscribe(
+    'logs',
+    {
+      address: 'INSERT_CONTRACT_ADDRESS',
+      topics: [
+        null,
+        [
+          '0x00000000000000000000000044236223aB4291b93EEd10E4B511B37a398DEE55',
+          '0x0000000000000000000000008841701Dba3639B254D9CEe712E49D188A1e941e',
+        ],
+      ],
+    },
+    (error, result) => {
+      if (error) console.error(error);
+    }
+  )
+  .on('connected', function (subscriptionId) {
+    console.log(subscriptionId);
+  })
+  .on('data', function (log) {
+    console.log(log);
+  });
 ```
 
 Here, by using the wildcard `null` in place for the event signature, you'll filter to listen to all events emitted by the contract that you subscribed to. But with this configuration, you can also use a second input field (`topic_1`) to define a filter by address as mentioned before. In the case of this subscription, you are notifying that you want to only receive events where `topic_1` is one of the addresses you are providing. Note that the addresses need to be in H256 format. For example, the address `0x44236223aB4291b93EEd10E4B511B37a398DEE55` needs to be entered as `0x00000000000000000000000044236223aB4291b93EEd10E4B511B37a398DEE55`. As before, the output of this subscription will display the event signature in `topic_0` to tell you which event was emitted by the contract.

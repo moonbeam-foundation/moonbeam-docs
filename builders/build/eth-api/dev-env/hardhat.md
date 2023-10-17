@@ -207,26 +207,26 @@ To get started, take the following steps:
 ```js
 // scripts/deploy.js
 async function main() {
-   // 1. Get the contract to deploy
-   const Box = await ethers.getContractFactory('Box');
-   console.log('Deploying Box...');
+  // 1. Get the contract to deploy
+  const Box = await ethers.getContractFactory('Box');
+  console.log('Deploying Box...');
 
-   // 2. Instantiating a new Box smart contract
-   const box = await Box.deploy();
+  // 2. Instantiating a new Box smart contract
+  const box = await Box.deploy();
 
-   // 3. Waiting for the deployment to resolve
-   await box.waitForDeployment();
+  // 3. Waiting for the deployment to resolve
+  await box.waitForDeployment();
 
-   // 4. Use the contract instance to get the contract address
-   console.log('Box deployed to:', box.target);
+  // 4. Use the contract instance to get the contract address
+  console.log('Box deployed to:', box.target);
 }
 
 main()
-   .then(() => process.exit(0))
-   .catch((error) => {
-      console.error(error);
-      process.exit(1);
-   });
+  .then(() => process.exit(0))
+  .catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });
 ```
 
 You can now deploy the `Box.sol` contract using the `run` command and specifying `moonbase` as the network:
@@ -430,12 +430,12 @@ If you prefer to configure your Hardhat project, you can update your `hardhat.co
     ```js
     ...
     networks: {
-        hardhat: {
-            forking: {
-            url: '{{ networks.moonbeam.rpc_url }}',
-            }
-        }
-    }
+      hardhat: {
+        forking: {
+          url: '{{ networks.moonbeam.rpc_url }}',
+        },
+      },
+    },
     ...
     ```
 
@@ -444,12 +444,12 @@ If you prefer to configure your Hardhat project, you can update your `hardhat.co
     ```js
     ...
     networks: {
-        hardhat: {
-            forking: {
-            url: '{{ networks.moonriver.rpc_url }}',
-            }
-        }
-    }
+      hardhat: {
+        forking: {
+          url: '{{ networks.moonriver.rpc_url }}',
+        },
+      },
+    },
     ...
     ```
 
@@ -458,12 +458,12 @@ If you prefer to configure your Hardhat project, you can update your `hardhat.co
     ```js
     ...
     networks: {
-        hardhat: {
-            forking: {
-            url: '{{ networks.moonbase.rpc_url }}',
-            }
-        }
-    }
+      hardhat: {
+        forking: {
+          url: '{{ networks.moonbase.rpc_url }}',
+        },
+      },
+    },
     ...
     ```
 
@@ -487,10 +487,14 @@ To interact with an already deployed contract, you can create a new script in th
 const hre = require('hardhat');
 
 async function main() {
-  const provider = new ethers.providers.StaticJsonRpcProvider('http://127.0.0.1:8545/');
-  
+  const provider = new ethers.providers.StaticJsonRpcProvider(
+    'http://127.0.0.1:8545/'
+  );
+
   const contract = new ethers.Contract(
-      'INSERT_CONTRACT_ADDRESS', 'INSERT_CONTRACT_ABI', provider
+    'INSERT_CONTRACT_ADDRESS',
+    'INSERT_CONTRACT_ABI',
+    provider
   );
 }
 

@@ -83,9 +83,9 @@ After the initialization is complete, you'll have a base SubQuery project that c
 If you take a look at the `package.json` file, you'll notice that the `chaintypes` are exported there. If for some reason they are not, or if you're expanding upon an existing Substrate project to add Moonbeam support, you'll need to include the following snippet:
 
 ```json
-  "exports": {
+"exports": {
     "chaintypes": "src/chaintypes.ts"
-  }
+}
 ```
 
 ## Updating the Network Configuration {: #updating-the-network-configuration }

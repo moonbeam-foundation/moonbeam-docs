@@ -292,8 +292,7 @@ import { Sdk } from '@moonbeam-network/xcm-sdk';
 
 const sdkInstance = new Sdk();
 
-const fromPolkadot = async() => {
-
+const fromPolkadot = async () => {
   const { assets, asset } = sdkInstance.assets();
   console.log(
     `The supported assets are: ${assets.map((asset) => asset.originSymbol)}`
@@ -301,12 +300,16 @@ const fromPolkadot = async() => {
 
   const { sourceChains, source } = sdkInstance.assets().asset('dot');
   console.log(
-    `The supported source chains are: ${sourceChains.map((chain) => chain.name)}`
+    `The supported source chains are: ${sourceChains.map(
+      (chain) => chain.name
+    )}`
   );
 
   const { destinationChains, destination } = sdkInstance.assets().asset('dot').source('polkadot');
   console.log(
-    `The supported destination chains are: ${destinationChains.map((chain) => chain.name)}`
+    `The supported destination chains are: ${destinationChains.map(
+      (chain) => chain.name
+    )}`
   );
 
   const data = await Sdk()
@@ -315,11 +318,11 @@ const fromPolkadot = async() => {
     .source('polkadot')
     .destination('moonbeam')
     .accounts(
-      pair.address, 
+      pair.address,
       evmSigner.address, // If using viem, use evmSigner.account.address
       {
-      evmSigner,
-      polkadotSigner: pair,
+        evmSigner,
+        polkadotSigner: pair,
     });
 }
 
@@ -334,7 +337,7 @@ If you don't need any of the asset or chain information, you can use the `getTra
 ```js
 import { Sdk } from '@moonbeam-network/xcm-sdk';
 
-const fromPolkadot = async() => {
+const fromPolkadot = async () => {
   const data = await Sdk().getTransferData({
     destinationAddress: evmSigner.address, // If using viem, use evmSigner.account.address
     destinationKeyOrChain: 'moonbeam',
@@ -344,7 +347,7 @@ const fromPolkadot = async() => {
     sourceKeyOrChain: 'polkadot',
     evmSigner,
   });
-}
+};
 
 fromPolkadot();
 ```

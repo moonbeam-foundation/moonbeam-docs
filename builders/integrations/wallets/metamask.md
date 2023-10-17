@@ -48,13 +48,13 @@ Now that you have created the button, you need to add the `configureMoonbaseAlph
     ```javascript
     import detectEthereumProvider from '@metamask/detect-provider';
     const configureMoonbaseAlpha = async () => {
-        const provider = await detectEthereumProvider({ mustBeMetaMask: true });
-        if (provider) {
-            // Logic will go here    
-        } else {
-            console.error("Please install MetaMask");
-        }
-    }
+      const provider = await detectEthereumProvider({ mustBeMetaMask: true });
+      if (provider) {
+        // Logic will go here
+      } else {
+        console.error('Please install MetaMask');
+      }
+    };
     ```
 
 2. Request the user's accounts by calling the `eth_requestAccounts` method. This will prompt MetaMask to pop-up and ask the user to select which accounts they would like to connect to. Behind the scenes, permissions are being checked by calling `wallet_requestPermissions`. Currently the only permissions are for `eth_accounts`. So you're ultimately verifying that you have access to the user's addresses returned from `eth_accounts`. If you're interested in learning more about the permissions system, check out [EIP-2255](https://eips.ethereum.org/EIPS/eip-2255){target=_blank}
@@ -62,17 +62,17 @@ Now that you have created the button, you need to add the `configureMoonbaseAlph
     ```javascript
     import detectEthereumProvider from '@metamask/detect-provider';
     const configureMoonbaseAlpha = async () => {
-        const provider = await detectEthereumProvider({ mustBeMetaMask: true });
-        if (provider) {
-            try {
-                await provider.request({ method: "eth_requestAccounts"});
-            } catch(e) {
-                console.error(e);
-            }  
-        } else {
-            console.error("Please install MetaMask");
+      const provider = await detectEthereumProvider({ mustBeMetaMask: true });
+      if (provider) {
+        try {
+          await provider.request({ method: 'eth_requestAccounts' });
+        } catch (e) {
+          console.error(e);
         }
-    }
+      } else {
+        console.error('Please install MetaMask');
+      }
+    };
     ```
 
     ![Add accounts to MetaMask](/images/builders/integrations/wallets/metamask/metamask-1.png)
@@ -82,33 +82,34 @@ Now that you have created the button, you need to add the `configureMoonbaseAlph
     ```javascript
     import detectEthereumProvider from '@metamask/detect-provider';
     const configureMoonbaseAlpha = async () => {
-        const provider = await detectEthereumProvider({ mustBeMetaMask: true });
-        if (provider) {
-            try {
-                await provider.request({ method: "eth_requestAccounts"});
-                await provider.request({
-                    method: "wallet_addEthereumChain",
-                    params: [
-                        {
-                            chainId: "{{ networks.moonbase.hex_chain_id }}", // Moonbase Alpha's chainId is {{ networks.moonbase.chain_id }}, which is {{ networks.moonbase.hex_chain_id }} in hex
-                            chainName: "Moonbase Alpha",
-                            nativeCurrency: {
-                                name: 'DEV',
-                                symbol: 'DEV',
-                                decimals: 18
-                            },
-                        rpcUrls: ["{{ networks.moonbase.rpc_url }}"],
-                        blockExplorerUrls: ["{{ networks.moonbase.block_explorer }}"]
-                        },
-                    ]
-                })
-            } catch(e) {
-                console.error(e);
-            }  
-        } else {
-            console.error("Please install MetaMask");
+      const provider = await detectEthereumProvider({ mustBeMetaMask: true });
+      if (provider) {
+        try {
+          await provider.request({ method: 'eth_requestAccounts' });
+          await provider.request({
+            method: 'wallet_addEthereumChain',
+            params: [
+              {
+                 // Moonbase Alpha's chainId is {{ networks.moonbase.chain_id }}, which is {{ networks.moonbase.hex_chain_id }} in hex
+                chainId: '{{ networks.moonbase.hex_chain_id }}',
+                chainName: 'Moonbase Alpha',
+                nativeCurrency: {
+                  name: 'DEV',
+                  symbol: 'DEV',
+                  decimals: 18,
+                },
+                rpcUrls: ['{{ networks.moonbase.rpc_url }}'],
+                blockExplorerUrls: ['{{ networks.moonbase.block_explorer }}'],
+              },
+            ],
+          });
+        } catch (e) {
+          console.error(e);
         }
-    }
+      } else {
+        console.error('Please install MetaMask');
+      }
+    };
     ```
 
     ![Add and switch networks in MetaMask](/images/builders/integrations/wallets/metamask/metamask-2.png)
@@ -120,15 +121,15 @@ So, now you should have a button that, on click, walks users through the entire 
 It's possible that you'll have logic that relies on knowing whether a user is connected to Moonbase Alpha or not. Perhaps you want to disable the button if the user is already connected. To confirm a user is connected to Moonbase Alpha, you can call `eth_chainId`, which will return the users current chain ID:
 
 ```javascript
-    const chainId = await provider.request({
-        method: 'eth_chainId'
-    })
-    // Moonbase Alpha's chainId is {{ networks.moonbase.chain_id }}, which is {{ networks.moonbase.hex_chain_id }} in hex
-    if (chainId === "{{ networks.moonbase.hex_chain_id }}"){
-        // At this point, you might want to disable the "Connect" button
-        // or inform the user that they are already connected to the
-        // Moonbase Alpha testnet
-    }
+const chainId = await provider.request({
+  method: 'eth_chainId',
+});
+// Moonbase Alpha's chainId is {{ networks.moonbase.chain_id }}, which is {{ networks.moonbase.hex_chain_id }} in hex
+if (chainId === '{{ networks.moonbase.hex_chain_id }}') {
+  // At this point, you might want to disable the "Connect" button
+  // or inform the user that they are already connected to the
+  // Moonbase Alpha testnet
+}
 ```
 
 ## Listen to Account Changes {: #listen-to-account-changes }
@@ -136,12 +137,12 @@ It's possible that you'll have logic that relies on knowing whether a user is co
 To ensure that your project or dApp is staying up to date with the latest account information, you can add the `accountsChanged` event listener that MetaMask provides. MetaMask emits this event when the return value of `eth_accounts` changes. If an address is returned, it is your user's most recent account that provided access permissions. If no address is returned, that means the user has not provided any accounts with access permissions.
 
 ```javascript
-    provider.on("accountsChanged", (accounts) => {
-        if (accounts.length === 0) {
-            // MetaMask is locked or the user doesn't have any connected accounts
-            console.log('Please connect to MetaMask.');
-        } 
-    })
+provider.on('accountsChanged', (accounts) => {
+  if (accounts.length === 0) {
+    // MetaMask is locked or the user doesn't have any connected accounts
+    console.log('Please connect to MetaMask.');
+  }
+});
 ```
 
 ## Listen to Chain Changes {: #listen-to-chain-changes }
@@ -149,10 +150,10 @@ To ensure that your project or dApp is staying up to date with the latest accoun
 To keep your project or dApp up to date with any changes to the connected chain, you'll want to subscribe to the `chainChanged` event. MetaMask emits this event every time the connected chain changes.
 
 ```javascript
-    provider.on("chainChanged", () => {
-        // MetaMask recommends reloading the page unless you have good reason not to
-        window.location.reload();
-    })
+provider.on('chainChanged', () => {
+  // MetaMask recommends reloading the page unless you have good reason not to
+  window.location.reload();
+});
 ```
 
 MetaMask recommends reloading the page whenever the chain changes, unless there is a good reason not to, as it's important to always be in sync with chain changes.

@@ -179,16 +179,16 @@ In `plugins/simplegeneralmessage_plugin/config/devnet.json`, there exists an arr
 Be sure to edit the `spyServiceFilters` array so that the relayer listens to the two contracts that you deployed.
 
 ```json
- "spyServiceFilters": [
-   {
-     "chainId": 16,
-     "emitterAddress": "0x428097dCddCB00Ab65e63AB9bc56Bb48d106ECBE"
-   },
-   {
-     "chainId": 10,
-     "emitterAddress": "0x5017Fd40aeA8Ab94693bE41b3bE4e90F45860bA4"
-   }
- ]
+"spyServiceFilters": [
+    {
+        "chainId": 16,
+        "emitterAddress": "0x428097dCddCB00Ab65e63AB9bc56Bb48d106ECBE"
+    },
+    {
+        "chainId": 10,
+        "emitterAddress": "0x5017Fd40aeA8Ab94693bE41b3bE4e90F45860bA4"
+    }
+]
 ```
 
 In the `simplegeneralmessage_plugin` folder, open up `src/plugin.ts`. This file contains plugin code for both the listener and executor components of the relayer, but the comments should make it obvious which functions are relevant to which component. Snippets of the file are shown below and you should be following along, but in case you aren’t, the entire file can be accessed in [its GitHub repository](https://github.com/jboetticher/relayer-engine-docs-example/blob/main/plugins/simplegeneralmessage_plugin/src/plugin.ts){target=_blank}.
@@ -317,16 +317,23 @@ async handleWorkflow(
 
   // Here we are parsing the payload so that we can send it to the right recipient
   const hexPayload = parsed.payload.toString('hex');
-  let [recipient, destID, sender, message] = ethers.utils.defaultAbiCoder.decode(['bytes32', 'uint16', 'bytes32', 'string'], '0x' + hexPayload);
+  let [recipient, destID, sender, message] =
+    ethers.utils.defaultAbiCoder.decode(
+      ['bytes32', 'uint16', 'bytes32', 'string'],
+      '0x' + hexPayload
+    );
   recipient = this.formatAddress(recipient);
   sender = this.formatAddress(sender);
   const destChainID = destID as ChainId;
-  this.logger.info(`VAA: ${sender} sent "${message}" to ${recipient} on chain ${destID}.`);
+  this.logger.info(
+    `VAA: ${sender} sent "${message}" to ${recipient} on chain ${destID}.`
+  );
 
   // Execution logic
   if (wh.isEVMChain(destChainID)) {
     // This is where you do all of the EVM execution.
-    // Add your own private wallet for the executor to inject in relayer-engine-config/executor.json
+    // Add your own private wallet for the executor to inject in 
+    // relayer-engine-config/executor.json
     await execute.onEVM({
       chainId: destChainID,
       f: async (wallet, chainId) => {
@@ -335,14 +342,16 @@ async handleWorkflow(
         this.logger.info(result);
       },
     });
+  } else {
+    // The relayer plugin has a built-in Solana wallet handler, which you could use
+    // here. NEAR & Algorand are supported by Wormhole, but they're not supported by
+    // the relayer plugin. If you want to interact with NEAR or Algorand you'd have
+    // to make your own wallet management system, that's all
+    this.logger.error(
+      'Requested chainID is not an EVM chain, which is currently unsupported.'
+    );
   }
-  else {
-    // The relayer plugin has a built-in Solana wallet handler, which you could use here.
-    // NEAR & Algorand are supported by Wormhole, but they're not supported by the relayer plugin.
-    // If you want to interact with NEAR or Algorand you'd have to make your own wallet management system, that's all.      
-    this.logger.error('Requested chainID is not an EVM chain, which is currently unsupported.');
-  }
-}
+};
 ```
 
 In the callback function, it creates a [contract object](https://docs.ethers.org/v6/api/contract/#Contract){target=_blank} with the Ethers package. The ABI that it imports is exported from the `SimpleGeneralMessage` contract’s compilation, so this code is assuming that the recipient of the message specified in the VAA is or inherits from a `SimpleGeneralMessage` contract.
@@ -368,13 +377,13 @@ There are also additional configurations for the relayer. For example, the `mode
  "mode": "BOTH",
  "logLevel": "debug",
  ...
-   {
-     "chainId": 16,
-     "chainName": "Moonbase Alpha",
-     "nodeUrl": "https://rpc.api.moonbase.moonbeam.network",
-     "bridgeAddress": "0xa5B7D85a8f27dd7907dc8FdC21FA5657D5E2F901",
-     "tokenBridgeAddress": "0xbc976D4b9D57E57c3cA52e1Fd136C45FF7955A96"
-   },
+    {
+        "chainId": 16,
+        "chainName": "Moonbase Alpha",
+        "nodeUrl": "https://rpc.api.moonbase.moonbeam.network",
+        "bridgeAddress": "0xa5B7D85a8f27dd7907dc8FdC21FA5657D5E2F901",
+        "tokenBridgeAddress": "0xbc976D4b9D57E57c3cA52e1Fd136C45FF7955A96"
+    },
 ```
 
 That’s it for the configuration! Now to run it. In your terminal instance (one that isn’t running the spy node), navigate to the parent folder. Run the following command:

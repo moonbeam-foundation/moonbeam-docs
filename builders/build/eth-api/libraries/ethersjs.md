@@ -72,13 +72,10 @@ To create a provider, you can take the following steps:
       },
     };
     // 3. Create ethers provider
-    const provider = new ethers.JsonRpcProvider(
-      providerRPC.moonbeam.rpc, 
-      {
-        chainId: providerRPC.moonbeam.chainId,
-        name: providerRPC.moonbeam.name,
-      }
-    );
+    const provider = new ethers.JsonRpcProvider(providerRPC.moonbeam.rpc, {
+      chainId: providerRPC.moonbeam.chainId,
+      name: providerRPC.moonbeam.name,
+    });
     ```
 
 === "Moonriver"
@@ -96,13 +93,10 @@ To create a provider, you can take the following steps:
       },
     };
     // 3. Create ethers provider
-    const provider = new ethers.JsonRpcProvider(
-      providerRPC.moonriver.rpc, 
-      {
-        chainId: providerRPC.moonriver.chainId,
-        name: providerRPC.moonriver.name,
-      }
-    );
+    const provider = new ethers.JsonRpcProvider(providerRPC.moonriver.rpc, {
+      chainId: providerRPC.moonriver.chainId,
+      name: providerRPC.moonriver.name,
+    });
     ```
 
 === "Moonbase Alpha"
@@ -120,13 +114,10 @@ To create a provider, you can take the following steps:
       },
     };
     // 3. Create ethers provider
-    const provider = new ethers.JsonRpcProvider(
-      providerRPC.moonbase.rpc, 
-      {
-        chainId: providerRPC.moonbase.chainId,
-        name: providerRPC.moonbase.name,
-      }
-    );
+    const provider = new ethers.JsonRpcProvider(providerRPC.moonbase.rpc, {
+      chainId: providerRPC.moonbase.chainId,
+      name: providerRPC.moonbase.name,
+    });
     ```
 
 === "Moonbeam Dev Node"
@@ -144,13 +135,10 @@ To create a provider, you can take the following steps:
       },
     };
     // 3. Create ethers provider
-    const provider = new ethers.JsonRpcProvider(
-      providerRPC.dev.rpc, 
-      {
-        chainId: providerRPC.dev.chainId,
-        name: providerRPC.dev.name,
-      }
-    );
+    const provider = new ethers.JsonRpcProvider(providerRPC.dev.rpc, {
+      chainId: providerRPC.dev.chainId,
+      name: providerRPC.dev.name,
+    });
     ```
 
 Save this code snippet as you'll need it for the scripts that are used in the following sections.
@@ -533,7 +521,9 @@ const incrementer = new ethers.Contract(contractAddress, abi, wallet);
 
 // 6. Create reset function
 const reset = async () => {
-  console.log(`Calling the reset function in contract at address: ${contractAddress}`);
+  console.log(
+    `Calling the reset function in contract at address: ${contractAddress}`
+  );
 
   // 7. sign and send tx and wait for receipt
   const createReceipt = await incrementer.reset();

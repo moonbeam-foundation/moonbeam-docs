@@ -92,7 +92,7 @@ There are multiple ways to create a provider and signer, but the easiest way is 
         // Do not include the private key in plain text in any production code
         // This is just for demonstration purposes
         // Do not include '0x' at the start of the private key
-        let wallet: LocalWallet = "YOUR_PRIVATE_KEY"
+        let wallet: LocalWallet = "INSERT_YOUR_PRIVATE_KEY"
             .parse::<LocalWallet>()?
             .with_chain_id(Chain::Moonbeam);
 
@@ -122,7 +122,7 @@ There are multiple ways to create a provider and signer, but the easiest way is 
         // Do not include the private key in plain text in any production code
         // This is just for demonstration purposes
         // Do not include '0x' at the start of the private key
-        let wallet: LocalWallet = "YOUR_PRIVATE_KEY"
+        let wallet: LocalWallet = "INSERT_YOUR_PRIVATE_KEY"
             .parse::<LocalWallet>()?
             .with_chain_id(Chain::Moonriver);
 
@@ -152,7 +152,7 @@ There are multiple ways to create a provider and signer, but the easiest way is 
         // Do not include the private key in plain text in any production code
         // This is just for demonstration purposes
         // Do not include '0x' at the start of the private key
-        let wallet: LocalWallet = "YOUR_PRIVATE_KEY"
+        let wallet: LocalWallet = "INSERT_YOUR_PRIVATE_KEY"
             .parse::<LocalWallet>()?
             .with_chain_id(Chain::Moonbase);
 
@@ -182,7 +182,7 @@ There are multiple ways to create a provider and signer, but the easiest way is 
         // Do not include the private key in plain text in any production code
         // This is just for demonstration purposes
         // Do not include '0x' at the start of the private key
-        let wallet: LocalWallet = "YOUR_PRIVATE_KEY"
+        let wallet: LocalWallet = "INSERT_YOUR_PRIVATE_KEY"
             .parse::<LocalWallet>()?
             .with_chain_id(Chain::MoonbeamDev);
 
