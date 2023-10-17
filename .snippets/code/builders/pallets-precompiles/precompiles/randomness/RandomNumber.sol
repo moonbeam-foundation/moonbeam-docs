@@ -50,7 +50,7 @@ contract RandomNumber is RandomnessConsumer {
     }
 
     function fulfillRandomWords(
-        uint256, /* requestId */
+        uint256, // requestId
         uint256[] memory randomWords
     ) internal override {
         // Save the randomness results

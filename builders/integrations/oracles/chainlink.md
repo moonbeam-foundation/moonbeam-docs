@@ -425,8 +425,8 @@ contract Client is ChainlinkClient {
     */
     constructor() {
         setChainlinkToken(address(0xa36085F69e2889c224210F603D836748e7dC0088));
-        oracle = {INSERT-YOUR-ORACLE-NODE-ADDRESS};
-        jobId = "{INSERT-YOUR-JOB-ID}";
+        oracle = INSERT_YOUR_ORACLE_NODE_ADDRESS;
+        jobId = "INSERT_YOUR_JOB_ID";
         fee = 0;
     }
 

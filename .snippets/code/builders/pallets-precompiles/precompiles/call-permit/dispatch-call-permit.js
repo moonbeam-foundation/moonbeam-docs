@@ -5,7 +5,7 @@ import cartographerAbi from './cartographerAbi.js';
 const providerRPC = {
   moonbeam: {
     name: 'moonbeam',
-    rpc: 'RPC-API-ENDPOINT-HERE', // Insert your RPC URL here
+    rpc: 'INSERT_RPC_API_ENDPOINT', // Insert your RPC URL here
     chainId: 1284, // 0x504 in hex,
   },
 };
@@ -16,8 +16,8 @@ const provider = new ethers.JsonRpcProvider(providerRPC.moonbeam.rpc, {
 
 // Insert your own signer logic or use the following for testing purposes.
 // For demo purposes only. Never store your private keys in a JavaScript file
-const userSigner = new ethers.Wallet('INSERT-PRIVATE-KEY', provider);
-const thirdPartyGasSigner = new ethers.Wallet('INSERT-PRIVATE-KEY', provider);
+const userSigner = new ethers.Wallet('INSERT_PRIVATE_KEY', provider);
+const thirdPartyGasSigner = new ethers.Wallet('INSERT_PRIVATE_KEY', provider);
 
 const domain = {
   name: 'Call Permit Precompile',
@@ -47,13 +47,13 @@ const data = cartographerInterface.encodeFunctionData('buyVoyages', [
 
 const gasEstimate = await provider.estimateGas({
   from: userSigner.address,
-  to: '0xD1A9bA3e61Ac676f58B29EA0a09Cf5D7f4f35138', // Cartographer V1 contraact
+  to: '0xD1A9bA3e61Ac676f58B29EA0a09Cf5D7f4f35138', // Cartographer V1 contract
   data,
-})
+});
 
 const callPermit = new ethers.Contract(
   '0x000000000000000000000000000000000000080a', // Call Permit contract
-  abi, 
+  abi,
   thirdPartyGasSigner
 );
 

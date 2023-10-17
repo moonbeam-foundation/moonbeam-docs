@@ -6,7 +6,7 @@ If you're looking for your own endpoints suitable for production use, you can ch
 
 --8<-- 'text/builders/get-started/endpoints/moonbase.md'
 
-## Quick Start {: #quick-start } 
+## Quick Start {: #quick-start }
 
 For the [Web3.js library](/builders/build/eth-api/libraries/web3js){target=_blank}, you can create a local Web3 instance and set the provider to connect to Moonbase Alpha (both HTTP and WS are supported):
 
@@ -18,6 +18,7 @@ const Web3 = require('web3'); // Load Web3 library
 // Create local Web3 instance - set Moonbase Alpha as provider
 const web3 = new Web3('https://rpc.api.moonbase.moonbeam.network'); 
 ```
+
 For the [Ethers.js library](/builders/build/eth-api/libraries/ethersjs){target=_blank}, define the provider by using `ethers.JsonRpcProvider(providerURL, {object})` and setting the provider URL to Moonbase Alpha:
 
 ```js
@@ -33,6 +34,6 @@ const provider = new ethers.JsonRpcProvider(providerURL, {
 
 Any Ethereum wallet should be able to generate a valid address for Moonbeam (for example, [MetaMask](https://metamask.io/){target=_blank}).
 
-## Chain ID {: #chain-id } 
+## Chain ID {: #chain-id }
 
 Moonbase Alpha TestNet chain ID is: `1287`, which is `0x507` in hex.

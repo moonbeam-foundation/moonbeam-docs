@@ -1,4 +1,3 @@
-```ts
 import axios from 'axios';
 
 // This script calculates the transaction fees of all transactions in a block
@@ -149,4 +148,3 @@ async function main() {
 }
 
 main();
-```
