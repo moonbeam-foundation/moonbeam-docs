@@ -156,7 +156,7 @@ You can use a raw GitHub URL of the default configuration files, a path to a loc
 A configuration file is not necessary, however. All of the settings (except `genesis` and `timestamp`) can also be passed as flags to configure the environment completely in the command line. For example, the following command forks Moonbase Alpha at block 100.
 
 ```bash
-npx @acala-network/chopsticks@latest --endpoint {{ networks.moonbase.rpc_url }} --block 100
+npx @acala-network/chopsticks@latest --endpoint {{ networks.moonbase.wss_url }} --block 100
 ```
 
 ### Quickstart {: #quickstart }
