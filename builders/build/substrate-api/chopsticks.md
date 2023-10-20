@@ -22,7 +22,7 @@ npm i @acala-network/chopsticks@latest
 Once installed, you can run commands with the Node package executor. For example, this runs Chopstick's base command:  
 
 ```bash
-npx @acala-network/chopsticks
+npx @acala-network/chopsticks@latest
 ```
 
 To run Chopsticks, you will need some sort of configuration, typically through a file. Chopsticks' source repository includes a set of [YAML](https://yaml.org/){target=_blank} configuration files that can be used to create a local copy of a variety of Substrate chains. You can download the configuration files from the [source repository's `configs` folder](https://github.com/AcalaNetwork/chopsticks.git){target=_blank}.  
@@ -127,27 +127,27 @@ These are the settings that can be included in the config file:
 |           `html`           |                           Include to generate storage diff preview between blocks.                           |
 |   `mock-signature-host`    | Mock signature host so that any signature starts with `0xdeadbeef` and filled by `0xcd` is considered valid. |
 
-You can use the configuration file with the base command `npx @acala-network/chopsticks` to fork assets by providing it with the `--config` flag.  
+You can use the configuration file with the base command `npx @acala-network/chopsticks@latest` to fork assets by providing it with the `--config` flag.  
 
 You can use a raw GitHub URL of the default configuration files, a path to a local configuration file, or simply use the chain's name for the `--config` flag. For example, the following commands all use Moonbeam's configuration in the same way:  
 
 === "Chain Name"
 
     ```bash
-    npx @acala-network/chopsticks --config=moonbeam
+    npx @acala-network/chopsticks@latest --config=moonbeam
     ```
 
 === "GitHub URL"
 
     ```bash
-    npx @acala-network/chopsticks \
+    npx @acala-network/chopsticks@latest \
     --config=https://raw.githubusercontent.com/AcalaNetwork/chopsticks/master/configs/moonbeam.yml
     ```
 
 === "Local File Path"
 
     ```bash
-    npx @acala-network/chopsticks --config=configs/moonbeam.yml
+    npx @acala-network/chopsticks@latest --config=configs/moonbeam.yml
     ```
 
 !!! note
@@ -156,7 +156,7 @@ You can use a raw GitHub URL of the default configuration files, a path to a loc
 A configuration file is not necessary, however. All of the settings (except `genesis` and `timestamp`) can also be passed as flags to configure the environment completely in the command line. For example, the following command forks Moonbase Alpha at block 100.
 
 ```bash
-npx @acala-network/chopsticks --endpoint {{ networks.moonbase.rpc_url }} --block 100
+npx @acala-network/chopsticks@latest --endpoint {{ networks.moonbase.wss_url }} --block 100
 ```
 
 ### Quickstart {: #quickstart }
@@ -166,21 +166,21 @@ The simplest way to fork Moonbeam is through the configuration files that are st
 === "Moonbeam"
 
     ```bash
-    npx @acala-network/chopsticks \
+    npx @acala-network/chopsticks@latest \
     --config=https://raw.githubusercontent.com/AcalaNetwork/chopsticks/master/configs/moonbeam.yml
     ```
 
 === "Moonriver"
 
     ```bash
-    npx @acala-network/chopsticks \
+    npx @acala-network/chopsticks@latest \
     --config=https://raw.githubusercontent.com/AcalaNetwork/chopsticks/master/configs/moonriver.yml
     ```
 
 === "Moonbase Alpha"
 
     ```bash
-    npx @acala-network/chopsticks \
+    npx @acala-network/chopsticks@latest \
     --config=https://raw.githubusercontent.com/AcalaNetwork/chopsticks/master/configs/moonbase-alpha.yml
     ```
 
@@ -211,7 +211,7 @@ You should now be able to interact with the fork as you would an active parachai
 
 ## Replaying Blocks {: #replaying-blocks }
 
-In the case where you would like to replay a block and retrieve its information to dissect the effects of an extrinsic, you can use the `npx @acala-network/chopsticks run-block` command. Its following flags are:  
+In the case where you would like to replay a block and retrieve its information to dissect the effects of an extrinsic, you can use the `npx @acala-network/chopsticks@latest run-block` command. Its following flags are:  
 
 |            Flag            |                                      Description                                       |
 |:--------------------------:|:--------------------------------------------------------------------------------------:|
@@ -227,7 +227,7 @@ In the case where you would like to replay a block and retrieve its information 
 For example, running the following command will re-run Moonbeam's block 1000, and write the storage diff and other data in a `moonbeam-output.json` file:  
 
 ```bash
-npx @acala-network/chopsticks run-block  \
+npx @acala-network/chopsticks@latest run-block  \
 --endpoint wss://wss.api.moonbeam.network  \
 --output-path=./moonbeam-output.json  \
 --block 1000
@@ -238,7 +238,7 @@ npx @acala-network/chopsticks run-block  \
 To test out XCM messages between networks, you can fork multiple parachains and a relay chain locally. For example, the following will fork Moonriver, Karura, and Kusama given that you've downloaded the [`configs` directory from the source GitHub repository](https://github.com/AcalaNetwork/chopsticks/tree/master/configs){target=_blank}:  
 
 ```bash
-npx @acala-network/chopsticks xcm \
+npx @acala-network/chopsticks@latest xcm \
 --r=kusama.yml \
 --p=moonriver.yml \
 --p=karura.yml
