@@ -34,14 +34,14 @@ When working with developer tools, depending on the tool, you might need to conf
     |    Variable     |                                                                                                     Value                                                                                                      |
     |:---------------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
     |    Chain ID     |                                                                               <pre>```{{ networks.moonbeam.chain_id }}```</pre>                                                                                |
-    | Public RPC URLs | <pre>```https://moonbeam.public.blastapi.io```</pre> <pre>```https://moonbeam.api.onfinality.io/public```</pre>  <pre>```https://moonbeam-mainnet.gateway.pokt.network/v1/lb/629a2b5650ec8c0039bb30f0```</pre> |
+    | Public RPC URLs | <pre>```https://moonbeam.public.blastapi.io```</pre>  <pre>```https://moonbeam-mainnet.gateway.pokt.network/v1/lb/629a2b5650ec8c0039bb30f0```</pre> |
     | Public WSS URLs |                                                 <pre>```wss://moonbeam.public.blastapi.io```</pre>
 === "Moonriver"
 
     |    Variable     |                                                                                                       Value                                                                                                       |
     |:---------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
     |    Chain ID     |                                                                                <pre>```{{ networks.moonriver.chain_id }}```</pre>                                                                                 |
-    | Public RPC URLs | <pre>```https://moonriver.public.blastapi.io```</pre> <pre>```https://moonriver.api.onfinality.io/public```</pre>  <pre>```https://moonriver-mainnet.gateway.pokt.network/v1/lb/62a74fdb123e6f003963642f```</pre> |
+    | Public RPC URLs | <pre>```https://moonriver.public.blastapi.io```</pre>  <pre>```https://moonriver-mainnet.gateway.pokt.network/v1/lb/62a74fdb123e6f003963642f```</pre> |
     | Public WSS URLs |                                                 <pre>```wss://moonriver.public.blastapi.io```</pre>
 
 === "Moonbase Alpha"

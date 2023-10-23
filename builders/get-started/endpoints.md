@@ -89,7 +89,7 @@ Creating a new API key is simple, all you have to do is:
 
 ### OnFinality {: #onfinality }
 
-[OnFinality](https://onfinality.io/){target=_blank} provides a free API key based endpoint for customers that provide higher rate limits and performance than the free public endpoint. You also receive more in depth analytics of the usage of your application.
+[OnFinality](https://onfinality.io/){target=_blank} provides a free API key based endpoint for customers in place of a public endpoint. Additionally, OnFinality offers paid tiers of service that offer increased rate limits and higher performance than those offered by the free tier. You also receive more in depth analytics of the usage of your application.
 
 To create a custom OnFinality endpoint, go to [OnFinality](https://onfinality.io/){target=_blank} and sign up, or if you already have signed up you can go ahead and log in. From the OnFinality **Dashboard**, you can:
 
