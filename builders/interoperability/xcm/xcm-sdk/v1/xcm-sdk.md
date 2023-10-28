@@ -63,7 +63,7 @@ import { ethers } from 'ethers';
 
 const privateKey = 'INSERT_PRIVATE_KEY';
 const provider = new ethers.providers.WebSocketProvider('INSERT_WS_ENDPOINT', {
-  chainId: 'INSERT_CHAIN_ID',
+  chainId: INSERT_CHAIN_ID,
   name: 'INSERT_CHAIN_NAME',
 });
 const evmSigner = new ethers.Wallet(privateKey, provider);
@@ -80,7 +80,7 @@ For Moonbeam specifically, you can use the following configurations:
     const provider = new ethers.providers.WebSocketProvider(
       '{{ networks.moonbeam.wss_url }}', 
       {
-        chainId: '{{ networks.moonbeam.chain_id }}',
+        chainId: {{ networks.moonbeam.chain_id }},
         name: 'moonbeam',
       }
     );
@@ -96,7 +96,7 @@ For Moonbeam specifically, you can use the following configurations:
     const provider = new ethers.providers.WebSocketProvider(
       '{{ networks.moonriver.wss_url }}', 
       {
-        chainId: '{{ networks.moonriver.chain_id }}',
+        chainId: {{ networks.moonriver.chain_id }},
         name: 'moonriver',
       }
     );
@@ -112,7 +112,7 @@ For Moonbeam specifically, you can use the following configurations:
     const provider = new ethers.providers.WebSocketProvider(
       '{{ networks.moonbase.wss_url }}',
       {
-        chainId: '{{ networks.moonbase.chain_id }}',
+        chainId: {{ networks.moonbase.chain_id }},
         name: 'moonbase',
       }
     );
@@ -229,6 +229,9 @@ const keyring = new Keyring({
 const pair = keyring.createFromUri(privateKey);
 ```
 
+!!! note
+    In the above `INSERT_PRIVATE_KEY` field, you can specify a seed phrase instead of a private key.
+
 ## Build XCM Transfer Data {: #build-xcm-transfer-data }
 
 In order to transfer an asset from one chain to another, you'll need to first build the transfer data, which defines the asset to be transferred, the source chain and address, the destination chain and address, and the associated signer for the transaction. Building the transfer data is the first step; in the next section, you'll learn how to use the transfer data to actually transfer the asset.
@@ -238,7 +241,7 @@ To get started, you'll use the `Sdk` function, which will expose two methods for
 ```js
 import { Sdk } from '@moonbeam-network/xcm-sdk';
 
-const { assets, getTransferData } = Sdk();
+const sdkInstance = new Sdk();
 ```
 
 You can choose either method, as both will return the data necessary to initiate an asset transfer between the source chain and the destination chain. Using `assets` will provide additional data along the way, including the list of supported assets and, once an asset is selected, the supported source and destination chains that are able to send and receive the asset.
@@ -248,7 +251,7 @@ The process for using `assets` to build the transfer data is as follows:
 1. Call the `assets` function and optionally pass in the ecosystem that you want to retrieve a list of assets for or that the asset you want to transfer belongs to. The available ecosystems are: `polkadot`, `kusama`, and `alphanet-relay`. For example:
 
     ```js
-    const assets = Sdk().assets('polkadot');
+    const { assets, asset } = sdkInstance.assets('polkadot');
     ```
 
     This will return a list of the supported assets and the `asset` function that can be used to define the asset to be transferred
@@ -257,7 +260,7 @@ The process for using `assets` to build the transfer data is as follows:
 
     ```js
     // Using the key
-    const asset = Sdk().assets().asset('dot');
+    const { sourceChains, source } = asset('dot');
     ```
 
     This will return a list of the supported source chains and the `source` function, which is used to define the source chain to transfer the asset from
@@ -266,7 +269,7 @@ The process for using `assets` to build the transfer data is as follows:
 
     ```js
     // Using the key
-    const asset = Sdk().assets().asset('dot').source('polkadot');
+    const { destinationChains, destination } = source('polkadot');
     ```
 
     This will return a list of the supported destination chains where there is an open XCM channel from the source chain for the given asset and the `destination` function, which is used to define the destination chain to transfer the asset to
@@ -275,7 +278,7 @@ The process for using `assets` to build the transfer data is as follows:
 
     ```js
     // Using the key
-    const asset = Sdk().assets().asset('dot').source('polkadot').destination('moonbeam');
+    const { accounts } = destination('moonbeam');
     ```
 
     This will return the `accounts` function, which is used to define the source and destination addresses and the associated signers for each address
@@ -287,36 +290,38 @@ An example of the steps described above to build the transfer data to transfer D
 ```js
 import { Sdk } from '@moonbeam-network/xcm-sdk';
 
-const fromPolkadot = async() => {
+const sdkInstance = new Sdk();
 
-  const { assets, asset } = Sdk.assets();
+const fromPolkadot = async () => {
+  const { assets, asset } = sdkInstance.assets();
   console.log(
     `The supported assets are: ${assets.map((asset) => asset.originSymbol)}`
   );
 
-  const { sourceChains, source } = Sdk.assets().asset('dot');
+  const { sourceChains, source } = asset('dot');
   console.log(
-    `The supported source chains are: ${sourceChains.map((chain) => chain.name)}`
+    `The supported source chains are: ${sourceChains.map(
+      (chain) => chain.name
+    )}`
   );
 
-  const { destinationChains, destination } = Sdk.assets().asset('dot').source('polkadot');
+  const { destinationChains, destination } = source('polkadot');
   console.log(
-    `The supported destination chains are: ${destinationChains.map((chain) => chain.name)}`
+    `The supported destination chains are: ${destinationChains.map(
+      (chain) => chain.name
+    )}`
   );
 
-  const data = await Sdk()
-    .assets()
-    .asset('dot')
-    .source('polkadot')
-    .destination('moonbeam')
-    .accounts(
-      pair.address, 
-      evmSigner.address, // If using viem, use evmSigner.account.address
-      {
-        pair,
-      }
-    );
-}
+  const { accounts } = destination('moonbeam');
+  const data = await accounts(
+    pair.address,
+    evmSigner.address, // If using viem, use evmSigner.account.address
+    {
+      evmSigner,
+      polkadotSigner: pair,
+    }
+  );
+};
 
 fromPolkadot();
 ```
@@ -329,22 +334,25 @@ If you don't need any of the asset or chain information, you can use the `getTra
 ```js
 import { Sdk } from '@moonbeam-network/xcm-sdk';
 
-const fromPolkadot = async() => {
-  const data = await Sdk().getTransferData({
+const sdkInstance = new Sdk();
+
+const fromPolkadot = async () => {
+  const data = await sdkInstance.getTransferData({
     destinationAddress: evmSigner.address, // If using viem, use evmSigner.account.address
     destinationKeyOrChain: 'moonbeam',
     keyOrAsset: 'dot',
     polkadotSigner: pair,
     sourceAddress: pair.address,
     sourceKeyOrChain: 'polkadot',
+    evmSigner,
   });
-}
+};
 
 fromPolkadot();
 ```
 
 !!! note
-    For more information on each of the `Sdk().getTransferData()` function, including the parameters and returned data, please refer to the [XCM SDK Reference](/builders/interoperability/xcm/xcm-sdk/v1/reference#core-sdk-methods){target=_blank}.
+    For more information on the `Sdk().getTransferData()` function, including the parameters and returned data, please refer to the [XCM SDK Reference](/builders/interoperability/xcm/xcm-sdk/v1/reference#core-sdk-methods){target=_blank}.
 
 As previously mentioned, regardless of which method you use to build the transfer data, you'll generate the same output.
 

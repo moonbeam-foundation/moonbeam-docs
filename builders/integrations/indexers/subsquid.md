@@ -33,7 +33,7 @@ To get started indexing Substrate data on Moonbeam, you'll need to create a Subs
 1. Create a Subsquid project based on the Substrate template by running:
 
     ```bash
-    sqd init <insert-squid-name> --template substrate
+    sqd init INSERT_SQUID_NAME --template substrate
     ```
 
     For more information on getting started with this template, please check out the [Quickstart: Substrate chains](https://docs.subsquid.io/quickstart/quickstart-substrate/){target=_blank} guide on Subsquid's documentation site.
@@ -65,9 +65,9 @@ To get started indexing Substrate data on Moonbeam, you'll need to create a Subs
         ```ts
         const processor = new SubstrateBatchProcessor();
         processor.setDataSource({
-          chain: {{ networks.moonbeam.rpc_url }},
-          // Resolves to "https://moonbeam.archive.subsquid.io"
-          archive: lookupArchive("moonbeam", { type: "Substrate" }),
+          chain: '{{ networks.moonbeam.rpc_url }}',
+          // Resolves to 'https://moonbeam.archive.subsquid.io'
+          archive: lookupArchive('moonbeam', { type: 'Substrate' }),
         });
         ```
 
@@ -76,9 +76,9 @@ To get started indexing Substrate data on Moonbeam, you'll need to create a Subs
         ```ts
         const processor = new SubstrateBatchProcessor();
         processor.setDataSource({
-          chain: {{ networks.moonriver.rpc_url }},
-          // Resolves to "https://moonriver.archive.subsquid.io"
-          archive: lookupArchive("moonriver", { type: "Substrate" }),
+          chain: '{{ networks.moonriver.rpc_url }}',
+          // Resolves to 'https://moonriver.archive.subsquid.io'
+          archive: lookupArchive('moonriver', { type: 'Substrate' }),
         });
         ```
 
@@ -87,9 +87,9 @@ To get started indexing Substrate data on Moonbeam, you'll need to create a Subs
         ```ts
         const processor = new SubstrateBatchProcessor();
         processor.setDataSource({
-          chain: {{ networks.moonbase.rpc_url }},
-          // Resolves to "https://moonbase.archive.subsquid.io"
-          archive: lookupArchive("moonbase", { type: "Substrate" }),
+          chain: '{{ networks.moonbase.rpc_url }}',
+          // Resolves to 'https://moonbase.archive.subsquid.io'
+          archive: lookupArchive('moonbase', { type: 'Substrate' }),
         });
         ```
 
@@ -104,13 +104,13 @@ To get started indexing EVM data on Moonbeam, you'll need to create a Subsquid p
     === "EVM"
 
         ```bash
-        sqd init <insert-squid-name> --template evm
+        sqd init INSERT_SQUID_NAME --template evm
         ```
 
     === "ABI"
 
         ```bash
-        sqd init <insert-squid-name> --template abi
+        sqd init INSERT_SQUID_NAME --template abi
         ```
 
     For more information on getting started with both of these templates, please check out the following Subsquid docs:
@@ -145,9 +145,9 @@ To get started indexing EVM data on Moonbeam, you'll need to create a Subsquid p
         ```ts
         const processor = new EvmBatchProcessor();
         processor.setDataSource({
-          chain: {{ networks.moonbeam.rpc_url }},
-          // Resolves to "https://moonbeam-evm.archive.subsquid.io"
-          archive: lookupArchive("moonbeam", { type: "EVM" })
+          chain: '{{ networks.moonbeam.rpc_url }}',
+          // Resolves to 'https://moonbeam-evm.archive.subsquid.io'
+          archive: lookupArchive('moonbeam', { type: 'EVM' })
         });
         ```
 
@@ -156,9 +156,9 @@ To get started indexing EVM data on Moonbeam, you'll need to create a Subsquid p
         ```ts
         const processor = new EvmBatchProcessor();
         processor.setDataSource({
-          chain: {{ networks.moonriver.rpc_url }},
-          // Resolves to "https://moonriver-evm.archive.subsquid.io"
-          archive: lookupArchive("moonriver", { type: "EVM" }),
+          chain: '{{ networks.moonriver.rpc_url }}',
+          // Resolves to 'https://moonriver-evm.archive.subsquid.io'
+          archive: lookupArchive('moonriver', { type: 'EVM' }),
         });
         ```
 
@@ -167,9 +167,9 @@ To get started indexing EVM data on Moonbeam, you'll need to create a Subsquid p
         ```ts
         const processor = new EvmBatchProcessor();
         processor.setDataSource({
-          chain: {{ networks.moonbase.rpc_url }},
-          // Resolves to "https://moonbase-evm.archive.subsquid.io"
-          archive: lookupArchive("moonbase", { type: "EVM" }),
+          chain: '{{ networks.moonbase.rpc_url }}',
+          // Resolves to 'https://moonbase-evm.archive.subsquid.io'
+          archive: lookupArchive('moonbase', { type: 'EVM' }),
         });
         ```
 

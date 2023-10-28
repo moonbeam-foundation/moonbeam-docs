@@ -15,12 +15,12 @@ Although Moonbeam is a Substrate-based platform, Moonbeam uses a [unified accoun
 
 To get started developing on Moonbeam, it's important to be aware of the various networks within the Moonbeam ecosystem.
 
-|                                         Network                                         | Network Type  |                                  Relay Chain                                   | Native Asset Symbol | Native Asset Decimals |
-|:---------------------------------------------------------------------------------------:|:-------------:|:------------------------------------------------------------------------------:|:-------------------:|:---------------------:|
+|                                         Network                                          | Network Type  |                                   Relay Chain                                   | Native Asset Symbol | Native Asset Decimals |
+|:----------------------------------------------------------------------------------------:|:-------------:|:-------------------------------------------------------------------------------:|:-------------------:|:---------------------:|
 |           [Moonbeam](/builders/get-started/networks/moonbeam){target=_blank}            |    MainNet    |              [Polkadot](https://polkadot.network/){target=_blank}              |        GLMR         |          18           |
 |          [Moonriver](/builders/get-started/networks/moonriver){target=_blank}           |    MainNet    |                [Kusama](https://kusama.network/){target=_blank}                |        MOVR         |          18           |
 |        [Moonbase Alpha](/builders/get-started/networks/moonbase){target=_blank}         |    TestNet    | [Alphanet relay](/learn/platform/networks/moonbase#relay-chain){target=_blank} |         DEV         |          18           |
-| [Moonbeam Development Node](/builders/get-started/networks/moonbeam-dev){target=_blank} | Local TestNet |                                      None                                      |         DEV         |          18           |
+| [Moonbeam Development Node](/builders/get-started/networks/moonbeam-dev){target=_blank} | Local TestNet |                                      None                                       |         DEV         |          18           |
 
 !!! note
     A Moonbeam development node doesn't have a relay chain as its purpose is to be your own personal development environment where you can get started developing quickly without the overhead of a relay chain.
@@ -31,27 +31,27 @@ When working with developer tools, depending on the tool, you might need to conf
 
 === "Moonbeam"
 
-    |    Variable     |                                                                                                     Value                                                                                                      |
-    |:---------------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-    |    Chain ID     |                                                                               <pre>```{{ networks.moonbeam.chain_id }}```</pre>                                                                                |
-    | Public RPC URLs | <pre>```https://moonbeam.public.blastapi.io```</pre> <pre>```https://moonbeam.api.onfinality.io/public```</pre>  <pre>```https://moonbeam-mainnet.gateway.pokt.network/v1/lb/629a2b5650ec8c0039bb30f0```</pre> |
-    | Public WSS URLs |                                                 <pre>```wss://moonbeam.public.blastapi.io```</pre> <pre>```wss://moonbeam.api.onfinality.io/public-ws```</pre>                                                 |
+    |    Variable     |                                                                        Value                                                                        |
+    |:---------------:|:---------------------------------------------------------------------------------------------------------------------------------------------------:|
+    |    Chain ID     |                                                  <pre>```{{ networks.moonbeam.chain_id }}```</pre>                                                  |
+    | Public RPC URLs | <pre>```https://moonbeam.public.blastapi.io```</pre>  <pre>```https://moonbeam-mainnet.gateway.pokt.network/v1/lb/629a2b5650ec8c0039bb30f0```</pre> |
+    | Public WSS URLs |                                                 <pre>```wss://moonbeam.public.blastapi.io```</pre>                                                  |
 
 === "Moonriver"
 
-    |    Variable     |                                                                                                       Value                                                                                                       |
-    |:---------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-    |    Chain ID     |                                                                                <pre>```{{ networks.moonriver.chain_id }}```</pre>                                                                                 |
-    | Public RPC URLs | <pre>```https://moonriver.public.blastapi.io```</pre> <pre>```https://moonriver.api.onfinality.io/public```</pre>  <pre>```https://moonriver-mainnet.gateway.pokt.network/v1/lb/62a74fdb123e6f003963642f```</pre> |
-    | Public WSS URLs |                                                 <pre>```wss://moonriver.public.blastapi.io```</pre> <pre>```wss://moonriver.api.onfinality.io/public-ws```</pre>                                                  |
+    |    Variable     |                                                                         Value                                                                         |
+    |:---------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------:|
+    |    Chain ID     |                                                  <pre>```{{ networks.moonriver.chain_id }}```</pre>                                                   |
+    | Public RPC URLs | <pre>```https://moonriver.public.blastapi.io```</pre>  <pre>```https://moonriver-mainnet.gateway.pokt.network/v1/lb/62a74fdb123e6f003963642f```</pre> |
+    | Public WSS URLs |                                                  <pre>```wss://moonriver.public.blastapi.io```</pre>                                                  |
 
 === "Moonbase Alpha"
 
-    |    Variable     |                                                                                    Value                                                                                     |
-    |:---------------:|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-    |    Chain ID     |                                                              <pre>```{{ networks.moonbase.chain_id }}```</pre>                                                               |
-    | Public RPC URLs | <pre>```https://moonbase-alpha.public.blastapi.io```</pre> <pre>```https://moonbeam-alpha.api.onfinality.io/public```</pre> <pre>```{{ networks.moonbase.rpc_url }}```</pre> |
-    | Public WSS URLs | <pre>```wss://moonbase-alpha.public.blastapi.io```</pre> <pre>```wss://moonbeam-alpha.api.onfinality.io/public-ws```</pre> <pre>```{{ networks.moonbase.wss_url }}```</pre>  |
+    |    Variable     |                                                    Value                                                    |
+    |:---------------:|:-----------------------------------------------------------------------------------------------------------:|
+    |    Chain ID     |                              <pre>```{{ networks.moonbase.chain_id }}```</pre>                              |
+    | Public RPC URLs | <pre>```https://moonbase-alpha.public.blastapi.io```</pre> <pre>```{{ networks.moonbase.rpc_url }}```</pre> |
+    | Public WSS URLs |  <pre>```wss://moonbase-alpha.public.blastapi.io```</pre> <pre>```{{ networks.moonbase.wss_url }}```</pre>  |
 
 === "Moonbeam Dev Node"
 
@@ -74,8 +74,8 @@ Moonbeam provides two different kind of explorers: ones to query the Ethereum AP
 
 To get started developing on one of the TestNets, you'll need to fund your account with DEV tokens to send transactions. Please note that DEV tokens have no real value and are for testing purposes only.
 
-|                                         TestNet                                         |                                                                           Where To Get Tokens From                                                                           |
-|:---------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+|                                         TestNet                                          |                                                                           Where To Get Tokens From                                                                            |
+|:----------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
 |        [Moonbase Alpha](/builders/get-started/networks/moonbase){target=_blank}         | The [Moonbase Alpha Faucet](https://faucet.moonbeam.network/){target=_blank} website. <br> The faucet dispenses {{ networks.moonbase.website_faucet_amount }} every 24 hours |
 | [Moonbeam Development Node](/builders/get-started/networks/moonbeam-dev){target=_blank} | Any of the [ten pre-funded accounts](/builders/get-started/networks/moonbeam-dev/#pre-funded-development-accounts){target=_blank} that come with your <br> development node  |
 
@@ -86,8 +86,9 @@ As Moonbeam is a Substrate-based chain that is fully Ethereum-compatible, you ca
 ### JavaScript Tools {: #javascript }
 
 === "Ethereum"
-    |                                     Tool                                     |      Type       |
-    |:----------------------------------------------------------------------------:|:---------------:|
+
+    |                                     Tool                                      |      Type       |
+    |:-----------------------------------------------------------------------------:|:---------------:|
     |    [Ethers.js](/builders/build/eth-api/libraries/ethersjs){target=_blank}    |     Library     |
     |      [Web3.js](/builders/build/eth-api/libraries/web3js){target=_blank}      |     Library     |
     |      [Hardhat](/builders/build/eth-api/dev-env/hardhat){target=_blank}       | Dev Environment |
@@ -95,24 +96,26 @@ As Moonbeam is a Substrate-based chain that is fully Ethereum-compatible, you ca
     |        [Remix](/builders/build/eth-api/dev-env/remix){target=_blank}         | Dev Environment |
     | [Scaffold-Eth](/builders/build/eth-api/dev-env/scaffold-eth){target=_blank}  | Dev Environment |
     |     [thirdweb](/builders/build/eth-api/dev-env/thirdweb){target=_blank}      | Dev Environment |
-    |      [Truffle](/builders/build/eth-api/dev-env/truffle){target=_blank}       | Dev Environment |
     | [Waffle & Mars](/builders/build/eth-api/dev-env/waffle-mars){target=_blank}  | Dev Environment |
 
 === "Substrate"
-    |                                      Tool                                       |  Type   |
-    |:-------------------------------------------------------------------------------:|:-------:|
+
+    |                                       Tool                                       |  Type   |
+    |:--------------------------------------------------------------------------------:|:-------:|
     | [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api){target=_blank} | Library |
 
 ### Python Tools {: #python }
 
 === "Ethereum"
-    |                                Tool                                |      Type       |
-    |:------------------------------------------------------------------:|:---------------:|
+
+    |                                Tool                                 |      Type       |
+    |:-------------------------------------------------------------------:|:---------------:|
     | [Web3.py](/builders/build/eth-api/libraries/web3py){target=_blank} |     Library     |
     | [Brownie](/builders/build/eth-api/dev-env/brownie){target=_blank}  | Dev Environment |
     |   [thirdweb](https://portal.thirdweb.com/python){target=_blank}    | Dev Environment |
 
 === "Substrate"
-    |                                             Tool                                              |  Type   |
-    |:---------------------------------------------------------------------------------------------:|:-------:|
+
+    |                                              Tool                                              |  Type   |
+    |:----------------------------------------------------------------------------------------------:|:-------:|
     | [Py Substrate Interface](/builders/build/substrate-api/py-substrate-interface){target=_blank} | Library |

@@ -205,28 +205,30 @@ Next, you can create the new job:
 
     ```json
     {
-      "initiators": [
-        {
-          "type": "runlog",
-          "params": { "address": "INSERT_YOUR_ORACLE_CONTRACT_ADDRESS" }
-        }
-      ],
-      "tasks": [
-        {
-          "type": "httpget",
-          "params": { "get": "https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD" }
-        },
-        {
-          "type": "jsonparse",
-          "params": { "path": [ "USD" ] }
-        },
-        {
-          "type": "multiply",
-          "params": { "times": 100 }
-        },
-        { "type": "ethuint256" },
-        { "type": "ethtx" }
-      ]
+        "initiators": [
+            {
+                "type": "runlog",
+                "params": { "address": "INSERT_YOUR_ORACLE_CONTRACT_ADDRESS" }
+            }
+        ],
+        "tasks": [
+            {
+                "type": "httpget",
+                "params": {
+                    "get": "https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD"
+                }
+            },
+            {
+                "type": "jsonparse",
+                "params": { "path": ["USD"] }
+            },
+            {
+                "type": "multiply",
+                "params": { "times": 100 }
+            },
+            { "type": "ethuint256" },
+            { "type": "ethtx" }
+        ]
     }
     ```
 
@@ -245,19 +247,19 @@ For example, the previous job spec can be altered to be more generic so it can b
 
 ```json
 {
-  "initiators": [
-    {
-      "type": "runlog",
-      "params": { "address": "INSERT_YOUR_ORACLE_CONTRACT_ADDRESS" }
-    }
-  ],
-  "tasks": [
-    { "type": "httpget" },
-    { "type": "jsonparse" },
-    { "type": "multiply" },
-    { "type": "ethuint256" },
-    { "type": "ethtx" }
-  ]
+    "initiators": [
+        {
+            "type": "runlog",
+            "params": { "address": "INSERT_YOUR_ORACLE_CONTRACT_ADDRESS" }
+        }
+    ],
+    "tasks": [
+        { "type": "httpget" },
+        { "type": "jsonparse" },
+        { "type": "multiply" },
+        { "type": "ethuint256" },
+        { "type": "ethtx" }
+    ]
 }
 ```
 

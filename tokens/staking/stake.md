@@ -105,8 +105,9 @@ The auto-compounding delegation count is the amount of delegations that have aut
 ```js
 // Simple script to get the number of auto-compounding delegations for a given candidate.
 // Remember to replace INSERT_CANDIDATE_ADDRESS with the candidate's address you want to delegate.
-const candidateAccount = 'INSERT_CANDIDATE_ADDRESS'; 
-const autoCompoundingDelegations = await api.query.parachainStaking.autoCompoundingDelegations(candidateAccount);
+const candidateAccount = 'INSERT_CANDIDATE_ADDRESS';
+const autoCompoundingDelegations =
+  await api.query.parachainStaking.autoCompoundingDelegations(candidateAccount);
 console.log(autoCompoundingDelegations.toHuman().length);
 ```
 
@@ -192,12 +193,16 @@ If you want to verify the percentage of rewards that are set to auto-compound fo
 
 ```js
 // Simple script to verify your auto-compounding percentage for a given candidate.
-// Remember to replace INSERT_CANDIDATE_ADDRESS with the candidate's address you want to delegate
-// And replace DELEGATOR-ADDRESS-HERE with the address used to delegate with
-const candidateAccount = 'INSERT_CANDIDATE_ADDRESS'; 
+// Remember to replace INSERT_CANDIDATE_ADDRESS with the candidate's address you
+// want to delegate and replace INSERT_DELEGATOR_ADDRESS with the address used to 
+// delegate with
+const candidateAccount = 'INSERT_CANDIDATE_ADDRESS';
 const delegationAccount = 'INSERT_DELEGATOR_ADDRESS';
-const autoCompoundingDelegations = await api.query.parachainStaking.autoCompoundingDelegations(candidateAccount);
-const delegation = autoCompoundingDelegations.find(del => del.delegator == delegationAccount);
+const autoCompoundingDelegations =
+  await api.query.parachainStaking.autoCompoundingDelegations(candidateAccount);
+const delegation = autoCompoundingDelegations.find(
+  (del) => del.delegator == delegationAccount
+);
 
 console.log(`${delegation.value}%`);
 ```

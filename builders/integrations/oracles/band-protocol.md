@@ -44,9 +44,9 @@ The `ReferenceData` struct has the following elements:
  
 ```js
 struct ReferenceData {
-   uint256 rate; 
-   uint256 lastUpdatedBase; 
-   uint256 lastUpdatedQuote;
+  uint256 rate; 
+  uint256 lastUpdatedBase; 
+  uint256 lastUpdatedQuote;
 }
 ```
 
@@ -213,7 +213,7 @@ Then, it returns an array object with the following structure:
     pair: 'ETH/EUR',
     rate: rate,
     updated: { base: lastUpdatedBase, quote: lastUpdatedQuote}
-  }
+  },
 ]
 ```
 
@@ -230,7 +230,11 @@ const queryData = async () => {
   const endpoint = 'https://poa-api.bandchain.org';
 
   const bandchain = new BandChain(endpoint);
-  const dataQuery = await bandchain.getReferenceData(['BTC/USD', 'BTC/ETH', 'ETH/EUR']);
+  const dataQuery = await bandchain.getReferenceData([
+    'BTC/USD',
+    'BTC/ETH',
+    'ETH/EUR',
+  ]);
   console.log(dataQuery);
 };
 

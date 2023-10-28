@@ -6,14 +6,14 @@ type Client = SignerMiddleware<Provider<Http>, Wallet<k256::ecdsa::SigningKey>>;
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let provider: Provider<Http> = Provider::<Http>::try_from("https://rpc.api.moonbase.moonbeam.network")?; // Change to correct network
-    // Do not include the private key in plain text in any produciton code. This is just for demonstration purposes
-    let wallet: LocalWallet = "PRIVATE KEY OF YOUR FROM ADDRESS"
+    // Do not include the private key in plain text in any production code. This is just for demonstration purposes
+    let wallet: LocalWallet = "INSERT_PRIVATE_KEY"
         .parse::<LocalWallet>()?
         .with_chain_id(Chain::Moonbase);  // Change to correct network
     let client = SignerMiddleware::new(provider.clone(), wallet.clone());
 
-    let address_from = "YOUR FROM ADDRESS".parse::<Address>()?;
-    let address_to = "YOUR TO ADDRESS".parse::<Address>()?;
+    let address_from = "INSERT_FROM_ADDRESS".parse::<Address>()?;
+    let address_to = "INSERT_TO_ADDRESS".parse::<Address>()?;
 
     send_transaction(&client, &address_from, &address_to).await?;
     print_balances(&provider, &address_from, &address_to).await?;

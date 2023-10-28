@@ -95,8 +95,8 @@ touch hello-world.js
 Now you're ready to build. First, you need to import the Gelato Relay SDK and Ethers.js:
 
 ```js
-  import { Wallet, utils } from "ethers";
-  import { GelatoRelaySDK } from "@gelatonetwork/gelato-relay-sdk";
+import { Wallet, utils } from 'ethers';
+import { GelatoRelaySDK } from '@gelatonetwork/gelato-relay-sdk';
 ```
 
 Then, create a function to contain the logic of the script:
@@ -104,15 +104,15 @@ Then, create a function to contain the logic of the script:
 ```js
 const forwardRequestExample = async () => {
 
-}
+};
 ```
 
 Within the `forwardRequestExample` function, define the chain ID and the [`HelloWorld.sol` contract](https://moonscan.io/address/0x3456E168d2D7271847808463D6D383D079Bd5Eaa#code){target=_blank} that you want to interact with.
 
 ```js
-  const chainId = {{ networks.moonbeam.chain_id }};
-  // `HelloWorld.sol` contract on Moonbeam
-  const target = "0x3456E168d2D7271847808463D6D383D079Bd5Eaa";
+const chainId = {{ networks.moonbeam.chain_id }};
+// `HelloWorld.sol` contract on Moonbeam
+const target = '0x3456E168d2D7271847808463D6D383D079Bd5Eaa';
 ```
 
 The [`HelloWorld.sol` contract](https://moonscan.io/address/0x3456E168d2D7271847808463D6D383D079Bd5Eaa#code){target=_blank}, reproduced below, is configured to have gasless transaction support.
@@ -150,12 +150,12 @@ contract HelloWorld is ERC2771Context {
 Next, you'll create a new test account that will submit the gasless transaction. This account is insecure and should not be used in production. This example defines a `test_token` with a default value for demonstration purposes, but you can specify any token here that you'd like.
 
 ```js
-  const test_token = "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE";
-  // Create mock wallet
-  const wallet = Wallet.createRandom();
-  const sponsor = await wallet.getAddress();
-  console.log(`Mock PK: ${await wallet._signingKey().privateKey}`);
-  console.log(`Mock wallet address: ${sponsor}`);
+const test_token = '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE';
+// Create mock wallet
+const wallet = Wallet.createRandom();
+const sponsor = await wallet.getAddress();
+console.log(`Mock PK: ${await wallet._signingKey().privateKey}`);
+console.log(`Mock wallet address: ${sponsor}`);
 ```
 
 ### Add Request Data {: #add-request-data }
@@ -176,14 +176,97 @@ The resulting ABI-encodeded call data should look like `0x4b32706700000000000000
 The ABI-encoded call data specifies the contract function to call as well as any relevant parameters, and can be fetched via MetaMask or Remix. More commonly, you might fetch the ABI-encoded call data programmatically via Ethers.js or Web3.js. There are some additional parameters defined in the following example, such as `paymentType`, `maxFee`, and `gas`. There are a variety of possible payment types you can choose from. For simplicity, replay protection has not been considered in this example.
 
 ```js
+// ABI encode for HelloWorld.sayHiVanilla(address _feeToken)
+const data = '0x4b327067000000000000000000000000eeeeeeeeeeeeeeeeeeeeeeeeaeeeeeeeeeeeeeeeee';
+const paymentType = 1;
+// Maximum fee that sponsor is willing to pay worth of test_token
+const maxFee = '1000000000000000000';
+// Gas limit
+const gas = '200000';
+
+// Smart contract nonces are not enforced to simplify the example.
+// In reality, this decision depends whether or not target
+// address already implements replay protection. (More info in the docs)
+const sponsorNonce = 0;
+const enforceSponsorNonce = false;
+// Only relevant when enforceSponsorNonce = true
+const enforceSponsorNonceOrdering = false;
+
+// Build ForwardRequest object
+const forwardRequest = GelatoRelaySDK.forwardRequest(
+  chainId,
+  target,
+  data,
+  test_token,
+  paymentType,
+  maxFee,
+  gas,
+  sponsorNonce,
+  enforceSponsorNonce,
+  sponsor
+);
+
+```
+
+Lastly, the `forwardRequest` object is created with all of the relevant parameters defined in prior steps. In the final step, the `forwardRequest` object will be sent to the Gelato Relay API with the required signature.
+
+### Send Request Data {: #send-request-data }
+
+The last few steps include hashing the request object and signing the resulting hash. The ultimate step is to submit the request and the signature to the Gelato Relay API. You can copy and paste the below code after the `forwardRequest` object:
+
+```js
+// Get EIP-712 hash (aka digest) of forwardRequest
+const digest = GelatoRelaySDK.getForwardRequestDigestToSign(forwardRequest);
+
+// Sign digest using mock private key
+const sponsorSignature = utils.BytesLike = utils.joinSignature(
+  await wallet._signingKey().signDigest(digest)
+);
+
+// Send forwardRequest and its sponsorSignature to Gelato Relay API
+await GelatoRelaySDK.sendForwardRequest(forwardRequest, sponsorSignature);
+
+console.log('ForwardRequest submitted!');
+```
+
+The [EIP-712 standard](https://eips.ethereum.org/EIPS/eip-712){target=_blank} provides important context to users about the action they're authorizing. Instead of signing a long, unrecognizable bytestring (which is dangerous and could be exploited by bad actors), [EIP-712](https://eips.ethereum.org/EIPS/eip-712){target=_blank} provides a framework for encoding and displaying the contents of the message in a readable manner, making it substantially safer for end-users.
+
+To execute the script and dispatch the gasless transaction to Gelato Relay API, use the following command:
+
+```bash
+node hello-world.js
+```
+
+You should see a message logged to the console that says `ForwardRequest submitted!` You can also verify your relayed transaction was successfully executed by checking the latest transactions of [this Gelato contract on Moonscan](https://moonscan.io/address/0x91f2a140ca47ddf438b9c583b7e71987525019bb){target=_blank}.
+
+### Complete Script {: #complete-script }
+
+The entire `hello-world.js` file should contain the following:
+
+```js
+import { Wallet, utils } from 'ethers';
+import { GelatoRelaySDK } from '@gelatonetwork/gelato-relay-sdk';
+
+const forwardRequestExample = async () => {
+  const chainId = {{ networks.moonbeam.chain_id }};
+  // `HelloWorld.sol` contract on Moonbeam
+  const target = '0x3456E168d2D7271847808463D6D383D079Bd5Eaa';
+  const test_token = '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE';
+
+  // Create mock wallet
+  const wallet = Wallet.createRandom();
+  const sponsor = await wallet.getAddress();
+  console.log(`Mock PK: ${await wallet._signingKey().privateKey}`);
+  console.log(`Mock wallet address: ${sponsor}`);
+
   // ABI encode for HelloWorld.sayHiVanilla(address _feeToken)
   const data = `0x4b327067000000000000000000000000eeeeeeeeeeeeeeeeeeeeeeeeaeeeeeeeeeeeeeeeee`;
   const paymentType = 1;
   // Maximum fee that sponsor is willing to pay worth of test_token
-  const maxFee = "1000000000000000000";
+  const maxFee = '1000000000000000000';
   // Gas limit
-  const gas = "200000";
-  
+  const gas = '200000';
+
   // Smart contract nonces are not enforced to simplify the example.
   // In reality, this decision depends whether or not target
   // address already implements replay protection. (More info in the docs)
@@ -206,103 +289,18 @@ The ABI-encoded call data specifies the contract function to call as well as any
     sponsor
   );
 
-```
-
-Lastly, the `forwardRequest` object is created with all of the relevant parameters defined in prior steps. In the final step, the `forwardRequest` object will be sent to the Gelato Relay API with the required signature.
-
-### Send Request Data {: #send-request-data }
-
-The last few steps include hashing the request object and signing the resulting hash. The ultimate step is to submit the request and the signature to the Gelato Relay API. You can copy and paste the below code after the `forwardRequest` object:
-
-```js
   // Get EIP-712 hash (aka digest) of forwardRequest
   const digest = GelatoRelaySDK.getForwardRequestDigestToSign(forwardRequest);
 
   // Sign digest using mock private key
-  const sponsorSignature = utils.BytesLike = utils.joinSignature(
+  const sponsorSignature = (utils.BytesLike = utils.joinSignature(
     await wallet._signingKey().signDigest(digest)
-  );
+  ));
 
   // Send forwardRequest and its sponsorSignature to Gelato Relay API
   await GelatoRelaySDK.sendForwardRequest(forwardRequest, sponsorSignature);
 
-  console.log("ForwardRequest submitted!");
-```
-
-The [EIP-712 standard](https://eips.ethereum.org/EIPS/eip-712){target=_blank} provides important context to users about the action they're authorizing. Instead of signing a long, unrecognizable bytestring (which is dangerous and could be exploited by bad actors), [EIP-712](https://eips.ethereum.org/EIPS/eip-712){target=_blank} provides a framework for encoding and displaying the contents of the message in a readable manner, making it substantially safer for end-users.
-
-To execute the script and dispatch the gasless transaction to Gelato Relay API, use the following command:
-
-```bash
-node hello-world.js
-```
-
-You should see a message logged to the console that says `ForwardRequest submitted!` You can also verify your relayed transaction was successfully executed by checking the latest transactions of [this Gelato contract on Moonscan](https://moonscan.io/address/0x91f2a140ca47ddf438b9c583b7e71987525019bb){target=_blank}.
-
-### Complete Script {: #complete-script }
-
-The entire `hello-world.js` file should contain the following:
-
-```js
-import { Wallet, utils } from "ethers";
-import { GelatoRelaySDK } from "@gelatonetwork/gelato-relay-sdk";
-
-const forwardRequestExample = async () => {
-
-  const chainId = {{ networks.moonbeam.chain_id }};
-  // `HelloWorld.sol` contract on Moonbeam
-  const target = "0x3456E168d2D7271847808463D6D383D079Bd5Eaa";
-  const test_token = "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE";
-  
-  // Create mock wallet
-  const wallet = Wallet.createRandom();
-  const sponsor = await wallet.getAddress();
-  console.log(`Mock PK: ${await wallet._signingKey().privateKey}`);
-  console.log(`Mock wallet address: ${sponsor}`);
-  
-  // ABI encode for HelloWorld.sayHiVanilla(address _feeToken)
-  const data = `0x4b327067000000000000000000000000eeeeeeeeeeeeeeeeeeeeeeeeaeeeeeeeeeeeeeeeee`;
-  const paymentType = 1;
-  // Maximum fee that sponsor is willing to pay worth of test_token
-  const maxFee = "1000000000000000000";
-  // Gas limit
-  const gas = "200000";
- 
-  // Smart contract nonces are not enforced to simplify the example.
-  // In reality, this decision depends whether or not target 
-  // address already implements replay protection. (More info in the docs)
-  const sponsorNonce = 0;
-  const enforceSponsorNonce = false;
-  // Only relevant when enforceSponsorNonce = true
-  const enforceSponsorNonceOrdering = false;
-
-  // Build ForwardRequest object
-  const forwardRequest = GelatoRelaySDK.forwardRequest(
-    chainId,
-    target,
-    data,
-    test_token,
-    paymentType,
-    maxFee,
-    gas,
-    sponsorNonce,
-    enforceSponsorNonce,
-    sponsor
-  );
-
-  // Get EIP-712 hash (aka digest) of forwardRequest
-  const digest = GelatoRelaySDK.getForwardRequestDigestToSign(forwardRequest);
-
-  // Sign digest using mock private key
-  const sponsorSignature = utils.BytesLike = utils.joinSignature(
-    await wallet._signingKey().signDigest(digest)
-  );
-
-  // Send forwardRequest and its sponsorSignature to Gelato Relay API
-  await GelatoRelaySDK.sendForwardRequest(forwardRequest, sponsorSignature);
-
-  console.log("ForwardRequest submitted!");
-
+  console.log('ForwardRequest submitted!');
 };
 
 forwardRequestExample();

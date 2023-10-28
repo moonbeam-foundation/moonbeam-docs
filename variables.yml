@@ -19,8 +19,14 @@ networks:
     parachain_release_tag: v0.33.0 # must be in this exact format for links to work
     parachain_sha256sum: 1a31ee40cc2e320a009ee687624c53bb51cf65c69a0409b018a5378d5231eaf7
     tracing_tag: purestake/moonbeam-tracing:v0.33.0-2500-latest
-    gas_block: 15M
-    gas_tx: 12.995M
+    gas_block: 15,000,000
+    gas_block_numbers_only: 15000000
+    gas_tx: 12,995,000
+    mbip_5:
+      block_storage_limit: 40
+      gas_storage_ratio: 366
+      example_storage: 500
+      example_addtl_gas: 183000
     node_directory: /var/lib/alphanet-data
     node_db_loc: /chains/moonbase_alpha/db
     binary_name: moonbeam
@@ -360,7 +366,7 @@ networks:
       identity: '0x0000000000000000000000000000000000000818'
     substrate_api_sidecar:
       stable_version: 14.1.1
-    tx_weight_to_gas_ratio: 25000
+    tx_weight_to_gas_ratio: 25000      
     mintable_xc20:
       asset_deposit: 100
       metadata_base_deposit: 1.0068
@@ -399,8 +405,8 @@ networks:
     binary_name: moonbeam
     min_gas_price: 1.25
     block_time: 12
-    gas_block: 15M
-    gas_tx: 12.995M
+    gas_block: 15,000,000
+    gas_tx: 12,995,000
     node:
       cores: 8
       ram: 16
@@ -740,8 +746,8 @@ networks:
     binary_name: moonbeam
     min_gas_price: 125
     block_time: 12
-    gas_block: 15M
-    gas_tx: 12.995M
+    gas_block: 15,000,000
+    gas_tx: 12,995,000
     node:
       cores: 8
       ram: 16

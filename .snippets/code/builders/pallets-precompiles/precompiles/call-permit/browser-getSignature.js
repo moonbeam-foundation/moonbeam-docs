@@ -5,13 +5,13 @@ const main = async () => {
   });
 
   const from = accounts[0];
-  const to = 'INSERT-TO-ADDRESS-HERE';
+  const to = 'INSERT_TO_ADDRESS';
   const value = 0;
   const data =
     '0x4ed3885e0000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000b68656c6c6f20776f726c64000000000000000000000000000000000000000000';
   const gaslimit = 100000;
-  const nonce = 'INSERT-SIGNERS-NONCE-HERE';
-  const deadline = 'INSERT-DEADLINE-HERE';
+  const nonce = 'INSERT_SIGNERS_NONCE';
+  const deadline = 'INSERT_DEADLINE';
 
   const createPermitMessageData = function () {
     const message = {

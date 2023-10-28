@@ -283,7 +283,7 @@ If you convert the `result` from [hex to decimal](https://www.rapidtables.com/co
 From here you can deploy new contracts to your forked instance of Moonbeam or interact with contracts already deployed. Building off of the previous example in this guide, you can make a call using Cast to check the balance of the minted MYTOK tokens in the account you deployed the contract with:
 
 ```bash
-cast call INSERT_CONTRACT_ADDRESS  "balanceOf(address)(uint256)" INSERT-YOUR-ADDRESS --rpc-url http://localhost:8545
+cast call INSERT_CONTRACT_ADDRESS  "balanceOf(address)(uint256)" INSERT_YOUR_ADDRESS --rpc-url http://localhost:8545
 ```
 
 ## Using Chisel {: #using-chisel }
