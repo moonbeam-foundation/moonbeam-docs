@@ -1125,6 +1125,22 @@ networks:
     extrinsic_base_weight:
       display: 108,512,000
       numbers_only: 108512000
+  alphanet:
+    spec_version: v0.9.43
+    xcm_instructions:
+      withdraw:
+        total_weight: 145,308,000
+      clear_origin:
+        total_weight: 5,725,000
+      buy_exec:
+        total_weight: 5,751,000
+      deposit_asset:
+        total_weight: 147,433,000
+    xcm_message:
+      transfer:
+        weight: 
+          display: 304,217,000
+          numbers_only: 304217000
   moonbase_beta:
     xcm_message:
       transact:

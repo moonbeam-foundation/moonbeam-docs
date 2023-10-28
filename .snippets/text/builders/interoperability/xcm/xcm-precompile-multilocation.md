@@ -5,7 +5,9 @@
 }
 ```
 
-Note that each multilocation has a `parents` element, defined in this case by a `uint8`, and an array of bytes. Parents refer to how many "hops" in the upwards direction you have to do if you are going through the relay chain. Being a `uint8`, the normal values you would see are:
+As with a standard [multilocation](/builders/interoperability/xcm/fundamentals/multilocations){target=_blank}, there are `parents` and `interior` elements. However, instead of defining the multilocation as an object, with Ethereum libraries, the struct is defined as an array, which contains a `uint8` for the `parents` as the first element and a bytes array for the `interior` as the second element.
+
+The normal values you would see for the `parents` element are:
 
 |   Origin    | Destination | Parents Value |
 |:-----------:|:-----------:|:-------------:|
@@ -13,7 +15,7 @@ Note that each multilocation has a `parents` element, defined in this case by a 
 | Parachain A | Relay Chain |       1       |
 | Parachain A | Parachain B |       1       |
 
-The bytes array (`bytes[]`) defines the interior and its content within the multilocation. The size of the array defines the `interior` value as follows:
+For the `interior` element, the number of fields you need to drill down to in the target chain to reach the exact location of the target, such as the specific asset or account, represents the size of the bytes array:
 
 |    Array     | Size | Interior Value |
 |:------------:|:----:|:--------------:|
@@ -25,7 +27,7 @@ The bytes array (`bytes[]`) defines the interior and its content within the mult
 !!! note
     Interior value `Here` is often used for the relay chain (either as a destination or to target the relay chain asset).
 
-Suppose the bytes array contains data. Each element's first byte (2 hexadecimal numbers) corresponds to the selector of that `XN` field. For example:
+Each field required to reach the exact location of the target needs to be defined as a hex string. The first byte (2 hexadecimal characters) corresponds to the selector of the field. For example:
 
 | Byte Value |    Selector    | Data Type |
 |:----------:|:--------------:|-----------|
@@ -37,7 +39,7 @@ Suppose the bytes array contains data. Each element's first byte (2 hexadecimal 
 |    0x05    |  GeneralIndex  | u128      |
 |    0x06    |   GeneralKey   | bytes[]   |
 
-Next, depending on the selector and its data type, the following bytes correspond to the actual data being provided. Note that for `AccountId32`, `AccountIndex64`, and `AccountKey20`, the `network` field seen in the Polkadot.js Apps example is appended at the end. For example:
+Next, depending on the selector and its data type, the following bytes correspond to the actual data being provided. Note that for `AccountId32`, `AccountIndex64`, and `AccountKey20`, the optional `network` field is appended at the end. For example:
 
 |    Selector    |       Data Value       |             Represents             |
 |:--------------:|:----------------------:|:----------------------------------:|
@@ -48,4 +50,4 @@ Next, depending on the selector and its data type, the following bytes correspon
 | PalletInstance |       "0x04+03"        |         Pallet Instance 3          |
 
 !!! note
-    The `interior` data usually needs to be wrapped around quotes. On the contrary, you might get an `invalid tuple value` error.
+    The `interior` data usually needs to be wrapped around quotes, or you might get an `invalid tuple value` error.

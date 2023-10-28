@@ -15,7 +15,7 @@ XC-20s are a unique asset class on Moonbeam. It combines the power of Substrate 
 
 ![Moonbeam XC-20 XCM Integration With Polkadot](/images/builders/interoperability/xcm/overview/overview-4.png)
 
-This page aims to cover the basics on XC-20s, if you want to learn how to interact with or transfer XC-20s, please refer to the [Interact with XC-20s](/builders/interoperability/xcm/xc20/interact){target=_blank} or the [Using the X-Tokens Pallet To Send XC-20s](/builders/interoperability/xcm/xc20/xtokens){target=_blank} guides.
+This page aims to cover the basics on XC-20s, if you want to learn how to interact with or transfer XC-20s, please refer to the [Interact with XC-20s](/builders/interoperability/xcm/xc20/interact){target=_blank} or the [Using the X-Tokens Pallet To Send XC-20s](/builders/interoperability/xcm/xc20/send-xc20s/xtokens-pallet/){target=_blank} guides.
 
 ## Types of XC-20s {: #types-of-xc-20s }
 
@@ -43,7 +43,7 @@ Within Moonbeam, local XC-20s can only be transferred through their regular ERC-
 
 The main difference between these two types of assets is that local XC-20s are EVM ERC-20s that have XCM capabilities, while external XC-20s are Substrate assets with an ERC-20 interface on top.
 
-Cross-chain transfers of XC-20s are done using the [X-Tokens Pallet](/builders/interoperability/xcm/xc20/xtokens/){target=_blank}. To learn how to use the X-Tokens Pallet to transfer XC-20s, you can refer to the [Using the X-Tokens Pallet To Send XC-20s](/builders/interoperability/xcm/xc20/xtokens){target=_blank} guide.
+Cross-chain transfers of XC-20s are done using the X-Tokens Pallet. To learn how to use the X-Tokens Pallet to transfer XC-20s, you can refer to the [Using the X-Tokens Pallet To Send XC-20s](/builders/interoperability/xcm/xc20/send-xc20s/xtokens-pallet/){target=_blank} guide.
 
 ## Current List of External XC-20s {: #current-xc20-assets }
 

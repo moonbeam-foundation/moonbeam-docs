@@ -344,7 +344,7 @@ moonChain: {
 }
 ```
 
-Here, the units per second refer to units of token (in this case Wei) that is charged per second of execution of the XCM message. You can find more information in the [XCM fees page](/builders/interoperability/xcm/fees/#moonbeam-reserve-assets){target=_blank}.
+Here, the units per second refer to units of token (in this case Wei) that is charged per second of execution of the XCM message. You can find more information in the [XCM fees page](/builders/interoperability/xcm/core-concepts/weights-fees/#moonbeam-reserve-assets){target=_blank}.
 
 ## Using the SDK Methods {: #using-the-sdk-methods }
 

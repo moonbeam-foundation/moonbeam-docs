@@ -2,11 +2,10 @@ title: XCM Interoperability
 nav:
   - index.md
   - 'Overview': 'overview.md'
+  - core-concepts
   - xc20
   - xcm-sdk
   - xc-registration
+  - remote-execution
   - 'Send & Execute XCM Messages': 'send-execute-xcm.md'
-  - 'Remote Execution': 'xcm-transactor.md'
-  - 'Remote EVM Calls': 'remote-evm-calls.md'
-  - 'XCM Fees': 'fees.md'
-  - 'XCM Utilities': '/builders/pallets-precompiles/precompiles/xcm-utils/'
+  - 'XCM Utilities': 'xcm-utils.md'

@@ -1,0 +1,6 @@
+title: Send XC-20s
+nav:
+  - index.md
+  - 'XCM Instructions for XC-20 Transfers': 'instructions.md'
+  - 'Using the Substrate API': 'xtokens-pallet.md'
+  - 'Using the Ethereum API': 'xtokens-precompile.md'

@@ -14,7 +14,7 @@ Moonbeam Routed Liquidity (MRL) refers to a Moonbeam use case in which liquidity
 - **XCM-Enabled ERC-20s** - also referred to as [local XC-20s](/builders/interoperability/xcm/xc20/overview/#local-xc20s){target=_blank}, are all of the ERC-20 tokens that exist on Moonbeam's EVM that are XCM-enabled out of the box
 - [**GMP Precompile**](/builders/pallets-precompiles/precompiles/gmp/){target=_blank} - a [precompiled contract](/builders/pallets-precompiles/precompiles/overview/){target=_blank} that acts as an interface between a message passed from [Wormhole GMP protocol](/builders/interoperability/protocols/wormhole/){target=_blank} and XCM
 
-These components are combined to offer seamless liquidity routing into parachains through Moonbeam. Liquidity can be routed to parachains using either the [GMP Precompile](/builders/pallets-precompiles/precompiles/gmp){target=_blank} or traditional smart contracts that interact with XCM-related precompiles, like the [X-Tokens](/builders/interoperability/xcm/xc20/xtokens#xtokens-precompile){target=_blank} Precompile.
+These components are combined to offer seamless liquidity routing into parachains through Moonbeam. Liquidity can be routed to parachains using either the [GMP Precompile](/builders/pallets-precompiles/precompiles/gmp){target=_blank} or traditional smart contracts that interact with XCM-related precompiles, like the [X-Tokens](/builders/interoperability/xcm/xc20/send-xc20s/xtokens-precompile/){target=_blank} Precompile.
 
 GMP protocols typically move assets in a lock/mint or burn/mint fashion. This liquidity exists on Moonbeam normally as ERC-20 tokens. All ERC-20s on Moonbeam are now XCM-enabled, meaning they can now exist as XC-20s in any other parachain, as long as they are registered on the other parachain. XCM-enabled ERC-20s are referred to as [local XC-20s](/builders/interoperability/xcm/xc20/overview#local-xc20s){target=_blank} on Moonbeam.
 
@@ -30,7 +30,7 @@ In order to begin an MRL integration with your parachain, you will first need to
 - [Register Moonbeam’s asset on your parachain](/builders/interoperability/xcm/xc-registration/assets#register-moonbeam-native-assets){target=_blank}. This is required due to a temporary drawback of pallets that send XCM messages for asset transfer, making Moonbeam’s native gas asset the only asset that can be used as a cross-chain fee on the way back
 - [Register the local XC-20 token(s) you want routed to your parachain](/builders/interoperability/xcm/xc-registration/assets#register-local-xc20){target=_blank}
     - Allow these local XC-20 token(s) to be used for XCM fees
-- Allow users to send the `Transact` XCM instruction (via `polkadotXcm.Send` or with the [XCM Transactor Pallet](/builders/interoperability/xcm/xcm-transactor#xcm-transactor-pallet-interface){target=_blank}), which enables remote EVM calls, allowing accounts on a remote parachain to interact with the bridging smart contracts on Moonbeam
+- Allow users to send the `Transact` XCM instruction (via `polkadotXcm.Send` or with the [XCM Transactor Pallet](/builders/interoperability/xcm/remote-execution/xcm-transactor#xcm-transactor-pallet-interface){target=_blank}), which enables remote EVM calls, allowing accounts on a remote parachain to interact with the bridging smart contracts on Moonbeam
 
 ## MRL Through Wormhole {: #mrl-through-wormhole }
 
@@ -69,13 +69,13 @@ The reason for batching is to offer a one-click solution. Nevertheless, for the 
 - Local XC-20s (XCM-enabled ERC-20s) can't be used to pay for XCM execution on Moonbeam. This was a design decision, as it was preferred to treat them as ERC-20s and utilize the native `transfer` function of the ERC-20 interface. Consequently, XCM instructions handling the XC-20s are only limited to moving funds from one account to another and don't understand the Holding Register that is inherent to the XCM flow
 - Currently, XCM-related pallets limit the ability of XCM messages to send tokens that have different reserve chains. Consequently, you can't send an XC-20 and set the fee token to be the native parachain token
 
-In the future, the [X-Tokens Pallet](/builders/interoperability/xcm/xc20/xtokens#x-tokens-pallet-interface){target=_blank} will be updated, allowing for your native gas currency to be used as a fee token instead. Parachains that use a different pallet will need to implement their own solution to transfer reserve and non-reserve assets in a single message.
+In the future, the [X-Tokens Pallet](/builders/interoperability/xcm/xc20/send-xc20s/xtokens-pallet/){target=_blank} will be updated, allowing for your native gas currency to be used as a fee token instead. Parachains that use a different pallet will need to implement their own solution to transfer reserve and non-reserve assets in a single message.
 
 As an example, a brief overview of the entire process of sending MRL tokens from a parachain back through Wormhole to a destination chain is as follows:
 
 1. Send a batch transaction using the `batchAll` extrinsic of the [Utility Pallet](/builders/pallets-precompiles/pallets/utility){target=_blank} that contains the following two calls:
-    - **`xTokens.transferMultiassets`** - sends xcGLMR and the local XC-20 to the user’s [multilocation-derivative account](#calculate-multilocation-derivative-account){target=_blank}. The multilocation-derivative account is a keyless account on Moonbeam that an account on another parachain has control of via XCM
-    - **`polkadotXcm.send`** - with the `Transact` instruction. Sends a [remote EVM call via XCM](/builders/interoperability/xcm/remote-evm-calls/){target=_blank} to the Batch Precompile on Moonbeam, which batches the following two calls into a single remote EVM transaction using the `ethereumXcm.transact` extrinsic:
+    - **`xTokens.transferMultiassets`** - sends xcGLMR and the local XC-20 to the user’s [Computed Origin account](#calculate-computed-origin-account){target=_blank}. The Computed Origin account is a keyless account on Moonbeam that an account on another parachain has control of via XCM
+    - **`polkadotXcm.send`** - with the `Transact` instruction. Sends a [remote EVM call via XCM](/builders/interoperability/xcm/remote-execution/remote-evm-calls/){target=_blank} to the Batch Precompile on Moonbeam, which batches the following two calls into a single remote EVM transaction using the `ethereumXcm.transact` extrinsic:
         - **`approve`** (of the local XC-20 contract) - approves the Wormhole relayer to transfer the local XC-20
         - **`transferTokensWithRelay`** (of the relayer contract) - calls the `transferTokensWithPayload` function of the Wormhole TokenBridge smart contract on Moonbeam to transfer the tokens cross-chain, which broadcasts the message for the Wormhole Guardians to pick up
 2. The Guardian Network will pick up on the Wormhole transaction and sign it
@@ -85,23 +85,23 @@ As an example, a brief overview of the entire process of sending MRL tokens from
 
 Now that you have a general idea of the game plan, you can begin to implement it. The example in this guide will show you how to transfer assets from a parachain to Moonbase Alpha and back through Wormhole to the destination chain, but this guide can be adapted for Moonbeam.
 
-#### Calculate the Multilocation-Derivative Account {: #calculate-multilocation-derivative-account }
+#### Calculate the Computed Origin Account {: #calculate-computed-origin-account }
 
-In order to send tokens back through Wormhole, you'll need to calculate the user's multilocation-derivative account on Moonbeam. This can be done off-chain using the [`calculate-multilocation-derivative-account.ts` script](https://github.com/Moonsong-Labs/xcm-tools/blob/main/scripts/calculate-multilocation-derivative-account.ts){target=_blank} from the [xcm-tools repository](https://github.com/Moonsong-Labs/xcm-tools){target=_blank}. For more details, you can refer to the [Calculating the Multilocation-Derivative Account](/builders/interoperability/xcm/remote-evm-calls/#calculate-multilocation-derivative){target=_blank} section of the Remote EVM Calls documentation.
+In order to send tokens back through Wormhole, you'll need to calculate the user's Computed Origin account (previously referred to as a multilocation-derivative account) on Moonbeam. This can be done off-chain using the [`calculate-multilocation-derivative-account.ts` script](https://github.com/Moonsong-Labs/xcm-tools/blob/main/scripts/calculate-multilocation-derivative-account.ts){target=_blank} from the [xcm-tools repository](https://github.com/Moonsong-Labs/xcm-tools){target=_blank}. For more details, you can refer to the [Computed Origins](/builders/interoperability/xcm/remote-execution/computed-origins){target=_blank} guide.
 
-Alternatively, the `multilocationToAddress` function of the [XCM Utilities Precompile](/builders/pallets-precompiles/precompiles/xcm-utils) can also be used.
+Alternatively, the `multilocationToAddress` function of the [XCM Utilities Precompile](/builders/interoperability/xcm/xcm-utils/) can also be used.
 
 #### Build the Transfer Multiassets Extrinsic {: #build-transfer-multiassets }
 
-Once you have the multilocation-derivative account, you can begin to construct the `utility.batchAll` transaction. To get started, you'll need to make sure you have a few packages installed:
+Once you have the Computed Origin account, you can begin to construct the `utility.batchAll` transaction. To get started, you'll need to make sure you have a few packages installed:
 
 ```bash
 npm i @polkadot/api ethers
 ```
 
-Now you can begin to tackle the `xTokens.transferMultiassets` extrinsic, which accepts four parameters: `assets`, `feeItem`, `dest`, and `destWeightLimit`. You can find out more information on each of the parameters in the [X-Tokens Pallet Interface](/builders/interoperability/xcm/xc20/xtokens#x-tokens-pallet-interface){target=_blank} documentation.
+Now you can begin to tackle the `xTokens.transferMultiassets` extrinsic, which accepts four parameters: `assets`, `feeItem`, `dest`, and `destWeightLimit`. You can find out more information on each of the parameters in the [X-Tokens Pallet Interface](/builders/interoperability/xcm/xc20/send-xc20s/xtokens-pallet#x-tokens-pallet-interface){target=_blank} documentation.
 
-In short, the `assets` parameter defines the multilocation and amount of xcDEV (xcGLMR for Moonbeam) and the local XC-20 to send to Moonbase Alpha, with the xcDEV positioned as the first asset and the local XC-20 as the second. The `feeItem` is set to the index of the xcDEV asset, which in this case is `0`, so that DEV is used to pay for the execution fees in Moonbase Alpha. The `dest` is a multilocation that defines the multilocation-derivative account that you calculated in the previous section on Moonbase Alpha.
+In short, the `assets` parameter defines the multilocation and amount of xcDEV (xcGLMR for Moonbeam) and the local XC-20 to send to Moonbase Alpha, with the xcDEV positioned as the first asset and the local XC-20 as the second. The `feeItem` is set to the index of the xcDEV asset, which in this case is `0`, so that DEV is used to pay for the execution fees in Moonbase Alpha. The `dest` is a multilocation that defines the Computed Origin account that you calculated in the previous section on Moonbase Alpha.
 
 For this example, the `xTokens.transferMultiassets` extrinsic will look like the following:
 
@@ -155,7 +155,7 @@ To create the batch transaction and wrap it in a remote EVM call to be executed 
 
 2. Use Ether's `encodeFunctionData` function to get the encoded call data for the two calls in the batch transaction: the `approve` transaction and the `transferTokensWithRelay` transaction
 3. Combine the two transactions into a batch transaction and use Ether's `encodeFunctionData` to get the encoded call data for the batch transaction
-4. Use the encoded call data for the batch transaction to create the remote EVM call via the `ethereumXcm.transact` extrinsic, which accepts the `xcmTransaction` as the parameter. For more information, please refer to the [Remote EVM Calls documentation](/builders/interoperability/xcm/remote-evm-calls#ethereum-xcm-pallet-interface){target=_blank}
+4. Use the encoded call data for the batch transaction to create the remote EVM call via the `ethereumXcm.transact` extrinsic, which accepts the `xcmTransaction` as the parameter. For more information, please refer to the [Remote EVM Calls documentation](/builders/interoperability/xcm/remote-execution/remote-evm-calls#ethereum-xcm-pallet-interface){target=_blank}
 
 ???+ code "Create remote EVM call logic"
 
@@ -163,7 +163,7 @@ To create the batch transaction and wrap it in a remote EVM call to be executed 
     --8<-- 'code/builders/interoperability/mrl/evm-tx.js'
     ```
 
-Next, you'll need to create the extrinsic to send the remote EVM call to Moonbeam. To do so, you'll want to send an XCM message such that the `Transact` XCM instruction gets successfully executed. The most common method to do this is through `polkadotXcm.send` and sending the `WithdrawAsset`, `BuyExecution`, and `Transact` instructions. `RefundSurplus` and `DepositAsset` can also be used to ensure no assets get trapped, but they are technically optional.
+Next, you'll need to create the extrinsic to send the remote EVM call to Moonbeam. To do so, you'll want to send an XCM message such that the [`Transact`](/builders/interoperability/xcm/core-concepts/instructions#transact){target=_blank} XCM instruction gets successfully executed. The most common method to do this is through `polkadotXcm.send` and sending the [`WithdrawAsset`](/builders/interoperability/xcm/core-concepts/instructions#withdraw-asset){target=_blank}, [`BuyExecution`](/builders/interoperability/xcm/core-concepts/instructions#buy-execution){target=_blank}, and [`Transact`](/builders/interoperability/xcm/core-concepts/instructions#transact){target=_blank} instructions. [`RefundSurplus`](/builders/interoperability/xcm/core-concepts/instructions#refund-surplus){target=_blank} and [`DepositAsset`](/builders/interoperability/xcm/core-concepts/instructions#deposit-asset){target=_blank} can also be used to ensure no assets get trapped, but they are technically optional.
 
 ???+ code "Send remote EVM call logic"
 
