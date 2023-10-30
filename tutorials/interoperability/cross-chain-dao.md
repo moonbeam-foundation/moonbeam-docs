@@ -83,7 +83,7 @@ The `IVotes` interface requires a lot of different functions to represent the di
 
 Recall [from earlier](#intuition-and-planning){target=_blank} that we intend to have users vote on each chain and to only send voting data to the hub chain during the collection phase. This means that the voting weights must be stored on each chain. This is very easy, since all we have to do is ensure that the `ERC20Votes` contract is deployed on each chain, or, in other words, make the DAO token a cross-chain token.  
 
-Previously, it was mentioned that LayerZero is being used as the cross-chain protocol for this tutorial. LayerZero was chosen because of their [OFT contract](https://github.com/LayerZero-Labs/solidity-examples/blob/main/contracts/token/oft/OFT.sol){target=_blank}, which makes it extremely easy to make an ERC-20 token cross-chain. This doesn't mean that you have to use LayerZero, though; every other cross-chain protocol has its own methods and the ability to create cross-chain assets.  
+Previously, it was mentioned that LayerZero is being used as the cross-chain protocol for this tutorial. LayerZero was chosen because of their [OFT contract](https://github.com/LayerZero-Labs/solidity-examples/blob/main/contracts/token/oft/v1/OFT.sol){target=_blank}, which makes it extremely easy to make an ERC-20 token cross-chain. This doesn't mean that you have to use LayerZero, though; every other cross-chain protocol has its own methods and the ability to create cross-chain assets.  
 
 We will create a new file named `OFTVotes.sol`:  
 
