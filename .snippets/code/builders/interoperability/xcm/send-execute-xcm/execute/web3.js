@@ -2,6 +2,7 @@ import ABI from './xcmUtilsABI.js'; // Import the XCM Utilities Precompile ABI
 import Web3 from 'web3'; // Import Web3 library
 
 const privateKey = 'INSERT_PRIVATE_KEY';
+const accountFrom = web3.eth.accounts.privateKeyToAccount(privateKey).address;
 const xcmUtilsAddress = '0x000000000000000000000000000000000000080C';
 
 /* Create Web3 provider */
@@ -11,7 +12,7 @@ const web3 = new Web3('https://rpc.api.moonbase.moonbeam.network'); // Change to
 const xcmUtils = new web3.eth.Contract(
   ABI,
   xcmUtilsAddress,
-  { from: web3.eth.accounts.privateKeyToAccount(privateKey).address } // 'from' is necessary for gas estimation
+  { from: accountFrom } // 'from' is necessary for gas estimation
 );
 
 const executeXcmMessageLocally = async () => {
@@ -28,6 +29,8 @@ const executeXcmMessageLocally = async () => {
       to: xcmUtilsAddress,
       data: tx.encodeABI(),
       gas: await tx.estimateGas(),
+      gasPrice: await web3.eth.getGasPrice(),
+      nonce: await web3.eth.getTransactionCount(accountFrom),
     },
     privateKey
   );

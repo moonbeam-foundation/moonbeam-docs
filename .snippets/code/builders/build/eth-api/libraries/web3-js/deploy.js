@@ -38,12 +38,16 @@ const deploy = async () => {
     {
       data: incrementerTx.encodeABI(),
       gas: await incrementerTx.estimateGas(),
+      gasPrice: await web3.eth.getGasPrice(),
+      nonce: await web3.eth.getTransactionCount(accountFrom.address),
     },
     accountFrom.privateKey
   );
 
   // 9. Send tx and wait for receipt
-  const createReceipt = await web3.eth.sendSignedTransaction(createTransaction.rawTransaction);
+  const createReceipt = await web3.eth.sendSignedTransaction(
+    createTransaction.rawTransaction
+  );
   console.log(`Contract deployed at address: ${createReceipt.contractAddress}`);
 };
 

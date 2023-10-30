@@ -165,9 +165,9 @@ touch transaction.js
 Next, you will create the script for this file and complete the following steps:
 
 1. [Set up the Web3 provider](#setup-web3-with-moonbeam)
-2. Define the `addressFrom`, including the `privateKey`, and the `addressTo` variables. The private key is required to create a wallet instance. **Note: This is for example purposes only. Never store your private keys in a JavaScript file**
+2. Define the `accountFrom`, including the `privateKey`, and the `addressTo` variables. The private key is required to create a wallet instance. **Note: This is for example purposes only. Never store your private keys in a JavaScript file**
 3. Create the asynchronous `send` function which wraps the transaction object and the sign and send transaction functions
-4. Create and sign the transaction using the `web3.eth.accounts.signTransaction` function. Pass in the `gas`, `addressTo`, and `value` for the transaction along with the sender's `privateKey`
+4. Create and sign the transaction using the `web3.eth.accounts.signTransaction` function. Pass in the `gas`, `addressTo`, `value`, `gasPrice`, and `nonce` for the transaction along with the sender's `privateKey`
 5. Send the signed transaction using the `web3.eth.sendSignedTransaction` method and pass in the raw transaction. Then use `await` to wait until the transaction is processed and the transaction receipt is returned
 6. Lastly, run the `send` function
 
@@ -194,6 +194,8 @@ const send = async () => {
       gas: 21000,
       to: addressTo,
       value: web3.utils.toWei('1', 'ether'),
+      gasPrice: await web3.eth.getGasPrice(),
+      nonce: await web3.eth.getTransactionCount(accountFrom.address),
     },
     accountFrom.privateKey
   );
@@ -254,12 +256,12 @@ Next, you will create the script for this file and complete the following steps:
 
 1. Import the contract file from `compile.js`
 2. [Set up the Web3 provider](#setup-web3-with-moonbeam)
-3. Define the `addressFrom`, including the `privateKey`, and the `addressTo` variables. The private key is required to create a wallet instance. **Note: This is for example purposes only. Never store your private keys in a JavaScript file**
+3. Define the `accountFrom`, including the `privateKey`, and the `addressTo` variables. The private key is required to create a wallet instance. **Note: This is for example purposes only. Never store your private keys in a JavaScript file**
 4. Save the `bytecode` and `abi` for the compiled contract
 5. Create the asynchronous `deploy` function that will be used to deploy the contract
 6. Create the contract instance using the `web3.eth.Contract` function
 7. Create the constructor and pass in the `bytecode` and the initial value for the incrementer. For this example, you can set the initial value to `5`
-8. Create and sign the transaction using the `web3.eth.accounts.signTransaction` function. Pass in the `data` and the `gas` for the transaction along with the sender's `privateKey`
+8. Create and sign the transaction using the `web3.eth.accounts.signTransaction` function. Pass in the `data`, `gas`, `gasPrice`, and `nonce` for the transaction along with the sender's `privateKey`
 9. Send the signed transaction using the `web3.eth.sendSignedTransaction` method and pass in the raw transaction. Then use `await` to wait until the transaction is processed and the transaction receipt is returned
 10. Lastly, run the `deploy` function
 
@@ -298,6 +300,8 @@ const deploy = async () => {
     {
       data: incrementerTx.encodeABI(),
       gas: await incrementerTx.estimateGas(),
+      gasPrice: await web3.eth.getGasPrice(),
+      nonce: await web3.eth.getTransactionCount(accountFrom.address),
     },
     accountFrom.privateKey
   );
@@ -406,7 +410,7 @@ Open the `increment.js` file and take the following steps to create the script:
 4. Create an instance of the contract using the `web3.eth.Contract` function and passing in the `abi` and  `contractAddress`
 5. Use the contract instance to build the increment transaction using the `methods.increment` function and passing in the `_value` as an input
 6. Create the asynchronous `increment` function
-7. Use the contract instance and the increment transaction you previously created to sign the transaction with the sender's private key. You'll use the `web3.eth.accounts.signTransaction` function and specify the `to` address, the `data`, and the `gas` for the transaction
+7. Use the contract instance and the increment transaction you previously created to sign the transaction with the sender's private key. You'll use the `web3.eth.accounts.signTransaction` function and specify the `to` address, `data`, `gas`, `gasPrice`, and `nonce` for the transaction
 8. Send the signed transaction using the `web3.eth.sendSignedTransaction` method and pass in the raw transaction. Then use `await` to wait until the transaction is processed and the transaction receipt is returned
 9. Lastly, call the `increment` function
 
@@ -420,6 +424,7 @@ const { abi } = require('./compile');
 // 3. Create variables
 const accountFrom = {
   privateKey: 'INSERT_YOUR_PRIVATE_KEY',
+  address: 'INSERT_PUBLIC_ADDRESS_OF_PK',
 };
 const contractAddress = 'INSERT_CONTRACT_ADDRESS';
 const _value = 3;
@@ -442,6 +447,8 @@ const increment = async () => {
       to: contractAddress,
       data: incrementTx.encodeABI(),
       gas: await incrementTx.estimateGas(),
+      gasPrice: await web3.eth.getGasPrice(),
+      nonce: await web3.eth.getTransactionCount(accountFrom.address),
     },
     accountFrom.privateKey
   );
@@ -481,7 +488,7 @@ Next you can open the `reset.js` file and take the following steps to create the
 4. Create an instance of the contract using the `web3.eth.Contract` function and passing in the `abi` and  `contractAddress`
 5. Use the contract instance to build the reset transaction using the `methods.reset` function
 6. Create the asynchronous `reset` function
-7. Use the contract instance and the reset transaction you previously created to sign the transaction with the sender's private key. You'll use the `web3.eth.accounts.signTransaction` function and specify the `to` address, the `data`, and the `gas` for the transaction
+7. Use the contract instance and the reset transaction you previously created to sign the transaction with the sender's private key. You'll use the `web3.eth.accounts.signTransaction` function and specify the `to` address, `data`, `gas`, `gasPrice`, and `nonce` for the transaction
 8. Send the signed transaction using the `web3.eth.sendSignedTransaction` method and pass in the raw transaction. Then use `await` to wait until the transaction is processed and the transaction receipt is returned
 9. Lastly, call the `reset` function
 
@@ -495,6 +502,7 @@ const { abi } = require('./compile');
 // 3. Create variables
 const accountFrom = {
   privateKey: 'INSERT_YOUR_PRIVATE_KEY',
+  address: 'INSERT_PUBLIC_ADDRESS_OF_PK',
 };
 const contractAddress = 'INSERT_CONTRACT_ADDRESS';
 
@@ -516,6 +524,8 @@ const reset = async () => {
       to: contractAddress,
       data: resetTx.encodeABI(),
       gas: await resetTx.estimateGas(),
+      gasPrice: await web3.eth.getGasPrice(),
+      nonce: await web3.eth.getTransactionCount(accountFrom.address),
     },
     accountFrom.privateKey
   );

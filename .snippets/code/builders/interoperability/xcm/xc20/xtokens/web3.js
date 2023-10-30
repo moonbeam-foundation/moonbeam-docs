@@ -2,13 +2,14 @@ import ABI from './xtokensABI.js'; // Import the X-Tokens ABI
 import Web3 from 'web3'; // Import Web3 library
 
 const privateKey = 'INSERT_PRIVATE_KEY';
+const accountFrom = web3.eth.accounts.privateKeyToAccount(privateKey).address;
 
 // Create Web3 wallet & contract instance
 const web3 = new Web3('https://rpc.api.moonbase.moonbeam.network'); // Change to network of choice
 const xTokens = new web3.eth.Contract(
   ABI,
   '0x0000000000000000000000000000000000000804',
-  { from: web3.eth.accounts.privateKeyToAccount(privateKey).address } // 'from' is necessary for gas estimation
+  { from: accountFrom } // 'from' is necessary for gas estimation
 );
 
 // xcUNIT address in Moonbase Alpha
@@ -24,10 +25,10 @@ const aliceRelayAccount = [
 async function transferToAlice() {
   // Create transaction
   const transferTx = xTokens.methods.transfer(
-    xcUnitAddress,       // Asset
-    '1000000000000',     // Amount
-    aliceRelayAccount,   // Destination
-    '1000000000'         // Weight
+    xcUnitAddress, // Asset
+    '1000000000000', // Amount
+    aliceRelayAccount, // Destination
+    '1000000000' // Weight
   );
 
   // Sign transaction
@@ -36,6 +37,8 @@ async function transferToAlice() {
       to: '0x0000000000000000000000000000000000000804',
       data: transferTx.encodeABI(),
       gas: await transferTx.estimateGas(),
+      gasPrice: await web3.eth.getGasPrice(),
+      nonce: await web3.eth.getTransactionCount(accountFrom),
     },
     privateKey
   );
@@ -51,16 +54,18 @@ const relay_chain_asset = [1, []];
 // Sends 1 xcUNIT to the relay chain using the transferMultiasset function
 async function transferMultiassetToAlice() {
   const transferTx = xTokens.methods.transferMultiasset(
-    relay_chain_asset,   // Asset
-    '1000000000000',     // Amount
-    aliceRelayAccount,   // Destination
-    '1000000000'         // Weight
+    relay_chain_asset, // Asset
+    '1000000000000', // Amount
+    aliceRelayAccount, // Destination
+    '1000000000' // Weight
   );
   const signedTx = await web3.eth.accounts.signTransaction(
     {
       to: '0x0000000000000000000000000000000000000804',
       data: transferTx.encodeABI(),
       gas: await transferTx.estimateGas(),
+      gasPrice: await web3.eth.getGasPrice(),
+      nonce: await web3.eth.getTransactionCount(accountFrom),
     },
     privateKey
   );
