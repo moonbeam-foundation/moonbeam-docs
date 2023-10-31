@@ -1,4 +1,4 @@
-const Web3 = require('web3');
+const { Web3 } = require('web3');
 
 // 1. Add the Web3 provider logic here:
 const providerRPC = {

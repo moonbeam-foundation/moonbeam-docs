@@ -55,7 +55,7 @@ The simplest way to get started with each of the networks is as follows:
 === "Moonbeam"
 
     ```js
-    const Web3 = require('web3');
+    const { Web3 } = require('web3');
 
     // Create Web3 instance
     const web3 = new Web3('{{ networks.moonbeam.rpc_url }}'); // Insert your RPC URL here
@@ -64,7 +64,7 @@ The simplest way to get started with each of the networks is as follows:
 === "Moonriver"
 
     ```js
-    const Web3 = require('web3');
+    const { Web3 } = require('web3');
 
     // Create Web3 instance
     const web3 = new Web3('{{ networks.moonriver.rpc_url }}'); // Insert your RPC URL here
@@ -73,7 +73,7 @@ The simplest way to get started with each of the networks is as follows:
 === "Moonbase Alpha"
 
     ```js
-    const Web3 = require('web3');
+    const { Web3 } = require('web3');
 
     // Create Web3 instance
     const web3 = new Web3('{{ networks.moonbase.rpc_url }}');
@@ -82,7 +82,7 @@ The simplest way to get started with each of the networks is as follows:
 === "Moonbeam Dev Node"
 
     ```js
-    const Web3 = require('web3');
+    const { Web3 } = require('web3');
 
     // Create Web3 instance
     const web3 = new Web3('{{ networks.development.rpc_url }}');
