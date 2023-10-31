@@ -1,5 +1,4 @@
 // 1. Import Web3js and the contract abi
-
 const { Web3 } = require('web3');
 const { abi } = require('./compile');
 

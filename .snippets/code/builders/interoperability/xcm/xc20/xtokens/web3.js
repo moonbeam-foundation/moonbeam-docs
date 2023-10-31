@@ -1,5 +1,5 @@
 import ABI from './xtokensABI.js'; // Import the X-Tokens ABI
-import Web3 from 'web3'; // Import Web3 library
+import { Web3 } from 'web3'; // Import Web3 library
 
 const privateKey = 'INSERT_PRIVATE_KEY';
 const accountFrom = web3.eth.accounts.privateKeyToAccount(privateKey).address;

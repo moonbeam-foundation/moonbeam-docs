@@ -1,5 +1,4 @@
 // 1. Import web3 and the contract file
-
 const { Web3 } = require('web3');
 const contractFile = require('./compile');
 
