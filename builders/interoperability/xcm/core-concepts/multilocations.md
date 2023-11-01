@@ -16,7 +16,7 @@ Multilocations follow a hierarchical structure, in which some locations are enca
 A multilocation contains two parameters:
 
 - `parents` - refers to how many "hops" up into a parent blockchain you need to take from a given origin. From the perspective of a parachain, there can only be one parent, which is the relay chain, so the value for `parents` can only ever be `0` to represent the parachain or `1` to represent the relay chain
-- `interior` - refers to how many fields you need to define the target point. From the relay chain, you can drill down to target a specific parachain, or account, asset, or pallet on that parachain. Since this downward movement can be more complex, Junctions are used to represent the steps needed to reach the target location
+- `interior` - refers to how many fields you need to define the target destination. From the relay chain, you can drill down to target a specific parachain, or account, asset, or pallet on that parachain. Since this downward movement can be more complex, Junctions are used to represent the steps needed to reach the target location
 
 If you are targeting the relay chain specifically, you'll use `Here` since you aren't defining an account on the relay chain, a parachain, or a specific point within a parachain.
 

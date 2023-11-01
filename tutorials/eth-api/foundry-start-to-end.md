@@ -345,7 +345,7 @@ You should see something similar to the following in the console:
 In Foundry, you can locally fork a network so that you can test out how the contracts would work in an environment with already deployed smart contracts. For example, if someone deployed smart contract `A` on Moonbeam that required a token smart contract, you could fork the Moonbeam network and deploy your own token on the fork to test out how smart contract `A` would react to it.  
 
 !!! note
-    Moonbeam's custom precompile smart contracts currently do not work in Foundry forks because precompiles are substrate based whereas typical smart contracts are completely based on the EVM. Learn more about [forking on Moonbeam](/builders/build/eth-api/dev-env/foundry#forking-with-anvil){target=_blank} and the [differences between Moonbeam and Ethereum](/builders/get-started/eth-compare){target=_blank}.
+    Moonbeam's custom precompile smart contracts currently do not work in Foundry forks because precompiles are Substrate-base,d whereas typical smart contracts are completely based on the EVM. Learn more about [forking on Moonbeam](/builders/build/eth-api/dev-env/foundry#forking-with-anvil){target=_blank} and the [differences between Moonbeam and Ethereum](/builders/get-started/eth-compare){target=_blank}.
 
 In this tutorial, you will be testing out how your `Container` smart contract interacts with an already deployed `MyToken` contract on Moonbase Alpha.  
 
