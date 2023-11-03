@@ -1,4 +1,4 @@
-import Web3 from 'web3';
+import { Web3 } from 'web3';
 
 // Define the transaction hash to check finality
 const txHash = 'INSERT_TX_HASH';

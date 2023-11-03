@@ -1,4 +1,4 @@
-const Web3 = require('web3');
+const { Web3 } = require('web3');
 
 // Provider
 const web3 = new Web3('https://rpc.api.moonbase.moonbeam.network');

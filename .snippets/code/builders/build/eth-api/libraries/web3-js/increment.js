@@ -1,6 +1,5 @@
 // 1. Import Web3js and the contract abi
-
-const Web3 = require('web3');
+const { Web3 } = require('web3');
 const { abi } = require('./compile');
 
 // 2. Add the Web3 provider logic here:
@@ -13,6 +12,7 @@ const web3 = new Web3(providerRPC.moonbase); //Change to correct network
 // 3. Create variables
 const accountFrom = {
   privateKey: 'INSERT_YOUR_PRIVATE_KEY',
+  address: 'INSERT_PUBLIC_ADDRESS_OF_PK',
 };
 const contractAddress = 'INSERT_CONTRACT_ADDRESS';
 const _value = 3;
@@ -35,12 +35,16 @@ const increment = async () => {
       to: contractAddress,
       data: incrementTx.encodeABI(),
       gas: await incrementTx.estimateGas(),
+      gasPrice: await web3.eth.getGasPrice(),
+      nonce: await web3.eth.getTransactionCount(accountFrom.address),
     },
     accountFrom.privateKey
   );
 
   // 8. Send Tx and Wait for Receipt
-  const createReceipt = await web3.eth.sendSignedTransaction(createTransaction.rawTransaction);
+  const createReceipt = await web3.eth.sendSignedTransaction(
+    createTransaction.rawTransaction
+  );
   console.log(`Tx successful with hash: ${createReceipt.transactionHash}`);
 };
 

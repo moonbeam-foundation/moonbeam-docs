@@ -1,4 +1,4 @@
-import Web3 from 'web3';
+import { Web3 } from 'web3';
 
 // Define the block hash to check finality
 const blockHash = 'INSERT_BLOCK_HASH';
