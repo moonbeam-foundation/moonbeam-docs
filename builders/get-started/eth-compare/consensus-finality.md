@@ -85,23 +85,45 @@ The snippets below follow the strategy outlined in the [previous section](#strat
 
 You can modify these scripts to use `moon_isBlockFinalized` and `moon_isTxFinalized`. To do this, you can make custom calls to the Substrate JSON-RPC using the `send` method of both [Web3.js](https://web3js.readthedocs.io/){target=_blank} and [Ethers.js](https://docs.ethers.org/){target=_blank}. Custom RPC requests are also possible using [Web3.py](https://web3py.readthedocs.io/){target=_blank} with the `make_request` method. You'll need to pass in the method name and the parameters to the custom request, which you can find on the [Moonbeam Custom API](/builders/build/moonbeam-custom-api/){target=_blank} page.
 
-=== "Ethers.js"
+???+ code "moon_isBlockFinalized"
 
-    ```js
-    --8<-- 'code/builders/get-started/eth-compare/consensus-finality/custom-rpc/ethers.js'
-    ```
+    === "Ethers.js"
 
-=== "Web3.js"
+        ```js
+        --8<-- 'code/builders/get-started/eth-compare/consensus-finality/custom-rpc/block/ethers.js'
+        ```
 
-    ```js
-    --8<-- 'code/builders/get-started/eth-compare/consensus-finality/custom-rpc/web3.js'
-    ```
+    === "Web3.js"
 
-=== "Web3.py"
+        ```js
+        --8<-- 'code/builders/get-started/eth-compare/consensus-finality/custom-rpc/block/web3.js'
+        ```
 
-    ```py
-    --8<-- 'code/builders/get-started/eth-compare/consensus-finality/custom-rpc/web3.py'
-    ```
+    === "Web3.py"
+
+        ```py
+        --8<-- 'code/builders/get-started/eth-compare/consensus-finality/custom-rpc/block/web3.py'
+        ```
+
+??? code "moon_isTxFinalized"
+
+    === "Ethers.js"
+
+        ```js
+        --8<-- 'code/builders/get-started/eth-compare/consensus-finality/custom-rpc/tx/ethers.js'
+        ```
+
+    === "Web3.js"
+
+        ```js
+        --8<-- 'code/builders/get-started/eth-compare/consensus-finality/custom-rpc/tx/web3.js'
+        ```
+
+    === "Web3.py"
+
+        ```py
+        --8<-- 'code/builders/get-started/eth-compare/consensus-finality/custom-rpc/tx/web3.py'
+        ```
 
 ## Checking Transaction Finality with Substrate Libraries {: #checking-tx-finality-with-substrate-libraries }
 
