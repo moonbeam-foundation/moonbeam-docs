@@ -5,7 +5,7 @@ description: This guide walks you through how to connect MetaMask, a browser-bas
 
 # Interacting with Moonbeam Using MetaMask
 
-## Introduction {: #introduction } 
+## Introduction {: #introduction }
 
 Developers can leverage Moonbeam's Ethereum compatibility features to integrate tools, such as [MetaMask](https://metamask.io/){target=_blank}, into their dApps. By doing so, they can use the injected library MetaMask provides to interact with the blockchain.
 
@@ -32,11 +32,11 @@ Learn [how to integrate a Connect MetaMask button](/builders/integrations/wallet
 
 --8<-- 'text/_disclaimers/third-party-content-intro.md'
 
-## Install the MetaMask Extension {: #install-the-metamask-extension } 
+## Install the MetaMask Extension {: #install-the-metamask-extension }
 
-First, you'll start with a fresh and default [MetaMask](https://metamask.io/){target=_blank} installation from the Chrome store. After downloading, installing, and initializing the extension, follow the **Get Started** guide. In there, you need to create a wallet, set a password, and store your secret backup phrase (this gives direct access to your funds, so make sure to store these in a secure place). 
+First, you'll start with a fresh and default [MetaMask](https://metamask.io/){target=_blank} installation from the Chrome store. After downloading, installing, and initializing the extension, follow the **Get Started** guide. In there, you need to create a wallet, set a password, and store your secret backup phrase (this gives direct access to your funds, so make sure to store these in a secure place).
 
-## Setup a Wallet {: #setup-a-wallet } 
+## Setup a Wallet {: #setup-a-wallet }
 
 After installing [MetaMask](https://metamask.io){target=_blank}, the setup will automatically open a new task with a welcome screen. Here, you are offered two options:
 
@@ -50,9 +50,9 @@ Once you've clicked on the option that adapts to your needs, follow the steps, a
 !!! note
     Multiple accounts can be derived from a seed phrase by changing what is known as the address index. By default, when creating or importing an account from the seed phrase, you get the account with the address index 0. You can get the other indexes by just adding new accounts in the main Metamask screen.
 
-## Import Accounts {: #import-accounts } 
+## Import Accounts {: #import-accounts }
 
-Once you've created a wallet or imported an existing one, you can also import any account into MetaMask if you hold the private keys. 
+Once you've created a wallet or imported an existing one, you can also import any account into MetaMask if you hold the private keys.
 
 For this example, you'll use private keys from the development account. Click the account switcher button to import an account using its private keys. That is where it says **Account 1**.
 
@@ -74,7 +74,7 @@ You should end up with an imported **Account 2** that looks like this:
 
 ![MetaMask displaying your new Account 2](/images/tokens/connect/metamask/new/metamask-5.png)
 
-## Connect MetaMask to Moonbeam {: #connect-metamask-to-moonbeam } 
+## Connect MetaMask to Moonbeam {: #connect-metamask-to-moonbeam }
 
 Once you have [MetaMask](https://metamask.io/){target=_blank} installed and have created or imported an account, you can connect it to any Moonbeam-based network. To do so, take the following steps:
 
@@ -128,7 +128,7 @@ Here, you can configure MetaMask for the following networks:
 To do so, fill in the following information:
 
 1. **Network name** - name that represents the network you are connecting to
-2. **RPC URL** - [RPC endpoint](https://docs.moonbeam.network/builders/get-started/endpoints/){target=_blank} of the network 
+2. **RPC URL** - [RPC endpoint](https://docs.moonbeam.network/builders/get-started/endpoints/){target=_blank} of the network
 3. **Chain ID** - chain ID of the Ethereum compatible network
 4. **Symbol** - (optional) symbol of the native token of the network. For example, for Moonbeam, the value would be **GLMR**
 5. **Block Explorer** - (optional) URL of the [block explorer](https://docs.moonbeam.network/builders/get-started/explorers/){target=_blank}
@@ -140,7 +140,7 @@ Once you've added the network, you'll be redirected to a screen stating that you
 
 ![Successfully added a network in Metamask](/images/tokens/connect/metamask/new/metamask-9.png)
 
-## Interact with the Network {: #interact-with-network } 
+## Interact with the Network {: #interact-with-network }
 
 Once you've [connected Metamask](#connect-metamask-to-moonbeam) to any Moonbeam-based network, you can start using your wallet by:
 
@@ -148,7 +148,7 @@ Once you've [connected Metamask](#connect-metamask-to-moonbeam) to any Moonbeam-
 - Adding ERC-20s to Metamask and interacting with them
 - Adding ERC-721s to Metamask and interacting with them
 
-### Initiate a Transfer { #initiate-a-transfer } 
+### Initiate a Transfer { #initiate-a-transfer }
 
 This section showcases how to do a simple token transfer to another address as an example of using Metamask with Moonbeam.
 
@@ -178,5 +178,39 @@ Lastly, confirm that all the gas-related parameters and fees are correct. After 
 Once you've confirmed your transaction, you are taken back to the main screen of your wallet, where you'll see the transaction as **Pending**. After less than a minute, the transaction should be **Confirmed**. If you click on your transaction, you can check more details and view it in a block explorer.
 
 ![Transaction confirmed in Metamask](/images/tokens/connect/metamask/new/metamask-14.png)
+
+### Add an ERC-20 Token {: #add-erc20 }
+
+To add an ERC-20 to your MetaMask wallet, you'll need to import the token using its address:
+
+1. Make sure you've switched to the **Tokens** tab in MetaMask
+2. Click **Import tokens**
+3. Enter the contract address of the token you want to import. The **Token symbol** and **Token decimal** fields will automatically be populated, but you can edit the **Token symbol** if needed
+4. Click **Next**
+
+![The tokens tab and the import tokens process in MetaMask, where the token address, symbol, and decimal are defined.](/images/tokens/connect/metamask/new/metamask-15.png)
+
+Next, you'll be able to review the token import details. To finalize the import, you can click **Import**.
+
+![Review the token details and finalize the import in MetaMask.](/images/tokens/connect/metamask/new/metamask-16.png)
+
+Under the **Tokens** tab, you'll be able to see the token and the account balance for the token.
+
+![View the imported token in the list of assets on the tokens tab in MetaMask.](/images/tokens/connect/metamask/new/metamask-17.png)
+
+### Add an ERC-721 Token {: #add-erc721 }
+
+To add an ERC-721 to your MetaMask wallet, you'll need the token's address:
+
+1. Make sure you've switched to the **NFTs** tab in MetaMask
+2. Click **Import NFT**
+3. Enter the **Address** of the NFT you want to import and the **Token ID**
+4. Click **Import**
+
+![The NFTs tab and the import NFT process in MetaMask, where the address and the token ID of the NFT are defined.](/images/tokens/connect/metamask/new/metamask-18.png)
+
+Once you've imported your NFT, you'll be able to see a preview of your NFT in the **NFTs** tab. You can click on the NFT to see more details.
+
+![View the imported NFT in the list of NFTs on the NFTs tab in MetaMask.](/images/tokens/connect/metamask/new/metamask-19.png)
 
 --8<-- 'text/_disclaimers/third-party-content.md'
