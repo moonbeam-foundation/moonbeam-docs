@@ -39,7 +39,7 @@ In terms of finality, blocks on Ethereum can take quite a bit longer to finalize
 
 Moonbeam does not use checkpoint blocks and instead relies on Polkadot's GRANDPA finality gadget, where the finality process is completed in parallel to block production. In addition, the finality process incorporates the blockchain's structure, which allows the relay chain validators to vote on the highest block that they think is valid. In this scenario, the vote would apply to all of the blocks leading up to the one that is finalized, which speeds up the finalization process. After a block has been included in the relay chain, a block can be finalized within one block on Moonbeam.
 
-## Strategy to Check Transaction Finality {: #strategy-to-check-tx-finality }
+## Check Transaction Finality with Ethereum RPC Endpoints {: #strategy-to-check-tx-finality }
 
 Although the finality gadgets differ, you can use the same, fairly simple strategy to check for transaction finality on both Ethereum and Moonbeam:
 
@@ -48,17 +48,7 @@ Although the finality gadgets differ, you can use the same, fairly simple strate
  3. You compare it with the block number of your transaction. If your transaction was included in a previous block, it is finalized
  4. As a safety check, retrieve the block by number and verify that the given transaction hash is in the block
 
-The following sections outline how you can check for transaction finality using both the Ethereum JSON-RPC (custom Web3 request) and the Substrate (Polkadot) JSON-RPC.
-
-## Checking Transaction Finality with Moonbeam RPC Endpoints {: #checking-tx-finality-with-moonbeam-rpc-endpoints }
-
-Moonbeam has added support for two custom RPC endpoints, `moon_isBlockFinalized` and `moon_isTxFinalized`, that can be used to check whether an on-chain event is finalized.
-
-For more information, you can go to the [Finality RPC Endpoints](/builders/build/moonbeam-custom-api#finality-rpc-endpoints){target=_blank} section of the Moonbeam Custom API page.
-
-## Checking Transaction Finality with Ethereum Libraries {: #checking-tx-finality-with-ethereum-libraries }
-
-The snippets below follow the strategy outlined in the [previous section](#strategy-to-check-tx-finality) to check transaction finality. It uses the `finalized` option for the [default block parameter](https://ethereum.org/en/developers/docs/apis/json-rpc/#default-block){target=_blank} to get the latest finalized block.
+The snippets below follow this strategy to check transaction finality. It uses the `finalized` option for the [default block parameter](https://ethereum.org/en/developers/docs/apis/json-rpc/#default-block){target=_blank} to get the latest finalized block.
 
 --8<-- 'text/_common/endpoint-examples.md'
 
@@ -83,7 +73,13 @@ The snippets below follow the strategy outlined in the [previous section](#strat
     --8<-- 'code/builders/get-started/eth-compare/consensus-finality/web3.py'
     ```
 
-You can modify these scripts to use `moon_isBlockFinalized` and `moon_isTxFinalized`. To do this, you can make custom calls to the Substrate JSON-RPC using the `send` method of both [Web3.js](https://web3js.readthedocs.io/){target=_blank} and [Ethers.js](https://docs.ethers.org/){target=_blank}. Custom RPC requests are also possible using [Web3.py](https://web3py.readthedocs.io/){target=_blank} with the `make_request` method. You'll need to pass in the method name and the parameters to the custom request, which you can find on the [Moonbeam Custom API](/builders/build/moonbeam-custom-api/){target=_blank} page.
+## Check Transaction Finality with Moonbeam RPC Endpoints {: #checking-tx-finality-with-moonbeam-rpc-endpoints }
+
+Moonbeam has added support for two custom RPC endpoints, `moon_isBlockFinalized` and `moon_isTxFinalized`, that can be used to check whether an on-chain event is finalized. These methods are a bit more straight forward, as you don't need to compare block numbers to ensure your transaction was finalized.
+
+For more information, you can go to the [Finality RPC Endpoints](/builders/build/moonbeam-custom-api#finality-rpc-endpoints){target=_blank} section of the Moonbeam Custom API page.
+
+You can modify the scripts from the Ethereum RPC section above to use `moon_isBlockFinalized` and `moon_isTxFinalized`. To do this, you can make custom calls to the Substrate JSON-RPC using the `send` method of both [Web3.js](https://web3js.readthedocs.io/){target=_blank} and [Ethers.js](https://docs.ethers.org/){target=_blank}. Custom RPC requests are also possible using [Web3.py](https://web3py.readthedocs.io/){target=_blank} with the `make_request` method. You'll need to pass in the method name and the parameters to the custom request, which you can find on the [Moonbeam Custom API](/builders/build/moonbeam-custom-api/){target=_blank} page.
 
 ???+ code "moon_isBlockFinalized"
 
@@ -125,15 +121,15 @@ You can modify these scripts to use `moon_isBlockFinalized` and `moon_isTxFinali
         --8<-- 'code/builders/get-started/eth-compare/consensus-finality/custom-rpc/tx/web3.py'
         ```
 
-## Checking Transaction Finality with Substrate Libraries {: #checking-tx-finality-with-substrate-libraries }
+## Check Transaction Finality with Substrate RPC Endpoints {: #checking-tx-finality-with-substrate-rpc }
 
-The [Polkadot.js API package](/builders/build/substrate-api/polkadot-js-api){target=_blank} and [Python Substrate Interface package](/builders/build/substrate-api/py-substrate-interface){target=_blank} provide developers with a way to interact with Substrate chains using JavaScript and Python.
-
-Given a transaction hash (`tx_hash`), the following code snippets fetch the current finalized block and compare it with the block number of the transaction you've provided. The code relies on three RPC requests from the Substrate JSON-RPC:
+Using the following three RPC requests from the Substrate JSON-RPC, you can fetch the current finalized block and compare it with the block nunmber of the transaction you want to check finality for:
 
 - `chain_getFinalizedHead` - the first request gets the block hash of the last finalized block
 - `chain_getHeader` - the second request gets the block header for a given block hash
 - `eth_getTransactionReceipt` - this retrieves the transaction receipt given the transaction hash
+
+The [Polkadot.js API package](/builders/build/substrate-api/polkadot-js-api){target=_blank} and [Python Substrate Interface package](/builders/build/substrate-api/py-substrate-interface){target=_blank} provide developers with a way to interact with Substrate chains using JavaScript and Python.
 
 You can find more information about Polkadot.js and the Substrate JSON-RPC in the [official Polkadot.js documentation site](https://polkadot.js.org/docs/substrate/rpc){target=_blank}, and more about Python Substrate Interface in the [official PySubstrate documentation site](https://polkascan.github.io/py-substrate-interface/){target=_blank}.
 
