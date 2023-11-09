@@ -177,7 +177,7 @@ You'll use the encoded call data in the `Transact` instruction in the following 
 
 When using the `Transact` instruction, you'll need to define the `requireWeightAtMost` field, which is the required weight for the transaction. This field accepts two arguments: the `refTime` and `proofSize`. The `refTime` is the amount of computational time that can be used for execution, and the `proofSize` is the amount of storage in bytes that can be used.
 
-To get an estimate for the `refTime` and `proofSize`, you can use the `paymentInfo` method of the Polkadot.js API. Since these weights are required for the `Transact` call data, you can extend the script from the previous section to add in the call to `paymentInfo`.
+To get an estimate for the `refTime` and `proofSize`, you can use the [`paymentInfo` method of the Polkadot.js API](/builders/build/substrate-api/polkadot-js-api#fees){target=_blank}. Since these weights are required for the `Transact` call data, you can extend the script from the previous section to add in the call to `paymentInfo`.
 
 The `paymentInfo` method accepts the same parameters you would normally pass to the `.signAndSend` method, which is the sending account and, optionally, some additional values such as a nonce or signer.
 

@@ -371,7 +371,7 @@ Since you'll be interacting with the `transactThroughSigned` function of the XCM
     ```
 
     !!! note
-        For accurate estimates of the `refTime` and `proofSize` figures for `transactRequiredAtMost`, you can use the [`paymentInfo` method of the Polkadot.js API](/builders/interoperability/xcm/remote-execution/remote-evm-calls/#build-xcm-remote-evm){target=_blank}.
+        For accurate estimates of the `refTime` and `proofSize` figures for `transactRequiredAtMost`, you can use the [`paymentInfo` method of the Polkadot.js API](/builders/build/substrate-api/polkadot-js-api#fees){target=_blank}.
 
 5. To refund any leftover XCM fees, you can set the `refund` value to `true`. Otherwise, set it to `false`
 
@@ -403,7 +403,7 @@ Now that you have the values for each of the parameters, you can write the scrip
 
 ### XCM Transact through Computed Origin Fees {: #transact-through-computed-origin-fees }
 
-When [transacting through the Computed Origin account](/builders/interoperability/xcm/remote-execution/xcm-transactor#xcmtransactor-transact-through-signed){target=_blank}, the transaction fees are paid by the same account from which the call is dispatched, which is a Computed Origin account in the destination chain. Consequently, the Computed Origin account must hold the necessary funds to pay for the entire execution. Note that the destination token, for which fees are paid, does not need to be registered as an XC-20 in the origin chain.
+When [transacting through the Computed Origin account](#xcmtransactor-transact-through-signed){target=_blank}, the transaction fees are paid by the same account from which the call is dispatched, which is a Computed Origin account in the destination chain. Consequently, the Computed Origin account must hold the necessary funds to pay for the entire execution. Note that the destination token, for which fees are paid, does not need to be registered as an XC-20 in the origin chain.
 
 To estimate the amount of token Alice's Computed Origin account will need to have to execute the remote call, you need to check the transact information specific to the destination chain. You can use the following script to get the transact information for parachain 888:
 

@@ -9,7 +9,7 @@ description: When XCM instructions are combined, they form an XCM message that p
 
 XCM messages contain a series of [actions and instructions](https://github.com/paritytech/xcm-format#5-the-xcvm-instruction-set){target=_blank} that are executed by the Cross-Consensus Virtual Machine (XCVM). An action (for example, transferring a token from one blockchain to another) consists of instructions that the XCVM partly executes in the origin and destination chains.
 
-For example, an XCM message that transfers DOT from Polkadot to Moonbeam will include the following XCM instructions (in that order), which are partly executed on Polkadot and partly executed on Moonbeam:
+For example, an XCM message that transfers DOT from Polkadot to Moonbeam will include the following XCM instructions (in that order), some of which are executed on Polkadot and some of which are executed on Moonbeam:
 
  1. [TransferReserveAsset](#transfer-reserve-asset) — executed in Polkadot
  2. [ReserveAssetDeposited](#reserve-asset-deposited) — executed in Moonbeam
