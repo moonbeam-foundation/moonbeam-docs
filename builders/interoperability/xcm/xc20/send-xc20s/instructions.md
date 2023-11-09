@@ -11,7 +11,9 @@ The X-Tokens Pallet and X-Tokens Precompile make it easy to send assets cross-ch
 
 The XCM instructions used for the [X-Tokens Pallet extrinsics](/builders/interoperability/xcm/xc20/send-xc20s/xtokens-pallet#extrinsics){target=_blank} are defined in the [X-Tokens Open Runtime Module Library](https://github.com/open-web3-stack/open-runtime-module-library/tree/polkadot-{{networks.polkadot.spec_version}}/xtokens){target=_blank} repository.
 
-Regardless of which transfer extrinsic is used, the instructions are the same for sending the native asset back to its origin chain, such as xcDOT from Moonbeam back to Polkadot, and sending the native asset from the origin chain to a destination chain, such as DOT from Polkadot to Moonbeam.
+Regardless of which transfer extrinsic is used, the XCM instructions are the same. There is one set of XCM instructions for sending the native asset back to its origin chain, such as xcDOT from Moonbeam back to Polkadot, and another set of XCM instructions for sending the native asset from the origin chain to a destination chain, such as DOT from Polkadot to Moonbeam.
+
+This page gives a high-level overview of how different XCM instructions are used to transfer tokens in different scenarios.
 
 ## Instructions to Transfer a Self-Reserve Asset from the Reserve Chain {: #transfer-native-from-origin }
 

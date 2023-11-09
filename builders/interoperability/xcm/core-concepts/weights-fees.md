@@ -24,11 +24,14 @@ Generally speaking, the fee payment process can be described as follows:
 2. The exchange of assets for computing time (or weight) must be negotiated
 3. The XCM operations will be performed as instructed, with the provided weight limit or funds available for execution
 
-Each chain can configure what happens with the XCM fees and in which tokens they can be paid (either the native reserve token or an external one). For example, on Polkadot and Kusama, the fees are paid in DOT or KSM (respectively) and given to the validator of the block. On Moonbeam and Moonriver, the XCM execution fees can be paid in the reserve asset (GLMR or MOVR, respectively), but also in assets originated in other chains, and fees are sent to the Treasury.
+Each chain can configure what happens with the XCM fees and in which tokens they can be paid (either the native reserve token or an external one). For example:
+
+- **Polkadot and Kusama** - the fees are paid in DOT or KSM (respectively) and given to the validator of the block.
+- **Moonbeam and Moonriver** - the XCM execution fees can be paid in the reserve asset (GLMR or MOVR, respectively), but also in assets originated in other chains, if it is registered as an [XCM execution asset](/builders/interoperability/xcm/xc-registration/assets/){target=_blank}. When XCM execution (token transfers or remote execution) is paid in the native chain reserve asset (GLMR or MOVR), 80% is burned, while 20% is sent to the treasury. When XCM execution is paid in a foreign asset, the fee is sent to the treasury
 
 Consider the following scenario: Alice has some DOT on Polkadot, and she wants to transfer it to Alith on Moonbeam. She sends an XCM message with a set of XCM instructions that will retrieve a given amount of DOT from her account on Polkadot and mint them as xcDOT into Alith's account. Part of the instructions are executed on Polkadot, and the other part is executed on Moonbeam.
 
-How does Alice pay Moonbeam to execute these instructions and fulfill her request? Her request is fulfilled through a series of XCM instructions that are included in the XCM message, which enables her to buy execution time minus any related XCM execution fees. The execution time is used to issue and transfer xcDOT, a representation of DOT on Moonbeam. This means that when Alice sends some DOT to Alith's account on Moonbeam, she'll receive a 1:1 representation of her DOT as xcDOT minus any XCM execution fees. Note that in this scenario, XCM execution fees are paid in xcDOT.
+How does Alice pay Moonbeam to execute these instructions and fulfill her request? Her request is fulfilled through a series of XCM instructions that are included in the XCM message, which enables her to buy execution time minus any related XCM execution fees. The execution time is used to issue and transfer xcDOT, a representation of DOT on Moonbeam. This means that when Alice sends some DOT to Alith's account on Moonbeam, she'll receive a 1:1 representation of her DOT as xcDOT minus any XCM execution fees. Note that in this scenario, XCM execution fees are paid in xcDOT, and are sent to the treasury.
 
 The exact process for Alice's transfer is as follows:
 
@@ -187,8 +190,8 @@ Substrate has introduced a weight system that determines how heavy or, in other 
 
 For all Moonbeam-based networks, the generic XCM instructions are benchmarked, while the fungible XCM instructions still use a fixed amount of weight per instruction. Consequently, the total weight cost of the benchmarked XCM instructions considers the number of database reads and writes in addition to the weight required for a given instruction. The breakdown of weight cost for database operations is as follows:
 
-|                                                                   Database                                                                   |                   Read                    |                   Write                    |
-|:--------------------------------------------------------------------------------------------------------------------------------------------:|:-----------------------------------------:|:------------------------------------------:|
+|                                                                         Database                                                                          |                   Read                    |                   Write                    |
+|:---------------------------------------------------------------------------------------------------------------------------------------------------------:|:-----------------------------------------:|:------------------------------------------:|
 | [RocksDB (default)](https://github.com/paritytech/polkadot-sdk/blob/master/substrate/frame/support/src/weights/rocksdb_weights.rs#L27-L28){target=_blank} | {{ xcm.db_weights.rocksdb_read.display }} | {{ xcm.db_weights.rocksdb_write.display }} |
 
 Now that you know the weight costs for database reads and writes for Moonbase Alpha, you can calculate the weight cost for both fungible and generic XCM instructions using the base weight for instruction and the extra database reads and writes if applicable.

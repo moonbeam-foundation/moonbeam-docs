@@ -34,22 +34,9 @@ Polkadot implements two cross-consensus or transport protocols for acting on XCM
 
 ![Vertical Message Passing and Cross-chain Message Passing Overview](/images/builders/interoperability/xcm/overview/overview-1.png)
 
-Furthermore, the two most common use-cases for XCM messages, at least in the early stages of its implementations, are:
-
-- **Asset Teleporting** — consists of moving an asset from one blockchain to another by destroying the amount being transferred in the origin chain and creating a clone (same amount as destroyed) on the target chain. In such cases, each chain holds the native asset as reserve, similar to a burn-mint bridging mechanism. The model requires a certain degree of trust, as any of the two chains could maliciously mint more assets
-- **Remote Transfers** — consists of moving an asset from one blockchain to another via an intermediate account in the origin chain that is trustlessly owned by the target chain. This intermediate account is known as the "Sovereign" account. In such cases, the origin chain asset is not destroyed but held by the Sovereign account. The XCM execution in the target chain mints a wrapped (also referred to as "virtual" or  "cross-chain" asset) representation to a target address. The wrapped representation is always interchangeable on a 1:1 basis with the native asset. This is similar to a lock-mint / burn-unlock bridging mechanism
-
-![Asset Teleporting and Remote Transfers](/images/builders/interoperability/xcm/overview/overview-2.png)
-
-A much more detailed article about XCM can be found in the [Polkadot Wiki](https://wiki.polkadot.network/docs/learn-crosschain){target=_blank}.
-
-Initially, Moonbeam will only support remote transfers. All cross-chain assets on Moonbeam will be known as _xc + TokenName_. For example, Polkadot's DOT representation on Moonbeam is known as _xcDOT_ and Kusama's KSM representation on Moonriver is _xcKSM_. You can read more about the XC-20 standard in the [XC-20s and Cross-Chain Assets](/builders/interoperability/xcm/xc20){target=_blank} overview.
-
-**Developers must understand that sending incorrect XCM messages can result in the loss of funds.** Consequently, it is essential to test XCM features on a TestNet before moving to a production environment.
-
 ## Establishing Cross-Chain Communication {: #channel-registration }
 
-Before two chains can start communicating, a messaging channel must be opened. Channels are unidirectional, meaning that a channel from chain A to chain B will only pass messages from A to B. Consequently, asset transfers will be possible only from chains A to B. Therefore, two channels must be opened to send messages (or transfer assets) back and forth.
+Before two chains can start communicating, a messaging channel must be opened. Channels are unidirectional, meaning that a channel from chain A to chain B will only pass messages from A to B. Therefore, two channels must be opened to send messages back and forth.
 
 A channel for XCMs between the relay chain and parachain is automatically opened when a connection is established. However, when parachain A wants to open a communication channel with parachain B, parachain A must send an open channel extrinsic to its network. This extrinsic is an XCM as well!
 
@@ -57,11 +44,23 @@ Even though parachain A has expressed its intentions of opening an XCM channel w
 
 To learn more about the channel registration process, please refer to the [How to Establish an XC Integration with Moonbeam](/builders/interoperability/xcm/xc-registration/xc-integration/){target=_blank} guide.
 
-![XCM Channel Registration Overview](/images/builders/interoperability/xcm/overview/overview-3.png)
+![XCM Channel Registration Overview](/images/builders/interoperability/xcm/overview/overview-2.png)
 
-Once the channel is established, assets need to be registered before being transferred through XCMs, either by being baked into the runtime as a constant or through a pallet. Moonbeam relies on a Substrate pallet to handle asset registration without the need for runtime upgrades, making the process a lot simpler.
+Once the channel is established, cross-chain messages can be sent between parachains. For asset transfers, assets need to be registered before being transferred through XCMs, either by being baked into the runtime as a constant or through a pallet. Moonbeam relies on a Substrate pallet to handle asset registration without the need for runtime upgrades, making the process a lot simpler.
 
 To learn how to register an asset on Moonbeam and the information necessary to add Moonbeam assets to another chain, please refer to the [How to Register Cross-Chain Assets](/builders/interoperability/xcm/xc-registration/assets/){target=_blank} guide.
+
+## XCM Use Cases {: #xcm-use-cases }
+
+The two most common use-cases for XCM messages, at least in the early stages of its implementations, are:
+
+- **Asset Transfer** — consists of moving an asset from one blockchain to another. Currently, there are two main type of asset transfer using XCM:
+     - **Asset Teleporting** — consists of moving an asset from one blockchain to another by destroying the amount being transferred in the origin chain and creating a clone (same amount as destroyed) on the target chain. In such cases, each chain holds the native asset as reserve, similar to a burn-mint bridging mechanism. The model requires a certain degree of trust, as any of the two chains could maliciously mint more assets
+    - **Remote Transfers** — consists of moving an asset from one blockchain to another via an intermediate account in the origin chain that is trustlessly owned by the target chain. This intermediate account is known as the "sovereign" account. In such cases, the origin chain asset is not destroyed but held by the sovereign account. The XCM execution in the target chain mints a wrapped (also referred to as "virtual" or  "cross-chain" asset) representation to a target address. The wrapped representation is always interchangeable on a 1:1 basis with the native asset. This is similar to a lock-mint / burn-unlock bridging mechanism
+
+![Asset Teleporting and Remote Transfers](/images/builders/interoperability/xcm/overview/overview-3.png)
+
+- **Remote Transact** — consists of remotely executing function calls on other blockchains via XCM. An XCM is constructed so that you buy execution time in the destination blockchain and execute some arbitrary bytes that represent a function call in that specific blockchain 
 
 ## Moonbeam and XCM {: #moonbeam-and-xcm }
 
@@ -71,9 +70,11 @@ Expanding on Moonbeam's unique Ethereum compatibility features, foreign assets w
 
 ![Moonbeam XC-20 XCM Integration With Polkadot](/images/builders/interoperability/xcm/overview/overview-4.png)
 
-The precompile does not support cross-chain transfers to stay as close as possible to the original ERC-20 interface. Consequently, developers will have to rely on the Substrate API and XCMs to move the assets back to their original chain, or on a different [precompile contract](https://github.com/moonbeam-foundation/moonbeam/tree/master/precompiles/xtokens){target=_blank} to access XCM based features from the Ethereum API.
+The precompile does not support cross-chain transfers to stay as close as possible to the original ERC-20 interface. Consequently, developers will have to rely on the [X-Tokens pallet](/builders/interoperability/xcm/xc20/send-xc20s/xtokens-pallet/){target=_blank}, the [X-Tokens precompile](/builders/interoperability/xcm/xc20/send-xc20s/xtokens-precompile/){target=_blank} and XCMs to move the assets back to their original chain.
 
 Depending on the target blockchain, asset transfers can be done via teleporting or remote transfers, the latter being the most common method used. Initially, Moonbeam will only support remote transfers.
+
+Another unique feature offered by Moonbeam is the ability to initiate XCM actions from EVM smart contracts, or to call its EVM through XCM messages. This unlocks a new set of possibilities, where contracts on Moonbeam can access parachain-specific funcionalities via XCM, or other parachain ecosystems can use EVM smart contracts on Moonbeam to expand their functions.
 
 The following sections provide a high-level overview of the two initial use cases for XCM on Moonbeam: asset transfers from/to Polkadot (via VMP) and asset transfers from/to other parachains (via XCMP). This page will be expanded as more interoperability features become available, such as movements of ERC-20 tokens from Moonbeam to other parachains, or movement of other assets to Moonbeam as ERC-20 representations.
 
@@ -95,7 +96,7 @@ Note the following:
 
 - Alice and Alith accounts can be different. For example, Polkadot's accounts are SR25519 (or ED25519), while Moonbeam's are ECDSA (Ethereum styled) accounts. They can also have different owners
 - There is a certain degree of trust, where one chain relies on the other to execute its part of the XCM message. This is programmed at a runtime level, so that it can be easily verified
-- For this example, cross-chain DOT (_xcDOT_) are a wrapped representation of the original DOT being held in Moonbeam's Sovereign account on Polkadot. _xcDOT_ can be transferred within Moonbeam at any time, and they can be redeemed for DOT on a 1:1 basis as well
+- For this example, cross-chain DOT (_xcDOT_) are a wrapped representation of the original DOT being held in Moonbeam's Sovereign account on Polkadot. _xcDOT_ can be transferred within Moonbeam at any time, and they can be redeemed for DOT on a 1:1 basis as well (minus some fees)
 
 Alith deposited her _xcDOT_ in a liquidity pool. Next, Charleth acquires some _xcDOT_ by swapping against that liquidity pool, and he wants to transfer some _xcDOT_ to Charley's Polkadot account. Therefore, he initiates an XCM that expresses his intentions.
 
