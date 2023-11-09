@@ -66,7 +66,7 @@ You will need to create a Hardhat project if you don't already have one. You can
 
 The Hardhat configuration file is the entry point into your Hardhat project. It defines various settings and options for your Hardhat project, such as the Solidity compiler version to use and the networks you can deploy your contracts to.
 
-To start, your `hardat.config.file` should resemble the following:
+To start, your `hardhat.config.js` should resemble the following:
 
 ```js
 /** @type import('hardhat/config').HardhatUserConfig */
@@ -153,7 +153,7 @@ If you are planning on using any plugins with your project, you'll need to insta
 For this example, you can install the `hardhat-ethers` plugin and import it into the configuration file. This plugin provides a convenient way to use the [Ethers.js](/builders/build/eth-api/libraries/ethersjs/){target=_blank} library to interact with the network.
 
 ```bash
-npm install @nomicfoundation/hardhat-ethers ethers
+npm install @nomicfoundation/hardhat-ethers ethers@6
 ```
 
 To import it, you'll add the following `require` statement to the top of the configuration file:
@@ -187,13 +187,13 @@ To add the contract, you'll take the following steps:
 1. Create a `contracts` directory
 
     ```sh
-    mkdir contracts && cd contracts
+    mkdir contracts
     ```
 
 2. Create a `Box.sol` file
 
     ```sh
-    touch Box.sol
+    touch contracts/Box.sol
     ```
 
 3. Open the file and add the following contract to it:
@@ -245,8 +245,7 @@ To deploy the contract, you'll create a script that uses [Ethers.js](/builders/b
 You can create a new directory for the script, and name it `scripts`, and add a new file to it called `deploy.js`:
 
 ```sh
-mkdir scripts && cd scripts
-touch deploy.js
+mkdir scripts && touch scripts/deploy.js
 ```
 
 Next, you need to write your deployment script. Because you'll be running it with Hardhat and you've already imported Ethers into your `hardhat.config.js` file, you don't need to import any libraries directly in the script. If you were to run the script with `node` instead, you would need to import Ethers.
@@ -323,7 +322,7 @@ Next, you can take the following steps, entering one line at a time:
 2. Connect the local instance to the deployed contract, using the address of the contract
 
     ```js
-    const box = await Box.attach('0x425668350bD782D80D457d5F9bc7782A24B8c2ef');
+    const box = await Box.attach('0xfBD78CE8C9E1169851119754C4Ea2f70AB159289');
     ```
 
 3. Interact with the attached contract. For this example, you can call the `store` method and store a simple value
@@ -357,13 +356,13 @@ touch scripts/set-value.js
 Now paste the following contract into the `set-value.js` file:
 
 ```js
-// scripts/interact.js
+// scripts/set-value.js
 async function main() {
   // Create instance of the Box contract
   const Box = await ethers.getContractFactory('Box');
 
   // Connect the instance to the deployed contract
-  const box = await Box.attach('0x803C953bbca816804233845738F5fc1F6f99eD78');
+  const box = await Box.attach('0xfBD78CE8C9E1169851119754C4Ea2f70AB159289');
 
   // Store a new value
   await box.store(2);
@@ -388,6 +387,8 @@ npx hardhat run --network moonbase scripts/set-value.js
 ```
 
 The script should return `2` as the value.
+
+![The terminal output from executing the set-value.js script.](/images/builders/build/eth-api/dev-env/hardhat/hardhat-5-new.png)
 
 ## Hardhat Forking {: #hardhat-forking }
 
