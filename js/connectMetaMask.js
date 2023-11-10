@@ -1,15 +1,8 @@
 const provider = window.ethereum;
-const moonbeamChainId = '0x504';
-const moonriverChainId = '0x505';
-const moonbaseAlphaChainId = '0x507';
-
-/**  Add event listener to the Connect MetaMask buttons */
-const metaMaskButtons = document.querySelectorAll('.connectMetaMask');
-const connectMetaMaskNav = document.querySelector('.connectMetaMask-nav');
-
 const supportedNetworks = {
   moonbeam: {
-    chainId: moonbeamChainId,
+    name: 'moonbeam',
+    chainId: '0x504',
     chainName: 'Moonbeam',
     rpcUrls: ['https://rpc.api.moonbeam.network'],
     blockExplorerUrls: ['https://moonbeam.moonscan.io/'],
@@ -20,7 +13,8 @@ const supportedNetworks = {
     },
   },
   moonriver: {
-    chainId: moonriverChainId,
+    name: 'moonriver',
+    chainId: '0x505',
     chainName: 'Moonriver',
     rpcUrls: ['https://rpc.api.moonriver.moonbeam.network'],
     blockExplorerUrls: ['https://moonriver.moonscan.io/'],
@@ -31,7 +25,8 @@ const supportedNetworks = {
     },
   },
   moonbase: {
-    chainId: moonbaseAlphaChainId,
+    name: 'moonbase',
+    chainId: '0x507',
     chainName: 'Moonbase Alpha',
     rpcUrls: ['https://rpc.api.moonbase.moonbeam.network'],
     blockExplorerUrls: ['https://moonbase.moonscan.io/'],
@@ -43,110 +38,123 @@ const supportedNetworks = {
   },
 };
 
-/** If we are already connected, show disbled button with 'Connected' text */
-const displayConnected = async (buttons, network, title) => {
-  const accounts = await ethereum.request({ method: 'eth_accounts' });
-  for (let i = 0; i < buttons.length; i++) {
-    let button = buttons[i];
-    if (button && button.attributes.value.value === network && accounts.length > 0) {
-      const shortenedAccount = `${accounts[0].slice(0, 6)}...${accounts[0].slice(-4)}`;
-      button.innerHTML = `Connected to ${title}: ${shortenedAccount}`;
-      button.className += ' disabled-button';
-    }
-  }
-};
+// If user clicks on "Connect Wallet", show the networks they can connect to
+const connectMetaMaskNav = document.querySelector('.connectMetaMask-nav');
+connectMetaMaskNav.addEventListener('click', async (e) => {
+  e.preventDefault();
 
-const isConnectedToMoonbeam = async (buttons) => {
+  // Is user already connected? If so, to which network and which account?
+  // If not, throw an error
   if (provider) {
-    const chainId = await provider.request({
-      method: 'eth_chainId',
-    });
-    if (chainId === moonbaseAlphaChainId) {
-      displayConnected(buttons, 'moonbase', 'Moonbase Alpha');
-    } else if (chainId === moonriverChainId) {
-      displayConnected(buttons, 'moonriver', 'Moonriver');
-    } else if (chainId === moonbeamChainId) {
-      displayConnected(buttons, 'moonbeam', 'Moonbeam');
-    }
-  }
-};
+    networkModalContainer.style.display = 'block';
+    // Get the connected network
+    const { connectedMoonbeamNetwork, connectedMoonbeamNetworkButton } = await getConnectedNetwork();
+    const accounts = await provider.request({ method: 'eth_accounts' });
 
-const connect = async (network) => {
-  /** In case we need to throw an error, let's grab the error modal & error message */
-  const errorModalContainer = document.querySelector('.error-modal-container');
-  const errorMessage = document.querySelector('.error-message');
-
-  if (provider) {
-    try {
-      const currentNetwork = provider.chainId;
-      const targetNetwork = supportedNetworks[network];
-      if (targetNetwork.chainId === currentNetwork) {
-        throw new Error(`You are already connected to the ${targetNetwork.chainName} network`);
-      }
-      await provider.request({ method: 'eth_requestAccounts' });
-      await provider.request({
-        method: 'wallet_addEthereumChain',
-        params: [targetNetwork],
-      });
-    } catch (e) {
-      /** Code 4001 is user rejected, we don't need to notify the user if they rejected the request */
-      if (e.code !== 4001) {
-        errorModalContainer.style.display = 'block';
-        errorMessage.innerHTML = e.message;
-      }
+    // If you have added Moonbeam to your wallet and have an account connected to Moonbeam, display it
+    // Otherwise, don't display the account
+    if (connectedMoonbeamNetwork && accounts.length > 0) {
+      await displayConnectedAccount(connectedMoonbeamNetwork, connectedMoonbeamNetworkButton);
     }
   } else {
-    errorModalContainer.style.display = 'block';
-    errorMessage.innerHTML = `It looks like MetaMask hasn't been installed. Please <a href="https://metamask.io/download.html" target="_blank" rel="noreferrer noopener">install MetaMask</a> and try again.`;
+    const errorMessage = `It looks like you don't have any Ethereum-compatible wallets installed. Please install an Etheruem-compatible wallet, such as <a href="https://metamask.io/download.html" target="_blank" rel="noreferrer noopener">MetaMask</a>, and try again.`;
+    handleError(errorMessage);
+  }
+
+  // Add logic for connecting to any of the Moonbeam networks
+  const moonbeamNetworkButtons = document.querySelectorAll(`.connect-network`);
+  if (moonbeamNetworkButtons) {
+    moonbeamNetworkButtons.forEach((button) => {
+      e.preventDefault();
+      // If user isn't already connected to a network, allow them to connect to it
+      // and then hide the modal
+      if (!button.classList.contains('disabled-button')) {
+        button.addEventListener('click', (e) => {
+          connectNetwork(e.target.attributes['data-value'].value);
+          networkModalContainer.style.display = 'none';
+        });
+      }
+    });
+  }
+});
+
+const connectNetwork = async (network) => {
+  try {
+    const targetNetwork = { ...supportedNetworks[network] };
+    delete targetNetwork.name;
+
+    await provider.request({
+      method: 'wallet_addEthereumChain',
+      params: [targetNetwork],
+    });
+    await provider.request({ method: 'eth_requestAccounts' });
+
+  } catch (e) {
+    /** Code 4001 is user rejected, we don't need to notify the user if they rejected the request */
+    if (e.code !== 4001 && e.code !== -32002) {
+      handleError(e.message);
+    }
   }
 };
 
-// If user is not on Integrate MetaMask page, connectMetaMask will not be available so
-// we need to check if it's there before adding the event listener to it
-if (metaMaskButtons) {
-  metaMaskButtons.forEach((button) => {
-    button.addEventListener('click', (e) => {
-      e.preventDefault();
-      if (!button.classList.contains('disabled-button')) {
-        connect(e.target.attributes.value.value);
-      }
-    });
+// Get the network that the user is currently connected to
+const getConnectedNetwork = async () => {
+  // Get the chain ID of the connected account
+  const chainId = await provider.request({
+    method: 'eth_chainId',
   });
-  /** Check if user is connected to Moonbeam and display correct button text */
-  isConnectedToMoonbeam(metaMaskButtons);
-}
-connectMetaMaskNav.addEventListener('click', (e) => {
-  e.preventDefault();
-  const networkModalContainer = document.querySelector('.network-modal-container');
-  networkModalContainer.style.display = 'block';
 
-  const networkOptions = document.querySelectorAll('.connect-network');
-  if (networkOptions) {
-    networkOptions.forEach((option) => {
-      option.addEventListener('click', (e) => {
-        e.preventDefault();
-        if (!option.classList.contains('disabled-button')) {
-          connect(e.target.attributes.value.value);
-          networkModalContainer.style.display = 'none';
-        }
-      });
-    });
-    isConnectedToMoonbeam(networkOptions);
+  // Check if the connected network is a Moonbeam network
+  const connectedMoonbeamNetwork = Object.values(supportedNetworks).find(
+    (network) => network.chainId === chainId
+  );
+
+  // If the connected network is a Moonbeam network, update the button text
+  // to say "Connected" along with the address of the connected account
+  if (connectedMoonbeamNetwork) {
+    const connectedMoonbeamNetworkButton = document.querySelector(
+      `.connect-network[data-value="${connectedMoonbeamNetwork.name}"]`
+    );
+
+    return { connectedMoonbeamNetwork, connectedMoonbeamNetworkButton };
+  } else {
+    return { connectedMoonbeamNetwork: null, connectedMoonbeamNetworkButton: null };
   }
-});
+};
+
+// Display the account that is connected and the Moonbeam network the account is connected to
+const displayConnectedAccount = async (connectedNetwork, networkButton) => {
+  // Get the connected accounts
+  const accounts = await provider.request({ method: 'eth_requestAccounts' });
+
+  const shortenedAccount = `${accounts[0].slice(0, 6)}...${accounts[0].slice(
+    -4
+  )}`;
+  networkButton.innerHTML = `Connected to ${connectedNetwork.chainName}: ${shortenedAccount}`;
+  networkButton.className +=
+    ' disabled-button';
+};
+
+const handleError = (message) => {
+  const errorModalContainer = document.querySelector('.error-modal-container');
+  const errorMessage = document.querySelector('.error-message');
+  errorModalContainer.style.display = 'block';
+  errorMessage.innerHTML = message;
+};
 
 if (provider) {
   /** Reload the page if the chain changes */
   provider.on('chainChanged', () => {
-    // MetaMask recommends reloading the page unless we have good reason not to
-    // Plus, everytime the window reloads, we call isConnectedToMoonbaseAlpha again
-    // and can show the correct 'Connected' or 'Connect MetaMask' button text
     window.location.reload();
   });
   /** When the account changes update the button text */
-  provider.on('accountsChanged', (accounts) => {
+  provider.on('accountsChanged', async (accounts) => {
     if (accounts.length > 0) {
-      isConnectedToMoonbeam(metaMaskButtons);
+      // Get the connected network
+      const { connectedMoonbeamNetwork, connectedMoonbeamNetworkButton } = await getConnectedNetwork();
+      if (connectedMoonbeamNetwork) {
+        await displayConnectedAccount(connectedMoonbeamNetwork, connectedMoonbeamNetworkButton);
+      }
     } else {
       window.location.reload();
     }

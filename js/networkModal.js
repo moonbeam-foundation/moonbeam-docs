@@ -20,13 +20,13 @@ networkModalHeader.innerHTML = `Please select a network:`;
 /** Set generic header for the network modal */
 networkModalMessage.innerHTML = `
   <div class="md-typeset button-wrapper">
-    <a href="#" class="md-button connect-network" value="moonbeam">Moonbeam</a>
+    <a href="#" class="md-button connect-network" data-value="moonbeam">Moonbeam</a>
   </div>
   <div class="md-typeset button-wrapper">
-    <a href="#" class="md-button connect-network" value="moonriver">Moonriver</a>
+    <a href="#" class="md-button connect-network" data-value="moonriver">Moonriver</a>
   </div>
   <div class="md-typeset button-wrapper">
-    <a href="#" class="md-button connect-network" value="moonbase">Moonbase Alpha TestNet</a>
+    <a href="#" class="md-button connect-network" data-value="moonbase">Moonbase Alpha TestNet</a>
   </div>
 `;
 
