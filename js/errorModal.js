@@ -19,7 +19,7 @@ closeErrorModal.className = 'close-modal';
 modalContainer.style.display = 'none';
 
 /** Set generic header for the error modal */
-modalHeader.textContent = 'There was a problem connecting MetaMask';
+modalHeader.textContent = 'There was a problem connecting to your wallet';
 
 /** Set up close button */
 closeErrorModal.innerHTML = '&times;';
