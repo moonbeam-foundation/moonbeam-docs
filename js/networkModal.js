@@ -15,7 +15,7 @@ closeNetworkModal.className = 'close-modal';
 /** Set the display to none to hide the modal until it is needed */
 networkModalContainer.style.display = 'none';
 
-networkModalHeader.innerHTML = `Please select a network:`;
+networkModalHeader.innerHTML = `Please select a network to connect to your Ethereum-compatible wallet:`;
 
 /** Set generic header for the network modal */
 networkModalMessage.innerHTML = `
