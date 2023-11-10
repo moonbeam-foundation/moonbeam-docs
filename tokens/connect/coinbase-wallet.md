@@ -58,7 +58,7 @@ Although Coinbase Wallet has a built-in browser, it doesn't currently support au
         |         Variable          |                                      Value                                       |
         |:-------------------------:|:--------------------------------------------------------------------------------:|
         |       Network Name        |                                    `Moonbeam`                                    |
-        |          RPC URL          |                       `{{ networks.moonbeam.public_rpc_url }}`                       |
+        |          RPC URL          |                     `{{ networks.moonbeam.public_rpc_url }}`                     |
         |          ChainID          | `{{ networks.moonbeam.chain_id }}` (hex: `{{ networks.moonbeam.hex_chain_id }}`) |
         |     Symbol (Optional)     |                                      `GLMR`                                      |
         | Block Explorer (Optional) |                     `{{ networks.moonbeam.block_explorer }}`                     |
@@ -67,7 +67,7 @@ Although Coinbase Wallet has a built-in browser, it doesn't currently support au
         |         Variable          |                                       Value                                        |
         |:-------------------------:|:----------------------------------------------------------------------------------:|
         |       Network Name        |                                    `Moonriver`                                     |
-        |          RPC URL          |                       `{{ networks.moonriver.public_rpc_url }}`                        |
+        |          RPC URL          |                     `{{ networks.moonriver.public_rpc_url }}`                      |
         |          ChainID          | `{{ networks.moonriver.chain_id }}` (hex: `{{ networks.moonriver.hex_chain_id }}`) |
         |     Symbol (Optional)     |                                       `MOVR`                                       |
         | Block Explorer (Optional) |                     `{{ networks.moonriver.block_explorer }}`                      |
@@ -76,19 +76,16 @@ Although Coinbase Wallet has a built-in browser, it doesn't currently support au
         |         Variable          |                                      Value                                       |
         |:-------------------------:|:--------------------------------------------------------------------------------:|
         |       Network Name        |                                 `Moonbase Alpha`                                 |
-        |          RPC URL          |                       `{{ networks.moonbase.rpc_url }}`                       |
+        |          RPC URL          |                        `{{ networks.moonbase.rpc_url }}`                         |
         |          ChainID          | `{{ networks.moonbase.chain_id }}` (hex: `{{ networks.moonbase.hex_chain_id }}`) |
         |     Symbol (Optional)     |                                      `DEV`                                       |
         | Block Explorer (Optional) |                     `{{ networks.moonbase.block_explorer }}`                     |
-
-    !!! note
-        Although you can add Moonbase Alpha as a custom network, you will not be able to see your balance or send tokens from the mobile app. You'll have to use the browser extension instead.
 
  5. Press **Add Network** once finished
 
 ![Add Moonbeam as a custom network through the network settings.](/images/tokens/connect/coinbase-wallet/new/coinbase-3.png)
 
-After returning to the **Networks** screen, you can view the newly added network from the **Custom** tab. To interact with Moonbeam, you'll need to
+After returning to the **Networks** screen, you can view the newly added network from the **Custom** tab. To interact with Moonbeam, you'll need to mark the network as **Active** by taking the following steps:
 
 1. Tap on **Moonbeam**
 2. Scroll down to the bottom of the screen and toggle the **Active network** switch to on
