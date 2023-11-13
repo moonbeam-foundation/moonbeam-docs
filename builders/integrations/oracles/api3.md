@@ -391,7 +391,7 @@ You can try QRNG using the following Airnodes and endpoints:
     |  Nodary Endpoint ID (uint256)  |   `{{ networks.moonbase.api3.nodaryqrnguint256 }}`    |
     | Nodary Endpoint ID (uint256[]) | `{{ networks.moonbase.api3.nodaryqrnguint256array }}` |
 
-*For a complete list of all the QRNG Providers, please refer to [API3's documentation](https://docs.api3.org/qrng/reference/providers.html){target=_blank}.*
+*For a complete list of all the QRNG Providers, please refer to [API3's documentation](https://docs.api3.org/reference/qrng/providers.html){target=_blank}.*
 ## Additional Resources {: #additional-resources }
 
 Here are some additional developer resources:
