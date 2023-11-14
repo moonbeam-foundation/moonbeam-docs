@@ -39,7 +39,7 @@ In terms of finality, blocks on Ethereum can take quite a bit longer to finalize
 
 Moonbeam does not use checkpoint blocks and instead relies on Polkadot's GRANDPA finality gadget, where the finality process is completed in parallel to block production. In addition, the finality process incorporates the blockchain's structure, which allows the relay chain validators to vote on the highest block that they think is valid. In this scenario, the vote would apply to all of the blocks leading up to the one that is finalized, which speeds up the finalization process. After a block has been included in the relay chain, a block can be finalized within one block on Moonbeam.
 
-## Check Transaction Finality with Ethereum RPC Endpoints {: #strategy-to-check-tx-finality }
+## Check Transaction Finality with Ethereum RPC Endpoints {: #check-tx-finality-with-ethereum-rpc-endpoints }
 
 Although the finality gadgets differ, you can use the same, fairly simple strategy to check for transaction finality on both Ethereum and Moonbeam:
 
@@ -73,9 +73,9 @@ The snippets below follow this strategy to check transaction finality. It uses t
     --8<-- 'code/builders/get-started/eth-compare/consensus-finality/web3.py'
     ```
 
-## Check Transaction Finality with Moonbeam RPC Endpoints {: #checking-tx-finality-with-moonbeam-rpc-endpoints }
+## Check Transaction Finality with Moonbeam RPC Endpoints {: #check-tx-finality-with-moonbeam-rpc-endpoints }
 
-Moonbeam has added support for two custom RPC endpoints, `moon_isBlockFinalized` and `moon_isTxFinalized`, that can be used to check whether an on-chain event is finalized. These methods are a bit more straight forward, as you don't need to compare block numbers to ensure your transaction was finalized.
+Moonbeam has added support for two custom RPC endpoints, `moon_isBlockFinalized` and `moon_isTxFinalized`, that can be used to check whether an on-chain event is finalized. These methods are a bit more straightforward, as you don't need to compare block numbers to ensure your transaction is finalized.
 
 For more information, you can go to the [Finality RPC Endpoints](/builders/build/moonbeam-custom-api#finality-rpc-endpoints){target=_blank} section of the Moonbeam Custom API page.
 
@@ -121,9 +121,9 @@ You can modify the scripts from the Ethereum RPC section above to use `moon_isBl
         --8<-- 'code/builders/get-started/eth-compare/consensus-finality/custom-rpc/tx/web3.py'
         ```
 
-## Check Transaction Finality with Substrate RPC Endpoints {: #checking-tx-finality-with-substrate-rpc }
+## Check Transaction Finality with Substrate RPC Endpoints {: #check-tx-finality-with-substrate-rpc-endpoints }
 
-Using the following three RPC requests from the Substrate JSON-RPC, you can fetch the current finalized block and compare it with the block nunmber of the transaction you want to check finality for:
+Using the following three RPC requests from the Substrate JSON-RPC, you can fetch the current finalized block and compare it with the block number of the transaction you want to check finality for:
 
 - `chain_getFinalizedHead` - the first request gets the block hash of the last finalized block
 - `chain_getHeader` - the second request gets the block header for a given block hash
