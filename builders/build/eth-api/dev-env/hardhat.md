@@ -408,7 +408,7 @@ Error HH604: Error running JSON-RPC server: Invalid JSON-RPC response's result.
 Errors: Invalid value null supplied to : RpcBlockWithTransactions | null/transactions: RpcTransaction Array/0: RpcTransaction/accessList: Array<{ address: DATA, storageKeys: Array<DATA> | null }> | undefined, Invalid value null supplied to : RpcBlockWithTransactions | null/transactions: RpcTransaction Array/1: RpcTransaction/accessList: Array<{ address: DATA, storageKeys: Array<DATA> | null }> | undefined, Invalid value null supplied to : RpcBlockWithTransactions | null/transactions: RpcTransaction Array/2: RpcTransaction/accessList: Array<{ address: DATA, storageKeys: Array<DATA> | null }> | undefined
 ```
 
-To patch Hardhat, you'll need to open the `node_modules/hardhat/internal/hardhat-network/jsonrpc/client.js` file of your project. Next, you'll add a `addAccessList` function and update the `_perform` and `_performBatch` functions.
+To patch Hardhat, you'll need to open the `node_modules/hardhat/internal/hardhat-network/jsonrpc/client.js` file of your project. Next, you'll add an `addAccessList` function and update the `_perform` and `_performBatch` functions.
 
 To get started, you can remove the preexisting `_perform` and `_performBatch` functions and, in their place, add the following code snippet:
 
