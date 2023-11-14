@@ -53,7 +53,7 @@ The main panel is automatically loaded with the **Home** tab, which contains lin
 
 The terminal panel is similar to a standard terminal that you have on your OS; you can execute scripts from it, and logs are printed to it. All transactions and contract interactions are automatically logged to the terminal. You can also interact with the [Ethers](https://docs.ethers.org/v6/){target=_blank} and [Web3](https://web3js.org/#/){target=_blank} JavaScript libraries directly from the terminal.
 
-## Add a Smart Contract to the File Explorer {: #add }
+## Add a Smart Contract to the File Explorer {: #add-a-smart-contract-to-the-file-explorer }
 
 For this example, you will create a new file that contains an ERC-20 token contract. This will be a simple ERC-20 contract based on the current [OpenZeppelin ERC-20 template](https://docs.openzeppelin.com/contracts/4.x/erc20){target=_blank}. The contract will create a `MyToken` token with the `MYTOK` symbol that mints the entirety of the initial supply to the creator of the contract.
 
@@ -90,7 +90,7 @@ For this example, no additional configurations are needed. To compile the `MyTok
 
 If you tried to compile your smart contract but there was an error or warning, you can easily debug the issue with the help of ChatGPT directly from the Solidity compiler plugin in Remix.
 
-For example, if you only provided the token name to the ERC20 constructor but forgot the token symbol and tried to compile the contract, an error would appear in the side panel. You can scroll down to read the error, and you'll see that there is also an **ASK GPT** button. To get help debugging the issue, you can click on **ASK GPT**, and a response will be returned in the Remix terminal that will guide you in the right direction to try and fix the issue.
+For example, if you only provided the token name to the ERC-20 constructor but forgot the token symbol and tried to compile the contract, an error would appear in the side panel. You can scroll down to read the error, and you'll see that there is also an **ASK GPT** button. To get help debugging the issue, you can click on **ASK GPT**, and a response will be returned in the Remix terminal that will guide you in the right direction to try and fix the issue. If you need additional help, you can go straight to the source and ask [ChatGPT](https://chat.openai.com/){target=_blank} directly.
 
 ![An error message shown in the side panel for the Solidity compiler plugin with an ASK GPT button for debugging.](/images/builders/build/eth-api/dev-env/remix/new/remix-7.png)
 
@@ -136,7 +136,7 @@ Once you've connected MetaMask to Remix, the side panel will update to reveal th
 
 ![The Deploy and run transactions side panel in Remix showing the environment connected to MetaMask, the connected network as 1281, and the connected account address.](/images/builders/build/eth-api/dev-env/remix/new/remix-11.png)
 
-### Deploy the Contract to Moonbeam {: #deploy-the-contract }
+### Deploy the Contract to Moonbeam {: #deploy-the-contract-to-moonbeam }
 
 Now that you've connected your wallet, you're ready to deploy the contract. Since you're deploying a simple ERC-20 token smart contract, the default gas limit set by Remix of 3 million is more than enough, and you don't need to specify a value to send along with the deployment. As such, you can take the following steps to deploy the contract:
 
@@ -164,7 +164,7 @@ Depending on the function you're interacting with, you may need to input paramet
 
 If the function you're interacting with is payable, you'll be able to enter an amount in the **VALUE** field towards the top of the side panel, in the same value field used for contracts that have payable constructors.
 
-### Call the Smart Contract Functions {: #call-functions }
+### Call the Smart Contract Functions {: #call-the-smart-contract-functions }
 
 If you expand the **MYTOKEN** contract dropdown, you'll be able to see all of the available functions you can interact with. To interact with a given function, you can provide any inputs, if needed, and then click on the button containing the function name you want to interact with.
 
