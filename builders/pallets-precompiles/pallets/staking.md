@@ -122,6 +122,7 @@ The parachain staking pallet includes the following read-only functions to obtai
 - **leaveCandidatesDelay**() - returns the number of rounds that must be waited before a scheduled request for a candidate to leave the candidate pool can be executed
 - **leaveDelegatorsDelay**() - returns the number of rounds that must be waited before a scheduled request for a delegator to leave the set of delegators can be executed
 - **maxBottomDelegationsPerCandidate**() - returns the maximum number of bottom delegations per candidate
+- **maxCandidates**() - returns the maximum number of candidates allowed in the candidate pool
 - **maxDelegationsPerDelegator**() - returns the maximum number of delegations per delegator  
 - **maxOfflineRounds**() - returns the number of rounds that must pass before a collator that has stopped producing blocks before they are marked as inactive
 - **maxTopDelegationsPerCandidate**() - returns the maximum number of top delegations per candidate
