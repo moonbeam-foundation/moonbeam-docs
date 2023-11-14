@@ -72,7 +72,7 @@ The main panel will switch to an empty file where you can add the Solidity code 
 
 ![Add the contract code to the newly created file in the main panel of Remix.](/images/builders/build/eth-api/dev-env/remix/new/remix-5.png)
 
-## Compile a Solidity Smart Contract {: #compile }
+## Compile a Solidity Smart Contract {: #compile-a-solidity-smart-contract }
 
 Before you compile a contract, make sure you've selected the file of the contract from the **File explorer** tab. Then, select the **Solidity Compiler** option from the plugin panel.
 
@@ -86,7 +86,7 @@ For this example, no additional configurations are needed. To compile the `MyTok
 
 ![The Solidity compiler plugin shown in the side panel in Remix.](/images/builders/build/eth-api/dev-env/remix/new/remix-6.png)
 
-### Debug Compilation Errors {: #debug-errors }
+### Debug Compilation Errors {: #debug-compilation-errors }
 
 If you tried to compile your smart contract but there was an error or warning, you can easily debug the issue with the help of ChatGPT directly from the Solidity compiler plugin in Remix.
 
@@ -98,7 +98,7 @@ Once you successfully fix the issue and recompile the contract, you'll see a gre
 
 ![The green check mark next to the Solidity compiler plugin in the plugin panel.](/images/builders/build/eth-api/dev-env/remix/new/remix-8.png)
 
-## Deploy a Solidity Smart Contract {: #deploy }
+## Deploy a Solidity Smart Contract {: #deploy-a-solidity-smart-contract }
 
 The **Deploy and run transactions** plugin enables you to configure contract deployment options, deploy contracts, and interact with deployed contracts.
 
@@ -114,7 +114,7 @@ The side panel consists of the following deployment options:
 
 The following section will cover how to configure the environment for deployment to be Moonbeam.
 
-### Connect Remix to Moonbeam {: #connect }
+### Connect Remix to Moonbeam {: #connect-remix-to-moonbeam }
 
 To deploy the smart contract to Moonbeam, you'll need to make sure that you've connected your wallet to your Moonbeam development node or the Moonbeam network of your choice. Then, from the **Deploy and run transactions** tab, you can connect Remix to your wallet by selecting your wallet from the **ENVIRONMENT** dropdown. For example, if you have Trust Wallet installed, you'll see **Injected Provider - TrustWallet** from the dropdown. Aside from injected providers, you can also connect to Moonbeam via WalletConnect.
 
@@ -154,7 +154,7 @@ Now that you've connected your wallet, you're ready to deploy the contract. Sinc
 
 Once the transaction has been deployed, you'll see details about the deployment transaction in the Remix terminal. Additionally, the contract will appear under the **Deployed Contracts** section of the side panel.
 
-## Interact with Deployed Smart Contracts {: #interact }
+## Interact with Deployed Smart Contracts {: #interact-with-deployed-smart-contracts }
 
 Once you've deployed a smart contract or accessed an existing contract via the **At Address** button, the contract will appear under the **Deployed Contracts** section of the side panel. You can expand the contract to view all of the contract's functions you can interact with.
 
@@ -183,7 +183,7 @@ On the other hand, if you call the `approve` function, which will approve an acc
 
 To view your balance or approvals, or transfer MYTOKs, you can add the MYTOK to your wallet. For information on how to add a token to MetaMask, you can refer to the [Add an ERC-20 Token](/tokens/connect/metamask#add-erc20){target=_blank} section of [our MetaMask documentation](/tokens/connect/metamask){target=_blank}.
 
-## Moonbeam Remix Plugin {: #moonbeam-plugin }
+## Moonbeam Remix Plugin {: #moonbeam-remix-plugin }
 
 The Moonbeam team has built a Remix plugin that makes it even easier to develop and deploy your Ethereum smart contracts on Moonbeam. The Moonbeam Remix plugin combines all of the important functions needed to compile, deploy, and interact with your smart contracts from one place - no switching tabs needed. The Moonbeam Remix plugin supports Moonbeam, Moonriver, and the Moonbase Alpha TestNet.
 
