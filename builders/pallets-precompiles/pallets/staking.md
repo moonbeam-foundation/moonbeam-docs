@@ -60,12 +60,14 @@ The parachain staking pallet provides the following extrinsics (functions):
 - **delegate**(candidate, amount, candidateDelegationCount, delegationCount) - *deprecated as of runtime 2400* - request to add a delegation to a specific candidate for a given amount. Use the `delegateWithAutoCompound` extrinsic instead
 - **delegateWithAutoCompound**(candidate, amount, autoCompound, candidateDelegationCount, candidateAutoCompoundingDelegationCount, delegationCount) - delegates a collator candidate and sets the percentage of rewards to auto-compound given an integer (no decimals) for the `amount` between 0-100. If the caller is not a delegator, this function adds them to the set of delegators. If the caller is already a delegator, then it adjusts their delegation amount
 - **delegatorBondMore**(candidate, more) - request to increase a delegator's amount delegated for a specific candidate
+- **enableMarkingOffline**(value) - enables or disables the mark offline feature for collators. It must be executed via [governance](/learn/features/governance){target=_blank} through the Root Track
 - **executeCandidateBondLess**(candidate) - executes any scheduled due requests to decrease a candidate's self bond amount
 - **executeDelegationRequest**(delegator, candidate) - executes any scheduled due delegation requests for a specific delegator provided the address of the candidate
 - **executeLeaveCandidates**(candidate, candidateDelegationCount) - executes any scheduled due requests to leave the set of collator candidates
 - **goOffline**() - allows a collator candidate to temporarily leave the pool of candidates without unbonding
 - **goOnline**() - allows a collator candidate to rejoin the pool of candidates after previously calling `goOffline()`
 - **joinCandidates**(bond, candidateCount) - request to join the set of collator candidates with a specified bond amount and provided the current candidate count
+- **notifyInactiveCollator**(collator) - marks a collator as inactive if they have not been producing blocks for the maximum number of offline rounds, as returned by the [`maxOfflineRounds` pallet constant](#constants)
 - **scheduleCandidateBondLess**(less) - schedules a request to decrease a candidate's self bond by a specified amount. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `executeCandidateBondLess` extrinsic
 - **scheduleDelegatorBondLess**(candidate, less) - schedules a request for a delegator to bond less with respect to a specific candidate. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `executeDelegationRequest` extrinsic
 - **scheduleLeaveCandidates**(candidateCount) - schedules a request for a candidate to remove themselves from the candidate pool. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `executeLeaveCandidates` extrinsic
@@ -95,6 +97,7 @@ The parachain staking pallet includes the following read-only storage methods to
 - **delayedPayouts**(u32) - returns the delayed payouts for all rounds or for a given round
 - **delegationScheduledRequests**(AccountId20) - returns the outstanding scheduled delegation requests for all collators or for a given collator's address
 - **delegatorState**(AccountId20) - returns delegator information such as their delegations, delegation status, and total delegation amount for all delegators or for a given delegator's address
+- **enabledMarkingOffline**() - returns a boolean indicating whether or not the marking offline feature for inactive collators is enabled
 - **inflationConfig**() - returns the inflation configuration
 - **nominatorState2**(AccountId20) - *deprecated as of runtime 1001* - use `delegatorState` instead
 - **palletVersion**() - returns the current pallet version
@@ -120,6 +123,7 @@ The parachain staking pallet includes the following read-only functions to obtai
 - **leaveDelegatorsDelay**() - returns the number of rounds that must be waited before a scheduled request for a delegator to leave the set of delegators can be executed
 - **maxBottomDelegationsPerCandidate**() - returns the maximum number of bottom delegations per candidate
 - **maxDelegationsPerDelegator**() - returns the maximum number of delegations per delegator  
+- **maxOfflineRounds**() - returns the number of rounds that must pass before a collator that has stopped producing blocks before they are marked as inactive
 - **maxTopDelegationsPerCandidate**() - returns the maximum number of top delegations per candidate
 - **minBlocksPerRound**() - returns the minimum number of blocks per round
 - **minCandidateStk**() - returns the minimum stake required for a candidate to be a collator candidate
