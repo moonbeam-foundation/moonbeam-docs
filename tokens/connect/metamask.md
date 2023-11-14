@@ -140,7 +140,7 @@ Once you've added the network, you'll be redirected to a screen stating that you
 
 ![Successfully added a network in Metamask](/images/tokens/connect/metamask/new/metamask-9.png)
 
-## Interact with the Network {: #interact-with-network }
+## Interact with the Network {: #interact-with-the-network }
 
 Once you've [connected Metamask](#connect-metamask-to-moonbeam) to any Moonbeam-based network, you can start using your wallet by:
 
@@ -179,7 +179,7 @@ Once you've confirmed your transaction, you are taken back to the main screen of
 
 ![Transaction confirmed in Metamask](/images/tokens/connect/metamask/new/metamask-14.png)
 
-### Add an ERC-20 Token {: #add-erc20 }
+### Add an ERC-20 Token {: #add-an-erc20-token }
 
 To add an ERC-20 to your MetaMask wallet, you'll need to import the token using its address:
 
@@ -198,7 +198,7 @@ Under the **Tokens** tab, you'll be able to see the token and the account balanc
 
 ![View the imported token in the list of assets on the tokens tab in MetaMask.](/images/tokens/connect/metamask/new/metamask-17.png)
 
-### Add an ERC-721 Token {: #add-erc721 }
+### Add an ERC-721 Token {: #add-an-erc721-token }
 
 To add an ERC-721 to your MetaMask wallet, you'll need the token's address:
 
