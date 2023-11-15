@@ -367,10 +367,6 @@ networks:
     substrate_api_sidecar:
       stable_version: 14.1.1
     tx_weight_to_gas_ratio: 25000      
-    mintable_xc20:
-      asset_deposit: 100
-      metadata_base_deposit: 1.0068
-      metadata_byte_deposit: .0001
     orbiter:
       max_orbiters_per_collator: 4
       max_collators: Unlimited
@@ -717,10 +713,6 @@ networks:
     substrate_api_sidecar:
       stable_version: 14.1.1
     tx_weight_to_gas_ratio: 25000
-    mintable_xc20:
-      asset_deposit: 100
-      metadata_base_deposit: 1.0068
-      metadata_byte_deposit: .0001
     orbiter:
       max_orbiters_per_collator: 3
       max_collators: 8
@@ -1046,10 +1038,6 @@ networks:
     substrate_api_sidecar:
       stable_version: 14.1.1
       tx_weight_to_gas_ratio: 25000
-    mintable_xc20:
-      asset_deposit: 10000
-      metadata_base_deposit: 10.68
-      metadata_byte_deposit: .01
     orbiter:
       max_orbiters_per_collator: 6
       max_collators: 5
