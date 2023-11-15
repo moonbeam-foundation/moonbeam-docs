@@ -124,7 +124,7 @@ The parachain staking pallet includes the following read-only functions to obtai
 - **maxBottomDelegationsPerCandidate**() - returns the maximum number of bottom delegations per candidate
 - **maxCandidates**() - returns the maximum number of candidates allowed in the candidate pool
 - **maxDelegationsPerDelegator**() - returns the maximum number of delegations per delegator  
-- **maxOfflineRounds**() - returns the number of rounds that must pass before a collator that has stopped producing blocks before they are marked as inactive
+- **maxOfflineRounds**() - returns the number of rounds that must pass before a collator that has stopped producing blocks is marked as inactive
 - **maxTopDelegationsPerCandidate**() - returns the maximum number of top delegations per candidate
 - **minBlocksPerRound**() - returns the minimum number of blocks per round
 - **minCandidateStk**() - returns the minimum stake required for a candidate to be a collator candidate
