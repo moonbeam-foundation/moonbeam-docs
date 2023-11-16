@@ -15,8 +15,8 @@ Multilocations follow a hierarchical structure, in which some locations are enca
 
 A multilocation contains two parameters:
 
-- `parents` - refers to how many "hops" up into a parent blockchain you need to take from a given origin. From perspective of a parachain within the relay chain ecosystem, there can only be one parent, so the value for `parents` can only ever be `0` to represent the parachain or `1` to represent the relay chain. When defining universal locations that consider other consensus systems like Ethereum, `parents` can have higher values
-- `interior` - refers to how many fields (`X1`, `X2`.... `XN`) you need to define the target point. From the relay chain, you can drill down to target a specific parachain, or account, asset, or pallet on that parachain. Since this downward movement can be more complex, Junctions are used to represent the steps needed to reach the target location. If no aditional field is required to define the targe point, its value can be `Here` (which would represent `X0`)
+- `parents` - refers to how many "hops" up into a parent blockchain you need to take from a given origin. From the perspective of a parachain within the relay chain ecosystem, there can only be one parent, so the value for `parents` can only ever be `0` to represent the parachain or `1` to represent the relay chain. When defining universal locations that consider other consensus systems like Ethereum, `parents` can have higher values
+- `interior` - refers to how many fields you need to define the target point. From the relay chain, you can drill down to target a specific parachain, or account, asset, or pallet on that parachain. Since this downward movement can be more complex, [Junctions](#junctions) are used to represent the steps needed to reach the target location and are defined by `XN`, where `N` is the number of Junctions required. If no Junctions are required to define the target point, its value would be `Here` as opposed to `X1`
 
 For example,if you are targeting the relay chain specifically, you'll use `Here` since you aren't defining an account on the relay chain, a parachain, or a specific point within a parachain.
 
@@ -75,7 +75,7 @@ A Junction can be any of the following:
     { Plurality: { id: INSERT_BODY_ID, part: INSERT_BODY_PART } }
     ```
 
-When using Junctions, you'll use `XN`, where `N` is the number of junctions required to reach the target location. For example, if you're targeting an account on Moonbeam from a parachain, `parents` needs to be set to `1`, and you'll need to define two Junctions, the `Parachain` and the `AccountKey20`, so you'll use `X2`, which is an array that will contain each Junction:
+When using Junctions, you'll use `XN`, where `N` is the number of Junctions required to reach the target location. For example, if you're targeting an account on Moonbeam from a parachain, `parents` needs to be set to `1`, and you'll need to define two Junctions, the `Parachain` and the `AccountKey20`, so you'll use `X2`, which is an array that will contain each Junction:
 
 ```js
 {
@@ -321,7 +321,7 @@ To target a specific account on the relay chain, you would use the following mul
 
 ### Target Another Parachain from Moonbeam {: #target-parachain-from-moonbeam }
 
-To target another parachain (for example, with parachain ID `1234`) from Moonbeam, you would use the following multilocation:
+To target another parachain (for example, a parachain that has an ID of 1234) from Moonbeam, you would use the following multilocation:
 
 === "Moonbeam"
 

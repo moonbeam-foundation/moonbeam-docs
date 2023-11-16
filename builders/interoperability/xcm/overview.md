@@ -54,13 +54,13 @@ To learn how to register an asset on Moonbeam and the information necessary to a
 
 The two most common use-cases for XCM messages, at least in the early stages of its implementations, are:
 
-- **Asset Transfer** — consists of moving an asset from one blockchain to another. Currently, there are two main type of asset transfer using XCM:
+- **Asset Transfer** — consists of moving an asset from one blockchain to another. Currently, there are two main types of asset transfers using XCM:
      - **Asset Teleporting** — consists of moving an asset from one blockchain to another by destroying the amount being transferred in the origin chain and creating a clone (same amount as destroyed) on the target chain. In such cases, each chain holds the native asset as reserve, similar to a burn-mint bridging mechanism. The model requires a certain degree of trust, as any of the two chains could maliciously mint more assets
     - **Remote Transfers** — consists of moving an asset from one blockchain to another via an intermediate account in the origin chain that is trustlessly owned by the target chain. This intermediate account is known as the "sovereign" account. In such cases, the origin chain asset is not destroyed but held by the sovereign account. The XCM execution in the target chain mints a wrapped (also referred to as "virtual" or  "cross-chain" asset) representation to a target address. The wrapped representation is always interchangeable on a 1:1 basis with the native asset. This is similar to a lock-mint / burn-unlock bridging mechanism
 
 ![Asset Teleporting and Remote Transfers](/images/builders/interoperability/xcm/overview/overview-3.png)
 
-- **Remote Transact** — consists of remotely executing function calls on other blockchains via XCM. An XCM is constructed so that you buy execution time in the destination blockchain and execute some arbitrary bytes that represent a function call in that specific blockchain 
+- **Remote Transact** — consists of remotely executing function calls on other blockchains via XCM. An XCM is constructed so that you buy execution time in the destination blockchain and execute some arbitrary bytes that represent a function call in that specific blockchain
 
 ## Moonbeam and XCM {: #moonbeam-and-xcm }
 
@@ -70,11 +70,11 @@ Expanding on Moonbeam's unique Ethereum compatibility features, foreign assets w
 
 ![Moonbeam XC-20 XCM Integration With Polkadot](/images/builders/interoperability/xcm/overview/overview-4.png)
 
-The precompile does not support cross-chain transfers to stay as close as possible to the original ERC-20 interface. Consequently, developers will have to rely on the [X-Tokens pallet](/builders/interoperability/xcm/xc20/send-xc20s/xtokens-pallet/){target=_blank}, the [X-Tokens precompile](/builders/interoperability/xcm/xc20/send-xc20s/xtokens-precompile/){target=_blank} and XCMs to move the assets back to their original chain.
+The precompile does not support cross-chain transfers to stay as close as possible to the original ERC-20 interface. Consequently, developers will have to rely on the [X-Tokens Pallet](/builders/interoperability/xcm/xc20/send-xc20s/xtokens-pallet/){target=_blank}, the [X-Tokens Precompile](/builders/interoperability/xcm/xc20/send-xc20s/xtokens-precompile/){target=_blank}, and XCMs to move the assets back to their original chain.
 
 Depending on the target blockchain, asset transfers can be done via teleporting or remote transfers, the latter being the most common method used. Initially, Moonbeam will only support remote transfers.
 
-Another unique feature offered by Moonbeam is the ability to initiate XCM actions from EVM smart contracts, or to call its EVM through XCM messages. This unlocks a new set of possibilities, where contracts on Moonbeam can access parachain-specific funcionalities via XCM, or other parachain ecosystems can use EVM smart contracts on Moonbeam to expand their functions.
+Another unique feature of Moonbeam is the ability to initiate XCM actions from EVM smart contracts or to call its EVM through XCM messages. This unlocks a new set of possibilities, where contracts on Moonbeam can access parachain-specific functionalities via XCM, or other parachain ecosystems can use EVM smart contracts on Moonbeam to expand their functions.
 
 The following sections provide a high-level overview of the two initial use cases for XCM on Moonbeam: asset transfers from/to Polkadot (via VMP) and asset transfers from/to other parachains (via XCMP). This page will be expanded as more interoperability features become available, such as movements of ERC-20 tokens from Moonbeam to other parachains, or movement of other assets to Moonbeam as ERC-20 representations.
 
