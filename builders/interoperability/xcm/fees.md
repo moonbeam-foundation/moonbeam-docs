@@ -205,7 +205,7 @@ For all Moonbeam-based networks, the generic XCM instructions are benchmarked, w
 
 |                                                                         Database                                                                          |                   Read                    |                   Write                    |
 |:---------------------------------------------------------------------------------------------------------------------------------------------------------:|:-----------------------------------------:|:------------------------------------------:|
-| [RocksDB (default)](https://github.com/paritytech/polkadot-sdk/blob/master/substrate/frame/support/src/weights/rocksdb_weights.rs#L27-L28){target=_blank} | {{ xcm.db_weights.rocksdb_read.display }} | {{ xcm.db_weights.rocksdb_write.display }} |
+| [RocksDB (default)](https://github.com/paritytech/polkadot-sdk/blob/{{polkadot_sdk}}/substrate/frame/support/src/weights/rocksdb_weights.rs#L27-L28){target=_blank} | {{ xcm.db_weights.rocksdb_read.display }} | {{ xcm.db_weights.rocksdb_write.display }} |
 
 Now that you know the weight costs for database reads and writes for Moonbase Alpha, you can calculate the weight cost for both fungible and generic XCM instruction using the base weight for instruction and the extra database read/writes if applicable.
 
