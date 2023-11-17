@@ -68,9 +68,7 @@ This will start up our development node, which can be accessed on port 9944. Not
 Our development node comes with 10 prefunded accounts.
 
 ??? note "Development account addresses and private keys"
-
-    --8<-- 'code/builders/get-started/networks/moonbeam-dev/
-
+    --8<-- 'code/builders/get-started/networks/moonbeam-dev/dev-accounts.md'
 
 For more information on running a Moonbeam development node, please refer to the [Getting Started with a Moonbeam Development Node](/builders/get-started/networks/moonbeam-dev){target=\_blank} guide.
 
@@ -102,8 +100,9 @@ Before we update the configuration file, we'll need to get the private key of on
 0x5fb92d6e98884f76de468fa3f6278f8807c48bebc13595d45af5bdc4da702133
 ```
 
-    !!! remember
-**You should never store your private keys in a JavaScript or Python file.**
+
+!!! remember
+    **You should never store your private keys in a JavaScript or Python file.**
 
     The private keys for the development accounts are public knowledge because the accounts exist within your own development environment. However, when you move on to indexing a live network such as Moonbase Alpha or Moonbeam (which is out of scope for this tutorial), you should manage your private keys with a designated secret manager or similar service.
 
