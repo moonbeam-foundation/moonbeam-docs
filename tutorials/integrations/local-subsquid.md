@@ -9,19 +9,19 @@ _by Erin Shaben and Kevin Neilson_
 
 ## Introduction {: #introduction }
 
-When developing a dApp, it's beneficial to develop smart contracts using a local development environment as opposed to a live network, such as a TestNet or MainNet. Local development removes some of the hassles involved with developing on a live network, like having to fund development accounts and waiting for blocks to be produced. On Moonbeam, developers can spin up their own local [Moonbeam development node](/builders/get-started/networks/moonbeam-dev){target=_blank} to quickly and easily build and test applications.
+When developing a dApp, it's beneficial to develop smart contracts using a local development environment as opposed to a live network, such as a TestNet or MainNet. Local development removes some of the hassles involved with developing on a live network, like having to fund development accounts and waiting for blocks to be produced. On Moonbeam, developers can spin up their own local [Moonbeam development node](/builders/get-started/networks/moonbeam-dev){target=\_blank} to quickly and easily build and test applications.
 
-But what about dApps that rely on indexers to index blockchain data? How can developers of these applications streamline the development process? Thanks to [Subsquid](/builders/integrations/indexers/subsquid){target=_blank}, a data network for retrieving data from 100+ chains, it is now possible to index blocks on a local development environment, such as your Moonbeam development node!
+But what about dApps that rely on indexers to index blockchain data? How can developers of these applications streamline the development process? Thanks to [Subsquid](/builders/integrations/indexers/subsquid){target=\_blank}, a data network for retrieving data from 100+ chains, it is now possible to index blocks on a local development environment, such as your Moonbeam development node!
 
-This tutorial will walk you through the process of indexing data on a local Moonbeam development node using Subsquid. We'll create an ERC-20 contract and use Subsquid to index transfers of our ERC-20. This guide is tailored for indexing data on a local dev node, but this same tutorial can easily be applied to any other Moonbeam network. 
+This tutorial will walk you through the process of indexing data on a local Moonbeam development node using Subsquid. We'll create an ERC-20 contract and use Subsquid to index transfers of our ERC-20. This guide is tailored for indexing data on a local dev node, but this same tutorial can easily be applied to any other Moonbeam network.
 
 ## Checking Prerequisites {: #checking-prerequisites }
 
 To follow along with this tutorial, you'll need to have:
 
-- [Docker installed](https://docs.docker.com/get-docker/){target=_blank}
-- [Docker Compose installed](https://docs.docker.com/compose/install/){target=_blank}
-- An empty Hardhat project. For step-by-step instructions, please refer to the [Creating a Hardhat Project](/builders/build/eth-api/dev-env/hardhat/#creating-a-hardhat-project){target=_blank} section of our Hardhat documentation page
+- [Docker installed](https://docs.docker.com/get-docker/){target=\_blank}
+- [Docker Compose installed](https://docs.docker.com/compose/install/){target=\_blank}
+- An empty Hardhat project. For step-by-step instructions, please refer to the [Creating a Hardhat Project](/builders/build/eth-api/dev-env/hardhat/#creating-a-hardhat-project){target=\_blank} section of our Hardhat documentation page
 
 We'll configure our Hardhat project and create our Subsquid project later on in the tutorial.
 
@@ -68,17 +68,19 @@ This will start up our development node, which can be accessed on port 9944. Not
 Our development node comes with 10 prefunded accounts.
 
 ??? note "Development account addresses and private keys"
-    --8<-- 'code/builders/get-started/networks/moonbeam-dev/dev-accounts.md'
 
-For more information on running a Moonbeam development node, please refer to the [Getting Started with a Moonbeam Development Node](/builders/get-started/networks/moonbeam-dev){target=_blank} guide.
+    --8<-- 'code/builders/get-started/networks/moonbeam-dev/
+
+
+For more information on running a Moonbeam development node, please refer to the [Getting Started with a Moonbeam Development Node](/builders/get-started/networks/moonbeam-dev){target=\_blank} guide.
 
 ## Set Up a Hardhat Project {: #create-a-hardhat-project }
 
-You should have already created an empty Hardhat project, but if you haven't done so, you can find instructions in the [Creating a Hardhat Project](/builders/build/eth-api/dev-env/hardhat/#creating-a-hardhat-project){target=_blank} section of our Hardhat documentation page.
+You should have already created an empty Hardhat project, but if you haven't done so, you can find instructions in the [Creating a Hardhat Project](/builders/build/eth-api/dev-env/hardhat/#creating-a-hardhat-project){target=\_blank} section of our Hardhat documentation page.
 
 In this section, we'll configure our Hardhat project for a local Moonbeam development node, create an ERC-20 contract, and write scripts to deploy and interact with our contract.
 
-Before we dive into creating our project, let's install a couple of dependencies that we'll need: the [Hardhat Ethers plugin](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-ethers){target=_blank} and [OpenZeppelin contracts](https://docs.openzeppelin.com/contracts/4.x/){target=_blank}. The Hardhat Ethers plugin provides a convenient way to use the [Ethers](/builders/build/eth-api/libraries/ethersjs){target=_blank} library to interact with the network. We'll use OpenZeppelin's base ERC-20 implementation to create an ERC-20. To install both of these dependencies, you can run:
+Before we dive into creating our project, let's install a couple of dependencies that we'll need: the [Hardhat Ethers plugin](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-ethers){target=\_blank} and [OpenZeppelin contracts](https://docs.openzeppelin.com/contracts/4.x/){target=\_blank}. The Hardhat Ethers plugin provides a convenient way to use the [Ethers](/builders/build/eth-api/libraries/ethersjs){target=\_blank} library to interact with the network. We'll use OpenZeppelin's base ERC-20 implementation to create an ERC-20. To install both of these dependencies, you can run:
 
 === "npm"
 
@@ -100,8 +102,8 @@ Before we update the configuration file, we'll need to get the private key of on
 0x5fb92d6e98884f76de468fa3f6278f8807c48bebc13595d45af5bdc4da702133
 ```
 
-!!! remember
-    **You should never store your private keys in a JavaScript or Python file.**
+    !!! remember
+**You should never store your private keys in a JavaScript or Python file.**
 
     The private keys for the development accounts are public knowledge because the accounts exist within your own development environment. However, when you move on to indexing a live network such as Moonbase Alpha or Moonbeam (which is out of scope for this tutorial), you should manage your private keys with a designated secret manager or similar service.
 
@@ -145,13 +147,13 @@ This command will compile our contract and generate an `artifacts` directory con
 
 Let's take the following steps to deploy our contract:
 
-1. Create a directory and file for our script:
+1.  Create a directory and file for our script:
 
     ```bash
     mkdir -p scripts && touch scripts/deploy.js
     ```
 
-2. In the `deploy.js` file, go ahead and add the following script:
+2.  In the `deploy.js` file, go ahead and add the following script:
 
     ???+ code "deploy.js"
 
@@ -159,7 +161,7 @@ Let's take the following steps to deploy our contract:
         --8<-- 'code/tutorials/integrations/local-subsquid/deploy.js'
         ```
 
-3. Run the script using the `dev` network configurations we set up in the `hardhat.config.js` file:
+3.  Run the script using the `dev` network configurations we set up in the `hardhat.config.js` file:
 
     ```bash
     npx hardhat run scripts/deploy.js --network dev
@@ -173,13 +175,13 @@ The address of the deployed contract should be printed to the terminal. Save the
 
 Since we'll be indexing `Transfer` events for our ERC-20, we'll need to send a few transactions that transfer some tokens from Alith's account to our other test accounts. We'll do this by creating a simple script that transfers 10 MYTOKs to Baltathar, Charleth, Dorothy, and Ethan. We'll take the following steps:
 
-1. Create a new file script to send transactions:
+1.  Create a new file script to send transactions:
 
     ```bash
     touch scripts/transactions.js
     ```
 
-2. In the `transactions.js` file, add the following script:
+2.  In the `transactions.js` file, add the following script:
 
     ???+ code "transactions.js"
 
@@ -187,7 +189,7 @@ Since we'll be indexing `Transfer` events for our ERC-20, we'll need to send a f
         --8<-- 'code/tutorials/integrations/local-subsquid/transactions.js'
         ```
 
-3. Run the script to send the transactions:
+3.  Run the script to send the transactions:
 
     ```bash
     npx hardhat run scripts/transactions.js --network dev
@@ -245,7 +247,6 @@ As mentioned, we'll first need to define the database schema for the transfer da
     --8<-- 'code/tutorials/integrations/local-subsquid/schema.graphql'
     ```
 
-
 Now we can generate the entity classes from the schema, which we'll use when we process the transfer data. This will create new classes for each entity in the `src/model/generated` directory.
 
 ```bash
@@ -254,13 +255,11 @@ sqd codegen
 
 In the next step, we'll use the ERC-20 ABI to automatically generate TypeScript interface classes. Below is a generic ERC-20 standard ABI. Copy and paste it into a file named `erc20.json` in the `abi` folder at the root level of the project.
 
-
 ??? code "ERC-20 ABI"
 
     ```json
     --8<-- 'code/tutorials/integrations/local-subsquid/erc20.json'
     ```
-
 
 Next, we can use our contract's ABI to generate TypeScript interface classes. We can do this by running:
 
@@ -292,6 +291,7 @@ The `.toLowerCase()` is critical because the Subsquid processor is case sensitiv
     },
 })
 ```
+
 ![Run Subsquid commands](/images/tutorials/integrations/local-subsquid/local-squid-6.png)
 
 The Squid Template comes with a variable for your RPC URL defined in your `.env` file. You can replace that with the RPC URL for your local dev node. For demonstration purposes, the RPC URL for a local dev node is hardcoded directly as shown above. If you're setting the RPC URL in your `.env`, the respective line will look like this:
@@ -345,7 +345,7 @@ While `processor.ts` determines the data being consumed, `main.ts` determines th
 
 Our `main.ts` file is going to scan through each processed block for the transfer event and decode the transfer details, including the sender, receiver, and amount. The script also fetches account details for involved addresses and creates transfer objects with the extracted data. The script then inserts these records into a Typeorm Database enabling them to be easily queried. Let's break down the code that comprises `main.ts` in order:
 
-1. The job of `main.ts` is to run the processor and refine the collected data. In `processor.run`, the processor will iterate through all selected blocks and look for transfer event logs. Whenever it finds a transfer event, it's going to store it in an array of transfer events where it awaits further processing. 
+1. The job of `main.ts` is to run the processor and refine the collected data. In `processor.run`, the processor will iterate through all selected blocks and look for transfer event logs. Whenever it finds a transfer event, it's going to store it in an array of transfer events where it awaits further processing.
 
 2. The `transferEvent` interface is the type of structure that stores the data extracted from the event logs.
 
@@ -368,7 +368,6 @@ Now we've taken all of the steps necessary and are ready to run our indexer!
 ### Run the Indexer {: #run-indexer }
 
 To run our indexer, we're going to run a series of `sqd` commands:
-
 1. Build our project
 
    ```bash
@@ -435,8 +434,7 @@ And that's it! You can now run queries against your Squid on the GraphQL playgro
 
 All of the transfers will be returned, including the transfer of the initial supply to Alith's account and the transfers from Alith to Baltathar, Charleth, Dorothy, and Ethan.
 
-And that's it! You've successfully used Subsquid to index data on a local Moonbeam development node! You can view the entire project on [GitHub](https://github.com/eshaben/local-squid-demo){target=_blank}.
-
+And that's it! You've successfully used Subsquid to index data on a local Moonbeam development node! You can view the entire project on [GitHub](https://github.com/eshaben/local-squid-demo){target=\_blank}.
 
 ## Debugging your Squid {: #debugging-your-squid }
 
@@ -486,7 +484,6 @@ Is your Squid error-free yet you aren't seeing any transfers detected? Make sure
 export const CONTRACT_ADDRESS = '0x37822de108AFFdd5cDCFDaAa2E32756Da284DB85'.toLowerCase();
 ```
 
+--8<-- 'text/\_disclaimers/educational-tutorial.md'
 
---8<-- 'text/_disclaimers/educational-tutorial.md'
-
---8<-- 'text/_disclaimers/third-party-content.md'
+--8<-- 'text/\_disclaimers/third-party-content.md'
