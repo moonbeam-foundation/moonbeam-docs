@@ -151,7 +151,7 @@ On Kusama, the benchmarked base weights are broken up into two categories: fungi
 
 With the instruction weight cost established, you can calculate the cost of the instruction in KSM.
 
-In Kusama, the [`ExtrinsicBaseWeight`](https://github.com/polkadot-fellows/runtimes/blob/{{networks.polkadot.spec_version}}/relay/kusama/constants/src/weights/extrinsic_weights.rs#L56){target=_blank} is set to `{{ networks.kusama.extrinsic_base_weight.display }}` which is [mapped to 1/10th](https://github.com/polkadot-fellows/runtimes/blob/{{networks.kusama.spec_version}}/relay/kusama/constants/src/lib.rs#L87){target=_blank} of a cent. Where 1 cent is `10^12 / 30,000`.
+In Kusama, the [`ExtrinsicBaseWeight`](https://github.com/polkadot-fellows/runtimes/blob/{{networks.kusama.spec_version}}/relay/kusama/constants/src/weights/extrinsic_weights.rs#L56){target=_blank} is set to `{{ networks.kusama.extrinsic_base_weight.display }}` which is [mapped to 1/10th](https://github.com/polkadot-fellows/runtimes/blob/{{networks.kusama.spec_version}}/relay/kusama/constants/src/lib.rs#L87){target=_blank} of a cent. Where 1 cent is `10^12 / 30,000`.
 
 Therefore, to calculate the cost of executing an XCM instruction, you can use the following formula:
 
