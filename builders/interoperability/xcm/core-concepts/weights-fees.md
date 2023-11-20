@@ -245,31 +245,13 @@ Considering the scenario of Alice sending DOT to Alith's account on Moonbeam, th
 
 Moreover, XCM execution on Moonbeam can be paid for by multiple assets ([XC-20s](/builders/interoperability/xcm/xc20/overview/){target=_blank}) that originate in the chain where the asset is coming from. For example, at the time of writing, an XCM message sent from [Statemine](https://polkadot.js.org/apps/?rpc=wss://statemine-rpc.polkadot.io#/explorer){target=_blank} can be paid in xcKSM, xcRMRK or xcUSDT. As long as that asset has an `UnitsPerSecond` set in Moonbeam/Moonriver, it can be used to pay XCM execution for an XCM message coming from that specific chain.
 
-To find out the `UnitsPerSecond` for a given asset, you can query `assetManager.assetTypeUnitsPerSecond` and pass in the multilocation of the asset in question.
+To find out the `UnitsPerSecond` for a given asset, you can use the following script, which queries the `assetManager.assetTypeUnitsPerSecond` and pass in the multilocation of the asset in question. If you're unsure of the multilocation, you can retrieve it using the `assetManager.assetIdType` query.
 
-If you're unsure of the multilocation, you can retrieve it using the `assetManager.assetIdType` query.
+```js
+--8<-- 'code/builders/interoperability/xcm/core-concepts/weights-fees/units-per-second.js'
+```
 
-For example, you can navigate to the [Polkadot.js Apps page for Moonbeam](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbeam.network#/chainstate){target=_blank}, and under the **Developer** dropdown, choose **Chain State**. From there, you can take the following steps:
-
-1. For the **selected state query** dropdown, choose **assetManager**
-2. Select the **assetIdType** extrinsic
-3. Under **Option** enter in the asset ID or toggle the **include option** off to return information for all of the assets. This example will get information for xcUNIT which has an asset ID of `42259045809535163221576417993425387648`
-4. Click the **+** button to submit the query
-
-![Get the xcDOT asset multilocation](/images/builders/interoperability/xcm/core-concepts/weights-fees/fees-1.png)
-
-You can take the result of the query and then use it to query the **assetTypeUnitsPerSecond** extrinsic:
-
-1. Make sure **assetManager** is selected
-2. Select the **assetTypeUnitsPerSecond** extrinsic
-3. For **MoonbeamRuntimeXcmConfigAssetType**, choose **Xcm**
-4. Enter `1` for **parents**
-5. Select `Here` for **interior**
-6. Click the **+** button to submit the query
-
-The `UnitsPerSecond` for xcDOT is `{{ networks.moonbeam.xcm.units_per_second.xcdot.display }}`.
-
-![Get the xcDOT units per second value](/images/builders/interoperability/xcm/core-concepts/weights-fees/fees-2.png)
+Once you run the script, you should see `The UnitsPerSecond for xcDOT is 33,068,783,068` printed to your terminal.
 
 Remember that one unit of weight is defined as one picosecond of execution time. Therefore, the formula to determine execution time is as follows:
 
