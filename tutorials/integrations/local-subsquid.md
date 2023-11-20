@@ -483,6 +483,6 @@ Is your Squid error-free yet you aren't seeing any transfers detected? Make sure
 export const CONTRACT_ADDRESS = '0x37822de108AFFdd5cDCFDaAa2E32756Da284DB85'.toLowerCase();
 ```
 
---8<-- 'text/\_disclaimers/educational-tutorial.md'
+--8<-- 'text/_disclaimers/educational-tutorial.md'
 
 --8<-- 'text/_disclaimers/third-party-content.md'
