@@ -9,7 +9,7 @@ description: Learn how to leverage Geth's Debug and Txpool APIs, and OpenEthereu
 
 Geth's `debug` and `txpool` APIs and OpenEthereum's `trace` module provide non-standard RPC methods for getting a deeper insight into transaction processing. As part of Moonbeam's goal of providing a seamless Ethereum experience for developers, there is support for some of these non-standard RPC methods. Supporting these RPC methods is an important milestone because many projects, such as [The Graph](https://thegraph.com/){target=_blank}, rely on them to index blockchain data.
 
-To use the supported RPC methods, you need to run a tracing node, which is slightly different than running a full node. There is a different Docker image, called `purestake/moonbeam-tracing` that needs to be used for tracing. Additional flags will also need to be used to tell the node which of the non-standard features to support.
+To use the supported RPC methods, you need to run a tracing node, which is slightly different than running a full node. There is a different Docker image, called `moonbeamfoundation/moonbeam-tracing` that needs to be used for tracing. Additional flags will also need to be used to tell the node which of the non-standard features to support.
 
 This guide will show you how to get started running a tracing node on Moonbeam with the `debug`, `txpool`, and `tracing` flags enabled.
 
@@ -87,7 +87,7 @@ Before getting started, you'll need to set the necessary permissions either for 
     sudo chown -R $(id -u):$(id -g) {{ networks.moonbase.node_directory }}
     ```
 
-Instead of the standard `purestake/moonbeam` docker image, you will need to use `purestake/moonbeam-tracing` image. The latest supported version can be found on the [Docker Hub for the `moonbeam-tracing` image](https://hub.docker.com/r/purestake/moonbeam-tracing/tags).
+Instead of the standard `moonbeamfoundation/moonbeam` docker image, you will need to use `moonbeamfoundation/moonbeam-tracing` image. The latest supported version can be found on the [Docker Hub for the `moonbeam-tracing` image](https://hub.docker.com/r/moonbeamfoundation/moonbeam-tracing/tags){target=_blank}.
 
 Now, execute the docker run command. Note that you have to:
 

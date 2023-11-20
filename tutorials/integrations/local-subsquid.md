@@ -43,7 +43,7 @@ To spin up a development node, which will pull the latest Docker image for Moonb
 
     ```bash
     docker run --rm --name {{ networks.development.container_name }} --network host \
-    purestake/moonbeam:{{ networks.development.build_tag }} \
+    moonbeamfoundation/moonbeam:{{ networks.development.build_tag }} \
     --dev --sealing 4000 --rpc-external
     ```
 
@@ -51,7 +51,7 @@ To spin up a development node, which will pull the latest Docker image for Moonb
 
     ```bash
     docker run --rm --name {{ networks.development.container_name }} -p 9944:9944 \
-    purestake/moonbeam:{{ networks.development.build_tag }} \
+    moonbeamfoundation/moonbeam:{{ networks.development.build_tag }} \
     --dev --sealing 4000 --rpc-external
     ```
 
@@ -59,7 +59,7 @@ To spin up a development node, which will pull the latest Docker image for Moonb
 
     ```bash
     docker run --rm --name {{ networks.development.container_name }} -p 9944:9944 ^
-    purestake/moonbeam:{{ networks.development.build_tag }} ^
+    moonbeamfoundation/moonbeam:{{ networks.development.build_tag }} ^
     --dev --sealing 4000 --rpc-external
     ```
 
