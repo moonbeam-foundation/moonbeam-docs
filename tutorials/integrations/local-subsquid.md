@@ -485,4 +485,4 @@ export const CONTRACT_ADDRESS = '0x37822de108AFFdd5cDCFDaAa2E32756Da284DB85'.toL
 
 --8<-- 'text/\_disclaimers/educational-tutorial.md'
 
---8<-- 'text/\_disclaimers/third-party-content.md'
+--8<-- 'text/_disclaimers/third-party-content.md'
