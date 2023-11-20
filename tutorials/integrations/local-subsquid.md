@@ -61,7 +61,7 @@ To spin up a development node, which will pull the latest Docker image for Moonb
     --dev --sealing 4000 --rpc-external
     ```
 
-This will start up our development node, which can be accessed on port 9944. Note, you do not have to use Docker, you can also [run a local node by compiling the moonbeam binary](/builders/get-started/networks/moonbeam-dev/#getting-started-with-the-binary-file).
+This will start up our development node, which can be accessed on port 9944. Note that you do not have to use Docker; you can also [run a local node by compiling the Moonbeam binary](/builders/get-started/networks/moonbeam-dev/#getting-started-with-the-binary-file){target=_blank}.
 
 ![Spin up a Moonbeam development node](/images/tutorials/integrations/local-subsquid/local-squid-1.png)
 
