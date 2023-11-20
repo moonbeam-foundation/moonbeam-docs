@@ -76,7 +76,7 @@ On the following screen, select the method by which you would like to import the
 
 If you select **Import from seed phrase**, there are some incompatibility issues that can arise when importing an account from seed phrase. For example, Trust Wallet and SafePal are among the wallets not compatible with SubWallet. If you run into incompatibility issues, SubWallet recommends creating a new wallet.
 
-If you select **Import from Polkadot.{js}**, you'll need to make sure that the account was created in Polkadot.js via private key. If it was created with a seed phrase and you attempt to import it to SubWallet, a different public address will be used. This is because Polkadot.js uses BIP39, whereas Ethereum uses BIP32 or BIP44.
+If you select **Import from Polkadot.{js}**, you'll need to make sure that the account was created in Polkadot.js via private key. If it was created with a seed phrase and you attempt to import it to SubWallet, a different public address will be used. This is because Polkadot.js uses [BIP39](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki){target=_blank}, whereas Ethereum uses [BIP32](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki){target=_blank} or [BIP44](https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki){target=_blank}.
 
 ![Select the import option from the Import account screen of the SubWallet browser extension.](/images/tokens/connect/subwallet/subwallet-6.png)
 
@@ -145,5 +145,7 @@ On the next screen, you'll be able to review the transaction details and submit 
 ![The transfer confirmation screen on the SubWallet browser extension.](/images/tokens/connect/subwallet/subwallet-15.png)
 
 After you send the transaction, you'll be able to review the transaction details.
+
+And that's it! For more information on how to use SubWallet, please refer to [SubWallet's documentation](https://docs.subwallet.app/main/){target=_blank}.
 
 --8<-- 'text/_disclaimers/third-party-content.md'
