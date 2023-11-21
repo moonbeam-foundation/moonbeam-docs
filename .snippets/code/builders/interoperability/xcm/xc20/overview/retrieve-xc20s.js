@@ -19,7 +19,7 @@ const getXc20s = async () => {
     ]) => {
       const metadata = await api.query.assets.metadata(id);
       console.log(`Asset ID: ${id}`);
-      console.log(`Metadata: ${metadata}`);
+      console.log(`Metadata: ${metadata.toHuman()}`);
       console.log('-----');
     }
   );

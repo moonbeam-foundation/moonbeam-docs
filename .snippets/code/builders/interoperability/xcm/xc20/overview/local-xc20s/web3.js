@@ -1,4 +1,4 @@
-import Web3 from 'web3';
+import { Web3 } from 'web3';
 
 // Insert your RPC URL here
 const web3 = new Web3('https://rpc.api.moonbase.moonbeam.network');

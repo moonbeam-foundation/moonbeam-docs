@@ -69,7 +69,7 @@ For a complete list of the available flags, you can spin up your Moonbeam node w
     ```bash
     docker run --network="host" -v "{{ networks.moonbeam.node_directory }}:/data" \
     -u $(id -u ${USER}):$(id -g ${USER}) \
-    purestake/moonbeam:{{ networks.moonbeam.parachain_release_tag }} \
+    moonbeamfoundation/moonbeam:{{ networks.moonbeam.parachain_release_tag }} \
     --help
     ```
 
@@ -78,7 +78,7 @@ For a complete list of the available flags, you can spin up your Moonbeam node w
     ```bash
     docker run --network="host" -v "{{ networks.moonriver.node_directory }}:/data" \
     -u $(id -u ${USER}):$(id -g ${USER}) \
-    purestake/moonbeam:{{ networks.moonriver.parachain_release_tag }} \
+    moonbeamfoundation/moonbeam:{{ networks.moonriver.parachain_release_tag }} \
     --help
     ```
 
@@ -87,7 +87,7 @@ For a complete list of the available flags, you can spin up your Moonbeam node w
     ```bash
     docker run --network="host" -v "{{ networks.moonbase.node_directory }}:/data" \
     -u $(id -u ${USER}):$(id -g ${USER}) \
-    purestake/moonbeam:{{ networks.moonbase.parachain_release_tag }} \
+    moonbeamfoundation/moonbeam:{{ networks.moonbase.parachain_release_tag }} \
     --help
     ```
 

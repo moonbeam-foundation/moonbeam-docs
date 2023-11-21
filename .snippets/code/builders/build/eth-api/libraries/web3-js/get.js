@@ -1,5 +1,5 @@
 // 1. Import Web3js and the contract abi
-const Web3 = require('web3');
+const { Web3 } = require('web3');
 const { abi } = require('./compile');
 
 // 2. Add the Web3 provider logic here:

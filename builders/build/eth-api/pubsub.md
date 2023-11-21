@@ -43,7 +43,7 @@ As of writing this guide, the version used was 1.3.0.
 Any contract that follows the ERC-20 token standard emits an event related to a transfer of tokens, that is, `event Transfer(address indexed from, address indexed to, uint256 value)`. For this example, you will subscribe to the logs of such events. Using the Web3.js library, you need the following piece of code:
 
 ```js
-const Web3 = require('web3');
+const { Web3 } = require('web3');
 const web3 = new Web3('wss://wss.api.moonbase.moonbeam.network');
 
 web3.eth
@@ -104,7 +104,7 @@ In the v2 release that introduced the subscribing to logs feature, there were so
 Using the same example as in the previous section, lets subscribe to the events of the token contract with the following code:
 
 ```js
-const Web3 = require('web3');
+const { Web3 } = require('web3');
 const web3 = new Web3('wss://wss.api.moonbase.moonbeam.network');
 
 web3.eth
