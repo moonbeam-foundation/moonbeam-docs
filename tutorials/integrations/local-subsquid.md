@@ -22,6 +22,7 @@ To follow along with this tutorial, you'll need to have:
 - [Docker installed](https://docs.docker.com/get-docker/){target=\_blank}
 - [Docker Compose installed](https://docs.docker.com/compose/install/){target=\_blank}
 - An empty Hardhat project. For step-by-step instructions, please refer to the [Creating a Hardhat Project](/builders/build/eth-api/dev-env/hardhat/#creating-a-hardhat-project){target=\_blank} section of our Hardhat documentation page
+-  An [ERC-20 token deployed](#deploy-an-erc-20-contract) to your local development node, unless you plan on indexing Moonbase Alpha and using an existing ERC-20.
 
 We'll configure our Hardhat project and create our Subsquid project later on in the tutorial.
 
@@ -130,7 +131,7 @@ Now we can edit the `MyTok.sol` file to include the following contract, which wi
     --8<-- 'code/tutorials/integrations/local-subsquid/MyTok.sol'
     ```
 
-### Deploy an ERC-20 Contract {: #deploy-erc-20-contract }
+### Deploy an ERC-20 Contract {: #deploy-an-erc-20-contract }
 
 Now that we have our contract set up, we can compile and deploy our contract.
 
@@ -277,7 +278,7 @@ The `processor.ts` file tells Subsquid exactly what data you'd like to ingest. T
 Open up the `src` folder and head to the `processor.ts` file. First, we need to tell the Subsquid processor which contract we're interested in. Create a constant for the address in the following manner:
 
 ```ts
-export const CONTRACT_ADDRESS = 'INSERT_CONTRACT_ADDRESS'.toLowerCase();
+export const contractAddress = 'INSERT_CONTRACT_ADDRESS'.toLowerCase();
 ```
 
 The `.toLowerCase()` is critical because the Subsquid processor is case sensitive, and some block explorers format contract addresses with capitalization. Next, you'll see the line `export const processor = new EvmBatchProcessor()` followed by `.setDataSource`. We'll need to make a few changes here. Subsquid has [available archives for many chains, including Moonbeam, Moonriver, and Moonbase Alpha](https://docs.subsquid.io/evm-indexing/supported-networks/){target=\_blank} that can speed up the data retrieval process. For indexing a local dev node, there's no archive necessary so the exclusive data source will be the RPC URL of our local node. Go ahead and comment out or delete the archive line. Once done, your code should look similar to the below:
@@ -480,7 +481,7 @@ To resolve this, run `sqd up` before you run `sqd migration:generate`
 Is your Squid error-free yet you aren't seeing any transfers detected? Make sure your log events are consistent and identical to the ones your processor is looking for. Your contract address also needs to be lowercase, which you can be assured of by defining in a fashion as follows:
 
 ```text
-export const CONTRACT_ADDRESS = '0x37822de108AFFdd5cDCFDaAa2E32756Da284DB85'.toLowerCase();
+export const contractAddress = '0x37822de108AFFdd5cDCFDaAa2E32756Da284DB85'.toLowerCase();
 ```
 
 --8<-- 'text/_disclaimers/educational-tutorial.md'
