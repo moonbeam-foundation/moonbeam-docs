@@ -26,7 +26,7 @@ The X-Tokens Pallet provides the following extrinsics (functions):
         - `currencyId` - the ID of the currency being sent via XCM. Different runtimes have different ways to define the IDs. In the case of Moonbeam-based networks, a currency can be defined as one of the following:
             - `SelfReserve` - uses the native asset
             - `ForeignAsset` - uses an [external XC-20](/builders/interoperability/xcm/xc20/overview#external-xc20s){target=_blank}. It requires you to specify the asset ID of the XC-20
-            - `LocalAssetReserve` - uses a mintable XC-20. It requires you to specify the asset ID of the mintable XC-20. It is recommended to use [local XC-20s](/builders/interoperability/xcm/xc20/overview/#local-xc20s){target=_blank} instead via the `Erc20` currency type
+             - `LocalAssetReserve` - *deprecated* - use [Local XC-20s](/builders/interoperability/xcm/xc20/overview/#local-xc20s){target=_blank} instead via the `Erc20` currency type
             - `Erc20` along with the contract address of the [local XC-20](/builders/interoperability/xcm/xc20/overview#local-xc20s){target=_blank}
         - `amount` - the number of tokens that are going to be sent via XCM
         - `dest` - the multilocation of the destination address for the tokens being sent via XCM. It supports different address formats, such as 20 or 32-byte addresses (Ethereum or Substrate)
@@ -105,7 +105,7 @@ The X-Tokens Pallet provides the following extrinsics (functions):
         - `currencies` - the IDs of the currencies being sent via XCM. Different runtimes have different ways to define the IDs. In the case of Moonbeam-based networks, a currency can be defined as one of the following:
             - `SelfReserve` - uses the native asset
             - `ForeignAsset` - uses an [external XC-20](/builders/interoperability/xcm/xc20/overview#external-xc20s){target=_blank}. It requires you to specify the asset ID of the XC-20
-            - `LocalAssetReserve` - uses a mintable XC-20. It requires you to specify the asset ID of the mintable XC-20. It is recommended to use [local XC-20s](/builders/interoperability/xcm/xc20/overview/#local-xc20s){target=_blank} instead via the `Erc20` currency type
+             - `LocalAssetReserve` - *deprecated* - use [Local XC-20s](/builders/interoperability/xcm/xc20/overview/#local-xc20s){target=_blank} instead via the `Erc20` currency type
             - `Erc20` along with the contract address of the [local XC-20](/builders/interoperability/xcm/xc20/overview#local-xc20s){target=_blank}
         - `feeItem` — an index to define the asset position of an array of assets being sent, used to pay for the XCM execution in the target chain. For example, if only one asset is being sent, the `feeItem` would be `0`
         - `dest` - the multilocation of the destination address for the tokens being sent via XCM. It supports different address formats, such as 20 or 32-byte addresses (Ethereum or Substrate)
@@ -128,7 +128,7 @@ The X-Tokens Pallet provides the following extrinsics (functions):
         - `currencyId` - the ID of the currency being sent via XCM. Different runtimes have different ways to define the IDs. In the case of Moonbeam-based networks, a currency can be defined as one of the following:
             - `SelfReserve` - uses the native asset
             - `ForeignAsset` - uses an [external XC-20](/builders/interoperability/xcm/xc20/overview#external-xc20s){target=_blank}. It requires you to specify the asset ID of the XC-20
-            - `LocalAssetReserve` - uses a mintable XC-20. It requires you to specify the asset ID of the mintable XC-20. It is recommended to use [local XC-20s](/builders/interoperability/xcm/xc20/overview/#local-xc20s){target=_blank} instead via the `Erc20` currency type
+             - `LocalAssetReserve` - *deprecated* - use [Local XC-20s](/builders/interoperability/xcm/xc20/overview/#local-xc20s){target=_blank} instead via the `Erc20` currency type
             - `Erc20` along with the contract address of the [local XC-20](/builders/interoperability/xcm/xc20/overview#local-xc20s){target=_blank}
         - `amount` - the number of tokens that are going to be sent via XCM
         - `fee` — the amount to be spent to pay for the XCM execution in the target (destination) chain. If this value is not high enough to cover execution costs, the assets will be trapped in the destination chain
