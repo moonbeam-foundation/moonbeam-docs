@@ -6,6 +6,7 @@ nav:
   - 'MathWallet': 'mathwallet.md'
   - 'MetaMask': 'metamask.md'
   - 'Polkadot.js Apps': 'polkadotjs.md'
+  - 'SubWallet': 'subwallet.md'
   - 'Talisman': 'talisman.md'
   - 'Trezor': 'trezor.md'
   - 'SubWallet': subwallet.md
