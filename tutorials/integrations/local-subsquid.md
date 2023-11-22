@@ -15,7 +15,7 @@ But what about dApps that rely on indexers to index blockchain data? How can dev
 
 This tutorial will walk you through the process of indexing data on a local Moonbeam development node using Subsquid. We'll create an ERC-20 contract and use Subsquid to index transfers of our ERC-20. This guide is tailored for indexing data on a local dev node, but this same tutorial can easily be applied to any other Moonbeam network.
 
-## Checking Prerequisites {: #checking-prerequisites }
+## Check Prerequisites {: #check-prerequisites }
 
 To follow along with this tutorial, you'll need to have:
 
@@ -73,7 +73,7 @@ Our development node comes with 10 prefunded accounts.
 
 For more information on running a Moonbeam development node, please refer to the [Getting Started with a Moonbeam Development Node](/builders/get-started/networks/moonbeam-dev){target=\_blank} guide.
 
-## Set Up a Hardhat Project {: #create-a-hardhat-project }
+## Deploy an ERC-20 with Hardhat {: #deploy-an-erc-20-with-hardhat }
 
 You should have already created an empty Hardhat project, but if you haven't done so, you can find instructions in the [Creating a Hardhat Project](/builders/build/eth-api/dev-env/hardhat/#creating-a-hardhat-project){target=\_blank} section of our Hardhat documentation page.
 
@@ -100,7 +100,6 @@ Before we update the configuration file, we'll need to get the private key of on
 ```text
 0x5fb92d6e98884f76de468fa3f6278f8807c48bebc13595d45af5bdc4da702133
 ```
-
 
 !!! remember
     **You should never store your private keys in a JavaScript or Python file.**
@@ -181,7 +180,7 @@ Since we'll be indexing `Transfer` events for our ERC-20, we'll need to send a f
     touch scripts/transactions.js
     ```
 
-2.  In the `transactions.js` file, add the following script:
+2.  In the `transactions.js` file, add the following script and insert the contract address of your deployed MyTok contract (output in the console in the prior step):
 
     ???+ code "transactions.js"
 
@@ -209,13 +208,13 @@ Now we're going to create our Subquid project. First, we'll need to install the 
 npm i -g @subsquid/cli@latest
 ```
 
-To verify successful installation, you can run
+To verify successful installation, you can run:
 
 ```bash
 sqd --version
 ```
 
-Now we'll be able to use the `sqd` command to interact with our Squid project. To create our project, we're going to use the `-t` flag, which will create a project from a template. We'll be using the EVM Squid template, which is a starter project for indexing EVM chains.
+Now we'll be able to use the `sqd` command to interact with our Squid project. To create our project, we're going to use the `--template` (`-t`) flag, which will create a project from a template. We'll be using the EVM Squid template, which is a starter project for indexing EVM chains.
 
 You can run the following command to create an EVM Squid named `local-squid`:
 
@@ -231,13 +230,14 @@ cd local-squid && npm ci
 
 Now that we have a starting point for our project, we'll need to configure our project to index ERC-20 `Transfer` events from our local development node.
 
-### Index a Local Moonbeam Development Node {: #index-a-local-dev-node }
+### Set Up the Indexer for ERC-20 Transfers {: #set-up-the-indexer-for-erc-20-transfer events}
 
 In order to index ERC-20 transfers, we'll need to take a series of actions:
 
 1. Update the database schema and generate models for the data
 2. Use the `ERC20` contract's ABI to generate TypeScript interface classes that will be used by our Squid to index `Transfer` events
-3. Configure the processor to process `Transfer` events for the `ERC20` contract from our local dev node. Then we'll add logic to process the `Transfer` events and save the processed transfer data
+3. Configure the processor to process `Transfer` events for the `ERC20` contract 
+4. Add logic to process the `Transfer` events and save the processed transfer data
 
 As mentioned, we'll first need to define the database schema for the transfer data. To do so, we'll edit the `schema.graphql` file, which is located in the root directory, and create a `Transfer` entity and `Account` entity. You can copy and paste the below schema, ensuring that any existing schema is first removed.
 
@@ -273,7 +273,7 @@ This will generate the related TypeScript interface classes in the `src/abi/erc2
 
 ### Configure the Processor {: #configure-the-processor}
 
-The `processor.ts` file tells Subsquid exactly what data you'd like to ingest. Transforming that data into the exact desired format will take place at a later step. In `processor.ts`, we'll need to indicate a data source, contract address, the event(s) to index, and a block range.
+The `processor.ts` file tells Subsquid exactly what data you'd like to ingest. Transforming that data into the exact desired format will take place at a later step. In `processor.ts`, we'll need to indicate a data source, a contract address, the event(s) to index, and a block range.
 
 Open up the `src` folder and head to the `processor.ts` file. First, we need to tell the Subsquid processor which contract we're interested in. Create a constant for the address in the following manner:
 
@@ -281,28 +281,38 @@ Open up the `src` folder and head to the `processor.ts` file. First, we need to 
 export const contractAddress = 'INSERT_CONTRACT_ADDRESS'.toLowerCase();
 ```
 
-The `.toLowerCase()` is critical because the Subsquid processor is case sensitive, and some block explorers format contract addresses with capitalization. Next, you'll see the line `export const processor = new EvmBatchProcessor()` followed by `.setDataSource`. We'll need to make a few changes here. Subsquid has [available archives for many chains, including Moonbeam, Moonriver, and Moonbase Alpha](https://docs.subsquid.io/evm-indexing/supported-networks/){target=\_blank} that can speed up the data retrieval process. For indexing a local dev node, there's no archive necessary so the exclusive data source will be the RPC URL of our local node. Go ahead and comment out or delete the archive line. Once done, your code should look similar to the below:
+The `.toLowerCase()` is critical because the Subsquid processor is case-sensitive, and some block explorers format contract addresses with capitalization. Next, you'll see the line `export const processor = new EvmBatchProcessor()`, followed by `.setDataSource`. We'll need to make a few changes here. Subsquid has [available archives for many chains, including Moonbeam, Moonriver, and Moonbase Alpha](https://docs.subsquid.io/evm-indexing/supported-networks/){target=\_blank} that can speed up the data retrieval process. For indexing a local dev node, there's no archive necessary so the exclusive data source will be the RPC URL of our local node. Go ahead and comment out or delete the archive line. Once done, your code should look similar to the below:
 
 ```ts
-.setDataSource({
-    chain: {
-        url: assertNotNull('{{ networks.development.rpc_url }}'),
-        rateLimit: 300,
-    },
+setDataSource({
+  chain: {
+    url: assertNotNull('{{ networks.development.rpc_url }}'),
+    rateLimit: 300,
+  },
 })
 ```
 
 ![Run Subsquid commands](/images/tutorials/integrations/local-subsquid/local-squid-6.png)
 
-The Squid Template comes with a variable for your RPC URL defined in your `.env` file. You can replace that with the RPC URL for your local dev node. For demonstration purposes, the RPC URL for a local dev node is hardcoded directly as shown above. If you're setting the RPC URL in your `.env`, the respective line will look like this:
+The Squid template comes with a variable for your RPC URL defined in your `.env` file. You can replace that with the RPC URL for your local dev node. For demonstration purposes, the RPC URL for a local dev node is hardcoded directly, as shown above. If you're setting the RPC URL in your `.env`, the respective line will look like this:
 
 ```text
 RPC_ENDPOINT={{ networks.development.rpc_url }}
 ```
 
-The `Transfer` event is defined in `erc20.ts` which was auto-generated when `sqd typegen` was run. The import `import * as erc20 from './abi/erc20'` is already included as part of the Squid EVM template.
+Now, let's define the event that we want to index by adding the following:
 
-Block range is an important value to modify to narrow the scope of the blocks you're indexing. For example, if you launched your ERC-20 at block `1200000` on Moonbeam, there is no need to query the chain before that block for transfer events. Since we're indexing a local node, this field can be excluded or set to 0. Setting an accurate block range will improve the performance of your indexer. You can set the earliest block to begin indexing in the following manner:
+```ts
+.addLog({
+  address: [contractAddress],
+  topic0: [erc20.events.Transfer.topic],
+  transaction: true,
+})
+```
+
+The `Transfer` event is defined in `erc20.ts`, which was auto-generated when `sqd typegen` was run. The import `import * as erc20 from './abi/erc20'` is already included as part of the Squid EVM template.
+
+Block range is an important value to modify to narrow the scope of the blocks you're indexing. For example, if you launched your ERC-20 at block `1200000` on Moonbeam, there is no need to query the chain before that block for `Transfer` events. Since we're indexing a local node, this field can be excluded or set to 0. Setting an accurate block range will improve the performance of your indexer. You can set the earliest block to begin indexing in the following manner:
 
 ```ts
 .setBlockRange({from: 0,})
@@ -310,17 +320,17 @@ Block range is an important value to modify to narrow the scope of the blocks yo
 
 The chosen start block here is 0 since we're indexing a local dev node, but if you were indexing data on another Moonbeam network, you should change it to a starting block relevant to what you're indexing.
 
-Change `setFields` section to specify the following data for our processor to ingest:
+Change the `setFields` section to specify the following data for our processor to ingest:
 
 ```ts
 .setFields({
-    log: {
-        topics: true,
-        data: true,
-    },
-    transaction: {
-        hash: true,
-    },
+  log: {
+    topics: true,
+    data: true,
+  },
+  transaction: {
+    hash: true,
+  },
 })
 ```
 
@@ -341,21 +351,21 @@ Once you've completed the prior steps, your `processor.ts` file should look simi
 
 ### Transform and Save the Data {: #transform-and-save-the-data}
 
-While `processor.ts` determines the data being consumed, `main.ts` determines the bulk of actions related to processing and transforming that data. In the simplest terms, we are processing the data that was ingested via the Subsquid processor and inserting the desired pieces into a TypeormDatabase. For more detailed information on how Subsquid works, be sure to check out the [Subsquid Docs on Developing a Squid](https://docs.subsquid.io/basics/squid-development/){target=\_blank}
+While `processor.ts` determines the data being consumed, `main.ts` determines the bulk of actions related to processing and transforming that data. In the simplest terms, we are processing the data that was ingested via the Subsquid processor and inserting the desired pieces into a TypeORM database. For more detailed information on how Subsquid works, be sure to check out the [Subsquid docs on Developing a Squid](https://docs.subsquid.io/basics/squid-development/){target=\_blank}
 
-Our `main.ts` file is going to scan through each processed block for the transfer event and decode the transfer details, including the sender, receiver, and amount. The script also fetches account details for involved addresses and creates transfer objects with the extracted data. The script then inserts these records into a Typeorm Database enabling them to be easily queried. Let's break down the code that comprises `main.ts` in order:
+Our `main.ts` file is going to scan through each processed block for the `Transfer` event and decode the transfer details, including the sender, receiver, and amount. The script also fetches account details for involved addresses and creates transfer objects with the extracted data. The script then inserts these records into a TypeORM database enabling them to be easily queried. Let's break down the code that comprises `main.ts` in order:
 
-1. The job of `main.ts` is to run the processor and refine the collected data. In `processor.run`, the processor will iterate through all selected blocks and look for transfer event logs. Whenever it finds a transfer event, it's going to store it in an array of transfer events where it awaits further processing.
+1. The job of `main.ts` is to run the processor and refine the collected data. In `processor.run`, the processor will iterate through all selected blocks and look for `Transfer` event logs. Whenever it finds a `Transfer` event, it's going to store it in an array of `Transfer` events where it awaits further processing
 
-2. The `transferEvent` interface is the type of structure that stores the data extracted from the event logs.
+2. The `TransferEvent` interface is the type of structure that stores the data extracted from the event logs
 
-3. `getTransfer` is a helper function that extracts and decodes ERC-20 transfer event data from a log entry. It constructs and returns a TransferEvent object, which includes details such as the transaction ID, block number, sender and receiver addresses, and the amount transferred. `getTransfer` is called at the time of storing the relevant transfer events into the array of transfers.
+3. `getTransfer` is a helper function that extracts and decodes ERC-20 `Transfer` event data from a log entry. It constructs and returns a `TransferEvent` object, which includes details such as the transaction ID, block number, sender and receiver addresses, and the amount transferred. `getTransfer` is called at the time of storing the relevant `Transfer` events into the array of transfers
 
-4. `processTransfers` enriches the transfer data and then inserts these records into a typeorm database using the `ctx.store` methods. The account model, while not strictly necessary, allows us to introduce another entity in the schema to demonstrate working with multiple entities in your Squid.
+4. `processTransfers` enriches the transfer data and then inserts these records into a TypeORM database using the `ctx.store` methods. The account model, while not strictly necessary, allows us to introduce another entity in the schema to demonstrate working with multiple entities in your Squid
 
-5. `getAccount` is a helper function that manages the retrieval and creation of account objects. Given an account ID and a map of existing accounts, it returns the corresponding account object. If the account doesn't exist in the map, it creates a new one, adds it to the map, and then returns it.
+5. `getAccount` is a helper function that manages the retrieval and creation of account objects. Given an account ID and a map of existing accounts, it returns the corresponding account object. If the account doesn't exist in the map, it creates a new one, adds it to the map, and then returns it
 
-We'll demo a sample query a later section. You can copy and paste the below code into your `main.ts` file:
+We'll demo a sample query in a later section. You can copy and paste the below code into your `main.ts` file:
 
 ???+ code "main.ts"
 
@@ -367,24 +377,28 @@ Now we've taken all of the steps necessary and are ready to run our indexer!
 
 ### Run the Indexer {: #run-indexer }
 
-To run our indexer, we're going to run a series of `sqd` commands:
-1. Build our project
+To run our indexer, we're going to run a series of `sqd` commands. 
+
+Build our project:
 
    ```bash
    sqd build
    ```
-2. Launch the database:
+Launch the database:
 
    ```bash
    sqd up
    ```
-3. Remove the database migration file that comes with the EVM template and generate a new one for our new database schema:
+Run the following two commands sequentially:
 
    ```bash
    sqd migration:generate
+   ```
+
+   ```bash
    sqd migration:apply
    ```
-4. Launch the processor:
+Launch the processor:
 
    ```bash
    sqd process
@@ -414,7 +428,7 @@ sqd process
 
 Now your indexer should be indexing your development node without any problems!
 
-## Querying your Squid {: #querying-your-squid }
+## Query your Squid {: #query-your-squid }
 
 To query your squid, open up a new terminal window within your project and run the following command:
 
@@ -424,7 +438,7 @@ sqd serve
 
 And that's it! You can now run queries against your Squid on the GraphQL playground at [http://localhost:4350/graphql](http://localhost:4350/graphql){target=\_blank}. Try crafting your own GraphQL query, or use the below one:
 
-???+ code "sample-query.graphql"
+???+ code "Sample query"
 
     ```ts
     --8<-- 'code/tutorials/integrations/local-subsquid/sample-query.graphql'
@@ -436,9 +450,9 @@ All of the transfers will be returned, including the transfer of the initial sup
 
 And that's it! You've successfully used Subsquid to index data on a local Moonbeam development node! You can view the entire project on [GitHub](https://github.com/eshaben/local-squid-demo){target=\_blank}.
 
-## Debugging your Squid {: #debugging-your-squid }
+## Debug Your Squid {: #debug-your-squid }
 
-It may seem tricky at first to debug errors when building your Squid, but fortunately there are several techniques you can use to streamline this process. First and foremost, if you're facing errors with your Squid, you should enable Debug mode in your .env file by uncommenting the debug mode line. This will trigger much more verbose logging and will help you locate the source of the error.
+It may seem tricky at first to debug errors when building your Squid, but fortunately, there are several techniques you can use to streamline this process. First and foremost, if you're facing errors with your Squid, you should enable debug mode in your `.env` file by uncommenting the debug mode line. This will trigger much more verbose logging and will help you locate the source of the error.
 
 ```text
 # Uncommenting the below line enables debug mode
@@ -447,7 +461,7 @@ SQD_DEBUG=*
 
 You can also add logging statements directly to your `main.ts` file to indicate specific parameters like block height and more. For example, see this version of `main.ts` which has been enhanced with detailed logging:
 
-??? code "main-with-logging.ts"
+??? code "main.ts"
 
     ```ts
     --8<-- 'code/tutorials/integrations/local-subsquid/main-with-logging.ts'
@@ -457,16 +471,15 @@ See the [Subsquid guide to logging](https://docs.subsquid.io/basics/logging/){ta
 
 ### Common Errors {: #common-errors }
 
-Below are some common errors you may face building a project and how you can solve them:
+Below are some common errors you may face when building a project and how you can solve them.
 
 ```text
 Error response from daemon: driver failed programming external connectivity on endpoint my-awesome-squid-db-1
 (49df671a7b0531abbb5dc5d2a4a3f5dc7e7505af89bf0ad1e5480bd1cdc61052):
 Bind for 0.0.0.0:23798 failed: port is already allocated
-
 ```
 
-This error indicates that you have another instance of Subsquid running somewhere else. You can stop that gracefully with the command `sqd down` or by pressing the Stop button next to the container in Docker Desktop.
+This error indicates that you have another instance of Subsquid running somewhere else. You can stop that gracefully with the command `sqd down` or by pressing the **Stop** button next to the container in Docker Desktop.
 
 ```text
 Error: connect ECONNREFUSED 127.0.0.1:23798
@@ -478,7 +491,7 @@ Error: connect ECONNREFUSED 127.0.0.1:23798
 
 To resolve this, run `sqd up` before you run `sqd migration:generate`
 
-Is your Squid error-free yet you aren't seeing any transfers detected? Make sure your log events are consistent and identical to the ones your processor is looking for. Your contract address also needs to be lowercase, which you can be assured of by defining in a fashion as follows:
+Is your Squid error-free yet you aren't seeing any transfers detected? Make sure your log events are consistent and identical to the ones your processor is looking for. Your contract address also needs to be lowercase, which you can be assured of by defining it as follows:
 
 ```text
 export const contractAddress = '0x37822de108AFFdd5cDCFDaAa2E32756Da284DB85'.toLowerCase();
