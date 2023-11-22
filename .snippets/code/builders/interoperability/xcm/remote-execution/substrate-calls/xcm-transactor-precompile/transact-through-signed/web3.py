@@ -1,6 +1,6 @@
 from web3 import Web3
 
-abi = "INSERT_ABI"  # Paste or import the XCM Transactor V2 ABI
+abi = "INSERT_ABI"  # Paste or import the XCM Transactor V3 ABI
 private_key = "INSERT_PRIVATE_KEY"  # This is for demo purposes, never store your private key in plain text
 address = "INSERT_ADDRESS"  # The wallet address that corresponds to your private key
 
@@ -8,8 +8,8 @@ address = "INSERT_ADDRESS"  # The wallet address that corresponds to your privat
 web3 = Web3(Web3.HTTPProvider("https://rpc.api.moonbase.moonbeam.network"))
 
 # Create contract instance
-xcm_transactor_v2 = web3.eth.contract(
-    address="0x000000000000000000000000000000000000080d", abi=abi
+xcm_transactor_v3 = web3.eth.contract(
+    address="0x0000000000000000000000000000000000000817", abi=abi
 )
 
 # Arguments for the transactThroughSigned function
@@ -21,22 +21,24 @@ dest = [
     ],
 ]
 feeLocationAddress = "0xFFFFFFFF1AB2B146C526D4154905FF12E6E57675"
-transactRequiredWeightAtMost = 1000000000
+transactRequiredWeightAtMost = [1000000000, 5000]
 call = "0x030044236223ab4291b93eed10e4b511b37a398dee5513000064a7b3b6e00d"
 feeAmount = 50000000000000000
-overallWeight = 2000000000
+overallWeight = [2000000000, 10000]
+refund = True
 
 
 # Sends 1 xcUNIT to the relay chain using the transferMultiasset function
 def transact_through_signed():
     # Create transaction
-    transferTx = xcm_transactor_v2.functions.transactThroughSigned(
+    transferTx = xcm_transactor_v3.functions.transactThroughSigned(
         dest,
         feeLocationAddress,
         transactRequiredWeightAtMost,
         call,
         feeAmount,
         overallWeight,
+        refund,
     ).build_transaction(
         {
             "from": address,

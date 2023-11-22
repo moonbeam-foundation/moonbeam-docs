@@ -19,7 +19,7 @@ This guide will show you how to use the XCM Transactor Precompile to send XCM me
 
 ## XCM Transactor Precompile Contract Address {: #precompile-address }
 
-There are several versions of the XCM Transactor Precompile. **V1 will be deprecated in the near future**, so all implementations must migrate to the newer interfaces. V3 is currently only available on Moonbase Alpha.
+There are several versions of the XCM Transactor Precompile. **V1 will be deprecated in the near future**, so all implementations must migrate to the newer interfaces.
 
 The XCM Transactor Precompiles are located at the following addresses:
 
@@ -29,14 +29,14 @@ The XCM Transactor Precompiles are located at the following addresses:
     |:-------:|:----------------------------------------------------------------------:|
     |   V1    | <pre>```{{ networks.moonbeam.precompiles.xcm_transactor_v1 }}```</pre> |
     |   V2    | <pre>```{{ networks.moonbeam.precompiles.xcm_transactor_v2 }}```</pre> |
-    |   V3    |                             Not available                              |
+    |   V3    | <pre>```{{ networks.moonbeam.precompiles.xcm_transactor_v3 }}```</pre> |
 
 === "Moonriver"
     | Version |                                 Address                                 |
     |:-------:|:-----------------------------------------------------------------------:|
     |   V1    | <pre>```{{ networks.moonriver.precompiles.xcm_transactor_v1 }}```</pre> |
     |   V2    | <pre>```{{ networks.moonriver.precompiles.xcm_transactor_v2 }}```</pre> |
-    |   V3    |                              Not available                              |
+    |   V3    | <pre>```{{ networks.moonriver.precompiles.xcm_transactor_v3 }}```</pre> |
 
 === "Moonbase Alpha"
 
@@ -132,7 +132,7 @@ The interface varies slightly from version to version. You can find an overview 
             - `feeAmount` - the amount to be used as a fee
             - `overallWeight` - the total weight the extrinsic can use to execute all the XCM instructions, plus the weight of the `Transact` call (`transactRequiredWeightAtMost`)
 
-=== "V3 (Moonbase Alpha only)"
+=== "V3"
 
     The V3 interface adds support for Weights V2, which updates the `Weight` type to represent proof size in addition to computational time. As such, this requires that `refTime` and `proofSize` be defined, where `refTime` is the amount of computational time that can be used for execution and `proofSize` is the amount of storage in bytes that can be used. 
     
@@ -148,7 +148,6 @@ The interface varies slightly from version to version. You can find an overview 
     Additionally, support for the [`RefundSurplus`](/builders/interoperability/xcm/core-concepts/instructions#refund-surplus){target=_blank} and [`DepositAsset`](/builders/interoperability/xcm/core-concepts/instructions#deposit-asset){target=_blank} instructions was added. To append the `RefundSurplus` instruction to the XCM message, you can use the `refund` parameter, which will refund any leftover funds not used for the `Transact` if set to `true`.
 
     The V3 interface includes the following functions:
-
 
     ??? function "**transactInfoWithSigned**(*Multilocation* *memory* multilocation) — read-only function that returns the transact information for a given chain"
 
@@ -187,10 +186,18 @@ The interface varies slightly from version to version. You can find an overview 
 
             - `dest` - the multilocation of a chain in the ecosystem where the XCM message is being sent to (the target chain). The multilocation must be formatted in a particular way, which is described in the [Building the Precompile Multilocation](#building-the-precompile-multilocation) section
             - `feeLocation` - the multilocation of the asset to use for fee payment. The multilocation must be formatted in a particular way, which is described in the [following section](#building-the-precompile-multilocation)
-            - `transactRequiredWeightAtMost` - the weight to buy in the destination chain for the execution of the call defined in the `Transact` instruction
+            - `transactRequiredWeightAtMost` - the weight to buy in the destination chain for the execution of the call defined in the `Transact` instruction. The `transactRequiredWeightAtMost` structure contains the following:
+                - `refTime` - the amount of computational time that can be used for execution
+                - `proofSize` - the amount of storage in bytes that can be used
+
+                It should be formatted as follows:
+
+                ```js
+                [ INSERT_REF_TIME, INSERT_PROOF_SIZE ]
+                ```
             - `call` - the call to be executed in the destination chain, as defined in the `Transact` instruction 
             - `feeAmount` - the amount to be used as a fee
-            - `overallWeight` - the total weight the extrinsic can use to execute all the XCM instructions, plus the weight of the `Transact` call (`transactRequiredWeightAtMost`)
+            - `overallWeight` - the total weight the extrinsic can use to execute all the XCM instructions, plus the weight of the `Transact` call (`transactRequiredWeightAtMost`). The `overallWeight` structure also contains `refTime` and `proofSize`
             - `refund` -  a boolean indicating whether or not to add the `RefundSurplus` and `DepositAsset` instructions to the XCM message to refund any leftover fees 
 
     ??? function "**transactThroughSigned**(*Multilocation* *memory* dest, *address* feeLocationAddress, *Weight* transactRequiredWeightAtMost, *bytes* *memory* call, *uint256* feeAmount, *Weight* overallWeight, *bool* refund) — sends an XCM message with instructions to remotely execute a call in the destination chain. The remote call will be signed and executed by a new account, called the [Computed Origin](/builders/interoperability/xcm/remote-execution/computed-origins){target=_blank} account, that the destination parachain must compute. Moonbeam-based networks follow [the Computed Origins standard set by Polkadot](https://github.com/paritytech/polkadot-sdk/blob/master/polkadot/xcm/xcm-builder/src/location_conversion.rs){target=_blank}. You need to provide the address of the XC-20 asset to be used for fee payment"
@@ -199,10 +206,18 @@ The interface varies slightly from version to version. You can find an overview 
 
             - `dest` - the multilocation of a chain in the ecosystem where the XCM message is being sent to (the target chain). The multilocation must be formatted in a particular way, which is described in the [Building the Precompile Multilocation](#building-the-precompile-multilocation) section
             - `feeLocationAddress` - the [XC-20 address](/builders/interoperability/xcm/xc20/overview/#current-xc20-assets){target=_blank} of the asset to use for fee payment
-            - `transactRequiredWeightAtMost` - the weight to buy in the destination chain for the execution of the call defined in the `Transact` instruction
+            - `transactRequiredWeightAtMost` - the weight to buy in the destination chain for the execution of the call defined in the `Transact` instruction. The `transactRequiredWeightAtMost` structure contains the following:
+                - `refTime` - the amount of computational time that can be used for execution
+                - `proofSize` - the amount of storage in bytes that can be used
+
+                It should be formatted as follows:
+
+                ```js
+                [ INSERT_REF_TIME, INSERT_PROOF_SIZE ]
+                ```
             - `call` - the call to be executed in the destination chain, as defined in the `Transact` instruction 
             - `feeAmount` - the amount to be used as a fee
-            - `overallWeight` - the total weight the extrinsic can use to execute all the XCM instructions, plus the weight of the `Transact` call (`transactRequiredWeightAtMost`). The weight must be formatted in a particular way, which is described in the [Building the Precompile Weight](#determining-weight) section
+            - `overallWeight` - the total weight the extrinsic can use to execute all the XCM instructions, plus the weight of the `Transact` call (`transactRequiredWeightAtMost`). The `overallWeight` structure also contains `refTime` and `proofSize`
             - `refund` -  a boolean indicating whether or not to add the `RefundSurplus` and `DepositAsset` instructions to the XCM message to refund any leftover fees 
 
 ## XCM Instructions for Remote Execution {: #xcm-instructions-for-remote-execution }
@@ -249,11 +264,18 @@ For this example, the following accounts will be used:
 
 ### Building the XCM {: #xcm-transact-through-signed }
 
-For this example, you'll interact with the `transactThroughSigned` function of the XCM Transactor Precompile V2. To use this function, you'll take these general steps:
+For this example, you'll interact with the `transactThroughSigned` function of the XCM Transactor Precompile V3. To use this function, you'll take these general steps:
 
 1. Create a provider using a Moonbase Alpha RPC endpoint
 2. Create a signer to send the transaction. This example uses a private key to create the signer and is for demo purposes only. **Never store your private key in a JavaScript file**
-3. Create a contract instance of the XCM Transactor V2 Precompile using the address and ABI of the precompile
+3. Create a contract instance of the XCM Transactor V3 Precompile using the address and ABI of the precompile
+
+    ??? code "XCM Transactor V3 ABI"
+
+        ```js
+        --8<-- 'code/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-precompile/XcmTransactorV3ABI.js'
+        ```
+
 4. Assemble the arguments for the `transactThroughSigned` function:
 
     - `dest` - the multilocation of the destination, which is parachain 888:
@@ -270,13 +292,13 @@ For this example, you'll interact with the `transactThroughSigned` function of t
     - `feeLocationAddress` - the address of the XC-20 to use for fees, which is parachain 888's native asset:
 
         ```js
-         const feeLocationAddress = '0xFFFFFFFF1AB2B146C526D4154905FF12E6E57675';
+        const feeLocationAddress = '0xFFFFFFFF1AB2B146C526D4154905FF12E6E57675';
         ```
 
     - `transactRequiredWeightAtMost` - the weight required to execute the call in the `Transact` instruction. You can get this information by using the [`paymentInfo` method of the Polkadot.js API](/builders/build/substrate-api/polkadot-js-api#fees){target=_blank} on the call
 
         ```js
-        const transactRequiredWeightAtMost = 1000000000n;
+        const transactRequiredWeightAtMost = [1000000000n, 5000n];
         ```
 
     - `call` - the encoded call data of the pallet, method, and input to be called. It can be constructed in [Polkadot.js Apps](https://polkadot.js.org/apps/){target=_blank} (which must be connected to the destination chain) or using the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=_blank}. For this example, the inner call is a simple balance transfer of 1 token of the destination chain to Alice's account there:
@@ -295,7 +317,7 @@ For this example, you'll interact with the `transactThroughSigned` function of t
     - `overallWeight` - the weight specific to the inner call (`transactRequiredWeightAtMost`) plus the weight needed to cover the execution costs for the XCM instructions in the destination chain: `DescendOrigin`, `WithdrawAsset`, `BuyExecution`, and `Transact`. It's important to note that each chain defines its own weight requirements. To determine the weight required for each XCM instruction on a given chain, please refer to the chain's documentation or reach out to a member of their team
 
         ```js
-        const overallWeight = 2000000000n;
+        const overallWeight = [2000000000n, 10000n];
         ```
 
 5. Create the `transactThroughSigned` function, passing in the arguments
