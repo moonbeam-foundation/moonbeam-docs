@@ -474,6 +474,18 @@ See the [Subsquid guide to logging](https://docs.subsquid.io/basics/logging/){ta
 Below are some common errors you may face when building a project and how you can solve them.
 
 ```text
+FATAL sqd:processor RpcError: Expect block number from id: BlockId::Number(15316)
+```
+
+This error indicates that your indexer is trying to process blocks that don't exist on your local node. You can resolve this by setting a relevant `to` block limit in your processor as follows: 
+
+```ts
+.setBlockRange({from: 0, to: 100})
+```
+
+Another common error can occur when you're experimenting with multiple instances of Subsquid on your machine. 
+
+```text
 Error response from daemon: driver failed programming external connectivity on endpoint my-awesome-squid-db-1
 (49df671a7b0531abbb5dc5d2a4a3f5dc7e7505af89bf0ad1e5480bd1cdc61052):
 Bind for 0.0.0.0:23798 failed: port is already allocated
