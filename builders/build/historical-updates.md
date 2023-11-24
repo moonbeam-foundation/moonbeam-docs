@@ -618,15 +618,15 @@ This migration was executed at the following runtimes and blocks:
 
 For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/1114){target=_blank}.
 
-*** 
+***
 
-#### Add Support for Statemine Prefix Breaking Change {: #add-support-statemine-prefix }
+#### Add Support for Kusama Asset Hub (Statemine) Prefix Breaking Change {: #add-support-statemine-prefix }
 
-The following three migrations were added to the asset manager pallet to avoid issues with [Statemine's breaking change to the way it represents assets](https://github.com/paritytech/cumulus/pull/831){target=_blank} and possible future breaking changes:
+The following three migrations were added to the asset manager pallet to avoid issues with Kusama Asset Hub's (previously referred to as Statemine) [breaking change to the way it represents assets](https://github.com/paritytech/cumulus/pull/831){target=_blank} and possible future breaking changes:
 
 - `UnitsWithAssetType` - updates the `AssetTypeUnitsPerSecond` storage item  to a mapping of the `AssetType` to `units_per_second`, instead of the mapping `AssetId` to `units_per_second`. This is done to avoid additional migrations whenever a breaking change arises
 - `PopulateAssetTypeIdStorage` - creates a new `AssetTypeId` storage item that holds the `AssetType` to `AssetId` mapping, which allows the decoupling of `assetIds` and `AssetTypes`
-- `ChangeStateminePrefixes` - updates already registered Statemine assets to new their new form
+- `ChangeStateminePrefixes` - updates already registered Kusama Asset Hub (Statemine) assets to new their new form
 
 These migrations were executed at the following runtimes and blocks:
 

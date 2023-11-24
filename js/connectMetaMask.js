@@ -57,7 +57,7 @@ connectMetaMaskNav.addEventListener('click', async (e) => {
       await displayConnectedAccount(connectedMoonbeamNetwork, connectedMoonbeamNetworkButton);
     }
   } else {
-    const errorMessage = `It looks like you don't have any Ethereum-compatible wallets installed. Please install an Etheruem-compatible wallet, such as <a href="https://metamask.io/download.html" target="_blank" rel="noreferrer noopener">MetaMask</a>, and try again.`;
+    const errorMessage = `It looks like you don't have any Ethereum-compatible wallets installed. Please install an Ethereum-compatible wallet, such as <a href="https://metamask.io/download.html" target="_blank" rel="noreferrer noopener">MetaMask</a>, and try again.`;
     handleError(errorMessage);
   }
 

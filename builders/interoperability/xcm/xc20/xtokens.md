@@ -42,7 +42,7 @@ Where the inputs that need to be provided can be defined as:
 
     - `SelfReserve` - refers to the native token
     - `ForeignAsset` - refers to the asset ID of an [External XC-20](/builders/interoperability/xcm/xc20/overview/#external-xc20s){target=_blank} (not to be confused with the XC-20 address)
-    - `LocalAssetReserve` - refers to the asset ID of a [Mintable XC-20](/builders/interoperability/xcm/xc20/mintable-xc20){target=_blank} (not to be confused with the XC-20 address). It is recommended to use [Local XC-20s](/builders/interoperability/xcm/xc20/overview/#local-xc20s){target=_blank} instead via the `Erc20` currency type
+    - `LocalAssetReserve` - *deprecated* - use [Local XC-20s](/builders/interoperability/xcm/xc20/overview/#local-xc20s){target=_blank} instead via the `Erc20` currency type
     - `Erc20` - refers to the contract address of a [Local XC-20 (ERC-20)](/builders/interoperability/xcm/xc20/overview/#local-xc20s){target=_blank}
 
  - **amount** — the number of tokens that are going to be sent via XCM
@@ -77,7 +77,26 @@ The XCM instructions used for the X-Tokens Pallet extrinsics are defined in the 
 
 Regardless of which transfer extrinsic is used, the instructions are the same for sending the native asset back to its origin chain, such as xcDOT from Moonbeam back to Polkadot, and sending the native asset from the origin chain to a destination chain, such as DOT from Polkadot to Moonbeam.
 
---8<-- 'text/builders/interoperability/xcm/xc20/x-tokens/xcm-instructions.md'
+For example, to move DOT to Moonbeam, the following XCM instructions are used:
+
+1. [`TransferReserveAsset`](https://github.com/paritytech/xcm-format#transferreserveasset){target=_blank} - gets executed in Polkadot. Moves assets from the origin account and deposits them into a destination account. In this case, the destination account is Moonbeam's sovereign account on Polkadot. It then sends an XCM message to the destination, which is Moonbeam, with the XCM instructions that are to be executed
+2. [`ReserveAssetDeposited`](https://github.com/paritytech/xcm-format#reserveassetdeposited-){target=_blank} - gets executed in Moonbeam. Takes a representation of the assets received in the sovereign account and places them into the holding register, a temporary position in the Cross-Consensus Virtual Machine (XCVM)
+3. [`ClearOrigin`](https://github.com/paritytech/xcm-format#clearorigin){target=_blank} - gets executed in Moonbeam. Ensures that later XCM instructions cannot command the authority of the XCM author
+4. [`BuyExecution`](https://github.com/paritytech/xcm-format#buyexecution){target=_blank} - gets executed in Moonbeam. Takes the assets from holding to pay for execution fees. The fees to pay are determined by the target chain, which in this case is Moonbeam
+5. [`DepositAsset`](https://github.com/paritytech/xcm-format#depositasset){target=_blank} - gets executed in Moonbeam. Removes the assets from holding and sends them to a destination account on Moonbeam
+
+To check how the instructions for an XCM message are built to transfer self-reserve assets to a target chain, such as DOT to Moonbeam, you can refer to the [X-Tokens Open Runtime Module Library](https://github.com/open-web3-stack/open-runtime-module-library/tree/polkadot-{{ networks.polkadot.spec_version }}/xtokens){target=_blank} repository (as an example). You'll want to take a look at the [`transfer_self_reserve_asset`](https://github.com/open-web3-stack/open-runtime-module-library/blob/polkadot-{{ networks.polkadot.spec_version }}/xtokens/src/lib.rs#L680){target=_blank} function. You'll notice it calls `TransferReserveAsset` and passes in `assets`, `dest`, and `xcm` as parameters. In particular, the `xcm` parameter includes the `BuyExecution` and `DepositAsset` instructions. If you then head over to the Polkadot GitHub repository, you can find the [`TransferReserveAsset` instruction](https://github.com/paritytech/polkadot-sdk/blob/{{ polkadot_sdk }}/polkadot/xcm/xcm-executor/src/lib.rs#L514){target=_blank}. The XCM message is constructed by combining the `ReserveAssetDeposited` and `ClearOrigin` instructions with the `xcm` parameter, which as mentioned includes the `BuyExecution` and `DepositAsset` instructions.
+
+To move xcDOT from Moonbeam back to Polkadot, the instructions that are used are:
+
+1. [`WithdrawAsset`](https://github.com/paritytech/xcm-format#withdrawasset){target=_blank} - gets executed in Moonbeam. Removes assets and places them into the holding register
+2. [`InitiateReserveWithdraw`](https://github.com/paritytech/xcm-format#initiatereservewithdraw){target=_blank} - gets executed in Moonbeam. Removes the assets from holding (essentially burning them) and sends an XCM message to the destination chain starting with the `WithdrawAsset` instruction
+3. [`WithdrawAsset`](https://github.com/paritytech/xcm-format#withdrawasset){target=_blank} - gets executed in Polkadot. Removes assets and places them into the holding register
+4. [`ClearOrigin`](https://github.com/paritytech/xcm-format#clearorigin){target=_blank} - gets executed in Polkadot. Ensures that later XCM instructions cannot command the authority of the XCM author
+5. [`BuyExecution`](https://github.com/paritytech/xcm-format#buyexecution){target=_blank} - gets executed in Polkadot. Takes the assets from holding to pay for execution fees. The fees to pay are determined by the target chain, which in this case is Polkadot
+6. [`DepositAsset`](https://github.com/paritytech/xcm-format#depositasset){target=_blank} - gets executed in Polkadot. Removes the assets from holding and sends them to a destination account on Polkadot
+
+To check how the instructions for an XCM message are built to transfer reserve assets to a target chain, such as xcDOT to Polkadot, you can refer to the [X-Tokens Open Runtime Module Library](https://github.com/open-web3-stack/open-runtime-module-library/tree/polkadot-{{networks.polkadot.spec_version}}/xtokens){target=_blank} repository. You'll want to take a look at the [`transfer_to_reserve`](https://github.com/open-web3-stack/open-runtime-module-library/blob/polkadot-{{networks.polkadot.spec_version}}/xtokens/src/lib.rs#L697){target=_blank} function. You'll notice that it calls `WithdrawAsset`, then `InitiateReserveWithdraw` and passes in `assets`, `dest`, and `xcm` as parameters. In particular, the `xcm` parameter includes the `BuyExecution` and `DepositAsset` instructions. If you then head over to the Polkadot GitHub repository, you can find the [`InitiateReserveWithdraw` instruction](https://github.com/paritytech/polkadot-sdk/blob/{{polkadot_sdk}}/polkadot/xcm/xcm-executor/src/lib.rs#L638){target=_blank}. The XCM message is constructed by combining the `WithdrawAsset` and `ClearOrigin` instructions with the `xcm` parameter, which as mentioned includes the `BuyExecution` and `DepositAsset` instructions.
 
 ## Building an XCM Message with the X-Tokens Pallet {: #build-xcm-xtokens-pallet}
 
