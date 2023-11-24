@@ -5,7 +5,7 @@ description:  Learn how to create common OpenZeppelin contracts such as ERC-20, 
 
 # Using OpenZeppelin Contracts and Remix To Deploy To Moonbeam
 
-## Introduction {: #introduction } 
+## Introduction {: #introduction }
 
 [OpenZeppelin](https://openzeppelin.com/){target=_blank} contracts and libraries have become a standard in the industry. They help developers minimize risk, as their open-source code templates are battle-tested for Ethereum and other blockchains. Their code includes the most used implementations of ERC standards and add-ons and often appears in guides and tutorials around the community.
 
@@ -13,9 +13,9 @@ Because Moonbeam is fully Ethereum compatible, all of OpenZeppelin's contracts a
 
 This guide is divided into two sections. The first part describes the OpenZeppelin Contracts Wizard, a great online tool to help you create smart contracts using OpenZeppelin code. The second section provides a step-by-step guide on how you can deploy these contracts using [Remix](https://remix.ethereum.org/){target=_blank} on Moonbeam.
 
-## OpenZeppelin Contract Wizard {: #openzeppelin-contract-wizard } 
+## OpenZeppelin Contract Wizard {: #openzeppelin-contract-wizard }
 
-OpenZeppelin has developed an online web-based interactive contract generator tool that is probably the easiest and fastest way to write your smart contract using OpenZeppelin code, called [Contracts Wizard](https://docs.openzeppelin.com/contracts/4.x/wizard){target=_blank}.
+OpenZeppelin has developed an online web-based interactive contract generator tool that is probably the easiest and fastest way to write your smart contract using OpenZeppelin code, called [Contracts Wizard](https://docs.openzeppelin.com/contracts/5.x/wizard){target=_blank}.
 
 <style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/l8RTwu6hGpY' frameborder='0' allowfullscreen></iframe></div>
 <style>.caption { font-family: Open Sans, sans-serif; font-size: 0.9em; color: rgba(170, 170, 170, 1); font-style: italic; letter-spacing: 0px; position: relative;}</style><div class='caption'>In this video, Open Zeppelin Wizard is used to deploy an ERC-20 token to Moonbase Alpha</a></div>
@@ -23,25 +23,25 @@ OpenZeppelin has developed an online web-based interactive contract generator to
 Currently, the Contracts Wizard support the following ERC standards:
 
  - [**ERC-20**](https://ethereum.org/en/developers/docs/standards/tokens/erc-20/){target=_blank} — a fungible token standard that follows [EIP-20](https://eips.ethereum.org/EIPS/eip-20){target=_blank}. Fungible means that all tokens are equivalent and interchangeable that is, of equal value. One typical example of fungible tokens is fiat currencies, where each equal-denomination bill has the same value
- - [**ERC-721**](https://ethereum.org/en/developers/docs/standards/tokens/erc-721/){target=_blank} — a non-fungible token contract that follows [EIP-721](https://eips.ethereum.org/EIPS/eip-721){target=_blank}. Non-fungible means that each token is different, and therefore, unique. An ERC-721 token can represent ownership of that unique item, whether it is a collectible item in a game, real estate, and so on 
- - [**ERC-1155**](https://docs.openzeppelin.com/contracts/4.x/erc1155){target=_blank} — also known as the multi-token contract, because it can represent both fungible and non-fungible tokens in a single smart contract. It follows [EIP-1155](https://eips.ethereum.org/EIPS/eip-1155){target=_blank}
+ - [**ERC-721**](https://ethereum.org/en/developers/docs/standards/tokens/erc-721/){target=_blank} — a non-fungible token contract that follows [EIP-721](https://eips.ethereum.org/EIPS/eip-721){target=_blank}. Non-fungible means that each token is different, and therefore, unique. An ERC-721 token can represent ownership of that unique item, whether it is a collectible item in a game, real estate, and so on
+ - [**ERC-1155**](https://docs.openzeppelin.com/contracts/5.x/erc1155){target=_blank} — also known as the multi-token contract, because it can represent both fungible and non-fungible tokens in a single smart contract. It follows [EIP-1155](https://eips.ethereum.org/EIPS/eip-1155){target=_blank}
 
 The wizard is comprised of the following sections:
 
  1. **Token standard selection** — shows all the different standards supported by the wizard
  2. **Settings** — provides the baseline settings for each token standard, such as token name, symbol, pre-mint (token supply when the contract is deployed), and URI (for non-fungible tokens)
  3. **Features** — list of all features available for each token standard. You can find more information about the different features in the following links:
-     - [ERC-20](https://docs.openzeppelin.com/contracts/4.x/api/token/erc20){target=_blank}
-     - [ERC-721](https://docs.openzeppelin.com/contracts/4.x/api/token/erc721){target=_blank}
-     - [ERC-1155](https://docs.openzeppelin.com/contracts/4.x/api/token/erc1155){target=_blank}
- 4. **Access Control** — list of all the available [access control mechanisms](https://docs.openzeppelin.com/contracts/4.x/access-control){target=_blank} for each token standard
+     - [ERC-20](https://docs.openzeppelin.com/contracts/5.x/api/token/erc20){target=_blank}
+     - [ERC-721](https://docs.openzeppelin.com/contracts/5.x/api/token/erc721){target=_blank}
+     - [ERC-1155](https://docs.openzeppelin.com/contracts/5.x/api/token/erc1155){target=_blank}
+ 4. **Access Control** — list of all the available [access control mechanisms](https://docs.openzeppelin.com/contracts/5.x/access-control){target=_blank} for each token standard
  5. **Interactive code display** — shows the smart contract code with the configuration as set by the user
 
 ![OpenZeppelin Contracts Wizard](/images/builders/build/eth-api/dev-env/openzeppelin/contracts/oz-wizard-1.png)
 
 Once you have set up your contract with all the settings and features, it is just as easy as copying and pasting the code into your contract file.
 
-## Deploying OpenZeppelin Contracts on Moonbeam {: #deploying-openzeppelin-contracts-on-moonbeam } 
+## Deploying OpenZeppelin Contracts on Moonbeam {: #deploying-openzeppelin-contracts-on-moonbeam }
 
 This section goes through the steps for deploying OpenZeppelin contracts on Moonbeam. It covers the following contracts:
 
@@ -49,16 +49,16 @@ This section goes through the steps for deploying OpenZeppelin contracts on Moon
  - ERC-721 (non-fungible tokens)
  - ERC-1155 (multi-token standard)
 
-All the code of the contracts was obtained using OpenZeppelin [Contract Wizard](https://docs.openzeppelin.com/contracts/4.x/wizard){target=_blank}.
- 
-### Checking Prerequisites {: #checking-prerequisites } 
+All the code of the contracts was obtained using OpenZeppelin [Contract Wizard](https://docs.openzeppelin.com/contracts/5.x/wizard){target=_blank}.
+
+### Checking Prerequisites {: #checking-prerequisites }
 
 The steps described in this section assume you have [MetaMask](https://metamask.io/){target=_blank} installed and connected to the Moonbase Alpha TestNet. If you're adapting this guide for Moonbeam or Moonriver, make sure you're connected to the correct network. Contract deployment is done using the [Remix IDE](https://remix.ethereum.org/){target=_blank} via the **Injected Web3** environment. You can find corresponding tutorials in the following links:
 
  - [Interacting with Moonbeam using MetaMask](/tokens/connect/metamask/){target=_blank}
  - [Interacting with Moonbeam using Remix](/builders/build/eth-api/dev-env/remix/){target=_blank}
 
-### Deploying an ERC-20 Token {: #deploying-an-erc-20-token } 
+### Deploying an ERC-20 Token {: #deploying-an-erc-20-token }
 
 For this example, an ERC-20 token will be deployed to Moonbase Alpha. The final code used combines different contracts from OpenZeppelin:
 
@@ -102,7 +102,7 @@ Once your smart contract is written, you can compile it by taking the following 
 
 ![Compile ERC-20 Contract with Remix](/images/builders/build/eth-api/dev-env/openzeppelin/contracts/oz-contracts-2.png)
 
-With the contract compiled, you are ready to deploy it taking the following steps: 
+With the contract compiled, you are ready to deploy it taking the following steps:
 
  1. Head to the **Deploy & Run Transactions** tab
  2. Change the environment to **Injected Web3**. This will use MetaMask's injected provider. Consequently, the contract will be deployed to whatever network MetaMask is connected to. MetaMask might show a pop-up outlining that Remix is trying to connect to your wallet
@@ -114,7 +114,7 @@ With the contract compiled, you are ready to deploy it taking the following step
 
 And that is it! You've deployed an ERC-20 token contract using OpenZeppelin's contracts and libraries. Next, you can interact with your token contract via Remix, or add it to MetaMask.
 
-### Deploying an ERC-721 Token {: #deploying-an-erc-721-token } 
+### Deploying an ERC-721 Token {: #deploying-an-erc-721-token }
 
 For this example, an ERC-721 token will be deployed to Moonbase Alpha. The final code used combines different contracts from OpenZeppelin:
 
@@ -180,7 +180,7 @@ With the contract compiled, next you will need to:
 
 And that is it! You've deployed an ERC-721 token contract using OpenZeppelin's contracts and libraries. Next, you can interact with your token contract via Remix, or add it to MetaMask.
 
-### Deploying an ERC-1155 Token {: #deploying-an-erc-1155-token } 
+### Deploying an ERC-1155 Token {: #deploying-an-erc-1155-token }
 
 For this example, an ERC-1155 token will be deployed to Moonbase Alpha. The final code used combines different contracts from OpenZeppelin:
 
