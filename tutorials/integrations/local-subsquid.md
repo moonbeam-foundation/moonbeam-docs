@@ -9,20 +9,20 @@ _by Erin Shaben and Kevin Neilson_
 
 ## Introduction {: #introduction }
 
-When developing a dApp, it's beneficial to develop smart contracts using a local development environment as opposed to a live network, such as a TestNet or MainNet. Local development removes some of the hassles involved with developing on a live network, like having to fund development accounts and waiting for blocks to be produced. On Moonbeam, developers can spin up their own local [Moonbeam development node](/builders/get-started/networks/moonbeam-dev){target=\_blank} to quickly and easily build and test applications.
+When developing a dApp, it's beneficial to develop smart contracts using a local development environment as opposed to a live network, such as a TestNet or MainNet. Local development removes some of the hassles involved with developing on a live network, like having to fund development accounts and waiting for blocks to be produced. On Moonbeam, developers can spin up their own local [Moonbeam development node](/builders/get-started/networks/moonbeam-dev){target=_blank} to quickly and easily build and test applications.
 
-But what about dApps that rely on indexers to index blockchain data? How can developers of these applications streamline the development process? Thanks to [Subsquid](/builders/integrations/indexers/subsquid){target=\_blank}, a data network for retrieving data from 100+ chains, it is now possible to index blocks on a local development environment, such as your Moonbeam development node!
+But what about dApps that rely on indexers to index blockchain data? How can developers of these applications streamline the development process? Thanks to [Subsquid](/builders/integrations/indexers/subsquid){target=_blank}, a data network for retrieving data from 100+ chains, it is now possible to index blocks in a local development environment, such as your Moonbeam development node!
 
-This tutorial will walk you through the process of indexing data on a local Moonbeam development node using Subsquid. We'll create an ERC-20 contract and use Subsquid to index transfers of our ERC-20. This guide is tailored for indexing data on a local dev node, but this same tutorial can easily be applied to any other Moonbeam network.
+This tutorial will walk you through the process of indexing data on a local Moonbeam development node using Subsquid. We'll create an ERC-20 contract and use Subsquid to index transfers of our ERC-20.
 
 ## Check Prerequisites {: #check-prerequisites }
 
 To follow along with this tutorial, you'll need to have:
 
-- [Docker installed](https://docs.docker.com/get-docker/){target=\_blank}
-- [Docker Compose installed](https://docs.docker.com/compose/install/){target=\_blank}
-- An empty Hardhat project. For step-by-step instructions, please refer to the [Creating a Hardhat Project](/builders/build/eth-api/dev-env/hardhat/#creating-a-hardhat-project){target=\_blank} section of our Hardhat documentation page
--  An [ERC-20 token deployed](#deploy-an-erc-20-contract) to your local development node, unless you plan on indexing Moonbase Alpha and using an existing ERC-20.
+- [Docker installed](https://docs.docker.com/get-docker/){target=_blank}
+- [Docker Compose installed](https://docs.docker.com/compose/install/){target=_blank}
+- An empty Hardhat project. For step-by-step instructions, please refer to the [Creating a Hardhat Project](/builders/build/eth-api/dev-env/hardhat/#creating-a-hardhat-project){target=_blank} section of our Hardhat documentation page
+- An [ERC-20 token deployed](#deploy-an-erc-20-contract) to your local development node, unless you plan on indexing Moonbase Alpha and using an existing ERC-20
 
 We'll configure our Hardhat project and create our Subsquid project later on in the tutorial.
 
@@ -71,15 +71,15 @@ Our development node comes with 10 prefunded accounts.
 ??? note "Development account addresses and private keys"
     --8<-- 'code/builders/get-started/networks/moonbeam-dev/dev-accounts.md'
 
-For more information on running a Moonbeam development node, please refer to the [Getting Started with a Moonbeam Development Node](/builders/get-started/networks/moonbeam-dev){target=\_blank} guide.
+For more information on running a Moonbeam development node, please refer to the [Getting Started with a Moonbeam Development Node](/builders/get-started/networks/moonbeam-dev){target=_blank} guide.
 
 ## Deploy an ERC-20 with Hardhat {: #deploy-an-erc-20-with-hardhat }
 
-You should have already created an empty Hardhat project, but if you haven't done so, you can find instructions in the [Creating a Hardhat Project](/builders/build/eth-api/dev-env/hardhat/#creating-a-hardhat-project){target=\_blank} section of our Hardhat documentation page.
+You should have already created an empty Hardhat project, but if you haven't done so, you can find instructions in the [Creating a Hardhat Project](/builders/build/eth-api/dev-env/hardhat/#creating-a-hardhat-project){target=_blank} section of our Hardhat documentation page.
 
 In this section, we'll configure our Hardhat project for a local Moonbeam development node, create an ERC-20 contract, and write scripts to deploy and interact with our contract.
 
-Before we dive into creating our project, let's install a couple of dependencies that we'll need: the [Hardhat Ethers plugin](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-ethers){target=\_blank} and [OpenZeppelin contracts](https://docs.openzeppelin.com/contracts/4.x/){target=\_blank}. The Hardhat Ethers plugin provides a convenient way to use the [Ethers](/builders/build/eth-api/libraries/ethersjs){target=\_blank} library to interact with the network. We'll use OpenZeppelin's base ERC-20 implementation to create an ERC-20. To install both of these dependencies, you can run:
+Before we dive into creating our project, let's install a couple of dependencies that we'll need: the [Hardhat Ethers plugin](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-ethers){target=_blank} and [OpenZeppelin contracts](https://docs.openzeppelin.com/contracts/4.x/){target=_blank}. The Hardhat Ethers plugin provides a convenient way to use the [Ethers](/builders/build/eth-api/libraries/ethersjs){target=_blank} library to interact with the network. We'll use OpenZeppelin's base ERC-20 implementation to create an ERC-20. To install both of these dependencies, you can run:
 
 === "npm"
 
@@ -93,7 +93,7 @@ Before we dive into creating our project, let's install a couple of dependencies
     yarn add @nomicfoundation/hardhat-ethers ethers @openzeppelin/contracts
     ```
 
-### Configure Hardhat For a Local Development Node {: #create-a-hardhat-project }
+### Configure Hardhat for a Local Development Node {: #create-a-hardhat-project }
 
 Before we update the configuration file, we'll need to get the private key of one of our development accounts, which will be used to deploy our contract and send transactions. For this example, we'll use Alith's private key:
 
@@ -146,13 +146,13 @@ This command will compile our contract and generate an `artifacts` directory con
 
 Let's take the following steps to deploy our contract:
 
-1.  Create a directory and file for our script:
+1. Create a directory and file for our script:
 
     ```bash
     mkdir -p scripts && touch scripts/deploy.js
     ```
 
-2.  In the `deploy.js` file, go ahead and add the following script:
+2. In the `deploy.js` file, go ahead and add the following script:
 
     ???+ code "deploy.js"
 
@@ -160,7 +160,7 @@ Let's take the following steps to deploy our contract:
         --8<-- 'code/tutorials/integrations/local-subsquid/deploy.js'
         ```
 
-3.  Run the script using the `dev` network configurations we set up in the `hardhat.config.js` file:
+3. Run the script using the `dev` network configurations we set up in the `hardhat.config.js` file:
 
     ```bash
     npx hardhat run scripts/deploy.js --network dev
@@ -174,13 +174,13 @@ The address of the deployed contract should be printed to the terminal. Save the
 
 Since we'll be indexing `Transfer` events for our ERC-20, we'll need to send a few transactions that transfer some tokens from Alith's account to our other test accounts. We'll do this by creating a simple script that transfers 10 MYTOKs to Baltathar, Charleth, Dorothy, and Ethan. We'll take the following steps:
 
-1.  Create a new file script to send transactions:
+1. Create a new file script to send transactions:
 
     ```bash
     touch scripts/transactions.js
     ```
 
-2.  In the `transactions.js` file, add the following script and insert the contract address of your deployed MyTok contract (output in the console in the prior step):
+2. In the `transactions.js` file, add the following script and insert the contract address of your deployed MyTok contract (output in the console in the prior step):
 
     ???+ code "transactions.js"
 
@@ -188,7 +188,7 @@ Since we'll be indexing `Transfer` events for our ERC-20, we'll need to send a f
         --8<-- 'code/tutorials/integrations/local-subsquid/transactions.js'
         ```
 
-3.  Run the script to send the transactions:
+3. Run the script to send the transactions:
 
     ```bash
     npx hardhat run scripts/transactions.js --network dev
@@ -202,7 +202,7 @@ Now we can move on to creating our Squid to index the data on our local developm
 
 ## Create a Subsquid Project {: #create-subsquid-project }
 
-Now we're going to create our Subquid project. First, we'll need to install the [Subsquid CLI](https://docs.subsquid.io/squid-cli/){target=\_blank}:
+Now we're going to create our Subquid project. First, we'll need to install the [Subsquid CLI](https://docs.subsquid.io/squid-cli/){target=_blank}:
 
 ```bash
 npm i -g @subsquid/cli@latest
@@ -236,7 +236,7 @@ In order to index ERC-20 transfers, we'll need to take a series of actions:
 
 1. Update the database schema and generate models for the data
 2. Use the `ERC20` contract's ABI to generate TypeScript interface classes that will be used by our Squid to index `Transfer` events
-3. Configure the processor to process `Transfer` events for the `ERC20` contract 
+3. Configure the processor to process `Transfer` events for the `ERC20` contract
 4. Add logic to process the `Transfer` events and save the processed transfer data
 
 As mentioned, we'll first need to define the database schema for the transfer data. To do so, we'll edit the `schema.graphql` file, which is located in the root directory, and create a `Transfer` entity and `Account` entity. You can copy and paste the below schema, ensuring that any existing schema is first removed.
@@ -275,16 +275,24 @@ This will generate the related TypeScript interface classes in the `src/abi/erc2
 
 The `processor.ts` file tells Subsquid exactly what data you'd like to ingest. Transforming that data into the exact desired format will take place at a later step. In `processor.ts`, we'll need to indicate a data source, a contract address, the event(s) to index, and a block range.
 
-Open up the `src` folder and head to the `processor.ts` file. First, we need to tell the Subsquid processor which contract we're interested in. Create a constant for the address in the following manner:
+Open up the `src` folder and head to the `processor.ts` file.
+
+To get started, you can import the ERC-20 ABI, which will be used to define the ERC-20 data to be indexed:
+
+```ts
+import * as erc20 from './abi/erc20';
+```
+
+Next, we need to tell the Subsquid processor which contract we're interested in. Create a constant for the address in the following manner:
 
 ```ts
 export const contractAddress = 'INSERT_CONTRACT_ADDRESS'.toLowerCase();
 ```
 
-The `.toLowerCase()` is critical because the Subsquid processor is case-sensitive, and some block explorers format contract addresses with capitalization. Next, you'll see the line `export const processor = new EvmBatchProcessor()`, followed by `.setDataSource`. We'll need to make a few changes here. Subsquid has [available archives for many chains, including Moonbeam, Moonriver, and Moonbase Alpha](https://docs.subsquid.io/evm-indexing/supported-networks/){target=\_blank} that can speed up the data retrieval process. For indexing a local dev node, there's no archive necessary so the exclusive data source will be the RPC URL of our local node. Go ahead and comment out or delete the archive line. Once done, your code should look similar to the below:
+The `.toLowerCase()` is critical because the Subsquid processor is case-sensitive, and some block explorers format contract addresses with capitalization. Next, you'll see the line `export const processor = new EvmBatchProcessor()`, followed by `.setDataSource`. We'll need to make a few changes here. Subsquid has [available archives for many chains, including Moonbeam, Moonriver, and Moonbase Alpha](https://docs.subsquid.io/evm-indexing/supported-networks/){target=_blank} that can speed up the data retrieval process. For indexing a local development node, there's no archive necessary so the exclusive data source will be the RPC URL of our local node. Go ahead and comment out or delete the archive line. Once done, your code should look similar to the below:
 
 ```ts
-setDataSource({
+.setDataSource({
   chain: {
     url: assertNotNull('{{ networks.development.rpc_url }}'),
     rateLimit: 300,
@@ -294,7 +302,7 @@ setDataSource({
 
 ![Run Subsquid commands](/images/tutorials/integrations/local-subsquid/local-squid-6.png)
 
-The Squid template comes with a variable for your RPC URL defined in your `.env` file. You can replace that with the RPC URL for your local dev node. For demonstration purposes, the RPC URL for a local dev node is hardcoded directly, as shown above. If you're setting the RPC URL in your `.env`, the respective line will look like this:
+The Squid template comes with a variable for your RPC URL defined in your `.env` file. You can replace that with the RPC URL for your local development node. For demonstration purposes, the RPC URL for a local development node is hardcoded directly, as shown above. If you're setting the RPC URL in your `.env`, the respective line will look like this:
 
 ```text
 RPC_ENDPOINT={{ networks.development.rpc_url }}
@@ -315,10 +323,12 @@ The `Transfer` event is defined in `erc20.ts`, which was auto-generated when `sq
 Block range is an important value to modify to narrow the scope of the blocks you're indexing. For example, if you launched your ERC-20 at block `1200000` on Moonbeam, there is no need to query the chain before that block for `Transfer` events. Since we're indexing a local node, this field can be excluded or set to 0. Setting an accurate block range will improve the performance of your indexer. You can set the earliest block to begin indexing in the following manner:
 
 ```ts
-.setBlockRange({from: 0,})
+.setBlockRange({
+  from: 0, // Note the lack of quotes here
+});
 ```
 
-The chosen start block here is 0 since we're indexing a local dev node, but if you were indexing data on another Moonbeam network, you should change it to a starting block relevant to what you're indexing.
+The chosen start block here is 0 since we're indexing a local development node, but if you were indexing data on another Moonbeam network, you should change it to a starting block relevant to what you're indexing.
 
 Change the `setFields` section to specify the following data for our processor to ingest:
 
@@ -334,13 +344,6 @@ Change the `setFields` section to specify the following data for our processor t
 })
 ```
 
-We also need to add the following imports to our `processor.ts` file:
-
-```ts
-import { Store } from '@subsquid/typeorm-store';
-import * as erc20 from './abi/erc20';
-```
-
 Once you've completed the prior steps, your `processor.ts` file should look similar to this:
 
 ???+ code "processor.ts"
@@ -351,18 +354,16 @@ Once you've completed the prior steps, your `processor.ts` file should look simi
 
 ### Transform and Save the Data {: #transform-and-save-the-data}
 
-While `processor.ts` determines the data being consumed, `main.ts` determines the bulk of actions related to processing and transforming that data. In the simplest terms, we are processing the data that was ingested via the Subsquid processor and inserting the desired pieces into a TypeORM database. For more detailed information on how Subsquid works, be sure to check out the [Subsquid docs on Developing a Squid](https://docs.subsquid.io/basics/squid-development/){target=\_blank}
+While `processor.ts` determines the data being consumed, `main.ts` determines the bulk of actions related to processing and transforming that data. In the simplest terms, we are processing the data that was ingested via the Subsquid processor and inserting the desired pieces into a TypeORM database. For more detailed information on how Subsquid works, be sure to check out the [Subsquid docs on Developing a Squid](https://docs.subsquid.io/basics/squid-development/){target=_blank}
 
-Our `main.ts` file is going to scan through each processed block for the `Transfer` event and decode the transfer details, including the sender, receiver, and amount. The script also fetches account details for involved addresses and creates transfer objects with the extracted data. The script then inserts these records into a TypeORM database enabling them to be easily queried. Let's break down the code that comprises `main.ts` in order:
+Our `main.ts` file is going to scan through each processed block for the `Transfer` event and decode the transfer details, including the sender, receiver, and amount. The script also fetches account details for involved addresses and creates transfer objects with the extracted data. The script then inserts these records into a TypeORM database enabling them to be easily queried.
 
-1. The job of `main.ts` is to run the processor and refine the collected data. In `processor.run`, the processor will iterate through all selected blocks and look for `Transfer` event logs. Whenever it finds a `Transfer` event, it's going to store it in an array of `Transfer` events where it awaits further processing
+Let's break down the code that comprises `main.ts` in order:
 
+1. In `processor.run`, the processor will iterate through all of the selected blocks and look for `Transfer` event logs. Whenever it finds a `Transfer` event, it's going to store it in an array of `Transfer` events where it awaits further processing
 2. The `TransferEvent` interface is the type of structure that stores the data extracted from the event logs
-
 3. `getTransfer` is a helper function that extracts and decodes ERC-20 `Transfer` event data from a log entry. It constructs and returns a `TransferEvent` object, which includes details such as the transaction ID, block number, sender and receiver addresses, and the amount transferred. `getTransfer` is called at the time of storing the relevant `Transfer` events into the array of transfers
-
 4. `processTransfers` enriches the transfer data and then inserts these records into a TypeORM database using the `ctx.store` methods. The account model, while not strictly necessary, allows us to introduce another entity in the schema to demonstrate working with multiple entities in your Squid
-
 5. `getAccount` is a helper function that manages the retrieval and creation of account objects. Given an account ID and a map of existing accounts, it returns the corresponding account object. If the account doesn't exist in the map, it creates a new one, adds it to the map, and then returns it
 
 We'll demo a sample query in a later section. You can copy and paste the below code into your `main.ts` file:
@@ -377,54 +378,59 @@ Now we've taken all of the steps necessary and are ready to run our indexer!
 
 ### Run the Indexer {: #run-indexer }
 
-To run our indexer, we're going to run a series of `sqd` commands. 
+To run our indexer, we're going to run a series of `sqd` commands, as follows:
 
-Build our project:
+1. Build our project
 
-   ```bash
-   sqd build
-   ```
-Launch the database:
+    ```bash
+    sqd build
+    ```
 
-   ```bash
-   sqd up
-   ```
-Run the following two commands sequentially:
+2. Launch the database:
 
-   ```bash
-   sqd migration:generate
-   ```
+    ```bash
+    sqd up
+    ```
 
-   ```bash
-   sqd migration:apply
-   ```
-Launch the processor:
+3. Run the following two commands sequentially:
 
-   ```bash
-   sqd process
-   ```
+    ```bash
+    sqd migration:generate
+    sqd migration:apply
+    ```
+
+4. Launch the processor:
+
+    ```bash
+    sqd process
+    ```
+
+!!! note
+    You can review the `commands.json` file to see what each `sqd` command does under the hood.
 
 In your terminal, you should see your indexer starting to process blocks!
 
 ![Run sqd process](/images/tutorials/integrations/local-subsquid/local-squid-6.png)
 
-If your Squid isn't indexing blocks properly, make sure that your development node is running with the `--sealing` flag. For this example, you should have set the flag as `--sealing 4000`, so that a block is produced every four seconds. You can feel free to edit the sealing interval as needed. Before you try to spin up your Squid again, run the following commands to shut down your local Archive and Squid:
+If your Squid isn't indexing blocks properly, make sure that your development node is running with the `--sealing` flag. For this example, you should have set the flag as `--sealing 4000`, so that a block is produced every four seconds. You can feel free to edit the sealing interval as needed. Before you try to spin up your Squid again, run the following commands to restart your Squid:
 
-```bash
-sqd down
-```
+1. Shut down your Squid
 
-Then you can start your local Archive and Squid back up:
+    ```bash
+    sqd down
+    ```
 
-```bash
-sqd up
-```
+2. Start your Squid back up:
 
-Finally, you should be able to start indexing again:
+    ```bash
+    sqd up
+    ```
 
-```bash
-sqd process
-```
+3. Start indexing again:
+
+    ```bash
+    sqd process
+    ```
 
 Now your indexer should be indexing your development node without any problems!
 
@@ -436,7 +442,7 @@ To query your squid, open up a new terminal window within your project and run t
 sqd serve
 ```
 
-And that's it! You can now run queries against your Squid on the GraphQL playground at [http://localhost:4350/graphql](http://localhost:4350/graphql){target=\_blank}. Try crafting your own GraphQL query, or use the below one:
+And that's it! You can now run queries against your Squid on the GraphQL playground at [http://localhost:4350/graphql](http://localhost:4350/graphql){target=_blank}. Try crafting your own GraphQL query, or use the below one:
 
 ???+ code "Sample query"
 
@@ -448,7 +454,7 @@ And that's it! You can now run queries against your Squid on the GraphQL playgro
 
 All of the transfers will be returned, including the transfer of the initial supply to Alith's account and the transfers from Alith to Baltathar, Charleth, Dorothy, and Ethan.
 
-And that's it! You've successfully used Subsquid to index data on a local Moonbeam development node! You can view the entire project on [GitHub](https://github.com/eshaben/local-squid-demo){target=\_blank}.
+And that's it! You've successfully used Subsquid to index data on a local Moonbeam development node! You can view the entire project on [GitHub](https://github.com/eshaben/local-squid-demo){target=_blank}.
 
 ## Debug Your Squid {: #debug-your-squid }
 
@@ -467,7 +473,7 @@ You can also add logging statements directly to your `main.ts` file to indicate 
     --8<-- 'code/tutorials/integrations/local-subsquid/main-with-logging.ts'
     ```
 
-See the [Subsquid guide to logging](https://docs.subsquid.io/basics/logging/){target=\_blank} for more information on debug mode.
+See the [Subsquid guide to logging](https://docs.subsquid.io/basics/logging/){target=_blank} for more information on debug mode.
 
 ### Common Errors {: #common-errors }
 
@@ -477,13 +483,13 @@ Below are some common errors you may face when building a project and how you ca
 FATAL sqd:processor RpcError: Expect block number from id: BlockId::Number(15316)
 ```
 
-This error indicates that your indexer is trying to process blocks that don't exist on your local node. You can resolve this by setting a relevant `to` block limit in your processor as follows: 
+This error indicates that your indexer is trying to process blocks that don't exist on your local node. You can resolve this by setting a relevant `to` block limit in your processor as follows:
 
 ```ts
 .setBlockRange({from: 0, to: 100})
 ```
 
-Another common error can occur when you're experimenting with multiple instances of Subsquid on your machine. 
+Another common error can occur when you're experimenting with multiple instances of Subsquid on your machine.
 
 ```text
 Error response from daemon: driver failed programming external connectivity on endpoint my-awesome-squid-db-1
@@ -501,9 +507,9 @@ Error: connect ECONNREFUSED 127.0.0.1:23798
      address: '127.0.0.1',port: 23798}]}
 ```
 
-To resolve this, run `sqd up` before you run `sqd migration:generate`
+To resolve this, run `sqd up` before you run `sqd migration:generate`.
 
-Is your Squid error-free yet you aren't seeing any transfers detected? Make sure your log events are consistent and identical to the ones your processor is looking for. Your contract address also needs to be lowercase, which you can be assured of by defining it as follows:
+Is your Squid error-free, yet you aren't seeing any transfers detected? Make sure your log events are consistent and identical to the ones your processor is looking for. Your contract address also needs to be lowercase, which you can be assured of by defining it as follows:
 
 ```text
 export const contractAddress = '0x37822de108AFFdd5cDCFDaAa2E32756Da284DB85'.toLowerCase();

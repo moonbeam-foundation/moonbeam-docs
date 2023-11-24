@@ -60,7 +60,7 @@ function getTransfer(ctx: any, log: Log): TransferEvent {
   };
 }
 
-// 4. Enrich and insert data into typeorm database
+// 4. Enrich and insert data into TypeORM database
 async function processTransfers(ctx: any, transfersData: TransferEvent[]) {
   let accountIds = new Set<string>();
   for (let t of transfersData) {

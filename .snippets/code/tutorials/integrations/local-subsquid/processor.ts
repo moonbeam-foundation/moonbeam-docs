@@ -1,13 +1,11 @@
 import { assertNotNull } from '@subsquid/util-internal';
 import {
   BlockHeader,
-  DataHandlerContext,
   EvmBatchProcessor,
   EvmBatchProcessorFields,
   Log as _Log,
   Transaction as _Transaction,
 } from '@subsquid/evm-processor';
-import { Store } from '@subsquid/typeorm-store';
 import * as erc20 from './abi/erc20';
 
 // Here you'll need to import the contract
