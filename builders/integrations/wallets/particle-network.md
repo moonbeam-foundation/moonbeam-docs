@@ -6,7 +6,7 @@ description: This tutorial shows you how to integrate Particle Network's Wallet-
 # Particle Network Smart Wallet-as-a-Service
 
 
-With Particle's Smart Wallet-as-a-Service, developers can curate an unparalleled user experience through modular and customizable EOA/AA embedded wallet components. Using MPC-TSS for key management, Particle can streamline user onboarding via familiar Web2 accounts—such as Google accounts, email addresses, and phone numbers.
+With Particle's [Smart Wallet-as-a-Service](https://blog.particle.network/announcing-our-smart-wallet-as-a-service-modular-stack-upgrading-waas-with-erc-4337/), developers can curate an unparalleled user experience through modular and customizable EOA/AA embedded wallet components. Using MPC-TSS for key management, Particle can streamline user onboarding via familiar Web2 accounts—such as Google accounts, email addresses, and phone numbers.
 
 Particle supports Moonbeam Mainnet and Testnet through both EOA interactions and native ERC-4337 SimpleAccount implementations facilitating full-stack account abstraction.
   
