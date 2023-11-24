@@ -481,4 +481,4 @@
     stateMutability: 'nonpayable',
     type: 'function',
   },
-]
+];
