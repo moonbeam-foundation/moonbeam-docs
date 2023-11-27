@@ -37,7 +37,7 @@ The following sections will provide step-by-step instructions for [creating a ne
 
 #### Create a New Account {: #create-a-new-account-extension }
 
-Creating a new account will generate a seed phrase that can derive multiple Ethereum and Substrate accounts. By default, SubWallet will generate a single Ethereum and a single Substrate account, but you can easily derive more from the same seed phrase. Click **Create a new account** to get started.
+Creating a new account will generate a seed phrase that can derive multiple Ethereum and Substrate accounts. By default, SubWallet will generate a single Ethereum and a single Substrate account, but you can easily derive more from the same seed phrase.To interact with Moonbeam, you will need to use an Ethereum account. Click **Create a new account** to get started.
 
 ![The main screen of the SubWallet browser extension.](/images/tokens/connect/subwallet/subwallet-1.png)
 
@@ -81,7 +81,7 @@ If you select **Import from Polkadot.{js}**, you'll need to make sure that the a
 
 ![Select the import option from the Import account screen of the SubWallet browser extension.](/images/tokens/connect/subwallet/subwallet-6.png)
 
-If you import your account via seed phrase, you'll have to select your account type as either Substrate (Polkadot) or EVM (Ethereum), or both. To interact with Moonbeam, you'll need to choose **Ethereum**.
+If you import your account via seed phrase, you can select your account type as either Substrate (Polkadot) or EVM (Ethereum), or both.
 
 ![Import existing account part 2](/images/tokens/connect/subwallet/subwallet-7.png)
 
@@ -122,9 +122,9 @@ By default, all balances are hidden in SubWallet, but if you press the eye icon,
 
 Once you've [connected SubWallet](#connect-subwallet-to-moonbeam) to any Moonbeam-based network, you can start using your wallet by:
 
+- Receive a token from another address
 - Sending a token transfer to another address
-- Adding ERC-20s to Metamask and interacting with them
-- Adding ERC-721s to Metamask and interacting with them
+- Adding tokens to SubWallet and interact with them
 
 #### Receive a Token {: #receive-a-token-mobile}
 
@@ -156,7 +156,11 @@ To get started with a simple token transfer to another address on Moonbeam, you 
 
 Next, you can take the following steps:
 
-1. Specify the asset to send and the destination chain (in this case, the same chain that you're sending from)
+1. Specify the asset to send and the destination chain. 
+
+    !!! Note 
+        Some tokens are allowed to execute cross-chain transfer, so when choosing the destination network, you can choose the drop-down menu to see the available options.
+
 2. Enter the destination address
 3. Enter the amount of tokens to send
 4. Look over the transaction details, then press **Transfer**
@@ -177,13 +181,13 @@ Once you've downloaded the SubWallet Mobile App, you'll be prompted to set up yo
 
 - **Create a new account** - allows you to create an entirely new account by creating a password and generating a seed phrase
 - **Import an account** - allows you to import an existing account using the seed phrase, JSON file, private key, or by QR code
-- **Attach an account** - allows you to connect to an account without the private key. You can use this method to connect to a cold storage wallet, like [Ledger](/tokens/connect/ledger/){target=_blank}, or a watch-only account. With a watch-only account, you will not be able to transfer funds or interact with your account; you'll only be able to view account balances
+- **Attach an account** - allows you to connect to an account without the private key. You can use this method to connect to a cold storage wallet, like Keystone, or a watch-only account. Ledger support will be coming soon! With a watch-only account, you will not be able to transfer funds or interact with your account; you'll only be able to view account balances. 
 
 The following sections will provide step-by-step instructions for [creating a new account](#create-a-new-account-mobile) and [importing an existing account](#import-an-account-mobile) with SubWallet.
 
 #### Create a New Account {: #create-a-new-account-mobile }
 
-Creating a new account will generate a seed phrase that can derive multiple Ethereum and Substrate accounts. By default, SubWallet will generate a single Ethereum and a single Substrate account, but you can easily derive more from the same seed phrase. Click **Create a new account** to get started.
+Creating a new account will generate a seed phrase that can derive multiple Ethereum and Substrate accounts. By default, SubWallet will generate a single Ethereum and a single Substrate account, but you can easily derive more from the same seed phrase. To interact with Moonbeam, you will need to use an Ethereum account. Click **Create a new account** to get started.
 
 ![The main screen of the SubWallet Mobile App.](/images/tokens/connect/subwallet/subwallet-16.png)
 
@@ -234,7 +238,7 @@ If you select **Import from Polkadot.{js}**, you'll need to make sure that the a
 
 ![Select the import option from the Import account screen of the SubWallet browser extension.](/images/tokens/connect/subwallet/subwallet-22.png)
 
-If you import your account via seed phrase, you'll have to select your account type as either Substrate (Polkadot) or EVM (Ethereum), or both. To interact with Moonbeam, you'll need to choose **Ethereum**.
+If you import your account via seed phrase, you can select your account type as either Substrate (Polkadot) or EVM (Ethereum), or both.
 
 ![Import existing account part 2](/images/tokens/connect/subwallet/subwallet-23.png)
 
@@ -265,7 +269,8 @@ If you're trying to connect to a [local Moonbeam development node](/builders/get
 
 1. Select the hamburger menu from the top left corner, which will take you to the settings page.
 2. On the settings screen, choose **Manage networks**.
-3. Click the **+** icon in the top right corner and enter in the [network configurations](/builders/get-started/quick-start/#network-configurations){target=_blank}.
+3. Click the **+** icon in the top right corner.
+4. Enter in the [network configurations](/builders/get-started/quick-start/#network-configurations){target=_blank}.
 
 ![The tokens screen on the SubWallet browser extension.](/images/tokens/connect/subwallet/subwallet-27.png)
 
@@ -279,9 +284,9 @@ By default, all balances are hidden in SubWallet, but if you press the eye icon,
 
 Once you've [connected SubWallet](#connect-subwallet-to-moonbeam) to any Moonbeam-based network, you can start using your wallet by:
 
+- Receive a token from another address
 - Sending a token transfer to another address
-- Adding ERC-20s to Metamask and interacting with them
-- Adding ERC-721s to Metamask and interacting with them
+- Adding tokens to SubWallet and interact with them
 
 #### Receive a Token {: #receive-a-token-mobile}
 
@@ -305,7 +310,11 @@ To get started with a simple token transfer to another address on Moonbeam, you 
 
 Next, you can take the following steps:
 
-1. Specify the asset to send and the destination chain (in this case, the same chain that you're sending from)
+1. Specify the asset to send and the destination chain.
+
+    !!! Note 
+        Some tokens are allowed to execute cross-chain transfer, so when choosing the destination network, you can choose the drop-down menu to see the available options.
+
 2. Enter the destination address, which can also be done using the address book or by scanning the recipient's QR code.
 3. Choose **Next**
 4. Enter the amount of tokens to send.
