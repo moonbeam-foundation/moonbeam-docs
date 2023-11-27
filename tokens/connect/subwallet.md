@@ -95,6 +95,15 @@ Once you've completed the import process, you'll be prompted to enter a password
 
 Next, you'll be able to provide the relevant seed phrase, private key, JSON file, or QR code, and you can begin using your new account right away.
 
+Once you have imported your account to SubWallet, you can also import additional accounts with the following steps:
+
+1. Click on the account dropdown
+2. Select one of the options from the bottom of the screen. You can click **Import account**, choose whether to import using seed phrase, JSON file, MetaMask private key or QR code, then repeat the process you just went through.
+
+![Import additional accounts on browser extension.](/images/tokens/connect/subwallet/subwallet-37.png)
+
+
+
 ### Connect SubWallet to Moonbeam {: #connect-subwallet-to-moonbeam-extension }
 
 To configure SubWallet for Moonbeam, select the hamburger menu from the top left corner, which will take you to the settings page.
@@ -126,7 +135,7 @@ Once you've [connected SubWallet](#connect-subwallet-to-moonbeam) to any Moonbea
 - Sending a token transfer to another address
 - Adding tokens to SubWallet and interact with them
 
-#### Receive a Token {: #receive-a-token-mobile}
+#### Receive a Token {: #receive-a-token-extension}
 
 To receive a token from another account, you would need to show your wallet address to your counter-party, and they can send their assets to such address.
 
@@ -141,6 +150,11 @@ To receive a token from another account, you would need to show your wallet addr
 3. Search and choose the token that you would like to receive, for this demo, we will choose DEV.
 
 ![Search and choose desired token.](/images/tokens/connect/subwallet/subwallet-31.png)
+
+!!! Note
+    SubWallet supports receiving cross-chain tokens, so please be sure to check that the chain logo under the token name matches with your desired chain.
+
+    ![Cross-chain tokens.](/images/tokens/connect/subwallet/subwallet-39.png) 
 
 4. You will be shown the QR code and the address linked with your account.
 
@@ -252,9 +266,18 @@ Once you've completed the import process, you'll be prompted to enter a password
 
 Next, you'll be able to provide the relevant seed phrase, private key, JSON file, or QR code, and you can begin using your new account right away.
 
+Once you have imported your account to SubWallet, you can also import additional accounts with the following steps:
+
+1. Click on the account dropdown
+2. Select one of the options from the bottom of the screen. You can click **Import account**, choose whether to import using seed phrase, JSON file, MetaMask private key or QR code, then repeat the process you just went through.
+
+![Import additional accounts on Mobile.](/images/tokens/connect/subwallet/subwallet-36.png)
+
+
+
 ### Connect SubWallet to Moonbeam {: #connect-subwallet-to-moonbeam-mobile }
 
-To configure SubWallet for Moonbeam, select **Manage asset display** next to the search icon.
+To configure SubWallet for Moonbeam, select **Custom asset display** next to the search icon.
 
 ![The tokens screen on the SubWallet browser extension.](/images/tokens/connect/subwallet/subwallet-24.png)
 
@@ -295,6 +318,12 @@ To receive a token from another account, you would need to show your wallet addr
 1. Click on the **Address** icon.
 2. Choose your receiving account **(only if you are in all accounts mode)**.
 3. Search and choose the token that you would like to receive, in this case DEV.
+
+    !!! Note
+        SubWallet supports receiving cross-chain tokens, so please be sure to check that the chain logo under the token name matches with your desired chain.
+
+        ![Cross-chain tokens.](/images/tokens/connect/subwallet/subwallet-38.png) 
+
 4. You will be shown the QR code and the address linked with your account.
 
 ![Receive tokens.](/images/tokens/connect/subwallet/subwallet-28.png)
