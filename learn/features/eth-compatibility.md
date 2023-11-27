@@ -1,6 +1,6 @@
 ---
 title: Ethereum Compatibility
-description: It can seem daunting to move to a Polkadot parachain if you’re used to Ethereum. Here’s an overview of Moonbeam's Etheruem compatability.
+description: It can seem daunting to move to a Polkadot parachain if you’re used to Ethereum. Here’s an overview of Moonbeam's Ethereum compatability.
 ---
 
 # Ethereum Compatibility
