@@ -123,7 +123,7 @@ To create a client for reading chain data, you can take the following steps:
 
 ### For Writing Chain Data {: #for-writing-chain-data }
 
-To create a client for reading chain data, you can take the following steps:
+To create a client for writing chain data, you can take the following steps:
 
 1. Import the `createWalletClient` and `http` functions from `viem`, the `privateKeyToAccount` function for loading your accounts via their private keys, and the network you want to interact with from `viem/chains`. The chain can be any of the following: `moonbeam`, `moonriver`, or `moonbaseAlpha`
 2. Create your account using the `privateKeyToAccount` function
