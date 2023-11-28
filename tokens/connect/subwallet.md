@@ -98,10 +98,13 @@ Next, you'll be able to provide the relevant seed phrase, private key, JSON file
 Once you have imported your account to SubWallet, you can also import additional accounts with the following steps:
 
 1. Click on the account dropdown
-2. Select one of the options from the bottom of the screen. You can click **Import account**, choose whether to import using seed phrase, JSON file, MetaMask private key or QR code, then repeat the process you just went through.
+2. Select one of the options from the bottom of the screen. You can click **Import account**.
 
 ![Import additional accounts on browser extension.](/images/tokens/connect/subwallet/subwallet-37.png)
 
+3. Choose whether to import using seed phrase, JSON file, MetaMask private key or QR code, then repeat the process you just went through.
+
+![Import additional accounts on browser extension.](/images/tokens/connect/subwallet/subwallet-40.png)
 
 
 ### Connect SubWallet to Moonbeam {: #connect-subwallet-to-moonbeam-extension }
@@ -269,7 +272,8 @@ Next, you'll be able to provide the relevant seed phrase, private key, JSON file
 Once you have imported your account to SubWallet, you can also import additional accounts with the following steps:
 
 1. Click on the account dropdown
-2. Select one of the options from the bottom of the screen. You can click **Import account**, choose whether to import using seed phrase, JSON file, MetaMask private key or QR code, then repeat the process you just went through.
+2. Select one of the options from the bottom of the screen. You can click **Import account**
+3. Choose whether to import using seed phrase, JSON file, MetaMask private key or QR code, then repeat the process you just went through.
 
 ![Import additional accounts on Mobile.](/images/tokens/connect/subwallet/subwallet-36.png)
 
