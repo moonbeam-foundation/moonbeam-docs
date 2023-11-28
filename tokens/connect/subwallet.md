@@ -161,7 +161,7 @@ To receive a token from another account, you would need to show your wallet addr
 
 4. You will be shown the QR code and the address linked with your account.
 
-![QR code and address to receive tokens.](/images/tokens/connect/subwallet/subwallet-32.png)
+![QR code and address to receive tokens on browser extension.](/images/tokens/connect/subwallet/subwallet-32.png)
 
 Now you just need to show the QR code/address to the sender.
 
@@ -225,7 +225,7 @@ You'll then be prompted to back up your seed phrase. This is an important step, 
 
 2. Once you've safely stored your seed phrase, click **I have kept it somewhere safe**
 
-![Back up your seed phrase on the SubWallet browser extension.](/images/tokens/connect/subwallet/subwallet-18.png)
+![Back up your seed phrase on the SubWallet Mobile App.](/images/tokens/connect/subwallet/subwallet-18.png)
 
 You will then have to re-enter your seedphrase to verify that you have had it stored.
 
@@ -239,7 +239,7 @@ Once you've created a password and saved your seed phrase, you'll be connected t
 1. Click on the account dropdown
 2. Select one of the options from the bottom of the screen. You can click **Create a new account** to repeat the process you just went through, the import button to import an existing account, or the attach button to attach to an existing account with the private key or seed phrase
 
-![View account details and create a new account, import one, or attach one.](/images/tokens/connect/subwallet/subwallet-20.png)
+![View account details and create a new account, import one, or attach one on Mobile App.](/images/tokens/connect/subwallet/subwallet-20.png)
 
 #### Import an Account {: #import-an-account-mobile }
 
@@ -253,7 +253,7 @@ If you select **Import from seed phrase**, there are some incompatibility issues
 
 If you select **Import from Polkadot.{js}**, you'll need to make sure that the account was created in Polkadot.js via private key. If it was created with a seed phrase and you attempt to import it to SubWallet, a different public address will be used. This is because Polkadot.js uses [BIP39](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki){target=_blank}, whereas Ethereum uses [BIP32](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki){target=_blank} or [BIP44](https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki){target=_blank}.
 
-![Select the import option from the Import account screen of the SubWallet browser extension.](/images/tokens/connect/subwallet/subwallet-22.png)
+![Select the import option from the Import account screen of the SubWallet Mobile App.](/images/tokens/connect/subwallet/subwallet-22.png)
 
 If you import your account via seed phrase, you can select your account type as either Substrate (Polkadot) or EVM (Ethereum), or both.
 
@@ -265,7 +265,7 @@ Once you've completed the import process, you'll be prompted to enter a password
 2. Confirm the password by entering it again
 3. Click **Continue**
 
-![The create a password screen on the SubWallet browser extension.](/images/tokens/connect/subwallet/subwallet-17.png)
+![The create a password screen on the SubWallet Mobile App.](/images/tokens/connect/subwallet/subwallet-17.png)
 
 Next, you'll be able to provide the relevant seed phrase, private key, JSON file, or QR code, and you can begin using your new account right away.
 
@@ -283,14 +283,14 @@ Once you have imported your account to SubWallet, you can also import additional
 
 To configure SubWallet for Moonbeam, select **Custom asset display** next to the search icon.
 
-![The tokens screen on the SubWallet browser extension.](/images/tokens/connect/subwallet/subwallet-24.png)
+![The tokens screen on the SubWallet Mobile App.](/images/tokens/connect/subwallet/subwallet-24.png)
 
 To add Moonbeam, you can:
 
 1. Search for "Moon" to view all Moonbeam-based networks, or search for a specific network
 2. Toggle the switch to connect to the network
 
-![The tokens screen on the SubWallet browser extension.](/images/tokens/connect/subwallet/subwallet-25.png)
+![The tokens screen on the SubWallet Mobile App.](/images/tokens/connect/subwallet/subwallet-25.png)
 
 If you're trying to connect to a [local Moonbeam development node](/builders/get-started/networks/moonbeam-dev){target=_blank}, take the following steps:
 
@@ -299,13 +299,13 @@ If you're trying to connect to a [local Moonbeam development node](/builders/get
 3. Click the **+** icon in the top right corner.
 4. Enter in the [network configurations](/builders/get-started/quick-start/#network-configurations){target=_blank}.
 
-![The tokens screen on the SubWallet browser extension.](/images/tokens/connect/subwallet/subwallet-27.png)
+![The tokens screen on the SubWallet Mobile App.](/images/tokens/connect/subwallet/subwallet-27.png)
 
 
 
 By default, all balances are hidden in SubWallet, but if you press the eye icon, you can toggle balance visibility.
 
-![The tokens screen on the SubWallet browser extension.](/images/tokens/connect/subwallet/subwallet-26.png)
+![The tokens screen on the SubWallet Mobile App.](/images/tokens/connect/subwallet/subwallet-26.png)
 
 ### Interact with the Network {: #interact-with-the-network-mobile }
 
@@ -330,7 +330,7 @@ To receive a token from another account, you would need to show your wallet addr
 
 4. You will be shown the QR code and the address linked with your account.
 
-![Receive tokens.](/images/tokens/connect/subwallet/subwallet-28.png)
+![Receive tokens on Mobile App.](/images/tokens/connect/subwallet/subwallet-28.png)
 
 Now you just need to show the QR code/address to the sender.
 
@@ -339,7 +339,7 @@ Now you just need to show the QR code/address to the sender.
 
 To get started with a simple token transfer to another address on Moonbeam, you can click the send icon.
 
-![The tokens screen on the SubWallet browser extension.](/images/tokens/connect/subwallet/subwallet-33.png)
+![The tokens screen on the SubWallet Mobile App.](/images/tokens/connect/subwallet/subwallet-33.png)
 
 Next, you can take the following steps:
 
@@ -353,11 +353,11 @@ Next, you can take the following steps:
 4. Enter the amount of tokens to send.
 5. Look over the transaction details, then press **Transfer**.
 
-![The transfer screen on the SubWallet browser extension, where you can enter in the transaction details.](/images/tokens/connect/subwallet/subwallet-34.png)
+![The transfer screen on the SubWallet Mobile App, where you can enter in the transaction details.](/images/tokens/connect/subwallet/subwallet-34.png)
 
 On the next screen, you'll be able to review the transaction details and submit the transaction. If the transaction details look good, you can click **Approve** to send the transaction.
 
-![The transfer confirmation screen on the SubWallet browser extension.](/images/tokens/connect/subwallet/subwallet-35.png)
+![The transfer confirmation screen on the SubWallet Mobile App.](/images/tokens/connect/subwallet/subwallet-35.png)
 
 
 And that's it! For more information on how to use SubWallet, please refer to [SubWallet's documentation](https://docs.subwallet.app/main/){target=_blank}.
