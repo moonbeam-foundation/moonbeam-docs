@@ -160,3 +160,5 @@ Specifically, this application creates a smart account on Moonbeam MainNet throu
 ```
 
 The full demo repository containing the above code can be found in the [particle-moonbeam-demo GitHub repository](https://github.com/TABASCOatw/particle-moonbeam-demo){target=_blank}. Additionally, you can check out [Particle Network's documentation](https://docs.particle.network){target=_blank}.
+
+--8<-- 'text/_disclaimers/third-party-content.md'
