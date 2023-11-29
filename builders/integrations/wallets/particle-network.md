@@ -1,200 +1,162 @@
 ---
 title: Add Particle Network to a dApp
-description: This tutorial shows you how to integrate Particle Network's Wallet-as-a-Service into a dApp built on Moonbeam to enable MPC-based onboarding and full-stack ERC-4337 AA interaction
+description: Learn how to integrate Particle Network's Wallet-as-a-Service into a dApp built on Moonbeam to enable MPC-based onboarding and ERC-4337 AA interaction.
 ---
 
 # Particle Network Smart Wallet-as-a-Service
 
+## Introduction {: #introduction }
 
-With Particle's [Smart Wallet-as-a-Service](https://blog.particle.network/announcing-our-smart-wallet-as-a-service-modular-stack-upgrading-waas-with-erc-4337/), developers can curate an unparalleled user experience through modular and customizable EOA/AA embedded wallet components. Using MPC-TSS for key management, Particle can streamline user onboarding via familiar Web2 accounts—such as Google accounts, email addresses, and phone numbers.
+With [Particle](https://particle.network/){target=_blank}'s [Smart Wallet-as-a-Service](https://docs.particle.network/getting-started/smart-wallet-as-a-service){target=_blank}, developers can curate an unparalleled user experience through modular and customizable Externally Owned Account (EOA) and [Account Abstraction (AA)](https://docs.particle.network/developers/account-abstraction){target=_blank} embedded wallet components.
 
-Particle supports Moonbeam Mainnet and Testnet through both EOA interactions and native ERC-4337 SimpleAccount implementations facilitating full-stack account abstraction.
+One major component of Particle's Smart Wallet-as-a-Service stack  that streamlines user onboarding is [Particle Auth](https://docs.particle.network/developers/auth-service){target=_blank}, which can be used to onboard users via familiar Web2 accounts—such as Google accounts, email addresses, and phone numbers. This is enabled by using [Multi-Party Computation-based Threshold Signature Scheme (MPC-TSS)](https://docs.particle.network/developers/auth-service){target=_blank} technology for key management.
+
+Particle supports Moonbeam, Moonriver, and the Moonbase Alpha TestNet through both standard EOA interactions and native ERC-4337 SimpleAccount implementations, facilitating full-stack account abstraction.
   
 Specifically, Particle Network's Moonbeam integration is made up of a few components:
-- Particle Network Wallet-as-a-Service
-	- This is the flagship Wallet-as-a-Service product offered by Particle Network enabling application-embedded wallets powered by MPC-TSS to facilitate a seamless, Web2-like onboarding and interaction experience.
-- Particle Network Modular AA Stack
-	- Beyond base EOA-centric interaction that happens as default through Particle's Wallet-as-a-Service, Particle also has a native modular AA stack for implementation of ERC-4337 account abstraction on Moonbeam. This means inherent flexibility with the smart account, bundler, and paymaster you use in tandem with Particle's Wallet-as-a-Service when building AA-enabled applications.
 
-Currently, for AA-enabled applications, Moonbeam Mainnet and Testnet are available on Particle Network's Smart Wallet-as-a-Service through utilization of SimpleAccount. Otherwise, Moonbeam is also available directly through the standard EOA-based interface as well.
+- Particle Network Wallet-as-a-Service - this is the flagship Wallet-as-a-Service product offered by Particle Network, enabling application-embedded wallets powered by MPC-TSS to facilitate a seamless, Web2-like onboarding and interaction experience
+- Particle Network Modular AA Stack - beyond the base EOA-centric interaction that happens by default through Particle's Wallet-as-a-Service, Particle also has a native modular AA stack for the implementation of ERC-4337 account abstraction on Moonbeam. This means inherent flexibility with the smart account, bundler, and paymaster you use in tandem with Particle's Wallet-as-a-Service when building AA-enabled applications
 
-![Particle Network Smart WaaS map](https://blog.particle.network/content/images/2023/10/graphic-image-2.png)
+![Particle Network Smart WaaS map](/images/builders/integrations/wallets/particle/particle-1.png)
 
-Let's dive into a step-by-step example of utilizing Particle Network's Smart Wallet-as-a-Service.
+For a complete overview, please check out Particle's blog post: [Introducing Our Smart Wallet-as-a-Service Modular Stack](https://blog.particle.network/announcing-our-smart-wallet-as-a-service-modular-stack-upgrading-waas-with-erc-4337/){target=_blank}.
 
-## Create an application
+In this guide, you'll go through a step-by-step example of utilizing Particle Network's Smart Wallet-as-a-Service.
+
+## Create an Application {: #create-an-application }
 
 To use Particle Network's Smart Wallet-as-a-Service on Moonbeam, you'll need to begin by creating an account on the [Particle Network dashboard](https://dashboard.particle.network) and spinning up an application.
 
 1. Navigate to the Particle Network dashboard, then sign up or log in
-![Dashboard login](https://files.readme.io/e385493-image_22_1.png)
 
-2. Once logged in, create a new project
-![Project creation](https://files.readme.io/e7f1946-image_23_1.png)
+    ![Dashboard login](/images/builders/integrations/wallets/particle/particle-2.png)
 
-3. Enter the new project and create a new application
-![Application creation](https://files.readme.io/aa31038-webapp.png)
+2. Once logged in, click **Add New Project** to create a new project
 
-4. Finally, copy the project ID, client key, and app ID
-![Application dashboard](https://files.readme.io/07d065b-image_24_1.png)
+    ![Project creation](/images/builders/integrations/wallets/particle/particle-3.png)
 
-## Install dependencies
+3. Enter the project name and click **Save**
 
-To integrate Particle Network within your Moonbeam application, you'll need to install a number of dependencies- the specifics of which depend on whether you intend on purely using the default EOA generated by Particle's Wallet-as-a-Service, or if you intend to leverage an attached smart account.
+    ![Application creation](/images/builders/integrations/wallets/particle/particle-4.png)
 
-For both EOA & smart account utilization, install `@particle-network/auth`
+4. From the project's dashboard, scroll down to the **Your Apps** section and create a new app by selecting **iOS**, **Android**, or **Web** and providing the requested information
 
-```bash
-npm install @particle-network/auth
+    ![Application creation](/images/builders/integrations/wallets/particle/particle-5.png)
 
-// OR
+5. Finally, copy the **Project ID**, **Client Key**, and **App ID**
 
-yarn add @particle-network/auth
-```
+    ![Application dashboard](/images/builders/integrations/wallets/particle/particle-6.png)
 
-If you'd like to natively use ERC-4337 account abstraction, also install `@particle-network/aa`
+## Install Dependencies {: #install-dependencies }
 
-```bash
-npm install @particle-network/aa
+To integrate Particle Network within your Moonbeam application, you'll need to install a number of dependencies, the specifics of which depend on whether you intend on purely using the default EOA generated by Particle's Wallet-as-a-Service, or if you intend to leverage an attached smart account.
 
-// OR
+For both EOA and smart account utilization, install `@particle-network/auth`.
 
-yarn add @particle-network/aa
-```
+=== "npm"
 
-## Configure Particle Network
+    ```bash
+    npm install @particle-network/auth
+    ```
 
-With an application made and dependencies installed, you can move on to configuring `ParticleNetwork` from `@particle-network/auth`, and if applicable, `SmartAccount` from `@particle-network/aa`.
+=== "yarn"
+
+    ```bash
+    yarn add @particle-network/auth
+    ```
+
+If you'd like to natively use ERC-4337 AA, also install `@particle-network/aa`.
+
+=== "npm"
+
+    ```bash
+    npm install @particle-network/aa
+    ```
+
+=== "yarn"
+
+    ```bash
+    yarn add @particle-network/aa
+    ```
+
+When creating an AA, you'll need to pass it a provider. You can use a Particle Provider or any EVM wallet provider. To use a Particle Provider, you'll need to install `@particle-network/provider`.
+
+=== "npm"
+
+    ```bash
+    npm install @particle-network/provider
+    ```
+
+=== "yarn"
+
+    ```bash
+    yarn add @particle-network/provider
+    ```
+
+## Configure Particle Network {: #configure-particle-network }
+
+With an application made and dependencies installed, you can move on to configuring your project.
+
+To configure your project, you'll need to:
+
+1. Import [`ParticleNetwork`](https://docs.particle.network/developers/auth-service/sdks/web#step-2-setup-developer-api-key){target=_blank} from [`@particle-network/auth`](https://docs.particle.network/developers/auth-service/sdks/web){target=_blank}
+2. Import `Moonbeam` from [`@particle-network/chains`](https://docs.particle.network/developers/other-services/node-service/evm-chains-api){target=_blank}, as you'll need Moonbeam's chain name and ID in the next step
+3. Initialize `ParticleNetwork` using your project credentials that you retrieved from your dashboard and Moonbeam's chain name and ID, and, optionally, you can configure wallet display and security settings
+
+    !!! note
+        You can use [dotenv](https://www.dotenv.org/){target=_blank} to securely store your project credentials.
 
 ```js
-import { ParticleNetwork } from '@particle-network/auth';
-import { Moonbeam } from '@particle-network/chains';
-import { SmartAccount } from '@particle-network/aa';
-
-// Project ID, client key, and app ID from https://dashboard.particle.network
-const config = {
-  projectId: process.env.REACT_APP_PROJECT_ID,
-  clientKey: process.env.REACT_APP_CLIENT_KEY,
-  appId: process.env.REACT_APP_APP_ID,
-};
-
-const particle = new ParticleNetwork({
-  ...config,
-  chainName: Moonbeam.name,
-  chainId: Moonbeam.id,
-  wallet: { displayWalletEntry: true }
-});
-
-// If using ERC-4337 AA
-const smartAccount = new SmartAccount(new ParticleProvider(particle.auth), {
-  ...config,
-  aaOptions: {
-    simple: [{ chainId: Moonbeam.id, version: '1.0.0' }] // Uses SimpleAccount
-  }
-});
+--8<-- 'code/builders/integrations/wallets/particle/configure-particle.js'
 ```
-At this point, you've signed up and created an application, installed all required dependencies, and configured `ParticleNetwork`, along with `SmartAccount` if applicable.
 
-## Example of utilization
+## Create an ERC-4337 Account Abstraction {: #create-erc-4337-account-abstraction }
 
-With the aforementioned established, Particle Network can be used similarly to as is shown in the example application below.
+If you want to use an ERC-4337 AA, you'll need to take a couple additional steps:
 
-Specifically, this application creates a smart account on Moonbeam Mainnet through social login, then uses it to send a test transaction of 0.001 GLMR.
+1. Import `SmartAccount` from [`@particle-network/aa`](https://docs.particle.network/developers/account-abstraction/sdks/web){target=_blank} and `ParticleProvider` from [`@particle-network/auth`](https://docs.particle.network/developers/auth-service/sdks/web){target=_blank}
+2. Initialize a `ParticleProvider` to handle wallet connect requests using the `particle` instance you created in the previous set of steps
+3. Initialize a [`SmartAccount`](https://docs.particle.network/developers/account-abstraction/sdks/web#initialize-the-smartaccount){target=_blank} using the provider, your project credentials, and the AA implementation and configuration. For Moonbeam, you'll use the `simple` implementation and pass in Moonbeam's chain ID
+4. Enable ERC-4337 mode, specfiying the `SIMPLE` implementation
+
+```js hl_lines="3 4 21-34 37-40"
+--8<-- 'code/builders/integrations/wallets/particle/configure-aa.js'
+```
+
+At this point, you've signed up and created an application, installed all required dependencies, and configured `ParticleNetwork`, along with `SmartAccount`, if applicable.
+
+### Wrap an EIP-1193 Provider {: #create-a-custom-provider }
+
+You can wrap your AA in a custom provider if you want to interact with an Ethereum library, such as [Ethers.js](https://docs.ethers.org/){target=_blank} or [Web3.js](https://docs.web3js.org/){target=_blank}.
+
+To do so, you'll need to take the following steps:
+
+1. Import [`AAWrapProvider`](https://docs.particle.network/developers/account-abstraction/sdks/web#initialize-the-smartaccount){target=_blank} from `'@particle-network/aa'`
+2. Import the library of your choice
+3. Initialize a `AAWrapProvider` using the AA you created in the previous section
+4. Wrap the EIP-1193 provider using the library of your choice and the `AAWrapProvider`
+
+=== "Ethers.js"
+
+    ```js hl_lines="4 5 44 45"
+    --8<-- 'code/builders/integrations/wallets/particle/custom-ethers-provider.js'
+    ```
+
+=== "Web3.js"
+
+    ```js hl_lines="4 5 44 45"
+    --8<-- 'code/builders/integrations/wallets/particle/custom-web3-provider.js'
+    ```
+
+## Example of Utilization {: #example-of-utilization }
+
+With the aforementioned established, Particle Network can be used similarly, as shown in the example application below.
+
+Specifically, this application creates a smart account on Moonbeam MainNet through social login, then uses it to send a test transaction of 0.001 GLMR.
 
 ```js
-import React, { useState, useEffect } from 'react';
-import { ParticleNetwork } from '@particle-network/auth';
-import { ParticleProvider } from '@particle-network/provider';
-import { Moonbeam } from '@particle-network/chains';
-import { AAWrapProvider, SmartAccount } from '@particle-network/aa';
-import { ethers } from 'ethers';
-
-// Retrieved from the Particle Network dashboard
-const config = {
-  projectId: process.env.REACT_APP_PROJECT_ID,
-  clientKey: process.env.REACT_APP_CLIENT_KEY,
-  appId: process.env.REACT_APP_APP_ID,
-};
-
-// Core configuration
-const particle = new ParticleNetwork({
-  ...config,
-  chainName: Moonbeam.name,
-  chainId: Moonbeam.id,
-  wallet: { displayWalletEntry: true }
-});
-
-// ERC-4337 AA configuration
-const smartAccount = new SmartAccount(new ParticleProvider(particle.auth), {
-  ...config,
-  aaOptions: {
-    simple: [{ chainId: Moonbeam.id, version: '1.0.0' }]
-  }
-});
-
-// Uses custom EIP-1193 AA provider
-const customProvider = new ethers.providers.Web3Provider(new AAWrapProvider(smartAccount), "any");
-
-// Sets wallet UI to use AA mode
-particle.setERC4337({
-  name: 'SIMPLE',
-  version: '1.0.0'
-});
-
-const App = () => {
-  const [userInfo, setUserInfo] = useState(null);
-  const [balance, setBalance] = useState(null);
-
-  useEffect(() => {
-    if (userInfo) {
-      fetchBalance();
-    }
-  }, [userInfo]);
-
-  const fetchBalance = async () => {
-    const address = await smartAccount.getAddress();
-    const balance = await customProvider.getBalance(address);
-    setBalance(ethers.utils.formatEther(balance));
-  };
-
-  const handleLogin = async (preferredAuthType) => {
-    const user = !particle.auth.isLogin() ? await particle.auth.login({preferredAuthType}) : particle.auth.getUserInfo();
-    setUserInfo(user);
-  }
-
-  // Sample burn transaction
-  const executeUserOp = async () => {
-    const signer = customProvider.getSigner();
-    const tx = {
-      to: "0x000000000000000000000000000000000000dEaD",
-      value: ethers.utils.parseEther("0.001"),
-    };
-    const txResponse = await signer.sendTransaction(tx);
-    const txReceipt = await txResponse.wait();
-    console.log('Transaction hash:', txReceipt.transactionHash);
-  };
-
-  return (
-    <div className="App">
-      {!userInfo ? (
-        <div>
-          <button onClick={() => handleLogin('google')}>Sign in with Google</button>
-          <button onClick={() => handleLogin('twitter')}>Sign in with Twitter</button>
-        </div>
-      ) : (
-        <div>
-          <h2>{userInfo.name}</h2>
-          <div>
-            <small>{balance}</small>
-            <button onClick={executeUserOp}>Execute User Operation</button>
-          </div>
-        </div>
-      )}
-    </div>
-  );
-};
-
-export default App;
+--8<-- 'code/builders/integrations/wallets/particle/example-app.js'
 ```
 
-The full demo repository containing the above code can be found [here](https://github.com/TABASCOatw/particle-moonbeam-demo). Additionally, Particle Network's documentation can be found [here](https://docs.particle.network).
+The full demo repository containing the above code can be found in the [particle-moonbeam-demo GitHub repository](https://github.com/TABASCOatw/particle-moonbeam-demo){target=_blank}. Additionally, you can check out [Particle Network's documentation](https://docs.particle.network){target=_blank}.
