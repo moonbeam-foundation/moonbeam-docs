@@ -38,27 +38,33 @@ To get started indexing Substrate data on Moonbeam, you'll need to create a Subs
 
     For more information on getting started with this template, please check out the [Quickstart: Substrate chains](https://docs.subsquid.io/quickstart/quickstart-substrate/){target=_blank} guide on Subsquid's documentation site.
 
-2. To configure your Subsquid project to run on Moonbeam, you'll need to update the `typegen.json` file. The `typegen.json` file is responsible for generating TypeScript interface classes for your data. Depending on the network you're indexing data on, the `specVersions` value in the `typegen.json` file should be configured as follows:
+2. Install dependencies by running: 
+
+    ```bash
+    npm ci
+    ```
+
+3. To configure your Subsquid project to run on Moonbeam, you'll need to update the `typegen.json` file. The `typegen.json` file is responsible for generating TypeScript interface classes for your data. Depending on the network you're indexing data on, the `specVersions` value in the `typegen.json` file should be configured as follows:
 
     === "Moonbeam"
 
         ```json
-        "specVersions": "https://moonbeam.archive.subsquid.io/graphql",
+        "specVersions": "https://v2.archive.subsquid.io/network/moonbeam-mainnet",
         ```
 
     === "Moonriver"
 
         ```json
-        "specVersions": "https://moonriver.archive.subsquid.io/graphql",
+        "specVersions": "https://v2.archive.subsquid.io/network/moonriver-mainnet",
         ```
 
     === "Moonbase Alpha"
 
         ```json
-        "specVersions": "https://moonbase.archive.subsquid.io/graphql",
+        "specVersions": "https://v2.archive.subsquid.io/network/moonbase-testnet",
         ```
 
-3. Modify the `src/processor.ts` file, which is where squids instantiate the processor, configure it, and attach handler functions. The processor fetches historical on-chain data from an [Archive](https://docs.subsquid.io/archives/overview/){target=_blank}, which is a specialized data lake. You'll need to configure your processor to pull data from the Archive that corresponds to the network you are indexing data on:
+4. Modify the `src/processor.ts` file, which is where squids instantiate the processor, configure it, and attach handler functions. The processor fetches historical on-chain data from an [Archive](https://docs.subsquid.io/archives/overview/){target=_blank}, which is a specialized data lake. You'll need to configure your processor to pull data from the Archive that corresponds to the [network](https://docs.subsquid.io/substrate-indexing/supported-networks/){target=_blank} you are indexing data on:
 
     === "Moonbeam"
 
@@ -66,7 +72,7 @@ To get started indexing Substrate data on Moonbeam, you'll need to create a Subs
         const processor = new SubstrateBatchProcessor();
         processor.setDataSource({
           chain: '{{ networks.moonbeam.rpc_url }}',
-          // Resolves to 'https://moonbeam.archive.subsquid.io'
+          // Resolves to 'https://v2.archive.subsquid.io/network/moonbeam-mainnet'
           archive: lookupArchive('moonbeam', {type: 'Substrate', release: 'ArrowSquid'}),
         });
         ```
@@ -77,7 +83,7 @@ To get started indexing Substrate data on Moonbeam, you'll need to create a Subs
         const processor = new SubstrateBatchProcessor();
         processor.setDataSource({
           chain: '{{ networks.moonriver.rpc_url }}',
-          // Resolves to 'https://moonriver.archive.subsquid.io'
+          // Resolves to 'https://v2.archive.subsquid.io/network/moonriver-mainnet'
           archive: lookupArchive('moonriver', {type: 'Substrate', release: 'ArrowSquid'}),
         });
         ```
@@ -88,10 +94,27 @@ To get started indexing Substrate data on Moonbeam, you'll need to create a Subs
         const processor = new SubstrateBatchProcessor();
         processor.setDataSource({
           chain: '{{ networks.moonbase.rpc_url }}',
-          // Resolves to 'https://moonbase.archive.subsquid.io'
+          // Resolves to 'https://v2.archive.subsquid.io/network/moonbase-testnet'
           archive: lookupArchive('moonbase', {type: 'Substrate', release: 'ArrowSquid'}),
         });
+
         ```
+
+5. There's one more quick change that we need to make. The Subsquid Substrate template is configured to process Substrate account types, but Moonbeam uses Ethereum-style accounts. In the `getTransferEvents` function, remove the ss58 encoding of the `from` and `to` fields. 
+
+In an unmodified Substrate template, the `from` and `to` fields are ss58 encoded as shown:
+
+```ts
+from: ss58.codec('kusama').encode(rec.from),
+to: ss58.codec('kusama').encode(rec.to),
+```
+
+After removing the ss58 encoding the two lines are:
+
+```ts
+from: rec.from, 
+to: rec.to, 
+```
 
 And that's all you have to do to configure your Subsquid project to index Substrate data on Moonbeam! Now you can update the `schema.graphql`, `typgen.json`, and `src/processor.ts` files to index the data you need for your project!
 
@@ -118,27 +141,13 @@ To get started indexing EVM data on Moonbeam, you'll need to create a Subsquid p
       - [Quickstart: EVM chains](https://docs.subsquid.io/quickstart/quickstart-ethereum/){target=_blank}
       - [Quickstart: generate from ABI](https://docs.subsquid.io/quickstart/quickstart-abi/){target=_blank}
 
-2. To configure your Subsquid project to run on Moonbeam, you'll need to update the `typegen.json` file. The `typegen.json` file is responsible for generating TypeScript interface classes for your data. Depending on the network you're indexing data on, the `specVersions` value in the `typegen.json` file should be configured as follows:
+2. Install dependencies by running: 
 
-    === "Moonbeam"
+    ```bash
+    npm ci
+    ```
 
-        ```json
-        "specVersions": "https://moonbeam.archive.subsquid.io/graphql",
-        ```
-
-    === "Moonriver"
-
-        ```json
-        "specVersions": "https://moonriver.archive.subsquid.io/graphql",
-        ```
-
-    === "Moonbase Alpha"
-
-        ```json
-        "specVersions": "https://moonbase.archive.subsquid.io/graphql",
-        ```
-
-3. Modify the `src/processor.ts` file, which is where squids instantiate the processor, configure it, and attach handler functions. The processor fetches historical on-chain data from an [Archive](https://docs.subsquid.io/archives/overview/){target=_blank}, which is a specialized data lake. You'll need to configure your processor to pull data from the Archive that corresponds to the network you are indexing data on:
+3. Modify the `src/processor.ts` file, which is where squids instantiate the processor, configure it, and attach handler functions. The processor fetches historical on-chain data from an [Archive](https://docs.subsquid.io/archives/overview/){target=_blank}, which is a specialized data lake. You'll need to configure your processor to pull data from the Archive that corresponds to the [network](https://docs.subsquid.io/evm-indexing/supported-networks/){target=_blank} you are indexing data on:
 
     === "Moonbeam"
 
@@ -171,7 +180,41 @@ To get started indexing EVM data on Moonbeam, you'll need to create a Subsquid p
           // Resolves to 'https://v2.archive.subsquid.io/network/moonbase-testnet'
           archive: lookupArchive('moonbase', { type: 'EVM' }),
         });
+
         ```
+
+4. Launch Postgres and detach by running:
+
+    ```bash
+    sqd up
+    ```
+
+5. Inspect and run the processor:
+
+    ```bash
+    sqd process
+    ```
+
+6. Open a separate terminal window in the same directory, then start the GraphQL server. 
+
+    ```bash
+    sqd serve
+    ```
+
+7. You can query your template EVM squid with the below sample query. If you've modified the template EVM squid to index different data, you'll need to modify this query accordingly.
+
+    ```graphql
+    query MyQuery {
+      burns(orderBy: value_DESC) {
+        address
+        block
+        id
+        txHash
+        value
+      }
+    }
+    ```
+
 
 And that's all you have to do to configure your Subsquid project to index EVM data on Moonbeam! Now you can update the `schema.graphql`, `typegen.json`, and `src/processor.ts` files to index the data you need for your project!
 
