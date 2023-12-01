@@ -100,21 +100,49 @@ To get started indexing Substrate data on Moonbeam, you'll need to create a Subs
 
         ```
 
-5. There's one more quick change that we need to make. The Subsquid Substrate template is configured to process Substrate account types, but Moonbeam uses Ethereum-style accounts. In the `getTransferEvents` function, remove the ss58 encoding of the `from` and `to` fields. 
+5. There's one more quick change to make to the template. The Subsquid Substrate template is configured to process Substrate account types, but Moonbeam uses Ethereum-style accounts. In the `getTransferEvents` function, remove the ss58 encoding of the `from` and `to` fields. 
 
-In an unmodified Substrate template, the `from` and `to` fields are ss58 encoded as shown:
+    In an unmodified Substrate template, the `from` and `to` fields are ss58 encoded as shown:
 
-```ts
-from: ss58.codec('kusama').encode(rec.from),
-to: ss58.codec('kusama').encode(rec.to),
-```
+    ```ts
+    from: ss58.codec('kusama').encode(rec.from),
+    to: ss58.codec('kusama').encode(rec.to),
+    ```
 
-After removing the ss58 encoding the two lines are:
+    After removing the ss58 encoding the two lines are:
 
-```ts
-from: rec.from, 
-to: rec.to, 
-```
+    ```ts
+    from: rec.from, 
+    to: rec.to, 
+    ```
+
+6. Launch Postgres and detach by running:
+
+    ```bash
+    sqd up
+    ```
+
+7. Inspect and run the processor:
+
+    ```bash
+    sqd process
+    ```
+
+8. Open a separate terminal window in the same directory, then start the GraphQL server. 
+
+    ```bash
+    sqd serve
+    ```
+
+9. You can query your template Substrate squid with the below sample query. If you've modified the template Substrate squid to index different data, you'll need to modify this query accordingly.
+
+    ```graphql
+    query MyQuery {
+        accountsConnection(orderBy: id_ASC) {
+          totalCount
+        }
+      }
+    ```
 
 And that's all you have to do to configure your Subsquid project to index Substrate data on Moonbeam! Now you can update the `schema.graphql`, `typgen.json`, and `src/processor.ts` files to index the data you need for your project!
 
