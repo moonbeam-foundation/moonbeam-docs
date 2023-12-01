@@ -7,9 +7,11 @@ description: Learn how to integrate Particle Network's Wallet-as-a-Service into 
 
 ## Introduction {: #introduction }
 
-With [Particle](https://particle.network/){target=_blank}'s [Smart Wallet-as-a-Service](https://docs.particle.network/getting-started/smart-wallet-as-a-service){target=_blank}, developers can curate an unparalleled user experience through modular and customizable Externally Owned Account (EOA) and [Account Abstraction (AA)](https://docs.particle.network/developers/account-abstraction){target=_blank} embedded wallet components.
+[Particle Network](https://particle.network/){target=_blank} is a [Smart Wallet-as-a-Service](https://docs.particle.network/getting-started/smart-wallet-as-a-service){target=_blank} provider that allows developers to improve user experience through modular and customizable Externally Owned Account (EOA) and [Account Abstraction (AA)](https://docs.particle.network/developers/account-abstraction){target=_blank} embedded wallet components.
 
-One major component of Particle's Smart Wallet-as-a-Service stack  that streamlines user onboarding is [Particle Auth](https://docs.particle.network/developers/auth-service){target=_blank}, which can be used to onboard users via familiar Web2 accounts—such as Google accounts, email addresses, and phone numbers. This is enabled by using [Multi-Party Computation-based Threshold Signature Scheme (MPC-TSS)](https://docs.particle.network/developers/auth-service){target=_blank} technology for key management.
+One major component of Particle's Smart Wallet-as-a-Service stack that streamlines user onboarding is [Particle Auth](https://docs.particle.network/developers/auth-service){target=_blank}, which can be used to onboard users via familiar Web2 accounts—such as Google accounts, email addresses, and phone numbers. This is enabled by using [Multi-Party Computation-based Threshold Signature Scheme (MPC-TSS)](https://docs.particle.network/developers/auth-service){target=_blank} technology for key management.
+
+For a complete overview of Particle's stack, please check out Particle's blog post: [Introducing Our Smart Wallet-as-a-Service Modular Stack](https://blog.particle.network/announcing-our-smart-wallet-as-a-service-modular-stack-upgrading-waas-with-erc-4337/){target=_blank}.
 
 Particle supports Moonbeam, Moonriver, and the Moonbase Alpha TestNet through both standard EOA interactions and native [ERC-4337](https://eips.ethereum.org/EIPS/eip-4337){target=_blank} SimpleAccount implementations, facilitating full-stack account abstraction.
   
@@ -19,8 +21,6 @@ Specifically, Particle Network's Moonbeam integration is made up of a few compon
 - Particle Network Modular [AA Stack](https://docs.particle.network/developers/account-abstraction){target=_blank} - beyond the base EOA-centric interaction that happens by default through Particle's Wallet-as-a-Service, Particle also has a native modular AA stack for the implementation of ERC-4337 account abstraction on Moonbeam. This means inherent flexibility with the smart account, bundler, and paymaster you use in tandem with Particle's Wallet-as-a-Service when building AA-enabled applications
 
 ![Particle Network Smart WaaS map](/images/builders/integrations/wallets/particle/particle-1.png)
-
-For a complete overview, please check out Particle's blog post: [Introducing Our Smart Wallet-as-a-Service Modular Stack](https://blog.particle.network/announcing-our-smart-wallet-as-a-service-modular-stack-upgrading-waas-with-erc-4337/){target=_blank}.
 
 In this guide, you'll go through a step-by-step example of utilizing Particle Network's Smart Wallet-as-a-Service.
 
@@ -159,6 +159,8 @@ Specifically, this application creates a smart account on Moonbeam MainNet throu
 --8<-- 'code/builders/integrations/wallets/particle/example-app.js'
 ```
 
-The full demo repository containing the above code can be found in the [particle-moonbeam-demo GitHub repository](https://github.com/TABASCOatw/particle-moonbeam-demo){target=_blank}. Additionally, you can check out [Particle Network's documentation](https://docs.particle.network){target=_blank}.
+The full demo repository containing the above code can be found in the [particle-moonbeam-demo GitHub repository](https://github.com/TABASCOatw/particle-moonbeam-demo){target=_blank}.
+
+That concludes the brief introduction to Particle's Smart Wallet-as-a-Service stack and how to get started with Particle on Moonbeam. For more information, you can check out [Particle Network's documentation](https://docs.particle.network){target=_blank}.
 
 --8<-- 'text/_disclaimers/third-party-content.md'
