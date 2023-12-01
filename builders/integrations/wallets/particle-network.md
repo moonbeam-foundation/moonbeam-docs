@@ -11,12 +11,12 @@ With [Particle](https://particle.network/){target=_blank}'s [Smart Wallet-as-a-S
 
 One major component of Particle's Smart Wallet-as-a-Service stack  that streamlines user onboarding is [Particle Auth](https://docs.particle.network/developers/auth-service){target=_blank}, which can be used to onboard users via familiar Web2 accounts—such as Google accounts, email addresses, and phone numbers. This is enabled by using [Multi-Party Computation-based Threshold Signature Scheme (MPC-TSS)](https://docs.particle.network/developers/auth-service){target=_blank} technology for key management.
 
-Particle supports Moonbeam, Moonriver, and the Moonbase Alpha TestNet through both standard EOA interactions and native ERC-4337 SimpleAccount implementations, facilitating full-stack account abstraction.
+Particle supports Moonbeam, Moonriver, and the Moonbase Alpha TestNet through both standard EOA interactions and native [ERC-4337](https://eips.ethereum.org/EIPS/eip-4337){target=_blank} SimpleAccount implementations, facilitating full-stack account abstraction.
   
 Specifically, Particle Network's Moonbeam integration is made up of a few components:
 
-- Particle Network Wallet-as-a-Service - this is the flagship Wallet-as-a-Service product offered by Particle Network, enabling application-embedded wallets powered by MPC-TSS to facilitate a seamless, Web2-like onboarding and interaction experience
-- Particle Network Modular AA Stack - beyond the base EOA-centric interaction that happens by default through Particle's Wallet-as-a-Service, Particle also has a native modular AA stack for the implementation of ERC-4337 account abstraction on Moonbeam. This means inherent flexibility with the smart account, bundler, and paymaster you use in tandem with Particle's Wallet-as-a-Service when building AA-enabled applications
+- Particle Network [Wallet-as-a-Service](https://docs.particle.network/getting-started/smart-wallet-as-a-service){target=_blank} - this is the flagship Wallet-as-a-Service product offered by Particle Network, enabling application-embedded wallets powered by MPC-TSS to facilitate a seamless, Web2-like onboarding and interaction experience
+- Particle Network Modular [AA Stack](https://docs.particle.network/developers/account-abstraction){target=_blank} - beyond the base EOA-centric interaction that happens by default through Particle's Wallet-as-a-Service, Particle also has a native modular AA stack for the implementation of ERC-4337 account abstraction on Moonbeam. This means inherent flexibility with the smart account, bundler, and paymaster you use in tandem with Particle's Wallet-as-a-Service when building AA-enabled applications
 
 ![Particle Network Smart WaaS map](/images/builders/integrations/wallets/particle/particle-1.png)
 
@@ -118,7 +118,7 @@ If you want to use an ERC-4337 AA, you'll need to take a couple additional steps
 1. Import `SmartAccount` from [`@particle-network/aa`](https://docs.particle.network/developers/account-abstraction/sdks/web){target=_blank} and `ParticleProvider` from [`@particle-network/auth`](https://docs.particle.network/developers/auth-service/sdks/web){target=_blank}
 2. Initialize a `ParticleProvider` to handle wallet connect requests using the `particle` instance you created in the previous set of steps
 3. Initialize a [`SmartAccount`](https://docs.particle.network/developers/account-abstraction/sdks/web#initialize-the-smartaccount){target=_blank} using the provider, your project credentials, and the AA implementation and configuration. For Moonbeam, you'll use the `simple` implementation and pass in Moonbeam's chain ID
-4. Enable ERC-4337 mode, specfiying the `SIMPLE` implementation
+4. Enable ERC-4337 mode, specifying the `SIMPLE` implementation
 
 ```js hl_lines="3 4 21-34 37-40"
 --8<-- 'code/builders/integrations/wallets/particle/configure-aa.js'
