@@ -38,7 +38,7 @@ To get started indexing Substrate data on Moonbeam, you'll need to create a Subs
 
     For more information on getting started with this template, please check out the [Quickstart: Substrate chains](https://docs.subsquid.io/quickstart/quickstart-substrate/){target=_blank} guide on Subsquid's documentation site.
 
-2. Install dependencies by running: 
+2. Navigate into the root directory of your Squid project and install dependencies by running:  
 
     ```bash
     npm ci
@@ -167,7 +167,7 @@ To get started indexing EVM data on Moonbeam, you'll need to create a Subsquid p
       - [Quickstart: EVM chains](https://docs.subsquid.io/quickstart/quickstart-ethereum/){target=_blank}
       - [Quickstart: generate from ABI](https://docs.subsquid.io/quickstart/quickstart-abi/){target=_blank}
 
-2. Install dependencies by running: 
+2. Navigate into the root directory of your Squid project and install dependencies by running: 
 
     ```bash
     npm ci
