@@ -74,7 +74,7 @@ To get started indexing Substrate data on Moonbeam, you'll need to create a Subs
           chain: '{{ networks.moonbeam.rpc_url }}',
           // Resolves to 'https://v2.archive.subsquid.io/network/moonbeam-mainnet'
           archive: lookupArchive('moonbeam', {type: 'Substrate', release: 'ArrowSquid'}),
-        });
+        })
         ```
 
     === "Moonriver"
@@ -85,7 +85,7 @@ To get started indexing Substrate data on Moonbeam, you'll need to create a Subs
           chain: '{{ networks.moonriver.rpc_url }}',
           // Resolves to 'https://v2.archive.subsquid.io/network/moonriver-mainnet'
           archive: lookupArchive('moonriver', {type: 'Substrate', release: 'ArrowSquid'}),
-        });
+        })
         ```
 
     === "Moonbase Alpha"
@@ -96,7 +96,7 @@ To get started indexing Substrate data on Moonbeam, you'll need to create a Subs
           chain: '{{ networks.moonbase.rpc_url }}',
           // Resolves to 'https://v2.archive.subsquid.io/network/moonbase-testnet'
           archive: lookupArchive('moonbase', {type: 'Substrate', release: 'ArrowSquid'}),
-        });
+        })
 
         ```
 
@@ -183,7 +183,7 @@ To get started indexing EVM data on Moonbeam, you'll need to create a Subsquid p
           chain: '{{ networks.moonbeam.rpc_url }}',
           // Resolves to 'https://v2.archive.subsquid.io/network/moonbeam-mainnet'
           archive: lookupArchive('moonbeam', { type: 'EVM' })
-        });
+        })
         ```
 
     === "Moonriver"
@@ -194,7 +194,7 @@ To get started indexing EVM data on Moonbeam, you'll need to create a Subsquid p
           chain: '{{ networks.moonriver.rpc_url }}',
           // Resolves to 'https://v2.archive.subsquid.io/network/moonriver-mainnet'
           archive: lookupArchive('moonriver', { type: 'EVM' }),
-        });
+        })
         ```
 
     === "Moonbase Alpha"
@@ -205,7 +205,7 @@ To get started indexing EVM data on Moonbeam, you'll need to create a Subsquid p
           chain: '{{ networks.moonbase.rpc_url }}',
           // Resolves to 'https://v2.archive.subsquid.io/network/moonbase-testnet'
           archive: lookupArchive('moonbase', { type: 'EVM' }),
-        });
+        })
 
         ```
 
