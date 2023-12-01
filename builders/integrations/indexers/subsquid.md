@@ -100,16 +100,14 @@ To get started indexing Substrate data on Moonbeam, you'll need to create a Subs
 
         ```
 
-5. There's one more quick change to make to the template. The Subsquid Substrate template is configured to process Substrate account types, but Moonbeam uses Ethereum-style accounts. In the `getTransferEvents` function, remove the ss58 encoding of the `from` and `to` fields. 
-
-    In an unmodified Substrate template, the `from` and `to` fields are ss58 encoded as shown:
+5. There's one more quick change to make to the template. The Subsquid Substrate template is configured to process Substrate account types, but Moonbeam uses Ethereum-style accounts. In the `getTransferEvents` function, remove the ss58 encoding of the `from` and `to` fields. In an unmodified Substrate template, the `from` and `to` fields are ss58 encoded as shown:
 
     ```ts
     from: ss58.codec('kusama').encode(rec.from),
     to: ss58.codec('kusama').encode(rec.to),
     ```
 
-    After removing the ss58 encoding the two lines are:
+    After removing the ss58 encoding, the respective lines are:
 
     ```ts
     from: rec.from, 
@@ -144,7 +142,7 @@ To get started indexing Substrate data on Moonbeam, you'll need to create a Subs
       }
     ```
 
-And that's all you have to do to configure your Subsquid project to index Substrate data on Moonbeam! Now you can update the `schema.graphql`, `typgen.json`, and `src/processor.ts` files to index the data you need for your project!
+And that's all you have to do to configure your Subsquid project to index Substrate data on Moonbeam! Now you can update the `schema.graphql`, `main.ts`, `typgen.json`, and `src/processor.ts` files to index the data you need for your project!
 
 ## Index Ethereum Data on Moonbeam {: #index-ethereum-contracts }
 
@@ -244,7 +242,7 @@ To get started indexing EVM data on Moonbeam, you'll need to create a Subsquid p
     ```
 
 
-And that's all you have to do to configure your Subsquid project to index EVM data on Moonbeam! Now you can update the `schema.graphql`, `typegen.json`, and `src/processor.ts` files to index the data you need for your project!
+And that's all you have to do to configure your Subsquid project to index EVM data on Moonbeam! Now you can update the `schema.graphql`, `main.ts`, and `src/processor.ts` files to index the data you need for your project!
 
 If you're interested in a step-by-step tutorial to get started indexing data on Moonbeam, you can check out the [Index NFT Token Transfers on Moonbeam with Subsquid](/tutorials/integrations/nft-subsquid){target=_blank} tutorial!
 
