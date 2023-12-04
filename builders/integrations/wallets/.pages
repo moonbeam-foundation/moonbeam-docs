@@ -3,3 +3,4 @@ nav:
   - index.md
   - 'MetaMask': 'metamask.md'
   - 'WalletConnect': 'walletconnect.md'
+  - 'Particle Network': 'particle-network.md'
