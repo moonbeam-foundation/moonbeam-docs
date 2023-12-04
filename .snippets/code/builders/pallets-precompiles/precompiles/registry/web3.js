@@ -1,4 +1,4 @@
-import Web3 from 'web3';
+import { Web3 } from 'web3';
 import ABI from './precompileRegistryABI.js'; // Import Precompile Registry ABI
 
 const privateKey = 'INSERT_PRIVATE_KEY';

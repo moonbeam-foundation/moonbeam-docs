@@ -1,7 +1,7 @@
 networks:
   development:
-    build_tag: v0.32.2
-    tracing_tag: purestake/moonbeam-tracing:v0.32.2-2403-latest
+    build_tag: v0.34.0
+    tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.34.0-2601-latest
     rpc_url: http://127.0.0.1:9944
     wss_url: ws://127.0.0.1:9944
     chain_id: 1281
@@ -15,10 +15,10 @@ networks:
     hex_chain_id: '0x507'
     chain_spec: alphanet
     block_explorer: https://moonbase.moonscan.io/
-    spec_version: runtime-2500
-    parachain_release_tag: v0.33.0 # must be in this exact format for links to work
-    parachain_sha256sum: 1a31ee40cc2e320a009ee687624c53bb51cf65c69a0409b018a5378d5231eaf7
-    tracing_tag: purestake/moonbeam-tracing:v0.33.0-2500-latest
+    spec_version: runtime-2601
+    parachain_release_tag: v0.34.0 # must be in this exact format for links to work
+    parachain_sha256sum: 0ded3fe4095b5848c3de7483889c17a507220435ad2e21bb9e460a3f1e3eff1c
+    tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.34.0-2601-latest
     gas_block: 15,000,000
     gas_block_numbers_only: 15000000
     gas_tx: 12,995,000
@@ -367,10 +367,6 @@ networks:
     substrate_api_sidecar:
       stable_version: 14.1.1
     tx_weight_to_gas_ratio: 25000      
-    mintable_xc20:
-      asset_deposit: 100
-      metadata_base_deposit: 1.0068
-      metadata_byte_deposit: .0001
     orbiter:
       max_orbiters_per_collator: 4
       max_collators: Unlimited
@@ -396,12 +392,12 @@ networks:
     chain_id: 1285
     hex_chain_id: '0x505'
     node_directory: /var/lib/moonriver-data
-    parachain_release_tag: v0.33.0
-    parachain_sha256sum: 1a31ee40cc2e320a009ee687624c53bb51cf65c69a0409b018a5378d5231eaf7
-    tracing_tag: purestake/moonbeam-tracing:v0.33.0-2500-latest
+    parachain_release_tag: v0.34.0
+    parachain_sha256sum: 0ded3fe4095b5848c3de7483889c17a507220435ad2e21bb9e460a3f1e3eff1c
+    tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.34.0-2601-latest
     chain_spec: moonriver
     block_explorer: https://moonriver.moonscan.io/
-    spec_version: runtime-2403
+    spec_version: runtime-2601
     binary_name: moonbeam
     min_gas_price: 1.25
     block_time: 12
@@ -717,10 +713,6 @@ networks:
     substrate_api_sidecar:
       stable_version: 14.1.1
     tx_weight_to_gas_ratio: 25000
-    mintable_xc20:
-      asset_deposit: 100
-      metadata_base_deposit: 1.0068
-      metadata_byte_deposit: .0001
     orbiter:
       max_orbiters_per_collator: 3
       max_collators: 8
@@ -737,12 +729,12 @@ networks:
     chain_id: 1284
     hex_chain_id: '0x504'
     node_directory: /var/lib/moonbeam-data
-    parachain_release_tag: v0.33.0
-    parachain_sha256sum: 1a31ee40cc2e320a009ee687624c53bb51cf65c69a0409b018a5378d5231eaf7
-    tracing_tag: purestake/moonbeam-tracing:v0.33.0-2500-latest
+    parachain_release_tag: v0.34.0
+    parachain_sha256sum: 0ded3fe4095b5848c3de7483889c17a507220435ad2e21bb9e460a3f1e3eff1c
+    tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.34.0-2601-latest
     chain_spec: moonbeam
     block_explorer: https://moonscan.io
-    spec_version: runtime-2403
+    spec_version: runtime-2601
     binary_name: moonbeam
     min_gas_price: 125
     block_time: 12
@@ -1046,10 +1038,6 @@ networks:
     substrate_api_sidecar:
       stable_version: 14.1.1
       tx_weight_to_gas_ratio: 25000
-    mintable_xc20:
-      asset_deposit: 10000
-      metadata_base_deposit: 10.68
-      metadata_byte_deposit: .01
     orbiter:
       max_orbiters_per_collator: 6
       max_collators: 5
@@ -1092,7 +1080,7 @@ networks:
       display: 107,648,000
       numbers_only: 107648000
   kusama:
-    spec_version: v0.9.43
+    spec_version: v1.0.0
     rocks_db:
       read_weight: 
         display: 25,000,000
@@ -1105,32 +1093,32 @@ networks:
       write_weight: 50,000,000
     xcm_message:
       transfer:
-        weight: 299,506,000
-        cost: '0.000092003956'
+        weight: 305,952,000
+        cost: '0.000081779545'
     xcm_instructions:
       buy_exec:
-        base_weight: 3,697,000
-        total_weight: 3,697,000
-        ksm_cost: '0.000001135665'
+        base_weight: 2,714,000
+        total_weight: 2,714,000
+        ksm_cost: '0.000000725440'
       withdraw:
         base_weight: 
-          display: 20,385,000
-          numbers_only: 20385000
+          display: 24,720,000
+          numbers_only: 24720000
         total_weight:
-          display: 145,385,000
-          numbers_only: 145385000
-        planck_ksm_cost: 44660191.1923
-        ksm_cost: '0.000044660191'
+          display: 149,720,000
+          numbers_only: 149720000
+        planck_ksm_cost: 40019459.1011
+        ksm_cost: '0.000040019459'
       clear_origin:
-        total_weight: 3,661,000
-        ksm_cost: '0.000001124607'
+        total_weight: 2,614,000
+        ksm_cost: '0.000000698710'
       deposit_asset:
-        total_weight: 146,763,000
-        ksm_cost: '0.000045083493'
-      planck_ksm_weight: '0.307185687604'
+        total_weight: 150,904,000
+        ksm_cost: '0.000040335936'
+      planck_ksm_weight: '0.267295345319'
     extrinsic_base_weight:
-      display: 108,512,000
-      numbers_only: 108512000
+      display: 124,706,000
+      numbers_only: 124706000
   alphanet:
     spec_version: v0.9.43
     xcm_instructions:
@@ -1155,6 +1143,7 @@ networks:
           numbers_only: 400000000
         wei_betadev_cost: 20000000000000
         betadev_cost: '0.00002'
+polkadot_sdk: polkadot-v1.1.0
 xcm:
   db_weights:
     rocksdb_read: 

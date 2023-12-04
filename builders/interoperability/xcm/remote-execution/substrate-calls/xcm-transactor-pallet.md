@@ -35,7 +35,7 @@ The XCM Transactor Pallet provides the following extrinsics (functions):
                 - `AsCurrencyId` - the currency ID of the asset to use for the fees. The currency ID can be either:
                     - `SelfReserve` - uses the native asset
                     - `ForeignAsset` - uses an [external XC-20](/builders/interoperability/xcm/xc20/overview#external-xc20s){target=_blank}. It requires you to specify the asset ID of the XC-20
-                    - `LocalAssetReserve` - uses a mintable XC-20. It requires you to specify the asset ID of the mintable XC-20. It is recommended to use [local XC-20s](/builders/interoperability/xcm/xc20/overview/#local-xc20s){target=_blank} instead via the `Erc20` currency type
+                     - `LocalAssetReserve` - *deprecated* - use [Local XC-20s](/builders/interoperability/xcm/xc20/overview/#local-xc20s){target=_blank} instead via the `Erc20` currency type
                     - `Erc20` - uses a [local XC-20](/builders/interoperability/xcm/xc20/overview#local-xc20s){target=_blank}. It requires you to specify the contract address of the local XC-20
                 - `AsMultiLocation` - the XCM versioned multilocation for the asset to use for the fees
             - `feeAmount` - (optional) the amount to use for fees
@@ -123,7 +123,7 @@ The XCM Transactor Pallet provides the following extrinsics (functions):
                 - `AsCurrencyId` - the currency ID of the asset to use for the fees. The currency ID can be either:
                     - `SelfReserve` - uses the native asset
                     - `ForeignAsset` - uses an [external XC-20](/builders/interoperability/xcm/xc20/overview#external-xc20s){target=_blank}. It requires you to specify the asset ID of the XC-20
-                    - `LocalAssetReserve` - uses a mintable XC-20. It requires you to specify the asset ID of the mintable XC-20. It is recommended to use [local XC-20s](/builders/interoperability/xcm/xc20/overview/#local-xc20s){target=_blank} instead via the `Erc20` currency type
+                     - `LocalAssetReserve` - *deprecated* - use [Local XC-20s](/builders/interoperability/xcm/xc20/overview/#local-xc20s){target=_blank} instead via the `Erc20` currency type
                     - `Erc20` - uses a [local XC-20](/builders/interoperability/xcm/xc20/overview#local-xc20s){target=_blank}. It requires you to specify the contract address of the local XC-20
                 - `AsMultiLocation` - the XCM versioned multilocation for the asset to use for the fees
             - `feeAmount` - (optional) the amount to use for fees
@@ -155,7 +155,7 @@ The XCM Transactor Pallet provides the following extrinsics (functions):
                 - `AsCurrencyId` - the currency ID of the asset to use for the fees. The currency ID can be either:
                     - `SelfReserve` - uses the native asset
                     - `ForeignAsset` - uses an [external XC-20](/builders/interoperability/xcm/xc20/overview#external-xc20s){target=_blank}. It requires you to specify the asset ID of the XC-20
-                    - `LocalAssetReserve` - uses a mintable XC-20. It requires you to specify the asset ID of the mintable XC-20. It is recommended to use [local XC-20s](/builders/interoperability/xcm/xc20/overview/#local-xc20s){target=_blank} instead via the `Erc20` currency type
+                     - `LocalAssetReserve` - *deprecated* - use [Local XC-20s](/builders/interoperability/xcm/xc20/overview/#local-xc20s){target=_blank} instead via the `Erc20` currency type
                     - `Erc20` - uses a [local XC-20](/builders/interoperability/xcm/xc20/overview#local-xc20s){target=_blank}. It requires you to specify the contract address of the local XC-20
                 - `AsMultiLocation` - the XCM versioned multilocation for the asset to use for the fees
             - `feeAmount` - (optional) the amount to use for fees

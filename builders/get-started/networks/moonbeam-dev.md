@@ -29,7 +29,7 @@ Using Docker enables you to spin up a node in a matter of seconds. Once you have
 1. Execute the following command to download the latest Moonbeam image:
 
     ```bash
-    docker pull purestake/moonbeam:{{ networks.development.build_tag }}
+    docker pull moonbeamfoundation/moonbeam:{{ networks.development.build_tag }}
     ```
 
     The tail end of the console log should look like this:
@@ -42,7 +42,7 @@ Using Docker enables you to spin up a node in a matter of seconds. Once you have
 
         ```bash
         docker run --rm --name {{ networks.development.container_name }} --network host \
-        purestake/moonbeam:{{ networks.development.build_tag }} \
+        moonbeamfoundation/moonbeam:{{ networks.development.build_tag }} \
         --dev --rpc-external
         ```
 
@@ -50,7 +50,7 @@ Using Docker enables you to spin up a node in a matter of seconds. Once you have
 
         ```bash
         docker run --rm --name {{ networks.development.container_name }} -p 9944:9944 \
-        purestake/moonbeam:{{ networks.development.build_tag }} \
+        moonbeamfoundation/moonbeam:{{ networks.development.build_tag }} \
         --dev --rpc-external
         ```
 
@@ -58,7 +58,7 @@ Using Docker enables you to spin up a node in a matter of seconds. Once you have
 
         ```bash
         docker run --rm --name {{ networks.development.container_name }} -p 9944:9944 ^
-        purestake/moonbeam:{{ networks.development.build_tag }} ^
+        moonbeamfoundation/moonbeam:{{ networks.development.build_tag }} ^
         --dev --rpc-external
         ```
 
@@ -75,7 +75,7 @@ For more information on some of the flags and options used in the example, check
 
 ```bash
 docker run --rm --name {{ networks.development.container_name }} \
-purestake/moonbeam \
+moonbeamfoundation/moonbeam \
 --help
 ```
 

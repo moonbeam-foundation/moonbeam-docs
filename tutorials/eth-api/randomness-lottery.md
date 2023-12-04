@@ -383,7 +383,13 @@ function pickWinners(uint256[] memory randomWords) internal {
 }
 ```
 
-Congratulations! You've gone through the entire process of creating the `Lottery.sol` contract! You can view the completed version of the [`Lottery.sol` contract on GitHub](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/randomness/Lottery.sol){target=_blank}. Remember, **this contract is for educational purposes only and is not meant for production use.**
+Congratulations! You've gone through the entire process of creating the `Lottery.sol` contract! You can view the completed version below. Remember, **this contract is for educational purposes only and is not meant for production use.**
+
+??? code "Lottery.sol"
+
+    ```solidity
+    --8<-- 'code/tutorials/eth-api/randomness-lottery/Lottery.sol'
+    ```
 
 !!! challenge
     To make the contract easier to work with, add some events for when a lottery has started, a winner has been chosen, and a winner has been awarded.

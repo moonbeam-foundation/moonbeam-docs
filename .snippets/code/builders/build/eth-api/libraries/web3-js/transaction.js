@@ -1,4 +1,4 @@
-const Web3 = require('web3');
+const { Web3 } = require('web3');
 
 // 1. Add the Web3 provider logic here:
 const providerRPC = {
@@ -16,7 +16,9 @@ const addressTo = 'INSERT_TO_ADDRESS';
 
 // 3. Create send function
 const send = async () => {
-  console.log(`Attempting to send transaction from ${accountFrom.address} to ${addressTo}`);
+  console.log(
+    `Attempting to send transaction from ${accountFrom.address} to ${addressTo}`
+  );
 
   // 4. Prepare and sign tx with PK
   const createTransaction = await web3.eth.accounts.signTransaction(
@@ -24,13 +26,19 @@ const send = async () => {
       gas: 21000,
       to: addressTo,
       value: web3.utils.toWei('1', 'ether'),
+      gasPrice: await web3.eth.getGasPrice(),
+      nonce: await web3.eth.getTransactionCount(accountFrom.address),
     },
     accountFrom.privateKey
   );
 
   // 5. Send tx and wait for receipt
-  const createReceipt = await web3.eth.sendSignedTransaction(createTransaction.rawTransaction);
-  console.log(`Transaction successful with hash: ${createReceipt.transactionHash}`);
+  const createReceipt = await web3.eth.sendSignedTransaction(
+    createTransaction.rawTransaction
+  );
+  console.log(
+    `Transaction successful with hash: ${createReceipt.transactionHash}`
+  );
 };
 
 // 6. Call send function

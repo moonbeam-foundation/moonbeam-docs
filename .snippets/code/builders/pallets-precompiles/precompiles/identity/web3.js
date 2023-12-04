@@ -1,4 +1,4 @@
-import Web3 from 'web3';
+import { Web3 } from 'web3';
 import ABI from './identityPrecompileABI.js'; // Import Identity Precompile ABI
 
 const from = {
@@ -63,6 +63,8 @@ const setIdentity = async () => {
       to: identityPrecompileAddress,
       data: submitIdentity.encodeABI(),
       gas: await submitIdentity.estimateGas(),
+      gasPrice: await web3.eth.getGasPrice(),
+      nonce: await web3.eth.getTransactionCount(from.address),
     },
     from.privateKey
   );

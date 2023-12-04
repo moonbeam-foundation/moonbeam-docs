@@ -51,6 +51,10 @@ The [`RefundSurplus`](https://github.com/paritytech/xcm-format#refundsurplus){ta
 
 The [`ReserveAssetDeposited`](https://github.com/paritytech/xcm-format#reserveassetdeposited-){target=_blank} instruction gets executed in the target chain. It takes a representation of the assets received in the Sovereign account and places them into the holding register, a temporary position in the Cross-Consensus Virtual Machine (XCVM).
 
+## Set Appendix {: #set-appendix }
+
+The [`SetAppendix`](https://github.com/paritytech/xcm-format#setappendix){target=_blank} instruction gets executed in the target chain. It sets the appendix register, which holds code that should be run after the current execution is finished.
+
 ## Transfer Reserve Asset {: #transfer-reserve-asset }
 
 The [`TransferReserveAsset`](https://github.com/paritytech/xcm-format#transferreserveasset){target=_blank} instruction gets executed in the reserve chain. It moves assets from the origin account and deposits them into a destination account on the target chain. It then sends an XCM message to the target chain with the `ReserveAssetDeposited` instruction, followed by the XCM instructions that are to be executed.
