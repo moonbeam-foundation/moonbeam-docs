@@ -100,7 +100,7 @@ To get started indexing Substrate data on Moonbeam, you'll need to create a Subs
 
         ```
 
-5. There's one more quick change to make to the template. The Subsquid Substrate template is configured to process Substrate account types, but Moonbeam uses Ethereum-style accounts. In the `getTransferEvents` function, remove the ss58 encoding of the `from` and `to` fields. In an unmodified Substrate template, the `from` and `to` fields are ss58 encoded as shown:
+5. There's one more quick change to make to the template. The Subsquid Substrate template is configured to process Substrate account types, but Moonbeam uses Ethereum-style accounts. The `getTransferEvents` function will iterate through the events ingested by `processor.ts` and store the relevant `transfer` events in the database. In the `getTransferEvents` function, remove the ss58 encoding of the `from` and `to` fields. In an unmodified Substrate template, the `from` and `to` fields are ss58 encoded as shown:
 
     ```ts
     from: ss58.codec('kusama').encode(rec.from),
