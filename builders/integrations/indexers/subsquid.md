@@ -24,7 +24,7 @@ To get started with Subsquid, you'll need to have the following:
 - [Squid CLI](https://docs.subsquid.io/squid-cli/installation/){target=_blank}
 
 !!! note
-    The squid template is not compatible with `yarn`, so you'll need to use `npm` instead.
+    The Squid template is not compatible with `yarn`, so you'll need to use `npm` instead.
 
 ## Index Substrate Data on Moonbeam {: #index-substrate-calls-events }
 
@@ -64,7 +64,7 @@ To get started indexing Substrate data on Moonbeam, you'll need to create a Subs
         "specVersions": "https://v2.archive.subsquid.io/network/moonbase-testnet",
         ```
 
-4. Modify the `src/processor.ts` file, which is where squids instantiate the processor, configure it, and attach handler functions. The processor fetches historical on-chain data from an [Archive](https://docs.subsquid.io/archives/overview/){target=_blank}, which is a specialized data lake. You'll need to configure your processor to pull data from the Archive that corresponds to the [network](https://docs.subsquid.io/substrate-indexing/supported-networks/){target=_blank} you are indexing data on:
+4. Modify the `src/processor.ts` file, which is where Squids instantiate the processor, configure it, and attach handler functions. The processor fetches historical on-chain data from an [Archive](https://docs.subsquid.io/archives/overview/){target=_blank}, which is a specialized data lake. You'll need to configure your processor to pull data from the Archive that corresponds to the [network](https://docs.subsquid.io/substrate-indexing/supported-networks/){target=_blank} you are indexing data on:
 
     === "Moonbeam"
 
@@ -132,7 +132,7 @@ To get started indexing Substrate data on Moonbeam, you'll need to create a Subs
     sqd serve
     ```
 
-9. You can query your template Substrate squid with the below sample query. If you've modified the template Substrate squid to index different data, you'll need to modify this query accordingly
+9. You can query your template Substrate Squid with the below sample query. If you've modified the template Substrate Squid to index different data, you'll need to modify this query accordingly
 
     ```graphql
     query MyQuery {
@@ -173,7 +173,7 @@ To get started indexing EVM data on Moonbeam, you'll need to create a Subsquid p
     npm ci
     ```
 
-3. Modify the `src/processor.ts` file, which is where squids instantiate the processor, configure it, and attach handler functions. The processor fetches historical on-chain data from an [Archive](https://docs.subsquid.io/archives/overview/){target=_blank}, which is a specialized data lake. You'll need to configure your processor to pull data from the Archive that corresponds to the [network](https://docs.subsquid.io/evm-indexing/supported-networks/){target=_blank} you are indexing data on:
+3. Modify the `src/processor.ts` file, which is where Squids instantiate the processor, configure it, and attach handler functions. The processor fetches historical on-chain data from an [Archive](https://docs.subsquid.io/archives/overview/){target=_blank}, which is a specialized data lake. You'll need to configure your processor to pull data from the Archive that corresponds to the [network](https://docs.subsquid.io/evm-indexing/supported-networks/){target=_blank} you are indexing data on:
 
     === "Moonbeam"
 
@@ -227,7 +227,7 @@ To get started indexing EVM data on Moonbeam, you'll need to create a Subsquid p
     sqd serve
     ```
 
-7. You can query your template EVM squid with the below sample query. If you've modified the template EVM squid to index different data, you'll need to modify this query accordingly.
+7. You can query your template EVM Squid with the below sample query. If you've modified the template EVM Squid to index different data, you'll need to modify this query accordingly.
 
     ```graphql
     query MyQuery {
