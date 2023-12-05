@@ -126,7 +126,7 @@ To get started indexing Substrate data on Moonbeam, you'll need to create a Subs
     sqd process
     ```
 
-8. Open a separate terminal window in the same directory, then start the GraphQL server. 
+8. Open a separate terminal window in the same directory, then start the GraphQL server:
 
     ```bash
     sqd serve
