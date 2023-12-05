@@ -114,35 +114,7 @@ To get started indexing Substrate data on Moonbeam, you'll need to create a Subs
     to: rec.to, 
     ```
 
-6. Launch Postgres and detach by running:
-
-    ```bash
-    sqd up
-    ```
-
-7. Inspect and run the processor:
-
-    ```bash
-    sqd process
-    ```
-
-8. Open a separate terminal window in the same directory, then start the GraphQL server:
-
-    ```bash
-    sqd serve
-    ```
-
-9. You can query your template Substrate Squid with the below sample query. If you've modified the template Substrate Squid to index different data, you'll need to modify this query accordingly
-
-    ```graphql
-    query MyQuery {
-        accountsConnection(orderBy: id_ASC) {
-          totalCount
-        }
-      }
-    ```
-
-And that's all you have to do to configure your Subsquid project to index Substrate data on Moonbeam! Now you can update the `schema.graphql`, `main.ts`, `typegen.json`, and `src/processor.ts` files to index the data you need for your project!
+And that's all you have to do to configure your Subsquid project to index Substrate data on Moonbeam! Now you can update the `schema.graphql`, `main.ts`, `typegen.json`, and `src/processor.ts` files to index the data you need for your project! Next, take the steps in the [Run your Indexer](#run-your-indexer) section to run your indexer and query your Squid. 
 
 ## Index Ethereum Data on Moonbeam {: #index-ethereum-contracts }
 
@@ -209,26 +181,42 @@ To get started indexing EVM data on Moonbeam, you'll need to create a Subsquid p
 
         ```
 
-4. Launch Postgres and detach by running:
+And that's all you have to do to configure your Subsquid project to index EVM data on Moonbeam! Now you can update the `schema.graphql`, `main.ts`, and `src/processor.ts` files to index the data you need for your project! Continue with the steps in the following section to run your indexer and query your Squid. 
+
+## Run your Indexer {: #run-your-indexer }
+
+These steps apply to both Substrate and EVM indexers. Running your Subsquid indexer after you've properly configured it takes only a few steps. To do, take the following steps:  
+
+
+1. Launch Postgres by running:
 
     ```bash
     sqd up
     ```
 
-5. Inspect and run the processor:
+2. Inspect and run the processor:
 
     ```bash
     sqd process
     ```
 
-6. Open a separate terminal window in the same directory, then start the GraphQL server. 
+3. Open a separate terminal window in the same directory, then start the GraphQL server. 
 
     ```bash
     sqd serve
     ```
 
-7. You can query your template EVM Squid with the below sample query. If you've modified the template EVM Squid to index different data, you'll need to modify this query accordingly.
+4. You can query your template Substrate or EVM Squid with the below sample queries. If you've modified the template Squid to index different data, you'll need to modify this query accordingly.
 
+=== "Substrate Indexer"
+    ```graphql
+    query MyQuery {
+        accountsConnection(orderBy: id_ASC) {
+          totalCount
+        }
+      }
+    ```
+=== "EVM Indexer"
     ```graphql
     query MyQuery {
       burns(orderBy: value_DESC) {
@@ -240,9 +228,6 @@ To get started indexing EVM data on Moonbeam, you'll need to create a Subsquid p
       }
     }
     ```
-
-
-And that's all you have to do to configure your Subsquid project to index EVM data on Moonbeam! Now you can update the `schema.graphql`, `main.ts`, and `src/processor.ts` files to index the data you need for your project!
 
 If you're interested in a step-by-step tutorial to get started indexing data on Moonbeam, you can check out the [Index NFT Token Transfers on Moonbeam with Subsquid](/tutorials/integrations/nft-subsquid){target=_blank} tutorial!
 
