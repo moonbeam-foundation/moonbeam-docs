@@ -142,7 +142,7 @@ To get started indexing Substrate data on Moonbeam, you'll need to create a Subs
       }
     ```
 
-And that's all you have to do to configure your Subsquid project to index Substrate data on Moonbeam! Now you can update the `schema.graphql`, `main.ts`, `typgen.json`, and `src/processor.ts` files to index the data you need for your project!
+And that's all you have to do to configure your Subsquid project to index Substrate data on Moonbeam! Now you can update the `schema.graphql`, `main.ts`, `typegen.json`, and `src/processor.ts` files to index the data you need for your project!
 
 ## Index Ethereum Data on Moonbeam {: #index-ethereum-contracts }
 
