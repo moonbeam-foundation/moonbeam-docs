@@ -154,7 +154,7 @@ Once you've [connected SubWallet](#connect-subwallet-to-moonbeam) to any Moonbea
 
 ### Receive a Token {: #receive-a-token }
 
-To receive a token from another account, you would need to show your wallet address to your counter-party, and they can send their assets to such address.
+To receive a token from another account, you would need to show your wallet address to your counterparty, and they can send their assets to such address.
 
 To copy your address, click on the **Get address** icon.
 
