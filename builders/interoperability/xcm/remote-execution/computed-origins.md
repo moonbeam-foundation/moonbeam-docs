@@ -11,7 +11,7 @@ The Computed Origin, previously referred to as the multilocation-derivative acco
 
 Computed origins are keyless (the private key is unknown). Consequently, Computed Origins can only be accessed through XCM extrinsics from the origin account. In other words, the origin account is the only account that can initiate transactions on your Computed Origin account, and if you lose access to your origin account, you’ll also lose access to your Computed Origin account.
 
-The Computed Origin is calculated using the information provided by the [`DescendOrigin`](/builders/interoperability/xcm/core-concepts/instructions#descend-origin){target=_blank} XCM instruction: the multilocation of the account from which the XCM originated, which is typically the Sovereign account on the source chain.
+The Computed Origin is calculated from the origin which is being used to execute the XCM in the destination chain, which by default is the Sovereign account of the source chain in the destination chain. This origin can be mutated by the [`DescendOrigin`](/builders/interoperability/xcm/core-concepts/instructions#descend-origin){target=_blank} XCM instruction. If so, the destination chain can decide what to do by this newly mutated origin for the execution of the XCM.
 
 Moonbeam-based networks follow [the Computed Origins standard set by Polkadot](https://github.com/paritytech/polkadot-sdk/blob/master/polkadot/xcm/xcm-builder/src/location_conversion.rs){target=_blank}, that is, through a `blake2` hash of a data structure that depends on the origin of the XCM message. However, because Moonbeam uses Ethereum-styled accounts, Computed Origins are truncated to 20 bytes.
 
@@ -61,7 +61,7 @@ When the XCM instruction gets executed in Moonbeam (Moonbase Alpha in this examp
 
 ## How to Calculate the Computed Origin {: #calculate-computed-origin }
 
-You can easily calculate the Computed Origin account through the `calculate-multilocation-derivative-account` script in the [xcm-tools](https://github.com/Moonsong-Labs/xcm-tools){target=_blank} repository.
+You can easily calculate the Computed Origin account through the `calculate-multilocation-derivative-account`/`calculate-remote-origin` script in the [xcm-tools](https://github.com/Moonsong-Labs/xcm-tools){target=_blank} repository.
 
 The script accepts the following inputs:
 
@@ -107,7 +107,7 @@ The returned output includes the following values:
 |        Origin Chain Encoded Address         |                                                    `5DV1dYwnQ27gKCKwhikaw1rz1bYdvZZUuFkuduB4hEK3FgDT`                                                     |
 |        Origin Chain Decoded Address         |                                           `0x3ec5f48ad0567c752275d87787954fef72f557b8bfa5eefc88665fa0beb89a56`                                            |
 | Multilocation Received in Destination Chain | `{"parents":1,"interior":{"x1":{"accountId32":{"network": {"westend":null},"id":"0xdd2399f3b5ca0fc584c4637283cda4d73f6f87c0afb2e78fdbbbf4ce26c2556c"}}}}` |
-| Computed Origin Account (32 bytes) |                                           `0xdd2399f3b5ca0fc584c4637283cda4d73f6f87c0afb2e78fdbbbf4ce26c2556c`                                            |
-| Computed Origin Account (20 bytes) |                                                       `0xdd2399f3b5ca0fc584c4637283cda4d73f6f87c0`                                                        |
+|     Computed Origin Account (32 bytes)      |                                           `0xdd2399f3b5ca0fc584c4637283cda4d73f6f87c0afb2e78fdbbbf4ce26c2556c`                                            |
+|     Computed Origin Account (20 bytes)      |                                                       `0xdd2399f3b5ca0fc584c4637283cda4d73f6f87c0`                                                        |
 
 Consequently, for this example, Alice's Computed Origin account on Moonbase Alpha is `0xdd2399f3b5ca0fc584c4637283cda4d73f6f87c0`. Note that Alice is the only person who can access this account through a remote transact from the relay chain, as she is the owner of its private keys and the Computed Origin account is keyless.

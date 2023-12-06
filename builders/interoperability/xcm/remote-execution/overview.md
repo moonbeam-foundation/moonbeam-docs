@@ -7,107 +7,47 @@ description: Learn the basics of remote execution via XCM messages, which allow 
 
 ## Introduction {: #introduction }
 
-The Computed Origin, previously referred to as the multilocation-derivative account, is an account computed when executing remote calls via XCM.
+The [Cross-Consensus Message (XCM)](https://wiki.polkadot.network/docs/learn-crosschain){target=_blank} format defines how messages can be sent between interoperable blockchains. This format opens the door to sending an XCM message that executes an arbitrary set of bytes in a Moonbeam-based network, the relay chain, or other parachains in the Polkadot/Kusama ecosystems.
 
-Computed origins are keyless (the private key is unknown). Consequently, Computed Origins can only be accessed through XCM extrinsics from the origin account. In other words, the origin account is the only account that can initiate transactions on your Computed Origin account, and if you lose access to your origin account, you’ll also lose access to your Computed Origin account.
+Remote execution via XCM opens a new set of possibilities for cross-chain interactions, from chains executing actions on other chains to users performing remote actions without switching chains.
 
-The Computed Origin is calculated using the information provided by the [`DescendOrigin`](/builders/interoperability/xcm/core-concepts/instructions#descend-origin){target=_blank} XCM instruction: the multilocation of the account from which the XCM originated, which is typically the Sovereign account on the source chain.
+This page covers the fundamentals of XCM remote execution. If you want to learn how to perform remote execution via XCM, please refer to the [Remote Execution via the Substrate API](/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-pallet/){target=_blank} or the [Remote Execution via the Ethereum API](/builders/interoperability/xcm/xc20/send-xc20s/xtokens-pallet/){target=_blank} guides.
 
-Moonbeam-based networks follow [the Computed Origins standard set by Polkadot](https://github.com/paritytech/polkadot-sdk/blob/master/polkadot/xcm/xcm-builder/src/location_conversion.rs){target=_blank}, that is, through a `blake2` hash of a data structure that depends on the origin of the XCM message. However, because Moonbeam uses Ethereum-styled accounts, Computed Origins are truncated to 20 bytes.
+## Execution Origin {: #execution-origin }
 
-## The Origin Conversion {: #origin-conversion }
+Generally speaking, all transactions have an origin, which is where a call has come from. On Ethereum transactions, there is only one origin type, typically called the `msg.sender`, which is usually the account that signed the transaction. 
 
-The [origin conversion](https://github.com/paritytech/polkadot-sdk/blob/polkadot-v1.1.0/polkadot/xcm/xcm-executor/src/lib.rs#L556){target=_blank} for a remote call happens when the `Transact` instruction gets executed. The new origin on the target chain is the one that pays for the fees for XCM execution on the target chain.
+Substrate-based transactions are more complex, as they can have different origins with different privilege levels. This is similar to having an EVM smart contract call with a specific `require` in which the call must come from an allowed address. In contrast, these privilege levels are programmed in the Substrate-based runtime itself.
 
-For example, from the relay chain, the [`DescendOrigin`](/builders/interoperability/xcm/core-concepts/instructions#descend-origin){target=_blank} instruction is natively injected by the [XCM Pallet](https://github.com/paritytech/polkadot-sdk/blob/master/polkadot/xcm/pallet-xcm/src/lib.rs){target=_blank}. In the case of Moonbase Alpha's relay chain (based on Westend), it has the following format (a multilocation junction):
+Origins are super important across different components of the Substrate, hence Moonbeam, runtime. For example, they define the authority level they inherit in the [on-chain governance implementation](/learn/features/governance/){target=_blank}.
 
-```js
-{
-  DescendOrigin: {
-    X1: {
-      AccountId32: {
-        network: { westend: null },
-        id: decodedAddress,
-      },
-    },
-  },
-}
-```
+During the execution of an XCM message, the origin defines the context in which the XCM is being executed. By default, XCM execution happens with the source chain Sovereign account in the destination chain. This Polkadot-specific property of having remote origins that are calculated when executing XCM is known as **Computed Origins** (formerly known as Multilocation Derivative Accounts).
 
-Where the `decodedAddress` corresponds to the address of the account who signed the transaction on the relay chain (in a decoded 32-byte format). You can make sure that your address is properly decoded by using the following snippet, which will decode an address if needed and ignore it if not:
+Depending on the destination chain configuration, including an XCM instruction can mutate the origin from which the XCM message is executed. This property is significant for remote XCM execution, as the action being executed considers the context of the newly mutated origin, and not the source chain Sovereign account. 
 
-```js
-import { decodeAddress } from '@polkadot/util-crypto';
-const decodedAddress = decodeAddress('INSERT_ADDRESS');
-```
+You can refer to the [Computed Origins](/builders/interoperability/xcm/remote-execution/computed-origins/){target=_blank} page if you want to learn more about computed origins on Moonbeam-based networks.
 
-When the XCM instruction gets executed in Moonbeam (Moonbase Alpha in this example), the origin will have mutated to the following multilocation:
+## XCM Instructions for Remote Execution {: xcm-instructions-remote-execution }
 
-```js
-{
-  DescendOrigin: {
-    parents: 1,
-    interior: {
-      X1: {
-        AccountId32: {
-          network: { westend: null },
-          id: decodedAddress,
-        },
-      },
-    },
-  },
-}
-```
+The core XCM instructions required to perform remote execution on Moonbeam (as an example) via XCM are the following:
 
-## How to Calculate the Computed Origin {: #calculate-computed-origin }
+ - [`DescendOrigin`](/builders/interoperability/xcm/core-concepts/instructions#descend-origin){target=_blank} _(optional)_ - executed in Moonbeam. Mutates the origin to create a new computed origin that represents a keyless account controlled via XCM by the sender in the source chain
+ - [`WithdrawAsset`](/builders/interoperability/xcm/core-concepts/instructions#withdraw-asset){target=_blank} - executed in Moonbeam. Takes funds from the computed origin
+ - [`BuyExecution`](/builders/interoperability/xcm/core-concepts/instructions#buy-execution){target=_blank} - executed in Moonbeam. Uses the funds taken by the previous XCM instruction to pay for the XCM execution, including the remote call
+ - [`Transact`](/builders/interoperability/xcm/core-concepts/instructions#transact){target=_blank} - executed in Moonbeam. Executes the arbitrary bytes provided in the XCM instruction
 
-You can easily calculate the Computed Origin account through the `calculate-multilocation-derivative-account` script in the [xcm-tools](https://github.com/Moonsong-Labs/xcm-tools){target=_blank} repository.
+The XCM instructions detailed above can be complemented by other XCM instructions to handle certain scenarios, like failure on execution, more correctly. One example is the inclusion of [`SetAppendix`](/builders/interoperability/xcm/core-concepts/instructions#set-appendix){target=_blank}, [`RefundSurplus`](/builders/interoperability/xcm/core-concepts/instructions#refund-surplus){target=_blank}  and [`Deposit`](/builders/interoperability/xcm/core-concepts/instructions#deposit-asset){target=_blank}.
 
-The script accepts the following inputs:
+ ## General Remote Execution via XCM Flow
 
-- `--ws-provider` or `-w` - corresponds to the endpoint to use to fetch the Computed Origin. This should be the endpoint for the target chain
-- `--address` or `--a` - specifies the source chain address that is sending the XCM message
-- `--para-id` or `--p` - (optional) specifies the parachain ID of the origin chain of the XCM message. It is optional, as the XCM message might come from the relay chain (no parachain ID). Or parachains can act as relay chains for other parachains
-- `--parents` - (optional) corresponds to the parents value of the source chain in relation to the target chain. If you're calculating the Computed Origin account for an account on the relay chain, this value would be `1`. If left out, the parents value defaults to `0`
+A user initiates a transaction in the source chain through a pallet that builds the XCM with at least the [required XCM instructions for remote execution](xcm-instructions-remote-execution). The transaction is executed in the source chain, which sends an XCM message with the given instructions to the destination chain.
 
-To use the script, you can take the following steps:
+The XCM message arrives at the destination chain, which executes it. It is executed with the source chain Sovereign account as a computed origin by default. One example that uses this type of origin is when chains perform the HRMP channel opening/acceptance on the relay chain.
 
-1. Clone the [xcm-tools](https://github.com/Moonsong-Labs/xcm-tools){target=_blank} repo
-2. Run `yarn` to install the necessary packages
-3. Run the script
+If the XCM message included a [`DescendOrigin`](/builders/interoperability/xcm/core-concepts/instructions#descend-origin){target=_blank} instruction, the destination chain may mutate the origin to calculate a new computed origin (like Moonbeam-based networks).
 
-    ```bash
-    yarn calculate-multilocation-derivative-account \
-    --ws-provider INSERT_RPC_ENDPOINT \
-    --address INSERT_ORIGIN_ACCOUNT \
-    --para-id INSERT_ORIGIN_PARACHAIN_ID_IF_APPLIES \
-    --parents INSERT_PARENTS_VALUE_IF_APPLIES
-    ```
+Next, [`WithdrawAsset`](/builders/interoperability/xcm/core-concepts/instructions#withdraw-asset){target=_blank} takes funds from the computed origin (either a Sovereign account or mutated), which are then used to pay for the XCM execution through the [`BuyExecution`](/builders/interoperability/xcm/core-concepts/instructions#buy-execution){target=_blank} XCM instruction. Note that on both instructions, you need to specify which asset you want to use. In addition, you must include the bytes to be executed in the amount of execution to buy.
 
-You can also calculate the Computed Origin account using the `multilocationToAddress` function of the [XCM Utilities Precompile](/builders/interoperability/xcm/xcm-utils/){target=_blank}.
+Lastly, [`Transact`](/builders/interoperability/xcm/core-concepts/instructions#transact){target=_blank} executes an arbitrary set of bytes that correspond to a pallet and function in the destination chain. You have to specify the type of origin to use (typically `SovereignAccount` type origin), and the weight required to execute the bytes (similar to gas in the Ethereum realm).
 
-### Calculate the Computed Origin on a Moonbeam-based Network {: #calculate-the-computed-origin-on-moonbeam }
-
-For example, to calculate the Computed Origin on Moonbase Alpha for Alice's relay chain account, which is `5DV1dYwnQ27gKCKwhikaw1rz1bYdvZZUuFkuduB4hEK3FgDT`, you would use the following command to run the script:
-
-```bash
-yarn calculate-multilocation-derivative-account \
---ws-provider wss://wss.api.moonbase.moonbeam.network \
---address 5DV1dYwnQ27gKCKwhikaw1rz1bYdvZZUuFkuduB4hEK3FgDT \
---parents 1
-```
-
-!!! note
-    For Moonbeam or Moonriver, you will need to have your own endpoint and API key, which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=_blank}.
-
-The returned output includes the following values:
-
-|                    Name                     |                                                                           Value                                                                           |
-|:-------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------------------------------------:|
-|        Origin Chain Encoded Address         |                                                    `5DV1dYwnQ27gKCKwhikaw1rz1bYdvZZUuFkuduB4hEK3FgDT`                                                     |
-|        Origin Chain Decoded Address         |                                           `0x3ec5f48ad0567c752275d87787954fef72f557b8bfa5eefc88665fa0beb89a56`                                            |
-| Multilocation Received in Destination Chain | `{"parents":1,"interior":{"x1":{"accountId32":{"network": {"westend":null},"id":"0xdd2399f3b5ca0fc584c4637283cda4d73f6f87c0afb2e78fdbbbf4ce26c2556c"}}}}` |
-|     Computed Origin Account (32 bytes)      |                                           `0xdd2399f3b5ca0fc584c4637283cda4d73f6f87c0afb2e78fdbbbf4ce26c2556c`                                            |
-|     Computed Origin Account (20 bytes)      |                                                       `0xdd2399f3b5ca0fc584c4637283cda4d73f6f87c0`                                                        |
-
-Consequently, for this example, Alice's Computed Origin account on Moonbase Alpha is `0xdd2399f3b5ca0fc584c4637283cda4d73f6f87c0`. Note that Alice is the only person who can access this account through a remote transact from the relay chain, as she is the owner of its private keys and the Computed Origin account is keyless.
+DIAGRAM

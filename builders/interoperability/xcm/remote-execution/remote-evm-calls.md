@@ -32,14 +32,14 @@ As explained in the [introduction](#introduction), the paths that regular and re
 
 A regular EVM call has an apparent sender who signs the Ethereum transaction with its private key. The signature, of ECDSA type, can be verified with the signed message and the `r-s` values that are produced by the signing algorithm. Ethereum signatures use an additional variable called `v`, which is the recovery identifier.
 
-With remote EVM calls, the signer signs an XCM transaction in another chain. Moonbeam receives that XCM message, which must be constructed with the following instructions:
+With remote EVM calls, the signer signs an XCM transaction in another chain. Moonbeam receives that XCM message, which follows the conventional remote execution via XCM form:
 
- - [`DescendOrigin`](/builders/interoperability/xcm/core-concepts/instructions#descend-origin){target=_blank}
+ - [`DescendOrigin`](/builders/interoperability/xcm/core-concepts/instructions#descend-origin){target=_blank} _(optional)_
  - [`WithdrawAsset`](/builders/interoperability/xcm/core-concepts/instructions#withdraw-asset){target=_blank}
  - [`BuyExecution`](/builders/interoperability/xcm/core-concepts/instructions#buy-execution){target=_blank}
  - [`Transact`](/builders/interoperability/xcm/core-concepts/instructions#transact){target=_blank}
 
-The first instruction, `DescendOrigin`, mutates the origin of the XCM call on Moonbeam to a keyless account through the [Computed Origin account mechanism](/builders/interoperability/xcm/remote-execution/computed-origins){target=_blank}. The remote EVM call is dispatched from that keyless account (or a related [proxy](/tokens/manage/proxy-accounts/){target=_blank}). Therefore, because the transaction is not signed, it does not have the real `v-r-s` values of the signature, but `0x1` instead.
+XCM execution happens through a [Computed Origin account mechanism](/builders/interoperability/xcm/remote-execution/computed-origins){target=_blank}, which by default, uses the source chain Sovereign account in the destination chain. If `DescendOrigin` is included, Moonbeam will mutate the origin of the XCM call to a keyless account that a user from the source chain can control remotely via XCM. The remote EVM call is dispatched from that keyless account (or a related [proxy](/tokens/manage/proxy-accounts/){target=_blank}). Therefore, because the transaction is not signed, it does not have the real `v-r-s` values of the signature, but `0x1` instead.
 
 Since remote EVM calls do not have the actual `v-r-s` values of the signature, there could be collision problems with the EVM transaction hash, as it is calculated as the keccak256 hash of the signed transaction blob. In consequence, if two accounts with the same nonce submit the same transaction object, they will end up with the same EVM transaction hash. Therefore, all remote EVM transactions use a global nonce that is attached to the [Ethereum XCM Pallet](https://github.com/moonbeam-foundation/moonbeam/tree/master/pallets/ethereum-xcm){target=_blank}.
 
