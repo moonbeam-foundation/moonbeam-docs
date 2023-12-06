@@ -424,7 +424,7 @@ Now to write the deployment script we can use [`ethers`](/builders/build/eth-api
 1. Create a local instance of the lottery contract with the `getContractFactory` method
 2. Get the deposit required for a randomness request using the `requiredDeposit` function of the Randomness Precompile
 3. Use the `deploy` method that exists within this instance to instantiate the smart contract. You can pass in `0` to use local VRF randomness or `1` for BABE epoch randomness. For this example, we'll use local VRF randomness. We'll also need to submit the deposit upon deployment
-4. Wait for the deployment by using `deployed`
+4. Wait for the deployment by using `waitForDeployment`
 5. Once deployed, we can fetch the address of the contract using the contract instance
 
 ```js
@@ -445,7 +445,7 @@ async function main() {
   console.log('Deploying Lottery...');
 
   // 4. Waiting for the deployment to resolve
-  await lottery.deployed();
+  await lottery.waitForDeployment();
 
   // 5. Use the contract instance to get the contract address
   console.log('Lottery deployed to:', lottery.address);
