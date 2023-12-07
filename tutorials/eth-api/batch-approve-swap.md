@@ -36,7 +36,7 @@ You can also install the [OpenZeppelin contracts library](https://docs.openzeppe
 To install the necessary dependencies, run the following command:
 
 ```bash
-npm install @nomicfoundation/hardhat-ethers ethers @openzeppelin/contracts
+npm install @nomicfoundation/hardhat-ethers ethers@6 @openzeppelin/contracts
 ```
 
 ## Contract Setup {: #contracts }
@@ -124,7 +124,14 @@ contract SimpleDex {
 }
 ```
 
-In the `Batch.sol` file, you can paste in the [batch precompile contract](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/batch/Batch.sol){target=_blank}.
+In the `Batch.sol` file, you can paste in the Batch Precompile contract.
+
+??? code "Batch.sol"
+
+    ```solidity
+    --8<-- 'code/builders/pallets-precompiles/precompiles/batch/Batch.sol'
+    ```
+
 
 ### Compile & Deploy Contracts {: #compile-deploy-contracts }
 
