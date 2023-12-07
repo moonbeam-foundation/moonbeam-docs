@@ -7,14 +7,18 @@ description:  Learn how to use OpenZeppelin Defender to manage smart contracts s
 
 ## Introduction {: #introduction }
 
-[OpenZeppelin Defender](https://docs.openzeppelin.com/defender/){target=_blank} is a web-based application that allows developers to perform and automate smart contract operations in a secure way. Defender offers different components:
+[OpenZeppelin Defender](https://docs.openzeppelin.com/defender/){target=_blank} is a web-based application that allows developers to perform and automate smart contract operations in a secure way. Defender V2 offers the following components:
 
- - [**Admin**](https://docs.openzeppelin.com/defender/v1/admin){target=_blank} — to automate and secure all your smart contract operations such as access controls, upgrades, and pausing
- - [**Relay**](https://docs.openzeppelin.com/defender/v1/relay){target=_blank} — to build with a private and secure transaction infrastructure with the implementation of private relayers
- - [**Autotasks**](https://docs.openzeppelin.com/defender/v1/autotasks){target=_blank} — to create automated scripts to interact with your smart contracts
- - [**Monitor**](https://docs.openzeppelin.com/defender/v1/sentinel){target=_blank} — to monitor your smart contract's events, functions, and transactions, and receive notifications via email
+ - [**Code Inspector**](https://defender.openzeppelin.com/v2/#/code){target=_blank} — Automatic code analysis powered by AI models and tools developed by OpenZeppelin engineers
+ - [**Audit**](https://defender.openzeppelin.com/v2/#/audit){target=_blank} — Manage the smart contract audit process and track issues and resolutions
+ - [**Deploy**](https://defender.openzeppelin.com/v2/#/deploy){target=_blank} — Manage deployments and upgrades to ensure secure releases
+ - [**Monitor**](https://defender.openzeppelin.com/v2/#/monitor){target=_blank} — to monitor your smart contract's events, functions, and transactions, and receive notifications via email
+ - [**Incident Response**](https://defender.openzeppelin.com/v2/#/incident-response){target=_blank} — Configure predefined incident response scenarios triggered automatically by monitors or on-demand
+ - [**Actions**](https://defender.openzeppelin.com/v2/#/actions/automatic){target=_blank} — Create automated actions to perform on-chain and off-chain operations
+ - [**Access Control**](https://defender.openzeppelin.com/v2/#/access-control/contracts){target=_blank} — Manage smart contract accounts, roles, and permissions easily
 
-OpenZeppelin Defender can now be used on Moonbeam, Moonriver, and the Moonbase Alpha TestNet. This guide will show you how to get started with Defender and demo the Admin component to pause a smart contract on Moonbase Alpha. This guide can be adapted for Moonbeam and Moonriver.
+
+OpenZeppelin Defender can be used on Moonbeam, Moonriver, and the Moonbase Alpha TestNet. This guide will show you how to get started with Defender and demonstrate using OpenZeppelin Actions and Access Control to pause a smart contract on Moonbase Alpha. This guide can be adapted for Moonbeam and Moonriver.
 
 ## Getting Started with Defender {: #getting-started-with-defender }
 
@@ -24,82 +28,54 @@ This section goes through the steps for getting started with OpenZeppelin Defend
 
 The steps described in this section assume you have [MetaMask](https://metamask.io/){target=_blank} installed and connected to the Moonbase Alpha TestNet. If you haven't connected MetaMask to the TestNet, check out our [MetaMask integration guide](/tokens/connect/metamask/){target=_blank}.
 
-In addition, you need to sign up for a free OpenZeppelin Defender account, which you can do on the main [Defender website](https://defender.openzeppelin.com/){target=_blank}.
+In addition, you need to sign up for a free OpenZeppelin Defender account, which you can do on the main [Defender website](https://defender.openzeppelin.com/v2/#/overview){target=_blank}.
+
+### Deploying the Pausable Box Contract {: #deploying-the-pauseable-box-contract }
 
 The contract used in this guide is an extension of the `Box.sol` contract used in the [upgrading smart contracts guide](https://docs.openzeppelin.com/learn/upgrading-smart-contracts){target=_blank}, from the OpenZeppelin documentation. Also, the contract was made upgradable and [pausable](https://docs.openzeppelin.com/contracts/4.x/api/security#Pausable){target=_blank} to take full advantage of the Admin component. You can deploy your contract using the following code and following the [upgrading smart contracts guide](https://docs.openzeppelin.com/learn/upgrading-smart-contracts){target=_blank}:
 
 ```solidity
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
-
-import "@openzeppelin/contracts-upgradeable/security/PausableUpgradeable.sol";
-import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
-
-contract PausableBox is Initializable, PausableUpgradeable, OwnableUpgradeable {
-    uint256 private value;
- 
-    // Emitted when the stored value changes
-    event ValueChanged(uint256 newValue);
-
-    // Initialize
-    function initialize() initializer public {
-        __Ownable_init();
-        __Pausable_init_unchained();
-    }
- 
-    // Stores a new value in the contract
-    function store(uint256 newValue) whenNotPaused public {
-        value = newValue;
-        emit ValueChanged(newValue);
-    }
- 
-    // Reads the last stored value
-    function retrieve() public view returns (uint256) {
-        return value;
-    }
-    
-    function pause() public onlyOwner {
-        _pause();
-    }
-
-    function unpause() public onlyOwner {
-        _unpause();
-    }
-}
+--8<-- 'code/builders/build/eth-api/dev-env/openzeppelin/PausableBox.sol'
 ```
 
-### Connecting Defender {: #connecting-defender }
+!!! note
+    After deploying the above contract using Remix or another tool such as Hardhat, you'll need to call the `initialize` function to properly set the owner of the upgradeable contract. If you don't call this function, the owner will be set to the zero address and you will be unable to proceed with the remainder of this tutorial.
 
-Once you have an OpenZeppelin Defender account, log into the [Defender App](https://defender.openzeppelin.com/){target=_blank}. In the main screen, with MetaMask [connected to Moonbase Alpha](/tokens/connect/metamask/){target=_blank} click on the top right corner **Connect wallet** button:
 
-![OpenZeppelin Defender Connect](/images/builders/build/eth-api/dev-env/openzeppelin/defender/oz-defender-1.png)
+## Using the Access Control Component {: #using-the-access-control-component }
 
-If successful, you should see your address and a text stating **Connected to Moonbase Alpha**.
-
-## Using the Admin Component {: #using-the-admin-component }
-
-This section goes through the steps for getting started with OpenZeppelin Defender Admin component to manage smart contracts on Moonbase Alpha.
+This section goes through the steps for getting started with the [OpenZeppelin Defender Access Control component](https://defender.openzeppelin.com/v2/#/access-control/contracts){target=_blank} to manage smart contracts on Moonbase Alpha.
 
 ### Importing your Contract {: #importing-your-contract }
 
-The first step to using Defender Admin is to add the contract you want to manage. To do so, click on the **Add contract** button near the top right corner. This will take you to the **import contract** screen, where you need to:
+The first step to using Defender Access Control is to add the contract you want to manage. To do so, take the following steps:
 
- 1. Set a contract name. This is only for display purposes
- 2. Select the network where the contract that you want to manage is deployed. This is particularly useful when a contract is deployed with the same address to multiple networks. For this example, enter `Moonbase Alpha`
- 3. Enter the contract address
- 4. Paste the contract ABI. This can be obtained either in [Remix](/builders/build/eth-api/dev-env/remix/){target=_blank} or in the `.json` file generally created after the compilation process (for example, in Hardhat)
- 5. Check that the contract features were detected correctly
- 6. Once you've checked all the information, click on the **Add** button
+ 1. Click on the **Access Control** menu item 
+ 2. Click **Add Contract**
+ 3. Add a name for your contract
+ 4. Select the Network on which the contract is deployed. For the demo, Moonbase Alpha is selected
+ 5. Paste the contract address
+ 6. If you verified your contract, the ABI will be automatically imported. Otherwise, paste the contract ABI. This can be obtained either in [Remix](/builders/build/eth-api/dev-env/remix/){target=_blank} or in the `.json` file generally created after the compilation process (for example, in Hardhat)
+ 7. Once you've checked all the information, click on the **Create** button
 
-![OpenZeppelin Defender Admin Add Contract](/images/builders/build/eth-api/dev-env/openzeppelin/defender/oz-defender-2.png)
+![OpenZeppelin Defender Access Control Add Contract](/images/builders/build/eth-api/dev-env/openzeppelin/defender/oz-defender-1.png)
 
-If everything was successfully imported, you should see your contract in the Admin component main screen:
+If everything was successfully imported, you should see your contract in the Access Control Contracts main screen. You should see the address that you used to deploy the Pausable Box contract in the **Owner** field. If you see `0x0000000000000000000000000000000000000000`, this means that you didn't call the `initialize` function after deploying the Pausable Box contract. To simplify a later step, take a moment to add your address to your Defender Address Book by hovering over the address in the **Owner** field and clicking **Import into Defender 2.0**.  
 
-![OpenZeppelin Defender Admin Contract Added](/images/builders/build/eth-api/dev-env/openzeppelin/defender/oz-defender-3.png)
+![OpenZeppelin Defender Access Control Contract Added](/images/builders/build/eth-api/dev-env/openzeppelin/defender/oz-defender-2.png)
+
+Then, you can add your address to the Defender Address Book as follows: 
+
+1. Enter a name for your address
+2. Select the relevant network that the address pertains to
+3. Paste the address
+4. Review all information and press **Create**
+
+![OpenZeppelin Defender Actions Contract New Pause Proposal](/images/builders/build/eth-api/dev-env/openzeppelin/defender/oz-defender-3.png)
 
 ### Create a Contract Proposal {: #create-a-contract-proposal }
 
-Proposals are actions to be carried out in the contract. At the time of writing, there are three main proposals/actions that can take place:
+Proposals are actions to be carried out in the contract. You can propose any function of the contract to be enacted, including but not limited to:
 
 - **Pause** — available if the pause feature is detected. Pauses token transfers, minting and burning
 - **Upgrade** — available if the upgrade feature is detected. Allows for a contract to be [upgraded via a proxy contract](https://docs.openzeppelin.com/learn/upgrading-smart-contracts){target=_blank}
@@ -107,34 +83,39 @@ Proposals are actions to be carried out in the contract. At the time of writing,
 
 In this case, a new proposal is created to pause the contract. To do so, take the following steps:
 
- 1. Click on the **New proposal** button to see all the available options
- 2. Click on **Pause**
+ 1. Click on the **Actions** menu item 
+ 2. Click **Transaction Proposals**
+ 3. Enter a name for the proposal
+ 4. Optionally, you may enter a description of the proposal
+ 5. Select the target contract from the dropdown of [imported contracts](#importing-your-contract)
+ 6. Select the function to be carried out as part of the proposal
+ 7. Select the desired approval process. For demo purposes, a simple approval process consisting of only the owner will be created in the following step. 
 
-![OpenZeppelin Defender Admin Contract New Pause Proposal](/images/builders/build/eth-api/dev-env/openzeppelin/defender/oz-defender-4.png)
+![OpenZeppelin Defender Actions New Pause Proposal](/images/builders/build/eth-api/dev-env/openzeppelin/defender/oz-defender-4.png)
 
-This will open the proposal page, where all the details regarding the proposal need to be filled in. In this example, you need to provide the following information:
+To create a simple new approval process consisting of only the contract owner, take the following steps:
 
- 1. Admin account address. You can also leave this field empty if you want to run the action from your current wallet (if it has all the necessary permissions)
- 2. Title of the proposal
- 3. Description of the proposal. In here, you should provide as much detail as possible for other members/managers of the contract (if using a MultiSig wallet)
- 4. Click on **Create pause proposal**
+ 1. Enter a name for the approval process
+ 2. Select **EOA**
+ 3. Select the owner of the Pausable Box contract
+ 4. Review all information and press **Save Changes**
 
-![OpenZeppelin Defender Admin Contract Pause Proposal Details](/images/builders/build/eth-api/dev-env/openzeppelin/defender/oz-defender-5.png)
+![OpenZeppelin Defender Actions Contract Proposal List](/images/builders/build/eth-api/dev-env/openzeppelin/defender/oz-defender-5.png)
 
-Once the proposal is successfully created, it should be listed in the contract's admin dashboard.
+The last step remaining is to submit the transaction proposal. To do so, take the following steps:
 
-![OpenZeppelin Defender Admin Contract Proposal List](/images/builders/build/eth-api/dev-env/openzeppelin/defender/oz-defender-6.png)
+1. Press **Connect Wallet** and connect your EVM account to Defender
+2. Press **Submit Transaction Proposal**
+
+![OpenZeppelin Defender Actions Contract Submit Proposal](/images/builders/build/eth-api/dev-env/openzeppelin/defender/oz-defender-6.png)
+
 
 ### Approve a Contract Proposal {: #approve-a-contract-proposal }
 
-With the contract proposal created, the next step is to approve and execute it. To do so, go to the proposal and click on **Approve and Execute**.
+Press **Continue** and you'll be take to proposal status page. Here, you'll be able to execute the proposal. Press **Approve and Execute** and confirm the transaction in your EVM Wallet. Once the transaction is processed, the status should show **Executed**.
 
-![OpenZeppelin Defender Admin Contract Proposal Pause Approve](/images/builders/build/eth-api/dev-env/openzeppelin/defender/oz-defender-7.png)
+![OpenZeppelin Defender Actions Contract Proposal Pause Executed](/images/builders/build/eth-api/dev-env/openzeppelin/defender/oz-defender-7.png)
 
-This will initiate a transaction that needs to be signed using MetaMask, after which the proposal state should change to **Executed (confirmation pending)**. Once the transaction is processed, the status should show **Executed**.
-
-![OpenZeppelin Defender Admin Contract Proposal Pause Executed](/images/builders/build/eth-api/dev-env/openzeppelin/defender/oz-defender-8.png)
-
-You can also see that the contract's status has changed from **Running** to **Paused**. Great! You now know how to use the Admin component to manage your smart contracts.
+If all went smoothly, your Pausable Box Contract is now paused. If you'd like to try out additional scenarios, you can try creating a proposal to unpause your contract. And that's it! You're now well on your way to mastering OpenZeppelin Defender to manage your smart contracts on Moonbeam. For more information, be sure to check out the [OpenZeppelin Defender Docs](https://docs.openzeppelin.com/defender/v2/){target=_blank}. 
 
 --8<-- 'text/_disclaimers/third-party-content.md'
