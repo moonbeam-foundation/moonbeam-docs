@@ -71,7 +71,7 @@ Then, you can add your address to the Defender Address Book as follows:
 3. Paste the address
 4. Review all information and press **Create**
 
-![OpenZeppelin Defender Actions Contract New Pause Proposal](/images/builders/build/eth-api/dev-env/openzeppelin/defender/oz-defender-3.png)
+![OpenZeppelin Defender Manage Address Book](/images/builders/build/eth-api/dev-env/openzeppelin/defender/oz-defender-3.png)
 
 ### Create a Contract Proposal {: #create-a-contract-proposal }
 
@@ -89,7 +89,7 @@ In this case, a new proposal is created to pause the contract. To do so, take th
  4. Optionally, you may enter a description of the proposal
  5. Select the target contract from the dropdown of [imported contracts](#importing-your-contract)
  6. Select the function to be carried out as part of the proposal
- 7. Select the desired approval process. For demo purposes, a simple approval process consisting of only the owner will be created in the following step. 
+ 7. Select the desired approval process. For demo purposes, a simple approval process consisting of only the owner will be created in the following step 
 
 ![OpenZeppelin Defender Actions New Pause Proposal](/images/builders/build/eth-api/dev-env/openzeppelin/defender/oz-defender-4.png)
 
@@ -100,7 +100,7 @@ To create a simple new approval process consisting of only the contract owner, t
  3. Select the owner of the Pausable Box contract
  4. Review all information and press **Save Changes**
 
-![OpenZeppelin Defender Actions Contract Proposal List](/images/builders/build/eth-api/dev-env/openzeppelin/defender/oz-defender-5.png)
+![OpenZeppelin Defender Actions Create Approval Process](/images/builders/build/eth-api/dev-env/openzeppelin/defender/oz-defender-5.png)
 
 The last step remaining is to submit the transaction proposal. To do so, take the following steps:
 
@@ -114,7 +114,7 @@ The last step remaining is to submit the transaction proposal. To do so, take th
 
 Press **Continue** and you'll be take to proposal status page. Here, you'll be able to execute the proposal. Press **Approve and Execute** and confirm the transaction in your EVM Wallet. Once the transaction is processed, the status should show **Executed**.
 
-![OpenZeppelin Defender Actions Contract Proposal Pause Executed](/images/builders/build/eth-api/dev-env/openzeppelin/defender/oz-defender-7.png)
+![OpenZeppelin Defender Actions Contract Proposal Pause Approve and Execute](/images/builders/build/eth-api/dev-env/openzeppelin/defender/oz-defender-7.png)
 
 If all went smoothly, your Pausable Box Contract is now paused. If you'd like to try out additional scenarios, you can try creating a proposal to unpause your contract. And that's it! You're now well on your way to mastering OpenZeppelin Defender to manage your smart contracts on Moonbeam. For more information, be sure to check out the [OpenZeppelin Defender Docs](https://docs.openzeppelin.com/defender/v2/){target=_blank}. 
 
