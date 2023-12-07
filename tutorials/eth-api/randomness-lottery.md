@@ -30,7 +30,7 @@ For this tutorial, you'll need the following:
 - Install the [Hardhat Ethers plugin](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-ethers){target=_blank}. This provides a convenient way to use the [Ethers.js](/builders/build/eth-api/libraries/ethersjs/){target=_blank} library to interact with the network from your Hardhat project:
 
     ```bash
-    npm install @nomicfoundation/hardhat-ethers ethers
+    npm install @nomicfoundation/hardhat-ethers ethers@6
     ```
 
 !!! note
@@ -56,7 +56,22 @@ Then you can create the following three files, one for each of the aforementione
 touch Randomness.sol RandomnessConsumer.sol Lottery.sol
 ```
 
-In the `Randomness.sol` file, you can paste in the [Randomness Precompile contract](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/randomness/Randomness.sol){target=_blank}. Similarly, in the `RandomnessConsumer.sol` file, you can paste in the [Randomness Consumer contract](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/randomness/RandomnessConsumer.sol){target=_blank}.
+In the `Randomness.sol` file, you can paste in the Randomness Precompile contract.
+
+??? code "Randomness.sol"
+
+    ```solidity
+    --8<-- 'code/builders/pallets-precompiles/precompiles/randomness/Randomness.sol'
+    ```
+
+Similarly, in the `RandomnessConsumer.sol` file, you can paste in the Randomness Consumer contract. 
+
+??? code "RandomnessConsumer.sol"
+
+    ```solidity
+    --8<-- 'code/builders/pallets-precompiles/precompiles/randomness/RandomnessConsumer.sol'
+    ```
+
 
 We'll start adding the functionality to the `Lottery.sol` contract in the following section.
 
@@ -448,7 +463,7 @@ async function main() {
   await lottery.waitForDeployment();
 
   // 5. Use the contract instance to get the contract address
-  console.log('Lottery deployed to:', lottery.address);
+  console.log('Lottery deployed to:', lottery.target);
 }
 
 main()
