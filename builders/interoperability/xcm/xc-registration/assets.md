@@ -142,7 +142,7 @@ To create a batch transaction that also sets the units per second or revert code
 - `--revert-code` or `--revert` - (optional) - registers the revert code for the asset's precompile in the EVM. If this is provided, the script will create a batch transaction for the governance proposal that, at a minimum, will register the asset and set the revert code.
 
     !!! note
-        **This flag is not necessary for proposals on Moonbeam** as it includes a `system.setStorage` call that the [OpenGov](/learn/features/governance#opengov) General Admin Origin can't execute. The dummy EVM bytecode can be set later with a call to the [Precompile Registry precompile](/builders/pallets-precompiles/precompiles/registry){target=_blank}, which means that you don't need to worry about going through governance to set the revert code!
+        **This flag is not necessary for proposals on Moonbeam** as it includes a `system.setStorage` call that the [OpenGov](/learn/features/governance#opengov) General Admin Origin can't execute. The dummy EVM bytecode can be set later with a call to the [Precompile Registry precompile](/builders/pallets-precompiles/precompiles/registry){target=_blank}, which means that you don't need to worry about going through governance to set the revert code! Please check out the [Set XC-20 Precompile Bytecode](#set-bytecode) section to learn how to set the dummy bytecode.
 
 As a practical example, the following command would generate the encoded calldata to register an asset from parachain 888 that has a general key of `1`:
 
@@ -163,7 +163,7 @@ Encoded proposal for setAssetUnitsPerSecond is 0x1f0100010200e10d062400000000000
 Encoded calldata for tx is 0x0102081f0000010200e10d0624000000000000000001344578616d706c6520546f6b656e1878634558544e120000000000000000000000000000000000001f0100010200e10d0624000000000000000001c7a8978b008d8716010000000000000026000000
 ```
 
-### Programatically Submit the Preimage and Proposal for Asset Registration {: #submit-preimage-proposal }
+### Programmatically Submit the Preimage and Proposal for Asset Registration {: #submit-preimage-proposal }
 
 The script provides the option to programmatically submit a preimage and democracy proposal for the asset registration if you pass in the following optional arguments:
 
@@ -259,6 +259,45 @@ For testing, please also provide your parachain WSS endpoint so that the [Moonbe
 [XC-20s](/builders/interoperability/xcm/xc20/){target=_blank} are Substrate-based assets with an [ERC-20 interface](/builders/interoperability/xcm/xc20/overview/#the-erc20-interface){target=_blank}. This means they can be added to MetaMask and composed with any EVM DApp that exists in the ecosystem. The team can connect you with any DApp you find relevant for an XC-20 integration.
 
 If you need DEV tokens (the native token for Moonbase Alpha) to use your XC-20 asset, you can get some from the [Moonbase Alpha Faucet](/builders/get-started/networks/moonbase/#moonbase-alpha-faucet){target=_blank}, which dispenses {{ networks.moonbase.website_faucet_amount }} every 24 hours. If you need more, feel free to reach out to the team on [Telegram](https://t.me/Moonbeam_Official){target=_blank} or [Discord](https://discord.gg/PfpUATX){target=_blank}.
+
+### Set XC-20 Precompile Bytecode {: #set-bytecode }
+
+Once your XC-20 has been registered on Moonbeam, you can set the XC-20's precompile bytecode. This is necessary because precompiles are implemented inside the Moonbeam runtime and, by default, do not have bytecode. In Solidity, when a contract is called, there are checks that require the contract bytecode to be non-empty. So, setting the bytecode as a placeholder bypasses these checks and allows the precompile to be called.
+
+You can use the [Precompile Registry](/builders/pallets-precompiles/precompiles/registry){target=_blank}, which is a Solidity interface, to update the XC-20 precompile's bytecode to avoid any issues and ensure that the precompile is callable from Solidity. To do so, you'll use the Precompile Registry's [`updateAccountCode` function](/builders/pallets-precompiles/precompiles/registry/#the-solidity-interface){target=_blank}.
+
+To get started, you'll need to [calculate your XC-20's precompile address](/builders/interoperability/xcm/xc20/overview/#calculate-xc20-address){target=_blank} and have the Precompile Registry's ABI.
+
+??? code "Precompile Registry ABI"
+
+    ```js
+    --8<-- 'code/builders/pallets-precompiles/precompiles/registry/abi.js'
+    ```
+
+Then, you can use the following scripts to set the dummy code for your XC-20's precompile.
+
+!!! remember
+    The following snippets are for demo purposes only. Never store your private keys in a JavaScript or Python file.
+
+=== "Ethers.js"
+
+    ```js
+    --8<-- 'code/builders/interoperability/xcm/xc-registration/assets/ethers.js'
+    ```
+
+=== "Web3.js"
+
+    ```js
+    --8<-- 'code/builders/interoperability/xcm/xc-registration/assets/web3.js'
+    ```
+
+=== "Web3.py"
+
+    ```py
+    --8<-- 'code/builders/interoperability/xcm/xc-registration/assets/web3.py'
+    ```
+
+After running the script to set the bytecode, you should see `The XC-20 precompile's bytecode is: 0x60006000fd` printed to your terminal.
 
 ## Register Moonbeam Assets on Another Chain {: #register-moonbeam-assets-on-another-chain }
 
