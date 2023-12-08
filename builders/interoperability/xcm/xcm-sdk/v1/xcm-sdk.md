@@ -40,7 +40,7 @@ You'll also need an Ethereum signer if you're interacting with an Ethereum-compa
 === "viem"
 
     ```bash
-    npm install
+    npm install viem
     ```
 
 ## Create Signers {: #create-signers }
