@@ -163,7 +163,7 @@ Encoded proposal for setAssetUnitsPerSecond is 0x1f0100010200e10d062400000000000
 Encoded calldata for tx is 0x0102081f0000010200e10d0624000000000000000001344578616d706c6520546f6b656e1878634558544e120000000000000000000000000000000000001f0100010200e10d0624000000000000000001c7a8978b008d8716010000000000000026000000
 ```
 
-### Programatically Submit the Preimage and Proposal for Asset Registration {: #submit-preimage-proposal }
+### Programmatically Submit the Preimage and Proposal for Asset Registration {: #submit-preimage-proposal }
 
 The script provides the option to programmatically submit a preimage and democracy proposal for the asset registration if you pass in the following optional arguments:
 
