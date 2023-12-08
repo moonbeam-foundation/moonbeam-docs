@@ -262,7 +262,7 @@ If you need DEV tokens (the native token for Moonbase Alpha) to use your XC-20 a
 
 ### Set XC-20 Precompile Bytecode {: #set-bytecode }
 
-Once your XC-20 has been registered on Moonbeam, you can set the XC-20's precompile bytecode. This is necessary because precompiles are implemented inside the Moonbeam runtime and, by default, do not have bytecode. In Solidity, when a contract is called, there are often checks that require the contract bytecode to be non-empty. So, setting the bytecode bypasses these checks.
+Once your XC-20 has been registered on Moonbeam, you can set the XC-20's precompile bytecode. This is necessary because precompiles are implemented inside the Moonbeam runtime and, by default, do not have bytecode. In Solidity, when a contract is called, there are checks that require the contract bytecode to be non-empty. So, setting the bytecode as a placeholder bypasses these checks and allows the precompile to be called.
 
 You can use the [Precompile Registry](/builders/pallets-precompiles/precompiles/registry){target=_blank}, which is a Solidity interface, to update the XC-20 precompile's bytecode to avoid any issues and ensure that the precompile is callable from Solidity. To do so, you'll use the Precompile Registry's [`updateAccountCode` function](/builders/pallets-precompiles/precompiles/registry/#the-solidity-interface){target=_blank}.
 
