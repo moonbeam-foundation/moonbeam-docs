@@ -180,7 +180,7 @@ const moonscanAPIKey = 'INSERT_MOONSCAN_API_KEY';
 
 module.exports = {
   // 3. Specify the Solidity version
-  solidity: '0.8.17',
+  solidity: '0.8.20',
   networks: {
     // 4. Add the Moonbase Alpha network specification
     moonbase: {
