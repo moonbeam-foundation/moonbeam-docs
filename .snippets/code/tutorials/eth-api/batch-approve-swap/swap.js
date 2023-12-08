@@ -2,19 +2,21 @@ const simpleDexAddress = 'INSERT_ADDRESS_OF_DEX';
 
 async function checkBalances(demoToken) {
   // Get the signer
-  const signer = (await ethers.getSigner()).address;
+  const signers = await ethers.getSigners();
+  const signer = signers[0];
+  const signerAddress = signer.address;
 
   // Get the balance of the DEX and print it
-  const dexBalance = ethers.utils.formatEther(
+  const dexBalance = ethers.formatEther(
     await demoToken.balanceOf(simpleDexAddress)
   );
   console.log(`Dex ${simpleDexAddress} has a balance of: ${dexBalance} DTOKs`);
 
   // Get the balance of the signer and print it
-  const signerBalance = ethers.utils.formatEther(
+  const signerBalance = ethers.formatEther(
     await demoToken.balanceOf(signer)
   );
-  console.log(`Account ${signer} has a balance of: ${signerBalance} DTOKs`);
+  console.log(`Account ${signerAddress} has a balance of: ${signerBalance} DTOKs`);
 }
 
 async function main() {
@@ -30,7 +32,7 @@ async function main() {
   const batch = await ethers.getContractAt('Batch', batchAddress);
 
   // Parse the value to swap to Wei
-  const amountDtok = ethers.utils.parseEther('INSERT_AMOUNT_OF_DEV_TO_SWAP');
+  const amountDtok = ethers.parseEther('INSERT_AMOUNT_OF_DEV_TO_SWAP');
 
   // Get the encoded call data for the approval and swap
   const approvalCallData = demoToken.interface.encodeFunctionData('approve', [

@@ -36,7 +36,7 @@ You can also install the [OpenZeppelin contracts library](https://docs.openzeppe
 To install the necessary dependencies, run the following command:
 
 ```bash
-npm install @nomicfoundation/hardhat-ethers ethers @openzeppelin/contracts
+npm install @nomicfoundation/hardhat-ethers ethers@6 @openzeppelin/contracts
 ```
 
 ## Contract Setup {: #contracts }
@@ -68,7 +68,7 @@ In the `SimpleDex.sol` file, you can paste in the following code for the `DemoTo
 
 ```solidity
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.17;
+pragma solidity ^0.8.20;
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
@@ -124,7 +124,14 @@ contract SimpleDex {
 }
 ```
 
-In the `Batch.sol` file, you can paste in the [batch precompile contract](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/batch/Batch.sol){target=_blank}.
+In the `Batch.sol` file, you can paste in the Batch Precompile contract.
+
+??? code "Batch.sol"
+
+    ```solidity
+    --8<-- 'code/builders/pallets-precompiles/precompiles/batch/Batch.sol'
+    ```
+
 
 ### Compile & Deploy Contracts {: #compile-deploy-contracts }
 
@@ -140,7 +147,7 @@ After compilation, an `artifacts` directory is created: it holds the bytecode an
 
 Next, we can deploy the `SimpleDex` contract, which upon deployment will automatically deploy the `DemoToken` contract and mint 1000 DTOKs and assign half of them to the `SimpleDex` contract and the other half to the address that you're initiating the deployment from.
 
-We'll also add some initial liquidity to the contract by passing in a `value` when calling `deploy`. Since the value needs to be in Wei, we can use `ethers.utils.parseEther` to pass in a value such as `"0.5"` DEV and it will convert the value to Wei for us.
+We'll also add some initial liquidity to the contract by passing in a `value` when calling `deploy`. Since the value needs to be in Wei, we can use `ethers.parseEther` to pass in a value such as `"0.5"` DEV and it will convert the value to Wei for us.
 
 Before deploying the contract, we'll need to create the deployment script. We'll create a new directory for the script and name it `scripts` and add a new file to it called `deploy.js`:
 
@@ -153,15 +160,19 @@ In the `deploy.js` script, you can paste in the following code, which will deplo
 ```js
 async function main() {
   // Liquidity to add in DEV (i.e., '.5') to be converted to Wei
-  const value = ethers.utils.parseEther('INSERT_AMOUNT_OF_DEV');
+  const value = ethers.parseEther('INSERT_AMOUNT_OF_DEV');
 
   // Deploy the SimpleDex contract, which will also automatically deploy
   // the DemoToken contract and add liquidity to the contract
   const SimpleDex = await ethers.getContractFactory('SimpleDex',);
   const simpleDex = await SimpleDex.deploy({ value })
-  await simpleDex.deployed();
+  
+  // Wait for the deployment transaction to be included in a block
+  await simpleDex.waitForDeployment();
 
-  console.log(`SimpleDex deployed to ${simpleDex.address}`);
+   // Get and print the contract address
+  const myContractDeployedAddress = await simpleDex.getAddress();
+  console.log(`SimpleDex deployed to ${myContractDeployedAddress}`);
 }
 
 main().catch((error) => {
@@ -236,20 +247,22 @@ Since the `DemoToken` contract has an ERC-20 interface, you can check the balanc
 ```js
 async function checkBalances(demoToken) {
   // Get the signer
-  const signer = (await ethers.getSigner()).address;
+  const signers = await ethers.getSigners();
+  const signer = signers[0];
+  const signerAddress = signer.address;
 
   // Get the balance of the DEX and print it
-  const dexBalance = ethers.utils.formatEther(
+  const dexBalance = ethers.formatEther(
     await demoToken.balanceOf(simpleDexAddress)
   );
   console.log(`Dex ${simpleDexAddress} has a balance of: ${dexBalance} DTOKs`);
 
   // Get the balance of the signer and print it
-  const signerBalance = ethers.utils.formatEther(
+  const signerBalance = ethers.formatEther(
     await demoToken.balanceOf(signer)
   );
   console.log(
-    `Account ${signer} has a balance of: ${signerBalance} DTOKs`
+    `Account ${signerAddress} has a balance of: ${signerBalance} DTOKs`
   );
 }
 ```
@@ -260,7 +273,7 @@ At this point, you should already have some DTOKs in your signing account, and t
 
 Now, we can approve the DEX to spend some DTOK tokens on our behalf so that we can swap the DTOKs for DEVs. On Ethereum, for example, we would need to send two transactions to be able to swap the DTOKs back to DEVs: an approval and a transfer. However, on Moonbeam, thanks to the batch precompile contract, you can batch these two transactions into a single one. This allows us to set the approval amount for the exact amount of the swap.
 
-So instead of calling `demoToken.approve(spender, amount)` and then `simpleDex.swapDemoTokenForDev(amount)`, we'll get the encoded call data for each of these transactions and pass them into the batch precompile's `batchAll` function. To get the encoded call data, we'll use Ether's `interface.encodeFunctionData` function and pass in the necessary parameters. For example, we'll swap .2 DTOK for .2 DEV. In this case, for the approval, we can pass in the DEX address as the `spender` and set the `amount` to .2 DTOK. We'll also set the `amount` to swap as .2 DTOK. Again, we can use the `ethers.utils.parseEther` function to convert the amount in DTOK to Wei for us.
+So instead of calling `demoToken.approve(spender, amount)` and then `simpleDex.swapDemoTokenForDev(amount)`, we'll get the encoded call data for each of these transactions and pass them into the batch precompile's `batchAll` function. To get the encoded call data, we'll use Ether's `interface.encodeFunctionData` function and pass in the necessary parameters. For example, we'll swap .2 DTOK for .2 DEV. In this case, for the approval, we can pass in the DEX address as the `spender` and set the `amount` to .2 DTOK. We'll also set the `amount` to swap as .2 DTOK. Again, we can use the `ethers.parseEther` function to convert the amount in DTOK to Wei for us.
 
 Once we have the encoded call data, we can use it to call the `batchAll` function of the batch precompile. This function performs multiple calls atomically, where the same index of each array combine into the information required for a single subcall. If a subcall reverts, all subcalls will revert. The following parameters are required by the `batchAll` function:
 
@@ -277,7 +290,7 @@ async function main() {
   // ...
 
   // Parse the value to swap to Wei
-  const amountDtok = ethers.utils.parseEther('INSERT_AMOUNT_OF_DTOK_TO_SWAP');
+  const amountDtok = ethers.parseEther('INSERT_AMOUNT_OF_DTOK_TO_SWAP');
 
   // Get the encoded call data for the approval and swap
   const approvalCallData = demoToken.interface.encodeFunctionData('approve', [
@@ -361,7 +374,7 @@ async function main() {
 
   // Access the interface of the ERTH contract instance to get the encoded 
   // call data for the approval
-  const amountErth = ethers.utils.parseEther('INSERT_AMOUNT_OF_ERTH_TO_SWAP');
+  const amountErth = ethers.parseEther('INSERT_AMOUNT_OF_ERTH_TO_SWAP');
   const approvalCallData = earth.interface.encodeFunctionData('approve', [
     routerAddress,
     amountErth,

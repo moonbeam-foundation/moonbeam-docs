@@ -84,13 +84,13 @@ Before we dive into creating our project, let's install a couple of dependencies
 === "npm"
 
     ```bash
-    npm install @nomicfoundation/hardhat-ethers ethers @openzeppelin/contracts
+    npm install @nomicfoundation/hardhat-ethers ethers@6 @openzeppelin/contracts
     ```
 
 === "yarn"
 
     ```bash
-    yarn add @nomicfoundation/hardhat-ethers ethers @openzeppelin/contracts
+    yarn add @nomicfoundation/hardhat-ethers ethers@6 @openzeppelin/contracts
     ```
 
 ### Configure Hardhat for a Local Development Node {: #create-a-hardhat-project }
