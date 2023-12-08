@@ -348,7 +348,7 @@ Typically, a frontend using Ethers.js will require you to create a provider, con
     let provider, signer;
     if (typeof window.ethereum !== 'undefined') {
       // Create a provider using MetaMask
-      provider = new ethers.providers.Web3Provider(window.ethereum);
+      provider = new ethers.BrowserProvider(window.ethereum);
 
       // Connect to MetaMask
       async function connectToMetaMask() {
@@ -675,7 +675,7 @@ Let's create a new component called `MintingComponent` in a new file called `Min
 
 ```javascript
 import { useState } from 'react';
-import { useContractFunction, useEthers } from '@usedapp/core';
+import { useContractFunction, useEthers, MoonbaseAlpha } from '@usedapp/core';
 import { Button, CircularProgress, TextField, Grid } from '@mui/material';
 import { utils } from 'ethers';
 
@@ -708,7 +708,7 @@ export default function MintingComponent({ contract }) {
   // ...
 
   // Mint transaction
-  const { account } = useEthers();
+  const { account, chainId, switchNetwork } = useEthers();
   const { state, send } = useContractFunction(contract, 'purchaseMint');
   const handlePurchaseMint = async () => {
     if (chainId !== MoonbaseAlpha.chainId) {
@@ -739,7 +739,7 @@ export default function MintingComponent({ contract }) {
 
     ```js
     import { useState } from 'react';
-    import { useContractFunction, useEthers } from '@usedapp/core';
+    import { useContractFunction, useEthers, MoonbaseAlpha } from '@usedapp/core';
     import { Button, CircularProgress, TextField, Grid } from '@mui/material';
     import { utils } from 'ethers';
 
@@ -747,7 +747,7 @@ export default function MintingComponent({ contract }) {
       const [value, setValue] = useState(0);
       const textFieldStyle = { marginBottom: '16px' };
 
-      const { account } = useEthers();
+      const { account, chainId, switchNetwork } = useEthers();
       const { state, send } = useContractFunction(contract, 'purchaseMint');
       const handlePurchaseMint = async () => {
         if (chainId !== MoonbaseAlpha.chainId) {
