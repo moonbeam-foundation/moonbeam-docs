@@ -65,8 +65,6 @@ Using Docker enables you to spin up a node in a matter of seconds. Once you have
 !!! note
     On MacOS with silicon chips, Docker images may perform poorly. To improve performance, try [spinning up a Node with a Binary File](#getting-started-with-the-binary-file).
 
-
-
 If successful, you should see an output showing an idle state waiting for blocks to be authored:
 
 ![Docker - output shows blocks being produced](/images/builders/get-started/networks/moonbeam-dev/moonbeam-dev-2.png)
