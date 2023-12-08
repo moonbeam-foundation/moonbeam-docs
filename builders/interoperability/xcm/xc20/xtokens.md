@@ -172,7 +172,7 @@ Since you'll be interacting with the `transfer` function of the X-Tokens Pallet,
     !!! note
         For an `AccountId32`, `AccountIndex64`, or `AccountKey20`, you have the option of specify a `network` parameter. If you don't specify one, it will default to `None`.
 
-4. Set the `destWeightLimit` to `Unlimited`. In JavaScript, you'll need to set `Unlimited` to `null` (as outlined in the [TypeScript interface for `XcmV3WeightLimit`](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbase.spec_version }}/typescript-api/src/moonbase/interfaces/augment-api-tx.ts#L5734){target=_blank}):
+4. Set the `destWeightLimit` to `Unlimited`. In JavaScript, you'll need to set `Unlimited` to `null` (as outlined in the [TypeScript interface for `XcmV3WeightLimit`](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbase.spec_version }}/typescript-api/src/moonbase/interfaces/augment-api-tx.ts#L3045){target=_blank}):
 
     ```js
     const destWeightLimit = { Unlimited: null };
@@ -276,7 +276,7 @@ Since you'll be interacting with the `transferMultiasset` function of the X-Toke
     !!! note
         For an `AccountId32`, `AccountIndex64`, or `AccountKey20`, you have the option of specify a `network` parameter. If you don't specify one, it will default to `None`.
 
-3. Set the destination weight limit to `Unlimited`. In JavaScript, you'll need to set `Unlimited` to `null` (as outlined in the [TypeScript interface for `XcmV3WeightLimit`](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbase.spec_version }}/typescript-api/src/moonbase/interfaces/augment-api-tx.ts#L5734){target=_blank}):
+3. Set the destination weight limit to `Unlimited`. In JavaScript, you'll need to set `Unlimited` to `null` (as outlined in the [TypeScript interface for `XcmV3WeightLimit`](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbase.spec_version }}/typescript-api/src/moonbase/interfaces/augment-api-tx.ts#L3045){target=_blank}):
 
     ```js
     const destWeightLimit = { Unlimited: null };
