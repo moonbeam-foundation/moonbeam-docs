@@ -113,7 +113,7 @@ The XCM Transactor Pallet provides the following extrinsics (functions):
         --8<-- 'code/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-pallet/interface-examples/set-transact-info.js'
         ```
 
-??? function "**transactThroughSigned**(destination, fee, call, weightInfo, refund) — sends an XCM message with instructions to remotely execute a call in the destination chain. The remote call will be signed and executed by a new account that the destination parachain must compute. Moonbeam-based networks follow [the Computed Origins standard set by Polkadot](https://github.com/paritytech/polkadot-sdk/blob/master/polkadot/xcm/xcm-builder/src/location_conversion.rs){target=_blank}"
+??? function "**transactThroughSigned**(destination, fee, call, weightInfo, refund) — sends an XCM message with instructions to remotely execute a call in the destination chain. The remote call will be signed and executed by a new account that the destination parachain must compute. Moonbeam-based networks follow [the Computed Origins standard set by Polkadot](https://github.com/paritytech/polkadot-sdk/blob/{{ polkadot_sdk }}/polkadot/xcm/xcm-builder/src/location_conversion.rs){target=_blank}"
 
     === "Parameters"
 
@@ -160,7 +160,7 @@ The XCM Transactor Pallet provides the following extrinsics (functions):
                 - `AsMultiLocation` - the XCM versioned multilocation for the asset to use for the fees
             - `feeAmount` - (optional) the amount to use for fees
         - `call` - encoded call data of the call that will be executed in the target chain
-        - `originKind` — dispatcher of the remote call in the destination chain. There are [four types of dispatchers](https://github.com/paritytech/polkadot-sdk/blob/master/polkadot/xcm/src/v2/mod.rs#L84){target=_blank} available: `Native`, `SovereignAccount`, `Superuser`, or `Xcm`
+        - `originKind` — dispatcher of the remote call in the destination chain. There are [four types of dispatchers](https://github.com/paritytech/polkadot-sdk/blob/{{ polkadot_sdk }}/polkadot/xcm/src/v2/mod.rs#L84){target=_blank} available: `Native`, `SovereignAccount`, `Superuser`, or `Xcm`
         - `weightInfo` - the weight information to be used. The `weightInfo` structure contains the following:
             - `transactRequiredWeightAtMost` — the weight required to perform the execution of the `Transact` call.  The `transactRequiredWeightAtMost` structure contains the following:
                 - `refTime` - the amount of computational time that can be used for execution
