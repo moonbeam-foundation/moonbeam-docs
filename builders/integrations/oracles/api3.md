@@ -103,7 +103,6 @@ The `_rrpAddress` is the main `airnodeRrpAddress`. The RRP Contracts have alread
     |:------------:|:-----------------------------------:|
     | AirnodeRrpV0 | `{{ networks.moonriver.api3.rrp }}` |
 
-
 === "Moonbase Alpha"
 
     |   Contract   |             Addresses              |
@@ -215,7 +214,7 @@ If you are trying to access managed dAPIs, once you have selected your dAPI, you
 Managed dAPIs give you the option to configure the dAPI's [devation threshold](https://docs.api3.org/reference/dapis/understand/deviations.html){target=_blank} and [heartbeat](https://docs.api3.org/reference/dapis/understand/deviations.html#heartbeat){target=_blank}. For managed dAPIs, you will have the following options to choose from:
 
 | Deviation | Heartbeat |
-| --------- | --------- |
+|-----------|-----------|
 | 0.25%     | 2 minutes |
 | 0.25%     | 24 hours  |
 | 0.5%      | 24 hours  |
