@@ -11,7 +11,7 @@ The Computed Origin, previously referred to as the multilocation-derivative acco
 
 Computed origins are keyless (the private key is unknown). Consequently, Computed Origins can only be accessed through XCM extrinsics from the origin account. In other words, the origin account is the only account that can initiate transactions on your Computed Origin account, and if you lose access to your origin account, you’ll also lose access to your Computed Origin account.
 
-The Computed Origin is calculated from the origin that is being used to execute the XCM in the destination chain. By default, this is the Sovereign account of the source chain in the destination chain. This origin can be mutated by the [`DescendOrigin`](/builders/interoperability/xcm/core-concepts/instructions#descend-origin){target=_blank} XCM instruction. If so, the destination chain can decide what to do by this newly mutated origin for the execution of the XCM.
+The Computed Origin is calculated from the origin that is being used to execute the XCM in the destination chain. By default, this is the Sovereign account of the source chain in the destination chain. This origin can be mutated by the [`DescendOrigin`](/builders/interoperability/xcm/core-concepts/instructions#descend-origin){target=_blank} XCM instruction. However, the destination chain can decide whether or not to use the newly mutated origin for the execution of the XCM. On Moonbeam, the Computed Origin account is used to execute the XCM.
 
 Moonbeam-based networks follow [the Computed Origins standard set by Polkadot](https://github.com/paritytech/polkadot-sdk/blob/{{ polkadot_sdk }}/polkadot/xcm/xcm-builder/src/location_conversion.rs){target=_blank}, that is, through a `blake2` hash of a data structure that depends on the origin of the XCM message. However, because Moonbeam uses Ethereum-styled accounts, Computed Origins are truncated to 20 bytes.
 
@@ -61,7 +61,7 @@ When the XCM instruction gets executed in Moonbeam (Moonbase Alpha in this examp
 
 ## How to Calculate the Computed Origin {: #calculate-computed-origin }
 
-You can easily calculate the Computed Origin account through the `calculate-multilocation-derivative-account`/`calculate-remote-origin` script in the [xcm-tools](https://github.com/Moonsong-Labs/xcm-tools){target=_blank} repository.
+You can easily calculate the Computed Origin account through the `calculate-multilocation-derivative-account` or the `calculate-remote-origin` script in the [xcm-tools](https://github.com/Moonsong-Labs/xcm-tools){target=_blank} repository.
 
 The script accepts the following inputs:
 
