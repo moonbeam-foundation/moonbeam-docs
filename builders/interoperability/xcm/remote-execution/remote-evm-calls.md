@@ -34,12 +34,12 @@ A regular EVM call has an apparent sender who signs the Ethereum transaction wit
 
 With remote EVM calls, the signer signs an XCM transaction in another chain. Moonbeam receives that XCM message, which follows the conventional remote execution via XCM form:
 
- - [`DescendOrigin`](/builders/interoperability/xcm/core-concepts/instructions#descend-origin){target=_blank} _(optional)_
+ - [`DescendOrigin`](/builders/interoperability/xcm/core-concepts/instructions#descend-origin){target=_blank} (optional)
  - [`WithdrawAsset`](/builders/interoperability/xcm/core-concepts/instructions#withdraw-asset){target=_blank}
  - [`BuyExecution`](/builders/interoperability/xcm/core-concepts/instructions#buy-execution){target=_blank}
  - [`Transact`](/builders/interoperability/xcm/core-concepts/instructions#transact){target=_blank}
 
-XCM execution happens through a [Computed Origin account mechanism](/builders/interoperability/xcm/remote-execution/computed-origins){target=_blank}, which by default, uses the source chain Sovereign account in the destination chain. If `DescendOrigin` is included, Moonbeam will mutate the origin of the XCM call to a keyless account that a user from the source chain can control remotely via XCM. The remote EVM call is dispatched from that keyless account (or a related [proxy](/tokens/manage/proxy-accounts/){target=_blank}). Therefore, because the transaction is not signed, it does not have the real `v-r-s` values of the signature, but `0x1` instead.
+XCM execution happens through a [Computed Origin account mechanism](/builders/interoperability/xcm/remote-execution/computed-origins){target=_blank}, which by default uses the source chain's Sovereign account in the destination chain. If `DescendOrigin` is included, Moonbeam will mutate the origin of the XCM call to a keyless account that a user from the source chain can control remotely via XCM. The remote EVM call is dispatched from that keyless account (or a related [proxy](/tokens/manage/proxy-accounts/){target=_blank}). Therefore, because the transaction is not signed, it does not have the real `v-r-s` values of the signature, but `0x1` instead.
 
 Since remote EVM calls do not have the actual `v-r-s` values of the signature, there could be collision problems with the EVM transaction hash, as it is calculated as the keccak256 hash of the signed transaction blob. In consequence, if two accounts with the same nonce submit the same transaction object, they will end up with the same EVM transaction hash. Therefore, all remote EVM transactions use a global nonce that is attached to the [Ethereum XCM Pallet](https://github.com/moonbeam-foundation/moonbeam/tree/master/pallets/ethereum-xcm){target=_blank}.
 
@@ -102,7 +102,7 @@ The Ethereum XCM Pallet provides the following extrinsics (functions) that can b
 
 ## Building a Remote EVM Call Through XCM {: #build-remove-evm-call-xcm}
 
-This guide covers building an XCM message for remote EVM calls using the [XCM Pallet](https://github.com/paritytech/polkadot-sdk/blob/master/polkadot/xcm/pallet-xcm/src/lib.rs){target=_blank} from the relay chain to Moonbase Alpha. More specifically, it will use the `transact` function. The steps to use the `transactThroughProxy` function are identical. However, you'll need to provide the `transactAs` account and ensure that this account has set the Computed Origin account as a proxy of type `any` on Moonbase Alpha.
+This guide covers building an XCM message for remote EVM calls using the [XCM Pallet](https://github.com/paritytech/polkadot-sdk/blob/{{ polkadot_sdk }}/polkadot/xcm/pallet-xcm/src/lib.rs){target=_blank} from the relay chain to Moonbase Alpha. More specifically, it will use the `transact` function. The steps to use the `transactThroughProxy` function are identical. However, you'll need to provide the `transactAs` account and ensure that this account has set the Computed Origin account as a proxy of type `any` on Moonbase Alpha.
 
 !!! note
     When using `transactThroughProxy`, the EVM call is dispatched by the `transactAs` account you provide, acting as the `msg.sender`, as long as this account has set the the Computed Origin account as a proxy of type `any` in the Moonbeam-based network you are using. However, transaction fees are still paid by the Computed Origin account, so you need to ensure it has enough funds to cover them.

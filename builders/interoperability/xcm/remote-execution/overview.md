@@ -1,5 +1,5 @@
 ---
-title: Overview
+title: Remote Execution Overview
 description: Learn the basics of remote execution via XCM messages, which allow users to execute actions on other blockchains using accounts they control remotely via XCM.
 ---
 
@@ -15,39 +15,37 @@ This page covers the fundamentals of XCM remote execution. If you want to learn 
 
 ## Execution Origin {: #execution-origin }
 
-Generally speaking, all transactions have an origin, which is where a call has come from. On Ethereum transactions, there is only one origin type, typically called the `msg.sender`, which is usually the account that signed the transaction. 
+Generally speaking, all transactions have an origin, which is where a call comes from. Ethereum transactions have only one origin type, the `msg.sender`, which is the account that initiated the transaction.
 
-Substrate-based transactions are more complex, as they can have different origins with different privilege levels. This is similar to having an EVM smart contract call with a specific `require` in which the call must come from an allowed address. In contrast, these privilege levels are programmed in the Substrate-based runtime itself.
+Substrate-based transactions are more complex, as they can have different origins with different privilege levels. This is similar to having an EVM smart contract call with a specific `require` statement in which the call must come from an allowed address. In contrast, these privilege levels are programmed in the Substrate-based runtime itself.
 
-Origins are super important across different components of the Substrate, hence Moonbeam, runtime. For example, they define the authority level they inherit in the [on-chain governance implementation](/learn/features/governance/){target=_blank}.
+Origins are super important across different components of the Substrate runtime and, hence, the Moonbeam runtime. For example, they define the authority level they inherit in the [on-chain governance implementation](/learn/features/governance/){target=_blank}.
 
-During the execution of an XCM message, the origin defines the context in which the XCM is being executed. By default, XCM execution happens with the source chain Sovereign account in the destination chain. This Polkadot-specific property of having remote origins that are calculated when executing XCM is known as **Computed Origins** (formerly known as Multilocation Derivative Accounts).
+During the execution of an XCM message, the origin defines the context in which the XCM is being executed. By default, the XCM is executed by the source chain's Sovereign account in the destination chain. This Polkadot-specific property of having remote origins that are calculated when executing XCM is known as [Computed Origins](/builders/interoperability/xcm/remote-execution/computed-origins/){target=_blank} (formerly known as Multilocation Derivative Accounts).
 
-Depending on the destination chain configuration, including an XCM instruction can mutate the origin from which the XCM message is executed. This property is significant for remote XCM execution, as the action being executed considers the context of the newly mutated origin, and not the source chain Sovereign account. 
-
-You can refer to the [Computed Origins](/builders/interoperability/xcm/remote-execution/computed-origins/){target=_blank} page if you want to learn more about computed origins on Moonbeam-based networks.
+Depending on the destination chain's configuration, including the `DescendOrigin` XCM instruction can mutate the origin from which the XCM message is executed. This property is significant for remote XCM execution, as the action being executed considers the context of the newly mutated origin and not the source chain's Sovereign account.
 
 ## XCM Instructions for Remote Execution {: xcm-instructions-remote-execution }
 
 The core XCM instructions required to perform remote execution on Moonbeam (as an example) via XCM are the following:
 
- - [`DescendOrigin`](/builders/interoperability/xcm/core-concepts/instructions#descend-origin){target=_blank} _(optional)_ - executed in Moonbeam. Mutates the origin to create a new computed origin that represents a keyless account controlled via XCM by the sender in the source chain
- - [`WithdrawAsset`](/builders/interoperability/xcm/core-concepts/instructions#withdraw-asset){target=_blank} - executed in Moonbeam. Takes funds from the computed origin
- - [`BuyExecution`](/builders/interoperability/xcm/core-concepts/instructions#buy-execution){target=_blank} - executed in Moonbeam. Uses the funds taken by the previous XCM instruction to pay for the XCM execution, including the remote call
- - [`Transact`](/builders/interoperability/xcm/core-concepts/instructions#transact){target=_blank} - executed in Moonbeam. Executes the arbitrary bytes provided in the XCM instruction
+ - [`DescendOrigin`](/builders/interoperability/xcm/core-concepts/instructions#descend-origin){target=_blank} - (optional) gets executed in Moonbeam. Mutates the origin to create a new Computed Origin that represents a keyless account controlled via XCM by the sender in the source chain
+ - [`WithdrawAsset`](/builders/interoperability/xcm/core-concepts/instructions#withdraw-asset){target=_blank} - gets executed in Moonbeam. Takes funds from the Computed Origin
+ - [`BuyExecution`](/builders/interoperability/xcm/core-concepts/instructions#buy-execution){target=_blank} - gets executed in Moonbeam. Uses the funds taken by the previous XCM instruction to pay for the XCM execution, including the remote call
+ - [`Transact`](/builders/interoperability/xcm/core-concepts/instructions#transact){target=_blank} - gets executed in Moonbeam. Executes the arbitrary bytes provided in the XCM instruction
 
-The XCM instructions detailed above can be complemented by other XCM instructions to handle certain scenarios, like failure on execution, more correctly. One example is the inclusion of [`SetAppendix`](/builders/interoperability/xcm/core-concepts/instructions#set-appendix){target=_blank}, [`RefundSurplus`](/builders/interoperability/xcm/core-concepts/instructions#refund-surplus){target=_blank}  and [`Deposit`](/builders/interoperability/xcm/core-concepts/instructions#deposit-asset){target=_blank}.
+The XCM instructions detailed above can be complemented by other XCM instructions to handle certain scenarios, like failure on execution, more correctly. One example is the inclusion of [`SetAppendix`](/builders/interoperability/xcm/core-concepts/instructions#set-appendix){target=_blank}, [`RefundSurplus`](/builders/interoperability/xcm/core-concepts/instructions#refund-surplus){target=_blank}, and [`Deposit`](/builders/interoperability/xcm/core-concepts/instructions#deposit-asset){target=_blank}.
 
- ## General Remote Execution via XCM Flow
+## General Remote Execution via XCM Flow {: #general-remote-execution-via-xcm-flow }
 
 A user initiates a transaction in the source chain through a pallet that builds the XCM with at least the [required XCM instructions for remote execution](xcm-instructions-remote-execution). The transaction is executed in the source chain, which sends an XCM message with the given instructions to the destination chain.
 
-The XCM message arrives at the destination chain, which executes it. It is executed with the source chain Sovereign account as a computed origin by default. One example that uses this type of origin is when chains perform the HRMP channel opening/acceptance on the relay chain.
+The XCM message arrives at the destination chain, which executes it. It is executed with the source chain's Sovereign account as a Computed Origin by default. One example that uses this type of origin is when chains open or accept an HRMP channel on the relay chain.
 
-If the XCM message included a [`DescendOrigin`](/builders/interoperability/xcm/core-concepts/instructions#descend-origin){target=_blank} instruction, the destination chain may mutate the origin to calculate a new computed origin (like Moonbeam-based networks).
+If the XCM message included a [`DescendOrigin`](/builders/interoperability/xcm/core-concepts/instructions#descend-origin){target=_blank} instruction, the destination chain may mutate the origin to calculate a new Computed Origin (as is the case with Moonbeam-based networks).
 
-Next, [`WithdrawAsset`](/builders/interoperability/xcm/core-concepts/instructions#withdraw-asset){target=_blank} takes funds from the computed origin (either a Sovereign account or mutated), which are then used to pay for the XCM execution through the [`BuyExecution`](/builders/interoperability/xcm/core-concepts/instructions#buy-execution){target=_blank} XCM instruction. Note that on both instructions, you need to specify which asset you want to use. In addition, you must include the bytes to be executed in the amount of execution to buy.
+Next, [`WithdrawAsset`](/builders/interoperability/xcm/core-concepts/instructions#withdraw-asset){target=_blank} takes funds from the Computed Origin (either a Sovereign account or mutated), which are then used to pay for the XCM execution through the [`BuyExecution`](/builders/interoperability/xcm/core-concepts/instructions#buy-execution){target=_blank} XCM instruction. Note that on both instructions, you need to specify which asset you want to use. In addition, you must include the bytes to be executed in the amount of execution to buy.
 
-Lastly, [`Transact`](/builders/interoperability/xcm/core-concepts/instructions#transact){target=_blank} executes an arbitrary set of bytes that correspond to a pallet and function in the destination chain. You have to specify the type of origin to use (typically `SovereignAccount` type origin), and the weight required to execute the bytes (similar to gas in the Ethereum realm).
+Lastly, [`Transact`](/builders/interoperability/xcm/core-concepts/instructions#transact){target=_blank} executes an arbitrary set of bytes that correspond to a pallet and function in the destination chain. You have to specify the type of origin to use (typically `SovereignAccount`) and the weight required to execute the bytes (similar to gas in the Ethereum realm).
 
-DIAGRAM
+![Diagram of the XCM instructions executed on the destination chain for remote execution.](/images/builders/interoperability/xcm/remote-execution/overview/overview-1.png)
