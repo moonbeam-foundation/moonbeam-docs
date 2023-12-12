@@ -7,16 +7,16 @@ description: Follow this guide to learn how to vote and lock your tokens to supp
 
 ## Introduction {: #introduction }
 
-Referenda are simple, inclusive, and stake-based voting schemes. Each referendum has a proposal associated with it that suggests an action to take place. In OpenGov, each referendum will have a specified Origin class that the proposal will be executed with and each Origin has its own Track that proposals will process through. Although referenda are completed by a common process, the requirements for approval are Track-specific.
+Referenda are simple, inclusive, and stake-based voting schemes. Each referendum has a proposal associated with it that suggests an action to take place. In OpenGov, each referendum will have a specified Origin class that the proposal will be executed with, and each Origin has its own Track that proposals will process through. Although referenda are completed by a common process, the requirements for approval are Track-specific.
 
-Token holders can vote on referenda using their own tokens. Two factors defined the weight a vote has: the number of tokens locked and lock duration (called Conviction). This is to ensure that there is an economic buy-in to the result to prevent vote-selling. Consequently, the longer you are willing to lock your tokens, the stronger your vote will be weighted. You also have the option of not locking tokens at all, but vote weight is drastically reduced.
+Token holders can vote on referenda using their own tokens, including those that are locked in staking. The weight of a vote is defined by two factors: the number of tokens locked and the lock duration (called Conviction). This is to ensure that there is an economic buy-in to prevent vote-selling. Consequently, the longer you are willing to lock your tokens, the stronger your vote will be weighted. You also have the option of not locking tokens at all, but the vote weight is drastically reduced.
 
 In Moonbeam, users will be able to create and vote on proposals using their H160 address and private key, that is, their regular Ethereum account!
 
 This guide will outline the process, with step-by-step instructions, of how to vote on referenda in Governance v2: OpenGov. This guide will show you how to vote on Moonbase Alpha, but it can be easily adapted for Moonbeam and Moonriver.
 
 !!! note
-    This page goes through the mechanics on how to vote at a more techincal level. Token holders can leverage platforms such as [Polkassembly](https://moonbeam.network/tutorial/participate-in-moonbeam-governance-with-polkassembly/){target=_blank} to vote using a more friendly user interface.
+    This page goes through the mechanics of how to vote at a more technical level. Token holders can leverage platforms such as [Polkassembly](https://moonbeam.network/tutorial/participate-in-moonbeam-governance-with-polkassembly/){target=_blank} to vote using a more friendly user interface.
 
 ## Definitions {: #definitions }
 
