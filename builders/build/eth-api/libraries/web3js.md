@@ -231,6 +231,26 @@ You can also use the `balances.js` script to check that the balances for the ori
 
 ![Send Tx Web3js](/images/builders/build/eth-api/libraries/web3js/web3js-1.png)
 
+### Common Errors When Sending Transactions {: #common-errors }
+
+When sending a transaction with Web3.js, it is important that you have all of the required data for the transaction. You'll need to provide the `from` address or the `nonce` of the sender, the `gas` or `gasLimit`, and the `gasPrice`.
+
+If you do not specify the `from` address or the `nonce` of the sender, you may receive the following error:
+
+```bash
+UnableToPopulateNonceError: Invalid value given "UnableToPopulateNonceError". Error: unable to populate nonce, no from address available.
+```
+
+To fix this, simply add either the `from` or `nonce` field to the transaction object.
+
+If you do not specify the gas correctly, you may receive the following error:
+
+```bash
+MissingGasError: Invalid value given "gas: 0x5208, gasPrice: undefined, maxPriorityFeePerGas: undefined, maxFeePerGas: undefined". Error: "gas" is missing.
+```
+
+To resolve this error, you'll need to make sure that you've provided a `gasPrice` for the transaction. You can use `await web3.eth.getGasPrice()` to programmatically get this value.
+
 ## Deploy a Contract {: #deploy-a-contract }
 
 --8<-- 'text/builders/build/eth-api/libraries/contract.md'
