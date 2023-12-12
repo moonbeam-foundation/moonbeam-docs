@@ -1,6 +1,6 @@
 const { Web3 } = require('web3');
 
-// 1. Add the Web3 provider logic here:
+// 1. Add the Web3 provider logic
 const providerRPC = {
   development: 'http://localhost:9944',
   moonbase: 'https://rpc.api.moonbase.moonbeam.network',
@@ -20,7 +20,7 @@ const send = async () => {
     `Attempting to send transaction from ${accountFrom.address} to ${addressTo}`
   );
 
-  // 4. Prepare and sign tx with PK
+  // 4. Sign transaction with PK
   const createTransaction = await web3.eth.accounts.signTransaction(
     {
       gas: 21000,
@@ -32,7 +32,7 @@ const send = async () => {
     accountFrom.privateKey
   );
 
-  // 5. Send tx and wait for receipt
+  // 5. Send transaction and wait for receipt
   const createReceipt = await web3.eth.sendSignedTransaction(
     createTransaction.rawTransaction
   );
