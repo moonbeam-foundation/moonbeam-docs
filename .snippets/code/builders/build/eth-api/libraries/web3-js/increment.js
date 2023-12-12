@@ -1,13 +1,13 @@
-// 1. Import Web3js and the contract abi
+// 1. Import Web3js and the contract ABI
 const { Web3 } = require('web3');
 const { abi } = require('./compile');
 
-// 2. Add the Web3 provider logic here:
+// 2. Add the Web3 provider logic
 const providerRPC = {
   development: 'http://localhost:9944',
   moonbase: 'https://rpc.api.moonbase.moonbeam.network',
 };
-const web3 = new Web3(providerRPC.moonbase); //Change to correct network
+const web3 = new Web3(providerRPC.moonbase); // Change to correct network
 
 // 3. Create variables
 const accountFrom = {
@@ -20,7 +20,7 @@ const _value = 3;
 // 4. Create contract instance
 const incrementer = new web3.eth.Contract(abi, contractAddress);
 
-// 5. Build increment tx
+// 5. Build increment transaction
 const incrementTx = incrementer.methods.increment(_value);
 
 // 6. Create increment function
@@ -29,7 +29,7 @@ const increment = async () => {
     `Calling the increment by ${_value} function in contract at address: ${contractAddress}`
   );
 
-  // 7. Prepare and Sign Tx with PK
+  // 7. Sign transaction with PK
   const createTransaction = await web3.eth.accounts.signTransaction(
     {
       to: contractAddress,
@@ -41,7 +41,7 @@ const increment = async () => {
     accountFrom.privateKey
   );
 
-  // 8. Send Tx and Wait for Receipt
+  // 8. Send transaction and wait for receipt
   const createReceipt = await web3.eth.sendSignedTransaction(
     createTransaction.rawTransaction
   );

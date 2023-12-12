@@ -2,7 +2,7 @@
 const { Web3 } = require('web3');
 const contractFile = require('./compile');
 
-// 2. Add the Web3 provider logic here:
+// 2. Add the Web3 provider logic
 const providerRPC = {
   development: 'http://localhost:9944',
   moonbase: 'https://rpc.api.moonbase.moonbeam.network',
@@ -26,13 +26,13 @@ const deploy = async () => {
   // 6. Create contract instance
   const incrementer = new web3.eth.Contract(abi);
 
-  // 7. Create constructor tx
+  // 7. Create constructor transaction
   const incrementerTx = incrementer.deploy({
     data: bytecode,
     arguments: [5],
   });
 
-  // 8. Sign transacation and send
+  // 8. Sign transaction with PK
   const createTransaction = await web3.eth.accounts.signTransaction(
     {
       data: incrementerTx.encodeABI(),
@@ -43,7 +43,7 @@ const deploy = async () => {
     accountFrom.privateKey
   );
 
-  // 9. Send tx and wait for receipt
+  // 9. Send transaction and wait for receipt
   const createReceipt = await web3.eth.sendSignedTransaction(
     createTransaction.rawTransaction
   );

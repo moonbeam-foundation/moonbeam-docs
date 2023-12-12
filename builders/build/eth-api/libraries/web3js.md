@@ -25,7 +25,7 @@ For the examples in this guide, you will need to have the following:
 
 ## Installing Web3.js {: #install-web3js }
 
-To get started, you'll need to start a basic JavaScript project. First, create a directory to store all of the files you'll be creating throughout this guide and initialize the project with the following command:
+To get started, you'll need to start a basic JavaScript project. First, create a directory to store all of the files you'll be creating throughout this guide, and initialize the project with the following command:
 
 ```bash
 mkdir web3-examples && cd web3-examples && npm init --y
@@ -88,7 +88,7 @@ The simplest way to get started with each of the networks is as follows:
     const web3 = new Web3('{{ networks.development.rpc_url }}');
     ```
 
-Save this code snippet as you'll need it for the scripts that are used in the following sections.
+Save this code snippet, as you'll need it for the scripts that are used in the following sections.
 
 ## Send a Transaction {: #send-a-transaction }
 
@@ -108,12 +108,12 @@ Next, you will create the script for this file and complete the following steps:
 
 1. [Set up the Web3 provider](#setup-web3-with-moonbeam)
 2. Define the `addressFrom` and `addressTo` variables
-3. Create the asynchronous `balances` function which wraps the `web3.eth.getBalance` method
+3. Create the asynchronous `balances` function, which wraps the `web3.eth.getBalance` method
 4. Use the `web3.eth.getBalance` function to fetch the balances for the `addressFrom` and `addressTo` addresses. You can also leverage the `web3.utils.fromWei` function to transform the balance into a more readable number in DEV
 5. Lastly, run the `balances` function
 
 ```js
-// 1. Add the Web3 provider logic here:
+// 1. Add the Web3 provider logic
 // {...}
 
 // 2. Create address variables
@@ -156,7 +156,7 @@ If successful, the balances for the origin and receiving address will be display
 
 ### Send Transaction Script {: #send-transaction-script }
 
-You'll only need one file for executing a transaction between accounts. For this example, you'll be transferring 1 DEV token from an origin address (from which you hold the private key) to another address. To get started, you can create a `transaction.js` file by running:
+You'll only need one file to execute a transaction between accounts. For this example, you'll be transferring 1 DEV token from an origin address (from which you hold the private key) to another address. To get started, you can create a `transaction.js` file by running:
 
 ```bash
 touch transaction.js
@@ -166,13 +166,13 @@ Next, you will create the script for this file and complete the following steps:
 
 1. [Set up the Web3 provider](#setup-web3-with-moonbeam)
 2. Define the `accountFrom`, including the `privateKey`, and the `addressTo` variables. The private key is required to create a wallet instance. **Note: This is for example purposes only. Never store your private keys in a JavaScript file**
-3. Create the asynchronous `send` function which wraps the transaction object and the sign and send transaction functions
+3. Create the asynchronous `send` function, which wraps the transaction object, and the sign and send transaction functions
 4. Create and sign the transaction using the `web3.eth.accounts.signTransaction` function. Pass in the `gas`, `addressTo`, `value`, `gasPrice`, and `nonce` for the transaction along with the sender's `privateKey`
 5. Send the signed transaction using the `web3.eth.sendSignedTransaction` method and pass in the raw transaction. Then use `await` to wait until the transaction is processed and the transaction receipt is returned
 6. Lastly, run the `send` function
 
 ```js
-// 1. Add the Web3 provider logic here:
+// 1. Add the Web3 provider logic
 // {...}
 
 // 2. Create account variables
@@ -188,7 +188,7 @@ const send = async () => {
     `Attempting to send transaction from ${accountFrom.address} to ${addressTo}`
   );
 
-  // 4. Sign tx with PK
+  // 4. Sign transaction with PK
   const createTransaction = await web3.eth.accounts.signTransaction(
     {
       gas: 21000,
@@ -200,7 +200,7 @@ const send = async () => {
     accountFrom.privateKey
   );
 
-  // 5. Send tx and wait for receipt
+  // 5. Send transaction and wait for receipt
   const createReceipt = await web3.eth.sendSignedTransaction(
     createTransaction.rawTransaction
   );
@@ -225,7 +225,7 @@ To run the script, you can run the following command in your terminal:
 node transaction.js
 ```
 
-If the transaction was succesful, in your terminal you'll see the transaction hash has been printed out.
+If the transaction was successful, in your terminal, you'll see the transaction hash has been printed out.
 
 You can also use the `balances.js` script to check that the balances for the origin and receiving accounts have changed. The entire workflow would look like this:
 
@@ -289,7 +289,7 @@ Next, you will create the script for this file and complete the following steps:
 // 1. Import the contract file
 const contractFile = require('./compile');
 
-// 2. Add the Web3 provider logic here:
+// 2. Add the Web3 provider logic
 // {...}
 
 // 3. Create address variables
@@ -309,13 +309,13 @@ const deploy = async () => {
   // 6. Create contract instance
   const incrementer = new web3.eth.Contract(abi);
 
-  // 7. Create constructor tx
+  // 7. Create constructor transaction
   const incrementerTx = incrementer.deploy({
     data: bytecode,
     arguments: [5],
   });
 
-  // 8. Sign transacation and send
+  // 8. Sign transaction with PK
   const createTransaction = await web3.eth.accounts.signTransaction(
     {
       data: incrementerTx.encodeABI(),
@@ -326,7 +326,7 @@ const deploy = async () => {
     accountFrom.privateKey
   );
 
-  // 9. Send tx and wait for receipt
+  // 9. Send transaction and wait for receipt
   const createReceipt = await web3.eth.sendSignedTransaction(
     createTransaction.rawTransaction
   );
@@ -355,7 +355,7 @@ If successful, the contract's address will be displayed in the terminal.
 
 ### Read Contract Data (Call Methods) {: #read-contract-data }
 
-Call methods are the type of interaction that don't modify the contract's storage (change variables), meaning no transaction needs to be sent. They simply read various storage variables of the deployed contract.
+Call methods are the type of interaction that doesn't modify the contract's storage (change variables), meaning no transaction needs to be sent. They simply read various storage variables of the deployed contract.
 
 To get started, you can create a file and name it `get.js`:
 
@@ -370,14 +370,14 @@ Then you can take the following steps to create the script:
 3. Create the `contractAddress` variable using the address of the deployed contract
 4. Create an instance of the contract using the `web3.eth.Contract` function and passing in the `abi` and  `contractAddress`
 5. Create the asynchronous `get` function
-6. Use the contract instance to call one of the contract's methods and pass in any inputs if necessary. For this example, you will call the `number` method which doesn't require any inputs. You can use `await` which will return the value requested once the request promise resolves
+6. Use the contract instance to call one of the contract's methods and pass in any inputs if necessary. For this example, you will call the `number` method which doesn't require any inputs. You can use `await`, which will return the value requested once the request promise resolves
 7. Lastly, call the `get` function
 
 ```js
-// 1. Import the contract abi
+// 1. Import the contract ABI
 const { abi } = require('./compile');
 
-// 2. Add the Web3 provider logic here:
+// 2. Add the Web3 provider logic
 // {...}
 
 // 3. Create address variables
@@ -416,7 +416,7 @@ If successful, the value will be displayed in the terminal.
 
 ### Interact with Contract (Send Methods) {: #interact-with-contract }
 
-Send methods are the type of interaction that modify the contract's storage (change variables), meaning a transaction needs to be signed and sent. In this section, you'll create two scripts: one to increment and one to reset the incrementer. To get started, you can create a file for each script and name them `increment.js` and `reset.js`:
+Send methods are the type of interaction that modifies the contract's storage (change variables), meaning a transaction needs to be signed and sent. In this section, you'll create two scripts: one to increment and one to reset the incrementer. To get started, you can create a file for each script and name them `increment.js` and `reset.js`:
 
 ```bash
 touch increment.js reset.js
@@ -435,10 +435,10 @@ Open the `increment.js` file and take the following steps to create the script:
 9. Lastly, call the `increment` function
 
 ```js
-// 1. Import the contract abi
+// 1. Import the contract ABI
 const { abi } = require('./compile');
 
-// 2. Add the Web3 provider logic here:
+// 2. Add the Web3 provider logic
 // {...}
 
 // 3. Create variables
@@ -452,7 +452,7 @@ const _value = 3;
 // 4. Create contract instance
 const incrementer = new web3.eth.Contract(abi, contractAddress);
 
-// 5. Build increment tx
+// 5. Build the increment transaction
 const incrementTx = incrementer.methods.increment(_value);
 
 // 6. Create increment function
@@ -461,7 +461,7 @@ const increment = async () => {
     `Calling the increment by ${_value} function in contract at address: ${contractAddress}`
   );
 
-  // 7. Prepare and Sign Tx with PK
+  // 7. Sign transaction with PK
   const createTransaction = await web3.eth.accounts.signTransaction(
     {
       to: contractAddress,
@@ -473,7 +473,7 @@ const increment = async () => {
     accountFrom.privateKey
   );
 
-  // 8. Send Tx and Wait for Receipt
+  // 8. Send transaction and wait for receipt
   const createReceipt = await web3.eth.sendSignedTransaction(
     createTransaction.rawTransaction
   );
@@ -500,7 +500,7 @@ If successful, the transaction hash will be displayed in the terminal. You can u
 
 ![Increment Contract Web3js](/images/builders/build/eth-api/libraries/web3js/web3js-3.png)
 
-Next you can open the `reset.js` file and take the following steps to create the script:
+Next, you can open the `reset.js` file and take the following steps to create the script:
 
 1. Import the `abi` from the `compile.js` file
 2. [Set up the Web3 provider](#setup-web3-with-moonbeam)
@@ -513,10 +513,10 @@ Next you can open the `reset.js` file and take the following steps to create the
 9. Lastly, call the `reset` function
 
 ```js
-// 1. Import the contract abi
+// 1. Import the contract ABI
 const { abi } = require('./compile');
 
-// 2. Add the Web3 provider logic here:
+// 2. Add the Web3 provider logic
 // {...}
 
 // 3. Create variables
@@ -526,10 +526,10 @@ const accountFrom = {
 };
 const contractAddress = 'INSERT_CONTRACT_ADDRESS';
 
-// 4. Create Contract Instance
+// 4. Create a contract instance
 const incrementer = new web3.eth.Contract(abi, contractAddress);
 
-// 5. Build reset tx
+// 5. Build reset transaction
 const resetTx = incrementer.methods.reset();
 
 // 6. Create reset function
@@ -538,7 +538,7 @@ const reset = async () => {
     `Calling the reset function in contract at address: ${contractAddress}`
   );
 
-  // 7. Sign tx with PK
+  // 7. Sign transaction with PK
   const createTransaction = await web3.eth.accounts.signTransaction(
     {
       to: contractAddress,
@@ -550,7 +550,7 @@ const reset = async () => {
     accountFrom.privateKey
   );
 
-  // 8. Send tx and wait for receipt
+  // 8. Send transaction and wait for receipt
   const createReceipt = await web3.eth.sendSignedTransaction(
     createTransaction.rawTransaction
   );

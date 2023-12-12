@@ -1,8 +1,8 @@
-// 1. Import Web3js and the contract abi
+// 1. Import Web3js and the contract ABI
 const { Web3 } = require('web3');
 const { abi } = require('./compile');
 
-// 2. Add the Web3 provider logic here:
+// 2. Add the Web3 provider logic
 const providerRPC = {
   development: 'http://localhost:9944',
   moonbase: 'https://rpc.api.moonbase.moonbeam.network',
@@ -19,14 +19,14 @@ const contractAddress = 'INSERT_CONTRACT_ADDRESS';
 // 4. Create contract instance
 const incrementer = new web3.eth.Contract(abi, contractAddress);
 
-// 5. Build reset tx
+// 5. Build reset transaction
 const resetTx = incrementer.methods.reset();
 
 // 6. Create reset function
 const reset = async () => {
   console.log(`Calling the reset function in contract at address: ${contractAddress}`);
 
-  // 7. Prepare and sign tx with PK
+  // 7. Sign transaction with PK
   const createTransaction = await web3.eth.accounts.signTransaction(
     {
       to: contractAddress,
@@ -38,7 +38,7 @@ const reset = async () => {
     accountFrom.privateKey
   );
 
-  // 8. Send tx and wait for receipt
+  // 8. Send transaction and wait for receipt
   const createReceipt = await web3.eth.sendSignedTransaction(createTransaction.rawTransaction);
   console.log(`Tx successful with hash: ${createReceipt.transactionHash}`);
 };
