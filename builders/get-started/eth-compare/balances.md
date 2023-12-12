@@ -37,18 +37,22 @@ As with Ethereum, there are two main types of accounts: user-owned and contract 
 
 ![Moonbeam balances diagram](/images/builders/get-started/eth-compare/balances/balances-2.png)
 
-You can check on your balances, including your free (or transferrable) and reserved balances (if exists), using [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/accounts){target=_blank}.
+### Retrieve Your Balance {: #retrieve-your-balance }
 
-![View balances on Polkadot.js Apps](/images/builders/get-started/eth-compare/balances/balances-3.png)
+You can check on your balances, including your free (or transferrable) and reserved balances (if exists), using the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api){target=_blank}.
 
-You can also view your balance locks using Polkadot.js Apps. Before getting started, make sure Polkadot.js Apps is connected to the correct network. Then go ahead and select the **Developer** tab, then choose **Chain State**, and take the following steps:
+!!! note
+    --8<-- 'text/_common/endpoint-examples.md'
 
-1. Select **balances** from the **selected state query** dropdown
-2. Choose the **locks** extrinsic
-3. Enter your address
-4. Click the **+** button to submit the extrinsic
+```js
+--8<-- 'code/builders/get-started/eth-compare/balances/balance.js'
+```
 
-![View locks on Polkadot.js Apps](/images/builders/get-started/eth-compare/balances/balances-4.png)
+You can also retrieve your balance locks using the Polkadot.js API.
+
+```js
+--8<-- 'code/builders/get-started/eth-compare/balances/locks.js'
+```
 
 ## Main Differences {: #main-differences }
 
