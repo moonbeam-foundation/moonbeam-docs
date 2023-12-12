@@ -232,6 +232,68 @@ const pair = keyring.createFromUri(privateKey);
 !!! note
     In the above `INSERT_PRIVATE_KEY` field, you can specify a seed phrase instead of a private key.
 
+## Get Asset and Chain Data {: #asset-chain-data }
+
+You can use any of the following code examples to retrieve information on the supported assets and the chains that support these assets.
+
+### Get List of Supported Assets {: #get-list-of-supported-assets }
+
+To get a list of all of the assets supported by the XCM SDK, you can instantiate the XCM SDK and call the `assets` function.
+
+```js
+import { Sdk } from '@moonbeam-network/xcm-sdk';
+
+const sdkInstance = new Sdk();
+const assets = sdkInstance.assets();
+
+console.log('The supported assets are as follows:');
+assets.assets.forEach((asset) => {
+  console.log(`- ${asset.originSymbol}`);
+});
+```
+
+### Get List of Supported Assets by Ecosystem {: #get-supported-assets-by-ecosystem }
+
+To get a list of the supported assets for a particular ecosystem, you can pass in the ecosystem name: `polkadot`, `kusama`, or `alphanet-relay`. For example, the following snippet will get all of the Polkadot assets supported:
+
+```js
+import { Sdk } from '@moonbeam-network/xcm-sdk';
+
+const sdkInstance = new Sdk();
+const assets = sdkInstance.assets('polkadot');
+
+console.log('The supported assets within the Polkadot ecosystem are as follows:');
+assets.assets.forEach((asset) => {
+  console.log(`- ${asset.originSymbol}`);
+});
+```
+
+### Get List of Supported Chains by Asset {: #get-list-of-supported-assets-by-chain }
+
+To get a list of the supported source and destination chains for a given asset, you can use the following code snippet, which logs the supported chains by asset for all of the supported assets in the Polkadot ecosystem:
+
+```js
+import { Sdk } from '@moonbeam-network/xcm-sdk';
+
+const sdkInstance = new Sdk();
+const assets = sdkInstance.assets('polkadot');
+
+assets.assets.forEach((asset) => {
+  const { sourceChains, source } = assets.asset(asset);
+  console.log(`You can send ${asset.originSymbol}...`);
+  if (sourceChains.length > 1) {
+    sourceChains.forEach((sourceChain) => {
+      const { destinationChains } = source(sourceChain);
+      if (destinationChains.length > 0) {
+        destinationChains.forEach((destination) => {
+          console.log(`- From ${source.name} to ${destination.name}`);
+        });
+      }
+    });
+  }
+});
+```
+
 ## Build XCM Transfer Data {: #build-xcm-transfer-data }
 
 In order to transfer an asset from one chain to another, you'll need to first build the transfer data, which defines the asset to be transferred, the source chain and address, the destination chain and address, and the associated signer for the transaction. Building the transfer data is the first step; in the next section, you'll learn how to use the transfer data to actually transfer the asset.
