@@ -18,9 +18,9 @@ This page is a brief introduction and overview of XCM and other related elements
 --8<-- 'text/builders/interoperability/xcm/general-xcm-definitions.md'
 --8<-- 'text/builders/interoperability/xcm/general-xcm-definitions2.md'
 
-## XCM Transport Protocols {: #xcm-transport-protocols }
+## Cross-Chain Transport Protocols via XCM {: #xcm-transport-protocols }
 
-Polkadot implements two cross-consensus or transport protocols for acting on XCM messages between its constituent parachains, Moonbeam being one of them:
+XCM implements two cross-consensus or transport protocols for acting on XCM messages between its constituent parachains, Moonbeam being one of them:
 
 - **Vertical Message Passing (VMP)** — is divided into two kinds of message-passing transport protocols:
 
@@ -50,7 +50,7 @@ Once the channel is established, cross-chain messages can be sent between parach
 
 To learn how to register an asset on Moonbeam and the information necessary to add Moonbeam assets to another chain, please refer to the [How to Register Cross-Chain Assets](/builders/interoperability/xcm/xc-registration/assets/){target=_blank} guide.
 
-## XCM Use Cases {: #xcm-use-cases }
+## Common Use Cases for XCM {: #xcm-use-cases }
 
 The two most common use-cases for XCM messages, at least in the early stages of its implementations, are:
 
@@ -64,7 +64,7 @@ The two most common use-cases for XCM messages, at least in the early stages of 
 
 ![Remote Transact](/images/builders/interoperability/xcm/overview/overview-4.png)
 
-## Moonbeam and XCM {: #moonbeam-and-xcm }
+## XCM on Moonbeam {: #moonbeam-and-xcm }
 
 As Moonbeam is a parachain within the Polkadot ecosystems, one of the most direct implementations of XCM is to enable asset transfer from Polkadot and other parachains from/to Moonbeam. This will allow users to bring their tokens to Moonbeam and all its dApps.
 
@@ -80,7 +80,7 @@ Another unique feature of Moonbeam is the ability to initiate XCM actions from E
 
 The following sections provide a high-level overview of the two initial use cases for XCM on Moonbeam: asset transfers from/to Polkadot (via VMP) and asset transfers from/to other parachains (via XCMP). This page will be expanded as more interoperability features become available, such as movements of ERC-20 tokens from Moonbeam to other parachains, or movement of other assets to Moonbeam as ERC-20 representations.
 
-### Moonbeam & Polkadot {: #moonbeam-polkadot }
+### XCM Transfers Between Moonbeam & Polkadot {: #moonbeam-polkadot }
 
 As Moonbeam is a parachain within the Polkadot ecosystem, XCM + VMP allows DOT transfers from/to Polkadot/Moonbeam. This section goes through a high-level overview of all the actions involved during the execution of such XCM messages.
 
@@ -108,7 +108,7 @@ Polkadot will execute the action the XCM message is programmed to do locally. In
 
 ![Transfers Back from Moonbeam to the Relay Chain](/images/builders/interoperability/xcm/overview/overview-7.png)
 
-### Moonbeam & Other Parachains {: #moonbeam-other-parachains }
+### XCM Transfers Between Moonbeam & Other Parachains {: #moonbeam-other-parachains }
 
 As Moonbeam is a parachain within the Polkadot ecosystem, XCM + XCMP allows asset transfers from/to Moonbeam and other parachains. This section goes through a high-level overview of the main differences compared to XCMs from/to Polkadot/Moonbeam.
 
