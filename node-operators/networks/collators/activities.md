@@ -69,7 +69,7 @@ Head to the **Developer** tab, select **JavaScript** from the dropdown, and take
 
 ### Join the Candidate Pool {: #join-the-candidate-pool } 
 
-Once your node is running and in sync with the network, you become a candidate (and join the candidate pool). Depending on which network you are connected to, head to [Polkadot.js](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/accounts){target=_blank}, click on the **Developer** tab, select **JavaScript** from the dropdown, and take the following steps:
+Once your node is running and in sync with the network, you become a candidate (and join the candidate pool). Depending on which network you are connected to, head to [Polkadot.js](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/accounts){target=_blank}, click on the **Developer** tab, select **Extrinsics** from the dropdown, and take the following steps:
 
  1. Select the account you want to be associated with your collation activities. Confirm your account is funded with at least the [minimum stake required](/node-operators/networks/collators/requirements/#minimum-collator-bond){target=_blank} plus some extra for transaction fees 
  2. Select **parachainStaking** pallet under the **submit the following extrinsic** menu

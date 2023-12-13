@@ -4,6 +4,7 @@ Please explain the changes this PR addresses here.
 
 ### Checklist
 
+- [ ] I have added a label to this PR 🏷️
 - [ ] If this requires translations for the `moonbeam-docs-cn` repo, I have created a ticket for the translations in Jira
 - [ ] If pages have been moved around, I have created an additional PR in `moonbeam-mkdocs` to update redirects
 - [ ] If pages have been moved around, I have run the `move-pages.py` script to move the pages and update the image paths on the chinese repo
