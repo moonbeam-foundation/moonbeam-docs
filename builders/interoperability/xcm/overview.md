@@ -13,6 +13,15 @@ To do so, a [Cross-Consensus Message (XCM)](https://wiki.polkadot.network/docs/l
 
 This page is a brief introduction and overview of XCM and other related elements. More information can be found in [Polkadot's Wiki](https://wiki.polkadot.network/docs/learn-crosschain){target=_blank}.
 
+If you want to jump to more XCM-related content feel free to check the following pages:
+
+- [**Core XCM Concepts**](/builders/interoperability/xcm/core-concepts/){target=_blank} - learn topics related to [**XCM Instructions**](/builders/interoperability/xcm/core-concepts/instructions/){target=_blank}, [**Multilocations**](/builders/interoperability/xcm/core-concepts/multilocations/){target=_blank} and [**XCM Fees**](/builders/interoperability/xcm/core-concepts/weights-fees/){target=_blank}
+- [**XC-20s**](/builders/interoperability/xcm/xc20/){target=_blank} - read an [**Overview**](/builders/interoperability/xcm/xc20/overview/){target=_blank} of this Moonbeam-only asset class, learn how to [**Interact with XC-20s**](/builders/interoperability/xcm/xc20/interact/){target=_blank} and how to [**Send them via XCM**]((/builders/interoperability/xcm/xc20/interact/){target=_blank})
+- [**XCM SDK**](/builders/interoperability/xcm/xcm-sdk/v1/reference/){target=_blank} - learn how to [**Use Moonbeam's XCM SDK**](/builders/interoperability/xcm/xcm-sdk/v1/xcm-sdk/){target=_blank}
+- [**XC Registration**](/builders/interoperability/xcm/xc-registration/){target=_blank} - go through the process of [**Opening an XCM Channel with Moonbeam**](/builders/interoperability/xcm/xc-registration/xc-integration/){target=_blank} and how to [**Register Polkadot Native Assets as XC-20s**](/builders/interoperability/xcm/xc-registration/assets/){target=_blank}
+- [**Remote Execution via XCM**](/builders/interoperability/xcm/remote-execution/){target=_blank} - grasp all concepts related to remote execution via XCM, starting with a [**High-Level Overview**](/builders/interoperability/xcm/remote-execution/overview/){target=_blank}, then [**Computed Origins**](/builders/interoperability/xcm/remote-execution/computed-origins/){target=_blank}, wrapping up with [**Remote Calls via XCM**](/builders/interoperability/xcm/remote-execution/substrate-calls/){target=_blank} and [**Remote EVM Calls via XCM**](/builders/interoperability/xcm/remote-execution/remote-evm-calls/){target=_blank}
+- **XCM Debugging and Tools** - learn how to test some XCM scenarios by  [**Sending and Executing Generic XCM Messages**](/builders/interoperability/xcm/send-execute-xcm/){target=_blank}, or how to use the [**XCM Utilities Precompile**](/builders/pallets-precompiles/precompiles/xcm-utils/){target=_blank} to access XCM_related utility functions directly within the EVM
+
 ## General XCM Definitions {: #general-xcm-definitions }
 
 --8<-- 'text/builders/interoperability/xcm/general-xcm-definitions.md'
@@ -64,11 +73,7 @@ To send XC-20s across the Polkadot ecosystem from Moonbeam, developers neeed to 
 
 Another unique feature of Moonbeam is the ability to initiate XCM actions from EVM smart contracts or to call its EVM through XCM messages via remote execution. This unlocks a new set of possibilities, where contracts on Moonbeam can access parachain-specific functionalities via XCM, or other parachain ecosystems can use EVM smart contracts on Moonbeam to expand their functions.
 
-<<<<<<< HEAD
 The following sections provide a high-level overview of the main use cases mentioned before.
-=======
-### XCM Transfers Between Moonbeam & Polkadot {: #moonbeam-polkadot }
->>>>>>> 4ef93e25e54c3033d6fc1cb18b7ef452c37916e9
 
 ### Asset Transfers between Moonbeam & Polkadot {: #asset-moonbeam-polkadot }
 
@@ -96,11 +101,7 @@ Polkadot will execute the action the XCM message is programmed to do locally. In
 
 ![Transfers Back from Moonbeam to the Relay Chain](/images/builders/interoperability/xcm/overview/overview-5.png)
 
-<<<<<<< HEAD
 ### Asset Transfers between Moonbeam & Other Parachains {: #asset-moonbeam-other-parachains }
-=======
-### XCM Transfers Between Moonbeam & Other Parachains {: #moonbeam-other-parachains }
->>>>>>> 4ef93e25e54c3033d6fc1cb18b7ef452c37916e9
 
 As Moonbeam is a parachain within the Polkadot ecosystem, a straightforward implementation of XCM + XCMP asset transfers from/to Moonbeam and other parachains. This section gives a high-level overview of the main differences compared to XCMs from/to Polkadot/Moonbeam.
 
