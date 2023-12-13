@@ -3,4 +3,4 @@ nav:
   - index.md
   - 'Overview': 'overview.md'
   - 'Interact with XC-20s': 'interact.md'
-  - 'send-xc20s'
+  - 'Send XC-20s via XCM': 'send-xc20s'
