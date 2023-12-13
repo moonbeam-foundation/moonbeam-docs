@@ -140,7 +140,7 @@ Let's go through each of the main components of the snippet shown above:
      - Encoded calldata for the batch call that contains both mint commands
  2. Create the necessary providers. One is a [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=_blank} provider, through which we can call [Moonbeam pallets](/builders/pallets-precompiles/pallets/){target=_blank} directly
  3. Here, we are hardcoding the gas limit for simplicity and to avoid gas estimation issues as a result of the Batch Precompile
- 4. [Build the remote EVM call containing the batch call](/builders/interoperability/xcm/remote-execution/remote-evm-calls/#build-remove-evm-call-xcm){target=_blank}
+ 4. [Build the remote EVM call containing the batch call](/builders/interoperability/xcm/remote-execution/remote-evm-calls/#build-remote-evm-call-xcm){target=_blank}
  5. Create the Ethereum XCM pallet call to the `transact` method, providing the call parameters specified above
  6. Get the SCALE calldata of the specific transaction parameter, which we need to provide to the `Transact` XCM instruction later on. Note that in this particular scenario, because we need only the calldata of the transaction parameters, we have to use `tx.method.toHex()`
 

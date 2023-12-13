@@ -5,9 +5,9 @@ description: This guide describes the XCM Transactor Precompile and shows how to
 
 # Using the XCM Transactor Precompile for Remote Execution
 
-XCM messages are comprised of a [series of instructions](/builders/interoperability/xcm/overview/#xcm-instructions){target=_blank} that are executed by the Cross-Consensus Virtual Machine (XCVM). Combinations of these instructions result in predetermined actions such as cross-chain token transfers and, more interestingly, remote cross-chain execution. Remote execution involves executing operations or actions on one blockchain from another blockchain while maintaining the integrity of the sender's identity and permissions.
+XCM messages are comprised of a [series of instructions](/builders/interoperability/xcm/core-concepts/instructions/){target=_blank} that are executed by the Cross-Consensus Virtual Machine (XCVM). Combinations of these instructions result in predetermined actions such as cross-chain token transfers and, more interestingly, remote cross-chain execution. Remote execution involves executing operations or actions on one blockchain from another blockchain while maintaining the integrity of the sender's identity and permissions.
 
-Typically, XCM messages are sent from the root origin (that is, SUDO or through governance), which is not ideal for projects that want to leverage remote cross-chain calls via a simple transaction. The [XCM Transactor Pallet](https://github.com/moonbeam-foundation/moonbeam/blob/master/pallets/xcm-transactor/src/lib.rs){target=_blank} makes it easy to transact on a remote chain through either the [Sovereign account](/builders/interoperability/xcm/overview#general-xcm-definitions), which should only be allowed through governance, or a [Computed Origin account](/builders/interoperability/xcm/remote-execution/computed-origins){target=_blank} via a simple transaction from the source chain.
+Typically, XCM messages are sent from the root origin (that is, SUDO or through governance), which is not ideal for projects that want to leverage remote cross-chain calls via a simple transaction. The [XCM Transactor Pallet](https://github.com/moonbeam-foundation/moonbeam/blob/master/pallets/xcm-transactor/src/lib.rs){target=_blank} makes it easy to transact on a remote chain through either the [Sovereign account](/builders/interoperability/xcm/overview#general-xcm-definitions){target=_blank}, which should only be allowed through governance, or a [Computed Origin account](/builders/interoperability/xcm/remote-execution/computed-origins){target=_blank} via a simple transaction from the source chain.
 
 However, the XCM Transactor Pallet is coded in Rust and is normally not accessible from the Ethereum API side of Moonbeam. As such, Moonbeam introduced the XCM Transactor Precompile, which is a Solidity interface that allows you to interact directly with the Substrate pallet using the Ethereum API.
 
@@ -207,7 +207,7 @@ The interface varies slightly from version to version. You can find an overview 
 
 ## XCM Instructions for Remote Execution {: #xcm-instructions-for-remote-execution }
 
-The relevant [XCM instructions](/builders/interoperability/xcm/overview/#xcm-instructions) to perform remote execution through XCM are, but are not limited to:
+The relevant [XCM instructions](/builders/interoperability/xcm/core-concepts/instructions/){target=_blank} to perform remote execution through XCM are, but are not limited to:
 
  - [`DescendOrigin`](/builders/interoperability/xcm/core-concepts/instructions#descend-origin){target=_blank} - gets executed in the target chain. It mutates the origin on the target chain to match the origin on the source chain, ensuring execution on the target chain occurs on behalf of the same entity initiating the XCM message on the source chain
  - [`WithdrawAsset`](/builders/interoperability/xcm/core-concepts/instructions#withdraw-asset){target=_blank} - gets executed in the target chain. Removes assets and places them into a holding register

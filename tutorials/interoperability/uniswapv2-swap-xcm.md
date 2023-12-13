@@ -151,7 +151,7 @@ Let's go through each of the main components of the snippet shown above:
      - Encoded calldata for the Uniswap V2 swap that we calculated before
  2. Create the necessary providers. One is a [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=_blank} provider, through which we can call [Moonbeam pallets](https://docs.moonbeam.network/builders/pallets-precompiles/pallets/){target=_blank} directly. The other one is an Ethereum API provider through Ethers.js
  3. This step is mainly a best practice. Here, we are estimating the gas of the EVM call that will be executed via XCM, as this is needed later on. You can also hardcode the gas limit value, but it is not recommended
- 4. [Build the remote EVM call](/builders/interoperability/xcm/remote-execution/remote-evm-calls/#build-remove-evm-call-xcm){target=_blank}. We bumped the gas by `10000` units to provide a bit of room in case conditions change. The inputs are identical to those used for the gas estimation
+ 4. [Build the remote EVM call](/builders/interoperability/xcm/remote-execution/remote-evm-calls/#build-remote-evm-call-xcm){target=_blank}. We bumped the gas by `10000` units to provide a bit of room in case conditions change. The inputs are identical to those used for the gas estimation
  5. Create the Ethereum XCM pallet call to the `transact` method, providing the call parameters we previously built
  6. Get the SCALE calldata of the specific transaction parameter, which we need to provide to the `Transact` XCM instruction later on. Note that in this particular scenario, because we need only the calldata of the transaction parameters, we have to use `tx.method.toHex()`
 

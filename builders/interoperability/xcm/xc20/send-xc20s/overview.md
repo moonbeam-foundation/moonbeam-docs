@@ -31,7 +31,7 @@ The following sections provide some examples of the XCM instructions involved in
 
 ### Instructions to Transfer a Reserve Asset from the Reserve Chain {: #transfer-native-from-origin }
 
---8<-- 'text/builders/interoperability/xcm/xc20/send-xc20s/instructions/DOT-to-xcDOT-instructions.md'
+--8<-- 'text/builders/interoperability/xcm/xc20/send-xc20s/overview/DOT-to-xcDOT-instructions.md'
 
 To check how the instructions for an XCM message are built to transfer self-reserve (native) assets to a target chain, such as DOT to Moonbeam, you can refer to the [`transfer_self_reserve_asset`](https://github.com/open-web3-stack/open-runtime-module-library/blob/polkadot-{{networks.polkadot.spec_version}}/xtokens/src/lib.rs#L680){target=_blank} function in the [X-Tokens Open Runtime Module Library](https://github.com/open-web3-stack/open-runtime-module-library/tree/polkadot-{{networks.polkadot.spec_version}}/xtokens){target=_blank} repository (as an example).
 
@@ -39,7 +39,7 @@ It calls `TransferReserveAsset` and passes in `assets`, `dest`, and `xcm` as par
 
 ### Instructions to Transfer a Reserve Asset back to the Reserve Chain {: #transfer-native-to-origin }
 
---8<-- 'text/builders/interoperability/xcm/xc20/send-xc20s/instructions/xcDOT-to-DOT-instructions.md'
+--8<-- 'text/builders/interoperability/xcm/xc20/send-xc20s/overview/xcDOT-to-DOT-instructions.md'
 
 To check how the instructions for an XCM message are built to transfer reserve assets to a target chain, such as xcDOT to Polkadot, you can refer to the [`transfer_to_reserve`](https://github.com/open-web3-stack/open-runtime-module-library/blob/polkadot-{{networks.polkadot.spec_version}}/xtokens/src/lib.rs#L697){target=_blank} function in the [X-Tokens Open Runtime Module Library](https://github.com/open-web3-stack/open-runtime-module-library/tree/polkadot-{{networks.polkadot.spec_version}}/xtokens){target=_blank} repository.
 

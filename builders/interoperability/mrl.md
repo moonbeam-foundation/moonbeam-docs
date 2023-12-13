@@ -30,7 +30,7 @@ In order to begin an MRL integration with your parachain, you will first need to
 - [Register Moonbeam’s asset on your parachain](/builders/interoperability/xcm/xc-registration/assets#register-moonbeam-native-assets){target=_blank}. This is required due to a temporary drawback of pallets that send XCM messages for asset transfer, making Moonbeam’s native gas asset the only asset that can be used as a cross-chain fee on the way back
 - [Register the local XC-20 token(s) you want routed to your parachain](/builders/interoperability/xcm/xc-registration/assets#register-local-xc20){target=_blank}
     - Allow these local XC-20 token(s) to be used for XCM fees
-- Allow users to send the `Transact` XCM instruction (via `polkadotXcm.Send` or with the [XCM Transactor Pallet](/builders/interoperability/xcm/remote-execution/xcm-transactor#xcm-transactor-pallet-interface){target=_blank}), which enables remote EVM calls, allowing accounts on a remote parachain to interact with the bridging smart contracts on Moonbeam
+- Allow users to send the `Transact` XCM instruction (via `polkadotXcm.Send` or with the [XCM Transactor Pallet](/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-pallet/#xcm-transactor-pallet-interface){target=_blank}), which enables remote EVM calls, allowing accounts on a remote parachain to interact with the bridging smart contracts on Moonbeam
 
 ## MRL Through Wormhole {: #mrl-through-wormhole }
 
@@ -89,7 +89,7 @@ Now that you have a general idea of the game plan, you can begin to implement it
 
 In order to send tokens back through Wormhole, you'll need to calculate the user's Computed Origin account (previously referred to as a multilocation-derivative account) on Moonbeam. This can be done off-chain using the [`calculate-multilocation-derivative-account.ts` script](https://github.com/Moonsong-Labs/xcm-tools/blob/main/scripts/calculate-multilocation-derivative-account.ts){target=_blank} from the [xcm-tools repository](https://github.com/Moonsong-Labs/xcm-tools){target=_blank}. For more details, you can refer to the [Computed Origins](/builders/interoperability/xcm/remote-execution/computed-origins){target=_blank} guide.
 
-Alternatively, the `multilocationToAddress` function of the [XCM Utilities Precompile](/builders/interoperability/xcm/xcm-utils/) can also be used.
+Alternatively, the `multilocationToAddress` function of the [XCM Utilities Precompile](/builders/interoperability/xcm/xcm-utils/){target=_blank} can also be used.
 
 #### Build the Transfer Multiassets Extrinsic {: #build-transfer-multiassets }
 
