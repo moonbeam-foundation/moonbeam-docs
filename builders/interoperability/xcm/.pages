@@ -3,9 +3,9 @@ nav:
   - index.md
   - 'Overview': 'overview.md'
   - core-concepts
-  - xc20
-  - xcm-sdk
   - xc-registration
+  - xc20
   - remote-execution
+  - xcm-sdk
   - 'Send & Execute XCM Messages': 'send-execute-xcm.md'
   - 'XCM Utilities': 'xcm-utils.md'
