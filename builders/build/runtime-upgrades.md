@@ -7,11 +7,15 @@ description: A historical record of each runtime upgrade and the block at which 
 
 ## Introduction {: #introduction }
 
-Moonbeam runtime upgrades allows for the maintenance and evolution of the chain logic, without the need for a hard fork. These runtime upgrades can introduce new features, improve performance, fix bugs, and respond to changing requirements.
+Moonbeam runtime upgrades allow for the maintenance and evolution of the chain logic without the need for a hard fork. These runtime upgrades can introduce new features, improve performance, fix bugs, and respond to changing requirements.
 
 This page provides a historical record of runtime upgrades by block for each of the Moonbeam-based networks.
 
 ## Runtime Upgrades by Block {: #runtime-upgrades-by-block }
+
+The following table contains a list of the runtime upgrades and the block at which the upgrade occurred for each network. Runtime upgrades occur first on Moonbase Alpha before being released on Moonriver, and then on Moonbeam.
+
+Not all runtime upgrades are released on each network, as sometimes after releasing the initial runtime upgrade, the need for a subsequent upgrade arises. If a runtime upgrade version has been skipped, you'll see a `-` in that row.
 
 | Runtime | Moonbase Alpha | Moonriver | Moonbeam |
 |:-------:|:--------------:|:---------:|:--------:|
