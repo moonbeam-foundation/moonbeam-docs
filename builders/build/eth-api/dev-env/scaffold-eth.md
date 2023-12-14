@@ -25,7 +25,7 @@ To get started, you will need the following:
 
 ### Installing Scaffold-ETH 2 {: #installing-scaffold-eth }
 
-First, download Scaffold-ETH 2 from its GitHub repository.
+First, download [Scaffold-ETH 2 from GitHub](https://github.com/scaffold-eth/scaffold-eth-2){target=_blank}.
 
 From the command line, enter:
 
@@ -57,7 +57,7 @@ In this guide, you can use the default contract and frontend that you get out of
 
 In the following sections, you'll update the network configurations in the Hardhat configuration file to target the Moonbeam-based network you want to interact with, and deploy and verify the example contract to that network.
 
-### Configure Hardhat for Moonbeam {: #update-network-configurations }
+### Configure Hardhat for Moonbeam {: #configure-hardhat-for-moonbeam }
 
 You can begin by making modifications to the Hardhat component under the `packages/hardhat` folder. You'll primarily be editing the `hardhat.config.js` file to configure it for Moonbeam. However, you'll also need to create a `.env` file to store a couple of variables that will be consumed by the `hardhat.config.js` file.
 
@@ -233,7 +233,7 @@ To target the Moonbeam-based network that you deployed your smart contract to, y
 === "Moonriver"
 
     ```js
-    targetNetworks: [chains.moonmoonriverbeam],
+    targetNetworks: [chains.moonriver],
     ```
 
 === "Moonbase Alpha"
