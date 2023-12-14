@@ -9,8 +9,8 @@ const provider = new ethers.JsonRpcProvider(
 );
 const signer = new ethers.Wallet(privateKey, provider);
 // Create contract instance
-const xcmTransactorV2 = new ethers.Contract(
-  '0x000000000000000000000000000000000000080d',
+const xcmTransactorV3 = new ethers.Contract(
+  '0x0000000000000000000000000000000000000817',
   abi,
   signer
 );
@@ -24,21 +24,23 @@ const dest = [
   ],
 ];
 const feeLocationAddress = '0xFFFFFFFF1AB2B146C526D4154905FF12E6E57675';
-const transactRequiredWeightAtMost = 1000000000n;
+const transactRequiredWeightAtMost = [1000000000n, 5000n];
 const call = '0x030044236223ab4291b93eed10e4b511b37a398dee5513000064a7b3b6e00d';
 const feeAmount = 50000000000000000n;
-const overallWeight = 2000000000n;
+const overallWeight = [2000000000n, 10000n];
+const refund = true;
 
 // Sends 1 token to Alice's account on parachain 888
 async function transactThroughSigned() {
   // Creates, signs, and sends the transfer transaction
-  const transaction = await xcmTransactorV2.transactThroughSigned(
+  const transaction = await xcmTransactorV3.transactThroughSigned(
     dest,
     feeLocationAddress,
     transactRequiredWeightAtMost,
     call,
     feeAmount,
-    overallWeight
+    overallWeight,
+    refund
   );
 
   // Waits for the transaction to be included in a block

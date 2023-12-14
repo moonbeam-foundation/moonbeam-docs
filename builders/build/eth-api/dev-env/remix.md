@@ -5,7 +5,7 @@ description: Discover how to deploy and interact with Solidity smart contracts o
 
 # Using Remix to Deploy to Moonbeam
 
-<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/NBOLCGT5-ww' frameborder='0' allowfullscreen></iframe></div>
+<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/TkbYDRzVe7g?si=eX2hFClaMaf0AQLc' frameborder='0' allowfullscreen></iframe></div>
 <style>.caption { font-family: Open Sans, sans-serif; font-size: 0.9em; color: rgba(170, 170, 170, 1); font-style: italic; letter-spacing: 0px; position: relative;}</style>
 
 ## Introduction {: #introduction }
@@ -182,36 +182,5 @@ On the other hand, if you call the `approve` function, which will approve an acc
 ![The inputs for the approve function of the ERC-20 contract and the MetaMask pop-up for the approval.](/images/builders/build/eth-api/dev-env/remix/new/remix-14.png)
 
 To view your balance or approvals, or transfer MYTOKs, you can add the MYTOK to your wallet. For information on how to add a token to MetaMask, you can refer to the [Add an ERC-20 Token](/tokens/connect/metamask#add-erc20){target=_blank} section of [our MetaMask documentation](/tokens/connect/metamask){target=_blank}.
-
-## Moonbeam Remix Plugin {: #moonbeam-remix-plugin }
-
-The Moonbeam team has built a Remix plugin that makes it even easier to develop and deploy your Ethereum smart contracts on Moonbeam. The Moonbeam Remix plugin combines all of the important functions needed to compile, deploy, and interact with your smart contracts from one place - no switching tabs needed. The Moonbeam Remix plugin supports Moonbeam, Moonriver, and the Moonbase Alpha TestNet.
-
-### Installing the Moonbeam Remix Plugin {: #installing-the-moonbeam-remix-plugin }
-
-To install the Moonbeam Remix plugin, take the following steps:
-
- 1. Head to the **Plugin manager** tab
- 2. Search for **Moonbeam**
- 3. Press **Activate** and the Moonbeam Remix plugin will be added directly above the plugin manager tab
-
-![Activating the Moonbeam Remix Plugin](/images/builders/build/eth-api/dev-env/remix/using-remix-17.png)
-
-Once you've added the plugin, a Moonbeam logo will appear on the left hand side, representing the Moonbeam Remix plugin tab.
-
-### Getting Started with the Moonbeam Remix Plugin {: #getting-started-with-the-moonbeam-remix-plugin }
-
-Click on the Moonbeam logo in your Remix IDE to open the Moonbeam plugin. This part assumes you already have a contract in Remix ready to be compiled. You can generate an [ERC-20 contract here](https://wizard.openzeppelin.com/){target=_blank}. To deploy an ERC-20 Token to Moonbase Alpha using the Moonbeam Remix plugin, you can take the following steps:
-
- 1. Press **Connect** to connect MetaMask to Remix
- 2. Ensure you're on the correct network. For this example, you should be on Moonbase Alpha
- 3. Press **Compile** or choose **Auto-Compile** if you prefer
- 4. Press **Deploy** and **Confirm** the transaction in MetaMask
-
-![Compiling and Deploying a Contract with the Moonbeam Remix Plug](/images/builders/build/eth-api/dev-env/remix/using-remix-18.png)
-
-It's that easy! Once the contract is deployed, you'll see the address and all available read/write methods to interact with it.
-
-The Moonbeam Remix plugin works seamlessly with Remix so you can freely switch between using the traditional Remix compile and deploy tabs and the Moonbeam Remix plugin.
 
 --8<-- 'text/_disclaimers/third-party-content.md'

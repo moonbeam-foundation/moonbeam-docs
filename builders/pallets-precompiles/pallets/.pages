@@ -11,4 +11,4 @@ nav:
   - 'Referenda': 'referenda.md'
   - 'Utility': 'utility.md'
   - 'X-Tokens': '/builders/interoperability/xcm/xc20/send-xc20s/xtokens-pallet/'
-  - 'XCM Transactor': '/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-precompile/'
+  - 'XCM Transactor': '/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-pallet/'

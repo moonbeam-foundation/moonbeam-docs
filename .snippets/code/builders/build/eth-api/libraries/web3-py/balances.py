@@ -1,4 +1,3 @@
-# 1. Add import
 from web3 import Web3
 
 # 1. Add the Web3 provider logic here:

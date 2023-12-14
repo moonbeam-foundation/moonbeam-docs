@@ -84,7 +84,7 @@ npx hardhat init
 When creating a JavaScript or TypeScript Hardhat project, you will be asked if you want to install the sample project's dependencies, which will install Hardhat and the [Hardhat Toolbox plugin](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-toolbox#hardhat-toolbox){target=_blank}. You don't need all of the plugins that come wrapped up in the Toolbox, so instead you can install Hardhat, Ethers, and the Hardhat Ethers plugin, which is all you'll need for this tutorial:
 
 ```bash
-npm install --save-dev hardhat @nomicfoundation/hardhat-ethers ethers
+npm install --save-dev hardhat @nomicfoundation/hardhat-ethers ethers@6
 ```
 
 Before we start writing the smart contract, let's add a JSON-RPC URL to the config. Set the `hardhat.config.js` file with the following code, and replace `INSERT_YOUR_PRIVATE_KEY` with your funded account's private key.
@@ -95,7 +95,7 @@ Before we start writing the smart contract, let's add a JSON-RPC URL to the conf
 ```javascript
 require('@nomicfoundation/hardhat-ethers');
 module.exports = {
-  solidity: '0.8.17',
+  solidity: '0.8.20',
   networks: {
     moonbase: {
       url: '{{ networks.moonbase.rpc_url }}',
@@ -124,13 +124,13 @@ Now, in your `MintableERC20.sol`, add the following code:
 
 ```solidity
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.17;
+pragma solidity ^0.8.20;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract MintableERC20 is ERC20, Ownable {
-    constructor() ERC20("Mintable ERC 20", "MERC") {}
+    constructor(address initialOwner) ERC20("Mintable ERC 20", "MERC") Ownable(initialOwner) {}
 }
 ```
 
@@ -175,13 +175,13 @@ Let's continue by adding functionality. Add the following constants, errors, eve
 
     ```solidity
     // SPDX-License-Identifier: UNLICENSED
-    pragma solidity ^0.8.17;
+    pragma solidity ^0.8.20;
 
     import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
     import "@openzeppelin/contracts/access/Ownable.sol";
 
     contract MintableERC20 is ERC20, Ownable {
-        constructor() ERC20("Mintable ERC 20", "MERC") {}
+        constructor(address initialOwner) ERC20("Mintable ERC 20", "MERC") Ownable(initialOwner) {}
 
         uint256 public constant MAX_TO_MINT = 1000 ether;
 
@@ -236,11 +236,15 @@ Your Hardhat project should already come with a script in the `scripts` folder, 
 const hre = require('hardhat');
 
 async function main() {
-  const MintableERC20 = await hre.ethers.getContractFactory('MintableERC20');
-  const token = await MintableERC20.deploy();
-  await token.deployed();
+  const [deployer] = await hre.ethers.getSigners();
 
-  console.log(`Deployed to ${token.address}`);
+  const MintableERC20 = await hre.ethers.getContractFactory('MintableERC20');
+  const token = await MintableERC20.deploy(deployer.address);
+  await token.waitForDeployment();
+
+  // Get and print the contract address
+  const myContractDeployedAddress = await token.getAddress();
+  console.log(`Deployed to ${myContractDeployedAddress}`);
 }
 
 main().catch((error) => {
@@ -344,7 +348,7 @@ Typically, a frontend using Ethers.js will require you to create a provider, con
     let provider, signer;
     if (typeof window.ethereum !== 'undefined') {
       // Create a provider using MetaMask
-      provider = new ethers.providers.Web3Provider(window.ethereum);
+      provider = new ethers.BrowserProvider(window.ethereum);
 
       // Connect to MetaMask
       async function connectToMetaMask() {
@@ -671,7 +675,7 @@ Let's create a new component called `MintingComponent` in a new file called `Min
 
 ```javascript
 import { useState } from 'react';
-import { useContractFunction, useEthers } from '@usedapp/core';
+import { useContractFunction, useEthers, MoonbaseAlpha } from '@usedapp/core';
 import { Button, CircularProgress, TextField, Grid } from '@mui/material';
 import { utils } from 'ethers';
 
@@ -704,7 +708,7 @@ export default function MintingComponent({ contract }) {
   // ...
 
   // Mint transaction
-  const { account } = useEthers();
+  const { account, chainId, switchNetwork } = useEthers();
   const { state, send } = useContractFunction(contract, 'purchaseMint');
   const handlePurchaseMint = async () => {
     if (chainId !== MoonbaseAlpha.chainId) {
@@ -735,7 +739,7 @@ export default function MintingComponent({ contract }) {
 
     ```js
     import { useState } from 'react';
-    import { useContractFunction, useEthers } from '@usedapp/core';
+    import { useContractFunction, useEthers, MoonbaseAlpha } from '@usedapp/core';
     import { Button, CircularProgress, TextField, Grid } from '@mui/material';
     import { utils } from 'ethers';
 
@@ -743,7 +747,7 @@ export default function MintingComponent({ contract }) {
       const [value, setValue] = useState(0);
       const textFieldStyle = { marginBottom: '16px' };
 
-      const { account } = useEthers();
+      const { account, chainId, switchNetwork } = useEthers();
       const { state, send } = useContractFunction(contract, 'purchaseMint');
       const handlePurchaseMint = async () => {
         if (chainId !== MoonbaseAlpha.chainId) {

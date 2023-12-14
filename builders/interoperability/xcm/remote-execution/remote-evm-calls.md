@@ -100,7 +100,7 @@ The Ethereum XCM Pallet provides the following extrinsics (functions) that can b
         --8<-- 'code/builders/interoperability/xcm/remote-execution/remote-evm-calls/interface-examples/transact-through-proxy.js'
         ```
 
-## Building a Remote EVM Call Through XCM {: #build-remove-evm-call-xcm}
+## Building a Remote EVM Call Through XCM {: #build-remote-evm-call-xcm}
 
 This guide covers building an XCM message for remote EVM calls using the [XCM Pallet](https://github.com/paritytech/polkadot-sdk/blob/{{ polkadot_sdk }}/polkadot/xcm/pallet-xcm/src/lib.rs){target=_blank} from the relay chain to Moonbase Alpha. More specifically, it will use the `transact` function. The steps to use the `transactThroughProxy` function are identical. However, you'll need to provide the `transactAs` account and ensure that this account has set the Computed Origin account as a proxy of type `any` on Moonbase Alpha.
 
@@ -119,7 +119,7 @@ The process for building and performing the remote execution can be summarized a
 
 To be able to send the call from the relay chain, you need the following:
 
-- An [account](https://polkadot.js.org/apps/?rpc=wss://frag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/accounts){target=_blank} on the relay chain with funds (UNIT) to pay for the transaction fees. You can acquire some xcUNIT by swapping for DEV tokens (Moonbase Alpha's native token) on [Moonbeam-Swap](https://moonbeam-swap.netlify.app){target=_blank}, a demo Uniswap-V2 clone on Moonbase Alpha, and then [send them to the relay chain](/builders/interoperability/xcm/xc20/send-xc20s/xtokens-pallet/){target_blank}. Additionally, you can [contact us](https://discord.gg/PfpUATX){target=_blank} to get some UNIT tokens directly
+- An [account](https://polkadot.js.org/apps/?rpc=wss://frag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/accounts){target=_blank} on the relay chain with funds (UNIT) to pay for the transaction fees. You can acquire some xcUNIT by swapping for DEV tokens (Moonbase Alpha's native token) on [Moonbeam-Swap](https://moonbeam-swap.netlify.app){target=_blank}, a demo Uniswap-V2 clone on Moonbase Alpha, and then [send them to the relay chain](/builders/interoperability/xcm/xc20/send-xc20s/xtokens-pallet/){target_blank}. Additionally, you can [contact us on Discord](https://discord.gg/PfpUATX){target=_blank} to get some UNIT tokens directly
 - The address of your Computed Origin account. Please refer to the [Computed Origin](/builders/interoperability/xcm/remote-execution/computed-origins){target=_blank} guide to learn how to calculate your Computed Origin address
 - To fund your Computed Origin account. The account must have enough DEV tokens (or GLMR/MOVR for Moonbeam/Moonriver) to cover the cost of the XCM execution of the remote EVM call. Note that this is the account from which the remote EVM call will be dispatched (the `msg.sender`). Consequently, the account must satisfy whatever conditions are required for the EVM call to be executed correctly. For example, hold any relevant ERC-20 token if you are doing an ERC-20 transfer
 
@@ -296,11 +296,11 @@ In the relay chain, the extrinsic is `xcmPallet.send`, and the associated event 
 
 To verify that the remote EVM call through XCM was successful, you can head to the [contract's page in Moonscan](https://moonbase.moonscan.io/address/0xa72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8#readContract){target=_blank} and verify the new value for the number and its timestamp.
 
-## Remote EVM Call Transaction by Hash {: #remove-evm-call-txhash}
+## Remote EVM Call Transaction by Hash {: #remote-evm-call-txhash}
 
 As mentioned before, there are some [differences between regular and remote XCM EVM calls](#differences-regular-remote-evm). Some main differences can be seen when retrieving the transaction by its hash using the Ethereum JSON-RPC.
 
-To do so, you first need to retrieve the transaction hash you want to query. For this example, you can use the transaction hash from the [previous section](#build-remove-evm-call-xcm), which is [0x753588d6e59030eeffd31aabccdd0fb7c92db836fcaa8ad71512cf3a7d0cb97f](https://moonbase.moonscan.io/tx/0x753588d6e59030eeffd31aabccdd0fb7c92db836fcaa8ad71512cf3a7d0cb97f){target=_blank}. Open the terminal, and execute the following command:
+To do so, you first need to retrieve the transaction hash you want to query. For this example, you can use the transaction hash from the [previous section](#build-remote-evm-call-xcm), which is [0x753588d6e59030eeffd31aabccdd0fb7c92db836fcaa8ad71512cf3a7d0cb97f](https://moonbase.moonscan.io/tx/0x753588d6e59030eeffd31aabccdd0fb7c92db836fcaa8ad71512cf3a7d0cb97f){target=_blank}. Open the terminal, and execute the following command:
 
 ```sh
 curl --location --request POST 'https://rpc.api.moonbase.moonbeam.network' \

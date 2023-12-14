@@ -41,7 +41,7 @@ This guide will cover some of the most common flags and show you how to access a
 - **`--runtime-cache-size 64`** - configures the number of different runtime versions preserved in the in-memory cache to 64
 - **`--eth-log-block-cache`** - size in bytes the LRU cache for block data is limited to use. This flag mostly pertains to RPC providers. The default is `300000000`
 - **`--eth-statuses-cache`** - size in bytes the LRU cache for transaction statuses data is limited to use. This flag mostly pertains to RPC providers. The default is `300000000`
-- **--sync** - sets the blockchain syncing mode, which can allow for the blockchain to be synced faster. The available options are:
+- **`--sync`** - sets the blockchain syncing mode, which can allow for the blockchain to be synced faster. The available options are:
     - **`full`** - downloads and validates the full blockchain history
     - **`fast`** - downloads blocks without executing them and downloads the latest state with proofs
     - **`fast-unsafe`** - same as `fast`, but skips downloading the state proofs

@@ -153,9 +153,9 @@ To follow along with the examples in this guide, you need to have the following:
     !!! note
         You can adapt this guide to transfer another [external XC-20 or a local XC-20](/builders/interoperability/xcm/xc20/overview){target=_blank}. For external XC-20s, you'll need the asset ID and the number of decimals the asset has. For local XC-20s, you'll need the contract address.
 
-    ![Moonbeam Swap xcUNIT](/images/builders/interoperability/xcm/xc20/send-xc20s/xtokens-1.png)
+    ![Moonbeam Swap xcUNIT](/images/builders/interoperability/xcm/xc20/send-xc20s/xtokens-pallet/xtokens-1.png)
 
-    To check your xcUNIT balance, you can add the XC-20's [precompile address](/builders/interoperability/xcm/xc20/overview/#calculate-xc20-address){target=_blank} to MetaMask with the following address:
+    To check your xcUNIT balance, you can add the XC-20's [precompile address](/builders/interoperability/xcm/xc20/interact/#calculate-xc20-address){target=_blank} to MetaMask with the following address:
 
     ```text
     0xFfFFfFff1FcaCBd218EDc0EbA20Fc2308C778080
@@ -166,7 +166,7 @@ To follow along with the examples in this guide, you need to have the following:
 
 ### Determining Weight Needed for XCM Execution {: #determining-weight }
 
-To determine the weight needed for XCM execution on the destination chain, you'll need to know which XCM instructions are executed on the destination chain. You can find an overview of the XCM instructions used in the [XCM Instructions for Transfers via X-Tokens](/builders/interoperability/xcm/xc20/send-xc20s/instructions){target=_blank} guide.
+To determine the weight needed for XCM execution on the destination chain, you'll need to know which XCM instructions are executed on the destination chain. You can find an overview of the XCM instructions used in the [XCM Instructions for Transfers via X-Tokens](/builders/interoperability/xcm/xc20/send-xc20s/overview/#xcm-instructions-for-asset-transfers){target=_blank} guide.
 
 In this example, where you're transferring xcUNIT from Moonbase Alpha to the Alphanet relay chain, the instructions that are executed on Alphanet are:
 

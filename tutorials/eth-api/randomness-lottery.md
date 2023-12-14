@@ -30,7 +30,7 @@ For this tutorial, you'll need the following:
 - Install the [Hardhat Ethers plugin](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-ethers){target=_blank}. This provides a convenient way to use the [Ethers.js](/builders/build/eth-api/libraries/ethersjs/){target=_blank} library to interact with the network from your Hardhat project:
 
     ```bash
-    npm install @nomicfoundation/hardhat-ethers ethers
+    npm install @nomicfoundation/hardhat-ethers ethers@6
     ```
 
 !!! note
@@ -56,7 +56,22 @@ Then you can create the following three files, one for each of the aforementione
 touch Randomness.sol RandomnessConsumer.sol Lottery.sol
 ```
 
-In the `Randomness.sol` file, you can paste in the [Randomness Precompile contract](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/randomness/Randomness.sol){target=_blank}. Similarly, in the `RandomnessConsumer.sol` file, you can paste in the [Randomness Consumer contract](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/randomness/RandomnessConsumer.sol){target=_blank}.
+In the `Randomness.sol` file, you can paste in the Randomness Precompile contract.
+
+??? code "Randomness.sol"
+
+    ```solidity
+    --8<-- 'code/builders/pallets-precompiles/precompiles/randomness/Randomness.sol'
+    ```
+
+Similarly, in the `RandomnessConsumer.sol` file, you can paste in the Randomness Consumer contract. 
+
+??? code "RandomnessConsumer.sol"
+
+    ```solidity
+    --8<-- 'code/builders/pallets-precompiles/precompiles/randomness/RandomnessConsumer.sol'
+    ```
+
 
 We'll start adding the functionality to the `Lottery.sol` contract in the following section.
 
@@ -424,7 +439,7 @@ Now to write the deployment script we can use [`ethers`](/builders/build/eth-api
 1. Create a local instance of the lottery contract with the `getContractFactory` method
 2. Get the deposit required for a randomness request using the `requiredDeposit` function of the Randomness Precompile
 3. Use the `deploy` method that exists within this instance to instantiate the smart contract. You can pass in `0` to use local VRF randomness or `1` for BABE epoch randomness. For this example, we'll use local VRF randomness. We'll also need to submit the deposit upon deployment
-4. Wait for the deployment by using `deployed`
+4. Wait for the deployment by using `waitForDeployment`
 5. Once deployed, we can fetch the address of the contract using the contract instance
 
 ```js
@@ -445,10 +460,10 @@ async function main() {
   console.log('Deploying Lottery...');
 
   // 4. Waiting for the deployment to resolve
-  await lottery.deployed();
+  await lottery.waitForDeployment();
 
   // 5. Use the contract instance to get the contract address
-  console.log('Lottery deployed to:', lottery.address);
+  console.log('Lottery deployed to:', lottery.target);
 }
 
 main()

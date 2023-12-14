@@ -47,13 +47,13 @@ The interface includes the following functions:
  - **xcmExecute**(*bytes memory* message, *uint64* maxWeight) - **available on Moonbase Alpha only** -  executes a custom XCM message given the SCALE encoded versioned message to be executed and the maximum weight to be consumed. This function *cannot* be called from a smart contract due to the nature of the `Transact` instruction
  - **xcmSend**(*Multilocation memory* dest, *bytes memory* message) - **available on Moonbase Alpha only** - sends a custom XCM message given the multilocation of the destination chain to send the message to and the SCALE encoded versioned message to be sent
 
-The `Multilocation` struct in the XCM Utilities Precompile is built the [same as the XCM Transactor](/builders/interoperability/xcm/remote-execution/xcm-transactor#building-the-precompile-multilocation){target=_blank} precompile's `Multilocation`.
+The `Multilocation` struct in the XCM Utilities Precompile is built the same as the [XCM Transactor Precompile's](/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-precompile/#building-the-precompile-multilocation){target=_blank} `Multilocation`.
 
 ## Using the XCM Utilities Precompile {: #using-the-xcmutils-precompile }
 
 The XCM Utilities precompile allows users to read data off of the Ethereum JSON-RPC instead of having to go through a Polkadot library. The functions are more for convenience, and less for smart contract use cases.
 
-For `multilocationToAddress`, one example use case is being able to allow transactions that originate from other parachains by whitelisting their Computed Origin addresses. A user can whitelist a multilocation by calculating and storing an address. EVM transactions can originate from other parachains via [remote EVM calls](/builders/interoperability/xcm/remote-execution/remote-evm-calls).  
+For `multilocationToAddress`, one example use case is being able to allow transactions that originate from other parachains by whitelisting their Computed Origin addresses. A user can whitelist a multilocation by calculating and storing an address. EVM transactions can originate from other parachains via [remote EVM calls](/builders/interoperability/xcm/remote-execution/remote-evm-calls){target=_blank}.  
 
 ```solidity
 // SPDX-License-Identifier: GPL-3.0-only

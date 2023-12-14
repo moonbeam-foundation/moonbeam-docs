@@ -1,8 +1,8 @@
-// 1. Import Web3js and the contract abi
+// 1. Import Web3js and the contract ABI
 const { Web3 } = require('web3');
 const { abi } = require('./compile');
 
-// 2. Add the Web3 provider logic here:
+// 2. Add the Web3 provider logic
 const providerRPC = {
   development: 'http://localhost:9944',
   moonbase: 'https://rpc.api.moonbase.moonbeam.network',
