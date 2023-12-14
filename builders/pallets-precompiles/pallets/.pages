@@ -10,5 +10,5 @@ nav:
   - 'Randomness': 'randomness.md'
   - 'Referenda': 'referenda.md'
   - 'Utility': 'utility.md'
-  - 'X-Tokens': '/builders/interoperability/xcm/xc20/xtokens/#x-tokens-pallet-interface'
-  - 'XCM Transactor': '/builders/interoperability/xcm/xcm-transactor/#xcm-transactor-pallet-interface'
+  - 'X-Tokens': '/builders/interoperability/xcm/xc20/send-xc20s/xtokens-pallet/'
+  - 'XCM Transactor': '/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-pallet/'

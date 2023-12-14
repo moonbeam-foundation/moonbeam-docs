@@ -190,7 +190,7 @@ If you intend to support a specific wallet, you can pass a signer into the `init
 
 The Moonbeam SDK provides an API which includes a series of [interfaces](/builders/interoperability/xcm/xcm-sdk/v0/reference/#core-sdk-interfaces){target=_blank} to get asset information for each of the supported assets, chain information for the initialized network, and functions to enable deposits, withdrawals, and subscription to balance information.
 
-Make sure you have [intialized](#initialization) the Moonbeam network you want to interact with first.
+Make sure you have [initialized](#initializing) the Moonbeam network you want to interact with first.
 
 ### Asset Symbols {: #symbols }
 
@@ -335,13 +335,13 @@ moonChain: {
 }
 ```
 
-Here, the units per second refer to units of token (in this case Wei) that is charged per second of execution of the XCM message. You can find more information in the [XCM fees page](/builders/interoperability/xcm/fees/#moonbeam-reserve-assets){target=_blank}.
+Here, the units per second refer to units of token (in this case Wei) that is charged per second of execution of the XCM message. You can find more information in the [XCM fees page](/builders/interoperability/xcm/core-concepts/weights-fees/#moonbeam-reserve-assets){target=_blank}.
 
 ## Using the SDK Methods {: #using-the-sdk-methods }
 
 The Moonbeam SDK provides an API that includes [functions](/builders/interoperability/xcm/xcm-sdk/v0/reference/#core-sdk-methods){target=_blank} which enable deposits, withdrawals, and subscription to balance information, in addition to a few utility functions.
 
-Make sure you have [intialized](#initialization) the Moonbeam network you want to interact with first. You'll also need to make sure you've [created signers](#creating-signers) in order to sign and send deposit and withdraw transfer data.
+Make sure you have [initialized](#initializing) the Moonbeam network you want to interact with first. You'll also need to make sure you've [created signers](#creating-signers) in order to sign and send deposit and withdraw transfer data.
 
 ### Deposit {: #deposit }
 

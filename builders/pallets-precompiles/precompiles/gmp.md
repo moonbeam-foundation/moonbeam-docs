@@ -38,7 +38,7 @@ In practice, it is unlikely that a developer will have to directly interact with
 
 [`Gmp.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/gmp/Gmp.sol){target=_blank} is a Solidity interface that allows developers to interact with the precompile:  
 
-- **wormholeTransferERC20**(*bytes memory* vaa) - receives a Wormhole bridge transfer [verified action approval (VAA)](https://book.wormhole.com/wormhole/4_vaa.html){target=_blank}, mints tokens via the Wormhole token bridge, and forwards the liquidity to the custom payload’s [multilocation](/builders/interoperability/xcm/overview/#general-xcm-definitions){target=_blank}. The payload is expected to be a precompile-specific SCALE encoded object, as explained in this guide's [Building the Payload for Wormhole](#building-the-payload-for-wormhole) section
+- **wormholeTransferERC20**(*bytes memory* vaa) - receives a Wormhole bridge transfer [verified action approval (VAA)](https://book.wormhole.com/wormhole/4_vaa.html){target=_blank}, mints tokens via the Wormhole token bridge, and forwards the liquidity to the custom payload’s [multilocation](/builders/interoperability/xcm/core-concepts/multilocations){target=_blank}. The payload is expected to be a precompile-specific SCALE encoded object, as explained in this guide's [Building the Payload for Wormhole](#building-the-payload-for-wormhole) section
 
 VAAs are payload-containing packages generated after origin-chain transactions and are discovered by Wormhole [Guardian Network spies](https://book.wormhole.com/wormhole/6_relayers.html?search=#specialized-relayers){target=_blank}.
 

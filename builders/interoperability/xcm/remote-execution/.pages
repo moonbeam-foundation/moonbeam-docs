@@ -1,0 +1,7 @@
+title: Remote Execution
+nav:
+  - index.md
+  - 'Overview' : 'overview.md'
+  - 'Computed Origin Accounts': 'computed-origins.md'
+  - substrate-calls
+  - 'Remote EVM Calls': 'remote-evm-calls.md'

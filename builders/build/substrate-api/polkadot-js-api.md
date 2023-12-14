@@ -318,11 +318,11 @@ console.log(`Submitted with hash ${txHash}`);
 
 Note that the `signAndSend` function can also accept optional parameters, such as the `nonce`. For example, `signAndSend(alice, { nonce: aliceNonce })`. You can use the [sample code from the State Queries](/builders/build/substrate-api/polkadot-js-api/#state-queries){target=_blank} section to retrieve the correct nonce, including transactions in the mempool.
 
-### Fee Information {: #fees}
+### Fee Information {: #fees }
 
 The transaction endpoint also offers a method to obtain weight information for a given `api.tx.<module>.<method>`. To do so, you'll need to use the `paymentInfo` function after having built the entire transaction with the specific `module` and `method`.
 
-The `paymentInfo` function returns weight information in terms of `refTime` and `proofSize`, which can be used to determine the transaction fee. This is extremely helpful when crafting [remote execution calls via XCM](/builders/interoperability/xcm/xcm-transactor/){target=_blank}.
+The `paymentInfo` function returns weight information in terms of `refTime` and `proofSize`, which can be used to determine the transaction fee. This is extremely helpful when crafting [remote execution calls via XCM](/builders/interoperability/xcm/remote-execution/){target=_blank}.
 
 For example, assuming you've [initialized the API](#creating-an-API-provider-instance), the following snippet shows how you can get the weight information for a simple balance transfer between two accounts:
 

@@ -30,11 +30,11 @@ The first step for a Moonriver/Moonbeam XCM integration is to integrate with the
 The entire process of getting started with Moonbase Alpha can be summarized as follows:
 
 1. [Sync a node](#sync-a-node) with the Alphanet relay chain
-2. [Calculate your parachain sovereign account](#calculate-and-fund-the-parachain-sovereign-account) on the Alphanet relay chain
+2. [Calculate your parachain Sovereign account](#calculate-and-fund-the-parachain-Sovereign-account) on the Alphanet relay chain
 3. Once your node is fully synced, please get in touch with the Moonbeam team on [Telegram](https://t.me/Moonbeam_Official){target=_blank} or [Discord](https://discord.gg/PfpUATX){target=_blank}, so the team can onboard your parachain to the relay chain. Provide the following information for onboarding:
     - The WASM/Genesis head hash
     - Your parachain ID
-    - Your sovereign account's address. The Moonbeam team will fund your sovereign account at the relay chain level. This step is required to be able to create the HRMP channel
+    - Your Sovereign account's address. The Moonbeam team will fund your Sovereign account at the relay chain level. This step is required to be able to create the HRMP channel
     - The encoded call data to open an HRMP channel to your parachain, accept the incoming HRMP channel, and [register the assets](/builders/interoperability/xcm/xc-registration/assets#register-xc-20s){target=_blank} (if applicable). This will be executed through sudo
 4. Open an HRMP channel to Moonbase Alpha from your parachain (through sudo or via governance)
 5. Accept the HRMP channel from Moonbase Alpha (through sudo or via governance)
@@ -62,13 +62,13 @@ There are also some [snapshots for the Alphanet ecosystem relay chain](https://w
 
 ### Calculate and Fund the Parachain Sovereign Account {: #calculate-and-fund-the-parachain-sovereign-account }
 
-You can calculate the sovereign account information using [a script from the xcm-tools repository](https://github.com/Moonsong-Labs/xcm-tools){target=_blank}. To run the script, you must provide the parachain ID and the name of the associated relay chain.
+You can calculate the Sovereign account information using [a script from the xcm-tools repository](https://github.com/Moonsong-Labs/xcm-tools){target=_blank}. To run the script, you must provide the parachain ID and the name of the associated relay chain.
 
 You can find the parachain IDs that have already been used on the [relay chain's Polkadot.js Apps page](https://polkadot.js.org/apps/?rpc=wss://frag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/parachains){target=_blank}.
 
 The accepted values for the relay chain are `polkadot` (default), `kusama`, and `moonbase`.
 
-For example, Moonbase Alpha's sovereign account for both the relay chain and other parachains can be obtained with the following:
+For example, Moonbase Alpha's Sovereign account for both the relay chain and other parachains can be obtained with the following:
 
 ```bash
 yarn calculate-sovereign-account --p 1000 --r moonbase
@@ -129,14 +129,14 @@ To create forum posts on the [Moonbeam Community Forum](https://forum.moonbeam.f
 
 Before any messages can be sent from your parachain to Moonbeam, an HRMP channel must be opened. To create an HRMP channel, you'll need to send an XCM message to the relay chain that will request a channel be opened through the relay chain. The message will need to contain **at least** the following XCM instructions:  
 
-1. [WithdrawAsset](https://github.com/paritytech/xcm-format#withdrawasset){target=_blank} - takes funds out of the sovereign account (in the relay chain) of the origin parachain to a holding state
-2. [BuyExecution](https://github.com/paritytech/xcm-format#buyexecution){target=_blank} - buys execution time from the relay chain to execute the XCM message
-3. [Transact](https://github.com/paritytech/xcm-format#transact){target=_blank} - provides the relay chain call data to be executed. In this case, the call will be an HRMP extrinsic
+1. [WithdrawAsset](/builders/interoperability/xcm/core-concepts/instructions#withdraw-asset){target=_blank} - takes funds out of the Sovereign account (in the relay chain) of the origin parachain to a holding state
+2. [BuyExecution](/builders/interoperability/xcm/core-concepts/instructions#buy-execution){target=_blank} - buys execution time from the relay chain to execute the XCM message
+3. [Transact](/builders/interoperability/xcm/core-concepts/instructions#transact){target=_blank} - provides the relay chain call data to be executed. In this case, the call will be an HRMP extrinsic
 
 !!! note
-    You can add [DepositAsset](https://github.com/paritytech/xcm-format#depositasset){target=_blank} to refund the leftover funds after the execution. If this is not provided, no refunds will be made. In addition, you could also add a [RefundSurplus](https://github.com/paritytech/xcm-format#refundsurplus){target=_blank} after [Transact](https://github.com/paritytech/xcm-format#transact){target=_blank} to get any leftover funds not used for the Transact. But you'll have to calculate if it is worth paying the execution cost of the extra XCM instructions.
+    You can add [DepositAsset](/builders/interoperability/xcm/core-concepts/instructions#deposit-asset){target=_blank} to refund the leftover funds after the execution. If this is not provided, no refunds will be made. In addition, you could also add a [RefundSurplus](/builders/interoperability/xcm/core-concepts/instructions#refund-surplus){target=_blank} after [Transact](/builders/interoperability/xcm/core-concepts/instructions#transact){target=_blank} to get any leftover funds not used for the Transact. But you'll have to calculate if it is worth paying the execution cost of the extra XCM instructions.
 
-To send these XCM messages to the relay chain, the [Polkadot XCM Pallet](https://github.com/paritytech/polkadot-sdk/tree/master/polkadot/xcm/pallet-xcm){target=_blank} is typically invoked. Moonbeam also has an [XCM Transactor Pallet](/builders/interoperability/xcm/xcm-transactor){target=_blank} that simplifies the process into a call that abstracts the XCM messaging constructor.  
+To send these XCM messages to the relay chain, the [Polkadot XCM Pallet](https://github.com/paritytech/polkadot-sdk/tree/{{ polkadot_sdk }}/polkadot/xcm/pallet-xcm){target=_blank} is typically invoked. Moonbeam also has an [XCM Transactor Pallet](/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-pallet){target=_blank} that simplifies the process into a call that abstracts the XCM messaging constructor.  
 
 You could potentially generate the calldata for an HRMP action by using Polkadot.js Apps, but the [xcm-tools GitHub repository](https://github.com/Moonsong-Labs/xcm-tools){target=_blank} can build it for you, and it is the recommended tool for this process.
 

@@ -10,9 +10,9 @@ _by Kevin Neilson_
 
 ## Introduction {: #introduction }
 
-In this tutorial, we’ll be making a series of remote batch EVM calls from a relay chain (what Polkadot is to Moonbeam) using Polkadot's general message passing protocol called [XCM](/builders/interoperability/xcm/overview/){target=_blank}. To do so, we'll be using a particular combination of XCM instructions that allow you to [call Moonbeam's EVM through an XCM message](/builders/interoperability/xcm/remote-evm-calls/){target=_blank}. The unique twist to this tutorial is that rather than making a single remote EVM contract call, we'll be using Moonbeam's [Batch Precompile](/builders/pallets-precompiles/precompiles/batch/){target=_blank} to combine multiple EVM calls into a single transaction.
+In this tutorial, we’ll be making a series of remote batch EVM calls from a relay chain (what Polkadot is to Moonbeam) using Polkadot's general message passing protocol called [XCM](/builders/interoperability/xcm/overview/){target=_blank}. To do so, we'll be using a particular combination of XCM instructions that allow you to [call Moonbeam's EVM through an XCM message](/builders/interoperability/xcm/remote-execution/remote-evm-calls/){target=_blank}. The unique twist to this tutorial is that rather than making a single remote EVM contract call, we'll be using Moonbeam's [Batch Precompile](/builders/pallets-precompiles/precompiles/batch/){target=_blank} to combine multiple EVM calls into a single transaction.
 
-To get the most out of this tutorial, you may wish to first familiarize yourself with [Remote EVM Calls Through XCM](/builders/interoperability/xcm/remote-evm-calls/){target=_blank} as well as Moonbeam's [Batch Precompile](/builders/pallets-precompiles/precompiles/batch/){target=_blank}.
+To get the most out of this tutorial, you may wish to first familiarize yourself with [Remote EVM Calls Through XCM](/builders/interoperability/xcm/remote-execution/remote-evm-calls/){target=_blank} as well as Moonbeam's [Batch Precompile](/builders/pallets-precompiles/precompiles/batch/){target=_blank}.
 
 **The content of this tutorial is for educational purposes only!**
 
@@ -23,7 +23,7 @@ The goal of this tutorial is to show you how the [Batch Precompile](/builders/pa
 Throughout this tutorial, we will refer to the account executing the batch EVM calls via XCM as Alice. Let's preview the flow of this tutorial:
 
 1. Alice has an account on the relay chain, and she wants to mint Mars (MARS) and Neptune (NEPT) tokens (ERC-20s on Moonbase Alpha) using [Moonbase Minter](https://moonbase-minterc20.netlify.app/){target=_blank}. Alice needs to send an XCM message to Moonbase Alpha from her relay chain account
-2. The XCM message will be received by Moonbase Alpha and its instructions executed. The instructions state Alice's intention to buy some block execution time in Moonbase Alpha and execute a call to Moonbase's Batch Precompile, composed of two distinct mint calls. The batch EVM call is dispatched through a special account Alice controls on Moonbase Alpha via XCM messages. This account is known as the [multilocation-derivative account](/builders/interoperability/xcm/xcm-transactor/#general-xcm-definitions){target=_blank}. Even though this is a keyless account (private key is unknown), the public address can be [calculated in a deterministic way](/builders/interoperability/xcm/remote-evm-calls/#calculate-multilocation-derivative){target=_blank}
+2. The XCM message will be received by Moonbase Alpha and its instructions executed. The instructions state Alice's intention to buy some block execution time in Moonbase Alpha and execute a call to Moonbase's Batch Precompile, composed of two distinct mint calls. The batch EVM call is dispatched through a special account Alice controls on Moonbase Alpha via XCM messages. This account is known as the [Computed Origin account](/builders/interoperability/xcm/remote-execution/computed-origins){target=_blank}. Even though this is a keyless account (private key is unknown), the public address can be [calculated in a deterministic way](/builders/interoperability/xcm/remote-execution/computed-origins#calculate-computed-origin){target=_blank}
 3. The successful XCM execution will result in the mint commands being executed by the EVM, and Alice will receive her MARS and NEPT tokens in her special account
 4. The execution of the remote EVM call through XCM will result in some EVM logs that are picked up by explorers. There is an EVM transaction and receipt that anyone can query to verify
 
@@ -36,15 +36,15 @@ Considering all the steps summarized in the [introduction](#introduction), the f
 
 - You need to have UNITs on the relay chain to pay for transaction fees when sending the XCM. If you have a Moonbase Alpha account funded with DEV tokens, you can swap some DEV for xcUNIT here on [Moonbeam Swap](https://moonbeam-swap.netlify.app/#/swap){target=_blank}. Then withdraw the xcUNIT from Moonbase Alpha to [your account on the Moonbase relay chain](https://polkadot.js.org/apps/?rpc=wss://frag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/accounts){target=_blank} using [apps.moonbeam.network](https://apps.moonbeam.network/moonbase-alpha/){target=_blank}.
   --8<-- 'text/_common/faucet/faucet-list-item.md'
-- Your [multilocation-derivative account](/builders/interoperability/xcm/xcm-transactor/#general-xcm-definitions){target=_blank} must hold DEV tokens to fund the call to the Batch Precompile, and also pay for the XCM execution (although this could be paid in UNIT tokens as xcUNIT). We will calculate the multilocation-derivative account address in the next section
+- Your [Computed Origin account](/builders/interoperability/xcm/remote-execution/computed-origins){target=_blank} must hold DEV tokens to fund the call to the Batch Precompile, and also pay for the XCM execution (although this could be paid in UNIT tokens as xcUNIT). We will calculate the Computed Origin account address in the next section
 
-## Calculating your Multilocation-Derivative Account {: #calculating-your-multilocation-derivative-account }
+## Calculating your Computed Origin Account {: #calculating-your-computed-origin-account }
 
 --8<-- 'text/builders/interoperability/xcm/calculate-multilocation-derivative-account.md'
 
 For our case, we will send the remote EVM call via XCM from Alice's account, which is `5Fe4nNwxJ9ai9hVkUubiy4e6BVs1tzJGDLXAdhUKuePq9CLp`. A parachain ID is omitted from the command since we are sending the XCM instruction from the relay chain. A parents value of `1` indicates that the relay chain is a parent of the destination parachain. The command and response should resemble the following image:
 
-![Calculating the multilocation-derivative account](/images/tutorials/interoperability/remote-batched-evm-calls/remote-batched-evm-calls-2.png)
+![Calculating the Computed Origin account](/images/tutorials/interoperability/remote-batched-evm-calls/remote-batched-evm-calls-2.png)
 
 The values are all summarized in the following table:
 
@@ -52,10 +52,10 @@ The values are all summarized in the following table:
 |:-------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------------------------------------:|
 |        Origin Chain Encoded Address         |                                                    `5Fe4nNwxJ9ai9hVkUubiy4e6BVs1tzJGDLXAdhUKuePq9CLp`                                                     |
 |        Origin Chain Decoded Address         |                                           `0x9e263df66ff98212347e9a6b51d56f7a982bc25bb1300cd20e5a68d726789043`                                            |
-| Multilocation-Derivative Account (32 bytes) |                                           `0xf0615483cbe76f5b2aa80a8ce2b2e9a8206deb65b8a1323270e25802f600f95c`                                            |
-| Multilocation-Derivative Account (20 bytes) |                                                       `0xf0615483cbe76f5b2aa80a8ce2b2e9a8206deb65`                                                        |
+| Computed Origin Account (32 bytes) |                                           `0xf0615483cbe76f5b2aa80a8ce2b2e9a8206deb65b8a1323270e25802f600f95c`                                            |
+| Computed Origin Account (20 bytes) |                                                       `0xf0615483cbe76f5b2aa80a8ce2b2e9a8206deb65`                                                        |
 
-The script will return 32-byte and 20-byte addresses. We’re interested in the Ethereum-style account, the 20-byte one, which is `0xf0615483cbe76f5b2aa80a8ce2b2e9a8206deb65`. Feel free to look up your multilocation-derivative account on [Moonscan](https://moonbase.moonscan.io/){target=_blank}. Next, you can fund this account with DEV tokens.
+The script will return 32-byte and 20-byte addresses. We’re interested in the Ethereum-style account, the 20-byte one, which is `0xf0615483cbe76f5b2aa80a8ce2b2e9a8206deb65`. Feel free to look up your Computed Origin account on [Moonscan](https://moonbase.moonscan.io/){target=_blank}. Next, you can fund this account with DEV tokens.
 
 --8<-- 'text/_common/faucet/faucet-sentence.md'
 
@@ -140,7 +140,7 @@ Let's go through each of the main components of the snippet shown above:
      - Encoded calldata for the batch call that contains both mint commands
  2. Create the necessary providers. One is a [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=_blank} provider, through which we can call [Moonbeam pallets](/builders/pallets-precompiles/pallets/){target=_blank} directly
  3. Here, we are hardcoding the gas limit for simplicity and to avoid gas estimation issues as a result of the Batch Precompile
- 4. [Build the remote EVM call containing the batch call](/builders/interoperability/xcm/remote-evm-calls/#build-remove-evm-call-xcm){target=_blank}
+ 4. [Build the remote EVM call containing the batch call](/builders/interoperability/xcm/remote-execution/remote-evm-calls/#build-remote-evm-call-xcm){target=_blank}
  5. Create the Ethereum XCM pallet call to the `transact` method, providing the call parameters specified above
  6. Get the SCALE calldata of the specific transaction parameter, which we need to provide to the `Transact` XCM instruction later on. Note that in this particular scenario, because we need only the calldata of the transaction parameters, we have to use `tx.method.toHex()`
 
@@ -162,10 +162,10 @@ We are almost in the last part of this tutorial! In this section, we'll craft th
 
 The XCM message we are about to build is composed of the following instructions:
 
- - [`WithdrawAsset`](https://github.com/paritytech/xcm-format#withdrawasset){target=_blank} — takes funds from the account dispatching the XCM in the destination chain and puts them in holding where they can be used for later actions
- - [`BuyExecution`](https://github.com/paritytech/xcm-format#buyexecution){target=_blank} — buy a certain amount of block execution time
- - [`Transact`](https://github.com/paritytech/xcm-format#transact){target=_blank} — use part of the block execution time bought with the previous instruction to execute some arbitrary bytes
- - [`DepositAsset`](https://github.com/paritytech/xcm-format#depositasset){target=_blank} — takes assets from holding and deposits them to a given account
+ - [`WithdrawAsset`](/builders/interoperability/xcm/core-concepts/instructions#withdraw-asset){target=_blank} — takes funds from the account dispatching the XCM in the destination chain and puts them in holding where they can be used for later actions
+ - [`BuyExecution`](/builders/interoperability/xcm/core-concepts/instructions#buy-execution){target=_blank} — buy a certain amount of block execution time
+ - [`Transact`](/builders/interoperability/xcm/core-concepts/instructions#transact){target=_blank} — use part of the block execution time bought with the previous instruction to execute some arbitrary bytes
+ - [`DepositAsset`](/builders/interoperability/xcm/core-concepts/instructions#deposit-asset){target=_blank} — takes assets from holding and deposits them to a given account
 
 To build the XCM message, which will initiate the remote EVM call through XCM, and get its SCALE encoded calldata, you can use the following snippet:
 
@@ -180,19 +180,19 @@ Let's go through each of the main components of the snippet shown above:
 
  1. Provide the input data for the call. This includes:
      - [Moonbase relay chain](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffrag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/accounts){target=_blank} endpoint URL to create the provider
-     - Amount of tokens (in Wei) to withdraw from the multilocation-derivative account. For this example, `0.01` tokens are more than enough. To understand how to get this value, please refer to the [XCM fee page](/builders/interoperability/xcm/fees/#moonbeam-reserve-assets){target=_blank}
+     - Amount of tokens (in Wei) to withdraw from the Computed Origin account. For this example, `0.01` tokens are more than enough. To understand how to get this value, please refer to the [XCM fee page](/builders/interoperability/xcm/core-concepts/weights-fees/#moonbeam-reserve-assets){target=_blank}
      - The [multilocation of the DEV token](/builders/interoperability/xcm/xc-registration/assets/#register-moonbeam-native-assets){target=_blank}, as seen by Moonbase Alpha
-     - The weight for the `transact` XCM instruction. This can be obtained by multiplying `25000` by the gas limit obtained before. It is recommended to add approximately 10% more of the estimated value. You can read more about this value on the [Remote EVM Calls through XCM](/builders/interoperability/xcm/remote-evm-calls/#build-xcm-remote-evm){target=_blank} page
-     - The multilocation-derivative account, as it will be needed later for an XCM instruction
+     - The weight for the `transact` XCM instruction. This can be obtained by multiplying `25000` by the gas limit obtained before. It is recommended to add approximately 10% more of the estimated value. You can read more about this value on the [Remote EVM Calls through XCM](/builders/interoperability/xcm/remote-execution/remote-evm-calls/#build-xcm-remote-evm){target=_blank} page
+     - The Computed Origin account, as it will be needed later for an XCM instruction
      - The bytes for the `transact` XCM instruction that we calculated in the previous section
  2. Define the destination multilocation for the XCM message. In this case, it is the Moonbase Alpha parachain
  3. First XCM instruction, `WithdrawAsset`. You need to provide the asset multilocation and the amount you want to withdraw. Both variables were already described before
  4. Second XCM instruction, `BuyExecution`. Here, we are paying for Moonbase Alpha block execution time in DEV tokens by providing its multilocation and the amount we took out with the previous instruction. Next, we are buying all the execution we can (`Unlimited` weight) with `0.01 DEV` tokens which should be around 20 billion weight units, plenty for our example
  5. Third XCM instruction, `Transact`. The instruction will use a portion of the weight bought (defined as `requireWeightAtMost`) and execute the arbitrary bytes that are provided (`transactBytes`)
- 6. Fourth XCM instruction, `DepositAsset`. Whatever is left in holding after the actions executed before (in this case, it should be only DEV tokens) is deposited into the multilocation-derivative account, set as the `beneficiary`.
+ 6. Fourth XCM instruction, `DepositAsset`. Whatever is left in holding after the actions executed before (in this case, it should be only DEV tokens) is deposited into the Computed Origin account, set as the `beneficiary`.
  7. Build the XCM message by concatenating the instructions inside a `V3` array
  8. Create the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=_blank} provider
- 9. Craft the `xcmPallet.send` extrinsic with the destination and XCM message. This method will append the [`DescendOrigin`](https://github.com/paritytech/xcm-format#descendorigin){target=_blank} XCM instruction to our XCM message, and it is the instruction that will provide the necessary information to calculate the multilocation-derivative account
+ 9. Craft the `xcmPallet.send` extrinsic with the destination and XCM message. This method will append the [`DescendOrigin`](/builders/interoperability/xcm/core-concepts/instructions#descend-origin){target=_blank} XCM instruction to our XCM message, and it is the instruction that will provide the necessary information to calculate the Computed Origin account
  10. Get the SCALE encoded calldata. Note that in this particular scenario, because we need the full SCALE encoded calldata, we have to use `tx.toHex()`. This is because we will submit this transaction using the calldata
 
 Once you have the code set up, you can execute it with `node`, and you'll get the relay chain XCM calldata:
@@ -206,7 +206,7 @@ The encoded calldata for this example is:
 ```
 
 !!! note
-    The encoded calldata for you should be slightly different, as you should have replaced the multilocation-derivative account in the script with the one you created in the [Calculation your Multilocation-Derivative Account](#calculating-your-multilocation-derivative-account) section.
+    The encoded calldata for you should be slightly different, as you should have replaced the Computed Origin account in the script with the one you created in the [Calculation your Computed Origin Account](#calculating-your-computed-origin-account) section.
 
 Now that we have the SCALE encoded calldata, the last step is to submit the transaction, which will send our XCM message to Moonbase Alpha, and do the remote batch EVM call!
 
@@ -215,7 +215,7 @@ Now that we have the SCALE encoded calldata, the last step is to submit the tran
 Congratulations on making it here, you're almost done! Let's recap what we've done so far:
 
  - We've created a relay chain account that is funded with UNIT tokens (relay chain native tokens)
- - We determined its multilocation-derivative account on Moonbase Alpha and funded this new address with DEV tokens
+ - We determined its Computed Origin account on Moonbase Alpha and funded this new address with DEV tokens
  - We obtained the Batch Precompile calldata which combines two mint calls for MARS and NEPT ERC-20 tokens
  - We built the SCALE encoded calldata in Moonbase Alpha to access its EVM via XCM
  - We crafted our transaction to send an XCM message to Moonbase Alpha, in which we will ask it to execute the SCALE encoded calldata that was previously built. This, in turn, will execute the call to the Batch Precompile which includes the mint calls for both the MARS and NEPT ERC-20 tokens!
@@ -226,7 +226,7 @@ To send the XCM message that we built in the previous section, you can use the f
 --8<-- 'code/tutorials/interoperability/remote-batched-evm-calls/send-xcm-message.js'
 ```
 
-Once you have the code set up, you can execute it with `node`, and the XCM message will be sent to initiate your call to the Batch Precompile for the mints of MARS and NEPT ERC-20 tokens in Moonbase Alpha. Don't worry if you see an `Abnormal Closure` error. You can verify that your remote batch call was successful by looking up your multilocation-derivative account on [Moonbase Moonscan](https://moonbase.moonscan.io/){target=_blank}.
+Once you have the code set up, you can execute it with `node`, and the XCM message will be sent to initiate your call to the Batch Precompile for the mints of MARS and NEPT ERC-20 tokens in Moonbase Alpha. Don't worry if you see an `Abnormal Closure` error. You can verify that your remote batch call was successful by looking up your Computed Origin account on [Moonbase Moonscan](https://moonbase.moonscan.io/){target=_blank}.
 
 ![Sending the XCM message from the Relay Chain to Moonbase Alpha for the batch EVM call](/images/tutorials/interoperability/remote-batched-evm-calls/remote-batched-evm-calls-7.png)
 
@@ -237,7 +237,7 @@ This action will emit different events. The first one is only relevant [in the r
  - `parachainSystem.DownwardMessagesReceived` — states that there was an XCM message received
  - `evm.Log` — internal events emitted by the different contract calls. The structure is the same: contract address, topics, and relevant data
  - `ethereum.Executed` — contains information on the `from` address, the `to` address, and the transaction hash of an EVM call done
- - `polkadotXcm.AssetsTrapped` — flags that some assets were in holding and were not deposited to a given address. If the `Transact` XCM instruction does not exhaust the tokens allocated to it, it will execute a [`RefundSurplus`](https://github.com/paritytech/xcm-format#refundsurplus){target=_blank} after the XCM is processed. This instruction will take any leftover tokens from the execution bought and put them in holding. We could prevent this by adjusting the fee provided to the `Transact` instruction or by adding the instruction right after the `Transact`
+ - `polkadotXcm.AssetsTrapped` — flags that some assets were in holding and were not deposited to a given address. If the `Transact` XCM instruction does not exhaust the tokens allocated to it, it will execute a [`RefundSurplus`](/builders/interoperability/xcm/core-concepts/instructions#refund-surplus){target=_blank} after the XCM is processed. This instruction will take any leftover tokens from the execution bought and put them in holding. We could prevent this by adjusting the fee provided to the `Transact` instruction or by adding the instruction right after the `Transact`
  - `dmpQueue.ExecutedDownward` — states the result of executing a message received from the relay chain (a DMP message). In this case, the `outcome` is marked as `Complete`
 
 Our XCM was successfully executed! If you visit [Moonbase Alpha Moonscan](https://moonbase.moonscan.io/){target=_blank} and search for [the transaction hash](https://moonbase.moonscan.io/tx/0xd5e855bc3ade42d040f3c29abe129bd8f488dee0014e731eba4617883aac3891){target=_blank}, you'll find the call to the Batch Precompile that was executed via the XCM message. Note that you can only call the `mint` commands once per hour per planet. If you wish to experiment further and make additional mint calls, simply change the destination contract address to a different planet when configuring the batch call.
