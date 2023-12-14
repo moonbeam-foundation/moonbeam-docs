@@ -38,7 +38,7 @@ The XCM instructions detailed above can be complemented by other XCM instruction
 
 ## General Remote Execution via XCM Flow {: #general-remote-execution-via-xcm-flow }
 
-A user initiates a transaction in the source chain through a pallet that builds the XCM with at least the [required XCM instructions for remote execution](xcm-instructions-remote-execution). The transaction is executed in the source chain, which sends an XCM message with the given instructions to the destination chain.
+A user initiates a transaction in the source chain through a pallet that builds the XCM with at least the [required XCM instructions for remote execution](#xcm-instructions-remote-execution). The transaction is executed in the source chain, which sends an XCM message with the given instructions to the destination chain.
 
 The XCM message arrives at the destination chain, which executes it. It is executed with the source chain's Sovereign account as a Computed Origin by default. One example that uses this type of origin is when chains open or accept an HRMP channel on the relay chain.
 
