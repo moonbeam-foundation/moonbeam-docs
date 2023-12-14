@@ -7,11 +7,15 @@ description: A historical record of each runtime upgrade and the block at which 
 
 ## Introduction {: #introduction }
 
-Moonbeam runtime upgrades allows for the maintenance and evolution of the chain logic, without the need for a hard fork. These runtime upgrades can introduce new features, improve performance, fix bugs, and respond to changing requirements.
+Moonbeam runtime upgrades allow for the maintenance and evolution of the chain logic without the need for a hard fork. These runtime upgrades can introduce new features, improve performance, fix bugs, and respond to changing requirements.
 
 This page provides a historical record of runtime upgrades by block for each of the Moonbeam-based networks.
 
 ## Runtime Upgrades by Block {: #runtime-upgrades-by-block }
+
+The following table contains a list of the runtime upgrades and the block at which the upgrade occurred for each network. Runtime upgrades occur first on Moonbase Alpha before being released on Moonriver, and then on Moonbeam.
+
+Not all runtime upgrades are released on each network, as sometimes after releasing the initial runtime upgrade, the need for a subsequent upgrade arises. If a runtime upgrade version has been skipped, you'll see a `-` in that row.
 
 |                                      Runtime                                      |                              Moonbeam                               |                              Moonriver                               |                           Moonbase Alpha                            |
 |:---------------------------------------------------------------------------------:|:-------------------------------------------------------------------:|:--------------------------------------------------------------------:|:-------------------------------------------------------------------:|
@@ -70,3 +74,4 @@ This page provides a historical record of runtime upgrades by block for each of 
 | [2501](https://github.com/moonbeam-foundation/moonbeam/releases/tag/runtime-2501) | [4543267](https://moonbeam.subscan.io/block/4543267){target=_blank} | [5211264](https://moonriver.subscan.io/block/5211264){target=_blank} | [5194594](https://moonbase.subscan.io/block/5194594){target=_blank} |
 | [2601](https://github.com/moonbeam-foundation/moonbeam/releases/tag/runtime-2601) |                                  -                                  |                                  -                                   | [5474345](https://moonbase.subscan.io/block/5474345){target=_blank} |
 | [2602](https://github.com/moonbeam-foundation/moonbeam/releases/tag/runtime-2602) | [4977160](https://moonbeam.subscan.io/block/4977160){target=_blank} | [5638536](https://moonriver.subscan.io/block/5638536){target=_blank} | [5576588](https://moonbase.subscan.io/block/5576588){target=_blank} |
+
