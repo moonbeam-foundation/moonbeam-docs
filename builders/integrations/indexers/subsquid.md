@@ -11,7 +11,7 @@ description: Learn how to use Subsquid, a query node framework for Substrate-bas
 
 Subsquid has native and full support for both Ethereum Virtual Machine (EVM) and Substrate data. Since Moonbeam is a Substrate-based smart contact platform that is EVM-compatible, Subsquid can be used to index both EVM and Substrate-based data. Subsquid offers a Substrate Archive and Processor and an EVM Archive and Processor. The Substrate Archive and Processor can be used to index both Substrate and EVM data. This allows developers to extract on-chain data from any of the Moonbeam networks and process EVM logs as well as Substrate entities (events, extrinsics, and storage items) in one single project and serve the resulting data with one single GraphQL endpoint. If you exclusively want to index EVM data, it is recommended to use the EVM Archive and Processor.
 
-This quick-start guide will show you how to create Substrate and EVM projects with Subsquid and configure it to index data on Moonbeam. For a more comprehensive end-to-end tutorial, be sure to check out [Index a Local Moonbeam Development Node with Subsquid](/tutorials/integrations/local-subsquid/){target=_blank}
+This quick-start guide will show you how to create Substrate and EVM projects with Subsquid and configure it to index data on Moonbeam. For a more comprehensive end-to-end tutorial, be sure to check out [Index a Local Moonbeam Development Node with Subsquid](/tutorials/integrations/local-subsquid/){target=_blank}.
 
 --8<-- 'text/_disclaimers/third-party-content-intro.md'
 
