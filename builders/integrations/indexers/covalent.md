@@ -61,7 +61,7 @@ The Covalent API has three classes of endpoints:
 
  - **Class A** — endpoints that return enriched blockchain data applicable to all blockchain networks, eg: balances, transactions, log events, etc
  - **Class B** — endpoints that are for a specific protocol on a blockchain, e.g. Uniswap is Ethereum-only and is not applicable to other blockchain networks
- - **Class C** — endpoints that are community built and maintained but powered by Covalent infrastructure.
+ - **Class C** — endpoints that are community built and maintained but powered by Covalent infrastructure
 
 ### Sample Supported Endpoints {: #sample-supported-endpoints }
 
@@ -90,7 +90,7 @@ For a full list of supported endpoints, refer to the [Covalent API reference](ht
     |                       [Security (Token Approvals)](https://www.covalenthq.com/docs/api/security/get-token-approvals-for-address/){target=_blank}                       |           api.covalenthq.com/v1/{{ networks.moonbeam.chain_id }}/approvals/{ADDRESS}/           |
 
 === "Moonriver"
-    |                                                                                Contract                                                                                |                                             Address                                              |
+    |                                                                                Endpoint                                                                                |                                              Format                                              |
     |:----------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------:|
     |          [Balances](https://www.covalenthq.com/docs/api/balances/get-token-balances-for-address/?utm_source=moonbeam&utm_medium=partner-docs){target=_blank}           |      api.covalenthq.com/v1/{{ networks.moonriver.chain_id }}/address/{ADDRESS}/balances_v2/      |
     |       [Transactions](https://www.covalenthq.com/docs/api/transactions/get-transactions-for-address/?utm_source=moonbeam&utm_medium=partner-docs){target=_blank}        |    api.covalenthq.com/v1/{{ networks.moonriver.chain_id }}/address/{ADDRESS}/transactions_v2/    |
@@ -101,7 +101,7 @@ For a full list of supported endpoints, refer to the [Covalent API reference](ht
     |                       [Security (Token Approvals)](https://www.covalenthq.com/docs/api/security/get-token-approvals-for-address/){target=_blank}                       |           api.covalenthq.com/v1/{{ networks.moonriver.chain_id }}/approvals/{ADDRESS}/           |
 
 === "Moonbase Alpha"
-    |                                                                                Contract                                                                                |                                             Address                                             |
+    |                                                                                Endpoint                                                                                |                                             Format                                              |
     |:----------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------:|
     |          [Balances](https://www.covalenthq.com/docs/api/balances/get-token-balances-for-address/?utm_source=moonbeam&utm_medium=partner-docs){target=_blank}           |      api.covalenthq.com/v1/{{ networks.moonbase.chain_id }}/address/{ADDRESS}/balances_v2/      |
     |       [Transactions](https://www.covalenthq.com/docs/api/transactions/get-transactions-for-address/?utm_source=moonbeam&utm_medium=partner-docs){target=_blank}        |    api.covalenthq.com/v1/{{ networks.moonbase.chain_id }}/address/{ADDRESS}/transactions_v2/    |
