@@ -7,13 +7,13 @@ description: Learn how to use SubQuery to index Substrate and EVM chain data for
 
 ## Introduction {: #introduction }
 
-[SubQuery](https://subquery.network/){target=_blank} is a data aggregation layer that operates between the layer-1 blockchains (such as Moonbeam and Polkadot) and DApps. This service unlocks blockchain data and transforms it to a queryable state so that it can be used in intuitive applications. It allows DApp developers to focus on their core use case and front end, without needing to waste time on building a custom back end for data processing.
+[SubQuery](https://subquery.network/){target=_blank} is a data aggregation layer that operates between the layer-1 blockchains (such as Moonbeam and Polkadot) and DApps. This service unlocks blockchain data and transforms it into a queryable state so that it can be used in intuitive applications. It allows DApp developers to focus on their core use case and front end without needing to waste time on building a custom back end for data processing.
 
 SubQuery supports indexing the Ethereum Virtual Machine (EVM) and Substrate data for any of the Moonbeam networks. A key advantage of using SubQuery is that you can flexibly collect query data across both Moonbeam's EVM and Substrate code with a single project and tool, and then query this data using GraphQL.
 
-For example, SubQuery can filter and query EVM logs and transactions in addition to Substrate data sources. SubQuery introduces more advanced filters than other indexers, allowing filtering of non-contract transactions, transaction senders, contracts and indexed log arguments, so developers can build a wide variety of projects that cater to their specific data needs.
+For example, SubQuery can filter and query EVM logs and transactions in addition to Substrate data sources. SubQuery introduces more advanced filters than other indexers, allowing filtering of non-contract transactions, transaction senders, contracts, and indexed log arguments, so developers can build a wide variety of projects that cater to their specific data needs.
 
-Throughout this guide, you'll learn how to create a SubQuery project that indexes ERC-20 transfer and approvals on Moonbeam. More specifically, this guide will cover indexing `Transfer` events and `approve` function calls.
+This quick-start guide will show you how to create a SubQuery project and configure it to index Substrate and EVM data on Moonbeam.
 
 --8<-- 'text/_disclaimers/third-party-content-intro.md'
 
@@ -25,22 +25,25 @@ Later on in this guide, you have the option of deploying your project to a local
  - [Docker Compose](https://docs.docker.com/compose/install/){target=_blank}
 
 !!! note
-    If Docker Compose was installed for Linux via the `sudo apt install docker-compose` command you might run into some errors later on in the guide. Please be sure to follow the instructions for Linux from the official [Install Docker Compose](https://docs.docker.com/compose/install/){target=_blank} guide.
+    If Docker Compose was installed for Linux via the `sudo apt install docker-compose` command, you might run into some errors later on in the guide. Please be sure to follow the instructions for Linux from the official [Install Docker Compose](https://docs.docker.com/compose/install/){target=_blank} guide.
 
-## Creating a Project {: #creating-a-project }
+## Create a Project {: #create-a-project }
 
-To get started, you'll need to [create a SubQuery project](https://academy.subquery.network/quickstart/quickstart.html){target=_blank}. You can create a project for Moonbeam, Moonriver, or Moonbase Alpha. For the purposes of this guide, Moonbeam will be used.
+To get started, you'll need to [create a SubQuery project](https://academy.subquery.network/quickstart/quickstart.html){target=_blank}:
 
-In general, you will need to:
+1. Globally install the [SubQuery CLI](https://academy.subquery.network/run_publish/cli.html){target=_blank}:
 
-1. Globally install the SubQuery CLI:
+    === "npm"
 
-    ```bash
-    npm install -g @subql/cli
-    ```
+        ```bash
+        npm install -g @subql/cli
+        ```
 
-    !!! note
-        At time of writing this guide, the version used was 1.3.1.
+    === "yarn"
+
+        ```bash
+        yarn global add @subql/cli
+        ```    
 
 2. Initialize your SubQuery project using the following command:
 
@@ -50,216 +53,332 @@ In general, you will need to:
 
 3. You'll be prompted to answer a series of questions:
 
-    1. For the **Select a network family** question, you can choose **Substrate**
+    1. For the **Select a network family** question, although Moonbeam is EVM compatible, the Moonbeam templates are under the **Polkadot** family, so you can choose **Polkadot**
 
-        ![Select Moonbeam](/images/builders/integrations/indexers/subquery/subquery-1.png)
+        ![The SubQuery CLI choose a network family menu.](/images/builders/integrations/indexers/subquery/new/subquery-1.png)
 
-    2. The next screen will prompt you to **Select a network**. At time of writing this guide, Moonriver was the only option. You can go ahead and choose **Moonriver**, and it can be adapted for Moonbeam or Moonbase Alpha
+    2. The next screen will prompt you to **Select a network**. You can choose between Moonbeam and Moonriver
 
-        ![Select moonbeam-starter](/images/builders/integrations/indexers/subquery/subquery-2.png)
+        !!! note
+            To build a project on Moonbase Alpha, you can select either network and adapt it later on
 
-    3. You'll be prompted to **Select a template project**. You can choose between the EVM starter project or creating a project from a git endpoint. Since this guide will be based off of the Moonriver EVM starter project, you can select **moonriver-evm-starter**
+        ![The SubQuery CLI choose a network menu.](/images/builders/integrations/indexers/subquery/new/subquery-2.png)
 
-        ![Select moonbeam-starter](/images/builders/integrations/indexers/subquery/subquery-3.png)
+    3. You'll be prompted to **Select a template project**. Depending on the network you chose in the prior step, the template options may vary
 
-    4. The starter project will be cloned, and then you will be prompted to answer a few more questions. For these, you can just hit enter and accept the default or customize them as you see fit
+        === "Moonbeam"
 
-        ![Create project](/images/builders/integrations/indexers/subquery/subquery-4.png)
+            |             Template             |                                                                             Description                                                                              |
+            |:--------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+            |      `moonbeam-evm-starter`      |                                           A starter EVM project that indexes ERC-20 `Transfer` events and `approve` calls                                            |
+            | `moonbeam-substrate-evm-starter` | A starter Substrate and EVM project that indexes ERC-20 `Transfer` events and calls to the Staking Pallet's `joinCandidates` and `executeLeaveCandidates` extrinsics |
+            |        `Moonbeam-starter`        |                                        A starter Substrate project that indexes balance transfers through the Balances Pallet                                        |
 
-4. A directory will automatically be created for your SubQuery project. You'll just need to install dependencies from within the project directory:
+        === "Moonriver"
 
-    ```bash
-    cd PROJECT_NAME && yarn install
-    ```
+            |        Template         |                                      Description                                       |
+            |:-----------------------:|:--------------------------------------------------------------------------------------:|
+            | `moonriver-evm-starter` |    A starter EVM project that indexes ERC-20 `Transfer` events and `approve` calls     |
+            |   `Moonriver-starter`   | A starter Substrate project that indexes balance transfers through the Balances Pallet |
 
-After the initialization is complete, you'll have a base SubQuery project that contains the following files (among others):
+        ![The SubQuery CLI choose a template project menu.](/images/builders/integrations/indexers/subquery/new/subquery-3.png)
 
-- **[`project.yaml`](https://github.com/subquery/tutorials-frontier-evm-starter/blob/moonriver/project.yaml){target=_blank}** - the [Manifest File](https://academy.subquery.network/build/manifest/polkadot.html){target=_blank} which acts as the entry point of your project
-- **[`schema.graphql`](https://github.com/subquery/tutorials-frontier-evm-starter/blob/moonriver/schema.graphql){target=_blank}** - the [GraphQL Schema](https://academy.subquery.network/build/graphql.html){target=_blank} which defines the shape of your data. The template includes `Transaction` and `Approval` entities
-- **[`src/mappings/mappingHandlers.ts`](https://github.com/subquery/tutorials-frontier-evm-starter/blob/moonriver/src/mappings/mappingHandlers.ts){target=_blank}** - exports the [Mapping](https://academy.subquery.network/build/mapping/polkadot.html){target=_blank} functions which are used to define how chain data is transformed into the GraphQL entities that are defined in the schema
-- **[`src/chaintypes.ts`](https://github.com/subquery/tutorials-frontier-evm-starter/blob/moonriver/src/chaintypes.ts){target=_blank}** - exports the chain types specifically for Moonbeam so you can index Moonbeam data
-- **[`erc20.abi.json`](https://github.com/subquery/tutorials-frontier-evm-starter/blob/moonriver/erc20.abi.json){target=_blank}** - JSON file containing the ABI for the standard ERC-20 interface which will be used to filter ERC-20 transfer and approval data
+    4. You'll be prompted to add additional information, such as the RPC endpoint, the project's author, and the description of the project. For these, you can just hit enter and accept the default or customize them as you see fit
 
-If you take a look at the `package.json` file, you'll notice that the `chaintypes` are exported there. If for some reason they are not, or if you're expanding upon an existing Substrate project to add Moonbeam support, you'll need to include the following snippet:
+        !!! note
+            To avoid hitting the rate limits of public RPC endpoints, it is recommended to have your own endpoint and API key, which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=_blank}
 
-```json
-"exports": {
-    "chaintypes": "src/chaintypes.ts"
-}
-```
+        ![The terminal output after creating a project using the SubQuery CLI.](/images/builders/integrations/indexers/subquery/new/subquery-4.png)
 
-## Updating the Network Configuration {: #updating-the-network-configuration }
+4. After you've gone through all of the prompts, the starter project will be cloned. You'll just need to install dependencies from within the project directory:
 
-You'll need to update the `network` config in the `project.yaml` file. The `chainId` field can be used to enter the genesis hash for the network you want to index.
+    === "npm"
 
- --8<-- 'text/_common/endpoint-examples.md'
+        ```bash
+        cd PROJECT_NAME && npm install
+        ```
 
-The `network` config is as follows for each network:
+    === "yarn"
+
+        ```bash
+        cd PROJECT_NAME && yarn install
+        ```
+
+## Configure the Network {: #configure-the-network }
+
+The template projects already come pre-configured for the network selected while initializing your project. However, if you're working off of an existing project or want to configure your project for Moonbase Alpha instead of Moonbeam or Moonriver, you can update the network configurations in the `project.ts` file.
+
+The `network` configuration is as follows for each network:
 
 === "Moonbeam"
 
-    ```yaml
-    network:
-    chainId: '0xfe58ea77779b7abda7da4ec526d14db9b1e9cd40a217c34892af80a9b332b76d'
-    endpoint: '{{ networks.moonbeam.rpc_url }}'
-    dictionary: 'https://api.subquery.network/sq/subquery/moonbeam-dictionary'
-    chaintypes:
-      file: ./dist/chaintypes.js
+    ```ts
+    network: {
+      chainId: 
+        '0xfe58ea77779b7abda7da4ec526d14db9b1e9cd40a217c34892af80a9b332b76d',
+      endpoint: ['{{ networks.moonbeam.rpc_url }}'],
+      chaintypes: {
+        file: ./dist/chaintypes.js,
+      },
+    },
     ```
 
 === "Moonriver"
 
-    ```yaml
-    network:
-    chainId: '0x401a1f9dca3da46f5c4091016c8a2f26dcea05865116b286f60f668207d1474b'
-    endpoint: '{{ networks.moonriver.rpc_url }}'
-    dictionary: 'https://api.subquery.network/sq/subquery/moonriver-dictionary'
-    chaintypes:
-      file: ./dist/chaintypes.js
+    ```ts
+    network: {
+      chainId: '0x401a1f9dca3da46f5c4091016c8a2f26dcea05865116b286f60f668207d1474b',
+      endpoint: ['{{ networks.moonriver.rpc_url }}'],
+      chaintypes: {
+        file: ./dist/chaintypes.js,
+      },
+    },
     ```
 
 === "Moonbase Alpha"
 
-    ```yaml
-    network:
-    chainId: '0x91bc6e169807aaa54802737e1c504b2577d4fafedd5a02c10293b1cd60e39527'
-    endpoint: '{{ networks.moonbase.rpc_url }}'
-    dictionary: 'https://api.subquery.network/sq/subquery/moonbase-alpha-dictionary'
-    chaintypes:
-      file: ./dist/chaintypes.js
+    ```ts
+    network: {
+      chainId: '0x91bc6e169807aaa54802737e1c504b2577d4fafedd5a02c10293b1cd60e39527',
+      endpoint: ['{{ networks.moonbase.rpc_url }}'],
+      chaintypes: {
+        file: ./dist/chaintypes.js,
+      },
+    },
     ```
-  
-## The Moonbeam Custom Data Source {: #moonbeam-custom-data-source }
 
-You'll also need to update the `dataSources` config which can be found in the `project.yaml` file. A data source defines the data that will be filtered and extracted. It also defines the location of the mapping function handler for the data transformation to be applied.
+ --8<-- 'text/_common/endpoint-examples.md'
 
-SubQuery has created a data processor specifically made to work with Moonbeam’s implementation of [Frontier](https://github.com/paritytech/frontier){target=_blank}. It allows you to reference specific ABI resources used by the processor to parse arguments and the smart contract address that the events are from or the call is made to. In general, it acts as middleware that can provide extra filtering and data transformation. The Frontier EVM processor is already a dependency if you're using the template. If you are starting from scratch, make sure to install it:
+## Modify the GraphQL Schema {: #modify-the-graphql-schema }
 
-```bash
-yarn add @subql/frontier-evm-processor
-```
+In the `schema.graphql` file, you can use GraphQL entities to define the shape of your data. Once you've edited the GraphQL schema for your needs, you'll need to generate the required GraphQL models. To do so, you can run the following command:
 
-If you're using the template, you'll notice that the ERC-20 ABI is already declared under `dataSources.processor.options`. The address already listed is for the [Solarbeam (SOLAR) token](https://moonriver.moonscan.io/address/0x6bd193ee6d2104f14f94e2ca6efefae561a4334b){target=_blank} on Moonriver. For this example, you can use the [Wrapped GLMR (WGLMR) token](https://moonscan.io/address/0xAcc15dC74880C9944775448304B263D191c6077F){target=_blnk} address on Moonbeam: `0xAcc15dC74880C9944775448304B263D191c6077F`.
+=== "npm"
 
-The fields in the `dataSources` configuration can be broken down as follows:
+    ```bash
+    npm run codegen
+    ```
 
-- **kind** - *required* field that specifies the custom Moonbeam data processor
-- **startBlock** - field that specifies the block to start indexing data from
-- **processor.file** - *required* field that references the file where the data processor code lives
-- **processor.options** - includes [processor options](https://academy.subquery.network/build/substrate-evm.html#processor-options){target=_blank} specific to the Frontier EVM processor including the `abi` that is used by the processor to parse arguments. As well as the `address` where the contract event is from or the call is made to
-- **assets** - an object of external asset ABI files
-- **mapping** - the mapping specification. This includes the path to the mapping entry, the mapping functions, and their corresponding handler types, with any additional mapping filters
+=== "yarn"
 
-## The GraphQL Schema {: #setup-the-graphql-schema }
+    ```bash
+    yarn codegen
+    ```
 
-In the `schema.graphql` file, the template includes a `Transaction` and `Approval` entity. Later on in the guide, you'll listen for transaction events and approval calls.
+![The terminal output after generating the GraphQL models.](/images/builders/integrations/indexers/subquery/new/subquery-5.png)
 
-```gql
-type Transaction @entity {
-  id: ID! # Transaction hash
-  value: BigInt!
-  to: String!
-  from: String!
-  contractAddress: String!
-}
-
-type Approval @entity {
-  id: ID! # Transaction hash
-  value: BigInt!
-  owner: String!
-  spender: String!
-  contractAddress: String!
-}
-```
-
-To generate the required GraphQL models defined in your schema file, you can run the following:
-
-```bash
-yarn codegen
-```
-
-![yarn codegen results](/images/builders/integrations/indexers/subquery/subquery-5.png)
-
-These models will be used in the mapping handlers covered in the next section.
-
-## Mapping Handlers {: #mapping-handlers }
-
-The mapping specification includes the [mapping functions](https://academy.subquery.network/build/mapping/polkadot.html){target=_blank} that define how chain data is transformed.
-
-The template contains two mapping functions which are found under `src/mappings/mappingHandlers.ts`. These mapping functions transform off chain data to the GraphQL entities that you define. The two handlers are as follows:
-
-- **[Event handler](https://academy.subquery.network/build/substrate-evm.html#event-handlers){target=_blank}** - used to capture information where certain events are emitted within a new block. As this function will be called anytime an event is emitted, you can use mapping filters to only handle events you need. This will improve performance and reduce indexing times
-- **[Call handler](https://academy.subquery.network/build/substrate-evm.html#call-handlers){target=_blank}** - used to capture information for certain extrinsics
-
-In a traditional Substrate project, the event passed in to the `handleEvent` mapping function is a `SubstrateEvent`. Similarly, the extrinsic passed into the `handleCall` mapping function is a `SubstrateExtrinsic`. For Moonbeam, your mapping functions will receive a `FrontierEvmEvent` and a `FrontierEvmCall` instead. These are based on Ether's [TransactionResponse](https://docs.ethers.org/v6/api/providers/#TransactionResponse){target=_blank} or [Log](https://docs.ethers.org/v6/api/providers/#Log){target=_blank} type.
-
-For this example, the `FrontierEvmEvent` will be used to handle and filter `Transfer` events and the `FrontierEvmCall` will be used to handle and filter `approve` function calls. You can add additional handlers as needed.
-
-The mapping handlers are then configured in the `project.yaml` manifest file under the `dataSources` configuration. You'll create a `mapping.handlers.handler` configuration for each handler you have. The `handleMoonbeamEvent` and `handleMoonbeamCall` handlers are already configured in the template
-
-To adapt the template for the WGLMR token on Moonbeam, you'll need to update the `from` field under `mapping.handlers.handler.filter` to be the WGLMR contract address:
-
-```yaml
-mapping:
-  file: './dist/index.js'
-  handlers:
-    - handler: handleMoonbeamEvent
-      kind: substrate/FrontierEvmEvent
-      filter:
-        topics:
-          - Transfer(address indexed from,address indexed to,uint256 value)
-          - null
-          - null
-          - null
-    - handler: handleMoonbeamCall
-      kind: substrate/FrontierEvmCall
-      filter:
-        function: approve(address to,uint256 value)
-        from: '0xAcc15dC74880C9944775448304B263D191c6077F'
-```
+The generated models will be created in the `src/types/models` directory. These models will be used in the mapping handlers that process the indexed data.
 
 !!! note
-    You can also use the `filter` field to only listen to certain events or specific function calls.
+    If you make changes to the `schema.graphql` file, you'll need to regenerate your types.
 
-## Deploying your Project {: #deploying-your-project }
+## Index Substrate Data {: #index-substrate-data }
 
-To deploy your project to SubQuery's hosted service, it is mandatory to build your configuration before upload. You can do so by running:
+The `project.ts` file is the entry point into your indexer; it defines what type of data to index and the mapping functions that are responsible for handling and processing the indexed data.
 
-```bash
-yarn build
+To index Substrate data, you'll need to ensure that the type of the `project` is `SubstrateProject`.
+
+```ts
+const project: SubstrateProject = { ... }
 ```
 
-![yarn build results](/images/builders/integrations/indexers/subquery/subquery-6.png)
+### The Substrate Data Source {: #the-substrate-data-source }
 
-Next you can choose to either [publish your project](https://academy.subquery.network/run_publish/publish.html){target=_blank} to [SubQuery Projects](https://project.subquery.network/){target=_blank} or [run a SubQuery node locally](https://academy.subquery.network/run_publish/run.html){target=_blank} using Docker. To do so you can run:
+In the `project.dataSources` array, you'll define the Substrate data source and the data to be indexed. The format of the data source is as follows:
 
-```bash
-docker-compose pull && docker-compose up
+```ts
+datasources: [
+  {
+    kind: 'substrate/Runtime',
+    startBlock: INSERT_START_BLOCK,
+    endBlock: INSERT_END_BLOCK,
+    mapping: {
+      file: './dist/index.js',
+      handlers: [
+        {
+          kind: 'INSERT_HANDLER_KIND',
+          handler: 'INSERT_HANDLER_FUNCTION_NAME',
+          filter: {
+            'INSERT_FILTER_TYPE': 'INSERT_FILTER',
+          },
+        },
+      ],
+    },
+  },
+],
 ```
 
-![docker-compose logs](/images/builders/integrations/indexers/subquery/subquery-7.png)
+Each property can be defined as follows:
 
-!!! note
-    It may take some time to download the required packages for the first time but soon you'll see a running SubQuery node.
+- `kind` - the kind of data source that you'll use, which for Substrate data is the `substrate/Runtime` source
+- `startBlock` - (optional) the block from which the indexer will start processing blocks
+- `endBlock` - (optional) after this block, the indexer will stop processing blocks
+- `mapping` - the data to be indexed and the handlers for the data
+    - `file` - the entry path for the mapping
+    - `handlers` - the handlers for specific kinds of data
+        - `kind` - the kind of handler. For Substrate data, there are three kinds: `substrateBlockHandler`, `substrate/EventHandler`, and `substrate/CallHandler`
+        - `handler` - the name of the handler function that will process this data
+        - `filter` - (optional) the filter type and data that will trigger a mapping handler. For example, what block, event, or extrinsic to index
 
-It might take a minute or two for your database to spin up and your node to start syncing, but you should eventually see your node start to fetch blocks.
+### Substrate Mapping Handlers {: #substrate-mapping-handlers }
 
-![fetching blocks logs](/images/builders/integrations/indexers/subquery/subquery-8.png)
+Using only certain handlers and filters will improve your indexer's efficiency. The handlers available for Substrate data are as follows:
 
-Now you can query your project by opening your browser to [http://localhost:3000](http://localhost:3000){target=_blank}, where you'll find a GraphQL playground. On the top right of the playground, you'll find a **Docs** button that will open a documentation drawer. This documentation is automatically generated and helps you find what entities and methods you can query.
+- The [block handler](https://academy.subquery.network/build/mapping/polkadot.html#block-handler){target=_blank} is used to index block data and is called once for every block. As such, this type of handler will slow your project down significantly and should only be used if absolutely necessary. The supported filters for the block handler are: `specVersion`, `modulo`, and `timestamp`
 
-![GraphQL playground](/images/builders/integrations/indexers/subquery/subquery-9.png)
+    |    Filter     |                                                                    Description                                                                    |                                             Example                                             |
+    |:-------------:|:-------------------------------------------------------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------:|
+    | `specVersion` |                                              Filters the blocks that fall into a spec version range                                               | `specVersion: [null, 2000]` <br> `# Indexes blocks with a spec` <br> `version between 0 - 2000` |
+    |   `modulo`    |                                                         Filters the blocks at an interval                                                         |                             `modulo: 50 # Indexes every 50 blocks`                              |
+    |  `timestamp`  | Filters the blocks at a time interval (in UTC). <br> Accepts a valid [cron expression](https://github.com/roccivic/cron-converter){target=_blank} |               `timestamp: '*5/ * * * *'` <br> `# Indexes blocks every 5 minutes`                |
 
-Congratulations! You now have a Moonbeam SubQuery project that accepts GraphQL API queries! Please note that depending on your configured start block, it could take a couple of days to index Moonbeam.
+- The [event handler](https://academy.subquery.network/build/mapping/polkadot.html#event-handler){target=_blank} is used to index certain Substrate events that are part of the runtime. The supported filters for the event handler are: `module` and `method`
 
-## Example Projects {: #example-projects }
+    |  Filter  |                      Description                      |       Example        |
+    |:--------:|:-----------------------------------------------------:|:--------------------:|
+    | `module` | Filters the pallet (module) that the event belongs to | `module: 'balances'` |
+    | `method` |                   Filters the event                   | `method: 'Transfer'` |
 
-To view the complete example project for Moonriver, you can checkout the [live Moonriver EVM Starter Project on the SubQuery Explorer](https://explorer.subquery.network/subquery/subquery/moonriver-evm-starter-project){target=_blank}. Or you can also view additional projects from the [SubQuery Explorer](https://explorer.subquery.network/){target=_blank}.
+- The [call handler](https://academy.subquery.network/build/mapping/polkadot.html#call-handler){target=_blank} is used to index certain Substrate extrinsics. The supported filters for the call handler are: `module`, `method`, `success`, and `isSigned`
 
-If you have any questions about this make sure you check out the [SubQuery documentation for Substrate EVM Support](https://academy.subquery.network/build/substrate-evm.html){target=_blank} or reach out to the SubQuery team on the #technical-support channel in the [SubQuery Discord](https://discord.com/invite/subquery){target=_blank}.
+    |   Filter   |                      Description                      |       Example        |
+    |:----------:|:-----------------------------------------------------:|:--------------------:|
+    |  `module`  | Filters the pallet (module) that extrinsic belongs to | `module: 'balances'` |
+    |  `method`  |                 Filters the extrinsic                 | `method: 'Transfer'` |
+    | `success`  |          Filters extrinsics based on outcome          |   `success: true`    |
+    | `isSigned` |  Filters extrinsics based on whether they're signed   |   `isSigned: true`   |
 
-### Moonbuilders Tutorial {: #moonbuilders-tutorial }
+## Index Ethereum Data {: #index-ethereum-data }
 
-SubQuery joined the [Moonbuilders workshop](https://www.crowdcast.io/e/moonbuilders-ws/10){target=_blank} in December to show off live how to create a simple SubQuery project. You can try out the [resulting sample project](https://github.com/stwiname/moonbuilders-demo){target=_blank} by yourself.
+The `project.ts` file is the entry point into your indexer; it defines what type of data to index and the mapping functions that are responsible for handling and processing the indexed data.
+
+To index Substrate data, you'll need to ensure that the type of the `project` is `SubstrateProject<FrontierEvmDatasource>`.
+
+```ts
+const project: SubstrateProject<FrontierEvmDatasource> = { ... }
+```
+
+### The EVM Data Source {: #the-evm-data-source }
+
+In the `project.dataSources` array, you'll define the EVM data source and the data to be indexed. The EVM data source is powered by a data processor specifically made to work with Moonbeam’s implementation of Frontier. It allows you to reference specific ABI resources used by the processor to parse arguments and the smart contract address that the events are from or the call is made to. In general, it acts as middleware that can provide extra filtering and data transformation.
+
+The format of the data source is as follows:
+
+```ts
+datasources: [
+  {
+    kind: 'substrate/FrontierEvm',
+    startBlock: INSERT_START_BLOCK,
+    endBlock: INSERT_END_BLOCK,
+    processor: {
+      file: './node_modules/@subql/frontier-evm-processor/dist/bundle.js',
+      options: {
+        abi: '',
+        address: '',
+      },
+    },
+    assets: ''
+    mapping: {
+      file: './dist/index.js',
+      handlers: [
+        {
+          kind: 'INSERT_HANDLER_KIND',
+          handler: 'INSERT_HANDLER_FUNCTION_NAME',
+          filter: {
+            'INSERT_FILTER_TYPE': 'INSERT_FILTER',
+          },
+        },
+      ],
+    },
+  },
+],
+```
+
+Each property can be defined as follows:
+
+- `kind` - the kind of data source that you'll use, which for EVM data is the `substrate/FrontierEVM` source
+- `startBlock` - (optional) the block from which the indexer will start processing blocks
+- `endBlock` - (optional) after this block, the indexer will stop processing blocks
+- `processor` - the Frontier EVM data processor configuration
+    - `file` - the file where the data processor code lives
+    - `options` - (optional) the [processor options](https://academy.subquery.network/build/substrate-evm.html#processor-options){target=_blank} specific to the Frontier EVM processor
+        - `abi` - (optional) the ABI that is used to parse arguments. The `abi` value must be a key in the `assets` configuration
+        - `address` - (optional) the contract address where the event is emitted from or the call is made to. Using `null` will capture contract creation calls
+    - `assets` - (optional) an object of external asset ABI files
+- `mapping` - the data to be indexed and the handlers for the data
+    - `file` - the entry path for the mapping
+    - `handlers` - the handlers for specific kinds of data
+        - `kind` - the kind of handler. For EVM data, there are two kinds: `substrate/FrontierEvmCall` and `substrate/FrontierEvmEvent`
+        - `handler` - the name of the handler function that will process this data
+        - `filter` - (optional) the filter type and data that will trigger a mapping handler. For example, what block, event, or extrinsic to index
+
+### Frontier EVM Mapping Handlers {: #evm-mapping-handlers }
+
+Using only certain handlers and filters will improve your indexer's efficiency. The handlers available for EVM data are as follows:
+
+- The [Frontier EVM call handler](https://academy.subquery.network/build/substrate-evm.html#call-handlers){target=_blank} is used to index transactions that are formatted based on [Ethers `TransactionResponse` type](https://docs.ethers.org/v5/api/providers/types/#providers-TransactionResponse){target=_blank}, but varies slightly. For information on the exact changes, please refer to [SubQuery's documentation](https://academy.subquery.network/build/substrate-evm.html#handler-functions){target=_blank}. The supported filters for the call handler are: `function` and `from`
+
+    |   Filter   |                        Description                        |                                    Example                                    |
+    |:----------:|:---------------------------------------------------------:|:-----------------------------------------------------------------------------:|
+    | `function` |    Filters the call by function signature or selector     | `function: '0x095ea7b3'` <br> `function: 'approve(address to,uint256 value)'` |
+    |   `from`   | Filters the call by the address that sent the transaction |             `from: '0x6bd193ee6d2104f14f94e2ca6efefae561a4334b'`              |
+
+- The [Frontier EVM event handler](https://academy.subquery.network/build/substrate-evm.html#event-handlers){target=_blank} is used to index certain EVM events. The supported filter for the event handler is: `topics`
+
+    |  Filter  |                                                                  Description                                                                   |                                   Example                                   |
+    |:--------:|:----------------------------------------------------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------:|
+    | `topics` | Filters the event log by topics, which follows the [Ethereum JSON-RPC log filters](https://docs.ethers.org/v5/concepts/events/){target=_blank} | `topics: 'Transfer(address indexed from,address indexed to,uint256 value)'` |
+
+## Run Your Indexer {: #run-your-indexer }
+
+To run your indexer locally using Docker, you can take the following steps:
+
+1. Build your project:
+
+    === "npm"
+
+        ```bash
+        npm run build
+        ```
+
+    === "yarn"
+
+        ```bash
+        yarn build
+        ```
+
+    ![The terminal output after building your project.](/images/builders/integrations/indexers/subquery/new/subquery-6.png)
+
+    !!! note
+        If you make changes to the `project.ts` file, you'll need to rebuild your project.
+
+2. Start up the Docker container for your indexer:
+
+    === "npm"
+
+        ```bash
+        npm run start:docker
+        ```
+
+    === "yarn"
+
+        ```bash
+        yarn start:docker
+        ```
+
+    ![The terminal output after starting up the Docker container for your project.](/images/builders/integrations/indexers/subquery/new/subquery-7.png)
+
+3. Head to [localhost:3000](http://localhost:3000){target=_blank} to open the GraphQL playground and submit queries. You can open up the **DOCS** or **SCHEMA** tab on the playground as a reference when creating your queries
+
+    !!! note
+        It may take a few minutes before the GraphQL server is ready. You'll be able to access the playground after you see the following log:
+
+        ```bash
+        substrate-demo-graphql-engine-1  | <subql-query> INFO Started playground at http://localhost:3000 
+        ```
+
+    ![The GraphQL playground in the browser.](/images/builders/integrations/indexers/subquery/new/subquery-8.png)
+
+And that's it! For a step-by-step tutorial on how to use the `moonbeam-substrate-evm-starter` template project, you can refer to [SubQuery's Moonbeam (EVM) Quick Start documentation](https://academy.subquery.network/quickstart/quickstart_chains/polkadot-moonbeam.html){target=_blank}.
 
 --8<-- 'text/_disclaimers/third-party-content.md'
