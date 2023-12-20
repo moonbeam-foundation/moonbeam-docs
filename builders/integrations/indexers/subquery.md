@@ -57,7 +57,7 @@ To get started, you'll need to [create a SubQuery project](https://academy.subqu
 
         ![The SubQuery CLI choose a network family menu.](/images/builders/integrations/indexers/subquery/new/subquery-1.png)
 
-    2. The next screen will prompt you to **Select a network**. At the time of writing this guide, Moonbeam and Moonriver were the only options
+    2. The next screen will prompt you to **Select a network**. You can choose between Moonbeam and Moonriver
 
         !!! note
             To build a project on Moonbase Alpha, you can select either network and adapt it later on
