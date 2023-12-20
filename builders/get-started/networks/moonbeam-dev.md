@@ -34,23 +34,6 @@ Using Docker enables you to spin up a node in a matter of seconds. Once you have
 
     The tail end of the console log should look like this:
 
-    <!-- termynal -->
-    ```bash
-    moonbeam@ubuntu-jammy$ docker pull moonbeamfoundation/moonbeam:v0.34.1
-
-    v0.34.1: Pulling from moonbeamfoundation/moonbeam
-    1f7ce2fa46ab: Pull complete
-    1208a88c940c: Pull complete
-    55a3907f35d5: Pull complete
-    7f83070ed01f: Pull complete
-    120180f27e1b: Pull complete
-    661ce21cf677: Pull complete
-    450f087713bc: Pull complete
-    Digest: sha256:b84255b2f0b7defec395f38ed04e55bb8ca1e912e958ce42e0cec84094ef4b48
-    Status: Downloaded newer image for moonbeamfoundation/moonbeam:v0.34.1
-    docker.io/moonbeamfoundation/moonbeam:v0.34.1
-    ```
-
     ![Docker - imaged pulled](/images/builders/get-started/networks/moonbeam-dev/moonbeam-dev-1.png)
 
 2. Spin up a Moonbeam development node by running the following Docker command, which will launch the node in instant seal mode for local testing so that blocks are authored instantly as transactions are received:
@@ -83,30 +66,6 @@ Using Docker enables you to spin up a node in a matter of seconds. Once you have
     On MacOS with silicon chips, Docker images may perform poorly. To improve performance, try [spinning up a Node with a Binary File](#getting-started-with-the-binary-file).
 
 If successful, you should see an output showing an idle state waiting for blocks to be authored:
-
-<!-- termynal -->
-```bash
-2023-12-13 22:46:22 💻 Operating system: linux
-2023-12-13 22:46:22 💻 CPU architecture: x86_64
-2023-12-13 22:46:22 💻 Target environment: gnu
-2023-12-13 22:46:22 💻 CPU: Intel(R) Core(TM) i7-9750H CPU @ 2.60GHz
-2023-12-13 22:46:22 💻 CPU cores: 12
-2023-12-13 22:46:22 💻 Memory: 7946MB
-2023-12-13 22:46:22 💻 Kernel: 6.4.16-linuxkit
-2023-12-13 22:46:22 💻 Linux distribution: Debian GNU/Linux 12 (bookworm)
-2023-12-13 22:46:22 💻 Virtual machine: yes
-2023-12-13 22:46:22 📦 Highest known block at #0
-2023-12-13 22:46:22 〽️ Prometheus exporter started at 127.0.0.1:9615
-2023-12-13 22:46:22 Running JSON-RPC server: addr=0.0.0.0:9944, allowed origins=["*"]
-2023-12-13 22:46:22 🏁 CPU score: 1000.18 MiBs
-2023-12-13 22:46:22 🏁 Memory score: 10.68 GiBs
-2023-12-13 22:46:22 🏁 Disk score (seq. writes): 1.55 GiBs
-2023-12-13 22:46:22 🏁 Disk score (rand. writes): 469.38 MiBs
-2023-12-13 22:46:22 Development Service Ready
-2023-12-13 22:46:27 💤 Idle (0 peers), best: #0 (0x6bfb…59a6), finalized #0 (0x6bfb…59a6), ⬇ 0 ⬆ 0
-2023-12-13 22:46:32 💤 Idle (0 peers), best: #0 (0x6bfb…59a6), finalized #0 (0x6bfb…59a6), ⬇ 0 ⬆ 0
-2023-12-13 22:46:37 💤 Idle (0 peers), best: #0 (0x6bfb…59a6), finalized #0 (0x6bfb…59a6), ⬇ 0 ⬆ 0
-```
 
 ![Docker - output shows blocks being produced](/images/builders/get-started/networks/moonbeam-dev/moonbeam-dev-2.png)
 
