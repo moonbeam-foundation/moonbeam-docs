@@ -124,7 +124,6 @@ To build the binary file, you can take the following steps:
         ```bash
         brew install llvm
         brew install protobuf
-        brew install pkg-config
         ```
 
     ```bash
