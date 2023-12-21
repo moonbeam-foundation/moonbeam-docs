@@ -7,9 +7,9 @@ description: Learn how to manually compile the binary to run a full Moonbeam nod
 
 ## Introduction
 
-Running a full node on a Moonbeam-based network allows you to connect to the network, sync with a bootnode, obtain local access to RPC endpoints, author blocks on the parachain, and more.
+Running a full node on a Moonbeam-based network allows you to connect to the network, sync with a boot node, obtain local access to RPC endpoints, author blocks on the parachain, and more.
 
-This guide is meant for people with experience compiling [Substrate](https://substrate.dev/) based blockchain nodes. A parachain node is similar to a typical Substrate node, but there are some differences. A Substrate parachain node will be a bigger build because it contains code to run the parachain itself, as well as code to sync the relay chain, and facilitate communication between the two. As such, this build is quite large and may take over 30 min and require 32GB of memory.
+This guide is meant for people with experience compiling [Substrate](https://substrate.dev/){target=_blank}-based blockchain nodes. A parachain node is similar to a typical Substrate node, but there are some differences. A Substrate parachain node will be a bigger build because it contains code to run the parachain itself, as well as code to sync the relay chain and facilitate communication between the two. As such, this build is quite large and may take over 30 min, and require 32GB of memory.
 
 To get started quickly without the hassle of compiling the binary yourself, you can use [The Release Binary](/node-operators/networks/run-a-node/systemd){target=_blank}.
 
@@ -65,4 +65,4 @@ If a _cargo not found error_ shows up in the terminal, manually add Rust to your
 --8<-- 'code/builders/get-started/networks/moonbeam-dev/updatepath.md'
 ```
 
-Now you can use the Moonbeam binary to run a systemd service. To setup the service and run it, please refer to the [Run a Node on Moonbeam Using Systemd](/node-operators/networks/run-a-node/systemd){target=_blank} guide.
+Now you can use the Moonbeam binary to run a Systemd service. To set up the service and run it, please refer to the [Run a Node on Moonbeam Using Systemd](/node-operators/networks/run-a-node/systemd){target=_blank} guide.

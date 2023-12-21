@@ -34,7 +34,7 @@ mkdir web3-examples && cd web3-examples
 For this guide, you'll need to install the Web3.py library and the Solidity compiler. To install both packages, you can run the following command:
 
 ```bash
-pip3 install web3 py-solc-x
+pip3 install web3 py-solc-x solc-select
 ```
 
 ## Setup Web3.py with Moonbeam {: #setup-web3-with-moonbeam }
