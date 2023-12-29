@@ -38,7 +38,7 @@ The Tenderly dashboard provides access to the all-in-one Web3 development platfo
 
 ![Tenderly dashboard](/images/builders/build/eth-api/dev-env/tenderly/tenderly-1.png)
 
-If you prefer not to set up a account, you can also access limited features using [Tenderly's explorer](https://dashboard.tenderly.co/explorer){target=_blank}. Without an account, you can still gain insights for contracts and transactions. However, you won't be able to simulate transactions or create forked environments.
+If you prefer not to set up an account, you can also access limited features using [Tenderly's explorer](https://dashboard.tenderly.co/explorer){target=_blank}. Without an account, you can still gain insights for contracts and transactions. However, you won't be able to simulate transactions or create forked environments.
 
 To interact with Tenderly's features programmatically, you can check out the [Tenderly CLI](https://github.com/Tenderly/tenderly-cli){target=_blank} GitHub repository for more information.
 
