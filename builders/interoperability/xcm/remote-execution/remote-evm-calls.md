@@ -105,7 +105,7 @@ The Ethereum XCM Pallet provides the following extrinsics (functions) that can b
 This guide covers building an XCM message for remote EVM calls using the [XCM Pallet](https://github.com/paritytech/polkadot-sdk/blob/{{ polkadot_sdk }}/polkadot/xcm/pallet-xcm/src/lib.rs){target=_blank} from the relay chain to Moonbase Alpha. More specifically, it will use the `transact` function. The steps to use the `transactThroughProxy` function are identical. However, you'll need to provide the `transactAs` account and ensure that this account has set the Computed Origin account as a proxy of type `any` on Moonbase Alpha.
 
 !!! note
-    When using `transactThroughProxy`, the EVM call is dispatched by the `transactAs` account you provide, acting as the `msg.sender`, as long as this account has set the the Computed Origin account as a proxy of type `any` in the Moonbeam-based network you are using. However, transaction fees are still paid by the Computed Origin account, so you need to ensure it has enough funds to cover them.
+    When using `transactThroughProxy`, the EVM call is dispatched by the `transactAs` account you provide, acting as the `msg.sender`, as long as this account has set the Computed Origin account as a proxy of type `any` in the Moonbeam-based network you are using. However, transaction fees are still paid by the Computed Origin account, so you need to ensure it has enough funds to cover them.
 
 The process for building and performing the remote execution can be summarized as follows:
 

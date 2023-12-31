@@ -60,7 +60,7 @@ interface AggregatorV3Interface {
 
 As seen above in the interface, there are five functions for fetching data: `decimal`, `description`, `version`, `getRoundData`, and `latestRoundData`.
 
-Currently, there are data feed contracts for [Moonbeam](https://docs.chain.link/docs/data-feeds-moonbeam/){target=_blank}, [Moonriver](https://docs.chain.link/docs/data-feeds-moonriver/){target=_blank}, and Moonbase Alpha for the the following price pairs (proxy addresses):
+Currently, there are data feed contracts for [Moonbeam](https://docs.chain.link/docs/data-feeds-moonbeam/){target=_blank}, [Moonriver](https://docs.chain.link/docs/data-feeds-moonriver/){target=_blank}, and Moonbase Alpha for the following price pairs (proxy addresses):
 
 === "Moonbeam"
     | Base/Quote  |          Data Feed Contract  (Proxy Address)          |
