@@ -17,10 +17,10 @@ In this guide, you will learn how to subscribe to event logs, incoming pending t
 
 The examples in this guide are based on an Ubuntu 18.04 environment. You will also need the following:
 
- - Have MetaMask installed and [connected to Moonbase](/tokens/connect/metamask/){target=_blank}
+ - Have MetaMask installed and [connected to Moonbase](https://github.com/moonbeam-foundation/moonbeam-docs/blob/master/tokens/connect/metamask.md){target=_blank}
  - Have an account with funds.
   --8<-- 'text/_common/faucet/faucet-list-item.md'
- - Deploy your own ERC-20 token on Moonbase. You can do following [our Remix tutorial](/builders/build/eth-api/dev-env/remix/){target=_blank}, while first pointing MetaMask to Moonbase
+ - Deploy your own ERC-20 token on Moonbase. You can do following [our Remix tutorial](https://github.com/moonbeam-foundation/moonbeam-docs/blob/master/builders/build/eth-api/dev-env/remix.md){target=_blank}, while first pointing MetaMask to Moonbase
 
 --8<-- 'text/_common/install-nodejs.md'
 
