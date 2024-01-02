@@ -6,7 +6,7 @@ const main = async () => {
   const api = await ApiPromise.create({ provider: wsProvider });
 
   // Transaction to get weight information
-  const tx = api.tx.balances.transfer('INSERT_BOBS_ADDRESS', BigInt(12345));
+  const tx = api.tx.balances.transferKeepAlive('INSERT_BOBS_ADDRESS', BigInt(12345));
 
   // Get weight info
   const { partialFee, weight } = await tx.paymentInfo('INSERT_SENDERS_ADDRESS');

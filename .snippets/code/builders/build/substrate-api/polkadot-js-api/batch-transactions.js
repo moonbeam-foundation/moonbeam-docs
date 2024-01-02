@@ -15,8 +15,8 @@ const main = async () => {
   // Construct a list of transactions to batch
   const collator = 'INSERT_COLLATORS_ADDRESS';
   const txs = [
-    api.tx.balances.transfer('INSERT_BOBS_ADDRESS', BigInt(12345)),
-    api.tx.balances.transfer('INSERT_CHARLEYS_ADDRESS', BigInt(12345)),
+    api.tx.balances.transferKeepAlive('INSERT_BOBS_ADDRESS', BigInt(12345)),
+    api.tx.balances.transferKeepAlive('INSERT_CHARLEYS_ADDRESS', BigInt(12345)),
     api.tx.parachainStaking.scheduleDelegatorBondLess(collator, BigInt(12345)),
   ];
 
