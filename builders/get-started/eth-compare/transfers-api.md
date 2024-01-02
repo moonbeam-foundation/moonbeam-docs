@@ -32,7 +32,7 @@ Before going over the different scenarios, there are two different elements asso
 
 The different transfer scenarios are:
 
- - **Substrate transfer** — it will create an extrinsic, either `balances.transfer` or `balances.transferKeepAlive`. It will trigger **one** `balances.Transfer` event
+ - **Substrate transfer** — it will create an extrinsic, either `balances.transferAllowDeath` or `balances.transferKeepAlive`. It will trigger **one** `balances.Transfer` event
  - **Substrate feature** — some native Substrate features can create extrinsic that would send tokens to an address. For example, [Treasury](/learn/features/treasury/){target=_blank} can create an extrinsic such as `treasury.proposeSend`, which will trigger **one or multiple** `balances.Transfer` events
  - **Ethereum transfer** — it will create an `ethereum.transact` extrinsic with an empty input. It will trigger **one** `balances.Transfer` event
  - **Ethereum transfers via smart contracts** — it will create an `ethereum.transact` extrinsic with some data as input. It will trigger **one or multiple** `balances.Transfer` events
