@@ -84,7 +84,7 @@ On Polkadot, the benchmarked base weights are broken up into two categories: fun
 
 With the instruction weight cost established, you can calculate the cost of each instruction in DOT.
 
-In Polkadot, the [`ExtrinsicBaseWeight`](https://github.com/polkadot-fellows/runtimes/blob/{{ networks.polkadot.spec_version }}/relay/polkadot/constants/src/weights/extrinsic_weights.rs#L56){target=_blank} is set to `{{ networks.polkadot.extrinsic_base_weight.display }}` which is [mapped to 1/10th](https://github.com/polkadot-fellows/runtimes/blob/{{ networks.polkadot.spec_version }}/relay/polkadot/constants/src/lib.rs#L89){targer=blank} of a cent. Where 1 cent is `10^10 / 100`.
+In Polkadot, the [`ExtrinsicBaseWeight`](https://github.com/polkadot-fellows/runtimes/blob/{{ networks.polkadot.spec_version }}/relay/polkadot/constants/src/weights/extrinsic_weights.rs#L56){target=_blank} is set to `{{ networks.polkadot.extrinsic_base_weight.display }}` which is [mapped to 1/10th](https://github.com/polkadot-fellows/runtimes/blob/{{ networks.polkadot.spec_version }}/relay/polkadot/constants/src/lib.rs#L89){target=blank} of a cent. Where 1 cent is `10^10 / 100`.
 
 Therefore, to calculate the cost of executing an XCM instruction, you can use the following formula:
 
