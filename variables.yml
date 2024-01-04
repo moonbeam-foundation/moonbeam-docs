@@ -1144,7 +1144,7 @@ networks:
       display: 124,706,000
       numbers_only: 124706000
   alphanet:
-    spec_version: v0.9.43
+    spec_version: v1.2.0
     xcm_instructions:
       withdraw:
         total_weight: 145,308,000
