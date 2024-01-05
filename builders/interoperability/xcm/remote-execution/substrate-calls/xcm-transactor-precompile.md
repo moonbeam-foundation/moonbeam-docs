@@ -119,7 +119,7 @@ The interface varies slightly from version to version. You can find an overview 
             - `transactRequiredWeightAtMost` - the weight to buy in the destination chain for the execution of the call defined in the `Transact` instruction
             - `call` - the call to be executed in the destination chain, as defined in the `Transact` instruction 
             - `feeAmount` - the amount to be used as a fee
-            - `overallWeight` - the total weight the extrinsic can use to execute all the XCM instructions, plus the weight of the `Transact` call (`transactRequiredWeightAtMost`)
+            - `overallWeight` - the total weight the extrinsic can use to execute all the XCM instructions, plus the weight of the `Transact` call (`transactRequiredWeightAtMost`). The `overallWeight` structure also contains `refTime` and `proofSize`. If you pass in the maximum value for a uint64 for the `refTime`, you'll allow for an unlimited amount of weight to be purchased, which removes the need to know exactly how much weight the destination chain requires to execute the XCM
 
     ??? function "**transactThroughSigned**(*Multilocation* *memory* dest, *address* feeLocationAddress, *uint64* transactRequiredWeightAtMost, *bytes* *memory* call, *uint256* feeAmount, *uint64* overallWeight) — sends an XCM message with instructions to remotely execute a call in the destination chain. The remote call will be signed and executed by a new account, called the [Computed Origin](/builders/interoperability/xcm/remote-execution/computed-origins){target=_blank} account, that the destination parachain must compute. Moonbeam-based networks follow [the Computed Origins standard set by Polkadot](https://github.com/paritytech/polkadot-sdk/blob/{{ polkadot_sdk }}/polkadot/xcm/xcm-builder/src/location_conversion.rs){target=_blank}. You need to provide the address of the XC-20 asset to be used for fee payment"
 
@@ -130,7 +130,7 @@ The interface varies slightly from version to version. You can find an overview 
             - `transactRequiredWeightAtMost` - the weight to buy in the destination chain for the execution of the call defined in the `Transact` instruction
             - `call` - the call to be executed in the destination chain, as defined in the `Transact` instruction 
             - `feeAmount` - the amount to be used as a fee
-            - `overallWeight` - the total weight the extrinsic can use to execute all the XCM instructions, plus the weight of the `Transact` call (`transactRequiredWeightAtMost`)
+            - `overallWeight` - the total weight the extrinsic can use to execute all the XCM instructions, plus the weight of the `Transact` call (`transactRequiredWeightAtMost`). The `overallWeight` structure also contains `refTime` and `proofSize`. If you pass in the maximum value for a uint64 for the `refTime`, you'll allow for an unlimited amount of weight to be purchased, which removes the need to know exactly how much weight the destination chain requires to execute the XCM
 
 === "V3"
 
@@ -197,7 +197,7 @@ The interface varies slightly from version to version. You can find an overview 
                 ```
             - `call` - the call to be executed in the destination chain, as defined in the `Transact` instruction 
             - `feeAmount` - the amount to be used as a fee
-            - `overallWeight` - the total weight the extrinsic can use to execute all the XCM instructions, plus the weight of the `Transact` call (`transactRequiredWeightAtMost`). The `overallWeight` structure also contains `refTime` and `proofSize`
+            - `overallWeight` - the total weight the extrinsic can use to execute all the XCM instructions, plus the weight of the `Transact` call (`transactRequiredWeightAtMost`). The `overallWeight` structure also contains `refTime` and `proofSize`. If you pass in the maximum value for a uint64 for the `refTime`, you'll allow for an unlimited amount of weight to be purchased, which removes the need to know exactly how much weight the destination chain requires to execute the XCM
             - `refund` -  a boolean indicating whether or not to add the `RefundSurplus` and `DepositAsset` instructions to the XCM message to refund any leftover fees 
 
     ??? function "**transactThroughSigned**(*Multilocation* *memory* dest, *address* feeLocationAddress, *Weight* transactRequiredWeightAtMost, *bytes* *memory* call, *uint256* feeAmount, *Weight* overallWeight, *bool* refund) — sends an XCM message with instructions to remotely execute a call in the destination chain. The remote call will be signed and executed by a new account, called the [Computed Origin](/builders/interoperability/xcm/remote-execution/computed-origins){target=_blank} account, that the destination parachain must compute. Moonbeam-based networks follow [the Computed Origins standard set by Polkadot](https://github.com/paritytech/polkadot-sdk/blob/{{ polkadot_sdk }}/polkadot/xcm/xcm-builder/src/location_conversion.rs){target=_blank}. You need to provide the address of the XC-20 asset to be used for fee payment"
@@ -217,7 +217,7 @@ The interface varies slightly from version to version. You can find an overview 
                 ```
             - `call` - the call to be executed in the destination chain, as defined in the `Transact` instruction 
             - `feeAmount` - the amount to be used as a fee
-            - `overallWeight` - the total weight the extrinsic can use to execute all the XCM instructions, plus the weight of the `Transact` call (`transactRequiredWeightAtMost`). The `overallWeight` structure also contains `refTime` and `proofSize`
+            - `overallWeight` - the total weight the extrinsic can use to execute all the XCM instructions, plus the weight of the `Transact` call (`transactRequiredWeightAtMost`). The `overallWeight` structure also contains `refTime` and `proofSize`. If you pass in the maximum value for a uint64 for the `refTime`, you'll allow for an unlimited amount of weight to be purchased, which removes the need to know exactly how much weight the destination chain requires to execute the XCM
             - `refund` -  a boolean indicating whether or not to add the `RefundSurplus` and `DepositAsset` instructions to the XCM message to refund any leftover fees 
 
 ## XCM Instructions for Remote Execution {: #xcm-instructions-for-remote-execution }
@@ -314,10 +314,10 @@ For this example, you'll interact with the `transactThroughSigned` function of t
         const feeAmount = 50000000000000000n;
         ```
 
-    - `overallWeight` - the weight specific to the inner call (`transactRequiredWeightAtMost`) plus the weight needed to cover the execution costs for the XCM instructions in the destination chain: `DescendOrigin`, `WithdrawAsset`, `BuyExecution`, and `Transact`. It's important to note that each chain defines its own weight requirements. To determine the weight required for each XCM instruction on a given chain, please refer to the chain's documentation or reach out to a member of their team
+    - `overallWeight` - the weight specific to the inner call (`transactRequiredWeightAtMost`) plus the weight needed to cover the execution costs for the XCM instructions in the destination chain: `DescendOrigin`, `WithdrawAsset`, `BuyExecution`, and `Transact`. It's important to note that each chain defines its own weight requirements. To determine the weight required for each XCM instruction on a given chain, please refer to the chain's documentation or reach out to a member of their team. Alternatively, you can pass in the maximum value for a uint64 for the `refTime` (the first index of the array). This will be interpreted as using an unlimited amount of weight, which removes the need to know exactly how much weight the destination chain requires to execute the XCM
 
         ```js
-        const overallWeight = [2000000000n, 10000n];
+        const overallWeight = [18446744073709551615n, 10000n];
         ```
 
 5. Create the `transactThroughSigned` function, passing in the arguments

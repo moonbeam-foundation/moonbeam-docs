@@ -43,7 +43,11 @@ The XCM Transactor Pallet provides the following extrinsics (functions):
             - `transactRequiredWeightAtMost` — the weight required to perform the execution of the `Transact` call.  The `transactRequiredWeightAtMost` structure contains the following:
                 - `refTime` - the amount of computational time that can be used for execution
                 - `proofSize` - the amount of storage in bytes that can be used
-            - `overallWeight` — (optional) the total weight the extrinsic can use to execute all the XCM instructions, plus the weight of the `Transact` call (`transactRequiredWeightAtMost`). The `overallWeight` structure also contains `refTime` and `proofSize`
+            - `overallWeight` — (optional) the total weight the extrinsic can use to execute all the XCM instructions, plus the weight of the `Transact` call (`transactRequiredWeightAtMost`). The `overallWeight` can be defined as either:
+                - `Unlimited` - allows an unlimited amount of weight that can be purchased
+                - `Limited` - limits the amount of weight that can be purchased by defining the following:
+                    - `refTime` - the amount of computational time that can be used for execution
+                    - `proofSize` - the amount of storage in bytes that can be used
     
     === "Polkadot.js API Example"
 
@@ -132,7 +136,11 @@ The XCM Transactor Pallet provides the following extrinsics (functions):
             - `transactRequiredWeightAtMost` — the weight required to perform the execution of the `Transact` call.  The `transactRequiredWeightAtMost` structure contains the following:
                 - `refTime` - the amount of computational time that can be used for execution
                 - `proofSize` - the amount of storage in bytes that can be used
-            - `overallWeight` — (optional) the total weight the extrinsic can use to execute all the XCM instructions, plus the weight of the `Transact` call (`transactRequiredWeightAtMost`). The `overallWeight` structure also contains `refTime` and `proofSize`
+            - `overallWeight` — (optional) the total weight the extrinsic can use to execute all the XCM instructions, plus the weight of the `Transact` call (`transactRequiredWeightAtMost`). The `overallWeight` can be defined as either:
+                - `Unlimited` - allows an unlimited amount of weight that can be purchased
+                - `Limited` - limits the amount of weight that can be purchased by defining the following:
+                    - `refTime` - the amount of computational time that can be used for execution
+                    - `proofSize` - the amount of storage in bytes that can be used
         - `refund` - a boolean indicating whether or not to add the `RefundSurplus` and `DepositAsset` instructions to the XCM message to refund any leftover fees 
 
     === "Polkadot.js API Example"
@@ -165,7 +173,11 @@ The XCM Transactor Pallet provides the following extrinsics (functions):
             - `transactRequiredWeightAtMost` — the weight required to perform the execution of the `Transact` call.  The `transactRequiredWeightAtMost` structure contains the following:
                 - `refTime` - the amount of computational time that can be used for execution
                 - `proofSize` - the amount of storage in bytes that can be used
-            - `overallWeight` — (optional) the total weight the extrinsic can use to execute all the XCM instructions, plus the weight of the `Transact` call (`transactRequiredWeightAtMost`). The `overallWeight` structure also contains `refTime` and `proofSize`     
+            - `overallWeight` — (optional) the total weight the extrinsic can use to execute all the XCM instructions, plus the weight of the `Transact` call (`transactRequiredWeightAtMost`). The `overallWeight` can be defined as either:
+                - `Unlimited` - allows an unlimited amount of weight that can be purchased
+                - `Limited` - limits the amount of weight that can be purchased by defining the following:
+                    - `refTime` - the amount of computational time that can be used for execution
+                    - `proofSize` - the amount of storage in bytes that can be used
         - `refund` - a boolean indicating whether or not to add the `RefundSurplus` and `DepositAsset` instructions to the XCM message to refund any leftover fees 
 
     === "Polkadot.js API Example"
@@ -361,12 +373,12 @@ Since you'll be interacting with the `transactThroughSigned` function of the XCM
 
 4. Set the `weightInfo`, which includes the weight specific to the inner call (`transactRequiredWeightAtMost`) and the optional overall weight of the transact plus XCM execution (`overallWeight`). For each parameter, you can follow these guidelines:
     - For `transactRequiredAtMost`, you can set `refTime` to `1000000000` weight units and `proofSize` to `40000`
-    - For `overallWeight`, the value must be the total of `transactRequiredWeightAtMost` plus the weight needed to cover the execution costs for the XCM instructions in the destination chain. If you do not provide this value, the pallet will use the element in storage (if it exists) and add it to `transactRequiredWeightAtMost`. For this example, you can set `refTime` to `2000000000` weight units and `proofSize` to `50000`
+    - For `overallWeight`, the value must be the total of `transactRequiredWeightAtMost` plus the weight needed to cover the execution costs for the XCM instructions in the destination chain. If you do not provide this value, the pallet will use the element in storage (if it exists) and add it to `transactRequiredWeightAtMost`. For this example, you can set the `overallWeight` to `Unlimited`, which removes the need to know how much weight the destination chain will require to execute the XCM
 
     ```js
     const weightInfo = {
       transactRequiredWeightAtMost: { refTime: 1000000000n, proofSize: 40000n },
-      overallWeight: { refTime: 2000000000n, proofSize: 50000n },
+      overallWeight: { Unlimited: null },
     };
     ```
 
