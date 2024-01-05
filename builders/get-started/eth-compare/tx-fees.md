@@ -21,7 +21,7 @@ There are some key differences between the transaction fee model on Moonbeam and
 
   - The EVM is designed to solely have capacity for gas and Moonbeam requires additional metrics outside of gas. In particular, Moonbeam needs the ability to record proof size, which is the amount of storage required on Moonbeam for a relay chain validator to verify a state transition. When the capacity limit for proof size has been reached for the current block, which is 25% of the block limit, an "Out of Gas" error will be thrown. This can happen even if there is remaining *legacy* gas in the gasometer. This additional metric also impacts refunds. Refunds are based on the more consumed resource after the execution. In other words, if more proof size has been consumed proportionally than legacy gas, the refund will be calculated using proof size
 
-  - Moonbeam has implemented a new mechanism defined in [MBIP-5](https://github.com/moonbeam-foundation/moonbeam/blob/master/MBIPS/MBIP-5.md){target=_blank} that limits block storage and increases gas usage for transactions that result in an increase in storage. Please note that this feature is only enabled on Moonriver and Moonbase Alpha at this time
+  - Moonbeam has implemented a new mechanism defined in [MBIP-5](https://github.com/moonbeam-foundation/moonbeam/blob/master/MBIPS/MBIP-5.md){target=_blank} that limits block storage and increases gas usage for transactions that result in an increase in storage
 
 ## Overview of MBIP-5 {: #overview-of-mbip-5 }
 
@@ -30,6 +30,12 @@ MBIP-5 introduced changes to Moonbeam's fee mechanism that account for storage g
 This impacts contract deployments that add to the chain state, transactions that create new storage entries, and precompiled contract calls that result in the creation of new accounts.
 
 The block storage limit prevents transactions in a single block from collectively increasing the storage state by more than the limit. The limit for each network is as follows:
+
+=== "Moonbeam"
+
+    ```text
+    {{ networks.moonbeam.mbip_5.block_storage_limit }}KB
+    ```
 
 === "Moonriver"
 
@@ -51,6 +57,12 @@ Ratio = Block Gas Limit / (Block Storage Limit * 1024 Bytes)
 
 The block gas limit for each network is as follows:
 
+=== "Moonbeam"
+
+    ```text
+    {{ networks.moonbeam.gas_block }}
+    ```
+
 === "Moonriver"
 
     ```text
@@ -64,6 +76,13 @@ The block gas limit for each network is as follows:
     ```
 
 Knowing the block gas and storage limits, the ratio of gas to storage is computed as follows:
+
+=== "Moonbeam"
+
+    ```text
+    Ratio = {{ networks.moonbeam.gas_block_numbers_only }} / ({{ networks.moonbeam.mbip_5.block_storage_limit }} * 1024)
+    Ratio = {{ networks.moonbeam.mbip_5.gas_storage_ratio }} 
+    ```
 
 === "Moonriver"
 
@@ -80,6 +99,13 @@ Knowing the block gas and storage limits, the ratio of gas to storage is compute
     ```
 
 Then, you can take the storage growth in bytes for a given transaction and multiply it by the gas-to-storage growth ratio to determine how many units of gas to add to the transaction. For example, if you execute a transaction that increases the storage by {{ networks.moonbase.mbip_5.example_storage }} bytes, the following calculation is used to determine the units of gas to add:
+
+=== "Moonbeam"
+
+    ```text
+    Additional Gas = {{ networks.moonbeam.mbip_5.example_storage }} * {{ networks.moonbeam.mbip_5.gas_storage_ratio }}
+    Additional Gas = {{ networks.moonbeam.mbip_5.example_addtl_gas }}
+    ```
 
 === "Moonriver"
 
