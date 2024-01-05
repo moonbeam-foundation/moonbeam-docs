@@ -28,7 +28,7 @@ The Identity Precompile is located at the following address:
 === "Moonbase Alpha"
 
      ```text
-     {{networks.moonriver.precompiles.identity }}
+     {{networks.moonbase.precompiles.identity }}
      ```
 
 --8<-- 'text/builders/build/pallets-precompiles/precompiles/security.md'
