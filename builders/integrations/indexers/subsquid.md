@@ -49,19 +49,19 @@ To get started indexing Substrate data on Moonbeam, you'll need to create a Subs
     === "Moonbeam"
 
         ```json
-        "specVersions": "https://v2.archive.subsquid.io/network/moonbeam-mainnet",
+        "specVersions": "https://v2.archive.subsquid.io/metadata/moonbeam",
         ```
 
     === "Moonriver"
 
         ```json
-        "specVersions": "https://v2.archive.subsquid.io/network/moonriver-mainnet",
+        "specVersions": "https://v2.archive.subsquid.io/metadata/moonriver",
         ```
 
     === "Moonbase Alpha"
 
         ```json
-        "specVersions": "https://v2.archive.subsquid.io/network/moonbase-testnet",
+        "specVersions": "https://v2.archive.subsquid.io/metadata/moonbase",
         ```
 
 4. Modify the `src/processor.ts` file, which is where Squids instantiate the processor, configure it, and attach handler functions. The processor fetches historical on-chain data from an [Archive](https://docs.subsquid.io/archives/overview/){target=_blank}, which is a specialized data lake. You'll need to configure your processor to pull data from the Archive that corresponds to the [network](https://docs.subsquid.io/substrate-indexing/supported-networks/){target=_blank} you are indexing data on:
