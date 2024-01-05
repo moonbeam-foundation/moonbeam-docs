@@ -11,9 +11,8 @@ The Identity Precompile is a Solidity interface that allows you to create, manag
 
 The Identity Precompile interacts directly with Substrate's [Identity Pallet](/builders/pallets-precompiles/pallets/identity){target=_blank} to provide the functionality needed to create and manage identities. This pallet is coded in Rust and is normally not accessible from the Ethereum side of Moonbeam. However, the Identity Precompile allows you to access this functionality directly from the Solidity interface.
 
-The Identity Precompile is only available on Moonbase Alpha and is located at the following address:
+The Identity Precompile is located at the following address:
 
-<!-- 
 === "Moonbeam"
 
      ```text
@@ -24,7 +23,7 @@ The Identity Precompile is only available on Moonbase Alpha and is located at th
 
      ```text
      {{networks.moonriver.precompiles.identity }}
-     ``` -->
+     ```
 
 === "Moonbase Alpha"
 
