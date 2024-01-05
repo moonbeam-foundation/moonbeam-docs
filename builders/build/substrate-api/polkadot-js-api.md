@@ -315,6 +315,9 @@ console.log(`Submitted with hash ${txHash}`);
     --8<-- 'code/builders/build/substrate-api/polkadot-js-api/basic-transactions.js'
     ```
 
+!!! note
+    Prior to client v0.35.0, the extrinsic used to perform a simple balance transfer was the `balances.transfer` extrinsic. It has since been deprecated and replaced with the `balances.transferAllowDeath` extrinsic.
+
 Note that the `signAndSend` function can also accept optional parameters, such as the `nonce`. For example, `signAndSend(alice, { nonce: aliceNonce })`. You can use the [sample code from the State Queries](/builders/build/substrate-api/polkadot-js-api/#state-queries){target=_blank} section to retrieve the correct nonce, including transactions in the mempool.
 
 ### Fee Information {: #fees }
