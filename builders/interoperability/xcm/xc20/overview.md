@@ -82,6 +82,7 @@ The current list of available external XC-20 assets per network is as follows:
     |       Pendulum        |   xcPEN   | [0xffffffff2257622f345e1acde0d4f46d7d1d77d0](https://moonscan.io/token/0xffffffff2257622f345e1acde0d4f46d7d1d77d0){target=_blank} |
     |         Phala         |   xcPHA   | [0xFFFfFfFf63d24eCc8eB8a7b5D0803e900F7b6cED](https://moonscan.io/token/0xFFFfFfFf63d24eCc8eB8a7b5D0803e900F7b6cED){target=_blank} |
     |       Polkadex        |  xcPDEX   | [0xfFffFFFF43e0d9b84010b1b67bA501bc81e33C7A](https://moonscan.io/token/0xfFffFFFF43e0d9b84010b1b67bA501bc81e33C7A){target=_blank} |
+    |  Polkadot Asset Hub   |  xcPINK   | [0xfFfFFfFf30478fAFBE935e466da114E14fB3563d](https://moonscan.io/token/0xfFfFFfFf30478fAFBE935e466da114E14fB3563d){target=_blank} |
     |  Polkadot Asset Hub   |  xcUSDC   | [0xFFfffffF7D2B0B761Af01Ca8e25242976ac0aD7D](https://moonscan.io/token/0xFFfffffF7D2B0B761Af01Ca8e25242976ac0aD7D){target=_blank} |
     |  Polkadot Asset Hub   |  xcUSDT   | [0xFFFFFFfFea09FB06d082fd1275CD48b191cbCD1d](https://moonscan.io/token/0xFFFFFFfFea09FB06d082fd1275CD48b191cbCD1d){target=_blank} |
     |       Subsocial       |   xcSUB   | [0xffffffff43b4560bc0c451a3386e082bff50ac90](https://moonscan.io/token/0xffffffff43b4560bc0c451a3386e082bff50ac90){target=_blank} |
