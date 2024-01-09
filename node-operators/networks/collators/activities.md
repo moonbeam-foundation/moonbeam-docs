@@ -25,6 +25,7 @@ Before getting started, it's important to note some of the timing of different a
     |           Revoke delegation           | {{ networks.moonbeam.delegator_timings.revoke_delegations.rounds }} rounds ({{ networks.moonbeam.delegator_timings.revoke_delegations.hours }} hours) |
     |        Reduce self-delegation         |       {{ networks.moonbeam.collator_timings.can_bond_less.rounds }} rounds ({{ networks.moonbeam.collator_timings.can_bond_less.hours }} hours)       |
     | Rewards payouts (after current round) |    {{ networks.moonbeam.delegator_timings.rewards_payouts.rounds }} rounds ({{ networks.moonbeam.delegator_timings.rewards_payouts.hours }} hours)    |
+    |        Maximum offline rounds         |         {{ networks.moonbeam.collator_timings.max_offline.rounds }} rounds ({{ networks.moonbeam.collator_timings.max_offline.hours }} hours)         |
 
 === "Moonriver"
     |               Variable                |                                                                          Value                                                                          |
@@ -34,6 +35,7 @@ Before getting started, it's important to note some of the timing of different a
     |           Revoke delegation           | {{ networks.moonriver.delegator_timings.revoke_delegations.rounds }} rounds ({{ networks.moonriver.delegator_timings.revoke_delegations.hours }} hours) |
     |        Reduce self-delegation         |       {{ networks.moonriver.collator_timings.can_bond_less.rounds }} rounds ({{ networks.moonriver.collator_timings.can_bond_less.hours }} hours)       |
     | Rewards payouts (after current round) |    {{ networks.moonriver.delegator_timings.rewards_payouts.rounds }} rounds ({{ networks.moonriver.delegator_timings.rewards_payouts.hours }} hours)    |
+    |        Maximum offline rounds         |         {{ networks.moonriver.collator_timings.max_offline.rounds }} rounds ({{ networks.moonriver.collator_timings.max_offline.hours }} hours)         |
 
 === "Moonbase Alpha"
     |               Variable                |                                                                         Value                                                                         |
@@ -41,8 +43,9 @@ Before getting started, it's important to note some of the timing of different a
     |            Round duration             |                        {{ networks.moonbase.staking.round_blocks }} blocks ({{ networks.moonbase.staking.round_hours }} hours)                        |
     |           Leave candidates            |    {{ networks.moonbase.collator_timings.leave_candidates.rounds }} rounds ({{ networks.moonbase.collator_timings.leave_candidates.hours }} hours)    |
     |           Revoke delegation           | {{ networks.moonbase.delegator_timings.revoke_delegations.rounds }} rounds ({{ networks.moonbase.delegator_timings.revoke_delegations.hours }} hours) |
-    |      Reduce self-delegation      |      {{ networks.moonbase.delegator_timings.del_bond_less.rounds }} rounds ({{ networks.moonbase.delegator_timings.del_bond_less.hours }} hours)      |
+    |        Reduce self-delegation         |      {{ networks.moonbase.delegator_timings.del_bond_less.rounds }} rounds ({{ networks.moonbase.delegator_timings.del_bond_less.hours }} hours)      |
     | Rewards payouts (after current round) |    {{ networks.moonbase.delegator_timings.rewards_payouts.rounds }} rounds ({{ networks.moonbase.delegator_timings.rewards_payouts.hours }} hours)    |
+    |        Maximum offline rounds         |         {{ networks.moonbase.collator_timings.max_offline.rounds }} rounds ({{ networks.moonbase.collator_timings.max_offline.hours }} hours)         |
 
 !!! note
     The values presented in the previous table are subject to change in future releases.
@@ -73,7 +76,7 @@ Once your node is running and in sync with the network, you become a candidate a
 
  1. Select the account you want to become a collator. Confirm your account is funded with at least the [minimum stake required](/node-operators/networks/collators/requirements/#minimum-collator-bond){target=_blank} plus some extra for transaction fees
  2. Select **parachainStaking** pallet under the **submit the following extrinsic** menu
- 3. Open the drop-down menu, which lists all the possible extrinsics related to staking, and select the **joinCandidates()** function
+ 3. Open the drop-down menu, which lists all the possible extrinsics related to staking, and select the **joinCandidates** function
  4. Set the bond to at least the [minimum amount](/node-operators/networks/collators/requirements/#minimum-collator-bond){target=_blank} to be considered a candidate. You'll need to enter this amount in `Wei`. As an example, the minimum bond of {{ networks.moonbase.staking.min_can_stk }} DEV on Moonbase Alpha would be `{{ networks.moonbase.staking.min_can_stk_wei }}` in Wei ({{ networks.moonbase.staking.min_can_stk }} + 18 extra zeros). Only the candidate bond counts for this check. Additional delegations do not count
  5. Set the candidate count as the candidate pool size. To learn how to retrieve this value, check the [Get the Size of the Candidate Pool](#get-the-size-of-the-candidate-pool) section
  6. Submit the transaction. Follow the wizard and sign the transaction using the password you set for the account
@@ -163,11 +166,11 @@ If you wish to bond less, you have to schedule a request, wait for an [exit dela
 
 ### Bond More {: #bond-more }
 
-As a candidate, there are two options for increasing one's stake. The first and recommended option is to send the funds to be staked to another owned address and [delegate them to your collator](/tokens/staking/stake/#how-to-nominate-a-collator). Alternatively, collators that already have at least the [minimum self-bond amount](/node-operators/networks/collators/requirements/#minimum-collator-bond){target=_blank} staked can increase their bond through [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonriver.moonbeam.network#/accounts). Navigate to the **Developer** tab, click on **Extrinsics**, and follow these steps:
+As a candidate, there are two options for increasing one's stake. The first and recommended option is to send the funds to be staked to another owned address and [delegate them to your collator](/tokens/staking/stake/#how-to-nominate-a-collator). Alternatively, collators that already have at least the [minimum self-bond amount](/node-operators/networks/collators/requirements/#minimum-collator-bond){target=_blank} staked can increase their bond through [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/accounts). Navigate to the **Developer** tab, click on **Extrinsics**, and follow these steps:
 
  1. Select your collator account (and verify it contains the additional funds to be bonded)
  2. Select **parachainStaking** pallet under the **submit the following extrinsic** menu
- 3. Open the drop-down menu, which lists all the possible extrinsics related to staking, and select the **candidateBondMore()** function
+ 3. Open the drop-down menu, which lists all the possible extrinsics related to staking, and select the **candidateBondMore** function
  4. Specify the additional amount to be bonded in the **more: BalanceOf** field
  5. Submit the transaction. Follow the wizard and sign the transaction using the password you set for the account
 
@@ -175,7 +178,7 @@ As a candidate, there are two options for increasing one's stake. The first and 
 
 ### Bond Less {: #bond-less}
 
-As of [runtime version 1001](https://moonbeam.network/announcements/staking-changes-moonriver-runtime-upgrade/), there have been significant changes to the way users can interact with various staking features, including the way staking exits are handled. As a collator or collator candidate, you may decrease your amount bonded as long as you have more than the [minimum self-bond amount](/node-operators/networks/collators/requirements/#minimum-collator-bond){target=_blank} after the decrease.
+As a collator or collator candidate, you may decrease your amount bonded as long as you have more than the [minimum self-bond amount](/node-operators/networks/collators/requirements/#minimum-collator-bond){target=_blank} after the decrease.
 
 In order to bond less, you have to first schedule a request, wait for the duration of the [exit delay](#collator-timings), and then execute the request. You can [cancel a request](#cancel-bond-less-request) at any time, as long as the request hasn't been executed yet.
 
@@ -185,7 +188,7 @@ To schedule a request to bond less, make sure you've clicked on the **Developer*
 
  1. Select your candidate account
  2. Select **parachainStaking** pallet under the **submit the following extrinsic** menu
- 3. Open the drop-down menu and select the **scheduleCandidateBondLess()** function
+ 3. Open the drop-down menu and select the **scheduleCandidateBondLess** function
  4. Specify the amount to decrease the bond by in the  **less: BalanceOf** field
  5. Submit the transaction. Follow the wizard and sign the transaction using the password you set for the account
 
@@ -217,3 +220,31 @@ If you scheduled a request to bond more or less but changed your mind, as long a
  4. Submit the transaction. Follow the wizard and sign the transaction using the password you set for the account
 
 ![Cancel leave candidates request](/images/node-operators/networks/collators/activities/activities-11.png)
+
+## Mark a Collator as Inactive {: #mark-collator-as-inactive }
+
+If there is an inactive collator that has not produced blocks for a consecutive number of rounds, you can mark a collator as inactive. The maximum number of rounds a collator can be offline before they can be marked as inactive is as follows:
+
+=== "Moonbeam"
+
+    {{ networks.moonbeam.collator_timings.max_offline.rounds }} round ({{ networks.moonbeam.collator_timings.max_offline.hours }} hours)
+
+=== "Moonriver"
+
+    {{ networks.moonriver.collator_timings.max_offline.rounds }} rounds ({{ networks.moonriver.collator_timings.max_offline.hours }} hours)
+
+=== "Moonbase Alpha"
+
+    {{ networks.moonbase.collator_timings.max_offline.rounds }} rounds ({{ networks.moonbase.collator_timings.max_offline.hours }} hours)
+
+To mark a collator as inactive, you can use the `notifyInactiveCollator` extrinsic, which will notify the runtime when a collator is inactive and, by default, mark the collator as offline. To do so, you can head to  [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/accounts){target=_blank}, make sure that you are connected to the correct network, then click on the **Developer** tab, select **Extrinsics** from the dropdown, and take the following steps:
+
+ 1. Select your account
+ 2. Select **parachainStaking** pallet under the **submit the following extrinsic** menu
+ 3. Select the **notifyInactiveCollator** extrinsic
+ 4. Specify the collator to mark as inactive
+ 5. Submit the transaction. Follow the wizard and sign the transaction using the password you set for the account
+
+![Mark a collator as inactive](/images/node-operators/networks/collators/activities/activities-12.png)
+
+The collator will temporarily be removed from the candidate pool, and they can rejoin at any time by calling the `goOnline` extrinsic.

@@ -332,6 +332,9 @@ networks:
         rounds: 2
         hours: 4
     collator_timings:
+      max_offline:
+        rounds: 2
+        hours: 4
       leave_candidates:
         rounds: 2
         hours: 4
@@ -631,6 +634,9 @@ networks:
         rounds: 2
         hours: 4
     collator_timings:
+      max_offline:
+        rounds: 2
+        hours: 4
       leave_candidates:
         rounds: 24
         hours: 48
@@ -981,6 +987,9 @@ networks:
         rounds: 2
         hours: 12
     collator_timings:
+      max_offline:
+        rounds: 1
+        hours: 6
       leave_candidates:
         rounds: 28
         hours: 168
