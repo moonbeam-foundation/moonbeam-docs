@@ -19,34 +19,271 @@ This page will provide an overview of the extrinsics, storage methods, and gette
 
 The Multisig Pallet provides the following extrinsics (functions):
 
-- **asMulti**(threshold, otherSignatories, maybeTimepoint, call, maxWeight) - approves and if possible dispatches a call from a composite origin formed from a number of signed origins (a multisig). If the call has been approved by enough of the other signatories, the call will be dispatched. The [`depositBase`](#constants) will be reserved if this is the first approval plus the `threshold` times the [`depositFactor`](#constants). The total reserved amount will be returned once the call is dispatched or cancelled. This function should be used if it is the final approval, otherwise you'll want to use `approveAsMulti` instead since it only requires a hash of the call
-- **approveAsMulti**(threshold, otherSignatories, maybeTimepoint, callHash, maxWeight) - approves a call from a composite origin. For the final approval, you'll want to use `asMulti` instead
-- **asMultiThreshold**(otherSignatories, call) - immediately dispatches a multisig call using a single approval from the caller
-- **cancelAsMulti**(threshold, otherSignatories, maybeTimepoint, callHash) - cancels a preexisting, ongoing call from a composite origin. Any reserved deposit will be returned upon successful cancellation
+??? function "**asMulti**(threshold, otherSignatories, maybeTimepoint, call, maxWeight) - approves and if possible dispatches a call from a composite origin formed from a number of signed origins (a multisig). If the call has been approved by enough of the other signatories, the call will be dispatched. The [`depositBase`](#constants) will be reserved if this is the first approval plus the `threshold` times the [`depositFactor`](#constants). The total reserved amount will be returned once the call is dispatched or cancelled. This function should be used if it is the final approval, otherwise you'll want to use `approveAsMulti` instead since it only requires a hash of the call"
+
+    === "Parameters"
+
+        - `threshold` -
+        - `otherSignatories` -
+        - `maybeTimepoint` -
+        - `call` -
+        - `maxWeight` -
+
+    === "Returns"
+
+        TODO
+
+    === "Polkadot.js API Example"
+
+        ```js
+        TODO
+        ```
+
+??? function "**approveAsMulti**(threshold, otherSignatories, maybeTimepoint, callHash, maxWeight) - approves a call from a composite origin. For the final approval, you'll want to use `asMulti` instead"
+
+    === "Parameters"
+
+        - `threshold` -
+        - `otherSignatories` -
+        - `maybeTimepoint` -
+        - `callHash` -
+        - `maxWeight` -
+
+    === "Returns"
+
+        TODO
+
+    === "Polkadot.js API Example"
+
+        ```js
+        TODO
+        ```
+
+??? function "**asMultiThreshold**(otherSignatories, call) - immediately dispatches a multisig call using a single approval from the caller"
+
+    === "Parameters"
+
+        - `otherSignatories` -
+        - `call` -
+
+    === "Returns"
+
+        TODO
+
+    === "Polkadot.js API Example"
+
+        ```js
+        TODO
+        ```
+
+??? function "**cancelAsMulti**(threshold, otherSignatories, maybeTimepoint, callHash) - cancels a preexisting, ongoing call from a composite origin. Any reserved deposit will be returned upon successful cancellation"
+
+    === "Parameters"
+
+        - `threshold` -
+        - `otherSignatories` -
+        - `maybeTimepoint` -
+        - `callHash` -
+
+    === "Returns"
+
+        TODO
+
+    === "Polkadot.js API Example"
+
+        ```js
+        TODO
+        ```
+
 
 Where the inputs that need to be provided can be defined as:
 
-- **threshold** - the total number of approvals required for a dispatch to be executed
-- **otherSignatories** - the accounts (other than the sender) who can approve the dispatch
-- **maybeTimepoint** - the timepoint (block number and transaction index) of the first approval transaction, unless it is the first approval then this field must be `None`
-- **call** - the call to be executed
-- **callHash** - the hash of the call to be executed
-- **maxWeight** - the maximum weight for the dispatch
+??? function "**threshold** - the total number of approvals required for a dispatch to be executed"
+
+    === "Parameters"
+
+        TODO
+
+    === "Returns"
+
+        TODO
+
+    === "Polkadot.js API Example"
+
+       ```js
+        TODO
+       ```
+
+??? function "**otherSignatories** - the accounts (other than the sender) who can approve the dispatch"
+
+    === "Parameters"
+
+        TODO
+
+    === "Returns"
+
+        TODO
+
+    === "Polkadot.js API Example"
+
+       ```js
+        TODO
+       ```
+
+??? function "**maybeTimepoint** - the timepoint (block number and transaction index) of the first approval transaction, unless it is the first approval then this field must be `None`"
+
+    === "Parameters"
+
+        TODO
+
+    === "Returns"
+
+        TODO
+
+    === "Polkadot.js API Example"
+
+       ```js
+        TODO
+       ```
+
+??? function "**call** - the call to be executed"
+
+    === "Parameters"
+
+        TODO
+
+    === "Returns"
+
+        TODO
+
+    === "Polkadot.js API Example"
+
+       ```js
+        TODO
+       ```
+
+??? function "**callHash** - the hash of the call to be executed"
+
+    === "Parameters"
+
+        TODO
+
+    === "Returns"
+
+        TODO
+
+    === "Polkadot.js API Example"
+
+       ```js
+        TODO
+       ```
+
+??? function "**maxWeight** - the maximum weight for the dispatch"
+
+    === "Parameters"
+
+        TODO
+
+    === "Returns"
+
+        TODO
+
+    === "Polkadot.js API Example"
+
+       ```js
+        TODO
+       ```
+
 
 ### Storage Methods {: #storage-methods }
 
 The Multisig Pallet includes the following read-only storage methods to obtain chain state data:
 
-- **multisigs**() - returns the set of open multisig operations for a given account.
-- **palletVersion**() - returns the current pallet version
+??? function "**multisigs**() - returns the set of open multisig operations for a given account."
+
+    === "Parameters"
+
+        - `` -
+
+    === "Returns"
+
+        TODO
+
+    === "Polkadot.js API Example"
+
+        ```js
+        TODO
+        ```
+
+??? function "**palletVersion**() - returns the current pallet version"
+
+    === "Parameters"
+
+        - `` -
+
+    === "Returns"
+
+        TODO
+
+    === "Polkadot.js API Example"
+
+        ```js
+        TODO
+        ```
+
 
 ### Pallet Constants {: #constants }
 
 The Multisig Pallet includes the following read-only functions to obtain pallet constants:
 
-- **depositBase**() - returns the base amount of currency needed to reserve for creating a multisig execution or to store a dispatch call for later. This is held for an additional storage item whose key size is `32 + sizeof(AccountId)` bytes, which is `32 + 20` on Moonbeam, and whose value size is `4 + sizeof((BlockNumber, Balance, AccountId))` bytes, which is `4 + 4 + 16 +20` bytes on Moonbeam
-- **depositFactor**() - returns the amount of currency needed per unit threshold when creating a multisig execution. This is held for adding 20 bytes more into a preexisting storage value
-- **maxSignatories**() - returns the maximum amount of signatories allowed in the multisig
+??? function "**depositBase**() - returns the base amount of currency needed to reserve for creating a multisig execution or to store a dispatch call for later. This is held for an additional storage item whose key size is `32 + sizeof(AccountId)` bytes, which is `32 + 20` on Moonbeam, and whose value size is `4 + sizeof((BlockNumber, Balance, AccountId))` bytes, which is `4 + 4 + 16 +20` bytes on Moonbeam"
+
+    === "Parameters"
+
+        - `` -
+
+    === "Returns"
+
+        TODO
+
+    === "Polkadot.js API Example"
+
+        ```js
+        TODO
+        ```
+
+??? function "**depositFactor**() - returns the amount of currency needed per unit threshold when creating a multisig execution. This is held for adding 20 bytes more into a preexisting storage value"
+
+    === "Parameters"
+
+        - `` -
+
+    === "Returns"
+
+        TODO
+
+    === "Polkadot.js API Example"
+
+        ```js
+        TODO
+        ```
+
+??? function "**maxSignatories**() - returns the maximum amount of signatories allowed in the multisig"
+
+    === "Parameters"
+
+        - `` -
+
+    === "Returns"
+
+        TODO
+
+    === "Polkadot.js API Example"
+
+        ```js
+        TODO
+        ```
+
 
 ## How to Create a Multisig Account {: #create-a-multisig-account }
 

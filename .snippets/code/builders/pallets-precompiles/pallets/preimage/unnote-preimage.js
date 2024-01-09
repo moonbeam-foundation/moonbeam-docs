@@ -9,7 +9,7 @@ const main = async () => {
 
   const tx = api.tx.preimage.unnotePreimage(hash);
   const txHash = await tx.signAndSend('INSERT_ACCOUNT_OR_KEYRING');
-  
+
   api.disconnect();
 };
 

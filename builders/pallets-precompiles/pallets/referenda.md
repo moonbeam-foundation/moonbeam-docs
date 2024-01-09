@@ -96,7 +96,7 @@ The Referenda Pallet provides the following extrinsics (functions):
             - `Lookup` - defines the preimage associated with the proposal using the following arguments:
                 - `hash_` - the hash of the preimage
                 - `len` - the length of the preimage
-        - `enactmentMoment` - when the proposal will be executed, either at a specific block or after a specific number of blocks
+        - `enactmentMoment` - when the proposal will be executed, either at a specific block or after a specific number of blocks:
             - `At` -  a specific block to enact the proposal at
             - `After` - the number of blocks to delay enactment after proposal approval
 

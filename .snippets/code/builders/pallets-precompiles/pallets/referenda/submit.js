@@ -12,8 +12,8 @@ const proposalOrigin = { Origins: 'INSERT_ORIGIN_NAME_OR_INDEX' };
 const proposal = {
   Lookup: {
     hash_: 'INSERT_PREIMAGE_HASH',
-    len: 'INSERT_PREIMAGE_LENGTH'
-  }
+    len: 'INSERT_PREIMAGE_LENGTH',
+  },
 };
 
 const enactmentMoment = { At: INSERT_BLOCK };
@@ -23,18 +23,14 @@ const enactmentMoment = { After: INSERT_BLOCK }
 */
 
 const main = async () => {
-const api = await ApiPromise.create({
+  const api = await ApiPromise.create({
     provider: new WsProvider('INSERT_WSS_ENDPOINT'),
-});
+  });
 
-const tx = api.tx.referenda.submit(
-    proposalOrigin,
-    proposal,
-    enactmentMoment
-);
-const txHash = await tx.signAndSend('INSERT_ACCOUNT_OR_KEYRING');
+  const tx = api.tx.referenda.submit(proposalOrigin, proposal, enactmentMoment);
+  const txHash = await tx.signAndSend('INSERT_ACCOUNT_OR_KEYRING');
 
-api.disconnect();
+  api.disconnect();
 };
 
 main();
