@@ -37,13 +37,15 @@ You will need to install Brownie and create a Brownie project if you don't alrea
     python3 -m pipx ensurepath
     ```
 
-3. [Install Brownie using `pipx`](https://eth-brownie.readthedocs.io/en/stable/install.html){target=_blank}
+3. [Install Brownie using `pipx`](https://eth-brownie.readthedocs.io/en/stable/install.html){target=_blank}, which is used to run executables installed locally in your project. Brownie will be installed into a virtual environment and be available directly from the command line.
     ```bash
     pipx install eth-brownie
-    ```
+    ``` 
+If you're running Ubuntu, you should use the following command to avoid installation errors.
 
-    !!! note
-        [`pipx`](https://github.com/pypa/pipx){target=_blank} is used to run executables installed locally in your project. Brownie will be installed into a virtual environment and be available directly from the command line.
+    ```bash
+    pip3 install wheel && pip3 install --no-build-isolation "Cython<3" "pyyaml==5.4.1" && pip3 install --upgrade --no-cache-dir eth-brownie
+    ```
 
 4. Create a project
     ```bash
@@ -51,6 +53,26 @@ You will need to install Brownie and create a Brownie project if you don't alrea
     ```
 
 ![Create Brownie project](/images/builders/build/eth-api/dev-env/brownie/brownie-1.png)
+
+!!!note
+    A common error while installing Brownie on Ubuntu is `pip seemed to fail to build package: pyyaml==5.4.1` This can be resolved by using pip3 as shown in Step 3 instead of pipx. 
+
+Error installing eth-brownie.
+
+Some possibly relevant errors from pip install:
+    error: subprocess-exited-with-error
+    AttributeError: cython_sources
+
+Error installing eth-brownie.
+
+pip seemed to fail to build package:
+    pyyaml==5.4.1
+
+Some possibly relevant errors from pip install:
+    error: subprocess-exited-with-error
+    AttributeError: cython_sources
+
+Error installing eth-brownie.
 
 Your Brownie project should contain the following empty directories:
 
@@ -143,6 +165,29 @@ If you would like to set a default network, you can do so by adding the followin
 
 !!! note
     Keep in mind that the `brownie-config.yaml` file isn't automatically created, you can optionally create it yourself.
+
+### Setting your Networks RPC URLs
+
+It is recommended that you override the default Brownie RPC URLs to [your own RPC endpoint](/builders/get-started/endpoints/#rpc-endpoint-providers){target=_blank} or the public Moonbeam network endpoints. You can override the default Brownie RPC URL for each network as follows:
+
+=== "Moonbeam"
+
+    ```bash
+    brownie networks modify moonbeam-main host={{ networks.moonbeam.rpc_url }}
+    ```
+
+=== "Moonriver"
+
+    ```bash
+    brownie networks modify moonriver-main host={{ networks.moonriver.rpc_url }}
+    ```
+
+=== "Moonbase Alpha"
+
+    ```bash
+    brownie networks modify moonbeam-test host={{ networks.moonbase.rpc_url }}
+    ```
+
 
 ## Account Configuration {: #account-configuration }
 
