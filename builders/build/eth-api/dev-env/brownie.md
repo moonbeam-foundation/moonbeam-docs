@@ -139,10 +139,10 @@ If you would like to set a default network, you can do so by adding the followin
 Before you can deploy a contract, you'll need to configure your account, which is also done from the command line. To add a new account you can run:
 
 ```bash
-brownie accounts new {INSERT_ACCOUNT_NAME}
+brownie accounts new INSERT_ACCOUNT_NAME
 ```
 
-Make sure to replace `{INSERT_ACCOUNT_NAME}` with your name of choice. For this example, `alice` will be used as the account name.
+Make sure to replace `INSERT_ACCOUNT_NAME` with your name of choice. For this example, `alice` will be used as the account name.
 
 You'll be prompted to enter in your private key and a password to encrypt the account with. If the account was successfully configured, you'll see your account address printed to the terminal.
 
