@@ -377,12 +377,12 @@ You can sign transaction payloads or any arbitrary data using a keypair object t
     )
 
     # Construct the signed extrinsic with the generated signature
-    extrinsic = substrate.create_signed_extrinsic(
+    extrinsic = ws_provider.create_signed_extrinsic(
         call=call, keypair=keypair, signature=signature
     )
 
     # Submit the signed extrinsic
-    result = substrate.submit_extrinsic(extrinsic=extrinsic)
+    result = ws_provider.submit_extrinsic(extrinsic=extrinsic)
 
     # Print the execution result
     print(result.extrinsic_hash)
