@@ -67,13 +67,23 @@ Another important file to note that is not included in an empty project is the `
 
 To deploy to a Moonbeam-based network, you'll need to add and configure the network. Network configurations in Brownie are added from the command line. Brownie can be used with both development and live environments.
 
-Moonbeam, Moonriver, Moonbase Alpha, and local Moonbeam nodes are supported out of the box with Brownie as of version 1.19.3. To view the complete list of supported networks, you can run the following command:
+Moonbeam, Moonriver, and Moonbase Alpha are supported out of the box with Brownie as of version 1.19.3. To view the complete list of supported networks, you can run the following command:
 
 ```bash
 brownie networks list
 ```
 
 ![Network list](/images/builders/build/eth-api/dev-env/brownie/brownie-2.png)
+
+If you're looking to deploy a contract to a Moonbeam development node you'll need to add the network configurations. Under the hood, Brownie uses Ganache for development environments. However, since a Moonbeam development node acts as your own personal development environment, Ganache isn't needed. Therefore, you can configure a development node as a "live" network.
+
+To add Moonbeam development node configurations, you can run the following command:
+
+```bash
+brownie networks add Moonbeam moonbeam-dev host={{ networks.development.rpc_url }} name=Development chainid={{ networks.development.chain_id }}
+```
+
+If you successfully added the network, you'll see a success message along with the network details in the terminal.
 
 To deploy to a Moonbeam network, or run tests on a specific network, you can specify the network by appending the following to the given command:
 
@@ -98,7 +108,7 @@ To deploy to a Moonbeam network, or run tests on a specific network, you can spe
 === "Moonbeam Dev Node"
 
     ```bash
-    --network moonbase
+    --network moonbeam-dev
     ```
 
 If you would like to set a default network, you can do so by adding the following snippet to the `brownie-config.yaml` configuration file:
@@ -128,7 +138,7 @@ If you would like to set a default network, you can do so by adding the followin
 
     ```yaml
     networks:
-        default: moonbase
+        default: moonbeam-dev
     ```
 
 !!! note
@@ -264,7 +274,7 @@ You can now deploy the `Box.sol` contract using the `run` command and specifying
 === "Moonbeam Dev Node"
 
     ```bash
-    brownie run scripts/deploy.py --network moonbase
+    brownie run scripts/deploy.py --network moonbeam-dev
     ```
 
 After a few seconds, the contract is deployed, and you should see the address in the terminal.
@@ -302,7 +312,7 @@ To interact with your newly deployed contract, you can launch the Brownie `conso
 === "Moonbeam Dev Node"
 
     ```bash
-    brownie console --network moonbase
+    brownie console --network moonbeam-dev
     ```
 
 The contract instance will automatically be accessible from the console. It will be wrapped in a `ContractContainer` which also enables you to deploy new contract instances. To access the deployed contract you can use `Box[0]`. To call the `store` method and set the value to `5`, you can take the following steps:
@@ -382,7 +392,7 @@ To run the script, you can use the following command:
 === "Moonbeam Dev Node"
 
     ```bash
-    brownie run scripts/store-and-retrieve.py --network moonbase
+    brownie run scripts/store-and-retrieve.py --network moonbeam-dev
     ```
 
 You'll need to enter the password for Alice to send the transaction to update the stored value. Once the transaction goes through, you should see a transaction hash and a value of `5` printed to the console.
