@@ -34,7 +34,7 @@ Using Docker enables you to spin up a node in a matter of seconds. Once you have
 
     The tail end of the console log should look like this:
 
-    ![Docker - imaged pulled](/images/builders/get-started/networks/moonbeam-dev/moonbeam-dev-1.png)
+    --8<-- 'code/builders/get-started/networks/moonbeam-dev/terminal/docker-pull.md'
 
 2. Spin up a Moonbeam development node by running the following Docker command, which will launch the node in instant seal mode for local testing so that blocks are authored instantly as transactions are received:
 
@@ -67,7 +67,7 @@ Using Docker enables you to spin up a node in a matter of seconds. Once you have
 
 If successful, you should see an output showing an idle state waiting for blocks to be authored:
 
-![Docker - output shows blocks being produced](/images/builders/get-started/networks/moonbeam-dev/moonbeam-dev-2.png)
+--8<-- 'code/builders/get-started/networks/moonbeam-dev/terminal/docker-run.md'
 
 For more information on some of the flags and options used in the example, check out [Flags](#node-flags) and [Options](#node-options). If you want to see a complete list of all of the flags, options, and subcommands, open the help menu by running:
 
@@ -132,7 +132,7 @@ To build the binary file, you can take the following steps:
 
     Here is what the tail end of the build output should look like:
 
-    ![End of build output](/images/builders/get-started/networks/moonbeam-dev/moonbeam-dev-3.png)
+    --8<-- 'code/builders/get-started/networks/moonbeam-dev/terminal/compile.md'
 
 !!! note
     The initial build will take a while. Depending on your hardware, you should expect approximately 30 minutes for the build process to finish.
@@ -148,7 +148,7 @@ Then, you will want to run the node in development mode using the following comm
 
 You should see an output that looks like the following, showing an idle state waiting for blocks to be produced:
 
-![Output shows blocks being produced](/images/builders/get-started/networks/moonbeam-dev/moonbeam-dev-4.png)
+--8<-- 'code/builders/get-started/networks/moonbeam-dev/terminal/run-binary.md'
 
 For more information on some of the flags and options used in the example, check out the [Flags](#node-flags) and [Options](#node-options). If you want to see a complete list of all of the flags, options, and subcommands, open the help menu by running:
 
