@@ -52,7 +52,7 @@ async function main() {
       if (
         extrinsic.method.pallet === 'balances' &&
         (extrinsic.method.method === 'transferKeepAlive' ||
-          extrinsic.method.method === 'transfer')
+          extrinsic.method.method === 'transferAllowDeath')
       ) {
         // Iterate through the events to get transaction details
         extrinsic.events.forEach((event) => {

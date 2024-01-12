@@ -295,8 +295,7 @@ const alice = keyring.addFromUri('INSERT_ALICES_PRIVATE_KEY');
 const bob = 'INSERT_BOBS_ADDRESS';
 
 // Form the transaction
-const tx = await api.tx.balances
-  .transfer(bob, 12345n);
+const tx = await api.tx.balances.transferAllowDeath(bob, 12345n);
 
 // Retrieve the encoded calldata of the transaction
 const encodedCalldata = tx.method.toHex();
@@ -316,6 +315,9 @@ console.log(`Submitted with hash ${txHash}`);
     --8<-- 'code/builders/build/substrate-api/polkadot-js-api/basic-transactions.js'
     ```
 
+!!! note
+    Prior to client v0.35.0, the extrinsic used to perform a simple balance transfer was the `balances.transfer` extrinsic. It has since been deprecated and replaced with the `balances.transferAllowDeath` extrinsic.
+
 Note that the `signAndSend` function can also accept optional parameters, such as the `nonce`. For example, `signAndSend(alice, { nonce: aliceNonce })`. You can use the [sample code from the State Queries](/builders/build/substrate-api/polkadot-js-api/#state-queries){target=_blank} section to retrieve the correct nonce, including transactions in the mempool.
 
 ### Fee Information {: #fees }
@@ -328,7 +330,7 @@ For example, assuming you've [initialized the API](#creating-an-API-provider-ins
 
 ```javascript
 // Transaction to get weight information
-const tx = api.tx.balances.transfer('INSERT_BOBS_ADDRESS', BigInt(12345));
+const tx = api.tx.balances.transferAllowDeath('INSERT_BOBS_ADDRESS', BigInt(12345));
 
 // Get weight info
 const { partialFee, weight } = await tx.paymentInfo('INSERT_SENDERS_ADDRESS');
@@ -361,8 +363,8 @@ For example, assuming you've [initialized the API](#creating-an-API-provider-ins
 // Construct a list of transactions to batch
 const collator = 'INSERT_COLLATORS_ADDRESS';
 const txs = [
-  api.tx.balances.transfer('INSERT_BOBS_ADDRESS', BigInt(12345)),
-  api.tx.balances.transfer('INSERT_CHARLEYS_ADDRESS', BigInt(12345)),
+  api.tx.balances.transferAllowDeath('INSERT_BOBS_ADDRESS', BigInt(12345)),
+  api.tx.balances.transferAllowDeath('INSERT_CHARLEYS_ADDRESS', BigInt(12345)),
   api.tx.parachainStaking.scheduleDelegatorBondLess(collator, BigInt(12345)),
 ];
 
