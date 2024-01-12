@@ -68,7 +68,7 @@ You will need to install Brownie and create a Brownie project if you don't alrea
     brownie init
     ```
 
-![Create Brownie project](/images/builders/build/eth-api/dev-env/brownie/brownie-1.png)
+--8<-- 'code/builders/build/eth-api/dev-env/brownie/terminal/init.md'
 
 Your Brownie project should contain the following empty directories:
 
@@ -91,7 +91,7 @@ Moonbeam, Moonriver, and Moonbase Alpha are supported out of the box with Browni
 brownie networks list
 ```
 
-![Network list](/images/builders/build/eth-api/dev-env/brownie/brownie-2.png)
+--8<-- 'code/builders/build/eth-api/dev-env/brownie/terminal/list-networks.md'
 
 If you're looking to deploy a contract to a Moonbeam development node you'll need to add the network configurations. Under the hood, Brownie uses Ganache for development environments. However, since a Moonbeam development node acts as your own personal development environment, Ganache isn't needed. Therefore, you can configure a development node as a "live" network.
 
@@ -198,7 +198,7 @@ Make sure to replace `INSERT_ACCOUNT_NAME` with your name of choice. For this ex
 
 You'll be prompted to enter in your private key and a password to encrypt the account with. If the account was successfully configured, you'll see your account address printed to the terminal.
 
-![Add account](/images/builders/build/eth-api/dev-env/brownie/brownie-3.png)
+--8<-- 'code/builders/build/eth-api/dev-env/brownie/terminal/new-account.md'
 
 ## The Contract File {: #the-contract-file }
 
@@ -241,7 +241,7 @@ To compile the contract you can simply run:
 brownie compile
 ```
 
-![Compile Brownie project](/images/builders/build/eth-api/dev-env/brownie/brownie-4.png)
+--8<-- 'code/builders/build/eth-api/dev-env/brownie/terminal/compile.md'
 
 !!! note
     The first time you compile your contracts it may take longer than usual while the `solc` binary is installed.
@@ -321,7 +321,7 @@ You can now deploy the `Box.sol` contract using the `run` command and specifying
 
 After a few seconds, the contract is deployed, and you should see the address in the terminal.
 
-![Deploy Brownie project](/images/builders/build/eth-api/dev-env/brownie/brownie-5.png)
+--8<-- 'code/builders/build/eth-api/dev-env/brownie/terminal/deploy.md'
 
 Congratulations, your contract is live! Save the address, as you will use it to interact with this contract instance in the next step.
 
@@ -379,7 +379,7 @@ The transaction will be signed by your account and broadcasted to the network. N
 
 You should see `5` or the value you have stored initially.
 
-![Interact with Brownie project](/images/builders/build/eth-api/dev-env/brownie/brownie-6.png)
+--8<-- 'code/builders/build/eth-api/dev-env/brownie/terminal/interact.md'
 
 ### Using a Script {: #using-a-script }
 
