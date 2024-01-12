@@ -256,7 +256,7 @@ To calculate the fee incurred on a Moonbeam transaction sent via the Ethereum AP
     ```
 
 !!! note
-    Due to a current bug, EIP-1559 transaction fees are calculated using the previous block's base fee. As such, you can adapt your calculations to use the base fee of the previous block to match the on-chain data.
+    EIP-1559 transaction fees on Moonbeam are calculated using the previous block's base fee.
 
 The following sections describe in more detail each of the components needed to calculate the transaction fee.
 
@@ -437,7 +437,7 @@ The following curl example will return the gas information of the last 10 blocks
 The following code snippet uses the [Axios HTTP client](https://axios-http.com/){target=_blank} to query the [Sidecar endpoint `/blocks/head`](https://paritytech.github.io/substrate-api-sidecar/dist/#operations-tag-blocks){target=_blank} for the latest finalized block. It then calculates the transaction fees of all transactions in the block according to the transaction type (for Ethereum API: legacy, EIP-1559 or EIP-2930 standards, and for Substrate API), as well as calculating the total transaction fees in the block.
 
 !!! note
-    Due to a current bug, EIP-1559 transaction fees are calculated using the previous block's base fee. As such, you can adapt your calculations to use the base fee of the previous block to match the on-chain data.
+    EIP-1559 transaction fees on Moonbeam are calculated using the previous block's base fee.
 
 The following code sample is for demo purposes only and should not be used without modification and further testing in a production environment.
 

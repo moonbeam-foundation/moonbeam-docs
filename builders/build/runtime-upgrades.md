@@ -15,7 +15,7 @@ This page provides a historical record of runtime upgrades by block for each of 
 
 The following table contains a list of the runtime upgrades and the block at which the upgrade occurred for each network. Runtime upgrades occur first on Moonbase Alpha before being released on Moonriver and then on Moonbeam. You can read the release notes for each runtime on the [Moonbeam releases GitHub page](https://github.com/moonbeam-foundation/moonbeam/releases){target=_blank}.
 
-Not all runtime upgrades are released on each network, as sometimes after releasing the initial runtime upgrade, the need for a subsequent upgrade arises. If a runtime upgrade version has been skipped, you'll see a `-` in that row.
+Not all runtime upgrades are released on each network, as sometimes after releasing the initial runtime upgrade, the need for a subsequent upgrade arises. If a runtime upgrade version has been skipped or hasn't been released yet (only applicable to the latest runtime upgrade), you'll see a `-` in that row.
 
 | Runtime |                              Moonbeam                               |                              Moonriver                               |                           Moonbase Alpha                            |
 |:-------:|:-------------------------------------------------------------------:|:--------------------------------------------------------------------:|:-------------------------------------------------------------------:|
@@ -74,4 +74,4 @@ Not all runtime upgrades are released on each network, as sometimes after releas
 |  2501   | [4543267](https://moonbeam.subscan.io/block/4543267){target=_blank} | [5211264](https://moonriver.subscan.io/block/5211264){target=_blank} | [5194594](https://moonbase.subscan.io/block/5194594){target=_blank} |
 |  2601   |                                  -                                  |                                  -                                   | [5474345](https://moonbase.subscan.io/block/5474345){target=_blank} |
 |  2602   | [4977160](https://moonbeam.subscan.io/block/4977160){target=_blank} | [5638536](https://moonriver.subscan.io/block/5638536){target=_blank} | [5576588](https://moonbase.subscan.io/block/5576588){target=_blank} |
-
+|  2700   |                                  -                                  |                                  -                                   | [5860584](https://moonbase.subscan.io/block/5860584){target=_blank} |
