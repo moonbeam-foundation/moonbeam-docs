@@ -37,7 +37,8 @@ You will need to install Brownie and create a Brownie project if you don't alrea
     python3 -m pipx ensurepath
     ```
 
-3. [Install Brownie using `pipx`](https://eth-brownie.readthedocs.io/en/stable/install.html){target=_blank}, which is used to run executables installed locally in your project. Brownie will be installed into a virtual environment and be available directly from the command line.
+3. [Install Brownie using `pipx`](https://eth-brownie.readthedocs.io/en/stable/install.html){target=_blank}, which is used to run executables installed locally in your project. Brownie will be installed into a virtual environment and be available directly from the command line
+
     ```bash
     pipx install eth-brownie
     ``` 
