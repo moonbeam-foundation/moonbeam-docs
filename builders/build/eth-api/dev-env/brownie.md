@@ -70,26 +70,6 @@ You will need to install Brownie and create a Brownie project if you don't alrea
 
 ![Create Brownie project](/images/builders/build/eth-api/dev-env/brownie/brownie-1.png)
 
-!!!note
-    A common error while installing Brownie on Ubuntu is `pip seemed to fail to build package: pyyaml==5.4.1` This can be resolved by using pip3 as shown in Step 3 instead of pipx. 
-
-Error installing eth-brownie.
-
-Some possibly relevant errors from pip install:
-    error: subprocess-exited-with-error
-    AttributeError: cython_sources
-
-Error installing eth-brownie.
-
-pip seemed to fail to build package:
-    pyyaml==5.4.1
-
-Some possibly relevant errors from pip install:
-    error: subprocess-exited-with-error
-    AttributeError: cython_sources
-
-Error installing eth-brownie.
-
 Your Brownie project should contain the following empty directories:
 
 - **build** - for project data such as contract artifacts from compilation
@@ -204,6 +184,7 @@ It is recommended that you override the default Brownie RPC URLs to [your own RP
     brownie networks modify moonbeam-test host={{ networks.moonbase.rpc_url }}
     ```
 
+--8<-- 'code/builders/build/eth-api/dev-env/brownie/terminal/modify-networks.md'
 
 ## Account Configuration {: #account-configuration }
 
