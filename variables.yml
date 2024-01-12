@@ -1064,27 +1064,45 @@ networks:
     ws: 9944
     prometheus: 9615
   polkadot:
-    spec_version: v0.9.43
+    spec_version: v1.0.1
     rocks_db:
-      read_weight: 20,499,000
-      write_weight: 83,471,000
+      read_weight: 
+        display: 20,499,000
+        numbers_only: 20499000
+      write_weight: 
+        display: 83,471,000
+        numbers_only: 83471000
     parity_db:
       read_weight: 11,826,000
       write_weight: 38,052,000
-    xcm_instructions:
-      weight:
-        display: 1,000,000,000
-        numbers_only: 1000000000
-      planck_dot_weight: 0.092895362
-      planck_dot_cost: 92895362
-      dot_cost: 0.0092895362
     xcm_message:
       transfer:
-        weight: 4,000,000,000
-        cost: 0.0371581448
+        weight: 265,486,000
+        cost: 0.0021062795
+    xcm_instructions:
+      buy_exec:
+        base_weight: 3,153,000
+        total_weight: 3,153,000
+        dot_cost: '0.0000250149'
+      withdraw:
+        base_weight: 
+          display: 25,567,000
+          numbers_only: 25567000
+        total_weight:
+          display: 129,537,000
+          numbers_only: 129537000
+        planck_dot_cost: 10277043.9112
+        dot_cost: '0.0010277044'
+      clear_origin:
+        total_weight: 3,010,000
+        dot_cost: '0.0000238803'
+      deposit_asset:
+        total_weight: 129,786,000
+        dot_cost: '0.0010296799'
+      planck_dot_weight: 0.0793367448
     extrinsic_base_weight:
-      display: 107,648,000
-      numbers_only: 107648000
+      display: 126,045,000
+      numbers_only: 126045000
   kusama:
     spec_version: v1.0.0
     rocks_db:
@@ -1126,7 +1144,7 @@ networks:
       display: 124,706,000
       numbers_only: 124706000
   alphanet:
-    spec_version: v0.9.43
+    spec_version: v1.2.0
     xcm_instructions:
       withdraw:
         total_weight: 145,308,000

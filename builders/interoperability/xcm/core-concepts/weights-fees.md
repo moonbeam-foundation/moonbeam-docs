@@ -47,11 +47,11 @@ An XCM message is comprised of a series of XCM instructions. As a result, differ
 
 --8<-- 'text/builders/interoperability/xcm/xc20/send-xc20s/overview/DOT-to-xcDOT-instructions.md'
 
-To check how the instructions for an XCM message are built to transfer self-reserve assets to a target chain, such as DOT to Moonbeam, you can refer to the [X-Tokens Open Runtime Module Library](https://github.com/open-web3-stack/open-runtime-module-library/tree/polkadot-{{ networks.polkadot.spec_version }}/xtokens){target=_blank} repository (as an example). You'll want to take a look at the [`transfer_self_reserve_asset`](https://github.com/open-web3-stack/open-runtime-module-library/blob/polkadot-{{ networks.polkadot.spec_version }}/xtokens/src/lib.rs#L680){target=_blank} function. You'll notice it calls `TransferReserveAsset` and passes in `assets`, `dest`, and `xcm` as parameters. In particular, the `xcm` parameter includes the `BuyExecution` and `DepositAsset` instructions. If you then head over to the Polkadot GitHub repository, you can find the [`TransferReserveAsset` instruction](https://github.com/paritytech/polkadot-sdk/blob/{{ polkadot_sdk }}/polkadot/xcm/xcm-executor/src/lib.rs#L511){target=_blank}. The XCM message is constructed by combining the `ReserveAssetDeposited` and `ClearOrigin` instructions with the `xcm` parameter, which as mentioned includes the `BuyExecution` and `DepositAsset` instructions.
+To check how the instructions for an XCM message are built to transfer self-reserve assets to a target chain, such as DOT to Moonbeam, you can refer to the [X-Tokens Open Runtime Module Library](https://github.com/moonbeam-foundation/open-runtime-module-library/tree/moonbeam-{{ polkadot_sdk }}/xtokens){target=_blank} repository (as an example). You'll want to take a look at the [`transfer_self_reserve_asset`](https://github.com/moonbeam-foundation/open-runtime-module-library/tree/moonbeam-{{ polkadot_sdk }}/xtokens/src/lib.rs#L679){target=_blank} function. You'll notice it calls `TransferReserveAsset` and passes in `assets`, `dest`, and `xcm` as parameters. In particular, the `xcm` parameter includes the `BuyExecution` and `DepositAsset` instructions. If you then head over to the Polkadot GitHub repository, you can find the [`TransferReserveAsset` instruction](https://github.com/paritytech/polkadot-sdk/blob/{{ polkadot_sdk }}/polkadot/xcm/xcm-executor/src/lib.rs#L511){target=_blank}. The XCM message is constructed by combining the `ReserveAssetDeposited` and `ClearOrigin` instructions with the `xcm` parameter, which as mentioned includes the `BuyExecution` and `DepositAsset` instructions.
 
 --8<-- 'text/builders/interoperability/xcm/xc20/send-xc20s/overview/xcDOT-to-DOT-instructions.md'
 
-To check how the instructions for an XCM message are built to transfer reserve assets to a target chain, such as xcDOT to Polkadot, you can refer to the [X-Tokens Open Runtime Module Library](https://github.com/open-web3-stack/open-runtime-module-library/tree/polkadot-{{networks.polkadot.spec_version}}/xtokens){target=_blank} repository. You'll want to take a look at the [`transfer_to_reserve`](https://github.com/open-web3-stack/open-runtime-module-library/blob/polkadot-{{networks.polkadot.spec_version}}/xtokens/src/lib.rs#L697){target=_blank} function. You'll notice that it calls `WithdrawAsset`, then `InitiateReserveWithdraw` and passes in `assets`, `dest`, and `xcm` as parameters. In particular, the `xcm` parameter includes the `BuyExecution` and `DepositAsset` instructions. If you then head over to the Polkadot GitHub repository, you can find the [`InitiateReserveWithdraw` instruction](https://github.com/paritytech/polkadot-sdk/blob/{{polkadot_sdk}}/polkadot/xcm/xcm-executor/src/lib.rs#L639){target=_blank}. The XCM message is constructed by combining the `WithdrawAsset` and `ClearOrigin` instructions with the `xcm` parameter, which as mentioned includes the `BuyExecution` and `DepositAsset` instructions.
+To check how the instructions for an XCM message are built to transfer reserve assets to a target chain, such as xcDOT to Polkadot, you can refer to the [X-Tokens Open Runtime Module Library](https://github.com/moonbeam-foundation/open-runtime-module-library/tree/moonbeam-{{ polkadot_sdk }}/xtokens){target=_blank} repository. You'll want to take a look at the [`transfer_to_reserve`](https://github.com/moonbeam-foundation/open-runtime-module-library/tree/moonbeam-{{ polkadot_sdk }}/xtokens/src/lib.rs#L696){target=_blank} function. You'll notice that it calls `WithdrawAsset`, then `InitiateReserveWithdraw` and passes in `assets`, `dest`, and `xcm` as parameters. In particular, the `xcm` parameter includes the `BuyExecution` and `DepositAsset` instructions. If you then head over to the Polkadot GitHub repository, you can find the [`InitiateReserveWithdraw` instruction](https://github.com/paritytech/polkadot-sdk/blob/{{polkadot_sdk}}/polkadot/xcm/xcm-executor/src/lib.rs#L639){target=_blank}. The XCM message is constructed by combining the `WithdrawAsset` and `ClearOrigin` instructions with the `xcm` parameter, which as mentioned includes the `BuyExecution` and `DepositAsset` instructions.
 
 ## Relay Chain XCM Fee Calculation  {: #rel-chain-xcm-fee-calc }
 
@@ -63,18 +63,28 @@ There are two databases available in Polkadot and Kusama: RocksDB (which is the 
 
 ### Polkadot {: #polkadot }
 
-As previously mentioned, Polkadot currently uses a [fixed amount of weight](https://github.com/paritytech/polkadot/blob/{{networks.polkadot.spec_version}}/runtime/polkadot/src/xcm_config.rs#L111){target=_blank} for all XCM instructions, which is `{{ networks.polkadot.xcm_instructions.weight.display }}` weight units per instruction.
+The total weight costs on Polkadot take into consideration database reads and writes in addition to the weight required for a given instruction. Polkadot uses benchmarked weights for instructions and database read and write operations. The breakdown of weight costs for the database operations is as follows:
 
-Although Polkadot doesn't currently use database weight units to calculate costs, the weight units for database operations, which have been benchmarked, are shared here for reference.
+|                                                                                      Database                                                                                      |                         Read                         |                         Write                         |
+|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------:|:-----------------------------------------------------:|
+| [RocksDB (default)](https://github.com/polkadot-fellows/runtimes/blob/{{ networks.polkadot.spec_version }}/relay/polkadot/constants/src/weights/rocksdb_weights.rs){target=_blank} | {{ networks.polkadot.rocks_db.read_weight.display }} | {{ networks.polkadot.rocks_db.write_weight.display }} |
+|     [ParityDB](https://github.com/polkadot-fellows/runtimes/blob/{{ networks.polkadot.spec_version }}/relay/polkadot/constants/src/weights/paritydb_weights.rs){target=_blank}     |    {{ networks.polkadot.parity_db.read_weight }}     |    {{ networks.polkadot.parity_db.write_weight }}     |
 
-|                                                                                   Database                                                                                   |                     Read                      |                     Write                      |
-|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:---------------------------------------------:|:----------------------------------------------:|
-| [RocksDB (default)](https://github.com/paritytech/polkadot/blob/{{networks.polkadot.spec_version}}/runtime/polkadot/constants/src/weights/rocksdb_weights.rs){target=_blank} | {{ networks.polkadot.rocks_db.read_weight }}  | {{ networks.polkadot.rocks_db.write_weight }}  |
-|     [ParityDB](https://github.com/paritytech/polkadot/blob/{{networks.polkadot.spec_version}}/runtime/polkadot/constants/src/weights/paritydb_weights.rs){target=_blank}     | {{ networks.polkadot.parity_db.read_weight }} | {{ networks.polkadot.parity_db.write_weight }} |
+Now that you are aware of the weight costs for database reads and writes on Polkadot, you can calculate the weight cost for a given instruction using the base weight for instructions.
+
+For example, the [`WithdrawAsset` instruction](https://github.com/polkadot-fellows/runtimes/blob/{{ networks.polkadot.spec_version }}/relay/polkadot/src/weights/xcm/pallet_xcm_benchmarks_fungible.rs#L55-L63){target=_blank} has a base weight of `{{ networks.polkadot.xcm_instructions.withdraw.base_weight.display }}`, and performs one database read and one database write. Therefore, the total weight cost of the `WithdrawAsset` instruction is calculated as:
+
+```text
+{{ networks.polkadot.xcm_instructions.withdraw.base_weight.numbers_only }} + {{ networks.polkadot.rocks_db.read_weight.numbers_only }} + {{ networks.polkadot.rocks_db.write_weight.numbers_only }} = {{ networks.polkadot.xcm_instructions.withdraw.total_weight.numbers_only }}
+```
+
+The [`BuyExecution` instruction](https://github.com/polkadot-fellows/runtimes/blob/{{networks.polkadot.spec_version}}/relay/polkadot/src/weights/xcm/pallet_xcm_benchmarks_generic.rs#L70-L76){target=_blank} has a base weight of `{{ networks.polkadot.xcm_instructions.buy_exec.base_weight }}` and doesn't include any database reads or writes. Therefore, the total weight cost of the `BuyExecution` instruction is `{{ networks.polkadot.xcm_instructions.buy_exec.total_weight }}`.
+
+On Polkadot, the benchmarked base weights are broken up into two categories: fungible and generic. Fungible weights are for XCM instructions that involve moving assets, and generic weights are for everything else. You can view the current weights for [fungible assets](https://github.com/polkadot-fellows/runtimes/blob/{{ networks.polkadot.spec_version }}/relay/polkadot/src/weights/xcm/pallet_xcm_benchmarks_fungible.rs#L50){target=_blank} and [generic assets](https://github.com/polkadot-fellows/runtimes/blob/{{networks.polkadot.spec_version}}/relay/polkadot/src/weights/xcm/pallet_xcm_benchmarks_generic.rs#L46){target=_blank} directly in the Polkadot Runtime code.
 
 With the instruction weight cost established, you can calculate the cost of each instruction in DOT.
 
-In Polkadot, the [`ExtrinsicBaseWeight`](https://github.com/paritytech/polkadot/blob/{{networks.polkadot.spec_version}}/runtime/polkadot/constants/src/weights/extrinsic_weights.rs#L56){target=_blank} is set to `{{ networks.polkadot.extrinsic_base_weight.display }}` which is [mapped to 1/10th](https://github.com/paritytech/polkadot/blob/{{networks.polkadot.spec_version}}/runtime/polkadot/constants/src/lib.rs#L89){targer=blank} of a cent. Where 1 cent is `10^10 / 100`.
+In Polkadot, the [`ExtrinsicBaseWeight`](https://github.com/polkadot-fellows/runtimes/blob/{{ networks.polkadot.spec_version }}/relay/polkadot/constants/src/weights/extrinsic_weights.rs#L56){target=_blank} is set to `{{ networks.polkadot.extrinsic_base_weight.display }}` which is [mapped to 1/10th](https://github.com/polkadot-fellows/runtimes/blob/{{ networks.polkadot.spec_version }}/relay/polkadot/constants/src/lib.rs#L89){target=blank} of a cent. Where 1 cent is `10^10 / 100`.
 
 Therefore, to calculate the cost of executing an XCM instruction, you can use the following formula:
 
@@ -101,24 +111,24 @@ XCM-Planck-DOT-Cost = TotalWeight * DOTWeightToFeeCoefficient
 XCM-DOT-Cost = XCM-Planck-DOT-Cost / DOTDecimalConversion
 ```
 
-Therefore, the actual calculation for one XCM instruction is:
+Therefore, the actual calculation for the `WithdrawAsset` instruction is:
 
 ```text
-XCM-Planck-DOT-Cost = {{ networks.polkadot.xcm_instructions.weight.numbers_only }} * {{ networks.polkadot.xcm_instructions.planck_dot_weight }} 
-XCM-DOT-Cost = {{ networks.polkadot.xcm_instructions.planck_dot_cost }} / 10^10
+XCM-Planck-DOT-Cost = {{ networks.polkadot.xcm_instructions.withdraw.total_weight.numbers_only }} * {{ networks.polkadot.xcm_instructions.planck_dot_weight }} 
+XCM-DOT-Cost = {{ networks.polkadot.xcm_instructions.withdraw.planck_dot_cost }} / 10^10
 ```
 
-The total cost is `{{ networks.polkadot.xcm_instructions.dot_cost }} DOT` per instruction.
+The total cost for that particular instruction is `{{ networks.polkadot.xcm_instructions.withdraw.dot_cost }} DOT`.
 
 As an example, you can calculate the total cost of DOT for sending an XCM message that transfers xcDOT to DOT on Polkadot using the following weights and instruction costs:
 
-|   Instruction   |                         Weight                          |                           Cost                            |
-|:---------------:|:-------------------------------------------------------:|:---------------------------------------------------------:|
-| `WithdrawAsset` | {{ networks.polkadot.xcm_instructions.weight.display }} |   {{ networks.polkadot.xcm_instructions.dot_cost }} DOT   |
-|  `ClearOrigin`  | {{ networks.polkadot.xcm_instructions.weight.display }} |   {{ networks.polkadot.xcm_instructions.dot_cost }} DOT   |
-| `BuyExecution`  | {{ networks.polkadot.xcm_instructions.weight.display }} |   {{ networks.polkadot.xcm_instructions.dot_cost }} DOT   |
-| `DepositAsset`  | {{ networks.polkadot.xcm_instructions.weight.display }} |   {{ networks.polkadot.xcm_instructions.dot_cost }} DOT   |
-|    **TOTAL**    | **{{ networks.polkadot.xcm_message.transfer.weight }}** | **{{ networks.polkadot.xcm_message.transfer.cost }} DOT** |
+|                                                                                            Instruction                                                                                             |                                 Weight                                 |                                Cost                                 |
+|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------:|:-------------------------------------------------------------------:|
+| [`WithdrawAsset`](https://github.com/polkadot-fellows/runtimes/blob/{{ networks.polkadot.spec_version }}/relay/polkadot/src/weights/xcm/pallet_xcm_benchmarks_fungible.rs#L55-L63){target=_blank}  | {{ networks.polkadot.xcm_instructions.withdraw.total_weight.display }} |   {{ networks.polkadot.xcm_instructions.withdraw.dot_cost }} DOT    |
+|   [`ClearOrigin`](https://github.com/polkadot-fellows/runtimes/blob/{{networks.polkadot.spec_version}}/relay/polkadot/src/weights/xcm/pallet_xcm_benchmarks_generic.rs#L129-L135){target=_blank}   |   {{ networks.polkadot.xcm_instructions.clear_origin.total_weight }}   | {{ networks.polkadot.xcm_instructions.clear_origin.dot_cost }} DOT  |
+|   [`BuyExecution`](https://github.com/polkadot-fellows/runtimes/blob/{{networks.polkadot.spec_version}}/relay/polkadot/src/weights/xcm/pallet_xcm_benchmarks_generic.rs#L70-L76){target=_blank}    |     {{ networks.polkadot.xcm_instructions.buy_exec.total_weight }}     |   {{ networks.polkadot.xcm_instructions.buy_exec.dot_cost }} DOT    |
+| [`DepositAsset`](https://github.com/polkadot-fellows/runtimes/blob/{{ networks.polkadot.spec_version }}/relay/polkadot/src/weights/xcm/pallet_xcm_benchmarks_fungible.rs#L147-L155){target=_blank} |  {{ networks.polkadot.xcm_instructions.deposit_asset.total_weight }}   | {{ networks.polkadot.xcm_instructions.deposit_asset.dot_cost }} DOT |
+|                                                                                             **TOTAL**                                                                                              |        **{{ networks.polkadot.xcm_message.transfer.weight }}**         |      **{{ networks.polkadot.xcm_message.transfer.cost }} DOT**      |
 
 ### Kusama {: #kusama }
 
