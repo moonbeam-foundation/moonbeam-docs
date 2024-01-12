@@ -1,5 +1,5 @@
 <div id="termynal" data-termynal>
-  <span data-ty="input">./target/release/moonbeam --dev</span>
+  <span data-ty="input"><span class="file-path"></span>./target/release/moonbeam --dev</span>
   <br>
   <span data-ty>CLI parameter `--execution` has no effect anymore and will be removed in the future!
     <br> 2024-01-10 06:41:29 Moonbeam Parachain Collator
