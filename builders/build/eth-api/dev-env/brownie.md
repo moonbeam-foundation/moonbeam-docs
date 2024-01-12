@@ -42,7 +42,22 @@ You will need to install Brownie and create a Brownie project if you don't alrea
     ```bash
     pipx install eth-brownie
     ``` 
-If you're running Ubuntu, you should use the following command to avoid installation errors.
+
+    !!! note
+        A common error while installing Brownie on Ubuntu is:
+        
+        ```text
+        pip seemed to fail to build package:
+            pyyaml==5.4.1
+
+        Some possibly relevant errors from pip install:
+            error: subprocess-exited-with-error
+            AttributeError: cython_sources
+
+        Error installing eth-brownie.
+        ```
+
+        This can be resolved by using the following command:
 
     ```bash
     pip3 install wheel && pip3 install --no-build-isolation "Cython<3" "pyyaml==5.4.1" && pip3 install --upgrade --no-cache-dir eth-brownie
