@@ -461,4 +461,33 @@ npm run test
 
 Finally, while not necessary, it could be worthwhile to move all JavaScript scripts from the `scripts` folder into Foundry's `script` folder and delete the `scripts` folder so that you don't have two folders that serve the same purpose.
 
+## Deploying via Solidity Scripting {: #deploying-via-solidity-scripting }  
+
+Solidity scripting is a more powerful and flexible way to deploy contracts than using [forge create](#deploying-the-contract). Writing a solidity script is identical to writing a typical solidity smart contract, though this contract won't ever be deployed. 
+
+The behavior of `Forge script` can be tailored with various parameters. All components are optional except for local simulation which is a required part of every run. `Forge script` will attempt to execute all applicable steps in the following order:
+
+- **Local simulation** - simulate the transaction(s) in a local EVM
+- **Onchain simulation** - simulate the transaction(s) via provided RPC URL
+- **Broadcasting** - when the `--broadcast` flag is provided and simulations succeed, the transaction(s) are dispatched
+- **Verification** - API-based smart contract verification when the `--verify` flag and a valid API key are provided
+
+Now go ahead and write the script. In the script folder, create a file named `MyToken.s.sol`. Copy and paste the contents of the below file. 
+
+```solidity
+--8<-- 'code/builders/build/eth-api/dev-env/foundry/MyToken-script.sol'
+```
+
+Notice that even though the above script is not being deployed, it still requires all of the typical formatting for a solidity contract such as the pragma statement. You can deploy the `MyToken.sol` contract with the below command. Remember that it will execute all relevant steps in order. In the example below, this means that foundry will first attempt a local simulation, and a simulation against the provided RPC before deploying the contract. If any of the simulations fail, Foundry won't proceed to the deployment. 
+
+```bash
+forge script script/MyToken.s.sol --rpc-url https://rpc.api.moonbase.moonbeam.network --broadcast
+```
+
+If your script execution is successful, your terminal should resemble the output below. 
+
+--8<-- 'code/builders/build/eth-api/dev-env/foundry/terminal/script.md'
+
+And that's it! For more information about solidity scripting with Foundry, be sure to check out the [Foundry docs site](https://book.getfoundry.sh/tutorials/solidity-scripting){target=_blank}
+
 --8<-- 'text/_disclaimers/third-party-content.md'
