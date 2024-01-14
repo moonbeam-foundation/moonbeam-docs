@@ -478,7 +478,7 @@ Now go ahead and write the script. In the script folder, create a file named `My
 --8<-- 'code/builders/build/eth-api/dev-env/foundry/MyToken-script.sol'
 ```
 
-Notice that even though the above script is not being deployed, it still requires all of the typical formatting for a solidity contract such as the pragma statement. You can deploy the `MyToken.sol` contract with the below command. Remember that it will execute all relevant steps in order. In the example below, this means that foundry will first attempt a local simulation, and a simulation against the provided RPC before deploying the contract. If any of the simulations fail, Foundry won't proceed to the deployment. 
+Notice that even though the above script is not being deployed, it still requires all of the typical formatting for a solidity contract such as the pragma statement. You can deploy the `MyToken.sol` contract with the below command. Remember that it will execute all relevant steps in order. In the example below, this means that Foundry will first attempt a local simulation, and a simulation against the provided RPC before deploying the contract. If any of the simulations fail, Foundry won't proceed to the deployment. 
 
 ```bash
 forge script script/MyToken.s.sol --rpc-url https://rpc.api.moonbase.moonbeam.network --broadcast
@@ -488,6 +488,6 @@ If your script execution is successful, your terminal should resemble the output
 
 --8<-- 'code/builders/build/eth-api/dev-env/foundry/terminal/script.md'
 
-And that's it! For more information about solidity scripting with Foundry, be sure to check out the [Foundry docs site](https://book.getfoundry.sh/tutorials/solidity-scripting){target=_blank}
+And that's it! For more information about solidity scripting with Foundry, be sure to check out the [Foundry docs site](https://book.getfoundry.sh/tutorials/solidity-scripting){target=_blank}.
 
 --8<-- 'text/_disclaimers/third-party-content.md'
