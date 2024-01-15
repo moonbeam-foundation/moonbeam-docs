@@ -28,10 +28,13 @@ For this guide, Python version 3.9.10, pip version 22.0.3, and pipx version 1.0.
 You will need to install Brownie and create a Brownie project if you don't already have one. You can choose to either create an empty project or use a [Brownie mix](https://eth-brownie.readthedocs.io/en/stable/init.html?highlight=brownie%20mix#creating-a-project-from-a-template){target=_blank}, which is essentially a template to build your project on. For this example, you can create an empty project. You can get started by completing the following steps:
 
 1. Create a directory for your project
+
     ```bash
     mkdir brownie && cd brownie
     ```
+
 2. If you don't already have `pipx` installed, go ahead and install it
+
     ```bash
     python3 -m pip install --user pipx
     python3 -m pipx ensurepath
@@ -41,11 +44,11 @@ You will need to install Brownie and create a Brownie project if you don't alrea
 
     ```bash
     pipx install eth-brownie
-    ``` 
+    ```
 
     !!! note
         A common error while installing Brownie on Ubuntu is:
-        
+
         ```text
         pip seemed to fail to build package:
             pyyaml==5.4.1
@@ -59,16 +62,19 @@ You will need to install Brownie and create a Brownie project if you don't alrea
 
         This can be resolved by using the following command:
 
-    ```bash
-    pip3 install wheel && pip3 install --no-build-isolation "Cython<3" "pyyaml==5.4.1" && pip3 install --upgrade --no-cache-dir eth-brownie
-    ```
+        ```bash
+        pip3 install wheel && \
+        pip3 install --no-build-isolation "Cython<3" "pyyaml==5.4.1" && \
+        pip3 install --upgrade --no-cache-dir eth-brownie
+        ```
 
 4. Create a project
+
     ```bash
     brownie init
     ```
 
---8<-- 'code/builders/build/eth-api/dev-env/brownie/terminal/init.md'
+    --8<-- 'code/builders/build/eth-api/dev-env/brownie/terminal/init.md'
 
 Your Brownie project should contain the following empty directories:
 
