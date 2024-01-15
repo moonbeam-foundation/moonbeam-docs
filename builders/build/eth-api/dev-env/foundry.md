@@ -98,7 +98,7 @@ Once all dependencies have been installed, you can compile the contract:
 forge build
 ```
 
-![Foundry Contract Compile](/images/builders/build/eth-api/dev-env/foundry/foundry-1.png)
+--8<-- 'code/builders/build/eth-api/dev-env/foundry/terminal/compile.md'
 
 After compilation, two folders will be created: `out` and `cache`. The ABI and bytecode for your contracts will be contained within the `out` folder. These two folders are already ignored by the `.gitignore` included in the default Foundry project initialization.
 
@@ -144,7 +144,7 @@ Deploying the contract with Forge takes a single command, but you will need to i
 
 After a few seconds, the contract is deployed, and you should see the address in the terminal.
 
-![Foundry Contract Deploy](/images/builders/build/eth-api/dev-env/foundry/foundry-2.png)
+--8<-- 'code/builders/build/eth-api/dev-env/foundry/terminal/deploy.md'
 
 Congratulations, your contract is live! Save the address, as you will use it to interact with this contract instance in the next step.
 
@@ -186,7 +186,7 @@ You should get this data in hexidecimal format:
 
 This is far from readable, but you can use cast to convert it into your desired format. In this case, the data is text, so you can convert it into ascii characters to see "My Token":
 
-![Foundry Contract View](/images/builders/build/eth-api/dev-env/foundry/foundry-3.png)
+--8<-- 'code/builders/build/eth-api/dev-env/foundry/terminal/cast.md'
 
 ```bash
 cast --to-ascii 0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000074d79546f6b656e00000000000000000000000000000000000000000000000000
@@ -236,7 +236,7 @@ You can also mutate data with cast as well. Try burning tokens by sending them t
 
 The transaction will be signed by your Moonbase account and be broadcasted to the network. The output should look similar to:
 
-![Foundry Contract Interaction](/images/builders/build/eth-api/dev-env/foundry/foundry-4.png)
+--8<-- 'code/builders/build/eth-api/dev-env/foundry/terminal/burn.md'
 
 Congratulations, you have successfully deployed and interacted with a contract using Foundry!
 
@@ -270,7 +270,7 @@ To fork Moonbeam from the command line, you can run the following command from w
 
 Your forked instance will have 10 development accounts that are pre-funded with 10,000 test tokens. The forked instance is available at `http://127.0.0.1:8545/`. The output in your terminal should resemble the following:
 
-![Forking terminal screen](/images/builders/build/eth-api/dev-env/foundry/foundry-5.png)
+--8<-- 'code/builders/build/eth-api/dev-env/foundry/terminal/fork-anvil.md'
 
 To verify you have forked the network, you can query the latest block number:
 
@@ -312,7 +312,7 @@ Let's say you were interested in how `abi` encoded data, because you're looking 
 
 `memdump` will dump all of the data in your current session. You'll likely see something like this below. If you aren't good at reading hexadecimal or if you don't know how ABI encoding works, then you might not be able to find where the `myData` variable has been stored.
 
-![memdump in Chisel](/images/builders/build/eth-api/dev-env/foundry/foundry-6.png)
+--8<-- 'code/builders/build/eth-api/dev-env/foundry/terminal/memdump.md'
 
 Fortunately, Chisel lets you easily figure out where this information is stored. Using the `!rawstack` command, you can find the location in the stack where the value of a variable:  
 
@@ -323,6 +323,8 @@ Fortunately, Chisel lets you easily figure out where this information is stored.
 In this situation, since bytes is over 32 bytes in length, the memory pointer is displayed instead. But that's exactly what's needed, since you already know the entirety of the stack from the `!memdump` command.  
 
 ![rawstack in Chisel](/images/builders/build/eth-api/dev-env/foundry/foundry-7.png)
+
+--8<-- 'code/builders/build/eth-api/dev-env/foundry/terminal/rawstack.md'
 
 The `!rawstack` command shows that the `myData` variable is stored at `0x80`, so when comparing this with the memory dump retrieved form the `!memdump` command, it looks like `myData` is stored like this:  
 
@@ -351,7 +353,7 @@ abi.encode(100, true, "Develop on Moonbeam")
 
 You should see something like the following:  
 
-![Expressions in Chisel](/images/builders/build/eth-api/dev-env/foundry/foundry-8.png)
+--8<-- 'code/builders/build/eth-api/dev-env/foundry/terminal/expression.md'
 
 While it doesn't display the data in the same way, you still get the contents of the data, and it also further breaks down how the information is coded, such as letting you know that the `0xa0` value defines the length of the data.  
 
@@ -381,7 +383,7 @@ Then to view and interact with your stored Chisel states, you can take the follo
 
 2. Load your stored states
     ```bash
-    chisel load
+    chisel load 1
     ```
 
 3. View the `uint256` saved in Chisel from the previous set of steps
@@ -389,7 +391,7 @@ Then to view and interact with your stored Chisel states, you can take the follo
     !rawstack myNumber
     ```  
 
-![Saving state in Chisel](/images/builders/build/eth-api/dev-env/foundry/foundry-9.png)
+--8<-- 'code/builders/build/eth-api/dev-env/foundry/terminal/save-state.md'
 
 You can even fork networks while using Chisel:
 
@@ -403,7 +405,7 @@ Then, for example, you can query the balance of one of Moonbase Alpha's collator
 0x4c5A56ed5A4FF7B09aA86560AfD7d383F4831Cce.balance
 ```
 
-![Forking in Chisel](/images/builders/build/eth-api/dev-env/foundry/foundry-10.png)
+--8<-- 'code/builders/build/eth-api/dev-env/foundry/terminal/query-balance.md'
 
 If you want to learn more about Chisel, download Foundry and refer to its [official reference page](https://book.getfoundry.sh/reference/chisel/){target=_blank}.
 
