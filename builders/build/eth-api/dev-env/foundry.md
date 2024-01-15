@@ -321,9 +321,6 @@ Fortunately, Chisel lets you easily figure out where this information is stored.
 ```
 
 In this situation, since bytes is over 32 bytes in length, the memory pointer is displayed instead. But that's exactly what's needed, since you already know the entirety of the stack from the `!memdump` command.  
-
-![rawstack in Chisel](/images/builders/build/eth-api/dev-env/foundry/foundry-7.png)
-
 --8<-- 'code/builders/build/eth-api/dev-env/foundry/terminal/rawstack.md'
 
 The `!rawstack` command shows that the `myData` variable is stored at `0x80`, so when comparing this with the memory dump retrieved form the `!memdump` command, it looks like `myData` is stored like this:  
