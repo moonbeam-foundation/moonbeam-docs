@@ -1,5 +1,5 @@
 <div id="termynal" data-termynal>
-    <span data-ty="input">anvil --fork-url https://rpc.api.moonbase.moonbeam.network</span>
+    <span data-ty="input"><span class="file-path"></span>anvil --fork-url https://rpc.api.moonbase.moonbeam.network</span>
     <span data-ty="progress"></span>
     <span data-ty="progress"></span>
     <span data-ty>Available Accounts</span>

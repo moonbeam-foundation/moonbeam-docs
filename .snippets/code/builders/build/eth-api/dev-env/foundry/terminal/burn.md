@@ -1,5 +1,5 @@
 <div id="termynal" data-termynal>
-    <span data-ty="input">cast send --private-key INSERT_PRIVATE_KEY \
+    <span data-ty="input"><span class="file-path"></span>cast send --private-key INSERT_PRIVATE_KEY \
 --rpc-url https://rpc.api.moonbase.moonbeam.network \
 --chain 1287 \
 INSERT_CONTRACT_ADDRESS \

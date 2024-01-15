@@ -1,5 +1,5 @@
 <div id="termynal" data-termynal>
-    <span data-ty="input">forge create --rpc-url https://rpc.api.moonbase.moonbeam.network \
+    <span data-ty="input"><span class="file-path"></span>forge create --rpc-url https://rpc.api.moonbase.moonbeam.network \
 --constructor-args 100 \
 --private-key INSERT_PRIVATE_KEY \
 src/MyToken.sol:MyToken</span>

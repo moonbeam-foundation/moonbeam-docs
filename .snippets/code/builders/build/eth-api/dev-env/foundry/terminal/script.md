@@ -1,5 +1,5 @@
 <div id="termynal" data-termynal>
-    <span data-ty="input">forge script script/MyToken.s.sol --rpc-url https://rpc.api.moonbase.moonbeam.network --broadcast</span>
+    <span data-ty="input"><span class="file-path"></span>forge script script/MyToken.s.sol --rpc-url https://rpc.api.moonbase.moonbeam.network --broadcast</span>
     <span data-ty>[⠒] Compiling...</span>
     <span data-ty>Script ran successfully.</span>
     <span data-ty>EIP-3855 is not supported in one or more of the RPCs used.
@@ -29,6 +29,6 @@ Unsupported Chain IDs: 1287.</span>
       <span data-ty>Total Paid: 0.00309613125 ETH (990762 gas * avg 3.125 gwei)</span>
       <span data-ty>Transactions saved to: /Users/ubuntu-jammy/foundry/foundry/broadcast/MyToken.s.sol/1287/run-latest.json</span>
       <span data-ty>Sensitive values saved to: /Users/ubuntu-jammy/foundry/foundry/cache/MyToken.s.sol/1287/run-latest.json</span>
-      <span data-ty="input"> </span>
+      <span data-ty="input"><span class="file-path"></span> </span>
  </span>
 </div>

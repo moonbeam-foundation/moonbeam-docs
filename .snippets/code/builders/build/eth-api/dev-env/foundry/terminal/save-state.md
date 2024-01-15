@@ -3,10 +3,10 @@
 	<span data-ty>➜ !save 1</span>
 	<span data-ty>➜ Saved session to cache with ID = 1</span>
 	<span data-ty>(ID: 1) ➜ !quit</span>
-	<span data-ty="input">chisel list</span>
+	<span data-ty="input"><span class="file-path"></span>chisel list</span>
 	<span data-ty>⚒️ Chisel Sessions</span>
 	<span data-ty>├─ "2024-01-15 01:17:34" - chisel-1.json</span>
-	<span data-ty="input">chisel load 1</span>
+	<span data-ty="input"><span class="file-path"></span>chisel load 1</span>
 	<span data-ty>Welcome to Chisel! Type `!help` to show available commands.</span>
 	<span data-ty>(ID: 1) ➜ !rawstack myNumber</span>
 	<span data-ty>Type: bytes32</span>

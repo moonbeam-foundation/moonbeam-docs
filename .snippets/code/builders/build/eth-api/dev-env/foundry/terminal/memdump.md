@@ -1,5 +1,5 @@
 <div id="termynal" data-termynal>
-    <span data-ty="input">chisel</span>
+    <span data-ty="input"><span class="file-path"></span>chisel</span>
     <span data-ty="progress"></span>
     <span data-ty>Welcome to Chisel! Type `!help` to show available commands.</span>
     <span data-ty>➜ bytes memory myData = abi.encode(100, true, "Develop on Moonbeam");</span>
