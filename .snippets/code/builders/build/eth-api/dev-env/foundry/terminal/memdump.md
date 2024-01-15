@@ -1,9 +1,9 @@
 <div id="termynal" data-termynal>
     <span data-ty="input"><span class="file-path"></span>chisel</span>
-    <span data-ty="progress"></span>
+    <br>
     <span data-ty>Welcome to Chisel! Type `!help` to show available commands.</span>
     <span data-ty>➜ bytes memory myData = abi.encode(100, true, "Develop on Moonbeam");</span>
-    <span data-ty="progress"></span>
+    <br>
     <span data-ty>➜ !memdump</span>
     <span data-ty>[0x00:0x20]: 0x0000000000000000000000000000000000000000000000000000000000000000</span>
     <span data-ty>[0x20:0x40]: 0x0000000000000000000000000000000000000000000000000000000000000000</span>

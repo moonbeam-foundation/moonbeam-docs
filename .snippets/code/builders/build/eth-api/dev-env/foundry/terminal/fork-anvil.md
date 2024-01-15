@@ -1,7 +1,7 @@
 <div id="termynal" data-termynal>
     <span data-ty="input"><span class="file-path"></span>anvil --fork-url https://rpc.api.moonbase.moonbeam.network</span>
-    <span data-ty="progress"></span>
-    <span data-ty="progress"></span>
+    <br>
+    <br>
     <span data-ty>Available Accounts</span>
     <span data-ty>==================</span>
     <span data-ty>(0) "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266" (10000.000000000000000000 ETH)</span>
@@ -14,7 +14,7 @@
     <span data-ty>(7) "0x14dC79964da2C08b23698B3D3cc7Ca32193d9955" (10000.000000000000000000 ETH)</span>
     <span data-ty>(8) "0x23618e81E3f5cdF7f54C3d65f7FBc0aBf5B21E8f" (10000.000000000000000000 ETH)</span>
     <span data-ty>(9) "0xa0Ee7A142d267C1f36714E4a8F75612F20a79720" (10000.000000000000000000 ETH)</span>
-    <span data-ty="progress"></span>
+    <br>
     <span data-ty>Private Keys</span>
     <span data-ty>==================</span>
     <span data-ty>(0) 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80</span>
@@ -27,30 +27,30 @@
     <span data-ty>(7) 0x4bbbf85ce3377467afe5d46f804f221813b2bb87f24d81f60f1fcdbf7cbf4356</span>
     <span data-ty>(8) 0xdbda1821b80551c9d65939329250298aa3472ba22feea921c0cf5d620ea67b97</span>
     <span data-ty>(9) 0x2a871d0798f97d79848a013d4936a73bf4cc922c825d33c1cf7073dff6d409c6</span>
-    <span data-ty="progress"></span>
+    <br>
     <span data-ty>Wallet</span>
     <span data-ty>==================</span>
     <span data-ty>Mnemonic: test test test test test test test test test test test junk</span>
     <span data-ty>Derivation path: m/44'/60'/0'/0/</span>
-    <span data-ty="progress"></span>
+    <br>
     <span data-ty>Fork</span>
     <span data-ty>==================</span>
     <span data-ty>Endpoint: https://rpc.api.moonbase.moonbeam.network</span>
     <span data-ty>Block number: 5892944</span>
     <span data-ty>Block hash: 0xc9579299f55d507c305d5357d4c1b9d9c550788ddb471b0231d8d0146e7144b7</span>
     <span data-ty>Chain ID: 1287</span>
-    <span data-ty="progress"></span>
+    <br>
     <span data-ty>Base Fee</span>
     <span data-ty>==================</span>
     <span data-ty>125000000</span>
-    <span data-ty="progress"></span>
+    <br>
     <span data-ty>Gas Limit</span>
     <span data-ty>==================</span>
     <span data-ty>30000000</span>
-    <span data-ty="progress"></span>
+    <br>
     <span data-ty>Genesis Timestamp</span>
     <span data-ty>==================</span>
     <span data-ty>1705278817</span>
-    <span data-ty="progress"></span>
+    <br>
     <span data-ty>Listening on 127.0.0.1:8545</span>
 </div>

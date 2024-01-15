@@ -4,8 +4,8 @@
 --chain 1287 \
 INSERT_CONTRACT_ADDRESS \
 "transfer(address,uint256)" 0x0000000000000000000000000000000000000001 1</span>
-    <span data-ty="progress"></span>
-    <span data-ty="progress"></span>
+    <br>
+    <br>
     <span data-ty>blockHash               0x6f99fac1bb49feccb7b0476e0ffcd3cef4c456aa9111e193ce11c7a1ab62314e</span>
     <span data-ty>blockNumber             5892860</span>
     <span data-ty>contractAddress</span>

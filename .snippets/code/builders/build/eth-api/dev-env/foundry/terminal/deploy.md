@@ -3,7 +3,7 @@
 --constructor-args 100 \
 --private-key INSERT_PRIVATE_KEY \
 src/MyToken.sol:MyToken</span>
-    <span data-ty="progress"></span>
+    <br>
     <span data-ty>[⠒] Compiling...</span>
     <span data-ty>No files changed, compilation skipped</span>
     <span data-ty>Deployer: 0x3B939FeaD1557C741Ff06492FD0127bd287A421espan>
