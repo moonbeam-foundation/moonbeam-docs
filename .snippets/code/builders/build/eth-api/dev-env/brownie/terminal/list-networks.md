@@ -1,6 +1,6 @@
 <div id="termynal" data-termynal>
-    <span data-ty="input">brownie networks list</span>
-    <span data-ty="progress"></span>
+    <span data-ty="input"><span class="file-path"></span>brownie networks list</span>
+    <br>
     <span data-ty>Moonbeam</span>
     <span data-ty>   ├─Mainnet: moonbeam-main</span>
     <span data-ty>   └─Moonbase Alpha: moonbeam-test</span>

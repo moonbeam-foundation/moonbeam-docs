@@ -1,6 +1,6 @@
 <div id="termynal" data-termynal>
-    <span data-ty="input">brownie networks modify moonbeam-main host=https://rpc.api.moonbeam.network</span>
-    <span data-ty="progress"></span>
+    <span data-ty="input"><span class="file-path"></span>brownie networks modify moonbeam-main host=https://rpc.api.moonbeam.network</span>
+    <br>
     <span data-ty>SUCCESS: Network 'Mainnet' has been modified</span>
     <span data-ty>   └─Mainnet</span>
     <span data-ty>     ├─id: moonbeam-main</span>
