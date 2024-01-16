@@ -28,29 +28,53 @@ For this guide, Python version 3.9.10, pip version 22.0.3, and pipx version 1.0.
 You will need to install Brownie and create a Brownie project if you don't already have one. You can choose to either create an empty project or use a [Brownie mix](https://eth-brownie.readthedocs.io/en/stable/init.html?highlight=brownie%20mix#creating-a-project-from-a-template){target=_blank}, which is essentially a template to build your project on. For this example, you can create an empty project. You can get started by completing the following steps:
 
 1. Create a directory for your project
+
     ```bash
     mkdir brownie && cd brownie
     ```
+
 2. If you don't already have `pipx` installed, go ahead and install it
+
     ```bash
     python3 -m pip install --user pipx
     python3 -m pipx ensurepath
     ```
 
-3. [Install Brownie using `pipx`](https://eth-brownie.readthedocs.io/en/stable/install.html){target=_blank}
+3. [Install Brownie using `pipx`](https://eth-brownie.readthedocs.io/en/stable/install.html){target=_blank}, which is used to run executables installed locally in your project. Brownie will be installed into a virtual environment and be available directly from the command line
+
     ```bash
     pipx install eth-brownie
     ```
 
     !!! note
-        [`pipx`](https://github.com/pypa/pipx){target=_blank} is used to run executables installed locally in your project. Brownie will be installed into a virtual environment and be available directly from the command line.
+        A common error while installing Brownie on Ubuntu is:
+
+        ```text
+        pip seemed to fail to build package:
+            pyyaml==5.4.1
+
+        Some possibly relevant errors from pip install:
+            error: subprocess-exited-with-error
+            AttributeError: cython_sources
+
+        Error installing eth-brownie.
+        ```
+
+        This can be resolved by using the following command:
+
+        ```bash
+        pip3 install wheel && \
+        pip3 install --no-build-isolation "Cython<3" "pyyaml==5.4.1" && \
+        pip3 install --upgrade --no-cache-dir eth-brownie
+        ```
 
 4. Create a project
+
     ```bash
     brownie init
     ```
 
-![Create Brownie project](/images/builders/build/eth-api/dev-env/brownie/brownie-1.png)
+    --8<-- 'code/builders/build/eth-api/dev-env/brownie/terminal/init.md'
 
 Your Brownie project should contain the following empty directories:
 
@@ -67,13 +91,13 @@ Another important file to note that is not included in an empty project is the `
 
 To deploy to a Moonbeam-based network, you'll need to add and configure the network. Network configurations in Brownie are added from the command line. Brownie can be used with both development and live environments.
 
-Moonbeam, Moonriver, and Moonbase Alpha are supported out of the box with Brownie as of version 1.18.2. To view the complete list of supported networks, you can run the following command:
+Moonbeam, Moonriver, and Moonbase Alpha are supported out of the box with Brownie as of version 1.19.3. To view the complete list of supported networks, you can run the following command:
 
 ```bash
 brownie networks list
 ```
 
-![Network list](/images/builders/build/eth-api/dev-env/brownie/brownie-2.png)
+--8<-- 'code/builders/build/eth-api/dev-env/brownie/terminal/list-networks.md'
 
 If you're looking to deploy a contract to a Moonbeam development node you'll need to add the network configurations. Under the hood, Brownie uses Ganache for development environments. However, since a Moonbeam development node acts as your own personal development environment, Ganache isn't needed. Therefore, you can configure a development node as a "live" network.
 
@@ -144,19 +168,43 @@ If you would like to set a default network, you can do so by adding the followin
 !!! note
     Keep in mind that the `brownie-config.yaml` file isn't automatically created, you can optionally create it yourself.
 
+### Setting your Networks RPC URLs
+
+It is recommended that you override the default Brownie RPC URLs to [your own RPC endpoint](/builders/get-started/endpoints/#rpc-endpoint-providers){target=_blank} or the public Moonbeam network endpoints. You can override the default Brownie RPC URL for each network as follows:
+
+=== "Moonbeam"
+
+    ```bash
+    brownie networks modify moonbeam-main host={{ networks.moonbeam.rpc_url }}
+    ```
+
+=== "Moonriver"
+
+    ```bash
+    brownie networks modify moonriver-main host={{ networks.moonriver.rpc_url }}
+    ```
+
+=== "Moonbase Alpha"
+
+    ```bash
+    brownie networks modify moonbeam-test host={{ networks.moonbase.rpc_url }}
+    ```
+
+--8<-- 'code/builders/build/eth-api/dev-env/brownie/terminal/modify-networks.md'
+
 ## Account Configuration {: #account-configuration }
 
 Before you can deploy a contract, you'll need to configure your account, which is also done from the command line. To add a new account you can run:
 
 ```bash
-brownie accounts new {INSERT_ACCOUNT_NAME}
+brownie accounts new INSERT_ACCOUNT_NAME
 ```
 
-Make sure to replace `{INSERT_ACCOUNT_NAME}` with your name of choice. For this example, `alice` will be used as the account name.
+Make sure to replace `INSERT_ACCOUNT_NAME` with your name of choice. For this example, `alice` will be used as the account name.
 
 You'll be prompted to enter in your private key and a password to encrypt the account with. If the account was successfully configured, you'll see your account address printed to the terminal.
 
-![Add account](/images/builders/build/eth-api/dev-env/brownie/brownie-3.png)
+--8<-- 'code/builders/build/eth-api/dev-env/brownie/terminal/new-account.md'
 
 ## The Contract File {: #the-contract-file }
 
@@ -199,7 +247,7 @@ To compile the contract you can simply run:
 brownie compile
 ```
 
-![Compile Brownie project](/images/builders/build/eth-api/dev-env/brownie/brownie-4.png)
+--8<-- 'code/builders/build/eth-api/dev-env/brownie/terminal/compile.md'
 
 !!! note
     The first time you compile your contracts it may take longer than usual while the `solc` binary is installed.
@@ -256,13 +304,13 @@ You can now deploy the `Box.sol` contract using the `run` command and specifying
 === "Moonbeam"
 
     ```bash
-    brownie run scripts/deploy.py --network moonbeam-mainnet
+    brownie run scripts/deploy.py --network moonbeam-main
     ```
 
 === "Moonriver"
 
     ```bash
-    brownie run scripts/deploy.py --network moonriver-mainnet
+    brownie run scripts/deploy.py --network moonriver-main
     ```
 
 === "Moonbase Alpha"
@@ -279,7 +327,7 @@ You can now deploy the `Box.sol` contract using the `run` command and specifying
 
 After a few seconds, the contract is deployed, and you should see the address in the terminal.
 
-![Deploy Brownie project](/images/builders/build/eth-api/dev-env/brownie/brownie-5.png)
+--8<-- 'code/builders/build/eth-api/dev-env/brownie/terminal/deploy.md'
 
 Congratulations, your contract is live! Save the address, as you will use it to interact with this contract instance in the next step.
 
@@ -294,13 +342,13 @@ To interact with your newly deployed contract, you can launch the Brownie `conso
 === "Moonbeam"
 
     ```bash
-    brownie console --network moonbeam-mainnet
+    brownie console --network moonbeam-main
     ```
 
 === "Moonriver"
 
     ```bash
-    brownie console --network moonriver-mainnet
+    brownie console --network moonriver-main
     ```
 
 === "Moonbase Alpha"
@@ -337,7 +385,7 @@ The transaction will be signed by your account and broadcasted to the network. N
 
 You should see `5` or the value you have stored initially.
 
-![Interact with Brownie project](/images/builders/build/eth-api/dev-env/brownie/brownie-6.png)
+--8<-- 'code/builders/build/eth-api/dev-env/brownie/terminal/interact.md'
 
 ### Using a Script {: #using-a-script }
 
@@ -374,13 +422,13 @@ To run the script, you can use the following command:
 === "Moonbeam"
 
     ```bash
-    brownie run scripts/store-and-retrieve.py --network moonbeam-mainnet
+    brownie run scripts/store-and-retrieve.py --network moonbeam-main
     ```
 
 === "Moonriver"
 
     ```bash
-    brownie run scripts/store-and-retrieve.py --network moonriver-mainnet
+    brownie run scripts/store-and-retrieve.py --network moonriver-main
     ```
 
 === "Moonbase Alpha"
