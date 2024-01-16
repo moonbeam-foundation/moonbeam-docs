@@ -149,8 +149,8 @@ The XCM Transactor Pallet provides the following extrinsics (functions):
         --8<-- 'code/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-pallet/interface-examples/transact-through-signed.js'
         ```
 
-      !!! note
-          In the following sections, you'll learn exactly how to retrieve all of the arguments needed to build and send an XCM message using this extrinsic.
+    !!! note
+        In the following sections, you'll learn exactly how to retrieve all of the arguments needed to build and send an XCM message using this extrinsic.
 
 ??? function "**transactThroughSovereign**(dest, feePayer, fee, call, originKind, weightInfo, refund) — sends an XCM message with instructions to remotely execute a given call at the given destination. The remote call will be signed by the origin parachain Sovereign account (who pays the fees), but the transaction is dispatched from a given origin. The XCM Transactor Pallet calculates the fees for the remote execution and charges the given account the estimated amount in the corresponding [XC-20 token](/builders/interoperability/xcm/xc20/overview/){target=_blank}"
 
