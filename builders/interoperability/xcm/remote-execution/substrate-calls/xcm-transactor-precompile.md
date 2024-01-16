@@ -343,7 +343,7 @@ For this example, you'll interact with the `transactThroughSigned` function of t
 
 ### XCM Transact through Computed Origin Fees {: #transact-through-computed-origin-fees }
 
-When [transacting through the Computed Origin account](#xcmtransactor-transact-through-signed){target=_blank}, the transaction fees are paid by the same account from which the call is dispatched, which is a Computed Origin account in the destination chain. Consequently, the Computed Origin account must hold the necessary funds to pay for the entire execution. Note that the destination token, for which fees are paid, does not need to be register as an XC-20 in the origin chain.
+When [transacting through the Computed Origin account](#xcmtransactor-transact-through-signed){target=_blank}, the transaction fees are paid by the same account from which the call is dispatched, which is a Computed Origin account in the destination chain. Consequently, the Computed Origin account must hold the necessary funds to pay for the entire execution. Note that the destination token, for which fees are paid, does not need to be registered as an XC-20 in the origin chain.
 
 To estimate the amount of token Alice's Computed Origin account will need to have to execute the remote call, you need to check the transact information specific to the destination chain. You can use the following script to get the transact information for parachain 888:
 
