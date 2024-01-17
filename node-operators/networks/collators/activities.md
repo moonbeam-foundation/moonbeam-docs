@@ -166,7 +166,7 @@ If you wish to bond less, you have to schedule a request, wait for an [exit dela
 
 ### Bond More {: #bond-more }
 
-As a candidate, there are two options for increasing one's stake. The first and recommended option is to send the funds to be staked to another owned address and [delegate them to your collator](/tokens/staking/stake/#how-to-nominate-a-collator). This option allows you to increase rewards. Alternatively, collators that already have at least the [minimum self-bond amount](/node-operators/networks/collators/requirements/#minimum-collator-bond){target=_blank} staked can increase their bond through [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/accounts). Keep in mind that increasing your collator bond this way does not increase your rewards. Navigate to the **Developer** tab, click on **Extrinsics**, and follow these steps:
+As a candidate, there are two options for increasing one's stake. The first and recommended option is to send the funds to be staked to another owned address and [delegate to your collator](/tokens/staking/stake/#how-to-nominate-a-collator). Alternatively, collators that already have at least the [minimum self-bond amount](/node-operators/networks/collators/requirements/#minimum-collator-bond){target=_blank} staked can increase their bond from [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonriver.moonbeam.network#/accounts). Navigate to the **Developer** tab, click on **Extrinsics**, and follow these steps:
 
  1. Select your collator account (and verify it contains the additional funds to be bonded)
  2. Select **parachainStaking** pallet under the **submit the following extrinsic** menu
