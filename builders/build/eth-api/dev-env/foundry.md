@@ -467,7 +467,7 @@ Solidity scripting is a more powerful and flexible way to deploy contracts than 
 The behavior of `forge script` can be tailored with various parameters. All components are optional except for local simulation, which is a required part of every run. The `forge script` command will attempt to execute all applicable steps in the following order:
 
 - **Local simulation** - simulate the transaction(s) in a local EVM
-- **Onchain simulation** - simulate the transaction(s) via provided RPC URL
+- **Onchain simulation** - simulate the transaction(s) via the provided RPC URL
 - **Broadcasting** - when the `--broadcast` flag is provided and simulations succeed, the transaction(s) are dispatched
 - **Verification** - API-based smart contract verification when the `--verify` flag and a valid API key are provided
 
