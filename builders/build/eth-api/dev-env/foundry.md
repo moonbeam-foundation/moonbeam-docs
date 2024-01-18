@@ -462,7 +462,7 @@ Finally, while not necessary, it could be worthwhile to move all JavaScript scri
 
 ## Deploying via Solidity Scripting {: #deploying-via-solidity-scripting }  
 
-Solidity scripting is a more powerful and flexible way to deploy contracts than using [forge create](#deploying-the-contract). Writing a solidity script is identical to writing a typical solidity smart contract, though this contract won't ever be deployed. 
+Solidity scripting is a more powerful and flexible way to deploy contracts than using [`forge create`](#deploying-the-contract). Writing a Solidity script is identical to writing a typical Solidity smart contract, though this contract won't ever be deployed. 
 
 The behavior of `Forge script` can be tailored with various parameters. All components are optional except for local simulation which is a required part of every run. `Forge script` will attempt to execute all applicable steps in the following order:
 
