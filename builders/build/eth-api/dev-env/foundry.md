@@ -489,6 +489,6 @@ If your script execution is successful, your terminal should resemble the output
 
 --8<-- 'code/builders/build/eth-api/dev-env/foundry/terminal/script.md'
 
-And that's it! For more information about solidity scripting with Foundry, be sure to check out the [Foundry docs site](https://book.getfoundry.sh/tutorials/solidity-scripting){target=_blank}.
+And that's it! For more information about Solidity scripting with Foundry, be sure to check out [Foundry's documentation site](https://book.getfoundry.sh/tutorials/solidity-scripting){target=_blank}.
 
 --8<-- 'text/_disclaimers/third-party-content.md'
