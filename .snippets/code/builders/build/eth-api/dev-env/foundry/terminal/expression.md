@@ -1,7 +1,7 @@
 <div id="termynal" data-termynal>
-	<span data-ty>➜ !clear</span>
+	<span data-ty="input" data-ty-prompt="➜"> !clear</span>
 	<span data-ty>Cleared session!</span>
-	<span data-ty>➜ abi.encode(100, true, "Develop on Moonbeam")</span>
+	<span data-ty="input" data-ty-prompt="➜"> abi.encode(100, true, "Develop on Moonbeam")</span>
 	<span data-ty>Type: dynamic bytes</span>
 	<span data-ty>├ Hex (Memory):</span>
 	<span data-ty>├─ Length ([0x00:0x20]): 0x00000000000000000000000000000000000000000000000000000000000000a0</span>
@@ -18,5 +18,5 @@
 	<span data-ty>0000000000000000000000000000000000000000000000000000000000000060</span>
 	<span data-ty>0000000000000000000000000000000000000000000000000000000000000001</span>
 	<span data-ty>34446576656c6f70206f6e204d6f6f6e6265616d00000000000000000000000000</span>
-	<span data-ty>➜</span>
+	<span data-ty="input" data-ty-prompt="➜"></span>
 </div>

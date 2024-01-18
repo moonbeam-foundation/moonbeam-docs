@@ -1,7 +1,7 @@
 <div id="termynal" data-termynal>
-	<span data-ty>➜ uint256 myNumber = 101;</span>
-	<span data-ty>➜ !save 1</span>
-	<span data-ty>➜ Saved session to cache with ID = 1</span>
+	<span data-ty="input" data-ty-prompt="➜"> uint256 myNumber = 101;</span>
+	<span data-ty="input" data-ty-prompt="➜"> !save 1</span>
+	<span data-ty="input" data-ty-prompt="➜"> Saved session to cache with ID = 1</span>
 	<span data-ty>(ID: 1) ➜ !quit</span>
 	<span data-ty="input"><span class="file-path"></span>chisel list</span>
 	<span data-ty>⚒️ Chisel Sessions</span>
