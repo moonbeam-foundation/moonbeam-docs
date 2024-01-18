@@ -20,5 +20,4 @@
     <span data-ty>Type: bytes32 </span>
     <span data-ty>└ Data: 0x0000000000000000000000000000000000000000000000000000000000000080</span>
     <span data-ty="input" data-ty-prompt="➜"> </span>
-
 </div>
