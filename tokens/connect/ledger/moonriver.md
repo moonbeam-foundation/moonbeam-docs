@@ -14,7 +14,7 @@ Hardware wallets provide a safer way to store crypto funds because the private k
 
 You can interact with Moonriver using your Ledger hardware wallet through the Moonriver Ledger Live app. With the dedicated Moonriver app, you do not have to worry about setting the chain ID and you know you are connected to the right network. Please note that you can only use the Moonriver app to connect to the Moonriver network, it cannot be used to connect to other Moonbeam-based networks.
 
-You also have the option of using the Ethereum app to connect to Moonriver. The main difference between using the Moonriver and the Ethereum app is that you have to specify the chain ID when you use the Ethereum app, which is 1285 for Moonriver. If you're interested in using the Ethereum app on Moonriver instead, you can check out the [Interacting with Moonbeam Using Ledger and the Ethereum App](/tokens/connect/ledger/ethereum){target=_blank} guide.
+You also have the option of using the Ethereum app to connect to Moonriver. The main difference between using the Moonriver and the Ethereum app is that you have to specify the chain ID when you use the Ethereum app, which is 1285 for Moonriver. If you're interested in using the Ethereum app on Moonriver instead, you can check out the [Interacting with Moonbeam Using Ledger and the Ethereum App](/tokens/connect/ledger/ethereum){target=\_blank} guide.
 
 In this tutorial, you will learn how to get started with your Ledger hardware wallet on Moonriver using the Moonriver app. This guide only illustrates the steps for a Ledger Nano X device, but you can follow along with a Ledger Nano S as well.
 
@@ -22,9 +22,9 @@ In this tutorial, you will learn how to get started with your Ledger hardware wa
 
 --8<-- 'text/tokens/connect/ledger/checking-prereqs.md'
 
-In addition, you'll need MetaMask as an intermediary between your Ledger device and Moonbeam. Make sure that your MetaMask is [connected to Moonbeam](/tokens/connect/metamask/){target=_blank}.
+In addition, you'll need MetaMask as an intermediary between your Ledger device and Moonbeam. Make sure that your MetaMask is [connected to Moonbeam](/tokens/connect/metamask/){target=\_blank}.
 
-As of [MetaMask version 10.5.0](https://consensys.net/blog/metamask/metamask-and-ledger-integration-fixed/){target=_blank}, connecting your Ledger device with MetaMask on Chrome is easy again. You just need to have the latest version of MetaMask installed.
+As of [MetaMask version 10.5.0](https://consensys.net/blog/metamask/metamask-and-ledger-integration-fixed/){target=\_blank}, connecting your Ledger device with MetaMask on Chrome is easy again. You just need to have the latest version of MetaMask installed.
 
 ## Install the Moonriver Ledger Live App {: install-the-moonriver-ledger-live-app }
 

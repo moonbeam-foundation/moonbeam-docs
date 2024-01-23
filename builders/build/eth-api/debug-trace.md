@@ -7,9 +7,9 @@ description:  Learn how to leverage Geth's Debug and Txpool APIs, and OpenEthere
 
 ## Introduction {: #introduction }
 
-Geth's debug and txpool APIs and OpenEthereum's trace module provide non-standard RPC methods for getting a deeper insight into transaction processing. As part of Moonbeam's goal of providing a seamless Ethereum experience for developers, there is support for some of these non-standard RPC methods. Supporting these RPC methods is an important milestone because many projects, such as [The Graph](https://thegraph.com/){target=_blank}, rely on them to index blockchain data.
+Geth's debug and txpool APIs and OpenEthereum's trace module provide non-standard RPC methods for getting a deeper insight into transaction processing. As part of Moonbeam's goal of providing a seamless Ethereum experience for developers, there is support for some of these non-standard RPC methods. Supporting these RPC methods is an important milestone because many projects, such as [The Graph](https://thegraph.com/){target=\_blank}, rely on them to index blockchain data.
 
-To view a list of tracing RPC providers, please check out the [Network Endpoints](/builders/get-started/endpoints#tracing-providers){target=_blank} page.
+To view a list of tracing RPC providers, please check out the [Network Endpoints](/builders/get-started/endpoints#tracing-providers){target=\_blank} page.
 
 This guide will cover the supported RPC methods available on Moonbeam as well as how to invoke the methods using curl commands against a local Moonbase Alpha tracing node.
 
@@ -17,21 +17,21 @@ This guide will cover the supported RPC methods available on Moonbeam as well as
 
 The following RPC methods are available:
 
-  - [`debug_traceTransaction`](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-debug#debugtracetransaction){target=_blank}
-  - [`debug_traceBlockByNumber`](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-debug#debugtraceblockbynumber){target=_blank}
-  - [`debug_traceBlockByHash`](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-debug#debugtraceblockbyhash){target=_blank}
-  - [`trace_filter`](https://openethereum.github.io/JSONRPC-trace-module#trace_filter){target=_blank}
-  - [`txpool_content`](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-txpool#txpool-content){target=_blank}
-  - [`txpool_inspect`](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-txpool#txpool-inspect){target=_blank}
-  - [`txpool_status`](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-txpool#txpool-status){target=_blank}
+  - [`debug_traceTransaction`](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-debug#debugtracetransaction){target=\_blank}
+  - [`debug_traceBlockByNumber`](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-debug#debugtraceblockbynumber){target=\_blank}
+  - [`debug_traceBlockByHash`](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-debug#debugtraceblockbyhash){target=\_blank}
+  - [`trace_filter`](https://openethereum.github.io/JSONRPC-trace-module#trace_filter){target=\_blank}
+  - [`txpool_content`](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-txpool#txpool-content){target=\_blank}
+  - [`txpool_inspect`](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-txpool#txpool-inspect){target=\_blank}
+  - [`txpool_status`](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-txpool#txpool-status){target=\_blank}
 
 ## Debug API {: #geth-debug-api }
 
-The debug RPC implementations follow [Geth's debug API guidelines](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-debug){target=_blank}:
+The debug RPC implementations follow [Geth's debug API guidelines](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-debug){target=\_blank}:
 
-  - **[`debug_traceTransaction`](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-debug#debugtracetransaction){target=_blank}** - requires the hash of the transaction to be traced
-  - **[`debug_traceBlockByNumber`](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-debug#debugtraceblockbynumber){target=_blank}** - requires the block number of the block to be traced and an additional parameter that sets the tracer to `callTracer` (i.e., `{"tracer": "callTracer"}`)
-  - **[`debug_traceBlockByHash`](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-debug#debugtraceblockbyhash){target=_blank}** - requires the hash of the block to be traced and an additional parameter that sets the tracer to `callTracer` (i.e., `{"tracer": "callTracer"}`)
+  - **[`debug_traceTransaction`](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-debug#debugtracetransaction){target=\_blank}** - requires the hash of the transaction to be traced
+  - **[`debug_traceBlockByNumber`](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-debug#debugtraceblockbynumber){target=\_blank}** - requires the block number of the block to be traced and an additional parameter that sets the tracer to `callTracer` (i.e., `{"tracer": "callTracer"}`)
+  - **[`debug_traceBlockByHash`](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-debug#debugtraceblockbyhash){target=\_blank}** - requires the hash of the block to be traced and an additional parameter that sets the tracer to `callTracer` (i.e., `{"tracer": "callTracer"}`)
 
 As *optional* parameters for the supported debug methods, you can provide the following:
 
@@ -43,13 +43,13 @@ As *optional* parameters for the supported debug methods, you can provide the fo
 
 The txpool RPC implementations follow [Geth's txpool API guidelines](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-txpool):
 
-  - **[`txpool_content`](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-txpool#txpool-content){target=_blank}** - no required or optional parameters
-  - **[`txpool_inspect`](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-txpool#txpool-inspect){target=_blank}** - no required or optional parameters
-  - **[`txpool_status`](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-txpool#txpool-status){target=_blank}** - no required or optional parameters
+  - **[`txpool_content`](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-txpool#txpool-content){target=\_blank}** - no required or optional parameters
+  - **[`txpool_inspect`](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-txpool#txpool-inspect){target=\_blank}** - no required or optional parameters
+  - **[`txpool_status`](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-txpool#txpool-status){target=\_blank}** - no required or optional parameters
 
 ## Trace Module {: #trace-module }
 
-The [`trace_filter`](https://openethereum.github.io/JSONRPC-trace-module#trace_filter){target=_blank} RPC implementation follows [OpenEthereum's trace module guidelines](https://openethereum.github.io/JSONRPC-trace-module){target=_blank}. The RPC method requires any of the following *optional* parameters:
+The [`trace_filter`](https://openethereum.github.io/JSONRPC-trace-module#trace_filter){target=\_blank} RPC implementation follows [OpenEthereum's trace module guidelines](https://openethereum.github.io/JSONRPC-trace-module){target=\_blank}. The RPC method requires any of the following *optional* parameters:
 
  - **fromBlock**(*uint* blockNumber) — either block number (`hex`), `earliest`, which is the genesis block, or `latest` (default), which is the best block available. The trace starting block
  - **toBlock**(*uint* blockNumber) — either block number (`hex`), `earliest`, which is the genesis block, or `latest`, which is the best block available. The trace ending block
@@ -63,13 +63,13 @@ There are a couple default values that you should be aware of:
  - The maximum number of trace entries a single request of `trace_filter` is allowed to return is `500`. A request exceeding this limit will return an error
  - Blocks processed by requests are temporarily stored in the cache for `300` seconds, after which they are deleted
 
-To change the default values, you can add [Additional Flags](/node-operators/networks/tracing-node/#additional-flags){target=_blank} when spinning up your tracing node.
+To change the default values, you can add [Additional Flags](/node-operators/networks/tracing-node/#additional-flags){target=\_blank} when spinning up your tracing node.
 
 ## Checking Prerequisites {: #checking-prerequisites }
 
 For this guide, you will need to have a locally running instance of a Moonbase Alpha tracing node with the `debug`, `txpool`, and `tracing` flags enabled. You can also adapt the instructions for Moonbeam and Moonriver.
 
-If you haven't already done so, you can follow the guide on [Running a Tracing Node](/node-operators/networks/tracing-node/){target=_blank}. The RPC HTTP endpoint should be at `{{ networks.development.rpc_url }}`.
+If you haven't already done so, you can follow the guide on [Running a Tracing Node](/node-operators/networks/tracing-node/){target=\_blank}. The RPC HTTP endpoint should be at `{{ networks.development.rpc_url }}`.
 
 If you have a running node, you should see a similar terminal log:
 

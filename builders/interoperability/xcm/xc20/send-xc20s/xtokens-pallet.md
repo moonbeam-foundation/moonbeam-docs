@@ -7,9 +7,9 @@ description: This guide provides an introduction to the X-Tokens Pallet and expl
 
 ## Introduction {: #introduction }
 
-Building an XCM message for fungible asset transfers is not an easy task. Consequently, there are wrapper functions and pallets that developers can leverage to use XCM features on Polkadot and Kusama. One example of such wrappers is the [X-Tokens](https://github.com/moonbeam-foundation/open-runtime-module-library/tree/master/xtokens){target=_blank} Pallet, which provides different methods to transfer fungible assets via XCM.
+Building an XCM message for fungible asset transfers is not an easy task. Consequently, there are wrapper functions and pallets that developers can leverage to use XCM features on Polkadot and Kusama. One example of such wrappers is the [X-Tokens](https://github.com/moonbeam-foundation/open-runtime-module-library/tree/master/xtokens){target=\_blank} Pallet, which provides different methods to transfer fungible assets via XCM.
 
-This guide will show you how to leverage the X-Tokens Pallet to send [XC-20s](/builders/interoperability/xcm/xc20/overview/){target=_blank} from a Moonbeam-based network to other chains in the ecosystem (relay chain/parachains).
+This guide will show you how to leverage the X-Tokens Pallet to send [XC-20s](/builders/interoperability/xcm/xc20/overview/){target=\_blank} from a Moonbeam-based network to other chains in the ecosystem (relay chain/parachains).
 
 **Developers must understand that sending incorrect XCM messages can result in the loss of funds.** Consequently, it is essential to test XCM features on a TestNet before moving to a production environment.
 
@@ -25,9 +25,9 @@ The X-Tokens Pallet provides the following extrinsics (functions):
 
         - `currencyId` - the ID of the currency being sent via XCM. Different runtimes have different ways to define the IDs. In the case of Moonbeam-based networks, a currency can be defined as one of the following:
             - `SelfReserve` - uses the native asset
-            - `ForeignAsset` - uses an [external XC-20](/builders/interoperability/xcm/xc20/overview#external-xc20s){target=_blank}. It requires you to specify the asset ID of the XC-20
-             - `LocalAssetReserve` - *deprecated* - use [Local XC-20s](/builders/interoperability/xcm/xc20/overview/#local-xc20s){target=_blank} instead via the `Erc20` currency type
-            - `Erc20` along with the contract address of the [local XC-20](/builders/interoperability/xcm/xc20/overview#local-xc20s){target=_blank}
+            - `ForeignAsset` - uses an [external XC-20](/builders/interoperability/xcm/xc20/overview#external-xc20s){target=\_blank}. It requires you to specify the asset ID of the XC-20
+             - `LocalAssetReserve` - *deprecated* - use [Local XC-20s](/builders/interoperability/xcm/xc20/overview/#local-xc20s){target=\_blank} instead via the `Erc20` currency type
+            - `Erc20` along with the contract address of the [local XC-20](/builders/interoperability/xcm/xc20/overview#local-xc20s){target=\_blank}
         - `amount` - the number of tokens that are going to be sent via XCM
         - `dest` - the multilocation of the destination address for the tokens being sent via XCM. It supports different address formats, such as 20 or 32-byte addresses (Ethereum or Substrate)
         - `destWeightLimit` - the weight to be purchased to pay for XCM execution on the destination chain, which is charged from the transferred asset. The weight limit can be defined as either:
@@ -104,9 +104,9 @@ The X-Tokens Pallet provides the following extrinsics (functions):
 
         - `currencies` - the IDs of the currencies being sent via XCM. Different runtimes have different ways to define the IDs. In the case of Moonbeam-based networks, a currency can be defined as one of the following:
             - `SelfReserve` - uses the native asset
-            - `ForeignAsset` - uses an [external XC-20](/builders/interoperability/xcm/xc20/overview#external-xc20s){target=_blank}. It requires you to specify the asset ID of the XC-20
-             - `LocalAssetReserve` - *deprecated* - use [Local XC-20s](/builders/interoperability/xcm/xc20/overview/#local-xc20s){target=_blank} instead via the `Erc20` currency type
-            - `Erc20` along with the contract address of the [local XC-20](/builders/interoperability/xcm/xc20/overview#local-xc20s){target=_blank}
+            - `ForeignAsset` - uses an [external XC-20](/builders/interoperability/xcm/xc20/overview#external-xc20s){target=\_blank}. It requires you to specify the asset ID of the XC-20
+             - `LocalAssetReserve` - *deprecated* - use [Local XC-20s](/builders/interoperability/xcm/xc20/overview/#local-xc20s){target=\_blank} instead via the `Erc20` currency type
+            - `Erc20` along with the contract address of the [local XC-20](/builders/interoperability/xcm/xc20/overview#local-xc20s){target=\_blank}
         - `feeItem` — an index to define the asset position of an array of assets being sent, used to pay for the XCM execution in the target chain. For example, if only one asset is being sent, the `feeItem` would be `0`
         - `dest` - the multilocation of the destination address for the tokens being sent via XCM. It supports different address formats, such as 20 or 32-byte addresses (Ethereum or Substrate)
         - `destWeightLimit` - the weight to be purchased to pay for XCM execution on the destination chain, which is charged from the transferred asset. The weight limit can be defined as either:
@@ -127,9 +127,9 @@ The X-Tokens Pallet provides the following extrinsics (functions):
 
         - `currencyId` - the ID of the currency being sent via XCM. Different runtimes have different ways to define the IDs. In the case of Moonbeam-based networks, a currency can be defined as one of the following:
             - `SelfReserve` - uses the native asset
-            - `ForeignAsset` - uses an [external XC-20](/builders/interoperability/xcm/xc20/overview#external-xc20s){target=_blank}. It requires you to specify the asset ID of the XC-20
-             - `LocalAssetReserve` - *deprecated* - use [Local XC-20s](/builders/interoperability/xcm/xc20/overview/#local-xc20s){target=_blank} instead via the `Erc20` currency type
-            - `Erc20` along with the contract address of the [local XC-20](/builders/interoperability/xcm/xc20/overview#local-xc20s){target=_blank}
+            - `ForeignAsset` - uses an [external XC-20](/builders/interoperability/xcm/xc20/overview#external-xc20s){target=\_blank}. It requires you to specify the asset ID of the XC-20
+             - `LocalAssetReserve` - *deprecated* - use [Local XC-20s](/builders/interoperability/xcm/xc20/overview/#local-xc20s){target=\_blank} instead via the `Erc20` currency type
+            - `Erc20` along with the contract address of the [local XC-20](/builders/interoperability/xcm/xc20/overview#local-xc20s){target=\_blank}
         - `amount` - the number of tokens that are going to be sent via XCM
         - `fee` — the amount to be spent to pay for the XCM execution in the target (destination) chain. If this value is not high enough to cover execution costs, the assets will be trapped in the destination chain
         - `dest` - the multilocation of the destination address for the tokens being sent via XCM. It supports different address formats, such as 20 or 32-byte addresses (Ethereum or Substrate)
@@ -215,7 +215,7 @@ This guide covers the process of building an XCM message using the X-Tokens Pall
 !!! note
     Each parachain can allow and forbid specific methods from a pallet. Consequently, developers must ensure that they use methods that are allowed, or the transaction will fail with an error similar to `system.CallFiltered`.
 
-You'll be transferring xcUNIT tokens, which are the [XC-20](/builders/interoperability/xcm/xc20/overview){target=_blank} representation of the Alphanet relay chain token, UNIT. You can adapt this guide for any other XC-20.
+You'll be transferring xcUNIT tokens, which are the [XC-20](/builders/interoperability/xcm/xc20/overview){target=\_blank} representation of the Alphanet relay chain token, UNIT. You can adapt this guide for any other XC-20.
 
 ### Checking Prerequisites {: #xtokens-check-prerequisites}
 
@@ -223,14 +223,14 @@ To follow along with the examples in this guide, you need to have the following:
 
 - An account with funds.
  --8<-- 'text/_common/faucet/faucet-list-item.md'
-- Some xcUNIT tokens. You can swap DEV tokens (Moonbase Alpha's native token) for xcUNITs on [Moonbeam-Swap](https://moonbeam-swap.netlify.app/#/swap){target=_blank}, a demo Uniswap-V2 clone on Moonbase Alpha
+- Some xcUNIT tokens. You can swap DEV tokens (Moonbase Alpha's native token) for xcUNITs on [Moonbeam-Swap](https://moonbeam-swap.netlify.app/#/swap){target=\_blank}, a demo Uniswap-V2 clone on Moonbase Alpha
 
     !!! note
-        You can adapt this guide to transfer another [external XC-20 or a local XC-20](/builders/interoperability/xcm/xc20/overview){target=_blank}. For external XC-20s, you'll need the asset ID and the number of decimals the asset has. For local XC-20s, you'll need the contract address.
+        You can adapt this guide to transfer another [external XC-20 or a local XC-20](/builders/interoperability/xcm/xc20/overview){target=\_blank}. For external XC-20s, you'll need the asset ID and the number of decimals the asset has. For local XC-20s, you'll need the contract address.
 
     ![Moonbeam Swap xcUNIT](/images/builders/interoperability/xcm/xc20/send-xc20s/xtokens-pallet/xtokens-1.png)
 
-To check your xcUNIT balance, you can add the XC-20's [precompile address](/builders/interoperability/xcm/xc20/overview/#calculate-xc20-address){target=_blank} to MetaMask with the following address:
+To check your xcUNIT balance, you can add the XC-20's [precompile address](/builders/interoperability/xcm/xc20/overview/#calculate-xc20-address){target=\_blank} to MetaMask with the following address:
 
 ```text
 0xFfFFfFff1FcaCBd218EDc0EbA20Fc2308C778080
@@ -238,30 +238,30 @@ To check your xcUNIT balance, you can add the XC-20's [precompile address](/buil
 
 ### Determining Weight Needed for XCM Execution {: #determining-weight }
 
-To determine the weight needed for XCM execution on the destination chain, you'll need to know which XCM instructions are executed on the destination chain. You can find an overview of the XCM instructions used in the [XCM Instructions for Transfers via X-Tokens](/builders/interoperability/xcm/xc20/send-xc20s/overview/#xcm-instructions-for-asset-transfers){target=_blank} guide.
+To determine the weight needed for XCM execution on the destination chain, you'll need to know which XCM instructions are executed on the destination chain. You can find an overview of the XCM instructions used in the [XCM Instructions for Transfers via X-Tokens](/builders/interoperability/xcm/xc20/send-xc20s/overview/#xcm-instructions-for-asset-transfers){target=\_blank} guide.
 
 In this example, where you're transferring xcUNIT from Moonbase Alpha to the Alphanet relay chain, the instructions that are executed on Alphanet are:
 
 |                                                                                                     Instruction                                                                                                     |                               Weight                                |
 |:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------:|
-| [`WithdrawAsset`](https://github.com/paritytech/polkadot-sdk/blob/polkadot-{{ networks.alphanet.spec_version }}/polkadot/runtime/westend/src/weights/xcm/pallet_xcm_benchmarks_fungible.rs#L54-L62){target=_blank}  |   {{ networks.alphanet.xcm_instructions.withdraw.total_weight }}    |
-|  [`ClearOrigin`](https://github.com/paritytech/polkadot-sdk/blob/polkadot-{{ networks.alphanet.spec_version }}/polkadot/runtime/westend/src/weights/xcm/pallet_xcm_benchmarks_generic.rs#L134-L140){target=_blank}  | {{ networks.alphanet.xcm_instructions.clear_origin.total_weight }}  |
-|  [`BuyExecution`](https://github.com/paritytech/polkadot-sdk/blob/polkadot-{{ networks.alphanet.spec_version }}/polkadot/runtime/westend/src/weights/xcm/pallet_xcm_benchmarks_generic.rs#L75-L81){target=_blank}   |   {{ networks.alphanet.xcm_instructions.buy_exec.total_weight }}    |
-| [`DepositAsset`](https://github.com/paritytech/polkadot-sdk/blob/polkadot-{{ networks.alphanet.spec_version }}/polkadot/runtime/westend/src/weights/xcm/pallet_xcm_benchmarks_fungible.rs#L132-L140){target=_blank} | {{ networks.alphanet.xcm_instructions.deposit_asset.total_weight }} |
+| [`WithdrawAsset`](https://github.com/paritytech/polkadot-sdk/blob/polkadot-{{ networks.alphanet.spec_version }}/polkadot/runtime/westend/src/weights/xcm/pallet_xcm_benchmarks_fungible.rs#L54-L62){target=\_blank}  |   {{ networks.alphanet.xcm_instructions.withdraw.total_weight }}    |
+|  [`ClearOrigin`](https://github.com/paritytech/polkadot-sdk/blob/polkadot-{{ networks.alphanet.spec_version }}/polkadot/runtime/westend/src/weights/xcm/pallet_xcm_benchmarks_generic.rs#L134-L140){target=\_blank}  | {{ networks.alphanet.xcm_instructions.clear_origin.total_weight }}  |
+|  [`BuyExecution`](https://github.com/paritytech/polkadot-sdk/blob/polkadot-{{ networks.alphanet.spec_version }}/polkadot/runtime/westend/src/weights/xcm/pallet_xcm_benchmarks_generic.rs#L75-L81){target=\_blank}   |   {{ networks.alphanet.xcm_instructions.buy_exec.total_weight }}    |
+| [`DepositAsset`](https://github.com/paritytech/polkadot-sdk/blob/polkadot-{{ networks.alphanet.spec_version }}/polkadot/runtime/westend/src/weights/xcm/pallet_xcm_benchmarks_fungible.rs#L132-L140){target=\_blank} | {{ networks.alphanet.xcm_instructions.deposit_asset.total_weight }} |
 |                                                                                                      **TOTAL**                                                                                                      |   **{{ networks.alphanet.xcm_message.transfer.weight.display }}**   |
 
 !!! note
     Some weights include database reads and writes; for example, the `WithdrawAsset` and `DepositAsset` instructions include both one database read and one write. To get the total weight, you'll need to add the weight of any required database reads or writes to the base weight of the given instruction.
 
-    For Westend-based relay chains, like Alphanet, you can get the weight cost for read and write database operations for [Rocks DB](https://github.com/paritytech/polkadot-sdk/blob/polkadot-{{ networks.alphanet.spec_version }}/polkadot/runtime/westend/constants/src/weights/rocksdb_weights.rs#L27-L31){target=_blank} (which is the default database) in the [polkadot-sdk](https://github.com/paritytech/polkadot-sdk){target=_blank} repository on GitHub.
+    For Westend-based relay chains, like Alphanet, you can get the weight cost for read and write database operations for [Rocks DB](https://github.com/paritytech/polkadot-sdk/blob/polkadot-{{ networks.alphanet.spec_version }}/polkadot/runtime/westend/constants/src/weights/rocksdb_weights.rs#L27-L31){target=\_blank} (which is the default database) in the [polkadot-sdk](https://github.com/paritytech/polkadot-sdk){target=\_blank} repository on GitHub.
 
-Since Alphanet is a Westend-based relay chain, you can refer to the instruction weights defined in the [Westend runtime code](https://github.com/paritytech/polkadot-sdk/tree/polkadot-{{ networks.alphanet.spec_version }}/polkadot/runtime/westend){target=_blank}, which are broken up into two types of instructions: [fungible](https://github.com/paritytech/polkadot-sdk/blob/polkadot-{{ networks.alphanet.spec_version }}/polkadot/runtime/westend/src/weights/xcm/pallet_xcm_benchmarks_fungible.rs){target=_blank} and [generic](https://github.com/paritytech/polkadot-sdk/blob/polkadot-{{ networks.alphanet.spec_version }}/polkadot/runtime/westend/src/weights/xcm/pallet_xcm_benchmarks_generic.rs){target=_blank}.
+Since Alphanet is a Westend-based relay chain, you can refer to the instruction weights defined in the [Westend runtime code](https://github.com/paritytech/polkadot-sdk/tree/polkadot-{{ networks.alphanet.spec_version }}/polkadot/runtime/westend){target=\_blank}, which are broken up into two types of instructions: [fungible](https://github.com/paritytech/polkadot-sdk/blob/polkadot-{{ networks.alphanet.spec_version }}/polkadot/runtime/westend/src/weights/xcm/pallet_xcm_benchmarks_fungible.rs){target=\_blank} and [generic](https://github.com/paritytech/polkadot-sdk/blob/polkadot-{{ networks.alphanet.spec_version }}/polkadot/runtime/westend/src/weights/xcm/pallet_xcm_benchmarks_generic.rs){target=\_blank}.
 
-It's important to note that each chain defines its own weight requirements. To determine the weight required for each XCM instruction on a given chain, please refer to the chain's documentation or reach out to a member of their team. To learn how to find the weights required by Moonbeam, Polkadot, or Kusama, you can refer to our documentation on [Weights and Fees](/builders/interoperability/xcm/core-concepts/weights-fees){target=_blank}.
+It's important to note that each chain defines its own weight requirements. To determine the weight required for each XCM instruction on a given chain, please refer to the chain's documentation or reach out to a member of their team. To learn how to find the weights required by Moonbeam, Polkadot, or Kusama, you can refer to our documentation on [Weights and Fees](/builders/interoperability/xcm/core-concepts/weights-fees){target=\_blank}.
 
 ### X-Tokens Transfer Function {: #xtokens-transfer-function}
 
-In this example, you'll build an XCM message to transfer xcUNIT from Moonbase Alpha back to the Alphanet relay chain through the `transfer` function of the X-Tokens Pallet using the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api){target=_blank}.
+In this example, you'll build an XCM message to transfer xcUNIT from Moonbase Alpha back to the Alphanet relay chain through the `transfer` function of the X-Tokens Pallet using the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api){target=\_blank}.
 
 Since you'll be interacting with the `transfer` function, you can take the following steps to gather the arguments for the `currencyId`, `amount`, `dest`, and `destWeightLimit`:
 
@@ -330,7 +330,7 @@ Now that you have the values for each of the parameters, you can write the scrip
      - The Moonbase Alpha endpoint URL to create the provider
      - The values for each of the parameters of the `transfer` function
  2. Create a Keyring instance that will be used to send the transaction
- 3. Create the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=_blank} provider
+ 3. Create the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=\_blank} provider
  4. Craft the `xTokens.transfer` extrinsic with the `currencyId`, `amount`, `dest`, and `destWeightLimit`
  5. Send the transaction using the `signAndSend` extrinsic and the Keyring instance you created in the second step
 
@@ -342,7 +342,7 @@ Now that you have the values for each of the parameters, you can write the scrip
 ```
 
 !!! note
-    You can view an example of the above script, which sends 1 xcUNIT to Alice's account on the relay chain, on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/extrinsics/decode/0x1e00018080778c30c20fa2ebc0ed18d2cbca1f0010a5d4e800000000000000000000000301010100c4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a06300){target=_blank} using the following encoded calldata: `0x1e00018080778c30c20fa2ebc0ed18d2cbca1f0010a5d4e800000000000000000000000301010100c4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a06300`.
+    You can view an example of the above script, which sends 1 xcUNIT to Alice's account on the relay chain, on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/extrinsics/decode/0x1e00018080778c30c20fa2ebc0ed18d2cbca1f0010a5d4e800000000000000000000000301010100c4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a06300){target=\_blank} using the following encoded calldata: `0x1e00018080778c30c20fa2ebc0ed18d2cbca1f0010a5d4e800000000000000000000000301010100c4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a06300`.
 
 Once the transaction is processed, the target account on the relay chain should have received the transferred amount minus a small fee that is deducted to execute the XCM on the destination chain.
 
@@ -440,7 +440,7 @@ Now that you have the values for each of the parameters, you can write the scrip
      - The Moonbase Alpha endpoint URL to create the provider
      - The values for each of the parameters of the `transferMultiasset` function
  2. Create a Keyring instance that will be used to send the transaction
- 3. Create the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=_blank} provider
+ 3. Create the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=\_blank} provider
  4. Craft the `xTokens.transferMultiasset` extrinsic with the `asset`, `dest`, and `destWeightLimit`
  5. Send the transaction using the `signAndSend` extrinsic and the Keyring instance you created in the second step
 
@@ -452,7 +452,7 @@ Now that you have the values for each of the parameters, you can write the scrip
 ```
 
 !!! note
-    You can view an example of the above script, which sends 1 xcUNIT to Alice's account on the relay chain, on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/extrinsics/decode/0x1e010300010000070010a5d4e80301010100c4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a06300){target=_blank} using the following encoded calldata: `0x1e010300010000070010a5d4e80301010100c4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a06300`
+    You can view an example of the above script, which sends 1 xcUNIT to Alice's account on the relay chain, on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/extrinsics/decode/0x1e010300010000070010a5d4e80301010100c4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a06300){target=\_blank} using the following encoded calldata: `0x1e010300010000070010a5d4e80301010100c4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a06300`
 
 Once the transaction is processed, the account on the relay chain should have received the transferred amount minus a small fee that is deducted to execute the XCM on the destination chain.
 

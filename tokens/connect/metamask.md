@@ -7,7 +7,7 @@ description: This guide walks you through how to connect MetaMask, a browser-bas
 
 ## Introduction {: #introduction }
 
-Developers can leverage Moonbeam's Ethereum compatibility features to integrate tools, such as [MetaMask](https://metamask.io/){target=_blank}, into their dApps. By doing so, they can use the injected library MetaMask provides to interact with the blockchain.
+Developers can leverage Moonbeam's Ethereum compatibility features to integrate tools, such as [MetaMask](https://metamask.io/){target=\_blank}, into their dApps. By doing so, they can use the injected library MetaMask provides to interact with the blockchain.
 
 Currently, MetaMask can be configured to connect to a few networks: Moonbeam, Moonriver, the Moonbase Alpha TestNet, and a Moonbeam development node.
 
@@ -28,17 +28,17 @@ If you already have MetaMask installed, you can easily connect MetaMask to the n
 !!! note
     MetaMask will pop up asking for permission to add a custom network. Once you approve permissions, MetaMask will switch your current network.
 
-Learn [how to integrate a Connect MetaMask button](/builders/integrations/wallets/metamask/){target=_blank} into your dApp, so that users can connect to Moonbase Alpha with a simple click of a button. The guide can also be adapted for the other Moonbeam-based networks.
+Learn [how to integrate a Connect MetaMask button](/builders/integrations/wallets/metamask/){target=\_blank} into your dApp, so that users can connect to Moonbase Alpha with a simple click of a button. The guide can also be adapted for the other Moonbeam-based networks.
 
 --8<-- 'text/_disclaimers/third-party-content-intro.md'
 
 ## Install the MetaMask Extension {: #install-the-metamask-extension }
 
-First, you'll start with a fresh and default [MetaMask](https://metamask.io/){target=_blank} installation from the Chrome store. After downloading, installing, and initializing the extension, follow the **Get Started** guide. In there, you need to create a wallet, set a password, and store your secret backup phrase (this gives direct access to your funds, so make sure to store these in a secure place).
+First, you'll start with a fresh and default [MetaMask](https://metamask.io/){target=\_blank} installation from the Chrome store. After downloading, installing, and initializing the extension, follow the **Get Started** guide. In there, you need to create a wallet, set a password, and store your secret backup phrase (this gives direct access to your funds, so make sure to store these in a secure place).
 
 ## Setup a Wallet {: #setup-a-wallet }
 
-After installing [MetaMask](https://metamask.io){target=_blank}, the setup will automatically open a new task with a welcome screen. Here, you are offered two options:
+After installing [MetaMask](https://metamask.io){target=\_blank}, the setup will automatically open a new task with a welcome screen. Here, you are offered two options:
 
 - **Create a new wallet** - you'll go through some steps to get a new seed phrase. Ensure you store this phrase securely and you don't share it publicly
 - **Import an existing wallet** - you already have a seed phrase stored, and you want to restore an account from that recovery phrase
@@ -76,7 +76,7 @@ You should end up with an imported **Account 2** that looks like this:
 
 ## Connect MetaMask to Moonbeam {: #connect-metamask-to-moonbeam }
 
-Once you have [MetaMask](https://metamask.io/){target=_blank} installed and have created or imported an account, you can connect it to any Moonbeam-based network. To do so, take the following steps:
+Once you have [MetaMask](https://metamask.io/){target=\_blank} installed and have created or imported an account, you can connect it to any Moonbeam-based network. To do so, take the following steps:
 
 1. Click in the upper left network selector menu
 2. Select **Add Network**
@@ -128,10 +128,10 @@ Here, you can configure MetaMask for the following networks:
 To do so, fill in the following information:
 
 1. **Network name** - name that represents the network you are connecting to
-2. **RPC URL** - [RPC endpoint](https://docs.moonbeam.network/builders/get-started/endpoints/){target=_blank} of the network
+2. **RPC URL** - [RPC endpoint](https://docs.moonbeam.network/builders/get-started/endpoints/){target=\_blank} of the network
 3. **Chain ID** - chain ID of the Ethereum compatible network
 4. **Symbol** - (optional) symbol of the native token of the network. For example, for Moonbeam, the value would be **GLMR**
-5. **Block Explorer** - (optional) URL of the [block explorer](https://docs.moonbeam.network/builders/get-started/explorers/){target=_blank}
+5. **Block Explorer** - (optional) URL of the [block explorer](https://docs.moonbeam.network/builders/get-started/explorers/){target=\_blank}
 6. Once you've verified all the information, click on **Save**
 
 ![Add network in Metamask](/images/tokens/connect/metamask/metamask-8.png)
