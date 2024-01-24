@@ -54,7 +54,7 @@ EventSignature = keccak256(Transfer(address,address,uint256))
 
 The result of the calculation is shown in the previous code snippet. You'll return to filtering by topics later on. The rest of the code handles the callback function. Once you execute this code, you'll get a subscription ID, and the terminal will wait for any event through that subscription:
 
-![Subscription ID](/images/builders/build/eth-api/pubsub/pubsub-1.png)
+![Subscription ID](/images/builders/build/eth-api/pubsub/pubsub-1.webp)
 
 Next, an ERC-20 token transfer will be sent with the following parameters:
 
@@ -64,11 +64,11 @@ Next, an ERC-20 token transfer will be sent with the following parameters:
 
 After you send the transaction, you'll see the event logs emitted by the transaction in your terminal:
 
-![Log of the transfer event](/images/builders/build/eth-api/pubsub/pubsub-2.png)
+![Log of the transfer event](/images/builders/build/eth-api/pubsub/pubsub-2.webp)
 
 The target event sends two pieces of indexed information: the `from` and `to` addresses (in that order), which are treated like topics. The other piece of data shared by the event is the number of tokens, which is not indexed. Therefore, there are a total of three topics (the maximum is four), which correspond to the opcode LOG3:
 
-![Description of LOG3](/images/builders/build/eth-api/pubsub/pubsub-3.png)
+![Description of LOG3](/images/builders/build/eth-api/pubsub/pubsub-3.webp)
 
 Consequently, the topics returned by the logs contain the `from` and `to` addresses. Ethereum addresses are 40 hex characters long (1 hex character is 4 bits, hence 160 bits, or H160 format). Thus, the extra 24 zeros are needed to fill the gap to H256, which is 64 hex characters long.
 
@@ -86,7 +86,7 @@ Using the same example as in the previous section, let's subscribe to the events
 
 Here, by using the wildcard `null` in place for the event signature, you'll filter to listen to all events emitted by the contract that you subscribed to. But with this configuration, you can also use a second input field (`topic_1`) to define a filter by address, as mentioned before. In the case of this subscription, you are notifying that you want to only receive events where `topic_1` is one of the addresses you are providing. Note that the addresses need to be in H256 format. For example, the address `0x44236223aB4291b93EEd10E4B511B37a398DEE55` needs to be entered as `0x00000000000000000000000044236223aB4291b93EEd10E4B511B37a398DEE55`. As before, the output of this subscription will display the event signature in `topic_0` to tell you which event was emitted by the contract.
 
-![Conditional Subscription](/images/builders/build/eth-api/pubsub/pubsub-4.png)
+![Conditional Subscription](/images/builders/build/eth-api/pubsub/pubsub-4.webp)
 
 As shown, after you provided the two addresses with conditional formatting, you should have received two logs with the same subscription ID. Events emitted by transactions from different addresses will not throw any logs to this subscription.
 
@@ -96,7 +96,7 @@ This example showed how you could subscribe to just the event logs of a specific
 
 In order to subscribe to pending transactions, you can use the `web3.eth.subscribe(‘pendingTransactions’, [, callback])` method, implementing the same callback function to check for the response. This is much simpler than the previous example, and it returns the transaction hash of the pending transactions.
 
-![Subscribe pending transactions response](/images/builders/build/eth-api/pubsub/pubsub-5.png)
+![Subscribe pending transactions response](/images/builders/build/eth-api/pubsub/pubsub-5.webp)
 
 You can verify that this transaction hash is the same as that shown in MetaMask (or Remix).
 
@@ -104,7 +104,7 @@ You can verify that this transaction hash is the same as that shown in MetaMask 
 
 Another type available under the Web3.js library is to subscribe to new block headers. To do so, you can use the `web3.eth.subscribe('newBlockHeaders' [, callback])` method, implementing the same callback function to check for the response. This subscription provides incoming block headers and can be used to track changes in the blockchain.
 
-![Subscribe to block headers response](/images/builders/build/eth-api/pubsub/pubsub-6.png)
+![Subscribe to block headers response](/images/builders/build/eth-api/pubsub/pubsub-6.webp)
 
 Note that only one block header is shown in the image. These messages are displayed for every block produced, so they can fill up the terminal quite quickly.
 
@@ -112,7 +112,7 @@ Note that only one block header is shown in the image. These messages are displa
 
 With pub/sub, it is also possible to check whether a particular node you are subscribed to is currently synchronizing with the network. For that, we can leverage the [`web3.eth.subscribe(‘syncing' [, callback])`](https://web3js.readthedocs.io/en/v1.2.11/web3-eth-subscribe.html#subscribe-syncing){target=_blank} method, implementing the same callback function to check for the response. This subscription will either return a boolean when `syncing` is false or an object describing the syncing progress when `syncing` is true, as seen below.
 
-![Subscribe to syncing response](/images/builders/build/eth-api/pubsub/pubsub-7.png)
+![Subscribe to syncing response](/images/builders/build/eth-api/pubsub/pubsub-7.webp)
 
 !!! note
     The pub/sub implementation in [Frontier](https://github.com/paritytech/frontier){target=_blank} is still in active development. This current version allows users to subscribe to specific event types, but there may still be some limitations.

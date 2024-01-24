@@ -17,7 +17,7 @@ To this end, the [Ethereum XCM Pallet](https://github.com/moonbeam-foundation/mo
 
 The happy path for both regular and remote EVM calls through XCM is portrayed in the following diagram:
 
-![Happy path for regular and remote EVM calls through XCM](/images/builders/interoperability/xcm/remote-execution/remote-evm-calls/xcmevm-1.png)
+![Happy path for regular and remote EVM calls through XCM](/images/builders/interoperability/xcm/remote-execution/remote-evm-calls/xcmevm-1.webp)
 
 This guide will go through the differences between regular and remote EVM calls. In addition, it will show you how to perform remote EVM calls through the extrinsic exposed by the [Ethereum XCM pallet](https://github.com/moonbeam-foundation/moonbeam/tree/master/pallets/ethereum-xcm){target=_blank}.
 

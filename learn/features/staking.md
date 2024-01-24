@@ -158,13 +158,13 @@ From the rewards pool, collators get the rewards corresponding to their stake in
 
 Mathematically speaking, for collators, the reward distribution per block proposed and finalized would look like this:
 
-![Staking Collator Reward](/images/learn/features/staking/staking-overview-1.png)
+![Staking Collator Reward](/images/learn/features/staking/staking-overview-1.webp)
 
 Where `amount_due` is the corresponding inflation being distributed in a specific block, the `stake` corresponds to the number of tokens bonded by the collator in respect to the total stake of that collator (accounting delegations).
 
 For each delegator, the reward distribution (per block proposed and finalized by the delegated collator) would look like this:
 
-![Staking Delegator Reward](/images/learn/features/staking/staking-overview-2.png)
+![Staking Delegator Reward](/images/learn/features/staking/staking-overview-2.webp)
 
 Where `amount_due` is the corresponding inflation being distributed in a specific block, the `stake` corresponds to the amount of tokens bonded by each delegator in respect to the total stake of that collator.
 

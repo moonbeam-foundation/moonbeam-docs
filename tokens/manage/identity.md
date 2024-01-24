@@ -68,14 +68,14 @@ To get started with setting an identity using the Accounts UI, head to the [Acco
 
 You should already have an account connected, so you can go ahead and click on your account name to verify and take note of your balances. After you send the transaction to set an identity, the deposit(s) you submitted will be moved from your transferable balance to your reserved balance.
 
-![Starting account balances](/images/tokens/manage/identity/identity-1.png)
+![Starting account balances](/images/tokens/manage/identity/identity-1.webp)
 
 To set your identity, you'll need to:
 
 1. Click on the 3 vertical dots next to the account you would like to set an identity for
 2. A menu will pop up. Click **Set on-chain identity**
 
-![Set on-chain identity](/images/tokens/manage/identity/identity-2.png)
+![Set on-chain identity](/images/tokens/manage/identity/identity-2.webp)
 
 Next, the menu to register and set your identity will pop-up and you can start filling in your information. You are not required to enter information for every single field, you can choose to fill in just one field or all of them, it's up to you. For this example:
 
@@ -84,13 +84,13 @@ Next, the menu to register and set your identity will pop-up and you can start f
 3. Click on the **include field** toggle for Twitter and then enter in your Twitter handle
 4. After you're done filling in your information and the deposit amount looks alright to you, click **Set Identity**
 
-![Set your identity](/images/tokens/manage/identity/identity-3.png)
+![Set your identity](/images/tokens/manage/identity/identity-3.webp)
 
 You will then be prompted to sign the transaction. If everything looks good, you can enter your password and click **Sign and Submit** to sign and send the transaction.
 
 You should see status notifications pop-up in the top right hand corner. Once the transaction has been confirmed, you can click on your account name again and the panel will slide out on the right side of the page. Your balances will have changed, and you’ll also see your new identity information.
 
-![Updated account balances](/images/tokens/manage/identity/identity-4.png)
+![Updated account balances](/images/tokens/manage/identity/identity-4.webp)
 
 If the identity information matches what you entered, you’ve successfully set an identity!
 
@@ -103,11 +103,11 @@ To clear your identity from the [Accounts tab](https://polkadot.js.org/apps/?rpc
 1. Click on the 3 vertical dots next to the account you would like to add identity information for
 2. A menu will pop up. Click **Set on-chain identity**
 
-![Set on-chain identity](/images/tokens/manage/identity/identity-5.png)
+![Set on-chain identity](/images/tokens/manage/identity/identity-5.webp)
 
 The identity menu will pop-up with your information already filled out. You'll need to click **Clear Identity**.
 
-![Clear identity](/images/tokens/manage/identity/identity-6.png)
+![Clear identity](/images/tokens/manage/identity/identity-6.webp)
 
 You will then be prompted to sign the transaction. If everything looks good, you can enter your password and click **Sign and Submit** to sign and send the transaction.
 
@@ -128,7 +128,7 @@ To register an identity using the extrinsics UI, navigate to the [Extrinsics pag
     1. Select the format of the data. For this example, you can use **Raw** data but you also have the option of entering your data in BlackTwo256, Sha256, Keccak256, and ShaThree256 hashed format
     2. Enter the data in that format
 
-![Set your identity using the Extrinsics UI](/images/tokens/manage/identity/identity-7.png)
+![Set your identity using the Extrinsics UI](/images/tokens/manage/identity/identity-7.webp)
 
 Optionally, if you would like to enter custom fields, you can do so by:
 
@@ -140,11 +140,11 @@ Optionally, if you would like to enter custom fields, you can do so by:
     1. Select the format of the data for the value. Again, you can use **Raw** data
     2. Enter the value in the selected format
 
-![Add custom fields](/images/tokens/manage/identity/identity-8.png)
+![Add custom fields](/images/tokens/manage/identity/identity-8.webp)
 
 Finally, once all of your identity information has been added, you can scroll to the bottom of the page and click **Submit Transaction**.
 
-![Submit identity information](/images/tokens/manage/identity/identity-9.png)
+![Submit identity information](/images/tokens/manage/identity/identity-9.webp)
 
 You will then be prompted to sign the transaction. Remember, there is an additional deposit required for each additional custom field. If everything looks good, you can enter your password and click **Sign and Submit** to sign and send the transaction.
 
@@ -161,7 +161,7 @@ On the **Chain State** UI, make sure **Storage** is selected. Then you can start
 3. Select your account
 4. Click the **+** button to get your identity information
 
-![Request identity information](/images/tokens/manage/identity/identity-10.png)
+![Request identity information](/images/tokens/manage/identity/identity-10.webp)
 
 You can see now that you’ve successfully set an identity! Once you clear your identity, the deposit in your reserved balance will get transferred back to your transferable balance. If you need to make changes to your identity, you can go through the process of setting your identity again. Please note that you will need to ensure all fields are re-entered, even if only one field needs to be changed, or they will be overwritten. You will not need to pay another deposit, unless custom fields are used, but you will need to pay gas fees.
 
@@ -174,7 +174,7 @@ To clear your identity from the [Extrinsics tab](https://polkadot.js.org/apps/?r
 3. Then select the **clearIdentity()** function
 4. Click **Submit Transaction**
 
-![Clear an identity using the Extrinsics UI](/images/tokens/manage/identity/identity-11.png)
+![Clear an identity using the Extrinsics UI](/images/tokens/manage/identity/identity-11.webp)
 
 You will then be prompted to sign the transaction. If everything looks good, you can enter your password and click **Sign and Submit** to sign and send the transaction.
 
@@ -227,7 +227,7 @@ You can get a complete list of the current registrars, including the fees that e
 2. Choose the **registrars** extrinsic
 3. Click the **+** button
 
-![View registrar list](/images/tokens/manage/identity/identity-12.png)
+![View registrar list](/images/tokens/manage/identity/identity-12.webp)
 
 ### Request Identity Judgement {: #request-judgement }
 
@@ -240,13 +240,13 @@ To request identity judgement, from the **Extrinsics** page, you can take the fo
 5. Enter the maximum fee you're willing to pay in Wei. This must be higher than the fee set by the registrar, otherwise the transaction will fail
 6. Click **Submit Transaction**
 
-![Request identity judgement](/images/tokens/manage/identity/identity-13.png)
+![Request identity judgement](/images/tokens/manage/identity/identity-13.webp)
 
 Once the transaction goes through, the fee will be taken from your free balance and locked until the judgement is complete.
 
 After the judgement is complete and you've been successfully verified, a green check mark will appear next to your account. If successful, your identity will be assigned one of these three levels of confidence: low quality, reasonable, or known good. From the **Accounts** page, you can click on your account name to review your identity information and your identity judgement results.
 
-![Identity verified](/images/tokens/manage/identity/identity-14.png)
+![Identity verified](/images/tokens/manage/identity/identity-14.webp)
 
 ### Cancel Identity Judgement Request {: #cancel-judgement-request }
 
@@ -257,7 +257,7 @@ If the registrar hasn't completed your judgement, you can cancel the request and
 3. Then select the **cancelRequest()** function
 4. Click **Submit Transaction**
 
-![Cancel judgement request](/images/tokens/manage/identity/identity-15.png)
+![Cancel judgement request](/images/tokens/manage/identity/identity-15.webp)
 
 You'll then be prompted to sign and send the transaction. Once it goes through, your locked funds will be returned to you.
 

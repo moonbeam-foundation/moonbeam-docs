@@ -36,7 +36,7 @@ The Tenderly platform provides the following features:
 
 The Tenderly dashboard provides access to the all-in-one Web3 development platform. To get started with the dashboard, you'll need to [sign up](https://dashboard.tenderly.co/register){target=_blank} for an account. Once you've signed up, you'll be able to start exploring your Tenderly dashboard.
 
-![Tenderly dashboard](/images/builders/build/eth-api/dev-env/tenderly/tenderly-1.png)
+![Tenderly dashboard](/images/builders/build/eth-api/dev-env/tenderly/tenderly-1.webp)
 
 If you prefer not to set up an account, you can also access limited features using [Tenderly's explorer](https://dashboard.tenderly.co/explorer){target=_blank}. Without an account, you can still gain insights for contracts and transactions. However, you won't be able to simulate transactions or create forked environments.
 
@@ -55,7 +55,7 @@ To deploy contracts to Moonbeam with a Tenderly Sandbox, you can navigate to [sa
 
 If your code contained logic to deploy your contract or send a transaction, you'll see the transaction(s) appear under the **Simulated Transactions** section on the bottom left-hand side. 
 
-![Tenderly Sandbox](/images/builders/build/eth-api/dev-env/tenderly/tenderly-2.png)
+![Tenderly Sandbox](/images/builders/build/eth-api/dev-env/tenderly/tenderly-2.webp)
 
 ### Add a Contract {: #add-a-contract }
 
@@ -69,11 +69,11 @@ To add a new contract, you can click on **Contracts** on the left-side panel and
 4. (Optional) You can toggle the **Add more** slider to on if you'd like to add additional contracts. This will allow you to add more contracts after the initial contract has been added
 5. Finally to add the contract to the dashboard, click **Add contract**
 
-![Add a contract](/images/builders/build/eth-api/dev-env/tenderly/tenderly-3.png)
+![Add a contract](/images/builders/build/eth-api/dev-env/tenderly/tenderly-3.webp)
 
 After a contract has been added, it will appear in the list of contracts on the **Contracts** dashboard. If the contract hasn't been verified yet, the dashboard will display an **Unverified** status along with a **Verify** button.
 
-![Contract in list of contracts](/images/builders/build/eth-api/dev-env/tenderly/tenderly-4.png)
+![Contract in list of contracts](/images/builders/build/eth-api/dev-env/tenderly/tenderly-4.webp)
 
 To take full advantage of the Tenderly tool set, it is recommended that you verify your smart contracts, which you can do by clicking on **Verify**. You can choose to verify your contract by uploading the contract's JSON, ABI, or source code. For more information, please refer to [Tenderly's documentation](https://docs.tenderly.co/monitoring/smart-contract-verification/verifying-a-smart-contract#verifying-a-smart-contract){target=_blank}.
 
@@ -90,13 +90,13 @@ Tenderly makes creating a fork through the dashboard quite simple. To get starte
 3. If you only need data up until a specific block, you can toggle the **Use Latest Block** slider to off and specify the block number. Otherwise, you can leave the slider as is to include all blocks up until the latest block
 4. Click **Create**
 
-![Fork Moonbeam](/images/builders/build/eth-api/dev-env/tenderly/tenderly-5.png)
+![Fork Moonbeam](/images/builders/build/eth-api/dev-env/tenderly/tenderly-5.webp)
 
 Once you've created your fork, you can start using it by deploying a contract to it or creating a transaction simulation using it. 
 
 To deploy a contract to your fork, you can click on the **Deploy Contract** button, upload your contract's source code, and set the compiler configurations. Once you submit the deployment, you'll see the transaction of your deployment appear under the **Simulated Transactions** tab and can click on the simulation for more information.
 
-![Fork simulations](/images/builders/build/eth-api/dev-env/tenderly/tenderly-6.png)
+![Fork simulations](/images/builders/build/eth-api/dev-env/tenderly/tenderly-6.webp)
 
 To create additional simulations, you can click the **New Simulation** button and enter in the configurations for the simulation. For more information on simulations, please refer to [Tenderly's How to Simulate a Transaction documentation](https://docs.tenderly.co/simulations-and-forks/how-to-simulate-a-transaction){target=_blank}.
 

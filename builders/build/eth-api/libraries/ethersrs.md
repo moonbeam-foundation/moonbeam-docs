@@ -310,7 +310,7 @@ cargo run
 
 If the transaction was succesful, in your terminal you'll see the transaction details printed out along with the balance of your address.
 
-![Terminal logs from sending a transaction](/images/builders/build/eth-api/libraries/ethersrs/ethersrs-1.png)
+![Terminal logs from sending a transaction](/images/builders/build/eth-api/libraries/ethersrs/ethersrs-1.webp)
 
 ## Deploy a Contract {: #deploy-a-contract }
 
@@ -496,7 +496,7 @@ cargo run
 
 If successful, you'll see the deployed contract's address and initial value set, which should be `5`, displayed in the terminal.
 
-![Terminal logs from deploy the contract](/images/builders/build/eth-api/libraries/ethersrs/ethersrs-2.png)
+![Terminal logs from deploy the contract](/images/builders/build/eth-api/libraries/ethersrs/ethersrs-2.webp)
 
 ### Interact with Contract (Send Methods) {: #interact-with-contract }
 
@@ -557,7 +557,7 @@ cargo run
 
 If successful, the transaction receipt will be displayed in the terminal. You can use the `read_number` function in the `main` function to make sure that value is changing as expected. If you're using the `read_number` function after incrementing, you'll also see the incremented number, which should be `10`.
 
-![Terminal logs from incrementing the number](/images/builders/build/eth-api/libraries/ethersrs/ethersrs-3.png)
+![Terminal logs from incrementing the number](/images/builders/build/eth-api/libraries/ethersrs/ethersrs-3.webp)
 
 Next you can interact with the `reset` function:
 
@@ -606,7 +606,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
 If successful, the transaction receipt will be displayed in the terminal. You can use the `read_number` function in the `main` function to make sure that value is changing as expected. If you're using the `read_number` function after resetting the number, you should see `0` printed to the terminal.
 
-![Terminal logs from resetting the number](/images/builders/build/eth-api/libraries/ethersrs/ethersrs-4.png)
+![Terminal logs from resetting the number](/images/builders/build/eth-api/libraries/ethersrs/ethersrs-4.webp)
 
 You can view the [complete script on GitHub](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/builders/build/eth-api/libraries/ethers-rust/deploy-contract/main.rs){target=_blank}.
 

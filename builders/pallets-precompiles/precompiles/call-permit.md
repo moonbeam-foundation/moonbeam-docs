@@ -110,7 +110,7 @@ You can use [Remix](https://remix.ethereum.org/){target=_blank} to compile the e
 2. Paste the `SetMessage.sol` contract into a Remix file named `SetMessage.sol`
 3. Paste the `CallPermit.sol` contract into a Remix file named `CallPermit.sol`
 
-![Copying and pasting the example contract into Remix](/images/builders/pallets-precompiles/precompiles/call-permit/call-1-new.png)
+![Copying and pasting the example contract into Remix](/images/builders/pallets-precompiles/precompiles/call-permit/call-1-new.webp)
 
 ### Compile & Deploy the Example Contract {: #compile-deploy-example-contract }
 
@@ -119,7 +119,7 @@ First you'll need to compile the example contract:
 1. Click on the **Compile** tab, second from top
 2. Then to compile the interface, click on **Compile SetMessage.sol**
 
-![Compiling SetMessage.sol](/images/builders/pallets-precompiles/precompiles/call-permit/call-2.png)
+![Compiling SetMessage.sol](/images/builders/pallets-precompiles/precompiles/call-permit/call-2.webp)
 
 Then you can deploy it:
 
@@ -129,7 +129,7 @@ Then you can deploy it:
 4. Click **Deploy**
 4. MetaMask will pop up and you'll need to **Confirm** the transaction
 
-![Provide the address](/images/builders/pallets-precompiles/precompiles/call-permit/call-3.png)
+![Provide the address](/images/builders/pallets-precompiles/precompiles/call-permit/call-3.webp)
 
 The contract will appear under the list of **Deployed Contracts** on the left side panel. Copy the contract address as you will need to use it to generate the call permit signature in the next section.
 
@@ -140,7 +140,7 @@ First you'll need to compile the Call Permit Precompile contract:
 1. Click on the **Compile** tab, second from top
 2. Then to compile the interface, click on **Compile CallPermit.sol**
 
-![Compiling SetMessage.sol](/images/builders/pallets-precompiles/precompiles/call-permit/call-4.png)
+![Compiling SetMessage.sol](/images/builders/pallets-precompiles/precompiles/call-permit/call-4.webp)
 
 Then instead of deploying the contract, you'll just need to access it given the address of the precompile:
 
@@ -150,7 +150,7 @@ Then instead of deploying the contract, you'll just need to access it given the 
 4. Provide the address of the Call Permit Precompile for Moonbase Alpha: `{{networks.moonbase.precompiles.call_permit}}` and click **At Address**
 5. The Call Permit Precompile will appear in the list of **Deployed Contracts**
 
-![Provide the address](/images/builders/pallets-precompiles/precompiles/call-permit/call-5.png)
+![Provide the address](/images/builders/pallets-precompiles/precompiles/call-permit/call-5.webp)
 
 ## Generate Call Permit Signature {: #generate-call-permit-signature}
 
@@ -186,7 +186,7 @@ The nonce of the signer will also be needed. If this is your first time signing 
 2. Next to the **nonces** function, enter the address of the signer and click on **nonces**
 3. The result will be returned directly under the function
 
-![Get the nonce](/images/builders/pallets-precompiles/precompiles/call-permit/call-6.png)
+![Get the nonce](/images/builders/pallets-precompiles/precompiles/call-permit/call-6.webp)
 
 ### Use the Browser {: #use-the-browser }
 
@@ -198,7 +198,7 @@ To get started, you can open [JSFiddle](https://jsfiddle.net/){target=_blank} or
 
 The CDN for Ethers.js will appear in the list of libraries under **Resources**.
 
-![Add Ethers to JSFiddle](/images/builders/pallets-precompiles/precompiles/call-permit/call-7.png)
+![Add Ethers to JSFiddle](/images/builders/pallets-precompiles/precompiles/call-permit/call-7.webp)
 
 In the **Javascript** code box, copy and paste the following JavaScript snippet, making sure to replace the `to` variables (and any other variables as you see fit):
 
@@ -208,11 +208,11 @@ In the **Javascript** code box, copy and paste the following JavaScript snippet,
 
 To run the code, click **Run** at the top of the page (or you can also use `control` and `s`). MetaMask should pop up and prompt you to connect an account. Make sure to choose the account you want to sign the message with. Then go ahead and sign the message.
 
-![Sign the message with MetaMask](/images/builders/pallets-precompiles/precompiles/call-permit/call-8.png)
+![Sign the message with MetaMask](/images/builders/pallets-precompiles/precompiles/call-permit/call-8.webp)
 
 Once you've signed the message, go back to JSFiddle and if the console isn't already open, go ahead and open it to see the signature values include the `v`, `r`, and `s`, values. Copy these values as you'll need them when interacting with the Call Permit Precompile in the following sections.
 
-![Signature values in the JSFiddle console](/images/builders/pallets-precompiles/precompiles/call-permit/call-9.png)
+![Signature values in the JSFiddle console](/images/builders/pallets-precompiles/precompiles/call-permit/call-9.webp)
 
 ### Use MetaMask's JS Signing Library {: #use-metamasks-signing-library }
 
@@ -252,7 +252,7 @@ node getSignature.js
 
 In the console, you should see the concatenated signature along with the values for the signature including the `v`, `r`, and `s` values. Copy these values as you'll need them when interacting with the Call Permit Precompile in the following sections.
 
-![Signature values in the console](/images/builders/pallets-precompiles/precompiles/call-permit/call-10.png)
+![Signature values in the console](/images/builders/pallets-precompiles/precompiles/call-permit/call-10.webp)
 
 ## Interact with the Solidity Interface {: #interact-with-the-solidity-interface }
 
@@ -277,7 +277,7 @@ When you send the `dispatch` function, you'll need the same arguments as you use
 10. Click **transact** to send the transaction
 11. MetaMask should pop-up and you can confirm the transaction
 
-![Dispatch the call permit](/images/builders/pallets-precompiles/precompiles/call-permit/call-11.png)
+![Dispatch the call permit](/images/builders/pallets-precompiles/precompiles/call-permit/call-11.webp)
 
 Once the transaction goes through, you can verify that the message was updated to `hello world`. To do so, you can:
 
@@ -285,6 +285,6 @@ Once the transaction goes through, you can verify that the message was updated t
 2. Click on **get**
 3. The result will appear below the function, and it should show `hello world`
 
-![Verify the dispatch was executed as intended](/images/builders/pallets-precompiles/precompiles/call-permit/call-12.png)
+![Verify the dispatch was executed as intended](/images/builders/pallets-precompiles/precompiles/call-permit/call-12.webp)
 
 Congratulations! You've successfully generated a call permit signature and used it to dispatch a call on behalf of the call permit signer.

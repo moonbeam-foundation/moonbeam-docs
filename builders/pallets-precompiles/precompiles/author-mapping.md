@@ -112,14 +112,14 @@ To get started, get a copy of [`AuthorMappingInterface.sol`](https://github.com/
 1. Click on the **File explorer** tab
 2. Copy and paste the file contents into a [Remix file](https://remix.ethereum.org/){target=_blank} named `AuthorMappingInterface.sol`
 
-![Copying and Pasting the Author Mapping Interface into Remix](/images/builders/pallets-precompiles/precompiles/author-mapping/author-mapping-1.png)
+![Copying and Pasting the Author Mapping Interface into Remix](/images/builders/pallets-precompiles/precompiles/author-mapping/author-mapping-1.webp)
 
 ### Compile the Contract {: #compile-the-contract }
 
 1. Click on the **Compile** tab, second from top
 2. Then to compile the interface, click on **Compile AuthorMappingInterface.sol**
 
-![Compiling AuthorMappingInterface.sol](/images/builders/pallets-precompiles/precompiles/author-mapping/author-mapping-2.png)
+![Compiling AuthorMappingInterface.sol](/images/builders/pallets-precompiles/precompiles/author-mapping/author-mapping-2.webp)
 
 ### Access the Contract {: #access-the-contract }
 
@@ -128,7 +128,7 @@ To get started, get a copy of [`AuthorMappingInterface.sol`](https://github.com/
 3. Ensure **AuthorMappingInterface.sol** is selected in the **CONTRACT** dropdown. Since this is a precompiled contract there is no need to deploy, instead you are going to provide the address of the precompile in the **At Address** field
 4. Provide the address of the author mapping precompile for Moonbase Alpha: `{{networks.moonbase.precompiles.author_mapping}}` and click **At Address**
 
-![Provide the address](/images/builders/pallets-precompiles/precompiles/author-mapping/author-mapping-3.png)
+![Provide the address](/images/builders/pallets-precompiles/precompiles/author-mapping/author-mapping-3.webp)
 
 The author mapping precompile will appear in the list of **Deployed Contracts**.
 
@@ -146,6 +146,6 @@ Before getting started, ensure you're connected to the account that you want to 
 4. Click **transact**
 5. Confirm the MetaMask transaction that appears by clicking **Confirm**
 
-![Map your session keys](/images/builders/pallets-precompiles/precompiles/author-mapping/author-mapping-4.png)
+![Map your session keys](/images/builders/pallets-precompiles/precompiles/author-mapping/author-mapping-4.webp)
 
 To verify you have mapped your session keys successfully, you can use either the `mappingWithDeposit` method or the `nimbusLookup` method of the [author mapping pallet](/node-operators/networks/collators/account-management/#author-mapping-interface){target=_blank}. To do so, please refer to the [Check Mappings section of the Collator Account Management guide](/node-operators/networks/collators/account-management/#check-the-mappings){target=_blank}.

@@ -29,7 +29,7 @@ Other Moonscan features include:
  - [Token approvals](https://moonscan.io/tokenapprovalchecker){target=_blank} where you can view and revoke any of your prior token approvals
  - [Adding token information](/builders/get-started/token-profile/){target=_blank} and creating a profile for ERC-20s, ERC-721s, and ERC-1155s deployed to Moonbeam-based networks. The profile can include links to your project, social media, price data, and other information pertaining to your token
 
-![Moonbeam Moonscan](/images/builders/get-started/explorers/explorers-1.png)
+![Moonbeam Moonscan](/images/builders/get-started/explorers/explorers-1.webp)
 
 ### Expedition {: #expedition }
 
@@ -40,7 +40,7 @@ By default, the explorer is connected to Moonbeam. However, you can switch to Mo
  1. Click on the network text, where you'll be able to select between all different networks, including a **Moonbeam Development Node** running on `{{ networks.development.rpc_url }}`
  2. In the case you want to connect to a specific RPC URL, select **Add Custom Chain** and enter the URL. For example, `http://localhost:9937`
 
-![Expedition Explorer](/images/builders/get-started/explorers/explorers-2.png)
+![Expedition Explorer](/images/builders/get-started/explorers/explorers-2.webp)
 
 ## Substrate API {: #substrate-api }
 
@@ -48,14 +48,14 @@ By default, the explorer is connected to Moonbeam. However, you can switch to Mo
 
 [Subscan](https://moonbeam.subscan.io/){target=_blank} is the primary Substrate API block explorer for Moonbeam-based networks. Subscan is capable of parsing standard or custom modules. For example, this is useful to display information regarding the Staking, Governance, and EVM pallets (or modules). The code is all open-source and can be found in the [Subscan Essentials GitHub repo](https://github.com/subscan-explorer/subscan-essentials){target=_blank}.
 
-![Subscan Moonbeam](/images/builders/get-started/explorers/explorers-3.png)
+![Subscan Moonbeam](/images/builders/get-started/explorers/explorers-3.webp)
 
 ### Polkadot.js {: #polkadotjs }
 
 While not a full-featured block explorer, Polkadot.js Apps is a convenient option especially for users running local development nodes to view events and query transaction hashes. Polkadot.js Apps uses the WebSocket endpoint to interact with the Network. You can easily connect to [Moonbeam](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbeam.network#/explorer){target=_blank}, [Moonriver](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonriver.moonbase.moonbeam.network#/explorer){target=_blank}, or [Moonbase Alpha](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/explorer){target=_blank}.
 
-![Polkadot.js Moonbeam](/images/builders/get-started/explorers/explorers-4.png)
+![Polkadot.js Moonbeam](/images/builders/get-started/explorers/explorers-4.webp)
 
 To connect it to a Moonbeam development node, you can follow the steps in the [Connecting Polkadot.js Apps to a Local Moonbeam Node](/builders/get-started/networks/moonbeam-dev/#connecting-polkadot-js-apps-to-a-local-moonbeam-node){target=_blank} section of the [Getting Started with a Moonbeam Development Node](/builders/get-started/networks/moonbeam-dev/){target=_blank} guide. The default port for this is `9944`.
 
-![Polkadot.js Local Node](/images/builders/get-started/explorers/explorers-5.png)
+![Polkadot.js Local Node](/images/builders/get-started/explorers/explorers-5.webp)

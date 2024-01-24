@@ -60,13 +60,13 @@ This guide will show you how to submit a proposal on Moonbase Alpha. It can be a
 
 You can find a full explanation of the [happy path for a Treasury proposal on the Treasury overview page](/learn/features/treasury/){target=_blank}. For more information on the process, see this [guide to the interim community Treasury program](https://moonbeam.foundation/news/proposal-treasury-program-approved/){target=_blank}.
 
-![Proposal Roadmap](/images/tokens/governance/treasury-proposals/treasury-proposal-roadmap.png)
+![Proposal Roadmap](/images/tokens/governance/treasury-proposals/treasury-proposal-roadmap.webp)
 
 ## Submitting your Idea to the Forum {: #submitting-your-idea-to-the-forum }
 
 It's highly recommended that you preface any proposal with a post on [Moonbeam's Community Forum](https://forum.moonbeam.foundation/){target=_blank}. You should allow a period of five days for the community to provide feedback on the Moonbeam Forum post. This is especially important for Treasury proposals because of the irrevocable bond required to submit a Treasury spend proposal. You can submit your idea for a Treasury spend proposal by following [the instructions in the Using the Moonbeam Community Forum to Submit a Treasury Proposal guide](https://moonbeam.network/blog/using-moonbeam-community-forum/){target=_blank}.
 
-![Moonbeam Forum Home](/images/tokens/governance/treasury-proposals/treasury-proposal-1.png)
+![Moonbeam Forum Home](/images/tokens/governance/treasury-proposals/treasury-proposal-1.webp)
 
 ## Proposing an Action {: #proposing-an-action }
 
@@ -78,7 +78,7 @@ To get started, head to [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss
 2. Click on **Treasury**
 3. Click **Submit Proposal**
 
-![Treasury home](/images/tokens/governance/treasury-proposals/treasury-proposal-2.png)
+![Treasury home](/images/tokens/governance/treasury-proposals/treasury-proposal-2.webp)
 
 Then, take the following steps:
 
@@ -87,7 +87,7 @@ Then, take the following steps:
 3. Indicate the value of the spend proposal. The required bond is {{ networks.moonbeam.treasury.proposal_bond}}% of the proposal's value. The bond committed to a Treasury spend proposal is irrevocable
 4. Review each field for accuracy then press **Submit proposal** and sign the transaction
 
-![Submitting a Treasury spend proposal](/images/tokens/governance/treasury-proposals/treasury-proposal-3.png)
+![Submitting a Treasury spend proposal](/images/tokens/governance/treasury-proposals/treasury-proposal-3.webp)
 
 After submitting your Treasury proposal, you can refresh Polkadot.js Apps and you should see your proposal listed. If you don't see your proposal appear here, your account may not have contained sufficient funds for the required bond.
 
@@ -95,4 +95,4 @@ If you login to [Polkassembly](https://moonbeam.polkassembly.io/opengov){target=
 
 After submitting the on-chain proposal, you’ll need to edit your proposal on the [Moonbeam Community Forum](https://forum.moonbeam.foundation/){target=_blank}. You will need to update the title to include the proposal ID, and the status will need to be changed to `Submitted` state. The full instructions to edit your Moonbeam Community Forum post are available on [this guide to using the Moonbeam Community Forum](https://moonbeam.network/blog/using-moonbeam-community-forum/){target=_blank}.
 
-![Polkassembly](/images/tokens/governance/treasury-proposals/treasury-proposal-4.png)
+![Polkassembly](/images/tokens/governance/treasury-proposals/treasury-proposal-4.webp)

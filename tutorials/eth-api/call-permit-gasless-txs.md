@@ -15,11 +15,11 @@ One solution to this problem is gasless transactions, also known as meta transac
 
 A regular transaction may have the following flow:
 
-![Flow of a transaction](/images/tutorials/eth-api/call-permit-gasless-txs/gasless-1.png)
+![Flow of a transaction](/images/tutorials/eth-api/call-permit-gasless-txs/gasless-1.webp)
 
 Whereas a gasless transaction may look something like this:
 
-![Flow of a gasless transaction](/images/tutorials/eth-api/call-permit-gasless-txs/gasless-2.png)
+![Flow of a gasless transaction](/images/tutorials/eth-api/call-permit-gasless-txs/gasless-2.webp)
 
 Gasless transactions can be especially beneficial for users that make small transactions frequently, as is the case with gaming dApps like [Damned Pirates Society](https://damnedpiratessociety.io/){target=_blank} (DPS). In DPS, users go on voyages in search of treasure and with the goal of growing their fleet. There are two in-game currencies that are used in DPS: Treasure Maps (TMAP) and Doubloons (DBL). TMAP are used to buy voyages, and DBL are used to maintain flagships and buy support ships and can be earned while on voyages. Currently, if a user wants to start a voyage, they'll need TMAP to buy the voyage and GLMR to pay for transaction fees. Wouldn't it be ideal to lower the barrier to entry by implementing gasless transactions so users wouldn't need to worry about keeping a GLMR balance on top of their TMAP and DBL balances? From a dApp's perspective, it would keep users on their platform, as their users wouldn't need to leave the dApp to fund their GLMR balance; they could keep on gaming.
 
@@ -533,7 +533,7 @@ You can view the transaction for the example that we covered in this guide on [M
 - A TMAP has been deducted from the user's account: `0xa165c7970886d4064b6cec9ab1db9d03202bda37`
 - A voyage with ID 622646 has been sent to the user's account
 
-![Review the transaction details](/images/tutorials/eth-api/call-permit-gasless-txs/gasless-3.png)
+![Review the transaction details](/images/tutorials/eth-api/call-permit-gasless-txs/gasless-3.webp)
 
 And that's it! Congrats! You've learned how to implement gasless transactions using the Call Permit Precompile on Moonbeam. You can now adapt the logic in this tutorial for your own dApp!
 

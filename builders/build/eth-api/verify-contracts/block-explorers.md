@@ -40,9 +40,9 @@ You will need to collect some information related to the contract's compiler and
 4. (Optional) If the contract constructor method accepts arguments, take note of the [ABI-encoded form](https://docs.soliditylang.org/en/develop/abi-spec.html) of the constructor arguments
 5. After deployment, take note of the deployed contract address of the smart contract. The deployment address of the contract can be found either in the console output if using a command-line-based tool such as Hardhat, or an Ethereum library, or it can be copied from the GUI in tools such as Remix IDE
 
-![Example Compiler Options in Remix IDE](/images/builders/build/eth-api/verify-contracts/block-explorers/verify-contract-1.png)
+![Example Compiler Options in Remix IDE](/images/builders/build/eth-api/verify-contracts/block-explorers/verify-contract-1.webp)
 
-![Contract Address in Remix IDE](/images/builders/build/eth-api/verify-contracts/block-explorers/verify-contract-2.png)
+![Contract Address in Remix IDE](/images/builders/build/eth-api/verify-contracts/block-explorers/verify-contract-2.webp)
 
 ## Verify the Contract {: #verifying-the-contract }
 
@@ -59,7 +59,7 @@ Take the following steps to verify the contract on Moonscan:
 5. Select the open-source license used. For the current `Incrementer.sol` example, select the option **MIT License (MIT)**. If there was none used, select **No License (None)**
 6. Click the **Continue** button at the bottom of the form to continue on to the next page
 
-![First Page Screenshot](/images/builders/build/eth-api/verify-contracts/block-explorers/verify-contract-3.png)
+![First Page Screenshot](/images/builders/build/eth-api/verify-contracts/block-explorers/verify-contract-3.webp)
 
 On the second page, the **Contract Address**, **Compiler**, and **Constructor Arguments** fields should be prefilled. Fill in the rest of the information:
 
@@ -69,11 +69,11 @@ On the second page, the **Contract Address**, **Compiler**, and **Constructor Ar
 4. (Optional) Check any other optional fields that may apply to your contract, and fill them out accordingly
 5. Click on the CAPTCHA at the bottom and the **Verify and Publish** button to confirm and begin verification
 
-![Second Page Screenshot](/images/builders/build/eth-api/verify-contracts/block-explorers/verify-contract-4.png)
+![Second Page Screenshot](/images/builders/build/eth-api/verify-contracts/block-explorers/verify-contract-4.webp)
 
 After a short wait, the result of verification will be displayed in the browser, and a success result page will display the contract's ABI-encoded constructor arguments, the contract name, bytecode, and ABI.
 
-![Result Page Screenshot](/images/builders/build/eth-api/verify-contracts/block-explorers/verify-contract-5.png)
+![Result Page Screenshot](/images/builders/build/eth-api/verify-contracts/block-explorers/verify-contract-5.webp)
 
 ## Smart Contract Flattening {: #smart-contract-flattening }
 
@@ -89,6 +89,6 @@ For verifying on Moonscan, there is a built-in feature to process multi-part sma
 
 Select **Solidity (Multi-part files)** under **Compiler Type** (step 3 of the above example). Then, on the next page, select and upload all the different Solidity files that the contract consists of, including their nested dependency contract files.
 
-![Moonscan Multifile Page](/images/builders/build/eth-api/verify-contracts/block-explorers/verify-contract-6.png)
+![Moonscan Multifile Page](/images/builders/build/eth-api/verify-contracts/block-explorers/verify-contract-6.webp)
 
 Aside from that, the process is largely the same as verifying single-file contracts on Moonscan.

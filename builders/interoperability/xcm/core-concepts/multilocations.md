@@ -11,7 +11,7 @@ A multilocation defines a specific point in the entire relay chain/parachain eco
 
 Multilocations follow a hierarchical structure, in which some locations are encapsulated within others. For example, a relay chain encapsulates all of the parachains that are connected to it. Similarly, a parachain encapsulates all of the pallets, accounts, and assets that exist within it.
 
-![Hierarchy of multilocations](/images/builders/interoperability/xcm/core-concepts/multilocations/multilocations-1.png)
+![Hierarchy of multilocations](/images/builders/interoperability/xcm/core-concepts/multilocations/multilocations-1.webp)
 
 ## Defining a Multilocation {: #defining-a-multilocation }
 

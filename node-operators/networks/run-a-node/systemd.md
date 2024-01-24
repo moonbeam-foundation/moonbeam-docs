@@ -415,7 +415,7 @@ For an overview of the flags used in the following start-up commands, plus addit
 
 --8<-- 'text/node-operators/networks/run-a-node/systemd/run-service.md'
 
-![Service Status](/images/node-operators/networks/run-a-node/systemd/systemd-1.png)
+![Service Status](/images/node-operators/networks/run-a-node/systemd/systemd-1.webp)
 
 You can also check the logs by executing:
 
@@ -423,7 +423,7 @@ You can also check the logs by executing:
 journalctl -f -u moonbeam.service
 ```
 
-![Service Logs](/images/node-operators/networks/run-a-node/systemd/systemd-2.png)
+![Service Logs](/images/node-operators/networks/run-a-node/systemd/systemd-2.webp)
 
 During the syncing process, you will see logs from both the embedded relay chain ([Relaychain]) and the parachain ([🌗]). These logs display a target block (live network state) and a best block (local node synced state).
 

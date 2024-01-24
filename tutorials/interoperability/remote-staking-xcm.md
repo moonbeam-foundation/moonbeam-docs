@@ -30,7 +30,7 @@ For development purposes this tutorial is written for Moonbase Alpha and Moonbas
 
 Here, we have specified a parents value of `1` because the relay chain is the origin of the request (and the relay chain is considered a parent to the Moonbase alpha parachain). The relay chain does not have a parachain id so that field is omitted.
 
-![Calculate Multi-Location Derivative Account](/images/tutorials/interoperability/remote-staking-via-xcm/xcm-stake-1.png)
+![Calculate Multi-Location Derivative Account](/images/tutorials/interoperability/remote-staking-via-xcm/xcm-stake-1.webp)
 
 The script will return 32-byte and 20-byte addresses. We’re interested in the Ethereum-style account - the 20-byte one. Feel free to look up your Computed Origin account on [Moonscan](https://moonbase.moonscan.io/){target=_blank}. You’ll note that this account is empty. You’ll now need to fund this account with at least 1.1 DEV which you can get from [the faucet](https://faucet.moonbeam.network/){target=_blank}. And if you need more, you can always reach out to us on [Discord](https://discord.com/invite/amTRXQ9ZpW){target=_blank} for additional DEV tokens.
 
@@ -38,7 +38,7 @@ The script will return 32-byte and 20-byte addresses. We’re interested in the 
 
 First and foremost, you’ll need the address of the collator you want to delegate to. To locate it, head to the [Moonbase Alpha Staking dApp](https://apps.moonbeam.network/moonbase-alpha/staking){target=_blank} in a second window. Ensure you’re on the correct network, then press **Select a Collator**. Press the icon next to your desired collator to copy its address. You’ll also need to make a note of the number of delegations your collator has. The [PS-31 collator](https://moonbase.subscan.io/account/0x3A7D3048F3CB0391bb44B518e5729f07bCc7A45D){target=_blank} shown below has `64` delegations at the time of writing.
 
-![Moonbeam Network Apps Dashboard](/images/tutorials/interoperability/remote-staking-via-xcm/xcm-stake-2.png)
+![Moonbeam Network Apps Dashboard](/images/tutorials/interoperability/remote-staking-via-xcm/xcm-stake-2.webp)
 
 ## Remote Staking via XCM with the Polkadot.js API {: #remote-staking-via-xcm-with-the-polkadot-api }
 

@@ -48,4 +48,4 @@ Next, [`WithdrawAsset`](/builders/interoperability/xcm/core-concepts/instruction
 
 Lastly, [`Transact`](/builders/interoperability/xcm/core-concepts/instructions#transact){target=_blank} executes an arbitrary set of bytes that correspond to a pallet and function in the destination chain. You have to specify the type of origin to use (typically `SovereignAccount`) and the weight required to execute the bytes (similar to gas in the Ethereum realm).
 
-![Diagram of the XCM instructions executed on the destination chain for remote execution.](/images/builders/interoperability/xcm/remote-execution/overview/overview-1.png)
+![Diagram of the XCM instructions executed on the destination chain for remote execution.](/images/builders/interoperability/xcm/remote-execution/overview/overview-1.webp)

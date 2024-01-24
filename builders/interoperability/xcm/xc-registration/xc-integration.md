@@ -48,7 +48,7 @@ The entire process of getting started with Moonbase Alpha can be summarized as f
 
 8. Test the XCM integration
 
-![Moonbase Alpha cross-chain integration process](/images/builders/interoperability/xcm/xc-registration/xc-integration/channels-1.png)
+![Moonbase Alpha cross-chain integration process](/images/builders/interoperability/xcm/xc-registration/xc-integration/channels-1.webp)
 
 Once all of these steps are completed and both teams have successfully tested asset transfers, your parachain token can be added to the **Cross Chain Assets** section of the [Moonbeam DApp](https://apps.moonbeam.network/moonbase-alpha){target=_blank}. If deposits and withdrawals work as expected, integration with Moonriver can begin.
 
@@ -117,7 +117,7 @@ The process can be summarized in the following steps:
 
 An example of this process with a successful proposal on Moonbeam is depicted in the following diagram.
 
-![Moonbeam and Moonriver cross-chain integration process](/images/builders/interoperability/xcm/xc-registration/xc-integration/channels-2.png)
+![Moonbeam and Moonriver cross-chain integration process](/images/builders/interoperability/xcm/xc-registration/xc-integration/channels-2.webp)
 
 Once these steps are succesfully completed, marketing efforts can be coordinated, and the new XC-20 on Moonriver/Moonbeam can be added to the **Cross Chain Assets** section of the [Moonbeam DApp](https://apps.moonbeam.network/){target=_blank}.
 
@@ -257,7 +257,7 @@ If you are registering an asset in addition to establishing a channel, please re
 
 The process of batching all of the transactions into one is depicted in the following diagram.
 
-![Batch XCM integration process](/images/builders/interoperability/xcm/xc-registration/xc-integration/channels-3.png)
+![Batch XCM integration process](/images/builders/interoperability/xcm/xc-registration/xc-integration/channels-3.webp)
 
 You will now use the encoded calldata outputs for opening a channel, accepting a channel, and registering an asset and insert them into the following command to send the batch proposal to democracy.
 

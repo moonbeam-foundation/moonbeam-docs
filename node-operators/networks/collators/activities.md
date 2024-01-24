@@ -68,7 +68,7 @@ Head to the **Developer** tab, select **JavaScript** from the dropdown, and take
  2. To execute the code, click on the run button
  3. Copy the result, as you'll need it when joining the candidate pool
 
-![Get Number of Candidates](/images/node-operators/networks/collators/activities/activities-1.png)
+![Get Number of Candidates](/images/node-operators/networks/collators/activities/activities-1.webp)
 
 ### Join the Candidate Pool {: #join-the-candidate-pool }
 
@@ -81,7 +81,7 @@ Once your node is running and in sync with the network, you become a candidate a
  5. Set the candidate count as the candidate pool size. To learn how to retrieve this value, check the [Get the Size of the Candidate Pool](#get-the-size-of-the-candidate-pool) section
  6. Submit the transaction. Follow the wizard and sign the transaction using the password you set for the account
 
-![Join candidate pool via Polkadot.js](/images/node-operators/networks/collators/activities/activities-2.png)
+![Join candidate pool via Polkadot.js](/images/node-operators/networks/collators/activities/activities-2.webp)
 
 !!! note
     Function names and the minimum bond requirement are subject to change in future releases.
@@ -104,7 +104,7 @@ To get started and schedule a request, navigate to the **Developer** tab, click 
  4. Enter the `candidateCount` which you should have retrieved in the [Get the Size of the Candidate Pool](#get-the-size-of-the-candidate-pool) section
  5. Submit the transaction. Follow the wizard and sign the transaction using the password you set for the account
 
-![Schedule leave candidates request](/images/node-operators/networks/collators/activities/activities-3.png)
+![Schedule leave candidates request](/images/node-operators/networks/collators/activities/activities-3.webp)
 
 ### Execute Request to Leave Candidates {: #execute-request-to-leave-candidates }
 
@@ -116,7 +116,7 @@ After the waiting period has passed, you'll be able to execute the request. To e
  4. Click the **+** button to submit the extrinsic
  5. Copy the **`delegationCount`** to be used for executing the leave candidates request
 
-![Get delegation count](/images/node-operators/networks/collators/activities/activities-4.png)
+![Get delegation count](/images/node-operators/networks/collators/activities/activities-4.webp)
 
 Now that you have the delegation count, you can execute the request. Switch back to the **Extrinsics** tab and follow these steps:
 
@@ -127,7 +127,7 @@ Now that you have the delegation count, you can execute the request. Switch back
  5. Enter the candidate's delegation count
  6. Submit the transaction. Follow the wizard and sign the transaction using the password you set for the account
 
-![Execute leave candidates request](/images/node-operators/networks/collators/activities/activities-5.png)
+![Execute leave candidates request](/images/node-operators/networks/collators/activities/activities-5.webp)
 
 ### Cancel Request to Leave Candidates {: #cancel-request-to-leave-candidates }
 
@@ -139,7 +139,7 @@ If you scheduled a request to leave the candidate pool but changed your mind, as
  4. Provide the `candidateCount` which you should have retrieved in the [Get the Size of the Candidate Pool](#get-the-size-of-the-candidate-pool) section
  5. Submit the transaction. Follow the wizard and sign the transaction using the password you set for the account
 
-![Cancel leave candidates request](/images/node-operators/networks/collators/activities/activities-6.png)
+![Cancel leave candidates request](/images/node-operators/networks/collators/activities/activities-6.webp)
 
 ### Temporarily Leave the Candidate Pool {: #temporarily-leave-the-candidate-pool }
 
@@ -154,7 +154,7 @@ To temporarily leave, you can take the following steps:
  5. Select the **goOffline** extrinsic
  6. Submit the transaction. Follow the wizard and sign the transaction using the password you set for the account
 
-![Temporarily leave candidates pool](/images/node-operators/networks/collators/activities/activities-7.png)
+![Temporarily leave candidates pool](/images/node-operators/networks/collators/activities/activities-7.webp)
 
 Then, whenever you wish to rejoin, you can use the `goOnline` method by following the same steps outlined above, and then in step 5, choose the `goOnline` extrinsic. Please note that you can only call `goOnline` if you have previously called `goOffline`.
 
@@ -174,7 +174,7 @@ As a candidate, there are two options for increasing one's stake. The first and 
  4. Specify the additional amount to be bonded in the **more: BalanceOf** field
  5. Submit the transaction. Follow the wizard and sign the transaction using the password you set for the account
 
-![Collator Bond More](/images/node-operators/networks/collators/activities/activities-8.png)
+![Collator Bond More](/images/node-operators/networks/collators/activities/activities-8.webp)
 
 ### Bond Less {: #bond-less}
 
@@ -192,7 +192,7 @@ To schedule a request to bond less, make sure you've clicked on the **Developer*
  4. Specify the amount to decrease the bond by in the  **less: BalanceOf** field
  5. Submit the transaction. Follow the wizard and sign the transaction using the password you set for the account
 
-![Schedule Candidate Bond Less](/images/node-operators/networks/collators/activities/activities-9.png)
+![Schedule Candidate Bond Less](/images/node-operators/networks/collators/activities/activities-9.webp)
 
 Once the transaction is confirmed, you must wait the duration of the exit delay and then you will be able to execute and decrease the bond amount. If you try to execute the request before the exit delay, your extrinsic will fail, and you'll see an error in Polkadot.js for `parachainStaking.PendingDelegationRequest`.
 
@@ -206,7 +206,7 @@ After the exit delay has passed from scheduling a request to decrease your bond,
  4. Select the target candidate account (anyone can execute the request after the exit delay has passed since the `scheduleCandidateBondLess` was submitted)
  5. Submit the transaction. Follow the wizard and sign the transaction using the password you set for the account
 
-![Execute Candidate Bond Less](/images/node-operators/networks/collators/activities/activities-10.png)
+![Execute Candidate Bond Less](/images/node-operators/networks/collators/activities/activities-10.webp)
 
 Once the transaction has been confirmed, you can check your free and reserved balances from the **Accounts** tab and notice that, now that the execution has gone through, your balances have been updated.
 
@@ -219,7 +219,7 @@ If you scheduled a request to bond more or less but changed your mind, as long a
  3. Select the **cancelCandidateBondRequest** extrinsic
  4. Submit the transaction. Follow the wizard and sign the transaction using the password you set for the account
 
-![Cancel leave candidates request](/images/node-operators/networks/collators/activities/activities-11.png)
+![Cancel leave candidates request](/images/node-operators/networks/collators/activities/activities-11.webp)
 
 ## Mark a Collator as Inactive {: #mark-collator-as-inactive }
 
@@ -245,6 +245,6 @@ To mark a collator as inactive, you can use the `notifyInactiveCollator` extrins
  4. Specify the collator to mark as inactive
  5. Submit the transaction. Follow the wizard and sign the transaction using the password you set for the account
 
-![Mark a collator as inactive](/images/node-operators/networks/collators/activities/activities-12.png)
+![Mark a collator as inactive](/images/node-operators/networks/collators/activities/activities-12.webp)
 
 The collator will temporarily be removed from the candidate pool, and they can rejoin at any time by calling the `goOnline` extrinsic.

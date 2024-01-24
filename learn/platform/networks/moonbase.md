@@ -23,7 +23,7 @@ Moonbase Alpha has the following configuration:
  - The relay chain hosts validators to finalize relay chain blocks. One of them is selected to finalize each block collated by Moonbeam's collators. This setup provides room to expand to a two-parachain configuration in the future
  - Has infrastructure providers that provide [API endpoints](/builders/get-started/endpoints/){target=_blank} to connect to the network. Projects can also [run their own node](/node-operators/networks/run-a-node/){target=_blank} to have access to their own private endpoints
 
-![TestNet Diagram](/images/learn/platform/networks/moonbase-diagram.png)
+![TestNet Diagram](/images/learn/platform/networks/moonbase-diagram.webp)
 
 Some important variables/configurations to note include:
 

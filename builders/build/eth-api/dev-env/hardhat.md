@@ -60,7 +60,7 @@ You will need to create a Hardhat project if you don't already have one. You can
 
 5. A menu will appear, which will allow you to create a new project or use a sample project. For this example, you can choose **Create an empty hardhat.config.js**, which will create a Hardhat configuration file for your project
 
-![Hardhat Create Project](/images/builders/build/eth-api/dev-env/hardhat/hardhat-1.png)
+![Hardhat Create Project](/images/builders/build/eth-api/dev-env/hardhat/hardhat-1.webp)
 
 ## Hardhat Configuration File {: #hardhat-configuration-file }
 
@@ -232,7 +232,7 @@ To use the `compile` task, all you have to do is run:
 npx hardhat compile
 ```
 
-![Hardhat Contract Compile](/images/builders/build/eth-api/dev-env/hardhat/hardhat-2.png)
+![Hardhat Contract Compile](/images/builders/build/eth-api/dev-env/hardhat/hardhat-2.webp)
 
 After compilation, an `artifacts` directory is created that holds the bytecode and metadata of the contract, which are `.json` files. It’s a good idea to add this directory to a `.gitignore` file.
 
@@ -293,7 +293,7 @@ npx hardhat run --network moonbase scripts/deploy.js
 
 After a few seconds, the contract is deployed, and you should see the address in the terminal.
 
-![Hardhat Contract Deploy](/images/builders/build/eth-api/dev-env/hardhat/hardhat-3.png)
+![Hardhat Contract Deploy](/images/builders/build/eth-api/dev-env/hardhat/hardhat-3.webp)
 
 Congratulations, your contract is live! Save the address, as you will use it to interact with this contract instance in the next step.
 
@@ -333,7 +333,7 @@ Next, you can take the following steps, entering one line at a time:
 
 The transaction will be signed by your account configured in the `hardhat.config.js` file and broadcasted to the network. The output should look similar to:
 
-![Transaction output](/images/builders/build/eth-api/dev-env/hardhat/hardhat-4.png)
+![Transaction output](/images/builders/build/eth-api/dev-env/hardhat/hardhat-4.webp)
 
 Notice your address labeled `from`, the address of the contract, and the `data` that is being passed. Now, you can retrieve the value by running:
 
@@ -388,7 +388,7 @@ npx hardhat run --network moonbase scripts/set-value.js
 
 The script should return `2` as the value.
 
-![The terminal output from executing the set-value.js script.](/images/builders/build/eth-api/dev-env/hardhat/hardhat-5-new.png)
+![The terminal output from executing the set-value.js script.](/images/builders/build/eth-api/dev-env/hardhat/hardhat-5-new.webp)
 
 ## Hardhat Forking {: #hardhat-forking }
 
@@ -574,7 +574,7 @@ If you prefer to configure your Hardhat project, you can update your `hardhat.co
 
 When you spin up the Hardhat fork, you'll have 20 development accounts that are pre-funded with 10,000 test tokens. The forked instance is available at `http://127.0.0.1:8545/`. The output in your terminal should resemble the following:
 
-![Forking terminal screen](/images/builders/build/eth-api/dev-env/hardhat/hardhat-5.png)
+![Forking terminal screen](/images/builders/build/eth-api/dev-env/hardhat/hardhat-5.webp)
 
 To verify you have forked the network, you can query the latest block number:
 

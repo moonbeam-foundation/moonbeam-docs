@@ -11,11 +11,11 @@ _by Jeremy Boetticher_
 
 Decentralized applications, or DApps, have redefined how applications are built, managed, and interacted with in Web3. By leveraging blockchain technology, DApps provide a secure, transparent, and trustless system that enables peer-to-peer interactions without any central authority. At the core of a DApp's architecture are several main components that work in tandem to create a robust, decentralized ecosystem. These components include smart contracts, nodes, frontend user interfaces, and more.  
 
-![DApp Architecture Diagram](/images/tutorials/eth-api/how-to-build-a-dapp/how-to-build-a-dapp-1.png)
+![DApp Architecture Diagram](/images/tutorials/eth-api/how-to-build-a-dapp/how-to-build-a-dapp-1.webp)
 
 In this tutorial, you'll come face-to-face with each major component by writing a full DApp that mints tokens. We'll also explore additional optional components of DApps that can enhance user experience for your future projects. You can view the complete project in its [monorepo on GitHub](https://github.com/jboetticher/complete-example-dapp){target=_blank}.  
 
-![DApp End Result](/images/tutorials/eth-api/how-to-build-a-dapp/how-to-build-a-dapp-2.png)
+![DApp End Result](/images/tutorials/eth-api/how-to-build-a-dapp/how-to-build-a-dapp-2.webp)
 
 ## Checking Prerequisites {: #checking-prerequisites } 
 
@@ -657,7 +657,7 @@ function App() {
 
 Our frontend should now display the correct data!  
 
-![Displaying data](/images/tutorials/eth-api/how-to-build-a-dapp/how-to-build-a-dapp-3.png)
+![Displaying data](/images/tutorials/eth-api/how-to-build-a-dapp/how-to-build-a-dapp-3.webp)
 
 !!! challenge
     There's additonal information that could be helpful to display, such as the amount of tokens that the connected account currently has: `balanceOf(address)`. Can you add that to the frontend yourself?
@@ -872,7 +872,7 @@ function App() {
     export default App;
     ```
 
-![DApp with the Minting section](/images/tutorials/eth-api/how-to-build-a-dapp/how-to-build-a-dapp-4.png)  
+![DApp with the Minting section](/images/tutorials/eth-api/how-to-build-a-dapp/how-to-build-a-dapp-4.webp)  
 
 If you try entering a value like **0.1** and press the button, a MetaMask prompt should occur. Try it out!  
 
@@ -1103,7 +1103,7 @@ function App() {
 
 And, if you've done any transactions, you'll see that they'll pop up!  
 
-![Finished DApp](/images/tutorials/eth-api/how-to-build-a-dapp/how-to-build-a-dapp-5.png)
+![Finished DApp](/images/tutorials/eth-api/how-to-build-a-dapp/how-to-build-a-dapp-5.webp)
 
 Now you've implemented three main components of DApp frontends: reading from storage, sending transactions, and reading logs. With these building blocks as well as the knowledge you gained with smart contracts and nodes, you should be able to cover 80% of DApps.
 

@@ -75,7 +75,7 @@ Now that you have created the button, you need to add the `configureMoonbaseAlph
     };
     ```
 
-    ![Add accounts to MetaMask](/images/builders/integrations/wallets/metamask/metamask-1.png)
+    ![Add accounts to MetaMask](/images/builders/integrations/wallets/metamask/metamask-1.webp)
 
 3. Add Moonbase Alpha as a new chain by calling `wallet_addEthereumChain`. This will prompt the user to provide permission to add Moonbase Alpha as a custom network. Once the network has been successfully added, it will also prompt the user to then switch to Moonbase Alpha
 
@@ -112,7 +112,7 @@ Now that you have created the button, you need to add the `configureMoonbaseAlph
     };
     ```
 
-    ![Add and switch networks in MetaMask](/images/builders/integrations/wallets/metamask/metamask-2.png)
+    ![Add and switch networks in MetaMask](/images/builders/integrations/wallets/metamask/metamask-2.webp)
 
 So, now you should have a button that, on click, walks users through the entire process of connecting their MetaMask accounts to Moonbase Alpha.
 

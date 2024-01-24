@@ -11,7 +11,7 @@ description: Learn how to integrate WalletConnect into a DApp built on any of th
 
 WalletConnect establishes a remote connection between a DApp and mobile wallet by using a bridge server to relay payloads. The connection is initiated via a QR code displayed in a DApp, which will need to be scanned and approved by a mobile wallet. When a connection is established, the payloads between the DApp and wallet are encrypted through a shared key.
 
-![WalletConnect flow](/images/builders/integrations/wallets/walletconnect/walletconnect-1.png)
+![WalletConnect flow](/images/builders/integrations/wallets/walletconnect/walletconnect-1.webp)
 
 WalletConnect can also be used to establish a connection between a DApp and a desktop wallet. However, this guide will only cover a mobile wallet connection.
 
@@ -149,7 +149,7 @@ Now that you have the `connect` function setup, you can create a **Connect Walle
 
 To test out the code so far, if you haven't already you can run `npm start` to spin up a local instance of your DApp. Then click on **Connect Wallet**. The WalletConnect QR code modal will pop-up.
 
-![Scan QR code from DApp](/images/builders/integrations/wallets/walletconnect/walletconnect-2.png)
+![Scan QR code from DApp](/images/builders/integrations/wallets/walletconnect/walletconnect-2.webp)
 
 To establish the connection from MetaMask mobile, you can:
 
@@ -157,7 +157,7 @@ To establish the connection from MetaMask mobile, you can:
 2. A window will pop-up at the bottom of the screen and prompt you to connect to the DApp. Click **Connect**
 3. If you were able to successfully connect, you will see a pop-up in MetaMask that says **Connected to Moonbeam WalletConnect Demo App**
 
-![Connect WalletConnect on MetaMask mobile](/images/builders/integrations/wallets/walletconnect/walletconnect-3.png)
+![Connect WalletConnect on MetaMask mobile](/images/builders/integrations/wallets/walletconnect/walletconnect-3.webp)
 
 Currently, your DApp will still show the **Connect Wallet** button, so the next step will be to display a **Disconnect** button when connected instead. 
 
@@ -172,7 +172,7 @@ If at any time, you need to manually end a session, you can do so from MetaMask 
 3. To remove a specific session, you can hold down on the session
 4. A pop-up will appear at the bottom of the screen where you can then tap **End**.
 
-![End WalletConnect Session on MetaMask mobile](/images/builders/integrations/wallets/walletconnect/walletconnect-4.png)
+![End WalletConnect Session on MetaMask mobile](/images/builders/integrations/wallets/walletconnect/walletconnect-4.webp)
 
 Although this is important for development, this way of disconnecting a session can also be done by a user. The next couple of sections will cover the logic for how to handle disconnections from your DApp and from MetaMask mobile.
 
@@ -488,13 +488,13 @@ When you click on **Send Transaction**, a pop-up will appear in MetaMask mobile 
 1. To sign and send the transaction, you can click on **Confirm**
 2. If successful you should see a notification in the MetaMask mobile app
 
-![Send Transaction](/images/builders/integrations/wallets/walletconnect/walletconnect-5.png)
+![Send Transaction](/images/builders/integrations/wallets/walletconnect/walletconnect-5.webp)
 
 You can also confirm the transaction went through by searching for your account in a block explorer such as [Moonscan](https://moonbase.moonscan.io/){target=_blank}.
 
 ## Final Result {: #final-result }
 
-![DApp Final Result](/images/builders/integrations/wallets/walletconnect/walletconnect-6.png)
+![DApp Final Result](/images/builders/integrations/wallets/walletconnect/walletconnect-6.webp)
 
 To review the code for this tutorial in one place, you can check out the [moonbeam-walletconnect-demo GitHub repository](https://github.com/papermoonio/moonbeam-walletconnect-demo){target=_blank}.
 

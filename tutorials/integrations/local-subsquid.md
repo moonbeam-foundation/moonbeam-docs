@@ -64,7 +64,7 @@ To spin up a development node, which will pull the latest Docker image for Moonb
 
 This will start up our development node, which can be accessed on port 9944. Note that you do not have to use Docker; you can also [run a local node by compiling the Moonbeam binary](/builders/get-started/networks/moonbeam-dev/#getting-started-with-the-binary-file){target=_blank}.
 
-![Spin up a Moonbeam development node](/images/tutorials/integrations/local-subsquid/new/local-squid-1.png)
+![Spin up a Moonbeam development node](/images/tutorials/integrations/local-subsquid/new/local-squid-1.webp)
 
 Our development node comes with 10 prefunded accounts.
 
@@ -140,7 +140,7 @@ To compile the contract, you can run:
 npx hardhat compile
 ```
 
-![Compile contracts using Hardhat](/images/tutorials/integrations/local-subsquid/new/local-squid-2.png)
+![Compile contracts using Hardhat](/images/tutorials/integrations/local-subsquid/new/local-squid-2.webp)
 
 This command will compile our contract and generate an `artifacts` directory containing the ABI of the contract. To deploy our contract, we'll need to create a deployment script that deploys our ERC-20 contract and mints an initial supply of MYTOKs. We'll use Alith's account to deploy the contract, and we'll specify the initial supply to be 1000 MYTOK. The initial supply will be minted and sent to the contract owner, which is Alith.
 
@@ -168,7 +168,7 @@ Let's take the following steps to deploy our contract:
 
 The address of the deployed contract should be printed to the terminal. Save the address, as we'll need it to interact with the contract in the following section.
 
-![Deploy contracts using Hardhat](/images/tutorials/integrations/local-subsquid/new/local-squid-3.png)
+![Deploy contracts using Hardhat](/images/tutorials/integrations/local-subsquid/new/local-squid-3.webp)
 
 ### Transfer ERC-20s {: #transfer-erc-20s }
 
@@ -196,7 +196,7 @@ Since we'll be indexing `Transfer` events for our ERC-20, we'll need to send a f
 
 As each transaction is sent, you'll see a log printed to the terminal.
 
-![Send transactions using Hardhat](/images/tutorials/integrations/local-subsquid/new/local-squid-4.png)
+![Send transactions using Hardhat](/images/tutorials/integrations/local-subsquid/new/local-squid-4.webp)
 
 Now we can move on to creating our Squid to index the data on our local development node.
 
@@ -267,7 +267,7 @@ Next, we can use our contract's ABI to generate TypeScript interface classes. We
 sqd typegen
 ```
 
-![Run sqd typegen](/images/tutorials/integrations/local-subsquid/new/local-squid-5.png)
+![Run sqd typegen](/images/tutorials/integrations/local-subsquid/new/local-squid-5.webp)
 
 This will generate the related TypeScript interface classes in the `src/abi/erc20.ts` file. For this tutorial, we'll be accessing the `events` specifically.
 
@@ -300,7 +300,7 @@ The `.toLowerCase()` is critical because the Subsquid processor is case-sensitiv
 })
 ```
 
-![Run Subsquid commands](/images/tutorials/integrations/local-subsquid/new/local-squid-6.png)
+![Run Subsquid commands](/images/tutorials/integrations/local-subsquid/new/local-squid-6.webp)
 
 The Squid template comes with a variable for your RPC URL defined in your `.env` file. You can replace that with the RPC URL for your local development node. For demonstration purposes, the RPC URL for a local development node is hardcoded directly, as shown above. If you're setting the RPC URL in your `.env`, the respective line will look like this:
 
@@ -410,7 +410,7 @@ To run our indexer, we're going to run a series of `sqd` commands, as follows:
 
 In your terminal, you should see your indexer starting to process blocks!
 
-![Run sqd process](/images/tutorials/integrations/local-subsquid/new/local-squid-6.png)
+![Run sqd process](/images/tutorials/integrations/local-subsquid/new/local-squid-6.webp)
 
 If your Squid isn't indexing blocks properly, make sure that your development node is running with the `--sealing` flag. For this example, you should have set the flag as `--sealing 4000`, so that a block is produced every four seconds. You can feel free to edit the sealing interval as needed. Before you try to spin up your Squid again, run the following commands to restart your Squid:
 
@@ -450,7 +450,7 @@ And that's it! You can now run queries against your Squid on the GraphQL playgro
     --8<-- 'code/tutorials/integrations/local-subsquid/sample-query.graphql'
     ```
 
-![Running queries in GraphQL playground](/images/tutorials/integrations/local-subsquid/new/local-squid-7.png)
+![Running queries in GraphQL playground](/images/tutorials/integrations/local-subsquid/new/local-squid-7.webp)
 
 All of the transfers will be returned, including the transfer of the initial supply to Alith's account and the transfers from Alith to Baltathar, Charleth, Dorothy, and Ethan.
 

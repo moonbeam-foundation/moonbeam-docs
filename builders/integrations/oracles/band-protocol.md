@@ -175,11 +175,11 @@ For example, using [Remix](/builders/build/eth-api/dev-env/remix/){target=_blank
 
 After creating the file and compiling the contract, head to the **Deploy and Run Transactions** tab, enter the contract address (`0xf15c870344c1c02f5939a5C4926b7cDb90dEc655`) and click on **At Address**. Make sure you have set the **ENVIRONMENT** to **Injected Web3** so you are connected to Moonbase Alpha. 
 
-![Band Protocol Remix deploy](/images/builders/integrations/oracles/band/band-demo-1.png)
+![Band Protocol Remix deploy](/images/builders/integrations/oracles/band/band-demo-1.webp)
 
 This will create an instance of the demo contract that you can interact with. Use the functions `getPrice()` and `getMultiPrices()` to query the data of the corresponding pair.
 
-![Band Protocol Remix check price](/images/builders/integrations/oracles/band/band-demo-2.png)
+![Band Protocol Remix check price](/images/builders/integrations/oracles/band/band-demo-2.webp)
 
 ## BandChain.js JavaScript Helper Library {: #bandchainjs-javascript-helper-library } 
 
@@ -243,7 +243,7 @@ queryData();
 
 You can execute this code with a node, and the following `dataQuery` output should look like this:
 
-![Band Protocol JavaScript Library](/images/builders/integrations/oracles/band/band-console.png)
+![Band Protocol JavaScript Library](/images/builders/integrations/oracles/band/band-console.webp)
 
 Note that compared to the request done via smart contracts, the result is given directly in the correct units.
 

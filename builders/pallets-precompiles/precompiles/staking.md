@@ -151,14 +151,14 @@ The below example is demonstrated on Moonbase Alpha, however, similar steps can 
 1. Click on the **File explorer** tab
 2. Get a copy of [`StakingInterface.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol){target=_blank} and paste the file contents into a Remix file named `StakingInterface.sol`
 
-![Copying and Pasting the Staking Interface into Remix](/images/builders/pallets-precompiles/precompiles/staking/staking-1.png)
+![Copying and Pasting the Staking Interface into Remix](/images/builders/pallets-precompiles/precompiles/staking/staking-1.webp)
 
 ### Compile the Contract {: #compile-the-contract }
 
 1. Click on the **Compile** tab, second from top
 2. Then to compile the interface, click on **Compile StakingInterface.sol**
 
-![Compiling StakingInteface.sol](/images/builders/pallets-precompiles/precompiles/staking/staking-2.png)
+![Compiling StakingInteface.sol](/images/builders/pallets-precompiles/precompiles/staking/staking-2.webp)
 
 ### Access the Contract {: #access-the-contract }
 
@@ -168,7 +168,7 @@ The below example is demonstrated on Moonbase Alpha, however, similar steps can 
 4. Provide the address of the staking precompile for Moonbase Alpha: `{{networks.moonbase.precompiles.staking}}` and click **At Address**
 5. The Parachain Staking precompile will appear in the list of **Deployed Contracts**
 
-![Provide the address](/images/builders/pallets-precompiles/precompiles/staking/staking-3.png)
+![Provide the address](/images/builders/pallets-precompiles/precompiles/staking/staking-3.webp)
 
 ### Delegate a Collator with Auto-Compounding {: #delegate-a-collator }
 
@@ -185,7 +185,7 @@ The candidate delegation count is the number of delegations backing a specific c
 3. Click **call**
 4. After the call is complete, the results will be displayed
 
-![Call collator delegation count](/images/builders/pallets-precompiles/precompiles/staking/staking-4.png)
+![Call collator delegation count](/images/builders/pallets-precompiles/precompiles/staking/staking-4.webp)
 
 The auto-compounding delegation count is the amount of delegations that have auto-compounding configured. To determine the number of delegations that have auto-compounding set up, you can
 
@@ -194,7 +194,7 @@ The auto-compounding delegation count is the amount of delegations that have aut
 3. Click **call**
 4. After the call is complete, the results will be displayed
 
-![Get candidate auto-compounding delegation count](/images/builders/pallets-precompiles/precompiles/staking/staking-5.png)
+![Get candidate auto-compounding delegation count](/images/builders/pallets-precompiles/precompiles/staking/staking-5.webp)
 
 The last item you'll need to retrieve is your delegation count. If you don't know your existing number of delegations, you can easily get them by following these steps:
 
@@ -203,7 +203,7 @@ The last item you'll need to retrieve is your delegation count. If you don't kno
 3. Click **call**
 4. After the call is complete, the results will be displayed
 
-![Call delegator delegation count](/images/builders/pallets-precompiles/precompiles/staking/staking-6.png)
+![Call delegator delegation count](/images/builders/pallets-precompiles/precompiles/staking/staking-6.webp)
 
 Now that you have obtained the [candidate delegator count](#:~:text=To obtain the candidate delegator count), the [auto-compounding delegation count](#:~:text=To determine the number of delegations that have auto-compounding set up), and your [number of existing delegations](#:~:text=If you don't know your existing number of delegations), you have all of the information you need to delegate a candidate and set up auto-compounding. To get started:
 
@@ -217,7 +217,7 @@ Now that you have obtained the [candidate delegator count](#:~:text=To obtain th
 8. Press **transact**
 9. MetaMask will pop-up, you can review the details and confirm the transaction
 
-![Delegate a Collator](/images/builders/pallets-precompiles/precompiles/staking/staking-7.png)
+![Delegate a Collator](/images/builders/pallets-precompiles/precompiles/staking/staking-7.webp)
 
 If you want to delegate without setting up auto-compounding, you can follow the previous steps, but instead of using **delegateWithAutoCompound**, you can use the **delegate** extrinsic.
 
@@ -231,7 +231,7 @@ Navigate to **Accounts** and then **Address Book**, click on **Add contact**, an
 2. Provide a nickname for the account
 3. Click **Save**
 
-![Add to Address Book](/images/builders/pallets-precompiles/precompiles/staking/staking-8.png)
+![Add to Address Book](/images/builders/pallets-precompiles/precompiles/staking/staking-8.webp)
 
 To verify your delegation was successful, head to [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/chainstate){target=_blank} and navigate to **Developer** and then **Chain State**
 
@@ -244,7 +244,7 @@ To verify your delegation was successful, head to [Polkadot.js Apps](https://pol
 !!! note
     You do not have to enter anything in the **blockhash to query at** field if you are looking for an overview of your delegations.
 
-![Verify delegation](/images/builders/pallets-precompiles/precompiles/staking/staking-9.png)
+![Verify delegation](/images/builders/pallets-precompiles/precompiles/staking/staking-9.webp)
 
 ### Confirm Auto-Compounding Percentage {: #confirm-auto-compounding }
 
@@ -256,7 +256,7 @@ You can confirm the percentage of rewards you've set to auto-compound in Remix u
 4. Click **call**
 5. The response will appear below the **call** button
 
-![Verify auto-compound percentage](/images/builders/pallets-precompiles/precompiles/staking/staking-10.png)
+![Verify auto-compound percentage](/images/builders/pallets-precompiles/precompiles/staking/staking-10.webp)
 
 ### Set or Change the Auto-Compounding Percentage {: #set-or-change-auto-compounding }
 
@@ -274,7 +274,7 @@ Once you have the necessary information, you can take the following steps in Rem
 6. Press **transact**
 7. MetaMask will pop-up, you can review the details and confirm the transaction
 
-![Set or update auto-compound percentage](/images/builders/pallets-precompiles/precompiles/staking/staking-11.png)
+![Set or update auto-compound percentage](/images/builders/pallets-precompiles/precompiles/staking/staking-11.webp)
 
 ### Revoke a Delegation {: #revoke-a-delegation }
 
@@ -291,7 +291,7 @@ To revoke a delegation and receive your tokens back, head back over to Remix, th
 3. Click **transact**
 4. MetaMask will pop, you can review the transaction details, and click **Confirm**
 
-![Revoke delegation](/images/builders/pallets-precompiles/precompiles/staking/staking-12.png)
+![Revoke delegation](/images/builders/pallets-precompiles/precompiles/staking/staking-12.webp)
 
 Once the transaction is confirmed, you must wait the duration of the exit delay before you can execute and revoke the delegation request. If you try to revoke it before the exit delay is up, your extrinsic will fail.
 

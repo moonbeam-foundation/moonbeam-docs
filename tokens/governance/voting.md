@@ -62,7 +62,7 @@ This guide will cover how to vote on public referenda, as seen in the steps high
 
 You can find a full explanation of the [happy path for an OpenGov proposal on the Governance overview page](/learn/features/governance/#roadmap-of-a-proposal-v2){target=_blank}.
 
-![Proposal Roadmap](/images/tokens/governance/voting/proposal-roadmap.png)
+![Proposal Roadmap](/images/tokens/governance/voting/proposal-roadmap.webp)
 
 ## Forum Discussion {: #forum-discussion}
 
@@ -70,7 +70,7 @@ A vote on a democracy referendum is a binary outcome. However, a token holder's 
 
 The forum serves the critical role of providing a platform for discussion and allowing proposers to receive feedback from the community prior to an on-chain action. Creating a post on the forum is quick and easy, as shown in the [Using the Moonbeam Community Forum](https://moonbeam.network/blog/using-moonbeam-community-forum/){target=_blank} guide. There are categories corresponding to each type of proposal, including democracy, treasury, and grant proposals. While this step is optional, explaining the details of the proposal and following up with any questions raised may increase the chances of the initiative being accepted and subsequently passed by the community.
 
-![Moonbeam's Community Forum home](/images/tokens/governance/voting/vote-1.png)
+![Moonbeam's Community Forum home](/images/tokens/governance/voting/vote-1.webp)
 
 ## Voting on a Referendum {: #voting-on-a-referendum }
 
@@ -78,7 +78,7 @@ This section goes over the process of voting on a public referendum in OpenGov (
 
 To vote on a proposal on the network, you need to use the Polkadot.js Apps interface. To do so, you need to import an Ethereum-style account first (H160 address), which you can do by following the [Creating or Importing an H160 Account](/tokens/connect/polkadotjs/#creating-or-importing-an-h160-account){target=_blank} guide. For this example, three accounts were imported and named with super original names: Alice, Bob, and Charlie.
 
-![Accounts in Polkadot.js](/images/tokens/governance/proposals/proposals-3.png)
+![Accounts in Polkadot.js](/images/tokens/governance/proposals/proposals-3.webp)
 
 To get started, you'll need to navigate to [Moonbase Alpha's Polkadot.js Apps interface](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network){target=_blank}. Everything related to governance lives under the **Governance** tab. To view all of the referenda, you can choose **Referenda** from the **Governance** dropdown. On the **Referenda** page, you'll see a list of referenda organized by Track. To view the details of a specific referendum, you can click on the arrow next to the description. The number next to the action and description is called the referendum index.
 
@@ -90,7 +90,7 @@ For example, a referendum that is in the General Admin Track has a Decision Depo
 
 From the [list of referenda on Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/referenda){target=_blank}, you may notice that some proposals are in the **Preparing** state. If a referendum requires the Decision Deposit to be submitted, you'll see a **Decision deposit** button. To submit the deposit, you can go ahead and click on this button.
 
-![To start to submit a Decision Deposit for a referendum, click on the "Decision deposit" button on Polkadot.js Apps.](/images/tokens/governance/voting/vote-2.png)
+![To start to submit a Decision Deposit for a referendum, click on the "Decision deposit" button on Polkadot.js Apps.](/images/tokens/governance/voting/vote-2.webp)
 
 Then take the following steps to submit the deposit from a specific account:
 
@@ -98,7 +98,7 @@ Then take the following steps to submit the deposit from a specific account:
 2. The **referendum id** and **decision deposit** fields will automatically be populated for you based on the referendum and Track it belongs to
 3. Click **Place deposit** and sign the transaction
 
-![To submit the Decision Deposit, choose the account to place the deposit and click on the "Place deposit" button on Polkadot.js Apps.](/images/tokens/governance/voting/vote-3.png)
+![To submit the Decision Deposit, choose the account to place the deposit and click on the "Place deposit" button on Polkadot.js Apps.](/images/tokens/governance/voting/vote-3.webp)
 
 Once the deposit has been placed, Polkadot.js Apps will update and display the account that paid the Decision Deposit along with the amount of the deposit. Now this referendum is one step closer to meeting the criteria of the Lead-in Period.
 
@@ -110,7 +110,7 @@ As you may have noticed, voting is not required in the Lead-in Period. However, 
 
 To vote and lock tokens either in favor of or against a referendum, you can get started by clicking on the **Vote** button next to the referendum you want to vote on.
 
-![To vote on a referendum, click on the "Vote" button on Polkadot.js Apps.](/images/tokens/governance/voting/vote-4.png)
+![To vote on a referendum, click on the "Vote" button on Polkadot.js Apps.](/images/tokens/governance/voting/vote-4.webp)
 
 Then you can take the following steps to fill in the details of the vote:
 
@@ -120,14 +120,14 @@ Then you can take the following steps to fill in the details of the vote:
 4. Set the vote conviction, which determines the weight of your vote (`vote_weight = tokens * conviction_multiplier`). Please refer to the [Conviction multiplier](/learn/features/governance/#conviction-multiplier){target=_blank} docs for more information
 5. Click **Vote** and sign the transaction
 
-![To submit a vote on a referendum, fill out the details of the vote and click on the "Vote" button on Polkadot.js Apps.](/images/tokens/governance/voting/vote-5.png)
+![To submit a vote on a referendum, fill out the details of the vote and click on the "Vote" button on Polkadot.js Apps.](/images/tokens/governance/voting/vote-5.webp)
 
 !!! note
     The lockup periods shown in the previous image are not to be taken as references as they are subject to change.
 
 To see how your vote and all of the other votes for a referendum impacted the Approval and Support curves, you can click on the arrow next to the **Vote** button. You'll notice there are two charts, one for each curve. If you hover over the charts, you can see the minimum Approval or Support required for a specific block along with the current Approval or Support.
 
-![View the Approval and Support curves for a referendum on Polkadot.js Apps.](/images/tokens/governance/voting/vote-6.png)
+![View the Approval and Support curves for a referendum on Polkadot.js Apps.](/images/tokens/governance/voting/vote-6.webp)
 
 A proposal in the General Admin Track on Moonbase Alpha would have the following characteristics:
 
@@ -140,7 +140,7 @@ A proposal in the General Admin Track on Moonbase Alpha would have the following
 
 In the following image, you'll notice enough Approval and Support have been received, so the Confirm Period is underway. If the referendum maintains the Approval and Support levels, at block 124,962, the Confirm Period will end, and then the Enactment Period will begin. You can hover over the charts to find out more information on each of these periods. Assuming this referendum maintains the levels of Approval and Support it has received, the Enactment Period will end at block 132,262, and the proposal action will be dispatched.
 
-![View the Approval and Support curves for a referendum on Polkadot.js Apps.](/images/tokens/governance/voting/vote-7.png)
+![View the Approval and Support curves for a referendum on Polkadot.js Apps.](/images/tokens/governance/voting/vote-7.webp)
 
 If the referendum doesn't continuously receive enough Approval and Support during the Confirm Period, it still has a chance to pass as long as the Approval and Support requirements are met again and continuously for the duration of the Confirm Period. If a referendum enters the Confirm Period but the Decide Period is set to end before the Confirm Period is over, the Decide Period will actually be extended until the end of the Confirm Period. If the Decide Period ends and the referendum still hasn't received enough Approval and Support, the referendum will be rejected, and the Decision Deposit can be refunded.
 
@@ -154,7 +154,7 @@ With the introduction of OpenGov (Governance v2), token holders can even delegat
 
 From the [referenda page on Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/referenda){target=_blank}, you can click **Delegate** to get started.
 
-![To submit a delegate vote on a referendum, click on the "Delegate" button on Polkadot.js Apps.](/images/tokens/governance/voting/vote-8.png)
+![To submit a delegate vote on a referendum, click on the "Delegate" button on Polkadot.js Apps.](/images/tokens/governance/voting/vote-8.webp)
 
 Then you can take the following steps to fill in the details of the delegation:
 
@@ -166,7 +166,7 @@ Then you can take the following steps to fill in the details of the delegation:
 6. On the next screen, select the **delegate to address**, which should be the account that you wish to delegate your vote to
 7. Click **Delegate** and sign the transaction
 
-![Submit a delegate vote on a referendum by filling in all of the delegation details and clicking on the "Delegate" button on Polkadot.js Apps.](/images/tokens/governance/voting/vote-9.png)
+![Submit a delegate vote on a referendum by filling in all of the delegation details and clicking on the "Delegate" button on Polkadot.js Apps.](/images/tokens/governance/voting/vote-9.webp)
 
 Now the account you selected to delegate your vote to will be able to vote on your behalf. Once this account votes, the total vote weight delegated will be allocated to the option that the account selected. For this example, Baltahar can vote in favor of a referendum with a total weight of 20000 (10000 tokens with an x2 Conviction factor) using the vote weight that Charleth delegated to him.
 
@@ -179,20 +179,20 @@ To undelegate a delegation, you'll need to head to the **Developer** tab and cli
 3. Enter the **class** of the Origin. For the General Admin Track, it is `2`. For a complete list of Track IDs, refer to the [OpenGov section of the governance overview page](/learn/features/governance/#general-parameters-by-track){target=_blank}
 4. Click **Submit transaction** and sign the transaction
 
-![Undelegate a vote on Polkadot.js Apps.](/images/tokens/governance/voting/vote-10.png)
+![Undelegate a vote on Polkadot.js Apps.](/images/tokens/governance/voting/vote-10.webp)
 
 ### Refunding the Decision Deposit {: #refund-the-decision-deposit }
 
 If a referendum has been approved or rejected, the Decision Deposit will be eligible to be refunded, as long as it was not rejected due to it being a malicious proposal. Malicious proposals will result in the Decision Deposit being slashed. Any token holder can trigger the refund of the deposit back to the original account that placed the deposit. To refund the deposit, you can take the following steps on the [referenda page on Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/referenda){target=_blank}. If the referendum is eligible and the deposit hasn't already been refunded, you'll see a **Refund deposit** button. So, you can go ahead and click that button to get started.
 
-![Get started refunding a Decision Deposit from a passed referendum on Polkadot.js Apps.](/images/tokens/governance/voting/vote-11.png)
+![Get started refunding a Decision Deposit from a passed referendum on Polkadot.js Apps.](/images/tokens/governance/voting/vote-11.webp)
 
 Then, to submit the refund transaction, you can:
 
 1. Choose the account for which you want to trigger the refund. This does not need to be the account that initially placed the deposit
 2. Click **Refund deposit** and sign the transaction
 
-![Refund the Decision Deposit on Polkadot.js Apps.](/images/tokens/governance/voting/vote-12.png)
+![Refund the Decision Deposit on Polkadot.js Apps.](/images/tokens/governance/voting/vote-12.webp)
 
 ### Unlocking Locked Tokens {: #unlocking-locked-tokens }
 
@@ -202,7 +202,7 @@ When token holders vote, the tokens used are locked and cannot be transferred. Y
  - Locked because of the Conviction multiplier selected, displaying the number of blocks and time left
  - Lock expired, meaning that you can now get your tokens back
 
-![View locked balances on the account page of Polkadot.js Apps.](/images/tokens/governance/voting/vote-13.png)
+![View locked balances on the account page of Polkadot.js Apps.](/images/tokens/governance/voting/vote-13.webp)
 
 Once the lock has expired, you can request your tokens back. To do so, navigate to the **Extrinsics** menu under the **Developers** tab. Here, two different extrinsics need to be sent. First, you need to provide the following information:
 
@@ -212,7 +212,7 @@ Once the lock has expired, you can request your tokens back. To do so, navigate 
  5. Enter the referendum index. This is the number that appeared on the left-hand side of the **Referenda** tab
  6. Click the **Submit Transaction** button and sign the transaction
 
-![Submit an extrinsic to remove your vote on a referendum in Polkadot.js Apps.](/images/tokens/governance/voting/vote-14.png)
+![Submit an extrinsic to remove your vote on a referendum in Polkadot.js Apps.](/images/tokens/governance/voting/vote-14.webp)
 
 For the next extrinsic, you need to provide the following information:
 
@@ -223,6 +223,6 @@ For the next extrinsic, you need to provide the following information:
  5. Enter the target account that will receive the unlocked tokens. In this case, the tokens will be returned to Alice
  6. Click the **Submit Transaction** button and sign the transaction
 
-![Submit an extrinsic to unlock your tokens that were locked in referenda in Polkadot.js Apps.](/images/tokens/governance/voting/vote-15.png)
+![Submit an extrinsic to unlock your tokens that were locked in referenda in Polkadot.js Apps.](/images/tokens/governance/voting/vote-15.webp)
 
 Once the transaction goes through, the locked tokens should be unlocked. To double-check, you can go back to the **Accounts** tab and see that your full balance is now **transferable**.

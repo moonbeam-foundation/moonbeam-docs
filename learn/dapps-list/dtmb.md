@@ -11,7 +11,7 @@ description: How you can list your Moonbeam or Moonriver project on Downtown Moo
 
 You can filter DApps by network, or check out their homepage to see a list of the newly updated DApps, top defi projects, top NFT projects, or top gaming projects. Prior to the Downtown Moonbeam integration, a [crowd-sourced Moonbeam DApps listing](https://github.com/moonbeam-foundation/moonbeam-project-directory){target=_blank} was maintained as part of the Moonbeam docs site. That registry is deprecated and replaced by the listing platforms under the [Dapps List](/learn/dapps-list/){target=_blank} section.
 
-![Downtown Moonbeam Home Page](/images/learn/dapps-list/dtmb/dtmb-1.png)
+![Downtown Moonbeam Home Page](/images/learn/dapps-list/dtmb/dtmb-1.webp)
 
 You can [submit your project](https://www.dtmb.xyz/submit){target=_blank} to Downtown Moonbeam by providing background on your project including a bio and description, website URL, logo, social media links, and more. Only a subset of the fields are required, but you are encouraged to complete as many as possible.
 
@@ -42,7 +42,7 @@ You can get started by heading to the [Submit Project](https://www.dtmb.xyz/subm
  7. Add your contact information
  8. Click **Submit**
 
-![How to Submit your DApp](/images/learn/dapps-list/dtmb/dtmb-2.png)
+![How to Submit your DApp](/images/learn/dapps-list/dtmb/dtmb-2.webp)
 
 Submissions are reviewed by the Downtown Moonbeam team and will be published if the DApp is deemed suitable for listing. For any Moonbeam-related questions you can reach out to us in [Discord](https://discord.gg/moonbeam){target=_blank}. For Downtown Moonbeam-related questions, support is available through the [Downtown Moonbeam Telegram](https://t.me/dtmb_xyz){target=_blank}.
 

@@ -19,7 +19,7 @@ Currently, Moonbeam has the following configurations:
 - Has an active set of {{ networks.moonbeam.staking.max_candidates }} collators
 - Has infrastructure providers that provide [API endpoints](/builders/get-started/endpoints/){target=_blank} to connect to the network. Projects can also [run their own node](/node-operators/networks/run-a-node/){target=_blank} to have access to their own private endpoints
 
-![Moonbeam Diagram](/images/learn/platform/networks/moonbeam-diagram.png)
+![Moonbeam Diagram](/images/learn/platform/networks/moonbeam-diagram.webp)
 
 Some important variables/configurations to note include (still subject to change):
 

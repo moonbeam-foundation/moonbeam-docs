@@ -125,14 +125,14 @@ The below example is demonstrated on Moonbase Alpha, however, similar steps can 
 1. Click on the **File explorer** tab
 2. Paste a copy of [`Referenda.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/referenda/Referenda.sol){target=_blank} into a [Remix file](https://remix.ethereum.org/){target=_blank} named `Referenda.sol`
 
-![Copy and paste the Referenda Solidity interface into Remix.](/images/builders/pallets-precompiles/precompiles/referenda/referenda-1.png)
+![Copy and paste the Referenda Solidity interface into Remix.](/images/builders/pallets-precompiles/precompiles/referenda/referenda-1.webp)
 
 ### Compile the Contract {: #compile-the-contract }
 
 1. Click on the **Compile** tab, second from top
 2. Then to compile the interface, click on **Compile Referenda.sol**
 
-![Compile the Referenda.sol interface using Remix.](/images/builders/pallets-precompiles/precompiles/referenda/referenda-2.png)
+![Compile the Referenda.sol interface using Remix.](/images/builders/pallets-precompiles/precompiles/referenda/referenda-2.webp)
 
 ### Access the Contract {: #access-the-contract }
 
@@ -142,7 +142,7 @@ The below example is demonstrated on Moonbase Alpha, however, similar steps can 
 4. Provide the address of the Referenda Precompile for Moonbase Alpha: `{{ networks.moonbase.precompiles.referenda }}` and click **At Address**
 5. The Referenda Precompile will appear in the list of **Deployed Contracts**
 
-![Access the Referenda.sol interface by provide the precompile's address.](/images/builders/pallets-precompiles/precompiles/referenda/referenda-3.png)
+![Access the Referenda.sol interface by provide the precompile's address.](/images/builders/pallets-precompiles/precompiles/referenda/referenda-3.webp)
 
 ### Submit a Proposal {: #submit-a-proposal }
 
@@ -162,7 +162,7 @@ Once you have the Track ID, preimage hash, and preimage length, you can go ahead
 6. Enter the block you want the proposal to be executed at
 7. Press **transact** and confirm the transaction in MetaMask
 
-![Submit the proposal using the submitAt function of the Referenda Precompile.](/images/builders/pallets-precompiles/precompiles/referenda/referenda-4.png)
+![Submit the proposal using the submitAt function of the Referenda Precompile.](/images/builders/pallets-precompiles/precompiles/referenda/referenda-4.webp)
 
 After your transaction has been confirmed you'll be able to see the proposal listed on the **Referenda** page of [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network%2Fpublic-ws#/referenda){target=_blank}. You can also check out your proposal on [Polkassembly](https://moonbase.polkassembly.io/opengov){target=_blank}, which sorts proposals by the Track they belong to.
 
@@ -178,7 +178,7 @@ To submit the deposit, you can take the following steps:
 2. Enter the index of the referendum
 3. Press **transact** and confirm the transaction in MetaMask
 
-![Place the Decision Deposit for a Referenda using the placeDecisionDeposit function of the Referenda Precompile.](/images/builders/pallets-precompiles/precompiles/referenda/referenda-5.png)
+![Place the Decision Deposit for a Referenda using the placeDecisionDeposit function of the Referenda Precompile.](/images/builders/pallets-precompiles/precompiles/referenda/referenda-5.webp)
 
 Now that the Decision Deposit has been placed, the referendum is one step closer to moving to the Decide Period. There will also need to be enough Capacity in the designated Track and the duration of the Prepare Period must pass for it to move to the Decide Period.
 
@@ -194,6 +194,6 @@ To refund the Decision Deposit, you can use the `refundDecisionDeposit` function
 2. Enter the index of the referendum
 3. Press **transact** and confirm the transaction in MetaMask
 
-![Refund the Decision Deposit for a Referenda using the placeDecisionDeposit function of the Referenda Precompile.](/images/builders/pallets-precompiles/precompiles/referenda/referenda-6.png)
+![Refund the Decision Deposit for a Referenda using the placeDecisionDeposit function of the Referenda Precompile.](/images/builders/pallets-precompiles/precompiles/referenda/referenda-6.webp)
 
 And that's it! You've completed your introduction to the Referenda Precompile. There are a few more functions that are documented in [`Referenda.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/referenda/Referenda.sol){target=_blank} — feel free to reach out on [Discord](https://discord.gg/moonbeam){target=_blank} if you have any questions about those functions or any other aspect of the Referenda Precompile.

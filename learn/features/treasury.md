@@ -74,4 +74,4 @@ Once the proposal is in a spend period, the funds will get distributed to the be
 
 The happy path for a treasury proposal is shown in the following diagram:
 
-![Treasury Proposal Happy Path Diagram](/images/learn/features/treasury/treasury-proposal-roadmap.png)
+![Treasury Proposal Happy Path Diagram](/images/learn/features/treasury/treasury-proposal-roadmap.webp)

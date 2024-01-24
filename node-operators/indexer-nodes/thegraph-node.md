@@ -47,7 +47,7 @@ Next, execute the `setup.sh` file. This will pull all the necessary Docker image
 
 The tail end from the logs of the previous command should look something similar to:
 
-![Graph Node setup](/images/node-operators/indexer-nodes/the-graph/the-graph-node-1.png)
+![Graph Node setup](/images/node-operators/indexer-nodes/the-graph/the-graph-node-1.webp)
 
 Once everything is set up, you need to modify the "Ethereum environment" inside the `docker-compose.yml` file, so that it points to the endpoint of the node you are running this Graph Node against. Note that the `setup.sh` file detects the `Host IP` and writes its value, so you'll need to modify it accordingly.
 
@@ -124,11 +124,11 @@ Lastly, to run the Graph Node, just run the following command:
 docker-compose up
 ```
 
-![Graph Node compose up](/images/node-operators/indexer-nodes/the-graph/the-graph-node-2.png)
+![Graph Node compose up](/images/node-operators/indexer-nodes/the-graph/the-graph-node-2.webp)
 
 After a while, you should see logs related to the Graph Node syncing with the latest available block in the network:
 
-![Graph Node logs](/images/node-operators/indexer-nodes/the-graph/the-graph-node-3.png)
+![Graph Node logs](/images/node-operators/indexer-nodes/the-graph/the-graph-node-3.webp)
 
 And that is it! You have a Graph Node running against the Moonbase Alpha TestNet. Feel free to adapt this example for Moonbeam and Moonriver as well.
 

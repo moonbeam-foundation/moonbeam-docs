@@ -15,7 +15,7 @@ The Ethereum precompiled contracts contain complex functionality that is computa
 
 The Moonbeam-specific precompiles can be interacted with through familiar and easy-to-use Solidity interfaces using the Ethereum API, which are ultimately used to interact with the underlying Substrate interface. This flow is depicted in the following diagram:
 
-![Precompiled Contracts Diagram](/images/builders/pallets-precompiles/precompiles/overview/overview-1.png)
+![Precompiled Contracts Diagram](/images/builders/pallets-precompiles/precompiles/overview/overview-1.webp)
 
 --8<-- 'text/builders/pallets-precompiles/precompiles/security.md'
 

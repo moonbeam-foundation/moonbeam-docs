@@ -73,7 +73,7 @@ If you haven't already done so, you can follow the guide on [Running a Tracing N
 
 If you have a running node, you should see a similar terminal log:
 
-![Debug API](/images/builders/build/eth-api/debug-trace/debug-trace-1.png)
+![Debug API](/images/builders/build/eth-api/debug-trace/debug-trace-1.webp)
 
 ## Using the Debug API {: #using-the-debug-api }
 
@@ -91,7 +91,7 @@ curl {{ networks.development.rpc_url }} -H "Content-Type:application/json;charse
 
 The node responds with the step-by-step replayed transaction information (the response was cropped as it is quite long):
 
-![Trace Debug Node Running](/images/builders/build/eth-api/debug-trace/debug-trace-2.png)
+![Trace Debug Node Running](/images/builders/build/eth-api/debug-trace/debug-trace-2.webp)
 
 If you're using the `debug_traceBlockByNumber` or `debug_traceBlockByHash` methods, you will need to add `{"tracer": "callTracer"}` to the `"params"`. The `callTracer` will only return transactions and subcalls. Otherwise, the tracer will attempt to default to `raw`, which is not supported at this time due to the heavy nature of the call. For example, for the `debug_traceBlockByHash` method, you can make the following JSON-RPC request in your terminal (in this case, for the block hash `0x2633b66050c99d80f65fe96de6485fd407b87f0f59b485c33ab8f119e2c6f255`):
 
@@ -120,7 +120,7 @@ curl {{ networks.development.rpc_url }} -H "Content-Type:application/json;charse
 
 The node responds with the trace information corresponding to the filter (the response was cropped as it is quite long).
 
-![Trace Filter Node Running](/images/builders/build/eth-api/debug-trace/debug-trace-3.png)
+![Trace Filter Node Running](/images/builders/build/eth-api/debug-trace/debug-trace-3.webp)
 
 ## Using the Txpool API {: #using-the-txpool-api }
 
@@ -137,4 +137,4 @@ curl {{ networks.development.rpc_url }} -H "Content-Type:application/json;charse
 
 For this example, the `txpool_status` method will return the number of transactions currently pending or queued.
 
-![Txpool Request and Response](/images/builders/build/eth-api/debug-trace/debug-trace-4.png)
+![Txpool Request and Response](/images/builders/build/eth-api/debug-trace/debug-trace-4.webp)

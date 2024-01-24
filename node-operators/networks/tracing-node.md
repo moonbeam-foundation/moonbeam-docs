@@ -170,7 +170,7 @@ The complete command for running a tracing node is as follows:
 
 You should see a terminal log similar to the following if you spun up a Moonbase Alpha tracing node:
 
-![Debug API](/images/builders/build/eth-api/debug-trace/debug-trace-1.png)
+![Debug API](/images/builders/build/eth-api/debug-trace/debug-trace-1.webp)
 
 ## Run a Tracing Node with Systemd {: #run-a-tracing-node-with-systemd }
 
@@ -374,7 +374,7 @@ The next step is to create the systemd configuration file, you'll need to:
 
 --8<-- 'text/node-operators/networks/run-a-node/systemd/run-service.md'
 
-![Service Status](/images/node-operators/networks/tracing-node/tracing-1.png)
+![Service Status](/images/node-operators/networks/tracing-node/tracing-1.webp)
 
 You can also run the following command to see logs of the tracing node spinning up:
 
@@ -384,7 +384,7 @@ journalctl -f -u moonbeam.service
 
 Your terminal should display logs similar to the following:
 
-![Service logs of wasm rutime overrides being processed](/images/node-operators/networks/tracing-node/tracing-2.png)
+![Service logs of wasm rutime overrides being processed](/images/node-operators/networks/tracing-node/tracing-2.webp)
 
 ## Using a Tracing Node {: #using-a-tracing-node }
 

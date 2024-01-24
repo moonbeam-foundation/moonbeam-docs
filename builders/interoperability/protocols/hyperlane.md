@@ -11,7 +11,7 @@ description: Learn about Hyperlane, a GMP protocol for cross-chain asset transfe
 
 Using a method called [Sovereign consensus](https://docs.hyperlane.xyz/hyperlane-docs-1/protocol/security/Sovereign-consensus){target=_blank}, Hyperlane allows developers to configure the method by which messages are sent and validated across chains. Hyperlane is composed of validators, relayers, and watchtowers. Validators will watch for and confirm cross-chain messages. Relayers spend the gas to send messages across chains. Watchtowers perform checks to ensure that validators are good-faith actors, securing the protocol. Take a look at the tech stack diagram and their [protocol documentation](https://docs.hyperlane.xyz/hyperlane-docs-1/protocol/overview){target=_blank} for more details.
 
-![Hyperlane Technology Stack diagram](/images/builders/interoperability/protocols/hyperlane/hyperlane-1.png)
+![Hyperlane Technology Stack diagram](/images/builders/interoperability/protocols/hyperlane/hyperlane-1.webp)
 
 The Hyperlane APIs provide a rich suite for developing Web3 applications, ensuring that developers have the tools they need for building. With these tools and APIs, developers can use the Hyperlane protocol and its APIs to write dApps that can be easily deployed across all Hyperlane-connected ecosystems.
 

@@ -229,7 +229,7 @@ If the transaction was successful, in your terminal, you'll see the transaction 
 
 You can also use the `balances.js` script to check that the balances for the origin and receiving accounts have changed. The entire workflow would look like this:
 
-![Send Tx Web3js](/images/builders/build/eth-api/libraries/web3js/web3js-1.png)
+![Send Tx Web3js](/images/builders/build/eth-api/libraries/web3js/web3js-1.webp)
 
 ### Common Errors When Sending Transactions {: #common-errors }
 
@@ -351,7 +351,7 @@ node deploy.js
 
 If successful, the contract's address will be displayed in the terminal.
 
-![Deploy Contract Web3js](/images/builders/build/eth-api/libraries/web3js/web3js-2.png)
+![Deploy Contract Web3js](/images/builders/build/eth-api/libraries/web3js/web3js-2.webp)
 
 ### Read Contract Data (Call Methods) {: #read-contract-data }
 
@@ -498,7 +498,7 @@ node increment.js
 
 If successful, the transaction hash will be displayed in the terminal. You can use the `get.js` script alongside the `increment.js` script to make sure that value is changing as expected:
 
-![Increment Contract Web3js](/images/builders/build/eth-api/libraries/web3js/web3js-3.png)
+![Increment Contract Web3js](/images/builders/build/eth-api/libraries/web3js/web3js-3.webp)
 
 Next, you can open the `reset.js` file and take the following steps to create the script:
 
@@ -575,6 +575,6 @@ node reset.js
 
 If successful, the transaction hash will be displayed in the terminal. You can use the `get.js` script alongside the `reset.js` script to make sure that value is changing as expected:
 
-![Reset Contract Web3js](/images/builders/build/eth-api/libraries/web3js/web3js-4.png)
+![Reset Contract Web3js](/images/builders/build/eth-api/libraries/web3js/web3js-4.webp)
 
 --8<-- 'text/_disclaimers/third-party-content.md'

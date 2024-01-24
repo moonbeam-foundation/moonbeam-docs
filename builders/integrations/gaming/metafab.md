@@ -44,7 +44,7 @@ The SDKs available are as follows:
 
 The MetaFab Dashboard is a home base for a quick game overview, players, currencies, items, shops, loot boxes, contracts, and more. Intuitive management functionality, such as configuration and creation (plus more), is available. However, most opt to use their dashboard as a hub and work directly with the endpoints and code. [Create a dashboard and retrieve your developer keys](https://dashboard.trymetafab.com/auth/register){target=_blank}.
 
-![MetaFab's developer dashboard.](/images/builders/integrations/gaming/metafab/metafab-1.png)
+![MetaFab's developer dashboard.](/images/builders/integrations/gaming/metafab/metafab-1.webp)
 
 ## Players & Wallets {: #players-wallets }
 
@@ -58,7 +58,7 @@ MetaFab and games built on MetaFab never store private keys. With MetaFab, you c
 
 Games can either brand MetaFab’s out-of-the-box and fully customizable player authentication, registration, and wallet connection flow, or build their own from the ground up as needed.
 
-![Register your game with MetaFab.](/images/builders/integrations/gaming/metafab/metafab-2.png)
+![Register your game with MetaFab.](/images/builders/integrations/gaming/metafab/metafab-2.webp)
 
 **White-label authentication and registration**: Quickly design a flow to match a game's theme and domain and automatically handle player login, registration, and relaying of credentials, such as a player's ID and access token. Check out a [demo of our unbranded authentication page](https://connect.trymetafab.com/?chain=MATIC&flow=register&game=880c664b-3ce4-40a2-bf61-83b174ce5f94&redirectUri=https://trymetafab.com){target=_blank}.
 
@@ -68,7 +68,7 @@ Games can either brand MetaFab’s out-of-the-box and fully customizable player 
 
 Support a network of games with a consistent and standard SSO authentication flow. Enable new degrees of interoperability, frictionless player experiences, and more through a highly configurable organizational structure within an ecosystem of owned, portfolio, or partner games.
 
-![MetaFab's instrastructure diagram.](/images/builders/integrations/gaming/metafab/metafab-3.png)
+![MetaFab's instrastructure diagram.](/images/builders/integrations/gaming/metafab/metafab-3.webp)
 
 **Seamlessly onboard new and existing games**: Integrate a “sign in with (XYZ)” button or method into any game and vertically integrate with MetaFab’s systems, including gas and transaction abstraction.
 
@@ -76,7 +76,7 @@ MetaFab’s Ecosystem product allows unified achievement tracking (and more), pe
 
 ## Configure & Deploy Smart Contracts {: #configure-deploy-smart-contracts }
 
-![Use MetaFab's template smart contracts: Digital Collectibles (ERC1155), Game Currencies (ERC20), Lootboxes, and Shops](/images/builders/integrations/gaming/metafab/metafab-4.png)
+![Use MetaFab's template smart contracts: Digital Collectibles (ERC1155), Game Currencies (ERC20), Lootboxes, and Shops](/images/builders/integrations/gaming/metafab/metafab-4.webp)
 
 **MetaFab’s smart contracts**: Configure MetaFab’s pre-written smart contracts and cover various implementation patterns in a few lines of code. These include deploying in-game currencies to forging new items and enabling player-to-player trading through shops and crafting.
 

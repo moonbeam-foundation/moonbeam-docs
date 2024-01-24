@@ -160,7 +160,7 @@ First, you can compile your contract by running:
 yarn compile
 ```
 
-![The terminal output from running the compile command.](/images/builders/build/eth-api/dev-env/scaffold-eth/new/scaffold-eth-1.png)
+![The terminal output from running the compile command.](/images/builders/build/eth-api/dev-env/scaffold-eth/new/scaffold-eth-1.webp)
 
 Then, you can run the following command from the root directory of your project:
 
@@ -168,7 +168,7 @@ Then, you can run the following command from the root directory of your project:
 yarn deploy
 ```
 
-![The terminal output from running the deploy command.](/images/builders/build/eth-api/dev-env/scaffold-eth/new/scaffold-eth-2.png)
+![The terminal output from running the deploy command.](/images/builders/build/eth-api/dev-env/scaffold-eth/new/scaffold-eth-2.webp)
 
 !!! note
     If you did not set the `defaultNetwork` config in the `hardhat.config.js` file, you can append `--network INSERT_NETWORK` to the command. For example, the following command would deploy a contract to Moonbeam.
@@ -212,7 +212,7 @@ You can use the following command to verify the smart contract:
 
 After a short wait, the console output will display the verification result and, if successful, the URL to the verified contract on Moonscan.
 
-![The terminal outut from running the verify command.](/images/builders/build/eth-api/dev-env/scaffold-eth/new/scaffold-eth-3.png)
+![The terminal outut from running the verify command.](/images/builders/build/eth-api/dev-env/scaffold-eth/new/scaffold-eth-3.webp)
 
 For more information about verifying smart contracts on Moonbeam using the Hardhat Etherscan plugin, please refer to the [Etherscan Plugins page](/builders/build/eth-api/verify-contracts/etherscan-plugins/#using-the-hardhat-etherscan-plugin){target=_blank}.
 
@@ -258,11 +258,11 @@ After all the modifications to the configuration files are done, you can launch 
 yarn start
 ```
 
-![The terminal outut from running the start command.](/images/builders/build/eth-api/dev-env/scaffold-eth/new/scaffold-eth-4.png)
+![The terminal outut from running the start command.](/images/builders/build/eth-api/dev-env/scaffold-eth/new/scaffold-eth-4.webp)
 
 This will launch the React-based DApp frontend at [http://localhost:3000/](http://localhost:3000/){target=_blank} by default. You can then point your browser to [http://localhost:3000/](http://localhost:3000/){target=_blank} and interact with the React frontend by connecting your wallet or checking out the contract debugger page.
 
-![The frontend of the DApp on the browser.](/images/builders/build/eth-api/dev-env/scaffold-eth/new/scaffold-eth-5.png)
+![The frontend of the DApp on the browser.](/images/builders/build/eth-api/dev-env/scaffold-eth/new/scaffold-eth-5.webp)
 
 And that's it! Now that you have the basics down, feel free to create and deploy your own smart contracts and modify the frontend to fit your dApp's needs! For more information, you can check out the [Scaffold-ETH 2 docs](https://docs.scaffoldeth.io/){target=_blank}.
 

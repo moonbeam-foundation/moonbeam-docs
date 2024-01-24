@@ -19,7 +19,7 @@ This guide will cover all of the details needed to register your project with th
 
 To get started with this guide, you'll need to create or have a Dapplooker account. You can [signup](https://dapplooker.com/signup){target=_blank} and create an account. If you already have signed up, you can [login](https://dapplooker.com/login){target=_blank} to your account. 
 
-![Login to Dapplooker](/images/builders/integrations/analytics/dapplooker/dapplooker-1.png)
+![Login to Dapplooker](/images/builders/integrations/analytics/dapplooker/dapplooker-1.webp)
 
 ## Connect Smart Contracts {: #connect-smart-contracts }
 
@@ -27,7 +27,7 @@ To connect a smart contract to Dapplooker, you can click on the **My Projects** 
 
 From the **Register Your Project** page, click **Connect Dapp** then select the **Connect Smart Contract** option. You can also browse and run analytics on already indexed DApps from the menu.
 
-![Connect dapp](/images/builders/integrations/analytics/dapplooker/dapplooker-2.png)
+![Connect dapp](/images/builders/integrations/analytics/dapplooker/dapplooker-2.webp)
 
 You'll be prompted to enter in details about your project and contract:
 
@@ -39,7 +39,7 @@ You'll be prompted to enter in details about your project and contract:
 6. Upload your project's logo
 7. Click **Register** and smart contract transactions events data syncing will start. It can take some time for complete data to be synced
 
-![Register your dapp](/images/builders/integrations/analytics/dapplooker/dapplooker-3.png)
+![Register your dapp](/images/builders/integrations/analytics/dapplooker/dapplooker-3.webp)
 
 Once syncing is complete, you will get an email notification. Clicking on the link in the email will take you directly to your indexed data.
 
@@ -49,7 +49,7 @@ To connect a subgraph to Dapplooker, you can click on the **My Projects** button
 
 From the **Register Your Project** page, click **Connect Dapp** then select the **Connect Subgraph** option. You can also browse and run analytics on already indexed Dapps from the menu.
 
-![Connect dapp](/images/builders/integrations/analytics/dapplooker/dapplooker-4.png)
+![Connect dapp](/images/builders/integrations/analytics/dapplooker/dapplooker-4.webp)
 
 You'll be prompted to enter in details about your project and subgraph:
 
@@ -60,7 +60,7 @@ You'll be prompted to enter in details about your project and subgraph:
 5. Upload your project's logo
 6. Click **Register** and subgraph entities data syncing will start. It can take some time for complete data to be synced
 
-![Register your dapp](/images/builders/integrations/analytics/dapplooker/dapplooker-5.png)
+![Register your dapp](/images/builders/integrations/analytics/dapplooker/dapplooker-5.webp)
 
 Once syncing is complete, you will get an email notification. Clicking on the link in the email will take you directly to your indexed data.
 

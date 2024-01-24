@@ -43,7 +43,7 @@ After installing [MetaMask](https://metamask.io){target=_blank}, the setup will 
 - **Create a new wallet** - you'll go through some steps to get a new seed phrase. Ensure you store this phrase securely and you don't share it publicly
 - **Import an existing wallet** - you already have a seed phrase stored, and you want to restore an account from that recovery phrase
 
-![Metamask Setup Interface](/images/tokens/connect/metamask/metamask-1.png)
+![Metamask Setup Interface](/images/tokens/connect/metamask/metamask-1.webp)
 
 Once you've clicked on the option that adapts to your needs, follow the steps, and you should be all setup.
 
@@ -56,11 +56,11 @@ Once you've created a wallet or imported an existing one, you can also import an
 
 For this example, you'll use private keys from the development account. Click the account switcher button to import an account using its private keys. That is where it says **Account 1**.
 
-![Importing account from private key metamask menu](/images/tokens/connect/metamask/metamask-2.png)
+![Importing account from private key metamask menu](/images/tokens/connect/metamask/metamask-2.webp)
 
 Next, click on **Import Account**.
 
-![Importing account from private key account switcher menu](/images/tokens/connect/metamask/metamask-3.png)
+![Importing account from private key account switcher menu](/images/tokens/connect/metamask/metamask-3.webp)
 
 Finally, enter the private keys of the account you are trying to import. For example, you can use one of the accounts prefunded in the Moonbeam development node. This guide uses Gerald's key. Once you've entered the private key, click on **Import**.
 
@@ -68,11 +68,11 @@ Finally, enter the private keys of the account you are trying to import. For exa
     --8<-- 'code/builders/get-started/networks/moonbeam-dev/dev-accounts.md'
     --8<-- 'code/builders/get-started/networks/moonbeam-dev/dev-testing-account.md'
 
-![Paste your account key into MetaMask](/images/tokens/connect/metamask/metamask-4.png)
+![Paste your account key into MetaMask](/images/tokens/connect/metamask/metamask-4.webp)
 
 You should end up with an imported **Account 2** that looks like this:
 
-![MetaMask displaying your new Account 2](/images/tokens/connect/metamask/metamask-5.png)
+![MetaMask displaying your new Account 2](/images/tokens/connect/metamask/metamask-5.webp)
 
 ## Connect MetaMask to Moonbeam {: #connect-metamask-to-moonbeam }
 
@@ -81,11 +81,11 @@ Once you have [MetaMask](https://metamask.io/){target=_blank} installed and have
 1. Click in the upper left network selector menu
 2. Select **Add Network**
 
-![Add new network in Metamask menu](/images/tokens/connect/metamask/metamask-6.png)
+![Add new network in Metamask menu](/images/tokens/connect/metamask/metamask-6.webp)
 
 Next, go to the bottom of the page and click on **Add a network manually**:
 
-![Add network manually in Metamask](/images/tokens/connect/metamask/metamask-7.png)
+![Add network manually in Metamask](/images/tokens/connect/metamask/metamask-7.webp)
 
 Here, you can configure MetaMask for the following networks:
 
@@ -134,11 +134,11 @@ To do so, fill in the following information:
 5. **Block Explorer** - (optional) URL of the [block explorer](https://docs.moonbeam.network/builders/get-started/explorers/){target=_blank}
 6. Once you've verified all the information, click on **Save**
 
-![Add network in Metamask](/images/tokens/connect/metamask/metamask-8.png)
+![Add network in Metamask](/images/tokens/connect/metamask/metamask-8.webp)
 
 Once you've added the network, you'll be redirected to a screen stating that you've successfully added a network. Furthermore, you'll be prompted to **Switch to Moonbase Alpha**, the network added in this example.
 
-![Successfully added a network in Metamask](/images/tokens/connect/metamask/metamask-9.png)
+![Successfully added a network in Metamask](/images/tokens/connect/metamask/metamask-9.webp)
 
 ## Interact with the Network {: #interact-with-the-network }
 
@@ -158,26 +158,26 @@ To do so, take the following steps:
 2. Ensure you have selected the account you want to use for the transfer
 3. On the main screen of your Metamask wallet, click on **Send**
 
-![Initiate balance transfer in Metamask](/images/tokens/connect/metamask/metamask-10.png)
+![Initiate balance transfer in Metamask](/images/tokens/connect/metamask/metamask-10.webp)
 
 Next, you can enter the address to which you want to send the tokens. For this example, a wallet that has already been imported to Metamask is selected, known as **Bob**.
 
-![Select account to send tokens to in Metamask](/images/tokens/connect/metamask/metamask-11.png)
+![Select account to send tokens to in Metamask](/images/tokens/connect/metamask/metamask-11.webp)
 
 On the next screen, take the following steps:
 
 1. Enter the number of tokens you want to send
 2. Verify that all the information is correct, and click on **Next**
 
-![Set the amount of tokens to send in Metamask](/images/tokens/connect/metamask/metamask-12.png)
+![Set the amount of tokens to send in Metamask](/images/tokens/connect/metamask/metamask-12.webp)
 
 Lastly, confirm that all the gas-related parameters and fees are correct. After you've verified that everything is OK, click **Confirm**. At this point, your transaction has been sent to the network!
 
-![Confirming a transaction in Metamask](/images/tokens/connect/metamask/metamask-13.png)
+![Confirming a transaction in Metamask](/images/tokens/connect/metamask/metamask-13.webp)
 
 Once you've confirmed your transaction, you are taken back to the main screen of your wallet, where you'll see the transaction as **Pending**. After less than a minute, the transaction should be **Confirmed**. If you click on your transaction, you can check more details and view it in a block explorer.
 
-![Transaction confirmed in Metamask](/images/tokens/connect/metamask/metamask-14.png)
+![Transaction confirmed in Metamask](/images/tokens/connect/metamask/metamask-14.webp)
 
 ### Add an ERC-20 Token {: #add-an-erc20-token }
 
@@ -188,15 +188,15 @@ To add an ERC-20 to your MetaMask wallet, you'll need to import the token using 
 3. Enter the contract address of the token you want to import. The **Token symbol** and **Token decimal** fields will automatically be populated, but you can edit the **Token symbol** if needed
 4. Click **Next**
 
-![The tokens tab and the import tokens process in MetaMask, where the token address, symbol, and decimal are defined.](/images/tokens/connect/metamask/metamask-15.png)
+![The tokens tab and the import tokens process in MetaMask, where the token address, symbol, and decimal are defined.](/images/tokens/connect/metamask/metamask-15.webp)
 
 Next, you'll be able to review the token import details. To finalize the import, you can click **Import**.
 
-![Review the token details and finalize the import in MetaMask.](/images/tokens/connect/metamask/metamask-16.png)
+![Review the token details and finalize the import in MetaMask.](/images/tokens/connect/metamask/metamask-16.webp)
 
 Under the **Tokens** tab, you'll be able to see the token and the account balance for the token.
 
-![View the imported token in the list of assets on the tokens tab in MetaMask.](/images/tokens/connect/metamask/metamask-17.png)
+![View the imported token in the list of assets on the tokens tab in MetaMask.](/images/tokens/connect/metamask/metamask-17.webp)
 
 ### Add an ERC-721 Token {: #add-an-erc721-token }
 
@@ -207,10 +207,10 @@ To add an ERC-721 to your MetaMask wallet, you'll need the token's address:
 3. Enter the **Address** of the NFT you want to import and the **Token ID**
 4. Click **Import**
 
-![The NFTs tab and the import NFT process in MetaMask, where the address and the token ID of the NFT are defined.](/images/tokens/connect/metamask/metamask-18.png)
+![The NFTs tab and the import NFT process in MetaMask, where the address and the token ID of the NFT are defined.](/images/tokens/connect/metamask/metamask-18.webp)
 
 Once you've imported your NFT, you'll be able to see a preview of your NFT in the **NFTs** tab. You can click on the NFT to see more details.
 
-![View the imported NFT in the list of NFTs on the NFTs tab in MetaMask.](/images/tokens/connect/metamask/metamask-19.png)
+![View the imported NFT in the list of NFTs on the NFTs tab in MetaMask.](/images/tokens/connect/metamask/metamask-19.webp)
 
 --8<-- 'text/_disclaimers/third-party-content.md'

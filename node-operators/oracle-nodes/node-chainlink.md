@@ -141,7 +141,7 @@ docker ps #Containers Running
 docker logs --tail 50 {INSERT_CONTAINER_ID} #Logs progressing
 ```
 
-![Docker logs](/images/node-operators/oracle-nodes/chainlink/chainlink-node-1.png)
+![Docker logs](/images/node-operators/oracle-nodes/chainlink/chainlink-node-1.webp)
 
 ## Contract Setup {: #contract-setup }
 
@@ -149,13 +149,13 @@ With the oracle node running, you can start to configure the smart contract side
 
 1. Retrieve the address that the oracle node will use to send transactions and write data on-chain by logging into the [ChainLink node's UI](http://localhost:6688/){target=_blank} (located at `http://localhost:6688/`). You'll need to use the credentials from the `.api` file
 
-    ![Chainlink login](/images/node-operators/oracle-nodes/chainlink/chainlink-node-2.png)
+    ![Chainlink login](/images/node-operators/oracle-nodes/chainlink/chainlink-node-2.webp)
 
 2. Go to the **Configuration Page** and copy the node address
 3. Fund the node.
  --8<-- 'text/_common/faucet/faucet-list-item.md'
 
-    ![Chainlink address](/images/node-operators/oracle-nodes/chainlink/chainlink-node-3.png)
+    ![Chainlink address](/images/node-operators/oracle-nodes/chainlink/chainlink-node-3.webp)
 
 Next, you'll need to deploy the oracle contract, which is the middleware between the chain and the node. The contract emits an event with all the necessary information, which is read by the oracle node. Then, the node fulfills the request and writes the requested data in the caller's contract.
 
@@ -175,7 +175,7 @@ After compiling the contract, you can take the following steps to deploy and int
 4. Enter the LINK token address and click **Deploy** to deploy the contract. MetaMask will pop-up and you can confirm the transaction
 5. Once deployed, under the **Deployed Contracts** section, copy the address of the contract
 
-![Deploy Oracle using Remix](/images/node-operators/oracle-nodes/chainlink/chainlink-node-4.png)
+![Deploy Oracle using Remix](/images/node-operators/oracle-nodes/chainlink/chainlink-node-4.webp)
 
 Lastly, you have to bond the oracle node and the oracle smart contract. A node can listen to the requests sent to a certain oracle contract, but only authorized (aka. bonded) nodes can fulfill the request with a result. To bond the oracle node and smart contract, you can take the following steps:
 
@@ -184,7 +184,7 @@ Lastly, you have to bond the oracle node and the oracle smart contract. A node c
 3. Click **transact** to send the request. MetaMask will pop-up and you can confirm the transaction
 4. Check the oracle node is authorized with the `getAuthorizationStatus()` view function, passing in the oracle node address
 
-![Authorize Chainlink Oracle Node](/images/node-operators/oracle-nodes/chainlink/chainlink-node-5.png)
+![Authorize Chainlink Oracle Node](/images/node-operators/oracle-nodes/chainlink/chainlink-node-5.webp)
 
 ## Creating a Job {: #creating-a-job }
 
@@ -197,7 +197,7 @@ Seeing an oracle as an API service, a job here would be one of the functions tha
 1. Go to the [Jobs sections of your node](http://localhost:6688/jobs){target=_blank}
 2. Click on **New Job**
 
-![Chainlink oracle New Job](/images/node-operators/oracle-nodes/chainlink/chainlink-node-6.png)
+![Chainlink oracle New Job](/images/node-operators/oracle-nodes/chainlink/chainlink-node-6.webp)
 
 Next, you can create the new job:
 
@@ -235,7 +235,7 @@ Next, you can create the new job:
 2. Make sure you enter your oracle contract address (`INSERT_YOUR_ORACLE_CONTRACT_ADDRESS`)
 3. Create the job by clicking on **Create Job**
 
-![Chainlink New Job JSON Blob](/images/node-operators/oracle-nodes/chainlink/chainlink-node-7.png)
+![Chainlink New Job JSON Blob](/images/node-operators/oracle-nodes/chainlink/chainlink-node-7.webp)
 
 And that is it! You have fully set up a Chainlink oracle node that is running on Moonbase Alpha.
 

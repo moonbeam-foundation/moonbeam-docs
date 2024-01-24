@@ -31,7 +31,7 @@ As of the time of writing, GPT-4 was the latest version offered as part of the C
 - Code produced by ChatGPT is not audited, reviewed, or verified and may contain errors
 - Prompting GPT-4 with the exact inputs specified in this tutorial will likely produce different outputs - that is expected due to ChatGPT's architecture as a language model
 
-![Limitations](/images/tutorials/eth-api/chatgpt/chatgpt-1.png)
+![Limitations](/images/tutorials/eth-api/chatgpt/chatgpt-1.webp)
 
 **Please note that the contracts we'll be creating today are for educational purposes only and should not be used in a production environment**.
 
@@ -47,7 +47,7 @@ For this tutorial, you'll need the following:
 
 You can sign up for a free account to access ChatGPT by heading to [OpenAI's website.](https://chat.openai.com/auth/login){target=_blank} You'll need to provide both an email address and a phone number. A subscription to ChatGPT Plus is not required to complete this tutorial.
 
-![Sign up for OpenAI account](/images/tutorials/eth-api/chatgpt/chatgpt-2.png)
+![Sign up for OpenAI account](/images/tutorials/eth-api/chatgpt/chatgpt-2.webp)
 
 ## Create an ERC-20 Token Contract {: #create-an-erc-20-token-contract }
 
@@ -57,7 +57,7 @@ To start interacting with [ChatGPT](https://chat.openai.com/?model=gpt-4){target
 2. Select the model you would like to use. Either model is suitable for this tutorial
 3. Enter your prompt and at the input box and press enter when ready
 
-![Prompt chatGPT](/images/tutorials/eth-api/chatgpt/chatgpt-3.png)
+![Prompt chatGPT](/images/tutorials/eth-api/chatgpt/chatgpt-3.webp)
 
 For our first prompt, we'll ask ChatGPT to create an ERC-20 token, specifying the name of the token, the token symbol, and an initial supply. Your prompt doesn't need to match the one below - feel free to tailor it to suit your preferences.
 
@@ -66,7 +66,7 @@ I would like to create an ERC-20 token called "KevinToken"
 with the symbol "KEV" and an initial supply of 40000000.
 ```
 
-![ChatGPT's 1st response](/images/tutorials/eth-api/chatgpt/chatgpt-4.png)
+![ChatGPT's 1st response](/images/tutorials/eth-api/chatgpt/chatgpt-4.webp)
 
 This is a great start. ChatGPT has produced for us a simple yet functional ERC-20 token that meets all of the parameters that we have specified. It also clarified how it created the ERC-20 token contract using the [OpenZeppelin standard](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/ERC20.sol){target=_blank} and where the initial token supply is directed. Finally, it reminds us that this is just a start, and there may be other considerations we wish to implement, like minting and burning.
 
@@ -81,7 +81,7 @@ This looks great, but I'd really like my ERC-20 to be both mintable and burnable
 
 ChatGPT is happy to oblige. Notice how it maintains the parameters we specified originally, namely the token name and symbol.
 
-![ChatGPT's 2nd response](/images/tutorials/eth-api/chatgpt/chatgpt-5.png)
+![ChatGPT's 2nd response](/images/tutorials/eth-api/chatgpt/chatgpt-5.webp)
 
 ## Preparing Deployment Instructions {: #preparing-deployment-instructions }
 
@@ -92,7 +92,7 @@ I would like to use Hardhat to compile and deploy
  this smart contract to the Moonbase Alpha network.  
 ```
 
-![ChatGPT's 3rd response](/images/tutorials/eth-api/chatgpt/chatgpt-6.png)
+![ChatGPT's 3rd response](/images/tutorials/eth-api/chatgpt/chatgpt-6.webp)
 
 And to no surprise, ChatGPT provides us with a detailed series of deployment steps, from installation instructions to a full deployment script. Note that it even remembers a detail in our first prompt that wasn't important until now. In our initial prompt, we asked for our token to have an initial supply of `400000000`, and ChatGPT included this parameter in the deployment script it generated.
 
@@ -115,14 +115,14 @@ By now, you're nearly a ChatGPT savant. So it should come as no surprise that Ch
 Hey GPT4 can you help me write some tests for the smart contract above?  
 ```
 
-![ChatGPT's 4th response](/images/tutorials/eth-api/chatgpt/chatgpt-7.png)
+![ChatGPT's 4th response](/images/tutorials/eth-api/chatgpt/chatgpt-7.webp)
 
 ChatGPT provides us with a slew of test cases, especially surrounding the mint and burn functionality. While it's busy writing test cases, it appears to trail off and stop without its typical summary remarks at the end. This interruption stems from ChatGPT's 500-word limit. Although the 500-word limit is a hard stop, ChatGPT's train of thought continues, so you can simply ask it to continue, and it will happily oblige. Note that for subscriptions with limited messages, this will count as an additional message from your allocation.
 
 !!! note
     ChatGPT has a response limit of approximately 500 words or 4,000 characters. However, you can simply ask it to continue in a follow up message.
 
-![ChatGPT's 5th response](/images/tutorials/eth-api/chatgpt/chatgpt-8.png)
+![ChatGPT's 5th response](/images/tutorials/eth-api/chatgpt/chatgpt-8.webp)
 
 And Voila! ChatGPT finishes writing its test cases for us and wraps up by telling us how we can run them.
 
@@ -148,7 +148,7 @@ function withdrawBalance() public {
 }
 ```
 
-![ChatGPT's 6th response](/images/tutorials/eth-api/chatgpt/chatgpt-9.png)
+![ChatGPT's 6th response](/images/tutorials/eth-api/chatgpt/chatgpt-9.webp)
 
 ChatGPT spots the exact error, explains the source of the problem, and lets us know how to fix it.
 

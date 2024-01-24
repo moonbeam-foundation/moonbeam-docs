@@ -97,14 +97,14 @@ If you're using a Moonbeam development node and the development accounts, you'll
 1. Get a copy of [`Collective.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/collective/Collective.sol){target=_blank} 
 2. Copy and paste the file contents into a [Remix file](https://remix.ethereum.org/){target=_blank} named `Collective.sol`
 
-![Copying and Pasting the Collective Interface into Remix](/images/builders/pallets-precompiles/precompiles/collective/collective-1.png)
+![Copying and Pasting the Collective Interface into Remix](/images/builders/pallets-precompiles/precompiles/collective/collective-1.webp)
 
 ### Compile the Contract {: #compile-the-contract }
 
 1. Click on the **Compile** tab, second from top
 2. Then to compile the interface, click on **Compile Collective.sol**
 
-![Compiling Collective.sol](/images/builders/pallets-precompiles/precompiles/collective/collective-2.png)
+![Compiling Collective.sol](/images/builders/pallets-precompiles/precompiles/collective/collective-2.webp)
 
 ### Access the Contract {: #access-the-contract }
 
@@ -114,7 +114,7 @@ If you're using a Moonbeam development node and the development accounts, you'll
 4. Provide the address of the Collective Precompile,`{{networks.moonbase.precompiles.collective_treasury}}`, and click **At Address**
 5. The Collective Precompile will appear in the list of **Deployed Contracts**
 
-![Access the precompile contract](/images/builders/pallets-precompiles/precompiles/collective/collective-3.png)
+![Access the precompile contract](/images/builders/pallets-precompiles/precompiles/collective/collective-3.webp)
 
 ### Create a Proposal {: #create-a-proposal }
 
@@ -127,7 +127,7 @@ To submit a Treasury proposal, you can do so via the [Polkadot.js Apps](https://
 3. Enter `10` for the **value**
 4. Click on **Submit proposal** and then sign and submit the proposal
 
-![Submit a treasury proposal](/images/builders/pallets-precompiles/precompiles/collective/collective-4.png)
+![Submit a treasury proposal](/images/builders/pallets-precompiles/precompiles/collective/collective-4.webp)
 
 You should see the proposal appear in the **proposals** section. If this is the first proposal created, it will have a proposal index of `0`, which will be needed in the next section. To view all of the proposals, you can navigate to the **Developer** tab, select **Chain State**, and take the following steps:
 
@@ -137,7 +137,7 @@ You should see the proposal appear in the **proposals** section. If this is the 
 4. Click **+** to submit the query
 5. The results will appear below with the proposal index and the proposal details
 
-![View all treasury proposals](/images/builders/pallets-precompiles/precompiles/collective/collective-5.png)
+![View all treasury proposals](/images/builders/pallets-precompiles/precompiles/collective/collective-5.webp)
 
 Now that you have the proposal and the proposal index, you'll be able to approve the proposal in the following section using the Collective Precompile.
 
@@ -151,7 +151,7 @@ In order to propose a proposal using the Collective Precompile, so that the corr
 4. Enter the proposal index that the collective will vote on to approve
 5. Copy the **encoded call data** for the proposal
 
-![Get encoded proposal](/images/builders/pallets-precompiles/precompiles/collective/collective-6.png)
+![Get encoded proposal](/images/builders/pallets-precompiles/precompiles/collective/collective-6.webp)
 
 For this example, the extrinsic encoded call data for the proposal in this example is `0x110200`.
 
@@ -163,13 +163,13 @@ With the encoded proposal, you can head back to Remix and expand the **COLLECTIV
 4. Click **transact**
 5. MetaMask will pop up and you can confirm the transaction
 
-![Propose the approval](/images/builders/pallets-precompiles/precompiles/collective/collective-7.png)
+![Propose the approval](/images/builders/pallets-precompiles/precompiles/collective/collective-7.webp)
 
 ### Vote on a Proposal {: #vote-on-a-proposal }
 
 To vote on a proposal, you'll need to get the proposal hash by passing in the encoded proposal into the **proposalHash** function.
 
-![Get the proposal hash](/images/builders/pallets-precompiles/precompiles/collective/collective-8.png)
+![Get the proposal hash](/images/builders/pallets-precompiles/precompiles/collective/collective-8.webp)
 
 Once you have the proposal hash, make sure you're connected to your account that is a member of the Treasury Council, and take the following steps to vote on a proposal:
 
@@ -180,7 +180,7 @@ Once you have the proposal hash, make sure you're connected to your account that
 5. Click **transact**
 6. MetaMask will pop up and you can confirm the transaction
 
-![Vote on the proposal](/images/builders/pallets-precompiles/precompiles/collective/collective-9.png)
+![Vote on the proposal](/images/builders/pallets-precompiles/precompiles/collective/collective-9.webp)
 
 With the threshold set to `2`, you'll need to switch accounts in MetaMask to another member of the Treasury Council collective and repeat the steps above to vote and meet the threshold. Once the threshold has been met, you can then close the proposal, which will automatically execute it, and if approved, the proposal enters a queue to be placed into a spend period where the proposed amount will be distributed to the beneficiary. In this case, once the proposal is placed into a spend period, 10 DEV tokens will be distributed to Alith.
 
@@ -196,7 +196,7 @@ If a proposal has enough votes, anyone can close a proposal. You do not need to 
 6. Click on **transact**
 7. MetaMask will pop up and you can confirm the transaction
 
-![Close the proposal](/images/builders/pallets-precompiles/precompiles/collective/collective-10.png)
+![Close the proposal](/images/builders/pallets-precompiles/precompiles/collective/collective-10.webp)
 
 You can verify the proposal has been approved using Polkadot.js Apps. From the **Developer** tab, select **Chain State**, and take the following steps:
 
@@ -205,6 +205,6 @@ You can verify the proposal has been approved using Polkadot.js Apps. From the *
 3. Click **+** to submit the query
 4. The proposal will appear in the list of approvals
 
-![Review the treasury approvals](/images/builders/pallets-precompiles/precompiles/collective/collective-11.png)
+![Review the treasury approvals](/images/builders/pallets-precompiles/precompiles/collective/collective-11.webp)
 
 Once the proposal is in a spend period, the funds will get distributed to the beneficiary, and the original bond will be returned to the proposer. If the Treasury runs out of funds, the approved proposals will remain in storage until the following spend period when the Treasury has enough funds again.
