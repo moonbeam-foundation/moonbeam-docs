@@ -50,7 +50,7 @@ The Multisig Pallet includes the following read-only functions to obtain pallet 
 
 ## How to Create a Multisig Account {: #create-a-multisig-account }
 
-You can easily create a multisig account from the Polkadot.js Apps interface. The easiest way to do so is from the [**Accounts** page](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/accounts){target=_blank}.
+You can easily create a multisig account from the Polkadot.js Apps interface. The easiest way to do so is from the [**Accounts** page](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/accounts){target=\_blank}.
 
 To get started, go ahead and click on **Multisig**.
 
@@ -86,7 +86,7 @@ Once the call is approved and dispatched or cancelled the deposit will be return
 
 Since there is a threshold of two for this multisig, at least Bob or Charlie will need to approve the call if not both of them. The last account to approve the call will also need to dispatch the call. Dispatching the call is done automatically when the `asMulti` function is used to approve the call.
 
-With the basics out of the way, you can begin to create a multisig call. For this example, you can create a call that will transfer 0.1 DEV from the ABC multisig account to Charlie's account. First, you'll need to get the encoded call data for the transfer. Go ahead and navigate to the [**Extrinsics** page on Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/extrinsics){target=_blank} and take the following steps:
+With the basics out of the way, you can begin to create a multisig call. For this example, you can create a call that will transfer 0.1 DEV from the ABC multisig account to Charlie's account. First, you'll need to get the encoded call data for the transfer. Go ahead and navigate to the [**Extrinsics** page on Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/extrinsics){target=\_blank} and take the following steps:
 
 1. Make sure an account is selected. It doesn't have to be the ABC multisig account, as the selected account is not included in the encoded call data
 2. Select the **balances** pallet and the **transfer** extrinsic

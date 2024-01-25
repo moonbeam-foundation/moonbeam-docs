@@ -8,9 +8,9 @@ keywords: solidity, ethereum, collective, proposal, council technical, committee
 
 ## Introduction {: #introduction }
 
-The Collective Precompile enables a user to directly interact with [Substrate's collective pallet](https://paritytech.github.io/substrate/master/pallet_collective/index.html){target=_blank} directly from a Solidity interface.
+The Collective Precompile enables a user to directly interact with [Substrate's collective pallet](https://paritytech.github.io/substrate/master/pallet_collective/index.html){target=\_blank} directly from a Solidity interface.
 
-A collective is a group of members that are responsible for specific democracy-related actions such as proposing, voting on, executing, and closing motions. Each can execute different actions with different origins. Consequently, collectives can be created with very specific scopes. For example, Moonriver has four collectives: the Council collective, the Technical Committee collective, the Treasury Council collective, and the OpenGov Technical Committee collective (for whitelisting OpenGov proposals). As such, there is a precompile for each collective. For more information on the Council, Technical Committee, and OpenGov Technical Committee please refer to the [Governance on Moonbeam](/learn/features/governance/){target=_blank} page, and for more information on the Treasury Council, please refer to the [Treasury on Moonbeam](/learn/features/treasury/){target=_blank} page.
+A collective is a group of members that are responsible for specific democracy-related actions such as proposing, voting on, executing, and closing motions. Each can execute different actions with different origins. Consequently, collectives can be created with very specific scopes. For example, Moonriver has four collectives: the Council collective, the Technical Committee collective, the Treasury Council collective, and the OpenGov Technical Committee collective (for whitelisting OpenGov proposals). As such, there is a precompile for each collective. For more information on the Council, Technical Committee, and OpenGov Technical Committee please refer to the [Governance on Moonbeam](/learn/features/governance/){target=\_blank} page, and for more information on the Treasury Council, please refer to the [Treasury on Moonbeam](/learn/features/treasury/){target=\_blank} page.
 
 This guide will show you how to propose, vote on, and close a proposal using the Collective Precompile.
 
@@ -43,7 +43,7 @@ The Collective Precompiles are located at the following addresses:
 
 ## The Collective Solidity Interface {: #the-call-permit-interface }
 
-[`Collective.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/collective/Collective.sol){target=_blank} is a Solidity interface that allows developers to interact with the precompile's five methods.
+[`Collective.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/collective/Collective.sol){target=\_blank} is a Solidity interface that allows developers to interact with the precompile's five methods.
 
 The interface includes the following functions:
 
@@ -55,7 +55,7 @@ The interface includes the following functions:
 
 Where the inputs that need to be provided can be defined as:
 
-- **proposal** - the [SCALE encoded](https://docs.substrate.io/reference/scale-codec/){target=_blank} Substrate call that proposes an action
+- **proposal** - the [SCALE encoded](https://docs.substrate.io/reference/scale-codec/){target=\_blank} Substrate call that proposes an action
 - **threshold** - amount of members required to dispatch the proposal
 - **proposalHash** - the hash of the proposal
 - **proposalIndex** - the index of the proposal
@@ -74,7 +74,7 @@ The interface includes the following events:
 
 The example in this section will show you how to submit a Treasury proposal using the Treasury Council Collective Precompile. As such, the proposal will be subject to meeting the voting requirements of the Treasury Council. The threshold for accepting a Treasury proposal is at least three-fifths of the Treasury Council. On the other hand, the threshold for rejecting a proposal is at least one-half of the Treasury Council. Please keep in mind that in order to propose and vote on the proposal, you must be a member of the Treasury Council.
 
-If you are not a member of the Treasury Council on Moonbeam, Moonriver, or Moonbase Alpha, you can test out the features of the Collective Precompile using a [Moonbeam development node](/builders/get-started/networks/moonbeam-dev/){target=_blank}. The Moonbeam development node comes with [ten pre-funded accounts](/builders/get-started/networks/moonbeam-dev/#pre-funded-development-accounts){target=_blank}, of which Baltathar, Charleth, and Dorothy are automatically set as members of the Treasury Council collective. You can use any of these three accounts to follow along with the rest of the guide.
+If you are not a member of the Treasury Council on Moonbeam, Moonriver, or Moonbase Alpha, you can test out the features of the Collective Precompile using a [Moonbeam development node](/builders/get-started/networks/moonbeam-dev/){target=\_blank}. The Moonbeam development node comes with [ten pre-funded accounts](/builders/get-started/networks/moonbeam-dev/#pre-funded-development-accounts){target=\_blank}, of which Baltathar, Charleth, and Dorothy are automatically set as members of the Treasury Council collective. You can use any of these three accounts to follow along with the rest of the guide.
 
 ### Checking Prerequisites {: #checking-prerequisites }
 
@@ -82,20 +82,20 @@ The example in this guide will be shown on a Moonbeam development node, however,
 
 To get started, you will need to have the following:
 
- - Have MetaMask installed and [connected to one of the Moonbeam-based networks](/tokens/connect/metamask/){target=_blank}
+ - Have MetaMask installed and [connected to one of the Moonbeam-based networks](/tokens/connect/metamask/){target=\_blank}
  - Have an account with funds. If using a Moonbeam development node, the development accounts are pre-funded. For Moonbeam, Moonriver, or Moonbase Alpha, you'll need to fund your account.
   --8<-- 'text/_common/faucet/faucet-list-item.md'
 
 If you're using a Moonbeam development node and the development accounts, you'll also need to do the following:
 
 - Set your development node to seal blocks on a time interval such as every 6 seconds (6000 milliseconds) using the `--sealing 6000` flag
-- [Connect Polkadot.js Apps to your local Moonbeam development node](/builders/get-started/networks/moonbeam-dev/#connecting-polkadot-js-apps-to-a-local-moonbeam-node){target=_blank}
-- Import Baltathar's, Charleth's, and/or Dorothy's accounts into [Polkadot.js Apps](/tokens/connect/polkadotjs/#creating-or-importing-an-h160-account){target=_blank} and [MetaMask](/tokens/connect/metamask/#import-accounts){target=_blank}
+- [Connect Polkadot.js Apps to your local Moonbeam development node](/builders/get-started/networks/moonbeam-dev/#connecting-polkadot-js-apps-to-a-local-moonbeam-node){target=\_blank}
+- Import Baltathar's, Charleth's, and/or Dorothy's accounts into [Polkadot.js Apps](/tokens/connect/polkadotjs/#creating-or-importing-an-h160-account){target=\_blank} and [MetaMask](/tokens/connect/metamask/#import-accounts){target=\_blank}
 
 ### Remix Set Up {: #remix-set-up }
 
-1. Get a copy of [`Collective.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/collective/Collective.sol){target=_blank} 
-2. Copy and paste the file contents into a [Remix file](https://remix.ethereum.org/){target=_blank} named `Collective.sol`
+1. Get a copy of [`Collective.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/collective/Collective.sol){target=\_blank} 
+2. Copy and paste the file contents into a [Remix file](https://remix.ethereum.org/){target=\_blank} named `Collective.sol`
 
 ![Copying and Pasting the Collective Interface into Remix](/images/builders/pallets-precompiles/precompiles/collective/collective-1.png)
 
@@ -120,7 +120,7 @@ If you're using a Moonbeam development node and the development accounts, you'll
 
 In order to submit a proposal to be voted on by the Treasury Council collective, you must first create a Treasury proposal. If a Treasury proposal that you want to vote on already exists and you have the proposal index, you can skip ahead to the next section.
 
-To submit a Treasury proposal, you can do so via the [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9944#/treasury){target=_blank} Treasury page. For this example, you can create a simple proposal to send Alith 10 DEV tokens that can be used to host a community event. To get started, click on **Submit proposal**, and fill out the following information:
+To submit a Treasury proposal, you can do so via the [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9944#/treasury){target=\_blank} Treasury page. For this example, you can create a simple proposal to send Alith 10 DEV tokens that can be used to host a community event. To get started, click on **Submit proposal**, and fill out the following information:
 
 1. From the **submit with account** dropdown, select the account you want to submit the proposal with. The bond for the proposal will be taken from this account
 2. Select the **beneficiary**, which can be **Alith** for this example
