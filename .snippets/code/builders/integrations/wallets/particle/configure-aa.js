@@ -23,9 +23,9 @@ const smartAccount = new SmartAccount(provider, {
   ...config,
   aaOptions: {
     accountContracts: {
-      SIMPLE: [
+      SIMPLE: [ // Or BICONOMY
         {
-          version: '1.0.0',
+          version: '1.0.0', // If you're using BICONOMY, set to 2.0.0
           chainIds: [Moonbeam.id],
         },
       ],
@@ -35,6 +35,6 @@ const smartAccount = new SmartAccount(provider, {
 
 // Sets wallet UI to use AA mode
 particle.setERC4337({
-  name: 'SIMPLE',
-  version: '1.0.0',
+  name: 'SIMPLE', // or BICONOMY
+  version: '1.0.0', // If you're using BICONOMY, set to 2.0.0
 });

@@ -117,8 +117,8 @@ If you want to use an ERC-4337 AA, you'll need to take a couple additional steps
 
 1. Import `SmartAccount` from [`@particle-network/aa`](https://docs.particle.network/developers/account-abstraction/sdks/web){target=\_blank} and `ParticleProvider` from [`@particle-network/auth`](https://docs.particle.network/developers/auth-service/sdks/web){target=\_blank}
 2. Initialize a `ParticleProvider` to handle wallet connect requests using the `particle` instance you created in the previous set of steps
-3. Initialize a [`SmartAccount`](https://docs.particle.network/developers/account-abstraction/sdks/web#initialize-the-smartaccount){target=\_blank} using the provider, your project credentials, and the AA implementation and configuration. For Moonbeam, you'll use the `simple` implementation and pass in Moonbeam's chain ID
-4. Enable ERC-4337 mode, specifying the `SIMPLE` implementation
+3. Initialize a [`SmartAccount`](https://docs.particle.network/developers/account-abstraction/sdks/web#initialize-the-smartaccount){target=\_blank} using the provider, your project credentials, and the AA implementation and configuration. For Moonbeam, you'll use either the `SIMPLE` or `BICONOMY` implementation (if you're using `BICOMOMY`, set `version` to `2.0.0`) and pass in Moonbeam's chain ID
+4. Enable ERC-4337 mode, specifying the `SIMPLE` or `BICONOMY` implementation
 
 ```js hl_lines="3 4 21-34 37-40"
 --8<-- 'code/builders/integrations/wallets/particle/configure-aa.js'
