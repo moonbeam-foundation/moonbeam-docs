@@ -7,7 +7,7 @@ description: Learn how to vote on referenda, set up voting delegations, and more
 
 ## Introduction {: #introduction }
 
-As a Polkadot parachain and decentralized network, Moonbeam features native on-chain governance that enables stakeholders to participate in the direction of the network. With the introduction of OpenGov, also referred to as Governance v2, the Conviction Voting Pallet allows token holders to make, delegate, and manage Conviction-weighted votes on referenda. To learn more about Moonbeam's governance system, such as an overview of related terminology, principles, mechanics, and more, please refer to the [Governance on Moonbeam](/learn/features/governance){target=_blank} page.
+As a Polkadot parachain and decentralized network, Moonbeam features native on-chain governance that enables stakeholders to participate in the direction of the network. With the introduction of OpenGov, also referred to as Governance v2, the Conviction Voting Pallet allows token holders to make, delegate, and manage Conviction-weighted votes on referenda. To learn more about Moonbeam's governance system, such as an overview of related terminology, principles, mechanics, and more, please refer to the [Governance on Moonbeam](/learn/features/governance){target=\_blank} page.
 
 The Conviction Voting Precompile interacts directly with Substrate's Conviction Voting Pallet. This pallet is coded in Rust and is normally not accessible from the Ethereum API side of Moonbeam. However, the Conviction Voting Precompile allows you to access governance-related functions of the Substrate Conviction Voting Pallet directly from a Solidity interface. Additionally, this enables a vastly improved end-user experience. For example, token holders can vote on referenda or delegate a vote directly from MetaMask, rather than importing an account in Polkadot.js Apps and navigating a complex UI.
 
@@ -35,9 +35,9 @@ The Conviction Voting Precompile is located at the following address:
 
 ## The Conviction Voting Solidity Interface {: #the-conviction-voting-solidity-interface }
 
-[`ConvictionVoting.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/conviction-voting/ConvictionVoting.sol){target=_blank} is a Solidity interface that allows developers to interact with the precompile's methods.
+[`ConvictionVoting.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/conviction-voting/ConvictionVoting.sol){target=\_blank} is a Solidity interface that allows developers to interact with the precompile's methods.
 
-The interfaces includes a `Conviction` enum that defines the [Conviction multiplier](/learn/features/governance/#conviction-multiplier-v2){target=_blank} types. The enum has the following variables:
+The interfaces includes a `Conviction` enum that defines the [Conviction multiplier](/learn/features/governance/#conviction-multiplier-v2){target=\_blank} types. The enum has the following variables:
 
  - **None** -  0.1x votes, unlocked
  - **Locked1x** - 1x votes, locked for an Enactment Period following a successful vote
@@ -55,8 +55,8 @@ The interface includes the following functions:
 - **voteNo**(*uint32* pollIndex, *uint256* voteAmount, *Conviction* conviction) - votes a Conviction-weighted "Nay" on a poll (referendum)
 - **voteSplit**(*uint32* pollIndex, *uint256* aye, *uint256* nay) - votes a split vote, with a given amount locked for "Aye" and a given amount locked for "Nay", on a poll (referendum)
 - **voteSplitAbstain**(*uint32* pollIndex, *uint256* aye, *uint256* nay) - votes a split abstained vote, with a given amount locked for "Aye", a given amount locked for "Nay", and a given amount locked for an abstain vote (support), on a poll (referendum)
-- **removeVote**(*uint32* pollIndex) - [removes a vote](/builders/pallets-precompiles/pallets/conviction-voting/#extrinsics){target=_blank} in a poll (referendum)
-- **removeOtherVote**(*address* target, *uint16* trackId, *uint32* pollIndex) - [removes a vote](/builders/pallets-precompiles/pallets/conviction-voting/#extrinsics){target=_blank} in a poll (referendum) for another voter
+- **removeVote**(*uint32* pollIndex) - [removes a vote](/builders/pallets-precompiles/pallets/conviction-voting/#extrinsics){target=\_blank} in a poll (referendum)
+- **removeOtherVote**(*address* target, *uint16* trackId, *uint32* pollIndex) - [removes a vote](/builders/pallets-precompiles/pallets/conviction-voting/#extrinsics){target=\_blank} in a poll (referendum) for another voter
 - **delegate**(*uint16* trackId, *address* representative, *Conviction* conviction, *uint256* amount) - delegates another account as a representative to place a Conviction-weighted vote on the behalf of the sending account for a specific Track
 - **undelegate**(*uint16* trackId) - removes the caller's vote delegations for a specific Track
 - **unlock**(*uint16* trackId, *address* target) - unlocks the locked tokens of a specific account for a specific Track
@@ -87,14 +87,14 @@ The interface also includes the following events:
 
 The below example is demonstrated on Moonbase Alpha, however, similar steps can be taken for Moonriver. To follow the steps in this guide, you'll need to have the following:
 
- - MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=_blank}
+ - MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}
  - An account with some DEV tokens.
  --8<-- 'text/_common/faucet/faucet-list-item.md'
 
 ### Remix Set Up {: #remix-set-up }
 
 1. Click on the **File explorer** tab
-2. Paste a copy of [`ConvictionVoting.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/conviction-voting/ConvictionVoting.sol){target=_blank} into a [Remix file](https://remix.ethereum.org/){target=_blank} named `ConvictionVoting.sol`
+2. Paste a copy of [`ConvictionVoting.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/conviction-voting/ConvictionVoting.sol){target=\_blank} into a [Remix file](https://remix.ethereum.org/){target=\_blank} named `ConvictionVoting.sol`
 
 ![Copy and paste the referenda Solidity interface into Remix.](/images/builders/pallets-precompiles/precompiles/conviction-voting/conviction-voting-1.webp)
 
@@ -117,9 +117,9 @@ The below example is demonstrated on Moonbase Alpha, however, similar steps can 
 
 ### Vote on a Referendum {: #vote-on-a-referendum }
 
-You can lock tokens and vote on a referendum at anytime during the Lead-in Period or the Decide Period. In order for a referendum to pass, it needs to garner minimum Approval and Support, which vary by track. For more information on each of the relative periods and the Approval and Support requirments by Track, please refer to the [OpenGov section of the governance overview page](/learn/features/governance/#opengov){target=_blank}.
+You can lock tokens and vote on a referendum at anytime during the Lead-in Period or the Decide Period. In order for a referendum to pass, it needs to garner minimum Approval and Support, which vary by track. For more information on each of the relative periods and the Approval and Support requirments by Track, please refer to the [OpenGov section of the governance overview page](/learn/features/governance/#opengov){target=\_blank}.
 
-First, you'll need to get the index of the referendum you wish to vote on. To get the index of a referendum, head to [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network%2Fpublic-ws#/referenda){target=_blank} and take the following steps:
+First, you'll need to get the index of the referendum you wish to vote on. To get the index of a referendum, head to [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network%2Fpublic-ws#/referenda){target=\_blank} and take the following steps:
 
 1. From the **Governance** tab dropdown, select **Referenda**
 2. Look for the referenda you want to vote on. You can view more details about a specific referendum by clicking on the triangle icon. If there is no triangle icon, this means that only a proposal hash, and no preimage has been submitted for the proposal
@@ -127,7 +127,7 @@ First, you'll need to get the index of the referendum you wish to vote on. To ge
 
 ![View the list of referenda on Polkadot.js Apps.](/images/builders/pallets-precompiles/precompiles/conviction-voting/conviction-voting-4.webp)
 
-Now, you're ready to return to Remix to vote on the referendum via the Conviction Voting Precompile. There are two methods you can use to vote on a referendum: `voteYes` or `voteNo`. As you probably have already figured out, if you're in agreement with the proposal, you'll use `voteYes` and if in disagreement, you'll use `voteNo`. You'll specify the amount of tokens you want to lock with your vote and the Conviction, using index of the Conviction you want to vote with in the [aforementioned `Conviction` enum](#the-conviction-voting-solidity-interface). For example, if you wanted to lock your tokens for the duration of two Enactment Periods following a successful vote, you would enter `2` for the `Locked2x` Conviction. For more information on Convictions, you can check out the [Conviction Multiplier section of the Governance v2 documentation](/learn/features/governance/#conviction-multiplier-v2){target=_blank}.
+Now, you're ready to return to Remix to vote on the referendum via the Conviction Voting Precompile. There are two methods you can use to vote on a referendum: `voteYes` or `voteNo`. As you probably have already figured out, if you're in agreement with the proposal, you'll use `voteYes` and if in disagreement, you'll use `voteNo`. You'll specify the amount of tokens you want to lock with your vote and the Conviction, using index of the Conviction you want to vote with in the [aforementioned `Conviction` enum](#the-conviction-voting-solidity-interface). For example, if you wanted to lock your tokens for the duration of two Enactment Periods following a successful vote, you would enter `2` for the `Locked2x` Conviction. For more information on Convictions, you can check out the [Conviction Multiplier section of the Governance v2 documentation](/learn/features/governance/#conviction-multiplier-v2){target=\_blank}.
 
 To submit your vote, you can take the following steps:
 
@@ -149,7 +149,7 @@ In addition to voting on a referendum yourself, you can delegate a Conviction-we
 To get started, you can take the following steps:
 
 1. Find the **delegate** function and press the button to expand the section
-2. Enter the Track ID of the Track that you want the delegation to be used on. Track IDs can be found in the [Referenda page of Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network%2Fpublic-ws#/referenda){target=_blank}
+2. Enter the Track ID of the Track that you want the delegation to be used on. Track IDs can be found in the [Referenda page of Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network%2Fpublic-ws#/referenda){target=\_blank}
 3. Enter the delegate account that will have the power to vote on your behalf
 4. Enter the number of tokens they can vote with in Wei. Avoid entering your full balance here because you need to pay for transaction fees
 5. Enter the Conviction they can vote with
@@ -159,4 +159,4 @@ To get started, you can take the following steps:
 
 Now the delegate account can vote on your behalf! If you no longer want a delegate vote to exist, you can remove it using the `undelegate` function of the Conviction Voting Precompile.
 
-And that's it! You've completed your introduction to the Conviction Voting Precompile. There are a few more functions that are documented in [`ConvictionVoting.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/conviction-voting/ConvictionVoting.sol){target=_blank} — feel free to reach out on [Discord](https://discord.gg/moonbeam){target=_blank} if you have any questions about those functions or any other aspect of the Conviction Voting Precompile.
+And that's it! You've completed your introduction to the Conviction Voting Precompile. There are a few more functions that are documented in [`ConvictionVoting.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/conviction-voting/ConvictionVoting.sol){target=\_blank} — feel free to reach out on [Discord](https://discord.gg/moonbeam){target=\_blank} if you have any questions about those functions or any other aspect of the Conviction Voting Precompile.

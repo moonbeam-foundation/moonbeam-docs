@@ -11,15 +11,15 @@ The Computed Origin, previously referred to as the multilocation-derivative acco
 
 Computed origins are keyless (the private key is unknown). Consequently, Computed Origins can only be accessed through XCM extrinsics from the origin account. In other words, the origin account is the only account that can initiate transactions on your Computed Origin account, and if you lose access to your origin account, you’ll also lose access to your Computed Origin account.
 
-The Computed Origin is calculated from the origin that is being used to execute the XCM in the destination chain. By default, this is the Sovereign account of the source chain in the destination chain. This origin can be mutated by the [`DescendOrigin`](/builders/interoperability/xcm/core-concepts/instructions#descend-origin){target=_blank} XCM instruction. However, the destination chain can decide whether or not to use the newly mutated origin for the execution of the XCM. On Moonbeam, the Computed Origin account is used to execute the XCM.
+The Computed Origin is calculated from the origin that is being used to execute the XCM in the destination chain. By default, this is the Sovereign account of the source chain in the destination chain. This origin can be mutated by the [`DescendOrigin`](/builders/interoperability/xcm/core-concepts/instructions#descend-origin){target=\_blank} XCM instruction. However, the destination chain can decide whether or not to use the newly mutated origin for the execution of the XCM. On Moonbeam, the Computed Origin account is used to execute the XCM.
 
-Moonbeam-based networks follow [the Computed Origins standard set by Polkadot](https://github.com/paritytech/polkadot-sdk/blob/{{ polkadot_sdk }}/polkadot/xcm/xcm-builder/src/location_conversion.rs){target=_blank}, that is, through a `blake2` hash of a data structure that depends on the origin of the XCM message. However, because Moonbeam uses Ethereum-styled accounts, Computed Origins are truncated to 20 bytes.
+Moonbeam-based networks follow [the Computed Origins standard set by Polkadot](https://github.com/paritytech/polkadot-sdk/blob/{{ polkadot_sdk }}/polkadot/xcm/xcm-builder/src/location_conversion.rs){target=\_blank}, that is, through a `blake2` hash of a data structure that depends on the origin of the XCM message. However, because Moonbeam uses Ethereum-styled accounts, Computed Origins are truncated to 20 bytes.
 
 ## The Origin Conversion {: #origin-conversion }
 
-The [origin conversion](https://github.com/paritytech/polkadot-sdk/blob/{{ polkadot_sdk }}/polkadot/xcm/xcm-executor/src/lib.rs#L553){target=_blank} for a remote call happens when the `Transact` instruction gets executed. The new origin on the target chain is the one that pays for the fees for XCM execution on the target chain.
+The [origin conversion](https://github.com/paritytech/polkadot-sdk/blob/{{ polkadot_sdk }}/polkadot/xcm/xcm-executor/src/lib.rs#L553){target=\_blank} for a remote call happens when the `Transact` instruction gets executed. The new origin on the target chain is the one that pays for the fees for XCM execution on the target chain.
 
-For example, from the relay chain, the [`DescendOrigin`](/builders/interoperability/xcm/core-concepts/instructions#descend-origin){target=_blank} instruction is natively injected by the [XCM Pallet](https://github.com/paritytech/polkadot-sdk/blob/{{ polkadot_sdk }}/polkadot/xcm/pallet-xcm/src/lib.rs){target=_blank}. In the case of Moonbase Alpha's relay chain (based on Westend), it has the following format (a multilocation junction):
+For example, from the relay chain, the [`DescendOrigin`](/builders/interoperability/xcm/core-concepts/instructions#descend-origin){target=\_blank} instruction is natively injected by the [XCM Pallet](https://github.com/paritytech/polkadot-sdk/blob/{{ polkadot_sdk }}/polkadot/xcm/pallet-xcm/src/lib.rs){target=\_blank}. In the case of Moonbase Alpha's relay chain (based on Westend), it has the following format (a multilocation junction):
 
 ```js
 {
@@ -61,7 +61,7 @@ When the XCM instruction gets executed in Moonbeam (Moonbase Alpha in this examp
 
 ## How to Calculate the Computed Origin {: #calculate-computed-origin }
 
-You can easily calculate the Computed Origin account through the `calculate-multilocation-derivative-account` or the `calculate-remote-origin` script in the [xcm-tools](https://github.com/Moonsong-Labs/xcm-tools){target=_blank} repository.
+You can easily calculate the Computed Origin account through the `calculate-multilocation-derivative-account` or the `calculate-remote-origin` script in the [xcm-tools](https://github.com/Moonsong-Labs/xcm-tools){target=\_blank} repository.
 
 The script accepts the following inputs:
 
@@ -72,7 +72,7 @@ The script accepts the following inputs:
 
 To use the script, you can take the following steps:
 
-1. Clone the [xcm-tools](https://github.com/Moonsong-Labs/xcm-tools){target=_blank} repo
+1. Clone the [xcm-tools](https://github.com/Moonsong-Labs/xcm-tools){target=\_blank} repo
 2. Run `yarn` to install the necessary packages
 3. Run the script
 
@@ -84,7 +84,7 @@ To use the script, you can take the following steps:
     --parents INSERT_PARENTS_VALUE_IF_APPLIES
     ```
 
-You can also calculate the Computed Origin account using the `multilocationToAddress` function of the [XCM Utilities Precompile](/builders/interoperability/xcm/xcm-utils/){target=_blank}.
+You can also calculate the Computed Origin account using the `multilocationToAddress` function of the [XCM Utilities Precompile](/builders/interoperability/xcm/xcm-utils/){target=\_blank}.
 
 ### Calculate the Computed Origin on a Moonbeam-based Network {: #calculate-the-computed-origin-on-moonbeam }
 
@@ -98,7 +98,7 @@ yarn calculate-multilocation-derivative-account \
 ```
 
 !!! note
-    For Moonbeam or Moonriver, you will need to have your own endpoint and API key, which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=_blank}.
+    For Moonbeam or Moonriver, you will need to have your own endpoint and API key, which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=\_blank}.
 
 The returned output includes the following values:
 

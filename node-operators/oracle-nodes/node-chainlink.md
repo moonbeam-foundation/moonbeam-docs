@@ -24,7 +24,7 @@ This article provides an overview in regards to setting up a Chainlink oracle on
 
 If you are familiar with running Chainlink oracle nodes, this information will get you started on the Moonbase Alpha TestNet quickly:
 
- - Chainlink documentation on [Running a Chainlink Node](https://docs.chain.link/docs/running-a-chainlink-node){target=_blank}
+ - Chainlink documentation on [Running a Chainlink Node](https://docs.chain.link/docs/running-a-chainlink-node){target=\_blank}
  - Moonbase Alpha WSS EndPoint: `wss://wss.api.moonbase.moonbeam.network`
  - Moonbase Alpha ChainId: `{{ networks.moonbase.chain_id }}` (hex: `{{ networks.moonbase.hex_chain_id}}`)
  - LINK Token on Moonbase Alpha: `0xa36085F69e2889c224210F603D836748e7dC0088`
@@ -35,10 +35,10 @@ If you are familiar with running Chainlink oracle nodes, this information will g
 
 To follow along with this guide, you will need to have:
 
- - [Docker installed](https://docs.docker.com/get-docker/){target=_blank} for running Postgres DB and ChainLink node containers
- - An account with funds. You can create one with [MetaMask](/tokens/connect/metamask/){target=_blank}.
+ - [Docker installed](https://docs.docker.com/get-docker/){target=\_blank} for running Postgres DB and ChainLink node containers
+ - An account with funds. You can create one with [MetaMask](/tokens/connect/metamask/){target=\_blank}.
  --8<-- 'text/_common/faucet/faucet-list-item.md'
- - Access to the [Remix IDE](https://remix.ethereum.org/){target=_blank} in case you want to use it to deploy the oracle contract. For more information you can check out the [Using Remix to Deploy to Moonbeam](/builders/build/eth-api/dev-env/remix/){target=_blank} tutorial
+ - Access to the [Remix IDE](https://remix.ethereum.org/){target=\_blank} in case you want to use it to deploy the oracle contract. For more information you can check out the [Using Remix to Deploy to Moonbeam](/builders/build/eth-api/dev-env/remix/){target=\_blank} tutorial
 
 ## Getting Started {: #getting-started }
 
@@ -147,7 +147,7 @@ docker logs --tail 50 {INSERT_CONTAINER_ID} #Logs progressing
 
 With the oracle node running, you can start to configure the smart contract side of things. First, you'll need to fund the oracle node by taking the following steps:
 
-1. Retrieve the address that the oracle node will use to send transactions and write data on-chain by logging into the [ChainLink node's UI](http://localhost:6688/){target=_blank} (located at `http://localhost:6688/`). You'll need to use the credentials from the `.api` file
+1. Retrieve the address that the oracle node will use to send transactions and write data on-chain by logging into the [ChainLink node's UI](http://localhost:6688/){target=\_blank} (located at `http://localhost:6688/`). You'll need to use the credentials from the `.api` file
 
     ![Chainlink login](/images/node-operators/oracle-nodes/chainlink/chainlink-node-2.webp)
 
@@ -159,7 +159,7 @@ With the oracle node running, you can start to configure the smart contract side
 
 Next, you'll need to deploy the oracle contract, which is the middleware between the chain and the node. The contract emits an event with all the necessary information, which is read by the oracle node. Then, the node fulfills the request and writes the requested data in the caller's contract.
 
-The source code of the oracle contract can be found in [Chainlink's official GitHub repository](https://github.com/smartcontractkit/chainlink/tree/develop/contracts/src/v0.6/Oracle.sol){target=_blank}. For this example, you can use Remix to interact with Moonbase Alpha and deploy the contract. In [Remix](https://remix.ethereum.org/){target=_blank}, you can create a new file and copy the following code:
+The source code of the oracle contract can be found in [Chainlink's official GitHub repository](https://github.com/smartcontractkit/chainlink/tree/develop/contracts/src/v0.6/Oracle.sol){target=\_blank}. For this example, you can use Remix to interact with Moonbase Alpha and deploy the contract. In [Remix](https://remix.ethereum.org/){target=\_blank}, you can create a new file and copy the following code:
 
 ```bash
 pragma solidity ^0.6.6;
@@ -188,13 +188,13 @@ Lastly, you have to bond the oracle node and the oracle smart contract. A node c
 
 ## Creating a Job {: #creating-a-job }
 
-The last step to have a fully configured Chainlink oracle is to create a job. Referring to [Chainlink’s official documentation](https://docs.chain.link/chainlink-nodes/oracle-jobs/v1/job-specifications){target=_blank}:
+The last step to have a fully configured Chainlink oracle is to create a job. Referring to [Chainlink’s official documentation](https://docs.chain.link/chainlink-nodes/oracle-jobs/v1/job-specifications){target=\_blank}:
 
 > A Job specifications, or specs, contain the sequential tasks that the node must perform to produce a final result. A spec contains at least one initiator and one task, which are discussed in detail below. Specs are defined using standard JSON so that they are human-readable and can be easily parsed by the Chainlink node.
 
 Seeing an oracle as an API service, a job here would be one of the functions that you can call and that will return a result. To get started creating your first job, take the following steps:
 
-1. Go to the [Jobs sections of your node](http://localhost:6688/jobs){target=_blank}
+1. Go to the [Jobs sections of your node](http://localhost:6688/jobs){target=\_blank}
 2. Click on **New Job**
 
 ![Chainlink oracle New Job](/images/node-operators/oracle-nodes/chainlink/chainlink-node-6.webp)
@@ -241,7 +241,7 @@ And that is it! You have fully set up a Chainlink oracle node that is running on
 
 ### Using Any API {: #using-any-api }
 
-You can also create and use a job spec to work with any API. You can search for preexisting jobs from an independent listing service such as [market.link](https://market.link/){target=_blank}. Please note that although the jobs might be implented for other networks, you'll be able to use the job spec to create the job for your oracle node on Moonbase Alpha. Once you find a job that fits your needs, you'll need to copy the job spec JSON and use it to create a new job.
+You can also create and use a job spec to work with any API. You can search for preexisting jobs from an independent listing service such as [market.link](https://market.link/){target=\_blank}. Please note that although the jobs might be implented for other networks, you'll be able to use the job spec to create the job for your oracle node on Moonbase Alpha. Once you find a job that fits your needs, you'll need to copy the job spec JSON and use it to create a new job.
 
 For example, the previous job spec can be altered to be more generic so it can be used for any API:
 
@@ -263,7 +263,7 @@ For example, the previous job spec can be altered to be more generic so it can b
 }
 ```
 
-If you need a more custom solution, you can check out Chainlink's documentation to learn how to build your own [External Adapter](https://docs.chain.link/docs/developers/){target=_blank}.
+If you need a more custom solution, you can check out Chainlink's documentation to learn how to build your own [External Adapter](https://docs.chain.link/docs/developers/){target=\_blank}.
 
 ## Test the Oracle {: #test-the-oracle }
 

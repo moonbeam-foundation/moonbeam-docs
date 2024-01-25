@@ -9,7 +9,7 @@ description: Learn about how to verify smart contracts on Moonbeam networks usin
 
 Verifying smart contracts is a great way of improving the transparency and security of contracts deployed on Moonbeam. Hardhat and Foundry integrate with Etherscan's contract verification service to automate the process of verifying contracts by locally detecting which contracts to verify and which Solidity libraries are required, if any.
 
-The Hardhat plugin integrates seamlessly into your [Hardhat](https://hardhat.org/){target=_blank} project. [Foundry](https://github.com/foundry-rs/foundry){target=_blank} also has Etherscan capabilities, but they are built into its Forge tool instead of being included in a separate plugin.
+The Hardhat plugin integrates seamlessly into your [Hardhat](https://hardhat.org/){target=\_blank} project. [Foundry](https://github.com/foundry-rs/foundry){target=\_blank} also has Etherscan capabilities, but they are built into its Forge tool instead of being included in a separate plugin.
 
 This guide will show you how to use both plugins to verify smart contracts deployed on Moonbase Alpha. This guide can also be adapted for Moonbeam and Moonriver.
 
@@ -17,15 +17,15 @@ This guide will show you how to use both plugins to verify smart contracts deplo
 
 To follow along with this tutorial, you will need to have:
 
-- [MetaMask installed and connected to the Moonbase Alpha](/tokens/connect/metamask/){target=_blank} TestNet
+- [MetaMask installed and connected to the Moonbase Alpha](/tokens/connect/metamask/){target=\_blank} TestNet
 - An account funded with `DEV` tokens.
  --8<-- 'text/_common/faucet/faucet-list-item.md'
-- A Moonscan API key for the network you're trying to verify a contract on. For Moonbeam and Moonbase Alpha, you'll need a [Moonbeam Moonscan](https://moonscan.io/){target=_blank} API key. For Moonriver, you'll need a [Moonriver Moonscan](https://moonriver.moonscan.io/){target=_blank} API key
+- A Moonscan API key for the network you're trying to verify a contract on. For Moonbeam and Moonbase Alpha, you'll need a [Moonbeam Moonscan](https://moonscan.io/){target=\_blank} API key. For Moonriver, you'll need a [Moonriver Moonscan](https://moonriver.moonscan.io/){target=\_blank} API key
 - Git installed and configured
 
 ## Generating a Moonscan API Key {: generating-a-moonscan-api-key }
 
-To generate a Moonscan API Key, you will need to sign up for an account. Depending on which network you want to verify a contract on, you'll have to make sure you create an API key from the correct network on Moonscan. For Moonbeam or Moonbase Alpha, you can navigate to the [Moonbeam Moonscan](https://moonscan.io/){target=_blank}. For Moonriver, you can head to the [Moonriver Moonscan](https://moonriver.moonscan.io/){target=_blank}. To sign up for an account, you can take the following steps:
+To generate a Moonscan API Key, you will need to sign up for an account. Depending on which network you want to verify a contract on, you'll have to make sure you create an API key from the correct network on Moonscan. For Moonbeam or Moonbase Alpha, you can navigate to the [Moonbeam Moonscan](https://moonscan.io/){target=\_blank}. For Moonriver, you can head to the [Moonriver Moonscan](https://moonriver.moonscan.io/){target=\_blank}. To sign up for an account, you can take the following steps:
 
 1. Click **Sign In**
 2. Select **Click to sign up** and then register your new account
@@ -43,7 +43,7 @@ You will then be prompted to enter in an **AppName** for your API key and once y
 
 ## Using the Hardhat Etherscan Plugin {: #using-the-hardhat-verify-plugin }
 
-The example in this section of the guide will be based off of the `Box.sol` contract that was created in the [Using Hardhat to Deploy To Moonbeam](/builders/build/eth-api/dev-env/hardhat/){target=_blank} guide.
+The example in this section of the guide will be based off of the `Box.sol` contract that was created in the [Using Hardhat to Deploy To Moonbeam](/builders/build/eth-api/dev-env/hardhat/){target=\_blank} guide.
 
 To get started with the Hardhat Etherscan plugin, you will need to first install the plugin library:
 
@@ -54,7 +54,7 @@ npm install --save-dev @nomicfoundation/hardhat-verify
 !!! note
     Support for Moonbeam-based networks was added in version 3.0.1 of `@nomicfoundation/hardhat-verify`. You can double check what version you're using by looking under the `devDependencies` section of your `package.json` and updating to version 3.0.1 or greater if needed.
 
-You can add your Moonscan API key to the `hardhat.config.js` file. For this example, you'll need a [Moonbeam Moonscan](https://moonscan.io/){target=_blank} API key. If you want to verify a contract on Moonriver, you'll need a [Moonriver Moonscan](https://moonriver.moonscan.io/){target=_blank} API key.
+You can add your Moonscan API key to the `hardhat.config.js` file. For this example, you'll need a [Moonbeam Moonscan](https://moonscan.io/){target=\_blank} API key. If you want to verify a contract on Moonriver, you'll need a [Moonriver Moonscan](https://moonriver.moonscan.io/){target=\_blank} API key.
 
 From within your Hardhat project, open your `hardhat.config.js` file. You'll need to import the `hardhat-verify` plugin, your Moonscan API key, and add the config for Etherscan:
 
@@ -83,7 +83,7 @@ To verify the contract, you will run the `verify` command and pass in the addres
 npx hardhat verify --network moonbase INSERT_CONTRACT_ADDRESS
 ```
 
-In your terminal you should see the source code for your contract was successfully submitted for verification. If the verification was successful, you should see **Successfully verified contract** and there will be a link to the contract code on [Moonscan for Moonbase Alpha](https://moonbase.moonscan.io/){target=_blank}.
+In your terminal you should see the source code for your contract was successfully submitted for verification. If the verification was successful, you should see **Successfully verified contract** and there will be a link to the contract code on [Moonscan for Moonbase Alpha](https://moonbase.moonscan.io/){target=\_blank}.
 
 ![Successful verification using hardhat-verify plugin](/images/builders/build/eth-api/verify-contracts/etherscan-plugins/plugins-3.webp)
 
@@ -93,19 +93,19 @@ If you're verifying a contract that has constructor arguments, you'll need to ru
 npx hardhat verify --network moonbase INSERT_CONTRACT_ADDRESS INSERT_CONSTRUCTOR_ARGS
 ```
 
-Please refer to the [Hardhat Verify documentation](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-verify){target=_blank} for help with additional use cases such as:
+Please refer to the [Hardhat Verify documentation](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-verify){target=\_blank} for help with additional use cases such as:
 
-- [complex arguments](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-verify#complex-arguments){target=_blank}
-- [libraries with undetectable addresses](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-verify#libraries-with-undetectable-addresses){target=_blank}
-- using [multiple API keys](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-verify#multiple-api-keys-and-alternative-block-explorers){target=_blank}
-- using the [`verify` command programmatically](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-verify#using-programmatically){target=_blank}
-- [determining the correct constructor arguments](https://info.etherscan.com/determine-correct-constructor-argument-during-source-code-verification-on-etherscan/){target=_blank}
+- [complex arguments](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-verify#complex-arguments){target=\_blank}
+- [libraries with undetectable addresses](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-verify#libraries-with-undetectable-addresses){target=\_blank}
+- using [multiple API keys](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-verify#multiple-api-keys-and-alternative-block-explorers){target=\_blank}
+- using the [`verify` command programmatically](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-verify#using-programmatically){target=\_blank}
+- [determining the correct constructor arguments](https://info.etherscan.com/determine-correct-constructor-argument-during-source-code-verification-on-etherscan/){target=\_blank}
 
 ## Using Foundry to Verify {: #using-foundry-to-verify }
 
-The example in this section of the guide will use the `MyToken.sol` contract that was created in the [Using Foundry to Deploy to Moonbeam](/builders/build/eth-api/dev-env/foundry/){target=_blank} guide.
+The example in this section of the guide will use the `MyToken.sol` contract that was created in the [Using Foundry to Deploy to Moonbeam](/builders/build/eth-api/dev-env/foundry/){target=\_blank} guide.
 
-In addition to the Foundry project, you will need a [Moonbeam Moonscan](https://moonscan.io/){target=_blank} API key. This API key can be used for both the Moonbeam and Moonbase Alpha networks. If you want to verify a contract on Moonriver, you'll need a [Moonriver Moonscan](https://moonriver.moonscan.io/){target=_blank} API key.
+In addition to the Foundry project, you will need a [Moonbeam Moonscan](https://moonscan.io/){target=\_blank} API key. This API key can be used for both the Moonbeam and Moonbase Alpha networks. If you want to verify a contract on Moonriver, you'll need a [Moonriver Moonscan](https://moonriver.moonscan.io/){target=\_blank} API key.
 
 If you have already deployed the example contract, you can verify it with the `verify-contract` command. Before you can verify the contract, you will need to ABI-encode the constructor arguments. To do so for the example contract, you can run the following command:
 

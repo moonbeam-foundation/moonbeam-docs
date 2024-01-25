@@ -7,7 +7,7 @@ description: This guide walks you through how to configure the Coinbase Wallet e
 
 ## Introduction {: #introduction }
 
-[Coinbase Wallet](https://wallet.coinbase.com/?_branch_match_id=977295450874474909&_branch_referrer=H4sIAAAAAAAAA8soKSkottLXT8%2FXS07SLddLzs%2FVD8%2FJynFKSy02zE4CAFZ0JzQfAAAA){target=_blank} is a self-custody (non-custodial) wallet, like [MetaMask](/tokens/connect/metamask/){target=_blank}, available as a mobile application for iOS and Android and a browser extension. You can use Coinbase Wallet to interact with Moonbeam, Moonriver, and the Moonbase Alpha TestNet after adding them as custom networks.
+[Coinbase Wallet](https://wallet.coinbase.com/?_branch_match_id=977295450874474909&_branch_referrer=H4sIAAAAAAAAA8soKSkottLXT8%2FXS07SLddLzs%2FVD8%2FJynFKSy02zE4CAFZ0JzQfAAAA){target=\_blank} is a self-custody (non-custodial) wallet, like [MetaMask](/tokens/connect/metamask/){target=\_blank}, available as a mobile application for iOS and Android and a browser extension. You can use Coinbase Wallet to interact with Moonbeam, Moonriver, and the Moonbase Alpha TestNet after adding them as custom networks.
 
 Please note that Coinbase Wallet is an entirely different product from Coinbase Exchange, a custodial platform for buying and selling cryptocurrency. Holding a token in your Coinbase Wallet does not imply it is supported on Coinbase Exchange. If you send a token from your Coinbase Wallet to Coinbase Exchange that is not supported by the exchange, you will lose those funds forever.
 
@@ -17,7 +17,7 @@ In this guide, you'll go through the process of setting up the Coinbase Wallet m
 
 ## Install Coinbase Wallet {: #install-coinbase-wallet }
 
-You can [download Coinbase Wallet](https://wallet.coinbase.com/?_branch_match_id=977295450874474909&_branch_referrer=H4sIAAAAAAAAA8soKSkottLXT8%2FXS07SLddLzs%2FVD8%2FJynFKSy02zE4CAFZ0JzQfAAAA){target=_blank} as a mobile app from the iOS App Store or Google Play Store, or as a desktop browser extension from the Chrome Store.
+You can [download Coinbase Wallet](https://wallet.coinbase.com/?_branch_match_id=977295450874474909&_branch_referrer=H4sIAAAAAAAAA8soKSkottLXT8%2FXS07SLddLzs%2FVD8%2FJynFKSy02zE4CAFZ0JzQfAAAA){target=\_blank} as a mobile app from the iOS App Store or Google Play Store, or as a desktop browser extension from the Chrome Store.
 
 The interfaces for the mobile app and browser extension are quite similar, so you can adapt the following instructions for the browser extension. The one major difference between the two is that when you add Moonbase Alpha as a custom network, you can interact with the network on the browser extension but not from the mobile app. This difference only applies to Moonbase Alpha. If you're connecting to Moonbeam or Moonriver, you'll be able to interact with either network from both the browser extension and mobile app.
 
@@ -128,12 +128,12 @@ And that's it! You've successfully set up your Coinbase Wallet app, connected it
 
 ## Limitations {: #limitations }
 
- - At this time, Coinbase Wallet displays only outgoing transactions in your transaction history in the app. You can see your full transaction history, including incoming transactions, by looking up your address on a blockchain explorer such as [Moonscan](https://moonscan.io/){target=_blank}
+ - At this time, Coinbase Wallet displays only outgoing transactions in your transaction history in the app. You can see your full transaction history, including incoming transactions, by looking up your address on a blockchain explorer such as [Moonscan](https://moonscan.io/){target=\_blank}
  - On the Coinbase Wallet mobile app, you can add Moonbase Alpha as a custom network; however, you won't be able to see your balances or send transactions from the app. You'll need to use the browser extension instead
 
 ## Additional Resources {: #additional-resources }
 
- - [Coinbase Wallet FAQ](https://wallet.coinbase.com/faq/){target=_blank}
- - [Coinbase Wallet Getting Started Guide](https://www.coinbase.com/wallet/getting-started-mobile){target=_blank}
+ - [Coinbase Wallet FAQ](https://wallet.coinbase.com/faq/){target=\_blank}
+ - [Coinbase Wallet Getting Started Guide](https://www.coinbase.com/wallet/getting-started-mobile){target=\_blank}
 
 --8<-- 'text/_disclaimers/third-party-content.md'

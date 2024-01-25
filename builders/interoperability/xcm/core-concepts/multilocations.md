@@ -71,7 +71,7 @@ A Junction can be any of the following:
     ```
 
 - `OnlyChild` - describes the child of a location if there is only a one-to-one relation between the parent and child. This is currently not used except as a fallback when deriving context
-- `Plurality` - describes multiple elements that meet specific conditions or share common characteristics. This requires you to specify the [Body ID](https://github.com/paritytech/polkadot-sdk/blob/{{ polkadot_sdk }}/polkadot/xcm/src/v3/junction.rs#L121-L147){target=_blank} and the [Body Part](https://github.com/paritytech/polkadot-sdk/blob/{{ polkadot_sdk }}/polkadot/xcm/src/v3/junction.rs#L192-L221){target=_blank} that the Junction represents
+- `Plurality` - describes multiple elements that meet specific conditions or share common characteristics. This requires you to specify the [Body ID](https://github.com/paritytech/polkadot-sdk/blob/{{ polkadot_sdk }}/polkadot/xcm/src/v3/junction.rs#L121-L147){target=\_blank} and the [Body Part](https://github.com/paritytech/polkadot-sdk/blob/{{ polkadot_sdk }}/polkadot/xcm/src/v3/junction.rs#L192-L221){target=\_blank} that the Junction represents
 
     ```js
     { Plurality: { id: INSERT_BODY_ID, part: INSERT_BODY_PART } }

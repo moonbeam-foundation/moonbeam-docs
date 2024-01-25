@@ -13,13 +13,13 @@ Token holders can add to candidates' stake using their tokens, a process called 
 
 Once a candidate joins the active set of collators, they are eligible to produce blocks and receive partial block rewards as part of the token inflationary model. They share these as staking rewards with their delegators, considering their proportional contribution toward their stake in the network. Delegators can choose to auto-compound their rewards so that a set percentage of their rewards are automatically applied to their total delegation amount.
 
-This guide will show you how to stake on Moonbase Alpha via Polkadot.js Apps, but similar steps can be taken for any of the Moonbeam and Moonriver. Token holders that want to easily stake their tokens can use the [Moonbeam dApp](https://apps.moonbeam.network/){target=_blank} to do so.
+This guide will show you how to stake on Moonbase Alpha via Polkadot.js Apps, but similar steps can be taken for any of the Moonbeam and Moonriver. Token holders that want to easily stake their tokens can use the [Moonbeam dApp](https://apps.moonbeam.network/){target=\_blank} to do so.
 
-For more general information on staking, please check out the [Staking on Moonbeam](/learn/features/staking/){target=_blank} overview.
+For more general information on staking, please check out the [Staking on Moonbeam](/learn/features/staking/){target=\_blank} overview.
 
 ## Extrinsics Definitions {: #extrinsics-definitions }
 
-There are many extrinsics related to the staking pallet, you can check out a complete list of them on the [Parachain Staking Pallet](/builders/pallets-precompiles/pallets/staking){target=_blank} page.
+There are many extrinsics related to the staking pallet, you can check out a complete list of them on the [Parachain Staking Pallet](/builders/pallets-precompiles/pallets/staking){target=\_blank} page.
 
 The following list covers the extrinsics that you'll use in this guide and are associated with the delegation process.
 
@@ -33,15 +33,15 @@ The following list covers the extrinsics that you'll use in this guide and are a
 ### Bond More or Less  {: #bond-more-or-less }
 
  - **delegatorBondMore**(*address* candidate, *uint256* more) - extrinsic to request to increase the amount of staked tokens for an already delegated collator
- - **scheduleDelegatorBondLess**(*address* candidate, *uint256* less) - extrinsic to request to reduce the amount of staked tokens for an already delegated collator. The amount must not decrease your overall total staked below the minimum delegation stake. There will be a [bond less delay](/learn/features/staking/#quick-reference/#:~:text=Decrease delegation delay){target=_blank} before you can execute the request via the `executeDelegationRequest` extrinsic
+ - **scheduleDelegatorBondLess**(*address* candidate, *uint256* less) - extrinsic to request to reduce the amount of staked tokens for an already delegated collator. The amount must not decrease your overall total staked below the minimum delegation stake. There will be a [bond less delay](/learn/features/staking/#quick-reference/#:~:text=Decrease delegation delay){target=\_blank} before you can execute the request via the `executeDelegationRequest` extrinsic
  - **executeDelegationRequest**(*address* delegator, *address* candidate) - extrinsic to execute and pending delegation requests. This extrinsic should only be used after a request has been scheduled and the exit delay has passed
- - **scheduleCandidateBondLess**(*uint256* less) - extrinsic that allows a collator candidate to request to decrease their self bond by a given amount. There will be a [bond less delay](/node-operators/networks/collators/activities/#collator-timings/#:~:text=Reduce self){target=_blank} before you can execute the request via the `executeCandidateBondLess` extrinsic
+ - **scheduleCandidateBondLess**(*uint256* less) - extrinsic that allows a collator candidate to request to decrease their self bond by a given amount. There will be a [bond less delay](/node-operators/networks/collators/activities/#collator-timings/#:~:text=Reduce self){target=\_blank} before you can execute the request via the `executeCandidateBondLess` extrinsic
  - **executeCandidateBondLess**(*address* candidate) - extrinsic to execute a decrease a candidate's self bond amount. This extrinsic should only be used after a bond request has been scheduled and the exit delay has passed
  - **cancelCandidateBondLess**() - extrinsic to cancel a scheduled request to increase or decrease the bond for a specific candidate
 
 ### Revoke Delegations {: #revoke-delegations }
 
- - **scheduleRevokeDelegation**(*address* collator) - extrinsic to schedule to remove an existing delegation entirely. There will be a [revoke delegation delay](/learn/features/staking/#quick-reference/#:~:text=Revoke delegations delay){target=_blank} before you can execute the request via the [`executeDelegationRequest`](#:~:text=executeDelegationRequest(address delegator, address candidate)) extrinsic
+ - **scheduleRevokeDelegation**(*address* collator) - extrinsic to schedule to remove an existing delegation entirely. There will be a [revoke delegation delay](/learn/features/staking/#quick-reference/#:~:text=Revoke delegations delay){target=\_blank} before you can execute the request via the [`executeDelegationRequest`](#:~:text=executeDelegationRequest(address delegator, address candidate)) extrinsic
  - **cancelDelegationRequest**(*address* candidate) - extrinsic to cancel a scheduled request to revoke a delegation
 
 ### Set or Change Auto-Compounding Percentage {: #set-change-auto-compounding }
@@ -52,7 +52,7 @@ The following list covers the extrinsics that you'll use in this guide and are a
 
 You can check out any of the constant staking values using Polkadot.js Apps, such as the maximum number of delegations, minimum stake requirements, exit delays for delegation requests, and more.
 
-To do so, you can navigate to Polkadot.js Apps **Chain state** UI, and for the purposes of this guide, connect to [Moonbase Alpha](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/chainstate){target=_blank}. Alternatively, you can connect to [Moonbeam](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbeam.network/#chainstate){target=_blank} or [Moonriver](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonriver.moonbeam.network/#chainstate){target=_blank}.
+To do so, you can navigate to Polkadot.js Apps **Chain state** UI, and for the purposes of this guide, connect to [Moonbase Alpha](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/chainstate){target=\_blank}. Alternatively, you can connect to [Moonbeam](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbeam.network/#chainstate){target=\_blank} or [Moonriver](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonriver.moonbeam.network/#chainstate){target=\_blank}.
 
 Then to retrieve the various staking parameters, select the **Constants** tab on the **Chain state** UI, and take the following steps:
 
@@ -62,7 +62,7 @@ Then to retrieve the various staking parameters, select the **Constants** tab on
 
 ![Retrieving staking parameters](/images/tokens/staking/stake/stake-1.webp)
 
-You should then see the maximum delegations per delegator, which can also be found in the [Staking on Moonbeam](/learn/features/staking/#quick-reference){target=_blank} overview.
+You should then see the maximum delegations per delegator, which can also be found in the [Staking on Moonbeam](/learn/features/staking/#quick-reference){target=\_blank} overview.
 
 ## How to Stake & Auto-Compound Rewards via Polkadot.js Apps {: #how-to-delegate-a-candidate }
 
@@ -100,7 +100,7 @@ First, you need to get the `candidateInfo`, which will contain the delegator cou
 
 ### Get the Candidate Auto-Compounding Delegation Count {: #get-candidate-auto-compounding-count }
 
-The auto-compounding delegation count is the amount of delegations that have auto-compounding configured. To determine the number of delegations that have auto-compounding set up, you can query the auto-compounding delegations for the candidate on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/js){target=_blank} using the following snippet:
+The auto-compounding delegation count is the amount of delegations that have auto-compounding configured. To determine the number of delegations that have auto-compounding set up, you can query the auto-compounding delegations for the candidate on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/js){target=\_blank} using the following snippet:
 
 ```js
 // Simple script to get the number of auto-compounding delegations for a given candidate.
@@ -122,7 +122,7 @@ To run the snippet, make sure you're on the **JavaScript** page of Polkadot.js A
 
 ### Get your Number of Existing Delegations {: #get-your-number-of-existing-delegations }
 
-If you've never made a delegation from your address you can skip this section. However, if you're unsure how many existing delegations you have, you'll want to run the following JavaScript code snippet to get `delegationCount` from within [Polkadot.js](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/js){target=_blank}:
+If you've never made a delegation from your address you can skip this section. However, if you're unsure how many existing delegations you have, you'll want to run the following JavaScript code snippet to get `delegationCount` from within [Polkadot.js](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/js){target=\_blank}:
 
 ```js
 // Simple script to get your number of existing delegations.
@@ -149,7 +149,7 @@ Head to the **Developer** tab and click on **JavaScript**. Then take the followi
 
 ### Stake your Tokens {: #staking-your-tokens }
 
-To access staking features, you need to use the Polkadot.js Apps interface. To do so, you need to import/create an Ethereum-style account first (H160 address), which you can do by following the [Creating or Importing an H160 Account](/tokens/connect/polkadotjs/#creating-or-importing-an-h160-account){target=_blank} section of the Polkadot.js guide.
+To access staking features, you need to use the Polkadot.js Apps interface. To do so, you need to import/create an Ethereum-style account first (H160 address), which you can do by following the [Creating or Importing an H160 Account](/tokens/connect/polkadotjs/#creating-or-importing-an-h160-account){target=\_blank} section of the Polkadot.js guide.
 
 For this example, an account was imported and named with a super original name: Alice. Alice's address is `0xf24FF3a9CF04c71Dbc94D0b566f7A27B94566cac`.
 
@@ -235,9 +235,9 @@ You'll need to [get the number of delegations with auto-compounding set up](#get
 
 ## How to Stop Delegations {: #how-to-stop-delegations }
 
-As of [runtime version 1001](https://moonbeam.network/announcements/staking-changes-moonriver-runtime-upgrade/){target=_blank}, there have been significant changes to the way users can interact with various staking features. Including the way staking exits are handled.
+As of [runtime version 1001](https://moonbeam.network/announcements/staking-changes-moonriver-runtime-upgrade/){target=\_blank}, there have been significant changes to the way users can interact with various staking features. Including the way staking exits are handled.
 
-If you want to make an exit and stop a delegation, you have to first schedule it, wait an exit delay, and then execute the exit request. If you are already a delegator, you can request to stop your delegations using the `scheduleRevokeDelegation` extrinsic to request to unstake your tokens from a specific collator candidate. Scheduling a request does not automatically revoke your delegations, you must wait an [exit delay](/learn/features/staking/#quick-reference){target=_blank} and then execute the request by using the `executeDelegationRequest` method.
+If you want to make an exit and stop a delegation, you have to first schedule it, wait an exit delay, and then execute the exit request. If you are already a delegator, you can request to stop your delegations using the `scheduleRevokeDelegation` extrinsic to request to unstake your tokens from a specific collator candidate. Scheduling a request does not automatically revoke your delegations, you must wait an [exit delay](/learn/features/staking/#quick-reference){target=\_blank} and then execute the request by using the `executeDelegationRequest` method.
 
 ### Schedule Request to Stop Delegations {: #schedule-request-to-stop-delegations }
 
@@ -254,7 +254,7 @@ To schedule a request to revoke your delegation from a specific candidate, navig
 !!! note
     There can only be one pending scheduled request per candidate.
 
-Once you have scheduled an exit, you must wait an [exit delay](/learn/features/staking/#quick-reference){target=_blank} before you can then execute it. If you try to execute it before the exit delay is up the extrinsic will fail and you'll see an error from Polkadot.js Apps for `parachainStaking.PendingDelegationRequest`.
+Once you have scheduled an exit, you must wait an [exit delay](/learn/features/staking/#quick-reference){target=\_blank} before you can then execute it. If you try to execute it before the exit delay is up the extrinsic will fail and you'll see an error from Polkadot.js Apps for `parachainStaking.PendingDelegationRequest`.
 
 ### Execute Request to Stop Delegations {: #execute-request-to-stop-delegations }
 
@@ -297,7 +297,7 @@ If you scheduled a request to stop delegations but changed your mind, as long as
 
 ## Staking Rewards {: #staking-rewards }
 
-As candidates in the active set of collators receive rewards from block production, delegators get rewards as well. A brief overview on how the rewards are calculated can be found in the [Reward Distribution section](/learn/features/staking/#reward-distribution){target=_blank} of the Staking on Moonbeam overview page.
+As candidates in the active set of collators receive rewards from block production, delegators get rewards as well. A brief overview on how the rewards are calculated can be found in the [Reward Distribution section](/learn/features/staking/#reward-distribution){target=\_blank} of the Staking on Moonbeam overview page.
 
 In summary, delegators will earn rewards based on their stake of the total delegations for the collator being rewarded (including the collator's stake as well).
 

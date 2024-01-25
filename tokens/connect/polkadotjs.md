@@ -7,18 +7,18 @@ description: Follow this quick tutorial to learn how to use Moonbeam’s Ethereu
 
 ## Introduction {: #introduction }
 
-As a Polkadot parachain, Moonbeam uses a [unified account structure](/learn/features/unified-accounts/){target=_blank} that allows you to interact with Substrate (Polkadot) functionality and Moonbeam's EVM, all from a single Ethereum-style address. This unified account structure means that you don't need to maintain both a Substrate and an Ethereum account to interact with Moonbeam - instead, you can do it all with a single Ethereum private key.
+As a Polkadot parachain, Moonbeam uses a [unified account structure](/learn/features/unified-accounts/){target=\_blank} that allows you to interact with Substrate (Polkadot) functionality and Moonbeam's EVM, all from a single Ethereum-style address. This unified account structure means that you don't need to maintain both a Substrate and an Ethereum account to interact with Moonbeam - instead, you can do it all with a single Ethereum private key.
 
-The Polkadot.js Apps interface natively supports H160 addresses and ECDSA keys. So, in this tutorial, you can check out this integration of Ethereum-based accounts on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network%2Fpublic-ws#/accounts){target=_blank}.
+The Polkadot.js Apps interface natively supports H160 addresses and ECDSA keys. So, in this tutorial, you can check out this integration of Ethereum-based accounts on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network%2Fpublic-ws#/accounts){target=\_blank}.
 
 --8<-- 'text/_disclaimers/third-party-content-intro.md'
 
 !!! note
-    Polkadot.js Apps is phasing out support for accounts stored locally in the browser's cache. Instead, it is recommended that you use a browser extension like [Talisman to inject your accounts into Polkadot.js Apps](/tokens/connect/talisman){target=_blank}.
+    Polkadot.js Apps is phasing out support for accounts stored locally in the browser's cache. Instead, it is recommended that you use a browser extension like [Talisman to inject your accounts into Polkadot.js Apps](/tokens/connect/talisman){target=\_blank}.
 
 ## Connect Polkadot.js Apps to Moonbeam {: #connecting-to-moonbase-alpha }
 
-When launching [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network%2Fpublic-ws#/accounts){target=_blank} for the first time, you may or may not be connected to the desired network.
+When launching [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network%2Fpublic-ws#/accounts){target=\_blank} for the first time, you may or may not be connected to the desired network.
 
 You can change the selected network by clicking the logo in the top left corner, where you'll find a list of networks organized by MainNets, TestNets, and local networks. Each network can be found under the following sections:
 
@@ -40,7 +40,7 @@ After switching, the Polkadot.js site will not only connect to the chosen networ
 ## Create or Import an H160 Account into Polkadot.js Apps {: #creating-or-importing-an-h160-account }
 
 !!! note
-    For security purposes, it is recommended that you do not store accounts locally in the browser. A more secure method is using a browser extension like [Talisman to inject your accounts into Polkadot.js Apps](/tokens/connect/talisman){target=_blank}.
+    For security purposes, it is recommended that you do not store accounts locally in the browser. A more secure method is using a browser extension like [Talisman to inject your accounts into Polkadot.js Apps](/tokens/connect/talisman){target=\_blank}.
 
 In this section, you'll learn how you can create a new account or import a preexisting MetaMask account to Polkadot.js Apps. First, there is one prerequisite step. As part of the process of phasing out support for accounts stored locally in the browser's cache, you'll need to enable support for local storage of accounts in the **Settings** tab. To do so, take the following steps:
 
@@ -50,7 +50,7 @@ In this section, you'll learn how you can create a new account or import a preex
 
 ![Allow local in-browser account storage](/images/tokens/connect/polkadotjs/polkadotjs-3.webp)
 
-You can now head back to the [Accounts page of Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network%2Fpublic-ws#/accounts){target=_blank} and proceed with the next steps:
+You can now head back to the [Accounts page of Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network%2Fpublic-ws#/accounts){target=\_blank} and proceed with the next steps:
 
 1. Navigate to the **Accounts** section
 2. Click on the **Add account** button
@@ -82,7 +82,7 @@ To finish the wizard, you can set an account name and password. After a confirma
 
 ## Send a Transaction Through Substrate's API {: #sending-a-transaction-through-substrates-api }
 
-Now, to demonstrate the potential of Moonbeam's [unified accounts](/learn/features/unified-accounts){target=_blank} scheme, you can make a transfer through the Substrate API using Polkadot.js Apps. Remember that you are interacting with Substrate using an Ethereum-style H160 address. To do so, you can import another account.
+Now, to demonstrate the potential of Moonbeam's [unified accounts](/learn/features/unified-accounts){target=\_blank} scheme, you can make a transfer through the Substrate API using Polkadot.js Apps. Remember that you are interacting with Substrate using an Ethereum-style H160 address. To do so, you can import another account.
 
 Next, click on Bob's **send** button, which opens another wizard that guides you through the process of sending a transaction.
 
