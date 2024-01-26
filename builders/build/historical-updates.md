@@ -127,8 +127,7 @@ This bug existed during the following runtimes and block ranges:
 |   Moonriver    |    RT49    | RT2401 |     0 - 4668844      |
 | Moonbase Alpha |    RT40    | RT2401 |     0 - 4591616      |
 
-For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/2291){target=_blank}.
-
+For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/2291){target=\_blank}.
 
 ***
 
