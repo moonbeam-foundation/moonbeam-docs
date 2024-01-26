@@ -362,11 +362,11 @@ For an overview of the flags used in the following start-up commands, plus addit
 
 Once Docker pulls the necessary images, your full node will start, displaying lots of information, such as the chain specification, node name, role, genesis state, and more.
 
-![Full Node Starting](/images/node-operators/networks/run-a-node/docker/full-node-docker-1.png)
+![Full Node Starting](/images/node-operators/networks/run-a-node/docker/full-node-docker-1.webp)
 
 During the syncing process, you will see logs from both the embedded relay chain ([Relaychain]) and the parachain ([🌗]). These logs display a target block (live network state) and a best block (local node synced state).
 
-![Full Node Starting](/images/node-operators/networks/run-a-node/docker/full-node-docker-2.png)
+![Full Node Starting](/images/node-operators/networks/run-a-node/docker/full-node-docker-2.webp)
 
 If you followed the installation instructions for Moonbase Alpha, once synced, you will have a node of the Moonbase Alpha TestNet running locally! For Moonbeam or Moonriver, once synced, you will be connected to peers and see blocks being produced on the network!
 

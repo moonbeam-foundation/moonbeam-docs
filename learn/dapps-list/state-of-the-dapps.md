@@ -11,7 +11,7 @@ description: How you can list your Moonbeam or Moonriver project on State of the
 
 State of the DApps maintains a rank of projects based on active users, transaction volume, developer activity, and profile strength. Moonriver is currently live on State of the DApps. Previously, a [crowd-sourced Moonbeam DApps listing](https://github.com/moonbeam-foundation/moonbeam-project-directory){target=\_blank} was maintained as part of the Moonbeam docs site. That registry is deprecated and replaced by the listing platforms under the [Dapps List](/learn/dapps-list/){target=\_blank} section.
 
-![State of the DApps Home Page](/images/learn/dapps-list/state-of-the-dapps/state-of-the-dapps-1.png)
+![State of the DApps Home Page](/images/learn/dapps-list/state-of-the-dapps/state-of-the-dapps-1.webp)
 
 You can [submit your project](https://www.stateofthedapps.com/dapps/submit/new){target=\_blank} to State of the DApps by providing background on your project including a description of the DApp, screenshots, social media links, and a project status (such as Live, Beta, Prototype, etc). DApps are welcome at any stage in the product life cycle, including ones in the ideation phase. Only a subset of the fields are required, but you are encouraged to complete as many as possible, as providing a more thorough profile for your DApp will improve its ranking.
 
@@ -50,7 +50,7 @@ Once you have gathered the above required content, you can head to the [Submit a
  13. Provide a contact email (this is not shared publicly)
  14. Review the terms and conditions and press **Submit**
 
-![How to Submit your DApp](/images/learn/dapps-list/state-of-the-dapps/state-of-the-dapps-2.png)
+![How to Submit your DApp](/images/learn/dapps-list/state-of-the-dapps/state-of-the-dapps-2.webp)
 
 Submissions are typically reviewed by the State of the DApps team in one business day. For any Moonbeam-related questions you can reach out to us in [Discord](https://discord.gg/moonbeam){target=\_blank}. For State of the DApps support, you can contact [support@stateofthedapps.com](mailto:support@stateofthedapps.com)
 

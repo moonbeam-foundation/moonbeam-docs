@@ -27,11 +27,11 @@ If a channel between Moonbeam and the origin chain of the asset does not yet exi
 
 After you've collected feedback from community members, you can create a proposal to open a channel and register any assets. Please refer to the [Establishing an XC Integration with Moonbeam](/builders/interoperability/xcm/xc-registration/xc-integration){target=\_blank} guide for more information on opening a channel.
 
-![Asset registration if XC channel doesn't exist](/images/builders/interoperability/xcm/xc-registration/assets/assets-1.png)
+![Asset registration if XC channel doesn't exist](/images/builders/interoperability/xcm/xc-registration/assets/assets-1.webp)
 
 If a channel between the chains already exists, you'll need to create a forum post to register the asset, collect feedback, and then submit the proposal to register the asset.
 
-![Asset registration if XC channel exists](/images/builders/interoperability/xcm/xc-registration/assets/assets-2.png)
+![Asset registration if XC channel exists](/images/builders/interoperability/xcm/xc-registration/assets/assets-2.webp)
 
 ### Create a Forum Post {: #create-a-forum-post }
 
@@ -53,7 +53,7 @@ To get started, you'll need to collect some information about the asset:
 
 With this information in hand, you can get the encoded calldata for both calls and batch the calldata into a single transaction. From there, you can start the governance process, which includes using the calldata to submit a preimage and then using the preimage to create a proposal. If you're also opening a channel at the same time, you can add the channel-related calldata to the batch asset registration calldata and open a single proposal for everything. Asset and channel registration proposals on Moonbeam should be assigned to the General Admin Track.
 
-![Overview of the proposal process](/images/builders/interoperability/xcm/xc-registration/assets/assets-3.png)
+![Overview of the proposal process](/images/builders/interoperability/xcm/xc-registration/assets/assets-3.webp)
 
 ### Calculate the Asset's Units Per Second {: #calculate-units-per-second }
 

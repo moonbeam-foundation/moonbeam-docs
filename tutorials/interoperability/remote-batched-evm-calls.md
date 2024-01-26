@@ -28,7 +28,7 @@ Throughout this tutorial, we will refer to the account executing the batch EVM c
 4. The execution of the remote EVM call through XCM will result in some EVM logs that are picked up by explorers. There is an EVM transaction and receipt that anyone can query to verify
 
 The "happy path" of a remote batch EVM call dispatched via XCM is as follows:
-![Remote batch EVM call via XCM diagram](/images/tutorials/interoperability/remote-batched-evm-calls/remote-batched-evm-calls-1.png)
+![Remote batch EVM call via XCM diagram](/images/tutorials/interoperability/remote-batched-evm-calls/remote-batched-evm-calls-1.webp)
 
 ## Checking Prerequisites {: #checking-prerequisites }
 
@@ -44,7 +44,7 @@ Considering all the steps summarized in the [introduction](#introduction), the f
 
 For our case, we will send the remote EVM call via XCM from Alice's account, which is `5Fe4nNwxJ9ai9hVkUubiy4e6BVs1tzJGDLXAdhUKuePq9CLp`. A parachain ID is omitted from the command since we are sending the XCM instruction from the relay chain. A parents value of `1` indicates that the relay chain is a parent of the destination parachain. The command and response should resemble the following image:
 
-![Calculating the Computed Origin account](/images/tutorials/interoperability/remote-batched-evm-calls/remote-batched-evm-calls-2.png)
+![Calculating the Computed Origin account](/images/tutorials/interoperability/remote-batched-evm-calls/remote-batched-evm-calls-2.webp)
 
 The values are all summarized in the following table:
 
@@ -72,7 +72,7 @@ The easiest way to get the calldata is through the [Moonbase Minter](https://moo
  3. MetaMask should pop up, but **do not sign the transaction**. In MetaMask, click on the **hex** tab, and the encoded calldata should show up
  4. Click on the **Copy raw transaction data** button. This will copy the encoded calldata to the clipboard, which should match: `0x2004ffd9`
 
-![Calldata for Minting action](/images/tutorials/interoperability/remote-batched-evm-calls/remote-batched-evm-calls-3.png)
+![Calldata for Minting action](/images/tutorials/interoperability/remote-batched-evm-calls/remote-batched-evm-calls-3.webp)
 
 !!! note
     Other wallets also offer the same capabilities of checking the encoded calldata before signing the transaction.
@@ -115,7 +115,7 @@ After inputting the address and pressing **At Address**, take the following step
 7. MetaMask should pop up, but **do not sign the transaction**. In MetaMask, click on the **hex** tab, and the encoded calldata should show up
 8. Click on the **Copy raw transaction data** button. This will copy the encoded calldata of the batch call to the clipboard
 
-![Generate batch calls using Batch Precompile](/images/tutorials/interoperability/remote-batched-evm-calls/remote-batched-evm-calls-4.png)
+![Generate batch calls using Batch Precompile](/images/tutorials/interoperability/remote-batched-evm-calls/remote-batched-evm-calls-4.webp)
 
 We've now finished preparing our EVM calldata for the batch call. Next, we'll need to prepare the XCM instructions that will execute our remote batch call.
 
@@ -146,7 +146,7 @@ Let's go through each of the main components of the snippet shown above:
 
 Once you have the code set up, you can execute it with `node`, and you'll get the Moonbase Alpha remote EVM calldata:
 
-![Getting the Moonbeam calldata for the remote evm call](/images/tutorials/interoperability/remote-batched-evm-calls/remote-batched-evm-calls-5.png)
+![Getting the Moonbeam calldata for the remote evm call](/images/tutorials/interoperability/remote-batched-evm-calls/remote-batched-evm-calls-5.webp)
 
 The encoded calldata for this example is:
 
@@ -197,7 +197,7 @@ Let's go through each of the main components of the snippet shown above:
 
 Once you have the code set up, you can execute it with `node`, and you'll get the relay chain XCM calldata:
 
-![Getting the Relay Chain XCM calldata for the Remote Batch call](/images/tutorials/interoperability/remote-batched-evm-calls/remote-batched-evm-calls-6.png)
+![Getting the Relay Chain XCM calldata for the Remote Batch call](/images/tutorials/interoperability/remote-batched-evm-calls/remote-batched-evm-calls-6.webp)
 
 The encoded calldata for this example is:
 
@@ -228,7 +228,7 @@ To send the XCM message that we built in the previous section, you can use the f
 
 Once you have the code set up, you can execute it with `node`, and the XCM message will be sent to initiate your call to the Batch Precompile for the mints of MARS and NEPT ERC-20 tokens in Moonbase Alpha. Don't worry if you see an `Abnormal Closure` error. You can verify that your remote batch call was successful by looking up your Computed Origin account on [Moonbase Moonscan](https://moonbase.moonscan.io/){target=\_blank}.
 
-![Sending the XCM message from the Relay Chain to Moonbase Alpha for the batch EVM call](/images/tutorials/interoperability/remote-batched-evm-calls/remote-batched-evm-calls-7.png)
+![Sending the XCM message from the Relay Chain to Moonbase Alpha for the batch EVM call](/images/tutorials/interoperability/remote-batched-evm-calls/remote-batched-evm-calls-7.webp)
 
 And that is it! You've sent an XCM message, which performed a remote EVM call to the Batch Precompile via XCM and resulted in the minting of MARS and NEPT ERC-20 tokens. But let's go into more detail about what happened.
 

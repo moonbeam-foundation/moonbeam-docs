@@ -100,7 +100,7 @@ If a request expires it can be purged by anyone. When this happens, the request 
 
 The happy path for a randomness request is shown in the following diagram:
 
-![Randomness request happy path diagram](/images/learn/features/randomness/randomness-1.png)
+![Randomness request happy path diagram](/images/learn/features/randomness/randomness-1.webp)
 
 ## Security Considerations {: #security-considerations }
 

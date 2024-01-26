@@ -41,7 +41,7 @@ XCM implements two cross-consensus or transport protocols for acting on XCM mess
 !!! note
     Currently, while XCMP is being developed, a stop-gap protocol is implemented called Horizontal Relay-routed Message Passing (HRMP), in which the messages are stored in and read from the relay chain. This will be deprecated in the future for the full XCMP implementation.
 
-![Vertical Message Passing and Cross-chain Message Passing Overview](/images/builders/interoperability/xcm/overview/overview-1.png)
+![Vertical Message Passing and Cross-chain Message Passing Overview](/images/builders/interoperability/xcm/overview/overview-1.webp)
 
 ## Establishing Cross-Chain Communication {: #channel-registration }
 
@@ -53,7 +53,7 @@ Even though parachain A has expressed its intentions of opening an XCM channel w
 
 To learn more about the channel registration process, please refer to the [How to Establish an XC Integration with Moonbeam](/builders/interoperability/xcm/xc-registration/xc-integration/){target=\_blank} guide.
 
-![XCM Channel Registration Overview](/images/builders/interoperability/xcm/overview/overview-2.png)
+![XCM Channel Registration Overview](/images/builders/interoperability/xcm/overview/overview-2.webp)
 
 Once the channel is established, cross-chain messages can be sent between parachains. For asset transfers, assets need to be registered before being transferred through XCMs, either by being baked into the runtime as a constant or through a pallet. Moonbeam relies on a Substrate pallet to handle asset registration without the need for runtime upgrades, making the process a lot simpler.
 
@@ -67,7 +67,7 @@ To this end, Moonbeam has introduced [XC-20s](/builders/interoperability/xcm/xc2
 
 In addition, ERC-20s that are deployed to Moonbeam can be sent to other chains in the Polkadot ecosystem via XCM. Consequently, from a developer's perspective, XC-20s are ERC-20 tokens with the added benefit of being an XCM cross-chain asset, and dApps can easily support them through a familiar ERC-20 interface.
 
-![Moonbeam XC-20 XCM Integration With Polkadot](/images/builders/interoperability/xcm/overview/overview-3.png)
+![Moonbeam XC-20 XCM Integration With Polkadot](/images/builders/interoperability/xcm/overview/overview-3.webp)
 
 To send XC-20s across the Polkadot ecosystem from Moonbeam, developers need to use the [X-Tokens Pallet](/builders/interoperability/xcm/xc20/send-xc20s/xtokens-pallet/){target=\_blank} for transfers via the Substrate API and the [X-Tokens Precompile](/builders/interoperability/xcm/xc20/send-xc20s/xtokens-precompile/){target=\_blank} for transfers via the Ethereum API.
 
@@ -85,7 +85,7 @@ Consequently, the XCM message execution on Polkadot will transfer the amount of 
 
 Moonbeam will locally execute the action the XCM message is programmed to do. In this case, it is to mint and transfer the same amount of _xcDOT_ to the account defined by Alice, which in this case is Alith. The fee to execute the XCM in the target parachain is paid in the asset being transferred (_xcDOT_ for this example).
 
-![Transfers from the Relay Chain to Moonbeam](/images/builders/interoperability/xcm/overview/overview-4.png)
+![Transfers from the Relay Chain to Moonbeam](/images/builders/interoperability/xcm/overview/overview-4.webp)
 
 Note the following:
 
@@ -99,7 +99,7 @@ Consequently, the XCM message execution on Moonbeam will burn the number of _xcD
 
 Polkadot will execute the action the XCM message is programmed to do locally. In this case, it is to transfer the same amount of _xcDOT_ burned from the Moonbeam Sovereign account to the account defined by Charleth, which in this case is Charley.
 
-![Transfers Back from Moonbeam to the Relay Chain](/images/builders/interoperability/xcm/overview/overview-5.png)
+![Transfers Back from Moonbeam to the Relay Chain](/images/builders/interoperability/xcm/overview/overview-5.webp)
 
 ### XCM Transfers between Moonbeam & Other Parachains {: #transfers-moonbeam-other-parachains }
 
@@ -111,7 +111,7 @@ Then, when Alith (Moonbeam) transfers a certain amount of GLMR from Moonbeam to 
 
 As the XCM message is executed in the target parachain, it is expected that this will mint and transfer the same amount of _xcGLMR_ (cross-chain GLMR) to the account defined by Alith, which in this case is Alice. The fee to execute the XCM in the target parachain is paid in the transferred asset (_xcGLMR_ for this example).
 
-![Transfers from Moonbeam to another Parachain](/images/builders/interoperability/xcm/overview/overview-6.png)
+![Transfers from Moonbeam to another Parachain](/images/builders/interoperability/xcm/overview/overview-6.webp)
 
 As explained in the previous section, the process is similar for _xcGLMR_ to move back to Moonbeam. First, the XCM message execution burns the number of _xcGLMR_ returned to Moonbeam. Once burned, the remnant part of the message is sent to Moonbeam via the relay chain. Moonbeam will locally execute the XCM message's and transfer GLMR (the same amount of burned _xcGLMR_) from the target parachain Sovereign account to the specified address.
 

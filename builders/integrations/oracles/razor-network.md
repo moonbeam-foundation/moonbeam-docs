@@ -131,10 +131,10 @@ You can use [Remix](/builders/build/eth-api/dev-env/remix/){target=\_blank} to f
 
 After creating the file and compiling the contract, head to the **Deploy and Run Transactions** tab, enter the contract address (`{{ networks.moonbase.razor.bridge_address }}`), and click on **At Address**. Make sure you have set the **ENVIRONMENT** to **Injected Web3** so that you are connected to Moonbase Alpha (through the Web3 provider of the wallet).
 
-![Razor Remix deploy](/images/builders/integrations/oracles/razor/razor-demo-1.png)
+![Razor Remix deploy](/images/builders/integrations/oracles/razor/razor-demo-1.webp)
 
 This will create an instance of the demo contract that you can interact with. Use the functions `getPrice()` and `getMultiPrices()` to query the data of the corresponding pair.
 
-![Razor check price](/images/builders/integrations/oracles/razor/razor-demo-2.png)
+![Razor check price](/images/builders/integrations/oracles/razor/razor-demo-2.webp)
 
 --8<-- 'text/_disclaimers/third-party-content.md'

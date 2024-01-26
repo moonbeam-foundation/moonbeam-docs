@@ -6,7 +6,7 @@ Before going into fetching the data itself, it is important to understand the ba
 4. The oracle contract is owned by the oracle node operators and is responsible for handling on-chain requests made through the LINK token. Once the request is received by the oracle contract an event is emitted to the node which acts upon it
 5. After the request has been fulfilled by the oracle node, the node uses the `fulfillOracleRequest` function of the oracle contract to return the result to the client via the callback function defined in the original request
 
-![Basic Request Diagram](/images/builders/integrations/oracles/chainlink/chainlink-basic-request.png)
+![Basic Request Diagram](/images/builders/integrations/oracles/chainlink/chainlink-basic-request.webp)
 
 When a request for data is created through the client contract, the following parameters need to be passed in to ensure the transaction will go through and the correct information will be returned:
 

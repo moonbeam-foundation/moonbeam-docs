@@ -20,7 +20,7 @@ This guide will cover all of the details needed to get started with the [Covalen
 
 Covalent's Unified API is a powerful but easy-to-use REST API that offers visibility to assets across all blockchain networks. It features a consistent request and response object format across networks. For example, a user can fetch all the token balances for a wallet address across any supported blockchain by changing the unique blockchain name or id path parameter in the request URL. Covalent's Unified API can offer more data flexibility than JSON-RPC interfaces, which are typically limited to queries on a specific block. It also allows queries on multiple objects and batch exports of data.
 
-[![Example API response in JSON](/images/builders/integrations/indexers/covalent/covalent-1.png)](https://www.covalenthq.com/docs/api/balances/get-token-balances-for-address/?utm_source=moonbeam&utm_medium=partner-docs){target=\_blank} *Click on the above image to try out the request yourself.*
+[![Example API response in JSON](/images/builders/integrations/indexers/covalent/covalent-1.webp)](https://www.covalenthq.com/docs/api/balances/get-token-balances-for-address/?utm_source=moonbeam&utm_medium=partner-docs){target=\_blank} *Click on the above image to try out the request yourself.*
 
 ### Quick Start {: #quick-start }
 
@@ -238,7 +238,7 @@ Copy and paste the below code block into your preferred environment, or [JSFiddl
 
 The balances endpoint returns a list of all ERC-20 and NFT token balances, including ERC-721 and ERC-1155 balances, along with their current spot prices (if available).
 
-![JavaScript Console Output](/images/builders/integrations/indexers/covalent/covalent-2.png)
+![JavaScript Console Output](/images/builders/integrations/indexers/covalent/covalent-2.webp)
 
 ### Using Python {: #using-python }
 
@@ -268,7 +268,7 @@ fetch_wallet_balance("0xFEC4f9D5B322Aa834056E85946A32c35A3f5aDD8")
 
 [Increment](https://www.covalenthq.com/docs/increment/){target=\_blank} is a no-code charting and reporting tool that enables users to build dynamic, personalized charts with data models. The tool directly encodes business logic—reach, retention, and revenue—into an SQL compiler that outputs valid SQL. Increment can convert any chart made with SQL and bake them into a standardized, open-sourced set of dimensions and measures, known as a model.
 
-[![Example Increment chart](/images/builders/integrations/indexers/covalent/covalent-3.png)](https://www.covalenthq.com/platform/increment/#/?utm_source=moonbeam&utm_medium=partner-docs){target=\_blank} *Click on the above image to try out Increment.*
+[![Example Increment chart](/images/builders/integrations/indexers/covalent/covalent-3.webp)](https://www.covalenthq.com/platform/increment/#/?utm_source=moonbeam&utm_medium=partner-docs){target=\_blank} *Click on the above image to try out Increment.*
 
 ### Common Use Cases {: #common-use-cases }
 
@@ -279,7 +279,7 @@ Increment can be used for:
 - [Analyzing NFT marketplaces](https://www.covalenthq.com/docs/increment/data-models/jpeg-analysis/?utm_source=moonbeam&utm_medium=partner-docs){target=\_blank}
 - [Tracking monthly active wallets](https://www.covalenthq.com/docs/networks/moonbeam/?utm_source=moonbeam&utm_medium=partner-docs#network-status){target=\_blank}
 
-[![Example network status increment](/images/builders/integrations/indexers/covalent/covalent-4.png)](https://www.covalenthq.com/docs/networks/moonbeam/?utm_source=moonbeam&utm_medium=partner-docs#network-status){target=\_blank} *Click on the above image to get the latest number of Moonbeam network active wallets, transactions and tokens by day, week, month or year.*
+[![Example network status increment](/images/builders/integrations/indexers/covalent/covalent-4.webp)](https://www.covalenthq.com/docs/networks/moonbeam/?utm_source=moonbeam&utm_medium=partner-docs#network-status){target=\_blank} *Click on the above image to get the latest number of Moonbeam network active wallets, transactions and tokens by day, week, month or year.*
 
 ### Increment Resources {: #increment-resources }
 

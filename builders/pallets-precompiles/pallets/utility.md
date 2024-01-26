@@ -58,7 +58,7 @@ As a basic example, you can send two balance transfers at once. To get started, 
 9. For the second call, you can repeat steps 5 through 8
 10. To send the calls at once, click on **Submit Transaction**
 
-![Send batch transaction](/images/builders/pallets-precompiles/pallets/utility/utility-1.png)
+![Send batch transaction](/images/builders/pallets-precompiles/pallets/utility/utility-1.webp)
 
 Next you will need to enter your password and click on **Sign and Submit**. Then you can review the extrinsic on [Subscan](https://moonbase.subscan.io/){target=\_blank}.
 

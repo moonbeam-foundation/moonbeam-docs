@@ -67,18 +67,18 @@ To get started, open up MetaMask and make sure you are [connected to Moonbase Al
 1. Switch to the **Assets** tab
 2. Click on **Import tokens**
 
-![Import Tokens from Assets Tab in MetaMask](/images/builders/pallets-precompiles/precompiles/erc20/erc20-1.png)
+![Import Tokens from Assets Tab in MetaMask](/images/builders/pallets-precompiles/precompiles/erc20/erc20-1.webp)
 
 Now, you can create a custom token:
 
 1. Enter the precompile address for the token contract address - `{{networks.moonbase.precompiles.erc20 }}`. As soon as you enter the address, the **Token Symbol** and **Token Decimal** fields should automatically populate. If they don't you can enter `DEV` for the symbol and `18` for the decimal places
 2. Click **Add Custom Token**
 
-![Add Custom Token](/images/builders/pallets-precompiles/precompiles/erc20/erc20-2.png)
+![Add Custom Token](/images/builders/pallets-precompiles/precompiles/erc20/erc20-2.webp)
 
 MetaMask will prompt you to import the tokens. You can review the token details and click **Import Tokens** to import DEV tokens into your wallet.
 
-![Confirm and Import Tokens](/images/builders/pallets-precompiles/precompiles/erc20/erc20-3.png)
+![Confirm and Import Tokens](/images/builders/pallets-precompiles/precompiles/erc20/erc20-3.webp)
 
 And that's it! You've successfully added the DEV token as a custom ERC-20 token on the Moonbase Alpha TestNet.
 
@@ -96,7 +96,7 @@ Next, you will need to compile the interface in Remix:
 1. Click on the **Compile** tab, second from top
 2. Compile the interface by clicking on **Compile IERC20.sol**
 
-![Compiling IERC20.sol](/images/builders/pallets-precompiles/precompiles/erc20/erc20-4.png)
+![Compiling IERC20.sol](/images/builders/pallets-precompiles/precompiles/erc20/erc20-4.webp)
 
 If the interface was compiled successfully, you will see a green checkmark next to the **Compile** tab.
 
@@ -110,7 +110,7 @@ Instead of deploying the ERC-20 precompile, you will access the interface given 
 4. Ensure **IERC20 - IERC20.sol** is selected in the **CONTRACT** dropdown. Since this is a precompiled contract, there is no need to deploy any code. Instead you are going to provide the address of the precompile in the **At Address** field
 5. Provide the address of the ERC-20 precompile: `{{networks.moonbase.precompiles.erc20}}` and click **At Address**
 
-![Access the address](/images/builders/pallets-precompiles/precompiles/erc20/erc20-5.png)
+![Access the address](/images/builders/pallets-precompiles/precompiles/erc20/erc20-5.webp)
 
 The **IERC20** precompile will appear in the list of **Deployed Contracts**.
 
@@ -124,7 +124,7 @@ The ERC-20 interface allows you to quickly obtain token information, including t
 4. Click **symbol** to get the symbol of the token
 5. Click **totalSupply** to obtain the total supply of tokens in existence on Moonbase Alpha
 
-![Total Supply](/images/builders/pallets-precompiles/precompiles/erc20/erc20-6.png)
+![Total Supply](/images/builders/pallets-precompiles/precompiles/erc20/erc20-6.webp)
 
 The response for each call will be displayed under the corresponding function.
 
@@ -136,7 +136,7 @@ You can check the balance of any address on Moonbase Alpha by calling the `balan
 2. Enter an address you would like to check the balance of for the **owner**
 2. Click **call**
 
-![Get Balance of an Account](/images/builders/pallets-precompiles/precompiles/erc20/erc20-7.png)
+![Get Balance of an Account](/images/builders/pallets-precompiles/precompiles/erc20/erc20-7.webp)
 
 Your balance will be displayed under the `balanceOf` function.
 
@@ -151,7 +151,7 @@ To approve a spend, you'll need to provide an address for the spender and the nu
 5. MetaMask will pop up, and you will be prompted to review the transaction details. Click **View full transaction details** to review the amount to be sent and the address of the spender
 6. If everything looks ok, you can click **Confirm** to send the transaction
 
-![Confirm Approve Transaction](/images/builders/pallets-precompiles/precompiles/erc20/erc20-8.png)
+![Confirm Approve Transaction](/images/builders/pallets-precompiles/precompiles/erc20/erc20-8.webp)
 
 After the transaction has successfully gone through, you'll notice that the balance of your account hasn't changed. This is because you have only approved the spend for the given amount, and the spender hasn't spent the funds. In the next section, you will use the `allowance` function to verify that the spender is able to spend 1 DEV token on your behalf.
 
@@ -164,7 +164,7 @@ To check that the spender received the allowance approved in the [Approve a Spen
 3. Enter the address of the **spender** that you used in the previous section
 4. Click **call**
 
-![Get Allowance of Spender](/images/builders/pallets-precompiles/precompiles/erc20/erc20-9.png)
+![Get Allowance of Spender](/images/builders/pallets-precompiles/precompiles/erc20/erc20-9.webp)
 
 Once the call is complete, the allowance of the spender will be displayed, which should be equivalent to 1 DEV token (`1000000000000000000`).
 
@@ -178,7 +178,7 @@ To do a standard transfer and send tokens from your account directly to another 
 4. Click **transact**
 5. MetaMask will pop up, you can review the transaction details, and if everything looks good, click **Confirm**
 
-![Send Standard Transfer](/images/builders/pallets-precompiles/precompiles/erc20/erc20-10.png)
+![Send Standard Transfer](/images/builders/pallets-precompiles/precompiles/erc20/erc20-10.webp)
 
 Once the transaction is complete, you can [check your balance](#get-account-balance) using the `balanceOf` function or by looking at MetaMask, and notice that this time your balance decreased by 1 DEV token. You can also use the `balanceOf` function to ensure that the recipients balance has increased by 1 DEV token as expected.
 
@@ -188,7 +188,7 @@ So far, you should have approved an allowance of 1 DEV token for the spender and
 
 First, you need to switch to the spender's account in MetaMask. Once you switch to the spender's account, you'll notice that the selected address in Remix under the **Accounts** tab is now the spender's.
 
-![Switch accounts Remix](/images/builders/pallets-precompiles/precompiles/erc20/erc20-11.png)
+![Switch accounts Remix](/images/builders/pallets-precompiles/precompiles/erc20/erc20-11.webp)
 
 Next, you can initiate and send the transfer, to do so:
 
@@ -198,10 +198,10 @@ Next, you can initiate and send the transfer, to do so:
 4. Enter the amount of DEV tokens to send. Again, the spender is currently only allowed to send 1 DEV token, so enter `1000000000000000000`
 5. Click **transact**
 
-![Send Standard Transfer](/images/builders/pallets-precompiles/precompiles/erc20/erc20-12.png)
+![Send Standard Transfer](/images/builders/pallets-precompiles/precompiles/erc20/erc20-12.webp)
 
 Once the transaction is complete, you can [check the balance](#get-account-balance) of the owner and spender using the `balanceOf` function. The spender's balance should have increased by 1 DEV token, and their allowance should now be depleted. To verify that the spender no longer has an allowance, you can call the `allowance` function, passing in the owner and spender's addresses. You should receive a result of 0.
 
-![Zero Allowance](/images/builders/pallets-precompiles/precompiles/erc20/erc20-13.png)
+![Zero Allowance](/images/builders/pallets-precompiles/precompiles/erc20/erc20-13.webp)
 
 And that's it! You've successfully interacted with the ERC-20 precompile using MetaMask and Remix!

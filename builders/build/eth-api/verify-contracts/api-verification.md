@@ -578,7 +578,7 @@ The result should be `0x00000000000000000000000000000000000000000000000000000000
     --verifier sourcify INSERT_CONTRACT_ADDRESS src/MyToken.sol:MyToken 
     ```
 
-![Foundry Verify](/images/builders/build/eth-api/verify-contracts/api-verification/api-1.png)
+![Foundry Verify](/images/builders/build/eth-api/verify-contracts/api-verification/api-1.webp)
 
 If you wanted to deploy the example contract and verify at the same time, then you would use the following command:
 
@@ -612,4 +612,4 @@ If you wanted to deploy the example contract and verify at the same time, then y
     src/MyToken.sol:MyToken
     ```
 
-![Foundry Contract Deploy and Verify](/images/builders/build/eth-api/verify-contracts/api-verification/api-2.png)
+![Foundry Contract Deploy and Verify](/images/builders/build/eth-api/verify-contracts/api-verification/api-2.webp)

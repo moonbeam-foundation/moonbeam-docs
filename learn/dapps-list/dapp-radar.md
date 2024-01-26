@@ -11,7 +11,7 @@ description: How you can list your Moonbeam or Moonriver project on DappRadar, a
 
 Moonbeam and Moonriver are [now live on DappRadar](https://dappradar.com/blog/dappradar-now-tracking-dapps-on-moonbeam-moonriver){target=\_blank}. DappRadar maintains homepages for [the top Moonbeam DApps](https://dappradar.com/rankings/protocol/moonbeam){target=\_blank} and [the top Moonriver DApps](https://dappradar.com/rankings/protocol/moonriver){target=\_blank}. Prior to the DappRadar integration, a [crowd-sourced Moonbeam DApps listing](https://github.com/moonbeam-foundation/moonbeam-project-directory){target=\_blank} was maintained as part of the Moonbeam docs site. That registry is deprecated and replaced by the listing platforms under the [Dapps List](/learn/dapps-list/){target=\_blank} section
 
-![DappRadar Home Page](/images/learn/dapps-list/dapp-radar/dapp-radar-1.png)
+![DappRadar Home Page](/images/learn/dapps-list/dapp-radar/dapp-radar-1.webp)
 
 You can [submit your project](https://dappradar.com/dashboard/submit-dapp){target=\_blank} to DappRadar by providing background on your project including a short and a full description, website URL, and logo. Only a subset of the fields are required, but you are encouraged to complete as many as possible.
 
@@ -45,7 +45,7 @@ First, you'll need to [create a DappRadar account](https://auth.dappradar.com/em
  10. It is optional but recommended that you provide screenshots of your DApp. You also have the option of providing a YouTube URL to a demo of your DApp
  11. Review the terms and conditions, and press **Submit a dapp**
 
-![How to Submit your DApp](/images/learn/dapps-list/dapp-radar/dapp-radar-2.png)
+![How to Submit your DApp](/images/learn/dapps-list/dapp-radar/dapp-radar-2.webp)
 
 Submissions are reviewed by the DappRadar team and will be published if the DApp is deemed suitable for listing. For any Moonbeam-related questions you can reach out to us in [Discord](https://discord.gg/moonbeam){target=\_blank}. For DappRadar questions, support is available in the  [DappRadar Discord](https://discord.com/invite/4ybbssrHkm){target=\_blank} or you can contact [developers@dappradar.com](mailto:developers@dappradar.com).
 

@@ -84,7 +84,7 @@ node_modules/.bin/substrate-api-sidecar
 
 If the installation and configuration are successful, you should see this output in the console:
 
-![Successful Output](/images/builders/build/substrate-api/sidecar/sidecar-1.png)
+![Successful Output](/images/builders/build/substrate-api/sidecar/sidecar-1.webp)
 
 ## Substrate API Sidecar Endpoints {: #substrate-api-sidecar-endpoints }
 

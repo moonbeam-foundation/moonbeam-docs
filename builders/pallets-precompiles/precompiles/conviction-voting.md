@@ -96,14 +96,14 @@ The below example is demonstrated on Moonbase Alpha, however, similar steps can 
 1. Click on the **File explorer** tab
 2. Paste a copy of [`ConvictionVoting.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/conviction-voting/ConvictionVoting.sol){target=\_blank} into a [Remix file](https://remix.ethereum.org/){target=\_blank} named `ConvictionVoting.sol`
 
-![Copy and paste the referenda Solidity interface into Remix.](/images/builders/pallets-precompiles/precompiles/conviction-voting/conviction-voting-1.png)
+![Copy and paste the referenda Solidity interface into Remix.](/images/builders/pallets-precompiles/precompiles/conviction-voting/conviction-voting-1.webp)
 
 ### Compile the Contract {: #compile-the-contract }
 
 1. Click on the **Compile** tab, second from top
 2. Then to compile the interface, click on **Compile ConvictionVoting.sol**
 
-![Compile the ConvictionVoting.sol interface using Remix.](/images/builders/pallets-precompiles/precompiles/conviction-voting/conviction-voting-2.png)
+![Compile the ConvictionVoting.sol interface using Remix.](/images/builders/pallets-precompiles/precompiles/conviction-voting/conviction-voting-2.webp)
 
 ### Access the Contract {: #access-the-contract }
 
@@ -113,7 +113,7 @@ The below example is demonstrated on Moonbase Alpha, however, similar steps can 
 4. Provide the address of the Conviction Voting Precompile for Moonbase Alpha: `{{ networks.moonbase.precompiles.conviction_voting }}` and click **At Address**
 5. The Conviction Voting Precompile will appear in the list of **Deployed Contracts**
 
-![Access the ConvictionVoting.sol interface by provide the precompile's address.](/images/builders/pallets-precompiles/precompiles/conviction-voting/conviction-voting-3.png)
+![Access the ConvictionVoting.sol interface by provide the precompile's address.](/images/builders/pallets-precompiles/precompiles/conviction-voting/conviction-voting-3.webp)
 
 ### Vote on a Referendum {: #vote-on-a-referendum }
 
@@ -125,7 +125,7 @@ First, you'll need to get the index of the referendum you wish to vote on. To ge
 2. Look for the referenda you want to vote on. You can view more details about a specific referendum by clicking on the triangle icon. If there is no triangle icon, this means that only a proposal hash, and no preimage has been submitted for the proposal
 3. Take note of the referendum index
 
-![View the list of referenda on Polkadot.js Apps.](/images/builders/pallets-precompiles/precompiles/conviction-voting/conviction-voting-4.png)
+![View the list of referenda on Polkadot.js Apps.](/images/builders/pallets-precompiles/precompiles/conviction-voting/conviction-voting-4.webp)
 
 Now, you're ready to return to Remix to vote on the referendum via the Conviction Voting Precompile. There are two methods you can use to vote on a referendum: `voteYes` or `voteNo`. As you probably have already figured out, if you're in agreement with the proposal, you'll use `voteYes` and if in disagreement, you'll use `voteNo`. You'll specify the amount of tokens you want to lock with your vote and the Conviction, using index of the Conviction you want to vote with in the [aforementioned `Conviction` enum](#the-conviction-voting-solidity-interface). For example, if you wanted to lock your tokens for the duration of two Enactment Periods following a successful vote, you would enter `2` for the `Locked2x` Conviction. For more information on Convictions, you can check out the [Conviction Multiplier section of the Governance v2 documentation](/learn/features/governance/#conviction-multiplier-v2){target=\_blank}.
 
@@ -138,7 +138,7 @@ To submit your vote, you can take the following steps:
 5. Enter the Conviction you want to vote with
 6. Press **transact** and confirm the transaction in MetaMask
 
-![Vote on the proposal using the voteYes function of the Conviction Voting Precompile.](/images/builders/pallets-precompiles/precompiles/conviction-voting/conviction-voting-5.png)
+![Vote on the proposal using the voteYes function of the Conviction Voting Precompile.](/images/builders/pallets-precompiles/precompiles/conviction-voting/conviction-voting-5.webp)
 
 Once the referendum has closed, you can use the Conviction Voting precompile to remove your vote and unlock your tokens.
 
@@ -155,7 +155,7 @@ To get started, you can take the following steps:
 5. Enter the Conviction they can vote with
 6. Press **transact** and confirm the transaction in MetaMask
 
-![Delegate a vote using the delegate function of the Conviction Voting Precompile.](/images/builders/pallets-precompiles/precompiles/conviction-voting/conviction-voting-6.png)
+![Delegate a vote using the delegate function of the Conviction Voting Precompile.](/images/builders/pallets-precompiles/precompiles/conviction-voting/conviction-voting-6.webp)
 
 Now the delegate account can vote on your behalf! If you no longer want a delegate vote to exist, you can remove it using the `undelegate` function of the Conviction Voting Precompile.
 

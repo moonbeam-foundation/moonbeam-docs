@@ -29,7 +29,7 @@ One of the best single-chain DAOs is [Compound Finance's DAO](https://compound.f
 
 Let's take a look at the phases that a proposal in a DAO like Compound Finance's takes:  
 
-![Typical DAO](/images/tutorials/interoperability/cross-chain-dao/cross-chain-dao-1.png)
+![Typical DAO](/images/tutorials/interoperability/cross-chain-dao/cross-chain-dao-1.webp)
 
 1. **Proposal** — a user proposes that the DAO execute one or more transactions
 2. **Voting** — after a voting delay time period, a voting period opens, which allows users to vote with their voting weight. The voting weight is determined by a token balance snapshot typically taken sometime between the proposal start and the end of the voting delay period  
@@ -40,7 +40,7 @@ But what about a cross-chain DAO? In a cross-chain DAO, the actions that you wou
 
 There are many ways to architect a cross-chain DApp. You could make a more distributed system, where data and logic are distributed to multiple chains to maximize their use. On the other end of the spectrum, you could use a hub-and-spoke model, where the main logic and data are stored on a single chain and cross-chain messages will interact with it.  
 
-![Cross-Chain DAO](/images/tutorials/interoperability/cross-chain-dao/cross-chain-dao-2.png)
+![Cross-Chain DAO](/images/tutorials/interoperability/cross-chain-dao/cross-chain-dao-2.webp)
 
 Let's break down some of the steps in more detail:  
 
@@ -55,7 +55,7 @@ Let's break down some of the steps in more detail:
 
 The process shown here makes it so that anyone can vote from across chains, so long as they hold the DAO token. For holding information that is read-only, we will be storing it on a single chain. Rare one-off actions such as proposals, cancellations, and so on are best done as a hub-and-spoke model. For information regarding voting logic, since users will be voting on multiple chains, voting weight and vote sums will be stored on each spoke chain and only sent to the hub chain after voting is over, since cross-chain actions are generally expensive.  
 
-![Smart contracts overview](/images/tutorials/interoperability/cross-chain-dao/cross-chain-dao-3.png)  
+![Smart contracts overview](/images/tutorials/interoperability/cross-chain-dao/cross-chain-dao-3.webp)  
 
 This is, of course, only one way to implement a cross-chain DAO, and you are encouraged to think of alternative and better ways. In the next section, we will look at an implementation.  
 
@@ -200,7 +200,7 @@ We're going to generate as simple of a base smart contract as possible for demon
 4. For calculating quorum (the minimum amount of vote weight required for a vote to pass), set **Quorum** to the number (**#**) 1
 5. Disable **Timelock**, since the timelock period is optional anyways  
 
-![OpenZeppelin Contract Wizard](/images/tutorials/interoperability/cross-chain-dao/cross-chain-dao-4.png)
+![OpenZeppelin Contract Wizard](/images/tutorials/interoperability/cross-chain-dao/cross-chain-dao-4.webp)
 
 You should see a contract similar to this in the OpenZeppelin smart contract wizard:
 
@@ -801,7 +801,7 @@ That's it for breaking down the satellite contract. It was more or less simple b
 
 At this point, every single smart contract has been finished, and a deployment scheme like the one below can be made. If you are interested in seeing this in action, the [GitHub repository](https://github.com/jboetticher/cross-chain-dao){target=\_blank} that hosts the cross-chain DAO allows you to deploy on TestNets.  
 
-![Smart contracts overview](/images/tutorials/interoperability/cross-chain-dao/cross-chain-dao-3.png)  
+![Smart contracts overview](/images/tutorials/interoperability/cross-chain-dao/cross-chain-dao-3.webp)  
 
 As a reminder, **this tutorial's smart contracts are not tested or recommended for production use**.
 
@@ -822,7 +822,7 @@ The cross-chain function selection method that was used in the `CrossChainDAO` a
 
 For example, the hub chain's `CrossChainDAO` could be composed of the main contract that receives cross-chain data as well as two other smart contracts: `CrossChainExecutor` and `CrossChainProposer`. So, when interacting with the `DAOSatellite` contract to send a message to `CrossChainDAO`, the spoke chain's smart contract could target `CrossChainExecutor` to execute or `CrossChainProposer` to propose. This would remove the need to double-wrap payloads and the need to include function-selecting logic in the cross-chain message receiving function. It could even help convert a single-chain DAO into one with cross-chain abilities.  
 
-![Single Responsibility Principle](/images/tutorials/interoperability/cross-chain-dao/cross-chain-dao-5.png)  
+![Single Responsibility Principle](/images/tutorials/interoperability/cross-chain-dao/cross-chain-dao-5.webp)  
 
 ### Distributed Proposal and Execution {: #distributed-proposal-and-execution }
 
@@ -869,7 +869,7 @@ One of the flaws overlooked with the spoke chain's `DAOSatellite` smart contract
 
 The first is the simplest solution, though it may increase the turn-around time from proposal to execution if you don't plan on running additional infrastructure. Similar to how the `execute` function can be run by anyone once a proposal has been finished, a new function would be written to allow anyone to send the vote data to the hub chain. Preferably, this would also require a [timeout for the collection phase](#collection-phase-time-out).  
 
-![Chained Execution](/images/tutorials/interoperability/cross-chain-dao/cross-chain-dao-6.png)  
+![Chained Execution](/images/tutorials/interoperability/cross-chain-dao/cross-chain-dao-6.webp)  
 
 The second is significantly more complex. It would require a setup that sends tokens with a payload instead of just a payload like the current contract does, and for a swap to occur on the destination chain to retrieve native currency for a cross-chain transaction.  
 

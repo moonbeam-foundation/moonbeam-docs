@@ -20,7 +20,7 @@ Specifically, Particle Network's Moonbeam integration is made up of a few compon
 - Particle Network [Wallet-as-a-Service](https://docs.particle.network/getting-started/smart-wallet-as-a-service){target=\_blank} - this is the flagship Wallet-as-a-Service product offered by Particle Network, enabling application-embedded wallets powered by MPC-TSS to facilitate a seamless, Web2-like onboarding and interaction experience
 - Particle Network Modular [AA Stack](https://docs.particle.network/developers/account-abstraction){target=\_blank} - beyond the base EOA-centric interaction that happens by default through Particle's Wallet-as-a-Service, Particle also has a native modular AA stack for the implementation of ERC-4337 account abstraction on Moonbeam. This means inherent flexibility with the smart account, bundler, and paymaster you use in tandem with Particle's Wallet-as-a-Service when building AA-enabled applications
 
-![Particle Network Smart WaaS map](/images/builders/integrations/wallets/particle/particle-1.png)
+![Particle Network Smart WaaS map](/images/builders/integrations/wallets/particle/particle-1.webp)
 
 In this guide, you'll go through a step-by-step example of utilizing Particle Network's Smart Wallet-as-a-Service.
 
@@ -30,23 +30,23 @@ To use Particle Network's Smart Wallet-as-a-Service on Moonbeam, you'll need to 
 
 1. Navigate to the Particle Network dashboard, then sign up or log in
 
-    ![Dashboard login](/images/builders/integrations/wallets/particle/particle-2.png)
+    ![Dashboard login](/images/builders/integrations/wallets/particle/particle-2.webp)
 
 2. Once logged in, click **Add New Project** to create a new project
 
-    ![Project creation](/images/builders/integrations/wallets/particle/particle-3.png)
+    ![Project creation](/images/builders/integrations/wallets/particle/particle-3.webp)
 
 3. Enter the project name and click **Save**
 
-    ![Application creation](/images/builders/integrations/wallets/particle/particle-4.png)
+    ![Application creation](/images/builders/integrations/wallets/particle/particle-4.webp)
 
 4. From the project's dashboard, scroll down to the **Your Apps** section and create a new app by selecting **iOS**, **Android**, or **Web** and providing the requested information
 
-    ![Application creation](/images/builders/integrations/wallets/particle/particle-5.png)
+    ![Application creation](/images/builders/integrations/wallets/particle/particle-5.webp)
 
 5. Finally, copy the **Project ID**, **Client Key**, and **App ID**
 
-    ![Application dashboard](/images/builders/integrations/wallets/particle/particle-6.png)
+    ![Application dashboard](/images/builders/integrations/wallets/particle/particle-6.webp)
 
 ## Install Dependencies {: #install-dependencies }
 

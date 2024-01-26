@@ -57,7 +57,7 @@ The following commands will build the latest release of the Moonbeam parachain.
     cargo build --release
     ```
 
-![Compiling Binary](/images/node-operators/networks/run-a-node/compile-binary/full-node-binary-1.png)
+![Compiling Binary](/images/node-operators/networks/run-a-node/compile-binary/full-node-binary-1.webp)
 
 If a _cargo not found error_ shows up in the terminal, manually add Rust to your system path or restart your system:
 

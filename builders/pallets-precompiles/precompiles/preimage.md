@@ -60,14 +60,14 @@ The below example is demonstrated on Moonbase Alpha, however, similar steps can 
 1. Click on the **File explorer** tab
 2. Paste a copy of [`Preimage.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/preimage/Preimage.sol){target=\_blank} into a [Remix file](https://remix.ethereum.org/){target=\_blank} named `Preimage.sol`
 
-![Copy and paste the referenda Solidity interface into Remix.](/images/builders/pallets-precompiles/precompiles/preimage/preimage-1.png)
+![Copy and paste the referenda Solidity interface into Remix.](/images/builders/pallets-precompiles/precompiles/preimage/preimage-1.webp)
 
 ### Compile the Contract {: #compile-the-contract }
 
 1. Click on the **Compile** tab, second from top
 2. Then to compile the interface, click on **Compile Preimage.sol**
 
-![Compile the Preimage.sol interface using Remix.](/images/builders/pallets-precompiles/precompiles/preimage/preimage-2.png)
+![Compile the Preimage.sol interface using Remix.](/images/builders/pallets-precompiles/precompiles/preimage/preimage-2.webp)
 
 ### Access the Contract {: #access-the-contract }
 
@@ -77,7 +77,7 @@ The below example is demonstrated on Moonbase Alpha, however, similar steps can 
 4. Provide the address of the Preimage Precompile for Moonbase Alpha: `{{ networks.moonbase.precompiles.preimage }}` and click **At Address**
 5. The Preimage Precompile will appear in the list of **Deployed Contracts**
 
-![Access the Preimage.sol interface by provide the precompile's address.](/images/builders/pallets-precompiles/precompiles/preimage/preimage-3.png)
+![Access the Preimage.sol interface by provide the precompile's address.](/images/builders/pallets-precompiles/precompiles/preimage/preimage-3.webp)
 
 ### Submit a Preimage of a Proposal {: #submit-a-preimage }
 
@@ -89,7 +89,7 @@ In this section, you'll get the preimage hash and the encoded proposal data for 
  2. Select **Preimages** from the dropdown
  3. From the **Preimages** page, click on **+ Add preimage**
 
-![Add a new preimage](/images/builders/pallets-precompiles/precompiles/democracy/democracy-4.png)
+![Add a new preimage](/images/builders/pallets-precompiles/precompiles/democracy/democracy-4.webp)
 
 Then take the following steps:
 
@@ -98,14 +98,14 @@ Then take the following steps:
  3. Enter the text of the remark, ensuring it is unique. Duplicate proposals such as "Hello World!" will not be accepted
  4. Click the **Submit preimage** button but don't sign or confirm the transaction on the next page 
 
-![Get the proposal hash](/images/builders/pallets-precompiles/precompiles/democracy/democracy-5.png)
+![Get the proposal hash](/images/builders/pallets-precompiles/precompiles/democracy/democracy-5.webp)
 
 On the next screen, take the following steps:
 
  1. Press the triangle icon to reveal the encoded proposal in bytes
  2. Copy the **bytes** representing the encoded proposal - you'll need this when calling the `notePreimage` function in a later step
 
-![Get the encoded proposal](/images/builders/pallets-precompiles/precompiles/democracy/democracy-6.png)
+![Get the encoded proposal](/images/builders/pallets-precompiles/precompiles/democracy/democracy-6.webp)
 
 !!! note
      You should NOT sign and submit the transaction here. You will submit this information via the `notePreimage` function in the next step.
@@ -117,7 +117,7 @@ Now you can take the **bytes** of the encoded proposal that you got from [Polkad
 3. Provide the **bytes** of the encoded proposal that you noted in the prior section. Note, the encoded proposal is not the same as the preimage hash. Ensure you are are entering the correct value into this field
 4. Press **transact** and confirm the transaction in MetaMask
 
-![Submit the preimage using the notePreimage function of the Preimage Precompile.](/images/builders/pallets-precompiles/precompiles/preimage/preimage-4.png)
+![Submit the preimage using the notePreimage function of the Preimage Precompile.](/images/builders/pallets-precompiles/precompiles/preimage/preimage-4.webp)
 
 Now that you've submitted the preimage for your proposal your proposal can be submitted! Head over to the [Referenda Precompile documentation](/builders/pallets-precompiles/precompiles/referenda){target=\_blank} to learn how to submit your proposal.
 

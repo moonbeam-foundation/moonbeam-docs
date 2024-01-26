@@ -37,7 +37,7 @@ The wizard is comprised of the following sections:
  4. **Access Control** — list of all the available [access control mechanisms](https://docs.openzeppelin.com/contracts/5.x/access-control){target=\_blank} for each token standard
  5. **Interactive code display** — shows the smart contract code with the configuration as set by the user
 
-![OpenZeppelin Contracts Wizard](/images/builders/build/eth-api/dev-env/openzeppelin/contracts/oz-wizard-1.png)
+![OpenZeppelin Contracts Wizard](/images/builders/build/eth-api/dev-env/openzeppelin/contracts/oz-wizard-1.webp)
 
 Once you have set up your contract with all the settings and features, it is just as easy as copying and pasting the code into your contract file.
 
@@ -92,7 +92,7 @@ contract MyToken is ERC20, Ownable {
 
 This ERC-20 token smart contract was extracted from the [Contract Wizard](#openzeppelin-contract-wizard), setting a premint of `1000` tokens and activating the `Mintable` feature.
 
-![Getting Started with Remix](/images/builders/build/eth-api/dev-env/openzeppelin/contracts/oz-contracts-1.png)
+![Getting Started with Remix](/images/builders/build/eth-api/dev-env/openzeppelin/contracts/oz-contracts-1.webp)
 
 Once your smart contract is written, you can compile it by taking the following steps:
 
@@ -100,7 +100,7 @@ Once your smart contract is written, you can compile it by taking the following 
  2. Click on the compile button
  3. Alternatively, you can check the **Auto compile** feature
 
-![Compile ERC-20 Contract with Remix](/images/builders/build/eth-api/dev-env/openzeppelin/contracts/oz-contracts-2.png)
+![Compile ERC-20 Contract with Remix](/images/builders/build/eth-api/dev-env/openzeppelin/contracts/oz-contracts-2.webp)
 
 With the contract compiled, you are ready to deploy it taking the following steps:
 
@@ -110,7 +110,7 @@ With the contract compiled, you are ready to deploy it taking the following step
  4. If everything is ready, click on the **Deploy** button. Review the transaction information in MetaMask and confirm it
  5. After a few seconds, the transaction should get confirmed, and you should see your contract under **Deployed Contracts**
 
-![Deploy ERC-20 Contract with Remix](/images/builders/build/eth-api/dev-env/openzeppelin/contracts/oz-contracts-3.png)
+![Deploy ERC-20 Contract with Remix](/images/builders/build/eth-api/dev-env/openzeppelin/contracts/oz-contracts-3.webp)
 
 And that is it! You've deployed an ERC-20 token contract using OpenZeppelin's contracts and libraries. Next, you can interact with your token contract via Remix, or add it to MetaMask.
 
@@ -176,7 +176,7 @@ With the contract compiled, next you will need to:
  4. If everything is ready, click on the **Deploy** button. Review the transaction information in MetaMask and confirm it
  5. After a few seconds, the transaction should get confirmed, and you should see your contract under **Deployed Contracts**
 
-![Deploy ERC-721 Contract with Remix](/images/builders/build/eth-api/dev-env/openzeppelin/contracts/oz-contracts-4.png)
+![Deploy ERC-721 Contract with Remix](/images/builders/build/eth-api/dev-env/openzeppelin/contracts/oz-contracts-4.webp)
 
 And that is it! You've deployed an ERC-721 token contract using OpenZeppelin's contracts and libraries. Next, you can interact with your token contract via Remix, or add it to MetaMask.
 
@@ -239,7 +239,7 @@ With the contract compiled, next you will need to:
  4. If everything is ready, click on the **Deploy** button. Review the transaction information in MetaMask and confirm it
  5. After a few seconds, the transaction should get confirmed, and you should see your contract under **Deployed Contracts**
 
-![Deploy ERC-1155 Contract with Remix](/images/builders/build/eth-api/dev-env/openzeppelin/contracts/oz-contracts-5.png)
+![Deploy ERC-1155 Contract with Remix](/images/builders/build/eth-api/dev-env/openzeppelin/contracts/oz-contracts-5.webp)
 
 And that is it! You've deployed an ERC-1155 token contract using OpenZeppelin's contracts and libraries. Next, you can interact with your token contract via Remix.
 

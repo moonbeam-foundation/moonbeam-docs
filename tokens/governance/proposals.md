@@ -35,7 +35,7 @@ This guide will cover the first few steps outlined in the proposal roadmap, as h
 
 You can find a full explanation in the [Roadmap of a Proposal](/learn/features/governance/#roadmap-of-a-proposal-v2){target=\_blank} section on the Governance overview page.
 
-![Proposal Roadmap](/images/tokens/governance/proposals/proposals-roadmap.png)
+![Proposal Roadmap](/images/tokens/governance/proposals/proposals-roadmap.webp)
 
 ## Submit your Idea to the Community Forum {: #submitting-your-idea-to-the-forum }
 
@@ -45,15 +45,15 @@ To access the Moonbeam Community Forum, you must be a member of the [Moonbeam Di
 
 Once you’re logged in, you can explore the latest discussions, join conversations, and create your own discussion for a proposal idea you may have. Before posting or commenting for the first time, be sure to familiarize yourself with the [FAQ](https://forum.moonbeam.foundation/faq){target=\_blank} to learn about the community guidelines.
 
-![Moonbeam Forum Home](/images/tokens/governance/treasury-proposals/treasury-proposal-1.png)
+![Moonbeam Forum Home](/images/tokens/governance/treasury-proposals/treasury-proposal-1.webp)
 
 When you're ready to create a post with the details of your proposal, you can head to the **Governance** page and click on **Democracy Proposals**.
 
-![Governance page on Moonbeam Forum](/images/tokens/governance/proposals/proposals-1.png)
+![Governance page on Moonbeam Forum](/images/tokens/governance/proposals/proposals-1.webp)
 
 From there, you can click on **Open Draft** and begin to draft your proposal using the template provided. Make sure to update the title of the post and add any of the optional tags, such as **Moonbeam** if the proposal is for the Moonbeam network. The title should follow the format as the pre-populated title: [Proposal: XX][Status: Idea] proposal title. For example, [Proposal: XX][Status: Idea] Register XC-20 xcMYTOK. The XX will need to be updated with the proposal ID once the proposal has been formally submitted on-chain.
 
-![Add a proposal to the Moonbeam Forum](/images/tokens/governance/proposals/proposals-2.png)
+![Add a proposal to the Moonbeam Forum](/images/tokens/governance/proposals/proposals-2.webp)
 
 After you've filled out your proposal details, you can click **Create Topic** to save it to the forum and open the discussion on your idea. Based on the feedback you receive, you can update the proposal before proceeding to submit it.
 
@@ -63,7 +63,7 @@ This section goes over the process of creating a proposal with OpenGov (Governan
 
 To make a proposal in the network, you can use the Polkadot.js Apps interface. To do so, you need to import an Ethereum-style account first (H160 address), which you can do following the [Creating or Importing an H160 Account](/tokens/connect/polkadotjs/#creating-or-importing-an-h160-account){target=\_blank} guide. For this example, three accounts were imported and named with super original names: Alice, Bob, and Charlie.
 
-![Accounts in Polkadot.js](/images/tokens/governance/proposals/proposals-3.png)
+![Accounts in Polkadot.js](/images/tokens/governance/proposals/proposals-3.webp)
 
 For the proposal, you can choose anything you would like to propose, just make sure that you assign it to the right Origin and Track, so that it has the right privileges to execute the action.
 
@@ -75,7 +75,7 @@ The first step is to submit a preimage of the proposal. This is because the stor
 
 First, navigate to [Moonbase Alpha's Polkadot.js Apps interface](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network){target=\_blank}. Everything related to governance lives under the **Governance** tab, including preimages. So, from the **Governance** dropdown, you can select **Preimages**. Once there, click on the **Add preimage** button.
 
-![Add preimage in Polkadot.js](/images/tokens/governance/proposals/proposals-4.png)
+![Add preimage in Polkadot.js](/images/tokens/governance/proposals/proposals-4.webp)
 
 Here, you need to provide the following information:
 
@@ -85,7 +85,7 @@ Here, you need to provide the following information:
  4. Copy the preimage hash. This represents the proposal. You will use this hash when submitting the actual proposal
  5. Click the **Submit preimage** button and sign the transaction
 
-![Fill in the Preimage Information](/images/tokens/governance/proposals/proposals-5.png)
+![Fill in the Preimage Information](/images/tokens/governance/proposals/proposals-5.webp)
 
 !!! note
     Make sure you copy the preimage hash, as it is necessary to submit the proposal.
@@ -100,7 +100,7 @@ Once you have committed the preimage (check the previous section), the roadmap's
 
 In order to submit a proposal, you'll need to choose which Origin class you want your proposal to be executed with. **Choosing the wrong Track/Origin might result in your proposal failing at execution**. For more information on each Origin class, please refer to the [General Definitions](/learn/features/governance/#general-definitions-gov2){target=\_blank} section on the Governance on Moonbeam overview page.
 
-![Submit proposal](/images/tokens/governance/proposals/proposals-6.png)
+![Submit proposal](/images/tokens/governance/proposals/proposals-6.webp)
 
 Here, you need to provide the following information:
 
@@ -113,7 +113,7 @@ Here, you need to provide the following information:
  7. Enter the number of blocks or the specific block to enact the proposal at
  8. Click **Submit proposal** and sign the transaction
 
-![Fill in the Proposal Information](/images/tokens/governance/proposals/proposals-7.png)
+![Fill in the Proposal Information](/images/tokens/governance/proposals/proposals-7.webp)
 
 !!! note
     Tokens might be locked for an indeterminate amount of time because it is unknown when a proposal may become a referendum (if ever).

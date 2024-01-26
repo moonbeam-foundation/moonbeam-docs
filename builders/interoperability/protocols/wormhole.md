@@ -11,7 +11,7 @@ description: Learn how to bridge assets, set up a relayer, and other ways you ca
 
 Wormhole consists of multiple modular swap-in components that can be leveraged independently and supports an increasing number of composable applications built by numerous teams. Building xDapps on top of their protocol allows for quick cross-chain asset transfers and cross-chain logic to deliver maximal Web3 interoperability. Wormhole's architecture includes a signing Guardian network, bridging smart contracts, and relayers. Take a look at the tech stack diagram for more details.
 
-![Wormhole Technology Stack diagram](/images/builders/interoperability/protocols/wormhole/wormhole-1.png)
+![Wormhole Technology Stack diagram](/images/builders/interoperability/protocols/wormhole/wormhole-1.webp)
 
 --8<-- 'text/_disclaimers/third-party-content-intro.md'
 
@@ -62,7 +62,7 @@ First things first, the code in this smart contract is based off of [Wormhole’
 3. Then, go to the **Deploy & Run Transactions** tab of Remix
 4. Set the environment to **Injected Web3**. This will use MetaMask as the Web3 provider. Ensure that your MetaMask is connected to the Moonbase Alpha network
 
-![Set up smart contract deployment](/images/builders/interoperability/protocols/wormhole/wormhole-2.png)
+![Set up smart contract deployment](/images/builders/interoperability/protocols/wormhole/wormhole-2.webp)
 
 To deploy on each chain, you will need the local instance of the Wormhole core bridge and the chain ID of the chain mentioned. All of this data has been provided for a select few TestNets in the table below. You can find other networks’ endpoints on Wormhole’s [documentation site](https://book.wormhole.com/reference/contracts.html#testnet){target=\_blank}. Keep in mind that you should only use EVMs for this demonstration, since the smart contract and relayer designed for this demonstration only supports EVMs.
 
@@ -117,7 +117,7 @@ Now use Remix to ensure that your two connected contracts trust each other. You 
 3. Also check that the contract is still **SimpleGeneralMessage**
 4. Finally, take the address of the destination contract, and paste it into the **At Address** input
 
-![At address](/images/builders/interoperability/protocols/wormhole/wormhole-4.png)
+![At address](/images/builders/interoperability/protocols/wormhole/wormhole-4.webp)
 
 To add trusted remote addresses:
 
@@ -127,7 +127,7 @@ To add trusted remote addresses:
 
 When you are on the alternate EVM TestNet, set the **sender** as the properly formatted (padded with 24 zeros) address of the contract you deployed on Moonbase Alpha. Set the **_chainId** as Moonbase Alpha’s Wormhole chain ID (16). Finally, transact and confirm in MetaMask.
 
-![Add trusted address](/images/builders/interoperability/protocols/wormhole/wormhole-5.png)
+![Add trusted address](/images/builders/interoperability/protocols/wormhole/wormhole-5.webp)
 
 In this section you should have sent two transactions on two chains to whitelist addresses in both contracts. Afterwards, you should be allowed to send messages between the connected contracts.
 
@@ -168,7 +168,7 @@ npm run testnet-spy
 
 First, you should see a few logs from the startup of the Docker container. Then, a lot of logs should be spamming the console. These are all the VAAs that are going through the Wormhole TestNet, and there are a lot! Don’t worry, you won’t have to decipher any of these logs: the code can do that for you. Leave this running in the background and get another terminal instance to move on to the next step.
 
-![Run the spy relayer](/images/builders/interoperability/protocols/wormhole/wormhole-6.png)
+![Run the spy relayer](/images/builders/interoperability/protocols/wormhole/wormhole-6.webp)
 
 ### Setting up the Listener Component {:setting-up-the-listener-component}
 
@@ -394,7 +394,7 @@ npm run start
 
 You should see something similar to the logs below in the console.
 
-![Run the relayer](/images/builders/interoperability/protocols/wormhole/wormhole-7.png)
+![Run the relayer](/images/builders/interoperability/protocols/wormhole/wormhole-7.webp)
 
 ### Sending a Cross-Chain Message from Moonbase with Wormhole {: #send-message-from-moonbase }
 
@@ -409,11 +409,11 @@ Use the Remix interface. This example is going to send a cross-chain message to 
 5. Put the destination chain’s Wormhole chain ID in the **destChainId** input of the **sendMessage** section
 6. Once this is all done, transact the execution and confirm it in MetaMask
 
-![Send a transaction](/images/builders/interoperability/protocols/wormhole/wormhole-8.png)
+![Send a transaction](/images/builders/interoperability/protocols/wormhole/wormhole-8.webp)
 
 After a few seconds to a minute, cross-chain messages should be properly relayed through the relayer that you are hosting on your local machine.  
 
-![Message relay in the logs](/images/builders/interoperability/protocols/wormhole/wormhole-9.png)
+![Message relay in the logs](/images/builders/interoperability/protocols/wormhole/wormhole-9.webp)
 
 ## Moonbeam Routed Liquidity Integration {: #moonbeam-routed-liquidity-integration }
 

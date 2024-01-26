@@ -263,7 +263,7 @@ forge test
 
 When testing, you should see the following output:  
 
-![Unit Testing in Foundry](/images/tutorials/eth-api/foundry-start-to-end/foundry-1.png)
+![Unit Testing in Foundry](/images/tutorials/eth-api/foundry-start-to-end/foundry-1.webp)
 
 ### Test Harnesses in Foundry {: #test-harnesses-in-foundry }
 
@@ -295,7 +295,7 @@ Now, inside of the `ContainerTest` smart contract, you can add a new test that t
 
 Now, when you run the test with `forge test`, you should see that `testIsOverflowingFalse` passes!  
 
-![Test Harness in Foundry](/images/tutorials/eth-api/foundry-start-to-end/foundry-2.png)
+![Test Harness in Foundry](/images/tutorials/eth-api/foundry-start-to-end/foundry-2.webp)
 
 ### Fuzzing Tests in Foundry {: #fuzzing-tests-in-foundry}
 
@@ -338,7 +338,7 @@ forge test
 
 You should see something similar to the following in the console:
 
-![Fuzzing Tests in Foundry](/images/tutorials/eth-api/foundry-start-to-end/foundry-3.png)
+![Fuzzing Tests in Foundry](/images/tutorials/eth-api/foundry-start-to-end/foundry-3.webp)
 
 ### Forking Tests in Foundry {: #forking-tests-in-foundry}
 
@@ -385,7 +385,7 @@ The rest of the code tests capacity like you would expect a local test to. If yo
 forge test -vvvv
 ```
 
-![Forking Tests in Foundry](/images/tutorials/eth-api/foundry-start-to-end/foundry-4.png)
+![Forking Tests in Foundry](/images/tutorials/eth-api/foundry-start-to-end/foundry-4.webp)
 
 That's it for testing! You can see the complete [`Container.t.sol` file](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/tutorials/eth-api/foundry-start-to-end/Container.t.sol){target=\_blank} and [`MyToken.t.sol` file](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/tutorials/eth-api/foundry-start-to-end/MyToken.t.sol){target=\_blank} on GitHub.
 
@@ -469,7 +469,7 @@ What this command does is run the `ContainerDeployScript` contract as a script. 
 
 You should see something like this as output:  
 
-![Running a Script in Foundry](/images/tutorials/eth-api/foundry-start-to-end/foundry-5.png)
+![Running a Script in Foundry](/images/tutorials/eth-api/foundry-start-to-end/foundry-5.webp)
 
 You should be able to see that your contracts were deployed, and are verified on Moonscan! For example, this is where my [`Container.sol` contract was deployed](https://moonbase.moonscan.io/address/0xe8bf2e654d7c1c1ba8f55fed280ddd241e46ced9#code){target=\_blank}.  
 

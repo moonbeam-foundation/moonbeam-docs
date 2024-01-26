@@ -30,14 +30,14 @@ To generate a Moonscan API Key, you will need to sign up for an account. Dependi
 1. Click **Sign In**
 2. Select **Click to sign up** and then register your new account
 
-![Sign up for Moonscan](/images/builders/build/eth-api/verify-contracts/etherscan-plugins/plugins-1.png)
+![Sign up for Moonscan](/images/builders/build/eth-api/verify-contracts/etherscan-plugins/plugins-1.webp)
 
 Once you have an account and are signed in, you will then be able to create an API key.
 
 1. Select **API-KEYs** from the left side menu
 2. To add a new key, click the **+ Add** button
 
-![Add an API key](/images/builders/build/eth-api/verify-contracts/etherscan-plugins/plugins-2.png)
+![Add an API key](/images/builders/build/eth-api/verify-contracts/etherscan-plugins/plugins-2.webp)
 
 You will then be prompted to enter in an **AppName** for your API key and once you enter a name and click **Continue** it will appear in your list of API keys.
 
@@ -85,7 +85,7 @@ npx hardhat verify --network moonbase INSERT_CONTRACT_ADDRESS
 
 In your terminal you should see the source code for your contract was successfully submitted for verification. If the verification was successful, you should see **Successfully verified contract** and there will be a link to the contract code on [Moonscan for Moonbase Alpha](https://moonbase.moonscan.io/){target=\_blank}.
 
-![Successful verification using hardhat-verify plugin](/images/builders/build/eth-api/verify-contracts/etherscan-plugins/plugins-3.png)
+![Successful verification using hardhat-verify plugin](/images/builders/build/eth-api/verify-contracts/etherscan-plugins/plugins-3.webp)
 
 If you're verifying a contract that has constructor arguments, you'll need to run the above command and add the constructor arguments used to deploy the contract at the end of the command. For example:
 
@@ -145,7 +145,7 @@ The result should be `0x00000000000000000000000000000000000000000000000000000000
     --etherscan-api-key INSERT_YOUR_MOONSCAN_API_KEY
     ```
 
-![Foundry Verify](/images/builders/build/eth-api/verify-contracts/etherscan-plugins/plugins-4.png)
+![Foundry Verify](/images/builders/build/eth-api/verify-contracts/etherscan-plugins/plugins-4.webp)
 
 If you wanted to deploy the example contract and verify at the same time, then you would use the following command:
 
@@ -179,4 +179,4 @@ If you wanted to deploy the example contract and verify at the same time, then y
     src/MyToken.sol:MyToken
     ```
 
-![Foundry Contract Deploy and Verify](/images/builders/build/eth-api/verify-contracts/etherscan-plugins/plugins-5.png)
+![Foundry Contract Deploy and Verify](/images/builders/build/eth-api/verify-contracts/etherscan-plugins/plugins-5.webp)

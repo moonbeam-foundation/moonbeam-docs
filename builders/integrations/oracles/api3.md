@@ -13,7 +13,7 @@ Developers can use [Airnode](https://docs.api3.org/explore/airnode/what-is-airno
 
 An on-chain smart contract makes a request in the [RRP (Request Response Protocol)](https://docs.api3.org/reference/airnode/latest/concepts/){target=\_blank} contract ([`AirnodeRrpV0.sol`](https://github.com/api3dao/airnode/blob/v0.11/packages/airnode-protocol/contracts/rrp/AirnodeRrpV0.sol){target=\_blank}) that adds the request to the event logs. The Airnode then accesses the event logs, fetches the API data and performs a callback to the requester with the requested data.
 
-![API3 Airnode](/images/builders/integrations/oracles/api3/api3-1.png)
+![API3 Airnode](/images/builders/integrations/oracles/api3/api3-1.webp)
 
 --8<-- 'text/_disclaimers/third-party-content-intro.md'
 
@@ -26,7 +26,7 @@ The requester calling an Airnode primarily focuses on two tasks:
 - Make the request
 - Accept and decode the response
 
-![API3 Airnode](/images/builders/integrations/oracles/api3/api3-2.png)
+![API3 Airnode](/images/builders/integrations/oracles/api3/api3-2.webp)
 
 Here is an example of a basic requester contract to request data from an Airnode:
 
@@ -136,7 +136,7 @@ The data feeds are continuously updated by [first-party oracles](https://docs.ap
 
 Due to being composed of first-party data feeds, dAPIs offer security, transparency, cost-efficiency, and scalability in a turn-key package.
 
-![API3 Remix deploy](/images/builders/integrations/oracles/api3/api3-3.png)
+![API3 Remix deploy](/images/builders/integrations/oracles/api3/api3-3.webp)
 
 *To learn more about how dAPIs work, please refer to [API3's documentation*](https://docs.api3.org/explore/dapis/what-are-dapis.html){target=\_blank}*.
 
@@ -167,7 +167,7 @@ The process for accessing self-funded data feeds is as follows:
 3. Deploy a proxy contract to acess the data feed
 4. Read data from the dAPI
 
-![API3 Remix deploy](/images/builders/integrations/oracles/api3/api3-4.png)
+![API3 Remix deploy](/images/builders/integrations/oracles/api3/api3-4.webp)
 
 #### Select a dAPI From the API3 Market {: #select-a-dapi }
 
@@ -175,7 +175,7 @@ The [API3 Market](https://market.api3.org/dapis){target=\_blank} enables users t
 
 You can then decide if you want to use self-funded or managed dAPIs.
 
-![API3 Dapi Page](/images/builders/integrations/oracles/api3/api3-5.png)
+![API3 Dapi Page](/images/builders/integrations/oracles/api3/api3-5.webp)
 
 #### Fund a Sponsor Wallet {: #fund-sponsor-wallet }
 
@@ -186,11 +186,11 @@ Once you have selected your dAPI, you can activate it by using the [API3 Market]
 
 To fund the dAPI, you need to click on the **Fund Gas** button. Depending upon if a proxy contract is already deployed, you will see a different UI.
 
-![API3 Remix deploy](/images/builders/integrations/oracles/api3/api3-6.png)
+![API3 Remix deploy](/images/builders/integrations/oracles/api3/api3-6.webp)
 
 Use the gas estimator to select how much gas is needed by the dAPI. Click on **Send DEV** to send the entered amount to the sponsor wallet of the respective dAPI.
 
-![API3 Remix deploy](/images/builders/integrations/oracles/api3/api3-7.png)
+![API3 Remix deploy](/images/builders/integrations/oracles/api3/api3-7.webp)
 
 Once the transaction is broadcasted & confirmed on the blockchain a transaction confirmation screen will appear.
 
@@ -203,7 +203,7 @@ Smart contracts can interact and read values from contracts that are already dep
 
 If you are deploying a proxy contract during the funding process, clicking on the **Get proxy** button will initiate a transaction to your wallet that will deploy a proxy contract.
 
-![API3 Remix deploy](/images/builders/integrations/oracles/api3/api3-8.png)
+![API3 Remix deploy](/images/builders/integrations/oracles/api3/api3-8.webp)
 
 Once the transaction is broadcasted & confirmed on the blockchain, the proxy contract address will be shown on the UI.
 

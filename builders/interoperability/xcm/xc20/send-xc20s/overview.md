@@ -13,7 +13,7 @@ Asset teleporting consists of moving an asset from one blockchain to another by 
 
 Remote transfers consist of moving an asset from one blockchain to another via an intermediate account in the origin chain that is trustlessly owned by the target chain. This intermediate account is known as the "Sovereign" account. In such cases, the origin chain asset is not destroyed but held by the Sovereign account. The XCM execution in the target chain mints a wrapped (also referred to as "virtual" or  "cross-chain" asset) representation to a target address. The wrapped representation is always interchangeable on a 1:1 basis with the native asset. This is similar to a lock-mint and burn-unlock bridging mechanism. The chain where the asset originated is called the reserve chain.
 
-![Asset Teleporting and Remote Transfers](/images/builders/interoperability/xcm/xc20/send-xc20s/overview/overview-1.png)
+![Asset Teleporting and Remote Transfers](/images/builders/interoperability/xcm/xc20/send-xc20s/overview/overview-1.webp)
 
 Moonbeam currently uses remote transfers for XC-20 transfers via XCM.
 

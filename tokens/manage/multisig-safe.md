@@ -74,7 +74,7 @@ Once on the [Moonbase Alpha](https://multisig.moonbeam.network/moonbase/){target
  1. Click **Connect Wallet**
  2. Select a wallet to connect to Moonbeam Safe. For this example you can use MetaMask. If MetaMask doesn't appear in the list of options, click **Show More** and select **MetaMask**
 
-![Connect Wallet to Moonbeam Safe](/images/tokens/manage/multisig-safe/safe-1.png)
+![Connect Wallet to Moonbeam Safe](/images/tokens/manage/multisig-safe/safe-1.webp)
 
 If you're not already signed into MetaMask, you will be prompted to sign in. You will then be guided through adding and connecting your accounts, and adding and switching to the Moonbase Alpha network:
 
@@ -83,7 +83,7 @@ If you're not already signed into MetaMask, you will be prompted to sign in. You
  3. If you are not connected to Moonbase Alpha, nor do you have the network added to your MetaMask, add Moonbase Alpha as a custom network by clicking **Approve**
  4. Switch the network to Moonbase Alpha by click **Switch Network**
 
-![Connect MetaMask to Moonbase Alpha](/images/tokens/manage/multisig-safe/safe-2.png)
+![Connect MetaMask to Moonbase Alpha](/images/tokens/manage/multisig-safe/safe-2.webp)
 
 Now, in the top right hand corner, you can confirm you are connected to your MetaMask account on the Moonbase Alpha network. If you're using the development accounts, you should see Alice's account address. If not, double check your MetaMask and switch to Alice's account.
 
@@ -91,14 +91,14 @@ Now, in the top right hand corner, you can confirm you are connected to your Met
 
 To create a new Safe on Moonbase Alpha, click **Create new Safe**. You will be taken to a wizard that will walk you through creating your new Safe. By going through these steps and creating your Safe, you are consenting to the terms of use and the privacy policy. So, feel free to look those over before getting started.
 
-![Create Safe](/images/tokens/manage/multisig-safe/safe-3.png)
+![Create Safe](/images/tokens/manage/multisig-safe/safe-3.webp)
 
 You will need to give your Safe a name:
 
  1. Enter the name of your new Safe, you can use `moonbeam-tutorial`
  2. Click **Start**
 
-![Submit Safe Name](/images/tokens/manage/multisig-safe/safe-4.png)
+![Submit Safe Name](/images/tokens/manage/multisig-safe/safe-4.webp)
 
 Next up is the owners and confirmations section of the wizard. In this section, you will add the owners of the Safe and specify the threshold. The threshold determines how many of the owners are required to confirm a transaction before the transaction gets executed. 
 
@@ -114,24 +114,24 @@ Your account will automatically be prefilled in as the first owner, however this
  4. Set the confirmation threshold to **2** out of 3 owners
  5. Click **Review** to go to the last step in the wizard
 
-![Enter Safe Owners](/images/tokens/manage/multisig-safe/safe-5.png)
+![Enter Safe Owners](/images/tokens/manage/multisig-safe/safe-5.webp)
 
 Finally, you can review all of the Safe and owner details and if everything looks ok:
 
  1. Click **Submit** to create your new Safe. The creation of the Safe will cost approximately less than .001 DEV tokens on Moonbase Alpha. MetaMask will pop-up and prompt you to confirm the transaction
  2. Click **Confirm** to send the transaction and create the Safe
 
-![Send Transaction to Create Multisig Safe](/images/tokens/manage/multisig-safe/safe-6.png)
+![Send Transaction to Create Multisig Safe](/images/tokens/manage/multisig-safe/safe-6.webp)
 
 It could take a few minutes to process the transaction and create the Safe, but once it has been created you should see a message saying "Your Safe was created successfully". From there, you can click **Get Started** to load your Safe and start interacting with it.
 
-![Safe Created Successfully](/images/tokens/manage/multisig-safe/safe-7.png)
+![Safe Created Successfully](/images/tokens/manage/multisig-safe/safe-7.webp)
 
 ## Configure Safe {: #configure-safe }
 
 You can always manage your Safe and change some of the parameters set when creating it. To do you can click in the **Settings** option on the left hand side menu. 
 
-![Modify Safe Settings](/images/tokens/manage/multisig-safe/safe-8.png)
+![Modify Safe Settings](/images/tokens/manage/multisig-safe/safe-8.webp)
 
 In there you have the following options:
 
@@ -146,11 +146,11 @@ In there you have the following options:
 
 Now that you have created your Safe, you can start interacting with it. First, load up the Safe by sending some DEV tokens to it. You can send funds to the Safe from any account with DEV tokens. For this example, you can use Alice's account. Hover over **DEV** in the list of assets to reveal the **Send** and **Receive** buttons. Then click **Receive**.
 
-![Receive Tokens to the Safe](/images/tokens/manage/multisig-safe/safe-9.png)
+![Receive Tokens to the Safe](/images/tokens/manage/multisig-safe/safe-9.webp)
 
 A pop-up will appear with the address of the Safe. Copy the address and click **Done**. 
 
-![Copy Safe Address](/images/tokens/manage/multisig-safe/safe-10.png)
+![Copy Safe Address](/images/tokens/manage/multisig-safe/safe-10.webp)
 
 Next, open up your MetaMask to initiate a transaction:
 
@@ -160,7 +160,7 @@ Next, open up your MetaMask to initiate a transaction:
  4. Click **Next**
  5. Review the details of the transaction and click **Confirm**
 
-![Send DEV Tokens to the Safe](/images/tokens/manage/multisig-safe/safe-11.png)
+![Send DEV Tokens to the Safe](/images/tokens/manage/multisig-safe/safe-11.webp)
 
 The transaction will be sent and your balance for DEV tokens will be updated on the Safe. 
 
@@ -168,7 +168,7 @@ The transaction will be sent and your balance for DEV tokens will be updated on 
 
 Now that you have funds in the Safe, you can send funds from the Safe to another account. For this example, you can send 1 DEV token to Bob's address. Hover over **DEV** in the list of assets, and this time click on **Send**.
 
-![Send Tokens from the Safe](/images/tokens/manage/multisig-safe/safe-12.png)
+![Send Tokens from the Safe](/images/tokens/manage/multisig-safe/safe-12.webp)
 
 A pop-up will appear where you can enter the recipient and the amount of DEV tokens to send:
 
@@ -177,16 +177,16 @@ A pop-up will appear where you can enter the recipient and the amount of DEV tok
  3. Enter 1 DEV token
  4. Click **Review**
 
-![Send 1 DEV Token from the Safe to Bob](/images/tokens/manage/multisig-safe/safe-13.png)
+![Send 1 DEV Token from the Safe to Bob](/images/tokens/manage/multisig-safe/safe-13.webp)
 
  1. Review the details and click **Submit**. MetaMask will pop-up and you'll notice that instead of sending a transaction, you're sending a message
  2. Click **Sign** to sign the message
 
-![Submit Transaction and Sign Message](/images/tokens/manage/multisig-safe/safe-14.png)
+![Submit Transaction and Sign Message](/images/tokens/manage/multisig-safe/safe-14.webp)
 
 Now, if you go back to the Safe, under the **Transactions** tab, you should be able to see that there has been a transaction proposal initiated to send 1 DEV tokens to Bob's address. However, you should also see that only 1 out of 2 confirmations have been received and that 1 more owner is required to confirm the transaction before it gets executed. 
 
-![Transaction Needs Confirmations](/images/tokens/manage/multisig-safe/safe-15.png)
+![Transaction Needs Confirmations](/images/tokens/manage/multisig-safe/safe-15.webp)
 
 ### Transaction Confirmation {: #transaction-confirmation }
 
@@ -203,11 +203,11 @@ Switch accounts in MetaMask to Bob's account (or Charlie's). Then go back to the
 !!! note
     If you receive an error stating the transaction might fail, you may need to increase the gas limit. You can do so either in the **Advanced options** or in MetaMask. 
 
-![Submit Transaction Confirmation](/images/tokens/manage/multisig-safe/safe-16.png)
+![Submit Transaction Confirmation](/images/tokens/manage/multisig-safe/safe-16.webp)
 
 The transaction will be removed from the **QUEUE** tab and a record of the transaction can now be found under the **HISTORY** tab. In addition, Bob's balance has now increased by 1 DEV token, and the Safe's balance for DEV tokens has decreased.
 
-![Successfully Executed Transaction](/images/tokens/manage/multisig-safe/safe-17.png)
+![Successfully Executed Transaction](/images/tokens/manage/multisig-safe/safe-17.webp)
 
 Congratulations, you've successfully received and sent DEV tokens to and from the Safe!
 
@@ -228,7 +228,7 @@ You'll need to get the Safe's address again, you can do so by clicking on the **
  5. Click **Next**
  6. Review the transaction details and then click **Confirm** to send the transaction.
 
-![Send ERC-20s to the Safe](/images/tokens/manage/multisig-safe/safe-18.png)
+![Send ERC-20s to the Safe](/images/tokens/manage/multisig-safe/safe-18.webp)
 
 If you navigate back to the Safe, in the list of **Assets** you should now see **MyToken** and a balance of 1000 MYTOKs. It could take a few minutes for **MyToken** to appear, but there is nothing for you to do to add the asset, it will appear on it's own.
 
@@ -238,7 +238,7 @@ Now that you have loaded your Safe with MYTOKs, you can send some from the Safe 
 
 Hover over **MyToken** in the list of assets, and this time click on **Send**.
 
-![Send ERC-20s from the Safe](/images/tokens/manage/multisig-safe/safe-19.png)
+![Send ERC-20s from the Safe](/images/tokens/manage/multisig-safe/safe-19.webp)
 
 A pop-up will appear where you can enter the recipient and the amount of MYTOK tokens to send:
 
@@ -247,24 +247,24 @@ A pop-up will appear where you can enter the recipient and the amount of MYTOK t
  3. Enter 10 MYTOK tokens
  4. Click **Review** and review the details
 
-![Send ERC-20s to Charlie from the Safe](/images/tokens/manage/multisig-safe/safe-20.png)
+![Send ERC-20s to Charlie from the Safe](/images/tokens/manage/multisig-safe/safe-20.webp)
 
 If everything looks ok, you can: 
 
  1. Click **Submit**. MetaMask will pop-up and you'll notice that instead of sending a transaction, you're sending a message
  2. Click **Sign** to sign the message
 
-![Sign Message to Send ERC-20s to Charlie from the Safe](/images/tokens/manage/multisig-safe/safe-21.png)
+![Sign Message to Send ERC-20s to Charlie from the Safe](/images/tokens/manage/multisig-safe/safe-21.webp)
 
 Now, if you go back to the Safe, under the **Transactions** tab, you should be able to see that there has been a transaction proposal initiated to send 10 MYTOK tokens to Charlie's address. However, you should also see that only 1 out of 2 confirmations have been received and that 1 more owner is required to confirm the transaction before it gets executed.
 
-![Transaction Needs Confirmation](/images/tokens/manage/multisig-safe/safe-22.png)
+![Transaction Needs Confirmation](/images/tokens/manage/multisig-safe/safe-22.webp)
 
 You will need to switch accounts to Alice or Charlie and confirm the transaction to execute it. You can follow the same steps outlined in the above [Transaction Confirmation](#transaction-confirmation) section.
 
 Once the transaction has been confirmed from one of the other two accounts, the transaction will be moved to the **HISTORY** tab. 
 
-![Successfully Executed Transaction](/images/tokens/manage/multisig-safe/safe-23.png)
+![Successfully Executed Transaction](/images/tokens/manage/multisig-safe/safe-23.webp)
 
 Congratulations! You've successfully received and sent ERC-20 tokens to and from the Safe!
 
@@ -279,7 +279,7 @@ From the Safe:
  1. On the left hand side click on **New Transaction**
  2. Then select **Contract interaction**
 
-![New Contract Interaction](/images/tokens/manage/multisig-safe/safe-24.png)
+![New Contract Interaction](/images/tokens/manage/multisig-safe/safe-24.webp)
 
 The **Contract interaction** pop-up will appear and you can fill in the contract details:
 
@@ -289,28 +289,28 @@ The **Contract interaction** pop-up will appear and you can fill in the contract
  4. Then a `_text` input field will appear. You can enter anything you would like, for this example, you can use `polkadots and moonbeams`
  5. Click **Review**
 
-![Create Contract Interaction](/images/tokens/manage/multisig-safe/safe-25.png)
+![Create Contract Interaction](/images/tokens/manage/multisig-safe/safe-25.webp)
 
 If the details look ok, go ahead and:
 
  1. Click **Submit**. MetaMask will pop-up and you'll notice that instead of sending a transaction, you're sending a message
  2. Click **Sign** to sign the message
 
-![Submit Contract Interaction](/images/tokens/manage/multisig-safe/safe-26.png)
+![Submit Contract Interaction](/images/tokens/manage/multisig-safe/safe-26.webp)
 
 Now, if you go back to the Safe, under the **Transactions** tab, you should be able to see that there has been a transaction proposal initiated for a **Contract interaction**. However, you should also see that only 1 out of 2 confirmations have been received and that 1 more owner is required to confirm the transaction before it gets executed.
 
-![Transaction Needs Confirmation](/images/tokens/manage/multisig-safe/safe-27.png)
+![Transaction Needs Confirmation](/images/tokens/manage/multisig-safe/safe-27.webp)
 
 You will need to switch accounts to Bob or Charlie and confirm the transaction to execute it. You can follow the same steps outlined in the above [Transaction Confirmation](#transaction-confirmation) section.
 
 Once the transaction has been confirmed from one of the other two accounts, the transaction will be moved to the **HISTORY** tab.
 
-![Transaction History](/images/tokens/manage/multisig-safe/safe-28.png)
+![Transaction History](/images/tokens/manage/multisig-safe/safe-28.webp)
 
 To double check that the correct text was set, you can go through the process again except instead of selecting **setTextData** from the **Method** dropdown, you can select **text** to read the `text` value. This will be a call instead of a transaction, so a **Call** button will appear. Click on it and directly within the pop-up, you should see the result of the call, `polkadots and moonbeams`.
 
-![Contract Interaction Call Result](/images/tokens/manage/multisig-safe/safe-29.png)
+![Contract Interaction Call Result](/images/tokens/manage/multisig-safe/safe-29.webp)
 
 Congratulations, you've successfully interacted with a smart contract using the Safe!
 
@@ -338,7 +338,7 @@ There are APIs available to read from and interact with Moonbeam Safes for Moonb
 
 As an example of using the API, try retrieving information about Safes from the Moonbeam Safe API. From the Safe page, copy the address of your Safe:
 
-![Contract Interaction Call Result](/images/tokens/manage/multisig-safe/safe-30.png)
+![Contract Interaction Call Result](/images/tokens/manage/multisig-safe/safe-30.webp)
 
 Now you can use the API:
 
@@ -346,7 +346,7 @@ Now you can use the API:
  2. Scroll down to the **safes** section and click on the **/safes/{address}/** endpoint section to expand its panel
  3. Click the **Try it out** button on the right
 
-![Contract Interaction Call Result](/images/tokens/manage/multisig-safe/safe-31.png)
+![Contract Interaction Call Result](/images/tokens/manage/multisig-safe/safe-31.webp)
 
 A large **Execute** button should appear in the panel.
 
@@ -354,7 +354,7 @@ A large **Execute** button should appear in the panel.
  2. Press **Execute**
  3. Information about your safe will appear below
 
-![Contract Interaction Call Result](/images/tokens/manage/multisig-safe/safe-32.png)
+![Contract Interaction Call Result](/images/tokens/manage/multisig-safe/safe-32.webp)
 
 Congratulations! You have successfully used the API for Moonbeam Safes. There are still many other endpoints to use, either for convenience or to add into your own app.
 

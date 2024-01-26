@@ -79,7 +79,7 @@ We'll start adding the functionality to the `Lottery.sol` contract in the follow
 
 At a high level, the lottery contract we're creating will define the rules of the lottery, enable participation, and use randomly generated words to select winners fairly. We'll be requesting the random words via the Randomness Precompile. Then we'll use the Randomness Consumer interface to consume the results of the fulfilled request so that our contract can use the randomly generated words to select the winners and pay them out. We'll break down each step of the process as we build the lottery contract, but for now, you can review the following diagram for an overview of the process.
 
-![Diagram of the Lottery process.](/images/tutorials/eth-api/randomness-lottery/lottery-1.png)
+![Diagram of the Lottery process.](/images/tutorials/eth-api/randomness-lottery/lottery-1.webp)
 
 **This contract is for educational purposes only and is not meant for production use.**
 
@@ -421,7 +421,7 @@ To compile our contracts, you can simply run:
 npx hardhat compile
 ```
 
-![Compile the contracts using Hardhat's compile command.](/images/tutorials/eth-api/randomness-lottery/lottery-2.png)
+![Compile the contracts using Hardhat's compile command.](/images/tutorials/eth-api/randomness-lottery/lottery-2.webp)
 
 After compilation, an `artifacts` directory is created: it holds the bytecode and metadata of the contracts, which are `.json` files. It’s a good idea to add this directory to your `.gitignore`.
 
@@ -485,7 +485,7 @@ If you're using another Moonbeam network, make sure that you specify the correct
 
 After a few seconds, the contract is deployed, and you should see the address in the terminal. Save the address, as we will use it to interact with this contract instance in the next step.
 
-![Deploy the Lottery contract using Hardhat's run command.](/images/tutorials/eth-api/randomness-lottery/lottery-3.png)
+![Deploy the Lottery contract using Hardhat's run command.](/images/tutorials/eth-api/randomness-lottery/lottery-3.webp)
 
 ### Create Scripts to Interact with the Lottery Contract {: #participate-in-lottery }
 
@@ -525,7 +525,7 @@ npx hardhat run --network moonbase scripts/participate.js
 
 The transaction hash will be printed to the console. You can use the hash to look up the transaction on [Moonscan](https://moonbase.moonscan.io){target=\_blank}.
 
-![Run the partipation script using Hardhat's run command.](/images/tutorials/eth-api/randomness-lottery/lottery-4.png)
+![Run the partipation script using Hardhat's run command.](/images/tutorials/eth-api/randomness-lottery/lottery-4.webp)
 
 And that's it! You can feel free to continue creating additional scripts to perform the next steps of the lottery, such as starting the lottery and picking the winners.
 

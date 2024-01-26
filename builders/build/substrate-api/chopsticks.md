@@ -201,8 +201,8 @@ You can interact with Chopsticks via the [Polkadot.js Apps hosted user interface
 3. Select the **Custom** endpoint and enter `ws://localhost:8000`
 4. Click the **Switch** button
 
-![Open WSS](/images/builders/build/substrate-api/chopsticks/chopsticks-1.png)
-![Switch WSS](/images/builders/build/substrate-api/chopsticks/chopsticks-2.png)
+![Open WSS](/images/builders/build/substrate-api/chopsticks/chopsticks-1.webp)
+![Switch WSS](/images/builders/build/substrate-api/chopsticks/chopsticks-2.webp)
 
 You should now be able to interact with the fork as you would an active parachain or relay chain.
 

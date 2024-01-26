@@ -106,14 +106,14 @@ You can interact with the ERC-20 interface using [Remix](https://remix.ethereum.
 1. Get a copy of [ERC20.sol](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/assets-erc20/ERC20.sol){target=\_blank}
 2. Paste the file contents into a Remix file named **IERC20.sol**
 
-![Load the interface in Remix](/images/builders/interoperability/xcm/xc20/interact/interact-1.png)
+![Load the interface in Remix](/images/builders/interoperability/xcm/xc20/interact/interact-1.webp)
 
 Once you have the ERC-20 interface loaded in Remix, you will need to compile it:
 
 1. Click on the **Compile** tab, second from top
 2. Compile the **IERC20.sol** file
 
-![Compiling IERC20.sol](/images/builders/interoperability/xcm/xc20/interact/interact-2.png)
+![Compiling IERC20.sol](/images/builders/interoperability/xcm/xc20/interact/interact-2.webp)
 
 If the interface was compiled successfully, you will see a green checkmark next to the **Compile** tab.
 
@@ -127,13 +127,13 @@ Instead of deploying the ERC-20 precompile, you will access the interface given 
 4. Ensure **IERC20 - IERC20.sol** is selected in the **CONTRACT** dropdown. Since this is a precompiled contract, there is no need to deploy any code. Instead, you are going to provide the address of the precompile in the **At Address** field
 5. Provide the address of the XC-20. For local XC-20s, which you should have already calculated in the  [Calculate External XC-20 Precompile Addresses](#calculate-xc20-address){target=\_blank} section. For this example, you can use `0xFFFFFFFF1FCACBD218EDC0EBA20FC2308C778080` and click **At Address**
 
-![Access the address](/images/builders/interoperability/xcm/xc20/interact/interact-3.png)
+![Access the address](/images/builders/interoperability/xcm/xc20/interact/interact-3.webp)
 
 !!! note
     Optionally, you can checksum the XC-20 precompile address by going to your search engine of choice and searching for a tool to checksum the address. Once the address has been checksummed, you can use it in the **At Address** field instead.
 
 The **IERC20** precompile for the XC-20 will appear in the list of **Deployed Contracts**. Now you can feel free to call any of the standard ERC-20 functions to get information about the XC-20 or transfer the XC-20.
 
-![Interact with the precompile functions](/images/builders/interoperability/xcm/xc20/interact/interact-4.png)
+![Interact with the precompile functions](/images/builders/interoperability/xcm/xc20/interact/interact-4.webp)
 
 To learn how to interact with each of the functions, you can check out the [ERC-20 Precompile](/builders/pallets-precompiles/precompiles/erc20/){target=\_blank} guide and modify it for interacting with the XC-20 Precompile.

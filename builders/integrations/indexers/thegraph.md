@@ -316,7 +316,7 @@ Where:
 
 The logs from the previous command should look similar to:
 
-![The Graph deployed](/images/builders/integrations/indexers/the-graph/the-graph-1.png)
+![The Graph deployed](/images/builders/integrations/indexers/the-graph/the-graph-1.webp)
 
 DApps can now use the Subgraph endpoints to fetch the data indexed by The Graph protocol.
 

@@ -19,7 +19,7 @@ In a standard configuration, each price feed is updated by a decentralized oracl
 
 The end-user can retrieve price feeds with read-only operations via an aggregator interface, or via a Consumer interface through the Proxy.
 
-![Price Feed Diagram](/images/builders/integrations/oracles/chainlink/chainlink-price-feed.png)
+![Price Feed Diagram](/images/builders/integrations/oracles/chainlink/chainlink-price-feed.webp)
 
 ### Fetch Price Data {: #fetch-price-data }
 
@@ -172,14 +172,14 @@ After creating the file and compiling the contract, you will need to follow thes
         {{ networks.moonbase.chainlink.feed.proxy.btc_usd }}
         ```
 
-![Load the Chainlink Price Feed Aggregator Interface on Moonriver](/images/builders/integrations/oracles/chainlink/chainlink-2.png)
+![Load the Chainlink Price Feed Aggregator Interface on Moonriver](/images/builders/integrations/oracles/chainlink/chainlink-2.webp)
 
 This will create an instance of the aggregator interface that you can interact with and it will appear under the **Deployed Contracts** section in Remix. To get the latest price data you can follow these steps:
 
 1. Expand the `AggregatorV3Interface` contract to reveal the available functions
 2. Click `latestRoundData()` to query the data of the corresponding price feed, in this case BTC to USD
 
-![Interact with the Chainlink Price Feed Aggregator Interface on Moonriver](/images/builders/integrations/oracles/chainlink/chainlink-3.png)
+![Interact with the Chainlink Price Feed Aggregator Interface on Moonriver](/images/builders/integrations/oracles/chainlink/chainlink-3.webp)
 
 Note that to obtain the real price, you must account for the decimals of the price feed, available with the `decimals()` method.
 
@@ -371,7 +371,7 @@ For this example, you can go ahead and use the interface contract with the `BTC 
 5. Confirm the transaction. You will have to wait until the whole request process that was previously explained occurs
 6. You can then check the price using the view function, `currentPrice()`
 
-![Chainlink Basic Request on Moonbase Alpha](/images/builders/integrations/oracles/chainlink/chainlink-1.png)
+![Chainlink Basic Request on Moonbase Alpha](/images/builders/integrations/oracles/chainlink/chainlink-1.webp)
 
 If there is any specific pair you want to be included, feel free to reach out to the Moonbeam team through [Discord](https://discord.com/invite/PfpUATX){target=\_blank}.
 

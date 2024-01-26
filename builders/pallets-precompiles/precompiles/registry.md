@@ -58,13 +58,13 @@ The examples in this guide will be on Moonbase Alpha.
 
 To quickly get started with [Remix](/builders/build/eth-api/dev-env/remix){target=\_blank}, the [Precompile Registry contract has been loaded from GitHub](https://remix.ethereum.org/#url=https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/precompile-registry/PrecompileRegistry.sol){target=\_blank}. You can also create a new file in Remix and manually paste in the contents of the [`PrecompileRegistry.sol`](#the-solidity-interface) contract.
 
-![Add the Precompile Registry Interface to Remix](/images/builders/pallets-precompiles/precompiles/registry/registry-1.png)
+![Add the Precompile Registry Interface to Remix](/images/builders/pallets-precompiles/precompiles/registry/registry-1.webp)
 
 Then you can take the following steps to compile, deploy, and interact with the Precompile Registry:
 
 1. From the **Compile** tab, click on **Compile PrecompileRegistry.sol** to compile the contract.  A green checkmark will appear upon successfully compiling the contract
 
-    ![Compile the Precompile Registry contract](/images/builders/pallets-precompiles/precompiles/registry/registry-2.png)
+    ![Compile the Precompile Registry contract](/images/builders/pallets-precompiles/precompiles/registry/registry-2.webp)
 
 2. From the **Deploy and run transactions** tab, you can load the Precompile Registry using its address:
 
@@ -73,11 +73,11 @@ Then you can take the following steps to compile, deploy, and interact with the 
     3. Provide the address of the Precompile Registry for Moonbase Alpha: `{{ networks.moonbase.precompiles.registry }}` and click **At Address**
     4. The Precompile Registry will appear in the list of **Deployed Contracts**
 
-    ![Access the Precompile Registry contract](/images/builders/pallets-precompiles/precompiles/registry/registry-3.png)
+    ![Access the Precompile Registry contract](/images/builders/pallets-precompiles/precompiles/registry/registry-3.webp)
 
 3. You can interact with any of the precompile's methods. Under **Deployed Contracts**, expand the Precompile Registry to view the list of methods. For example, you can use the **isPrecompile** function to check if an address is a precompile
 
-    ![Interact with the Precompile Registry contract](/images/builders/pallets-precompiles/precompiles/registry/registry-4.png)
+    ![Interact with the Precompile Registry contract](/images/builders/pallets-precompiles/precompiles/registry/registry-4.webp)
 
 ### Use Ethereuem Libraries to Interact with the Precompile Registry {: #use-ethereum-libraries }
 
