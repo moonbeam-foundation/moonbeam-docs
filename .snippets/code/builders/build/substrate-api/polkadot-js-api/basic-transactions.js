@@ -14,7 +14,7 @@ const main = async () => {
   const bob = 'INSERT_BOBS_ADDRESS';
 
   // Form the transaction
-  const tx = await api.tx.balances.transfer(bob, BigInt(12345));
+  const tx = await api.tx.balances.transferAllowDeath(bob, BigInt(12345));
 
   // Retrieve the encoded calldata of the transaction
   const encodedCalldata = tx.method.toHex();

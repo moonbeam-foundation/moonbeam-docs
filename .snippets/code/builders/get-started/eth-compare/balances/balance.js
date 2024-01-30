@@ -7,7 +7,7 @@ const main = async () => {
     provider: wsProvider,
   });
 
-  const balances = await polkadotApi.query.balances.account('INSERT_ADDRESS');
+  const balances = await polkadotApi.query.system.account('INSERT_ADDRESS');
   console.log(balances.toHuman());
 };
 

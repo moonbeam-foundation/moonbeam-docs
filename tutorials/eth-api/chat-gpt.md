@@ -17,7 +17,7 @@ In this tutorial, we'll look at how ChatGPT can help you write, deploy, and debu
 
 ### What is ChatGPT? {: #what-is-chatgpt }
 
-[ChatGPT](https://chat.openai.com/){target=_blank} is a text-based Large Language Model (LLM) created by the company OpenAI. According to OpenAI, *"The dialogue format makes it possible for ChatGPT to answer followup questions, admit its mistakes, challenge incorrect premises, and reject inappropriate requests."* ChatGPT can hold a conversation with you and remember your chat history until a new session is started. To learn more about ChatGPT, check out [this introduction to ChatGPT on the OpenAI Blog](https://openai.com/blog/chatgpt){target=_blank}.
+[ChatGPT](https://chat.openai.com/){target=\_blank} is a text-based Large Language Model (LLM) created by the company OpenAI. According to OpenAI, *"The dialogue format makes it possible for ChatGPT to answer followup questions, admit its mistakes, challenge incorrect premises, and reject inappropriate requests."* ChatGPT can hold a conversation with you and remember your chat history until a new session is started. To learn more about ChatGPT, check out [this introduction to ChatGPT on the OpenAI Blog](https://openai.com/blog/chatgpt){target=\_blank}.
 
 ### GPT-4 vs. ChatGPT {: #gpt-4-vs-chatgpt }
 
@@ -31,7 +31,7 @@ As of the time of writing, GPT-4 was the latest version offered as part of the C
 - Code produced by ChatGPT is not audited, reviewed, or verified and may contain errors
 - Prompting GPT-4 with the exact inputs specified in this tutorial will likely produce different outputs - that is expected due to ChatGPT's architecture as a language model
 
-![Limitations](/images/tutorials/eth-api/chatgpt/chatgpt-1.png)
+![Limitations](/images/tutorials/eth-api/chatgpt/chatgpt-1.webp)
 
 **Please note that the contracts we'll be creating today are for educational purposes only and should not be used in a production environment**.
 
@@ -39,25 +39,25 @@ As of the time of writing, GPT-4 was the latest version offered as part of the C
 
 For this tutorial, you'll need the following:
 
-- A free [OpenAI account to access ChatGPT](https://chat.openai.com/){target=_blank}
+- A free [OpenAI account to access ChatGPT](https://chat.openai.com/){target=\_blank}
 - An account funded with DEV tokens to be used on the Moonbase Alpha TestNet if you'd like to deploy any resulting contracts.
   --8<-- 'text/_common/faucet/faucet-list-item.md'
 
 ## Sign up for an OpenAI Account {: #sign-up-for-an-openai-account }
 
-You can sign up for a free account to access ChatGPT by heading to [OpenAI's website.](https://chat.openai.com/auth/login){target=_blank} You'll need to provide both an email address and a phone number. A subscription to ChatGPT Plus is not required to complete this tutorial.
+You can sign up for a free account to access ChatGPT by heading to [OpenAI's website.](https://chat.openai.com/auth/login){target=\_blank} You'll need to provide both an email address and a phone number. A subscription to ChatGPT Plus is not required to complete this tutorial.
 
-![Sign up for OpenAI account](/images/tutorials/eth-api/chatgpt/chatgpt-2.png)
+![Sign up for OpenAI account](/images/tutorials/eth-api/chatgpt/chatgpt-2.webp)
 
 ## Create an ERC-20 Token Contract {: #create-an-erc-20-token-contract }
 
-To start interacting with [ChatGPT](https://chat.openai.com/?model=gpt-4){target=_blank}, take the following steps:
+To start interacting with [ChatGPT](https://chat.openai.com/?model=gpt-4){target=\_blank}, take the following steps:
 
 1. Press **New Chat** in the upper left hand corner
 2. Select the model you would like to use. Either model is suitable for this tutorial
 3. Enter your prompt and at the input box and press enter when ready
 
-![Prompt chatGPT](/images/tutorials/eth-api/chatgpt/chatgpt-3.png)
+![Prompt chatGPT](/images/tutorials/eth-api/chatgpt/chatgpt-3.webp)
 
 For our first prompt, we'll ask ChatGPT to create an ERC-20 token, specifying the name of the token, the token symbol, and an initial supply. Your prompt doesn't need to match the one below - feel free to tailor it to suit your preferences.
 
@@ -66,9 +66,9 @@ I would like to create an ERC-20 token called "KevinToken"
 with the symbol "KEV" and an initial supply of 40000000.
 ```
 
-![ChatGPT's 1st response](/images/tutorials/eth-api/chatgpt/chatgpt-4.png)
+![ChatGPT's 1st response](/images/tutorials/eth-api/chatgpt/chatgpt-4.webp)
 
-This is a great start. ChatGPT has produced for us a simple yet functional ERC-20 token that meets all of the parameters that we have specified. It also clarified how it created the ERC-20 token contract using the [OpenZeppelin standard](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/ERC20.sol){target=_blank} and where the initial token supply is directed. Finally, it reminds us that this is just a start, and there may be other considerations we wish to implement, like minting and burning.
+This is a great start. ChatGPT has produced for us a simple yet functional ERC-20 token that meets all of the parameters that we have specified. It also clarified how it created the ERC-20 token contract using the [OpenZeppelin standard](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/ERC20.sol){target=\_blank} and where the initial token supply is directed. Finally, it reminds us that this is just a start, and there may be other considerations we wish to implement, like minting and burning.
 
 !!! note
     If you don't get the output you're expecting, you can always press **Regenerate Response** or re-phrase your request.
@@ -81,18 +81,18 @@ This looks great, but I'd really like my ERC-20 to be both mintable and burnable
 
 ChatGPT is happy to oblige. Notice how it maintains the parameters we specified originally, namely the token name and symbol.
 
-![ChatGPT's 2nd response](/images/tutorials/eth-api/chatgpt/chatgpt-5.png)
+![ChatGPT's 2nd response](/images/tutorials/eth-api/chatgpt/chatgpt-5.webp)
 
 ## Preparing Deployment Instructions {: #preparing-deployment-instructions }
 
-This section is named carefully to avoid implying that ChatGPT will be doing the deployment for us. ChatGPT does not have internet access and cannot interact with blockchain networks directly, but it can give us detailed instructions explaining how we can do so ourselves. Let's ask ChatGPT for instructions on deploying the recently created ERC20 contract. For this example, let's ask ChatGPT for [Hardhat deployment instructions](/builders/build/eth-api/dev-env/hardhat/){target=_blank}:
+This section is named carefully to avoid implying that ChatGPT will be doing the deployment for us. ChatGPT does not have internet access and cannot interact with blockchain networks directly, but it can give us detailed instructions explaining how we can do so ourselves. Let's ask ChatGPT for instructions on deploying the recently created ERC20 contract. For this example, let's ask ChatGPT for [Hardhat deployment instructions](/builders/build/eth-api/dev-env/hardhat/){target=\_blank}:
 
 ```text
 I would like to use Hardhat to compile and deploy
  this smart contract to the Moonbase Alpha network.  
 ```
 
-![ChatGPT's 3rd response](/images/tutorials/eth-api/chatgpt/chatgpt-6.png)
+![ChatGPT's 3rd response](/images/tutorials/eth-api/chatgpt/chatgpt-6.webp)
 
 And to no surprise, ChatGPT provides us with a detailed series of deployment steps, from installation instructions to a full deployment script. Note that it even remembers a detail in our first prompt that wasn't important until now. In our initial prompt, we asked for our token to have an initial supply of `400000000`, and ChatGPT included this parameter in the deployment script it generated.
 
@@ -105,7 +105,7 @@ Another observation is that the RPC URL it generated is outdated, although still
 !!! note
     ChatGPT's knowledge date cutoff is approximately September 2021. It does not have access to current events or other data after this date.
 
-Code snippets of ChatGPT's output are intentionally omitted to encourage you to try this on your own! And remember, prompting it with the exact same instructions will yield at least slightly different results - this is [an inherent quality of LLMs](https://blog.dataiku.com/large-language-model-chatgpt){target=_blank}.
+Code snippets of ChatGPT's output are intentionally omitted to encourage you to try this on your own! And remember, prompting it with the exact same instructions will yield at least slightly different results - this is [an inherent quality of LLMs](https://blog.dataiku.com/large-language-model-chatgpt){target=\_blank}.
 
 ## Writing Test Cases {: #writing-test-cases }
 
@@ -115,14 +115,14 @@ By now, you're nearly a ChatGPT savant. So it should come as no surprise that Ch
 Hey GPT4 can you help me write some tests for the smart contract above?  
 ```
 
-![ChatGPT's 4th response](/images/tutorials/eth-api/chatgpt/chatgpt-7.png)
+![ChatGPT's 4th response](/images/tutorials/eth-api/chatgpt/chatgpt-7.webp)
 
 ChatGPT provides us with a slew of test cases, especially surrounding the mint and burn functionality. While it's busy writing test cases, it appears to trail off and stop without its typical summary remarks at the end. This interruption stems from ChatGPT's 500-word limit. Although the 500-word limit is a hard stop, ChatGPT's train of thought continues, so you can simply ask it to continue, and it will happily oblige. Note that for subscriptions with limited messages, this will count as an additional message from your allocation.
 
 !!! note
     ChatGPT has a response limit of approximately 500 words or 4,000 characters. However, you can simply ask it to continue in a follow up message.
 
-![ChatGPT's 5th response](/images/tutorials/eth-api/chatgpt/chatgpt-8.png)
+![ChatGPT's 5th response](/images/tutorials/eth-api/chatgpt/chatgpt-8.webp)
 
 And Voila! ChatGPT finishes writing its test cases for us and wraps up by telling us how we can run them.
 
@@ -134,7 +134,7 @@ If the problem is clear, ChatGPT will typically tell you exactly what's wrong an
 
 If you try all of the steps it recommends and your issue persists, you can simply let ChatGPT know, and it will continue to help you troubleshoot. As a follow-up, it may ask you to provide code snippets or system configuration information to better help you solve the problem at hand.
 
-[A reentrancy bug](https://web.archive.org/web/20221121064906/https://consensys.github.io/smart-contract-best-practices/attacks/reentrancy/){target=_blank} was the root of the flaw that brought down the [original DAO on Ethereum in 2016](https://en.wikipedia.org/wiki/The_DAO_(organization)){target=_blank}. Let's prompt ChatGPT with a buggy function that includes a reentrancy vulnerability and see if ChatGPT is able to spot the problem. We'll go ahead and copy and paste the below insecure code snippet into ChatGPT and ask if there is anything wrong with it.
+[A reentrancy bug](https://web.archive.org/web/20221121064906/https://consensys.github.io/smart-contract-best-practices/attacks/reentrancy/){target=\_blank} was the root of the flaw that brought down the [original DAO on Ethereum in 2016](https://en.wikipedia.org/wiki/The_DAO_(organization)){target=\_blank}. Let's prompt ChatGPT with a buggy function that includes a reentrancy vulnerability and see if ChatGPT is able to spot the problem. We'll go ahead and copy and paste the below insecure code snippet into ChatGPT and ask if there is anything wrong with it.
 
 ```solidity
 // INSECURE
@@ -148,19 +148,19 @@ function withdrawBalance() public {
 }
 ```
 
-![ChatGPT's 6th response](/images/tutorials/eth-api/chatgpt/chatgpt-9.png)
+![ChatGPT's 6th response](/images/tutorials/eth-api/chatgpt/chatgpt-9.webp)
 
 ChatGPT spots the exact error, explains the source of the problem, and lets us know how to fix it.
 
 ## Advanced Prompt Engineering {: #advanced-prompt-engineering }
 
-[Prompt engineering](https://learn.microsoft.com/en-us/azure/cognitive-services/openai/concepts/prompt-engineering){target=_blank} is both an art and a science, and mastering it can help you get the most out of generative AI tools like ChatGPT. While not an exhaustive list, here are some general concepts that can help you write better prompts:
+[Prompt engineering](https://learn.microsoft.com/en-us/azure/cognitive-services/openai/concepts/prompt-engineering){target=\_blank} is both an art and a science, and mastering it can help you get the most out of generative AI tools like ChatGPT. While not an exhaustive list, here are some general concepts that can help you write better prompts:
 
 - Be specific and parameterize your request. The more detail you can provide to ChatGPT, the more closely the actual output will match what you desire
 - Don't be afraid of revisions! You don't need to repeat the whole prompt, you can ask for just the change and ChatGPT will revise its prior output accordingly
 - Consider repeating or rephrasing critical parts of the prompt. Some research has indicated that LLMs will emphasize components that you repeat. You can always finish a prompt by reiterating the most important concepts you'd like addressed
 
-For more information, be sure to check out this post on [advanced prompt engineering](https://learn.microsoft.com/en-us/azure/cognitive-services/openai/concepts/advanced-prompt-engineering?pivots=programming-language-chat-completions){target=_blank} from Microsoft.
+For more information, be sure to check out this post on [advanced prompt engineering](https://learn.microsoft.com/en-us/azure/cognitive-services/openai/concepts/advanced-prompt-engineering?pivots=programming-language-chat-completions){target=\_blank} from Microsoft.
 
 ## Conclusion {: #conclusion }
 

@@ -49,7 +49,7 @@ Smart contracts on Moonbeam can be implemented using Solidity, Vyper, and any ot
 
 The execution behavior and semantics of Moonbeam-based smart contracts will strive to be as close to Ethereum Layer 1 as possible.  Moonbeam is a single shard, so cross-contract calls have the same synchronous execution semantics as on Ethereum Layer 1.
 
-![Diagram showing the interactions made possible through Moonbeam's Ethereum compatibility](/images/learn/platform/technology-diagram.png)
+![Diagram showing the interactions made possible through Moonbeam's Ethereum compatibility](/images/learn/platform/technology-diagram.webp)
 
 A high-level interaction flow is shown above.  A Web3 RPC call from a DApp or existing Ethereum developer tool, such as Hardhat, is received by a Moonbeam node.  The node will have both Web3 RPCs and Substrate RPCs available, which means that you can use Ethereum or Substrate tools when interacting with a Moonbeam node.  These RPC calls are handled by associated Substrate runtime functions.  The Substrate runtime checks signatures and handles any extrinsics.  Smart contract calls are ultimately passed to the EVM to execute the state transitions.
 

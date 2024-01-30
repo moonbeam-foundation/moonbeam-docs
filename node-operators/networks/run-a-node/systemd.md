@@ -9,16 +9,16 @@ description: How to run a full parachain node so you can have your own RPC endpo
 
 Running a full node on a Moonbeam-based network allows you to connect to the network, sync with a bootnode, obtain local access to RPC endpoints, author blocks on the parachain, and more.
 
-In this guide, you'll learn how to spin up a Moonbeam node using [Systemd](https://systemd.io/){target=_blank} and how to maintain and purge your node.
+In this guide, you'll learn how to spin up a Moonbeam node using [Systemd](https://systemd.io/){target=\_blank} and how to maintain and purge your node.
 
-If you're interested in compiling the binary yourself, which may take over 30 min and require 32GB of memory, you can check out the [Manually Compile the Moonbeam Binary](/node-operators/networks/run-a-node/compile-binary){target=_blank} guide.
+If you're interested in compiling the binary yourself, which may take over 30 min and require 32GB of memory, you can check out the [Manually Compile the Moonbeam Binary](/node-operators/networks/run-a-node/compile-binary){target=\_blank} guide.
 
 ## Checking Prerequisites {: #checking-prerequisites }
 
 The following sections go through the process of using the binary and running a Moonbeam full node as a systemd service. To get started, you'll need to:
 
 - Make sure you're running Ubuntu 18.04, 20.04, or 22.04. Moonbeam may work with other Linux flavors, but Ubuntu is currently the only tested version
-- Make sure that your system meets the [requirements](/node-operators/networks/run-a-node/overview#requirements){target=_blank}. When connecting to Moonriver on Kusama or Moonbeam on Polkadot, it will take a few days to completely sync the embedded relay chain
+- Make sure that your system meets the [requirements](/node-operators/networks/run-a-node/overview#requirements){target=\_blank}. When connecting to Moonriver on Kusama or Moonbeam on Polkadot, it will take a few days to completely sync the embedded relay chain
 
 ## Download the Latest Release Binary {: #the-release-binary }
 
@@ -159,7 +159,7 @@ Note that in the following start-up configurations, you have to:
 - Double-check that the binary is in the proper path as described below (_ExecStart_)
 - Double-check the base path if you've used a different directory
 
-For an overview of the flags used in the following start-up commands, plus additional commonly used flags, please refer to the [Flags](/node-operators/networks/run-a-node/flags){target=_blank} page of our documentation.
+For an overview of the flags used in the following start-up commands, plus additional commonly used flags, please refer to the [Flags](/node-operators/networks/run-a-node/flags){target=\_blank} page of our documentation.
 
 ### Full Node {: #full-node }
 
@@ -415,7 +415,7 @@ For an overview of the flags used in the following start-up commands, plus addit
 
 --8<-- 'text/node-operators/networks/run-a-node/systemd/run-service.md'
 
-![Service Status](/images/node-operators/networks/run-a-node/systemd/systemd-1.png)
+![Service Status](/images/node-operators/networks/run-a-node/systemd/systemd-1.webp)
 
 You can also check the logs by executing:
 
@@ -423,12 +423,12 @@ You can also check the logs by executing:
 journalctl -f -u moonbeam.service
 ```
 
-![Service Logs](/images/node-operators/networks/run-a-node/systemd/systemd-2.png)
+![Service Logs](/images/node-operators/networks/run-a-node/systemd/systemd-2.webp)
 
 During the syncing process, you will see logs from both the embedded relay chain ([Relaychain]) and the parachain ([🌗]). These logs display a target block (live network state) and a best block (local node synced state).
 
 !!! note
-    It may take a few days to completely sync the embedded relay chain. Make sure that your system meets the [requirements](/node-operators/networks/run-a-node/overview#requirements){target=_blank}.
+    It may take a few days to completely sync the embedded relay chain. Make sure that your system meets the [requirements](/node-operators/networks/run-a-node/overview#requirements){target=\_blank}.
 
 If you need to stop the service for any reason, you can run:
 
@@ -497,7 +497,7 @@ If you want to update your client, you can keep your existing chain data in tact
         ```
 
     !!! note
-        If you [compiled the binary manually](/node-operators/networks/run-a-node/compile-binary){target=_blank}, you'll need to move the binary from `./target/release/{{ networks.moonbeam.binary_name }}` to the data directory.
+        If you [compiled the binary manually](/node-operators/networks/run-a-node/compile-binary){target=\_blank}, you'll need to move the binary from `./target/release/{{ networks.moonbeam.binary_name }}` to the data directory.
 
 6. Update permissions
 

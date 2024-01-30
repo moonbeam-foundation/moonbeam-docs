@@ -8,7 +8,7 @@ keywords: solidity, ethereum, staking, moonbeam, precompiled, contracts
 
 ## Introduction {: #introduction }
 
-Moonbeam uses a Delegated Proof of Stake system through the [Parachain Staking](/builders/pallets-precompiles/pallets/staking){target=_blank} Pallet, allowing token holders (delegators) to express exactly which collator candidates they would like to support and with what quantity of stake. The design of the Parachain Staking Pallet is such that it enforces shared risk/reward on chain between delegators and candidates. For general information on staking, such as general terminology, staking variables, and more, please refer to the [Staking on Moonbeam](/learn/features/staking){target=_blank} page.
+Moonbeam uses a Delegated Proof of Stake system through the [Parachain Staking](/builders/pallets-precompiles/pallets/staking){target=\_blank} Pallet, allowing token holders (delegators) to express exactly which collator candidates they would like to support and with what quantity of stake. The design of the Parachain Staking Pallet is such that it enforces shared risk/reward on chain between delegators and candidates. For general information on staking, such as general terminology, staking variables, and more, please refer to the [Staking on Moonbeam](/learn/features/staking){target=\_blank} page.
 
 The staking module is coded in Rust and it is part of a pallet that is normally not accessible from the Ethereum side of Moonbeam. However, a staking precompile allows developers to access the staking features using the Ethereum API in a precompiled contract located at address:
 
@@ -67,47 +67,47 @@ Some of the Parachain Staking Pallet extrinsics include exit delays that you mus
 
 ## Parachain Staking Solidity Interface {: #the-parachain-staking-solidity-interface }
 
-[`StakingInterface.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol){target=_blank} is an interface through which Solidity contracts can interact with parachain-staking. The beauty is that Solidity developers don’t have to learn the Substrate API. Instead, they can interact with staking functions using the Ethereum interface they are familiar with.
+[`StakingInterface.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol){target=\_blank} is an interface through which Solidity contracts can interact with parachain-staking. The beauty is that Solidity developers don’t have to learn the Substrate API. Instead, they can interact with staking functions using the Ethereum interface they are familiar with.
 
 The Solidity interface includes the following functions:
 
- - **isDelegator**(*address* delegator) — read-only function that checks whether the specified address is currently a staking delegator. Uses the [`delegatorState`](/builders/pallets-precompiles/pallets/staking/#:~:text=delegatorState(AccountId20)){target=_blank} method of the Parachain Staking Pallet
- - **isCandidate**(*address* candidate) — read-only function that checks whether the specified address is currently a collator candidate. Uses the [`candidateState`](/builders/pallets-precompiles/pallets/staking/#:~:text=candidateState(AccountId20)){target=_blank} method of the Parachain Staking Pallet
- - **isSelectedCandidate**(*address* candidate) - read-only function that checks whether the specified address is currently part of the active collator set. Uses the [`selectedCandidates`](/builders/pallets-precompiles/pallets/staking/#:~:text=selectedCandidates()){target=_blank} method of the Parachain Staking Pallet
- - **points**(*uint256* round) - read-only function that gets the total points awarded to all collators in a given round. Uses the [`points`](/builders/pallets-precompiles/pallets/staking/#:~:text=points(u32)){target=_blank} method of the Parachain Staking Pallet
- - **awardedPoints**(*uint32* round, *address* candidate) - read-only function that returns the total points awarded in a given round to a given collator. If `0` is returned, it could be because no blocks were produced or the storage for that round has been removed. Uses the [`points`](/builders/pallets-precompiles/pallets/staking/#:~:text=awardedPts(u32, AccountId20)){target=_blank} method of the Parachain Staking Pallet
- - **delegationAmount**(*address* delegator, *address* candidate) - read-only function that returns the amount delegated by a given delegator in support of a given candidate. Uses the [`delegatorState`](/builders/pallets-precompiles/pallets/staking/#:~:text=delegatorState(AccountId20)){target=_blank} method of the Parachain Staking Pallet
- - **isInTopDelegations**(*address* delegator, *address* candidate) - read-only function that returns a boolean indicating whether the given delegator is in the top delegations for the given candidate. Uses the [`topDelegations`](/builders/pallets-precompiles/pallets/staking/#:~:text=topDelegations(AccountId20)){target=_blank} method of the Parachain Staking Pallet
- - **minDelegation**() — read-only function that gets the minimum delegation amount. Uses the [`minDelegation`](/builders/pallets-precompiles/pallets/staking/#:~:text=minDelegation()){target=_blank} method of the Parachain Staking Pallet
- - **candidateCount**() - read-only function that gets the current amount of collator candidates. Uses the [`candidatePool`](/builders/pallets-precompiles/pallets/staking/#:~:text=candidatePool()){target=_blank} method of the Parachain Staking Pallet
- - **round**() - read-only function that returns the current round number. Uses the [`round`](/builders/pallets-precompiles/pallets/staking/#:~:text=round()){target=_blank} method of the Parachain Staking Pallet
- - **candidateDelegationCount**(*address* candidate) - read-only function that returns the number of delegations for the specified collator candidate address. Uses the [`candidateInfo`](/builders/pallets-precompiles/pallets/staking/#:~:text=candidateInfo(AccountId20)){target=_blank} method of the Parachain Staking Pallet
- - **candidateAutoCompoundingDelegationCount**(*address* candidate) - a read-only function that returns the number of auto-compounding delegations for the specified candidate. Uses the [`autoCompoundingDelegations`](/builders/pallets-precompiles/pallets/staking/#:~:text=autoCompoundingDelegations(AccountId20)){target=_blank} method of the Parachain Staking Pallet
- - **delegatorDelegationCount**(*address* delegator) - read-only function that returns the number of delegations for the specified delegator address. Uses the [`delegatorState`](/builders/pallets-precompiles/pallets/staking/#:~:text=delegatorState(AccountId20)){target=_blank} method of the Parachain Staking Pallet
- - **selectedCandidates**() - read-only function that gets the selected candidates for the current round. Uses the [`selectedCandidates`](/builders/pallets-precompiles/pallets/staking/#:~:text=selectedCandidates()){target=_blank} method of the Parachain Staking Pallet
+ - **isDelegator**(*address* delegator) — read-only function that checks whether the specified address is currently a staking delegator. Uses the [`delegatorState`](/builders/pallets-precompiles/pallets/staking/#:~:text=delegatorState(AccountId20)){target=\_blank} method of the Parachain Staking Pallet
+ - **isCandidate**(*address* candidate) — read-only function that checks whether the specified address is currently a collator candidate. Uses the [`candidateState`](/builders/pallets-precompiles/pallets/staking/#:~:text=candidateState(AccountId20)){target=\_blank} method of the Parachain Staking Pallet
+ - **isSelectedCandidate**(*address* candidate) - read-only function that checks whether the specified address is currently part of the active collator set. Uses the [`selectedCandidates`](/builders/pallets-precompiles/pallets/staking/#:~:text=selectedCandidates()){target=\_blank} method of the Parachain Staking Pallet
+ - **points**(*uint256* round) - read-only function that gets the total points awarded to all collators in a given round. Uses the [`points`](/builders/pallets-precompiles/pallets/staking/#:~:text=points(u32)){target=\_blank} method of the Parachain Staking Pallet
+ - **awardedPoints**(*uint32* round, *address* candidate) - read-only function that returns the total points awarded in a given round to a given collator. If `0` is returned, it could be because no blocks were produced or the storage for that round has been removed. Uses the [`points`](/builders/pallets-precompiles/pallets/staking/#:~:text=awardedPts(u32, AccountId20)){target=\_blank} method of the Parachain Staking Pallet
+ - **delegationAmount**(*address* delegator, *address* candidate) - read-only function that returns the amount delegated by a given delegator in support of a given candidate. Uses the [`delegatorState`](/builders/pallets-precompiles/pallets/staking/#:~:text=delegatorState(AccountId20)){target=\_blank} method of the Parachain Staking Pallet
+ - **isInTopDelegations**(*address* delegator, *address* candidate) - read-only function that returns a boolean indicating whether the given delegator is in the top delegations for the given candidate. Uses the [`topDelegations`](/builders/pallets-precompiles/pallets/staking/#:~:text=topDelegations(AccountId20)){target=\_blank} method of the Parachain Staking Pallet
+ - **minDelegation**() — read-only function that gets the minimum delegation amount. Uses the [`minDelegation`](/builders/pallets-precompiles/pallets/staking/#:~:text=minDelegation()){target=\_blank} method of the Parachain Staking Pallet
+ - **candidateCount**() - read-only function that gets the current amount of collator candidates. Uses the [`candidatePool`](/builders/pallets-precompiles/pallets/staking/#:~:text=candidatePool()){target=\_blank} method of the Parachain Staking Pallet
+ - **round**() - read-only function that returns the current round number. Uses the [`round`](/builders/pallets-precompiles/pallets/staking/#:~:text=round()){target=\_blank} method of the Parachain Staking Pallet
+ - **candidateDelegationCount**(*address* candidate) - read-only function that returns the number of delegations for the specified collator candidate address. Uses the [`candidateInfo`](/builders/pallets-precompiles/pallets/staking/#:~:text=candidateInfo(AccountId20)){target=\_blank} method of the Parachain Staking Pallet
+ - **candidateAutoCompoundingDelegationCount**(*address* candidate) - a read-only function that returns the number of auto-compounding delegations for the specified candidate. Uses the [`autoCompoundingDelegations`](/builders/pallets-precompiles/pallets/staking/#:~:text=autoCompoundingDelegations(AccountId20)){target=\_blank} method of the Parachain Staking Pallet
+ - **delegatorDelegationCount**(*address* delegator) - read-only function that returns the number of delegations for the specified delegator address. Uses the [`delegatorState`](/builders/pallets-precompiles/pallets/staking/#:~:text=delegatorState(AccountId20)){target=\_blank} method of the Parachain Staking Pallet
+ - **selectedCandidates**() - read-only function that gets the selected candidates for the current round. Uses the [`selectedCandidates`](/builders/pallets-precompiles/pallets/staking/#:~:text=selectedCandidates()){target=\_blank} method of the Parachain Staking Pallet
  - **delegationRequestIsPending**(*address* delegator, *address* candidate) - returns a boolean to indicate whether there is a pending delegation request made by a given delegator for a given candidate
- - **candidateExitIsPending**(*address* candidate) - returns a boolean to indicate whether a pending exit exists for a specific candidate. Uses the [`candidateInfo`](/builders/pallets-precompiles/pallets/staking/#:~:text=candidateInfo(AccountId20)){target=_blank} method of the Parachain Staking Pallet
- - **candidateRequestIsPending**(*address* candidate) - returns a boolean to indicate whether there is a pending bond less request made by a given candidate. Uses the [`candidateInfo`](/builders/pallets-precompiles/pallets/staking/#:~:text=candidateInfo(AccountId20)){target=_blank} method of the Parachain Staking Pallet
+ - **candidateExitIsPending**(*address* candidate) - returns a boolean to indicate whether a pending exit exists for a specific candidate. Uses the [`candidateInfo`](/builders/pallets-precompiles/pallets/staking/#:~:text=candidateInfo(AccountId20)){target=\_blank} method of the Parachain Staking Pallet
+ - **candidateRequestIsPending**(*address* candidate) - returns a boolean to indicate whether there is a pending bond less request made by a given candidate. Uses the [`candidateInfo`](/builders/pallets-precompiles/pallets/staking/#:~:text=candidateInfo(AccountId20)){target=\_blank} method of the Parachain Staking Pallet
  - **delegationAutoCompound**(*address* delegator, *address* candidate) - returns the auto-compound percentage for a delegation given the delegator and candidate
- - **joinCandidates**(*uint256* amount, *uint256* candidateCount) — allows the account to join the set of collator candidates with the specified bond amount and the current candidate count. Uses the [`joinCandidates`](/builders/pallets-precompiles/pallets/staking/#:~:text=joinCandidates(bond, candidateCount)){target=_blank} method of the Parachain Staking Pallet
- - **scheduleLeaveCandidates**(*uint256* candidateCount) - schedules a request for a candidate to remove themselves from the candidate pool. Scheduling the request does not automatically execute it. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `executeLeaveCandidates` extrinsic. Uses the [`scheduleLeaveCandidates`](/builders/pallets-precompiles/pallets/staking/#:~:text=scheduleLeaveCandidates(candidateCount)){target=_blank} method of the Parachain Staking Pallet
- - **executeLeaveCandidates**(*address* candidate, *uint256* candidateDelegationCount) - executes the due request to leave the set of collator candidates. Uses the [`executeLeaveCandidates`](/builders/pallets-precompiles/pallets/staking/#:~:text=executeLeaveCandidates(candidate, candidateDelegationCount)){target=_blank} method of the Parachain Staking Pallet
- - **cancelLeaveCandidates**(*uint256* candidateCount) - allows a candidate to cancel a pending scheduled request to leave the candidate pool. Given the current number of candidates in the pool. Uses the [`cancelLeaveCandidates`](/builders/pallets-precompiles/pallets/staking/#:~:text=cancelLeaveCandidates(candidateCount)){target=_blank} method of the Parachain Staking Pallet
- - **goOffline**() — temporarily leave the set of collator candidates without unbonding. Uses the [`goOffline`](/builders/pallets-precompiles/pallets/staking/#:~:text=goOffline()){target=_blank} method of the Parachain Staking Pallet
- - **goOnline**() — rejoin the set of collator candidates after previously calling `goOffline()`. Uses the [`goOnline`](/builders/pallets-precompiles/pallets/staking/#:~:text=goOnline()){target=_blank} method of the Parachain Staking Pallet
- - **candidateBondMore**(*uint256* more) — collator candidate increases bond by the specified amount. Uses the [`candidateBondMore`](/builders/pallets-precompiles/pallets/staking/#:~:text=candidateBondMore(more)){target=_blank} method of the Parachain Staking Pallet
- - **scheduleCandidateBondLess**(*uint256* less) - schedules a request to decrease a candidates bond by the specified amount. Scheduling the request does not automatically execute it. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `execute_candidate_bond_request` extrinsic. Uses the [`scheduleCandidateBondLess`](/builders/pallets-precompiles/pallets/staking/#:~:text=scheduleCandidateBondLess(less)){target=_blank} method of the Parachain Staking Pallet
- - **executeCandidateBondLess**(*address* candidate) - executes any due requests to decrease a specified candidate's bond amount. Uses the [`executeCandidateBondLess`](/builders/pallets-precompiles/pallets/staking/#:~:text=executeCandidateBondLess(candidate)){target=_blank} method of the Parachain Staking Pallet
- - **cancelCandidateBondLess**() - allows a candidate to cancel a pending scheduled request to decrease a candidates bond. Uses the [`cancelCandidateBondLess`](/builders/pallets-precompiles/pallets/staking/#:~:text=cancelCandidateBondLess()){target=_blank} method of the Parachain Staking Pallet
- - **delegateWithAutoCompound**(*address* candidate, *uint256* amount, *uint8* autoCompound, *uint256* candidateDelegationCount, *uint256* candidateAutoCompoundingDelegationCount, *uint256* delegatorDelegationCount) - makes a delegation in support of a collator candidate and automatically sets the percent of rewards to auto-compound given an integer (no decimals) for `autoCompound` between 0-100. Uses the [`delegateWithAutoCompound`](/builders/pallets-precompiles/pallets/staking/#:~:text=delegateWithAutoCompound){target=_blank} method of the Parachain Staking Pallet
- - **scheduleRevokeDelegation**(*address* candidate) — schedules a request to revoke a delegation given the address of a candidate. Scheduling the request does not automatically execute it. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `executeDelegationRequest` extrinsic. Uses the [`scheduleRevokeDelegation`](/builders/pallets-precompiles/pallets/staking/#:~:text=scheduleRevokeDelegation(collator)){target=_blank} method of the Parachain Staking Pallet
- - **delegatorBondMore**(*address* candidate, *uint256* more) — delegator increases bond to a collator by the specified amount. Uses the [`delegatorBondMore`](/builders/pallets-precompiles/pallets/staking/#:~:text=delegatorBondMore(candidate, more)){target=_blank} method of the Parachain Staking Pallet
- - **scheduleDelegatorBondLess**(*address* candidate, *uint256* less) — schedules a request for a delegator to bond less with respect to a specific candidate. Scheduling the request does not automatically execute it. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `executeDelegationRequest` extrinsic. Uses the [`scheduleDelegatorBondLess`](/builders/pallets-precompiles/pallets/staking/#:~:text=scheduleDelegatorBondLess(candidate, less)){target=_blank} method of the Parachain Staking Pallet
- - **executeDelegationRequest**(*address* delegator, *address* candidate) - executes any due delegation requests provided the address of a delegator and a candidate. Uses the [`executeDelegationRequest`](/builders/pallets-precompiles/pallets/staking/#:~:text=executeDelegationRequest(delegator, candidate)){target=_blank} method of the Parachain Staking Pallet
- - **cancelDelegationRequest**(*address* candidate) - cancels any pending delegation requests provided the address of a candidate. Uses the [`cancelDelegationRequest`](/builders/pallets-precompiles/pallets/staking/#:~:text=cancelDelegationRequest(candidate)){target=_blank} method of the Parachain Staking Pallet
- - **setAutoCompound**(*address* candidate, *uint8* value, *uint256* candidateAutoCompoundingDelegationCount, *uint256* delegatorDelegationCount) - sets an auto-compound value for an existing delegation given an integer (no decimals) for the `value` between 0-100. Uses the [`setAutoCompound`](/builders/pallets-precompiles/pallets/staking/#:~:text=setAutoCompound){target=_blank} method of the Parachain Staking Pallet
- - **getDelegatorTotalStaked**(*address* delegator) - read-only function that returns the total staked amount of a given delegator, regardless of the candidate. Uses the [`delegatorState`](/builders/pallets-precompiles/pallets/staking/#:~:text=delegatorState(AccountId20)){target=_blank} method of the Parachain Staking Pallet
- - **getCandidateTotalCounted**(*address* candidate) - read-only function that returns the total amount staked for a given candidate. Uses the [`candidateInfo`](/builders/pallets-precompiles/pallets/staking/#:~:text=candidateInfo(AccountId20)){target=_blank} method of the Parachain Staking Pallet
+ - **joinCandidates**(*uint256* amount, *uint256* candidateCount) — allows the account to join the set of collator candidates with the specified bond amount and the current candidate count. Uses the [`joinCandidates`](/builders/pallets-precompiles/pallets/staking/#:~:text=joinCandidates(bond, candidateCount)){target=\_blank} method of the Parachain Staking Pallet
+ - **scheduleLeaveCandidates**(*uint256* candidateCount) - schedules a request for a candidate to remove themselves from the candidate pool. Scheduling the request does not automatically execute it. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `executeLeaveCandidates` extrinsic. Uses the [`scheduleLeaveCandidates`](/builders/pallets-precompiles/pallets/staking/#:~:text=scheduleLeaveCandidates(candidateCount)){target=\_blank} method of the Parachain Staking Pallet
+ - **executeLeaveCandidates**(*address* candidate, *uint256* candidateDelegationCount) - executes the due request to leave the set of collator candidates. Uses the [`executeLeaveCandidates`](/builders/pallets-precompiles/pallets/staking/#:~:text=executeLeaveCandidates(candidate, candidateDelegationCount)){target=\_blank} method of the Parachain Staking Pallet
+ - **cancelLeaveCandidates**(*uint256* candidateCount) - allows a candidate to cancel a pending scheduled request to leave the candidate pool. Given the current number of candidates in the pool. Uses the [`cancelLeaveCandidates`](/builders/pallets-precompiles/pallets/staking/#:~:text=cancelLeaveCandidates(candidateCount)){target=\_blank} method of the Parachain Staking Pallet
+ - **goOffline**() — temporarily leave the set of collator candidates without unbonding. Uses the [`goOffline`](/builders/pallets-precompiles/pallets/staking/#:~:text=goOffline()){target=\_blank} method of the Parachain Staking Pallet
+ - **goOnline**() — rejoin the set of collator candidates after previously calling `goOffline()`. Uses the [`goOnline`](/builders/pallets-precompiles/pallets/staking/#:~:text=goOnline()){target=\_blank} method of the Parachain Staking Pallet
+ - **candidateBondMore**(*uint256* more) — collator candidate increases bond by the specified amount. Uses the [`candidateBondMore`](/builders/pallets-precompiles/pallets/staking/#:~:text=candidateBondMore(more)){target=\_blank} method of the Parachain Staking Pallet
+ - **scheduleCandidateBondLess**(*uint256* less) - schedules a request to decrease a candidates bond by the specified amount. Scheduling the request does not automatically execute it. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `execute_candidate_bond_request` extrinsic. Uses the [`scheduleCandidateBondLess`](/builders/pallets-precompiles/pallets/staking/#:~:text=scheduleCandidateBondLess(less)){target=\_blank} method of the Parachain Staking Pallet
+ - **executeCandidateBondLess**(*address* candidate) - executes any due requests to decrease a specified candidate's bond amount. Uses the [`executeCandidateBondLess`](/builders/pallets-precompiles/pallets/staking/#:~:text=executeCandidateBondLess(candidate)){target=\_blank} method of the Parachain Staking Pallet
+ - **cancelCandidateBondLess**() - allows a candidate to cancel a pending scheduled request to decrease a candidates bond. Uses the [`cancelCandidateBondLess`](/builders/pallets-precompiles/pallets/staking/#:~:text=cancelCandidateBondLess()){target=\_blank} method of the Parachain Staking Pallet
+ - **delegateWithAutoCompound**(*address* candidate, *uint256* amount, *uint8* autoCompound, *uint256* candidateDelegationCount, *uint256* candidateAutoCompoundingDelegationCount, *uint256* delegatorDelegationCount) - makes a delegation in support of a collator candidate and automatically sets the percent of rewards to auto-compound given an integer (no decimals) for `autoCompound` between 0-100. Uses the [`delegateWithAutoCompound`](/builders/pallets-precompiles/pallets/staking/#:~:text=delegateWithAutoCompound){target=\_blank} method of the Parachain Staking Pallet
+ - **scheduleRevokeDelegation**(*address* candidate) — schedules a request to revoke a delegation given the address of a candidate. Scheduling the request does not automatically execute it. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `executeDelegationRequest` extrinsic. Uses the [`scheduleRevokeDelegation`](/builders/pallets-precompiles/pallets/staking/#:~:text=scheduleRevokeDelegation(collator)){target=\_blank} method of the Parachain Staking Pallet
+ - **delegatorBondMore**(*address* candidate, *uint256* more) — delegator increases bond to a collator by the specified amount. Uses the [`delegatorBondMore`](/builders/pallets-precompiles/pallets/staking/#:~:text=delegatorBondMore(candidate, more)){target=\_blank} method of the Parachain Staking Pallet
+ - **scheduleDelegatorBondLess**(*address* candidate, *uint256* less) — schedules a request for a delegator to bond less with respect to a specific candidate. Scheduling the request does not automatically execute it. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `executeDelegationRequest` extrinsic. Uses the [`scheduleDelegatorBondLess`](/builders/pallets-precompiles/pallets/staking/#:~:text=scheduleDelegatorBondLess(candidate, less)){target=\_blank} method of the Parachain Staking Pallet
+ - **executeDelegationRequest**(*address* delegator, *address* candidate) - executes any due delegation requests provided the address of a delegator and a candidate. Uses the [`executeDelegationRequest`](/builders/pallets-precompiles/pallets/staking/#:~:text=executeDelegationRequest(delegator, candidate)){target=\_blank} method of the Parachain Staking Pallet
+ - **cancelDelegationRequest**(*address* candidate) - cancels any pending delegation requests provided the address of a candidate. Uses the [`cancelDelegationRequest`](/builders/pallets-precompiles/pallets/staking/#:~:text=cancelDelegationRequest(candidate)){target=\_blank} method of the Parachain Staking Pallet
+ - **setAutoCompound**(*address* candidate, *uint8* value, *uint256* candidateAutoCompoundingDelegationCount, *uint256* delegatorDelegationCount) - sets an auto-compound value for an existing delegation given an integer (no decimals) for the `value` between 0-100. Uses the [`setAutoCompound`](/builders/pallets-precompiles/pallets/staking/#:~:text=setAutoCompound){target=\_blank} method of the Parachain Staking Pallet
+ - **getDelegatorTotalStaked**(*address* delegator) - read-only function that returns the total staked amount of a given delegator, regardless of the candidate. Uses the [`delegatorState`](/builders/pallets-precompiles/pallets/staking/#:~:text=delegatorState(AccountId20)){target=\_blank} method of the Parachain Staking Pallet
+ - **getCandidateTotalCounted**(*address* candidate) - read-only function that returns the total amount staked for a given candidate. Uses the [`candidateInfo`](/builders/pallets-precompiles/pallets/staking/#:~:text=candidateInfo(AccountId20)){target=\_blank} method of the Parachain Staking Pallet
 
 As of runtime 2400, the following methods are **deprecated**:
 
@@ -115,9 +115,9 @@ As of runtime 2400, the following methods are **deprecated**:
 
 As of runtime 1800, the following methods are **deprecated** and, as of runtime 2500, have been removed:
 
- - **scheduleLeaveDelegators**() — schedules a request to leave the set of delegators and revoke all ongoing delegations. Scheduling the request does not automatically execute it. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `executeLeaveDelegators` extrinsic. Use the [batch utility](/builders/pallets-precompiles/precompiles/batch){target=_blank} with `scheduleRevokeDelegation` for all delegations instead
- - **executeLeaveDelegators**(*address* delegator, *uint256* delegatorDelegationCount) - executes the due request to leave the set of delegators and revoke all delegations. Use the [batch utility](/builders/pallets-precompiles/precompiles/batch){target=_blank} with `executeDelegationRequest` for all delegations instead
- - **cancelLeaveDelegators**() - cancels a pending scheduled request to leave the set of delegators. Use the [batch utility](/builders/pallets-precompiles/precompiles/batch){target=_blank} with `cancelDelegationRequest` for all delegations instead
+ - **scheduleLeaveDelegators**() — schedules a request to leave the set of delegators and revoke all ongoing delegations. Scheduling the request does not automatically execute it. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `executeLeaveDelegators` extrinsic. Use the [batch utility](/builders/pallets-precompiles/precompiles/batch){target=\_blank} with `scheduleRevokeDelegation` for all delegations instead
+ - **executeLeaveDelegators**(*address* delegator, *uint256* delegatorDelegationCount) - executes the due request to leave the set of delegators and revoke all delegations. Use the [batch utility](/builders/pallets-precompiles/precompiles/batch){target=\_blank} with `executeDelegationRequest` for all delegations instead
+ - **cancelLeaveDelegators**() - cancels a pending scheduled request to leave the set of delegators. Use the [batch utility](/builders/pallets-precompiles/precompiles/batch){target=\_blank} with `cancelDelegationRequest` for all delegations instead
 
 As of runtime 1001, the following methods are **deprecated** and, as of runtime 1800, have been removed:
 
@@ -128,7 +128,7 @@ As of runtime 1001, the following methods are **deprecated** and, as of runtime 
  - **leave_candidates**(*uint256* amount, *uint256* candidateCount) — immediately removes the account from the candidate pool to prevent others from selecting it as a collator and triggers unbonding. Use `scheduleLeaveCandidates` and `executeLeaveCandidates` instead
  - **candidate_bond_less**(*uint256* less) — collator candidate decreases bond by the specified amount. Use `scheduleCandidateBondLess` and `executeCandidateBondLess` instead
  - **nominate**(*address* collator, *uint256* amount, *uint256* collatorNominationCount, *uint256* nominatorNominationCount) — if the caller is not a delegator, this function adds them to the set of delegators. If the caller is already a delegator, then it adjusts their delegation amount. Use `delegateWithWithAutoCompound` instead
- - **leave_nominators**(*uint256* nominatorNominationCount) — leave the set of delegators and revoke all ongoing delegations. Use the [batch utility](/builders/pallets-precompiles/precompiles/batch){target=_blank} with `scheduleRevokeDelegation` for all delegations instead
+ - **leave_nominators**(*uint256* nominatorNominationCount) — leave the set of delegators and revoke all ongoing delegations. Use the [batch utility](/builders/pallets-precompiles/precompiles/batch){target=\_blank} with `scheduleRevokeDelegation` for all delegations instead
  - **revoke_nominations**(*address* collator) — revoke a specific delegation. Use `scheduleRevokeDelegation` and `executeDelegationRequest` instead
  - **nominator_bond_more**(*address* collator, *uint256* more) — delegator increases bond to a collator by the specified amount. Use `delegatorBondMore` instead
  - **nominator_bond_less**(*address* collator, *uint256* less) — delegator decreases bond to a collator by the specified amount. Use `scheduleDelegatorBondLess` and `executeDelegationRequest` instead
@@ -139,7 +139,7 @@ As of runtime 1001, the following methods are **deprecated** and, as of runtime 
 
 The below example is demonstrated on Moonbase Alpha, however, similar steps can be taken for Moonbeam and Moonriver.
 
- - Have MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=_blank}
+ - Have MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}
  - Have an account with at least `{{networks.moonbase.staking.min_del_stake}}` token.
   --8<-- 'text/_common/faucet/faucet-list-item.md'
 
@@ -149,16 +149,16 @@ The below example is demonstrated on Moonbase Alpha, however, similar steps can 
 ### Remix Set Up {: #remix-set-up }
 
 1. Click on the **File explorer** tab
-2. Get a copy of [`StakingInterface.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol){target=_blank} and paste the file contents into a Remix file named `StakingInterface.sol`
+2. Get a copy of [`StakingInterface.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol){target=\_blank} and paste the file contents into a Remix file named `StakingInterface.sol`
 
-![Copying and Pasting the Staking Interface into Remix](/images/builders/pallets-precompiles/precompiles/staking/staking-1.png)
+![Copying and Pasting the Staking Interface into Remix](/images/builders/pallets-precompiles/precompiles/staking/staking-1.webp)
 
 ### Compile the Contract {: #compile-the-contract }
 
 1. Click on the **Compile** tab, second from top
 2. Then to compile the interface, click on **Compile StakingInterface.sol**
 
-![Compiling StakingInteface.sol](/images/builders/pallets-precompiles/precompiles/staking/staking-2.png)
+![Compiling StakingInteface.sol](/images/builders/pallets-precompiles/precompiles/staking/staking-2.webp)
 
 ### Access the Contract {: #access-the-contract }
 
@@ -168,7 +168,7 @@ The below example is demonstrated on Moonbase Alpha, however, similar steps can 
 4. Provide the address of the staking precompile for Moonbase Alpha: `{{networks.moonbase.precompiles.staking}}` and click **At Address**
 5. The Parachain Staking precompile will appear in the list of **Deployed Contracts**
 
-![Provide the address](/images/builders/pallets-precompiles/precompiles/staking/staking-3.png)
+![Provide the address](/images/builders/pallets-precompiles/precompiles/staking/staking-3.webp)
 
 ### Delegate a Collator with Auto-Compounding {: #delegate-a-collator }
 
@@ -185,7 +185,7 @@ The candidate delegation count is the number of delegations backing a specific c
 3. Click **call**
 4. After the call is complete, the results will be displayed
 
-![Call collator delegation count](/images/builders/pallets-precompiles/precompiles/staking/staking-4.png)
+![Call collator delegation count](/images/builders/pallets-precompiles/precompiles/staking/staking-4.webp)
 
 The auto-compounding delegation count is the amount of delegations that have auto-compounding configured. To determine the number of delegations that have auto-compounding set up, you can
 
@@ -194,7 +194,7 @@ The auto-compounding delegation count is the amount of delegations that have aut
 3. Click **call**
 4. After the call is complete, the results will be displayed
 
-![Get candidate auto-compounding delegation count](/images/builders/pallets-precompiles/precompiles/staking/staking-5.png)
+![Get candidate auto-compounding delegation count](/images/builders/pallets-precompiles/precompiles/staking/staking-5.webp)
 
 The last item you'll need to retrieve is your delegation count. If you don't know your existing number of delegations, you can easily get them by following these steps:
 
@@ -203,7 +203,7 @@ The last item you'll need to retrieve is your delegation count. If you don't kno
 3. Click **call**
 4. After the call is complete, the results will be displayed
 
-![Call delegator delegation count](/images/builders/pallets-precompiles/precompiles/staking/staking-6.png)
+![Call delegator delegation count](/images/builders/pallets-precompiles/precompiles/staking/staking-6.webp)
 
 Now that you have obtained the [candidate delegator count](#:~:text=To obtain the candidate delegator count), the [auto-compounding delegation count](#:~:text=To determine the number of delegations that have auto-compounding set up), and your [number of existing delegations](#:~:text=If you don't know your existing number of delegations), you have all of the information you need to delegate a candidate and set up auto-compounding. To get started:
 
@@ -217,13 +217,13 @@ Now that you have obtained the [candidate delegator count](#:~:text=To obtain th
 8. Press **transact**
 9. MetaMask will pop-up, you can review the details and confirm the transaction
 
-![Delegate a Collator](/images/builders/pallets-precompiles/precompiles/staking/staking-7.png)
+![Delegate a Collator](/images/builders/pallets-precompiles/precompiles/staking/staking-7.webp)
 
 If you want to delegate without setting up auto-compounding, you can follow the previous steps, but instead of using **delegateWithAutoCompound**, you can use the **delegate** extrinsic.
 
 ### Verify Delegation {: #verify-delegation }
 
-To verify your delegation was successful, you can check the chain state in Polkadot.js Apps. First, add your MetaMask address to the [address book in Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/addresses){target=_blank}.
+To verify your delegation was successful, you can check the chain state in Polkadot.js Apps. First, add your MetaMask address to the [address book in Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/addresses){target=\_blank}.
 
 Navigate to **Accounts** and then **Address Book**, click on **Add contact**, and enter the following information:
 
@@ -231,9 +231,9 @@ Navigate to **Accounts** and then **Address Book**, click on **Add contact**, an
 2. Provide a nickname for the account
 3. Click **Save**
 
-![Add to Address Book](/images/builders/pallets-precompiles/precompiles/staking/staking-8.png)
+![Add to Address Book](/images/builders/pallets-precompiles/precompiles/staking/staking-8.webp)
 
-To verify your delegation was successful, head to [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/chainstate){target=_blank} and navigate to **Developer** and then **Chain State**
+To verify your delegation was successful, head to [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/chainstate){target=\_blank} and navigate to **Developer** and then **Chain State**
 
 1. Select the **parachainStaking** pallet
 2. Select the **delegatorState** query
@@ -244,7 +244,7 @@ To verify your delegation was successful, head to [Polkadot.js Apps](https://pol
 !!! note
     You do not have to enter anything in the **blockhash to query at** field if you are looking for an overview of your delegations.
 
-![Verify delegation](/images/builders/pallets-precompiles/precompiles/staking/staking-9.png)
+![Verify delegation](/images/builders/pallets-precompiles/precompiles/staking/staking-9.webp)
 
 ### Confirm Auto-Compounding Percentage {: #confirm-auto-compounding }
 
@@ -256,7 +256,7 @@ You can confirm the percentage of rewards you've set to auto-compound in Remix u
 4. Click **call**
 5. The response will appear below the **call** button
 
-![Verify auto-compound percentage](/images/builders/pallets-precompiles/precompiles/staking/staking-10.png)
+![Verify auto-compound percentage](/images/builders/pallets-precompiles/precompiles/staking/staking-10.webp)
 
 ### Set or Change the Auto-Compounding Percentage {: #set-or-change-auto-compounding }
 
@@ -274,11 +274,11 @@ Once you have the necessary information, you can take the following steps in Rem
 6. Press **transact**
 7. MetaMask will pop-up, you can review the details and confirm the transaction
 
-![Set or update auto-compound percentage](/images/builders/pallets-precompiles/precompiles/staking/staking-11.png)
+![Set or update auto-compound percentage](/images/builders/pallets-precompiles/precompiles/staking/staking-11.webp)
 
 ### Revoke a Delegation {: #revoke-a-delegation }
 
-As of [runtime version 1001](https://moonbeam.network/announcements/staking-changes-moonriver-runtime-upgrade/){target=_blank}, there have been significant changes to the way users can interact with various staking features. Including the way staking exits are handled.
+As of [runtime version 1001](https://moonbeam.network/announcements/staking-changes-moonriver-runtime-upgrade/){target=\_blank}, there have been significant changes to the way users can interact with various staking features. Including the way staking exits are handled.
 
 Exits now require you to schedule a request to exit or revoke a delegation, wait a delay period, and then execute the request.
 
@@ -291,7 +291,7 @@ To revoke a delegation and receive your tokens back, head back over to Remix, th
 3. Click **transact**
 4. MetaMask will pop, you can review the transaction details, and click **Confirm**
 
-![Revoke delegation](/images/builders/pallets-precompiles/precompiles/staking/staking-12.png)
+![Revoke delegation](/images/builders/pallets-precompiles/precompiles/staking/staking-12.webp)
 
 Once the transaction is confirmed, you must wait the duration of the exit delay before you can execute and revoke the delegation request. If you try to revoke it before the exit delay is up, your extrinsic will fail.
 
