@@ -34,8 +34,8 @@ The precompiled contracts are categorized by address and based on the origin net
 ### Moonbeam Specific Precompiles {: #moonbeam-specific-precompiles }
 
 === "Moonbeam"
-    |                                                                         Contract                                                                         |                               Address                               |
-    |:--------------------------------------------------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------:|
+    |                                                                         Contract                                                                          |                               Address                               |
+    |:---------------------------------------------------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------:|
     |    [Parachain Staking](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol){target=\_blank}    |              {{networks.moonbeam.precompiles.staking}}              |
     |   [Crowdloan Rewards](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/crowdloan-rewards/CrowdloanInterface.sol){target=\_blank}   |             {{networks.moonbeam.precompiles.crowdloan}}             |
     |           [ERC-20 Interface](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/balances-erc20/ERC20.sol){target=\_blank}            |               {{networks.moonbeam.precompiles.erc20}}               |
@@ -60,10 +60,11 @@ The precompiled contracts are categorized by address and based on the origin net
     | [Precompile Registry](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/precompile-registry/PrecompileRegistry.sol){target=\_blank} |             {{networks.moonbeam.precompiles.registry}}              |
     |                        [GMP](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/gmp/Gmp.sol){target=\_blank}                         |                {{networks.moonbeam.precompiles.gmp}}                |
     |  [XCM Transactor V3](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/xcm-transactor/src/v3/XcmTransactorV3.sol){target=\_blank}   |         {{networks.moonbeam.precompiles.xcm_transactor_v3}}         |
+    |                 [Identity](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/identity/Identity.sol){target=\_blank}                 |             {{networks.moonbeam.precompiles.identity}}              |
 
 === "Moonriver"
-    |                                                                         Contract                                                                         |                               Address                                |
-    |:--------------------------------------------------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
+    |                                                                         Contract                                                                          |                               Address                                |
+    |:---------------------------------------------------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
     |    [Parachain Staking](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol){target=\_blank}    |              {{networks.moonriver.precompiles.staking}}              |
     |   [Crowdloan Rewards](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/crowdloan-rewards/CrowdloanInterface.sol){target=\_blank}   |             {{networks.moonriver.precompiles.crowdloan}}             |
     |           [ERC-20 Interface](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/balances-erc20/ERC20.sol){target=\_blank}            |               {{networks.moonriver.precompiles.erc20}}               |
@@ -88,10 +89,11 @@ The precompiled contracts are categorized by address and based on the origin net
     | [Precompile Registry](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/precompile-registry/PrecompileRegistry.sol){target=\_blank} |             {{networks.moonriver.precompiles.registry}}              |
     |                        [GMP](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/gmp/Gmp.sol){target=\_blank}                         |                {{networks.moonriver.precompiles.gmp}}                |
     |  [XCM Transactor V3](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/xcm-transactor/src/v3/XcmTransactorV3.sol){target=\_blank}   |         {{networks.moonriver.precompiles.xcm_transactor_v3}}         |
+    |                 [Identity](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/identity/Identity.sol){target=\_blank}                 |             {{networks.moonriver.precompiles.identity}}              |
 
 === "Moonbase Alpha"
-    |                                                                         Contract                                                                         |                               Address                               |
-    |:--------------------------------------------------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------:|
+    |                                                                         Contract                                                                          |                               Address                               |
+    |:---------------------------------------------------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------:|
     |    [Parachain Staking](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol){target=\_blank}    |              {{networks.moonbase.precompiles.staking}}              |
     |   [Crowdloan Rewards](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/crowdloan-rewards/CrowdloanInterface.sol){target=\_blank}   |             {{networks.moonbase.precompiles.crowdloan}}             |
     |           [ERC-20 Interface](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/balances-erc20/ERC20.sol){target=\_blank}            |               {{networks.moonbase.precompiles.erc20}}               |

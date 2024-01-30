@@ -11,8 +11,8 @@ keywords: canonical, ethereum, moonbeam, precompiled, contracts
 The following contracts addresses have been established:
 
 === "Moonbeam"
-    |                                                        Contract                                                         |                  Address                   |
-    |:-----------------------------------------------------------------------------------------------------------------------:|:------------------------------------------:|
+    |                                                         Contract                                                         |                  Address                   |
+    |:------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------:|
     |      [WGLMR](https://moonbeam.moonscan.io/address/0xAcc15dC74880C9944775448304B263D191c6077F#code){target=\_blank}       | 0xAcc15dC74880C9944775448304B263D191c6077F |
     |    [Multicall](https://moonbeam.moonscan.io/address/0x83e3b61886770de2F64AAcaD2724ED4f08F7f36B#code){target=\_blank}     | 0x83e3b61886770de2F64AAcaD2724ED4f08F7f36B |
     |    [Multicall2](https://moonbeam.moonscan.io/address/0x6477204E12A7236b9619385ea453F370aD897bb2#code){target=\_blank}    | 0x6477204E12A7236b9619385ea453F370aD897bb2 |
@@ -21,8 +21,8 @@ The following contracts addresses have been established:
     |                           [EIP-1820](https://eips.ethereum.org/EIPS/eip-1820){target=\_blank}                            | 0x1820a4B7618BdE71Dce8cdc73aAB6C95905faD24 |
 
 === "Moonriver"
-    |                                                         Contract                                                         |                  Address                   |
-    |:------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------:|
+    |                                                         Contract                                                          |                  Address                   |
+    |:-------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------:|
     |       [WMOVR](https://moonriver.moonscan.io/token/0x98878b06940ae243284ca214f92bb71a2b032b8a#code){target=\_blank}        | 0x98878B06940aE243284CA214f92Bb71a2b032B8A |
     |    [Multicall](https://moonriver.moonscan.io/address/0x30f283Cc0284482e9c29dFB143bd483B5C19954b#code){target=\_blank}*    | 0x30f283Cc0284482e9c29dFB143bd483B5C19954b |
     |    [Multicall2](https://moonriver.moonscan.io/address/0xaef00a0cf402d9dedd54092d9ca179be6f9e5ce3#code){target=\_blank}    | 0xaef00a0cf402d9dedd54092d9ca179be6f9e5ce3 |
@@ -33,8 +33,8 @@ The following contracts addresses have been established:
     _*Deployed by SushiSwap_
 
 === "Moonbase Alpha"
-    |                                                        Contract                                                         |                  Address                   |
-    |:-----------------------------------------------------------------------------------------------------------------------:|:------------------------------------------:|
+    |                                                         Contract                                                         |                  Address                   |
+    |:------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------:|
     |       [WDEV](https://moonbase.moonscan.io/address/0xD909178CC99d318e4D46e7E66a972955859670E1#code){target=\_blank}       | 0xD909178CC99d318e4D46e7E66a972955859670E1 |
     |    [Multicall](https://moonbase.moonscan.io/address/0x4E2cfca20580747AdBA58cd677A998f8B261Fc21#code){target=\_blank}*    | 0x4E2cfca20580747AdBA58cd677A998f8B261Fc21 |
     |    [Multicall2](https://moonbase.moonscan.io/address/0x37084d0158C68128d6Bc3E5db537Be996f7B6979#code){target=\_blank}    | 0x37084d0158C68128d6Bc3E5db537Be996f7B6979 |
@@ -59,8 +59,8 @@ There are a set of precompiled contracts included on Moonbeam, Moonriver, and Mo
 ### Moonbeam-Specific Precompiles {: #moonbeam-specific-precompiles }
 
 === "Moonbeam"
-    |                                                                         Contract                                                                         |                               Address                               |
-    |:--------------------------------------------------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------:|
+    |                                                                         Contract                                                                          |                               Address                               |
+    |:---------------------------------------------------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------:|
     |    [Parachain Staking](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol){target=\_blank}    |              {{networks.moonbeam.precompiles.staking}}              |
     |   [Crowdloan Rewards](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/crowdloan-rewards/CrowdloanInterface.sol){target=\_blank}   |             {{networks.moonbeam.precompiles.crowdloan}}             |
     |           [ERC-20 Interface](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/balances-erc20/ERC20.sol){target=\_blank}            |               {{networks.moonbeam.precompiles.erc20}}               |
@@ -85,10 +85,11 @@ There are a set of precompiled contracts included on Moonbeam, Moonriver, and Mo
     | [Precompile Registry](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/precompile-registry/PrecompileRegistry.sol){target=\_blank} |             {{networks.moonbeam.precompiles.registry}}              |
     |                        [GMP](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/gmp/Gmp.sol){target=\_blank}                         |                {{networks.moonbeam.precompiles.gmp}}                |
     |  [XCM Transactor V3](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/xcm-transactor/src/v3/XcmTransactorV3.sol){target=\_blank}   |         {{networks.moonbeam.precompiles.xcm_transactor_v3}}         |
+    |                 [Identity](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/identity/Identity.sol){target=\_blank}                 |             {{networks.moonbeam.precompiles.identity}}              |
 
 === "Moonriver"
-    |                                                                         Contract                                                                         |                               Address                                |
-    |:--------------------------------------------------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
+    |                                                                         Contract                                                                          |                               Address                                |
+    |:---------------------------------------------------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
     |    [Parachain Staking](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol){target=\_blank}    |              {{networks.moonriver.precompiles.staking}}              |
     |   [Crowdloan Rewards](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/crowdloan-rewards/CrowdloanInterface.sol){target=\_blank}   |             {{networks.moonriver.precompiles.crowdloan}}             |
     |           [ERC-20 Interface](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/balances-erc20/ERC20.sol){target=\_blank}            |               {{networks.moonriver.precompiles.erc20}}               |
@@ -113,10 +114,11 @@ There are a set of precompiled contracts included on Moonbeam, Moonriver, and Mo
     | [Precompile Registry](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/precompile-registry/PrecompileRegistry.sol){target=\_blank} |             {{networks.moonriver.precompiles.registry}}              |
     |                        [GMP](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/gmp/Gmp.sol){target=\_blank}                         |                {{networks.moonriver.precompiles.gmp}}                |
     |  [XCM Transactor V3](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/xcm-transactor/src/v3/XcmTransactorV3.sol){target=\_blank}   |         {{networks.moonriver.precompiles.xcm_transactor_v3}}         |
+    |                 [Identity](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/identity/Identity.sol){target=\_blank}                 |             {{networks.moonriver.precompiles.identity}}              |
 
 === "Moonbase Alpha"
-    |                                                                         Contract                                                                         |                               Address                               |
-    |:--------------------------------------------------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------:|
+    |                                                                         Contract                                                                          |                               Address                               |
+    |:---------------------------------------------------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------:|
     |    [Parachain Staking](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol){target=\_blank}    |              {{networks.moonbase.precompiles.staking}}              |
     |   [Crowdloan Rewards](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/crowdloan-rewards/CrowdloanInterface.sol){target=\_blank}   |             {{networks.moonbase.precompiles.crowdloan}}             |
     |           [ERC-20 Interface](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/balances-erc20/ERC20.sol){target=\_blank}            |               {{networks.moonbase.precompiles.erc20}}               |
