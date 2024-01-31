@@ -7,7 +7,7 @@ description: Learn how to bridge assets, set up a relayer, and other ways you ca
 
 ## Introduction
 
-[Wormhole](https://wormhole.com/){target=\_blank} is a protocol that validates and secures cross-chain communication for Web3, through messages known as verifiable action approvals (VAAs). Wormhole's infrastructure enables dApp users to interact with any asset or application, on any connected chain, with one click. Powered by a multi-signature schemed protocol and 19 signing [Guardians](https://book.wormhole.com/wormhole/5_guardianNetwork.html){target=\_blank}, Wormhole allows dApps to pass arbitrary messages across chains.
+[Wormhole](https://wormhole.com/){target=\_blank} is a protocol that validates and secures cross-chain communication for Web3, through messages known as verifiable action approvals (VAAs). Wormhole's infrastructure enables dApp users to interact with any asset or application, on any connected chain, with one click. Powered by a multi-signature schemed protocol and 19 signing [Guardians](https://docs.wormhole.com/wormhole/explore-wormhole/guardian){target=\_blank}, Wormhole allows dApps to pass arbitrary messages across chains.
 
 Wormhole consists of multiple modular swap-in components that can be leveraged independently and supports an increasing number of composable applications built by numerous teams. Building xDapps on top of their protocol allows for quick cross-chain asset transfers and cross-chain logic to deliver maximal Web3 interoperability. Wormhole's architecture includes a signing Guardian network, bridging smart contracts, and relayers. Take a look at the tech stack diagram for more details.
 
@@ -19,15 +19,15 @@ Wormhole consists of multiple modular swap-in components that can be leveraged i
 
 There are a couple of resources to get you started building cross-chain applications with Wormhole:
 
-- **[Developer documentation](https://book.wormhole.com/introduction/introduction.html){target=\_blank}** - for technical guides
+- **[Developer documentation](https://docs.wormhole.com/wormhole/){target=\_blank}** - for technical guides
 - **[Portal](https://www.portalbridge.com/#/transfer){target=\_blank}** - a bridging UI used to transfer assets across chains
 
 ## Contracts {: #contracts }
 
 See the list of Wormhole contracts deployed to Moonbeam, and the networks connected to Moonbeam through Wormhole.
 
-- **MainNet Contracts** - [Moonbeam](https://book.wormhole.com/reference/contracts.html#mainnet){target=\_blank}
-- **TestNet Contracts** - [Moonbase Alpha](https://book.wormhole.com/reference/contracts.html#testnet){target=\_blank}
+- **MainNet Contracts** - [Moonbeam](https://docs.wormhole.com/wormhole/blockchain-environments/evm#moonbeam){target=\_blank}
+- **TestNet Contracts** - [Moonbase Alpha](https://docs.wormhole.com/wormhole/blockchain-environments/evm#testnet-contracts-moonbase-alphanet-1287){target=\_blank}
 
 ## Setting up a Specialized Relayer With the Relayer Engine {: #setting-up-a-specialized-relayer-with-the-relayer-engine }
 
@@ -55,7 +55,7 @@ Unlike other cross-chain protocols, Wormhole doesn’t provide a parent smart co
 
 The [smart contract](https://github.com/jboetticher/relayer-engine-docs-example/blob/main/SimpleGeneralMessage.sol){target=\_blank} that you will be deploying today is stored in a Git repository that is forked from Wormhole’s relayer engine repository. It sends a string from one chain to another, and stores strings when received through Wormhole's protocol. To deploy the script, either copy and paste the contract into Remix or open up this [Remix gist link](https://remix.ethereum.org/?gist=6aac8f954e245d6394f685af5d404b4b){target=\_blank}.  
 
-First things first, the code in this smart contract is based off of [Wormhole’s best practices documentation](https://book.wormhole.com/technical/evm/bestPractices.html){target=\_blank}, but simplified in certain areas (like security). When writing a smart contract for production, review their documentation for a better understanding of standards. To be clear, **do not use the following smart contract in production**.  
+First things first, the code in this smart contract is based off of [Wormhole’s best practices documentation](https://docs.wormhole.com/wormhole/quick-start/cross-chain-dev){target=\_blank}, but simplified in certain areas (like security). When writing a smart contract for production, review their documentation for a better understanding of standards. To be clear, **do not use the following smart contract in production**.  
 
 1. Go to the **Solidity Compiler** tab
 2. Press the **Compile** button
@@ -64,7 +64,7 @@ First things first, the code in this smart contract is based off of [Wormhole’
 
 ![Set up smart contract deployment](/images/builders/interoperability/protocols/wormhole/wormhole-2.webp)
 
-To deploy on each chain, you will need the local instance of the Wormhole core bridge and the chain ID of the chain mentioned. All of this data has been provided for a select few TestNets in the table below. You can find other networks’ endpoints on Wormhole’s [documentation site](https://book.wormhole.com/reference/contracts.html#testnet){target=\_blank}. Keep in mind that you should only use EVMs for this demonstration, since the smart contract and relayer designed for this demonstration only supports EVMs.
+To deploy on each chain, you will need the local instance of the Wormhole core bridge and the chain ID of the chain mentioned. All of this data has been provided for a select few TestNets in the table below. You can find other networks’ endpoints on Wormhole’s [documentation site](https://docs.wormhole.com/wormhole/blockchain-environments/evm#testnet-contracts-moonbase-alphanet-1287){target=\_blank}. Keep in mind that you should only use EVMs for this demonstration, since the smart contract and relayer designed for this demonstration only supports EVMs.
 
 |                                                       Network & Faucet                                                       |            Core Bridge Address             | Wormhole Chain ID |
 |:----------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------:|:-----------------:|
@@ -72,7 +72,7 @@ To deploy on each chain, you will need the local instance of the Wormhole core b
 |                                [Avalanche Fuji](https://faucet.avax.network/){target=\_blank}                                 | 0x7bbcE28e64B3F8b84d876Ab298393c38ad7aac4C |         6         |
 |                               [Fantom TestNet](https://faucet.fantom.network/){target=\_blank}                                | 0x1BB3B4119b7BA9dfad76B0545fb3F531383c3bB7 |        10         |
 |                                      [Goerli](https://goerlifaucet.com/){target=\_blank}                                      | 0x706abc4E45D419950511e474C7B9Ed348A4a716c |         2         |
-| [Moonbase Alpha](https://docs.moonbeam.network/builders/get-started/networks/moonbase/#moonbase-alpha-faucet){target=\_blank} | 0xa5B7D85a8f27dd7907dc8FdC21FA5657D5E2F901 |        16         |
+| [Moonbase Alpha](https://faucet.moonbeam.network/){target=\_blank} | 0xa5B7D85a8f27dd7907dc8FdC21FA5657D5E2F901 |        16         |
 
 1. Ensure that the contract chosen is **SimpleGeneralMessage**
 2. Open up the deploy menu with the arrow button
@@ -81,7 +81,7 @@ To deploy on each chain, you will need the local instance of the Wormhole core b
 5. Press the **transact** button to start a deployment transaction
 6. Press the **Confirm** button in MetaMask to deploy
 
-Once the contract has been deployed on Moonbase Alpha make sure to copy down its address and repeat the process with one of any of the other [EVM TestNets](https://book.wormhole.com/reference/contracts.html#testnet){target=\_blank} that are connected to Wormhole so that you can send a message across chains. Remember that you will have to change your network in MetaMask to deploy to the right network.
+Once the contract has been deployed on Moonbase Alpha make sure to copy down its address and repeat the process with one of any of the other [EVM TestNets](https://docs.wormhole.com/wormhole/blockchain-environments/evm){target=\_blank} that are connected to Wormhole so that you can send a message across chains. Remember that you will have to change your network in MetaMask to deploy to the right network.
 
 ### Whitelisting Moonbase Alpha’s Connected Contract {:whitelisting-moonbase-alpha-connected-contract}
 
@@ -89,7 +89,7 @@ At this point, you should have the same smart contracts deployed twice. One on M
 
 Wormhole recommends including a whitelisting system in their connected contracts, which you will have to use in `SimpleGeneralMessage` before attempting to send a cross-chain message.
 
-To add a whitelisted contract, you must invoke the `addTrustedAddress(bytes32 sender, uint16 _chainId)` function, which requires a *bytes32* formatted address and a chain ID. You can find the chain ID in the [table above](#deploying-the-wormhole-contract-with-remix-on-moonbase-alpha) and on [Wormhole’s documentation](https://book.wormhole.com/reference/contracts.html#testnet){target=\_blank}.
+To add a whitelisted contract, you must invoke the `addTrustedAddress(bytes32 sender, uint16 _chainId)` function, which requires a *bytes32* formatted address and a chain ID. You can find the chain ID in the [table above](#deploying-the-wormhole-contract-with-remix-on-moonbase-alpha) and on [Wormhole’s documentation](https://docs.wormhole.com/wormhole/blockchain-environments/evm){target=\_blank}.
 
 ```solidity
 function addTrustedAddress(bytes32 sender, uint16 _chainId) external {
@@ -369,7 +369,7 @@ await execute.onEVM({
 });
 ```
 
-The final piece is to check `relayer-engine-config/common.json`. This config file controls the execution of the entire relayer. Ensure that the TestNet EVMs that you are using are listed within the `supportedChains` object of this file. The plugin will not run properly if it’s not listed. If a chain that you are using is not listed, you will have to import the data from [Wormhole’s developer documentation](https://book.wormhole.com/reference/contracts.html#testnet){target=\_blank} into the config file in a format like below.
+The final piece is to check `relayer-engine-config/common.json`. This config file controls the execution of the entire relayer. Ensure that the TestNet EVMs that you are using are listed within the `supportedChains` object of this file. The plugin will not run properly if it’s not listed. If a chain that you are using is not listed, you will have to import the data from [Wormhole’s developer documentation](https://docs.wormhole.com/wormhole/blockchain-environments/evm){target=\_blank} into the config file in a format like below.
 
 There are also additional configurations for the relayer. For example, the `mode` string is set to `"BOTH"` to ensure that both the listener and executor plugins are used, but a developer could decide to run only one if they wanted. Additionally, there are multiple log levels to specify, such as `"error"` for just error messages. For this demo, however, just leave the configuration settings as is.
 
