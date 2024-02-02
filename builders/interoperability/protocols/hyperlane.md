@@ -28,8 +28,6 @@ There are a couple of resources to get you started building cross-chain applicat
 
 See the list of Hyperlane contracts deployed to Moonbeam, and the networks connected to Moonbeam through Hyperlane.
 
-- **MainNet Contracts** - [Moonbeam](https://docs.hyperlane.xyz/docs/reference/contract-addresses){target=\_blank}
-
-- **TestNet Contracts** - [Moonbase Alpha](https://docs.hyperlane.xyz/docs/reference/contract-addresses){target=\_blank}
+- [MainNet and TestNet Contracts](https://docs.hyperlane.xyz/docs/reference/contract-addresses){target=\_blank}
 
 --8<-- 'text/_disclaimers/third-party-content.md'
