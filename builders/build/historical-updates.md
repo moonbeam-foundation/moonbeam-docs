@@ -24,7 +24,7 @@ This bug only impacted Moonriver and Moonbase Alpha and existed during the follo
 |   Moonriver    |    RT49    | RT600 |      0 - 455106      |
 | Moonbase Alpha |    RT40    | RT600 |      0 - 675175      |
 
-For more information, you can review the [relative Frontier PR on GitHub](https://github.com/paritytech/frontier/pull/465){target=\_blank}.
+For more information, you can review the [relative Frontier PR on GitHub](https://github.com/polkadot-evm/frontier/pull/465){target=\_blank}.
 
 ***
 
@@ -55,7 +55,7 @@ This bug existed during the following runtimes and block ranges:
 |   Moonriver    |    RT49    | RT1001 |     0 - 1052241      |
 | Moonbase Alpha |    RT40    | RT1001 |     0 - 1285915      |
 
-For more information, you can review the [relative Frontier PR](https://github.com/paritytech/frontier/pull/509){target=\_blank} and the associated [Substrate PR on GitHub](https://github.com/paritytech/substrate/issues/10117){target=\_blank}.
+For more information, you can review the [relative Frontier PR](https://github.com/polkadot-evm/frontier/pull/509){target=\_blank} and the associated [Substrate PR on GitHub](https://github.com/paritytech/substrate/issues/10117){target=\_blank}.
 
 ***
 
@@ -157,7 +157,7 @@ This bug only impacted Moonbase Alpha and existed during the following runtime a
 |:--------------:|:----------:|:------:|:--------------------:|
 | Moonbase Alpha |   RT1200   | RT1201 |  1648994 - 1679618   |
 
-For more information, you can review the [relative Frontier PR on GitHub](https://github.com/paritytech/frontier/pull/570){target=\_blank}
+For more information, you can review the [relative Frontier PR on GitHub](https://github.com/polkadot-evm/frontier/pull/570){target=\_blank}
 
 ***
 
@@ -263,7 +263,7 @@ The following transactions were duplicated:
 
 The duplicated transactions belong to the first block. So, on Moonriver the transactions belong to block 2077599 and on Moonbase Alpha the impacted transactions belong to 2285347.
 
-For more information, you can review the [relative Frontier PR on GitHub](https://github.com/paritytech/frontier/pull/638){target=\_blank}.
+For more information, you can review the [relative Frontier PR on GitHub](https://github.com/polkadot-evm/frontier/pull/638){target=\_blank}.
 
 ***
 
@@ -279,7 +279,7 @@ This bug existed during the following runtimes and block ranges:
 |   Moonriver    |   RT1701   | RT1802 |  2281723 - 2616189   |
 | Moonbase Alpha |   RT1700   | RT1802 |  2529736 - 2879402   |
 
-You can review the [relative Frontier PR on GitHub](https://github.com/paritytech/frontier/pull/935){target=\_blank} for more information.
+You can review the [relative Frontier PR on GitHub](https://github.com/polkadot-evm/frontier/pull/935){target=\_blank} for more information.
 
 ***
 

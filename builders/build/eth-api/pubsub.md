@@ -115,4 +115,4 @@ With pub/sub, it is also possible to check whether a particular node you are sub
 ![Subscribe to syncing response](/images/builders/build/eth-api/pubsub/pubsub-7.webp)
 
 !!! note
-    The pub/sub implementation in [Frontier](https://github.com/paritytech/frontier){target=\_blank} is still in active development. This current version allows users to subscribe to specific event types, but there may still be some limitations.
+    The pub/sub implementation in [Frontier](https://github.com/polkadot-evm/frontier){target=\_blank} is still in active development. This current version allows users to subscribe to specific event types, but there may still be some limitations.

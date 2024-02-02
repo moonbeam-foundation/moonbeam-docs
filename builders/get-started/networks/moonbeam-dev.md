@@ -15,7 +15,7 @@ A Moonbeam development node is your own personal development environment for bui
 If you follow this guide to the end, you will have a Moonbeam development node running in your local environment with 10 prefunded [accounts](#prefunded-development-accounts).
 
 !!! note
-    This tutorial was created using the {{ networks.development.build_tag }} tag of [Moonbase Alpha](https://github.com/moonbeam-foundation/moonbeam/releases/tag/{{ networks.development.build_tag }}){target=\_blank}. The Moonbeam platform and the [Frontier](https://github.com/paritytech/frontier){target=\_blank} components it relies on for Substrate-based Ethereum compatibility are still under very active development.
+    This tutorial was created using the {{ networks.development.build_tag }} tag of [Moonbase Alpha](https://github.com/moonbeam-foundation/moonbeam/releases/tag/{{ networks.development.build_tag }}){target=\_blank}. The Moonbeam platform and the [Frontier](https://github.com/polkadot-evm/frontier){target=\_blank} components it relies on for Substrate-based Ethereum compatibility are still under very active development.
     --8<-- 'text/_common/assumes-mac-or-ubuntu-env.md'
 
 ## Spin Up a Moonbeam Development Node {: #spin-up-a-node }
