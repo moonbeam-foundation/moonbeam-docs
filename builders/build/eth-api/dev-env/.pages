@@ -2,10 +2,11 @@ title: Dev Environments
 nav:
   - index.md
   - openzeppelin
-  - 'Foundry': 'foundry.md'
-  - 'Hardhat': 'hardhat.md'
-  - 'Remix': 'remix.md'
-  - 'Scaffold-ETH': 'scaffold-eth.md'
-  - 'Tenderly': 'tenderly.md'
-  - 'thirdweb': 'thirdweb.md'
-  - 'Waffle & Mars': 'waffle-mars.md'
+  - "Brownie": "brownie.md"
+  - "Foundry": "foundry.md"
+  - "Hardhat": "hardhat.md"
+  - "Remix": "remix.md"
+  - "Scaffold-ETH": "scaffold-eth.md"
+  - "Tenderly": "tenderly.md"
+  - "thirdweb": "thirdweb.md"
+  - "Waffle & Mars": "waffle-mars.md"
