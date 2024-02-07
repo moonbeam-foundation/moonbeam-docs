@@ -111,7 +111,6 @@ As Moonbeam is a Substrate-based chain that is fully Ethereum-compatible, you ca
     |                                Tool                                 |      Type       |
     |:-------------------------------------------------------------------:|:---------------:|
     | [Web3.py](/builders/build/eth-api/libraries/web3py){target=\_blank} |     Library     |
-    | [Brownie](/builders/build/eth-api/dev-env/brownie){target=\_blank}  | Dev Environment |
     |   [thirdweb](https://portal.thirdweb.com/python){target=\_blank}    | Dev Environment |
 
 === "Substrate"
