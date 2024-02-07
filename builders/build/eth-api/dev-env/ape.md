@@ -88,26 +88,10 @@ touch contracts/Box.sol
 Open the file and add the following contract to it:
 
 ```solidity
-// contracts/Box.sol
-pragma solidity ^0.8.1;
-
-contract Box {
-    uint256 private value;
-
-    event ValueChanged(uint256 newValue);
-
-    function store(uint256 newValue) public {
-        value = newValue;
-        emit ValueChanged(newValue);
-    }
-
-    function retrieve() public view returns (uint256) {
-        return value;
-    }
-}
+--8<-- 'code/builders/build/eth-api/dev-env/ape/Box.sol'
 ```
 
-You can store any additional contracts in the `contracts` directory. 
+You can store any additional contracts in the `contracts` directory.
 
 ## Compile the Solidity Contract {: #compiling-solidity }
 
@@ -148,14 +132,7 @@ touch scripts/deploy.py
 Next, you'll need to write the deployment script. You'll need to load the account you will use to deploy the contract and access it by its name using the project manager.
 
 ```python
-# scripts/deploy.py
-from ape import project, accounts
-
-def main():
-    # Load your account by its name
-    account = accounts.load("alice")
-    # Deploy the contract using your account
-    return account.deploy(project.Box)
+--8<-- 'code/builders/build/eth-api/dev-env/ape/deploy.py'
 ```
 
 Now you're ready to deploy the `Box` contract!
@@ -279,17 +256,7 @@ touch scripts/store-and-retrieve.py
 Next, you can write a script that stores and retrieves a value. To get started, take the following steps:
 
 ```python
-# scripts/store-and-retrieve.py
-from ape import Contract, accounts
-
-def main():
-    account = accounts.load("alice")
-    box = Contract("0x68039277300E8B104dDf848029dCA04C2EFe8610")
-    store = box.store(4, sender=account)
-    print("Transaction hash for updating the stored value: ", store.txn_hash)
-
-    retrieve = box.retrieve()
-    print("Stored value: ", retrieve)
+--8<-- 'code/builders/build/eth-api/dev-env/ape/deploy.py'
 ```
 
 Now, you can run the script to set the stored value and retrieve it:
