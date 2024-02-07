@@ -50,8 +50,8 @@ Cross-chain transfers of XC-20s are done using the X-Tokens Pallet. To learn how
 The current list of available external XC-20 assets per network is as follows:
 
 === "Moonbeam"
-    |        Origin         |  Symbol   |                                                           XC-20 Address                                                           |
-    |:---------------------:|:---------:|:---------------------------------------------------------------------------------------------------------------------------------:|
+    |        Origin         |  Symbol   |                                                           XC-20 Address                                                            |
+    |:---------------------:|:---------:|:----------------------------------------------------------------------------------------------------------------------------------:|
     |       Polkadot        |   xcDOT   | [0xFfFFfFff1FcaCBd218EDc0EbA20Fc2308C778080](https://moonscan.io/token/0xFfFFfFff1FcaCBd218EDc0EbA20Fc2308C778080){target=\_blank} |
     |         Acala         |  xcaSEED  | [0xfFfFFFFF52C56A9257bB97f4B2b6F7B2D624ecda](https://moonscan.io/token/0xfFfFFFFF52C56A9257bB97f4B2b6F7B2D624ecda){target=\_blank} |
     |         Acala         |   xcACA   | [0xffffFFffa922Fef94566104a6e5A35a4fCDDAA9f](https://moonscan.io/token/0xffffFFffa922Fef94566104a6e5A35a4fCDDAA9f){target=\_blank} |
@@ -59,9 +59,11 @@ The current list of available external XC-20 assets per network is as follows:
     |         Astar         |  xcASTR   | [0xFfFFFfffA893AD19e540E172C10d78D4d479B5Cf](https://moonscan.io/token/0xFfFFFfffA893AD19e540E172C10d78D4d479B5Cf){target=\_blank} |
     |        Bifrost        |   xcBNC   | [0xffffffff7cc06abdf7201b350a1265c62c8601d2](https://moonscan.io/token/0xffffffff7cc06abdf7201b350a1265c62c8601d2){target=\_blank} |
     |        Bifrost        |   xcFIL   | [0xfFFfFFFF6C57e17D210DF507c82807149fFd70B2](https://moonscan.io/token/0xfFFfFFFF6C57e17D210DF507c82807149fFd70B2){target=\_blank} |
+    |        Bifrost        |  xcvASTR  | [0xFffFffff55C732C47639231a4C4373245763d26E](https://moonscan.io/token/0xFffFffff55C732C47639231a4C4373245763d26E){target=\_blank} |
     |        Bifrost        |  xcvDOT   | [0xFFFfffFf15e1b7E3dF971DD813Bc394deB899aBf](https://moonscan.io/token/0xFFFfffFf15e1b7E3dF971DD813Bc394deB899aBf){target=\_blank} |
     |        Bifrost        |  xcvFIL   | [0xFffffFffCd0aD0EA6576B7b285295c85E94cf4c1](https://moonscan.io/token/0xFffffFffCd0aD0EA6576B7b285295c85E94cf4c1){target=\_blank} |
     |        Bifrost        |  xcvGLMR  | [0xFfFfFFff99dABE1a8De0EA22bAa6FD48fdE96F6c](https://moonscan.io/token/0xFfFfFFff99dABE1a8De0EA22bAa6FD48fdE96F6c){target=\_blank} |
+    |        Bifrost        | xcvMANTA  | [0xFFfFFfFfdA2a05FB50e7ae99275F4341AEd43379](https://moonscan.io/token/0xFFfFFfFfdA2a05FB50e7ae99275F4341AEd43379){target=\_blank} |
     |      Centrifuge       |   xcCFG   | [0xFFfFfFff44bD9D2FFEE20B25D1Cf9E78Edb6Eae3](https://moonscan.io/token/0xFFfFfFff44bD9D2FFEE20B25D1Cf9E78Edb6Eae3){target=\_blank} |
     |      Composable       | xcIBCMOVR | [0xFfFfffFF3AFcd2cAd6174387df17180a0362E592](https://moonscan.io/token/0xFfFfffFF3AFcd2cAd6174387df17180a0362E592){target=\_blank} |
     |      Composable       | xcIBCPICA | [0xfFFFFfFFABe9934e61db3b11be4251E6e869cf59](https://moonscan.io/token/0xfFFFFfFFABe9934e61db3b11be4251E6e869cf59){target=\_blank} |
@@ -91,8 +93,8 @@ The current list of available external XC-20 assets per network is as follows:
      _*You can check each [Asset ID](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbeam.network#/assets){target=\_blank} on Polkadot.js Apps_
 
 === "Moonriver"
-    |      Origin      | Symbol  |                                                                XC-20 Address                                                                |
-    |:----------------:|:-------:|:-------------------------------------------------------------------------------------------------------------------------------------------:|
+    |      Origin      | Symbol  |                                                                XC-20 Address                                                                 |
+    |:----------------:|:-------:|:--------------------------------------------------------------------------------------------------------------------------------------------:|
     |      Kusama      |  xcKSM  | [0xFfFFfFff1FcaCBd218EDc0EbA20Fc2308C778080](https://moonriver.moonscan.io/token/0xffffffff1fcacbd218edc0eba20fc2308c778080){target=\_blank} |
     |     Bifrost      |  xcBNC  | [0xFFfFFfFFF075423be54811EcB478e911F22dDe7D](https://moonriver.moonscan.io/token/0xFFfFFfFFF075423be54811EcB478e911F22dDe7D){target=\_blank} |
     |     Bifrost      | xcvBNC  | [0xFFffffff3646A00f78caDf8883c5A2791BfCDdc4](https://moonriver.moonscan.io/token/0xFFffffff3646A00f78caDf8883c5A2791BfCDdc4){target=\_blank} |
@@ -120,8 +122,8 @@ The current list of available external XC-20 assets per network is as follows:
     _*You can check each [Asset ID](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonriver.moonbeam.network#/assets){target=\_blank} on Polkadot.js Apps_
 
 === "Moonbase Alpha"
-    |        Origin        | Symbol |                                                               XC-20 Address                                                                |
-    |:--------------------:|:------:|:------------------------------------------------------------------------------------------------------------------------------------------:|
+    |        Origin        | Symbol |                                                                XC-20 Address                                                                |
+    |:--------------------:|:------:|:-------------------------------------------------------------------------------------------------------------------------------------------:|
     | Relay Chain Alphanet | xcUNIT | [0xFfFFfFff1FcaCBd218EDc0EbA20Fc2308C778080](https://moonbase.moonscan.io/token/0xFfFFfFff1FcaCBd218EDc0EbA20Fc2308C778080){target=\_blank} |
 
      _*You can check each [Asset ID](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/assets){target=\_blank} on Polkadot.js Apps_
