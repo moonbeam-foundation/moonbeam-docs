@@ -11,6 +11,8 @@ description: Use Brownie, an Ethereum development environment, to compile, deplo
 
 This guide will cover how to use Brownie to compile, deploy, and interact with Ethereum smart contracts on the Moonbase Alpha TestNet. This guide can also be adapted for Moonbeam, Moonriver, or Moonbeam development node.
 
+**Please note that Brownie is no longer actively maintained.** You can check out [Ape](https://docs.apeworx.io/ape/stable/){target=\_blank} as an alternative Python Ethereum development environment.
+
 ## Checking Prerequisites {: #checking-prerequisites }
 
 To get started, you will need the following:
