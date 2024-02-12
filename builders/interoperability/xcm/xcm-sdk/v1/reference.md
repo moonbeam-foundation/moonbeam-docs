@@ -54,6 +54,7 @@ The XCM SDK is based on the premise of defining an asset to transfer and then de
     | `genesisHash` |            *string*            |                                  The hash of the genesis block                                   |
     | `parachainId` |            *number*            |                                     The ID of the parachain                                      |
     | `ss58Format`  |            *number*            | The [ss58 format](https://polkadot.js.org/docs/keyring/start/ss58/){target=\_blank} for the chain |
+    | `usesChainDecimals` |            *string*            |A flag indicating if the chains uses it's own decimals in balance queries for all the assets. Defaults as `false`
     |     `ws`      |            *string*            |                               The WebSocket endpoint for the chain                               |
     |     `id`      |            *number*            |                            **For EVM parachains only** - The chain ID                            |
     |     `rpc`     |            *string*            |                **For EVM parachains only** - The HTTP RPC endpoint for the chain                 |
