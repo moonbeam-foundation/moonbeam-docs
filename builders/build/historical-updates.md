@@ -24,7 +24,7 @@ This bug only impacted Moonriver and Moonbase Alpha and existed during the follo
 |   Moonriver    |    RT49    | RT600 |      0 - 455106      |
 | Moonbase Alpha |    RT40    | RT600 |      0 - 675175      |
 
-For more information, you can review the [relative Frontier PR on GitHub](https://github.com/paritytech/frontier/pull/465){target=_blank}.
+For more information, you can review the [relative Frontier PR on GitHub](https://github.com/polkadot-evm/frontier/pull/465){target=\_blank}.
 
 ***
 
@@ -39,7 +39,7 @@ This bug only impacted Moonriver and Moonbase Alpha and existed during the follo
 |   Moonriver    |    RT49    | RT800 |      0 - 684728      |
 | Moonbase Alpha |    RT40    | RT800 |      0 - 915684      |
 
-For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/732){target=_blank}.
+For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/732){target=\_blank}.
 
 ***
 
@@ -55,7 +55,7 @@ This bug existed during the following runtimes and block ranges:
 |   Moonriver    |    RT49    | RT1001 |     0 - 1052241      |
 | Moonbase Alpha |    RT40    | RT1001 |     0 - 1285915      |
 
-For more information, you can review the [relative Frontier PR](https://github.com/paritytech/frontier/pull/509){target=_blank} and the associated [Substrate PR on GitHub](https://github.com/paritytech/substrate/issues/10117){target=_blank}.
+For more information, you can review the [relative Frontier PR](https://github.com/polkadot-evm/frontier/pull/509){target=\_blank} and the associated [Substrate PR on GitHub](https://github.com/paritytech/substrate/issues/10117){target=\_blank}.
 
 ***
 
@@ -71,7 +71,7 @@ This bug existed during the following runtimes and block ranges:
 |   Moonriver    |    RT49    | RT1300 |     0 - 1541735      |
 | Moonbase Alpha |    RT40    | RT1300 |     0 - 1761128      |
 
-For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/1291){target=_blank}.
+For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/1291){target=\_blank}.
 
 ***
 
@@ -83,9 +83,9 @@ The hotfix was applied in the following block ranges:
 
 |    Network     |                                                             Block Range                                                              |
 |:--------------:|:------------------------------------------------------------------------------------------------------------------------------------:|
-|    Moonbeam    | [1041355 - 1041358 and 1100752](https://moonbeam.subscan.io/extrinsic?module=evm&call=hotfix_inc_account_sufficients){target=_blank} |
-|   Moonriver    |      [1835760 - 1835769](https://moonriver.subscan.io/extrinsic?module=evm&call=hotfix_inc_account_sufficients){target=_blank}       |
-| Moonbase Alpha |  [2097782 - 2097974](https://moonbase.subscan.io/extrinsic?address=&module=evm&call=hotfix_inc_account_sufficients){target=_blank}   |
+|    Moonbeam    | [1041355 - 1041358 and 1100752](https://moonbeam.subscan.io/extrinsic?module=evm&call=hotfix_inc_account_sufficients){target=\_blank} |
+|   Moonriver    |      [1835760 - 1835769](https://moonriver.subscan.io/extrinsic?module=evm&call=hotfix_inc_account_sufficients){target=\_blank}       |
+| Moonbase Alpha |  [2097782 - 2097974](https://moonbase.subscan.io/extrinsic?address=&module=evm&call=hotfix_inc_account_sufficients){target=\_blank}   |
 
 This bug existed during the following runtimes and block ranges:
 
@@ -95,7 +95,7 @@ This bug existed during the following runtimes and block ranges:
 |   Moonriver    |    RT49    | RT1401 |     0 - 1705939      |
 | Moonbase Alpha |    RT40    | RT1400 |     0 - 1962557      |
 
-For more information, you can review the [relative Frontier PR on GitHub](https://github.com/moonbeam-foundation/frontier/pull/46/files){target=_blank}.
+For more information, you can review the [relative Frontier PR on GitHub](https://github.com/moonbeam-foundation/frontier/pull/46/files){target=\_blank}.
 
 ***
 
@@ -111,7 +111,7 @@ This bug existed during the following runtimes and block ranges:
 |   Moonriver    |    RT49    | RT1605 |     0 - 2077598      |
 | Moonbase Alpha |    RT40    | RT1603 |     0 - 2285346      |
 
-For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/1451){target=_blank}.
+For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/1451){target=\_blank}.
 
 ***
 
@@ -127,7 +127,7 @@ This bug existed during the following runtimes and block ranges:
 |   Moonriver    |    RT49    | RT2401 |     0 - 4668844      |
 | Moonbase Alpha |    RT40    | RT2401 |     0 - 4591616      |
 
-For more information, you can review the [relative PR on GitHub](https://github.com/PureStake/moonbeam/pull/2291){target=_blank}.
+For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/2291){target=\_blank}.
 
 ***
 
@@ -143,7 +143,7 @@ This bug existed during the following runtimes and block ranges:
 |   Moonriver    |   RT1001   | RT1801 |  1052242 - 2572555   |
 | Moonbase Alpha |   RT1001   | RT1800 |  1285916 - 2748785   |
 
-You can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/1719){target=_blank} for more information.
+You can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/1719){target=\_blank} for more information.
 
 ***
 
@@ -157,7 +157,7 @@ This bug only impacted Moonbase Alpha and existed during the following runtime a
 |:--------------:|:----------:|:------:|:--------------------:|
 | Moonbase Alpha |   RT1200   | RT1201 |  1648994 - 1679618   |
 
-For more information, you can review the [relative Frontier PR on GitHub](https://github.com/paritytech/frontier/pull/570){target=_blank}
+For more information, you can review the [relative Frontier PR on GitHub](https://github.com/polkadot-evm/frontier/pull/570){target=\_blank}
 
 ***
 
@@ -173,7 +173,7 @@ This bug existed during the following runtimes and block ranges:
 |   Moonriver    |   RT1201   | RT1401 |  1471037 - 1705939   |
 | Moonbase Alpha |   RT1200   | RT1400 |  1648994 - 1962557   |
 
-For more information, you can review the [relative Frontier PR](https://github.com/moonbeam-foundation/frontier/pull/45){target=_blank}.
+For more information, you can review the [relative Frontier PR](https://github.com/moonbeam-foundation/frontier/pull/45){target=\_blank}.
 
 ***
 
@@ -189,13 +189,13 @@ This bug existed during the following runtimes and block ranges:
 |   Moonriver    |   RT1201   | RT1504 |  1471037 - 1910639   |
 | Moonbase Alpha |   RT1200   | RT1504 |  1648994 - 2221772   |
 
-For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/1528){target=_blank}.
+For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/1528){target=\_blank}.
 
 ***
 
 #### Incorrect State Root Hash {: #incorrect-state-root-hash }
 
-The state root hash was being calculated incorrectly for non-legacy transactions as the transaction-type byte was not taken into account. With the support of [EIP-2930](https://eips.ethereum.org/EIPS/eip-2930){target=_blank} and [EIP-1559](https://eips.ethereum.org/EIPS/eip-1559){target=_blank}, the transaction types intoduced are `0x01` (1) and `0x02` (2), respectively. These transaction types were omitted from the state root hash calculation.
+The state root hash was being calculated incorrectly for non-legacy transactions as the transaction-type byte was not taken into account. With the support of [EIP-2930](https://eips.ethereum.org/EIPS/eip-2930){target=\_blank} and [EIP-1559](https://eips.ethereum.org/EIPS/eip-1559){target=\_blank}, the transaction types intoduced are `0x01` (1) and `0x02` (2), respectively. These transaction types were omitted from the state root hash calculation.
 
 This bug existed during the following runtimes and block ranges:
 
@@ -205,7 +205,7 @@ This bug existed during the following runtimes and block ranges:
 |   Moonriver    |   RT1201   | RT1701 |  1471037 - 2281722   |
 | Moonbase Alpha |   RT1200   | RT1700 |  1648994 - 2529735   |
 
-For more information, you can review the [relative Frontier PR](https://github.com/moonbeam-foundation/frontier/pull/86){target=_blank} and [Moonbeam PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/1678/files){target=_blank}.
+For more information, you can review the [relative Frontier PR](https://github.com/moonbeam-foundation/frontier/pull/86){target=\_blank} and [Moonbeam PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/1678/files){target=\_blank}.
 
 ***
 
@@ -263,7 +263,7 @@ The following transactions were duplicated:
 
 The duplicated transactions belong to the first block. So, on Moonriver the transactions belong to block 2077599 and on Moonbase Alpha the impacted transactions belong to 2285347.
 
-For more information, you can review the [relative Frontier PR on GitHub](https://github.com/paritytech/frontier/pull/638){target=_blank}.
+For more information, you can review the [relative Frontier PR on GitHub](https://github.com/polkadot-evm/frontier/pull/638){target=\_blank}.
 
 ***
 
@@ -279,7 +279,7 @@ This bug existed during the following runtimes and block ranges:
 |   Moonriver    |   RT1701   | RT1802 |  2281723 - 2616189   |
 | Moonbase Alpha |   RT1700   | RT1802 |  2529736 - 2879402   |
 
-You can review the [relative Frontier PR on GitHub](https://github.com/paritytech/frontier/pull/935){target=_blank} for more information.
+You can review the [relative Frontier PR on GitHub](https://github.com/polkadot-evm/frontier/pull/935){target=\_blank} for more information.
 
 ***
 
@@ -293,7 +293,7 @@ This bug only existed on Moonbase Alpha during the following runtimes and block 
 |:--------------:|:----------:|:------:|:--------------------:|
 | Moonbase Alpha |   RT1700   | RT1900 |  2529736 - 3069634   |
 
-You can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/1790){target=_blank} for more information.
+You can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/1790){target=\_blank} for more information.
 
 ***
 
@@ -305,7 +305,7 @@ Migrations are necessary when a storage item is changed or added and needs to be
 
 #### Update the Mapping Storage Item {: #update-mapping-storage-item }
 
-This migration updated the now deprecated `Mapping` storage item of the author mapping pallet to use a more secure hasher type. The hasher type was updated to [Blake2_128Concat](https://paritytech.github.io/substrate/master/frame_support/struct.Blake2_128Concat.html){target=_blank} instead of [Twox64Concat](https://paritytech.github.io/substrate/master/frame_support/struct.Twox64Concat.html){target=_blank}.
+This migration updated the now deprecated `Mapping` storage item of the author mapping pallet to use a more secure hasher type. The hasher type was updated to [Blake2_128Concat](https://paritytech.github.io/substrate/master/frame_support/struct.Blake2_128Concat.html){target=\_blank} instead of [Twox64Concat](https://paritytech.github.io/substrate/master/frame_support/struct.Twox64Concat.html){target=\_blank}.
 
 This migration was only applied to Moonriver and Moonbase Alpha and was executed at the following runtimes and blocks:
 
@@ -314,7 +314,7 @@ This migration was only applied to Moonriver and Moonbase Alpha and was executed
 |   Moonriver    |      RT800       |    684728     |
 | Moonbase Alpha |      RT800       |    915684     |
 
-For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/679){target=_blank}.
+For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/679){target=\_blank}.
 
 ***
 
@@ -330,7 +330,7 @@ This migration was executed at the following runtimes and blocks:
 |   Moonriver    |      RT1502      |    1814458    |
 | Moonbase Alpha |      RT1502      |    2112058    |
 
-For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/1407){target=_blank}.
+For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/1407){target=\_blank}.
 
 ***
 
@@ -346,7 +346,7 @@ This migration was executed at the following runtimes and blocks:
 |   Moonriver    |      RT1605      |    2077599    |
 | Moonbase Alpha |      RT1603      |    2285347    |
 
-For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/1525){target=_blank}.
+For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/1525){target=\_blank}.
 
 ***
 
@@ -364,7 +364,7 @@ This migration was executed at the following runtimes and blocks:
 |   Moonriver    |      RT1300      |    1541735    |
 | Moonbase Alpha |      RT1300      |    1761128    |
 
-For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/1744){target=_blank}.
+For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/1744){target=\_blank}.
 
 ***
 
@@ -372,9 +372,9 @@ For more information, you can review the [relative PR on GitHub](https://github.
 
 #### Preimage Storage Moved to New Preimage Pallet
 
-There was a migration applied which moved preimages stored in the democracy pallet to a new preimage pallet. This migration on Moonbeam was required as a result of an [upstream change to Polkadot](https://github.com/paritytech/substrate/pull/11649){target=_blank}.
+There was a migration applied which moved preimages stored in the democracy pallet to a new preimage pallet. This migration on Moonbeam was required as a result of an [upstream change to Polkadot](https://github.com/paritytech/substrate/pull/11649){target=\_blank}.
 
-There was one preimage that was affected in Moonbeam, which was dropped from the scheduler queue and never executed: `0x14262a42aa6ccb3cae0a169b939ca5b185bc317bb7c449ca1741a0600008d306`. This preimage was [manually removed](https://moonbeam.subscan.io/extrinsic/2693398-8){target=_blank} by the account that initially submitted the preimage.
+There was one preimage that was affected in Moonbeam, which was dropped from the scheduler queue and never executed: `0x14262a42aa6ccb3cae0a169b939ca5b185bc317bb7c449ca1741a0600008d306`. This preimage was [manually removed](https://moonbeam.subscan.io/extrinsic/2693398-8){target=\_blank} by the account that initially submitted the preimage.
 
 This migration was executed at the following runtimes and blocks:
 
@@ -384,7 +384,7 @@ This migration was executed at the following runtimes and blocks:
 |   Moonriver    |      RT2000      |    3202604    |
 | Moonbase Alpha |      RT2000      |    2673234    |
 
-For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/1962){target=_blank}.
+For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/1962){target=\_blank}.
 
 ***
 
@@ -406,7 +406,7 @@ This migration was only applied to Moonriver and Moonbase Alpha and was executed
 |   Moonriver    |       RT53       |     9696      |
 | Moonbase Alpha |       RT52       |    238827     |
 
-For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/505){target=_blank}.
+For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/505){target=\_blank}.
 
 ***
 
@@ -421,7 +421,7 @@ This migration was only applied to Moonriver and Moonbase Alpha and was executed
 |   Moonriver    |       RT53       |     9696      |
 | Moonbase Alpha |       RT52       |    238827     |
 
-For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/502){target=_blank}.
+For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/502){target=\_blank}.
 
 ***
 
@@ -436,7 +436,7 @@ These migrations were only applied to Moonriver and Moonbase Alpha and were exec
 |   Moonriver    |      RT200       |    259002     |
 | Moonbase Alpha |      RT200       |    457614     |
 
-For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/610){target=_blank}.
+For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/610){target=\_blank}.
 
 ***
 
@@ -452,7 +452,7 @@ This migration was executed at the following runtimes and blocks:
 |   Moonriver    |      RT1001      |    1052242    |
 | Moonbase Alpha |      RT1001      |    1285916    |
 
-For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/970){target=_blank}.
+For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/970){target=\_blank}.
 
 ***
 
@@ -473,7 +473,7 @@ These migrations were executed at the following runtimes and blocks:
 |   Moonriver    |      RT1001      |    1052242    |
 | Moonbase Alpha |      RT1001      |    1285916    |
 
-For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/810){target=_blank}.
+For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/810){target=\_blank}.
 
 ***
 
@@ -489,7 +489,7 @@ This migration was executed at the following runtimes and blocks:
 |   Moonriver    |      RT1101      |    1188000    |
 | Moonbase Alpha |      RT1100      |    1426319    |
 
-For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/1096){target=_blank}.
+For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/1096){target=\_blank}.
 
 ***
 
@@ -509,7 +509,7 @@ This migration was executed at the following runtimes and blocks:
 |   Moonriver    |      RT1201      |    1471037    |
 | Moonbase Alpha |      RT1200      |    1648994    |
 
-For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/1117){target=_blank}.
+For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/1117){target=\_blank}.
 
 ***
 
@@ -525,7 +525,7 @@ This migration was executed at the following runtimes and blocks:
 |   Moonriver    |      RT1300      |    1541735    |
 | Moonbase Alpha |      RT1300      |    1761128    |
 
-For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/1291){target=_blank}.
+For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/1291){target=\_blank}.
 
 ***
 
@@ -541,7 +541,7 @@ This migration was executed at the following runtimes and blocks:
 |   Moonriver    |      RT1502      |    1814458    |
 | Moonbase Alpha |      RT1502      |    2112058    |
 
-For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/1408){target=_blank}.
+For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/1408){target=\_blank}.
 
 ***
 
@@ -557,7 +557,7 @@ This migration was executed at the following runtimes and blocks:
 |   Moonriver    |      RT1701      |    2281723    |
 | Moonbase Alpha |      RT1700      |    2529736    |
 
-For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/1604){target=_blank}.
+For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/1604){target=\_blank}.
 
 ***
 
@@ -576,7 +576,7 @@ These migrations were executed at the following runtimes and blocks:
 |   Moonriver    |      RT1901      |    2911863    |
 | Moonbase Alpha |      RT1900      |    3069635    |
 
-For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/1878){target=_blank}.
+For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/1878){target=\_blank}.
 
 ***
 
@@ -584,7 +584,7 @@ For more information, you can review the [relative PR on GitHub](https://github.
 
 To support refunds for Submission Deposits on closed referendum, a migration was introduced that updated the `ReferendumInfo` type. The following invariants of `ReferendumInfo` were changed so that the second parameter, `Deposit<AccountId, Balance>`, is now optional, `Option<Deposit<AccountId, Balance>>`: `Approved`, `Rejected`, `Cancelled`, and `TimedOut`.
 
-This stemmed from an upstream change to the [Substrate](https://github.com/paritytech/substrate/pull/12788){target=_blank} repository.
+This stemmed from an upstream change to the [Substrate](https://github.com/paritytech/substrate/pull/12788){target=\_blank} repository.
 
 This migration was executed at the following runtimes and blocks:
 
@@ -594,7 +594,7 @@ This migration was executed at the following runtimes and blocks:
 |   Moonriver    |      RT2302      |    4133065    |
 | Moonbase Alpha |      RT2301      |    4172407    |
 
-For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/2134){target=_blank}.
+For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/2134){target=\_blank}.
 
 ***
 
@@ -616,13 +616,13 @@ This migration was executed at the following runtimes and blocks:
 |   Moonriver    |      RT1201      |    1471037    |
 | Moonbase Alpha |      RT1200      |    1648994    |
 
-For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/1114){target=_blank}.
+For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/1114){target=\_blank}.
 
 ***
 
 #### Add Support for Kusama Asset Hub (Statemine) Prefix Breaking Change {: #add-support-statemine-prefix }
 
-The following three migrations were added to the asset manager pallet to avoid issues with Kusama Asset Hub's (previously referred to as Statemine) [breaking change to the way it represents assets](https://github.com/paritytech/cumulus/pull/831){target=_blank} and possible future breaking changes:
+The following three migrations were added to the asset manager pallet to avoid issues with Kusama Asset Hub's (previously referred to as Statemine) [breaking change to the way it represents assets](https://github.com/paritytech/cumulus/pull/831){target=\_blank} and possible future breaking changes:
 
 - `UnitsWithAssetType` - updates the `AssetTypeUnitsPerSecond` storage item  to a mapping of the `AssetType` to `units_per_second`, instead of the mapping `AssetId` to `units_per_second`. This is done to avoid additional migrations whenever a breaking change arises
 - `PopulateAssetTypeIdStorage` - creates a new `AssetTypeId` storage item that holds the `AssetType` to `AssetId` mapping, which allows the decoupling of `assetIds` and `AssetTypes`
@@ -636,7 +636,7 @@ These migrations were executed at the following runtimes and blocks:
 |   Moonriver    |      RT1201      |    1471037    |
 | Moonbase Alpha |      RT1200      |    1648994    |
 
-For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/1159){target=_blank}.
+For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/1159){target=\_blank}.
 
 ***
 
@@ -652,7 +652,7 @@ This migration was executed at the following runtimes and blocks:
 |   Moonriver    |      RT1300      |    1541735    |
 | Moonbase Alpha |      RT1300      |    1761128    |
 
-For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/1118){target=_blank}.
+For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/1118){target=\_blank}.
 
 ***
 
@@ -670,4 +670,4 @@ This migration was executed at the following runtimes and blocks:
 |   Moonriver    |      RT1502      |    1814458    |
 | Moonbase Alpha |      RT1502      |    2112058    |
 
-For more information, you can review the [relative Nimbus PR](https://github.com/moonbeam-foundation/nimbus/pull/45/){target=_blank} and [Moonbeam PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/1400){target=_blank}.
+For more information, you can review the [relative Nimbus PR](https://github.com/moonbeam-foundation/nimbus/pull/45/){target=\_blank} and [Moonbeam PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/1400){target=\_blank}.

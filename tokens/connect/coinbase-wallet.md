@@ -7,7 +7,7 @@ description: This guide walks you through how to configure the Coinbase Wallet e
 
 ## Introduction {: #introduction }
 
-[Coinbase Wallet](https://wallet.coinbase.com/?_branch_match_id=977295450874474909&_branch_referrer=H4sIAAAAAAAAA8soKSkottLXT8%2FXS07SLddLzs%2FVD8%2FJynFKSy02zE4CAFZ0JzQfAAAA){target=_blank} is a self-custody (non-custodial) wallet, like [MetaMask](/tokens/connect/metamask/){target=_blank}, available as a mobile application for iOS and Android and a browser extension. You can use Coinbase Wallet to interact with Moonbeam, Moonriver, and the Moonbase Alpha TestNet after adding them as custom networks.
+[Coinbase Wallet](https://wallet.coinbase.com/?_branch_match_id=977295450874474909&_branch_referrer=H4sIAAAAAAAAA8soKSkottLXT8%2FXS07SLddLzs%2FVD8%2FJynFKSy02zE4CAFZ0JzQfAAAA){target=\_blank} is a self-custody (non-custodial) wallet, like [MetaMask](/tokens/connect/metamask/){target=\_blank}, available as a mobile application for iOS and Android and a browser extension. You can use Coinbase Wallet to interact with Moonbeam, Moonriver, and the Moonbase Alpha TestNet after adding them as custom networks.
 
 Please note that Coinbase Wallet is an entirely different product from Coinbase Exchange, a custodial platform for buying and selling cryptocurrency. Holding a token in your Coinbase Wallet does not imply it is supported on Coinbase Exchange. If you send a token from your Coinbase Wallet to Coinbase Exchange that is not supported by the exchange, you will lose those funds forever.
 
@@ -17,7 +17,7 @@ In this guide, you'll go through the process of setting up the Coinbase Wallet m
 
 ## Install Coinbase Wallet {: #install-coinbase-wallet }
 
-You can [download Coinbase Wallet](https://wallet.coinbase.com/?_branch_match_id=977295450874474909&_branch_referrer=H4sIAAAAAAAAA8soKSkottLXT8%2FXS07SLddLzs%2FVD8%2FJynFKSy02zE4CAFZ0JzQfAAAA){target=_blank} as a mobile app from the iOS App Store or Google Play Store, or as a desktop browser extension from the Chrome Store.
+You can [download Coinbase Wallet](https://wallet.coinbase.com/?_branch_match_id=977295450874474909&_branch_referrer=H4sIAAAAAAAAA8soKSkottLXT8%2FXS07SLddLzs%2FVD8%2FJynFKSy02zE4CAFZ0JzQfAAAA){target=\_blank} as a mobile app from the iOS App Store or Google Play Store, or as a desktop browser extension from the Chrome Store.
 
 The interfaces for the mobile app and browser extension are quite similar, so you can adapt the following instructions for the browser extension. The one major difference between the two is that when you add Moonbase Alpha as a custom network, you can interact with the network on the browser extension but not from the mobile app. This difference only applies to Moonbase Alpha. If you're connecting to Moonbeam or Moonriver, you'll be able to interact with either network from both the browser extension and mobile app.
 
@@ -27,7 +27,7 @@ After installing and opening the app, you'll be greeted with the option to creat
 
 You'll be prompted to create a passcode, and once you've entered in your passcode, you'll need to verify it by entering it again a second time.
 
-![Create an account on the Coinbase Wallet mobile app.](/images/tokens/connect/coinbase-wallet/coinbase-1.png)
+![Create an account on the Coinbase Wallet mobile app.](/images/tokens/connect/coinbase-wallet/coinbase-1.webp)
 
 Once you've created your passcode, your wallet will be created. The last step to take is to secure your account by backing up your wallet's recovery phrase. To back up your wallet, you can take the following steps:
 
@@ -38,7 +38,7 @@ Once you've created your passcode, your wallet will be created. The last step to
 5. Select how you want to back up your recovery phrase: make an encrypted backup of the seed phrase to iCloud (iOS) or Google Drive (Android), save the phrase manually, or do both. If you are backing up your phrase to the iCloud or Google Drive, you'll have to create a password that will secure your phrase in the cloud. **This password cannot be reset, so you'll need to keep it safe**. If you are manually saving your phrase, make sure you store it exactly as displayed and save it in a secure location
 6. When you're done, click **Complete backup**
 
-![Back up your wallet's recovery phrase through the settings menu.](/images/tokens/connect/coinbase-wallet/coinbase-2.png)
+![Back up your wallet's recovery phrase through the settings menu.](/images/tokens/connect/coinbase-wallet/coinbase-2.webp)
 
 !!! note
     If you're using the browser extension, you'll follow a slightly different flow, as you'll be prompted to back up your wallet right away, and you'll only have the option to manually do this.
@@ -83,7 +83,7 @@ Although Coinbase Wallet has a built-in browser, it doesn't currently support au
 
  5. Press **Add Network** once finished
 
-![Add Moonbeam as a custom network through the network settings.](/images/tokens/connect/coinbase-wallet/coinbase-3.png)
+![Add Moonbeam as a custom network through the network settings.](/images/tokens/connect/coinbase-wallet/coinbase-3.webp)
 
 After returning to the **Networks** screen, you can view the newly added network from the **Custom** tab. To interact with Moonbeam, you'll need to mark the network as **Active** by taking the following steps:
 
@@ -91,7 +91,7 @@ After returning to the **Networks** screen, you can view the newly added network
 2. Scroll down to the bottom of the screen and toggle the **Active network** switch to on
 3. Tap **Save**
 
-![Set Moonbeam as the active network.](/images/tokens/connect/coinbase-wallet/coinbase-4.png)
+![Set Moonbeam as the active network.](/images/tokens/connect/coinbase-wallet/coinbase-4.webp)
 
 ### Receiving Funds {: #receiving-funds }
 
@@ -102,7 +102,7 @@ Since you created a new wallet in this demo, the app displays a balance of `$0.0
  1. Tap on **Receive**
  2. Tap on the QR code icon or the copy icon next to **Ethereum address**. Since Moonbeam is Ethereum-compatible, you can use the Ethereum account it provides you on Moonbeam
 
-![Copy your Ethereum address so you can receive funds.](/images/tokens/connect/coinbase-wallet/coinbase-5.png)
+![Copy your Ethereum address so you can receive funds.](/images/tokens/connect/coinbase-wallet/coinbase-5.webp)
 
 Now that you have your receiving address, you can send assets to it. To view your assets once they arrive, you'll need to make sure that you've activated the correct network from the network's configuration screen in the **Networks** settings, as outlined in the [previous section](#connect-coinbase-to-moonbeam).
 
@@ -118,22 +118,22 @@ To send funds from your Coinbase Wallet, navigate to the **Assets** tab, then ta
  6. Review the transaction details to ensure accuracy, then press **Send**
  7. Upon successfully sending the transaction, you can tap **Done**
 
-![Send funds.](/images/tokens/connect/coinbase-wallet/coinbase-6.png)
+![Send funds.](/images/tokens/connect/coinbase-wallet/coinbase-6.webp)
 
 From the **Transactions** tab, you'll be able to see your outgoing transactions, including the address you sent the transaction to, the status of the transaction, and the amount you sent. You can tap on each transaction to find out more information.
 
-![View your transaction history from the transactions screen.](/images/tokens/connect/coinbase-wallet/coinbase-7.png)
+![View your transaction history from the transactions screen.](/images/tokens/connect/coinbase-wallet/coinbase-7.webp)
 
 And that's it! You've successfully set up your Coinbase Wallet app, connected it to the Moonbeam network, and learned how to send and receive funds.
 
 ## Limitations {: #limitations }
 
- - At this time, Coinbase Wallet displays only outgoing transactions in your transaction history in the app. You can see your full transaction history, including incoming transactions, by looking up your address on a blockchain explorer such as [Moonscan](https://moonscan.io/){target=_blank}
+ - At this time, Coinbase Wallet displays only outgoing transactions in your transaction history in the app. You can see your full transaction history, including incoming transactions, by looking up your address on a blockchain explorer such as [Moonscan](https://moonscan.io/){target=\_blank}
  - On the Coinbase Wallet mobile app, you can add Moonbase Alpha as a custom network; however, you won't be able to see your balances or send transactions from the app. You'll need to use the browser extension instead
 
 ## Additional Resources {: #additional-resources }
 
- - [Coinbase Wallet FAQ](https://wallet.coinbase.com/faq/){target=_blank}
- - [Coinbase Wallet Getting Started Guide](https://www.coinbase.com/wallet/getting-started-mobile){target=_blank}
+ - [Coinbase Wallet FAQ](https://wallet.coinbase.com/faq/){target=\_blank}
+ - [Coinbase Wallet Getting Started Guide](https://www.coinbase.com/wallet/getting-started-mobile){target=\_blank}
 
 --8<-- 'text/_disclaimers/third-party-content.md'

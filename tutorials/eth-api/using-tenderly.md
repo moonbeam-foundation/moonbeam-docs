@@ -19,15 +19,15 @@ In this tutorial, we're going to explore two of Tenderly's most powerful feature
 
 To get started, you will need the following:
 
- - Have a free [Tenderly Account](https://dashboard.tenderly.co/register?utm_source=homepage){target=_blank}. You do not need a paid plan to complete this tutorial
+ - Have a free [Tenderly Account](https://dashboard.tenderly.co/register?utm_source=homepage){target=\_blank}. You do not need a paid plan to complete this tutorial
 
 ## Create a Tenderly Project {: #create-a-tenderly-project }
 
-Although not strictly required, it's a good idea to create a Tenderly project to keep things organized and access more of Tenderly's available features. Underneath the **Select Project** dropdown, you can press **Create Project** or head to [this Create Project link](https://dashboard.tenderly.co/projects/create){target=_blank}.
+Although not strictly required, it's a good idea to create a Tenderly project to keep things organized and access more of Tenderly's available features. Underneath the **Select Project** dropdown, you can press **Create Project** or head to [this Create Project link](https://dashboard.tenderly.co/projects/create){target=\_blank}.
 
 Give your project a name, and then press **Create Project**. Although you can change your project name at a later point, the URL will remain the original one you created.
 
-![Create a Tenderly account](/images/tutorials/eth-api/using-tenderly/tenderly-1.png)
+![Create a Tenderly account](/images/tutorials/eth-api/using-tenderly/tenderly-1.webp)
 
 There is a limit of one project with a free account; however, you can have multiple smart contracts under the purview of a single project.
 
@@ -42,7 +42,7 @@ To add a smart contract to your Tenderly project, click on the **Contracts** tab
 3. Give the contract a name to help you recognize it on the dashboard
 4. Press **Add Contract**
 
-![Add a smart contract](/images/tutorials/eth-api/using-tenderly/tenderly-2.png)
+![Add a smart contract](/images/tutorials/eth-api/using-tenderly/tenderly-2.webp)
 
 ## Simulate a Transaction {: #simulate-a-transaction }
 
@@ -58,9 +58,9 @@ Head over to the **Simulator** tab, and let's craft a transaction to simulate ag
 6. Specify the from address as Baltathar: `0x3Cd0A705a2DC65e5b1E1205896BaA2be8A07c6e0` or another address of your choice
 7. Press **Simulate Transaction**
 
-![Simulate a transaction against Moonbeam](/images/tutorials/eth-api/using-tenderly/tenderly-3.png)
+![Simulate a transaction against Moonbeam](/images/tutorials/eth-api/using-tenderly/tenderly-3.webp)
 
-Clearly, this simulated transaction is going to fail because we're trying to send 10,000 FRAX that we don't have. But, with the [Tenderly Simulator](https://docs.tenderly.co/simulations-and-forks/how-to-simulate-a-transaction){target=_blank}, we can tinker with the blockchain state and run simulations that assume different conditions. For example, let's run the simulation assuming that Baltathar actually holds a balance of 10,000 FRAX. Press **Re-Simulate** in the upper right corner, then take the following steps:
+Clearly, this simulated transaction is going to fail because we're trying to send 10,000 FRAX that we don't have. But, with the [Tenderly Simulator](https://docs.tenderly.co/simulations-and-forks/how-to-simulate-a-transaction){target=\_blank}, we can tinker with the blockchain state and run simulations that assume different conditions. For example, let's run the simulation assuming that Baltathar actually holds a balance of 10,000 FRAX. Press **Re-Simulate** in the upper right corner, then take the following steps:
 
 1. Expand the **State Overrides** section
 2. Press **Add State Override**
@@ -69,25 +69,25 @@ Clearly, this simulated transaction is going to fail because we're trying to sen
 5. Press **Add** to confirm adding the state override
 6. Press **Simulate Transaction**
 
-![Simulate a transaction against Moonbeam with state overrides](/images/tutorials/eth-api/using-tenderly/tenderly-4.png)
+![Simulate a transaction against Moonbeam with state overrides](/images/tutorials/eth-api/using-tenderly/tenderly-4.webp)
 
 !!! note
-    Remember that the Alith and Baltathar accounts are part of the [list of public developer accounts](/builders/get-started/networks/moonbeam-dev/#pre-funded-development-accounts){target=_blank} with known private keys. You will lose any funds sent to these addresses.
+    Remember that the Alith and Baltathar accounts are part of the [list of public developer accounts](/builders/get-started/networks/moonbeam-dev/#pre-funded-development-accounts){target=\_blank} with known private keys. You will lose any funds sent to these addresses.
 
 If you correctly added the state override, you should now see a transaction simulation success screen upon running the simulation. If you get an error, you can press **Re-Simulate** and verify that you have configured the state override correctly.
 
-![Transaction simulation with state override success](/images/tutorials/eth-api/using-tenderly/tenderly-5.png)
+![Transaction simulation with state override success](/images/tutorials/eth-api/using-tenderly/tenderly-5.webp)
 
-You can also access Tenderly's transaction simulator via the [Tenderly Simulation API](https://docs.tenderly.co/simulations-and-forks/simulation-api){target=_blank}.
+You can also access Tenderly's transaction simulator via the [Tenderly Simulation API](https://docs.tenderly.co/simulations-and-forks/simulation-api){target=\_blank}.
 
 ## Fork the Chain {: #fork-the-chain }
 
 ### Create a Fork {: #create-a-fork }
 
-Simulations are great for one-off tests, but what if you want to test a series of interdependent transactions? A fork is a better option in this case because forks are stateful. Additionally, [Tenderly forks](https://docs.tenderly.co/simulations-and-forks/forks){target=_blank} are a terrific option when you want to interact with contracts in a private environment without redeploying existing smart contract logic on-chain.
+Simulations are great for one-off tests, but what if you want to test a series of interdependent transactions? A fork is a better option in this case because forks are stateful. Additionally, [Tenderly forks](https://docs.tenderly.co/simulations-and-forks/forks){target=\_blank} are a terrific option when you want to interact with contracts in a private environment without redeploying existing smart contract logic on-chain.
 
 !!! note
-    There are some limitations to be aware of when using Tenderly's forking feature. You cannot interact with any of the [Moonbeam precompiled contracts](/builders/pallets-precompiles/precompiles/){target=_blank} or their functions. Precompiles are a part of the Substrate implementation and therefore cannot be replicated in the simulated EVM environment. This prohibits you from interacting with cross-chain assets on Moonbeam and Substrate-based functionality such as staking and governance.
+    There are some limitations to be aware of when using Tenderly's forking feature. You cannot interact with any of the [Moonbeam precompiled contracts](/builders/pallets-precompiles/precompiles/){target=\_blank} or their functions. Precompiles are a part of the Substrate implementation and therefore cannot be replicated in the simulated EVM environment. This prohibits you from interacting with cross-chain assets on Moonbeam and Substrate-based functionality such as staking and governance.
 
 It's easy to create a fork with Tenderly. To do so, head to the **Forks** tab and take the following steps:
 
@@ -96,7 +96,7 @@ It's easy to create a fork with Tenderly. To do so, head to the **Forks** tab an
 3. If you only need data up until a specific block, you can toggle the **Use Latest Block** slider to off and specify the block number. Otherwise, you can leave the slider as is to include all blocks up until the latest block
 4. Click **Create**
 
-![Create a fork](/images/tutorials/eth-api/using-tenderly/tenderly-6.png)
+![Create a fork](/images/tutorials/eth-api/using-tenderly/tenderly-6.webp)
 
 ### Interacting with the Fork {: #interacting-with-the-fork }
 
@@ -106,10 +106,10 @@ In the next part, we'll be demonstrating the statefulness of forks and how they 
 2. Select the contract function you'd like to call. We'll choose `minter_mint` in this case.
 3. Enter Baltathar's address: `0x3Cd0A705a2DC65e5b1E1205896BaA2be8A07c6e0`
 4. Enter the amount to mint, such as `10000000000000`
-5. Minting is a privileged role in the FRAX contract. We need to specify the sender of this transaction in our fork as an [authorized minter of the FRAX contract](https://moonbeam.moonscan.io/token/0x322e86852e492a7ee17f28a78c663da38fb33bfb#readContract){target=_blank}, which is `0x343e4f06bf240d22fbdfd4a2fe5858bc66e79f12`
+5. Minting is a privileged role in the FRAX contract. We need to specify the sender of this transaction in our fork as an [authorized minter of the FRAX contract](https://moonbeam.moonscan.io/token/0x322e86852e492a7ee17f28a78c663da38fb33bfb#readContract){target=\_blank}, which is `0x343e4f06bf240d22fbdfd4a2fe5858bc66e79f12`
 6. Press **Simulate Transaction**
 
-![Run simulation on fork to mint FRAX](/images/tutorials/eth-api/using-tenderly/tenderly-7.png)
+![Run simulation on fork to mint FRAX](/images/tutorials/eth-api/using-tenderly/tenderly-7.webp)
 
 Great! Now let's go ahead and try to perform the transfer from Baltathar now that Baltathar has plenty of FRAX. To do so, press **New Simulation**, then take the following steps:
 
@@ -120,15 +120,15 @@ Great! Now let's go ahead and try to perform the transfer from Baltathar now tha
 5. Specify the from address as Baltathar `0x3Cd0A705a2DC65e5b1E1205896BaA2be8A07c6e0`
 6. Press **Simulate Transaction**
 
-![Run simulation on fork to transfer FRAX](/images/tutorials/eth-api/using-tenderly/tenderly-8.png)
+![Run simulation on fork to transfer FRAX](/images/tutorials/eth-api/using-tenderly/tenderly-8.webp)
 
 Note in the upper right corner under **Fork Parameters** that the parent block is the **Previous Simulation**. This indicates that the simulation we're submitting now will build upon any state changes made in the prior one. If you notice an error indicating that the balance is insufficient, this could be a result of accidentally overriding the block number to use the same block number as the original `minter_mint` transaction.
 
-Tenderly also generates a custom RPC url for your fork, which looks something like `https://rpc.tenderly.co/fork/YOUR_UNIQUE_FORK_IDENTIFIER`. You can use this RPC url to submit transactions to your fork from [Hardhat](/builders/build/eth-api/dev-env/hardhat){target=_blank}, [Foundry](/builders/build/eth-api/dev-env/foundry){target=_blank}, or another preferred [development environment](/builders/build/eth-api/dev-env/){target=_blank}.
+Tenderly also generates a custom RPC url for your fork, which looks something like `https://rpc.tenderly.co/fork/YOUR_UNIQUE_FORK_IDENTIFIER`. You can use this RPC url to submit transactions to your fork from [Hardhat](/builders/build/eth-api/dev-env/hardhat){target=\_blank}, [Foundry](/builders/build/eth-api/dev-env/foundry){target=\_blank}, or another preferred [development environment](/builders/build/eth-api/dev-env/){target=\_blank}.
 
 ## Debugging {: #debugging }
 
-The [Debugger](https://docs.tenderly.co/debugger/how-to-use-tenderly-debugger){target=_blank} is one of the most powerful and acclaimed features of Tenderly. It's also quite fast and requires minimal setup. In fact, if the contract you're investigating is already verified on chain, firing up the debugger is as easy as searching for the transaction hash on Tenderly. Let's try it out.
+The [Debugger](https://docs.tenderly.co/debugger/how-to-use-tenderly-debugger){target=\_blank} is one of the most powerful and acclaimed features of Tenderly. It's also quite fast and requires minimal setup. In fact, if the contract you're investigating is already verified on chain, firing up the debugger is as easy as searching for the transaction hash on Tenderly. Let's try it out.
 
 In the upper search bar, you can paste a contract address or a transaction hash. Recall that Tenderly supports Moonbeam and Moonriver but does not currently support Moonbase Alpha. Here's an example transaction hash of a GLMR / FRAX swap on StellaSwap:
 
@@ -138,25 +138,25 @@ In the upper search bar, you can paste a contract address or a transaction hash.
 
 After finding the transaction hash, you're greeted at the top with all of the typical statistics about the transaction, such as status, gas price, gas used, etc. Following that, you'll see a breakdown of the tokens transferred. And at the bottom you'll see a long list of every function call. Given that a swap is a relatively complex interaction, and given that StellaSwap uses upgradable proxy contracts, you'll see quite a long list in this example.
 
-![Debugger 1](/images/tutorials/eth-api/using-tenderly/tenderly-9.png)
+![Debugger 1](/images/tutorials/eth-api/using-tenderly/tenderly-9.webp)
 
 If you click on **Contracts** on the left-hand navigation bar, you'll see a list of every contract the transaction interacted with. You can click on a contract to see more details and view the entire source code if the contract is verified.
 
-![Debugger 2](/images/tutorials/eth-api/using-tenderly/tenderly-10.png)
+![Debugger 2](/images/tutorials/eth-api/using-tenderly/tenderly-10.webp)
 
 Heading down the left-hand navigation bar, you'll see an **Events** tab followed by a **State Changes** tab, which shows a visual representation of each change to the chain state that occurred as a result of this transaction.
 
-![Debugger 3](/images/tutorials/eth-api/using-tenderly/tenderly-11.png)
+![Debugger 3](/images/tutorials/eth-api/using-tenderly/tenderly-11.webp)
 
 If you scroll down to the **Debugger** tab, you'll be able to step through the contracts line by line and see key state information at the bottom, allowing you to pinpoint the source of any error.
 
-![Debugger 4](/images/tutorials/eth-api/using-tenderly/tenderly-12.png)
+![Debugger 4](/images/tutorials/eth-api/using-tenderly/tenderly-12.webp)
 
 Finally, you'll see a **Gas Profiler**, which will give you a visual representation of where and how the gas was spent throughout the course of the transaction. You can click on any of the function calls (represented by the blue rectangles) to see how much gas was spent in each call.
 
-![Debugger 4](/images/tutorials/eth-api/using-tenderly/tenderly-13.png)
+![Debugger 4](/images/tutorials/eth-api/using-tenderly/tenderly-13.webp)
 
-For a more detailed look at how to use the Tenderly Debugger, be sure to check out [Tenderly's Debugger guide](https://docs.tenderly.co/debugger/how-to-use-tenderly-debugger){target=_blank}. And that's it! You're well on your way to mastering Tenderly, which is sure to save you time and simplify your development experience building dApps on Moonbeam.
+For a more detailed look at how to use the Tenderly Debugger, be sure to check out [Tenderly's Debugger guide](https://docs.tenderly.co/debugger/how-to-use-tenderly-debugger){target=\_blank}. And that's it! You're well on your way to mastering Tenderly, which is sure to save you time and simplify your development experience building dApps on Moonbeam.
 
 --8<-- 'text/_disclaimers/educational-tutorial.md'
 

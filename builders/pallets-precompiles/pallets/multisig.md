@@ -50,11 +50,11 @@ The Multisig Pallet includes the following read-only functions to obtain pallet 
 
 ## How to Create a Multisig Account {: #create-a-multisig-account }
 
-You can easily create a multisig account from the Polkadot.js Apps interface. The easiest way to do so is from the [**Accounts** page](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/accounts){target=_blank}.
+You can easily create a multisig account from the Polkadot.js Apps interface. The easiest way to do so is from the [**Accounts** page](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/accounts){target=\_blank}.
 
 To get started, go ahead and click on **Multisig**.
 
-![Add a multisig on Polkadot.js Apps](/images/builders/pallets-precompiles/pallets/multisig/multisig-1.png)
+![Add a multisig on Polkadot.js Apps](/images/builders/pallets-precompiles/pallets/multisig/multisig-1.webp)
 
 Next, you can take the following steps:
 
@@ -63,11 +63,11 @@ Next, you can take the following steps:
 3. Add a name for the multisig. This example uses `ABC` for Alice, Bob, and Charlie
 4. Click **Create**
 
-![Set up the multisig members](/images/builders/pallets-precompiles/pallets/multisig/multisig-2.png)
+![Set up the multisig members](/images/builders/pallets-precompiles/pallets/multisig/multisig-2.webp)
 
 Now, the ABC multisig account will appear under the **multisig** section on the **Accounts** page.
 
-![View the multisig account on the Accounts page of Polkadot.js Apps](/images/builders/pallets-precompiles/pallets/multisig/multisig-3.png)
+![View the multisig account on the Accounts page of Polkadot.js Apps](/images/builders/pallets-precompiles/pallets/multisig/multisig-3.webp)
 
 You can click on the colored icon next to the multisig account to copy the address and fund it with DEV tokens.
 --8<-- 'text/_common/faucet/faucet-sentence.md'
@@ -86,7 +86,7 @@ Once the call is approved and dispatched or cancelled the deposit will be return
 
 Since there is a threshold of two for this multisig, at least Bob or Charlie will need to approve the call if not both of them. The last account to approve the call will also need to dispatch the call. Dispatching the call is done automatically when the `asMulti` function is used to approve the call.
 
-With the basics out of the way, you can begin to create a multisig call. For this example, you can create a call that will transfer 0.1 DEV from the ABC multisig account to Charlie's account. First, you'll need to get the encoded call data for the transfer. Go ahead and navigate to the [**Extrinsics** page on Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/extrinsics){target=_blank} and take the following steps:
+With the basics out of the way, you can begin to create a multisig call. For this example, you can create a call that will transfer 0.1 DEV from the ABC multisig account to Charlie's account. First, you'll need to get the encoded call data for the transfer. Go ahead and navigate to the [**Extrinsics** page on Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/extrinsics){target=\_blank} and take the following steps:
 
 1. Make sure an account is selected. It doesn't have to be the ABC multisig account, as the selected account is not included in the encoded call data
 2. Select the **balances** pallet and the **transfer** extrinsic
@@ -95,7 +95,7 @@ With the basics out of the way, you can begin to create a multisig call. For thi
 5. Click the copy button next to the **encoded call data**
 6. Click the copy button next to the **encoded call hash**. Please note that you do not have to submit the extrinsic, you only need the encoded call data and the encoded call hash
 
-![Get the encoded call data for a balance transfer](/images/builders/pallets-precompiles/pallets/multisig/multisig-4.png)
+![Get the encoded call data for a balance transfer](/images/builders/pallets-precompiles/pallets/multisig/multisig-4.webp)
 
 Make sure you've copied and saved the encoded call data and the encoded call hash as you'll need them both to approve the multisig call later on in the tutorial. For this example, the encoded call data and hash are as follows:
 
@@ -124,13 +124,13 @@ Next, you can create the multisig call by using the `asMulti` extrinsic, you'll 
 9. You can leave the **refTime** and **proofSize** fields set to `0`
 10. Click **Submit Transaction** to create the multisig call
 
-![Create a multisig call](/images/builders/pallets-precompiles/pallets/multisig/multisig-5.png)
+![Create a multisig call](/images/builders/pallets-precompiles/pallets/multisig/multisig-5.webp)
 
 Now that you've created the multisig call, you can submit approval transactions from either Bob's or Charlie's account, or both. Remember, for the call to be approved and dispatched, you need to have at least two of three members of the multisig to approve it. Since Alice created the multisig call, that means she has already automatically approved it.
 
 You can easily approve the transactions through the **Accounts** page of Polkadot.js Apps. Next to your multisig account, you'll notice there is a multisig icon there that you can hover over. Once you hover over it, you'll be able to click on **View pending approvals**.
 
-![View pending multisig approvals](/images/builders/pallets-precompiles/pallets/multisig/multisig-6.png)
+![View pending multisig approvals](/images/builders/pallets-precompiles/pallets/multisig/multisig-6.webp)
 
 The **pending call hashes** pop-up will appear where you can follow these steps:
 
@@ -140,7 +140,7 @@ The **pending call hashes** pop-up will appear where you can follow these steps:
 4. Choose the account you want to approve the transaction from. This example uses Bob's account
 5. Click **Approve** to submit the approval transaction. Under the hood, this uses the `approveAsMulti` extrinsic of the Multisig Pallet
 
-![Approve a multisig call](/images/builders/pallets-precompiles/pallets/multisig/multisig-7.png)
+![Approve a multisig call](/images/builders/pallets-precompiles/pallets/multisig/multisig-7.webp)
 
 So far, Alice and Bob have approved the multisig call, which means the threshold has been met. However, the call has not been dispatched yet since you have not yet submitted an executing approval. To do so, you'll take the same steps as above plus these additional steps:
 
@@ -149,6 +149,6 @@ So far, Alice and Bob have approved the multisig call, which means the threshold
 3. The **call data for final approval** field will appear. Enter the encoded call data that you copied earlier on in this section
 4. Click **Approve** to submit the approval, which will also dispatch the multisig call
 
-![Approve and dispatch a multisig call](/images/builders/pallets-precompiles/pallets/multisig/multisig-8.png)
+![Approve and dispatch a multisig call](/images/builders/pallets-precompiles/pallets/multisig/multisig-8.webp)
 
 Once the final transaction has been submitted, 0.1 DEV tokens will be transferred from the ABC multisig account to Charlie's account and the multisig deposit will be returned to Alice's account. And that's it! You've successfully created a multisig call, approved the call, and dispatched it.

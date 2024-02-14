@@ -7,9 +7,9 @@ description: Check out this tutorial to learn how to use the viem TypeScript int
 
 ## Introduction {: #introduction }
 
-[viem](https://viem.sh/){target=_blank} is a modular TypeScript library that allows developers to interact with abstractions over the JSON-RPC API, making it easy to interact with Ethereum nodes. Since Moonbeam has an Ethereum-like API available that is fully compatible with Ethereum-style JSON RPC invocations, developers can leverage this compatibility to interact with Moonbeam nodes. For more information on viem, check out their [documentation site](https://viem.sh/docs/getting-started.html){target=_blank}.
+[viem](https://viem.sh/){target=\_blank} is a modular TypeScript library that allows developers to interact with abstractions over the JSON-RPC API, making it easy to interact with Ethereum nodes. Since Moonbeam has an Ethereum-like API available that is fully compatible with Ethereum-style JSON RPC invocations, developers can leverage this compatibility to interact with Moonbeam nodes. For more information on viem, check out their [documentation site](https://viem.sh/docs/getting-started.html){target=\_blank}.
 
-In this guide, you'll learn how to use viem to send a transaction and deploy a contract on the Moonbase Alpha TestNet. This guide can be adapted for [Moonbeam](/builders/get-started/networks/moonbeam/){target=_blank}, [Moonriver](/builders/get-started/networks/moonriver/){target=_blank}, or a [Moonbeam development node](/builders/get-started/networks/moonbeam-dev/){target=_blank}.
+In this guide, you'll learn how to use viem to send a transaction and deploy a contract on the Moonbase Alpha TestNet. This guide can be adapted for [Moonbeam](/builders/get-started/networks/moonbeam/){target=\_blank}, [Moonriver](/builders/get-started/networks/moonriver/){target=\_blank}, or a [Moonbeam development node](/builders/get-started/networks/moonbeam-dev/){target=\_blank}.
 
 ## Checking Prerequisites {: #checking-prerequisites }
 
@@ -56,7 +56,7 @@ npx tsc --init
 
 ## Set Up a viem Client (Provider) {: #setting-up-a-viem-provider }
 
-Throughout this guide, you'll be creating a bunch of scripts that provide different functionality, such as sending a transaction, deploying a contract, and interacting with a deployed contract. In most of these scripts, you'll need to create a [viem client](https://docs.ethers.org/v6/api/providers/){target=_blank} to interact with the network.
+Throughout this guide, you'll be creating a bunch of scripts that provide different functionality, such as sending a transaction, deploying a contract, and interacting with a deployed contract. In most of these scripts, you'll need to create a [viem client](https://docs.ethers.org/v6/api/providers/){target=\_blank} to interact with the network.
 
 --8<-- 'text/common/endpoint-setup.md'
 
@@ -245,7 +245,7 @@ npx ts-node balances.ts
 
 If successful, the balances for the origin and receiving address will be displayed in your terminal in DEV.
 
-![The result of running the balances script in the terminal](/images/builders/build/eth-api/libraries/viem/viem-1.png)
+![The result of running the balances script in the terminal](/images/builders/build/eth-api/libraries/viem/viem-1.webp)
 
 ### Send Transaction Script {: #send-transaction-script }
 
@@ -280,7 +280,7 @@ If the transaction was successful, in your terminal you'll see the transaction h
 
 You can also use the `balances.ts` script to check that the balances for the origin and receiving accounts have changed. The entire workflow would look like this:
 
-![The result of running the transaction and balances scripts in the terminal](/images/builders/build/eth-api/libraries/viem/viem-2.png)
+![The result of running the transaction and balances scripts in the terminal](/images/builders/build/eth-api/libraries/viem/viem-2.webp)
 
 ## Deploy a Contract {: #deploy-contract }
 
@@ -326,7 +326,7 @@ npx ts-node deploy.ts
 
 If successful, the contract's address will be displayed in the terminal.
 
-![The result of running the deploy script in the terminal](/images/builders/build/eth-api/libraries/viem/viem-3.png)
+![The result of running the deploy script in the terminal](/images/builders/build/eth-api/libraries/viem/viem-3.webp)
 
 ### Read Contract Data (Call Methods) {: #read-contract-data }
 
@@ -359,7 +359,7 @@ npx ts-node get.ts
 
 If successful, the value will be displayed in the terminal.
 
-![The result of running the get script in the terminal](/images/builders/build/eth-api/libraries/viem/viem-4.png)
+![The result of running the get script in the terminal](/images/builders/build/eth-api/libraries/viem/viem-4.webp)
 
 ### Interact with Contract (Send Methods) {: #interact-with-contract }
 
@@ -392,7 +392,7 @@ npx ts-node increment.ts
 
 If successful, the transaction hash will be displayed in the terminal. You can use the `get.ts` script alongside the `increment.ts` script to make sure that value is changing as expected.
 
-![The result of running the increment and get scripts in the terminal](/images/builders/build/eth-api/libraries/viem/viem-5.png)
+![The result of running the increment and get scripts in the terminal](/images/builders/build/eth-api/libraries/viem/viem-5.webp)
 
 Next, you can open the `reset.ts` file and take the following steps to create the script:
 
@@ -417,6 +417,6 @@ npx ts-node reset.ts
 
 If successful, the transaction hash will be displayed in the terminal. You can use the `get.ts` script alongside the `reset.ts` script to make sure that value is changing as expected.
 
-![The result of running the reset and get scripts in the terminal](/images/builders/build/eth-api/libraries/viem/viem-6.png)
+![The result of running the reset and get scripts in the terminal](/images/builders/build/eth-api/libraries/viem/viem-6.webp)
 
 --8<-- 'text/_disclaimers/third-party-content.md'

@@ -30,7 +30,7 @@ Collators can join the candidate pool by simply bonding some tokens via an extri
 
 Parachain staking is the first of the two Nimbus filters applied to the candidate pool. It selects the top {{ networks.moonbase.staking.max_candidates }} candidates in terms of tokens staked in the network, which includes the candidate's bond and delegations from token holders. This filtered pool is called selected candidates, and selected candidates are renewed every round (which lasts {{ networks.moonbase.staking.round_blocks }} blocks). For a given round, the following diagram describes the parachain staking filtering:
 
-![Nimbus Parachain Staking Filter](/images/learn/features/consensus/consensus-1.png)
+![Nimbus Parachain Staking Filter](/images/learn/features/consensus/consensus-1.webp)
 
 From this pool, another filter is applied to retrieve a subset of eligible candidates for the next block authoring slot.
 
@@ -48,7 +48,7 @@ A lower eligibility ratio might provide faster block finalization times and a fa
 
 Once the size of the subset is defined, collators are randomly selected using a source of entropy. Currently, an internal coin-flipping algorithm is implemented, but this will later be migrated to use the relay chain's [randomness beacon](https://wiki.polkadot.network/docs/learn-randomness). Consequently, a new subset of eligible collators is selected for every relay chain block. For a given round and a given block `XYZ`, the following diagram describes the fixed-size subset filtering: 
 
-![Nimbus Parachain Staking Filter](/images/learn/features/consensus/consensus-2.png)
+![Nimbus Parachain Staking Filter](/images/learn/features/consensus/consensus-2.webp)
 
 ## Why Nimbus? {: #why-nimbus } 
 

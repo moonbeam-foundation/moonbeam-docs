@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
   );
   script.setAttribute('data-project-name', 'Moonbeam');
   script.setAttribute('data-project-color', '#514C65');
-  script.setAttribute('data-project-logo', '/images/moonbot.png');
+  script.setAttribute('data-project-logo', '/images/moonbot.webp');
   script.setAttribute(
     'data-footer-tos-privacy-links',
     '[{"title": "terms of service", "url": "https://moonbeam.network/terms-of-use/"}, {"title": "privacy policy", "url": "https://moonbeam.foundation/privacy-policy/"}]'

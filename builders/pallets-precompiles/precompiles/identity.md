@@ -9,11 +9,10 @@ description: Learn all you need to know about the Identity Precompile, such as i
 
 The Identity Precompile is a Solidity interface that allows you to create, manage, and retrieve information on on-chain identities. Identities are attached to accounts and include personal information, such as your legal name, display name, website, Twitter handle, Riot (now known as Element) name, and more. You can also take advantage of custom fields to include any other relevant information.
 
-The Identity Precompile interacts directly with Substrate's [Identity Pallet](/builders/pallets-precompiles/pallets/identity){target=_blank} to provide the functionality needed to create and manage identities. This pallet is coded in Rust and is normally not accessible from the Ethereum side of Moonbeam. However, the Identity Precompile allows you to access this functionality directly from the Solidity interface.
+The Identity Precompile interacts directly with Substrate's [Identity Pallet](/builders/pallets-precompiles/pallets/identity){target=\_blank} to provide the functionality needed to create and manage identities. This pallet is coded in Rust and is normally not accessible from the Ethereum side of Moonbeam. However, the Identity Precompile allows you to access this functionality directly from the Solidity interface.
 
-The Identity Precompile is only available on Moonbase Alpha and is located at the following address:
+The Identity Precompile is located at the following address:
 
-<!-- 
 === "Moonbeam"
 
      ```text
@@ -24,19 +23,19 @@ The Identity Precompile is only available on Moonbase Alpha and is located at th
 
      ```text
      {{networks.moonriver.precompiles.identity }}
-     ``` -->
+     ```
 
 === "Moonbase Alpha"
 
      ```text
-     {{networks.moonriver.precompiles.identity }}
+     {{networks.moonbase.precompiles.identity }}
      ```
 
 --8<-- 'text/builders/build/pallets-precompiles/precompiles/security.md'
 
 ## The Identity Precompile Solidity Interface {: #the-solidity-interface }
 
-[`Identity.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/identity/Identity.sol){target=_blank} is a Solidity interface that allows developers to interact with the precompile's methods.
+[`Identity.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/identity/Identity.sol){target=\_blank} is a Solidity interface that allows developers to interact with the precompile's methods.
 
 ??? code "Identity.sol"
 
@@ -69,7 +68,7 @@ The judgment-related functions that must be called by a registrar and the caller
 
 ## Interact with the Solidity Interface {: #interact-with-interface }
 
-The following sections will cover how to interact with the Identity Precompile using [Ethereum libraries](/builders/build/eth-api/libraries/){target=_blank}, such as [Ethers.js](/builders/build/eth-api/libraries/ethersjs){target=_blank}, [Web3.js](/builders/build/eth-api/libraries/web3js){target=_blank}, and [Web3.py](/builders/build/eth-api/libraries/web3py){target=_blank}.
+The following sections will cover how to interact with the Identity Precompile using [Ethereum libraries](/builders/build/eth-api/libraries/){target=\_blank}, such as [Ethers.js](/builders/build/eth-api/libraries/ethersjs){target=\_blank}, [Web3.js](/builders/build/eth-api/libraries/web3js){target=\_blank}, and [Web3.py](/builders/build/eth-api/libraries/web3py){target=\_blank}.
 
 The examples in this guide will be on Moonbase Alpha.
 --8<-- 'text/common/endpoint-examples.md'

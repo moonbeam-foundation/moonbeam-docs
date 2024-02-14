@@ -34,8 +34,7 @@ async function main() {
     // Retrieve the block height of the current block
     console.log('Block Height: ' + responseBlock.data.number);
 
-    // Due to a current bug, use the previous block's base fee
-    // to match the on-chain data
+    // Use the previous block's base fee to match the on-chain data
     // Find the block's nextFeeMultiplier
     const prevBlock = Number(responseBlock.data.number) - 1;
     const responsePallet = await axios.get(endpointPallet + prevBlock);

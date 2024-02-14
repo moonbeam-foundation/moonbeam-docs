@@ -7,9 +7,9 @@ description: Learn how to use OpenZeppelin products for creating and managing So
 
 ## Introduction {: #introduction } 
 
-[OpenZeppelin](https://openzeppelin.com/){target=_blank} is well known in the Ethereum developer community as their set of audited smart contracts and libraries are a standard in the industry. For example, most of the tutorials that show developers how to deploy an ERC-20 token use OpenZeppelin contracts.
+[OpenZeppelin](https://openzeppelin.com/){target=\_blank} is well known in the Ethereum developer community as their set of audited smart contracts and libraries are a standard in the industry. For example, most of the tutorials that show developers how to deploy an ERC-20 token use OpenZeppelin contracts.
 
-You can find more information about OpenZeppelin on their [documentation site](https://docs.openzeppelin.com/openzeppelin/){target=_blank}.
+You can find more information about OpenZeppelin on their [documentation site](https://docs.openzeppelin.com/openzeppelin/){target=\_blank}.
 
 As part of its Ethereum compatibility features, OpenZeppelin products can be seamlessly used on Moonbeam. This page will provide information on different OpenZeppelin solutions that you can test.
 

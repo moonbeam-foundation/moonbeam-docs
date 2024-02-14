@@ -7,7 +7,7 @@ description: Learn about and how to craft the two posts you need to make on the 
 
 ## Introduction {: #introduction }
 
-When starting an XCM integration on Moonriver or Moonbeam MainNet, there are two preliminary posts that must be made on the [Moonbeam Community Forum](https://forum.moonbeam.foundation/){target=_blank} so that the voting community has the chance to provide feedback. The two preliminary posts are an XCM disclosure and an XCM proposal. **This step is not necessary when connecting to Moonbase Alpha.**
+When starting an XCM integration on Moonriver or Moonbeam MainNet, there are two preliminary posts that must be made on the [Moonbeam Community Forum](https://forum.moonbeam.foundation/){target=\_blank} so that the voting community has the chance to provide feedback. The two preliminary posts are an XCM disclosure and an XCM proposal. **This step is not necessary when connecting to Moonbase Alpha.**
 
 If only an asset is being registered, the cross-chain channel must already be established, and so only an XCM proposal post is required to register the asset.
 
@@ -15,7 +15,7 @@ It is recommended that this be done five days before the actual proposal is subm
 
 ## XCM Disclosures {: #xcm-disclosure }
 
-The first post that should be made are the key disclosures within the [XCM Disclosures category](https://forum.moonbeam.foundation/c/xcm-hrmp/xcm-disclosures/15){target=_blank}, which highlight key information that is important to a voter's decision. This post is only required when establishing an XCM integration; it is not necessary if the integration already exists and you only need to register an asset.
+The first post that should be made are the key disclosures within the [XCM Disclosures category](https://forum.moonbeam.foundation/c/xcm-hrmp/xcm-disclosures/15){target=\_blank}, which highlight key information that is important to a voter's decision. This post is only required when establishing an XCM integration; it is not necessary if the integration already exists and you only need to register an asset.
 
 Once you hit the **New Topic** button, a template is provided with the relevant information to be filled in. Please use either the Moonbeam/Moonriver tag, depending on the network you are integrating with.
 
@@ -37,7 +37,7 @@ You'll also need to provide answers to the following questions:
 
 ## XCM Proposals {: #xcm-proposals }
 
-The second post is a preliminary draft of the proposal in the [XCM Proposals category](https://forum.moonbeam.foundation/c/xcm-hrmp/xcm-proposals/14){target=_blank}. Once a proposal is submitted on-chain and available for voting, you must also add a description to it in either the [Moonbeam Polkassembly](https://moonbeam.polkassembly.io/opengov){target=_blank} or [Moonriver Polkassembly](https://moonriver.polkassembly.io/opengov){target=_blank}.
+The second post is a preliminary draft of the proposal in the [XCM Proposals category](https://forum.moonbeam.foundation/c/xcm-hrmp/xcm-proposals/14){target=\_blank}. Once a proposal is submitted on-chain and available for voting, you must also add a description to it in either the [Moonbeam Polkassembly](https://moonbeam.polkassembly.io/opengov){target=\_blank} or [Moonriver Polkassembly](https://moonriver.polkassembly.io/opengov){target=\_blank}.
 
 Once you hit the **New Topic** button, a template is provided with the relevant information to be filled in. Please use either the Moonbeam or Moonriver tag, depending on the network you are integrating with.
 

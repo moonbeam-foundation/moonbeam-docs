@@ -19,17 +19,17 @@ First, you need to install the MathWallet browser extension, which you can get f
 
 With the browser extension installed, please open it and set a password.
 
-![Set wallet password](/images/tokens/connect/mathwallet/mathwallet-1.png)
+![Set wallet password](/images/tokens/connect/mathwallet/mathwallet-1.webp)
 
 ## Connect to Moonbeam {: #connect-to-moonbeam } 
 
 To get started with Moonbeam, all you have to do is click **Switch Network** and select **Moonbeam**.
 
-![Switch to Moonbeam](/images/tokens/connect/mathwallet/mathwallet-2.png)
+![Switch to Moonbeam](/images/tokens/connect/mathwallet/mathwallet-2.webp)
 
 And that is it, you now have MathWallet connected to Moonbeam! Your wallet should look like this:
 
-<img src="/images/tokens/connect/mathwallet/mathwallet-3.png" alt="Wallet Connected to Moonbeam" style="width: 50%; display: block; margin-left: auto; margin-right: auto;" />
+<img src="/images/tokens/connect/mathwallet/mathwallet-3.webp" alt="Wallet Connected to Moonbeam" style="width: 50%; display: block; margin-left: auto; margin-right: auto;" />
 
 Now that you've successfully connected to Moonbeam, you can skip ahead to the [Adding a Wallet](#adding-a-wallet) section to get started creating or importing a wallet.
 
@@ -37,11 +37,11 @@ Now that you've successfully connected to Moonbeam, you can skip ahead to the [A
 
 Getting started with Moonriver is a straightforward process. All you have to do is click **Switch Network** and select **Moonriver**.
 
-![Connect to Moonriver](/images/tokens/connect/mathwallet/mathwallet-4.png)
+![Connect to Moonriver](/images/tokens/connect/mathwallet/mathwallet-4.webp)
 
 And that is it, you now have MathWallet connected to Moonriver! Your wallet should look like this:
 
-<img src="/images/tokens/connect/mathwallet/mathwallet-5.png" alt="Wallet Connected to Moonrive" style="width: 50%; display: block; margin-left: auto; margin-right: auto;" />
+<img src="/images/tokens/connect/mathwallet/mathwallet-5.webp" alt="Wallet Connected to Moonrive" style="width: 50%; display: block; margin-left: auto; margin-right: auto;" />
 
 Now that you've successfully connected to Moonriver, you can skip ahead to the [Adding a Wallet](#adding-a-wallet) section to get started creating or importing a wallet.
 
@@ -49,15 +49,15 @@ Now that you've successfully connected to Moonriver, you can skip ahead to the [
 
 In this part, we'll go through the process of connecting MathWallet to Moonbase Alpha. First you'll need to enable Moonbase Alpha. To do so, go to the settings by clicking on the gear icon. Then click on **Networks** and scroll down through the **Ethereum** section until you find **Moonbase Alpha** and toggle the switch.
 
-![Enable Moonbase Alpha](/images/tokens/connect/mathwallet/mathwallet-6.png)
+![Enable Moonbase Alpha](/images/tokens/connect/mathwallet/mathwallet-6.webp)
 
 Lastly you'll need to switch to Moonbase Alpha. From the main screen, click **Switch Network** and select **Moonbase Alpha**.
 
-![Connect to Moonbase Alpha](/images/tokens/connect/mathwallet/mathwallet-7.png)
+![Connect to Moonbase Alpha](/images/tokens/connect/mathwallet/mathwallet-7.webp)
 
 And that is it, you now have MathWallet connected to the Moonbase Alpha TestNet! Your wallet should look like this:
 
-![Wallet Connected to Moonbase Alpha](/images/tokens/connect/mathwallet/mathwallet-8.png)
+![Wallet Connected to Moonbase Alpha](/images/tokens/connect/mathwallet/mathwallet-8.webp)
 
 Now that you've successfully connected to Moonbase Alpha, you can move on to the [Adding a Wallet](#adding-a-wallet) section to get started creating or importing a wallet.
 
@@ -77,25 +77,25 @@ The following steps for creating a wallet can be modified for Moonbeam and Moonr
 
 To create a new wallet, click the :heavy_plus_sign: sign next to **Moonbase Alpha** and select **Create Wallet**.
 
-![MathWallet create a wallet](/images/tokens/connect/mathwallet/mathwallet-9.png)
+![MathWallet create a wallet](/images/tokens/connect/mathwallet/mathwallet-9.webp)
 
 Set and confirm a wallet name. Next, make sure you safely store the mnemonic, as it provides direct access to your funds. Once you have completed the process, you should see your newly created wallet with its associated public address.
 
-![MathWallet wallet created](/images/tokens/connect/mathwallet/mathwallet-10.png)
+![MathWallet wallet created](/images/tokens/connect/mathwallet/mathwallet-10.webp)
 
 ### Import a Wallet {: #import-a-wallet } 
 
 To create a new wallet, click the :heavy_plus_sign: sign next to **Moonbase Alpha** and select **Import Wallet**.
 
-![MathWallet import a wallet](/images/tokens/connect/mathwallet/mathwallet-11.png)
+![MathWallet import a wallet](/images/tokens/connect/mathwallet/mathwallet-11.webp)
 
 Next, select between importing using a mnemonic or a private key. For the first option, enter the mnemonic word by word, separated by spaces. For the second option, enter the private key (either with the `0x` prefix or not, it works both ways).
 
-![MathWallet private key or mnemonic import](/images/tokens/connect/mathwallet/mathwallet-12.png)
+![MathWallet private key or mnemonic import](/images/tokens/connect/mathwallet/mathwallet-12.webp)
 
 After clicking next, set a wallet name, and that is it! You should see your imported wallet with its associated public address.
 
-![MathWallet imported wallet](/images/tokens/connect/mathwallet/mathwallet-13.png)
+![MathWallet imported wallet](/images/tokens/connect/mathwallet/mathwallet-13.webp)
 
 ## Using MathWallet {: #using-mathwallet } 
 
@@ -103,7 +103,7 @@ MathWallet serves as a Web3 provider in tools such as [Remix](/builders/build/et
 
 For example, in Remix, when deploying a smart contract to Moonbase Alpha, make sure you select the **Injected Web3** option in the **ENVIRONMENT** menu. If you have MathWallet connected, you will see the TestNet chain ID just below the box (_{{ networks.moonbase.chain_id }}_) and your MathWallet account injected into Remix as well. When sending a transaction, you should see a similar pop-up from MathWallet:
 
-![MathWallet sign transaction](/images/tokens/connect/mathwallet/mathwallet-14.png)
+![MathWallet sign transaction](/images/tokens/connect/mathwallet/mathwallet-14.webp)
 
 By clicking on **Accept** you are signing this transaction, and the contract will be deployed to the Moonbase Alpha TestNet.
 

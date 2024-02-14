@@ -7,9 +7,9 @@ description: Learn how to use Waffle and Mars to write, compile, test, and deplo
 
 ## Introduction {: #introduction }
 
-[Waffle](https://getwaffle.io/){target=_blank} is a library for compiling and testing smart contracts, and [Mars](https://github.com/EthWorks/Mars){target=_blank} is a deployment manager. Together, Waffle and Mars can be used to write, compile, test, and deploy Ethereum smart contracts. Since Moonbeam is Ethereum compatible, Waffle and Mars can be used to deploy smart contracts to a [Moonbeam development node](/builders/get-started/networks/moonbeam-dev){target=_blank} or the [Moonbase Alpha TestNet](/builders/get-started/networks/moonbase){target=_blank}.
+[Waffle](https://getwaffle.io/){target=\_blank} is a library for compiling and testing smart contracts, and [Mars](https://github.com/EthWorks/Mars){target=\_blank} is a deployment manager. Together, Waffle and Mars can be used to write, compile, test, and deploy Ethereum smart contracts. Since Moonbeam is Ethereum compatible, Waffle and Mars can be used to deploy smart contracts to a [Moonbeam development node](/builders/get-started/networks/moonbeam-dev){target=\_blank} or the [Moonbase Alpha TestNet](/builders/get-started/networks/moonbase){target=\_blank}.
 
-Waffle uses minimal dependencies, has syntax that is easy to learn and extend, and provides fast execution times when compiling and testing smart contracts. Furthermore, it is [TypeScript](https://www.typescriptlang.org/){target=_blank} compatible and uses [Chai matchers](https://ethereum-waffle.readthedocs.io/en/latest/matchers.html){target=_blank} to make tests easy to read and write.
+Waffle uses minimal dependencies, has syntax that is easy to learn and extend, and provides fast execution times when compiling and testing smart contracts. Furthermore, it is [TypeScript](https://www.typescriptlang.org/){target=\_blank} compatible and uses [Chai matchers](https://ethereum-waffle.readthedocs.io/en/latest/matchers.html){target=\_blank} to make tests easy to read and write.
 
 Mars provides a simple, TypeScript compatible framework for creating advanced deployment scripts and staying in sync with state changes. Mars focuses on infrastructure-as-code, allowing developers to specify how their smart contracts should be deployed and then using those specifications to automatically handle state changes and deployments.
 
@@ -19,7 +19,7 @@ In this guide, you'll be creating a TypeScript project to write, compile, and te
 
 You will need to have the following:
 
- - MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=_blank}
+ - MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}
  - An account with funds.
   --8<-- 'text/_common/faucet/faucet-list-item.md'
  - 
@@ -161,7 +161,7 @@ That is all you need to do to configure Waffle, now you're all set to compile th
 npm run build
 ```
 
-![Waffle compiler output](/images/builders/build/eth-api/dev-env/waffle-mars/waffle-mars-1.png)
+![Waffle compiler output](/images/builders/build/eth-api/dev-env/waffle-mars/waffle-mars-1.webp)
 
 After compiling your contracts, Waffle stores the JSON output in the `build` directory. Since the contract in this guide is based on OpenZeppelin's ERC-20 template, relevant ERC-20 JSON files will appear in the `build` directory too.
 
@@ -173,7 +173,7 @@ You'll be running tests against the Moonbase Alpha TestNet and will need the cor
 
 --8<-- 'text/_common/endpoint-setup.md'
 
-Since you will be running tests against the TestNet, it might take a couple minutes to run all of the tests. If you want a more efficient testing experience, you can [spin up a Moonbeam development node](/builders/get-started/networks/moonbeam-dev/){target=_blank} using [`instant seal`](/builders/get-started/networks/moonbeam-dev/#node-options){target=_blank}. Running a local Moonbeam development node with the `instant seal` feature is similar to the quick and iterative experience you would get with [Hardhat Network](https://hardhat.org/hardhat-network/docs/overview){target=_blank}.
+Since you will be running tests against the TestNet, it might take a couple minutes to run all of the tests. If you want a more efficient testing experience, you can [spin up a Moonbeam development node](/builders/get-started/networks/moonbeam-dev/){target=\_blank} using [`instant seal`](/builders/get-started/networks/moonbeam-dev/#node-options){target=\_blank}. Running a local Moonbeam development node with the `instant seal` feature is similar to the quick and iterative experience you would get with [Hardhat Network](https://hardhat.org/hardhat-network/docs/overview){target=\_blank}.
 
 1. Create a directory to contain your tests and a file to test your `MyToken` contract:
 
@@ -375,7 +375,7 @@ Artifacts need to be generated for Mars so that typechecks are enabled within de
     npm run build
     ```
 
-![Waffle and Mars compiler output](/images/builders/build/eth-api/dev-env/waffle-mars/waffle-mars-2.png)
+![Waffle and Mars compiler output](/images/builders/build/eth-api/dev-env/waffle-mars/waffle-mars-2.webp)
 
 If you open the `build` directory, you should now see an `artifacts.ts` file containing the artifact data needed for deployments. To continue on with the deployment process, you'll need to write a deployment script. The deployment script will be used to tell Mars which contract to deploy, to what network, and which account is to be used to trigger the deployment.
 
@@ -443,16 +443,16 @@ You've configured the deployment, now it's time to actually deploy to Moonbase A
 
 2. In your Terminal, Mars will prompt you to press `ENTER` to send your transaction
 
-    ![Mars confirm deployment](/images/builders/build/eth-api/dev-env/waffle-mars/waffle-mars-3.png)
+    ![Mars confirm deployment](/images/builders/build/eth-api/dev-env/waffle-mars/waffle-mars-3.webp)
 
 If successful, you should see details about your transaction including it's hash, the block it was included in, and it's address.
 
-![Mars deployment output](/images/builders/build/eth-api/dev-env/waffle-mars/waffle-mars-4.png)
+![Mars deployment output](/images/builders/build/eth-api/dev-env/waffle-mars/waffle-mars-4.webp)
 
 Congratulations! You've deployed a contract to Moonbase Alpha using Waffle and Mars!
 
 ## Example Project {: #example-project }
 
-If you want to see a completed example of a Waffle and Mars project on Moonbeam, check out the [moonbeam-waffle-mars-example](https://github.com/EthWorks/moonbeam-waffle-mars-example){target=_blank} created by the team behind Waffle and Mars, EthWorks.
+If you want to see a completed example of a Waffle and Mars project on Moonbeam, check out the [moonbeam-waffle-mars-example](https://github.com/EthWorks/moonbeam-waffle-mars-example){target=\_blank} created by the team behind Waffle and Mars, EthWorks.
 
 --8<-- 'text/_disclaimers/third-party-content.md'

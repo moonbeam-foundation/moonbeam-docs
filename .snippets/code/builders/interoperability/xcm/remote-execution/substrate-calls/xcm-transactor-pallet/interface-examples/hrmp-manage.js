@@ -12,7 +12,7 @@ const weightInfo = {
     refTime: INSERT_REF_TIME,
     proofSize: INSERT_PROOF_SIZE,
   },
-  overallWeight: { refTime: INSERT_REF_TIME, proofSize: INSERT_PROOF_SIZE },
+  overallWeight: { Unlimited: null },
 };
 
 const main = async () => {
