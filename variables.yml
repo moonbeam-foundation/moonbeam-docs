@@ -751,7 +751,13 @@ networks:
     min_gas_price: 125
     block_time: 12
     gas_block: 15,000,000
+    gas_block_numbers_only: 15000000
     gas_tx: 12,995,000
+    mbip_5:
+      block_storage_limit: 40
+      gas_storage_ratio: 366
+      example_storage: 500
+      example_addtl_gas: 183000
     node:
       cores: 8
       ram: 16
