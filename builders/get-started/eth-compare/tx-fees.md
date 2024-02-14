@@ -351,7 +351,7 @@ The relevant data will be stored in the `value` key of the JSON object. This val
 
 ### GasPrice, MaxFeePerGas, and MaxPriorityFeePerGas {: #gasprice-maxfeepergas-maxpriorityfeepergas }
 
-The `GasPrice` is used to specify the gas price of legacy transactions prior to [EIP-1559](https://eips.ethereum.org/EIPS/eip-1559){target=\_blank}. The `MaxFeePerGas` and `MaxPriorityFeePerGas` were both introduced in EIP-1559 alongside the `BaseFee`. The `MaxFeePerGas` defines the maximum fee permitted to be paid per unit of gas and is the sum of the `BaseFee` and the `MaxPriorityFeePerGas`. The `MaxPriorityFeePerGas` is the maximum priority fee configured by the sender of a transaction that is used to incentive the prioritization of a transaction in a block.
+The `GasPrice` is used to specify the gas price of legacy transactions prior to [EIP-1559](https://eips.ethereum.org/EIPS/eip-1559){target=\_blank}. The `MaxFeePerGas` and `MaxPriorityFeePerGas` were both introduced in EIP-1559 alongside the `BaseFee`. The `MaxFeePerGas` defines the maximum fee permitted to be paid per unit of gas and is the sum of the `BaseFee` and the `MaxPriorityFeePerGas`. The `MaxPriorityFeePerGas` is the maximum priority fee configured by the sender of a transaction that is used to incentivize the prioritization of a transaction in a block.
 
 Although Moonbeam is Ethereum-compatible, it is also a Substrate-based chain at its core, and priorities work differently in Substrate than in Ethereum. In Substrate, transactions are not prioritized by gas price. To address this, Moonbeam uses a modified prioritization system that reprioritizes Substrate transactions using an Ethereum-first solution. A Substrate transaction still goes through the validity process, where it is assigned transaction tags, longevity, and a priority. The original priority is then overwritten with a new priority based on the transaction's fee per gas, which is derived from the transaction's tip and weight. If the transaction is an Ethereum transaction, the priority is set according to the priority fee.
 
@@ -365,7 +365,7 @@ The data for an Ethereum transaction in a particular block can be extracted from
 GET /blocks/{blockId}
 ```
 
-The paths to the relevant values have also truncated and reproduced below:
+The paths to the relevant values have also been truncated and reproduced below:
 
 === "EIP1559"
     |      EVM Field       |                               Block JSON Field                               |
