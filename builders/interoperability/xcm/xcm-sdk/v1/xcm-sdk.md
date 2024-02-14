@@ -443,6 +443,7 @@ As previously mentioned, regardless of which method you use to build the transfe
           genesisHash: '0xfe58ea77779b7abda7da4ec526d14db9b1e9cd40a217c34892af80a9b332b76d',
           parachainId: 2004,
           ss58Format: 1284,
+          usesChainDecimals: false,
           weight: 1000000000,
           ws: 'wss://wss.api.moonbeam.network',
           id: 1284,
@@ -504,6 +505,7 @@ As previously mentioned, regardless of which method you use to build the transfe
           genesisHash: '0x91b171bb158e2d3848fa23a9f1c25182fb8e20313b2c1eb49219da7a70ce90c3',
           parachainId: 0,
           ss58Format: 0,
+          usesChainDecimals: false,
           weight: 1000000000,
           ws: 'wss://rpc.polkadot.io'
         },
@@ -620,6 +622,7 @@ The `swap` function returns the transfer data with the original source chain and
           genesisHash: '0x91b171bb158e2d3848fa23a9f1c25182fb8e20313b2c1eb49219da7a70ce90c3',
           parachainId: 0,
           ss58Format: 0,
+          usesChainDecimals: false,
           weight: 1000000000,
           ws: 'wss://rpc.polkadot.io'
         },
@@ -693,6 +696,7 @@ The `swap` function returns the transfer data with the original source chain and
           genesisHash: '0xfe58ea77779b7abda7da4ec526d14db9b1e9cd40a217c34892af80a9b332b76d',
           parachainId: 2004,
           ss58Format: 1284,
+          usesChainDecimals: false,
           weight: 1000000000,
           ws: 'wss://wss.api.moonbeam.network',
           id: 1284,
