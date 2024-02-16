@@ -389,7 +389,7 @@ If you decide to go this route, please keep in mind that the oracle node only su
 To build your own client contract using the `ChainlinkClient`, you'll need to start by importing the contract:
 
 ```solidity
-import "https://github.com/smartcontractkit/chainlink/evm-contracts/src/v0.8/ChainlinkClient.sol";
+import "https://github.com/smartcontractkit/chainlink/blob/develop/contracts/src/v0.6/ChainlinkClient.sol";
 ```
 
 You can checkout out the [Chainlink documentation on ChainlinkClient API Reference](https://docs.chain.link/docs/chainlink-framework/){target=\_blank} for more information.
