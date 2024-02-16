@@ -28,6 +28,7 @@ There are data feed contracts available for Moonbeam-based networks to help simp
 The data lives in a series of smart contracts (one per price feed) and can be fetched with the aggregator interface:
 
 ```solidity
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
 interface AggregatorV3Interface {
@@ -58,7 +59,7 @@ interface AggregatorV3Interface {
 }
 ```  
 
-As seen above in the interface, there are five functions for fetching data: `decimal`, `description`, `version`, `getRoundData`, and `latestRoundData`.
+As seen above in the interface, there are five functions for fetching data: `decimals`, `description`, `version`, `getRoundData`, and `latestRoundData`.
 
 Currently, there are data feed contracts for [Moonbeam](https://docs.chain.link/docs/data-feeds-moonbeam/){target=\_blank}, [Moonriver](https://docs.chain.link/docs/data-feeds-moonriver/){target=\_blank}, and Moonbase Alpha for the following price pairs (proxy addresses):
 
@@ -208,6 +209,7 @@ If you want to skip the hurdles of deploying all contracts, setting up your orac
 The client contract deployed on Moonbase Alpha is as follows:
 
 ```solidity
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.6.6;
 
 import "https://github.com/smartcontractkit/chainlink/blob/develop/contracts/src/v0.6/ChainlinkClient.sol";
@@ -306,6 +308,7 @@ The client contract is deployed at `{{ networks.moonbase.chainlink.client_contra
 
 
 ```solidity
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.6.6;
 
 /**
