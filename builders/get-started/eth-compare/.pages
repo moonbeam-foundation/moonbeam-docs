@@ -1,9 +1,0 @@
-title: Moonbeam vs Ethereum
-nav:
-  - index.md
-  - 'Account Balances': 'balances.md'
-  - 'Transfers API': 'transfers-api.md'
-  - 'Transaction Fees': 'tx-fees.md'
-  - 'Consensus & Finality': 'consensus-finality.md'
-  - 'RPC Support': 'rpc-support.md'
-  - 'Security Considerations': 'security.md'

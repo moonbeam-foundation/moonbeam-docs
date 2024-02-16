@@ -58,19 +58,19 @@ The snippets below follow this strategy to check transaction finality. It uses t
 === "Ethers.js"
 
     ```js
-    --8<-- 'code/builders/get-started/eth-compare/consensus-finality/ethers.js'
+    --8<-- 'code/learn/core-concepts/consensus-finality/ethers.js'
     ```
 
 === "Web3.js"
 
     ```js
-    --8<-- 'code/builders/get-started/eth-compare/consensus-finality/web3.js'
+    --8<-- 'code/learn/core-concepts/consensus-finality/web3.js'
     ```
 
 === "Web3.py"
 
     ```py
-    --8<-- 'code/builders/get-started/eth-compare/consensus-finality/web3.py'
+    --8<-- 'code/learn/core-concepts/consensus-finality/web3.py'
     ```
 
 ## Check Transaction Finality with Moonbeam RPC Endpoints {: #check-tx-finality-with-moonbeam-rpc-endpoints }
@@ -86,19 +86,19 @@ You can modify the scripts from the Ethereum RPC section above to use `moon_isBl
     === "Ethers.js"
 
         ```js
-        --8<-- 'code/builders/get-started/eth-compare/consensus-finality/custom-rpc/block/ethers.js'
+        --8<-- 'code/learn/core-concepts/consensus-finality/custom-rpc/block/ethers.js'
         ```
 
     === "Web3.js"
 
         ```js
-        --8<-- 'code/builders/get-started/eth-compare/consensus-finality/custom-rpc/block/web3.js'
+        --8<-- 'code/learn/core-concepts/consensus-finality/custom-rpc/block/web3.js'
         ```
 
     === "Web3.py"
 
         ```py
-        --8<-- 'code/builders/get-started/eth-compare/consensus-finality/custom-rpc/block/web3.py'
+        --8<-- 'code/learn/core-concepts/consensus-finality/custom-rpc/block/web3.py'
         ```
 
 ??? code "moon_isTxFinalized"
@@ -106,19 +106,19 @@ You can modify the scripts from the Ethereum RPC section above to use `moon_isBl
     === "Ethers.js"
 
         ```js
-        --8<-- 'code/builders/get-started/eth-compare/consensus-finality/custom-rpc/tx/ethers.js'
+        --8<-- 'code/learn/core-concepts/consensus-finality/custom-rpc/tx/ethers.js'
         ```
 
     === "Web3.js"
 
         ```js
-        --8<-- 'code/builders/get-started/eth-compare/consensus-finality/custom-rpc/tx/web3.js'
+        --8<-- 'code/learn/core-concepts/consensus-finality/custom-rpc/tx/web3.js'
         ```
 
     === "Web3.py"
 
         ```py
-        --8<-- 'code/builders/get-started/eth-compare/consensus-finality/custom-rpc/tx/web3.py'
+        --8<-- 'code/learn/core-concepts/consensus-finality/custom-rpc/tx/web3.py'
         ```
 
 ## Check Transaction Finality with Substrate RPC Endpoints {: #check-tx-finality-with-substrate-rpc-endpoints }
@@ -136,13 +136,13 @@ You can find more information about Polkadot.js and the Substrate JSON-RPC in th
 === "Polkadot.js"
 
     ```js
-    --8<-- 'code/builders/get-started/eth-compare/consensus-finality/polkadotjs.js'
+    --8<-- 'code/learn/core-concepts/consensus-finality/polkadotjs.js'
     ```
 
 === "py-substrate-interface"
 
     ```py
-    --8<-- 'code/builders/get-started/eth-compare/consensus-finality/pysubstrateinterface.py'
+    --8<-- 'code/learn/core-concepts/consensus-finality/pysubstrateinterface.py'
     ```
 
 --8<-- 'text/_disclaimers/third-party-content.md'

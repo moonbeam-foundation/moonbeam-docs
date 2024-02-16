@@ -7,7 +7,7 @@ description: Learn about the transaction fee model used in Moonbeam and the diff
 
 ## Introduction {: #introduction }
 
-Similar to [the Ethereum and Substrate APIs for sending transfers](/builders/get-started/eth-compare/transfers-api/){target=\_blank} on Moonbeam, the Substrate and EVM layers on Moonbeam also have distinct transaction fee models that developers should be aware of when they need to calculate and keep track of transaction fees for their transactions.
+Similar to [the Ethereum and Substrate APIs for sending transfers](/learn/core-concepts/transfers-api/){target=\_blank} on Moonbeam, the Substrate and EVM layers on Moonbeam also have distinct transaction fee models that developers should be aware of when they need to calculate and keep track of transaction fees for their transactions.
 
 For starters, Ethereum transactions consume gas units based on their computational complexity and data storage requirements. On the other hand, Substrate transactions use the concept of "weight" to determine fees. In this guide, you'll learn how to calculate the transaction fees for both Substrate and Ethereum transactions. In terms of Ethereum transactions, you'll also learn about the key differences between how transaction fees are calculated on Moonbeam and Ethereum.
 
@@ -444,7 +444,7 @@ The following code sample is for demo purposes only and should not be used witho
 You can use the following snippet for any Moonbeam-based network, but you'll need to modify the `baseFee` accordingly. You can refer back to the [Base Fee](#base-fee) section to get the calculation for each network.
 
 ```js
---8<-- 'code/builders/get-started/eth-compare/tx-fees/tx-fees-block-dynamic.js'
+--8<-- 'code/learn/core-concepts/tx-fees/tx-fees-block-dynamic.js'
 ```
 
 ## Substrate API Transaction Fees {: #substrate-api-transaction-fees }

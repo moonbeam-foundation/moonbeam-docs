@@ -5,24 +5,9 @@ description: It can seem daunting to move to a Polkadot parachain if you’re us
 
 # Ethereum Compatibility
 
-## Differences Between Moonbeam and Ethereum {: #differences-between-moonbeam-and-ethereum }
+Moonbeam bridges the Ethereum and Polkadot ecosystems, offering developers the familiarity of Ethereum's tooling and infrastructure while leveraging the scalability and interoperability of Polkadot.
 
-While Moonbeam strives to be compatible with Ethereum’s Web3 API and EVM, there are a number of important Moonbeam differences.
-
-First, Moonbeam uses a Proof of Stake-based consensus mechanism, which means that Proof of Work concepts, such as difficulty, uncles, hashrate, etc., generally don’t have meaning within Moonbeam. For APIs that return values related to Ethereum’s Proof of Work, we return default values. Existing Ethereum contracts that rely on Proof of Work internals (e.g., mining pool contracts) will almost certainly not work as expected on Moonbeam.
-
-Another significant difference between Moonbeam and Ethereum is that Moonbeam includes an extensive set of on-chain governance features based on Substrate functionality. These onchain governance modules include functionality to power upgrades to the blockchain itself based on token weighted voting.
-
-## What Stays the Same {: #what-stays-the-same }
-
-If you're moving portions of your existing workloads and state off of Ethereum Layer 1 to Moonbeam, you can expect minimal required changes (aside from the exceptions noted above). Your applications, contracts, and tools will largely remain unchanged.
-
-Moonbeam supports:
-
- - **Solidity-Based Smart Contracts**
- - **Ecosystem Tools** (e.g., block explorers, front-end development libraries, wallets)
- - **Development Tools** (e.g., Hardhat, Remix, MetaMask)
- - **Ethereum Tokens via Bridges** (e.g., token movement, state visibility, message passing)
+This page delves into the underlying architecture and mechanisms that enable seamless Ethereum compatibility on Moonbeam, which is, at its core, a Substrate-based blockchain.
 
 ## Frontier {: #frontier }
 
@@ -68,4 +53,4 @@ The [Ethereum pallet](https://polkadot-evm.github.io/frontier/frame/ethereum.htm
 
 When a user submits a raw Ethereum transaction, it gets converted into a Substrate transaction through the pallet Ethereum's `transact` extrinsic. Using the Ethereum pallet as the sole executor of the EVM pallet, forces all of the data to be stored and transacted with in an Ethereum-compatible way. This enables block explorers such as [Moonscan](/builders/get-started/explorers#moonscan){target=\_blank}, which is built by Etherscan, to be able to index block data.
 
-Along with support for Ethereum-style data, the Ethereum pallet combined with the [RPC module](https://github.com/polkadot-evm/frontier/tree/master/client/rpc){target=\_blank} provides RPC support. This enables usage of [basic Ethereum JSON-RPC methods](/builders/get-started/eth-compare/rpc-support#basic-ethereum-json-rpc-methods){target=\_blank} which ultimately allows existing Ethereum DApps to be deployed to Moonbeam with minimal changes.
+Along with support for Ethereum-style data, the Ethereum pallet combined with the [RPC module](https://github.com/polkadot-evm/frontier/tree/master/client/rpc){target=\_blank} provides RPC support. This enables usage of [basic Ethereum JSON-RPC methods](/learn/core-concepts/rpc-support#basic-ethereum-json-rpc-methods){target=\_blank} which ultimately allows existing Ethereum DApps to be deployed to Moonbeam with minimal changes.

@@ -21,7 +21,7 @@ An account on Ethereum is an entity with a token balance (Ether or ETH in this c
 
 Therefore, Ethereum has two main types of accounts: user-owned and contract-owned. No matter the type, an Ethereum account has a single balance field that represents the number of Wei owned by this address, where Wei is a denomination of ETH (1 x 10^18 Wei per ETH).
 
-![Ethereum balances diagram](/images/builders/get-started/eth-compare/balances/balances-1.webp)
+![Ethereum balances diagram](/images/learn/core-concepts/balances/balances-1.webp)
 
 ## Moonbeam Account Balances {: #moonbeam-account-balances }
 
@@ -35,7 +35,7 @@ As with Ethereum, there are two main types of accounts: user-owned and contract 
  - **Misc frozen** — represents a balance that the `free` balance may not drop below when withdrawing funds, except for transaction fee payment. For example, funds being used to vote on a governance proposal are shown as `misc frozen`. These funds are **not** accessible via the Ethereum API until they are freed
  - **Fee frozen** — represents a balance that the `free` balance may not drop below when specifically paying for transaction fees. These funds are **not** accessible via the Ethereum API until they are freed
 
-![Moonbeam balances diagram](/images/builders/get-started/eth-compare/balances/balances-2.webp)
+![Moonbeam balances diagram](/images/learn/core-concepts/balances/balances-2.webp)
 
 ### Retrieve Your Balance {: #retrieve-your-balance }
 
@@ -45,13 +45,13 @@ You can check on your balances, including your free (or transferrable) and reser
     --8<-- 'text/_common/endpoint-examples.md'
 
 ```js
---8<-- 'code/builders/get-started/eth-compare/balances/balance.js'
+--8<-- 'code/learn/core-concepts/balances/balance.js'
 ```
 
 You can also retrieve your balance locks using the Polkadot.js API.
 
 ```js
---8<-- 'code/builders/get-started/eth-compare/balances/locks.js'
+--8<-- 'code/learn/core-concepts/balances/locks.js'
 ```
 
 ## Main Differences {: #main-differences }
