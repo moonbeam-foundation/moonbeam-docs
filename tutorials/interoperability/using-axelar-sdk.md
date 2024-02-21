@@ -213,13 +213,11 @@ If you run the Hardhat script, you’ll end up with something like this in your 
 ![Axelar Image 3](/images/tutorials/interoperability/axelar-sdk/axelar-3.webp)
 
 
-You can learn more about debugging contracts in Axelar’s documentation, where they go into depth on specific error messages and how to use tools like Tenderly for logic errors.
+You can learn more about debugging contracts in [Axelar’s documentation](https://docs.axelar.dev/dev/general-message-passing/debug/error-debugging){target=\_blank}, where they go into depth on specific error messages and how to use tools like Tenderly for logic errors.
 
 ## Conclusion {: #conclusion}
 
-You’re well on your way to creating your own connected contracts with Axelar! Learn more about Axelar on their docs site, and read about how Moonbeam is shaping up to be the leader in blockchain interoperability in our introduction to connected contracts.
-
-For more information on the AxelarJS SDK, be sure to check out the [Axelar Docs](https://docs.axelar.dev/dev/axelarjs-sdk/intro){target=\_blank}
+You’re well on your way to creating your own connected contracts with Axelar! Learn more about Axelar on their [docs site](https://docs.axelar.dev/){target=\_blank}, and read about how Moonbeam is shaping up to be the leader in blockchain interoperability in our introduction to connected contracts. For more information on the AxelarJS SDK, be sure to check out the [Axelar Docs](https://docs.axelar.dev/dev/axelarjs-sdk/intro){target=\_blank}.
 
 --8<-- 'text/_disclaimers/educational-tutorial.md'
 
