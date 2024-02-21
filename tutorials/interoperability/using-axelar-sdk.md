@@ -123,6 +123,8 @@ You should see the address deployed and printed in the console. Be sure to copy 
 
 After running a deployment command, you'll see output like the below. Be sure to copy and destination chain's contract address, because you'll need to provide that in a later step. 
 
+--8<-- 'code/tutorials/interoperability/axelar-sdk/terminal/deploy.md'
+
 ## Building the Mint.js Script {: #building-the-mint-js-script}
 
 The minting contract is quite exciting, and will require Axelar’s SDK. At the top of the script, Ethers.js is initialized in a Hardhat script. The Axelar SDK is also initialized. There are multiple Axelar APIs available in the SDK, but in this case we will only be using the AxelarQueryAPI sinceit includes all of the gas estimation functionality that we’ll need for paying gas fees across chains. 
@@ -159,7 +161,7 @@ You, the astute reader, might wonder why we’re using “GLMR” instead of “
 --8<-- 'code/tutorials/interoperability/axelar-sdk/mint-4.js'
 ```
 
-Calling this function from the SDK will return a string that represents the amount of DEV WEI to pay, like “241760932800000”. That’s hard for us simple humans to understand, so we use Ethers.js to convert it into a more human-readable version to print to the console later.
+Calling this function from the SDK will return a string that represents the amount of DEV WEI to pay, like `241760932800000`. That’s hard for us simple humans to understand, so we use Ethers.js to convert it into a more human-readable version to print to the console later.
 
 ```js
 --8<-- 'code/tutorials/interoperability/axelar-sdk/mint-5.js'
