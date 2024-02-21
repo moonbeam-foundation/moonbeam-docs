@@ -1,0 +1,4 @@
+const ORIGIN_CHAIN = "moonbeam";
+const DESTINATION_CHAIN = "ethereum-sepolia";
+const ORIGIN_CHAIN_ADDRESS = '0x0572B488d70e293F3f93Db9580D19aBbBC00F490';
+const DESTINATION_CHAIN_ADDRESS = '0x89f801C7DB23439FDdBad4f913D788F13d1d7494'; // currently set to AxelarAcceptEverything
