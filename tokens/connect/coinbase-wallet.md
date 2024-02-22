@@ -178,6 +178,9 @@ To subscribe, take the following steps:
 2. Next, you'll have two signature requests in your Coinbase Wallet. The first one asks you to enable XTMP Identity. Press **Sign**
 3. The next signature request is to enable the subscription to messages from the Moonbeam Foundation. Press **Sign**
 
+!!! note
+    You may receive three signature requests in the prior step if you didn't enable XMTP on your phone. The third signature request will take of that, however, you may still need to enable notifications for the Coinbase Wallet app on your phone to ensure you receive them. 
+
 ![Confirm subscription](/images/tokens/connect/coinbase-wallet/coinbase-13.webp)
 
 And that's it! Once done, you'll see the below confirmation screen. For questions about Coinbase Wallet, please refer to the [Coinbase Wallet Help](https://help.coinbase.com/en/wallet/messaging/info#connecting-to-the-xmtp-network){target=\_blank}.
