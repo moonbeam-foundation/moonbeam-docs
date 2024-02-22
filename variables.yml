@@ -44,8 +44,8 @@ networks:
     razor:
       bridge_address: '0xC6F33c0F15FE5e3A51A019524ac43574cFF29EFB'
     supra:
-      pull_oracle: 0xaa2f56843Cec7840F0C106F0202313d8d8CB13d6
-      storage: 0x4591d1B110ad451d8220d82252F829E8b2a91B17
+      pull_oracle: '0xaa2f56843Cec7840F0C106F0202313d8d8CB13d6'
+      storage: '0x4591d1B110ad451d8220d82252F829E8b2a91B17'
     chainlink:
       oracle_contract: '0x1d693d883BeAeE16edD0D7588D6a9f7E1967E798'
       link_contract: '0xa36085F69e2889c224210F603D836748e7dC0088'
@@ -1038,8 +1038,8 @@ networks:
       anuqrnguint256: '0xfb6d017bb87991b7495f563db3c8cf59ff87b09781947bb1e417006ad7f55a78'
       anuqrnguint256array: '0x27cc2713e7f968e4e86ed274a051a5c8aaee9cca66946f23af6f29ecea9704c3'
     supra:
-      pull_oracle: 0x2FA6DbFe4291136Cf272E1A3294362b6651e8517
-      storage: 0xD02cc7a670047b6b012556A88e275c685d25e0c9
+      pull_oracle: '0x2FA6DbFe4291136Cf272E1A3294362b6651e8517'
+      storage: '0xD02cc7a670047b6b012556A88e275c685d25e0c9'
     chainlink:
       feed:
         proxy:

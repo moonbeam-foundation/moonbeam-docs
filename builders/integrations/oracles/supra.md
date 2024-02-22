@@ -7,7 +7,7 @@ description: Supra's Pull Oracle provides low-latency, on-demand price feed upda
 
 ## Introduction {: #introduction }
 
-[Supra](https://supraoracles.com){target=\_blank} is a novel, high-throughput oracle and intraiayer: a vertically integrated toolkit of cross-chain solutions (data oracles, asset bridges, automation network, and more) that interlink all blockchains, public (L1s and L2s) or private (enterprises), including Moonbeam.
+[Supra](https://supraoracles.com){target=\_blank} is a novel, high-throughput oracle and intralayer: a vertically integrated toolkit of cross-chain solutions (data oracles, asset bridges, automation network, and more) that interlink all blockchains, public (L1s and L2s) or private (enterprises), including Moonbeam.
 
 Supra provides decentralized oracle price feeds that can be used for on-chain and off-chain use cases such as spot and perpetual DEXes, lending protocols, and payment protocols.
 
