@@ -126,6 +126,64 @@ From the **Transactions** tab, you'll be able to see your outgoing transactions,
 
 And that's it! You've successfully set up your Coinbase Wallet app, connected it to the Moonbeam network, and learned how to send and receive funds.
 
+## Subscribe to Updates from Moonbeam {: #subscribe-to-updates-from-moonbeam }
+
+Coinbase Wallet has a messaging and subscription feature that uses [XMTP](https://xmtp.org/docs/introduction){target=\_blank}, an on-chain messaging network designed to delivered fully encrypted messages between wallet addresses. In addition to messaging other Coinbase Wallet users that enabled this feature, you can subscribe to updates from the Moonbeam Foundation. These updates are designed to provide important and time-sensitive information from the Moonbeam Foundation, such as governance and protocol upgrade notifications. 
+
+### Setting up Coinbase Wallet on Mobile {: #setting-up-coinbase-wallet-on-mobile }
+
+To enable XMTP in your Coinbase Wallet App and subscribe to Moonbeam, you'll need to have both the browser extension and the wallet dApp. The Coinbase Wallet download page has links to both. After installation, be sure that you have the same seed in both (e.g. don't create separate seed phrases for each). To get started with XMTP, from the first tab of the Coinbase Wallet App (the Assets tab), take the following steps:
+
+1. Click the messaging icon in the upper right corner
+2. Press **Start Messaging**
+
+![Sign up for XMTP.](/images/tokens/connect/coinbase-wallet/coinbase-8.webp)
+
+Next, you'll be prompted to configure your notification settings to allow push notifications. Take the following steps:
+
+1. Press **Enable Push Notifications**
+2. Press **Allow** in the resulting iPhone prompt
+
+![Configure notifications.](/images/tokens/connect/coinbase-wallet/coinbase-9.webp)
+
+### Subscribing in the Moonbeam dApp {: #subscribing-in-the-moonbeam-dapp }
+
+As a quick reminder, you'll need to have the Coinbase Wallet extension installed on your computer's browser loaded with the same seed as the one used on your phone. To avoid any potential errors, the Coinbase Wallet extension should be the only active cryptocurrency wallet extension in your browser. You can temporarily disable other wallet apps as follows:
+
+1. Click the Extensions Icon in the upper right corner
+2. Click **Manage Extensions**
+3. Disable any other active wallet extensions. 
+
+!!! note
+    Disabling MetaMask keeps your keys intact, but removing MetaMask entirely could result in the loss of your private keys. Be careful not to accidentally remove a wallet entirely.
+
+![Disable other active crypto extensions.](/images/tokens/connect/coinbase-wallet/coinbase-10.webp)
+
+Then, head to the Moonbeam dApp, and take the following steps to connect the Coinbase Wallet extension:
+
+1. Press **Connect wallet** 
+2. Select **Coinbase Wallet** from the list of options
+3. Press **Connect** when Coinbase Wallet pops up
+
+![Connect the Moonbeam dApp to Coinbase Wallet](/images/tokens/connect/coinbase-wallet/coinbase-11.webp)
+
+To subscribe, take the following steps:
+
+1. Press the Mailbox icon in the upper right
+2. Press **Subscribe** in the pop up
+
+![Subscribe in the Moonbeam dApp](/images/tokens/connect/coinbase-wallet/coinbase-12.webp)
+
+1. Press **Connect your wallet** in the resulting Coinbase pop up
+2. Next, you'll have two signature requests in your Coinbase Wallet. The first one asks you to enable XTMP Identity. Press **Sign**
+3. The next signature request is to enable the subscription to messages from the Moonbeam Foundation. Press **Sign**
+
+![Confirm subscription](/images/tokens/connect/coinbase-wallet/coinbase-13.webp)
+
+When all is set, you'll see the below confirmation screen. For questions about Coinbase Wallet, please refer to the [Coinbase Wallet Help](https://help.coinbase.com/en/wallet/messaging/info#connecting-to-the-xmtp-network){target=\_blank}.
+
+![Finalized](/images/tokens/connect/coinbase-wallet/coinbase-14.webp)
+
 ## Limitations {: #limitations }
 
  - At this time, Coinbase Wallet displays only outgoing transactions in your transaction history in the app. You can see your full transaction history, including incoming transactions, by looking up your address on a blockchain explorer such as [Moonscan](https://moonscan.io/){target=\_blank}
