@@ -142,7 +142,7 @@ To enable XMTP in your Coinbase Wallet App and subscribe to Moonbeam, you must h
 Next, you'll be prompted to configure your notification settings to allow push notifications. Take the following steps:
 
 1. Press **Enable Push Notifications**
-2. Press **Allow** in the resulting iPhone prompt
+2. Press **Allow** in the resulting prompt
 
 ![Configure notifications.](/images/tokens/connect/coinbase-wallet/coinbase-9.webp)
 
