@@ -1,202 +1,235 @@
 ---
-title: Supra Oracle
-description: Supra's Pull Oracle provides low latency, on-demand price feed updates for a variety of use cases. Learn how to integrate Supra's oracle on the Moonbeam Network.
+title: Supra Oracles
+description: Supra's Pull Oracle provides low-latency, on-demand price feed updates for a variety of use cases. Learn how to integrate Supra's oracle on Moonbeam.
 ---
 
-# Supra 
-
-[Supra](https://supraoracles.com) is a novel, high-throughput Oracle & IntraLayer: A vertically integrated toolkit of cross-chain solutions (data oracles, asset bridges, automation network, and more) that interlink all blockchains, public (L1s and L2s) or private (enterprises).
+# Supra Oracles
 
 ## Introduction {: #introduction }
 
-Supra provides decentralized oracle price feeds that can be used for on-chain and off-chain use-cases such as spot and perpetual DEXes, lending protocols, and payments protocols. Supra’s oracle chain and consensus algorithm makes it one of the fastest-to-finality oracle provider, with layer-1 security guarantees. The pull oracle has a sub-second response time. Aside from speed and security, Supra’s rotating node architecture gathers data from 40+ data sources and applies a robust calculation methodology to get the most accurate value. The node provenance on the data dashboard also provides a fully transparent historical audit trail. Supra’s Distributed Oracle Agreement (DORA) paper was accepted into ICDCS 2023, the oldest distributed systems conference.
+[Supra](https://supraoracles.com){target=\_blank} is a novel, high-throughput oracle and intraiayer: a vertically integrated toolkit of cross-chain solutions (data oracles, asset bridges, automation network, and more) that interlink all blockchains, public (L1s and L2s) or private (enterprises), including Moonbeam.
 
-Check out our developer docs [here](https://supraoracles.com/docs/overview/).
+Supra provides decentralized oracle price feeds that can be used for on-chain and off-chain use cases such as spot and perpetual DEXes, lending protocols, and payment protocols.
 
+In this guide, you'll learn how to use Supra Oracles' price feeds to fetch price data in smart contracts on Moonbeam.
 
-## Price Feeds {: #price-feeds }
+--8<-- 'text/_disclaimers/third-party-content-intro.md'
 
-Our Pull model uses a combination of Web2 and Web3 methods to achieve ultra-low latency when sending data from Supra to the destination chain.  Web2 methods are used to retrieve data from Supra, while Web3 smart contracts are utilized for cryptographic verification.  
-Please refer to the below resources for a better understanding of our price feeds.
-[Data Feeds](https://supraoracles.com/docs/price-feeds/) - This explains how Supra calculates the S-Value for data feeds. 
-[Data Feeds Catalog](https://supraoracles.com/docs/price-feeds/data-feeds-index/) - This provides a list of data feeds currently offered by Supra.
-[Available Networks](https://supraoracles.com/docs/price-feeds/pull-model/networks/) - Available networks and Supra contract addresses.
+## How to use Supra's Price Feeds {: #price-feeds }
 
-### Example Implementation
+Supra uses a pull model as a customized approach that publishes price data upon request. It combines Web2 and Web3 methods to achieve low latency when sending data from Supra to destination chains. The process involves the following steps:
 
-## Step 1: 
+1. Web2 methods are used to retrieve price data from Supra
+2. Smart contracts are utilized for cryptographically verifying and writing the latest price data on-chain, where it lives on immutable ledgers, using [Supra's Pull Oracle V1](https://supra.com/docs/data-feeds/pull-model){target=\_blank}
+3. Once the data has been written on-chain, the most recently published price feed data will be available in Supra's Storage contract
 
-Create The S-Value Pull Interface to verify the price data received.
-Add the following code to the solidity smart contract that you wish to retrieve an S-Value.
+You can fetch price data from Supra for any [available data pairs](https://supra.com/docs/data-feeds/data-feeds-index/){target=\_blank}.
 
+The Pull Oracle contract on Moonbeam is located at the following address:
+
+=== "Moonbeam"
+
+    ```text
+    {{ networks.moonbeam.supra.pull_oracle }}
+    ```
+
+=== "Moonbase Alpha"
+
+    ```text
+    {{ networks.moonbase.supra.pull_oracle }}
+    ```
+
+!!! note
+    Moonriver is not supported at this time.
+
+When retrieving the last stored price data for an asset, you'll interact with the Storage contract, which is located at the following address:
+
+=== "Moonbeam"
+
+    ```text
+    {{ networks.moonbeam.supra.storage }}
+    ```
+
+=== "Moonbase Alpha"
+
+    ```text
+    {{ networks.moonbase.supra.storage }}
+    ```
+
+### Retrieve Price Data From Supra {: #retrieve-price-data-from-supra }
+
+The first step of the process is to set up your Web2 code to interact with [Supra's Pull Oracle V1](https://supra.com/docs/data-feeds/pull-model){target=\_blank}. For simplicity, you can use the [JavaScript (EVM) code library](https://github.com/Entropy-Foundation/oracle-pull-example/tree/master/javascript/evm_client){target=\_blank} created by Supra.
+
+You can follow the step-by-step instructions on how to set up the Web2 code on the [Integrating Pull Oracle V1](https://supra.com/docs/data-feeds/pull-model){target=\_blank} page of Supra's documentation.
+
+As a quick overview, you'll need to:
+
+1. Clone the [Oracle Pull Example](https://github.com/Entropy-Foundation/oracle-pull-example/tree/master/javascript/evm_client){target=\_blank} repository
+
+    ```bash
+    git clone https://github.com/Entropy-Foundation/oracle-pull-example.git
+    ```
+
+2. Navigate to the JavaScript (EVM) library and install the necessary dependencies:
+
+    ```bash
+    cd oracle-pull-example/javascript/evm_client && npm install
+    ```
+
+In the `oracle-pull-example/javascript/evm-client/main.js` file, you'll need to:
+
+1. Set the gRPC server address
+
+    === "Moonbeam"
+
+        ```js
+        const address = 'mainnet-dora.supraoracles.com';
+        ```
+
+    === "Moonbase Alpha"
+
+        ```js
+        const address = 'testnet-dora.supraoracles.com';
+        ```
+
+2. Add the RPC URL for [Moonbeam](/builders/get-started/endpoints/#moonbeam){target=\_blank} or [Moonbase Alpha](/builders/get-started/endpoints/#moonbase-alpha){target=\_blank} (depending on which network you're interacting with) when [configuring the Web3 provider](https://github.com/Entropy-Foundation/oracle-pull-example/blob/master/javascript/evm_client/main.js#L28){target=\_blank}
+
+    === "Moonbeam"
+
+        ```js
+        const web3 = new Web3(new Web3.providers.HttpProvider('{{ networks.moonbeam.public_rpc_url }}'));
+        ```
+
+    === "Moonbase Alpha"
+
+        ```js
+        const web3 = new Web3(new Web3.providers.HttpProvider('{{ networks.moonbase.rpc_url }}'));
+        ```
+
+3. Add your account address and the private key. This will be the account that you'll use to verify and publish the price data on-chain
+
+    !!! remember
+        This example is for demo purposes only; never store your private key in a JavaScript file.
+
+You'll also need to add the contract address of the contract that you'll be deploying in the following section. This is the contract that you will use to verify and publish the price data on-chain. So, you can leave it as is for now and circle back to it after you've deployed the contract.
+
+### Verify and Publish Price Data On-Chain {: #verify-publish-price-data-on-chain }
+
+Next, you'll create the contract to verify and publish the price data. To get started, you can take the following steps:
+
+1. Create an interface that you will apply later in order to verify and fetch S-values from Supra's Pull contract. An S-value is an aggregated mean price of an asset
+
+    ```solidity
+    --8<-- 'code/builders/integrations/oracles/supra/ISupraOraclePull.sol'
+    ```  
+
+2. Create a contract that uses the `ISupraOraclePull` interface defined in the previous step. You can set up the constructor of the contract to accept the address of the Pull contract on Moonbeam
+
+    ```solidity
+    --8<-- 'code/builders/integrations/oracles/supra/MockOracleClientConstructor.sol'
+    ```  
+
+3. Create a function that receives and verifies the S-value
+
+    ```solidity
+    --8<-- 'code/builders/integrations/oracles/supra/GetPairPrice.sol'
+    ```
+
+And that's it for the contract! You can review Supra's documentation for some [recommended best practices](https://supra.com/docs/data-feeds/pull-model#recommended-best-practices){target=\_blank}.
+
+??? code "View the complete contract"
+
+    ```solidity
+    --8<-- 'code/builders/integrations/oracles/supra/MockOracleClient.sol'
+    ```
+
+Next, you'll need to deploy the contract. When deploying the contract, you must pass in the Pull Oracle contract address for Moonbeam or Moonbase Alpha. The addresses for each network are:
+
+=== "Moonbeam"
+
+    ```text
+    {{ networks.moonbeam.supra.pull_oracle }}
+    ```
+
+=== "Moonbase Alpha"
+
+    ```text
+    {{ networks.moonbase.supra.pull_oracle }}
+    ```
+
+To quickly deploy the contract, you can use [Remix](https://remix.ethereum.org/){target=\_blank}. For a refresher on setting up Remix, see the [Using Remix to Deploy to Moonbeam](/builders/build/eth-api/dev-env/remix/){target=\_blank} guide.
+
+Once you've deployed your contract, head back to the `oracle-pull-example/javascript/evm-client/main.js` file and [add the contract address](https://github.com/Entropy-Foundation/oracle-pull-example/blob/master/javascript/evm_client/main.js#L32){target=\_blank}.
+
+Now you can run the script, which will retrieve the price data and verify and publish it on-chain:
+
+```bash
+node main.js
 ```
-// SPDX-License-Identifier: MIT
-pragma solidity 0.8.19;
 
-interface ISupraOraclePull {
+Once you've run the script, you should see the price data and the transaction receipt from calling the `GetPairPrice` function printed to the terminal.
 
-    //Verified price data
-    struct PriceData {
-        // List of pairs
-        uint256[] pairs;
-        // List of prices
-        // prices[i] is the price of pairs[i]
-        uint256[] prices;
-        // List of decimals
-        // decimals[i] is the decimals of pairs[i]
-        uint256[] decimals;
-    }
+--8<-- 'code/builders/integrations/oracles/supra/terminal/output.md'
 
+### Retrieve On-Chain Price Data {: #retrieve-on-chain-price-data }
 
-function verifyOracleProof(bytes calldata _bytesproof) 
-    external 
-    returns (PriceData memory);
-}
-```  
-This creates the interface that you will later apply in order to verify and fetch S-Values from Supra's Pull Contract.
+To retrieve the most recently published on-chain data for a given data pair, you can create another contract that interacts with Supra's Storage contract on Moonbeam or Moonbase Alpha. To do so, you can take the following steps:
 
-## Step 2: 
+1. Create an interface that you will apply later to retrieve an S-value
 
-Configure The S-Value Feed Address
+    ```solidity
+    --8<-- 'code/builders/integrations/oracles/supra/ISupraSValueFeed.sol'
+    ```
 
-To verify and fetch the S-Value from a Supra Pull smart contract, first find the S-Value Pull Contract address for the Moonbeam Network. When you have the address, create an instance of the ISupraOraclePull using the interface we previously defined:
+2. Create an instance of the S-value Feed using the interface defined in the previous step and the address of the Storage contract on Moonbeam or Moonbase Alpha
 
-```
-// Mock contract which can consume oracle pull data
-contract MockOracleClient {
-    // The oracle contract
-    ISupraOraclePull internal oracle;
+    === "Moonbeam"
 
-    // Event emitted when a pair price is received
-    event PairPrice(uint256 pair, uint256 price, uint256 decimals);
+        ```solidity
+        contract ISupraSValueFeedExample {
+            ISupraSValueFeed internal sValueFeed;
 
-    constructor(address oracle_) {
-        oracle = ISupraOraclePull(oracle_);
-    }
-}
-```
-
-## Step 3: 
-
-Receive and Verify the S-Value
-
-Next, copy the following code to the smart contract to verify the price data received: 
-
-```
-// Get the price of a pair from oracle data received from supra pull model
-  
-    function GetPairPrice(bytes calldata _bytesProof, uint256 pair) external                 
-    returns(uint256){
-        ISupraOraclePull.PriceData memory prices = 
-        oracle.verifyOracleProof(_bytesProof);
-        uint256 price = 0;
-        uint256 decimals = 0;
-        for (uint256 i = 0; i < prices.pairs.length; i++) {
-            if (prices.pairs[i] == pair) {
-                price = prices.prices[i];
-                decimals = prices.decimals[i];
-                break;
+            constructor() {
+                sValueFeed = ISupraSValueFeed({{ networks.moonbeam.supra.storage }});
             }
         }
-        require(price != 0, "Pair not found");
-        return price;
-    }
-```
+        ```
 
-Thats it. Done! 
+    === "Moonbase Alpha"
 
-Now you are ready to consume fast, low latency, and highly accurate data from Supra's Pull oracle.
+        ```solidity
+        contract ISupraSValueFeedExample {
+            ISupraSValueFeed internal sValueFeed;
 
-## Recommended Best Practices
-
-Create a function with access control that updates the oracle using the function: updatePullAddress()
-
-This will allow you to update the address of the Supra Pull contract after deployment, allowing you to future proof your contract. Access control is mandatory to prevent the undesired modification of the address.
-
-```
-function updatePullAddress(SupraOraclePull oracle_) 
-    external 
-    onlyOwner {
-        oracle = oracle_;
-    }
-```
-
-## Connect with us!
-
-Still looking for answers? We got them! Check out all the ways you can reach us:
-
-* Visit us at [supraoracles.com](https://supraoracles.com)
-* Read our [Docs](https://supraoracles.com/docs/overview)
-* Chat with us on [Telegram](https://t.me/SupraOracles)
-* Follow us on [Twitter](https://twitter.com/SupraOracles)
-* Join our [Discord](https://discord.gg/supraoracles)
-* Check us out on [Youtube](https://www.youtube.com/SupraOfficial)
-
-
-## Example Implementation
-
-Here's an example of what your implementation should look like:
-
-```
-// SPDX-License-Identifier: UNLICENSED
-pragma solidity 0.8.19;
-
-import "@openzeppelin/contracts/access/Ownable.sol";
-
-interface ISupraOraclePull {
-    
-    //Verified price data
-    struct PriceData {
-        // List of pairs
-        uint256[] pairs;
-        // List of prices
-        // prices[i] is the price of pairs[i]
-        uint256[] prices;
-        // List of decimals
-        // decimals[i] is the decimals of pairs[i]
-        uint256[] decimals;
-    }
-
-    function verifyOracleProof(bytes calldata _bytesProof) 
-    external 
-    returns (PriceData memory);
-}
-
-
-// Mock contract which can consume oracle pull data
-contract MockOracleClient is Ownable {
-    //The oracle contract
-    ISupraOraclePull public oracle;
-
-    //Event emitted when a pair price is received
-    event PairPrice(uint256 pair, uint256 price, uint256 decimals);
-
-    constructor(ISupraOraclePull oracle_) {
-        oracle = oracle_;
- }
-
-// Get the price of a pair from oracle data
-    function GetPairPrice(bytes calldata _bytesProof, uint256 pair) external                 
-    returns(uint256){
-        ISupraOraclePull.PriceData memory prices = 
-        oracle.verifyOracleProof(_bytesProof);
-        uint256 price = 0;
-        uint256 decimals = 0;
-        for (uint256 i = 0; i < prices.pairs.length; i++) {
-            if (prices.pairs[i] == pair) {
-                price = prices.prices[i];
-                decimals = prices.decimals[i];
-                break;
+            constructor() {
+                sValueFeed = ISupraSValueFeed({{ networks.moonbase.supra.storage }});
             }
         }
-        require(price != 0, "Pair not found");
-        return price;
-    }
+        ```
 
-    function updatePullAddress(ISupraOraclePull oracle_) 
-    external 
-    onlyOwner {
-        oracle = oracle_;
-    }
-}
-```
+3. Add logic for retrieving the price data and decoding it
+
+    ```solidity
+    --8<-- 'code/builders/integrations/oracles/supra/GetPriceFunctions.sol'
+    ```
+
+??? code "View the complete contract"
+
+    ```solidity
+    --8<-- 'code/builders/integrations/oracles/supra/ISupraSValueFeedExample.sol'
+    ```
+
+To quickly deploy the contract, you can use [Remix](https://remix.ethereum.org/){target=\_blank}. For a refresher on setting up Remix, see the [Using Remix to Deploy to Moonbeam](/builders/build/eth-api/dev-env/remix/){target=\_blank} guide.
+
+Once the contract has been deployed, you can call the `getPrice` function and pass in the index of a single price feed or call the `getPriceForMultiplePair` function and pass in an array of the indexes of each data pair to retrieve. You can find the [indexes of each data pair](https://supra.com/docs/data-feeds/data-feeds-index/){target=\_blank} on Supra's documentation.
+
+## Connect with Supra {: #connect-with-supra }
+
+Still looking for answers? Supra's got them! Check out all the ways you can reach the Supra team:
+
+- Visit [Supra's websites at supraoracles.com](https://supraoracles.com){target=\_blank}
+- Read their [docs](https://supraoracles.com/docs/overview){target=\_blank}
+- Chat with them on [Telegram](https://t.me/SupraOracles){target=\_blank}
+- Follow them on [Twitter](https://twitter.com/SupraOracles){target=\_blank}
+- Join their [Discord](https://discord.gg/supraoracles){target=\_blank}
+- Check out their [Youtube](https://www.youtube.com/SupraOfficial){target=\_blank}
