@@ -132,7 +132,7 @@ Coinbase Wallet has a messaging and subscription feature that uses [XMTP](https:
 
 ### Setting up Coinbase Wallet on Mobile {: #setting-up-coinbase-wallet-on-mobile }
 
-To enable XMTP in your Coinbase Wallet App and subscribe to Moonbeam, you must have both the browser extension and the wallet dApp. The Coinbase Wallet download page has links to both. After installation, ensure you have the same seed in both (e.g., don't create separate seed phrases for each). To get started with XMTP, from the first tab of the Coinbase Wallet App (the Assets tab), take the following steps:
+To enable XMTP in your Coinbase Wallet App and subscribe to Moonbeam, you must have both the browser extension and the wallet dApp. The [Coinbase Wallet download page](https://www.coinbase.com/wallet/downloads){target=\_blank} has links to both. After installation, ensure you have the same seed in both (e.g., don't create separate seed phrases for each). To get started with XMTP, from the first tab of the Coinbase Wallet App (the Assets tab), take the following steps:
 
 1. Click the messaging icon in the upper right corner
 2. Press **Start Messaging**
@@ -152,14 +152,14 @@ As a quick reminder, you'll need to have the Coinbase Wallet extension installed
 
 1. Click the Extensions Icon in the upper right corner
 2. Click **Manage Extensions**
-3. Disable any other active wallet extensions. 
+3. Disable any other active wallet extensions 
 
 !!! note
     Disabling MetaMask keeps your keys intact, but removing MetaMask could result in losing your private keys. Be careful not to accidentally remove a wallet entirely.
 
 ![Disable other active crypto extensions.](/images/tokens/connect/coinbase-wallet/coinbase-10.webp)
 
-Then, head to the Moonbeam dApp, and take the following steps to connect the Coinbase Wallet extension:
+Then, head to the [Moonbeam dApp](https://apps.moonbeam.network/moonbeam){target=\_blank}, and take the following steps to connect the Coinbase Wallet extension:
 
 1. Press **Connect wallet** 
 2. Select **Coinbase Wallet** from the list of options
@@ -180,7 +180,7 @@ To subscribe, take the following steps:
 
 ![Confirm subscription](/images/tokens/connect/coinbase-wallet/coinbase-13.webp)
 
-Once done, you'll see the below confirmation screen. For questions about Coinbase Wallet, please refer to the [Coinbase Wallet Help](https://help.coinbase.com/en/wallet/messaging/info#connecting-to-the-xmtp-network){target=\_blank}.
+And that's it! Once done, you'll see the below confirmation screen. For questions about Coinbase Wallet, please refer to the [Coinbase Wallet Help](https://help.coinbase.com/en/wallet/messaging/info#connecting-to-the-xmtp-network){target=\_blank}.
 
 ![Finalized](/images/tokens/connect/coinbase-wallet/coinbase-14.webp)
 
