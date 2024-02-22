@@ -233,3 +233,5 @@ Still looking for answers? Supra's got them! Check out all the ways you can reac
 - Follow them on [Twitter](https://twitter.com/SupraOracles){target=\_blank}
 - Join their [Discord](https://discord.gg/supraoracles){target=\_blank}
 - Check out their [Youtube](https://www.youtube.com/SupraOfficial){target=\_blank}
+
+--8<-- 'text/_disclaimers/third-party-content.md'
