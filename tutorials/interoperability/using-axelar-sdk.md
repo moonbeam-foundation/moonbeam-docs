@@ -76,13 +76,13 @@ You can find the full code for the `CrossChainNFT.sol` below.
 
 ## Setting Up the Repository {: #setting-up-the-repository} 
 
-Make sure to clone the [Github Repository](https://github.com/jboetticher/axelar-sdk-demo/tree/main){target=\_blank} for this tutorial. We need to install some dependencies, including Hardhat, OpenZeppelin contracts, some Axelar contracts, and the Axelar SDK. To configure the dependencies properly, run the following command:
+Make sure to clone the [GitHub repository](https://github.com/jboetticher/axelar-sdk-demo/tree/main){target=\_blank} for this tutorial. We need to install some dependencies, including Hardhat, OpenZeppelin contracts, some Axelar contracts, and the Axelar SDK. To configure the dependencies properly, run the following command:
 
 ```bash
 npm install
 ```
 
-The repository contains two solidity files. The first file is the CrossChainNFT as expected, and the second is an Axelar library `StringAddressUtils.sol` that doesn’t have an npm package yet, but is still required for the Hardhat implementation.
+The repository contains two Solidity files. The first file is the CrossChainNFT as expected, and the second is an Axelar library `StringAddressUtils.sol` that doesn’t have an npm package yet, but is still required for the Hardhat implementation.
 
 There are also four Hardhat scripts within the repository’s scripts folder.
 
