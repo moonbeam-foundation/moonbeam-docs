@@ -122,7 +122,7 @@ You should see the address deployed and printed in the console. Be sure to copy 
 | Sepolia |      [Faucet Link](https://sepolia-faucet.pk910.de/){target=\_blank}        | <pre>```npx hardhat run scripts/deploy.js --network ethereum```</pre> |
 |  Polygon Mumbai |   [Faucet Link](https://faucet.polygon.technology/){target=\_blank}   |  <pre>```npx hardhat run scripts/deploy.js --network mumbai```</pre>  |
 | Avalanche Fuji |  [Faucet Link](https://core.app/tools/testnet-faucet/){target=\_blank} |   <pre>```npx hardhat run scripts/deploy.js --network fuji```</pre>   |
-|   Fantom Testnet |    [Faucet Link](https://faucet.fantom.network/){target=\_blank}     |  <pre>```npx hardhat run scripts/deploy.js --network fantom```</pre>  |
+|   Fantom TestNet |    [Faucet Link](https://faucet.fantom.network/){target=\_blank}     |  <pre>```npx hardhat run scripts/deploy.js --network fantom```</pre>  |
 
 After running a deployment command, you'll see output like the below. Be sure to copy and destination chain's contract address, because you'll need to provide that in a later step. 
 
@@ -136,7 +136,7 @@ The minting contract is quite exciting, and will require Axelar’s SDK. At the 
 --8<-- 'code/tutorials/interoperability/axelar-sdk/mint-1.js'
 ```
 
-There are also some constants for you to change right after. This walkthrough is using Fantom as the destination chain, but you can use whichever chains you deployed to. Note that even though we’re using a testnet environment, the chain names are still their mainnet equivalents, hence why the origin chain is “MOONBEAM” and not “MOONBASE”.
+There are also some constants for you to change right after. This walkthrough is using Fantom as the destination chain, but you can use whichever chains you deployed to. Note that even though we’re using a TestNet environment, the chain names are still their MainNet equivalents, hence why the origin chain is `moonbeam` and not `moonbase`.
 
 ```js
 --8<-- 'code/tutorials/interoperability/axelar-sdk/mint-2.js'
@@ -158,7 +158,7 @@ We must estimate the amount of gas to spend on the destination chain, because it
 
 The estimateGasFee function provided by the Axelar SDK will find the conversion between the origin chain’s native currency and the destination chain’s native currency to find the right amount to send to the destination chain.
 
-You, the astute reader, might wonder why we’re using “GLMR” instead of “DEV”. Similar to how Axelar uses the mainnet chain names instead of using the testnet names, Axelar will interpret “GLMR” as “DEV” since we’re using the testnet environment.
+You, the astute reader, might wonder why we’re using “GLMR” instead of “DEV”. Similar to how Axelar uses the MainNet chain names instead of using the TestNet names, Axelar will interpret “GLMR” as “DEV” since we’re using the TestNet environment.
 
 ```js
 --8<-- 'code/tutorials/interoperability/axelar-sdk/mint-4.js'
@@ -188,11 +188,11 @@ The console should output something similar to this:
 
 --8<-- 'code/tutorials/interoperability/axelar-sdk/terminal/mint.md'
 
-The most important data here is the minting transaction because that’s how you track the status of your transaction. So don’t lose it! But if you do, you can look at all of the recent transactions on Axelar’s testnet scanner.
+The most important data here is the minting transaction because that’s how you track the status of your transaction. So don’t lose it! But if you do, you can look at all of the recent transactions on Axelar’s TestNet scanner.
 
 ## Viewing Axelar Transaction Status {: #viewing-axelar-transaction-status}
 
-Axelar has a [testnet explorer](https://testnet.axelarscan.io/gmp/search){target=\_blank}, and a successful transaction for the interaction you just completed would look something like this:
+Axelar has a [TestNet explorer](https://testnet.axelarscan.io/gmp/search){target=\_blank}, and a successful transaction for the interaction you just completed would look something like this:
 
 ![Axelar Image 2](/images/tutorials/interoperability/axelar-sdk/axelar-2.webp)
 
