@@ -41,6 +41,12 @@ Contracts that can be executed by the Axelar Gateway, like ours here, inherit fr
 
 Now let’s finally take a look at our mint function. It takes three inputs: a destination address, a destination chain, and the amount of WDEV to send. Remember that this mint function is called on the origin chain (Moonbase Alpha), and causes an NFT to be minted on a different destination chain.
 
+???+ code "mintXCNFT function"
+
+    ```solidity
+    --8<-- 'code/tutorials/interoperability/axelar-sdk/mintXCNFT.sol'
+    ```
+
 The logic itself has three steps. First, it takes WDEV from the caller. The caller will have to approve our NFT contract to transfer their WDEV beforehand. Then our NFT contract approves the gateway to transfer the WDEV that it takes from the caller since the gateway contract will try to transfer the tokens from our NFT contract in the final step.
 
 Next, to pay for gas on the destination chain, we make use of the [IAxelarGasService contract](https://github.com/axelarnetwork/axelar-cgp-solidity/blob/main/contracts/interfaces/IAxelarGasService.sol){target=\_blank}. This contract has many [different configurations to pay for gas](https://docs.axelar.dev/dev/gas-service/pricing){target=\_blank}, like paying for execute versus executeWithToken or using an ERC-20 token as payment versus using native currency. Be careful if you plan on writing your own contract later!
@@ -48,11 +54,6 @@ Next, to pay for gas on the destination chain, we make use of the [IAxelarGasSer
 In this case, since the origin chain is Moonbase Alpha, the native currency is DEV. We can use native DEV to pay for gas on the destination chain, based on the conversion rates between Moonbase Alpha’s native currency and the destination chain’s native currency. Since we’re sending a contract call that includes a token and plan on paying for destination gas in DEV, we will be using the payNativeGasForContractCallWithToken function.
 
 Finally, we call the gateway to send our cross-chain message with callContractWithToken. Notice that the payload (generic data that can be sent in a cross-chain call) that we’re sending is just the caller’s address. This data will need to be decoded by the destination contract.
-
-
-```solidity
---8<-- 'code/tutorials/interoperability/axelar-sdk/mintXCNFT.sol'
-```
 
 Now let’s take a look at what happens on the destination chain. Since we’re expecting tokens to be sent as payment for an NFT mint, we will override `_executeWithToken` from `IAxelarExecutable`.
 
