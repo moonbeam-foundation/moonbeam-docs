@@ -130,7 +130,7 @@ After running a deployment command, you'll see output like the below. Be sure to
 
 ## Building the Mint.js Script {: #building-the-mint-js-script}
 
-The minting contract is quite exciting, and will require Axelar’s SDK. At the top of the script, Ethers.js is initialized in a Hardhat script. The Axelar SDK is also initialized. There are multiple Axelar APIs available in the SDK, but in this case we will only be using the AxelarQueryAPI sinceit includes all of the gas estimation functionality that we’ll need for paying gas fees across chains. 
+The minting contract is quite exciting, and will require Axelar’s SDK. At the top of the `mint.js` script, Ethers.js is initialized in a Hardhat script. The Axelar SDK is also initialized. There are multiple Axelar APIs available in the SDK, but in this case we will only be using the [Axelar query API](https://docs.axelar.dev/dev/axelarjs-sdk/axelar-query-api#axelar-query-api){target=\_blank} since it includes all of the gas estimation functionality that we’ll need for paying gas fees across chains. 
 
 ```js
 --8<-- 'code/tutorials/interoperability/axelar-sdk/mint-1.js'
