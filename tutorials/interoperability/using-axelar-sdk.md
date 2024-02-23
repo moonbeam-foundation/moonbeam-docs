@@ -8,7 +8,7 @@ _by Jeremy Boetticher & Kevin Neilson_
 
 ## Introduction {: #introduction }
 
-Axelar’s [general message passing (GMP)](https://docs.axelar.dev/dev/general-message-passing/overview){target=\_blank} allows smart contracts to communicate securely across chains. This enables developers to build cross-chain connected applications on Moonbeam that can tap into functionality from Polkadot, Ethereum, Avalanche, Cosmos, and beyond. In this blog, we'll introduce the JavaScript SDK package that Axelar packed with tools to aid developers in this cross-chain vision.
+Axelar’s [general message passing (GMP)](https://docs.axelar.dev/dev/general-message-passing/overview){target=\_blank} allows smart contracts to communicate securely across chains. This enables developers to build cross-chain connected applications on Moonbeam that can tap into functionality from Polkadot, Ethereum, Avalanche, Cosmos, and beyond. In this tutorial, we'll introduce the JavaScript SDK package that Axelar packed with tools to aid developers in this cross-chain vision.
 
 The [AxelarJS SDK](https://github.com/axelarnetwork/axelarjs-sdk){target=\_blank}  allows developers to estimate fees, track and recover transactions, and easily transfer tokens. To show off some of the tools that the SDK provides, we will walk through a demo that deploys an NFT that can be minted across chains. Before following along with the tutorial, you may wish to first familiarze yourself with this [Overview of Axelar](builders/interoperability/protocols/axelar/)
 
