@@ -117,12 +117,12 @@ npx hardhat run scripts/deploy.js --network moonbase
 
 You should see the address deployed and printed in the console. Be sure to copy it! You will need it for interacting with the next script. You also need to deploy it to the destination chain. The choice of which destination network to use is up to you, but you will need its native currency to deploy. I’ve included some of the available networks and their faucets here:
 
-|                                 Network                                  |                   Deployment Command                   |
-|:------------------------------------------------------------------------:|:------------------------------------------------------:|
-|       [Sepolia](https://sepolia-faucet.pk910.de/){target=\_blank}        | <pre>```npx hardhat run scripts/deploy.js --network ethereum```</pre> |
-|   [Polygon Mumbai](https://faucet.polygon.technology/){target=\_blank}   |  <pre>```npx hardhat run scripts/deploy.js --network mumbai```</pre>  |
-| [Avalanche Fuji](https://core.app/tools/testnet-faucet/){target=\_blank} |   <pre>```npx hardhat run scripts/deploy.js --network fuji```</pre>   |
-|     [Fantom Testnet](https://faucet.fantom.network/){target=\_blank}     |  <pre>```npx hardhat run scripts/deploy.js --network fantom```</pre>  |
+|                                 Network                       |       Faucet        |                   Deployment Command                   |
+|:------------------------------------------------------------------------:|:----------:|:------------------------------------------------------:|
+| Sepolia |      [Faucet Link](https://sepolia-faucet.pk910.de/){target=\_blank}        | <pre>```npx hardhat run scripts/deploy.js --network ethereum```</pre> |
+|  Polygon Mumbai |   [Faucet Link](https://faucet.polygon.technology/){target=\_blank}   |  <pre>```npx hardhat run scripts/deploy.js --network mumbai```</pre>  |
+| Avalanche Fuji |  [Faucet Link](https://core.app/tools/testnet-faucet/){target=\_blank} |   <pre>```npx hardhat run scripts/deploy.js --network fuji```</pre>   |
+|   Fantom Testnet |    [Faucet Link](https://faucet.fantom.network/){target=\_blank}     |  <pre>```npx hardhat run scripts/deploy.js --network fantom```</pre>  |
 
 After running a deployment command, you'll see output like the below. Be sure to copy and destination chain's contract address, because you'll need to provide that in a later step. 
 
