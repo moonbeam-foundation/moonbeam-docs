@@ -57,7 +57,7 @@ Finally, we call the gateway to send our cross-chain message with callContractWi
 
 Now let’s take a look at what happens on the destination chain. Since we’re expecting tokens to be sent as payment for an NFT mint, we will override `_executeWithToken` from `IAxelarExecutable`.
 
-In our implementation of `_executeWithToken`, we first check to make sure that the tokenSymbol provided by Axelar is “WDEV”. Then we expect 0.05 WDEV tokens for payment, and will revert if any other token or anything less than 0.05 WDEV gets sent. Afterwards we decode the payload to get the address of the origin chain’s caller so that we can mint an NFT to that address. Finally, we finish the minting!
+In our implementation of `_executeWithToken`, we first check to make sure that the `tokenSymbol` provided by Axelar is `“WDEV”`. Then we expect 0.05 WDEV tokens for payment, and will revert if any other token or anything less than 0.05 WDEV gets sent. Afterward, we decode the payload to get the address of the origin chain’s caller so that we can mint an NFT to that address. Finally, we finish the minting!
 
 ```solidity
 --8<-- 'code/tutorials/interoperability/axelar-sdk/executeWithToken.sol'
