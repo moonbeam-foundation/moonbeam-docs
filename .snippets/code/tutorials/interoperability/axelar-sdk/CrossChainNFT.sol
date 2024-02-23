@@ -7,7 +7,7 @@ import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IAxelarGasService.sol";
 import { AxelarExecutable } from '@axelar-network/axelar-gmp-sdk-solidity/contracts/executable/AxelarExecutable.sol';
 
-// Allows users to mint an NFT, but only cross chain.
+// Allows users to mint an NFT, but only cross chain
 contract CrossChainNFT is ERC721, AxelarExecutable {
     constructor(
         address _gateway,
@@ -47,15 +47,15 @@ contract CrossChainNFT is ERC721, AxelarExecutable {
         string memory destinationChain,
         uint256 amount
     ) external payable {
-        // Create the payload.
+        // Create the payload
         bytes memory payload = abi.encode(msg.sender);
         
         // Takes WDEV from the user and puts them into this contract for the Gateway to take        
         wDev.transferFrom(msg.sender, address(this), amount);
         wDev.approve(address(gateway), amount);
 
-        // Pay for gas. 
-        // This is a gas service SPECIFICALLY for sending with token!
+        // Pay for gas 
+        // This is a gas service SPECIFICALLY for sending with token
         gasService.payNativeGasForContractCallWithToken{value: msg.value}(
             address(this),
             destinationChain,
@@ -66,7 +66,7 @@ contract CrossChainNFT is ERC721, AxelarExecutable {
             msg.sender
         );
 
-        // Call remote contract.
+        // Call remote contract
         gateway.callContractWithToken(
             destinationChain,
             destinationAddress,
