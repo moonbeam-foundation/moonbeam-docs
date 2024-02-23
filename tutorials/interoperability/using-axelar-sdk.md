@@ -1,5 +1,5 @@
 ---
-title: Mint a Cross-Chain NFT as a Connected Contract with Axelar
+title: Mint a Cross-Chain NFT with Axelar
 description: In this step-by-step tutorial, you'll learn how to use the Axelar SDK to send a message from Moonbeam to another connected chain to remotely mint an NFT.
 ---
 
