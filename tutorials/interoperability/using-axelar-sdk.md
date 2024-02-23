@@ -76,7 +76,7 @@ You can find the full code for the `CrossChainNFT.sol` below.
 
 ## Setting Up the Repository {: #setting-up-the-repository} 
 
-Make sure to clone the [Github Repository](https://github.com/jboetticher/axelar-sdk-demo/tree/main){target=\_blank} for this tutorial. We need to install some dependencies, including Hardhat, OpenZeppelin contracts, some Axelar contracts, and the Axelar SDK. To configure the dependencies properly, run the following command:
+Make sure to clone the [GitHub repository](https://github.com/jboetticher/axelar-sdk-demo/tree/main){target=\_blank} for this tutorial. We need to install some dependencies, including Hardhat, OpenZeppelin contracts, some Axelar contracts, and the Axelar SDK. To configure the dependencies properly, run the following command:
 
 ```bash
 npm install
