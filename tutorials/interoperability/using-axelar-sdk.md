@@ -119,10 +119,10 @@ You should see the address deployed and printed in the console. Be sure to copy 
 
 |                                 Network                                  |                   Deployment Command                   |
 |:------------------------------------------------------------------------:|:------------------------------------------------------:|
-|       [Sepolia](https://sepolia-faucet.pk910.de/){target=\_blank}        | `npx hardhat run scripts/deploy.js --network ethereum` |
-|   [Polygon Mumbai](https://faucet.polygon.technology/){target=\_blank}   |  `npx hardhat run scripts/deploy.js --network mumbai`  |
-| [Avalanche Fuji](https://core.app/tools/testnet-faucet/){target=\_blank} |   `npx hardhat run scripts/deploy.js --network fuji`   |
-|     [Fantom Testnet](https://faucet.fantom.network/){target=\_blank}     |  `npx hardhat run scripts/deploy.js --network fantom`  |
+|       [Sepolia](https://sepolia-faucet.pk910.de/){target=\_blank}        | <pre>```npx hardhat run scripts/deploy.js --network ethereum```</pre> |
+|   [Polygon Mumbai](https://faucet.polygon.technology/){target=\_blank}   |  <pre>```npx hardhat run scripts/deploy.js --network mumbai```</pre>  |
+| [Avalanche Fuji](https://core.app/tools/testnet-faucet/){target=\_blank} |   <pre>```npx hardhat run scripts/deploy.js --network fuji```</pre>   |
+|     [Fantom Testnet](https://faucet.fantom.network/){target=\_blank}     |  <pre>```npx hardhat run scripts/deploy.js --network fantom```</pre>  |
 
 After running a deployment command, you'll see output like the below. Be sure to copy and destination chain's contract address, because you'll need to provide that in a later step. 
 
