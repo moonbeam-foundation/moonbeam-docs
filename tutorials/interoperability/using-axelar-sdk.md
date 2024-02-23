@@ -53,15 +53,18 @@ Next, to pay for gas on the destination chain, we make use of the [IAxelarGasSer
 
 In this case, since the origin chain is Moonbase Alpha, the native currency is DEV. We can use native DEV to pay for gas on the destination chain, based on the conversion rates between Moonbase Alpha’s native currency and the destination chain’s native currency. Since we’re sending a contract call that includes a token and plan on paying for destination gas in DEV, we will be using the payNativeGasForContractCallWithToken function.
 
-Finally, we call the gateway to send our cross-chain message with callContractWithToken. Notice that the payload (generic data that can be sent in a cross-chain call) that we’re sending is just the caller’s address. This data will need to be decoded by the destination contract.
+Finally, we call the gateway to send our cross-chain message with `callContractWithToken`. Notice that the payload (generic data that can be sent in a cross-chain call) that we’re sending is just the caller’s address. This data will need to be decoded by the destination contract.
 
 Now let’s take a look at what happens on the destination chain. Since we’re expecting tokens to be sent as payment for an NFT mint, we will override `_executeWithToken` from `IAxelarExecutable`.
 
-In our implementation of `_executeWithToken`, we first check to make sure that the tokenSymbol provided by Axelar is “WDEV”. Then we expect 0.05 WDEV tokens for payment, and will revert if any other token or anything less than 0.05 WDEV gets sent. Afterwards we decode the payload to get the address of the origin chain’s caller so that we can mint an NFT to that address. Finally, we finish the minting!
+???+ code "executeWithToken function"
 
-```solidity
---8<-- 'code/tutorials/interoperability/axelar-sdk/executeWithToken.sol'
-```
+    ```solidity
+    --8<-- 'code/tutorials/interoperability/axelar-sdk/executeWithToken.sol'
+    ```
+
+
+In our implementation of `_executeWithToken`, we first check to make sure that the tokenSymbol provided by Axelar is “WDEV”. Then we expect 0.05 WDEV tokens for payment, and will revert if any other token or anything less than 0.05 WDEV gets sent. Afterwards we decode the payload to get the address of the origin chain’s caller so that we can mint an NFT to that address. Finally, we finish the minting!
 
 You can find the full code for the `CrossChainNFT.sol` below.
 
