@@ -107,7 +107,7 @@ npx hardhat compile
 
 ## Deploying the Cross-Chain Contract to Moonbase Alpha {: #deploying-the-cross-chain-contract-to-moonbase-alpha} 
 
-This demo focuses on using the scripts, so it’s best to take a look at them, starting with `deploy.js`, which is similar to example Ethers.js deployment contracts.
+This demo focuses on using the scripts, so it’s best to take a look at them, starting with `deploy.js`, which is similar to the [Ethers.js tutorial deployment contracts](/builders/build/eth-api/libraries/ethersjs/#deploy-contract-script){target=\_blank}.
 
 `gatewayGasReceiver.js` stores many of the contract addresses in this repo, which are necessary for the deployment. You likely will not have to change any of the hardcoded addresses. Try deploying your contract to the origin chain:
 
@@ -120,7 +120,7 @@ You should see the address deployed and printed in the console. Be sure to copy 
 |                                 Network                                  |                   Deployment Command                   |
 |:------------------------------------------------------------------------:|:------------------------------------------------------:|
 |       [Sepolia](https://sepolia-faucet.pk910.de/){target=\_blank}        | `npx hardhat run scripts/deploy.js --network ethereum` |
-|           [Polygon Mumbai](https://faucet.polygon.technology/)           |  `npx hardhat run scripts/deploy.js --network mumbai`  |
+|           [Polygon Mumbai](https://faucet.polygon.technology/){target=\_blank}           |  `npx hardhat run scripts/deploy.js --network mumbai`  |
 | [Avalanche Fuji](https://core.app/tools/testnet-faucet/){target=\_blank} |   `npx hardhat run scripts/deploy.js --network fuji`   |
 |     [Fantom Testnet](https://faucet.fantom.network/){target=\_blank}     |  `npx hardhat run scripts/deploy.js --network fantom`  |
 
