@@ -22,7 +22,7 @@ In this tutorial, we'll be minting an NFT on a remote chain by using Axelar to s
 
 ![Axelar Diagram](/images/tutorials/interoperability/axelar-sdk/axelar-1.webp)
 
-The other contract we will be working with is the Axelar Gas Receiver microservice. Whenever you use the Axelar Gateway to send a cross-chain transaction, IAxelarGasReceiver lets you pay for the subsequent transaction on the destination chain. While not necessary, it allows the end user to only send one transaction to automatically update the destination chain, and to pay all transaction fees in the source-chain token they already hold.
+The other contract we will be working with is the [Axelar Gas Receiver microservice](https://docs.axelar.dev/learn#gas-receiver){target=\_blank}. Whenever you use the Axelar Gateway to send a cross-chain transaction, the Gas Receiver lets you pay for the subsequent transaction on the destination chain. While not necessary, it allows the end user to only send one transaction to automatically update the destination chain, and to pay all transaction fees in the source-chain token they already hold.
 
 ## Building the Cross-Chain NFT Contract {: #building-the-cross-chain-nft-contract } 
 
