@@ -95,7 +95,7 @@ Before we get into the fun part, you will need to get an account with a [private
 
 ```json
 {
-"privateKey":"INSERT-PRIVATE-KEY"
+    "privateKey": "INSERT_PRIVATE_KEY"
 }
 ```
 
