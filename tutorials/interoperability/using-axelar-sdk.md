@@ -35,7 +35,7 @@ We’re putting the same contract on two chains, so it has to both send and rece
 1. Send an encoded address message with WDEV across chains via Axelar’s Gateway with the option to pay for its gas on the destination chain
 2. Receive an encoded address message from Axelar, and execute only if it received at least 0.05 WDEV
 
-You’ll be using a Hardhat project instead of using Remix, but before we set up let’s first take a look at a few parts of the contract. I encourage you to follow along!
+You’ll be using a Hardhat project, but before we set it up, let’s first take a look at a few parts of the contract. I encourage you to follow along!
 
 Contracts that can be executed by the Axelar Gateway, like ours here, inherit from [IAxelarExecutable](https://github.com/axelarnetwork/axelar-gmp-sdk-solidity/blob/main/contracts/executable/AxelarExecutable.sol){target=\_blank}. This parent contract has two overridable functions, `_execute` and `_executeWithToken`, that allow developers to change the logic when a contract receives a contract call from the Axelar Gateway. Both functions have the same inputs, but `_executeWithToken` also includes tokenSymbol and amount to describe the token being sent cross-chain.
 
