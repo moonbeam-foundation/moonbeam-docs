@@ -37,7 +37,7 @@ We’re putting the same contract on two chains, so it has to both send and rece
 
 You’ll be using a Hardhat project, but before we set it up, let’s first take a look at a few parts of the contract. I encourage you to follow along!
 
-Contracts that can be executed by the Axelar Gateway, like ours here, inherit from [IAxelarExecutable](https://github.com/axelarnetwork/axelar-gmp-sdk-solidity/blob/main/contracts/executable/AxelarExecutable.sol){target=\_blank}. This parent contract has two overridable functions, `_execute` and `_executeWithToken`, that allow developers to change the logic when a contract receives a contract call from the Axelar Gateway. Both functions have the same inputs, but `_executeWithToken` also includes tokenSymbol and amount to describe the token being sent cross-chain.
+Contracts that can be executed by the Axelar Gateway, like ours here, inherit from [IAxelarExecutable](https://github.com/axelarnetwork/axelar-gmp-sdk-solidity/blob/main/contracts/executable/AxelarExecutable.sol){target=\_blank}. This parent contract has two overridable functions, `_execute` and `_executeWithToken`, that allow developers to change the logic when a contract receives a contract call from the Axelar Gateway. Both functions have the same inputs, but `_executeWithToken` also includes `tokenSymbol` and `amount` to describe the token being sent cross-chain.
 
 Now let’s finally take a look at our mint function. It takes three inputs: a destination address, a destination chain, and the amount of WDEV to send. Remember that this mint function is called on the origin chain (Moonbase Alpha), and causes an NFT to be minted on a different destination chain.
 
