@@ -18,11 +18,11 @@ In this tutorial, we'll be minting an NFT on a remote chain by using Axelar to s
 
 ## Axelar Refresher {: #axelar-refresher }
 
-[Axelar](https://axelar.network/){target=\_blank} is a blockchain that connects blockchains, delivering secure cross-chain communication. Every validator in Axelar’s network runs light nodes on chains that Axelar supports. This dynamic validator set achieves consensus to confirm that messages are being sent from one chain to another by monitoring each chain’s Axelar gateway contract, which is one of the two Axelar contracts we will be interacting with later in the demo. 
+[Axelar](https://axelar.network/){target=\_blank} is a blockchain that connects blockchains, delivering secure cross-chain communication. Every validator in Axelar’s network runs light nodes on chains that Axelar supports. This dynamic validator set achieves consensus to confirm that messages are being sent from one chain to another by monitoring each chain’s Axelar Gateway contract, which is one of the two Axelar contracts we will be interacting with later in the demo. 
 
 ![Axelar Diagram](/images/tutorials/interoperability/axelar-sdk/axelar-1.webp)
 
-The other contract we will be working with is the Axelar Gas Receiver microservice. Whenever you use the Axelar gateway to send a cross-chain transaction, IAxelarGasReceiver lets you pay for the subsequent transaction on the destination chain. While not necessary, it allows the end user to only send one transaction to automatically update the destination chain, and to pay all transaction fees in the source-chain token they already hold.
+The other contract we will be working with is the Axelar Gas Receiver microservice. Whenever you use the Axelar Gateway to send a cross-chain transaction, IAxelarGasReceiver lets you pay for the subsequent transaction on the destination chain. While not necessary, it allows the end user to only send one transaction to automatically update the destination chain, and to pay all transaction fees in the source-chain token they already hold.
 
 ## Building the Cross-Chain NFT Contract {: #building-the-cross-chain-nft-contract } 
 
@@ -32,12 +32,12 @@ So to mint in the cross-chain message, it must receive at least 0.05 WDEV.
 
 We’re putting the same contract on two chains, so it has to both send and receive messages. From a high level, our contract does two things:
 
-1. Send an encoded address message with WDEV across chains via Axelar’s gateway with the option to pay for its gas on the destination chain
+1. Send an encoded address message with WDEV across chains via Axelar’s Gateway with the option to pay for its gas on the destination chain
 2. Receive an encoded address message from Axelar, and execute only if it received at least 0.05 WDEV
 
 You’ll be using a Hardhat project instead of using Remix, but before we set up let’s first take a look at a few parts of the contract. I encourage you to follow along!
 
-Contracts that can be executed by the Axelar gateway, like ours here, inherit from [IAxelarExecutable](https://github.com/axelarnetwork/axelar-gmp-sdk-solidity/blob/main/contracts/executable/AxelarExecutable.sol){target=\_blank}. This parent contract has two overridable functions, `_execute` and `_executeWithToken`, that allow developers to change the logic when a contract receives a contract call from the Axelar gateway. Both functions have the same inputs, but `_executeWithToken` also includes tokenSymbol and amount to describe the token being sent cross-chain.
+Contracts that can be executed by the Axelar Gateway, like ours here, inherit from [IAxelarExecutable](https://github.com/axelarnetwork/axelar-gmp-sdk-solidity/blob/main/contracts/executable/AxelarExecutable.sol){target=\_blank}. This parent contract has two overridable functions, `_execute` and `_executeWithToken`, that allow developers to change the logic when a contract receives a contract call from the Axelar Gateway. Both functions have the same inputs, but `_executeWithToken` also includes tokenSymbol and amount to describe the token being sent cross-chain.
 
 Now let’s finally take a look at our mint function. It takes three inputs: a destination address, a destination chain, and the amount of WDEV to send. Remember that this mint function is called on the origin chain (Moonbase Alpha), and causes an NFT to be minted on a different destination chain.
 
@@ -85,7 +85,7 @@ There are also four Hardhat scripts within the repository’s scripts folder.
 
 - `axelarStatus.js`: a Hardhat task that lets you view information about Axelar transactions
 - `deploy.js`: deploys the CrossChainNFT to the network provided by Hardhat
-- `gatewayGasReceiver.js`: returns hardcoded values for Axelar’s gateway and gas service contracts
+- `gatewayGasReceiver.js`: returns hardcoded values for Axelar’s Gateway and gas service contracts
 - `mint.js`: mints the CrossChainNFT (only run on Moonbase Alpha)
 
 Before we get into the fun part, you will need to get an account with a [private key funded with DEV](https://faucet.moonbeam.network/){target=\_blank} to deploy the contract and sign all future transactions. Place this within a `secrets.json` file within the repository’s main directory. It should be formatted like so:
