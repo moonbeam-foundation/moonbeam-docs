@@ -86,10 +86,10 @@ The repository contains two solidity files. The first file is the CrossChainNFT 
 
 There are also four Hardhat scripts within the repository’s scripts folder.
 
-- `axelarStatus.js`: a Hardhat task that lets you view information about Axelar transactions
-- `deploy.js`: deploys the CrossChainNFT to the network provided by Hardhat
-- `gatewayGasReceiver.js`: returns hardcoded values for Axelar’s Gateway and gas service contracts
-- `mint.js`: mints the CrossChainNFT (only run on Moonbase Alpha)
+- `axelarStatus.js` - a Hardhat task that lets you view information about Axelar transactions
+- `deploy.js` - deploys the CrossChainNFT to the network provided by Hardhat
+- `gatewayGasReceiver.js` - returns hardcoded values for Axelar’s Gateway and gas service contracts
+- `mint.js` - mints the CrossChainNFT (only run on Moonbase Alpha)
 
 Before we get into the fun part, you will need to get an account with a [private key funded with DEV](https://faucet.moonbeam.network/){target=\_blank} to deploy the contract and sign all future transactions. Place this within a `secrets.json` file within the repository’s main directory. It should be formatted like so:
 
