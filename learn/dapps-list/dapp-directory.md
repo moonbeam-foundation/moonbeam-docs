@@ -34,7 +34,7 @@ For projects that have smart contracts deployed on Moonbeam or Moonriver, it is 
 
 The end-to-end flow for linking smart contract activity to the DApp Directory is as follows:
 
-1. The smart contract owner fills in the form to label contracts on Moonscan
+1. The smart contract owner fills in the [form to label contracts on Moonscan](https://moonscan.io/contactus?id=5){target=\_blank}
 2. The contracts become labeled in Moonscan
 3. Periodically, the entire list of labeled contracts is exported and transmitted to Web3Go to be ingested
 4. Every hour, Web3Go loads smart contract activity within Moonbeam and Moonriver and runs a job to index this data by the labels
@@ -60,7 +60,7 @@ If the project represents a DeFi protocol with TVL (whereby value is locked in t
 
 TVL data is pulled from [DefiLlama](https://defillama.com/){target=\_blank}, so you must list your project there. To get your project listed, please refer to DefiLlama's documentation on [How to list a DeFi project](https://docs.llama.fi/list-your-project/submit-a-project){target=\_blank}.
 
-After listing your project, you can easily configure the DApp Directory to pull data from DefiLlama. To do so, you'll need the DefiLlama identifier, which you can find in the URL for your protocol's page. For example, the URL for Moonwell's page is https://defillama.com/protocol/moonwell, so the identifier is `moonwell`.
+After listing your project, you can easily configure the DApp Directory to pull data from DefiLlama. To do so, you'll need the DefiLlama identifier, which you can find in the URL for your protocol's page. For example, the URL for Moonwell's page is `https://defillama.com/protocol/moonwell`, so the identifier is `moonwell`.
 
 If you have the identifier and are ready to submit your project to the Moonbeam DApp Directory, skip to the [How to Submit Your Project Listing](#how-to-submit-your-project-listing) section.
 
@@ -136,23 +136,23 @@ With the foundational file structure in place, you're ready to populate the nece
 
 Your project's data file is where you'll add all the information for your project. The file permits the following top-level properties:
 
-| <div style="width:125px">Property</div> |                         Type                          |                                                                                                                                                                Description                                                                                                                                                                 |
-|:---------------------------------------:|:-----------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-|                  `id`                   |                        String                         |                                                                                         Unique identifier for the dApp in the Moonbeam DApp Directory. It should be a unique, human-readable string representing this project. E.g., `my-project`                                                                                          |
-|                 `slug`                  |                        String                         |                                            Identifier used in certain third-party sources. In particular, if the project is listed in DefiLlama, this value should be set to the DefiLlama identifier. See the [Configure the Data Source for TVL](#configure-tvl) section for more information                                            |
-|                 `name`                  |                        String                         |                                                                                                                                The project name as it will appear in the DApp Directory. E.g., `My Project`                                                                                                                                |
-|               `category`                |                        String                         |                                    The category the project should be associated with. A project can only have one category, and it corresponds to the category list in the left-hand nav of the DApp Directory. See the [Category and Tags](#category-and-tags) section for the accepted list of values                                    |
-|              `coinGeckoId`              |                        String                         |                                        If the project has a token listed on CoinGecko, this property should have the **API ID** value corresponding to the given token. See the [Configure the Data Source for Project Token Information](#project-token-information) section for more information                                         |
-|                `chains`                 |                   Array of Strings                    |                                                                                                         List of Moonbeam ecosystem chains on which the project is deployed. Valid values are currently `moonbeam` and `moonriver`                                                                                                          |
+| <div style="width:125px">Property</div> |                         Type                          |                                                                                                                                                                      Description                                                                                                                                                                       |
+|:---------------------------------------:|:-----------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+|                  `id`                   |                        String                         |                                                                                               Unique identifier for the dApp in the Moonbeam DApp Directory. It should be a unique, human-readable string representing this project. E.g., `my-project`                                                                                                |
+|                 `slug`                  |                        String                         |                                                  Identifier used in certain third-party sources. In particular, if the project is listed in DefiLlama, this value should be set to the DefiLlama identifier. See the [Configure the Data Source for TVL](#configure-tvl) section for more information                                                  |
+|                 `name`                  |                        String                         |                                                                                                                                      The project name as it will appear in the DApp Directory. E.g., `My Project`                                                                                                                                      |
+|               `category`                |                        String                         |                                         The category the project should be associated with. A project can only have one category, and it corresponds to the category list in the left-hand nav of the DApp Directory. See the [Category and Tags](#category-and-tags) section for the accepted list of values                                          |
+|              `coinGeckoId`              |                        String                         |                                              If the project has a token listed on CoinGecko, this property should have the **API ID** value corresponding to the given token. See the [Configure the Data Source for Project Token Information](#project-token-information) section for more information                                               |
+|                `chains`                 |                   Array of Strings                    |                                                                                                               List of Moonbeam ecosystem chains on which the project is deployed. Valid values are currently `moonbeam` and `moonriver`                                                                                                                |
 |               `web3goIDs`               |                   Array of Strings                    | List of Web3Go identifiers for a given dApp. The identifiers should correspond to the **Project** component of the smart contract labels set up in Moonscan. Generally, there should only be one value in the array. See the [Configure the Data Source for Active Users and Transaction Volume](#configure-active-users) section for more information |
-|                 `logo`                  |            Map of Strings to JSON objects             |                                                                                               Map of logo image files associated with this project and stored in the `logos` directory. See the [Logos](#logos) section for more information                                                                                               |
-|           `shortDescription`            |                        String                         |                                                                                               A short description of the project used in the display card when browsing dapps in the directory. This should be kept to under 80 characters                                                                                                |
-|              `description`              |                        String                         |                                                                         A longer description used in the project detail page. Markdown or similar formatting cannot be used. Line breaks can be used using `\r\n`. The text should be limited to a few paragraphs                                                                          |
-|                 `tags`                  |                   Array of Strings                    |                                                                 A list of applicable [tags](#category-and-tags) for this project. Tag values will show up in the project details. See the [Category and Tags](#category-and-tags) section for the accepted list of values                                                                  |
-|               `contracts`               |            Array of contract JSON objects             |                                               List of contracts for the project. Currently, this is used only for token contracts. The list of smart contracts which make up the protocol is externally sourced from Moonscan. See the [Contracts](#contracts) section for more information                                               |
-|                 `urls`                  |       Map of Strings (names) to Strings (URLs)        |                                                                                                    Mapping of URLs for websites and socials associated with the project. See the [URLs](#urls) section for the accepted list of properties                                                                                                     |
-|              `screenshots`              | Array of Maps of Strings (size) to image JSON objects |                                                                                  List of screenshot image files associated with this project and stored in the `screenshots` directory. See the [Screenshots](#screenshots) section for more information                                                                                   |
-|          `projectCreationDate`          |                          int                          |                                                                                                                             The date the project was created. Used for sorting purposes in the DApp Directory                                                                                                                              |
+|                 `logo`                  |            Map of Strings to JSON objects             |                                                                                                     Map of logo image files associated with this project and stored in the `logos` directory. See the [Logos](#logos) section for more information                                                                                                     |
+|           `shortDescription`            |                        String                         |                                                                                                      A short description of the project used in the display card when browsing dapps in the directory. This should be kept to under 80 characters                                                                                                      |
+|              `description`              |                        String                         |                                                                               A longer description used in the project detail page. Markdown or similar formatting cannot be used. Line breaks can be used using `\r\n`. The text should be limited to a few paragraphs                                                                                |
+|                 `tags`                  |                   Array of Strings                    |                                                                       A list of applicable [tags](#category-and-tags) for this project. Tag values will show up in the project details. See the [Category and Tags](#category-and-tags) section for the accepted list of values                                                                        |
+|               `contracts`               |            Array of contract JSON objects             |                                                     List of contracts for the project. Currently, this is used only for token contracts. The list of smart contracts which make up the protocol is externally sourced from Moonscan. See the [Contracts](#contracts) section for more information                                                      |
+|                 `urls`                  |       Map of Strings (names) to Strings (URLs)        |                                                                                                        Mapping of URLs for websites and socials associated with the project. See the [URLs](#urls) section for the accepted list of properties                                                                                                         |
+|              `screenshots`              | Array of Maps of Strings (size) to image JSON objects |                                                                                        List of screenshot image files associated with this project and stored in the `screenshots` directory. See the [Screenshots](#screenshots) section for more information                                                                                         |
+|          `projectCreationDate`          |                          int                          |                                                                                                                                   The date the project was created. Used for sorting purposes in the DApp Directory                                                                                                                                    |
 
 ??? code "Example project data file"
 
@@ -170,23 +170,23 @@ The currently supported values for `category` and `tags` are:
 
 The `urls` property name/value pairs are used so a project can provide links to their website, socials, etc.
 
+The following table lists the supported `urls` properties:
+
+| Property Name |                                                    Description                                                     |                     Example                     |
+|:-------------:|:------------------------------------------------------------------------------------------------------------------:|:-----------------------------------------------:|
+|   `website`   |                                          The main website for the project                                          |            https://moonbeam.network/            |
+|     `try`     | URL a user should visit if they want to try out the dApp. Typically, this page will have a link to launch the dApp |            https://moonbeam.network/            |
+|   `twitter`   |                                           The project's Twitter profile                                            |       https://twitter.com/MoonbeamNetwork       |
+|   `medium`    |                                             The project's Medium site                                              |       https://medium.com/moonbeam-network       |
+|  `telegram`   |                                               The project's Telegram                                               |         https://t.me/Moonbeam_Official          |
+|   `github`    |                                          The project's GitHub repository                                           | https://github.com/moonbeam-foundation/moonbeam |
+|   `discord`   |                                               The project's Discord                                                |       https://discord.com/invite/PfpUATX        |
+
 The format of the property name/value pairs should follow the JSON standard, for example:
 
 ```json
 --8<-- 'code/learn/dapps-list/dapp-directory/urls.json'
 ```
-
-The following table lists the supported `urls` properties:
-
-| Property Name |                                                                       Description                                                                        |
-|:-------------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------:|
-|   `website`   |                                            The main website for the project. E.g., https://moonbeam.network/                                             |
-|     `try`     | URL a user should visit if they want to try out the dApp. Typically, this page will have a link to launch the dApp. E.g., https://moonbeam.network/ |
-|   `twitter`   |                                         The project's Twitter profile. E.g., https://twitter.com/MoonbeamNetwork                                         |
-|   `medium`    |                                           The project's Medium site. E.g., https://medium.com/moonbeam-network                                           |
-|  `telegram`   |                                               The project's Telegram. E.g., https://t.me/Moonbeam_Official                                               |
-|   `github`    |                                  The project's GitHub repository. E.g., https://github.com/moonbeam-foundation/moonbeam                                  |
-|   `discord`   |                                             The project's Discord. E.g., https://discord.com/invite/PfpUATX                                              |
 
 #### Logos {: #logos }
 
@@ -238,11 +238,11 @@ The smart contracts that make up the protocol are sourced from [Moonscan](https:
 
 The following table lists the properties found in the contract JSON object:
 
-|  Property  |  Type  |                                 Description                                 |
-|:----------:|:------:|:---------------------------------------------------------------------------:|
-| `contract` | String |                     The address for the smart contract                      |
+|  Property  |  Type  |                                  Description                                  |
+|:----------:|:------:|:-----------------------------------------------------------------------------:|
+| `contract` | String |                      The address for the smart contract                       |
 |  `chain`   | String | The chain on which the contract is deployed (i.e., `moonbeam` or `moonriver`) |
-|   `name`   | String |                          The name of the contract                           |
+|   `name`   | String |                           The name of the contract                            |
 
 Here is a `contracts` array with a single smart contract for the WGLMR token:
 
@@ -297,3 +297,5 @@ As your project evolves, you may need to update your project's listing or images
 If you are no longer using a logo or screenshot, please remember to remove it from the `logos` or `screenshots` directory.
 
 Once your changes have been made, you must follow the same instructions in the [Submit a Pull Request](#submit-a-pull-request) section so the changes can be reviewed by the Moonbeam Foundation.
+
+--8<-- 'text/_disclaimers/user-generated-content.md'
