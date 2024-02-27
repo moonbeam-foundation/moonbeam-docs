@@ -298,4 +298,6 @@ If you are no longer using a logo or screenshot, please remember to remove it fr
 
 Once your changes have been made, you must follow the same instructions in the [Submit a Pull Request](#submit-a-pull-request) section so the changes can be reviewed by the Moonbeam Foundation.
 
---8<-- 'text/_disclaimers/user-generated-content.md'
+<div class="page-disclaimer">
+    --8<-- 'text/_disclaimers/user-generated-content.md'
+</div>
