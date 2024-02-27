@@ -7,7 +7,7 @@ description: Follow this tutorial to learn how to list your Moonbeam or Moonrive
 
 ## Introduction to The Moonbeam DApp Directory {: #introduction-to-state-of-the-dapps }
 
-The Moonbeam ecosystem comprises two distinct networks: Moonbeam and Moonriver. Each network has its own dedicated [DApp Directory](https://apps.moonbeam.network/moonbeam/app-dir){target=\_blank}, maintained by the Moonbeam Foundation. These directories categorize projects spanning from DeFi to NFTs to gaming, providing users with comprehensive access to diverse applications.
+The Moonbeam ecosystem comprises two distinct production networks: Moonbeam and Moonriver. Each network has its own dedicated [DApp Directory](https://apps.moonbeam.network/moonbeam/app-dir){target=\_blank}, maintained by the Moonbeam Foundation. These directories categorize projects spanning from DeFi to NFTs to gaming, providing users with comprehensive access to diverse applications.
 
 You'll supply core project details like name, description, and relevant links when adding your project. Depending on your project type, you may include additional data such as on-chain stats and token information.
 
@@ -43,7 +43,7 @@ To get your project's smart contracts properly labeled on [Moonscan](https://moo
 
 Once you've labeled your smart contracts and are ready to submit your project to the DApp Directory, configuring the Directory to utilize your smart contract data becomes straightforward. You'll only need the **Project** component of your labeled contracts.
 
-Consider the following example project (My Project) with two smart contracts: a Comptroller and a Router recently updated to a new version.
+Consider the following example project with two smart contracts: a Comptroller and a Router recently updated to a new version.
 
 |  Project   | Contract Name | Contract Version |      Resulting Label       |
 |:----------:|:-------------:|:----------------:|:--------------------------:|
@@ -118,7 +118,7 @@ To get started, you must have a name that uniquely and properly identifies your 
 
 1. Create a new directory for your project using your unique project name
 2. In your project directory, you'll need to create:
-    1. A project data file is a JSON file that defines all your project data and contains references to the images stored in the `logos` and `screenshots` folders. The list of fields you can use to define your data, with descriptions, is outlined in the next section. The file must be named using your unique project name.
+    1. A project data file is a JSON file that defines all your project data and contains references to the images stored in the `logos` and `screenshots` folders. The list of fields you can use to define your data, with descriptions, is outlined in the next section. The file must be named using your unique project name
     2. A `logos` folder where your project logo images are stored
     3. (Optional) A `screenshots` folder where screenshots for the project are stored
 
@@ -270,7 +270,7 @@ All of your files should now be under the **Staged Changes** section. All you ha
 
 ![Comitting the staged files on GitHub's browser-based editor](/images/learn/dapps-list/dapp-directory/directory-7.webp)
 
-Now that you've committed the changes, you'll need to head over to the [`app-directory-data` repository] (https://github.com/moonbeam-foundation/app-directory-data){target=\_blank} and open a pull request against the `develop` branch:
+Now that you've committed the changes, you'll need to head over to the [`app-directory-data` repository](https://github.com/moonbeam-foundation/app-directory-data){target=\_blank} and open a pull request against the `develop` branch:
 
 1. At the top of the repository page, click **Compare and Pull** button displayed on the banner, or
 2. If the banner is not there anymore, you'll need to select your branch from the branches dropdown
