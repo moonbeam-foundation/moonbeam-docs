@@ -81,7 +81,7 @@ Make sure to clone the [GitHub repository](https://github.com/jboetticher/axelar
 npm install
 ```
 
-The repository contains two Solidity files. The first file is the CrossChainNFT as expected, and the second is an Axelar library `StringAddressUtils.sol` that doesn’t have an npm package yet but is still required for the Hardhat implementation.
+The repository contains two Solidity files. The first file is the `CrossChainNFT` as expected, and the second is an Axelar library `StringAddressUtils.sol` that doesn’t have an npm package yet but is still required for the Hardhat implementation.
 
 There are also four Hardhat scripts within the repository’s scripts folder.
 
