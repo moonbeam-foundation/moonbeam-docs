@@ -86,9 +86,9 @@ The repository contains two Solidity files. The first file is the `CrossChainNFT
 There are also four Hardhat scripts within the repository’s scripts folder.
 
 - `axelarStatus.js` - a Hardhat task that lets you view information about Axelar transactions
-- `deploy.js` - deploys the CrossChainNFT to the network provided by Hardhat
+- `deploy.js` - deploys the `CrossChainNFT` to the network provided by Hardhat
 - `gatewayGasReceiver.js` - returns hardcoded values for Axelar’s Gateway and gas service contracts
-- `mint.js` - mints the CrossChainNFT (only run on Moonbase Alpha)
+- `mint.js` - mints the `CrossChainNFT` (only run on Moonbase Alpha)
 
 Before we get into the fun part, you will need to get an account with a [private key funded with DEV](https://faucet.moonbeam.network/){target=\_blank} to deploy the contract and sign all future transactions. Place this within a `secrets.json` file within the repository’s main directory. You should format it as follows:
 
@@ -143,7 +143,7 @@ There are also some constants for you to change right after. This walkthrough is
 
 Next, we have to work with wrapped DEV to send across chains. First, we must wrap our DEV, and then we approve the contract on the origin chain to take some of our WDEV. This is necessary because the origin chain’s contract has to send your WDEV to pay for minting the NFT on the destination chain.
 
-Note here that instead of hardcoding the WDEV contract address, we’re using the `IAxelarGateway` contract to find the address. We could have also done this in the smart contract, but I wanted to show off how you would do it with Ethers.js. As expected, we sign two transactions: first to wrap 0.13 WDEV, then to approve our CrossChainNFT contract to send that WDEV.
+Note here that instead of hardcoding the WDEV contract address, we’re using the `IAxelarGateway` contract to find the address. We could have also done this in the smart contract, but I wanted to show off how you would do it with Ethers.js. As expected, we sign two transactions: first to wrap 0.13 WDEV, then to approve our `CrossChainNFT` contract to send that WDEV.
 
 You may be wondering why we’re wrapping 0.13 WDEV when the price of the mint is only 0.05. At the time of writing, Axelar collects a small fee (0.08 WDEV in this case) when transferring tokens between networks, which can be calculated on their website. Gateways do this automatically, but this responsibility may be delegated to the `IAxelarGasService`contract in the future.
 
