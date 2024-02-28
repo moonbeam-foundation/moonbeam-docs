@@ -195,7 +195,7 @@ Axelar has a [TestNet explorer](https://testnet.axelarscan.io/gmp/search){target
 
 ![Viewing Transaction status on AxelarScan](/images/tutorials/interoperability/axelar-sdk/axelar-2.webp)
 
-It's a good idea to try out the SDK to view the status of your transactions because it gives more information about your transaction and any possible errors. To do this, I wrote a Hardhat task for us to use. You can view the code in axelarStatus.js, but we’ll take a dive here too.
+It's a good idea to try out the SDK to view the status of your transactions because it gives more information about your transaction and any possible errors. To do this, I wrote a Hardhat task for us to use. You can view the code in `axelarStatus.js`, but we’ll take a dive here too.
 
 The main meat of the code is in these five lines. First, we initialize the SDK module that we will be using, the `AxelarGMPRecoveryAPI`. Unlike the `AxelarQueryAPI` that we used in the minting script, the `AxelarGMPRecoveryAPI` helps track and recover stalled transactions. Next, we have to query the transaction status, and the SDK takes care of it for us.
 
