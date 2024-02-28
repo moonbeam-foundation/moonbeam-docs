@@ -65,7 +65,7 @@ Some important parameters to understand in relation to the staking system on Moo
 === "Moonbase Alpha"
     |             Variable             |                                                                         Value                                                                         |
     |:--------------------------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------:|
-    |          Round duration          |                        {{ networks.moonbase.staking.round_blocks }} blocks ({{ networks.moonbase.staking.round_hours }} hours)                        |
+    |          Round duration          |                        {{ networks.moonbase.staking.round_blocks }} blocks ({{ networks.moonbase.staking.round_hours }} hour)                        |
     | Minimum delegation per candidate |                                                   {{ networks.moonbase.staking.min_del_stake }} DEV                                                   |
     | Maximum delegators per candidate |                                                    {{ networks.moonbase.staking.max_del_per_can }}                                                    |
     |       Maximum delegations        |                                                    {{ networks.moonbase.staking.max_del_per_del }}                                                    |
@@ -74,6 +74,8 @@ Some important parameters to understand in relation to the staking system on Moo
     |    Decrease delegation delay     |      {{ networks.moonbase.delegator_timings.del_bond_less.rounds }} rounds ({{ networks.moonbase.delegator_timings.del_bond_less.hours }} hours)      |
     |     Revoke delegations delay     | {{ networks.moonbase.delegator_timings.revoke_delegations.rounds }} rounds ({{ networks.moonbase.delegator_timings.revoke_delegations.hours }} hours) |
     |      Leave delegators delay      |   {{ networks.moonbase.delegator_timings.leave_delegators.rounds }} rounds ({{ networks.moonbase.delegator_timings.leave_delegators.hours }} hours)   |
+
+--8<-- 'text/_common/async-backing-moonbase.md'
 
 To learn how to get the current value of any of the parameters around staking, check out the [Retrieving Staking Parameters](/tokens/staking/stake/#retrieving-staking-parameters){target=\_blank} section of the [How to Stake your Tokens](/tokens/staking/stake/){target=\_blank} guide.
 
@@ -98,7 +100,6 @@ There are a few resources you can check out to help you select a collator to del
     |    Collators Leaderboard     |       [Moonscan](https://moonriver.moonscan.io/collators){target=\_blank}       |
     | Staking Simulation Dashboard |            [Web3Go](https://web3go.xyz/#/Moonriver){target=\_blank}             |
     |      Collator Dashboard      | [DappLooker](https://network.dapplooker.com/moonriver/collator){target=\_blank} |
-
 
 === "Moonbase Alpha"
     |      Variable      |                                     Value                                      |

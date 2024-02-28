@@ -40,7 +40,7 @@ Before getting started, it's important to note some of the timing of different a
 === "Moonbase Alpha"
     |               Variable                |                                                                         Value                                                                         |
     |:-------------------------------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------:|
-    |            Round duration             |                        {{ networks.moonbase.staking.round_blocks }} blocks ({{ networks.moonbase.staking.round_hours }} hours)                        |
+    |            Round duration             |                        {{ networks.moonbase.staking.round_blocks }} blocks ({{ networks.moonbase.staking.round_hours }} hour)                        |
     |           Leave candidates            |    {{ networks.moonbase.collator_timings.leave_candidates.rounds }} rounds ({{ networks.moonbase.collator_timings.leave_candidates.hours }} hours)    |
     |           Revoke delegation           | {{ networks.moonbase.delegator_timings.revoke_delegations.rounds }} rounds ({{ networks.moonbase.delegator_timings.revoke_delegations.hours }} hours) |
     |        Reduce self-delegation         |      {{ networks.moonbase.delegator_timings.del_bond_less.rounds }} rounds ({{ networks.moonbase.delegator_timings.del_bond_less.hours }} hours)      |
@@ -49,6 +49,8 @@ Before getting started, it's important to note some of the timing of different a
 
 !!! note
     The values presented in the previous table are subject to change in future releases.
+
+--8<-- 'text/_common/async-backing-moonbase.md'
 
 ## Become a Candidate {: #become-a-candidate }
 
