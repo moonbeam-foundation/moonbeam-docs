@@ -433,13 +433,13 @@ To deploy the contract, take the following steps:
     === "Moonbeam"
 
         ```js
-        --8<-- 'code/tutorials/integrations/supra/deploy-oracle-mb.js:1'      
+        --8<-- 'code/tutorials/integrations/supra/deploy-oracle-mb.js:1'
         ```
 
     === "Moonbase Alpha"
 
         ```js
-        --8<-- 'code/tutorials/integrations/supra/deploy-oracle-mba.js:1'      
+        --8<-- 'code/tutorials/integrations/supra/deploy-oracle-mba.js:1'
         ```
 
 To deploy the contract, run:
@@ -553,7 +553,7 @@ To create the contract, you can take the following steps:
 2. In the file, create an interface for Supra's Storage contract. The interface has two functions: one for retrieving the price data for a single data pair and another that retrieves price data for multiple data pairs. Then, in our `FeedClient` contract, we'll instantiate the `ISupraSValueFeed` interface with the address of Supra's Storage contract on Moonbeam or Moonbase Alpha
 
     ```solidity title="FeedClient.sol"
-    --8<-- 'code/tutorials/integrations/supra/FeedClient.sol:1:9'    
+    --8<-- 'code/tutorials/integrations/supra/FeedClient.sol:1:9'
     ```
 
 3. In the same file, create the `FeedClient` contract. As mentioned in the previous step, the constructor of this contract instantiates the `ISupraSValueFeed` interface with the address of Supra's Storage contract. The contract also includes functions that call the `getSValue` and `getSValues` functions of the Storage contract and return the response in a decoded format
@@ -567,7 +567,7 @@ To create the contract, you can take the following steps:
 ??? code "FeedClient.sol"
 
     ```solidity
-    --8<-- 'code/tutorials/integrations/supra/FeedClient.sol'     
+    --8<-- 'code/tutorials/integrations/supra/FeedClient.sol'
     ```
 
 ### Deploy the Contract {: #deploy-the-retrieval-contract }
