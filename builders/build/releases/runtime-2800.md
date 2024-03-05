@@ -13,7 +13,7 @@ You can learn more about [Asynchronous Backing on Polkadot's Wiki](https://wiki.
 
 ## Removal of Governance V1 Collectives {: #remove-gov-v1-collective }
 
-Moonbeam networks have transitioned to Governance V2, an upgrade completed across all networks as of the runtime 2400 release. This update introduced the OpenGov Technical Committee as a new collective within the governance structure. Consequently, as part of the Governance V1 removal, the Governance V1 Council and Technical Committee collectives have been dissolved and no longer exist. The removal of the Governance V1 collectives results in the following notable changes:
+Moonbeam networks have transitioned to Governance V2, an upgrade completed across all networks as of the runtime 2400 release. This update introduced the OpenGov Technical Committee as a new collective within the governance structure. Consequently, as part of the Governance v1 removal, the Governance v1 Council and Technical Committee collectives have been dissolved and no longer exist. The removal of the Governance v1 collectives results in the following notable changes:
 
 - The Council Collective Precompile and the Technical Committee Precompile have been removed and will revert if called
 - The maintenance mode privileges have been transferred to the OpenGov Technical Committee
@@ -44,6 +44,6 @@ A new precompile was released, enabling relay chain data to be verified using th
 
 ## Addition of the Fast Admin Track on Moonbase Alpha {: #add-a-fast-admin-track }
 
-The Fast General Admin Track is a new OpenGov track similar to the preexisting General Admin Track but with relaxed support requirements. At this time, the Track can only be used to manage HRMP channels.
+The Fast General Admin Track is a new OpenGov track similar to the preexisting General Admin Track but with relaxed support requirements. At this time, the Track can only be used to manage HRMP channels and is only enabled on Moonbase Alpha.
 
 Please refer to the [Governance on Moonbeam](/learn/features/governance){target=\_blank} documentation for more information on the Fast General Admin Track.
