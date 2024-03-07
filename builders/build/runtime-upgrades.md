@@ -18,7 +18,7 @@ The following table contains a list of the runtime upgrades and the block at whi
 Not all runtime upgrades are released on each network, as sometimes after releasing the initial runtime upgrade, the need for a subsequent upgrade arises. If a runtime upgrade version has been skipped or hasn't been released yet (only applicable to the latest runtime upgrade), you'll see a `-` in that row.
 
 | Runtime |                               Moonbeam                               |                               Moonriver                               |                            Moonbase Alpha                            |
-| :-----: | :------------------------------------------------------------------: | :-------------------------------------------------------------------: | :------------------------------------------------------------------: |
+|:-------:|:--------------------------------------------------------------------:|:---------------------------------------------------------------------:|:--------------------------------------------------------------------:|
 |   40    |                                  -                                   |                                   -                                   |       [0](https://moonbase.subscan.io/block/0){target=\_blank}       |
 |   44    |                                  -                                   |                                   -                                   |  [142863](https://moonbase.subscan.io/block/142863){target=\_blank}  |
 |   47    |                                  -                                   |                                   -                                   |  [209144](https://moonbase.subscan.io/block/209144){target=\_blank}  |
@@ -75,3 +75,4 @@ Not all runtime upgrades are released on each network, as sometimes after releas
 |  2601   |                                  -                                   |                                   -                                   | [5474345](https://moonbase.subscan.io/block/5474345){target=\_blank} |
 |  2602   | [4977160](https://moonbeam.subscan.io/block/4977160){target=\_blank} | [5638536](https://moonriver.subscan.io/block/5638536){target=\_blank} | [5576588](https://moonbase.subscan.io/block/5576588){target=\_blank} |
 |  2700   | [5504531](https://moonbeam.subscan.io/block/5504531){target=\_blank} | [6041969](https://moonriver.subscan.io/block/6041969){target=\_blank} | [5860584](https://moonbase.subscan.io/block/5860584){target=\_blank} |
+|  2801   |                                  -                                   |                                   -                                   | [6209638](https://moonbase.subscan.io/block/6209638){target=\_blank} |
