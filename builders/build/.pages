@@ -6,3 +6,4 @@ nav:
   - eth-api
   - substrate-api
   - 'Moonbeam Custom API': 'moonbeam-custom-api.md'
+  - releases # Hidden from left nav manually in nav-item and subsection-index-page overrides
