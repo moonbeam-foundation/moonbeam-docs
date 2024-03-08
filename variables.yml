@@ -31,7 +31,7 @@ networks:
     node_db_loc: /chains/moonbase_alpha/db
     binary_name: moonbeam
     min_gas_price: 0.125
-    block_time: 12
+    block_time: 6
     website_faucet_amount: 1.1 DEV tokens
     chaindrop_faucet_amount: 0.1 DEV tokens
     node:
@@ -139,16 +139,16 @@ networks:
           decision_deposit: 100000
           prepare_period:
             time: '1 day'
-            blocks: 7200
+            blocks: 14400
           decision_period:
             time: '14 days'
-            blocks: 100800
+            blocks: 201600
           confirm_period:
             time: '1 day'
-            blocks: 7200
+            blocks: 14400
           min_enactment_period:
             time: '1 day'
-            blocks: 7200
+            blocks: 14400
           min_approval:
             time0: 'Day 0'
             percent0: 100
@@ -166,16 +166,16 @@ networks:
           decision_deposit: 10000
           prepare_period:
             time: '10 minutes'
-            blocks: 50
+            blocks: 100
           decision_period:
             time: '14 days'
-            blocks: 100800
+            blocks: 201600
           confirm_period:
             time: '10 minutes'
-            blocks: 50
+            blocks: 100
           min_enactment_period:
             time: '30 minutes'
-            blocks: 150
+            blocks: 300
           min_approval:
             time0: 'Day 0'
             percent0: 100
@@ -195,16 +195,16 @@ networks:
           decision_deposit: 500
           prepare_period:
             time: '1 hour'
-            blocks: 300
+            blocks: 600
           decision_period:
             time: '14 days'
-            blocks: 100800
+            blocks: 201600
           confirm_period:
             time: '1 day'
-            blocks: 7200
+            blocks: 14400
           min_enactment_period:
             time: '1 day'
-            blocks: 7200
+            blocks: 14400
           min_approval:
             time0: 'Day 0'
             percent0: 100
@@ -224,16 +224,16 @@ networks:
           decision_deposit: 10000
           prepare_period:
             time: '1 hour'
-            blocks: 300
+            blocks: 600
           decision_period:
             time: '14 days'
-            blocks: 100800
+            blocks: 201600
           confirm_period:
             time: '3 hours'
-            blocks: 900
+            blocks: 1800
           min_enactment_period:
             time: '10 minutes'
-            blocks: 50
+            blocks: 100
           min_approval:
             time0: 'Day 0'
             percent0: 100
@@ -253,16 +253,16 @@ networks:
           decision_deposit: 20000
           prepare_period:
             time: '1 hour'
-            blocks: 300
+            blocks: 600
           decision_period:
             time: '14 days'
-            blocks: 100800
+            blocks: 201600
           confirm_period:
             time: '3 hours'
-            blocks: 900
+            blocks: 1800
           min_enactment_period:
             time: '10 minutes'
-            blocks: 50
+            blocks: 100
           min_approval:
             time0: 'Day 0'
             percent0: 100
@@ -321,7 +321,7 @@ networks:
       min_can_stk_wei: 500000000000000000000
       collator_map_bond: 100
       max_candidates: 36
-      round_blocks: 600
+      round_blocks: 1200
       round_hours: 2
       min_del_stake: 1
       min_del_stake_wei: 1000000000000000000
@@ -333,11 +333,11 @@ networks:
     treasury:
       current_council_members: 2
       motion_duration_days: 3
-      motion_duration_blocks: 21600
+      motion_duration_blocks: 43200
       proposal_bond: 5
       proposal_bond_min: 1
       proposal_bond_max: uncapped
-      spend_period_blocks: 43200
+      spend_period_blocks: 86400
       spend_period_days: 6
       max_approved_proposals: 100
       tx_fees_allocated: 20
@@ -404,7 +404,7 @@ networks:
       stable_version: 14.1.1
     tx_weight_to_gas_ratio: 25000      
     orbiter:
-      max_orbiters_per_collator: 4
+      max_orbiters_per_collator: 8
       max_collators: Unlimited
       active:
         rounds: 3

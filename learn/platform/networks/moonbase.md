@@ -5,9 +5,6 @@ description: An overview of the current configuration of the Moonbeam TestNet, M
 
 # The Moonbase Alpha TestNet
 
-!!! note
-    With the release of [Moonbase Alpha v8](https://github.com/moonbeam-foundation/moonbeam/releases/tag/v0.8.0){target=\_blank}, the minimum gas price has been set to 1 GDEV (similar to GWei on Ethereum). This might be a breaking change if you've previously specified a gas price of `0` for your deployment.
-
 ## Goal {: #goal }
 
 The first Moonbeam TestNet, named Moonbase Alpha, aims to provide developers with a place to start experimenting and building on Moonbeam in a shared environment. Since Moonbeam is deployed as a parachain on Kusama and Polkadot, the goal of the TestNet is to reflect the production configurations. For this reason, it was decided that it needed to be a parachain-based configuration rather than a Substrate development setup.
@@ -31,19 +28,21 @@ Some important variables/configurations to note include:
     |       Variable        |                                  Value                                  |
     |:---------------------:|:-----------------------------------------------------------------------:|
     |   Minimum gas price   |               {{ networks.moonbase.min_gas_price }} Gwei                |
-    |   Target block time   |  {{ networks.moonbase.block_time }} seconds (expected to be 6 seconds)  |
+    |   Target block time   |               {{ networks.moonbase.block_time }} seconds                |
     |    Block gas limit    | {{ networks.moonbase.gas_block }} (expected to increase by at least 4x) |
     | Transaction gas limit |  {{ networks.moonbase.gas_tx }} (expected to increase by at least 4x)   |
 
 === "Staking"
-    |             Variable              |                                                  Value                                                  |
-    |:---------------------------------:|:-------------------------------------------------------------------------------------------------------:|
-    |     Minimum delegation stake      |                            {{ networks.moonbase.staking.min_del_stake }} DEV                            |
-    | Maximum delegators per candidates |                             {{ networks.moonbase.staking.max_del_per_can }}                             |
-    |  Maximum delegations per account  |                             {{ networks.moonbase.staking.max_del_per_del }}                             |
-    |               Round               | {{ networks.moonbase.staking.round_blocks }} blocks ({{ networks.moonbase.staking.round_hours }} hours) |
-    |           Bond duration           |               delegation takes effect in the next round (funds are withdrawn immediately)               |
-    |          Unbond duration          |                  {{ networks.moonbase.delegator_timings.del_bond_less.rounds }} rounds                  |
+    |             Variable              |                                                                    Value                                                                    |
+    |:---------------------------------:|:-------------------------------------------------------------------------------------------------------------------------------------------:|
+    |     Minimum delegation stake      |                                              {{ networks.moonbase.staking.min_del_stake }} DEV                                              |
+    | Maximum delegators per candidates |                                               {{ networks.moonbase.staking.max_del_per_can }}                                               |
+    |  Maximum delegations per account  |                                               {{ networks.moonbase.staking.max_del_per_del }}                                               |
+    |               Round               |                   {{ networks.moonbase.staking.round_blocks }} blocks ({{ networks.moonbase.staking.round_hours }} hour)                    |
+    |           Bond duration           |                                 delegation takes effect in the next round (funds are withdrawn immediately)                                 |
+    |          Unbond duration          | {{ networks.moonbase.delegator_timings.del_bond_less.rounds }} rounds ({{ networks.moonbase.delegator_timings.del_bond_less.hours }} hours) |
+
+--8<-- 'text/_common/async-backing-moonbase.md'
 
 --8<-- 'text/builders/get-started/networks/moonbase/connect.md'
 

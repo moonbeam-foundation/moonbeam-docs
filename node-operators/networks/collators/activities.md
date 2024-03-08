@@ -50,6 +50,8 @@ Before getting started, it's important to note some of the timing of different a
 !!! note
     The values presented in the previous table are subject to change in future releases.
 
+--8<-- 'text/_common/async-backing-moonbase.md'
+
 ## Become a Candidate {: #become-a-candidate }
 
 ### Get the Size of the Candidate Pool {: #get-the-size-of-the-candidate-pool }
