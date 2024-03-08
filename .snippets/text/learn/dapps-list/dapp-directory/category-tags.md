@@ -1,0 +1,10 @@
+- `DeFi`
+- `Dex`
+- `Bridges`
+- `Lending`
+- `NFTs`
+- `Gaming`
+- `Social`
+- `Wallets`
+- `DAO`
+- `Other`

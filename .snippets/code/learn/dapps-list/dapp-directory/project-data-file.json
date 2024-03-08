@@ -1,0 +1,107 @@
+{
+    "id": "moonwell",
+    "slug": "moonwell",
+    "name": "Moonwell",
+    "category": "lending",
+    "coinGeckoId": "moonwell-artemis",
+    "chains": ["moonbeam"],
+    "web3goIDs": ["Moonwell Artemis"],
+    "logo": {
+        "small": {
+            "fileName": "moonwell-logo-small.jpeg",
+            "width": 40,
+            "height": 40,
+            "mimeType": "image/jpeg"
+        },
+        "large": {
+            "fileName": "moonwell-logo-large.jpeg",
+            "width": 400,
+            "height": 400,
+            "mimeType": "image/jpeg"
+        },
+        "full": {
+            "fileName": "moonwell-logo-full.jpeg",
+            "width": 3000,
+            "height": 3000,
+            "mimeType": "image/jpeg"
+        }
+    },
+    "shortDescription": "Lending, borrowing, and DeFi protocol built on Moonbeam and Moonriver",
+    "description": "Moonwell is an open lending, borrowing, and decentralized finance protocol built on Moonbeam and Moonriver. Moonwell’s composable design can accommodate a full range of DeFi applications in the greater Polkadot and Kusama (DotSama) ecosystem.\r\n\r\nOur first deployment will be on Kusama’s Moonriver, the sister network of Polkadot’s Moonbeam. Moonriver is where new products are expected to be incubated and developed prior to being deployed on Moonbeam.",
+    "tags": ["Lending", "DeFi"],
+    "contracts": [
+        {
+            "contract": "0x511ab53f793683763e5a8829738301368a2411e3",
+            "chain": "moonbeam",
+            "name": "WELL Token"
+        }
+    ],
+    "urls": {
+        "website": "https://moonwell.fi/",
+        "try": "https://moonwell.fi/",
+        "twitter": "https://twitter.com/MoonwellDeFi",
+        "medium": "https://moonwell.medium.com/",
+        "telegram": "https://t.me/moonwellfichat",
+        "github": "https://github.com/moonwell-open-source",
+        "discord": "https://discord.gg/moonwellfi"
+    },
+    "screenshots": [
+        {
+            "small": {
+                "fileName": "moonwell-screenshot-small1.png",
+                "width": 429,
+                "height": 200,
+                "mimeType": "image/png"
+            },
+            "full": {
+                "fileName": "moonwell-screenshot-full1.png",
+                "width": 514,
+                "height": 300,
+                "mimeType": "image/png"
+            }
+        },
+        {
+            "small": {
+                "fileName": "moonwell-screenshot-small2.png",
+                "width": 429,
+                "height": 200,
+                "mimeType": "image/png"
+            },
+            "full": {
+                "fileName": "moonwell-screenshot-full2.png",
+                "width": 1716,
+                "height": 800,
+                "mimeType": "image/png"
+            }
+        },
+        {
+            "small": {
+                "fileName": "moonwell-screenshot-small3.png",
+                "width": 429,
+                "height": 200,
+                "mimeType": "image/png"
+            },
+            "full": {
+                "fileName": "moonwell-screenshot-full3.png",
+                "width": 1054,
+                "height": 637,
+                "mimeType": "image/png"
+            }
+        },
+        {
+            "small": {
+                "fileName": "moonwell-screenshot-small4.png",
+                "width": 429,
+                "height": 200,
+                "mimeType": "image/png"
+            },
+            "full": {
+                "fileName": "moonwell-screenshot-full4.png",
+                "width": 1365,
+                "height": 436,
+                "mimeType": "image/png"
+            }
+        }
+    ],
+    "projectCreationDate": 1644828523000
+}
