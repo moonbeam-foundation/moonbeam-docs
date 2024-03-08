@@ -341,7 +341,6 @@ networks:
       can_bond_less:
         rounds: 2
         hours: 4
-``
     precompiles:
       staking: '0x0000000000000000000000000000000000000800'
       crowdloan: '0x0000000000000000000000000000000000000801'
@@ -372,7 +371,7 @@ networks:
       stable_version: 14.1.1
     tx_weight_to_gas_ratio: 25000      
     orbiter:
-      max_orbiters_per_collator: 4
+      max_orbiters_per_collator: 8
       max_collators: Unlimited
       active:
         rounds: 3
