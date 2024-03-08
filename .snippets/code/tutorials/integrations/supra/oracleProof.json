@@ -1,0 +1,54 @@
+[
+    {
+        "type": "tuple",
+        "name": "OracleProof",
+        "components": [
+            {
+                "type": "tuple[]",
+                "name": "votes",
+                "components": [
+                    {
+                        "type": "tuple",
+                        "name": "smrBlock",
+                        "components": [
+                            { "type": "uint64", "name": "round" },
+                            { "type": "uint128", "name": "timestamp" },
+                            { "type": "bytes32", "name": "author" },
+                            { "type": "bytes32", "name": "qcHash" },
+                            { "type": "bytes32[]", "name": "batchHashes" }
+                        ]
+                    },
+                    { "type": "bytes8", "name": "roundLE" }
+                ]
+            },
+            { "type": "uint256[2][]", "name": "sigs" },
+            {
+                "type": "tuple[]",
+                "name": "smrBatches",
+                "components": [
+                    { "type": "bytes10", "name": "protocol" },
+                    { "type": "bytes32[]", "name": "txnHashes" },
+                    { "type": "uint256", "name": "batchIdx" }
+                ]
+            },
+            {
+                "type": "tuple[]",
+                "name": "smrTxns",
+                "components": [
+                    { "type": "bytes32[]", "name": "clusterHashes" },
+                    { "type": "bytes32", "name": "sender" },
+                    { "type": "bytes10", "name": "protocol" },
+                    { "type": "bytes1", "name": "tx_sub_type" },
+                    { "type": "uint256", "name": "txnIdx" }
+                ]
+            },
+            { "type": "bytes[]", "name": "clustersRaw" },
+            { "type": "uint256[]", "name": "batchToVote" },
+            { "type": "uint256[]", "name": "txnToBatch" },
+            { "type": "uint256[]", "name": "clusterToTxn" },
+            { "type": "uint256[]", "name": "clusterToHash" },
+            { "type": "bool[]", "name": "pairMask" },
+            { "type": "uint256", "name": "pairCnt" }
+        ]
+    }
+]
