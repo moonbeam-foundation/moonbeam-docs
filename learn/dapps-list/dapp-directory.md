@@ -76,6 +76,8 @@ If you have the CoinGecko ID and are ready to submit your project to the Moonbea
 
 ## How to Submit Your Project Listing {: #how-to-submit-your-project-listing }
 
+As mentioned, you must submit a pull request to the Moonbeam Foundation's GitHub repository that holds the DApp Directory's data. Before getting started, it's worth noting that to expedite the review process, the GitHub user who submits the pull request is recommended to be a major contributor to the project's GitHub so that the Moonbeam Foundation can quickly verify that they represent the project. You can check out the [Review Process](#review-process) section for more information.
+
 To begin, you have two options for adding your project information to the [`app-directory-data` repository on GitHub](https://github.com/moonbeam-foundation/app-directory-data){targe\_blank}. You can utilize [GitHub's browser-based editor](https://github.dev/moonbeam-foundation/app-directory-data){target=\_blank}, which offers a user-friendly interface.
 
 ![The app-directory-data repository loaded on GitHub's browser-based editor](/images/learn/dapps-list/dapp-directory/directory-2.webp)
@@ -288,7 +290,11 @@ You'll be taken to the **Comparing changes** page, where you'll need to:
 
 ![Submit a pull request on the Comparing changes page of the app-directory-data repository on GitHub](/images/learn/dapps-list/dapp-directory/directory-9.webp)
 
-The Moonbeam Foundation will review your pull request, and if any changes are requested, a comment will be added to the pull request. Otherwise, your pull request will be merged, and your project will be added to the Moonbeam DApp Directory!
+### The Review Process {: #review-process }
+
+Submitted pull requests will be reviewed bi-weekly by the Moonbeam Foundation. During the review, and especially for new projects, the Foundation may have to verify that the GitHub user who created the pull request is a contributor and/or represents the specific project. One way projects can expedite this process is if the submitter's GitHub account is also a major contributor to the project itself on GitHub. Alternatively, teams should leave a note in the pull request comments indicating how we can get in touch with project team members to verify.
+
+A comment will be added to the pull request if any changes are requested. After your pull request has been approved, it will be merged, and your project will be added to the Moonbeam DApp Directory!
 
 ## How to Update Your Project Listing {: #how-to-update-your-project-listing }
 
@@ -296,7 +302,7 @@ As your project evolves, you may need to update your project's listing or images
 
 If you are no longer using a logo or screenshot, please remember to remove it from the `logos` or `screenshots` directory.
 
-Once your changes have been made, you must follow the same instructions in the [Submit a Pull Request](#submit-a-pull-request) section so the changes can be reviewed by the Moonbeam Foundation.
+Once your changes have been made, you must follow the same instructions in the [Submit a Pull Request](#submit-a-pull-request) section so the changes can be [reviewed](review-process) by the Moonbeam Foundation. Please note that pull requests are reviewed on a bi-weekly basis, so if the update is urgent, you can create a [forum post](https://forum.moonbeam.foundation/){target=\_blank} asking for assistance.
 
 <div class="page-disclaimer">
     --8<-- 'text/_disclaimers/user-generated-content.md'
