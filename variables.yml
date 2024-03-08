@@ -289,8 +289,8 @@ networks:
       min_can_stk_wei: 500000000000000000000
       collator_map_bond: 100
       max_candidates: 36
-      round_blocks: 600
-      round_hours: 1
+      round_blocks: 1200
+      round_hours: 2
       min_del_stake: 1
       min_del_stake_wei: 1000000000000000000
       max_del_per_can: 300
@@ -321,26 +321,27 @@ networks:
     delegator_timings:
       leave_delegators:
         rounds: 2
-        hours: 2
+        hours: 4
       revoke_delegations:
         rounds: 2
-        hours: 2
+        hours: 4
       del_bond_less:
         rounds: 2
-        hours: 2
+        hours: 4
       rewards_payouts:
         rounds: 2
-        hours: 2
+        hours: 4
     collator_timings:
       max_offline:
         rounds: 2
-        hours: 2
+        hours: 4
       leave_candidates:
         rounds: 2
-        hours: 2
+        hours: 4
       can_bond_less:
         rounds: 2
-        hours: 2
+        hours: 4
+``
     precompiles:
       staking: '0x0000000000000000000000000000000000000800'
       crowdloan: '0x0000000000000000000000000000000000000801'
@@ -375,7 +376,7 @@ networks:
       max_collators: Unlimited
       active:
         rounds: 3
-        hours: 3
+        hours: 6
       bond: 100
     multisig:
       api_page: https://transaction.moonbase.multisig.moonbeam.network/

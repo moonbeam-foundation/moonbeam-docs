@@ -65,7 +65,7 @@ Some important parameters to understand in relation to the staking system on Moo
 === "Moonbase Alpha"
     |             Variable             |                                                                         Value                                                                         |
     |:--------------------------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------:|
-    |          Round duration          |                        {{ networks.moonbase.staking.round_blocks }} blocks ({{ networks.moonbase.staking.round_hours }} hour)                        |
+    |          Round duration          |                        {{ networks.moonbase.staking.round_blocks }} blocks ({{ networks.moonbase.staking.round_hours }} hours)                        |
     | Minimum delegation per candidate |                                                   {{ networks.moonbase.staking.min_del_stake }} DEV                                                   |
     | Maximum delegators per candidate |                                                    {{ networks.moonbase.staking.max_del_per_can }}                                                    |
     |       Maximum delegations        |                                                    {{ networks.moonbase.staking.max_del_per_del }}                                                    |
