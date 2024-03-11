@@ -510,7 +510,7 @@ If you want to update your client, you can keep your existing chain data in tact
     !!! note
         If you [compiled the binary manually](/node-operators/networks/run-a-node/compile-binary){target=\_blank}, you'll need to move the binary from `./target/release/{{ networks.moonbeam.binary_name }}` to the data directory.
 
-5. Update permissions
+4. Update permissions
 
     === "Moonbeam"
 
@@ -533,7 +533,7 @@ If you want to update your client, you can keep your existing chain data in tact
         chown moonbase_service {{ networks.moonbase.node_directory }}/moonbeam
         ```
 
-6. Start your service
+5. Start your service
 
     ```bash
     systemctl start moonbeam.service
