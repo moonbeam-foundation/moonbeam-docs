@@ -29,17 +29,17 @@ The addresses for Supra's contracts on Moonbeam are as follows:
 
 === "Moonbeam"
 
-    |  Contract   |                                                          Address                                                           |
-    |:-----------:|:--------------------------------------------------------------------------------------------------------------------------:|
-    | Pull Oracle | [{{ networks.moonbeam.supra.pull_oracle }}](https://moonscan.io/{{ networks.moonbeam.supra.pull_oracle }}){target=\_blank} |
-    |   Storage   |   [{{ networks.moonbeam.supra.storage }}](https://moonscan.io/{{ networks.moonbeam.supra.pull_oracle }}){target=\_blank}   |
+    |  Contract   |                                                              Address                                                               |
+    |:-----------:|:----------------------------------------------------------------------------------------------------------------------------------:|
+    | Pull Oracle | [{{ networks.moonbeam.supra.pull_oracle }}](https://moonscan.io/address/{{ networks.moonbeam.supra.pull_oracle }}){target=\_blank} |
+    |   Storage   |     [{{ networks.moonbeam.supra.storage }}](https://moonscan.io/address/{{ networks.moonbeam.supra.storage }}){target=\_blank}     |
 
 === "Moonbase Alpha"
 
-    |  Contract   |                                                               Address                                                               |
-    |:-----------:|:-----------------------------------------------------------------------------------------------------------------------------------:|
-    | Pull Oracle | [{{ networks.moonbase.supra.pull_oracle }}](https://moonbase.moonscan.io/{{ networks.moonbeam.supra.pull_oracle }}){target=\_blank} |
-    |   Storage   |   [{{ networks.moonbase.supra.storage }}](https://moonbase.moonscan.io/{{ networks.moonbeam.supra.pull_oracle }}){target=\_blank}   |
+    |  Contract   |                                                                   Address                                                                   |
+    |:-----------:|:-------------------------------------------------------------------------------------------------------------------------------------------:|
+    | Pull Oracle | [{{ networks.moonbase.supra.pull_oracle }}](https://moonbase.moonscan.io/address/{{ networks.moonbase.supra.pull_oracle }}){target=\_blank} |
+    |   Storage   |     [{{ networks.moonbase.supra.storage }}](https://moonbase.moonscan.io/address/{{ networks.moonbase.supra.storage }}){target=\_blank}     |
 
 !!! note
     Moonriver is not supported at this time.
