@@ -3,9 +3,9 @@ nav:
   - index.md
   - 'Moonbeam vs Ethereum': 'vs-ethereum.md'
   - 'Account Balances': 'balances.md'
+  - 'Balance Transfers': 'transfers-api.md'
   - 'Consensus & Finality': 'consensus-finality.md'
+  - 'Transaction Fees': 'tx-fees.md'
+  - 'Unified Accounts': 'unified-accounts.md'
   - 'RPC Support': 'rpc-support.md'
   - 'Security Considerations': 'security.md'
-  - 'Transaction Fees': 'tx-fees.md'
-  - 'Balance Transfers': 'transfers-api.md'
-  - 'Unified Accounts': 'unified-accounts.md'
