@@ -1,4 +1,3 @@
-# scripts/deploy.py
 from ape import project, accounts
 
 

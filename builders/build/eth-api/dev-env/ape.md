@@ -58,7 +58,7 @@ Your Ape project contains a bare-bones `ape-config.yaml` file for customizing sp
 
 - `contracts` - an empty directory for storing smart contracts
 - `scripts` - an empty directory for storing Python scripts, such as deployment scripts and scripts to interact with your deployed contracts
-- `tests` - an empty directory for `pytest` testing scripts
+- `tests` - an empty directory for pytest testing scripts
 
 ## Configure Accounts {: #configure-accounts }
 
@@ -121,6 +121,52 @@ ape compile
 
 After compilation, you can find the bytecode and ABI for your contracts in the `.build` directory.
 
+## Test the Contract {: #test-the-contract }
+
+Before you deploy your contract, you can test it out directly inside your Ape project using the [pytest framework](https://docs.pytest.org/en/latest/){target=\_blank} to make sure it works as you expect.
+
+You should already have a `tests` directory where you'll create your tests, but if not, please create one, as all tests must be located in a directory named `tests`. Additionally, each test file name must start with `test_` and end with `.py`. So, first, you can create a test file for the `Box.sol` contract:
+
+```bash
+touch tests/test_box.py
+```
+
+In addition to the test file, you can create a `conftest.py` file that will define a couple of essential [fixtures](https://docs.pytest.org/en/stable/explanation/fixtures.html){target=\_blank}. Fixtures allow you to define functions that set up the necessary environment or resources to run your tests. Note that while the `Box.sol` contract is simple, incorporating fixtures into your testing process is good practice.
+
+To create the file, you can run the following command:
+
+```bash
+touch tests/conftest.py
+```
+
+Since your tests will rely on the injection of the fixtures, you must define the fixtures first. When defining fixtures, you need to apply the `pytest.fixture` decorator above each function. For this example, you'll create two fixtures: one that defines the owner of the contract and one that deploys the contract from the owner's account.
+
+The `owner` fixture will use the built-in `accounts` fixture to take the first account in the list of test accounts provided by Ape and return it. The `box` fixture will deploy the `Box` contract type using the built-in `project` fixture, you simply have to provide the name of the contract and use the `owner` fixture to deploy it.
+
+```python title="tests/conftest.py"
+--8<-- 'code/builders/build/eth-api/dev-env/ape/conftest.py'
+```
+
+Now that you've created the fixtures, you can start creating your tests. Each test function name must start with `test_` and describe what the test does. For this example, you can use `test_store_value`, as you'll create a test for the `store` function. The test will store a value and then retrieve it, asserting that the retrieved value is equal to the value passed into the `store` function.
+
+To use the `owner` and `box` fixtures, you must pass them into your test function, which will inject the fixtures automatically for you to use. The `owner` account will be used to call the `store` function of the `box` contract instance.
+
+```py title="tests/test_box.py"
+--8<-- 'code/builders/build/eth-api/dev-env/ape/test_box.py'
+```
+
+And that's it! That's all you'll need inside your test file. You can use the following command to run the test:
+
+```bash
+ape test
+```
+
+The results of running the test will be printed to the terminal.
+
+--8<-- 'code/builders/build/eth-api/dev-env/ape/terminal/test.md'
+
+Now that you have confidence in your contract, the next step is to deploy it.
+
 ## Deploy the Contract {: #deploy-the-contract }
 
 To deploy your contracts, create a deployment script named `deploy.py` inside of the `scripts` directory:
@@ -131,7 +177,7 @@ touch scripts/deploy.py
 
 Next, you'll need to write the deployment script. You'll need to load the account you will use to deploy the contract and access it by its name using the project manager.
 
-```python
+```python title="scripts/deploy.py"
 --8<-- 'code/builders/build/eth-api/dev-env/ape/deploy.py'
 ```
 
@@ -245,7 +291,7 @@ The number you just stored in the previous steps will be printed to the console.
 
 --8<-- 'code/builders/build/eth-api/dev-env/ape/terminal/retrieve.md'
 
-## Using a Script {: #using-a-script }
+### Using a Script {: #using-a-script }
 
 You can also write a script to interact with your newly deployed contract. To get started, you can create a new file in the `scripts` directory:
 
@@ -253,10 +299,10 @@ You can also write a script to interact with your newly deployed contract. To ge
 touch scripts/store-and-retrieve.py
 ```
 
-Next, you can write a script that stores and retrieves a value. To get started, take the following steps:
+Next, you can write a script that stores and retrieves a value. Note that when creating a contract instance to interact with, you must pass in the address of the deployed contract.
 
-```python
---8<-- 'code/builders/build/eth-api/dev-env/ape/deploy.py'
+```python title="scripts/store-and-retrieve.py"
+--8<-- 'code/builders/build/eth-api/dev-env/ape/store-and-retrieve.py'
 ```
 
 Now, you can run the script to set the stored value and retrieve it:
