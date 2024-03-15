@@ -1,56 +1,121 @@
 ---
 title: Ethereum Compatibility
-description: It can seem daunting to move to a Polkadot parachain if you’re used to Ethereum. Here’s an overview of Moonbeam's Ethereum compatability.
+description: Transitioning from Ethereum to Moonbeam? Here's a brief overview of the key components and key differences of Moonbeam's Ethereum compatibility.
 ---
 
 # Ethereum Compatibility
 
-Moonbeam bridges the Ethereum and Polkadot ecosystems, offering developers the familiarity of Ethereum's tooling and infrastructure while leveraging the scalability and interoperability of Polkadot.
+Moonbeam bridges the Ethereum and Polkadot ecosystems, offering developers the familiarity of Ethereum's tooling and infrastructure while leveraging Polkadot's scalability and interoperability.
 
-This page delves into the underlying architecture and mechanisms that enable seamless Ethereum compatibility on Moonbeam, which is, at its core, a Substrate-based blockchain.
+This documentation overviews Moonbeam's Ethereum compatibility features and highlights its key components. It also covers some critical differences between Moonbeam and Ethereum so Ethereum developers know what to expect.
 
-## Frontier {: #frontier }
+## Key Components {: #key-components }
 
-[Frontier](https://polkadot-evm.github.io/frontier/){target=\_blank} is an Ethereum compatibility layer for Substrate. The goal of Frontier is to allow standard Ethereum DApps to run without modification on Substrate-based chains. Frontier makes this possible by offering some Substrate pallets that can be plugged into a Substrate runtime. The following pallets can be used independently, as needed, or collectively depending on the chain's desired functionality:
+### EVM Compatibility {: #evm }
 
-- **[EVM pallet](#evm-pallet)** - handles EVM execution
-- **[Ethereum pallet](#ethereum-pallet)** - is responsible for storing block data and provides RPC compatibility
-- **Base fee pallet** - adds support for EIP-1559 transactions and handles base fee calculations
-- **Dynamic fee pallet** - calculates the dynamic minimum gas price
+Moonbeam incorporates a fully compatible EVM to execute smart contracts in Solidity or other EVM-compatible languages. This enables developers to deploy existing Ethereum smart contracts on Moonbeam with minimal modifications.
 
-Moonbeam uses the EVM and Ethereum pallets to achieve full Ethereum compatibility. Moonbeam does not use the base fee or dynamic fee pallets. Moonbeam has its own [dynamic fee mechanism](https://forum.moonbeam.foundation/t/proposal-status-idea-dynamic-fee-mechanism-for-moonbeam-and-moonriver/241){target=\_blank} for base fee calculations, which, as of RT2300, has been rolled out to all Moonbeam-based networks.
+Learn more:
 
-### EVM Pallet {: #evm-pallet }
+- [Moonbeam's Ethereum-compatibility architecture](/learn/platform/technology#ethereum-compatibility-architecture){target=\_blank}
 
-The [EVM pallet](https://polkadot-evm.github.io/frontier/frame/ethereum.html){target=\_blank} implements a sandboxed virtual stack machine and uses the [SputnikVM](https://github.com/rust-blockchain/evm){target=\_blank} as the underlying EVM engine.
+### Ethereum-style Accounts {: #ethereum-style-accounts }
 
-The EVM executes Ethereum smart contract bytecode, of which is typically written in a language like Solidity, and then compiles it to EVM bytecode. The goal of the EVM pallet is to emulate the functionality of executing smart contracts on Ethereum within the Substrate runtime. As such, it allows existing EVM code to be executed in Substrate-based blockchains.
+Moonbeam employs H160 Ethereum-style accounts and ECDSA keys, ensuring compatibility with existing Ethereum wallets and facilitating a smooth end-user user experience. This is possible due to Moonbeam's unified accounts system, which modifies the underlying Substrate account system to use Ethereum accounts by default.
 
-Inside of the EVM are standard H160 Ethereum-style accounts, and they have associated data such as the balance and nonce. All of the accounts in the EVM are backed by a Substrate account type, which is configurable. Moonbeam has configured the Substrate account type to be a non-standard H160 account to be fully compatibile with Ethereum. As such, you only need a single account to interact with the Substrate runtime and the EVM. For more information on Moonbeam's account system, please refer to the [Unified Accounts](/learn/features/unified-accounts/){target=\_blank} page.
+Learn more:
 
-With a unified accounts system, a mapped Substrate account can call the EVM pallet to deposit or withdraw balance from the Substrate-base currency into a different balance managed and used by the EVM pallet. Once a balance exists, smart contracts can be created and interacted with.
+- [Moonbeam's unified accounts system](/learn/features/unified-accounts){target=\_blank}
 
-The EVM pallet can also be configured so that no dispatchable calls can cause EVM execution with the exception being from other pallets in the runtime. Moonbeam is configured this way with pallet Ethereum having sole responsibility of EVM execution. Using pallet Ethereum enables EVM interactions through the Ethereum API.
+### JSON-RPC Support {: #json-rpc-support }
 
-If a blockchain doesn't need Ethereum emulation and only needs EVM execution, Substrate uses its account model fully and signs transactions on behalf of EVM accounts. However, in this model Ethereum RPCs are not available, and DApps must write their frontend using the Substrate API.
+Moonbeam offers full JSON-RPC compatibility with Ethereum, allowing developers to interact with Moonbeam nodes using familiar Ethereum tools and libraries. This compatibility extends to methods for account management, transaction submission, smart contract deployment, and event monitoring.
 
-The EVM pallet should produce nearly identical execution results compared to Ethereum, such as gas cost and balance changes. However, there are some differences. Please refer to the [EVM module vs Ethereum network](https://polkadot-evm.github.io/frontier/frame/evm.html#evm-module-vs-ethereum-network){target=\_blank} section of the Frontier EVM Pallet documentation for more information.
+In addition to standard Ethereum RPC methods, Moonbeam supports non-standard Debug and Trace modules, providing developers with enhanced debugging and tracing capabilities for smart contract execution. The Debug module allows developers to inspect internal state transitions and execution traces, enabling efficient debugging of complex smart contracts. The Trace module provides detailed transaction traces, including opcode-level execution information and gas consumption, facilitating performance analysis and optimization.
 
-There are also some [precompiles](https://github.com/polkadot-evm/frontier/tree/4c05c2b09e71336d6b11207e6d12e486b4d2705c#evm-pallet-precompiles){target=\_blank} that can be used alongside the EVM pallet that extend the functionality of the EVM. Moonbeam uses the following EVM precompiles:
+Learn more:
 
-- **[pallet-evm-precompile-simple](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm_precompile_simple/){target=\_blank}** - includes five basic precompiles: ECRecover, ECRecoverPublicKey, Identity, RIPEMD160, SHA256
-- **[pallet-evm-precompile-blake2](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm_precompile_blake2/struct.Blake2F.html){target=\_blank}** - includes the BLAKE2 precompile
-- **[pallet-evm-precompile-bn128](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm_precompile_bn128/index.html){target=\_blank}** - includes three BN128 precompiles: BN128Add, BN128Mul, and BN128Pairing
-- **[pallet-evm-precompile-modexp](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm_precompile_modexp/struct.Modexp.html){target=\_blank}** - includes the modular exponentiation precompile
-- **[pallet-evm-precompile-sha3fips](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm_precompile_sha3fips/struct.Sha3FIPS256.html){target=\_blank}** -includes the standard SHA3 precompile
-- **[pallet-evm-precompile-dispatch](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm_precompile_dispatch/struct.Dispatch.html){target=\_blank}** - includes the dispatch precompile
+- [Supported Ethereum RPC methods](/builders/get-started/eth-compare/rpc-support/){target=\_blank}
+- [Subscribe to events with Ethereum JSON-RPC methods](/builders/build/eth-api/pubsub){target=\_blank}
+- [Debug and trace transactions with non-standard RPC methods](/builders/build/eth-api/debug-trace){target=\_blank}
 
-You can find an overview of most of these precompiles on the [Ethereum MainNet Precompiled Contracts](/builders/pallets-precompiles/precompiles/eth-mainnet){target=\_blank} page.
+### Ethereum Developer Tools and Libraries {: #ethereum-dev-tools }
 
-### Ethereum Pallet {: #ethereum-pallet}
+With the underlying support for Ethereum JSON-RPC methods, Moonbeam leverages Ethereum's rich ecosystem of developer libraries and environments. With seamless integration of popular Ethereum libraries and development environments, developers can leverage their knowledge and tooling to build and deploy decentralized applications (DApps) on Moonbeam.
 
-The [Ethereum pallet](https://polkadot-evm.github.io/frontier/frame/ethereum.html){target=\_blank} is responsible for handling blocks and transaction receipts and statuses. It enables sending and receiving Ethereum-formatted data to and from Moonbeam by storing an Ethereum-style block and it's associated transaction hashes in the Substrate runtime.
+Learn more:
 
-When a user submits a raw Ethereum transaction, it gets converted into a Substrate transaction through the pallet Ethereum's `transact` extrinsic. Using the Ethereum pallet as the sole executor of the EVM pallet, forces all of the data to be stored and transacted with in an Ethereum-compatible way. This enables block explorers such as [Moonscan](/builders/get-started/explorers#moonscan){target=\_blank}, which is built by Etherscan, to be able to index block data.
+- [Ethereum libraries](/builders/build/eth-api/libraries/){target=\_blank}
+- [Ethereum development environments](/builders/build/eth-api/libraries/){target=\_blank}
 
-Along with support for Ethereum-style data, the Ethereum pallet combined with the [RPC module](https://github.com/polkadot-evm/frontier/tree/master/client/rpc){target=\_blank} provides RPC support. This enables usage of [basic Ethereum JSON-RPC methods](/learn/core-concepts/rpc-support#basic-ethereum-json-rpc-methods){target=\_blank} which ultimately allows existing Ethereum DApps to be deployed to Moonbeam with minimal changes.
+### Precompiled Contracts {: #precompiled-contracts }
+
+Moonbeam provides precompiled contracts that allow Ethereum smart contracts to seamlessly access Substrate functionality. These precompiled contracts expose Substrate features such as on-chain governance, staking, and identity management to Ethereum-based DApps on Moonbeam. This integration ensures that Ethereum developers can harness the full potential of Moonbeam's features, expanding the possibilities for dApp development on Moonbeam.
+
+In addition, developers can leverage Ethereum MainNet precompiles seamlessly within their smart contracts on Moonbeam. These precompiled contracts, widely used on the Ethereum network, offer optimized and efficient execution of common cryptographic operations and complex computations. By supporting Ethereum MainNet precompiles Moonbeam ensures compatibility with Ethereum-based dApps while enabling developers to utilize familiar tools and libraries to build on its platform.
+
+Learn more:
+
+- [Overview of the precompiled contracts on Moonbeam](/builders/pallets-precompiles/precompiles/overview){target=\_blank}
+
+### Ethereum Token Standards {: #ethereum-token-standards }
+
+Moonbeam supports Ethereum token standards, allowing developers to deploy and interact with tokens that adhere to popular standards such as ERC-20, ERC-721, and ERC-1155. By supporting these standards, Moonbeam enables developers to deploy existing Ethereum tokens without modifications.
+
+Due to Moonbeam's native interoperability, ERC-20s can be sent cross-chain to other chains within the Polkadot ecosystem via Cross-Consensus Messaging (XCM).
+
+Learn more:
+
+- [Create common OpenZeppelin contracts such as ERC-20, ERC-721, and ERC-1155 tokens](/builders/build/eth-api/dev-env/openzeppelin/contracts){target=\_blank}
+- [XCM-enabled ERC-20s](/builders/interoperability/xcm/xc20/overview#local-xc20s){target=\_blank} (also referred to as local XC-20s)
+
+## Key Differences {: #key-differences }
+
+### Consensus Mechanisms {: #consensus-mechanisms }
+
+Moonbeam uses a Delegated Proof-of-Stake (DPoS) consensus mechanism, where token holders in the network can delegate candidates to become block producers, known as _collators_. On the other hand, Ethereum uses a Proof-of-Stake (PoS) system in which validators are selected based on their stake in the network to produce and validate blocks.
+
+Learn more:
+
+- [Differences between PoS and DPoS](/learn/core-concepts/consensus-finality#main-differences){target=_blank}
+
+### Finality {: #finality }
+
+Moonbeam and Ethereum have different finality processes. On Ethereum, there is a checkpoint system where validators determine finality at checkpoint blocks, which takes at least 6.4 minutes for a block to be finalized. Moonbeam relies on Polkadot's [GRANDPA](https://wiki.polkadot.network/docs/learn-consensus#finality-gadget-grandpa){target=\_blank} finality gadget, which expedites finality by completing the process parallel to block production and allowing relay chain validators to vote on the highest block, finalizing all blocks leading up to that block.
+
+Learn more:
+
+- [Consensus and finality on Moonbeam](/learn/core-concepts/consensus-finality){target=_blank}
+
+### Proxy Accounts {: #proxy-accounts }
+
+On both Moonbeam and Ethereum, accounts can be controlled by two main types of accounts: Externally Owned Accounts (EOA) or smart contracts. However, on Moonbeam, within both account types, there are also proxy accounts, which can perform a limited number of actions on behalf of another account.
+
+Learn more:
+
+- [An overview of proxy accounts](https://wiki.polkadot.network/docs/learn-proxies){target=\_blank}
+- [How to set up a proxy account](/tokens/manage/proxy-accounts){target=\_blank}
+
+### Account Balances {: #account-balances }
+
+Balances on Ethereum are fairly straightforward; if an account holds tokens, that account has a token balance. On Moonbeam, different balance types exist to support various Substrate functionality. There are five types: free, reducible, reserved, miscellaneous frozen, and fee frozen. When using Ethereum tools, accounts show the reducible balance and don't include locked or frozen balances.
+
+Learn more:
+
+- [Moonbeam account balances](/learn/core-concepts/balances){target=_blank}
+
+### Balance Transfers {: #balance-transfers }
+
+Since Moonbeam is a Substrate-based chain, balance transfers of the native asset (GLMR, MOVR, and DEV) can occur through the Ethereum and Substrate APIs. Like Ethereum, transfers sent through the Ethereum API rely on the `eth_sendRawTransaction`. Transfers sent through the Substrate API are done using the Balances Pallet, a built-in module in the Substrate framework that provides functionality for managing accounts and balances.
+
+Learn more:
+
+- [Balance transfers on Moonbeam](/learn/core-concepts/transfers-api){target=_blank}
+
+### Transaction Fees {: #transaction-fees }
+
+Moonbeam and Ethereum calculate transaction fees differently due to variations in their underlying architectures and consensus mechanisms. The fundamental difference in how transaction fees are calculated is that Ethereum uses a gas-based fee system, and Moonbeam uses a weight-based system that maps to the gas used. Moonbeam also implements additional metrics in the underlying gas calculations, including proof size and storage costs.
+
+Learn more:
+
+- [Calculating transaction fees on Moonbeam](/learn/core-concepts/tx-fees){target=\_blank}

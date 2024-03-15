@@ -7,9 +7,7 @@ description: A description of the main differences that Ethereum developers need
 
 ## Introduction {: #introduction }
 
-While Moonbeam strives to be compatible with Ethereum's Web3 API and EVM, there are some important differences that developers should know and understand in terms of the [Ethereum API JSON-RPC](https://eth.wiki/json-rpc/API#json-rpc-methods){target=\_blank} support on Moonbeam.
-
-The Moonbeam team has collaborated closely with [Parity](https://www.parity.io/){target=\_blank} on developing [Frontier](/learn/features/eth-compatibility/#frontier){target=\_blank}. Frontier is the Ethereum compatibility layer for Substrate-based chains, and it is what allows developers to run unmodified Ethereum DApps.
+The Moonbeam team has collaborated closely with [Parity](https://www.parity.io/){target=\_blank} on developing [Frontier](/learn/platform/technology/#frontier){target=\_blank}. Frontier is the Ethereum compatibility layer for Substrate-based chains, and it is what allows developers to run unmodified Ethereum DApps.
 
 Nevertheless, not all of the Ethereum JSON-RPC methods are supported, and some of the supported ones return default values (those related to Ethereum's PoW consensus mechanism in particular). This guide will outline some of these main differences around Ethereum RPC support and what to expect when using Moonbeam for the first time.
 
