@@ -1,8 +1,8 @@
-title: Protocol Functionality
+title: Interact with the Network
 hide: false
 nav:
   - index.md
   - 'Ethereum JSON-RPC API': 'eth-rpc.md'
-  - 'Moonbeam Custom API': 'moonbeam-custom-api.md'
+  - 'Moonbeam Custom JSON-RPC API': 'moonbeam-custom-api.md'
   - pallets
   - precompiles
