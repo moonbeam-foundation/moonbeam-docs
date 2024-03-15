@@ -6,5 +6,4 @@ nav:
   - 'Consensus & Finality': 'consensus-finality.md'
   - 'Transaction Fees': 'tx-fees.md'
   - 'Unified Accounts': 'unified-accounts.md'
-  - 'RPC Support': 'rpc-support.md'
   - 'Security Considerations': 'security.md'
