@@ -2,6 +2,6 @@ title: DApps List
 hide: false
 nav:
   - index.md
-  # - 'Moonbeam Foundation DApp Directory': 'dapp-directory.md'
+  - 'Moonbeam Foundation DApp Directory': 'dapp-directory.md'
   - 'State of the DApps': 'state-of-the-dapps.md'
   - 'DappRadar': 'dapp-radar.md'
