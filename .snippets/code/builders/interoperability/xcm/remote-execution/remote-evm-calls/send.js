@@ -35,12 +35,13 @@ const instr3 = {
 };
 const message = { V3: [instr1, instr2, instr3] };
 
-// 2. Create Keyring instance
-await cryptoWaitReady();
-const keyring = new Keyring({ type: 'sr25519' });
-const alice = keyring.addFromUri(privateKey);
 
 const sendXcmMessage = async () => {
+  // 2. Create Keyring instance
+  await cryptoWaitReady();
+  const keyring = new Keyring({ type: 'sr25519' });
+  const alice = keyring.addFromUri(privateKey);
+  
   // 3. Create Substrate API Provider
   const substrateProvider = new WsProvider(providerWsURL);
   const api = await ApiPromise.create({ provider: substrateProvider });
