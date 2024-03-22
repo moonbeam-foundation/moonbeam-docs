@@ -147,17 +147,16 @@ To create the batch transaction and wrap it in a remote EVM call to be executed 
 
     For this particular example in Moonbase Alpha, you'll also need the address of a Wormhole relayer. You can use the [xLabs relayer](https://xlabs.xyz/){target=\_blank}:
 
-    === "Moonbase Alpha"
-
-        ```text
-        0x9563a59c15842a6f322b10f69d1dd88b41f2e97b
-        ```
     === "Moonbeam"
 
         ```text
         0xcafd2f0a35a4459fa40c0517e17e6fa2939441ca
         ```
+    === "Moonbase Alpha"
 
+        ```text
+        0x9563a59c15842a6f322b10f69d1dd88b41f2e97b
+        ```
 
 
 2. Use Ether's `encodeFunctionData` function to get the encoded call data for the two calls in the batch transaction: the `approve` transaction and the `transferTokensWithRelay` transaction
@@ -206,34 +205,34 @@ While Wormhole has the technical capability to bridge any token across chains, r
 
     |    Token Name     | Symbol | Decimals |                  Address                   |
     |:-----------------:|:------:|:--------:|:------------------------------------------:|
-    |   Wrapped Matic   | WMATIC |    18    | 0x82DbDa803bb52434B1f4F41A6F0Acb1242A7dFa3 |
-    |   Wrapped GLMR    | WGLMR  |    18    | 0xAcc15dC74880C9944775448304B263D191c6077F |
-    |  Wrapped Fantom   |  WFTM  |    18    | 0x609AedD990bf45926bca9E4eE988b4Fb98587D3A |
-    | Wrapped Ethereum  |  WETH  |    18    | 0xab3f0245B83feB11d15AAffeFD7AD465a59817eD |
-    |  Wrapped Bitcoin  |  WBTC  |    8     | 0xE57eBd2d67B462E9926e04a8e33f01cD0D64346D |
-    |    Wrapped BNB    |  WBNB  |    18    | 0xE3b841C3f96e647E6dc01b468d6D0AD3562a9eeb |
-    |   Wrapped AVAX    | WAVAX  |    18    | 0xd4937A95BeC789CC1AE1640714C61c160279B22F |
+    |   Wrapped AVAX    | wAVAX  |    18    | 0xd4937A95BeC789CC1AE1640714C61c160279B22F |
+    |  Wrapped Bitcoin  |  wBTC  |    8     | 0xE57eBd2d67B462E9926e04a8e33f01cD0D64346D |
+    |    Wrapped BNB    |  wBNB  |    18    | 0xE3b841C3f96e647E6dc01b468d6D0AD3562a9eeb |
+    | Celo Native Asset |  CELO  |    18    | 0xc1a792041985F65c17Eb65E66E254DC879CF380b |
+    |  Dai Stablecoin   |  DAI   |    18    | 0x06e605775296e851FF43b4dAa541Bb0984E9D6fD |
+    | Wrapped Ethereum  |  wETH  |    18    | 0xab3f0245B83feB11d15AAffeFD7AD465a59817eD |
+    |  Wrapped Fantom   |  wFTM  |    18    | 0x609AedD990bf45926bca9E4eE988b4Fb98587D3A |
+    |   Wrapped GLMR    | wGLMR  |    18    | 0xAcc15dC74880C9944775448304B263D191c6077F |
+    |   Wrapped Matic   | wMATIC |    18    | 0x82DbDa803bb52434B1f4F41A6F0Acb1242A7dFa3 |
+    |    Wrapped SOL    |  SOL   |    9     | 0x99Fec54a5Ad36D50A4Bba3a41CAB983a5BB86A7d |
+    |        Sui        |  SUI   |    9     | 0x484eCCE6775143D3335Ed2C7bCB22151C53B9F49 |
     |    Tether USD     |  USDT  |    6     | 0xc30E9cA94CF52f3Bf5692aaCF81353a27052c46f |
     |  USDC (Wormhole)  |  USDC  |    6     | 0x931715FEE2d06333043d11F658C8CE934aC61D0c |
-    |        Sui        |  SUI   |    9     | 0x484eCCE6775143D3335Ed2C7bCB22151C53B9F49 |
-    | Celo Native Asset |  CELO  |    18    | 0xc1a792041985F65c17Eb65E66E254DC879CF380b |
-    |    Wrapped SOL    |  SOL   |    9     | 0x99Fec54a5Ad36D50A4Bba3a41CAB983a5BB86A7d |
-    |  Dai Stablecoin   |  DAI   |    18    | 0x06e605775296e851FF43b4dAa541Bb0984E9D6fD |
 
 === "Moonbase Alpha"
 
     |        Token Name        | Symbol | Decimals |                  Address                   |
     |:------------------------:|:------:|:--------:|:------------------------------------------:|
-    |      Wrapped Ether       |  WETH  |    18    | 0xD909178CC99d318e4D46e7E66a972955859670E1 |
-    | Wrapped Ether (Wormhole) |  WETH  |    18    | 0xd27d8883E31FAA11B2613b14BE83ad8951C8783C |
-    |      Dai Stablecoin      |  DAI   |    18    | 0xc31EC0108D8e886be58808B4C2C53f8365f1885D |
-    |       Wrapped BNB        |  WBNB  |    18    | 0x6097E80331B0c6aF4F74D7F2363E70Cb2Fd078A5 |
-    |      Wrapped Matic       | WMATIC |    18    | 0xD2888f015BcB76CE3d27b6024cdEFA16836d0dbb |
-    |           USDC           |  USDC  |    6     | 0x6533CE14804D113b1F494dC56c5D60A43cb5C3b5 |
     |       Wrapped Avax       | wAVAX  |    18    | 0x2E8afeCC19842229358f3650cc3F091908dcbaB4 |
-    |      Wrapped Fantom      |  WFTM  |    18    | 0x566c1cebc6A4AFa1C122E039C4BEBe77043148Ee |
+    |       Wrapped BNB        |  wBNB  |    18    | 0x6097E80331B0c6aF4F74D7F2363E70Cb2Fd078A5 |
     |    Celo Native Asset     |  CELO  |    18    | 0x3406a9b09adf0cb36DC04c1523C4b294C6b79513 |
+    |      Dai Stablecoin      |  DAI   |    18    | 0xc31EC0108D8e886be58808B4C2C53f8365f1885D |
+    |      Wrapped Ether       |  wETH  |    18    | 0xD909178CC99d318e4D46e7E66a972955859670E1 |
+    | Wrapped Ether (Wormhole) |  wETH  |    18    | 0xd27d8883E31FAA11B2613b14BE83ad8951C8783C |
+    |      Wrapped Fantom      |  wFTM  |    18    | 0x566c1cebc6A4AFa1C122E039C4BEBe77043148Ee |
+    |      Wrapped Matic       | wMATIC |    18    | 0xD2888f015BcB76CE3d27b6024cdEFA16836d0dbb |
     |           Sui            |  SUI   |    9     | 0x2ed4B5B1071A3C676664E9085C0e3826542C1b27 |
+    |           USDC           |  USDC  |    6     | 0x6533CE14804D113b1F494dC56c5D60A43cb5C3b5 |
 
 Please take the time to verify that these assets are still Wormhole assets on Moonbeam by using the [Wormhole asset verifier](https://www.portalbridge.com/#/token-origin-verifier){target=\_blank}.
 
