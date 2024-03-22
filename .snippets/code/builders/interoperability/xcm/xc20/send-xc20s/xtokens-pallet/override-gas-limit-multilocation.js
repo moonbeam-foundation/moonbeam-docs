@@ -5,7 +5,7 @@ const asset = {
       Concrete: {
         parents: 0,
         interior: {
-          X2: [
+          X3: [
             { PalletInstance: 48 },
             { AccountKey20: { key: 'INSERT_ERC_20_ADDRESS' } },
             { 
