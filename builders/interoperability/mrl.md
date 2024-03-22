@@ -232,7 +232,7 @@ While Wormhole has the technical capability to bridge any token across chains, r
     |           USDC           |  USDC  |    6     | 0x6533CE14804D113b1F494dC56c5D60A43cb5C3b5 |
     |       Wrapped Avax       | wAVAX  |    18    | 0x2E8afeCC19842229358f3650cc3F091908dcbaB4 |
     |      Wrapped Fantom      |  WFTM  |    18    | 0x566c1cebc6A4AFa1C122E039C4BEBe77043148Ee |
-    |    Celo native asset     |  CELO  |    18    | 0x3406a9b09adf0cb36DC04c1523C4b294C6b79513 |
+    |    Celo Native Asset     |  CELO  |    18    | 0x3406a9b09adf0cb36DC04c1523C4b294C6b79513 |
     |           Sui            |  SUI   |    9     | 0x2ed4B5B1071A3C676664E9085C0e3826542C1b27 |
 
 Please take the time to verify that these assets are still Wormhole assets on Moonbeam by using the [Wormhole asset verifier](https://www.portalbridge.com/#/token-origin-verifier){target=\_blank}.
