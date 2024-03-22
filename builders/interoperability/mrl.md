@@ -145,7 +145,7 @@ To create the batch transaction and wrap it in a remote EVM call to be executed 
         --8<-- 'code/builders/interoperability/mrl/abi/Batch.js'
         ```
 
-    For this particular example in Moonbase Alpha, you'll also need the address of a Wormhole relayer. You can use the XLabs Relayer:
+    For this particular example in Moonbase Alpha, you'll also need the address of a Wormhole relayer. You can use the [xLabs relayer](https://xlabs.xyz/){target=\_blank}:
 
     === "Moonbase Alpha"
 
