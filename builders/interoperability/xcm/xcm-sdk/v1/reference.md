@@ -43,20 +43,21 @@ The XCM SDK is based on the premise of defining an asset to transfer and then de
 
 - `Chain` - defines properties related to a chain, used to define the source and destination chains. If a chain is an EVM parachain, there are a couple additional properties
 
-    |     Name      |              Type              |                                           Description                                            |
-    |:-------------:|:------------------------------:|:------------------------------------------------------------------------------------------------:|
-    |  `ecosystem`  |          *Ecosystem*           |     Identifies the ecosystem the chain belongs to: `polkadot`, `kusama`, or `alphanet-relay`     |
-    | `isTestChain` |           *boolean*            |                                  Whether the chain is a TestNet                                  |
-    |     `key`     |            *string*            |                                        Identifies a chain                                        |
-    |    `name`     |            *string*            |                                      The name of the chain                                       |
-    |    `type`     |          *ChainType*           |                      The type of the chain: `parachain` or `evm-parachain`                       |
-    | `assetsData`  | *Map<string, ChainAssetsData>* |                           A list of the assets that the chain supports                           |
-    | `genesisHash` |            *string*            |                                  The hash of the genesis block                                   |
-    | `parachainId` |            *number*            |                                     The ID of the parachain                                      |
-    | `ss58Format`  |            *number*            | The [ss58 format](https://polkadot.js.org/docs/keyring/start/ss58/){target=\_blank} for the chain |
-    |     `ws`      |            *string*            |                               The WebSocket endpoint for the chain                               |
-    |     `id`      |            *number*            |                            **For EVM parachains only** - The chain ID                            |
-    |     `rpc`     |            *string*            |                **For EVM parachains only** - The HTTP RPC endpoint for the chain                 |
+    |        Name         |              Type              |                                                   Description                                                   |
+    |:-------------------:|:------------------------------:|:---------------------------------------------------------------------------------------------------------------:|
+    |     `ecosystem`     |          *Ecosystem*           |            Identifies the ecosystem the chain belongs to: `polkadot`, `kusama`, or `alphanet-relay`             |
+    |    `isTestChain`    |           *boolean*            |                                         Whether the chain is a TestNet                                          |
+    |        `key`        |            *string*            |                                               Identifies a chain                                                |
+    |       `name`        |            *string*            |                                              The name of the chain                                              |
+    |       `type`        |          *ChainType*           |                              The type of the chain: `parachain` or `evm-parachain`                              |
+    |    `assetsData`     | *Map<string, ChainAssetsData>* |                                  A list of the assets that the chain supports                                   |
+    |    `genesisHash`    |            *string*            |                                          The hash of the genesis block                                          |
+    |    `parachainId`    |            *number*            |                                             The ID of the parachain                                             |
+    |    `ss58Format`     |            *number*            |        The [ss58 format](https://polkadot.js.org/docs/keyring/start/ss58/){target=\_blank} for the chain        |
+    | `usesChainDecimals` |           *boolean*            | A flag indicating if the chain uses its own decimals in balance queries for all the assets. Defaults to `false` |
+    |        `ws`         |            *string*            |                                      The WebSocket endpoint for the chain                                       |
+    |        `id`         |            *number*            |                                   **For EVM parachains only** - The chain ID                                    |
+    |        `rpc`        |            *string*            |                        **For EVM parachains only** - The HTTP RPC endpoint for the chain                        |
 
 - `ChainAssetsData` - defines the information needed to target the asset on the chain. This is mostly for internal usage to accommodate how different chains store their assets. The SDK defaults to the asset ID if certain properties are not applicable to the given chain
 
@@ -269,9 +270,9 @@ When building transfer data with the `Sdk().assets()` function, you'll use multi
 - `toDecimal()` - converts an `AssetAmount` to a decimal. The number to convert to decimal format and the number of decimals the asset uses are pulled automatically from the `AssetAmount`
 
     ??? code "Parameters"
-        |     Name      |      Type      |                                                                    Description                                                                    |
-        |:-------------:|:--------------:|:-------------------------------------------------------------------------------------------------------------------------------------------------:|
-        | `maxDecimal?` |    *number*    |                                          The maximum number of decimal places to use. The default is `6`                                          |
+        |     Name      |      Type      |                                                                    Description                                                                     |
+        |:-------------:|:--------------:|:--------------------------------------------------------------------------------------------------------------------------------------------------:|
+        | `maxDecimal?` |    *number*    |                                          The maximum number of decimal places to use. The default is `6`                                           |
         | `roundType?`  | *RoundingMode* | Accepts an index that dictates the [rounding method](https://mikemcl.github.io/big.js/#rm){target=\_blank} to use based on the `RoundingMode` enum |
 
         Where the `RoundingMode` enum is defined as:
@@ -303,9 +304,9 @@ When building transfer data with the `Sdk().assets()` function, you'll use multi
 - `toBigDecimal()` - converts an `AssetAmount` to a decimal and then to a big number. The number to convert to decimal format and the number of decimals the asset uses are pulled automatically from the `AssetAmount`
 
     ??? code "Parameters"
-        |     Name      |      Type      |                                                                    Description                                                                    |
-        |:-------------:|:--------------:|:-------------------------------------------------------------------------------------------------------------------------------------------------:|
-        | `maxDecimal?` |    *number*    |                                          The maximum number of decimal places to use. The default is `6`                                          |
+        |     Name      |      Type      |                                                                    Description                                                                     |
+        |:-------------:|:--------------:|:--------------------------------------------------------------------------------------------------------------------------------------------------:|
+        | `maxDecimal?` |    *number*    |                                          The maximum number of decimal places to use. The default is `6`                                           |
         | `roundType?`  | *RoundingMode* | Accepts an index that dictates the [rounding method](https://mikemcl.github.io/big.js/#rm){target=\_blank} to use based on the `RoundingMode` enum |
 
         Where the `RoundingMode` enum is defined as:

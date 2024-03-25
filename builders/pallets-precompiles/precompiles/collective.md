@@ -10,32 +10,27 @@ keywords: solidity, ethereum, collective, proposal, council technical, committee
 
 The Collective Precompile enables a user to directly interact with [Substrate's collective pallet](https://paritytech.github.io/substrate/master/pallet_collective/index.html){target=\_blank} directly from a Solidity interface.
 
-A collective is a group of members that are responsible for specific democracy-related actions such as proposing, voting on, executing, and closing motions. Each can execute different actions with different origins. Consequently, collectives can be created with very specific scopes. For example, Moonriver has four collectives: the Council collective, the Technical Committee collective, the Treasury Council collective, and the OpenGov Technical Committee collective (for whitelisting OpenGov proposals). As such, there is a precompile for each collective. For more information on the Council, Technical Committee, and OpenGov Technical Committee please refer to the [Governance on Moonbeam](/learn/features/governance/){target=\_blank} page, and for more information on the Treasury Council, please refer to the [Treasury on Moonbeam](/learn/features/treasury/){target=\_blank} page.
+A collective is a group of members that are responsible for specific democracy-related actions such as proposing, voting on, executing, and closing motions. Each can execute different actions with different origins. Consequently, collectives can be created with very specific scopes. There are currently two collectives: the Treasury Council collective and the OpenGov Technical Committee collective. As such, there is a precompile for each collective. For more information on the OpenGov Technical Committee please refer to the [Governance on Moonbeam](/learn/features/governance/){target=\_blank} page, and for more information on the Treasury Council, please refer to the [Treasury on Moonbeam](/learn/features/treasury/){target=\_blank} page.
 
 This guide will show you how to propose, vote on, and close a proposal using the Collective Precompile.
 
 The Collective Precompiles are located at the following addresses:
 
 === "Moonbeam"
-     |     Collective      |                           Address                            |
-     |:-------------------:|:------------------------------------------------------------:|
-     |       Council       |    {{networks.moonbeam.precompiles.collective_council }}     |
-     | Technical Committee | {{networks.moonbeam.precompiles.collective_tech_committee }} |
-     |  Treasury Council   |    {{networks.moonbeam.precompiles.collective_treasury }}    |
+     |         Collective          |                               Address                                |
+     |:---------------------------:|:--------------------------------------------------------------------:|
+     |      Treasury Council       |        {{networks.moonbeam.precompiles.collective_treasury }}        |
+     | OpenGov Technical Committee | {{networks.moonbeam.precompiles.collective_opengov_tech_committee }} |
 
 === "Moonriver"
      |         Collective          |                                Address                                |
      |:---------------------------:|:---------------------------------------------------------------------:|
-     |           Council           |        {{networks.moonriver.precompiles.collective_council }}         |
-     |     Technical Committee     |     {{networks.moonriver.precompiles.collective_tech_committee }}     |
      |      Treasury Council       |        {{networks.moonriver.precompiles.collective_treasury }}        |
      | OpenGov Technical Committee | {{networks.moonriver.precompiles.collective_opengov_tech_committee }} |
 
 === "Moonbase Alpha"
      |         Collective          |                               Address                                |
      |:---------------------------:|:--------------------------------------------------------------------:|
-     |           Council           |        {{networks.moonbase.precompiles.collective_council }}         |
-     |     Technical Committee     |     {{networks.moonbase.precompiles.collective_tech_committee }}     |
      |      Treasury Council       |        {{networks.moonbase.precompiles.collective_treasury }}        |
      | OpenGov Technical Committee | {{networks.moonbase.precompiles.collective_opengov_tech_committee }} |
 

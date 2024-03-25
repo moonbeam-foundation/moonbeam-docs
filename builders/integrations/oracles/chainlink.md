@@ -15,7 +15,7 @@ Developers can now use [Chainlink's decentralized Oracle network](https://chain.
 
 Before going into fetching the data itself, it is important to understand the basics of price feeds.
 
-In a standard configuration, each price feed is updated by a decentralized oracle network. Each oracle node is rewarded for publishing the price data to the [aggregator contract](https://github.com/smartcontractkit/chainlink/blob/develop/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol){target=\_blank}. The aggregator contract receives periodic data updates from the network of oracles and aggregates and stores the data on-chain so that consumers can easily fetch it. However, the information is only updated if a minimum number of responses from oracle nodes are received (during an aggregation round).
+In a standard configuration, each price feed is updated by a decentralized oracle network. Each oracle node is rewarded for publishing the price data to the [aggregator contract](https://github.com/smartcontractkit/chainlink/blob/develop/contracts/src/v0.8/shared/interfaces/AggregatorV3Interface.sol){target=\_blank}. The aggregator contract receives periodic data updates from the network of oracles and aggregates and stores the data on-chain so that consumers can easily fetch it. However, the information is only updated if a minimum number of responses from oracle nodes are received (during an aggregation round).
 
 The end-user can retrieve price feeds with read-only operations via an aggregator interface, or via a Consumer interface through the Proxy.
 
@@ -28,6 +28,7 @@ There are data feed contracts available for Moonbeam-based networks to help simp
 The data lives in a series of smart contracts (one per price feed) and can be fetched with the aggregator interface:
 
 ```solidity
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
 interface AggregatorV3Interface {
@@ -58,7 +59,7 @@ interface AggregatorV3Interface {
 }
 ```  
 
-As seen above in the interface, there are five functions for fetching data: `decimal`, `description`, `version`, `getRoundData`, and `latestRoundData`.
+As seen above in the interface, there are five functions for fetching data: `decimals`, `description`, `version`, `getRoundData`, and `latestRoundData`.
 
 Currently, there are data feed contracts for [Moonbeam](https://docs.chain.link/docs/data-feeds-moonbeam/){target=\_blank}, [Moonriver](https://docs.chain.link/docs/data-feeds-moonriver/){target=\_blank}, and Moonbase Alpha for the following price pairs (proxy addresses):
 
@@ -208,6 +209,7 @@ If you want to skip the hurdles of deploying all contracts, setting up your orac
 The client contract deployed on Moonbase Alpha is as follows:
 
 ```solidity
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.6.6;
 
 import "https://github.com/smartcontractkit/chainlink/blob/develop/contracts/src/v0.6/ChainlinkClient.sol";
@@ -306,6 +308,7 @@ The client contract is deployed at `{{ networks.moonbase.chainlink.client_contra
 
 
 ```solidity
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.6.6;
 
 /**
@@ -389,7 +392,7 @@ If you decide to go this route, please keep in mind that the oracle node only su
 To build your own client contract using the `ChainlinkClient`, you'll need to start by importing the contract:
 
 ```solidity
-import "https://github.com/smartcontractkit/chainlink/evm-contracts/src/v0.8/ChainlinkClient.sol";
+import "https://github.com/smartcontractkit/chainlink/blob/develop/contracts/src/v0.6/ChainlinkClient.sol";
 ```
 
 You can checkout out the [Chainlink documentation on ChainlinkClient API Reference](https://docs.chain.link/docs/chainlink-framework/){target=\_blank} for more information.

@@ -1,0 +1,30 @@
+[
+    {
+        "type": "tuple",
+        "name": "scc",
+        "components": [
+            {
+                "type": "tuple",
+                "name": "cc",
+                "components": [
+                    { "type": "bytes32", "name": "dataHash" },
+                    { "type": "uint256[]", "name": "pair" },
+                    { "type": "uint256[]", "name": "prices" },
+                    { "type": "uint256[]", "name": "timestamp" },
+                    { "type": "uint256[]", "name": "decimals" }
+                ]
+            },
+            { "type": "bytes", "name": "qc" },
+            { "type": "uint256", "name": "round" },
+            {
+                "type": "tuple",
+                "name": "origin",
+                "components": [
+                    { "type": "bytes32", "name": "_publicKeyIdentity" },
+                    { "type": "uint256", "name": "_pubMemberIndex" },
+                    { "type": "uint256", "name": "_committeeIndex" }
+                ]
+            }
+        ]
+    }
+]
