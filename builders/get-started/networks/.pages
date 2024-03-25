@@ -1,7 +1,7 @@
 title: Networks
 nav:
   - index.md
-  - 'Moonbeam Dev Node': 'moonbeam-dev.md'
+  - 'Local Moonbeam Dev Node': 'moonbeam-dev.md'
   - 'Moonbase Alpha': 'moonbase.md'
   - 'Moonriver': 'moonriver.md'
   - 'Moonbeam': 'moonbeam.md'

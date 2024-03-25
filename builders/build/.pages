@@ -1,8 +1,8 @@
-title: Build
+title: Development Toolkit
 hide: false
 nav:
   - index.md
   - 'Canonical Contracts': 'canonical-contracts.md'
   - eth-api
   - substrate-api
-  - 'Moonbeam Custom API': 'moonbeam-custom-api.md'
+

@@ -54,7 +54,7 @@ This example is getting the balance (in DEV on Moonbase Alpha) of the `0xf24FF3a
 
 - `jsonrpc` — the JSON-RPC API version, usually "2.0"
 - `id` — an integer value that helps identify a response to a request. Can usually just keep it as `
-- `method` — the specific method to read/write data from/to the blockchain. You can see many of the [RPC methods on our docs site](/learn/core-concepts/rpc-support){target=\_blank}
+- `method` — the specific method to read/write data from/to the blockchain. You can see many of the [RPC methods on our docs site](/builders/pallets-precompiles/eth-rpc){target=\_blank}
 - `params` — an array of the input parameters expected by the specific `method`  
 
 There are also additional elements that can be added to JSON-RPC requests, but those four will be seen the most often.  

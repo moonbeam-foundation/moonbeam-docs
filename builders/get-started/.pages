@@ -2,6 +2,7 @@ title: Get Started
 nav:
   - index.md
   - 'Quick Start': 'quick-start.md'
+  - 'Create an Account': 'create-account.md'
   - networks
-  - 'Network Endpoints': 'endpoints.md'
+  - 'Network RPC Endpoints': 'endpoints.md'
   - 'Block Explorers': 'explorers.md'
