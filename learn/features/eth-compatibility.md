@@ -25,7 +25,7 @@ Moonbeam employs H160 Ethereum-style accounts and ECDSA keys, ensuring compatibi
 
 Learn more:
 
-- [Moonbeam's unified accounts system](/learn/features/unified-accounts){target=\_blank}
+- [Moonbeam's unified accounts system](/learn/core-concepts/unified-accounts){target=\_blank}
 
 ### JSON-RPC Support {: #json-rpc-support }
 
