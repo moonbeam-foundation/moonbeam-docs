@@ -1,9 +1,9 @@
-title: Moonbeam vs Ethereum
+title: Core Concepts
 nav:
   - index.md
   - 'Account Balances': 'balances.md'
-  - 'Transfers API': 'transfers-api.md'
-  - 'Transaction Fees': 'tx-fees.md'
+  - 'Balance Transfers': 'transfers-api.md'
   - 'Consensus & Finality': 'consensus-finality.md'
-  - 'RPC Support': 'rpc-support.md'
+  - 'Transaction Fees': 'tx-fees.md'
+  - 'Unified Accounts': 'unified-accounts.md'
   - 'Security Considerations': 'security.md'

@@ -7,7 +7,7 @@ description: Follow this quick tutorial to learn how to use Moonbeam’s Ethereu
 
 ## Introduction {: #introduction }
 
-As a Polkadot parachain, Moonbeam uses a [unified account structure](/learn/features/unified-accounts/){target=\_blank} that allows you to interact with Substrate (Polkadot) functionality and Moonbeam's EVM, all from a single Ethereum-style address. This unified account structure means that you don't need to maintain both a Substrate and an Ethereum account to interact with Moonbeam - instead, you can do it all with a single Ethereum private key.
+As a Polkadot parachain, Moonbeam uses a [unified account structure](/learn/core-concepts/unified-accounts/){target=\_blank} that allows you to interact with Substrate (Polkadot) functionality and Moonbeam's EVM, all from a single Ethereum-style address. This unified account structure means that you don't need to maintain both a Substrate and an Ethereum account to interact with Moonbeam - instead, you can do it all with a single Ethereum private key.
 
 The Polkadot.js Apps interface natively supports H160 addresses and ECDSA keys. So, in this tutorial, you can check out this integration of Ethereum-based accounts on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network%2Fpublic-ws#/accounts){target=\_blank}.
 
@@ -82,7 +82,7 @@ To finish the wizard, you can set an account name and password. After a confirma
 
 ## Send a Transaction Through Substrate's API {: #sending-a-transaction-through-substrates-api }
 
-Now, to demonstrate the potential of Moonbeam's [unified accounts](/learn/features/unified-accounts){target=\_blank} scheme, you can make a transfer through the Substrate API using Polkadot.js Apps. Remember that you are interacting with Substrate using an Ethereum-style H160 address. To do so, you can import another account.
+Now, to demonstrate the potential of Moonbeam's [unified accounts](/learn/core-concepts/unified-accounts){target=\_blank} scheme, you can make a transfer through the Substrate API using Polkadot.js Apps. Remember that you are interacting with Substrate using an Ethereum-style H160 address. To do so, you can import another account.
 
 Next, click on Bob's **send** button, which opens another wizard that guides you through the process of sending a transaction.
 

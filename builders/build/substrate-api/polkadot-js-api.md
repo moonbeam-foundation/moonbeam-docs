@@ -351,7 +351,7 @@ Any transaction will emit events, as a bare minimum this will always be either a
 
 Depending on the transaction sent, some other events may however be emitted, for instance for a balance transfer event, this could include one or more `balance.Transfer` events.
 
-The Transfer API page includes an [example code snippet](/builders/get-started/eth-compare/transfers-api/#monitor-all-balance-transfers-with-the-substrate-api){target=\_blank} for subscribing to new finalized block headers, and retrieving all `balance.Transfer` events.
+The Transfer API page includes an [example code snippet](/learn/core-concepts/transfers-api/#monitor-all-balance-transfers-with-the-substrate-api){target=\_blank} for subscribing to new finalized block headers, and retrieving all `balance.Transfer` events.
 
 ### Batch Transactions {: #batching-transactions }
 
@@ -447,7 +447,7 @@ Some of the methods availabe through the Polkadot.js API interface are also avai
       }'
     ```
 
-The [Consensus and Finality page](/builders/get-started/eth-compare/consensus-finality/#){target=\_blank} has sample code for using the exposed custom and Substrate RPC calls to check the finality of a given transaction.
+The [Consensus and Finality page](/learn/core-concepts/consensus-finality/#){target=\_blank} has sample code for using the exposed custom and Substrate RPC calls to check the finality of a given transaction.
 
 ## Polkadot.js API Utility Functions {: #utilities }
 

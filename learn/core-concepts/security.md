@@ -19,7 +19,7 @@ A smart contract allows arbitrary execution of another contract when it allows a
 
 Arbitrary code execution follows the pattern in the diagram below when **Contract A** allows a user to influence its call to **Contract B**.
 
-![Arbitrary code execution](/images/builders/get-started/eth-compare/security/security-1.webp)
+![Arbitrary code execution](/images/learn/core-concepts/security/security-1.webp)
 
 As previously mentioned, one major concern of arbitrarily executing code on Moonbeam is that Moonbeam has precompile contracts that can be called, which can be used to get around some protections that are typically available on Ethereum. To safely use arbitrary code execution on Moonbeam, you should consider the following, which **only applies to contracts that allow arbitrary code execution**:
 
