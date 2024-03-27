@@ -1,7 +1,7 @@
 title: Features
 nav:
   - index.md
-  - 'Cross-Chain Integration': 'xchain-plans.md'
+  - 'Cross-Chain Communication': 'xchain-plans.md'
   - 'Eth Compatibility': 'eth-compatibility.md'
   - 'Governance': 'governance.md'
   - 'Parachain Consensus': 'consensus.md'
