@@ -87,10 +87,11 @@ The interface varies slightly from version to version. You can find an overview 
         
         === "Returns"
 
-            The transact information for: 
-                - The three XCM instructions associated with the external call execution (`transactExtraWeight`)
-                - The extra weight information associated with the `DescendOrigin` XCM instruction for the transact through signed extrinsic (`transactExtraWeightSigned`)
-                - The maximum allowed weight for the message in the given chain
+            The transact information for:
+
+              - The three XCM instructions associated with the external call execution (`transactExtraWeight`)
+              - The extra weight information associated with the `DescendOrigin` XCM instruction for the transact through signed extrinsic (`transactExtraWeightSigned`)
+              - The maximum allowed weight for the message in the given chain
 
             ```js
             [ 173428000n, 0n, 20000000000n ]
@@ -157,10 +158,11 @@ The interface varies slightly from version to version. You can find an overview 
         
         === "Returns"
 
-            The transact information for: 
-                - The three XCM instructions associated with the external call execution (`transactExtraWeight`)
-                - The extra weight information associated with the `DescendOrigin` XCM instruction for the transact through signed extrinsic (`transactExtraWeightSigned`)
-                - The maximum allowed weight for the message in the given chain
+            The transact information for:
+
+              - The three XCM instructions associated with the external call execution (`transactExtraWeight`)
+              - The extra weight information associated with the `DescendOrigin` XCM instruction for the transact through signed extrinsic (`transactExtraWeightSigned`)
+              - The maximum allowed weight for the message in the given chain
 
             ```js
             [ 173428000n, 0n, 20000000000n ]
@@ -189,12 +191,10 @@ The interface varies slightly from version to version. You can find an overview 
             - `transactRequiredWeightAtMost` - the weight to buy in the destination chain for the execution of the call defined in the `Transact` instruction. The `transactRequiredWeightAtMost` structure contains the following:
                 - `refTime` - the amount of computational time that can be used for execution
                 - `proofSize` - the amount of storage in bytes that can be used
-
                 It should be formatted as follows:
-
                 ```js
                 [ INSERT_REF_TIME, INSERT_PROOF_SIZE ]
-                ```
+                ```  
             - `call` - the call to be executed in the destination chain, as defined in the `Transact` instruction 
             - `feeAmount` - the amount to be used as a fee
             - `overallWeight` - the total weight the extrinsic can use to execute all the XCM instructions, plus the weight of the `Transact` call (`transactRequiredWeightAtMost`). The `overallWeight` structure also contains `refTime` and `proofSize`. If you pass in the maximum value for a uint64 for the `refTime`, you'll allow for an unlimited amount of weight to be purchased, which removes the need to know exactly how much weight the destination chain requires to execute the XCM
@@ -209,9 +209,7 @@ The interface varies slightly from version to version. You can find an overview 
             - `transactRequiredWeightAtMost` - the weight to buy in the destination chain for the execution of the call defined in the `Transact` instruction. The `transactRequiredWeightAtMost` structure contains the following:
                 - `refTime` - the amount of computational time that can be used for execution
                 - `proofSize` - the amount of storage in bytes that can be used
-
                 It should be formatted as follows:
-
                 ```js
                 [ INSERT_REF_TIME, INSERT_PROOF_SIZE ]
                 ```
