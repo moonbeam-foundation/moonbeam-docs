@@ -8,7 +8,7 @@ keywords: solidity, ethereum, call permit, permit, gasless transaction, moonbeam
 
 ## Introduction {: #introduction }
 
-The Call Permit Precompile on Moonbeam allows a user to sign a permit, an [EIP-712](https://eips.ethereum.org/EIPS/eip-712){target=_blank} signed message, for any EVM call and it can be dispatched by anyone or any smart contract. It is similar to the [ERC-20 Permit Solidity Interface](/builders/interoperability/xcm/xc20/overview/#the-erc20-permit-interface){target=_blank}, except it applies to any EVM call instead of approvals only.
+The Call Permit Precompile on Moonbeam allows a user to sign a permit, an [EIP-712](https://eips.ethereum.org/EIPS/eip-712){target=\_blank} signed message, for any EVM call and it can be dispatched by anyone or any smart contract. It is similar to the [ERC-20 Permit Solidity Interface](/builders/interoperability/xcm/xc20/interact/#the-erc20-permit-interface){target=\_blank}, except it applies to any EVM call instead of approvals only.
 
 When the call permit is dispatched, it is done so on behalf of the user who signed the permit and the user or contract that dispatches the permit is responsible for paying transaction fees. As such, the precompile can be used to perform gas-less transactions.
 
@@ -34,11 +34,11 @@ The Call Permit Precompile is located at the following address:
      {{networks.moonbase.precompiles.call_permit }}
      ```
 
---8<-- 'text/precompiles/security.md'
+--8<-- 'text/builders/pallets-precompiles/precompiles/security.md'
 
 ## The Call Permit Solidity Interface {: #the-call-permit-interface }
 
-[`CallPermit.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/call-permit/CallPermit.sol){target=_blank} is a Solidity interface that allows developers to interact with the precompile's three methods.
+[`CallPermit.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/call-permit/CallPermit.sol){target=\_blank} is a Solidity interface that allows developers to interact with the precompile's three methods.
 
 The interface includes the following functions:
 
@@ -54,17 +54,17 @@ The interface includes the following functions:
      - `s` - the second 32 bytes of the concatenated signature
 
 - **nonces**(*address* owner) - returns the current nonce for given owner
-- **DOMAIN_SEPARATOR**() - returns the EIP-712 domain separator which is used to avoid replay attacks. It follows the [EIP-2612](https://eips.ethereum.org/EIPS/eip-2612#specification){target=_blank} implementation
+- **DOMAIN_SEPARATOR**() - returns the EIP-712 domain separator which is used to avoid replay attacks. It follows the [EIP-2612](https://eips.ethereum.org/EIPS/eip-2612#specification){target=\_blank} implementation
 
---8<-- 'text/precompiles/call-permit/domain-separator.md'
+--8<-- 'text/builders/pallets-precompiles/precompiles/call-permit/domain-separator.md'
 
-When `dispatch` is called, the permit needs to be verified before the call is dispatched. The first step is to [compute the domain separator](https://github.com/moonbeam-foundation/moonbeam/blob/ae705bb2e9652204ace66c598a00dcd92445eb81/precompiles/call-permit/src/lib.rs#L138){target=_blank}. The calculation can be seen in [Moonbeam's implementation](https://github.com/moonbeam-foundation/moonbeam/blob/ae705bb2e9652204ace66c598a00dcd92445eb81/precompiles/call-permit/src/lib.rs#L112-L126){target=_blank} or you can check out a practical example in [OpenZeppelin's EIP712 contract](ttps://github.com/OpenZeppelin/openzeppelin-contracts/blob/4a9cc8b4918ef3736229a5cc5a310bdc17bf759f/contracts/utils/cryptography/draft-EIP712.sol#L70-L84){target=_blank}.
+When `dispatch` is called, the permit needs to be verified before the call is dispatched. The first step is to [compute the domain separator](https://github.com/moonbeam-foundation/moonbeam/blob/ae705bb2e9652204ace66c598a00dcd92445eb81/precompiles/call-permit/src/lib.rs#L138){target=\_blank}. The calculation can be seen in [Moonbeam's implementation](https://github.com/moonbeam-foundation/moonbeam/blob/ae705bb2e9652204ace66c598a00dcd92445eb81/precompiles/call-permit/src/lib.rs#L112-L126){target=\_blank} or you can check out a practical example in [OpenZeppelin's EIP712 contract](ttps://github.com/OpenZeppelin/openzeppelin-contracts/blob/4a9cc8b4918ef3736229a5cc5a310bdc17bf759f/contracts/utils/cryptography/draft-EIP712.sol#L70-L84){target=\_blank}.
 
-From there, a [hash of the signature and the given arguments](https://github.com/moonbeam-foundation/moonbeam/blob/ae705bb2e9652204ace66c598a00dcd92445eb81/precompiles/call-permit/src/lib.rs#L140-L151){target=_blank} is generated which guarantees that the signature can only be used for the call permit. It uses a given nonce to ensure the signature is not subject to a replay attack. It is similar to [OpenZeppelin's `ERC20Permit` contract](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/4a9cc8b4918ef3736229a5cc5a310bdc17bf759f/contracts/token/ERC20/extensions/draft-ERC20Permit.sol#L52){target=_blank}, except the `PERMIT_TYPEHASH` is for a call permit, and the arguments match that of the [dispatch function](#:~:text=The interface includes the following functions) plus the nonce.
+From there, a [hash of the signature and the given arguments](https://github.com/moonbeam-foundation/moonbeam/blob/ae705bb2e9652204ace66c598a00dcd92445eb81/precompiles/call-permit/src/lib.rs#L140-L151){target=\_blank} is generated which guarantees that the signature can only be used for the call permit. It uses a given nonce to ensure the signature is not subject to a replay attack. It is similar to [OpenZeppelin's `ERC20Permit` contract](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/4a9cc8b4918ef3736229a5cc5a310bdc17bf759f/contracts/token/ERC20/extensions/draft-ERC20Permit.sol#L52){target=\_blank}, except the `PERMIT_TYPEHASH` is for a call permit, and the arguments match that of the [dispatch function](#:~:text=The interface includes the following functions) plus the nonce.
 
-The domain separator and the hash struct can be used to build the [final hash](https://github.com/moonbeam-foundation/moonbeam/blob/ae705bb2e9652204ace66c598a00dcd92445eb81/precompiles/call-permit/src/lib.rs#L153-L157){target=_blank} of the fully encoded message. A practical example is shown in [OpenZeppelin's EIP712 contract](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/4a9cc8b4918ef3736229a5cc5a310bdc17bf759f/contracts/utils/cryptography/draft-EIP712.sol#L101){target=_blank}.
+The domain separator and the hash struct can be used to build the [final hash](https://github.com/moonbeam-foundation/moonbeam/blob/ae705bb2e9652204ace66c598a00dcd92445eb81/precompiles/call-permit/src/lib.rs#L153-L157){target=\_blank} of the fully encoded message. A practical example is shown in [OpenZeppelin's EIP712 contract](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/4a9cc8b4918ef3736229a5cc5a310bdc17bf759f/contracts/utils/cryptography/draft-EIP712.sol#L101){target=\_blank}.
 
-With the final hash and the v, r, and s values, the signature can be [verified and recovered](https://github.com/moonbeam-foundation/moonbeam/blob/ae705bb2e9652204ace66c598a00dcd92445eb81/precompiles/call-permit/src/lib.rs#L211-L223){target=_blank}. If successfully verified, the nonce will increase by one and the call will be dispatched.
+With the final hash and the v, r, and s values, the signature can be [verified and recovered](https://github.com/moonbeam-foundation/moonbeam/blob/ae705bb2e9652204ace66c598a00dcd92445eb81/precompiles/call-permit/src/lib.rs#L211-L223){target=\_blank}. If successfully verified, the nonce will increase by one and the call will be dispatched.
 
 ## Setup the Contracts {: #setup-the-example-contract }
 
@@ -76,10 +76,10 @@ Once you've setup the example contract, then you can setup the Call Permit Preco
 
 To follow along with this tutorial, you will need to have:
 
-- [MetaMask installed and connected to Moonbase Alpha](/tokens/connect/metamask/){target=_blank}
+- [MetaMask installed and connected to Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}
 - Create or have two accounts on Moonbase Alpha to test out the different features in the Call Permit Precompile
 - At least one of the accounts will need to be funded with `DEV` tokens.
- --8<-- 'text/faucet/faucet-list-item.md'
+ --8<-- 'text/_common/faucet/faucet-list-item.md'
 
 ### Example Contract {: #example-contract }
 
@@ -104,13 +104,13 @@ contract SetMessage {
 
 ### Remix Set Up {: #remix-set-up }
 
-You can use [Remix](https://remix.ethereum.org/){target=_blank} to compile the example contract and deploy it. You'll need a copy of [`SetMessage.sol`](#example-contract){target=_blank} and [`CallPermit.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/call-permit/CallPermit.sol){target=_blank}. To add the contracts to Remix, you can take the following steps:
+You can use [Remix](https://remix.ethereum.org/){target=\_blank} to compile the example contract and deploy it. You'll need a copy of [`SetMessage.sol`](#example-contract){target=\_blank} and [`CallPermit.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/call-permit/CallPermit.sol){target=\_blank}. To add the contracts to Remix, you can take the following steps:
 
 1. Click on the **File explorer** tab
 2. Paste the `SetMessage.sol` contract into a Remix file named `SetMessage.sol`
 3. Paste the `CallPermit.sol` contract into a Remix file named `CallPermit.sol`
 
-![Copying and pasting the example contract into Remix](/images/builders/pallets-precompiles/precompiles/call-permit/call-1-new.png)
+![Copying and pasting the example contract into Remix](/images/builders/pallets-precompiles/precompiles/call-permit/call-1-new.webp)
 
 ### Compile & Deploy the Example Contract {: #compile-deploy-example-contract }
 
@@ -119,7 +119,7 @@ First you'll need to compile the example contract:
 1. Click on the **Compile** tab, second from top
 2. Then to compile the interface, click on **Compile SetMessage.sol**
 
-![Compiling SetMessage.sol](/images/builders/pallets-precompiles/precompiles/call-permit/call-2.png)
+![Compiling SetMessage.sol](/images/builders/pallets-precompiles/precompiles/call-permit/call-2.webp)
 
 Then you can deploy it:
 
@@ -129,7 +129,7 @@ Then you can deploy it:
 4. Click **Deploy**
 4. MetaMask will pop up and you'll need to **Confirm** the transaction
 
-![Provide the address](/images/builders/pallets-precompiles/precompiles/call-permit/call-3.png)
+![Provide the address](/images/builders/pallets-precompiles/precompiles/call-permit/call-3.webp)
 
 The contract will appear under the list of **Deployed Contracts** on the left side panel. Copy the contract address as you will need to use it to generate the call permit signature in the next section.
 
@@ -140,7 +140,7 @@ First you'll need to compile the Call Permit Precompile contract:
 1. Click on the **Compile** tab, second from top
 2. Then to compile the interface, click on **Compile CallPermit.sol**
 
-![Compiling SetMessage.sol](/images/builders/pallets-precompiles/precompiles/call-permit/call-4.png)
+![Compiling SetMessage.sol](/images/builders/pallets-precompiles/precompiles/call-permit/call-4.webp)
 
 Then instead of deploying the contract, you'll just need to access it given the address of the precompile:
 
@@ -150,11 +150,11 @@ Then instead of deploying the contract, you'll just need to access it given the 
 4. Provide the address of the Call Permit Precompile for Moonbase Alpha: `{{networks.moonbase.precompiles.call_permit}}` and click **At Address**
 5. The Call Permit Precompile will appear in the list of **Deployed Contracts**
 
-![Provide the address](/images/builders/pallets-precompiles/precompiles/call-permit/call-5.png)
+![Provide the address](/images/builders/pallets-precompiles/precompiles/call-permit/call-5.webp)
 
 ## Generate Call Permit Signature {: #generate-call-permit-signature}
 
-In order to interact with the Call Permit Precompile, you have to have or generate a signature to dispatch the call permit with. There are several ways you can generate the signature, this guide will show you two different ways to generate it: in the browser using the [MetaMask extension](https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn){target=_blank} and [JSFiddle](https://jsfiddle.net/){target=_blank} and using MetaMask's [`@metamask/eth-sig-util` npm package](https://www.npmjs.com/package/@metamask/eth-sig-util){target=_blank}.
+In order to interact with the Call Permit Precompile, you have to have or generate a signature to dispatch the call permit with. There are several ways you can generate the signature, this guide will show you two different ways to generate it: in the browser using the [MetaMask extension](https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn){target=\_blank} and [JSFiddle](https://jsfiddle.net/){target=\_blank} and using MetaMask's [`@metamask/eth-sig-util` npm package](https://www.npmjs.com/package/@metamask/eth-sig-util){target=\_blank}.
 
 Regardless of which method you choose to generate the signature, the following steps will be taken:
 
@@ -162,7 +162,7 @@ Regardless of which method you choose to generate the signature, the following s
 2. A JSON structure of the data the user needs to sign will be assembled for the call permit and include all of the types for the `dispatch` arguments and the nonce. This will result in the `CallPermit` type and will be saved as the `primaryType`
 3. The domain separator will be created using `"Call Permit Precompile"` exactly for the name, the version of your DApp or platform, the chain ID of the network the signature is to be used on, and the address of the contract that will verify the signature
 4. All of the assembled data, the `types`, `domain`, `primaryType` and `message`, will be signed using MetaMask (either in the browser or through the MetaMask's JavaScript signing library)
-5. The signature will be returned and you can use [Ethers.js](https://docs.ethers.org/){target=_blank} [`Signature.from` method](https://docs.ethers.org/v6/api/crypto/#Signature_from){target=_blank} to return the `v`, `r`, and `s` values of the signature
+5. The signature will be returned and you can use [Ethers.js](https://docs.ethers.org/){target=\_blank} [`Signature.from` method](https://docs.ethers.org/v6/api/crypto/#Signature_from){target=\_blank} to return the `v`, `r`, and `s` values of the signature
 
 ### The Call Permit Arguments {: #call-permit-arguments }
 
@@ -186,11 +186,11 @@ The nonce of the signer will also be needed. If this is your first time signing 
 2. Next to the **nonces** function, enter the address of the signer and click on **nonces**
 3. The result will be returned directly under the function
 
-![Get the nonce](/images/builders/pallets-precompiles/precompiles/call-permit/call-6.png)
+![Get the nonce](/images/builders/pallets-precompiles/precompiles/call-permit/call-6.webp)
 
 ### Use the Browser {: #use-the-browser }
 
-To get started, you can open [JSFiddle](https://jsfiddle.net/){target=_blank} or another JavaScript playground in the browser. First, you'll need to add [Ethers.js](/builders/build/eth-api/libraries/ethersjs){target=_blank} as it will be used to get the `v`, `r`, and `s` values of the signature:
+To get started, you can open [JSFiddle](https://jsfiddle.net/){target=\_blank} or another JavaScript playground in the browser. First, you'll need to add [Ethers.js](/builders/build/eth-api/libraries/ethersjs){target=\_blank} as it will be used to get the `v`, `r`, and `s` values of the signature:
 
 1. Click on **Resources**
 2. Start to type in `ethers` and the dropdown should populate matching libraries. Choose **ethers**
@@ -198,25 +198,25 @@ To get started, you can open [JSFiddle](https://jsfiddle.net/){target=_blank} or
 
 The CDN for Ethers.js will appear in the list of libraries under **Resources**.
 
-![Add Ethers to JSFiddle](/images/builders/pallets-precompiles/precompiles/call-permit/call-7.png)
+![Add Ethers to JSFiddle](/images/builders/pallets-precompiles/precompiles/call-permit/call-7.webp)
 
 In the **Javascript** code box, copy and paste the following JavaScript snippet, making sure to replace the `to` variables (and any other variables as you see fit):
 
 ```js
---8<-- 'code/precompiles/call-permit/browser-getSignature.js'
+--8<-- 'code/builders/pallets-precompiles/precompiles/call-permit/browser-getSignature.js'
 ```
 
 To run the code, click **Run** at the top of the page (or you can also use `control` and `s`). MetaMask should pop up and prompt you to connect an account. Make sure to choose the account you want to sign the message with. Then go ahead and sign the message.
 
-![Sign the message with MetaMask](/images/builders/pallets-precompiles/precompiles/call-permit/call-8.png)
+![Sign the message with MetaMask](/images/builders/pallets-precompiles/precompiles/call-permit/call-8.webp)
 
 Once you've signed the message, go back to JSFiddle and if the console isn't already open, go ahead and open it to see the signature values include the `v`, `r`, and `s`, values. Copy these values as you'll need them when interacting with the Call Permit Precompile in the following sections.
 
-![Signature values in the JSFiddle console](/images/builders/pallets-precompiles/precompiles/call-permit/call-9.png)
+![Signature values in the JSFiddle console](/images/builders/pallets-precompiles/precompiles/call-permit/call-9.webp)
 
 ### Use MetaMask's JS Signing Library {: #use-metamasks-signing-library }
 
-To generate the call permit signature using JavaScript and MetaMask's [`@metamask/eth-sig-util` npm package](https://www.npmjs.com/package/@metamask/eth-sig-util){target=_blank}, you'll first need to create a project locally. You can do so with the following commands:
+To generate the call permit signature using JavaScript and MetaMask's [`@metamask/eth-sig-util` npm package](https://www.npmjs.com/package/@metamask/eth-sig-util){target=\_blank}, you'll first need to create a project locally. You can do so with the following commands:
 
 ```bash
 mkdir call-permit-example && cd call-permit-example && touch getSignature.js
@@ -229,7 +229,7 @@ You should now have a file where you can create the script to get the signature 
 "type": "module"
 ```
 
-Next, you can install the MetaMask signing library and [Ethers.js](https://docs.ethers.org/){target=_blank}:
+Next, you can install the MetaMask signing library and [Ethers.js](https://docs.ethers.org/){target=\_blank}:
 
 ```bash
 npm i @metamask/eth-sig-util ethers
@@ -241,7 +241,7 @@ npm i @metamask/eth-sig-util ethers
 In the `getSignature.js` file, you can copy the following code snippet:
 
 ```js
---8<-- 'code/precompiles/call-permit/getSignature.js'
+--8<-- 'code/builders/pallets-precompiles/precompiles/call-permit/getSignature.js'
 ```
 
 To run the script, use the following command:
@@ -252,7 +252,7 @@ node getSignature.js
 
 In the console, you should see the concatenated signature along with the values for the signature including the `v`, `r`, and `s` values. Copy these values as you'll need them when interacting with the Call Permit Precompile in the following sections.
 
-![Signature values in the console](/images/builders/pallets-precompiles/precompiles/call-permit/call-10.png)
+![Signature values in the console](/images/builders/pallets-precompiles/precompiles/call-permit/call-10.webp)
 
 ## Interact with the Solidity Interface {: #interact-with-the-solidity-interface }
 
@@ -277,7 +277,7 @@ When you send the `dispatch` function, you'll need the same arguments as you use
 10. Click **transact** to send the transaction
 11. MetaMask should pop-up and you can confirm the transaction
 
-![Dispatch the call permit](/images/builders/pallets-precompiles/precompiles/call-permit/call-11.png)
+![Dispatch the call permit](/images/builders/pallets-precompiles/precompiles/call-permit/call-11.webp)
 
 Once the transaction goes through, you can verify that the message was updated to `hello world`. To do so, you can:
 
@@ -285,6 +285,6 @@ Once the transaction goes through, you can verify that the message was updated t
 2. Click on **get**
 3. The result will appear below the function, and it should show `hello world`
 
-![Verify the dispatch was executed as intended](/images/builders/pallets-precompiles/precompiles/call-permit/call-12.png)
+![Verify the dispatch was executed as intended](/images/builders/pallets-precompiles/precompiles/call-permit/call-12.webp)
 
 Congratulations! You've successfully generated a call permit signature and used it to dispatch a call on behalf of the call permit signer.

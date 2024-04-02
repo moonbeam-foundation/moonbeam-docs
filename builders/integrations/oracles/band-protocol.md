@@ -14,7 +14,7 @@ The Aggregator Contract address can be found in the following table:
 |:--------------:|-|:------------------------------------------:|
 | Moonbase Alpha | | 0xDA7a001b254CD22e46d3eAB04d937489c93174C3 |
 
---8<-- 'text/disclaimers/third-party-content-intro.md'
+--8<-- 'text/_disclaimers/third-party-content-intro.md'
 
 ## Supported Token {: #supported-token } 
 Price queries with any denomination are available as long as the base and quote symbols are supported (_base_/_quote_). For example:
@@ -23,7 +23,7 @@ Price queries with any denomination are available as long as the base and quote 
  - `BTC/ETH`
  - `ETH/EUR`
 
-At the time of writing, the list of supported symbols can be found on the [Band Standard Dataset](https://data.bandprotocol.com){target=_blank} page of the Band website. There are more than 146 price pairs available to query.
+At the time of writing, the list of supported symbols can be found on the [Band Standard Dataset](https://data.bandprotocol.com){target=\_blank} page of the Band website. There are more than 146 price pairs available to query.
 
 ## Querying Prices {: #querying-prices } 
 As stated before, developers can leverage two methods to query prices from Band's oracle: 
@@ -44,9 +44,9 @@ The `ReferenceData` struct has the following elements:
  
 ```js
 struct ReferenceData {
-   uint256 rate; 
-   uint256 lastUpdatedBase; 
-   uint256 lastUpdatedQuote;
+  uint256 rate; 
+  uint256 lastUpdatedBase; 
+  uint256 lastUpdatedQuote;
 }
 ```
 
@@ -171,15 +171,15 @@ With it, you will have two view functions available - very similar to the previo
  - **getPrice**(*string* base, *string* quote) - provides the price feed for a single base/quote pair that is given as input to the function, that is, "BTC", "USD"
  - **getMultiPrices**(*string[]* bases, *string[]* quotes) - provides the price feed for a multiple base/quote pairs that are given as input to the function, that is, ["BTC", "ETH", "ETH"], ["USD", "USD", "EUR"]
 
-For example, using [Remix](/builders/build/eth-api/dev-env/remix/){target=_blank}, you can easily query the `BTC/USD` price pair using this interface.
+For example, using [Remix](/builders/build/eth-api/dev-env/remix/){target=\_blank}, you can easily query the `BTC/USD` price pair using this interface.
 
 After creating the file and compiling the contract, head to the **Deploy and Run Transactions** tab, enter the contract address (`0xf15c870344c1c02f5939a5C4926b7cDb90dEc655`) and click on **At Address**. Make sure you have set the **ENVIRONMENT** to **Injected Web3** so you are connected to Moonbase Alpha. 
 
-![Band Protocol Remix deploy](/images/builders/integrations/oracles/band/band-demo-1.png)
+![Band Protocol Remix deploy](/images/builders/integrations/oracles/band/band-demo-1.webp)
 
 This will create an instance of the demo contract that you can interact with. Use the functions `getPrice()` and `getMultiPrices()` to query the data of the corresponding pair.
 
-![Band Protocol Remix check price](/images/builders/integrations/oracles/band/band-demo-2.png)
+![Band Protocol Remix check price](/images/builders/integrations/oracles/band/band-demo-2.webp)
 
 ## BandChain.js JavaScript Helper Library {: #bandchainjs-javascript-helper-library } 
 
@@ -213,7 +213,7 @@ Then, it returns an array object with the following structure:
     pair: 'ETH/EUR',
     rate: rate,
     updated: { base: lastUpdatedBase, quote: lastUpdatedQuote}
-  }
+  },
 ]
 ```
 
@@ -230,7 +230,11 @@ const queryData = async () => {
   const endpoint = 'https://poa-api.bandchain.org';
 
   const bandchain = new BandChain(endpoint);
-  const dataQuery = await bandchain.getReferenceData(['BTC/USD', 'BTC/ETH', 'ETH/EUR']);
+  const dataQuery = await bandchain.getReferenceData([
+    'BTC/USD',
+    'BTC/ETH',
+    'ETH/EUR',
+  ]);
   console.log(dataQuery);
 };
 
@@ -239,8 +243,8 @@ queryData();
 
 You can execute this code with a node, and the following `dataQuery` output should look like this:
 
-![Band Protocol JavaScript Library](/images/builders/integrations/oracles/band/band-console.png)
+![Band Protocol JavaScript Library](/images/builders/integrations/oracles/band/band-console.webp)
 
 Note that compared to the request done via smart contracts, the result is given directly in the correct units.
 
---8<-- 'text/disclaimers/third-party-content.md'
+--8<-- 'text/_disclaimers/third-party-content.md'

@@ -1,13 +1,13 @@
 ---
 title: Moonbeam-specific RPC Methods
-description: This page contains information on Moonbeam custom API endpoints (JSON RPC methods specific to Moonbeam).
+description: This page contains information on Moonbeam custom API endpoints (JSON-RPC methods specific to Moonbeam).
 ---
 
 # Moonbeam Custom API 
 
 ## Finality RPC Endpoints {: #finality-rpc-endpoints }
 
-Moonbeam node has added support for two custom JSON RPC endpoints, `moon_isBlockFinalized` and `moon_isTxFinalized`, that are useful for checking whether an on-chain event is finalized. The information on these two endpoints are as follows:
+Moonbeam node has added support for two custom JSON-RPC endpoints, `moon_isBlockFinalized` and `moon_isTxFinalized`, that are useful for checking whether an on-chain event is finalized. The information on these two endpoints are as follows:
 
 === "moon_isBlockFinalized"
     |  Variable   |                                                          Value                                                           |
@@ -25,31 +25,32 @@ Moonbeam node has added support for two custom JSON RPC endpoints, `moon_isBlock
     | Parameters  |                           `tx_hash`: **STRING** The EVM tx hash of the transaction                           |
     |   Returns   | `result`: **BOOLEAN** Returns `true` if the tx is finalized; `false` if the tx is not finalized or not found |
 
-You can try out these endpoints with the following curl examples. These examples query the public RPC endpoint of Moonbase Alpha, but they can be modified to use with Moonbeam and Moonriver by changing the URL of the RPC endpoint to use your own endpoint and API key which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=_blank}.
+You can try out these endpoints with the following curl examples. These examples query the public RPC endpoint of Moonbase Alpha, but they can be modified to use with Moonbeam and Moonriver by changing the URL of the RPC endpoint to use your own endpoint and API key which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=\_blank}.
 
 === "moon_isBlockFinalized"
 
     ```bash
-    curl -H "Content-Type: application/json" -X POST --data 
-        '[{
-            "jsonrpc":"2.0",
-            "id":"1",
-            "method":"moon_isBlockFinalized",
-            "params":["Put-Block-Hash-Here"
-        ]}]' 
-        {{ networks.moonbase.rpc_url }}
+    curl -H "Content-Type: application/json" -X POST --data '[
+      {
+        "jsonrpc": "2.0",
+        "id": "1",
+        "method": "moon_isBlockFinalized",
+        "params": ["INSERT_BLOCK_HASH"]
+      }
+    ]'
+    {{ networks.moonbase.rpc_url }}
     ```
 
 === "moon_isTxFinalized"
 
     ```bash
-    curl -H "Content-Type: application/json" -X POST --data 
-        '[{
-            "jsonrpc":"2.0",
-            "id":"1",
-            "method":"moon_isTxFinalized",
-            "params":["Put-Tx-Hash-Here"
-        ]}]' 
-        {{ networks.moonbase.rpc_url }}
+    curl -H "Content-Type: application/json" -X POST --data '[
+      {
+        "jsonrpc": "2.0",
+        "id": "1",
+        "method": "moon_isTxFinalized",
+        "params": ["INSERT_TX_HASH"]
+      }
+    ]'
+    {{ networks.moonbase.rpc_url }}
     ```
-

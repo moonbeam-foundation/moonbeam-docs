@@ -1,2 +1,0 @@
- - **Approval** — minimum "Aye" votes as a percentage of overall Conviction-weighted votes needed for an approval
- - **Support** — minimum number of "Aye" votes, not taking into consideration Conviction-weighted votes, needed as a percent of the total supply needed for an approval

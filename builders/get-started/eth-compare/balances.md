@@ -11,7 +11,7 @@ While Moonbeam strives to be compatible with Ethereum's Web3 API and EVM, there 
 
 One of the design goals of Moonbeam is to create an environment that is as close as possible to Ethereum, and to offer a set of Web3 RPC endpoints that are compatible with Ethereum. However, Moonbeam is also a Substrate based chain, which means that it exposes Substrate RPCs, and that it has integral functionality that is powered by Substrate such as Staking, Governance, and other features which are not part of the Ethereum API.
 
-Moonbeam [unified accounts](/learn/features/unified-accounts/){target=_blank} are one way that Moonbeam achieves Ethereum compatibility, by changing the underlying account type in the protocol to be Ethereum-like (H160 or 20 byte addresses starting with `0x`). Unified accounts are used by both the Substrate and Ethereum APIs, and map to the same underlying data storage on the blockchain. Nevertheless, there are important differences that users coming from Ethereum should understand when using Moonbeam accounts via the Ethereum API.
+Moonbeam [unified accounts](/learn/features/unified-accounts/){target=\_blank} are one way that Moonbeam achieves Ethereum compatibility, by changing the underlying account type in the protocol to be Ethereum-like (H160 or 20 byte addresses starting with `0x`). Unified accounts are used by both the Substrate and Ethereum APIs, and map to the same underlying data storage on the blockchain. Nevertheless, there are important differences that users coming from Ethereum should understand when using Moonbeam accounts via the Ethereum API.
 
 This guide will outline some of these main differences and what to expect when using Moonbeam for the first time.
 
@@ -21,13 +21,13 @@ An account on Ethereum is an entity with a token balance (Ether or ETH in this c
 
 Therefore, Ethereum has two main types of accounts: user-owned and contract-owned. No matter the type, an Ethereum account has a single balance field that represents the number of Wei owned by this address, where Wei is a denomination of ETH (1 x 10^18 Wei per ETH).
 
-![Ethereum balances diagram](/images/builders/get-started/eth-compare/balances/balances-1.png)
+![Ethereum balances diagram](/images/builders/get-started/eth-compare/balances/balances-1.webp)
 
 ## Moonbeam Account Balances {: #moonbeam-account-balances }
 
 An account on Moonbeam is also an entity with a token balance (the token will depend on the network). Like on Ethereum, account holders can send token transactions on the Moonbeam Network they are connected to. In addition, accounts can be controlled by users (with the private key for signing) or smart contracts.
 
-As with Ethereum, there are two main types of accounts: user-owned and contract owned. However, on Moonbeam, within both account types, there are also [proxy accounts](https://wiki.polkadot.network/docs/learn-proxies){target=_blank}, which can perform a limited number of actions on behalf of another account. In terms of balances, all of Moonbeam account types have five (5) different [balance types](https://wiki.polkadot.network/docs/learn-accounts#balance-types){target=_blank}:
+As with Ethereum, there are two main types of accounts: user-owned and contract owned. However, on Moonbeam, within both account types, there are also [proxy accounts](https://wiki.polkadot.network/docs/learn-proxies){target=\_blank}, which can perform a limited number of actions on behalf of another account. In terms of balances, all of Moonbeam account types have five (5) different [balance types](https://wiki.polkadot.network/docs/learn-accounts#balance-types){target=\_blank}:
 
  - **Free** — refers to the balance that can be used (not locked/frozen) from the Substrate API. The concept of `free` balance depends on the action to be executed. For example, voting in democracy will not subtract the allocated balance to the vote from `free` balance, but token holders won't be able to transfers that balance
  - **Reducible** — refers to the balance that can be used (not locked/frozen) through the Ethereum API on Moonbeam. For example, this is the balance displayed by MetaMask. It is the real spendable balance, accounting for all democracy locks (displayed as transferable in Polkadot.js Apps)
@@ -35,20 +35,24 @@ As with Ethereum, there are two main types of accounts: user-owned and contract 
  - **Misc frozen** — represents a balance that the `free` balance may not drop below when withdrawing funds, except for transaction fee payment. For example, funds being used to vote on a governance proposal are shown as `misc frozen`. These funds are **not** accessible via the Ethereum API until they are freed
  - **Fee frozen** — represents a balance that the `free` balance may not drop below when specifically paying for transaction fees. These funds are **not** accessible via the Ethereum API until they are freed
 
-![Moonbeam balances diagram](/images/builders/get-started/eth-compare/balances/balances-2.png)
+![Moonbeam balances diagram](/images/builders/get-started/eth-compare/balances/balances-2.webp)
 
-You can check on your balances, including your free (or transferrable) and reserved balances (if exists), using [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/accounts){target=_blank}.
+### Retrieve Your Balance {: #retrieve-your-balance }
 
-![View balances on Polkadot.js Apps](/images/builders/get-started/eth-compare/balances/balances-3.png)
+You can check on your balances, including your free (or transferrable) and reserved balances (if exists), using the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api){target=\_blank}.
 
-You can also view your balance locks using Polkadot.js Apps. Before getting started, make sure Polkadot.js Apps is connected to the correct network. Then go ahead and select the **Developer** tab, then choose **Chain State**, and take the following steps:
+!!! note
+    --8<-- 'text/_common/endpoint-examples.md'
 
-1. Select **balances** from the **selected state query** dropdown
-2. Choose the **locks** extrinsic
-3. Enter your address
-4. Click the **+** button to submit the extrinsic
+```js
+--8<-- 'code/builders/get-started/eth-compare/balances/balance.js'
+```
 
-![View locks on Polkadot.js Apps](/images/builders/get-started/eth-compare/balances/balances-4.png)
+You can also retrieve your balance locks using the Polkadot.js API.
+
+```js
+--8<-- 'code/builders/get-started/eth-compare/balances/locks.js'
+```
 
 ## Main Differences {: #main-differences }
 

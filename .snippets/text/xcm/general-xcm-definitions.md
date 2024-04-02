@@ -1,4 +1,0 @@
- - **XCM** — stands for cross-consensus message. It is a general way for consensus systems to communicate with each other
- - **VMP** — stands for vertical message passing, one of the transport methods for XCMs. It allows parachains to exchange messages with the relay chain. *UMP* (upward message passing) enables parachains to send messages to their relay chain, while *DMP* (downward message passing) enables the relay chain to pass messages down to one of their parachains
- - **XCMP** — stands for cross-consensus message passing, one of the transport methods for XCMs. It allows parachains to exchange messages with other parachains on the same relay chain
- - **HRMP** — stands for horizontal relay-routed message passing, a stop-gap protocol while a full XCMP implementation is launched. It has the same interface as XCMP, but messages are stored on the relay chain

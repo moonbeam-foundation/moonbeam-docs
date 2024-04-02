@@ -7,13 +7,13 @@ description: Add token information and create a token profile on Moonscan for ER
 
 ## Introduction {: #introduction }
 
-This tutorial will guide you through the process of adding a profile for your ERC-20, ERC-721, or ERC-1155 tokens to [Moonscan](https://moonscan.io){target=_blank}.
+This tutorial will guide you through the process of adding a profile for your ERC-20, ERC-721, or ERC-1155 tokens to [Moonscan](https://moonscan.io){target=\_blank}.
 
 ​​Moonscan is a block explorer and analytics platform for EVM-compatible chains. It is an integration of Moonbeam and Etherscan, and it allows users and developers to have access to developer tools and network statistics that provide granular insights into the EVM of Moonriver and Moonbeam.
 
 Developers can create a profile for their tokens on Moonriver and Moonbeam. The profile captures basic information about the project behind the token, social media links, links to price data, and other information pertaining to the project’s token sales.
 
-![Example token profile](/images/builders/get-started/token-profile/profile-1.png)
+![Example token profile](/images/builders/get-started/token-profile/profile-1.webp)
 
 This tutorial will show you how to create a profile on Moonscan of a sample ERC-20 token, called DemoToken (DEMO), deployed to Moonriver. These instructions can be adapted for any of the Moonbeam-based networks, as well as for an ERC-721 or ERC-1155 token.
 
@@ -21,7 +21,7 @@ This tutorial will show you how to create a profile on Moonscan of a sample ERC-
 
 To follow along with this tutorial, you will need to have the following:
 
-- A [Moonscan Account](https://moonscan.io/register){target=_blank}
+- A [Moonscan Account](https://moonscan.io/register){target=\_blank}
 
 You will need to verify ownership of the token contract address later on in this guide. You can either do this manually or automatically, but if you choose to do it automatically you'll also need the following:
 
@@ -52,7 +52,7 @@ To get started, you'll need to make sure that you are logged into your Moonscan 
 
 Next to Social Profiles, you can click on **Update**.
 
-![Update token](/images/builders/get-started/token-profile/profile-2.png)
+![Update token](/images/builders/get-started/token-profile/profile-2.webp)
 
 You’ll be taken to the **Token Update Application Form**.
 
@@ -60,11 +60,11 @@ If you haven’t verified your contract source code yet, you will need to do so 
 
 ## Verifying Contract Source Code {: #verifying-contract-source-code }
 
-You can verify your contract source code a couple of ways. You can directly verify it from Moonscan, or if you developed the contract with Hardhat or Truffle, you can also use their corresponding [Etherscan plugins](/builders/build/eth-api/verify-contracts/etherscan-plugins/){target=_blank}.
+You can verify your contract source code a couple of ways. You can directly verify it from Moonscan, or if you developed the contract with Hardhat or Foundry, you can also use their corresponding [Etherscan integrations](/builders/build/eth-api/verify-contracts/etherscan-plugins/){target=\_blank}.
 
 To verify your contract source code directly from Moonscan, you can click on the **tool** link.
 
-![Token update application form](/images/builders/get-started/token-profile/profile-3.png)
+![Token update application form](/images/builders/get-started/token-profile/profile-3.webp)
 
 You’ll be taken to the **Verify & Publish Contract Source Code** page where you can enter in details about the contract and how it was compiled.
 
@@ -75,7 +75,7 @@ You’ll be taken to the **Verify & Publish Contract Source Code** page where yo
 5. Review and click the **I agree to the terms of service** checkbox
 6. Click **Continue**
 
-![Verify & publish contract - page 1](/images/builders/get-started/token-profile/profile-4.png)
+![Verify & publish contract - page 1](/images/builders/get-started/token-profile/profile-4.webp)
 
 You’ll be taken to the next page where you can enter in the contract source code and specify additional settings and arguments used.
 
@@ -85,7 +85,7 @@ You’ll be taken to the next page where you can enter in the contract source co
 4. Click **I’m not a robot**
 5. Finally, click **Verify and Publish**
 
-![Verify & publish contract - page 2](/images/builders/get-started/token-profile/profile-5.png)
+![Verify & publish contract - page 2](/images/builders/get-started/token-profile/profile-5.webp)
 
 Now that your contract source code has been verified, you can move on to the next step, verifying that you’re the contract address owner.
 
@@ -93,17 +93,17 @@ Now that your contract source code has been verified, you can move on to the nex
 
 From the **Token Update Application Form** page, you should see a message at the top of the screen that states you need to verify the contract address owner. To get started with this process, you can click on the **tool** link.
 
-![Token update application form](/images/builders/get-started/token-profile/profile-6.png)
+![Token update application form](/images/builders/get-started/token-profile/profile-6.webp)
 
 You’ll be taken to the **Verify Address Ownership** page, where you can choose to sign the message verifying your ownership either manually or by connecting to Web3. If you wish to verify ownership manually, you’ll need the message signature hash. Otherwise, if you connect to Web3, the hash will be calculated for you.
 
-![Verify address ownership](/images/builders/get-started/token-profile/profile-7.png)
+![Verify address ownership](/images/builders/get-started/token-profile/profile-7.webp)
 
 ### Sign Message Manually {: #sign-message-manually }
 
 If you wish to verify ownership manually, you’ll need the message signature hash. If you have calculated the hash yourself, you can click **Sign Message Manually**, enter the **Message Signature Hash**, and click **Verify Ownership**.
 
-![Manually verify address ownership](/images/builders/get-started/token-profile/profile-8.png)
+![Manually verify address ownership](/images/builders/get-started/token-profile/profile-8.webp)
 
 ### Connect to Web3 {: #connect-to-web3 }
 
@@ -112,18 +112,18 @@ You can easily calculate the message signature hash using MetaMask. You will nee
 1. Select the account to connect with, which should be the account you used to deploy the contract
 2. Connect to the account
 
-![Connect MetaMask account](/images/builders/get-started/token-profile/profile-9.png)
+![Connect MetaMask account](/images/builders/get-started/token-profile/profile-9.webp)
 
 Back on the **Verify Address Ownership** page, you can take the following steps
 
 1. Click **Sign with Web3**
 2. MetaMask will pop-up and you can **Sign** the message
 
-![Sign message on MetaMask to verify address ownership](/images/builders/get-started/token-profile/profile-10.png)
+![Sign message on MetaMask to verify address ownership](/images/builders/get-started/token-profile/profile-10.webp)
 
 Once you’ve signed the message, you can then click **Click to Proceed**. You should now see that the **Message Signature Hash** has been automatically populated for you. All you have left to do is click **Verify Ownership**.
 
-![Verify address ownership submission](/images/builders/get-started/token-profile/profile-11.png)
+![Verify address ownership submission](/images/builders/get-started/token-profile/profile-11.webp)
 
 ## Creating the Profile {: #creating-the-profile }
 
@@ -142,6 +142,6 @@ At a minimum you will need to fill in the following information:
 
 All of the other fields are optional. Once you’ve filled in the information, you can click **Submit** at the bottom of the page.
 
-![Create token profile](/images/builders/get-started/token-profile/profile-12.png)
+![Create token profile](/images/builders/get-started/token-profile/profile-12.webp)
 
 And that’s it! You’ve successfully created and submitted a profile for your token on Moonscan! The Moonscan team will review your submission as soon as possible and provide you with further instructions as needed.

@@ -7,21 +7,21 @@ description: Follow this tutorial to learn how to use the Ethereum Web3 Python L
 
 ## Introduction {: #introduction }
 
-[Web3.py](https://web3py.readthedocs.io/) is a set of libraries that allow developers to interact with Ethereum nodes using HTTP, IPC, or WebSocket protocols with Python. Moonbeam has an Ethereum-like API available that is fully compatible with Ethereum-style JSON RPC invocations. Therefore, developers can leverage this compatibility and use the Web3.py library to interact with a Moonbeam python3 as if they were doing so on Ethereum.
+[Web3.py](https://web3py.readthedocs.io/) is a set of libraries that allow developers to interact with Ethereum nodes using HTTP, IPC, or WebSocket protocols with Python. Moonbeam has an Ethereum-like API available that is fully compatible with Ethereum-style JSON-RPC invocations. Therefore, developers can leverage this compatibility and use the Web3.py library to interact with a Moonbeam python3 as if they were doing so on Ethereum.
 
-In this guide, you'll learn how to use the Web3.py library to send a transaction and deploy a contract on Moonbase Alpha. This guide can be adapted for [Moonbeam](/builders/get-started/networks/moonbeam/){target=_blank}, [Moonriver](/builders/get-started/networks/moonriver/){target=_blank}, or a [Moonbeam development node](/builders/get-started/networks/moonbeam-dev/){target=_blank}.
+In this guide, you'll learn how to use the Web3.py library to send a transaction and deploy a contract on Moonbase Alpha. This guide can be adapted for [Moonbeam](/builders/get-started/networks/moonbeam/){target=\_blank}, [Moonriver](/builders/get-started/networks/moonriver/){target=\_blank}, or a [Moonbeam development node](/builders/get-started/networks/moonbeam-dev/){target=\_blank}.
 
 ## Checking Prerequisites {: #checking-prerequisites }
 
 For the examples in this guide, you will need to have the following:
 
  - An account with funds.
-  --8<-- 'text/faucet/faucet-list-item.md'
+  --8<-- 'text/_common/faucet/faucet-list-item.md'
  - 
---8<-- 'text/common/endpoint-examples.md'
+--8<-- 'text/_common/endpoint-examples-list-item.md'
 
 !!! note
-    --8<-- 'text/common/assumes-mac-or-ubuntu-env.md'
+    --8<-- 'text/_common/assumes-mac-or-ubuntu-env.md'
 
 ## Create a Python Project {: #create-a-python-project }
 
@@ -34,14 +34,14 @@ mkdir web3-examples && cd web3-examples
 For this guide, you'll need to install the Web3.py library and the Solidity compiler. To install both packages, you can run the following command:
 
 ```bash
-pip3 install web3 py-solc-x
+pip3 install web3 py-solc-x solc-select
 ```
 
 ## Setup Web3.py with Moonbeam {: #setup-web3-with-moonbeam }
 
-Throughout this guide, you'll be creating a bunch of scripts that provide different functionalities, such as sending a transaction, deploying a contract, and interacting with a deployed contract. In most of these scripts, you'll need to create a [Web3.py provider](https://web3py.readthedocs.io/en/stable/providers.html){target=_blank} to interact with the network.
+Throughout this guide, you'll be creating a bunch of scripts that provide different functionalities, such as sending a transaction, deploying a contract, and interacting with a deployed contract. In most of these scripts, you'll need to create a [Web3.py provider](https://web3py.readthedocs.io/en/stable/providers.html){target=\_blank} to interact with the network.
 
---8<-- 'text/common/endpoint-setup.md'
+--8<-- 'text/_common/endpoint-setup.md'
 
 To create a provider, you can take the following steps:
 
@@ -55,7 +55,7 @@ To create a provider, you can take the following steps:
     from web3 import Web3
 
     # 2. Create web3.py provider
-    web3 = Web3(Web3.HTTPProvider('{{ networks.moonbeam.rpc_url }}')) # Insert your RPC URL here
+    web3 = Web3(Web3.HTTPProvider("{{ networks.moonbeam.rpc_url }}")) # Insert your RPC URL here
     ```
 
 === "Moonriver"
@@ -65,7 +65,7 @@ To create a provider, you can take the following steps:
     from web3 import Web3
 
     # 2. Create web3.py provider
-    web3 = Web3(Web3.HTTPProvider('{{ networks.moonriver.rpc_url }}')) # Insert your RPC URL here
+    web3 = Web3(Web3.HTTPProvider("{{ networks.moonriver.rpc_url }}")) # Insert your RPC URL here
     ```
 
 === "Moonbase Alpha"
@@ -75,7 +75,7 @@ To create a provider, you can take the following steps:
     from web3 import Web3
 
     # 2. Create web3.py provider
-    web3 = Web3(Web3.HTTPProvider('{{ networks.moonbase.rpc_url }}'))
+    web3 = Web3(Web3.HTTPProvider("{{ networks.moonbase.rpc_url }}"))
     ```
 
 === "Moonbeam Dev Node"
@@ -85,14 +85,14 @@ To create a provider, you can take the following steps:
     from web3 import Web3
 
     # 2. Create web3.py provider
-    web3 = Web3(Web3.HTTPProvider('{{ networks.development.rpc_url }}'))
+    web3 = Web3(Web3.HTTPProvider("{{ networks.development.rpc_url }}"))
     ```
 
 Save this code snippet, as you'll need it for the scripts that are used in the following sections.
 
 ## Send a Transaction {: #send-a-transaction }
 
-During this section, you'll be creating a couple of scripts. The first one will be to check the balances of your accounts before trying to send a transaction. The second script will actually send the transaction. 
+During this section, you'll be creating a couple of scripts. The first one will be to check the balances of your accounts before trying to send a transaction. The second script will actually send the transaction.
 
 You can also use the balance script to check the account balances after the transaction has been sent.
 
@@ -111,7 +111,7 @@ Next, you will create the script for this file and complete the following steps:
 3. Get the balance for the accounts using the `web3.eth.get_balance` function and format the results using the `web3.from_wei`
 
 ```python
---8<-- 'code/web3py-tx/balances.py'
+--8<-- 'code/builders/build/eth-api/libraries/web3-py/balances.py'
 ```
 
 To run the script and fetch the account balances, you can run the following command:
@@ -135,12 +135,12 @@ Next, you will create the script for this file and complete the following steps:
 1. Add imports, including Web3.py and the `rpc_gas_price_strategy`, which will be used in the following steps to get the gas price used for the transaction
 2. [Set up the Web3 provider](#setup-web3-with-moonbeam)
 3. Define the `account_from`, including the `private_key`, and the `address_to` variables. The private key is required to sign the transaction. **Note: This is for example purposes only. Never store your private keys in a Python file**
-4. Use the [Web3.py Gas Price API](https://web3py.readthedocs.io/en/stable/gas_price.html){target=_blank} to set a gas price strategy. For this example, you'll use the imported `rpc_gas_price_strategy`
+4. Use the [Web3.py Gas Price API](https://web3py.readthedocs.io/en/stable/gas_price.html){target=\_blank} to set a gas price strategy. For this example, you'll use the imported `rpc_gas_price_strategy`
 5. Create and sign the transaction using the `web3.eth.account.sign_transaction` function. Pass in the `nonce` `gas`, `gasPrice`, `to`, and `value` for the transaction along with the sender's `private_key`. To get the `nonce` you can use the `web3.eth.get_transaction_count` function and pass in the sender's address. To predetermine the `gasPrice` you'll use the `web3.eth.generate_gas_price` function. For the `value`, you can format the amount to send from an easily readable format to Wei using the `web3.to_wei` function
 6. Using the signed transaction, you can then send it using the `web3.eth.send_raw_transaction` function and wait for the transaction receipt by using the `web3.eth.wait_for_transaction_receipt` function
 
 ```python
---8<-- 'code/web3py-tx/transaction.py'
+--8<-- 'code/builders/build/eth-api/libraries/web3-py/transaction.py'
 ```
 
 To run the script, you can run the following command in your terminal:
@@ -153,11 +153,11 @@ If the transaction was succesful, in your terminal you'll see the transaction ha
 
 You can also use the `balances.py` script to check that the balances for the origin and receiving accounts have changed. The entire workflow would look like this:
 
-![Send Tx Web3py](/images/builders/build/eth-api/libraries/web3py/web3py-1.png)
+![Send Tx Web3py](/images/builders/build/eth-api/libraries/web3py/web3py-1.webp)
 
 ## Deploy a Contract {: #deploy-a-contract }
 
---8<-- 'text/libraries/contract.md'
+--8<-- 'text/builders/build/eth-api/libraries/contract.md'
 
 ### Compile Contract Script {: #compile-contract-script }
 
@@ -175,8 +175,9 @@ Next, you will create the script for this file and complete the following steps:
 4. Export the contract's ABI and bytecode
 
 ```python
---8<-- 'code/web3py-contract/compile.py'
+--8<-- 'code/builders/build/eth-api/libraries/web3-py/compile.py'
 ```
+
 !!! note
     If you see an error stating that `Solc is not installed`, uncomment step 2 described in the code snippet.
 
@@ -199,7 +200,7 @@ Next, you will create the script for this file and complete the following steps:
 7. Using the signed transaction, you can then send it using the `web3.eth.send_raw_transaction` function and wait for the transaction receipt by using the `web3.eth.wait_for_transaction_receipt` function
 
 ```python
---8<-- 'code/web3py-contract/deploy.py'
+--8<-- 'code/builders/build/eth-api/libraries/web3-py/deploy.py'
 ```
 
 To run the script, you can enter the following command into your terminal:
@@ -210,7 +211,7 @@ python3 deploy.py
 
 If successful, the contract's address will be displayed in the terminal.
 
-![Deploy Contract Web3py](/images/builders/build/eth-api/libraries/web3py/web3py-2.png)
+![Deploy Contract Web3py](/images/builders/build/eth-api/libraries/web3py/web3py-2.webp)
 
 ### Read Contract Data (Call Methods) {: #read-contract-data }
 
@@ -231,7 +232,7 @@ Then you can take the following steps to create the script:
 5. Using the contract instance, you can then call the `number` function
 
 ```python
---8<-- 'code/web3py-contract/get.py'
+--8<-- 'code/builders/build/eth-api/libraries/web3-py/get.py'
 ```
 
 To run the script, you can enter the following command in your terminal:
@@ -261,7 +262,7 @@ Open the `increment.py` file and take the following steps to create the script:
 7. Using the signed transaction, you can then send it using the `web3.eth.send_raw_transaction` function and wait for the transaction receipt by using the `web3.eth.wait_for_transaction_receipt` function
 
 ```python
---8<-- 'code/web3py-contract/increment.py'
+--8<-- 'code/builders/build/eth-api/libraries/web3-py/increment.py'
 ```
 
 To run the script, you can enter the following command in your terminal:
@@ -272,7 +273,7 @@ python3 increment.py
 
 If successful, the transaction hash will be displayed in the terminal. You can use the `get.py` script alongside the `increment.py` script to make sure that value is changing as expected:
 
-![Increment Contract Web3py](/images/builders/build/eth-api/libraries/web3py/web3py-3.png)
+![Increment Contract Web3py](/images/builders/build/eth-api/libraries/web3py/web3py-3.webp)
 
 Next you can open the `reset.py` file and take the following steps to create the script:
 
@@ -285,7 +286,7 @@ Next you can open the `reset.py` file and take the following steps to create the
 7. Using the signed transaction, you can then send it using the `web3.eth.send_raw_transaction` function and wait for the transaction receipt by using the `web3.eth.wait_for_transaction_receipt` function
 
 ```python
---8<-- 'code/web3py-contract/reset.py'
+--8<-- 'code/builders/build/eth-api/libraries/web3-py/reset.py'
 ```
 
 To run the script, you can enter the following command in your terminal:
@@ -296,6 +297,6 @@ python3 reset.py
 
 If successful, the transaction hash will be displayed in the terminal. You can use the `get.py` script alongside the `reset.py` script to make sure that value is changing as expected:
 
-![Reset Contract Web3py](/images/builders/build/eth-api/libraries/web3py/web3py-4.png)
+![Reset Contract Web3py](/images/builders/build/eth-api/libraries/web3py/web3py-4.webp)
 
---8<-- 'text/disclaimers/third-party-content.md'
+--8<-- 'text/_disclaimers/third-party-content.md'

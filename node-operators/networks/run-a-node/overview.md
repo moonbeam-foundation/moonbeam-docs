@@ -11,11 +11,11 @@ Running a full node on a Moonbeam-based network allows you to connect to the net
 
 There are multiple deployments of Moonbeam, including the Moonbase Alpha TestNet, Moonriver on Kusama, and Moonbeam on Polkadot. Here's how these environments are named and their corresponding [chain specification file](https://substrate.dev/docs/en/knowledgebase/integrate/chain-spec) names:
 
-|    Network     | Hosted By |             Chain Name              |
-|:--------------:|:---------:|:-----------------------------------:|
-| Moonbase Alpha | PureStake | {{ networks.moonbase.chain_spec }}  |
-|   Moonriver    |  Kusama   | {{ networks.moonriver.chain_spec }} |
-|    Moonbeam    | Polkadot  | {{ networks.moonbeam.chain_spec }}  |
+|    Network     |      Hosted By      |             Chain Name              |
+|:--------------:|:-------------------:|:-----------------------------------:|
+| Moonbase Alpha | Moonbeam Foundation | {{ networks.moonbase.chain_spec }}  |
+|   Moonriver    |       Kusama        | {{ networks.moonriver.chain_spec }} |
+|    Moonbeam    |      Polkadot       | {{ networks.moonbeam.chain_spec }}  |
 
 !!! note
     Moonbase Alpha is still considered an Alphanet, and as such _will not_ have 100% uptime. The parachain might be purged as needed. During the development of your application, make sure you implement a method to redeploy your contracts and accounts to a fresh parachain quickly. If a chain purge is required, it will be announced via our [Discord channel](https://discord.gg/PfpUATX) at least 24 hours in advance.
@@ -59,7 +59,7 @@ As stated before, the relay/parachain nodes will listen on multiple ports. The d
 
 The only ports that need to be open for incoming traffic are those designated for P2P. **Collators must not have RPC or WS ports opened**.
 
---8<-- 'text/node-operators/client-changes.md'
+--8<-- 'text/node-operators/networks/run-a-node/client-changes.md'
 
 ### Default Ports for a Parachain Full-Node {: #default-ports-for-a-parachain-full-node }
 

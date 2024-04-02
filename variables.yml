@@ -1,7 +1,7 @@
 networks:
   development:
-    build_tag: v0.32.2
-    tracing_tag: purestake/moonbeam-tracing:v0.32.2-2403-latest
+    build_tag: v0.36.0
+    tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.36.0-2801-7ae4
     rpc_url: http://127.0.0.1:9944
     wss_url: ws://127.0.0.1:9944
     chain_id: 1281
@@ -15,17 +15,23 @@ networks:
     hex_chain_id: '0x507'
     chain_spec: alphanet
     block_explorer: https://moonbase.moonscan.io/
-    spec_version: runtime-2500
-    parachain_release_tag: v0.33.0 # must be in this exact format for links to work
-    parachain_sha256sum: 1a31ee40cc2e320a009ee687624c53bb51cf65c69a0409b018a5378d5231eaf7
-    tracing_tag: purestake/moonbeam-tracing:v0.33.0-2500-latest
-    gas_block: 15M
-    gas_tx: 12.995M
+    spec_version: runtime-2801
+    parachain_release_tag: v0.36.0 # must be in this exact format for links to work
+    parachain_sha256sum: a4d143b6fd3c4fc43341df5a0e9a608180fee1b2e5c2ade12c4bcb4da49fa93a
+    tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.36.0-2801-7ae4
+    gas_block: 15,000,000
+    gas_block_numbers_only: 15000000
+    gas_tx: 12,995,000
+    mbip_5:
+      block_storage_limit: 40
+      gas_storage_ratio: 366
+      example_storage: 500
+      example_addtl_gas: 183000
     node_directory: /var/lib/alphanet-data
     node_db_loc: /chains/moonbase_alpha/db
     binary_name: moonbeam
     min_gas_price: 0.125
-    block_time: 12
+    block_time: 6
     website_faucet_amount: 1.1 DEV tokens
     chaindrop_faucet_amount: 0.1 DEV tokens
     node:
@@ -37,6 +43,9 @@ networks:
       block_number: 132605
     razor:
       bridge_address: '0xC6F33c0F15FE5e3A51A019524ac43574cFF29EFB'
+    supra:
+      pull_oracle: '0xaa2f56843Cec7840F0C106F0202313d8d8CB13d6'
+      storage: '0x4591d1B110ad451d8220d82252F829E8b2a91B17'
     chainlink:
       oracle_contract: '0x1d693d883BeAeE16edD0D7588D6a9f7E1967E798'
       link_contract: '0xa36085F69e2889c224210F603D836748e7dC0088'
@@ -130,16 +139,16 @@ networks:
           decision_deposit: 100000
           prepare_period:
             time: '1 day'
-            blocks: 7200
+            blocks: 14400
           decision_period:
             time: '14 days'
-            blocks: 100800
+            blocks: 201600
           confirm_period:
             time: '1 day'
-            blocks: 7200
+            blocks: 14400
           min_enactment_period:
             time: '1 day'
-            blocks: 7200
+            blocks: 14400
           min_approval:
             time0: 'Day 0'
             percent0: 100
@@ -157,16 +166,16 @@ networks:
           decision_deposit: 10000
           prepare_period:
             time: '10 minutes'
-            blocks: 50
+            blocks: 100
           decision_period:
             time: '14 days'
-            blocks: 100800
+            blocks: 201600
           confirm_period:
             time: '10 minutes'
-            blocks: 50
+            blocks: 100
           min_enactment_period:
             time: '30 minutes'
-            blocks: 150
+            blocks: 300
           min_approval:
             time0: 'Day 0'
             percent0: 100
@@ -186,16 +195,16 @@ networks:
           decision_deposit: 500
           prepare_period:
             time: '1 hour'
-            blocks: 300
+            blocks: 600
           decision_period:
             time: '14 days'
-            blocks: 100800
+            blocks: 201600
           confirm_period:
             time: '1 day'
-            blocks: 7200
+            blocks: 14400
           min_enactment_period:
             time: '1 day'
-            blocks: 7200
+            blocks: 14400
           min_approval:
             time0: 'Day 0'
             percent0: 100
@@ -215,16 +224,16 @@ networks:
           decision_deposit: 10000
           prepare_period:
             time: '1 hour'
-            blocks: 300
+            blocks: 600
           decision_period:
             time: '14 days'
-            blocks: 100800
+            blocks: 201600
           confirm_period:
             time: '3 hours'
-            blocks: 900
+            blocks: 1800
           min_enactment_period:
             time: '10 minutes'
-            blocks: 50
+            blocks: 100
           min_approval:
             time0: 'Day 0'
             percent0: 100
@@ -244,16 +253,16 @@ networks:
           decision_deposit: 20000
           prepare_period:
             time: '1 hour'
-            blocks: 300
+            blocks: 600
           decision_period:
             time: '14 days'
-            blocks: 100800
+            blocks: 201600
           confirm_period:
             time: '3 hours'
-            blocks: 900
+            blocks: 1800
           min_enactment_period:
             time: '10 minutes'
-            blocks: 50
+            blocks: 100
           min_approval:
             time0: 'Day 0'
             percent0: 100
@@ -265,6 +274,35 @@ networks:
             time0: 'Day 0'
             percent0: 10
             time1: 'Day 1'
+            percent1: 1
+            time2: 'Day 14'
+            percent2: 0
+        fast_general_admin:
+          max_deciding: 10
+          decision_deposit: 500
+          prepare_period:
+            time: '1 hour'
+            blocks: 300
+          decision_period:
+            time: '14 days'
+            blocks: 100800
+          confirm_period:
+            time: '1 day'
+            blocks: 7200
+          min_enactment_period:
+            time: '10 minutes'
+            blocks: 50
+          min_approval:
+            time0: 'Day 0'
+            percent0: 100
+            time1: 'Day 4'
+            percent1: 80
+            time2: 'Day 14'
+            percent2: 50
+          min_support:
+            time0: 'Day 0'
+            percent0: 50
+            time1: 'Day 5'
             percent1: 1
             time2: 'Day 14'
             percent2: 0
@@ -283,7 +321,7 @@ networks:
       min_can_stk_wei: 500000000000000000000
       collator_map_bond: 100
       max_candidates: 36
-      round_blocks: 600
+      round_blocks: 1200
       round_hours: 2
       min_del_stake: 1
       min_del_stake_wei: 1000000000000000000
@@ -295,11 +333,11 @@ networks:
     treasury:
       current_council_members: 2
       motion_duration_days: 3
-      motion_duration_blocks: 21600
+      motion_duration_blocks: 43200
       proposal_bond: 5
       proposal_bond_min: 1
       proposal_bond_max: uncapped
-      spend_period_blocks: 43200
+      spend_period_blocks: 86400
       spend_period_days: 6
       max_approved_proposals: 100
       tx_fees_allocated: 20
@@ -326,6 +364,9 @@ networks:
         rounds: 2
         hours: 4
     collator_timings:
+      max_offline:
+        rounds: 2
+        hours: 4
       leave_candidates:
         rounds: 2
         hours: 4
@@ -339,14 +380,14 @@ networks:
       democracy: '0x0000000000000000000000000000000000000803'
       xtokens: '0x0000000000000000000000000000000000000804'
       relay_encoder: '0x0000000000000000000000000000000000000805'
-      xcm_transactor_legacy: '0x0000000000000000000000000000000000000806'
+      xcm_transactor_v1: '0x0000000000000000000000000000000000000806'
       author_mapping: '0x0000000000000000000000000000000000000807'
       batch: '0x0000000000000000000000000000000000000808'
       randomness: '0x0000000000000000000000000000000000000809'
       call_permit: '0x000000000000000000000000000000000000080a'
       proxy: '0x000000000000000000000000000000000000080b'
       xcm_utils: '0x000000000000000000000000000000000000080C'
-      xcm_transactor: '0x000000000000000000000000000000000000080d'
+      xcm_transactor_v2: '0x000000000000000000000000000000000000080d'
       collective_council: '0x000000000000000000000000000000000000080e'
       collective_tech_committee: '0x000000000000000000000000000000000000080f'
       collective_treasury: '0x0000000000000000000000000000000000000810'
@@ -356,15 +397,14 @@ networks:
       collective_opengov_tech_committee: '0x0000000000000000000000000000000000000814'
       registry: '0x0000000000000000000000000000000000000815'
       gmp: '0x0000000000000000000000000000000000000816'
+      xcm_transactor_v3: '0x0000000000000000000000000000000000000817'
+      identity: '0x0000000000000000000000000000000000000818'
+      relay_data_verifier: '0x0000000000000000000000000000000000000819'
     substrate_api_sidecar:
       stable_version: 14.1.1
-    tx_weight_to_gas_ratio: 25000
-    mintable_xc20:
-      asset_deposit: 100
-      metadata_base_deposit: 1.0068
-      metadata_byte_deposit: .0001
+    tx_weight_to_gas_ratio: 25000      
     orbiter:
-      max_orbiters_per_collator: 4
+      max_orbiters_per_collator: 8
       max_collators: Unlimited
       active:
         rounds: 3
@@ -388,17 +428,23 @@ networks:
     chain_id: 1285
     hex_chain_id: '0x505'
     node_directory: /var/lib/moonriver-data
-    parachain_release_tag: v0.33.0
-    parachain_sha256sum: 1a31ee40cc2e320a009ee687624c53bb51cf65c69a0409b018a5378d5231eaf7
-    tracing_tag: purestake/moonbeam-tracing:v0.33.0-2500-latest
+    parachain_release_tag: v0.36.0
+    parachain_sha256sum: a4d143b6fd3c4fc43341df5a0e9a608180fee1b2e5c2ade12c4bcb4da49fa93a
+    tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.36.0-2801-7ae4
     chain_spec: moonriver
     block_explorer: https://moonriver.moonscan.io/
-    spec_version: runtime-2403
+    spec_version: runtime-2801
     binary_name: moonbeam
     min_gas_price: 1.25
     block_time: 12
-    gas_block: 15M
-    gas_tx: 12.995M
+    gas_block: 15,000,000
+    gas_block_numbers_only: 15000000
+    gas_tx: 12,995,000
+    mbip_5:
+      block_storage_limit: 40
+      gas_storage_ratio: 366
+      example_storage: 500
+      example_addtl_gas: 183000
     node:
       cores: 8
       ram: 16
@@ -576,8 +622,8 @@ networks:
       collator_reward_inflation: 20
       parachain_bond_inflation: 30
     staking:
-      min_can_stk: 10000
-      min_can_stk_wei: 10000000000000000000000
+      min_can_stk: 500
+      min_can_stk_wei: 500000000000000000000
       collator_map_bond: 100
       max_candidates: 72
       paid_out_block: 73 # Update this whenever max_candidates is changed! Always max_candidates + 1!
@@ -621,6 +667,9 @@ networks:
         rounds: 2
         hours: 4
     collator_timings:
+      max_offline:
+        rounds: 2
+        hours: 4
       leave_candidates:
         rounds: 24
         hours: 48
@@ -634,14 +683,14 @@ networks:
       democracy: '0x0000000000000000000000000000000000000803'
       xtokens: '0x0000000000000000000000000000000000000804'
       relay_encoder: '0x0000000000000000000000000000000000000805'
-      xcm_transactor_legacy: '0x0000000000000000000000000000000000000806'
+      xcm_transactor_v1: '0x0000000000000000000000000000000000000806'
       author_mapping: '0x0000000000000000000000000000000000000807'
       batch: '0x0000000000000000000000000000000000000808'
       randomness: '0x0000000000000000000000000000000000000809'
       call_permit: '0x000000000000000000000000000000000000080a'
       proxy: '0x000000000000000000000000000000000000080b'
       xcm_utils: '0x000000000000000000000000000000000000080C'
-      xcm_transactor: '0x000000000000000000000000000000000000080d'
+      xcm_transactor_v2: '0x000000000000000000000000000000000000080d'
       collective_council: '0x000000000000000000000000000000000000080e'
       collective_tech_committee: '0x000000000000000000000000000000000000080f'
       collective_treasury: '0x0000000000000000000000000000000000000810'
@@ -651,6 +700,9 @@ networks:
       collective_opengov_tech_committee: '0x0000000000000000000000000000000000000814'
       registry: '0x0000000000000000000000000000000000000815'
       gmp: '0x0000000000000000000000000000000000000816'
+      xcm_transactor_v3: '0x0000000000000000000000000000000000000817'
+      identity: '0x0000000000000000000000000000000000000818'
+      relay_data_verifier: '0x0000000000000000000000000000000000000819'
     api3:
       rrp: '0xa0AD79D995DdeeB18a14eAef56A549A04e3Aa1Bd'
       anuqrngairnode: '0x9d3C147cA16DB954873A498e0af5852AB39139f2'
@@ -707,10 +759,6 @@ networks:
     substrate_api_sidecar:
       stable_version: 14.1.1
     tx_weight_to_gas_ratio: 25000
-    mintable_xc20:
-      asset_deposit: 100
-      metadata_base_deposit: 1.0068
-      metadata_byte_deposit: .0001
     orbiter:
       max_orbiters_per_collator: 3
       max_collators: 8
@@ -727,17 +775,23 @@ networks:
     chain_id: 1284
     hex_chain_id: '0x504'
     node_directory: /var/lib/moonbeam-data
-    parachain_release_tag: v0.33.0
-    parachain_sha256sum: 1a31ee40cc2e320a009ee687624c53bb51cf65c69a0409b018a5378d5231eaf7
-    tracing_tag: purestake/moonbeam-tracing:v0.33.0-2500-latest
+    parachain_release_tag: v0.36.0
+    parachain_sha256sum: a4d143b6fd3c4fc43341df5a0e9a608180fee1b2e5c2ade12c4bcb4da49fa93a
+    tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.36.0-2801-7ae4
     chain_spec: moonbeam
     block_explorer: https://moonscan.io
-    spec_version: runtime-2403
+    spec_version: runtime-2700
     binary_name: moonbeam
     min_gas_price: 125
     block_time: 12
-    gas_block: 15M
-    gas_tx: 12.995M
+    gas_block: 15,000,000
+    gas_block_numbers_only: 15000000
+    gas_tx: 12,995,000
+    mbip_5:
+      block_storage_limit: 40
+      gas_storage_ratio: 366
+      example_storage: 500
+      example_addtl_gas: 183000
     node:
       cores: 8
       ram: 16
@@ -973,6 +1027,9 @@ networks:
         rounds: 2
         hours: 12
     collator_timings:
+      max_offline:
+        rounds: 1
+        hours: 6
       leave_candidates:
         rounds: 28
         hours: 168
@@ -986,14 +1043,14 @@ networks:
       democracy: '0x0000000000000000000000000000000000000803'
       xtokens: '0x0000000000000000000000000000000000000804'
       relay_encoder: '0x0000000000000000000000000000000000000805'
-      xcm_transactor_legacy: '0x0000000000000000000000000000000000000806'
+      xcm_transactor_v1: '0x0000000000000000000000000000000000000806'
       author_mapping: '0x0000000000000000000000000000000000000807'
       batch: '0x0000000000000000000000000000000000000808'
       randomness: '0x0000000000000000000000000000000000000809'
       call_permit: '0x000000000000000000000000000000000000080a'
       proxy: '0x000000000000000000000000000000000000080b'
       xcm_utils: '0x000000000000000000000000000000000000080C'
-      xcm_transactor: '0x000000000000000000000000000000000000080d'
+      xcm_transactor_v2: '0x000000000000000000000000000000000000080d'
       collective_council: '0x000000000000000000000000000000000000080e'
       collective_tech_committee: '0x000000000000000000000000000000000000080f'
       collective_treasury: '0x0000000000000000000000000000000000000810'
@@ -1003,12 +1060,18 @@ networks:
       collective_opengov_tech_committee: '0x0000000000000000000000000000000000000814'
       registry: '0x0000000000000000000000000000000000000815'
       gmp: '0x0000000000000000000000000000000000000816'
+      xcm_transactor_v3: '0x0000000000000000000000000000000000000817'
+      identity: '0x0000000000000000000000000000000000000818'
+      relay_data_verifier: '0x0000000000000000000000000000000000000819'
     api3:
       rrp: '0xa0AD79D995DdeeB18a14eAef56A549A04e3Aa1Bd'
       anuqrngairnode: '0x9d3C147cA16DB954873A498e0af5852AB39139f2'
       anuqrngxpub: 'xpub6DXSDTZBd4aPVXnv6Q3SmnGUweFv6j24SK77W4qrSFuhGgi666awUiXakjXruUSCDQhhctVG7AQt67gMdaRAsDnDXv23bBRKsMWvRzo6kbf'
       anuqrnguint256: '0xfb6d017bb87991b7495f563db3c8cf59ff87b09781947bb1e417006ad7f55a78'
       anuqrnguint256array: '0x27cc2713e7f968e4e86ed274a051a5c8aaee9cca66946f23af6f29ecea9704c3'
+    supra:
+      pull_oracle: '0x2FA6DbFe4291136Cf272E1A3294362b6651e8517'
+      storage: '0xD02cc7a670047b6b012556A88e275c685d25e0c9'
     chainlink:
       feed:
         proxy:
@@ -1034,10 +1097,6 @@ networks:
     substrate_api_sidecar:
       stable_version: 14.1.1
       tx_weight_to_gas_ratio: 25000
-    mintable_xc20:
-      asset_deposit: 10000
-      metadata_base_deposit: 10.68
-      metadata_byte_deposit: .01
     orbiter:
       max_orbiters_per_collator: 6
       max_collators: 5
@@ -1058,29 +1117,47 @@ networks:
     ws: 9944
     prometheus: 9615
   polkadot:
-    spec_version: v0.9.43
+    spec_version: v1.0.1
     rocks_db:
-      read_weight: 20,499,000
-      write_weight: 83,471,000
+      read_weight: 
+        display: 20,499,000
+        numbers_only: 20499000
+      write_weight: 
+        display: 83,471,000
+        numbers_only: 83471000
     parity_db:
       read_weight: 11,826,000
       write_weight: 38,052,000
-    xcm_instructions:
-      weight:
-        display: 1,000,000,000
-        numbers_only: 1000000000
-      planck_dot_weight: 0.092895362
-      planck_dot_cost: 92895362
-      dot_cost: 0.0092895362
     xcm_message:
       transfer:
-        weight: 4,000,000,000
-        cost: 0.0371581448
+        weight: 265,486,000
+        cost: 0.0021062795
+    xcm_instructions:
+      buy_exec:
+        base_weight: 3,153,000
+        total_weight: 3,153,000
+        dot_cost: '0.0000250149'
+      withdraw:
+        base_weight: 
+          display: 25,567,000
+          numbers_only: 25567000
+        total_weight:
+          display: 129,537,000
+          numbers_only: 129537000
+        planck_dot_cost: 10277043.9112
+        dot_cost: '0.0010277044'
+      clear_origin:
+        total_weight: 3,010,000
+        dot_cost: '0.0000238803'
+      deposit_asset:
+        total_weight: 129,786,000
+        dot_cost: '0.0010296799'
+      planck_dot_weight: 0.0793367448
     extrinsic_base_weight:
-      display: 107,648,000
-      numbers_only: 107648000
+      display: 126,045,000
+      numbers_only: 126045000
   kusama:
-    spec_version: v0.9.43
+    spec_version: v1.0.0
     rocks_db:
       read_weight: 
         display: 25,000,000
@@ -1093,32 +1170,48 @@ networks:
       write_weight: 50,000,000
     xcm_message:
       transfer:
-        weight: 299,506,000
-        cost: '0.000092003956'
+        weight: 305,952,000
+        cost: '0.000081779545'
     xcm_instructions:
       buy_exec:
-        base_weight: 3,697,000
-        total_weight: 3,697,000
-        ksm_cost: '0.000001135665'
+        base_weight: 2,714,000
+        total_weight: 2,714,000
+        ksm_cost: '0.000000725440'
       withdraw:
         base_weight: 
-          display: 20,385,000
-          numbers_only: 20385000
+          display: 24,720,000
+          numbers_only: 24720000
         total_weight:
-          display: 145,385,000
-          numbers_only: 145385000
-        planck_ksm_cost: 44660191.1923
-        ksm_cost: '0.000044660191'
+          display: 149,720,000
+          numbers_only: 149720000
+        planck_ksm_cost: 40019459.1011
+        ksm_cost: '0.000040019459'
       clear_origin:
-        total_weight: 3,661,000
-        ksm_cost: '0.000001124607'
+        total_weight: 2,614,000
+        ksm_cost: '0.000000698710'
       deposit_asset:
-        total_weight: 146,763,000
-        ksm_cost: '0.000045083493'
-      planck_ksm_weight: '0.307185687604'
+        total_weight: 150,904,000
+        ksm_cost: '0.000040335936'
+      planck_ksm_weight: '0.267295345319'
     extrinsic_base_weight:
-      display: 108,512,000
-      numbers_only: 108512000
+      display: 124,706,000
+      numbers_only: 124706000
+  alphanet:
+    spec_version: v1.2.0
+    xcm_instructions:
+      withdraw:
+        total_weight: 145,308,000
+      clear_origin:
+        total_weight: 5,725,000
+      buy_exec:
+        total_weight: 5,751,000
+      deposit_asset:
+        total_weight: 147,433,000
+    xcm_message:
+      transfer:
+        weight: 
+          display: 304,217,000
+          numbers_only: 304217000
   moonbase_beta:
     xcm_message:
       transact:
@@ -1127,6 +1220,7 @@ networks:
           numbers_only: 400000000
         wei_betadev_cost: 20000000000000
         betadev_cost: '0.00002'
+polkadot_sdk: polkadot-v1.3.0
 xcm:
   db_weights:
     rocksdb_read: 

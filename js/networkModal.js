@@ -15,18 +15,18 @@ closeNetworkModal.className = 'close-modal';
 /** Set the display to none to hide the modal until it is needed */
 networkModalContainer.style.display = 'none';
 
-networkModalHeader.innerHTML = `Please select a network:`;
+networkModalHeader.innerHTML = `Please select a network to connect to your Ethereum-compatible wallet:`;
 
 /** Set generic header for the network modal */
 networkModalMessage.innerHTML = `
   <div class="md-typeset button-wrapper">
-    <a href="#" class="md-button connect-network" value="moonbeam">Moonbeam</a>
+    <a href="#" class="md-button connect-network" data-value="moonbeam">Moonbeam</a>
   </div>
   <div class="md-typeset button-wrapper">
-    <a href="#" class="md-button connect-network" value="moonriver">Moonriver</a>
+    <a href="#" class="md-button connect-network" data-value="moonriver">Moonriver</a>
   </div>
   <div class="md-typeset button-wrapper">
-    <a href="#" class="md-button connect-network" value="moonbase">Moonbase Alpha TestNet</a>
+    <a href="#" class="md-button connect-network" data-value="moonbase">Moonbase Alpha TestNet</a>
   </div>
 `;
 

@@ -1,6 +1,6 @@
 # Documentation for Moonbeam
  
-![Main Page Banner](/images/readme-contributing/readme-banner.png)
+![Main Page Banner](/images/readme-contributing/readme-banner.webp)
 
 This repository contains documentation for Moonbeam, a smart contract parachain on the Polkadot network that is fully Ethereum Compatible.  Here, you'll find both high-level and technical information for developers, collators, end-users, and other Moonbeam network participants.
 

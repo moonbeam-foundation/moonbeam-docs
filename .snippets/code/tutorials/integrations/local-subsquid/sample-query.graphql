@@ -1,0 +1,25 @@
+query {
+  accounts {
+    id
+    transfersFrom {
+      id
+      blockNumber
+      timestamp
+      txHash
+      to {
+        id
+      }
+      amount
+    }
+    transfersTo {
+      id
+      blockNumber
+      timestamp
+      txHash
+      from {
+        id
+      }
+      amount
+    }
+  }
+}

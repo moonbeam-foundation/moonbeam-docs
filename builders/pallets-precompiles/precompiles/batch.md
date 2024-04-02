@@ -12,7 +12,7 @@ The batch precompiled contract on Moonbeam allows developers to combine multiple
 
 Currently, having users interact with multiple contracts would require multiple transaction confirmations in the user's wallet. An example would be approving a smart contract's access to a token, then transferring it. With the batch precompile, developers can enhance user experience with batched transactions as it minimizes the number of transactions a user is required to confirm to one. Additionally, gas fees can be reduced since batching avoids multiple base gas fees (the initial 21000 units of gas spent to begin a transaction).
 
-The precompile interacts directly with [Substrate's EVM pallet](/learn/features/eth-compatibility#evm-pallet){target=_blank}. The caller of the batch function will have their address act as the `msg.sender` for all subtransactions, but unlike [delegate calls](https://docs.soliditylang.org/en/v0.8.15/introduction-to-smart-contracts.html#delegatecall-callcode-and-libraries){target=_blank}, the target contract will still affect its own storage. It is effectively the same as if the user signed multiple transactions, but with only one confirmation.
+The precompile interacts directly with [Substrate's EVM pallet](/learn/features/eth-compatibility#evm-pallet){target=\_blank}. The caller of the batch function will have their address act as the `msg.sender` for all subtransactions, but unlike [delegate calls](https://docs.soliditylang.org/en/v0.8.15/introduction-to-smart-contracts.html#delegatecall-callcode-and-libraries){target=\_blank}, the target contract will still affect its own storage. It is effectively the same as if the user signed multiple transactions, but with only one confirmation.
 
 The precompile is located at the following address:
 
@@ -34,13 +34,26 @@ The precompile is located at the following address:
      {{networks.moonbase.precompiles.batch }}
      ```
 
---8<-- 'text/precompiles/security.md'
+--8<-- 'text/builders/pallets-precompiles/precompiles/security.md'
 
 ## The Batch Solidity Interface {: #the-batch-interface }
 
-[`Batch.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/batch/Batch.sol){target=_blank} is a Solidity interface that allows developers to interact with the precompile's three methods.
+[`Batch.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/batch/Batch.sol){target=\_blank} is a Solidity interface that allows developers to interact with the precompile's three methods.
 
---8<-- 'text/batch/batch-interface.md'
+The interface includes the following functions:
+
+- **batchSome**(*address[]* to, *uint256[]* value, *bytes[]* callData, *uint64[]* gasLimit) — performs multiple calls, where the same index of each array combine into the information required for a single subcall. If a subcall reverts, following subcalls will still be attempted
+- **batchSomeUntilFailure**(*address[]* to, *uint256[]* value, *bytes[]* callData, *uint64[]* gasLimit) — performs multiple calls, where the same index of each array combine into the information required for a single subcall. If a subcall reverts, no following subcalls will be executed
+- **batchAll**(*address[]* to, *uint256[]* value, *bytes[]* callData, *uint64[]* gasLimit) — performs multiple calls atomically, where the same index of each array combine into the information required for a single subcall. If a subcall reverts, all subcalls will revert
+
+Each of these functions have the following parameters:
+
+--8<-- 'text/builders/pallets-precompiles/precompiles/batch/batch-parameters.md'
+
+The interface also includes the following required events:
+
+- **SubcallSucceeded**(*uint256* index) - emitted when subcall of the given index succeeds
+- **SubcallFailed**(*uint256* index) - emitted when a subcall of the given index  fails
 
 ## Interact with the Solidity Interface {: #interact-with-the-solidity-interface }
 
@@ -48,20 +61,22 @@ The precompile is located at the following address:
 
 To follow along with this tutorial, you will need to have:
 
-- [MetaMask installed and connected to Moonbase Alpha](/tokens/connect/metamask/){target=_blank}
+- [MetaMask installed and connected to Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}
 - Create or have two accounts on Moonbase Alpha to test out the different features in the batch precompile
 - At least one of the accounts will need to be funded with `DEV` tokens.
- --8<-- 'text/faucet/faucet-list-item.md'
+ --8<-- 'text/_common/faucet/faucet-list-item.md'
 
 ### Example Contract {: #example-contract}
 
 The contract `SimpleContract.sol` will be used as an example of batching contract interactions, but in practice, any contract can be interacted with.
 
- --8<-- 'code/batch/simple-contract.md'
+```solidity
+--8<-- 'code/builders/pallets-precompiles/precompiles/batch/simple-contract.sol'
+```
 
 ### Remix Set Up {: #remix-set-up }
 
-You can interact with the batch precompile using [Remix](https://remix.ethereum.org/){target=_blank}. You'll need a copy of [`Batch.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/batch/Batch.sol){target=_blank} and [`SimpleContract.sol`](#example-contract). To add the precompile to Remix and follow along with the tutorial, you will need to:
+You can interact with the batch precompile using [Remix](https://remix.ethereum.org/){target=\_blank}. You'll need a copy of [`Batch.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/batch/Batch.sol){target=\_blank} and [`SimpleContract.sol`](#example-contract). To add the precompile to Remix and follow along with the tutorial, you will need to:
 
 1. Click on the **File explorer** tab
 2. Paste the `Batch.sol` contract into a Remix file named **Batch.sol**
@@ -75,7 +90,7 @@ Next, you will need to compile both files in Remix:
 2. Click on the **Compile** tab, second from top
 3. To compile the contract, click on **Compile Batch.sol**
 
-![Compiling Batch.sol](/images/builders/pallets-precompiles/precompiles/batch/batch-1.png)
+![Compiling Batch.sol](/images/builders/pallets-precompiles/precompiles/batch/batch-1.webp)
 
 If the interface was compiled successfully, you will see a green checkmark next to the **Compile** tab.
 
@@ -89,7 +104,7 @@ Instead of deploying the batch precompile, you will access the interface given t
 4. Ensure **Batch - Batch.sol** is selected in the **CONTRACT** dropdown. Since this is a precompiled contract, there is no need to deploy any code. Instead we are going to provide the address of the precompile in the **At Address** field
 5. Provide the address of the batch precompile: `{{networks.moonbase.precompiles.batch}}` and click **At Address**
 
-![Access the address](/images/builders/pallets-precompiles/precompiles/batch/batch-2.png)
+![Access the address](/images/builders/pallets-precompiles/precompiles/batch/batch-2.webp)
 
 The **BATCH** precompile will appear in the list of **Deployed Contracts**.
 
@@ -104,7 +119,7 @@ On the other hand, `SimpleContract.sol` will be deployed as a new contract. Befo
 5. Click **Deploy**
 6. Confirm the MetaMask transaction that appears by clicking **Confirm**
 
-![Deploy SimpleContract](/images/builders/pallets-precompiles/precompiles/batch/batch-3.png)
+![Deploy SimpleContract](/images/builders/pallets-precompiles/precompiles/batch/batch-3.webp)
 
 The **SIMPLECONTRACT** contract will appear in the list of **Deployed Contracts**.
 
@@ -119,22 +134,22 @@ Try transferring native currency to two wallets of your choice via the batch pre
 1. Make sure that you have at least 0.5 DEV in your connected wallet
 2. Expand the batch contract under **Deployed Contracts**
 3. Expand the **batchAll** function
-4. For the **to** input, insert your addresses in the following format: `["ADDRESS-1-HERE", "ADDRESS-2-HERE"]`, where the first address corresponds to the first wallet of your choice and the second address corresponds to the second wallet of your choice
+4. For the **to** input, insert your addresses in the following format: `["INSERT_ADDRESS_1", "INSERT_ADDRESS_2"]`, where the first address corresponds to the first wallet of your choice and the second address corresponds to the second wallet of your choice
 5. For the **value** input, insert the amount you wish to transfer in Wei for each address. For example, `["100000000000000000", "200000000000000000"]` will transfer 0.1 DEV to the first address and 0.2 DEV to the second address
 6. For both of the remaining **callData** and **gasLimit** inputs, insert `[]`. Call data and gas limit are not a concern for transferring native currency
 7. Press **transact**
 8. Press **Confirm** in the MetaMask extension to confirm the transaction
 
-![Send Batch Transfer](/images/builders/pallets-precompiles/precompiles/batch/batch-4.png)
+![Send Batch Transfer](/images/builders/pallets-precompiles/precompiles/batch/batch-4.webp)
 
-Once the transaction is complete, be sure to check both of the accounts' balances, either in MetaMask or in a [block explorer](/builders/get-started/explorers/){target=_blank}. Congratulations! You've now sent a batched transfer via the batch precompile.
+Once the transaction is complete, be sure to check both of the accounts' balances, either in MetaMask or in a [block explorer](/builders/get-started/explorers/){target=\_blank}. Congratulations! You've now sent a batched transfer via the batch precompile.
 
 !!! note
      Typically if you wanted to send the native currency to or through a contract, you would have to set the value within the overall transaction object and interact with a payable function. However, since the batch precompile interacts directly with Substrate code, this is not a typical Ethereum transaction and is thus not necessary.
 
 ### Find a Contract Interaction's Call Data {: #find-a-contract-interactions-call-data }
 
-Visual interfaces like [Remix](/builders/build/eth-api/dev-env/remix){target=_blank} and handy libraries like [Ethers.js](/builders/build/eth-api/libraries/ethersjs){target=_blank} hide the way that Ethereum transactions interact with Solidity smart contracts. The name and input types of a function are hashed into a [function selector](https://docs.soliditylang.org/en/latest/abi-spec.html#function-selector-and-argument-encoding){target=_blank} and the input data is encoded. These two pieces are then combined and sent as the transaction's call data. To send a subtransaction within a batch transaction, the sender needs to know its call data beforehand.
+Visual interfaces like [Remix](/builders/build/eth-api/dev-env/remix){target=\_blank} and handy libraries like [Ethers.js](/builders/build/eth-api/libraries/ethersjs){target=\_blank} hide the way that Ethereum transactions interact with Solidity smart contracts. The name and input types of a function are hashed into a [function selector](https://docs.soliditylang.org/en/latest/abi-spec.html#function-selector-and-argument-encoding){target=\_blank} and the input data is encoded. These two pieces are then combined and sent as the transaction's call data. To send a subtransaction within a batch transaction, the sender needs to know its call data beforehand.
 
 Try finding a transaction's call data using Remix:
 
@@ -143,17 +158,19 @@ Try finding a transaction's call data using Remix:
 3. Enter the input of the function. For this example, **id** will be `1` and **message** will be `"moonbeam"`
 4. Instead of sending the transaction, click the copy button next to the **transact** button to copy the call data
 
-![Transaction Call Data](/images/builders/pallets-precompiles/precompiles/batch/batch-5.png)
+![Transaction Call Data](/images/builders/pallets-precompiles/precompiles/batch/batch-5.webp)
 
 Now you have the transaction's call data! Considering the example values of `1` and `"moonbeam"`, we can keep an eye out for their encoded values in the call data:
 
- --8<-- 'code/batch/simple-message-call-data.md'
+```text
+--8<-- 'code/builders/pallets-precompiles/precompiles/batch/simple-message-call-data.md'
+```
 
 The call data can be broken into five lines, where:
 
  - The first line is the function selector
  - The second line is equal to 1, which is the **id** that was provided
- - What's left has to do with the **message** input. These last three lines are tricky, since strings are a [dynamic type](https://docs.soliditylang.org/en/v0.8.15/abi-spec.html#use-of-dynamic-types){target=_blank} with a dynamic length. The third line refers to an offset to define where the string's data starts. The fourth line refers to the string's length, in this case 8 because "moonbeam" is 8 bytes long . Finally, the fifth line is "moonbeam" in hexadecimal format (8 ASCII characters are 16 hexidecimal characters) left aligned and with zeros for padding
+ - What's left has to do with the **message** input. These last three lines are tricky, since strings are a [dynamic type](https://docs.soliditylang.org/en/v0.8.15/abi-spec.html#use-of-dynamic-types){target=\_blank} with a dynamic length. The third line refers to an offset to define where the string's data starts. The fourth line refers to the string's length, in this case 8 because "moonbeam" is 8 bytes long . Finally, the fifth line is "moonbeam" in hexadecimal format (8 ASCII characters are 16 hexidecimal characters) left aligned and with zeros for padding
 
 ### Function Interaction via Precompile {: #function-interaction-via-precompile }
 
@@ -168,14 +185,14 @@ To use the precompile to send an atomic batch transaction, take the following st
 1. Copy the `SimpleContract.sol` contract's address with the copy button on the right side of its header. Be sure to also have the [call data from the previous section](#finding-a-contract-interactions-call-data)
 2. Expand the batch contract under **Deployed Contracts**
 3. Expand the **batchAll** function
-4. For the **to** input, insert the address of the `SimpleContract.sol` contract that you previously copied in the following format: `["SIMPLE-CONTRACT-ADDRESS-HERE"]`
+4. For the **to** input, insert the address of the `SimpleContract.sol` contract that you previously copied in the following format: `["INSERT_SIMPLE_CONTRACT_ADDRESS"]`
 5. For the value input, since `SimpleContract.sol` does not require any native currency to be paid to it, insert `["0"]` for 0 Wei
-6. For the **callData** input, insert your call data from the previous section in the following format: `["CALL-DATA-HERE"]`
+6. For the **callData** input, insert your call data from the previous section in the following format: `["INSERT_CALL_DATA"]`
 7. For the **gasLimit** input, insert `[]`. You can put in a gas limit value, but it is optional
 8. Press **transact**
 9. Press **Confirm** in the MetaMask extension to confirm the transaction
 
-![Batch Function Interaction](/images/builders/pallets-precompiles/precompiles/batch/batch-6.png)
+![Batch Function Interaction](/images/builders/pallets-precompiles/precompiles/batch/batch-6.webp)
 
 If you used the same call data as the tutorial, check to make sure that the transaction has been successful:
 
@@ -183,7 +200,7 @@ If you used the same call data as the tutorial, check to make sure that the tran
 2. To the right of the **messages** button, insert `1`
 3. Press the blue **messages** button
 
-![SimpleContract Confirmation](/images/builders/pallets-precompiles/precompiles/batch/batch-7.png)
+![SimpleContract Confirmation](/images/builders/pallets-precompiles/precompiles/batch/batch-7.webp)
 
 The phrase **"moonbeam"** should appear underneath it. Congratulations! You have interacted with a function with the batch precompile.
 
@@ -231,18 +248,27 @@ And that's it! You've successfully interacted with the ERC-20 precompile using M
 
 ## Ethereum Development Libraries {: #ethereum-development-libraries }
 
-If you have followed the [Ethers.js tutorial](/builders/build/eth-api/libraries/ethersjs/){target=_blank} on Moonbeam, you may find it difficult to find the call data for a function. The answer is hidden within Ether's `Interface` object, where the [encodeFunctionData](https://docs.ethers.org/v6/api/abi/#Interface-encodeFunctionData){target=_blank} function allows you to input your function name and inputs to receive the resultant call data. [Web3.js](/builders/build/eth-api/libraries/web3js){target=_blank} has a similar function, [encodeFunctionCall](https://web3js.readthedocs.io/en/v1.2.11/web3-eth-abi.html#encodefunctioncall){target=_blank}.
+If you have followed the [Ethers.js tutorial](/builders/build/eth-api/libraries/ethersjs/){target=\_blank} on Moonbeam, you may find it difficult to find the call data for a function. The answer is hidden within Ether's `Interface` object, where the [encodeFunctionData](https://docs.ethers.org/v6/api/abi/#Interface-encodeFunctionData){target=\_blank} function allows you to input your function name and inputs to receive the resultant call data. [Web3.js](/builders/build/eth-api/libraries/web3js){target=\_blank} has a similar function, [encodeFunctionCall](https://web3js.readthedocs.io/en/v1.2.11/web3-eth-abi.html#encodefunctioncall){target=\_blank}.
 
 !!! note
     The code snippets presented in the following sections are not meant for production environments. Please make sure you adapt it for each use-case.
 
-=== "Web3.js"
-     --8<-- 'code/batch/web3js-batch.md'
-
 === "Ethers.js"
-     --8<-- 'code/batch/ethers-batch.md'
+
+     ```js
+     --8<-- 'code/builders/pallets-precompiles/precompiles/batch/ethers-batch.js'
+     ```
+
+=== "Web3.js"
+
+     ```js
+     --8<-- 'code/builders/pallets-precompiles/precompiles/batch/web3js-batch.js'
+     ```
 
 === "Web3.py"
-     --8<-- 'code/batch/web3py-batch.md'
 
-Afterwards, you should be all set to interact with the batch precompile as one typically would with a contract in [Ethers](/builders/build/eth-api/libraries/ethersjs){target=_blank}.
+     ```py
+     --8<-- 'code/builders/pallets-precompiles/precompiles/batch/web3py-batch.py'
+     ```
+
+Afterwards, you should be all set to interact with the batch precompile as one typically would with a contract in [Ethers](/builders/build/eth-api/libraries/ethersjs){target=\_blank}.

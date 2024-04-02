@@ -2,8 +2,11 @@ title: Connect to Moonbeam
 nav:
   - index.md
   - ledger
-  - 'MetaMask': 'metamask.md'
+  - 'Coinbase Wallet': 'coinbase-wallet.md'
   - 'MathWallet': 'mathwallet.md'
+  - 'MetaMask': 'metamask.md'
   - 'Polkadot.js Apps': 'polkadotjs.md'
+  - 'SubWallet': 'subwallet.md'
   - 'Talisman': 'talisman.md'
   - 'Trezor': 'trezor.md'
+  - 'SubWallet': subwallet.md
