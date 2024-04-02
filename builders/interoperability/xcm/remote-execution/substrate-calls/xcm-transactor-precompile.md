@@ -87,10 +87,11 @@ The interface varies slightly from version to version. You can find an overview 
         
         === "Returns"
 
-            The transact information for: 
-                - The three XCM instructions associated with the external call execution (`transactExtraWeight`)
-                - The extra weight information associated with the `DescendOrigin` XCM instruction for the transact through signed extrinsic (`transactExtraWeightSigned`)
-                - The maximum allowed weight for the message in the given chain
+            The transact information for:
+            
+              - The three XCM instructions associated with the external call execution (`transactExtraWeight`)
+              - The extra weight information associated with the `DescendOrigin` XCM instruction for the transact through signed extrinsic (`transactExtraWeightSigned`)
+              - The maximum allowed weight for the message in the given chain
 
             ```js
             [ 173428000n, 0n, 20000000000n ]
