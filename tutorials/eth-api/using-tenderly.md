@@ -128,7 +128,7 @@ Tenderly also generates a custom RPC url for your fork, which looks something li
 
 ## Debugging {: #debugging }
 
-The [Debugger](https://docs.tenderly.co/debugger/how-to-use-tenderly-debugger){target=\_blank} is one of the most powerful and acclaimed features of Tenderly. It's also quite fast and requires minimal setup. In fact, if the contract you're investigating is already verified on chain, firing up the debugger is as easy as searching for the transaction hash on Tenderly. Let's try it out.
+The [Debugger](https://docs.tenderly.co/debugger){target=\_blank} is one of the most powerful and acclaimed features of Tenderly. It's also quite fast and requires minimal setup. In fact, if the contract you're investigating is already verified on chain, firing up the debugger is as easy as searching for the transaction hash on Tenderly. Let's try it out.
 
 In the upper search bar, you can paste a contract address or a transaction hash. Recall that Tenderly supports Moonbeam and Moonriver but does not currently support Moonbase Alpha. Here's an example transaction hash of a GLMR / FRAX swap on StellaSwap:
 
@@ -156,7 +156,7 @@ Finally, you'll see a **Gas Profiler**, which will give you a visual representat
 
 ![Debugger 4](/images/tutorials/eth-api/using-tenderly/tenderly-13.webp)
 
-For a more detailed look at how to use the Tenderly Debugger, be sure to check out [Tenderly's Debugger guide](https://docs.tenderly.co/debugger/how-to-use-tenderly-debugger){target=\_blank}. And that's it! You're well on your way to mastering Tenderly, which is sure to save you time and simplify your development experience building dApps on Moonbeam.
+For a more detailed look at how to use the Tenderly Debugger, be sure to check out [Tenderly's Debugger guide](https://docs.tenderly.co/debugger){target=\_blank}. And that's it! You're well on your way to mastering Tenderly, which is sure to save you time and simplify your development experience building dApps on Moonbeam.
 
 --8<-- 'text/_disclaimers/educational-tutorial.md'
 
