@@ -12,7 +12,7 @@ Polkadot's multi-chain architecture relies on state proofs to guarantee data int
 
 By providing a state proof, a client can independently reconstruct the root hash and compare it with the original stored in the block header. If the reconstructed root hash matches the original, it confirms the authenticity, validity, and inclusion of the target data within the blockchain.
 
-Moonbeam‘s [relay data verifier precompiled](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/relay-data-verifier/RelayDataVerifier.sol){target=\_blank} contract provide a easy way to verify Merkel proof between Moonbeam network and its relay chain. This functionality is readily available at the following contract addresses:
+Moonbeam‘s [relay data verifier precompiled](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/relay-data-verifier/RelayDataVerifier.sol){target=\_blank} contract provides an easy way to verify Merkel proof between Moonbeam network and its relay chain. This functionality is readily available at the following contract addresses:
 
 === "Moonbeam"
 
@@ -43,15 +43,17 @@ Moonbeam‘s [relay data verifier precompiled](https://github.com/moonbeam-found
     --8<-- 'code/builders/pallets-precompiles/precompiles/relay-data-verifier/RelayDataVerifier.sol'
     ```
 
-"function **latestRelayBlockNumber**() — Retrieves the most recent relay chain block that has its storage root stored on the blockchain itself"
+The interface includes the following functions:
 
-     === "Returns"
+???+ function "**latestRelayBlockNumber**() — Retrieves the most recent relay chain block that has its storage root stored on the blockchain itself"
 
-          - `relayBlockNumber` - the latest relay block number that has a storage root stored on-chain.
+    === "Returns"
 
-???+ "function **verifyEntry**(_uint32_ relayBlockNumber, _ReadProof_ calldata readProof, _bytes_ callData key) — Verifies a storage entry in the relay chain using a relay block number, a storage proof, and the storage key. It returns the value associated with the key if the verification is successful"
+        `relayBlockNumber` - the latest relay block number that has a storage root stored on-chain.
 
-     === "Parameters"
+???+ function "**verifyEntry**(_uint32_ relayBlockNumber, _ReadProof_ calldata readProof, _bytes_ callData key) — Verifies a storage entry in the relay chain using a relay block number, a storage proof, and the storage key. It returns the value associated with the key if the verification is successful"
+
+    === "Parameters"
 
           - `relayBlockNumber` - the relay block number for which the data is being verified. The latest relay block number can be obtained from the `latestRelayBlockNumber()` function
 
@@ -67,9 +69,9 @@ Moonbeam‘s [relay data verifier precompiled](https://github.com/moonbeam-found
 
           - `key` - the storage key for the generated proof
 
-???+ "function **verifyEntries**(_uint32_ relayBlockNumber, _ReadProof_ calldata readProof, _bytes[]_ callData keys) — Verifies a set of entries in the relay chain and returns the corresponding values. This function takes a relay block number, a storage proof, and an array of storage keys to verify. It returns an array of values associated with the keys, in the same order as the keys"
+???+ function "**verifyEntries**(_uint32_ relayBlockNumber, _ReadProof_ calldata readProof, _bytes[]_ callData keys) — Verifies a set of entries in the relay chain and returns the corresponding values. This function takes a relay block number, a storage proof, and an array of storage keys to verify. It returns an array of values associated with the keys, in the same order as the keys"
 
-     === "Parameters"
+    === "Parameters"
 
           - `relayBlockNumber` - The relay block number for which the data is being verified. The latest relay block number can be obtained from the `latestRelayBlockNumber()` function
 
@@ -93,9 +95,9 @@ A typical workflow to verify relay chain data involves the following steps:
 
 2. **Relay RPC Call** - Call the `chain_getBlockHash(blockNumber)` RPC method to get the relay block hash for the block number obtained in step 1
 
-3. **Relay RPC Call** - Call the `state_getReadProof(keys, at)` RPC method, where `at` is the relay block hash obtained in step 2, to get the storage proof of the entries
+3. **Relay RPC Call** - Call the `state_getReadProof(keys, at)` RPC method to retrieve the storage proof, where `at` is the relay block hash obtained in step 2, `keys` is an Array of strings which contains the keys for target storage items. For `@polkadot/api`, it can be obtained via `api.query.module.key()` function
 
-4. **Moonbeam RPC Call** - Submit an Ethereum transaction to call the `verifyEntry` or `verifyEntries` function to verify the data against the relay block number. The call data should contain the relay block number obtained in step 1, the read proof generated in step 3, and the key(s) to verify
+4. **Moonbeam RPC Call** - Submit an Ethereum transaction to call the `verifyEntry` or `verifyEntries` function to verify the data against the relay block number. The call data should contain the relay block number obtained in Step 1, the read proof generated in Step 3, and the key(s) to verify
 
 The following sections will cover how to interact with the Identity Precompile using Ethereum libraries, such as Ethers.js, Web3.js, and Web3.py. The examples in this guide will be on Moonbase Alpha.
 
@@ -103,7 +105,7 @@ The following sections will cover how to interact with the Identity Precompile u
 
 To follow along with this tutorial, you will need to have:
 
-- Create or have an accounts on Moonbase Alpha to test out the different features in the precompile
+- Create or have an account on Moonbase Alpha to test out the different features in the precompile
 - The account will need to be funded with `DEV` tokens.
   --8<-- 'text/\_common/faucet/faucet-list-item.md'
 
@@ -126,7 +128,7 @@ Once you have the ABI, you can interact with the precompile using the Ethereum l
 The provided code example demonstrates how to use the Ethers.js library to interact with the Moonbase Alpha network and its relay chain, verifying a data entry using the `verifyEntry` function.
 
 !!! note
-The code snippets presented in the following sections are not meant for production environments. Please make sure you adapt it for each use-case.
+     The code snippets presented in the following sections are not meant for production environments. Please make sure you adapt it for each use case.
 
 === "Ethers.js"
 
