@@ -93,7 +93,7 @@ A typical workflow to verify relay chain data involves the following steps:
 
 1. **Moonbeam RPC Call** - call the `latestRelayBlockNumber` function to get the latest relay block number tracked by the chain in the `pallet-storage-root`
 
-2. **Relay RPC Call** - Call the `chain_getBlockHash(blockNumber)` RPC method to get the relay block hash for the block number obtained in step 1
+2. **Relay RPC Call** - call the `chain_getBlockHash(blockNumber)` RPC method to get the relay block hash for the block number obtained in step 1
 
 3. **Relay RPC Call** - Call the `state_getReadProof(keys, at)` RPC method to retrieve the storage proof, where `at` is the relay block hash obtained in step 2, `keys` is an Array of strings which contains the keys for target storage items. For `@polkadot/api`, it can be obtained via `api.query.module.key()` function
 
