@@ -12,6 +12,8 @@ Polkadot's multi-chain architecture relies on state proofs to guarantee data int
 
 A client can independently reconstruct the root hash and compare it with the original stored in the block header by providing a state proof. If the reconstructed root hash matches the original, it confirms the target data's authenticity, validity, and inclusion within the blockchain.
 
+Polkadot's unique architecture and parachain block validation process means blockchains like Moonbeam have the relay chain storage root hash in their state. Consequently, Moonbeam can provide a mechanism to verify a relay chain state by checking the proof against the stored storage root hash.
+
 Moonbeam's [relay data verifier precompiled](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/relay-data-verifier/RelayDataVerifier.sol){target=\_blank} contract provides an easy way for smart contracts to programmatically build functions that rely on verifying relay chain state in contract calls. Consequently, no oracles are needed to feed relay chain data to Moonbeam. This functionality is readily available at the following contract addresses:
 
 === "Moonbeam"
