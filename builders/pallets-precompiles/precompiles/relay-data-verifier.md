@@ -8,11 +8,13 @@ keywords: solidity, ethereum, verify, proof, relay chain, transaction, moonbeam,
 
 ## Introduction {: #introduction }
 
-Polkadot's multi-chain architecture relies on state proofs to guarantee data integrity across its various components, especially between the relay chain and parachains. A state proof is a concise, cryptographic data structure that represents a specific subset of transactions or state data within a trie. It consists of a set of hashes that form a path from the target data to the root hash stored in the block header.
+Polkadot relies on state proofs to guarantee data integrity at a particular time. A state proof is a concise, cryptographic data structure representing a specific subset of transactions or state data within a trie. It consists of a set of hashes that form a path from the target data to the root hash stored in the block header.
 
-By providing a state proof, a client can independently reconstruct the root hash and compare it with the original stored in the block header. If the reconstructed root hash matches the original, it confirms the authenticity, validity, and inclusion of the target data within the blockchain.
+A client can independently reconstruct the root hash and compare it with the original stored in the block header by providing a state proof. If the reconstructed root hash matches the original, it confirms the target data's authenticity, validity, and inclusion within the blockchain.
 
-Moonbeam‘s [relay data verifier precompiled](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/relay-data-verifier/RelayDataVerifier.sol){target=\_blank} contract provides an easy way to verify Merkel proof between Moonbeam network and its relay chain. This functionality is readily available at the following contract addresses:
+Polkadot's unique architecture and parachain block validation process means blockchains like Moonbeam have the relay chain storage root hash in their state. Consequently, Moonbeam can provide a mechanism to verify a relay chain state by checking the proof against the stored storage root hash.
+
+Moonbeam's [relay data verifier precompiled](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/relay-data-verifier/RelayDataVerifier.sol){target=\_blank} contract provides an easy way for smart contracts to programmatically build functions that rely on verifying relay chain state in contract calls. Consequently, no oracles are needed to feed relay chain data to Moonbeam. This functionality is readily available at the following contract addresses:
 
 === "Moonbeam"
 
@@ -37,6 +39,7 @@ Moonbeam‘s [relay data verifier precompiled](https://github.com/moonbeam-found
 ## The Relay Data Verifier Solidity Interface {: #the-relay-data-verifier-solidity-interface }
 
 [`RelayDataVerifier.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/relay-data-verifier/RelayDataVerifier.sol){target=\_blank} is a Solidity interface that allows developers to interact with the precompile's methods.
+
 ??? code "RelayDataVerifier.sol"
 
     ```solidity
@@ -45,69 +48,84 @@ Moonbeam‘s [relay data verifier precompiled](https://github.com/moonbeam-found
 
 The interface includes the following functions:
 
-???+ function "**latestRelayBlockNumber**() — Retrieves the most recent relay chain block that has its storage root stored on the blockchain itself"
+???+ function "**latestRelayBlockNumber**() — retrieves the most recent relay chain block that has its storage root stored on the blockchain itself"
+
+    === "Parameters"
+
+        None
 
     === "Returns"
 
-        `relayBlockNumber` - the latest relay block number that has a storage root stored on-chain.
+        The latest relay block number that has a storage root stored on-chain.
 
-???+ function "**verifyEntry**(_uint32_ relayBlockNumber, _ReadProof_ calldata readProof, _bytes_ callData key) — Verifies a storage entry in the relay chain using a relay block number, a storage proof, and the storage key. It returns the value associated with the key if the verification is successful"
-
-    === "Parameters"
-
-          - `relayBlockNumber` - the relay block number for which the data is being verified. The latest relay block number can be obtained from the `latestRelayBlockNumber()` function
-
-          - `readProof` - a struct defined in the precompile contract, containing the storage proof used to verify the data. The `ReadProof` struct is defined as:
-          ```
-          struct ReadProof {
-                    // The block hash against which the proof is generated
-                    bytes32 at;
-                    /// The storage proof
-                    bytes[] proof;
-               }
-          ```
-
-          - `key` - the storage key for the generated proof
-
-???+ function "**verifyEntries**(_uint32_ relayBlockNumber, _ReadProof_ calldata readProof, _bytes[]_ callData keys) — Verifies a set of entries in the relay chain and returns the corresponding values. This function takes a relay block number, a storage proof, and an array of storage keys to verify. It returns an array of values associated with the keys, in the same order as the keys"
+??? function "**verifyEntry**(_uint32_ relayBlockNumber, _ReadProof_ calldata readProof, _bytes_ callData key) — verifies a storage entry in the relay chain using a relay block number, a storage proof, and the storage key. It returns the value associated with the key if the verification is successful"
 
     === "Parameters"
 
-          - `relayBlockNumber` - The relay block number for which the data is being verified. The latest relay block number can be obtained from the `latestRelayBlockNumber()` function
-
-          - `readProof` - A struct defined in the precompile contract, containing the storage proof used to verify the data. The `ReadProof` struct is defined as:
+        - `relayBlockNumber` - the relay block number for which the data is being verified. The latest relay block number can be obtained from the `latestRelayBlockNumber()` function
+        - `readProof` - a struct defined in the precompile contract, containing the storage proof used to verify the data. The `ReadProof` struct is defined as:
           ```
           struct ReadProof {
-                    // The block hash against which the proof is generated
-                    bytes32 at;
-                    /// The storage proof
-                    bytes[] proof;
-               }
+              // The block hash against which the proof is generated
+              bytes32 at;
+              /// The storage proof
+              bytes[] proof;
+          }
           ```
+        - `key` - the storage key for the generated proof
+    
+    === "Returns"
 
-          - `keys` - The storage keys for the generated proof
+        When performing a [static call](https://docs.ethers.org/v6/api/contract/#BaseContractMethod-staticCall){target=\_blank} on the `verifyEntry` function, you can view the returned value associated with the key in hexadecimal format.
+
+        ```js
+         
+        '0x01000000040000000100000000000000f88ce384dca20000000000000000000000370589030a0000000000000000000000203d88792d0000000000000000000000000000000000000000000000000080'
+        ```
+
+??? function "**verifyEntries**(_uint32_ relayBlockNumber, _ReadProof_ calldata readProof, _bytes[]_ callData keys) — verifies a set of entries in the relay chain and returns the corresponding values. This function takes a relay block number, a storage proof, and an array of storage keys to verify. It returns an array of values associated with the keys, in the same order as the keys"
+
+    === "Parameters"
+
+        - `relayBlockNumber` - the relay block number for which the data is being verified. The latest relay block number can be obtained from the `latestRelayBlockNumber()` function
+        - `readProof` - a struct defined in the precompile contract, containing the storage proof used to verify the data. The `ReadProof` struct is defined as:
+        ```
+        struct ReadProof {
+            // The block hash against which the proof is generated
+            bytes32 at;
+            /// The storage proof
+            bytes[] proof;
+        }
+        ```
+        - `keys` - the storage keys for the generated proof
+
+    === "Returns"
+
+        When performing a [static call](https://docs.ethers.org/v6/api/contract/#BaseContractMethod-staticCall){target=\_blank} on the `verifyEntries` function, you can view an array containing the corresponding values mapped to their respective keys, represented in hexadecimal format.
+
+        ```js
+         
+        ['0x01000000040000000100000000000000f88ce384dca20000000000000000000000370589030a0000000000000000000000203d88792d0000000000000000000000000000000000000000000000000080']
+        ```
 
 ## Interact with the Solidity Interface {: #interact-with-the-solidity-interface }
 
 A typical workflow to verify relay chain data involves the following steps:
 
-1. **Moonbeam RPC Call** - call the `latestRelayBlockNumber` function to get the latest relay block number tracked by the chain in the `pallet-storage-root`
+1. **Moonbeam RPC call** - call the `latestRelayBlockNumber` function to get the latest relay block number tracked by the chain in the `pallet-storage-root`
+2. **Relay RPC call** - call the `chain_getBlockHash(blockNumber)` RPC method to get the relay block hash for the block number obtained in step one
+3. **Relay RPC call** - call the `state_getReadProof(keys, at)` RPC method to retrieve the storage proof, where `at` is the relay block hash obtained in step two, and `keys` is an array of strings which contains the keys for target storage items. For `@polkadot/api`, it can be obtained via `api.query.module.key()` function
+4. **Moonbeam RPC call** - submit an Ethereum transaction to call the `verifyEntry` or `verifyEntries` function to verify the data against the relay block number. The call data should contain the relay block number obtained in step one, the read proof generated in step three, and the key(s) to verify
 
-2. **Relay RPC Call** - call the `chain_getBlockHash(blockNumber)` RPC method to get the relay block hash for the block number obtained in step 1
-
-3. **Relay RPC Call** - call the `state_getReadProof(keys, at)` RPC method to retrieve the storage proof, where `at` is the relay block hash obtained in step 2, `keys` is an Array of strings which contains the keys for target storage items. For `@polkadot/api`, it can be obtained via `api.query.module.key()` function
-
-4. **Moonbeam RPC Call** - submit an Ethereum transaction to call the `verifyEntry` or `verifyEntries` function to verify the data against the relay block number. The call data should contain the relay block number obtained in Step 1, the read proof generated in Step 3, and the key(s) to verify
-
-The following sections will cover how to interact with the Identity Precompile using Ethereum libraries, such as Ethers.js, Web3.js, and Web3.py. The examples in this guide will be on Moonbase Alpha.
+The following sections will cover how to interact with the Relay Data Verifier Precompile using Ethereum libraries, such as Ethers.js, Web3.js, and Web3.py. The examples in this guide will be on Moonbase Alpha.
 
 ### Checking Prerequisites {: #checking-prerequisites }
 
 To follow along with this tutorial, you will need to have:
 
 - Create or have an account on Moonbase Alpha to test out the different features in the precompile
-- The account will need to be funded with `DEV` tokens.
-  --8<-- 'text/\_common/faucet/faucet-list-item.md'
+- The account will need to be funded with `DEV` tokens. 
+ --8<-- 'text/_common/faucet/faucet-list-item.md'
 
 ### Using Ethereum Libraries {: #using-ethereum-libraries }
 
