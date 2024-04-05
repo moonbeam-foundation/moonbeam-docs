@@ -8,7 +8,7 @@ keywords: solidity, ethereum, verify, proof, relay chain, transaction, moonbeam,
 
 ## Introduction {: #introduction }
 
-Polkadot's multi-chain architecture relies on state proofs to guarantee data integrity across its various components, especially between the relay chain and parachains. A state proof is a concise, cryptographic data structure representing a specific subset of transactions or state data within a trie. It consists of a set of hashes that form a path from the target data to the root hash stored in the block header.
+Polkadot's relies on state proofs to guarantee data integrity at a particular time. A state proof is a concise, cryptographic data structure representing a specific subset of transactions or state data within a trie. It consists of a set of hashes that form a path from the target data to the root hash stored in the block header.
 
 A client can independently reconstruct the root hash and compare it with the original stored in the block header by providing a state proof. If the reconstructed root hash matches the original, it confirms the target data's authenticity, validity, and inclusion within the blockchain.
 
