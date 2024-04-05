@@ -26,10 +26,10 @@ key = substrate.generate_storage_hash(
     params=["5CBATpb3yvEM4mhX9Dw3tyuqiWKhq9YBG6ugSbodRUSbodoU"],
 )
 
-# Find the latest available block number(relay chain) from moonbeam
+# Find the latest available relay chain block number from Moonbeam
 blockNum = precompileContract.functions.latestRelayBlockNumber().call()
 
-# Get the blockHash from relay chain
+# Get the block hash from relay chain
 blockHash = substrate.get_block_hash(blockNum)
 
 # Get the storage proof from relay chain
