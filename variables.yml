@@ -780,7 +780,7 @@ networks:
     tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.36.0-2801-7ae4
     chain_spec: moonbeam
     block_explorer: https://moonscan.io
-    spec_version: runtime-2700
+    spec_version: runtime-2801
     binary_name: moonbeam
     min_gas_price: 125
     block_time: 12
