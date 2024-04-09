@@ -171,6 +171,8 @@ For the examples in this guide, you'll need to add your private keys for your tw
 ```js
 // 1. Import the Hardhat Toolbox plugin
 require('@nomicfoundation/hardhat-toolbox');
+require('@nomicfoundation/hardhat-ignition-ethers');
+require('@nomicfoundation/hardhat-toolbox');
 
 // 2. Create variables for your private keys from your pre-funded Moonbase Alpha 
 // testing accounts and your Moonscan API key
@@ -427,29 +429,6 @@ mkdir ignition && mkdir ignition/modules && touch ignition/modules/DelegationDao
 ```
 
 Next, you can write your Hardhat Ignition module. To get started, take the following steps:
-
-1. Import the `buildModule` function from the Hardhat Ignition module
-2. Export a module using `buildModule`
-3. Use the `getAccount` method to select the deployer account
-4. Deploy the `Box` contract
-5. Return an object from the module. This makes the `Box` contract accessible for interaction in Hardhat tests and scripts
-
-
-To deploy `DelegationDAO.sol`, you can write a simple script. You can create a new directory for the script and name it `scripts`:
-
-```bash
-mkdir scripts
-```
-
-Then add a new file to it called `deploy.js`:
-
-```bash
-touch scripts/deploy.js
-```
-
-Next, you need to write your deployment script which can be done using `ethers`. Because you'll be running it with Hardhat, you don't need to import any libraries.
-
-To get started, take the following steps:
 
 1. Import the `buildModule` function from the Hardhat Ignition module
 2. Export a module using `buildModule`
