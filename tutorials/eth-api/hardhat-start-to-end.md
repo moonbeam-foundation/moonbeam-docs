@@ -228,7 +228,7 @@ To compile the contract you can simply run:
 npx hardhat compile
 ```
 
-![Learn how to compile your Solidity contracts with Hardhat.](/images/tutorials/eth-api/hardhat-start-to-end/hardhat-2.webp)
+--8<-- 'code/tutorials/eth-api/hardhat-start-to-end/terminal/compile.md'
 
 After compilation, an `artifacts` directory is created: it holds the bytecode and metadata of the contract, which are `.json` files. Adding this directory to your `.gitignore` is a good idea.
 
@@ -409,7 +409,7 @@ npx hardhat test --network dev tests/Dao.js
 
 If everything was set up correctly, you should see output like the following:
 
-![Run your test suite of test cases with Hardhat.](/images/tutorials/eth-api/hardhat-start-to-end/hardhat-3.webp)
+--8<-- 'code/tutorials/eth-api/hardhat-start-to-end/terminal/test.md'
 
 ## Deploying to Moonbase Alpha {: #deploying-to-moonbase-alpha }
 
@@ -468,7 +468,7 @@ npx hardhat ignition deploy ./ignition/modules/DelegationDao.js --network moonba
 
 You'll be prompted to confirm the network you wish to deploy to. After a few seconds after you confirm, the contract is deployed, and you'll see the contract address in the terminal.
 
-![Deploy a Contract to Moonbase Alpha with Hardhat.](/images/tutorials/eth-api/hardhat-start-to-end/hardhat-4.webp)
+--8<-- 'code/tutorials/eth-api/hardhat-start-to-end/terminal/deploy-moonbase.md'
 
 Congratulations, your contract is live on Moonbase Alpha! Save the address, as you will use it to interact with this contract instance in the next step.
 
@@ -491,7 +491,8 @@ npx hardhat verify --network moonbase INSERT_CONTRACT_ADDRESS {{ networks.moonba
 
 In your terminal, you should see the source code for your contract was successfully submitted for verification. If the verification was successful, you should see **Successfully verified contract** and there will be a link to the contract code on [Moonscan for Moonbase Alpha](https://moonbase.moonscan.io/){target=\_blank}. If the plugin returns an error, double check that your API key is configured correctly and that you have specified all necessary parameters in the verification command. You can refer to the [guide to the Hardhat Etherscan plugin](/builders/build/eth-api/verify-contracts/etherscan-plugins/){target=\_blank} for more information.
 
-![Verify contracts on Moonbase Alpha using the Hardhat Etherscan plugin.](/images/tutorials/eth-api/hardhat-start-to-end/hardhat-5.webp)
+--8<-- 'code/tutorials/eth-api/hardhat-start-to-end/terminal/verify-moonbase.md'
+
 
 ## Deploying to Production on Moonbeam Mainnet {: #deploying-to-production-on-moonbeam-mainnet }
 
@@ -532,7 +533,7 @@ npx hardhat ignition deploy ./ignition/modules/DelegationDao.js --network moonbe
 
 You'll be prompted to confirm the network you wish to deploy to. After a few seconds after you confirm, the contract is deployed, and you'll see the contract address in the terminal.
 
-![Deploy a Contract to Moonbeam with Hardhat.](/images/tutorials/eth-api/hardhat-start-to-end/hardhat-6.webp)
+--8<-- 'code/tutorials/eth-api/hardhat-start-to-end/terminal/deploy-moonbeam.md'
 
 Congratulations, your contract is live on Moonbeam! Save the address, as you will use it to interact with this contract instance in the next step.
 
@@ -551,7 +552,7 @@ npx hardhat verify --network moonbeam INSERT_CONTRACT_ADDRESS {{ networks.moonbe
 
 In your terminal you should see the source code for your contract was successfully submitted for verification. If the verification was successful, you should see **Successfully verified contract** and there will be a link to the contract code on [Moonbeam Moonscan](https://moonscan.io/){target=\_blank}. If the plugin returns an error, double check that your API key is configured correctly and that you have specified all necessary parameters in the verification command. You can refer to the [guide to the Hardhat Etherscan plugin](/builders/build/eth-api/verify-contracts/etherscan-plugins/){target=\_blank} for more information.
 
-![Verify contracts on Moonbeam using Hardhat Etherscan plugin.](/images/tutorials/eth-api/hardhat-start-to-end/hardhat-7.webp)
+--8<-- 'code/tutorials/eth-api/hardhat-start-to-end/terminal/verify-moonbeam.md'
 
 And that's it! We covered a lot of ground in this tutorial, but there's more resources available if you'd like to go deeper, including the following:
 
