@@ -418,6 +418,23 @@ In the following steps, we'll be deploying the `DelegationDAO` to the Moonbase A
 
 As a side note, `DelegationDAO` relies on [`StakingInterface.sol`](/builders/pallets-precompiles/precompiles/staking/){target=\_blank}, which is a Substrate-based offering unique to Moonbeam networks. The Hardhat Network and forked networks are simulated EVM environments which do not include the Substrate-based precompiles like `StakingInterface.sol`. Therefore, `DelegationDAO` will not work properly if deployed to the local default Hardhat Network or a [forked network](/builders/build/eth-api/dev-env/hardhat/#forking-moonbeam){target=\_blank}.
 
+To deploy `DelegationDAO`, you'll use Hardhat Ignition, a declarative framework for deploying smart contracts. Hardhat Ignition is designed to make it easy to manage recurring tasks surrounding smart contract  deployment and testing. For more information about Hardhat Ignition and its architecture, be sure to check out the [Hardhat Ignition docs](https://hardhat.org/ignition/docs/getting-started#overview){target=\_blank}. 
+
+To set up the proper file structure for your Ignition module, create a folder named `ignition` and a subdirectory called `modules`.  Then add a new file to it called `Box.js`. You can take all three of these steps with the following command:
+
+```sh
+mkdir ignition && mkdir ignition/modules && touch ignition/modules/DelegationDao.js
+```
+
+Next, you can write your Hardhat Ignition module. To get started, take the following steps:
+
+1. Import the `buildModule` function from the Hardhat Ignition module
+2. Export a module using `buildModule`
+3. Use the `getAccount` method to select the deployer account
+4. Deploy the `Box` contract
+5. Return an object from the module. This makes the `Box` contract accessible for interaction in Hardhat tests and scripts
+
+
 To deploy `DelegationDAO.sol`, you can write a simple script. You can create a new directory for the script and name it `scripts`:
 
 ```bash
@@ -434,53 +451,46 @@ Next, you need to write your deployment script which can be done using `ethers`.
 
 To get started, take the following steps:
 
-1. Specify the address of the active collator the DAO intends to delegate to. In this case, we've specified the address of the PS-1 Collator (note: this is different from the address of the Alice collator on a local development node)
-2. Specify the deployer address as the admin of the DAO. It's important that the deployer be the admin of the DAO to ensure later tests work as expected
-3. Create a local instance of the contract with the `getContractFactory` method
-4. Use the `deploy` method that exists within this instance to instantiate the smart contract
-5. Once deployed, you can fetch the address of the contract using the contract instance
+1. Import the `buildModule` function from the Hardhat Ignition module
+2. Export a module using `buildModule`
+3. Specify the target collator candidate for the DAO to delegate to
+4. Use the `getAccount` method to select the deployer account
+5. Deploy `DelegationDAO.sol`
+6. Return an object from the module. This makes the `Box` contract accessible for interaction in Hardhat tests and scripts
 
 When all is said and done your deployment script should look similar to the following:
 
 ```javascript
-// 1. The PS-1 collator on Moonbase Alpha is chosen as the DAO's target
-const targetCollator = '{{ networks.moonbase.staking.candidates.address1 }}';
+// 1. Import the required function from the Hardhat Ignition module.
+const { buildModule } = require("@nomicfoundation/hardhat-ignition/modules");
 
-async function main() {
-  // 2. Get the address of the deployer to later be set as the admin of the DAO
-  const [deployer] = await ethers.getSigners();
-  console.log('Deploying contracts with the account:', deployer.address);
+// 2. Define and export your deployment module using `buildModule`.
+module.exports = buildModule("DelegationDAOModule", (m) => {
 
-  // 3. Get an instance of DelegationDAO
-  const delegationDao = await ethers.getContractFactory('DelegationDAO');
+  // 3. Specify the target collator address for the DAO.
+  const targetCollator = '{{ networks.moonbase.staking.candidates.address1 }}';
 
-  // 4. Deploy the contract specifying two params: the desired collator to
-  // delegate to and the address of the deployer (the initial DAO admin)
-  const deployedDao = await delegationDao.deploy(
-    targetCollator,
-    deployer.address
-  );
-  await deployedDao.waitForDeployment();
+  // 4. Use the `getAccount` method to select the deployer account.
+  const deployer = m.getAccount(0);
 
-  // 5. Print out the address of the deployed staking DAO contract
-  console.log('DAO address:', deployedDao.target);
-}
-
-main()
-  .then(() => process.exit(0))
-  .catch((error) => {
-    console.error(error);
-    process.exit(1);
+  // 5. Deploy the `DelegationDAO` contract.
+  const delegationDao = m.contract("DelegationDAO", [targetCollator, deployer], {
+    from: deployer,
   });
+
+  // 6. Return an object from the module including references to deployed contracts, allowing the contract to be accessible for interaction in Hardhat tests and scripts.
+  return { delegationDao };
+});
+
 ```
 
-Make sure you've funded your accounts with Moonbase Alpha DEV tokens. You can now deploy `DelegationDAO.sol` using the `run` command and specifying `moonbase` as the network (as configured in the `hardhat.config.js` file):
+To run the script and deploy the `DelegationDAO.sol` contract, use the following command, which requires you to specify the network name as defined in your `hardhat.config.js`. If you don't specify a network, hardhat will deploy the contract to a local hardhat network by default. 
 
-```bash
-npx hardhat run --network moonbase scripts/deploy.js
+```sh
+npx hardhat ignition deploy ./ignition/modules/DelegationDao.js --network moonbase
 ```
 
-After a few seconds, the contract is deployed, and you should see the address in the terminal.
+You'll be prompted to confirm the network you wish to deploy to. After a few seconds after you confirm, the contract is deployed, and you'll see the contract address in the terminal.
 
 ![Deploy a Contract to Moonbase Alpha with Hardhat.](/images/tutorials/eth-api/hardhat-start-to-end/hardhat-4.webp)
 
@@ -512,48 +522,39 @@ In your terminal you should see the source code for your contract was successful
 !!! note
     `DelegationDAO.sol` is unreviewed and unaudited. It is designed only for demonstration purposes and not intended for production use. It may contain bugs or logic errors that could result in loss of funds.
 
-In the following steps, we'll be deploying the `DelegationDAO` contract to the Moonbeam MainNet network. Remember to add the Moonbeam network to your [`hardhat.config.js`](#hardhat-configuration-file) and update the private keys of your accounts on Moonbeam if you haven't done so already. Before deploying `DelegationDAO` to Moonbeam, we need to change the address of the target collator, since our target collator on Moonbase Alpha does not exist on Moonbeam. Head to your deploy script and change the target collator to `0x1C86E56007FCBF759348dcF0479596a9857Ba105` or [another Moonbeam collator](https://apps.moonbeam.network/moonbeam/staking){target=\_blank} of your choice. Your `deploy.js` script should thus look like the following:
+In the following steps, we'll be deploying the `DelegationDAO` contract to the Moonbeam MainNet network. Remember to add the Moonbeam network to your [`hardhat.config.js`](#hardhat-configuration-file) and update the private keys of your accounts on Moonbeam if you haven't done so already. Before deploying `DelegationDAO` to Moonbeam, we need to change the address of the target collator, since our target collator on Moonbase Alpha does not exist on Moonbeam. Head to your deploy script and change the target collator to `{{ networks.moonbeam.staking.candidates.address1 }}` or [another Moonbeam collator](https://apps.moonbeam.network/moonbeam/staking){target=\_blank} of your choice. Your `deploy.js` script should thus look like the following:
 
 ```javascript
-// 1. The moonbeam-foundation-03 collator on Moonbeam is chosen as the DAO's target
-const targetCollator = '0x1C86E56007FCBF759348dcF0479596a9857Ba105';
+// 1. Import the required function from the Hardhat Ignition module.
+const { buildModule } = require("@nomicfoundation/hardhat-ignition/modules");
 
-async function main() {
-  // 2. Get the address of the deployer to later be set as the admin of the DAO
-  const [deployer] = await ethers.getSigners();
-  console.log('Deploying contracts with the account:', deployer.address);
+// 2. Define and export your deployment module using `buildModule`.
+module.exports = buildModule("DelegationDAOModule", (m) => {
 
-  // 3. Get an instance of DelegationDAO
-  const delegationDao = await ethers.getContractFactory('DelegationDAO');
+  // 3. Specify the target collator address for the DAO.
+  const targetCollator = '{{ networks.moonbeam.staking.candidates.address1 }}';
 
-  // 4. Deploy the contract specifying two params: the desired collator to delegate
-  // to and the address of the deployer (synonymous with initial DAO admin)
-  const deployedDao = await delegationDao.deploy(
-    targetCollator,
-    deployer.address
-  );
-  await deployedDao.waitForDeployment();
+  // 4. Use the `getAccount` method to select the deployer account.
+  const deployer = m.getAccount(0);
 
-  console.log('DAO address:', deployedDao.target);
-}
-
-main()
-  .then(() => process.exit(0))
-  .catch((error) => {
-    console.error(error);
-    process.exit(1);
+  // 5. Deploy the `DelegationDAO` contract.
+  const delegationDao = m.contract("DelegationDAO", [targetCollator, deployer], {
+    from: deployer,
   });
+
+  // 6. Return an object from the module including references to deployed contracts, allowing the contract to be accessible for interaction in Hardhat tests and scripts.
+  return { delegationDao };
+});
+
 ```
 
-You can now deploy `DelegationDAO.sol` using the `run` command and specifying `moonbeam` as the network:
+To run the script and deploy the `DelegationDAO.sol` contract, use the following command, which requires you to specify the network name as defined in your `hardhat.config.js`. If you don't specify a network, hardhat will deploy the contract to a local hardhat network by default. 
 
-```bash
-npx hardhat run --network moonbeam scripts/deploy.js
+```sh
+npx hardhat ignition deploy ./ignition/modules/DelegationDao.js --network moonbeam
 ```
 
-If you're using another Moonbeam network, make sure that you specify the correct network. The network name needs to match how it's defined in the `hardhat.config.js`.
-
-After a few seconds, the contract is deployed, and you should see the address in the terminal.
+You'll be prompted to confirm the network you wish to deploy to. After a few seconds after you confirm, the contract is deployed, and you'll see the contract address in the terminal.
 
 ![Deploy a Contract to Moonbeam with Hardhat.](/images/tutorials/eth-api/hardhat-start-to-end/hardhat-6.webp)
 
@@ -566,7 +567,7 @@ In this section, we'll be verifying the contract that was just deployed on Moonb
 To verify the contract, you will run the `verify` command and pass in the network where the `DelegationDao` contract is deployed, the address of the contract, and the two constructor arguments that you specified in your `deploy.js` file, namely, the address of the target collator and the address you deployed the smart contract with (sourced from your `hardhat.config.js` file). Remember that the target collator of the staking DAO on Moonbeam is different from the target collator of the staking DAO on Moonbase Alpha.
 
 ```bash
-npx hardhat verify --network moonbeam INSERT_CONTRACT_ADDRESS 0x1C86E56007FCBF759348dcF0479596a9857Ba105 INSERT_DEPLOYER_ADDRESS
+npx hardhat verify --network moonbeam INSERT_CONTRACT_ADDRESS {{ networks.moonbeam.staking.candidates.address1 }} INSERT_DEPLOYER_ADDRESS
 ```
 
 !!! note
