@@ -422,7 +422,7 @@ As a side note, `DelegationDAO` relies on [`StakingInterface.sol`](/builders/pal
 
 To deploy `DelegationDAO`, you'll use Hardhat Ignition, a declarative framework for deploying smart contracts. Hardhat Ignition is designed to make it easy to manage recurring tasks surrounding smart contract  deployment and testing. For more information about Hardhat Ignition and its architecture, be sure to check out the [Hardhat Ignition docs](https://hardhat.org/ignition/docs/getting-started#overview){target=\_blank}. 
 
-To set up the proper file structure for your Ignition module, create a folder named `ignition` and a subdirectory called `modules`.  Then add a new file to it called `Box.js`. You can take all three of these steps with the following command:
+To set up the proper file structure for your Ignition module, create a folder named `ignition` and a subdirectory called `modules`.  Then add a new file to it called `DelegationDao.js`. You can take all three of these steps with the following command:
 
 ```sh
 mkdir ignition && mkdir ignition/modules && touch ignition/modules/DelegationDao.js
@@ -435,7 +435,7 @@ Next, you can write your Hardhat Ignition module. To get started, take the follo
 3. Specify the target collator candidate for the DAO to delegate to
 4. Use the `getAccount` method to select the deployer account
 5. Deploy `DelegationDAO.sol`
-6. Return an object from the module. This makes the `Box` contract accessible for interaction in Hardhat tests and scripts
+6. Return an object from the module. This makes the `DelegationDao` contract accessible for interaction in Hardhat tests and scripts
 
 When all is said and done your deployment script should look similar to the following:
 
