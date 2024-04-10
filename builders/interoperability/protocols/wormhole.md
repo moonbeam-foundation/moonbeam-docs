@@ -66,13 +66,13 @@ First things first, the code in this smart contract is based off of [Wormhole’
 
 To deploy on each chain, you will need the local instance of the Wormhole core bridge and the chain ID of the chain mentioned. All of this data has been provided for a select few TestNets in the table below. You can find other networks’ endpoints on Wormhole’s [documentation site](https://docs.wormhole.com/wormhole/blockchain-environments/evm#testnet-contracts-moonbase-alphanet-1287){target=\_blank}. Keep in mind that you should only use EVMs for this demonstration, since the smart contract and relayer designed for this demonstration only supports EVMs.
 
-|                                                       Network & Faucet                                                       |            Core Bridge Address             | Wormhole Chain ID |
-|:----------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------:|:-----------------:|
-|                             [Polygon Mumbai](https://faucet.polygon.technology/){target=\_blank}                              | 0x0CBE91CF822c73C2315FB05100C2F714765d5c20 |         5         |
-|                                [Avalanche Fuji](https://faucet.avax.network/){target=\_blank}                                 | 0x7bbcE28e64B3F8b84d876Ab298393c38ad7aac4C |         6         |
-|                               [Fantom TestNet](https://faucet.fantom.network/){target=\_blank}                                | 0x1BB3B4119b7BA9dfad76B0545fb3F531383c3bB7 |        10         |
-|                                      [Goerli](https://goerlifaucet.com/){target=\_blank}                                      | 0x706abc4E45D419950511e474C7B9Ed348A4a716c |         2         |
-| [Moonbase Alpha](https://faucet.moonbeam.network/){target=\_blank} | 0xa5B7D85a8f27dd7907dc8FdC21FA5657D5E2F901 |        16         |
+|                           Network & Faucet                           |            Core Bridge Address             | Wormhole Chain ID |
+|:--------------------------------------------------------------------:|:------------------------------------------:|:-----------------:|
+| [Polygon Mumbai](https://faucet.polygon.technology/){target=\_blank} | 0x0CBE91CF822c73C2315FB05100C2F714765d5c20 |         5         |
+|    [Avalanche Fuji](https://faucet.avax.network/){target=\_blank}    | 0x7bbcE28e64B3F8b84d876Ab298393c38ad7aac4C |         6         |
+|   [Fantom TestNet](https://faucet.fantom.network/){target=\_blank}   | 0x1BB3B4119b7BA9dfad76B0545fb3F531383c3bB7 |        10         |
+|       [Sepolia](https://www.sepoliafaucet.io/){target=\_blank}       | 0x4a8bc80Ed5a4067f1CCf107057b8270E0cC11A78 |       10002       |
+|  [Moonbase Alpha](https://faucet.moonbeam.network/){target=\_blank}  | 0xa5B7D85a8f27dd7907dc8FdC21FA5657D5E2F901 |        16         |
 
 1. Ensure that the contract chosen is **SimpleGeneralMessage**
 2. Open up the deploy menu with the arrow button
