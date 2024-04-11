@@ -264,13 +264,13 @@ Next, you can write your Hardhat Ignition module. To get started, take the follo
 5. Return an object from the module. This makes the `Box` contract accessible for interaction in Hardhat tests and scripts
 
 ```js
-// 1.  Import the `buildModule` function from the Hardhat Ignition module.
+// 1.  Import the `buildModule` function from the Hardhat Ignition module
 const { buildModule } = require("@nomicfoundation/hardhat-ignition/modules");
 
-// 2. Export a module using `buildModule`.
+// 2. Export a module using `buildModule`
 module.exports = buildModule("BoxModule", (m) => {
   
-  // 3. Use the `getAccount` method to select the deployer account.
+  // 3. Use the `getAccount` method to select the deployer account
   const deployer = m.getAccount(0);
 
   // 4. Deploy the `Box` contract
@@ -278,7 +278,7 @@ module.exports = buildModule("BoxModule", (m) => {
     from: deployer,
   });
 
-  // 5. Return an object from the module. 
+  // 5. Return an object from the module 
   return { box };
 });
 
