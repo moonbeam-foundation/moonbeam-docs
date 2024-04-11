@@ -153,7 +153,7 @@ If you are planning on using any plugins with your project, you'll need to insta
 For this example, you can install the `hardhat-ethers` plugin and import it into the configuration file. This plugin provides a convenient way to use the [Ethers.js](/builders/build/eth-api/libraries/ethersjs/){target=\_blank} library to interact with the network.
 
 ```bash
-npm install @nomicfoundation/hardhat-ethers ethers@6
+npm install @nomicfoundation/hardhat-ethers ethers
 ```
 
 Additionally, you'll need to install the `hardhat-ignition-ethers` plugin to enable deployment of smart contracts with Hardhat Ignition. You can install it with the following command:
