@@ -352,7 +352,7 @@ Similarly to the deployment script, you can create a script to interact with you
 To get started, create a `set-value.js` file in the `scripts` directory:
 
 ```sh
-touch scripts/set-value.js
+mkdir scripts && touch scripts/set-value.js
 ```
 
 Now paste the following contract into the `set-value.js` file:

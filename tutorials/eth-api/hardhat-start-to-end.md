@@ -59,7 +59,7 @@ You will need to create a Hardhat project if you don't already have one. You can
 
 5. A menu will appear allowing you to create a new project or use a sample project. For this example, you can choose **Create an empty hardhat.config.js**
 
-![Create an empty Hardhat project.](/images/tutorials/eth-api/hardhat-start-to-end/hardhat-1.webp)
+--8<-- 'code/tutorials/eth-api/hardhat-start-to-end/terminal/hardhat-create.md'
 
 This will create a Hardhat config file (`hardhat.config.js`) in your project directory.
 
@@ -421,7 +421,7 @@ To deploy `DelegationDAO`, you'll use Hardhat Ignition, a declarative framework 
 To set up the proper file structure for your Ignition module, create a folder named `ignition` and a subdirectory called `modules`.  Then, add a new file to it called `DelegationDao.js`. You can take all three of these steps with the following command:
 
 ```sh
-mkdir ignition && mkdir ignition/modules && touch ignition/modules/DelegationDao.js
+mkdir ignition ignition/modules && touch ignition/modules/DelegationDao.js
 ```
 
 Next, you can write your Hardhat Ignition module. To get started, take the following steps:
@@ -436,24 +436,24 @@ Next, you can write your Hardhat Ignition module. To get started, take the follo
 When all is said and done your deployment script should look similar to the following:
 
 ```javascript
-// 1. Import the required function from the Hardhat Ignition module.
+// 1. Import the required function from the Hardhat Ignition module
 const { buildModule } = require("@nomicfoundation/hardhat-ignition/modules");
 
-// 2. Define and export your deployment module using `buildModule`.
+// 2. Define and export your deployment module using `buildModule`
 module.exports = buildModule("DelegationDAOModule", (m) => {
 
-  // 3. Specify the target collator address for the DAO.
+  // 3. Specify the target collator address for the DAO
   const targetCollator = '{{ networks.moonbase.staking.candidates.address1 }}';
 
-  // 4. Use the `getAccount` method to select the deployer account.
+  // 4. Use the `getAccount` method to select the deployer account
   const deployer = m.getAccount(0);
 
-  // 5. Deploy the `DelegationDAO` contract.
+  // 5. Deploy the `DelegationDAO` contract
   const delegationDao = m.contract("DelegationDAO", [targetCollator, deployer], {
     from: deployer,
   });
 
-  // 6. Return an object from the module including references to deployed contracts, allowing the contract to be accessible for interaction in Hardhat tests and scripts.
+  // 6. Return an object from the module including references to deployed contracts, allowing the contract to be accessible for interaction in Hardhat tests and scripts
   return { delegationDao };
 });
 
@@ -501,24 +501,24 @@ In your terminal, you should see the source code for your contract was successfu
 In the following steps, we'll be deploying the `DelegationDAO` contract to the Moonbeam MainNet network. Remember to add the Moonbeam network to your [`hardhat.config.js`](#hardhat-configuration-file) and update the private keys of your accounts on Moonbeam if you haven't done so already. Before deploying `DelegationDAO` to Moonbeam, we need to change the address of the target collator, since our target collator on Moonbase Alpha does not exist on Moonbeam. Head to your deploy script and change the target collator to `{{ networks.moonbeam.staking.candidates.address1 }}` or [another Moonbeam collator](https://apps.moonbeam.network/moonbeam/staking){target=\_blank} of your choice. Your `deploy.js` script should thus look like the following:
 
 ```javascript
-// 1. Import the required function from the Hardhat Ignition module.
+// 1. Import the required function from the Hardhat Ignition module
 const { buildModule } = require("@nomicfoundation/hardhat-ignition/modules");
 
-// 2. Define and export your deployment module using `buildModule`.
+// 2. Define and export your deployment module using `buildModule`
 module.exports = buildModule("DelegationDAOModule", (m) => {
 
-  // 3. Specify the target collator address for the DAO.
+  // 3. Specify the target collator address for the DAO
   const targetCollator = '{{ networks.moonbeam.staking.candidates.address1 }}';
 
-  // 4. Use the `getAccount` method to select the deployer account.
+  // 4. Use the `getAccount` method to select the deployer account
   const deployer = m.getAccount(0);
 
-  // 5. Deploy the `DelegationDAO` contract.
+  // 5. Deploy the `DelegationDAO` contract
   const delegationDao = m.contract("DelegationDAO", [targetCollator, deployer], {
     from: deployer,
   });
 
-  // 6. Return an object from the module including references to deployed contracts, allowing the contract to be accessible for interaction in Hardhat tests and scripts.
+  // 6. Return an object from the module including references to deployed contracts, allowing the contract to be accessible for interaction in Hardhat tests and scripts
   return { delegationDao };
 });
 
