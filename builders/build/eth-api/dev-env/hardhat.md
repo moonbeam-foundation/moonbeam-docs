@@ -60,7 +60,7 @@ You will need to create a Hardhat project if you don't already have one. You can
 
 5. A menu will appear, which will allow you to create a new project or use a sample project. For this example, you can choose **Create an empty hardhat.config.js**, which will create a Hardhat configuration file for your project
 
-![Hardhat Create Project](/images/builders/build/eth-api/dev-env/hardhat/hardhat-1.webp)
+--8<-- 'code/builders/build/eth-api/dev-env/hardhat/terminal/hardhat-create.md'
 
 ## Hardhat Configuration File {: #hardhat-configuration-file }
 
