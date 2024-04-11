@@ -252,7 +252,7 @@ To deploy the contract, you'll use Hardhat Ignition, a declarative framework for
 To set up the proper file structure for your Ignition module, create a folder named `ignition` and a subdirectory called `modules`.  Then add a new file to it called `Box.js`. You can take all three of these steps with the following command:
 
 ```sh
-mkdir ignition && mkdir ignition/modules && touch ignition/modules/Box.js
+mkdir ignition ignition/modules && touch ignition/modules/Box.js
 ```
 
 Next, you can write your Hardhat Ignition module. To get started, take the following steps:
