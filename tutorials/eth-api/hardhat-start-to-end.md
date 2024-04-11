@@ -172,7 +172,6 @@ For the examples in this guide, you'll need to add your private keys for your tw
 // 1. Import the Hardhat Toolbox plugin
 require('@nomicfoundation/hardhat-toolbox');
 require('@nomicfoundation/hardhat-ignition-ethers');
-require('@nomicfoundation/hardhat-toolbox');
 
 // 2. Create variables for your private keys from your pre-funded Moonbase Alpha 
 // testing accounts and your Moonscan API key
