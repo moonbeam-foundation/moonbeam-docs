@@ -6,6 +6,7 @@
       |  OnFinality  |                  <pre>```https://moonriver.api.onfinality.io/public```</pre>                   | 40 req/sec |
       | POKT Network | <pre>```https://moonriver-mainnet.gateway.pokt.network/v1/lb/62a74fdb123e6f003963642f```</pre> | 25 req/sec |
       |  UnitedBloc  |                       <pre>```https://moonriver.unitedbloc.com```</pre>                        | 32 req/sec |
+
 === "WSS"
     |  Provider  |                           RPC URL                            |   Limits   |
     |:----------:|:------------------------------------------------------------:|:----------:|
