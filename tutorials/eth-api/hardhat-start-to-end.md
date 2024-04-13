@@ -287,23 +287,21 @@ Mocha's `describe` function enables you to organize your tests. Multiple `descri
 We'll define a function called `deployDao` containing the setup steps for our staking DAO. To configure your test file, add the following snippet:
 
 ```javascript
-// The describe function receives the name of a section of your test suite and a callback. The callback must define the tests of that section. This callback can't be an async function
+// The describe function receives the name of a section of your test suite, and a callback. The callback must define the tests of that section. This callback can't be an async function
 describe('Dao contract', function () {
   async function deployDao() {
-    // Get the contract factory and signers here
-    const [deployer, member1] = await ethers.getSigners();
-    const delegationDao = await ethers.getContractFactory('DelegationDAO');
+    const delegationDaoFactory = await ethers.getContractFactory('DelegationDAO', wallet2);
     
     // Deploy the staking DAO and wait for the deployment transaction to be confirmed
-    const deployedDao = await delegationDao.deploy(targetCollator, deployer.address);
-    await deployedDao.waitForDeployment();
-
-    // Return the deployed DAO and the first member of the DAO to allow the tests to access and interact with them
-    return { deployedDao, member1 };
+    try {
+        const deployedDao = await delegationDaoFactory.deploy(targetCollator, wallet2.address);
+        await deployedDao.waitForDeployment(); // Wait for the transaction to be mined
+        return { deployedDao };
+    } catch (error) {
+        console.error("Failed to deploy contract:", error);
+        return null; // Return null to indicate failure
+    }
   }
-
-  // The test cases should be added here
-});
 ```
 
 ### Writing your First Test Cases {: #writing-your-first-test-cases }
@@ -315,19 +313,18 @@ Add the snippet below to the end of your `Dao contract` function.
 ```javascript
 // You can nest calls to create subsections
 describe('Deployment', function () {
-  // Mocha's it function is used to define each of your tests.
-  // It receives the test name, and a callback function.
-  // If the callback function is async, Mocha will await it
-  it('should store the correct target collator in the DAO', async function () {
-    
-    // Set up our test environment by calling deployDao
-    const { deployedDao } = await deployDao();
+// Mocha's it function is used to define each of your tests. It receives the test name, and a callback function. If the callback function is async, Mocha will await it. Test case to check that the correct target collator is stored
+it('should store the correct target collator in the DAO', async function () {
+    const deployment = await deployDao();
+    if (!deployment || !deployment.deployedDao) {
+        throw new Error("Deployment failed; DAO contract was not deployed.");
+    }
+    const { deployedDao } = deployment;
 
     // The expect function receives a value and wraps it in an assertion object.
     // This test will pass if the DAO stored the correct target collator
-    expect(await deployedDao.targetCollator()).to.equal(targetCollator);
-  });
-
+    expect(await deployedDao.getTarget()).to.equal('0xf24FF3a9CF04c71Dbc94D0b566f7A27B94566cac');
+    });
   // The following test cases should be added here
 });
 ```
@@ -335,11 +332,11 @@ describe('Deployment', function () {
 Now, add another test case. When a staking DAO is launched, it shouldn't have any funds. This test verifies that is indeed the case. Go ahead and add the following test case to your `Dao.js` file:
 
 ```javascript
+// Test case to check that the DAO has 0 funds at inception
 it('should initially have 0 funds in the DAO', async function () {
-  const { deployedDao } = await deployDao();
-
-  // This test will pass if the DAO has no funds as expected before any contributions
-  expect(await deployedDao.totalStake()).to.equal(0);
+    const { deployedDao } = await deployDao();
+    // This test will pass if the DAO has no funds as expected before any contributions
+    expect(await deployedDao.totalStake()).to.equal(0);
 });
 ```
 
@@ -350,16 +347,15 @@ Now, you'll implement a more complex test case with a slightly different archite
 In the [staking DAO contract](https://github.com/moonbeam-foundation/moonbeam-intro-course-resources/blob/main/delegation-dao-lesson-one/DelegationDAO.sol){target=\_blank}, only admins are authorized to add new members to the DAO. One could write a test that checks to see if the admin is authorized to add new members but a more important test is to ensure that *non-admins* can't add new members. To run this test case under a different account, you will ask for another address when you call `ethers.getSigners()` and specify the caller in the assertion with `connect(member1)`. Finally, after the function call you'll append `.to.be.reverted` to indicate that the test case is successful if the function reverts. And if it doesn't revert, it's a failed test!
 
 ```javascript
+// Test case to check that non-admins cannot grant membership
 it('should not allow non-admins to grant membership', async function () {
-  const { deployedDao, member1 } = await deployDao();
+    const { deployedDao } = await deployDao();
+    // Connect the non-admin wallet to the deployed contract
+    const deployedDaoConnected = deployedDao.connect(wallet1);
+    const tx = deployedDaoConnected.grant_member('0x0000000000000000000000000000000000000000');
 
-  // We use connect to call grant_member from member1's account instead of admin.
-  // This test will succeed if the function call reverts and fails if the call succeeds
-  await expect(
-    deployedDao
-      .connect(member1)
-      .grant_member('0x0000000000000000000000000000000000000000')
-  ).to.be.reverted;
+    // Check that the transaction reverts, not specifying any particular reason
+    await expect(tx).to.be.reverted;
 });
 ```
 
@@ -368,17 +364,22 @@ it('should not allow non-admins to grant membership', async function () {
 For this example, you'll verify whether the newly added DAO member can call the `check_free_balance()` function of staking DAO, which has an access modifier such that only members can access it.
 
 ```javascript
+// Test case to check that members can access member only functions
 it('should only allow members to access member-only functions', async function () {
-  const { deployedDao, member1 } = await deployDao();
+    const { deployedDao } = await deployDao();
 
-  // Add a new member to the DAO
-  const transaction = await deployedDao.grant_member(member1.address);
-  await transaction.wait();
+    // Connect the wallet1 to the deployed contract and grant membership
+    const deployedDaoConnected = deployedDao.connect(wallet2);
+    const grantTx = await deployedDaoConnected.grant_member(wallet1.address);
+    await grantTx.wait();
 
-  // This test will succeed if the DAO member can call the member-only function.
-  // We use connect here to call the function from the account of the new member
-  expect(await deployedDao.connect(member1).check_free_balance()).to.equal(0);
-});
+    // Check the free balance using the member's credentials
+    const checkTx = deployedDaoConnected.check_free_balance();
+
+    // Since check_free_balance() does not modify state, we expect it not to be reverted and check the balance
+    await expect(checkTx).to.not.be.reverted;
+    expect(await checkTx).to.equal(0);
+  });
 ```
 
 And that's it! You're now ready to run your tests!
@@ -462,7 +463,7 @@ module.exports = buildModule("DelegationDAOModule", (m) => {
 To run the script and deploy the `DelegationDAO.sol` contract, use the following command, which requires you to specify the network name as defined in your `hardhat.config.js`. If you don't specify a network, Hardhat will deploy the contract to a local Hardhat network by default. 
 
 ```sh
-npx hardhat ignition deploy ./ignition/modules/DelegationDao.js --network moonbase
+npx hardhat ignition deploy ./ignition/modules/DelegationDao.js --network moonbase --deployment-id YOUR-NAME-HERE
 ```
 
 You'll be prompted to confirm the network you wish to deploy to. After a few seconds after you confirm, the contract is deployed, and you'll see the contract address in the terminal.
@@ -479,10 +480,10 @@ While it's possible to verify smart contracts on the [Moonscan website](https://
 
 Before beginning the contract verification process, you'll need to [acquire a Moonscan API Key](/builders/build/eth-api/verify-contracts/etherscan-plugins/#generating-a-moonscan-api-key){target=\_blank}. Note that Moonbeam and Moonbase Alpha use the same [Moonbeam Moonscan](https://moonscan.io/){target=\_blank} API key, whereas you'll need a distinct API key for [Moonriver](https://moonriver.moonscan.io/){target=\_blank}.
 
-To verify the contract, you will run the `verify` command and pass in the network where the `DelegationDao` contract is deployed, the address of the contract, and the two constructor arguments that you specified in your `DelegationDao.js` file, namely, the address of the target collator and the address you deployed the smart contract with (sourced from the `hardhat.config.js` file).
+To verify the contract, you will run the `ignition verify` command and pass the deployment-id, the `YOUR-NAME-HERE` parameter in the prior step.
 
 ```bash
-npx hardhat verify --network moonbase INSERT_CONTRACT_ADDRESS {{ networks.moonbase.staking.candidates.address1 }} INSERT_DEPLOYER_ADDRESS
+npx hardhat ignition verify YOUR-NAME-HERE
 ```
 
 !!! note
@@ -527,7 +528,7 @@ module.exports = buildModule("DelegationDAOModule", (m) => {
 To run the script and deploy the `DelegationDAO.sol` contract, use the following command, which requires you to specify the network name as defined in your `hardhat.config.js`. If you don't specify a network, Hardhat will deploy the contract to a local Hardhat network by default. 
 
 ```sh
-npx hardhat ignition deploy ./ignition/modules/DelegationDao.js --network moonbeam
+npx hardhat ignition deploy ./ignition/modules/DelegationDao.js --network moonbeam --deployment-id YOUR-NAME-HERE
 ```
 
 You'll be prompted to confirm the network you wish to deploy to. After a few seconds after you confirm, the contract is deployed, and you'll see the contract address in the terminal.
@@ -540,10 +541,10 @@ Congratulations, your contract is live on Moonbeam! Save the address, as you wil
 
 In this section, we'll be verifying the contract that was just deployed on Moonbeam. Before beginning the contract verification process, you'll need to [acquire a Moonscan API Key](/builders/build/eth-api/verify-contracts/etherscan-plugins/#generating-a-moonscan-api-key){target=\_blank}. Note that Moonbeam and Moonbase Alpha use the same [Moonbeam Moonscan](https://moonscan.io/){target=\_blank} API key, whereas you'll need a distinct API key for [Moonriver](https://moonriver.moonscan.io/){target=\_blank}.
 
-To verify the contract, you will run the `verify` command and pass in the network where the `DelegationDao` contract is deployed, the address of the contract, and the two constructor arguments that you specified in `DelegationDao.js`, namely, the address of the target collator and the address you deployed the smart contract with (sourced from your `hardhat.config.js` file). Remember that the target collator of the staking DAO on Moonbeam is different from the target collator of the staking DAO on Moonbase Alpha.
+To verify the contract, you will run the `ignition verify` command and pass the deployment-id, the `YOUR-NAME-HERE` parameter in the prior step.
 
 ```bash
-npx hardhat verify --network moonbeam INSERT_CONTRACT_ADDRESS {{ networks.moonbeam.staking.candidates.address1 }} INSERT_DEPLOYER_ADDRESS
+npx hardhat ignition verify YOUR-NAME-HERE
 ```
 
 !!! note

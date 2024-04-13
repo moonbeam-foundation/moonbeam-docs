@@ -69,7 +69,10 @@ contract DelegationDAO is AccessControl {
         currentState = daoState.COLLECTING;
     }
 
-
+    // Simple getter to return the target collator of the DAO
+    function getTarget() public view returns (address) {
+        return target;
+    }
 
     // Grant a user the role of admin
     function grant_admin(

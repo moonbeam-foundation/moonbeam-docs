@@ -1,5 +1,5 @@
 <div id="termynal" data-termynal>
-    <span data-ty="input"><span class="file-path"></span> npx hardhat verify --network moonbase 0x5D788B98E4A90F9642352B0b32694998e77cF4d7 "0x12E7BCCA9b1B15f33585b5fc898B967149BDb9a5" "0x3B939FeaD1557C741Ff06492FD0127bd287A421e"</span>
+    <span data-ty="input"><span class="file-path"></span> npx hardhat ignition verify YOUR-NAME-HERE</span>
     <br>
     <span data-ty>Nothing to compile</span>
     <span data-ty>Successfully submitted source code for contract
