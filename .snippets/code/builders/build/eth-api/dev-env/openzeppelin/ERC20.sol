@@ -7,9 +7,9 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol";
 
 contract MyToken is ERC20, Ownable, ERC20Permit {
-    constructor()
+    constructor(address initialOwner)
         ERC20("MyToken", "MTK")
-        Ownable()
+        Ownable(initialOwner)
         ERC20Permit("MyToken")
     {
         _mint(msg.sender, 1000 * 10 ** decimals());

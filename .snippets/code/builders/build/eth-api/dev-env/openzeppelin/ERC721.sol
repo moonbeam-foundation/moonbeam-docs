@@ -8,9 +8,9 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Burnable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract MyToken is ERC721, ERC721Enumerable, ERC721Burnable, Ownable {
-    constructor()
+    constructor(address initialOwner)
         ERC721("MyToken", "MTK")
-        Ownable()
+        Ownable(initialOwner)
     {}
 
     function _baseURI() internal pure override returns (string memory) {
