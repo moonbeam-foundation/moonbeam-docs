@@ -5,7 +5,7 @@ description: This guide covers the ways you can build cross-chain dApps with Moo
 
 # Cross-Chain Communication Methods
 
-Moonbeam makes it easy for developers to build smart contracts that connect across chains, both within the Polkadot ecosystem and outside the Polkadot ecosystem. This guide will provide a fundamental overview of the underlying protocols that enable cross-chain communication and how you can leverage them to build connected contracts. For step-by-step guides of how to put these principles into practice, be sure to check out the [Interoperability Tutorials](/tutorials/interoperability/){target=\_blank}. 
+Moonbeam makes it easy for developers to build smart contracts that connect across chains, both within the Polkadot ecosystem and outside the Polkadot ecosystem. This guide will provide a fundamental overview of the underlying protocols that enable cross-chain communication and how you can leverage them to build connected contracts. For step-by-step guides of how to put these principles into practice, be sure to check out the [interoperability tutorials](/tutorials/interoperability/){target=\_blank}. 
 
 Two key terms that will come up frequently in this guide are XCM and GMP. XCM refers to cross-consensus messaging, and it's Polkadot's native interoperability language that facilitates communication between Polkadot blockchains. 
 
