@@ -34,7 +34,7 @@ The "happy path" of a remote batch EVM call dispatched via XCM is as follows:
 
 Considering all the steps summarized in the [introduction](#introduction), the following prerequisites need to be accounted for:
 
-- You need to have UNITs on the relay chain to pay for transaction fees when sending the XCM. If you have a Moonbase Alpha account funded with DEV tokens, you can swap some DEV for xcUNIT here on [Moonbeam Swap](https://moonbeam-swap.netlify.app/#/swap){target=\_blank}. Then withdraw the xcUNIT from Moonbase Alpha to [your account on the Moonbase relay chain](https://polkadot.js.org/apps/?rpc=wss://frag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/accounts){target=\_blank} using [apps.moonbeam.network](https://apps.moonbeam.network/moonbase-alpha/){target=\_blank}.
+- You need to have UNITs on the relay chain to pay for transaction fees when sending the XCM. If you have a Moonbase Alpha account funded with DEV tokens, you can swap some DEV for xcUNIT here on [Moonbeam Swap](https://moonbeam-swap.netlify.app/#/swap){target=\_blank}. Then withdraw the xcUNIT from Moonbase Alpha to [your account on the Moonbase relay chain](https://polkadot.js.org/apps/?rpc=wss://fro-moon-rpc-1-moonbase-relay-rpc-1.moonbase.ol-infra.network#/accounts){target=\_blank} using [apps.moonbeam.network](https://apps.moonbeam.network/moonbase-alpha/){target=\_blank}.
   --8<-- 'text/_common/faucet/faucet-list-item.md'
 - Your [Computed Origin account](/builders/interoperability/xcm/remote-execution/computed-origins){target=\_blank} must hold DEV tokens to fund the call to the Batch Precompile, and also pay for the XCM execution (although this could be paid in UNIT tokens as xcUNIT). We will calculate the Computed Origin account address in the next section
 
@@ -174,7 +174,7 @@ To build the XCM message, which will initiate the remote EVM call through XCM, a
 ```
 
 !!! note
-    You can also get the SCALE encoded calldata by manually building the extrinsic in [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://frag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/extrinsics){target=\_blank}.
+    You can also get the SCALE encoded calldata by manually building the extrinsic in [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://fro-moon-rpc-1-moonbase-relay-rpc-1.moonbase.ol-infra.network#/extrinsics){target=\_blank}.
 
 Let's go through each of the main components of the snippet shown above:
 
@@ -232,7 +232,7 @@ Once you have the code set up, you can execute it with `node`, and the XCM messa
 
 And that is it! You've sent an XCM message, which performed a remote EVM call to the Batch Precompile via XCM and resulted in the minting of MARS and NEPT ERC-20 tokens. But let's go into more detail about what happened.
 
-This action will emit different events. The first one is only relevant [in the relay chain](https://polkadot.js.org/apps/?rpc=wss://frag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/explorer/query/10936471){target=\_blank}, and it is named `xcmPallet.Sent`, which is from the `xcmPallet.send` extrinsic. In [Moonbase Alpha](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/explorer/query/4626493){target=\_blank}, the following events emitted by the `parachainSystem.setValidationData` extrinsic (where all the inbound XCM messages are processed) are of interest:
+This action will emit different events. The first one is only relevant [in the relay chain](https://polkadot.js.org/apps/?rpc=wss://fro-moon-rpc-1-moonbase-relay-rpc-1.moonbase.ol-infra.network#/explorer/query/10936471){target=\_blank}, and it is named `xcmPallet.Sent`, which is from the `xcmPallet.send` extrinsic. In [Moonbase Alpha](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/explorer/query/4626493){target=\_blank}, the following events emitted by the `parachainSystem.setValidationData` extrinsic (where all the inbound XCM messages are processed) are of interest:
 
  - `parachainSystem.DownwardMessagesReceived` — states that there was an XCM message received
  - `evm.Log` — internal events emitted by the different contract calls. The structure is the same: contract address, topics, and relevant data

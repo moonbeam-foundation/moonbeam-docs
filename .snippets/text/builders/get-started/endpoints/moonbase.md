@@ -20,4 +20,4 @@ To connect to the Moonbase Alpha relay chain, you can use the following WS Endpo
 
 | Provider  |                                    RPC URL                                    |
 |:---------:|:-----------------------------------------------------------------------------:|
-| PureStake | <pre>```wss://frag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network```</pre> |
+| PureStake | <pre>```wss://fro-moon-rpc-1-moonbase-relay-rpc-1.moonbase.ol-infra.network```</pre> |
