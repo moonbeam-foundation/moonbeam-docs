@@ -74,23 +74,10 @@ The first step is to go to [Remix](https://remix.ethereum.org/) and take the fol
  3. Write your smart contract using the file editor. For this example, the following code was used:
 
 ```solidity
-pragma solidity ^0.8.0;
-
-import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
-
-contract MyToken is ERC20, Ownable {
-    constructor() ERC20("MyToken", "MTK") {
-        _mint(msg.sender, 1000 * 10 ** decimals());
-    }
-
-    function mint(address to, uint256 amount) public onlyOwner {
-        _mint(to, amount);
-    }
-}
+--8<-- 'code/builders/build/eth-api/dev-env/openzeppelin/ERC20.sol'
 ```
 
-This ERC-20 token smart contract was extracted from the [Contract Wizard](#openzeppelin-contract-wizard), setting a premint of `1000` tokens and activating the `Mintable` feature.
+This ERC-20 token smart contract was extracted from the [Contract Wizard](#openzeppelin-contract-wizard), setting a premint of `1000` tokens and activating the `Mintable` and `Permit` features.
 
 ![Getting Started with Remix](/images/builders/build/eth-api/dev-env/openzeppelin/contracts/oz-contracts-1.webp)
 
@@ -130,40 +117,7 @@ As with the [ERC-20 contract](#deploying-an-erc-20-token), the first step is to 
 Next, you'll need to write the smart contract and compile it. For this example, the following code is used:
 
 ```solidity
-pragma solidity ^0.8.0;
-
-import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
-import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Burnable.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
-
-contract MyToken is ERC721, ERC721Enumerable, ERC721Burnable, Ownable {
-    constructor() ERC721("MyToken", "MTK") {}
-
-    function safeMint(address to, uint256 tokenId) public onlyOwner {
-        _safeMint(to, tokenId);
-    }
-
-    function _baseURI() internal pure override returns (string memory) {
-        return "Test";
-    }
-
-    function _beforeTokenTransfer(address from, address to, uint256 tokenId)
-        internal
-        override(ERC721, ERC721Enumerable)
-    {
-        super._beforeTokenTransfer(from, to, tokenId);
-    }
-
-    function supportsInterface(bytes4 interfaceId)
-        public
-        view
-        override(ERC721, ERC721Enumerable)
-        returns (bool)
-    {
-        return super.supportsInterface(interfaceId);
-    }
-}
+--8<-- 'code/builders/build/eth-api/dev-env/openzeppelin/ERC721.sol'
 ```
 
 This ERC-721 token smart contract was extracted from the [Contract Wizard](#openzeppelin-contract-wizard), setting the `Base URI` as `Test` and activating the `Mintable`, `Burnable`, and `Enumerable` features.
@@ -195,38 +149,7 @@ The first step is to go to [Remix](https://remix.ethereum.org/){target=\_blank} 
 As shown for the [ERC-20 token](#deploying-an-erc-20-token), you'll need to write the smart contract and compile it. For this example, the following code is used:
 
 ```solidity
-pragma solidity ^0.8.0;
-
-import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
-import "@openzeppelin/contracts/security/Pausable.sol";
-
-contract MyToken is ERC1155, Ownable, Pausable {
-    constructor() ERC1155("Test") {
-        _mint(msg.sender, 0, 1000 * 10 ** 18, "");
-        _mint(msg.sender, 1, 1, "");
-    }
-
-    function setURI(string memory newuri) public onlyOwner {
-        _setURI(newuri);
-    }
-
-    function pause() public onlyOwner {
-        _pause();
-    }
-
-    function unpause() public onlyOwner {
-        _unpause();
-    }
-
-    function _beforeTokenTransfer(address operator, address from, address to, uint256[] memory ids, uint256[] memory amounts, bytes memory data)
-        internal
-        whenNotPaused
-        override
-    {
-        super._beforeTokenTransfer(operator, from, to, ids, amounts, data);
-    }
-}
+--8<-- 'code/builders/build/eth-api/dev-env/openzeppelin/ERC1155.sol'
 ```
 
 This ERC-1155 token smart contract was extracted from the [Contract Wizard](#openzeppelin-contract-wizard), setting no `Base URI` and activating `Pausable` feature. The constructor function was modified to include the minting of both a fungible and a non-fungible token.
