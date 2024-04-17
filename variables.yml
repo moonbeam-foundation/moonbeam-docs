@@ -1,7 +1,7 @@
 networks:
   development:
-    build_tag: v0.35.0
-    tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.35.0-2700-latest
+    build_tag: v0.36.0
+    tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.36.0-2801-7ae4
     rpc_url: http://127.0.0.1:9944
     wss_url: ws://127.0.0.1:9944
     chain_id: 1281
@@ -15,10 +15,10 @@ networks:
     hex_chain_id: '0x507'
     chain_spec: alphanet
     block_explorer: https://moonbase.moonscan.io/
-    spec_version: runtime-2700
-    parachain_release_tag: v0.35.0 # must be in this exact format for links to work
-    parachain_sha256sum: 1b63dd42fa2692956a1c8f1e8d0ee46a3b5f00db9e11146e3b2b665c157661da
-    tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.35.0-2700-latest
+    spec_version: runtime-2801
+    parachain_release_tag: v0.36.0 # must be in this exact format for links to work
+    parachain_sha256sum: a4d143b6fd3c4fc43341df5a0e9a608180fee1b2e5c2ade12c4bcb4da49fa93a
+    tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.36.0-2801-7ae4
     gas_block: 15,000,000
     gas_block_numbers_only: 15000000
     gas_tx: 12,995,000
@@ -31,7 +31,7 @@ networks:
     node_db_loc: /chains/moonbase_alpha/db
     binary_name: moonbeam
     min_gas_price: 0.125
-    block_time: 12
+    block_time: 6
     website_faucet_amount: 1.1 DEV tokens
     chaindrop_faucet_amount: 0.1 DEV tokens
     node:
@@ -43,6 +43,9 @@ networks:
       block_number: 132605
     razor:
       bridge_address: '0xC6F33c0F15FE5e3A51A019524ac43574cFF29EFB'
+    supra:
+      pull_oracle: '0xaa2f56843Cec7840F0C106F0202313d8d8CB13d6'
+      storage: '0x4591d1B110ad451d8220d82252F829E8b2a91B17'
     chainlink:
       oracle_contract: '0x1d693d883BeAeE16edD0D7588D6a9f7E1967E798'
       link_contract: '0xa36085F69e2889c224210F603D836748e7dC0088'
@@ -136,16 +139,16 @@ networks:
           decision_deposit: 100000
           prepare_period:
             time: '1 day'
-            blocks: 7200
+            blocks: 14400
           decision_period:
             time: '14 days'
-            blocks: 100800
+            blocks: 201600
           confirm_period:
             time: '1 day'
-            blocks: 7200
+            blocks: 14400
           min_enactment_period:
             time: '1 day'
-            blocks: 7200
+            blocks: 14400
           min_approval:
             time0: 'Day 0'
             percent0: 100
@@ -163,16 +166,16 @@ networks:
           decision_deposit: 10000
           prepare_period:
             time: '10 minutes'
-            blocks: 50
+            blocks: 100
           decision_period:
             time: '14 days'
-            blocks: 100800
+            blocks: 201600
           confirm_period:
             time: '10 minutes'
-            blocks: 50
+            blocks: 100
           min_enactment_period:
             time: '30 minutes'
-            blocks: 150
+            blocks: 300
           min_approval:
             time0: 'Day 0'
             percent0: 100
@@ -192,16 +195,16 @@ networks:
           decision_deposit: 500
           prepare_period:
             time: '1 hour'
-            blocks: 300
+            blocks: 600
           decision_period:
             time: '14 days'
-            blocks: 100800
+            blocks: 201600
           confirm_period:
             time: '1 day'
-            blocks: 7200
+            blocks: 14400
           min_enactment_period:
             time: '1 day'
-            blocks: 7200
+            blocks: 14400
           min_approval:
             time0: 'Day 0'
             percent0: 100
@@ -221,16 +224,16 @@ networks:
           decision_deposit: 10000
           prepare_period:
             time: '1 hour'
-            blocks: 300
+            blocks: 600
           decision_period:
             time: '14 days'
-            blocks: 100800
+            blocks: 201600
           confirm_period:
             time: '3 hours'
-            blocks: 900
+            blocks: 1800
           min_enactment_period:
             time: '10 minutes'
-            blocks: 50
+            blocks: 100
           min_approval:
             time0: 'Day 0'
             percent0: 100
@@ -250,16 +253,16 @@ networks:
           decision_deposit: 20000
           prepare_period:
             time: '1 hour'
-            blocks: 300
+            blocks: 600
           decision_period:
             time: '14 days'
-            blocks: 100800
+            blocks: 201600
           confirm_period:
             time: '3 hours'
-            blocks: 900
+            blocks: 1800
           min_enactment_period:
             time: '10 minutes'
-            blocks: 50
+            blocks: 100
           min_approval:
             time0: 'Day 0'
             percent0: 100
@@ -271,6 +274,35 @@ networks:
             time0: 'Day 0'
             percent0: 10
             time1: 'Day 1'
+            percent1: 1
+            time2: 'Day 14'
+            percent2: 0
+        fast_general_admin:
+          max_deciding: 10
+          decision_deposit: 500
+          prepare_period:
+            time: '1 hour'
+            blocks: 300
+          decision_period:
+            time: '14 days'
+            blocks: 100800
+          confirm_period:
+            time: '1 day'
+            blocks: 7200
+          min_enactment_period:
+            time: '10 minutes'
+            blocks: 50
+          min_approval:
+            time0: 'Day 0'
+            percent0: 100
+            time1: 'Day 4'
+            percent1: 80
+            time2: 'Day 14'
+            percent2: 50
+          min_support:
+            time0: 'Day 0'
+            percent0: 50
+            time1: 'Day 5'
             percent1: 1
             time2: 'Day 14'
             percent2: 0
@@ -289,7 +321,7 @@ networks:
       min_can_stk_wei: 500000000000000000000
       collator_map_bond: 100
       max_candidates: 36
-      round_blocks: 600
+      round_blocks: 1200
       round_hours: 2
       min_del_stake: 1
       min_del_stake_wei: 1000000000000000000
@@ -301,11 +333,11 @@ networks:
     treasury:
       current_council_members: 2
       motion_duration_days: 3
-      motion_duration_blocks: 21600
+      motion_duration_blocks: 43200
       proposal_bond: 5
       proposal_bond_min: 1
       proposal_bond_max: uncapped
-      spend_period_blocks: 43200
+      spend_period_blocks: 86400
       spend_period_days: 6
       max_approved_proposals: 100
       tx_fees_allocated: 20
@@ -367,11 +399,12 @@ networks:
       gmp: '0x0000000000000000000000000000000000000816'
       xcm_transactor_v3: '0x0000000000000000000000000000000000000817'
       identity: '0x0000000000000000000000000000000000000818'
+      relay_data_verifier: '0x0000000000000000000000000000000000000819'
     substrate_api_sidecar:
       stable_version: 14.1.1
     tx_weight_to_gas_ratio: 25000      
     orbiter:
-      max_orbiters_per_collator: 4
+      max_orbiters_per_collator: 8
       max_collators: Unlimited
       active:
         rounds: 3
@@ -395,12 +428,12 @@ networks:
     chain_id: 1285
     hex_chain_id: '0x505'
     node_directory: /var/lib/moonriver-data
-    parachain_release_tag: v0.35.0
-    parachain_sha256sum: 1b63dd42fa2692956a1c8f1e8d0ee46a3b5f00db9e11146e3b2b665c157661da
-    tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.35.0-2700-latest
+    parachain_release_tag: v0.36.0
+    parachain_sha256sum: a4d143b6fd3c4fc43341df5a0e9a608180fee1b2e5c2ade12c4bcb4da49fa93a
+    tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.36.0-2801-7ae4
     chain_spec: moonriver
     block_explorer: https://moonriver.moonscan.io/
-    spec_version: runtime-2700
+    spec_version: runtime-2801
     binary_name: moonbeam
     min_gas_price: 1.25
     block_time: 12
@@ -669,6 +702,7 @@ networks:
       gmp: '0x0000000000000000000000000000000000000816'
       xcm_transactor_v3: '0x0000000000000000000000000000000000000817'
       identity: '0x0000000000000000000000000000000000000818'
+      relay_data_verifier: '0x0000000000000000000000000000000000000819'
     api3:
       rrp: '0xa0AD79D995DdeeB18a14eAef56A549A04e3Aa1Bd'
       anuqrngairnode: '0x9d3C147cA16DB954873A498e0af5852AB39139f2'
@@ -741,17 +775,23 @@ networks:
     chain_id: 1284
     hex_chain_id: '0x504'
     node_directory: /var/lib/moonbeam-data
-    parachain_release_tag: v0.35.0
-    parachain_sha256sum: 1b63dd42fa2692956a1c8f1e8d0ee46a3b5f00db9e11146e3b2b665c157661da
-    tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.35.0-2700-latest
+    parachain_release_tag: v0.36.0
+    parachain_sha256sum: a4d143b6fd3c4fc43341df5a0e9a608180fee1b2e5c2ade12c4bcb4da49fa93a
+    tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.36.0-2801-7ae4
     chain_spec: moonbeam
     block_explorer: https://moonscan.io
-    spec_version: runtime-2602
+    spec_version: runtime-2801
     binary_name: moonbeam
     min_gas_price: 125
     block_time: 12
     gas_block: 15,000,000
+    gas_block_numbers_only: 15000000
     gas_tx: 12,995,000
+    mbip_5:
+      block_storage_limit: 40
+      gas_storage_ratio: 366
+      example_storage: 500
+      example_addtl_gas: 183000
     node:
       cores: 8
       ram: 16
@@ -1022,12 +1062,16 @@ networks:
       gmp: '0x0000000000000000000000000000000000000816'
       xcm_transactor_v3: '0x0000000000000000000000000000000000000817'
       identity: '0x0000000000000000000000000000000000000818'
+      relay_data_verifier: '0x0000000000000000000000000000000000000819'
     api3:
       rrp: '0xa0AD79D995DdeeB18a14eAef56A549A04e3Aa1Bd'
       anuqrngairnode: '0x9d3C147cA16DB954873A498e0af5852AB39139f2'
       anuqrngxpub: 'xpub6DXSDTZBd4aPVXnv6Q3SmnGUweFv6j24SK77W4qrSFuhGgi666awUiXakjXruUSCDQhhctVG7AQt67gMdaRAsDnDXv23bBRKsMWvRzo6kbf'
       anuqrnguint256: '0xfb6d017bb87991b7495f563db3c8cf59ff87b09781947bb1e417006ad7f55a78'
       anuqrnguint256array: '0x27cc2713e7f968e4e86ed274a051a5c8aaee9cca66946f23af6f29ecea9704c3'
+    supra:
+      pull_oracle: '0x2FA6DbFe4291136Cf272E1A3294362b6651e8517'
+      storage: '0xD02cc7a670047b6b012556A88e275c685d25e0c9'
     chainlink:
       feed:
         proxy:

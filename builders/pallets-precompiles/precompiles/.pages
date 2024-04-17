@@ -16,6 +16,7 @@ nav:
   - 'Proxy': 'proxy.md'
   - 'Randomness': 'randomness.md'
   - 'Referenda': 'referenda.md'
+  - 'Relay Data Verifier': 'relay-data-verifier.md'
   - 'Staking Functions': 'staking.md'
   - 'X-Tokens': '/builders/interoperability/xcm/xc20/send-xc20s/xtokens-precompile/'
   - 'XCM Transactor': '/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-precompile/'

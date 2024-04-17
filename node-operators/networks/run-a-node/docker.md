@@ -103,6 +103,7 @@ For an overview of the flags used in the following start-up commands, plus addit
         --db-cache INSERT_RAM_IN_MB \
         -- \
         --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
+        --sync fast
         ```
 
     === "Moonriver"
@@ -119,6 +120,7 @@ For an overview of the flags used in the following start-up commands, plus addit
         --db-cache INSERT_RAM_IN_MB \
         -- \
         --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
+        --sync fast
         ```
 
     === "Moonbase Alpha"
@@ -135,6 +137,7 @@ For an overview of the flags used in the following start-up commands, plus addit
         --db-cache INSERT_RAM_IN_MB \
         -- \
         --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
+        --sync fast
         ```
 
 ??? code "MacOS snippets"
@@ -152,6 +155,7 @@ For an overview of the flags used in the following start-up commands, plus addit
         --trie-cache-size 1073741824 \
         -- \
         --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
+        --sync fast
         ```
 
     === "Moonriver"
@@ -167,6 +171,7 @@ For an overview of the flags used in the following start-up commands, plus addit
         --trie-cache-size 1073741824 \
         -- \
         --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
+        --sync fast
         ```
 
     === "Moonbase Alpha"
@@ -182,6 +187,7 @@ For an overview of the flags used in the following start-up commands, plus addit
         --trie-cache-size 1073741824 \
         -- \
         --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
+        --sync fast
         ```
 
 --8<-- 'text/node-operators/networks/run-a-node/external-access.md'
@@ -203,6 +209,7 @@ For an overview of the flags used in the following start-up commands, plus addit
         --unsafe-rpc-external \
         -- \
         --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
+        --sync fast
         ```
 
     === "MacOS"
@@ -219,6 +226,7 @@ For an overview of the flags used in the following start-up commands, plus addit
         --unsafe-rpc-external \
         -- \
         --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
+        --sync fast
         ```
 
 --8<-- 'text/node-operators/networks/run-a-node/sql-backend.md'
@@ -241,6 +249,7 @@ For an overview of the flags used in the following start-up commands, plus addit
         --frontier-backend-type sql \
         -- \
         --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
+        --sync fast
         ```
 
     === "MacOS"
@@ -257,6 +266,7 @@ For an overview of the flags used in the following start-up commands, plus addit
         --frontier-backend-type sql \
         -- \
         --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
+        --sync fast
         ```
 
 ### Collator Node
@@ -277,6 +287,7 @@ For an overview of the flags used in the following start-up commands, plus addit
         --db-cache INSERT_RAM_IN_MB \
         -- \
         --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
+        --sync fast
         ```
 
     === "Moonriver"
@@ -293,6 +304,7 @@ For an overview of the flags used in the following start-up commands, plus addit
         --db-cache INSERT_RAM_IN_MB \
         -- \
         --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
+        --sync fast
         ```
 
     === "Moonbase Alpha"
@@ -309,6 +321,7 @@ For an overview of the flags used in the following start-up commands, plus addit
         --db-cache INSERT_RAM_IN_MB \
         -- \
         --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
+        --sync fast
         ```
 
 ??? code "MacOS snippets"
@@ -326,6 +339,7 @@ For an overview of the flags used in the following start-up commands, plus addit
         --trie-cache-size 1073741824 \
         -- \
         --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
+        --sync fast
         ```
 
     === "Moonriver"
@@ -341,6 +355,7 @@ For an overview of the flags used in the following start-up commands, plus addit
         --trie-cache-size 1073741824 \
         -- \
         --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
+        --sync fast
         ```
 
     === "Moonbase Alpha"
@@ -356,6 +371,7 @@ For an overview of the flags used in the following start-up commands, plus addit
         --trie-cache-size 1073741824 \
         -- \
         --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
+        --sync fast
         ```
 
 ## Syncing Your Node {: #syncing-your-node }

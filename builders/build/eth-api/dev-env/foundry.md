@@ -39,7 +39,7 @@ You will need to create a Foundry project if you don't already have one. You can
     foundryup
     ```
 
-    If on Windows, you'll have to install Rust & and then build Foundry from source:
+    If on Windows, you'll have to install Rust and then build Foundry from source:
 
     ```bash
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs/ | sh
@@ -178,7 +178,7 @@ Notice that even though the above script is not being deployed, it still require
 You can deploy the `MyToken.sol` contract with the below command. Remember that it will execute all relevant steps in order. For this example, Foundry will first attempt a local simulation and a simulation against the provided RPC before deploying the contract. Foundry won't proceed with the deployment if any of the simulations fail.
 
 ```bash
-forge script script/MyToken.s.sol --rpc-url https://rpc.api.moonbase.moonbeam.network --broadcast
+forge script script/MyToken.s.sol --rpc-url {{ networks.moonbase.rpc_url }} --broadcast
 ```
 
 If your script's execution succeeds, your terminal should resemble the output below.
