@@ -43,7 +43,7 @@ const message = {
 const performRemoteDelegation = async () => {
   // 2. Construct API provider
   const wsProvider = new WsProvider(
-    'wss://frag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network'
+    'wss://fro-moon-rpc-1-moonbase-relay-rpc-1.moonbase.ol-infra.network'
   );
   const api = await ApiPromise.create({ provider: wsProvider });
 
