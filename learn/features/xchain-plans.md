@@ -5,20 +5,23 @@ description: This guide covers the ways you can build cross-chain dApps with Moo
 
 # Cross-Chain Communication Methods
 
-Moonbeam makes it easy for developers to build smart contracts that connect across chains, both within the Polkadot ecosystem and outside the Polkadot ecosystem. This guide will provide a fundamental overview of the underlying protocols that enable cross-chain communication and how you can leverage them to build connected contracts. For step-by-step guides of how to put these principles into practice, be sure to check out the [interoperability tutorials](/tutorials/interoperability/){target=\_blank}. 
+Moonbeam makes it easy for developers to build smart contracts that connect across chains, both within the Polkadot ecosystem and outside the Polkadot ecosystem. This guide will provide an overview of the underlying protocols that enable cross-chain communication and how you can leverage them to build connected contracts. For step-by-step guides of how to put these principles into practice, be sure to check out the [interoperability tutorials](/tutorials/interoperability/){target=\_blank}. 
 
-Two key terms that will come up frequently in this guide are XCM and GMP. XCM refers to cross-consensus messaging, and it's Polkadot's native interoperability language that facilitates communication between Polkadot blockchains. 
+Two key terms that will come up frequently in this guide are XCM and GMP. [XCM](https://docs.moonbeam.network/builders/interoperability/xcm/){target=\_blank} refers to cross-consensus messaging, and it's Polkadot's native interoperability language that facilitates communication between Polkadot blockchains. You can read more about the [standardized XCM message format](https://wiki.polkadot.network/docs/learn-xcm){target=\_blank} and [How to Get Started Building with XCM](https://docs.moonbeam.network/builders/interoperability/xcm/){target=\_blank}.
 
 [GMP](https://moonbeam.network/blog/what-is-gmp/){target=\_blank}, or general message passing, refers to the sending and receiving of messages within decentralized blockchain networks. While XCM *is a* type of general message passing, GMP is used colloquially to refer to cross-chain communication between Moonbeam and blockchains outside of Polkadot. Similarly, in this guide, XCM refers to cross-chain messaging within Polkadot, and GMP refers to cross-chain messaging between Moonbeam and other ecosystems outside of Polkadot. 
+ 
+## Quick Reference {: #quick-reference }  
 
-
-## XCM Overview {: #xcm-overview }  
-
-XCM, or [cross-consensus message format](https://wiki.polkadot.network/docs/learn-xcm){target=\_blank}, defines a specification for how to construct a message to send between two interoperating blockchains. Simply put, it's a way for two consensus systems to communicate. Thanks to the standardized XCM format, the receiving blockchain knows the exact actions to take when receiving the message. 
-
-The cross-consensus message name was chosen specifically over cross-chain to indicate the flexibility of the XCM message format. It's designed to be flexible enough for blockchains with entirely different consensus systems to adopt the XCM message format and seamlessly interoperate with other blockchains. Other blockchains outside of Polkadot are free to adopt the XCM message format, but most blockchains integrating XCM are naturally Polkadot parachains.
-
-For more information about building with XCM on Moonbeam, be sure to check out [XCM Interoperability in the Builders section](https://docs.moonbeam.network/builders/interoperability/xcm/){target=\_blank}. 
+=== "Comparison of XCM vs GMP"
+	| Specification |   	      XCM               |              GMP           |
+	|:-------------:|:-----------------------------:|:--------------------------:|
+	|    **Scope**      |    Polkadot and its connected parachains    |   Any blockchain supported by a GMP Provider   |
+	|    **Provider**    |   Polkadot     |  [Axelar](https://docs.moonbeam.network/builders/interoperability/protocols/axelar/){target=\_blank}, [Wormhole](https://docs.moonbeam.network/builders/interoperability/protocols/wormhole/){target=\_blank}, [LayerZero](https://docs.moonbeam.network/builders/interoperability/protocols/layerzero/){target=\_blank}, [Hyperlane](https://docs.moonbeam.network/builders/interoperability/protocols/hyperlane/){target=\_blank}, etc.    |
+	|  **Implementation**   |    [XCM Virtual Machine](https://wiki.polkadot.network/docs/learn-xcvm){target=\_blank}     |   Smart contracts   |
+	|  **Security**   |    Polkadot's shared security     |   Proprietary consensus determined by GMP provider   |
+	|  **Fees**   |    [Purchased with `BuyExecution` XCM instruction with supported asset](/builders/interoperability/xcm/core-concepts/weights-fees/){target=\_blank}     |   User sends value with transaction to pay for gas on the destination chain   |
+	|  **Adding New Chains**   |    Requires creation of XCM channels by both parachains     |   Requires GMP provider to add support   |
 
 ### XCM Transport Methods {: #xcm-transport-methods }  
 
@@ -54,7 +57,6 @@ As you know, GMP colloquially refers to cross-chain communication between Moonbe
 At a high level, the happy path of a message sent via GMP is as follows. A user or developer will call a contract specific to the GMP protocol, sometimes referred to as a mailbox contract or a gateway contract. This call typically includes parameters like the destination chain, the destination contract address, and includes sufficient value to pay for the transaction on the destination chain. A GMP provider listens for specific events on the origin blockchain pertaining to their gateway or mailbox contracts that indicate that a user wants to send a cross-chain message using their protocol. The GMP provider will validate certain parameters, including whether or not sufficient value was provided to pay for gas on the destination chain. In fact, the GMP provider may have a decentralized network of many nodes checking the authenticity of the message and verifying parameters. The GMP provider will not validate the integrity of the contract call to be delivered on the destination chain. E.g., the GMP provider will happily deliver a valid, paid-for message that contains a smart contract call that reverts on arrival. Finally, if everything checks out according to the consensus mechanism of the GMP provider, the message will be delivered to the destination chain, triggering the respective contract call at the destination. 
 
 ### GMP Providers Integrated with Moonbeam {: #gmp-providers-integrated-with-moonbeam } 
-
 An incredible array of GMP providers have integrated with Moonbeam, which is beneficial for several reasons. For one, it enables you to work with whichever GMP provider you prefer. Second, it means that Moonbeam is connected to a rapidly growing number of other chains. Whenever a GMP provider integrated with Moonbeam adds support for another chain, Moonbeam is automatically now connected with that chain. GMP providers are constantly adding support for new chains, and it's exciting to see those new integrations benefit the Moonbeam community. Additionally, having a variety of GMP providers allows for redundancy and backup. GMP providers have occasional maintenance windows or downtime; thus, it may make sense to add support for multiple GMP providers to ensure consistent uptime. 
 
 The following GMP providers have integrated with Moonbeam: 
@@ -63,5 +65,9 @@ The following GMP providers have integrated with Moonbeam:
 - [Hyperlane](/builders/interoperability/protocols/hyperlane/){target=\_blank}
 - [LayerZero](/builders/interoperability/protocols/layerzero/){target=\_blank} 
 - [Wormhole](/builders/interoperability/protocols/wormhole/){target=\_blank}
+
+## Implementing Both XCM and GMP {: #implementing-both-xcm-and-gmp } 
+
+Building with XCM or GMP does not preclude building with the other. As they suit different use cases, a team may seek to utilize XCM to handle interoperability needs within Polkadot, and GMP to deliver cross-chain messages to and from blockchains outside of Polkadot. 
 
 --8<-- 'text/_disclaimers/third-party-content.md'
