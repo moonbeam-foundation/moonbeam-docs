@@ -439,7 +439,7 @@ You can even fork networks while using Chisel:
 Then, for example, you can query the balance of one of Moonbase Alpha's collators:  
 
 ```text
-0x4c5A56ed5A4FF7B09aA86560AfD7d383F4831Cce.balance
+{{ networks.moonbase.staking.candidates.address1 }}.balance
 ```
 
 --8<-- 'code/builders/build/eth-api/dev-env/foundry/terminal/query-balance.md'

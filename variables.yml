@@ -328,8 +328,8 @@ networks:
       max_del_per_can: 300
       max_del_per_del: 100
       candidates:
-        address1: '0x4c5A56ed5A4FF7B09aA86560AfD7d383F4831Cce'
-        address2: '0x623c9E50647a049F92090fe55e22cC0509872FB6'
+        address1: '0x12E7BCCA9b1B15f33585b5fc898B967149BDb9a5'
+        address2: '0x95651f0777D9c7EF56f2edEe62D5F28743E0635a'
     treasury:
       current_council_members: 2
       motion_duration_days: 3

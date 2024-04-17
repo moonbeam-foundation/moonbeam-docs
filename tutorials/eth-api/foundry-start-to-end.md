@@ -85,24 +85,7 @@ touch MyToken.sol
 Open the file and add the following to it:
 
 ```solidity
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
-
-// Import OpenZeppelin Contract
-import {ERC20} from "openzeppelin-contracts/contracts/token/ERC20/ERC20.sol";
-
-// This ERC-20 contract mints the specified amount of tokens to the contract creator
-contract MyToken is ERC20 {
-  constructor(uint256 initialSupply) ERC20("MyToken", "MYTOK") {
-    _mint(msg.sender, initialSupply);
-  }
-
-  // An external minting function allows anyone to mint as many tokens as they want
-  function mint(uint256 toMint, address to) external {
-    require(toMint <= 1 ether);
-    _mint(to, toMint);
-  }
-}
+--8<-- 'code/tutorials/eth-api/foundry-start-to-end/ERC20.sol'
 ```
 
 As you can see, the OpenZeppelin `ERC20` smart contract is imported by the mapping defined in `remappings.txt`.
