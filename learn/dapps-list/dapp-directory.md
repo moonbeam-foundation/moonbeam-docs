@@ -302,7 +302,7 @@ As your project evolves, you may need to update your project's listing or images
 
 If you are no longer using a logo or screenshot, please remember to remove it from the `logos` or `screenshots` directory.
 
-Once your changes have been made, you must follow the same instructions in the [Submit a Pull Request](#submit-a-pull-request) section so the changes can be [reviewed](review-process) by the Moonbeam Foundation. Please note that pull requests are reviewed on a bi-weekly basis, so if the update is urgent, you can create a [forum post](https://forum.moonbeam.foundation/){target=\_blank} asking for assistance.
+Once your changes have been made, you must follow the same instructions in the [Submit a Pull Request](#submit-a-pull-request) section so the changes can be [reviewed](#review-process) by the Moonbeam Foundation. Please note that pull requests are reviewed on a bi-weekly basis, so if the update is urgent, you can create a [forum post](https://forum.moonbeam.foundation/){target=\_blank} asking for assistance.
 
 <div class="page-disclaimer">
     --8<-- 'text/_disclaimers/user-generated-content.md'

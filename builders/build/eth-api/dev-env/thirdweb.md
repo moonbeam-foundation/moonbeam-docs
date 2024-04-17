@@ -118,7 +118,7 @@ thirdweb offers SDKs for a range of programming languages, such as React, React 
 
 ## Interact With a Contract {: #interact-with-a-contract }
 
-thirdweb provides several SDKs to allow you to interact with your contract including: [React](https://portal.thirdweb.com/react){target=\_blank}, [React Native](https://portal.thirdweb.com/react-native){target=\_blank}, [TypeScript](https://portal.thirdweb.com/typescript){target=\_blank}, [Python](https://portal.thirdweb.com/python){target=\_blank}, [Go](https://portal.thirdweb.com/go){target=\_blank}, and [Unity](https://portal.thirdweb.com/unity){target=\_blank}.
+thirdweb provides several SDKs to allow you to interact with your contract including: [React](https://portal.thirdweb.com/react){target=\_blank}, [React Native](https://portal.thirdweb.com/react-native){target=\_blank}, [TypeScript](https://portal.thirdweb.com/typescript){target=\_blank}, and [Unity](https://portal.thirdweb.com/unity){target=\_blank}.
 
 This document will show you how to interact with your contract deployed to Moonbeam using React. You can view the [full React SDK reference](https://portal.thirdweb.com/react){target=\_blank} in thirdweb’s documentation.
 

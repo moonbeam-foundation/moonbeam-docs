@@ -281,7 +281,7 @@ To learn how to deploy a randomness-consuming contract on Moonbeam, please refer
 ## Resources {: #resources }
 
 - [Twitter](https://twitter.com/DIAdata_org){target=\_blank}
-- [Discord](https://discord.gg/dia-dao){target=\_blank}
+- [Discord](https://discord.gg/ZvGjVY5uvs){target=\_blank}
 - [Website](https://diadata.org/){target=\_blank}
 - [Docs](https://docs.diadata.org/){target=\_blank}
 - [Explore data](https://www.diadata.org/app/){target=\_blank}
