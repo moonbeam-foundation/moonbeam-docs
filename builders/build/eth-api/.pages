@@ -4,5 +4,3 @@ nav:
   - libraries
   - dev-env
   - verify-contracts
-  - 'Debug & Trace': 'debug-trace.md'
-  - 'Events Subscription': 'pubsub.md'
