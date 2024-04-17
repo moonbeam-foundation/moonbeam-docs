@@ -72,17 +72,7 @@ touch MyToken.sol
 Open the file and add the following contract to it:
 
 ```solidity
-pragma solidity ^0.8.0;
-
-// Import OpenZeppelin Contract
-import "openzeppelin-contracts/contracts/token/ERC20/ERC20.sol";
-
-// This ERC-20 contract mints the specified amount of tokens to the contract creator
-contract MyToken is ERC20 {
-  constructor(uint256 initialSupply) ERC20("MyToken", "MYTOK") {
-    _mint(msg.sender, initialSupply);
-  }
-}
+--8<-- 'code/builders/build/eth-api/dev-env/foundry/ERC20.sol'
 ```
 
 Before you attempt to compile, install OpenZeppelin contracts as a dependency. You may have to commit previous changes to git beforehand. By default, Foundry uses git submodules instead of npm packages, so the traditional npm import path and command are not used. Instead, use the name of OpenZeppelin's GitHub repository:

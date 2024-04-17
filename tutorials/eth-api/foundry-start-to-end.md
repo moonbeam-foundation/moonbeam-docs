@@ -64,8 +64,8 @@ libs = ['lib']
 solc_version = '0.8.17'
 
 [rpc_endpoints]
-moonbase = "https://rpc.api.moonbase.moonbeam.network"
-moonbeam = "https://rpc.api.moobeam.network"
+moonbase = "{{ networks.moonbase.rpc_url }}"
+moonbeam = "{{ networks.moonbeam.rpc_url }}"
 
 [etherscan]
 moonbase = { key = "${MOONSCAN_API_KEY}" }
