@@ -1,5 +1,5 @@
 <div id="termynal" data-termynal>
-    <span data-ty="input"><span class="file-path"></span> npx hardhat ignition deploy ./ignition/modules/DelegationDao.js --network moonbeam --deployment-id YOUR-NAME-HERE</span>
+    <span data-ty="input"><span class="file-path"></span> npx hardhat ignition deploy ./ignition/modules/DelegationDao.js --network moonbeam --deployment-id INSERT_YOUR_NAME</span>
     <br>
     <span data-ty>✅ Confirm deploy to network moonbeam (1284)? … yes</span>
     <span data-ty>Hardhat Ignition 🚀</span>
