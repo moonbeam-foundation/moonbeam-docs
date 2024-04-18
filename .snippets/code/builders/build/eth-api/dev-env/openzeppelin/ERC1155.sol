@@ -24,8 +24,7 @@ contract MyToken is ERC1155, Ownable, ERC1155Pausable {
         _unpause();
     }
 
-    // The following functions are overrides required by Solidity.
-
+    // The following function is an override required by Solidity
     function _update(address from, address to, uint256[] memory ids, uint256[] memory values)
         internal
         override(ERC1155, ERC1155Pausable)
