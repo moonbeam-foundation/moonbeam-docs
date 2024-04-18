@@ -173,7 +173,7 @@ For the examples in this guide, you'll need to add your private keys for your tw
 require('@nomicfoundation/hardhat-toolbox');
 require('@nomicfoundation/hardhat-ignition-ethers');
 
-// 2. Create variables for your private keys from your pre-funded Moonbase Alpha 
+// 2. Create variables for your private keys from your pre-funded Moonbase Alpha
 // testing accounts and your Moonscan API key
 const privateKey = 'INSERT_PRIVATE_KEY';
 const privateKey2 = 'INSERT_ANOTHER_PRIVATE_KEY';
@@ -187,20 +187,20 @@ module.exports = {
     moonbase: {
       url: '{{ networks.moonbase.rpc_url }}',
       chainId: {{ networks.moonbase.chain_id }}, // {{ networks.moonbase.hex_chain_id }} in hex
-      accounts: [privateKey, privateKey2]
+      accounts: [privateKey, privateKey2],
     },
     dev: {
       url: '{{ networks.development.rpc_url }}',
-      chainId: 1281, // {{ networks.development.hex_chain_id }} in hex
+      chainId: {{ networks.development.chain_id }}, // {{ networks.development.hex_chain_id }} in hex
       accounts: [
         '0x5fb92d6e98884f76de468fa3f6278f8807c48bebc13595d45af5bdc4da702133', // Alice's PK
-        '0x8075991ce870b93a8870eca0c0f91913d12f47948ca0fd25b49c6fa7cdbeee8b' // Bob's PK
-      ]
+        '0x8075991ce870b93a8870eca0c0f91913d12f47948ca0fd25b49c6fa7cdbeee8b', // Bob's PK
+      ],
     },
     moonbeam: {
       url: '{{ networks.moonbeam.public_rpc_url }}', // Or insert your own RPC URL here
-      chainId: 1284, // {{ networks.moonbeam.hex_chain_id }} in hex
-      accounts: [privateKey, privateKey2]
+      chainId: {{ networks.moonbeam.chain_id }}, // {{ networks.moonbeam.hex_chain_id }} in hex
+      accounts: [privateKey, privateKey2],
     },
   },
   // 5. Set up your Moonscan API key for contract verification
@@ -208,9 +208,9 @@ module.exports = {
   etherscan: {
     apiKey: {
       moonbaseAlpha: moonscanAPIKey, // Moonbase Moonscan API Key
-      moonbeam: moonscanAPIKey, // Moonbeam Moonscan API Key    
-    }
-  }
+      moonbeam: moonscanAPIKey, // Moonbeam Moonscan API Key
+    },
+  },
 };
 ```
 
@@ -289,20 +289,36 @@ We'll define a function called `deployDao` containing the setup steps for our st
 ```javascript
 // The describe function receives the name of a section of your test suite, and a callback. The callback must define the tests of that section. This callback can't be an async function
 describe('Dao contract', function () {
+  let wallet1, wallet2;
+
+  before(async function () {
+    // Get signers we defined in HardHat Config
+    const signers = await ethers.getSigners();
+    wallet1 = signers[0];
+    wallet2 = signers[1];
+  });
+
   async function deployDao() {
-    const delegationDaoFactory = await ethers.getContractFactory('DelegationDAO', wallet2);
-    
+    const delegationDaoFactory = await ethers.getContractFactory(
+      'DelegationDAO',
+      wallet2
+    );
+
     // Deploy the staking DAO and wait for the deployment transaction to be confirmed
     try {
-        const deployedDao = await delegationDaoFactory.deploy(targetCollator, wallet2.address);
-        await deployedDao.waitForDeployment(); // Wait for the transaction to be mined
-        return { deployedDao };
+      const deployedDao = await delegationDaoFactory.deploy(
+        targetCollator,
+        wallet2.address
+      );
+      await deployedDao.waitForDeployment(); // Wait for the transaction to be mined
+      return { deployedDao };
     } catch (error) {
-        console.error("Failed to deploy contract:", error);
-        return null; // Return null to indicate failure
+      console.error('Failed to deploy contract:', error);
+      return null; // Return null to indicate failure
     }
   }
-});  
+  // Insert additional tests here
+}); 
 ```
 
 ### Writing your First Test Cases {: #writing-your-first-test-cases }
@@ -314,18 +330,20 @@ Add the snippet below to the end of your `Dao contract` function.
 ```javascript
 // You can nest calls to create subsections
 describe('Deployment', function () {
-// Mocha's it function is used to define each of your tests. It receives the test name, and a callback function. If the callback function is async, Mocha will await it. Test case to check that the correct target collator is stored
-it('should store the correct target collator in the DAO', async function () {
+  // Mocha's it function is used to define each of your tests. It receives the test name, and a callback function. If the callback function is async, Mocha will await it. Test case to check that the correct target collator is stored
+  it('should store the correct target collator in the DAO', async function () {
     const deployment = await deployDao();
     if (!deployment || !deployment.deployedDao) {
-        throw new Error("Deployment failed; DAO contract was not deployed.");
+      throw new Error('Deployment failed; DAO contract was not deployed.');
     }
     const { deployedDao } = deployment;
 
     // The expect function receives a value and wraps it in an assertion object.
     // This test will pass if the DAO stored the correct target collator
-    expect(await deployedDao.getTarget()).to.equal('0xf24FF3a9CF04c71Dbc94D0b566f7A27B94566cac');
-    });
+    expect(await deployedDao.getTarget()).to.equal(
+      '0xf24FF3a9CF04c71Dbc94D0b566f7A27B94566cac'
+    );
+  });
   // The following test cases should be added here
 });
 ```
@@ -335,9 +353,9 @@ Now, add another test case. When a staking DAO is launched, it shouldn't have an
 ```javascript
 // Test case to check that the DAO has 0 funds at inception
 it('should initially have 0 funds in the DAO', async function () {
-    const { deployedDao } = await deployDao();
-    // This test will pass if the DAO has no funds as expected before any contributions
-    expect(await deployedDao.totalStake()).to.equal(0);
+  const { deployedDao } = await deployDao();
+  // This test will pass if the DAO has no funds as expected before any contributions
+  expect(await deployedDao.totalStake()).to.equal(0);
 });
 ```
 
@@ -350,13 +368,15 @@ In the [staking DAO contract](https://github.com/moonbeam-foundation/moonbeam-in
 ```javascript
 // Test case to check that non-admins cannot grant membership
 it('should not allow non-admins to grant membership', async function () {
-    const { deployedDao } = await deployDao();
-    // Connect the non-admin wallet to the deployed contract
-    const deployedDaoConnected = deployedDao.connect(wallet1);
-    const tx = deployedDaoConnected.grant_member('0x0000000000000000000000000000000000000000');
+  const { deployedDao } = await deployDao();
+  // Connect the non-admin wallet to the deployed contract
+  const deployedDaoConnected = deployedDao.connect(wallet1);
+  const tx = deployedDaoConnected.grant_member(
+    '0x0000000000000000000000000000000000000000'
+  );
 
-    // Check that the transaction reverts, not specifying any particular reason
-    await expect(tx).to.be.reverted;
+  // Check that the transaction reverts, not specifying any particular reason
+  await expect(tx).to.be.reverted;
 });
 ```
 
@@ -367,20 +387,20 @@ For this example, you'll verify whether the newly added DAO member can call the 
 ```javascript
 // Test case to check that members can access member only functions
 it('should only allow members to access member-only functions', async function () {
-    const { deployedDao } = await deployDao();
+  const { deployedDao } = await deployDao();
 
-    // Connect the wallet1 to the deployed contract and grant membership
-    const deployedDaoConnected = deployedDao.connect(wallet2);
-    const grantTx = await deployedDaoConnected.grant_member(wallet1.address);
-    await grantTx.wait();
+  // Connect the wallet1 to the deployed contract and grant membership
+  const deployedDaoConnected = deployedDao.connect(wallet2);
+  const grantTx = await deployedDaoConnected.grant_member(wallet1.address);
+  await grantTx.wait();
 
-    // Check the free balance using the member's credentials
-    const checkTx = deployedDaoConnected.check_free_balance();
+  // Check the free balance using the member's credentials
+  const checkTx = deployedDaoConnected.check_free_balance();
 
-    // Since check_free_balance() does not modify state, we expect it not to be reverted and check the balance
-    await expect(checkTx).to.not.be.reverted;
-    expect(await checkTx).to.equal(0);
-  });
+  // Since check_free_balance() does not modify state, we expect it not to be reverted and check the balance
+  await expect(checkTx).to.not.be.reverted;
+  expect(await checkTx).to.equal(0);
+});
 ```
 
 And that's it! You're now ready to run your tests!
@@ -439,11 +459,10 @@ When all is said and done your deployment script should look similar to the foll
 
 ```javascript
 // 1. Import the required function from the Hardhat Ignition module
-const { buildModule } = require("@nomicfoundation/hardhat-ignition/modules");
+const { buildModule } = require('@nomicfoundation/hardhat-ignition/modules');
 
 // 2. Define and export your deployment module using `buildModule`
-module.exports = buildModule("DelegationDAOModule", (m) => {
-
+module.exports = buildModule('DelegationDAOModule', (m) => {
   // 3. Specify the target collator address for the DAO
   const targetCollator = '{{ networks.moonbase.staking.candidates.address1 }}';
 
@@ -451,14 +470,17 @@ module.exports = buildModule("DelegationDAOModule", (m) => {
   const deployer = m.getAccount(0);
 
   // 5. Deploy the `DelegationDAO` contract
-  const delegationDao = m.contract("DelegationDAO", [targetCollator, deployer], {
-    from: deployer,
-  });
+  const delegationDao = m.contract(
+    'DelegationDAO',
+    [targetCollator, deployer],
+    {
+      from: deployer,
+    }
+  );
 
   // 6. Return an object from the module including references to deployed contracts, allowing the contract to be accessible for interaction in Hardhat tests and scripts
   return { delegationDao };
 });
-
 ```
 
 To run the script and deploy the `DelegationDAO.sol` contract, use the following command, which requires you to specify the network name as defined in your `hardhat.config.js`. If you don't specify a network, Hardhat will deploy the contract to a local Hardhat network by default. 
@@ -504,11 +526,10 @@ In the following steps, we'll be deploying the `DelegationDAO` contract to the M
 
 ```javascript
 // 1. Import the required function from the Hardhat Ignition module
-const { buildModule } = require("@nomicfoundation/hardhat-ignition/modules");
+const { buildModule } = require('@nomicfoundation/hardhat-ignition/modules');
 
 // 2. Define and export your deployment module using `buildModule`
-module.exports = buildModule("DelegationDAOModule", (m) => {
-
+module.exports = buildModule('DelegationDAOModule', (m) => {
   // 3. Specify the target collator address for the DAO
   const targetCollator = '{{ networks.moonbeam.staking.candidates.address1 }}';
 
@@ -516,9 +537,13 @@ module.exports = buildModule("DelegationDAOModule", (m) => {
   const deployer = m.getAccount(0);
 
   // 5. Deploy the `DelegationDAO` contract
-  const delegationDao = m.contract("DelegationDAO", [targetCollator, deployer], {
-    from: deployer,
-  });
+  const delegationDao = m.contract(
+    'DelegationDAO',
+    [targetCollator, deployer],
+    {
+      from: deployer,
+    }
+  );
 
   // 6. Return an object from the module including references to deployed contracts, allowing the contract to be accessible for interaction in Hardhat tests and scripts
   return { delegationDao };
