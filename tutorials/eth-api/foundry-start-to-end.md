@@ -306,18 +306,25 @@ source .env
 Now your script and project should be ready for deployment! Use the following command to do so:  
 
 ```bash
-forge script Container.s.sol:ContainerDeployScript --broadcast --verify -vvvv --rpc-url moonbase
+forge script Container.s.sol:ContainerDeployScript --broadcast --verify -vvvv --legacy --rpc-url moonbase
 ```
 
 What this command does is run the `ContainerDeployScript` contract as a script. The `--broadcast` option tells Forge to allow broadcasting of transactions, the `--verify` option tells Forge to verify to Moonscan when deploying, `-vvvv` makes the command output verbose, and `--rpc-url moonbase` sets the network to what `moonbase` was set to in `foundry.toml`.  
 
 You should see something like this as output:  
 
-![Running a Script in Foundry](/images/tutorials/eth-api/foundry-start-to-end/foundry-5.webp)
+--8<-- 'code/tutorials/eth-api/foundry-start-to-end/terminal/deploy.md'
 
 You should be able to see that your contracts were deployed, and are verified on Moonscan! For example, this is where my [`Container.sol` contract was deployed](https://moonbase.moonscan.io/address/0xe8bf2e654d7c1c1ba8f55fed280ddd241e46ced9#code){target=\_blank}.  
 
-The entire deployment script is [available on GitHub](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/tutorials/eth-api/foundry-start-to-end/Container.s.sol){target=\_blank}.  
+The entire deployment script is available below:  
+
+??? code "Container.s.sol"
+
+    ```solidity
+    --8<-- 'code/tutorials/eth-api/foundry-start-to-end/Container.s.sol'
+    ```
+
 
 ### Deploy on Moonbeam MainNet {: #deploy-on-moonbeam-mainnet }
 
