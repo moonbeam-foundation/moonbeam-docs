@@ -46,10 +46,10 @@ You will need to create a Foundry project if you don't already have one. You can
     cargo install --git https://github.com/foundry-rs/foundry foundry-cli anvil --bins --locked
     ```
 
-2. Create the project, which will create a folder with three folders within it:
+2. Create the project, which will create a folder with three folders within it, and open it:
 
     ```bash
-    forge init foundry
+    forge init foundry && cd foundry
     ```
 
 With the default project created, you should see three folders.  

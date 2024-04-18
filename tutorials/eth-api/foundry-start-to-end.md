@@ -61,7 +61,7 @@ Finally, let's open up the `foundry.toml` file. In preparation for Etherscan ver
 src = 'src'
 out = 'out'
 libs = ['lib']
-solc_version = '0.8.17'
+solc_version = '0.8.20'
 
 [rpc_endpoints]
 moonbase = "{{ networks.moonbase.rpc_url }}"
@@ -142,6 +142,10 @@ contract Container {
 }
 ```
 
+```solidity
+--8<-- 'code/tutorials/eth-api/foundry-start-to-end/Container.sol'
+```
+
 The `Container` smart contract can have its status updated based on how many tokens it holds and what its initial capacity value was set to. If the number of tokens it holds is above its capacity, its status can be updated to `Overflowing`. If it holds tokens equal to capacity, its status can be updated to `Full`. Otherwise, the contract will start and stay in the `Unsatisfied` state.  
 
 `Container` requires a `MyToken` smart contract instance to function, so when we deploy it, we will need logic to ensure that it is deployed with a `MyToken` smart contract.  
@@ -187,6 +191,10 @@ contract MyTokenTest is Test {
         assertEq(token.balanceOf(address(this)), 100);
     }
 }
+```
+
+```solidity
+--8<-- 'code/tutorials/eth-api/foundry-start-to-end/MyToken-initial-test.sol'
 ```
 
 Let's break down what's happening here. The first line is typical for a Solidity file: setting the Solidity version. The next two lines are imports. `forge-std/Test.sol` is the standard library that Forge (and thus Foundry) includes to help with testing. This includes the `Test` smart contract, certain assertions, and [forge cheatcodes](https://book.getfoundry.sh/forge/cheatcodes){target=\_blank}.  
@@ -238,6 +246,10 @@ contract ContainerTest is Test {
 }
 ```
 
+```solidity
+--8<-- 'code/tutorials/eth-api/foundry-start-to-end/Container-initial-test.sol'
+```
+
 This test smart contract has two tests, so when running the tests, there will be two deployments of both `MyToken` and `Container`, for four smart contracts in total. You can run the following command to see the result of the test:  
 
 ```bash
@@ -246,7 +258,7 @@ forge test
 
 When testing, you should see the following output:  
 
-![Unit Testing in Foundry](/images/tutorials/eth-api/foundry-start-to-end/foundry-1.webp)
+--8<-- 'code/tutorials/eth-api/foundry-start-to-end/terminal/test.md'
 
 ### Test Harnesses in Foundry {: #test-harnesses-in-foundry }
 
@@ -255,30 +267,18 @@ Sometimes you'll want to unit test an `internal` function in a smart contract. T
 For example, in `Container`, there is an internal function named `_isOverflowing`, which checks to see if the smart contract has more tokens than its capacity. To test this, add the following test harness smart contract to the `Container.t.sol` file:  
 
 ```solidity
-contract ContainerHarness is Container {
-    constructor(MyToken _token, uint256 _capacity) Container(_token, _capacity) {}
-
-    function exposed_isOverflowing(uint256 balance) external view returns(bool) {
-        return _isOverflowing(balance);
-    }
-}
-```  
+--8<-- 'code/tutorials/eth-api/foundry-start-to-end/ContainerHarness.sol'
+```
 
 Now, inside of the `ContainerTest` smart contract, you can add a new test that tests the previously unreachable `_isOverflowing` contract:  
 
 ```solidity
-    // Tests for negative cases of the internal _isOverflowing function
-    function testIsOverflowingFalse() public {
-        ContainerHarness harness = new ContainerHarness(token , CAPACITY);
-        assertFalse(harness.exposed_isOverflowing(CAPACITY - 1));
-        assertFalse(harness.exposed_isOverflowing(CAPACITY));
-        assertFalse(harness.exposed_isOverflowing(0));
-    }
+--8<-- 'code/tutorials/eth-api/foundry-start-to-end/IsOverflowing.sol'
 ```
 
 Now, when you run the test with `forge test`, you should see that `testIsOverflowingFalse` passes!  
 
-![Test Harness in Foundry](/images/tutorials/eth-api/foundry-start-to-end/foundry-2.webp)
+--8<-- 'code/tutorials/eth-api/foundry-start-to-end/terminal/test2.md'
 
 ### Fuzzing Tests in Foundry {: #fuzzing-tests-in-foundry}
 
@@ -296,6 +296,10 @@ One of the best ways that developers can test many inputs is through fuzzing, or
     }
 ```
 
+```solidity
+--8<-- 'code/tutorials/eth-api/foundry-start-to-end/Fuzz-test.sol'
+```
+
 This test includes `uint256 amountToMint` as input, which tells Foundry to fuzz with `uint256` inputs! By default, Foundry will input 256 different inputs, but this can be configured with the [`FOUNDRY_FUZZ_RUNS` environment variable](https://book.getfoundry.sh/reference/config/testing#runs){target=\_blank}.  
 
 Additionally, the first line in the function uses `vm.assume` to only use inputs that are less than or equal to 1 ether, since the `mint` function reverts if someone tries to mint more than 1 ether at a time. This cheatcode helps you direct the fuzzing into the right range.  
@@ -309,6 +313,10 @@ Let's look at another fuzzing test to put in the `MyTokenTest` contract, but thi
         
         token.mint(amountToMint, msg.sender);
     }
+```
+
+```solidity
+--8<-- 'code/tutorials/eth-api/foundry-start-to-end/Fuzz-test2.sol'
 ```
 
 In Foundry, when you want to test for a failure, instead of just starting your test function with the world *"test"*, you start it with *"testFail"*. In this test, we assume that the `amountToMint` is above 1 ether, which should fail!  
