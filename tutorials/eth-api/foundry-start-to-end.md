@@ -1,6 +1,6 @@
 ---
 title: Foundry Development Life Cycle from Start to End
-description: Follow a step-by-step tutorial on how to use Foundry to build a project on Moonbeam from writing smart contracts and tests to deploying on TestNet and MainNet.
+description: Follow a step-by-step tutorial on how to use Foundry to build a project on Moonbeam, from writing smart contracts and tests to deploying on TestNet and MainNet.
 ---
 
 # Using Foundry Start to End with Moonbeam
@@ -9,9 +9,9 @@ _by Jeremy Boetticher_
 
 ## Introduction {: #introduction }
 
-Foundry has become an increasingly popular developer environment to develop smart contracts with, since utilizing it only requires a single language: Solidity. Moonbeam offers [introductory documentation on using Foundry](/builders/build/eth-api/dev-env/foundry){target=\_blank} with Moonbeam networks, which is recommended to read to get an introduction to using Foundry. In this tutorial we will be dipping our toes deeper into the library to get a more cohesive look at how to properly develop, test, and deploy.  
+Foundry has become an increasingly popular development environment for smart contracts because it requires only one language: Solidity. Moonbeam offers [introductory documentation on using Foundry](/builders/build/eth-api/dev-env/foundry){target=\_blank} with Moonbeam networks, which is recommended to read to get an introduction to using Foundry. In this tutorial, we will dip our toes deeper into the library to get a more cohesive look at properly developing, testing, and deploying with Foundry.  
 
-In this demonstration, we will deploy two smart contracts. One is a token and another will depend on that token. We will also write unit tests to ensure that the contracts work as expected. To deploy them, we will write a script that Foundry will use to determine the deployment logic. Finally, we will verify the smart contracts on a Moonbeam network's blockchain explorer.  
+In this demonstration, we will deploy two smart contracts. One is a token, and the other will depend on that token. We will also write unit tests to ensure the contracts work as expected. To deploy them, we will write a script that Foundry will use to determine the deployment logic. Finally, we will verify the smart contracts on Moonbeam's blockchain explorer.
 
 ## Checking Prerequisites {: #checking-prerequisites }
 
@@ -26,7 +26,7 @@ To get started, you will need the following:
 
 ## Create a Foundry Project {: #create-a-foundry-project }
 
-The first step to start a Foundry project is of course to create it. If you have Foundry installed, you can run:
+The first step to start a Foundry project is, of course, to create it. If you have Foundry installed, you can run:
 
 ```bash
 forge init foundry && cd foundry
@@ -72,11 +72,11 @@ moonbase = { key = "${MOONSCAN_API_KEY}" }
 moonbeam = { key = "${MOONSCAN_API_KEY}" }
 ```
 
-The first addition is a specification of the `solc_version`, underneath `profile.default`. The `rpc_endpoints` tag allows you to define which RPC endpoints to use when deploying to a named network, in this case, Moonbase Alpha and Moonbeam. The `etherscan` tag allows you to add Etherscan API keys for smart contract verification, which we will go over later.  
+The first addition is a specification of the `solc_version`, underneath `profile.default`. The `rpc_endpoints` tag allows you to define which RPC endpoints to use when deploying to a named network, in this case, Moonbase Alpha and Moonbeam. The `etherscan` tag allows you to add Etherscan API keys for smart contract verification, which we will review later.  
 
 ## Add Smart Contracts {: #add-smart-contracts-in-foundry }
 
-Smart contracts in Foundry that are meant to be deployed by default belong in the `src` folder. In this tutorial, we'll write two smart contracts. Starting with the token:
+Smart contracts in Foundry destined for deployment by default belong in the `src` folder. In this tutorial, we'll write two smart contracts. Starting with the token:
 
 ```bash
 touch MyToken.sol
@@ -124,7 +124,7 @@ cd test
 touch MyToken.t.sol
 ```
 
-By convention, all of your tests should end with `.t.sol` and start with the name of the smart contract that it is testing. In practice, the test can be stored anywhere, and is considered a test if it has a function that starts with the word *"test"*.
+By convention, all of your tests should end with `.t.sol` and start with the name of the smart contract that it is testing. In practice, the test can be stored anywhere and is considered a test if it has a function that starts with the word *"test"*.
 
 Let's start by writing a test for the token smart contract. Open up `MyToken.t.sol` and add:  
 
@@ -148,7 +148,7 @@ And add the following:
 --8<-- 'code/tutorials/eth-api/foundry-start-to-end/Container-initial-test.sol'
 ```
 
-This test smart contract has two tests, so when running the tests, there will be two deployments of both `MyToken` and `Container`, for four smart contracts in total. You can run the following command to see the result of the test:  
+This test smart contract has two tests, so when running the tests, there will be two deployments of both `MyToken` and `Container`, for four smart contracts. You can run the following command to see the result of the test:  
 
 ```bash
 forge test
@@ -180,7 +180,7 @@ Now, when you run the test with `forge test`, you should see that `testIsOverflo
 
 ### Fuzzing Tests in Foundry {: #fuzzing-tests-in-foundry}
 
-When you write a unit test, you can only use so many inputs to test. You can try testing edge cases, a few select values, perhaps one or two random ones. But when working with inputs, there are nearly an infinite amount of different ones to test! How can you be sure that they work for every value? Wouldn't you feel safer if you could test 10000 different inputs instead of less than 10?  
+When you write a unit test, you can only use so many inputs to test. You can test edge cases, a few select values, and perhaps one or two random ones. But when working with inputs, there are nearly an infinite amount of different ones to test! How can you be sure that they work for every value? Wouldn't you feel safer if you could test 10000 different inputs instead of less than 10?  
 
 One of the best ways that developers can test many inputs is through fuzzing, or fuzz tests. Foundry automatically fuzz tests when an input in a test function is included. To illustrate this, add the following test to the `MyTokenTest` contract in `MyToken.t.sol`.  
 
@@ -190,7 +190,7 @@ One of the best ways that developers can test many inputs is through fuzzing, or
 
 This test includes `uint256 amountToMint` as input, which tells Foundry to fuzz with `uint256` inputs! By default, Foundry will input 256 different inputs, but this can be configured with the [`FOUNDRY_FUZZ_RUNS` environment variable](https://book.getfoundry.sh/reference/config/testing#runs){target=\_blank}.  
 
-Additionally, the first line in the function uses `vm.assume` to only use inputs that are less than or equal to 1 ether, since the `mint` function reverts if someone tries to mint more than 1 ether at a time. This cheatcode helps you direct the fuzzing into the right range.  
+Additionally, the first line in the function uses `vm.assume` to only use inputs that are less than or equal to one ether since the `mint` function reverts if someone tries to mint more than one ether at a time. This cheatcode helps you direct the fuzzing into the right range.  
 
 Let's look at another fuzzing test to put in the `MyTokenTest` contract, but this time where we expect to fail:  
 
@@ -198,7 +198,7 @@ Let's look at another fuzzing test to put in the `MyTokenTest` contract, but thi
 --8<-- 'code/tutorials/eth-api/foundry-start-to-end/Fuzz-test2.sol'
 ```
 
-In Foundry, when you want to test for a failure, instead of just starting your test function with the world *"test"*, you start it with *"testFail"*. In this test, we assume that the `amountToMint` is above 1 ether, which should fail!  
+In Foundry, when you want to test for a failure, instead of just starting your test function with the world *"test"*, you start it with *"testFail"*. In this test, we assume that the `amountToMint` is above one ether, which should fail!  
 
 Now run the tests:  
 
@@ -212,12 +212,12 @@ You should see something similar to the following in the console:
 
 ### Forking Tests in Foundry {: #forking-tests-in-foundry}
 
-In Foundry, you can locally fork a network so that you can test out how the contracts would work in an environment with already deployed smart contracts. For example, if someone deployed smart contract `A` on Moonbeam that required a token smart contract, you could fork the Moonbeam network and deploy your own token on the fork to test out how smart contract `A` would react to it.  
+In Foundry, you can locally fork a network so that you can test out how the contracts would work in an environment with already deployed smart contracts. For example, if someone deployed smart contract `A` on Moonbeam that required a token smart contract, you could fork the Moonbeam network and deploy your own token to test how smart contract `A` would react to it.  
 
 !!! note
     Moonbeam's custom precompile smart contracts currently do not work in Foundry forks because precompiles are Substrate-based whereas typical smart contracts are completely based on the EVM. Learn more about [forking on Moonbeam](/builders/build/eth-api/dev-env/foundry#forking-with-anvil){target=\_blank} and the [differences between Moonbeam and Ethereum](/builders/get-started/eth-compare){target=\_blank}.
 
-In this tutorial, you will be testing out how your `Container` smart contract interacts with an already deployed `MyToken` contract on Moonbase Alpha.  
+In this tutorial, you will test how your `Container` smart contract interacts with an already deployed `MyToken` contract on Moonbase Alpha
 
 Let's add a new test function to the `ContainerTest` smart contract in `Container.t.sol` called `testAlternateTokenOnMoonbaseFork`:
 
@@ -225,11 +225,11 @@ Let's add a new test function to the `ContainerTest` smart contract in `Containe
 --8<-- 'code/tutorials/eth-api/foundry-start-to-end/TestAlternateTokenOnMoonbaseFork.sol'
 ```
 
-The first step (and thus first line) in this function is to have the test function fork a network with `vm.createFork`. Recall that `vm` is a cheatcode provided by the Forge standard library. All that's necessary to create a fork is an RPC URL, or an alias for an RPC URL that's stored in the `foundry.toml` file. In this case, we added an RPC URL for "moonbase" in [the setup step](#create-a-foundry-project), so in the test function we will just pass the word `"moonbase"`. This cheatcode function returns an ID for the fork created, which is stored in an `uint256` and is necessary for activating the fork.  
+The first step (and thus first line) in this function is to have the test function fork a network with `vm.createFork`. Recall that `vm` is a cheat code provided by the Forge standard library. All that's necessary to create a fork is an RPC URL, or an alias for an RPC URL that's stored in the `foundry.toml` file. In this case, we added an RPC URL for "moonbase" in [the setup step](#create-a-foundry-project), so in the test function we will just pass the word `"moonbase"`. This cheat code function returns an ID for the fork created, which is stored in an `uint256` and is necessary for activating the fork.  
 
-On the second line, after the fork has been created, the environment will select and use the fork in the test environment with `vm.selectFork`. The third line is just to demonstrate that the current fork, retrieved with `vm.activeFork`, is the same as the Moonbase Alpha fork.  
+On the second line, after the fork has been created, the environment will select and use the fork in the test environment with `vm.selectFork`. The third line just demonstrates that the current fork, retrieved with `vm.activeFork`, is the same as the Moonbase Alpha fork.  
 
-The fourth line of code retrieves an already deployed instance of `MyToken`, which is what's useful about forking: you can use contracts that are already deployed.  
+The fourth line of code retrieves an already deployed instance of `MyToken`, which is what's so useful about forking: you can use contracts that are already deployed.  
 
 The rest of the code tests capacity like you would expect a local test to. If you run the tests (with the `-vvvv` tag for extra logging), you'll see that it passes:  
 
@@ -260,14 +260,14 @@ Not only are tests in Foundry written in Solidity, the scripts are too! Like oth
 
 ### Deploy on Moonbase Alpha {: #deploy-on-moonbase-alpha }
 
-In this tutorial, we will be using Foundry's scripts to deploy both the `MyToken` and `Container` smart contracts. To create the deployment scripts, create a new file in the `script` folder:  
+In this tutorial, we will use Foundry's scripts to deploy the `MyToken` and `Container` smart contracts. To create the deployment scripts, create a new file in the `script` folder:  
 
 ```bash
 cd script
 touch Container.s.sol
 ```
 
-By convention, scripts should end with `s.sol`, and have a name similar to the script that it relates to. In this case, we are deploying the `Container` smart contract, so we have named the script `Container.s.sol`, though it's not the end of the world if you use some other suitable or more descriptive name.  
+By convention, scripts should end with `s.sol` and have a name similar to the script they relate to. In this case, we are deploying the `Container` smart contract, so we have named the script `Container.s.sol`, though it's not the end of the world if you use a more suitable or descriptive name.  
 
 In this script, add:  
 
@@ -309,7 +309,7 @@ Now your script and project should be ready for deployment! Use the following co
 forge script Container.s.sol:ContainerDeployScript --broadcast --verify -vvvv --legacy --rpc-url moonbase
 ```
 
-What this command does is run the `ContainerDeployScript` contract as a script. The `--broadcast` option tells Forge to allow broadcasting of transactions, the `--verify` option tells Forge to verify to Moonscan when deploying, `-vvvv` makes the command output verbose, and `--rpc-url moonbase` sets the network to what `moonbase` was set to in `foundry.toml`. The `--legacy` flag instructs Foundry to bypass EIP-1559. While all Moonbeam networks support EIP-1559, Foundry will refuse to submit the transaction to Moonbase and revert to a local simulation if you omit the `--legacy` flag.
+This command runs the `ContainerDeployScript` contract as a script. The `--broadcast` option tells Forge to allow broadcasting of transactions, the `--verify` option tells Forge to verify to Moonscan when deploying, `-vvvv` makes the command output verbose, and `--rpc-url moonbase` sets the network to what `moonbase` was set to in `foundry.toml`. The `--legacy` flag instructs Foundry to bypass EIP-1559. While all Moonbeam networks support EIP-1559, Foundry will refuse to submit the transaction to Moonbase and revert to a local simulation if you omit the `--legacy` flag.
 
 You should see something like this as output:  
 
