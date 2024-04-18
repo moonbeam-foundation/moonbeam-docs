@@ -99,50 +99,6 @@ touch Container.sol
 Open the file and add the following to it:
 
 ```solidity
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
-
-// Import OpenZeppelin Contract
-import {MyToken} from "./MyToken.sol";
-
-enum ContainerStatus {
-    Unsatisfied,
-    Full,
-    Overflowing
-}
-
-contract Container {
-    MyToken token;
-    uint256 capacity;
-    ContainerStatus public status;
-
-    constructor(MyToken _token, uint256 _capacity) {
-        token = _token;
-        capacity = _capacity;
-        status = ContainerStatus.Unsatisfied;
-    }
-
-    // Updates the status value based on the number of tokens that this contract has
-    function updateStatus() public {
-        address container = address(this);
-        uint256 balance = token.balanceOf(container);
-        if (balance < capacity) {
-            status = ContainerStatus.Unsatisfied;
-        } else if (balance == capacity) {
-            status = ContainerStatus.Full;
-        } else if (_isOverflowing(balance)) {
-            status = ContainerStatus.Overflowing;
-        }
-    }
-
-    // Returns true if the contract should be in an overflowing state, false if otherwise
-    function _isOverflowing(uint256 balance) internal view returns (bool) {
-        return balance > capacity;
-    }
-}
-```
-
-```solidity
 --8<-- 'code/tutorials/eth-api/foundry-start-to-end/Container.sol'
 ```
 
@@ -173,27 +129,6 @@ By convention, all of your tests should end with `.t.sol` and start with the nam
 Let's start by writing a test for the token smart contract. Open up `MyToken.t.sol` and add:  
 
 ```solidity
-pragma solidity ^0.8.0;
-
-import "forge-std/Test.sol";
-import "../src/MyToken.sol";
-
-contract MyTokenTest is Test {
-    MyToken public token;
-
-    // Runs before each test
-    function setUp() public {
-        token = new MyToken(100);
-    }
-
-    // Tests if minting during the constructor happens properly
-    function testConstructorMint() public {
-        assertEq(token.balanceOf(address(this)), 100);
-    }
-}
-```
-
-```solidity
 --8<-- 'code/tutorials/eth-api/foundry-start-to-end/MyToken-initial-test.sol'
 ```
 
@@ -208,43 +143,6 @@ touch Container.t.sol
 ```
 
 And add the following:  
-
-```solidity
-// SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.0;
-
-import "forge-std/Test.sol";
-import {MyToken} from "../src/MyToken.sol";
-import {Container, ContainerStatus} from "../src/Container.sol";
-
-contract ContainerTest is Test {
-    MyToken public token;
-    Container public container;
-
-    uint256 constant CAPACITY = 100;
-
-    // Runs before each test
-    function setUp() public {
-        token = new MyToken(1000);
-        container = new Container(token, CAPACITY);
-    }
-
-    // Tests if the container is unsatisfied right after constructing
-    function testInitialUnsatisfied() public {
-        assertEq(token.balanceOf(address(container)), 0);
-        assertTrue(container.status() == ContainerStatus.Unsatisfied);
-    }
-
-    // Tests if the container will be "full" once it reaches its capacity
-    function testContainerFull() public {
-        token.transfer(address(container), CAPACITY);
-        container.updateStatus();
-
-        assertEq(token.balanceOf(address(container)), CAPACITY);
-        assertTrue(container.status() == ContainerStatus.Full);
-    }
-}
-```
 
 ```solidity
 --8<-- 'code/tutorials/eth-api/foundry-start-to-end/Container-initial-test.sol'
@@ -287,16 +185,6 @@ When you write a unit test, you can only use so many inputs to test. You can try
 One of the best ways that developers can test many inputs is through fuzzing, or fuzz tests. Foundry automatically fuzz tests when an input in a test function is included. To illustrate this, add the following test to the `MyTokenTest` contract in `MyToken.t.sol`.  
 
 ```solidity
-    // Fuzz tests for success upon minting tokens one ether or below
-    function testMintOneEtherOrBelow(uint256 amountToMint) public {
-        vm.assume(amountToMint <= 1 ether);
-
-        token.mint(amountToMint, msg.sender);
-        assertEq(token.balanceOf(msg.sender), amountToMint);
-    }
-```
-
-```solidity
 --8<-- 'code/tutorials/eth-api/foundry-start-to-end/Fuzz-test.sol'
 ```
 
@@ -305,15 +193,6 @@ This test includes `uint256 amountToMint` as input, which tells Foundry to fuzz 
 Additionally, the first line in the function uses `vm.assume` to only use inputs that are less than or equal to 1 ether, since the `mint` function reverts if someone tries to mint more than 1 ether at a time. This cheatcode helps you direct the fuzzing into the right range.  
 
 Let's look at another fuzzing test to put in the `MyTokenTest` contract, but this time where we expect to fail:  
-
-```solidity
-    // Fuzz tests for failure upon minting tokens above one ether
-    function testFailMintAboveOneEther(uint256 amountToMint) public {
-        vm.assume(amountToMint > 1 ether);
-        
-        token.mint(amountToMint, msg.sender);
-    }
-```
 
 ```solidity
 --8<-- 'code/tutorials/eth-api/foundry-start-to-end/Fuzz-test2.sol'
@@ -329,7 +208,7 @@ forge test
 
 You should see something similar to the following in the console:
 
-![Fuzzing Tests in Foundry](/images/tutorials/eth-api/foundry-start-to-end/foundry-3.webp)
+--8<-- 'code/tutorials/eth-api/foundry-start-to-end/terminal/test3.md'
 
 ### Forking Tests in Foundry {: #forking-tests-in-foundry}
 
@@ -343,25 +222,7 @@ In this tutorial, you will be testing out how your `Container` smart contract in
 Let's add a new test function to the `ContainerTest` smart contract in `Container.t.sol` called `testAlternateTokenOnMoonbaseFork`:
 
 ```solidity
-    // Fork tests in the Moonbase Alpha environment
-    function testAlternateTokenOnMoonbaseFork() public {
-        // Creates and selects a fork, returns a fork ID
-        uint256 moonbaseFork = vm.createFork("moonbase");
-        vm.selectFork(moonbaseFork);
-        assertEq(vm.activeFork(), moonbaseFork);
-
-        // Get token that's already deployed & deploys a container instance
-        token = MyToken(0x359436610E917e477D73d8946C2A2505765ACe90);
-        container = new Container(token, CAPACITY);
-
-        // Mint tokens to the container & update container status
-        token.mint(CAPACITY, address(container));
-        container.updateStatus();
-
-        // Assert that the capacity is full, just like the rest of the time
-        assertEq(token.balanceOf(address(container)), CAPACITY);
-        assertTrue(container.status() == ContainerStatus.Full);
-    }
+--8<-- 'code/tutorials/eth-api/foundry-start-to-end/TestAlternateTokenOnMoonbaseFork.sol'
 ```
 
 The first step (and thus first line) in this function is to have the test function fork a network with `vm.createFork`. Recall that `vm` is a cheatcode provided by the Forge standard library. All that's necessary to create a fork is an RPC URL, or an alias for an RPC URL that's stored in the `foundry.toml` file. In this case, we added an RPC URL for "moonbase" in [the setup step](#create-a-foundry-project), so in the test function we will just pass the word `"moonbase"`. This cheatcode function returns an ID for the fork created, which is stored in an `uint256` and is necessary for activating the fork.  
@@ -376,9 +237,22 @@ The rest of the code tests capacity like you would expect a local test to. If yo
 forge test -vvvv
 ```
 
-![Forking Tests in Foundry](/images/tutorials/eth-api/foundry-start-to-end/foundry-4.webp)
+--8<-- 'code/tutorials/eth-api/foundry-start-to-end/terminal/test4.md'
 
-That's it for testing! You can see the complete [`Container.t.sol` file](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/tutorials/eth-api/foundry-start-to-end/Container.t.sol){target=\_blank} and [`MyToken.t.sol` file](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/tutorials/eth-api/foundry-start-to-end/MyToken.t.sol){target=\_blank} on GitHub.
+That's it for testing! You can find the complete `Container.t.sol` and `MyToken.t.sol` files below:
+
+??? code "Container.t.sol"
+
+    ```solidity
+    --8<-- 'code/tutorials/eth-api/foundry-start-to-end/Container.t.sol'
+    ```
+
+??? code "MyToken.t.sol"
+
+    ```solidity
+    --8<-- 'code/tutorials/eth-api/foundry-start-to-end/MyToken.t.sol'
+    ```
+
 
 ## Deploy in Foundry with Solidity Scripts {: #deploy-in-foundry-with-solidity-scripts }
 
@@ -398,28 +272,7 @@ By convention, scripts should end with `s.sol`, and have a name similar to the s
 In this script, add:  
 
 ```solidity
-pragma solidity ^0.8.0;
-
-import "forge-std/Script.sol";
-import {MyToken} from "../src/MyToken.sol";
-import {Container} from "../src/Container.sol";
-
-contract ContainerDeployScript is Script {
-    // Runs the script; deploys MyToken and Container
-    function run() public {
-        // Get the private key from the .env
-        uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
-        vm.startBroadcast(deployerPrivateKey);
-
-        // Make a new token
-        MyToken token = new MyToken(1000);
-
-        // Make a new container
-        new Container(token, 500);
-
-        vm.stopBroadcast();
-    }
-}
+--8<-- 'code/tutorials/eth-api/foundry-start-to-end/ContainerDeployScript.sol'
 ```
 
 Let's break this script down. The first line is standard: declaring the solidity version. The imports include the two smart contracts you previously added, which will be deployed. This includes additional functionality to use in a script, including the `Script` contract.  
