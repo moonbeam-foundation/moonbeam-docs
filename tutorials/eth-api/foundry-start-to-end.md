@@ -309,7 +309,7 @@ Now your script and project should be ready for deployment! Use the following co
 forge script Container.s.sol:ContainerDeployScript --broadcast --verify -vvvv --legacy --rpc-url moonbase
 ```
 
-What this command does is run the `ContainerDeployScript` contract as a script. The `--broadcast` option tells Forge to allow broadcasting of transactions, the `--verify` option tells Forge to verify to Moonscan when deploying, `-vvvv` makes the command output verbose, and `--rpc-url moonbase` sets the network to what `moonbase` was set to in `foundry.toml`.  
+What this command does is run the `ContainerDeployScript` contract as a script. The `--broadcast` option tells Forge to allow broadcasting of transactions, the `--verify` option tells Forge to verify to Moonscan when deploying, `-vvvv` makes the command output verbose, and `--rpc-url moonbase` sets the network to what `moonbase` was set to in `foundry.toml`. The `--legacy` flag instructs Foundry to bypass EIP-1559. While all Moonbeam networks support EIP-1559, Foundry will refuse to submit the transaction to Moonbase and revert to a local simulation if you omit the `--legacy` flag.
 
 You should see something like this as output:  
 
@@ -331,7 +331,7 @@ The entire deployment script is available below:
 Let's say that you're comfortable with your smart contracts and you want to deploy on the Moonbeam MainNet! The process isn't too different from what was just done, you just have to change the command's rpc-url from `moonbase` to `moonbeam`, since you've already added Moonbeam MainNet's information in the `foundry.toml` file:
 
 ```bash
-forge script Container.s.sol:ContainerDeployScript --broadcast --verify -vvvv --rpc-url moonbeam
+forge script Container.s.sol:ContainerDeployScript --broadcast --verify -vvvv --legacy --rpc-url moonbeam
 ```
 
 It's important to note that there are additional, albeit more complex, [ways of handling private keys in Foundry](https://book.getfoundry.sh/reference/forge/forge-script#wallet-options---raw){target=\_blank}. Some of these methods can be considered safer than storing a production private key in environment variables.  
