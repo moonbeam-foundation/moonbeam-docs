@@ -1,5 +1,5 @@
 <div id="termynal" data-termynal>
-    <span data-ty="input"><span class="file-path"></span> npx hardhat ignition verify YOUR-NAME-HERE</span>
+    <span data-ty="input"><span class="file-path"></span> npx hardhat ignition verify INSERT_YOUR_NAME</span>
     <br>
     <span data-ty>Nothing to compile</span>
     <span data-ty>Successfully submitted source code for contract

@@ -480,10 +480,10 @@ While it's possible to verify smart contracts on the [Moonscan website](https://
 
 Before beginning the contract verification process, you'll need to [acquire a Moonscan API Key](/builders/build/eth-api/verify-contracts/etherscan-plugins/#generating-a-moonscan-api-key){target=\_blank}. Note that Moonbeam and Moonbase Alpha use the same [Moonbeam Moonscan](https://moonscan.io/){target=\_blank} API key, whereas you'll need a distinct API key for [Moonriver](https://moonriver.moonscan.io/){target=\_blank}.
 
-To verify the contract, you will run the `ignition verify` command and pass the deployment-id, the `YOUR-NAME-HERE` parameter in the prior step.
+To verify the contract, you will run the `ignition verify` command and pass the deployment-id, the `INSERT_YOUR_NAME` parameter in the prior step.
 
 ```bash
-npx hardhat ignition verify YOUR-NAME-HERE
+npx hardhat ignition verify INSERT_YOUR_NAME
 ```
 
 !!! note
@@ -528,7 +528,7 @@ module.exports = buildModule("DelegationDAOModule", (m) => {
 To run the script and deploy the `DelegationDAO.sol` contract, use the following command, which requires you to specify the network name as defined in your `hardhat.config.js`. If you don't specify a network, Hardhat will deploy the contract to a local Hardhat network by default. 
 
 ```sh
-npx hardhat ignition deploy ./ignition/modules/DelegationDao.js --network moonbeam --deployment-id YOUR-NAME-HERE
+npx hardhat ignition deploy ./ignition/modules/DelegationDao.js --network moonbeam --deployment-id INSERT_YOUR_NAME
 ```
 
 You'll be prompted to confirm the network you wish to deploy to. After a few seconds after you confirm, the contract is deployed, and you'll see the contract address in the terminal.
@@ -541,10 +541,10 @@ Congratulations, your contract is live on Moonbeam! Save the address, as you wil
 
 In this section, we'll be verifying the contract that was just deployed on Moonbeam. Before beginning the contract verification process, you'll need to [acquire a Moonscan API Key](/builders/build/eth-api/verify-contracts/etherscan-plugins/#generating-a-moonscan-api-key){target=\_blank}. Note that Moonbeam and Moonbase Alpha use the same [Moonbeam Moonscan](https://moonscan.io/){target=\_blank} API key, whereas you'll need a distinct API key for [Moonriver](https://moonriver.moonscan.io/){target=\_blank}.
 
-To verify the contract, you will run the `ignition verify` command and pass the deployment-id, the `YOUR-NAME-HERE` parameter in the prior step.
+To verify the contract, you will run the `ignition verify` command and pass the deployment-id, the `INSERT_YOUR_NAME` parameter in the prior step.
 
 ```bash
-npx hardhat ignition verify YOUR-NAME-HERE
+npx hardhat ignition verify INSERT_YOUR_NAME
 ```
 
 !!! note
