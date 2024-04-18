@@ -463,7 +463,7 @@ module.exports = buildModule("DelegationDAOModule", (m) => {
 To run the script and deploy the `DelegationDAO.sol` contract, use the following command, which requires you to specify the network name as defined in your `hardhat.config.js`. If you don't specify a network, Hardhat will deploy the contract to a local Hardhat network by default. 
 
 ```sh
-npx hardhat ignition deploy ./ignition/modules/DelegationDao.js --network moonbase --deployment-id YOUR-NAME-HERE
+npx hardhat ignition deploy ./ignition/modules/DelegationDao.js --network moonbase --deployment-id INSERT_YOUR_NAME
 ```
 
 You'll be prompted to confirm the network you wish to deploy to. After a few seconds after you confirm, the contract is deployed, and you'll see the contract address in the terminal.
