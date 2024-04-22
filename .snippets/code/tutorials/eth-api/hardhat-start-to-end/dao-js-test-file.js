@@ -15,7 +15,7 @@ describe('Dao contract', function () {
   let wallet1, wallet2;
 
   before(async function () {
-    // Get signers we defined in HardHat Config
+    // Get signers we defined in Hardhat config
     const signers = await ethers.getSigners();
     wallet1 = signers[0];
     wallet2 = signers[1];
