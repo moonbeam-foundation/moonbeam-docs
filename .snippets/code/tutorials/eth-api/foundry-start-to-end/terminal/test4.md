@@ -20,5 +20,5 @@
     <span data-ty>    └─ ← [Stop]</span>
     <span data-ty>Suite result: ok. 4 passed; 0 failed; 0 skipped; finished in 2.07s (2.07s CPU time)</span>
     <span data-ty>Ran 2 test suites in 2.44s (2.08s CPU time): 7 tests passed, 0 failed, 0 skipped (7 total tests)</span>
-    <span data-ty="input"> foundry %</span>
+    <span data-ty="input"></span>
 </div>
