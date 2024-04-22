@@ -1,5 +1,5 @@
 <div id="termynal" data-termynal>
-    <span data-ty="input">kevin@MacBook-Pro-6 foundry % forge test</span>
+    <span data-ty="input">forge test</span>
     <span data-ty>[⠊] Compiling...</span>
     <span data-ty>[⠒] Compiling 1 files with 0.8.20</span>
     <span data-ty>[⠢] Solc 0.8.20 finished in 1.06s</span>
