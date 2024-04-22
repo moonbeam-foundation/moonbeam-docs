@@ -1,5 +1,5 @@
 <div id="termynal" data-termynal>
-    <span data-ty="input">foundry % forge test</span>
+    <span data-ty="input">forge test</span>
     <span data-ty>[PASS] testIsOverflowingFalse() (gas: 192130)</span>
     <span data-ty>Traces:</span>
     <span data-ty>  [192130] ContainerTest::testIsOverflowingFalse()</span>
