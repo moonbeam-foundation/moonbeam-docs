@@ -1,5 +1,5 @@
 <div id="termynal" data-termynal>
-    <span data-ty="input">foundry % forge test</span>
+    <span data-ty="input"><span class="file-path"></span>forge test</span>
     <span data-ty>[⠊] Compiling...</span>
     <span data-ty>[⠊] Compiling 1 files with 0.8.20</span>
     <span data-ty>[⠒] Solc 0.8.20 finished in 982.65ms</span>
@@ -17,5 +17,5 @@
     <span data-ty>[PASS] testMintOneEtherOrBelow(uint256) (runs: 256, μ: 37939, ~: 39270)</span>
     <span data-ty>Suite result: ok. 3 passed; 0 failed; 0 skipped; finished in 10.78ms (18.32ms CPU time)</span>
     <span data-ty>Ran 2 test suites in 138.88ms (11.23ms CPU time): 6 tests passed, 0 failed, 0 skipped (6 total tests)</span>
-    <span data-ty="input"></span>
+    <span data-ty="input"><span class="file-path"></span></span>
 </div>
