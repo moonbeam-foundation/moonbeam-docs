@@ -4,11 +4,10 @@ pragma solidity >=0.8.0;
 
 import "./StakingInterface.sol";
 import "@openzeppelin/contracts/access/AccessControl.sol";
-import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 import "@openzeppelin/contracts/utils/Address.sol";
 
+
 contract DelegationDAO is AccessControl {
-    using SafeMath for uint256;
 
     // Role definition for contract members
     bytes32 public constant MEMBER = keccak256("MEMBER");
@@ -56,18 +55,23 @@ contract DelegationDAO is AccessControl {
 
     // Initialize a new DelegationDao dedicated to delegating to the given collator target.
     constructor(address _target, address admin) {
+        // Directly grant roles
+        _grantRole(DEFAULT_ADMIN_ROLE, admin);
+        _grantRole(MEMBER, admin);
+        
         //Sets the collator that this DAO nominating
         target = _target;
 
         // Initializes Moonbeam's parachain staking precompile
         staking = ParachainStaking(stakingPrecompileAddress);
 
-        //Initializes Roles
-        _setupRole(DEFAULT_ADMIN_ROLE, admin);
-        _setupRole(MEMBER, admin);
-
         //Initialize the DAO state
         currentState = daoState.COLLECTING;
+    }
+
+    // Simple getter to return the target collator of the DAO
+    function getTarget() public view returns (address) {
+        return target;
     }
 
     // Grant a user the role of admin
@@ -99,13 +103,13 @@ contract DelegationDAO is AccessControl {
             if (!staking.isDelegator(address(this))) {
                 revert("The DAO is in an inconsistent state.");
             }
-            memberStakes[msg.sender] = memberStakes[msg.sender].add(msg.value);
-            totalStake = totalStake.add(msg.value);
+            memberStakes[msg.sender] = memberStakes[msg.sender] + msg.value;
+            totalStake = totalStake + msg.value;
             emit deposit(msg.sender, msg.value);
             staking.delegatorBondMore(target, msg.value);
         } else if (currentState == daoState.COLLECTING) {
-            memberStakes[msg.sender] = memberStakes[msg.sender].add(msg.value);
-            totalStake = totalStake.add(msg.value);
+            memberStakes[msg.sender] = memberStakes[msg.sender] + msg.value;
+            totalStake = totalStake + msg.value;
             emit deposit(msg.sender, msg.value);
             if (totalStake < minDelegationStk) {
                 return;
@@ -144,16 +148,13 @@ contract DelegationDAO is AccessControl {
             }
             require(totalStake != 0, "Cannot divide by zero.");
             //Calculate the withdrawal amount including staking rewards
-            uint amount = address(this)
-                .balance
-                .mul(memberStakes[msg.sender])
-                .div(totalStake);
+            uint amount = address(this).balance * memberStakes[msg.sender] / totalStake;
             require(
                 check_free_balance() >= amount,
                 "Not enough free balance for withdrawal."
             );
             Address.sendValue(account, amount);
-            totalStake = totalStake.sub(memberStakes[msg.sender]);
+            totalStake = totalStake - (memberStakes[msg.sender]);
             memberStakes[msg.sender] = 0;
             emit withdrawal(msg.sender, account, amount);
         }
@@ -209,5 +210,10 @@ contract DelegationDAO is AccessControl {
     // Reset the DAO state back to COLLECTING, admin only
     function reset_dao() public onlyRole(DEFAULT_ADMIN_ROLE) {
         currentState = daoState.COLLECTING;
+    }
+
+    // Override _setupRole to use grantRole as _setupRole does not exist in AccessControl anymore
+    function _setupRole(bytes32 role, address account) internal virtual {
+        grantRole(role, account);
     }
 }
