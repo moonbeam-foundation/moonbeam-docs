@@ -157,7 +157,7 @@ The XCM Transactor Pallet provides the following extrinsics (functions):
     === "Parameters"
 
         - `dest` - the XCM versioned multilocation for a chain in the ecosystem where the XCM message is being sent to (the target chain)
-        - `feePayer` - the address that will pay for the remote XCM execution in the corresponding [XC-20 token](/builders/interoperability/xcm/xc20/overview/){target=\_blank}
+        - `feePayer` - (optional) the address that will pay for the remote XCM execution in the corresponding [XC-20 token](/builders/interoperability/xcm/xc20/overview/){target=\_blank}. If you don't specify the `feePayer`, the XCM execution fees will be paid by the Sovereign account on the destination chain
         - `fee` - the asset to be used for fees. This contains the `currency` and the `feeAmount`:
             - `currency` -  defines how you are specifying the token to use to pay for the fees, which can be either of the following:
                 - `AsCurrencyId` - the currency ID of the asset to use for the fees. The currency ID can be either:
