@@ -104,17 +104,17 @@ The complete command for running a tracing node is as follows:
     docker run --network="host" -v "{{ networks.moonbeam.node_directory }}:/data" \
     -u $(id -u ${USER}):$(id -g ${USER}) \
     {{ networks.moonbeam.tracing_tag }} \
-    --base-path=/data \
+    --base-path /data \
     --chain {{ networks.moonbeam.chain_spec }} \
-    --name="INSERT_YOUR_NODE_NAME" \
+    --name "INSERT_YOUR_NODE_NAME" \
     --state-pruning archive \
     --trie-cache-size 1073741824 \
     --db-cache INSERT_RAM_IN_MB \
-    --ethapi=debug,trace,txpool \
-    --wasm-runtime-overrides=/moonbeam/moonbeam-substitutes-tracing \
+    --ethapi debug,trace,txpool \
+    --wasm-runtime-overrides /moonbeam/moonbeam-substitutes-tracing \
     --runtime-cache-size 64 \
     -- \
-    --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
+    --name "INSERT_YOUR_NODE_NAME (Embedded Relay)"
     ```
 
 === "Moonriver"
@@ -123,17 +123,17 @@ The complete command for running a tracing node is as follows:
     docker run --network="host" -v "{{ networks.moonriver.node_directory }}:/data" \
     -u $(id -u ${USER}):$(id -g ${USER}) \
     {{ networks.moonriver.tracing_tag }} \
-    --base-path=/data \
+    --base-path /data \
     --chain {{ networks.moonriver.chain_spec }} \
-    --name="INSERT_YOUR_NODE_NAME" \
+    --name INSERT_YOUR_NODE_NAME" \
     --state-pruning archive \
     --trie-cache-size 1073741824 \
     --db-cache INSERT_RAM_IN_MB \
-    --ethapi=debug,trace,txpool \
-    --wasm-runtime-overrides=/moonbeam/moonriver-substitutes-tracing \
+    --ethapi debug,trace,txpool \
+    --wasm-runtime-overrides /moonbeam/moonriver-substitutes-tracing \
     --runtime-cache-size 64 \
     -- \
-    --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
+    --name "INSERT_YOUR_NODE_NAME (Embedded Relay)"
     ```
 
 === "Moonbase Alpha"
@@ -142,17 +142,17 @@ The complete command for running a tracing node is as follows:
     docker run --network="host" -v "{{ networks.moonbase.node_directory }}:/data" \
     -u $(id -u ${USER}):$(id -g ${USER}) \
     {{ networks.moonbase.tracing_tag }} \
-    --base-path=/data \
+    --base-path /data \
     --chain {{ networks.moonbase.chain_spec }} \
-    --name="INSERT_YOUR_NODE_NAME" \
+    --name "INSERT_YOUR_NODE_NAME" \
     --state-pruning archive \
     --trie-cache-size 1073741824 \
     --db-cache INSERT_RAM_IN_MB \
-    --ethapi=debug,trace,txpool \
-    --wasm-runtime-overrides=/moonbeam/moonbase-substitutes-tracing \
+    --ethapi debug,trace,txpool \
+    --wasm-runtime-overrides /moonbeam/moonbase-substitutes-tracing \
     --runtime-cache-size 64 \
     -- \
-    --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
+    --name "INSERT_YOUR_NODE_NAME (Embedded Relay)"
     ```
 
 === "Moonbeam Dev Node"
@@ -161,9 +161,9 @@ The complete command for running a tracing node is as follows:
     docker run --network="host" \
     -u $(id -u ${USER}):$(id -g ${USER}) \
     {{ networks.development.tracing_tag }} \
-    --name="INSERT_YOUR_NODE_NAME" \
-    --ethapi=debug,trace,txpool \
-    --wasm-runtime-overrides=/moonbeam/moonbase-substitutes-tracing \
+    --name "INSERT_YOUR_NODE_NAME" \
+    --ethapi debug,trace,txpool \
+    --wasm-runtime-overrides /moonbeam/moonbase-substitutes-tracing \
     --runtime-cache-size 64 \
     --dev
     ```
@@ -285,17 +285,17 @@ The next step is to create the systemd configuration file, you'll need to:
     SyslogFacility=local7
     KillSignal=SIGHUP
     ExecStart={{ networks.moonbeam.node_directory }}/{{ networks.moonbeam.binary_name }} \
-         --state-pruning=archive \
+         --state-pruning archive \
          --trie-cache-size 1073741824 \
          --db-cache INSERT_RAM_IN_MB \
          --base-path {{ networks.moonbeam.node_directory }} \
-         --ethapi=debug,trace,txpool \
-         --wasm-runtime-overrides={{ networks.moonbeam.node_directory }}/wasm \
+         --ethapi debug,trace,txpool \
+         --wasm-runtime-overrides {{ networks.moonbeam.node_directory }}/wasm \
          --runtime-cache-size 64 \
          --chain {{ networks.moonbeam.chain_spec }} \
          --name "INSERT_YOUR_NODE_NAME" \
          -- \
-         --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
+         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)"
     
     [Install]
     WantedBy=multi-user.target
@@ -318,17 +318,17 @@ The next step is to create the systemd configuration file, you'll need to:
     SyslogFacility=local7
     KillSignal=SIGHUP
     ExecStart={{ networks.moonriver.node_directory }}/{{ networks.moonriver.binary_name }} \
-         --state-pruning=archive \
+         --state-pruning archive \
          --trie-cache-size 1073741824 \
          --db-cache INSERT_RAM_IN_MB \
          --base-path {{ networks.moonriver.node_directory }} \
-         --ethapi=debug,trace,txpool \
-         --wasm-runtime-overrides={{ networks.moonriver.node_directory }}/wasm \
+         --ethapi debug,trace,txpool \
+         --wasm-runtime-overrides {{ networks.moonriver.node_directory }}/wasm \
          --runtime-cache-size 64 \
          --chain {{ networks.moonriver.chain_spec }} \
          --name "INSERT_YOUR_NODE_NAME" \
          -- \
-         --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
+         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)"
     
     [Install]
     WantedBy=multi-user.target
@@ -351,17 +351,17 @@ The next step is to create the systemd configuration file, you'll need to:
     SyslogFacility=local7
     KillSignal=SIGHUP
     ExecStart={{ networks.moonbase.node_directory }}/{{ networks.moonbase.binary_name }} \
-         --state-pruning=archive \
+         --state-pruning archive \
          --trie-cache-size 1073741824 \
          --db-cache INSERT_RAM_IN_MB \
          --base-path {{ networks.moonbase.node_directory }} \
-         --ethapi=debug,trace,txpool \
-         --wasm-runtime-overrides={{ networks.moonbase.node_directory }}/wasm \
+         --ethapi debug,trace,txpool \
+         --wasm-runtime-overrides {{ networks.moonbase.node_directory }}/wasm \
          --runtime-cache-size 64 \
          --chain {{ networks.moonbase.chain_spec }} \
          --name "INSERT_YOUR_NODE_NAME" \
          -- \
-         --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
+         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)"
 
     [Install]
     WantedBy=multi-user.target
