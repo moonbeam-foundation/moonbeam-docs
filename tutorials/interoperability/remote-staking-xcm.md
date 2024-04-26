@@ -86,25 +86,16 @@ The `send` function of the XCM Pallet accepts two parameters: `dest` and `messag
 
 1. Build the multilocation of the DEV token on Moonbase Alpha for the `dest`:
 
-    ```js
-    const dest = { V3: { parents: 0, interior: { X1: { Parachain: 1000 } } } };
+    ```javascript
+    --8<-- 'code/tutorials/interoperability/remote-staking/remote-staking.js:7:7'
     ```
 
 2. Build the `WithdrawAsset` instruction, which will require you to define:
     - The multilocation of the DEV token on Moonbase Alpha
     - The amount of DEV tokens to withdraw
 
-    ```js
-    const instr1 = {
-      WithdrawAsset: [
-        {
-          id: {
-            Concrete: { parents: 0, interior: { X1: { PalletInstance: 3 } } },
-          },
-          fun: { Fungible: 100000000000000000n },
-        },
-      ],
-    },    
+    ```javascript
+    --8<-- 'code/tutorials/interoperability/remote-staking/remote-staking.js:8:18'
     ```
 
 3. Build the `BuyExecution` instruction, which will require you to define:
@@ -112,18 +103,8 @@ The `send` function of the XCM Pallet accepts two parameters: `dest` and `messag
     - The amount of DEV tokens to buy for execution
     - The weight limit
 
-    ```js
-    const instr2 = {
-      BuyExecution: [
-        {
-          id: {
-            Concrete: { parents: 0, interior: { X1: { PalletInstance: 3 } } },
-          },
-          fun: { Fungible: 100000000000000000n },
-        },
-        { Unlimited: null },
-      ],
-    },    
+    ```javascript
+    --8<-- 'code/tutorials/interoperability/remote-staking/remote-staking.js:19:30'
     ```
 
 4. Build the `Transact` instruction, which will require you to define:
@@ -131,23 +112,14 @@ The `send` function of the XCM Pallet accepts two parameters: `dest` and `messag
     - The required weight for the transaction. You'll need to define a value for `refTime`, which is the amount of computational time that can be used for execution, and the `proofSize`, which is the amount of storage in bytes that can be used. It is recommended that the weight given to this instruction needs to be around 10% more of `25000` times the gas limit for the call you want to execute via XCM
     - The encoded call data for delegating a collator, which we generated in the [previous section](#generate-encoded-call-data)
 
-    ```js
-    const instr3 = {
-      Transact: {
-        originType: 'SovereignAccount',
-        requireWeightAtMost: { refTime: 40000000000n, proofSize: 900000n },
-        call: {
-          encoded:
-            '0x0c123a7d3048f3cb0391bb44b518e5729f07bcc7a45d000064a7b3b6e00d000000000000000064430000000600000000000000',
-        },
-      },
-    },    
+    ```javascript
+    --8<-- 'code/tutorials/interoperability/remote-staking/remote-staking.js:31:40'
     ```
 
 5. Combine the XCM instructions into a versioned XCM message:
 
-    ```js
-    const message = { V3: [instr1, instr2, instr3] };
+    ```javascript
+    --8<-- 'code/tutorials/interoperability/remote-staking/remote-staking.js:41:41'
     ```
 
 Now that you have the values for each of the parameters, you can write the script to send the XCM message. You'll take the following steps:

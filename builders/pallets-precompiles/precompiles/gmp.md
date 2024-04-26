@@ -10,7 +10,7 @@ keywords: solidity, ethereum, GMP, wormhole, moonbeam, bridge, connected, contra
 
 Moonbeam Routed Liquidity (MRL) refers to Moonbeam’s use case as the port parachain for liquidity from origin chains into other Polkadot parachains. This is possible because of general message passing (GMP), where messages with arbitrary data and tokens can be sent across non-parachain blockchains through [chain-agnostic GMP protocols](/builders/interoperability/protocols){target=\_blank}. These GMP protocols can combine with [Polkadot's XCM messaging system](/builders/interoperability/xcm/overview){target=\_blank} to allow for seamless liquidity routing.  
 
-The GMP precompile acts as an interface for Moonbeam Routed Liquidity, acting as a middleman between token-bearing messages from GMP protocols and parachains connected to Moonbeam via [XCMP](/builders/interoperability/xcm/overview/#xcm-transport-protocols){target=\_blank}. Currently the GMP Precompile only supports the relaying of liquidity through the [Wormhole GMP protocol](/builders/interoperability/protocols/wormhole){target=\_blank}.  
+The GMP precompile acts as an interface for Moonbeam Routed Liquidity, acting as a middleman between token-bearing messages from GMP protocols and parachains connected to Moonbeam via [XCMP](/builders/interoperability/xcm/overview/#xcm-transport-protocols){target=\_blank}. Currently, the GMP Precompile only supports the relaying of liquidity through the [Wormhole GMP protocol](/builders/interoperability/protocols/wormhole){target=\_blank}.  
 
 The GMP Precompile is located at the following address:  
 
@@ -70,36 +70,40 @@ The following multilocation templates target accounts on other parachains with M
 
     ```js
     {
-      parents: 1,
-      interior: {
-        X2: [
-          { Parachain: 'INSERT_PARACHAIN_ID' },
-          {
-            AccountId32: {
-              id: 'INSERT_ADDRESS',
+      V4: {
+        parents: 1,
+        interior: {
+          X2: [
+            { Parachain: 'INSERT_PARACHAIN_ID' },
+            {
+              AccountId32: {
+                id: 'INSERT_ADDRESS',
+              },
             },
-          },
-        ],
+          ],
+        },
       },
-    }
+    };
     ```
 
 === "AccountKey20"
 
     ```js
     {
-      parents: 1,
-      interior: {
-        X2: [
-          { Parachain: 'INSERT_PARACHAIN_ID' },
-          {
-            AccountKey20: {
-              key: 'INSERT_ADDRESS',
+      V4: {
+        parents: 1,
+        interior: {
+          X2: [
+            { Parachain: 'INSERT_PARACHAIN_ID' },
+            {
+              AccountKey20: {
+                key: 'INSERT_ADDRESS',
+              },
             },
-          },
-        ],
-      },
-    }
+          ],
+        },
+      }
+    };
     ```
 
 It can be difficult to correctly SCALE encode the entire payload without the right tools, especially due to the [custom types expected by the precompile](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbase.spec_version }}/precompiles/gmp/src/types.rs#L25-L48){target=\_blank}. Fortunately, the Polkadot.js API can assist with this.

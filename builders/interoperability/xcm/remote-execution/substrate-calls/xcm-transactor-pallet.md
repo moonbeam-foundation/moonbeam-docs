@@ -332,12 +332,7 @@ Since you'll be interacting with the `transactThroughSigned` function of the XCM
 1. Define the destination multilocation, which will target parachain 888
 
     ```js
-    const dest = {
-      V3: {
-        parents: 1,
-        interior: { X1: { Parachain: 888 } },
-      },
-    };
+    --8<-- 'code/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-pallet/transact-signed.js:6:11'
     ```
   
 2. Define the `fee` information, which will require you to define the currency and set the fee amount
@@ -345,12 +340,7 @@ Since you'll be interacting with the `transactThroughSigned` function of the XCM
     === "External XC-20s"
 
         ```js
-        const fee = {
-          currency: {
-            AsCurrencyId: { ForeignAsset: 35487752324713722007834302681851459189n },
-          },
-          feeAmount: 50000000000000000n,
-        };
+        --8<-- 'code/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-pallet/transact-signed.js:13:18'
         ```
 
     === "Local XC-20s"
@@ -367,8 +357,7 @@ Since you'll be interacting with the `transactThroughSigned` function of the XCM
 3. Define the `call` that will be executed in the destination chain, which is the encoded call data of the pallet, method, and input to be called. It can be constructed in [Polkadot.js Apps](https://polkadot.js.org/apps/){target=\_blank} (which must be connected to the destination chain) or using the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=\_blank}. For this example, the inner call is a simple balance transfer of 1 token of the destination chain to Alice's account there
 
     ```js
-    const call =
-      '0x030044236223ab4291b93eed10e4b511b37a398dee5513000064a7b3b6e00d';
+    --8<-- 'code/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-pallet/transact-signed.js:19:19'
     ```
 
 4. Set the `weightInfo`, which includes the weight specific to the inner call (`transactRequiredWeightAtMost`) and the optional overall weight of the transact plus XCM execution (`overallWeight`). For each parameter, you can follow these guidelines:
@@ -376,10 +365,7 @@ Since you'll be interacting with the `transactThroughSigned` function of the XCM
     - For `overallWeight`, the value must be the total of `transactRequiredWeightAtMost` plus the weight needed to cover the execution costs for the XCM instructions in the destination chain. If you do not provide this value, the pallet will use the element in storage (if it exists) and add it to `transactRequiredWeightAtMost`. For this example, you can set the `overallWeight` to `Unlimited`, which removes the need to know how much weight the destination chain will require to execute the XCM
 
     ```js
-    const weightInfo = {
-      transactRequiredWeightAtMost: { refTime: 1000000000n, proofSize: 40000n },
-      overallWeight: { Unlimited: null },
-    };
+    --8<-- 'code/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-pallet/transact-signed.js:20:23'
     ```
 
     !!! note
@@ -388,7 +374,7 @@ Since you'll be interacting with the `transactThroughSigned` function of the XCM
 5. To refund any leftover XCM fees, you can set the `refund` value to `true`. Otherwise, set it to `false`
 
     ```js
-    const refund = true;
+    --8<-- 'code/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-pallet/transact-signed.js:24:24'
     ```
 
 ### Sending the XCM {: #sending-the-xcm }
@@ -411,13 +397,13 @@ Now that you have the values for each of the parameters, you can write the scrip
 ```
 
 !!! note
-    You can view an example of the above script, which sends one token to Alice's Computed Origin account on parachain 888, on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/extrinsics/decode/0x210603010100e10d00017576e5e612ff054915d426c546b1b21a010000c52ebca2b10000000000000000007c030044236223ab4291b93eed10e4b511b37a398dee5513000064a7b3b6e00d02286bee02710200010001){target=\_blank} using the following encoded calldata: `0x210603010100e10d00017576e5e612ff054915d426c546b1b21a010000c52ebca2b10000000000000000007c030044236223ab4291b93eed10e4b511b37a398dee5513000064a7b3b6e00d02286bee02710200010001`.
+    You can view an example of the above script, which sends one token to Alice's Computed Origin account on parachain 888, on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/extrinsics/decode/0x210604010100e10d00017576e5e612ff054915d426c546b1b21a010000c52ebca2b10000000000000000007c030044236223ab4291b93eed10e4b511b37a398dee5513000064a7b3b6e00d02286bee02710200010001){target=\_blank} using the following encoded calldata: `0x210604010100e10d00017576e5e612ff054915d426c546b1b21a010000c52ebca2b10000000000000000007c030044236223ab4291b93eed10e4b511b37a398dee5513000064a7b3b6e00d02286bee02710200010001`.
 
 ### XCM Transact through Computed Origin Fees {: #transact-through-computed-origin-fees }
 
 When [transacting through the Computed Origin account](#xcmtransactor-transact-through-signed){target=\_blank}, the transaction fees are paid by the same account from which the call is dispatched, which is a Computed Origin account in the destination chain. Consequently, the Computed Origin account must hold the necessary funds to pay for the entire execution. Note that the destination token, for which fees are paid, does not need to be registered as an XC-20 in the origin chain.
 
-To estimate the amount of token Alice's Computed Origin account will need to have to execute the remote call, you need to check the transact information specific to the destination chain. You can use the following script to get the transact information for parachain 888:
+To estimate the amount of tokens Alice's Computed Origin account will need to execute the remote call, you need to check the transact information specific to the destination chain. You can use the following script to get the transact information for parachain 888:
 
 ```js
 --8<-- 'code/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-pallet/transact-info-with-weight-limit.js'
