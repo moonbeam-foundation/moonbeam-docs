@@ -168,7 +168,7 @@ The XCM Transactor Pallet provides the following extrinsics (functions):
                 - `AsMultiLocation` - the XCM versioned multilocation for the asset to use for the fees
             - `feeAmount` - (optional) the amount to use for fees
         - `call` - encoded call data of the call that will be executed in the target chain
-        - `originKind` — dispatcher of the remote call in the destination chain. There are [four types of dispatchers](https://github.com/paritytech/polkadot-sdk/blob/{{ polkadot_sdk }}/polkadot/xcm/src/v2/mod.rs#L85){target=\_blank} available: `Native`, `SovereignAccount`, `Superuser`, or `Xcm`
+        - `originKind` — dispatcher of the remote call in the destination chain. There are [four types of dispatchers](https://github.com/paritytech/polkadot-sdk/blob/{{ polkadot_sdk }}/polkadot/xcm/src/v2/mod.rs#L86){target=\_blank} available: `Native`, `SovereignAccount`, `Superuser`, or `Xcm`
         - `weightInfo` - the weight information to be used. The `weightInfo` structure contains the following:
             - `transactRequiredWeightAtMost` — the weight required to perform the execution of the `Transact` call.  The `transactRequiredWeightAtMost` structure contains the following:
                 - `refTime` - the amount of computational time that can be used for execution
