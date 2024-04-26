@@ -21,12 +21,11 @@ Similarly to running a regular node, you can spin up a tracing node using Docker
 
 Spinning up a `debug`, `txpool`, or `tracing` node is similar to [running a full node](/node-operators/networks/run-a-node/overview/){target=\_blank}. However, there are some additional flags that you may want to enable specific tracing features:
 
-  - **`--ethapi=debug`** - optional flag that enables `debug_traceTransaction`, `debug_traceBlockByNumber`, and `debug_traceBlockByHash`
-  - **`--ethapi=trace`** - optional flag that enables `trace_filter`
-  - **`--ethapi=txpool`** - optional flag that enables `txpool_content`, `txpool_inspect`, and `txpool_status`
-  - **`--wasm-runtime-overrides=<path/to/overrides>`** - **required** flag for tracing that specifies the path where the local Wasm runtimes are stored. If you're using Docker, the path is as follows: `/moonbeam/<network>-substitutes-tracing`. Accepts the network as a parameter: `moonbeam`, `moonriver`, or `moonbase` (for development nodes and Moonbase Alpha)
+  - **`--ethapi debug`** - optional flag that enables `debug_traceTransaction`, `debug_traceBlockByNumber`, and `debug_traceBlockByHash`
+  - **`--ethapi trace`** - optional flag that enables `trace_filter`
+  - **`--ethapi txpool`** - optional flag that enables `txpool_content`, `txpool_inspect`, and `txpool_status`
+  - **`--wasm-runtime-overrides <path/to/overrides>`** - **required** flag for tracing that specifies the path where the local Wasm runtimes are stored. If you're using Docker, the path is as follows: `/moonbeam/<network>-substitutes-tracing`. Accepts the network as a parameter: `moonbeam`, `moonriver`, or `moonbase` (for development nodes and Moonbase Alpha)
   - **`--runtime-cache-size 64`** - **required** flag that configures the number of different runtime versions preserved in the in-memory cache to 64
-  - **`--execution=wasm`** - sets the execution strategy that should be used by all execution contexts to `wasm`. In other words, this enables usage of the Wasm binary stored on-chain
   - **`--ethapi-trace-max-count <uint>`** — sets the maximum number of trace entries to be returned by the node. The default maximum number of trace entries a single request of `trace_filter` returns is `500`
   - **`-ethapi-trace-cache-duration <uint>`** — sets the duration (in seconds) after which the cache of `trace_filter,` for a given block, is discarded. The default amount of time blocks are stored in the cache is `300` seconds
 
