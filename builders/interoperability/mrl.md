@@ -91,27 +91,82 @@ In order to send tokens back through Wormhole, you'll need to calculate the user
 
 Alternatively, the `multilocationToAddress` function of the [XCM Utilities Precompile](/builders/interoperability/xcm/xcm-utils/){target=\_blank} can also be used.
 
-#### Build the Transfer Multiassets Extrinsic {: #build-transfer-multiassets }
+#### Create a Project {: #create-a-project }
 
-Once you have the Computed Origin account, you can begin to construct the `utility.batchAll` transaction. To get started, you'll need to make sure you have a few packages installed:
+To get started, you'll need to create a new project directory for the files you'll be building in this guide. Take the following steps to setup your project:
 
-```bash
-npm i @polkadot/api ethers
-```
+1. Create a new directory and change into the directory
 
-Now you can begin to tackle the `xTokens.transferMultiassets` extrinsic, which accepts four parameters: `assets`, `feeItem`, `dest`, and `destWeightLimit`. You can find out more information on each of the parameters in the [X-Tokens Pallet Interface](/builders/interoperability/xcm/xc20/send-xc20s/xtokens-pallet#x-tokens-pallet-interface){target=\_blank} documentation.
-
-In short, the `assets` parameter defines the multilocation and amount of xcDEV (xcGLMR for Moonbeam) and the local XC-20 to send to Moonbase Alpha, with the xcDEV positioned as the first asset and the local XC-20 as the second. The `feeItem` is set to the index of the xcDEV asset, which in this case is `0`, so that DEV is used to pay for the execution fees in Moonbase Alpha. The `dest` is a multilocation that defines the Computed Origin account that you calculated in the previous section on Moonbase Alpha.
-
-For this example, the `xTokens.transferMultiassets` extrinsic will look like the following:
-
-???+ code "Transfer multiassets logic"
-
-    ```js
-    --8<-- 'code/builders/interoperability/mrl/transfer-multiassets.js'
+    ```bash
+    mkdir wormhole-mrl-demo && cd wormhole-mrl-demo
     ```
 
-To modify the script for Moonbeam, you'll use the following configurations:
+2. Create a `package.json` file:
+
+    ```bash
+    npm init -y
+    ```
+
+3. Install packages that you'll need to build the remote EVM calls and the XCM extrinsics
+
+    ```bash
+    npm i @polkadot/api ethers
+    ```
+
+4. Create the files that you'll need for this guide:
+
+    - `build-transfer-multiassets-call.js` - for creating the `xTokens.transferMultiassets` extrinsic that transfers assets cross-chain. This contains the logic for the first call of the batch transaction
+    - `build-remote-calldata.js` - for creating the encoded calldata that approves the Wormhole relayer to transfer the local XC-20 and initiates the transfer via the Wormhole TokenBridge contract. This is required for the second call of the batch transaction
+    - `build-remote-evm-call.js` - for creating the `polkadotXcm.send` extrinsic that executes the remote EVM call. This contains the logic for the second call of the batch transaction
+    - `send-batch-transaction.js` - for assembling and sending the batch transaction for the asset transfer and the remote EVM call
+
+    ```bash
+    touch build-transfer-multiassets.js build-remote-calldata.js \
+    build-remote-evm-call.js send-batch-transaction.js
+    ```
+
+5. Create a directory and files for the ABIs of each of the contracts you'll be working with in this guide:
+
+    ```bash
+    mkdir abi && touch abi/ERC20.js abi/TokenRelayer.js abi/Batch.js
+    ```
+
+    ??? code "ERC-20 Interface ABI"
+
+        ```js title="ERC20.js"
+        --8<-- 'code/builders/interoperability/mrl/abi/ERC20.js'
+        ```
+
+    ??? code "TokenBridge Relayer ABI"
+
+        ```js title="TokenRelayer.js"
+        --8<-- 'code/builders/interoperability/mrl/abi/TokenRelayer.js'
+        ```
+
+    ??? code "Batch Precompile ABI"
+
+        ```js title="Batch.js"
+        --8<-- 'code/builders/interoperability/mrl/abi/Batch.js'
+        ```
+
+#### Build the Transfer Multiassets Extrinsic {: #build-transfer-multiassets }
+
+You can begin to tackle the `xTokens.transferMultiassets` extrinsic, which accepts four parameters:
+
+-  `assets` - defines the multilocation and amount of xcDEV (xcGLMR for Moonbeam) and the local XC-20 to send to Moonbase Alpha, with the xcDEV positioned as the first asset and the local XC-20 as the second
+- `feeItem` - set to the index of the xcDEV asset, which in this case is `0`, so that DEV is used to pay for the execution fees in Moonbase Alpha
+- `dest` - a multilocation that defines the Computed Origin account that you calculated in the previous section on Moonbase Alpha
+- `destWeightLimit` - the weight to be purchased to pay for XCM execution on the destination chain
+
+You can find out more information on each of the parameters in the [X-Tokens Pallet Interface](/builders/interoperability/xcm/xc20/send-xc20s/xtokens-pallet#x-tokens-pallet-interface){target=\_blank} documentation.
+
+In the `build-transfer-multiassets-call.js` file, you'll build the `xTokens.transferMultiassets` extrinsic and export it.
+
+```js title="build-transfer-multiassets-call.js"
+--8<-- 'code/builders/interoperability/mrl/build-transfer-multiassets-call.js'
+```
+
+To modify the code for Moonbeam, you'll use the following configurations:
 
 |           Parameter            | Value |
 |:------------------------------:|:-----:|
@@ -121,31 +176,13 @@ To modify the script for Moonbeam, you'll use the following configurations:
 
 #### Build the Remote EVM Call {: #build-the-remote-evm-call }
 
-To generate the second call of the batch transaction, the `polkadotXcm.send` extrinsic, you'll need to create the EVM transaction and then assemble the XCM instructions that execute said EVM transaction. The EVM transaction can be constructed as a transaction that interacts with the [Batch Precompile](/builders/pallets-precompiles/precompiles/batch){target=\_blank} so that two transactions can happen in one. This is helpful because this EVM transaction has to both approve a Wormhole relayer to relay the local XC-20 token as well as the relay action itself.
+To generate the second call of the batch transaction, the `polkadotXcm.send` extrinsic, you'll need to create the EVM transaction and then assemble the XCM instructions that execute said EVM transaction.
+
+For now, you'll focus on generating the calldata for the EVM transaction. For this, you'll construct a transaction that interacts with the [Batch Precompile](/builders/pallets-precompiles/precompiles/batch){target=\_blank} so that two transactions can happen in one. This is helpful because this EVM transaction has to both approve a Wormhole relayer to relay the local XC-20 token as well as the relay action itself.
 
 To create the batch transaction and wrap it in a remote EVM call to be executed on Moonbeam, you'll need to take the following steps:
 
-1. Create contract instances of the local XC-20, [the Wormhole relayer](https://github.com/wormhole-foundation/example-token-bridge-relayer/blob/main/evm/src/token-bridge-relayer/TokenBridgeRelayer.sol){target=\_blank}, and the [Batch Precompile](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/batch/Batch.sol){target=\_blank}. For this, you'll need the ABI for each contract:
-
-    ??? code "ERC-20 Interface ABI"
-
-        ```js
-        --8<-- 'code/builders/interoperability/mrl/abi/ERC20.js'
-        ```
-
-    ??? code "TokenBridge Relayer ABI"
-
-        ```js
-        --8<-- 'code/builders/interoperability/mrl/abi/TokenRelayer.js'
-        ```
-
-    ??? code "Batch Precompile ABI"
-
-        ```js
-        --8<-- 'code/builders/interoperability/mrl/abi/Batch.js'
-        ```
-
-    For this particular example in Moonbase Alpha, you'll also need the address of a Wormhole relayer. You can use the [xLabs relayer](https://xlabs.xyz/){target=\_blank}:
+1. Create contract instances of the local XC-20, [the Wormhole relayer](https://github.com/wormhole-foundation/example-token-bridge-relayer/blob/main/evm/src/token-bridge-relayer/TokenBridgeRelayer.sol){target=\_blank}, and the [Batch Precompile](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/batch/Batch.sol){target=\_blank}. For this, you'll need the ABI for each contract and the address of a Wormhole relayer. You can use the [xLabs relayer](https://xlabs.xyz/){target=\_blank}:
 
     === "Moonbeam"
 
@@ -158,40 +195,35 @@ To create the batch transaction and wrap it in a remote EVM call to be executed 
         0x9563a59c15842a6f322b10f69d1dd88b41f2e97b
         ```
 
-
 2. Use Ether's `encodeFunctionData` function to get the encoded call data for the two calls in the batch transaction: the `approve` transaction and the `transferTokensWithRelay` transaction
 3. Combine the two transactions into a batch transaction and use Ether's `encodeFunctionData` to get the encoded call data for the batch transaction
 4. Use the encoded call data for the batch transaction to create the remote EVM call via the `ethereumXcm.transact` extrinsic, which accepts the `xcmTransaction` as the parameter. For more information, please refer to the [Remote EVM Calls documentation](/builders/interoperability/xcm/remote-execution/remote-evm-calls#ethereum-xcm-pallet-interface){target=\_blank}
 
-???+ code "Create remote EVM call logic"
+In the `build-remote-calldata.js` file, add the following code:
 
-    ```js
-    --8<-- 'code/builders/interoperability/mrl/evm-tx.js'
-    ```
+```js title="build-remote-calldata.js"
+--8<-- 'code/builders/interoperability/mrl/build-remote-calldata.js'
+```
+
+#### Build the XCM Message for the Remote EVM Call {: #build-xcm-message-for-remote-evm-call }
 
 Next, you'll need to create the extrinsic to send the remote EVM call to Moonbeam. To do so, you'll want to send an XCM message such that the [`Transact`](/builders/interoperability/xcm/core-concepts/instructions#transact){target=\_blank} XCM instruction gets successfully executed. The most common method to do this is through `polkadotXcm.send` and sending the [`WithdrawAsset`](/builders/interoperability/xcm/core-concepts/instructions#withdraw-asset){target=\_blank}, [`BuyExecution`](/builders/interoperability/xcm/core-concepts/instructions#buy-execution){target=\_blank}, and [`Transact`](/builders/interoperability/xcm/core-concepts/instructions#transact){target=\_blank} instructions. [`RefundSurplus`](/builders/interoperability/xcm/core-concepts/instructions#refund-surplus){target=\_blank} and [`DepositAsset`](/builders/interoperability/xcm/core-concepts/instructions#deposit-asset){target=\_blank} can also be used to ensure no assets get trapped, but they are technically optional.
 
-???+ code "Send remote EVM call logic"
+In the `build-remote-evm-call.js` file, add the following code:
 
-    ```js
-    --8<-- 'code/builders/interoperability/mrl/polkadotxcm-send.js'
-    ```
+```js title="build-remote-evm-call.js"
+--8<-- 'code/builders/interoperability/mrl/build-remote-evm-call.js'
+```
 
 #### Build the Batch Extrinsic {: #build-batch-extrinsic }
 
 To ensure that both the `xTokens.transferMultiassets` and the `polkadotXcm.send` transactions are sent together, you can batch them together using `utility.batchAll`. At the time of writing, this helps ensure that the asset transfer happens before the EVM transaction, a necessary distinction. Unfortunately, this is subject to change with future XCM updates.
 
-???+ code "Batch the transfer multiassets and send remote EVM calls"
+In the `send-batch-transaction.js` file, add the following code:
 
-    ```js
-    --8<-- 'code/builders/interoperability/mrl/batch-extrinsics.js'
-    ```
-
-??? code "View the complete script"
-
-    ```js
-    --8<-- 'code/builders/interoperability/mrl/complete-script.js'
-    ```
+```js title="send-batch-transaction.js"
+--8<-- 'code/builders/interoperability/mrl/send-batch-transaction.js'
+```
 
 If you would like to see an example project that fully implements this, an example is available in a [GitHub repository](https://github.com/jboetticher/mrl-mono){target=\_blank}.
 
