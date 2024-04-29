@@ -188,14 +188,14 @@ For an overview of the flags used in the following start-up commands, plus addit
     SyslogFacility=local7
     KillSignal=SIGHUP
     ExecStart={{ networks.moonbeam.node_directory }}/{{ networks.moonbeam.binary_name }} \
-         --state-pruning=archive \
+         --state-pruning archive \
          --trie-cache-size 1073741824 \
          --db-cache INSERT_RAM_IN_MB \
          --base-path {{ networks.moonbeam.node_directory }} \
          --chain {{ networks.moonbeam.chain_spec }} \
          --name "INSERT_YOUR_NODE_NAME" \
          -- \
-         --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
+         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
          --sync fast
     
     [Install]
@@ -219,14 +219,14 @@ For an overview of the flags used in the following start-up commands, plus addit
     SyslogFacility=local7
     KillSignal=SIGHUP
     ExecStart={{ networks.moonriver.node_directory }}/{{ networks.moonriver.binary_name }} \
-         --state-pruning=archive \
+         --state-pruning archive \
          --trie-cache-size 1073741824 \
          --db-cache INSERT_RAM_IN_MB \
          --base-path {{ networks.moonriver.node_directory }} \
          --chain {{ networks.moonriver.chain_spec }} \
          --name "INSERT_YOUR_NODE_NAME" \
          -- \
-         --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
+         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
          --sync fast
     
     [Install]
@@ -250,14 +250,14 @@ For an overview of the flags used in the following start-up commands, plus addit
     SyslogFacility=local7
     KillSignal=SIGHUP
     ExecStart={{ networks.moonbase.node_directory }}/{{ networks.moonbase.binary_name }} \
-         --state-pruning=archive \
+         --state-pruning archive \
          --trie-cache-size 1073741824 \
          --db-cache INSERT_RAM_IN_MB \
          --base-path {{ networks.moonbase.node_directory }} \
          --chain {{ networks.moonbase.chain_spec }} \
          --name "INSERT_YOUR_NODE_NAME" \
          -- \
-         --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
+         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
          --sync fast
 
     [Install]
@@ -283,7 +283,7 @@ For an overview of the flags used in the following start-up commands, plus addit
     SyslogFacility=local7
     KillSignal=SIGHUP
     ExecStart={{ networks.moonbeam.node_directory }}/{{ networks.moonbeam.binary_name }} \
-         --state-pruning=archive \
+         --state-pruning archive \
          --trie-cache-size 1073741824 \
          --db-cache INSERT_RAM_IN_MB \
          --base-path {{ networks.moonbeam.node_directory }} \
@@ -291,7 +291,7 @@ For an overview of the flags used in the following start-up commands, plus addit
          --name "INSERT_YOUR_NODE_NAME" \
          --unsafe-rpc-external \
          -- \
-         --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
+         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
          --sync fast
     
     [Install]
@@ -317,7 +317,7 @@ For an overview of the flags used in the following start-up commands, plus addit
     SyslogFacility=local7
     KillSignal=SIGHUP
     ExecStart={{ networks.moonbeam.node_directory }}/{{ networks.moonbeam.binary_name }} \
-         --state-pruning=archive \
+         --state-pruning archive \
          --trie-cache-size 1073741824 \
          --db-cache INSERT_RAM_IN_MB \
          --base-path {{ networks.moonbeam.node_directory }} \
@@ -325,7 +325,7 @@ For an overview of the flags used in the following start-up commands, plus addit
          --name "INSERT_YOUR_NODE_NAME" \
          --frontier-backend-type sql \
          -- \
-         --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
+         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
          --sync fast
     
     [Install]
@@ -358,7 +358,7 @@ For an overview of the flags used in the following start-up commands, plus addit
          --chain {{ networks.moonbeam.chain_spec }} \
          --name "INSERT_YOUR_NODE_NAME" \
          -- \
-         --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
+         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
          --sync fast
     
     [Install]
@@ -389,7 +389,7 @@ For an overview of the flags used in the following start-up commands, plus addit
          --chain {{ networks.moonriver.chain_spec }} \
          --name "INSERT_YOUR_NODE_NAME" \
          -- \
-         --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
+         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
          --sync fast
     
     [Install]
@@ -420,7 +420,7 @@ For an overview of the flags used in the following start-up commands, plus addit
          --chain {{ networks.moonbase.chain_spec }} \
          --name "INSERT_YOUR_NODE_NAME" \
          -- \
-         --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
+         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
          --sync fast
 
     [Install]

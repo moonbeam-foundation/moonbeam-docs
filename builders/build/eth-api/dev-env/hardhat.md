@@ -60,7 +60,7 @@ You will need to create a Hardhat project if you don't already have one. You can
 
 5. A menu will appear, which will allow you to create a new project or use a sample project. For this example, you can choose **Create an empty hardhat.config.js**, which will create a Hardhat configuration file for your project
 
-![Hardhat Create Project](/images/builders/build/eth-api/dev-env/hardhat/hardhat-1.webp)
+--8<-- 'code/builders/build/eth-api/dev-env/hardhat/terminal/hardhat-create.md'
 
 ## Hardhat Configuration File {: #hardhat-configuration-file }
 
@@ -153,14 +153,21 @@ If you are planning on using any plugins with your project, you'll need to insta
 For this example, you can install the `hardhat-ethers` plugin and import it into the configuration file. This plugin provides a convenient way to use the [Ethers.js](/builders/build/eth-api/libraries/ethersjs/){target=\_blank} library to interact with the network.
 
 ```bash
-npm install @nomicfoundation/hardhat-ethers ethers@6
+npm install @nomicfoundation/hardhat-ethers ethers
 ```
 
-To import it, you'll add the following `require` statement to the top of the configuration file:
+Additionally, you'll need to install the `hardhat-ignition-ethers` plugin to enable deployment of smart contracts with Hardhat Ignition. You can install it with the following command:
 
-```js hl_lines="2"
+```sh
+npm install --save-dev @nomicfoundation/hardhat-ignition-ethers
+```
+
+To import both plugins, add the following `require` statements to the top of the Hardhat configuration file:
+
+```js hl_lines="2 3"
 /** @type import('hardhat/config').HardhatUserConfig */
 require('@nomicfoundation/hardhat-ethers');
+require('@nomicfoundation/hardhat-ignition-ethers');
 
 const privateKey = 'INSERT_PRIVATE_KEY';
 
@@ -232,7 +239,7 @@ To use the `compile` task, all you have to do is run:
 npx hardhat compile
 ```
 
-![Hardhat Contract Compile](/images/builders/build/eth-api/dev-env/hardhat/hardhat-2.webp)
+--8<-- 'code/builders/build/eth-api/dev-env/hardhat/terminal/compile.md'
 
 After compilation, an `artifacts` directory is created that holds the bytecode and metadata of the contract, which are `.json` files. It’s a good idea to add this directory to a `.gitignore` file.
 
@@ -240,60 +247,55 @@ If you make changes to the contract after you've compiled it, you can compile it
 
 ## Deploy the Contract {: #deploying-the-contract }
 
-To deploy the contract, you'll create a script that uses [Ethers.js](/builders/build/eth-api/libraries/ethersjs){target=\_blank} to deploy the contract, and you'll run the script using the `run` task.
+To deploy the contract, you'll use Hardhat Ignition, a declarative framework for deploying smart contracts. Hardhat Ignition is designed to make it easy to manage recurring tasks surrounding smart contract  deployment and testing. For more information, be sure to check out the [Hardhat Ignition docs](https://hardhat.org/ignition/docs/getting-started#overview){target=\_blank}. 
 
-You can create a new directory for the script, and name it `scripts`, and add a new file to it called `deploy.js`:
+To set up the proper file structure for your Ignition module, create a folder named `ignition` and a subdirectory called `modules`.  Then add a new file to it called `Box.js`. You can take all three of these steps with the following command:
 
 ```sh
-mkdir scripts && touch scripts/deploy.js
+mkdir ignition ignition/modules && touch ignition/modules/Box.js
 ```
 
-Next, you need to write your deployment script. Because you'll be running it with Hardhat and you've already imported Ethers into your `hardhat.config.js` file, you don't need to import any libraries directly in the script. If you were to run the script with `node` instead, you would need to import Ethers.
+Next, you can write your Hardhat Ignition module. To get started, take the following steps:
 
-To get started, take the following steps:
-
-1. Create a local instance of the contract with the `getContractFactory` method
-2. Use the `deploy` method that exists within this instance to instantiate the smart contract
-3. Wait for the deployment by using `waitForDeployment`
-4. Once deployed, you can fetch the address of the contract using the contract instance.
+1. Import the `buildModule` function from the Hardhat Ignition module
+2. Export a module using `buildModule`
+3. Use the `getAccount` method to select the deployer account
+4. Deploy the `Box` contract
+5. Return an object from the module. This makes the `Box` contract accessible for interaction in Hardhat tests and scripts
 
 ```js
-// scripts/deploy.js
-async function main() {
-  // 1. Get the contract to deploy
-  const Box = await ethers.getContractFactory('Box');
-  console.log('Deploying Box...');
+// 1.  Import the `buildModule` function from the Hardhat Ignition module
+const { buildModule } = require("@nomicfoundation/hardhat-ignition/modules");
 
-  // 2. Instantiate a new Box smart contract
-  const box = await Box.deploy();
+// 2. Export a module using `buildModule`
+module.exports = buildModule("BoxModule", (m) => {
+  
+  // 3. Use the `getAccount` method to select the deployer account
+  const deployer = m.getAccount(0);
 
-  // 3. Wait for the deployment to resolve
-  await box.waitForDeployment();
-
-  // 4. Use the contract instance to get the contract address
-  console.log('Box deployed to:', box.target);
-}
-
-main()
-  .then(() => process.exit(0))
-  .catch((error) => {
-    console.error(error);
-    process.exit(1);
+  // 4. Deploy the `Box` contract
+  const box = m.contract("Box", [], {
+    from: deployer,
   });
+
+  // 5. Return an object from the module 
+  return { box };
+});
+
 ```
 
-To run the script and deploy the `Box.sol` contract, use the following command, which requires you to specify the network name as defined in your `hardhat.config.js` to deploy the contract to:
+To run the script and deploy the `Box.sol` contract, use the following command, which requires you to specify the network name as defined in your `hardhat.config.js`. If you don't specify a network, hardhat will deploy the contract to a local hardhat network by default. 
 
 ```sh
-npx hardhat run --network moonbase scripts/deploy.js
+npx hardhat ignition deploy ./ignition/modules/Box.js --network moonbase
 ```
 
 !!! note
     If you're using another Moonbeam network, make sure that you specify the correct network. The network name needs to match how it's defined in the `hardhat.config.js` file.
 
-After a few seconds, the contract is deployed, and you should see the address in the terminal.
+You'll be prompted to confirm the network you wish to deploy to. After a few seconds after you confirm, the contract is deployed, and you'll see the contract address in the terminal.
 
-![Hardhat Contract Deploy](/images/builders/build/eth-api/dev-env/hardhat/hardhat-3.webp)
+--8<-- 'code/builders/build/eth-api/dev-env/hardhat/terminal/deploy-moonbase.md'
 
 Congratulations, your contract is live! Save the address, as you will use it to interact with this contract instance in the next step.
 
@@ -333,7 +335,7 @@ Next, you can take the following steps, entering one line at a time:
 
 The transaction will be signed by your account configured in the `hardhat.config.js` file and broadcasted to the network. The output should look similar to:
 
-![Transaction output](/images/builders/build/eth-api/dev-env/hardhat/hardhat-4.webp)
+--8<-- 'code/builders/build/eth-api/dev-env/hardhat/terminal/interact.md'
 
 Notice your address labeled `from`, the address of the contract, and the `data` that is being passed. Now, you can retrieve the value by running:
 
@@ -350,7 +352,7 @@ Similarly to the deployment script, you can create a script to interact with you
 To get started, create a `set-value.js` file in the `scripts` directory:
 
 ```sh
-touch scripts/set-value.js
+mkdir scripts && touch scripts/set-value.js
 ```
 
 Now paste the following contract into the `set-value.js` file:
@@ -388,7 +390,7 @@ npx hardhat run --network moonbase scripts/set-value.js
 
 The script should return `2` as the value.
 
-![The terminal output from executing the set-value.js script.](/images/builders/build/eth-api/dev-env/hardhat/hardhat-5-new.webp)
+--8<-- 'code/builders/build/eth-api/dev-env/hardhat/terminal/run.md'
 
 ## Hardhat Forking {: #hardhat-forking }
 
@@ -574,7 +576,7 @@ If you prefer to configure your Hardhat project, you can update your `hardhat.co
 
 When you spin up the Hardhat fork, you'll have 20 development accounts that are pre-funded with 10,000 test tokens. The forked instance is available at `http://127.0.0.1:8545/`. The output in your terminal should resemble the following:
 
-![Forking terminal screen](/images/builders/build/eth-api/dev-env/hardhat/hardhat-5.webp)
+--8<-- 'code/builders/build/eth-api/dev-env/hardhat/terminal/private-keys.md'
 
 To verify you have forked the network, you can query the latest block number:
 
