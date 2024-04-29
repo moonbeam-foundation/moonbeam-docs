@@ -52,19 +52,19 @@ As of runtime 2900, the configuration of the XCM queue suggests that XCM message
 === "Moonbeam"
 
     ```text
-    125,000,000,000 (.125 seconds of block execution time)
+    125,000,000,000 (0.125 seconds of block execution time)
     ```
 
 === "Moonriver"
 
     ```text
-    125,000,000,000 (.125 seconds of block execution time)
+    125,000,000,000 (0.125 seconds of block execution time)
     ```
 
 === "Moonbase Alpha"
 
     ```text
-    500,000,000,000 (.5 seconds of block execution time)
+    500,000,000,000 (0.5 seconds of block execution time)
     ```
 
 !!! note
