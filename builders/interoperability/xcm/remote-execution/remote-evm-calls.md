@@ -47,16 +47,69 @@ Another significant difference is in terms of the gas price. The fee for remote 
 
 The last difference is in terms of the gas limit. Ethereum uses a gas-metered system to moderate the amount of execution that can be done in a block. On the contrary, Moonbeam uses a [weight-based system](https://docs.substrate.io/build/tx-weights-fees/){target=\_blank} in which each call is characterized by the time it takes to execute in a block. Each unit of weight corresponds to one picosecond of execution time.
 
-The configuration of the XCM queue suggests that XCM messages should be executable within `20,000,000,000` weight units (that is, `0.02` seconds of block execution time). Suppose the XCM message can't be executed due to the lack of execution time in a given block, and the weight requirement is over `20,000,000,000`. In that case, the XCM message will be marked as `overweight` and will only be executable through democracy.
+As of runtime 2900, the configuration of the XCM queue suggests that XCM messages should be executable within the following weight units:
 
-The `20,000,000,000` weight limit per XCM message constrains the gas limit available for remote EVM calls through XCM. For all Moonbeam-based networks, there is a ratio of [`25,000` units of gas per unit of weight](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbase.spec_version }}/runtime/moonbase/src/lib.rs#L402){target=\_blank} ([`WEIGHT_REF_TIME_PER_SECOND`](https://paritytech.github.io/substrate/master/frame_support/weights/constants/constant.WEIGHT_REF_TIME_PER_SECOND.html){target=\_blank} / [`GAS_PER_SECOND`](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbase.spec_version }}/runtime/moonbase/src/lib.rs#398){target=\_blank}). Considering that you need some of the XCM message weight to execute the XCM instructions themselves. Therefore, a remote EVM call might have around `18,000,000,000` weight left, which is `720,000` gas units. Consequently, the maximum gas limit you can provide for a remote EVM call is around `720,000` gas units. Note that this might change in the future.
+=== "Moonbeam"
+
+    ```text
+    125,000,000,000 (.125 seconds of block execution time)
+    ```
+
+=== "Moonriver"
+
+    ```text
+    125,000,000,000 (.125 seconds of block execution time)
+    ```
+
+=== "Moonbase Alpha"
+
+    ```text
+    500,000,000,000 (.5 seconds of block execution time)
+    ```
+
+!!! note
+    Prior to runtime 2900, the weight limit of XCM messages across all networks was `20,000,000,000` weight units (this is, `0.02` seconds of block execution time).
+
+Suppose the XCM message can't be executed due to the lack of execution time in a given block, and the weight requirement exceeds the above limits. In that case, the XCM message will be marked as `overweight` and only be executable through democracy.
+
+The maximum weight limit per XCM message constrains the gas limit available for remote EVM calls through XCM. For all Moonbeam-based networks, there is a ratio of [`25,000` units of gas per unit of weight](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbase.spec_version }}/runtime/moonbase/src/lib.rs#L402){target=\_blank} ([`WEIGHT_REF_TIME_PER_SECOND`](https://paritytech.github.io/substrate/master/frame_support/weights/constants/constant.WEIGHT_REF_TIME_PER_SECOND.html){target=\_blank} / [`GAS_PER_SECOND`](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbase.spec_version }}/runtime/moonbase/src/lib.rs#398){target=\_blank}). Considering that you need some XCM message weight to execute the XCM instructions, a remote EVM call might consume 2,000,000,000 units. The following equation can be used to determine the maximum gas units for a remote EVM call:
+
+```text
+Maximum Gas Units = (Maximum Weight Units - Remote EVM Weight Units) / 25,000
+```
+
+Therefore, the maximum gas limit you can provide for a remote EVM call can be calculated:
+
+=== "Moonbeam"
+
+    ```text
+    Maximum Gas Units = (125,000,000,000 - 2,000,000,000) / 25,000
+    Maximum Gas Units = 4,920,000
+    ```
+
+=== "Moonriver"
+
+    ```text
+    Maximum Gas Units = (125,000,000,000 - 2,000,000,000) / 25,000
+    Maximum Gas Units = 4,920,000
+    ```
+
+=== "Moonbase Alpha"
+
+    ```text
+    Maximum Gas Units = (500,000,000,000 - 2,000,000,000) / 25,000
+    Maximum Gas Units = 19,920,000
+    ```
+
+!!! note
+    These values are subject to change in the future.
 
 In summary, these are the main differences between regular and remote EVM calls:
 
 - Remote EVM calls use a global nonce (owned by the [Ethereum XCM Pallet](https://github.com/moonbeam-foundation/moonbeam/tree/master/pallets/ethereum-xcm){target=\_blank}) instead of a nonce per account
 - The `v-r-s` values of the signature for remote EVM calls are `0x1`. The sender can't be retrieved from the signature through standard methods (for example, through [ECRECOVER](/builders/pallets-precompiles/precompiles/eth-mainnet/#verify-signatures-with-ecrecover){target=\_blank}). Nevertheless, the `from` is included in both the transaction receipt and when getting the transaction by hash (using the Ethereum JSON-RPC)
 - The gas price for all remote EVM calls is zero. The EVM execution is charged at an XCM execution level and not at an EVM level
-- The current maximum gas limit you can set for a remote EVM call is `720,000` gas units
+- The current maximum gas limit you can set for a remote EVM call is different, as outlined above
 
 ## Ethereum XCM Pallet Interface {: #ethereum-xcm-pallet-interface}
 
