@@ -21,12 +21,11 @@ Similarly to running a regular node, you can spin up a tracing node using Docker
 
 Spinning up a `debug`, `txpool`, or `tracing` node is similar to [running a full node](/node-operators/networks/run-a-node/overview/){target=\_blank}. However, there are some additional flags that you may want to enable specific tracing features:
 
-  - **`--ethapi=debug`** - optional flag that enables `debug_traceTransaction`, `debug_traceBlockByNumber`, and `debug_traceBlockByHash`
-  - **`--ethapi=trace`** - optional flag that enables `trace_filter`
-  - **`--ethapi=txpool`** - optional flag that enables `txpool_content`, `txpool_inspect`, and `txpool_status`
-  - **`--wasm-runtime-overrides=<path/to/overrides>`** - **required** flag for tracing that specifies the path where the local Wasm runtimes are stored. If you're using Docker, the path is as follows: `/moonbeam/<network>-substitutes-tracing`. Accepts the network as a parameter: `moonbeam`, `moonriver`, or `moonbase` (for development nodes and Moonbase Alpha)
+  - **`--ethapi debug`** - optional flag that enables `debug_traceTransaction`, `debug_traceBlockByNumber`, and `debug_traceBlockByHash`
+  - **`--ethapi trace`** - optional flag that enables `trace_filter`
+  - **`--ethapi txpool`** - optional flag that enables `txpool_content`, `txpool_inspect`, and `txpool_status`
+  - **`--wasm-runtime-overrides <path/to/overrides>`** - **required** flag for tracing that specifies the path where the local Wasm runtimes are stored. If you're using Docker, the path is as follows: `/moonbeam/<network>-substitutes-tracing`. Accepts the network as a parameter: `moonbeam`, `moonriver`, or `moonbase` (for development nodes and Moonbase Alpha)
   - **`--runtime-cache-size 64`** - **required** flag that configures the number of different runtime versions preserved in the in-memory cache to 64
-  - **`--execution=wasm`** - sets the execution strategy that should be used by all execution contexts to `wasm`. In other words, this enables usage of the Wasm binary stored on-chain
   - **`--ethapi-trace-max-count <uint>`** — sets the maximum number of trace entries to be returned by the node. The default maximum number of trace entries a single request of `trace_filter` returns is `500`
   - **`-ethapi-trace-cache-duration <uint>`** — sets the duration (in seconds) after which the cache of `trace_filter,` for a given block, is discarded. The default amount of time blocks are stored in the cache is `300` seconds
 
@@ -104,17 +103,17 @@ The complete command for running a tracing node is as follows:
     docker run --network="host" -v "{{ networks.moonbeam.node_directory }}:/data" \
     -u $(id -u ${USER}):$(id -g ${USER}) \
     {{ networks.moonbeam.tracing_tag }} \
-    --base-path=/data \
+    --base-path /data \
     --chain {{ networks.moonbeam.chain_spec }} \
-    --name="INSERT_YOUR_NODE_NAME" \
+    --name "INSERT_YOUR_NODE_NAME" \
     --state-pruning archive \
     --trie-cache-size 1073741824 \
     --db-cache INSERT_RAM_IN_MB \
-    --ethapi=debug,trace,txpool \
-    --wasm-runtime-overrides=/moonbeam/moonbeam-substitutes-tracing \
+    --ethapi debug,trace,txpool \
+    --wasm-runtime-overrides /moonbeam/moonbeam-substitutes-tracing \
     --runtime-cache-size 64 \
     -- \
-    --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
+    --name "INSERT_YOUR_NODE_NAME (Embedded Relay)"
     ```
 
 === "Moonriver"
@@ -123,17 +122,17 @@ The complete command for running a tracing node is as follows:
     docker run --network="host" -v "{{ networks.moonriver.node_directory }}:/data" \
     -u $(id -u ${USER}):$(id -g ${USER}) \
     {{ networks.moonriver.tracing_tag }} \
-    --base-path=/data \
+    --base-path /data \
     --chain {{ networks.moonriver.chain_spec }} \
-    --name="INSERT_YOUR_NODE_NAME" \
+    --name INSERT_YOUR_NODE_NAME" \
     --state-pruning archive \
     --trie-cache-size 1073741824 \
     --db-cache INSERT_RAM_IN_MB \
-    --ethapi=debug,trace,txpool \
-    --wasm-runtime-overrides=/moonbeam/moonriver-substitutes-tracing \
+    --ethapi debug,trace,txpool \
+    --wasm-runtime-overrides /moonbeam/moonriver-substitutes-tracing \
     --runtime-cache-size 64 \
     -- \
-    --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
+    --name "INSERT_YOUR_NODE_NAME (Embedded Relay)"
     ```
 
 === "Moonbase Alpha"
@@ -142,17 +141,17 @@ The complete command for running a tracing node is as follows:
     docker run --network="host" -v "{{ networks.moonbase.node_directory }}:/data" \
     -u $(id -u ${USER}):$(id -g ${USER}) \
     {{ networks.moonbase.tracing_tag }} \
-    --base-path=/data \
+    --base-path /data \
     --chain {{ networks.moonbase.chain_spec }} \
-    --name="INSERT_YOUR_NODE_NAME" \
+    --name "INSERT_YOUR_NODE_NAME" \
     --state-pruning archive \
     --trie-cache-size 1073741824 \
     --db-cache INSERT_RAM_IN_MB \
-    --ethapi=debug,trace,txpool \
-    --wasm-runtime-overrides=/moonbeam/moonbase-substitutes-tracing \
+    --ethapi debug,trace,txpool \
+    --wasm-runtime-overrides /moonbeam/moonbase-substitutes-tracing \
     --runtime-cache-size 64 \
     -- \
-    --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
+    --name "INSERT_YOUR_NODE_NAME (Embedded Relay)"
     ```
 
 === "Moonbeam Dev Node"
@@ -161,9 +160,9 @@ The complete command for running a tracing node is as follows:
     docker run --network="host" \
     -u $(id -u ${USER}):$(id -g ${USER}) \
     {{ networks.development.tracing_tag }} \
-    --name="INSERT_YOUR_NODE_NAME" \
-    --ethapi=debug,trace,txpool \
-    --wasm-runtime-overrides=/moonbeam/moonbase-substitutes-tracing \
+    --name "INSERT_YOUR_NODE_NAME" \
+    --ethapi debug,trace,txpool \
+    --wasm-runtime-overrides /moonbeam/moonbase-substitutes-tracing \
     --runtime-cache-size 64 \
     --dev
     ```
@@ -285,17 +284,17 @@ The next step is to create the systemd configuration file, you'll need to:
     SyslogFacility=local7
     KillSignal=SIGHUP
     ExecStart={{ networks.moonbeam.node_directory }}/{{ networks.moonbeam.binary_name }} \
-         --state-pruning=archive \
+         --state-pruning archive \
          --trie-cache-size 1073741824 \
          --db-cache INSERT_RAM_IN_MB \
          --base-path {{ networks.moonbeam.node_directory }} \
-         --ethapi=debug,trace,txpool \
-         --wasm-runtime-overrides={{ networks.moonbeam.node_directory }}/wasm \
+         --ethapi debug,trace,txpool \
+         --wasm-runtime-overrides {{ networks.moonbeam.node_directory }}/wasm \
          --runtime-cache-size 64 \
          --chain {{ networks.moonbeam.chain_spec }} \
          --name "INSERT_YOUR_NODE_NAME" \
          -- \
-         --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
+         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)"
     
     [Install]
     WantedBy=multi-user.target
@@ -318,17 +317,17 @@ The next step is to create the systemd configuration file, you'll need to:
     SyslogFacility=local7
     KillSignal=SIGHUP
     ExecStart={{ networks.moonriver.node_directory }}/{{ networks.moonriver.binary_name }} \
-         --state-pruning=archive \
+         --state-pruning archive \
          --trie-cache-size 1073741824 \
          --db-cache INSERT_RAM_IN_MB \
          --base-path {{ networks.moonriver.node_directory }} \
-         --ethapi=debug,trace,txpool \
-         --wasm-runtime-overrides={{ networks.moonriver.node_directory }}/wasm \
+         --ethapi debug,trace,txpool \
+         --wasm-runtime-overrides {{ networks.moonriver.node_directory }}/wasm \
          --runtime-cache-size 64 \
          --chain {{ networks.moonriver.chain_spec }} \
          --name "INSERT_YOUR_NODE_NAME" \
          -- \
-         --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
+         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)"
     
     [Install]
     WantedBy=multi-user.target
@@ -351,17 +350,17 @@ The next step is to create the systemd configuration file, you'll need to:
     SyslogFacility=local7
     KillSignal=SIGHUP
     ExecStart={{ networks.moonbase.node_directory }}/{{ networks.moonbase.binary_name }} \
-         --state-pruning=archive \
+         --state-pruning archive \
          --trie-cache-size 1073741824 \
          --db-cache INSERT_RAM_IN_MB \
          --base-path {{ networks.moonbase.node_directory }} \
-         --ethapi=debug,trace,txpool \
-         --wasm-runtime-overrides={{ networks.moonbase.node_directory }}/wasm \
+         --ethapi debug,trace,txpool \
+         --wasm-runtime-overrides {{ networks.moonbase.node_directory }}/wasm \
          --runtime-cache-size 64 \
          --chain {{ networks.moonbase.chain_spec }} \
          --name "INSERT_YOUR_NODE_NAME" \
          -- \
-         --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
+         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)"
 
     [Install]
     WantedBy=multi-user.target
