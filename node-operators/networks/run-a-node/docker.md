@@ -95,14 +95,14 @@ For an overview of the flags used in the following start-up commands, plus addit
         docker run --network="host" -v "{{ networks.moonbeam.node_directory }}:/data" \
         -u $(id -u ${USER}):$(id -g ${USER}) \
         moonbeamfoundation/moonbeam:{{ networks.moonbeam.parachain_release_tag }} \
-        --base-path=/data \
+        --base-path /data \
         --chain {{ networks.moonbeam.chain_spec }} \
-        --name="INSERT_YOUR_NODE_NAME" \
+        --name "INSERT_YOUR_NODE_NAME" \
         --state-pruning archive \
         --trie-cache-size 1073741824 \
         --db-cache INSERT_RAM_IN_MB \
         -- \
-        --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
+        --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
         --sync fast
         ```
 
@@ -112,14 +112,14 @@ For an overview of the flags used in the following start-up commands, plus addit
         docker run --network="host" -v "{{ networks.moonriver.node_directory }}:/data" \
         -u $(id -u ${USER}):$(id -g ${USER}) \
         moonbeamfoundation/moonbeam:{{ networks.moonriver.parachain_release_tag }} \
-        --base-path=/data \
+        --base-path /data \
         --chain {{ networks.moonriver.chain_spec }} \
-        --name="INSERT_YOUR_NODE_NAME" \
+        --name "INSERT_YOUR_NODE_NAME" \
         --state-pruning archive \
         --trie-cache-size 1073741824 \
         --db-cache INSERT_RAM_IN_MB \
         -- \
-        --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
+        --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
         --sync fast
         ```
 
@@ -129,14 +129,14 @@ For an overview of the flags used in the following start-up commands, plus addit
         docker run --network="host" -v "{{ networks.moonbase.node_directory }}:/data" \
         -u $(id -u ${USER}):$(id -g ${USER}) \
         moonbeamfoundation/moonbeam:{{ networks.moonbase.parachain_release_tag }} \
-        --base-path=/data \
+        --base-path /data \
         --chain {{ networks.moonbase.chain_spec }} \
-        --name="INSERT_YOUR_NODE_NAME" \
+        --name "INSERT_YOUR_NODE_NAME" \
         --state-pruning archive \
         --trie-cache-size 1073741824 \
         --db-cache INSERT_RAM_IN_MB \
         -- \
-        --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
+        --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
         --sync fast
         ```
 
@@ -148,13 +148,13 @@ For an overview of the flags used in the following start-up commands, plus addit
         docker run -p 9944:9944 -v "/var/lib/moonbeam-data:/data" \
         -u $(id -u ${USER}):$(id -g ${USER}) \
         moonbeamfoundation/moonbeam:{{ networks.moonbeam.parachain_release_tag }} \
-        --base-path=/data \
+        --base-path /data \
         --chain moonbeam \
-        --name="INSERT_YOUR_NODE_NAME" \
+        --name "INSERT_YOUR_NODE_NAME" \
         --state-pruning archive \
         --trie-cache-size 1073741824 \
         -- \
-        --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
+        --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
         --sync fast
         ```
 
@@ -164,13 +164,13 @@ For an overview of the flags used in the following start-up commands, plus addit
         docker run -p 9944:9944 -v "/var/lib/moonriver-data:/data" \
         -u $(id -u ${USER}):$(id -g ${USER}) \
         moonbeamfoundation/moonbeam:{{ networks.moonriver.parachain_release_tag }} \
-        --base-path=/data \
+        --base-path /data \
         --chain moonriver \
-        --name="INSERT_YOUR_NODE_NAME" \
+        --name "INSERT_YOUR_NODE_NAME" \
         --state-pruning archive \
         --trie-cache-size 1073741824 \
         -- \
-        --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
+        --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
         --sync fast
         ```
 
@@ -180,13 +180,13 @@ For an overview of the flags used in the following start-up commands, plus addit
         docker run -p 9944:9944 -v "/var/lib/alphanet-data:/data" \
         -u $(id -u ${USER}):$(id -g ${USER}) \
         moonbeamfoundation/moonbeam:{{ networks.moonbase.parachain_release_tag }} \
-        --base-path=/data \
+        --base-path /data \
         --chain alphanet \
-        --name="INSERT_YOUR_NODE_NAME" \
+        --name "INSERT_YOUR_NODE_NAME" \
         --state-pruning archive \
         --trie-cache-size 1073741824 \
         -- \
-        --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
+        --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
         --sync fast
         ```
 
@@ -200,15 +200,15 @@ For an overview of the flags used in the following start-up commands, plus addit
         docker run --network="host" -v "{{ networks.moonbeam.node_directory }}:/data" \
         -u $(id -u ${USER}):$(id -g ${USER}) \
         moonbeamfoundation/moonbeam:{{ networks.moonbeam.parachain_release_tag }} \
-        --base-path=/data \
+        --base-path /data \
         --chain {{ networks.moonbeam.chain_spec }} \
-        --name="INSERT_YOUR_NODE_NAME" \
+        --name "INSERT_YOUR_NODE_NAME" \
         --state-pruning archive \
         --trie-cache-size 1073741824 \
         --db-cache INSERT_RAM_IN_MB \
         --unsafe-rpc-external \
         -- \
-        --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
+        --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
         --sync fast
         ```
 
@@ -218,14 +218,14 @@ For an overview of the flags used in the following start-up commands, plus addit
         docker run -p 9944:9944 -v "/var/lib/moonbeam-data:/data" \
         -u $(id -u ${USER}):$(id -g ${USER}) \
         moonbeamfoundation/moonbeam:{{ networks.moonbeam.parachain_release_tag }} \
-        --base-path=/data \
+        --base-path /data \
         --chain moonbeam \
-        --name="INSERT_YOUR_NODE_NAME" \
+        --name "INSERT_YOUR_NODE_NAME" \
         --state-pruning archive \
         --trie-cache-size 1073741824 \
         --unsafe-rpc-external \
         -- \
-        --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
+        --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
         --sync fast
         ```
 
@@ -239,16 +239,16 @@ For an overview of the flags used in the following start-up commands, plus addit
         docker run --network="host" -v "{{ networks.moonbeam.node_directory }}:/data" \
         -u $(id -u ${USER}):$(id -g ${USER}) \
         moonbeamfoundation/moonbeam:{{ networks.moonbeam.parachain_release_tag }} \
-        --base-path=/data \
+        --base-path /data \
         --chain {{ networks.moonbeam.chain_spec }} \
-        --name="INSERT_YOUR_NODE_NAME" \
+        --name "INSERT_YOUR_NODE_NAME" \
         --state-pruning archive \
         --trie-cache-size 1073741824 \
         # This is a comment
         --db-cache INSERT_RAM_IN_MB \
         --frontier-backend-type sql \
         -- \
-        --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
+        --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
         --sync fast
         ```
 
@@ -258,14 +258,14 @@ For an overview of the flags used in the following start-up commands, plus addit
         docker run -p 9944:9944 -v "/var/lib/moonbeam-data:/data" \
         -u $(id -u ${USER}):$(id -g ${USER}) \
         moonbeamfoundation/moonbeam:{{ networks.moonbeam.parachain_release_tag }} \
-        --base-path=/data \
+        --base-path /data \
         --chain moonbeam \
-        --name="INSERT_YOUR_NODE_NAME" \
+        --name "INSERT_YOUR_NODE_NAME" \
         --state-pruning archive \
         --trie-cache-size 1073741824 \
         --frontier-backend-type sql \
         -- \
-        --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
+        --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
         --sync fast
         ```
 
@@ -279,14 +279,14 @@ For an overview of the flags used in the following start-up commands, plus addit
         docker run --network="host" -v "{{ networks.moonbeam.node_directory }}:/data" \
         -u $(id -u ${USER}):$(id -g ${USER}) \
         moonbeamfoundation/moonbeam:{{ networks.moonbeam.parachain_release_tag }} \
-        --base-path=/data \
+        --base-path /data \
         --chain {{ networks.moonbeam.chain_spec }} \
-        --name="INSERT_YOUR_NODE_NAME" \
+        --name "INSERT_YOUR_NODE_NAME" \
         --collator \
         --trie-cache-size 1073741824 \
         --db-cache INSERT_RAM_IN_MB \
         -- \
-        --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
+        --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
         --sync fast
         ```
 
@@ -296,14 +296,14 @@ For an overview of the flags used in the following start-up commands, plus addit
         docker run --network="host" -v "{{ networks.moonriver.node_directory }}:/data" \
         -u $(id -u ${USER}):$(id -g ${USER}) \
         moonbeamfoundation/moonbeam:{{ networks.moonriver.parachain_release_tag }} \
-        --base-path=/data \
+        --base-path /data \
         --chain {{ networks.moonriver.chain_spec }} \
-        --name="INSERT_YOUR_NODE_NAME" \
+        --name "INSERT_YOUR_NODE_NAME" \
         --collator \
         --trie-cache-size 1073741824 \
         --db-cache INSERT_RAM_IN_MB \
         -- \
-        --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
+        --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
         --sync fast
         ```
 
@@ -313,14 +313,14 @@ For an overview of the flags used in the following start-up commands, plus addit
         docker run --network="host" -v "{{ networks.moonbase.node_directory }}:/data" \
         -u $(id -u ${USER}):$(id -g ${USER}) \
         moonbeamfoundation/moonbeam:{{ networks.moonbase.parachain_release_tag }} \
-        --base-path=/data \
+        --base-path /data \
         --chain {{ networks.moonbase.chain_spec }} \
-        --name="INSERT_YOUR_NODE_NAME" \
+        --name "INSERT_YOUR_NODE_NAME" \
         --collator \
         --trie-cache-size 1073741824 \
         --db-cache INSERT_RAM_IN_MB \
         -- \
-        --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
+        --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
         --sync fast
         ```
 
@@ -332,13 +332,13 @@ For an overview of the flags used in the following start-up commands, plus addit
         docker run -p 9944:9944 -v "/var/lib/moonbeam-data:/data" \
         -u $(id -u ${USER}):$(id -g ${USER}) \
         moonbeamfoundation/moonbeam:{{ networks.moonbeam.parachain_release_tag }} \
-        --base-path=/data \
+        --base-path /data \
         --chain moonbeam \
-        --name="INSERT_YOUR_NODE_NAME" \
+        --name "INSERT_YOUR_NODE_NAME" \
         --collator \
         --trie-cache-size 1073741824 \
         -- \
-        --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
+        --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
         --sync fast
         ```
 
@@ -348,13 +348,13 @@ For an overview of the flags used in the following start-up commands, plus addit
         docker run -p 9944:9944 -v "/var/lib/moonriver-data:/data" \
         -u $(id -u ${USER}):$(id -g ${USER}) \
         moonbeamfoundation/moonbeam:{{ networks.moonriver.parachain_release_tag }} \
-        --base-path=/data \
+        --base-path /data \
         --chain moonriver \
-        --name="INSERT_YOUR_NODE_NAME" \
+        --name "INSERT_YOUR_NODE_NAME" \
         --collator \
         --trie-cache-size 1073741824 \
         -- \
-        --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
+        --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
         --sync fast
         ```
 
@@ -364,13 +364,13 @@ For an overview of the flags used in the following start-up commands, plus addit
         docker run -p 9944:9944 -v "/var/lib/alphanet-data:/data" \
         -u $(id -u ${USER}):$(id -g ${USER}) \
         moonbeamfoundation/moonbeam:{{ networks.moonbase.parachain_release_tag }} \
-        --base-path=/data \
+        --base-path /data \
         --chain alphanet \
-        --name="INSERT_YOUR_NODE_NAME" \
+        --name "INSERT_YOUR_NODE_NAME" \
         --collator \
         --trie-cache-size 1073741824 \
         -- \
-        --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
+        --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
         --sync fast
         ```
 
