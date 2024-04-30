@@ -97,4 +97,4 @@ For a dedicated tutorial for these debug and trace methods, check out the [Debug
 
 ## Batch request {: #batch-request }
 
-Moonbeam clients support [Batch request](https://geth.ethereum.org/docs/interacting-with-geth/rpc/batch){target=\_blank}, allowing you to send multiple data requests simultaneously in an array. This reduces network delays by fetching data in a single call, especially beneficial for retrieving large amounts of independent data.
+Moonbeam clients support [batch requests](https://geth.ethereum.org/docs/interacting-with-geth/rpc/batch){target=\_blank}, allowing you to send multiple data requests simultaneously in an array. This reduces network delays by fetching data in a single call, which is especially beneficial for retrieving large amounts of independent data.
