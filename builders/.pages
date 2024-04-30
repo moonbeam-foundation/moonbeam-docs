@@ -3,8 +3,8 @@ hide: false
 nav:
   - index.md
   - get-started
-  - json-rpc
   - build
+  - json-rpc
   - pallets-precompiles
   - interoperability
   - integrations
