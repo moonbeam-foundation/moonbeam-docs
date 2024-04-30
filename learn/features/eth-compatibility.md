@@ -35,9 +35,9 @@ In addition to standard Ethereum RPC methods, Moonbeam supports non-standard Deb
 
 Learn more:
 
-- [Supported Ethereum RPC methods](/learn/core-concepts/rpc-support){target=\_blank}
-- [Subscribe to events with Ethereum JSON-RPC methods](/builders/build/eth-api/pubsub){target=\_blank}
-- [Debug and trace transactions with non-standard RPC methods](/builders/build/eth-api/debug-trace){target=\_blank}
+- [Supported Ethereum RPC methods](/builders/json-rpc/eth-rpc){target=\_blank}
+- [Subscribe to events with Ethereum JSON-RPC methods](/builders/json-rpc/pubsub){target=\_blank}
+- [Debug and trace transactions with non-standard RPC methods](/builders/json-rpc/debug-trace){target=\_blank}
 
 ### Ethereum Developer Tools and Libraries {: #ethereum-dev-tools }
 

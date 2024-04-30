@@ -64,7 +64,7 @@ There are also some [snapshots for the Alphanet ecosystem relay chain](https://w
 
 You can calculate the Sovereign account information using [a script from the xcm-tools repository](https://github.com/Moonsong-Labs/xcm-tools){target=\_blank}. To run the script, you must provide the parachain ID and the name of the associated relay chain.
 
-You can find the parachain IDs that have already been used on the [relay chain's Polkadot.js Apps page](https://polkadot.js.org/apps/?rpc=wss://frag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/parachains){target=\_blank}.
+You can find the parachain IDs that have already been used on the [relay chain's Polkadot.js Apps page](https://polkadot.js.org/apps/?rpc=wss://fro-moon-rpc-1-moonbase-relay-rpc-1.moonbase.ol-infra.network#/parachains){target=\_blank}.
 
 The accepted values for the relay chain are `polkadot` (default), `kusama`, and `moonbase`.
 
@@ -187,7 +187,7 @@ Running the following command will provide the encoded calldata to accept an ope
     ```bash
     yarn hrmp-manipulator --target-para-id YOUR_PARACHAIN_ID \
     --parachain-ws-provider wss://wss.api.moonbase.moonbeam.network  \
-    --relay-ws-provider wss://frag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network \
+    --relay-ws-provider wss://fro-moon-rpc-1-moonbase-relay-rpc-1.moonbase.ol-infra.network \
     --hrmp-action accept
     ```
 
@@ -235,7 +235,7 @@ Running the following command will provide the encoded calldata to create the HR
     ```bash
     yarn hrmp-manipulator --target-para-id YOUR_PARACHAIN_ID \
     --parachain-ws-provider wss://wss.api.moonbase.moonbeam.network  \
-    --relay-ws-provider wss://frag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network \
+    --relay-ws-provider wss://fro-moon-rpc-1-moonbase-relay-rpc-1.moonbase.ol-infra.network \
     --max-capacity 1000 --max-message-size 102400 \
     --hrmp-action open
     ```

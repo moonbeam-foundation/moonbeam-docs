@@ -69,7 +69,7 @@ The [Ethereum pallet](https://polkadot-evm.github.io/frontier/frame/ethereum.htm
 
 When a user submits a raw Ethereum transaction, it converts into a Substrate transaction through the pallet Ethereum's `transact` extrinsic. Using the Ethereum pallet as the sole executor of the EVM pallet forces all of the data to be stored and transacted in an Ethereum-compatible way. This enables block explorers such as [Moonscan](/builders/get-started/explorers#moonscan){target=\_blank}, which is built by Etherscan, to be able to index block data.
 
-Along with support for Ethereum-style data, the Ethereum pallet combined with the [RPC module](https://github.com/polkadot-evm/frontier/tree/master/client/rpc){target=\_blank} provides RPC support. This enables usage of [basic Ethereum JSON-RPC methods](/learn/core-concepts/rpc-support#basic-ethereum-json-rpc-methods){target=\_blank}, which ultimately allows existing Ethereum DApps to be deployed to Moonbeam with minimal changes.
+Along with support for Ethereum-style data, the Ethereum pallet combined with the [RPC module](https://github.com/polkadot-evm/frontier/tree/master/client/rpc){target=\_blank} provides RPC support. This enables usage of [basic Ethereum JSON-RPC methods](/builders/pallets-precompiles/eth-rpc#basic-ethereum-json-rpc-methods){target=\_blank}, which ultimately allows existing Ethereum DApps to be deployed to Moonbeam with minimal changes.
 
 ### EVM Pallet {: #evm-pallet }
 

@@ -16,7 +16,7 @@ To get the most out of this tutorial, you may wish to first familiarize yourself
 
 **The content of this tutorial is for educational purposes only!**
 
-For this example, you'll be working on top of Moonbase Alpha (Moonbeam TestNet), which has its own relay chain called [Moonbase relay](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffrag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/accounts){target=\_blank} (akin to the Polkadot relay chain). The relay chain token is called UNIT, while Moonbase Alpha's is called DEV. Importantly, you **must understand that sending incorrect XCM messages can result in the loss of funds.** Consequently, it is essential to test XCM features on a TestNet before moving to a production environment.
+For this example, you'll be working on top of Moonbase Alpha (Moonbeam TestNet), which has its own relay chain called [Moonbase relay](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffro-moon-rpc-1-moonbase-relay-rpc-1.moonbase.ol-infra.network#/accounts){target=\_blank} (akin to the Polkadot relay chain). The relay chain token is called UNIT, while Moonbase Alpha's is called DEV. Importantly, you **must understand that sending incorrect XCM messages can result in the loss of funds.** Consequently, it is essential to test XCM features on a TestNet before moving to a production environment.
 
 The goal of this tutorial is to show you how the [Batch Precompile](/builders/pallets-precompiles/precompiles/batch/){target=\_blank} can work in conjunction with [Polkadot's XCM](/builders/interoperability/xcm/overview/){target=\_blank} to allow you to trigger batch remote EVM calls on Moonbeam. To avoid adding complexity to this tutorial, the actual batch EVM calls we'll be making will be quite simple. We'll be initiating multiple mints of [planet ERC-20 test tokens on Moonbase Alpha](https://moonbase-minterc20.netlify.app/){target=\_blank}. Although we've chosen simple contract calls for demonstration purposes, there are lots more real-life defi examples that you may wish to emulate, such as token approvals and swaps, claiming rewards from multiple pools, or swapping and depositing into LP pools.
 
@@ -34,7 +34,7 @@ The "happy path" of a remote batch EVM call dispatched via XCM is as follows:
 
 Considering all the steps summarized in the [introduction](#introduction), the following prerequisites need to be accounted for:
 
-- You need to have UNITs on the relay chain to pay for transaction fees when sending the XCM. If you have a Moonbase Alpha account funded with DEV tokens, you can swap some DEV for xcUNIT here on [Moonbeam Swap](https://moonbeam-swap.netlify.app/#/swap){target=\_blank}. Then withdraw the xcUNIT from Moonbase Alpha to [your account on the Moonbase relay chain](https://polkadot.js.org/apps/?rpc=wss://frag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/accounts){target=\_blank} using [apps.moonbeam.network](https://apps.moonbeam.network/moonbase-alpha/){target=\_blank}.
+- You need to have UNITs on the relay chain to pay for transaction fees when sending the XCM. If you have a Moonbase Alpha account funded with DEV tokens, you can swap some DEV for xcUNIT here on [Moonbeam Swap](https://moonbeam-swap.netlify.app/#/swap){target=\_blank}. Then withdraw the xcUNIT from Moonbase Alpha to [your account on the Moonbase relay chain](https://polkadot.js.org/apps/?rpc=wss://fro-moon-rpc-1-moonbase-relay-rpc-1.moonbase.ol-infra.network#/accounts){target=\_blank} using [apps.moonbeam.network](https://apps.moonbeam.network/moonbase-alpha/){target=\_blank}.
   --8<-- 'text/_common/faucet/faucet-list-item.md'
 - Your [Computed Origin account](/builders/interoperability/xcm/remote-execution/computed-origins){target=\_blank} must hold DEV tokens to fund the call to the Batch Precompile, and also pay for the XCM execution (although this could be paid in UNIT tokens as xcUNIT). We will calculate the Computed Origin account address in the next section
 
@@ -174,12 +174,12 @@ To build the XCM message, which will initiate the remote EVM call through XCM, a
 ```
 
 !!! note
-    You can also get the SCALE encoded calldata by manually building the extrinsic in [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://frag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/extrinsics){target=\_blank}.
+    You can also get the SCALE encoded calldata by manually building the extrinsic in [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://fro-moon-rpc-1-moonbase-relay-rpc-1.moonbase.ol-infra.network#/extrinsics){target=\_blank}.
 
 Let's go through each of the main components of the snippet shown above:
 
  1. Provide the input data for the call. This includes:
-     - [Moonbase relay chain](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffrag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/accounts){target=\_blank} endpoint URL to create the provider
+     - [Moonbase relay chain](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffro-moon-rpc-1-moonbase-relay-rpc-1.moonbase.ol-infra.network#/accounts){target=\_blank} endpoint URL to create the provider
      - Amount of tokens (in Wei) to withdraw from the Computed Origin account. For this example, `0.01` tokens are more than enough. To understand how to get this value, please refer to the [XCM fee page](/builders/interoperability/xcm/core-concepts/weights-fees/#moonbeam-reserve-assets){target=\_blank}
      - The [multilocation of the DEV token](/builders/interoperability/xcm/xc-registration/assets/#register-moonbeam-native-assets){target=\_blank}, as seen by Moonbase Alpha
      - The weight for the `transact` XCM instruction. This can be obtained by multiplying `25000` by the gas limit obtained before. It is recommended to add approximately 10% more of the estimated value. You can read more about this value on the [Remote EVM Calls through XCM](/builders/interoperability/xcm/remote-execution/remote-evm-calls/#build-xcm-remote-evm){target=\_blank} page
@@ -232,7 +232,7 @@ Once you have the code set up, you can execute it with `node`, and the XCM messa
 
 And that is it! You've sent an XCM message, which performed a remote EVM call to the Batch Precompile via XCM and resulted in the minting of MARS and NEPT ERC-20 tokens. But let's go into more detail about what happened.
 
-This action will emit different events. The first one is only relevant [in the relay chain](https://polkadot.js.org/apps/?rpc=wss://frag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/explorer/query/10936471){target=\_blank}, and it is named `xcmPallet.Sent`, which is from the `xcmPallet.send` extrinsic. In [Moonbase Alpha](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/explorer/query/4626493){target=\_blank}, the following events emitted by the `parachainSystem.setValidationData` extrinsic (where all the inbound XCM messages are processed) are of interest:
+This action will emit different events. The first one is only relevant [in the relay chain](https://polkadot.js.org/apps/?rpc=wss://fro-moon-rpc-1-moonbase-relay-rpc-1.moonbase.ol-infra.network#/explorer/query/10936471){target=\_blank}, and it is named `xcmPallet.Sent`, which is from the `xcmPallet.send` extrinsic. In [Moonbase Alpha](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/explorer/query/4626493){target=\_blank}, the following events emitted by the `parachainSystem.setValidationData` extrinsic (where all the inbound XCM messages are processed) are of interest:
 
  - `parachainSystem.DownwardMessagesReceived` — states that there was an XCM message received
  - `evm.Log` — internal events emitted by the different contract calls. The structure is the same: contract address, topics, and relevant data
