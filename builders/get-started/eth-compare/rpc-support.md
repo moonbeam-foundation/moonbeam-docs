@@ -30,7 +30,7 @@ The basic JSON-RPC methods from the Ethereum API supported by Moonbeam are:
 - **[eth_getStorageAt](https://eth.wiki/json-rpc/API#eth_getstorageat){target=\_blank}** — returns content of the storage at a given address
 - **[eth_getBlockByHash](https://eth.wiki/json-rpc/API#eth_getblockbyhash){target=\_blank}** — returns information about the block of the given hash including `baseFeePerGas` on post-London blocks
 - **[eth_getBlockByNumber](https://eth.wiki/json-rpc/API#eth_getblockbynumber){target=\_blank}** — returns information about the block specified by block number including `baseFeePerGas` on post-London blocks
-- **[eth_getBlockReceipts](https://docs.alchemy.com/reference/eth-getblockreceipts){target=\_blank}** — returns all transaction receipts for a given block.
+- **[eth_getBlockReceipts](https://docs.alchemy.com/reference/eth-getblockreceipts){target=\_blank}** — returns all transaction receipts for a given block
 - **[eth_getTransactionCount](https://eth.wiki/json-rpc/API#eth_gettransactioncount){target=\_blank}** — returns the number of transactions sent from the given address (nonce)
 - **[eth_getBlockTransactionCountByHash](https://eth.wiki/json-rpc/API#eth_getblocktransactioncountbyhash){target=\_blank}** — returns the number of transactions in a block with a given block hash
 - **[eth_getBlockTransactionCountByNumber](https://eth.wiki/json-rpc/API#eth_getblocktransactioncountbynumber){target=\_blank}** — returns the number of transactions in a block with a given block number
