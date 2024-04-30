@@ -25,12 +25,12 @@ Moonbase Alpha has the following configuration:
 Some important variables/configurations to note include:
 
 === "General"
-    |       Variable        |                                  Value                                  |
-    |:---------------------:|:-----------------------------------------------------------------------:|
-    |   Minimum gas price   |               {{ networks.moonbase.min_gas_price }} Gwei                |
-    |   Target block time   |               {{ networks.moonbase.block_time }} seconds                |
-    |    Block gas limit    | {{ networks.moonbase.gas_block }} (expected to increase by at least 4x) |
-    | Transaction gas limit |  {{ networks.moonbase.gas_tx }} (expected to increase by at least 4x)   |
+    |       Variable        |                   Value                    |
+    |:---------------------:|:------------------------------------------:|
+    |   Minimum gas price   | {{ networks.moonbase.min_gas_price }} Gwei |
+    |   Target block time   | {{ networks.moonbase.block_time }} seconds |
+    |    Block gas limit    |     {{ networks.moonbase.gas_block }}      |
+    | Transaction gas limit |       {{ networks.moonbase.gas_tx }}       |
 
 === "Staking"
     |             Variable              |                                                                    Value                                                                    |
@@ -43,6 +43,8 @@ Some important variables/configurations to note include:
     |          Unbond duration          | {{ networks.moonbase.delegator_timings.del_bond_less.rounds }} rounds ({{ networks.moonbase.delegator_timings.del_bond_less.hours }} hours) |
 
 --8<-- 'text/_common/async-backing-moonbase.md'
+    
+    Additionally, as of runtime 2900, the block and transaction gas limits increased by 4x on Moonbase Alpha.
 
 --8<-- 'text/builders/get-started/networks/moonbase/connect.md'
 

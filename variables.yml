@@ -19,11 +19,11 @@ networks:
     parachain_release_tag: v0.37.2 # must be in this exact format for links to work
     parachain_sha256sum: 71242b8cdf2b97fba4aadb7d6050e0b46eaacafae6bcde9b5f5534aff620d144
     tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.37.2-2902-latest
-    gas_block: 15,000,000
-    gas_block_numbers_only: 15000000
-    gas_tx: 12,995,000
+    gas_block: 60,000,000
+    gas_block_numbers_only: 60000000
+    gas_tx: 52,000,000
     mbip_5:
-      block_storage_limit: 40
+      block_storage_limit: 160
       gas_storage_ratio: 366
       example_storage: 500
       example_addtl_gas: 183000
@@ -123,7 +123,7 @@ networks:
         xcbetadev:
           transact_numbers_only: 50000000000000000
     erc20_xcm:
-      transfer_gas_limit: 200,000
+      transfer_gas_limit: 800,000
     conviction:
       lock_period:
         conviction_1: 1
