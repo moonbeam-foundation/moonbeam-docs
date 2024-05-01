@@ -72,4 +72,11 @@ The following GMP providers have integrated with Moonbeam:
 
 Building with XCM or GMP does not preclude building with the other. As they suit different use cases, a team may seek to utilize XCM to handle interoperability needs within Polkadot, and GMP to deliver cross-chain messages to and from blockchains outside of Polkadot. As an example, several DEXes on Moonbeam support the trading of tokens migrated to Moonbeam via XCM, such as xcDOT, and assets bridged from ecosystems outside of Polkadot, such as USDC via Wormhole. 
 
+### Moonbeam Routed Liquidity {: #moonbeam-routed-liquidity }
+
+[Moonbeam Routed Liquidity](/builders/interoperability/mrl/) (MRL) enables seamless liquidity between external blockchains connected to Moonbeam via Wormhole to Polkadot parachains connected to Moonbeam via XCM. This combination of GMP and XCM means that any ERC-20 token on a chain that Wormhole has integrated with can be routed through Moonbeam to a destination parachain (and back). A diagram of the happy path of a token transfer to a parachain via MRL is shown below, and you can find more information at the [MRL docs](/builders/interoperability/mrl/). 
+
+![Happy Path of an MRL token transfer](/images/learn/features/xchain-plans/xchain-plans-2.webp) 
+
+
 --8<-- 'text/_disclaimers/third-party-content.md'
