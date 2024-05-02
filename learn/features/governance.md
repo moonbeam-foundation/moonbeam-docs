@@ -102,24 +102,24 @@ This section will cover everything you need to know about OpenGov on Moonbeam.
 #### General Parameters by Track {: #general-parameters-by-track }
 
 === "Moonbeam"
-    |         Track          | Track ID |                                      Capacity                                       |                                Decision<br>Deposit                                |
-    |:----------------------:|:--------:|:-----------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------:|
-    |          Root          |    0     |        {{ networks.moonbeam.governance.tracks.root.max_deciding }} proposals        |       {{ networks.moonbeam.governance.tracks.root.decision_deposit }} GLMR        |
-    |      Whitelisted       |    1     |    {{ networks.moonbeam.governance.tracks.whitelisted.max_deciding }} proposals     |    {{ networks.moonbeam.governance.tracks.whitelisted.decision_deposit }} GLMR    |
-    |     General Admin      |    2     |   {{ networks.moonbeam.governance.tracks.general_admin.max_deciding }} proposals    |   {{ networks.moonbeam.governance.tracks.general_admin.decision_deposit }} GLMR   |
-    | Emergency<br>Canceller |    3     |     {{ networks.moonbeam.governance.tracks.canceller.max_deciding }} proposals      |     {{ networks.moonbeam.governance.tracks.canceller.decision_deposit }} GLMR     |
-    |  Emergency<br>Killer   |    4     |       {{ networks.moonbeam.governance.tracks.killer.max_deciding }} proposals       |      {{ networks.moonbeam.governance.tracks.killer.decision_deposit }} GLMR       |
-    |   Fast General Admin   |    5     | {{ networks.moonbeam.governance.tracks.fast_general_admin.max_deciding }} proposals | {{ networks.moonbeam.governance.tracks.fast_general_admin.decision_deposit }} DEV |
+    |         Track          | Track ID |                                      Capacity                                       |                                Decision<br>Deposit                                 |
+    |:----------------------:|:--------:|:-----------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------:|
+    |          Root          |    0     |        {{ networks.moonbeam.governance.tracks.root.max_deciding }} proposals        |        {{ networks.moonbeam.governance.tracks.root.decision_deposit }} GLMR        |
+    |      Whitelisted       |    1     |    {{ networks.moonbeam.governance.tracks.whitelisted.max_deciding }} proposals     |    {{ networks.moonbeam.governance.tracks.whitelisted.decision_deposit }} GLMR     |
+    |     General Admin      |    2     |   {{ networks.moonbeam.governance.tracks.general_admin.max_deciding }} proposals    |   {{ networks.moonbeam.governance.tracks.general_admin.decision_deposit }} GLMR    |
+    | Emergency<br>Canceller |    3     |     {{ networks.moonbeam.governance.tracks.canceller.max_deciding }} proposals      |     {{ networks.moonbeam.governance.tracks.canceller.decision_deposit }} GLMR      |
+    |  Emergency<br>Killer   |    4     |       {{ networks.moonbeam.governance.tracks.killer.max_deciding }} proposals       |       {{ networks.moonbeam.governance.tracks.killer.decision_deposit }} GLMR       |
+    |   Fast General Admin   |    5     | {{ networks.moonbeam.governance.tracks.fast_general_admin.max_deciding }} proposals | {{ networks.moonbeam.governance.tracks.fast_general_admin.decision_deposit }} GLMR |
 
 === "Moonriver"
-    |         Track          | Track ID |                                       Capacity                                       |                                Decision<br>Deposit                                 |
-    |:----------------------:|:--------:|:------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------:|
-    |          Root          |    0     |        {{ networks.moonriver.governance.tracks.root.max_deciding }} proposals        |       {{ networks.moonriver.governance.tracks.root.decision_deposit }} MOVR        |
-    |      Whitelisted       |    1     |    {{ networks.moonriver.governance.tracks.whitelisted.max_deciding }} proposals     |    {{ networks.moonriver.governance.tracks.whitelisted.decision_deposit }} MOVR    |
-    |     General Admin      |    2     |   {{ networks.moonriver.governance.tracks.general_admin.max_deciding }} proposals    |   {{ networks.moonriver.governance.tracks.general_admin.decision_deposit }} MOVR   |
-    | Emergency<br>Canceller |    3     |     {{ networks.moonriver.governance.tracks.canceller.max_deciding }} proposals      |     {{ networks.moonriver.governance.tracks.canceller.decision_deposit }} MOVR     |
-    |  Emergency<br>Killer   |    4     |       {{ networks.moonriver.governance.tracks.killer.max_deciding }} proposals       |      {{ networks.moonriver.governance.tracks.killer.decision_deposit }} MOVR       |
-    |   Fast General Admin   |    5     | {{ networks.moonriver.governance.tracks.fast_general_admin.max_deciding }} proposals | {{ networks.moonriver.governance.tracks.fast_general_admin.decision_deposit }} DEV |
+    |         Track          | Track ID |                                       Capacity                                       |                                 Decision<br>Deposit                                 |
+    |:----------------------:|:--------:|:------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------:|
+    |          Root          |    0     |        {{ networks.moonriver.governance.tracks.root.max_deciding }} proposals        |        {{ networks.moonriver.governance.tracks.root.decision_deposit }} MOVR        |
+    |      Whitelisted       |    1     |    {{ networks.moonriver.governance.tracks.whitelisted.max_deciding }} proposals     |    {{ networks.moonriver.governance.tracks.whitelisted.decision_deposit }} MOVR     |
+    |     General Admin      |    2     |   {{ networks.moonriver.governance.tracks.general_admin.max_deciding }} proposals    |   {{ networks.moonriver.governance.tracks.general_admin.decision_deposit }} MOVR    |
+    | Emergency<br>Canceller |    3     |     {{ networks.moonriver.governance.tracks.canceller.max_deciding }} proposals      |     {{ networks.moonriver.governance.tracks.canceller.decision_deposit }} MOVR      |
+    |  Emergency<br>Killer   |    4     |       {{ networks.moonriver.governance.tracks.killer.max_deciding }} proposals       |       {{ networks.moonriver.governance.tracks.killer.decision_deposit }} MOVR       |
+    |   Fast General Admin   |    5     | {{ networks.moonriver.governance.tracks.fast_general_admin.max_deciding }} proposals | {{ networks.moonriver.governance.tracks.fast_general_admin.decision_deposit }} MOVR |
 
 === "Moonbase Alpha"
     |         Track          | Track ID |                                      Capacity                                       |                                Decision<br>Deposit                                |
