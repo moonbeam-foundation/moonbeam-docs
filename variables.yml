@@ -401,7 +401,7 @@ networks:
       identity: '0x0000000000000000000000000000000000000818'
       relay_data_verifier: '0x0000000000000000000000000000000000000819'
     substrate_api_sidecar:
-      stable_version: 14.1.1
+      stable_version: 18.0.0
     tx_weight_to_gas_ratio: 25000      
     orbiter:
       max_orbiters_per_collator: 8
@@ -757,7 +757,7 @@ networks:
       epoch_expiration: 10000
       epoch_fulfillment_delay: 2
     substrate_api_sidecar:
-      stable_version: 14.1.1
+      stable_version: 18.0.0
     tx_weight_to_gas_ratio: 25000
     orbiter:
       max_orbiters_per_collator: 3
@@ -1097,7 +1097,7 @@ networks:
       epoch_expiration: 10000
       epoch_fulfillment_delay: 2
     substrate_api_sidecar:
-      stable_version: 14.1.1
+      stable_version: 18.0.0
       tx_weight_to_gas_ratio: 25000
     orbiter:
       max_orbiters_per_collator: 6
