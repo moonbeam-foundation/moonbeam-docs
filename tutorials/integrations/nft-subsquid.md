@@ -9,7 +9,7 @@ _by Massimo Luraschi_
 
 ## Introduction {: #introduction }
 
-[Subsquid](https://subsquid.io){target=\_blank} is a data network that allows rapid and cost-efficient retrieval of blockchain data from 100+ chains using Subsquid’s decentralized data lake and open-source SDK.
+[Subsquid](https://subsquid.io/){target=\_blank} is a data network that allows rapid and cost-efficient retrieval of blockchain data from 100+ chains using Subsquid’s decentralized data lake and open-source SDK.
 
 The SDK offers a highly customizable Extract-Transform-Load-Query stack and indexing speeds of up to and beyond 50,000 blocks per second when indexing events and transactions.
 
@@ -26,7 +26,7 @@ For a Squid project to be able to run, you need to have the following installed:
 - Familiarity with Git 
 - [Node.js](https://nodejs.org/en/download/){target=\_blank} version 16 or later
 - [Docker](https://docs.docker.com/get-docker/){target=\_blank}
-- [Squid CLI](https://docs.subsquid.io/squid-cli/installation){target=\_blank}
+- [Squid CLI](https://docs.subsquid.io/squid-cli/installation/){target=\_blank}
 
 !!! note
     This tutorial uses custom scripts defined in `commands.json`. The scripts are automatically picked up as `sqd` sub-commands.
@@ -105,7 +105,7 @@ Subsquid maintains [tools](https://docs.subsquid.io/substrate-indexing/squid-sub
 
 Similar functionality is available for EVM indexing through the [`squid-evm-typegen`](https://docs.subsquid.io/evm-indexing/squid-evm-typegen/){target=\_blank} tool. It generates TypeScript modules for handling EVM logs and transactions based on a [JSON ABI](https://docs.ethers.org/v5/api/utils/abi/){target=\_blank} of the contract.
 
-For our squid we will need such a module for the [ERC-721](https://eips.ethereum.org/EIPS/eip-721){target=\_blank}-compliant part of the contracts' interfaces. Once again, the template repository already includes it, but it is still important to explain what needs to be done in case one wants to index a different type of contract.
+For our squid we will need such a module for the [ERC-721](https://eips.ethereum.org/EIPS/eip-721/){target=\_blank}-compliant part of the contracts' interfaces. Once again, the template repository already includes it, but it is still important to explain what needs to be done in case one wants to index a different type of contract.
 
 The procedure uses a `sqd` script from the template that uses `squid-evm-typegen` to generate Typescript facades for JSON ABIs stored in the `abi` folder. Place any ABIs you requre for interfacing your contracts there and run:
 
@@ -127,7 +127,7 @@ It is in this callback function that all the mapping logic is expressed. This is
 
 Before we begin defining the mapping logic of the squid, we are going to rewrite the `src/contracts.ts` utility module for managing the involved EVM contracts. It will export:
 
-* Addresses of [Gromlins](https://moonscan.io/token/0xf27a6c72398eb7e25543d19fda370b7083474735){target=\_blank} contract
+* Addresses of [Gromlins](https://moonscan.io/token/0xf27a6c72398eb7e25543d19fda370b7083474735/){target=\_blank} contract
 * A function that will create and save an instance of the `Contract` entity to the database
 * A function that will return a `Contract` instance (either the already existing one, or a newly created entity). The first time the function is called, it verifies if a `Contract` does exist already, in the negative case, it will invoke the first function, and cache the result, so on subsequent calls the cached version will be returned
 
@@ -140,13 +140,13 @@ Here are the full file contents:
 You might notice a warning that the `Context` variable hasn't been exported, but don't worry, as we'll export it from the `src/processor.ts` file in the next section.
 
 !!! note
-    The `createContractEntity` function is accessing the **state** of the contract via a chain RPC endpoint. This is slowing down the indexing a little, but this data is only available this way. You'll find more information on accessing state in the [dedicated section of our docs](https://docs.subsquid.io/substrate-indexing/evm-support#access-the-contract-state){target=\_blank}.
+    The `createContractEntity` function is accessing the **state** of the contract via a chain RPC endpoint. This is slowing down the indexing a little, but this data is only available this way. You'll find more information on accessing state in the [dedicated section of our docs](https://docs.subsquid.io/substrate-indexing/evm-support#access-the-contract-state/){target=\_blank}.
 
 ## Configure Processor and Attach Handler {: #configure-processor }
 
 The `src/processor.ts` file is where squids instantiate the processor (a `SubstrateBatchProcessor` in our case), configure it and attach the handler functions.
 
-Not much needs to be changed here, except adapting the template code to handle the Gromlins contract and setting the processor to use the `moonbeam` archive URL retrieved from the [archive registry](https://github.com/subsquid/archive-registry){target=\_blank}.
+Not much needs to be changed here, except adapting the template code to handle the Gromlins contract and setting the processor to use the `moonbeam` archive URL retrieved from the [archive registry](https://github.com/subsquid/archive-registry/){target=\_blank}.
 
 --8<-- 'text/_common/endpoint-examples.md'
 
@@ -180,7 +180,7 @@ If you are adapting this guide for Moonriver or Moonbase Alpha, be sure to updat
     ```
 
 !!! note
-    The `lookupArchive` function is used to consult the [archive registry](https://github.com/subsquid/archive-registry){target=\_blank} and yield the archive address, given a network name. Network names should be in lowercase.
+    The `lookupArchive` function is used to consult the [archive registry](https://github.com/subsquid/archive-registry/){target=\_blank} and yield the archive address, given a network name. Network names should be in lowercase.
 
 You'll also need to modify the `Context` type so that it is exported and can be used in the `src/contract.ts` file.
 
@@ -195,16 +195,16 @@ Here is the end result:
 ```
 
 !!! note
-    It is also worth pointing out that the `contract.tokenURI` call is accessing the **state** of the contract via a chain RPC endpoint. This is slowing down the indexing a little bit, but this data is only available this way. You'll find more information on accessing state in the [dedicated section of the Subsquid docs](https://docs.subsquid.io/substrate-indexing/evm-support#access-the-contract-state){target=\_blank}.
+    It is also worth pointing out that the `contract.tokenURI` call is accessing the **state** of the contract via a chain RPC endpoint. This is slowing down the indexing a little bit, but this data is only available this way. You'll find more information on accessing state in the [dedicated section of the Subsquid docs](https://docs.subsquid.io/substrate-indexing/evm-support#access-the-contract-state/){target=\_blank}.
 
 !!! note
-    This code expects to find a URL of a working Moonbeam RPC endpoint in the `RPC_ENDPOINT` environment variable. Set it in the `.env` file and in [Aquarium secrets](https://docs.subsquid.io/deploy-squid/env-variables){target=\_blank} if and when you deploy your squid there. We tested the code using a public endpoint available at `wss://wss.api.moonbeam.network`; for production, we recommend using [private endpoints](/builders/get-started/endpoints#endpoint-providers){target=\_blank}.
+    This code expects to find a URL of a working Moonbeam RPC endpoint in the `RPC_ENDPOINT` environment variable. Set it in the `.env` file and in [Aquarium secrets](https://docs.subsquid.io/deploy-squid/env-variables/){target=\_blank} if and when you deploy your squid there. We tested the code using a public endpoint available at `wss://wss.api.moonbeam.network`; for production, we recommend using [private endpoints](/builders/get-started/endpoints#endpoint-providers/){target=\_blank}.
 
 ## Launch and Set Up the Database {: #launch-database }
 
 When running the project locally it is possible to use the `docker-compose.yml` file that comes with the template to launch a PostgreSQL container. To do so, run `sqd up` in your terminal.
 
-Squid projects automatically manage the database connection and schema via an [ORM abstraction](https://en.wikipedia.org/wiki/Object%E2%80%93relational\_mapping){target=\_blank}. In this approach the schema is managed through migration files. Because we made changes to the schema, we need to remove the existing migration(s) and create a new one, then apply the new migration.
+Squid projects automatically manage the database connection and schema via an [ORM abstraction](https://en.wikipedia.org/wiki/Object%E2%80%93relational\_mapping/){target=\_blank}. In this approach the schema is managed through migration files. Because we made changes to the schema, we need to remove the existing migration(s) and create a new one, then apply the new migration.
 
 This involves the following steps:
 
@@ -247,7 +247,7 @@ Finally, in a separate terminal window, launch the GraphQL server:
 sqd serve
 ```
 
-Visit [`localhost:4350/graphql`](http://localhost:4350/graphql){target=\_blank} to access the [GraphiQL](https://github.com/graphql/graphiql){target=\_blank} console. From this window, you can perform queries such as this one, to find out the account owners with the biggest balances:
+Visit [`localhost:4350/graphql`](http://localhost:4350/graphql/){target=\_blank} to access the [GraphiQL](https://github.com/graphql/graphiql/){target=\_blank} console. From this window, you can perform queries such as this one, to find out the account owners with the biggest balances:
 
 ```graphql
 query MyQuery {
@@ -284,7 +284,7 @@ Please refer to the [Deploy your Squid section](https://docs.subsquid.io/deploy-
 
 ## Example Project Repository {: #example-project-repository }
 
-You can view the template used here, as well as many other example repositories [on Subsquid's examples organization on GitHub](https://github.com/orgs/subsquid-labs/repositories){target=\_blank}.
+You can view the template used here, as well as many other example repositories [on Subsquid's examples organization on GitHub](https://github.com/orgs/subsquid-labs/repositories/){target=\_blank}.
 
 [Subsquid's documentation](https://docs.subsquid.io/){target=\_blank} contains informative material, and it's the best place to start, if you are curious about some aspects that were not fully explained in this guide.
 

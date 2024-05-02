@@ -68,7 +68,7 @@ To get started, you'll need to head to [Blast](https://blastapi.io/){target=\_bl
 
 To get started with a developer endpoint or dedicated node, you'll need to contact us:
 
-1. Visit [Dwellir](https://www.dwellir.com/contact){target=\_blank}
+1. Visit [Dwellir](https://www.dwellir.com/contact/){target=\_blank}
 2. Submit your **email** and your node request
 
 ![Dwellir](/images/builders/get-started/endpoints/endpoints-3.webp)
@@ -77,7 +77,7 @@ To get started with a developer endpoint or dedicated node, you'll need to conta
 
 [GetBlock](https://getblock.io/){target=\_blank} is a service that provides instant API access to Moonbeam and Moonriver and is available through shared and dedicated nodes. [Dedicated nodes](https://getblock.io/dedicated-nodes/){target=\_blank} provide access to a private server with fast speeds and without rate limits. [Shared nodes](https://getblock.io/nodes/){target=\_blank} provide a free API key based endpoint for you to get started quickly.
 
-To get started with GetBlock and obtain an API key, you can go the [GetBlock registration page](https://account.getblock.io/sign-up){target=\_blank} and sign up. From the **GetBlock Dashboard**, you can view and manage your existing API keys and create new API keys.
+To get started with GetBlock and obtain an API key, you can go the [GetBlock registration page](https://account.getblock.io/sign-up/){target=\_blank} and sign up. From the **GetBlock Dashboard**, you can view and manage your existing API keys and create new API keys.
 
 Creating a new API key is simple, all you have to do is:
 
@@ -120,7 +120,7 @@ You don't have to generate a new DApp for every endpoint! You can add a new chai
 
 ### UnitedBloc {: #unitedbloc }
 
-[UnitedBloc](https://medium.com/@daniel_96988/unitedbloc-rpc-c84972f69457){target=\_blank} is a collective of community collators from both Moonbeam and Moonriver. To provide value for the community, they offer public RPC services for the Moonbeam, Moonriver, and Moonbase Alpha networks.
+[UnitedBloc](https://medium.com/@daniel_96988/unitedbloc-rpc-c84972f69457/){target=\_blank} is a collective of community collators from both Moonbeam and Moonriver. To provide value for the community, they offer public RPC services for the Moonbeam, Moonriver, and Moonbase Alpha networks.
 
 The public endpoint service is served by eight geographically distributed bare metal servers globally balanced via GeoDNS and regionally load balanced with NGINX. As the service is public, there are no sign-up or API keys to manage.
 
@@ -140,9 +140,9 @@ The collators involved in this initiative are:
  - StakeSquid (GE)
  - TrueStaking (US)
 
-They also provide a [public Grafana dashboard](https://tinyurl.com/UnitedBloc-Dashboard){target=\_blank} with some cool metrics.
+They also provide a [public Grafana dashboard](https://tinyurl.com/UnitedBloc-Dashboard/){target=\_blank} with some cool metrics.
 
-Check the [public endpoints section](#public-endpoints) to get the relevant URL. You can contact them via their [Telegram channel](https://t.me/+tRvy3z5-Kp1mMGMx){target=\_blank}, or read more about their initiative on their [blogpost page](https://medium.com/@daniel_96988/unitedbloc-rpc-c84972f69457){target=\_blank}.
+Check the [public endpoints section](#public-endpoints) to get the relevant URL. You can contact them via their [Telegram channel](https://t.me/+tRvy3z5-Kp1mMGMx/){target=\_blank}, or read more about their initiative on their [blogpost page](https://medium.com/@daniel_96988/unitedbloc-rpc-c84972f69457/){target=\_blank}.
 
 <!-- ### Ankr {: #ankr}
 
@@ -158,7 +158,7 @@ To get started, head to the [Ankr Protocol](https://www.ankr.com/protocol/){targ
 
 ## Tracing RPC Endpoint Providers {: #tracing-providers }
 
-Tracing RPC endpoints allow you to access non-standard RPC methods, such as those that belong to Geth's `debug` and `txpool` APIs and OpenEthereum's `trace` module. To see a list of the supported non-standard RPC methods on Moonbeam for debugging and tracing, please refer to the [Debug API & Trace Module](/builders/build/eth-api/debug-trace){target=\_blank} guide.
+Tracing RPC endpoints allow you to access non-standard RPC methods, such as those that belong to Geth's `debug` and `txpool` APIs and OpenEthereum's `trace` module. To see a list of the supported non-standard RPC methods on Moonbeam for debugging and tracing, please refer to the [Debug API & Trace Module](/builders/build/eth-api/debug-trace/){target=\_blank} guide.
 
 The following providers provide tracing RPC endpoints:
 
@@ -166,8 +166,8 @@ The following providers provide tracing RPC endpoints:
 
 ### OnFinality {: #onfinality-tracing }
 
-[OnFinality](https://onfinality.io/){target=\_blank}'s Trace API can be used to quickly get started tracing and debugging transactions on Moonbeam and Moonriver. It is only available to users on their [Growth and Ultimate plans](https://onfinality.io/pricing){target=\_blank}.
+[OnFinality](https://onfinality.io/){target=\_blank}'s Trace API can be used to quickly get started tracing and debugging transactions on Moonbeam and Moonriver. It is only available to users on their [Growth and Ultimate plans](https://onfinality.io/pricing/){target=\_blank}.
 
-To use the Trace API, you simply call the trace method of your choice from your [private RPC endpoint](#onfinality). For a list of the supported networks and trace methods, please check out [OnFinality's Trace API documentation](https://documentation.onfinality.io/support/trace-api#TraceAPI-SupportedNetworks){target=\_blank}.
+To use the Trace API, you simply call the trace method of your choice from your [private RPC endpoint](#onfinality). For a list of the supported networks and trace methods, please check out [OnFinality's Trace API documentation](https://documentation.onfinality.io/support/trace-api#TraceAPI-SupportedNetworks/){target=\_blank}.
 
-Please note that if you are tracing historic blocks, it is recommended to use your own dedicated trace node to backfill any data, and then once you're caught up, you can switch to using the Trace API. You can check out the [How to Deploy a Trace Node for Moonbeam on OnFinality](https://onfinality.medium.com/how-to-deploy-a-trace-node-for-moonbeam-on-onfinality-85683181d290){target=-_blank} post for more information on how to spin up your own dedicated trace node.
+Please note that if you are tracing historic blocks, it is recommended to use your own dedicated trace node to backfill any data, and then once you're caught up, you can switch to using the Trace API. You can check out the [How to Deploy a Trace Node for Moonbeam on OnFinality](https://onfinality.medium.com/how-to-deploy-a-trace-node-for-moonbeam-on-onfinality-85683181d290/){target=-_blank} post for more information on how to spin up your own dedicated trace node.

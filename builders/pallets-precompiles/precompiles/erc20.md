@@ -12,7 +12,7 @@ The native token ERC-20 precompiled contract on Moonbeam allows developers to in
 
 One of the main benefits of this precompile is that it removes the necessity of having a wrapped representation of the protocol token as an ERC-20 smart contract, such as WETH on Ethereum. Furthermore, it prevents having multiple wrapped representations of the same protocol token. Consequently, DApps that need to interact with the protocol token via an ERC-20 interface can do so without needing a separate smart contract.
 
-Under the hood, the [ERC-20 precompile](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/balances-erc20/src/lib.rs){target=\_blank} executes specific Substrate actions related to the Substrate balances pallet, which is coded in Rust. The balances pallet provides functionality for handling the [various types of balances on Moonbeam](/builders/get-started/eth-compare/balances/#moonbeam-account-balances){target=\_blank}, setting the free balance, transferring balances, and more.
+Under the hood, the [ERC-20 precompile](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/balances-erc20/src/lib.rs/){target=\_blank} executes specific Substrate actions related to the Substrate balances pallet, which is coded in Rust. The balances pallet provides functionality for handling the [various types of balances on Moonbeam](/builders/get-started/eth-compare/balances/#moonbeam-account-balances/){target=\_blank}, setting the free balance, transferring balances, and more.
 
 This guide will show you how to interact with DEV tokens, the native protocol tokens for the Moonbase Alpha TestNet, via the ERC-20 precompile. You can also follow and adapt this guide to learn how to use GLMR or MOVR as an ERC-20 token.
 
@@ -40,7 +40,7 @@ The precompile is located at the following address:
 
 ## The ERC-20 Solidity Interface {: #the-erc20-interface }
 
-The [`ERC20.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/balances-erc20/ERC20.sol){target=\_blank} interface on Moonbeam follows the [EIP-20 Token Standard](https://eips.ethereum.org/EIPS/eip-20){target=\_blank} which is the standard API interface for tokens within smart contracts. The standard defines the required functions and events that a token contract must implement to be interoperable with different applications.
+The [`ERC20.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/balances-erc20/ERC20.sol/){target=\_blank} interface on Moonbeam follows the [EIP-20 Token Standard](https://eips.ethereum.org/EIPS/eip-20/){target=\_blank} which is the standard API interface for tokens within smart contracts. The standard defines the required functions and events that a token contract must implement to be interoperable with different applications.
 
 --8<-- 'text/builders/pallets-precompiles/precompiles/erc20/erc20-interface.md'
 
@@ -86,7 +86,7 @@ And that's it! You've successfully added the DEV token as a custom ERC-20 token 
 
 You can interact with the ERC-20 precompile using [Remix](https://remix.ethereum.org/){target=\_blank}. To add the precompile to Remix, you will need to:
 
-1. Get a copy of [`ERC20.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/balances-erc20/ERC20.sol){target=\_blank}
+1. Get a copy of [`ERC20.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/balances-erc20/ERC20.sol/){target=\_blank}
 2. Paste the file contents into a Remix file named `IERC20.sol`
 
 ### Compile the Contract {: #compile-the-contract }

@@ -7,13 +7,13 @@ description: Learn the basics of how to use Chopsticks to replay blocks, dissect
 
 ## Introduction {: #introduction }
 
-[Chopsticks](https://github.com/AcalaNetwork/chopsticks){target=\_blank} provides a developer-friendly method of locally forking existing Substrate based chains. It allows for the replaying of blocks to easily examine how extrinsics effect state, the forking of multiple blocks for XCM testing, and more. This allows developers to test and experiment with their own custom blockchain configurations in a local development environment, without the need to deploy a live network.  
+[Chopsticks](https://github.com/AcalaNetwork/chopsticks/){target=\_blank} provides a developer-friendly method of locally forking existing Substrate based chains. It allows for the replaying of blocks to easily examine how extrinsics effect state, the forking of multiple blocks for XCM testing, and more. This allows developers to test and experiment with their own custom blockchain configurations in a local development environment, without the need to deploy a live network.  
 
 Overall, Chopsticks aims to simplify the process of building blockchain applications on Substrate and make it accessible to a wider range of developers.
 
 ## Forking Moonbeam with Chopsticks {: #forking-moonbeam }
 
-To use Chopsticks, you can install it as a package with the [Node package manager](https://nodejs.org/en){target=\_blank} or [Yarn](https://yarnpkg.com/){target=\_blank}:  
+To use Chopsticks, you can install it as a package with the [Node package manager](https://nodejs.org/en/){target=\_blank} or [Yarn](https://yarnpkg.com/){target=\_blank}:  
 
 ```bash
 npm i @acala-network/chopsticks@latest
@@ -25,7 +25,7 @@ Once installed, you can run commands with the Node package executor. For example
 npx @acala-network/chopsticks@latest
 ```
 
-To run Chopsticks, you will need some sort of configuration, typically through a file. Chopsticks' source repository includes a set of [YAML](https://yaml.org/){target=\_blank} configuration files that can be used to create a local copy of a variety of Substrate chains. You can download the configuration files from the [source repository's `configs` folder](https://github.com/AcalaNetwork/chopsticks.git){target=\_blank}.  
+To run Chopsticks, you will need some sort of configuration, typically through a file. Chopsticks' source repository includes a set of [YAML](https://yaml.org/){target=\_blank} configuration files that can be used to create a local copy of a variety of Substrate chains. You can download the configuration files from the [source repository's `configs` folder](https://github.com/AcalaNetwork/chopsticks.git/){target=\_blank}.  
 
 Moonbeam, Moonriver, and Moonbase Alpha all have default files available:  
 
@@ -151,7 +151,7 @@ You can use a raw GitHub URL of the default configuration files, a path to a loc
     ```
 
 !!! note
-    If using a file path, make sure you've downloaded the [Moonbeam configuration file](https://github.com/AcalaNetwork/chopsticks/blob/master/configs/moonbeam.yml){target=\_blank}, or have created your own.
+    If using a file path, make sure you've downloaded the [Moonbeam configuration file](https://github.com/AcalaNetwork/chopsticks/blob/master/configs/moonbeam.yml/){target=\_blank}, or have created your own.
 
 A configuration file is not necessary, however. All of the settings (except `genesis` and `timestamp`) can also be passed as flags to configure the environment completely in the command line. For example, the following command forks Moonbase Alpha at block 100.
 
@@ -192,9 +192,9 @@ When running a fork, by default it will be accessible at:
 ws://localhost:8000
 ```
 
-You will be able to interact with the parachain via libraries such as [Polkadot.js](https://github.com/polkadot-js/common){target=\_blank} and its [user interface, Polkadot.js Apps](https://github.com/polkadot-js/apps){target=\_blank}.  
+You will be able to interact with the parachain via libraries such as [Polkadot.js](https://github.com/polkadot-js/common/){target=\_blank} and its [user interface, Polkadot.js Apps](https://github.com/polkadot-js/apps/){target=\_blank}.  
 
-You can interact with Chopsticks via the [Polkadot.js Apps hosted user interface](https://polkadot.js.org/apps/#/explorer){target=\_blank}. To do so, visit the page and take the following steps:  
+You can interact with Chopsticks via the [Polkadot.js Apps hosted user interface](https://polkadot.js.org/apps/#/explorer/){target=\_blank}. To do so, visit the page and take the following steps:  
 
 1. Click the icon in the top left
 2. Go to the bottom and open **Development**
@@ -207,7 +207,7 @@ You can interact with Chopsticks via the [Polkadot.js Apps hosted user interface
 You should now be able to interact with the fork as you would an active parachain or relay chain.
 
 !!! note
-    If your browser cannot connect to the WebSocket endpoint provided by Chopsticks, you might need to allow insecure connections for the Polkadot.js Apps URL. Another solution is to run the [Docker version of Polkadot.js Apps](https://github.com/polkadot-js/apps#docker){target=\_blank}.
+    If your browser cannot connect to the WebSocket endpoint provided by Chopsticks, you might need to allow insecure connections for the Polkadot.js Apps URL. Another solution is to run the [Docker version of Polkadot.js Apps](https://github.com/polkadot-js/apps#docker/){target=\_blank}.
 
 ## Replaying Blocks {: #replaying-blocks }
 
@@ -235,7 +235,7 @@ npx @acala-network/chopsticks@latest run-block  \
 
 ## XCM Testing {: #xcm-testing }
 
-To test out XCM messages between networks, you can fork multiple parachains and a relay chain locally. For example, the following will fork Moonriver, Karura, and Kusama given that you've downloaded the [`configs` directory from the source GitHub repository](https://github.com/AcalaNetwork/chopsticks/tree/master/configs){target=\_blank}:  
+To test out XCM messages between networks, you can fork multiple parachains and a relay chain locally. For example, the following will fork Moonriver, Karura, and Kusama given that you've downloaded the [`configs` directory from the source GitHub repository](https://github.com/AcalaNetwork/chopsticks/tree/master/configs/){target=\_blank}:  
 
 ```bash
 npx @acala-network/chopsticks@latest xcm \

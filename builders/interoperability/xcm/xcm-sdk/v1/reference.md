@@ -11,7 +11,7 @@ The Moonbeam XCM SDK enables developers to easily transfer assets between chains
 
 The SDK provides an API that enables you to get asset information for each of the supported assets, the source chains where a given asset can be sent from, and, given a source chain, the supported destination chains where the given asset can be sent to. The SDK also includes helper methods related to transferring cross-chain assets, such as the ability to get an estimated amount of the asset the destination account will receive, less any execution fees, and asset conversion methods based on the asset and number of decimals it has. All of which enables you to easily and seamlessly transfer assets across chains.
 
-This page includes a list of the interfaces and methods available in the XCM SDK for v1. For information on how to use the XCM SDK interfaces and methods, please refer to the [Using the XCM SDK](/builders/interoperability/xcm/xcm-sdk/v1/xcm-sdk){target=\_blank} guide.
+This page includes a list of the interfaces and methods available in the XCM SDK for v1. For information on how to use the XCM SDK interfaces and methods, please refer to the [Using the XCM SDK](/builders/interoperability/xcm/xcm-sdk/v1/xcm-sdk/){target=\_blank} guide.
 
 ## Core Types and Interfaces {: #asset-chain-types }
 
@@ -270,10 +270,10 @@ When building transfer data with the `Sdk().assets()` function, you'll use multi
 - `toDecimal()` - converts an `AssetAmount` to a decimal. The number to convert to decimal format and the number of decimals the asset uses are pulled automatically from the `AssetAmount`
 
     ??? code "Parameters"
-        |     Name      |      Type      |                                                                    Description                                                                     |
-        |:-------------:|:--------------:|:--------------------------------------------------------------------------------------------------------------------------------------------------:|
-        | `maxDecimal?` |    *number*    |                                          The maximum number of decimal places to use. The default is `6`                                           |
-        | `roundType?`  | *RoundingMode* | Accepts an index that dictates the [rounding method](https://mikemcl.github.io/big.js/#rm){target=\_blank} to use based on the `RoundingMode` enum |
+        |     Name      |      Type      |                                                                     Description                                                                     |
+        |:-------------:|:--------------:|:---------------------------------------------------------------------------------------------------------------------------------------------------:|
+        | `maxDecimal?` |    *number*    |                                           The maximum number of decimal places to use. The default is `6`                                           |
+        | `roundType?`  | *RoundingMode* | Accepts an index that dictates the [rounding method](https://mikemcl.github.io/big.js/#rm/){target=\_blank} to use based on the `RoundingMode` enum |
 
         Where the `RoundingMode` enum is defined as:
 
@@ -304,10 +304,10 @@ When building transfer data with the `Sdk().assets()` function, you'll use multi
 - `toBigDecimal()` - converts an `AssetAmount` to a decimal and then to a big number. The number to convert to decimal format and the number of decimals the asset uses are pulled automatically from the `AssetAmount`
 
     ??? code "Parameters"
-        |     Name      |      Type      |                                                                    Description                                                                     |
-        |:-------------:|:--------------:|:--------------------------------------------------------------------------------------------------------------------------------------------------:|
-        | `maxDecimal?` |    *number*    |                                          The maximum number of decimal places to use. The default is `6`                                           |
-        | `roundType?`  | *RoundingMode* | Accepts an index that dictates the [rounding method](https://mikemcl.github.io/big.js/#rm){target=\_blank} to use based on the `RoundingMode` enum |
+        |     Name      |      Type      |                                                                     Description                                                                     |
+        |:-------------:|:--------------:|:---------------------------------------------------------------------------------------------------------------------------------------------------:|
+        | `maxDecimal?` |    *number*    |                                           The maximum number of decimal places to use. The default is `6`                                           |
+        | `roundType?`  | *RoundingMode* | Accepts an index that dictates the [rounding method](https://mikemcl.github.io/big.js/#rm/){target=\_blank} to use based on the `RoundingMode` enum |
 
         Where the `RoundingMode` enum is defined as:
 

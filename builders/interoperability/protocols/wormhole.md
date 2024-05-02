@@ -7,7 +7,7 @@ description: Learn how to bridge assets, set up a relayer, and other ways you ca
 
 ## Introduction
 
-[Wormhole](https://wormhole.com/){target=\_blank} is a protocol that validates and secures cross-chain communication for Web3, through messages known as verifiable action approvals (VAAs). Wormhole's infrastructure enables dApp users to interact with any asset or application, on any connected chain, with one click. Powered by a multi-signature schemed protocol and 19 signing [Guardians](https://docs.wormhole.com/wormhole/explore-wormhole/guardian){target=\_blank}, Wormhole allows dApps to pass arbitrary messages across chains.
+[Wormhole](https://wormhole.com/){target=\_blank} is a protocol that validates and secures cross-chain communication for Web3, through messages known as verifiable action approvals (VAAs). Wormhole's infrastructure enables dApp users to interact with any asset or application, on any connected chain, with one click. Powered by a multi-signature schemed protocol and 19 signing [Guardians](https://docs.wormhole.com/wormhole/explore-wormhole/guardian/){target=\_blank}, Wormhole allows dApps to pass arbitrary messages across chains.
 
 Wormhole consists of multiple modular swap-in components that can be leveraged independently and supports an increasing number of composable applications built by numerous teams. Building xDapps on top of their protocol allows for quick cross-chain asset transfers and cross-chain logic to deliver maximal Web3 interoperability. Wormhole's architecture includes a signing Guardian network, bridging smart contracts, and relayers. Take a look at the tech stack diagram for more details.
 
@@ -20,14 +20,14 @@ Wormhole consists of multiple modular swap-in components that can be leveraged i
 There are a couple of resources to get you started building cross-chain applications with Wormhole:
 
 - **[Developer documentation](https://docs.wormhole.com/wormhole/){target=\_blank}** - for technical guides
-- **[Portal](https://www.portalbridge.com/#/transfer){target=\_blank}** - a bridging UI used to transfer assets across chains
+- **[Portal](https://www.portalbridge.com/#/transfer/){target=\_blank}** - a bridging UI used to transfer assets across chains
 
 ## Contracts {: #contracts }
 
 See the list of Wormhole contracts deployed to Moonbeam, and the networks connected to Moonbeam through Wormhole.
 
-- **MainNet Contracts** - [Moonbeam](https://docs.wormhole.com/wormhole/blockchain-environments/evm#moonbeam){target=\_blank}
-- **TestNet Contracts** - [Moonbase Alpha](https://docs.wormhole.com/wormhole/blockchain-environments/evm#testnet-contracts-moonbase-alphanet-1287){target=\_blank}
+- **MainNet Contracts** - [Moonbeam](https://docs.wormhole.com/wormhole/blockchain-environments/evm#moonbeam/){target=\_blank}
+- **TestNet Contracts** - [Moonbase Alpha](https://docs.wormhole.com/wormhole/blockchain-environments/evm#testnet-contracts-moonbase-alphanet-1287/){target=\_blank}
 
 ## Setting up a Specialized Relayer With the Relayer Engine {: #setting-up-a-specialized-relayer-with-the-relayer-engine }
 
@@ -49,13 +49,13 @@ To follow along with this tutorial, you will need to have:
 
 ### Deploying the Wormhole Contract with Remix on Moonbase Alpha {:deploying-the-wormhole-contract-with-remix-on-moonbase-alpha}
 
-To send a cross-chain message, in this guide, you will need to deploy and use a smart contract. Every chain connected to Wormhole will have some sort of implementation of the [Wormhole core bridge](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/interfaces/IWormhole.sol){target=\_blank}, whose purpose is to publish and verify VAAs. Each implementation of the core bridge contract (one per chain) is watched by every guardian in the guardian network, which is how they know when to start validating a message.  
+To send a cross-chain message, in this guide, you will need to deploy and use a smart contract. Every chain connected to Wormhole will have some sort of implementation of the [Wormhole core bridge](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/interfaces/IWormhole.sol/){target=\_blank}, whose purpose is to publish and verify VAAs. Each implementation of the core bridge contract (one per chain) is watched by every guardian in the guardian network, which is how they know when to start validating a message.  
 
 Unlike other cross-chain protocols, Wormhole doesn’t provide a parent smart contract to inherit from for users to build off of. This is because Wormhole’s first chain, Solana, doesn’t have typical inheritance in their smart contracts like Solidity provides. To keep the design experience similar on each chain, Wormhole has their Solidity developers interact directly with the Wormhole core bridge smart contract on EVM chains.  
 
-The [smart contract](https://github.com/jboetticher/relayer-engine-docs-example/blob/main/SimpleGeneralMessage.sol){target=\_blank} that you will be deploying today is stored in a Git repository that is forked from Wormhole’s relayer engine repository. It sends a string from one chain to another, and stores strings when received through Wormhole's protocol. To deploy the script, either copy and paste the contract into Remix or open up this [Remix gist link](https://remix.ethereum.org/?gist=6aac8f954e245d6394f685af5d404b4b){target=\_blank}.  
+The [smart contract](https://github.com/jboetticher/relayer-engine-docs-example/blob/main/SimpleGeneralMessage.sol/){target=\_blank} that you will be deploying today is stored in a Git repository that is forked from Wormhole’s relayer engine repository. It sends a string from one chain to another, and stores strings when received through Wormhole's protocol. To deploy the script, either copy and paste the contract into Remix or open up this [Remix gist link](https://remix.ethereum.org/?gist=6aac8f954e245d6394f685af5d404b4b/){target=\_blank}.  
 
-First things first, the code in this smart contract is based off of [Wormhole’s best practices documentation](https://docs.wormhole.com/wormhole/quick-start/cross-chain-dev){target=\_blank}, but simplified in certain areas (like security). When writing a smart contract for production, review their documentation for a better understanding of standards. To be clear, **do not use the following smart contract in production**.  
+First things first, the code in this smart contract is based off of [Wormhole’s best practices documentation](https://docs.wormhole.com/wormhole/quick-start/cross-chain-dev/){target=\_blank}, but simplified in certain areas (like security). When writing a smart contract for production, review their documentation for a better understanding of standards. To be clear, **do not use the following smart contract in production**.  
 
 1. Go to the **Solidity Compiler** tab
 2. Press the **Compile** button
@@ -64,7 +64,7 @@ First things first, the code in this smart contract is based off of [Wormhole’
 
 ![Set up smart contract deployment](/images/builders/interoperability/protocols/wormhole/wormhole-2.webp)
 
-To deploy on each chain, you will need the local instance of the Wormhole core bridge and the chain ID of the chain mentioned. All of this data has been provided for a select few TestNets in the table below. You can find other networks’ endpoints on Wormhole’s [documentation site](https://docs.wormhole.com/wormhole/blockchain-environments/evm#testnet-contracts-moonbase-alphanet-1287){target=\_blank}. Keep in mind that you should only use EVMs for this demonstration, since the smart contract and relayer designed for this demonstration only supports EVMs.
+To deploy on each chain, you will need the local instance of the Wormhole core bridge and the chain ID of the chain mentioned. All of this data has been provided for a select few TestNets in the table below. You can find other networks’ endpoints on Wormhole’s [documentation site](https://docs.wormhole.com/wormhole/blockchain-environments/evm#testnet-contracts-moonbase-alphanet-1287/){target=\_blank}. Keep in mind that you should only use EVMs for this demonstration, since the smart contract and relayer designed for this demonstration only supports EVMs.
 
 |                           Network & Faucet                           |            Core Bridge Address             | Wormhole Chain ID |
 |:--------------------------------------------------------------------:|:------------------------------------------:|:-----------------:|
@@ -81,7 +81,7 @@ To deploy on each chain, you will need the local instance of the Wormhole core b
 5. Press the **transact** button to start a deployment transaction
 6. Press the **Confirm** button in MetaMask to deploy
 
-Once the contract has been deployed on Moonbase Alpha make sure to copy down its address and repeat the process with one of any of the other [EVM TestNets](https://docs.wormhole.com/wormhole/blockchain-environments/evm){target=\_blank} that are connected to Wormhole so that you can send a message across chains. Remember that you will have to change your network in MetaMask to deploy to the right network.
+Once the contract has been deployed on Moonbase Alpha make sure to copy down its address and repeat the process with one of any of the other [EVM TestNets](https://docs.wormhole.com/wormhole/blockchain-environments/evm/){target=\_blank} that are connected to Wormhole so that you can send a message across chains. Remember that you will have to change your network in MetaMask to deploy to the right network.
 
 ### Whitelisting Moonbase Alpha’s Connected Contract {:whitelisting-moonbase-alpha-connected-contract}
 
@@ -89,7 +89,7 @@ At this point, you should have the same smart contracts deployed twice. One on M
 
 Wormhole recommends including a whitelisting system in their connected contracts, which you will have to use in `SimpleGeneralMessage` before attempting to send a cross-chain message.
 
-To add a whitelisted contract, you must invoke the `addTrustedAddress(bytes32 sender, uint16 _chainId)` function, which requires a *bytes32* formatted address and a chain ID. You can find the chain ID in the [table above](#deploying-the-wormhole-contract-with-remix-on-moonbase-alpha) and on [Wormhole’s documentation](https://docs.wormhole.com/wormhole/blockchain-environments/evm){target=\_blank}.
+To add a whitelisted contract, you must invoke the `addTrustedAddress(bytes32 sender, uint16 _chainId)` function, which requires a *bytes32* formatted address and a chain ID. You can find the chain ID in the [table above](#deploying-the-wormhole-contract-with-remix-on-moonbase-alpha) and on [Wormhole’s documentation](https://docs.wormhole.com/wormhole/blockchain-environments/evm/){target=\_blank}.
 
 ```solidity
 function addTrustedAddress(bytes32 sender, uint16 _chainId) external {
@@ -133,9 +133,9 @@ In this section you should have sent two transactions on two chains to whitelist
 
 ### Running a Wormhole Guardian Network Spy {: #running-wormhole-guardian-spy }
 
-Now you will run a TestNet relayer for Wormhole! This walkthrough is based off of Wormhole’s [relayer-engine](https://github.com/wormhole-foundation/relayer-engine){target=\_blank} GitHub repository, which as of time of writing, is on commit [`cc0aad4`](https://github.com/wormhole-foundation/relayer-engine/commit/cc0aad43787a87ecd9f0d9893d8ccf92901d7adb){target=\_blank}. It’s in relatively active development, which can cause great changes in the structure of the folders.
+Now you will run a TestNet relayer for Wormhole! This walkthrough is based off of Wormhole’s [relayer-engine](https://github.com/wormhole-foundation/relayer-engine/){target=\_blank} GitHub repository, which as of time of writing, is on commit [`cc0aad4`](https://github.com/wormhole-foundation/relayer-engine/commit/cc0aad43787a87ecd9f0d9893d8ccf92901d7adb/){target=\_blank}. It’s in relatively active development, which can cause great changes in the structure of the folders.
 
-Clone the [fork of the relayer-engine](https://github.com/jboetticher/relayer-engine-docs-example){target=\_blank} that has been prepared specifically for interacting with `SimpleGeneralMessage`. [Docker](https://docs.docker.com/get-docker/){target=\_blank} and [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} are required to run this relayer, so be sure to install them to your device.  
+Clone the [fork of the relayer-engine](https://github.com/jboetticher/relayer-engine-docs-example/){target=\_blank} that has been prepared specifically for interacting with `SimpleGeneralMessage`. [Docker](https://docs.docker.com/get-docker/){target=\_blank} and [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm/){target=\_blank} are required to run this relayer, so be sure to install them to your device.  
 
 First things first: the setup. Use the npm package manager to install dependencies (like ethers and the relayer engine itself) using the command line.  
 
@@ -191,7 +191,7 @@ Be sure to edit the `spyServiceFilters` array so that the relayer listens to the
 ]
 ```
 
-In the `simplegeneralmessage_plugin` folder, open up `src/plugin.ts`. This file contains plugin code for both the listener and executor components of the relayer, but the comments should make it obvious which functions are relevant to which component. Snippets of the file are shown below and you should be following along, but in case you aren’t, the entire file can be accessed in [its GitHub repository](https://github.com/jboetticher/relayer-engine-docs-example/blob/main/plugins/simplegeneralmessage_plugin/src/plugin.ts){target=\_blank}.
+In the `simplegeneralmessage_plugin` folder, open up `src/plugin.ts`. This file contains plugin code for both the listener and executor components of the relayer, but the comments should make it obvious which functions are relevant to which component. Snippets of the file are shown below and you should be following along, but in case you aren’t, the entire file can be accessed in [its GitHub repository](https://github.com/jboetticher/relayer-engine-docs-example/blob/main/plugins/simplegeneralmessage_plugin/src/plugin.ts/){target=\_blank}.
 
 Look at the `getFilters()` function below. Notice something familiar? The `spyServiceFilters` object is injected into the plugin class that `getFilters()` is part of. Note that no filtering is being done, this is only the preparation of the filters. The actual filtering of VAAs occurs within the `relayer-engine` package, which uses this `getFilters()` function to understand what to filter.
 
@@ -290,7 +290,7 @@ If you are using a chain that wasn’t listed in the EVM TestNet table above, yo
 ]
 ```
 
-Now that the wallets are sorted out for the executor, look at the code of the executor itself, which is in the `plugins/simplegeneralmessage_plugin/src/plugin.ts` file. If you haven’t been following along, the entire file can be accessed in [its GitHub repository](https://github.com/jboetticher/relayer-engine-docs-example/blob/main/plugins/simplegeneralmessage_plugin/src/plugin.ts){target=\_blank}.
+Now that the wallets are sorted out for the executor, look at the code of the executor itself, which is in the `plugins/simplegeneralmessage_plugin/src/plugin.ts` file. If you haven’t been following along, the entire file can be accessed in [its GitHub repository](https://github.com/jboetticher/relayer-engine-docs-example/blob/main/plugins/simplegeneralmessage_plugin/src/plugin.ts/){target=\_blank}.
 
 The `handleWorkflow(workflow, providers, execute)` function is where all of the logic is, though there are some helper functions underneath it. This is the function that the `relayer-engine` package invokes when there is a workflow in the Redis database that’s to be used. Notice the three parameters that are injected into the function: `workflow`, `providers`, and `execute`.
 
@@ -354,7 +354,7 @@ async handleWorkflow(
 };
 ```
 
-In the callback function, it creates a [contract object](https://docs.ethers.org/v6/api/contract/#Contract){target=\_blank} with the Ethers package. The ABI that it imports is exported from the `SimpleGeneralMessage` contract’s compilation, so this code is assuming that the recipient of the message specified in the VAA is or inherits from a `SimpleGeneralMessage` contract.
+In the callback function, it creates a [contract object](https://docs.ethers.org/v6/api/contract/#Contract/){target=\_blank} with the Ethers package. The ABI that it imports is exported from the `SimpleGeneralMessage` contract’s compilation, so this code is assuming that the recipient of the message specified in the VAA is or inherits from a `SimpleGeneralMessage` contract.
 
 Then, the code attempts to execute the `processMyMessage(bytes32 VAA)` function with the VAA, which was previously defined as the function that messages are relayed to. Recall that this function name was arbitrarily chosen for the smart contract because the relayer could specify any function to call. That freedom is expressed in the ability for a developer to change this relayer’s code!
 
@@ -369,7 +369,7 @@ await execute.onEVM({
 });
 ```
 
-The final piece is to check `relayer-engine-config/common.json`. This config file controls the execution of the entire relayer. Ensure that the TestNet EVMs that you are using are listed within the `supportedChains` object of this file. The plugin will not run properly if it’s not listed. If a chain that you are using is not listed, you will have to import the data from [Wormhole’s developer documentation](https://docs.wormhole.com/wormhole/blockchain-environments/evm){target=\_blank} into the config file in a format like below.
+The final piece is to check `relayer-engine-config/common.json`. This config file controls the execution of the entire relayer. Ensure that the TestNet EVMs that you are using are listed within the `supportedChains` object of this file. The plugin will not run properly if it’s not listed. If a chain that you are using is not listed, you will have to import the data from [Wormhole’s developer documentation](https://docs.wormhole.com/wormhole/blockchain-environments/evm/){target=\_blank} into the config file in a format like below.
 
 There are also additional configurations for the relayer. For example, the `mode` string is set to `"BOTH"` to ensure that both the listener and executor plugins are used, but a developer could decide to run only one if they wanted. Additionally, there are multiple log levels to specify, such as `"error"` for just error messages. For this demo, however, just leave the configuration settings as is.
 
@@ -419,6 +419,6 @@ After a few seconds to a minute, cross-chain messages should be properly relayed
 
 Wormhole will provide liquidity to parachains through the Moonbeam Routed Liquidity (MRL) program. This program allows one-click transfers of liquidity from Wormhole connected chains into parachain wallets by sending liquidity through Moonbeam networks.  
 
-[MRL](/builders/interoperability/mrl){target=\_blank} utilizes the [GMP Precompile](/builders/pallets-precompiles/precompiles/gmp){target=\_blank}, whose documentation explains how cross-chain messages should be constructed to properly use the precompile.
+[MRL](/builders/interoperability/mrl/){target=\_blank} utilizes the [GMP Precompile](/builders/pallets-precompiles/precompiles/gmp/){target=\_blank}, whose documentation explains how cross-chain messages should be constructed to properly use the precompile.
 
 --8<-- 'text/_disclaimers/third-party-content.md'

@@ -5,11 +5,11 @@ description: Learn about all the parts of Moonbeam's Nimbus consensus framework 
 
 # Nimbus Parachain Consensus Framework
 
-## Introduction {: #introduction } 
+## Introduction {: #introduction }
 
-Polkadot relies on a [hybrid consensus model](https://wiki.polkadot.network/docs/learn-consensus). In such a scheme, the block finality gadget and the block production mechanism are separate. Consequently, parachains only have to worry about producing blocks and rely on the relay chain to validate the state transitions.
+Polkadot relies on a [hybrid consensus model](https://wiki.polkadot.network/docs/learn-consensus/). In such a scheme, the block finality gadget and the block production mechanism are separate. Consequently, parachains only have to worry about producing blocks and rely on the relay chain to validate the state transitions.
 
-At a parachain level, block producers are called [collators](https://wiki.polkadot.network/docs/learn-collator). They maintain parachains (such as Moonbeam) by collecting transactions from users and offering blocks to the relay chain [validators](https://wiki.polkadot.network/docs/learn-validator).
+At a parachain level, block producers are called [collators](https://wiki.polkadot.network/docs/learn-collator/). They maintain parachains (such as Moonbeam) by collecting transactions from users and offering blocks to the relay chain [validators](https://wiki.polkadot.network/docs/learn-validator/).
 
 However, parachains might find the following problems they need to solve in a trustless and decentralized matter (if applicable):
 
@@ -24,7 +24,7 @@ Notice that Nimbus can only answer which collator(s) are eligible to produce a p
 
 The following two sections go over the filtering strategy currently used on Moonbeam.
 
-## Parachain Staking Filtering {: #parachain-staking-filtering } 
+## Parachain Staking Filtering {: #parachain-staking-filtering }
 
 Collators can join the candidate pool by simply bonding some tokens via an extrinsic. Once in the pool, token holders can add to the candidate's stake via delegation (also referred to as staking), that is, at a parachain level.
 
@@ -36,7 +36,7 @@ From this pool, another filter is applied to retrieve a subset of eligible candi
 
 If you want to learn more about staking, visit our [staking documentation](/learn/features/staking/).
 
-## Fixed Size Subset Filtering {: #fixed-size-subset-filtering } 
+## Fixed Size Subset Filtering {: #fixed-size-subset-filtering }
 
 Once the parachain staking filter is applied and the selected candidates are retrieved, a second filter is applied on a block by block basis and helps narrow down the selected candidates to a smaller number of eligible collators for the next block authoring slot.
 
@@ -46,13 +46,13 @@ A high eligibility ratio results in fewer chances for the network to skip a bloc
 
 A lower eligibility ratio might provide faster block finalization times and a fairer block production distribution amongst collators. However, if the eligible collators are not able to propose a block (for whatever reason), the network will skip a block, affecting its stability.
 
-Once the size of the subset is defined, collators are randomly selected using a source of entropy. Currently, an internal coin-flipping algorithm is implemented, but this will later be migrated to use the relay chain's [randomness beacon](https://wiki.polkadot.network/docs/learn-randomness). Consequently, a new subset of eligible collators is selected for every relay chain block. For a given round and a given block `XYZ`, the following diagram describes the fixed-size subset filtering: 
+Once the size of the subset is defined, collators are randomly selected using a source of entropy. Currently, an internal coin-flipping algorithm is implemented, but this will later be migrated to use the relay chain's [randomness beacon](https://wiki.polkadot.network/docs/learn-randomness/). Consequently, a new subset of eligible collators is selected for every relay chain block. For a given round and a given block `XYZ`, the following diagram describes the fixed-size subset filtering:
 
 ![Nimbus Parachain Staking Filter](/images/learn/features/consensus/consensus-2.webp)
 
-## Why Nimbus? {: #why-nimbus } 
+## Why Nimbus? {: #why-nimbus }
 
-You might ask yourself: but why Nimbus? Initially, it was not envisioned when Moonbeam was being developed. As Moonbeam progressed, the necessity for a more customizable but straightforward parachain consensus mechanism became clear, as the available methods presented some drawbacks or technical limitations. 
+You might ask yourself: but why Nimbus? Initially, it was not envisioned when Moonbeam was being developed. As Moonbeam progressed, the necessity for a more customizable but straightforward parachain consensus mechanism became clear, as the available methods presented some drawbacks or technical limitations.
 
 <!-- In the [relay chain provided consensus](https://github.com/paritytech/cumulus/blob/master/client/consensus/relay-chain/src/lib.rs), each node sees itself as a collator and can propose a parachain candidate block. It is then up to the relay chain to solve any possible forks and finalize a block. 
 
@@ -62,25 +62,25 @@ With Nimbus, writing a parachain consensus engine is as easy as writing a pallet
 
 Some technical benefits of Nimbus are considered in the following sections.
 
-### Weight and Extra Execution {: #weight-and-extra-execution } 
+### Weight and Extra Execution {: #weight-and-extra-execution }
 
-Nimbus puts the author-checking execution in a [Substrate pallet](https://substrate.dev/docs/en/knowledgebase/runtime/pallets). At first glance, you might think this adds a higher execution load to a single block compared to doing this check off-chain. But consider this from a validator’s perspective
+Nimbus puts the author-checking execution in a [Substrate pallet](https://substrate.dev/docs/en/knowledgebase/runtime/pallets/). At first glance, you might think this adds a higher execution load to a single block compared to doing this check off-chain. But consider this from a validator’s perspective
 
 The validators will also have to check the author. By putting the author-checking execution logic in a pallet, the execution time can be benchmarked and quantified with weights. If this execution time is not accounted for, there is the risk of a block exceeding the relay chain Wasm execution limit (currently 0.5 seconds).
 
 In practice, this check will be fast and will most likely not push execution time over the limit. But from a theoretical perspective, accounting for its weight is better for implementation purposes.
 
-### Reusability {: #reusability } 
+### Reusability {: #reusability }
 
 Another benefit of moving the author-checking execution to a pallet, rather than a custom executor, is that one single executor can be reused for any consensus that can be expressed in the Nimbus framework. That is slot-based, signature-sealed algorithms.
 
 For example, the [relay-chain provided consensus](https://github.com/paritytech/polkadot-sdk/blob/master/cumulus/client/consensus/relay-chain/src/lib.rs), [AuRa](https://crates.io/crates/sc-consensus-aura) and [BABE](https://crates.io/crates/sc-consensus-babe) each have their own custom executor. With Nimbus, these consensus mechanisms can reuse the same executor. The power of reusability is evidenced by the Nimbus implementation of AuRa in less than 100 lines of code.
 
-### Hot-Swapping Consensus {: #hot-swapping-consensus } 
+### Hot-Swapping Consensus {: #hot-swapping-consensus }
 
 Teams building parachains may want to change, tune, or adjust their consensus algorithm from time to time. Without nimbus, swapping consensus would require a client upgrade and hard fork.
 
-With the Nimbus framework, writing a consensus engine is as easy as writing a 
-[Substrate pallet](https://substrate.dev/docs/en/knowledgebase/runtime/pallets). Consequently, swapping consensus is as easy as upgrading a pallet.
+With the Nimbus framework, writing a consensus engine is as easy as writing a
+[Substrate pallet](https://substrate.dev/docs/en/knowledgebase/runtime/pallets/). Consequently, swapping consensus is as easy as upgrading a pallet.
 
 Nonetheless, hot swapping is still bounded by consensus engines (filters) that fit within Nimbus, but it might be helpful for teams that are yet confident on what consensus they want to implement in the long run.

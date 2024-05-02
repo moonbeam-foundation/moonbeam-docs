@@ -14,7 +14,7 @@ A client can independently reconstruct the root hash and compare it with the ori
 
 Polkadot's unique architecture and parachain block validation process means blockchains like Moonbeam have the relay chain storage root hash in their state. Consequently, Moonbeam can provide a mechanism to verify a relay chain state by checking the proof against the stored storage root hash.
 
-Moonbeam's [relay data verifier precompiled](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/relay-data-verifier/RelayDataVerifier.sol){target=\_blank} contract provides an easy way for smart contracts to programmatically build functions that rely on verifying relay chain state in contract calls. Consequently, no oracles are needed to feed relay chain data to Moonbeam. This functionality is readily available at the following contract addresses:
+Moonbeam's [relay data verifier precompiled](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/relay-data-verifier/RelayDataVerifier.sol/){target=\_blank} contract provides an easy way for smart contracts to programmatically build functions that rely on verifying relay chain state in contract calls. Consequently, no oracles are needed to feed relay chain data to Moonbeam. This functionality is readily available at the following contract addresses:
 
 === "Moonbeam"
 
@@ -38,7 +38,7 @@ Moonbeam's [relay data verifier precompiled](https://github.com/moonbeam-foundat
 
 ## The Relay Data Verifier Solidity Interface {: #the-relay-data-verifier-solidity-interface }
 
-[`RelayDataVerifier.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/relay-data-verifier/RelayDataVerifier.sol){target=\_blank} is a Solidity interface that allows developers to interact with the precompile's methods.
+[`RelayDataVerifier.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/relay-data-verifier/RelayDataVerifier.sol/){target=\_blank} is a Solidity interface that allows developers to interact with the precompile's methods.
 
 ??? code "RelayDataVerifier.sol"
 
@@ -76,7 +76,7 @@ The interface includes the following functions:
     
     === "Returns"
 
-        When performing a [static call](https://docs.ethers.org/v6/api/contract/#BaseContractMethod-staticCall){target=\_blank} on the `verifyEntry` function, you can view the returned value associated with the key in hexadecimal format.
+        When performing a [static call](https://docs.ethers.org/v6/api/contract/#BaseContractMethod-staticCall/){target=\_blank} on the `verifyEntry` function, you can view the returned value associated with the key in hexadecimal format.
 
         ```js
          
@@ -101,7 +101,7 @@ The interface includes the following functions:
 
     === "Returns"
 
-        When performing a [static call](https://docs.ethers.org/v6/api/contract/#BaseContractMethod-staticCall){target=\_blank} on the `verifyEntries` function, you can view an array containing the corresponding values mapped to their respective keys, represented in hexadecimal format.
+        When performing a [static call](https://docs.ethers.org/v6/api/contract/#BaseContractMethod-staticCall/){target=\_blank} on the `verifyEntries` function, you can view an array containing the corresponding values mapped to their respective keys, represented in hexadecimal format.
 
         ```js
          
@@ -137,7 +137,7 @@ To interact with the Solidity interface using an Ethereum library, you'll need t
     --8<-- 'code/builders/pallets-precompiles/precompiles/relay-data-verifier/abi.js'
     ```
 
-Once you have the ABI, you can interact with the precompile using the Ethereum library of your choice, such as [Ethers.js](/builders/build/eth-api/libraries/ethersjs/){target=\_blank}, [Web3.js](/builders/build/eth-api/libraries/web3js){target=\_blank}, or [Web3.py](/builders/build/eth-api/libraries/web3py){target=\_blank}. The general steps are as follows:
+Once you have the ABI, you can interact with the precompile using the Ethereum library of your choice, such as [Ethers.js](/builders/build/eth-api/libraries/ethersjs/){target=\_blank}, [Web3.js](/builders/build/eth-api/libraries/web3js/){target=\_blank}, or [Web3.py](/builders/build/eth-api/libraries/web3py/){target=\_blank}. The general steps are as follows:
 
 1. Create a provider
 2. Create a contract instance of the precompile

@@ -7,7 +7,7 @@ description: Learn the basics of remote execution via XCM messages, which allow 
 
 ## Introduction {: #introduction }
 
-The [Cross-Consensus Message (XCM)](https://wiki.polkadot.network/docs/learn-crosschain){target=\_blank} format defines how messages can be sent between interoperable blockchains. This format opens the door to sending an XCM message that executes an arbitrary set of bytes in a Moonbeam-based network, the relay chain, or other parachains in the Polkadot/Kusama ecosystems.
+The [Cross-Consensus Message (XCM)](https://wiki.polkadot.network/docs/learn-crosschain/){target=\_blank} format defines how messages can be sent between interoperable blockchains. This format opens the door to sending an XCM message that executes an arbitrary set of bytes in a Moonbeam-based network, the relay chain, or other parachains in the Polkadot/Kusama ecosystems.
 
 Remote execution via XCM opens a new set of possibilities for cross-chain interactions, from chains executing actions on other chains to users performing remote actions without switching chains.
 
@@ -29,12 +29,12 @@ Depending on the destination chain's configuration, including the `DescendOrigin
 
 The core XCM instructions required to perform remote execution on Moonbeam (as an example) via XCM are the following:
 
- - [`DescendOrigin`](/builders/interoperability/xcm/core-concepts/instructions#descend-origin){target=\_blank} - (optional) gets executed in Moonbeam. Mutates the origin to create a new Computed Origin that represents a keyless account controlled via XCM by the sender in the source chain
- - [`WithdrawAsset`](/builders/interoperability/xcm/core-concepts/instructions#withdraw-asset){target=\_blank} - gets executed in Moonbeam. Takes funds from the Computed Origin
- - [`BuyExecution`](/builders/interoperability/xcm/core-concepts/instructions#buy-execution){target=\_blank} - gets executed in Moonbeam. Uses the funds taken by the previous XCM instruction to pay for the XCM execution, including the remote call
- - [`Transact`](/builders/interoperability/xcm/core-concepts/instructions#transact){target=\_blank} - gets executed in Moonbeam. Executes the arbitrary bytes provided in the XCM instruction
+ - [`DescendOrigin`](/builders/interoperability/xcm/core-concepts/instructions#descend-origin/){target=\_blank} - (optional) gets executed in Moonbeam. Mutates the origin to create a new Computed Origin that represents a keyless account controlled via XCM by the sender in the source chain
+ - [`WithdrawAsset`](/builders/interoperability/xcm/core-concepts/instructions#withdraw-asset/){target=\_blank} - gets executed in Moonbeam. Takes funds from the Computed Origin
+ - [`BuyExecution`](/builders/interoperability/xcm/core-concepts/instructions#buy-execution/){target=\_blank} - gets executed in Moonbeam. Uses the funds taken by the previous XCM instruction to pay for the XCM execution, including the remote call
+ - [`Transact`](/builders/interoperability/xcm/core-concepts/instructions#transact/){target=\_blank} - gets executed in Moonbeam. Executes the arbitrary bytes provided in the XCM instruction
 
-The XCM instructions detailed above can be complemented by other XCM instructions to handle certain scenarios, like failure on execution, more correctly. One example is the inclusion of [`SetAppendix`](/builders/interoperability/xcm/core-concepts/instructions#set-appendix){target=\_blank}, [`RefundSurplus`](/builders/interoperability/xcm/core-concepts/instructions#refund-surplus){target=\_blank}, and [`Deposit`](/builders/interoperability/xcm/core-concepts/instructions#deposit-asset){target=\_blank}.
+The XCM instructions detailed above can be complemented by other XCM instructions to handle certain scenarios, like failure on execution, more correctly. One example is the inclusion of [`SetAppendix`](/builders/interoperability/xcm/core-concepts/instructions#set-appendix/){target=\_blank}, [`RefundSurplus`](/builders/interoperability/xcm/core-concepts/instructions#refund-surplus/){target=\_blank}, and [`Deposit`](/builders/interoperability/xcm/core-concepts/instructions#deposit-asset/){target=\_blank}.
 
 ## General Remote Execution via XCM Flow {: #general-remote-execution-via-xcm-flow }
 
@@ -42,10 +42,10 @@ A user initiates a transaction in the source chain through a pallet that builds 
 
 The XCM message arrives at the destination chain, which executes it. It is executed with the source chain's Sovereign account as a Computed Origin by default. One example that uses this type of origin is when chains open or accept an HRMP channel on the relay chain.
 
-If the XCM message included a [`DescendOrigin`](/builders/interoperability/xcm/core-concepts/instructions#descend-origin){target=\_blank} instruction, the destination chain may mutate the origin to calculate a new Computed Origin (as is the case with Moonbeam-based networks).
+If the XCM message included a [`DescendOrigin`](/builders/interoperability/xcm/core-concepts/instructions#descend-origin/){target=\_blank} instruction, the destination chain may mutate the origin to calculate a new Computed Origin (as is the case with Moonbeam-based networks).
 
-Next, [`WithdrawAsset`](/builders/interoperability/xcm/core-concepts/instructions#withdraw-asset){target=\_blank} takes funds from the Computed Origin (either a Sovereign account or mutated), which are then used to pay for the XCM execution through the [`BuyExecution`](/builders/interoperability/xcm/core-concepts/instructions#buy-execution){target=\_blank} XCM instruction. Note that on both instructions, you need to specify which asset you want to use. In addition, you must include the bytes to be executed in the amount of execution to buy.
+Next, [`WithdrawAsset`](/builders/interoperability/xcm/core-concepts/instructions#withdraw-asset/){target=\_blank} takes funds from the Computed Origin (either a Sovereign account or mutated), which are then used to pay for the XCM execution through the [`BuyExecution`](/builders/interoperability/xcm/core-concepts/instructions#buy-execution/){target=\_blank} XCM instruction. Note that on both instructions, you need to specify which asset you want to use. In addition, you must include the bytes to be executed in the amount of execution to buy.
 
-Lastly, [`Transact`](/builders/interoperability/xcm/core-concepts/instructions#transact){target=\_blank} executes an arbitrary set of bytes that correspond to a pallet and function in the destination chain. You have to specify the type of origin to use (typically `SovereignAccount`) and the weight required to execute the bytes (similar to gas in the Ethereum realm).
+Lastly, [`Transact`](/builders/interoperability/xcm/core-concepts/instructions#transact/){target=\_blank} executes an arbitrary set of bytes that correspond to a pallet and function in the destination chain. You have to specify the type of origin to use (typically `SovereignAccount`) and the weight required to execute the bytes (similar to gas in the Ethereum realm).
 
 ![Diagram of the XCM instructions executed on the destination chain for remote execution.](/images/builders/interoperability/xcm/remote-execution/overview/overview-1.webp)

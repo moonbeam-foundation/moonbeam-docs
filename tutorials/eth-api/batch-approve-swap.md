@@ -13,9 +13,9 @@ Token approvals are critical for interacting with smart contracts securely, prev
 
 One of the reasons why many DApps use an unlimited amount is so that users don't need to continue to sign approval transactions every time they want to move their tokens. This is in addition to the second transaction required to actually swap the tokens. For networks like Ethereum, this can be expensive. However, if the approved smart contract has a vulnerability, it could be exploited and the users' tokens could be transferred at any time without requiring further approval. In addition, if a user no longer wants the DApp's contract to have access to their tokens, they have to revoke the token approval, which requires another transaction to be sent.
 
-As a DApp developer on Moonbeam, this process can be easily avoided, providing your users with more control over their assets. This can be done using the [batch precompile](/builders/pallets-precompiles/precompiles/batch){target=\_blank} to batch an approval and swap into a single transaction, instead of the typical two transaction process. This allows for the approval amount to be the exact swap amount instead of having unlimited access to your users' tokens.
+As a DApp developer on Moonbeam, this process can be easily avoided, providing your users with more control over their assets. This can be done using the [batch precompile](/builders/pallets-precompiles/precompiles/batch/){target=\_blank} to batch an approval and swap into a single transaction, instead of the typical two transaction process. This allows for the approval amount to be the exact swap amount instead of having unlimited access to your users' tokens.
 
-In this tutorial, we'll dive into the process of batching an approval and swap into one transaction using the `batchAll` function of the batch precompile contract. We'll create and deploy an ERC-20 contract and a simple DEX contract for the swap on the [Moonbase Alpha TestNet](/builders/get-started/networks/moonbase){target=\_blank} using [Hardhat](/builders/build/eth-api/dev-env/hardhat){target=\_blank} and [Ethers](/builders/build/eth-api/libraries/ethersjs){target=\_blank}.
+In this tutorial, we'll dive into the process of batching an approval and swap into one transaction using the `batchAll` function of the batch precompile contract. We'll create and deploy an ERC-20 contract and a simple DEX contract for the swap on the [Moonbase Alpha TestNet](/builders/get-started/networks/moonbase/){target=\_blank} using [Hardhat](/builders/build/eth-api/dev-env/hardhat/){target=\_blank} and [Ethers](/builders/build/eth-api/libraries/ethersjs/){target=\_blank}.
 
 ## Checking Prerequisites {: #checking-prerequisites }
 
@@ -23,13 +23,13 @@ For this tutorial, you'll need the following:
 
 - An account with funds.
   --8<-- 'text/_common/faucet/faucet-list-item.md'
-- An empty Hardhat project that is configured for the Moonbase Alpha TestNet. For step-by-step instructions, please refer to the [Creating a Hardhat Project](/builders/build/eth-api/dev-env/hardhat/#creating-a-hardhat-project){target=\_blank} and the [Hardhat Configuration File](/builders/build/eth-api/dev-env/hardhat/#hardhat-configuration-file){target=\_blank} sections of our Hardhat documentation page
+- An empty Hardhat project that is configured for the Moonbase Alpha TestNet. For step-by-step instructions, please refer to the [Creating a Hardhat Project](/builders/build/eth-api/dev-env/hardhat/#creating-a-hardhat-project/){target=\_blank} and the [Hardhat Configuration File](/builders/build/eth-api/dev-env/hardhat/#hardhat-configuration-file/){target=\_blank} sections of our Hardhat documentation page
 - 
   --8<-- 'text/_common/endpoint-examples-list-item.md'
 
 ### Install Dependencies {: #install-dependencies }
 
-Once you have your [Hardhat project](/builders/build/eth-api/dev-env/hardhat){target=\_blank}, you can install the [Ethers plugin](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-ethers){target=\_blank}. This provides a convenient way to use the [Ethers.js](/builders/build/eth-api/libraries/ethersjs/){target=\_blank} library to interact with the network.
+Once you have your [Hardhat project](/builders/build/eth-api/dev-env/hardhat/){target=\_blank}, you can install the [Ethers plugin](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-ethers/){target=\_blank}. This provides a convenient way to use the [Ethers.js](/builders/build/eth-api/libraries/ethersjs/){target=\_blank} library to interact with the network.
 
 You can also install the [OpenZeppelin contracts library](https://docs.openzeppelin.com/contracts/){target=\_blank}, as we'll be importing the `ERC20.sol` contract and `IERC20.sol` interface in our contracts.
 
@@ -43,9 +43,9 @@ npm install @nomicfoundation/hardhat-ethers ethers@6 @openzeppelin/contracts
 
 The following are the contracts that we'll be working with today:
 
-- `Batch.sol` - one of the precompile contracts on Moonbeam that allows you to combine multiple EVM calls into one. For more information on the available methods, please refer to the [Batch Solidity Interface](/builders/pallets-precompiles/precompiles/batch/#the-batch-interface){target=\_blank} documentation
+- `Batch.sol` - one of the precompile contracts on Moonbeam that allows you to combine multiple EVM calls into one. For more information on the available methods, please refer to the [Batch Solidity Interface](/builders/pallets-precompiles/precompiles/batch/#the-batch-interface/){target=\_blank} documentation
 
-- `DemoToken.sol` - an ERC-20 contract for the `DemoToken` (DTOK) token, which on deployment mints an initial supply and assigns them to the contract owner. It's a standard ERC-20 token, you can review the [IERC20 interface](https://docs.openzeppelin.com/contracts/2.x/api/token/erc20#IERC20){target=\_blank} for more information on the available methods
+- `DemoToken.sol` - an ERC-20 contract for the `DemoToken` (DTOK) token, which on deployment mints an initial supply and assigns them to the contract owner. It's a standard ERC-20 token, you can review the [IERC20 interface](https://docs.openzeppelin.com/contracts/2.x/api/token/erc20#IERC20/){target=\_blank} for more information on the available methods
 
 - `SimpleDex.sol` - a simple example of a DEX that on deployment deploys the `DemoToken` contract, which mints 1000 DTOKs, and allows you to swap DEV token for DTOKs and vice versa. **This contract is for demo purposes only**. The `SimpleDex` contract contains the following methods:
     - **token**() - a read-only method that returns the address of the `DemoToken` contract
@@ -317,7 +317,7 @@ async function main() {
 }
 ```
 
-So, if you set the amount to swap to be .2 DTOK, the DEX balance will increase by .2 DTOK, and the signing account's balance will decrease by .2 DTOK. The transaction hash for the swap will also be printed to the terminal, so you can use [Moonscan](https://moonbase.moonscan.io){target=\_blank} to view more information on the transaction.
+So, if you set the amount to swap to be .2 DTOK, the DEX balance will increase by .2 DTOK, and the signing account's balance will decrease by .2 DTOK. The transaction hash for the swap will also be printed to the terminal, so you can use [Moonscan](https://moonbase.moonscan.io/){target=\_blank} to view more information on the transaction.
 
 ??? code "View the complete script"
 
@@ -349,7 +349,7 @@ Before using the `swapExactTokensForETH` function, we would first need to approv
 
 Like our previous example, this two-transaction process can be modified to batch the approval and the `swapExactTokensForETH` function into a single transaction using the batch precompile.
 
-This example will be based off the [Uniswap V2 deployment on Moonbase Alpha](https://github.com/moonbeam-foundation/moonbeam-uniswap){target=\_blank}. We'll approve the router to spend ERTH tokens and then swap ERTH for DEV tokens. Before diving into this example, make sure you swap some DEV for ERTH tokens on the [Moonbeam-swap DApp](https://moonbeam-swap.netlify.app/#/swap){target=\_blank}, so that you have some ERTH to approve and swap back to DEV.
+This example will be based off the [Uniswap V2 deployment on Moonbase Alpha](https://github.com/moonbeam-foundation/moonbeam-uniswap/){target=\_blank}. We'll approve the router to spend ERTH tokens and then swap ERTH for DEV tokens. Before diving into this example, make sure you swap some DEV for ERTH tokens on the [Moonbeam-swap DApp](https://moonbeam-swap.netlify.app/#/swap/){target=\_blank}, so that you have some ERTH to approve and swap back to DEV.
 
 Again, we'll use the `batchAll` function of the batch precompile. So, we'll need to get the encoded call data for the approval and the swap. To get the encoded call data, we'll use Ether's `interface.encodeFunctionData` function and pass in the necessary parameters.
 
@@ -357,7 +357,7 @@ For the `approve(spender, amount)` function, we'll need to pass in the Uniswap V
 
 For the `swapExactTokensForETH(amountIn, amountOutMin, path, to, deadline)` function, we'll need to specify the amount of tokens to send, the minimum amount of output tokens that must be received so the transaction won't revert, the token addresses for the swap, the recipient of the native asset, and the deadline after which the transaction will revert. To swap ERTH to DEV, the path will be ERTH to WETH, so the path array will need to include the ERTH token address and the WETH token address: `[0x08B40414525687731C23F430CEBb424b332b3d35, 0xD909178CC99d318e4D46e7E66a972955859670E1]`.
 
-In addition to the ERTH and WETH addresses, to create a contract instance of the router contract, you'll also need the [router address](https://github.com/moonbeam-foundation/moonbeam-uniswap/blob/f494f9a7a07bd3c5b94ac46484c9c7e6c781203f/uniswap-contracts-moonbeam/address.json#L14){target=\_blank}, which is `0x8a1932D6E26433F3037bd6c3A40C816222a6Ccd4`.
+In addition to the ERTH and WETH addresses, to create a contract instance of the router contract, you'll also need the [router address](https://github.com/moonbeam-foundation/moonbeam-uniswap/blob/f494f9a7a07bd3c5b94ac46484c9c7e6c781203f/uniswap-contracts-moonbeam/address.json#L14/){target=\_blank}, which is `0x8a1932D6E26433F3037bd6c3A40C816222a6Ccd4`.
 
 The code will resemble the following:
 
@@ -410,7 +410,7 @@ main();
 ```
 
 !!! note
-    If you need the ABI to create a contract instance for any of the contracts in this example, all of the contracts are verified on [Moonscan](https://moonbase.moonscan.io){target=\_blank}. So, you can search for the contract addresses on Moonscan and head to the **Contract** tab to get the **Contract ABI**.
+    If you need the ABI to create a contract instance for any of the contracts in this example, all of the contracts are verified on [Moonscan](https://moonbase.moonscan.io/){target=\_blank}. So, you can search for the contract addresses on Moonscan and head to the **Contract** tab to get the **Contract ABI**.
 
 This will result in the approval and swap being batched into a single transaction and the transaction hash will be printed to the console. You can now adapt and apply this logic to your Uniswap V2-style application!
 

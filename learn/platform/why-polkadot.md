@@ -5,15 +5,15 @@ description: Moonbeam is built on the Substrate framework and connected to the P
 
 # Why We're Building on Polkadot
 
-After extensive research, we decided to build Moonbeam using the [Substrate development framework](/learn/platform/glossary/#substrate) and to deploy Moonbeam as a [parachain](/learn/platform/glossary/#parachains) on the [Polkadot network](/learn/platform/glossary/#polkadot). 
+After extensive research, we decided to build Moonbeam using the [Substrate development framework](/learn/platform/glossary/#substrate) and to deploy Moonbeam as a [parachain](/learn/platform/glossary/#parachains) on the [Polkadot network](/learn/platform/glossary/#polkadot).
 
-## Substrate Blockchain Framework {: #substrate-blockchain-framework } 
+## Substrate Blockchain Framework {: #substrate-blockchain-framework }
 
 Substrate is a good technical fit for Moonbeam. By building on top of this framework, we can leverage the extensive functionality that Substrate includes out-of-the-box, rather than building it ourselves. This includes peer-to-peer networking, consensus mechanisms, governance functionality, an EVM implementation, and more.
 
-Overall, using Substrate will dramatically reduce the time and implementation effort needed to implement Moonbeam.  Substrate allows a great degree of customization, which is necessary in order to achieve our Ethereum compatibility goals.  And, by using Rust, we benefit from both safety guarantees and performance gains. 
+Overall, using Substrate will dramatically reduce the time and implementation effort needed to implement Moonbeam.  Substrate allows a great degree of customization, which is necessary in order to achieve our Ethereum compatibility goals.  And, by using Rust, we benefit from both safety guarantees and performance gains.
 
-## Polkadot Network and Ecosystem {: #polkadot-network-and-ecosystem } 
+## Polkadot Network and Ecosystem {: #polkadot-network-and-ecosystem }
 
 The Polkadot network is also a good fit for Moonbeam.  As a parachain on Polkadot, Moonbeam will be able to directly integrate with — and move tokens between — any other parachains and parathreads on the network.
 

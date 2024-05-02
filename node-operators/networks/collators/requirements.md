@@ -24,7 +24,7 @@ Collators have a responsibility to the network to act honorably. If any of the f
 There is a level of commitment to the community and the network that is necessary to gain trust from the community of delegators and attract more delegations. The following contains some suggestions for contributing to the community:
 
 - Be active in the community
-    - [Join the Discord](/node-operators/networks/collators/overview/#join-discord){target=\_blank} and introduce yourself, provide updates as needed, and help support community members or other collators
+    - [Join the Discord](/node-operators/networks/collators/overview/#join-discord/){target=\_blank} and introduce yourself, provide updates as needed, and help support community members or other collators
 - Create tutorials and educational content
 - [Become a Moonbeam Ambassador](https://moonbeam.network/community/ambassadors/){target=\_blank}
 - Contribute to open-source software relating to the ecosystem
@@ -60,7 +60,7 @@ To generate keys securely it is recommended to do so on an air-gapped machine. O
 
 - Write down and laminate your keys
 - Engrave your keys into a metal plate
-- Shard your keys using a tool like [Horcrux](https://gitlab.com/unit410/horcrux){target=\_blank}
+- Shard your keys using a tool like [Horcrux](https://gitlab.com/unit410/horcrux/){target=\_blank}
 
 As always, it is recommended to do your own research and use tools that you vet as trustworthy.
 
@@ -137,7 +137,7 @@ First, you will need a minimum amount of tokens staked (self-bonded) to be consi
 
 ### Key Association Bond {: #key-association-bond }
 
-Secondly, you will need a bond for key association. This bond is sent when [mapping your author ID](/node-operators/networks/collators/account-management){target=\_blank} (session keys) with your account for block rewards, and is per author ID registered.
+Secondly, you will need a bond for key association. This bond is sent when [mapping your author ID](/node-operators/networks/collators/account-management/){target=\_blank} (session keys) with your account for block rewards, and is per author ID registered.
 
 === "Moonbeam"
     |   Variable   |                         Value                          |
@@ -156,4 +156,4 @@ Secondly, you will need a bond for key association. This bond is sent when [mapp
 
 ## Collator Questionnaire {: #collator-questionnaire }
 
-There is a [Collator Questionnaire](https://docs.google.com/forms/d/e/1FAIpQLSfjmcXdiOXWtquYlBhdgXBunCKWHadaQCgPuBtzih1fd0W3aA/viewform){target=\_blank}, that aims to assess the state of all collators on Moonbase Alpha. You should be running a collator node on Moonbase Alpha before filling out this form.You will be able to provide your contact information as well as some basic hardware specs. It provides a way to open the lines of communication between you and the Moonbeam team in case any problems with your node arise.
+There is a [Collator Questionnaire](https://docs.google.com/forms/d/e/1FAIpQLSfjmcXdiOXWtquYlBhdgXBunCKWHadaQCgPuBtzih1fd0W3aA/viewform/){target=\_blank}, that aims to assess the state of all collators on Moonbase Alpha. You should be running a collator node on Moonbase Alpha before filling out this form.You will be able to provide your contact information as well as some basic hardware specs. It provides a way to open the lines of communication between you and the Moonbeam team in case any problems with your node arise.

@@ -15,26 +15,26 @@ This guide is divided into two sections. The first part describes the OpenZeppel
 
 ## OpenZeppelin Contract Wizard {: #openzeppelin-contract-wizard }
 
-OpenZeppelin has developed an online web-based interactive contract generator tool that is probably the easiest and fastest way to write your smart contract using OpenZeppelin code, called [Contracts Wizard](https://docs.openzeppelin.com/contracts/5.x/wizard){target=\_blank}.
+OpenZeppelin has developed an online web-based interactive contract generator tool that is probably the easiest and fastest way to write your smart contract using OpenZeppelin code, called [Contracts Wizard](https://docs.openzeppelin.com/contracts/5.x/wizard/){target=\_blank}.
 
 <style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/l8RTwu6hGpY' frameborder='0' allowfullscreen></iframe></div>
 <style>.caption { font-family: Open Sans, sans-serif; font-size: 0.9em; color: rgba(170, 170, 170, 1); font-style: italic; letter-spacing: 0px; position: relative;}</style><div class='caption'>In this video, Open Zeppelin Wizard is used to deploy an ERC-20 token to Moonbase Alpha</a></div>
 
 Currently, the Contracts Wizard support the following ERC standards:
 
- - [**ERC-20**](https://ethereum.org/en/developers/docs/standards/tokens/erc-20/){target=\_blank} — a fungible token standard that follows [EIP-20](https://eips.ethereum.org/EIPS/eip-20){target=\_blank}. Fungible means that all tokens are equivalent and interchangeable that is, of equal value. One typical example of fungible tokens is fiat currencies, where each equal-denomination bill has the same value
- - [**ERC-721**](https://ethereum.org/en/developers/docs/standards/tokens/erc-721/){target=\_blank} — a non-fungible token contract that follows [EIP-721](https://eips.ethereum.org/EIPS/eip-721){target=\_blank}. Non-fungible means that each token is different, and therefore, unique. An ERC-721 token can represent ownership of that unique item, whether it is a collectible item in a game, real estate, and so on
- - [**ERC-1155**](https://docs.openzeppelin.com/contracts/5.x/erc1155){target=\_blank} — also known as the multi-token contract, because it can represent both fungible and non-fungible tokens in a single smart contract. It follows [EIP-1155](https://eips.ethereum.org/EIPS/eip-1155){target=\_blank}
+ - [**ERC-20**](https://ethereum.org/en/developers/docs/standards/tokens/erc-20/){target=\_blank} — a fungible token standard that follows [EIP-20](https://eips.ethereum.org/EIPS/eip-20/){target=\_blank}. Fungible means that all tokens are equivalent and interchangeable that is, of equal value. One typical example of fungible tokens is fiat currencies, where each equal-denomination bill has the same value
+ - [**ERC-721**](https://ethereum.org/en/developers/docs/standards/tokens/erc-721/){target=\_blank} — a non-fungible token contract that follows [EIP-721](https://eips.ethereum.org/EIPS/eip-721/){target=\_blank}. Non-fungible means that each token is different, and therefore, unique. An ERC-721 token can represent ownership of that unique item, whether it is a collectible item in a game, real estate, and so on
+ - [**ERC-1155**](https://docs.openzeppelin.com/contracts/5.x/erc1155/){target=\_blank} — also known as the multi-token contract, because it can represent both fungible and non-fungible tokens in a single smart contract. It follows [EIP-1155](https://eips.ethereum.org/EIPS/eip-1155/){target=\_blank}
 
 The wizard is comprised of the following sections:
 
  1. **Token standard selection** — shows all the different standards supported by the wizard
  2. **Settings** — provides the baseline settings for each token standard, such as token name, symbol, pre-mint (token supply when the contract is deployed), and URI (for non-fungible tokens)
  3. **Features** — list of all features available for each token standard. You can find more information about the different features in the following links:
-     - [ERC-20](https://docs.openzeppelin.com/contracts/5.x/api/token/erc20){target=\_blank}
-     - [ERC-721](https://docs.openzeppelin.com/contracts/5.x/api/token/erc721){target=\_blank}
-     - [ERC-1155](https://docs.openzeppelin.com/contracts/5.x/api/token/erc1155){target=\_blank}
- 4. **Access Control** — list of all the available [access control mechanisms](https://docs.openzeppelin.com/contracts/5.x/access-control){target=\_blank} for each token standard
+     - [ERC-20](https://docs.openzeppelin.com/contracts/5.x/api/token/erc20/){target=\_blank}
+     - [ERC-721](https://docs.openzeppelin.com/contracts/5.x/api/token/erc721/){target=\_blank}
+     - [ERC-1155](https://docs.openzeppelin.com/contracts/5.x/api/token/erc1155/){target=\_blank}
+ 4. **Access Control** — list of all the available [access control mechanisms](https://docs.openzeppelin.com/contracts/5.x/access-control/){target=\_blank} for each token standard
  5. **Interactive code display** — shows the smart contract code with the configuration as set by the user
 
 ![OpenZeppelin Contracts Wizard](/images/builders/build/eth-api/dev-env/openzeppelin/contracts/oz-wizard-1.webp)
@@ -49,7 +49,7 @@ This section goes through the steps for deploying OpenZeppelin contracts on Moon
  - ERC-721 (non-fungible tokens)
  - ERC-1155 (multi-token standard)
 
-All the code of the contracts was obtained using OpenZeppelin [Contract Wizard](https://docs.openzeppelin.com/contracts/5.x/wizard){target=\_blank}.
+All the code of the contracts was obtained using OpenZeppelin [Contract Wizard](https://docs.openzeppelin.com/contracts/5.x/wizard/){target=\_blank}.
 
 ### Checking Prerequisites {: #checking-prerequisites }
 

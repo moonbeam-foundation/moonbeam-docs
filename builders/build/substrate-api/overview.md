@@ -22,11 +22,11 @@ Pallets are used to customize and extend the capabilities of a Substrate-based b
 
 Some examples of open-source pallets that are available to all Substrate developers are:  
 
-- **[Balances Pallet](https://crates.io/crates/pallet-balances){target=\_blank}** — manages the balance of accounts in a Substrate blockchain
-- **[Assets Pallet](https://crates.io/crates/pallet-assets){target=\_blank}** — handles the creation and management of on-chain fungible assets
-- **Consensus Pallets** — these pallets provide different consensus mechanisms, such as [AURA](https://crates.io/crates/pallet-aura){target=\_blank} and [BABE](https://crates.io/crates/pallet-babe){target=\_blank}, for block production
-- **Governance Pallets** — these pallets, like [Referenda](https://crates.io/crates/pallet-referenda){target=\_blank} and [Collective](https://crates.io/crates/pallet-collective){target=\_blank}, provide on-chain governance mechanisms
-- **[Frontier Pallets](https://polkadot-evm.github.io/frontier/){target=\_blank}** — Ethereum compatibility layer pallets that allows Substrate-based blockchains to interact with Ethereum-based applications that the Moonbeam team pioneered. Includes pallets such as the [EVM Pallet](https://crates.io/crates/pallet-evm){target=\_blank}  
+- **[Balances Pallet](https://crates.io/crates/pallet-balances/){target=\_blank}** — manages the balance of accounts in a Substrate blockchain
+- **[Assets Pallet](https://crates.io/crates/pallet-assets/){target=\_blank}** — handles the creation and management of on-chain fungible assets
+- **Consensus Pallets** — these pallets provide different consensus mechanisms, such as [AURA](https://crates.io/crates/pallet-aura/){target=\_blank} and [BABE](https://crates.io/crates/pallet-babe/){target=\_blank}, for block production
+- **Governance Pallets** — these pallets, like [Referenda](https://crates.io/crates/pallet-referenda/){target=\_blank} and [Collective](https://crates.io/crates/pallet-collective/){target=\_blank}, provide on-chain governance mechanisms
+- **[Frontier Pallets](https://polkadot-evm.github.io/frontier/){target=\_blank}** — Ethereum compatibility layer pallets that allows Substrate-based blockchains to interact with Ethereum-based applications that the Moonbeam team pioneered. Includes pallets such as the [EVM Pallet](https://crates.io/crates/pallet-evm/){target=\_blank}  
 - **[Parachain Staking Pallet](/builders/pallets-precompiles/pallets/staking/){target=\_blank}** - enables a delegated proof of stake (DPoS) system, a pallet that Moonbeam created
 
 In addition to the standard pallets provided by Polkadot's Substrate, developers can [create their own pallets](https://docs.substrate.io/tutorials/collectibles-workshop/03-create-pallet/){target=\_blank} to add custom functionality to their own blockchains.  
@@ -34,9 +34,9 @@ In addition to the standard pallets provided by Polkadot's Substrate, developers
 !!! note
     Developers can edit pre-existing pallets because they are all open source. This flexibility is one of the benefits of using Polkadot's Substrate, but it's also important to know that there are a few standards that are enforced across each of the parachains that are connected through the Polkadot relay chain.  
 
-The Moonbeam runtime, built with Polkadot's Substrate, can be found in the [Moonbeam GitHub repository](https://github.com/moonbeam-foundation/moonbeam){target=\_blank}. Within this repository, you can see additional custom pallets that the Moonbeam team has written and edited within the [`pallets` folder](https://github.com/moonbeam-foundation/moonbeam/tree/master/pallets){target=\_blank}. You can also check out documentation on some Substrate pallets as they pertain to Moonbeam in the [Pallets section](/builders/pallets-precompiles/pallets/){target=\_blank} of our documentation.
+The Moonbeam runtime, built with Polkadot's Substrate, can be found in the [Moonbeam GitHub repository](https://github.com/moonbeam-foundation/moonbeam/){target=\_blank}. Within this repository, you can see additional custom pallets that the Moonbeam team has written and edited within the [`pallets` folder](https://github.com/moonbeam-foundation/moonbeam/tree/master/pallets/){target=\_blank}. You can also check out documentation on some Substrate pallets as they pertain to Moonbeam in the [Pallets section](/builders/pallets-precompiles/pallets/){target=\_blank} of our documentation.
 
-You can interact with Substrate features exposed by these pallets using development tools like the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api){target=\_blank}, the [Python Substrate Interface](/builders/build/substrate-api/py-substrate-interface){target=\_blank}, and the [Substrate API Sidecar](/builders/build/substrate-api/sidecar){target=\_blank}.
+You can interact with Substrate features exposed by these pallets using development tools like the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=\_blank}, the [Python Substrate Interface](/builders/build/substrate-api/py-substrate-interface/){target=\_blank}, and the [Substrate API Sidecar](/builders/build/substrate-api/sidecar/){target=\_blank}.
 
 ## Forkless Upgrades {: #forkless-upgrades }
 
@@ -44,7 +44,7 @@ One of the best things about developing on Polkadot with Substrate is the abilit
 
 Substrate takes a different approach. It separates the blockchain's state (data) from its logic (rules). The logic is contained in the blockchain's runtime, which is itself stored on the blockchain. This design allows the runtime to be upgraded through a special kind of transaction, effectively changing the rules without disrupting the continuity of the blockchain.  
 
-Whenever you build a blockchain with Substrate, you compile your Rust code into a build binary. This build can be uploaded into a pre-existing and running blockchain through [FRAME's `set_code` call](https://paritytech.github.io/substrate/master/frame_system/pallet/enum.Call.html#variant.set_code){target=\_blank}. When a new runtime is uploaded and approved (typically through an on-chain governance process), all nodes automatically switch to the new runtime at a specified block number. This process is smooth and automatic, with no need for node operators to manually upgrade their software.  
+Whenever you build a blockchain with Substrate, you compile your Rust code into a build binary. This build can be uploaded into a pre-existing and running blockchain through [FRAME's `set_code` call](https://paritytech.github.io/substrate/master/frame_system/pallet/enum.Call.html#variant.set_code/){target=\_blank}. When a new runtime is uploaded and approved (typically through an on-chain governance process), all nodes automatically switch to the new runtime at a specified block number. This process is smooth and automatic, with no need for node operators to manually upgrade their software.  
 
 Moonbeam regularly uses the forkless upgrade system to add additional features to the Moonbeam ecosystem. You can keep track of and discuss Moonbeam's upcoming forkless upgrades on the [Moonbeam forum](https://forum.moonbeam.foundation/){target=\_blank}.  
 
@@ -62,4 +62,4 @@ Native interoperability offers the following advantages:
 
 By providing native interoperability, Substrate enables the creation of a diverse, interconnected ecosystem of blockchains. This aligns with the vision of a multi-chain future, where different blockchains can work together to provide a richer, more capable blockchain environment.  
 
-Moonbeam's networks have a series of XCM connections with many other parachains. You can view upcoming XCM integrations in the [XCM section of the Moonbeam forum](https://forum.moonbeam.foundation/c/xcm-hrmp/13){target=\_blank}.
+Moonbeam's networks have a series of XCM connections with many other parachains. You can view upcoming XCM integrations in the [XCM section of the Moonbeam forum](https://forum.moonbeam.foundation/c/xcm-hrmp/13/){target=\_blank}.

@@ -46,7 +46,7 @@ Any contract that follows the ERC-20 token standard emits an event related to a 
 --8<-- 'code/builders/build/eth-api/pubsub/subscribe-to-event-logs.js'
 ```
 
-Note that you are connecting to the WebSocket endpoint of Moonbase Alpha. You're using the `web3.eth.subscribe(‘logs’,  options [, callback])` method to subscribe to the logs, filtered by the given options. In this case, the options are the contract’s address where the events are emitted from and the topics used to describe the event. More information about topics can be found in the [Understanding event logs on the Ethereum blockchain](https://medium.com/mycrypto/understanding-event-logs-on-the-ethereum-blockchain-f4ae7ba50378){target=\_blank} Medium post. If you do not provide any topics, you subscribe to all events emitted by the contract. In order to only filter the `Transfer` event, you need to include the signature of the event, calculated as:
+Note that you are connecting to the WebSocket endpoint of Moonbase Alpha. You're using the `web3.eth.subscribe(‘logs’,  options [, callback])` method to subscribe to the logs, filtered by the given options. In this case, the options are the contract’s address where the events are emitted from and the topics used to describe the event. More information about topics can be found in the [Understanding event logs on the Ethereum blockchain](https://medium.com/mycrypto/understanding-event-logs-on-the-ethereum-blockchain-f4ae7ba50378/){target=\_blank} Medium post. If you do not provide any topics, you subscribe to all events emitted by the contract. In order to only filter the `Transfer` event, you need to include the signature of the event, calculated as:
 
 ```js
 EventSignature = keccak256(Transfer(address,address,uint256))
@@ -110,9 +110,9 @@ Note that only one block header is shown in the image. These messages are displa
 
 ## Check If a Node Is Synchronized with the Network {: #check-if-a-node-is-synchronized-with-the-network }
 
-With pub/sub, it is also possible to check whether a particular node you are subscribed to is currently synchronizing with the network. For that, we can leverage the [`web3.eth.subscribe(‘syncing' [, callback])`](https://web3js.readthedocs.io/en/v1.2.11/web3-eth-subscribe.html#subscribe-syncing){target=\_blank} method, implementing the same callback function to check for the response. This subscription will either return a boolean when `syncing` is false or an object describing the syncing progress when `syncing` is true, as seen below.
+With pub/sub, it is also possible to check whether a particular node you are subscribed to is currently synchronizing with the network. For that, we can leverage the [`web3.eth.subscribe(‘syncing' [, callback])`](https://web3js.readthedocs.io/en/v1.2.11/web3-eth-subscribe.html#subscribe-syncing/){target=\_blank} method, implementing the same callback function to check for the response. This subscription will either return a boolean when `syncing` is false or an object describing the syncing progress when `syncing` is true, as seen below.
 
 ![Subscribe to syncing response](/images/builders/build/eth-api/pubsub/pubsub-7.webp)
 
 !!! note
-    The pub/sub implementation in [Frontier](https://github.com/polkadot-evm/frontier){target=\_blank} is still in active development. This current version allows users to subscribe to specific event types, but there may still be some limitations.
+    The pub/sub implementation in [Frontier](https://github.com/polkadot-evm/frontier/){target=\_blank} is still in active development. This current version allows users to subscribe to specific event types, but there may still be some limitations.

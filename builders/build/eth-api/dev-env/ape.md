@@ -38,7 +38,7 @@ If you don't already have an Ape project, you must install Ape and create a new 
     python3 -m pipx ensurepath
     ```
 
-3. [Install Ape using `pipx`](https://ape.readthedocs.io/en/stable/install.html){target=\_blank}
+3. [Install Ape using `pipx`](https://ape.readthedocs.io/en/stable/install.html/){target=\_blank}
 
     ```bash
     pipx install eth-ape
@@ -109,7 +109,7 @@ solidity:
   evm_version: INSERT_VERSION
 ```
 
-For more information on the Solidity plugin, please refer to the [README of the `ape-solidity` repository on GitHub](https://github.com/ApeWorX/ape-solidity/blob/main/README.md){target=_blank}.
+For more information on the Solidity plugin, please refer to the [README of the `ape-solidity` repository on GitHub](https://github.com/ApeWorX/ape-solidity/blob/main/README.md/){target=_blank}.
 
 With the Solidity plugin installed, the next step is to compile the smart contract:
 
@@ -131,7 +131,7 @@ You should already have a `tests` directory where you'll create your tests, but 
 touch tests/test_box.py
 ```
 
-In addition to the test file, you can create a `conftest.py` file that will define a couple of essential [fixtures](https://docs.pytest.org/en/stable/explanation/fixtures.html){target=\_blank}. Fixtures allow you to define functions that set up the necessary environment or resources to run your tests. Note that while the `Box.sol` contract is simple, incorporating fixtures into your testing process is good practice.
+In addition to the test file, you can create a `conftest.py` file that will define a couple of essential [fixtures](https://docs.pytest.org/en/stable/explanation/fixtures.html/){target=\_blank}. Fixtures allow you to define functions that set up the necessary environment or resources to run your tests. Note that while the `Box.sol` contract is simple, incorporating fixtures into your testing process is good practice.
 
 To create the file, you can run the following command:
 

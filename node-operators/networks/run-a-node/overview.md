@@ -86,7 +86,7 @@ There are a couple different guides to help you get started running a Moonbeam-b
 
 ## Debug, Trace and TxPool APIs {: #debug-trace-txpool-apis }
 
-You can also gain access to some non-standard RPC methods by running a tracing node, which allow developers to inspect and debug transactions during runtime. Tracing nodes use a different Docker image than a standard Moonbase Alpha, Moonriver, or Moonbeam node. Check out the [Run a Tracing Node](/node-operators/networks/tracing-node) guide and be sure to switch to the right network tab throughout the instructions. Then to interact with your tracing node, check out the [Debug & Trace](/builders/build/eth-api/debug-trace) guide.
+You can also gain access to some non-standard RPC methods by running a tracing node, which allow developers to inspect and debug transactions during runtime. Tracing nodes use a different Docker image than a standard Moonbase Alpha, Moonriver, or Moonbeam node. Check out the [Run a Tracing Node](/node-operators/networks/tracing-node) guide and be sure to switch to the right network tab throughout the instructions. Then to interact with your tracing node, check out the [Debug & Trace](/builders/build/eth-api/debug-trace/) guide.
 
 ## Logs and Troubleshooting {: #logs-and-troubleshooting }
 

@@ -33,11 +33,11 @@ Moonbeam supports:
 - **Base fee pallet** - adds support for EIP-1559 transactions and handles base fee calculations
 - **Dynamic fee pallet** - calculates the dynamic minimum gas price
 
-Moonbeam uses the EVM and Ethereum pallets to achieve full Ethereum compatibility. Moonbeam does not use the base fee or dynamic fee pallets. Moonbeam has its own [dynamic fee mechanism](https://forum.moonbeam.foundation/t/proposal-status-idea-dynamic-fee-mechanism-for-moonbeam-and-moonriver/241){target=\_blank} for base fee calculations, which, as of RT2300, has been rolled out to all Moonbeam-based networks.
+Moonbeam uses the EVM and Ethereum pallets to achieve full Ethereum compatibility. Moonbeam does not use the base fee or dynamic fee pallets. Moonbeam has its own [dynamic fee mechanism](https://forum.moonbeam.foundation/t/proposal-status-idea-dynamic-fee-mechanism-for-moonbeam-and-moonriver/241/){target=\_blank} for base fee calculations, which, as of RT2300, has been rolled out to all Moonbeam-based networks.
 
 ### EVM Pallet {: #evm-pallet }
 
-The [EVM pallet](https://polkadot-evm.github.io/frontier/frame/ethereum.html){target=\_blank} implements a sandboxed virtual stack machine and uses the [SputnikVM](https://github.com/rust-blockchain/evm){target=\_blank} as the underlying EVM engine.
+The [EVM pallet](https://polkadot-evm.github.io/frontier/frame/ethereum.html/){target=\_blank} implements a sandboxed virtual stack machine and uses the [SputnikVM](https://github.com/rust-blockchain/evm/){target=\_blank} as the underlying EVM engine.
 
 The EVM executes Ethereum smart contract bytecode, of which is typically written in a language like Solidity, and then compiles it to EVM bytecode. The goal of the EVM pallet is to emulate the functionality of executing smart contracts on Ethereum within the Substrate runtime. As such, it allows existing EVM code to be executed in Substrate-based blockchains.
 
@@ -49,23 +49,23 @@ The EVM pallet can also be configured so that no dispatchable calls can cause EV
 
 If a blockchain doesn't need Ethereum emulation and only needs EVM execution, Substrate uses its account model fully and signs transactions on behalf of EVM accounts. However, in this model Ethereum RPCs are not available, and DApps must write their frontend using the Substrate API.
 
-The EVM pallet should produce nearly identical execution results compared to Ethereum, such as gas cost and balance changes. However, there are some differences. Please refer to the [EVM module vs Ethereum network](https://polkadot-evm.github.io/frontier/frame/evm.html#evm-module-vs-ethereum-network){target=\_blank} section of the Frontier EVM Pallet documentation for more information.
+The EVM pallet should produce nearly identical execution results compared to Ethereum, such as gas cost and balance changes. However, there are some differences. Please refer to the [EVM module vs Ethereum network](https://polkadot-evm.github.io/frontier/frame/evm.html#evm-module-vs-ethereum-network/){target=\_blank} section of the Frontier EVM Pallet documentation for more information.
 
-There are also some [precompiles](https://github.com/polkadot-evm/frontier/tree/4c05c2b09e71336d6b11207e6d12e486b4d2705c#evm-pallet-precompiles){target=\_blank} that can be used alongside the EVM pallet that extend the functionality of the EVM. Moonbeam uses the following EVM precompiles:
+There are also some [precompiles](https://github.com/polkadot-evm/frontier/tree/4c05c2b09e71336d6b11207e6d12e486b4d2705c#evm-pallet-precompiles/){target=\_blank} that can be used alongside the EVM pallet that extend the functionality of the EVM. Moonbeam uses the following EVM precompiles:
 
 - **[pallet-evm-precompile-simple](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm_precompile_simple/){target=\_blank}** - includes five basic precompiles: ECRecover, ECRecoverPublicKey, Identity, RIPEMD160, SHA256
-- **[pallet-evm-precompile-blake2](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm_precompile_blake2/struct.Blake2F.html){target=\_blank}** - includes the BLAKE2 precompile
-- **[pallet-evm-precompile-bn128](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm_precompile_bn128/index.html){target=\_blank}** - includes three BN128 precompiles: BN128Add, BN128Mul, and BN128Pairing
-- **[pallet-evm-precompile-modexp](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm_precompile_modexp/struct.Modexp.html){target=\_blank}** - includes the modular exponentiation precompile
-- **[pallet-evm-precompile-sha3fips](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm_precompile_sha3fips/struct.Sha3FIPS256.html){target=\_blank}** -includes the standard SHA3 precompile
-- **[pallet-evm-precompile-dispatch](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm_precompile_dispatch/struct.Dispatch.html){target=\_blank}** - includes the dispatch precompile
+- **[pallet-evm-precompile-blake2](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm_precompile_blake2/struct.Blake2F.html/){target=\_blank}** - includes the BLAKE2 precompile
+- **[pallet-evm-precompile-bn128](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm_precompile_bn128/index.html/){target=\_blank}** - includes three BN128 precompiles: BN128Add, BN128Mul, and BN128Pairing
+- **[pallet-evm-precompile-modexp](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm_precompile_modexp/struct.Modexp.html/){target=\_blank}** - includes the modular exponentiation precompile
+- **[pallet-evm-precompile-sha3fips](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm_precompile_sha3fips/struct.Sha3FIPS256.html/){target=\_blank}** -includes the standard SHA3 precompile
+- **[pallet-evm-precompile-dispatch](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm_precompile_dispatch/struct.Dispatch.html/){target=\_blank}** - includes the dispatch precompile
 
-You can find an overview of most of these precompiles on the [Ethereum MainNet Precompiled Contracts](/builders/pallets-precompiles/precompiles/eth-mainnet){target=\_blank} page.
+You can find an overview of most of these precompiles on the [Ethereum MainNet Precompiled Contracts](/builders/pallets-precompiles/precompiles/eth-mainnet/){target=\_blank} page.
 
 ### Ethereum Pallet {: #ethereum-pallet}
 
-The [Ethereum pallet](https://polkadot-evm.github.io/frontier/frame/ethereum.html){target=\_blank} is responsible for handling blocks and transaction receipts and statuses. It enables sending and receiving Ethereum-formatted data to and from Moonbeam by storing an Ethereum-style block and it's associated transaction hashes in the Substrate runtime.
+The [Ethereum pallet](https://polkadot-evm.github.io/frontier/frame/ethereum.html/){target=\_blank} is responsible for handling blocks and transaction receipts and statuses. It enables sending and receiving Ethereum-formatted data to and from Moonbeam by storing an Ethereum-style block and it's associated transaction hashes in the Substrate runtime.
 
-When a user submits a raw Ethereum transaction, it gets converted into a Substrate transaction through the pallet Ethereum's `transact` extrinsic. Using the Ethereum pallet as the sole executor of the EVM pallet, forces all of the data to be stored and transacted with in an Ethereum-compatible way. This enables block explorers such as [Moonscan](/builders/get-started/explorers#moonscan){target=\_blank}, which is built by Etherscan, to be able to index block data.
+When a user submits a raw Ethereum transaction, it gets converted into a Substrate transaction through the pallet Ethereum's `transact` extrinsic. Using the Ethereum pallet as the sole executor of the EVM pallet, forces all of the data to be stored and transacted with in an Ethereum-compatible way. This enables block explorers such as [Moonscan](/builders/get-started/explorers#moonscan/){target=\_blank}, which is built by Etherscan, to be able to index block data.
 
-Along with support for Ethereum-style data, the Ethereum pallet combined with the [RPC module](https://github.com/polkadot-evm/frontier/tree/master/client/rpc){target=\_blank} provides RPC support. This enables usage of [basic Ethereum JSON-RPC methods](/builders/get-started/eth-compare/rpc-support#basic-ethereum-json-rpc-methods){target=\_blank} which ultimately allows existing Ethereum DApps to be deployed to Moonbeam with minimal changes.
+Along with support for Ethereum-style data, the Ethereum pallet combined with the [RPC module](https://github.com/polkadot-evm/frontier/tree/master/client/rpc/){target=\_blank} provides RPC support. This enables usage of [basic Ethereum JSON-RPC methods](/builders/get-started/eth-compare/rpc-support#basic-ethereum-json-rpc-methods/){target=\_blank} which ultimately allows existing Ethereum DApps to be deployed to Moonbeam with minimal changes.
