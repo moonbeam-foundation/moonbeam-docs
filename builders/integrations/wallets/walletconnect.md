@@ -201,7 +201,7 @@ const killSession = () => {
 };
 ```
 
-Now that you have all of the logic required to handle the disconnection, you will need the **Disconnect** button that `onClick` will call the `killSession` function. Since you only want to display the **Disconnect** button once a user is connected, you can use [conditional renderering](https://reactjs.org/docs/conditional-rendering.html/){target=\_blank}. Conditional rendering allows you to check against certain variables and if a condition applies you can render one element or another. In this case, if you are not fetching the initial connection and the connector exists, you can render the **Disconnect** button, otherwise render the **Connect Wallet** button. You can replace the existing `<Button>` with the following:
+Now that you have all of the logic required to handle the disconnection, you will need the **Disconnect** button that `onClick` will call the `killSession` function. Since you only want to display the **Disconnect** button once a user is connected, you can use [conditional renderering](https://reactjs.org/docs/conditional-rendering.html){target=\_blank}. Conditional rendering allows you to check against certain variables and if a condition applies you can render one element or another. In this case, if you are not fetching the initial connection and the connector exists, you can render the **Disconnect** button, otherwise render the **Connect Wallet** button. You can replace the existing `<Button>` with the following:
 
 ```js
 {
@@ -221,7 +221,7 @@ Now when a user clicks on **Disconnect** the DApp will be reset, the connection 
 
 As previously mentioned, a user can also disconnect and end the session from within their mobile wallet. If this happens, WalletConnect emits a `disconnect` event that the DApp will need to listen for. Upon receiving the `disconnect` event, the state will need to be reset back to the initial state. In this scenario, there is no reason to use `killSession` to end the session on the mobile wallet as the user has already ended the session on their mobile wallet.
 
-You'll notice that in the template, the `disconnect` event is listened for within the [React Effect Hook](https://reactjs.org/docs/hooks-effect.html/){target=\_blank}. The effect hook lets you perform side effects in function components such as fetching data and setting up a subscription.
+You'll notice that in the template, the `disconnect` event is listened for within the [React Effect Hook](https://reactjs.org/docs/hooks-effect.html){target=\_blank}. The effect hook lets you perform side effects in function components such as fetching data and setting up a subscription.
 
 In the `disconnect` event callback, you can add the `resetApp` function so that whenever a `disconnect` event is emitted, you reset the state of your DApp. 
 

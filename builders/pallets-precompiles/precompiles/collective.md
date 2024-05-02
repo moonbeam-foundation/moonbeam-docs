@@ -8,7 +8,7 @@ keywords: solidity, ethereum, collective, proposal, council technical, committee
 
 ## Introduction {: #introduction }
 
-The Collective Precompile enables a user to directly interact with [Substrate's collective pallet](https://paritytech.github.io/substrate/master/pallet_collective/index.html/){target=\_blank} directly from a Solidity interface.
+The Collective Precompile enables a user to directly interact with [Substrate's collective pallet](https://paritytech.github.io/substrate/master/pallet_collective/index.html){target=\_blank} directly from a Solidity interface.
 
 A collective is a group of members that are responsible for specific democracy-related actions such as proposing, voting on, executing, and closing motions. Each can execute different actions with different origins. Consequently, collectives can be created with very specific scopes. There are currently two collectives: the Treasury Council collective and the OpenGov Technical Committee collective. As such, there is a precompile for each collective. For more information on the OpenGov Technical Committee please refer to the [Governance on Moonbeam](/learn/features/governance/){target=\_blank} page, and for more information on the Treasury Council, please refer to the [Treasury on Moonbeam](/learn/features/treasury/){target=\_blank} page.
 

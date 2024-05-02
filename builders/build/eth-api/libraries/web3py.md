@@ -39,7 +39,7 @@ pip3 install web3 py-solc-x solc-select
 
 ## Setup Web3.py with Moonbeam {: #setup-web3-with-moonbeam }
 
-Throughout this guide, you'll be creating a bunch of scripts that provide different functionalities, such as sending a transaction, deploying a contract, and interacting with a deployed contract. In most of these scripts, you'll need to create a [Web3.py provider](https://web3py.readthedocs.io/en/stable/providers.html/){target=\_blank} to interact with the network.
+Throughout this guide, you'll be creating a bunch of scripts that provide different functionalities, such as sending a transaction, deploying a contract, and interacting with a deployed contract. In most of these scripts, you'll need to create a [Web3.py provider](https://web3py.readthedocs.io/en/stable/providers.html){target=\_blank} to interact with the network.
 
 --8<-- 'text/_common/endpoint-setup.md'
 
@@ -135,7 +135,7 @@ Next, you will create the script for this file and complete the following steps:
 1. Add imports, including Web3.py and the `rpc_gas_price_strategy`, which will be used in the following steps to get the gas price used for the transaction
 2. [Set up the Web3 provider](#setup-web3-with-moonbeam)
 3. Define the `account_from`, including the `private_key`, and the `address_to` variables. The private key is required to sign the transaction. **Note: This is for example purposes only. Never store your private keys in a Python file**
-4. Use the [Web3.py Gas Price API](https://web3py.readthedocs.io/en/stable/gas_price.html/){target=\_blank} to set a gas price strategy. For this example, you'll use the imported `rpc_gas_price_strategy`
+4. Use the [Web3.py Gas Price API](https://web3py.readthedocs.io/en/stable/gas_price.html){target=\_blank} to set a gas price strategy. For this example, you'll use the imported `rpc_gas_price_strategy`
 5. Create and sign the transaction using the `web3.eth.account.sign_transaction` function. Pass in the `nonce` `gas`, `gasPrice`, `to`, and `value` for the transaction along with the sender's `private_key`. To get the `nonce` you can use the `web3.eth.get_transaction_count` function and pass in the sender's address. To predetermine the `gasPrice` you'll use the `web3.eth.generate_gas_price` function. For the `value`, you can format the amount to send from an easily readable format to Wei using the `web3.to_wei` function
 6. Using the signed transaction, you can then send it using the `web3.eth.send_raw_transaction` function and wait for the transaction receipt by using the `web3.eth.wait_for_transaction_receipt` function
 

@@ -29,9 +29,9 @@ Later on in this guide, you have the option of deploying your project to a local
 
 ## Create a Project {: #create-a-project }
 
-To get started, you'll need to [create a SubQuery project](https://academy.subquery.network/quickstart/quickstart.html/){target=\_blank}:
+To get started, you'll need to [create a SubQuery project](https://academy.subquery.network/quickstart/quickstart.html){target=\_blank}:
 
-1. Globally install the [SubQuery CLI](https://academy.subquery.network/run_publish/cli.html/){target=\_blank}:
+1. Globally install the [SubQuery CLI](https://academy.subquery.network/run_publish/cli.html){target=\_blank}:
 
     === "npm"
 
@@ -379,6 +379,6 @@ To run your indexer locally using Docker, you can take the following steps:
 
     ![The GraphQL playground in the browser.](/images/builders/integrations/indexers/subquery/new/subquery-8.webp)
 
-And that's it! For a step-by-step tutorial on how to use the `moonbeam-substrate-evm-starter` template project, you can refer to [SubQuery's Moonbeam (EVM) Quick Start documentation](https://academy.subquery.network/quickstart/quickstart_chains/polkadot-moonbeam.html/){target=\_blank}.
+And that's it! For a step-by-step tutorial on how to use the `moonbeam-substrate-evm-starter` template project, you can refer to [SubQuery's Moonbeam (EVM) Quick Start documentation](https://academy.subquery.network/quickstart/quickstart_chains/polkadot-moonbeam.html){target=\_blank}.
 
 --8<-- 'text/_disclaimers/third-party-content.md'

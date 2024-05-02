@@ -42,7 +42,7 @@ You will need to install Brownie and create a Brownie project if you don't alrea
     python3 -m pipx ensurepath
     ```
 
-3. [Install Brownie using `pipx`](https://eth-brownie.readthedocs.io/en/stable/install.html/){target=\_blank}, which is used to run executables installed locally in your project. Brownie will be installed into a virtual environment and be available directly from the command line
+3. [Install Brownie using `pipx`](https://eth-brownie.readthedocs.io/en/stable/install.html){target=\_blank}, which is used to run executables installed locally in your project. Brownie will be installed into a virtual environment and be available directly from the command line
 
     ```bash
     pipx install eth-brownie
@@ -83,7 +83,7 @@ Your Brownie project should contain the following empty directories:
 - **build** - for project data such as contract artifacts from compilation
 - **contracts** - to store the smart contract files
 - **interfaces** - for smart contract interfaces that are required for your project
-- **reports** - for JSON report files for use in the [Brownie GUI](https://eth-brownie.readthedocs.io/en/stable/gui.html/){target=\_blank}
+- **reports** - for JSON report files for use in the [Brownie GUI](https://eth-brownie.readthedocs.io/en/stable/gui.html){target=\_blank}
 - **scripts** - where Python scripts used for deploying contracts or other automated tasks will live
 - **tests** - to store Python scripts for testing your project. Brownie uses the `pytest` framework for unit testing
 

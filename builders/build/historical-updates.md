@@ -305,7 +305,7 @@ Migrations are necessary when a storage item is changed or added and needs to be
 
 #### Update the Mapping Storage Item {: #update-mapping-storage-item }
 
-This migration updated the now deprecated `Mapping` storage item of the author mapping pallet to use a more secure hasher type. The hasher type was updated to [Blake2_128Concat](https://paritytech.github.io/substrate/master/frame_support/struct.Blake2_128Concat.html/){target=\_blank} instead of [Twox64Concat](https://paritytech.github.io/substrate/master/frame_support/struct.Twox64Concat.html/){target=\_blank}.
+This migration updated the now deprecated `Mapping` storage item of the author mapping pallet to use a more secure hasher type. The hasher type was updated to [Blake2_128Concat](https://paritytech.github.io/substrate/master/frame_support/struct.Blake2_128Concat.html){target=\_blank} instead of [Twox64Concat](https://paritytech.github.io/substrate/master/frame_support/struct.Twox64Concat.html){target=\_blank}.
 
 This migration was only applied to Moonriver and Moonbase Alpha and was executed at the following runtimes and blocks:
 

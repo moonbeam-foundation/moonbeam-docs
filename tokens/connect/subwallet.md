@@ -19,7 +19,7 @@ This guide takes you through all the necessary steps, from installing SubWallet 
 
 There are several ways you can interact with SubWallet: they have **a browser extension, a mobile app, and a web-accessible dashboard**.
 
-You can get started by heading to [SubWallet's download page](https://www.subwallet.app/download.html/){target=\_blank} and downloading SubWallet for the platform of your choice.
+You can get started by heading to [SubWallet's download page](https://www.subwallet.app/download.html){target=\_blank} and downloading SubWallet for the platform of your choice.
 
 If you choose to use the web-accessible dashboard, you won't need to download anything. You can access the dashboard at [web.subwallet.app](https://web.subwallet.app/welcome/){target=\_blank}.
 

@@ -65,7 +65,7 @@ The value of `0` will be overridden by the amount to be transferred as specified
 
 By whitelisting a specific function selector, you can control what functions can be executed and ensure only functions that are considered safe and do not call precompiles are allowed to be called.
 
-To get the function selector to whitelist, you can [keccack256 hash](https://emn178.github.io/online-tools/keccak_256.html/){target=\_blank} the signature of the function.
+To get the function selector to whitelist, you can [keccack256 hash](https://emn178.github.io/online-tools/keccak_256.html){target=\_blank} the signature of the function.
 
 Once you have the whitelisted function selector, you can use inline assembly to get the function selector from the encoded call data and compare the two selectors using the [require function](https://docs.soliditylang.org/en/v0.8.17/control-structures.html#panic-via-assert-and-error-via-require/){target=\_blank}. If the function selector from the encoded call data matches the whitelisted function selector, you can make the call. Otherwise, an exception will be thrown.
 

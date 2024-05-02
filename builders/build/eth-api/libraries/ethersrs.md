@@ -59,7 +59,7 @@ solc-select install 0.8.17 && solc-select use 0.8.17
 
 ## Setting up the Ethers Provider and Client {: #setting-up-the-ethers-provider-and-client }
 
-Throughout this guide, you'll be writing multiple functions that provide different functionality such as sending a transaction, deploying a contract, and interacting with a deployed contract. In most of these scripts you'll need to use an [Ethers provider](https://docs.rs/ethers-providers/latest/ethers_providers/index.html/){target=\_blank} or an [Ethers signer client](https://docs.rs/ethers/1.0.2/ethers/middleware/struct.SignerMiddleware.html/){target=\_blank} to interact with the network.
+Throughout this guide, you'll be writing multiple functions that provide different functionality such as sending a transaction, deploying a contract, and interacting with a deployed contract. In most of these scripts you'll need to use an [Ethers provider](https://docs.rs/ethers-providers/latest/ethers_providers/index.html){target=\_blank} or an [Ethers signer client](https://docs.rs/ethers/1.0.2/ethers/middleware/struct.SignerMiddleware.html){target=\_blank} to interact with the network.
 
 --8<-- 'text/_common/endpoint-setup.md'
 

@@ -11,7 +11,7 @@
     |                 [BN128Add](/builders/pallets-precompiles/precompiles/eth-mainnet/#bn128add/){target=\_blank}                 | 0x0000000000000000000000000000000000000006 |
     |                 [BN128Mul](/builders/pallets-precompiles/precompiles/eth-mainnet/#bn128mul/){target=\_blank}                 | 0x0000000000000000000000000000000000000007 |
     |             [BN128Pairing](/builders/pallets-precompiles/precompiles/eth-mainnet/#bn128pairing/){target=\_blank}             | 0x0000000000000000000000000000000000000008 |
-    | [Blake2](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm_precompile_blake2/struct.Blake2F.html/){target=\_blank} | 0x0000000000000000000000000000000000000009 |
+    | [Blake2](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm_precompile_blake2/struct.Blake2F.html){target=\_blank} | 0x0000000000000000000000000000000000000009 |
 
 === "Moonriver"
     |                                                           Contract                                                           |                  Address                   |
@@ -24,7 +24,7 @@
     |                 [BN128Add](/builders/pallets-precompiles/precompiles/eth-mainnet/#bn128add/){target=\_blank}                 | 0x0000000000000000000000000000000000000006 |
     |                 [BN128Mul](/builders/pallets-precompiles/precompiles/eth-mainnet/#bn128mul/){target=\_blank}                 | 0x0000000000000000000000000000000000000007 |
     |             [BN128Pairing](/builders/pallets-precompiles/precompiles/eth-mainnet/#bn128pairing/){target=\_blank}             | 0x0000000000000000000000000000000000000008 |
-    | [Blake2](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm_precompile_blake2/struct.Blake2F.html/){target=\_blank} | 0x0000000000000000000000000000000000000009 |
+    | [Blake2](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm_precompile_blake2/struct.Blake2F.html){target=\_blank} | 0x0000000000000000000000000000000000000009 |
 
 === "Moonbase Alpha"
     |                                                           Contract                                                           |                  Address                   |
@@ -37,4 +37,4 @@
     |                 [BN128Add](/builders/pallets-precompiles/precompiles/eth-mainnet/#bn128add/){target=\_blank}                 | 0x0000000000000000000000000000000000000006 |
     |                 [BN128Mul](/builders/pallets-precompiles/precompiles/eth-mainnet/#bn128mul/){target=\_blank}                 | 0x0000000000000000000000000000000000000007 |
     |             [BN128Pairing](/builders/pallets-precompiles/precompiles/eth-mainnet/#bn128pairing/){target=\_blank}             | 0x0000000000000000000000000000000000000008 |
-    | [Blake2](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm_precompile_blake2/struct.Blake2F.html/){target=\_blank} | 0x0000000000000000000000000000000000000009 |
+    | [Blake2](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm_precompile_blake2/struct.Blake2F.html){target=\_blank} | 0x0000000000000000000000000000000000000009 |
