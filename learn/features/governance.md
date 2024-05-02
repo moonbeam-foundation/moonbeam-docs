@@ -36,7 +36,7 @@ Some of the main components of this governance model include:
 
  - **Referenda** — a stake-based voting scheme where each referendum is tied to a specific proposal for a change to the Moonbeam system including values for key parameters, code upgrades, or changes to the governance system itself
  - **Voting** — referendum will be voted on by token holders on a stake-weighted basis. Referenda which pass are subject to delayed enactment such that people that disagree with the direction of the decision have time to exit the network
- - **Council & Technical Committee Governance V1** — a group of community members who have special voting rights within the system. With the deprecation and removal of Governance v1, both of these committees were dissolved as of the [runtime 2800 release](/builders/build/releases/runtime-2800/){target=\_blank}
+ - **Council & Technical Committee Governance V1** — a group of community members who have special voting rights within the system. With the deprecation and removal of Governance v1, both of these committees were dissolved as of the [runtime 2800 release](https://forum.moonbeam.network/t/runtime-rt2801-schedule/1616/4/){target=\_blank}
  - **OpenGov Technical Committee** — a group of community members who can add certain proposals to the Whitelisted Track
 
 For more details on how these Substrate frame pallets implement on-chain governance, you can checkout the [Walkthrough of Polkadot’s Governance](https://polkadot.network/a-walkthrough-of-polkadots-governance/){target=\_blank} blog post and the [Polkadot Governance Wiki](https://wiki.polkadot.network/docs/learn-polkadot-opengov/){target=\_blank}.

@@ -114,7 +114,7 @@ To follow along with this guide, you will need the following:
 
 ## Execute an XCM Message Locally {: #execute-an-xcm-message-locally }
 
-This section of the guide covers the process of building a custom XCM message to be executed locally (i.e., in Moonbeam) via two different methods: the `execute` function of the Polkadot XCM Pallet and the `xcmExecute` function of the [XCM Utilities Precompile](/builders/interoperability/xcm/xcm-utils/){target=\_blank}. This functionality provides a playground for you to experiment with different XCM instructions and see firsthand the results of these experiments. This also comes in handy to determine the [fees](/builders/interoperability/xcm/fees/){target=\_blank} associated with a given XCM message on Moonbeam.
+This section of the guide covers the process of building a custom XCM message to be executed locally (i.e., in Moonbeam) via two different methods: the `execute` function of the Polkadot XCM Pallet and the `xcmExecute` function of the [XCM Utilities Precompile](/builders/interoperability/xcm/xcm-utils/){target=\_blank}. This functionality provides a playground for you to experiment with different XCM instructions and see firsthand the results of these experiments. This also comes in handy to determine the [fees](/builders/interoperability/xcm/core-concepts/weights-fees/){target=\_blank} associated with a given XCM message on Moonbeam.
 
 In the following example, you'll transfer DEV tokens from one account to another on Moonbase Alpha. To do so, you'll be building an XCM message that contains the following XCM instructions, which are executed locally (in this case, on Moonbase Alpha):
 
