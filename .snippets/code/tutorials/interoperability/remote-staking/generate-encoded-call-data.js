@@ -1,7 +1,7 @@
 import { ApiPromise, WsProvider } from '@polkadot/api';
 const provider = new WsProvider('wss://wss.api.moonbase.moonbeam.network');
 
-const candidate = '0x3A7D3048F3CB0391bb44B518e5729f07bCc7A45D';
+const candidate = '0x12E7BCCA9b1B15f33585b5fc898B967149BDb9a5';
 const amount = '1000000000000000000';
 const autoCompound = 100;
 

@@ -36,7 +36,7 @@ The script will return 32-byte and 20-byte addresses. We’re interested in the 
 
 ## Preparing to Stake on Moonbase Alpha {: #preparing-to-stake-on-moonbase-alpha }
 
-First and foremost, you’ll need the address of the collator you want to delegate to. To locate it, head to the [Moonbase Alpha Staking dApp](https://apps.moonbeam.network/moonbase-alpha/staking){target=\_blank} in a second window. Ensure you’re on the correct network, then press **Select a Collator**. Press the icon next to your desired collator to copy its address. You’ll also need to make a note of the number of delegations your collator has. The [PS-31 collator](https://moonbase.subscan.io/account/0x3A7D3048F3CB0391bb44B518e5729f07bCc7A45D){target=\_blank} shown below has `64` delegations at the time of writing.
+First and foremost, you’ll need the address of the collator you want to delegate to. To locate it, head to the [Moonbase Alpha Staking dApp](https://apps.moonbeam.network/moonbase-alpha/staking){target=\_blank} in a second window. Ensure you’re on the correct network, then press **Select a Collator**. Press the icon next to your desired collator to copy its address. You’ll also need to make a note of the number of delegations your collator has. The [Moonbeam Foundation 01 collator](https://moonbase.subscan.io/account/{{networks.moonbase.precompiles.staking}}){target=\_blank} shown below has `64` delegations at the time of writing.
 
 ![Moonbeam Network Apps Dashboard](/images/tutorials/interoperability/remote-staking-via-xcm/xcm-stake-2.webp)
 
@@ -53,7 +53,7 @@ In order to generate the encoded call data, we'll need to assemble the arguments
 1. Create a [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api){target=\_blank} provider
 2. Assemble the arguments for each of the parameters of the `delegateWithAutoCompound` function:
 
-    - `candidate`- for this example we'll use the [PS-31 collator](https://moonbase.subscan.io/account/0x3A7D3048F3CB0391bb44B518e5729f07bCc7A45D){target=\_blank}: `0x3A7D3048F3CB0391bb44B518e5729f07bCc7A45D`. To retrieve the entire list of candidates, you can refer back to the [Preparing to Stake](#preparing-to-stake-on-moonbase-alpha) section
+    - `candidate`- for this example we'll use the [Moonbeam Foundation 01 collator](https://moonbase.subscan.io/account/{{networks.moonbase.staking.candidates.address1}}){target=\_blank}: `{{networks.moonbase.staking.candidates.address1}}`. To retrieve the entire list of candidates, you can refer back to the [Preparing to Stake](#preparing-to-stake-on-moonbase-alpha) section
     - `amount` - we'll stake the minimum amount, which is 1 DEV or `1000000000000000000` Wei. You can find a [unit converter on Moonscan](https://moonscan.io/unitconverter){target=\_blank}
     - `autoCompound` - we'll set this to `100` to auto-compound all rewards
     - `candidateDelegationCount` - we'll retrieve using the `candidateInfo` function of the Parachain Staking Pallet to get the exact count. Alternatively, you can enter the upper bound of `300` because this estimation is only used to determine the weight of the call
