@@ -6,8 +6,6 @@
     <span data-ty>yarn run v1.22.10</span>
     <span data-ty>warning ../../../package.json: No license field</span>
     <span data-ty>$ ts-node 'scripts/calculate-multilocation-derivative-account.ts' --ws-provider wss://wss.api.moonbase.moonbeam.network --address 5GQtq2cSDLeN77T2Bs4jxV7yUQh841tWy6wtJoSUrFZAm5qS --parents 1</span>
-    <!-- You can continue here with the output of the script, which might look something like this: -->
-    <span data-ty>--parents 1</span>
     <br>
     <span data-ty>Remote Origin calculated as ParentChain</span>
     <span data-ty>Parents 1</span>

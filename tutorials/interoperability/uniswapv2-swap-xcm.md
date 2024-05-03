@@ -42,7 +42,7 @@ Considering all the steps summarized in the [introduction](#introduction), the f
 
 For our case, we will send the remote EVM call via XCM from Alice's account, which is `5GKh9gMK5dn9SJp6qfMNcJiMMnY7LReYmgug2Fr5fKE64imn`, so the command and response would look like the following image.
 
-![Calculating the Computed Origin account](/images/tutorials/interoperability/uniswapv2-swap-xcm/uniswapv2-swap-xcm-2.webp)
+--8<-- 'code/tutorials/interoperability/uniswapv2-swap/terminal/calculate.md'
 
 The values are all summarized in the following table:
 
@@ -75,7 +75,7 @@ The easiest way to get the calldata is through the [Moonbeam Uniswap V2 Demo](ht
  3. In Metamask, click on the **hex** tab, and the encoded calldata should show up
  4. Click on the **Copy raw transaction data** button. This will copy the encoded calldata to the clipboard
 
-![Calldata for Uniswap V2 swap](/images/tutorials/interoperability/uniswapv2-swap-xcm/uniswapv2-swap-xcm-3.webp)
+![Calldata for Uniswap V2 swap](/images/tutorials/interoperability/uniswapv2-swap-xcm/uniswapv2-swap-xcm-2.webp)
 
 !!! note
     Other wallets also offer the same capabilities of checking the encoded calldata before signing the transaction.
@@ -156,7 +156,7 @@ Let's go through each of the main components of the snippet shown above:
 
 Once you have the code set up, you can execute it with `node`, and you'll get the Moonbase Alpha remote EVM calldata:
 
-![Getting the Moonbase Alpha remote EVM XCM calldata for Uniswap V2 swap](/images/tutorials/interoperability/uniswapv2-swap-xcm/uniswapv2-swap-xcm-4.webp)
+--8<-- 'code/tutorials/interoperability/uniswapv2-swap/terminal/encoded.md'
 
 The encoded calldata for this example is:
 
@@ -210,7 +210,7 @@ Let's go through each of the main components of the snippet shown above:
 
 Once you have the code set up, you can execute it with `node`, and you'll get the relay chain XCM calldata:
 
-![Getting the Relay Chain XCM calldata for Uniswap V2 swap](/images/tutorials/interoperability/uniswapv2-swap-xcm/uniswapv2-swap-xcm-5.webp)
+--8<-- 'code/tutorials/interoperability/uniswapv2-swap/terminal/build-message.md'
 
 The encoded calldata for this example is:
 
@@ -238,7 +238,7 @@ To send the XCM message that we built in the previous section, you can use the f
 
 Once you have the code set up, you can execute it with `node`, and the XCM message will be sent to initiate your Uniswap V2 swap in Moonbase Alpha:
 
-![Sending the XCM message from the Relay Chain to Moonbase Alpha for the Uniswap V2 swap](/images/tutorials/interoperability/uniswapv2-swap-xcm/uniswapv2-swap-xcm-6.webp)
+--8<-- 'code/tutorials/interoperability/uniswapv2-swap/terminal/send-xcm.md'
 
 And that is it! You've sent an XCM message, which performed a remote EVM call via XCM and resulted in a Uniswap V2-styled swap in Moonbase Alpha. But let's go into more detail about what happened.
 
