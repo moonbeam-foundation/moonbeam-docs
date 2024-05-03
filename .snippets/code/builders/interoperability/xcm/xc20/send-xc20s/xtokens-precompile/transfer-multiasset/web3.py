@@ -21,7 +21,7 @@ dest = [
     # Target Alice's 32-byte relay chain account
     ["0x01c4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a06300"],
 ]
-weight = 304217000
+weight = 305986000
 
 
 # Sends 1 xcUNIT to the relay chain using the transferMultiasset function
