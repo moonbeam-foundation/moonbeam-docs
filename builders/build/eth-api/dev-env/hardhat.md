@@ -9,19 +9,19 @@ description: Learn how to use Hardhat, an Ethereum development environment, to c
 
 [Hardhat](https://hardhat.org/){target=\_blank} is a flexible and extensible Ethereum development environment that streamlines the smart contract development process. Since Moonbeam is Ethereum-compatible, you can use Hardhat to develop and deploy smart contracts on Moonbeam.
 
-Hardhat takes a task-based approach to development, where you can define and execute [tasks](https://hardhat.org/hardhat-runner/docs/advanced/create-task#creating-a-task/){target=\_blank} that perform specific actions. These actions include compiling and deploying contracts, running tests, and more. Tasks are highly configurable, so you can create, customize, and execute tasks that are tailored to meet your needs.
+Hardhat takes a task-based approach to development, where you can define and execute [tasks](https://hardhat.org/hardhat-runner/docs/advanced/create-task){target=\_blank} that perform specific actions. These actions include compiling and deploying contracts, running tests, and more. Tasks are highly configurable, so you can create, customize, and execute tasks that are tailored to meet your needs.
 
 You can also extend Hardhat's functionality through the use of [plugins](https://hardhat.org/hardhat-runner/plugins/){target=\_blank}. Plugins are external extensions that integrate with Hardhat to provide additional features and tools for your workflow. For example, there are plugins for common Ethereum libraries, like [Ethers.js](/builders/build/eth-api/libraries/ethersjs/){target=\_blank} and [viem](/builders/build/eth-api/libraries/viem/){target=\_blank}, a plugin that extends the Chai assertion library to include Ethereum-specific functionality, and more. All of these plugins can be used to extend your Hardhat project on Moonbeam.
 
 This guide will provide a brief introduction to Hardhat and show you how to use Hardhat to compile, deploy, and debug Ethereum smart contracts on the Moonbase Alpha TestNet. This guide can also be adapted for Moonbeam, Moonriver, or a Moonbeam development node.
 
-Please note that although Hardhat comes with a [Hardhat Network](https://hardhat.org/docs#hardhat-network/){target=\_blank} component, which provides a local development environment, you should use a [local Moonbeam development node](/builders/get-started/networks/moonbeam-dev/){target=\_blank} instead. You can connect a Moonbeam development node to Hardhat just like you would with any other network.
+Please note that although Hardhat comes with a [Hardhat Network](https://hardhat.org/docs#hardhat-network){target=\_blank} component, which provides a local development environment, you should use a [local Moonbeam development node](/builders/get-started/networks/moonbeam-dev/){target=\_blank} instead. You can connect a Moonbeam development node to Hardhat just like you would with any other network.
 
 ## Checking Prerequisites {: #checking-prerequisites }
 
 To get started, you will need the following:
 
-- Have [MetaMask installed](/tokens/connect/metamask#install-the-metamask-extension/){target=\_blank} and [connected to Moonbase Alpha](/tokens/connect/metamask#connect-metamask-to-moonbeam/){target=\_blank}
+- Have [MetaMask installed](/tokens/connect/metamask#install-the-metamask-extension){target=\_blank} and [connected to Moonbase Alpha](/tokens/connect/metamask#connect-metamask-to-moonbeam){target=\_blank}
 - Have an account with funds.
   --8<-- 'text/_common/faucet/faucet-list-item.md'
 - 
@@ -81,7 +81,7 @@ Next, you'll need to modify your configuration file to add the network configura
 
 - `url` - the [RPC endpoint](/builders/get-started/endpoints/){target=\_blank} of the node
 - `chainId` - the chain ID, which is used to validate the network
-- `accounts` - the accounts that can be used to deploy and interact with contracts. You can either enter an array of the private keys for your accounts or use an [HD Wallet](https://github.com/ethereumbook/ethereumbook/blob/develop/05wallets.asciidoc#hierarchical-deterministic-wallets-bip-32bip-44/){target=\_blank}
+- `accounts` - the accounts that can be used to deploy and interact with contracts. You can either enter an array of the private keys for your accounts or use an [HD Wallet](https://github.com/ethereumbook/ethereumbook/blob/develop/05wallets.asciidoc#hierarchical-deterministic-wallets-bip-32bip-44){target=\_blank}
 
 For this example, the network will be Moonbase Alpha, but you can modify the configuration to use any of the Moonbeam networks:
 
@@ -183,7 +183,7 @@ module.exports = {
 };
 ```
 
-For more information on the available configuration options, please refer to Hardhat's documentation on [Configuration](https://hardhat.org/hardhat-runner/docs/config#networks-configuration/){target=\_blank}.
+For more information on the available configuration options, please refer to Hardhat's documentation on [Configuration](https://hardhat.org/hardhat-runner/docs/config#networks-configuration){target=\_blank}.
 
 ## The Contract File {: #the-contract-file }
 
@@ -394,11 +394,11 @@ The script should return `2` as the value.
 
 ## Hardhat Forking {: #hardhat-forking }
 
-You can [fork](https://hardhat.org/hardhat-network/docs/guides/forking-other-networks/){target=\_blank} any EVM-compatible chain using Hardhat, including Moonbeam. Forking simulates the live Moonbeam network locally, enabling you to interact with deployed contracts on Moonbeam in a local test environment. Since Hardhat forking is based on an EVM implementation, you can interact with the fork using standard [Ethereum JSON-RPC methods supported by Moonbeam](/builders/json-rpc/eth-rpc/){target=\_blank} and [Hardhat](https://hardhat.org/hardhat-network/docs/reference#json-rpc-methods-support/){target=\_blank}.
+You can [fork](https://hardhat.org/hardhat-network/docs/guides/forking-other-networks/){target=\_blank} any EVM-compatible chain using Hardhat, including Moonbeam. Forking simulates the live Moonbeam network locally, enabling you to interact with deployed contracts on Moonbeam in a local test environment. Since Hardhat forking is based on an EVM implementation, you can interact with the fork using standard [Ethereum JSON-RPC methods supported by Moonbeam](/builders/json-rpc/eth-rpc/){target=\_blank} and [Hardhat](https://hardhat.org/hardhat-network/docs/reference#json-rpc-methods-support){target=\_blank}.
 
 There are some limitations to be aware of when using Hardhat forking. You cannot interact with any of the Moonbeam precompiled contracts or their functions. Precompiles are a part of the Substrate implementation and therefore cannot be replicated in the simulated EVM environment. This prohibits you from interacting with cross-chain assets on Moonbeam and Substrate-based functionality such as staking and governance.
 
-There is currently an issue related to forking Moonbeam, so in order to fix the issue, you'll need to manually patch Hardhat first. You can find out more information by following the [issue on GitHub](https://github.com/NomicFoundation/hardhat/issues/2395#issuecomment-1043838164/){target=\_blank} as well as the related [PR](https://github.com/NomicFoundation/hardhat/pull/2313/){target=\_blank}.
+There is currently an issue related to forking Moonbeam, so in order to fix the issue, you'll need to manually patch Hardhat first. You can find out more information by following the [issue on GitHub](https://github.com/NomicFoundation/hardhat/issues/2395#issuecomment-1043838164){target=\_blank} as well as the related [PR](https://github.com/NomicFoundation/hardhat/pull/2313/){target=\_blank}.
 
 ### Patching Hardhat {: #patching-hardhat }
 

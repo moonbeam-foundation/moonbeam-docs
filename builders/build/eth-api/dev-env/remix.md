@@ -14,7 +14,7 @@ description: Discover how to deploy and interact with Solidity smart contracts o
 
 This guide walks through the process of creating and deploying a Solidity smart contract to a [Moonbeam development node](/builders/get-started/networks/moonbeam-dev/){target=\_blank} using the Remix IDE. This guide can be adapted for [Moonbeam](/builders/get-started/networks/moonbeam/){target=\_blank}, [Moonriver](/builders/get-started/networks/moonriver/){target=\_blank}, or [Moonbase Alpha](/builders/get-started/networks/moonbase/){target=\_blank}.
 
-If you're familiar with Remix, you can skip ahead to the [Connect Remix to Moonbeam](#connect/){target=\_blank} section to learn how to use Remix with Moonbeam.
+If you're familiar with Remix, you can skip ahead to the [Connect Remix to Moonbeam](#connect){target=\_blank} section to learn how to use Remix with Moonbeam.
 
 ## Checking Prerequisites {: #checking-prerequisites }
 
@@ -27,7 +27,7 @@ If you followed the guides above, you should have a local Moonbeam node, which w
 
 ![The terminal logs of for a local Moonbeam development node that is producing blocks.](/images/builders/build/eth-api/dev-env/remix/remix-1.webp)
 
-Your development node comes with 10 pre-funded accounts. You should have MetaMask connected to your Moonbeam development node and have imported at least one of the pre-funded accounts. You can refer to the [Import Accounts](/tokens/connect/metamask#import-accounts/){target=\_blank} section of the MetaMask docs for step-by-step instructions on how to import a development account.
+Your development node comes with 10 pre-funded accounts. You should have MetaMask connected to your Moonbeam development node and have imported at least one of the pre-funded accounts. You can refer to the [Import Accounts](/tokens/connect/metamask#import-accounts){target=\_blank} section of the MetaMask docs for step-by-step instructions on how to import a development account.
 
 ![The main screen of MetaMask, which shows an account connected to a Moonbeam development node and its balance.](/images/builders/build/eth-api/dev-env/remix/remix-2.webp)
 
@@ -51,7 +51,7 @@ The side panel displays the content of the plugin that is currently being viewed
 
 The main panel is automatically loaded with the **Home** tab, which contains links to a variety of resources. You can close this tab at any time and reopen it by clicking on the blue Remix icon in the top left corner of the plugin panel. The main panel is where you'll be able to see each of the files you're working with. For example, you can double-click on any file in the **File explorer** side panel and it will appear as a tab in the main panel.
 
-The terminal panel is similar to a standard terminal that you have on your OS; you can execute scripts from it, and logs are printed to it. All transactions and contract interactions are automatically logged to the terminal. You can also interact with the [Ethers](https://docs.ethers.org/v6/){target=\_blank} and [Web3](https://web3js.org/#/){target=\_blank} JavaScript libraries directly from the terminal.
+The terminal panel is similar to a standard terminal that you have on your OS; you can execute scripts from it, and logs are printed to it. All transactions and contract interactions are automatically logged to the terminal. You can also interact with the [Ethers](https://docs.ethers.org/v6/){target=\_blank} and [Web3](https://web3js.org/#){target=\_blank} JavaScript libraries directly from the terminal.
 
 ## Add a Smart Contract to the File Explorer {: #add-a-smart-contract-to-the-file-explorer }
 
@@ -76,7 +76,7 @@ The main panel will switch to an empty file where you can add the Solidity code 
 
 Before you compile a contract, make sure you've selected the file of the contract from the **File explorer** tab. Then, select the **Solidity Compiler** option from the plugin panel.
 
-Make sure that the compiler version in the top-left corner meets the version defined in your contract and the version defined in [OpenZeppelin's `ERC20.sol` contract](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/ERC20.sol/){target=\_blank}. For example, the `MyToken.sol` contract requires Solidity ^0.8.0, but at the time of writing, OpenZeppelin's `ERC20.sol` contract requires ^0.8.20, so the compiler needs to be set to version 0.8.20 or newer.
+Make sure that the compiler version in the top-left corner meets the version defined in your contract and the version defined in [OpenZeppelin's `ERC20.sol` contract](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/ERC20.sol){target=\_blank}. For example, the `MyToken.sol` contract requires Solidity ^0.8.0, but at the time of writing, OpenZeppelin's `ERC20.sol` contract requires ^0.8.20, so the compiler needs to be set to version 0.8.20 or newer.
 
 The Solidity compiler plugin also lets you change some settings and apply advanced configurations for the compiler. If you're planning on iterating over the smart contract, you can check the **Auto compile** box, and whenever you make a change, the contract will automatically be recompiled.
 
@@ -181,6 +181,6 @@ On the other hand, if you call the `approve` function, which will approve an acc
 
 ![The inputs for the approve function of the ERC-20 contract and the MetaMask pop-up for the approval.](/images/builders/build/eth-api/dev-env/remix/remix-14.webp)
 
-To view your balance or approvals, or transfer MYTOKs, you can add the MYTOK to your wallet. For information on how to add a token to MetaMask, you can refer to the [Add an ERC-20 Token](/tokens/connect/metamask#add-erc20/){target=\_blank} section of [our MetaMask documentation](/tokens/connect/metamask/){target=\_blank}.
+To view your balance or approvals, or transfer MYTOKs, you can add the MYTOK to your wallet. For information on how to add a token to MetaMask, you can refer to the [Add an ERC-20 Token](/tokens/connect/metamask#add-erc20){target=\_blank} section of [our MetaMask documentation](/tokens/connect/metamask/){target=\_blank}.
 
 --8<-- 'text/_disclaimers/third-party-content.md'

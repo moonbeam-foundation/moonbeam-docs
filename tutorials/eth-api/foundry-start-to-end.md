@@ -387,7 +387,7 @@ forge test -vvvv
 
 ![Forking Tests in Foundry](/images/tutorials/eth-api/foundry-start-to-end/foundry-4.webp)
 
-That's it for testing! You can see the complete [`Container.t.sol` file](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/tutorials/eth-api/foundry-start-to-end/Container.t.sol/){target=\_blank} and [`MyToken.t.sol` file](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/tutorials/eth-api/foundry-start-to-end/MyToken.t.sol/){target=\_blank} on GitHub.
+That's it for testing! You can see the complete [`Container.t.sol` file](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/tutorials/eth-api/foundry-start-to-end/Container.t.sol){target=\_blank} and [`MyToken.t.sol` file](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/tutorials/eth-api/foundry-start-to-end/MyToken.t.sol){target=\_blank} on GitHub.
 
 ## Deploy in Foundry with Solidity Scripts {: #deploy-in-foundry-with-solidity-scripts }
 
@@ -451,7 +451,7 @@ MOONSCAN_API_KEY=YOUR_MOONSCAN_API_KEY
 ```
 
 !!! note
-    Foundry provides [additional options for handling your private key](https://book.getfoundry.sh/reference/forge/forge-script#wallet-options---raw/){target=\_blank}. It is up to you to decide whether or not you would rather use it in the console, have it stored in your device's environment, using a hardware wallet, or using a keystore.
+    Foundry provides [additional options for handling your private key](https://book.getfoundry.sh/reference/forge/forge-script#wallet-options---raw){target=\_blank}. It is up to you to decide whether or not you would rather use it in the console, have it stored in your device's environment, using a hardware wallet, or using a keystore.
 
 To add these environment variables, run the following command:  
 
@@ -471,9 +471,9 @@ You should see something like this as output:
 
 ![Running a Script in Foundry](/images/tutorials/eth-api/foundry-start-to-end/foundry-5.webp)
 
-You should be able to see that your contracts were deployed, and are verified on Moonscan! For example, this is where my [`Container.sol` contract was deployed](https://moonbase.moonscan.io/address/0xe8bf2e654d7c1c1ba8f55fed280ddd241e46ced9#code/){target=\_blank}.  
+You should be able to see that your contracts were deployed, and are verified on Moonscan! For example, this is where my [`Container.sol` contract was deployed](https://moonbase.moonscan.io/address/0xe8bf2e654d7c1c1ba8f55fed280ddd241e46ced9#code){target=\_blank}.  
 
-The entire deployment script is [available on GitHub](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/tutorials/eth-api/foundry-start-to-end/Container.s.sol/){target=\_blank}.  
+The entire deployment script is [available on GitHub](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/tutorials/eth-api/foundry-start-to-end/Container.s.sol){target=\_blank}.  
 
 ### Deploy on Moonbeam MainNet {: #deploy-on-moonbeam-mainnet }
 
@@ -483,7 +483,7 @@ Let's say that you're comfortable with your smart contracts and you want to depl
 forge script Container.s.sol:ContainerDeployScript --broadcast --verify -vvvv --rpc-url moonbeam
 ```
 
-It's important to note that there are additional, albeit more complex, [ways of handling private keys in Foundry](https://book.getfoundry.sh/reference/forge/forge-script#wallet-options---raw/){target=\_blank}. Some of these methods can be considered safer than storing a production private key in environment variables.  
+It's important to note that there are additional, albeit more complex, [ways of handling private keys in Foundry](https://book.getfoundry.sh/reference/forge/forge-script#wallet-options---raw){target=\_blank}. Some of these methods can be considered safer than storing a production private key in environment variables.  
 
 That's it! You've gone from nothing to a fully tested, deployed, and verified Foundry project. You can now adapt this so that you can use Foundry in your own projects!
 

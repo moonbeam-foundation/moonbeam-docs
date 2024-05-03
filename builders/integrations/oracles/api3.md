@@ -11,7 +11,7 @@ API3 is a decentralized solution for delivering traditional API services to smar
 
 Developers can use [Airnode](https://docs.api3.org/explore/airnode/what-is-airnode.html){target=\_blank} to request off-chain data inside their smart contracts on Moonbeam networks. An Airnode is a first-party oracle that pushes off-chain API data to your on-chain contract. Airnode lets API providers easily run their own first-party oracle nodes. That way, they can provide data to any on-chain dApp that's interested in their services, all without an intermediary.
 
-An on-chain smart contract makes a request in the [RRP (Request Response Protocol)](https://docs.api3.org/reference/airnode/latest/concepts/){target=\_blank} contract ([`AirnodeRrpV0.sol`](https://github.com/api3dao/airnode/blob/v0.11/packages/airnode-protocol/contracts/rrp/AirnodeRrpV0.sol/){target=\_blank}) that adds the request to the event logs. The Airnode then accesses the event logs, fetches the API data and performs a callback to the requester with the requested data.
+An on-chain smart contract makes a request in the [RRP (Request Response Protocol)](https://docs.api3.org/reference/airnode/latest/concepts/){target=\_blank} contract ([`AirnodeRrpV0.sol`](https://github.com/api3dao/airnode/blob/v0.11/packages/airnode-protocol/contracts/rrp/AirnodeRrpV0.sol){target=\_blank}) that adds the request to the event logs. The Airnode then accesses the event logs, fetches the API data and performs a callback to the requester with the requested data.
 
 ![API3 Airnode](/images/builders/integrations/oracles/api3/api3-1.webp)
 
@@ -85,7 +85,7 @@ contract Requester is RrpRequesterV0 {
 }
 ```
 
-You can also try [deploying the example contract on Remix](https://remix.ethereum.org/#url=https://github.com/api3-ecosystem/remix-contracts/blob/master/contracts/Requester.sol&optimize=false&runs=200&evmVersion=null&version=soljson-v0.8.9+commit.e5eed63a.js/){target=\_blank}.
+You can also try [deploying the example contract on Remix](https://remix.ethereum.org/#url=https://github.com/api3-ecosystem/remix-contracts/blob/master/contracts/Requester.sol&optimize=false&runs=200&evmVersion=null&version=soljson-v0.8.9+commit.e5eed63a.js){target=\_blank}.
 
 ### Contract Addresses {: #contract-addresses }
 
@@ -115,14 +115,14 @@ The `makeRequest()` function expects the following parameters to make a valid re
 
 - [**`airnode`**](https://docs.api3.org/reference/airnode/latest/concepts/airnode.html){target=\_blank} - specifies the Airnode Address
 - [**`endpointId`**](https://docs.api3.org/reference/airnode/latest/concepts/endpoint.html){target=\_blank} - specifies which endpoint to be used
-- [**`sponsor`**](https://docs.api3.org/reference/airnode/latest/concepts/sponsor.html){target=\_blank} and [**`sponsorWallet`**](https://docs.api3.org/reference/airnode/latest/concepts/sponsor.html#sponsorwallet/){target=\_blank} - specifies which wallet will be used to fulfill the request
+- [**`sponsor`**](https://docs.api3.org/reference/airnode/latest/concepts/sponsor.html){target=\_blank} and [**`sponsorWallet`**](https://docs.api3.org/reference/airnode/latest/concepts/sponsor.html#sponsorwallet){target=\_blank} - specifies which wallet will be used to fulfill the request
 - [**`parameters`**](https://docs.api3.org/reference/ois/latest/reserved-parameters.html){target=\_blank} - specifies the API and Reserved Parameters (see [Airnode ABI specifications](https://docs.api3.org/reference/ois/latest/){target=\_blank} for how these are encoded). Parameters can be encoded off-chain using `@airnode-abi` library
 
 ### Response Parameters {: #response-params }
 
 The callback to the requester contract contains two parameters:
 
-- [**`requestId`**](https://docs.api3.org/reference/airnode/latest/concepts/request.html#requestid/){target=\_blank} - first acquired when making the request and passed here as a reference to identify the request for which the response is intended.
+- [**`requestId`**](https://docs.api3.org/reference/airnode/latest/concepts/request.html#requestid){target=\_blank} - first acquired when making the request and passed here as a reference to identify the request for which the response is intended.
 - **`data`** - in case of a successful response, this is the requested data which has been encoded and contains a timestamp in addition to other response data. Decode it using the `decode()` function from the `abi` object
 
 !!! note
@@ -211,7 +211,7 @@ Once the transaction is broadcasted & confirmed on the blockchain, the proxy con
 
 If you are trying to access managed dAPIs, once you have selected your dAPI, you will then be presented with the option to choose from either **Managed** or **Self-funded**. Select **Managed dAPIs**.
 
-Managed dAPIs give you the option to configure the dAPI's [devation threshold](https://docs.api3.org/reference/dapis/understand/deviations.html){target=\_blank} and [heartbeat](https://docs.api3.org/reference/dapis/understand/deviations.html#heartbeat/){target=\_blank}. For managed dAPIs, you will have the following options to choose from:
+Managed dAPIs give you the option to configure the dAPI's [devation threshold](https://docs.api3.org/reference/dapis/understand/deviations.html){target=\_blank} and [heartbeat](https://docs.api3.org/reference/dapis/understand/deviations.html#heartbeat){target=\_blank}. For managed dAPIs, you will have the following options to choose from:
 
 | Deviation | Heartbeat |
 |-----------|-----------|
@@ -265,7 +265,7 @@ The example contract contains two functions:
 - `setProxy()` - used to set the address of the dAPI Proxy Contract
 - `readDataFeed()` - a `view` function that returns the latest price of the set dAPI
 
-[Try deploying it on Remix!](https://remix.ethereum.org/#url=https://github.com/api3-ecosystem/remix-contracts/blob/master/contracts/DataFeedReader.sol&lang=en&optimize=false&runs=200&evmVersion=null&version=soljson-v0.8.18+commit.87f61d96.js/){target=\_blank}
+[Try deploying it on Remix!](https://remix.ethereum.org/#url=https://github.com/api3-ecosystem/remix-contracts/blob/master/contracts/DataFeedReader.sol&lang=en&optimize=false&runs=200&evmVersion=null&version=soljson-v0.8.18+commit.87f61d96.js){target=\_blank}
 
 You can read more about dAPIs on [API3's documentation site](https://docs.api3.org/guides/dapis/subscribing-managed-dapis/){target=\_blank}.
 
@@ -357,7 +357,7 @@ The example contract contains these three functions:
 !!! note
     You can get the `airnode` address and `endpointIdUint256` from the [QRNG Providers](#qrng-providers) section below.
 
-[Try deploying it on Remix!](https://remix.ethereum.org/#url=https://github.com/api3-ecosystem/remix-contracts/blob/master/contracts/QrngRequesterUpdated.sol&optimize=false&runs=200&evmVersion=null&version=soljson-v0.8.9+commit.e5eed63a.js&lang=en/){target=\_blank}
+[Try deploying it on Remix!](https://remix.ethereum.org/#url=https://github.com/api3-ecosystem/remix-contracts/blob/master/contracts/QrngRequesterUpdated.sol&optimize=false&runs=200&evmVersion=null&version=soljson-v0.8.9+commit.e5eed63a.js&lang=en){target=\_blank}
 
 ### QRNG Airnode and Endpoint Providers {: #qrng-providers }
 

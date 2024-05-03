@@ -113,13 +113,13 @@ Hardware recommendations:
 
 **Q: What are Nimbus keys?**
 
-**A:** Nimbus keys are just like [session keys in Polkadot](https://wiki.polkadot.network/docs/learn-keys#session-keys/){target=\_blank}. You should have unique keys on your primary and backup servers. Save the key output somewhere safe where you can access it in the middle of the night if you receive an alert. To create your keys, please refer to the [Session Keys](/node-operators/networks/collators/account-management/#session-keys/){target=\_blank} section of the documentation.
+**A:** Nimbus keys are just like [session keys in Polkadot](https://wiki.polkadot.network/docs/learn-keys#session-keys){target=\_blank}. You should have unique keys on your primary and backup servers. Save the key output somewhere safe where you can access it in the middle of the night if you receive an alert. To create your keys, please refer to the [Session Keys](/node-operators/networks/collators/account-management/#session-keys){target=\_blank} section of the documentation.
 
 ***
 
 **Q: What is the failover process if my primary node is down?**
 
-**A:** When the primary server is down, the best way to perform a failover to the backup server is to perform a key association update. Each server should have a unique set of [keys](#:~:text=What are Nimbus keys) already. Run the `setKeys` author mapping extrinsic. You can follow the [Mapping Extrinsic](/node-operators/networks/collators/account-management/#mapping-extrinsic/){target=\_blank} instructions and modify the instructions to use the `setKeys` extrinsic.
+**A:** When the primary server is down, the best way to perform a failover to the backup server is to perform a key association update. Each server should have a unique set of [keys](#:~:text=What are Nimbus keys) already. Run the `setKeys` author mapping extrinsic. You can follow the [Mapping Extrinsic](/node-operators/networks/collators/account-management/#mapping-extrinsic){target=\_blank} instructions and modify the instructions to use the `setKeys` extrinsic.
 
 ***
 
@@ -152,13 +152,13 @@ The relay chain takes much longer to sync than the parachain. You will not see a
 
 **A:** There are two bonds you need to be aware of. Make sure your node is configured and in sync before proceeding with these steps.
 
-The first is the [bond to join the collators](/node-operators/networks/collators/activities/#become-a-candidate/){target=\_blank} pool:
+The first is the [bond to join the collators](/node-operators/networks/collators/activities/#become-a-candidate){target=\_blank} pool:
 
 - **Moonbeam** - minimum of {{ networks.moonbeam.staking.min_can_stk }} GLMR
 - **Moonriver** - minimum of {{ networks.moonriver.staking.min_can_stk }} MOVR
 - **Moonbase Alpha** - minimum of {{ networks.moonbase.staking.min_can_stk }} DEV
 
-The second is the [bond for key association](/node-operators/networks/collators/account-management/#mapping-bonds/){target=\_blank}:
+The second is the [bond for key association](/node-operators/networks/collators/account-management/#mapping-bonds){target=\_blank}:
 
 - **Moonbeam** - minimum of {{ networks.moonbeam.staking.collator_map_bond }} GLMR
 - **Moonriver** - minimum of {{ networks.moonriver.staking.collator_map_bond }} MOVR

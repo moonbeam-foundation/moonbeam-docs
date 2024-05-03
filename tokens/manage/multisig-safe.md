@@ -39,11 +39,11 @@ This guide will use the following accounts:
 
 ### ERC-20 Tokens {: #erc20-tokens }
 
-Later on in this guide, you will be learning how to send and receive ERC-20 tokens to and from the Safe. So you will need to have deployed some ERC-20 tokens and added them to your MetaMask account. To do so, you can check out the [Using Remix to Deploy to Moonbeam](/builders/build/eth-api/dev-env/remix/){target=\_blank} guide, in particular the [Deploying a Contract to Moonbeam](/builders/build/eth-api/dev-env/remix/#deploying-a-contract-to-moonbeam-using-remix/){target=\_blank} and [Interact with a Moonbeam-based ERC-20](/builders/build/eth-api/dev-env/remix/#interacting-with-a-moonbeam-based-erc-20-from-metamask/){target=\_blank} sections will show you how to deploy an ERC-20 token and import it into MetaMask.
+Later on in this guide, you will be learning how to send and receive ERC-20 tokens to and from the Safe. So you will need to have deployed some ERC-20 tokens and added them to your MetaMask account. To do so, you can check out the [Using Remix to Deploy to Moonbeam](/builders/build/eth-api/dev-env/remix/){target=\_blank} guide, in particular the [Deploying a Contract to Moonbeam](/builders/build/eth-api/dev-env/remix/#deploying-a-contract-to-moonbeam-using-remix){target=\_blank} and [Interact with a Moonbeam-based ERC-20](/builders/build/eth-api/dev-env/remix/#interacting-with-a-moonbeam-based-erc-20-from-metamask){target=\_blank} sections will show you how to deploy an ERC-20 token and import it into MetaMask.
 
 ### Deployed Smart Contract {: #deployed-smart-contract }
 
-Towards the end of this guide, you will be learning how to interact with a smart contract using the Safe. So you will need to have a smart contract deployed to interact with. If you would like detailed instructions, you can refer to the [Deploying a Contract to Moonbeam using Remix](/builders/build/eth-api/dev-env/remix/#deploying-a-contract-to-moonbeam/){target=\_blank} guide. 
+Towards the end of this guide, you will be learning how to interact with a smart contract using the Safe. So you will need to have a smart contract deployed to interact with. If you would like detailed instructions, you can refer to the [Deploying a Contract to Moonbeam using Remix](/builders/build/eth-api/dev-env/remix/#deploying-a-contract-to-moonbeam){target=\_blank} guide.
 
 You can head to [Remix](https://remix.ethereum.org/){target=\_blank} and create a new file for the following `SetText.sol` contract:
 

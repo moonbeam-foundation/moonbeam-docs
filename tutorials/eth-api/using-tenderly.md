@@ -72,13 +72,13 @@ Clearly, this simulated transaction is going to fail because we're trying to sen
 ![Simulate a transaction against Moonbeam with state overrides](/images/tutorials/eth-api/using-tenderly/tenderly-4.webp)
 
 !!! note
-    Remember that the Alith and Baltathar accounts are part of the [list of public developer accounts](/builders/get-started/networks/moonbeam-dev/#pre-funded-development-accounts/){target=\_blank} with known private keys. You will lose any funds sent to these addresses.
+    Remember that the Alith and Baltathar accounts are part of the [list of public developer accounts](/builders/get-started/networks/moonbeam-dev/#pre-funded-development-accounts){target=\_blank} with known private keys. You will lose any funds sent to these addresses.
 
 If you correctly added the state override, you should now see a transaction simulation success screen upon running the simulation. If you get an error, you can press **Re-Simulate** and verify that you have configured the state override correctly.
 
 ![Transaction simulation with state override success](/images/tutorials/eth-api/using-tenderly/tenderly-5.webp)
 
-You can also access Tenderly's transaction simulator via the [Simulations API](https://docs.tenderly.co/reference/api#tag/Simulations/){target=\_blank}.
+You can also access Tenderly's transaction simulator via the [Simulations API](https://docs.tenderly.co/reference/api#tag/Simulations){target=\_blank}.
 
 ## Fork the Chain {: #fork-the-chain }
 
@@ -106,7 +106,7 @@ In the next part, we'll be demonstrating the statefulness of forks and how they 
 2. Select the contract function you'd like to call. We'll choose `minter_mint` in this case.
 3. Enter Baltathar's address: `0x3Cd0A705a2DC65e5b1E1205896BaA2be8A07c6e0`
 4. Enter the amount to mint, such as `10000000000000`
-5. Minting is a privileged role in the FRAX contract. We need to specify the sender of this transaction in our fork as an [authorized minter of the FRAX contract](https://moonbeam.moonscan.io/token/0x322e86852e492a7ee17f28a78c663da38fb33bfb#readContract/){target=\_blank}, which is `0x343e4f06bf240d22fbdfd4a2fe5858bc66e79f12`
+5. Minting is a privileged role in the FRAX contract. We need to specify the sender of this transaction in our fork as an [authorized minter of the FRAX contract](https://moonbeam.moonscan.io/token/0x322e86852e492a7ee17f28a78c663da38fb33bfb#readContract){target=\_blank}, which is `0x343e4f06bf240d22fbdfd4a2fe5858bc66e79f12`
 6. Press **Simulate Transaction**
 
 ![Run simulation on fork to mint FRAX](/images/tutorials/eth-api/using-tenderly/tenderly-7.webp)

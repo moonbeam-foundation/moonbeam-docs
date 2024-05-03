@@ -175,8 +175,8 @@ You should see a terminal log similar to the following if you spun up a Moonbase
 
 When you run a node using Systemd, you'll need to start off by setting up the Moonbeam binary. To do so you'll need to follow the instructions on the [Run a Node on Moonbeam Using Systemd](/node-operators/networks/run-a-node/systemd/){target=\_blank} page. In general, you'll need to:
 
-1. Setup the Moonbeam binary by following the [Release Binary](/node-operators/networks/run-a-node/systemd/#the-release-binary/){target=\_blank} instructions. Or if you want to compile the binary yourself, you can follow the [Compile the Binary](/node-operators/networks/run-a-node/systemd/#compile-the-binary/){target=\_blank} instructions
-2. Follow the instructions in the [Setup the Service](/node-operators/networks/run-a-node/systemd/#setup-the-service/){target=\_blank} instructions
+1. Setup the Moonbeam binary by following the [Release Binary](/node-operators/networks/run-a-node/systemd/#the-release-binary){target=\_blank} instructions. Or if you want to compile the binary yourself, you can follow the [Compile the Binary](/node-operators/networks/run-a-node/systemd/#compile-the-binary){target=\_blank} instructions
+2. Follow the instructions in the [Setup the Service](/node-operators/networks/run-a-node/systemd/#setup-the-service){target=\_blank} instructions
 
 Once you've finished going through the instructions in those specific sections, you can continue on to the below instructions.
 

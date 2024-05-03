@@ -318,7 +318,7 @@ console.log(`Submitted with hash ${txHash}`);
 !!! note
     Prior to client v0.35.0, the extrinsic used to perform a simple balance transfer was the `balances.transfer` extrinsic. It has since been deprecated and replaced with the `balances.transferAllowDeath` extrinsic.
 
-Note that the `signAndSend` function can also accept optional parameters, such as the `nonce`. For example, `signAndSend(alice, { nonce: aliceNonce })`. You can use the [sample code from the State Queries](/builders/build/substrate-api/polkadot-js-api/#state-queries/){target=\_blank} section to retrieve the correct nonce, including transactions in the mempool.
+Note that the `signAndSend` function can also accept optional parameters, such as the `nonce`. For example, `signAndSend(alice, { nonce: aliceNonce })`. You can use the [sample code from the State Queries](/builders/build/substrate-api/polkadot-js-api/#state-queries){target=\_blank} section to retrieve the correct nonce, including transactions in the mempool.
 
 ### Fee Information {: #fees }
 
@@ -351,7 +351,7 @@ Any transaction will emit events, as a bare minimum this will always be either a
 
 Depending on the transaction sent, some other events may however be emitted, for instance for a balance transfer event, this could include one or more `balance.Transfer` events.
 
-The Transfer API page includes an [example code snippet](/learn/core-concepts/transfers-api/#monitor-all-balance-transfers-with-the-substrate-api/){target=\_blank} for subscribing to new finalized block headers, and retrieving all `balance.Transfer` events.
+The Transfer API page includes an [example code snippet](/learn/core-concepts/transfers-api/#monitor-all-balance-transfers-with-the-substrate-api){target=\_blank} for subscribing to new finalized block headers, and retrieving all `balance.Transfer` events.
 
 ### Batch Transactions {: #batching-transactions }
 
@@ -399,7 +399,7 @@ RPCs are exposed as a method on a specific module. This means that once availabl
 
 Some of the methods availabe through the Polkadot.js API interface are also available as JSON-RPC endpoints on Moonbeam nodes. This section will provide some examples; you can check for a list of exposed RPC endpoints by calling `api.rpc.rpc.methods()` or the `rpc_methods` endpoint listed below.
 
-- **[`methods()`](https://polkadot.js.org/docs/substrate/rpc/#methods-rpcmethods/){target=\_blank}**
+- **[`methods()`](https://polkadot.js.org/docs/substrate/rpc/#methods-rpcmethods){target=\_blank}**
     - **Interface** -  `api.rpc.rpc.methods`
     - **JSON-RPC** - `rpc_methods`
     - **Returns** - The list of RPC methods that are exposed by the node
@@ -415,7 +415,7 @@ Some of the methods availabe through the Polkadot.js API interface are also avai
       }'
     ```
 
-- **[`getBlock(hash?: BlockHash)`](https://polkadot.js.org/docs/substrate/rpc/#getblockhash-blockhash-signedblock/){target=\_blank}**
+- **[`getBlock(hash?: BlockHash)`](https://polkadot.js.org/docs/substrate/rpc/#getblockhash-blockhash-signedblock){target=\_blank}**
     - **Interface** - `api.rpc.chain.getBlock`
     - **JSON-RPC** - `chain_getBlock`
     - **Returns** - The header and body of a block as specified by the block hash parameter
@@ -431,7 +431,7 @@ Some of the methods availabe through the Polkadot.js API interface are also avai
       }'
     ```
 
-- **[`getFinalizedHead()`](https://polkadot.js.org/docs/substrate/rpc/#getfinalizedhead-blockhash/){target=\_blank}**
+- **[`getFinalizedHead()`](https://polkadot.js.org/docs/substrate/rpc/#getfinalizedhead-blockhash){target=\_blank}**
     - **Interface** `api.rpc.chain.getFinalizedHead`
     - **JSON-RPC** `chain_getFinalizedHead`
     - **Returns** The block hash of the last finalized block in the canonical chain

@@ -19,7 +19,7 @@ To get started, you will need the following:
 
 - An account with funds.
   --8<-- 'text/_common/faucet/faucet-list-item.md'
-- [A Moonscan API key](/builders/build/eth-api/verify-contracts/etherscan-plugins/#generating-a-moonscan-api-key/){target=\_blank}
+- [A Moonscan API key](/builders/build/eth-api/verify-contracts/etherscan-plugins/#generating-a-moonscan-api-key){target=\_blank}
 - 
   --8<-- 'text/_common/endpoint-examples-list-item.md'
 
@@ -63,7 +63,7 @@ You can begin by making modifications to the Hardhat component under the `packag
 
 You can refer to the `.env.example` file for the variables that are already used in the `hardhat.config.js` file. For Moonbeam, you'll only need to create two variables: `DEPLOYED_PRIVATE_KEY` and `ETHERSCAN_API_KEY`.
 
-Check out the [Etherscan Plugins](/builders/build/eth-api/verify-contracts/etherscan-plugins/#generating-a-moonscan-api-key/){target=\_blank} documentation to learn how to generate a Moonscan API key.
+Check out the [Etherscan Plugins](/builders/build/eth-api/verify-contracts/etherscan-plugins/#generating-a-moonscan-api-key){target=\_blank} documentation to learn how to generate a Moonscan API key.
 
 To get started, create a `.env` file:
 
@@ -78,7 +78,7 @@ DEPLOYER_PRIVATE_KEY=INSERT_PRIVATE_KEY
 ETHERSCAN_API_KEY=INSERT_MOONSCAN_API_KEY
 ```
 
-The private key you add to your `.env` file corresponds to the account that will deploy and interact with the smart contracts in your Hardhat project. Additionally, the Etherscan API key will correspond to your Moonscan API key and will be used to verify your deployed smart contracts. To learn how to generate a Moonscan API key, check out the [Etherscan Plugins](/builders/build/eth-api/verify-contracts/etherscan-plugins/#generating-a-moonscan-api-key/){target=\_blank} documentation.
+The private key you add to your `.env` file corresponds to the account that will deploy and interact with the smart contracts in your Hardhat project. Additionally, the Etherscan API key will correspond to your Moonscan API key and will be used to verify your deployed smart contracts. To learn how to generate a Moonscan API key, check out the [Etherscan Plugins](/builders/build/eth-api/verify-contracts/etherscan-plugins/#generating-a-moonscan-api-key){target=\_blank} documentation.
 
 With the environment variables taken care of, next you can modify the `hardhat.config.js` file for Moonbeam:
 
@@ -214,7 +214,7 @@ After a short wait, the console output will display the verification result and,
 
 ![The terminal outut from running the verify command.](/images/builders/build/eth-api/dev-env/scaffold-eth/new/scaffold-eth-3.webp)
 
-For more information about verifying smart contracts on Moonbeam using the Hardhat Etherscan plugin, please refer to the [Etherscan Plugins page](/builders/build/eth-api/verify-contracts/etherscan-plugins/#using-the-hardhat-etherscan-plugin/){target=\_blank}.
+For more information about verifying smart contracts on Moonbeam using the Hardhat Etherscan plugin, please refer to the [Etherscan Plugins page](/builders/build/eth-api/verify-contracts/etherscan-plugins/#using-the-hardhat-etherscan-plugin){target=\_blank}.
 
 ## The Next.js Component {: #nextjs-component }
 

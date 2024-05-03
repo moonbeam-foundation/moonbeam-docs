@@ -281,7 +281,7 @@ You can access your Moonbeam development node using the following RPC and WSS en
 
 For a Moonbeam development node, you can use any of the following block explorers:
 
- - **Substrate API** — [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=ws://127.0.0.1:9944#/explorer/){target=\_blank} on WS port `{{ networks.parachain.ws }}`
+ - **Substrate API** — [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=ws://127.0.0.1:9944#/explorer){target=\_blank} on WS port `{{ networks.parachain.ws }}`
  - **Ethereum API JSON-RPC-based** — [Moonbeam Basic Explorer](https://moonbeam-explorer.netlify.app/?network=MoonbeamDevNode/){target=\_blank} on HTTP port `{{ networks.parachain.ws }}`
 
 ## Debug, Trace, and TxPool APIs {: #debug-trace-txpool-apis }
@@ -316,4 +316,4 @@ When running a node via the binary file, data is stored in a local directory, ty
 ./target/release/moonbeam purge-chain --dev -y
 ```
 
-This will remove the data folder. Note that all chain data is now lost. To learn more about all of the available `purge-chain` commands, you can check out the [Purging Binary Data](/node-operators/networks/run-a-node/systemd/#purging-compiled-binary/){target=\_blank} section of our documentation.
+This will remove the data folder. Note that all chain data is now lost. To learn more about all of the available `purge-chain` commands, you can check out the [Purging Binary Data](/node-operators/networks/run-a-node/systemd/#purging-compiled-binary){target=\_blank} section of our documentation.

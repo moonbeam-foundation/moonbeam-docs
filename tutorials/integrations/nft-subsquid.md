@@ -117,7 +117,7 @@ The results will be stored at `src/abi`. One module will be generated for each A
 
 ## Define and Bind Event Handler(s) {: #define-event-handlers }
 
-Subsquid SDK provides users with the [`SubstrateBatchProcessor` class](https://docs.subsquid.io/substrate-indexing/){target=\_blank}. Its instances connect to chain-specific [Subsquid archives](https://docs.subsquid.io/glossary/#archives/){target=\_blank} to get chain data and apply custom transformations. The indexing begins at the starting block and keeps up with new blocks after reaching the tip.
+Subsquid SDK provides users with the [`SubstrateBatchProcessor` class](https://docs.subsquid.io/substrate-indexing/){target=\_blank}. Its instances connect to chain-specific [Subsquid archives](https://docs.subsquid.io/glossary/#archives){target=\_blank} to get chain data and apply custom transformations. The indexing begins at the starting block and keeps up with new blocks after reaching the tip.
 
 The `SubstrateBatchProcessor` [exposes methods](https://docs.subsquid.io/substrate-indexing/configuration/){target=\_blank} to "subscribe" to specific data such as Substrate events, extrinsics, storage items or, for EVM, logs and transactions. The actual data processing is then started by calling the `.run()` function. This will start generating requests to the Archive for [*batches*](https://docs.subsquid.io/basics/batch-processing/){target=\_blank} of data specified in the configuration, and will trigger the callback function, or *batch handler* (passed to `.run()` as second argument) every time a batch is returned by the Archive.
 
@@ -198,7 +198,7 @@ Here is the end result:
     It is also worth pointing out that the `contract.tokenURI` call is accessing the **state** of the contract via a chain RPC endpoint. This is slowing down the indexing a little bit, but this data is only available this way. You'll find more information on accessing state in the [dedicated section of the Subsquid docs](https://docs.subsquid.io/substrate-indexing/evm-support#access-the-contract-state/){target=\_blank}.
 
 !!! note
-    This code expects to find a URL of a working Moonbeam RPC endpoint in the `RPC_ENDPOINT` environment variable. Set it in the `.env` file and in [Aquarium secrets](https://docs.subsquid.io/deploy-squid/env-variables/){target=\_blank} if and when you deploy your squid there. We tested the code using a public endpoint available at `wss://wss.api.moonbeam.network`; for production, we recommend using [private endpoints](/builders/get-started/endpoints#endpoint-providers/){target=\_blank}.
+    This code expects to find a URL of a working Moonbeam RPC endpoint in the `RPC_ENDPOINT` environment variable. Set it in the `.env` file and in [Aquarium secrets](https://docs.subsquid.io/deploy-squid/env-variables){target=\_blank} if and when you deploy your squid there. We tested the code using a public endpoint available at `wss://wss.api.moonbeam.network`; for production, we recommend using [private endpoints](/builders/get-started/endpoints#endpoint-providers){target=\_blank}.
 
 ## Launch and Set Up the Database {: #launch-database }
 

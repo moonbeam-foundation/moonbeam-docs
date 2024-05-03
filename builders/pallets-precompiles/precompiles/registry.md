@@ -35,7 +35,7 @@ The Registry Precompile is located at the following address:
 
 ## The Precompile Registry Solidity Interface {: #the-solidity-interface }
 
-[`PrecompileRegistry.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/precompile-registry/PrecompileRegistry.sol/){target=\_blank} is a Solidity interface that allows developers to interact with the precompile's methods.
+[`PrecompileRegistry.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/precompile-registry/PrecompileRegistry.sol){target=\_blank} is a Solidity interface that allows developers to interact with the precompile's methods.
 
 ??? code "PrecompileRegistry.sol"
 
@@ -56,7 +56,7 @@ The examples in this guide will be on Moonbase Alpha.
 
 ### Use Remix to Interact with the Precompile Registry {: #use-remix }
 
-To quickly get started with [Remix](/builders/build/eth-api/dev-env/remix/){target=\_blank}, the [Precompile Registry contract has been loaded from GitHub](https://remix.ethereum.org/#url=https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/precompile-registry/PrecompileRegistry.sol/){target=\_blank}. You can also create a new file in Remix and manually paste in the contents of the [`PrecompileRegistry.sol`](#the-solidity-interface) contract.
+To quickly get started with [Remix](/builders/build/eth-api/dev-env/remix/){target=\_blank}, the [Precompile Registry contract has been loaded from GitHub](https://remix.ethereum.org/#url=https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/precompile-registry/PrecompileRegistry.sol){target=\_blank}. You can also create a new file in Remix and manually paste in the contents of the [`PrecompileRegistry.sol`](#the-solidity-interface) contract.
 
 ![Add the Precompile Registry Interface to Remix](/images/builders/pallets-precompiles/precompiles/registry/registry-1.webp)
 

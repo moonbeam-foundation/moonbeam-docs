@@ -33,7 +33,7 @@ To get started, you should have the following:
 
 Generally speaking, a JSON-RPC is a remote procedure call (RPC) protocol that utilizes JSON to encode data. For Web3, they refer to the specific JSON-RPCs that DApp developers use to send requests and receive responses from blockchain nodes, making it a crucial element in interactions with smart contracts. They allow frontend user interfaces to seamlessly interact with the smart contracts and provide users with real-time feedback on their actions. They also allow developers to deploy their smart contracts in the first place!  
 
-To get a JSON-RPC to communicate with a Moonbeam blockchain, you need to run a node. But that can be expensive, complicated, and a hassle. Fortunately, as long as you have *access* to a node, you can interact with the blockchain. Moonbase Alpha has a [handful of free and paid node options](/learn/platform/networks/moonbase/#network-endpoints/){target=\_blank}. For this tutorial, we will be using the Moonbeam Foundation's public node for Moonbase Alpha, but you are encouraged to get your own [private endpoint](/builders/get-started/endpoints/#endpoint-providers/){target=\_blank}.  
+To get a JSON-RPC to communicate with a Moonbeam blockchain, you need to run a node. But that can be expensive, complicated, and a hassle. Fortunately, as long as you have *access* to a node, you can interact with the blockchain. Moonbase Alpha has a [handful of free and paid node options](/learn/platform/networks/moonbase/#network-endpoints){target=\_blank}. For this tutorial, we will be using the Moonbeam Foundation's public node for Moonbase Alpha, but you are encouraged to get your own [private endpoint](/builders/get-started/endpoints/#endpoint-providers){target=\_blank}.  
 
 ```text
 {{ networks.moonbase.rpc_url }}
@@ -81,7 +81,7 @@ You can initialize a project with Hardhat using the following command:
 npx hardhat init
 ```
 
-When creating a JavaScript or TypeScript Hardhat project, you will be asked if you want to install the sample project's dependencies, which will install Hardhat and the [Hardhat Toolbox plugin](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-toolbox#hardhat-toolbox/){target=\_blank}. You don't need all of the plugins that come wrapped up in the Toolbox, so instead you can install Hardhat, Ethers, and the Hardhat Ethers plugin, which is all you'll need for this tutorial:
+When creating a JavaScript or TypeScript Hardhat project, you will be asked if you want to install the sample project's dependencies, which will install Hardhat and the [Hardhat Toolbox plugin](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-toolbox#hardhat-toolbox){target=\_blank}. You don't need all of the plugins that come wrapped up in the Toolbox, so instead you can install Hardhat, Ethers, and the Hardhat Ethers plugin, which is all you'll need for this tutorial:
 
 ```bash
 npm install --save-dev hardhat @nomicfoundation/hardhat-ethers ethers@6
@@ -264,7 +264,7 @@ npx hardhat run scripts/deploy.js --network moonbase
 You should see an output that displays the token address. Make sure to **save it for use later**!
 
 !!! challenge
-    Hardhat has a poor built-in solution for deploying smart contracts. It doesn't automatically save the transactions and addresses related to the deployment! This is why the [hardhat-deploy](https://www.npmjs.com/package/hardhat-deploy#1-hardhat-deploy/){target=\_blank} package was created. Can you implement it yourself? Or can you switch to a different developer environment, like [Foundry](https://github.com/foundry-rs/foundry/){target=\_blank}?
+    Hardhat has a poor built-in solution for deploying smart contracts. It doesn't automatically save the transactions and addresses related to the deployment! This is why the [hardhat-deploy](https://www.npmjs.com/package/hardhat-deploy#1-hardhat-deploy){target=\_blank} package was created. Can you implement it yourself? Or can you switch to a different developer environment, like [Foundry](https://github.com/foundry-rs/foundry/){target=\_blank}?
 
 ## Create a DApp Frontend {: #creating-a-dapp-frontend }
 

@@ -18,15 +18,15 @@ In this tutorial, we'll mint an NFT on a remote chain by using Axelar to send a 
 
 ## Axelar Refresher {: #axelar-refresher }
 
-[Axelar](https://axelar.network/){target=\_blank} is a blockchain that connects blockchains, delivering secure cross-chain communication. Every validator in Axelar’s network runs light nodes on chains that Axelar supports. In this demo, we'll interact with two Axelar contracts, one of which is the [Axelar Gateway contract](https://github.com/axelarnetwork/axelar-cgp-solidity/blob/main/contracts/AxelarGateway.sol/){target=\_blank}. The dynamic validator set uses this contract to monitor activity on each chain. Their role is crucial for achieving consensus, ensuring that messages are accurately transmitted from one chain to another
+[Axelar](https://axelar.network/){target=\_blank} is a blockchain that connects blockchains, delivering secure cross-chain communication. Every validator in Axelar’s network runs light nodes on chains that Axelar supports. In this demo, we'll interact with two Axelar contracts, one of which is the [Axelar Gateway contract](https://github.com/axelarnetwork/axelar-cgp-solidity/blob/main/contracts/AxelarGateway.sol){target=\_blank}. The dynamic validator set uses this contract to monitor activity on each chain. Their role is crucial for achieving consensus, ensuring that messages are accurately transmitted from one chain to another
 
 ![Axelar Diagram](/images/tutorials/interoperability/axelar-sdk/axelar-1.webp)
 
-The other contract we will be working with is the [Axelar Gas Receiver microservice](https://docs.axelar.dev/learn#gas-receiver/){target=\_blank}. Whenever you use the Axelar Gateway to send a cross-chain transaction, the Gas Receiver lets you pay for the subsequent transaction on the destination chain. Although not mandatory, this feature enables the end user to send just a single transaction. This transaction automatically updates the destination chain and allows all transaction fees to be paid using the source-chain token already held by the user.
+The other contract we will be working with is the [Axelar Gas Receiver microservice](https://docs.axelar.dev/learn#gas-receiver){target=\_blank}. Whenever you use the Axelar Gateway to send a cross-chain transaction, the Gas Receiver lets you pay for the subsequent transaction on the destination chain. Although not mandatory, this feature enables the end user to send just a single transaction. This transaction automatically updates the destination chain and allows all transaction fees to be paid using the source-chain token already held by the user.
 
 ## Building the Cross-Chain NFT Contract {: #building-the-cross-chain-nft-contract } 
 
-We'll be deploying a [simple contract](https://github.com/jboetticher/axelar-sdk-demo/blob/main/contracts/CrossChainNFT.sol/){target=\_blank} that can only mint an NFT if it receives a specific cross-chain message. Minting the NFT will require a token payment, which will be wrapped DEV (Moonbase Alpha’s native currency). A wrapped token for a native currency like DEV will mint one ERC-20 WDEV token for each DEV sent to it, and gives the option to redeem one WDEV token for one DEV. Using WDEV instead of native DEV is required because Axelar requires all tokens sent to be ERC-20s.
+We'll be deploying a [simple contract](https://github.com/jboetticher/axelar-sdk-demo/blob/main/contracts/CrossChainNFT.sol){target=\_blank} that can only mint an NFT if it receives a specific cross-chain message. Minting the NFT will require a token payment, which will be wrapped DEV (Moonbase Alpha’s native currency). A wrapped token for a native currency like DEV will mint one ERC-20 WDEV token for each DEV sent to it, and gives the option to redeem one WDEV token for one DEV. Using WDEV instead of native DEV is required because Axelar requires all tokens sent to be ERC-20s.
 
 So to mint in the cross-chain message, it must receive at least 0.05 WDEV.
 
@@ -37,7 +37,7 @@ We’re putting the same contract on two chains, so it must send and receive mes
 
 You’ll be using a Hardhat project, but before we set it up, let’s first take a look at a few parts of the contract. I encourage you to follow along!
 
-Contracts executed by the Axelar Gateway, like ours here, inherit from [`IAxelarExecutable`](https://github.com/axelarnetwork/axelar-gmp-sdk-solidity/blob/main/contracts/executable/AxelarExecutable.sol/){target=\_blank}. This parent contract has two overridable functions, `_execute` and `_executeWithToken`, that allow developers to change the logic when a contract receives a contract call from the Axelar Gateway. Both functions have the same inputs, but `_executeWithToken` also includes `tokenSymbol` and `amount` to describe the token being sent cross-chain.
+Contracts executed by the Axelar Gateway, like ours here, inherit from [`IAxelarExecutable`](https://github.com/axelarnetwork/axelar-gmp-sdk-solidity/blob/main/contracts/executable/AxelarExecutable.sol){target=\_blank}. This parent contract has two overridable functions, `_execute` and `_executeWithToken`, that allow developers to change the logic when a contract receives a contract call from the Axelar Gateway. Both functions have the same inputs, but `_executeWithToken` also includes `tokenSymbol` and `amount` to describe the token being sent cross-chain.
 
 Now let’s finally take a look at our mint function. It takes three inputs: a destination address, a destination chain, and the amount of WDEV to send. Remember that this mint function is called on the origin chain (Moonbase Alpha), which mints an NFT on a different destination chain.
 
@@ -49,7 +49,7 @@ Now let’s finally take a look at our mint function. It takes three inputs: a d
 
 The logic itself has three steps. First, it takes WDEV from the caller. The caller must approve our NFT contract to transfer their WDEV beforehand. Then, our NFT contract approves the gateway to transfer the WDEV from the caller since the gateway contract will try to transfer the tokens from our NFT contract in the final step.
 
-Next, to pay for gas on the destination chain, we make use of the [`IAxelarGasService` contract](https://github.com/axelarnetwork/axelar-cgp-solidity/blob/main/contracts/interfaces/IAxelarGasService.sol/){target=\_blank}. This contract has many [different configurations to pay for gas](https://docs.axelar.dev/dev/gas-service/pricing/){target=\_blank}, like paying for [`execute`](https://github.com/axelarnetwork/axelar-gmp-sdk-solidity/blob/main/contracts/executable/AxelarExecutable.sol#L17-L29/){target=\_blank} versus [`executeWithToken`](https://github.com/axelarnetwork/axelar-gmp-sdk-solidity/blob/main/contracts/executable/AxelarExecutable.sol#L31-L53/){target=\_blank} or using an ERC-20 token as payment versus using native currency. Be careful if you plan on writing your own contract later!
+Next, to pay for gas on the destination chain, we make use of the [`IAxelarGasService` contract](https://github.com/axelarnetwork/axelar-cgp-solidity/blob/main/contracts/interfaces/IAxelarGasService.sol){target=\_blank}. This contract has many [different configurations to pay for gas](https://docs.axelar.dev/dev/gas-service/pricing/){target=\_blank}, like paying for [`execute`](https://github.com/axelarnetwork/axelar-gmp-sdk-solidity/blob/main/contracts/executable/AxelarExecutable.sol#L17-L29){target=\_blank} versus [`executeWithToken`](https://github.com/axelarnetwork/axelar-gmp-sdk-solidity/blob/main/contracts/executable/AxelarExecutable.sol#L31-L53){target=\_blank} or using an ERC-20 token as payment versus using native currency. Be careful if you plan on writing your own contract later!
 
 In this case, since the origin chain is Moonbase Alpha, the native currency is DEV. We can use native DEV to pay for gas on the destination chain based on the conversion rates between Moonbase Alpha’s native currency and the destination chain’s native currency. Since we’re sending a contract call that includes a token to pay for destination gas in DEV, we will be using the `payNativeGasForContractCallWithToken` function.
 
@@ -104,9 +104,9 @@ If everything goes well, you will be able to compile correctly:
 npx hardhat compile
 ```
 
-## Deploying the Cross-Chain Contract to Moonbase Alpha {: #deploying-the-cross-chain-contract-to-moonbase-alpha} 
+## Deploying the Cross-Chain Contract to Moonbase Alpha {: #deploying-the-cross-chain-contract-to-moonbase-alpha}
 
-This demo focuses on using the scripts, so it’s best to take a look at them, starting with `deploy.js`, which is similar to the [Ethers.js tutorial deployment contracts](/builders/build/eth-api/libraries/ethersjs/#deploy-contract-script/){target=\_blank}.
+This demo focuses on using the scripts, so it’s best to take a look at them, starting with `deploy.js`, which is similar to the [Ethers.js tutorial deployment contracts](/builders/build/eth-api/libraries/ethersjs/#deploy-contract-script){target=\_blank}.
 
 `gatewayGasReceiver.js` stores many of the contract addresses in this repo, which are necessary for the deployment. You likely will not have to change any of the hardcoded addresses. Try deploying your contract to the origin chain:
 
@@ -129,7 +129,7 @@ After running a deployment command, you'll see output like the below. Be sure to
 
 ## Building the Mint.js Script {: #building-the-mint-js-script}
 
-The minting contract is quite exciting and will require Axelar’s SDK. At the top of the `mint.js` script, Ethers.js is initialized in a Hardhat script. The Axelar SDK is also initialized. There are multiple Axelar APIs available in the SDK, but in this case we will only be using the [Axelar Query API](https://docs.axelar.dev/dev/axelarjs-sdk/axelar-query-api#axelar-query-api/){target=\_blank} since it includes all of the gas estimation functionality that we’ll need for paying gas fees across chains. 
+The minting contract is quite exciting and will require Axelar’s SDK. At the top of the `mint.js` script, Ethers.js is initialized in a Hardhat script. The Axelar SDK is also initialized. There are multiple Axelar APIs available in the SDK, but in this case we will only be using the [Axelar Query API](https://docs.axelar.dev/dev/axelarjs-sdk/axelar-query-api#axelar-query-api){target=\_blank} since it includes all of the gas estimation functionality that we’ll need for paying gas fees across chains.
 
 ```js
 --8<-- 'code/tutorials/interoperability/axelar-sdk/mint-1.js'
@@ -211,7 +211,7 @@ To run the script, run the following command, where `INSERT_TRANSACTION_HASH` is
 npx hardhat run scripts/mint.js --network INSERT_TRANSACTION_HASH
 ```
 
-If you run the Hardhat script, you’ll end up with something like this in your console (I didn’t include all of it since it’s so large). You’re likely most interested in the status, where a list of possible ones is in [Axelar’s documentation](https://docs.axelar.dev/dev/axelarjs-sdk/tx-status-query-recovery#query-transaction-status-by-txhash/){target=\_blank}. You’re looking for `destination_executed` to indicate that it was received and executed correctly, but if you’re too early you might find `source_gateway_called` or `destination_gateway_approved`.
+If you run the Hardhat script, you’ll end up with something like this in your console (I didn’t include all of it since it’s so large). You’re likely most interested in the status, where a list of possible ones is in [Axelar’s documentation](https://docs.axelar.dev/dev/axelarjs-sdk/tx-status-query-recovery#query-transaction-status-by-txhash){target=\_blank}. You’re looking for `destination_executed` to indicate that it was received and executed correctly, but if you’re too early you might find `source_gateway_called` or `destination_gateway_approved`.
 
 ![Hardhat script console output](/images/tutorials/interoperability/axelar-sdk/axelar-3.webp)
 

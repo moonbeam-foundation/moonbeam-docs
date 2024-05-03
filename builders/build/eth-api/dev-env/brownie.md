@@ -27,7 +27,7 @@ For this guide, Python version 3.9.10, pip version 22.0.3, and pipx version 1.0.
 
 ## Creating a Brownie Project {: #creating-a-brownie-project }
 
-You will need to install Brownie and create a Brownie project if you don't already have one. You can choose to either create an empty project or use a [Brownie mix](https://eth-brownie.readthedocs.io/en/stable/init.html?highlight=brownie%20mix#creating-a-project-from-a-template/){target=\_blank}, which is essentially a template to build your project on. For this example, you can create an empty project. You can get started by completing the following steps:
+You will need to install Brownie and create a Brownie project if you don't already have one. You can choose to either create an empty project or use a [Brownie mix](https://eth-brownie.readthedocs.io/en/stable/init.html?highlight=brownie%20mix#creating-a-project-from-a-template){target=\_blank}, which is essentially a template to build your project on. For this example, you can create an empty project. You can get started by completing the following steps:
 
 1. Create a directory for your project
 
@@ -172,7 +172,7 @@ If you would like to set a default network, you can do so by adding the followin
 
 ### Setting your Networks RPC URLs
 
-It is recommended that you override the default Brownie RPC URLs to [your own RPC endpoint](/builders/get-started/endpoints/#rpc-endpoint-providers/){target=\_blank} or the public Moonbeam network endpoints. You can override the default Brownie RPC URL for each network as follows:
+It is recommended that you override the default Brownie RPC URLs to [your own RPC endpoint](/builders/get-started/endpoints/#rpc-endpoint-providers){target=\_blank} or the public Moonbeam network endpoints. You can override the default Brownie RPC URL for each network as follows:
 
 === "Moonbeam"
 
@@ -269,7 +269,7 @@ compiler:
 ```
 
 !!! note
-    You can view the list of [EVM versions supported by Brownie](https://github.com/eth-brownie/brownie/blob/master/docs/compile.rst#the-evm-version/){target=\_blank} in their documentation.
+    You can view the list of [EVM versions supported by Brownie](https://github.com/eth-brownie/brownie/blob/master/docs/compile.rst#the-evm-version){target=\_blank} in their documentation.
 
 Your contracts will only be compiled again if Brownie notices that a change has been made. To force a new compilation, you can run:
 

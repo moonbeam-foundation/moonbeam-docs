@@ -21,7 +21,7 @@ To follow along with this tutorial, you'll need to have:
 
 - [Docker installed](https://docs.docker.com/get-docker/){target=\_blank}
 - [Docker Compose installed](https://docs.docker.com/compose/install/){target=\_blank}
-- An empty Hardhat project. For step-by-step instructions, please refer to the [Creating a Hardhat Project](/builders/build/eth-api/dev-env/hardhat/#creating-a-hardhat-project/){target=\_blank} section of our Hardhat documentation page
+- An empty Hardhat project. For step-by-step instructions, please refer to the [Creating a Hardhat Project](/builders/build/eth-api/dev-env/hardhat/#creating-a-hardhat-project){target=\_blank} section of our Hardhat documentation page
 - An [ERC-20 token deployed](#deploy-an-erc-20-contract) to your local development node, unless you plan on indexing Moonbase Alpha and using an existing ERC-20
 
 We'll configure our Hardhat project and create our Subsquid project later on in the tutorial.
@@ -62,7 +62,7 @@ To spin up a development node, which will pull the latest Docker image for Moonb
     --dev --sealing 4000 --rpc-external
     ```
 
-This will start up our development node, which can be accessed on port 9944. Note that you do not have to use Docker; you can also [run a local node by compiling the Moonbeam binary](/builders/get-started/networks/moonbeam-dev/#getting-started-with-the-binary-file/){target=\_blank}.
+This will start up our development node, which can be accessed on port 9944. Note that you do not have to use Docker; you can also [run a local node by compiling the Moonbeam binary](/builders/get-started/networks/moonbeam-dev/#getting-started-with-the-binary-file){target=\_blank}.
 
 ![Spin up a Moonbeam development node](/images/tutorials/integrations/local-subsquid/new/local-squid-1.webp)
 
@@ -75,7 +75,7 @@ For more information on running a Moonbeam development node, please refer to the
 
 ## Deploy an ERC-20 with Hardhat {: #deploy-an-erc-20-with-hardhat }
 
-You should have already created an empty Hardhat project, but if you haven't done so, you can find instructions in the [Creating a Hardhat Project](/builders/build/eth-api/dev-env/hardhat/#creating-a-hardhat-project/){target=\_blank} section of our Hardhat documentation page.
+You should have already created an empty Hardhat project, but if you haven't done so, you can find instructions in the [Creating a Hardhat Project](/builders/build/eth-api/dev-env/hardhat/#creating-a-hardhat-project){target=\_blank} section of our Hardhat documentation page.
 
 In this section, we'll configure our Hardhat project for a local Moonbeam development node, create an ERC-20 contract, and write scripts to deploy and interact with our contract.
 

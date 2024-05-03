@@ -7,7 +7,7 @@ description: Learn how to create and manage an on-chain identity, which includes
 
 ## Introduction {: #introduction }
 
-The [Substrate](/learn/platform/technology/#substrate-framework/){target=\_blank} Identity pallet is an out-of-the-box solution for adding personal information to your on-chain account. Personal information can include default fields such as your legal name, display name, website, Twitter handle, Riot (now known as Element) name. You can also take advantage of custom fields to include any other relevant information.
+The [Substrate](/learn/platform/technology/#substrate-framework){target=\_blank} Identity pallet is an out-of-the-box solution for adding personal information to your on-chain account. Personal information can include default fields such as your legal name, display name, website, Twitter handle, Riot (now known as Element) name. You can also take advantage of custom fields to include any other relevant information.
 
 Once your identity information is on-chain, you can request verification of your identity from a registrar. A registrar will perform proper due dilligence to verify the submitted identity information and based on their findings will provide their judgement on-chain and a green check mark will appear next to your account.
 
@@ -64,7 +64,7 @@ If you are looking for a more customizable experience and want to add custom fie
 
 ### Set an Identity {: #set-identity-accounts }
 
-To get started with setting an identity using the Accounts UI, head to the [Accounts tab](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/accounts/){target=\_blank} on the Polkadot.js Apps explorer.
+To get started with setting an identity using the Accounts UI, head to the [Accounts tab](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/accounts){target=\_blank} on the Polkadot.js Apps explorer.
 
 You should already have an account connected, so you can go ahead and click on your account name to verify and take note of your balances. After you send the transaction to set an identity, the deposit(s) you submitted will be moved from your transferable balance to your reserved balance.
 
@@ -98,7 +98,7 @@ Once you clear your identity, the deposit in your reserved balance will get tran
 
 ### Clear an Identity {: #clear-identity-accounts }
 
-To clear your identity from the [Accounts tab](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/accounts/){target=\_blank} of the Polkadot.js Apps UI, you'll need to:
+To clear your identity from the [Accounts tab](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/accounts){target=\_blank} of the Polkadot.js Apps UI, you'll need to:
 
 1. Click on the 3 vertical dots next to the account you would like to add identity information for
 2. A menu will pop up. Click **Set on-chain identity**
@@ -119,7 +119,7 @@ That’s it! You’ve successfully cleared your identity. If you want to add a n
 
 ### Set an Identity {: #set-identity-extrinsics }
 
-To register an identity using the extrinsics UI, navigate to the [Extrinsics page](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/extrinsics/){target=\_blank} on Polkadot.js Apps. Then, you'll need to:
+To register an identity using the extrinsics UI, navigate to the [Extrinsics page](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/extrinsics){target=\_blank} on Polkadot.js Apps. Then, you'll need to:
 
 1. Select your account
 2. Select identity from the **submit the following extrinsic** dropdown
@@ -152,7 +152,7 @@ You should see status notifications pop-up in the top right hand corner confirmi
 
 ### Confirm an Identity {: #confirm-identity-extrinsics }
 
-To verify the addition of your identity information, you can click on the **Developer** tab and then navigate to [Chain state](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/chainstate/){target=\_blank}.
+To verify the addition of your identity information, you can click on the **Developer** tab and then navigate to [Chain state](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/chainstate){target=\_blank}.
 
 On the **Chain State** UI, make sure **Storage** is selected. Then you can start to request your identity information:
 
@@ -167,7 +167,7 @@ You can see now that you’ve successfully set an identity! Once you clear your 
 
 ### Clear an Identity {: #clear-identity-extrinsics }
 
-To clear your identity from the [Extrinsics tab](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/extrinsics/){target=\_blank} of the Polkadot.js Apps UI, you'll need to:
+To clear your identity from the [Extrinsics tab](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/extrinsics){target=\_blank} of the Polkadot.js Apps UI, you'll need to:
 
 1. Select your account from the **using the selected account** dropdown
 2. Select **identity** from the **submit the following extrinsic** dropdown

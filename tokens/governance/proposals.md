@@ -27,13 +27,13 @@ Some of the key parameters for this guide are the following:
 
 --8<-- 'text/learn/features/governance/lead-in-definitions.md'
 
-Make sure you check the [Governance Parameters](/learn/features/governance/#governance-parameters-v2/){target=\_blank} for each network and track.
+Make sure you check the [Governance Parameters](/learn/features/governance/#governance-parameters-v2){target=\_blank} for each network and track.
 
 ## Roadmap of a Proposal {: #roadmap-of-a-proposal }
 
 This guide will cover the first few steps outlined in the proposal roadmap, as highlighted in the diagram below. You'll learn how to submit your proposal idea to the [Moonbeam Community Forum](https://forum.moonbeam.foundation/){target=\_blank}, submit a preimage, and submit your proposal on-chain using the preimage hash.
 
-You can find a full explanation in the [Roadmap of a Proposal](/learn/features/governance/#roadmap-of-a-proposal-v2/){target=\_blank} section on the Governance overview page.
+You can find a full explanation in the [Roadmap of a Proposal](/learn/features/governance/#roadmap-of-a-proposal-v2){target=\_blank} section on the Governance overview page.
 
 ![Proposal Roadmap](/images/tokens/governance/proposals/proposals-roadmap.webp)
 
@@ -61,7 +61,7 @@ After you've filled out your proposal details, you can click **Create Topic** to
 
 This section goes over the process of creating a proposal with OpenGov (Governance v2) on Moonbase Alpha. These steps can be adapted for Moonbeam and Moonriver.
 
-To make a proposal in the network, you can use the Polkadot.js Apps interface. To do so, you need to import an Ethereum-style account first (H160 address), which you can do following the [Creating or Importing an H160 Account](/tokens/connect/polkadotjs/#creating-or-importing-an-h160-account/){target=\_blank} guide. For this example, three accounts were imported and named with super original names: Alice, Bob, and Charlie.
+To make a proposal in the network, you can use the Polkadot.js Apps interface. To do so, you need to import an Ethereum-style account first (H160 address), which you can do following the [Creating or Importing an H160 Account](/tokens/connect/polkadotjs/#creating-or-importing-an-h160-account){target=\_blank} guide. For this example, three accounts were imported and named with super original names: Alice, Bob, and Charlie.
 
 ![Accounts in Polkadot.js](/images/tokens/governance/proposals/proposals-3.webp)
 
@@ -98,7 +98,7 @@ After the transaction is submitted, you will see some confirmations on the top r
 
 Once you have committed the preimage (check the previous section), the roadmap's next major milestone is to submit the proposal related to it. To do so, select **Referenda** from the **Governance** dropdown, and click on **Submit proposal**.
 
-In order to submit a proposal, you'll need to choose which Origin class you want your proposal to be executed with. **Choosing the wrong Track/Origin might result in your proposal failing at execution**. For more information on each Origin class, please refer to the [General Definitions](/learn/features/governance/#general-definitions-gov2/){target=\_blank} section on the Governance on Moonbeam overview page.
+In order to submit a proposal, you'll need to choose which Origin class you want your proposal to be executed with. **Choosing the wrong Track/Origin might result in your proposal failing at execution**. For more information on each Origin class, please refer to the [General Definitions](/learn/features/governance/#general-definitions-gov2){target=\_blank} section on the Governance on Moonbeam overview page.
 
 ![Submit proposal](/images/tokens/governance/proposals/proposals-6.webp)
 

@@ -24,7 +24,7 @@ Collators have a responsibility to the network to act honorably. If any of the f
 There is a level of commitment to the community and the network that is necessary to gain trust from the community of delegators and attract more delegations. The following contains some suggestions for contributing to the community:
 
 - Be active in the community
-    - [Join the Discord](/node-operators/networks/collators/overview/#join-discord/){target=\_blank} and introduce yourself, provide updates as needed, and help support community members or other collators
+    - [Join the Discord](/node-operators/networks/collators/overview/#join-discord){target=\_blank} and introduce yourself, provide updates as needed, and help support community members or other collators
 - Create tutorials and educational content
 - [Become a Moonbeam Ambassador](https://moonbeam.network/community/ambassadors/){target=\_blank}
 - Contribute to open-source software relating to the ecosystem

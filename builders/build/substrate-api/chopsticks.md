@@ -207,7 +207,7 @@ You can interact with Chopsticks via the [Polkadot.js Apps hosted user interface
 You should now be able to interact with the fork as you would an active parachain or relay chain.
 
 !!! note
-    If your browser cannot connect to the WebSocket endpoint provided by Chopsticks, you might need to allow insecure connections for the Polkadot.js Apps URL. Another solution is to run the [Docker version of Polkadot.js Apps](https://github.com/polkadot-js/apps#docker/){target=\_blank}.
+    If your browser cannot connect to the WebSocket endpoint provided by Chopsticks, you might need to allow insecure connections for the Polkadot.js Apps URL. Another solution is to run the [Docker version of Polkadot.js Apps](https://github.com/polkadot-js/apps#docker){target=\_blank}.
 
 ## Replaying Blocks {: #replaying-blocks }
 

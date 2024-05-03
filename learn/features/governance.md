@@ -9,7 +9,7 @@ description: As a Polkadot parachain, Moonbeam uses an on-chain governance syste
 
 The goal of Moonbeam’s governance mechanism is to advance the protocol according to the desires of the community. In that shared mission, the governance process seeks to include all token holders. Any and all changes to the protocol must go through a referendum so that all token holders, weighted by stake, can have input on the decision.
 
-Governance forums like the [Moonbeam Community Forum](https://forum.moonbeam.foundation/){target=\_blank} and [Polkassembly](https://moonbeam.polkassembly.io/opengov/){target=\_blank} enable open discussion and allow proposals to be refined based on community input. Autonomous enactments and [forkless upgrades](https://wiki.polkadot.network/docs/learn-runtime-upgrades#forkless-upgrades/){target=\_blank} unite the community towards a shared mission to advance the protocol.
+Governance forums like the [Moonbeam Community Forum](https://forum.moonbeam.foundation/){target=\_blank} and [Polkassembly](https://moonbeam.polkassembly.io/opengov/){target=\_blank} enable open discussion and allow proposals to be refined based on community input. Autonomous enactments and [forkless upgrades](https://wiki.polkadot.network/docs/learn-runtime-upgrades#forkless-upgrades){target=\_blank} unite the community towards a shared mission to advance the protocol.
 
 With the rollout of OpenGov (originally referred to as Gov2), the second phase of governance in Polkadot, several modifications have been introduced to the governance process. You can read the [OpenGov: What is Polkadot Gov2](https://moonbeam.network/blog/opengov/){target=\_blank} blog post, which provides an overview of all of the changes made in OpenGov.
 
@@ -292,7 +292,7 @@ In addition, there is a Kill Origin, which is for bad referenda intending to har
 
 ### Rights of the OpenGov Technical Committee {: #rights-of-the-opengov-technical-committee }
 
-On Polkadot, the Technical Committee from Governance v1 was replaced with the Fellowship, which is a "mostly self-governing expert body with a primary goal of representing humans who embody and contain the technical knowledge base of the Kusama and/or Polkadot networks and protocol," according to [Polkadot's wiki](https://wiki.polkadot.network/docs/learn-opengov#fellowship/){target=\_blank}.
+On Polkadot, the Technical Committee from Governance v1 was replaced with the Fellowship, which is a "mostly self-governing expert body with a primary goal of representing humans who embody and contain the technical knowledge base of the Kusama and/or Polkadot networks and protocol," according to [Polkadot's wiki](https://wiki.polkadot.network/docs/learn-opengov#fellowship){target=\_blank}.
 
 For Moonbeam's implementation of OpenGov, instead of the Fellowship, there is a community OpenGov Technical Committee that has very similar power to that of the Fellowship. Their power in governance resides in their ability to whitelist a proposal. OpenGov Technical Committee members may only vote to whitelist a proposal if whitelisting that proposal would protect against a security vulnerability to the network. The passing threshold of the OpenGov Technical Committee members on whether to whitelist a proposal is determined by governance. As such, the OpenGov Technical Committee has very limited power over the network. Its purpose is to provide technical review of urgent security issues that are proposed by token holders.
 

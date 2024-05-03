@@ -77,33 +77,33 @@ Some important parameters to understand in relation to the staking system on Moo
 
 --8<-- 'text/_common/async-backing-moonbase.md'
 
-To learn how to get the current value of any of the parameters around staking, check out the [Retrieving Staking Parameters](/tokens/staking/stake/#retrieving-staking-parameters/){target=\_blank} section of the [How to Stake your Tokens](/tokens/staking/stake/){target=\_blank} guide.
+To learn how to get the current value of any of the parameters around staking, check out the [Retrieving Staking Parameters](/tokens/staking/stake/#retrieving-staking-parameters){target=\_blank} section of the [How to Stake your Tokens](/tokens/staking/stake/){target=\_blank} guide.
 
-If you're looking for candidate or collator-specific requirements and information, you can take a look at the [Collators](/node-operators/networks/collators/requirements/#bonding-requirements/){target=\_blank} guide.
+If you're looking for candidate or collator-specific requirements and information, you can take a look at the [Collators](/node-operators/networks/collators/requirements/#bonding-requirements){target=\_blank} guide.
 
 ## Resources for Selecting a Collator {: #resources-for-selecting-a-collator}
 
 There are a few resources you can check out to help you select a collator to delegate:
 
 === "Moonbeam"
-    |           Variable           |                                     Value                                     |
-    |:----------------------------:|:-----------------------------------------------------------------------------:|
-    |     Stake GLMR Dashboard     |              [Stake GLMR](https://stakeglmr.com/){target=\_blank}              |
+    |           Variable           |                                      Value                                      |
+    |:----------------------------:|:-------------------------------------------------------------------------------:|
+    |     Stake GLMR Dashboard     |              [Stake GLMR](https://stakeglmr.com/){target=\_blank}               |
     |    Collators Leaderboard     |       [Moonscan](https://moonbeam.moonscan.io/collators/){target=\_blank}       |
-    | Staking Simulation Dashboard |            [Web3Go](https://web3go.xyz/#/Moonbeam/){target=\_blank}             |
+    | Staking Simulation Dashboard |             [Web3Go](https://web3go.xyz/#/Moonbeam){target=\_blank}             |
     |      Collator Dashboard      | [DappLooker](https://network.dapplooker.com/moonbeam/collator/){target=\_blank} |
 
 === "Moonriver"
-    |           Variable           |                                     Value                                      |
-    |:----------------------------:|:------------------------------------------------------------------------------:|
-    |     Stake MOVR Dashboard     |              [Stake MOVR](https://stakemovr.com/){target=\_blank}               |
+    |           Variable           |                                      Value                                       |
+    |:----------------------------:|:--------------------------------------------------------------------------------:|
+    |     Stake MOVR Dashboard     |               [Stake MOVR](https://stakemovr.com/){target=\_blank}               |
     |    Collators Leaderboard     |       [Moonscan](https://moonriver.moonscan.io/collators/){target=\_blank}       |
-    | Staking Simulation Dashboard |            [Web3Go](https://web3go.xyz/#/Moonriver/){target=\_blank}             |
+    | Staking Simulation Dashboard |             [Web3Go](https://web3go.xyz/#/Moonriver){target=\_blank}             |
     |      Collator Dashboard      | [DappLooker](https://network.dapplooker.com/moonriver/collator/){target=\_blank} |
 
 === "Moonbase Alpha"
-    |      Variable      |                                     Value                                      |
-    |:------------------:|:------------------------------------------------------------------------------:|
+    |      Variable      |                                      Value                                       |
+    |:------------------:|:--------------------------------------------------------------------------------:|
     | List of candidates | [Moonbase Alpha Subscan](https://moonbase.subscan.io/validator/){target=\_blank} |
 
 !!! note

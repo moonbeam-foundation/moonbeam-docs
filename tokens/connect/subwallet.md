@@ -136,7 +136,7 @@ From the settings menu, click **Manage networks**.
 
 ![The settings screen on the SubWallet browser extension.](/images/tokens/connect/subwallet/subwallet-12.webp)
 
-Click the **+** icon in the top right corner and enter in the [network configurations](/builders/get-started/quick-start/#network-configurations/){target=\_blank}. You can also manage and connect to other networks from this menu.
+Click the **+** icon in the top right corner and enter in the [network configurations](/builders/get-started/quick-start/#network-configurations){target=\_blank}. You can also manage and connect to other networks from this menu.
 
 ![The tokens screen on the SubWallet browser extension.](/images/tokens/connect/subwallet/subwallet-13.webp)
 

@@ -7,7 +7,7 @@ description: Learn how to use the Ethereum Ethers.rs Library to send transaction
 
 ## Introduction {: #introduction }
 
-The [Ethers.rs](https://ethers.rs/){target=\_blank} library provides a set of tools to interact with Ethereum Nodes via the Rust programming language that works similar to [Ethers.js](/builders/build/eth-api/libraries/ethersjs/){target=\_blank}. Moonbeam has an Ethereum-like API available that is fully compatible with Ethereum-style JSON-RPC invocations. Therefore, developers can leverage this compatibility and use the Ethers.rs library to interact with a Moonbeam node as if they were doing so on Ethereum. You can read more about how to use Ethers.rs on their [official crate documentation](https://docs.rs/crate/ethers/latest/){target=\_blank}.
+The [Ethers.rs](https://ethers.rs){target=\_blank} library provides a set of tools to interact with Ethereum Nodes via the Rust programming language that works similar to [Ethers.js](/builders/build/eth-api/libraries/ethersjs/){target=\_blank}. Moonbeam has an Ethereum-like API available that is fully compatible with Ethereum-style JSON-RPC invocations. Therefore, developers can leverage this compatibility and use the Ethers.rs library to interact with a Moonbeam node as if they were doing so on Ethereum. You can read more about how to use Ethers.rs on their [official crate documentation](https://docs.rs/crate/ethers/latest/){target=\_blank}.
 
 In this guide, you'll learn how to use the Ethers.rs library to send a transaction and deploy a contract on Moonbase Alpha. This guide can be adapted for [Moonbeam](/builders/get-started/networks/moonbeam/){target=\_blank}, [Moonriver](/builders/get-started/networks/moonriver/){target=\_blank}, or a [Moonbeam development node](/builders/get-started/networks/moonbeam-dev/){target=\_blank}.
 
@@ -300,7 +300,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 }
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/builders/build/eth-api/libraries/ethers-rust/send-tx/main.rs/){target=\_blank}.
+You can view the [complete script on GitHub](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/builders/build/eth-api/libraries/ethers-rust/send-tx/main.rs){target=\_blank}.
 
 To run the script, which will send the transaction and then check the balances once the transaction has been sent, you can run the following command:
 
@@ -486,7 +486,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 }
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/builders/build/eth-api/libraries/ethers-rust/deploy-contract/main.rs/){target=\_blank}.
+You can view the [complete script on GitHub](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/builders/build/eth-api/libraries/ethers-rust/deploy-contract/main.rs){target=\_blank}.
 
 To run the script, which will deploy the contract and return the current value stored in the `Incrementer` contract, you can enter the following command into your terminal:
 
@@ -547,7 +547,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 }
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/builders/build/eth-api/libraries/ethers-rust/deploy-contract/main.rs/){target=\_blank}.
+You can view the [complete script on GitHub](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/builders/build/eth-api/libraries/ethers-rust/deploy-contract/main.rs){target=\_blank}.
 
 To run the script, you can enter the following command into your terminal:
 
@@ -608,6 +608,6 @@ If successful, the transaction receipt will be displayed in the terminal. You ca
 
 ![Terminal logs from resetting the number](/images/builders/build/eth-api/libraries/ethersrs/ethersrs-4.webp)
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/builders/build/eth-api/libraries/ethers-rust/deploy-contract/main.rs/){target=\_blank}.
+You can view the [complete script on GitHub](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/builders/build/eth-api/libraries/ethers-rust/deploy-contract/main.rs){target=\_blank}.
 
 --8<-- 'text/_disclaimers/third-party-content.md'

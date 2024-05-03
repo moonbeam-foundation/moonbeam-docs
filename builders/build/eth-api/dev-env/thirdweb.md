@@ -32,7 +32,7 @@ To create a new smart contract using the thirdweb CLI, follow these steps:
 3. Once created, navigate to your project’s directory and open in your preferred code editor
 4. If you open the `contracts` folder, you will find your smart contract; this is your smart contract written in Solidity
 
-    The following is code for an `ERC721Base` contract without specified extensions. It implements all of the logic inside the [`ERC721Base.sol`](https://github.com/thirdweb-dev/contracts/blob/main/contracts/base/ERC721Base.sol/){target=\_blank} contract; which implements the [`ERC721A`](https://github.com/thirdweb-dev/contracts/blob/main/contracts/eip/ERC721A.sol/){target=\_blank} standard.
+    The following is code for an `ERC721Base` contract without specified extensions. It implements all of the logic inside the [`ERC721Base.sol`](https://github.com/thirdweb-dev/contracts/blob/main/contracts/base/ERC721Base.sol){target=\_blank} contract; which implements the [`ERC721A`](https://github.com/thirdweb-dev/contracts/blob/main/contracts/eip/ERC721A.sol){target=\_blank} standard.
 
     ```solidity
     // SPDX-License-Identifier: MIT
@@ -231,7 +231,7 @@ For extension based functions, use the built-in supported hooks. There are sever
 
 ### Connect Wallet {: #connect-wallet }
 
-There are a couple of ways that you can create a custom [connect wallet](https://portal.thirdweb.com/react/connecting-wallets/){target=\_blank} experience. You can use the [`ConnectWallet` component](https://portal.thirdweb.com/react/connecting-wallets#using-the-connect-wallet-button/){target=\_blank} or, for a more customizable approach, you can use the [`useConnect` hook](https://portal.thirdweb.com/react/connecting-wallets#using-hooks/){target=\_blank}.
+There are a couple of ways that you can create a custom [connect wallet](https://portal.thirdweb.com/react/connecting-wallets/){target=\_blank} experience. You can use the [`ConnectWallet` component](https://portal.thirdweb.com/react/connecting-wallets#using-the-connect-wallet-button){target=\_blank} or, for a more customizable approach, you can use the [`useConnect` hook](https://portal.thirdweb.com/react/connecting-wallets#using-hooks){target=\_blank}.
 
 The following example will show you how to use the `ConnectWallet` component. To go this route, you will need to specify the supported wallets and pass them to your provider.
 

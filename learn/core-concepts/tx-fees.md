@@ -333,7 +333,7 @@ The value of `NextFeeMultiplier` can be retrieved from the Substrate Sidecar API
 GET /pallets/transaction-payment/storage/nextFeeMultiplier?at={blockId}
 ```
 
-The pallets endpoints for Sidecar returns data relevant to a pallet, such as data in a pallet's storage. You can read more about the pallets endpoint in the [official Sidecar documentation](https://paritytech.github.io/substrate-api-sidecar/dist/#operations-tag-pallets/){target=\_blank}. The data at hand that's required from storage is the `nextFeeMultiplier`, which can be found in the `transaction-payment` pallet. The stored `nextFeeMultiplier` value can be read directly from the Sidecar storage schema. Read as a JSON object, the relevant nesting structure is as follows:
+The pallets endpoints for Sidecar returns data relevant to a pallet, such as data in a pallet's storage. You can read more about the pallets endpoint in the [official Sidecar documentation](https://paritytech.github.io/substrate-api-sidecar/dist/#operations-tag-pallets){target=\_blank}. The data at hand that's required from storage is the `nextFeeMultiplier`, which can be found in the `transaction-payment` pallet. The stored `nextFeeMultiplier` value can be read directly from the Sidecar storage schema. Read as a JSON object, the relevant nesting structure is as follows:
 
 ```text
 RESPONSE JSON Storage Object:
@@ -357,7 +357,7 @@ Although Moonbeam is Ethereum-compatible, it is also a Substrate-based chain at 
 
 It's important to note that priority is not the sole component responsible for determining the order of transactions in a block. Other components, such as the longevity of a transaction, also play a role in the sorting process.
 
-The values of `GasPrice`, `MaxFeePerGas` and `MaxPriorityFeePerGas` for the applicable transaction types can be read from the block JSON object according to the structure described in [the Sidecar API page](/builders/build/substrate-api/sidecar/#evm-fields-mapping-in-block-json-object/){target=\_blank}.
+The values of `GasPrice`, `MaxFeePerGas` and `MaxPriorityFeePerGas` for the applicable transaction types can be read from the block JSON object according to the structure described in [the Sidecar API page](/builders/build/substrate-api/sidecar/#evm-fields-mapping-in-block-json-object){target=\_blank}.
 
 The data for an Ethereum transaction in a particular block can be extracted from the following block endpoint:
 
@@ -460,7 +460,7 @@ The following curl example will return the gas information of the last 10 blocks
 
 ### Sample Code for Calculating Transaction Fees {: #sample-code }
 
-The following code snippet uses the [Axios HTTP client](https://axios-http.com/){target=\_blank} to query the [Sidecar endpoint `/blocks/head`](https://paritytech.github.io/substrate-api-sidecar/dist/#operations-tag-blocks/){target=\_blank} for the latest finalized block. It then calculates the transaction fees of all transactions in the block according to the transaction type (for Ethereum API: legacy, EIP-1559 or EIP-2930 standards, and for Substrate API), as well as calculating the total transaction fees in the block.
+The following code snippet uses the [Axios HTTP client](https://axios-http.com/){target=\_blank} to query the [Sidecar endpoint `/blocks/head`](https://paritytech.github.io/substrate-api-sidecar/dist/#operations-tag-blocks){target=\_blank} for the latest finalized block. It then calculates the transaction fees of all transactions in the block according to the transaction type (for Ethereum API: legacy, EIP-1559 or EIP-2930 standards, and for Substrate API), as well as calculating the total transaction fees in the block.
 
 !!! note
     EIP-1559 transaction fees on Moonbeam are calculated using the previous block's base fee.
@@ -487,7 +487,7 @@ All the information around fee data for transactions sent via the Substrate API 
 GET /blocks/{blockId}
 ```
 
-The block endpoints will return data relevant to one or more blocks. You can read more about the block endpoints on the [official Sidecar documentation](https://paritytech.github.io/substrate-api-sidecar/dist/#operations-tag-blocks/){target=\_blank}. Read as a JSON object, the relevant nesting structure is as follows:  
+The block endpoints will return data relevant to one or more blocks. You can read more about the block endpoints on the [official Sidecar documentation](https://paritytech.github.io/substrate-api-sidecar/dist/#operations-tag-blocks){target=\_blank}. Read as a JSON object, the relevant nesting structure is as follows:  
 
 ```text
 RESPONSE JSON Block Object:

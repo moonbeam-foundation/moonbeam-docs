@@ -84,7 +84,7 @@ You've now successfully imported a Moonbeam compatible account from your Trezor 
 
 If you've successfully [imported your Trezor account to MetaMask](#importing-your-trezor-account-to-metamask), you are ready to sign transactions on Moonbeam using your Trezor device. This tutorial will show you how to send a simple transaction on the Moonbase Alpha TestNet, but it applies to other Moonbeam ecosystem networks.
 
-First, make sure your Trezor account is [funded with DEV tokens](/builders/get-started/networks/moonbase/#get-tokens/){target=\_blank}. Next, click on the **Send** button.
+First, make sure your Trezor account is [funded with DEV tokens](/builders/get-started/networks/moonbase/#get-tokens){target=\_blank}. Next, click on the **Send** button.
 
 ![MetaMask Trezor Account Funded](/images/tokens/connect/trezor/trezor-9.webp)
 

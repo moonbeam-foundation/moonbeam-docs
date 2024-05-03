@@ -28,8 +28,8 @@ There are a couple of resources to get you started building cross-chain applicat
 
 See the list of LayerZero contracts deployed to Moonbeam, and the networks connected to Moonbeam through LayerZero.
 
-- **MainNet Contracts** - [Moonbeam](https://layerzero.gitbook.io/docs/technical-reference/mainnet/supported-chain-ids#moonbeam/){target=\_blank}
+- **MainNet Contracts** - [Moonbeam](https://layerzero.gitbook.io/docs/technical-reference/mainnet/supported-chain-ids#moonbeam){target=\_blank}
 
-- **TestNet Contracts** - [Moonbase Alpha](https://layerzero.gitbook.io/docs/technical-reference/testnet/testnet-addresses#moonbeam-testnet/){target=\_blank}
+- **TestNet Contracts** - [Moonbase Alpha](https://layerzero.gitbook.io/docs/technical-reference/testnet/testnet-addresses#moonbeam-testnet){target=\_blank}
 
 --8<-- 'text/_disclaimers/third-party-content.md'

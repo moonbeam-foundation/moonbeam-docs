@@ -54,7 +54,7 @@ The Alphanet relay chain is connected to Moonbase Alpha and is [Westend](https:/
 
 ## Telemetry {: #telemetry }
 
-You can see current Moonbase Alpha telemetry information by visiting [Polkadot's Telemetry dashboard](https://telemetry.polkadot.io/#list/0x91bc6e169807aaa54802737e1c504b2577d4fafedd5a02c10293b1cd60e39527/){target=\_blank}.
+You can see current Moonbase Alpha telemetry information by visiting [Polkadot's Telemetry dashboard](https://telemetry.polkadot.io/#list/0x91bc6e169807aaa54802737e1c504b2577d4fafedd5a02c10293b1cd60e39527){target=\_blank}.
 
 ## Tokens {: #tokens }
 

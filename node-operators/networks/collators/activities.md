@@ -7,7 +7,7 @@ description: Instructions on how to dive in and learn about the related activiti
 
 ## Introduction {: #introduction }
 
-Becoming a collator on Moonbeam-based networks requires you to meet [bonding requirements](/node-operators/networks/collators/requirements/#bonding-requirements/){target=\_blank} and join the candidate pool. Once you're in the candidate pool, you can adjust your self-bond amount or decide to leave the pool at any time.
+Becoming a collator on Moonbeam-based networks requires you to meet [bonding requirements](/node-operators/networks/collators/requirements/#bonding-requirements){target=\_blank} and join the candidate pool. Once you're in the candidate pool, you can adjust your self-bond amount or decide to leave the pool at any time.
 
 If you wish to reduce your self-bond amount or leave the candidate pool, it requires you to first schedule a request to leave and then execute upon the request after a [delay period](#collator-timings) has passed.
 
@@ -56,7 +56,7 @@ Before getting started, it's important to note some of the timing of different a
 
 ### Get the Size of the Candidate Pool {: #get-the-size-of-the-candidate-pool }
 
-First, you need to get the `candidatePool` size (this can change through governance), as you'll need to submit this parameter in a later transaction. To do so, you'll have to run the following JavaScript code snippet from within [Polkadot.js](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/js/){target=\_blank}:
+First, you need to get the `candidatePool` size (this can change through governance), as you'll need to submit this parameter in a later transaction. To do so, you'll have to run the following JavaScript code snippet from within [Polkadot.js](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/js){target=\_blank}:
 
 ```js
 // Simple script to get candidate pool size
@@ -74,12 +74,12 @@ Head to the **Developer** tab, select **JavaScript** from the dropdown, and take
 
 ### Join the Candidate Pool {: #join-the-candidate-pool }
 
-Once your node is running and in sync with the network, you become a candidate and join the candidate pool. Depending on which network you are connected to, head to [Polkadot.js](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/accounts/){target=\_blank}, click on the **Developer** tab, select **Extrinsics** from the dropdown, and take the following steps:
+Once your node is running and in sync with the network, you become a candidate and join the candidate pool. Depending on which network you are connected to, head to [Polkadot.js](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/accounts){target=\_blank}, click on the **Developer** tab, select **Extrinsics** from the dropdown, and take the following steps:
 
- 1. Select the account you want to become a collator. Confirm your account is funded with at least the [minimum stake required](/node-operators/networks/collators/requirements/#minimum-collator-bond/){target=\_blank} plus some extra for transaction fees
+ 1. Select the account you want to become a collator. Confirm your account is funded with at least the [minimum stake required](/node-operators/networks/collators/requirements/#minimum-collator-bond){target=\_blank} plus some extra for transaction fees
  2. Select **parachainStaking** pallet under the **submit the following extrinsic** menu
  3. Open the drop-down menu, which lists all the possible extrinsics related to staking, and select the **joinCandidates** function
- 4. Set the bond to at least the [minimum amount](/node-operators/networks/collators/requirements/#minimum-collator-bond/){target=\_blank} to be considered a candidate. You'll need to enter this amount in `Wei`. As an example, the minimum bond of {{ networks.moonbase.staking.min_can_stk }} DEV on Moonbase Alpha would be `{{ networks.moonbase.staking.min_can_stk_wei }}` in Wei ({{ networks.moonbase.staking.min_can_stk }} + 18 extra zeros). Only the candidate bond counts for this check. Additional delegations do not count
+ 4. Set the bond to at least the [minimum amount](/node-operators/networks/collators/requirements/#minimum-collator-bond){target=\_blank} to be considered a candidate. You'll need to enter this amount in `Wei`. As an example, the minimum bond of {{ networks.moonbase.staking.min_can_stk }} DEV on Moonbase Alpha would be `{{ networks.moonbase.staking.min_can_stk_wei }}` in Wei ({{ networks.moonbase.staking.min_can_stk }} + 18 extra zeros). Only the candidate bond counts for this check. Additional delegations do not count
  5. Set the candidate count as the candidate pool size. To learn how to retrieve this value, check the [Get the Size of the Candidate Pool](#get-the-size-of-the-candidate-pool) section
  6. Submit the transaction. Follow the wizard and sign the transaction using the password you set for the account
 
@@ -88,7 +88,7 @@ Once your node is running and in sync with the network, you become a candidate a
 !!! note
     Function names and the minimum bond requirement are subject to change in future releases.
 
-As mentioned before, only the top candidates by delegated stake will be in the active set of collators. The exact number of candidates in the top for each network and the minimum bond amount can be found in the [Minimum Collator Bond](/node-operators/networks/collators/requirements/#minimum-collator-bond/){target=\_blank} section.
+As mentioned before, only the top candidates by delegated stake will be in the active set of collators. The exact number of candidates in the top for each network and the minimum bond amount can be found in the [Minimum Collator Bond](/node-operators/networks/collators/requirements/#minimum-collator-bond){target=\_blank} section.
 
 ## Stop Collating {: #stop-collating }
 
@@ -168,7 +168,7 @@ If you wish to bond less, you have to schedule a request, wait for an [exit dela
 
 ### Bond More {: #bond-more }
 
-As a candidate, there are two options for increasing one's stake. The first and recommended option is to send the funds to be staked to another owned address and [delegate to your collator](/tokens/staking/stake/#how-to-nominate-a-collator). Alternatively, collators that already have at least the [minimum self-bond amount](/node-operators/networks/collators/requirements/#minimum-collator-bond/){target=\_blank} staked can increase their bond from [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonriver.moonbeam.network#/accounts/){target=\_blank}. Navigate to the **Developer** tab, click on **Extrinsics**, and follow these steps:
+As a candidate, there are two options for increasing one's stake. The first and recommended option is to send the funds to be staked to another owned address and [delegate to your collator](/tokens/staking/stake/#how-to-nominate-a-collator). Alternatively, collators that already have at least the [minimum self-bond amount](/node-operators/networks/collators/requirements/#minimum-collator-bond){target=\_blank} staked can increase their bond from [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonriver.moonbeam.network#/accounts){target=\_blank}. Navigate to the **Developer** tab, click on **Extrinsics**, and follow these steps:
 
  1. Select your collator account (and verify it contains the additional funds to be bonded)
  2. Select **parachainStaking** pallet under the **submit the following extrinsic** menu
@@ -180,7 +180,7 @@ As a candidate, there are two options for increasing one's stake. The first and 
 
 ### Bond Less {: #bond-less}
 
-As a collator or collator candidate, you may decrease your amount bonded as long as you have more than the [minimum self-bond amount](/node-operators/networks/collators/requirements/#minimum-collator-bond/){target=\_blank} after the decrease.
+As a collator or collator candidate, you may decrease your amount bonded as long as you have more than the [minimum self-bond amount](/node-operators/networks/collators/requirements/#minimum-collator-bond){target=\_blank} after the decrease.
 
 In order to bond less, you have to first schedule a request, wait for the duration of the [exit delay](#collator-timings), and then execute the request. You can [cancel a request](#cancel-bond-less-request) at any time, as long as the request hasn't been executed yet.
 
@@ -239,7 +239,7 @@ If there is an inactive collator that has not produced blocks for a consecutive 
 
     {{ networks.moonbase.collator_timings.max_offline.rounds }} rounds ({{ networks.moonbase.collator_timings.max_offline.hours }} hours)
 
-To mark a collator as inactive, you can use the `notifyInactiveCollator` extrinsic, which will notify the runtime when a collator is inactive and, by default, mark the collator as offline. To do so, you can head to  [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/accounts/){target=\_blank}, make sure that you are connected to the correct network, then click on the **Developer** tab, select **Extrinsics** from the dropdown, and take the following steps:
+To mark a collator as inactive, you can use the `notifyInactiveCollator` extrinsic, which will notify the runtime when a collator is inactive and, by default, mark the collator as offline. To do so, you can head to  [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/accounts){target=\_blank}, make sure that you are connected to the correct network, then click on the **Developer** tab, select **Extrinsics** from the dropdown, and take the following steps:
 
  1. Select your account
  2. Select **parachainStaking** pallet under the **submit the following extrinsic** menu

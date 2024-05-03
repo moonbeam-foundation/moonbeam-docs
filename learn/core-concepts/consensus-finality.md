@@ -25,7 +25,7 @@ Finality is deterministic in Ethereum's PoS consensus protocol and is achieved t
 
 In Polkadot, there are collators and validators. [Collators](https://wiki.polkadot.network/docs/en/learn-collator/){target=\_blank} maintain parachains (in this case, Moonbeam) by collecting transactions from users and producing state transition proofs for the relay chain [validators](https://wiki.polkadot.network/docs/en/learn-validator/){target=\_blank}. The collator set (nodes that produce blocks) is selected based on the [stake they have in the network](/learn/features/consensus/){target=\_blank}.
 
-For finality, Polkadot and Kusama rely on [GRANDPA](https://wiki.polkadot.network/docs/learn-consensus#finality-gadget-grandpa/){target=\_blank}. GRANDPA provides deterministic finality for any given transaction (block). In other words, when a block or transaction is marked as final, it can't be reverted except via on-chain governance or forking. Moonbeam follows this deterministic finality.
+For finality, Polkadot and Kusama rely on [GRANDPA](https://wiki.polkadot.network/docs/learn-consensus#finality-gadget-grandpa){target=\_blank}. GRANDPA provides deterministic finality for any given transaction (block). In other words, when a block or transaction is marked as final, it can't be reverted except via on-chain governance or forking. Moonbeam follows this deterministic finality.
 
 ## Main Differences Between PoS and DPoS {: #main-differences }
 
@@ -48,7 +48,7 @@ Although the finality gadgets differ, you can use the same, fairly simple strate
  3. You compare it with the block number of your transaction. If your transaction was included in a previous block, it is finalized
  4. As a safety check, retrieve the block by number and verify that the given transaction hash is in the block
 
-The snippets below follow this strategy to check transaction finality. It uses the `finalized` option for the [default block parameter](https://ethereum.org/en/developers/docs/apis/json-rpc/#default-block/){target=\_blank} to get the latest finalized block.
+The snippets below follow this strategy to check transaction finality. It uses the `finalized` option for the [default block parameter](https://ethereum.org/en/developers/docs/apis/json-rpc/#default-block){target=\_blank} to get the latest finalized block.
 
 --8<-- 'text/_common/endpoint-examples.md'
 

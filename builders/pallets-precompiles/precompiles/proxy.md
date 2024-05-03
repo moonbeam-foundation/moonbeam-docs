@@ -38,7 +38,7 @@ The Proxy Precompile is located at the following address:
 
 ## The Proxy Solidity Interface {: #the-proxy-solidity-interface }
 
-[`Proxy.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/proxy/Proxy.sol/){target=\_blank} is an interface through which Solidity contracts can interact with the Proxy Pallet. You do not have to be familiar with the Substrate API since you can interact with it using the Ethereum interface you're familiar with.
+[`Proxy.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/proxy/Proxy.sol){target=\_blank} is an interface through which Solidity contracts can interact with the Proxy Pallet. You do not have to be familiar with the Substrate API since you can interact with it using the Ethereum interface you're familiar with.
 
 The interface includes the following functions:
 
@@ -90,7 +90,7 @@ The below example is demonstrated on Moonbase Alpha, however, similar steps can 
 
 ### Remix Set Up {: #remix-set-up }
 
-To get started, get a copy of [`Proxy.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/proxy/Proxy.sol/){target=\_blank} and take the following steps:
+To get started, get a copy of [`Proxy.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/proxy/Proxy.sol){target=\_blank} and take the following steps:
 
 1. Click on the **File explorer** tab
 2. Copy and paste the file contents into a [Remix file](https://remix.ethereum.org/){target=\_blank} named `Proxy.sol`

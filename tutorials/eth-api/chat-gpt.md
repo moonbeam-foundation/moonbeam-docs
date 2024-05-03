@@ -68,7 +68,7 @@ with the symbol "KEV" and an initial supply of 40000000.
 
 ![ChatGPT's 1st response](/images/tutorials/eth-api/chatgpt/chatgpt-4.webp)
 
-This is a great start. ChatGPT has produced for us a simple yet functional ERC-20 token that meets all of the parameters that we have specified. It also clarified how it created the ERC-20 token contract using the [OpenZeppelin standard](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/ERC20.sol/){target=\_blank} and where the initial token supply is directed. Finally, it reminds us that this is just a start, and there may be other considerations we wish to implement, like minting and burning.
+This is a great start. ChatGPT has produced for us a simple yet functional ERC-20 token that meets all of the parameters that we have specified. It also clarified how it created the ERC-20 token contract using the [OpenZeppelin standard](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/ERC20.sol){target=\_blank} and where the initial token supply is directed. Finally, it reminds us that this is just a start, and there may be other considerations we wish to implement, like minting and burning.
 
 !!! note
     If you don't get the output you're expecting, you can always press **Regenerate Response** or re-phrase your request.

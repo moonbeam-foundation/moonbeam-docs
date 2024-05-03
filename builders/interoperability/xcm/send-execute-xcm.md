@@ -9,11 +9,11 @@ description: Learn how to build a custom XCM message, by combining and experimen
 
 XCM messages are comprised of a [series of instructions](/builders/interoperability/xcm/core-concepts/instructions/){target=\_blank} that are executed by the Cross-Consensus Virtual Machine (XCVM). Combinations of these instructions result in predetermined actions, such as cross-chain token transfers. You can create your own custom XCM messages by combining various XCM instructions.
 
-Pallets such as [X-Tokens](/builders/interoperability/xcm/xc20/send-xc20s/xtokens-pallet/){target=\_blank} and [XCM Transactor](/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-pallet/){target=\_blank} provide functions with a predefined set of XCM instructions to either send [XC-20s](/builders/interoperability/xcm/xc20/overview/){target=\_blank} or remotely execute on other chains via XCM. However, to get a better understanding of the results from combining different XCM instructions, you can build and execute custom XCM messages locally on Moonbeam (only available on Moonbase Alpha). You can also send custom XCM messages to another chain (which will start with the [`DecendOrigin`](https://github.com/paritytech/xcm-format#descendorigin/){target=\_blank} instruction). Nevertheless, for the XCM message to be successfully executed, the target chain needs to be able to understand the instructions.
+Pallets such as [X-Tokens](/builders/interoperability/xcm/xc20/send-xc20s/xtokens-pallet/){target=\_blank} and [XCM Transactor](/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-pallet/){target=\_blank} provide functions with a predefined set of XCM instructions to either send [XC-20s](/builders/interoperability/xcm/xc20/overview/){target=\_blank} or remotely execute on other chains via XCM. However, to get a better understanding of the results from combining different XCM instructions, you can build and execute custom XCM messages locally on Moonbeam (only available on Moonbase Alpha). You can also send custom XCM messages to another chain (which will start with the [`DecendOrigin`](https://github.com/paritytech/xcm-format#descendorigin){target=\_blank} instruction). Nevertheless, for the XCM message to be successfully executed, the target chain needs to be able to understand the instructions.
 
 To execute or send a custom XCM message, you can either use the [Polkadot XCM Pallet](#polkadot-xcm-pallet-interface) directly or through the Ethereum API with the [XCM Utilities Precompile](/builders/interoperability/xcm/xcm-utils/){target=\_blank}. In this guide, you'll learn how to use both methods to execute and send custom-built XCM messages locally on Moonbase Alpha.
 
-This guide assumes that you are familiar with general XCM concepts, such as [general XCM terminology](/builders/interoperability/xcm/overview/#general-xcm-definitions/){target=\_blank} and [XCM instructions](/builders/interoperability/xcm/core-concepts/instructions/){target=\_blank}. For more information, you can check out the [XCM Overview](/builders/interoperability/xcm/overview/){target=\_blank} documentation.
+This guide assumes that you are familiar with general XCM concepts, such as [general XCM terminology](/builders/interoperability/xcm/overview/#general-xcm-definitions){target=\_blank} and [XCM instructions](/builders/interoperability/xcm/core-concepts/instructions/){target=\_blank}. For more information, you can check out the [XCM Overview](/builders/interoperability/xcm/overview/){target=\_blank} documentation.
 
 ## Polkadot XCM Pallet Interface {: #polkadot-xcm-pallet-interface }
 
@@ -57,7 +57,7 @@ The Polkadot XCM Pallet includes the following relevant read-only storage method
 
     === "Parameters"
 
-        `hash` - (optional) the Blake2-256 hash of the [`MultiAsset`](https://github.com/paritytech/xcm-format#6-universal-asset-identifiers/){target=\_blank}
+        `hash` - (optional) the Blake2-256 hash of the [`MultiAsset`](https://github.com/paritytech/xcm-format#6-universal-asset-identifiers){target=\_blank}
 
     === "Returns"
 
@@ -118,11 +118,11 @@ This section of the guide covers the process of building a custom XCM message to
 
 In the following example, you'll transfer DEV tokens from one account to another on Moonbase Alpha. To do so, you'll be building an XCM message that contains the following XCM instructions, which are executed locally (in this case, on Moonbase Alpha):
 
- - [`WithdrawAsset`](/builders/interoperability/xcm/core-concepts/instructions#withdraw-asset/){target=\_blank} - removes assets and places them into the holding register
- - [`DepositAsset`](/builders/interoperability/xcm/core-concepts/instructions#deposit-asset/){target=\_blank} - removes the assets from the holding register and deposits the equivalent assets to a beneficiary account
+ - [`WithdrawAsset`](/builders/interoperability/xcm/core-concepts/instructions#withdraw-asset){target=\_blank} - removes assets and places them into the holding register
+ - [`DepositAsset`](/builders/interoperability/xcm/core-concepts/instructions#deposit-asset){target=\_blank} - removes the assets from the holding register and deposits the equivalent assets to a beneficiary account
 
 !!! note
-    Typically, when you send an XCM message cross-chain to a target chain, the [`BuyExecution` instruction](/builders/interoperability/xcm/core-concepts/instructions#buy-execution/){target=\_blank} is needed to pay for remote execution. However, for local execution, this instruction is not necessary as you are already getting charged via the extrinsic call.
+    Typically, when you send an XCM message cross-chain to a target chain, the [`BuyExecution` instruction](/builders/interoperability/xcm/core-concepts/instructions#buy-execution){target=\_blank} is needed to pay for remote execution. However, for local execution, this instruction is not necessary as you are already getting charged via the extrinsic call.
 
 ### Execute an XCM Message with the Polkadot.js API {: #execute-an-xcm-message-with-polkadotjs-api }
 
@@ -146,7 +146,7 @@ The `execute` function of the Polkadot XCM Pallet accepts two parameters: `messa
     ```
 
 2. Build the `DepositAsset` instruction, which will require you to define:
-    - The multiasset identifier for DEV tokens. You can use the [`WildMultiAsset` format](https://github.com/paritytech/xcm-format/blob/master/README.md#6-universal-asset-identifiers/){target=\_blank}, which allows for wildcard matching, to identify the asset
+    - The multiasset identifier for DEV tokens. You can use the [`WildMultiAsset` format](https://github.com/paritytech/xcm-format/blob/master/README.md#6-universal-asset-identifiers){target=\_blank}, which allows for wildcard matching, to identify the asset
     - The multilocation of the beneficiary account on Moonbase Alpha
 
     ```js
@@ -174,8 +174,8 @@ The `execute` function of the Polkadot XCM Pallet accepts two parameters: `messa
     ```
 
 4. Specify the `maxWeight`, which includes a value for `refTime` and `proofSize` that you will need to define:
-    - The `refTime` is the amount of computational time that can be used for execution. For this example, you can set it to `400000000` since the `refTime` for [`WithdrawAsset`](https://github.com/moonbeam-foundation/moonbeam/blob/{{networks.moonbase.spec_version}}/pallets/moonbeam-xcm-benchmarks/src/weights/fungible.rs#L38/){target=\_blank} and [`DepositAsset`](https://github.com/moonbeam-foundation/moonbeam/blob/{{networks.moonbase.spec_version}}/pallets/moonbeam-xcm-benchmarks/src/weights/fungible.rs#L60/){target=\_blank} is set to `200000000` each
-    - The `proofSize` is the amount of storage in bytes that can be used. You can set this to `14484` since the `proofSize` for [`WithdrawAsset`](https://github.com/moonbeam-foundation/moonbeam/blob/{{networks.moonbase.spec_version}}/pallets/moonbeam-xcm-benchmarks/src/weights/fungible.rs#L38/){target=\_blank} and [`DepositAsset`](https://github.com/moonbeam-foundation/moonbeam/blob/{{networks.moonbase.spec_version}}/pallets/moonbeam-xcm-benchmarks/src/weights/fungible.rs#L60/){target=\_blank} is set to `7242` each
+    - The `refTime` is the amount of computational time that can be used for execution. For this example, you can set it to `400000000` since the `refTime` for [`WithdrawAsset`](https://github.com/moonbeam-foundation/moonbeam/blob/{{networks.moonbase.spec_version}}/pallets/moonbeam-xcm-benchmarks/src/weights/fungible.rs#L38){target=\_blank} and [`DepositAsset`](https://github.com/moonbeam-foundation/moonbeam/blob/{{networks.moonbase.spec_version}}/pallets/moonbeam-xcm-benchmarks/src/weights/fungible.rs#L60){target=\_blank} is set to `200000000` each
+    - The `proofSize` is the amount of storage in bytes that can be used. You can set this to `14484` since the `proofSize` for [`WithdrawAsset`](https://github.com/moonbeam-foundation/moonbeam/blob/{{networks.moonbase.spec_version}}/pallets/moonbeam-xcm-benchmarks/src/weights/fungible.rs#L38){target=\_blank} and [`DepositAsset`](https://github.com/moonbeam-foundation/moonbeam/blob/{{networks.moonbase.spec_version}}/pallets/moonbeam-xcm-benchmarks/src/weights/fungible.rs#L60){target=\_blank} is set to `7242` each
 
     ```js
     const maxWeight = { refTime: 400000000n, proofSize: 14484n } ;
@@ -199,7 +199,7 @@ Now that you have the values for each of the parameters, you can write the scrip
 ```
 
 !!! note
-    You can view an example of the above script, which sends 1 DEV to Bobs's account on Moonbeam, on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/extrinsics/decode/0x1c03030800040000010403001300008a5d784563010d010204000103003cd0a705a2dc65e5b1e1205896baa2be8a07c6e002105e5f51e2/){target=\_blank} using the following encoded calldata: `0x1c03030800040000010403001300008a5d784563010d010204000103003cd0a705a2dc65e5b1e1205896baa2be8a07c6e002105e5f51e2`.
+    You can view an example of the above script, which sends 1 DEV to Bobs's account on Moonbeam, on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/extrinsics/decode/0x1c03030800040000010403001300008a5d784563010d010204000103003cd0a705a2dc65e5b1e1205896baa2be8a07c6e002105e5f51e2){target=\_blank} using the following encoded calldata: `0x1c03030800040000010403001300008a5d784563010d010204000103003cd0a705a2dc65e5b1e1205896baa2be8a07c6e002105e5f51e2`.
 
 Once the transaction is processed, the 0.1 DEV tokens should be withdrawn from Alice's account along with the associated XCM fees, and the destination account should have received 0.1 DEV tokens in their account. A `polkadotXcm.Attempted` event will be emitted with the outcome.
 
@@ -270,13 +270,13 @@ And that's it! You've successfully used the Polkadot XCM Pallet and the XCM Util
 
 This section of the guide covers the process of sending a custom XCM message cross-chain (i.e., from Moonbeam to a target chain, such as the relay chain) via two different methods: the `send` function of the Polkadot XCM Pallet and the `xcmSend` function of the [XCM Utilities Precompile](/builders/interoperability/xcm/xcm-utils/){target=\_blank}.
 
-For the XCM message to be successfully executed, the target chain needs to be able to understand the instructions in the message. If it doesn't, you'll see a `Barrier` filter on the destination chain. For security reasons, the XCM message is prepended with the [`DecendOrigin`](https://github.com/paritytech/xcm-format#descendorigin/){target=\_blank} instruction to prevent XCM execution on behalf of the origin chain Sovereign account. **The example in this section will not work for the reasons mentioned above, it is purely for demonstration purposes**.
+For the XCM message to be successfully executed, the target chain needs to be able to understand the instructions in the message. If it doesn't, you'll see a `Barrier` filter on the destination chain. For security reasons, the XCM message is prepended with the [`DecendOrigin`](https://github.com/paritytech/xcm-format#descendorigin){target=\_blank} instruction to prevent XCM execution on behalf of the origin chain Sovereign account. **The example in this section will not work for the reasons mentioned above, it is purely for demonstration purposes**.
 
 In the following example, you'll be building an XCM message that contains the following XCM instructions, which will be executed in the Alphanet relay chain:
 
- - [`WithdrawAsset`](/builders/interoperability/xcm/core-concepts/instructions#withdraw-asset/){target=\_blank} - removes assets and places them into the holding register
- - [`BuyExecution`](/builders/interoperability/xcm/core-concepts/instructions#buy-execution/){target=\_blank} - takes the assets from holding to pay for execution fees. The fees to pay are determined by the target chain
- - [`DepositAsset`](/builders/interoperability/xcm/core-concepts/instructions#deposit-asset/){target=\_blank}- removes the assets from the holding register and deposits the equivalent assets to a beneficiary account
+ - [`WithdrawAsset`](/builders/interoperability/xcm/core-concepts/instructions#withdraw-asset){target=\_blank} - removes assets and places them into the holding register
+ - [`BuyExecution`](/builders/interoperability/xcm/core-concepts/instructions#buy-execution){target=\_blank} - takes the assets from holding to pay for execution fees. The fees to pay are determined by the target chain
+ - [`DepositAsset`](/builders/interoperability/xcm/core-concepts/instructions#deposit-asset){target=\_blank}- removes the assets from the holding register and deposits the equivalent assets to a beneficiary account
 
 Together, the intention of these instructions is to transfer the native asset of the relay chain, which is UNIT for the Alphanet relay chain, from Moonbase Alpha to an account on the relay chain. This example is for demonstration purposes only to show you how a custom XCM message could be sent cross-chain. Please keep in mind that the target chain needs to be able to understand the instructions in the message to execute them.
 
@@ -325,7 +325,7 @@ The `send` function of the Polkadot XCM Pallet accepts two parameters: `dest` an
     ```
 
 4. Build the `DepositAsset` instruction, which will require you to define:
-    - The multiasset identifier for UNIT tokens. You can use the [`WildMultiAsset` format](https://github.com/paritytech/xcm-format/blob/master/README.md#6-universal-asset-identifiers/){target=\_blank}, which allows for wildcard matching, to identify the asset
+    - The multiasset identifier for UNIT tokens. You can use the [`WildMultiAsset` format](https://github.com/paritytech/xcm-format/blob/master/README.md#6-universal-asset-identifiers){target=\_blank}, which allows for wildcard matching, to identify the asset
     - The multilocation of the beneficiary account on the relay chain
 
     ```js
@@ -370,7 +370,7 @@ Now that you have the values for each of the parameters, you can write the scrip
 ```
 
 !!! note
-    You can view an example of the above script, which sends 1 UNIT to Bobs's relay chain account, on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/extrinsics/decode/0x1c00030100030c000400010000070010a5d4e81300010000070010a5d4e8000d0100010101000c36e9ba26fa63c60ec728fe75fe57b86a450d94e7fee7f9f9eddd0d3f400d67/){target=\_blank} using the following encoded calldata: `0x1c00030100030c000400010000070010a5d4e81300010000070010a5d4e8000d0100010101000c36e9ba26fa63c60ec728fe75fe57b86a450d94e7fee7f9f9eddd0d3f400d67`.
+    You can view an example of the above script, which sends 1 UNIT to Bobs's relay chain account, on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/extrinsics/decode/0x1c00030100030c000400010000070010a5d4e81300010000070010a5d4e8000d0100010101000c36e9ba26fa63c60ec728fe75fe57b86a450d94e7fee7f9f9eddd0d3f400d67){target=\_blank} using the following encoded calldata: `0x1c00030100030c000400010000070010a5d4e81300010000070010a5d4e8000d0100010101000c36e9ba26fa63c60ec728fe75fe57b86a450d94e7fee7f9f9eddd0d3f400d67`.
 
 Once the transaction is processed, a `polkadotXcm.sent` event is emitted with the details of the sent XCM message.
 

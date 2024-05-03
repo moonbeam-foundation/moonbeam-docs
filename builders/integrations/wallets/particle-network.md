@@ -100,7 +100,7 @@ With an application made and dependencies installed, you can move on to configur
 
 To configure your project, you'll need to:
 
-1. Import [`ParticleNetwork`](https://docs.particle.network/developers/auth-service/sdks/web#step-2-setup-developer-api-key/){target=\_blank} from [`@particle-network/auth`](https://docs.particle.network/developers/auth-service/sdks/web/){target=\_blank}
+1. Import [`ParticleNetwork`](https://docs.particle.network/developers/auth-service/sdks/web#step-2-setup-developer-api-key){target=\_blank} from [`@particle-network/auth`](https://docs.particle.network/developers/auth-service/sdks/web/){target=\_blank}
 2. Import `Moonbeam` from [`@particle-network/chains`](https://docs.particle.network/developers/other-services/node-service/evm-chains-api/){target=\_blank}, as you'll need Moonbeam's chain name and ID in the next step
 3. Initialize `ParticleNetwork` using your project credentials that you retrieved from your dashboard and Moonbeam's chain name and ID, and, optionally, you can configure wallet display and security settings
 
@@ -117,7 +117,7 @@ If you want to use an ERC-4337 AA, you'll need to take a couple additional steps
 
 1. Import `SmartAccount` from [`@particle-network/aa`](https://docs.particle.network/developers/account-abstraction/sdks/web/){target=\_blank} and `ParticleProvider` from [`@particle-network/auth`](https://docs.particle.network/developers/auth-service/sdks/web/){target=\_blank}
 2. Initialize a `ParticleProvider` to handle wallet connect requests using the `particle` instance you created in the previous set of steps
-3. Initialize a [`SmartAccount`](https://docs.particle.network/developers/account-abstraction/sdks/web#initialize-the-smartaccount/){target=\_blank} using the provider, your project credentials, and the AA implementation and configuration. For Moonbeam, you'll use either the `SIMPLE` or `BICONOMY` implementation (if you're using `BICOMOMY`, set `version` to `2.0.0`) and pass in Moonbeam's chain ID
+3. Initialize a [`SmartAccount`](https://docs.particle.network/developers/account-abstraction/sdks/web#initialize-the-smartaccount){target=\_blank} using the provider, your project credentials, and the AA implementation and configuration. For Moonbeam, you'll use either the `SIMPLE` or `BICONOMY` implementation (if you're using `BICOMOMY`, set `version` to `2.0.0`) and pass in Moonbeam's chain ID
 4. Enable ERC-4337 mode, specifying the `SIMPLE` or `BICONOMY` implementation
 
 ```js hl_lines="3 4 21-34 37-40"
@@ -132,7 +132,7 @@ You can wrap your AA in a custom provider if you want to interact with an Ethere
 
 To do so, you'll need to take the following steps:
 
-1. Import [`AAWrapProvider`](https://docs.particle.network/developers/account-abstraction/sdks/web#initialize-the-smartaccount/){target=\_blank} from `'@particle-network/aa'`
+1. Import [`AAWrapProvider`](https://docs.particle.network/developers/account-abstraction/sdks/web#initialize-the-smartaccount){target=\_blank} from `'@particle-network/aa'`
 2. Import the library of your choice
 3. Initialize a `AAWrapProvider` using the AA you created in the previous section
 4. Wrap the EIP-1193 provider using the library of your choice and the `AAWrapProvider`

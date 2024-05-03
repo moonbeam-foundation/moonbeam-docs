@@ -103,7 +103,7 @@ To create a custom OnFinality endpoint, go to [OnFinality](https://onfinality.io
 
 [Pocket Network](https://pokt.network/){target=\_blank} is a decentralized node service that provides a free personal endpoint to DApps on Moonbeam & Moonriver.  
 
-To get your own endpoint, go to [Pocket Network](https://mainnet.portal.pokt.network/#/){target=\_blank} and sign up or log in. From the **Portal**, you can:  
+To get your own endpoint, go to [Pocket Network](https://mainnet.portal.pokt.network/#){target=\_blank} and sign up or log in. From the **Portal**, you can:  
 
 1. Click on **Apps**
 2. Select **Create**
@@ -170,4 +170,4 @@ The following providers provide tracing RPC endpoints:
 
 To use the Trace API, you simply call the trace method of your choice from your [private RPC endpoint](#onfinality). For a list of the supported networks and trace methods, please check out [OnFinality's Trace API documentation](https://documentation.onfinality.io/support/trace-api#TraceAPI-SupportedNetworks/){target=\_blank}.
 
-Please note that if you are tracing historic blocks, it is recommended to use your own dedicated trace node to backfill any data, and then once you're caught up, you can switch to using the Trace API. You can check out the [How to Deploy a Trace Node for Moonbeam on OnFinality](https://onfinality.medium.com/how-to-deploy-a-trace-node-for-moonbeam-on-onfinality-85683181d290/){target=-_blank} post for more information on how to spin up your own dedicated trace node.
+Please note that if you are tracing historic blocks, it is recommended to use your own dedicated trace node to backfill any data, and then once you're caught up, you can switch to using the Trace API. You can check out the [How to Deploy a Trace Node for Moonbeam on OnFinality](https://onfinality.medium.com/how-to-deploy-a-trace-node-for-moonbeam-on-onfinality-85683181d290){target=-_blank} post for more information on how to spin up your own dedicated trace node.

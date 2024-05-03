@@ -11,7 +11,7 @@ The [Cross-Consensus Message (XCM)](https://wiki.polkadot.network/docs/learn-cro
 
 Substrate assets are natively interoperable. However, developers need to tap into the Substrate API to interact with them, with no real visibility into the EVM. Consquently, interoperable Substrate assets are not that attractive for developers building on the EVM. To fix that and to help developers tap into the native interoperability that Polkadot/Kusama offers, Moonbeam introduced the concept of XC-20s.
 
-XC-20s are a unique asset class on Moonbeam. It combines the power of Substrate assets (native interoperability) but allows users and developers to interact with them through a familiar [ERC-20 interface](/builders/interoperability/xcm/xc20/interact#the-erc20-interface/){target=\_blank}. On the EVM side, XC-20s follow the standard [ERC-20 interface](/builders/interoperability/xcm/xc20/interact#the-erc20-interface/){target=\_blank}, so smart contracts and users can easily interact with them, and no knowledge of Substrate is required. This ultimately provides greater flexibility for developers when working with these types of assets and allows seamless integrations with EVM-based smart contracts such as DEXs and lending platforms, among others. Moreover, developers can integrate XC-20s with regular [Ethereum development frameworks](/builders/build/eth-api/dev-env/){target=\_blank}, or dApps, and create connected contract strategies with such assets. Moreover, with the introduction of [RT2301](https://github.com/moonbeam-foundation/moonbeam/tree/runtime-2301/){target=\_blank}, all ERC-20s are XCM-ready, meaning they can also be referred to as XC-20s.
+XC-20s are a unique asset class on Moonbeam. It combines the power of Substrate assets (native interoperability) but allows users and developers to interact with them through a familiar [ERC-20 interface](/builders/interoperability/xcm/xc20/interact#the-erc20-interface){target=\_blank}. On the EVM side, XC-20s follow the standard [ERC-20 interface](/builders/interoperability/xcm/xc20/interact#the-erc20-interface){target=\_blank}, so smart contracts and users can easily interact with them, and no knowledge of Substrate is required. This ultimately provides greater flexibility for developers when working with these types of assets and allows seamless integrations with EVM-based smart contracts such as DEXs and lending platforms, among others. Moreover, developers can integrate XC-20s with regular [Ethereum development frameworks](/builders/build/eth-api/dev-env/){target=\_blank}, or dApps, and create connected contract strategies with such assets. Moreover, with the introduction of [RT2301](https://github.com/moonbeam-foundation/moonbeam/tree/runtime-2301/){target=\_blank}, all ERC-20s are XCM-ready, meaning they can also be referred to as XC-20s.
 
 ![Moonbeam XC-20 XCM Integration With Polkadot](/images/builders/interoperability/xcm/overview/overview-3.webp)
 
@@ -23,7 +23,7 @@ There are two types of XC-20s: local and external.
 
 ### What are Local XC-20s? {: #local-xc20s }
 
-Local XC-20s are all ERC-20s that exist on the EVM, and that can be transferred cross-chain through XCM. In order for local XC-20s to be transferred to another parachain, the asset needs to be registered on that chain. When transferring local XC-20s, the actual tokens reside in the destination chain's Sovereign account on Moonbeam. Local XC-20s must follow [the ERC-20 interface outlined in this guide](/builders/interoperability/xcm/xc20/interact#the-erc20-interface/){target=\_blank}, they cannot be customized ERC-20s. More specifically, the function selector of the `transfer` function must be as described in [EIP-20](https://eips.ethereum.org/EIPS/eip-20/){target=\_blank}:
+Local XC-20s are all ERC-20s that exist on the EVM, and that can be transferred cross-chain through XCM. In order for local XC-20s to be transferred to another parachain, the asset needs to be registered on that chain. When transferring local XC-20s, the actual tokens reside in the destination chain's Sovereign account on Moonbeam. Local XC-20s must follow [the ERC-20 interface outlined in this guide](/builders/interoperability/xcm/xc20/interact#the-erc20-interface){target=\_blank}, they cannot be customized ERC-20s. More specifically, the function selector of the `transfer` function must be as described in [EIP-20](https://eips.ethereum.org/EIPS/eip-20/){target=\_blank}:
 
 ```js
 function transfer(address _to, uint256 _value) public returns (bool success)
@@ -95,7 +95,7 @@ The current list of available external XC-20 assets per network is as follows:
     |        Unique         |   xcUNQ   | [0xFffffFFFD58f77E6693CFB99EbE273d73C678DC2](https://moonscan.io/token/0xFffffFFFD58f77E6693CFB99EbE273d73C678DC2/){target=\_blank} |
     |       Zeitgeist       |   xcZTG   | [0xFFFFfffF71815ab6142E0E20c7259126C6B40612](https://moonscan.io/token/0xFFFFfffF71815ab6142E0E20c7259126C6B40612/){target=\_blank} |
 
-     _*You can check each [Asset ID](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbeam.network#/assets/){target=\_blank} on Polkadot.js Apps_
+     _*You can check each [Asset ID](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbeam.network#/assets){target=\_blank} on Polkadot.js Apps_
 
 === "Moonriver"
     |      Origin      | Symbol  |                                                                 XC-20 Address                                                                 |
@@ -125,14 +125,14 @@ The current list of available external XC-20 assets per network is as follows:
     |    Tinkernet     | xcTNKR  | [0xfFFfFffF683474B842852111cc31d470bD8f5081](https://moonriver.moonscan.io/token/0xffffffff683474b842852111cc31d470bd8f5081/){target=\_blank} |
     |      Turing      |  xcTUR  | [0xfFffffFf6448d0746f2a66342B67ef9CAf89478E](https://moonriver.moonscan.io/token/0xfFffffFf6448d0746f2a66342B67ef9CAf89478E/){target=\_blank} |
 
-    _*You can check each [Asset ID](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonriver.moonbeam.network#/assets/){target=\_blank} on Polkadot.js Apps_
+    _*You can check each [Asset ID](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonriver.moonbeam.network#/assets){target=\_blank} on Polkadot.js Apps_
 
 === "Moonbase Alpha"
     |        Origin        | Symbol |                                                                XC-20 Address                                                                 |
     |:--------------------:|:------:|:--------------------------------------------------------------------------------------------------------------------------------------------:|
     | Relay Chain Alphanet | xcUNIT | [0xFfFFfFff1FcaCBd218EDc0EbA20Fc2308C778080](https://moonbase.moonscan.io/token/0xFfFFfFff1FcaCBd218EDc0EbA20Fc2308C778080/){target=\_blank} |
 
-     _*You can check each [Asset ID](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/assets/){target=\_blank} on Polkadot.js Apps_
+     _*You can check each [Asset ID](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/assets){target=\_blank} on Polkadot.js Apps_
 
 ### Retrieve List of External XC-20s and Their Metadata {: #list-xchain-assets }
 

@@ -27,7 +27,7 @@ Each data-feed has a Job ID attached to it. For example:
 |   2    |          BTC           |
 |   3    |    Microsoft Stocks    |
 
-You can check Job IDs for each data-feed on the [Razor Network Explorer](https://razorscan.io/#/custom/){target=\_blank}. Price feeds are updated every 5 minutes. More information can be found in [Razor's documentation website](https://docs.razor.network/){target=\_blank}.
+You can check Job IDs for each data-feed on the [Razor Network Explorer](https://razorscan.io/#/custom){target=\_blank}. Price feeds are updated every 5 minutes. More information can be found in [Razor's documentation website](https://docs.razor.network/){target=\_blank}.
 
 ## Get Data From Bridge Contract {: #get-data-from-bridge-contract }
 

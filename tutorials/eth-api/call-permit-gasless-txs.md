@@ -163,7 +163,7 @@ We'll first start off with the domain separator, which will define the Call Perm
 
 --8<-- 'text/builders/pallets-precompiles/precompiles/call-permit/domain-separator.md'
 
-We're using Ethers in this example, which requires the domain separator to be in the format specified by the [`TypedDataDomain` interface](https://docs.ethers.org/v6/api/hashing/#TypedDataDomain/){target=\_blank}, but if desired, you could generate the domain separator as a *bytes32* representation using the [`DOMAIN_SEPARATOR()` function of the Call Permit Precompile](/builders/pallets-precompiles/precompiles/call-permit/#:~:text=DOMAIN_SEPARATOR()/){target=\_blank}.
+We're using Ethers in this example, which requires the domain separator to be in the format specified by the [`TypedDataDomain` interface](https://docs.ethers.org/v6/api/hashing/#TypedDataDomain){target=\_blank}, but if desired, you could generate the domain separator as a *bytes32* representation using the [`DOMAIN_SEPARATOR()` function of the Call Permit Precompile](/builders/pallets-precompiles/precompiles/call-permit/#:~:text=DOMAIN_SEPARATOR()){target=\_blank}.
 
 The domain separator for each Moonbeam network is as follows:
 
@@ -215,7 +215,7 @@ The domain separator for each Moonbeam network is as follows:
 
 Next, we'll need to define the typed data structure. The typed data structure defines the acceptable types of data that our users will be signing. We'll go into detail on the actual data in the following section.
 
-If you take a look at the [`dispatch` function of the Call Permit Precompile](/builders/pallets-precompiles/precompiles/call-permit/#the-call-permit-interface/){target=\_blank}, you'll see that the data that we need to send, along with the associated types, is as follows:
+If you take a look at the [`dispatch` function of the Call Permit Precompile](/builders/pallets-precompiles/precompiles/call-permit/#the-call-permit-interface){target=\_blank}, you'll see that the data that we need to send, along with the associated types, is as follows:
 
 ```solidity
 function dispatch(
@@ -251,7 +251,7 @@ const types = {
 
 ### Define the Message Data {: #define-message-data }
 
-Since we are going to implement gasless transactions for buying a voyage, we're going to be interacting with the [Cartographer V1 contract](https://moonscan.io/address/0xD1A9bA3e61Ac676f58B29EA0a09Cf5D7f4f35138#code/){target=\_blank}, which is located at this address: `0xD1A9bA3e61Ac676f58B29EA0a09Cf5D7f4f35138` on Moonbeam.
+Since we are going to implement gasless transactions for buying a voyage, we're going to be interacting with the [Cartographer V1 contract](https://moonscan.io/address/0xD1A9bA3e61Ac676f58B29EA0a09Cf5D7f4f35138#code){target=\_blank}, which is located at this address: `0xD1A9bA3e61Ac676f58B29EA0a09Cf5D7f4f35138` on Moonbeam.
 
 So, let's start by going over the arguments required to build the message data:
 
@@ -283,13 +283,13 @@ Now, let's dig a little bit deeper and tackle the `TODO` items.
 
 We'll start off by calculating the `data` value. We can programmatically calculate the `data` value with [Ethers](/builders/build/eth-api/libraries/ethersjs/){target=\_blank} by creating an interface of the Cartographer V1 contract and using the `interface.encodeFunctionData` function.
 
-If you take a look at the [`DPSCartographer.sol` contract's code](https://moonscan.io/address/0xD1A9bA3e61Ac676f58B29EA0a09Cf5D7f4f35138#code/){target=\_blank}, you'll see the [`buyVoyages` function](https://moonscan.io/address/0xD1A9bA3e61Ac676f58B29EA0a09Cf5D7f4f35138#code#F1#L75/){target=\_blank}. The `buyVoyages` function accepts three parameters: 
+If you take a look at the [`DPSCartographer.sol` contract's code](https://moonscan.io/address/0xD1A9bA3e61Ac676f58B29EA0a09Cf5D7f4f35138#code){target=\_blank}, you'll see the [`buyVoyages` function](https://moonscan.io/address/0xD1A9bA3e61Ac676f58B29EA0a09Cf5D7f4f35138#code#F1#L75){target=\_blank}. The `buyVoyages` function accepts three parameters:
 
-- *uint16* `_voyageType` - specifies the type of voyage to buy, i.e., easy, medium, hard, etc. This value corresponds to the index of the voyage in the [`VOYAGE_TYPE` enum](https://moonscan.io/address/0x72a33394f0652e2bf15d7901f3cd46863d968424#code/){target=\_blank}. For this example, we'll do an easy voyage, so we'll pass in `0` as the value
+- *uint16* `_voyageType` - specifies the type of voyage to buy, i.e., easy, medium, hard, etc. This value corresponds to the index of the voyage in the [`VOYAGE_TYPE` enum](https://moonscan.io/address/0x72a33394f0652e2bf15d7901f3cd46863d968424#code){target=\_blank}. For this example, we'll do an easy voyage, so we'll pass in `0` as the value
 - *uint256* `_amount` - corresponds to the number of voyages to buy. We'll buy one voyage
 - *DPSVoyageIV2* `_voyage` - represents the address of the `DPSVoyageV2.sol` contract, which is: `0x72A33394f0652e2Bf15d7901f3Cd46863d968424` on Moonbeam
 
-To create an interface using Ethers, we'll need to get the ABI of the Cartographer V1 contract. You can retrieve it in full from [Moonscan](https://moonscan.io/address/0xD1A9bA3e61Ac676f58B29EA0a09Cf5D7f4f35138#code/){target=\_blank}, or for simplicity, you can use the following snippet, which is the part of the ABI we need for this example:
+To create an interface using Ethers, we'll need to get the ABI of the Cartographer V1 contract. You can retrieve it in full from [Moonscan](https://moonscan.io/address/0xD1A9bA3e61Ac676f58B29EA0a09Cf5D7f4f35138#code){target=\_blank}, or for simplicity, you can use the following snippet, which is the part of the ABI we need for this example:
 
 ```js
 const cartographerAbi = [
@@ -359,7 +359,7 @@ We'll get the nonce in the next section, and then put all of the arguments toget
 
 Lastly, we'll need to get the `nonce` of the `from` account. As previously mentioned, we can use the `nonces` function of the Call Permit Precompile to get this value. To do so, you'll need to create a contract instance for the Call Permit Precompile:
 
-1. Create a new file in your project that contains the ABI of the Call Permit Precompile. You can find the [ABI on GitHub](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/builders/pallets-precompiles/precompiles/call-permit/abi.js/){target=\_blank}
+1. Create a new file in your project that contains the ABI of the Call Permit Precompile. You can find the [ABI on GitHub](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/builders/pallets-precompiles/precompiles/call-permit/abi.js){target=\_blank}
 2. Import the ABI into your Ethers file
 3. Create an instance of the Call Permit Precompile using the precompile's address and the ABI of the precompile. You can use either a provider or a signer. Since we are dispatching the permit later on in this tutorial, we'll use the signer associated with the third-party account for transaction fees, but if you only needed to access the `nonces` function, you could use a provider instead
 4. Call the `nonces` function and pass in the `signer.account` of the user, which is the same as the `from` account
@@ -473,7 +473,7 @@ The components of the hash can be broken down as follows:
 - **\x19** - makes the encoding deterministic
 - **\x01** - the version byte, which makes the hash compliant with [EIP-191](https://eips.ethereum.org/EIPS/eip-191/){target=\_blank}
 - **domainSeparator** - the 32-byte domain seperator, which was [previously covered](#define-the-domain-separator) and can be easily retrieved using the `DOMAIN_SEPARATOR` function of the Call Permit Precompile
-- **hashStruct(message)** - the 32-byte data to sign, which is based on the typed data structure and the actual data. For more information, please refer to the [EIP-712 specification](https://eips.ethereum.org/EIPS/eip-712#definition-of-hashstruct/){target=\_blank}
+- **hashStruct(message)** - the 32-byte data to sign, which is based on the typed data structure and the actual data. For more information, please refer to the [EIP-712 specification](https://eips.ethereum.org/EIPS/eip-712#definition-of-hashstruct){target=\_blank}
 
 Now that we have an understanding of what the `signTypedData` function does, we can go ahead and pass in the data we've assembled in the previous sections:
 
@@ -490,7 +490,7 @@ A hash of the signature will print to the terminal. We'll use the user's signatu
 
 ## Dispatch a Signed EIP-712 Message {: #dispatch-eip712-message }
 
-Before an EIP-712 signed message can be dispatched, we'll need to get the signature-related parameters, `v`, `r`, and `s`, from the signed message. The `signTypedData` function returned a hex string that contains each of these values, but to easily get these values individually, we're going to use Ethers' `Signature.from` function. This will create a new instance of Ether's [Signature class](https://docs.ethers.org/v6/api/crypto/#Signature/){target=\_blank}, which will allow us to easily grab the `v`, `r`, and `s` values that we need in order to use the `dispatch` function. 
+Before an EIP-712 signed message can be dispatched, we'll need to get the signature-related parameters, `v`, `r`, and `s`, from the signed message. The `signTypedData` function returned a hex string that contains each of these values, but to easily get these values individually, we're going to use Ethers' `Signature.from` function. This will create a new instance of Ether's [Signature class](https://docs.ethers.org/v6/api/crypto/#Signature){target=\_blank}, which will allow us to easily grab the `v`, `r`, and `s` values that we need in order to use the `dispatch` function.
 
 ```js
 const formattedSignature = ethers.Signature.from(signature);

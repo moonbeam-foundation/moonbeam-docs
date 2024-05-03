@@ -29,7 +29,7 @@ DIA has deployed the following demo oracles for the Moonbeam community, which pr
 |   Moonriver    | [`0x11f74b94afb5968119c98ea277a2b73208bb39ab`](https://moonriver.moonscan.io/address/0x11f74b94afb5968119c98ea277a2b73208bb39ab/){target=\_blank} |
 | Moonbase Alpha | [`0xe23d8713aa3a0a2c102af772d2467064821b8d46`](https://moonbase.moonscan.io/address/0xe23d8713aa3a0a2c102af772d2467064821b8d46/){target=\_blank}  |
 
-The demo oracle contracts deployed to Moonbeam are the [DIA Key-Value Oracle Contract V2](https://docs.diadata.org/introduction/intro-to-dia-oracles/oracle-structures/access-the-oracle#dia-key-value-oracle-contract-v2/){target=\_blank}. The contract is structured as follows:
+The demo oracle contracts deployed to Moonbeam are the [DIA Key-Value Oracle Contract V2](https://docs.diadata.org/introduction/intro-to-dia-oracles/oracle-structures/access-the-oracle#dia-key-value-oracle-contract-v2){target=\_blank}. The contract is structured as follows:
 
 ```solidity
 pragma solidity 0.7.4;
@@ -181,9 +181,9 @@ DIA also supports API endpoints to return cryptocurrency price data. Developers 
 
 [DIA xRandom](https://docs.diadata.org/products/randomness-oracle/){target=\_blank} provides smart contracts with unpredictable and unbiased random numbers, facilitating the development of on-chain use cases such as lotteries, prediction markets, NFT launches, and more.
 
-DIA leverages the Drand public randomness beacon, and updates its oracle with round numbers, randomness and a signature. Drand runs distributed nodes to produce their randomness beacon. Drand uses [Pedersen's DKG (Distributed Key Generation) protocol](https://drand.love/docs/cryptography/#distributed-key-generation-dkg/){target=\_blank} to create collective private and public keys. Participants in their League of Entropy then generate randomness in rounds and broadcast it together with its signature.
+DIA leverages the Drand public randomness beacon, and updates its oracle with round numbers, randomness and a signature. Drand runs distributed nodes to produce their randomness beacon. Drand uses [Pedersen's DKG (Distributed Key Generation) protocol](https://drand.love/docs/cryptography/#distributed-key-generation-dkg){target=\_blank} to create collective private and public keys. Participants in their League of Entropy then generate randomness in rounds and broadcast it together with its signature.
 
-To learn more about Drand’s randomness beacon, watch the [On-Chain Randomness Oracle | DIA Developer Tutorial](https://youtu.be/7HALDJr8V3g/){target=\_blank} and read [Drand’s documentation](https://drand.love/docs/overview/#how-drand-works/){target=\_blank}.
+To learn more about Drand’s randomness beacon, watch the [On-Chain Randomness Oracle | DIA Developer Tutorial](https://youtu.be/7HALDJr8V3g/){target=\_blank} and read [Drand’s documentation](https://drand.love/docs/overview/#how-drand-works){target=\_blank}.
 
 ### Moonbeam Demo Randomness Oracle {: #moonbeam-demo-randomness-oracle }
 

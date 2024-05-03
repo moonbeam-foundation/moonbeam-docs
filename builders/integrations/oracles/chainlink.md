@@ -15,7 +15,7 @@ Developers can now use [Chainlink's decentralized Oracle network](https://chain.
 
 Before going into fetching the data itself, it is important to understand the basics of price feeds.
 
-In a standard configuration, each price feed is updated by a decentralized oracle network. Each oracle node is rewarded for publishing the price data to the [aggregator contract](https://github.com/smartcontractkit/chainlink/blob/develop/contracts/src/v0.8/shared/interfaces/AggregatorV3Interface.sol/){target=\_blank}. The aggregator contract receives periodic data updates from the network of oracles and aggregates and stores the data on-chain so that consumers can easily fetch it. However, the information is only updated if a minimum number of responses from oracle nodes are received (during an aggregation round).
+In a standard configuration, each price feed is updated by a decentralized oracle network. Each oracle node is rewarded for publishing the price data to the [aggregator contract](https://github.com/smartcontractkit/chainlink/blob/develop/contracts/src/v0.8/shared/interfaces/AggregatorV3Interface.sol){target=\_blank}. The aggregator contract receives periodic data updates from the network of oracles and aggregates and stores the data on-chain so that consumers can easily fetch it. However, the information is only updated if a minimum number of responses from oracle nodes are received (during an aggregation round).
 
 The end-user can retrieve price feeds with read-only operations via an aggregator interface, or via a Consumer interface through the Proxy.
 
@@ -145,7 +145,7 @@ Currently, there are data feed contracts for [Moonbeam](https://docs.chain.link/
 
 For example, you can use the aggregator interface to fetch the price feed of `BTC to USD` using [Remix](https://remix.ethereum.org/){target=\_blank}. If you need help loading a contract into Remix, check out the [Using Remix](/builders/build/eth-api/dev-env/remix/){target=\_blank} page of the documentation site.
 
-You will need to connect your MetaMask account to Remix, so make sure you have MetaMask installed and are connected to the correct network. To get help setting up MetaMask, check out the [Interacting with Moonbeam Using MetaMask](/tokens/connect/metamask/#install-the-metamask-extension/){target=\_blank} guide.
+You will need to connect your MetaMask account to Remix, so make sure you have MetaMask installed and are connected to the correct network. To get help setting up MetaMask, check out the [Interacting with Moonbeam Using MetaMask](/tokens/connect/metamask/#install-the-metamask-extension){target=\_blank} guide.
 
 After creating the file and compiling the contract, you will need to follow these steps:
 
@@ -403,7 +403,7 @@ Keep in mind that the LINK token payment is set to zero.
 
 To get started with your own setup, including your own client contract, oracle contract, and oracle node, you'll need to start off running an oracle node. You can follow the [Run a Chainlink Oracle Node on Moonbeam](/node-operators/oracle-nodes/node-chainlink/){target=\_blank} guide to spin up your own oracle node. You'll also learn how to setup your oracle contract and create jobs.
 
-If you [created a job to be used with any API](/node-operators/oracle-nodes/node-chainlink/#using-any-api/){target=\_blank}, you can then create a client contract that sets the API endpoint URL to perform the GET request on.
+If you [created a job to be used with any API](/node-operators/oracle-nodes/node-chainlink/#using-any-api){target=\_blank}, you can then create a client contract that sets the API endpoint URL to perform the GET request on.
 
 Note that the client contract must have a LINK tokens balance to be able to pay for requests. Therefore, you will need to set the LINK value to zero in your `ChainlinkClient.sol` contract. You'll also need to make sure that your oracle node has a `MINIMUM_CONTRACT_PAYMENT` of `0`. You can verify that it has been set to zero by checking out the [**Configuration** section of your node](http://localhost:6688/config/){target=\_blank}.
 

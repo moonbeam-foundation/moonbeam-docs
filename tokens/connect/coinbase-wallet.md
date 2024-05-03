@@ -183,7 +183,7 @@ To subscribe, take the following steps:
 
 ![Confirm subscription](/images/tokens/connect/coinbase-wallet/coinbase-13.webp)
 
-And that's it! Once done, you'll see the below confirmation screen. For questions about Coinbase Wallet, please refer to the [Coinbase Wallet Help](https://help.coinbase.com/en/wallet/messaging/info#connecting-to-the-xmtp-network/){target=\_blank}.
+And that's it! Once done, you'll see the below confirmation screen. For questions about Coinbase Wallet, please refer to the [Coinbase Wallet Help](https://help.coinbase.com/en/wallet/messaging/info#connecting-to-the-xmtp-network){target=\_blank}.
 
 ![Finalized](/images/tokens/connect/coinbase-wallet/coinbase-14.webp)
 

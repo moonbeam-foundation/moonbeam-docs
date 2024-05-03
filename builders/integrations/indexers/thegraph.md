@@ -58,7 +58,7 @@ To use The Graph on Moonbase Alpha you have two options:
 
 ## The Lottery Contract {: #the-lottery-contract }
 
-For this example, a simple Lottery contract will be used. You can find the Solidity file in the [MoonLotto GitHub repository](https://github.com/papermoonio/moonlotto-subgraph/blob/main/contracts/MoonLotto.sol/){target=\_blank}.
+For this example, a simple Lottery contract will be used. You can find the Solidity file in the [MoonLotto GitHub repository](https://github.com/papermoonio/moonlotto-subgraph/blob/main/contracts/MoonLotto.sol){target=\_blank}.
 
 The contract hosts a lottery where players can buy ticket for themselves, or gift one to another user. When 1 hour has passed, if there are 10 participants, the next player that joins the lottery will execute a function that picks the winner. All the funds stored in the contract are sent to the winner, after which a new round starts.
 
@@ -104,8 +104,8 @@ For this example, the contract was deployed to `{{ networks.moonbase.thegraph.lo
 
 In general terms, Subgraphs define the data that The Graph will index from the blockchain and the way it is stored. Subgraphs tend to have some of the following files:
 
- - **subgraph.yaml** — is a YAML file that contains the [Subgraph's manifest](https://thegraph.com/docs/en/developing/creating-a-subgraph/#the-subgraph-manifest/){target=\_blank}, that is, information related to the smart contracts being indexed by the Subgraph
- - **schema.graphql** — is a [GraphQL schema](https://thegraph.com/docs/en/developing/creating-a-subgraph/#the-graph-ql-schema/){target=\_blank} file that defines the data store for the Subgraph being created and its structure. It is written using [GraphQL interface definition schema](https://graphql.org/learn/schema/#type-language/){target=\_blank}
+ - **subgraph.yaml** — is a YAML file that contains the [Subgraph's manifest](https://thegraph.com/docs/en/developing/creating-a-subgraph/#the-subgraph-manifest){target=\_blank}, that is, information related to the smart contracts being indexed by the Subgraph
+ - **schema.graphql** — is a [GraphQL schema](https://thegraph.com/docs/en/developing/creating-a-subgraph/#the-graph-ql-schema){target=\_blank} file that defines the data store for the Subgraph being created and its structure. It is written using [GraphQL interface definition schema](https://graphql.org/learn/schema/#type-language){target=\_blank}
  - **AssemblyScript mappings** — code in TypeScript (then compiled to [AssemblyScript](https://github.com/AssemblyScript/assemblyscript/){target=\_blank}) that is used to translate event data from the contract to the entities defined in the schema
 
 There is no particular order to follow when modifying the files to create a Subgraph.
@@ -281,7 +281,7 @@ Where:
  - **access-token** — refers to the access token to use The Graph API
  
 !!! note
-    All steps can be found in the Graph's documentation for using a [Hosted Service to Deploy your Subgraph](https://thegraph.com/docs/en/quick-start/#4-deploy-your-subgraph/){target=\_blank}.
+    All steps can be found in the Graph's documentation for using a [Hosted Service to Deploy your Subgraph](https://thegraph.com/docs/en/quick-start/#4-deploy-your-subgraph){target=\_blank}.
  
 ### Using a Local Graph Node
 

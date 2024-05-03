@@ -9,7 +9,7 @@ description: Follow this quick tutorial to learn how to use Moonbeam’s Ethereu
 
 As a Polkadot parachain, Moonbeam uses a [unified account structure](/learn/core-concepts/unified-accounts/){target=\_blank} that allows you to interact with Substrate (Polkadot) functionality and Moonbeam's EVM, all from a single Ethereum-style address. This unified account structure means that you don't need to maintain both a Substrate and an Ethereum account to interact with Moonbeam - instead, you can do it all with a single Ethereum private key.
 
-The Polkadot.js Apps interface natively supports H160 addresses and ECDSA keys. So, in this tutorial, you can check out this integration of Ethereum-based accounts on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network%2Fpublic-ws#/accounts/){target=\_blank}.
+The Polkadot.js Apps interface natively supports H160 addresses and ECDSA keys. So, in this tutorial, you can check out this integration of Ethereum-based accounts on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network%2Fpublic-ws#/accounts){target=\_blank}.
 
 --8<-- 'text/_disclaimers/third-party-content-intro.md'
 
@@ -18,7 +18,7 @@ The Polkadot.js Apps interface natively supports H160 addresses and ECDSA keys. 
 
 ## Connect Polkadot.js Apps to Moonbeam {: #connecting-to-moonbase-alpha }
 
-When launching [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network%2Fpublic-ws#/accounts/){target=\_blank} for the first time, you may or may not be connected to the desired network.
+When launching [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network%2Fpublic-ws#/accounts){target=\_blank} for the first time, you may or may not be connected to the desired network.
 
 You can change the selected network by clicking the logo in the top left corner, where you'll find a list of networks organized by MainNets, TestNets, and local networks. Each network can be found under the following sections:
 
@@ -50,7 +50,7 @@ In this section, you'll learn how you can create a new account or import a preex
 
 ![Allow local in-browser account storage](/images/tokens/connect/polkadotjs/polkadotjs-3.webp)
 
-You can now head back to the [Accounts page of Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network%2Fpublic-ws#/accounts/){target=\_blank} and proceed with the next steps:
+You can now head back to the [Accounts page of Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network%2Fpublic-ws#/accounts){target=\_blank} and proceed with the next steps:
 
 1. Navigate to the **Accounts** section
 2. Click on the **Add account** button

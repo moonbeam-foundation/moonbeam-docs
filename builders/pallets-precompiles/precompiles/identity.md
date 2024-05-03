@@ -35,7 +35,7 @@ The Identity Precompile is located at the following address:
 
 ## The Identity Precompile Solidity Interface {: #the-solidity-interface }
 
-[`Identity.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/identity/Identity.sol/){target=\_blank} is a Solidity interface that allows developers to interact with the precompile's methods.
+[`Identity.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/identity/Identity.sol){target=\_blank} is a Solidity interface that allows developers to interact with the precompile's methods.
 
 ??? code "Identity.sol"
 

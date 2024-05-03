@@ -39,9 +39,9 @@ The Utility Pallet includes the following read-only functions to obtain pallet c
 
 ## Using the Batch Extrinsics  {: #using-the-batch-extrinsics }
 
-You can access the batch extrinsics using the Polkadot.js Apps interface or through the Polkadot.js API. This example will show you how to use the `batch` extrinsic from Polkadot.js Apps. If you're using the Polkadot.js API, you can access the Utility Pallet through `api.tx.utility.batch` interface. For more information on batching transactions with the API, please refer to the [Polkadot.js API Library](/builders/build/substrate-api/polkadot-js-api/#batching-transactions/){target=\_blank} page.
+You can access the batch extrinsics using the Polkadot.js Apps interface or through the Polkadot.js API. This example will show you how to use the `batch` extrinsic from Polkadot.js Apps. If you're using the Polkadot.js API, you can access the Utility Pallet through `api.tx.utility.batch` interface. For more information on batching transactions with the API, please refer to the [Polkadot.js API Library](/builders/build/substrate-api/polkadot-js-api/#batching-transactions){target=\_blank} page.
 
-To get started, you can navigate to [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/extrinsics/){target=\_blank} and connect to Moonbase Alpha. This example can also be adapted for Moonbeam or Moonriver.
+To get started, you can navigate to [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/extrinsics){target=\_blank} and connect to Moonbase Alpha. This example can also be adapted for Moonbeam or Moonriver.
 
 You can send any combination of calls, whether they're balance transfers, democracy actions, staking actions, or more.
 

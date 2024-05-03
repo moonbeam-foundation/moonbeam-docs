@@ -11,12 +11,12 @@ Moonbeam Routed Liquidity (MRL) refers to a Moonbeam use case in which liquidity
 
 - **General Message Passing (GMP)** - technology connecting multiple blockchains together, including Moonbeam. With it, developers can pass messages with arbitrary data, and tokens can be sent across non-parachain blockchains through [chain-agnostic GMP protocols](/builders/interoperability/protocols/){target=\_blank}
 - [**Cross-Consensus Message Passing (XCM)**](/builders/interoperability/xcm/overview/){target=\_blank} - Polkadot's flavor of GMP. Main technology driving cross-chain interactions between Polkadot and its parachains, including Moonbeam
-- **XCM-Enabled ERC-20s** - also referred to as [local XC-20s](/builders/interoperability/xcm/xc20/overview/#local-xc20s/){target=\_blank}, are all of the ERC-20 tokens that exist on Moonbeam's EVM that are XCM-enabled out of the box
+- **XCM-Enabled ERC-20s** - also referred to as [local XC-20s](/builders/interoperability/xcm/xc20/overview/#local-xc20s){target=\_blank}, are all of the ERC-20 tokens that exist on Moonbeam's EVM that are XCM-enabled out of the box
 - [**GMP Precompile**](/builders/pallets-precompiles/precompiles/gmp/){target=\_blank} - a [precompiled contract](/builders/pallets-precompiles/precompiles/overview/){target=\_blank} that acts as an interface between a message passed from [Wormhole GMP protocol](/builders/interoperability/protocols/wormhole/){target=\_blank} and XCM
 
 These components are combined to offer seamless liquidity routing into parachains through Moonbeam. Liquidity can be routed to parachains using either the [GMP Precompile](/builders/pallets-precompiles/precompiles/gmp/){target=\_blank} or traditional smart contracts that interact with XCM-related precompiles, like the [X-Tokens](/builders/interoperability/xcm/xc20/send-xc20s/xtokens-precompile/){target=\_blank} Precompile.
 
-GMP protocols typically move assets in a lock/mint or burn/mint fashion. This liquidity exists on Moonbeam normally as ERC-20 tokens. All ERC-20s on Moonbeam are now XCM-enabled, meaning they can now exist as XC-20s in any other parachain, as long as they are registered on the other parachain. XCM-enabled ERC-20s are referred to as [local XC-20s](/builders/interoperability/xcm/xc20/overview#local-xc20s/){target=\_blank} on Moonbeam.
+GMP protocols typically move assets in a lock/mint or burn/mint fashion. This liquidity exists on Moonbeam normally as ERC-20 tokens. All ERC-20s on Moonbeam are now XCM-enabled, meaning they can now exist as XC-20s in any other parachain, as long as they are registered on the other parachain. XCM-enabled ERC-20s are referred to as [local XC-20s](/builders/interoperability/xcm/xc20/overview#local-xc20s){target=\_blank} on Moonbeam.
 
 MRL is currently available through Wormhole-connected chains, but nothing stops a parachain team from implementing a similar pathway through a different GMP provider.
 
@@ -27,10 +27,10 @@ Primarily, this guide will cover the process of integrating with Wormhole's SDKs
 In order to begin an MRL integration with your parachain, you will first need to:
 
 - [Establish a cross-chain integration with Moonbeam via HRMP channels](/builders/interoperability/xcm/xc-registration/xc-integration/){target=\_blank} so assets can be sent from Moonbeam to your parachain
-- [Register Moonbeam’s asset on your parachain](/builders/interoperability/xcm/xc-registration/assets#register-moonbeam-native-assets/){target=\_blank}. This is required due to a temporary drawback of pallets that send XCM messages for asset transfer, making Moonbeam’s native gas asset the only asset that can be used as a cross-chain fee on the way back
-- [Register the local XC-20 token(s) you want routed to your parachain](/builders/interoperability/xcm/xc-registration/assets#register-local-xc20/){target=\_blank}
+- [Register Moonbeam’s asset on your parachain](/builders/interoperability/xcm/xc-registration/assets#register-moonbeam-native-assets){target=\_blank}. This is required due to a temporary drawback of pallets that send XCM messages for asset transfer, making Moonbeam’s native gas asset the only asset that can be used as a cross-chain fee on the way back
+- [Register the local XC-20 token(s) you want routed to your parachain](/builders/interoperability/xcm/xc-registration/assets#register-local-xc20){target=\_blank}
     - Allow these local XC-20 token(s) to be used for XCM fees
-- Allow users to send the `Transact` XCM instruction (via `polkadotXcm.Send` or with the [XCM Transactor Pallet](/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-pallet/#xcm-transactor-pallet-interface/){target=\_blank}), which enables remote EVM calls, allowing accounts on a remote parachain to interact with the bridging smart contracts on Moonbeam
+- Allow users to send the `Transact` XCM instruction (via `polkadotXcm.Send` or with the [XCM Transactor Pallet](/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-pallet/#xcm-transactor-pallet-interface){target=\_blank}), which enables remote EVM calls, allowing accounts on a remote parachain to interact with the bridging smart contracts on Moonbeam
 
 ## MRL Through Wormhole {: #mrl-through-wormhole }
 
@@ -48,9 +48,9 @@ While MRL intends to encompass many different GMP providers, Wormhole is the fir
 
 MRL provides a one-click solution that allows you to define a multilocation as a final destination for your assets to arrive from any Wormhole chain with a [Wormhole Connect integration](https://wormhole.com/connect/){target=\_blank}.
 
-To send tokens through Wormhole and MRL, user interfaces will use a mixture of the [Wormhole TokenBridge](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/interfaces/ITokenBridge.sol/){target=\_blank} and [Moonbeam’s GMP Precompile](/builders/pallets-precompiles/precompiles/gmp/){target=\_blank}.
+To send tokens through Wormhole and MRL, user interfaces will use a mixture of the [Wormhole TokenBridge](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/interfaces/ITokenBridge.sol){target=\_blank} and [Moonbeam’s GMP Precompile](/builders/pallets-precompiles/precompiles/gmp/){target=\_blank}.
 
-Users transferring liquidity will invoke the `transferTokensWithPayload` method on the origin chain's deployment of the Wormhole TokenBridge smart contract, which implements the `ITokenBridge.sol` interface, to send tokens to the GMP Precompile. This function requires a bytes payload, which must be formatted as a SCALE-encoded multilocation object wrapped within another precompile-specific versioned type. To learn how to build this payload, please refer to the [Building the Payload for Wormhole](/builders/pallets-precompiles/precompiles/gmp#building-the-payload-for-wormhole/){target=\_blank} section of the GMP Precompile documentation.
+Users transferring liquidity will invoke the `transferTokensWithPayload` method on the origin chain's deployment of the Wormhole TokenBridge smart contract, which implements the `ITokenBridge.sol` interface, to send tokens to the GMP Precompile. This function requires a bytes payload, which must be formatted as a SCALE-encoded multilocation object wrapped within another precompile-specific versioned type. To learn how to build this payload, please refer to the [Building the Payload for Wormhole](/builders/pallets-precompiles/precompiles/gmp#building-the-payload-for-wormhole){target=\_blank} section of the GMP Precompile documentation.
 
 Wormhole relies on a set of distributed nodes that monitor the state on several blockchains. In Wormhole, these nodes are referred to as [Guardians](https://docs.wormhole.com/wormhole/explore-wormhole/guardian/){target=\_blank}. It is the Guardian's role to observe messages and sign the corresponding payloads. If 2/3rds of Wormhole's signing Guardians validate a particular message, the message becomes approved and can be received on other chains.
 
@@ -74,7 +74,7 @@ In the future, the [X-Tokens Pallet](/builders/interoperability/xcm/xc20/send-xc
 As an example, a brief overview of the entire process of sending MRL tokens from a parachain back through Wormhole to a destination chain is as follows:
 
 1. Send a batch transaction using the `batchAll` extrinsic of the [Utility Pallet](/builders/pallets-precompiles/pallets/utility/){target=\_blank} that contains the following two calls:
-    - **`xTokens.transferMultiassets`** - sends xcGLMR and the local XC-20 to the user’s [Computed Origin account](#calculate-computed-origin-account/){target=\_blank}. The Computed Origin account is a keyless account on Moonbeam that an account on another parachain has control of via XCM
+    - **`xTokens.transferMultiassets`** - sends xcGLMR and the local XC-20 to the user’s [Computed Origin account](#calculate-computed-origin-account). The Computed Origin account is a keyless account on Moonbeam that an account on another parachain has control of via XCM
     - **`polkadotXcm.send`** - with the `Transact` instruction. Sends a [remote EVM call via XCM](/builders/interoperability/xcm/remote-execution/remote-evm-calls/){target=\_blank} to the Batch Precompile on Moonbeam, which batches the following two calls into a single remote EVM transaction using the `ethereumXcm.transact` extrinsic:
         - **`approve`** (of the local XC-20 contract) - approves the Wormhole relayer to transfer the local XC-20
         - **`transferTokensWithRelay`** (of the relayer contract) - calls the `transferTokensWithPayload` function of the Wormhole TokenBridge smart contract on Moonbeam to transfer the tokens cross-chain, which broadcasts the message for the Wormhole Guardians to pick up
@@ -125,7 +125,7 @@ To generate the second call of the batch transaction, the `polkadotXcm.send` ext
 
 To create the batch transaction and wrap it in a remote EVM call to be executed on Moonbeam, you'll need to take the following steps:
 
-1. Create contract instances of the local XC-20, [the Wormhole relayer](https://github.com/wormhole-foundation/example-token-bridge-relayer/blob/main/evm/src/token-bridge-relayer/TokenBridgeRelayer.sol/){target=\_blank}, and the [Batch Precompile](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/batch/Batch.sol/){target=\_blank}. For this, you'll need the ABI for each contract:
+1. Create contract instances of the local XC-20, [the Wormhole relayer](https://github.com/wormhole-foundation/example-token-bridge-relayer/blob/main/evm/src/token-bridge-relayer/TokenBridgeRelayer.sol){target=\_blank}, and the [Batch Precompile](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/batch/Batch.sol){target=\_blank}. For this, you'll need the ABI for each contract:
 
     ??? code "ERC-20 Interface ABI"
 
@@ -161,7 +161,7 @@ To create the batch transaction and wrap it in a remote EVM call to be executed 
 
 2. Use Ether's `encodeFunctionData` function to get the encoded call data for the two calls in the batch transaction: the `approve` transaction and the `transferTokensWithRelay` transaction
 3. Combine the two transactions into a batch transaction and use Ether's `encodeFunctionData` to get the encoded call data for the batch transaction
-4. Use the encoded call data for the batch transaction to create the remote EVM call via the `ethereumXcm.transact` extrinsic, which accepts the `xcmTransaction` as the parameter. For more information, please refer to the [Remote EVM Calls documentation](/builders/interoperability/xcm/remote-execution/remote-evm-calls#ethereum-xcm-pallet-interface/){target=\_blank}
+4. Use the encoded call data for the batch transaction to create the remote EVM call via the `ethereumXcm.transact` extrinsic, which accepts the `xcmTransaction` as the parameter. For more information, please refer to the [Remote EVM Calls documentation](/builders/interoperability/xcm/remote-execution/remote-evm-calls#ethereum-xcm-pallet-interface){target=\_blank}
 
 ???+ code "Create remote EVM call logic"
 
@@ -169,7 +169,7 @@ To create the batch transaction and wrap it in a remote EVM call to be executed 
     --8<-- 'code/builders/interoperability/mrl/evm-tx.js'
     ```
 
-Next, you'll need to create the extrinsic to send the remote EVM call to Moonbeam. To do so, you'll want to send an XCM message such that the [`Transact`](/builders/interoperability/xcm/core-concepts/instructions#transact/){target=\_blank} XCM instruction gets successfully executed. The most common method to do this is through `polkadotXcm.send` and sending the [`WithdrawAsset`](/builders/interoperability/xcm/core-concepts/instructions#withdraw-asset/){target=\_blank}, [`BuyExecution`](/builders/interoperability/xcm/core-concepts/instructions#buy-execution/){target=\_blank}, and [`Transact`](/builders/interoperability/xcm/core-concepts/instructions#transact/){target=\_blank} instructions. [`RefundSurplus`](/builders/interoperability/xcm/core-concepts/instructions#refund-surplus/){target=\_blank} and [`DepositAsset`](/builders/interoperability/xcm/core-concepts/instructions#deposit-asset/){target=\_blank} can also be used to ensure no assets get trapped, but they are technically optional.
+Next, you'll need to create the extrinsic to send the remote EVM call to Moonbeam. To do so, you'll want to send an XCM message such that the [`Transact`](/builders/interoperability/xcm/core-concepts/instructions#transact){target=\_blank} XCM instruction gets successfully executed. The most common method to do this is through `polkadotXcm.send` and sending the [`WithdrawAsset`](/builders/interoperability/xcm/core-concepts/instructions#withdraw-asset){target=\_blank}, [`BuyExecution`](/builders/interoperability/xcm/core-concepts/instructions#buy-execution){target=\_blank}, and [`Transact`](/builders/interoperability/xcm/core-concepts/instructions#transact){target=\_blank} instructions. [`RefundSurplus`](/builders/interoperability/xcm/core-concepts/instructions#refund-surplus){target=\_blank} and [`DepositAsset`](/builders/interoperability/xcm/core-concepts/instructions#deposit-asset){target=\_blank} can also be used to ensure no assets get trapped, but they are technically optional.
 
 ???+ code "Send remote EVM call logic"
 
@@ -234,6 +234,6 @@ While Wormhole has the technical capability to bridge any token across chains, r
     |           Sui            |  SUI   |    9     | 0x2ed4B5B1071A3C676664E9085C0e3826542C1b27 |
     |           USDC           |  USDC  |    6     | 0x6533CE14804D113b1F494dC56c5D60A43cb5C3b5 |
 
-Please take the time to verify that these assets are still Wormhole assets on Moonbeam by using the [Wormhole asset verifier](https://www.portalbridge.com/#/token-origin-verifier/){target=\_blank}.
+Please take the time to verify that these assets are still Wormhole assets on Moonbeam by using the [Wormhole asset verifier](https://www.portalbridge.com/#/token-origin-verifier){target=\_blank}.
 
 --8<-- 'text/_disclaimers/third-party-content.md'

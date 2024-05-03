@@ -273,7 +273,7 @@ When building transfer data with the `Sdk().assets()` function, you'll use multi
         |     Name      |      Type      |                                                                     Description                                                                     |
         |:-------------:|:--------------:|:---------------------------------------------------------------------------------------------------------------------------------------------------:|
         | `maxDecimal?` |    *number*    |                                           The maximum number of decimal places to use. The default is `6`                                           |
-        | `roundType?`  | *RoundingMode* | Accepts an index that dictates the [rounding method](https://mikemcl.github.io/big.js/#rm/){target=\_blank} to use based on the `RoundingMode` enum |
+        | `roundType?`  | *RoundingMode* | Accepts an index that dictates the [rounding method](https://mikemcl.github.io/big.js/#rm){target=\_blank} to use based on the `RoundingMode` enum |
 
         Where the `RoundingMode` enum is defined as:
 
@@ -307,7 +307,7 @@ When building transfer data with the `Sdk().assets()` function, you'll use multi
         |     Name      |      Type      |                                                                     Description                                                                     |
         |:-------------:|:--------------:|:---------------------------------------------------------------------------------------------------------------------------------------------------:|
         | `maxDecimal?` |    *number*    |                                           The maximum number of decimal places to use. The default is `6`                                           |
-        | `roundType?`  | *RoundingMode* | Accepts an index that dictates the [rounding method](https://mikemcl.github.io/big.js/#rm/){target=\_blank} to use based on the `RoundingMode` enum |
+        | `roundType?`  | *RoundingMode* | Accepts an index that dictates the [rounding method](https://mikemcl.github.io/big.js/#rm){target=\_blank} to use based on the `RoundingMode` enum |
 
         Where the `RoundingMode` enum is defined as:
 

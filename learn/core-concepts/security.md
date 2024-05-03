@@ -15,7 +15,7 @@ This guide will outline and provide examples of some security considerations to 
 
 Arbitrary code execution in Solidity is the ability to execute code and call functions of other contracts using an arbitrary number of arguments of any type.
 
-A smart contract allows arbitrary execution of another contract when it allows a user to influence its own `call()` and pass in arbitrary call data and/or the `call()`s target. The [`call()` function](https://solidity-by-example.org/call/){target=\_blank} is made available through the [address data type in Solidity](https://docs.soliditylang.org/en/latest/types.html#address/){target=\_blank}. When the `call()` function is invoked, the target contract is called using the arbitrary call data.
+A smart contract allows arbitrary execution of another contract when it allows a user to influence its own `call()` and pass in arbitrary call data and/or the `call()`s target. The [`call()` function](https://solidity-by-example.org/call/){target=\_blank} is made available through the [address data type in Solidity](https://docs.soliditylang.org/en/latest/types.html#address){target=\_blank}. When the `call()` function is invoked, the target contract is called using the arbitrary call data.
 
 Arbitrary code execution follows the pattern in the diagram below when **Contract A** allows a user to influence its call to **Contract B**.
 
@@ -36,7 +36,7 @@ On Ethereum, a smart contract that allows for arbitrary code execution could for
 
 For example, if you have a contract that allows arbitrary code execution and you pass it encoded call data that transfers the balance of a contract to another address, you could essentially drain the given contract of it's balance.
 
-To get the encoded call data, you can use any of the [ABI encoding functions outlined in the Solidity docs](https://docs.soliditylang.org/en/latest/units-and-global-variables.html#abi-encoding-and-decoding-functions/){target=\_blank}, including `abi.encodeWithSelector` as seen in the following function:
+To get the encoded call data, you can use any of the [ABI encoding functions outlined in the Solidity docs](https://docs.soliditylang.org/en/latest/units-and-global-variables.html#abi-encoding-and-decoding-functions){target=\_blank}, including `abi.encodeWithSelector` as seen in the following function:
 
 ```solidity
 function getBytes(address _erc20Contract, address _arbitraryCallContract, address _to) public view returns (bytes memory) {
@@ -67,7 +67,7 @@ By whitelisting a specific function selector, you can control what functions can
 
 To get the function selector to whitelist, you can [keccack256 hash](https://emn178.github.io/online-tools/keccak_256.html){target=\_blank} the signature of the function.
 
-Once you have the whitelisted function selector, you can use inline assembly to get the function selector from the encoded call data and compare the two selectors using the [require function](https://docs.soliditylang.org/en/v0.8.17/control-structures.html#panic-via-assert-and-error-via-require/){target=\_blank}. If the function selector from the encoded call data matches the whitelisted function selector, you can make the call. Otherwise, an exception will be thrown.
+Once you have the whitelisted function selector, you can use inline assembly to get the function selector from the encoded call data and compare the two selectors using the [require function](https://docs.soliditylang.org/en/v0.8.17/control-structures.html#panic-via-assert-and-error-via-require){target=\_blank}. If the function selector from the encoded call data matches the whitelisted function selector, you can make the call. Otherwise, an exception will be thrown.
 
 ```solidity
 function makeArbitraryCall(address _target, bytes calldata _bytes) public {
@@ -114,7 +114,7 @@ For example, if Alice calls a function in contract A that then calls a function 
 !!! note
     As a [best practice](https://consensys.github.io/smart-contract-best-practices/development-recommendations/solidity-specific/tx-origin/){target=\_blank}, `tx.origin` should not be used for authorization. Instead, you should use `msg.sender`.
 
-You can use the [require function](https://docs.soliditylang.org/en/v0.8.17/control-structures.html#panic-via-assert-and-error-via-require/){target=\_blank} to compare the `tx.origin` and `msg.sender`. If they are the same address, you're ensuring that only EOAs can call the function. If the `msg.sender` is a contract address, an exception will be thrown.
+You can use the [require function](https://docs.soliditylang.org/en/v0.8.17/control-structures.html#panic-via-assert-and-error-via-require){target=\_blank} to compare the `tx.origin` and `msg.sender`. If they are the same address, you're ensuring that only EOAs can call the function. If the `msg.sender` is a contract address, an exception will be thrown.
 
 ```solidity
 function transferFunds(address payable _target) payable public {

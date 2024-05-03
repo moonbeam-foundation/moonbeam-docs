@@ -5,13 +5,13 @@ description: An overview of the current configuration of the Moonbeam deployment
 
 # Moonbeam
 
-## Goal {: #goal } 
+## Goal {: #goal }
 
 Moonbeam onboarded as a parachain to Polkadot on December 17th 2021. Moonbeam is the most Ethereum compatible smart-contract parachain in the Polkadot ecosystem. It allows developers to port their projects with minimal to no code changes, enabling them to tap into the Polkadot ecosystem and all its assets.
 
 In order to collect as much feedback as possible and provide fast issue resolution, you can check out the dedicated [Moonbeam Network section on Discord](https://discord.gg/PfpUATX/){target=\_blank}.
 
-## Initial Configurations {: #initial-configurations } 
+## Initial Configurations {: #initial-configurations }
 
 Currently, Moonbeam has the following configurations:
 
@@ -45,15 +45,15 @@ _*Read more about [token denominations](#token-denominations)_
 
 --8<-- 'text/builders/get-started/networks/moonbeam/connect.md'
 
-## Telemetry {: #telemetry } 
+## Telemetry {: #telemetry }
 
-You can see current Moonbeam telemetry information by visiting [Polkadot's Telemetry dashboard](https://telemetry.polkadot.io/#list/0xfe58ea77779b7abda7da4ec526d14db9b1e9cd40a217c34892af80a9b332b76d/){target=\_blank}.
+You can see current Moonbeam telemetry information by visiting [Polkadot's Telemetry dashboard](https://telemetry.polkadot.io/#list/0xfe58ea77779b7abda7da4ec526d14db9b1e9cd40a217c34892af80a9b332b76d){target=\_blank}.
 
-## Tokens {: #tokens } 
+## Tokens {: #tokens }
 
-The tokens on Moonbeam are called Glimmer (GLMR). Check out the Moonbeam Foundation site for more information on the [Glimmer](https://moonbeam.foundation/glimmer-token/){target=\_blank} token. 
+The tokens on Moonbeam are called Glimmer (GLMR). Check out the Moonbeam Foundation site for more information on the [Glimmer](https://moonbeam.foundation/glimmer-token/){target=\_blank} token.
 
-### Token Denominations {: #token-denominations } 
+### Token Denominations {: #token-denominations }
 
 The smallest unit of Glimmer (GMLR), similarly to Ethereum, is a Wei. It takes 10^18 Wei to make one Glimmer. The denominations are as follows:
 
@@ -68,11 +68,11 @@ The smallest unit of Glimmer (GMLR), similarly to Ethereum, is a Wei. It takes 1
 |   GLMR    |          1           |   1,000,000,000,000,000,000   |
 | Kiloglmr  |        1,000         | 1,000,000,000,000,000,000,000 |
 
-## Proof of Stake {: #proof-of-stake } 
+## Proof of Stake {: #proof-of-stake }
 
-The Moonriver network is a fully decentralized Delegated Proof of Stake network where users of the network can delegate collator candidates to produce blocks and earn rewards. It uses the [Nimbus framework](/learn/features/consensus/){target=\_blank} framework for parachain consensus. The number of candidates in the active set will be subject to governance. The active set will consist of the top candidates by stake, including delegations. 
+The Moonriver network is a fully decentralized Delegated Proof of Stake network where users of the network can delegate collator candidates to produce blocks and earn rewards. It uses the [Nimbus framework](/learn/features/consensus/){target=\_blank} framework for parachain consensus. The number of candidates in the active set will be subject to governance. The active set will consist of the top candidates by stake, including delegations.
 
-## Limitations {: #limitations } 
+## Limitations {: #limitations }
 
 Some [precompiles](https://docs.klaytn.com/smart-contract/precompiled-contracts/){target=\_blank} are yet to be included. You can check a list of supported precompiles on the [Solidity Precompiles page](/builders/pallets-precompiles/precompiles/overview/){target=\_blank}. However, all built-in functions are available.
 
