@@ -1,4 +1,4 @@
-import { ApiPromise, WsProvider } from '@polkadot/api'; // Version 9.13.6
+import { ApiPromise, WsProvider } from '@polkadot/api'; // Version 10.13.1
 import { ethers } from 'ethers'; // Version 6.0.2
 import BN from 'bn.js'; // Importing directly from bn.js
 
