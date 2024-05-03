@@ -21,7 +21,7 @@ However, Alice only knows the private key of the H160 address, and not of the ma
 
 The following diagram illustrates this configuration.
 
-![Old account system diagram](/images/learn/features/unified-accounts/unified-accounts-1.webp)
+![Old account system diagram](/images/learn/core-concepts/unified-accounts/unified-accounts-1.webp)
 
 This can creates friction and a poor user experience for Alice. First, she has to move tokens to her H160 mapped H256 address to be able to make transactions and deploy contracts through the EVM. Second, she also needs to hold a balance in her other H256 address (which she has a different private key for) to use Substrate-based features. So in short, Alice needs a minimum of two private keys to have the best of both worlds.
 
@@ -33,6 +33,6 @@ With unified accounts, a user, for example, Bob, will only need a single H160 ad
 
 The diagram for this new configuration looks as follows.
 
-![New account system diagram](/images/learn/features/unified-accounts/unified-accounts-2.webp)
+![New account system diagram](/images/learn/core-concepts/unified-accounts/unified-accounts-2.webp)
 
 That is it, Bob only holds one private key that matches one address. He does not need to move balances between 2 different accounts and is able to access all the features with a single account and private key. We have standardized this single account to conform to the Ethereum-style H160 address and ECDSA key standards.

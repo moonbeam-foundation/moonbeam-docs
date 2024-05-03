@@ -244,7 +244,7 @@ produceBlock();
 
 ## Prefunded Development Accounts {: #pre-funded-development-accounts }
 
-Moonbeam has a [unified accounts](/learn/features/unified-accounts/){target=\_blank} system, which enables users to have an Ethereum-styled H160 account that can interact with the Substrate API and the Ethereum API. As a result, you can interact with your account through [Polkadot.js Apps](#connecting-polkadot-js-apps-to-a-local-moonbeam-node) or [MetaMask](/tokens/connect/metamask/){target=\_blank} (or any other [EVM wallet](/tokens/connect/){target=\_blank}). In addition, you can also use other [development tools](/builders/build/eth-api/dev-env/){target=\_blank}, such as [Remix](/builders/build/eth-api/dev-env/remix/){target=\_blank} and [Hardhat](/builders/build/eth-api/dev-env/hardhat/){target=\_blank}.
+Moonbeam has a [unified accounts](/learn/core-concepts/unified-accounts/){target=\_blank} system, which enables users to have an Ethereum-styled H160 account that can interact with the Substrate API and the Ethereum API. As a result, you can interact with your account through [Polkadot.js Apps](#connecting-polkadot-js-apps-to-a-local-moonbeam-node) or [MetaMask](/tokens/connect/metamask/){target=\_blank} (or any other [EVM wallet](/tokens/connect/){target=\_blank}). In addition, you can also use other [development tools](/builders/build/eth-api/dev-env/){target=\_blank}, such as [Remix](/builders/build/eth-api/dev-env/remix/){target=\_blank} and [Hardhat](/builders/build/eth-api/dev-env/hardhat/){target=\_blank}.
 
 Your Moonbeam development node comes with ten prefunded Ethereum-styled accounts for development. The addresses are derived from Substrate's canonical development mnemonic:
 
@@ -288,7 +288,7 @@ For a Moonbeam development node, you can use any of the following block explorer
 
 You can also gain access to some non-standard RPC methods by running a tracing node, which allows developers to inspect and debug transactions during runtime. Tracing nodes use a different Docker image than a standard Moonbeam development node.
 
-To learn how to run a Moonbeam development tracing node, check out the [Run a Tracing Node](/node-operators/networks/tracing-node/){target=\_blank} guide, and be sure to switch to the **Moonbeam Development Node** tab throughout the instructions. Then, to access the non-standard RPC methods with your tracing node, check out the [Debug & Trace](/builders/build/eth-api/debug-trace/){target=\_blank} guide.
+To learn how to run a Moonbeam development tracing node, check out the [Run a Tracing Node](/node-operators/networks/tracing-node/){target=\_blank} guide, and be sure to switch to the **Moonbeam Development Node** tab throughout the instructions. Then, to access the non-standard RPC methods with your tracing node, check out the [Debug & Trace](/builders/json-rpc/debug-trace/){target=\_blank} guide.
 
 ## Purge a Development Node {: #purging-your-node }
 
