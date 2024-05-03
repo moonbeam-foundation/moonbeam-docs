@@ -169,7 +169,7 @@ The complete command for running a tracing node is as follows:
 
 You should see a terminal log similar to the following if you spun up a Moonbase Alpha tracing node:
 
-![Debug API](/images/builders/build/eth-api/debug-trace/debug-trace-1.webp)
+--8<-- 'code/builders/json-rpc/debug-trace/terminal/start-up-logs.md'
 
 ## Run a Tracing Node with Systemd {: #run-a-tracing-node-with-systemd }
 
@@ -373,7 +373,7 @@ The next step is to create the systemd configuration file, you'll need to:
 
 --8<-- 'text/node-operators/networks/run-a-node/systemd/run-service.md'
 
-![Service Status](/images/node-operators/networks/tracing-node/tracing-1.webp)
+--8<-- 'code/node-operators/networks/tracing-node/terminal/status.md'
 
 You can also run the following command to see logs of the tracing node spinning up:
 
@@ -383,8 +383,8 @@ journalctl -f -u moonbeam.service
 
 Your terminal should display logs similar to the following:
 
-![Service logs of wasm rutime overrides being processed](/images/node-operators/networks/tracing-node/tracing-2.webp)
+--8<-- 'code/node-operators/networks/tracing-node/terminal/logs.md'
 
 ## Using a Tracing Node {: #using-a-tracing-node }
 
-To explore the different non-standard RPC methods available on Moonbeam, and how to use these methods with a tracing node, check out the [Debug & Trace](/builders/build/eth-api/debug-trace/) guide.
+To explore the different non-standard RPC methods available on Moonbeam, and how to use these methods with a tracing node, check out the [Debug & Trace](/builders/json-rpc/debug-trace/) guide.

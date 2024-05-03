@@ -3,5 +3,6 @@ hide: false
 nav:
   - index.md
   - platform
+  - core-concepts
   - features
   - dapps-list
