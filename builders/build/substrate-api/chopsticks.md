@@ -194,7 +194,7 @@ ws://localhost:8000
 
 You will be able to interact with the parachain via libraries such as [Polkadot.js](https://github.com/polkadot-js/common/){target=\_blank} and its [user interface, Polkadot.js Apps](https://github.com/polkadot-js/apps/){target=\_blank}.  
 
-You can interact with Chopsticks via the [Polkadot.js Apps hosted user interface](https://polkadot.js.org/apps/#/explorer/){target=\_blank}. To do so, visit the page and take the following steps:  
+You can interact with Chopsticks via the [Polkadot.js Apps hosted user interface](https://polkadot.js.org/apps/#/explorer){target=\_blank}. To do so, visit the page and take the following steps:  
 
 1. Click the icon in the top left
 2. Go to the bottom and open **Development**
