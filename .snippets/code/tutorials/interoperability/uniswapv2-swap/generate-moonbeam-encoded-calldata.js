@@ -1,5 +1,5 @@
 import { ApiPromise, WsProvider } from '@polkadot/api'; // Version 10.13.1
-import { ethers } from 'ethers'; // Version 6.0.2
+import { ethers } from 'ethers'; // Version 6.12.0
 import BN from 'bn.js'; // Importing directly from bn.js
 
 // 1. Input Data
@@ -11,14 +11,14 @@ const contractCall =
 const generateCallData = async () => {
   // 2. Create Substrate API Provider
   const substrateProvider = new WsProvider(providerWsURL);
-  const ethProvider = new ethers.providers.WebSocketProvider(providerWsURL);
+  const ethProvider = new ethers.WebSocketProvider(providerWsURL);
   const api = await ApiPromise.create({ provider: substrateProvider });
 
   // 3. Estimate Gas for EVM Call
   const gasLimit = await ethProvider.estimateGas({
     to: uniswapV2Router,
     data: contractCall,
-    value: ethers.utils.parseEther('0.01'),
+    value: ethers.parseEther('0.01'),
   });
   console.log(`Gas required for call is ${gasLimit.toString()}`);
 
@@ -30,7 +30,7 @@ const generateCallData = async () => {
     V2: {
       gasLimit: totalGasLimit, // Estimated plus some extra gas
       action: { Call: uniswapV2Router }, // Uniswap V2 router address
-      value: new BN(ethers.utils.parseEther('0.01').toString()), // 0.01 DEV
+      value: new BN(ethers.parseEther('0.01').toString()), // 0.01 DEV
       input: contractCall, // Swap encoded calldata
     },
   };
