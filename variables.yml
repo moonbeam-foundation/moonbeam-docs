@@ -1150,7 +1150,7 @@ networks:
         dot_cost: '0.0010506327'
       clear_origin:
         total_weight: 1,354,000
-        dot_cost: '0.0000107422' # Rounded up from 1>2
+        dot_cost: '0.0000107422'
       deposit_asset:
         total_weight: 125,695,000
         dot_cost: '0.0009972232'
