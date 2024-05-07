@@ -2,7 +2,7 @@
   <span data-ty="input"><span class="file-path"></span>node_modules/.bin/substrate-api-sidecar</span>
   <br>
   <span data-ty>v0.36.0: Pulling from moonbeamfoundation/moonbeam
-    SAS:
+    <br>SAS:
         <br>📦 LOG:
         <br>    ✅ LEVEL: "info"
         <br>    ✅ JSON: false
