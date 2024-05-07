@@ -3,7 +3,7 @@ import { cryptoWaitReady } from '@polkadot/util-crypto';
 
 // 1. Input data
 const providerWsURL =
-  'wss://frag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network';
+  'wss://fro-moon-rpc-1-moonbase-relay-rpc-1.moonbase.ol-infra.network';
 const privateKey = 'INSERT_PRIVATE_KEY';
 const dest = { V3: { parents: 0, interior: { X1: { Parachain: 1000 } } } };
 const instr1 = {

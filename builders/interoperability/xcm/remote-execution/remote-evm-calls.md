@@ -47,16 +47,69 @@ Another significant difference is in terms of the gas price. The fee for remote 
 
 The last difference is in terms of the gas limit. Ethereum uses a gas-metered system to moderate the amount of execution that can be done in a block. On the contrary, Moonbeam uses a [weight-based system](https://docs.substrate.io/build/tx-weights-fees/){target=\_blank} in which each call is characterized by the time it takes to execute in a block. Each unit of weight corresponds to one picosecond of execution time.
 
-The configuration of the XCM queue suggests that XCM messages should be executable within `20,000,000,000` weight units (that is, `0.02` seconds of block execution time). Suppose the XCM message can't be executed due to the lack of execution time in a given block, and the weight requirement is over `20,000,000,000`. In that case, the XCM message will be marked as `overweight` and will only be executable through democracy.
+As of runtime 2900, the configuration of the XCM queue suggests that XCM messages should be executable within the following weight units:
 
-The `20,000,000,000` weight limit per XCM message constrains the gas limit available for remote EVM calls through XCM. For all Moonbeam-based networks, there is a ratio of [`25,000` units of gas per unit of weight](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbase.spec_version }}/runtime/moonbase/src/lib.rs#L406){target=\_blank} ([`WEIGHT_REF_TIME_PER_SECOND`](https://paritytech.github.io/substrate/master/frame_support/weights/constants/constant.WEIGHT_REF_TIME_PER_SECOND.html){target=\_blank} / [`GAS_PER_SECOND`](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbase.spec_version }}/runtime/moonbase/src/lib.rs#402){target=\_blank}). Considering that you need some of the XCM message weight to execute the XCM instructions themselves. Therefore, a remote EVM call might have around `18,000,000,000` weight left, which is `720,000` gas units. Consequently, the maximum gas limit you can provide for a remote EVM call is around `720,000` gas units. Note that this might change in the future.
+=== "Moonbeam"
+
+    ```text
+    125,000,000,000 (0.125 seconds of block execution time)
+    ```
+
+=== "Moonriver"
+
+    ```text
+    125,000,000,000 (0.125 seconds of block execution time)
+    ```
+
+=== "Moonbase Alpha"
+
+    ```text
+    500,000,000,000 (0.5 seconds of block execution time)
+    ```
+
+!!! note
+    Prior to runtime 2900, the weight limit of XCM messages across all networks was `20,000,000,000` weight units (this is, `0.02` seconds of block execution time).
+
+Suppose the XCM message can't be executed due to the lack of execution time in a given block, and the weight requirement exceeds the above limits. In that case, the XCM message will be marked as `overweight` and only be executable through democracy.
+
+The maximum weight limit per XCM message constrains the gas limit available for remote EVM calls through XCM. For all Moonbeam-based networks, there is a ratio of [`25,000` units of gas per unit of weight](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbase.spec_version }}/runtime/moonbase/src/lib.rs#L402){target=\_blank} ([`WEIGHT_REF_TIME_PER_SECOND`](https://paritytech.github.io/substrate/master/frame_support/weights/constants/constant.WEIGHT_REF_TIME_PER_SECOND.html){target=\_blank} / [`GAS_PER_SECOND`](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbase.spec_version }}/runtime/moonbase/src/lib.rs#398){target=\_blank}). Considering that you need some XCM message weight to execute the XCM instructions, a remote EVM call might consume 2,000,000,000 units. The following equation can be used to determine the maximum gas units for a remote EVM call:
+
+```text
+Maximum Gas Units = (Maximum Weight Units - Remote EVM Weight Units) / 25,000
+```
+
+Therefore, the maximum gas limit you can provide for a remote EVM call can be calculated:
+
+=== "Moonbeam"
+
+    ```text
+    Maximum Gas Units = (125,000,000,000 - 2,000,000,000) / 25,000
+    Maximum Gas Units = 4,920,000
+    ```
+
+=== "Moonriver"
+
+    ```text
+    Maximum Gas Units = (125,000,000,000 - 2,000,000,000) / 25,000
+    Maximum Gas Units = 4,920,000
+    ```
+
+=== "Moonbase Alpha"
+
+    ```text
+    Maximum Gas Units = (500,000,000,000 - 2,000,000,000) / 25,000
+    Maximum Gas Units = 19,920,000
+    ```
+
+!!! note
+    These values are subject to change in the future.
 
 In summary, these are the main differences between regular and remote EVM calls:
 
 - Remote EVM calls use a global nonce (owned by the [Ethereum XCM Pallet](https://github.com/moonbeam-foundation/moonbeam/tree/master/pallets/ethereum-xcm){target=\_blank}) instead of a nonce per account
 - The `v-r-s` values of the signature for remote EVM calls are `0x1`. The sender can't be retrieved from the signature through standard methods (for example, through [ECRECOVER](/builders/pallets-precompiles/precompiles/eth-mainnet/#verify-signatures-with-ecrecover){target=\_blank}). Nevertheless, the `from` is included in both the transaction receipt and when getting the transaction by hash (using the Ethereum JSON-RPC)
 - The gas price for all remote EVM calls is zero. The EVM execution is charged at an XCM execution level and not at an EVM level
-- The current maximum gas limit you can set for a remote EVM call is `720,000` gas units
+- The current maximum gas limit you can set for a remote EVM call is different, as outlined above
 
 ## Ethereum XCM Pallet Interface {: #ethereum-xcm-pallet-interface}
 
@@ -119,7 +172,7 @@ The process for building and performing the remote execution can be summarized a
 
 To be able to send the call from the relay chain, you need the following:
 
-- An [account](https://polkadot.js.org/apps/?rpc=wss://frag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/accounts){target=\_blank} on the relay chain with funds (UNIT) to pay for the transaction fees. You can acquire some xcUNIT by swapping for DEV tokens (Moonbase Alpha's native token) on [Moonbeam-Swap](https://moonbeam-swap.netlify.app){target=\_blank}, a demo Uniswap-V2 clone on Moonbase Alpha, and then [send them to the relay chain](/builders/interoperability/xcm/xc20/send-xc20s/xtokens-pallet/){target_blank}. Additionally, you can [contact us on Discord](https://discord.gg/PfpUATX){target=\_blank} to get some UNIT tokens directly
+- An [account](https://polkadot.js.org/apps/?rpc=wss://fro-moon-rpc-1-moonbase-relay-rpc-1.moonbase.ol-infra.network#/accounts){target=\_blank} on the relay chain with funds (UNIT) to pay for the transaction fees. You can acquire some xcUNIT by swapping for DEV tokens (Moonbase Alpha's native token) on [Moonbeam-Swap](https://moonbeam-swap.netlify.app){target=\_blank}, a demo Uniswap-V2 clone on Moonbase Alpha, and then [send them to the relay chain](/builders/interoperability/xcm/xc20/send-xc20s/xtokens-pallet/){target_blank}. Additionally, you can [contact us on Discord](https://discord.gg/PfpUATX){target=\_blank} to get some UNIT tokens directly
 - The address of your Computed Origin account. Please refer to the [Computed Origin](/builders/interoperability/xcm/remote-execution/computed-origins){target=\_blank} guide to learn how to calculate your Computed Origin address
 - To fund your Computed Origin account. The account must have enough DEV tokens (or GLMR/MOVR for Moonbeam/Moonriver) to cover the cost of the XCM execution of the remote EVM call. Note that this is the account from which the remote EVM call will be dispatched (the `msg.sender`). Consequently, the account must satisfy whatever conditions are required for the EVM call to be executed correctly. For example, hold any relevant ERC-20 token if you are doing an ERC-20 transfer
 
@@ -283,9 +336,9 @@ Now that you have the values for each of the parameters, you can write the scrip
 ```
 
 !!! note
-    You can view an example of the output of the above script on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://frag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/extrinsics/decode/0x630003000100a10f030c00040000010403000f0000c16ff28623130000010403000f0000c16ff2862300060103004775e87a5d02007901260001785d02000000000000000000000000000000000000000000000000000000000000a72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8000000000000000000000000000000000000000000000000000000000000000010d09de08a00){target=\_blank} using the following encoded call data: `0x630003000100a10f030c00040000010403000f0000c16ff28623130000010403000f0000c16ff2862300060103004775e87a5d02007901260001785d02000000000000000000000000000000000000000000000000000000000000a72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8000000000000000000000000000000000000000000000000000000000000000010d09de08a00`.
+    You can view an example of the output of the above script on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://fro-moon-rpc-1-moonbase-relay-rpc-1.moonbase.ol-infra.network#/extrinsics/decode/0x630003000100a10f030c00040000010403000f0000c16ff28623130000010403000f0000c16ff2862300060103004775e87a5d02007901260001785d02000000000000000000000000000000000000000000000000000000000000a72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8000000000000000000000000000000000000000000000000000000000000000010d09de08a00){target=\_blank} using the following encoded call data: `0x630003000100a10f030c00040000010403000f0000c16ff28623130000010403000f0000c16ff2862300060103004775e87a5d02007901260001785d02000000000000000000000000000000000000000000000000000000000000a72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8000000000000000000000000000000000000000000000000000000000000000010d09de08a00`.
 
-Once the transaction is processed, you can check the relevant extrinsics and events in the [relay chain](https://polkadot.js.org/apps/?rpc=wss://frag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/explorer/query/0x2a0e40a2e5261e792190826ce338ed513fe44dec16dd416a12f547d358773f98){target=\_blank} and [Moonbase Alpha](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/explorer/query/0x7570d6fa34b9dccd8b8839c2986260034eafef732bbc09f8ae5f857c28765145){target=\_blank}.
+Once the transaction is processed, you can check the relevant extrinsics and events in the [relay chain](https://polkadot.js.org/apps/?rpc=wss://fro-moon-rpc-1-moonbase-relay-rpc-1.moonbase.ol-infra.network#/explorer/query/0x2a0e40a2e5261e792190826ce338ed513fe44dec16dd416a12f547d358773f98){target=\_blank} and [Moonbase Alpha](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/explorer/query/0x7570d6fa34b9dccd8b8839c2986260034eafef732bbc09f8ae5f857c28765145){target=\_blank}.
 
 In the relay chain, the extrinsic is `xcmPallet.send`, and the associated event is `xcmPallet.Sent` (among others related to the fee). In Moonbase Alpha, the XCM execution happens within the `parachainSystem.setValidationData` extrinsic, and there are multiple associated events that can be highlighted:
 

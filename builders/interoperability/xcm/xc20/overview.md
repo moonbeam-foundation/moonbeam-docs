@@ -57,7 +57,7 @@ The current list of available external XC-20 assets per network is as follows:
     |         Acala         |   xcACA   | [0xffffFFffa922Fef94566104a6e5A35a4fCDDAA9f](https://moonscan.io/token/0xffffFFffa922Fef94566104a6e5A35a4fCDDAA9f){target=\_blank} |
     |         Acala         |  xcLDOT   | [0xFFfFfFffA9cfFfa9834235Fe53f4733F1b8B28d4](https://moonscan.io/token/0xFFfFfFffA9cfFfa9834235Fe53f4733F1b8B28d4){target=\_blank} |
     |         Astar         |  xcASTR   | [0xFfFFFfffA893AD19e540E172C10d78D4d479B5Cf](https://moonscan.io/token/0xFfFFFfffA893AD19e540E172C10d78D4d479B5Cf){target=\_blank} |
-    |        Bifrost        |   xcBNC   | [0xffffffff7cc06abdf7201b350a1265c62c8601d2](https://moonscan.io/token/0xffffffff7cc06abdf7201b350a1265c62c8601d2){target=\_blank} |
+    |        Bifrost        |   xcBNC   | [0xFFffffFf7cC06abdF7201b350A1265c62C8601d2](https://moonscan.io/token/0xFFffffFf7cC06abdF7201b350A1265c62C8601d2){target=\_blank} |
     |        Bifrost        |  xcBNCS   | [0xfFfffffF6aF229AE7f0F4e0188157e189a487D59](https://moonscan.io/token/0xfFfffffF6aF229AE7f0F4e0188157e189a487D59){target=\_blank} |
     |        Bifrost        |   xcFIL   | [0xfFFfFFFF6C57e17D210DF507c82807149fFd70B2](https://moonscan.io/token/0xfFFfFFFF6C57e17D210DF507c82807149fFd70B2){target=\_blank} |
     |        Bifrost        |  xcvASTR  | [0xFffFffff55C732C47639231a4C4373245763d26E](https://moonscan.io/token/0xFffFffff55C732C47639231a4C4373245763d26E){target=\_blank} |
@@ -73,6 +73,7 @@ The current list of available external XC-20 assets per network is as follows:
     |      Composable       | xcIBCTIA  | [0xFFFfFfff644a12F6F01b754987D175F5A780A75B](https://moonscan.io/token/0xFFFfFfff644a12F6F01b754987D175F5A780A75B){target=\_blank} |
     |      Composable       | xcIBCATOM | [0xffFFFffF6807D5082ff2f6F86BdE409245e2D953](https://moonscan.io/token/0xffFFFffF6807D5082ff2f6F86BdE409245e2D953){target=\_blank} |
     |       Darwinia        |  xcRING   | [0xFfffFfff5e90e365eDcA87fB4c8306Df1E91464f](https://moonscan.io/token/0xFfffFfff5e90e365eDcA87fB4c8306Df1E91464f){target=\_blank} |
+    |          DED          |   xcDED   | [0xfFffFFFf5da2d7214D268375cf8fb1715705FdC6](https://moonscan.io/token/0xfFffFFFf5da2d7214D268375cf8fb1715705FdC6){target=\_blank} |
     |      Equilibrium      |   xcEQ    | [0xFffFFfFf8f6267e040D8a0638C576dfBa4F0F6D6](https://moonscan.io/token/0xFffFFfFf8f6267e040D8a0638C576dfBa4F0F6D6){target=\_blank} |
     |      Equilibrium      |   xcEQD   | [0xFFffFfFF8cdA1707bAF23834d211B08726B1E499](https://moonscan.io/token/0xFFffFfFF8cdA1707bAF23834d211B08726B1E499){target=\_blank} |
     |        HydraDX        |   xcHDX   | [0xFFFfFfff345Dc44DDAE98Df024Eb494321E73FcC](https://moonscan.io/token/0xFFFfFfff345Dc44DDAE98Df024Eb494321E73FcC){target=\_blank} |
@@ -82,13 +83,16 @@ The current list of available external XC-20 assets per network is as follows:
     |         Nodle         |  xcNODL   | [0xfffffffFe896ba7Cb118b9Fa571c6dC0a99dEfF1](https://moonscan.io/token/0xfffffffFe896ba7Cb118b9Fa571c6dC0a99dEfF1){target=\_blank} |
     | OriginTrail Parachain |   xcOTP   | [0xFfffffFfB3229c8E7657eABEA704d5e75246e544](https://moonscan.io/token/0xFfffffFfB3229c8E7657eABEA704d5e75246e544){target=\_blank} |
     |       Parallel        |  xcPARA   | [0xFfFffFFF18898CB5Fe1E88E668152B4f4052A947](https://moonscan.io/token/0xFfFffFFF18898CB5Fe1E88E668152B4f4052A947){target=\_blank} |
-    |       Pendulum        |   xcPEN   | [0xffffffff2257622f345e1acde0d4f46d7d1d77d0](https://moonscan.io/token/0xffffffff2257622f345e1acde0d4f46d7d1d77d0){target=\_blank} |
+    |         Peaq          |  xcPEAQ   | [0xFffFFFFFEC4908b74688a01374f789B48E9a3eab](https://moonscan.io/token/0xFffFFFFFEC4908b74688a01374f789B48E9a3eab){target=\_blank} |
+    |       Pendulum        |   xcPEN   | [0xffFFfFFf2257622F345E1ACDe0D4f46D7d1D77D0](https://moonscan.io/token/0xffFFfFFf2257622F345E1ACDe0D4f46D7d1D77D0){target=\_blank} |
     |         Phala         |   xcPHA   | [0xFFFfFfFf63d24eCc8eB8a7b5D0803e900F7b6cED](https://moonscan.io/token/0xFFFfFfFf63d24eCc8eB8a7b5D0803e900F7b6cED){target=\_blank} |
     |       Polkadex        |  xcPDEX   | [0xfFffFFFF43e0d9b84010b1b67bA501bc81e33C7A](https://moonscan.io/token/0xfFffFFFF43e0d9b84010b1b67bA501bc81e33C7A){target=\_blank} |
     |  Polkadot Asset Hub   |  xcPINK   | [0xfFfFFfFf30478fAFBE935e466da114E14fB3563d](https://moonscan.io/token/0xfFfFFfFf30478fAFBE935e466da114E14fB3563d){target=\_blank} |
+    |  Polkadot Asset Hub   |  xcSTINK  | [0xFffFffFf54c556bD1d0F64ec6c78f1B477525E56](https://moonscan.io/token/0xFffFffFf54c556bD1d0F64ec6c78f1B477525E56){target=\_blank} |
     |  Polkadot Asset Hub   |  xcUSDC   | [0xFFfffffF7D2B0B761Af01Ca8e25242976ac0aD7D](https://moonscan.io/token/0xFFfffffF7D2B0B761Af01Ca8e25242976ac0aD7D){target=\_blank} |
     |  Polkadot Asset Hub   |  xcUSDT   | [0xFFFFFFfFea09FB06d082fd1275CD48b191cbCD1d](https://moonscan.io/token/0xFFFFFFfFea09FB06d082fd1275CD48b191cbCD1d){target=\_blank} |
-    |       Subsocial       |   xcSUB   | [0xffffffff43b4560bc0c451a3386e082bff50ac90](https://moonscan.io/token/0xffffffff43b4560bc0c451a3386e082bff50ac90){target=\_blank} |
+    |       Subsocial       |   xcSUB   | [0xfFfFffFf43B4560Bc0C451a3386E082bff50aC90](https://moonscan.io/token/0xfFfFffFf43B4560Bc0C451a3386E082bff50aC90){target=\_blank} |
+    |        Unique         |   xcUNQ   | [0xFffffFFFD58f77E6693CFB99EbE273d73C678DC2](https://moonscan.io/token/0xFffffFFFD58f77E6693CFB99EbE273d73C678DC2){target=\_blank} |
     |       Zeitgeist       |   xcZTG   | [0xFFFFfffF71815ab6142E0E20c7259126C6B40612](https://moonscan.io/token/0xFFFFfffF71815ab6142E0E20c7259126C6B40612){target=\_blank} |
 
      _*You can check each [Asset ID](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbeam.network#/assets){target=\_blank} on Polkadot.js Apps_
@@ -118,6 +122,7 @@ The current list of available external XC-20 assets per network is as follows:
     |     Picasso      | xcPICA  | [0xFffFfFFf7dD9B9C60ac83e49D7E3E1f7A1370aD2](https://moonriver.moonscan.io/token/0xFffFfFFf7dD9B9C60ac83e49D7E3E1f7A1370aD2){target=\_blank} |
     |    Robonomics    |  xcXRT  | [0xFffFFffF51470Dca3dbe535bD2880a9CcDBc6Bd9](https://moonriver.moonscan.io/token/0xFffFFffF51470Dca3dbe535bD2880a9CcDBc6Bd9){target=\_blank} |
     |      Shiden      |  xcSDN  | [0xFFFfffFF0Ca324C842330521525E7De111F38972](https://moonriver.moonscan.io/token/0xFFFfffFF0Ca324C842330521525E7De111F38972){target=\_blank} |
+    |    Tinkernet     | xcTNKR  | [0xfFFfFffF683474B842852111cc31d470bD8f5081](https://moonriver.moonscan.io/token/0xffffffff683474b842852111cc31d470bd8f5081){target=\_blank} |
     |      Turing      |  xcTUR  | [0xfFffffFf6448d0746f2a66342B67ef9CAf89478E](https://moonriver.moonscan.io/token/0xfFffffFf6448d0746f2a66342B67ef9CAf89478E){target=\_blank} |
 
     _*You can check each [Asset ID](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonriver.moonbeam.network#/assets){target=\_blank} on Polkadot.js Apps_

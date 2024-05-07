@@ -56,6 +56,7 @@ The interface includes the following functions:
 - **voteSplit**(*uint32* pollIndex, *uint256* aye, *uint256* nay) - votes a split vote, with a given amount locked for "Aye" and a given amount locked for "Nay", on a poll (referendum)
 - **voteSplitAbstain**(*uint32* pollIndex, *uint256* aye, *uint256* nay) - votes a split abstained vote, with a given amount locked for "Aye", a given amount locked for "Nay", and a given amount locked for an abstain vote (support), on a poll (referendum)
 - **removeVote**(*uint32* pollIndex) - [removes a vote](/builders/pallets-precompiles/pallets/conviction-voting/#extrinsics){target=\_blank} in a poll (referendum)
+- **removeVoteForTrack**(*uint32* pollIndex, *uint16* trackId) - [removes a vote](/builders/pallets-precompiles/pallets/conviction-voting/#extrinsics){target=\_blank} from a specific track in a poll (referendum)
 - **removeOtherVote**(*address* target, *uint16* trackId, *uint32* pollIndex) - [removes a vote](/builders/pallets-precompiles/pallets/conviction-voting/#extrinsics){target=\_blank} in a poll (referendum) for another voter
 - **delegate**(*uint16* trackId, *address* representative, *Conviction* conviction, *uint256* amount) - delegates another account as a representative to place a Conviction-weighted vote on the behalf of the sending account for a specific Track
 - **undelegate**(*uint16* trackId) - removes the caller's vote delegations for a specific Track

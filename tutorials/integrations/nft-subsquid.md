@@ -117,7 +117,7 @@ The results will be stored at `src/abi`. One module will be generated for each A
 
 ## Define and Bind Event Handler(s) {: #define-event-handlers }
 
-Subsquid SDK provides users with the [`SubstrateBatchProcessor` class](https://docs.subsquid.io/substrate-indexing/){target=\_blank}. Its instances connect to chain-specific [Subsquid archives](https://docs.subsquid.io/archives/overview/){target=\_blank} to get chain data and apply custom transformations. The indexing begins at the starting block and keeps up with new blocks after reaching the tip.
+Subsquid SDK provides users with the [`SubstrateBatchProcessor` class](https://docs.subsquid.io/substrate-indexing/){target=\_blank}. Its instances connect to chain-specific [Subsquid archives](https://docs.subsquid.io/glossary/#archives/){target=\_blank} to get chain data and apply custom transformations. The indexing begins at the starting block and keeps up with new blocks after reaching the tip.
 
 The `SubstrateBatchProcessor` [exposes methods](https://docs.subsquid.io/substrate-indexing/configuration/){target=\_blank} to "subscribe" to specific data such as Substrate events, extrinsics, storage items or, for EVM, logs and transactions. The actual data processing is then started by calling the `.run()` function. This will start generating requests to the Archive for [*batches*](https://docs.subsquid.io/basics/batch-processing/){target=\_blank} of data specified in the configuration, and will trigger the callback function, or *batch handler* (passed to `.run()` as second argument) every time a batch is returned by the Archive.
 

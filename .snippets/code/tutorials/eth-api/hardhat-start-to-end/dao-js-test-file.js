@@ -4,76 +4,90 @@ const { ethers } = require('hardhat');
 const { expect } = require('chai');
 
 // Indicate the collator the DAO wants to delegate to
-const targetCollator = '0x4c5A56ed5A4FF7B09aA86560AfD7d383F4831Cce';
+// For Moonbase Local Node, use: 0xf24FF3a9CF04c71Dbc94D0b566f7A27B94566cac
+// For Moonbase Alpha, use: 0x12E7BCCA9b1B15f33585b5fc898B967149BDb9a5
+const targetCollator = 'INSERT_COLLATOR_ADDRESS';
 
 // The describe function receives the name of a section of your test suite, and a
 // callback. The callback must define the tests of that section. This callback
 // can't be an async function
 describe('Dao contract', function () {
+  let wallet1, wallet2;
+
+  before(async function () {
+    // Get signers we defined in Hardhat config
+    const signers = await ethers.getSigners();
+    wallet1 = signers[0];
+    wallet2 = signers[1];
+  });
+
   async function deployDao() {
-    // Get the contract factory and signers here
-    const [deployer, member1] = await ethers.getSigners();
-    const delegationDao = await ethers.getContractFactory('DelegationDAO');
+    const delegationDaoFactory = await ethers.getContractFactory(
+      'DelegationDAO',
+      wallet2
+    );
 
     // Deploy the staking DAO and wait for the deployment transaction to be confirmed
-    const deployedDao = await delegationDao.deploy(
-      targetCollator,
-      deployer.address
-    );
-    await deployedDao.waitForDeployment();
-
-    // Return the deployed DAO and the first member of the DAO to allow the tests to 
-    // access and interact with them
-    return { deployedDao, member1 };
+    try {
+      const deployedDao = await delegationDaoFactory.deploy(
+        targetCollator,
+        wallet2.address
+      );
+      await deployedDao.waitForDeployment(); // Correct way to wait for the transaction to be mined
+      return { deployedDao };
+    } catch (error) {
+      console.error('Failed to deploy contract:', error);
+      return null; // Return null to indicate failure
+    }
   }
 
-  // You can nest calls to create subsections
   describe('Deployment', function () {
-    // Mocha's it function is used to define each of your tests.
-    // It receives the test name, and a callback function
-    //
-    // If the callback function is async, Mocha will await it
+    // Test case to check that the correct target collator is stored
     it('should store the correct target collator in the DAO', async function () {
-      // Set up our test environment by calling deployDao
-      const { deployedDao } = await deployDao();
-
-      // The expect function receives a value and wraps it in an assertion object.
-      // This test will pass if the DAO stored the correct target collator
-      expect(await deployedDao.target()).to.equal(targetCollator);
+      const deployment = await deployDao();
+      if (!deployment || !deployment.deployedDao) {
+        throw new Error('Deployment failed; DAO contract was not deployed.');
+      }
+      const { deployedDao } = deployment;
+      expect(await deployedDao.getTarget()).to.equal(
+        '0xf24FF3a9CF04c71Dbc94D0b566f7A27B94566cac'
+      );
     });
 
-    // The following test cases should be added here
+    // Test case to check that the DAO has 0 funds at inception
     it('should initially have 0 funds in the DAO', async function () {
       const { deployedDao } = await deployDao();
-
-      // This test will pass if the DAO has no funds as expected before any contributions
       expect(await deployedDao.totalStake()).to.equal(0);
     });
 
+    // Test case to check that non-admins cannot grant membership
     it('should not allow non-admins to grant membership', async function () {
-      const { deployedDao, member1 } = await deployDao();
+      const { deployedDao } = await deployDao();
+      // Connect the non-admin wallet to the deployed contract
+      const deployedDaoConnected = deployedDao.connect(wallet1);
+      const tx = deployedDaoConnected.grant_member(
+        '0x0000000000000000000000000000000000000000'
+      );
 
-      // We use connect to call grant_member from member1's account instead of admin.
-      // This test will succeed if the function call reverts and fails if the call succeeds
-      await expect(
-        deployedDao
-          .connect(member1)
-          .grant_member('0x0000000000000000000000000000000000000000')
-      ).to.be.reverted;
+      // Check that the transaction reverts, not specifying any particular reason
+      await expect(tx).to.be.reverted;
     });
 
+    // Test case to check that members can access member only functions
     it('should only allow members to access member-only functions', async function () {
-      const { deployedDao, member1 } = await deployDao();
+      const { deployedDao } = await deployDao();
 
-      // Add a new member to the DAO
-      const transaction = await deployedDao.grant_member(member1.address);
-      await transaction.wait();
+      // Connect the wallet1 to the deployed contract and grant membership
+      const deployedDaoConnected = deployedDao.connect(wallet2);
+      const grantTx = await deployedDaoConnected.grant_member(wallet1.address);
+      await grantTx.wait();
 
-      // This test will succeed if the DAO member can call the member-only function.
-      // We use connect here to call the function from the account of the new member
-      expect(await deployedDao.connect(member1).check_free_balance()).to.equal(
-        0
-      );
+      // Check the free balance using the member's credentials
+      const checkTx = deployedDaoConnected.check_free_balance();
+
+      // Since check_free_balance() does not modify state, we expect it not to be reverted and check the balance
+      await expect(checkTx).to.not.be.reverted;
+      expect(await checkTx).to.equal(0);
     });
   });
 });

@@ -2,7 +2,7 @@ import { ApiPromise, WsProvider } from '@polkadot/api'; // Version 9.13.6
 
 // 1. Input Data
 const providerWsURL =
-  'wss://frag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network';
+  'wss://fro-moon-rpc-1-moonbase-relay-rpc-1.moonbase.ol-infra.network';
 const amountToWithdraw = BigInt(1 * 10 ** 16); // 0.01 DEV
 const devMultiLocation = {
   parents: 0,
