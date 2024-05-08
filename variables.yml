@@ -282,16 +282,16 @@ networks:
           decision_deposit: 500
           prepare_period:
             time: '1 hour'
-            blocks: 300
+            blocks: 600
           decision_period:
             time: '14 days'
-            blocks: 100800
+            blocks: 201600
           confirm_period:
-            time: '1 day'
-            blocks: 7200
+            time: '3 hours'
+            blocks: 1800
           min_enactment_period:
             time: '10 minutes'
-            blocks: 50
+            blocks: 100
           min_approval:
             time0: 'Day 0'
             percent0: 100
@@ -401,7 +401,7 @@ networks:
       identity: '0x0000000000000000000000000000000000000818'
       relay_data_verifier: '0x0000000000000000000000000000000000000819'
     substrate_api_sidecar:
-      stable_version: 14.1.1
+      stable_version: 18.0.0
     tx_weight_to_gas_ratio: 25000      
     orbiter:
       max_orbiters_per_collator: 8
@@ -433,7 +433,7 @@ networks:
     tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.37.2-2902-latest
     chain_spec: moonriver
     block_explorer: https://moonriver.moonscan.io/
-    spec_version: runtime-2801
+    spec_version: runtime-2901
     binary_name: moonbeam
     min_gas_price: 1.25
     block_time: 12
@@ -611,6 +611,35 @@ networks:
             percent1: 1
             time2: 'Day 14'
             percent2: 0
+        fast_general_admin:
+          max_deciding: 10
+          decision_deposit: 500
+          prepare_period:
+            time: '1 hour'
+            blocks: 300
+          decision_period:
+            time: '14 days'
+            blocks: 100800
+          confirm_period:
+            time: '3 hours'
+            blocks: 900
+          min_enactment_period:
+            time: '10 minutes'
+            blocks: 50
+          min_approval:
+            time0: 'Day 0'
+            percent0: 100
+            time1: 'Day 4'
+            percent1: 80
+            time2: 'Day 14'
+            percent2: 50
+          min_support:
+            time0: 'Day 0'
+            percent0: 50
+            time1: 'Day 5'
+            percent1: 1
+            time2: 'Day 14'
+            percent2: 0
       submission_deposit: 10
       max_votes: 512
     preimage:
@@ -757,7 +786,7 @@ networks:
       epoch_expiration: 10000
       epoch_fulfillment_delay: 2
     substrate_api_sidecar:
-      stable_version: 14.1.1
+      stable_version: 18.0.0
     tx_weight_to_gas_ratio: 25000
     orbiter:
       max_orbiters_per_collator: 3
@@ -972,6 +1001,35 @@ networks:
             percent1: 1
             time2: 'Day 14'
             percent2: 0
+        fast_general_admin:
+          max_deciding: 10
+          decision_deposit: 10000
+          prepare_period:
+            time: '1 hour'
+            blocks: 300
+          decision_period:
+            time: '14 days'
+            blocks: 100800
+          confirm_period:
+            time: '3 hours'
+            blocks: 900
+          min_enactment_period:
+            time: '10 minutes'
+            blocks: 50
+          min_approval:
+            time0: 'Day 0'
+            percent0: 100
+            time1: 'Day 4'
+            percent1: 80
+            time2: 'Day 14'
+            percent2: 50
+          min_support:
+            time0: 'Day 0'
+            percent0: 50
+            time1: 'Day 5'
+            percent1: 1
+            time2: 'Day 14'
+            percent2: 0
       submission_deposit: 1000
       max_votes: 512  
     preimage:
@@ -1097,7 +1155,7 @@ networks:
       epoch_expiration: 10000
       epoch_fulfillment_delay: 2
     substrate_api_sidecar:
-      stable_version: 14.1.1
+      stable_version: 18.0.0
       tx_weight_to_gas_ratio: 25000
     orbiter:
       max_orbiters_per_collator: 6
@@ -1119,7 +1177,7 @@ networks:
     ws: 9944
     prometheus: 9615
   polkadot:
-    spec_version: v1.0.1
+    spec_version: v1.2.0
     rocks_db:
       read_weight: 
         display: 20,499,000
@@ -1132,34 +1190,34 @@ networks:
       write_weight: 38,052,000
     xcm_message:
       transfer:
-        weight: 265,486,000
-        cost: 0.0021062795
+        weight: 260,920,000
+        cost: '0.0020700543'
     xcm_instructions:
       buy_exec:
-        base_weight: 3,153,000
-        total_weight: 3,153,000
-        dot_cost: '0.0000250149'
+        base_weight: 1,444,000
+        total_weight: 1,444,000
+        dot_cost: '0.0000114562'
       withdraw:
         base_weight: 
-          display: 25,567,000
-          numbers_only: 25567000
+          display: 28,457,000
+          numbers_only: 28457000
         total_weight:
-          display: 129,537,000
-          numbers_only: 129537000
-        planck_dot_cost: 10277043.9112
-        dot_cost: '0.0010277044'
+          display: 132,427,000
+          numbers_only: 132427000
+        planck_dot_cost: 10506327.1036296
+        dot_cost: '0.0010506327'
       clear_origin:
-        total_weight: 3,010,000
-        dot_cost: '0.0000238803'
+        total_weight: 1,354,000
+        dot_cost: '0.0000107422'
       deposit_asset:
-        total_weight: 129,786,000
-        dot_cost: '0.0010296799'
+        total_weight: 125,695,000
+        dot_cost: '0.0009972232'
       planck_dot_weight: 0.0793367448
     extrinsic_base_weight:
       display: 126,045,000
       numbers_only: 126045000
   kusama:
-    spec_version: v1.0.0
+    spec_version: v1.2.0
     rocks_db:
       read_weight: 
         display: 25,000,000
@@ -1172,28 +1230,28 @@ networks:
       write_weight: 50,000,000
     xcm_message:
       transfer:
-        weight: 305,952,000
-        cost: '0.000081779545'
+        weight: 303,670,000
+        cost: '0.000081169577'
     xcm_instructions:
       buy_exec:
-        base_weight: 2,714,000
-        total_weight: 2,714,000
-        ksm_cost: '0.000000725440'
+        base_weight: 1,415,000
+        total_weight: 1,415,000
+        ksm_cost: '0.000000378223'
       withdraw:
         base_weight: 
-          display: 24,720,000
-          numbers_only: 24720000
+          display: 29,195,000
+          numbers_only: 21195000
         total_weight:
-          display: 149,720,000
-          numbers_only: 149720000
-        planck_ksm_cost: 40019459.1011
-        ksm_cost: '0.000040019459'
+          display: 154,195,000
+          numbers_only: 154195000
+        planck_ksm_cost: 39077243.0089112
+        ksm_cost: '0.000041215606'
       clear_origin:
-        total_weight: 2,614,000
-        ksm_cost: '0.000000698710'
+        total_weight: 1,315,000
+        ksm_cost: '0.000000351493'
       deposit_asset:
-        total_weight: 150,904,000
-        ksm_cost: '0.000040335936'
+        total_weight: 146,745,000
+        ksm_cost: '0.000039224255'
       planck_ksm_weight: '0.267295345319'
     extrinsic_base_weight:
       display: 124,706,000
