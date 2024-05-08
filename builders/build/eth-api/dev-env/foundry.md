@@ -7,7 +7,7 @@ description: Learn how to use Foundry, an Ethereum development environment, to c
 
 ## Introduction {: #introduction }
 
-[Foundry](https://github.com/foundry-rs/foundry){target=\_blank} is an Ethereum development environment written in Rust that helps developers manage dependencies, compile projects, run tests, deploy contracts, and interact with blockchains from the command line. Foundry can directly interact with Moonbeam's Ethereum API so it can be used to deploy smart contracts into Moonbeam.
+[Foundry](https://github.com/foundry-rs/foundry/){target=\_blank} is an Ethereum development environment written in Rust that helps developers manage dependencies, compile projects, run tests, deploy contracts, and interact with blockchains from the command line. Foundry can directly interact with Moonbeam's Ethereum API so it can be used to deploy smart contracts into Moonbeam.
 
 Four tools make up Foundry:  
 
@@ -26,7 +26,7 @@ To get started, you will need the following:
   --8<-- 'text/_common/faucet/faucet-list-item.md'
  - 
 --8<-- 'text/_common/endpoint-examples-list-item.md'
- - Have [Foundry installed](https://book.getfoundry.sh/getting-started/installation){target=\_blank}
+ - Have [Foundry installed](https://book.getfoundry.sh/getting-started/installation/){target=\_blank}
 
 ## Creating a Foundry Project {: #creating-a-foundry-project }
 
@@ -175,7 +175,7 @@ If your script's execution succeeds, your terminal should resemble the output be
 
 --8<-- 'code/builders/build/eth-api/dev-env/foundry/terminal/script.md'
 
-And that's it! For more information about Solidity scripting with Foundry, be sure to check out [Foundry's documentation site](https://book.getfoundry.sh/tutorials/solidity-scripting){target=\_blank}.
+And that's it! For more information about Solidity scripting with Foundry, be sure to check out [Foundry's documentation site](https://book.getfoundry.sh/tutorials/solidity-scripting/){target=\_blank}.
 
 ## Interacting with the Contract {: #interacting-with-the-contract }
 
@@ -307,7 +307,7 @@ To verify you have forked the network, you can query the latest block number:
 curl --data '{"method":"eth_blockNumber","params":[],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json" -X POST localhost:8545 
 ```
 
-If you convert the `result` from [hex to decimal](https://www.rapidtables.com/convert/number/hex-to-decimal.html){target=\_blank}, you should get the latest block number from the time you forked the network. You can cross reference the block number using a [block explorer](/builders/get-started/explorers){target=\_blank}.
+If you convert the `result` from [hex to decimal](https://www.rapidtables.com/convert/number/hex-to-decimal.html){target=\_blank}, you should get the latest block number from the time you forked the network. You can cross reference the block number using a [block explorer](/builders/get-started/explorers/){target=\_blank}.
 
 From here you can deploy new contracts to your forked instance of Moonbeam or interact with contracts already deployed. Building off of the previous example in this guide, you can make a call using Cast to check the balance of the minted MYTOK tokens in the account you deployed the contract with:
 
@@ -438,7 +438,7 @@ If you want to learn more about Chisel, download Foundry and refer to its [offic
 
 ## Foundry With Hardhat {: #foundry-with-hardhat }  
 
-Often, there will be the case where a project that you wish to integrate with has all of its setup within [Hardhat](/builders/build/eth-api/dev-env/hardhat){target=\_blank}, making it an arduous task to convert the entirety of the project into Foundry. This additional work is avoidable by creating a hybrid project that uses both Hardhat and Foundry features together. This is possible with Hardhat's [hardhat-foundry plugin](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-foundry){target=\_blank}.  
+Often, there will be the case where a project that you wish to integrate with has all of its setup within [Hardhat](/builders/build/eth-api/dev-env/hardhat/){target=\_blank}, making it an arduous task to convert the entirety of the project into Foundry. This additional work is avoidable by creating a hybrid project that uses both Hardhat and Foundry features together. This is possible with Hardhat's [hardhat-foundry plugin](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-foundry/){target=\_blank}.  
 
 To convert your preexisting Foundry project to a hybrid project, you will essentially have to install a Hardhat project into the same folder:  
 

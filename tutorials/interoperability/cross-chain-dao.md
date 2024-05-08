@@ -11,9 +11,9 @@ _by Jeremy Boetticher_
 
 Moonbeam works hard to support interoperability and cross-chain logic. Its [Connected Contracts](https://moonbeam.network/builders/connected-contracts/){target=\_blank} initiative requires an updating of previously understood smart contract concepts so that they fit a cross-chain world. While some cross-chain primitives have been available for years, such as cross-chain tokens, others are only now starting to be worked on, such as cross-chain swaps, AMMs, and, of particular interest for this tutorial, DAOs.
 
-In this tutorial, we will work through a thought process of writing smart contracts for a cross-chain DAO. The smart contracts in this example will be based off of OpenZeppelin's Governance smart contracts to demonstrate an evolution from single-chain to cross-chain and to highlight some incompatibilities that one might face when converting a DApp concept from single-chain to cross-chain. The cross-chain protocol used in this example will be [LayerZero](/builders/interoperability/protocols/layerzero){target=\_blank}, but you are encouraged to adapt its concepts to any other protocol that you see fit, since cross-chain concepts often overlap between the protocols that Moonbeam hosts.  
+In this tutorial, we will work through a thought process of writing smart contracts for a cross-chain DAO. The smart contracts in this example will be based off of OpenZeppelin's Governance smart contracts to demonstrate an evolution from single-chain to cross-chain and to highlight some incompatibilities that one might face when converting a DApp concept from single-chain to cross-chain. The cross-chain protocol used in this example will be [LayerZero](/builders/interoperability/protocols/layerzero/){target=\_blank}, but you are encouraged to adapt its concepts to any other protocol that you see fit, since cross-chain concepts often overlap between the protocols that Moonbeam hosts.  
 
-The purpose of this tutorial is not to be the end-all, be-all definition of what a cross-chain DAO would be like, but instead to provide an example of thinking about the intricacies of writing a significantly complex cross-chain DApp. The focus of this tutorial will be on architecture, specifically cross-chain smart contract logic, instead of deploying and testing. **The following smart contracts are not tested or recommended for production use**. That being said, feel free to take inspiration from some of the design choices if you decide to write your cross-chain DAO. The full code base and demonstration of the DAO is available in a [GitHub repository](https://github.com/jboetticher/cross-chain-dao){target=\_blank}, with relevant instructions.  
+The purpose of this tutorial is not to be the end-all, be-all definition of what a cross-chain DAO would be like, but instead to provide an example of thinking about the intricacies of writing a significantly complex cross-chain DApp. The focus of this tutorial will be on architecture, specifically cross-chain smart contract logic, instead of deploying and testing. **The following smart contracts are not tested or recommended for production use**. That being said, feel free to take inspiration from some of the design choices if you decide to write your cross-chain DAO. The full code base and demonstration of the DAO is available in a [GitHub repository](https://github.com/jboetticher/cross-chain-dao/){target=\_blank}, with relevant instructions.  
 
 --8<-- 'text/_disclaimers/third-party-content-intro.md'
 
@@ -25,7 +25,7 @@ DAO stands for "Decentralized Autonomous Organization." In order for a smart con
 - **Autonomous** — execution must occur without reliance on a single person, government, or team
 - **Organized** — there must be a way for actions to be proposed and then taken: code is law
 
-One of the best single-chain DAOs is [Compound Finance's DAO](https://compound.finance/governance){target=\_blank}. It is **organized** because the smart contract allows users to propose actions to be taken on chain in the form of transaction parameters, which are later executed with the smart contract as the origin. It is **autonomous** because the execution of the proposals is permissionless and thus does not depend on any specific person or team. It is **decentralized** because proposals are voted on by holders of the Compound Finance token.
+One of the best single-chain DAOs is [Compound Finance's DAO](https://compound.finance/governance/){target=\_blank}. It is **organized** because the smart contract allows users to propose actions to be taken on chain in the form of transaction parameters, which are later executed with the smart contract as the origin. It is **autonomous** because the execution of the proposals is permissionless and thus does not depend on any specific person or team. It is **decentralized** because proposals are voted on by holders of the Compound Finance token.
 
 Let's take a look at the phases that a proposal in a DAO like Compound Finance's takes:  
 
@@ -61,11 +61,11 @@ This is, of course, only one way to implement a cross-chain DAO, and you are enc
 
 ## Checking Prerequisites {: #checking-prerequisites }
 
-Before we start writing the entire project, it's important to note that its finished form can be found in its own [cross-chain DAO GitHub repository](https://github.com/jboetticher/cross-chain-dao){target=\_blank}. It uses Hardhat, so prerequisite knowledge will be helpful for understanding how the repository works. This tutorial will not include information on how to use Hardhat and will instead focus solely on the smart contracts. If you would like to follow along, the prerequisites are as follows:  
+Before we start writing the entire project, it's important to note that its finished form can be found in its own [cross-chain DAO GitHub repository](https://github.com/jboetticher/cross-chain-dao/){target=\_blank}. It uses Hardhat, so prerequisite knowledge will be helpful for understanding how the repository works. This tutorial will not include information on how to use Hardhat and will instead focus solely on the smart contracts. If you would like to follow along, the prerequisites are as follows:  
 
 - A fresh Hardhat project and [knowledge of how to use Hardhat](/builders/build/eth-api/dev-env/hardhat/){target=\_blank}
-- [OpenZeppelin smart contracts installed](https://github.com/OpenZeppelin/openzeppelin-contracts){target=\_blank} as a dependency
-- [LayerZero smart contracts installed](https://github.com/LayerZero-Labs/solidity-examples){target=\_blank} as a dependency
+- [OpenZeppelin smart contracts installed](https://github.com/OpenZeppelin/openzeppelin-contracts/){target=\_blank} as a dependency
+- [LayerZero smart contracts installed](https://github.com/LayerZero-Labs/solidity-examples/){target=\_blank} as a dependency
 
 To install both dependencies, you can run:
 
@@ -188,9 +188,9 @@ We can start off by creating the base for the cross-chain DAO and then edit it s
 
 ### Starting with the OpenZeppelin Contract Wizard {: #starting-with-the-openzeppelin-contract-wizard }
 
-A logical starting point for thinking about writing a cross-chain DAO is its predecessor: a single-chain DAO. There are many different implementations that exist, but since [OpenZeppelin](https://www.openzeppelin.com/contracts){target=\_blank} hosts an already popular smart contract repository, we will use their Governance smart contracts. A second reason why we're using OpenZeppelin's smart contracts is because they're based off of Compound Finance's DAO, which we've already investigated in the [previous section](#intuition-and-planning).  
+A logical starting point for thinking about writing a cross-chain DAO is its predecessor: a single-chain DAO. There are many different implementations that exist, but since [OpenZeppelin](https://www.openzeppelin.com/contracts/){target=\_blank} hosts an already popular smart contract repository, we will use their Governance smart contracts. A second reason why we're using OpenZeppelin's smart contracts is because they're based off of Compound Finance's DAO, which we've already investigated in the [previous section](#intuition-and-planning).  
 
-A good way to play with the configurations of the `Governor` smart contract is to use the OpenZeppelin smart contract wizard. By going to the [OpenZeppelin contract page](https://www.openzeppelin.com/contracts){target=\_blank}, scrolling down, and clicking on the **Governor** tab, you can view the different ways that you can configure the `Governor` smart contract.
+A good way to play with the configurations of the `Governor` smart contract is to use the OpenZeppelin smart contract wizard. By going to the [OpenZeppelin contract page](https://www.openzeppelin.com/contracts/){target=\_blank}, scrolling down, and clicking on the **Governor** tab, you can view the different ways that you can configure the `Governor` smart contract.
 
 We're going to generate as simple of a base smart contract as possible for demonstration purposes:  
 
@@ -529,7 +529,7 @@ When we have multiple functionalities packed into a message with a single payloa
 We haven't written the `onReceiveSpokeVotingData` function yet. To do so, we'll take the following steps:
 
 1. Create the `onReceiveSpokeVotingData` function that accepts a `_srcChainId` and `payload`
-2. Store the external voting data for future use. We have already defined what type of information we want from spoke chains in [`CrossChainGovernorCountingSimple`](#counting-votes-with-cross-chain-governor-counting-contract){target=\_blank} via the `SpokeProposalVote` struct. We want three vote values: `forVotes`, `againstVotes`, and `abstainVotes`. Plus, we want to know for which proposal the data received is for, so we also want a proposal ID
+2. Store the external voting data for future use. We have already defined what type of information we want from spoke chains in [`CrossChainGovernorCountingSimple`](#counting-votes-with-cross-chain-governor-counting-contract/){target=\_blank} via the `SpokeProposalVote` struct. We want three vote values: `forVotes`, `againstVotes`, and `abstainVotes`. Plus, we want to know for which proposal the data received is for, so we also want a proposal ID
 
 ```solidity
 function onReceiveSpokeVotingData(uint16 _srcChainId, bytes memory payload) internal virtual {
@@ -569,7 +569,7 @@ OpenZeppelin's `Governor` smart contract came with a `propose` function, but unf
 !!! note
     Technically, the cross-chain messages should be sent when the voting delay is over to sync with when the voting weight snapshot is taken. In this instance, the proposal and snapshot are made at the same time.
 
-We'll rename the original `propose` function included in the `Governor` smart contract to be `crossCahinPropose`. Then we'll modify it to send cross-chain messages with information on the proposal to every spoke chain, the IDs of which you may remember being stored in the [`CrossChainGovernorCountingSimple` contract](#counting-votes-with-cross-chain-governor-counting-contract){target=\_blank}:
+We'll rename the original `propose` function included in the `Governor` smart contract to be `crossCahinPropose`. Then we'll modify it to send cross-chain messages with information on the proposal to every spoke chain, the IDs of which you may remember being stored in the [`CrossChainGovernorCountingSimple` contract](#counting-votes-with-cross-chain-governor-counting-contract/){target=\_blank}:
 
 ```solidity
 function crossChainPropose(address[] memory targets, uint256[] memory values, bytes[] memory calldatas, string memory description) 
@@ -799,7 +799,7 @@ In fact, the `_countVote` function is [directly copied](https://github.com/OpenZ
 
 That's it for breaking down the satellite contract. It was more or less simple because most of the logic is just a reflection of what happens on the hub chain. You can view the completed smart contract in its [GitHub repository](https://github.com/jboetticher/cross-chain-dao/blob/main/contracts/DAOSatellite.sol){target=\_blank}.  
 
-At this point, every single smart contract has been finished, and a deployment scheme like the one below can be made. If you are interested in seeing this in action, the [GitHub repository](https://github.com/jboetticher/cross-chain-dao){target=\_blank} that hosts the cross-chain DAO allows you to deploy on TestNets.  
+At this point, every single smart contract has been finished, and a deployment scheme like the one below can be made. If you are interested in seeing this in action, the [GitHub repository](https://github.com/jboetticher/cross-chain-dao/){target=\_blank} that hosts the cross-chain DAO allows you to deploy on TestNets.  
 
 ![Smart contracts overview](/images/tutorials/interoperability/cross-chain-dao/cross-chain-dao-3.webp)  
 

@@ -65,7 +65,7 @@ This will create a Hardhat config file (`hardhat.config.js`) in your project dir
 
 ## Add Smart Contracts {: #add-smart-contracts }
 
-The smart contract featured in this tutorial is more complex than the one in the [Introduction to Hardhat](/builders/build/eth-api/dev-env/hardhat/){target=\_blank} but the nature of the contract means it's perfect to demonstrate some of the advanced capabilities of Hardhat. [`DelegationDAO.sol`](https://github.com/moonbeam-foundation/moonbeam-intro-course-resources/blob/main/delegation-dao-lesson-one/DelegationDAO.sol){target=\_blank} is a pooled staking DAO that uses [`StakingInterface.sol`](/builders/pallets-precompiles/precompiles/staking/){target=\_blank} to autonomously delegate to a [collator](/learn/platform/glossary/#collators){target=\_blank} when it reaches a determined threshold. Pooled staking contracts such as [`DelegationDAO.sol`](https://github.com/moonbeam-foundation/moonbeam-intro-course-resources/blob/main/delegation-dao-lesson-one/DelegationDAO.sol){target=\_blank} allow delegators with less than the protocol minimum bond to join together to delegate their pooled funds and earn a share of staking rewards.
+The smart contract featured in this tutorial is more complex than the one in the [Introduction to Hardhat](/builders/build/eth-api/dev-env/hardhat/){target=\_blank} but the nature of the contract means it's perfect to demonstrate some of the advanced capabilities of Hardhat. [`DelegationDAO.sol`](https://github.com/moonbeam-foundation/moonbeam-intro-course-resources/blob/main/delegation-dao-lesson-one/DelegationDAO.sol){target=\_blank} is a pooled staking DAO that uses [`StakingInterface.sol`](/builders/pallets-precompiles/precompiles/staking){target=\_blank} to autonomously delegate to a [collator](/learn/platform/glossary/#collators){target=\_blank} when it reaches a determined threshold. Pooled staking contracts such as [`DelegationDAO.sol`](https://github.com/moonbeam-foundation/moonbeam-intro-course-resources/blob/main/delegation-dao-lesson-one/DelegationDAO.sol){target=\_blank} allow delegators with less than the protocol minimum bond to join together to delegate their pooled funds and earn a share of staking rewards.
 
 !!! note
     `DelegationDAO.sol` is unreviewed and unaudited. It is designed only for demonstration purposes and not intended for production use. It may contain bugs or logic errors that could result in loss of funds.
@@ -113,13 +113,13 @@ To get started, take the following steps:
 
 ## Hardhat Configuration File {: #hardhat-configuration-file }
 
-When setting up the `hardhat.config.js` file, we'll need to import a few plugins that we'll use throughout this guide. So to get started, we'll need the [Hardhat Toolbox plugin](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-toolbox){target=\_blank}, which conveniently bundles together Hardhat plugins that can be used to deploy and interact with contracts using Ethers, test contracts with Mocha and Chai, verify contracts with Etherscan, and more. You can run the following command to install the plugin:
+When setting up the `hardhat.config.js` file, we'll need to import a few plugins that we'll use throughout this guide. So to get started, we'll need the [Hardhat Toolbox plugin](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-toolbox/){target=\_blank}, which conveniently bundles together Hardhat plugins that can be used to deploy and interact with contracts using Ethers, test contracts with Mocha and Chai, verify contracts with Etherscan, and more. You can run the following command to install the plugin:
 
 ```bash
 npm install --save-dev @nomicfoundation/hardhat-toolbox 
 ```
 
-If you're curious about additional Hardhat plugins, here is [a complete list of official Hardhat plugins](https://hardhat.org/hardhat-runner/plugins){target=\_blank}.
+If you're curious about additional Hardhat plugins, here is [a complete list of official Hardhat plugins](https://hardhat.org/hardhat-runner/plugins/){target=\_blank}.
 
 For the examples in this guide, you'll need to add your private keys for your two accounts on Moonbase Alpha. Since some of the testing will be done on a development node, you'll also need to add the private keys of two of the prefunded development node accounts, which for this example, we can use Alice and Bob. In addition, you'll add your Moonscan API key, which can be used for both Moonbase Alpha and Moonbeam.
 
@@ -235,7 +235,7 @@ After compilation, an `artifacts` directory is created: it holds the bytecode an
 
 A robust smart contract development workflow is complete with a testing suite. Hardhat has a number of tools that make it easy to write and run tests. In this section, you'll learn the basics of testing your smart contracts and some more advanced techniques.
 
-Hardhat tests are typically written with Mocha and Chai. [Mocha](https://mochajs.org/){target=\_blank} is a JavaScript testing framework and [Chai](https://www.chaijs.com/){target=\_blank} is a BDD/TDD JavaScript assertion library. BDD/TDD stands for behavior and test-driven development respectively. Effective BDD/TDD necessitates writing your tests *before* writing your smart contract code. The structure of this tutorial doesn't strictly follow these guidelines, but you may wish to adopt these principles in your development workflow. Hardhat recommends using [Hardhat Toolbox](https://hardhat.org/hardhat-runner/docs/guides/migrating-from-hardhat-waffle){target=\_blank}, a plugin that bundles everything you need to get started with Hardhat, including Mocha and Chai.
+Hardhat tests are typically written with Mocha and Chai. [Mocha](https://mochajs.org/){target=\_blank} is a JavaScript testing framework and [Chai](https://www.chaijs.com/){target=\_blank} is a BDD/TDD JavaScript assertion library. BDD/TDD stands for behavior and test-driven development respectively. Effective BDD/TDD necessitates writing your tests *before* writing your smart contract code. The structure of this tutorial doesn't strictly follow these guidelines, but you may wish to adopt these principles in your development workflow. Hardhat recommends using [Hardhat Toolbox](https://hardhat.org/hardhat-runner/docs/guides/migrating-from-hardhat-waffle/){target=\_blank}, a plugin that bundles everything you need to get started with Hardhat, including Mocha and Chai.
 
 Because we will initially be running our tests on a local Moonbeam node, we need to specify Alice's address as the address of our target collator (Alice's account is the only collator for a local development node):
 
@@ -243,7 +243,7 @@ Because we will initially be running our tests on a local Moonbeam node, we need
 0xf24FF3a9CF04c71Dbc94D0b566f7A27B94566cac
 ```
 
-If instead you prefer to run your tests against Moonbase Alpha, you can choose the below collator, or [any other collator on Moonbase Alpha](https://apps.moonbeam.network/moonbase-alpha/staking){target=\_blank} you would like the DAO to delegate to:
+If instead you prefer to run your tests against Moonbase Alpha, you can choose the below collator, or [any other collator on Moonbase Alpha](https://apps.moonbeam.network/moonbase-alpha/staking/){target=\_blank} you would like the DAO to delegate to:
 
 ```text
 {{ networks.moonbase.staking.candidates.address1 }}
@@ -438,7 +438,7 @@ In the following steps, we'll deploy the `DelegationDAO` to the Moonbase Alpha T
 
 As a side note, `DelegationDAO` relies on [`StakingInterface.sol`](/builders/pallets-precompiles/precompiles/staking/){target=\_blank}, which is a Substrate-based offering unique to Moonbeam networks. The Hardhat Network and forked networks are simulated EVM environments which do not include the Substrate-based precompiles like `StakingInterface.sol`. Therefore, `DelegationDAO` will not work properly if deployed to the local default Hardhat Network or a [forked network](/builders/build/eth-api/dev-env/hardhat/#forking-moonbeam){target=\_blank}.
 
-To deploy `DelegationDAO`, you'll use Hardhat Ignition, a declarative framework for deploying smart contracts. Hardhat Ignition is designed to make it easy to manage recurring tasks surrounding smart contract  deployment and testing. For more information about Hardhat Ignition and its architecture, be sure to check out the [Hardhat Ignition docs](https://hardhat.org/ignition/docs/getting-started#overview){target=\_blank}. 
+To deploy `DelegationDAO`, you'll use Hardhat Ignition, a declarative framework for deploying smart contracts. Hardhat Ignition is designed to make it easy to manage recurring tasks surrounding smart contract  deployment and testing. For more information about Hardhat Ignition and its architecture, be sure to check out the [Hardhat Ignition docs](https://hardhat.org/ignition/docs/getting-started#overview){target=\_blank}.
 
 To set up the proper file structure for your Ignition module, create a folder named `ignition` and a subdirectory called `modules`.  Then, add a new file to it called `DelegationDao.js`. You can take all three of these steps with the following command:
 
@@ -499,7 +499,7 @@ Congratulations, your contract is live on Moonbase Alpha! Save the address, as y
 
 Contract verification is an essential step of any developer's workflow, particularly in the theoretical example of this staking DAO. Potential participants in the DAO need to be assured that the smart contract works as intended - and verifying the contract allows anyone to observe and analyze the deployed smart contract.
 
-While it's possible to verify smart contracts on the [Moonscan website](https://moonscan.io/verifyContract){target=\_blank}, the Hardhat Etherscan plugin enables us to verify our staking DAO in a faster and easier manner. It's not an exaggeration to say that the plugin dramatically simplifies the contract verification process, especially for projects that include multiple Solidity files or libraries.
+While it's possible to verify smart contracts on the [Moonscan website](https://moonscan.io/verifyContract/){target=\_blank}, the Hardhat Etherscan plugin enables us to verify our staking DAO in a faster and easier manner. It's not an exaggeration to say that the plugin dramatically simplifies the contract verification process, especially for projects that include multiple Solidity files or libraries.
 
 Before beginning the contract verification process, you'll need to [acquire a Moonscan API Key](/builders/build/eth-api/verify-contracts/etherscan-plugins/#generating-a-moonscan-api-key){target=\_blank}. Note that Moonbeam and Moonbase Alpha use the same [Moonbeam Moonscan](https://moonscan.io/){target=\_blank} API key, whereas you'll need a distinct API key for [Moonriver](https://moonriver.moonscan.io/){target=\_blank}.
 
@@ -522,7 +522,7 @@ In your terminal, you should see the source code for your contract was successfu
 !!! note
     `DelegationDAO.sol` is unreviewed and unaudited. It is designed only for demonstration purposes and not intended for production use. It may contain bugs or logic errors that could result in loss of funds.
 
-In the following steps, we'll be deploying the `DelegationDAO` contract to the Moonbeam MainNet network. Remember to add the Moonbeam network to your [`hardhat.config.js`](#hardhat-configuration-file) and update the private keys of your accounts on Moonbeam if you haven't done so already. Before deploying `DelegationDAO` to Moonbeam, we need to change the address of the target collator, since our target collator on Moonbase Alpha does not exist on Moonbeam. Head to your deploy script and change the target collator to `{{ networks.moonbeam.staking.candidates.address1 }}` or [another Moonbeam collator](https://apps.moonbeam.network/moonbeam/staking){target=\_blank} of your choice. Your deployment script, named `DelegationDao.js`, should thus look like the following:
+In the following steps, we'll be deploying the `DelegationDAO` contract to the Moonbeam MainNet network. Remember to add the Moonbeam network to your [`hardhat.config.js`](#hardhat-configuration-file) and update the private keys of your accounts on Moonbeam if you haven't done so already. Before deploying `DelegationDAO` to Moonbeam, we need to change the address of the target collator, since our target collator on Moonbase Alpha does not exist on Moonbeam. Head to your deploy script and change the target collator to `{{ networks.moonbeam.staking.candidates.address1 }}` or [another Moonbeam collator](https://apps.moonbeam.network/moonbeam/staking/){target=\_blank} of your choice. Your deployment script, named `DelegationDao.js`, should thus look like the following:
 
 ```javascript
 // 1. Import the required function from the Hardhat Ignition module
@@ -582,8 +582,8 @@ In your terminal you should see the source code for your contract was successful
 
 And that's it! We covered a lot of ground in this tutorial, but there's more resources available if you'd like to go deeper, including the following:
 
-- [Hardhat guide to Testing Contracts](https://hardhat.org/hardhat-runner/docs/guides/test-contracts){target=\_blank}
-- [Writing tasks and scripts](https://hardhat.org/hardhat-runner/docs/guides/tasks-and-scripts){target=\_blank}
+- [Hardhat guide to Testing Contracts](https://hardhat.org/hardhat-runner/docs/guides/test-contracts/){target=\_blank}
+- [Writing tasks and scripts](https://hardhat.org/hardhat-runner/docs/guides/tasks-and-scripts/){target=\_blank}
 
 --8<-- 'text/_disclaimers/educational-tutorial.md'
 

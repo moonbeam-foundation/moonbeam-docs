@@ -13,7 +13,7 @@ This page provides a historical record of runtime upgrades by block for each of 
 
 ## Runtime Upgrades by Block {: #runtime-upgrades-by-block }
 
-The following table contains a list of the runtime upgrades and the block at which the upgrade occurred for each network. Runtime upgrades occur first on Moonbase Alpha before being released on Moonriver and then on Moonbeam. You can read the release notes for each runtime on the [Moonbeam releases GitHub page](https://github.com/moonbeam-foundation/moonbeam/releases){target=\_blank}.
+The following table contains a list of the runtime upgrades and the block at which the upgrade occurred for each network. Runtime upgrades occur first on Moonbase Alpha before being released on Moonriver and then on Moonbeam. You can read the release notes for each runtime on the [Moonbeam releases GitHub page](https://github.com/moonbeam-foundation/moonbeam/releases/){target=\_blank}.
 
 Not all runtime upgrades are released on each network, as sometimes after releasing the initial runtime upgrade, the need for a subsequent upgrade arises. If a runtime upgrade version has been skipped or hasn't been released yet (only applicable to the latest runtime upgrade), you'll see a `-` in that row.
 

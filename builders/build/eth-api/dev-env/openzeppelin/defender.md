@@ -32,7 +32,7 @@ In addition, you need to sign up for a free OpenZeppelin Defender account, which
 
 ### Deploying the Pausable Box Contract {: #deploying-the-pauseable-box-contract }
 
-The contract used in this guide is an extension of the `Box.sol` contract used in the [upgrading smart contracts guide](https://docs.openzeppelin.com/learn/upgrading-smart-contracts){target=\_blank} from the OpenZeppelin documentation. Also, the contract was made upgradable and [pausable](https://docs.openzeppelin.com/contracts/4.x/api/security#Pausable){target=\_blank} to take full advantage of the Admin component. You can deploy your contract using the following code and following the [upgrading smart contracts guide](https://docs.openzeppelin.com/learn/upgrading-smart-contracts){target=\_blank}:
+The contract used in this guide is an extension of the `Box.sol` contract used in the [upgrading smart contracts guide](https://docs.openzeppelin.com/learn/upgrading-smart-contracts/){target=\_blank} from the OpenZeppelin documentation. Also, the contract was made upgradable and [pausable](https://docs.openzeppelin.com/contracts/4.x/api/security#Pausable){target=\_blank} to take full advantage of the Admin component. You can deploy your contract using the following code and following the [upgrading smart contracts guide](https://docs.openzeppelin.com/learn/upgrading-smart-contracts/){target=\_blank}:
 
 ```solidity
 --8<-- 'code/builders/build/eth-api/dev-env/openzeppelin/PausableBox.sol'
@@ -40,7 +40,6 @@ The contract used in this guide is an extension of the `Box.sol` contract used i
 
 !!! note
     After deploying the above contract using Remix or another tool such as Hardhat, you'll need to call the `initialize` function to properly set the owner of the upgradeable contract. If you don't call this function, the owner will be set to the zero address, and you will be unable to proceed with the remainder of this tutorial.
-
 
 ## Using the Access Control Component {: #using-the-access-control-component }
 
@@ -50,7 +49,7 @@ This section goes through the steps for getting started with the [OpenZeppelin D
 
 The first step to using Defender Access Control is to add the contract you want to manage. To do so, take the following steps:
 
- 1. Click on the **Access Control** menu item 
+ 1. Click on the **Access Control** menu item
  2. Click **Add Contract**
  3. Add a name for your contract
  4. Select the **Network** on which the contract is deployed. For the demo, Moonbase Alpha is selected
@@ -78,7 +77,7 @@ Then, you can add your address to the Defender Address Book as follows:
 Proposals are actions to be carried out in the contract. You can propose any function of the contract to be enacted, including but not limited to:
 
 - **Pause** — available if the pause feature is detected. Pauses token transfers, minting, and burning
-- **Upgrade** — available if the upgrade feature is detected. Allows for a contract to be [upgraded via a proxy contract](https://docs.openzeppelin.com/learn/upgrading-smart-contracts){target=\_blank}
+- **Upgrade** — available if the upgrade feature is detected. Allows for a contract to be [upgraded via a proxy contract](https://docs.openzeppelin.com/learn/upgrading-smart-contracts/){target=\_blank}
 - **Admin action** — call to any function in the managed contract
 
 In this case, a new proposal is created to pause the contract. To do so, take the following steps:

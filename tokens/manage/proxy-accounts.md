@@ -70,7 +70,7 @@ When creating a proxy account, you must choose a type of proxy which will define
 - **`Governance`** - allows the proxy account to make transactions related to governance, such as voting or proposing democracy proposals
 - **`NonTransfer`** - this type of proxy account is allowed to submit any type of transaction with the exception of balance transfers
 - **`Balances`** - allows the proxy account to only make transactions related to sending funds
-- **`IdentityJudgement`** - allows the proxy account to request judgement on an [account's identity](/tokens/manage/identity){target=\_blank} from a registrar. The following judgements can be issued:
+- **`IdentityJudgement`** - allows the proxy account to request judgement on an [account's identity](/tokens/manage/identity/){target=\_blank} from a registrar. The following judgements can be issued:
     - **unknown** - (default) no judgement has been made yet
     - **fee paid** - to indicate a user has requested judgement and it is in progress
     - **reasonable** - the information appears reasonable, but no in-depth checks (i.e. formal KYC process) were performed
@@ -84,7 +84,7 @@ For the purposes of this guide, you will be setting up a proxy account using the
 
 ## Creating a Proxy Account {: #creating-a-proxy-account }
 
-There are a couple of ways you can create proxy accounts in [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network){target=\_blank}, either from the **Extrinsics** page or the **Accounts** page. However, to create a time-delayed proxy, you will need to use the **Extrinsics** page. A time delay provides an additional layer of security to proxies by specifying a delay period based on a number of blocks. This will prevent the proxy account from executing a transaction until the delay period ends. The delay allows time for the primary account that controls the proxy to review pending transactions, potentially for malicious actions, and cancel if necessary before execution.
+There are a couple of ways you can create proxy accounts in [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network/){target=\_blank}, either from the **Extrinsics** page or the **Accounts** page. However, to create a time-delayed proxy, you will need to use the **Extrinsics** page. A time delay provides an additional layer of security to proxies by specifying a delay period based on a number of blocks. This will prevent the proxy account from executing a transaction until the delay period ends. The delay allows time for the primary account that controls the proxy to review pending transactions, potentially for malicious actions, and cancel if necessary before execution.
 
 To get started creating your proxy account, head to the **Developer** tab and select [**Extrinsics**](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/extrinsics){target=\_blank} from the dropdown. Next, you will need to take the following steps:
 

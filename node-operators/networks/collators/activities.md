@@ -94,7 +94,7 @@ As mentioned before, only the top candidates by delegated stake will be in the a
 
 To stop collating and leave the candidate pool, you must first schedule a request to leave the pool. Scheduling a request automatically removes you from the active set, so you will no longer be eligible to produce blocks or earn rewards. You must wait for the duration of the [exit delay](#collator-timings) before you can execute the request to leave. After the request has been executed, you will be removed from the candidate pool.
 
-Similar to [Polkadot's `chill()`](https://wiki.polkadot.network/docs/maintain-guides-how-to-chill){target=\_blank} functionality, you can [temporarily leave the candidate pool](#temporarily-leave-the-candidate-pool) without unbonding your tokens.
+Similar to [Polkadot's `chill()`](https://wiki.polkadot.network/docs/maintain-guides-how-to-chill/){target=\_blank} functionality, you can [temporarily leave the candidate pool](#temporarily-leave-the-candidate-pool) without unbonding your tokens.
 
 ### Schedule Request to Leave Candidates {: #schedule-request-to-leave-candidates }
 
@@ -168,7 +168,7 @@ If you wish to bond less, you have to schedule a request, wait for an [exit dela
 
 ### Bond More {: #bond-more }
 
-As a candidate, there are two options for increasing one's stake. The first and recommended option is to send the funds to be staked to another owned address and [delegate to your collator](/tokens/staking/stake/#how-to-nominate-a-collator). Alternatively, collators that already have at least the [minimum self-bond amount](/node-operators/networks/collators/requirements/#minimum-collator-bond){target=\_blank} staked can increase their bond from [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonriver.moonbeam.network#/accounts). Navigate to the **Developer** tab, click on **Extrinsics**, and follow these steps:
+As a candidate, there are two options for increasing one's stake. The first and recommended option is to send the funds to be staked to another owned address and [delegate to your collator](/tokens/staking/stake/#how-to-nominate-a-collator). Alternatively, collators that already have at least the [minimum self-bond amount](/node-operators/networks/collators/requirements/#minimum-collator-bond){target=\_blank} staked can increase their bond from [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonriver.moonbeam.network#/accounts){target=\_blank}. Navigate to the **Developer** tab, click on **Extrinsics**, and follow these steps:
 
  1. Select your collator account (and verify it contains the additional funds to be bonded)
  2. Select **parachainStaking** pallet under the **submit the following extrinsic** menu

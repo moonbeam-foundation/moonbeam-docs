@@ -80,7 +80,7 @@ To vote on a proposal on the network, you need to use the Polkadot.js Apps inter
 
 ![Accounts in Polkadot.js](/images/tokens/governance/proposals/proposals-3.webp)
 
-To get started, you'll need to navigate to [Moonbase Alpha's Polkadot.js Apps interface](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network){target=\_blank}. Everything related to governance lives under the **Governance** tab. To view all of the referenda, you can choose **Referenda** from the **Governance** dropdown. On the **Referenda** page, you'll see a list of referenda organized by Track. To view the details of a specific referendum, you can click on the arrow next to the description. The number next to the action and description is called the referendum index.
+To get started, you'll need to navigate to [Moonbase Alpha's Polkadot.js Apps interface](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network/){target=\_blank}. Everything related to governance lives under the **Governance** tab. To view all of the referenda, you can choose **Referenda** from the **Governance** dropdown. On the **Referenda** page, you'll see a list of referenda organized by Track. To view the details of a specific referendum, you can click on the arrow next to the description. The number next to the action and description is called the referendum index.
 
 ### How to Support a Proposal by Contributing to the Decision Deposit {: #submit-decision-deposit }
 

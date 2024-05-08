@@ -11,7 +11,7 @@ The Moonbeam XCM SDK enables developers to easily transfer assets between chains
 
 The XCM SDK offers helper functions, that provide a very simple interface to execute XCM transfers between chains in the Polkadot/Kusama ecosystem. In addition, the XCM config package allows any parachain project to add their information in a standard way, so they can be immediately supported by the XCM SDK.
 
-For an overview of the available methods and interfaces in the Moonbeam XCM SDK, please refer to the [Reference](/builders/interoperability/xcm/xcm-sdk/v1/reference){target=\_blank} page.
+For an overview of the available methods and interfaces in the Moonbeam XCM SDK, please refer to the [Reference](/builders/interoperability/xcm/xcm-sdk/v1/reference/){target=\_blank} page.
 
 The examples in this guide are shown on Moonbeam, but can be adapted to be used on Moonriver or Moonbase Alpha.
 
@@ -345,7 +345,7 @@ The process for using `assets` to build the transfer data is as follows:
 
     This will return the `accounts` function, which is used to define the source and destination addresses and the associated signers for each address
 
-The asset and chain objects are managed within the `@moonbeam-network/xcm-config` package. You do not need to directly interact with this package as the SDK exposes this data, but there you can find the list of [assets](https://github.com/moonbeam-foundation/xcm-sdk/blob/main/packages/config/src/assets.ts){target=\_blank} and [chain data](https://github.com/moonbeam-foundation/xcm-sdk/blob/main/packages/config/src/chains.ts){target=\_blank}.
+The asset and chain objects are managed within the `@moonbeam-network/xcm-config` package. You do not need to directly interact with this package as the SDK exposes this data, but there you can find the list of [assets](https://github.com/moonbeam-foundation/xcm-sdk/blob/main/packages/config/src/assets.ts/){target=\_blank} and [chain data](https://github.com/moonbeam-foundation/xcm-sdk/blob/main/packages/config/src/chains.ts/){target=\_blank}.
 
 
 An example of the steps described above to build the transfer data to transfer DOT from the Polkadot relay chain to Moonbeam is as follows:

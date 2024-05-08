@@ -7,7 +7,7 @@ description: Learn how to take the first necessary step to submit a proposal on-
 
 ## Introduction {: #introduction }
 
-As a Polkadot parachain and decentralized network, Moonbeam features native on-chain governance that enables stakeholders to participate in the direction of the network. With the introduction of OpenGov, also referred to as Governance v2, the Preimage Pallet allows token holders to take the first step towards creating a proposal by submitting the preimage, which is the action to be carried out in the proposal, on-chain. The hash of the preimage is required to submit the proposal. To learn more about Moonbeam's governance system, such as an overview of related terminology, the roadmap of a proposal, and more, please refer to the [Governance on Moonbeam](/learn/features/governance){target=\_blank} page.
+As a Polkadot parachain and decentralized network, Moonbeam features native on-chain governance that enables stakeholders to participate in the direction of the network. With the introduction of OpenGov, also referred to as Governance v2, the Preimage Pallet allows token holders to take the first step towards creating a proposal by submitting the preimage, which is the action to be carried out in the proposal, on-chain. The hash of the preimage is required to submit the proposal. To learn more about Moonbeam's governance system, such as an overview of related terminology, the roadmap of a proposal, and more, please refer to the [Governance on Moonbeam](/learn/features/governance/){target=\_blank} page.
 
 The Preimage Precompile interacts directly with Substrate's Preimage Pallet. This pallet is coded in Rust and is normally not accessible from the Ethereum side of Moonbeam. However, the Preimage Precompile allows you to access functions needed to create and manage preimages, all of which are part of the Substrate Preimage Pallet, directly from a Solidity interface.
 
@@ -119,6 +119,6 @@ Now you can take the **bytes** of the encoded proposal that you got from [Polkad
 
 ![Submit the preimage using the notePreimage function of the Preimage Precompile.](/images/builders/pallets-precompiles/precompiles/preimage/preimage-4.webp)
 
-Now that you've submitted the preimage for your proposal your proposal can be submitted! Head over to the [Referenda Precompile documentation](/builders/pallets-precompiles/precompiles/referenda){target=\_blank} to learn how to submit your proposal.
+Now that you've submitted the preimage for your proposal your proposal can be submitted! Head over to the [Referenda Precompile documentation](/builders/pallets-precompiles/precompiles/referenda/){target=\_blank} to learn how to submit your proposal.
 
 If you wish to remove a preimage, you can follow the same steps noted above except use the `unnotePreimage` function and pass in the preimage hash instead of the encoded proposal.

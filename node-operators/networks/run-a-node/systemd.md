@@ -11,7 +11,7 @@ Running a full node on a Moonbeam-based network allows you to connect to the net
 
 In this guide, you'll learn how to spin up a Moonbeam node using [Systemd](https://systemd.io/){target=\_blank} and how to maintain and purge your node.
 
-If you're interested in compiling the binary yourself, which may take over 30 min and require 32GB of memory, you can check out the [Manually Compile the Moonbeam Binary](/node-operators/networks/run-a-node/compile-binary){target=\_blank} guide.
+If you're interested in compiling the binary yourself, which may take over 30 min and require 32GB of memory, you can check out the [Manually Compile the Moonbeam Binary](/node-operators/networks/run-a-node/compile-binary/){target=\_blank} guide.
 
 ## Checking Prerequisites {: #checking-prerequisites }
 
@@ -22,7 +22,7 @@ The following sections go through the process of using the binary and running a 
 
 ## Download the Latest Release Binary {: #the-release-binary }
 
-To download the latest [release binary](https://github.com/moonbeam-foundation/moonbeam/releases){target=\_blank}, take the following steps:
+To download the latest [release binary](https://github.com/moonbeam-foundation/moonbeam/releases/){target=\_blank}, take the following steps:
 
 1. Create a directory to store the binary and chain data (you might need `sudo`)
 
@@ -44,7 +44,7 @@ To download the latest [release binary](https://github.com/moonbeam-foundation/m
         mkdir {{ networks.moonbase.node_directory }}
         ```
 
-2. Use `wget` to grab the latest [release binary](https://github.com/moonbeam-foundation/moonbeam/releases) and output it to the directory created in the previous step
+2. Use `wget` to grab the latest [release binary](https://github.com/moonbeam-foundation/moonbeam/releases/){target=\_blank} and output it to the directory created in the previous step
 
     === "Moonbeam"
 
@@ -167,7 +167,7 @@ Note that in the following start-up configurations, you have to:
 - Double-check that the binary is in the proper path as described below (_ExecStart_)
 - Double-check the base path if you've used a different directory
 
-For an overview of the flags used in the following start-up commands, plus additional commonly used flags, please refer to the [Flags](/node-operators/networks/run-a-node/flags){target=\_blank} page of our documentation.
+For an overview of the flags used in the following start-up commands, plus additional commonly used flags, please refer to the [Flags](/node-operators/networks/run-a-node/flags/){target=\_blank} page of our documentation.
 
 ### Full Node {: #full-node }
 
@@ -454,7 +454,7 @@ systemctl stop moonbeam.service
 
 ## Maintain Your Node {: #maintain-your-node }
 
-As Moonbeam development continues, it will sometimes be necessary to upgrade your node software. Node operators will be notified on our [Discord channel](https://discord.gg/PfpUATX) when upgrades are available and whether they are necessary (some client upgrades are optional). The upgrade process is straightforward and is the same for a full node or collator.
+As Moonbeam development continues, it will sometimes be necessary to upgrade your node software. Node operators will be notified on our [Discord channel](https://discord.gg/PfpUATX){target=\_blank} when upgrades are available and whether they are necessary (some client upgrades are optional). The upgrade process is straightforward and is the same for a full node or collator.
 
 If you want to update your client, you can keep your existing chain data in tact, and only update the binary by following these steps:
 
@@ -508,7 +508,7 @@ If you want to update your client, you can keep your existing chain data in tact
         ```
 
     !!! note
-        If you [compiled the binary manually](/node-operators/networks/run-a-node/compile-binary){target=\_blank}, you'll need to move the binary from `./target/release/{{ networks.moonbeam.binary_name }}` to the data directory.
+        If you [compiled the binary manually](/node-operators/networks/run-a-node/compile-binary/){target=\_blank}, you'll need to move the binary from `./target/release/{{ networks.moonbeam.binary_name }}` to the data directory.
 
 4. Update permissions
 

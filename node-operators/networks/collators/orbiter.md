@@ -106,7 +106,7 @@ Once you've passed identity verification and have been accepted into the program
 
 An outline of the onboarding process is as follows:
 
-- [Prepare your node by syncing it](/node-operators/networks/run-a-node/overview){target=\_blank}
+- [Prepare your node by syncing it](/node-operators/networks/run-a-node/overview/){target=\_blank}
 - Once fully synced, you can [generate your session keys](/node-operators/networks/collators/account-management/#session-keys){target=\_blank}
 - [Register your session keys](/node-operators/networks/collators/account-management/#map-author-id-set-session-keys){target=\_blank} and post the associated [mapping bond](#mapping-bond)
 - Once you are ready, register as an orbiter via the `moonbeamOrbiters.orbiterRegister()` extrinsic and post the associated [orbiter bond](#bond)

@@ -8,9 +8,9 @@ _by Jeremy Boetticher & Kevin Neilson_
 
 ## Introduction {: #introduction }
 
-Axelar’s [general message passing (GMP)](https://docs.axelar.dev/dev/general-message-passing/overview){target=\_blank} allows smart contracts to communicate securely across chains. This enables developers to build cross-chain connected applications on Moonbeam that can tap into functionality from Polkadot, Ethereum, Avalanche, Cosmos, and beyond. In this tutorial, we'll introduce the JavaScript SDK package Axelar packed with tools to aid developers in this cross-chain vision.
+Axelar’s [general message passing (GMP)](https://docs.axelar.dev/dev/general-message-passing/overview/){target=\_blank} allows smart contracts to communicate securely across chains. This enables developers to build cross-chain connected applications on Moonbeam that can tap into functionality from Polkadot, Ethereum, Avalanche, Cosmos, and beyond. In this tutorial, we'll introduce the JavaScript SDK package Axelar packed with tools to aid developers in this cross-chain vision.
 
-The [AxelarJS SDK](https://github.com/axelarnetwork/axelarjs-sdk){target=\_blank}  allows developers to estimate fees, track and recover transactions, and quickly transfer tokens. To show off some of the SDK's tools, we will walk through a demo that deploys an NFT that can be minted across chains. Before following along with the tutorial, you may wish to first familiarize yourself with this [Overview of Axelar](/builders/interoperability/protocols/axelar/){target=\_blank}.
+The [AxelarJS SDK](https://github.com/axelarnetwork/axelarjs-sdk/){target=\_blank}  allows developers to estimate fees, track and recover transactions, and quickly transfer tokens. To show off some of the SDK's tools, we will walk through a demo that deploys an NFT that can be minted across chains. Before following along with the tutorial, you may wish to first familiarize yourself with this [Overview of Axelar](/builders/interoperability/protocols/axelar/){target=\_blank}.
 
 In this tutorial, we'll mint an NFT on a remote chain by using Axelar to send a specific message to trigger the mint. We'll be using the AxelarJS SDK in conjunction with a minting script that will define the parameters of the cross-chain mint, such as the destination chain, destination contract address, and more.
  
@@ -49,7 +49,7 @@ Now let’s finally take a look at our mint function. It takes three inputs: a d
 
 The logic itself has three steps. First, it takes WDEV from the caller. The caller must approve our NFT contract to transfer their WDEV beforehand. Then, our NFT contract approves the gateway to transfer the WDEV from the caller since the gateway contract will try to transfer the tokens from our NFT contract in the final step.
 
-Next, to pay for gas on the destination chain, we make use of the [`IAxelarGasService` contract](https://github.com/axelarnetwork/axelar-cgp-solidity/blob/main/contracts/interfaces/IAxelarGasService.sol){target=\_blank}. This contract has many [different configurations to pay for gas](https://docs.axelar.dev/dev/gas-service/pricing){target=\_blank}, like paying for [`execute`](https://github.com/axelarnetwork/axelar-gmp-sdk-solidity/blob/main/contracts/executable/AxelarExecutable.sol#L17-L29){target=\_blank} versus [`executeWithToken`](https://github.com/axelarnetwork/axelar-gmp-sdk-solidity/blob/main/contracts/executable/AxelarExecutable.sol#L31-L53){target=\_blank} or using an ERC-20 token as payment versus using native currency. Be careful if you plan on writing your own contract later!
+Next, to pay for gas on the destination chain, we make use of the [`IAxelarGasService` contract](https://github.com/axelarnetwork/axelar-cgp-solidity/blob/main/contracts/interfaces/IAxelarGasService.sol){target=\_blank}. This contract has many [different configurations to pay for gas](https://docs.axelar.dev/dev/gas-service/pricing/){target=\_blank}, like paying for [`execute`](https://github.com/axelarnetwork/axelar-gmp-sdk-solidity/blob/main/contracts/executable/AxelarExecutable.sol#L17-L29){target=\_blank} versus [`executeWithToken`](https://github.com/axelarnetwork/axelar-gmp-sdk-solidity/blob/main/contracts/executable/AxelarExecutable.sol#L31-L53){target=\_blank} or using an ERC-20 token as payment versus using native currency. Be careful if you plan on writing your own contract later!
 
 In this case, since the origin chain is Moonbase Alpha, the native currency is DEV. We can use native DEV to pay for gas on the destination chain based on the conversion rates between Moonbase Alpha’s native currency and the destination chain’s native currency. Since we’re sending a contract call that includes a token to pay for destination gas in DEV, we will be using the `payNativeGasForContractCallWithToken` function.
 
@@ -75,7 +75,7 @@ You can find the full code for the `CrossChainNFT.sol` below.
 
 ## Setting Up the Repository {: #setting-up-the-repository} 
 
-Make sure to clone the [GitHub repository](https://github.com/jboetticher/axelar-sdk-demo/tree/main){target=\_blank} for this tutorial. We need to install some dependencies, including Hardhat, OpenZeppelin contracts, some Axelar contracts, and the Axelar SDK. To configure the dependencies properly, run the following command:
+Make sure to clone the [GitHub repository](https://github.com/jboetticher/axelar-sdk-demo/tree/main/){target=\_blank} for this tutorial. We need to install some dependencies, including Hardhat, OpenZeppelin contracts, some Axelar contracts, and the Axelar SDK. To configure the dependencies properly, run the following command:
 
 ```bash
 npm install
@@ -104,7 +104,7 @@ If everything goes well, you will be able to compile correctly:
 npx hardhat compile
 ```
 
-## Deploying the Cross-Chain Contract to Moonbase Alpha {: #deploying-the-cross-chain-contract-to-moonbase-alpha} 
+## Deploying the Cross-Chain Contract to Moonbase Alpha {: #deploying-the-cross-chain-contract-to-moonbase-alpha}
 
 This demo focuses on using the scripts, so it’s best to take a look at them, starting with `deploy.js`, which is similar to the [Ethers.js tutorial deployment contracts](/builders/build/eth-api/libraries/ethersjs/#deploy-contract-script){target=\_blank}.
 
@@ -129,13 +129,13 @@ After running a deployment command, you'll see output like the below. Be sure to
 
 ## Building the Mint.js Script {: #building-the-mint-js-script}
 
-The minting contract is quite exciting and will require Axelar’s SDK. At the top of the `mint.js` script, Ethers.js is initialized in a Hardhat script. The Axelar SDK is also initialized. There are multiple Axelar APIs available in the SDK, but in this case we will only be using the [Axelar Query API](https://docs.axelar.dev/dev/axelarjs-sdk/axelar-query-api#axelar-query-api){target=\_blank} since it includes all of the gas estimation functionality that we’ll need for paying gas fees across chains. 
+The minting contract is quite exciting and will require Axelar’s SDK. At the top of the `mint.js` script, Ethers.js is initialized in a Hardhat script. The Axelar SDK is also initialized. There are multiple Axelar APIs available in the SDK, but in this case we will only be using the [Axelar Query API](https://docs.axelar.dev/dev/axelarjs-sdk/axelar-query-api#axelar-query-api){target=\_blank} since it includes all of the gas estimation functionality that we’ll need for paying gas fees across chains.
 
 ```js
 --8<-- 'code/tutorials/interoperability/axelar-sdk/mint-1.js'
 ```
 
-There are also some constants for you to change right after. This walkthrough is using Fantom as the destination chain, but you can use whichever chains you deployed to. Note that even though we’re using a TestNet environment, Axelar refers to [the chain names](https://docs.axelar.dev/dev/reference/testnet-contract-addresses){target=\_blank} by their MainNet equivalents, hence why the origin chain is `moonbeam` and not `moonbase.`
+There are also some constants for you to change right after. This walkthrough is using Fantom as the destination chain, but you can use whichever chains you deployed to. Note that even though we’re using a TestNet environment, Axelar refers to [the chain names](https://docs.axelar.dev/dev/reference/testnet-contract-addresses/){target=\_blank} by their MainNet equivalents, hence why the origin chain is `moonbeam` and not `moonbase.`
 
 ```js
 --8<-- 'code/tutorials/interoperability/axelar-sdk/mint-2.js'
@@ -191,7 +191,7 @@ The most important data here is the minting transaction because that’s how you
 
 ## Viewing Axelar Transaction Status {: #viewing-axelar-transaction-status}
 
-Axelar has a [TestNet explorer](https://testnet.axelarscan.io/gmp/search){target=\_blank}, and a successful transaction for the interaction you just completed would look something like this:
+Axelar has a [TestNet explorer](https://testnet.axelarscan.io/gmp/search/){target=\_blank}, and a successful transaction for the interaction you just completed would look something like this:
 
 ![Viewing Transaction status on AxelarScan](/images/tutorials/interoperability/axelar-sdk/axelar-2.webp)
 
@@ -203,7 +203,7 @@ The main meat of the code is in these five lines. First, we initialize the SDK m
 --8<-- 'code/tutorials/interoperability/axelar-sdk/query.js'
 ```
 
-You can learn a bit more about the `AxelarGMPRecoveryAPI` in [Axelar’s documentation](https://docs.axelar.dev/dev/axelarjs-sdk/tx-status-query-recovery){target=\_blank}. It includes additional functionality in case a transaction goes wrong, especially if there isn’t enough gas sent along with the cross-chain transaction.
+You can learn a bit more about the `AxelarGMPRecoveryAPI` in [Axelar’s documentation](https://docs.axelar.dev/dev/axelarjs-sdk/tx-status-query-recovery/){target=\_blank}. It includes additional functionality in case a transaction goes wrong, especially if there isn’t enough gas sent along with the cross-chain transaction.
 
 To run the script, run the following command, where `INSERT_TRANSACTION_HASH` is the transaction of hash on the origin chain that you sent a cross-chain message in:
 
@@ -215,11 +215,11 @@ If you run the Hardhat script, you’ll end up with something like this in your 
 
 ![Hardhat script console output](/images/tutorials/interoperability/axelar-sdk/axelar-3.webp)
 
-You can learn more about debugging contracts in [Axelar’s documentation](https://docs.axelar.dev/dev/general-message-passing/debug/error-debugging){target=\_blank}, where they go into depth on specific error messages and how to use tools like Tenderly for logic errors.
+You can learn more about debugging contracts in [Axelar’s documentation](https://docs.axelar.dev/dev/general-message-passing/debug/error-debugging/){target=\_blank}, where they go into depth on specific error messages and how to use tools like Tenderly for logic errors.
 
 ## Conclusion {: #conclusion}
 
-You’re well on your way to creating your own connected contracts with Axelar! Learn more about Axelar on their [docs site](https://docs.axelar.dev/){target=\_blank}, and read about how Moonbeam is shaping up to be the leader in blockchain interoperability in our introduction to connected contracts. For more information on the AxelarJS SDK, be sure to check out the [Axelar Docs](https://docs.axelar.dev/dev/axelarjs-sdk/intro){target=\_blank}.
+You’re well on your way to creating your own connected contracts with Axelar! Learn more about Axelar on their [docs site](https://docs.axelar.dev/){target=\_blank}, and read about how Moonbeam is shaping up to be the leader in blockchain interoperability in our introduction to connected contracts. For more information on the AxelarJS SDK, be sure to check out the [Axelar Docs](https://docs.axelar.dev/dev/axelarjs-sdk/intro/){target=\_blank}.
 
 --8<-- 'text/_disclaimers/educational-tutorial.md'
 

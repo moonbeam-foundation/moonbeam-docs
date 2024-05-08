@@ -73,7 +73,7 @@ The mapping bond is per session keys registered. The bond for mapping your sessi
 
 #### Use Polkadot.js Apps to Map Session Keys {: #use-polkadotjs-apps }
 
-In this section, you'll learn how to map session keys from Polkadot.js Apps. To learn how to create the mapping through the author mapping precompiled contract, you can refer to the page on [Interacting with the Author Mapping Precompile](/builders/pallets-precompiles/precompiles/author-mapping){target=\_blank}.
+In this section, you'll learn how to map session keys from Polkadot.js Apps. To learn how to create the mapping through the author mapping precompiled contract, you can refer to the page on [Interacting with the Author Mapping Precompile](/builders/pallets-precompiles/precompiles/author-mapping/){target=\_blank}.
 
 To create the mapping from [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/assets){target=\_blank} (make sure you're connected to the correct network), click on **Developer** at the top of the page, choose the **Extrinsics** option from the dropdown, and take the following steps:
 

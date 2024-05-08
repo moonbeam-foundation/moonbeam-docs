@@ -149,7 +149,7 @@ Once the transaction is complete, be sure to check both of the accounts' balance
 
 ### Find a Contract Interaction's Call Data {: #find-a-contract-interactions-call-data }
 
-Visual interfaces like [Remix](/builders/build/eth-api/dev-env/remix){target=\_blank} and handy libraries like [Ethers.js](/builders/build/eth-api/libraries/ethersjs){target=\_blank} hide the way that Ethereum transactions interact with Solidity smart contracts. The name and input types of a function are hashed into a [function selector](https://docs.soliditylang.org/en/latest/abi-spec.html#function-selector-and-argument-encoding){target=\_blank} and the input data is encoded. These two pieces are then combined and sent as the transaction's call data. To send a subtransaction within a batch transaction, the sender needs to know its call data beforehand.
+Visual interfaces like [Remix](/builders/build/eth-api/dev-env/remix/){target=\_blank} and handy libraries like [Ethers.js](/builders/build/eth-api/libraries/ethersjs/){target=\_blank} hide the way that Ethereum transactions interact with Solidity smart contracts. The name and input types of a function are hashed into a [function selector](https://docs.soliditylang.org/en/latest/abi-spec.html#function-selector-and-argument-encoding){target=\_blank} and the input data is encoded. These two pieces are then combined and sent as the transaction's call data. To send a subtransaction within a batch transaction, the sender needs to know its call data beforehand.
 
 Try finding a transaction's call data using Remix:
 
@@ -248,7 +248,7 @@ And that's it! You've successfully interacted with the ERC-20 precompile using M
 
 ## Ethereum Development Libraries {: #ethereum-development-libraries }
 
-If you have followed the [Ethers.js tutorial](/builders/build/eth-api/libraries/ethersjs/){target=\_blank} on Moonbeam, you may find it difficult to find the call data for a function. The answer is hidden within Ether's `Interface` object, where the [encodeFunctionData](https://docs.ethers.org/v6/api/abi/#Interface-encodeFunctionData){target=\_blank} function allows you to input your function name and inputs to receive the resultant call data. [Web3.js](/builders/build/eth-api/libraries/web3js){target=\_blank} has a similar function, [encodeFunctionCall](https://web3js.readthedocs.io/en/v1.2.11/web3-eth-abi.html#encodefunctioncall){target=\_blank}.
+If you have followed the [Ethers.js tutorial](/builders/build/eth-api/libraries/ethersjs/){target=\_blank} on Moonbeam, you may find it difficult to find the call data for a function. The answer is hidden within Ether's `Interface` object, where the [encodeFunctionData](https://docs.ethers.org/v6/api/abi/#Interface-encodeFunctionData){target=\_blank} function allows you to input your function name and inputs to receive the resultant call data. [Web3.js](/builders/build/eth-api/libraries/web3js/){target=\_blank} has a similar function, [encodeFunctionCall](https://web3js.readthedocs.io/en/v1.2.11/web3-eth-abi.html#encodefunctioncall){target=\_blank}.
 
 !!! note
     The code snippets presented in the following sections are not meant for production environments. Please make sure you adapt it for each use-case.
@@ -271,4 +271,4 @@ If you have followed the [Ethers.js tutorial](/builders/build/eth-api/libraries/
      --8<-- 'code/builders/pallets-precompiles/precompiles/batch/web3py-batch.py'
      ```
 
-Afterwards, you should be all set to interact with the batch precompile as one typically would with a contract in [Ethers](/builders/build/eth-api/libraries/ethersjs){target=\_blank}.
+Afterwards, you should be all set to interact with the batch precompile as one typically would with a contract in [Ethers](/builders/build/eth-api/libraries/ethersjs/){target=\_blank}.

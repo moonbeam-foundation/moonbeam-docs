@@ -15,7 +15,7 @@ In this guide, you will learn how to subscribe to event logs, incoming pending t
 
 ## Supported Pubsub JSON-RPC Methods {: #filter-rpc-methods }
 
-Please note that the examples in this section require installing [wscat](https://github.com/websockets/wscat){target=\_blank}.
+Please note that the examples in this section require installing [wscat](https://github.com/websockets/wscat/){target=\_blank}.
 
 ???+ function "eth_subscribe"
 
@@ -71,7 +71,7 @@ Please note that the examples in this section require installing [wscat](https:/
 
 ## Subscribe to Events Using Ethereum Libraries {: #subscribe-to-events }
 
-This section will show you how to use [Ethereum libraries](/builders/build/eth-api/libraries/){target=\_blank}, like [Web3.js](/builders/build/eth-api/libraries/web3js){target=\_blank}, to programmatically subscribe to events on Moonbeam.
+This section will show you how to use [Ethereum libraries](/builders/build/eth-api/libraries/){target=\_blank}, like [Web3.js](/builders/build/eth-api/libraries/web3js/){target=\_blank}, to programmatically subscribe to events on Moonbeam.
 
 ### Checking Prerequisites {: #checking-prerequisites }
 
@@ -111,7 +111,7 @@ In the provided code:
 
     This translates to `0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef`, as seen in the code snippet.
 
-If you do not provide any topics, you subscribe to all events emitted by the contract. More information about topics can be found in the [Understanding event logs on the Ethereum blockchain](https://medium.com/mycrypto/understanding-event-logs-on-the-ethereum-blockchain-f4ae7ba50378){target=\_blank} Medium post.
+If you do not provide any topics, you subscribe to all events emitted by the contract. More information about topics can be found in the [Understanding event logs on the Ethereum blockchain](https://medium.com/mycrypto/understanding-event-logs-on-the-ethereum-blockchain-f4ae7ba50378/){target=\_blank} Medium post.
 
 By executing this code, you'll establish a subscription to monitor ERC-20 token transfer events on Moonbeam. The terminal will display a subscription ID indicating a successful setup and await any new events emitted by the contract.
 
@@ -188,4 +188,4 @@ With pubsub, checking whether a particular node is currently synchronizing with 
 ![Subscribe to syncing response](/images/builders/json-rpc/pubsub/pubsub-7.webp)
 
 !!! note
-    The pubsub implementation in [Frontier](https://github.com/polkadot-evm/frontier){target=\_blank} is still in active development. This current version allows users to subscribe to specific event types, but there may still be some limitations.
+    The pubsub implementation in [Frontier](https://github.com/polkadot-evm/frontier/){target=\_blank} is still in active development. This current version allows users to subscribe to specific event types, but there may still be some limitations.

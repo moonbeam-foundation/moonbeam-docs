@@ -86,7 +86,7 @@ Before getting started, you'll need to set the necessary permissions either for 
     sudo chown -R $(id -u):$(id -g) {{ networks.moonbase.node_directory }}
     ```
 
-Instead of the standard `moonbeamfoundation/moonbeam` docker image, you will need to use `moonbeamfoundation/moonbeam-tracing` image. The latest supported version can be found on the [Docker Hub for the `moonbeam-tracing` image](https://hub.docker.com/r/moonbeamfoundation/moonbeam-tracing/tags){target=\_blank}.
+Instead of the standard `moonbeamfoundation/moonbeam` docker image, you will need to use `moonbeamfoundation/moonbeam-tracing` image. The latest supported version can be found on the [Docker Hub for the `moonbeam-tracing` image](https://hub.docker.com/r/moonbeamfoundation/moonbeam-tracing/tags/){target=\_blank}.
 
 Now, execute the docker run command. Note that you have to:
 
@@ -182,11 +182,11 @@ Once you've finished going through the instructions in those specific sections, 
 
 ### Setup the Wasm Overrides {: #setup-the-wasm-overrides }
 
-You'll need to create a directory for the Wasm runtime overrides and obtain them from the [Moonbeam Runtime Overrides repository](https://github.com/moonbeam-foundation/moonbeam-runtime-overrides){target=\_blank} on GitHub.
+You'll need to create a directory for the Wasm runtime overrides and obtain them from the [Moonbeam Runtime Overrides repository](https://github.com/moonbeam-foundation/moonbeam-runtime-overrides/){target=\_blank} on GitHub.
 
 You can clone the repository to any location on your local machine. For simplicity, you can use the directory where you're storing on-chain data. To set up the Wasm override files, you can take the following steps:
 
-1. Clone the [Moonbeam Runtime Overrides repository](https://github.com/moonbeam-foundation/moonbeam-runtime-overrides){target=\_blank}
+1. Clone the [Moonbeam Runtime Overrides repository](https://github.com/moonbeam-foundation/moonbeam-runtime-overrides/){target=\_blank}
 
     ```bash
     git clone https://github.com/moonbeam-foundation/moonbeam-runtime-overrides.git

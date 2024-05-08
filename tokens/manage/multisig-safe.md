@@ -43,7 +43,7 @@ Later on in this guide, you will be learning how to send and receive ERC-20 toke
 
 ### Deployed Smart Contract {: #deployed-smart-contract }
 
-Towards the end of this guide, you will be learning how to interact with a smart contract using the Safe. So you will need to have a smart contract deployed to interact with. If you would like detailed instructions, you can refer to the [Deploying a Contract to Moonbeam using Remix](/builders/build/eth-api/dev-env/remix/#deploying-a-contract-to-moonbeam){target=\_blank} guide. 
+Towards the end of this guide, you will be learning how to interact with a smart contract using the Safe. So you will need to have a smart contract deployed to interact with. If you would like detailed instructions, you can refer to the [Deploying a Contract to Moonbeam using Remix](/builders/build/eth-api/dev-env/remix/#deploying-a-contract-to-moonbeam){target=\_blank} guide.
 
 You can head to [Remix](https://remix.ethereum.org/){target=\_blank} and create a new file for the following `SetText.sol` contract:
 
@@ -65,7 +65,7 @@ You will need the contract address and the ABI, so make sure you have copied tho
 
 ## Create a Safe {: #create-a-safe }
 
-To get started creating a Safe, navigate to the [Moonbeam Safe](https://multisig.moonbeam.network/?chain=mbase){target=\_blank}. For the purpose of this guide, you'll create a Safe on Moonbase Alpha, but you can also adapt the instructions to create a Safe on [Moonbeam](https://multisig.moonbeam.network/?chain=mbeam){target=\_blank} or [Moonriver](https://multisig.moonbeam.network/?chain=mriver){target=\_blank}. To switch networks, simply click the network dropdown in the top right hand corner of the page. 
+To get started creating a Safe, navigate to the [Moonbeam Safe](https://multisig.moonbeam.network/?chain=mbase/){target=\_blank}. For the purpose of this guide, you'll create a Safe on Moonbase Alpha, but you can also adapt the instructions to create a Safe on [Moonbeam](https://multisig.moonbeam.network/?chain=mbeam/){target=\_blank} or [Moonriver](https://multisig.moonbeam.network/?chain=mriver/){target=\_blank}. To switch networks, simply click the network dropdown in the top right hand corner of the page. 
 
 ### Connect MetaMask {: #connect-metamask }
 

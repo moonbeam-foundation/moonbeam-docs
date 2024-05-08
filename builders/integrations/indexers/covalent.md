@@ -49,7 +49,7 @@ If you're already familiar with Covalent and ready to dive in, you simply need t
  - The Covalent API is RESTful and it is designed around the main resources that are available through the web interface
  - The current version of the API is version 1
  - The default return format for all endpoints is JSON
- - All requests require authentication; you will need [a free API Key](https://www.covalenthq.com/platform/#/auth/register/){target=\_blank} to use the Covalent API
+ - All requests require authentication; you will need [a free API Key](https://www.covalenthq.com/platform/#/auth/register){target=\_blank} to use the Covalent API
  - The cost of an API call is denominated in credits and varies depending on the particular call. Upon creating an API key, you're given a substantial amount of free credits to get started (100,000 at the time of writing). You can track your usage of these free credits on the [Increment Dashboard](https://www.covalenthq.com/platform/increment/#/?utm_source=moonbeam&utm_medium=partner-docs){target=\_blank}
  - The root URL of the API is: [https://api.covalenthq.com/v1/](https://api.covalenthq.com/v1/){target=\_blank}
  - All requests are done over HTTPS (calls over plain HTTP will fail)
@@ -79,8 +79,8 @@ For a full list of supported endpoints, refer to the [Covalent API reference](ht
 ### Request Formatting {: #request-formatting }
 
 === "Moonbeam"
-    |                                                                                Endpoint                                                                                |                                             Format                                              |
-    |:----------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------:|
+    |                                                                                Endpoint                                                                                 |                                             Format                                              |
+    |:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------:|
     |          [Balances](https://www.covalenthq.com/docs/api/balances/get-token-balances-for-address/?utm_source=moonbeam&utm_medium=partner-docs){target=\_blank}           |      api.covalenthq.com/v1/{{ networks.moonbeam.chain_id }}/address/{ADDRESS}/balances_v2/      |
     |       [Transactions](https://www.covalenthq.com/docs/api/transactions/get-transactions-for-address/?utm_source=moonbeam&utm_medium=partner-docs){target=\_blank}        |    api.covalenthq.com/v1/{{ networks.moonbeam.chain_id }}/address/{ADDRESS}/transactions_v2/    |
     |                            [Transfers](https://www.covalenthq.com/docs/api/balances/get-erc20-token-transfers-for-address/){target=\_blank}                             |     api.covalenthq.com/v1/{{ networks.moonbeam.chain_id }}/address/{ADDRESS}/transfers_v2/      |
@@ -90,8 +90,8 @@ For a full list of supported endpoints, refer to the [Covalent API reference](ht
     |                       [Security (Token Approvals)](https://www.covalenthq.com/docs/api/security/get-token-approvals-for-address/){target=\_blank}                       |           api.covalenthq.com/v1/{{ networks.moonbeam.chain_id }}/approvals/{ADDRESS}/           |
 
 === "Moonriver"
-    |                                                                                Endpoint                                                                                |                                              Format                                              |
-    |:----------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------:|
+    |                                                                                Endpoint                                                                                 |                                              Format                                              |
+    |:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------:|
     |          [Balances](https://www.covalenthq.com/docs/api/balances/get-token-balances-for-address/?utm_source=moonbeam&utm_medium=partner-docs){target=\_blank}           |      api.covalenthq.com/v1/{{ networks.moonriver.chain_id }}/address/{ADDRESS}/balances_v2/      |
     |       [Transactions](https://www.covalenthq.com/docs/api/transactions/get-transactions-for-address/?utm_source=moonbeam&utm_medium=partner-docs){target=\_blank}        |    api.covalenthq.com/v1/{{ networks.moonriver.chain_id }}/address/{ADDRESS}/transactions_v2/    |
     |                            [Transfers](https://www.covalenthq.com/docs/api/balances/get-erc20-token-transfers-for-address/){target=\_blank}                             |     api.covalenthq.com/v1/{{ networks.moonriver.chain_id }}/address/{ADDRESS}/transfers_v2/      |
@@ -101,8 +101,8 @@ For a full list of supported endpoints, refer to the [Covalent API reference](ht
     |                       [Security (Token Approvals)](https://www.covalenthq.com/docs/api/security/get-token-approvals-for-address/){target=\_blank}                       |           api.covalenthq.com/v1/{{ networks.moonriver.chain_id }}/approvals/{ADDRESS}/           |
 
 === "Moonbase Alpha"
-    |                                                                                Endpoint                                                                                |                                             Format                                              |
-    |:----------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------:|
+    |                                                                                Endpoint                                                                                 |                                             Format                                              |
+    |:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------:|
     |          [Balances](https://www.covalenthq.com/docs/api/balances/get-token-balances-for-address/?utm_source=moonbeam&utm_medium=partner-docs){target=\_blank}           |      api.covalenthq.com/v1/{{ networks.moonbase.chain_id }}/address/{ADDRESS}/balances_v2/      |
     |       [Transactions](https://www.covalenthq.com/docs/api/transactions/get-transactions-for-address/?utm_source=moonbeam&utm_medium=partner-docs){target=\_blank}        |    api.covalenthq.com/v1/{{ networks.moonbase.chain_id }}/address/{ADDRESS}/transactions_v2/    |
     |                            [Transfers](https://www.covalenthq.com/docs/api/balances/get-erc20-token-transfers-for-address/){target=\_blank}                             |     api.covalenthq.com/v1/{{ networks.moonbase.chain_id }}/address/{ADDRESS}/transfers_v2/      |
@@ -148,13 +148,13 @@ For a full list of supported endpoints, refer to the [Covalent API reference](ht
 
 ## How to Use the Unified API {: #how-to-use-the-unified-api }
 
-First, make sure you have [your API Key](https://www.covalenthq.com/platform/#/auth/register/){target=\_blank} which begins with `ckey_`. Once you have your API key you will be able to access any of the supported endpoints. To get information for a specific network, you will need to provide the chain ID.
+First, make sure you have [your API Key](https://www.covalenthq.com/platform/#/auth/register){target=\_blank} which begins with `ckey_`. Once you have your API key you will be able to access any of the supported endpoints. To get information for a specific network, you will need to provide the chain ID.
 
 ### Checking Prerequisites {: #checking-prerequisites }
 
 To get started with the Covalent API, you will need to have the following:
 
- - A free [Covalent API Key](https://www.covalenthq.com/platform/#/auth/register/){target=\_blank}
+ - A free [Covalent API Key](https://www.covalenthq.com/platform/#/auth/register){target=\_blank}
  - MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}
  - An account with funds.
   --8<-- 'text/_common/faucet/faucet-list-item.md'

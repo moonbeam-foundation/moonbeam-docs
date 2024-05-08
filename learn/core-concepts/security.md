@@ -32,7 +32,7 @@ In the following sections, you'll learn about each of these security considerati
 
 ### Precompiles Can Override a Set Value {: #setting-a-value }
 
-On Ethereum, a smart contract that allows for arbitrary code execution could force the value of a call to be a specific amount (for example, `{value: 0}`), guaranteeing that only that amount of native currency would be sent with the transaction. Whereas on Moonbeam, the [native ERC-20 precompile contract](/builders/pallets-precompiles/precompiles/erc20){target=\_blank} enables you to interact with the native currency on Moonbeam as an ERC-20 through the Substrate API. As a result, you can transfer the Moonbeam native asset from a smart contract by setting the `value` of a call, as well as through the native ERC-20 precompile. If you set the `value` of an arbitrary call, it can be overridden by targeting the [native ERC-20 precompile contract](/builders/pallets-precompiles/precompiles/erc20){target=\_blank} and passing in call data to transfer the native asset. Since ERC-20s and XC-20s are not native assets, setting the value attribute doesn't provide any protection for these types of assets on Ethereum or Moonbeam.
+On Ethereum, a smart contract that allows for arbitrary code execution could force the value of a call to be a specific amount (for example, `{value: 0}`), guaranteeing that only that amount of native currency would be sent with the transaction. Whereas on Moonbeam, the [native ERC-20 precompile contract](/builders/pallets-precompiles/precompiles/erc20/){target=\_blank} enables you to interact with the native currency on Moonbeam as an ERC-20 through the Substrate API. As a result, you can transfer the Moonbeam native asset from a smart contract by setting the `value` of a call, as well as through the native ERC-20 precompile. If you set the `value` of an arbitrary call, it can be overridden by targeting the [native ERC-20 precompile contract](/builders/pallets-precompiles/precompiles/erc20/){target=\_blank} and passing in call data to transfer the native asset. Since ERC-20s and XC-20s are not native assets, setting the value attribute doesn't provide any protection for these types of assets on Ethereum or Moonbeam.
 
 For example, if you have a contract that allows arbitrary code execution and you pass it encoded call data that transfers the balance of a contract to another address, you could essentially drain the given contract of it's balance.
 
@@ -49,7 +49,7 @@ function getBytes(address _erc20Contract, address _arbitraryCallContract, addres
 }
 ```
 
-Once you have the encoded call data, you could make an arbitrary call to the [native ERC-20 precompile contract](/builders/pallets-precompiles/precompiles/erc20){target=\_blank}, set the value of the call to `0`, and pass in the call data in bytes:
+Once you have the encoded call data, you could make an arbitrary call to the [native ERC-20 precompile contract](/builders/pallets-precompiles/precompiles/erc20/){target=\_blank}, set the value of the call to `0`, and pass in the call data in bytes:
 
 ```solidity
 function makeArbitraryCall(address _target, bytes calldata _bytes) public {
@@ -92,7 +92,7 @@ By whitelisting a specific target contract address in the function that can exec
 
 Blacklisting contracts from arbitrary code execution is not considered safe, as other precompiles might be added in the future.
 
-To whitelist a given contract, you can use the [require function](https://docs.soliditylang.org/en/v0.8.17/control-structures.html#panic-via-assert-and-error-via-require){target=\_blank}, which will compare the target contract address to the whitelisted contract address. If the addresses match, the call can be executed. Otherwise, an exception will be thrown.
+To whitelist a given contract, you can use the [require function](https://docs.soliditylang.org/en/v0.8.17/control-structures.html#panic-via-assert-and-error-via-require/){target=\_blank}, which will compare the target contract address to the whitelisted contract address. If the addresses match, the call can be executed. Otherwise, an exception will be thrown.
 
 ```solidity
 function makeArbitraryCall(address _target, bytes calldata _bytes) public {
@@ -123,7 +123,7 @@ function transferFunds(address payable _target) payable public {
 }
 ```
 
-On Ethereum, you can use this check to ensure that a given contract function can only be called once by an EOA. This is because on Ethereum, EOAs can only interact with a contract once per transaction. However, **this is not the case** on Moonbeam, as EOAs can interact with a contract multiple times at once by using precompiled contracts, such as the [batch](/builders/pallets-precompiles/precompiles/batch){target=\_blank} and [call permit](/builders/pallets-precompiles/precompiles/call-permit){target=\_blank} precompiles.
+On Ethereum, you can use this check to ensure that a given contract function can only be called once by an EOA. This is because on Ethereum, EOAs can only interact with a contract once per transaction. However, **this is not the case** on Moonbeam, as EOAs can interact with a contract multiple times at once by using precompiled contracts, such as the [batch](/builders/pallets-precompiles/precompiles/batch/){target=\_blank} and [call permit](/builders/pallets-precompiles/precompiles/call-permit/){target=\_blank} precompiles.
 
 With the batch precompile, users can perform multiple calls to a contract atomically. The caller of the batch function will be the `msg.sender` and `tx.origin`, enabling multiple contract interactions at once.
 

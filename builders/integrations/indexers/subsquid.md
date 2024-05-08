@@ -7,7 +7,7 @@ description: Learn how to use Subsquid, a query node framework for Substrate-bas
 
 ## Introduction {: #introduction }
 
-[Subsquid](https://subsquid.io){target=\_blank} is a data network that allows rapid and cost-efficient retrieval of blockchain data from 100+ chains using Subsquid’s decentralized data lake and open-source SDK. In very simple terms, Subsquid can be thought of as an ETL (extract, transform, and load) tool with a GraphQL server included. It enables comprehensive filtering, pagination, and even full-text search capabilities.
+[Subsquid](https://subsquid.io/){target=\_blank} is a data network that allows rapid and cost-efficient retrieval of blockchain data from 100+ chains using Subsquid’s decentralized data lake and open-source SDK. In very simple terms, Subsquid can be thought of as an ETL (extract, transform, and load) tool with a GraphQL server included. It enables comprehensive filtering, pagination, and even full-text search capabilities.
 
 Subsquid has native and full support for both Ethereum Virtual Machine (EVM) and Substrate data. Since Moonbeam is a Substrate-based smart contact platform that is EVM-compatible, Subsquid can be used to index both EVM and Substrate-based data. Subsquid offers a Substrate Archive and Processor and an EVM Archive and Processor. The Substrate Archive and Processor can be used to index both Substrate and EVM data. This allows developers to extract on-chain data from any of the Moonbeam networks and process EVM logs as well as Substrate entities (events, extrinsics, and storage items) in one single project and serve the resulting data with one single GraphQL endpoint. If you exclusively want to index EVM data, it is recommended to use the EVM Archive and Processor.
 
@@ -64,7 +64,7 @@ To get started indexing Substrate data on Moonbeam, you'll need to create a Subs
         "specVersions": "https://v2.archive.subsquid.io/metadata/moonbase",
         ```
 
-4. Modify the `src/processor.ts` file, which is where Squids instantiate the processor, configure it, and attach handler functions. The processor fetches historical on-chain data from an [Archive](https://docs.subsquid.io/glossary/#archives/){target=\_blank}, which is a specialized data lake. You'll need to configure your processor to pull data from the Archive that corresponds to the [network](https://docs.subsquid.io/substrate-indexing/supported-networks/){target=\_blank} you are indexing data on:
+4. Modify the `src/processor.ts` file, which is where Squids instantiate the processor, configure it, and attach handler functions. The processor fetches historical on-chain data from an [Archive](https://docs.subsquid.io/glossary/#archives){target=\_blank}, which is a specialized data lake. You'll need to configure your processor to pull data from the Archive that corresponds to the [network](https://docs.subsquid.io/substrate-indexing/supported-networks/){target=\_blank} you are indexing data on:
 
     === "Moonbeam"
 
@@ -122,7 +122,7 @@ And that's all you have to do to configure your Subsquid project to index Substr
 
 To get started indexing EVM data on Moonbeam, you'll need to create a Subsquid project and configure it for Moonbeam by taking the following steps:
 
-1. You can create a Subsquid project for EVM data by using the generic [EVM template](https://github.com/subsquid-labs/squid-evm-template){target=\_blank} or you can use the [ABI template](https://github.com/subsquid-labs/squid-abi-template){target=\_blank} for indexing data related to a specific contract:
+1. You can create a Subsquid project for EVM data by using the generic [EVM template](https://github.com/subsquid-labs/squid-evm-template/){target=\_blank} or you can use the [ABI template](https://github.com/subsquid-labs/squid-abi-template/){target=\_blank} for indexing data related to a specific contract:
 
     === "EVM"
 
@@ -147,7 +147,7 @@ To get started indexing EVM data on Moonbeam, you'll need to create a Subsquid p
     npm ci
     ```
 
-3. Modify the `src/processor.ts` file, which is where Squids instantiate the processor, configure it, and attach handler functions. The processor fetches historical on-chain data from an [Archive](https://docs.subsquid.io/glossary/#archives/){target=\_blank}, which is a specialized data lake. You'll need to configure your processor to pull data from the Archive that corresponds to the [network](https://docs.subsquid.io/evm-indexing/supported-networks/){target=\_blank} you are indexing data on:
+3. Modify the `src/processor.ts` file, which is where Squids instantiate the processor, configure it, and attach handler functions. The processor fetches historical on-chain data from an [Archive](https://docs.subsquid.io/glossary/#archives){target=\_blank}, which is a specialized data lake. You'll need to configure your processor to pull data from the Archive that corresponds to the [network](https://docs.subsquid.io/evm-indexing/supported-networks/){target=\_blank} you are indexing data on:
 
     === "Moonbeam"
 
@@ -235,6 +235,6 @@ These steps apply to both Substrate and EVM indexers. Running your Subsquid inde
         }
         ```
 
-If you're interested in a step-by-step tutorial to get started indexing data on Moonbeam, you can check out the [Index NFT Token Transfers on Moonbeam with Subsquid](/tutorials/integrations/nft-subsquid){target=\_blank} tutorial!
+If you're interested in a step-by-step tutorial to get started indexing data on Moonbeam, you can check out the [Index NFT Token Transfers on Moonbeam with Subsquid](/tutorials/integrations/nft-subsquid/){target=\_blank} tutorial!
 
 --8<-- 'text/_disclaimers/third-party-content.md'
