@@ -282,16 +282,16 @@ networks:
           decision_deposit: 500
           prepare_period:
             time: '1 hour'
-            blocks: 300
+            blocks: 600
           decision_period:
             time: '14 days'
-            blocks: 100800
+            blocks: 201600
           confirm_period:
-            time: '1 day'
-            blocks: 7200
+            time: '3 hours'
+            blocks: 1800
           min_enactment_period:
             time: '10 minutes'
-            blocks: 50
+            blocks: 100
           min_approval:
             time0: 'Day 0'
             percent0: 100
@@ -608,6 +608,35 @@ networks:
             time0: 'Day 0'
             percent0: 10
             time1: 'Day 1'
+            percent1: 1
+            time2: 'Day 14'
+            percent2: 0
+        fast_general_admin:
+          max_deciding: 10
+          decision_deposit: 500
+          prepare_period:
+            time: '1 hour'
+            blocks: 300
+          decision_period:
+            time: '14 days'
+            blocks: 100800
+          confirm_period:
+            time: '3 hours'
+            blocks: 900
+          min_enactment_period:
+            time: '10 minutes'
+            blocks: 50
+          min_approval:
+            time0: 'Day 0'
+            percent0: 100
+            time1: 'Day 4'
+            percent1: 80
+            time2: 'Day 14'
+            percent2: 50
+          min_support:
+            time0: 'Day 0'
+            percent0: 50
+            time1: 'Day 5'
             percent1: 1
             time2: 'Day 14'
             percent2: 0
@@ -969,6 +998,35 @@ networks:
             time0: 'Day 0'
             percent0: 10
             time1: 'Day 1'
+            percent1: 1
+            time2: 'Day 14'
+            percent2: 0
+        fast_general_admin:
+          max_deciding: 10
+          decision_deposit: 10000
+          prepare_period:
+            time: '1 hour'
+            blocks: 300
+          decision_period:
+            time: '14 days'
+            blocks: 100800
+          confirm_period:
+            time: '3 hours'
+            blocks: 900
+          min_enactment_period:
+            time: '10 minutes'
+            blocks: 50
+          min_approval:
+            time0: 'Day 0'
+            percent0: 100
+            time1: 'Day 4'
+            percent1: 80
+            time2: 'Day 14'
+            percent2: 50
+          min_support:
+            time0: 'Day 0'
+            percent0: 50
+            time1: 'Day 5'
             percent1: 1
             time2: 'Day 14'
             percent2: 0
