@@ -12,7 +12,7 @@
         <br>    ✅ WRITE_PATH: "/Users/wuzhongzhu/Documents/Work/Foundry/temp/node_modules/@substrate/api-sidecar/build/src/logs"
         <br>    ✅ WRITE_MAX_FILE_SIZE: 5242880
         <br>    ✅ WRITE_MAX_FILES: 5
-        📦 SUBSTRATE:
+        <br>📦 SUBSTRATE:
         <br>    ✅ URL: "wss://wss.api.moonbeam.network"
         <br>    ✅ TYPES_BUNDLE: undefined
         <br>    ✅ TYPES_CHAIN: undefined
