@@ -11,7 +11,7 @@ Indexing protocols organize information in a way that applications can access it
 
 [The Graph](https://thegraph.com/){target=\_blank} is a decentralized and open-source indexing protocol for querying networks like Ethereum. In short, it provides a way to efficiently store data emitted by events from smart contracts so that other projects or DApps can access it easily.
 
-Furthermore, developers can build APIs, called Subgraphs. Users or other developers can use Subgraphs to query data specific to a set of smart contracts. Data is fetched with a standard GraphQL API. You can visit The Graph's documentation site to read more [about The Graph protocol](https://thegraph.com/docs/about/introduction#what-the-graph-is){target=\_blank}.
+Furthermore, developers can build APIs, called Subgraphs. Users or other developers can use Subgraphs to query data specific to a set of smart contracts. Data is fetched with a standard GraphQL API. You can visit The Graph's documentation site to read more [about The Graph protocol](https://thegraph.com/docs/en/about/#what-the-graph-is/){target=\_blank}.
 
 Due to the support of Ethereum tracing modules on Moonbeam, The Graph is capable of indexing blockchain data on Moonbeam. This guide takes you through the creation of a simple subgraph for a Lottery contract on Moonbase Alpha. This guide can be adapted for Moonbeam and Moonriver.
 
@@ -78,7 +78,7 @@ The Graph uses the events emitted by the contract to index data. The lottery con
 
 ## Creating a Subgraph {: #creating-a-subgraph }
 
-This section goes through the process of creating a Subgraph. For the Lottery Subgraph, a [GitHub repository](https://github.com/papermoonio/moonlotto-subgraph){target=\_blank} was prepared with everything you need to help you get started. The repository also includes the Lottery contract, as well as a Hardhat configuration file and deployment script. If you are not familiar with it, you can check our [Hardhat integration guide](/builders/build/eth-api/dev-env/hardhat/){target=\_blank} to learn about the configuration file and how to deploy a contract using Hardhat.
+This section goes through the process of creating a Subgraph. For the Lottery Subgraph, a [GitHub repository](https://github.com/papermoonio/moonlotto-subgraph/){target=\_blank} was prepared with everything you need to help you get started. The repository also includes the Lottery contract, as well as a Hardhat configuration file and deployment script. If you are not familiar with it, you can check our [Hardhat integration guide](/builders/build/eth-api/dev-env/hardhat/){target=\_blank} to learn about the configuration file and how to deploy a contract using Hardhat.
 
 To get started, first clone the repository and install the dependencies:
 
@@ -98,15 +98,15 @@ npx graph codegen --output-dir src/types/
 
 The `codegen` command can also be executed using `yarn codegen`.
 
-For this example, the contract was deployed to `{{ networks.moonbase.thegraph.lotto_contract }}`. The `README.md` file in the [Moonlotto repository](https://github.com/papermoonio/moonlotto-subgraph){target=\_blank} has the steps necessary to compile and deploy the contract if required.
+For this example, the contract was deployed to `{{ networks.moonbase.thegraph.lotto_contract }}`. The `README.md` file in the [Moonlotto repository](https://github.com/papermoonio/moonlotto-subgraph/){target=\_blank} has the steps necessary to compile and deploy the contract if required.
 
 ### Subgraphs Core Structure {: #subgraphs-core-structure }
 
 In general terms, Subgraphs define the data that The Graph will index from the blockchain and the way it is stored. Subgraphs tend to have some of the following files:
 
- - **subgraph.yaml** — is a YAML file that contains the [Subgraph's manifest](https://thegraph.com/docs/en/developer/create-subgraph-hosted/#the-subgraph-manifest){target=\_blank}, that is, information related to the smart contracts being indexed by the Subgraph
- - **schema.graphql** — is a [GraphQL schema](https://thegraph.com/docs/en/developer/create-subgraph-hosted/#the-graph-ql-schema){target=\_blank} file that defines the data store for the Subgraph being created and its structure. It is written using [GraphQL interface definition schema](https://graphql.org/learn/schema/#type-language){target=\_blank}
- - **AssemblyScript mappings** — code in TypeScript (then compiled to [AssemblyScript](https://github.com/AssemblyScript/assemblyscript){target=\_blank}) that is used to translate event data from the contract to the entities defined in the schema
+ - **subgraph.yaml** — is a YAML file that contains the [Subgraph's manifest](https://thegraph.com/docs/en/developing/creating-a-subgraph/#the-subgraph-manifest){target=\_blank}, that is, information related to the smart contracts being indexed by the Subgraph
+ - **schema.graphql** — is a [GraphQL schema](https://thegraph.com/docs/en/developing/creating-a-subgraph/#the-graph-ql-schema){target=\_blank} file that defines the data store for the Subgraph being created and its structure. It is written using [GraphQL interface definition schema](https://graphql.org/learn/schema/#type-language){target=\_blank}
+ - **AssemblyScript mappings** — code in TypeScript (then compiled to [AssemblyScript](https://github.com/AssemblyScript/assemblyscript/){target=\_blank}) that is used to translate event data from the contract to the entities defined in the schema
 
 There is no particular order to follow when modifying the files to create a Subgraph.
 
@@ -257,7 +257,7 @@ export function handlePlayerJoined(event: PlayerJoined): void {
 
 ## Deploying a Subgraph {: #deploying-a-subgraph }
 
-There are a few different ways to deploy a Subgraph. This guide will cover how to deploy a Subgraph [Using the Hosted Service](#using-the-hosted-service){target=\_blank} and [Using a Local Graph Node](#using-a-local-graph-node){target=\_blank}.
+There are a few different ways to deploy a Subgraph. This guide will cover how to deploy a Subgraph [Using the Hosted Service](#using-the-hosted-service/){target=\_blank} and [Using a Local Graph Node](#using-a-local-graph-node/){target=\_blank}.
 
 ### Using the Hosted Service
 
@@ -281,7 +281,7 @@ Where:
  - **access-token** — refers to the access token to use The Graph API
  
 !!! note
-    All steps can be found in the Graph's documentation for using a [Hosted Service to Deploy your Subgraph](https://thegraph.com/docs/developer/quick-start#4-deploy-your-subgraph){target=\_blank}.
+    All steps can be found in the Graph's documentation for using a [Hosted Service to Deploy your Subgraph](https://thegraph.com/docs/en/quick-start/#4-deploy-your-subgraph){target=\_blank}.
  
 ### Using a Local Graph Node
 

@@ -8,7 +8,7 @@ If you're looking for your own endpoints suitable for production use, you can ch
 
 ## Quick Start {: #quick-start }
 
-Before getting started, make sure you've retrieved your own endpoint and API key from one of the custom [Endpoint Providers](/builders/get-started/endpoints/){target=\_blank}. Then for the [Web3.js library](/builders/build/eth-api/libraries/web3js){target=\_blank}, you can create a local Web3 instance and set the provider to connect to Moonriver (both HTTP and WS are supported):
+Before getting started, make sure you've retrieved your own endpoint and API key from one of the custom [Endpoint Providers](/builders/get-started/endpoints/){target=\_blank}. Then for the [Web3.js library](/builders/build/eth-api/libraries/web3js/){target=\_blank}, you can create a local Web3 instance and set the provider to connect to Moonriver (both HTTP and WS are supported):
 
 ```js
 const { Web3 } = require('web3'); // Load Web3 library
@@ -19,7 +19,7 @@ const { Web3 } = require('web3'); // Load Web3 library
 const web3 = new Web3('INSERT_RPC_API_ENDPOINT'); // Insert your RPC URL here
 ```
 
-For the [Ethers.js library](/builders/build/eth-api/libraries/ethersjs){target=\_blank}, define the provider by using `ethers.JsonRpcProvider(providerURL, {object})` and setting the provider URL to Moonriver:
+For the [Ethers.js library](/builders/build/eth-api/libraries/ethersjs/){target=\_blank}, define the provider by using `ethers.JsonRpcProvider(providerURL, {object})` and setting the provider URL to Moonriver:
 
 ```js
 const ethers = require('ethers'); // Load Ethers library

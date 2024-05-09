@@ -7,7 +7,7 @@ description: Learn how to use Foundry, an Ethereum development environment, to c
 
 ## Introduction {: #introduction }
 
-[Foundry](https://github.com/foundry-rs/foundry){target=\_blank} is an Ethereum development environment written in Rust that helps developers manage dependencies, compile projects, run tests, deploy contracts, and interact with blockchains from the command line. Foundry can directly interact with Moonbeam's Ethereum API so it can be used to deploy smart contracts into Moonbeam.
+[Foundry](https://github.com/foundry-rs/foundry/){target=\_blank} is an Ethereum development environment written in Rust that helps developers manage dependencies, compile projects, run tests, deploy contracts, and interact with blockchains from the command line. Foundry can directly interact with Moonbeam's Ethereum API so it can be used to deploy smart contracts into Moonbeam.
 
 Four tools make up Foundry:  
 
@@ -26,7 +26,7 @@ To get started, you will need the following:
   --8<-- 'text/_common/faucet/faucet-list-item.md'
  - 
 --8<-- 'text/_common/endpoint-examples-list-item.md'
- - Have [Foundry installed](https://book.getfoundry.sh/getting-started/installation){target=\_blank}
+ - Have [Foundry installed](https://book.getfoundry.sh/getting-started/installation/){target=\_blank}
 
 ## Creating a Foundry Project {: #creating-a-foundry-project }
 
@@ -46,10 +46,10 @@ You will need to create a Foundry project if you don't already have one. You can
     cargo install --git https://github.com/foundry-rs/foundry foundry-cli anvil --bins --locked
     ```
 
-2. Create the project, which will create a folder with three folders within it:
+2. Create the project, which will create a folder with three folders within it, and open it:
 
     ```bash
-    forge init foundry
+    forge init foundry && cd foundry
     ```
 
 With the default project created, you should see three folders.  
@@ -72,17 +72,7 @@ touch MyToken.sol
 Open the file and add the following contract to it:
 
 ```solidity
-pragma solidity ^0.8.0;
-
-// Import OpenZeppelin Contract
-import "openzeppelin-contracts/contracts/token/ERC20/ERC20.sol";
-
-// This ERC-20 contract mints the specified amount of tokens to the contract creator
-contract MyToken is ERC20 {
-  constructor(uint256 initialSupply) ERC20("MyToken", "MYTOK") {
-    _mint(msg.sender, initialSupply);
-  }
-}
+--8<-- 'code/builders/build/eth-api/dev-env/foundry/ERC20.sol'
 ```
 
 Before you attempt to compile, install OpenZeppelin contracts as a dependency. You may have to commit previous changes to git beforehand. By default, Foundry uses git submodules instead of npm packages, so the traditional npm import path and command are not used. Instead, use the name of OpenZeppelin's GitHub repository:
@@ -185,7 +175,7 @@ If your script's execution succeeds, your terminal should resemble the output be
 
 --8<-- 'code/builders/build/eth-api/dev-env/foundry/terminal/script.md'
 
-And that's it! For more information about Solidity scripting with Foundry, be sure to check out [Foundry's documentation site](https://book.getfoundry.sh/tutorials/solidity-scripting){target=\_blank}.
+And that's it! For more information about Solidity scripting with Foundry, be sure to check out [Foundry's documentation site](https://book.getfoundry.sh/tutorials/solidity-scripting/){target=\_blank}.
 
 ## Interacting with the Contract {: #interacting-with-the-contract }
 
@@ -317,7 +307,7 @@ To verify you have forked the network, you can query the latest block number:
 curl --data '{"method":"eth_blockNumber","params":[],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json" -X POST localhost:8545 
 ```
 
-If you convert the `result` from [hex to decimal](https://www.rapidtables.com/convert/number/hex-to-decimal.html){target=\_blank}, you should get the latest block number from the time you forked the network. You can cross reference the block number using a [block explorer](/builders/get-started/explorers){target=\_blank}.
+If you convert the `result` from [hex to decimal](https://www.rapidtables.com/convert/number/hex-to-decimal.html){target=\_blank}, you should get the latest block number from the time you forked the network. You can cross reference the block number using a [block explorer](/builders/get-started/explorers/){target=\_blank}.
 
 From here you can deploy new contracts to your forked instance of Moonbeam or interact with contracts already deployed. Building off of the previous example in this guide, you can make a call using Cast to check the balance of the minted MYTOK tokens in the account you deployed the contract with:
 
@@ -439,7 +429,7 @@ You can even fork networks while using Chisel:
 Then, for example, you can query the balance of one of Moonbase Alpha's collators:  
 
 ```text
-0x4c5A56ed5A4FF7B09aA86560AfD7d383F4831Cce.balance
+{{ networks.moonbase.staking.candidates.address1 }}.balance
 ```
 
 --8<-- 'code/builders/build/eth-api/dev-env/foundry/terminal/query-balance.md'
@@ -448,7 +438,7 @@ If you want to learn more about Chisel, download Foundry and refer to its [offic
 
 ## Foundry With Hardhat {: #foundry-with-hardhat }  
 
-Often, there will be the case where a project that you wish to integrate with has all of its setup within [Hardhat](/builders/build/eth-api/dev-env/hardhat){target=\_blank}, making it an arduous task to convert the entirety of the project into Foundry. This additional work is avoidable by creating a hybrid project that uses both Hardhat and Foundry features together. This is possible with Hardhat's [hardhat-foundry plugin](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-foundry){target=\_blank}.  
+Often, there will be the case where a project that you wish to integrate with has all of its setup within [Hardhat](/builders/build/eth-api/dev-env/hardhat/){target=\_blank}, making it an arduous task to convert the entirety of the project into Foundry. This additional work is avoidable by creating a hybrid project that uses both Hardhat and Foundry features together. This is possible with Hardhat's [hardhat-foundry plugin](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-foundry/){target=\_blank}.  
 
 To convert your preexisting Foundry project to a hybrid project, you will essentially have to install a Hardhat project into the same folder:  
 

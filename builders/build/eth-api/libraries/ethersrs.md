@@ -7,7 +7,7 @@ description: Learn how to use the Ethereum Ethers.rs Library to send transaction
 
 ## Introduction {: #introduction }
 
-The [Ethers.rs](https://ethers.rs){target=\_blank} library provides a set of tools to interact with Ethereum Nodes via the Rust programming language that works similar to [Ethers.js](/builders/build/eth-api/libraries/ethersjs){target=\_blank}. Moonbeam has an Ethereum-like API available that is fully compatible with Ethereum-style JSON-RPC invocations. Therefore, developers can leverage this compatibility and use the Ethers.rs library to interact with a Moonbeam node as if they were doing so on Ethereum. You can read more about how to use Ethers.rs on their [official crate documentation](https://docs.rs/crate/ethers/latest){target=\_blank}.
+The [Ethers.rs](https://ethers.rs){target=\_blank} library provides a set of tools to interact with Ethereum Nodes via the Rust programming language that works similar to [Ethers.js](/builders/build/eth-api/libraries/ethersjs/){target=\_blank}. Moonbeam has an Ethereum-like API available that is fully compatible with Ethereum-style JSON-RPC invocations. Therefore, developers can leverage this compatibility and use the Ethers.rs library to interact with a Moonbeam node as if they were doing so on Ethereum. You can read more about how to use Ethers.rs on their [official crate documentation](https://docs.rs/crate/ethers/latest/){target=\_blank}.
 
 In this guide, you'll learn how to use the Ethers.rs library to send a transaction and deploy a contract on Moonbase Alpha. This guide can be adapted for [Moonbeam](/builders/get-started/networks/moonbeam/){target=\_blank}, [Moonriver](/builders/get-started/networks/moonriver/){target=\_blank}, or a [Moonbeam development node](/builders/get-started/networks/moonbeam-dev/){target=\_blank}.
 
@@ -19,8 +19,8 @@ For the examples in this guide, you will need to have the following:
   --8<-- 'text/_common/faucet/faucet-list-item.md'
  - 
   --8<-- 'text/_common/endpoint-examples-list-item.md'
- - Have [Rust installed](https://www.rust-lang.org/tools/install){target=\_blank} on your device
- - Have [solc installed](https://docs.soliditylang.org/en/v0.8.9/installing-solidity.html) on your device. Using [solc-select](https://github.com/crytic/solc-select){target=\_blank} is recommended by the Ethers.rs package
+ - Have [Rust installed](https://www.rust-lang.org/tools/install/){target=\_blank} on your device
+ - Have [solc installed](https://docs.soliditylang.org/en/v0.8.9/installing-solidity.html) on your device. Using [solc-select](https://github.com/crytic/solc-select/){target=\_blank} is recommended by the Ethers.rs package
 
 !!! note
     The examples in this guide assumes you have a MacOS or Ubuntu 20.04-based environment and will need to be adapted accordingly for Windows.

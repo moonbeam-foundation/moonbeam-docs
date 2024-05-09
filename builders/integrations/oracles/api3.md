@@ -171,7 +171,7 @@ The process for accessing self-funded data feeds is as follows:
 
 #### Select a dAPI From the API3 Market {: #select-a-dapi }
 
-The [API3 Market](https://market.api3.org/dapis){target=\_blank} enables users to connect to a dAPI and access the associated data feed services. It provides a list of all of the dAPIs available across multiple chains including testnets. You can filter the list by chains and data providers. You can also search for a specific dAPI by name. You can click on a dAPI to land on the details page where you can find more information about the dAPI.
+The [API3 Market](https://market.api3.org/dapis/){target=\_blank} enables users to connect to a dAPI and access the associated data feed services. It provides a list of all of the dAPIs available across multiple chains including testnets. You can filter the list by chains and data providers. You can also search for a specific dAPI by name. You can click on a dAPI to land on the details page where you can find more information about the dAPI.
 
 You can then decide if you want to use self-funded or managed dAPIs.
 
@@ -221,7 +221,7 @@ Managed dAPIs give you the option to configure the dAPI's [devation threshold](h
 | 1%        | 24 hours  |
 
 !!! note
-    Not all dAPIs support all the configurations. It depends on the asset and chain. Check the [API3 Market](https://market.api3.org){target=\_blank} for more information.
+    Not all dAPIs support all the configurations. It depends on the asset and chain. Check the [API3 Market](https://market.api3.org/){target=\_blank} for more information.
 
 After selecting the required deviation threshold and heartbeat, check the final price, and select **Add to Cart**. You can add more dAPIs on the same network to your cart. Once you are done, click on **Checkout**. Make sure you check the order details and the final price on the payment page. Once you are ready, connect your wallet and pay for the order.
 
@@ -399,7 +399,7 @@ Here are some additional developer resources:
     - [dAPI Docs](https://docs.api3.org/explore/dapis/what-are-dapis.html){target=\_blank}
     - [QRNG Docs](https://docs.api3.org/explore/qrng/){target=\_blank}
 - [API3 DAO GitHub](https://github.com/api3dao/){target=\_blank}
-- [API3 Medium](https://medium.com/api3){target=\_blank}
-- [API3 YouTube](https://www.youtube.com/API3DAO){target=\_blank}
+- [API3 Medium](https://medium.com/api3/){target=\_blank}
+- [API3 YouTube](https://www.youtube.com/API3DAO/){target=\_blank}
 
 --8<-- 'text/_disclaimers/third-party-content.md'

@@ -1,0 +1,8 @@
+title: JSON-RPC APIs
+hide: false
+nav:
+  - index.md
+  - 'Standard Ethereum': 'eth-rpc.md'
+  - 'Non-standard Ethereum: Tracing': 'debug-trace.md'
+  - 'Non-standard Ethereum: Pubsub': 'pubsub.md'
+  - 'Custom Moonbeam': 'moonbeam-custom-api.md'

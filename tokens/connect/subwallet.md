@@ -9,7 +9,7 @@ description: This guide walks you through how to connect SubWallet, a comprehens
 
 Developers and users of Moonbeam have a variety of options when it comes to wallets. Thanks to Moonbeam's seamless Ethereum compatibility, Moonbeam supports a great variety of popular wallets, including [SubWallet](https://www.subwallet.app/){target=\_blank}.
 
-SubWallet is a comprehensive Web3 wallet that natively supports Substrate and Ethereum accounts. Although Moonbeam is a Substrate-based blockchain, it has a [unified account system](/learn/features/unified-accounts){target=\_blank} that replaces the default Substrate-style accounts and keys with Ethereum-style accounts and keys. Since SubWallet supports Ethereum-style accounts, you can interact with your Moonbeam account using SubWallet.
+SubWallet is a comprehensive Web3 wallet that natively supports Substrate and Ethereum accounts. Although Moonbeam is a Substrate-based blockchain, it has a [unified account system](/learn/core-concepts/unified-accounts/){target=\_blank} that replaces the default Substrate-style accounts and keys with Ethereum-style accounts and keys. Since SubWallet supports Ethereum-style accounts, you can interact with your Moonbeam account using SubWallet.
 
 This guide takes you through all the necessary steps, from installing SubWallet to setting up a wallet, connecting it to Moonbeam, and sending funds.
 
@@ -21,7 +21,7 @@ There are several ways you can interact with SubWallet: they have **a browser ex
 
 You can get started by heading to [SubWallet's download page](https://www.subwallet.app/download.html){target=\_blank} and downloading SubWallet for the platform of your choice.
 
-If you choose to use the web-accessible dashboard, you won't need to download anything. You can access the dashboard at [web.subwallet.app](https://web.subwallet.app/welcome){target=\_blank}.
+If you choose to use the web-accessible dashboard, you won't need to download anything. You can access the dashboard at [web.subwallet.app](https://web.subwallet.app/welcome/){target=\_blank}.
 
 The interfaces for the mobile app, browser extension, and web dashboard are quite similar, so you can adapt the following instructions, which focus on the browser extension, for the mobile app and web dashboard.
 
@@ -40,7 +40,7 @@ Once you've downloaded the SubWallet Browser Extension, you'll be prompted to se
 
 The following sections will provide step-by-step instructions for [creating a new account](#create-a-new-account-extension) and [importing an existing account](#import-an-account-extension) with SubWallet.
 
-If you're attaching an account, you can find step-by-step instructions on [SubWallet's Account management documentation](https://docs.subwallet.app/main/extension-user-guide/account-management){target=\_blank}. Similarly, if you're connecting a wallet on the web dashboard, you can find instructions on [SubWallet's Connect extension documentation](https://docs.subwallet.app/main/web-dashboard-user-guide/account-management/connect-extension){target=\_blank}.
+If you're attaching an account, you can find step-by-step instructions on [SubWallet's Account management documentation](https://docs.subwallet.app/main/extension-user-guide/account-management/){target=\_blank}. Similarly, if you're connecting a wallet on the web dashboard, you can find instructions on [SubWallet's Connect extension documentation](https://docs.subwallet.app/main/web-dashboard-user-guide/account-management/connect-extension/){target=\_blank}.
 
 ### Create a New Account {: #create-a-new-account }
 
@@ -82,7 +82,7 @@ On the following screen, select the method by which you would like to import the
 
 If you select **Import from seed phrase**, there are some incompatibility issues that can arise when importing an account from seed phrase. For example, Trust Wallet and SafePal are among the wallets not compatible with SubWallet. If you run into incompatibility issues, SubWallet recommends creating a new wallet.
 
-If you select **Import from Polkadot.{js}**, you'll need to make sure that the account was created in Polkadot.js via private key. If it was created with a seed phrase and you attempt to import it to SubWallet, a different public address will be used. This is because Polkadot.js uses [BIP39](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki){target=\_blank}, whereas Ethereum uses [BIP32](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki){target=\_blank} or [BIP44](https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki){target=\_blank}.
+If you select **Import from Polkadot.{js}**, you'll need to make sure that the account was created in Polkadot.js via private key. If it was created with a seed phrase and you attempt to import it to SubWallet, a different public address will be used. This is because Polkadot.js uses [BIP39](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki/){target=\_blank}, whereas Ethereum uses [BIP32](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki/){target=\_blank} or [BIP44](https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki/){target=\_blank}.
 
 ![Select the import option from the Import account screen of the SubWallet browser extension.](/images/tokens/connect/subwallet/subwallet-5.webp)
 
@@ -113,7 +113,7 @@ If you're creating a new account, you can then choose **Create with new seed phr
 
 If you're importing a new account, you'll need to choose whether to import using a seed phrase, JSON file, MetaMask private key or QR code, then repeat the process outlined in the [Import an Account](#import-an-account) section.
 
-If you're attaching an account, you can find out step-by-step instructions on [SubWallet's Account management documentation](https://docs.subwallet.app/main/extension-user-guide/account-management){target=\_blank}.
+If you're attaching an account, you can find out step-by-step instructions on [SubWallet's Account management documentation](https://docs.subwallet.app/main/extension-user-guide/account-management/){target=\_blank}.
 
 ## Connect SubWallet to Moonbeam {: #connect-subwallet-to-moonbeam }
 
@@ -128,7 +128,7 @@ To add Moonbeam, you can:
 
 ![The customize asset display screen on the SubWallet browser extension.](/images/tokens/connect/subwallet/subwallet-10.webp)
 
-If you're trying to connect to a [local Moonbeam development node](/builders/get-started/networks/moonbeam-dev){target=\_blank}, you can select the hamburger menu from the top left corner, which will take you to the settings page.
+If you're trying to connect to a [local Moonbeam development node](/builders/get-started/networks/moonbeam-dev/){target=\_blank}, you can select the hamburger menu from the top left corner, which will take you to the settings page.
 
 ![The tokens screen on the SubWallet browser extension.](/images/tokens/connect/subwallet/subwallet-11.webp)
 

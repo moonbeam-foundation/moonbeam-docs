@@ -7,7 +7,7 @@ description: Learn how to vote on referenda, set up voting delegations, and more
 
 ## Introduction {: #introduction }
 
-As a Polkadot parachain and decentralized network, Moonbeam features native on-chain governance that enables stakeholders to participate in the direction of the network. With the introduction of OpenGov, also referred to as Governance v2, the Conviction Voting Pallet allows token holders to make, delegate, and manage Conviction-weighted votes on referenda. To learn more about Moonbeam's governance system, such as an overview of related terminology, principles, mechanics, and more, please refer to the [Governance on Moonbeam](/learn/features/governance){target=\_blank} page.
+As a Polkadot parachain and decentralized network, Moonbeam features native on-chain governance that enables stakeholders to participate in the direction of the network. With the introduction of OpenGov, also referred to as Governance v2, the Conviction Voting Pallet allows token holders to make, delegate, and manage Conviction-weighted votes on referenda. To learn more about Moonbeam's governance system, such as an overview of related terminology, principles, mechanics, and more, please refer to the [Governance on Moonbeam](/learn/features/governance/){target=\_blank} page.
 
 The Conviction Voting Precompile interacts directly with Substrate's Conviction Voting Pallet. This pallet is coded in Rust and is normally not accessible from the Ethereum API side of Moonbeam. However, the Conviction Voting Precompile allows you to access governance-related functions of the Substrate Conviction Voting Pallet directly from a Solidity interface. Additionally, this enables a vastly improved end-user experience. For example, token holders can vote on referenda or delegate a vote directly from MetaMask, rather than importing an account in Polkadot.js Apps and navigating a complex UI.
 
@@ -56,6 +56,7 @@ The interface includes the following functions:
 - **voteSplit**(*uint32* pollIndex, *uint256* aye, *uint256* nay) - votes a split vote, with a given amount locked for "Aye" and a given amount locked for "Nay", on a poll (referendum)
 - **voteSplitAbstain**(*uint32* pollIndex, *uint256* aye, *uint256* nay) - votes a split abstained vote, with a given amount locked for "Aye", a given amount locked for "Nay", and a given amount locked for an abstain vote (support), on a poll (referendum)
 - **removeVote**(*uint32* pollIndex) - [removes a vote](/builders/pallets-precompiles/pallets/conviction-voting/#extrinsics){target=\_blank} in a poll (referendum)
+- **removeVoteForTrack**(*uint32* pollIndex, *uint16* trackId) - [removes a vote](/builders/pallets-precompiles/pallets/conviction-voting/#extrinsics){target=\_blank} from a specific track in a poll (referendum)
 - **removeOtherVote**(*address* target, *uint16* trackId, *uint32* pollIndex) - [removes a vote](/builders/pallets-precompiles/pallets/conviction-voting/#extrinsics){target=\_blank} in a poll (referendum) for another voter
 - **delegate**(*uint16* trackId, *address* representative, *Conviction* conviction, *uint256* amount) - delegates another account as a representative to place a Conviction-weighted vote on the behalf of the sending account for a specific Track
 - **undelegate**(*uint16* trackId) - removes the caller's vote delegations for a specific Track
@@ -159,4 +160,4 @@ To get started, you can take the following steps:
 
 Now the delegate account can vote on your behalf! If you no longer want a delegate vote to exist, you can remove it using the `undelegate` function of the Conviction Voting Precompile.
 
-And that's it! You've completed your introduction to the Conviction Voting Precompile. There are a few more functions that are documented in [`ConvictionVoting.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/conviction-voting/ConvictionVoting.sol){target=\_blank} — feel free to reach out on [Discord](https://discord.gg/moonbeam){target=\_blank} if you have any questions about those functions or any other aspect of the Conviction Voting Precompile.
+And that's it! You've completed your introduction to the Conviction Voting Precompile. There are a few more functions that are documented in [`ConvictionVoting.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/conviction-voting/ConvictionVoting.sol){target=\_blank} — feel free to reach out on [Discord](https://discord.gg/moonbeam/){target=\_blank} if you have any questions about those functions or any other aspect of the Conviction Voting Precompile.

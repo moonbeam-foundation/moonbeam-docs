@@ -1,6 +1,6 @@
 ---
 title: Solidity Precompiles
-description: A list of guides for interacting with precompiled contracts on Moonbeam, enabling you to interact with Substrate features using the Ethereum API.
+description: Discover the precompiled contracts on Moonbeam, your gateway to effortless interaction with Substrate modules and features using the Ethereum API.
 template: subsection-index-page.html
 hide: 
  - toc

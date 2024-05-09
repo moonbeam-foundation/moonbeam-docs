@@ -7,7 +7,7 @@ description: Learn how to use the Polkadot.js API to interact with a Moonbeam no
 
 ## Introduction {: #introduction }
 
-[Polkadot.js](https://wiki.polkadot.network/docs/polkadotjs){target=\_blank} is a collection of tools that allow you to interact with Polkadot and its parachains, such as Moonbeam. The [Polkadot.js API](https://polkadot.js.org/docs/api/){target=\_blank} is one component of Polkadot.js and is a library that allows application developers to query a Moonbeam node and interact with the node's Substrate interfaces using JavaScript, enabling you to read and write data to the network.
+[Polkadot.js](https://wiki.polkadot.network/docs/polkadotjs/){target=\_blank} is a collection of tools that allow you to interact with Polkadot and its parachains, such as Moonbeam. The [Polkadot.js API](https://polkadot.js.org/docs/api/){target=\_blank} is one component of Polkadot.js and is a library that allows application developers to query a Moonbeam node and interact with the node's Substrate interfaces using JavaScript, enabling you to read and write data to the network.
 
 You can use the Polkadot.js API to query on-chain data and send extrinsics from the Substrate side of Moonbeam. You can query Moonbeam's runtime constants, chain state, events, transaction (extrinsic) data, and more.
 
@@ -351,7 +351,7 @@ Any transaction will emit events, as a bare minimum this will always be either a
 
 Depending on the transaction sent, some other events may however be emitted, for instance for a balance transfer event, this could include one or more `balance.Transfer` events.
 
-The Transfer API page includes an [example code snippet](/builders/get-started/eth-compare/transfers-api/#monitor-all-balance-transfers-with-the-substrate-api){target=\_blank} for subscribing to new finalized block headers, and retrieving all `balance.Transfer` events.
+The Transfer API page includes an [example code snippet](/learn/core-concepts/transfers-api/#monitor-all-balance-transfers-with-the-substrate-api){target=\_blank} for subscribing to new finalized block headers, and retrieving all `balance.Transfer` events.
 
 ### Batch Transactions {: #batching-transactions }
 
@@ -447,13 +447,13 @@ Some of the methods availabe through the Polkadot.js API interface are also avai
       }'
     ```
 
-The [Consensus and Finality page](/builders/get-started/eth-compare/consensus-finality/#){target=\_blank} has sample code for using the exposed custom and Substrate RPC calls to check the finality of a given transaction.
+The [Consensus and Finality page](/learn/core-concepts/consensus-finality/){target=\_blank} has sample code for using the exposed custom and Substrate RPC calls to check the finality of a given transaction.
 
 ## Polkadot.js API Utility Functions {: #utilities }
 
 The Polkadot.js API also includes a number of utility libraries for computing commonly used cryptographic primitives and hash functions.
 
-The following example computes the deterministic transaction hash of a raw Ethereum legacy transaction by first computing its RLP ([Recursive Length Prefix](https://eth.wiki/fundamentals/rlp){target=\_blank}) encoding, then hashing the result with keccak256.
+The following example computes the deterministic transaction hash of a raw Ethereum legacy transaction by first computing its RLP ([Recursive Length Prefix](https://eth.wiki/fundamentals/rlp/){target=\_blank}) encoding, then hashing the result with keccak256.
 
 ```javascript
 import { encode } from '@polkadot/util-rlp';
@@ -485,6 +485,6 @@ var encoded_tx = encode(txDataArray);
 console.log(keccakAsHex(encoded_tx));
 ```
 
-You can check the respective [NPM repository page](https://www.npmjs.com/package/@polkadot/util-crypto/v/0.32.19){target=\_blank} for a list of available methods in the `@polkadot/util-crypto` library and their descriptions.
+You can check the respective [NPM repository page](https://www.npmjs.com/package/@polkadot/util-crypto/v/0.32.19/){target=\_blank} for a list of available methods in the `@polkadot/util-crypto` library and their descriptions.
 
 --8<-- 'text/_disclaimers/third-party-content.md'

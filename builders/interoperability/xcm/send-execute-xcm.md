@@ -13,7 +13,7 @@ Pallets such as [X-Tokens](/builders/interoperability/xcm/xc20/send-xc20s/xtoken
 
 To execute or send a custom XCM message, you can either use the [Polkadot XCM Pallet](#polkadot-xcm-pallet-interface) directly or through the Ethereum API with the [XCM Utilities Precompile](/builders/interoperability/xcm/xcm-utils/){target=\_blank}. In this guide, you'll learn how to use both methods to execute and send custom-built XCM messages locally on Moonbase Alpha.
 
-This guide assumes that you are familiar with general XCM concepts, such as [general XCM terminology](/builders/interoperability/xcm/overview/#general-xcm-definitions){target=\_blank} and [XCM instructions](/builders/interoperability/xcm/core-concepts/instructions/){target=\_blank}. For more information, you can check out the [XCM Overview](/builders/interoperability/xcm/overview){target=\_blank} documentation.
+This guide assumes that you are familiar with general XCM concepts, such as [general XCM terminology](/builders/interoperability/xcm/overview/#general-xcm-definitions){target=\_blank} and [XCM instructions](/builders/interoperability/xcm/core-concepts/instructions/){target=\_blank}. For more information, you can check out the [XCM Overview](/builders/interoperability/xcm/overview/){target=\_blank} documentation.
 
 ## Polkadot XCM Pallet Interface {: #polkadot-xcm-pallet-interface }
 
@@ -114,7 +114,7 @@ To follow along with this guide, you will need the following:
 
 ## Execute an XCM Message Locally {: #execute-an-xcm-message-locally }
 
-This section of the guide covers the process of building a custom XCM message to be executed locally (i.e., in Moonbeam) via two different methods: the `execute` function of the Polkadot XCM Pallet and the `xcmExecute` function of the [XCM Utilities Precompile](/builders/interoperability/xcm/xcm-utils/){target=\_blank}. This functionality provides a playground for you to experiment with different XCM instructions and see firsthand the results of these experiments. This also comes in handy to determine the [fees](/builders/interoperability/xcm/fees){target=\_blank} associated with a given XCM message on Moonbeam.
+This section of the guide covers the process of building a custom XCM message to be executed locally (i.e., in Moonbeam) via two different methods: the `execute` function of the Polkadot XCM Pallet and the `xcmExecute` function of the [XCM Utilities Precompile](/builders/interoperability/xcm/xcm-utils/){target=\_blank}. This functionality provides a playground for you to experiment with different XCM instructions and see firsthand the results of these experiments. This also comes in handy to determine the [fees](/builders/interoperability/xcm/core-concepts/weights-fees/){target=\_blank} associated with a given XCM message on Moonbeam.
 
 In the following example, you'll transfer DEV tokens from one account to another on Moonbase Alpha. To do so, you'll be building an XCM message that contains the following XCM instructions, which are executed locally (in this case, on Moonbase Alpha):
 
@@ -190,7 +190,7 @@ In this section, you'll use the `xcmExecute` function of the [XCM Utilities Prec
 {{ networks.moonbase.precompiles.xcm_utils }}
 ```
 
-Under the hood, the `xcmExecute` function of the XCM Utilities Precompile calls the `execute` function of the Polkadot XCM Pallet, which is a Substrate pallet that is coded in Rust. The benefit of using the XCM Utilities Precompile to call `xcmExecute` is that you can do so via the Ethereum API and use [Ethereum libraries](/builders/build/eth-api/libraries/){target=\_blank} like [Ethers.js](/builders/build/eth-api/libraries/ethersjs){target=\_blank}.
+Under the hood, the `xcmExecute` function of the XCM Utilities Precompile calls the `execute` function of the Polkadot XCM Pallet, which is a Substrate pallet that is coded in Rust. The benefit of using the XCM Utilities Precompile to call `xcmExecute` is that you can do so via the Ethereum API and use [Ethereum libraries](/builders/build/eth-api/libraries/){target=\_blank} like [Ethers.js](/builders/build/eth-api/libraries/ethersjs/){target=\_blank}.
 
 The `xcmExecute` function accepts two parameters: the SCALE encoded versioned XCM message to be executed and the maximum weight to be consumed.
 
@@ -261,7 +261,7 @@ Together, the intention of these instructions is to transfer the native asset of
 
 ### Send an XCM Message with the Polkadot.js API {: #send-xcm-message-with-polkadotjs-api }
 
-In this example, you'll send a custom XCM message from your account on Moonbase Alpha to the relay chain using the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api){target=\_blank} to interact directly with the Polkadot XCM Pallet.
+In this example, you'll send a custom XCM message from your account on Moonbase Alpha to the relay chain using the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=\_blank} to interact directly with the Polkadot XCM Pallet.
 
 The `send` function of the Polkadot XCM Pallet accepts two parameters: `dest` and `message`. You can start assembling these parameters by taking the following steps:
 
@@ -334,7 +334,7 @@ In this section, you'll use the `xcmSend` function of the [XCM Utilities Precomp
      {{ networks.moonbase.precompiles.xcm_utils }}
      ```
 
-Under the hood, the `xcmSend` function of the XCM Utilities Precompile calls the `send` function of the Polkadot XCM Pallet, which is a Substrate pallet that is coded in Rust. The benefit of using the XCM Utilities Precompile to call `xcmSend` is that you can do so via the Ethereum API and use Ethereum libraries like [Ethers.js](/builders/build/eth-api/libraries/ethersjs){target=\_blank}. For the XCM message to be successfully executed, the target chain needs to be able to understand the instructions in the message.
+Under the hood, the `xcmSend` function of the XCM Utilities Precompile calls the `send` function of the Polkadot XCM Pallet, which is a Substrate pallet that is coded in Rust. The benefit of using the XCM Utilities Precompile to call `xcmSend` is that you can do so via the Ethereum API and use Ethereum libraries like [Ethers.js](/builders/build/eth-api/libraries/ethersjs/){target=\_blank}. For the XCM message to be successfully executed, the target chain needs to be able to understand the instructions in the message.
 
 The `xcmSend` function accepts two parameters: the multilocation of the destination and the SCALE encoded versioned XCM message to be sent.
 

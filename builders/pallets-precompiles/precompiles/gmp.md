@@ -8,9 +8,9 @@ keywords: solidity, ethereum, GMP, wormhole, moonbeam, bridge, connected, contra
 
 ## Introduction {: #introduction }
 
-Moonbeam Routed Liquidity (MRL) refers to Moonbeam’s use case as the port parachain for liquidity from origin chains into other Polkadot parachains. This is possible because of general message passing (GMP), where messages with arbitrary data and tokens can be sent across non-parachain blockchains through [chain-agnostic GMP protocols](/builders/interoperability/protocols){target=\_blank}. These GMP protocols can combine with [Polkadot's XCM messaging system](/builders/interoperability/xcm/overview){target=\_blank} to allow for seamless liquidity routing.  
+Moonbeam Routed Liquidity (MRL) refers to Moonbeam’s use case as the port parachain for liquidity from origin chains into other Polkadot parachains. This is possible because of general message passing (GMP), where messages with arbitrary data and tokens can be sent across non-parachain blockchains through [chain-agnostic GMP protocols](/builders/interoperability/protocols/){target=\_blank}. These GMP protocols can combine with [Polkadot's XCM messaging system](/builders/interoperability/xcm/overview/){target=\_blank} to allow for seamless liquidity routing.  
 
-The GMP precompile acts as an interface for Moonbeam Routed Liquidity, acting as a middleman between token-bearing messages from GMP protocols and parachains connected to Moonbeam via [XCMP](/builders/interoperability/xcm/overview/#xcm-transport-protocols){target=\_blank}. Currently, the GMP Precompile only supports the relaying of liquidity through the [Wormhole GMP protocol](/builders/interoperability/protocols/wormhole){target=\_blank}.  
+The GMP precompile acts as an interface for Moonbeam Routed Liquidity, acting as a middleman between token-bearing messages from GMP protocols and parachains connected to Moonbeam via [XCMP](/builders/interoperability/xcm/overview/#xcm-transport-protocols){target=\_blank}. Currently, the GMP Precompile only supports the relaying of liquidity through the [Wormhole GMP protocol](/builders/interoperability/protocols/wormhole/){target=\_blank}.  
 
 The GMP Precompile is located at the following address:  
 
@@ -38,9 +38,9 @@ In practice, it is unlikely that a developer will have to directly interact with
 
 [`Gmp.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/gmp/Gmp.sol){target=\_blank} is a Solidity interface that allows developers to interact with the precompile:  
 
-- **wormholeTransferERC20**(*bytes memory* vaa) - receives a Wormhole bridge transfer [verified action approval (VAA)](https://docs.wormhole.com/wormhole/explore-wormhole/vaa){target=\_blank}, mints tokens via the Wormhole token bridge, and forwards the liquidity to the custom payload’s [multilocation](/builders/interoperability/xcm/core-concepts/multilocations){target=\_blank}. The payload is expected to be a precompile-specific SCALE encoded object, as explained in this guide's [Building the Payload for Wormhole](#building-the-payload-for-wormhole) section
+- **wormholeTransferERC20**(*bytes memory* vaa) - receives a Wormhole bridge transfer [verified action approval (VAA)](https://docs.wormhole.com/wormhole/explore-wormhole/vaa/){target=\_blank}, mints tokens via the Wormhole token bridge, and forwards the liquidity to the custom payload’s [multilocation](/builders/interoperability/xcm/core-concepts/multilocations/){target=\_blank}. The payload is expected to be a precompile-specific SCALE encoded object, as explained in this guide's [Building the Payload for Wormhole](#building-the-payload-for-wormhole) section
 
-VAAs are payload-containing packages generated after origin-chain transactions and are discovered by Wormhole [Guardian Network spies](https://docs.wormhole.com/wormhole/explore-wormhole/guardian){target=\_blank}.
+VAAs are payload-containing packages generated after origin-chain transactions and are discovered by Wormhole [Guardian Network spies](https://docs.wormhole.com/wormhole/explore-wormhole/guardian/){target=\_blank}.
 
 The most common instance that a user will have to interact with the precompile is in the case of a recovery, where a relayer doesn’t complete an MRL transaction. For example, a user would have to search for the VAA that comes with their origin chain transaction and then manually invoke the `wormholeTransferERC20` function.
 
@@ -50,7 +50,7 @@ Currently the GMP precompile only supports sending liquidity with Wormhole, thro
 
 To send liquidity from a Wormhole-connected origin chain like Ethereum, users must invoke the [`transferTokensWithPayload` method](https://docs.wormhole.com/wormhole/explore-wormhole/vaa#token--message){target=\_blank} on the [origin-chain's deployment](https://docs.wormhole.com/wormhole/explore-wormhole/core-contracts#token-bridge){target=\_blank} of the [WormholeTokenBridge smart contract](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/interfaces/ITokenBridge.sol){target=\_blank}. This function requires a bytes payload, which must be formatted as a SCALE encoded multilocation object wrapped within [another precompile-specific versioned type](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbase.spec_version }}/precompiles/gmp/src/types.rs#L25-L48){target=\_blank}.
 
-You may be unfamiliar with both SCALE encoding and multilocations if you are not familiar with the Polkadot ecosystem. [SCALE encoding](https://docs.substrate.io/reference/scale-codec/){target=\_blank} is a compact form of encoding that Polkadot uses. The [`MultiLocation` type](https://wiki.polkadot.network/docs/learn-xcvm){target=\_blank} is used to define a relative point in Polkadot, such as a specific account on a specific parachain (Polkadot blockchain).  
+You may be unfamiliar with both SCALE encoding and multilocations if you are not familiar with the Polkadot ecosystem. [SCALE encoding](https://docs.substrate.io/reference/scale-codec/){target=\_blank} is a compact form of encoding that Polkadot uses. The [`MultiLocation` type](https://wiki.polkadot.network/docs/learn-xcvm/){target=\_blank} is used to define a relative point in Polkadot, such as a specific account on a specific parachain (Polkadot blockchain).  
 
 Moonbeam’s GMP protocol requires a multilocation to represent the destination for liquidity routing, which most likely means an account on some other parachain. Whatever it is, this destination must be expressed as relative to Moonbeam.  
 

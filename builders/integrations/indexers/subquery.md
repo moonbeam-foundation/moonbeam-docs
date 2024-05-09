@@ -230,7 +230,7 @@ Using only certain handlers and filters will improve your indexer's efficiency. 
     |:-------------:|:-------------------------------------------------------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------:|
     | `specVersion` |                                              Filters the blocks that fall into a spec version range                                               | `specVersion: [null, 2000]` <br> `# Indexes blocks with a spec` <br> `version between 0 - 2000` |
     |   `modulo`    |                                                         Filters the blocks at an interval                                                         |                             `modulo: 50 # Indexes every 50 blocks`                              |
-    |  `timestamp`  | Filters the blocks at a time interval (in UTC). <br> Accepts a valid [cron expression](https://github.com/roccivic/cron-converter){target=\_blank} |               `timestamp: '*5/ * * * *'` <br> `# Indexes blocks every 5 minutes`                |
+    |  `timestamp`  | Filters the blocks at a time interval (in UTC). <br> Accepts a valid [cron expression](https://github.com/roccivic/cron-converter/){target=\_blank} |               `timestamp: '*5/ * * * *'` <br> `# Indexes blocks every 5 minutes`                |
 
 - The [event handler](https://academy.subquery.network/build/mapping/polkadot.html#event-handler){target=\_blank} is used to index certain Substrate events that are part of the runtime. The supported filters for the event handler are: `module` and `method`
 
@@ -368,7 +368,7 @@ To run your indexer locally using Docker, you can take the following steps:
 
     ![The terminal output after starting up the Docker container for your project.](/images/builders/integrations/indexers/subquery/new/subquery-7.webp)
 
-3. Head to [localhost:3000](http://localhost:3000){target=\_blank} to open the GraphQL playground and submit queries. You can open up the **DOCS** or **SCHEMA** tab on the playground as a reference when creating your queries
+3. Head to [localhost:3000](http://localhost:3000/){target=\_blank} to open the GraphQL playground and submit queries. You can open up the **DOCS** or **SCHEMA** tab on the playground as a reference when creating your queries
 
     !!! note
         It may take a few minutes before the GraphQL server is ready. You'll be able to access the playground after you see the following log:

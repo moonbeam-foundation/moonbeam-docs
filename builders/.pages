@@ -4,6 +4,7 @@ nav:
   - index.md
   - get-started
   - build
+  - json-rpc
   - pallets-precompiles
   - interoperability
   - integrations

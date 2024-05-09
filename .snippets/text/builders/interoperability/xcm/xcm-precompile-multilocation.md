@@ -5,7 +5,7 @@
 }
 ```
 
-As with a standard [multilocation](/builders/interoperability/xcm/core-concepts/multilocations){target=\_blank}, there are `parents` and `interior` elements. However, instead of defining the multilocation as an object, with Ethereum libraries, the struct is defined as an array, which contains a `uint8` for the `parents` as the first element and a bytes array for the `interior` as the second element.
+As with a standard [multilocation](/builders/interoperability/xcm/core-concepts/multilocations/){target=\_blank}, there are `parents` and `interior` elements. However, instead of defining the multilocation as an object, with Ethereum libraries, the struct is defined as an array, which contains a `uint8` for the `parents` as the first element and a bytes array for the `interior` as the second element.
 
 The normal values you would see for the `parents` element are:
 

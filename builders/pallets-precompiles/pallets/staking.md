@@ -8,11 +8,11 @@ keywords: staking, substrate, pallet, moonbeam, polkadot
 
 ## Introduction {: #introduction }
 
-Moonbeam uses a Delegated Proof of Stake (DPoS) system that determines which collators are eligible to produce blocks based on their total stake in the network. For general information on staking, such as general terminology, staking variables, and more, please refer to the [Staking on Moonbeam](/learn/features/staking){target=\_blank} page.
+Moonbeam uses a Delegated Proof of Stake (DPoS) system that determines which collators are eligible to produce blocks based on their total stake in the network. For general information on staking, such as general terminology, staking variables, and more, please refer to the [Staking on Moonbeam](/learn/features/staking/){target=\_blank} page.
 
-The DPoS system is powered by the [parachain staking](https://github.com/moonbeam-foundation/moonbeam/tree/master/pallets/parachain-staking/src){target=\_blank} pallet, allowing token holders (delegators) to express exactly which collator candidates they would like to support and with what quantity of stake. The design of the parachain staking pallet is such that it enforces shared risk/reward on chain between delegators and candidates.
+The DPoS system is powered by the [parachain staking](https://github.com/moonbeam-foundation/moonbeam/tree/master/pallets/parachain-staking/src/){target=\_blank} pallet, allowing token holders (delegators) to express exactly which collator candidates they would like to support and with what quantity of stake. The design of the parachain staking pallet is such that it enforces shared risk/reward on chain between delegators and candidates.
 
-Some of the functionality of the parachain staking pallet is also available through a staking precompile. The precompile is a Solidity interface that enables you to perform staking actions through the Ethereum API. Please refer to the [Staking Precompile](/builders/pallets-precompiles/precompiles/staking){target=\_blank} guide for more information.
+Some of the functionality of the parachain staking pallet is also available through a staking precompile. The precompile is a Solidity interface that enables you to perform staking actions through the Ethereum API. Please refer to the [Staking Precompile](/builders/pallets-precompiles/precompiles/staking/){target=\_blank} guide for more information.
 
 This guide will provide an overview of the extrinsics, storage methods, and getters for the pallet constants available in the parachain staking pallet.
 
@@ -60,7 +60,7 @@ The parachain staking pallet provides the following extrinsics (functions):
 - **delegate**(candidate, amount, candidateDelegationCount, delegationCount) - *deprecated as of runtime 2400* - request to add a delegation to a specific candidate for a given amount. Use the `delegateWithAutoCompound` extrinsic instead
 - **delegateWithAutoCompound**(candidate, amount, autoCompound, candidateDelegationCount, candidateAutoCompoundingDelegationCount, delegationCount) - delegates a collator candidate and sets the percentage of rewards to auto-compound given an integer (no decimals) for the `amount` between 0-100. If the caller is not a delegator, this function adds them to the set of delegators. If the caller is already a delegator, then it adjusts their delegation amount
 - **delegatorBondMore**(candidate, more) - request to increase a delegator's amount delegated for a specific candidate
-- **enableMarkingOffline**(value) - enables or disables the mark offline feature for collators. It must be executed via [governance](/learn/features/governance){target=\_blank} through the Root Track
+- **enableMarkingOffline**(value) - enables or disables the mark offline feature for collators. It must be executed via [governance](/learn/features/governance/){target=\_blank} through the Root Track
 - **executeCandidateBondLess**(candidate) - executes any scheduled due requests to decrease a candidate's self bond amount
 - **executeDelegationRequest**(delegator, candidate) - executes any scheduled due delegation requests for a specific delegator provided the address of the candidate
 - **executeLeaveCandidates**(candidate, candidateDelegationCount) - executes any scheduled due requests to leave the set of collator candidates

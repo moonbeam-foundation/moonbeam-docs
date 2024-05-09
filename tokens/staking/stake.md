@@ -19,7 +19,7 @@ For more general information on staking, please check out the [Staking on Moonbe
 
 ## Extrinsics Definitions {: #extrinsics-definitions }
 
-There are many extrinsics related to the staking pallet, you can check out a complete list of them on the [Parachain Staking Pallet](/builders/pallets-precompiles/pallets/staking){target=\_blank} page.
+There are many extrinsics related to the staking pallet, you can check out a complete list of them on the [Parachain Staking Pallet](/builders/pallets-precompiles/pallets/staking/){target=\_blank} page.
 
 The following list covers the extrinsics that you'll use in this guide and are associated with the delegation process.
 

@@ -9,7 +9,7 @@ description: Learn about how to verify smart contracts on Moonbeam networks usin
 
 Verifying smart contracts is a great way of improving the transparency and security of contracts deployed on Moonbeam. Hardhat and Foundry integrate with Etherscan's contract verification service to automate the process of verifying contracts by locally detecting which contracts to verify and which Solidity libraries are required, if any.
 
-The Hardhat plugin integrates seamlessly into your [Hardhat](https://hardhat.org/){target=\_blank} project. [Foundry](https://github.com/foundry-rs/foundry){target=\_blank} also has Etherscan capabilities, but they are built into its Forge tool instead of being included in a separate plugin.
+The Hardhat plugin integrates seamlessly into your [Hardhat](https://hardhat.org/){target=\_blank} project. [Foundry](https://github.com/foundry-rs/foundry/){target=\_blank} also has Etherscan capabilities, but they are built into its Forge tool instead of being included in a separate plugin.
 
 This guide will show you how to use both plugins to verify smart contracts deployed on Moonbase Alpha. This guide can also be adapted for Moonbeam and Moonriver.
 
@@ -93,7 +93,7 @@ If you're verifying a contract that has constructor arguments, you'll need to ru
 npx hardhat verify --network moonbase INSERT_CONTRACT_ADDRESS INSERT_CONSTRUCTOR_ARGS
 ```
 
-Please refer to the [Hardhat Verify documentation](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-verify){target=\_blank} for help with additional use cases such as:
+Please refer to the [Hardhat Verify documentation](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-verify/){target=\_blank} for help with additional use cases such as:
 
 - [complex arguments](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-verify#complex-arguments){target=\_blank}
 - [libraries with undetectable addresses](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-verify#libraries-with-undetectable-addresses){target=\_blank}

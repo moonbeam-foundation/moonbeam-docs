@@ -109,7 +109,7 @@ solidity:
   evm_version: INSERT_VERSION
 ```
 
-For more information on the Solidity plugin, please refer to the [README of the `ape-solidity` repository on GitHub](https://github.com/ApeWorX/ape-solidity/blob/main/README.md){target=_blank}.
+For more information on the Solidity plugin, please refer to the [README of the `ape-solidity` repository on GitHub](https://github.com/ApeWorX/ape-solidity/blob/main/README.md/){target=_blank}.
 
 With the Solidity plugin installed, the next step is to compile the smart contract:
 

@@ -45,7 +45,7 @@ The Moonscan API URL for Moonbeam networks is as follows:
 
 ### Verify Source Code {: #verify-source-code }
 
-To verify a deployed contract's source code using the Moonscan API, you must form a POST request containing all the relevant contract creation information, and send the request to Moonscan's REST API. The following is sample code using JavaScript and [Axios](https://axios-http.com/docs/intro){target=\_blank}, an HTTP client:
+To verify a deployed contract's source code using the Moonscan API, you must form a POST request containing all the relevant contract creation information, and send the request to Moonscan's REST API. The following is sample code using JavaScript and [Axios](https://axios-http.com/docs/intro/){target=\_blank}, an HTTP client:
 
 === "Moonbeam"
 
@@ -444,7 +444,7 @@ A POST request is used to verify a contract on Sourcify. The following is sample
     }
     ```
 
-Alternatively, you can also use [the Sourcify hosted GUI](https://sourcify.dev/#/verifier){target=\_blank} to submit a contract for verification.  
+Alternatively, you can also use [the Sourcify hosted GUI](https://sourcify.dev/#/verifier/){target=\_blank} to submit a contract for verification.  
 
 ### Check Verification Status by Address and Chain ID {: check-verification-status-by-address-and-chain-id }
 

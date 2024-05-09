@@ -79,7 +79,7 @@ After a short wait, the result of verification will be displayed in the browser,
 
 For verifying smart contracts that are made up of multiple files, the process is slightly different and requires some pre-processing to combine all the dependencies of the target smart contract into a single Solidity file.
 
-This pre-processing is usually referred to as smart contract flattening. There are a number of tools that can be used to flatten a multi-part smart contract into a single Solidity file, such as [Hardhat's Flatten task](https://hardhat.org/hardhat-runner/docs/advanced/flattening){target=\_blank}. Please refer to the respective smart contract flattening tool's documentation for more detailed instructions on its usage.
+This pre-processing is usually referred to as smart contract flattening. There are a number of tools that can be used to flatten a multi-part smart contract into a single Solidity file, such as [Hardhat's Flatten task](https://hardhat.org/hardhat-runner/docs/advanced/flattening/){target=\_blank}. Please refer to the respective smart contract flattening tool's documentation for more detailed instructions on its usage.
 
 After flattening the multi-part smart contract, it can be verified using the new flattened Solidity file on a block explorer in the same way that a single-file smart contract is verified, as described in this tutorial.
 

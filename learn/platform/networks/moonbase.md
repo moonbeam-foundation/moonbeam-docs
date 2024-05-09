@@ -9,7 +9,7 @@ description: An overview of the current configuration of the Moonbeam TestNet, M
 
 The first Moonbeam TestNet, named Moonbase Alpha, aims to provide developers with a place to start experimenting and building on Moonbeam in a shared environment. Since Moonbeam is deployed as a parachain on Kusama and Polkadot, the goal of the TestNet is to reflect the production configurations. For this reason, it was decided that it needed to be a parachain-based configuration rather than a Substrate development setup.
 
-In order to collect as much feedback as possible and provide fast issue resolution, please join the [Moonbeam Discord](https://discord.gg/PfpUATX){target=\_blank}.
+In order to collect as much feedback as possible and provide fast issue resolution, please join the [Moonbeam Discord](https://discord.gg/PfpUATX/){target=\_blank}.
 
 ## Initial Configuration {: #initial-configuration }
 
@@ -25,12 +25,12 @@ Moonbase Alpha has the following configuration:
 Some important variables/configurations to note include:
 
 === "General"
-    |       Variable        |                                  Value                                  |
-    |:---------------------:|:-----------------------------------------------------------------------:|
-    |   Minimum gas price   |               {{ networks.moonbase.min_gas_price }} Gwei                |
-    |   Target block time   |               {{ networks.moonbase.block_time }} seconds                |
-    |    Block gas limit    | {{ networks.moonbase.gas_block }} (expected to increase by at least 4x) |
-    | Transaction gas limit |  {{ networks.moonbase.gas_tx }} (expected to increase by at least 4x)   |
+    |       Variable        |                   Value                    |
+    |:---------------------:|:------------------------------------------:|
+    |   Minimum gas price   | {{ networks.moonbase.min_gas_price }} Gwei |
+    |   Target block time   | {{ networks.moonbase.block_time }} seconds |
+    |    Block gas limit    |     {{ networks.moonbase.gas_block }}      |
+    | Transaction gas limit |       {{ networks.moonbase.gas_tx }}       |
 
 === "Staking"
     |             Variable              |                                                                    Value                                                                    |
@@ -43,6 +43,8 @@ Some important variables/configurations to note include:
     |          Unbond duration          | {{ networks.moonbase.delegator_timings.del_bond_less.rounds }} rounds ({{ networks.moonbase.delegator_timings.del_bond_less.hours }} hours) |
 
 --8<-- 'text/_common/async-backing-moonbase.md'
+    
+    Additionally, as of runtime 2900, the block and transaction gas limits increased by 4x on Moonbase Alpha.
 
 --8<-- 'text/builders/get-started/networks/moonbase/connect.md'
 
@@ -60,7 +62,7 @@ Tokens on Moonbase Alpha, named DEV, will be issued on demand. **DEV tokens hold
 
 You can enter your address to automatically request DEV tokens from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network/){target=\_blank} website. The faucet dispenses {{ networks.moonbase.website_faucet_amount }} every 24 hours.
 
-For token requests of more than the limited amount allowed by the faucet, contact a moderator directly via the [Moonbeam Discord server](https://discord.gg/PfpUATX){target=\_blank}. We are happy to provide the tokens needed to test your applications.
+For token requests of more than the limited amount allowed by the faucet, contact a moderator directly via the [Moonbeam Discord server](https://discord.gg/PfpUATX/){target=\_blank}. We are happy to provide the tokens needed to test your applications.
 
 ## Proof of Stake {: #proof-of-stake }
 
@@ -70,6 +72,6 @@ The Moonbase Alpha TestNet is a fully decentralized Delegated Proof of Stake net
 
 This is the first TestNet for Moonbeam, so there are some limitations.
 
-Some [precompiles](https://docs.klaytn.com/smart-contract/precompiled-contracts){target=\_blank} are yet to be included. You can check out the list of supported precompiles on the [Canonical Contract page](/builders/pallets-precompiles/precompiles/){target=\_blank}. However, all built-in functions are available.
+Some [precompiles](https://docs.klaytn.com/smart-contract/precompiled-contracts/){target=\_blank} are yet to be included. You can check out the list of supported precompiles on the [Canonical Contract page](/builders/pallets-precompiles/precompiles/){target=\_blank}. However, all built-in functions are available.
 
 Since the release of Moonbase Alpha v6, the maximum gas limit per block has been set to {{ networks.moonbase.gas_block }}, with a maximum gas limit per transaction of {{ networks.moonbase.gas_tx }}.

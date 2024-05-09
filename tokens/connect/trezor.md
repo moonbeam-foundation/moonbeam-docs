@@ -19,7 +19,7 @@ Please note that your Trezor device will sign transactions in whichever MetaMask
 
 ## Checking Prerequisites {: #checking-prerequisites }
 
-Before you get started, update [Trezor Suite](https://suite.trezor.io/){target=\_blank} to the latest version available. Also, make sure you've your Trezor hardware wallet device running the latest firmware. The Trezor wiki offers tutorials on how to update the firmware of both [Trezor One](https://wiki.trezor.io/User_manual:Updating_the_Trezor_device_firmware__T1){target=\_blank} and [Trezor Model T](https://wiki.trezor.io/User_manual:Updating_the_Trezor_device_firmware){target=\_blank} devices.
+Before you get started, update [Trezor Suite](https://suite.trezor.io/){target=\_blank} to the latest version available. Also, make sure you've your Trezor hardware wallet device running the latest firmware. The Trezor wiki offers tutorials on how to update the firmware of both [Trezor One](https://wiki.trezor.io/User_manual:Updating_the_Trezor_device_firmware__T1/){target=\_blank} and [Trezor Model T](https://wiki.trezor.io/User_manual:Updating_the_Trezor_device_firmware/){target=\_blank} devices.
 
 At the time of writing, the following versions were used:
 
@@ -61,7 +61,7 @@ Once you've your device connected, you need to allow MetaMask to read its public
 
 ![Trezor Hardware Wallet Connect Wizard Allow Read Public Keys](/images/tokens/connect/trezor/trezor-5.webp)
 
-Next, you are asked if you want to export the public key of your Ethereum account (tab was cropped and labeled as 1 in the following image). Right after, you are prompted with an option to use [Trezor's passphrase option (tab cropped and labeled as 2 in the image). If you want to use the default wallet, just click on **Enter**. If not, please follow [Trezor's wiki article for passphrase wallets](https://wiki.trezor.io/Passphrase){target=\_blank}.
+Next, you are asked if you want to export the public key of your Ethereum account (tab was cropped and labeled as 1 in the following image). Right after, you are prompted with an option to use [Trezor's passphrase option (tab cropped and labeled as 2 in the image). If you want to use the default wallet, just click on **Enter**. If not, please follow [Trezor's wiki article for passphrase wallets](https://wiki.trezor.io/Passphrase/){target=\_blank}.
 
 ![Trezor Hardware Wallet Connect Wizard Allow Export and Passphrase](/images/tokens/connect/trezor/trezor-6.webp)
 
@@ -84,7 +84,7 @@ You've now successfully imported a Moonbeam compatible account from your Trezor 
 
 If you've successfully [imported your Trezor account to MetaMask](#importing-your-trezor-account-to-metamask), you are ready to sign transactions on Moonbeam using your Trezor device. This tutorial will show you how to send a simple transaction on the Moonbase Alpha TestNet, but it applies to other Moonbeam ecosystem networks.
 
-First, make sure your Trezor account is [funded with DEV tokens](/builders/get-started/networks/moonbase/#get-tokens/){target=\_blank}. Next, click on the **Send** button.
+First, make sure your Trezor account is [funded with DEV tokens](/builders/get-started/networks/moonbase/#get-tokens){target=\_blank}. Next, click on the **Send** button.
 
 ![MetaMask Trezor Account Funded](/images/tokens/connect/trezor/trezor-9.webp)
 

@@ -84,7 +84,7 @@ node_modules/.bin/substrate-api-sidecar
 
 If the installation and configuration are successful, you should see this output in the console:
 
-![Successful Output](/images/builders/build/substrate-api/sidecar/sidecar-1.webp)
+--8<-- 'code/builders/get-started/networks/moonbeam-dev/terminal/sidecar.md'
 
 ## Substrate API Sidecar Endpoints {: #substrate-api-sidecar-endpoints }
 
@@ -195,7 +195,7 @@ The Moonbeam EVM currently supports three transaction standards: `legacy`, `eip1
         ...
     ```
 
-For more information on the new [EIP1559](https://eips.ethereum.org/EIPS/eip-1559){target=\_blank} and [EIP2930](https://eips.ethereum.org/EIPS/eip-2930){target=\_blank} transaction types and what each field means, please refer to the respective official Ethereum proposal specs.
+For more information on the new [EIP1559](https://eips.ethereum.org/EIPS/eip-1559/){target=\_blank} and [EIP2930](https://eips.ethereum.org/EIPS/eip-2930/){target=\_blank} transaction types and what each field means, please refer to the respective official Ethereum proposal specs.
 
 ### Transaction Field Mappings {: #transaction-field-mappings }
 
@@ -291,7 +291,7 @@ RESPONSE JSON Block Object:
 
 ```
 
-Moonbeam ERC-20 token transfers will emit the [`Transfer`](https://eips.ethereum.org/EIPS/eip-20){target=\_blank} event which can be decoded as the following:
+Moonbeam ERC-20 token transfers will emit the [`Transfer`](https://eips.ethereum.org/EIPS/eip-20/){target=\_blank} event which can be decoded as the following:
 
 |     Tx Information      |                           Block JSON Field                            |
 |:-----------------------:|:---------------------------------------------------------------------:|
@@ -308,10 +308,10 @@ Other events emitted by EVM smart contracts can be decoded in a similar fashion,
 
 ## Sample Code for Monitoring Native Token Transfers { #sample-code-for-monitoring-native-token-transfers }
 
-The [Transfers API page](/builders/get-started/eth-compare/transfers-api/#using-substrate-api-sidecar){target=\_blank} has a code snippet demonstrating how to use Substrate API Sidecar to retrieve and decode native token transfers sent with both Substrate and Ethereum APIs on Moonbeam networks. You can reference that as a starting point to build out backends that utilize Sidecar to listen to transfers on Moonbeam networks.
+The [Transfers API page](/learn/core-concepts/transfers-api/#using-substrate-api-sidecar){target=\_blank} has a code snippet demonstrating how to use Substrate API Sidecar to retrieve and decode native token transfers sent with both Substrate and Ethereum APIs on Moonbeam networks. You can reference that as a starting point to build out backends that utilize Sidecar to listen to transfers on Moonbeam networks.
 
 ## Calculating Transaction Fees {: #calculating-transaction-fees }
 
-For more detailed information and sample code on how to calculate the transaction fees of Moonbeam transactions using Substrate Sidecar API, please check the [Calculating Transaction Fees on Moonbeam](/builders/get-started/eth-compare/tx-fees/){target=\_blank} page.
+For more detailed information and sample code on how to calculate the transaction fees of Moonbeam transactions using Substrate Sidecar API, please check the [Calculating Transaction Fees on Moonbeam](/learn/core-concepts/tx-fees/){target=\_blank} page.
 
 --8<-- 'text/_disclaimers/third-party-content.md'

@@ -16,17 +16,12 @@ This guide will cover some of the most common flags and show you how to access a
 - **`--collator`** - enables collator mode for collator candidates and, if eligible, allows the node to actively participate in block production
 - **`--port`** - specifies the peer-to-peer protocol TCP port. The default port for parachains is `{{ networks.parachain.p2p }}` and `{{ networks.relay_chain.p2p }}` for the embedded relay chain
 - **`--rpc-port`** - sets the unified port for both HTTP and WS connections. The default port for parachains is `{{ networks.parachain.rpc }}` and `{{ networks.relay_chain.ws }}` for the embedded relay chain
-- **`--ws-port`** - - *deprecated as of [client v0.33.0](https://github.com/moonbeam-foundation/moonbeam/releases/tag/v0.33.0){target=\_blank}, use `--rpc-port` for HTTP and WS connections instead* - sets the unified port for both HTTP and WS connections. The default port for parachains is `{{ networks.parachain.ws }}`  and `{{ networks.relay_chain.ws }}` for the embedded relay chain
+- **`--ws-port`** - - *deprecated as of [client v0.33.0](https://github.com/moonbeam-foundation/moonbeam/releases/tag/v0.33.0/){target=\_blank}, use `--rpc-port` for HTTP and WS connections instead* - sets the unified port for both HTTP and WS connections. The default port for parachains is `{{ networks.parachain.ws }}`  and `{{ networks.relay_chain.ws }}` for the embedded relay chain
 - **`--rpc-max-connections`** - specifies the maximum number of HTTP and WS server connections. The default is 100
-- **`--ws-max-connections`** - *deprecated as of [client v0.33.0](https://github.com/moonbeam-foundation/moonbeam/releases/tag/v0.33.0){target=\_blank}, use `--rpc-max-connections` to adjust the combined HTTP and WS connection limit instead* - specifies the maximum number of HTTP and WS server connections. The default is 100
-- **`--execution`** - specifies the execution strategy that should be used by all execution contexts. The Substrate runtime is compiled into a native executable which is included locally as part of the node and a WebAssembly (Wasm) binary that is stored on-chain. The available options are:
-    - **`native`** - only execute with the native build
-    - **`wasm`** - only execute with the Wasm build
-    - **`both`** - execute with both native and Wasm builds
-    - **`nativeelsewasm`** - execute with the native build if possible and if it fails, then execute with Wasm
+- **`--ws-max-connections`** - *deprecated as of [client v0.33.0](https://github.com/moonbeam-foundation/moonbeam/releases/tag/v0.33.0/){target=\_blank}, use `--rpc-max-connections` to adjust the combined HTTP and WS connection limit instead* - specifies the maximum number of HTTP and WS server connections. The default is 100
 - **`--wasm-execution`** - specifies the method for executing Wasm runtime code. The available options are:
-    - **`compiled`** - this is the default and uses the [Wasmtime](https://github.com/paritytech/wasmtime){target=\_blank} compiled runtime
-    - **`interpreted-i-know-what-i-do`** - uses the [wasmi interpreter](https://github.com/paritytech/wasmi){target=\_blank}
+    - **`compiled`** - this is the default and uses the [Wasmtime](https://github.com/paritytech/wasmtime/){target=\_blank} compiled runtime
+    - **`interpreted-i-know-what-i-do`** - uses the [wasmi interpreter](https://github.com/paritytech/wasmi/){target=\_blank}
 - **`--state-pruning`** - specifies the state pruning mode. For client versions prior to v0.27.0, the `--state-pruning` flag was named `--pruning`. If running a node with the `--collator` flag, the default is to keep the full state of all blocks. Otherwise, the state is only kept for the last 256 blocks. The available options are:
     - **`archive`** - keeps the full state of all blocks
     - **`<number-of-blocks>`** - specifies a custom number of blocks to keep the state for

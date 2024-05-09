@@ -8,7 +8,7 @@ keywords: solidity, ethereum, call permit, permit, gasless transaction, moonbeam
 
 ## Introduction {: #introduction }
 
-The Call Permit Precompile on Moonbeam allows a user to sign a permit, an [EIP-712](https://eips.ethereum.org/EIPS/eip-712){target=\_blank} signed message, for any EVM call and it can be dispatched by anyone or any smart contract. It is similar to the [ERC-20 Permit Solidity Interface](/builders/interoperability/xcm/xc20/interact/#the-erc20-permit-interface){target=\_blank}, except it applies to any EVM call instead of approvals only.
+The Call Permit Precompile on Moonbeam allows a user to sign a permit, an [EIP-712](https://eips.ethereum.org/EIPS/eip-712/){target=\_blank} signed message, for any EVM call and it can be dispatched by anyone or any smart contract. It is similar to the [ERC-20 Permit Solidity Interface](/builders/interoperability/xcm/xc20/interact/#the-erc20-permit-interface){target=\_blank}, except it applies to any EVM call instead of approvals only.
 
 When the call permit is dispatched, it is done so on behalf of the user who signed the permit and the user or contract that dispatches the permit is responsible for paying transaction fees. As such, the precompile can be used to perform gas-less transactions.
 
@@ -154,7 +154,7 @@ Then instead of deploying the contract, you'll just need to access it given the 
 
 ## Generate Call Permit Signature {: #generate-call-permit-signature}
 
-In order to interact with the Call Permit Precompile, you have to have or generate a signature to dispatch the call permit with. There are several ways you can generate the signature, this guide will show you two different ways to generate it: in the browser using the [MetaMask extension](https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn){target=\_blank} and [JSFiddle](https://jsfiddle.net/){target=\_blank} and using MetaMask's [`@metamask/eth-sig-util` npm package](https://www.npmjs.com/package/@metamask/eth-sig-util){target=\_blank}.
+In order to interact with the Call Permit Precompile, you have to have or generate a signature to dispatch the call permit with. There are several ways you can generate the signature, this guide will show you two different ways to generate it: in the browser using the [MetaMask extension](https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn/){target=\_blank} and [JSFiddle](https://jsfiddle.net/){target=\_blank} and using MetaMask's [`@metamask/eth-sig-util` npm package](https://www.npmjs.com/package/@metamask/eth-sig-util/){target=\_blank}.
 
 Regardless of which method you choose to generate the signature, the following steps will be taken:
 
@@ -190,7 +190,7 @@ The nonce of the signer will also be needed. If this is your first time signing 
 
 ### Use the Browser {: #use-the-browser }
 
-To get started, you can open [JSFiddle](https://jsfiddle.net/){target=\_blank} or another JavaScript playground in the browser. First, you'll need to add [Ethers.js](/builders/build/eth-api/libraries/ethersjs){target=\_blank} as it will be used to get the `v`, `r`, and `s` values of the signature:
+To get started, you can open [JSFiddle](https://jsfiddle.net/){target=\_blank} or another JavaScript playground in the browser. First, you'll need to add [Ethers.js](/builders/build/eth-api/libraries/ethersjs/){target=\_blank} as it will be used to get the `v`, `r`, and `s` values of the signature:
 
 1. Click on **Resources**
 2. Start to type in `ethers` and the dropdown should populate matching libraries. Choose **ethers**
@@ -216,7 +216,7 @@ Once you've signed the message, go back to JSFiddle and if the console isn't alr
 
 ### Use MetaMask's JS Signing Library {: #use-metamasks-signing-library }
 
-To generate the call permit signature using JavaScript and MetaMask's [`@metamask/eth-sig-util` npm package](https://www.npmjs.com/package/@metamask/eth-sig-util){target=\_blank}, you'll first need to create a project locally. You can do so with the following commands:
+To generate the call permit signature using JavaScript and MetaMask's [`@metamask/eth-sig-util` npm package](https://www.npmjs.com/package/@metamask/eth-sig-util/){target=\_blank}, you'll first need to create a project locally. You can do so with the following commands:
 
 ```bash
 mkdir call-permit-example && cd call-permit-example && touch getSignature.js

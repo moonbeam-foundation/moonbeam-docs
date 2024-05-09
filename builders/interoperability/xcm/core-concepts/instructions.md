@@ -19,7 +19,7 @@ For example, an XCM message that transfers DOT from Polkadot to Moonbeam will in
 
 Building the instructions for an XCM message from scratch is not an easy task. Consequently, there are wrapper functions and pallets that developers can leverage to use XCM features. The [X-Tokens](/builders/interoperability/xcm/xc20/send-xc20s/xtokens-pallet/){target=\_blank} and [XCM Transactor](/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-pallet/){target=\_blank} Pallets provide functions with a predefined set of XCM instructions to either send [XC-20s](/builders/interoperability/xcm/xc20/overview/){target=\_blank} or remotely execute on other chains via XCM.
 
-If you're interested in experimenting with different combinations of instructions, you can [use the Polkadot XCM Pallet to execute and send custom XCM messages](/builders/interoperability/xcm/send-execute-xcm){target=\_blank}.
+If you're interested in experimenting with different combinations of instructions, you can [use the Polkadot XCM Pallet to execute and send custom XCM messages](/builders/interoperability/xcm/send-execute-xcm/){target=\_blank}.
 
 This guide provides an overview of some of the most commonly used XCM instructions, including those in the above example.
 

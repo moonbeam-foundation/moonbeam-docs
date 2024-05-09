@@ -9,7 +9,7 @@ description: This guide provides an introduction to the XCM Transactor Pallet an
 
 XCM messages are comprised of a [series of instructions](/builders/interoperability/xcm/core-concepts/instructions/){target=\_blank} that are executed by the Cross-Consensus Virtual Machine (XCVM). Combinations of these instructions result in predetermined actions such as cross-chain token transfers and, more interestingly, remote cross-chain execution. Remote execution involves executing operations or actions on one blockchain from another blockchain while maintaining the integrity of the sender's identity and permissions.
 
-Typically, XCM messages are sent from the root origin (that is, SUDO or through governance), which is not ideal for projects that want to leverage remote cross-chain calls via a simple transaction. The [XCM Transactor Pallet](https://github.com/moonbeam-foundation/moonbeam/blob/master/pallets/xcm-transactor/src/lib.rs){target=\_blank} makes it easy to transact on a remote chain through either the [Sovereign account](/builders/interoperability/xcm/overview#general-xcm-definitions){target=\_blank}, which should only be allowed through governance, or a [Computed Origin account](/builders/interoperability/xcm/remote-execution/computed-origins){target=\_blank} via a simple transaction from the source chain.
+Typically, XCM messages are sent from the root origin (that is, SUDO or through governance), which is not ideal for projects that want to leverage remote cross-chain calls via a simple transaction. The [XCM Transactor Pallet](https://github.com/moonbeam-foundation/moonbeam/blob/master/pallets/xcm-transactor/src/lib.rs){target=\_blank} makes it easy to transact on a remote chain through either the [Sovereign account](/builders/interoperability/xcm/overview#general-xcm-definitions){target=\_blank}, which should only be allowed through governance, or a [Computed Origin account](/builders/interoperability/xcm/remote-execution/computed-origins/){target=\_blank} via a simple transaction from the source chain.
 
 This guide will show you how to use the XCM Transactor Pallet to send XCM messages from a Moonbeam-based network to other chains in the ecosystem. In addition, you'll also learn how to use the XCM Transactor Precompile to perform the same actions via the Ethereum API.
 
@@ -157,7 +157,7 @@ The XCM Transactor Pallet provides the following extrinsics (functions):
     === "Parameters"
 
         - `dest` - the XCM versioned multilocation for a chain in the ecosystem where the XCM message is being sent to (the target chain)
-        - `feePayer` - the address that will pay for the remote XCM execution in the corresponding [XC-20 token](/builders/interoperability/xcm/xc20/overview/){target=\_blank}
+        - `feePayer` - (optional) the address that will pay for the remote XCM execution in the corresponding [XC-20 token](/builders/interoperability/xcm/xc20/overview/){target=\_blank}. If you don't specify the `feePayer`, the XCM execution fees will be paid by the Sovereign account on the destination chain
         - `fee` - the asset to be used for fees. This contains the `currency` and the `feeAmount`:
             - `currency` -  defines how you are specifying the token to use to pay for the fees, which can be either of the following:
                 - `AsCurrencyId` - the currency ID of the asset to use for the fees. The currency ID can be either:
@@ -317,8 +317,8 @@ The example in this section uses a destination parachain that is not publicly av
 
 To be able to send the extrinsics in this section, you need to have:
 
-- An account in the origin chain with [funds](/builders/get-started/networks/moonbase/#get-tokens){target=\_blank}
-- Funds in the Computed Origin account on the target chain. To learn how to calculate the address of the Computed Origin account, please refer to the [How to Calculate the Computed Origin](/builders/interoperability/xcm/remote-execution/computed-origins){target=\_blank} documentation
+- An account in the origin chain with [funds](/builders/get-started/networks/moonbase/#get-tokens/){target=\_blank}
+- Funds in the Computed Origin account on the target chain. To learn how to calculate the address of the Computed Origin account, please refer to the [How to Calculate the Computed Origin](/builders/interoperability/xcm/remote-execution/computed-origins/){target=\_blank} documentation
 
 For this example, the following accounts will be used:
 
