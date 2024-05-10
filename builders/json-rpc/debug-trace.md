@@ -7,13 +7,13 @@ description: Check out the non-standard JSON-RPC methods included in Geth's Debu
 
 ## Introduction {: #introduction }
 
-Geth's [debug](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-debug/){target=\_blank} and [txpool](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-txpool/){target=\_blank} APIs and OpenEthereum's [trace](https://openethereum.github.io/JSONRPC-trace-module/){target=\_blank} module provide non-standard RPC methods for deeper insight into transaction processing. Some of these non-standard RPC methods are supported as part of Moonbeam's goal of providing a seamless Ethereum experience for developers. Supporting these RPC methods is an essential milestone because many projects like [The Graph](https://thegraph.com/){target=\_blank} rely on them to index blockchain data.
+Geth's [debug](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-debug){target=\_blank} and [txpool](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-txpool){target=\_blank} APIs and OpenEthereum's [trace](https://openethereum.github.io/JSONRPC-trace-module){target=\_blank} module provide non-standard RPC methods for deeper insight into transaction processing. Some of these non-standard RPC methods are supported as part of Moonbeam's goal of providing a seamless Ethereum experience for developers. Supporting these RPC methods is an essential milestone because many projects like [The Graph](https://thegraph.com){target=\_blank} rely on them to index blockchain data.
 
 This guide will cover the supported RPC methods available on Moonbeam and how to invoke them using curl commands against a tracing node with the debug, txpool, and tracing flags enabled. You can access a tracing node in one of two ways: through a supported tracing RPC provider or by spinning up a tracing node of your own.
 
 To view a list of tracing RPC providers, please check out the [Network Endpoints](/builders/get-started/endpoints#tracing-providers){target=\_blank} page.
 
-If you wish to set up your own tracing node, you can follow the [Running a Tracing Node](/node-operators/networks/tracing-node/){target=\_blank} guide. The RPC HTTP endpoint of your tracing node should be at `{{ networks.development.rpc_url }}` and your node should display similar logs to the following:
+If you wish to set up your own tracing node, you can follow the [Running a Tracing Node](/node-operators/networks/tracing-node){target=\_blank} guide. The RPC HTTP endpoint of your tracing node should be at `{{ networks.development.rpc_url }}` and your node should display similar logs to the following:
 
 --8<-- 'code/builders/json-rpc/debug-trace/terminal/start-up-logs.md'
 

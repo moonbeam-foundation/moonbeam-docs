@@ -21,7 +21,7 @@ Moonbeam leverages multiple existing Substrate frame pallets to provide key bloc
 
 ### Frontier: Substrate's Ethereum Compatibility Layer {: #frontier }
 
-[Frontier](https://polkadot-evm.github.io/frontier/){target=\_blank} serves as Substrate's Ethereum compatibility layer, facilitating the seamless operation of standard Ethereum DApps on Substrate-based chains without requiring modifications. This compatibility is achieved by integrating specialized Substrate pallets into the Substrate runtime. These pallets include the EVM pallet, responsible for executing EVM operations; the Ethereum pallet, which manages block data storage and offers RPC compatibility; the Base Fee pallet, enabling support for EIP-1559 transactions and handling base fee calculations; and the Dynamic Fee pallet, responsible for computing dynamic minimum gas prices.
+[Frontier](https://polkadot-evm.github.io/frontier){target=\_blank} serves as Substrate's Ethereum compatibility layer, facilitating the seamless operation of standard Ethereum DApps on Substrate-based chains without requiring modifications. This compatibility is achieved by integrating specialized Substrate pallets into the Substrate runtime. These pallets include the EVM pallet, responsible for executing EVM operations; the Ethereum pallet, which manages block data storage and offers RPC compatibility; the Base Fee pallet, enabling support for EIP-1559 transactions and handling base fee calculations; and the Dynamic Fee pallet, responsible for computing dynamic minimum gas prices.
 
 Moonbeam uses the EVM and Ethereum pallets to achieve full Ethereum compatibility. Moonbeam does not use the Base Fee or Dynamic Fee pallets. Instead, Moonbeam has its own [dynamic fee mechanism](https://forum.moonbeam.foundation/t/proposal-status-idea-dynamic-fee-mechanism-for-moonbeam-and-moonriver/241){target=\_blank} for base fee calculations.
 
@@ -32,7 +32,7 @@ By basing our EVM implementation on the Substrate EVM Pallet, we get a full Rust
 The core Moonbeam runtime specifies the state transition function and behavior of the Moonbeam blockchain. The Moonbeam runtime is built using [FRAME](/learn/platform/glossary/#substrate-frame-pallets){target=\_blank}. It includes several standard pallets as well as several custom ones. The runtime is compiled to a [WebAssembly (Wasm)](/learn/platform/glossary/#webassemblywasm){target=\_blank} binary as well as a native binary. These compiled versions are executed in the Polkadot relay chain and Moonbeam node environments.
 
 !!! note
-    Substrate FRAME pallets are a collection of Rust-based modules that provide the functionality required when building a blockchain. WebAssembly is an open standard that defines a portable binary code format. Different programming languages, compilers, and browsers support it. Find more definitions [in our glossary](/learn/platform/glossary/){target=\_blank}.
+    Substrate FRAME pallets are a collection of Rust-based modules that provide the functionality required when building a blockchain. WebAssembly is an open standard that defines a portable binary code format. Different programming languages, compilers, and browsers support it. Find more definitions [in our glossary](/learn/platform/glossary){target=\_blank}.
 
 Some of the key Substrate FRAME pallets used in the Moonbeam runtime include:
 
@@ -77,7 +77,7 @@ The [EVM pallet](https://polkadot-evm.github.io/frontier/frame/ethereum.html){ta
 
 The EVM executes Ethereum smart contract bytecode, typically written in a language like Solidity, and then compiles it to EVM bytecode. The EVM pallet aims to emulate the functionality of executing smart contracts on Ethereum within the Substrate runtime. As such, it allows existing EVM code to be executed in Substrate-based blockchains.
 
-Inside the EVM are standard H160 Ethereum-style accounts, with associated data such as the balance and nonce. All of the accounts in the EVM are backed by a configurable Substrate account type. Moonbeam has configured the Substrate account type to be a non-standard H160 account fully compatible with Ethereum. So, you only need a single account to interact with the Substrate runtime and the EVM. For more information on Moonbeam's account system, please refer to the [Unified Accounts](/learn/core-concepts/unified-accounts/){target=\_blank} page.
+Inside the EVM are standard H160 Ethereum-style accounts, with associated data such as the balance and nonce. All of the accounts in the EVM are backed by a configurable Substrate account type. Moonbeam has configured the Substrate account type to be a non-standard H160 account fully compatible with Ethereum. So, you only need a single account to interact with the Substrate runtime and the EVM. For more information on Moonbeam's account system, please refer to the [Unified Accounts](/learn/core-concepts/unified-accounts){target=\_blank} page.
 
 With a unified accounts system, a mapped Substrate account can call the EVM pallet to deposit or withdraw balance from the Substrate-base currency into a different balance managed and used by the EVM pallet. Once a balance exists, smart contracts can be created and interacted with.
 
@@ -89,7 +89,7 @@ The EVM pallet should produce nearly identical execution results to Ethereum, su
 
 There are also some [precompiles](https://github.com/polkadot-evm/frontier/tree/4c05c2b09e71336d6b11207e6d12e486b4d2705c#evm-pallet-precompiles){target=\_blank} that can be used alongside the EVM pallet that extends the functionality of the EVM. Moonbeam uses the following EVM precompiles:
 
-- **[pallet-evm-precompile-simple](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm_precompile_simple/){target=\_blank}** - includes five basic precompiles: ECRecover, ECRecoverPublicKey, Identity, RIPEMD160, SHA256
+- **[pallet-evm-precompile-simple](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm_precompile_simple){target=\_blank}** - includes five basic precompiles: ECRecover, ECRecoverPublicKey, Identity, RIPEMD160, SHA256
 - **[pallet-evm-precompile-blake2](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm_precompile_blake2/struct.Blake2F.html){target=\_blank}** - includes the BLAKE2 precompile
 - **[pallet-evm-precompile-bn128](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm_precompile_bn128/index.html){target=\_blank}** - includes three BN128 precompiles: BN128Add, BN128Mul, and BN128Pairing
 - **[pallet-evm-precompile-modexp](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm_precompile_modexp/struct.Modexp.html){target=\_blank}** - includes the modular exponentiation precompile

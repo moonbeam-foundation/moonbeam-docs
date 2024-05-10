@@ -33,7 +33,7 @@ Before going over the different scenarios, there are two different elements asso
 The different transfer scenarios are:
 
  - **Substrate transfer** — it will create an extrinsic, either `balances.transferAllowDeath` or `balances.transferKeepAlive`. It will trigger **one** `balances.Transfer` event
- - **Substrate feature** — some native Substrate features can create extrinsic that would send tokens to an address. For example, [Treasury](/learn/features/treasury/){target=\_blank} can create an extrinsic such as `treasury.proposeSend`, which will trigger **one or multiple** `balances.Transfer` events
+ - **Substrate feature** — some native Substrate features can create extrinsic that would send tokens to an address. For example, [Treasury](/learn/features/treasury){target=\_blank} can create an extrinsic such as `treasury.proposeSend`, which will trigger **one or multiple** `balances.Transfer` events
  - **Ethereum transfer** — it will create an `ethereum.transact` extrinsic with an empty input. It will trigger **one** `balances.Transfer` event
  - **Ethereum transfers via smart contracts** — it will create an `ethereum.transact` extrinsic with some data as input. It will trigger **one or multiple** `balances.Transfer` events
 
@@ -41,28 +41,28 @@ All the scenarios described above will effectively transfer base-layer network t
 
 ## Monitor Native Token Balance Transfers {: #monitor-transfers }
 
-The following code samples will demonstrate how to listen to both types of native token transfers, sent via the Substrate or Ethereum API, using either the [Polkadot.js API library](https://polkadot.js.org/docs/api/start/){target=\_blank} or [Substrate API Sidecar](https://github.com/paritytech/substrate-api-sidecar/){target=\_blank}. The following code snippets are for demo purposes only and should not be used without modification and further testing in a production environment.
+The following code samples will demonstrate how to listen to both types of native token transfers, sent via the Substrate or Ethereum API, using either the [Polkadot.js API library](https://polkadot.js.org/docs/api/start){target=\_blank} or [Substrate API Sidecar](https://github.com/paritytech/substrate-api-sidecar){target=\_blank}. The following code snippets are for demo purposes only and should not be used without modification and further testing in a production environment.
 
 ### Using Polkadot.js API {: #using-polkadotjs-api }
 
-The [Polkadot.js API package](https://polkadot.js.org/docs/api/start/){target=\_blank} provides developers a way to interact with Substrate chains using JavaScript.
+The [Polkadot.js API package](https://polkadot.js.org/docs/api/start){target=\_blank} provides developers a way to interact with Substrate chains using JavaScript.
 
-The following code snippet uses [`subscribeFinalizedHeads`](https://polkadot.js.org/docs/substrate/rpc/#subscribefinalizedheads-header){target=\_blank} to subscribe to new finalized block headers, loops through extrinsics fetched from the block, and retrieves the events of each extrinsic. Then, it checks if any event corresponds to a `balances.Transfer` event. If so, it will extract the `from`, `to`, `amount`, and the `tx hash` of the transfer and display it on the console. Note that the `amount` is shown in the smallest unit (Wei).  You can find all the available information about Polkadot.js and the Substrate JSON-RPC on their [official documentation site](https://polkadot.js.org/docs/substrate/rpc/){target=\_blank}.
+The following code snippet uses [`subscribeFinalizedHeads`](https://polkadot.js.org/docs/substrate/rpc/#subscribefinalizedheads-header){target=\_blank} to subscribe to new finalized block headers, loops through extrinsics fetched from the block, and retrieves the events of each extrinsic. Then, it checks if any event corresponds to a `balances.Transfer` event. If so, it will extract the `from`, `to`, `amount`, and the `tx hash` of the transfer and display it on the console. Note that the `amount` is shown in the smallest unit (Wei).  You can find all the available information about Polkadot.js and the Substrate JSON-RPC on their [official documentation site](https://polkadot.js.org/docs/substrate/rpc){target=\_blank}.
 
 ```ts
 --8<-- 'code/learn/core-concepts/transfers-api/balance-event.ts'
 ```
 
-In addition, you can find more sample code snippets related to more specific cases around balance transfers on this [GitHub page](https://gist.github.com/crystalin/b2ce44a208af60d62b5ecd1bad513bce/){target=\_blank}.
+In addition, you can find more sample code snippets related to more specific cases around balance transfers on this [GitHub page](https://gist.github.com/crystalin/b2ce44a208af60d62b5ecd1bad513bce){target=\_blank}.
 
 ### Using Substrate API Sidecar {: #using-substrate-api-sidecar }
 
-Developers can also retrieve Moonbeam blocks and monitor transactions sent via both the Substrate and Ethereum APIs using [Substrate API Sidecar](https://github.com/paritytech/substrate-api-sidecar/){target=\_blank}, a REST API service for interacting with blockchains built with the Substrate framework.
+Developers can also retrieve Moonbeam blocks and monitor transactions sent via both the Substrate and Ethereum APIs using [Substrate API Sidecar](https://github.com/paritytech/substrate-api-sidecar){target=\_blank}, a REST API service for interacting with blockchains built with the Substrate framework.
 
-The following code snippet uses the Axios HTTP client to query the [Sidecar endpoint `/blocks/head`](https://paritytech.github.io/substrate-api-sidecar/dist/){target=\_blank} for the latest finalized block and then decodes the block for the `from`, `to`, `value`, `tx hash`, and `transaction status` of native token transfers at both the EVM and Substrate API level.
+The following code snippet uses the Axios HTTP client to query the [Sidecar endpoint `/blocks/head`](https://paritytech.github.io/substrate-api-sidecar/dist){target=\_blank} for the latest finalized block and then decodes the block for the `from`, `to`, `value`, `tx hash`, and `transaction status` of native token transfers at both the EVM and Substrate API level.
 
 ```js
 --8<-- 'code/learn/core-concepts/transfers-api/sidecar-transfer.js'
 ```
 
-You can reference the [Substrate API Sidecar page](/builders/build/substrate-api/sidecar/) for information on installing and running your own Sidecar service instance, as well as more details on how to decode Sidecar blocks for Moonbeam transactions.
+You can reference the [Substrate API Sidecar page](/builders/build/substrate-api/sidecar) for information on installing and running your own Sidecar service instance, as well as more details on how to decode Sidecar blocks for Moonbeam transactions.

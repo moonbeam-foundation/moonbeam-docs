@@ -13,9 +13,9 @@ This page will outline the steps for verifying smart contracts on Moonbeam netwo
 
 ## Deploying the Contract {: #deploying-the-contract }
 
-In order to verify a smart contract on a block explorer, the contract must first be deployed on the target network. This tutorial will be about deploying the smart contract to [Moonbase Alpha](/builders/get-started/networks/moonbase/){target=\_blank}, but it can be adapted for Moonbeam or Moonriver.
+In order to verify a smart contract on a block explorer, the contract must first be deployed on the target network. This tutorial will be about deploying the smart contract to [Moonbase Alpha](/builders/get-started/networks/moonbase){target=\_blank}, but it can be adapted for Moonbeam or Moonriver.
 
-You can check out this page for a tutorial on [deploying smart contracts](/builders/build/eth-api/libraries/){target=\_blank} using Ethereum libraries on Moonbeam. You may also use a developer tool such as [Remix](/builders/build/eth-api/dev-env/remix/#deploying-a-contract-to-moonbeam-using-remix){target=\_blank}, [Hardhat](/builders/build/eth-api/dev-env/hardhat/){target=\_blank}, or another tool if preferred, to deploy the smart contract to Moonbeam.
+You can check out this page for a tutorial on [deploying smart contracts](/builders/build/eth-api/libraries){target=\_blank} using Ethereum libraries on Moonbeam. You may also use a developer tool such as [Remix](/builders/build/eth-api/dev-env/remix/#deploying-a-contract-to-moonbeam-using-remix){target=\_blank}, [Hardhat](/builders/build/eth-api/dev-env/hardhat){target=\_blank}, or another tool if preferred, to deploy the smart contract to Moonbeam.
 
 This tutorial will use the same contract as the above deployment tutorial for the contract verification example.
 
@@ -79,7 +79,7 @@ After a short wait, the result of verification will be displayed in the browser,
 
 For verifying smart contracts that are made up of multiple files, the process is slightly different and requires some pre-processing to combine all the dependencies of the target smart contract into a single Solidity file.
 
-This pre-processing is usually referred to as smart contract flattening. There are a number of tools that can be used to flatten a multi-part smart contract into a single Solidity file, such as [Hardhat's Flatten task](https://hardhat.org/hardhat-runner/docs/advanced/flattening/){target=\_blank}. Please refer to the respective smart contract flattening tool's documentation for more detailed instructions on its usage.
+This pre-processing is usually referred to as smart contract flattening. There are a number of tools that can be used to flatten a multi-part smart contract into a single Solidity file, such as [Hardhat's Flatten task](https://hardhat.org/hardhat-runner/docs/advanced/flattening){target=\_blank}. Please refer to the respective smart contract flattening tool's documentation for more detailed instructions on its usage.
 
 After flattening the multi-part smart contract, it can be verified using the new flattened Solidity file on a block explorer in the same way that a single-file smart contract is verified, as described in this tutorial.
 

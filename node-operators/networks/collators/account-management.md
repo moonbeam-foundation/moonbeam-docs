@@ -73,7 +73,7 @@ The mapping bond is per session keys registered. The bond for mapping your sessi
 
 #### Use Polkadot.js Apps to Map Session Keys {: #use-polkadotjs-apps }
 
-In this section, you'll learn how to map session keys from Polkadot.js Apps. To learn how to create the mapping through the author mapping precompiled contract, you can refer to the page on [Interacting with the Author Mapping Precompile](/builders/pallets-precompiles/precompiles/author-mapping/){target=\_blank}.
+In this section, you'll learn how to map session keys from Polkadot.js Apps. To learn how to create the mapping through the author mapping precompiled contract, you can refer to the page on [Interacting with the Author Mapping Precompile](/builders/pallets-precompiles/precompiles/author-mapping){target=\_blank}.
 
 To create the mapping from [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/assets){target=\_blank} (make sure you're connected to the correct network), click on **Developer** at the top of the page, choose the **Extrinsics** option from the dropdown, and take the following steps:
 
@@ -159,10 +159,10 @@ Once the transaction goes through, the mapping bond will be returned to you. To 
 
 Setting an on-chain identity enables your collator node to be easily identifiable. As opposed to showing your account address, your chosen display name will be displayed instead.
 
-There are a couple of ways you can set your identity, to learn how to set an identity for your collator node please check out the [Managing your Account Identity](/tokens/manage/identity/){target=\_blank} page of our documentation.
+There are a couple of ways you can set your identity, to learn how to set an identity for your collator node please check out the [Managing your Account Identity](/tokens/manage/identity){target=\_blank} page of our documentation.
 
 ## Proxy Accounts {: #proxy-accounts }
 
 Proxy accounts are accounts that can be enabled to perform a limited number of actions on your behalf. Proxies allow users to keep a primary account securely in cold storage while using the proxy to actively participate in the network on behalf of the primary account. You can remove authorization of the proxy account at any time. As an additional layer of security, you can setup your proxy with a delay period. This delay period would provide you time to review the transaction, and cancel if needed, before it automatically gets executed.
 
-To learn how to setup a proxy account, please refer to the [Setting up a Proxy Account](/tokens/manage/proxy-accounts/){target=\_blank} page of our documentation.
+To learn how to setup a proxy account, please refer to the [Setting up a Proxy Account](/tokens/manage/proxy-accounts){target=\_blank} page of our documentation.

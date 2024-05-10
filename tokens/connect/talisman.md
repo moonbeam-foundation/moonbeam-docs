@@ -7,9 +7,9 @@ description: Follow this quick tutorial to learn how to use Moonbeam’s Ethereu
 
 ## Introduction {: #introduction }
 
-As a Polkadot parachain, Moonbeam uses a [unified account structure](/learn/core-concepts/unified-accounts/){target=\_blank} that allows you to interact with Substrate (Polkadot) functionality and Moonbeam's EVM, all from a single Ethereum-style address. This unified account structure means that you don't need to maintain both a Substrate and an Ethereum account to interact with Moonbeam - instead, you can do it all with a single Ethereum private key.
+As a Polkadot parachain, Moonbeam uses a [unified account structure](/learn/core-concepts/unified-accounts){target=\_blank} that allows you to interact with Substrate (Polkadot) functionality and Moonbeam's EVM, all from a single Ethereum-style address. This unified account structure means that you don't need to maintain both a Substrate and an Ethereum account to interact with Moonbeam - instead, you can do it all with a single Ethereum private key.
 
-[Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network%2Fpublic-ws#/accounts){target=\_blank} supports H160 accounts injected into the browser via an extension like [Talisman](https://www.talisman.xyz/){target=\_blank}. Note, Polkadot.js Apps is phasing out support for [accounts stored locally in the browser's cache](/tokens/connect/polkadotjs/). While you can continue to use any accounts that you've imported and stored in your browser locally via Polkadot.js Apps, you won't be able to add any new ones. This means that you'll need to use an extension like Talisman. Furthermore, injecting your account from an extension like Talisman is generally regarded to be safer than storing the account directly in the browser.
+[Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network%2Fpublic-ws#/accounts){target=\_blank} supports H160 accounts injected into the browser via an extension like [Talisman](https://www.talisman.xyz){target=\_blank}. Note, Polkadot.js Apps is phasing out support for [accounts stored locally in the browser's cache](/tokens/connect/polkadotjs). While you can continue to use any accounts that you've imported and stored in your browser locally via Polkadot.js Apps, you won't be able to add any new ones. This means that you'll need to use an extension like Talisman. Furthermore, injecting your account from an extension like Talisman is generally regarded to be safer than storing the account directly in the browser.
 
 This guide will include all of the steps for setting up an account in Talisman and using it to interact with Moonbeam through Polkadot.js Apps.
 
@@ -17,9 +17,9 @@ This guide will include all of the steps for setting up an account in Talisman a
 
 ## Setting up Talisman {: #setting-up-talisman }
 
-Talisman is a crypto-wallet that natively supports Substrate (Polkadot) and Ethereum accounts. The Talisman wallet browser extension is available on [Google Chrome](https://chrome.google.com/webstore/detail/talisman-polkadot-wallet/fijngjgcjhjmmpcmkeiomlglpeiijkld/){target=\_blank}, [Brave](https://chrome.google.com/webstore/detail/talisman-polkadot-wallet/fijngjgcjhjmmpcmkeiomlglpeiijkld/){target=\_blank}, and [Firefox](https://addons.mozilla.org/en-US/firefox/addon/talisman-wallet-extension/){target=\_blank}, and a corresponding asset dashboard is accessible at [app.talisman.xyz](https://app.talisman.xyz/){target=\_blank}
+Talisman is a crypto-wallet that natively supports Substrate (Polkadot) and Ethereum accounts. The Talisman wallet browser extension is available on [Google Chrome](https://chrome.google.com/webstore/detail/talisman-polkadot-wallet/fijngjgcjhjmmpcmkeiomlglpeiijkld){target=\_blank}, [Brave](https://chrome.google.com/webstore/detail/talisman-polkadot-wallet/fijngjgcjhjmmpcmkeiomlglpeiijkld){target=\_blank}, and [Firefox](https://addons.mozilla.org/en-US/firefox/addon/talisman-wallet-extension){target=\_blank}, and a corresponding asset dashboard is accessible at [app.talisman.xyz](https://app.talisman.xyz){target=\_blank}
 
-First, download and install the [Talisman extension](https://www.talisman.xyz/){target=\_blank}. Once the extension opens up, you'll be prompted to either create a new wallet or import an existing one. For the purposes of this demo, you'll create a new wallet. On the following screen you'll be prompted to create a password to secure the new wallet.  
+First, download and install the [Talisman extension](https://www.talisman.xyz){target=\_blank}. Once the extension opens up, you'll be prompted to either create a new wallet or import an existing one. For the purposes of this demo, you'll create a new wallet. On the following screen you'll be prompted to create a password to secure the new wallet.  
 
 ![Create a new wallet or import an existing one into Talisman.](/images/tokens/connect/talisman/talisman-1.webp)
 
@@ -88,7 +88,7 @@ Although our new account has been successfully created, Polkadot.js Apps isn't a
 
 ## Sending a Transaction Through Substrate's API {: #sending-a-transaction-through-substrates-api }
 
-Now, to demonstrate the potential of Moonbeam's [unified accounts](/learn/core-concepts/unified-accounts/){target=\_blank} scheme you can make a transfer through the Substrate API using Polkadot.js Apps. Remember that you are interacting with Substrate using an Ethereum-style H160 address. To do so, you can [add another account](#adding-a-new-account-to-talisman). The accounts in Talisman have been renamed to the familiar Alice and Bob accounts. To send some DEV funds from Alice to Bob, take the following steps:
+Now, to demonstrate the potential of Moonbeam's [unified accounts](/learn/core-concepts/unified-accounts){target=\_blank} scheme you can make a transfer through the Substrate API using Polkadot.js Apps. Remember that you are interacting with Substrate using an Ethereum-style H160 address. To do so, you can [add another account](#adding-a-new-account-to-talisman). The accounts in Talisman have been renamed to the familiar Alice and Bob accounts. To send some DEV funds from Alice to Bob, take the following steps:
 
 Click on Alice's **send** button, which opens another wizard that guides you through the process of sending a transaction.
 

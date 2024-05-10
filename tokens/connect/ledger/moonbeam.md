@@ -14,7 +14,7 @@ Hardware wallets provide a safer way to store crypto funds because the private k
 
 You can interact with Moonbeam using your Ledger hardware wallet through the Moonbeam Ledger Live app. With the dedicated Moonbeam app, you do not have to worry about setting the chain ID and you know you are connected to the right network. Please note that you can only use the Moonbeam app to connect to the Moonbeam network, it cannot be used to connect to other Moonbeam-based networks.
 
-You also have the option of using the Ethereum app to connect to Moonbeam. The main difference between using the Moonbeam and the Ethereum app is that you have to specify the chain ID when you use the Ethereum app, which is 1284 for Moonbeam. If you're interested in using the Ethereum app instead, you can check out the [Interacting with Moonbeam Using Ledger and the Ethereum App](/tokens/connect/ledger/ethereum/){target=\_blank} guide.
+You also have the option of using the Ethereum app to connect to Moonbeam. The main difference between using the Moonbeam and the Ethereum app is that you have to specify the chain ID when you use the Ethereum app, which is 1284 for Moonbeam. If you're interested in using the Ethereum app instead, you can check out the [Interacting with Moonbeam Using Ledger and the Ethereum App](/tokens/connect/ledger/ethereum){target=\_blank} guide.
 
 In this tutorial, you will learn how to get started with your Ledger hardware wallet on Moonbeam using the Moonbeam app. This guide only illustrates the steps for a Ledger Nano X device, but you can follow along with a Ledger Nano S as well. 
 

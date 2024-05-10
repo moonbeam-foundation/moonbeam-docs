@@ -35,9 +35,9 @@ In addition to standard Ethereum RPC methods, Moonbeam supports non-standard Deb
 
 Learn more:
 
-- [Supported Ethereum RPC methods](/builders/json-rpc/eth-rpc/){target=\_blank}
-- [Subscribe to events with Ethereum JSON-RPC methods](/builders/json-rpc/pubsub/){target=\_blank}
-- [Debug and trace transactions with non-standard RPC methods](/builders/json-rpc/debug-trace/){target=\_blank}
+- [Supported Ethereum RPC methods](/builders/json-rpc/eth-rpc){target=\_blank}
+- [Subscribe to events with Ethereum JSON-RPC methods](/builders/json-rpc/pubsub){target=\_blank}
+- [Debug and trace transactions with non-standard RPC methods](/builders/json-rpc/debug-trace){target=\_blank}
 
 ### Ethereum Developer Tools and Libraries {: #ethereum-dev-tools }
 
@@ -45,8 +45,8 @@ With the underlying support for Ethereum JSON-RPC methods, Moonbeam leverages Et
 
 Learn more:
 
-- [Ethereum libraries](/builders/build/eth-api/libraries/){target=\_blank}
-- [Ethereum development environments](/builders/build/eth-api/libraries/){target=\_blank}
+- [Ethereum libraries](/builders/build/eth-api/libraries){target=\_blank}
+- [Ethereum development environments](/builders/build/eth-api/libraries){target=\_blank}
 
 ### Precompiled Contracts {: #precompiled-contracts }
 
@@ -56,7 +56,7 @@ In addition, developers can leverage Ethereum MainNet precompiles seamlessly wit
 
 Learn more:
 
-- [Overview of the precompiled contracts on Moonbeam](/builders/pallets-precompiles/precompiles/overview/){target=\_blank}
+- [Overview of the precompiled contracts on Moonbeam](/builders/pallets-precompiles/precompiles/overview){target=\_blank}
 
 ### Ethereum Token Standards {: #ethereum-token-standards }
 
@@ -66,7 +66,7 @@ Due to Moonbeam's native interoperability, ERC-20s can be sent cross-chain to ot
 
 Learn more:
 
-- [Create common OpenZeppelin contracts such as ERC-20, ERC-721, and ERC-1155 tokens](/builders/build/eth-api/dev-env/openzeppelin/contracts/){target=\_blank}
+- [Create common OpenZeppelin contracts such as ERC-20, ERC-721, and ERC-1155 tokens](/builders/build/eth-api/dev-env/openzeppelin/contracts){target=\_blank}
 - [XCM-enabled ERC-20s](/builders/interoperability/xcm/xc20/overview#local-xc20s){target=\_blank} (also referred to as local XC-20s)
 
 ## Key Differences {: #key-differences }
@@ -85,7 +85,7 @@ Moonbeam and Ethereum have different finality processes. On Ethereum, there is a
 
 Learn more:
 
-- [Consensus and finality on Moonbeam](/learn/core-concepts/consensus-finality/){target=_blank}
+- [Consensus and finality on Moonbeam](/learn/core-concepts/consensus-finality){target=_blank}
 
 ### Proxy Accounts {: #proxy-accounts }
 
@@ -93,8 +93,8 @@ On both Moonbeam and Ethereum, accounts can be controlled by two main types of a
 
 Learn more:
 
-- [An overview of proxy accounts](https://wiki.polkadot.network/docs/learn-proxies/){target=\_blank}
-- [How to set up a proxy account](/tokens/manage/proxy-accounts/){target=\_blank}
+- [An overview of proxy accounts](https://wiki.polkadot.network/docs/learn-proxies){target=\_blank}
+- [How to set up a proxy account](/tokens/manage/proxy-accounts){target=\_blank}
 
 ### Account Balances {: #account-balances }
 
@@ -102,7 +102,7 @@ Balances on Ethereum are fairly straightforward; if an account holds tokens, tha
 
 Learn more:
 
-- [Moonbeam account balances](/learn/core-concepts/balances/){target=_blank}
+- [Moonbeam account balances](/learn/core-concepts/balances){target=_blank}
 
 ### Balance Transfers {: #balance-transfers }
 
@@ -110,7 +110,7 @@ Since Moonbeam is a Substrate-based chain, balance transfers of the native asset
 
 Learn more:
 
-- [Balance transfers on Moonbeam](/learn/core-concepts/transfers-api/){target=_blank}
+- [Balance transfers on Moonbeam](/learn/core-concepts/transfers-api){target=_blank}
 
 ### Transaction Fees {: #transaction-fees }
 
@@ -118,4 +118,4 @@ Moonbeam and Ethereum calculate transaction fees differently due to variations i
 
 Learn more:
 
-- [Calculating transaction fees on Moonbeam](/learn/core-concepts/tx-fees/){target=\_blank}
+- [Calculating transaction fees on Moonbeam](/learn/core-concepts/tx-fees){target=\_blank}

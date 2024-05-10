@@ -7,9 +7,9 @@ description: Use Docker to spin up and run your own Graph node to provide indexi
 
 ## Introduction {: #introduction }
 
-A [Graph](https://thegraph.com/){target=\_blank} Node sources events from a blockchain to deterministically update a data store that can be then queried via a GraphQL endpoint.
+A [Graph](https://thegraph.com){target=\_blank} Node sources events from a blockchain to deterministically update a data store that can be then queried via a GraphQL endpoint.
 
-There are two ways you can set up a Graph Node: you can use Docker to run an all-in-one image, or you can run their [Rust implementation](https://github.com/graphprotocol/graph-node/){target=\_blank}. The steps described in this guide will only cover the Docker alternative, as it is more convenient, and you can set up a Graph Node very quickly.
+There are two ways you can set up a Graph Node: you can use Docker to run an all-in-one image, or you can run their [Rust implementation](https://github.com/graphprotocol/graph-node){target=\_blank}. The steps described in this guide will only cover the Docker alternative, as it is more convenient, and you can set up a Graph Node very quickly.
 
 !!! note
     The steps described in this guide have been tested in both Ubuntu 18.04-based and MacOS environments, and they will need to be adapted accordingly for other systems.
@@ -20,19 +20,19 @@ There are two ways you can set up a Graph Node: you can use Docker to run an all
 
 Before diving into setting up a Graph Node, you need to have the following installed on your system:
 
- - [Docker](https://docs.docker.com/get-docker/){target=\_blank}
- - [Docker Compose](https://docs.docker.com/compose/install/){target=\_blank}
- - [JQ](https://stedolan.github.io/jq/download/){target=\_blank}
+ - [Docker](https://docs.docker.com/get-docker){target=\_blank}
+ - [Docker Compose](https://docs.docker.com/compose/install){target=\_blank}
+ - [JQ](https://stedolan.github.io/jq/download){target=\_blank}
 
 
-In this guide, you will learn how to run a Graph node against a Moonbase Alpha tracing node with the `tracing` flag enabled. To spin up a full node with the `tracing` flag enabled, check out the [Debug & Trace](/node-operators/networks/tracing-node/){target=\_blank} guide.
+In this guide, you will learn how to run a Graph node against a Moonbase Alpha tracing node with the `tracing` flag enabled. To spin up a full node with the `tracing` flag enabled, check out the [Debug & Trace](/node-operators/networks/tracing-node){target=\_blank} guide.
 
 This guide can also be adapted for Moonbeam and Moonriver.
 --8<-- 'text/_common/endpoint-examples.md'
 
 ## Running a Graph Node {: #running-a-graph-node }
 
-The first step is to clone the [Graph Node repository](https://github.com/graphprotocol/graph-node/){target=\_blank}:
+The first step is to clone the [Graph Node repository](https://github.com/graphprotocol/graph-node){target=\_blank}:
 
 ```bash
 git clone https://github.com/graphprotocol/graph-node/ \

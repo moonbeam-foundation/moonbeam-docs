@@ -15,7 +15,7 @@ In this guide, you will learn how to subscribe to event logs, incoming pending t
 
 ## Supported Pubsub JSON-RPC Methods {: #filter-rpc-methods }
 
-Please note that the examples in this section require installing [wscat](https://github.com/websockets/wscat/){target=\_blank}.
+Please note that the examples in this section require installing [wscat](https://github.com/websockets/wscat){target=\_blank}.
 
 ???+ function "eth_subscribe"
 
@@ -71,16 +71,16 @@ Please note that the examples in this section require installing [wscat](https:/
 
 ## Subscribe to Events Using Ethereum Libraries {: #subscribe-to-events }
 
-This section will show you how to use [Ethereum libraries](/builders/build/eth-api/libraries/){target=\_blank}, like [Web3.js](/builders/build/eth-api/libraries/web3js/){target=\_blank}, to programmatically subscribe to events on Moonbeam.
+This section will show you how to use [Ethereum libraries](/builders/build/eth-api/libraries){target=\_blank}, like [Web3.js](/builders/build/eth-api/libraries/web3js){target=\_blank}, to programmatically subscribe to events on Moonbeam.
 
 ### Checking Prerequisites {: #checking-prerequisites }
 
 The examples in this guide are based on an Ubuntu 22.04 environment. You will also need the following:
 
-- MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}
+- MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask){target=\_blank}
 - An account with funds.
   --8<-- 'text/_common/faucet/faucet-list-item.md'
-- To deploy your own ERC-20 token on Moonbase Alpha. You can do this following [our Remix tutorial](/builders/build/eth-api/dev-env/remix/){target=\_blank} while first pointing MetaMask to Moonbase Alpha
+- To deploy your own ERC-20 token on Moonbase Alpha. You can do this following [our Remix tutorial](/builders/build/eth-api/dev-env/remix){target=\_blank} while first pointing MetaMask to Moonbase Alpha
 - Web3.js or the Ethereum library of your choice installed. You can install Web3.js via npm:
 
     ```bash
@@ -111,7 +111,7 @@ In the provided code:
 
     This translates to `0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef`, as seen in the code snippet.
 
-If you do not provide any topics, you subscribe to all events emitted by the contract. More information about topics can be found in the [Understanding event logs on the Ethereum blockchain](https://medium.com/mycrypto/understanding-event-logs-on-the-ethereum-blockchain-f4ae7ba50378/){target=\_blank} Medium post.
+If you do not provide any topics, you subscribe to all events emitted by the contract. More information about topics can be found in the [Understanding event logs on the Ethereum blockchain](https://medium.com/mycrypto/understanding-event-logs-on-the-ethereum-blockchain-f4ae7ba50378){target=\_blank} Medium post.
 
 By executing this code, you'll establish a subscription to monitor ERC-20 token transfer events on Moonbeam. The terminal will display a subscription ID indicating a successful setup and await any new events emitted by the contract.
 
@@ -141,7 +141,7 @@ As there are a total of three topics (the maximum is four), this corresponds to 
 
 Indexed topics, such as the `from` and `to` addresses, are typically represented by 256-bit (64 hexadecimal character) values. If necessary, they are padded with zeros to reach the full length.
 
-Unindexed data, such as the value of tokens transferred, is not included in the `topics` array. Instead, it is returned within the logs' `data` field, encoded in bytes32/hex format. To decode it, you can use, for example, this [Web3 Type Converter tool](https://web3-type-converter.onbrn.com/){target=\_blank} and verify that the `data` is 1 DEV token formatted in Wei.
+Unindexed data, such as the value of tokens transferred, is not included in the `topics` array. Instead, it is returned within the logs' `data` field, encoded in bytes32/hex format. To decode it, you can use, for example, this [Web3 Type Converter tool](https://web3-type-converter.onbrn.com){target=\_blank} and verify that the `data` is 1 DEV token formatted in Wei.
 
 If the event returns multiple unindexed values, they will be appended one after the other in the same order the event emits them. Therefore, each value is obtained by deconstructing data into separate 32-byte (or 64-hex-character-long) pieces.
 
@@ -188,4 +188,4 @@ With pubsub, checking whether a particular node is currently synchronizing with 
 ![Subscribe to syncing response](/images/builders/json-rpc/pubsub/pubsub-7.webp)
 
 !!! note
-    The pubsub implementation in [Frontier](https://github.com/polkadot-evm/frontier/){target=\_blank} is still in active development. This current version allows users to subscribe to specific event types, but there may still be some limitations.
+    The pubsub implementation in [Frontier](https://github.com/polkadot-evm/frontier){target=\_blank} is still in active development. This current version allows users to subscribe to specific event types, but there may still be some limitations.

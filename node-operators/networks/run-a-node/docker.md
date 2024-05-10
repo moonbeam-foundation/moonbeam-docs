@@ -9,13 +9,13 @@ description: How to run a full parachain node so you can have your own RPC endpo
 
 Running a full node on a Moonbeam-based network allows you to connect to the network, sync with a bootnode, obtain local access to RPC endpoints, author blocks on the parachain, and more.
 
-In this guide, you'll learn how to quickly spin up a Moonbeam node using [Docker](https://www.docker.com/){target=\_blank} and how to maintain and purge your node.
+In this guide, you'll learn how to quickly spin up a Moonbeam node using [Docker](https://www.docker.com){target=\_blank} and how to maintain and purge your node.
 
 ## Checking Prerequisites {: #checking-prerequisites }
 
 To get started, you'll need to:
 
-- [Install Docker](https://docs.docker.com/get-docker/){target=\_blank}. At the time of writing, the Docker version used was 24.0.6
+- [Install Docker](https://docs.docker.com/get-docker){target=\_blank}. At the time of writing, the Docker version used was 24.0.6
 - Make sure that your system meets the [requirements](/node-operators/networks/run-a-node/overview#requirements){target=\_blank}. When connecting to Moonriver on Kusama or Moonbeam on Polkadot, it will take a few days to completely sync the embedded relay chain
 
 ## Set up Storage for Chain Data {: #storage-chain-data }
@@ -83,7 +83,7 @@ Note that in the following start-up command, you have to:
 - Replace `INSERT_YOUR_NODE_NAME` with your node name of choice. You'll have to do this in two places: one for the parachain and one for the relay chain
 - Replace `INSERT_RAM_IN_MB` for 50% of the actual RAM your server has. For example, for 32GB of RAM, the value must be set to `16000`. The minimum value is `2000`, but it is below the recommended specs
 
-For an overview of the flags used in the following start-up commands, plus additional commonly used flags, please refer to the [Flags](/node-operators/networks/run-a-node/flags/){target=\_blank} page of our documentation.
+For an overview of the flags used in the following start-up commands, plus additional commonly used flags, please refer to the [Flags](/node-operators/networks/run-a-node/flags){target=\_blank} page of our documentation.
 
 ### Full Node {: #full-node }
 
@@ -391,7 +391,7 @@ If you followed the installation instructions for Moonbase Alpha, once synced, y
 
 ## Maintain Your Node {: #maintain-your-node }
 
-As Moonbeam development continues, it will sometimes be necessary to upgrade your node software. Node operators will be notified on our [Discord channel](https://discord.gg/PfpUATX/){target=\_blank} when upgrades are available and whether they are necessary (some client upgrades are optional). The upgrade process is straightforward and is the same for a full node or collator.
+As Moonbeam development continues, it will sometimes be necessary to upgrade your node software. Node operators will be notified on our [Discord channel](https://discord.gg/PfpUATX){target=\_blank} when upgrades are available and whether they are necessary (some client upgrades are optional). The upgrade process is straightforward and is the same for a full node or collator.
 
 1. Stop the Docker container:
 
@@ -399,7 +399,7 @@ As Moonbeam development continues, it will sometimes be necessary to upgrade you
     sudo docker stop INSERT_CONTAINER_ID
     ```
 
-2. Get the latest version of Moonbeam from the [Moonbeam GitHub Release](https://github.com/moonbeam-foundation/moonbeam/releases/){target=\_blank} page
+2. Get the latest version of Moonbeam from the [Moonbeam GitHub Release](https://github.com/moonbeam-foundation/moonbeam/releases){target=\_blank} page
 3. Use the latest version to spin up your node. To do so, replace the version in the start-up command with the latest and run it
 
 Once your node is running again, you should see logs in your terminal.

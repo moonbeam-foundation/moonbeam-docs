@@ -13,9 +13,9 @@ This page will outline the steps for using these API-based tools for verifying s
 
 ## Using Moonscan API {: #using-moonscan-api }
 
-[Moonscan](https://moonscan.io/){target=\_blank} is an official fork of Etherscan that can be used to view and search on-chain data, and comes with a suite of developer tools and analytics to interact with data on Moonbeam networks.
+[Moonscan](https://moonscan.io){target=\_blank} is an official fork of Etherscan that can be used to view and search on-chain data, and comes with a suite of developer tools and analytics to interact with data on Moonbeam networks.
 
-Moonscan exposes a set of REST API endpoints similar to the [Etherscan API](https://docs.etherscan.io/){target=\_blank} endpoints that can be used to verify smart contracts, retrieve verified contract ABI and source code, or otherwise interact with verified contracts on Moonbeam networks.
+Moonscan exposes a set of REST API endpoints similar to the [Etherscan API](https://docs.etherscan.io){target=\_blank} endpoints that can be used to verify smart contracts, retrieve verified contract ABI and source code, or otherwise interact with verified contracts on Moonbeam networks.
 
 ### Generating a Moonscan API Key {: #generating-a-moonscan-api-key }
 
@@ -45,7 +45,7 @@ The Moonscan API URL for Moonbeam networks is as follows:
 
 ### Verify Source Code {: #verify-source-code }
 
-To verify a deployed contract's source code using the Moonscan API, you must form a POST request containing all the relevant contract creation information, and send the request to Moonscan's REST API. The following is sample code using JavaScript and [Axios](https://axios-http.com/docs/intro/){target=\_blank}, an HTTP client:
+To verify a deployed contract's source code using the Moonscan API, you must form a POST request containing all the relevant contract creation information, and send the request to Moonscan's REST API. The following is sample code using JavaScript and [Axios](https://axios-http.com/docs/intro){target=\_blank}, an HTTP client:
 
 === "Moonbeam"
 
@@ -305,7 +305,7 @@ Once your contract is verified on Moonscan, you can use the following endpoint t
 
 ## Using Sourcify API {: #using-sourcify-api }
 
-[Sourcify](https://sourcify.dev/){target=\_blank} is a multi-chain decentralized automated contract verification service, and maintains a public repository of contract metadata. Sourcify also provides a public server API for verification, and checking if a contract is verified, and a repository API for retrieving metadata files.
+[Sourcify](https://sourcify.dev){target=\_blank} is a multi-chain decentralized automated contract verification service, and maintains a public repository of contract metadata. Sourcify also provides a public server API for verification, and checking if a contract is verified, and a repository API for retrieving metadata files.
 
 ### Sourcify Public Server URL {: #sourcify-public-server-url }
 
@@ -444,7 +444,7 @@ A POST request is used to verify a contract on Sourcify. The following is sample
     }
     ```
 
-Alternatively, you can also use [the Sourcify hosted GUI](https://sourcify.dev/#/verifier/){target=\_blank} to submit a contract for verification.  
+Alternatively, you can also use [the Sourcify hosted GUI](https://sourcify.dev/#/verifier){target=\_blank} to submit a contract for verification.  
 
 ### Check Verification Status by Address and Chain ID {: check-verification-status-by-address-and-chain-id }
 
@@ -536,7 +536,7 @@ And one for the source files of both perfect and partial matches:
 
 ### Using Sourcify with Foundry {: #using-sourcify-with-foundry }
 
-Foundry's Forge tool has built-in support for Sourcify verification similar to how it has [built-in support for Etherscan](/builders/build/eth-api/verify-contracts/etherscan-plugins#using-foundry-to-verify){target=\_blank}. The example in this section of the guide will use the `MyToken.sol` contract that was created in the [Using Foundry to Deploy to Moonbeam](/builders/build/eth-api/dev-env/foundry/){target=\_blank} guide.
+Foundry's Forge tool has built-in support for Sourcify verification similar to how it has [built-in support for Etherscan](/builders/build/eth-api/verify-contracts/etherscan-plugins#using-foundry-to-verify){target=\_blank}. The example in this section of the guide will use the `MyToken.sol` contract that was created in the [Using Foundry to Deploy to Moonbeam](/builders/build/eth-api/dev-env/foundry){target=\_blank} guide.
 
 A Foundry project that uses Sourcify must have their compiler emit metadata files. This can be configured in the `foundry.toml` file:
 

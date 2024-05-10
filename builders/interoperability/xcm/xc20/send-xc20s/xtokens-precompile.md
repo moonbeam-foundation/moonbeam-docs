@@ -7,11 +7,11 @@ description: Learn how to send assets cross-chain via Cross-Consensus Messaging 
 
 ## Introduction {: #introduction }
 
-Building an XCM message for fungible asset transfers is not an easy task. Consequently, there are wrapper functions and pallets that developers can leverage to use XCM features on Polkadot and Kusama. One example of such wrappers is the [X-Tokens](/builders/interoperability/xcm/xc20/send-xc20s/xtokens-pallet/){target=\_blank} Pallet, which provides different methods to transfer fungible assets via XCM.
+Building an XCM message for fungible asset transfers is not an easy task. Consequently, there are wrapper functions and pallets that developers can leverage to use XCM features on Polkadot and Kusama. One example of such wrappers is the [X-Tokens](/builders/interoperability/xcm/xc20/send-xc20s/xtokens-pallet){target=\_blank} Pallet, which provides different methods to transfer fungible assets via XCM.
 
 The X-Tokens Pallet is coded in Rust and is normally not accessible from the Ethereum API side of Moonbeam. However, the X-Tokens Precompile allows you to interact directly with the Substrate pallet to send XC-20s from a Solidity interface.
 
-This guide will show you how to leverage the X-Tokens Precompile to send [XC-20s](/builders/interoperability/xcm/xc20/overview/){target=\_blank} from a Moonbeam-based network to other chains in the ecosystem (relay chain/parachains) using Ethereum libraries like Ethers and Web3.
+This guide will show you how to leverage the X-Tokens Precompile to send [XC-20s](/builders/interoperability/xcm/xc20/overview){target=\_blank} from a Moonbeam-based network to other chains in the ecosystem (relay chain/parachains) using Ethereum libraries like Ethers and Web3.
 
 **Developers must understand that sending incorrect XCM messages can result in the loss of funds.** Consequently, it is essential to test XCM features on a TestNet before moving to a production environment.
 
@@ -116,7 +116,7 @@ The interface includes the following functions:
 
 ## Building the Precompile Multilocation {: #building-the-precompile-multilocation }
 
-[Multilocations](/builders/interoperability/xcm/core-concepts/multilocations/){target=\_blank} define a specific point in the entire relay chain/parachain ecosystem relative to a given origin. They are frequently used by the X-Tokens Precompile to define the location of assets and destination chains and accounts.
+[Multilocations](/builders/interoperability/xcm/core-concepts/multilocations){target=\_blank} define a specific point in the entire relay chain/parachain ecosystem relative to a given origin. They are frequently used by the X-Tokens Precompile to define the location of assets and destination chains and accounts.
 
 Multilocations need to be formatted in a specific way that precompiles can understand, which is different than the format seen when interacting with pallets. In the X-Tokens Precompile interface, the `Multilocation` structure is defined as follows:
 
@@ -132,7 +132,7 @@ The following code snippet goes through some examples of multilocation structure
 
 This guide covers the process of building an XCM message using the X-Tokens Precompile, more specifically, with the `transfer` and `transferMultiasset` functions. Nevertheless, these two cases can be extrapolated to the other functions of the precompile, especially once you become familiar with multilocations.
 
-You'll be transferring xcUNIT tokens, which are the [XC-20](/builders/interoperability/xcm/xc20/overview/){target=\_blank} representation of the Alphanet relay chain token, UNIT. You can adapt this guide for any other XC-20.
+You'll be transferring xcUNIT tokens, which are the [XC-20](/builders/interoperability/xcm/xc20/overview){target=\_blank} representation of the Alphanet relay chain token, UNIT. You can adapt this guide for any other XC-20.
 
 ### Checking Prerequisites {: #xtokens-check-prerequisites}
 
@@ -151,7 +151,7 @@ To follow along with the examples in this guide, you need to have the following:
 - Some xcUNIT tokens. You can swap DEV tokens (Moonbase Alpha's native token) for xcUNITs on [Moonbeam-Swap](https://moonbeam-swap.netlify.app/#/swap){target=\_blank}, a demo Uniswap-V2 clone on Moonbase Alpha
 
     !!! note
-        You can adapt this guide to transfer another [external XC-20 or a local XC-20](/builders/interoperability/xcm/xc20/overview/){target=\_blank}. For external XC-20s, you'll need the asset ID and the number of decimals the asset has. For local XC-20s, you'll need the contract address.
+        You can adapt this guide to transfer another [external XC-20 or a local XC-20](/builders/interoperability/xcm/xc20/overview){target=\_blank}. For external XC-20s, you'll need the asset ID and the number of decimals the asset has. For local XC-20s, you'll need the contract address.
 
     ![Moonbeam Swap xcUNIT](/images/builders/interoperability/xcm/xc20/send-xc20s/xtokens-pallet/xtokens-1.webp)
 
@@ -162,7 +162,7 @@ To follow along with the examples in this guide, you need to have the following:
     ```
 
 !!! note
-    To test out the examples on Moonbeam or Moonriver, you can replace the RPC URL with your own endpoint and API key, which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=\_blank}.
+    To test out the examples on Moonbeam or Moonriver, you can replace the RPC URL with your own endpoint and API key, which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints){target=\_blank}.
 
 ### Determining Weight Needed for XCM Execution {: #determining-weight }
 
@@ -181,11 +181,11 @@ In this example, where you're transferring xcUNIT from Moonbase Alpha to the Alp
 !!! note
     Some weights include database reads and writes; for example, the `WithdrawAsset` and `DepositAsset` instructions include both one database read and one write. To get the total weight, you'll need to add the weight of any required database reads or writes to the base weight of the given instruction.
 
-    For Westend-based relay chains, like Alphanet, you can get the weight cost for read and write database operations for [Rocks DB](https://github.com/paritytech/polkadot-sdk/blob/polkadot-{{ networks.alphanet.spec_version }}/polkadot/runtime/westend/constants/src/weights/rocksdb_weights.rs#L27-L31/){target=\_blank} (which is the default database) in the [polkadot-sdk](https://github.com/paritytech/polkadot-sdk/){target=\_blank} repository on GitHub.
+    For Westend-based relay chains, like Alphanet, you can get the weight cost for read and write database operations for [Rocks DB](https://github.com/paritytech/polkadot-sdk/blob/polkadot-{{ networks.alphanet.spec_version }}/polkadot/runtime/westend/constants/src/weights/rocksdb_weights.rs#L27-L31){target=\_blank} (which is the default database) in the [polkadot-sdk](https://github.com/paritytech/polkadot-sdk){target=\_blank} repository on GitHub.
 
-Since Alphanet is a Westend-based relay chain, you can refer to the instruction weights defined in the [Westend runtime code](https://github.com/paritytech/polkadot-sdk/tree/polkadot-{{ networks.alphanet.spec_version }}/polkadot/runtime/westend/){target=\_blank}, which are broken up into two types of instructions: [fungible](https://github.com/paritytech/polkadot-sdk/blob/polkadot-{{ networks.alphanet.spec_version }}/polkadot/runtime/westend/src/weights/xcm/pallet_xcm_benchmarks_fungible.rs){target=\_blank} and [generic](https://github.com/paritytech/polkadot-sdk/blob/polkadot-{{ networks.alphanet.spec_version }}/polkadot/runtime/westend/src/weights/xcm/pallet_xcm_benchmarks_generic.rs){target=\_blank}.
+Since Alphanet is a Westend-based relay chain, you can refer to the instruction weights defined in the [Westend runtime code](https://github.com/paritytech/polkadot-sdk/tree/polkadot-{{ networks.alphanet.spec_version }}/polkadot/runtime/westend){target=\_blank}, which are broken up into two types of instructions: [fungible](https://github.com/paritytech/polkadot-sdk/blob/polkadot-{{ networks.alphanet.spec_version }}/polkadot/runtime/westend/src/weights/xcm/pallet_xcm_benchmarks_fungible.rs){target=\_blank} and [generic](https://github.com/paritytech/polkadot-sdk/blob/polkadot-{{ networks.alphanet.spec_version }}/polkadot/runtime/westend/src/weights/xcm/pallet_xcm_benchmarks_generic.rs){target=\_blank}.
 
-It's important to note that each chain defines its own weight requirements. To determine the weight required for each XCM instruction on a given chain, please refer to the chain's documentation or reach out to a member of their team. To learn how to find the weights required by Moonbeam, Polkadot, or Kusama, you can refer to our documentation on [Weights and Fees](/builders/interoperability/xcm/core-concepts/weights-fees/){target=\_blank}.
+It's important to note that each chain defines its own weight requirements. To determine the weight required for each XCM instruction on a given chain, please refer to the chain's documentation or reach out to a member of their team. To learn how to find the weights required by Moonbeam, Polkadot, or Kusama, you can refer to our documentation on [Weights and Fees](/builders/interoperability/xcm/core-concepts/weights-fees){target=\_blank}.
 
 ### X-Tokens Precompile Transfer Function {: #precompile-transfer }
 

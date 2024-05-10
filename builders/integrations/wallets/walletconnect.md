@@ -7,7 +7,7 @@ description: Learn how to integrate WalletConnect into a DApp built on any of th
 
 ## Introduction {: #introduction }
 
-[WalletConnect](https://walletconnect.com/){target=\_blank} is an open protocol to communicate securely between wallets and DApps.
+[WalletConnect](https://walletconnect.com){target=\_blank} is an open protocol to communicate securely between wallets and DApps.
 
 WalletConnect establishes a remote connection between a DApp and mobile wallet by using a bridge server to relay payloads. The connection is initiated via a QR code displayed in a DApp, which will need to be scanned and approved by a mobile wallet. When a connection is established, the payloads between the DApp and wallet are encrypted through a shared key.
 
@@ -17,7 +17,7 @@ WalletConnect can also be used to establish a connection between a DApp and a de
 
 In this guide, you'll learn how to integrate WalletConnect into a simple DApp built on the Moonbase Alpha TestNet. The guide will be divided into a few different sections. The first section will cover connecting your DApp to MetaMask mobile. After the connection has been established, the guide will cover disconnections. This way, when you are testing your DApp you will be able to connect and then disconnect so you don't end up with a bunch of unnecessary WalletConnect sessions lingering in MetaMask mobile. Afterwards you will learn how to display network and account details when connected, and send transactions from your DApp to MetaMask mobile for confirmation.
 
-This guide is an adaptation of the [WalletConnect Example Dapp](https://example.walletconnect.org/){target=\_blank} ([source code](https://github.com/WalletConnect/walletconnect-example-dapp/){target=\_blank}). To view the end result, you can check out the [Moonbeam WalletConnect Demo app](https://moonbeam-walletconnect-demo.netlify.app/){target=\_blank} ([source code](https://github.com/papermoonio/moonbeam-walletconnect-demo/){target=\_blank}).
+This guide is an adaptation of the [WalletConnect Example Dapp](https://example.walletconnect.org){target=\_blank} ([source code](https://github.com/WalletConnect/walletconnect-example-dapp){target=\_blank}). To view the end result, you can check out the [Moonbeam WalletConnect Demo app](https://moonbeam-walletconnect-demo.netlify.app){target=\_blank} ([source code](https://github.com/papermoonio/moonbeam-walletconnect-demo){target=\_blank}).
 
 ## Quick Start {: #quick-start }
 
@@ -88,13 +88,13 @@ If you already have a DApp with WalletConnect support, and just want to add Moon
 
 ## Checking Prerequisites {: #checking-prerequisites }
 
-Throughout this guide, you'll use a simple front-end DApp built with [React](https://reactjs.org/){target=\_blank} to connect to a mobile wallet via WalletConnect. So you will need a React project and the MetaMask mobile app installed for testing purposes. A template has been created that includes the required packages, some basic styling, and placeholders where logic and UI elements will need to be added. However, if you would to use your own DApp, you'll need to install the following required dependencies:
+Throughout this guide, you'll use a simple front-end DApp built with [React](https://reactjs.org){target=\_blank} to connect to a mobile wallet via WalletConnect. So you will need a React project and the MetaMask mobile app installed for testing purposes. A template has been created that includes the required packages, some basic styling, and placeholders where logic and UI elements will need to be added. However, if you would to use your own DApp, you'll need to install the following required dependencies:
 
 ```bash
 npm install ethers @walletconnect/client @walletconnect/qrcode-modal
 ```
 
-This guide will use MetaMask mobile for testing purposes. To install MetaMask mobile, you can go to [metamask.io/download/](https://metamask.io/download/){target=\_blank} and switch to either the **iOS** or **Android** tab.
+This guide will use MetaMask mobile for testing purposes. To install MetaMask mobile, you can go to [metamask.io/download/](https://metamask.io/download){target=\_blank} and switch to either the **iOS** or **Android** tab.
 
 Lastly, you will need to have an account funded with DEV tokens, so that you can test out sending a transaction.
  --8<-- 'text/_common/faucet/faucet-sentence.md'
@@ -103,13 +103,13 @@ Lastly, you will need to have an account funded with DEV tokens, so that you can
 
 To get started quickly with the Moonbeam WalletConnect template, which provides everything you need to dive right in, you'll need to take the following steps:
 
-1. Clone the [walletconnect-template GitHub repository](https://github.com/papermoonio/moonbeam-walletconnect-template/){target=\_blank}
+1. Clone the [walletconnect-template GitHub repository](https://github.com/papermoonio/moonbeam-walletconnect-template){target=\_blank}
 2. Run `npm install` to install the required dependencies
 3. Run `npm start` to spin up a local instance of the DApp
 
 To test the WalletConnect connection, you can use the MetaMask mobile app. For the purposes of this guide, you will need to already be connected to the Moonbase Alpha TestNet on the MetaMask mobile app. Later on in the guide, you will learn how to check if the connected network is a supported network, and if not display an error that will suggest users to switch to a network that is supported.
 
-There are a couple of ways you can connect your MetaMask mobile wallet to the Moonbase Alpha TestNet. You can manually add the Moonbase Alpha TestNet configurations from the **Networks** section of the **Settings** menu. Or you can also open up the **Browser** from MetaMask mobile and navigate to [docs.moonbeam.network](https://docs.moonbeam.network/){target=\_blank}, click on **Connect MetaMask** at the top of the page, and select **Moonbase Alpha** from the menu. This will prompt you to automatically add Moonbase Alpha as a custom network and saves you from inputting the network configurations manually.
+There are a couple of ways you can connect your MetaMask mobile wallet to the Moonbase Alpha TestNet. You can manually add the Moonbase Alpha TestNet configurations from the **Networks** section of the **Settings** menu. Or you can also open up the **Browser** from MetaMask mobile and navigate to [docs.moonbeam.network](https://docs.moonbeam.network){target=\_blank}, click on **Connect MetaMask** at the top of the page, and select **Moonbase Alpha** from the menu. This will prompt you to automatically add Moonbase Alpha as a custom network and saves you from inputting the network configurations manually.
 
 ## Connect DApp to MetaMask Mobile {: #connect-dapp-to-metamask-mobile }
 
@@ -349,7 +349,7 @@ You can test this logic out by refreshing the page after establishing a connecti
 
 ## Add Account Balance {: #add-account-balance }
 
-Depending on your needs, you might want to show the connected account's balance for the connected network. To do so, you can use [Ethers](https://docs.ethers.org/){target=\_blank} to create a provider which can then be used to fetch the balance of the connected account.
+Depending on your needs, you might want to show the connected account's balance for the connected network. To do so, you can use [Ethers](https://docs.ethers.org){target=\_blank} to create a provider which can then be used to fetch the balance of the connected account.
 
 You can start by adding another state variable for `balance`.
 
@@ -490,15 +490,15 @@ When you click on **Send Transaction**, a pop-up will appear in MetaMask mobile 
 
 ![Send Transaction](/images/builders/integrations/wallets/walletconnect/walletconnect-5.webp)
 
-You can also confirm the transaction went through by searching for your account in a block explorer such as [Moonscan](https://moonbase.moonscan.io/){target=\_blank}.
+You can also confirm the transaction went through by searching for your account in a block explorer such as [Moonscan](https://moonbase.moonscan.io){target=\_blank}.
 
 ## Final Result {: #final-result }
 
 ![DApp Final Result](/images/builders/integrations/wallets/walletconnect/walletconnect-6.webp)
 
-To review the code for this tutorial in one place, you can check out the [moonbeam-walletconnect-demo GitHub repository](https://github.com/papermoonio/moonbeam-walletconnect-demo/){target=\_blank}.
+To review the code for this tutorial in one place, you can check out the [moonbeam-walletconnect-demo GitHub repository](https://github.com/papermoonio/moonbeam-walletconnect-demo){target=\_blank}.
 
-To see all of the code in action, you can check out the deployed [Moonbeam WalletConnect Demo App](https://moonbeam-walletconnect-demo.netlify.app/){target=\_blank}.
+To see all of the code in action, you can check out the deployed [Moonbeam WalletConnect Demo App](https://moonbeam-walletconnect-demo.netlify.app){target=\_blank}.
 
 ## Additional Considerations {: #additional-considerations }
 

@@ -11,9 +11,9 @@ The Moonbeam XCM SDK enables developers to easily deposit and withdraw assets to
 
 The XCM SDK offers simple helper functions like `deposit` and `withdraw`, that provide a very simple interface to execute XCM transfers between chains in the Polkadot/Kusama ecosystem. In addition, the XCM config package allows any parachain project to add their information in a standard way, so they can be immediately supported by the XCM SDK.
 
-For an overview of the available methods and interfaces in the Moonbeam XCM SDK, please refer to the [Reference for v0](/builders/interoperability/xcm/xcm-sdk/v0/reference/){target=\_blank} page.
+For an overview of the available methods and interfaces in the Moonbeam XCM SDK, please refer to the [Reference for v0](/builders/interoperability/xcm/xcm-sdk/v0/reference){target=\_blank} page.
 
-If you're using v1.x, please refer to the [SDK guides specific to v1](/builders/interoperability/xcm/xcm-sdk/v1/){target=\_blank}.
+If you're using v1.x, please refer to the [SDK guides specific to v1](/builders/interoperability/xcm/xcm-sdk/v1){target=\_blank}.
 
 The examples in this guide are shown on Moonbeam, but can be adapted to be used on Moonriver or Moonbase Alpha.
 
@@ -35,7 +35,7 @@ To install the XCM SDK and XCM config packages, you can run the following comman
 npm install @moonbeam-network/xcm-sdk @moonbeam-network/xcm-config
 ```
 
-You need to have peer dependencies, like [Ethers.js](https://docs.ethers.org/){target=\_blank} and the [Polkadot.js API](https://polkadot.js.org/docs/api/){target=\_blank} installed.
+You need to have peer dependencies, like [Ethers.js](https://docs.ethers.org){target=\_blank} and the [Polkadot.js API](https://polkadot.js.org/docs/api){target=\_blank} installed.
 
 You can install them by running the following command:
 
@@ -44,13 +44,13 @@ npm i @polkadot/api-augment @polkadot/types @polkadot/util @polkadot/util-crypto
 ```
 
 !!! note
-    There is a [known issue](https://github.com/polkadot-js/api/issues/4315/){target=\_blank} when using the Moonbeam XCM packages alongside Polkadot.js with Node.js (JavaScript) that will cause package conflict warnings to appear in the console. Using TypeScript is recommended.
+    There is a [known issue](https://github.com/polkadot-js/api/issues/4315){target=\_blank} when using the Moonbeam XCM packages alongside Polkadot.js with Node.js (JavaScript) that will cause package conflict warnings to appear in the console. Using TypeScript is recommended.
 
 ### Creating Signers {: creating-signers }
 
-When interacting with the `deposit` and `withdraw` functions of the XCM SDK, you'll need to provide an [Ethers.js](https://docs.ethers.org/){target=\_blank} and [Polkadot.js](https://polkadot.js.org/docs/api/){target=\_blank} signer, which will be used to sign and send the transactions. The Ethers signer is used to sign transactions on Moonbeam, and the Polkadot signer will be used to sign transactions on the origin chain you're depositing assets from.
+When interacting with the `deposit` and `withdraw` functions of the XCM SDK, you'll need to provide an [Ethers.js](https://docs.ethers.org){target=\_blank} and [Polkadot.js](https://polkadot.js.org/docs/api){target=\_blank} signer, which will be used to sign and send the transactions. The Ethers signer is used to sign transactions on Moonbeam, and the Polkadot signer will be used to sign transactions on the origin chain you're depositing assets from.
 
-You can pass, for example, a [MetaMask signer into Ethers](https://docs.ethers.org/v6/getting-started/#starting-connecting){target=\_blank} or another compatible wallet. Similarly with Polkadot, you can [pass a compatible wallet to the signer using the `@polkadot/extension-dapp` library](https://polkadot.js.org/docs/extension/){target=\_blank}.
+You can pass, for example, a [MetaMask signer into Ethers](https://docs.ethers.org/v6/getting-started/#starting-connecting){target=\_blank} or another compatible wallet. Similarly with Polkadot, you can [pass a compatible wallet to the signer using the `@polkadot/extension-dapp` library](https://polkadot.js.org/docs/extension){target=\_blank}.
 
 To create a signer for Ethers.js and Polkadot.js, you can refer to the following code snippets. In this example, you can use a Polkadot.js Keyring to sign transactions on the origin chain for deposits. Please note that this approach is not recommended for production applications. **Never store your private key or mnemonic in a JavaScript or TypeScript file.**
 
@@ -154,7 +154,7 @@ To be able to deposit, withdraw, and subscribe to balance information for all of
     const { moonbase } = init();
     ```
 
-If you intend to support a specific wallet, you can pass a signer into the `init` function right away. Otherwise, you'll be able to pass a signer directly when building the transfer data for a deposit or withdraw. To pass in a signer for [Ethers](/builders/build/eth-api/libraries/ethersjs/){target=\_blank} and [Polkadot](/builders/build/substrate-api/polkadot-js-api/){target=\_blank}, you can use the following snippet:
+If you intend to support a specific wallet, you can pass a signer into the `init` function right away. Otherwise, you'll be able to pass a signer directly when building the transfer data for a deposit or withdraw. To pass in a signer for [Ethers](/builders/build/eth-api/libraries/ethersjs){target=\_blank} and [Polkadot](/builders/build/substrate-api/polkadot-js-api){target=\_blank}, you can use the following snippet:
 
 === "Moonbeam"
 
@@ -266,7 +266,7 @@ Where the `id` refers to the asset ID, the `erc20id` refers to the asset's preco
 
 ### Moonbeam Native Asset Data {: #native-assets }
 
-To get information about each of the Moonbeam network's native protocol asset, such as the [precompile contract address](/builders/pallets-precompiles/precompiles/erc20/){target=\_blank} and the origin symbol, you can access the `moonAsset` property:
+To get information about each of the Moonbeam network's native protocol asset, such as the [precompile contract address](/builders/pallets-precompiles/precompiles/erc20){target=\_blank} and the origin symbol, you can access the `moonAsset` property:
 
 === "Moonbeam"
 
@@ -427,7 +427,7 @@ from(polkadot);
 
 #### Get {: #get-deposit }
 
-The `get` function requires that you pass in the receiving account on Moonbeam and a [Polkadot signer](/builders/build/substrate-api/polkadot-js-api/){target=\_blank} or the sending account on Polkadot depending on how you set up your Polkadot signer, and it gets the data required for the deposit.
+The `get` function requires that you pass in the receiving account on Moonbeam and a [Polkadot signer](/builders/build/substrate-api/polkadot-js-api){target=\_blank} or the sending account on Polkadot depending on how you set up your Polkadot signer, and it gets the data required for the deposit.
 
 If you have a Polkadot compatible signer, you can pass the signer into the `init` function, then in the `get` function you can pass the Polkadot address for the second argument:
 
@@ -534,7 +534,7 @@ Where the returned values are as follows:
 |       `asset`        |                                                                                                                                                          the [asset](#assets) to be transferred                                                                                                                                                          |
 | `existentialDeposit` | the [existential deposit](https://support.polkadot.network/support/solutions/articles/65000168651-what-is-the-existential-deposit-#:~:text=On%20the%20Polkadot%20network%2C%20an,the%20Existential%20Deposit%20(ED).){target=\_blank}, or the minimum amount an address must <br> hold to be considered active if one exists, otherwise `0n` is returned |
 |        `min`         |                                                                                                                                                             the minimum transferrable amount                                                                                                                                                             |
-|    `moonChainFee`    |             the [asset](#assets) and amount that is needed to pay for Moonbeam's XCM fees. <br> If different from the `asset` to be transferred, the fee will be sent in this <br> asset in addition to the `asset` to be transferred (as of [v0.4.0](https://github.com/moonbeam-foundation/xcm-sdk/releases/tag/v0.4.0/){target=\_blank})              |
+|    `moonChainFee`    |             the [asset](#assets) and amount that is needed to pay for Moonbeam's XCM fees. <br> If different from the `asset` to be transferred, the fee will be sent in this <br> asset in addition to the `asset` to be transferred (as of [v0.4.0](https://github.com/moonbeam-foundation/xcm-sdk/releases/tag/v0.4.0){target=\_blank})              |
 |       `native`       |                                                                                                                                                     the native [asset](#assets) of the source chain                                                                                                                                                      |
 |       `origin`       |                                                                                                                                   the chain information for where the asset being transferred natively originates from                                                                                                                                   |
 |       `source`       |                                                                                                                                         the chain information for where the asset being transferred is sent from                                                                                                                                         |

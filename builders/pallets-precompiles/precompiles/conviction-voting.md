@@ -7,7 +7,7 @@ description: Learn how to vote on referenda, set up voting delegations, and more
 
 ## Introduction {: #introduction }
 
-As a Polkadot parachain and decentralized network, Moonbeam features native on-chain governance that enables stakeholders to participate in the direction of the network. With the introduction of OpenGov, also referred to as Governance v2, the Conviction Voting Pallet allows token holders to make, delegate, and manage Conviction-weighted votes on referenda. To learn more about Moonbeam's governance system, such as an overview of related terminology, principles, mechanics, and more, please refer to the [Governance on Moonbeam](/learn/features/governance/){target=\_blank} page.
+As a Polkadot parachain and decentralized network, Moonbeam features native on-chain governance that enables stakeholders to participate in the direction of the network. With the introduction of OpenGov, also referred to as Governance v2, the Conviction Voting Pallet allows token holders to make, delegate, and manage Conviction-weighted votes on referenda. To learn more about Moonbeam's governance system, such as an overview of related terminology, principles, mechanics, and more, please refer to the [Governance on Moonbeam](/learn/features/governance){target=\_blank} page.
 
 The Conviction Voting Precompile interacts directly with Substrate's Conviction Voting Pallet. This pallet is coded in Rust and is normally not accessible from the Ethereum API side of Moonbeam. However, the Conviction Voting Precompile allows you to access governance-related functions of the Substrate Conviction Voting Pallet directly from a Solidity interface. Additionally, this enables a vastly improved end-user experience. For example, token holders can vote on referenda or delegate a vote directly from MetaMask, rather than importing an account in Polkadot.js Apps and navigating a complex UI.
 
@@ -88,14 +88,14 @@ The interface also includes the following events:
 
 The below example is demonstrated on Moonbase Alpha, however, similar steps can be taken for Moonriver. To follow the steps in this guide, you'll need to have the following:
 
- - MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}
+ - MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask){target=\_blank}
  - An account with some DEV tokens.
  --8<-- 'text/_common/faucet/faucet-list-item.md'
 
 ### Remix Set Up {: #remix-set-up }
 
 1. Click on the **File explorer** tab
-2. Paste a copy of [`ConvictionVoting.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/conviction-voting/ConvictionVoting.sol){target=\_blank} into a [Remix file](https://remix.ethereum.org/){target=\_blank} named `ConvictionVoting.sol`
+2. Paste a copy of [`ConvictionVoting.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/conviction-voting/ConvictionVoting.sol){target=\_blank} into a [Remix file](https://remix.ethereum.org){target=\_blank} named `ConvictionVoting.sol`
 
 ![Copy and paste the referenda Solidity interface into Remix.](/images/builders/pallets-precompiles/precompiles/conviction-voting/conviction-voting-1.webp)
 
@@ -160,4 +160,4 @@ To get started, you can take the following steps:
 
 Now the delegate account can vote on your behalf! If you no longer want a delegate vote to exist, you can remove it using the `undelegate` function of the Conviction Voting Precompile.
 
-And that's it! You've completed your introduction to the Conviction Voting Precompile. There are a few more functions that are documented in [`ConvictionVoting.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/conviction-voting/ConvictionVoting.sol){target=\_blank} — feel free to reach out on [Discord](https://discord.gg/moonbeam/){target=\_blank} if you have any questions about those functions or any other aspect of the Conviction Voting Precompile.
+And that's it! You've completed your introduction to the Conviction Voting Precompile. There are a few more functions that are documented in [`ConvictionVoting.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/conviction-voting/ConvictionVoting.sol){target=\_blank} — feel free to reach out on [Discord](https://discord.gg/moonbeam){target=\_blank} if you have any questions about those functions or any other aspect of the Conviction Voting Precompile.

@@ -7,7 +7,7 @@ description: Use Ape, a Python framework, to compile, deploy, and debug smart co
 
 ## Introduction {: #introduction }
 
-[Ape](https://docs.apeworx.io/ape/stable/){target=\_blank} is an Ethereum development environment that helps Python developers manage and automate the recurring tasks inherent to building smart contracts and DApps. Ape can directly interact with Moonbeam's Ethereum API, so you can also use Ape to deploy smart contracts on Moonbeam.
+[Ape](https://docs.apeworx.io/ape/stable){target=\_blank} is an Ethereum development environment that helps Python developers manage and automate the recurring tasks inherent to building smart contracts and DApps. Ape can directly interact with Moonbeam's Ethereum API, so you can also use Ape to deploy smart contracts on Moonbeam.
 
 This guide will walk you through using Ape to compile, deploy, and interact with Ethereum smart contracts on the Moonbase Alpha TestNet. You can adapt this guide for Moonbeam, Moonriver, or a Moonbeam development node.
 
@@ -15,7 +15,7 @@ This guide will walk you through using Ape to compile, deploy, and interact with
 
 To get started, ensure you have the following:
 
- - MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}
+ - MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask){target=\_blank}
  - An account with funds.
   --8<-- 'text/_common/faucet/faucet-list-item.md'
  - 
@@ -109,7 +109,7 @@ solidity:
   evm_version: INSERT_VERSION
 ```
 
-For more information on the Solidity plugin, please refer to the [README of the `ape-solidity` repository on GitHub](https://github.com/ApeWorX/ape-solidity/blob/main/README.md/){target=_blank}.
+For more information on the Solidity plugin, please refer to the [README of the `ape-solidity` repository on GitHub](https://github.com/ApeWorX/ape-solidity/blob/main/README.md){target=_blank}.
 
 With the Solidity plugin installed, the next step is to compile the smart contract:
 
@@ -123,7 +123,7 @@ After compilation, you can find the bytecode and ABI for your contracts in the `
 
 ## Test the Contract {: #test-the-contract }
 
-Before you deploy your contract, you can test it out directly inside your Ape project using the [pytest framework](https://docs.pytest.org/en/latest/){target=\_blank} to make sure it works as you expect.
+Before you deploy your contract, you can test it out directly inside your Ape project using the [pytest framework](https://docs.pytest.org/en/latest){target=\_blank} to make sure it works as you expect.
 
 You should already have a `tests` directory where you'll create your tests, but if not, please create one, as all tests must be located in a directory named `tests`. Additionally, each test file name must start with `test_` and end with `.py`. So, first, you can create a test file for the `Box.sol` contract:
 

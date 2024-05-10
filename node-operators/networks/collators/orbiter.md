@@ -7,7 +7,7 @@ description: Learn about the Moonbeam Orbiter Program for collators, including t
 
 ## Introduction {: #introduction }
 
-The Moonbeam Foundation is announcing a limited trial of the orbiter program. Similar to the [Kusama 1000 validators program](https://thousand-validators.kusama.network/){target=\_blank}, this program allows collators to participate in the diversity and security of the network even if they do not have enough funds or backing to otherwise be in the active set. This program was developed with the input from the community.
+The Moonbeam Foundation is announcing a limited trial of the orbiter program. Similar to the [Kusama 1000 validators program](https://thousand-validators.kusama.network){target=\_blank}, this program allows collators to participate in the diversity and security of the network even if they do not have enough funds or backing to otherwise be in the active set. This program was developed with the input from the community.
 
 The Moonbeam Foundation will maintain orbiter pools in the active set, and will assign authority to produce blocks to each of the members in the program, who are called orbiters. 
 
@@ -106,7 +106,7 @@ Once you've passed identity verification and have been accepted into the program
 
 An outline of the onboarding process is as follows:
 
-- [Prepare your node by syncing it](/node-operators/networks/run-a-node/overview/){target=\_blank}
+- [Prepare your node by syncing it](/node-operators/networks/run-a-node/overview){target=\_blank}
 - Once fully synced, you can [generate your session keys](/node-operators/networks/collators/account-management/#session-keys){target=\_blank}
 - [Register your session keys](/node-operators/networks/collators/account-management/#map-author-id-set-session-keys){target=\_blank} and post the associated [mapping bond](#mapping-bond)
 - Once you are ready, register as an orbiter via the `moonbeamOrbiters.orbiterRegister()` extrinsic and post the associated [orbiter bond](#bond)
@@ -165,7 +165,7 @@ Rewards for orbiters will be split between the other orbiters assigned to the sa
 
 ## Performance Metrics {: #performance-metrics }
 
-Each orbiter’s performance will be assessed over a period of time to determine they are active and producing blocks, and if their performance is within a range of all other orbiter pool collators. Orbiters are expected to run top tier hardware to stay within range. For more information on hardware requirements, please check out the [Collator Requirements page](/node-operators/networks/collators/requirements/){target=\_blank}. 
+Each orbiter’s performance will be assessed over a period of time to determine they are active and producing blocks, and if their performance is within a range of all other orbiter pool collators. Orbiters are expected to run top tier hardware to stay within range. For more information on hardware requirements, please check out the [Collator Requirements page](/node-operators/networks/collators/requirements){target=\_blank}. 
 
 Metrics will be assessed over seven day periods. The performance metrics are as follows:
 

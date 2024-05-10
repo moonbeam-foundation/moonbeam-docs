@@ -19,21 +19,21 @@ Moonbeam provides two different kinds of explorers: ones to query the Ethereum A
 
 ### Moonscan {: #Moonscan }
 
-[Moonscan](https://moonscan.io/){target=\_blank} is the primary Ethereum API block explorer for Moonbeam-based networks. Built by the Etherscan team, Moonscan provides a powerful, intuitive, and feature-rich experience. In addition to its comprehensive transaction and block data, Moonscan provides a number of [statistics and charts](https://moonbeam.moonscan.io/charts/){target=\_blank}, such as average gas price, daily transactions, and block size charts.
+[Moonscan](https://moonscan.io){target=\_blank} is the primary Ethereum API block explorer for Moonbeam-based networks. Built by the Etherscan team, Moonscan provides a powerful, intuitive, and feature-rich experience. In addition to its comprehensive transaction and block data, Moonscan provides a number of [statistics and charts](https://moonbeam.moonscan.io/charts){target=\_blank}, such as average gas price, daily transactions, and block size charts.
 
 Other Moonscan features include:
 
- - [Collator leaderboard](https://moonbeam.moonscan.io/collators/){target=\_blank} ranking collators by performance
- - [Contract source code verification](/builders/build/eth-api/verify-contracts/block-explorers/){target=\_blank}, accessible both via a web interface and an API
+ - [Collator leaderboard](https://moonbeam.moonscan.io/collators){target=\_blank} ranking collators by performance
+ - [Contract source code verification](/builders/build/eth-api/verify-contracts/block-explorers){target=\_blank}, accessible both via a web interface and an API
  - Ability to read and write state data of verified smart contracts
- - [Token approvals](https://moonscan.io/tokenapprovalchecker/){target=\_blank} where you can view and revoke any of your prior token approvals
- - [Adding token information](/builders/get-started/token-profile/){target=\_blank} and creating a profile for ERC-20s, ERC-721s, and ERC-1155s deployed to Moonbeam-based networks. The profile can include links to your project, social media, price data, and other information pertaining to your token
+ - [Token approvals](https://moonscan.io/tokenapprovalchecker){target=\_blank} where you can view and revoke any of your prior token approvals
+ - [Adding token information](/builders/get-started/token-profile){target=\_blank} and creating a profile for ERC-20s, ERC-721s, and ERC-1155s deployed to Moonbeam-based networks. The profile can include links to your project, social media, price data, and other information pertaining to your token
 
 ![Moonbeam Moonscan](/images/builders/get-started/explorers/explorers-1.webp)
 
 ### Expedition {: #expedition }
 
-A Moonbeam-themed version of the [Expedition](https://github.com/xops/expedition/){target=\_blank} explorer can be found in [this link](https://moonbeam-explorer.netlify.app/){target=\_blank}. It is a basic JSON-RPC based explorer.
+A Moonbeam-themed version of the [Expedition](https://github.com/xops/expedition){target=\_blank} explorer can be found in [this link](https://moonbeam-explorer.netlify.app){target=\_blank}. It is a basic JSON-RPC based explorer.
 
 By default, the explorer is connected to Moonbeam. However, you can switch to Moonriver or Moonbase Alpha, or connect it to a local dev node by following the next steps:
 
@@ -46,7 +46,7 @@ By default, the explorer is connected to Moonbeam. However, you can switch to Mo
 
 ### Subscan {: #subscan }
 
-[Subscan](https://moonbeam.subscan.io/){target=\_blank} is the primary Substrate API block explorer for Moonbeam-based networks. Subscan is capable of parsing standard or custom modules. For example, this is useful to display information regarding the Staking, Governance, and EVM pallets (or modules). The code is all open-source and can be found in the [Subscan Essentials GitHub repo](https://github.com/subscan-explorer/subscan-essentials/){target=\_blank}.
+[Subscan](https://moonbeam.subscan.io){target=\_blank} is the primary Substrate API block explorer for Moonbeam-based networks. Subscan is capable of parsing standard or custom modules. For example, this is useful to display information regarding the Staking, Governance, and EVM pallets (or modules). The code is all open-source and can be found in the [Subscan Essentials GitHub repo](https://github.com/subscan-explorer/subscan-essentials){target=\_blank}.
 
 ![Subscan Moonbeam](/images/builders/get-started/explorers/explorers-3.webp)
 
@@ -56,6 +56,6 @@ While not a full-featured block explorer, Polkadot.js Apps is a convenient optio
 
 ![Polkadot.js Moonbeam](/images/builders/get-started/explorers/explorers-4.webp)
 
-To connect it to a Moonbeam development node, you can follow the steps in the [Connecting Polkadot.js Apps to a Local Moonbeam Node](/builders/get-started/networks/moonbeam-dev/#connecting-polkadot-js-apps-to-a-local-moonbeam-node){target=\_blank} section of the [Getting Started with a Moonbeam Development Node](/builders/get-started/networks/moonbeam-dev/){target=\_blank} guide. The default port for this is `9944`.
+To connect it to a Moonbeam development node, you can follow the steps in the [Connecting Polkadot.js Apps to a Local Moonbeam Node](/builders/get-started/networks/moonbeam-dev/#connecting-polkadot-js-apps-to-a-local-moonbeam-node){target=\_blank} section of the [Getting Started with a Moonbeam Development Node](/builders/get-started/networks/moonbeam-dev){target=\_blank} guide. The default port for this is `9944`.
 
 ![Polkadot.js Local Node](/images/builders/get-started/explorers/explorers-5.webp)

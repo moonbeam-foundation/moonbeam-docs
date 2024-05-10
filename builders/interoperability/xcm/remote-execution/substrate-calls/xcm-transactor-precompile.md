@@ -5,9 +5,9 @@ description: This guide describes the XCM Transactor Precompile and shows how to
 
 # Using the XCM Transactor Precompile for Remote Execution
 
-XCM messages are comprised of a [series of instructions](/builders/interoperability/xcm/core-concepts/instructions/){target=\_blank} that are executed by the Cross-Consensus Virtual Machine (XCVM). Combinations of these instructions result in predetermined actions such as cross-chain token transfers and, more interestingly, remote cross-chain execution. Remote execution involves executing operations or actions on one blockchain from another blockchain while maintaining the integrity of the sender's identity and permissions.
+XCM messages are comprised of a [series of instructions](/builders/interoperability/xcm/core-concepts/instructions){target=\_blank} that are executed by the Cross-Consensus Virtual Machine (XCVM). Combinations of these instructions result in predetermined actions such as cross-chain token transfers and, more interestingly, remote cross-chain execution. Remote execution involves executing operations or actions on one blockchain from another blockchain while maintaining the integrity of the sender's identity and permissions.
 
-Typically, XCM messages are sent from the root origin (that is, SUDO or through governance), which is not ideal for projects that want to leverage remote cross-chain calls via a simple transaction. The [XCM Transactor Pallet](https://github.com/moonbeam-foundation/moonbeam/blob/master/pallets/xcm-transactor/src/lib.rs){target=\_blank} makes it easy to transact on a remote chain through either the [Sovereign account](/builders/interoperability/xcm/overview#general-xcm-definitions){target=\_blank}, which should only be allowed through governance, or a [Computed Origin account](/builders/interoperability/xcm/remote-execution/computed-origins/){target=\_blank} via a simple transaction from the source chain.
+Typically, XCM messages are sent from the root origin (that is, SUDO or through governance), which is not ideal for projects that want to leverage remote cross-chain calls via a simple transaction. The [XCM Transactor Pallet](https://github.com/moonbeam-foundation/moonbeam/blob/master/pallets/xcm-transactor/src/lib.rs){target=\_blank} makes it easy to transact on a remote chain through either the [Sovereign account](/builders/interoperability/xcm/overview#general-xcm-definitions){target=\_blank}, which should only be allowed through governance, or a [Computed Origin account](/builders/interoperability/xcm/remote-execution/computed-origins){target=\_blank} via a simple transaction from the source chain.
 
 However, the XCM Transactor Pallet is coded in Rust and is normally not accessible from the Ethereum API side of Moonbeam. As such, Moonbeam introduced the XCM Transactor Precompile, which is a Solidity interface that allows you to interact directly with the Substrate pallet using the Ethereum API.
 
@@ -111,7 +111,7 @@ The interface varies slightly from version to version. You can find an overview 
             13764626000000n
             ```
 
-    ??? function "**transactThroughSignedMultilocation**(*Multilocation* *memory* dest, *Multilocation* *memory* feeLocation, *uint64* transactRequiredWeightAtMost, *bytes* *memory* call, *uint256* feeAmount, *uint64* overallWeight) — sends an XCM message with instructions to remotely execute a call in the destination chain. The remote call will be signed and executed by a new account, called the [Computed Origin](/builders/interoperability/xcm/remote-execution/computed-origins/){target=\_blank} account, that the destination parachain must compute. Moonbeam-based networks follow [the Computed Origins standard set by Polkadot](https://github.com/paritytech/polkadot-sdk/blob/{{ polkadot_sdk }}/polkadot/xcm/xcm-builder/src/location_conversion.rs){target=\_blank}. You need to provide the asset multilocation of the token that is used for fee payment instead of the address of the XC-20 token"
+    ??? function "**transactThroughSignedMultilocation**(*Multilocation* *memory* dest, *Multilocation* *memory* feeLocation, *uint64* transactRequiredWeightAtMost, *bytes* *memory* call, *uint256* feeAmount, *uint64* overallWeight) — sends an XCM message with instructions to remotely execute a call in the destination chain. The remote call will be signed and executed by a new account, called the [Computed Origin](/builders/interoperability/xcm/remote-execution/computed-origins){target=\_blank} account, that the destination parachain must compute. Moonbeam-based networks follow [the Computed Origins standard set by Polkadot](https://github.com/paritytech/polkadot-sdk/blob/{{ polkadot_sdk }}/polkadot/xcm/xcm-builder/src/location_conversion.rs){target=\_blank}. You need to provide the asset multilocation of the token that is used for fee payment instead of the address of the XC-20 token"
 
         === "Parameters"
 
@@ -122,7 +122,7 @@ The interface varies slightly from version to version. You can find an overview 
             - `feeAmount` - the amount to be used as a fee
             - `overallWeight` - the total weight the extrinsic can use to execute all the XCM instructions, plus the weight of the `Transact` call (`transactRequiredWeightAtMost`). The `overallWeight` structure also contains `refTime` and `proofSize`. If you pass in the maximum value for a uint64 for the `refTime`, you'll allow for an unlimited amount of weight to be purchased, which removes the need to know exactly how much weight the destination chain requires to execute the XCM
 
-    ??? function "**transactThroughSigned**(*Multilocation* *memory* dest, *address* feeLocationAddress, *uint64* transactRequiredWeightAtMost, *bytes* *memory* call, *uint256* feeAmount, *uint64* overallWeight) — sends an XCM message with instructions to remotely execute a call in the destination chain. The remote call will be signed and executed by a new account, called the [Computed Origin](/builders/interoperability/xcm/remote-execution/computed-origins/){target=\_blank} account, that the destination parachain must compute. Moonbeam-based networks follow [the Computed Origins standard set by Polkadot](https://github.com/paritytech/polkadot-sdk/blob/{{ polkadot_sdk }}/polkadot/xcm/xcm-builder/src/location_conversion.rs){target=\_blank}. You need to provide the address of the XC-20 asset to be used for fee payment"
+    ??? function "**transactThroughSigned**(*Multilocation* *memory* dest, *address* feeLocationAddress, *uint64* transactRequiredWeightAtMost, *bytes* *memory* call, *uint256* feeAmount, *uint64* overallWeight) — sends an XCM message with instructions to remotely execute a call in the destination chain. The remote call will be signed and executed by a new account, called the [Computed Origin](/builders/interoperability/xcm/remote-execution/computed-origins){target=\_blank} account, that the destination parachain must compute. Moonbeam-based networks follow [the Computed Origins standard set by Polkadot](https://github.com/paritytech/polkadot-sdk/blob/{{ polkadot_sdk }}/polkadot/xcm/xcm-builder/src/location_conversion.rs){target=\_blank}. You need to provide the address of the XC-20 asset to be used for fee payment"
 
         === "Parameters"
 
@@ -182,7 +182,7 @@ The interface varies slightly from version to version. You can find an overview 
             13764626000000n
             ```
 
-    ??? function "**transactThroughSignedMultilocation**(*Multilocation* *memory* dest, *Multilocation* *memory* feeLocation, *Weight* transactRequiredWeightAtMost, *bytes* *memory* call, *uint256* feeAmount, *Weight* overallWeight, *bool* refund) — sends an XCM message with instructions to remotely execute a call in the destination chain. The remote call will be signed and executed by a new account, called the [Computed Origin](/builders/interoperability/xcm/remote-execution/computed-origins/){target=\_blank} account, that the destination parachain must compute. Moonbeam-based networks follow [the Computed Origins standard set by Polkadot](https://github.com/paritytech/polkadot-sdk/blob/{{ polkadot_sdk }}/polkadot/xcm/xcm-builder/src/location_conversion.rs){target=\_blank}. You need to provide the asset multilocation of the token that is used for fee payment instead of the address of the XC-20 token"
+    ??? function "**transactThroughSignedMultilocation**(*Multilocation* *memory* dest, *Multilocation* *memory* feeLocation, *Weight* transactRequiredWeightAtMost, *bytes* *memory* call, *uint256* feeAmount, *Weight* overallWeight, *bool* refund) — sends an XCM message with instructions to remotely execute a call in the destination chain. The remote call will be signed and executed by a new account, called the [Computed Origin](/builders/interoperability/xcm/remote-execution/computed-origins){target=\_blank} account, that the destination parachain must compute. Moonbeam-based networks follow [the Computed Origins standard set by Polkadot](https://github.com/paritytech/polkadot-sdk/blob/{{ polkadot_sdk }}/polkadot/xcm/xcm-builder/src/location_conversion.rs){target=\_blank}. You need to provide the asset multilocation of the token that is used for fee payment instead of the address of the XC-20 token"
 
         === "Parameters"
 
@@ -200,7 +200,7 @@ The interface varies slightly from version to version. You can find an overview 
             - `overallWeight` - the total weight the extrinsic can use to execute all the XCM instructions, plus the weight of the `Transact` call (`transactRequiredWeightAtMost`). The `overallWeight` structure also contains `refTime` and `proofSize`. If you pass in the maximum value for a uint64 for the `refTime`, you'll allow for an unlimited amount of weight to be purchased, which removes the need to know exactly how much weight the destination chain requires to execute the XCM
             - `refund` -  a boolean indicating whether or not to add the `RefundSurplus` and `DepositAsset` instructions to the XCM message to refund any leftover fees 
 
-    ??? function "**transactThroughSigned**(*Multilocation* *memory* dest, *address* feeLocationAddress, *Weight* transactRequiredWeightAtMost, *bytes* *memory* call, *uint256* feeAmount, *Weight* overallWeight, *bool* refund) — sends an XCM message with instructions to remotely execute a call in the destination chain. The remote call will be signed and executed by a new account, called the [Computed Origin](/builders/interoperability/xcm/remote-execution/computed-origins/){target=\_blank} account, that the destination parachain must compute. Moonbeam-based networks follow [the Computed Origins standard set by Polkadot](https://github.com/paritytech/polkadot-sdk/blob/{{ polkadot_sdk }}/polkadot/xcm/xcm-builder/src/location_conversion.rs){target=\_blank}. You need to provide the address of the XC-20 asset to be used for fee payment"
+    ??? function "**transactThroughSigned**(*Multilocation* *memory* dest, *address* feeLocationAddress, *Weight* transactRequiredWeightAtMost, *bytes* *memory* call, *uint256* feeAmount, *Weight* overallWeight, *bool* refund) — sends an XCM message with instructions to remotely execute a call in the destination chain. The remote call will be signed and executed by a new account, called the [Computed Origin](/builders/interoperability/xcm/remote-execution/computed-origins){target=\_blank} account, that the destination parachain must compute. Moonbeam-based networks follow [the Computed Origins standard set by Polkadot](https://github.com/paritytech/polkadot-sdk/blob/{{ polkadot_sdk }}/polkadot/xcm/xcm-builder/src/location_conversion.rs){target=\_blank}. You need to provide the address of the XC-20 asset to be used for fee payment"
 
         === "Parameters"
 
@@ -220,7 +220,7 @@ The interface varies slightly from version to version. You can find an overview 
 
 ## XCM Instructions for Remote Execution {: #xcm-instructions-for-remote-execution }
 
-The relevant [XCM instructions](/builders/interoperability/xcm/core-concepts/instructions/){target=\_blank} to perform remote execution through XCM are, but are not limited to:
+The relevant [XCM instructions](/builders/interoperability/xcm/core-concepts/instructions){target=\_blank} to perform remote execution through XCM are, but are not limited to:
 
  - [`DescendOrigin`](/builders/interoperability/xcm/core-concepts/instructions#descend-origin){target=\_blank} - gets executed in the target chain. It mutates the origin on the target chain to match the origin on the source chain, ensuring execution on the target chain occurs on behalf of the same entity initiating the XCM message on the source chain
  - [`WithdrawAsset`](/builders/interoperability/xcm/core-concepts/instructions#withdraw-asset){target=\_blank} - gets executed in the target chain. Removes assets and places them into a holding register
@@ -241,7 +241,7 @@ The following code snippet goes through some examples of `Multilocation` structu
 
 ## Transact through a Computed Origin Account {: #xcmtransactor-transact-through-signed }
 
-This section covers building an XCM message for remote execution using the XCM Transactor Pallet, specifically with the `transactThroughSigned` function. This function uses a [Computed Origin](/builders/interoperability/xcm/remote-execution/computed-origins/){target=\_blank} account on the destination chain to dispatch the remote call.
+This section covers building an XCM message for remote execution using the XCM Transactor Pallet, specifically with the `transactThroughSigned` function. This function uses a [Computed Origin](/builders/interoperability/xcm/remote-execution/computed-origins){target=\_blank} account on the destination chain to dispatch the remote call.
 
 The example in this section uses a destination parachain that is not publicly available, so you won't be able to follow along exactly. You can modify the example as needed for your own use case.
 
@@ -252,8 +252,8 @@ The example in this section uses a destination parachain that is not publicly av
 
 To be able to send the extrinsics in this section, you need to have:
 
-- An account in the origin chain with [funds](/builders/get-started/networks/moonbase/#get-tokens/){target=\_blank}
-- Funds in the Computed Origin account on the target chain. To learn how to calculate the address of the Computed Origin account, please refer to the [How to Calculate the Computed Origin](/builders/interoperability/xcm/remote-execution/computed-origins/){target=\_blank} documentation
+- An account in the origin chain with [funds](/builders/get-started/networks/moonbase/#get-tokens){target=\_blank}
+- Funds in the Computed Origin account on the target chain. To learn how to calculate the address of the Computed Origin account, please refer to the [How to Calculate the Computed Origin](/builders/interoperability/xcm/remote-execution/computed-origins){target=\_blank} documentation
 
 For this example, the following accounts will be used:
 
@@ -299,7 +299,7 @@ For this example, you'll interact with the `transactThroughSigned` function of t
         const transactRequiredWeightAtMost = [1000000000n, 5000n];
         ```
 
-    - `call` - the encoded call data of the pallet, method, and input to be called. It can be constructed in [Polkadot.js Apps](https://polkadot.js.org/apps/){target=\_blank} (which must be connected to the destination chain) or using the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=\_blank}. For this example, the inner call is a simple balance transfer of 1 token of the destination chain to Alice's account there:
+    - `call` - the encoded call data of the pallet, method, and input to be called. It can be constructed in [Polkadot.js Apps](https://polkadot.js.org/apps){target=\_blank} (which must be connected to the destination chain) or using the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api){target=\_blank}. For this example, the inner call is a simple balance transfer of 1 token of the destination chain to Alice's account there:
 
         ```js
         const call =

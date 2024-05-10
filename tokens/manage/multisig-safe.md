@@ -11,7 +11,7 @@ A single-signature wallet, or singlesig for short, is a wallet in which only one
 
 To solve this problem, multi-signature wallets, or multisig for short, have been introduced. With a multisig wallet there is more than one owner, so one owner could lose their keys and the others would still have access to the wallet and funds. In addition, multisig wallets can require threshold signing, where a proposal is only executed as a transaction if a certain amount of approvals are attained. Therefore creating an extra layer of security.
 
-To help manage singlesig and multisig wallets, [Gnosis Safe](https://gnosis-safe.io/){target=\_blank} was forked to create [Moonbeam Safe](https://multisig.moonbeam.network/){target=\_blank}. The Safe can be configured as a multisig contract that allows two or more owners to hold and transfer funds to and from the Safe. You can also configure the Safe to be a singlesig contract with only one owner. 
+To help manage singlesig and multisig wallets, [Gnosis Safe](https://gnosis-safe.io){target=\_blank} was forked to create [Moonbeam Safe](https://multisig.moonbeam.network){target=\_blank}. The Safe can be configured as a multisig contract that allows two or more owners to hold and transfer funds to and from the Safe. You can also configure the Safe to be a singlesig contract with only one owner. 
 
 This guide will show you how to create a multisig Safe on the Moonbase Alpha TestNet. You will also learn how to send DEV and ERC-20 tokens to and from the Safe, and how to interact with smart contracts using the Safe. This guide can be adapted for Moonbeam and Moonriver.
 
@@ -25,7 +25,7 @@ Before diving into the guide, you'll need to have a few [MetaMask accounts](#met
 
 For this guide, you will be creating a Safe on Moonbase Alpha to interact and manage your funds with. To connect to the Safe, you will need to have:
 
- - MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}
+ - MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask){target=\_blank}
  - At least two accounts each loaded with funds.
  --8<-- 'text/_common/faucet/faucet-list-item.md'
 
@@ -39,13 +39,13 @@ This guide will use the following accounts:
 
 ### ERC-20 Tokens {: #erc20-tokens }
 
-Later on in this guide, you will be learning how to send and receive ERC-20 tokens to and from the Safe. So you will need to have deployed some ERC-20 tokens and added them to your MetaMask account. To do so, you can check out the [Using Remix to Deploy to Moonbeam](/builders/build/eth-api/dev-env/remix/){target=\_blank} guide, in particular the [Deploying a Contract to Moonbeam](/builders/build/eth-api/dev-env/remix/#deploying-a-contract-to-moonbeam-using-remix){target=\_blank} and [Interact with a Moonbeam-based ERC-20](/builders/build/eth-api/dev-env/remix/#interacting-with-a-moonbeam-based-erc-20-from-metamask){target=\_blank} sections will show you how to deploy an ERC-20 token and import it into MetaMask.
+Later on in this guide, you will be learning how to send and receive ERC-20 tokens to and from the Safe. So you will need to have deployed some ERC-20 tokens and added them to your MetaMask account. To do so, you can check out the [Using Remix to Deploy to Moonbeam](/builders/build/eth-api/dev-env/remix){target=\_blank} guide, in particular the [Deploying a Contract to Moonbeam](/builders/build/eth-api/dev-env/remix/#deploying-a-contract-to-moonbeam-using-remix){target=\_blank} and [Interact with a Moonbeam-based ERC-20](/builders/build/eth-api/dev-env/remix/#interacting-with-a-moonbeam-based-erc-20-from-metamask){target=\_blank} sections will show you how to deploy an ERC-20 token and import it into MetaMask.
 
 ### Deployed Smart Contract {: #deployed-smart-contract }
 
 Towards the end of this guide, you will be learning how to interact with a smart contract using the Safe. So you will need to have a smart contract deployed to interact with. If you would like detailed instructions, you can refer to the [Deploying a Contract to Moonbeam using Remix](/builders/build/eth-api/dev-env/remix/#deploying-a-contract-to-moonbeam){target=\_blank} guide.
 
-You can head to [Remix](https://remix.ethereum.org/){target=\_blank} and create a new file for the following `SetText.sol` contract:
+You can head to [Remix](https://remix.ethereum.org){target=\_blank} and create a new file for the following `SetText.sol` contract:
 
 ```solidity
 pragma solidity ^0.8.0;
@@ -65,11 +65,11 @@ You will need the contract address and the ABI, so make sure you have copied tho
 
 ## Create a Safe {: #create-a-safe }
 
-To get started creating a Safe, navigate to the [Moonbeam Safe](https://multisig.moonbeam.network/?chain=mbase/){target=\_blank}. For the purpose of this guide, you'll create a Safe on Moonbase Alpha, but you can also adapt the instructions to create a Safe on [Moonbeam](https://multisig.moonbeam.network/?chain=mbeam/){target=\_blank} or [Moonriver](https://multisig.moonbeam.network/?chain=mriver/){target=\_blank}. To switch networks, simply click the network dropdown in the top right hand corner of the page. 
+To get started creating a Safe, navigate to the [Moonbeam Safe](https://multisig.moonbeam.network/?chain=mbase){target=\_blank}. For the purpose of this guide, you'll create a Safe on Moonbase Alpha, but you can also adapt the instructions to create a Safe on [Moonbeam](https://multisig.moonbeam.network/?chain=mbeam){target=\_blank} or [Moonriver](https://multisig.moonbeam.network/?chain=mriver){target=\_blank}. To switch networks, simply click the network dropdown in the top right hand corner of the page. 
 
 ### Connect MetaMask {: #connect-metamask }
 
-Once on the [Moonbase Alpha](https://multisig.moonbeam.network/moonbase/){target=\_blank} page, you can begin to create a Safe by first connecting your wallet:
+Once on the [Moonbase Alpha](https://multisig.moonbeam.network/moonbase){target=\_blank} page, you can begin to create a Safe by first connecting your wallet:
 
  1. Click **Connect Wallet**
  2. Select a wallet to connect to Moonbeam Safe. For this example you can use MetaMask. If MetaMask doesn't appear in the list of options, click **Show More** and select **MetaMask**
@@ -224,7 +224,7 @@ You'll need to get the Safe's address again, you can do so by clicking on the **
  1. Switch to the **Assets** tab and select **MYTOK** from the list
  2. Click **Send** 
  3. Paste in the Safe's address
- 4. Enter amount of MYTOKs to send. You should have minted 8M MYTOK tokens in the [Using Remix to Deploy to Moonbeam](/builders/build/eth-api/dev-env/remix/){target=\_blank} guide. So for this example, you can enter 1000 MYTOKs for the amount to send
+ 4. Enter amount of MYTOKs to send. You should have minted 8M MYTOK tokens in the [Using Remix to Deploy to Moonbeam](/builders/build/eth-api/dev-env/remix){target=\_blank} guide. So for this example, you can enter 1000 MYTOKs for the amount to send
  5. Click **Next**
  6. Review the transaction details and then click **Confirm** to send the transaction.
 

@@ -7,7 +7,7 @@ description: Add token information and create a token profile on Moonscan for ER
 
 ## Introduction {: #introduction }
 
-This tutorial will guide you through the process of adding a profile for your ERC-20, ERC-721, or ERC-1155 tokens to [Moonscan](https://moonscan.io/){target=\_blank}.
+This tutorial will guide you through the process of adding a profile for your ERC-20, ERC-721, or ERC-1155 tokens to [Moonscan](https://moonscan.io){target=\_blank}.
 
 ​​Moonscan is a block explorer and analytics platform for EVM-compatible chains. It is an integration of Moonbeam and Etherscan, and it allows users and developers to have access to developer tools and network statistics that provide granular insights into the EVM of Moonriver and Moonbeam.
 
@@ -21,7 +21,7 @@ This tutorial will show you how to create a profile on Moonscan of a sample ERC-
 
 To follow along with this tutorial, you will need to have the following:
 
-- A [Moonscan Account](https://moonscan.io/register/){target=\_blank}
+- A [Moonscan Account](https://moonscan.io/register){target=\_blank}
 
 You will need to verify ownership of the token contract address later on in this guide. You can either do this manually or automatically, but if you choose to do it automatically you'll also need the following:
 
@@ -60,7 +60,7 @@ If you haven’t verified your contract source code yet, you will need to do so 
 
 ## Verifying Contract Source Code {: #verifying-contract-source-code }
 
-You can verify your contract source code a couple of ways. You can directly verify it from Moonscan, or if you developed the contract with Hardhat or Foundry, you can also use their corresponding [Etherscan integrations](/builders/build/eth-api/verify-contracts/etherscan-plugins/){target=\_blank}.
+You can verify your contract source code a couple of ways. You can directly verify it from Moonscan, or if you developed the contract with Hardhat or Foundry, you can also use their corresponding [Etherscan integrations](/builders/build/eth-api/verify-contracts/etherscan-plugins){target=\_blank}.
 
 To verify your contract source code directly from Moonscan, you can click on the **tool** link.
 

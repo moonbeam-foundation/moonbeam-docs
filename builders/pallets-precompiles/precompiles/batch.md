@@ -61,7 +61,7 @@ The interface also includes the following required events:
 
 To follow along with this tutorial, you will need to have:
 
-- [MetaMask installed and connected to Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}
+- [MetaMask installed and connected to Moonbase Alpha](/tokens/connect/metamask){target=\_blank}
 - Create or have two accounts on Moonbase Alpha to test out the different features in the batch precompile
 - At least one of the accounts will need to be funded with `DEV` tokens.
  --8<-- 'text/_common/faucet/faucet-list-item.md'
@@ -76,7 +76,7 @@ The contract `SimpleContract.sol` will be used as an example of batching contrac
 
 ### Remix Set Up {: #remix-set-up }
 
-You can interact with the batch precompile using [Remix](https://remix.ethereum.org/){target=\_blank}. You'll need a copy of [`Batch.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/batch/Batch.sol){target=\_blank} and [`SimpleContract.sol`](#example-contract). To add the precompile to Remix and follow along with the tutorial, you will need to:
+You can interact with the batch precompile using [Remix](https://remix.ethereum.org){target=\_blank}. You'll need a copy of [`Batch.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/batch/Batch.sol){target=\_blank} and [`SimpleContract.sol`](#example-contract). To add the precompile to Remix and follow along with the tutorial, you will need to:
 
 1. Click on the **File explorer** tab
 2. Paste the `Batch.sol` contract into a Remix file named **Batch.sol**
@@ -142,14 +142,14 @@ Try transferring native currency to two wallets of your choice via the batch pre
 
 ![Send Batch Transfer](/images/builders/pallets-precompiles/precompiles/batch/batch-4.webp)
 
-Once the transaction is complete, be sure to check both of the accounts' balances, either in MetaMask or in a [block explorer](/builders/get-started/explorers/){target=\_blank}. Congratulations! You've now sent a batched transfer via the batch precompile.
+Once the transaction is complete, be sure to check both of the accounts' balances, either in MetaMask or in a [block explorer](/builders/get-started/explorers){target=\_blank}. Congratulations! You've now sent a batched transfer via the batch precompile.
 
 !!! note
      Typically if you wanted to send the native currency to or through a contract, you would have to set the value within the overall transaction object and interact with a payable function. However, since the batch precompile interacts directly with Substrate code, this is not a typical Ethereum transaction and is thus not necessary.
 
 ### Find a Contract Interaction's Call Data {: #find-a-contract-interactions-call-data }
 
-Visual interfaces like [Remix](/builders/build/eth-api/dev-env/remix/){target=\_blank} and handy libraries like [Ethers.js](/builders/build/eth-api/libraries/ethersjs/){target=\_blank} hide the way that Ethereum transactions interact with Solidity smart contracts. The name and input types of a function are hashed into a [function selector](https://docs.soliditylang.org/en/latest/abi-spec.html#function-selector-and-argument-encoding){target=\_blank} and the input data is encoded. These two pieces are then combined and sent as the transaction's call data. To send a subtransaction within a batch transaction, the sender needs to know its call data beforehand.
+Visual interfaces like [Remix](/builders/build/eth-api/dev-env/remix){target=\_blank} and handy libraries like [Ethers.js](/builders/build/eth-api/libraries/ethersjs){target=\_blank} hide the way that Ethereum transactions interact with Solidity smart contracts. The name and input types of a function are hashed into a [function selector](https://docs.soliditylang.org/en/latest/abi-spec.html#function-selector-and-argument-encoding){target=\_blank} and the input data is encoded. These two pieces are then combined and sent as the transaction's call data. To send a subtransaction within a batch transaction, the sender needs to know its call data beforehand.
 
 Try finding a transaction's call data using Remix:
 
@@ -248,7 +248,7 @@ And that's it! You've successfully interacted with the ERC-20 precompile using M
 
 ## Ethereum Development Libraries {: #ethereum-development-libraries }
 
-If you have followed the [Ethers.js tutorial](/builders/build/eth-api/libraries/ethersjs/){target=\_blank} on Moonbeam, you may find it difficult to find the call data for a function. The answer is hidden within Ether's `Interface` object, where the [encodeFunctionData](https://docs.ethers.org/v6/api/abi/#Interface-encodeFunctionData){target=\_blank} function allows you to input your function name and inputs to receive the resultant call data. [Web3.js](/builders/build/eth-api/libraries/web3js/){target=\_blank} has a similar function, [encodeFunctionCall](https://web3js.readthedocs.io/en/v1.2.11/web3-eth-abi.html#encodefunctioncall){target=\_blank}.
+If you have followed the [Ethers.js tutorial](/builders/build/eth-api/libraries/ethersjs){target=\_blank} on Moonbeam, you may find it difficult to find the call data for a function. The answer is hidden within Ether's `Interface` object, where the [encodeFunctionData](https://docs.ethers.org/v6/api/abi/#Interface-encodeFunctionData){target=\_blank} function allows you to input your function name and inputs to receive the resultant call data. [Web3.js](/builders/build/eth-api/libraries/web3js){target=\_blank} has a similar function, [encodeFunctionCall](https://web3js.readthedocs.io/en/v1.2.11/web3-eth-abi.html#encodefunctioncall){target=\_blank}.
 
 !!! note
     The code snippets presented in the following sections are not meant for production environments. Please make sure you adapt it for each use-case.
@@ -271,4 +271,4 @@ If you have followed the [Ethers.js tutorial](/builders/build/eth-api/libraries/
      --8<-- 'code/builders/pallets-precompiles/precompiles/batch/web3py-batch.py'
      ```
 
-Afterwards, you should be all set to interact with the batch precompile as one typically would with a contract in [Ethers](/builders/build/eth-api/libraries/ethersjs/){target=\_blank}.
+Afterwards, you should be all set to interact with the batch precompile as one typically would with a contract in [Ethers](/builders/build/eth-api/libraries/ethersjs){target=\_blank}.

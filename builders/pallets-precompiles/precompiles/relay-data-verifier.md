@@ -137,7 +137,7 @@ To interact with the Solidity interface using an Ethereum library, you'll need t
     --8<-- 'code/builders/pallets-precompiles/precompiles/relay-data-verifier/abi.js'
     ```
 
-Once you have the ABI, you can interact with the precompile using the Ethereum library of your choice, such as [Ethers.js](/builders/build/eth-api/libraries/ethersjs/){target=\_blank}, [Web3.js](/builders/build/eth-api/libraries/web3js/){target=\_blank}, or [Web3.py](/builders/build/eth-api/libraries/web3py/){target=\_blank}. The general steps are as follows:
+Once you have the ABI, you can interact with the precompile using the Ethereum library of your choice, such as [Ethers.js](/builders/build/eth-api/libraries/ethersjs){target=\_blank}, [Web3.js](/builders/build/eth-api/libraries/web3js){target=\_blank}, or [Web3.py](/builders/build/eth-api/libraries/web3py){target=\_blank}. The general steps are as follows:
 
 1. Create a provider
 2. Create a contract instance of the precompile

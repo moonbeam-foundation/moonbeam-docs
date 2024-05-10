@@ -11,7 +11,7 @@ The [Substrate](/learn/platform/technology/#substrate-framework){target=\_blank}
 
 The pallet also includes functionality to request judgments and verify on-chain identities from registrars, which are accounts appointed via governance to verify the identity information submitted and provide judgment on their findings for a fee.
 
-This guide will provide an overview of the extrinsics, storage methods, and getters for the pallet constants available in the Identity Pallet on Moonbeam. This guide assumes you are familiar with identity-related terminology; if not, please check out the [Managing your Account Identity](/tokens/manage/identity/){target=\_blank} page for more information.
+This guide will provide an overview of the extrinsics, storage methods, and getters for the pallet constants available in the Identity Pallet on Moonbeam. This guide assumes you are familiar with identity-related terminology; if not, please check out the [Managing your Account Identity](/tokens/manage/identity){target=\_blank} page for more information.
 
 ## Identity Pallet Interface {: #preimage-pallet-interface }
 

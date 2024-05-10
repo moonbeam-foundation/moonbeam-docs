@@ -26,7 +26,7 @@ You can review a list of wallets on the [Moonbeam DApp Directory](https://apps.m
 
 The list of wallets on the dApp is not exhaustive and may only cover some of the available options. You should be able to use any Ethereum-compatible wallet to generate an address and its associated private key.
 
-You can also check out any of the wallets in the [Connect to Moonbeam](/tokens/connect/){target=\_blank} section of the docs.
+You can also check out any of the wallets in the [Connect to Moonbeam](/tokens/connect){target=\_blank} section of the docs.
 
 ## Use Your Wallet to Create an Account {: #use-your-wallet-to-create-an-account }
 
@@ -36,4 +36,4 @@ Depending on the wallet, when creating an account, you may be prompted to backup
 
 After saving your seed phrase, you can start developing on Moonbeam. Many wallets offer the option to export the private key linked to your account. By doing so, you can utilize your private key instead of the seed phrase during development. However, taking adequate precautions to securely store your private key or seed phrase while developing is essential.
 
-And that's it! Before sending your first transaction on a Moonbeam-based network, ensure you have the necessary [network configurations for your chosen network](/builders/get-started/networks/){target=\_blank} and an [RPC endpoint](/builders/get-started/endpoints){target=\_blank} for the network. Once you have these items, you'll be able to follow along with tutorials like the [How to use Ethers.js](/builders/build/eth-api/libraries/ethersjs){target=\_blank} or the [How to use Web3.js](/builders/build/eth-api/libraries/web3js){target=\_blank} to send a transaction.
+And that's it! Before sending your first transaction on a Moonbeam-based network, ensure you have the necessary [network configurations for your chosen network](/builders/get-started/networks){target=\_blank} and an [RPC endpoint](/builders/get-started/endpoints){target=\_blank} for the network. Once you have these items, you'll be able to follow along with tutorials like the [How to use Ethers.js](/builders/build/eth-api/libraries/ethersjs){target=\_blank} or the [How to use Web3.js](/builders/build/eth-api/libraries/web3js){target=\_blank} to send a transaction.

@@ -8,7 +8,7 @@ This repository will grow and be refined over time as Moonbeam is developed.  We
 
 ## About This Site 
 
-The content in this repository is displayed on the Moonbeam documentation site, [docs.moonbeam.network](https://docs.moonbeam.network), and is generated using [mkdocs](https://www.mkdocs.org/). The theme used is [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/).
+The content in this repository is displayed on the Moonbeam documentation site, [docs.moonbeam.network](https://docs.moonbeam.network), and is generated using [mkdocs](https://www.mkdocs.org). The theme used is [Material for MkDocs](https://squidfunk.github.io/mkdocs-material).
 
 ## Contributing
 
@@ -23,5 +23,5 @@ You can also [open an issue](https://github.com/moonbeam-foundation/moonbeam-doc
 - **Telegram** - general information and other non-technical topics can be discussed in our [Telegram group](https://t.me/Moonbeam_Official)
 - **Twitter** - follow us on Twitter for regular updates: [@MoonbeamNetwork](https://twitter.com/MoonbeamNetwork)
 - **YouTube** - for video-tutorials and related content, subscribe to our [YouTube channel](https://www.youtube.com/c/MoonbeamNetwork)
-- **Newsletter** - We send a monthly newsletter with project updates that you can [sign up for](https://moonbeam.network/newsletter/)
+- **Newsletter** - We send a monthly newsletter with project updates that you can [sign up for](https://moonbeam.network/newsletter)
 

@@ -13,7 +13,7 @@ Moonbeam utilizes verifiable random functions (VRF) to generate randomness that 
 
 There are two available sources of randomness that provide random inputs based on block producers' VRF keys and past randomness results: [local VRF](#local-vrf) and [BABE epoch randomness](#babe-epoch-randomness). Local VRF is determined directly within Moonbeam using the collator of the block's VRF key and the last block's VRF output. On the other hand, [BABE](https://wiki.polkadot.network/docs/learn-consensus#block-production-babe){target=\_blank} epoch randomness is based on all the VRF produced by the relay chain validators during a complete [epoch](https://wiki.polkadot.network/docs/glossary#epoch){target=\_blank}.
 
-You can interact with and request on-chain randomness using the Randomness Precompile contract, a Solidity interface that enables smart contract developers to access the randomness functionality through the Ethereum API. For more information, please check out the [Interacting with the Randomness Precompile](/builders/pallets-precompiles/precompiles/randomness/){target=\_blank} guide. You can also take a look at the [Randomness Pallet](/builders/pallets-precompiles/pallets/randomness/){target=\_blank}, which can be used to obtain current randomness requests and results.
+You can interact with and request on-chain randomness using the Randomness Precompile contract, a Solidity interface that enables smart contract developers to access the randomness functionality through the Ethereum API. For more information, please check out the [Interacting with the Randomness Precompile](/builders/pallets-precompiles/precompiles/randomness){target=\_blank} guide. You can also take a look at the [Randomness Pallet](/builders/pallets-precompiles/pallets/randomness){target=\_blank}, which can be used to obtain current randomness requests and results.
 
 ## General Definitions {: #general-definitions }
 
@@ -65,7 +65,7 @@ You can interact with and request on-chain randomness using the Randomness Preco
 
 Local VRF randomness is generated on a block-by-block basis at the beginning of the block using the previous block's VRF output along with the public key of the current block author's VRF key. The generated randomness result is stored and used to fulfill all randomness requests for the current block.
 
-You can request local VRF randomness using the [`requestLocalVRFRandomWords` method](/builders/pallets-precompiles/precompiles/randomness/#:~:text=requestLocalVRFRandomWords){target=\_blank} of the [Randomness Precompile](/builders/pallets-precompiles/precompiles/randomness/){target=\_blank}.
+You can request local VRF randomness using the [`requestLocalVRFRandomWords` method](/builders/pallets-precompiles/precompiles/randomness/#:~:text=requestLocalVRFRandomWords){target=\_blank} of the [Randomness Precompile](/builders/pallets-precompiles/precompiles/randomness){target=\_blank}.
 
 If your contract could have concurrent requests open, you can use the `requestId` returned from the `requestLocalVRFRandomWords` method to track which response is associated with which randomness request.
 
@@ -75,7 +75,7 @@ BABE epoch randomness is based on a hash of the VRF values from the blocks produ
 
 The randomness is constant during a full epoch, so if a collator skips block production, the next collator can fulfill it with the same random value.
 
-You can request BABE epoch randomness using the [`requestRelayBabeEpochRandomWords` method](/builders/pallets-precompiles/precompiles/randomness/#:~:text=requestRelayBabeEpochRandomWords){target=\_blank} of the [Randomness Precompile](/builders/pallets-precompiles/precompiles/randomness/){target=\_blank}. In order to generate unique randomness, a different salt must be provided to the `requestRelayBabeEpochRandomWords` function.
+You can request BABE epoch randomness using the [`requestRelayBabeEpochRandomWords` method](/builders/pallets-precompiles/precompiles/randomness/#:~:text=requestRelayBabeEpochRandomWords){target=\_blank} of the [Randomness Precompile](/builders/pallets-precompiles/precompiles/randomness){target=\_blank}. In order to generate unique randomness, a different salt must be provided to the `requestRelayBabeEpochRandomWords` function.
 
 At the beginning of each relay chain epoch change, the randomness from one epoch ago is read from the relay chain state proof and used to fulfill all randomness requests that are due in the current block.
 

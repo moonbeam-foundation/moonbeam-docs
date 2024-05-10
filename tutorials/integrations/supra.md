@@ -20,10 +20,10 @@ In this guide, you'll learn about Supra's pull model and how to use their price 
 Supra uses a pull model as a customized approach that publishes price data upon request. It combines Web2 and Web3 methods to achieve low latency when sending data from Supra to destination chains. The process involves the following steps:
 
 1. Web2 methods are used to retrieve price data from Supra
-2. Smart contracts are utilized for cryptographically verifying and writing the latest price data on-chain, where it lives on immutable ledgers, using [Supra's Pull contract](https://supra.com/docs/data-feeds/pull-model/){target=\_blank}
+2. Smart contracts are utilized for cryptographically verifying and writing the latest price data on-chain, where it lives on immutable ledgers, using [Supra's Pull contract](https://supra.com/docs/data-feeds/pull-model){target=\_blank}
 3. Once the data has been written on-chain, the most recently published price feed data will be available in Supra's Storage contract
 
-You can fetch price data from Supra for any [available data pairs](https://supra.com/docs/data-feeds/data-feeds-index/){target=\_blank}.
+You can fetch price data from Supra for any [available data pairs](https://supra.com/docs/data-feeds/data-feeds-index){target=\_blank}.
 
 The addresses for Supra's contracts on Moonbeam are as follows:
 
@@ -31,15 +31,15 @@ The addresses for Supra's contracts on Moonbeam are as follows:
 
     |  Contract   |                                                               Address                                                               |
     |:-----------:|:-----------------------------------------------------------------------------------------------------------------------------------:|
-    | Pull Oracle | [{{ networks.moonbeam.supra.pull_oracle }}](https://moonscan.io/address/{{ networks.moonbeam.supra.pull_oracle }}/){target=\_blank} |
-    |   Storage   |     [{{ networks.moonbeam.supra.storage }}](https://moonscan.io/address/{{ networks.moonbeam.supra.storage }}/){target=\_blank}     |
+    | Pull Oracle | [{{ networks.moonbeam.supra.pull_oracle }}](https://moonscan.io/address/{{ networks.moonbeam.supra.pull_oracle }}){target=\_blank} |
+    |   Storage   |     [{{ networks.moonbeam.supra.storage }}](https://moonscan.io/address/{{ networks.moonbeam.supra.storage }}){target=\_blank}     |
 
 === "Moonbase Alpha"
 
     |  Contract   |                                                                   Address                                                                    |
     |:-----------:|:--------------------------------------------------------------------------------------------------------------------------------------------:|
-    | Pull Oracle | [{{ networks.moonbase.supra.pull_oracle }}](https://moonbase.moonscan.io/address/{{ networks.moonbase.supra.pull_oracle }}/){target=\_blank} |
-    |   Storage   |     [{{ networks.moonbase.supra.storage }}](https://moonbase.moonscan.io/address/{{ networks.moonbase.supra.storage }}/){target=\_blank}     |
+    | Pull Oracle | [{{ networks.moonbase.supra.pull_oracle }}](https://moonbase.moonscan.io/address/{{ networks.moonbase.supra.pull_oracle }}){target=\_blank} |
+    |   Storage   |     [{{ networks.moonbase.supra.storage }}](https://moonbase.moonscan.io/address/{{ networks.moonbase.supra.storage }}){target=\_blank}     |
 
 !!! note
     Moonriver is not supported at this time.
@@ -53,11 +53,11 @@ To follow along with this guide, you will need:
 
 ## Use Web2 Code to Retrieve Price Data {: #web2-retrieve-price-data }
 
-To build out the Web2 component required to fetch price data from Supra, you can use their [Pull Service Client library](https://github.com/Entropy-Foundation/oracle-pull-example/){target=\_blank}, designed to interact with a gRPC server to fetch price data. gRPC is a modern remote procedure call (RPC) framework created by Google. You can check out the [gRPC documentation](https://grpc.io/docs/what-is-grpc/){target=\_blank} for more information if you need to familiarize yourself.
+To build out the Web2 component required to fetch price data from Supra, you can use their [Pull Service Client library](https://github.com/Entropy-Foundation/oracle-pull-example){target=\_blank}, designed to interact with a gRPC server to fetch price data. gRPC is a modern remote procedure call (RPC) framework created by Google. You can check out the [gRPC documentation](https://grpc.io/docs/what-is-grpc){target=\_blank} for more information if you need to familiarize yourself.
 
-The library offers JavaScript or Rust-based clients for EVM, Sui, and Aptos-based chains. For Moonbeam, you can use the JavaScript or Rust-based EVM client. We'll use the [JavaScript client](https://github.com/Entropy-Foundation/oracle-pull-example/tree/master/javascript/evm_client/){target=\_blank}.
+The library offers JavaScript or Rust-based clients for EVM, Sui, and Aptos-based chains. For Moonbeam, you can use the JavaScript or Rust-based EVM client. We'll use the [JavaScript client](https://github.com/Entropy-Foundation/oracle-pull-example/tree/master/javascript/evm_client){target=\_blank}.
 
-We'll copy the JavaScript client code and add it to our project, but you can also clone the [repository](https://github.com/Entropy-Foundation/oracle-pull-example/){target=\_blank} with all the clients.
+We'll copy the JavaScript client code and add it to our project, but you can also clone the [repository](https://github.com/Entropy-Foundation/oracle-pull-example){target=\_blank} with all the clients.
 
 ### Create a Project {: #create-a-project }
 
@@ -109,7 +109,7 @@ Then, you can copy the following code snippets and add them to their respective 
 
 ### Use the Pull Service Client to Fetch Price Data {: #use-the-pull-service-client }
 
-In this section, you'll create an instance of the `PullServiceClient` to retrieve the proof for the ETH_USDT pair. You can modify this example for any of the [available data pairs](https://supra.com/docs/data-feeds/data-feeds-index/){target=\_blank}.
+In this section, you'll create an instance of the `PullServiceClient` to retrieve the proof for the ETH_USDT pair. You can modify this example for any of the [available data pairs](https://supra.com/docs/data-feeds/data-feeds-index){target=\_blank}.
 
 To get started, create a file to add our logic:
 
@@ -125,7 +125,7 @@ In the `main.js` file, take the following steps to add the logic for retrieving 
     --8<-- 'code/tutorials/integrations/supra/main-mb.js::1'
     ```
 
-2. Create a variable to store the index of the data pair for which you want to retrieve the price data. This example requests the ETH_USDT data pair, but you can use the [index of any available data pair](https://supra.com/docs/data-feeds/data-feeds-index/){target=\_blank}
+2. Create a variable to store the index of the data pair for which you want to retrieve the price data. This example requests the ETH_USDT data pair, but you can use the [index of any available data pair](https://supra.com/docs/data-feeds/data-feeds-index){target=\_blank}
 
     ```js title="main.js"
     --8<-- 'code/tutorials/integrations/supra/main-mb.js::1'
@@ -212,7 +212,7 @@ So far, you have the logic required to retrieve proofs for data pairs. The proof
 
 If you want to deserialize the data to read the latest price data you've retrieved, you can use the interfaces for the proof data and the signed coherent cluster data.
 
-Coherent cluster data is a set of values where all the values in that set agree. This is a component of Supra's DORA (Distributed Oracle Agreement) protocol, which, in its simplest form, is a protocol that aggregates a set of data into a single representative value. If you want to dive deeper, check out the [DORA litepaper](https://supra.com/news/dora-distributed-oracle-agreement/){target=\_blank}.
+Coherent cluster data is a set of values where all the values in that set agree. This is a component of Supra's DORA (Distributed Oracle Agreement) protocol, which, in its simplest form, is a protocol that aggregates a set of data into a single representative value. If you want to dive deeper, check out the [DORA litepaper](https://supra.com/news/dora-distributed-oracle-agreement){target=\_blank}.
 
 You'll need to create a file for each interface, which you can store in a `resources` directory:
 
@@ -236,7 +236,7 @@ Then, you can copy the following code snippets and add them to their respective 
         --8<-- 'code/tutorials/integrations/supra/signedCoherentCluster.json'
         ```
 
-To work with these interfaces, you must install the [Ethereum library](/builders/build/eth-api/libraries/){target=\_blank} of your choice. For this example, we'll use [Web3.js](/builders/build/eth-api/libraries/web3js/){target=\_blank}.
+To work with these interfaces, you must install the [Ethereum library](/builders/build/eth-api/libraries){target=\_blank} of your choice. For this example, we'll use [Web3.js](/builders/build/eth-api/libraries/web3js){target=\_blank}.
 
 ```bash
 npm i web3
@@ -369,7 +369,7 @@ You can take the following steps to create our smart contract:
 
 ### Deploy the Contract {: #deploy-the-consumer-contract }
 
-With the contract created, you must next deploy the contract. Since we've already installed Web3.js, let's use it to deploy the contract. If you're unfamiliar with the process, you can reference the [Web3.js docs on deploying a smart contract](https://docs.moonbeam.network/builders/build/eth-api/libraries/web3js/#deploy-a-contract/){target=\_blank}.
+With the contract created, you must next deploy the contract. Since we've already installed Web3.js, let's use it to deploy the contract. If you're unfamiliar with the process, you can reference the [Web3.js docs on deploying a smart contract](https://docs.moonbeam.network/builders/build/eth-api/libraries/web3js/#deploy-a-contract){target=\_blank}.
 
 To deploy the contract, take the following steps:
 
@@ -665,7 +665,7 @@ The terminal output should now include the price data.
 
 --8<-- 'code/tutorials/integrations/supra/terminal/price-data-output.md'
 
-And that's it! You've successfully fetched the proof data from Supra, verified and published it on-chain, and retrieved it! For more information on Supra Oracles, please check out their [documentation](https://supra.com/docs/){target=\_blank}.
+And that's it! You've successfully fetched the proof data from Supra, verified and published it on-chain, and retrieved it! For more information on Supra Oracles, please check out their [documentation](https://supra.com/docs){target=\_blank}.
 
 --8<-- 'text/_disclaimers/educational-tutorial.md'
 

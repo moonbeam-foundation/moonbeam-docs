@@ -27,7 +27,7 @@ Each data-feed has a Job ID attached to it. For example:
 |   2    |          BTC           |
 |   3    |    Microsoft Stocks    |
 
-You can check Job IDs for each data-feed on the [Razor Network Explorer](https://razorscan.io/#/custom){target=\_blank}. Price feeds are updated every 5 minutes. More information can be found in [Razor's documentation website](https://docs.razor.network/){target=\_blank}.
+You can check Job IDs for each data-feed on the [Razor Network Explorer](https://razorscan.io/#/custom){target=\_blank}. Price feeds are updated every 5 minutes. More information can be found in [Razor's documentation website](https://docs.razor.network){target=\_blank}.
 
 ## Get Data From Bridge Contract {: #get-data-from-bridge-contract }
 
@@ -82,13 +82,13 @@ contract Demo {
                                        // Moonbase Alpha {{ networks.moonbase.razor.bridge_address }}
     }
 
-    function fetchPrice(uint256 _jobID) public view returns (uint256/){
+    function fetchPrice(uint256 _jobID) public view returns (uint256){
         return razor.getResult(_jobID);
     }
     
-    function fetchMultiPrices(uint256[] memory jobs) external view returns(uint256[] memory/){
+    function fetchMultiPrices(uint256[] memory jobs) external view returns(uint256[] memory){
         uint256[] memory prices = new uint256[](jobs.length);
-        for(uint256 i=0;i<jobs.length;i++/){
+        for(uint256 i=0;i<jobs.length;i++){
             prices[i] = razor.getResult(jobs[i]);
         }
         return prices;
@@ -127,7 +127,7 @@ With it, you will have two view functions available, very similar to the previou
  - **getPrice** - provides the price feed for a single job ID given as input to the function. For example, to fetch the price of `ETH` in `USD`, you will need to send the Job ID `1`
  - **getMultiPrices** - provides the price feed for multiple Job IDs given as an array input to the function. For example, to fetch the price of `ETH` and `BTC` in `USD`, you will need to send the job IDs `[1,2]`
 
-You can use [Remix](/builders/build/eth-api/dev-env/remix/){target=\_blank} to fetch the `BTC` price in `USD`.
+You can use [Remix](/builders/build/eth-api/dev-env/remix){target=\_blank} to fetch the `BTC` price in `USD`.
 
 After creating the file and compiling the contract, head to the **Deploy and Run Transactions** tab, enter the contract address (`{{ networks.moonbase.razor.bridge_address }}`), and click on **At Address**. Make sure you have set the **ENVIRONMENT** to **Injected Web3** so that you are connected to Moonbase Alpha (through the Web3 provider of the wallet).
 

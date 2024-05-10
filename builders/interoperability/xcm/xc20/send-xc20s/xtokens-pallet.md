@@ -7,9 +7,9 @@ description: This guide provides an introduction to the X-Tokens Pallet and expl
 
 ## Introduction {: #introduction }
 
-Building an XCM message for fungible asset transfers is not an easy task. Consequently, there are wrapper functions and pallets that developers can leverage to use XCM features on Polkadot and Kusama. One example of such wrappers is the [X-Tokens](https://github.com/moonbeam-foundation/open-runtime-module-library/tree/master/xtokens/){target=\_blank} Pallet, which provides different methods to transfer fungible assets via XCM.
+Building an XCM message for fungible asset transfers is not an easy task. Consequently, there are wrapper functions and pallets that developers can leverage to use XCM features on Polkadot and Kusama. One example of such wrappers is the [X-Tokens](https://github.com/moonbeam-foundation/open-runtime-module-library/tree/master/xtokens){target=\_blank} Pallet, which provides different methods to transfer fungible assets via XCM.
 
-This guide will show you how to leverage the X-Tokens Pallet to send [XC-20s](/builders/interoperability/xcm/xc20/overview/){target=\_blank} from a Moonbeam-based network to other chains in the ecosystem (relay chain/parachains).
+This guide will show you how to leverage the X-Tokens Pallet to send [XC-20s](/builders/interoperability/xcm/xc20/overview){target=\_blank} from a Moonbeam-based network to other chains in the ecosystem (relay chain/parachains).
 
 **Developers must understand that sending incorrect XCM messages can result in the loss of funds.** Consequently, it is essential to test XCM features on a TestNet before moving to a production environment.
 
@@ -215,7 +215,7 @@ This guide covers the process of building an XCM message using the X-Tokens Pall
 !!! note
     Each parachain can allow and forbid specific methods from a pallet. Consequently, developers must ensure that they use methods that are allowed, or the transaction will fail with an error similar to `system.CallFiltered`.
 
-You'll be transferring xcUNIT tokens, which are the [XC-20](/builders/interoperability/xcm/xc20/overview/){target=\_blank} representation of the Alphanet relay chain token, UNIT. You can adapt this guide for any other XC-20.
+You'll be transferring xcUNIT tokens, which are the [XC-20](/builders/interoperability/xcm/xc20/overview){target=\_blank} representation of the Alphanet relay chain token, UNIT. You can adapt this guide for any other XC-20.
 
 ### Checking Prerequisites {: #xtokens-check-prerequisites}
 
@@ -226,7 +226,7 @@ To follow along with the examples in this guide, you need to have the following:
 - Some xcUNIT tokens. You can swap DEV tokens (Moonbase Alpha's native token) for xcUNITs on [Moonbeam-Swap](https://moonbeam-swap.netlify.app/#/swap){target=\_blank}, a demo Uniswap-V2 clone on Moonbase Alpha
 
     !!! note
-        You can adapt this guide to transfer another [external XC-20 or a local XC-20](/builders/interoperability/xcm/xc20/overview/){target=\_blank}. For external XC-20s, you'll need the asset ID and the number of decimals the asset has. For local XC-20s, you'll need the contract address.
+        You can adapt this guide to transfer another [external XC-20 or a local XC-20](/builders/interoperability/xcm/xc20/overview){target=\_blank}. For external XC-20s, you'll need the asset ID and the number of decimals the asset has. For local XC-20s, you'll need the contract address.
 
     ![Moonbeam Swap xcUNIT](/images/builders/interoperability/xcm/xc20/send-xc20s/xtokens-pallet/xtokens-1.webp)
 
@@ -253,15 +253,15 @@ In this example, where you're transferring xcUNIT from Moonbase Alpha to the Alp
 !!! note
     Some weights include database reads and writes; for example, the `WithdrawAsset` and `DepositAsset` instructions include both one database read and one write. To get the total weight, you'll need to add the weight of any required database reads or writes to the base weight of the given instruction.
 
-    For Westend-based relay chains, like Alphanet, you can get the weight cost for read and write database operations for [Rocks DB](https://github.com/paritytech/polkadot-sdk/blob/polkadot-{{ networks.alphanet.spec_version }}/polkadot/runtime/westend/constants/src/weights/rocksdb_weights.rs#L27-L31){target=\_blank} (which is the default database) in the [polkadot-sdk](https://github.com/paritytech/polkadot-sdk/){target=\_blank} repository on GitHub.
+    For Westend-based relay chains, like Alphanet, you can get the weight cost for read and write database operations for [Rocks DB](https://github.com/paritytech/polkadot-sdk/blob/polkadot-{{ networks.alphanet.spec_version }}/polkadot/runtime/westend/constants/src/weights/rocksdb_weights.rs#L27-L31){target=\_blank} (which is the default database) in the [polkadot-sdk](https://github.com/paritytech/polkadot-sdk){target=\_blank} repository on GitHub.
 
-Since Alphanet is a Westend-based relay chain, you can refer to the instruction weights defined in the [Westend runtime code](https://github.com/paritytech/polkadot-sdk/tree/polkadot-{{ networks.alphanet.spec_version }}/polkadot/runtime/westend/){target=\_blank}, which are broken up into two types of instructions: [fungible](https://github.com/paritytech/polkadot-sdk/blob/polkadot-{{ networks.alphanet.spec_version }}/polkadot/runtime/westend/src/weights/xcm/pallet_xcm_benchmarks_fungible.rs){target=\_blank} and [generic](https://github.com/paritytech/polkadot-sdk/blob/polkadot-{{ networks.alphanet.spec_version }}/polkadot/runtime/westend/src/weights/xcm/pallet_xcm_benchmarks_generic.rs){target=\_blank}.
+Since Alphanet is a Westend-based relay chain, you can refer to the instruction weights defined in the [Westend runtime code](https://github.com/paritytech/polkadot-sdk/tree/polkadot-{{ networks.alphanet.spec_version }}/polkadot/runtime/westend){target=\_blank}, which are broken up into two types of instructions: [fungible](https://github.com/paritytech/polkadot-sdk/blob/polkadot-{{ networks.alphanet.spec_version }}/polkadot/runtime/westend/src/weights/xcm/pallet_xcm_benchmarks_fungible.rs){target=\_blank} and [generic](https://github.com/paritytech/polkadot-sdk/blob/polkadot-{{ networks.alphanet.spec_version }}/polkadot/runtime/westend/src/weights/xcm/pallet_xcm_benchmarks_generic.rs){target=\_blank}.
 
-It's important to note that each chain defines its own weight requirements. To determine the weight required for each XCM instruction on a given chain, please refer to the chain's documentation or reach out to a member of their team. To learn how to find the weights required by Moonbeam, Polkadot, or Kusama, you can refer to our documentation on [Weights and Fees](/builders/interoperability/xcm/core-concepts/weights-fees/){target=\_blank}.
+It's important to note that each chain defines its own weight requirements. To determine the weight required for each XCM instruction on a given chain, please refer to the chain's documentation or reach out to a member of their team. To learn how to find the weights required by Moonbeam, Polkadot, or Kusama, you can refer to our documentation on [Weights and Fees](/builders/interoperability/xcm/core-concepts/weights-fees){target=\_blank}.
 
 ### X-Tokens Transfer Function {: #xtokens-transfer-function}
 
-In this example, you'll build an XCM message to transfer xcUNIT from Moonbase Alpha back to the Alphanet relay chain through the `transfer` function of the X-Tokens Pallet using the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=\_blank}.
+In this example, you'll build an XCM message to transfer xcUNIT from Moonbase Alpha back to the Alphanet relay chain through the `transfer` function of the X-Tokens Pallet using the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api){target=\_blank}.
 
 Since you'll be interacting with the `transfer` function, you can take the following steps to gather the arguments for the `currencyId`, `amount`, `dest`, and `destWeightLimit`:
 
@@ -330,7 +330,7 @@ Now that you have the values for each of the parameters, you can write the scrip
      - The Moonbase Alpha endpoint URL to create the provider
      - The values for each of the parameters of the `transfer` function
  2. Create a Keyring instance that will be used to send the transaction
- 3. Create the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=\_blank} provider
+ 3. Create the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api){target=\_blank} provider
  4. Craft the `xTokens.transfer` extrinsic with the `currencyId`, `amount`, `dest`, and `destWeightLimit`
  5. Send the transaction using the `signAndSend` extrinsic and the Keyring instance you created in the second step
 
@@ -440,7 +440,7 @@ Now that you have the values for each of the parameters, you can write the scrip
      - The Moonbase Alpha endpoint URL to create the provider
      - The values for each of the parameters of the `transferMultiasset` function
  2. Create a Keyring instance that will be used to send the transaction
- 3. Create the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=\_blank} provider
+ 3. Create the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api){target=\_blank} provider
  4. Craft the `xTokens.transferMultiasset` extrinsic with the `asset`, `dest`, and `destWeightLimit`
  5. Send the transaction using the `signAndSend` extrinsic and the Keyring instance you created in the second step
 

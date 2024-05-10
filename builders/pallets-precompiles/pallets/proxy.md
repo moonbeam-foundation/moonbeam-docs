@@ -10,7 +10,7 @@ keywords: proxy, substrate, moonbeam, polkadot
 
 Proxy accounts can be set up to perform a limited number of actions on behalf of users and are useful for keeping the underlying accounts safe. They allow users to keep their primary account secured safely in cold storage while enabling the proxy to actively perform functions and participate in the network with the weight of the tokens in the primary account.
 
-[Substrate's proxy pallet](https://wiki.polkadot.network/docs/learn-proxies/){target=\_blank} enables you to create proxy accounts, remove proxy accounts, make calls as a proxy account, and announce proxy transactions. To add and remove proxy accounts, you can use the proxy precompile: a Solidity interface that can be interacted through the Ethereum API. For more information on how to use this contract, please refer to the [Proxy Precompile](/builders/pallets-precompiles/precompiles/proxy/){target=\_blank} guide.
+[Substrate's proxy pallet](https://wiki.polkadot.network/docs/learn-proxies){target=\_blank} enables you to create proxy accounts, remove proxy accounts, make calls as a proxy account, and announce proxy transactions. To add and remove proxy accounts, you can use the proxy precompile: a Solidity interface that can be interacted through the Ethereum API. For more information on how to use this contract, please refer to the [Proxy Precompile](/builders/pallets-precompiles/precompiles/proxy){target=\_blank} guide.
 
 This page will provide an overview of the extrinsics, storage methods, and getters for the pallet constants available in the proxy pallet.
 

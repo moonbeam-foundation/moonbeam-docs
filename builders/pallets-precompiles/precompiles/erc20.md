@@ -40,7 +40,7 @@ The precompile is located at the following address:
 
 ## The ERC-20 Solidity Interface {: #the-erc20-interface }
 
-The [`ERC20.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/balances-erc20/ERC20.sol){target=\_blank} interface on Moonbeam follows the [EIP-20 Token Standard](https://eips.ethereum.org/EIPS/eip-20/){target=\_blank} which is the standard API interface for tokens within smart contracts. The standard defines the required functions and events that a token contract must implement to be interoperable with different applications.
+The [`ERC20.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/balances-erc20/ERC20.sol){target=\_blank} interface on Moonbeam follows the [EIP-20 Token Standard](https://eips.ethereum.org/EIPS/eip-20){target=\_blank} which is the standard API interface for tokens within smart contracts. The standard defines the required functions and events that a token contract must implement to be interoperable with different applications.
 
 --8<-- 'text/builders/pallets-precompiles/precompiles/erc20/erc20-interface.md'
 
@@ -53,7 +53,7 @@ The [`ERC20.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/pr
 
 To follow along with this tutorial, you will need to have:
 
-- [MetaMask installed and connected to Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}
+- [MetaMask installed and connected to Moonbase Alpha](/tokens/connect/metamask){target=\_blank}
 - Create or have two accounts on Moonbase Alpha to test out the different features in the ERC-20 precompile
 - At least one of the accounts will need to be funded with `DEV` tokens.
  --8<-- 'text/_common/faucet/faucet-list-item.md'
@@ -62,7 +62,7 @@ To follow along with this tutorial, you will need to have:
 
 If you want to interact with Moonbase Alpha DEV tokens like you would with an ERC-20 in MetaMask, you can create a custom token using the precompile address.
 
-To get started, open up MetaMask and make sure you are [connected to Moonbase Alpha](/tokens/connect/metamask/){target=\_blank} and:
+To get started, open up MetaMask and make sure you are [connected to Moonbase Alpha](/tokens/connect/metamask){target=\_blank} and:
 
 1. Switch to the **Assets** tab
 2. Click on **Import tokens**
@@ -84,7 +84,7 @@ And that's it! You've successfully added the DEV token as a custom ERC-20 token 
 
 ### Remix Set Up {: #remix-set-up }
 
-You can interact with the ERC-20 precompile using [Remix](https://remix.ethereum.org/){target=\_blank}. To add the precompile to Remix, you will need to:
+You can interact with the ERC-20 precompile using [Remix](https://remix.ethereum.org){target=\_blank}. To add the precompile to Remix, you will need to:
 
 1. Get a copy of [`ERC20.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/balances-erc20/ERC20.sol){target=\_blank}
 2. Paste the file contents into a Remix file named `IERC20.sol`
