@@ -15,11 +15,11 @@ Once a candidate joins the active set of collators, they are eligible to produce
 
 This guide will show you how to stake on Moonbase Alpha via Polkadot.js Apps, but similar steps can be taken for any of the Moonbeam and Moonriver. Token holders that want to easily stake their tokens can use the [Moonbeam dApp](https://apps.moonbeam.network){target=\_blank} to do so.
 
-For more general information on staking, please check out the [Staking on Moonbeam](/learn/features/staking){target=\_blank} overview.
+For more general information on staking, please check out the [Staking on Moonbeam](/learn/features/staking/){target=\_blank} overview.
 
 ## Extrinsics Definitions {: #extrinsics-definitions }
 
-There are many extrinsics related to the staking pallet, you can check out a complete list of them on the [Parachain Staking Pallet](/builders/pallets-precompiles/pallets/staking){target=\_blank} page.
+There are many extrinsics related to the staking pallet, you can check out a complete list of them on the [Parachain Staking Pallet](/builders/pallets-precompiles/pallets/staking/){target=\_blank} page.
 
 The following list covers the extrinsics that you'll use in this guide and are associated with the delegation process.
 

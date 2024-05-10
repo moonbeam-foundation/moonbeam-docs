@@ -23,7 +23,7 @@ Finality is deterministic in Ethereum's PoS consensus protocol and is achieved t
 
 ## Moonbeam Consensus and Finality {: #moonbeam-consensus-and-finality }
 
-In Polkadot, there are collators and validators. [Collators](https://wiki.polkadot.network/docs/en/learn-collator){target=\_blank} maintain parachains (in this case, Moonbeam) by collecting transactions from users and producing state transition proofs for the relay chain [validators](https://wiki.polkadot.network/docs/en/learn-validator){target=\_blank}. The collator set (nodes that produce blocks) is selected based on the [stake they have in the network](/learn/features/consensus){target=\_blank}.
+In Polkadot, there are collators and validators. [Collators](https://wiki.polkadot.network/docs/en/learn-collator){target=\_blank} maintain parachains (in this case, Moonbeam) by collecting transactions from users and producing state transition proofs for the relay chain [validators](https://wiki.polkadot.network/docs/en/learn-validator){target=\_blank}. The collator set (nodes that produce blocks) is selected based on the [stake they have in the network](/learn/features/consensus/){target=\_blank}.
 
 For finality, Polkadot and Kusama rely on [GRANDPA](https://wiki.polkadot.network/docs/learn-consensus#finality-gadget-grandpa){target=\_blank}. GRANDPA provides deterministic finality for any given transaction (block). In other words, when a block or transaction is marked as final, it can't be reverted except via on-chain governance or forking. Moonbeam follows this deterministic finality.
 
@@ -33,7 +33,7 @@ In terms of consensus, Moonbeam is based on Delegated Proof-of-Stake, while Ethe
 
 With PoS on Ethereum, validators are selected to produce and validate blocks based on their own stake in the network. As long as a validator has placed a validator deposit, they can be selected to produce and validate blocks. However, as previously mentioned, the greater the stake in the network, the higher the chances a validator has to be selected to produce and validate blocks.
 
-On the other hand, with DPoS on Moonbeam, collators become eligible to produce blocks based on their own stake plus their delegated stake in the network. Any token holder can choose to delegate their stake to a collator candidate. The top collator candidates by stake, including delegations, join the active set. The number of candidates in the active set is subject to [governance](/learn/features/governance){target=\_blank}. Once in the active set, collators are randomly selected to produce blocks using the [Nimbus Consensus Framework](/learn/features/consensus){target=\_blank}. It is important to note that once a collator is in the active set, their total stake does not impact their chances of being selected to produce blocks.
+On the other hand, with DPoS on Moonbeam, collators become eligible to produce blocks based on their own stake plus their delegated stake in the network. Any token holder can choose to delegate their stake to a collator candidate. The top collator candidates by stake, including delegations, join the active set. The number of candidates in the active set is subject to [governance](/learn/features/governance/){target=\_blank}. Once in the active set, collators are randomly selected to produce blocks using the [Nimbus Consensus Framework](/learn/features/consensus/){target=\_blank}. It is important to note that once a collator is in the active set, their total stake does not impact their chances of being selected to produce blocks.
 
 In terms of finality, blocks on Ethereum can take quite a bit longer to finalize than on Moonbeam due to the checkpoint finality system it uses. In Ethereum, validators determine finality at checkpoint blocks, which are always the first block in an epoch. Since an epoch has 32 slots and each slot is 12 seconds, it'll take at least 384 seconds, or 6.4 minutes for a block to be finalized.
 
@@ -79,7 +79,7 @@ Moonbeam has added support for two custom RPC endpoints, `moon_isBlockFinalized`
 
 For more information, you can go to the [Finality RPC Endpoints](/builders/json-rpc/moonbeam-custom-api#rpc-methods){target=\_blank} section of the Moonbeam Custom API page.
 
-You can modify the scripts from the Ethereum RPC section above to use `moon_isBlockFinalized` and `moon_isTxFinalized`. To do this, you can make custom calls to the Substrate JSON-RPC using the `send` method of both [Web3.js](https://web3js.readthedocs.io){target=\_blank} and [Ethers.js](https://docs.ethers.org){target=\_blank}. Custom RPC requests are also possible using [Web3.py](https://web3py.readthedocs.io){target=\_blank} with the `make_request` method. You'll need to pass in the method name and the parameters to the custom request, which you can find on the [Moonbeam Custom API](/builders/json-rpc/moonbeam-custom-api){target=\_blank} page.
+You can modify the scripts from the Ethereum RPC section above to use `moon_isBlockFinalized` and `moon_isTxFinalized`. To do this, you can make custom calls to the Substrate JSON-RPC using the `send` method of both [Web3.js](https://web3js.readthedocs.io){target=\_blank} and [Ethers.js](https://docs.ethers.org){target=\_blank}. Custom RPC requests are also possible using [Web3.py](https://web3py.readthedocs.io){target=\_blank} with the `make_request` method. You'll need to pass in the method name and the parameters to the custom request, which you can find on the [Moonbeam Custom API](/builders/json-rpc/moonbeam-custom-api/){target=\_blank} page.
 
 ???+ code "moon_isBlockFinalized"
 
@@ -129,7 +129,7 @@ Using the following three RPC requests from the Substrate JSON-RPC, you can fetc
 - `chain_getHeader` - the second request gets the block header for a given block hash
 - `eth_getTransactionReceipt` - this retrieves the transaction receipt given the transaction hash
 
-The [Polkadot.js API package](/builders/build/substrate-api/polkadot-js-api){target=\_blank} and [Python Substrate Interface package](/builders/build/substrate-api/py-substrate-interface){target=\_blank} provide developers with a way to interact with Substrate chains using JavaScript and Python.
+The [Polkadot.js API package](/builders/build/substrate-api/polkadot-js-api/){target=\_blank} and [Python Substrate Interface package](/builders/build/substrate-api/py-substrate-interface/){target=\_blank} provide developers with a way to interact with Substrate chains using JavaScript and Python.
 
 You can find more information about Polkadot.js and the Substrate JSON-RPC in the [official Polkadot.js documentation site](https://polkadot.js.org/docs/substrate/rpc){target=\_blank}, and more about Python Substrate Interface in the [official PySubstrate documentation site](https://polkascan.github.io/py-substrate-interface){target=\_blank}.
 

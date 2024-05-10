@@ -53,7 +53,7 @@ If you're familiar with The Graph and looking to learn how to dive right in on a
 
 To use The Graph on Moonbase Alpha you have two options:
 
- - Run a Graph Node against Moonbase Alpha and point your Subgraph to it. To do so, you can follow [this tutorial](/node-operators/indexer-nodes/thegraph-node){target=\_blank} (you can also adapt the instructions for Moonbeam and Moonriver)
+ - Run a Graph Node against Moonbase Alpha and point your Subgraph to it. To do so, you can follow [this tutorial](/node-operators/indexer-nodes/thegraph-node/){target=\_blank} (you can also adapt the instructions for Moonbeam and Moonriver)
  - Point your Subgraph to The Graph API via the [Graph Explorer website](https://thegraph.com/explorer){target=\_blank}. To do so you need to create an account and have an access token
 
 ## The Lottery Contract {: #the-lottery-contract }
@@ -78,7 +78,7 @@ The Graph uses the events emitted by the contract to index data. The lottery con
 
 ## Creating a Subgraph {: #creating-a-subgraph }
 
-This section goes through the process of creating a Subgraph. For the Lottery Subgraph, a [GitHub repository](https://github.com/papermoonio/moonlotto-subgraph){target=\_blank} was prepared with everything you need to help you get started. The repository also includes the Lottery contract, as well as a Hardhat configuration file and deployment script. If you are not familiar with it, you can check our [Hardhat integration guide](/builders/build/eth-api/dev-env/hardhat){target=\_blank} to learn about the configuration file and how to deploy a contract using Hardhat.
+This section goes through the process of creating a Subgraph. For the Lottery Subgraph, a [GitHub repository](https://github.com/papermoonio/moonlotto-subgraph){target=\_blank} was prepared with everything you need to help you get started. The repository also includes the Lottery contract, as well as a Hardhat configuration file and deployment script. If you are not familiar with it, you can check our [Hardhat integration guide](/builders/build/eth-api/dev-env/hardhat/){target=\_blank} to learn about the configuration file and how to deploy a contract using Hardhat.
 
 To get started, first clone the repository and install the dependencies:
 

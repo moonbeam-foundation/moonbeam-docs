@@ -11,7 +11,7 @@ While Moonbeam strives to be compatible with Ethereum's Web3 API and EVM, there 
 
 One of the design goals of Moonbeam is to create an environment that is as close as possible to Ethereum, and to offer a set of Web3 RPC endpoints that are compatible with Ethereum. However, Moonbeam is also a Substrate based chain, which means that it exposes Substrate RPCs, and that it has integral functionality that is powered by Substrate such as Staking, Governance, and other features which are not part of the Ethereum API.
 
-Moonbeam [unified accounts](/learn/core-concepts/unified-accounts){target=\_blank} are one way that Moonbeam achieves Ethereum compatibility, by changing the underlying account type in the protocol to be Ethereum-like (H160 or 20 byte addresses starting with `0x`). Unified accounts are used by both the Substrate and Ethereum APIs, and map to the same underlying data storage on the blockchain. Nevertheless, there are important differences that users coming from Ethereum should understand when using Moonbeam accounts via the Ethereum API.
+Moonbeam [unified accounts](/learn/core-concepts/unified-accounts/){target=\_blank} are one way that Moonbeam achieves Ethereum compatibility, by changing the underlying account type in the protocol to be Ethereum-like (H160 or 20 byte addresses starting with `0x`). Unified accounts are used by both the Substrate and Ethereum APIs, and map to the same underlying data storage on the blockchain. Nevertheless, there are important differences that users coming from Ethereum should understand when using Moonbeam accounts via the Ethereum API.
 
 This guide will outline some of these main differences and what to expect when using Moonbeam for the first time.
 
@@ -39,7 +39,7 @@ As with Ethereum, there are two main types of accounts: user-owned and contract 
 
 ### Retrieve Your Balance {: #retrieve-your-balance }
 
-You can check on your balances, including your free (or transferrable) and reserved balances (if exists), using the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api){target=\_blank}.
+You can check on your balances, including your free (or transferrable) and reserved balances (if exists), using the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=\_blank}.
 
 !!! note
     --8<-- 'text/_common/endpoint-examples.md'

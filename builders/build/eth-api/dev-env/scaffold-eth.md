@@ -148,7 +148,7 @@ With the environment variables taken care of, next you can modify the `hardhat.c
 
         --8<-- 'text/_common/endpoint-examples.md'
 
-For more information on using Hardhat with Moonbeam, please check the dedicated [Hardhat page](/builders/build/eth-api/dev-env/hardhat){target=\_blank} for more details.
+For more information on using Hardhat with Moonbeam, please check the dedicated [Hardhat page](/builders/build/eth-api/dev-env/hardhat/){target=\_blank} for more details.
 
 ### Deploy Your Contract to Moonbeam {: #deploy-contract }
 

@@ -7,7 +7,7 @@ description: This guide walks you through how to configure the Coinbase Wallet e
 
 ## Introduction {: #introduction }
 
-[Coinbase Wallet](https://wallet.coinbase.com/?_branch_match_id=977295450874474909&_branch_referrer=H4sIAAAAAAAAA8soKSkottLXT8%2FXS07SLddLzs%2FVD8%2FJynFKSy02zE4CAFZ0JzQfAAAA){target=\_blank} is a self-custody (non-custodial) wallet, like [MetaMask](/tokens/connect/metamask){target=\_blank}, available as a mobile application for iOS and Android and a browser extension. You can use Coinbase Wallet to interact with Moonbeam, Moonriver, and the Moonbase Alpha TestNet after adding them as custom networks.
+[Coinbase Wallet](https://wallet.coinbase.com/?_branch_match_id=977295450874474909&_branch_referrer=H4sIAAAAAAAAA8soKSkottLXT8%2FXS07SLddLzs%2FVD8%2FJynFKSy02zE4CAFZ0JzQfAAAA){target=\_blank} is a self-custody (non-custodial) wallet, like [MetaMask](/tokens/connect/metamask/){target=\_blank}, available as a mobile application for iOS and Android and a browser extension. You can use Coinbase Wallet to interact with Moonbeam, Moonriver, and the Moonbase Alpha TestNet after adding them as custom networks.
 
 Please note that Coinbase Wallet is an entirely different product from Coinbase Exchange, a custodial platform for buying and selling cryptocurrency. Holding a token in your Coinbase Wallet does not imply it is supported on Coinbase Exchange. If you send a token from your Coinbase Wallet to Coinbase Exchange that is not supported by the exchange, you will lose those funds forever.
 

@@ -76,7 +76,7 @@ Once you've setup the example contract, then you can setup the Call Permit Preco
 
 To follow along with this tutorial, you will need to have:
 
-- [MetaMask installed and connected to Moonbase Alpha](/tokens/connect/metamask){target=\_blank}
+- [MetaMask installed and connected to Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}
 - Create or have two accounts on Moonbase Alpha to test out the different features in the Call Permit Precompile
 - At least one of the accounts will need to be funded with `DEV` tokens.
  --8<-- 'text/_common/faucet/faucet-list-item.md'
@@ -190,7 +190,7 @@ The nonce of the signer will also be needed. If this is your first time signing 
 
 ### Use the Browser {: #use-the-browser }
 
-To get started, you can open [JSFiddle](https://jsfiddle.net){target=\_blank} or another JavaScript playground in the browser. First, you'll need to add [Ethers.js](/builders/build/eth-api/libraries/ethersjs){target=\_blank} as it will be used to get the `v`, `r`, and `s` values of the signature:
+To get started, you can open [JSFiddle](https://jsfiddle.net){target=\_blank} or another JavaScript playground in the browser. First, you'll need to add [Ethers.js](/builders/build/eth-api/libraries/ethersjs/){target=\_blank} as it will be used to get the `v`, `r`, and `s` values of the signature:
 
 1. Click on **Resources**
 2. Start to type in `ethers` and the dropdown should populate matching libraries. Choose **ethers**

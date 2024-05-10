@@ -9,7 +9,7 @@ _by Jeremy Boetticher_
 
 ## Introduction {: #introduction }
 
-Foundry has become an increasingly popular development environment for smart contracts because it requires only one language: Solidity. Moonbeam offers [introductory documentation on using Foundry](/builders/build/eth-api/dev-env/foundry){target=\_blank} with Moonbeam networks, which is recommended to read to get an introduction to using Foundry. In this tutorial, we will dip our toes deeper into the library to get a more cohesive look at properly developing, testing, and deploying with Foundry.  
+Foundry has become an increasingly popular development environment for smart contracts because it requires only one language: Solidity. Moonbeam offers [introductory documentation on using Foundry](/builders/build/eth-api/dev-env/foundry/){target=\_blank} with Moonbeam networks, which is recommended to read to get an introduction to using Foundry. In this tutorial, we will dip our toes deeper into the library to get a more cohesive look at properly developing, testing, and deploying with Foundry.  
 
 In this demonstration, we will deploy two smart contracts. One is a token, and the other will depend on that token. We will also write unit tests to ensure the contracts work as expected. To deploy them, we will write a script that Foundry will use to determine the deployment logic. Finally, we will verify the smart contracts on Moonbeam's blockchain explorer.
 
@@ -215,7 +215,7 @@ You should see something similar to the following in the console:
 In Foundry, you can locally fork a network so that you can test out how the contracts would work in an environment with already deployed smart contracts. For example, if someone deployed smart contract `A` on Moonbeam that required a token smart contract, you could fork the Moonbeam network and deploy your own token to test how smart contract `A` would react to it.  
 
 !!! note
-    Moonbeam's custom precompile smart contracts currently do not work in Foundry forks because precompiles are Substrate-based whereas typical smart contracts are completely based on the EVM. Learn more about [forking on Moonbeam](/builders/build/eth-api/dev-env/foundry#forking-with-anvil){target=\_blank} and the [differences between Moonbeam and Ethereum](/learn/features/eth-compatibility){target=\_blank}.
+    Moonbeam's custom precompile smart contracts currently do not work in Foundry forks because precompiles are Substrate-based whereas typical smart contracts are completely based on the EVM. Learn more about [forking on Moonbeam](/builders/build/eth-api/dev-env/foundry#forking-with-anvil){target=\_blank} and the [differences between Moonbeam and Ethereum](/learn/features/eth-compatibility/){target=\_blank}.
 
 In this tutorial, you will test how your `Container` smart contract interacts with an already deployed `MyToken` contract on Moonbase Alpha
 

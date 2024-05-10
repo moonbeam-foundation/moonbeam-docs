@@ -12,7 +12,7 @@ description: Discover how to deploy and interact with Solidity smart contracts o
 
 [Remix](https://remix.ethereum.org){target=\_blank} is an integrated development environment (IDE) for developing smart contracts on Ethereum and Ethereum-compatible chains. It provides an easy-to-use interface for writing, compiling, and deploying smart contracts. Given Moonbeam’s Ethereum compatibility features, you can use Remix directly with any Moonbeam network.
 
-This guide walks through the process of creating and deploying a Solidity smart contract to a [Moonbeam development node](/builders/get-started/networks/moonbeam-dev){target=\_blank} using the Remix IDE. This guide can be adapted for [Moonbeam](/builders/get-started/networks/moonbeam){target=\_blank}, [Moonriver](/builders/get-started/networks/moonriver){target=\_blank}, or [Moonbase Alpha](/builders/get-started/networks/moonbase){target=\_blank}.
+This guide walks through the process of creating and deploying a Solidity smart contract to a [Moonbeam development node](/builders/get-started/networks/moonbeam-dev/){target=\_blank} using the Remix IDE. This guide can be adapted for [Moonbeam](/builders/get-started/networks/moonbeam/){target=\_blank}, [Moonriver](/builders/get-started/networks/moonriver/){target=\_blank}, or [Moonbase Alpha](/builders/get-started/networks/moonbase/){target=\_blank}.
 
 If you're familiar with Remix, you can skip ahead to the [Connect Remix to Moonbeam](#connect){target=\_blank} section to learn how to use Remix with Moonbeam.
 
@@ -20,8 +20,8 @@ If you're familiar with Remix, you can skip ahead to the [Connect Remix to Moonb
 
 For the purposes of this guide, you'll need to have the following:
 
-- A locally running [Moonbeam development node](/builders/get-started/networks/moonbeam-dev){target=\_blank}
-- [MetaMask installed and connected](/tokens/connect/metamask){target=\_blank} to your development node
+- A locally running [Moonbeam development node](/builders/get-started/networks/moonbeam-dev/){target=\_blank}
+- [MetaMask installed and connected](/tokens/connect/metamask/){target=\_blank} to your development node
 
 If you followed the guides above, you should have a local Moonbeam node, which will begin to author blocks as transactions arrive.
 
@@ -118,7 +118,7 @@ The following section will cover how to configure the environment for deployment
 
 To deploy the smart contract to Moonbeam, you'll need to make sure that you've connected your wallet to your Moonbeam development node or the Moonbeam network of your choice. Then, from the **Deploy and run transactions** tab, you can connect Remix to your wallet by selecting your wallet from the **ENVIRONMENT** dropdown. For example, if you have Trust Wallet installed, you'll see **Injected Provider - TrustWallet** from the dropdown. Aside from injected providers, you can also connect to Moonbeam via WalletConnect.
 
-For this example, MetaMask will be used. You should already have MetaMask installed and connected to your local Moonbeam development node. If not, please refer to the [Interacting with Moonbeam Using MetaMask](/tokens/connect/metamask){target=\_blank} guide for step-by-step instructions.
+For this example, MetaMask will be used. You should already have MetaMask installed and connected to your local Moonbeam development node. If not, please refer to the [Interacting with Moonbeam Using MetaMask](/tokens/connect/metamask/){target=\_blank} guide for step-by-step instructions.
 
 From the **ENVIRONMENT** dropdown, select **Injected Provider - MetaMask**.
 
@@ -181,6 +181,6 @@ On the other hand, if you call the `approve` function, which will approve an acc
 
 ![The inputs for the approve function of the ERC-20 contract and the MetaMask pop-up for the approval.](/images/builders/build/eth-api/dev-env/remix/remix-14.webp)
 
-To view your balance or approvals, or transfer MYTOKs, you can add the MYTOK to your wallet. For information on how to add a token to MetaMask, you can refer to the [Add an ERC-20 Token](/tokens/connect/metamask#add-erc20){target=\_blank} section of [our MetaMask documentation](/tokens/connect/metamask){target=\_blank}.
+To view your balance or approvals, or transfer MYTOKs, you can add the MYTOK to your wallet. For information on how to add a token to MetaMask, you can refer to the [Add an ERC-20 Token](/tokens/connect/metamask#add-erc20){target=\_blank} section of [our MetaMask documentation](/tokens/connect/metamask/){target=\_blank}.
 
 --8<-- 'text/_disclaimers/third-party-content.md'

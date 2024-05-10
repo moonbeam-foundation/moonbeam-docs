@@ -19,7 +19,7 @@ Similarly to running a regular node, you can spin up a tracing node using Docker
 
 ## Tracing Node Flags {: #tracing-node-flags }
 
-Spinning up a `debug`, `txpool`, or `tracing` node is similar to [running a full node](/node-operators/networks/run-a-node/overview){target=\_blank}. However, there are some additional flags that you may want to enable specific tracing features:
+Spinning up a `debug`, `txpool`, or `tracing` node is similar to [running a full node](/node-operators/networks/run-a-node/overview/){target=\_blank}. However, there are some additional flags that you may want to enable specific tracing features:
 
   - **`--ethapi debug`** - optional flag that enables `debug_traceTransaction`, `debug_traceBlockByNumber`, and `debug_traceBlockByHash`
   - **`--ethapi trace`** - optional flag that enables `trace_filter`
@@ -173,7 +173,7 @@ You should see a terminal log similar to the following if you spun up a Moonbase
 
 ## Run a Tracing Node with Systemd {: #run-a-tracing-node-with-systemd }
 
-When you run a node using Systemd, you'll need to start off by setting up the Moonbeam binary. To do so you'll need to follow the instructions on the [Run a Node on Moonbeam Using Systemd](/node-operators/networks/run-a-node/systemd){target=\_blank} page. In general, you'll need to:
+When you run a node using Systemd, you'll need to start off by setting up the Moonbeam binary. To do so you'll need to follow the instructions on the [Run a Node on Moonbeam Using Systemd](/node-operators/networks/run-a-node/systemd/){target=\_blank} page. In general, you'll need to:
 
 1. Setup the Moonbeam binary by following the [Release Binary](/node-operators/networks/run-a-node/systemd/#the-release-binary){target=\_blank} instructions. Or if you want to compile the binary yourself, you can follow the [Compile the Binary](/node-operators/networks/run-a-node/systemd/#compile-the-binary){target=\_blank} instructions
 2. Follow the instructions in the [Setup the Service](/node-operators/networks/run-a-node/systemd/#setup-the-service){target=\_blank} instructions
@@ -387,4 +387,4 @@ Your terminal should display logs similar to the following:
 
 ## Using a Tracing Node {: #using-a-tracing-node }
 
-To explore the different non-standard RPC methods available on Moonbeam, and how to use these methods with a tracing node, check out the [Debug & Trace](/builders/json-rpc/debug-trace) guide.
+To explore the different non-standard RPC methods available on Moonbeam, and how to use these methods with a tracing node, check out the [Debug & Trace](/builders/json-rpc/debug-trace/) guide.

@@ -15,12 +15,12 @@ This page is a brief introduction and overview of XCM and other related elements
 
 If you want to jump to more XCM-related content, feel free to check out the following pages:
 
-- [**Core XCM Concepts**](/builders/interoperability/xcm/core-concepts){target=\_blank} - learn topics related to [XCM Instructions](/builders/interoperability/xcm/core-concepts/instructions){target=\_blank}, [Multilocations](/builders/interoperability/xcm/core-concepts/multilocations){target=\_blank}, and [XCM Fees](/builders/interoperability/xcm/core-concepts/weights-fees){target=\_blank}
-- [**XC Registration**](/builders/interoperability/xcm/xc-registration){target=\_blank} - go through the process of [Opening an XCM Channel with Moonbeam](/builders/interoperability/xcm/xc-registration/xc-integration){target=\_blank} and how to [Register Polkadot Native Assets as XC-20s](/builders/interoperability/xcm/xc-registration/assets){target=\_blank}
-- [**XC-20s**](/builders/interoperability/xcm/xc20){target=\_blank} - read an [Overview](/builders/interoperability/xcm/xc20/overview){target=\_blank} of this Moonbeam-only asset class and learn how to [Interact with XC-20s](/builders/interoperability/xcm/xc20/interact){target=\_blank} and how to [Send them via XCM](/builders/interoperability/xcm/xc20/send-xc20s){target=\_blank}
-- [**Remote Execution via XCM**](/builders/interoperability/xcm/remote-execution){target=\_blank} - grasp all concepts related to remote execution via XCM, starting with a [High-Level Overview](/builders/interoperability/xcm/remote-execution/overview){target=\_blank}, then [Computed Origins](/builders/interoperability/xcm/remote-execution/computed-origins){target=\_blank} and wrapping up with [Remote Calls via XCM](/builders/interoperability/xcm/remote-execution/substrate-calls){target=\_blank} and [Remote EVM Calls via XCM](/builders/interoperability/xcm/remote-execution/remote-evm-calls){target=\_blank}
-- [**XCM SDK**](/builders/interoperability/xcm/xcm-sdk/v1/reference){target=\_blank} - learn how to [Use Moonbeam's XCM SDK](/builders/interoperability/xcm/xcm-sdk/v1/xcm-sdk){target=\_blank}
-- **XCM Debugging and Tools** - learn how to test some XCM scenarios by  [Sending and Executing Generic XCM Messages](/builders/interoperability/xcm/send-execute-xcm){target=\_blank}, or how to use the [XCM Utilities Precompile](/builders/interoperability/xcm/xcm-utils){target=\_blank} to access XCM_related utility functions directly within the EVM
+- [**Core XCM Concepts**](/builders/interoperability/xcm/core-concepts/){target=\_blank} - learn topics related to [XCM Instructions](/builders/interoperability/xcm/core-concepts/instructions/){target=\_blank}, [Multilocations](/builders/interoperability/xcm/core-concepts/multilocations/){target=\_blank}, and [XCM Fees](/builders/interoperability/xcm/core-concepts/weights-fees/){target=\_blank}
+- [**XC Registration**](/builders/interoperability/xcm/xc-registration/){target=\_blank} - go through the process of [Opening an XCM Channel with Moonbeam](/builders/interoperability/xcm/xc-registration/xc-integration/){target=\_blank} and how to [Register Polkadot Native Assets as XC-20s](/builders/interoperability/xcm/xc-registration/assets/){target=\_blank}
+- [**XC-20s**](/builders/interoperability/xcm/xc20/){target=\_blank} - read an [Overview](/builders/interoperability/xcm/xc20/overview/){target=\_blank} of this Moonbeam-only asset class and learn how to [Interact with XC-20s](/builders/interoperability/xcm/xc20/interact/){target=\_blank} and how to [Send them via XCM](/builders/interoperability/xcm/xc20/send-xc20s/){target=\_blank}
+- [**Remote Execution via XCM**](/builders/interoperability/xcm/remote-execution/){target=\_blank} - grasp all concepts related to remote execution via XCM, starting with a [High-Level Overview](/builders/interoperability/xcm/remote-execution/overview/){target=\_blank}, then [Computed Origins](/builders/interoperability/xcm/remote-execution/computed-origins/){target=\_blank} and wrapping up with [Remote Calls via XCM](/builders/interoperability/xcm/remote-execution/substrate-calls/){target=\_blank} and [Remote EVM Calls via XCM](/builders/interoperability/xcm/remote-execution/remote-evm-calls/){target=\_blank}
+- [**XCM SDK**](/builders/interoperability/xcm/xcm-sdk/v1/reference/){target=\_blank} - learn how to [Use Moonbeam's XCM SDK](/builders/interoperability/xcm/xcm-sdk/v1/xcm-sdk/){target=\_blank}
+- **XCM Debugging and Tools** - learn how to test some XCM scenarios by  [Sending and Executing Generic XCM Messages](/builders/interoperability/xcm/send-execute-xcm/){target=\_blank}, or how to use the [XCM Utilities Precompile](/builders/interoperability/xcm/xcm-utils/){target=\_blank} to access XCM_related utility functions directly within the EVM
 
 ## General XCM Definitions {: #general-xcm-definitions }
 
@@ -51,25 +51,25 @@ A channel for XCMs between the relay chain and parachain is automatically opened
 
 Even though parachain A has expressed its intentions of opening an XCM channel with parachain B, the latter has not signaled to the relay chain its intentions to receive messages from parachain A. Therefore, to have an established channel, parachain B must send an extrinsic (an XCM) to the relay chain. The accepting channel extrinsic is similar to the previous one. However, the encoded call data only includes the new method (accept channel) and the parachain ID of the sender (parachain A in this example). Once both parachains have agreed, the channel is opened within the following epoch.
 
-To learn more about the channel registration process, please refer to the [How to Establish an XC Integration with Moonbeam](/builders/interoperability/xcm/xc-registration/xc-integration){target=\_blank} guide.
+To learn more about the channel registration process, please refer to the [How to Establish an XC Integration with Moonbeam](/builders/interoperability/xcm/xc-registration/xc-integration/){target=\_blank} guide.
 
 ![XCM Channel Registration Overview](/images/builders/interoperability/xcm/overview/overview-2.webp)
 
 Once the channel is established, cross-chain messages can be sent between parachains. For asset transfers, assets need to be registered before being transferred through XCMs, either by being baked into the runtime as a constant or through a pallet. Moonbeam relies on a Substrate pallet to handle asset registration without the need for runtime upgrades, making the process a lot simpler.
 
-To learn how to register an asset on Moonbeam and the information necessary to add Moonbeam assets to another chain, please refer to the [How to Register Cross-Chain Assets](/builders/interoperability/xcm/xc-registration/assets){target=\_blank} guide.
+To learn how to register an asset on Moonbeam and the information necessary to add Moonbeam assets to another chain, please refer to the [How to Register Cross-Chain Assets](/builders/interoperability/xcm/xc-registration/assets/){target=\_blank} guide.
 
 ## XCM on Moonbeam {: #moonbeam-and-xcm }
 
 As Moonbeam is a parachain within the Polkadot ecosystems, one of the most direct implementations of XCM is to enable asset transfer from Polkadot and other parachains from/to Moonbeam. This allows users to bring their tokens to Moonbeam and all its dApps.
 
-To this end, Moonbeam has introduced [XC-20s](/builders/interoperability/xcm/xc20/overview){target=\_blank}, which expand on Moonbeam's unique Ethereum compatibility features. XC-20s allow Polkadot native assets to be represented via a standard [ERC-20 interface](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/assets-erc20/ERC20.sol){target=\_blank} through a precompiled contract. When these assets are registered on Moonbeam, they can be set as XCM execution fee assets. Consequently, when a user transfers such an asset to Moonbeam, a small part of the amount will be used to cover the XCM execution fees.
+To this end, Moonbeam has introduced [XC-20s](/builders/interoperability/xcm/xc20/overview/){target=\_blank}, which expand on Moonbeam's unique Ethereum compatibility features. XC-20s allow Polkadot native assets to be represented via a standard [ERC-20 interface](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/assets-erc20/ERC20.sol){target=\_blank} through a precompiled contract. When these assets are registered on Moonbeam, they can be set as XCM execution fee assets. Consequently, when a user transfers such an asset to Moonbeam, a small part of the amount will be used to cover the XCM execution fees.
 
 In addition, ERC-20s that are deployed to Moonbeam can be sent to other chains in the Polkadot ecosystem via XCM. Consequently, from a developer's perspective, XC-20s are ERC-20 tokens with the added benefit of being an XCM cross-chain asset, and dApps can easily support them through a familiar ERC-20 interface.
 
 ![Moonbeam XC-20 XCM Integration With Polkadot](/images/builders/interoperability/xcm/overview/overview-3.webp)
 
-To send XC-20s across the Polkadot ecosystem from Moonbeam, developers need to use the [X-Tokens Pallet](/builders/interoperability/xcm/xc20/send-xc20s/xtokens-pallet){target=\_blank} for transfers via the Substrate API and the [X-Tokens Precompile](/builders/interoperability/xcm/xc20/send-xc20s/xtokens-precompile){target=\_blank} for transfers via the Ethereum API.
+To send XC-20s across the Polkadot ecosystem from Moonbeam, developers need to use the [X-Tokens Pallet](/builders/interoperability/xcm/xc20/send-xc20s/xtokens-pallet/){target=\_blank} for transfers via the Substrate API and the [X-Tokens Precompile](/builders/interoperability/xcm/xc20/send-xc20s/xtokens-precompile/){target=\_blank} for transfers via the Ethereum API.
 
 Another unique feature of Moonbeam is the ability to initiate XCM actions from EVM smart contracts or to call its EVM through XCM messages via remote execution. This unlocks a new set of possibilities, where contracts on Moonbeam can access parachain-specific functionalities via XCM, or other parachain ecosystems can use EVM smart contracts on Moonbeam to expand their functions.
 
@@ -127,4 +127,4 @@ Alice (Polkadot) wants to perform a certain remote action through a smart contra
 
 Moonbeam will locally execute the action the XCM message is programmed to do. In this case, it is to withdraw the asset decided by Alice for the XCM execution fee and buy some execution time on Moonbeam to execute the smart contract call on Moonbeam's EVM.
 
-You can read more about the flow in detail on the [Remote Execution](/builders/interoperability/xcm/remote-execution/overview){target=\_blank} page.
+You can read more about the flow in detail on the [Remote Execution](/builders/interoperability/xcm/remote-execution/overview/){target=\_blank} page.

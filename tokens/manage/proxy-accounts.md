@@ -70,7 +70,7 @@ When creating a proxy account, you must choose a type of proxy which will define
 - **`Governance`** - allows the proxy account to make transactions related to governance, such as voting or proposing democracy proposals
 - **`NonTransfer`** - this type of proxy account is allowed to submit any type of transaction with the exception of balance transfers
 - **`Balances`** - allows the proxy account to only make transactions related to sending funds
-- **`IdentityJudgement`** - allows the proxy account to request judgement on an [account's identity](/tokens/manage/identity){target=\_blank} from a registrar. The following judgements can be issued:
+- **`IdentityJudgement`** - allows the proxy account to request judgement on an [account's identity](/tokens/manage/identity/){target=\_blank} from a registrar. The following judgements can be issued:
     - **unknown** - (default) no judgement has been made yet
     - **fee paid** - to indicate a user has requested judgement and it is in progress
     - **reasonable** - the information appears reasonable, but no in-depth checks (i.e. formal KYC process) were performed

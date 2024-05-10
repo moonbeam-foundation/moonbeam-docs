@@ -155,7 +155,7 @@ First, make sure you have [your API Key](https://www.covalenthq.com/platform/#/a
 To get started with the Covalent API, you will need to have the following:
 
  - A free [Covalent API Key](https://www.covalenthq.com/platform/#/auth/register){target=\_blank}
- - MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask){target=\_blank}
+ - MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}
  - An account with funds.
   --8<-- 'text/_common/faucet/faucet-list-item.md'
 

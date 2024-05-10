@@ -84,7 +84,7 @@ To use the script, you can take the following steps:
     --parents INSERT_PARENTS_VALUE_IF_APPLIES
     ```
 
-You can also calculate the Computed Origin account using the `multilocationToAddress` function of the [XCM Utilities Precompile](/builders/interoperability/xcm/xcm-utils){target=\_blank}.
+You can also calculate the Computed Origin account using the `multilocationToAddress` function of the [XCM Utilities Precompile](/builders/interoperability/xcm/xcm-utils/){target=\_blank}.
 
 ### Calculate the Computed Origin on a Moonbeam-based Network {: #calculate-the-computed-origin-on-moonbeam }
 
@@ -98,7 +98,7 @@ yarn calculate-multilocation-derivative-account \
 ```
 
 !!! note
-    For Moonbeam or Moonriver, you will need to have your own endpoint and API key, which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints){target=\_blank}.
+    For Moonbeam or Moonriver, you will need to have your own endpoint and API key, which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=\_blank}.
 
 The returned output includes the following values:
 

@@ -212,7 +212,7 @@ If you choose `manual`, you'll need to manually create the blocks yourself, whic
 engine_createBlock(createEmpty: *bool*, finalize: *bool*, parentHash?: *BlockHash*)
 ```
 
-For example, you can use the following snippet to manually create a block using [Ethers.js](/builders/build/eth-api/libraries/ethersjs){target=\_blank}, an Ethereum library that makes it easy to interact with JSON-RPC methods:
+For example, you can use the following snippet to manually create a block using [Ethers.js](/builders/build/eth-api/libraries/ethersjs/){target=\_blank}, an Ethereum library that makes it easy to interact with JSON-RPC methods:
 
 ```js
 import { ethers } from 'ethers';
@@ -240,11 +240,11 @@ produceBlock();
 ```
 
 !!! note
-    If you're unfamiliar with Ethers, please refer to the [Ethers.js](/builders/build/eth-api/libraries/ethersjs){target=\_blank} documentation page to learn more.
+    If you're unfamiliar with Ethers, please refer to the [Ethers.js](/builders/build/eth-api/libraries/ethersjs/){target=\_blank} documentation page to learn more.
 
 ## Prefunded Development Accounts {: #pre-funded-development-accounts }
 
-Moonbeam has a [unified accounts](/learn/core-concepts/unified-accounts){target=\_blank} system, which enables users to have an Ethereum-styled H160 account that can interact with the Substrate API and the Ethereum API. As a result, you can interact with your account through [Polkadot.js Apps](#connecting-polkadot-js-apps-to-a-local-moonbeam-node) or [MetaMask](/tokens/connect/metamask){target=\_blank} (or any other [EVM wallet](/tokens/connect){target=\_blank}). In addition, you can also use other [development tools](/builders/build/eth-api/dev-env){target=\_blank}, such as [Remix](/builders/build/eth-api/dev-env/remix){target=\_blank} and [Hardhat](/builders/build/eth-api/dev-env/hardhat){target=\_blank}.
+Moonbeam has a [unified accounts](/learn/core-concepts/unified-accounts/){target=\_blank} system, which enables users to have an Ethereum-styled H160 account that can interact with the Substrate API and the Ethereum API. As a result, you can interact with your account through [Polkadot.js Apps](#connecting-polkadot-js-apps-to-a-local-moonbeam-node) or [MetaMask](/tokens/connect/metamask/){target=\_blank} (or any other [EVM wallet](/tokens/connect/){target=\_blank}). In addition, you can also use other [development tools](/builders/build/eth-api/dev-env/){target=\_blank}, such as [Remix](/builders/build/eth-api/dev-env/remix/){target=\_blank} and [Hardhat](/builders/build/eth-api/dev-env/hardhat/){target=\_blank}.
 
 Your Moonbeam development node comes with ten prefunded Ethereum-styled accounts for development. The addresses are derived from Substrate's canonical development mnemonic:
 
@@ -259,7 +259,7 @@ Also included with the development node is an additional prefunded account used 
 
 --8<-- 'code/builders/get-started/networks/moonbeam-dev/dev-testing-account.md'
 
-You can connect any of these accounts to [MetaMask](/tokens/connect/metamask){target=\_blank}, [Talisman](/tokens/connect/talisman){target=\_blank}, [Polkadot.js Apps](/tokens/connect/polkadotjs){target=\_blank}, etc., using their private keys.
+You can connect any of these accounts to [MetaMask](/tokens/connect/metamask/){target=\_blank}, [Talisman](/tokens/connect/talisman/){target=\_blank}, [Polkadot.js Apps](/tokens/connect/polkadotjs/){target=\_blank}, etc., using their private keys.
 
 ## Development Node Endpoints {: #access-your-development-node }
 
@@ -288,7 +288,7 @@ For a Moonbeam development node, you can use any of the following block explorer
 
 You can also gain access to some non-standard RPC methods by running a tracing node, which allows developers to inspect and debug transactions during runtime. Tracing nodes use a different Docker image than a standard Moonbeam development node.
 
-To learn how to run a Moonbeam development tracing node, check out the [Run a Tracing Node](/node-operators/networks/tracing-node){target=\_blank} guide, and be sure to switch to the **Moonbeam Development Node** tab throughout the instructions. Then, to access the non-standard RPC methods with your tracing node, check out the [Debug & Trace](/builders/json-rpc/debug-trace){target=\_blank} guide.
+To learn how to run a Moonbeam development tracing node, check out the [Run a Tracing Node](/node-operators/networks/tracing-node/){target=\_blank} guide, and be sure to switch to the **Moonbeam Development Node** tab throughout the instructions. Then, to access the non-standard RPC methods with your tracing node, check out the [Debug & Trace](/builders/json-rpc/debug-trace/){target=\_blank} guide.
 
 ## Purge a Development Node {: #purging-your-node }
 

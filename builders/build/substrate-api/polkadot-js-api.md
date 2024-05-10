@@ -41,7 +41,7 @@ The library also includes other core components like Keyring for account managem
 
 ## Create an API Provider Instance {: #creating-an-API-provider-instance }
 
-Similar to [Ethereum API libraries](/builders/build/eth-api/libraries){target=\_blank}, you must first instantiate an API instance of the Polkadot.js API. Create the `WsProvider` using the WebSocket endpoint of the Moonbeam network you wish to interact with.
+Similar to [Ethereum API libraries](/builders/build/eth-api/libraries/){target=\_blank}, you must first instantiate an API instance of the Polkadot.js API. Create the `WsProvider` using the WebSocket endpoint of the Moonbeam network you wish to interact with.
 
 --8<-- 'text/_common/endpoint-examples.md'
 
@@ -138,7 +138,7 @@ Where `<type>` can be either:
 - `rpc` - for endpoints specific to RPC calls
 - `consts` - for endpoints specific to runtime constants
 
-And therefore, none of the information contained in the `api.{query, tx, rpc, consts}.<module>.<method>` endpoints are hard-coded in the API. This allows parachains like Moonbeam to have custom endpoints through its [pallets](/builders/pallets-precompiles/pallets){target=\_blank} that can be directly accessed via the Polkadot.js API library.
+And therefore, none of the information contained in the `api.{query, tx, rpc, consts}.<module>.<method>` endpoints are hard-coded in the API. This allows parachains like Moonbeam to have custom endpoints through its [pallets](/builders/pallets-precompiles/pallets/){target=\_blank} that can be directly accessed via the Polkadot.js API library.
 
 ## Query On-Chain Data on Moonbeam {: #querying-for-information }
 
@@ -324,7 +324,7 @@ Note that the `signAndSend` function can also accept optional parameters, such a
 
 The transaction endpoint also offers a method to obtain weight information for a given `api.tx.<module>.<method>`. To do so, you'll need to use the `paymentInfo` function after having built the entire transaction with the specific `module` and `method`.
 
-The `paymentInfo` function returns weight information in terms of `refTime` and `proofSize`, which can be used to determine the transaction fee. This is extremely helpful when crafting [remote execution calls via XCM](/builders/interoperability/xcm/remote-execution){target=\_blank}.
+The `paymentInfo` function returns weight information in terms of `refTime` and `proofSize`, which can be used to determine the transaction fee. This is extremely helpful when crafting [remote execution calls via XCM](/builders/interoperability/xcm/remote-execution/){target=\_blank}.
 
 For example, assuming you've [initialized the API](#creating-an-API-provider-instance), the following snippet shows how you can get the weight information for a simple balance transfer between two accounts:
 
@@ -447,7 +447,7 @@ Some of the methods availabe through the Polkadot.js API interface are also avai
       }'
     ```
 
-The [Consensus and Finality page](/learn/core-concepts/consensus-finality){target=\_blank} has sample code for using the exposed custom and Substrate RPC calls to check the finality of a given transaction.
+The [Consensus and Finality page](/learn/core-concepts/consensus-finality/){target=\_blank} has sample code for using the exposed custom and Substrate RPC calls to check the finality of a given transaction.
 
 ## Polkadot.js API Utility Functions {: #utilities }
 

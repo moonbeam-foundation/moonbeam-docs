@@ -5,7 +5,7 @@ description: This guide covers the ways you can build cross-chain dApps with Moo
 
 # Cross-Chain Communication Methods
 
-Moonbeam makes it easy for developers to build smart contracts that connect across chains, both within the Polkadot ecosystem and outside the Polkadot ecosystem. This page will provide an overview of the underlying protocols that enable cross-chain communication and how you can leverage them to build connected contracts. For step-by-step guides of how to put these principles into practice, be sure to check out the [interoperability tutorials](/tutorials/interoperability){target=\_blank}. 
+Moonbeam makes it easy for developers to build smart contracts that connect across chains, both within the Polkadot ecosystem and outside the Polkadot ecosystem. This page will provide an overview of the underlying protocols that enable cross-chain communication and how you can leverage them to build connected contracts. For step-by-step guides of how to put these principles into practice, be sure to check out the [interoperability tutorials](/tutorials/interoperability/){target=\_blank}. 
 
 Two key terms that will come up frequently in this guide are XCM and GMP. [XCM](https://docs.moonbeam.network/builders/interoperability/xcm){target=\_blank} refers to cross-consensus messaging, and it's Polkadot's native interoperability language that facilitates communication between Polkadot blockchains. You can read more about the [standardized XCM message format](https://wiki.polkadot.network/docs/learn-xcm){target=\_blank} and [How to Get Started Building with XCM](https://docs.moonbeam.network/builders/interoperability/xcm){target=\_blank}.
 
@@ -20,7 +20,7 @@ Two key terms that will come up frequently in this guide are XCM and GMP. [XCM](
 	|    **Provider**    |   Polkadot     |  [Axelar](https://docs.moonbeam.network/builders/interoperability/protocols/axelar){target=\_blank}, [Wormhole](https://docs.moonbeam.network/builders/interoperability/protocols/wormhole){target=\_blank}, [LayerZero](https://docs.moonbeam.network/builders/interoperability/protocols/layerzero){target=\_blank}, [Hyperlane](https://docs.moonbeam.network/builders/interoperability/protocols/hyperlane){target=\_blank}, etc.    |
 	|  **Implementation**   |    [XCM Virtual Machine](https://wiki.polkadot.network/docs/learn-xcvm){target=\_blank}     |   Smart contracts   |
 	|  **Security**   |    Polkadot's shared security     |   Proprietary consensus determined by GMP provider   |
-	|  **Fees**   |    [Purchased with `BuyExecution` XCM instruction with supported asset](/builders/interoperability/xcm/core-concepts/weights-fees){target=\_blank}     |   User sends value with transaction to pay for gas on the destination chain   |
+	|  **Fees**   |    [Purchased with `BuyExecution` XCM instruction with supported asset](/builders/interoperability/xcm/core-concepts/weights-fees/){target=\_blank}     |   User sends value with transaction to pay for gas on the destination chain   |
 	|  **Adding New Chains**   |    Requires creation of XCM channels by both connected chains     |   Requires GMP provider to add support   |
 
 ## XCM Transport Methods {: #xcm-transport-methods }  
@@ -63,10 +63,10 @@ A significant number of GMP providers have integrated with Moonbeam, offering mu
 
 The following GMP providers have integrated with Moonbeam: 
 
-- [Axelar](/builders/interoperability/protocols/axelar){target=\_blank}
-- [Hyperlane](/builders/interoperability/protocols/hyperlane){target=\_blank}
-- [LayerZero](/builders/interoperability/protocols/layerzero){target=\_blank} 
-- [Wormhole](/builders/interoperability/protocols/wormhole){target=\_blank}
+- [Axelar](/builders/interoperability/protocols/axelar/){target=\_blank}
+- [Hyperlane](/builders/interoperability/protocols/hyperlane/){target=\_blank}
+- [LayerZero](/builders/interoperability/protocols/layerzero/){target=\_blank} 
+- [Wormhole](/builders/interoperability/protocols/wormhole/){target=\_blank}
 
 ## Implementing Both XCM and GMP {: #implementing-both-xcm-and-gmp } 
 
@@ -74,7 +74,7 @@ Building with XCM or GMP does not preclude building with the other. As they suit
 
 ### Moonbeam Routed Liquidity {: #moonbeam-routed-liquidity }
 
-[Moonbeam Routed Liquidity](/builders/interoperability/mrl) (MRL) enables seamless liquidity between external blockchains connected to Moonbeam via Wormhole to Polkadot parachains connected to Moonbeam via XCM. This combination of GMP and XCM means that any ERC-20 token on a chain that Wormhole has integrated with can be routed through Moonbeam to a destination parachain (and back). A diagram of the happy path of a token transfer to a parachain via MRL is shown below, and you can find more information at the [MRL docs](/builders/interoperability/mrl). 
+[Moonbeam Routed Liquidity](/builders/interoperability/mrl/) (MRL) enables seamless liquidity between external blockchains connected to Moonbeam via Wormhole to Polkadot parachains connected to Moonbeam via XCM. This combination of GMP and XCM means that any ERC-20 token on a chain that Wormhole has integrated with can be routed through Moonbeam to a destination parachain (and back). A diagram of the happy path of a token transfer to a parachain via MRL is shown below, and you can find more information at the [MRL docs](/builders/interoperability/mrl/). 
 
 ![Happy Path of an MRL token transfer](/images/learn/features/xchain-plans/xchain-plans-2.webp) 
 

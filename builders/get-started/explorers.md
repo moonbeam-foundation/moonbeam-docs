@@ -24,10 +24,10 @@ Moonbeam provides two different kinds of explorers: ones to query the Ethereum A
 Other Moonscan features include:
 
  - [Collator leaderboard](https://moonbeam.moonscan.io/collators){target=\_blank} ranking collators by performance
- - [Contract source code verification](/builders/build/eth-api/verify-contracts/block-explorers){target=\_blank}, accessible both via a web interface and an API
+ - [Contract source code verification](/builders/build/eth-api/verify-contracts/block-explorers/){target=\_blank}, accessible both via a web interface and an API
  - Ability to read and write state data of verified smart contracts
  - [Token approvals](https://moonscan.io/tokenapprovalchecker){target=\_blank} where you can view and revoke any of your prior token approvals
- - [Adding token information](/builders/get-started/token-profile){target=\_blank} and creating a profile for ERC-20s, ERC-721s, and ERC-1155s deployed to Moonbeam-based networks. The profile can include links to your project, social media, price data, and other information pertaining to your token
+ - [Adding token information](/builders/get-started/token-profile/){target=\_blank} and creating a profile for ERC-20s, ERC-721s, and ERC-1155s deployed to Moonbeam-based networks. The profile can include links to your project, social media, price data, and other information pertaining to your token
 
 ![Moonbeam Moonscan](/images/builders/get-started/explorers/explorers-1.webp)
 
@@ -56,6 +56,6 @@ While not a full-featured block explorer, Polkadot.js Apps is a convenient optio
 
 ![Polkadot.js Moonbeam](/images/builders/get-started/explorers/explorers-4.webp)
 
-To connect it to a Moonbeam development node, you can follow the steps in the [Connecting Polkadot.js Apps to a Local Moonbeam Node](/builders/get-started/networks/moonbeam-dev/#connecting-polkadot-js-apps-to-a-local-moonbeam-node){target=\_blank} section of the [Getting Started with a Moonbeam Development Node](/builders/get-started/networks/moonbeam-dev){target=\_blank} guide. The default port for this is `9944`.
+To connect it to a Moonbeam development node, you can follow the steps in the [Connecting Polkadot.js Apps to a Local Moonbeam Node](/builders/get-started/networks/moonbeam-dev/#connecting-polkadot-js-apps-to-a-local-moonbeam-node){target=\_blank} section of the [Getting Started with a Moonbeam Development Node](/builders/get-started/networks/moonbeam-dev/){target=\_blank} guide. The default port for this is `9944`.
 
 ![Polkadot.js Local Node](/images/builders/get-started/explorers/explorers-5.webp)

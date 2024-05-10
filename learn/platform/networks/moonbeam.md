@@ -17,7 +17,7 @@ Currently, Moonbeam has the following configurations:
 
 - Runs as a parachain connected to the Polkadot relay chain
 - Has an active set of {{ networks.moonbeam.staking.max_candidates }} collators
-- Has infrastructure providers that provide [API endpoints](/builders/get-started/endpoints){target=\_blank} to connect to the network. Projects can also [run their own node](/node-operators/networks/run-a-node){target=\_blank} to have access to their own private endpoints
+- Has infrastructure providers that provide [API endpoints](/builders/get-started/endpoints/){target=\_blank} to connect to the network. Projects can also [run their own node](/node-operators/networks/run-a-node/){target=\_blank} to have access to their own private endpoints
 
 ![Moonbeam Diagram](/images/learn/platform/networks/moonbeam-diagram.webp)
 
@@ -70,9 +70,9 @@ The smallest unit of Glimmer (GMLR), similarly to Ethereum, is a Wei. It takes 1
 
 ## Proof of Stake {: #proof-of-stake }
 
-The Moonriver network is a fully decentralized Delegated Proof of Stake network where users of the network can delegate collator candidates to produce blocks and earn rewards. It uses the [Nimbus framework](/learn/features/consensus){target=\_blank} framework for parachain consensus. The number of candidates in the active set will be subject to governance. The active set will consist of the top candidates by stake, including delegations.
+The Moonriver network is a fully decentralized Delegated Proof of Stake network where users of the network can delegate collator candidates to produce blocks and earn rewards. It uses the [Nimbus framework](/learn/features/consensus/){target=\_blank} framework for parachain consensus. The number of candidates in the active set will be subject to governance. The active set will consist of the top candidates by stake, including delegations.
 
 ## Limitations {: #limitations }
 
-Some [precompiles](https://docs.klaytn.com/smart-contract/precompiled-contracts){target=\_blank} are yet to be included. You can check a list of supported precompiles on the [Solidity Precompiles page](/builders/pallets-precompiles/precompiles/overview){target=\_blank}. However, all built-in functions are available.
+Some [precompiles](https://docs.klaytn.com/smart-contract/precompiled-contracts){target=\_blank} are yet to be included. You can check a list of supported precompiles on the [Solidity Precompiles page](/builders/pallets-precompiles/precompiles/overview/){target=\_blank}. However, all built-in functions are available.
 

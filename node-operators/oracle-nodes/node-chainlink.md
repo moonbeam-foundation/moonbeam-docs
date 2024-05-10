@@ -36,9 +36,9 @@ If you are familiar with running Chainlink oracle nodes, this information will g
 To follow along with this guide, you will need to have:
 
  - [Docker installed](https://docs.docker.com/get-docker){target=\_blank} for running Postgres DB and ChainLink node containers
- - An account with funds. You can create one with [MetaMask](/tokens/connect/metamask){target=\_blank}.
+ - An account with funds. You can create one with [MetaMask](/tokens/connect/metamask/){target=\_blank}.
  --8<-- 'text/_common/faucet/faucet-list-item.md'
- - Access to the [Remix IDE](https://remix.ethereum.org){target=\_blank} in case you want to use it to deploy the oracle contract. For more information you can check out the [Using Remix to Deploy to Moonbeam](/builders/build/eth-api/dev-env/remix){target=\_blank} tutorial
+ - Access to the [Remix IDE](https://remix.ethereum.org){target=\_blank} in case you want to use it to deploy the oracle contract. For more information you can check out the [Using Remix to Deploy to Moonbeam](/builders/build/eth-api/dev-env/remix/){target=\_blank} tutorial
 
 ## Getting Started {: #getting-started }
 
@@ -267,6 +267,6 @@ If you need a more custom solution, you can check out Chainlink's documentation 
 
 ## Test the Oracle {: #test-the-oracle }
 
-To verify the oracle is up and answering requests, follow the [using a Chainlink Oracle](/builders/integrations/oracles/chainlink) tutorial. The main idea is to deploy a client contract that makes requests to the oracle, and the oracle writes the requested data into the contract's storage.
+To verify the oracle is up and answering requests, follow the [using a Chainlink Oracle](/builders/integrations/oracles/chainlink/) tutorial. The main idea is to deploy a client contract that makes requests to the oracle, and the oracle writes the requested data into the contract's storage.
 
 --8<-- 'text/_disclaimers/third-party-content.md'

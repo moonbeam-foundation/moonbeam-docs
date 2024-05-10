@@ -32,7 +32,7 @@ To verify the installed version of Web3, you can use the `ls` command:
 npm ls web3
 ```
 
-As of writing this guide, the version used was 1.3.0. You will be also using [Remix](/builders/build/eth-api/dev-env/remix){target=\_blank}, connecting it to the Moonbase Alpha TestNet via [MetaMask](/tokens/connect/metamask){target=\_blank}.
+As of writing this guide, the version used was 1.3.0. You will be also using [Remix](/builders/build/eth-api/dev-env/remix/){target=\_blank}, connecting it to the Moonbase Alpha TestNet via [MetaMask](/tokens/connect/metamask/){target=\_blank}.
 
 --8<-- 'text/_common/endpoint-examples.md'
 
@@ -52,13 +52,13 @@ This code will return the following object in the terminal:
 --8<-- 'code/builders/pallets-precompiles/precompiles/eth-mainnet/ecrecoverresult.md'
 ```
 
-With the necessary values, you can go to [Remix](/builders/build/eth-api/dev-env/remix){target=\_blank} to test the precompiled contract. Note that this can also be verified with the Web3.js library, but in this case, you can go to Remix to be sure that it is using the precompiled contract on the blockchain. The Solidity code you can use to verify the signature is the following:
+With the necessary values, you can go to [Remix](/builders/build/eth-api/dev-env/remix/){target=\_blank} to test the precompiled contract. Note that this can also be verified with the Web3.js library, but in this case, you can go to Remix to be sure that it is using the precompiled contract on the blockchain. The Solidity code you can use to verify the signature is the following:
 
 ```solidity
 --8<-- 'code/builders/pallets-precompiles/precompiles/eth-mainnet/ecrecoverremix.sol'
 ```
 
-Using the [Remix compiler and deployment](/builders/build/eth-api/dev-env/remix){target=\_blank} and with [MetaMask pointing to Moonbase Alpha](/tokens/connect/metamask){target=\_blank}, you can deploy the contract and call the `verify()` method that returns **true** if the address returned by `ecrecover` is equal to the address used to sign the message (related to the private key and needs to be manually set in the contract).
+Using the [Remix compiler and deployment](/builders/build/eth-api/dev-env/remix/){target=\_blank} and with [MetaMask pointing to Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}, you can deploy the contract and call the `verify()` method that returns **true** if the address returned by `ecrecover` is equal to the address used to sign the message (related to the private key and needs to be manually set in the contract).
 
 ## Hashing with SHA256 {: #hashing-with-sha256 }
 
@@ -80,7 +80,7 @@ Currently there is no SHA3-256 support in Solidity, so it needs to be called wit
 --8<-- 'code/builders/pallets-precompiles/precompiles/eth-mainnet/sha3fips.sol'
 ```
 
-Using the [Remix compiler and deployment](/builders/build/eth-api/dev-env/remix){target=\_blank} and with [MetaMask pointing to Moonbase Alpha](/tokens/connect/metamask){target=\_blank}, you can deploy the contract and call the `sha3fips(bytes memory data)` method to return the encoded string of the data parameter.
+Using the [Remix compiler and deployment](/builders/build/eth-api/dev-env/remix/){target=\_blank} and with [MetaMask pointing to Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}, you can deploy the contract and call the `sha3fips(bytes memory data)` method to return the encoded string of the data parameter.
 
 ## Hashing with RIPEMD160 {: #hashing-with-ripemd-160 }
 
@@ -102,7 +102,7 @@ Currently there is no BN128Add support in Solidity, so it needs to be called wit
 --8<-- 'code/builders/pallets-precompiles/precompiles/eth-mainnet/bn128add.sol'
 ```
 
-Using the [Remix compiler and deployment](/builders/build/eth-api/dev-env/remix){target=\_blank} and with [MetaMask pointing to Moonbase Alpha](/tokens/connect/metamask){target=\_blank}, you can deploy the contract and call the `callBn256Add(bytes32 ax, bytes32 ay, bytes32 bx, bytes32 by)` method to return the result of the operation.
+Using the [Remix compiler and deployment](/builders/build/eth-api/dev-env/remix/){target=\_blank} and with [MetaMask pointing to Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}, you can deploy the contract and call the `callBn256Add(bytes32 ax, bytes32 ay, bytes32 bx, bytes32 by)` method to return the result of the operation.
 
 ## BN128Mul {: #bn128mul }
 
@@ -114,7 +114,7 @@ Currently there is no BN128Mul support in Solidity, so it needs to be called wit
 --8<-- 'code/builders/pallets-precompiles/precompiles/eth-mainnet/bn128mul.sol'
 ```
 
-Using the [Remix compiler and deployment](/builders/build/eth-api/dev-env/remix){target=\_blank} and with [MetaMask pointing to Moonbase Alpha](/tokens/connect/metamask){target=\_blank}, you can deploy the contract and call the `callBn256ScalarMul(bytes32 x, bytes32 y, bytes32 scalar)` method to return the result of the operation.
+Using the [Remix compiler and deployment](/builders/build/eth-api/dev-env/remix/){target=\_blank} and with [MetaMask pointing to Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}, you can deploy the contract and call the `callBn256ScalarMul(bytes32 x, bytes32 y, bytes32 scalar)` method to return the result of the operation.
 
 ## BN128Pairing {: #bn128pairing }
 
@@ -126,7 +126,7 @@ Currently there is no BN128Pairing support in Solidity, so it needs to be called
 --8<-- 'code/builders/pallets-precompiles/precompiles/eth-mainnet/bn128pairing.sol'
 ```
 
-Using the [Remix compiler and deployment](/builders/build/eth-api/dev-env/remix){target=\_blank} and with [MetaMask pointing to Moonbase Alpha](/tokens/connect/metamask){target=\_blank}, you can deploy the contract and call the `function callBn256Pairing(bytes memory input)` method to return the result of the operation.
+Using the [Remix compiler and deployment](/builders/build/eth-api/dev-env/remix/){target=\_blank} and with [MetaMask pointing to Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}, you can deploy the contract and call the `function callBn256Pairing(bytes memory input)` method to return the result of the operation.
 
 ## The Identity Function {: #the-identity-function }
 
@@ -152,4 +152,4 @@ The Solidity compiler does not support it, so it needs to be called with inline 
 --8<-- 'code/builders/pallets-precompiles/precompiles/eth-mainnet/modularexp.sol'
 ```
 
-You can try this in [Remix](/builders/build/eth-api/dev-env/remix){target=\_blank}. Use the function `verify()`, passing the base, exponent, and modulus. The function will store the value in the `checkResult` variable.
+You can try this in [Remix](/builders/build/eth-api/dev-env/remix/){target=\_blank}. Use the function `verify()`, passing the base, exponent, and modulus. The function will store the value in the `checkResult` variable.

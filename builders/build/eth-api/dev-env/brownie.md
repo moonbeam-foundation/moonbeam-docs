@@ -17,7 +17,7 @@ This guide will cover how to use Brownie to compile, deploy, and interact with E
 
 To get started, you will need the following:
 
- - Have MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask){target=\_blank}
+ - Have MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}
  - Have an account with funds.
   --8<-- 'text/_common/faucet/faucet-list-item.md'
  - 

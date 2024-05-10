@@ -17,7 +17,7 @@ This guide will show you how to use both plugins to verify smart contracts deplo
 
 To follow along with this tutorial, you will need to have:
 
-- [MetaMask installed and connected to the Moonbase Alpha](/tokens/connect/metamask){target=\_blank} TestNet
+- [MetaMask installed and connected to the Moonbase Alpha](/tokens/connect/metamask/){target=\_blank} TestNet
 - An account funded with `DEV` tokens.
  --8<-- 'text/_common/faucet/faucet-list-item.md'
 - A Moonscan API key for the network you're trying to verify a contract on. For Moonbeam and Moonbase Alpha, you'll need a [Moonbeam Moonscan](https://moonscan.io){target=\_blank} API key. For Moonriver, you'll need a [Moonriver Moonscan](https://moonriver.moonscan.io){target=\_blank} API key
@@ -43,7 +43,7 @@ You will then be prompted to enter in an **AppName** for your API key and once y
 
 ## Using the Hardhat Etherscan Plugin {: #using-the-hardhat-verify-plugin }
 
-The example in this section of the guide will be based off of the `Box.sol` contract that was created in the [Using Hardhat to Deploy To Moonbeam](/builders/build/eth-api/dev-env/hardhat){target=\_blank} guide.
+The example in this section of the guide will be based off of the `Box.sol` contract that was created in the [Using Hardhat to Deploy To Moonbeam](/builders/build/eth-api/dev-env/hardhat/){target=\_blank} guide.
 
 To get started with the Hardhat Etherscan plugin, you will need to first install the plugin library:
 
@@ -103,7 +103,7 @@ Please refer to the [Hardhat Verify documentation](https://hardhat.org/hardhat-r
 
 ## Using Foundry to Verify {: #using-foundry-to-verify }
 
-The example in this section of the guide will use the `MyToken.sol` contract that was created in the [Using Foundry to Deploy to Moonbeam](/builders/build/eth-api/dev-env/foundry){target=\_blank} guide.
+The example in this section of the guide will use the `MyToken.sol` contract that was created in the [Using Foundry to Deploy to Moonbeam](/builders/build/eth-api/dev-env/foundry/){target=\_blank} guide.
 
 In addition to the Foundry project, you will need a [Moonbeam Moonscan](https://moonscan.io){target=\_blank} API key. This API key can be used for both the Moonbeam and Moonbase Alpha networks. If you want to verify a contract on Moonriver, you'll need a [Moonriver Moonscan](https://moonriver.moonscan.io){target=\_blank} API key.
 

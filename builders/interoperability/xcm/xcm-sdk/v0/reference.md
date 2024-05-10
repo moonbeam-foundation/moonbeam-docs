@@ -11,9 +11,9 @@ The Moonbeam XCM SDK enables developers to easily deposit and withdraw assets to
 
 The SDK provides an API which includes a series of interfaces to get asset information for each of the supported assets, chain information for the initialized network, utility methods, and methods to enable deposits, withdrawals, and subscription to balance information.
 
-This page includes a list of the interfaces and methods available in the XCM SDK for v0. For information on how to use the XCM SDK interfaces and methods, please refer to the [Using the XCM SDK for v0](/builders/interoperability/xcm/xcm-sdk/v0/xcm-sdk){target=\_blank} guide.
+This page includes a list of the interfaces and methods available in the XCM SDK for v0. For information on how to use the XCM SDK interfaces and methods, please refer to the [Using the XCM SDK for v0](/builders/interoperability/xcm/xcm-sdk/v0/xcm-sdk/){target=\_blank} guide.
 
-If you're using v1.x, please refer to the [SDK guides specific to v1](/builders/interoperability/xcm/xcm-sdk/v1){target=\_blank}.
+If you're using v1.x, please refer to the [SDK guides specific to v1](/builders/interoperability/xcm/xcm-sdk/v1/){target=\_blank}.
 
 ## Core Interfaces {: #core-sdk-interfaces }
 

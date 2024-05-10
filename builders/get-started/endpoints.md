@@ -158,7 +158,7 @@ To get started, head to the [Ankr Protocol](https://www.ankr.com/protocol){targe
 
 ## Tracing RPC Endpoint Providers {: #tracing-providers }
 
-Tracing RPC endpoints allow you to access non-standard RPC methods, such as those that belong to Geth's `debug` and `txpool` APIs and OpenEthereum's `trace` module. To see a list of the supported non-standard RPC methods on Moonbeam for debugging and tracing, please refer to the [Debug API & Trace Module](/builders/json-rpc/debug-trace){target=\_blank} guide.
+Tracing RPC endpoints allow you to access non-standard RPC methods, such as those that belong to Geth's `debug` and `txpool` APIs and OpenEthereum's `trace` module. To see a list of the supported non-standard RPC methods on Moonbeam for debugging and tracing, please refer to the [Debug API & Trace Module](/builders/json-rpc/debug-trace/){target=\_blank} guide.
 
 The following providers provide tracing RPC endpoints:
 

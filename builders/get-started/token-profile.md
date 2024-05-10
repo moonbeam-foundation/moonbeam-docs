@@ -60,7 +60,7 @@ If you haven’t verified your contract source code yet, you will need to do so 
 
 ## Verifying Contract Source Code {: #verifying-contract-source-code }
 
-You can verify your contract source code a couple of ways. You can directly verify it from Moonscan, or if you developed the contract with Hardhat or Foundry, you can also use their corresponding [Etherscan integrations](/builders/build/eth-api/verify-contracts/etherscan-plugins){target=\_blank}.
+You can verify your contract source code a couple of ways. You can directly verify it from Moonscan, or if you developed the contract with Hardhat or Foundry, you can also use their corresponding [Etherscan integrations](/builders/build/eth-api/verify-contracts/etherscan-plugins/){target=\_blank}.
 
 To verify your contract source code directly from Moonscan, you can click on the **tool** link.
 

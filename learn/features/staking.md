@@ -77,7 +77,7 @@ Some important parameters to understand in relation to the staking system on Moo
 
 --8<-- 'text/_common/async-backing-moonbase.md'
 
-To learn how to get the current value of any of the parameters around staking, check out the [Retrieving Staking Parameters](/tokens/staking/stake/#retrieving-staking-parameters){target=\_blank} section of the [How to Stake your Tokens](/tokens/staking/stake){target=\_blank} guide.
+To learn how to get the current value of any of the parameters around staking, check out the [Retrieving Staking Parameters](/tokens/staking/stake/#retrieving-staking-parameters){target=\_blank} section of the [How to Stake your Tokens](/tokens/staking/stake/){target=\_blank} guide.
 
 If you're looking for candidate or collator-specific requirements and information, you can take a look at the [Collators](/node-operators/networks/collators/requirements/#bonding-requirements){target=\_blank} guide.
 

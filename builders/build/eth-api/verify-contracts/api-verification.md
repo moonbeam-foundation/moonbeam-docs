@@ -536,7 +536,7 @@ And one for the source files of both perfect and partial matches:
 
 ### Using Sourcify with Foundry {: #using-sourcify-with-foundry }
 
-Foundry's Forge tool has built-in support for Sourcify verification similar to how it has [built-in support for Etherscan](/builders/build/eth-api/verify-contracts/etherscan-plugins#using-foundry-to-verify){target=\_blank}. The example in this section of the guide will use the `MyToken.sol` contract that was created in the [Using Foundry to Deploy to Moonbeam](/builders/build/eth-api/dev-env/foundry){target=\_blank} guide.
+Foundry's Forge tool has built-in support for Sourcify verification similar to how it has [built-in support for Etherscan](/builders/build/eth-api/verify-contracts/etherscan-plugins#using-foundry-to-verify){target=\_blank}. The example in this section of the guide will use the `MyToken.sol` contract that was created in the [Using Foundry to Deploy to Moonbeam](/builders/build/eth-api/dev-env/foundry/){target=\_blank} guide.
 
 A Foundry project that uses Sourcify must have their compiler emit metadata files. This can be configured in the `foundry.toml` file:
 

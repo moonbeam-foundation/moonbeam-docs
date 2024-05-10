@@ -236,7 +236,7 @@ Then, you can copy the following code snippets and add them to their respective 
         --8<-- 'code/tutorials/integrations/supra/signedCoherentCluster.json'
         ```
 
-To work with these interfaces, you must install the [Ethereum library](/builders/build/eth-api/libraries){target=\_blank} of your choice. For this example, we'll use [Web3.js](/builders/build/eth-api/libraries/web3js){target=\_blank}.
+To work with these interfaces, you must install the [Ethereum library](/builders/build/eth-api/libraries/){target=\_blank} of your choice. For this example, we'll use [Web3.js](/builders/build/eth-api/libraries/web3js/){target=\_blank}.
 
 ```bash
 npm i web3

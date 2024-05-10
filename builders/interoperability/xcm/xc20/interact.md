@@ -7,7 +7,7 @@ description: Check out the XC-20 Solidity interfaces, including the ERC-20 and E
 
 ## Introduction {: #introduction }
 
-As mentioned in the [XC-20s Overview](/builders/interoperability/xcm/xc20/overview){target=\_blank} page, XC-20s are a unique asset class on Moonbeam. Although they are Substrate-native assets, they also have an ERC-20 interface and can be interacted with like any other ERC-20. Additionally, the ERC-20 Permit interface is available for all external XC-20s.
+As mentioned in the [XC-20s Overview](/builders/interoperability/xcm/xc20/overview/){target=\_blank} page, XC-20s are a unique asset class on Moonbeam. Although they are Substrate-native assets, they also have an ERC-20 interface and can be interacted with like any other ERC-20. Additionally, the ERC-20 Permit interface is available for all external XC-20s.
 
 This guide covers the XC-20 Solidity interfaces, including the standard ERC-20 interface and the ERC-20 Permit interface, and how to interact with external XC-20s using these interfaces.
 
@@ -64,7 +64,7 @@ With the final hash and the `v`, `r`, and `s` values, the signature can be [veri
 
 ## Interact with External XC-20s Using an ERC-20 Interface {: #interact-with-the-precompile-using-remix }
 
-This section of the guide will show you how to interact with XC-20s via the ERC-20 interface using [Remix](/builders/build/eth-api/dev-env/remix){target=\_blank}. Because local XC-20s are representations of regular ERC-20s, this section is focused on external XC-20s.
+This section of the guide will show you how to interact with XC-20s via the ERC-20 interface using [Remix](/builders/build/eth-api/dev-env/remix/){target=\_blank}. Because local XC-20s are representations of regular ERC-20s, this section is focused on external XC-20s.
 
 To interact with external XC-20s, you'll need to first calculate the precompile address of the XC-20 asset you want to interact with. Then, you can interact with the ERC-20 interface as you would with any other ERC-20.
 
@@ -74,7 +74,7 @@ You can adapt the instructions in this section to be used with the [Permit.sol](
 
 To approve a spend or transfer external XC-20s via the ERC-20 interface, you will need:
 
-- [MetaMask installed and connected to the Moonbase Alpha](/tokens/connect/metamask){target=\_blank} TestNet
+- [MetaMask installed and connected to the Moonbase Alpha](/tokens/connect/metamask/){target=\_blank} TestNet
 - Create or have two accounts on Moonbase Alpha
 - At least one of the accounts will need to be funded with `DEV` tokens.
  --8<-- 'text/_common/faucet/faucet-list-item.md'
@@ -136,4 +136,4 @@ The **IERC20** precompile for the XC-20 will appear in the list of **Deployed Co
 
 ![Interact with the precompile functions](/images/builders/interoperability/xcm/xc20/interact/interact-4.webp)
 
-To learn how to interact with each of the functions, you can check out the [ERC-20 Precompile](/builders/pallets-precompiles/precompiles/erc20){target=\_blank} guide and modify it for interacting with the XC-20 Precompile.
+To learn how to interact with each of the functions, you can check out the [ERC-20 Precompile](/builders/pallets-precompiles/precompiles/erc20/){target=\_blank} guide and modify it for interacting with the XC-20 Precompile.

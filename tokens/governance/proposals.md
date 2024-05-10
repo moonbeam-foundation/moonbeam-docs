@@ -11,9 +11,9 @@ A proposal is a submission to the chain in which a token holder suggests for an 
 
 In Moonbeam, users are able to create and vote on proposals using their H160 address and private key, that is, their regular Ethereum account!
 
-This guide will outline the process, with step-by-step instructions, of how to submit a proposal for other token holders to vote on in OpenGov (Governance v2). This guide will show you how to submit the proposal on Moonbase Alpha, but it can be easily adapted for Moonbeam and Moonriver. There is a separate guide on [How to Vote on a Proposal in OpenGov](/tokens/governance/voting){target=\_blank}.
+This guide will outline the process, with step-by-step instructions, of how to submit a proposal for other token holders to vote on in OpenGov (Governance v2). This guide will show you how to submit the proposal on Moonbase Alpha, but it can be easily adapted for Moonbeam and Moonriver. There is a separate guide on [How to Vote on a Proposal in OpenGov](/tokens/governance/voting/){target=\_blank}.
 
-For more information on Moonbeam's governance system, please refer to the [Governance on Moonbeam](/learn/features/governance){target=\_blank} overview page.
+For more information on Moonbeam's governance system, please refer to the [Governance on Moonbeam](/learn/features/governance/){target=\_blank} overview page.
 
 ## Definitions {: #definitions }
 
@@ -124,4 +124,4 @@ If you login to [Polkassembly](https://moonbeam.polkassembly.io/opengov){target=
 
 The proposal is now in the Lead-in Period and is ready to be voted on! In order for your proposal to progress out of the Lead-in Period to the next phase, at a minimum the Prepare Period will need to pass so there is enough time for the proposal to be discussed, there will need to be enough Capacity in the chosen Track, and the Decision Deposit will need to be submitted. The deposit can be paid by any token holder. If there isn't enough Capacity or the Decision Deposit hasn't been submitted, but the Prepare Period has passed, the proposal will remain in the Lead-in Period until all of the criteria is met.
 
-To learn how to vote on a proposal, please refer to the [How to Vote on a Proposal in OpenGov](/tokens/governance/voting){target=\_blank} guide.
+To learn how to vote on a proposal, please refer to the [How to Vote on a Proposal in OpenGov](/tokens/governance/voting/){target=\_blank} guide.

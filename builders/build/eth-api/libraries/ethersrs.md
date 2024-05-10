@@ -7,9 +7,9 @@ description: Learn how to use the Ethereum Ethers.rs Library to send transaction
 
 ## Introduction {: #introduction }
 
-The [Ethers.rs](https://ethers.rs){target=\_blank} library provides a set of tools to interact with Ethereum Nodes via the Rust programming language that works similar to [Ethers.js](/builders/build/eth-api/libraries/ethersjs){target=\_blank}. Moonbeam has an Ethereum-like API available that is fully compatible with Ethereum-style JSON-RPC invocations. Therefore, developers can leverage this compatibility and use the Ethers.rs library to interact with a Moonbeam node as if they were doing so on Ethereum. You can read more about how to use Ethers.rs on their [official crate documentation](https://docs.rs/crate/ethers/latest){target=\_blank}.
+The [Ethers.rs](https://ethers.rs){target=\_blank} library provides a set of tools to interact with Ethereum Nodes via the Rust programming language that works similar to [Ethers.js](/builders/build/eth-api/libraries/ethersjs/){target=\_blank}. Moonbeam has an Ethereum-like API available that is fully compatible with Ethereum-style JSON-RPC invocations. Therefore, developers can leverage this compatibility and use the Ethers.rs library to interact with a Moonbeam node as if they were doing so on Ethereum. You can read more about how to use Ethers.rs on their [official crate documentation](https://docs.rs/crate/ethers/latest){target=\_blank}.
 
-In this guide, you'll learn how to use the Ethers.rs library to send a transaction and deploy a contract on Moonbase Alpha. This guide can be adapted for [Moonbeam](/builders/get-started/networks/moonbeam){target=\_blank}, [Moonriver](/builders/get-started/networks/moonriver){target=\_blank}, or a [Moonbeam development node](/builders/get-started/networks/moonbeam-dev){target=\_blank}.
+In this guide, you'll learn how to use the Ethers.rs library to send a transaction and deploy a contract on Moonbase Alpha. This guide can be adapted for [Moonbeam](/builders/get-started/networks/moonbeam/){target=\_blank}, [Moonriver](/builders/get-started/networks/moonriver/){target=\_blank}, or a [Moonbeam development node](/builders/get-started/networks/moonbeam-dev/){target=\_blank}.
 
 ## Checking Prerequisites {: #checking-prerequisites }
 

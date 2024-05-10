@@ -81,12 +81,12 @@ The only ports that need to be open for incoming traffic are those designated fo
 
 There are a couple different guides to help you get started running a Moonbeam-based node:
 
-- [Using Docker](/node-operators/networks/run-a-node/docker) - this method provides a quick and easy way to get started with a Docker container
-- [Using Systemd](/node-operators/networks/run-a-node/systemd) - this method is recommended for those with experience compiling a Substrate node
+- [Using Docker](/node-operators/networks/run-a-node/docker/) - this method provides a quick and easy way to get started with a Docker container
+- [Using Systemd](/node-operators/networks/run-a-node/systemd/) - this method is recommended for those with experience compiling a Substrate node
 
 ## Debug, Trace and TxPool APIs {: #debug-trace-txpool-apis }
 
-You can also gain access to some non-standard RPC methods by running a tracing node, which allow developers to inspect and debug transactions during runtime. Tracing nodes use a different Docker image than a standard Moonbase Alpha, Moonriver, or Moonbeam node. Check out the [Run a Tracing Node](/node-operators/networks/tracing-node) guide and be sure to switch to the right network tab throughout the instructions. Then to interact with your tracing node, check out the [Debug & Trace](/builders/json-rpc/debug-trace) guide.
+You can also gain access to some non-standard RPC methods by running a tracing node, which allow developers to inspect and debug transactions during runtime. Tracing nodes use a different Docker image than a standard Moonbase Alpha, Moonriver, or Moonbeam node. Check out the [Run a Tracing Node](/node-operators/networks/tracing-node/) guide and be sure to switch to the right network tab throughout the instructions. Then to interact with your tracing node, check out the [Debug & Trace](/builders/json-rpc/debug-trace/) guide.
 
 ## Logs and Troubleshooting {: #logs-and-troubleshooting }
 
@@ -115,5 +115,5 @@ We announce the upgrades (and corresponding chain purge) via our [Discord channe
 
 Instructions for purging chain data will vary slightly depending on how you spun up your node:
 
-  - For Docker, you can check out the [Purge Your Node](/node-operators/networks/run-a-node/docker/#purge-your-node) section of the [Using Docker](/node-operators/networks/run-a-node/docker) page
-  - For Systemd, you can take a look at the [Purge Your Node](/node-operators/networks/run-a-node/systemd/#purge-your-node) section of the [Using Systemd](/node-operators/networks/run-a-node/systemd) page
+  - For Docker, you can check out the [Purge Your Node](/node-operators/networks/run-a-node/docker/#purge-your-node) section of the [Using Docker](/node-operators/networks/run-a-node/docker/) page
+  - For Systemd, you can take a look at the [Purge Your Node](/node-operators/networks/run-a-node/systemd/#purge-your-node) section of the [Using Systemd](/node-operators/networks/run-a-node/systemd/) page

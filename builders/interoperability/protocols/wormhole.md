@@ -41,7 +41,7 @@ The relayer’s role is to pay for the destination chain’s execution, and in m
 
 To follow along with this tutorial, you will need to have:
 
-- [MetaMask installed and connected to Moonbase Alpha](/tokens/connect/metamask){target=\_blank}
+- [MetaMask installed and connected to Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}
 - [Docker installed](https://docs.docker.com/get-docker){target=\_blank}
 - Have an account be funded with `DEV` tokens.
  --8<-- 'text/_common/faucet/faucet-list-item.md'
@@ -419,6 +419,6 @@ After a few seconds to a minute, cross-chain messages should be properly relayed
 
 Wormhole will provide liquidity to parachains through the Moonbeam Routed Liquidity (MRL) program. This program allows one-click transfers of liquidity from Wormhole connected chains into parachain wallets by sending liquidity through Moonbeam networks.  
 
-[MRL](/builders/interoperability/mrl){target=\_blank} utilizes the [GMP Precompile](/builders/pallets-precompiles/precompiles/gmp){target=\_blank}, whose documentation explains how cross-chain messages should be constructed to properly use the precompile.
+[MRL](/builders/interoperability/mrl/){target=\_blank} utilizes the [GMP Precompile](/builders/pallets-precompiles/precompiles/gmp/){target=\_blank}, whose documentation explains how cross-chain messages should be constructed to properly use the precompile.
 
 --8<-- 'text/_disclaimers/third-party-content.md'

@@ -32,7 +32,7 @@ There is a level of commitment to the community and the network that is necessar
 
 ## Hardware Requirements {: #hardware-requirements }
 
-Collators must have a full node running with the collation options. To do so, follow the [Run a Node](/node-operators/networks/run-a-node/overview) tutorial and installation steps for [Using Systemd](/node-operators/networks/run-a-node/systemd). Make sure you use the specific code snippets for collators.
+Collators must have a full node running with the collation options. To do so, follow the [Run a Node](/node-operators/networks/run-a-node/overview/) tutorial and installation steps for [Using Systemd](/node-operators/networks/run-a-node/systemd/). Make sure you use the specific code snippets for collators.
 
 !!! note
     Running a **collator** node has higher CPU requirements than the ones provided in the above tutorial. In order for your collator node to be able to keep up with a high transaction throughput a CPU with high clock speed and single-core performance is important, as the block production/import process is almost entirely single-threaded.
@@ -137,7 +137,7 @@ First, you will need a minimum amount of tokens staked (self-bonded) to be consi
 
 ### Key Association Bond {: #key-association-bond }
 
-Secondly, you will need a bond for key association. This bond is sent when [mapping your author ID](/node-operators/networks/collators/account-management){target=\_blank} (session keys) with your account for block rewards, and is per author ID registered.
+Secondly, you will need a bond for key association. This bond is sent when [mapping your author ID](/node-operators/networks/collators/account-management/){target=\_blank} (session keys) with your account for block rewards, and is per author ID registered.
 
 === "Moonbeam"
     |   Variable   |                         Value                          |

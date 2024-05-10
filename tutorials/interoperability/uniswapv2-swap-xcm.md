@@ -10,7 +10,7 @@ _by Alberto Viera_
 
 ## Introduction {: #introduction }
 
-In this tutorial, we’ll perform a Uniswap V2-styled swap from a relay chain (what Polkadot is to Moonbeam) using Polkadot's intra-operability general message passing protocol called [XCM](/builders/interoperability/xcm/overview){target=\_blank}. To do so, we'll be using a particular combination of XCM instructions that allow you to [call Moonbeam's EVM through an XCM message](/builders/interoperability/xcm/remote-execution/remote-evm-calls){target=\_blank}. Consequently, any blockchain that is able to send an XCM message to Moonbeam can tap into its EVM and all the dApps built on top of it.
+In this tutorial, we’ll perform a Uniswap V2-styled swap from a relay chain (what Polkadot is to Moonbeam) using Polkadot's intra-operability general message passing protocol called [XCM](/builders/interoperability/xcm/overview/){target=\_blank}. To do so, we'll be using a particular combination of XCM instructions that allow you to [call Moonbeam's EVM through an XCM message](/builders/interoperability/xcm/remote-execution/remote-evm-calls/){target=\_blank}. Consequently, any blockchain that is able to send an XCM message to Moonbeam can tap into its EVM and all the dApps built on top of it.
 
 **The content of this tutorial is for educational purposes only!**
 
@@ -19,7 +19,7 @@ For this example, you'll be working on top of the Moonbase Alpha (Moonbeam TestN
 Throughout this tutorial, we will refer to the account performing the Uniswap V2 swap via XCM as Alice. The tutorial has a lot of moving parts, so let's summarize them in a list and a flow diagram:
 
 1. Alice has an account on the relay chain, and she wants to swap `DEV` tokens for `MARS` tokens (ERC-20 on Moonbase Alpha) on [Moonbeam-Swap](https://moonbeam-swap.netlify.app){target=\_blank}, a demo Uniswap V2 clone on Moonbase Alpha. Alice needs to send an XCM message to Moonbase Alpha from her relay chain account
-2. The XCM message will be received by Moonbase Alpha and its instructions executed. The instructions state Alice's intention to buy some block execution time in Moonbase Alpha and execute a call to Moonbase's EVM, specifically, the Uniswap V2 (Moonbeam-Swap) router contract. The EVM call is dispatched through a special account Alice controls on Moonbase Alpha via XCM messages. This account is known as the [Computed Origin account](/builders/interoperability/xcm/remote-execution/computed-origins){target=\_blank}. Even though this is a keyless account (private key is unknown), the public address can be [calculated in a deterministic way](/builders/interoperability/xcm/remote-execution/computed-origins#calculate-computed-origin){target=\_blank}
+2. The XCM message will be received by Moonbase Alpha and its instructions executed. The instructions state Alice's intention to buy some block execution time in Moonbase Alpha and execute a call to Moonbase's EVM, specifically, the Uniswap V2 (Moonbeam-Swap) router contract. The EVM call is dispatched through a special account Alice controls on Moonbase Alpha via XCM messages. This account is known as the [Computed Origin account](/builders/interoperability/xcm/remote-execution/computed-origins/){target=\_blank}. Even though this is a keyless account (private key is unknown), the public address can be [calculated in a deterministic way](/builders/interoperability/xcm/remote-execution/computed-origins#calculate-computed-origin){target=\_blank}
 3. The XCM execution will result in the swap being executed by the EVM, and Alice will receive her `MARS` tokens in her special account
 4. The execution of the remote EVM call through XCM will result in some EVM logs that are picked up by explorers. There is an EVM transaction and receipt that anyone can query to verify
 
@@ -32,7 +32,7 @@ With the steps outlined, some prerequisites need to be taken into account, let's
 Considering all the steps summarized in the [introduction](#introduction), the following prerequisites need to be accounted for:
 
 - You need to have UNITs on the relay chain to pay for transaction fees when sending the XCM. If you have a Moonbase Alpha account funded with DEV tokens, you can swap some DEV for xcUNIT here on [Moonbeam Swap](https://moonbeam-swap.netlify.app/#/swap){target=\_blank}. Then withdraw the xcUNIT from Moonbase Alpha to [your account on the Moonbase relay chain](https://polkadot.js.org/apps/?rpc=wss://fro-moon-rpc-1-moonbase-relay-rpc-1.moonbase.ol-infra.network#/accounts){target=\_blank} using [apps.moonbeam.network](https://apps.moonbeam.network/moonbase-alpha){target=\_blank}
-- Your [Computed Origin account](/builders/interoperability/xcm/remote-execution/computed-origins){target=\_blank} must hold `DEV` tokens to fund the Uniswap V2 swap, and also pay for the XCM execution (although this could be paid in UNIT tokens as `xcUNIT`). We will calculate the Computed Origin account address in the next section
+- Your [Computed Origin account](/builders/interoperability/xcm/remote-execution/computed-origins/){target=\_blank} must hold `DEV` tokens to fund the Uniswap V2 swap, and also pay for the XCM execution (although this could be paid in UNIT tokens as `xcUNIT`). We will calculate the Computed Origin account address in the next section
 
 --8<-- 'text/_common/faucet/faucet-list-item.md'
 
@@ -59,7 +59,7 @@ The script will return 32-byte and 20-byte addresses. We’re interested in the 
 
 ## Getting the Uniswap V2 Swap Calldata {: #getting-uniswapv2-swap-calldata }
 
-The following section will walk through the steps of getting the calldata for the Uniswap V2 swap, as we need to feed this calldata to the [remote EVM call](/builders/interoperability/xcm/remote-execution/remote-evm-calls){target=\_blank} that we will build via XCM.
+The following section will walk through the steps of getting the calldata for the Uniswap V2 swap, as we need to feed this calldata to the [remote EVM call](/builders/interoperability/xcm/remote-execution/remote-evm-calls/){target=\_blank} that we will build via XCM.
 
 The function being targeted here is one from the Uniswap V2 router, more specifically [swapExactETHForTokens](https://github.com/Uniswap/v2-periphery/blob/master/contracts/UniswapV2Router02.sol#L252){target=\_blank}. This function will swap an exact amount of protocol native tokens (in this case `DEV`) for another ERC-20 token. It has the following inputs:
 
@@ -133,7 +133,7 @@ You can also get the calldata programmatically using the [Uniswap V2 SDK](https:
 
 Now that we have the Uniswap V2 swap encoded calldata, we need to generate the bytes that the `Transact` XCM instruction from the XCM message will execute. Note that these bytes represent the action that will be executed in the remote chain. In this example, we want the XCM message execution to enter the EVM and perform the swap, from which we got the encoded calldata.
 
- To get the SCALE (encoding type) encoded calldata for the transaction parameters, we can leverage the following [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api){target=\_blank} script (note that it requires `@polkadot/api` and `ethers`).
+ To get the SCALE (encoding type) encoded calldata for the transaction parameters, we can leverage the following [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=\_blank} script (note that it requires `@polkadot/api` and `ethers`).
 
 
 ```js
@@ -149,7 +149,7 @@ Let's go through each of the main components of the snippet shown above:
      - Moonbase Alpha endpoint URL to create the providers
      - [Uniswap V2 router address](https://moonbase.moonscan.io/address/0x8a1932d6e26433f3037bd6c3a40c816222a6ccd4#code){target=\_blank} which is the one the call interacts with
      - Encoded calldata for the Uniswap V2 swap that we calculated before
- 2. Create the necessary providers. One is a [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api){target=\_blank} provider, through which we can call [Moonbeam pallets](https://docs.moonbeam.network/builders/pallets-precompiles/pallets){target=\_blank} directly. The other one is an Ethereum API provider through Ethers.js
+ 2. Create the necessary providers. One is a [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=\_blank} provider, through which we can call [Moonbeam pallets](https://docs.moonbeam.network/builders/pallets-precompiles/pallets){target=\_blank} directly. The other one is an Ethereum API provider through Ethers.js
  3. This step is mainly a best practice. Here, we are estimating the gas of the EVM call that will be executed via XCM, as this is needed later on. You can also hardcode the gas limit value, but it is not recommended
  4. [Build the remote EVM call](/builders/interoperability/xcm/remote-execution/remote-evm-calls/#build-remote-evm-call-xcm){target=\_blank}. We bumped the gas by `10000` units to provide a bit of room in case conditions change. The inputs are identical to those used for the gas estimation
  5. Create the Ethereum XCM pallet call to the `transact` method, providing the call parameters we previously built
@@ -169,7 +169,7 @@ And that is it! You have everything you need to start crafting the XCM message i
 
 ## Building the XCM Message from the Relay Chain {: #building-the-xcm-message-relay-chain }
 
-We are almost in the last part of this tutorial! In this section, we'll craft the XCM message using the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api){target=\_blank}. We'll also dissect the message instruction per instruction to understand what is happening every step of the way.
+We are almost in the last part of this tutorial! In this section, we'll craft the XCM message using the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=\_blank}. We'll also dissect the message instruction per instruction to understand what is happening every step of the way.
 
 The XCM message we are about to build is composed of the following instructions:
 
@@ -202,7 +202,7 @@ Let's go through each of the main components of the snippet shown above:
  5. Third XCM instruction, `Transact`. The instruction will use a portion of the weight bought (defined as `requireWeightAtMost`) and execute the arbitrary bytes that are provided (`transactBytes`)
  6. Fourth XCM instruction, `DepositAsset`. Whatever is left in holding after the actions executed before (in this case, it should be only `DEV` tokens) is deposited to the Computed Origin account, set as the `beneficiary`.
  7. Build the XCM message by concatenating the instructions inside a `V2` array
- 8. Create the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api){target=\_blank} provider
+ 8. Create the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=\_blank} provider
  9. Craft the `xcmPallet.send` extrinsic with the destination and XCM message. This method will append the [`DescendOrigin`](/builders/interoperability/xcm/core-concepts/instructions#descend-origin){target=\_blank} XCM instruction to our XCM message, and it is the instruction that will provide the necessary information to calculate the Computed Origin account
  10. Get the SCALE encoded calldata. Note that in this particular scenario, because we need the full SCALE encoded calldata, we have to use `tx.toHex()`. This is because we will submit this transaction using the calldata
 

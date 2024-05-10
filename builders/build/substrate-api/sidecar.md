@@ -64,7 +64,7 @@ In the terminal that Sidecar will run, export the environmental variable for the
     export SAS_SUBSTRATE_URL=ws://127.0.0.1:9944
     ```
 
-Please reference the [Public Endpoints](/builders/get-started/endpoints) page for a full list of Moonbeam network endpoints.
+Please reference the [Public Endpoints](/builders/get-started/endpoints/) page for a full list of Moonbeam network endpoints.
 
 After setting the environmental variable, you can use the `echo` command to check that the environmental variable has been set correctly, by typing:
 
@@ -312,6 +312,6 @@ The [Transfers API page](/learn/core-concepts/transfers-api/#using-substrate-api
 
 ## Calculating Transaction Fees {: #calculating-transaction-fees }
 
-For more detailed information and sample code on how to calculate the transaction fees of Moonbeam transactions using Substrate Sidecar API, please check the [Calculating Transaction Fees on Moonbeam](/learn/core-concepts/tx-fees){target=\_blank} page.
+For more detailed information and sample code on how to calculate the transaction fees of Moonbeam transactions using Substrate Sidecar API, please check the [Calculating Transaction Fees on Moonbeam](/learn/core-concepts/tx-fees/){target=\_blank} page.
 
 --8<-- 'text/_disclaimers/third-party-content.md'

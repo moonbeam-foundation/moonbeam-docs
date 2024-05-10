@@ -25,7 +25,7 @@ Before diving into setting up a Graph Node, you need to have the following insta
  - [JQ](https://stedolan.github.io/jq/download){target=\_blank}
 
 
-In this guide, you will learn how to run a Graph node against a Moonbase Alpha tracing node with the `tracing` flag enabled. To spin up a full node with the `tracing` flag enabled, check out the [Debug & Trace](/node-operators/networks/tracing-node){target=\_blank} guide.
+In this guide, you will learn how to run a Graph node against a Moonbase Alpha tracing node with the `tracing` flag enabled. To spin up a full node with the `tracing` flag enabled, check out the [Debug & Trace](/node-operators/networks/tracing-node/){target=\_blank} guide.
 
 This guide can also be adapted for Moonbeam and Moonriver.
 --8<-- 'text/_common/endpoint-examples.md'

@@ -25,7 +25,7 @@ Before diving into the guide, you'll need to have a few [MetaMask accounts](#met
 
 For this guide, you will be creating a Safe on Moonbase Alpha to interact and manage your funds with. To connect to the Safe, you will need to have:
 
- - MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask){target=\_blank}
+ - MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}
  - At least two accounts each loaded with funds.
  --8<-- 'text/_common/faucet/faucet-list-item.md'
 
@@ -39,7 +39,7 @@ This guide will use the following accounts:
 
 ### ERC-20 Tokens {: #erc20-tokens }
 
-Later on in this guide, you will be learning how to send and receive ERC-20 tokens to and from the Safe. So you will need to have deployed some ERC-20 tokens and added them to your MetaMask account. To do so, you can check out the [Using Remix to Deploy to Moonbeam](/builders/build/eth-api/dev-env/remix){target=\_blank} guide, in particular the [Deploying a Contract to Moonbeam](/builders/build/eth-api/dev-env/remix/#deploying-a-contract-to-moonbeam-using-remix){target=\_blank} and [Interact with a Moonbeam-based ERC-20](/builders/build/eth-api/dev-env/remix/#interacting-with-a-moonbeam-based-erc-20-from-metamask){target=\_blank} sections will show you how to deploy an ERC-20 token and import it into MetaMask.
+Later on in this guide, you will be learning how to send and receive ERC-20 tokens to and from the Safe. So you will need to have deployed some ERC-20 tokens and added them to your MetaMask account. To do so, you can check out the [Using Remix to Deploy to Moonbeam](/builders/build/eth-api/dev-env/remix/){target=\_blank} guide, in particular the [Deploying a Contract to Moonbeam](/builders/build/eth-api/dev-env/remix/#deploying-a-contract-to-moonbeam-using-remix){target=\_blank} and [Interact with a Moonbeam-based ERC-20](/builders/build/eth-api/dev-env/remix/#interacting-with-a-moonbeam-based-erc-20-from-metamask){target=\_blank} sections will show you how to deploy an ERC-20 token and import it into MetaMask.
 
 ### Deployed Smart Contract {: #deployed-smart-contract }
 
@@ -224,7 +224,7 @@ You'll need to get the Safe's address again, you can do so by clicking on the **
  1. Switch to the **Assets** tab and select **MYTOK** from the list
  2. Click **Send** 
  3. Paste in the Safe's address
- 4. Enter amount of MYTOKs to send. You should have minted 8M MYTOK tokens in the [Using Remix to Deploy to Moonbeam](/builders/build/eth-api/dev-env/remix){target=\_blank} guide. So for this example, you can enter 1000 MYTOKs for the amount to send
+ 4. Enter amount of MYTOKs to send. You should have minted 8M MYTOK tokens in the [Using Remix to Deploy to Moonbeam](/builders/build/eth-api/dev-env/remix/){target=\_blank} guide. So for this example, you can enter 1000 MYTOKs for the amount to send
  5. Click **Next**
  6. Review the transaction details and then click **Confirm** to send the transaction.
 

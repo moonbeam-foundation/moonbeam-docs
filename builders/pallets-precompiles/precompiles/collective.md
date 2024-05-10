@@ -10,7 +10,7 @@ keywords: solidity, ethereum, collective, proposal, council technical, committee
 
 The Collective Precompile enables a user to directly interact with [Substrate's collective pallet](https://paritytech.github.io/substrate/master/pallet_collective/index.html){target=\_blank} directly from a Solidity interface.
 
-A collective is a group of members that are responsible for specific democracy-related actions such as proposing, voting on, executing, and closing motions. Each can execute different actions with different origins. Consequently, collectives can be created with very specific scopes. There are currently two collectives: the Treasury Council collective and the OpenGov Technical Committee collective. As such, there is a precompile for each collective. For more information on the OpenGov Technical Committee please refer to the [Governance on Moonbeam](/learn/features/governance){target=\_blank} page, and for more information on the Treasury Council, please refer to the [Treasury on Moonbeam](/learn/features/treasury){target=\_blank} page.
+A collective is a group of members that are responsible for specific democracy-related actions such as proposing, voting on, executing, and closing motions. Each can execute different actions with different origins. Consequently, collectives can be created with very specific scopes. There are currently two collectives: the Treasury Council collective and the OpenGov Technical Committee collective. As such, there is a precompile for each collective. For more information on the OpenGov Technical Committee please refer to the [Governance on Moonbeam](/learn/features/governance/){target=\_blank} page, and for more information on the Treasury Council, please refer to the [Treasury on Moonbeam](/learn/features/treasury/){target=\_blank} page.
 
 This guide will show you how to propose, vote on, and close a proposal using the Collective Precompile.
 
@@ -69,7 +69,7 @@ The interface includes the following events:
 
 The example in this section will show you how to submit a Treasury proposal using the Treasury Council Collective Precompile. As such, the proposal will be subject to meeting the voting requirements of the Treasury Council. The threshold for accepting a Treasury proposal is at least three-fifths of the Treasury Council. On the other hand, the threshold for rejecting a proposal is at least one-half of the Treasury Council. Please keep in mind that in order to propose and vote on the proposal, you must be a member of the Treasury Council.
 
-If you are not a member of the Treasury Council on Moonbeam, Moonriver, or Moonbase Alpha, you can test out the features of the Collective Precompile using a [Moonbeam development node](/builders/get-started/networks/moonbeam-dev){target=\_blank}. The Moonbeam development node comes with [ten pre-funded accounts](/builders/get-started/networks/moonbeam-dev/#pre-funded-development-accounts){target=\_blank}, of which Baltathar, Charleth, and Dorothy are automatically set as members of the Treasury Council collective. You can use any of these three accounts to follow along with the rest of the guide.
+If you are not a member of the Treasury Council on Moonbeam, Moonriver, or Moonbase Alpha, you can test out the features of the Collective Precompile using a [Moonbeam development node](/builders/get-started/networks/moonbeam-dev/){target=\_blank}. The Moonbeam development node comes with [ten pre-funded accounts](/builders/get-started/networks/moonbeam-dev/#pre-funded-development-accounts){target=\_blank}, of which Baltathar, Charleth, and Dorothy are automatically set as members of the Treasury Council collective. You can use any of these three accounts to follow along with the rest of the guide.
 
 ### Checking Prerequisites {: #checking-prerequisites }
 
@@ -77,7 +77,7 @@ The example in this guide will be shown on a Moonbeam development node, however,
 
 To get started, you will need to have the following:
 
- - Have MetaMask installed and [connected to one of the Moonbeam-based networks](/tokens/connect/metamask){target=\_blank}
+ - Have MetaMask installed and [connected to one of the Moonbeam-based networks](/tokens/connect/metamask/){target=\_blank}
  - Have an account with funds. If using a Moonbeam development node, the development accounts are pre-funded. For Moonbeam, Moonriver, or Moonbase Alpha, you'll need to fund your account.
   --8<-- 'text/_common/faucet/faucet-list-item.md'
 

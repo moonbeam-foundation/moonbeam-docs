@@ -32,7 +32,7 @@ By basing our EVM implementation on the Substrate EVM Pallet, we get a full Rust
 The core Moonbeam runtime specifies the state transition function and behavior of the Moonbeam blockchain. The Moonbeam runtime is built using [FRAME](/learn/platform/glossary/#substrate-frame-pallets){target=\_blank}. It includes several standard pallets as well as several custom ones. The runtime is compiled to a [WebAssembly (Wasm)](/learn/platform/glossary/#webassemblywasm){target=\_blank} binary as well as a native binary. These compiled versions are executed in the Polkadot relay chain and Moonbeam node environments.
 
 !!! note
-    Substrate FRAME pallets are a collection of Rust-based modules that provide the functionality required when building a blockchain. WebAssembly is an open standard that defines a portable binary code format. Different programming languages, compilers, and browsers support it. Find more definitions [in our glossary](/learn/platform/glossary){target=\_blank}.
+    Substrate FRAME pallets are a collection of Rust-based modules that provide the functionality required when building a blockchain. WebAssembly is an open standard that defines a portable binary code format. Different programming languages, compilers, and browsers support it. Find more definitions [in our glossary](/learn/platform/glossary/){target=\_blank}.
 
 Some of the key Substrate FRAME pallets used in the Moonbeam runtime include:
 
@@ -47,8 +47,8 @@ Some of the key Substrate FRAME pallets used in the Moonbeam runtime include:
 In addition to these Substrate FRAME Pallets, Moonbeam implements custom pallets to achieve additional functionality, such as:
 
 - **Parachain Staking** - enables a Delegated Proof of Stake (DPoS) system
-- **Moonbeam Orbiters** - supports the [Orbiter Program](/node-operators/networks/collators/orbiter){target=\_blank}, which diversifies the collator pool
-- **XCM Transactor** - simplifies remote cross-chain calls via [Cross-Consensus Messaging (XCM)](/builders/interoperability/xcm/overview){target=\_blank}
+- **Moonbeam Orbiters** - supports the [Orbiter Program](/node-operators/networks/collators/orbiter/){target=\_blank}, which diversifies the collator pool
+- **XCM Transactor** - simplifies remote cross-chain calls via [Cross-Consensus Messaging (XCM)](/builders/interoperability/xcm/overview/){target=\_blank}
 - **Asset Manager** - registers XCM assets
 
 Moonbeam also uses the Cumulus library to provide integration to the Polkadot relay chain.
@@ -77,7 +77,7 @@ The [EVM pallet](https://polkadot-evm.github.io/frontier/frame/ethereum.html){ta
 
 The EVM executes Ethereum smart contract bytecode, typically written in a language like Solidity, and then compiles it to EVM bytecode. The EVM pallet aims to emulate the functionality of executing smart contracts on Ethereum within the Substrate runtime. As such, it allows existing EVM code to be executed in Substrate-based blockchains.
 
-Inside the EVM are standard H160 Ethereum-style accounts, with associated data such as the balance and nonce. All of the accounts in the EVM are backed by a configurable Substrate account type. Moonbeam has configured the Substrate account type to be a non-standard H160 account fully compatible with Ethereum. So, you only need a single account to interact with the Substrate runtime and the EVM. For more information on Moonbeam's account system, please refer to the [Unified Accounts](/learn/core-concepts/unified-accounts){target=\_blank} page.
+Inside the EVM are standard H160 Ethereum-style accounts, with associated data such as the balance and nonce. All of the accounts in the EVM are backed by a configurable Substrate account type. Moonbeam has configured the Substrate account type to be a non-standard H160 account fully compatible with Ethereum. So, you only need a single account to interact with the Substrate runtime and the EVM. For more information on Moonbeam's account system, please refer to the [Unified Accounts](/learn/core-concepts/unified-accounts/){target=\_blank} page.
 
 With a unified accounts system, a mapped Substrate account can call the EVM pallet to deposit or withdraw balance from the Substrate-base currency into a different balance managed and used by the EVM pallet. Once a balance exists, smart contracts can be created and interacted with.
 
@@ -96,4 +96,4 @@ There are also some [precompiles](https://github.com/polkadot-evm/frontier/tree/
 - **[pallet-evm-precompile-sha3fips](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm_precompile_sha3fips/struct.Sha3FIPS256.html){target=\_blank}** -includes the standard SHA3 precompile
 - **[pallet-evm-precompile-dispatch](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm_precompile_dispatch/struct.Dispatch.html){target=\_blank}** - includes the dispatch precompile
 
-You can find an overview of most of these precompiles on the [Ethereum MainNet Precompiled Contracts](/builders/pallets-precompiles/precompiles/eth-mainnet){target=\_blank} page.
+You can find an overview of most of these precompiles on the [Ethereum MainNet Precompiled Contracts](/builders/pallets-precompiles/precompiles/eth-mainnet/){target=\_blank} page.

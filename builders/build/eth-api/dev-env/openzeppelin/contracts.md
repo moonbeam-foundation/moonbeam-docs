@@ -55,8 +55,8 @@ All the code of the contracts was obtained using OpenZeppelin [Contract Wizard](
 
 The steps described in this section assume you have [MetaMask](https://metamask.io){target=\_blank} installed and connected to the Moonbase Alpha TestNet. If you're adapting this guide for Moonbeam or Moonriver, make sure you're connected to the correct network. Contract deployment is done using the [Remix IDE](https://remix.ethereum.org){target=\_blank} via the **Injected Provider** environment. You can find corresponding tutorials in the following links:
 
- - [Interacting with Moonbeam using MetaMask](/tokens/connect/metamask){target=\_blank}
- - [Interacting with Moonbeam using Remix](/builders/build/eth-api/dev-env/remix){target=\_blank}
+ - [Interacting with Moonbeam using MetaMask](/tokens/connect/metamask/){target=\_blank}
+ - [Interacting with Moonbeam using Remix](/builders/build/eth-api/dev-env/remix/){target=\_blank}
 
 ### Deploying an ERC-20 Token {: #deploying-an-erc-20-token }
 

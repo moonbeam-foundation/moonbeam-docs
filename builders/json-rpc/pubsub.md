@@ -71,16 +71,16 @@ Please note that the examples in this section require installing [wscat](https:/
 
 ## Subscribe to Events Using Ethereum Libraries {: #subscribe-to-events }
 
-This section will show you how to use [Ethereum libraries](/builders/build/eth-api/libraries){target=\_blank}, like [Web3.js](/builders/build/eth-api/libraries/web3js){target=\_blank}, to programmatically subscribe to events on Moonbeam.
+This section will show you how to use [Ethereum libraries](/builders/build/eth-api/libraries/){target=\_blank}, like [Web3.js](/builders/build/eth-api/libraries/web3js/){target=\_blank}, to programmatically subscribe to events on Moonbeam.
 
 ### Checking Prerequisites {: #checking-prerequisites }
 
 The examples in this guide are based on an Ubuntu 22.04 environment. You will also need the following:
 
-- MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask){target=\_blank}
+- MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}
 - An account with funds.
   --8<-- 'text/_common/faucet/faucet-list-item.md'
-- To deploy your own ERC-20 token on Moonbase Alpha. You can do this following [our Remix tutorial](/builders/build/eth-api/dev-env/remix){target=\_blank} while first pointing MetaMask to Moonbase Alpha
+- To deploy your own ERC-20 token on Moonbase Alpha. You can do this following [our Remix tutorial](/builders/build/eth-api/dev-env/remix/){target=\_blank} while first pointing MetaMask to Moonbase Alpha
 - Web3.js or the Ethereum library of your choice installed. You can install Web3.js via npm:
 
     ```bash

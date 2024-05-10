@@ -11,7 +11,7 @@ The Moonbeam XCM SDK enables developers to easily transfer assets between chains
 
 The XCM SDK offers helper functions, that provide a very simple interface to execute XCM transfers between chains in the Polkadot/Kusama ecosystem. In addition, the XCM config package allows any parachain project to add their information in a standard way, so they can be immediately supported by the XCM SDK.
 
-For an overview of the available methods and interfaces in the Moonbeam XCM SDK, please refer to the [Reference](/builders/interoperability/xcm/xcm-sdk/v1/reference){target=\_blank} page.
+For an overview of the available methods and interfaces in the Moonbeam XCM SDK, please refer to the [Reference](/builders/interoperability/xcm/xcm-sdk/v1/reference/){target=\_blank} page.
 
 The examples in this guide are shown on Moonbeam, but can be adapted to be used on Moonriver or Moonbase Alpha.
 

@@ -10,7 +10,7 @@ keywords: solidity, ethereum, author mapping, collator, moonbeam, precompiled, c
 
 The author mapping precompiled contract on Moonbeam allows collator candidates to map session keys to a Moonbeam address, where block rewards are paid out, through a familiar and easy-to-use Solidity interface. This enables candidates to complete author mapping with a Ledger or any other Ethereum wallet compatible with Moonbeam. However, it is recommended to generate your keys on an air-gapped machine. You can find out more information by referring to the [account requirements section of the Collator Requirements page](/node-operators/networks/collators/requirements/#account-requirements){target=\_blank}.
 
-To become a collator candidate, you must be [running a collator node](/node-operators/networks/run-a-node/overview){target=\_blank}. You'll also need to [join the candidate pool](/node-operators/networks/collators/activities/#become-a-candidate){target=\_blank} and submit a [bond](#bonds) and fully sync your node before you can generate your session keys and map them to your account. There is an [additional bond](#bonds) that must be paid when mapping your session keys.
+To become a collator candidate, you must be [running a collator node](/node-operators/networks/run-a-node/overview/){target=\_blank}. You'll also need to [join the candidate pool](/node-operators/networks/collators/activities/#become-a-candidate){target=\_blank} and submit a [bond](#bonds) and fully sync your node before you can generate your session keys and map them to your account. There is an [additional bond](#bonds) that must be paid when mapping your session keys.
 
 The precompile is located at the following address:
 
@@ -94,12 +94,12 @@ There is a bond that is sent when mapping your session keys with your account. T
 
 The below example is demonstrated on Moonbase Alpha, however, similar steps can be taken for Moonbeam and Moonriver. You should:  
 
- - Have MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask){target=\_blank}
+ - Have MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}
  - Have an account with DEV tokens. You should have enough to cover the [candidate and mapping bonds](#bonds) plus gas fees to send the transaction and map your session keys to your account. To get enough DEV tokens to follow along with this guide, you can contact a moderator directly via the [Moonbeam Discord server](https://discord.gg/PfpUATX){target=\_blank}
- - Make sure you're [running a collator node](/node-operators/networks/run-a-node/overview){target=\_blank} and it's fully synced
+ - Make sure you're [running a collator node](/node-operators/networks/run-a-node/overview/){target=\_blank} and it's fully synced
  - Make sure you've [joined the candidate pool](/node-operators/networks/collators/activities/#become-a-candidate){target=\_blank}
 
-As previously mentioned, you can use a Ledger by connecting it to MetaMask, please refer to the [Ledger](/tokens/connect/ledger){target=\_blank} guides on how to import your Ledger to MetaMask. Please note that it is not recommended to use Ledger for production purposes. You can find out more information by referring to the [account requirements section of the Collator Requirements page](/node-operators/networks/collators/requirements/#account-requirements){target=\_blank}.
+As previously mentioned, you can use a Ledger by connecting it to MetaMask, please refer to the [Ledger](/tokens/connect/ledger/){target=\_blank} guides on how to import your Ledger to MetaMask. Please note that it is not recommended to use Ledger for production purposes. You can find out more information by referring to the [account requirements section of the Collator Requirements page](/node-operators/networks/collators/requirements/#account-requirements){target=\_blank}.
 
 ### Generate Session Keys {: #generate-session-keys }
 

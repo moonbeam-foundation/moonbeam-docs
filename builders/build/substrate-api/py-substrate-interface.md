@@ -392,7 +392,7 @@ You can sign transaction payloads or any arbitrary data using a keypair object t
 
 You can also make custom RPC requests with the [`rpc_request`](https://polkascan.github.io/py-substrate-interface/#substrateinterface.SubstrateInterface.rpc_request){target=\_blank} method.
 
-This is particularly useful for interacting with Moonbeam's [Ethereum JSON-RPC](/builders/json-rpc/eth-rpc){target=\_blank} endpoints or Moonbeam's [custom RPC](/builders/json-rpc/moonbeam-custom-api){target=\_blank} endpoints.
+This is particularly useful for interacting with Moonbeam's [Ethereum JSON-RPC](/builders/json-rpc/eth-rpc/){target=\_blank} endpoints or Moonbeam's [custom RPC](/builders/json-rpc/moonbeam-custom-api/){target=\_blank} endpoints.
 
 The [Consensus and Finality page](/learn/core-concepts/consensus-finality/#checking-tx-finality-with-substrate-libraries){target=\_blank} has examples for using the custom RPC calls through Python Substrate Interface to check the finality of a transaction given its transaction hash.
 

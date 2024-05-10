@@ -168,4 +168,4 @@ The second is the [bond for key association](/node-operators/networks/collators/
 
 **Q: How do I set an identity on my collator account?**  
 
-**A:** Setting an identity on chain will help to identify your node and attract delegations. You can set an identity by following the instructions on the [Managing an Identity](/tokens/manage/identity){target=\_blank} page of our documentation.
+**A:** Setting an identity on chain will help to identify your node and attract delegations. You can set an identity by following the instructions on the [Managing an Identity](/tokens/manage/identity/){target=\_blank} page of our documentation.

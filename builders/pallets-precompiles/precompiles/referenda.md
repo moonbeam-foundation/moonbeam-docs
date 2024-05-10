@@ -7,9 +7,9 @@ description: Learn how to view and submit proposals on-chain to be put forth for
 
 ## Introduction {: #introduction }
 
-As a Polkadot parachain and decentralized network, Moonbeam features native on-chain governance that enables stakeholders to participate in the direction of the network. With the introduction of OpenGov, also referred to as Governance v2, the Referenda Pallet allows token holders to get information on existing referenda, submit a proposal to be put forth for referenda, and manage actions related to the Decision Deposit, which is required for a referenda to be decided on. To learn more about Moonbeam's governance system, such as an overview of related terminology, principles, mechanics, and more, please refer to the [Governance on Moonbeam](/learn/features/governance){target=\_blank} page.
+As a Polkadot parachain and decentralized network, Moonbeam features native on-chain governance that enables stakeholders to participate in the direction of the network. With the introduction of OpenGov, also referred to as Governance v2, the Referenda Pallet allows token holders to get information on existing referenda, submit a proposal to be put forth for referenda, and manage actions related to the Decision Deposit, which is required for a referenda to be decided on. To learn more about Moonbeam's governance system, such as an overview of related terminology, principles, mechanics, and more, please refer to the [Governance on Moonbeam](/learn/features/governance/){target=\_blank} page.
 
-The Referenda Precompile interacts directly with Substrate's [Referenda Pallet](/builders/pallets-precompiles/pallets/referenda){target=\_blank}. This pallet is coded in Rust and is normally not accessible from the Ethereum side of Moonbeam. However, the Referenda Precompile allows you to access functions needed to view referenda, submit referenda, and manage the required Decision Deposit, all of which are part of the Substrate Referenda Pallet, directly from a Solidity interface.
+The Referenda Precompile interacts directly with Substrate's [Referenda Pallet](/builders/pallets-precompiles/pallets/referenda/){target=\_blank}. This pallet is coded in Rust and is normally not accessible from the Ethereum side of Moonbeam. However, the Referenda Precompile allows you to access functions needed to view referenda, submit referenda, and manage the required Decision Deposit, all of which are part of the Substrate Referenda Pallet, directly from a Solidity interface.
 
 The Referenda Precompile is located at the following address:
 
@@ -116,7 +116,7 @@ The interface also includes the following events:
 
 The below example is demonstrated on Moonbase Alpha, however, similar steps can be taken for Moonriver. To follow the steps in this guide, you'll need to have the following:
 
- - MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask){target=\_blank}
+ - MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}
  - An account with some DEV tokens.
  --8<-- 'text/_common/faucet/faucet-list-item.md'
 
@@ -146,18 +146,18 @@ The below example is demonstrated on Moonbase Alpha, however, similar steps can 
 
 ### Submit a Proposal {: #submit-a-proposal }
 
-In order to submit a proposal, you should have already submitted the preimage hash for the proposal. If you have not done so, please follow the steps outlined in the [Preimage Precompile](/builders/pallets-precompiles/precompiles/preimage){target=\_blank} documentation. There are two methods that can be used to submit a proposal: `submitAt` and `submitAfter`. The `submitAt` function submits a proposal to be executed *at* a given block and the `submitAfter` function submits a proposal to be executed *after* a specific block. For this example, `submitAt` will be used, but the same steps can be applied if you want to use `submitAfter` instead.
+In order to submit a proposal, you should have already submitted the preimage hash for the proposal. If you have not done so, please follow the steps outlined in the [Preimage Precompile](/builders/pallets-precompiles/precompiles/preimage/){target=\_blank} documentation. There are two methods that can be used to submit a proposal: `submitAt` and `submitAfter`. The `submitAt` function submits a proposal to be executed *at* a given block and the `submitAfter` function submits a proposal to be executed *after* a specific block. For this example, `submitAt` will be used, but the same steps can be applied if you want to use `submitAfter` instead.
 
 To submit the proposal, you'll need to determine which Track your proposal belongs to and the Track ID of that Track. For help with these requirements, you can refer to the [OpenGov section of the governance overview page](/learn/features/governance/#opengov){target=\_blank}.
 
-You'll also need to make sure you have the preimage hash and the length of the preimage handy, both of which you should have received from following the steps in the [Preimage Precompile](/builders/pallets-precompiles/precompiles/preimage){target=\_blank} documentation. If you're unsure, you can find your preimage from the [Preimage page of Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/preimages){target=\_blank} and copy the preimage hash. To get the length of the preimage, you can then query the `preimage` pallet using the `preimageFor` method from the [Polkadot.js Apps Chain State page](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/chainstate){target=\_blank}.
+You'll also need to make sure you have the preimage hash and the length of the preimage handy, both of which you should have received from following the steps in the [Preimage Precompile](/builders/pallets-precompiles/precompiles/preimage/){target=\_blank} documentation. If you're unsure, you can find your preimage from the [Preimage page of Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/preimages){target=\_blank} and copy the preimage hash. To get the length of the preimage, you can then query the `preimage` pallet using the `preimageFor` method from the [Polkadot.js Apps Chain State page](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/chainstate){target=\_blank}.
 
 Once you have the Track ID, preimage hash, and preimage length, you can go ahead and submit the proposal using the Referenda Precompile. From Remix, you can take the following steps:
 
 1. Expand the Referenda Precompile contract to see the available functions
 2. Find the **submitAt** function and press the button to expand the section
 3. Enter the track ID that your proposal will be processed through
-4. Enter the preimage hash. You should have received this from following the steps in the [Preimage Precompile](/builders/pallets-precompiles/precompiles/preimage){target=\_blank} documentation
+4. Enter the preimage hash. You should have received this from following the steps in the [Preimage Precompile](/builders/pallets-precompiles/precompiles/preimage/){target=\_blank} documentation
 5. Enter the length of the preimage
 6. Enter the block you want the proposal to be executed at
 7. Press **transact** and confirm the transaction in MetaMask
@@ -182,7 +182,7 @@ To submit the deposit, you can take the following steps:
 
 Now that the Decision Deposit has been placed, the referendum is one step closer to moving to the Decide Period. There will also need to be enough Capacity in the designated Track and the duration of the Prepare Period must pass for it to move to the Decide Period.
 
-To vote on referenda, you can follow the steps outlined in the [Conviction Voting Precompile](/builders/pallets-precompiles/precompiles/conviction-voting){target=\_blank} documentation.
+To vote on referenda, you can follow the steps outlined in the [Conviction Voting Precompile](/builders/pallets-precompiles/precompiles/conviction-voting/){target=\_blank} documentation.
 
 ### Refund Decision Deposit {: #refund-decision-deposit }
 

@@ -9,7 +9,7 @@ description: Follow this tutorial to learn how to use the Ethereum Web3 Python L
 
 [Web3.py](https://web3py.readthedocs.io) is a set of libraries that allow developers to interact with Ethereum nodes using HTTP, IPC, or WebSocket protocols with Python. Moonbeam has an Ethereum-like API available that is fully compatible with Ethereum-style JSON-RPC invocations. Therefore, developers can leverage this compatibility and use the Web3.py library to interact with a Moonbeam python3 as if they were doing so on Ethereum.
 
-In this guide, you'll learn how to use the Web3.py library to send a transaction and deploy a contract on Moonbase Alpha. This guide can be adapted for [Moonbeam](/builders/get-started/networks/moonbeam){target=\_blank}, [Moonriver](/builders/get-started/networks/moonriver){target=\_blank}, or a [Moonbeam development node](/builders/get-started/networks/moonbeam-dev){target=\_blank}.
+In this guide, you'll learn how to use the Web3.py library to send a transaction and deploy a contract on Moonbase Alpha. This guide can be adapted for [Moonbeam](/builders/get-started/networks/moonbeam/){target=\_blank}, [Moonriver](/builders/get-started/networks/moonriver/){target=\_blank}, or a [Moonbeam development node](/builders/get-started/networks/moonbeam-dev/){target=\_blank}.
 
 ## Checking Prerequisites {: #checking-prerequisites }
 

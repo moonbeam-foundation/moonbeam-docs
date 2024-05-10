@@ -18,7 +18,7 @@ Moonbase Alpha has the following configuration:
  - Runs as a parachain connected to a relay chain
  - Has an active set of {{ networks.moonbase.staking.max_candidates }} collator nodes run by the community
  - The relay chain hosts validators to finalize relay chain blocks. One of them is selected to finalize each block collated by Moonbeam's collators. This setup provides room to expand to a two-parachain configuration in the future
- - Has infrastructure providers that provide [API endpoints](/builders/get-started/endpoints){target=\_blank} to connect to the network. Projects can also [run their own node](/node-operators/networks/run-a-node){target=\_blank} to have access to their own private endpoints
+ - Has infrastructure providers that provide [API endpoints](/builders/get-started/endpoints/){target=\_blank} to connect to the network. Projects can also [run their own node](/node-operators/networks/run-a-node/){target=\_blank} to have access to their own private endpoints
 
 ![TestNet Diagram](/images/learn/platform/networks/moonbase-diagram.webp)
 
@@ -72,6 +72,6 @@ The Moonbase Alpha TestNet is a fully decentralized Delegated Proof of Stake net
 
 This is the first TestNet for Moonbeam, so there are some limitations.
 
-Some [precompiles](https://docs.klaytn.com/smart-contract/precompiled-contracts){target=\_blank} are yet to be included. You can check out the list of supported precompiles on the [Canonical Contract page](/builders/pallets-precompiles/precompiles){target=\_blank}. However, all built-in functions are available.
+Some [precompiles](https://docs.klaytn.com/smart-contract/precompiled-contracts){target=\_blank} are yet to be included. You can check out the list of supported precompiles on the [Canonical Contract page](/builders/pallets-precompiles/precompiles/){target=\_blank}. However, all built-in functions are available.
 
 Since the release of Moonbase Alpha v6, the maximum gas limit per block has been set to {{ networks.moonbase.gas_block }}, with a maximum gas limit per transaction of {{ networks.moonbase.gas_tx }}.

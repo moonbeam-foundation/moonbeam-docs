@@ -26,7 +26,7 @@ This section goes through the steps for getting started with OpenZeppelin Defend
 
 ### Checking Prerequisites {: #checking-prerequisites }
 
-The steps described in this section assume you have [MetaMask](https://metamask.io){target=\_blank} installed and connected to the Moonbase Alpha TestNet. If you haven't connected MetaMask to the TestNet, check out our [MetaMask integration guide](/tokens/connect/metamask){target=\_blank}.
+The steps described in this section assume you have [MetaMask](https://metamask.io){target=\_blank} installed and connected to the Moonbase Alpha TestNet. If you haven't connected MetaMask to the TestNet, check out our [MetaMask integration guide](/tokens/connect/metamask/){target=\_blank}.
 
 In addition, you need to sign up for a free OpenZeppelin Defender account, which you can do on the main [Defender website](https://defender.openzeppelin.com/v2/#/overview){target=\_blank}.
 

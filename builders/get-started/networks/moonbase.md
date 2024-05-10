@@ -15,7 +15,7 @@ For Moonbase Alpha, you can use any of the following block explorers:
  - **Ethereum API JSON-RPC based** — [Moonbeam Basic Explorer](https://moonbeam-explorer.netlify.app/?network=MoonbaseAlpha){target=\_blank}
  - **Substrate API** — [Subscan](https://moonbase.subscan.io){target=\_blank} or [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/explorer){target=\_blank}
 
-For more information on each of the available block explorers, please head to the [Block Explorers](/builders/get-started/explorers){target=\_blank} section of the documentation.
+For more information on each of the available block explorers, please head to the [Block Explorers](/builders/get-started/explorers/){target=\_blank} section of the documentation.
 
 ## Connect MetaMask
 
@@ -28,7 +28,7 @@ If you already have MetaMask installed, you can easily connect MetaMask to the M
 !!! note
     MetaMask will popup asking for permission to add Moonbase Alpha as a custom network. Once you approve permissions, MetaMask will switch your current network to Moonbase Alpha.
 
-If you do not have MetaMask installed, or would like to follow a tutorial to get started, please check out the [Interacting with Moonbeam using MetaMask](/tokens/connect/metamask){target=\_blank} guide.
+If you do not have MetaMask installed, or would like to follow a tutorial to get started, please check out the [Interacting with Moonbeam using MetaMask](/tokens/connect/metamask/){target=\_blank} guide.
 
 ## Get Tokens {: #get-tokens }
 
@@ -71,7 +71,7 @@ The [Moonbase ERC-20 Minter](https://moonbase-minterc20.netlify.app){target=\_bl
 
 ### Moonbeam Uniswap {: #moonbeam-uniswap }
 
-[Moonbeam Uniswap](https://moonbeam-swap.netlify.app/#/swap){target=\_blank} is a fork of [Uniswap-V2](https://uniswap.org/blog/uniswap-v2){target=\_blank} deployed to Moonbase Alpha. Notably, Moonbeam Uniswap allows developers to easily make a swap to acquire [cross-chain assets](/builders/interoperability/xcm/xc20){target=\_blank} such as xcKarura or xcUNIT for XCM testing purposes. To perform your first swap, take the following steps:
+[Moonbeam Uniswap](https://moonbeam-swap.netlify.app/#/swap){target=\_blank} is a fork of [Uniswap-V2](https://uniswap.org/blog/uniswap-v2){target=\_blank} deployed to Moonbase Alpha. Notably, Moonbeam Uniswap allows developers to easily make a swap to acquire [cross-chain assets](/builders/interoperability/xcm/xc20/){target=\_blank} such as xcKarura or xcUNIT for XCM testing purposes. To perform your first swap, take the following steps:
 
 1. Press **Select a token**
 2. Connect your MetaMask wallet and ensure you're on the Moonbase Alpha network
@@ -86,7 +86,7 @@ The [Moonbase ERC-20 Minter](https://moonbase-minterc20.netlify.app){target=\_bl
 
 ### MoonLink Dashboard {: #moonlink-dashboard }
 
-The [MoonLink Dashboard](https://moonlink-dashboard.netlify.app){target=\_blank} showcases Chainlink price feeds in action. For more information, including a full listing of all Chainlink price feeds across all Moonbeam networks and a step-by-step guide of how to fetch price feed data, [head to the Oracles section of the Moonbeam Docs Site](/builders/integrations/oracles/chainlink){target=\_blank}. You can also check out the [repository for the MoonLink Dashboard](https://github.com/papermoonio/moonlink-dashboard){target=\_blank}.
+The [MoonLink Dashboard](https://moonlink-dashboard.netlify.app){target=\_blank} showcases Chainlink price feeds in action. For more information, including a full listing of all Chainlink price feeds across all Moonbeam networks and a step-by-step guide of how to fetch price feed data, [head to the Oracles section of the Moonbeam Docs Site](/builders/integrations/oracles/chainlink/){target=\_blank}. You can also check out the [repository for the MoonLink Dashboard](https://github.com/papermoonio/moonlink-dashboard){target=\_blank}.
 
 ![MoonLink Dashboard](/images/builders/get-started/networks/moonbase/moonbase-5.webp)
 

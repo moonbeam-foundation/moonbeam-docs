@@ -86,7 +86,7 @@ To get started, you'll need to [create a SubQuery project](https://academy.subqu
     4. You'll be prompted to add additional information, such as the RPC endpoint, the project's author, and the description of the project. For these, you can just hit enter and accept the default or customize them as you see fit
 
         !!! note
-            To avoid hitting the rate limits of public RPC endpoints, it is recommended to have your own endpoint and API key, which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints){target=\_blank}
+            To avoid hitting the rate limits of public RPC endpoints, it is recommended to have your own endpoint and API key, which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=\_blank}
 
         ![The terminal output after creating a project using the SubQuery CLI.](/images/builders/integrations/indexers/subquery/new/subquery-4.webp)
 

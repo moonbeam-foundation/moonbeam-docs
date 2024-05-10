@@ -11,7 +11,7 @@ The [Cross-Consensus Message (XCM)](https://wiki.polkadot.network/docs/learn-cro
 
 Remote execution via XCM opens a new set of possibilities for cross-chain interactions, from chains executing actions on other chains to users performing remote actions without switching chains.
 
-This page covers the fundamentals of XCM remote execution. If you want to learn how to perform remote execution via XCM, please refer to the [Remote Execution via the Substrate API](/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-pallet){target=\_blank} or the [Remote Execution via the Ethereum API](/builders/interoperability/xcm/xc20/send-xc20s/xtokens-pallet){target=\_blank} guides.
+This page covers the fundamentals of XCM remote execution. If you want to learn how to perform remote execution via XCM, please refer to the [Remote Execution via the Substrate API](/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-pallet/){target=\_blank} or the [Remote Execution via the Ethereum API](/builders/interoperability/xcm/xc20/send-xc20s/xtokens-pallet/){target=\_blank} guides.
 
 ## Execution Origin {: #execution-origin }
 
@@ -19,9 +19,9 @@ Generally speaking, all transactions have an origin, which is where a call comes
 
 Substrate-based transactions are more complex, as they can have different origins with different privilege levels. This is similar to having an EVM smart contract call with a specific `require` statement in which the call must come from an allowed address. In contrast, these privilege levels are programmed in the Substrate-based runtime itself.
 
-Origins are super important across different components of the Substrate runtime and, hence, the Moonbeam runtime. For example, they define the authority level they inherit in the [on-chain governance implementation](/learn/features/governance){target=\_blank}.
+Origins are super important across different components of the Substrate runtime and, hence, the Moonbeam runtime. For example, they define the authority level they inherit in the [on-chain governance implementation](/learn/features/governance/){target=\_blank}.
 
-During the execution of an XCM message, the origin defines the context in which the XCM is being executed. By default, the XCM is executed by the source chain's Sovereign account in the destination chain. This Polkadot-specific property of having remote origins that are calculated when executing XCM is known as [Computed Origins](/builders/interoperability/xcm/remote-execution/computed-origins){target=\_blank} (formerly known as Multilocation Derivative Accounts).
+During the execution of an XCM message, the origin defines the context in which the XCM is being executed. By default, the XCM is executed by the source chain's Sovereign account in the destination chain. This Polkadot-specific property of having remote origins that are calculated when executing XCM is known as [Computed Origins](/builders/interoperability/xcm/remote-execution/computed-origins/){target=\_blank} (formerly known as Multilocation Derivative Accounts).
 
 Depending on the destination chain's configuration, including the `DescendOrigin` XCM instruction can mutate the origin from which the XCM message is executed. This property is significant for remote XCM execution, as the action being executed considers the context of the newly mutated origin and not the source chain's Sovereign account.
 

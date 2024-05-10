@@ -13,9 +13,9 @@ Token approvals are critical for interacting with smart contracts securely, prev
 
 One of the reasons why many DApps use an unlimited amount is so that users don't need to continue to sign approval transactions every time they want to move their tokens. This is in addition to the second transaction required to actually swap the tokens. For networks like Ethereum, this can be expensive. However, if the approved smart contract has a vulnerability, it could be exploited and the users' tokens could be transferred at any time without requiring further approval. In addition, if a user no longer wants the DApp's contract to have access to their tokens, they have to revoke the token approval, which requires another transaction to be sent.
 
-As a DApp developer on Moonbeam, this process can be easily avoided, providing your users with more control over their assets. This can be done using the [batch precompile](/builders/pallets-precompiles/precompiles/batch){target=\_blank} to batch an approval and swap into a single transaction, instead of the typical two transaction process. This allows for the approval amount to be the exact swap amount instead of having unlimited access to your users' tokens.
+As a DApp developer on Moonbeam, this process can be easily avoided, providing your users with more control over their assets. This can be done using the [batch precompile](/builders/pallets-precompiles/precompiles/batch/){target=\_blank} to batch an approval and swap into a single transaction, instead of the typical two transaction process. This allows for the approval amount to be the exact swap amount instead of having unlimited access to your users' tokens.
 
-In this tutorial, we'll dive into the process of batching an approval and swap into one transaction using the `batchAll` function of the batch precompile contract. We'll create and deploy an ERC-20 contract and a simple DEX contract for the swap on the [Moonbase Alpha TestNet](/builders/get-started/networks/moonbase){target=\_blank} using [Hardhat](/builders/build/eth-api/dev-env/hardhat){target=\_blank} and [Ethers](/builders/build/eth-api/libraries/ethersjs){target=\_blank}.
+In this tutorial, we'll dive into the process of batching an approval and swap into one transaction using the `batchAll` function of the batch precompile contract. We'll create and deploy an ERC-20 contract and a simple DEX contract for the swap on the [Moonbase Alpha TestNet](/builders/get-started/networks/moonbase/){target=\_blank} using [Hardhat](/builders/build/eth-api/dev-env/hardhat/){target=\_blank} and [Ethers](/builders/build/eth-api/libraries/ethersjs/){target=\_blank}.
 
 ## Checking Prerequisites {: #checking-prerequisites }
 
@@ -29,7 +29,7 @@ For this tutorial, you'll need the following:
 
 ### Install Dependencies {: #install-dependencies }
 
-Once you have your [Hardhat project](/builders/build/eth-api/dev-env/hardhat){target=\_blank}, you can install the [Ethers plugin](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-ethers){target=\_blank}. This provides a convenient way to use the [Ethers.js](/builders/build/eth-api/libraries/ethersjs){target=\_blank} library to interact with the network.
+Once you have your [Hardhat project](/builders/build/eth-api/dev-env/hardhat/){target=\_blank}, you can install the [Ethers plugin](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-ethers){target=\_blank}. This provides a convenient way to use the [Ethers.js](/builders/build/eth-api/libraries/ethersjs/){target=\_blank} library to interact with the network.
 
 You can also install the [OpenZeppelin contracts library](https://docs.openzeppelin.com/contracts){target=\_blank}, as we'll be importing the `ERC20.sol` contract and `IERC20.sol` interface in our contracts.
 

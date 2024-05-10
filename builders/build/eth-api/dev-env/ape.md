@@ -15,7 +15,7 @@ This guide will walk you through using Ape to compile, deploy, and interact with
 
 To get started, ensure you have the following:
 
- - MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask){target=\_blank}
+ - MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}
  - An account with funds.
   --8<-- 'text/_common/faucet/faucet-list-item.md'
  - 

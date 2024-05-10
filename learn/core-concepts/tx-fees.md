@@ -7,7 +7,7 @@ description: Learn about the transaction fee model used in Moonbeam and the diff
 
 ## Introduction {: #introduction }
 
-Similar to [the Ethereum and Substrate APIs for sending transfers](/learn/core-concepts/transfers-api){target=\_blank} on Moonbeam, the Substrate and EVM layers on Moonbeam also have distinct transaction fee models that developers should be aware of when they need to calculate and keep track of transaction fees for their transactions.
+Similar to [the Ethereum and Substrate APIs for sending transfers](/learn/core-concepts/transfers-api/){target=\_blank} on Moonbeam, the Substrate and EVM layers on Moonbeam also have distinct transaction fee models that developers should be aware of when they need to calculate and keep track of transaction fees for their transactions.
 
 For starters, Ethereum transactions consume gas units based on their computational complexity and data storage requirements. On the other hand, Substrate transactions use the concept of "weight" to determine fees. In this guide, you'll learn how to calculate the transaction fees for both Substrate and Ethereum transactions. In terms of Ethereum transactions, you'll also learn about the key differences between how transaction fees are calculated on Moonbeam and Ethereum.
 
@@ -475,9 +475,9 @@ You can use the following snippet for any Moonbeam-based network, but you'll nee
 
 ## Substrate API Transaction Fees {: #substrate-api-transaction-fees }
 
-This section of the guide assumes you are interacting with Moonbeam blocks via [the Substrate API Sidecar](/builders/build/substrate-api/sidecar){target=\_blank} service. There are other ways of interacting with Moonbeam blocks, such as using [the Polkadot.js API library](/builders/build/substrate-api/polkadot-js-api){target=\_blank}. The logic is identical once the blocks are retrieved.
+This section of the guide assumes you are interacting with Moonbeam blocks via [the Substrate API Sidecar](/builders/build/substrate-api/sidecar/){target=\_blank} service. There are other ways of interacting with Moonbeam blocks, such as using [the Polkadot.js API library](/builders/build/substrate-api/polkadot-js-api/){target=\_blank}. The logic is identical once the blocks are retrieved.
 
-You can reference the [Substrate API Sidecar page](/builders/build/substrate-api/sidecar){target=\_blank} for information on installing and running your own Sidecar service instance, as well as more details on how to decode Sidecar blocks for Moonbeam transactions.
+You can reference the [Substrate API Sidecar page](/builders/build/substrate-api/sidecar/){target=\_blank} for information on installing and running your own Sidecar service instance, as well as more details on how to decode Sidecar blocks for Moonbeam transactions.
 
 **Note that the information in this section assumes you are running version {{ networks.moonbase.substrate_api_sidecar.stable_version }} of the Substrate Sidecar REST API.**
 

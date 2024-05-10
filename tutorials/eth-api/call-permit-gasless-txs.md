@@ -23,7 +23,7 @@ Whereas a gasless transaction may look something like this:
 
 Gasless transactions can be especially beneficial for users that make small transactions frequently, as is the case with gaming dApps like [Damned Pirates Society](https://damnedpiratessociety.io){target=\_blank} (DPS). In DPS, users go on voyages in search of treasure and with the goal of growing their fleet. There are two in-game currencies that are used in DPS: Treasure Maps (TMAP) and Doubloons (DBL). TMAP are used to buy voyages, and DBL are used to maintain flagships and buy support ships and can be earned while on voyages. Currently, if a user wants to start a voyage, they'll need TMAP to buy the voyage and GLMR to pay for transaction fees. Wouldn't it be ideal to lower the barrier to entry by implementing gasless transactions so users wouldn't need to worry about keeping a GLMR balance on top of their TMAP and DBL balances? From a dApp's perspective, it would keep users on their platform, as their users wouldn't need to leave the dApp to fund their GLMR balance; they could keep on gaming.
 
-Gasless transactions can be implemented using Moonbeam's [Call Permit Precompile](/builders/pallets-precompiles/precompiles/call-permit){target=\_blank}, which is a Solidity interface that allows a user to sign a permit, an [EIP-712](https://eips.ethereum.org/EIPS/eip-712){target=\_blank} signed message, that can then be dispatched by your dApp. The Call Permit Precompile can be used to execute any EVM call. **The best part is that you don't need to modify your existing contracts!**
+Gasless transactions can be implemented using Moonbeam's [Call Permit Precompile](/builders/pallets-precompiles/precompiles/call-permit/){target=\_blank}, which is a Solidity interface that allows a user to sign a permit, an [EIP-712](https://eips.ethereum.org/EIPS/eip-712){target=\_blank} signed message, that can then be dispatched by your dApp. The Call Permit Precompile can be used to execute any EVM call. **The best part is that you don't need to modify your existing contracts!**
 
 In this tutorial, we'll walk through the process of implementing gasless transactions in a dApp. More specifically, we'll take a closer look at how we can implement gasless transactions to buy a voyage in DPS, as an example. We'll go over building an EIP-712 signed message, signing it, and dispatching it with the Call Permit Precompile.
 
@@ -39,7 +39,7 @@ For this tutorial, you'll need the following:
 
 - An account with funds.
   --8<-- 'text/_common/faucet/faucet-list-item.md'
-- A project with [Ethers](/builders/build/eth-api/libraries/ethersjs){target=\_blank} installed:
+- A project with [Ethers](/builders/build/eth-api/libraries/ethersjs/){target=\_blank} installed:
 
     ```bash
     npm i ethers
@@ -155,7 +155,7 @@ Now that we've set up the initial configurations, let's dive into building the E
 
 There are three components that we'll need to build an EIP-712 typed message: the domain separator, the typed data structure for the data that users will sign, and the actual message data.
 
-The domain separator and the typed data structure will be based on the [Call Permit Precompile](/builders/pallets-precompiles/precompiles/call-permit){target=\_blank}. The steps to build both of these components will always be the same, regardless of the data that is being signed. The actual message data will change depending on your individual use case.
+The domain separator and the typed data structure will be based on the [Call Permit Precompile](/builders/pallets-precompiles/precompiles/call-permit/){target=\_blank}. The steps to build both of these components will always be the same, regardless of the data that is being signed. The actual message data will change depending on your individual use case.
 
 ### Define the Domain Separator {: #define-domain-separator }
 
@@ -281,7 +281,7 @@ Now, let's dig a little bit deeper and tackle the `TODO` items.
 
 #### Get the Encoded Call Data for Buying a Voyage {: #encoded-call-data-buying-voyage }
 
-We'll start off by calculating the `data` value. We can programmatically calculate the `data` value with [Ethers](/builders/build/eth-api/libraries/ethersjs){target=\_blank} by creating an interface of the Cartographer V1 contract and using the `interface.encodeFunctionData` function.
+We'll start off by calculating the `data` value. We can programmatically calculate the `data` value with [Ethers](/builders/build/eth-api/libraries/ethersjs/){target=\_blank} by creating an interface of the Cartographer V1 contract and using the `interface.encodeFunctionData` function.
 
 If you take a look at the [`DPSCartographer.sol` contract's code](https://moonscan.io/address/0xD1A9bA3e61Ac676f58B29EA0a09Cf5D7f4f35138#code){target=\_blank}, you'll see the [`buyVoyages` function](https://moonscan.io/address/0xD1A9bA3e61Ac676f58B29EA0a09Cf5D7f4f35138#code#F1#L75){target=\_blank}. The `buyVoyages` function accepts three parameters:
 

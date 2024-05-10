@@ -8,7 +8,7 @@ keywords: solidity, ethereum, staking, moonbeam, precompiled, contracts
 
 ## Introduction {: #introduction }
 
-Moonbeam uses a Delegated Proof of Stake system through the [Parachain Staking](/builders/pallets-precompiles/pallets/staking){target=\_blank} Pallet, allowing token holders (delegators) to express exactly which collator candidates they would like to support and with what quantity of stake. The design of the Parachain Staking Pallet is such that it enforces shared risk/reward on chain between delegators and candidates. For general information on staking, such as general terminology, staking variables, and more, please refer to the [Staking on Moonbeam](/learn/features/staking){target=\_blank} page.
+Moonbeam uses a Delegated Proof of Stake system through the [Parachain Staking](/builders/pallets-precompiles/pallets/staking/){target=\_blank} Pallet, allowing token holders (delegators) to express exactly which collator candidates they would like to support and with what quantity of stake. The design of the Parachain Staking Pallet is such that it enforces shared risk/reward on chain between delegators and candidates. For general information on staking, such as general terminology, staking variables, and more, please refer to the [Staking on Moonbeam](/learn/features/staking/){target=\_blank} page.
 
 The staking module is coded in Rust and it is part of a pallet that is normally not accessible from the Ethereum side of Moonbeam. However, a staking precompile allows developers to access the staking features using the Ethereum API in a precompiled contract located at address:
 
@@ -115,9 +115,9 @@ As of runtime 2400, the following methods are **deprecated**:
 
 As of runtime 1800, the following methods are **deprecated** and, as of runtime 2500, have been removed:
 
- - **scheduleLeaveDelegators**() — schedules a request to leave the set of delegators and revoke all ongoing delegations. Scheduling the request does not automatically execute it. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `executeLeaveDelegators` extrinsic. Use the [batch utility](/builders/pallets-precompiles/precompiles/batch){target=\_blank} with `scheduleRevokeDelegation` for all delegations instead
- - **executeLeaveDelegators**(*address* delegator, *uint256* delegatorDelegationCount) - executes the due request to leave the set of delegators and revoke all delegations. Use the [batch utility](/builders/pallets-precompiles/precompiles/batch){target=\_blank} with `executeDelegationRequest` for all delegations instead
- - **cancelLeaveDelegators**() - cancels a pending scheduled request to leave the set of delegators. Use the [batch utility](/builders/pallets-precompiles/precompiles/batch){target=\_blank} with `cancelDelegationRequest` for all delegations instead
+ - **scheduleLeaveDelegators**() — schedules a request to leave the set of delegators and revoke all ongoing delegations. Scheduling the request does not automatically execute it. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `executeLeaveDelegators` extrinsic. Use the [batch utility](/builders/pallets-precompiles/precompiles/batch/){target=\_blank} with `scheduleRevokeDelegation` for all delegations instead
+ - **executeLeaveDelegators**(*address* delegator, *uint256* delegatorDelegationCount) - executes the due request to leave the set of delegators and revoke all delegations. Use the [batch utility](/builders/pallets-precompiles/precompiles/batch/){target=\_blank} with `executeDelegationRequest` for all delegations instead
+ - **cancelLeaveDelegators**() - cancels a pending scheduled request to leave the set of delegators. Use the [batch utility](/builders/pallets-precompiles/precompiles/batch/){target=\_blank} with `cancelDelegationRequest` for all delegations instead
 
 As of runtime 1001, the following methods are **deprecated** and, as of runtime 1800, have been removed:
 
@@ -128,7 +128,7 @@ As of runtime 1001, the following methods are **deprecated** and, as of runtime 
  - **leave_candidates**(*uint256* amount, *uint256* candidateCount) — immediately removes the account from the candidate pool to prevent others from selecting it as a collator and triggers unbonding. Use `scheduleLeaveCandidates` and `executeLeaveCandidates` instead
  - **candidate_bond_less**(*uint256* less) — collator candidate decreases bond by the specified amount. Use `scheduleCandidateBondLess` and `executeCandidateBondLess` instead
  - **nominate**(*address* collator, *uint256* amount, *uint256* collatorNominationCount, *uint256* nominatorNominationCount) — if the caller is not a delegator, this function adds them to the set of delegators. If the caller is already a delegator, then it adjusts their delegation amount. Use `delegateWithWithAutoCompound` instead
- - **leave_nominators**(*uint256* nominatorNominationCount) — leave the set of delegators and revoke all ongoing delegations. Use the [batch utility](/builders/pallets-precompiles/precompiles/batch){target=\_blank} with `scheduleRevokeDelegation` for all delegations instead
+ - **leave_nominators**(*uint256* nominatorNominationCount) — leave the set of delegators and revoke all ongoing delegations. Use the [batch utility](/builders/pallets-precompiles/precompiles/batch/){target=\_blank} with `scheduleRevokeDelegation` for all delegations instead
  - **revoke_nominations**(*address* collator) — revoke a specific delegation. Use `scheduleRevokeDelegation` and `executeDelegationRequest` instead
  - **nominator_bond_more**(*address* collator, *uint256* more) — delegator increases bond to a collator by the specified amount. Use `delegatorBondMore` instead
  - **nominator_bond_less**(*address* collator, *uint256* less) — delegator decreases bond to a collator by the specified amount. Use `scheduleDelegatorBondLess` and `executeDelegationRequest` instead
@@ -139,7 +139,7 @@ As of runtime 1001, the following methods are **deprecated** and, as of runtime 
 
 The below example is demonstrated on Moonbase Alpha, however, similar steps can be taken for Moonbeam and Moonriver.
 
- - Have MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask){target=\_blank}
+ - Have MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}
  - Have an account with at least `{{networks.moonbase.staking.min_del_stake}}` token.
   --8<-- 'text/_common/faucet/faucet-list-item.md'
 

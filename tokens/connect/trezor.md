@@ -27,7 +27,7 @@ At the time of writing, the following versions were used:
  - Trezor One firmware v1.10.0
  - Trezor Model T firmware v2.4.0
 
-In addition, you'll need MetaMask as an intermediary between your Trezor device and Moonbase Alpha. Make sure that your MetaMask is [connected to Moonbase Alpha](/tokens/connect/metamask){target=\_blank}. Please note that your Trezor device will sign transactions in whichever MetaMask network is connected to.
+In addition, you'll need MetaMask as an intermediary between your Trezor device and Moonbase Alpha. Make sure that your MetaMask is [connected to Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}. Please note that your Trezor device will sign transactions in whichever MetaMask network is connected to.
 
 ## Importing your Trezor Account to MetaMask {: #importing-your-trezor-account-to-metamask }
 

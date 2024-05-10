@@ -21,7 +21,7 @@ The Moonbeam production MainNet is a parachain on Polkadot and has been since De
 
 Moonbeam will offer parachain-related functionalities such as [XCMP](https://wiki.polkadot.network/docs/learn-crosschain){target=\_blank} and [SPREE](https://wiki.polkadot.network/docs/learn-spree){target=\_blank} as these features become available.
 
-[Learn more about Moonbeam](/learn/platform/networks/moonbeam).
+[Learn more about Moonbeam](/learn/platform/networks/moonbeam/).
 
 ## Moonriver {: #moonriver }
 
@@ -29,10 +29,10 @@ In advance of deploying to the Polkadot MainNet, [Moonbeam launched Moonriver](h
 
 Moonriver will offer parachain-related functionalities such as [XCMP](https://wiki.polkadot.network/docs/learn-crosschain){target=\_blank} and [SPREE](https://wiki.polkadot.network/docs/learn-spree){target=\_blank} as these features become available.
 
-[Learn more about Moonriver](/learn/platform/networks/moonriver).
+[Learn more about Moonriver](/learn/platform/networks/moonriver/).
 
 ## Moonbase Alpha {: #moonbase-alpha }
 
 This TestNet is a network hosted by OpsLayer. It features a parachain/relay chain scheme. The goal is to allow developers to test the Ethereum compatibility features of Moonbeam in a shared parachain environment without needing to run their own nodes or network.
 
-[Learn more about Moonbase Alpha](/learn/platform/networks/moonbase).
+[Learn more about Moonbase Alpha](/learn/platform/networks/moonbase/).

@@ -7,9 +7,9 @@ description: This guide provides an introduction to the XCM Transactor Pallet an
 
 ## Introduction {: #introduction }
 
-XCM messages are comprised of a [series of instructions](/builders/interoperability/xcm/core-concepts/instructions){target=\_blank} that are executed by the Cross-Consensus Virtual Machine (XCVM). Combinations of these instructions result in predetermined actions such as cross-chain token transfers and, more interestingly, remote cross-chain execution. Remote execution involves executing operations or actions on one blockchain from another blockchain while maintaining the integrity of the sender's identity and permissions.
+XCM messages are comprised of a [series of instructions](/builders/interoperability/xcm/core-concepts/instructions/){target=\_blank} that are executed by the Cross-Consensus Virtual Machine (XCVM). Combinations of these instructions result in predetermined actions such as cross-chain token transfers and, more interestingly, remote cross-chain execution. Remote execution involves executing operations or actions on one blockchain from another blockchain while maintaining the integrity of the sender's identity and permissions.
 
-Typically, XCM messages are sent from the root origin (that is, SUDO or through governance), which is not ideal for projects that want to leverage remote cross-chain calls via a simple transaction. The [XCM Transactor Pallet](https://github.com/moonbeam-foundation/moonbeam/blob/master/pallets/xcm-transactor/src/lib.rs){target=\_blank} makes it easy to transact on a remote chain through either the [Sovereign account](/builders/interoperability/xcm/overview#general-xcm-definitions){target=\_blank}, which should only be allowed through governance, or a [Computed Origin account](/builders/interoperability/xcm/remote-execution/computed-origins){target=\_blank} via a simple transaction from the source chain.
+Typically, XCM messages are sent from the root origin (that is, SUDO or through governance), which is not ideal for projects that want to leverage remote cross-chain calls via a simple transaction. The [XCM Transactor Pallet](https://github.com/moonbeam-foundation/moonbeam/blob/master/pallets/xcm-transactor/src/lib.rs){target=\_blank} makes it easy to transact on a remote chain through either the [Sovereign account](/builders/interoperability/xcm/overview#general-xcm-definitions){target=\_blank}, which should only be allowed through governance, or a [Computed Origin account](/builders/interoperability/xcm/remote-execution/computed-origins/){target=\_blank} via a simple transaction from the source chain.
 
 This guide will show you how to use the XCM Transactor Pallet to send XCM messages from a Moonbeam-based network to other chains in the ecosystem. In addition, you'll also learn how to use the XCM Transactor Precompile to perform the same actions via the Ethereum API.
 
@@ -152,12 +152,12 @@ The XCM Transactor Pallet provides the following extrinsics (functions):
     !!! note
         In the following sections, you'll learn exactly how to retrieve all of the arguments needed to build and send an XCM message using this extrinsic.
 
-??? function "**transactThroughSovereign**(dest, feePayer, fee, call, originKind, weightInfo, refund) — sends an XCM message with instructions to remotely execute a given call at the given destination. The remote call will be signed by the origin parachain Sovereign account (who pays the fees), but the transaction is dispatched from a given origin. The XCM Transactor Pallet calculates the fees for the remote execution and charges the given account the estimated amount in the corresponding [XC-20 token](/builders/interoperability/xcm/xc20/overview){target=\_blank}"
+??? function "**transactThroughSovereign**(dest, feePayer, fee, call, originKind, weightInfo, refund) — sends an XCM message with instructions to remotely execute a given call at the given destination. The remote call will be signed by the origin parachain Sovereign account (who pays the fees), but the transaction is dispatched from a given origin. The XCM Transactor Pallet calculates the fees for the remote execution and charges the given account the estimated amount in the corresponding [XC-20 token](/builders/interoperability/xcm/xc20/overview/){target=\_blank}"
 
     === "Parameters"
 
         - `dest` - the XCM versioned multilocation for a chain in the ecosystem where the XCM message is being sent to (the target chain)
-        - `feePayer` - (optional) the address that will pay for the remote XCM execution in the corresponding [XC-20 token](/builders/interoperability/xcm/xc20/overview){target=\_blank}. If you don't specify the `feePayer`, the XCM execution fees will be paid by the Sovereign account on the destination chain
+        - `feePayer` - (optional) the address that will pay for the remote XCM execution in the corresponding [XC-20 token](/builders/interoperability/xcm/xc20/overview/){target=\_blank}. If you don't specify the `feePayer`, the XCM execution fees will be paid by the Sovereign account on the destination chain
         - `fee` - the asset to be used for fees. This contains the `currency` and the `feeAmount`:
             - `currency` -  defines how you are specifying the token to use to pay for the fees, which can be either of the following:
                 - `AsCurrencyId` - the currency ID of the asset to use for the fees. The currency ID can be either:
@@ -297,7 +297,7 @@ The XCM Transactor Pallet includes the following read-only functions to obtain p
 
 ## XCM Instructions for Remote Execution {: #xcm-instructions-for-remote-execution }
 
-The relevant [XCM instructions](/builders/interoperability/xcm/core-concepts/instructions){target=\_blank} to perform remote execution through XCM are, but are not limited to:
+The relevant [XCM instructions](/builders/interoperability/xcm/core-concepts/instructions/){target=\_blank} to perform remote execution through XCM are, but are not limited to:
 
  - [`DescendOrigin`](/builders/interoperability/xcm/core-concepts/instructions#descend-origin){target=\_blank} - gets executed in the target chain. It mutates the origin on the target chain to match the origin on the source chain, ensuring execution on the target chain occurs on behalf of the same entity initiating the XCM message on the source chain
  - [`WithdrawAsset`](/builders/interoperability/xcm/core-concepts/instructions#withdraw-asset){target=\_blank} - gets executed in the target chain. Removes assets and places them into a holding register
@@ -318,7 +318,7 @@ The example in this section uses a destination parachain that is not publicly av
 To be able to send the extrinsics in this section, you need to have:
 
 - An account in the origin chain with [funds](/builders/get-started/networks/moonbase/#get-tokens){target=\_blank}
-- Funds in the Computed Origin account on the target chain. To learn how to calculate the address of the Computed Origin account, please refer to the [How to Calculate the Computed Origin](/builders/interoperability/xcm/remote-execution/computed-origins){target=\_blank} documentation
+- Funds in the Computed Origin account on the target chain. To learn how to calculate the address of the Computed Origin account, please refer to the [How to Calculate the Computed Origin](/builders/interoperability/xcm/remote-execution/computed-origins/){target=\_blank} documentation
 
 For this example, the following accounts will be used:
 
@@ -364,7 +364,7 @@ Since you'll be interacting with the `transactThroughSigned` function of the XCM
         };
         ```
 
-3. Define the `call` that will be executed in the destination chain, which is the encoded call data of the pallet, method, and input to be called. It can be constructed in [Polkadot.js Apps](https://polkadot.js.org/apps){target=\_blank} (which must be connected to the destination chain) or using the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api){target=\_blank}. For this example, the inner call is a simple balance transfer of 1 token of the destination chain to Alice's account there
+3. Define the `call` that will be executed in the destination chain, which is the encoded call data of the pallet, method, and input to be called. It can be constructed in [Polkadot.js Apps](https://polkadot.js.org/apps){target=\_blank} (which must be connected to the destination chain) or using the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=\_blank}. For this example, the inner call is a simple balance transfer of 1 token of the destination chain to Alice's account there
 
     ```js
     const call =
@@ -399,7 +399,7 @@ Now that you have the values for each of the parameters, you can write the scrip
      - The Moonbase Alpha endpoint URL to create the provider
      - The values for each of the parameters of the `transactThroughSigned` function
  2. Create a Keyring instance that will be used to send the transaction
- 3. Create the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api){target=\_blank} provider
+ 3. Create the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=\_blank} provider
  4. Craft the `xcmTransactor.transactThroughSigned` extrinsic with the `dest`, `fee`, `call`, `weightInfo`, and `refund` values
  5. Send the transaction using the `signAndSend` extrinsic and the Keyring instance you created in the second step
 

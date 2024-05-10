@@ -13,7 +13,7 @@ This guide will cover the supported RPC methods available on Moonbeam and how to
 
 To view a list of tracing RPC providers, please check out the [Network Endpoints](/builders/get-started/endpoints#tracing-providers){target=\_blank} page.
 
-If you wish to set up your own tracing node, you can follow the [Running a Tracing Node](/node-operators/networks/tracing-node){target=\_blank} guide. The RPC HTTP endpoint of your tracing node should be at `{{ networks.development.rpc_url }}` and your node should display similar logs to the following:
+If you wish to set up your own tracing node, you can follow the [Running a Tracing Node](/node-operators/networks/tracing-node/){target=\_blank} guide. The RPC HTTP endpoint of your tracing node should be at `{{ networks.development.rpc_url }}` and your node should display similar logs to the following:
 
 --8<-- 'code/builders/json-rpc/debug-trace/terminal/start-up-logs.md'
 

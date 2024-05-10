@@ -33,7 +33,7 @@ Before going over the different scenarios, there are two different elements asso
 The different transfer scenarios are:
 
  - **Substrate transfer** — it will create an extrinsic, either `balances.transferAllowDeath` or `balances.transferKeepAlive`. It will trigger **one** `balances.Transfer` event
- - **Substrate feature** — some native Substrate features can create extrinsic that would send tokens to an address. For example, [Treasury](/learn/features/treasury){target=\_blank} can create an extrinsic such as `treasury.proposeSend`, which will trigger **one or multiple** `balances.Transfer` events
+ - **Substrate feature** — some native Substrate features can create extrinsic that would send tokens to an address. For example, [Treasury](/learn/features/treasury/){target=\_blank} can create an extrinsic such as `treasury.proposeSend`, which will trigger **one or multiple** `balances.Transfer` events
  - **Ethereum transfer** — it will create an `ethereum.transact` extrinsic with an empty input. It will trigger **one** `balances.Transfer` event
  - **Ethereum transfers via smart contracts** — it will create an `ethereum.transact` extrinsic with some data as input. It will trigger **one or multiple** `balances.Transfer` events
 
@@ -65,4 +65,4 @@ The following code snippet uses the Axios HTTP client to query the [Sidecar endp
 --8<-- 'code/learn/core-concepts/transfers-api/sidecar-transfer.js'
 ```
 
-You can reference the [Substrate API Sidecar page](/builders/build/substrate-api/sidecar) for information on installing and running your own Sidecar service instance, as well as more details on how to decode Sidecar blocks for Moonbeam transactions.
+You can reference the [Substrate API Sidecar page](/builders/build/substrate-api/sidecar/) for information on installing and running your own Sidecar service instance, as well as more details on how to decode Sidecar blocks for Moonbeam transactions.

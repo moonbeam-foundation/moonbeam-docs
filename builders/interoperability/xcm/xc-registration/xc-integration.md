@@ -11,7 +11,7 @@ While Cross-Chain Message Passing (XCMP) is being developed, a stop-gap protocol
 
 All XCMP channel integrations with Moonbeam are unidirectional, meaning messages flow only in one direction. If chain A initiates a channel to chain B, chain A will only be allowed to send messages to B, and B will not be able to send messages back to chain A. As such, chain B will also need to initiate a channel with chain A to send messages back and forth between the two chains.
 
-Once the XCMP (or HRMP) channels have been opened, the corresponding assets from both chains will need to be registered on the opposing chain before being able to be transferred. To find step-by-step details on how to register an asset, you can refer to the [How to Register Cross-Chain Assets](/builders/interoperability/xcm/xc-registration/assets){target=\_blank} guide.
+Once the XCMP (or HRMP) channels have been opened, the corresponding assets from both chains will need to be registered on the opposing chain before being able to be transferred. To find step-by-step details on how to register an asset, you can refer to the [How to Register Cross-Chain Assets](/builders/interoperability/xcm/xc-registration/assets/){target=\_blank} guide.
 
 This guide will cover the process of opening and accepting an HRMP channel between a parachain and a Moonbeam-based network. In addition, the guide provides the necessary steps to create a batch proposal that combines opening and accepting a channel and registering an asset on Moonbeam into a single proposal.
 
@@ -97,7 +97,7 @@ The process can be summarized in the following steps:
 3. Create a batch proposal on Moonbeam/Moonriver to:
     1. Accept the incoming HRMP channel
     2. Propose the opening of an outgoing HRMP channel from Moonriver/Moonbeam
-    3. Register the asset as an [XC-20 token](/builders/interoperability/xcm/xc20/overview){target=\_blank} (if applicable)
+    3. Register the asset as an [XC-20 token](/builders/interoperability/xcm/xc20/overview/){target=\_blank} (if applicable)
 
       Proposals should be done in the General Admin Track from [OpenGov](/learn/features/governance/#opengov){target=\_blank}. The normal enactment times are as follows:  
 
@@ -136,7 +136,7 @@ Before any messages can be sent from your parachain to Moonbeam, an HRMP channel
 !!! note
     You can add [DepositAsset](/builders/interoperability/xcm/core-concepts/instructions#deposit-asset){target=\_blank} to refund the leftover funds after the execution. If this is not provided, no refunds will be made. In addition, you could also add a [RefundSurplus](/builders/interoperability/xcm/core-concepts/instructions#refund-surplus){target=\_blank} after [Transact](/builders/interoperability/xcm/core-concepts/instructions#transact){target=\_blank} to get any leftover funds not used for the Transact. But you'll have to calculate if it is worth paying the execution cost of the extra XCM instructions.
 
-To send these XCM messages to the relay chain, the [Polkadot XCM Pallet](https://github.com/paritytech/polkadot-sdk/tree/{{ polkadot_sdk }}/polkadot/xcm/pallet-xcm){target=\_blank} is typically invoked. Moonbeam also has an [XCM Transactor Pallet](/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-pallet){target=\_blank} that simplifies the process into a call that abstracts the XCM messaging constructor.  
+To send these XCM messages to the relay chain, the [Polkadot XCM Pallet](https://github.com/paritytech/polkadot-sdk/tree/{{ polkadot_sdk }}/polkadot/xcm/pallet-xcm){target=\_blank} is typically invoked. Moonbeam also has an [XCM Transactor Pallet](/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-pallet/){target=\_blank} that simplifies the process into a call that abstracts the XCM messaging constructor.  
 
 You could potentially generate the calldata for an HRMP action by using Polkadot.js Apps, but the [xcm-tools GitHub repository](https://github.com/Moonsong-Labs/xcm-tools){target=\_blank} can build it for you, and it is the recommended tool for this process.
 
@@ -253,7 +253,7 @@ If you plan to batch the transaction with other calls, copy the resultant callda
 
 The most efficient way to complete the XCM process on parachains is to batch all transactions together. The [xcm-tools repository](https://github.com/Moonsong-Labs/xcm-tools){target=\_blank} provides a script to batch extrinsic calls into a single call, thus requiring only a single transaction. This can be helpful if your parachain would like to open an HRMP channel and register an asset simultaneously. This **should be used** when proposing channel registration on a Moonbeam network.
 
-If you are registering an asset in addition to establishing a channel, please refer to the [How to Register Cross-Chain Assets](/builders/interoperability/xcm/xc-registration/assets){target=\_blank} guide to learn how to generate the encoded calldata required for asset registration.
+If you are registering an asset in addition to establishing a channel, please refer to the [How to Register Cross-Chain Assets](/builders/interoperability/xcm/xc-registration/assets/){target=\_blank} guide to learn how to generate the encoded calldata required for asset registration.
 
 The process of batching all of the transactions into one is depicted in the following diagram.
 
