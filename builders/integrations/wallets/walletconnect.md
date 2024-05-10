@@ -109,7 +109,7 @@ To get started quickly with the Moonbeam WalletConnect template, which provides 
 
 To test the WalletConnect connection, you can use the MetaMask mobile app. For the purposes of this guide, you will need to already be connected to the Moonbase Alpha TestNet on the MetaMask mobile app. Later on in the guide, you will learn how to check if the connected network is a supported network, and if not display an error that will suggest users to switch to a network that is supported.
 
-There are a couple of ways you can connect your MetaMask mobile wallet to the Moonbase Alpha TestNet. You can manually add the Moonbase Alpha TestNet configurations from the **Networks** section of the **Settings** menu. Or you can also open up the **Browser** from MetaMask mobile and navigate to [docs.moonbeam.network](https://docs.moonbeam.network){target=\_blank}, click on **Connect MetaMask** at the top of the page, and select **Moonbase Alpha** from the menu. This will prompt you to automatically add Moonbase Alpha as a custom network and saves you from inputting the network configurations manually.
+There are a couple of ways you can connect your MetaMask mobile wallet to the Moonbase Alpha TestNet. You can manually add the Moonbase Alpha TestNet configurations from the **Networks** section of the **Settings** menu. Or you can also open up the **Browser** from MetaMask mobile and navigate to [docs.moonbeam.network](/){target=\_blank}, click on **Connect MetaMask** at the top of the page, and select **Moonbase Alpha** from the menu. This will prompt you to automatically add Moonbase Alpha as a custom network and saves you from inputting the network configurations manually.
 
 ## Connect DApp to MetaMask Mobile {: #connect-dapp-to-metamask-mobile }
 

@@ -13,7 +13,7 @@ In this tutorial, we'll walk through the [Hardhat development environment](https
 
 We'll assemble the components of the staking DAO and compile the necessary contracts. Then, we'll build a test suite with a variety of test cases relevant to our staking DAO, and run it against a local development node. Finally, we'll deploy the staking DAO to both Moonbase Alpha and Moonbeam and verify the contracts via the [Hardhat Etherscan plugin](/builders/build/eth-api/verify-contracts/etherscan-plugins/#using-the-hardhat-etherscan-plugin){target=\_blank}. If this is your first time exploring Hardhat, you may wish to start with [the introduction to Hardhat guide](/builders/build/eth-api/dev-env/hardhat/){target=\_blank}.
 
-_The information presented herein is for informational purposes only and has been provided by third parties. Moonbeam does not endorse any project listed and described on the Moonbeam docs website (https://docs.moonbeam.network)._
+--8<-- 'text/_disclaimers/third-party-content-intro.md'
 
 ## Checking Prerequisites {: #checking-prerequisites }
 

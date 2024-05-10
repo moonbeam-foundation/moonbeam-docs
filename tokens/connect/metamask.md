@@ -128,10 +128,10 @@ Here, you can configure MetaMask for the following networks:
 To do so, fill in the following information:
 
 1. **Network name** - name that represents the network you are connecting to
-2. **RPC URL** - [RPC endpoint](https://docs.moonbeam.network/builders/get-started/endpoints){target=\_blank} of the network
+2. **RPC URL** - [RPC endpoint](/builders/get-started/endpoints){target=\_blank} of the network
 3. **Chain ID** - chain ID of the Ethereum compatible network
 4. **Symbol** - (optional) symbol of the native token of the network. For example, for Moonbeam, the value would be **GLMR**
-5. **Block Explorer** - (optional) URL of the [block explorer](https://docs.moonbeam.network/builders/get-started/explorers){target=\_blank}
+5. **Block Explorer** - (optional) URL of the [block explorer](/builders/get-started/explorers){target=\_blank}
 6. Once you've verified all the information, click on **Save**
 
 ![Add network in Metamask](/images/tokens/connect/metamask/metamask-8.webp)
