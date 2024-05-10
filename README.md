@@ -8,7 +8,7 @@ This repository will grow and be refined over time as Moonbeam is developed.  We
 
 ## About This Site 
 
-The content in this repository is displayed on the Moonbeam documentation site, [docs.moonbeam.network](https://docs.moonbeam.network), and is generated using [mkdocs](https://www.mkdocs.org). The theme used is [Material for MkDocs](https://squidfunk.github.io/mkdocs-material).
+The content in this repository is displayed on the Moonbeam documentation site, [docs.moonbeam.network](https://docs.moonbeam.network/), and is generated using [mkdocs](https://www.mkdocs.org). The theme used is [Material for MkDocs](https://squidfunk.github.io/mkdocs-material).
 
 ## Contributing
 
