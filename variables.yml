@@ -1257,21 +1257,21 @@ networks:
       display: 124,706,000
       numbers_only: 124706000
   alphanet:
-    spec_version: v1.2.0
+    spec_version: v1.10.0
     xcm_instructions:
       withdraw:
-        total_weight: 145,308,000
+        total_weight: 150,098,000 
       clear_origin:
-        total_weight: 5,725,000
+        total_weight: 2,620,000
       buy_exec:
-        total_weight: 5,751,000
+        total_weight: 2,823,000
       deposit_asset:
-        total_weight: 147,433,000
+        total_weight: 150,445,000
     xcm_message:
       transfer:
         weight: 
-          display: 304,217,000
-          numbers_only: 304217000
+          display: 305,986,000
+          numbers_only: 305986000
   moonbase_beta:
     xcm_message:
       transact:
@@ -1280,7 +1280,7 @@ networks:
           numbers_only: 400000000
         wei_betadev_cost: 20000000000000
         betadev_cost: '0.00002'
-polkadot_sdk: polkadot-v1.3.0
+polkadot_sdk: polkadot-v1.7.2
 xcm:
   db_weights:
     rocksdb_read: 

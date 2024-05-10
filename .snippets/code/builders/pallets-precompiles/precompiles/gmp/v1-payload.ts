@@ -1,8 +1,8 @@
 import { ApiPromise, WsProvider } from '@polkadot/api';
 
 enum MRLTypes {
-  // Runtime defined MultiLocation. Allows for XCM versions 2 and 3
-  XcmVersionedMultiLocation = 'XcmVersionedMultiLocation',
+  // Runtime defined MultiLocation. Allows for XCM versions 2, 3, and 4
+  XcmVersionedLocation = 'XcmVersionedLocation',
   // MRL payload (V1) that only defines the destination MultiLocation
   XcmRoutingUserAction = 'XcmRoutingUserAction',
   // Wrapper object for the MRL payload
@@ -26,7 +26,7 @@ async function createMRLPayload(
   // Create a multilocation object based on the target parachain's account type
   const isEthereumStyle = ETHEREUM_ACCOUNT_PARACHAINS.includes(parachainId);
   const multilocation = {
-    V3: {
+    V4: {
       parents: 1,
       interior: {
         X2: [
@@ -45,7 +45,7 @@ async function createMRLPayload(
     provider: wsProvider,
     types: {
       [MRLTypes.XcmRoutingUserAction]: {
-        destination: MRLTypes.XcmVersionedMultiLocation,
+        destination: MRLTypes.XcmVersionedLocation,
       },
       [MRLTypes.VersionedUserAction]: {
         _enum: { V1: MRLTypes.XcmRoutingUserAction },
@@ -54,18 +54,21 @@ async function createMRLPayload(
   });
 
   // Format multilocation object as a Polkadot.js type
-  const versionedMultilocation = api.createType(
-    MRLTypes.XcmVersionedMultiLocation,
+  const versionedLocation = api.createType(
+    MRLTypes.XcmVersionedLocation,
     multilocation
   );
   const userAction = api.createType(MRLTypes.XcmRoutingUserAction, {
-    destination: versionedMultilocation,
+    destination: versionedLocation,
   });
 
   // Wrap and format the MultiLocation object into the precompile's input type
   const versionedUserAction = api.createType(MRLTypes.VersionedUserAction, {
     V1: userAction,
   });
+
+  // Disconnect the API
+  api.disconnect();
 
   // SCALE encode resultant precompile formatted objects
   return versionedUserAction.toU8a();

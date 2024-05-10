@@ -1,27 +1,23 @@
-import { ApiPromise, WsProvider, Keyring } from '@polkadot/api';
-import { ethers } from 'ethers';
+import { ApiPromise, WsProvider } from '@polkadot/api';
 
 // Input data
 const originChainProviderWsURL = 'INSERT_ORIGIN_CHAIN_WSS_URL';
-const multilocationDerivativeAccount =
-  'INSERT_MULTILOCATION_DERIVATIVE_ADDRESS';
+const computedOriginAccount = 'INSERT_COMPUTED_ORIGIN_ADDRESS';
 const localXC20Address = 'INSERT_LOCAL_XC20_ADDRESS';
 const transferAmount = 'INSERT_AMOUNT_TO_TRANSFER';
 
 // Transfer multiassets parameters
 const assets = {
-  V3: [
+  V4: [
     {
       // xcDEV
       id: {
-        Concrete: {
-          parents: 1,
-          interior: {
-            X2: [
-              { Parachain: 1000 }, // Parachain ID
-              { PalletInstance: 3 }, // Index of the Balances Pallet
-            ],
-          },
+        parents: 1,
+        interior: {
+          X2: [
+            { Parachain: 1000 }, // Parachain ID
+            { PalletInstance: 3 }, // Index of the Balances Pallet
+          ],
         },
       },
       fun: {
@@ -31,19 +27,17 @@ const assets = {
     {
       // Local XC-20 token
       id: {
-        Concrete: {
-          parents: 1,
-          interior: {
-            X3: [
-              { Parachain: 1000 }, // Parachain ID
-              { PalletInstance: 48 }, // Index of the ERC-20 XCM Bridge Pallet
-              {
-                AccountKey20: {
-                  key: localXC20Address,
-                },
+        parents: 1,
+        interior: {
+          X3: [
+            { Parachain: 1000 }, // Parachain ID
+            { PalletInstance: 48 }, // Index of the ERC-20 XCM Bridge Pallet
+            {
+              AccountKey20: {
+                key: localXC20Address,
               },
-            ],
-          },
+            },
+          ],
         },
       },
       fun: {
@@ -54,22 +48,24 @@ const assets = {
 };
 const feeItem = 0;
 const destination = {
-  V3: {
+  V4: {
     parents: 1,
     interior: {
       X2: [
         { Parachain: 1000 },
-        { AccountKey20: { key: multilocationDerivativeAccount } },
+        { AccountKey20: { key: computedOriginAccount } },
       ],
     },
   },
 };
 const weightLimit = 'Unlimited';
 
-const sendBatchTx = async () => {
+export const getTransferMultiassetsCall = async () => {
   // Create origin chain API provider
   const originChainProvider = new WsProvider(originChainProviderWsURL);
-  const originChainAPI = await ApiPromise.create({ provider: originChainProvider });
+  const originChainAPI = await ApiPromise.create({
+    provider: originChainProvider,
+  });
 
   // Create the transferMultiasset extrinsic
   const transferMultiassets = originChainAPI.tx.xTokens.transferMultiassets(
@@ -79,7 +75,7 @@ const sendBatchTx = async () => {
     weightLimit
   );
 
-  // Additional code goes here
-};
+  originChainAPI.disconnect();
 
-sendBatchTx();
+  return transferMultiassets;
+};

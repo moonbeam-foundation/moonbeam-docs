@@ -1,12 +1,10 @@
 import { ApiPromise, WsProvider } from '@polkadot/api';
 
 const asset = {
-  V3: {
+  V4: {
     id: {
-      Concrete: {
-        parents: INSERT_PARENTS,
-        interior: INSERT_INTERIOR,
-      },
+      parents: INSERT_PARENTS,
+      interior: INSERT_INTERIOR,
     },
     fun: {
       Fungible: { Fungible: INSERT_AMOUNT_TO_TRANFER },
@@ -14,7 +12,7 @@ const asset = {
   },
 };
 const dest = {
-  V3: {
+  V4: {
     parents: INSERT_PARENTS,
     interior: INSERT_INTERIOR,
   },

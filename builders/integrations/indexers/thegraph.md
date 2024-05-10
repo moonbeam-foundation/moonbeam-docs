@@ -206,7 +206,7 @@ dataSources:
 
 Mappings files are what transform the blockchain data into entities defined in the schema file. Each event handler inside the `subgraph.yaml` file needs to have a subsequent function in the mapping.
 
-The mapping file used for the Lottery example can be found in the [Moonlotto Github Repository](https://github.com/papermoonio/moonlotto-subgraph/blob/main/src/mapping.ts/){target=\_blank}.
+The mapping file used for the Lottery example can be found in the [Moonlotto Github Repository](https://github.com/papermoonio/moonlotto-subgraph/blob/main/src/mapping.ts){target=\_blank}.
 
 In general, the strategy of each handler function is to load the event data, check if an entry already exists, arrange the data as desired, and save the entry. For example, the handler function for the `PlayerJoined` event is as follows:
 

@@ -1,7 +1,7 @@
 import { ApiPromise, WsProvider } from '@polkadot/api';
 
 const dest = {
-  V3: {
+  V4: {
     parents: INSERT_PARENTS,
     interior: INSERT_INTERIOR,
   },

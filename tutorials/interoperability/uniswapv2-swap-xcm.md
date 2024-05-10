@@ -42,7 +42,7 @@ Considering all the steps summarized in the [introduction](#introduction), the f
 
 For our case, we will send the remote EVM call via XCM from Alice's account, which is `5GKh9gMK5dn9SJp6qfMNcJiMMnY7LReYmgug2Fr5fKE64imn`, so the command and response would look like the following image.
 
-![Calculating the Computed Origin account](/images/tutorials/interoperability/uniswapv2-swap-xcm/uniswapv2-swap-xcm-2.webp)
+--8<-- 'code/tutorials/interoperability/uniswapv2-swap/terminal/calculate.md'
 
 The values are all summarized in the following table:
 
@@ -75,7 +75,7 @@ The easiest way to get the calldata is through the [Moonbeam Uniswap V2 Demo](ht
  3. In Metamask, click on the **hex** tab, and the encoded calldata should show up
  4. Click on the **Copy raw transaction data** button. This will copy the encoded calldata to the clipboard
 
-![Calldata for Uniswap V2 swap](/images/tutorials/interoperability/uniswapv2-swap-xcm/uniswapv2-swap-xcm-3.webp)
+![Calldata for Uniswap V2 swap](/images/tutorials/interoperability/uniswapv2-swap-xcm/uniswapv2-swap-xcm-2.webp)
 
 !!! note
     Other wallets also offer the same capabilities of checking the encoded calldata before signing the transaction.
@@ -89,8 +89,8 @@ Once you have the encoded calldata, feel free to reject the transaction in your 
  5. The deadline limit for the swap
  6. The length of the address array representing the path
  7. First token involved in the swap, which is wrapped `DEV`
- 8. Second token involved in the swap, `MARS`, so it is the last 
- 
+ 8. Second token involved in the swap, `MARS`, so it is the last
+
 ```text
 1. 0x7ff36ab5
 2. 00000000000000000000000000000000000000000000000010b3e6f66568aaee -> Min Amount Out
@@ -135,7 +135,6 @@ Now that we have the Uniswap V2 swap encoded calldata, we need to generate the b
 
  To get the SCALE (encoding type) encoded calldata for the transaction parameters, we can leverage the following [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=\_blank} script (note that it requires `@polkadot/api` and `ethers`).
 
-
 ```js
 --8<-- 'code/tutorials/interoperability/uniswapv2-swap/generate-moonbeam-encoded-calldata.js'
 ```
@@ -157,12 +156,12 @@ Let's go through each of the main components of the snippet shown above:
 
 Once you have the code set up, you can execute it with `node`, and you'll get the Moonbase Alpha remote EVM calldata:
 
-![Getting the Moonbase Alpha remote EVM XCM calldata for Uniswap V2 swap](/images/tutorials/interoperability/uniswapv2-swap-xcm/uniswapv2-swap-xcm-4.webp)
+--8<-- 'code/tutorials/interoperability/uniswapv2-swap/terminal/encoded.md'
 
 The encoded calldata for this example is:
 
 ```text
-0x260001eeed020000000000000000000000000000000000000000000000000000000000008a1932d6e26433f3037bd6c3a40c816222a6ccd40000c16ff286230000000000000000000000000000000000000000000000000091037ff36ab50000000000000000000000000000000000000000000000000de0b6b3a7640000000000000000000000000000000000000000000000000000000000000000008000000000000000000000000061cd3e07fe7d7f6d4680e3e322986b7877f108dd00000000000000000000000000000000000000000000000000000000a036b1b90000000000000000000000000000000000000000000000000000000000000002000000000000000000000000d909178cc99d318e4d46e7e66a972955859670e10000000000000000000000001fc56b105c4f0a1a8038c2b429932b122f6b631f00
+0x2600019b40090000000000000000000000000000000000000000000000000000000000008a1932d6e26433f3037bd6c3a40c816222a6ccd40000c16ff286230000000000000000000000000000000000000000000000000091037ff36ab50000000000000000000000000000000000000000000000000de0b6b3a7640000000000000000000000000000000000000000000000000000000000000000008000000000000000000000000061cd3e07fe7d7f6d4680e3e322986b7877f108dd00000000000000000000000000000000000000000000000000000000a036b1b90000000000000000000000000000000000000000000000000000000000000002000000000000000000000000d909178cc99d318e4d46e7e66a972955859670e10000000000000000000000001fc56b105c4f0a1a8038c2b429932b122f6b631f00
 ```
 
 And that is it! You have everything you need to start crafting the XCM message itself! It has been a long journey, but we are almost there.
@@ -211,12 +210,12 @@ Let's go through each of the main components of the snippet shown above:
 
 Once you have the code set up, you can execute it with `node`, and you'll get the relay chain XCM calldata:
 
-![Getting the Relay Chain XCM calldata for Uniswap V2 swap](/images/tutorials/interoperability/uniswapv2-swap-xcm/uniswapv2-swap-xcm-5.webp)
+--8<-- 'code/tutorials/interoperability/uniswapv2-swap/terminal/build-message.md'
 
 The encoded calldata for this example is:
 
 ```text
-0x4d0604630003000100a10f031000040000010403000f0000c16ff28623130000010403000f0000c16ff286230006010700902f500982b92a00fd04260001eeed020000000000000000000000000000000000000000000000000000000000008a1932d6e26433f3037bd6c3a40c816222a6ccd40000c16ff286230000000000000000000000000000000000000000000000000091037ff36ab50000000000000000000000000000000000000000000000000de0b6b3a7640000000000000000000000000000000000000000000000000000000000000000008000000000000000000000000061cd3e07fe7d7f6d4680e3e322986b7877f108dd00000000000000000000000000000000000000000000000000000000a036b1b90000000000000000000000000000000000000000000000000000000000000002000000000000000000000000d909178cc99d318e4d46e7e66a972955859670e10000000000000000000000001fc56b105c4f0a1a8038c2b429932b122f6b631f000d01000001030061cd3e07fe7d7f6d4680e3e322986b7877f108dd
+0x450604630004000100a10f0410000400010403000f0000c16ff286231300010403000f0000c16ff286230006010700902f500982b92a00fd042600019b40090000000000000000000000000000000000000000000000000000000000008a1932d6e26433f3037bd6c3a40c816222a6ccd40000c16ff286230000000000000000000000000000000000000000000000000091037ff36ab50000000000000000000000000000000000000000000000000de0b6b3a7640000000000000000000000000000000000000000000000000000000000000000008000000000000000000000000061cd3e07fe7d7f6d4680e3e322986b7877f108dd00000000000000000000000000000000000000000000000000000000a036b1b90000000000000000000000000000000000000000000000000000000000000002000000000000000000000000d909178cc99d318e4d46e7e66a972955859670e10000000000000000000000001fc56b105c4f0a1a8038c2b429932b122f6b631f000d01000001030061cd3e07fe7d7f6d4680e3e322986b7877f108dd
 ```
 
 Now that we have the SCALE encoded calldata, the last step is to submit the transaction, which will send our XCM message to Moonbase Alpha, and do the remote EVM call!
@@ -239,9 +238,9 @@ To send the XCM message that we built in the previous section, you can use the f
 
 Once you have the code set up, you can execute it with `node`, and the XCM message will be sent to initiate your Uniswap V2 swap in Moonbase Alpha:
 
-![Sending the XCM message from the Relay Chain to Moonbase Alpha for the Uniswap V2 swap](/images/tutorials/interoperability/uniswapv2-swap-xcm/uniswapv2-swap-xcm-6.webp)
+--8<-- 'code/tutorials/interoperability/uniswapv2-swap/terminal/send-xcm.md'
 
-And that is it! You've sent an XCM message, which performed a remote EVM call via XCM and resulted in an Uniswap V2-styled swap in Moonbase Alpha. But let's go into more detail about what happened.
+And that is it! You've sent an XCM message, which performed a remote EVM call via XCM and resulted in a Uniswap V2-styled swap in Moonbase Alpha. But let's go into more detail about what happened.
 
 This action will emit different events. The first one is the only relevant [in the relay chain](https://polkadot.js.org/apps/?rpc=wss://fro-moon-rpc-1-moonbase-relay-rpc-1.moonbase.ol-infra.network#/explorer/query/0x85cad5f3cef5d578f6acc60c721ece14842be332fa333c9b9eafdfe078bc0290){target=\_blank}, and it is named `xcmPallet.Sent`, which is from the `xcmPallet.send` extrinsic. In [Moonbase Alpha](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/explorer/query/0x1f60aeb1f2acbc2cf6e19b7ad969661f21f4847f7b40457c459e7d39f6bc0779){target=\_blank}, the following events emitted by the `parachainSystem.setValidationData` extrinsic (where all the inbound XCM messages are processed) are of interest:
 

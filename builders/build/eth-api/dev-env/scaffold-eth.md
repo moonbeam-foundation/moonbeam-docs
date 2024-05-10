@@ -222,7 +222,7 @@ In the following sections, you'll modify the Next.js configuration so that it ta
 
 ### Configure the DApp for Moonbeam {: #configure-dapp }
 
-To target the Moonbeam-based network that you deployed your smart contract to, you'll need to edit the configurations in the `packages/nextjs/scaffold.config.ts` file. More specifically, you'll need to modify the `targetNetworks` array in the `scaffoldConfig` object. You can use the [list of chains that viem provides](https://github.com/wevm/viem/blob/main/src/chains/index.ts/){target=\_blank} to specify the chain(s) you've deployed your contract to.
+To target the Moonbeam-based network that you deployed your smart contract to, you'll need to edit the configurations in the `packages/nextjs/scaffold.config.ts` file. More specifically, you'll need to modify the `targetNetworks` array in the `scaffoldConfig` object. You can use the [list of chains that viem provides](https://github.com/wevm/viem/blob/main/src/chains/index.ts){target=\_blank} to specify the chain(s) you've deployed your contract to.
 
 === "Moonbeam"
 

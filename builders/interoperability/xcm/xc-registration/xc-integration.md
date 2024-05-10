@@ -146,7 +146,7 @@ cd xcm-tools && \
 yarn
 ```
 
-The xcm-tools repository has a specific script for HRMP interactions called [`hrmp-channel-manipulator.ts`](https://github.com/Moonsong-Labs/xcm-tools/blob/main/scripts/hrmp-channel-manipulator.ts/){target=\_blank}. This command generates encoded calldata for a specific HRMP action, as long as it is given the correct details. The script builds the XCM message with the DepositAsset XCM instruction but not with RefundSurplus.
+The xcm-tools repository has a specific script for HRMP interactions called [`hrmp-channel-manipulator.ts`](https://github.com/Moonsong-Labs/xcm-tools/blob/main/scripts/hrmp-channel-manipulator.ts){target=\_blank}. This command generates encoded calldata for a specific HRMP action, as long as it is given the correct details. The script builds the XCM message with the DepositAsset XCM instruction but not with RefundSurplus.
 
 The encoded calldata is then used to submit a governance proposal that will execute the HRMP action. All HRMP-related proposals should be assigned to the General Admin Track.
 

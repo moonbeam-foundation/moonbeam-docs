@@ -1,14 +1,15 @@
-import { ApiPromise, WsProvider } from '@polkadot/api'; // Version 9.13.6
+import { ApiPromise, WsProvider } from '@polkadot/api'; // Version 10.13.1
 
 const providerWsURL = 'wss://wss.api.moonbase.moonbeam.network';
 
-const location = { parents: 1, interior: { X1: { Parachain: 888 } } };
+const location = { parents: 1, interior: { X1: [{ Parachain: 888 }] } };
 
 const main = async () => {
   const substrateProvider = new WsProvider(providerWsURL);
   const api = await ApiPromise.create({ provider: substrateProvider });
 
-  const transactInfoWithWeightLimit = await api.query.xcmTransactor.transactInfoWithWeightLimit(location);
+  const transactInfoWithWeightLimit =
+    await api.query.xcmTransactor.transactInfoWithWeightLimit(location);
 
   if (transactInfoWithWeightLimit.isSome) {
     const data = transactInfoWithWeightLimit.unwrap();
@@ -16,6 +17,8 @@ const main = async () => {
       data.toJSON().transactExtraWeightSigned.refTime;
     console.log(transactExtraWeightSigned);
   }
+
+  api.disconnect();
 };
 
 main();

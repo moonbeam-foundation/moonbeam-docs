@@ -191,7 +191,7 @@ Be sure to edit the `spyServiceFilters` array so that the relayer listens to the
 ]
 ```
 
-In the `simplegeneralmessage_plugin` folder, open up `src/plugin.ts`. This file contains plugin code for both the listener and executor components of the relayer, but the comments should make it obvious which functions are relevant to which component. Snippets of the file are shown below and you should be following along, but in case you aren’t, the entire file can be accessed in [its GitHub repository](https://github.com/jboetticher/relayer-engine-docs-example/blob/main/plugins/simplegeneralmessage_plugin/src/plugin.ts/){target=\_blank}.
+In the `simplegeneralmessage_plugin` folder, open up `src/plugin.ts`. This file contains plugin code for both the listener and executor components of the relayer, but the comments should make it obvious which functions are relevant to which component. Snippets of the file are shown below and you should be following along, but in case you aren’t, the entire file can be accessed in [its GitHub repository](https://github.com/jboetticher/relayer-engine-docs-example/blob/main/plugins/simplegeneralmessage_plugin/src/plugin.ts){target=\_blank}.
 
 Look at the `getFilters()` function below. Notice something familiar? The `spyServiceFilters` object is injected into the plugin class that `getFilters()` is part of. Note that no filtering is being done, this is only the preparation of the filters. The actual filtering of VAAs occurs within the `relayer-engine` package, which uses this `getFilters()` function to understand what to filter.
 
@@ -290,7 +290,7 @@ If you are using a chain that wasn’t listed in the EVM TestNet table above, yo
 ]
 ```
 
-Now that the wallets are sorted out for the executor, look at the code of the executor itself, which is in the `plugins/simplegeneralmessage_plugin/src/plugin.ts` file. If you haven’t been following along, the entire file can be accessed in [its GitHub repository](https://github.com/jboetticher/relayer-engine-docs-example/blob/main/plugins/simplegeneralmessage_plugin/src/plugin.ts/){target=\_blank}.
+Now that the wallets are sorted out for the executor, look at the code of the executor itself, which is in the `plugins/simplegeneralmessage_plugin/src/plugin.ts` file. If you haven’t been following along, the entire file can be accessed in [its GitHub repository](https://github.com/jboetticher/relayer-engine-docs-example/blob/main/plugins/simplegeneralmessage_plugin/src/plugin.ts){target=\_blank}.
 
 The `handleWorkflow(workflow, providers, execute)` function is where all of the logic is, though there are some helper functions underneath it. This is the function that the `relayer-engine` package invokes when there is a workflow in the Redis database that’s to be used. Notice the three parameters that are injected into the function: `workflow`, `providers`, and `execute`.
 

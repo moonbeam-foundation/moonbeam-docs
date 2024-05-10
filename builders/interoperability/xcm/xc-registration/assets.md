@@ -59,7 +59,7 @@ With this information in hand, you can get the encoded calldata for both calls a
 
 Units per second is the number of tokens charged per second of execution of an XCM message. The target cost for an XCM transfer is $0.02 at the time of registration. The units per second might get updated through governance as the token price fluctuates.
 
-The easiest way to calculate an asset's units per second is through the [`calculate-units-per-second.ts` script](https://github.com/Moonsong-Labs/xcm-tools/blob/main/scripts/calculate-units-per-second.ts/){target=\_blank} in the [xcm-tools](https://github.com/Moonsong-Labs/xcm-tools/){target=\_blank} repository. The script accepts the following arguments:
+The easiest way to calculate an asset's units per second is through the [`calculate-units-per-second.ts` script](https://github.com/Moonsong-Labs/xcm-tools/blob/main/scripts/calculate-units-per-second.ts){target=\_blank} in the [xcm-tools](https://github.com/Moonsong-Labs/xcm-tools/){target=\_blank} repository. The script accepts the following arguments:
 
 - `--decimals` or `--d` - decimals of the tokens you are calculating the units per second for
 - `--xcm-weight-cost` or `--xwc` - total weight cost of the execution of the entire XCM message. The estimated weight per XCM operation on each Moonbeam chain is:  
@@ -105,7 +105,7 @@ If you're not familiar with the governance system on Moonbeam, you can find out 
 
 To submit a preimage, you'll need to get the encoded calldata for each extrinsic that you want to execute. As previously mentioned, you'll use the `assetManager.registerForeignAsset`, and optionally, the `assetManager.setAssetUnitsPerSecond`, and `system.setStorage` extrinsics.
 
-You can use the [`xcm-asset-registrator.ts` script](https://github.com/Moonsong-Labs/xcm-tools/blob/main/scripts/xcm-asset-registrator.ts/){target=\_blank} to calculate the encoded calldata and even submit the preimage and proposal if you desire. Proposals must be submitted via the General Admin Track. If you're registering an asset and opening a channel, you'll want to wait to submit the preimage and proposal until you have the calldata for the channel-related calls.
+You can use the [`xcm-asset-registrator.ts` script](https://github.com/Moonsong-Labs/xcm-tools/blob/main/scripts/xcm-asset-registrator.ts){target=\_blank} to calculate the encoded calldata and even submit the preimage and proposal if you desire. Proposals must be submitted via the General Admin Track. If you're registering an asset and opening a channel, you'll want to wait to submit the preimage and proposal until you have the calldata for the channel-related calls.
 
 To get the encoded calldata for the `assetManager.registerForeignAsset` extrinsic, you can use the following arguments:
 
@@ -339,7 +339,7 @@ The multilocation of Moonbeam native assets includes the parachain ID of the Moo
 
     ```js
     {
-      V3: {
+      V4: {
         parents: 1,
         interior: {
           X2: [
@@ -359,7 +359,7 @@ The multilocation of Moonbeam native assets includes the parachain ID of the Moo
 
     ```js
     {
-      V3: {
+      V4: {
         parents: 1,
         interior: {
           X2: [
@@ -379,7 +379,7 @@ The multilocation of Moonbeam native assets includes the parachain ID of the Moo
 
     ```js
     {
-      V3: {
+      V4: {
         parents: 1,
         interior: {
           X2: [

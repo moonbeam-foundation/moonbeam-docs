@@ -1,6 +1,6 @@
 import { ApiPromise, WsProvider } from '@polkadot/api';
 
-const message = { V3: [INSERT_XCM_INSTRUCTIONS] };
+const message = { V4: [INSERT_XCM_INSTRUCTIONS] };
 const maxWeight = { refTime: INSERT_REF_TIME, proofSize: INSERT_PROOF_SIZE };
 
 const main = async () => {

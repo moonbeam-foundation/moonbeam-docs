@@ -16,7 +16,7 @@ This guide will provide an overview and examples of the extrinsics and getters f
 
 Derivative accounts are accounts that are derived from another account using an index. This enables the derivative account to dispatch transactions and use the origin account to pay for transaction fees. Since the private key of this account is unknown, transactions must be initiated with the `asDerivative` extrinsic of this pallet. For example, Alice has a derivative account with an index `0`. If she transfers any balance using the `asDerivative` function, Alice would still pay for transaction fees, but the funds being transferred will be withdrawn from the derivative account at index `0`.
 
-The derivation is done by calculating the Blake2 hash of `modlpy/utilisuba` + `originalAddress` + `index`.  You can use a [script to calculate a derivative account](https://github.com/albertov19/PolkaTools/blob/main/calculateDerivedAddress.ts/){target=\_blank} given an origin account and index.
+The derivation is done by calculating the Blake2 hash of `modlpy/utilisuba` + `originalAddress` + `index`.  You can use a [script to calculate a derivative account](https://github.com/albertov19/PolkaTools/blob/main/calculateDerivedAddress.ts){target=\_blank} given an origin account and index.
 
 One use case of derivative accounts can be found in the XCM Transactor Pallet. The pallet allows users to perform remote cross-chain calls from an account derivated from the Sovereign account which enables the calls to be easily executed with a simple transaction. For more information, please refer to the [Using the XCM Transactor Pallet for Remote Executions](/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-pallet/){target=\_blank} guide.
 

@@ -1,4 +1,4 @@
-import { ApiPromise, WsProvider, Keyring } from '@polkadot/api'; // Version 9.13.6
+import { ApiPromise, WsProvider, Keyring } from '@polkadot/api'; // Version 10.13.1
 
 const currencyId = {
   ForeignAsset: {
@@ -8,7 +8,7 @@ const currencyId = {
 const amount = INSERT_AMOUNT_TO_TRANSFER;
 const fee = INSERT_AMOUNT_FOR_FEE;
 const dest = {
-  V3: {
+  V4: {
     parents: INSERT_PARENTS,
     interior: INSERT_INTERIOR,
   },

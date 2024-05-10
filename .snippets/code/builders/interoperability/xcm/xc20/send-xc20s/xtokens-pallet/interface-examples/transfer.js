@@ -7,7 +7,7 @@ const currencyId = {
 };
 const amount = INSERT_AMOUNT_TO_TRANFER;
 const dest = {
-  V3: {
+  V4: {
     parents: INSERT_PARENTS,
     interior: INSERT_INTERIOR,
   },

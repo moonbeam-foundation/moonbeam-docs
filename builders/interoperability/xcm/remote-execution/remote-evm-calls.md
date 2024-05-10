@@ -198,14 +198,7 @@ For the value, you can set it to `0` since this particular interaction does not 
 Now that you have all of the components required for the `xcmTransaction` parameter, you can build it:
 
 ```js
-const xcmTransaction = {
-  V2: {
-    gasLimit: 155000,
-    action: { Call: '0xa72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8' }, // Call the incrementer contract
-    value: 0,
-    input: '0xd09de08a', // Call the increment function
-  },
-};
+--8<-- 'code/builders/interoperability/xcm/remote-execution/remote-evm-calls/generate-encoded-calldata.js:5:12'
 ```
 
 Next, you can write the script to get the encoded call data for the transaction. You'll take the following steps:
@@ -218,7 +211,7 @@ Next, you can write the script to get the encoded call data for the transaction.
  4. Get the encoded call data for the extrinsic. You don't need to sign and send the transaction
 
 ```js
---8<-- 'code/builders/interoperability/xcm/remote-execution/remote-evm-calls/generate-encoded-call-data.js'
+--8<-- 'code/builders/interoperability/xcm/remote-execution/remote-evm-calls/generate-encoded-calldata.js'
 ```
 
 !!! note
@@ -242,7 +235,7 @@ To modify the encoded call data script, you'll need to add Alice's Computed Orig
     --8<-- 'code/builders/interoperability/xcm/remote-execution/remote-evm-calls/estimate-required-weight.js'
     ```
   
-The script, at the time of writing, returns an estimate of `3900000000` for `refTime` and `38750` for `proofSize`.
+The script, at the time of writing, returns an estimate of `3900000000` for `refTime` and `9687` for `proofSize`.
 
 ### Building the XCM for Remote XCM Execution {: #build-xcm-remote-evm}
 
@@ -256,7 +249,7 @@ You can start assembling these parameters by taking the following steps:
 1. Build the multilocation of the destination, which is Moonbase Alpha:
 
     ```js
-    const dest = { V3: { parents: 0, interior: { X1: { Parachain: 1000 } } } };
+    --8<-- 'code/builders/interoperability/xcm/remote-execution/remote-evm-calls/send.js:8:8'
     ```
 
 2. Build the `WithdrawAsset` instruction, which will require you to define:
@@ -265,14 +258,7 @@ You can start assembling these parameters by taking the following steps:
     - The amount of DEV tokens to withdraw
 
     ```js
-    const instr1 = {
-      WithdrawAsset: [
-        {
-          id: { Concrete: { parents: 0, interior: { X1: { PalletInstance: 3 } } } },
-          fun: { Fungible: 10000000000000000n }, // 0.01 DEV
-        },
-      ],
-    };
+    --8<-- 'code/builders/interoperability/xcm/remote-execution/remote-evm-calls/send.js:9:16'
     ```
 
 3. Build the `BuyExecution` instruction, which will require you to define:
@@ -282,15 +268,7 @@ You can start assembling these parameters by taking the following steps:
     - The weight limit
 
     ```js
-    const instr2 = {
-      BuyExecution: [
-        {
-          id: { Concrete: { parents: 0, interior: { X1: { PalletInstance: 3 } } } },
-          fun: { Fungible: 10000000000000000n }, // 0.01 DEV
-        },
-        { Unlimited: null },
-      ],
-    };
+    --8<-- 'code/builders/interoperability/xcm/remote-execution/remote-evm-calls/send.js:17:25'
     ```
 
 4. Build the `Transact` instruction, which will require you to define:
@@ -300,22 +278,13 @@ You can start assembling these parameters by taking the following steps:
     - The encoded call data, which you generated in the [Ethereum XCM Transact Call Data](#ethereumxcm-transact-data) section
 
     ```js
-    const instr3 = {
-      Transact: {
-        originKind: 'SovereignAccount',
-        requireWeightAtMost: { refTime: 3900000000n, proofSize: 38750n },
-        call: {
-          encoded:
-            '0x260001785d02000000000000000000000000000000000000000000000000000000000000a72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8000000000000000000000000000000000000000000000000000000000000000010d09de08a00',
-        },
-      },
-    };
+    --8<-- 'code/builders/interoperability/xcm/remote-execution/remote-evm-calls/send.js:26:35'
     ```
 
 5. Combine the XCM instructions into a versioned XCM message:
 
     ```js
-    const message = { V3: [instr1, instr2, instr3] };
+    --8<-- 'code/builders/interoperability/xcm/remote-execution/remote-evm-calls/send.js:36:36'
     ```
 
 Now that you have the values for each of the parameters, you can write the script for the execution. You'll take the following steps:
@@ -336,7 +305,7 @@ Now that you have the values for each of the parameters, you can write the scrip
 ```
 
 !!! note
-    You can view an example of the output of the above script on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://fro-moon-rpc-1-moonbase-relay-rpc-1.moonbase.ol-infra.network#/extrinsics/decode/0x630003000100a10f030c00040000010403000f0000c16ff28623130000010403000f0000c16ff2862300060103004775e87a5d02007901260001785d02000000000000000000000000000000000000000000000000000000000000a72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8000000000000000000000000000000000000000000000000000000000000000010d09de08a00){target=\_blank} using the following encoded call data: `0x630003000100a10f030c00040000010403000f0000c16ff28623130000010403000f0000c16ff2862300060103004775e87a5d02007901260001785d02000000000000000000000000000000000000000000000000000000000000a72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8000000000000000000000000000000000000000000000000000000000000000010d09de08a00`.
+    You can view an example of the output of the above script on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://fro-moon-rpc-1-moonbase-relay-rpc-1.moonbase.ol-infra.network#/extrinsics/decode/0x630004000100a10f040c000400010403001300008a5d784563011300010403001300008a5d784563010006010300286bee007901260001581501000000000000000000000000000000000000000000000000000000000000a72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8000000000000000000000000000000000000000000000000000000000000000010d09de08a00){target=\_blank} using the following encoded call data: `0x630004000100a10f040c000400010403001300008a5d784563011300010403001300008a5d784563010006010300286bee007901260001581501000000000000000000000000000000000000000000000000000000000000a72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8000000000000000000000000000000000000000000000000000000000000000010d09de08a00`.
 
 Once the transaction is processed, you can check the relevant extrinsics and events in the [relay chain](https://polkadot.js.org/apps/?rpc=wss://fro-moon-rpc-1-moonbase-relay-rpc-1.moonbase.ol-infra.network#/explorer/query/0x2a0e40a2e5261e792190826ce338ed513fe44dec16dd416a12f547d358773f98){target=\_blank} and [Moonbase Alpha](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/explorer/query/0x7570d6fa34b9dccd8b8839c2986260034eafef732bbc09f8ae5f857c28765145){target=\_blank}.
 

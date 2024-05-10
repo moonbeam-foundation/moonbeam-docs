@@ -1,4 +1,4 @@
-import { ApiPromise, WsProvider } from '@polkadot/api'; // Version 9.13.6
+import { ApiPromise, WsProvider } from '@polkadot/api'; // Version 10.13.1
 
 // 1. Input Data
 const providerWsURL = 'wss://wss.api.moonbase.moonbeam.network';
