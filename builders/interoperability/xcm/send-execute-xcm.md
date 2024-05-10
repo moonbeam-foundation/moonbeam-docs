@@ -1,5 +1,5 @@
 ---
-title: Send & Execute XCM Messages 
+title: Send & Execute XCM Messages
 description: Learn how to build a custom XCM message, by combining and experimenting with different XCM instructions, and execute it locally on Moonbeam to see the results.
 ---
 
@@ -53,11 +53,11 @@ The Polkadot XCM Pallet includes the following relevant extrinsics (functions):
 
 The Polkadot XCM Pallet includes the following relevant read-only storage methods:
 
-???+ function "**assetsTrapped**(hash) — returns the existing number of times an asset has been trapped given a hash of the asset"
+???+ function "**assetTraps**(hash) — returns the existing number of times an asset has been trapped given a hash of the asset"
 
     === "Parameters"
 
-        `hash` - (optional) the Blake2-256 hash of the [`MultiAsset`](https://github.com/paritytech/xcm-format#6-universal-asset-identifiers){target=\_blank}
+        `hash` - (optional) the Blake2-256 hash of the [`Asset`](https://github.com/paritytech/xcm-format#6-universal-asset-identifiers){target=\_blank}
 
     === "Returns"
 
@@ -135,42 +135,21 @@ The `execute` function of the Polkadot XCM Pallet accepts two parameters: `messa
     - The amount of DEV tokens to transfer
 
     ```js
-    const instr1 = {
-      WithdrawAsset: [
-        {
-          id: { Concrete: { parents: 0, interior: { X1: { PalletInstance: 3 } } } },
-          fun: { Fungible: 100000000000000000n }, // 0.1 DEV
-        },
-      ],
-    };
+    --8<-- 'code/builders/interoperability/xcm/send-execute-xcm/execute/execute-with-polkadot.js:7:14'
     ```
 
 2. Build the `DepositAsset` instruction, which will require you to define:
-    - The multiasset identifier for DEV tokens. You can use the [`WildMultiAsset` format](https://github.com/paritytech/xcm-format/blob/master/README.md#6-universal-asset-identifiers){target=\_blank}, which allows for wildcard matching, to identify the asset
+    - The asset identifier for DEV tokens. You can use the [`WildAsset` format](https://github.com/paritytech/xcm-format/blob/master/README.md#6-universal-asset-identifiers){target=\_blank}, which allows for wildcard matching, to identify the asset
     - The multilocation of the beneficiary account on Moonbase Alpha
 
     ```js
-    const instr2 = {
-      DepositAsset: {
-        assets: { Wild: { AllCounted: 1 } },
-        beneficiary: {
-          parents: 0,
-          interior: {
-            X1: {
-              AccountKey20: {
-                key: moonbeamAccount,
-              },
-            },
-          },
-        },
-      },
-    };
+    --8<-- 'code/builders/interoperability/xcm/send-execute-xcm/execute/execute-with-polkadot.js:15:31'
     ```
 
 3. Combine the XCM instructions into a versioned XCM message:
 
     ```js
-    const message = { V3: [instr1, instr2] };
+    --8<-- 'code/builders/interoperability/xcm/send-execute-xcm/execute/execute-with-polkadot.js:32:32'
     ```
 
 4. Specify the `maxWeight`, which includes a value for `refTime` and `proofSize` that you will need to define:
@@ -178,7 +157,7 @@ The `execute` function of the Polkadot XCM Pallet accepts two parameters: `messa
     - The `proofSize` is the amount of storage in bytes that can be used. You can set this to `14484` since the `proofSize` for [`WithdrawAsset`](https://github.com/moonbeam-foundation/moonbeam/blob/{{networks.moonbase.spec_version}}/pallets/moonbeam-xcm-benchmarks/src/weights/fungible.rs#L38){target=\_blank} and [`DepositAsset`](https://github.com/moonbeam-foundation/moonbeam/blob/{{networks.moonbase.spec_version}}/pallets/moonbeam-xcm-benchmarks/src/weights/fungible.rs#L60){target=\_blank} is set to `7242` each
 
     ```js
-    const maxWeight = { refTime: 400000000n, proofSize: 14484n } ;
+    --8<-- 'code/builders/interoperability/xcm/send-execute-xcm/execute/execute-with-polkadot.js:33:33'
     ```
 
 Now that you have the values for each of the parameters, you can write the script for the execution. You'll take the following steps:
@@ -195,11 +174,11 @@ Now that you have the values for each of the parameters, you can write the scrip
     This is for demo purposes only. Never store your private key in a JavaScript file.
 
 ```js
---8<-- 'code/builders/interoperability/xcm/send-execute-xcm/execute/executeWithPolkadot.js'
+--8<-- 'code/builders/interoperability/xcm/send-execute-xcm/execute/execute-with-polkadot.js'
 ```
 
 !!! note
-    You can view an example of the above script, which sends 1 DEV to Bobs's account on Moonbeam, on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/extrinsics/decode/0x1c03030800040000010403001300008a5d784563010d010204000103003cd0a705a2dc65e5b1e1205896baa2be8a07c6e002105e5f51e2){target=\_blank} using the following encoded calldata: `0x1c03030800040000010403001300008a5d784563010d010204000103003cd0a705a2dc65e5b1e1205896baa2be8a07c6e002105e5f51e2`.
+    You can view an example of the above script, which sends 1 DEV to Bobs's account on Moonbeam, on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/extrinsics/decode/0x1c030408000400010403001300008a5d784563010d0100000103003cd0a705a2dc65e5b1e1205896baa2be8a07c6e00700e876481700){target=\_blank} using the following encoded calldata: `0x1c030408000400010403001300008a5d784563010d0100000103003cd0a705a2dc65e5b1e1205896baa2be8a07c6e00700e876481700`.
 
 Once the transaction is processed, the 0.1 DEV tokens should be withdrawn from Alice's account along with the associated XCM fees, and the destination account should have received 0.1 DEV tokens in their account. A `polkadotXcm.Attempted` event will be emitted with the outcome.
 
@@ -231,7 +210,7 @@ To get the encoded calldata of the XCM message, you can create a script similar 
 The entire script is as follows:
 
 ```js
---8<-- 'code/builders/interoperability/xcm/send-execute-xcm/execute/generateEncodedCalldata.js'
+--8<-- 'code/builders/interoperability/xcm/send-execute-xcm/execute/generate-encoded-calldata.js'
 ```
 
 #### Execute the XCM Message {: #execute-xcm-message }
@@ -289,7 +268,7 @@ The `send` function of the Polkadot XCM Pallet accepts two parameters: `dest` an
 1. Build the multilocation of the relay chain token, UNIT, for the `dest`:
 
     ```js
-    const dest = { V3: { parents: 1, interior: null } };
+    --8<-- 'code/builders/interoperability/xcm/send-execute-xcm/send/send-with-polkadot.js:10:10'
     ```
 
 2. Build the `WithdrawAsset` instruction, which will require you to define:
@@ -297,14 +276,7 @@ The `send` function of the Polkadot XCM Pallet accepts two parameters: `dest` an
     - The amount of UNIT tokens to withdraw
 
     ```js
-    const instr1 = {
-      WithdrawAsset: [
-        {
-          id: { Concrete: { parents: 1, interior: null } },
-          fun: { Fungible: 1000000000000n }, // 1 UNIT
-        },
-      ],
-    };
+    --8<-- 'code/builders/interoperability/xcm/send-execute-xcm/send/send-with-polkadot.js:11:18'
     ```
 
 3. Build the `BuyExecution` instruction, which will require you to define:
@@ -313,43 +285,21 @@ The `send` function of the Polkadot XCM Pallet accepts two parameters: `dest` an
     - The weight limit
 
     ```js
-    const instr2 = {
-      BuyExecution: [
-        {
-          id: { Concrete: { parents: 1, interior: null } },
-          fun: { Fungible: 1000000000000n }, // 1 UNIT
-        },
-        { Unlimited: null }
-      ],
-    };
+    --8<-- 'code/builders/interoperability/xcm/send-execute-xcm/send/send-with-polkadot.js:19:27'
     ```
 
 4. Build the `DepositAsset` instruction, which will require you to define:
-    - The multiasset identifier for UNIT tokens. You can use the [`WildMultiAsset` format](https://github.com/paritytech/xcm-format/blob/master/README.md#6-universal-asset-identifiers){target=\_blank}, which allows for wildcard matching, to identify the asset
+    - The asset identifier for UNIT tokens. You can use the [`WildAsset` format](https://github.com/paritytech/xcm-format/blob/master/README.md#6-universal-asset-identifiers){target=\_blank}, which allows for wildcard matching, to identify the asset
     - The multilocation of the beneficiary account on the relay chain
 
     ```js
-    const instr3 = {
-      DepositAsset: {
-        assets: { Wild: 'All' },
-        beneficiary: {
-          parents: 1,
-          interior: {
-            X1: {
-              AccountId32: {
-                id: relayAccount,
-              },
-            },
-          },
-        },
-      },
-    };
+    --8<-- 'code/builders/interoperability/xcm/send-execute-xcm/send/send-with-polkadot.js:28:44'
     ```
 
 5. Combine the XCM instructions into a versioned XCM message:
 
     ```js
-    const message = { V3: [instr1, instr2, instr3] };
+    --8<-- 'code/builders/interoperability/xcm/send-execute-xcm/send/send-with-polkadot.js:45:45'
     ```
 
 Now that you have the values for each of the parameters, you can write the script to send the XCM message. You'll take the following steps:
@@ -366,11 +316,11 @@ Now that you have the values for each of the parameters, you can write the scrip
     This is for demo purposes only. Never store your private key in a JavaScript file.
 
 ```js
---8<-- 'code/builders/interoperability/xcm/send-execute-xcm/send/sendWithPolkadot.js'
+--8<-- 'code/builders/interoperability/xcm/send-execute-xcm/send/send-with-polkadot.js'
 ```
 
 !!! note
-    You can view an example of the above script, which sends 1 UNIT to Bobs's relay chain account, on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/extrinsics/decode/0x1c00030100030c000400010000070010a5d4e81300010000070010a5d4e8000d0100010101000c36e9ba26fa63c60ec728fe75fe57b86a450d94e7fee7f9f9eddd0d3f400d67){target=\_blank} using the following encoded calldata: `0x1c00030100030c000400010000070010a5d4e81300010000070010a5d4e8000d0100010101000c36e9ba26fa63c60ec728fe75fe57b86a450d94e7fee7f9f9eddd0d3f400d67`.
+    You can view an example of the above script, which sends 1 UNIT to Bobs's relay chain account, on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/extrinsics/decode/0x1c00040100040c0004010000070010a5d4e813010000070010a5d4e8000d0100010101000c36e9ba26fa63c60ec728fe75fe57b86a450d94e7fee7f9f9eddd0d3f400d67){target=\_blank} using the following encoded calldata: `0x1c00040100040c0004010000070010a5d4e813010000070010a5d4e8000d0100010101000c36e9ba26fa63c60ec728fe75fe57b86a450d94e7fee7f9f9eddd0d3f400d67`.
 
 Once the transaction is processed, a `polkadotXcm.sent` event is emitted with the details of the sent XCM message.
 
@@ -404,7 +354,7 @@ To get the encoded calldata of the XCM message, you can create a script similar 
 The entire script is as follows:
 
 ```js
---8<-- 'code/builders/interoperability/xcm/send-execute-xcm/send/generateEncodedCalldata.js'
+--8<-- 'code/builders/interoperability/xcm/send-execute-xcm/send/generate-encoded-calldata.js'
 ```
 
 #### Send the XCM Message {: #send-xcm-message }

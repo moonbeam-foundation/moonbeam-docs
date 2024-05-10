@@ -339,7 +339,7 @@ The multilocation of Moonbeam native assets includes the parachain ID of the Moo
 
     ```js
     {
-      V3: {
+      V4: {
         parents: 1,
         interior: {
           X2: [
@@ -359,7 +359,7 @@ The multilocation of Moonbeam native assets includes the parachain ID of the Moo
 
     ```js
     {
-      V3: {
+      V4: {
         parents: 1,
         interior: {
           X2: [
@@ -379,7 +379,7 @@ The multilocation of Moonbeam native assets includes the parachain ID of the Moo
 
     ```js
     {
-      V3: {
+      V4: {
         parents: 1,
         interior: {
           X2: [

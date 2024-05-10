@@ -270,11 +270,7 @@ Since you'll be interacting with the `transfer` function, you can take the follo
     === "External XC-20"
 
         ```js
-        const currencyId = { 
-          ForeignAsset: { 
-            ForeignAsset: 42259045809535163221576417993425387648n 
-          } 
-        };
+        --8<-- 'code/builders/interoperability/xcm/xc20/send-xc20s/xtokens-pallet/transfer.js:9:13'
         ```
 
     === "Local XC-20"
@@ -286,18 +282,13 @@ Since you'll be interacting with the `transfer` function, you can take the follo
 2. Specify the `amount` to transfer. For this example, you are sending 1 xcUNIT, which has 12 decimals:
 
     ```js
-    const amount = 1000000000000n;
+    --8<-- 'code/builders/interoperability/xcm/xc20/send-xc20s/xtokens-pallet/transfer.js:14:14'
     ```
 
 3. Define the multilocation of the destination, which will target an account on the relay chain from Moonbase Alpha. Note that the only asset that the relay chain can receive is its own
 
     ```js
-    const dest = { 
-      V3: { 
-        parents: 1, 
-        interior: { X1: { AccountId32: { id: relayAccount } } } 
-      } 
-    };
+    --8<-- 'code/builders/interoperability/xcm/xc20/send-xc20s/xtokens-pallet/transfer.js:15:20'
     ```
 
     !!! note
@@ -308,7 +299,7 @@ Since you'll be interacting with the `transfer` function, you can take the follo
     === "Unlimited"
 
         ```js
-        const destWeightLimit = { Unlimited: null };
+        --8<-- 'code/builders/interoperability/xcm/xc20/send-xc20s/xtokens-pallet/transfer.js:21:21'
         ```
 
     === "Limited"
@@ -342,7 +333,7 @@ Now that you have the values for each of the parameters, you can write the scrip
 ```
 
 !!! note
-    You can view an example of the above script, which sends 1 xcUNIT to Alice's account on the relay chain, on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/extrinsics/decode/0x1e00018080778c30c20fa2ebc0ed18d2cbca1f0010a5d4e800000000000000000000000301010100c4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a06300){target=\_blank} using the following encoded calldata: `0x1e00018080778c30c20fa2ebc0ed18d2cbca1f0010a5d4e800000000000000000000000301010100c4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a06300`.
+    You can view an example of the above script, which sends 1 xcUNIT to Alice's account on the relay chain, on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/extrinsics/decode/0x1e00018080778c30c20fa2ebc0ed18d2cbca1f0010a5d4e8000000000000000000000004010101000c36e9ba26fa63c60ec728fe75fe57b86a450d94e7fee7f9f9eddd0d3f400d6700){target=\_blank} using the following encoded calldata: `0x1e00018080778c30c20fa2ebc0ed18d2cbca1f0010a5d4e8000000000000000000000004010101000c36e9ba26fa63c60ec728fe75fe57b86a450d94e7fee7f9f9eddd0d3f400d6700`.
 
 Once the transaction is processed, the target account on the relay chain should have received the transferred amount minus a small fee that is deducted to execute the XCM on the destination chain.
 
@@ -358,19 +349,7 @@ Since you'll be interacting with the `transferMultiasset` function, you can take
 
         ```js
         // Multilocation for UNIT in the relay chain
-        const asset = {
-          V3: {
-            id: {
-              Concrete: {
-                parents: 1,
-                interior: null,
-              },
-            },
-            fun: {
-              Fungible: { Fungible: 1000000000000n }, // 1 token
-            },
-          },
-        };
+        --8<-- 'code/builders/interoperability/xcm/xc20/send-xc20s/xtokens-pallet/transfer-multiasset.js:9:19'
         ```
 
     === "Local XC-20"
@@ -378,16 +357,14 @@ Since you'll be interacting with the `transferMultiasset` function, you can take
         ```js
         // Multilocation for a local XC-20 on Moonbeam
         const asset = {
-          V3: {
+          V4: {
             id: {
-              Concrete: {
-                parents: 0,
-                interior: {
-                  X2: [
-                    { PalletInstance: 48 },
-                    { AccountKey20: { key: 'INSERT_ERC_20_ADDRESS' } },
-                  ],
-                },
+              parents: 0,
+              interior: {
+                X2: [
+                  { PalletInstance: 48 },
+                  { AccountKey20: { key: 'INSERT_ERC_20_ADDRESS' } },
+                ],
               },
             },
             fun: {
@@ -402,12 +379,7 @@ Since you'll be interacting with the `transferMultiasset` function, you can take
 2. Define the XCM destination multilocation of the `dest`, which will target an account in the relay chain from Moonbase Alpha as the origin:
 
     ```js
-    const dest = {
-      V3: {
-        parents: 1,
-        interior: { X1: { AccountId32: { id: relayAccount } } },
-      },
-    };
+    --8<-- 'code/builders/interoperability/xcm/xc20/send-xc20s/xtokens-pallet/transfer-multiasset.js:20:25'
     ```
 
     !!! note
@@ -418,7 +390,7 @@ Since you'll be interacting with the `transferMultiasset` function, you can take
     === "Unlimited"
 
         ```js
-        const destWeightLimit = { Unlimited: null };
+        --8<-- 'code/builders/interoperability/xcm/xc20/send-xc20s/xtokens-pallet/transfer-multiasset.js:26:26'
         ```
 
     === "Limited"
@@ -452,7 +424,7 @@ Now that you have the values for each of the parameters, you can write the scrip
 ```
 
 !!! note
-    You can view an example of the above script, which sends 1 xcUNIT to Alice's account on the relay chain, on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/extrinsics/decode/0x1e010300010000070010a5d4e80301010100c4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a06300){target=\_blank} using the following encoded calldata: `0x1e010300010000070010a5d4e80301010100c4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a06300`
+    You can view an example of the above script, which sends 1 xcUNIT to Alice's account on the relay chain, on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/extrinsics/decode/0x1e0104010000070010a5d4e804010101000c36e9ba26fa63c60ec728fe75fe57b86a450d94e7fee7f9f9eddd0d3f400d6700){target=\_blank} using the following encoded calldata: `0x1e0104010000070010a5d4e804010101000c36e9ba26fa63c60ec728fe75fe57b86a450d94e7fee7f9f9eddd0d3f400d6700`.
 
 Once the transaction is processed, the account on the relay chain should have received the transferred amount minus a small fee that is deducted to execute the XCM on the destination chain.
 
@@ -484,7 +456,7 @@ For example, to set the gas limit to `300000`, you'll need to set the `length` t
 
 1. Convert `gas_limit:` to its byte representation
 2. Convert the value for the gas limit into its little-endian byte representation
-3. Concatenate the two byte representations into a single value padded to 32 bytes
+3. Concatenate the two-byte representations into a single value padded to 32 bytes
 4. Convert the bytes to a hex string
 
 Using the `@polkadot/util` library, these steps are as follows:

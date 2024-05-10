@@ -1,5 +1,5 @@
-import ABI from './xcmUtilsABI.js'; // Import the XCM Utilities Precompile ABI
 import { Web3 } from 'web3'; // Import Web3 library
+import abi from './xcmUtilsABI.js'; // Import the XCM Utilities Precompile ABI
 
 const privateKey = 'INSERT_PRIVATE_KEY';
 const accountFrom = web3.eth.accounts.privateKeyToAccount(privateKey).address;
@@ -10,7 +10,7 @@ const web3 = new Web3('https://rpc.api.moonbase.moonbeam.network'); // Change to
 
 /* Create contract instance of the XCM Utilities Precompile */
 const xcmUtils = new web3.eth.Contract(
-  ABI,
+  abi,
   xcmUtilsAddress,
   { from: accountFrom } // 'from' is necessary for gas estimation
 );

@@ -44,7 +44,7 @@ Considering all the steps summarized in the [introduction](#introduction), the f
 
 For our case, we will send the remote EVM call via XCM from Alice's account, which is `5Fe4nNwxJ9ai9hVkUubiy4e6BVs1tzJGDLXAdhUKuePq9CLp`. A parachain ID is omitted from the command since we are sending the XCM instruction from the relay chain. A parents value of `1` indicates that the relay chain is a parent of the destination parachain. The command and response should resemble the following image:
 
-![Calculating the Computed Origin account](/images/tutorials/interoperability/remote-batched-evm-calls/remote-batched-evm-calls-2.webp)
+--8<-- 'code/tutorials/interoperability/remote-batched-evm-calls/terminal/calculate.md'
 
 The values are all summarized in the following table:
 
@@ -72,7 +72,7 @@ The easiest way to get the calldata is through the [Moonbase Minter](https://moo
  3. MetaMask should pop up, but **do not sign the transaction**. In MetaMask, click on the **hex** tab, and the encoded calldata should show up
  4. Click on the **Copy raw transaction data** button. This will copy the encoded calldata to the clipboard, which should match: `0x2004ffd9`
 
-![Calldata for Minting action](/images/tutorials/interoperability/remote-batched-evm-calls/remote-batched-evm-calls-3.webp)
+![Calldata for Minting action](/images/tutorials/interoperability/remote-batched-evm-calls/remote-batched-evm-calls-2.webp)
 
 !!! note
     Other wallets also offer the same capabilities of checking the encoded calldata before signing the transaction.
@@ -115,7 +115,7 @@ After inputting the address and pressing **At Address**, take the following step
 7. MetaMask should pop up, but **do not sign the transaction**. In MetaMask, click on the **hex** tab, and the encoded calldata should show up
 8. Click on the **Copy raw transaction data** button. This will copy the encoded calldata of the batch call to the clipboard
 
-![Generate batch calls using Batch Precompile](/images/tutorials/interoperability/remote-batched-evm-calls/remote-batched-evm-calls-4.webp)
+![Generate batch calls using Batch Precompile](/images/tutorials/interoperability/remote-batched-evm-calls/remote-batched-evm-calls-3.webp)
 
 We've now finished preparing our EVM calldata for the batch call. Next, we'll need to prepare the XCM instructions that will execute our remote batch call.
 
@@ -146,7 +146,7 @@ Let's go through each of the main components of the snippet shown above:
 
 Once you have the code set up, you can execute it with `node`, and you'll get the Moonbase Alpha remote EVM calldata:
 
-![Getting the Moonbeam calldata for the remote evm call](/images/tutorials/interoperability/remote-batched-evm-calls/remote-batched-evm-calls-5.webp)
+--8<-- 'code/tutorials/interoperability/remote-batched-evm-calls/terminal/encoded.md'
 
 The encoded calldata for this example is:
 
@@ -197,12 +197,12 @@ Let's go through each of the main components of the snippet shown above:
 
 Once you have the code set up, you can execute it with `node`, and you'll get the relay chain XCM calldata:
 
-![Getting the Relay Chain XCM calldata for the Remote Batch call](/images/tutorials/interoperability/remote-batched-evm-calls/remote-batched-evm-calls-6.webp)
+--8<-- 'code/tutorials/interoperability/remote-batched-evm-calls/terminal/build-xcm-message.md'
 
 The encoded calldata for this example is:
 
 ```text
-0xcd0a04630003000100a10f031000040000010403000f0000c16ff28623130000010403000f0000c16ff28623000601070053cd200a02350c007d09260001f0490200000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000008080000000000000000000000000000000000000000000000000000000000000000110896e292b8000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000000000e0000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000001e000000000000000000000000000000000000000000000000000000000000000020000000000000000000000001fc56b105c4f0a1a8038c2b429932b122f6b631f000000000000000000000000ed13b028697febd70f34cf9a9e280a8f1e98fd29000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000000000042004ffd90000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000042004ffd9000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000d010000010300f0615483cbe76f5b2aa80a8ce2b2e9a8206deb65
+0xb50a04630004000100a10f041000040000000f0000c16ff28623130000000f0000c16ff28623000601070053cd200a02350c007d09260001f0490200000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000008080000000000000000000000000000000000000000000000000000000000000000110896e292b8000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000000000e0000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000001e000000000000000000000000000000000000000000000000000000000000000020000000000000000000000001fc56b105c4f0a1a8038c2b429932b122f6b631f000000000000000000000000ed13b028697febd70f34cf9a9e280a8f1e98fd29000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000000000042004ffd90000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000042004ffd9000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000d010000010300f0615483cbe76f5b2aa80a8ce2b2e9a8206deb65
 ```
 
 !!! note
@@ -228,7 +228,7 @@ To send the XCM message that we built in the previous section, you can use the f
 
 Once you have the code set up, you can execute it with `node`, and the XCM message will be sent to initiate your call to the Batch Precompile for the mints of MARS and NEPT ERC-20 tokens in Moonbase Alpha. Don't worry if you see an `Abnormal Closure` error. You can verify that your remote batch call was successful by looking up your Computed Origin account on [Moonbase Moonscan](https://moonbase.moonscan.io){target=\_blank}.
 
-![Sending the XCM message from the Relay Chain to Moonbase Alpha for the batch EVM call](/images/tutorials/interoperability/remote-batched-evm-calls/remote-batched-evm-calls-7.webp)
+--8<-- 'code/tutorials/interoperability/remote-batched-evm-calls/terminal/send.md'
 
 And that is it! You've sent an XCM message, which performed a remote EVM call to the Batch Precompile via XCM and resulted in the minting of MARS and NEPT ERC-20 tokens. But let's go into more detail about what happened.
 

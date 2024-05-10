@@ -1,7 +1,7 @@
 import { ApiPromise, WsProvider } from '@polkadot/api';
 
-const dest = { V3: { parents: INSERT_PARENTS, interior: INSERT_INTERIOR } };
-const message = { V3: [INSERT_XCM_INSTRUCTIONS] };
+const dest = { V4: { parents: INSERT_PARENTS, interior: INSERT_INTERIOR } };
+const message = { V4: [INSERT_XCM_INSTRUCTIONS] };
 
 const main = async () => {
   const api = await ApiPromise.create({

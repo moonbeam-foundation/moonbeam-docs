@@ -1,4 +1,4 @@
-import { ApiPromise, WsProvider } from '@polkadot/api'; // Version 9.13.6
+import { ApiPromise, WsProvider } from '@polkadot/api'; // Version 10.13.1
 
 const providerWsURL = 'wss://wss.api.moonbase.moonbeam.network';
 
@@ -19,6 +19,8 @@ const main = async () => {
     const unitsPerSecond = data.toString();
     console.log(unitsPerSecond);
   }
+
+  api.disconnect();
 };
 
 main();

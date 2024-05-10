@@ -3,8 +3,8 @@ import { u256 } from '@polkadot/types';
 
 enum MRLTypes {
   // Runtime defined MultiLocation. Allows for XCM versions 2 and 3
-  XcmVersionedMultiLocation = 'XcmVersionedMultiLocation',
-  // MRL payload (V2) that defines the destination MultiLocation and a 
+  XcmVersionedLocation = 'XcmVersionedLocation',
+  // MRL payload (V2) that defines the destination MultiLocation and a
   // fee for the relayer
   XcmRoutingUserActionWithFee = 'XcmRoutingUserActionWithFee',
   // Wrapper object for the MRL payload
@@ -20,7 +20,7 @@ enum Parachain {
 // List of parachains that use ethereum (20) accounts
 const ETHEREUM_ACCOUNT_PARACHAINS = [Parachain.MoonbaseBeta];
 
-// A function that creates a SCALE encoded payload to use with 
+// A function that creates a SCALE encoded payload to use with
 // transferTokensWithPayload
 async function createMRLPayload(
   parachainId: Parachain,
@@ -31,7 +31,7 @@ async function createMRLPayload(
   // type
   const isEthereumStyle = ETHEREUM_ACCOUNT_PARACHAINS.includes(parachainId);
   const multilocation = {
-    V3: {
+    V4: {
       parents: 1,
       interior: {
         X2: [
@@ -50,7 +50,7 @@ async function createMRLPayload(
     provider: wsProvider,
     types: {
       [MRLTypes.XcmRoutingUserActionWithFee]: {
-        destination: MRLTypes.XcmVersionedMultiLocation,
+        destination: MRLTypes.XcmVersionedLocation,
         fee: 'U256',
       },
       [MRLTypes.VersionedUserAction]: {
@@ -60,12 +60,12 @@ async function createMRLPayload(
   });
 
   // Format multilocation object as a Polkadot.js type
-  const versionedMultilocation = api.createType(
-    MRLTypes.XcmVersionedMultiLocation,
+  const versionedLocation = api.createType(
+    MRLTypes.XcmVersionedLocation,
     multilocation
   );
   const userAction = api.createType(MRLTypes.XcmRoutingUserActionWithFee, {
-    destination: versionedMultilocation,
+    destination: versionedLocation,
     fee,
   });
 
@@ -73,6 +73,9 @@ async function createMRLPayload(
   const versionedUserAction = api.createType(MRLTypes.VersionedUserAction, {
     V2: userAction,
   });
+
+    // Disconnect the API
+    api.disconnect();
 
   // SCALE encode resultant precompile formatted objects
   return versionedUserAction.toU8a();

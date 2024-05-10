@@ -13,7 +13,7 @@ const currencies = [
 ];
 const feeItem = INSERT_ASSET_INDEX_FOR_FEE;
 const dest = {
-  V3: {
+  V4: {
     parents: INSERT_PARENTS,
     interior: INSERT_INTERIOR,
   },
