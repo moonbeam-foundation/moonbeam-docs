@@ -327,7 +327,7 @@ Using only certain handlers and filters will improve your indexer's efficiency. 
 
     |  Filter  |                                                                  Description                                                                   |                                   Example                                   |
     |:--------:|:----------------------------------------------------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------:|
-    | `topics` | Filters the event log by topics, which follows the [Ethereum JSON-RPC log filters](https://docs.ethers.org/v5/concepts/events){target=\_blank} | `topics: 'Transfer(address indexed from,address indexed to,uint256 value)'` |
+    | `topics` | Filters the event log by topics, which follows the [Ethereum JSON-RPC log filters](https://docs.ethers.org/v5/concepts/events/){target=\_blank} | `topics: 'Transfer(address indexed from,address indexed to,uint256 value)'` |
 
 ## Run Your Indexer {: #run-your-indexer }
 

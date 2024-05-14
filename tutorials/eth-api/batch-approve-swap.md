@@ -349,7 +349,7 @@ Before using the `swapExactTokensForETH` function, we would first need to approv
 
 Like our previous example, this two-transaction process can be modified to batch the approval and the `swapExactTokensForETH` function into a single transaction using the batch precompile.
 
-This example will be based off the [Uniswap V2 deployment on Moonbase Alpha](https://github.com/moonbeam-foundation/moonbeam-uniswap){target=\_blank}. We'll approve the router to spend ERTH tokens and then swap ERTH for DEV tokens. Before diving into this example, make sure you swap some DEV for ERTH tokens on the [Moonbeam-swap DApp](https://moonbeam-swap.netlify.app/#/swap){target=\_blank}, so that you have some ERTH to approve and swap back to DEV.
+This example will be based off the [Uniswap V2 deployment on Moonbase Alpha](https://github.com/papermoonio/moonbeam-uniswap){target=\_blank}. We'll approve the router to spend ERTH tokens and then swap ERTH for DEV tokens. Before diving into this example, make sure you swap some DEV for ERTH tokens on the [Moonbeam-swap DApp](https://moonbeam-swap.netlify.app/#/swap){target=\_blank}, so that you have some ERTH to approve and swap back to DEV.
 
 Again, we'll use the `batchAll` function of the batch precompile. So, we'll need to get the encoded call data for the approval and the swap. To get the encoded call data, we'll use Ether's `interface.encodeFunctionData` function and pass in the necessary parameters.
 
@@ -357,7 +357,7 @@ For the `approve(spender, amount)` function, we'll need to pass in the Uniswap V
 
 For the `swapExactTokensForETH(amountIn, amountOutMin, path, to, deadline)` function, we'll need to specify the amount of tokens to send, the minimum amount of output tokens that must be received so the transaction won't revert, the token addresses for the swap, the recipient of the native asset, and the deadline after which the transaction will revert. To swap ERTH to DEV, the path will be ERTH to WETH, so the path array will need to include the ERTH token address and the WETH token address: `[0x08B40414525687731C23F430CEBb424b332b3d35, 0xD909178CC99d318e4D46e7E66a972955859670E1]`.
 
-In addition to the ERTH and WETH addresses, to create a contract instance of the router contract, you'll also need the [router address](https://github.com/moonbeam-foundation/moonbeam-uniswap/blob/f494f9a7a07bd3c5b94ac46484c9c7e6c781203f/uniswap-contracts-moonbeam/address.json#L14){target=\_blank}, which is `0x8a1932D6E26433F3037bd6c3A40C816222a6Ccd4`.
+In addition to the ERTH and WETH addresses, to create a contract instance of the router contract, you'll also need the [router address](https://github.com/papermoonio/moonbeam-uniswap/blob/f494f9a7a07bd3c5b94ac46484c9c7e6c781203f/uniswap-contracts-moonbeam/address.json#L14){target=\_blank}, which is `0x8a1932D6E26433F3037bd6c3A40C816222a6Ccd4`.
 
 The code will resemble the following:
 

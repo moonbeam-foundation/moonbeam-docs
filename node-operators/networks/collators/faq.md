@@ -85,7 +85,7 @@ Hardware recommendations:
 
 **Q: Is there a CPU optimized binary?**
 
-**A:** On each [release page](https://github.com/moonbam-foundation/moonbeam/releases){target=\_blank} are CPU optimized binaries. Select the binary for your CPU architecture.
+**A:** On each [release page](https://github.com/moonbeam-foundation/moonbeam/releases){target=\_blank} are CPU optimized binaries. Select the binary for your CPU architecture.
 
 - **Moonbeam-znver3** - Ryzen 9
 - **Moonbeam-skylake** - Intel
