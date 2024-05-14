@@ -20,7 +20,7 @@ There are actually two possible approaches for staking on Moonbeam remotely via 
 
 For development purposes this tutorial is written for Moonbase Alpha and Moonbase relay using TestNet funds. For prerequisites:
 
-- A Moonbase Alpha relay chain account funded with some UNIT, the native token of the Moonbase relay chain. If you have a Moonbase Alpha account funded with DEV tokens, you can swap some DEV for xcUNIT here on [Moonbeam Swap](https://moonbeam-swap.netlify.app/#/swap){target=\_blank}. Then withdraw the xcUNIT from Moonbase Alpha to [your account on the Moonbase relay chain](https://polkadot.js.org/apps/?rpc=wss://fro-moon-rpc-1-moonbase-relay-rpc-1.moonbase.ol-infra.network#/accounts){target=\_blank} using [apps.moonbeam.network](https://apps.moonbeam.network/moonbase-alpha/){target=\_blank}
+- A Moonbase Alpha relay chain account funded with some UNIT, the native token of the Moonbase relay chain. If you have a Moonbase Alpha account funded with DEV tokens, you can swap some DEV for xcUNIT here on [Moonbeam Swap](https://moonbeam-swap.netlify.app/#/swap){target=\_blank}. Then withdraw the xcUNIT from Moonbase Alpha to [your account on the Moonbase relay chain](https://polkadot.js.org/apps/?rpc=wss://fro-moon-rpc-1-moonbase-relay-rpc-1.moonbase.ol-infra.network#/accounts){target=\_blank} using [apps.moonbeam.network](https://apps.moonbeam.network/moonbase-alpha){target=\_blank}
 - You'll need to [calculate the Computed Origin account](#calculating-your-computed-origin-account) of your Moonbase Alpha relay chain account and fund it with DEV tokens.
 --8<-- 'text/_common/faucet/faucet-list-item.md'
 
@@ -32,7 +32,7 @@ Here, we have specified a parents value of `1` because the relay chain is the or
 
 --8<-- 'code/tutorials/interoperability/remote-staking/terminal/calculate.md'
 
-The script will return 32-byte and 20-byte addresses. We’re interested in the Ethereum-style account - the 20-byte one. Feel free to look up your Computed Origin account on [Moonscan](https://moonbase.moonscan.io/){target=\_blank}. You’ll note that this account is empty. You’ll now need to fund this account with at least 1.1 DEV which you can get from [the faucet](https://faucet.moonbeam.network/){target=\_blank}. And if you need more, you can always reach out to us on [Discord](https://discord.com/invite/amTRXQ9ZpW/){target=\_blank} for additional DEV tokens.
+The script will return 32-byte and 20-byte addresses. We’re interested in the Ethereum-style account - the 20-byte one. Feel free to look up your Computed Origin account on [Moonscan](https://moonbase.moonscan.io){target=\_blank}. You’ll note that this account is empty. You’ll now need to fund this account with at least 1.1 DEV which you can get from [the faucet](https://faucet.moonbeam.network){target=\_blank}. And if you need more, you can always reach out to us on [Discord](https://discord.com/invite/amTRXQ9ZpW){target=\_blank} for additional DEV tokens.
 
 ## Preparing to Stake on Moonbase Alpha {: #preparing-to-stake-on-moonbase-alpha }
 
@@ -142,6 +142,6 @@ Now that you have the values for each of the parameters, you can write the scrip
 
 In the above snippet, besides submitting the remote staking via XCM transaction, we also print out the transaction hash to assist with any debugging.
 
-And that’s it! To verify that your delegation was successful, you can visit [Subscan](https://moonbase.subscan.io/){target=\_blank} to check your staking balance. Be advised that it may take a few minutes before your staking balance is visible on Subscan. Additionally, be aware that you will not be able to see this staking operation on Moonscan, because we initiated the delegation action directly via the [Parachain Staking Pallet](/builders/pallets-precompiles/pallets/staking/){target=\_blank} (on the Substrate side) rather than through the [Staking Precompile](/builders/pallets-precompiles/precompiles/staking/){target=\_blank} (on the EVM).
+And that’s it! To verify that your delegation was successful, you can visit [Subscan](https://moonbase.subscan.io){target=\_blank} to check your staking balance. Be advised that it may take a few minutes before your staking balance is visible on Subscan. Additionally, be aware that you will not be able to see this staking operation on Moonscan, because we initiated the delegation action directly via the [Parachain Staking Pallet](/builders/pallets-precompiles/pallets/staking/){target=\_blank} (on the Substrate side) rather than through the [Staking Precompile](/builders/pallets-precompiles/precompiles/staking/){target=\_blank} (on the EVM).
 
 --8<-- 'text/_disclaimers/educational-tutorial.md'

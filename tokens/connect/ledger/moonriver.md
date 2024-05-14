@@ -24,7 +24,7 @@ In this tutorial, you will learn how to get started with your Ledger hardware wa
 
 In addition, you'll need MetaMask as an intermediary between your Ledger device and Moonbeam. Make sure that your MetaMask is [connected to Moonbeam](/tokens/connect/metamask/){target=\_blank}.
 
-As of [MetaMask version 10.5.0](https://consensys.net/blog/metamask/metamask-and-ledger-integration-fixed/){target=\_blank}, connecting your Ledger device with MetaMask on Chrome is easy again. You just need to have the latest version of MetaMask installed.
+As of [MetaMask version 10.5.0](https://consensys.net/blog/metamask/metamask-and-ledger-integration-fixed){target=\_blank}, connecting your Ledger device with MetaMask on Chrome is easy again. You just need to have the latest version of MetaMask installed.
 
 ## Install the Moonriver Ledger Live App {: install-the-moonriver-ledger-live-app }
 

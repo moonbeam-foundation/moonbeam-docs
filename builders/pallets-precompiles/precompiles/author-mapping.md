@@ -95,7 +95,7 @@ There is a bond that is sent when mapping your session keys with your account. T
 The below example is demonstrated on Moonbase Alpha, however, similar steps can be taken for Moonbeam and Moonriver. You should:  
 
  - Have MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}
- - Have an account with DEV tokens. You should have enough to cover the [candidate and mapping bonds](#bonds) plus gas fees to send the transaction and map your session keys to your account. To get enough DEV tokens to follow along with this guide, you can contact a moderator directly via the [Moonbeam Discord server](https://discord.gg/PfpUATX/){target=\_blank}
+ - Have an account with DEV tokens. You should have enough to cover the [candidate and mapping bonds](#bonds) plus gas fees to send the transaction and map your session keys to your account. To get enough DEV tokens to follow along with this guide, you can contact a moderator directly via the [Moonbeam Discord server](https://discord.gg/PfpUATX){target=\_blank}
  - Make sure you're [running a collator node](/node-operators/networks/run-a-node/overview/){target=\_blank} and it's fully synced
  - Make sure you've [joined the candidate pool](/node-operators/networks/collators/activities/#become-a-candidate){target=\_blank}
 
@@ -110,7 +110,7 @@ As previously mentioned, you can use a Ledger by connecting it to MetaMask, plea
 To get started, get a copy of [`AuthorMappingInterface.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/author-mapping/AuthorMappingInterface.sol){target=\_blank} and take the following steps:
 
 1. Click on the **File explorer** tab
-2. Copy and paste the file contents into a [Remix file](https://remix.ethereum.org/){target=\_blank} named `AuthorMappingInterface.sol`
+2. Copy and paste the file contents into a [Remix file](https://remix.ethereum.org){target=\_blank} named `AuthorMappingInterface.sol`
 
 ![Copying and Pasting the Author Mapping Interface into Remix](/images/builders/pallets-precompiles/precompiles/author-mapping/author-mapping-1.webp)
 

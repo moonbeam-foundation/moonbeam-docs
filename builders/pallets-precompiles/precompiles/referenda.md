@@ -123,7 +123,7 @@ The below example is demonstrated on Moonbase Alpha, however, similar steps can 
 ### Remix Set Up {: #remix-set-up }
 
 1. Click on the **File explorer** tab
-2. Paste a copy of [`Referenda.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/referenda/Referenda.sol){target=\_blank} into a [Remix file](https://remix.ethereum.org/){target=\_blank} named `Referenda.sol`
+2. Paste a copy of [`Referenda.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/referenda/Referenda.sol){target=\_blank} into a [Remix file](https://remix.ethereum.org){target=\_blank} named `Referenda.sol`
 
 ![Copy and paste the Referenda Solidity interface into Remix.](/images/builders/pallets-precompiles/precompiles/referenda/referenda-1.webp)
 
@@ -164,7 +164,7 @@ Once you have the Track ID, preimage hash, and preimage length, you can go ahead
 
 ![Submit the proposal using the submitAt function of the Referenda Precompile.](/images/builders/pallets-precompiles/precompiles/referenda/referenda-4.webp)
 
-After your transaction has been confirmed you'll be able to see the proposal listed on the **Referenda** page of [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network%2Fpublic-ws#/referenda){target=\_blank}. You can also check out your proposal on [Polkassembly](https://moonbase.polkassembly.io/opengov/){target=\_blank}, which sorts proposals by the Track they belong to.
+After your transaction has been confirmed you'll be able to see the proposal listed on the **Referenda** page of [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network%2Fpublic-ws#/referenda){target=\_blank}. You can also check out your proposal on [Polkassembly](https://moonbase.polkassembly.io/opengov){target=\_blank}, which sorts proposals by the Track they belong to.
 
 ### Submit Decision Deposit {: #submit-decision-deposit }
 
@@ -196,4 +196,4 @@ To refund the Decision Deposit, you can use the `refundDecisionDeposit` function
 
 ![Refund the Decision Deposit for a Referenda using the placeDecisionDeposit function of the Referenda Precompile.](/images/builders/pallets-precompiles/precompiles/referenda/referenda-6.webp)
 
-And that's it! You've completed your introduction to the Referenda Precompile. There are a few more functions that are documented in [`Referenda.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/referenda/Referenda.sol){target=\_blank} — feel free to reach out on [Discord](https://discord.gg/moonbeam/){target=\_blank} if you have any questions about those functions or any other aspect of the Referenda Precompile.
+And that's it! You've completed your introduction to the Referenda Precompile. There are a few more functions that are documented in [`Referenda.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/referenda/Referenda.sol){target=\_blank} — feel free to reach out on [Discord](https://discord.gg/moonbeam){target=\_blank} if you have any questions about those functions or any other aspect of the Referenda Precompile.

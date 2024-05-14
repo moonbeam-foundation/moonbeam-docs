@@ -76,7 +76,7 @@ The contract `SimpleContract.sol` will be used as an example of batching contrac
 
 ### Remix Set Up {: #remix-set-up }
 
-You can interact with the batch precompile using [Remix](https://remix.ethereum.org/){target=\_blank}. You'll need a copy of [`Batch.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/batch/Batch.sol){target=\_blank} and [`SimpleContract.sol`](#example-contract). To add the precompile to Remix and follow along with the tutorial, you will need to:
+You can interact with the batch precompile using [Remix](https://remix.ethereum.org){target=\_blank}. You'll need a copy of [`Batch.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/batch/Batch.sol){target=\_blank} and [`SimpleContract.sol`](#example-contract). To add the precompile to Remix and follow along with the tutorial, you will need to:
 
 1. Click on the **File explorer** tab
 2. Paste the `Batch.sol` contract into a Remix file named **Batch.sol**

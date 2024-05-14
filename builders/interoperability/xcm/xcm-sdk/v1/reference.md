@@ -53,7 +53,7 @@ The XCM SDK is based on the premise of defining an asset to transfer and then de
     |    `assetsData`     | *Map<string, ChainAssetsData>* |                                  A list of the assets that the chain supports                                   |
     |    `genesisHash`    |            *string*            |                                          The hash of the genesis block                                          |
     |    `parachainId`    |            *number*            |                                             The ID of the parachain                                             |
-    |    `ss58Format`     |            *number*            |        The [ss58 format](https://polkadot.js.org/docs/keyring/start/ss58/){target=\_blank} for the chain        |
+    |    `ss58Format`     |            *number*            |        The [ss58 format](https://polkadot.js.org/docs/keyring/start/ss58){target=\_blank} for the chain        |
     | `usesChainDecimals` |           *boolean*            | A flag indicating if the chain uses its own decimals in balance queries for all the assets. Defaults to `false` |
     |        `ws`         |            *string*            |                                      The WebSocket endpoint for the chain                                       |
     |        `id`         |            *number*            |                                   **For EVM parachains only** - The chain ID                                    |

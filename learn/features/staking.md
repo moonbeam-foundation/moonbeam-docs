@@ -7,13 +7,13 @@ description: Moonbeam provides staking features where token holders delegate col
 
 ## Introduction {: #introduction }
 
-Moonbeam uses a block production mechanism based on [Polkadot's Proof-of-Stake model](https://wiki.polkadot.network/docs/learn-consensus/){target=\_blank}, where there are collators and validators. [Collators](https://wiki.polkadot.network/docs/learn-collator/){target=\_blank} maintain parachains (in this case, Moonbeam) by collecting transactions from users and producing state transition proofs for the relay chain [validators](https://wiki.polkadot.network/docs/learn-validator/){target=\_blank}.
+Moonbeam uses a block production mechanism based on [Polkadot's Proof-of-Stake model](https://wiki.polkadot.network/docs/learn-consensus){target=\_blank}, where there are collators and validators. [Collators](https://wiki.polkadot.network/docs/learn-collator){target=\_blank} maintain parachains (in this case, Moonbeam) by collecting transactions from users and producing state transition proofs for the relay chain [validators](https://wiki.polkadot.network/docs/learn-validator){target=\_blank}.
 
 The candidates in the active set of collators (nodes that produce blocks) are selected based on their stake in the network. And here is where staking comes in.
 
 Collator candidates (and token holders if they delegate) have a stake in the network. The top N candidates by staked amount are chosen to produce blocks with a valid set of transactions, where N is a configurable parameter. Part of each block reward goes to the collators that produced the block, who then shares it with the delegators considering their percental contributions towards the collator's stake. In such a way, network members are incentivized to stake tokens to improve the overall security. Since staking is done at a protocol level through the staking interface, if you choose to delegate, the collators you delegate do not have access to your tokens.
 
-To easily manage staking related actions, you can visit the [Moonbeam Network DApp](https://apps.moonbeam.network/){target=\_blank} and use the network tabs at the top of the page to easily switch between Moonbeam networks. To learn how to use the DApp, you can check out the [How to Stake MOVR Tokens](https://moonbeam.network/tutorial/stake-movr/){target=\_blank} guide or or [video tutorial](https://www.youtube.com/watch?v=8GwetYmzEJM/){target=\_blank}, both of which can be adapted for the Moonbeam and the Moonbase Alpha TestNet.
+To easily manage staking related actions, you can visit the [Moonbeam Network DApp](https://apps.moonbeam.network){target=\_blank} and use the network tabs at the top of the page to easily switch between Moonbeam networks. To learn how to use the DApp, you can check out the [How to Stake MOVR Tokens](https://moonbeam.network/tutorial/stake-movr){target=\_blank} guide or or [video tutorial](https://www.youtube.com/watch?v=8GwetYmzEJM){target=\_blank}, both of which can be adapted for the Moonbeam and the Moonbase Alpha TestNet.
 
 ## General Definitions {: #general-definitions }
 
@@ -88,23 +88,23 @@ There are a few resources you can check out to help you select a collator to del
 === "Moonbeam"
     |           Variable           |                                      Value                                      |
     |:----------------------------:|:-------------------------------------------------------------------------------:|
-    |     Stake GLMR Dashboard     |              [Stake GLMR](https://stakeglmr.com/){target=\_blank}               |
-    |    Collators Leaderboard     |       [Moonscan](https://moonbeam.moonscan.io/collators/){target=\_blank}       |
+    |     Stake GLMR Dashboard     |              [Stake GLMR](https://stakeglmr.com){target=\_blank}               |
+    |    Collators Leaderboard     |       [Moonscan](https://moonbeam.moonscan.io/collators){target=\_blank}       |
     | Staking Simulation Dashboard |             [Web3Go](https://web3go.xyz/#/Moonbeam){target=\_blank}             |
-    |      Collator Dashboard      | [DappLooker](https://network.dapplooker.com/moonbeam/collator/){target=\_blank} |
+    |      Collator Dashboard      | [DappLooker](https://network.dapplooker.com/moonbeam/collator){target=\_blank} |
 
 === "Moonriver"
     |           Variable           |                                      Value                                       |
     |:----------------------------:|:--------------------------------------------------------------------------------:|
-    |     Stake MOVR Dashboard     |               [Stake MOVR](https://stakemovr.com/){target=\_blank}               |
-    |    Collators Leaderboard     |       [Moonscan](https://moonriver.moonscan.io/collators/){target=\_blank}       |
+    |     Stake MOVR Dashboard     |               [Stake MOVR](https://stakemovr.com){target=\_blank}               |
+    |    Collators Leaderboard     |       [Moonscan](https://moonriver.moonscan.io/collators){target=\_blank}       |
     | Staking Simulation Dashboard |             [Web3Go](https://web3go.xyz/#/Moonriver){target=\_blank}             |
-    |      Collator Dashboard      | [DappLooker](https://network.dapplooker.com/moonriver/collator/){target=\_blank} |
+    |      Collator Dashboard      | [DappLooker](https://network.dapplooker.com/moonriver/collator){target=\_blank} |
 
 === "Moonbase Alpha"
     |      Variable      |                                      Value                                       |
     |:------------------:|:--------------------------------------------------------------------------------:|
-    | List of candidates | [Moonbase Alpha Subscan](https://moonbase.subscan.io/validator/){target=\_blank} |
+    | List of candidates | [Moonbase Alpha Subscan](https://moonbase.subscan.io/validator){target=\_blank} |
 
 !!! note
     The DappLooker Collator dashboard for Moonriver is experimental beta software and may not accurately reflect collator performance. Be sure to do your own research before delegating to a collator.

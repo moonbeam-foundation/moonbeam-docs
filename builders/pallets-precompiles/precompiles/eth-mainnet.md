@@ -20,7 +20,7 @@ In this guide, you will learn how to use and/or verify these precompiles.
 
 --8<-- 'text/_common/install-nodejs.md'
 
-As of writing this guide, the versions used were 15.2.1 and 7.0.8, respectively. You will also need to install the [Web3](https://web3js.readthedocs.io/en/latest/){target=\_blank} package by executing:
+As of writing this guide, the versions used were 15.2.1 and 7.0.8, respectively. You will also need to install the [Web3](https://web3js.readthedocs.io/en/latest){target=\_blank} package by executing:
 
 ```bash
 npm install --save web3
@@ -62,7 +62,7 @@ Using the [Remix compiler and deployment](/builders/build/eth-api/dev-env/remix/
 
 ## Hashing with SHA256 {: #hashing-with-sha256 }
 
-This hashing function returns the SHA256 hash from the given data. To test this precompile, you can use this [SHA256 Hash Calculator tool](https://md5calc.com/hash/sha256/){target=\_blank} to calculate the SHA256 hash of any string you want. In this case, you'll do so with `Hello World!`. You can head directly to Remix and deploy the following code, where the calculated hash is set for the `expectedHash` variable:
+This hashing function returns the SHA256 hash from the given data. To test this precompile, you can use this [SHA256 Hash Calculator tool](https://md5calc.com/hash/sha256){target=\_blank} to calculate the SHA256 hash of any string you want. In this case, you'll do so with `Hello World!`. You can head directly to Remix and deploy the following code, where the calculated hash is set for the `expectedHash` variable:
 
 ```solidity
 --8<-- 'code/builders/pallets-precompiles/precompiles/eth-mainnet/sha256.sol'
@@ -72,7 +72,7 @@ Once the contract is deployed, you can call the `checkHash()` method that return
 
 ## Hashing with SHA3FIPS256 {: #hashing-with-sha3fips256 }
 
-SHA3-256 is part of the SHA-3 family of cryptographic hashes codified in [FIPS202](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf) that produces an output 256 bits in length. Although the name is similar to SHA256, the SHA-3 family is built with an entirely different algorithm and accordingly produces a different hash output than SHA256 for the same input. You can verify this yourself using this [SHA3-256 Hash Calculator tool](https://md5calc.com/hash/sha3-256/){target=\_blank}. After calculating the SHA3-256 output, change the algorithm in the drop-down selector to SHA256 and take note of the resulting output.
+SHA3-256 is part of the SHA-3 family of cryptographic hashes codified in [FIPS202](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf) that produces an output 256 bits in length. Although the name is similar to SHA256, the SHA-3 family is built with an entirely different algorithm and accordingly produces a different hash output than SHA256 for the same input. You can verify this yourself using this [SHA3-256 Hash Calculator tool](https://md5calc.com/hash/sha3-256){target=\_blank}. After calculating the SHA3-256 output, change the algorithm in the drop-down selector to SHA256 and take note of the resulting output.
 
 Currently there is no SHA3-256 support in Solidity, so it needs to be called with inline assembly. The following sample code can be used to call this precompile.
 
@@ -84,7 +84,7 @@ Using the [Remix compiler and deployment](/builders/build/eth-api/dev-env/remix/
 
 ## Hashing with RIPEMD160 {: #hashing-with-ripemd-160 }
 
-This hashing function returns a RIPEMD160 hash from the given data. To test this precompile, you can use this [RIPEMD160 Hash Calculator tool](https://md5calc.com/hash/ripemd160/){target=\_blank} to calculate the RIPEMD160 hash of any string. In this case, you'll do so again with `Hello World!`. You'll reuse the same code as before, but use the `ripemd160` function. Note that it returns a `bytes20` type variable:
+This hashing function returns a RIPEMD160 hash from the given data. To test this precompile, you can use this [RIPEMD160 Hash Calculator tool](https://md5calc.com/hash/ripemd160){target=\_blank} to calculate the RIPEMD160 hash of any string. In this case, you'll do so again with `Hello World!`. You'll reuse the same code as before, but use the `ripemd160` function. Note that it returns a `bytes20` type variable:
 
 ```solidity
 --8<-- 'code/builders/pallets-precompiles/precompiles/eth-mainnet/ripemd160.sol'
@@ -118,7 +118,7 @@ Using the [Remix compiler and deployment](/builders/build/eth-api/dev-env/remix/
 
 ## BN128Pairing {: #bn128pairing }
 
-The BN128Pairing precompile implements elliptic curve pairing operation to perform zkSNARK verification. For more information, check out the [EIP-197 standard](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-197.md/){target=\_blank}.
+The BN128Pairing precompile implements elliptic curve pairing operation to perform zkSNARK verification. For more information, check out the [EIP-197 standard](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-197.md){target=\_blank}.
 
 Currently there is no BN128Pairing support in Solidity, so it needs to be called with inline assembly. The following sample code can be used to call this precompile.
 
@@ -138,7 +138,7 @@ Currently there is no Identity Function support in Solidity, so it needs to be c
 --8<-- 'code/builders/pallets-precompiles/precompiles/eth-mainnet/identity.sol'
 ```
 
-You can use this [Web3 Type Converter tool](https://web3-type-converter.onbrn.com/){target=\_blank} to get bytes from any string, as this is the input of the `callDataCopy()` method.
+You can use this [Web3 Type Converter tool](https://web3-type-converter.onbrn.com){target=\_blank} to get bytes from any string, as this is the input of the `callDataCopy()` method.
 
 With the contract deployed, you can call the `callDataCopy()` method and verify if `memoryStored` matches the bytes that you pass in as an input of the function.
 

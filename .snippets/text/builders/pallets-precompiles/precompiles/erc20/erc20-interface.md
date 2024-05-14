@@ -11,7 +11,7 @@ The interface includes the following functions:
 - **transferFrom**(*address* from, *address* to, *uint256* value) — transfers tokens from one given address to another given address and returns `true` if successful
 
 !!! note
-    The ERC-20 standard does not specify the implications of multiple calls to `approve`. Changing an allowance with this function numerous times enables a possible attack vector. To avoid incorrect or unintended transaction ordering, you can first reduce the `spender` allowance to `0` and then set the desired allowance afterward. For more details on the attack vector, you can check out the [ERC-20 API: An Attack Vector on Approve/TransferFrom Methods](https://docs.google.com/document/d/1YLPtQxZu1UAvO9cZ1O2RPXBbT0mooh4DYKjA_jp-RLM/edit#/){target=\_blank} overview.
+    The ERC-20 standard does not specify the implications of multiple calls to `approve`. Changing an allowance with this function numerous times enables a possible attack vector. To avoid incorrect or unintended transaction ordering, you can first reduce the `spender` allowance to `0` and then set the desired allowance afterward. For more details on the attack vector, you can check out the [ERC-20 API: An Attack Vector on Approve/TransferFrom Methods](https://docs.google.com/document/d/1YLPtQxZu1UAvO9cZ1O2RPXBbT0mooh4DYKjA_jp-RLM/edit#){target=\_blank} overview.
 
 The interface also includes the following required events:
 

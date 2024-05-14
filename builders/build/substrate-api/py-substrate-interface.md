@@ -7,7 +7,7 @@ description: Learn the basics of how to use the Python Substrate Interface libra
 
 ## Introduction {: #introduction }
 
-[Python Substrate Interface](https://github.com/polkascan/py-substrate-interface/){target=\_blank} library allows application developers to query a Moonbeam node and interact with the node's Polkadot or Substrate features using a native Python interface. Here you will find an overview of the available functionalities and some commonly used code examples to get you started on interacting with Moonbeam networks using Python Substrate Interface.
+[Python Substrate Interface](https://github.com/polkascan/py-substrate-interface){target=\_blank} library allows application developers to query a Moonbeam node and interact with the node's Polkadot or Substrate features using a native Python interface. Here you will find an overview of the available functionalities and some commonly used code examples to get you started on interacting with Moonbeam networks using Python Substrate Interface.
 
 ## Checking Prerequisites {: #checking-prerequisites }
 
@@ -17,7 +17,7 @@ For the examples in this guide, you will need to have the following:
   --8<-- 'text/_common/faucet/faucet-list-item.md'
  - 
   --8<-- 'text/_common/endpoint-examples-list-item.md'
- - Have [`pip`](https://pypi.org/project/pip/){target=\_blank} installed
+ - Have [`pip`](https://pypi.org/project/pip){target=\_blank} installed
 
 !!! note
     --8<-- 'text/_common/assumes-mac-or-ubuntu-env.md'

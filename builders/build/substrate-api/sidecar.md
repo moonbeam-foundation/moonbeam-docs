@@ -97,7 +97,7 @@ Some of the commonly used Substrate API Sidecar endpoints include:
  - **GET /node/version** — Get information about the Substrates node's implementation and versioning
  - **GET /runtime/metadata** — Get the runtime metadata in decoded, JSON form.
 
-For a full list of API endpoints available on Substrate API Sidecar, please refer to the [official documentation](https://paritytech.github.io/substrate-api-sidecar/dist/).
+For a full list of API endpoints available on Substrate API Sidecar, please refer to the [official documentation](https://paritytech.github.io/substrate-api-sidecar/dist).
 
 ## EVM Field Mapping in Block JSON Object {: #evm-fields-mapping-in-block-json-object }
 
@@ -195,7 +195,7 @@ The Moonbeam EVM currently supports three transaction standards: `legacy`, `eip1
         ...
     ```
 
-For more information on the new [EIP1559](https://eips.ethereum.org/EIPS/eip-1559/){target=\_blank} and [EIP2930](https://eips.ethereum.org/EIPS/eip-2930/){target=\_blank} transaction types and what each field means, please refer to the respective official Ethereum proposal specs.
+For more information on the new [EIP1559](https://eips.ethereum.org/EIPS/eip-1559){target=\_blank} and [EIP2930](https://eips.ethereum.org/EIPS/eip-2930){target=\_blank} transaction types and what each field means, please refer to the respective official Ethereum proposal specs.
 
 ### Transaction Field Mappings {: #transaction-field-mappings }
 
@@ -291,7 +291,7 @@ RESPONSE JSON Block Object:
 
 ```
 
-Moonbeam ERC-20 token transfers will emit the [`Transfer`](https://eips.ethereum.org/EIPS/eip-20/){target=\_blank} event which can be decoded as the following:
+Moonbeam ERC-20 token transfers will emit the [`Transfer`](https://eips.ethereum.org/EIPS/eip-20){target=\_blank} event which can be decoded as the following:
 
 |     Tx Information      |                           Block JSON Field                            |
 |:-----------------------:|:---------------------------------------------------------------------:|

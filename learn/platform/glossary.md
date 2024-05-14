@@ -41,7 +41,7 @@ The backbone blockchain supporting the Polkadot network.  Parachains connect to 
 
 ### Smart Contract {: #smart-contract }
 
-A smart contract is a computer program or a transaction protocol that is intended to automatically execute, control, or document legally relevant events and actions according to the terms of a contract or an agreement. Smart contracts intend to reduce the need for trusted intermediators, arbitrations, and enforcement costs, as well as reduce fraud losses and malicious and accidental exceptions. [Learn more](https://en.wikipedia.org/wiki/Smart_contract/){target=\_blank}.
+A smart contract is a computer program or a transaction protocol that is intended to automatically execute, control, or document legally relevant events and actions according to the terms of a contract or an agreement. Smart contracts intend to reduce the need for trusted intermediators, arbitrations, and enforcement costs, as well as reduce fraud losses and malicious and accidental exceptions. [Learn more](https://en.wikipedia.org/wiki/Smart_contract){target=\_blank}.
 
 ### Substrate {: #substrate }
 

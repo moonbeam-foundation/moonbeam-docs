@@ -32,7 +32,7 @@ const provider = new ethers.JsonRpcProvider(providerURL, {
 });
 ```
 
-Any Ethereum wallet should be able to generate a valid address for Moonbeam (for example, [MetaMask](https://metamask.io/){target=\_blank}).
+Any Ethereum wallet should be able to generate a valid address for Moonbeam (for example, [MetaMask](https://metamask.io){target=\_blank}).
 
 ## Chain ID {: #chain-id }
 

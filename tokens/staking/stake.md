@@ -13,7 +13,7 @@ Token holders can add to candidates' stake using their tokens, a process called 
 
 Once a candidate joins the active set of collators, they are eligible to produce blocks and receive partial block rewards as part of the token inflationary model. They share these as staking rewards with their delegators, considering their proportional contribution toward their stake in the network. Delegators can choose to auto-compound their rewards so that a set percentage of their rewards are automatically applied to their total delegation amount.
 
-This guide will show you how to stake on Moonbase Alpha via Polkadot.js Apps, but similar steps can be taken for any of the Moonbeam and Moonriver. Token holders that want to easily stake their tokens can use the [Moonbeam dApp](https://apps.moonbeam.network/){target=\_blank} to do so.
+This guide will show you how to stake on Moonbase Alpha via Polkadot.js Apps, but similar steps can be taken for any of the Moonbeam and Moonriver. Token holders that want to easily stake their tokens can use the [Moonbeam dApp](https://apps.moonbeam.network){target=\_blank} to do so.
 
 For more general information on staking, please check out the [Staking on Moonbeam](/learn/features/staking/){target=\_blank} overview.
 
@@ -235,7 +235,7 @@ You'll need to [get the number of delegations with auto-compounding set up](#get
 
 ## How to Stop Delegations {: #how-to-stop-delegations }
 
-As of [runtime version 1001](https://moonbeam.network/announcements/staking-changes-moonriver-runtime-upgrade/){target=\_blank}, there have been significant changes to the way users can interact with various staking features. Including the way staking exits are handled.
+As of [runtime version 1001](https://moonbeam.network/announcements/staking-changes-moonriver-runtime-upgrade){target=\_blank}, there have been significant changes to the way users can interact with various staking features. Including the way staking exits are handled.
 
 If you want to make an exit and stop a delegation, you have to first schedule it, wait an exit delay, and then execute the exit request. If you are already a delegator, you can request to stop your delegations using the `scheduleRevokeDelegation` extrinsic to request to unstake your tokens from a specific collator candidate. Scheduling a request does not automatically revoke your delegations, you must wait an [exit delay](/learn/features/staking/#quick-reference){target=\_blank} and then execute the request by using the `executeDelegationRequest` method.
 

@@ -11,7 +11,7 @@ For an asset to be transferred across chains via XCM, there needs to be an open 
 
 This guide will show you how to register [external XC-20s](/builders/interoperability/xcm/xc20/overview#external-xc20s){target=\_blank} on Moonbeam and provide the information you need to register Moonbeam assets, including Moonbeam native assets (GLMR, MOVR, and DEV) and [local XC-20s](/builders/interoperability/xcm/xc20/overview#local-xc20s){target=\_blank} (XCM-enabled ERC-20s), on another chain.
 
-The examples in this guide use a CLI tool developed to ease the entire process, which you can find in the [xcm-tools GitHub repository](https://github.com/Moonsong-Labs/xcm-tools/){target=\_blank}.
+The examples in this guide use a CLI tool developed to ease the entire process, which you can find in the [xcm-tools GitHub repository](https://github.com/Moonsong-Labs/xcm-tools){target=\_blank}.
 
 ```bash
 git clone https://github.com/Moonsong-Labs/xcm-tools && \
@@ -21,7 +21,7 @@ yarn
 
 ## Register External XC-20s on Moonbeam {: #register-xc-20s }
 
-Registering External XC-20s on Moonbeam is a multi-step process that, at a high level, involves proposing the asset registration on the [Moonbeam Community Forum](https://forum.moonbeam.foundation/){target=\_blank} and creating an on-chain governance proposal.
+Registering External XC-20s on Moonbeam is a multi-step process that, at a high level, involves proposing the asset registration on the [Moonbeam Community Forum](https://forum.moonbeam.foundation){target=\_blank} and creating an on-chain governance proposal.
 
 If a channel between Moonbeam and the origin chain of the asset does not yet exist, one will need to be opened. You can batch the channel-related calls with the asset registration calls, so you only need to submit a single proposal. You'll need to start by creating a couple of forum posts: an [XCM Disclosure](/builders/interoperability/xcm/xc-registration/forum-templates#xcm-disclosures){target=\_blank} post and an [XCM Proposal](/builders/interoperability/xcm/xc-registration/forum-templates#xcm-proposals){target=\_blank} post.
 
@@ -35,7 +35,7 @@ If a channel between the chains already exists, you'll need to create a forum po
 
 ### Create a Forum Post {: #create-a-forum-post }
 
-To create a forum post on the [Moonbeam Community Forum](https://forum.moonbeam.foundation/){target=\_blank}, you'll need to make sure that you're adding the post to the correct category and adding relevant content. For general guidelines and a template to follow, please refer to the [Moonbeam Community Forum Templates for XCM Integrations](/builders/interoperability/xcm/xc-registration/forum-templates#){target=\_blank} page.
+To create a forum post on the [Moonbeam Community Forum](https://forum.moonbeam.foundation){target=\_blank}, you'll need to make sure that you're adding the post to the correct category and adding relevant content. For general guidelines and a template to follow, please refer to the [Moonbeam Community Forum Templates for XCM Integrations](/builders/interoperability/xcm/xc-registration/forum-templates#){target=\_blank} page.
 
 ### Create a Proposal to Register an Asset {: #create-a-proposal }
 
@@ -59,7 +59,7 @@ With this information in hand, you can get the encoded calldata for both calls a
 
 Units per second is the number of tokens charged per second of execution of an XCM message. The target cost for an XCM transfer is $0.02 at the time of registration. The units per second might get updated through governance as the token price fluctuates.
 
-The easiest way to calculate an asset's units per second is through the [`calculate-units-per-second.ts` script](https://github.com/Moonsong-Labs/xcm-tools/blob/main/scripts/calculate-units-per-second.ts){target=\_blank} in the [xcm-tools](https://github.com/Moonsong-Labs/xcm-tools/){target=\_blank} repository. The script accepts the following arguments:
+The easiest way to calculate an asset's units per second is through the [`calculate-units-per-second.ts` script](https://github.com/Moonsong-Labs/xcm-tools/blob/main/scripts/calculate-units-per-second.ts){target=\_blank} in the [xcm-tools](https://github.com/Moonsong-Labs/xcm-tools){target=\_blank} repository. The script accepts the following arguments:
 
 - `--decimals` or `--d` - decimals of the tokens you are calculating the units per second for
 - `--xcm-weight-cost` or `--xwc` - total weight cost of the execution of the entire XCM message. The estimated weight per XCM operation on each Moonbeam chain is:  
@@ -83,7 +83,7 @@ The easiest way to calculate an asset's units per second is through the [`calcul
         ```
 
 - `--target` or `--t` - (optional) target price for XCM execution, defaults to `$0.02`
-- `--asset` or `--a` - (optional) the token [Coingecko API ID](https://www.coingecko.com/){target=\_blank}
+- `--asset` or `--a` - (optional) the token [Coingecko API ID](https://www.coingecko.com){target=\_blank}
 - `--price` or `--p` - (optional) if the Coingecko API does not support the token, you can specify the price manually
 
 For example, to calculate the units per second of DOT (Polkadot token), which has 10 decimals, on Moonbeam, you can run:
@@ -230,7 +230,7 @@ After the asset is successfully registered, you can try transferring tokens from
 !!! note
     Remember that Moonbeam-based networks use AccountKey20 (Ethereum-style addresses).
 
-For testing, please also provide your parachain WSS endpoint so that the [Moonbeam dApp](https://apps.moonbeam.network/){target=\_blank} can connect to it. Lastly, please fund the corresponding account:
+For testing, please also provide your parachain WSS endpoint so that the [Moonbeam dApp](https://apps.moonbeam.network){target=\_blank} can connect to it. Lastly, please fund the corresponding account:
 
 === "Moonbeam"
 
@@ -258,7 +258,7 @@ For testing, please also provide your parachain WSS endpoint so that the [Moonbe
 
 [XC-20s](/builders/interoperability/xcm/xc20/){target=\_blank} are Substrate-based assets with an [ERC-20 interface](/builders/interoperability/xcm/xc20/overview/#the-erc20-interface){target=\_blank}. This means they can be added to MetaMask and composed with any EVM DApp that exists in the ecosystem. The team can connect you with any DApp you find relevant for an XC-20 integration.
 
-If you need DEV tokens (the native token for Moonbase Alpha) to use your XC-20 asset, you can get some from the [Moonbase Alpha Faucet](/builders/get-started/networks/moonbase/#moonbase-alpha-faucet){target=\_blank}, which dispenses {{ networks.moonbase.website_faucet_amount }} every 24 hours. If you need more, feel free to reach out to the team on [Telegram](https://t.me/Moonbeam_Official/){target=\_blank} or [Discord](https://discord.gg/PfpUATX/){target=\_blank}.
+If you need DEV tokens (the native token for Moonbase Alpha) to use your XC-20 asset, you can get some from the [Moonbase Alpha Faucet](/builders/get-started/networks/moonbase/#moonbase-alpha-faucet){target=\_blank}, which dispenses {{ networks.moonbase.website_faucet_amount }} every 24 hours. If you need more, feel free to reach out to the team on [Telegram](https://t.me/Moonbeam_Official){target=\_blank} or [Discord](https://discord.gg/PfpUATX){target=\_blank}.
 
 ### Set XC-20 Precompile Bytecode {: #set-bytecode }
 
@@ -399,7 +399,7 @@ The multilocation of Moonbeam native assets includes the parachain ID of the Moo
 
 The multilocation for local XC-20s include the parachain ID of Moonbeam, the pallet instance, and the address of the ERC-20. The pallet instance corresponds to the index of the ERC-20 XCM Bridge Pallet, as this is the pallet that enables any ERC-20 to be transferred via XCM.
 
-**To be registered on other chains, local XC-20s must strictly comply with the standard ERC-20 interface as described in [EIP-20](https://eips.ethereum.org/EIPS/eip-20/){target=\_blank}. In particular, the [`transfer` function](https://eips.ethereum.org/EIPS/eip-20#transfer){target=\_blank} must be as described in EIP-20:**
+**To be registered on other chains, local XC-20s must strictly comply with the standard ERC-20 interface as described in [EIP-20](https://eips.ethereum.org/EIPS/eip-20){target=\_blank}. In particular, the [`transfer` function](https://eips.ethereum.org/EIPS/eip-20#transfer){target=\_blank} must be as described in EIP-20:**
 
 ```js
 function transfer(address _to, uint256 _value) public returns (bool success)

@@ -95,7 +95,7 @@ The below example is demonstrated on Moonbase Alpha, however, similar steps can 
 ### Remix Set Up {: #remix-set-up }
 
 1. Click on the **File explorer** tab
-2. Paste a copy of [`ConvictionVoting.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/conviction-voting/ConvictionVoting.sol){target=\_blank} into a [Remix file](https://remix.ethereum.org/){target=\_blank} named `ConvictionVoting.sol`
+2. Paste a copy of [`ConvictionVoting.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/conviction-voting/ConvictionVoting.sol){target=\_blank} into a [Remix file](https://remix.ethereum.org){target=\_blank} named `ConvictionVoting.sol`
 
 ![Copy and paste the referenda Solidity interface into Remix.](/images/builders/pallets-precompiles/precompiles/conviction-voting/conviction-voting-1.webp)
 
@@ -160,4 +160,4 @@ To get started, you can take the following steps:
 
 Now the delegate account can vote on your behalf! If you no longer want a delegate vote to exist, you can remove it using the `undelegate` function of the Conviction Voting Precompile.
 
-And that's it! You've completed your introduction to the Conviction Voting Precompile. There are a few more functions that are documented in [`ConvictionVoting.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/conviction-voting/ConvictionVoting.sol){target=\_blank} — feel free to reach out on [Discord](https://discord.gg/moonbeam/){target=\_blank} if you have any questions about those functions or any other aspect of the Conviction Voting Precompile.
+And that's it! You've completed your introduction to the Conviction Voting Precompile. There are a few more functions that are documented in [`ConvictionVoting.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/conviction-voting/ConvictionVoting.sol){target=\_blank} — feel free to reach out on [Discord](https://discord.gg/moonbeam){target=\_blank} if you have any questions about those functions or any other aspect of the Conviction Voting Precompile.

@@ -7,7 +7,7 @@ description: Learn the basics of remote execution via XCM messages, which allow 
 
 ## Introduction {: #introduction }
 
-The [Cross-Consensus Message (XCM)](https://wiki.polkadot.network/docs/learn-crosschain/){target=\_blank} format defines how messages can be sent between interoperable blockchains. This format opens the door to sending an XCM message that executes an arbitrary set of bytes in a Moonbeam-based network, the relay chain, or other parachains in the Polkadot/Kusama ecosystems.
+The [Cross-Consensus Message (XCM)](https://wiki.polkadot.network/docs/learn-crosschain){target=\_blank} format defines how messages can be sent between interoperable blockchains. This format opens the door to sending an XCM message that executes an arbitrary set of bytes in a Moonbeam-based network, the relay chain, or other parachains in the Polkadot/Kusama ecosystems.
 
 Remote execution via XCM opens a new set of possibilities for cross-chain interactions, from chains executing actions on other chains to users performing remote actions without switching chains.
 

@@ -7,7 +7,7 @@ description: This guide walks you through how to connect Mathwallet, a browser-b
 
 ## Introduction {: #introduction }
 
-MathWallet [announced](https://mathwallet.org/moonbeam-wallet/en/) that is now natively supporting each of the [Moonbeam-based networks](/learn/platform/networks/){target=\_blank}. This means that you are now able to interact with any of the networks using another wallet besides MetaMask.
+MathWallet [announced](https://mathwallet.org/moonbeam-wallet/en) that is now natively supporting each of the [Moonbeam-based networks](/learn/platform/networks/){target=\_blank}. This means that you are now able to interact with any of the networks using another wallet besides MetaMask.
 
 In this tutorial, we'll go through how to setup MathWallet to connect to each of the networks: [Moonbeam](#connect-to-moonbeam), [Moonriver](#connect-to-moonriver), and [Moonbase Alpha](#connect-to-moonbase-alpha). We'll also present a brief example of using MathWallet as a Web3 provider for other tools such as [Remix](/builders/build/eth-api/dev-env/remix/){target=\_blank}.
 
@@ -15,7 +15,7 @@ In this tutorial, we'll go through how to setup MathWallet to connect to each of
 
 ## Checking Prerequisites {: #checking-prerequisites }
 
-First, you need to install the MathWallet browser extension, which you can get from their [website](https://mathwallet.org/en-us/){target=\_blank}.
+First, you need to install the MathWallet browser extension, which you can get from their [website](https://mathwallet.org/en-us){target=\_blank}.
 
 With the browser extension installed, please open it and set a password.
 

@@ -317,7 +317,7 @@ The example in this section uses a destination parachain that is not publicly av
 
 To be able to send the extrinsics in this section, you need to have:
 
-- An account in the origin chain with [funds](/builders/get-started/networks/moonbase/#get-tokens/){target=\_blank}
+- An account in the origin chain with [funds](/builders/get-started/networks/moonbase/#get-tokens){target=\_blank}
 - Funds in the Computed Origin account on the target chain. To learn how to calculate the address of the Computed Origin account, please refer to the [How to Calculate the Computed Origin](/builders/interoperability/xcm/remote-execution/computed-origins/){target=\_blank} documentation
 
 For this example, the following accounts will be used:
@@ -354,7 +354,7 @@ Since you'll be interacting with the `transactThroughSigned` function of the XCM
         };
         ```
 
-3. Define the `call` that will be executed in the destination chain, which is the encoded call data of the pallet, method, and input to be called. It can be constructed in [Polkadot.js Apps](https://polkadot.js.org/apps/){target=\_blank} (which must be connected to the destination chain) or using the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=\_blank}. For this example, the inner call is a simple balance transfer of 1 token of the destination chain to Alice's account there
+3. Define the `call` that will be executed in the destination chain, which is the encoded call data of the pallet, method, and input to be called. It can be constructed in [Polkadot.js Apps](https://polkadot.js.org/apps){target=\_blank} (which must be connected to the destination chain) or using the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=\_blank}. For this example, the inner call is a simple balance transfer of 1 token of the destination chain to Alice's account there
 
     ```js
     --8<-- 'code/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-pallet/transact-signed.js:19:19'

@@ -21,7 +21,7 @@ Moonbeam leverages multiple existing Substrate frame pallets to provide key bloc
 
 ### Frontier: Substrate's Ethereum Compatibility Layer {: #frontier }
 
-[Frontier](https://polkadot-evm.github.io/frontier/){target=\_blank} serves as Substrate's Ethereum compatibility layer, facilitating the seamless operation of standard Ethereum DApps on Substrate-based chains without requiring modifications. This compatibility is achieved by integrating specialized Substrate pallets into the Substrate runtime. These pallets include the EVM pallet, responsible for executing EVM operations; the Ethereum pallet, which manages block data storage and offers RPC compatibility; the Base Fee pallet, enabling support for EIP-1559 transactions and handling base fee calculations; and the Dynamic Fee pallet, responsible for computing dynamic minimum gas prices.
+[Frontier](https://polkadot-evm.github.io/frontier){target=\_blank} serves as Substrate's Ethereum compatibility layer, facilitating the seamless operation of standard Ethereum DApps on Substrate-based chains without requiring modifications. This compatibility is achieved by integrating specialized Substrate pallets into the Substrate runtime. These pallets include the EVM pallet, responsible for executing EVM operations; the Ethereum pallet, which manages block data storage and offers RPC compatibility; the Base Fee pallet, enabling support for EIP-1559 transactions and handling base fee calculations; and the Dynamic Fee pallet, responsible for computing dynamic minimum gas prices.
 
 Moonbeam uses the EVM and Ethereum pallets to achieve full Ethereum compatibility. Moonbeam does not use the Base Fee or Dynamic Fee pallets. Instead, Moonbeam has its own [dynamic fee mechanism](https://forum.moonbeam.foundation/t/proposal-status-idea-dynamic-fee-mechanism-for-moonbeam-and-moonriver/241){target=\_blank} for base fee calculations.
 
@@ -47,8 +47,8 @@ Some of the key Substrate FRAME pallets used in the Moonbeam runtime include:
 In addition to these Substrate FRAME Pallets, Moonbeam implements custom pallets to achieve additional functionality, such as:
 
 - **Parachain Staking** - enables a Delegated Proof of Stake (DPoS) system
-- **Moonbeam Orbiters** - supports the [Orbiter Program](/node-operators/networks/collators/orbiter){target=\_blank}, which diversifies the collator pool
-- **XCM Transactor** - simplifies remote cross-chain calls via [Cross-Consensus Messaging (XCM)](/builders/interoperability/xcm/overview){target=\_blank}
+- **Moonbeam Orbiters** - supports the [Orbiter Program](/node-operators/networks/collators/orbiter/){target=\_blank}, which diversifies the collator pool
+- **XCM Transactor** - simplifies remote cross-chain calls via [Cross-Consensus Messaging (XCM)](/builders/interoperability/xcm/overview/){target=\_blank}
 - **Asset Manager** - registers XCM assets
 
 Moonbeam also uses the Cumulus library to provide integration to the Polkadot relay chain.
@@ -89,11 +89,11 @@ The EVM pallet should produce nearly identical execution results to Ethereum, su
 
 There are also some [precompiles](https://github.com/polkadot-evm/frontier/tree/4c05c2b09e71336d6b11207e6d12e486b4d2705c#evm-pallet-precompiles){target=\_blank} that can be used alongside the EVM pallet that extends the functionality of the EVM. Moonbeam uses the following EVM precompiles:
 
-- **[pallet-evm-precompile-simple](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm_precompile_simple/){target=\_blank}** - includes five basic precompiles: ECRecover, ECRecoverPublicKey, Identity, RIPEMD160, SHA256
+- **[pallet-evm-precompile-simple](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm_precompile_simple){target=\_blank}** - includes five basic precompiles: ECRecover, ECRecoverPublicKey, Identity, RIPEMD160, SHA256
 - **[pallet-evm-precompile-blake2](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm_precompile_blake2/struct.Blake2F.html){target=\_blank}** - includes the BLAKE2 precompile
 - **[pallet-evm-precompile-bn128](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm_precompile_bn128/index.html){target=\_blank}** - includes three BN128 precompiles: BN128Add, BN128Mul, and BN128Pairing
 - **[pallet-evm-precompile-modexp](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm_precompile_modexp/struct.Modexp.html){target=\_blank}** - includes the modular exponentiation precompile
 - **[pallet-evm-precompile-sha3fips](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm_precompile_sha3fips/struct.Sha3FIPS256.html){target=\_blank}** -includes the standard SHA3 precompile
 - **[pallet-evm-precompile-dispatch](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm_precompile_dispatch/struct.Dispatch.html){target=\_blank}** - includes the dispatch precompile
 
-You can find an overview of most of these precompiles on the [Ethereum MainNet Precompiled Contracts](/builders/pallets-precompiles/precompiles/eth-mainnet){target=\_blank} page.
+You can find an overview of most of these precompiles on the [Ethereum MainNet Precompiled Contracts](/builders/pallets-precompiles/precompiles/eth-mainnet/){target=\_blank} page.

@@ -58,7 +58,7 @@ The below example is demonstrated on Moonbase Alpha, however, similar steps can 
 ### Remix Set Up {: #remix-set-up }
 
 1. Click on the **File explorer** tab
-2. Paste a copy of [`Preimage.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/preimage/Preimage.sol){target=\_blank} into a [Remix file](https://remix.ethereum.org/){target=\_blank} named `Preimage.sol`
+2. Paste a copy of [`Preimage.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/preimage/Preimage.sol){target=\_blank} into a [Remix file](https://remix.ethereum.org){target=\_blank} named `Preimage.sol`
 
 ![Copy and paste the referenda Solidity interface into Remix.](/images/builders/pallets-precompiles/precompiles/preimage/preimage-1.webp)
 

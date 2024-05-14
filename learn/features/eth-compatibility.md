@@ -25,7 +25,7 @@ Moonbeam employs H160 Ethereum-style accounts and ECDSA keys, ensuring compatibi
 
 Learn more:
 
-- [Moonbeam's unified accounts system](/learn/core-concepts/unified-accounts){target=\_blank}
+- [Moonbeam's unified accounts system](/learn/core-concepts/unified-accounts/){target=\_blank}
 
 ### JSON-RPC Support {: #json-rpc-support }
 
@@ -93,7 +93,7 @@ On both Moonbeam and Ethereum, accounts can be controlled by two main types of a
 
 Learn more:
 
-- [An overview of proxy accounts](https://wiki.polkadot.network/docs/learn-proxies/){target=\_blank}
+- [An overview of proxy accounts](https://wiki.polkadot.network/docs/learn-proxies){target=\_blank}
 - [How to set up a proxy account](/tokens/manage/proxy-accounts/){target=\_blank}
 
 ### Account Balances {: #account-balances }

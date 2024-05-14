@@ -14,7 +14,7 @@ Moonbeam uses H160 Ethereum-style accounts and ECDSA keys, represented in 20-byt
 This guide will walk you through the step-by-step process of creating an account on Moonbeam. Whether you're new to blockchain technology or an experienced Ethereum user, this guide will provide all the information you need to get started.
 
 !!! note
-    This guide does not pertain to a local Moonbeam development node. If you are using a development node, you don't need to worry about creating an account, as the node comes with ten pre-funded accounts for testing purposes. Please refer to the [Getting Started with a Local Moonbeam Development Node](/builders/get-started/networks/moonbeam-dev){target=\_blank} guide for more information.
+    This guide does not pertain to a local Moonbeam development node. If you are using a development node, you don't need to worry about creating an account, as the node comes with ten pre-funded accounts for testing purposes. Please refer to the [Getting Started with a Local Moonbeam Development Node](/builders/get-started/networks/moonbeam-dev/){target=\_blank} guide for more information.
 
 ## Choose a Wallet {: #choose-a-wallet }
 
@@ -36,4 +36,4 @@ Depending on the wallet, when creating an account, you may be prompted to backup
 
 After saving your seed phrase, you can start developing on Moonbeam. Many wallets offer the option to export the private key linked to your account. By doing so, you can utilize your private key instead of the seed phrase during development. However, taking adequate precautions to securely store your private key or seed phrase while developing is essential.
 
-And that's it! Before sending your first transaction on a Moonbeam-based network, ensure you have the necessary [network configurations for your chosen network](/builders/get-started/networks/){target=\_blank} and an [RPC endpoint](/builders/get-started/endpoints){target=\_blank} for the network. Once you have these items, you'll be able to follow along with tutorials like the [How to use Ethers.js](/builders/build/eth-api/libraries/ethersjs){target=\_blank} or the [How to use Web3.js](/builders/build/eth-api/libraries/web3js){target=\_blank} to send a transaction.
+And that's it! Before sending your first transaction on a Moonbeam-based network, ensure you have the necessary [network configurations for your chosen network](/builders/get-started/networks/){target=\_blank} and an [RPC endpoint](/builders/get-started/endpoints/){target=\_blank} for the network. Once you have these items, you'll be able to follow along with tutorials like the [How to use Ethers.js](/builders/build/eth-api/libraries/ethersjs/){target=\_blank} or the [How to use Web3.js](/builders/build/eth-api/libraries/web3js/){target=\_blank} to send a transaction.

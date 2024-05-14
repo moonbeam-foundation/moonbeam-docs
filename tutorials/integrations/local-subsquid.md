@@ -19,8 +19,8 @@ This tutorial will walk you through the process of indexing data on a local Moon
 
 To follow along with this tutorial, you'll need to have:
 
-- [Docker installed](https://docs.docker.com/get-docker/){target=\_blank}
-- [Docker Compose installed](https://docs.docker.com/compose/install/){target=\_blank}
+- [Docker installed](https://docs.docker.com/get-docker){target=\_blank}
+- [Docker Compose installed](https://docs.docker.com/compose/install){target=\_blank}
 - An empty Hardhat project. For step-by-step instructions, please refer to the [Creating a Hardhat Project](/builders/build/eth-api/dev-env/hardhat/#creating-a-hardhat-project){target=\_blank} section of our Hardhat documentation page
 - An [ERC-20 token deployed](#deploy-an-erc-20-contract) to your local development node, unless you plan on indexing Moonbase Alpha and using an existing ERC-20
 
@@ -79,7 +79,7 @@ You should have already created an empty Hardhat project, but if you haven't don
 
 In this section, we'll configure our Hardhat project for a local Moonbeam development node, create an ERC-20 contract, and write scripts to deploy and interact with our contract.
 
-Before we dive into creating our project, let's install a couple of dependencies that we'll need: the [Hardhat Ethers plugin](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-ethers/){target=\_blank} and [OpenZeppelin contracts](https://docs.openzeppelin.com/contracts/4.x/){target=\_blank}. The Hardhat Ethers plugin provides a convenient way to use the [Ethers](/builders/build/eth-api/libraries/ethersjs/){target=\_blank} library to interact with the network. We'll use OpenZeppelin's base ERC-20 implementation to create an ERC-20. To install both of these dependencies, you can run:
+Before we dive into creating our project, let's install a couple of dependencies that we'll need: the [Hardhat Ethers plugin](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-ethers){target=\_blank} and [OpenZeppelin contracts](https://docs.openzeppelin.com/contracts/4.x){target=\_blank}. The Hardhat Ethers plugin provides a convenient way to use the [Ethers](/builders/build/eth-api/libraries/ethersjs/){target=\_blank} library to interact with the network. We'll use OpenZeppelin's base ERC-20 implementation to create an ERC-20. To install both of these dependencies, you can run:
 
 === "npm"
 
@@ -202,7 +202,7 @@ Now we can move on to creating our Squid to index the data on our local developm
 
 ## Create a Subsquid Project {: #create-subsquid-project }
 
-Now we're going to create our Subquid project. First, we'll need to install the [Subsquid CLI](https://docs.subsquid.io/squid-cli/){target=\_blank}:
+Now we're going to create our Subquid project. First, we'll need to install the [Subsquid CLI](https://docs.subsquid.io/squid-cli){target=\_blank}:
 
 ```bash
 npm i -g @subsquid/cli@latest
@@ -289,7 +289,7 @@ Next, we need to tell the Subsquid processor which contract we're interested in.
 export const contractAddress = 'INSERT_CONTRACT_ADDRESS'.toLowerCase();
 ```
 
-The `.toLowerCase()` is critical because the Subsquid processor is case-sensitive, and some block explorers format contract addresses with capitalization. Next, you'll see the line `export const processor = new EvmBatchProcessor()`, followed by `.setDataSource`. We'll need to make a few changes here. Subsquid has [available archives for many chains, including Moonbeam, Moonriver, and Moonbase Alpha](https://docs.subsquid.io/evm-indexing/supported-networks/){target=\_blank} that can speed up the data retrieval process. For indexing a local development node, there's no archive necessary so the exclusive data source will be the RPC URL of our local node. Go ahead and comment out or delete the archive line. Once done, your code should look similar to the below:
+The `.toLowerCase()` is critical because the Subsquid processor is case-sensitive, and some block explorers format contract addresses with capitalization. Next, you'll see the line `export const processor = new EvmBatchProcessor()`, followed by `.setDataSource`. We'll need to make a few changes here. Subsquid has [available archives for many chains, including Moonbeam, Moonriver, and Moonbase Alpha](https://docs.subsquid.io/evm-indexing/supported-networks){target=\_blank} that can speed up the data retrieval process. For indexing a local development node, there's no archive necessary so the exclusive data source will be the RPC URL of our local node. Go ahead and comment out or delete the archive line. Once done, your code should look similar to the below:
 
 ```ts
 .setDataSource({
@@ -354,7 +354,7 @@ Once you've completed the prior steps, your `processor.ts` file should look simi
 
 ### Transform and Save the Data {: #transform-and-save-the-data}
 
-While `processor.ts` determines the data being consumed, `main.ts` determines the bulk of actions related to processing and transforming that data. In the simplest terms, we are processing the data that was ingested via the Subsquid processor and inserting the desired pieces into a TypeORM database. For more detailed information on how Subsquid works, be sure to check out the [Subsquid docs on Developing a Squid](https://docs.subsquid.io/basics/squid-development/){target=\_blank}
+While `processor.ts` determines the data being consumed, `main.ts` determines the bulk of actions related to processing and transforming that data. In the simplest terms, we are processing the data that was ingested via the Subsquid processor and inserting the desired pieces into a TypeORM database. For more detailed information on how Subsquid works, be sure to check out the [Subsquid docs on Developing a Squid](https://docs.subsquid.io/basics/squid-development){target=\_blank}
 
 Our `main.ts` file is going to scan through each processed block for the `Transfer` event and decode the transfer details, including the sender, receiver, and amount. The script also fetches account details for involved addresses and creates transfer objects with the extracted data. The script then inserts these records into a TypeORM database enabling them to be easily queried.
 
@@ -442,7 +442,7 @@ To query your squid, open up a new terminal window within your project and run t
 sqd serve
 ```
 
-And that's it! You can now run queries against your Squid on the GraphQL playground at [http://localhost:4350/graphql](http://localhost:4350/graphql/){target=\_blank}. Try crafting your own GraphQL query, or use the below one:
+And that's it! You can now run queries against your Squid on the GraphQL playground at [http://localhost:4350/graphql](http://localhost:4350/graphql){target=\_blank}. Try crafting your own GraphQL query, or use the below one:
 
 ???+ code "Sample query"
 
@@ -454,7 +454,7 @@ And that's it! You can now run queries against your Squid on the GraphQL playgro
 
 All of the transfers will be returned, including the transfer of the initial supply to Alith's account and the transfers from Alith to Baltathar, Charleth, Dorothy, and Ethan.
 
-And that's it! You've successfully used Subsquid to index data on a local Moonbeam development node! You can view the entire project on [GitHub](https://github.com/eshaben/local-squid-demo/){target=\_blank}.
+And that's it! You've successfully used Subsquid to index data on a local Moonbeam development node! You can view the entire project on [GitHub](https://github.com/eshaben/local-squid-demo){target=\_blank}.
 
 ## Debug Your Squid {: #debug-your-squid }
 
@@ -473,7 +473,7 @@ You can also add logging statements directly to your `main.ts` file to indicate 
     --8<-- 'code/tutorials/integrations/local-subsquid/main-with-logging.ts'
     ```
 
-See the [Subsquid guide to logging](https://docs.subsquid.io/basics/logging/){target=\_blank} for more information on debug mode.
+See the [Subsquid guide to logging](https://docs.subsquid.io/basics/logging){target=\_blank} for more information on debug mode.
 
 ### Common Errors {: #common-errors }
 

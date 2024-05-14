@@ -60,9 +60,9 @@ As a basic example, you can send two balance transfers at once. To get started, 
 
 ![Send batch transaction](/images/builders/pallets-precompiles/pallets/utility/utility-1.webp)
 
-Next you will need to enter your password and click on **Sign and Submit**. Then you can review the extrinsic on [Subscan](https://moonbase.subscan.io/){target=\_blank}.
+Next you will need to enter your password and click on **Sign and Submit**. Then you can review the extrinsic on [Subscan](https://moonbase.subscan.io){target=\_blank}.
 
 !!! note
-    As a reference, you can [view the exact extrinsic for this example on Subscan](https://moonbase.subscan.io/extrinsic/2561364-6/){target=\_blank}.
+    As a reference, you can [view the exact extrinsic for this example on Subscan](https://moonbase.subscan.io/extrinsic/2561364-6){target=\_blank}.
 
 If you take a look at the **Events** tab at the bottom of the extrinsic page, you should see several events including two `balances (Transfer)` events, two `utility (ItemCompleted)` events, and a `utility (BatchCompleted)` event containing the details of the batch transaction.

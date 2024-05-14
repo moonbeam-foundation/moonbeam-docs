@@ -15,19 +15,19 @@ Running a Moobeam collator requires Linux systems administration skills, careful
 
 **Q: Where can I get help?**
 
-**A:** There is an active and friendly [Discord](https://discord.gg/RyVefR79FA/){target=\_blank} community for collators. Join the server and introduce yourself even before you need help. Send **gilmouta** or **artkaseman** a DM and let them know who you are, and they can reach out to you if they see any issues with your node.
+**A:** There is an active and friendly [Discord](https://discord.gg/RyVefR79FA){target=\_blank} community for collators. Join the server and introduce yourself even before you need help. Send **gilmouta** or **artkaseman** a DM and let them know who you are, and they can reach out to you if they see any issues with your node.
 
 ***
 
 **Q: How do I stay up to date?**
 
-**A:** All upgrades and important technical information are announced on [Discord](https://discord.gg/PhfEbKYqak/){target=\_blank}, in the **#tech-upgrades-announcements** channel. Join and follow this channel. You can set up integrations to Slack or Telegram if those are your preferred communication channels.
+**A:** All upgrades and important technical information are announced on [Discord](https://discord.gg/PhfEbKYqak){target=\_blank}, in the **#tech-upgrades-announcements** channel. Join and follow this channel. You can set up integrations to Slack or Telegram if those are your preferred communication channels.
 
 ***
 
 **Q: How do I register my node?**
 
-**A:** There is a [questionnaire](https://docs.google.com/forms/d/e/1FAIpQLSfjmcXdiOXWtquYlBhdgXBunCKWHadaQCgPuBtzih1fd0W3aA/viewform/){target=\_blank}, in which you will be able to provide your contact information as well as some basic hardware specs. You must be running a collator node on Moonbase Alpha to fill out the questionnaire.
+**A:** There is a [questionnaire](https://docs.google.com/forms/d/e/1FAIpQLSfjmcXdiOXWtquYlBhdgXBunCKWHadaQCgPuBtzih1fd0W3aA/viewform){target=\_blank}, in which you will be able to provide your contact information as well as some basic hardware specs. You must be running a collator node on Moonbase Alpha to fill out the questionnaire.
 
 ***
 
@@ -85,7 +85,7 @@ Hardware recommendations:
 
 **Q: Is there a CPU optimized binary?**
 
-**A:** On each [release page](https://github.com/moonbam-foundation/moonbeam/releases/){target=\_blank} are CPU optimized binaries. Select the binary for your CPU architecture.
+**A:** On each [release page](https://github.com/moonbam-foundation/moonbeam/releases){target=\_blank} are CPU optimized binaries. Select the binary for your CPU architecture.
 
 - **Moonbeam-znver3** - Ryzen 9
 - **Moonbeam-skylake** - Intel
@@ -95,7 +95,7 @@ Hardware recommendations:
 
 **Q: What are the recommendations on monitoring my node?**
 
-**A:** Monitoring is very important for the health of the network and to maximize your rewards. We recommend using [Grafana Labs](https://grafana.com/){target=\_blank}. They have a free tier which should handle 6+ moonbeam servers.
+**A:** Monitoring is very important for the health of the network and to maximize your rewards. We recommend using [Grafana Labs](https://grafana.com){target=\_blank}. They have a free tier which should handle 6+ moonbeam servers.
 
 ***
 
@@ -107,7 +107,7 @@ Hardware recommendations:
 
 **Q: How should I setup alerting?**
 
-**A:** Alerting is critical to keeping your moonbeam node producing blocks and earning rewards. We recommend [pagerduty.com](https://www.pagerduty.com/){target=\_blank}, which is supported by [Grafana Labs](https://grafana.com/){target=\_blank}. Use the [KPI query](#:~:text=substrate_proposer_block_constructed_count) above and set an alert when this drops below 1. The alert should page the person on-call 24/7.  
+**A:** Alerting is critical to keeping your moonbeam node producing blocks and earning rewards. We recommend [pagerduty.com](https://www.pagerduty.com){target=\_blank}, which is supported by [Grafana Labs](https://grafana.com){target=\_blank}. Use the [KPI query](#:~:text=substrate_proposer_block_constructed_count) above and set an alert when this drops below 1. The alert should page the person on-call 24/7.  
 
 ***
 
@@ -125,7 +125,7 @@ Hardware recommendations:
 
 **Q: Should I set up centralized logging?**
 
-**A:** [Grafana Labs](https://grafana.com/){target=\_blank} can also be configured for centralized logging and is recommended. You can see all your nodes in one place. [Kibana](https://www.elastic.co/kibana/){target=\_blank} has a more robust centralized logging offering, but Grafana is simple and good enough to start.
+**A:** [Grafana Labs](https://grafana.com){target=\_blank} can also be configured for centralized logging and is recommended. You can see all your nodes in one place. [Kibana](https://www.elastic.co/kibana){target=\_blank} has a more robust centralized logging offering, but Grafana is simple and good enough to start.
 
 ***
 

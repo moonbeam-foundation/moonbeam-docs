@@ -7,11 +7,11 @@ description: An overview of how cross-consensus messaging (XCM) works and how de
 
 ## Introduction {: #introduction }
 
-[Polkadot's architecture](https://wiki.polkadot.network/docs/learn-architecture/){target=\_blank} allows parachains to natively interoperate with each other, enabling cross-blockchain transfers of any type of data or asset.
+[Polkadot's architecture](https://wiki.polkadot.network/docs/learn-architecture){target=\_blank} allows parachains to natively interoperate with each other, enabling cross-blockchain transfers of any type of data or asset.
 
-To do so, a [Cross-Consensus Message (XCM)](https://wiki.polkadot.network/docs/learn-crosschain/){target=\_blank} format defines a language around how the message transfer between two interoperating blockchains should be performed. XCM is not specific to Polkadot, as it aims to be a generic and extensible language between different consensus systems.
+To do so, a [Cross-Consensus Message (XCM)](https://wiki.polkadot.network/docs/learn-crosschain){target=\_blank} format defines a language around how the message transfer between two interoperating blockchains should be performed. XCM is not specific to Polkadot, as it aims to be a generic and extensible language between different consensus systems.
 
-This page is a brief introduction and overview of XCM and other related elements. More information can be found in [Polkadot's Wiki](https://wiki.polkadot.network/docs/learn-crosschain/){target=\_blank}.
+This page is a brief introduction and overview of XCM and other related elements. More information can be found in [Polkadot's Wiki](https://wiki.polkadot.network/docs/learn-crosschain){target=\_blank}.
 
 If you want to jump to more XCM-related content, feel free to check out the following pages:
 
@@ -77,7 +77,7 @@ The following sections provide a high-level overview of the main use cases menti
 
 ### XCM Transfers between Moonbeam & Polkadot {: #transfers-moonbeam-polkadot }
 
-As Moonbeam is a parachain within the Polkadot ecosystem, a straightforward implementation of XCM + VMP is DOT transfers from/to Polkadot/Moonbeam. To this end, DOT was registered as [_xcDOT_](https://moonscan.io/token/0xffffffff1fcacbd218edc0eba20fc2308c778080/){target=\_blank} on Moonbeam.
+As Moonbeam is a parachain within the Polkadot ecosystem, a straightforward implementation of XCM + VMP is DOT transfers from/to Polkadot/Moonbeam. To this end, DOT was registered as [_xcDOT_](https://moonscan.io/token/0xffffffff1fcacbd218edc0eba20fc2308c778080){target=\_blank} on Moonbeam.
 
 Alice (Polkadot) wants to transfer a certain amount of DOT from Polkadot to her account on Moonbeam, named Alith. Therefore, she initiates an XCM that expresses her intentions. For such transfers, Moonbeam owns a Sovereign account on Polkadot.
 

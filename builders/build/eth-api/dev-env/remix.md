@@ -10,7 +10,7 @@ description: Discover how to deploy and interact with Solidity smart contracts o
 
 ## Introduction {: #introduction }
 
-[Remix](https://remix.ethereum.org/){target=\_blank} is an integrated development environment (IDE) for developing smart contracts on Ethereum and Ethereum-compatible chains. It provides an easy-to-use interface for writing, compiling, and deploying smart contracts. Given Moonbeam’s Ethereum compatibility features, you can use Remix directly with any Moonbeam network.
+[Remix](https://remix.ethereum.org){target=\_blank} is an integrated development environment (IDE) for developing smart contracts on Ethereum and Ethereum-compatible chains. It provides an easy-to-use interface for writing, compiling, and deploying smart contracts. Given Moonbeam’s Ethereum compatibility features, you can use Remix directly with any Moonbeam network.
 
 This guide walks through the process of creating and deploying a Solidity smart contract to a [Moonbeam development node](/builders/get-started/networks/moonbeam-dev/){target=\_blank} using the Remix IDE. This guide can be adapted for [Moonbeam](/builders/get-started/networks/moonbeam/){target=\_blank}, [Moonriver](/builders/get-started/networks/moonriver/){target=\_blank}, or [Moonbase Alpha](/builders/get-started/networks/moonbase/){target=\_blank}.
 
@@ -36,7 +36,7 @@ If you're adapting this guide for Moonbeam, Moonriver, or Moonbase Alpha, make s
 
 ## Get Familiar with Remix {: #get-familiar-with-remix }
 
-If you navigate to [https://remix.ethereum.org/](https://remix.ethereum.org/){target=\_blank}, you'll see that the layout of Remix is split into four sections:
+If you navigate to [https://remix.ethereum.org/](https://remix.ethereum.org){target=\_blank}, you'll see that the layout of Remix is split into four sections:
 
 1. The plugin panel
 2. The side panel
@@ -51,11 +51,11 @@ The side panel displays the content of the plugin that is currently being viewed
 
 The main panel is automatically loaded with the **Home** tab, which contains links to a variety of resources. You can close this tab at any time and reopen it by clicking on the blue Remix icon in the top left corner of the plugin panel. The main panel is where you'll be able to see each of the files you're working with. For example, you can double-click on any file in the **File explorer** side panel and it will appear as a tab in the main panel.
 
-The terminal panel is similar to a standard terminal that you have on your OS; you can execute scripts from it, and logs are printed to it. All transactions and contract interactions are automatically logged to the terminal. You can also interact with the [Ethers](https://docs.ethers.org/v6/){target=\_blank} and [Web3](https://web3js.org/#){target=\_blank} JavaScript libraries directly from the terminal.
+The terminal panel is similar to a standard terminal that you have on your OS; you can execute scripts from it, and logs are printed to it. All transactions and contract interactions are automatically logged to the terminal. You can also interact with the [Ethers](https://docs.ethers.org/v6){target=\_blank} and [Web3](https://web3js.org/#){target=\_blank} JavaScript libraries directly from the terminal.
 
 ## Add a Smart Contract to the File Explorer {: #add-a-smart-contract-to-the-file-explorer }
 
-For this example, you will create a new file that contains an ERC-20 token contract. This will be a simple ERC-20 contract based on the current [OpenZeppelin ERC-20 template](https://docs.openzeppelin.com/contracts/4.x/erc20/){target=\_blank}. The contract will create a `MyToken` token with the `MYTOK` symbol that mints the entirety of the initial supply to the creator of the contract.
+For this example, you will create a new file that contains an ERC-20 token contract. This will be a simple ERC-20 contract based on the current [OpenZeppelin ERC-20 template](https://docs.openzeppelin.com/contracts/4.x/erc20){target=\_blank}. The contract will create a `MyToken` token with the `MYTOK` symbol that mints the entirety of the initial supply to the creator of the contract.
 
 From the **File explorer** tab on the plugin panel, you can create a new file by taking the following steps:
 
@@ -80,7 +80,7 @@ Make sure that the compiler version in the top-left corner meets the version def
 
 The Solidity compiler plugin also lets you change some settings and apply advanced configurations for the compiler. If you're planning on iterating over the smart contract, you can check the **Auto compile** box, and whenever you make a change, the contract will automatically be recompiled.
 
-Additionally, from the **Advanced Configurations** menu, you can change the EVM version, enable optimizations, and set the number of times the bytecode is expected to be run throughout the contract's lifetime; the default is set to 200 times. For more information on contract optimization, please refer to the [Solidity docs on The Optimizer](https://docs.soliditylang.org/en/latest/using-the-compiler.html#optimizer-options/){target=\_blank}.
+Additionally, from the **Advanced Configurations** menu, you can change the EVM version, enable optimizations, and set the number of times the bytecode is expected to be run throughout the contract's lifetime; the default is set to 200 times. For more information on contract optimization, please refer to the [Solidity docs on The Optimizer](https://docs.soliditylang.org/en/latest/using-the-compiler.html#optimizer-options){target=\_blank}.
 
 For this example, no additional configurations are needed. To compile the `MyToken.sol` contract, simply click on the **Compile MyToken.sol** contract. If the compilation was successful, you'll see a green check mark appear on the plugin panel next to the **Solidity compiler** plugin.
 
@@ -90,7 +90,7 @@ For this example, no additional configurations are needed. To compile the `MyTok
 
 If you tried to compile your smart contract but there was an error or warning, you can easily debug the issue with the help of ChatGPT directly from the Solidity compiler plugin in Remix.
 
-For example, if you only provided the token name to the ERC-20 constructor but forgot the token symbol and tried to compile the contract, an error would appear in the side panel. You can scroll down to read the error, and you'll see that there is also an **ASK GPT** button. To get help debugging the issue, you can click on **ASK GPT**, and a response will be returned in the Remix terminal that will guide you in the right direction to try and fix the issue. If you need additional help, you can go straight to the source and ask [ChatGPT](https://chat.openai.com/){target=\_blank} directly.
+For example, if you only provided the token name to the ERC-20 constructor but forgot the token symbol and tried to compile the contract, an error would appear in the side panel. You can scroll down to read the error, and you'll see that there is also an **ASK GPT** button. To get help debugging the issue, you can click on **ASK GPT**, and a response will be returned in the Remix terminal that will guide you in the right direction to try and fix the issue. If you need additional help, you can go straight to the source and ask [ChatGPT](https://chat.openai.com){target=\_blank} directly.
 
 ![An error message shown in the side panel for the Solidity compiler plugin with an ASK GPT button for debugging.](/images/builders/build/eth-api/dev-env/remix/remix-7.webp)
 

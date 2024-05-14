@@ -1,4 +1,4 @@
-The domain separator is defined in the [EIP-712 standard](https://eips.ethereum.org/EIPS/eip-712/){target=\_blank} and is calculated as:
+The domain separator is defined in the [EIP-712 standard](https://eips.ethereum.org/EIPS/eip-712){target=\_blank} and is calculated as:
 
 ```text
 keccak256(PERMIT_DOMAIN, name, version, chain_id, address)

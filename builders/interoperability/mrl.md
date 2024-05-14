@@ -41,20 +41,20 @@ While MRL intends to encompass many different GMP providers, Wormhole is the fir
     - Parachain ID
     - The account type that your parachain uses (i.e., AccountId32 or AccountKey20)
     - The addresses and names of the tokens that you have registered
-    - An endpoint that a [Wormhole Connect](https://wormhole.com/connect/){target=\_blank} frontend can use
+    - An endpoint that a [Wormhole Connect](https://wormhole.com/connect){target=\_blank} frontend can use
     - Why do you want your parachain to be connected through Wormhole Connect?
 
 ### Send Tokens Through Wormhole to a Parachain {: #sending-tokens-through-wormhole }
 
-MRL provides a one-click solution that allows you to define a multilocation as the final destination for your assets arriving from any Wormhole chain with a [Wormhole Connect integration](https://wormhole.com/connect/){target=\_blank}.
+MRL provides a one-click solution that allows you to define a multilocation as the final destination for your assets arriving from any Wormhole chain with a [Wormhole Connect integration](https://wormhole.com/connect){target=\_blank}.
 
 To send tokens through Wormhole and MRL, user interfaces will use a mixture of the [Wormhole TokenBridge](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/interfaces/ITokenBridge.sol){target=\_blank} and [Moonbeam’s GMP Precompile](/builders/pallets-precompiles/precompiles/gmp/){target=\_blank}.
 
 Users transferring liquidity will invoke the `transferTokensWithPayload` method on the origin chain's deployment of the Wormhole TokenBridge smart contract, which implements the `ITokenBridge.sol` interface to send tokens to the GMP Precompile. This function requires a bytes payload, formatted as a SCALE-encoded multilocation object wrapped within another precompile-specific versioned type. To learn how to build this payload, please refer to the [Building the Payload for Wormhole](/builders/pallets-precompiles/precompiles/gmp#building-the-payload-for-wormhole){target=\_blank} section of the GMP Precompile documentation.
 
-Wormhole relies on a set of distributed nodes that monitor the state on several blockchains. In Wormhole, these nodes are referred to as [Guardians](https://docs.wormhole.com/wormhole/explore-wormhole/guardian/){target=\_blank}. The Guardian's role is to observe messages and sign the corresponding payloads. If 2/3rds of Wormhole's signing Guardians validate a particular message, the message becomes approved and can be received on other chains.
+Wormhole relies on a set of distributed nodes that monitor the state on several blockchains. In Wormhole, these nodes are referred to as [Guardians](https://docs.wormhole.com/wormhole/explore-wormhole/guardian){target=\_blank}. The Guardian's role is to observe messages and sign the corresponding payloads. If 2/3rds of Wormhole's signing Guardians validate a particular message, the message becomes approved and can be received on other chains.
 
-The Guardian signatures and the message form a proof called a [Verified Action Approval (VAA)](https://docs.wormhole.com/wormhole/explore-wormhole/vaa){target=\_blank}. These VAAs are delivered to their destinations by [relayers](https://docs.wormhole.com/wormhole/explore-wormhole/relayer/){target=\_blank} within the Wormhole network. On the destination chain, the VAA is used to perform an action. In this case, the VAA is passed into the `wormholeTransferERC20` function of the GMP Precompile, which processes the VAA through the Wormhole bridge contract (which mints the tokens) and relays the tokens to a parachain using XCM messages. Please note that as a parachain integrating MRL, you will likely not need to implement or use the GMP Precompile.
+The Guardian signatures and the message form a proof called a [Verified Action Approval (VAA)](https://docs.wormhole.com/wormhole/explore-wormhole/vaa){target=\_blank}. These VAAs are delivered to their destinations by [relayers](https://docs.wormhole.com/wormhole/explore-wormhole/relayer){target=\_blank} within the Wormhole network. On the destination chain, the VAA is used to perform an action. In this case, the VAA is passed into the `wormholeTransferERC20` function of the GMP Precompile, which processes the VAA through the Wormhole bridge contract (which mints the tokens) and relays the tokens to a parachain using XCM messages. Please note that as a parachain integrating MRL, you will likely not need to implement or use the GMP Precompile.
 
 A relayer's only job is to pass the transactions approved by Wormhole Guardians to the destination chain. MRL is supported by some relayers already, but anyone can run one. Furthermore, users can manually execute their transaction in the destination chain when bridging through Wormhole and avoid relayers altogether.
 
@@ -227,11 +227,11 @@ In the `send-batch-transaction.js` file, add the following code:
 
 If you want to see an example project that fully implements this, an example is available in a [GitHub repository](https://github.com/jboetticher/mrl-mono){target=\_blank}.
 
-It's important to note that not every parachain will have X-Tokens and the other pallets implemented in a way that will allow this path. Substrate-based chains are very flexible, to the point where a standard doesn't exist. If you believe your parachain does not support this path, please provide an alternative solution in the [Moonbeam forum](https://forum.moonbeam.network/){target=\_blank} and to the Wormhole team.
+It's important to note that not every parachain will have X-Tokens and the other pallets implemented in a way that will allow this path. Substrate-based chains are very flexible, to the point where a standard doesn't exist. If you believe your parachain does not support this path, please provide an alternative solution in the [Moonbeam forum](https://forum.moonbeam.network){target=\_blank} and to the Wormhole team.
 
 ### Tokens Available Through Wormhole {: #tokens-available-through-wormhole }
 
-While Wormhole has the technical capability to bridge any token across chains, relayers will not support every token for fees. The ERC-20 assets that can be bridged through Wormhole's MRL solution depend on the tokens the [xLabs relayer](https://xlabs.xyz/){target=\_blank} takes in. The tokens that are available to Moonbeam and Moonbase Alpha are listed in the table below:
+While Wormhole has the technical capability to bridge any token across chains, relayers will not support every token for fees. The ERC-20 assets that can be bridged through Wormhole's MRL solution depend on the tokens the [xLabs relayer](https://xlabs.xyz){target=\_blank} takes in. The tokens that are available to Moonbeam and Moonbase Alpha are listed in the table below:
 
 === "Moonbeam"
 

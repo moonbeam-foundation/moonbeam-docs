@@ -27,7 +27,7 @@ For this tutorial, you'll need the following:
 - All of the accounts will need to be funded with `DEV` tokens.
  --8<-- 'text/_common/faucet/faucet-list-item.md'
 - An empty Hardhat project that is configured for the Moonbase Alpha TestNet. For step-by-step instructions, please refer to the [Creating a Hardhat Project](/builders/build/eth-api/dev-env/hardhat/#creating-a-hardhat-project){target=\_blank} and the [Hardhat Configuration File](/builders/build/eth-api/dev-env/hardhat/#hardhat-configuration-file){target=\_blank} sections of our Hardhat documentation page
-- Install the [Hardhat Ethers plugin](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-ethers/){target=\_blank}. This provides a convenient way to use the [Ethers.js](/builders/build/eth-api/libraries/ethersjs/){target=\_blank} library to interact with the network from your Hardhat project:
+- Install the [Hardhat Ethers plugin](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-ethers){target=\_blank}. This provides a convenient way to use the [Ethers.js](/builders/build/eth-api/libraries/ethersjs/){target=\_blank} library to interact with the network from your Hardhat project:
 
     ```bash
     npm install @nomicfoundation/hardhat-ethers ethers@6
@@ -523,7 +523,7 @@ To run this script, you can use the following command:
 npx hardhat run --network moonbase scripts/participate.js
 ```
 
-The transaction hash will be printed to the console. You can use the hash to look up the transaction on [Moonscan](https://moonbase.moonscan.io/){target=\_blank}.
+The transaction hash will be printed to the console. You can use the hash to look up the transaction on [Moonscan](https://moonbase.moonscan.io){target=\_blank}.
 
 ![Run the partipation script using Hardhat's run command.](/images/tutorials/eth-api/randomness-lottery/lottery-4.webp)
 

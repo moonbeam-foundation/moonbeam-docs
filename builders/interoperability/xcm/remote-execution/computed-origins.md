@@ -61,7 +61,7 @@ When the XCM instruction gets executed in Moonbeam (Moonbase Alpha in this examp
 
 ## How to Calculate the Computed Origin {: #calculate-computed-origin }
 
-You can easily calculate the Computed Origin account through the `calculate-multilocation-derivative-account` or the `calculate-remote-origin` script in the [xcm-tools](https://github.com/Moonsong-Labs/xcm-tools/){target=\_blank} repository.
+You can easily calculate the Computed Origin account through the `calculate-multilocation-derivative-account` or the `calculate-remote-origin` script in the [xcm-tools](https://github.com/Moonsong-Labs/xcm-tools){target=\_blank} repository.
 
 The script accepts the following inputs:
 
@@ -72,7 +72,7 @@ The script accepts the following inputs:
 
 To use the script, you can take the following steps:
 
-1. Clone the [xcm-tools](https://github.com/Moonsong-Labs/xcm-tools/){target=\_blank} repo
+1. Clone the [xcm-tools](https://github.com/Moonsong-Labs/xcm-tools){target=\_blank} repo
 2. Run `yarn` to install the necessary packages
 3. Run the script
 

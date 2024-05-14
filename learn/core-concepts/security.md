@@ -15,7 +15,7 @@ This guide will outline and provide examples of some security considerations to 
 
 Arbitrary code execution in Solidity is the ability to execute code and call functions of other contracts using an arbitrary number of arguments of any type.
 
-A smart contract allows arbitrary execution of another contract when it allows a user to influence its own `call()` and pass in arbitrary call data and/or the `call()`s target. The [`call()` function](https://solidity-by-example.org/call/){target=\_blank} is made available through the [address data type in Solidity](https://docs.soliditylang.org/en/latest/types.html#address){target=\_blank}. When the `call()` function is invoked, the target contract is called using the arbitrary call data.
+A smart contract allows arbitrary execution of another contract when it allows a user to influence its own `call()` and pass in arbitrary call data and/or the `call()`s target. The [`call()` function](https://solidity-by-example.org/call){target=\_blank} is made available through the [address data type in Solidity](https://docs.soliditylang.org/en/latest/types.html#address){target=\_blank}. When the `call()` function is invoked, the target contract is called using the arbitrary call data.
 
 Arbitrary code execution follows the pattern in the diagram below when **Contract A** allows a user to influence its call to **Contract B**.
 
@@ -92,7 +92,7 @@ By whitelisting a specific target contract address in the function that can exec
 
 Blacklisting contracts from arbitrary code execution is not considered safe, as other precompiles might be added in the future.
 
-To whitelist a given contract, you can use the [require function](https://docs.soliditylang.org/en/v0.8.17/control-structures.html#panic-via-assert-and-error-via-require/){target=\_blank}, which will compare the target contract address to the whitelisted contract address. If the addresses match, the call can be executed. Otherwise, an exception will be thrown.
+To whitelist a given contract, you can use the [require function](https://docs.soliditylang.org/en/v0.8.17/control-structures.html#panic-via-assert-and-error-via-require){target=\_blank}, which will compare the target contract address to the whitelisted contract address. If the addresses match, the call can be executed. Otherwise, an exception will be thrown.
 
 ```solidity
 function makeArbitraryCall(address _target, bytes calldata _bytes) public {
@@ -112,7 +112,7 @@ The transaction origin, or `tx.origin`, is the address of the externally owned a
 For example, if Alice calls a function in contract A that then calls a function in contract B, when looking at the call to contract B, the `tx.origin` is Alice and the `msg.sender` is contract A.
 
 !!! note
-    As a [best practice](https://consensys.github.io/smart-contract-best-practices/development-recommendations/solidity-specific/tx-origin/){target=\_blank}, `tx.origin` should not be used for authorization. Instead, you should use `msg.sender`.
+    As a [best practice](https://consensys.github.io/smart-contract-best-practices/development-recommendations/solidity-specific/tx-origin){target=\_blank}, `tx.origin` should not be used for authorization. Instead, you should use `msg.sender`.
 
 You can use the [require function](https://docs.soliditylang.org/en/v0.8.17/control-structures.html#panic-via-assert-and-error-via-require){target=\_blank} to compare the `tx.origin` and `msg.sender`. If they are the same address, you're ensuring that only EOAs can call the function. If the `msg.sender` is a contract address, an exception will be thrown.
 

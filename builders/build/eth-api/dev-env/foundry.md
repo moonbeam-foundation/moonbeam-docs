@@ -7,14 +7,14 @@ description: Learn how to use Foundry, an Ethereum development environment, to c
 
 ## Introduction {: #introduction }
 
-[Foundry](https://github.com/foundry-rs/foundry/){target=\_blank} is an Ethereum development environment written in Rust that helps developers manage dependencies, compile projects, run tests, deploy contracts, and interact with blockchains from the command line. Foundry can directly interact with Moonbeam's Ethereum API so it can be used to deploy smart contracts into Moonbeam.
+[Foundry](https://github.com/foundry-rs/foundry){target=\_blank} is an Ethereum development environment written in Rust that helps developers manage dependencies, compile projects, run tests, deploy contracts, and interact with blockchains from the command line. Foundry can directly interact with Moonbeam's Ethereum API so it can be used to deploy smart contracts into Moonbeam.
 
 Four tools make up Foundry:  
 
-- **[Forge](https://book.getfoundry.sh/forge/){target=\_blank}** - compiles, tests, and deploys contracts
-- **[Cast](https://book.getfoundry.sh/cast/){target=\_blank}** - a command line interface for interacting with contracts
-- **[Anvil](https://book.getfoundry.sh/anvil/){target=\_blank}** - a local TestNet node for development purposes that can fork preexisting networks
-- **[Chisel](https://book.getfoundry.sh/chisel/){target=\_blank}** - a Solidity REPL for quickly testing Solidity snippets
+- **[Forge](https://book.getfoundry.sh/forge){target=\_blank}** - compiles, tests, and deploys contracts
+- **[Cast](https://book.getfoundry.sh/cast){target=\_blank}** - a command line interface for interacting with contracts
+- **[Anvil](https://book.getfoundry.sh/anvil){target=\_blank}** - a local TestNet node for development purposes that can fork preexisting networks
+- **[Chisel](https://book.getfoundry.sh/chisel){target=\_blank}** - a Solidity REPL for quickly testing Solidity snippets
 
 This guide will cover how to use Foundry to compile, deploy, and debug Ethereum smart contracts on the Moonbase Alpha TestNet. This guide can also be adapted for Moonbeam, Moonriver, or a Moonbeam development node.
 
@@ -26,7 +26,7 @@ To get started, you will need the following:
   --8<-- 'text/_common/faucet/faucet-list-item.md'
  - 
 --8<-- 'text/_common/endpoint-examples-list-item.md'
- - Have [Foundry installed](https://book.getfoundry.sh/getting-started/installation/){target=\_blank}
+ - Have [Foundry installed](https://book.getfoundry.sh/getting-started/installation){target=\_blank}
 
 ## Creating a Foundry Project {: #creating-a-foundry-project }
 
@@ -175,7 +175,7 @@ If your script's execution succeeds, your terminal should resemble the output be
 
 --8<-- 'code/builders/build/eth-api/dev-env/foundry/terminal/script.md'
 
-And that's it! For more information about Solidity scripting with Foundry, be sure to check out [Foundry's documentation site](https://book.getfoundry.sh/tutorials/solidity-scripting/){target=\_blank}.
+And that's it! For more information about Solidity scripting with Foundry, be sure to check out [Foundry's documentation site](https://book.getfoundry.sh/tutorials/solidity-scripting){target=\_blank}.
 
 ## Interacting with the Contract {: #interacting-with-the-contract }
 
@@ -271,7 +271,7 @@ Congratulations, you have successfully deployed and interacted with a contract u
 
 ## Forking with Anvil {: #forking-with-cast-anvil }
 
-As previously mentioned, [Anvil](https://book.getfoundry.sh/anvil/){target=\_blank} is a local TestNet node for development purposes that can fork preexisting networks. Forking Moonbeam allows you to interact with live contracts deployed on the network.
+As previously mentioned, [Anvil](https://book.getfoundry.sh/anvil){target=\_blank} is a local TestNet node for development purposes that can fork preexisting networks. Forking Moonbeam allows you to interact with live contracts deployed on the network.
 
 There are some limitations to be aware of when forking with Anvil. Since Anvil is based on an EVM implementation, you cannot interact with any of the Moonbeam precompiled contracts and their functions. Precompiles are a part of the Substrate implementation and therefore cannot be replicated in the simulated EVM environment. This prohibits you from interacting with cross-chain assets on Moonbeam and Substrate-based functionality such as staking and governance.
 
@@ -434,11 +434,11 @@ Then, for example, you can query the balance of one of Moonbase Alpha's collator
 
 --8<-- 'code/builders/build/eth-api/dev-env/foundry/terminal/query-balance.md'
 
-If you want to learn more about Chisel, download Foundry and refer to its [official reference page](https://book.getfoundry.sh/reference/chisel/){target=\_blank}.
+If you want to learn more about Chisel, download Foundry and refer to its [official reference page](https://book.getfoundry.sh/reference/chisel){target=\_blank}.
 
 ## Foundry With Hardhat {: #foundry-with-hardhat }  
 
-Often, there will be the case where a project that you wish to integrate with has all of its setup within [Hardhat](/builders/build/eth-api/dev-env/hardhat/){target=\_blank}, making it an arduous task to convert the entirety of the project into Foundry. This additional work is avoidable by creating a hybrid project that uses both Hardhat and Foundry features together. This is possible with Hardhat's [hardhat-foundry plugin](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-foundry/){target=\_blank}.  
+Often, there will be the case where a project that you wish to integrate with has all of its setup within [Hardhat](/builders/build/eth-api/dev-env/hardhat/){target=\_blank}, making it an arduous task to convert the entirety of the project into Foundry. This additional work is avoidable by creating a hybrid project that uses both Hardhat and Foundry features together. This is possible with Hardhat's [hardhat-foundry plugin](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-foundry){target=\_blank}.  
 
 To convert your preexisting Foundry project to a hybrid project, you will essentially have to install a Hardhat project into the same folder:  
 

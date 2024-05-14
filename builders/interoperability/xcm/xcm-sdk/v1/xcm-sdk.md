@@ -45,9 +45,9 @@ You'll also need an Ethereum signer if you're interacting with an Ethereum-compa
 
 ## Create Signers {: #create-signers }
 
-When transferring assets between chains, you'll need signers in place to sign the transactions. If you're interacting with an Ethereum-compatible chain that uses standard Ethereum-style H160 addresses, such as Moonbeam, you'll need to have an Ethereum signer, which can be an [Ethers.js](https://docs.ethers.org/v5/){target=\_blank} signer or a [viem Wallet Client](https://viem.sh/docs/clients/wallet.html){target=\_blank}. To interact with the relay chain or other parachains, you'll need a [Polkadot](https://polkadot.js.org/docs/api/){target=\_blank} signer.
+When transferring assets between chains, you'll need signers in place to sign the transactions. If you're interacting with an Ethereum-compatible chain that uses standard Ethereum-style H160 addresses, such as Moonbeam, you'll need to have an Ethereum signer, which can be an [Ethers.js](https://docs.ethers.org/v5){target=\_blank} signer or a [viem Wallet Client](https://viem.sh/docs/clients/wallet.html){target=\_blank}. To interact with the relay chain or other parachains, you'll need a [Polkadot](https://polkadot.js.org/docs/api){target=\_blank} signer.
 
-You can pass, for example, a [browser extension wallet as a signer into Ethers](https://docs.ethers.org/v5/getting-started/#getting-started--connecting){target=\_blank} or [viem](https://viem.sh/docs/clients/wallet.html#json-rpc-accounts){target=\_blank}, such as MetaMask. Similarly, with Polkadot, you can [pass a compatible wallet to the signer using the `@polkadot/extension-dapp` library](https://polkadot.js.org/docs/extension/){target=\_blank}.
+You can pass, for example, a [browser extension wallet as a signer into Ethers](https://docs.ethers.org/v5/getting-started/#getting-started--connecting){target=\_blank} or [viem](https://viem.sh/docs/clients/wallet.html#json-rpc-accounts){target=\_blank}, such as MetaMask. Similarly, with Polkadot, you can [pass a compatible wallet to the signer using the `@polkadot/extension-dapp` library](https://polkadot.js.org/docs/extension){target=\_blank}.
 
 To create an EVM signer and a Polkadot signer, you can refer to the following sections.
 

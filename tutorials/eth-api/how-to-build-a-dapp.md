@@ -13,7 +13,7 @@ Decentralized applications, or DApps, have redefined how applications are built,
 
 ![DApp Architecture Diagram](/images/tutorials/eth-api/how-to-build-a-dapp/how-to-build-a-dapp-1.webp)
 
-In this tutorial, you'll come face-to-face with each major component by writing a full DApp that mints tokens. We'll also explore additional optional components of DApps that can enhance user experience for your future projects. You can view the complete project in its [monorepo on GitHub](https://github.com/jboetticher/complete-example-dapp/){target=\_blank}.  
+In this tutorial, you'll come face-to-face with each major component by writing a full DApp that mints tokens. We'll also explore additional optional components of DApps that can enhance user experience for your future projects. You can view the complete project in its [monorepo on GitHub](https://github.com/jboetticher/complete-example-dapp){target=\_blank}.  
 
 ![DApp End Result](/images/tutorials/eth-api/how-to-build-a-dapp/how-to-build-a-dapp-2.webp)
 
@@ -23,10 +23,10 @@ To get started, you should have the following:
 
  - A Moonbase Alpha account funded with DEV. 
   --8<-- 'text/_common/faucet/faucet-list-item.md'
- - [Node.js](https://nodejs.org/en/download/){target=\_blank} version 16 or newer installed
- - [VS Code](https://code.visualstudio.com/){target=\_blank} with Juan Blanco's [Solidity extension](https://marketplace.visualstudio.com/items?itemName=JuanBlanco.solidity/){target=\_blank} is a recommended IDE
+ - [Node.js](https://nodejs.org/en/download){target=\_blank} version 16 or newer installed
+ - [VS Code](https://code.visualstudio.com){target=\_blank} with Juan Blanco's [Solidity extension](https://marketplace.visualstudio.com/items?itemName=JuanBlanco.solidity){target=\_blank} is a recommended IDE
  - Understanding of JavaScript and React
- - Novice familiarity with Solidity. If you are not familiar with writing Solidity, there are many resources out there, including [Solidity by Example](https://solidity-by-example.org/){target=\_blank}. A 15-minute skim should suffice for this tutorial
+ - Novice familiarity with Solidity. If you are not familiar with writing Solidity, there are many resources out there, including [Solidity by Example](https://solidity-by-example.org){target=\_blank}. A 15-minute skim should suffice for this tutorial
  - A wallet like [MetaMask installed](/tokens/connect/metamask/){target=\_blank}
 
 ## Nodes and JSON-RPC Endpoints {: #nodes-and-json-rpc-endpoints }
@@ -114,7 +114,7 @@ Once you've initialized a Hardhat project, you'll be able to write smart contrac
 
 The standard for tokens is called ERC-20, where ERC stands for "*Ethereum Request for Comment*". A long time ago, this standard was defined, and now most smart contracts that work with tokens expect tokens to have all of the functionality defined by ERC-20. Fortunately, you don't have to know it from memory since the OpenZeppelin smart contract team provides us with smart contract bases to use.  
 
-Install [OpenZeppelin smart contracts](https://docs.openzeppelin.com/contracts/4.x/){target=\_blank}:  
+Install [OpenZeppelin smart contracts](https://docs.openzeppelin.com/contracts/4.x){target=\_blank}:  
 
 ```bash
 npm install @openzeppelin/contracts
@@ -264,11 +264,11 @@ npx hardhat run scripts/deploy.js --network moonbase
 You should see an output that displays the token address. Make sure to **save it for use later**!
 
 !!! challenge
-    Hardhat has a poor built-in solution for deploying smart contracts. It doesn't automatically save the transactions and addresses related to the deployment! This is why the [hardhat-deploy](https://www.npmjs.com/package/hardhat-deploy#1-hardhat-deploy){target=\_blank} package was created. Can you implement it yourself? Or can you switch to a different developer environment, like [Foundry](https://github.com/foundry-rs/foundry/){target=\_blank}?
+    Hardhat has a poor built-in solution for deploying smart contracts. It doesn't automatically save the transactions and addresses related to the deployment! This is why the [hardhat-deploy](https://www.npmjs.com/package/hardhat-deploy#1-hardhat-deploy){target=\_blank} package was created. Can you implement it yourself? Or can you switch to a different developer environment, like [Foundry](https://github.com/foundry-rs/foundry){target=\_blank}?
 
 ## Create a DApp Frontend {: #creating-a-dapp-frontend }
 
-Frontends provide an interface for users to interact with blockchain-based applications. React, a popular JavaScript library for building user interfaces, is often used for developing DApp frontends due to its component-based architecture, which promotes reusable code and efficient rendering. The [useDApp package](https://usedapp.io/){target=\_blank}, an Ethers.js based React framework for DApps, further simplifies the process of building DApp frontends by providing a comprehensive set of hooks and components that streamline the integration of Ethereum blockchain functionality.  
+Frontends provide an interface for users to interact with blockchain-based applications. React, a popular JavaScript library for building user interfaces, is often used for developing DApp frontends due to its component-based architecture, which promotes reusable code and efficient rendering. The [useDApp package](https://usedapp.io){target=\_blank}, an Ethers.js based React framework for DApps, further simplifies the process of building DApp frontends by providing a comprehensive set of hooks and components that streamline the integration of Ethereum blockchain functionality.  
 
 !!! note
     Typically, a larger project will create separate GitHub repositories for their frontend and smart contracts, but this is a small enough project to create a monorepo.
@@ -283,7 +283,7 @@ cd frontend
 npm install ethers@5.6.9 @usedapp/core @mui/material @mui/system @emotion/react @emotion/styled
 ```
 
-If you remember, [Ethers.js](/builders/build/eth-api/libraries/ethersjs/){target=\_blank} is a library that assists with JSON-RPC communication. The useDApp package is a similar library that uses Ethers.js and formats them into React hooks so that they work better in frontend projects. We've also added two [MUI](https://mui.com/){target=\_blank} packages for styling and components.
+If you remember, [Ethers.js](/builders/build/eth-api/libraries/ethersjs/){target=\_blank} is a library that assists with JSON-RPC communication. The useDApp package is a similar library that uses Ethers.js and formats them into React hooks so that they work better in frontend projects. We've also added two [MUI](https://mui.com){target=\_blank} packages for styling and components.
 
 Let's set up the `App.js` file located in the `frontend/src` directory to add some visual structure:
 
@@ -327,7 +327,7 @@ npm run start
 !!! note
     At this point, you may see a couple compilation warnings, but as we continue to build the DApp, we'll make changes that will resolve the warnings.
 
-Your frontend will be available at [localhost:3000](http://localhost:3000/){target=\_blank}.
+Your frontend will be available at [localhost:3000](http://localhost:3000){target=\_blank}.
 
 At this point, our frontend project is set up well enough to start working on the functional code!  
 
@@ -1107,7 +1107,7 @@ And, if you've done any transactions, you'll see that they'll pop up!
 
 Now you've implemented three main components of DApp frontends: reading from storage, sending transactions, and reading logs. With these building blocks as well as the knowledge you gained with smart contracts and nodes, you should be able to cover 80% of DApps.
 
-You can view the complete [example DApp on GitHub](https://github.com/jboetticher/complete-example-dapp/){target=\_blank}.
+You can view the complete [example DApp on GitHub](https://github.com/jboetticher/complete-example-dapp){target=\_blank}.
 
 ## Conclusion {: #conclusion }
 
@@ -1121,7 +1121,7 @@ Of course, there are more advanced (but optional) components of DApps that have 
 - [Oracles](/builders/integrations/oracles/){target=\_blank} — third-party services that provide external data to smart contracts within blockchains
 - [Indexing protocols](/builders/integrations/indexers/){target=\_blank} — middleware that processes and organizes blockchain data, allowing it to be efficiently queried
 
-An excellent [Web2 to Web3 blogpost](https://moonbeam.network/blog/web2-vs-web3-development-heres-what-you-need-to-know-to-make-the-leap-to-blockchain/){target=\_blank} is available if you are interested in hearing about them in depth.  
+An excellent [Web2 to Web3 blogpost](https://moonbeam.network/blog/web2-vs-web3-development-heres-what-you-need-to-know-to-make-the-leap-to-blockchain){target=\_blank} is available if you are interested in hearing about them in depth.  
 
 Hopefully, by reading this guide, you'll be well on your way to creating novel DApps on Moonbeam!
 

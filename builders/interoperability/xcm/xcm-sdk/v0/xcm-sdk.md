@@ -35,7 +35,7 @@ To install the XCM SDK and XCM config packages, you can run the following comman
 npm install @moonbeam-network/xcm-sdk @moonbeam-network/xcm-config
 ```
 
-You need to have peer dependencies, like [Ethers.js](https://docs.ethers.org/){target=\_blank} and the [Polkadot.js API](https://polkadot.js.org/docs/api/){target=\_blank} installed.
+You need to have peer dependencies, like [Ethers.js](https://docs.ethers.org){target=\_blank} and the [Polkadot.js API](https://polkadot.js.org/docs/api){target=\_blank} installed.
 
 You can install them by running the following command:
 
@@ -44,13 +44,13 @@ npm i @polkadot/api-augment @polkadot/types @polkadot/util @polkadot/util-crypto
 ```
 
 !!! note
-    There is a [known issue](https://github.com/polkadot-js/api/issues/4315/){target=\_blank} when using the Moonbeam XCM packages alongside Polkadot.js with Node.js (JavaScript) that will cause package conflict warnings to appear in the console. Using TypeScript is recommended.
+    There is a [known issue](https://github.com/polkadot-js/api/issues/4315){target=\_blank} when using the Moonbeam XCM packages alongside Polkadot.js with Node.js (JavaScript) that will cause package conflict warnings to appear in the console. Using TypeScript is recommended.
 
 ### Creating Signers {: creating-signers }
 
-When interacting with the `deposit` and `withdraw` functions of the XCM SDK, you'll need to provide an [Ethers.js](https://docs.ethers.org/){target=\_blank} and [Polkadot.js](https://polkadot.js.org/docs/api/){target=\_blank} signer, which will be used to sign and send the transactions. The Ethers signer is used to sign transactions on Moonbeam, and the Polkadot signer will be used to sign transactions on the origin chain you're depositing assets from.
+When interacting with the `deposit` and `withdraw` functions of the XCM SDK, you'll need to provide an [Ethers.js](https://docs.ethers.org){target=\_blank} and [Polkadot.js](https://polkadot.js.org/docs/api){target=\_blank} signer, which will be used to sign and send the transactions. The Ethers signer is used to sign transactions on Moonbeam, and the Polkadot signer will be used to sign transactions on the origin chain you're depositing assets from.
 
-You can pass, for example, a [MetaMask signer into Ethers](https://docs.ethers.org/v6/getting-started/#starting-connecting){target=\_blank} or another compatible wallet. Similarly with Polkadot, you can [pass a compatible wallet to the signer using the `@polkadot/extension-dapp` library](https://polkadot.js.org/docs/extension/){target=\_blank}.
+You can pass, for example, a [MetaMask signer into Ethers](https://docs.ethers.org/v6/getting-started/#starting-connecting){target=\_blank} or another compatible wallet. Similarly with Polkadot, you can [pass a compatible wallet to the signer using the `@polkadot/extension-dapp` library](https://polkadot.js.org/docs/extension){target=\_blank}.
 
 To create a signer for Ethers.js and Polkadot.js, you can refer to the following code snippets. In this example, you can use a Polkadot.js Keyring to sign transactions on the origin chain for deposits. Please note that this approach is not recommended for production applications. **Never store your private key or mnemonic in a JavaScript or TypeScript file.**
 
@@ -534,7 +534,7 @@ Where the returned values are as follows:
 |       `asset`        |                                                                                                                                                          the [asset](#assets) to be transferred                                                                                                                                                          |
 | `existentialDeposit` | the [existential deposit](https://support.polkadot.network/support/solutions/articles/65000168651-what-is-the-existential-deposit-#:~:text=On%20the%20Polkadot%20network%2C%20an,the%20Existential%20Deposit%20(ED).){target=\_blank}, or the minimum amount an address must <br> hold to be considered active if one exists, otherwise `0n` is returned |
 |        `min`         |                                                                                                                                                             the minimum transferrable amount                                                                                                                                                             |
-|    `moonChainFee`    |             the [asset](#assets) and amount that is needed to pay for Moonbeam's XCM fees. <br> If different from the `asset` to be transferred, the fee will be sent in this <br> asset in addition to the `asset` to be transferred (as of [v0.4.0](https://github.com/moonbeam-foundation/xcm-sdk/releases/tag/v0.4.0/){target=\_blank})              |
+|    `moonChainFee`    |             the [asset](#assets) and amount that is needed to pay for Moonbeam's XCM fees. <br> If different from the `asset` to be transferred, the fee will be sent in this <br> asset in addition to the `asset` to be transferred (as of [v0.4.0](https://github.com/moonbeam-foundation/xcm-sdk/releases/tag/v0.4.0){target=\_blank})              |
 |       `native`       |                                                                                                                                                     the native [asset](#assets) of the source chain                                                                                                                                                      |
 |       `origin`       |                                                                                                                                   the chain information for where the asset being transferred natively originates from                                                                                                                                   |
 |       `source`       |                                                                                                                                         the chain information for where the asset being transferred is sent from                                                                                                                                         |
