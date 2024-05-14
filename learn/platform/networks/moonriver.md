@@ -47,7 +47,7 @@ _*Read more about [token denominations](#token-denominations)_
 
 ## Telemetry {: #telemetry }
 
-You can see current Moonriver telemetry information by visiting [Polkadot's Telemetry dashboard](https://telemetry.polkadot.io/list/0x401a1f9dca3da46f5c4091016c8a2f26dcea05865116b286f60f668207d1474b){target=\_blank}.
+You can see current Moonriver telemetry information by visiting [Polkadot's Telemetry dashboard](https://telemetry.polkadot.io/#list/0x401a1f9dca3da46f5c4091016c8a2f26dcea05865116b286f60f668207d1474b){target=\_blank}.
 
 ## Tokens {: #tokens }
 

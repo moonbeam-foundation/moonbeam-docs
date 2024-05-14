@@ -33,15 +33,15 @@ The following list covers the extrinsics that you'll use in this guide and are a
 ### Bond More or Less  {: #bond-more-or-less }
 
  - **delegatorBondMore**(*address* candidate, *uint256* more) - extrinsic to request to increase the amount of staked tokens for an already delegated collator
- - **scheduleDelegatorBondLess**(*address* candidate, *uint256* less) - extrinsic to request to reduce the amount of staked tokens for an already delegated collator. The amount must not decrease your overall total staked below the minimum delegation stake. There will be a [bond less delay](/learn/features/staking/#quick-reference/#:~:text=Decrease delegation delay){target=\_blank} before you can execute the request via the `executeDelegationRequest` extrinsic
+ - **scheduleDelegatorBondLess**(*address* candidate, *uint256* less) - extrinsic to request to reduce the amount of staked tokens for an already delegated collator. The amount must not decrease your overall total staked below the minimum delegation stake. There will be a [bond less delay](/learn/features/staking/#:~:text=Decrease delegation delay){target=\_blank} before you can execute the request via the `executeDelegationRequest` extrinsic
  - **executeDelegationRequest**(*address* delegator, *address* candidate) - extrinsic to execute and pending delegation requests. This extrinsic should only be used after a request has been scheduled and the exit delay has passed
- - **scheduleCandidateBondLess**(*uint256* less) - extrinsic that allows a collator candidate to request to decrease their self bond by a given amount. There will be a [bond less delay](/node-operators/networks/collators/activities/#collator-timings/#:~:text=Reduce self){target=\_blank} before you can execute the request via the `executeCandidateBondLess` extrinsic
+ - **scheduleCandidateBondLess**(*uint256* less) - extrinsic that allows a collator candidate to request to decrease their self bond by a given amount. There will be a [bond less delay](/node-operators/networks/collators/activities/#:~:text=Reduce self-delegation){target=\_blank} before you can execute the request via the `executeCandidateBondLess` extrinsic
  - **executeCandidateBondLess**(*address* candidate) - extrinsic to execute a decrease a candidate's self bond amount. This extrinsic should only be used after a bond request has been scheduled and the exit delay has passed
  - **cancelCandidateBondLess**() - extrinsic to cancel a scheduled request to increase or decrease the bond for a specific candidate
 
 ### Revoke Delegations {: #revoke-delegations }
 
- - **scheduleRevokeDelegation**(*address* collator) - extrinsic to schedule to remove an existing delegation entirely. There will be a [revoke delegation delay](/learn/features/staking/#quick-reference/#:~:text=Revoke delegations delay){target=\_blank} before you can execute the request via the [`executeDelegationRequest`](#:~:text=executeDelegationRequest(address delegator, address candidate)) extrinsic
+ - **scheduleRevokeDelegation**(*address* collator) - extrinsic to schedule to remove an existing delegation entirely. There will be a [revoke delegation delay](/learn/features/staking/#:~:text=Revoke delegations delay){target=\_blank} before you can execute the request via the [`executeDelegationRequest`](#:~:text=executeDelegationRequest(address delegator, address candidate)) extrinsic
  - **cancelDelegationRequest**(*address* candidate) - extrinsic to cancel a scheduled request to revoke a delegation
 
 ### Set or Change Auto-Compounding Percentage {: #set-change-auto-compounding }

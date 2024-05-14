@@ -56,7 +56,7 @@ npx tsc --init
 
 ## Set Up a viem Client (Provider) {: #setting-up-a-viem-provider }
 
-Throughout this guide, you'll be creating a bunch of scripts that provide different functionality, such as sending a transaction, deploying a contract, and interacting with a deployed contract. In most of these scripts, you'll need to create a [viem client](https://docs.ethers.org/v6/api/providers){target=\_blank} to interact with the network.
+Throughout this guide, you'll be creating a bunch of scripts that provide different functionality, such as sending a transaction, deploying a contract, and interacting with a deployed contract. In most of these scripts, you'll need to create a [viem client](https://docs.ethers.org/v6/api/providers/){target=\_blank} to interact with the network.
 
 --8<-- 'text/common/endpoint-setup.md'
 
