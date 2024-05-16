@@ -135,7 +135,7 @@ Here is the result:
 ```
 
 !!! note
-    The `contract.tokenURI` call acccesses the **state** of the contract via a chain RPC endpoint. This can slow down indexing, but this data is only available in this way. You'll find more information on accessing state in the [dedicated section of the Subsquid docs](https://docs.subsquid.io/sdk/resources/tools/typegen/state-queries/#example-1){target=\_blank}.
+    The `contract.tokenURI` call accesses the **state** of the contract via a chain RPC endpoint. This can slow down indexing, but this data is only available in this way. You'll find more information on accessing state in the [dedicated section of the Subsquid docs](https://docs.subsquid.io/sdk/resources/tools/typegen/state-queries/#example-1){target=\_blank}.
 
 ## Launch and Set Up the Database {: #launch-database }
 

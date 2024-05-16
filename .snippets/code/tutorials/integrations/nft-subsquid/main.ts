@@ -113,7 +113,7 @@ async function saveTransfers(
       transferData.contractAddress
     );
 
-    // Try to get the from addres from the owners pulled from the database
+    // Try to get the from address from the owners pulled from the database
     let from = owners.get(transferData.from);
     // If there isn't an existing entry for this owner, create one
     if (from == null) {
@@ -121,7 +121,7 @@ async function saveTransfers(
       owners.set(from.id, from);
     }
 
-    // Try to get the to addres from the owners pulled from the database
+    // Try to get the to address from the owners pulled from the database
     let to = owners.get(transferData.to);
     // If there isn't an existing entry for this owner, create one
     if (to == null) {
