@@ -40,7 +40,7 @@ npm ci
 
 ## Define the Entity Schema {: #define-entity-schema }
 
-Next, we ensure the squid's data [schema](https://docs.subsquid.io/sdk/reference/schema-file/intro/){target=\_blank} defines the [entities](https://docs.subsquid.io/sdk/reference/schema-file/entities/){target=\_blank} that we want to track. We are interested in:
+Next, we ensure the Squid's data [schema](https://docs.subsquid.io/sdk/reference/schema-file/intro/){target=\_blank} defines the [entities](https://docs.subsquid.io/sdk/reference/schema-file/entities/){target=\_blank} that we want to track. We are interested in:
 
 - Token transfers
 - Ownership of tokens
