@@ -15,7 +15,7 @@ The SDK offers a highly customizable Extract-Transform-Load-Query stack and inde
 
 Subsquid has native and full support for the Ethereum Virtual Machine (EVM) and Substrate data. This allows developers to extract on-chain data from any of the Moonbeam networks, process EVM logs and Substrate entities (events, extrinsic, and storage items) in one single project, and serve the resulting data with one single GraphQL endpoint. With Subsquid, filtering by EVM topic, contract address, and block range are all possible.
 
-This guide will explain how to create a Subsquid project (also known as a _"squid"_) from a template (indexing Moonsama transfers on Moonriver) and change it to index ERC-721 token transfers on the Moonbeam network. As such, you'll be looking at the `Transfer` EVM event topics. This guide can be adapted for Moonbase Alpha as well.
+This guide will explain how to create a Subsquid project (also known as a _"Squid"_) from a template (indexing Moonsama transfers on Moonriver) and change it to index ERC-721 token transfers on the Moonbeam network. As such, you'll be looking at the `Transfer` EVM event topics. This guide can be adapted for Moonbase Alpha as well.
 
 --8<-- 'text/_disclaimers/third-party-content-intro.md'
 
@@ -105,9 +105,9 @@ Now, let's take a look at the complete contents of the file:
 
 ## Configure the Processor {: #configure-processor }
 
-In the `src/processor.ts` file, squids instantiate the processor (a `SubstrateBatchProcessor` in our case) and configure it.
+In the `src/processor.ts` file, Squids instantiate the processor (a `SubstrateBatchProcessor` in our case) and configure it.
 
-We adapt the template code to process EVM logs for the two Exiled Racers contracts and point the processor data source setting to the Moonbeam Subsquid Network gateway URL. Additionally, you'll need to update the Here is the result:
+We adapt the template code to process EVM logs for the two Exiled Racers contracts and point the processor data source setting to the Moonbeam Subsquid Network gateway URL. Here is the result:
 
 ```typescript title="src/processor.ts"
 --8<-- 'code/tutorials/integrations/nft-subsquid/processor.ts'
@@ -122,7 +122,7 @@ If you are adapting this guide for Moonbase Alpha, be sure to update the data so
 !!! note
     This code expects to find a working Moonbeam RPC URL in the `RPC_ENDPOINT` environment variable. You can get your own endpoint and API key from a supported [Endpoint Provider](/builders/get-started/endpoints/){target=\_blank}.
 
-    Set it in the `.env` file and [Subsquid Cloud secrets](https://docs.subsquid.io/cloud/resources/env-variables/){target=\_blank} if and when you deploy your squid there. We tested the code using a public endpoint at `wss://wss.api.moonbeam.network`; we recommend using private endpoints for production.
+    Set it in the `.env` file and [Subsquid Cloud secrets](https://docs.subsquid.io/cloud/resources/env-variables/){target=\_blank} if and when you deploy your Squid there. We tested the code using a public endpoint at `wss://wss.api.moonbeam.network`; we recommend using private endpoints for production.
 
 ## Define the Batch Handler {: #define-batch-handler }
 
