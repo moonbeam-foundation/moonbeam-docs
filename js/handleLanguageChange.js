@@ -4,8 +4,6 @@ const closedArrow = document.querySelector('.selector-closed');
 
 /* Add event listeners */
 selectWrapper.addEventListener('click', (e) => {
-  e.preventDefault();
-
   selectWrapper.classList.toggle('active');
   openArrow.classList.toggle('active');
   closedArrow.classList.toggle('active');
