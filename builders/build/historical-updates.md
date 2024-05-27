@@ -81,8 +81,8 @@ The `System.NewAccount` event is emitted when a new account is created. However,
 
 The hotfix was applied in the following block ranges:
 
-|    Network     |                                                              Block Range                                                               |
-|:--------------:|:--------------------------------------------------------------------------------------------------------------------------------------:|
+|    Network     |                                                              Block Range                                                              |
+|:--------------:|:-------------------------------------------------------------------------------------------------------------------------------------:|
 |    Moonbeam    | [1041355 - 1041358 and 1100752](https://moonbeam.subscan.io/extrinsic?module=evm&call=hotfix_inc_account_sufficients){target=\_blank} |
 |   Moonriver    |      [1835760 - 1835769](https://moonriver.subscan.io/extrinsic?module=evm&call=hotfix_inc_account_sufficients){target=\_blank}       |
 | Moonbase Alpha |  [2097782 - 2097974](https://moonbase.subscan.io/extrinsic?address=&module=evm&call=hotfix_inc_account_sufficients){target=\_blank}   |
@@ -440,7 +440,7 @@ A follow-up migration was required to properly clear the storage entries associa
 
 |    Network     | Executed Runtime | Block Applied |
 |:--------------:|:----------------:|:-------------:|
-|    Moonbeam    |      RT2901      |      N/A      |
+|    Moonbeam    |      RT2901      |    6197065    |
 |   Moonriver    |      RT2901      |    6699589    |
 | Moonbase Alpha |      RT2901      |    6710531    |
 
@@ -456,7 +456,7 @@ This migration was executed at the following runtimes and blocks:
 
 |    Network     | Executed Runtime | Block Applied |
 |:--------------:|:----------------:|:-------------:|
-|    Moonbeam    |      RT2901      |      N/A      |
+|    Moonbeam    |      RT2901      |    6197065    |
 |   Moonriver    |      RT2901      |    6699589    |
 | Moonbase Alpha |      RT2901      |    6710531    |
 
