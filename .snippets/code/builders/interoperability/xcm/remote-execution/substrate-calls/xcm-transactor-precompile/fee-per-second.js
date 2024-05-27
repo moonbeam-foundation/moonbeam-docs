@@ -8,8 +8,8 @@ const provider = new ethers.JsonRpcProvider(
   'https://rpc.api.moonbase.moonbeam.network'
 );
 const signer = new ethers.Wallet(privateKey, provider);
-const xcmTransactorV2 = new ethers.Contract(
-  '0x000000000000000000000000000000000000080d',
+const xcmTransactorV3 = new ethers.Contract(
+  '0x0000000000000000000000000000000000000817',
   abi,
   signer
 );
@@ -24,7 +24,7 @@ const multilocation = [
 ];
 
 const main = async () => {
-  const feePerSecond = await xcmTransactorV2.feePerSecond(
+  const feePerSecond = await xcmTransactorV3.feePerSecond(
     multilocation
   );
 

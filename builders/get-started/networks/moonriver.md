@@ -11,9 +11,9 @@ description: Learn how to connect to Moonriver via RPC and WSS endpoints, how to
 
 For Moonriver, you can use any of the following block explorers:
 
- - **Ethereum API (Etherscan Equivalent)** — [Moonscan](https://moonriver.moonscan.io/){target=\_blank}
- - **Ethereum API JSON-RPC based** — [Moonbeam Basic Explorer](https://moonbeam-explorer.netlify.app/?network=Moonriver/){target=\_blank}
- - **Substrate API** — [Subscan](https://moonriver.subscan.io/){target=\_blank} or [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonriver.moonbeam.network#/explorer){target=\_blank}
+ - **Ethereum API (Etherscan Equivalent)** — [Moonscan](https://moonriver.moonscan.io){target=\_blank}
+ - **Ethereum API JSON-RPC based** — [Moonbeam Basic Explorer](https://moonbeam-explorer.netlify.app/?network=Moonriver){target=\_blank}
+ - **Substrate API** — [Subscan](https://moonriver.subscan.io){target=\_blank} or [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonriver.moonbeam.network#/explorer){target=\_blank}
  
 For more information on each of the available block explorers, please head to the [Block Explorers](/builders/get-started/explorers/) section of the documentation.
 

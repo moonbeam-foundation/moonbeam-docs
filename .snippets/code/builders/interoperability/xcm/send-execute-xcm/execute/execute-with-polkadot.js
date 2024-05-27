@@ -1,40 +1,44 @@
-import { ApiPromise, WsProvider, Keyring } from '@polkadot/api'; // Version 9.13.6
+import { ApiPromise, WsProvider, Keyring } from '@polkadot/api'; // Version 10.13.1
+import { cryptoWaitReady } from '@polkadot/util-crypto';
 
 // 1. Provide input data
 const providerWsURL = 'wss://wss.api.moonbase.moonbeam.network';
 const privateKey = 'INSERT_PRIVATE_KEY';
-const moonbeamAccount = 'INSERT_ADDRESS';
 const instr1 = {
   WithdrawAsset: [
     {
-      id: { Concrete: { parents: 0, interior: { X1: { PalletInstance: 3 } } } },
-      fun: { Fungible: 100000000000000000n },
+      id: { parents: 0, interior: { X1: [{ PalletInstance: 3 }] } },
+      fun: { Fungible: 100000000000000000n }, // 0.1 DEV
     },
   ],
 };
 const instr2 = {
   DepositAsset: {
-    assets: { Wild: { AllCounted: 1 } },
+    assets: { Wild: 'All' },
     beneficiary: {
       parents: 0,
       interior: {
-        X1: {
-          AccountKey20: {
-            key: moonbeamAccount,
+        X1: [
+          {
+            AccountKey20: {
+              key: '0x3Cd0A705a2DC65e5b1E1205896BaA2be8A07c6e0',
+            },
           },
-        },
+        ],
       },
     },
   },
 };
-const message = { V3: [instr1, instr2] };
-const maxWeight =  { refTime: 400000000n, proofSize: 14484n };
+const message = { V4: [instr1, instr2] };
+const maxWeight = { refTime: 400000000n, proofSize: 14484n };
 
-// 2. Create Keyring instance
-const keyring = new Keyring({ type: 'ethereum' });
-const alice = keyring.addFromUri(privateKey);
 
 const executeXcmMessage = async () => {
+  // 2. Create Keyring instance
+  await cryptoWaitReady();
+  const keyring = new Keyring({ type: 'ethereum' });
+  const alice = keyring.addFromUri(privateKey);
+
   // 3. Create Substrate API provider
   const substrateProvider = new WsProvider(providerWsURL);
   const api = await ApiPromise.create({ provider: substrateProvider });

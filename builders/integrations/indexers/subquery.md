@@ -7,7 +7,7 @@ description: Learn how to use SubQuery to index Substrate and EVM chain data for
 
 ## Introduction {: #introduction }
 
-[SubQuery](https://subquery.network/){target=\_blank} is a data aggregation layer that operates between the layer-1 blockchains (such as Moonbeam and Polkadot) and DApps. This service unlocks blockchain data and transforms it into a queryable state so that it can be used in intuitive applications. It allows DApp developers to focus on their core use case and front end without needing to waste time on building a custom back end for data processing.
+[SubQuery](https://subquery.network){target=\_blank} is a data aggregation layer that operates between the layer-1 blockchains (such as Moonbeam and Polkadot) and DApps. This service unlocks blockchain data and transforms it into a queryable state so that it can be used in intuitive applications. It allows DApp developers to focus on their core use case and front end without needing to waste time on building a custom back end for data processing.
 
 SubQuery supports indexing the Ethereum Virtual Machine (EVM) and Substrate data for any of the Moonbeam networks. A key advantage of using SubQuery is that you can flexibly collect query data across both Moonbeam's EVM and Substrate code with a single project and tool, and then query this data using GraphQL.
 
@@ -21,11 +21,11 @@ This quick-start guide will show you how to create a SubQuery project and config
 
 Later on in this guide, you have the option of deploying your project to a locally running SubQuery node. To do so, you need to have the following installed on your system:
 
- - [Docker](https://docs.docker.com/get-docker/){target=\_blank}
- - [Docker Compose](https://docs.docker.com/compose/install/){target=\_blank}
+ - [Docker](https://docs.docker.com/get-docker){target=\_blank}
+ - [Docker Compose](https://docs.docker.com/compose/install){target=\_blank}
 
 !!! note
-    If Docker Compose was installed for Linux via the `sudo apt install docker-compose` command, you might run into some errors later on in the guide. Please be sure to follow the instructions for Linux from the official [Install Docker Compose](https://docs.docker.com/compose/install/){target=\_blank} guide.
+    If Docker Compose was installed for Linux via the `sudo apt install docker-compose` command, you might run into some errors later on in the guide. Please be sure to follow the instructions for Linux from the official [Install Docker Compose](https://docs.docker.com/compose/install){target=\_blank} guide.
 
 ## Create a Project {: #create-a-project }
 
@@ -230,7 +230,7 @@ Using only certain handlers and filters will improve your indexer's efficiency. 
     |:-------------:|:-------------------------------------------------------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------:|
     | `specVersion` |                                              Filters the blocks that fall into a spec version range                                               | `specVersion: [null, 2000]` <br> `# Indexes blocks with a spec` <br> `version between 0 - 2000` |
     |   `modulo`    |                                                         Filters the blocks at an interval                                                         |                             `modulo: 50 # Indexes every 50 blocks`                              |
-    |  `timestamp`  | Filters the blocks at a time interval (in UTC). <br> Accepts a valid [cron expression](https://github.com/roccivic/cron-converter/){target=\_blank} |               `timestamp: '*5/ * * * *'` <br> `# Indexes blocks every 5 minutes`                |
+    |  `timestamp`  | Filters the blocks at a time interval (in UTC). <br> Accepts a valid [cron expression](https://github.com/roccivic/cron-converter){target=\_blank} |               `timestamp: '*5/ * * * *'` <br> `# Indexes blocks every 5 minutes`                |
 
 - The [event handler](https://academy.subquery.network/build/mapping/polkadot.html#event-handler){target=\_blank} is used to index certain Substrate events that are part of the runtime. The supported filters for the event handler are: `module` and `method`
 
@@ -368,7 +368,7 @@ To run your indexer locally using Docker, you can take the following steps:
 
     ![The terminal output after starting up the Docker container for your project.](/images/builders/integrations/indexers/subquery/new/subquery-7.webp)
 
-3. Head to [localhost:3000](http://localhost:3000/){target=\_blank} to open the GraphQL playground and submit queries. You can open up the **DOCS** or **SCHEMA** tab on the playground as a reference when creating your queries
+3. Head to [localhost:3000](http://localhost:3000){target=\_blank} to open the GraphQL playground and submit queries. You can open up the **DOCS** or **SCHEMA** tab on the playground as a reference when creating your queries
 
     !!! note
         It may take a few minutes before the GraphQL server is ready. You'll be able to access the playground after you see the following log:

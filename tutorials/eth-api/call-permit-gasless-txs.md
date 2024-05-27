@@ -21,15 +21,15 @@ Whereas a gasless transaction may look something like this:
 
 ![Flow of a gasless transaction](/images/tutorials/eth-api/call-permit-gasless-txs/gasless-2.webp)
 
-Gasless transactions can be especially beneficial for users that make small transactions frequently, as is the case with gaming dApps like [Damned Pirates Society](https://damnedpiratessociety.io/){target=\_blank} (DPS). In DPS, users go on voyages in search of treasure and with the goal of growing their fleet. There are two in-game currencies that are used in DPS: Treasure Maps (TMAP) and Doubloons (DBL). TMAP are used to buy voyages, and DBL are used to maintain flagships and buy support ships and can be earned while on voyages. Currently, if a user wants to start a voyage, they'll need TMAP to buy the voyage and GLMR to pay for transaction fees. Wouldn't it be ideal to lower the barrier to entry by implementing gasless transactions so users wouldn't need to worry about keeping a GLMR balance on top of their TMAP and DBL balances? From a dApp's perspective, it would keep users on their platform, as their users wouldn't need to leave the dApp to fund their GLMR balance; they could keep on gaming.
+Gasless transactions can be especially beneficial for users that make small transactions frequently, as is the case with gaming dApps like [Damned Pirates Society](https://damnedpiratessociety.io){target=\_blank} (DPS). In DPS, users go on voyages in search of treasure and with the goal of growing their fleet. There are two in-game currencies that are used in DPS: Treasure Maps (TMAP) and Doubloons (DBL). TMAP are used to buy voyages, and DBL are used to maintain flagships and buy support ships and can be earned while on voyages. Currently, if a user wants to start a voyage, they'll need TMAP to buy the voyage and GLMR to pay for transaction fees. Wouldn't it be ideal to lower the barrier to entry by implementing gasless transactions so users wouldn't need to worry about keeping a GLMR balance on top of their TMAP and DBL balances? From a dApp's perspective, it would keep users on their platform, as their users wouldn't need to leave the dApp to fund their GLMR balance; they could keep on gaming.
 
-Gasless transactions can be implemented using Moonbeam's [Call Permit Precompile](/builders/pallets-precompiles/precompiles/call-permit/){target=\_blank}, which is a Solidity interface that allows a user to sign a permit, an [EIP-712](https://eips.ethereum.org/EIPS/eip-712/){target=\_blank} signed message, that can then be dispatched by your dApp. The Call Permit Precompile can be used to execute any EVM call. **The best part is that you don't need to modify your existing contracts!**
+Gasless transactions can be implemented using Moonbeam's [Call Permit Precompile](/builders/pallets-precompiles/precompiles/call-permit/){target=\_blank}, which is a Solidity interface that allows a user to sign a permit, an [EIP-712](https://eips.ethereum.org/EIPS/eip-712){target=\_blank} signed message, that can then be dispatched by your dApp. The Call Permit Precompile can be used to execute any EVM call. **The best part is that you don't need to modify your existing contracts!**
 
 In this tutorial, we'll walk through the process of implementing gasless transactions in a dApp. More specifically, we'll take a closer look at how we can implement gasless transactions to buy a voyage in DPS, as an example. We'll go over building an EIP-712 signed message, signing it, and dispatching it with the Call Permit Precompile.
 
 ## What are EIP-712 Signed Messages? {: #eip-712-signed-messages }
 
-An [EIP-712](https://eips.ethereum.org/EIPS/eip-712/){target=\_blank} signed message is a message that is structured, hashed, and signed in a standardized way. The benefit of the EIP-712 standardization is that message data can be displayed in a much more human-readable way for users signing these messages, so they can better understand what exactly they're signing. Before this standardization existed, users had to sign off on unreadable and difficult-to-decode hexadecimal strings, which made it easy for users to misplace their trust and sign off on messages with malicious data.
+An [EIP-712](https://eips.ethereum.org/EIPS/eip-712){target=\_blank} signed message is a message that is structured, hashed, and signed in a standardized way. The benefit of the EIP-712 standardization is that message data can be displayed in a much more human-readable way for users signing these messages, so they can better understand what exactly they're signing. Before this standardization existed, users had to sign off on unreadable and difficult-to-decode hexadecimal strings, which made it easy for users to misplace their trust and sign off on messages with malicious data.
 
 The EIP-712 standard specifies how the message data should be structured by requiring developers to define a JSON structure of the message data that users will sign off on and specifying a domain separator. The main goal of the domain separator is to prevent replay attacks. We'll cover both of these requirements in the following sections.
 
@@ -471,7 +471,7 @@ sign(keccak256("\x19\x01" ‖ domainSeparator ‖ hashStruct(message)))
 The components of the hash can be broken down as follows:
 
 - **\x19** - makes the encoding deterministic
-- **\x01** - the version byte, which makes the hash compliant with [EIP-191](https://eips.ethereum.org/EIPS/eip-191/){target=\_blank}
+- **\x01** - the version byte, which makes the hash compliant with [EIP-191](https://eips.ethereum.org/EIPS/eip-191){target=\_blank}
 - **domainSeparator** - the 32-byte domain seperator, which was [previously covered](#define-the-domain-separator) and can be easily retrieved using the `DOMAIN_SEPARATOR` function of the Call Permit Precompile
 - **hashStruct(message)** - the 32-byte data to sign, which is based on the typed data structure and the actual data. For more information, please refer to the [EIP-712 specification](https://eips.ethereum.org/EIPS/eip-712#definition-of-hashstruct){target=\_blank}
 
@@ -526,7 +526,7 @@ console.log(`Transaction hash: ${dispatch.hash}`);
 
 Once the transaction goes through, the gas fees will be deducted from the GLMR balance of the third-party account, 1 TMAP will be deducted from the user's balance, and a voyage will be purchased on behalf of the user. As you can see, the user doesn't need to worry about having a GLMR balance!
 
-You can view the transaction for the example that we covered in this guide on [Moonscan](https://moonbeam.moonscan.io/tx/0x2c16f1257f69eaa14486f89cedf600c25c0335086b640f2225468a244f10588a/){target=\_blank}. You'll notice the following:
+You can view the transaction for the example that we covered in this guide on [Moonscan](https://moonbeam.moonscan.io/tx/0x2c16f1257f69eaa14486f89cedf600c25c0335086b640f2225468a244f10588a){target=\_blank}. You'll notice the following:
 
 - The `from` account is the third-party account: `0xd0ccb8d33530456f1d37e91a6ef5503b5dcd2ebc`
 - The contract interacted with is the Call Permit Precompile: `{{ networks.moonbeam.precompiles.call_permit }}`

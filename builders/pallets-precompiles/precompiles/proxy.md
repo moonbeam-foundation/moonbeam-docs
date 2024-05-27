@@ -93,7 +93,7 @@ The below example is demonstrated on Moonbase Alpha, however, similar steps can 
 To get started, get a copy of [`Proxy.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/proxy/Proxy.sol){target=\_blank} and take the following steps:
 
 1. Click on the **File explorer** tab
-2. Copy and paste the file contents into a [Remix file](https://remix.ethereum.org/){target=\_blank} named `Proxy.sol`
+2. Copy and paste the file contents into a [Remix file](https://remix.ethereum.org){target=\_blank} named `Proxy.sol`
 
 ![Copying and Pasting the Proxy Interface into Remix](/images/builders/pallets-precompiles/precompiles/proxy/proxy-1.webp)
 
@@ -153,4 +153,4 @@ After the transaction is confirmed, if you repeat the steps to [check for a prox
 
 ![Call the removeProxy function](/images/builders/pallets-precompiles/precompiles/proxy/proxy-6.webp)
 
-And that's it! You've completed your introduction to the Proxy Precompile. Additional information on setting up proxies is available on the [Setting up a Proxy Account](/tokens/manage/proxy-accounts/){target=\_blank} page and the [Proxy Accounts](https://wiki.polkadot.network/docs/learn-proxies/){target=\_blank} page on Polkadot's documentation. Feel free to reach out on [Discord](https://discord.gg/moonbeam/){target=\_blank} if you have any questions about any aspect of the Proxy Precompile.
+And that's it! You've completed your introduction to the Proxy Precompile. Additional information on setting up proxies is available on the [Setting up a Proxy Account](/tokens/manage/proxy-accounts/){target=\_blank} page and the [Proxy Accounts](https://wiki.polkadot.network/docs/learn-proxies){target=\_blank} page on Polkadot's documentation. Feel free to reach out on [Discord](https://discord.gg/moonbeam){target=\_blank} if you have any questions about any aspect of the Proxy Precompile.

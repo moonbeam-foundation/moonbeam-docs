@@ -46,7 +46,7 @@ To store your information on-chain, you must bond some funds, which eventually w
 
 For this guide, you will need the following:
 
-- To connect to the [Moonbase Alpha TestNet](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network/){target=\_blank} on the Polkadot.js Apps explorer. You can also follow along and adapt the instructions for [Moonbeam](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbeam.network/){target=\_blank} or [Moonriver](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonriver.moonbeam.network/){target=\_blank}.
+- To connect to the [Moonbase Alpha TestNet](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network){target=\_blank} on the Polkadot.js Apps explorer. You can also follow along and adapt the instructions for [Moonbeam](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbeam.network){target=\_blank} or [Moonriver](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonriver.moonbeam.network){target=\_blank}.
 - To [create or import an account](/tokens/connect/polkadotjs/#creating-or-importing-an-h160-account) into Polkadot.js Apps
 - Make sure you have funded your account.
  --8<-- 'text/_common/faucet/faucet-list-item.md'
@@ -207,21 +207,21 @@ The current registrars are as follows:
 === "Moonbeam"
     |                                                                Registrar                                                                |                              Operator                               |                  Address                   | Index |
     |:---------------------------------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------:|:------------------------------------------:|:-----:|
-    |        [Registrar #0](https://forum.moonbeam.foundation/t/referendum-73-status-passed-identity-registrar-0/208/){target=\_blank}        | [Moonbeam Foundation](https://moonbeam.foundation/){target=\_blank} | 0xbE6E642b25Fa7925AFA1600C48Ab9aA3461DC7f1 |   0   |
-    | [Registrar #1](https://forum.moonbeam.foundation/t/referendum-82-status-passed-new-registrar-proposal-registrar-1/319/){target=\_blank} |         [Chevdor](https://www.chevdor.com/){target=\_blank}         | 0xeaB597B91b66d9C3EA5E3a39e22C524c287d61a5 |   1   |
+    |        [Registrar #0](https://forum.moonbeam.foundation/t/referendum-73-status-passed-identity-registrar-0/208){target=\_blank}        | [Moonbeam Foundation](https://moonbeam.foundation){target=\_blank} | 0xbE6E642b25Fa7925AFA1600C48Ab9aA3461DC7f1 |   0   |
+    | [Registrar #1](https://forum.moonbeam.foundation/t/referendum-82-status-passed-new-registrar-proposal-registrar-1/319){target=\_blank} |         [Chevdor](https://www.chevdor.com){target=\_blank}         | 0xeaB597B91b66d9C3EA5E3a39e22C524c287d61a5 |   1   |
 
 === "Moonriver"
     |                                                                Registrar                                                                 |                              Operator                               |                  Address                   | Index |
     |:----------------------------------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------:|:------------------------------------------:|:-----:|
-    |         [Registrar #0](https://forum.moonbeam.foundation/t/proposal-32-status-voting-identity-registrar-0/187/){target=\_blank}          | [Moonbeam Foundation](https://moonbeam.foundation/){target=\_blank} | 0x031590D13434CC554f7257A89B2E0B10d67CCCBa |   0   |
-    | [Registrar #1](https://forum.moonbeam.foundation/t/referendum-125-status-passed-new-registrar-proposal-registrar-1/303/){target=\_blank} |         [Chevdor](https://www.chevdor.com/){target=\_blank}         | 0x2d18250E01312A155E81381F938B8bA8bb4d97B3 |   1   |
+    |         [Registrar #0](https://forum.moonbeam.foundation/t/proposal-32-status-voting-identity-registrar-0/187){target=\_blank}          | [Moonbeam Foundation](https://moonbeam.foundation){target=\_blank} | 0x031590D13434CC554f7257A89B2E0B10d67CCCBa |   0   |
+    | [Registrar #1](https://forum.moonbeam.foundation/t/referendum-125-status-passed-new-registrar-proposal-registrar-1/303){target=\_blank} |         [Chevdor](https://www.chevdor.com){target=\_blank}         | 0x2d18250E01312A155E81381F938B8bA8bb4d97B3 |   1   |
 
 === "Moonbase Alpha"
     |                                      Registrar                                       |                      Operator                       |                  Address                   | Index |
     |:------------------------------------------------------------------------------------:|:---------------------------------------------------:|:------------------------------------------:|:-----:|
-    | [Registrar #1](https://www.chevdor.com/post/2020/07/14/reg-updates/){target=\_blank} | [Chevdor](https://www.chevdor.com/){target=\_blank} | 0x4aD549e07E96BaD335A8b99C8fd32e95EE538904 |   1   |
+    | [Registrar #1](https://www.chevdor.com/post/2020/07/14/reg-updates){target=\_blank} | [Chevdor](https://www.chevdor.com){target=\_blank} | 0x4aD549e07E96BaD335A8b99C8fd32e95EE538904 |   1   |
 
-You can get a complete list of the current registrars, including the fees that each registrar charges, by heading to [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network/){target=\_blank}, selecting the **Developer** tab, choosing **Chain State** from the dropdown, and taking the following steps:
+You can get a complete list of the current registrars, including the fees that each registrar charges, by heading to [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network){target=\_blank}, selecting the **Developer** tab, choosing **Chain State** from the dropdown, and taking the following steps:
 
 1. Select the **identity** pallet
 2. Choose the **registrars** extrinsic

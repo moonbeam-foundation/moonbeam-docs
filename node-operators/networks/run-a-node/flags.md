@@ -16,12 +16,12 @@ This guide will cover some of the most common flags and show you how to access a
 - **`--collator`** - enables collator mode for collator candidates and, if eligible, allows the node to actively participate in block production
 - **`--port`** - specifies the peer-to-peer protocol TCP port. The default port for parachains is `{{ networks.parachain.p2p }}` and `{{ networks.relay_chain.p2p }}` for the embedded relay chain
 - **`--rpc-port`** - sets the unified port for both HTTP and WS connections. The default port for parachains is `{{ networks.parachain.rpc }}` and `{{ networks.relay_chain.ws }}` for the embedded relay chain
-- **`--ws-port`** - - *deprecated as of [client v0.33.0](https://github.com/moonbeam-foundation/moonbeam/releases/tag/v0.33.0/){target=\_blank}, use `--rpc-port` for HTTP and WS connections instead* - sets the unified port for both HTTP and WS connections. The default port for parachains is `{{ networks.parachain.ws }}`  and `{{ networks.relay_chain.ws }}` for the embedded relay chain
+- **`--ws-port`** - - *deprecated as of [client v0.33.0](https://github.com/moonbeam-foundation/moonbeam/releases/tag/v0.33.0){target=\_blank}, use `--rpc-port` for HTTP and WS connections instead* - sets the unified port for both HTTP and WS connections. The default port for parachains is `{{ networks.parachain.ws }}`  and `{{ networks.relay_chain.ws }}` for the embedded relay chain
 - **`--rpc-max-connections`** - specifies the maximum number of HTTP and WS server connections. The default is 100
-- **`--ws-max-connections`** - *deprecated as of [client v0.33.0](https://github.com/moonbeam-foundation/moonbeam/releases/tag/v0.33.0/){target=\_blank}, use `--rpc-max-connections` to adjust the combined HTTP and WS connection limit instead* - specifies the maximum number of HTTP and WS server connections. The default is 100
+- **`--ws-max-connections`** - *deprecated as of [client v0.33.0](https://github.com/moonbeam-foundation/moonbeam/releases/tag/v0.33.0){target=\_blank}, use `--rpc-max-connections` to adjust the combined HTTP and WS connection limit instead* - specifies the maximum number of HTTP and WS server connections. The default is 100
 - **`--wasm-execution`** - specifies the method for executing Wasm runtime code. The available options are:
-    - **`compiled`** - this is the default and uses the [Wasmtime](https://github.com/paritytech/wasmtime/){target=\_blank} compiled runtime
-    - **`interpreted-i-know-what-i-do`** - uses the [wasmi interpreter](https://github.com/paritytech/wasmi/){target=\_blank}
+    - **`compiled`** - this is the default and uses the [Wasmtime](https://github.com/paritytech/wasmtime){target=\_blank} compiled runtime
+    - **`interpreted-i-know-what-i-do`** - uses the [wasmi interpreter](https://github.com/paritytech/wasmi){target=\_blank}
 - **`--state-pruning`** - specifies the state pruning mode. For client versions prior to v0.27.0, the `--state-pruning` flag was named `--pruning`. If running a node with the `--collator` flag, the default is to keep the full state of all blocks. Otherwise, the state is only kept for the last 256 blocks. The available options are:
     - **`archive`** - keeps the full state of all blocks
     - **`<number-of-blocks>`** - specifies a custom number of blocks to keep the state for
@@ -29,7 +29,7 @@ This guide will cover some of the most common flags and show you how to access a
 - **`--db-cache`** - specifies the memory the database cache is limited to use. It is recommended to set it to 50% of the actual RAM your server has. For example, for 32 GB RAM, the value should be set to `16000`. The minimum value is `2000`, but it is below the recommended specs
 - **`--base-path`** - specifies the base path where your chain data is stored
 - **`--chain`** - specifies the chain specification to use. It can be a predefined chainspec such as `{{ networks.moonbeam.chain_spec }}`, `{{ networks.moonriver.chain_spec }}`, or `{{ networks.moonbase.chain_spec }}`. Or it can be a path to a file with the chainspec (such as the one exported by the `build-spec` command)
-- **`--name`** - specifies a human-readable name for the node, which can be seen on [telemetry](https://telemetry.polkadot.io/){target=\_blank}, if enabled
+- **`--name`** - specifies a human-readable name for the node, which can be seen on [telemetry](https://telemetry.polkadot.io){target=\_blank}, if enabled
 - **`--telemetry-url`** - specifies the URL of the telemetry server to connect to. This flag can be passed multiple times as a means to specify multiple telemetry endpoints. This flag takes two parameters: the URL and the verbosity level. Verbosity levels range from 0-9, with 0 denoting the least verbosity. Expected format is '<URL VERBOSITY>', e.g. `--telemetry-url 'wss://foo/bar 0'`.
 - **`--in-peers`** - specifies the maximum amount of accepted incoming connections. The default is `25`
 - **`--out-peers`** - specifies the maximum amount of outgoing connections to maintain. The default is `25`

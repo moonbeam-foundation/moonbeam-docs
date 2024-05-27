@@ -7,11 +7,11 @@ description: Follow this tutorial to learn how to list your Moonbeam or Moonrive
 
 ## Introduction to The Moonbeam DApp Directory {: #introduction-to-state-of-the-dapps }
 
-The Moonbeam ecosystem comprises two distinct production networks: Moonbeam and Moonriver. Each network has its own dedicated [DApp Directory](https://apps.moonbeam.network/moonbeam/app-dir/){target=\_blank}, maintained by the Moonbeam Foundation. These directories categorize projects spanning from DeFi to NFTs to gaming, providing users with comprehensive access to diverse applications.
+The Moonbeam ecosystem comprises two distinct production networks: Moonbeam and Moonriver. Each network has its own dedicated [DApp Directory](https://apps.moonbeam.network/moonbeam/app-dir){target=\_blank}, maintained by the Moonbeam Foundation. These directories categorize projects spanning from DeFi to NFTs to gaming, providing users with comprehensive access to diverse applications.
 
 You'll supply core project details like name, description, and relevant links when adding your project. Depending on your project type, you may include additional data such as on-chain stats and token information.
 
-Despite the distinction between the Moonbeam and Moonriver DApp directories, the submission process remains the same. To list your project on the DApp Directory, you must submit a pull request to the [Moonbeam Foundation's App Directory Data repository on GitHub](https://github.com/moonbeam-foundation/app-directory-data/){target=\_blank}. This guide outlines the necessary data and formatting specifics for your submission.
+Despite the distinction between the Moonbeam and Moonriver DApp directories, the submission process remains the same. To list your project on the DApp Directory, you must submit a pull request to the [Moonbeam Foundation's App Directory Data repository on GitHub](https://github.com/moonbeam-foundation/app-directory-data){target=\_blank}. This guide outlines the necessary data and formatting specifics for your submission.
 
 ![The Moonbeam DApp Directory home page](/images/learn/dapps-list/dapp-directory/directory-1.webp)
 
@@ -34,12 +34,12 @@ For projects that have smart contracts deployed on Moonbeam or Moonriver, it is 
 
 The end-to-end flow for linking smart contract activity to the DApp Directory is as follows:
 
-1. The smart contract owner fills in the [form to label contracts on Moonscan](https://moonscan.io/contactus?id=5/){target=\_blank}
+1. The smart contract owner fills in the [form to label contracts on Moonscan](https://moonscan.io/contactus?id=5){target=\_blank}
 2. The contracts become labeled in Moonscan
 3. Periodically, the entire list of labeled contracts is exported and transmitted to Web3Go to be ingested
 4. Every hour, Web3Go loads smart contract activity within Moonbeam and Moonriver and runs a job to index this data by the labels
 
-To get your project's smart contracts properly labeled on [Moonscan](https://moonscan.io/){target=\_blank}, please refer to Web3Go's documentation on the [Labeling Structure](https://web3go.gitbook.io/moonscan-smart-contract-label-for-projects/labeling-structure/){target=\_blank} and [How to Submit Contract Information](https://web3go.gitbook.io/moonscan-smart-contract-label-for-projects/how-to-submit-contract-information/){target=\_blank} on Moonscan.
+To get your project's smart contracts properly labeled on [Moonscan](https://moonscan.io){target=\_blank}, please refer to Web3Go's documentation on the [Labeling Structure](https://web3go.gitbook.io/moonscan-smart-contract-label-for-projects/labeling-structure){target=\_blank} and [How to Submit Contract Information](https://web3go.gitbook.io/moonscan-smart-contract-label-for-projects/how-to-submit-contract-information){target=\_blank} on Moonscan.
 
 Once you've labeled your smart contracts and are ready to submit your project to the DApp Directory, configuring the Directory to utilize your smart contract data becomes straightforward. You'll only need the **Project** component of your labeled contracts.
 
@@ -58,7 +58,7 @@ If you're ready to add your project to the DApp Directory, skip to the [How to S
 
 If the project represents a DeFi protocol with TVL (whereby value is locked in the protocol's smart contract), it is possible to display TVL in the Moonbeam DApp Directory.
 
-TVL data is pulled from [DefiLlama](https://defillama.com/){target=\_blank}, so you must list your project there. To get your project listed, please refer to DefiLlama's documentation on [How to list a DeFi project](https://docs.llama.fi/list-your-project/submit-a-project/){target=\_blank}.
+TVL data is pulled from [DefiLlama](https://defillama.com){target=\_blank}, so you must list your project there. To get your project listed, please refer to DefiLlama's documentation on [How to list a DeFi project](https://docs.llama.fi/list-your-project/submit-a-project){target=\_blank}.
 
 After listing your project, you can easily configure the DApp Directory to pull data from DefiLlama. To do so, you'll need the DefiLlama identifier, which you can find in the URL for your protocol's page. For example, the URL for Moonwell's page is `https://defillama.com/protocol/moonwell`, so the identifier is `moonwell`.
 
@@ -68,9 +68,9 @@ If you have the identifier and are ready to submit your project to the Moonbeam 
 
 If a project has a token, it is possible to display the name of the token, current price, and contract in the DApp Directory.
 
-However, the data is pulled from [CoinGecko](https://www.coingecko.com/){target=\_blank}, so the project's token must be listed there. If your token is not listed there, you can complete [CoinGecko's Request Form](https://www.coingecko.com/request/){target=\_blank} to initiate the listing process.
+However, the data is pulled from [CoinGecko](https://www.coingecko.com){target=\_blank}, so the project's token must be listed there. If your token is not listed there, you can complete [CoinGecko's Request Form](https://www.coingecko.com/request){target=\_blank} to initiate the listing process.
 
-Assuming your project's token is listed there, you must obtain the CoinGecko **API ID** value. You can find the **API ID** value in the **Information** section of the token's page on CoinGecko. For example, the **API ID** on [Moonwell's token page](https://www.coingecko.com/en/coins/moonwell/){target=\_blank} is `moonwell-artemis`.
+Assuming your project's token is listed there, you must obtain the CoinGecko **API ID** value. You can find the **API ID** value in the **Information** section of the token's page on CoinGecko. For example, the **API ID** on [Moonwell's token page](https://www.coingecko.com/en/coins/moonwell){target=\_blank} is `moonwell-artemis`.
 
 If you have the CoinGecko ID and are ready to submit your project to the Moonbeam DApp Directory, you can continue to the next section.
 
@@ -78,7 +78,7 @@ If you have the CoinGecko ID and are ready to submit your project to the Moonbea
 
 As mentioned, you must submit a pull request to the Moonbeam Foundation's GitHub repository that holds the DApp Directory's data. Before getting started, it's worth noting that to expedite the review process, the GitHub user who submits the pull request is recommended to be a major contributor to the project's GitHub so that the Moonbeam Foundation can quickly verify that they represent the project. You can check out the [Review Process](#review-process) section for more information.
 
-To begin, you have two options for adding your project information to the [`app-directory-data` repository on GitHub](https://github.com/moonbeam-foundation/app-directory-data/){targe\_blank}. You can utilize [GitHub's browser-based editor](https://github.dev/moonbeam-foundation/app-directory-data/){target=\_blank}, which offers a user-friendly interface.
+To begin, you have two options for adding your project information to the [`app-directory-data` repository on GitHub](https://github.com/moonbeam-foundation/app-directory-data){targe\_blank}. You can utilize [GitHub's browser-based editor](https://github.dev/moonbeam-foundation/app-directory-data){target=\_blank}, which offers a user-friendly interface.
 
 ![The app-directory-data repository loaded on GitHub's browser-based editor](/images/learn/dapps-list/dapp-directory/directory-2.webp)
 
@@ -201,7 +201,7 @@ The following table lists the properties of the image JSON object:
 | `fileName` | String |                                         The name of the image file (unqualified) stored in the `logos` directory                                         |
 |  `width`   |  int   |                                                          The width of the logo image in pixels                                                           |
 |  `height`  |  int   |                                                          The height of the logo image in pixels                                                          |
-| `mimeType` | String | The standard [MIME type](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/){target=\_blank} of the file. E.g., `"image/jpeg"` |
+| `mimeType` | String | The standard [MIME type](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types){target=\_blank} of the file. E.g., `"image/jpeg"` |
 
 Currently, only the `small` size is utilized, and the dimensions for small logos should be 40x40 pixels.
 
@@ -224,7 +224,7 @@ The following table lists the properties of the image JSON object:
 | `fileName` | String |                                      The name of the image file (unqualified) stored in the `screenshots` directory                                      |
 |  `width`   |  int   |                                                          The width of the logo image in pixels                                                           |
 |  `height`  |  int   |                                                          The height of the logo image in pixels                                                          |
-| `mimeType` | String | The standard [MIME type](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/){target=\_blank} of the file. E.g., `"image/jpeg"` |
+| `mimeType` | String | The standard [MIME type](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types){target=\_blank} of the file. E.g., `"image/jpeg"` |
 
 Here is an example showing the structure of the `screenshot` property for two screenshots (`screenshot1` and `screenshot2`):
 
@@ -236,7 +236,7 @@ Here is an example showing the structure of the `screenshot` property for two sc
 
 A list of contracts for the project. Currently, this is used only for token contracts.
 
-The smart contracts that make up the protocol are sourced from [Moonscan](https://moonscan.io/){target=\_blank} based on tagging, so they do not need to be listed here. If you have not properly labeled your contracts or are unsure if they are labeled according to the Moonbeam community standard, please refer to the [Configure the Data Source for Active Users and Transaction Volume](#configure-active-users) section.
+The smart contracts that make up the protocol are sourced from [Moonscan](https://moonscan.io){target=\_blank} based on tagging, so they do not need to be listed here. If you have not properly labeled your contracts or are unsure if they are labeled according to the Moonbeam community standard, please refer to the [Configure the Data Source for Active Users and Transaction Volume](#configure-active-users) section.
 
 The following table lists the properties found in the contract JSON object:
 
@@ -272,7 +272,7 @@ All of your files should now be under the **Staged Changes** section. All you ha
 
 ![Comitting the staged files on GitHub's browser-based editor](/images/learn/dapps-list/dapp-directory/directory-7.webp)
 
-Now that you've committed the changes, you'll need to head over to the [`app-directory-data` repository](https://github.com/moonbeam-foundation/app-directory-data/){target=\_blank} and open a pull request against the `develop` branch:
+Now that you've committed the changes, you'll need to head over to the [`app-directory-data` repository](https://github.com/moonbeam-foundation/app-directory-data){target=\_blank} and open a pull request against the `develop` branch:
 
 1. At the top of the repository page, click **Compare and Pull** button displayed on the banner, or
 2. If the banner is not there anymore, you'll need to select your branch from the branches dropdown
@@ -302,7 +302,7 @@ As your project evolves, you may need to update your project's listing or images
 
 If you are no longer using a logo or screenshot, please remember to remove it from the `logos` or `screenshots` directory.
 
-Once your changes have been made, you must follow the same instructions in the [Submit a Pull Request](#submit-a-pull-request) section so the changes can be [reviewed](#review-process) by the Moonbeam Foundation. Please note that pull requests are reviewed on a bi-weekly basis, so if the update is urgent, you can create a [forum post](https://forum.moonbeam.foundation/){target=\_blank} asking for assistance.
+Once your changes have been made, you must follow the same instructions in the [Submit a Pull Request](#submit-a-pull-request) section so the changes can be [reviewed](#review-process) by the Moonbeam Foundation. Please note that pull requests are reviewed on a bi-weekly basis, so if the update is urgent, you can create a [forum post](https://forum.moonbeam.foundation){target=\_blank} asking for assistance.
 
 <div class="page-disclaimer">
     --8<-- 'text/_disclaimers/user-generated-content.md'

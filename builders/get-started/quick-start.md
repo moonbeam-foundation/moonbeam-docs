@@ -17,8 +17,8 @@ To get started developing on Moonbeam, it's important to be aware of the various
 
 |                                          Network                                          | Network Type  |                                   Relay Chain                                   | Native Asset Symbol | Native Asset Decimals |
 |:-----------------------------------------------------------------------------------------:|:-------------:|:-------------------------------------------------------------------------------:|:-------------------:|:---------------------:|
-|           [Moonbeam](/builders/get-started/networks/moonbeam/){target=\_blank}            |    MainNet    |              [Polkadot](https://polkadot.network/){target=\_blank}              |        GLMR         |          18           |
-|          [Moonriver](/builders/get-started/networks/moonriver/){target=\_blank}           |    MainNet    |                [Kusama](https://kusama.network/){target=\_blank}                |        MOVR         |          18           |
+|           [Moonbeam](/builders/get-started/networks/moonbeam/){target=\_blank}            |    MainNet    |              [Polkadot](https://polkadot.network){target=\_blank}              |        GLMR         |          18           |
+|          [Moonriver](/builders/get-started/networks/moonriver/){target=\_blank}           |    MainNet    |                [Kusama](https://kusama.network){target=\_blank}                |        MOVR         |          18           |
 |        [Moonbase Alpha](/builders/get-started/networks/moonbase/){target=\_blank}         |    TestNet    | [Alphanet relay](/learn/platform/networks/moonbase#relay-chain){target=\_blank} |         DEV         |          18           |
 | [Moonbeam Development Node](/builders/get-started/networks/moonbeam-dev/){target=\_blank} | Local TestNet |                                      None                                       |         DEV         |          18           |
 
@@ -62,7 +62,7 @@ When working with developer tools, depending on the tool, you might need to conf
     | Local WSS URL | <pre>```{{ networks.development.wss_url }}```</pre>  |
 
 !!! note
-    You can create your own endpoint suitable for development or production from one of the [supported RPC providers](/builders/get-started/endpoints/#endpoint-providers/){target=\_blank}.
+    You can create your own endpoint suitable for development or production from one of the [supported RPC providers](/builders/get-started/endpoints/#endpoint-providers){target=\_blank}.
 
 ### Block Explorers {: #explorers }
 
@@ -76,7 +76,7 @@ To get started developing on one of the TestNets, you'll need to fund your accou
 
 |                                          TestNet                                          |                                                                           Where To Get Tokens From                                                                            |
 |:-----------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-|        [Moonbase Alpha](/builders/get-started/networks/moonbase/){target=\_blank}         | The [Moonbase Alpha Faucet](https://faucet.moonbeam.network/){target=\_blank} website. <br> The faucet dispenses {{ networks.moonbase.website_faucet_amount }} every 24 hours |
+|        [Moonbase Alpha](/builders/get-started/networks/moonbase/){target=\_blank}         | The [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank} website. <br> The faucet dispenses {{ networks.moonbase.website_faucet_amount }} every 24 hours |
 | [Moonbeam Development Node](/builders/get-started/networks/moonbeam-dev/){target=\_blank} | Any of the [ten pre-funded accounts](/builders/get-started/networks/moonbeam-dev/#pre-funded-development-accounts){target=\_blank} that come with your <br> development node  |
 
 ## Development Tools {: #development-tools }
@@ -113,7 +113,6 @@ As Moonbeam is a Substrate-based chain that is fully Ethereum-compatible, you ca
     | [Web3.py](/builders/build/eth-api/libraries/web3py/){target=\_blank} |     Library     |
     |     [Ape](/builders/build/eth-api/dev-env/ape/){target=\_blank}      | Dev Environment |
     | [Brownie](/builders/build/eth-api/dev-env/brownie/){target=\_blank}  | Dev Environment |
-    |   [thirdweb](https://portal.thirdweb.com/python/){target=\_blank}    | Dev Environment |
 
 === "Substrate"
 

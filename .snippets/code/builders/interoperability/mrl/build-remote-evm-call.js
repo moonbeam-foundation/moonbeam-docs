@@ -1,26 +1,31 @@
-// Rest of script
-// ...
+import { ApiPromise, WsProvider } from '@polkadot/api';
+import { getTransactCall } from './build-batch-evm-call.js';
 
-const sendBatchTx = async () => {
-  // Rest of sendBatchTx logic
-  // ...
+const originChainProviderWsURL = 'INSERT_ORIGIN_CHAIN_WSS_URL';
+const computedOriginAccount = 'INSERT_COMPUTED_ORIGIN_ADDRESS';
 
-  const txWeight = (await transact.paymentInfo(multilocationDerivativeAccount))
-    .weight;
-  
-  const sendXCM = originChainAPI.tx.polkadotXcm.send(
-    { V3: { parents: 1, interior: { X1: { Parachain: 1000 } } } },
+export const getPolkadotXcmCall = async () => {
+  // Create origin chain API provider
+  const originChainProvider = new WsProvider(originChainProviderWsURL);
+  const originChainAPI = await ApiPromise.create({
+    provider: originChainProvider,
+  });
+
+  // Get the weight required to execute the Transact calldata
+  const { transact, txWeight } = await getTransactCall();
+
+  // Create the extrinsic for the remote EVM call
+  const sendXcm = originChainAPI.tx.polkadotXcm.send(
+    { V4: { parents: 1, interior: { X1: [{ Parachain: 1000 }] } } },
     {
-      V3: [
+      V4: [
         {
           // Withdraw DEV asset (0.06) from the target account
           WithdrawAsset: [
             {
               id: {
-                Concrete: {
-                  parents: 0,
-                  interior: { X1: { PalletInstance: 3 } },
-                },
+                parents: 0,
+                interior: { X1: [{ PalletInstance: 3 }] },
               },
               fun: { Fungible: 60000000000000000n },
             },
@@ -31,10 +36,8 @@ const sendBatchTx = async () => {
           BuyExecution: {
             fees: {
               id: {
-                Concrete: {
-                  parents: 0,
-                  interior: { X1: { PalletInstance: 3 } },
-                },
+                parents: 0,
+                interior: { X1: [{ PalletInstance: 3 }] },
               },
               fun: { Fungible: 60000000000000000n },
             },
@@ -63,7 +66,7 @@ const sendBatchTx = async () => {
             beneficiary: {
               parents: 0,
               interior: {
-                X1: { AccountKey20: { key: multilocationDerivativeAccount } },
+                X1: [{ AccountKey20: { key: computedOriginAccount } }],
               },
             },
           },
@@ -71,6 +74,6 @@ const sendBatchTx = async () => {
       ],
     }
   );
-}
 
-sendBatchTx();
+  return sendXcm;
+};

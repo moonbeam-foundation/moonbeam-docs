@@ -17,13 +17,13 @@ Both types of XC-20s have the standard ERC-20 interface. In addition, all extern
 
 ### The ERC-20 Solidity Interface {: #the-erc20-interface }
 
-As mentioned, you can interact with XC-20s via an ERC-20 interface. The [ERC20.sol](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/assets-erc20/ERC20.sol){target=\_blank} interface on Moonbeam follows the [EIP-20 Token Standard](https://eips.ethereum.org/EIPS/eip-20/){target=\_blank}, which is the standard API interface for tokens within smart contracts. The standard defines the required functions and events that a token contract must implement to be interoperable with different applications.
+As mentioned, you can interact with XC-20s via an ERC-20 interface. The [ERC20.sol](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/assets-erc20/ERC20.sol){target=\_blank} interface on Moonbeam follows the [EIP-20 Token Standard](https://eips.ethereum.org/EIPS/eip-20){target=\_blank}, which is the standard API interface for tokens within smart contracts. The standard defines the required functions and events that a token contract must implement to be interoperable with different applications.
 
 --8<-- 'text/builders/pallets-precompiles/precompiles/erc20/erc20-interface.md'
 
 ### The ERC-20 Permit Solidity Interface {: #the-erc20-permit-interface }
 
-External XC-20s also have the ERC-20 Permit interface. The [Permit.sol](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/assets-erc20/Permit.sol){target=\_blank} interface on Moonbeam follows the [EIP-2612 standard](https://eips.ethereum.org/EIPS/eip-2612/){target=\_blank}, which extends the ERC-20 interface with the `permit` function. Permits are signed messages that can be used to change an account's ERC-20 allowance. Note that local XC-20s can have also the Permit interface, but it is not a requirement for them to be XCM-ready.
+External XC-20s also have the ERC-20 Permit interface. The [Permit.sol](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/assets-erc20/Permit.sol){target=\_blank} interface on Moonbeam follows the [EIP-2612 standard](https://eips.ethereum.org/EIPS/eip-2612){target=\_blank}, which extends the ERC-20 interface with the `permit` function. Permits are signed messages that can be used to change an account's ERC-20 allowance. Note that local XC-20s can have also the Permit interface, but it is not a requirement for them to be XCM-ready.
 
 The standard ERC-20 `approve` function is limited in its design as the `allowance` can only be modified by the sender of the transaction, the `msg.sender`. This can be seen in [OpenZeppelin's implementation of the ERC-20 interface](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/ERC20.sol#L136){target=\_blank}, which sets the `owner` through the [`msgSender` function](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/utils/Context.sol#L17){target=\_blank}, which ultimately sets it to `msg.sender`.
 
@@ -35,7 +35,7 @@ The [Permit.sol](https://github.com/moonbeam-foundation/moonbeam/blob/master/pre
 - **nonces**(*address* owner) - returns the current nonce for the given owner
 - **DOMAIN_SEPARATOR**() - returns the EIP-712 domain separator, which is used to avoid replay attacks. It follows the [EIP-2612](https://eips.ethereum.org/EIPS/eip-2612#specification){target=\_blank} implementation
 
-The **DOMAIN_SEPARATOR()** is defined in the [EIP-712 standard](https://eips.ethereum.org/EIPS/eip-712/){target=\_blank}, and is calculated as:
+The **DOMAIN_SEPARATOR()** is defined in the [EIP-712 standard](https://eips.ethereum.org/EIPS/eip-712){target=\_blank}, and is calculated as:
 
 ```text
 keccak256(PERMIT_DOMAIN, name, version, chain_id, address)
@@ -101,7 +101,7 @@ Now that you've calculated the external XC-20 precompile address, you can use th
 
 ### Add & Compile the Interface {: #add-the-interface-to-remix }
 
-You can interact with the ERC-20 interface using [Remix](https://remix.ethereum.org/){target=\_blank}. First, you will need to add the interface to Remix:
+You can interact with the ERC-20 interface using [Remix](https://remix.ethereum.org){target=\_blank}. First, you will need to add the interface to Remix:
 
 1. Get a copy of [ERC20.sol](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/assets-erc20/ERC20.sol){target=\_blank}
 2. Paste the file contents into a Remix file named **IERC20.sol**
@@ -125,7 +125,7 @@ Instead of deploying the ERC-20 precompile, you will access the interface given 
 2. Make sure **Injected Web3** is selected in the **ENVIRONMENT** dropdown. Once you select **Injected Web3**, you might be prompted by MetaMask to connect your account to Remix
 3. Make sure the correct account is displayed under **ACCOUNT**
 4. Ensure **IERC20 - IERC20.sol** is selected in the **CONTRACT** dropdown. Since this is a precompiled contract, there is no need to deploy any code. Instead, you are going to provide the address of the precompile in the **At Address** field
-5. Provide the address of the XC-20. For local XC-20s, which you should have already calculated in the  [Calculate External XC-20 Precompile Addresses](#calculate-xc20-address/){target=\_blank} section. For this example, you can use `0xFFFFFFFF1FCACBD218EDC0EBA20FC2308C778080` and click **At Address**
+5. Provide the address of the XC-20. For local XC-20s, which you should have already calculated in the  [Calculate External XC-20 Precompile Addresses](#calculate-xc20-address){target=\_blank} section. For this example, you can use `0xFFFFFFFF1FCACBD218EDC0EBA20FC2308C778080` and click **At Address**
 
 ![Access the address](/images/builders/interoperability/xcm/xc20/interact/interact-3.webp)
 

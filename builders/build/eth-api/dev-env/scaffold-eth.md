@@ -7,9 +7,9 @@ description: You can deploy a Solidity DApp with a React UI and subgraph on Moon
 
 ## Introduction {: #introduction }
 
-[Scaffold-ETH 2](https://github.com/scaffold-eth/scaffold-eth-2/){target=\_blank} is a collection of commonly used Ethereum development tools to quickly deploy a Solidity smart contract and launch a DApp with a React frontend.
+[Scaffold-ETH 2](https://github.com/scaffold-eth/scaffold-eth-2){target=\_blank} is a collection of commonly used Ethereum development tools to quickly deploy a Solidity smart contract and launch a DApp with a React frontend.
 
-Scaffold-ETH 2 consists of several sub-components, including [Hardhat](https://hardhat.org/docs/){target=\_blank} for creating, deploying, and testing smart contracts and [Next.js](https://nextjs.org/docs/){target=\_blank} for building a React frontend. These components can be used on Moonbeam networks with some slight modifications.
+Scaffold-ETH 2 consists of several sub-components, including [Hardhat](https://hardhat.org/docs){target=\_blank} for creating, deploying, and testing smart contracts and [Next.js](https://nextjs.org/docs){target=\_blank} for building a React frontend. These components can be used on Moonbeam networks with some slight modifications.
 
 This guide will walk through the steps to deploy and run the default example contract and DApp that Scaffold-ETH 2 comes with on a Moonbeam network.
 
@@ -25,7 +25,7 @@ To get started, you will need the following:
 
 ### Installing Scaffold-ETH 2 {: #installing-scaffold-eth }
 
-First, download [Scaffold-ETH 2 from GitHub](https://github.com/scaffold-eth/scaffold-eth-2/){target=\_blank}.
+First, download [Scaffold-ETH 2 from GitHub](https://github.com/scaffold-eth/scaffold-eth-2){target=\_blank}.
 
 From the command line, enter:
 
@@ -222,7 +222,7 @@ In the following sections, you'll modify the Next.js configuration so that it ta
 
 ### Configure the DApp for Moonbeam {: #configure-dapp }
 
-To target the Moonbeam-based network that you deployed your smart contract to, you'll need to edit the configurations in the `packages/nextjs/scaffold.config.ts` file. More specifically, you'll need to modify the `targetNetworks` array in the `scaffoldConfig` object. You can use the [list of chains that viem provides](https://github.com/wevm/viem/blob/main/src/chains/index.ts/){target=\_blank} to specify the chain(s) you've deployed your contract to.
+To target the Moonbeam-based network that you deployed your smart contract to, you'll need to edit the configurations in the `packages/nextjs/scaffold.config.ts` file. More specifically, you'll need to modify the `targetNetworks` array in the `scaffoldConfig` object. You can use the [list of chains that viem provides](https://github.com/wevm/viem/blob/main/src/chains/index.ts){target=\_blank} to specify the chain(s) you've deployed your contract to.
 
 === "Moonbeam"
 
@@ -260,10 +260,10 @@ yarn start
 
 ![The terminal outut from running the start command.](/images/builders/build/eth-api/dev-env/scaffold-eth/new/scaffold-eth-4.webp)
 
-This will launch the React-based DApp frontend at [http://localhost:3000/](http://localhost:3000/){target=\_blank} by default. You can then point your browser to [http://localhost:3000/](http://localhost:3000/){target=\_blank} and interact with the React frontend by connecting your wallet or checking out the contract debugger page.
+This will launch the React-based DApp frontend at [http://localhost:3000/](http://localhost:3000){target=\_blank} by default. You can then point your browser to [http://localhost:3000/](http://localhost:3000){target=\_blank} and interact with the React frontend by connecting your wallet or checking out the contract debugger page.
 
 ![The frontend of the DApp on the browser.](/images/builders/build/eth-api/dev-env/scaffold-eth/new/scaffold-eth-5.webp)
 
-And that's it! Now that you have the basics down, feel free to create and deploy your own smart contracts and modify the frontend to fit your dApp's needs! For more information, you can check out the [Scaffold-ETH 2 docs](https://docs.scaffoldeth.io/){target=\_blank}.
+And that's it! Now that you have the basics down, feel free to create and deploy your own smart contracts and modify the frontend to fit your dApp's needs! For more information, you can check out the [Scaffold-ETH 2 docs](https://docs.scaffoldeth.io){target=\_blank}.
 
 --8<-- 'text/_disclaimers/third-party-content.md'

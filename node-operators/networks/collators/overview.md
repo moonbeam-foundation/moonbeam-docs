@@ -26,7 +26,7 @@ Users can spin up full nodes on Moonbeam, Moonriver, and Moonbase Alpha and acti
 
 As a collator, it is important to keep track of updates and changes to configuration. It is also important to be able to easily contact us and vice versa in case there is any issue with your node, as that will not only negatively affect collator and delegator rewards, it will also negatively affect the network.
 
-For this purpose, we use [Discord](https://discord.com/invite/moonbeam/){target=\_blank}. The most relevant Discord channels for collators are the following:
+For this purpose, we use [Discord](https://discord.com/invite/moonbeam){target=\_blank}. The most relevant Discord channels for collators are the following:
 
  - **tech-upgrades-announcements** — here we will publish any updates or changes in configuration collators will be required to follow. We will also announce any technical issues to watch out for, such as network stalls
  - **collators** — this is the general collator discussion channel. We are proud of having an active and friendly collator community so if you have any questions, this is the place to ask. We will also ping collators here for any issues that require their attention.

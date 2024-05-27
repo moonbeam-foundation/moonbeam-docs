@@ -50,7 +50,7 @@ The interface includes the following functions:
 
 Where the inputs that need to be provided can be defined as:
 
-- **proposal** - the [SCALE encoded](https://docs.substrate.io/reference/scale-codec/){target=\_blank} Substrate call that proposes an action
+- **proposal** - the [SCALE encoded](https://docs.substrate.io/reference/scale-codec){target=\_blank} Substrate call that proposes an action
 - **threshold** - amount of members required to dispatch the proposal
 - **proposalHash** - the hash of the proposal
 - **proposalIndex** - the index of the proposal
@@ -90,7 +90,7 @@ If you're using a Moonbeam development node and the development accounts, you'll
 ### Remix Set Up {: #remix-set-up }
 
 1. Get a copy of [`Collective.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/collective/Collective.sol){target=\_blank} 
-2. Copy and paste the file contents into a [Remix file](https://remix.ethereum.org/){target=\_blank} named `Collective.sol`
+2. Copy and paste the file contents into a [Remix file](https://remix.ethereum.org){target=\_blank} named `Collective.sol`
 
 ![Copying and Pasting the Collective Interface into Remix](/images/builders/pallets-precompiles/precompiles/collective/collective-1.webp)
 

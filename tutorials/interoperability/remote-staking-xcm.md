@@ -20,7 +20,7 @@ There are actually two possible approaches for staking on Moonbeam remotely via 
 
 For development purposes this tutorial is written for Moonbase Alpha and Moonbase relay using TestNet funds. For prerequisites:
 
-- A Moonbase Alpha relay chain account funded with some UNIT, the native token of the Moonbase relay chain. If you have a Moonbase Alpha account funded with DEV tokens, you can swap some DEV for xcUNIT here on [Moonbeam Swap](https://moonbeam-swap.netlify.app/#/swap){target=\_blank}. Then withdraw the xcUNIT from Moonbase Alpha to [your account on the Moonbase relay chain](https://polkadot.js.org/apps/?rpc=wss://fro-moon-rpc-1-moonbase-relay-rpc-1.moonbase.ol-infra.network#/accounts){target=\_blank} using [apps.moonbeam.network](https://apps.moonbeam.network/moonbase-alpha/){target=\_blank}
+- A Moonbase Alpha relay chain account funded with some UNIT, the native token of the Moonbase relay chain. If you have a Moonbase Alpha account funded with DEV tokens, you can swap some DEV for xcUNIT here on [Moonbeam Swap](https://moonbeam-swap.netlify.app/#/swap){target=\_blank}. Then withdraw the xcUNIT from Moonbase Alpha to [your account on the Moonbase relay chain](https://polkadot.js.org/apps/?rpc=wss://fro-moon-rpc-1-moonbase-relay-rpc-1.moonbase.ol-infra.network#/accounts){target=\_blank} using [apps.moonbeam.network](https://apps.moonbeam.network/moonbase-alpha){target=\_blank}
 - You'll need to [calculate the Computed Origin account](#calculating-your-computed-origin-account) of your Moonbase Alpha relay chain account and fund it with DEV tokens.
 --8<-- 'text/_common/faucet/faucet-list-item.md'
 
@@ -30,15 +30,15 @@ For development purposes this tutorial is written for Moonbase Alpha and Moonbas
 
 Here, we have specified a parents value of `1` because the relay chain is the origin of the request (and the relay chain is considered a parent to the Moonbase alpha parachain). The relay chain does not have a parachain id so that field is omitted.
 
-![Calculate Multi-Location Derivative Account](/images/tutorials/interoperability/remote-staking-via-xcm/xcm-stake-1.webp)
+--8<-- 'code/tutorials/interoperability/remote-staking/terminal/calculate.md'
 
-The script will return 32-byte and 20-byte addresses. We’re interested in the Ethereum-style account - the 20-byte one. Feel free to look up your Computed Origin account on [Moonscan](https://moonbase.moonscan.io/){target=\_blank}. You’ll note that this account is empty. You’ll now need to fund this account with at least 1.1 DEV which you can get from [the faucet](https://faucet.moonbeam.network/){target=\_blank}. And if you need more, you can always reach out to us on [Discord](https://discord.com/invite/amTRXQ9ZpW/){target=\_blank} for additional DEV tokens.
+The script will return 32-byte and 20-byte addresses. We’re interested in the Ethereum-style account - the 20-byte one. Feel free to look up your Computed Origin account on [Moonscan](https://moonbase.moonscan.io){target=\_blank}. You’ll note that this account is empty. You’ll now need to fund this account with at least 1.1 DEV which you can get from [the faucet](https://faucet.moonbeam.network){target=\_blank}. And if you need more, you can always reach out to us on [Discord](https://discord.com/invite/amTRXQ9ZpW){target=\_blank} for additional DEV tokens.
 
 ## Preparing to Stake on Moonbase Alpha {: #preparing-to-stake-on-moonbase-alpha }
 
-First and foremost, you’ll need the address of the collator you want to delegate to. To locate it, head to the [Moonbase Alpha Staking dApp](https://apps.moonbeam.network/moonbase-alpha/staking/){target=\_blank} in a second window. Ensure you’re on the correct network, then press **Select a Collator**. Press the icon next to your desired collator to copy its address. You’ll also need to make a note of the number of delegations your collator has. The [PS-31 collator](https://moonbase.subscan.io/account/0x3A7D3048F3CB0391bb44B518e5729f07bCc7A45D/){target=\_blank} shown below has `64` delegations at the time of writing.
+First and foremost, you’ll need the address of the collator you want to delegate to. To locate it, head to the [Moonbase Alpha Staking dApp](https://apps.moonbeam.network/moonbase-alpha/staking){target=\_blank} in a second window. Ensure you’re on the correct network, then press **Select a Collator**. Press the icon next to your desired collator to copy its address. You’ll also need to make a note of the number of delegations your collator has. The [Moonbeam Foundation 01 collator](https://moonbase.subscan.io/account/{{networks.moonbase.precompiles.staking}}){target=\_blank} shown below has `7` delegations at the time of writing.
 
-![Moonbeam Network Apps Dashboard](/images/tutorials/interoperability/remote-staking-via-xcm/xcm-stake-2.webp)
+![Moonbeam Network Apps Dashboard](/images/tutorials/interoperability/remote-staking-via-xcm/xcm-stake-1.webp)
 
 ## Remote Staking via XCM with the Polkadot.js API {: #remote-staking-via-xcm-with-the-polkadot-api }
 
@@ -53,8 +53,8 @@ In order to generate the encoded call data, we'll need to assemble the arguments
 1. Create a [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=\_blank} provider
 2. Assemble the arguments for each of the parameters of the `delegateWithAutoCompound` function:
 
-    - `candidate`- for this example we'll use the [PS-31 collator](https://moonbase.subscan.io/account/0x3A7D3048F3CB0391bb44B518e5729f07bCc7A45D/){target=\_blank}: `0x3A7D3048F3CB0391bb44B518e5729f07bCc7A45D`. To retrieve the entire list of candidates, you can refer back to the [Preparing to Stake](#preparing-to-stake-on-moonbase-alpha) section
-    - `amount` - we'll stake the minimum amount, which is 1 DEV or `1000000000000000000` Wei. You can find a [unit converter on Moonscan](https://moonscan.io/unitconverter/){target=\_blank}
+    - `candidate`- for this example we'll use the [Moonbeam Foundation 01 collator](https://moonbase.subscan.io/account/{{networks.moonbase.staking.candidates.address1}}){target=\_blank}: `{{networks.moonbase.staking.candidates.address1}}`. To retrieve the entire list of candidates, you can refer back to the [Preparing to Stake](#preparing-to-stake-on-moonbase-alpha) section
+    - `amount` - we'll stake the minimum amount, which is 1 DEV or `1000000000000000000` Wei. You can find a [unit converter on Moonscan](https://moonscan.io/unitconverter){target=\_blank}
     - `autoCompound` - we'll set this to `100` to auto-compound all rewards
     - `candidateDelegationCount` - we'll retrieve using the `candidateInfo` function of the Parachain Staking Pallet to get the exact count. Alternatively, you can enter the upper bound of `300` because this estimation is only used to determine the weight of the call
     - `candidateAutoCompoundingDelegationCount` - we'll retrieve using the `autoCompoundingDelegations` function of the Parachain Staking Pallet to get the exact count. Alternatively, you can enter the upper bound of `300` because this estimation is only used to determine the weight of the call
@@ -86,25 +86,16 @@ The `send` function of the XCM Pallet accepts two parameters: `dest` and `messag
 
 1. Build the multilocation of the DEV token on Moonbase Alpha for the `dest`:
 
-    ```js
-    const dest = { V3: { parents: 0, interior: { X1: { Parachain: 1000 } } } };
+    ```javascript
+    --8<-- 'code/tutorials/interoperability/remote-staking/remote-staking.js:7:7'
     ```
 
 2. Build the `WithdrawAsset` instruction, which will require you to define:
     - The multilocation of the DEV token on Moonbase Alpha
     - The amount of DEV tokens to withdraw
 
-    ```js
-    const instr1 = {
-      WithdrawAsset: [
-        {
-          id: {
-            Concrete: { parents: 0, interior: { X1: { PalletInstance: 3 } } },
-          },
-          fun: { Fungible: 100000000000000000n },
-        },
-      ],
-    },    
+    ```javascript
+    --8<-- 'code/tutorials/interoperability/remote-staking/remote-staking.js:8:18'
     ```
 
 3. Build the `BuyExecution` instruction, which will require you to define:
@@ -112,18 +103,8 @@ The `send` function of the XCM Pallet accepts two parameters: `dest` and `messag
     - The amount of DEV tokens to buy for execution
     - The weight limit
 
-    ```js
-    const instr2 = {
-      BuyExecution: [
-        {
-          id: {
-            Concrete: { parents: 0, interior: { X1: { PalletInstance: 3 } } },
-          },
-          fun: { Fungible: 100000000000000000n },
-        },
-        { Unlimited: null },
-      ],
-    },    
+    ```javascript
+    --8<-- 'code/tutorials/interoperability/remote-staking/remote-staking.js:19:30'
     ```
 
 4. Build the `Transact` instruction, which will require you to define:
@@ -131,23 +112,14 @@ The `send` function of the XCM Pallet accepts two parameters: `dest` and `messag
     - The required weight for the transaction. You'll need to define a value for `refTime`, which is the amount of computational time that can be used for execution, and the `proofSize`, which is the amount of storage in bytes that can be used. It is recommended that the weight given to this instruction needs to be around 10% more of `25000` times the gas limit for the call you want to execute via XCM
     - The encoded call data for delegating a collator, which we generated in the [previous section](#generate-encoded-call-data)
 
-    ```js
-    const instr3 = {
-      Transact: {
-        originType: 'SovereignAccount',
-        requireWeightAtMost: { refTime: 40000000000n, proofSize: 900000n },
-        call: {
-          encoded:
-            '0x0c123a7d3048f3cb0391bb44b518e5729f07bcc7a45d000064a7b3b6e00d000000000000000064430000000600000000000000',
-        },
-      },
-    },    
+    ```javascript
+    --8<-- 'code/tutorials/interoperability/remote-staking/remote-staking.js:31:40'
     ```
 
 5. Combine the XCM instructions into a versioned XCM message:
 
-    ```js
-    const message = { V3: [instr1, instr2, instr3] };
+    ```javascript
+    --8<-- 'code/tutorials/interoperability/remote-staking/remote-staking.js:41:41'
     ```
 
 Now that you have the values for each of the parameters, you can write the script to send the XCM message. You'll take the following steps:
@@ -170,6 +142,6 @@ Now that you have the values for each of the parameters, you can write the scrip
 
 In the above snippet, besides submitting the remote staking via XCM transaction, we also print out the transaction hash to assist with any debugging.
 
-And that’s it! To verify that your delegation was successful, you can visit [Subscan](https://moonbase.subscan.io/){target=\_blank} to check your staking balance. Be advised that it may take a few minutes before your staking balance is visible on Subscan. Additionally, be aware that you will not be able to see this staking operation on Moonscan, because we initiated the delegation action directly via the [Parachain Staking Pallet](/builders/pallets-precompiles/pallets/staking/){target=\_blank} (on the Substrate side) rather than through the [Staking Precompile](/builders/pallets-precompiles/precompiles/staking/){target=\_blank} (on the EVM).
+And that’s it! To verify that your delegation was successful, you can visit [Subscan](https://moonbase.subscan.io){target=\_blank} to check your staking balance. Be advised that it may take a few minutes before your staking balance is visible on Subscan. Additionally, be aware that you will not be able to see this staking operation on Moonscan, because we initiated the delegation action directly via the [Parachain Staking Pallet](/builders/pallets-precompiles/pallets/staking/){target=\_blank} (on the Substrate side) rather than through the [Staking Precompile](/builders/pallets-precompiles/precompiles/staking/){target=\_blank} (on the EVM).
 
 --8<-- 'text/_disclaimers/educational-tutorial.md'

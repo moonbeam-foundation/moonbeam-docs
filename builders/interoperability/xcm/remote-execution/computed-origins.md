@@ -17,7 +17,7 @@ Moonbeam-based networks follow [the Computed Origins standard set by Polkadot](h
 
 ## The Origin Conversion {: #origin-conversion }
 
-The [origin conversion](https://github.com/paritytech/polkadot-sdk/blob/{{ polkadot_sdk }}/polkadot/xcm/xcm-executor/src/lib.rs#L553){target=\_blank} for a remote call happens when the `Transact` instruction gets executed. The new origin on the target chain is the one that pays for the fees for XCM execution on the target chain.
+The [origin conversion](https://github.com/paritytech/polkadot-sdk/blob/{{ polkadot_sdk }}/polkadot/xcm/xcm-executor/src/lib.rs#L709){target=\_blank} for a remote call happens when the `Transact` instruction gets executed. The new origin on the target chain is the one that pays for the fees for XCM execution on the target chain.
 
 For example, from the relay chain, the [`DescendOrigin`](/builders/interoperability/xcm/core-concepts/instructions#descend-origin){target=\_blank} instruction is natively injected by the [XCM Pallet](https://github.com/paritytech/polkadot-sdk/blob/{{ polkadot_sdk }}/polkadot/xcm/pallet-xcm/src/lib.rs){target=\_blank}. In the case of Moonbase Alpha's relay chain (based on Westend), it has the following format (a multilocation junction):
 
@@ -61,7 +61,7 @@ When the XCM instruction gets executed in Moonbeam (Moonbase Alpha in this examp
 
 ## How to Calculate the Computed Origin {: #calculate-computed-origin }
 
-You can easily calculate the Computed Origin account through the `calculate-multilocation-derivative-account` or the `calculate-remote-origin` script in the [xcm-tools](https://github.com/Moonsong-Labs/xcm-tools/){target=\_blank} repository.
+You can easily calculate the Computed Origin account through the `calculate-multilocation-derivative-account` or the `calculate-remote-origin` script in the [xcm-tools](https://github.com/Moonsong-Labs/xcm-tools){target=\_blank} repository.
 
 The script accepts the following inputs:
 
@@ -72,7 +72,7 @@ The script accepts the following inputs:
 
 To use the script, you can take the following steps:
 
-1. Clone the [xcm-tools](https://github.com/Moonsong-Labs/xcm-tools/){target=\_blank} repo
+1. Clone the [xcm-tools](https://github.com/Moonsong-Labs/xcm-tools){target=\_blank} repo
 2. Run `yarn` to install the necessary packages
 3. Run the script
 

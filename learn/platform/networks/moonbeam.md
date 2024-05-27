@@ -9,7 +9,7 @@ description: An overview of the current configuration of the Moonbeam deployment
 
 Moonbeam onboarded as a parachain to Polkadot on December 17th 2021. Moonbeam is the most Ethereum compatible smart-contract parachain in the Polkadot ecosystem. It allows developers to port their projects with minimal to no code changes, enabling them to tap into the Polkadot ecosystem and all its assets.
 
-In order to collect as much feedback as possible and provide fast issue resolution, you can check out the dedicated [Moonbeam Network section on Discord](https://discord.gg/PfpUATX/){target=\_blank}.
+In order to collect as much feedback as possible and provide fast issue resolution, you can check out the dedicated [Moonbeam Network section on Discord](https://discord.gg/PfpUATX){target=\_blank}.
 
 ## Initial Configurations {: #initial-configurations }
 
@@ -51,7 +51,7 @@ You can see current Moonbeam telemetry information by visiting [Polkadot's Telem
 
 ## Tokens {: #tokens }
 
-The tokens on Moonbeam are called Glimmer (GLMR). Check out the Moonbeam Foundation site for more information on the [Glimmer](https://moonbeam.foundation/glimmer-token/){target=\_blank} token.
+The tokens on Moonbeam are called Glimmer (GLMR). Check out the Moonbeam Foundation site for more information on the [Glimmer](https://moonbeam.foundation/glimmer-token){target=\_blank} token.
 
 ### Token Denominations {: #token-denominations }
 
@@ -74,5 +74,5 @@ The Moonriver network is a fully decentralized Delegated Proof of Stake network 
 
 ## Limitations {: #limitations }
 
-Some [precompiles](https://docs.klaytn.com/smart-contract/precompiled-contracts/){target=\_blank} are yet to be included. You can check a list of supported precompiles on the [Solidity Precompiles page](/builders/pallets-precompiles/precompiles/overview/){target=\_blank}. However, all built-in functions are available.
+Some [precompiles](https://docs.klaytn.com/smart-contract/precompiled-contracts){target=\_blank} are yet to be included. You can check a list of supported precompiles on the [Solidity Precompiles page](/builders/pallets-precompiles/precompiles/overview/){target=\_blank}. However, all built-in functions are available.
 
