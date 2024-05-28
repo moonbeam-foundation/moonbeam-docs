@@ -25,7 +25,7 @@ Moonbeam will offer parachain-related functionalities such as [XCMP](https://wik
 
 ## Moonriver {: #moonriver }
 
-In advance of deploying to the Polkadot MainNet, [Moonbeam launched Moonriver](https://moonbeam.network/announcements/moonriver-launch-kusama){target=\_blank} as a parachain on the Kusama network. The parachain functionality is live on Kusama.
+In advance of deploying to the Polkadot MainNet, [Moonbeam launched Moonriver](https://moonbeam.network/news/moonriver-won-a-parachain-slot-and-is-now-producing-blocks-on-the-kusama-network){target=\_blank} as a parachain on the Kusama network. The parachain functionality is live on Kusama.
 
 Moonriver will offer parachain-related functionalities such as [XCMP](https://wiki.polkadot.network/docs/learn-crosschain){target=\_blank} and [SPREE](https://wiki.polkadot.network/docs/learn-spree){target=\_blank} as these features become available.
 

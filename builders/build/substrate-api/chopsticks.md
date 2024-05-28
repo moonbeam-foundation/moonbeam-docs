@@ -25,7 +25,7 @@ Once installed, you can run commands with the Node package executor. For example
 npx @acala-network/chopsticks@latest
 ```
 
-To run Chopsticks, you will need some sort of configuration, typically through a file. Chopsticks' source repository includes a set of [YAML](https://yaml.org){target=\_blank} configuration files that can be used to create a local copy of a variety of Substrate chains. You can download the configuration files from the [source repository's `configs` folder](https://github.com/AcalaNetwork/chopsticks.git){target=\_blank}.  
+To run Chopsticks, you will need some sort of configuration, typically through a file. Chopsticks' source repository includes a set of [YAML](https://yaml.org){target=\_blank} configuration files that can be used to create a local copy of a variety of Substrate chains. You can download the configuration files from the [source repository's `configs` folder](https://github.com/AcalaNetwork/chopsticks){target=\_blank}.  
 
 Moonbeam, Moonriver, and Moonbase Alpha all have default files available:  
 

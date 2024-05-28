@@ -9,9 +9,9 @@ description: As a Polkadot parachain, Moonbeam uses an on-chain governance syste
 
 The goal of Moonbeam’s governance mechanism is to advance the protocol according to the desires of the community. In that shared mission, the governance process seeks to include all token holders. Any and all changes to the protocol must go through a referendum so that all token holders, weighted by stake, can have input on the decision.
 
-Governance forums like the [Moonbeam Community Forum](https://forum.moonbeam.foundation){target=\_blank} and [Polkassembly](https://moonbeam.polkassembly.io/opengov){target=\_blank} enable open discussion and allow proposals to be refined based on community input. Autonomous enactments and [forkless upgrades](https://wiki.polkadot.network/docs/learn-runtime-upgrades#forkless-upgrades){target=\_blank} unite the community towards a shared mission to advance the protocol.
+Governance forums like the [Moonbeam Community Forum](https://forum.moonbeam.network){target=\_blank} and [Polkassembly](https://moonbeam.polkassembly.io/opengov){target=\_blank} enable open discussion and allow proposals to be refined based on community input. Autonomous enactments and [forkless upgrades](https://wiki.polkadot.network/docs/learn-runtime-upgrades#forkless-upgrades){target=\_blank} unite the community towards a shared mission to advance the protocol.
 
-With the rollout of OpenGov (originally referred to as Gov2), the second phase of governance in Polkadot, several modifications have been introduced to the governance process. You can read the [OpenGov: What is Polkadot Gov2](https://moonbeam.network/blog/opengov){target=\_blank} blog post, which provides an overview of all of the changes made in OpenGov.
+With the rollout of OpenGov (originally referred to as Gov2), the second phase of governance in Polkadot, several modifications have been introduced to the governance process. You can read the [OpenGov: What is Polkadot Gov2](https://moonbeam.network/news/opengov-what-is-polkadot-gov2){target=\_blank} blog post, which provides an overview of all of the changes made in OpenGov.
 
 As of runtime 2400, all Moonbeam networks use OpenGov as their governance system.
 
@@ -243,7 +243,7 @@ The Conviction multiplier values for each network are:
 
 ### Roadmap of a Proposal {: #roadmap-of-a-proposal-v2 }
 
-Before a proposal is submitted, the author of the proposal can submit their idea for their proposal to the designated Democracy Proposals section of the [Moonbeam Governance discussion forum](https://forum.moonbeam.foundation/c/governance/2){target=\_blank} for feedback from the community for at least five days. From there, the author can make adjustments to the proposal based on the feedback they've collected.
+Before a proposal is submitted, the author of the proposal can submit their idea for their proposal to the designated Democracy Proposals section of the [Moonbeam Governance discussion forum](https://forum.moonbeam.network/c/governance/2){target=\_blank} for feedback from the community for at least five days. From there, the author can make adjustments to the proposal based on the feedback they've collected.
 
 Once the author is ready, they can submit their proposal on-chain. To do so, first, they need to submit the preimage of the proposal. The submitter needs to bond a fee to store the preimage on-chain. The bond is returned once the submitter unnotes the preimage. Next, they can submit the actual proposal and pay the Submission Deposit, which is enough to cover the on-chain storage cost of the proposal. Then the Lead-in Period begins and the community can begin voting "Aye" or "Nay" on the proposal by locking tokens. In order for the referendum to advance and move out of the Lead-in Period to the Decide period, the following criteria must be met:
 

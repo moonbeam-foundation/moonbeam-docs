@@ -9,7 +9,7 @@ description: Learn about all of the necessary details to run a full parachain no
 
 Running a full node on a Moonbeam-based network allows you to connect to the network, sync with a bootnode, obtain local access to RPC endpoints, author blocks on the parachain, and more.
 
-There are multiple deployments of Moonbeam, including the Moonbase Alpha TestNet, Moonriver on Kusama, and Moonbeam on Polkadot. Here's how these environments are named and their corresponding [chain specification file](https://substrate.dev/docs/en/knowledgebase/integrate/chain-spec) names:
+There are multiple deployments of Moonbeam, including the Moonbase Alpha TestNet, Moonriver on Kusama, and Moonbeam on Polkadot. Here's how these environments are named and their corresponding [chain specification file](https://docs.substrate.io/build/chain-spec/) names:
 
 |    Network     |      Hosted By      |             Chain Name              |
 |:--------------:|:-------------------:|:-----------------------------------:|
@@ -18,7 +18,7 @@ There are multiple deployments of Moonbeam, including the Moonbase Alpha TestNet
 |    Moonbeam    |      Polkadot       | {{ networks.moonbeam.chain_spec }}  |
 
 !!! note
-    Moonbase Alpha is still considered an Alphanet, and as such _will not_ have 100% uptime. The parachain might be purged as needed. During the development of your application, make sure you implement a method to redeploy your contracts and accounts to a fresh parachain quickly. If a chain purge is required, it will be announced via our [Discord channel](https://discord.gg/PfpUATX) at least 24 hours in advance.
+    Moonbase Alpha is still considered an Alphanet, and as such _will not_ have 100% uptime. The parachain might be purged as needed. During the development of your application, make sure you implement a method to redeploy your contracts and accounts to a fresh parachain quickly. If a chain purge is required, it will be announced via our [Discord channel](https://discord.com/invite/PfpUATX) at least 24 hours in advance.
 
 ## Requirements {: #requirements }
 
@@ -111,7 +111,7 @@ chain (our genesis: GENESIS_ID theirs: OTHER_GENESIS_ID)
 
 This typically means that you are running an older version and will need to upgrade.
 
-We announce the upgrades (and corresponding chain purge) via our [Discord channel](https://discord.gg/PfpUATX) at least 24 hours in advance.
+We announce the upgrades (and corresponding chain purge) via our [Discord channel](https://discord.com/invite/PfpUATX) at least 24 hours in advance.
 
 Instructions for purging chain data will vary slightly depending on how you spun up your node:
 

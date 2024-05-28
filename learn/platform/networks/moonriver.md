@@ -9,7 +9,7 @@ description: An overview of the current configuration of the Moonbeam deployment
 
 In June 2021, Moonriver first launched as a parachain on the Kusama network. Moonriver is a sister network of Moonbeam, and provides an environment to test new code under real economic conditions. Developers now have access to start experimenting and building on an incentivized canary network connected to Kusama.
 
-In order to collect as much feedback as possible and provide fast issue resolution, you can check out the dedicated [Moonriver section on Discord](https://discord.gg/5TaUvbRvgM){target=\_blank}.
+In order to collect as much feedback as possible and provide fast issue resolution, you can check out the dedicated [Moonriver section on Discord](https://discord.com/invite/5TaUvbRvgM){target=\_blank}.
 
 ## Initial Configurations {: #initial-configurations }
 
@@ -51,7 +51,7 @@ You can see current Moonriver telemetry information by visiting [Polkadot's Tele
 
 ## Tokens {: #tokens }
 
-The tokens on Moonriver will also be called Moonriver (MOVR). Check out the Moonbeam Foundation site for more information on the [Moonriver token](https://moonbeam.foundation/moonriver-token){target=\_blank}.
+The tokens on Moonriver will also be called Moonriver (MOVR). Check out the Moonbeam Foundation site for more information on the [Moonriver token](https://moonbeam.network/moonriver-token-tokenomics){target=\_blank}.
 
 ### Token Denominations {: #token-denominations }
 
@@ -74,5 +74,4 @@ The Moonriver network is a fully decentralized Delegated Proof of Stake network 
 
 ## Limitations {: #limitations }
 
-Some [precompiles](https://docs.klaytn.com/smart-contract/precompiled-contracts){target=\_blank} are yet to be included. You can check a list of supported precompiles on the [Canonical Contract page](/builders/pallets-precompiles/precompiles/){target=\_blank}. However, all built-in functions are available.
-
+Some [precompiles](https://www.evm.codes/precompiled){target=\_blank} are yet to be included. You can check a list of supported precompiles on the [Canonical Contract page](/builders/pallets-precompiles/precompiles/){target=\_blank}. However, all built-in functions are available.

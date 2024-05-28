@@ -64,7 +64,7 @@ Some technical benefits of Nimbus are considered in the following sections.
 
 ### Weight and Extra Execution {: #weight-and-extra-execution }
 
-Nimbus puts the author-checking execution in a [Substrate pallet](https://substrate.dev/docs/en/knowledgebase/runtime/pallets). At first glance, you might think this adds a higher execution load to a single block compared to doing this check off-chain. But consider this from a validator’s perspective
+Nimbus puts the author-checking execution in a [Substrate pallet](https://docs.substrate.io/reference/frame-pallets/). At first glance, you might think this adds a higher execution load to a single block compared to doing this check off-chain. But consider this from a validator’s perspective
 
 The validators will also have to check the author. By putting the author-checking execution logic in a pallet, the execution time can be benchmarked and quantified with weights. If this execution time is not accounted for, there is the risk of a block exceeding the relay chain Wasm execution limit (currently 0.5 seconds).
 
@@ -81,6 +81,6 @@ For example, the [relay-chain provided consensus](https://github.com/paritytech/
 Teams building parachains may want to change, tune, or adjust their consensus algorithm from time to time. Without nimbus, swapping consensus would require a client upgrade and hard fork.
 
 With the Nimbus framework, writing a consensus engine is as easy as writing a
-[Substrate pallet](https://substrate.dev/docs/en/knowledgebase/runtime/pallets). Consequently, swapping consensus is as easy as upgrading a pallet.
+[Substrate pallet](https://docs.substrate.io/build/custom-pallets/). Consequently, swapping consensus is as easy as upgrading a pallet.
 
 Nonetheless, hot swapping is still bounded by consensus engines (filters) that fit within Nimbus, but it might be helpful for teams that are yet confident on what consensus they want to implement in the long run.

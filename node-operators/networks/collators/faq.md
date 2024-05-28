@@ -15,13 +15,13 @@ Running a Moobeam collator requires Linux systems administration skills, careful
 
 **Q: Where can I get help?**
 
-**A:** There is an active and friendly [Discord](https://discord.gg/RyVefR79FA){target=\_blank} community for collators. Join the server and introduce yourself even before you need help. Send **gilmouta** or **artkaseman** a DM and let them know who you are, and they can reach out to you if they see any issues with your node.
+**A:** There is an active and friendly [Discord](https://discord.com/invite/RyVefR79FA){target=\_blank} community for collators. Join the server and introduce yourself even before you need help. Send **gilmouta** or **artkaseman** a DM and let them know who you are, and they can reach out to you if they see any issues with your node.
 
 ***
 
 **Q: How do I stay up to date?**
 
-**A:** All upgrades and important technical information are announced on [Discord](https://discord.gg/PhfEbKYqak){target=\_blank}, in the **#tech-upgrades-announcements** channel. Join and follow this channel. You can set up integrations to Slack or Telegram if those are your preferred communication channels.
+**A:** All upgrades and important technical information are announced on [Discord](https://discord.com/invite/PhfEbKYqak){target=\_blank}, in the **#tech-upgrades-announcements** channel. Join and follow this channel. You can set up integrations to Slack or Telegram if those are your preferred communication channels.
 
 ***
 

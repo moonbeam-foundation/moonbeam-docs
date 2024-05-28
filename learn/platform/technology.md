@@ -23,7 +23,7 @@ Moonbeam leverages multiple existing Substrate frame pallets to provide key bloc
 
 [Frontier](https://polkadot-evm.github.io/frontier){target=\_blank} serves as Substrate's Ethereum compatibility layer, facilitating the seamless operation of standard Ethereum DApps on Substrate-based chains without requiring modifications. This compatibility is achieved by integrating specialized Substrate pallets into the Substrate runtime. These pallets include the EVM pallet, responsible for executing EVM operations; the Ethereum pallet, which manages block data storage and offers RPC compatibility; the Base Fee pallet, enabling support for EIP-1559 transactions and handling base fee calculations; and the Dynamic Fee pallet, responsible for computing dynamic minimum gas prices.
 
-Moonbeam uses the EVM and Ethereum pallets to achieve full Ethereum compatibility. Moonbeam does not use the Base Fee or Dynamic Fee pallets. Instead, Moonbeam has its own [dynamic fee mechanism](https://forum.moonbeam.foundation/t/proposal-status-idea-dynamic-fee-mechanism-for-moonbeam-and-moonriver/241){target=\_blank} for base fee calculations.
+Moonbeam uses the EVM and Ethereum pallets to achieve full Ethereum compatibility. Moonbeam does not use the Base Fee or Dynamic Fee pallets. Instead, Moonbeam has its own [dynamic fee mechanism](https://forum.moonbeam.network/t/proposal-status-idea-dynamic-fee-mechanism-for-moonbeam-and-moonriver/241){target=\_blank} for base fee calculations.
 
 By basing our EVM implementation on the Substrate EVM Pallet, we get a full Rust-based EVM implementation and support from the Parity engineering team.
 
@@ -73,7 +73,7 @@ Along with support for Ethereum-style data, the Ethereum pallet combined with th
 
 ### EVM Pallet {: #evm-pallet }
 
-The [EVM pallet](https://polkadot-evm.github.io/frontier/frame/ethereum.html){target=\_blank} implements a sandboxed virtual stack machine and uses the [SputnikVM](https://github.com/rust-blockchain/evm){target=\_blank} as the underlying EVM engine.
+The [EVM pallet](https://polkadot-evm.github.io/frontier/frame/ethereum.html){target=\_blank} implements a sandboxed virtual stack machine and uses the [SputnikVM](https://github.com/rust-ethereum/evm){target=\_blank} as the underlying EVM engine.
 
 The EVM executes Ethereum smart contract bytecode, typically written in a language like Solidity, and then compiles it to EVM bytecode. The EVM pallet aims to emulate the functionality of executing smart contracts on Ethereum within the Substrate runtime. As such, it allows existing EVM code to be executed in Substrate-based blockchains.
 

@@ -17,7 +17,7 @@ In this tutorial, we'll look at how ChatGPT can help you write, deploy, and debu
 
 ### What is ChatGPT? {: #what-is-chatgpt }
 
-[ChatGPT](https://chat.openai.com){target=\_blank} is a text-based Large Language Model (LLM) created by the company OpenAI. According to OpenAI, *"The dialogue format makes it possible for ChatGPT to answer followup questions, admit its mistakes, challenge incorrect premises, and reject inappropriate requests."* ChatGPT can hold a conversation with you and remember your chat history until a new session is started. To learn more about ChatGPT, check out [this introduction to ChatGPT on the OpenAI Blog](https://openai.com/blog/chatgpt){target=\_blank}.
+[ChatGPT](https://chat.openai.com){target=\_blank} is a text-based Large Language Model (LLM) created by the company OpenAI. According to OpenAI, *"The dialogue format makes it possible for ChatGPT to answer followup questions, admit its mistakes, challenge incorrect premises, and reject inappropriate requests."* ChatGPT can hold a conversation with you and remember your chat history until a new session is started. To learn more about ChatGPT, check out [this introduction to ChatGPT on the OpenAI Blog](https://openai.com/index/chatgpt){target=\_blank}.
 
 ### GPT-4 vs. ChatGPT {: #gpt-4-vs-chatgpt }
 
@@ -134,7 +134,7 @@ If the problem is clear, ChatGPT will typically tell you exactly what's wrong an
 
 If you try all of the steps it recommends and your issue persists, you can simply let ChatGPT know, and it will continue to help you troubleshoot. As a follow-up, it may ask you to provide code snippets or system configuration information to better help you solve the problem at hand.
 
-[A reentrancy bug](https://web.archive.org/web/20221121064906/https://consensys.github.io/smart-contract-best-practices/attacks/reentrancy){target=\_blank} was the root of the flaw that brought down the [original DAO on Ethereum in 2016](https://en.wikipedia.org/wiki/The_DAO_(organization)){target=\_blank}. Let's prompt ChatGPT with a buggy function that includes a reentrancy vulnerability and see if ChatGPT is able to spot the problem. We'll go ahead and copy and paste the below insecure code snippet into ChatGPT and ask if there is anything wrong with it.
+[A reentrancy bug](https://web.archive.org/web/20221121064906/https://consensys.github.io/smart-contract-best-practices/attacks/reentrancy/){target=\_blank} was the root of the flaw that brought down the [original DAO on Ethereum in 2016](https://en.wikipedia.org/wiki/The_DAO_(organization)){target=\_blank}. Let's prompt ChatGPT with a buggy function that includes a reentrancy vulnerability and see if ChatGPT is able to spot the problem. We'll go ahead and copy and paste the below insecure code snippet into ChatGPT and ask if there is anything wrong with it.
 
 ```solidity
 // INSECURE
@@ -154,13 +154,13 @@ ChatGPT spots the exact error, explains the source of the problem, and lets us k
 
 ## Advanced Prompt Engineering {: #advanced-prompt-engineering }
 
-[Prompt engineering](https://learn.microsoft.com/en-us/azure/cognitive-services/openai/concepts/prompt-engineering){target=\_blank} is both an art and a science, and mastering it can help you get the most out of generative AI tools like ChatGPT. While not an exhaustive list, here are some general concepts that can help you write better prompts:
+[Prompt engineering](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/prompt-engineering){target=\_blank} is both an art and a science, and mastering it can help you get the most out of generative AI tools like ChatGPT. While not an exhaustive list, here are some general concepts that can help you write better prompts:
 
 - Be specific and parameterize your request. The more detail you can provide to ChatGPT, the more closely the actual output will match what you desire
 - Don't be afraid of revisions! You don't need to repeat the whole prompt, you can ask for just the change and ChatGPT will revise its prior output accordingly
 - Consider repeating or rephrasing critical parts of the prompt. Some research has indicated that LLMs will emphasize components that you repeat. You can always finish a prompt by reiterating the most important concepts you'd like addressed
 
-For more information, be sure to check out this post on [advanced prompt engineering](https://learn.microsoft.com/en-us/azure/cognitive-services/openai/concepts/advanced-prompt-engineering?pivots=programming-language-chat-completions){target=\_blank} from Microsoft.
+For more information, be sure to check out this post on [advanced prompt engineering](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/advanced-prompt-engineering?pivots=programming-language-chat-completions){target=\_blank} from Microsoft.
 
 ## Conclusion {: #conclusion }
 

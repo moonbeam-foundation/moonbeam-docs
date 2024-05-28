@@ -17,7 +17,7 @@ This guide will cover all of the details needed to register your project with th
 
 ## Checking Prerequisites {: #checking-prerequisites }
 
-To get started with this guide, you'll need to create or have a Dapplooker account. You can [signup](https://dapplooker.com/signup){target=\_blank} and create an account. If you already have signed up, you can [login](https://dapplooker.com/login){target=\_blank} to your account. 
+To get started with this guide, you'll need to create or have a Dapplooker account. You can [signup](https://dapplooker.com/user/signup){target=\_blank} and create an account. If you already have signed up, you can [login](https://dapplooker.com/user/login){target=\_blank} to your account.
 
 ![Login to Dapplooker](/images/builders/integrations/analytics/dapplooker/dapplooker-1.webp)
 
@@ -82,10 +82,9 @@ Another place you can start to view and build off of data is from the list of [M
 
 ### Popular Dashboards {: #popular-dashboards }
 
-- [Moonbeam Staking Dashboard](https://network.dapplooker.com/moonbeam/collator){target=\_blank} - staking dashboards for collators and delegators on Moonbeam that includes APY data
-- [Moonriver Staking Dashboard](https://network.dapplooker.com/moonriver/collator){target=\_blank} - staking dashboards for collators and delegators on Moonriver that includes APY data
-- [Dapplooker Explorer for Moonbeam](https://dapplooker.com/category/moonbeam?type=dashboard){target=\_blank} - find popular dashboards on Moonbeam
-- [Dapplooker Explorer for Moonriver](https://dapplooker.com/category/moonriver?type=dashboard){target=\_blank} - find popular dashboards on Moonriver
-
+- [Moonbeam Staking Dashboard](https://dapplooker.com/dashboard/moonbeam-collator-dashboard-91){target=\_blank} - staking dashboards for collators and delegators on Moonbeam that includes APY data
+- [Moonriver Staking Dashboard](https://dapplooker.com/dashboard/moonriver-collator-dashboard-28){target=\_blank} - staking dashboards for collators and delegators on Moonriver that includes APY data
+- [Dapplooker Explorer for Moonbeam](https://dapplooker.com/browse/dashboards?sort=popular&tags=moonbeam&pg=1){target=\_blank} - find popular dashboards on Moonbeam
+- [Dapplooker Explorer for Moonriver](https://dapplooker.com/browse/dashboards?sort=popular&tags=moonriver&pg=1){target=\_blank} - find popular dashboards on Moonriver
 
 --8<-- 'text/_disclaimers/third-party-content.md'

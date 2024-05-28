@@ -235,7 +235,7 @@ After compilation, an `artifacts` directory is created: it holds the bytecode an
 
 A robust smart contract development workflow is complete with a testing suite. Hardhat has a number of tools that make it easy to write and run tests. In this section, you'll learn the basics of testing your smart contracts and some more advanced techniques.
 
-Hardhat tests are typically written with Mocha and Chai. [Mocha](https://mochajs.org){target=\_blank} is a JavaScript testing framework and [Chai](https://www.chaijs.com){target=\_blank} is a BDD/TDD JavaScript assertion library. BDD/TDD stands for behavior and test-driven development respectively. Effective BDD/TDD necessitates writing your tests *before* writing your smart contract code. The structure of this tutorial doesn't strictly follow these guidelines, but you may wish to adopt these principles in your development workflow. Hardhat recommends using [Hardhat Toolbox](https://hardhat.org/hardhat-runner/docs/guides/migrating-from-hardhat-waffle){target=\_blank}, a plugin that bundles everything you need to get started with Hardhat, including Mocha and Chai.
+Hardhat tests are typically written with Mocha and Chai. [Mocha](https://mochajs.org){target=\_blank} is a JavaScript testing framework and [Chai](https://www.chaijs.com){target=\_blank} is a BDD/TDD JavaScript assertion library. BDD/TDD stands for behavior and test-driven development respectively. Effective BDD/TDD necessitates writing your tests *before* writing your smart contract code. The structure of this tutorial doesn't strictly follow these guidelines, but you may wish to adopt these principles in your development workflow. Hardhat recommends using [Hardhat Toolbox](https://hardhat.org/hardhat-runner/docs/advanced/migrating-from-hardhat-waffle){target=\_blank}, a plugin that bundles everything you need to get started with Hardhat, including Mocha and Chai.
 
 Because we will initially be running our tests on a local Moonbeam node, we need to specify Alice's address as the address of our target collator (Alice's account is the only collator for a local development node):
 
@@ -583,7 +583,7 @@ In your terminal you should see the source code for your contract was successful
 And that's it! We covered a lot of ground in this tutorial, but there's more resources available if you'd like to go deeper, including the following:
 
 - [Hardhat guide to Testing Contracts](https://hardhat.org/hardhat-runner/docs/guides/test-contracts){target=\_blank}
-- [Writing tasks and scripts](https://hardhat.org/hardhat-runner/docs/guides/tasks-and-scripts){target=\_blank}
+- [Writing tasks and scripts](https://hardhat.org/hardhat-runner/docs/guides/tasks){target=\_blank}
 
 --8<-- 'text/_disclaimers/educational-tutorial.md'
 

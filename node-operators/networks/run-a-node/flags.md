@@ -21,7 +21,7 @@ This guide will cover some of the most common flags and show you how to access a
 - **`--ws-max-connections`** - *deprecated as of [client v0.33.0](https://github.com/moonbeam-foundation/moonbeam/releases/tag/v0.33.0){target=\_blank}, use `--rpc-max-connections` to adjust the combined HTTP and WS connection limit instead* - specifies the maximum number of HTTP and WS server connections. The default is 100
 - **`--wasm-execution`** - specifies the method for executing Wasm runtime code. The available options are:
     - **`compiled`** - this is the default and uses the [Wasmtime](https://github.com/paritytech/wasmtime){target=\_blank} compiled runtime
-    - **`interpreted-i-know-what-i-do`** - uses the [wasmi interpreter](https://github.com/paritytech/wasmi){target=\_blank}
+    - **`interpreted-i-know-what-i-do`** - uses the [wasmi interpreter](https://github.com/wasmi-labs/wasmi){target=\_blank}
 - **`--state-pruning`** - specifies the state pruning mode. For client versions prior to v0.27.0, the `--state-pruning` flag was named `--pruning`. If running a node with the `--collator` flag, the default is to keep the full state of all blocks. Otherwise, the state is only kept for the last 256 blocks. The available options are:
     - **`archive`** - keeps the full state of all blocks
     - **`<number-of-blocks>`** - specifies a custom number of blocks to keep the state for

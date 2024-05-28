@@ -31,7 +31,7 @@ Make sure you check the [Governance Parameters](/learn/features/governance/#gove
 
 ## Roadmap of a Proposal {: #roadmap-of-a-proposal }
 
-This guide will cover the first few steps outlined in the proposal roadmap, as highlighted in the diagram below. You'll learn how to submit your proposal idea to the [Moonbeam Community Forum](https://forum.moonbeam.foundation){target=\_blank}, submit a preimage, and submit your proposal on-chain using the preimage hash.
+This guide will cover the first few steps outlined in the proposal roadmap, as highlighted in the diagram below. You'll learn how to submit your proposal idea to the [Moonbeam Community Forum](https://forum.moonbeam.network){target=\_blank}, submit a preimage, and submit your proposal on-chain using the preimage hash.
 
 You can find a full explanation in the [Roadmap of a Proposal](/learn/features/governance/#roadmap-of-a-proposal-v2){target=\_blank} section on the Governance overview page.
 
@@ -39,11 +39,11 @@ You can find a full explanation in the [Roadmap of a Proposal](/learn/features/g
 
 ## Submit your Idea to the Community Forum {: #submitting-your-idea-to-the-forum }
 
-Before diving into the steps for submitting a proposal, you'll want to get familiar with [Moonbeam's Community Forum](https://forum.moonbeam.foundation){target=\_blank}. It's highly recommended that you preface any proposal with a post on the forum to solicit feedback. You should allow a period of five days for the community to discuss and provide feedback on the Moonbeam Forum post before proceeding to submit the preimage and proposal.
+Before diving into the steps for submitting a proposal, you'll want to get familiar with [Moonbeam's Community Forum](https://forum.moonbeam.network){target=\_blank}. It's highly recommended that you preface any proposal with a post on the forum to solicit feedback. You should allow a period of five days for the community to discuss and provide feedback on the Moonbeam Forum post before proceeding to submit the preimage and proposal.
 
 To access the Moonbeam Community Forum, you must be a member of the [Moonbeam Discord](https://discord.com/invite/PfpUATX){target=\_blank} community. You can then sign up to get access to the forum using your Discord credentials.
 
-Once you’re logged in, you can explore the latest discussions, join conversations, and create your own discussion for a proposal idea you may have. Before posting or commenting for the first time, be sure to familiarize yourself with the [FAQ](https://forum.moonbeam.foundation/faq){target=\_blank} to learn about the community guidelines.
+Once you’re logged in, you can explore the latest discussions, join conversations, and create your own discussion for a proposal idea you may have. Before posting or commenting for the first time, be sure to familiarize yourself with the [FAQ](https://forum.moonbeam.network/faq){target=\_blank} to learn about the community guidelines.
 
 ![Moonbeam Forum Home](/images/tokens/governance/treasury-proposals/treasury-proposal-1.webp)
 
@@ -120,7 +120,7 @@ Here, you need to provide the following information:
 
 After the transaction is submitted, you will see some confirmations on the top right corner of the Polkadot.js Apps interface. You should also see the proposal listed in the associated Origin section, displaying the proposed action, proposer, and more.
 
-If you login to [Polkassembly](https://moonbeam.polkassembly.io/opengov){target=\_blank} with the same account that you used to create the proposal, you'll be able to edit the description of the proposal to include a link to the proposal discussion on the [Moonbeam Community Forum](https://forum.moonbeam.foundation){target=\_blank}. This is a helpful step because while Polkassembly auto-generates a post for each proposal, it doesn't provide context information on the contents of the proposal.
+If you login to [Polkassembly](https://moonbeam.polkassembly.io/opengov){target=\_blank} with the same account that you used to create the proposal, you'll be able to edit the description of the proposal to include a link to the proposal discussion on the [Moonbeam Community Forum](https://forum.moonbeam.network){target=\_blank}. This is a helpful step because while Polkassembly auto-generates a post for each proposal, it doesn't provide context information on the contents of the proposal.
 
 The proposal is now in the Lead-in Period and is ready to be voted on! In order for your proposal to progress out of the Lead-in Period to the next phase, at a minimum the Prepare Period will need to pass so there is enough time for the proposal to be discussed, there will need to be enough Capacity in the chosen Track, and the Decision Deposit will need to be submitted. The deposit can be paid by any token holder. If there isn't enough Capacity or the Decision Deposit hasn't been submitted, but the Prepare Period has passed, the proposal will remain in the Lead-in Period until all of the criteria is met.
 

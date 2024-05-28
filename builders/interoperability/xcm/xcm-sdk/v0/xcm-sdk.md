@@ -35,7 +35,7 @@ To install the XCM SDK and XCM config packages, you can run the following comman
 npm install @moonbeam-network/xcm-sdk @moonbeam-network/xcm-config
 ```
 
-You need to have peer dependencies, like [Ethers.js](https://docs.ethers.org){target=\_blank} and the [Polkadot.js API](https://polkadot.js.org/docs/api){target=\_blank} installed.
+You need to have peer dependencies, like [Ethers.js](https://docs.ethers.org/v6){target=\_blank} and the [Polkadot.js API](https://polkadot.js.org/docs/api){target=\_blank} installed.
 
 You can install them by running the following command:
 
@@ -48,7 +48,7 @@ npm i @polkadot/api-augment @polkadot/types @polkadot/util @polkadot/util-crypto
 
 ### Creating Signers {: creating-signers }
 
-When interacting with the `deposit` and `withdraw` functions of the XCM SDK, you'll need to provide an [Ethers.js](https://docs.ethers.org){target=\_blank} and [Polkadot.js](https://polkadot.js.org/docs/api){target=\_blank} signer, which will be used to sign and send the transactions. The Ethers signer is used to sign transactions on Moonbeam, and the Polkadot signer will be used to sign transactions on the origin chain you're depositing assets from.
+When interacting with the `deposit` and `withdraw` functions of the XCM SDK, you'll need to provide an [Ethers.js](https://docs.ethers.org/v6){target=\_blank} and [Polkadot.js](https://polkadot.js.org/docs/api){target=\_blank} signer, which will be used to sign and send the transactions. The Ethers signer is used to sign transactions on Moonbeam, and the Polkadot signer will be used to sign transactions on the origin chain you're depositing assets from.
 
 You can pass, for example, a [MetaMask signer into Ethers](https://docs.ethers.org/v6/getting-started/#starting-connecting){target=\_blank} or another compatible wallet. Similarly with Polkadot, you can [pass a compatible wallet to the signer using the `@polkadot/extension-dapp` library](https://polkadot.js.org/docs/extension){target=\_blank}.
 

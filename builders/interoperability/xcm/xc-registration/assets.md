@@ -21,7 +21,7 @@ yarn
 
 ## Register External XC-20s on Moonbeam {: #register-xc-20s }
 
-Registering External XC-20s on Moonbeam is a multi-step process that, at a high level, involves proposing the asset registration on the [Moonbeam Community Forum](https://forum.moonbeam.foundation){target=\_blank} and creating an on-chain governance proposal.
+Registering External XC-20s on Moonbeam is a multi-step process that, at a high level, involves proposing the asset registration on the [Moonbeam Community Forum](https://forum.moonbeam.network){target=\_blank} and creating an on-chain governance proposal.
 
 If a channel between Moonbeam and the origin chain of the asset does not yet exist, one will need to be opened. You can batch the channel-related calls with the asset registration calls, so you only need to submit a single proposal. You'll need to start by creating a couple of forum posts: an [XCM Disclosure](/builders/interoperability/xcm/xc-registration/forum-templates#xcm-disclosures){target=\_blank} post and an [XCM Proposal](/builders/interoperability/xcm/xc-registration/forum-templates#xcm-proposals){target=\_blank} post.
 
@@ -35,7 +35,7 @@ If a channel between the chains already exists, you'll need to create a forum po
 
 ### Create a Forum Post {: #create-a-forum-post }
 
-To create a forum post on the [Moonbeam Community Forum](https://forum.moonbeam.foundation){target=\_blank}, you'll need to make sure that you're adding the post to the correct category and adding relevant content. For general guidelines and a template to follow, please refer to the [Moonbeam Community Forum Templates for XCM Integrations](/builders/interoperability/xcm/xc-registration/forum-templates#){target=\_blank} page.
+To create a forum post on the [Moonbeam Community Forum](https://forum.moonbeam.network){target=\_blank}, you'll need to make sure that you're adding the post to the correct category and adding relevant content. For general guidelines and a template to follow, please refer to the [Moonbeam Community Forum Templates for XCM Integrations](/builders/interoperability/xcm/xc-registration/forum-templates#){target=\_blank} page.
 
 ### Create a Proposal to Register an Asset {: #create-a-proposal }
 
@@ -258,7 +258,7 @@ For testing, please also provide your parachain WSS endpoint so that the [Moonbe
 
 [XC-20s](/builders/interoperability/xcm/xc20/){target=\_blank} are Substrate-based assets with an [ERC-20 interface](/builders/interoperability/xcm/xc20/overview/#the-erc20-interface){target=\_blank}. This means they can be added to MetaMask and composed with any EVM DApp that exists in the ecosystem. The team can connect you with any DApp you find relevant for an XC-20 integration.
 
-If you need DEV tokens (the native token for Moonbase Alpha) to use your XC-20 asset, you can get some from the [Moonbase Alpha Faucet](/builders/get-started/networks/moonbase/#moonbase-alpha-faucet){target=\_blank}, which dispenses {{ networks.moonbase.website_faucet_amount }} every 24 hours. If you need more, feel free to reach out to the team on [Telegram](https://t.me/Moonbeam_Official){target=\_blank} or [Discord](https://discord.gg/PfpUATX){target=\_blank}.
+If you need DEV tokens (the native token for Moonbase Alpha) to use your XC-20 asset, you can get some from the [Moonbase Alpha Faucet](/builders/get-started/networks/moonbase/#moonbase-alpha-faucet){target=\_blank}, which dispenses {{ networks.moonbase.website_faucet_amount }} every 24 hours. If you need more, feel free to reach out to the team on [Telegram](https://t.me/Moonbeam_Official){target=\_blank} or [Discord](https://discord.com/invite/PfpUATX){target=\_blank}.
 
 ### Set XC-20 Precompile Bytecode {: #set-bytecode }
 

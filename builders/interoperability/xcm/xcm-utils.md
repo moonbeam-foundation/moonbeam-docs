@@ -37,7 +37,7 @@ Similar to other [precompile contracts](/builders/pallets-precompiles/precompile
 [XcmUtils.sol](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/xcm-utils/XcmUtils.sol){target=\_blank} is an interface to interact with the precompile.
 
 !!! note
-    The precompile will be updated in the future to include additional features. Feel free to suggest additional utility functions in the [Discord](https://discord.gg/PfpUATX){target=\_blank}.
+    The precompile will be updated in the future to include additional features. Feel free to suggest additional utility functions in the [Discord](https://discord.com/invite/PfpUATX){target=\_blank}.
 
 The interface includes the following functions:
 

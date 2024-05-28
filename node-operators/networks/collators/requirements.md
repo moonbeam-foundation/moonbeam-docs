@@ -26,7 +26,7 @@ There is a level of commitment to the community and the network that is necessar
 - Be active in the community
     - [Join the Discord](/node-operators/networks/collators/overview/#join-discord){target=\_blank} and introduce yourself, provide updates as needed, and help support community members or other collators
 - Create tutorials and educational content
-- [Become a Moonbeam Ambassador](https://moonbeam.network/community/ambassadors){target=\_blank}
+- [Become a Moonbeam Ambassador](https://moonbeam.network/community/ambassador){target=\_blank}
 - Contribute to open-source software relating to the ecosystem
 - Actively participate in governance and vote on proposals
 

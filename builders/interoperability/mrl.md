@@ -41,12 +41,12 @@ While MRL intends to encompass many different GMP providers, Wormhole is the fir
     - Parachain ID
     - The account type that your parachain uses (i.e., AccountId32 or AccountKey20)
     - The addresses and names of the tokens that you have registered
-    - An endpoint that a [Wormhole Connect](https://wormhole.com/connect){target=\_blank} frontend can use
+    - An endpoint that a [Wormhole Connect](https://wormhole.com/products/connect){target=\_blank} frontend can use
     - Why do you want your parachain to be connected through Wormhole Connect?
 
 ### Send Tokens Through Wormhole to a Parachain {: #sending-tokens-through-wormhole }
 
-MRL provides a one-click solution that allows you to define a multilocation as the final destination for your assets arriving from any Wormhole chain with a [Wormhole Connect integration](https://wormhole.com/connect){target=\_blank}.
+MRL provides a one-click solution that allows you to define a multilocation as the final destination for your assets arriving from any Wormhole chain with a [Wormhole Connect integration](https://wormhole.com/products/connect){target=\_blank}.
 
 To send tokens through Wormhole and MRL, user interfaces will use a mixture of the [Wormhole TokenBridge](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/interfaces/ITokenBridge.sol){target=\_blank} and [Moonbeam’s GMP Precompile](/builders/pallets-precompiles/precompiles/gmp/){target=\_blank}.
 

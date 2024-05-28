@@ -128,7 +128,7 @@ At this point, you've signed up and created an application, installed all requir
 
 ### Wrap an EIP-1193 Provider {: #create-a-custom-provider }
 
-You can wrap your AA in a custom provider if you want to interact with an Ethereum library, such as [Ethers.js](https://docs.ethers.org){target=\_blank} or [Web3.js](https://docs.web3js.org){target=\_blank}.
+You can wrap your AA in a custom provider if you want to interact with an Ethereum library, such as [Ethers.js](https://docs.ethers.org/v6){target=\_blank} or [Web3.js](https://docs.web3js.org){target=\_blank}.
 
 To do so, you'll need to take the following steps:
 

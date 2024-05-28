@@ -235,7 +235,7 @@ You'll need to [get the number of delegations with auto-compounding set up](#get
 
 ## How to Stop Delegations {: #how-to-stop-delegations }
 
-As of [runtime version 1001](https://moonbeam.network/announcements/staking-changes-moonriver-runtime-upgrade){target=\_blank}, there have been significant changes to the way users can interact with various staking features. Including the way staking exits are handled.
+As of [runtime version 1001](https://moonbeam.network/news/moonriver-technical-update-staking-changes-as-part-of-runtime-upgrade-1001){target=\_blank}, there have been significant changes to the way users can interact with various staking features. Including the way staking exits are handled.
 
 If you want to make an exit and stop a delegation, you have to first schedule it, wait an exit delay, and then execute the exit request. If you are already a delegator, you can request to stop your delegations using the `scheduleRevokeDelegation` extrinsic to request to unstake your tokens from a specific collator candidate. Scheduling a request does not automatically revoke your delegations, you must wait an [exit delay](/learn/features/staking/#quick-reference){target=\_blank} and then execute the request by using the `executeDelegationRequest` method.
 

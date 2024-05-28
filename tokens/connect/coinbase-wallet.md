@@ -195,6 +195,6 @@ And that's it! Once done, you'll see the below confirmation screen. For question
 ## Additional Resources {: #additional-resources }
 
  - [Coinbase Wallet FAQ](https://wallet.coinbase.com/faq){target=\_blank}
- - [Coinbase Wallet Getting Started Guide](https://www.coinbase.com/wallet/getting-started-mobile){target=\_blank}
+ - [Coinbase Wallet Getting Started Guide](https://www.coinbase.com/wallet/articles/getting-started-mobile){target=\_blank}
 
 --8<-- 'text/_disclaimers/third-party-content.md'

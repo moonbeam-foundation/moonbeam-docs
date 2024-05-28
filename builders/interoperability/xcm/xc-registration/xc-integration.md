@@ -31,7 +31,7 @@ The entire process of getting started with Moonbase Alpha can be summarized as f
 
 1. [Sync a node](#sync-a-node) with the Alphanet relay chain
 2. [Calculate your parachain Sovereign account](#calculate-and-fund-the-parachain-Sovereign-account) on the Alphanet relay chain
-3. Once your node is fully synced, please get in touch with the Moonbeam team on [Telegram](https://t.me/Moonbeam_Official){target=\_blank} or [Discord](https://discord.gg/PfpUATX){target=\_blank}, so the team can onboard your parachain to the relay chain. Provide the following information for onboarding:
+3. Once your node is fully synced, please get in touch with the Moonbeam team on [Telegram](https://t.me/Moonbeam_Official){target=\_blank} or [Discord](https://discord.com/invite/PfpUATX){target=\_blank}, so the team can onboard your parachain to the relay chain. Provide the following information for onboarding:
     - The WASM/Genesis head hash
     - Your parachain ID
     - Your Sovereign account's address. The Moonbeam team will fund your Sovereign account at the relay chain level. This step is required to be able to create the HRMP channel
@@ -123,7 +123,7 @@ Once these steps are succesfully completed, marketing efforts can be coordinated
 
 ### Create Forum Posts {: #create-forum-posts }
 
-To create forum posts on the [Moonbeam Community Forum](https://forum.moonbeam.foundation){target=\_blank}, you'll need to make sure that you're adding the posts to the correct category and adding relevant content. For general guidelines and templates to follow, please refer to the [Moonbeam Community Forum Templates for XCM Integrations](/builders/interoperability/xcm/xc-registration/forum-templates#){target=\_blank} page.
+To create forum posts on the [Moonbeam Community Forum](https://forum.moonbeam.network){target=\_blank}, you'll need to make sure that you're adding the posts to the correct category and adding relevant content. For general guidelines and templates to follow, please refer to the [Moonbeam Community Forum Templates for XCM Integrations](/builders/interoperability/xcm/xc-registration/forum-templates#){target=\_blank} page.
 
 ## Creating HRMP Channels {: #create-an-hrmp-channel }
 

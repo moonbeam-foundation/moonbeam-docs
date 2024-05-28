@@ -7,7 +7,7 @@ description: This guide provides an introduction to the X-Tokens Pallet and expl
 
 ## Introduction {: #introduction }
 
-Building an XCM message for fungible asset transfers is not an easy task. Consequently, there are wrapper functions and pallets that developers can leverage to use XCM features on Polkadot and Kusama. One example of such wrappers is the [X-Tokens](https://github.com/moonbeam-foundation/open-runtime-module-library/tree/master/xtokens){target=\_blank} Pallet, which provides different methods to transfer fungible assets via XCM.
+Building an XCM message for fungible asset transfers is not an easy task. Consequently, there are wrapper functions and pallets that developers can leverage to use XCM features on Polkadot and Kusama. One example of such wrappers is the [X-Tokens](https://github.com/moonbeam-foundation/open-runtime-module-library/blob/master/xtokens){target=\_blank} Pallet, which provides different methods to transfer fungible assets via XCM.
 
 This guide will show you how to leverage the X-Tokens Pallet to send [XC-20s](/builders/interoperability/xcm/xc20/overview/){target=\_blank} from a Moonbeam-based network to other chains in the ecosystem (relay chain/parachains).
 

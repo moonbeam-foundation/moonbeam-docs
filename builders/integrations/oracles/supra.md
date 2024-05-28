@@ -7,7 +7,7 @@ description: Supra's Pull Oracle provides low-latency, on-demand price feed upda
 
 ## Introduction {: #introduction }
 
-[Supra](https://supraoracles.com){target=\_blank} is a novel, high-throughput oracle and intralayer: a vertically integrated toolkit of cross-chain solutions (data oracles, asset bridge, automation network, and more) that interlink all blockchains, public (L1s and L2s) or private (enterprises), including Moonbeam.
+[Supra](https://supra.com){target=\_blank} is a novel, high-throughput oracle and intralayer: a vertically integrated toolkit of cross-chain solutions (data oracles, asset bridge, automation network, and more) that interlink all blockchains, public (L1s and L2s) or private (enterprises), including Moonbeam.
 
 Supra provides decentralized oracle price feeds that can be used for on-chain and off-chain use cases such as spot and perpetual DEXes, lending protocols, and payment protocols.
 
@@ -56,11 +56,11 @@ Try out a basic example of how to fetch price data using Supra's pull model with
 
 Still looking for answers? Supra's got them! Check out all the ways you can reach the Supra team:
 
-- Visit [Supra's websites at supraoracles.com](https://supraoracles.com){target=\_blank}
-- Read their [docs](https://supraoracles.com/docs/overview){target=\_blank}
+- Visit [Supra's websites at supraoracles.com](https://supra.com){target=\_blank}
+- Read their [docs](https://supra.com/docs/overview){target=\_blank}
 - Chat with them on [Telegram](https://t.me/SupraOracles){target=\_blank}
 - Follow them on [Twitter](https://twitter.com/SupraOracles){target=\_blank}
-- Join their [Discord](https://discord.gg/supraoracles){target=\_blank}
+- Join their [Discord](https://discord.com/invite/supraoracles){target=\_blank}
 - Check out their [Youtube](https://www.youtube.com/SupraOfficial){target=\_blank}
 
 --8<-- 'text/_disclaimers/third-party-content.md'
