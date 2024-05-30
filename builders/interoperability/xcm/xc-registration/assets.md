@@ -144,11 +144,11 @@ To create a batch transaction that also sets the units per second or revert code
     !!! note
         **This flag is not necessary for proposals on Moonbeam** as it includes a `system.setStorage` call that the [OpenGov](/learn/features/governance#opengov) General Admin Origin can't execute. The dummy EVM bytecode can be set later with a call to the [Precompile Registry precompile](/builders/pallets-precompiles/precompiles/registry/){target=\_blank}, which means that you don't need to worry about going through governance to set the revert code! Please check out the [Set XC-20 Precompile Bytecode](#set-bytecode) section to learn how to set the dummy bytecode.
 
-As a practical example, the following command would generate the encoded calldata to register an asset from parachain 888 that has a general key of `1`:
+As a practical example, the following command would generate the encoded calldata to register an asset from parachain 888 that has a general index of `1`:
 
 ```bash
 yarn register-asset -w wss://wss.api.moonbase.moonbeam.network \
---asset '{ "parents": 1, "interior": { "X2": [{ "Parachain": 888 }, {"GeneralKey": "0x000000000000000001"}]}}' \
+--asset '{ "parents": 1, "interior": { "X2": [{ "Parachain": 888 }, {"generalIndex": "0x000000000000000001"}]}}' \
 --symbol "xcEXTN" --decimals 18 \
 --name "Example Token" \
 --units-per-second 20070165297881393351 \ 
@@ -158,9 +158,9 @@ yarn register-asset -w wss://wss.api.moonbase.moonbeam.network \
 Its output would look like the following:
 
 ```text
-Encoded proposal for registerAsset is 0x1f0000010200e10d0624000000000000000001344578616d706c6520546f6b656e1878634558544e12000000000000000000000000000000000000
-Encoded proposal for setAssetUnitsPerSecond is 0x1f0100010200e10d0624000000000000000001c7a8978b008d8716010000000000000026000000
-Encoded calldata for tx is 0x0102081f0000010200e10d0624000000000000000001344578616d706c6520546f6b656e1878634558544e120000000000000000000000000000000000001f0100010200e10d0624000000000000000001c7a8978b008d8716010000000000000026000000
+Encoded Call Data for registerAsset is 0x1f0000010200e10d0504344578616d706c6520546f6b656e1878634558544e12000000000000000000000000000000000000
+Encoded Call Data for setAssetUnitsPerSecond is 0x1f0100010200e10d0504c7a8978b008d8716010000000000000039000000
+Encoded Call Data for batched is 0x0100081f0000010200e10d0504344578616d706c6520546f6b656e1878634558544e120000000000000000000000000000000000001f0100010200e10d0504c7a8978b008d8716010000000000000039000000
 ```
 
 ### Programmatically Submit the Preimage and Proposal for Asset Registration {: #submit-preimage-proposal }
