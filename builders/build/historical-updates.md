@@ -211,7 +211,7 @@ For more information, you can review the [relative Frontier PR](https://github.c
 
 ***
 
-#### Ethereum Transations Duplicated in Storage {: #ethereum-transactions-duplicated-in-storage }
+#### Ethereum Transactions Duplicated in Storage {: #ethereum-transactions-duplicated-in-storage }
 
 An upstream bug was introduced to Frontier in the Ethereum Pallet, causing pending transactions that existed during a runtime upgrade to be duplicated in storage across two different blocks. This only impacted the first two blocks after the runtime upgrade in which this bug was introduced.
 
