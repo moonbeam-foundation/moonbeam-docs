@@ -46,9 +46,6 @@ The basic JSON-RPC methods from the Ethereum API supported by Moonbeam are:
 - **[eth_getUncleByBlockHashAndIndex](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_getunclebyblockhashandindex){target=\_blank}** — returns `null` by default
 - **[eth_getUncleByBlockNumberAndIndex](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_getunclebyblocknumberandindex){target=\_blank}** — returns `null` by default
 - **[eth_getLogs](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_getlogs){target=\_blank}** — returns an array of all logs matching a given filter object
-- **[eth_getWork](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_getwork){target=\_blank}** — returns `["0x0","0x0","0x0"]` by default
-- **[eth_submitWork](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_submitwork){target=\_blank}** — not supported on Moonbeam
-- **[eth_submitHashrate](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_submithashrate){target=\_blank}** — not supported on Moonbeam
 - **[eth_newFilter](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_newfilter){target=\_blank}** — creates a filter object based on the input provided. Returns a filter ID
 - **[eth_newBlockFilter](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_newblockfilter){target=\_blank}** — creates a filter in the node to notify when a new block arrives. Returns a filter id
 - **[eth_getFilterChanges](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_getfilterchanges){target=\_blank}** — polling method for filters (see methods above). Returns an array of logs that occurred since the last poll
