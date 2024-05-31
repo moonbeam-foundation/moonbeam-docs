@@ -1,7 +1,7 @@
 <div id="termynal" data-termynal>
   <span data-ty="input"><span class="file-path"></span>node_modules/.bin/substrate-api-sidecar</span>
   <br>
-  <span data-ty>v0.37.3: Pulling from moonbeamfoundation/moonbeam
+  <span data-ty>v0.38.0: Pulling from moonbeamfoundation/moonbeam
     <br>SAS:
         <br>📦 LOG:
         <br>    ✅ LEVEL: "info"
@@ -9,7 +9,7 @@
         <br>    ✅ FILTER_RPC: false
         <br>    ✅ STRIP_ANSI: false
         <br>    ✅ WRITE: false
-        <br>    ✅ WRITE_PATH: "/Users/wuzhongzhu/Documents/Work/Foundry/temp/node_modules/@substrate/api-sidecar/build/src/logs"
+        <br>    ✅ WRITE_PATH: "/temp/node_modules/@substrate/api-sidecar/build/src/logs"
         <br>    ✅ WRITE_MAX_FILE_SIZE: 5242880
         <br>    ✅ WRITE_MAX_FILES: 5
         <br>📦 SUBSTRATE:

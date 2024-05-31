@@ -1,12 +1,12 @@
 <div id="termynal" data-termynal>
   <span data-ty="input"><span class="file-path"></span>docker run --rm --name moonbeam_development --network host \
-    <br> moonbeamfoundation/moonbeam:v0.37.3 \
+    <br> moonbeamfoundation/moonbeam:v0.38.0 \
     <br> --dev --rpc-external
   </span>
   <br>
   <span data-ty>CLI parameter `--execution` has no effect anymore and will be removed in the future!
     <br> 2024-04-29 06:09:29 Moonbeam Parachain Collator
-    <br> 2024-04-29 06:09:29 ✌️  0.37.3-be5032c7749
+    <br> 2024-04-29 06:09:29 ✌️  0.38.0-be5032c7749
     <br> 2024-04-29 06:09:29 ❤️  by PureStake, 2019-2024
     <br> 2024-04-29 06:09:29 📋 Chain specification: Moonbase Development Testnet
     <br> 2024-04-29 06:09:29 🏷  Node name: black-and-white-sticks-9174
