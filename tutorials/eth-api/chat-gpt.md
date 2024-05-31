@@ -134,7 +134,7 @@ If the problem is clear, ChatGPT will typically tell you exactly what's wrong an
 
 If you try all of the steps it recommends and your issue persists, you can simply let ChatGPT know, and it will continue to help you troubleshoot. As a follow-up, it may ask you to provide code snippets or system configuration information to better help you solve the problem at hand.
 
-[A reentrancy bug](https://web.archive.org/web/20221121064906/https://consensys.github.io/smart-contract-best-practices/attacks/reentrancy/){target=\_blank} was the root of the flaw that brought down the [original DAO on Ethereum in 2016](https://en.wikipedia.org/wiki/The_DAO_(organization)){target=\_blank}. Let's prompt ChatGPT with a buggy function that includes a reentrancy vulnerability and see if ChatGPT is able to spot the problem. We'll go ahead and copy and paste the below insecure code snippet into ChatGPT and ask if there is anything wrong with it.
+[A reentrancy bug](https://web.archive.org/web/20221121064906/https://consensys.github.io/smart-contract-best-practices/attacks/reentrancy/){target=\_blank} was the root of the flaw that brought down the [original DAO on Ethereum in 2016](https://en.wikipedia.org/wiki/The_DAO){target=\_blank}. Let's prompt ChatGPT with a buggy function that includes a reentrancy vulnerability and see if ChatGPT is able to spot the problem. We'll go ahead and copy and paste the below insecure code snippet into ChatGPT and ask if there is anything wrong with it.
 
 ```solidity
 // INSECURE
