@@ -197,7 +197,7 @@ For more information, you can review the [relative PR on GitHub](https://github.
 
 #### Incorrect State Root Hash {: #incorrect-state-root-hash }
 
-The state root hash was miscalculated for non-legacy transactions as the transaction-type byte was not considered. With the support of [EIP-2930](https://eips.ethereum.org/EIPS/eip-2930/){target=\_blank} and [EIP-1559](https://eips.ethereum.org/EIPS/eip-1559/){target=\_blank}, the transaction types intoduced are `0x01` (1) and `0x02` (2), respectively. These transaction types were omitted from the state root hash calculation.
+The state root hash was miscalculated for non-legacy transactions as the transaction-type byte was not considered. With the support of [EIP-2930](https://eips.ethereum.org/EIPS/eip-2930/){target=\_blank} and [EIP-1559](https://eips.ethereum.org/EIPS/eip-1559/){target=\_blank}, the transaction types introduced are `0x01` (1) and `0x02` (2), respectively. These transaction types were omitted from the state root hash calculation.
 
 This bug existed during the following runtimes and block ranges:
 
