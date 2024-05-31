@@ -1,7 +1,7 @@
 <div id="termynal" data-termynal>
   <span data-ty="input"><span class="file-path"></span>docker run --network host  \
     <br>-u $(id -u ${USER}):$(id -g ${USER}) \
-        moonbeamfoundation/moonbeam-tracing:v0.37.3-2902-latest \
+        moonbeamfoundation/moonbeam-tracing:v0.38.0-3000-latest \
     <br>--name="Moonbean-Tracing-Tutorial" \
     <br>--unsafe-rpc-external \
     <br>--ethapi=debug,trace,txpool \
@@ -12,7 +12,7 @@
   <br>
   <span data-ty>CLI parameter `--execution` has no effect anymore and will be removed in the future!
     <br> 2024-04-29 13:52:00 Moonbeam Parachain Collator
-    <br> 2024-04-29 13:52:00 ✌️  version 0.37.3-be5032c7749
+    <br> 2024-04-29 13:52:00 ✌️  version 0.38.0-be5032c7749
     <br> 2024-04-29 13:52:00 ❤️  by PureStake, 2019-2024
     <br> 2024-04-29 13:52:00 📋 Chain specification: Moonbase Development Testnet
     <br> 2024-04-29 13:52:00 🏷  Node name: Moonbean-Tracing-Tutorial
