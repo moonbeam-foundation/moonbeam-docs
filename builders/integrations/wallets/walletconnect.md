@@ -88,7 +88,7 @@ If you already have a DApp with WalletConnect support, and just want to add Moon
 
 ## Checking Prerequisites {: #checking-prerequisites }
 
-Throughout this guide, you'll use a simple front-end DApp built with [React](https://reactjs.org){target=\_blank} to connect to a mobile wallet via WalletConnect. So you will need a React project and the MetaMask mobile app installed for testing purposes. A template has been created that includes the required packages, some basic styling, and placeholders where logic and UI elements will need to be added. However, if you would to use your own DApp, you'll need to install the following required dependencies:
+Throughout this guide, you'll use a simple front-end DApp built with [React](https://react.dev){target=\_blank} to connect to a mobile wallet via WalletConnect. So you will need a React project and the MetaMask mobile app installed for testing purposes. A template has been created that includes the required packages, some basic styling, and placeholders where logic and UI elements will need to be added. However, if you would to use your own DApp, you'll need to install the following required dependencies:
 
 ```bash
 npm install ethers @walletconnect/client @walletconnect/qrcode-modal
@@ -201,7 +201,7 @@ const killSession = () => {
 };
 ```
 
-Now that you have all of the logic required to handle the disconnection, you will need the **Disconnect** button that `onClick` will call the `killSession` function. Since you only want to display the **Disconnect** button once a user is connected, you can use [conditional renderering](https://reactjs.org/docs/conditional-rendering.html){target=\_blank}. Conditional rendering allows you to check against certain variables and if a condition applies you can render one element or another. In this case, if you are not fetching the initial connection and the connector exists, you can render the **Disconnect** button, otherwise render the **Connect Wallet** button. You can replace the existing `<Button>` with the following:
+Now that you have all of the logic required to handle the disconnection, you will need the **Disconnect** button that `onClick` will call the `killSession` function. Since you only want to display the **Disconnect** button once a user is connected, you can use [conditional renderering](https://react.dev/learn/conditional-rendering){target=\_blank}. Conditional rendering allows you to check against certain variables and if a condition applies you can render one element or another. In this case, if you are not fetching the initial connection and the connector exists, you can render the **Disconnect** button, otherwise render the **Connect Wallet** button. You can replace the existing `<Button>` with the following:
 
 ```js
 {
@@ -221,7 +221,7 @@ Now when a user clicks on **Disconnect** the DApp will be reset, the connection 
 
 As previously mentioned, a user can also disconnect and end the session from within their mobile wallet. If this happens, WalletConnect emits a `disconnect` event that the DApp will need to listen for. Upon receiving the `disconnect` event, the state will need to be reset back to the initial state. In this scenario, there is no reason to use `killSession` to end the session on the mobile wallet as the user has already ended the session on their mobile wallet.
 
-You'll notice that in the template, the `disconnect` event is listened for within the [React Effect Hook](https://reactjs.org/docs/hooks-effect.html){target=\_blank}. The effect hook lets you perform side effects in function components such as fetching data and setting up a subscription.
+You'll notice that in the template, the `disconnect` event is listened for within the [React Effect Hook](https://react.dev/learn/synchronizing-with-effects){target=\_blank}. The effect hook lets you perform side effects in function components such as fetching data and setting up a subscription.
 
 In the `disconnect` event callback, you can add the `resetApp` function so that whenever a `disconnect` event is emitted, you reset the state of your DApp. 
 
@@ -349,7 +349,7 @@ You can test this logic out by refreshing the page after establishing a connecti
 
 ## Add Account Balance {: #add-account-balance }
 
-Depending on your needs, you might want to show the connected account's balance for the connected network. To do so, you can use [Ethers](https://docs.ethers.org){target=\_blank} to create a provider which can then be used to fetch the balance of the connected account.
+Depending on your needs, you might want to show the connected account's balance for the connected network. To do so, you can use [Ethers](https://docs.ethers.org/v6){target=\_blank} to create a provider which can then be used to fetch the balance of the connected account.
 
 You can start by adding another state variable for `balance`.
 

@@ -39,7 +39,7 @@ The end-to-end flow for linking smart contract activity to the DApp Directory is
 3. Periodically, the entire list of labeled contracts is exported and transmitted to Web3Go to be ingested
 4. Every hour, Web3Go loads smart contract activity within Moonbeam and Moonriver and runs a job to index this data by the labels
 
-To get your project's smart contracts properly labeled on [Moonscan](https://moonscan.io){target=\_blank}, please refer to Web3Go's documentation on the [Labeling Structure](https://web3go.gitbook.io/moonscan-smart-contract-label-for-projects/labeling-structure){target=\_blank} and [How to Submit Contract Information](https://web3go.gitbook.io/moonscan-smart-contract-label-for-projects/how-to-submit-contract-information){target=\_blank} on Moonscan.
+To get your project's smart contracts properly labeled on [Moonscan](https://moonscan.io){target=\_blank}, please refer to Web3Go's documentation on the [Labeling Structure](https://dinlol.gitbook.io/moonscan-smart-contract-label-for-projects/labeling-structure){target=\_blank} and [How to Submit Contract Information](https://dinlol.gitbook.io/moonscan-smart-contract-label-for-projects/how-to-submit-contract-information){target=\_blank} on Moonscan.
 
 Once you've labeled your smart contracts and are ready to submit your project to the DApp Directory, configuring the Directory to utilize your smart contract data becomes straightforward. You'll only need the **Project** component of your labeled contracts.
 
@@ -302,7 +302,7 @@ As your project evolves, you may need to update your project's listing or images
 
 If you are no longer using a logo or screenshot, please remember to remove it from the `logos` or `screenshots` directory.
 
-Once your changes have been made, you must follow the same instructions in the [Submit a Pull Request](#submit-a-pull-request) section so the changes can be [reviewed](#review-process) by the Moonbeam Foundation. Please note that pull requests are reviewed on a bi-weekly basis, so if the update is urgent, you can create a [forum post](https://forum.moonbeam.foundation){target=\_blank} asking for assistance.
+Once your changes have been made, you must follow the same instructions in the [Submit a Pull Request](#submit-a-pull-request) section so the changes can be [reviewed](#review-process) by the Moonbeam Foundation. Please note that pull requests are reviewed on a bi-weekly basis, so if the update is urgent, you can create a [forum post](https://forum.moonbeam.network){target=\_blank} asking for assistance.
 
 <div class="page-disclaimer">
     --8<-- 'text/_disclaimers/user-generated-content.md'

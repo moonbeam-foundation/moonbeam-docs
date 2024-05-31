@@ -19,7 +19,7 @@ This quick-start guide will show you how to create Substrate and EVM projects wi
 
 To get started with Subsquid, you'll need to have the following:
 
-- [Node.js](https://nodejs.org/en/download){target=\_blank} version 16 or newer
+- [Node.js](https://nodejs.org/en/download/package-manager){target=\_blank} version 16 or newer
 - [Docker](https://docs.docker.com/get-docker){target=\_blank}
 - [Squid CLI](https://docs.subsquid.io/squid-cli/installation){target=\_blank}
 

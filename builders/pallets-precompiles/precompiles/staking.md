@@ -278,7 +278,7 @@ Once you have the necessary information, you can take the following steps in Rem
 
 ### Revoke a Delegation {: #revoke-a-delegation }
 
-As of [runtime version 1001](https://moonbeam.network/announcements/staking-changes-moonriver-runtime-upgrade){target=\_blank}, there have been significant changes to the way users can interact with various staking features. Including the way staking exits are handled.
+As of [runtime version 1001](https://moonbeam.network/news/moonriver-technical-update-staking-changes-as-part-of-runtime-upgrade-1001){target=\_blank}, there have been significant changes to the way users can interact with various staking features. Including the way staking exits are handled.
 
 Exits now require you to schedule a request to exit or revoke a delegation, wait a delay period, and then execute the request.
 

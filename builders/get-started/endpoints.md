@@ -40,11 +40,11 @@ You can create your own endpoint suitable for development or production use usin
 
 ### 1RPC {: #1rpc}
 
-[1RPC](https://1rpc.io){target=\_blank} is a free and private RPC relay that protects user privacy by preventing data collection, user tracking, phishing attempts from other parties. It tunnels user requests via distributed relays to other RPC providers whilst preventing the tracking of user metadata such as IP address, device information and wallet linkability with secure enclave technology.
+[1RPC](https://www.1rpc.io){target=\_blank} is a free and private RPC relay that protects user privacy by preventing data collection, user tracking, phishing attempts from other parties. It tunnels user requests via distributed relays to other RPC providers whilst preventing the tracking of user metadata such as IP address, device information and wallet linkability with secure enclave technology.
 
 1RPC is created to be an open initiative from the blockchain infrastructure community. They are motivated by a common good mission to help build a better Web3 and encourage anyone who values user privacy to join this open collaboration.
 
-Head over to [1RPC](https://1rpc.io){target=\_blank} official site to set it up!
+Head over to [1RPC](https://www.1rpc.io){target=\_blank} official site to set it up!
 
 ![1RPC](/images/builders/get-started/endpoints/endpoints-1.webp)
 
@@ -101,7 +101,7 @@ To create a custom OnFinality endpoint, go to [OnFinality](https://onfinality.io
 
 ### Pocket Network {: #pokt }
 
-[Pocket Network](https://pokt.network){target=\_blank} is a decentralized node service that provides a free personal endpoint to DApps on Moonbeam & Moonriver.  
+[Pocket Network](https://www.pokt.network){target=\_blank} is a decentralized node service that provides a free personal endpoint to DApps on Moonbeam & Moonriver.  
 
 To get your own endpoint, go to [Pocket Network](https://mainnet.portal.pokt.network/#){target=\_blank} and sign up or log in. From the **Portal**, you can:  
 
@@ -120,7 +120,7 @@ You don't have to generate a new DApp for every endpoint! You can add a new chai
 
 ### UnitedBloc {: #unitedbloc }
 
-[UnitedBloc](https://medium.com/@daniel_96988/unitedbloc-rpc-c84972f69457){target=\_blank} is a collective of community collators from both Moonbeam and Moonriver. To provide value for the community, they offer public RPC services for the Moonbeam, Moonriver, and Moonbase Alpha networks.
+[UnitedBloc](https://medium.com/unitedbloc/unitedbloc-rpc-c84972f69457){target=\_blank} is a collective of community collators from both Moonbeam and Moonriver. To provide value for the community, they offer public RPC services for the Moonbeam, Moonriver, and Moonbase Alpha networks.
 
 The public endpoint service is served by eight geographically distributed bare metal servers globally balanced via GeoDNS and regionally load balanced with NGINX. As the service is public, there are no sign-up or API keys to manage.
 
@@ -140,9 +140,9 @@ The collators involved in this initiative are:
  - StakeSquid (GE)
  - TrueStaking (US)
 
-They also provide a [public Grafana dashboard](https://tinyurl.com/UnitedBloc-Dashboard){target=\_blank} with some cool metrics.
+They also provide a [public Grafana dashboard](https://monitoring.unitedbloc.com:3030/public-dashboards/7444d2ab76ee45eda181618b0f0ecb98?orgId=1){target=\_blank} with some cool metrics.
 
-Check the [public endpoints section](#public-endpoints) to get the relevant URL. You can contact them via their [Telegram channel](https://t.me/+tRvy3z5-Kp1mMGMx){target=\_blank}, or read more about their initiative on their [blogpost page](https://medium.com/@daniel_96988/unitedbloc-rpc-c84972f69457){target=\_blank}.
+Check the [public endpoints section](#public-endpoints) to get the relevant URL. You can contact them via their [Telegram channel](https://t.me/+tRvy3z5-Kp1mMGMx){target=\_blank}, or read more about their initiative on their [blogpost page](https://medium.com/unitedbloc/unitedbloc-rpc-c84972f69457){target=\_blank}.
 
 <!-- ### Ankr {: #ankr}
 

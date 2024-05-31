@@ -7,7 +7,7 @@ description:  Learn how to create common OpenZeppelin contracts such as ERC-20, 
 
 ## Introduction {: #introduction }
 
-[OpenZeppelin](https://openzeppelin.com){target=\_blank} contracts and libraries have become a standard in the industry. They help developers minimize risk, as their open-source code templates are battle-tested for Ethereum and other blockchains. Their code includes the most used implementations of ERC standards and add-ons and often appears in guides and tutorials around the community.
+[OpenZeppelin](https://www.openzeppelin.com){target=\_blank} contracts and libraries have become a standard in the industry. They help developers minimize risk, as their open-source code templates are battle-tested for Ethereum and other blockchains. Their code includes the most used implementations of ERC standards and add-ons and often appears in guides and tutorials around the community.
 
 Because Moonbeam is fully Ethereum compatible, all of OpenZeppelin's contracts and libraries can be implemented without any changes.
 

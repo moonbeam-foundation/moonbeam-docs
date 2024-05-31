@@ -112,7 +112,7 @@ The transaction origin, or `tx.origin`, is the address of the externally owned a
 For example, if Alice calls a function in contract A that then calls a function in contract B, when looking at the call to contract B, the `tx.origin` is Alice and the `msg.sender` is contract A.
 
 !!! note
-    As a [best practice](https://consensys.github.io/smart-contract-best-practices/development-recommendations/solidity-specific/tx-origin){target=\_blank}, `tx.origin` should not be used for authorization. Instead, you should use `msg.sender`.
+    As a [best practice](https://consensys.github.io/smart-contract-best-practices/development-recommendations/solidity-specific/tx-origin/){target=\_blank}, `tx.origin` should not be used for authorization. Instead, you should use `msg.sender`.
 
 You can use the [require function](https://docs.soliditylang.org/en/v0.8.17/control-structures.html#panic-via-assert-and-error-via-require){target=\_blank} to compare the `tx.origin` and `msg.sender`. If they are the same address, you're ensuring that only EOAs can call the function. If the `msg.sender` is a contract address, an exception will be thrown.
 

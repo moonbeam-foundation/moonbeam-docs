@@ -9,7 +9,7 @@ Moonbeam makes it easy for developers to build smart contracts that connect acro
 
 Two key terms that will come up frequently in this guide are XCM and GMP. [XCM](/builders/interoperability/xcm){target=\_blank} refers to cross-consensus messaging, and it's Polkadot's native interoperability language that facilitates communication between Polkadot blockchains. You can read more about the [standardized XCM message format](https://wiki.polkadot.network/docs/learn-xcm){target=\_blank} and [How to Get Started Building with XCM](/builders/interoperability/xcm){target=\_blank}.
 
-[GMP](https://moonbeam.network/blog/what-is-gmp){target=\_blank}, or general message passing, refers to the sending and receiving of messages within decentralized blockchain networks. While XCM is a type of general message passing, GMP colloquially refers to cross-chain communication between Moonbeam and blockchains outside of Polkadot. Similarly, in this guide, XCM refers to cross-chain messaging within Polkadot, and GMP refers to cross-chain messaging between Moonbeam and other ecosystems outside of Polkadot.
+[GMP](https://moonbeam.network/news/seamless-blockchain-interoperability-the-power-of-general-message-passing-gmp){target=\_blank}, or general message passing, refers to the sending and receiving of messages within decentralized blockchain networks. While XCM is a type of general message passing, GMP colloquially refers to cross-chain communication between Moonbeam and blockchains outside of Polkadot. Similarly, in this guide, XCM refers to cross-chain messaging within Polkadot, and GMP refers to cross-chain messaging between Moonbeam and other ecosystems outside of Polkadot.
 
 ## Quick Reference {: #quick-reference }  
 

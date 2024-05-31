@@ -16,7 +16,7 @@ In Moonbeam, users are able to create and vote on proposals using their H160 add
 This guide will outline the process, with step-by-step instructions, of how to vote on referenda in Governance v2: OpenGov. This guide will show you how to vote on Moonbase Alpha, but it can be easily adapted for Moonbeam and Moonriver.
 
 !!! note
-    This page goes through the mechanics of how to vote at a more technical level. Token holders can leverage platforms such as [Polkassembly](https://moonbeam.network/tutorial/participate-in-moonbeam-governance-with-polkassembly){target=\_blank} to vote using a more friendly user interface.
+    This page goes through the mechanics of how to vote at a more technical level. Token holders can leverage platforms such as [Polkassembly](https://moonbeam.network/news/participate-in-opengov-with-polkassembly-on-moonbeam){target=\_blank} to vote using a more friendly user interface.
 
 ## Definitions {: #definitions }
 
@@ -66,9 +66,9 @@ You can find a full explanation of the [happy path for an OpenGov proposal on th
 
 ## Forum Discussion {: #forum-discussion}
 
-A vote on a democracy referendum is a binary outcome. However, a token holder's opinion is often more nuanced than yes or no, which is why it's strongly recommended that you preface any proposal with a post on [Moonbeam's Community Forum](https://forum.moonbeam.foundation){target=\_blank}.
+A vote on a democracy referendum is a binary outcome. However, a token holder's opinion is often more nuanced than yes or no, which is why it's strongly recommended that you preface any proposal with a post on [Moonbeam's Community Forum](https://forum.moonbeam.network){target=\_blank}.
 
-The forum serves the critical role of providing a platform for discussion and allowing proposers to receive feedback from the community prior to an on-chain action. Creating a post on the forum is quick and easy, as shown in the [Using the Moonbeam Community Forum](https://moonbeam.network/blog/using-moonbeam-community-forum){target=\_blank} guide. There are categories corresponding to each type of proposal, including democracy, treasury, and grant proposals. While this step is optional, explaining the details of the proposal and following up with any questions raised may increase the chances of the initiative being accepted and subsequently passed by the community.
+The forum serves the critical role of providing a platform for discussion and allowing proposers to receive feedback from the community prior to an on-chain action. Creating a post on the forum is quick and easy, as shown in the [Using the Moonbeam Community Forum](https://moonbeam.network/news/using-the-moonbeam-community-forum-to-submit-a-treasury-proposal){target=\_blank} guide. There are categories corresponding to each type of proposal, including democracy, treasury, and grant proposals. While this step is optional, explaining the details of the proposal and following up with any questions raised may increase the chances of the initiative being accepted and subsequently passed by the community.
 
 ![Moonbeam's Community Forum home](/images/tokens/governance/voting/vote-1.webp)
 

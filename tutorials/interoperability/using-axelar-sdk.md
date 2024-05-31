@@ -18,7 +18,7 @@ In this tutorial, we'll mint an NFT on a remote chain by using Axelar to send a 
 
 ## Axelar Refresher {: #axelar-refresher }
 
-[Axelar](https://axelar.network){target=\_blank} is a blockchain that connects blockchains, delivering secure cross-chain communication. Every validator in Axelar’s network runs light nodes on chains that Axelar supports. In this demo, we'll interact with two Axelar contracts, one of which is the [Axelar Gateway contract](https://github.com/axelarnetwork/axelar-cgp-solidity/blob/main/contracts/AxelarGateway.sol){target=\_blank}. The dynamic validator set uses this contract to monitor activity on each chain. Their role is crucial for achieving consensus, ensuring that messages are accurately transmitted from one chain to another
+[Axelar](https://www.axelar.network){target=\_blank} is a blockchain that connects blockchains, delivering secure cross-chain communication. Every validator in Axelar’s network runs light nodes on chains that Axelar supports. In this demo, we'll interact with two Axelar contracts, one of which is the [Axelar Gateway contract](https://github.com/axelarnetwork/axelar-cgp-solidity/blob/main/contracts/AxelarGateway.sol){target=\_blank}. The dynamic validator set uses this contract to monitor activity on each chain. Their role is crucial for achieving consensus, ensuring that messages are accurately transmitted from one chain to another
 
 ![Axelar Diagram](/images/tutorials/interoperability/axelar-sdk/axelar-1.webp)
 

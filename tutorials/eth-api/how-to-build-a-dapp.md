@@ -23,7 +23,7 @@ To get started, you should have the following:
 
  - A Moonbase Alpha account funded with DEV. 
   --8<-- 'text/_common/faucet/faucet-list-item.md'
- - [Node.js](https://nodejs.org/en/download){target=\_blank} version 16 or newer installed
+ - [Node.js](https://nodejs.org/en/download/package-manager){target=\_blank} version 16 or newer installed
  - [VS Code](https://code.visualstudio.com){target=\_blank} with Juan Blanco's [Solidity extension](https://marketplace.visualstudio.com/items?itemName=JuanBlanco.solidity){target=\_blank} is a recommended IDE
  - Understanding of JavaScript and React
  - Novice familiarity with Solidity. If you are not familiar with writing Solidity, there are many resources out there, including [Solidity by Example](https://solidity-by-example.org){target=\_blank}. A 15-minute skim should suffice for this tutorial
@@ -1121,7 +1121,7 @@ Of course, there are more advanced (but optional) components of DApps that have 
 - [Oracles](/builders/integrations/oracles/){target=\_blank} — third-party services that provide external data to smart contracts within blockchains
 - [Indexing protocols](/builders/integrations/indexers/){target=\_blank} — middleware that processes and organizes blockchain data, allowing it to be efficiently queried
 
-An excellent [Web2 to Web3 blogpost](https://moonbeam.network/blog/web2-vs-web3-development-heres-what-you-need-to-know-to-make-the-leap-to-blockchain){target=\_blank} is available if you are interested in hearing about them in depth.  
+An excellent [Web2 to Web3 blogpost](https://moonbeam.network/news/web2-vs-web3-development-here-s-what-you-need-to-know-to-make-the-leap-to-blockchain){target=\_blank} is available if you are interested in hearing about them in depth.  
 
 Hopefully, by reading this guide, you'll be well on your way to creating novel DApps on Moonbeam!
 

@@ -16,8 +16,7 @@ You can visit DIA's documentation to learn how to [Request a Custom Oracle](http
 --8<-- 'text/_disclaimers/third-party-content-intro.md'
 
 ## Token Price Feeds {: #token-price-feeds }
-
-DIA token price feeds provide smart contracts with real-time price information for [3,000+ cryptocurrencies](https://diadata.org/app/price){target=\_blank}, sourced transparently from [90+ trusted, high-volume DEXs and CEXs](https://diadata.org/app/source/defi){target=\_blank}.
+DIA token price feeds provide smart contracts with real-time price information for [3,000+ cryptocurrencies](https://www.diadata.org/app/price){target=\_blank}, sourced transparently from [90+ trusted, high-volume DEXs and CEXs](https://www.diadata.org/app/source/defi){target=\_blank}.
 
 ### Moonbeam Demo Price Oracles {: #moonbeam-demo-price-oracles }
 
@@ -74,9 +73,9 @@ contract DIAOracleV2 {
 
 The price feeds included with the demo oracles are:
 
-- [DIA/USD](https://diadata.org/app/price/asset/Ethereum/0x84cA8bc7997272c7CfB4D0Cd3D55cd942B3c9419){target=\_blank}
-- [BTC/USD](https://diadata.org/app/price/asset/Bitcoin/0x0000000000000000000000000000000000000000){target=\_blank}
-- [USDC/USD](https://diadata.org/app/price/asset/Ethereum/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48){target=\_blank}
+- [DIA/USD](https://www.diadata.org/app/price/asset/Ethereum/0x84cA8bc7997272c7CfB4D0Cd3D55cd942B3c9419){target=\_blank}
+- [BTC/USD](https://www.diadata.org/app/price/asset/Bitcoin/0x0000000000000000000000000000000000000000){target=\_blank}
+- [USDC/USD](https://www.diadata.org/app/price/asset/Ethereum/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48){target=\_blank}
 
 ### How to Access DIA Oracles {: #how-to-access-dia-oracles }
 
@@ -169,7 +168,7 @@ You can refer to DIA's documentation on [Rest API Endpoints](https://docs.diadat
 
 ## NFT Floor Price Feeds {: #nft-floor-price-feeds }
 
-DIA NFT floor price feeds provide smart contracts with real-time price information for [18,000+ NFT collections](https://diadata.org/app/floor-price){target=\_blank}, sourced on-chain with 100% transparency from [multiple cross-chain NFT marketplaces](https://diadata.org/app/source/nft){target=\_blank}.
+DIA NFT floor price feeds provide smart contracts with real-time price information for [18,000+ NFT collections](https://www.diadata.org/app/floor-price){target=\_blank}, sourced on-chain with 100% transparency from [multiple cross-chain NFT marketplaces](https://www.diadata.org/app/source/nft){target=\_blank}.
 
 Please refer to DIA's documentation to find out how you can [request a custom NFT oracle](https://docs.diadata.org/products/nft-floor-price-feeds/request-an-nft-oracle){target=\_blank} for NFTs on Moonbeam.
 
@@ -281,7 +280,7 @@ To learn how to deploy a randomness-consuming contract on Moonbeam, please refer
 ## Resources {: #resources }
 
 - [Twitter](https://twitter.com/DIAdata_org){target=\_blank}
-- [Discord](https://discord.gg/ZvGjVY5uvs){target=\_blank}
+- [Discord](https://discord.com/invite/ZvGjVY5uvs){target=\_blank}
 - [Website](https://diadata.org){target=\_blank}
 - [Docs](https://docs.diadata.org){target=\_blank}
 - [Explore data](https://www.diadata.org/app){target=\_blank}

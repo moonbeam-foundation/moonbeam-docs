@@ -7,7 +7,7 @@ description: This tutorial shows you how to integrate MetaMask into a DApp and a
 
 ## Introduction {: #introduction }
 
-With the release of MetaMask's [Custom Networks API](https://consensys.net/blog/metamask/connect-users-to-layer-2-networks-with-the-metamask-custom-networks-api){target=\_blank}, users can be prompted to add Moonbeam's Testnet, Moonbase Alpha.
+With the release of MetaMask's [Custom Networks API](https://consensys.io/blog/connect-users-to-layer-2-networks-with-the-metamask-custom-networks-api){target=\_blank}, users can be prompted to add Moonbeam's Testnet, Moonbase Alpha.
 
 This section will take you through the process of adding a "Connect to Moonbase Alpha" button that will prompt users to connect their MetaMask account(s) to Moonbase Alpha. Your users will no longer need to know or worry about Moonbase Alpha's network configurations and adding a custom network to MetaMask. To interact with Moonbeam from your dApp, all users will need to do is click a few buttons to connect to Moonbase Alpha and get started.
 

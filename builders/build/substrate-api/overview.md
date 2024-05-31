@@ -46,7 +46,7 @@ Substrate takes a different approach. It separates the blockchain's state (data)
 
 Whenever you build a blockchain with Substrate, you compile your Rust code into a build binary. This build can be uploaded into a pre-existing and running blockchain through [FRAME's `set_code` call](https://paritytech.github.io/substrate/master/frame_system/pallet/enum.Call.html#variant.set_code){target=\_blank}. When a new runtime is uploaded and approved (typically through an on-chain governance process), all nodes automatically switch to the new runtime at a specified block number. This process is smooth and automatic, with no need for node operators to manually upgrade their software.  
 
-Moonbeam regularly uses the forkless upgrade system to add additional features to the Moonbeam ecosystem. You can keep track of and discuss Moonbeam's upcoming forkless upgrades on the [Moonbeam forum](https://forum.moonbeam.foundation){target=\_blank}.  
+Moonbeam regularly uses the forkless upgrade system to add additional features to the Moonbeam ecosystem. You can keep track of and discuss Moonbeam's upcoming forkless upgrades on the [Moonbeam forum](https://forum.moonbeam.network){target=\_blank}.  
 
 ## Native Interoperability {: #native-interoperability }
 
@@ -62,4 +62,4 @@ Native interoperability offers the following advantages:
 
 By providing native interoperability, Substrate enables the creation of a diverse, interconnected ecosystem of blockchains. This aligns with the vision of a multi-chain future, where different blockchains can work together to provide a richer, more capable blockchain environment.  
 
-Moonbeam's networks have a series of XCM connections with many other parachains. You can view upcoming XCM integrations in the [XCM section of the Moonbeam forum](https://forum.moonbeam.foundation/c/xcm-hrmp/13){target=\_blank}.
+Moonbeam's networks have a series of XCM connections with many other parachains. You can view upcoming XCM integrations in the [XCM section of the Moonbeam forum](https://forum.moonbeam.network/c/xcm-hrmp/13){target=\_blank}.

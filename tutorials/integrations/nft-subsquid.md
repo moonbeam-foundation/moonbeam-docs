@@ -24,7 +24,7 @@ This guide will explain how to create a Subsquid project (also known as a _"Squi
 For a Squid project to be able to run, you need to have the following installed:
 
 - Familiarity with Git
-- [Node.js](https://nodejs.org/en/download){target=\_blank} version 16 or later
+- [Node.js](https://nodejs.org/en/download/package-manager){target=\_blank} version 16 or later
 - [Docker](https://docs.docker.com/get-docker){target=\_blank}
 - [Squid CLI](https://docs.subsquid.io/squid-cli/installation/){target=\_blank}
 
