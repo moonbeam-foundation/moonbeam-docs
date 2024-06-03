@@ -82,7 +82,7 @@ npx hardhat verify --network moonbase INSERT_CONTRACT_ADDRESS
 
 In your terminal you should see the source code for your contract was successfully submitted for verification. If the verification was successful, you should see **Successfully verified contract** and there will be a link to the contract code on [Moonscan for Moonbase Alpha](https://moonbase.moonscan.io){target=\_blank}.
 
-![Successful verification using hardhat-verify plugin](/images/builders/build/eth-api/verify-contracts/etherscan-plugins/plugins-3.webp)
+--8<-- 'code/builders/build/eth-api/verify-contracts/etherscan-plugins/terminal/hardhat-verify.md'
 
 If you're verifying a contract that has constructor arguments, you'll need to run the above command and add the constructor arguments used to deploy the contract at the end of the command. For example:
 
@@ -142,7 +142,7 @@ The result should be `0x00000000000000000000000000000000000000000000000000000000
     --etherscan-api-key INSERT_YOUR_MOONSCAN_API_KEY
     ```
 
-![Foundry Verify](/images/builders/build/eth-api/verify-contracts/etherscan-plugins/plugins-4.webp)
+--8<-- 'code/builders/build/eth-api/verify-contracts/etherscan-plugins/terminal/forge-verify.md'
 
 If you wanted to deploy the example contract and verify at the same time, then you would use the following command:
 
@@ -176,4 +176,5 @@ If you wanted to deploy the example contract and verify at the same time, then y
     src/MyToken.sol:MyToken
     ```
 
-![Foundry Contract Deploy and Verify](/images/builders/build/eth-api/verify-contracts/etherscan-plugins/plugins-5.webp)
+--8<-- 'code/builders/build/eth-api/verify-contracts/etherscan-plugins/terminal/forge-create-verify.md'
+
