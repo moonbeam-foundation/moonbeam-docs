@@ -48,8 +48,6 @@ const processWindowLocation = (pathname, origin) => {
       enLink.href = origin + key;
       cnLink.href = origin + value;
 
-      console.log(cnLink);
-
       // Update flag to display the language selector
       displaySelector = true;
     }
@@ -71,8 +69,6 @@ const processWindowLocation = (pathname, origin) => {
 window.location$.subscribe((newLocation) => {
   const { pathname, origin } = newLocation;
   processWindowLocation(pathname, origin);
-
-  console.log('URL changed to:', newLocation);
 });
 
 // On page load, check the window location and see if we need to add the language selector
