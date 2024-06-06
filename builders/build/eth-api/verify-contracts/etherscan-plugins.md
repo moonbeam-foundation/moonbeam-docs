@@ -51,9 +51,6 @@ To get started with the Hardhat Etherscan plugin, you will need to first install
 npm install --save-dev @nomicfoundation/hardhat-verify
 ```
 
-!!! note
-    Support for Moonbeam-based networks was added in version 3.0.1 of `@nomicfoundation/hardhat-verify`. You can double check what version you're using by looking under the `devDependencies` section of your `package.json` and updating to version 3.0.1 or greater if needed.
-
 You can add your Moonscan API key to the `hardhat.config.js` file. For this example, you'll need a [Moonbeam Moonscan](https://moonscan.io){target=\_blank} API key. If you want to verify a contract on Moonriver, you'll need a [Moonriver Moonscan](https://moonriver.moonscan.io){target=\_blank} API key.
 
 From within your Hardhat project, open your `hardhat.config.js` file. You'll need to import the `hardhat-verify` plugin, your Moonscan API key, and add the config for Etherscan:
@@ -85,7 +82,7 @@ npx hardhat verify --network moonbase INSERT_CONTRACT_ADDRESS
 
 In your terminal you should see the source code for your contract was successfully submitted for verification. If the verification was successful, you should see **Successfully verified contract** and there will be a link to the contract code on [Moonscan for Moonbase Alpha](https://moonbase.moonscan.io){target=\_blank}.
 
-![Successful verification using hardhat-verify plugin](/images/builders/build/eth-api/verify-contracts/etherscan-plugins/plugins-3.webp)
+--8<-- 'code/builders/build/eth-api/verify-contracts/etherscan-plugins/terminal/hardhat-verify.md'
 
 If you're verifying a contract that has constructor arguments, you'll need to run the above command and add the constructor arguments used to deploy the contract at the end of the command. For example:
 
@@ -103,7 +100,7 @@ Please refer to the [Hardhat Verify documentation](https://hardhat.org/hardhat-r
 
 ## Using Foundry to Verify {: #using-foundry-to-verify }
 
-The example in this section of the guide will use the `MyToken.sol` contract that was created in the [Using Foundry to Deploy to Moonbeam](/builders/build/eth-api/dev-env/foundry/){target=\_blank} guide.
+The example in this section of the guide will use the `MyToken.sol` contract that was created in the [Using Foundry to Deploy to Moonbeam](/builders/build/eth-api/dev-env/foundry/){target=\_blank} guide. 
 
 In addition to the Foundry project, you will need a [Moonbeam Moonscan](https://moonscan.io){target=\_blank} API key. This API key can be used for both the Moonbeam and Moonbase Alpha networks. If you want to verify a contract on Moonriver, you'll need a [Moonriver Moonscan](https://moonriver.moonscan.io){target=\_blank} API key.
 
@@ -145,7 +142,7 @@ The result should be `0x00000000000000000000000000000000000000000000000000000000
     --etherscan-api-key INSERT_YOUR_MOONSCAN_API_KEY
     ```
 
-![Foundry Verify](/images/builders/build/eth-api/verify-contracts/etherscan-plugins/plugins-4.webp)
+--8<-- 'code/builders/build/eth-api/verify-contracts/etherscan-plugins/terminal/forge-verify.md'
 
 If you wanted to deploy the example contract and verify at the same time, then you would use the following command:
 
@@ -179,4 +176,4 @@ If you wanted to deploy the example contract and verify at the same time, then y
     src/MyToken.sol:MyToken
     ```
 
-![Foundry Contract Deploy and Verify](/images/builders/build/eth-api/verify-contracts/etherscan-plugins/plugins-5.webp)
+--8<-- 'code/builders/build/eth-api/verify-contracts/etherscan-plugins/terminal/forge-create-verify.md'
