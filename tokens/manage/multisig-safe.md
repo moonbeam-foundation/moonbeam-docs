@@ -215,7 +215,7 @@ Congratulations, you've successfully received and sent DEV tokens to and from th
 
 ### Receive ERC-20 Tokens {: #receive-erc20-tokens }
 
-Next up is to receive and send ERC-20s to and from the Safe. You should already have loaded up your MetaMask with **MYTOK** ERC-20 tokens. If not, please refer back to the [ERC-20 Tokens](#erc-20-tokens) section of the prerequisites.
+Next up is to receive and send ERC-20s to and from the Safe. You should already have loaded up your MetaMask with **MYTOK** ERC-20 tokens. If not, please refer back to the [ERC-20 Tokens](#erc20-tokens) section of the prerequisites.
 
 You should still be connected to Bob's account for this example. So, you'll be sending MYTOK tokens from Bob's account to the Safe.
 
