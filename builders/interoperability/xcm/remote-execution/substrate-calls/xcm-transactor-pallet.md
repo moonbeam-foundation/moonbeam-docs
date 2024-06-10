@@ -354,7 +354,7 @@ Since you'll be interacting with the `transactThroughSigned` function of the XCM
         };
         ```
 
-3. Define the `call` that will be executed in the destination chain, which is the encoded call data of the pallet, method, and input to be called. It can be constructed in [Polkadot.js Apps](https://polkadot.js.org/apps){target=\_blank} (which must be connected to the destination chain) or using the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=\_blank}. For this example, the inner call is a simple balance transfer of 1 token of the destination chain to Alice's account there
+3. Define the `call` that will be executed in the destination chain, which is the encoded call data of the pallet, method, and input to be called. It can be constructed in [Polkadot.js Apps](https://polkadot.js.org/apps){target=\_blank} (which must be connected to the destination chain) or using the [Polkadot.js API](/builders/substrate/libraries/polkadot-js-api/){target=\_blank}. For this example, the inner call is a simple balance transfer of 1 token of the destination chain to Alice's account there
 
     ```js
     --8<-- 'code/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-pallet/transact-signed.js:19:19'
@@ -369,7 +369,7 @@ Since you'll be interacting with the `transactThroughSigned` function of the XCM
     ```
 
     !!! note
-        For accurate estimates of the `refTime` and `proofSize` figures for `transactRequiredAtMost`, you can use the [`paymentInfo` method of the Polkadot.js API](/builders/build/substrate-api/polkadot-js-api#fees){target=\_blank}.
+        For accurate estimates of the `refTime` and `proofSize` figures for `transactRequiredAtMost`, you can use the [`paymentInfo` method of the Polkadot.js API](/builders/substrate/polkadot-js-api#fees){target=\_blank}.
 
 5. To refund any leftover XCM fees, you can set the `refund` value to `true`. Otherwise, set it to `false`
 
@@ -385,7 +385,7 @@ Now that you have the values for each of the parameters, you can write the scrip
      - The Moonbase Alpha endpoint URL to create the provider
      - The values for each of the parameters of the `transactThroughSigned` function
  2. Create a Keyring instance that will be used to send the transaction
- 3. Create the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=\_blank} provider
+ 3. Create the [Polkadot.js API](/builders/substrate/libraries/polkadot-js-api/){target=\_blank} provider
  4. Craft the `xcmTransactor.transactThroughSigned` extrinsic with the `dest`, `fee`, `call`, `weightInfo`, and `refund` values
  5. Send the transaction using the `signAndSend` extrinsic and the Keyring instance you created in the second step
 

@@ -1,2 +1,0 @@
- - **Proposal** — an action or item, defined by the preimage hash, being proposed by a token holder and open for consideration and discussion by token holders
- - **Referendum** — a proposal that is up for token-holder voting. Each referendum is tied to a specific proposal for a change to the Moonbeam system including values for key parameters, code upgrades, or changes to the governance system itself

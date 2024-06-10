@@ -3,8 +3,7 @@ hide: false
 nav:
   - index.md
   - get-started
-  - build
-  - json-rpc
-  - pallets-precompiles
+  - ethereum
+  - substrate
   - interoperability
   - integrations

@@ -37,7 +37,7 @@ The X-Tokens Precompile is located at the following addresses:
      {{networks.moonbase.precompiles.xtokens}}
      ```
 
---8<-- 'text/builders/pallets-precompiles/precompiles/security.md'
+--8<-- 'text/builders/ethereum/precompiles/security.md'
 
 ## The X-Tokens Solidity Interface {: #xtokens-solidity-interface }
 
@@ -57,7 +57,7 @@ The interface includes the following functions:
 
         - `currencyAddress` - the address of the asset to transfer
             - For [External XC-20s](/builders/interoperability/xcm/xc20/overview/#external-xc20s){target=\_blank}, provide the [XC-20 precompile address](/builders/interoperability/xcm/xc20/overview/#current-xc20-assets){target=\_blank}
-            - For native tokens (i.e., GLMR, MOVR, and DEV), provide the [ERC-20 precompile](/builders/pallets-precompiles/precompiles/erc20/#the-erc20-interface){target=\_blank} address, which is `{{networks.moonbeam.precompiles.erc20 }}`
+            - For native tokens (i.e., GLMR, MOVR, and DEV), provide the [ERC-20 precompile](/builders/ethereum/precompiles/ux/erc20/#the-erc20-interface){target=\_blank} address, which is `{{networks.moonbeam.precompiles.erc20 }}`
             - For [Local XC-20s](/builders/interoperability/xcm/xc20/overview/#local-xc20s){target=\_blank}, provide the token's address
         - `amount` - the number of tokens that are going to be sent via XCM
         - `destination` - the multilocation of the destination address for the tokens being sent via XCM. It supports different address formats, such as 20- or 32-byte addresses (Ethereum or Substrate). The multilocation must be formatted in a particular way, which is described in the [Building the Precompile Multilocation](#building-the-precompile-multilocation) section
@@ -69,7 +69,7 @@ The interface includes the following functions:
 
         - `currencyAddress` - the address of the asset to transfer
             - For [External XC-20s](/builders/interoperability/xcm/xc20/overview/#external-xc20s){target=\_blank}, provide the [XC-20 precompile address](/builders/interoperability/xcm/xc20/overview/#current-xc20-assets){target=\_blank}
-            - For native tokens (i.e., GLMR, MOVR, and DEV), provide the [ERC-20 precompile](/builders/pallets-precompiles/precompiles/erc20/#the-erc20-interface){target=\_blank} address, which is `{{networks.moonbeam.precompiles.erc20 }}`
+            - For native tokens (i.e., GLMR, MOVR, and DEV), provide the [ERC-20 precompile](/builders/ethereum/precompiles/ux/erc20/#the-erc20-interface){target=\_blank} address, which is `{{networks.moonbeam.precompiles.erc20 }}`
             - For [Local XC-20s](/builders/interoperability/xcm/xc20/overview/#local-xc20s){target=\_blank}, provide the token's address
         - `amount` - the number of tokens that are going to be sent via XCM
         - `fee` — the amount to be spent to pay for the XCM execution in the target (destination) chain. If this value is not high enough to cover execution costs, the assets will be trapped in the destination chain

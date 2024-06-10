@@ -72,6 +72,6 @@ The Moonbase Alpha TestNet is a fully decentralized Delegated Proof of Stake net
 
 This is the first TestNet for Moonbeam, so there are some limitations.
 
-Some [precompiles](https://www.evm.codes/precompiled){target=\_blank} are yet to be included. You can check out the list of supported precompiles on the [Canonical Contract page](/builders/pallets-precompiles/precompiles/){target=\_blank}. However, all built-in functions are available.
+Some [precompiles](https://www.evm.codes/precompiled){target=\_blank} are yet to be included. You can check out the list of supported precompiles on the [Canonical Contract page](/builders/ethereum/precompiles/){target=\_blank}. However, all built-in functions are available.
 
 Since the release of Moonbase Alpha v6, the maximum gas limit per block has been set to {{ networks.moonbase.gas_block }}, with a maximum gas limit per transaction of {{ networks.moonbase.gas_tx }}.

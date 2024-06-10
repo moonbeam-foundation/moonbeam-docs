@@ -1,0 +1,6 @@
+title: Network Features
+nav:
+  - index.md
+  - governance
+  - 'Randomness': 'randomness.md'
+  - 'Staking Functions': 'staking.md'

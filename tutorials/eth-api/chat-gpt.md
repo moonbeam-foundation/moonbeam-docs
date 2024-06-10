@@ -85,7 +85,7 @@ ChatGPT is happy to oblige. Notice how it maintains the parameters we specified 
 
 ## Preparing Deployment Instructions {: #preparing-deployment-instructions }
 
-This section is named carefully to avoid implying that ChatGPT will be doing the deployment for us. ChatGPT does not have internet access and cannot interact with blockchain networks directly, but it can give us detailed instructions explaining how we can do so ourselves. Let's ask ChatGPT for instructions on deploying the recently created ERC20 contract. For this example, let's ask ChatGPT for [Hardhat deployment instructions](/builders/build/eth-api/dev-env/hardhat/){target=\_blank}:
+This section is named carefully to avoid implying that ChatGPT will be doing the deployment for us. ChatGPT does not have internet access and cannot interact with blockchain networks directly, but it can give us detailed instructions explaining how we can do so ourselves. Let's ask ChatGPT for instructions on deploying the recently created ERC20 contract. For this example, let's ask ChatGPT for [Hardhat deployment instructions](/builders/ethereum/dev-env/hardhat/){target=\_blank}:
 
 ```text
 I would like to use Hardhat to compile and deploy

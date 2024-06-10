@@ -171,7 +171,7 @@ With it, you will have two view functions available - very similar to the previo
  - **getPrice**(*string* base, *string* quote) - provides the price feed for a single base/quote pair that is given as input to the function, that is, "BTC", "USD"
  - **getMultiPrices**(*string[]* bases, *string[]* quotes) - provides the price feed for a multiple base/quote pairs that are given as input to the function, that is, ["BTC", "ETH", "ETH"], ["USD", "USD", "EUR"]
 
-For example, using [Remix](/builders/build/eth-api/dev-env/remix/){target=\_blank}, you can easily query the `BTC/USD` price pair using this interface.
+For example, using [Remix](/builders/ethereum/dev-env/remix/){target=\_blank}, you can easily query the `BTC/USD` price pair using this interface.
 
 After creating the file and compiling the contract, head to the **Deploy and Run Transactions** tab, enter the contract address (`0xf15c870344c1c02f5939a5C4926b7cDb90dEc655`) and click on **At Address**. Make sure you have set the **ENVIRONMENT** to **Injected Web3** so you are connected to Moonbase Alpha. 
 

@@ -16,7 +16,7 @@ The Polkadot.js Apps interface natively supports H160 addresses and ECDSA keys. 
 !!! note
     Polkadot.js Apps is phasing out support for accounts stored locally in the browser's cache. Instead, it is recommended that you use a browser extension like [Talisman to inject your accounts into Polkadot.js Apps](/tokens/connect/talisman/){target=\_blank}.
 
-## Connect Polkadot.js Apps to Moonbeam {: #connecting-to-moonbase-alpha }
+## Connect Polkadot.js Apps to Moonbeam {: #connect-polkadotjs-apps }
 
 When launching [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network%2Fpublic-ws#/accounts){target=\_blank} for the first time, you may or may not be connected to the desired network.
 

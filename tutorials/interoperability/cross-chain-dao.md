@@ -63,7 +63,7 @@ This is, of course, only one way to implement a cross-chain DAO, and you are enc
 
 Before we start writing the entire project, it's important to note that its finished form can be found in its own [cross-chain DAO GitHub repository](https://github.com/jboetticher/cross-chain-dao){target=\_blank}. It uses Hardhat, so prerequisite knowledge will be helpful for understanding how the repository works. This tutorial will not include information on how to use Hardhat and will instead focus solely on the smart contracts. If you would like to follow along, the prerequisites are as follows:  
 
-- A fresh Hardhat project and [knowledge of how to use Hardhat](/builders/build/eth-api/dev-env/hardhat/){target=\_blank}
+- A fresh Hardhat project and [knowledge of how to use Hardhat](/builders/ethereum/dev-env/hardhat/){target=\_blank}
 - [OpenZeppelin smart contracts installed](https://github.com/OpenZeppelin/openzeppelin-contracts){target=\_blank} as a dependency
 - [LayerZero smart contracts installed](https://github.com/LayerZero-Labs/solidity-examples){target=\_blank} as a dependency
 

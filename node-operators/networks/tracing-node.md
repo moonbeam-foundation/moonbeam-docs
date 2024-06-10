@@ -169,7 +169,7 @@ The complete command for running a tracing node is as follows:
 
 You should see a terminal log similar to the following if you spun up a Moonbase Alpha tracing node:
 
---8<-- 'code/builders/json-rpc/debug-trace/terminal/start-up-logs.md'
+--8<-- 'code/builders/ethereum/json-rpc/debug-trace/terminal/start-up-logs.md'
 
 ## Run a Tracing Node with Systemd {: #run-a-tracing-node-with-systemd }
 
@@ -387,4 +387,4 @@ Your terminal should display logs similar to the following:
 
 ## Using a Tracing Node {: #using-a-tracing-node }
 
-To explore the different non-standard RPC methods available on Moonbeam, and how to use these methods with a tracing node, check out the [Debug & Trace](/builders/json-rpc/debug-trace/) guide.
+To explore the different non-standard RPC methods available on Moonbeam, and how to use these methods with a tracing node, check out the [Debug & Trace](/builders/ethereum/json-rpc/debug-trace/) guide.

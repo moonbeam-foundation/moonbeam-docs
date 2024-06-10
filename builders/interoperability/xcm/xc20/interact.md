@@ -19,7 +19,7 @@ Both types of XC-20s have the standard ERC-20 interface. In addition, all extern
 
 As mentioned, you can interact with XC-20s via an ERC-20 interface. The [ERC20.sol](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/assets-erc20/ERC20.sol){target=\_blank} interface on Moonbeam follows the [EIP-20 Token Standard](https://eips.ethereum.org/EIPS/eip-20){target=\_blank}, which is the standard API interface for tokens within smart contracts. The standard defines the required functions and events that a token contract must implement to be interoperable with different applications.
 
---8<-- 'text/builders/pallets-precompiles/precompiles/erc20/erc20-interface.md'
+--8<-- 'text/builders/ethereum/precompiles/ux/erc20/erc20-interface.md'
 
 ### The ERC-20 Permit Solidity Interface {: #the-erc20-permit-interface }
 
@@ -64,7 +64,7 @@ With the final hash and the `v`, `r`, and `s` values, the signature can be [veri
 
 ## Interact with External XC-20s Using an ERC-20 Interface {: #interact-with-the-precompile-using-remix }
 
-This section of the guide will show you how to interact with XC-20s via the ERC-20 interface using [Remix](/builders/build/eth-api/dev-env/remix/){target=\_blank}. Because local XC-20s are representations of regular ERC-20s, this section is focused on external XC-20s.
+This section of the guide will show you how to interact with XC-20s via the ERC-20 interface using [Remix](/builders/ethereum/dev-env/remix/){target=\_blank}. Because local XC-20s are representations of regular ERC-20s, this section is focused on external XC-20s.
 
 To interact with external XC-20s, you'll need to first calculate the precompile address of the XC-20 asset you want to interact with. Then, you can interact with the ERC-20 interface as you would with any other ERC-20.
 
@@ -136,4 +136,4 @@ The **IERC20** precompile for the XC-20 will appear in the list of **Deployed Co
 
 ![Interact with the precompile functions](/images/builders/interoperability/xcm/xc20/interact/interact-4.webp)
 
-To learn how to interact with each of the functions, you can check out the [ERC-20 Precompile](/builders/pallets-precompiles/precompiles/erc20/){target=\_blank} guide and modify it for interacting with the XC-20 Precompile.
+To learn how to interact with each of the functions, you can check out the [ERC-20 Precompile](/builders/ethereum/precompiles/ux/erc20/){target=\_blank} guide and modify it for interacting with the XC-20 Precompile.
