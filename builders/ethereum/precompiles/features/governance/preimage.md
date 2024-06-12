@@ -89,7 +89,7 @@ In this section, you'll get the preimage hash and the encoded proposal data for 
  2. Select **Preimages** from the dropdown
  3. From the **Preimages** page, click on **+ Add preimage**
 
-![Add a new preimage](/images/builders/ethereum/precompiles/democracy/democracy-4.webp)
+![Add a new preimage](/images/builders/ethereum/precompiles/democracy/preimage-4.webp)
 
 Then take the following steps:
 
@@ -98,14 +98,14 @@ Then take the following steps:
  3. Enter the text of the remark, ensuring it is unique. Duplicate proposals such as "Hello World!" will not be accepted
  4. Click the **Submit preimage** button but don't sign or confirm the transaction on the next page 
 
-![Get the proposal hash](/images/builders/ethereum/precompiles/democracy/democracy-5.webp)
+![Get the proposal hash](/images/builders/ethereum/precompiles/democracy/preimage-5.webp)
 
 On the next screen, take the following steps:
 
  1. Press the triangle icon to reveal the encoded proposal in bytes
  2. Copy the **bytes** representing the encoded proposal - you'll need this when calling the `notePreimage` function in a later step
 
-![Get the encoded proposal](/images/builders/ethereum/precompiles/democracy/democracy-6.webp)
+![Get the encoded proposal](/images/builders/ethereum/precompiles/democracy/preimage-6.webp)
 
 !!! note
      You should NOT sign and submit the transaction here. You will submit this information via the `notePreimage` function in the next step.
@@ -117,7 +117,7 @@ Now you can take the **bytes** of the encoded proposal that you got from [Polkad
 3. Provide the **bytes** of the encoded proposal that you noted in the prior section. Note, the encoded proposal is not the same as the preimage hash. Ensure you are are entering the correct value into this field
 4. Press **transact** and confirm the transaction in MetaMask
 
-![Submit the preimage using the notePreimage function of the Preimage Precompile.](/images/builders/ethereum/precompiles/features/governance/preimage/preimage-4.webp)
+![Submit the preimage using the notePreimage function of the Preimage Precompile.](/images/builders/ethereum/precompiles/features/governance/preimage/preimage-7.webp)
 
 Now that you've submitted the preimage for your proposal your proposal can be submitted! Head over to the [Referenda Precompile documentation](/builders/ethereum/precompiles/features/governance/referenda/){target=\_blank} to learn how to submit your proposal.
 

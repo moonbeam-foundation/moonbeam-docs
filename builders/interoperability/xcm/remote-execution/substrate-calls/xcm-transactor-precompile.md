@@ -293,7 +293,7 @@ For this example, you'll interact with the `transactThroughSigned` function of t
         const feeLocationAddress = '0xFFFFFFFF1AB2B146C526D4154905FF12E6E57675';
         ```
 
-    - `transactRequiredWeightAtMost` - the weight required to execute the call in the `Transact` instruction. You can get this information by using the [`paymentInfo` method of the Polkadot.js API](/builders/substrate/polkadot-js-api#fees){target=\_blank} on the call
+    - `transactRequiredWeightAtMost` - the weight required to execute the call in the `Transact` instruction. You can get this information by using the [`paymentInfo` method of the Polkadot.js API](/builders/substrate/libraries/polkadot-js-api#fees){target=\_blank} on the call
 
         ```js
         const transactRequiredWeightAtMost = [1000000000n, 5000n];

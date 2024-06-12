@@ -369,7 +369,7 @@ Since you'll be interacting with the `transactThroughSigned` function of the XCM
     ```
 
     !!! note
-        For accurate estimates of the `refTime` and `proofSize` figures for `transactRequiredAtMost`, you can use the [`paymentInfo` method of the Polkadot.js API](/builders/substrate/polkadot-js-api#fees){target=\_blank}.
+        For accurate estimates of the `refTime` and `proofSize` figures for `transactRequiredAtMost`, you can use the [`paymentInfo` method of the Polkadot.js API](/builders/substrate/libraries/polkadot-js-api#fees){target=\_blank}.
 
 5. To refund any leftover XCM fees, you can set the `refund` value to `true`. Otherwise, set it to `false`
 
