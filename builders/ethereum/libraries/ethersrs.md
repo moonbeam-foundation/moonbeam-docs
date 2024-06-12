@@ -300,7 +300,10 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 }
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/builders/ethereum/libraries/ethers-rust/send-tx/main.rs){target=\_blank}.
+??? code "View the complete script"
+    ```rust
+    --8<-- 'code/builders/ethereum/libraries/ethers-rust/send-tx/main.rs'
+    ```
 
 To run the script, which will send the transaction and then check the balances once the transaction has been sent, you can run the following command:
 
