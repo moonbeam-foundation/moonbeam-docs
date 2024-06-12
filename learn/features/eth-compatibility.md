@@ -35,9 +35,9 @@ In addition to standard Ethereum RPC methods, Moonbeam supports non-standard Deb
 
 Learn more:
 
-- [Supported Ethereum RPC methods](/builders/json-rpc/eth-rpc/){target=\_blank}
-- [Subscribe to events with Ethereum JSON-RPC methods](/builders/json-rpc/pubsub/){target=\_blank}
-- [Debug and trace transactions with non-standard RPC methods](/builders/json-rpc/debug-trace/){target=\_blank}
+- [Supported Ethereum RPC methods](/builders/ethereum/json-rpc/eth-rpc/){target=\_blank}
+- [Subscribe to events with Ethereum JSON-RPC methods](/builders/ethereum/json-rpc/pubsub/){target=\_blank}
+- [Debug and trace transactions with non-standard RPC methods](/builders/ethereum/json-rpc/debug-trace/){target=\_blank}
 
 ### Ethereum Developer Tools and Libraries {: #ethereum-dev-tools }
 
@@ -45,8 +45,8 @@ With the underlying support for Ethereum JSON-RPC methods, Moonbeam leverages Et
 
 Learn more:
 
-- [Ethereum libraries](/builders/build/eth-api/libraries/){target=\_blank}
-- [Ethereum development environments](/builders/build/eth-api/libraries/){target=\_blank}
+- [Ethereum libraries](/builders/ethereum/libraries/){target=\_blank}
+- [Ethereum development environments](/builders/ethereum/libraries/){target=\_blank}
 
 ### Precompiled Contracts {: #precompiled-contracts }
 
@@ -56,7 +56,7 @@ In addition, developers can leverage Ethereum MainNet precompiles seamlessly wit
 
 Learn more:
 
-- [Overview of the precompiled contracts on Moonbeam](/builders/pallets-precompiles/precompiles/overview/){target=\_blank}
+- [Overview of the precompiled contracts on Moonbeam](/builders/ethereum/precompiles/overview/){target=\_blank}
 
 ### Ethereum Token Standards {: #ethereum-token-standards }
 
@@ -66,7 +66,7 @@ Due to Moonbeam's native interoperability, ERC-20s can be sent cross-chain to ot
 
 Learn more:
 
-- [Create common OpenZeppelin contracts such as ERC-20, ERC-721, and ERC-1155 tokens](/builders/build/eth-api/dev-env/openzeppelin/contracts/){target=\_blank}
+- [Create common OpenZeppelin contracts such as ERC-20, ERC-721, and ERC-1155 tokens](/builders/ethereum/dev-env/openzeppelin/contracts/){target=\_blank}
 - [XCM-enabled ERC-20s](/builders/interoperability/xcm/xc20/overview#local-xc20s){target=\_blank} (also referred to as local XC-20s)
 
 ## Key Differences {: #key-differences }

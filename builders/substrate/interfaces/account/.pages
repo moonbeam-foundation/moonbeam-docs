@@ -1,0 +1,6 @@
+title: Account Management
+nav:
+  - index.md
+  - 'Identity': 'identity.md'
+  - 'Multisig': 'multisig.md'
+  - 'Proxy': 'proxy.md'

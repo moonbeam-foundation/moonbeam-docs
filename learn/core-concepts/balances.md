@@ -39,7 +39,7 @@ As with Ethereum, there are two main types of accounts: user-owned and contract 
 
 ### Retrieve Your Balance {: #retrieve-your-balance }
 
-You can check on your balances, including your free (or transferrable) and reserved balances (if exists), using the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=\_blank}.
+You can check on your balances, including your free (or transferrable) and reserved balances (if exists), using the [Polkadot.js API](/builders/substrate/libraries/polkadot-js-api/){target=\_blank}.
 
 !!! note
     --8<-- 'text/_common/endpoint-examples.md'

@@ -236,7 +236,7 @@ Then, you can copy the following code snippets and add them to their respective 
         --8<-- 'code/tutorials/integrations/supra/signedCoherentCluster.json'
         ```
 
-To work with these interfaces, you must install the [Ethereum library](/builders/build/eth-api/libraries/){target=\_blank} of your choice. For this example, we'll use [Web3.js](/builders/build/eth-api/libraries/web3js/){target=\_blank}.
+To work with these interfaces, you must install the [Ethereum library](/builders/ethereum/libraries/){target=\_blank} of your choice. For this example, we'll use [Web3.js](/builders/ethereum/libraries/web3js/){target=\_blank}.
 
 ```bash
 npm i web3
@@ -369,7 +369,7 @@ You can take the following steps to create our smart contract:
 
 ### Deploy the Contract {: #deploy-the-consumer-contract }
 
-With the contract created, you must next deploy the contract. Since we've already installed Web3.js, let's use it to deploy the contract. If you're unfamiliar with the process, you can reference the [Web3.js docs on deploying a smart contract](/builders/build/eth-api/libraries/web3js/#deploy-a-contract){target=\_blank}.
+With the contract created, you must next deploy the contract. Since we've already installed Web3.js, let's use it to deploy the contract. If you're unfamiliar with the process, you can reference the [Web3.js docs on deploying a smart contract](/builders/ethereum/libraries/web3js/#deploy-a-contract){target=\_blank}.
 
 To deploy the contract, take the following steps:
 

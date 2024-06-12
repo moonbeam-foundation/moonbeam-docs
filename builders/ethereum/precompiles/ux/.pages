@@ -1,0 +1,6 @@
+title: User Experience
+nav:
+  - index.md
+  - 'Batch': 'batch.md'
+  - 'Call Permit': 'call-permit.md'
+  - 'Native Token ERC-20': 'erc20.md'

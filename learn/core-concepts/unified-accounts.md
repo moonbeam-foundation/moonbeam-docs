@@ -7,7 +7,7 @@ description:  Moonbeam replaced the default Substrate account system with native
 
 ## Introduction {: #introduction }
 
-As Moonbeam is designed to be an Ethereum-compatible parachain on Polkadot, the underlying account system replaces the default Substrate-style accounts and keys with Ethereum-style accounts and keys. As a result, you can interact with your Moonbeam account using [MetaMask](/tokens/connect/metamask/){target=\_blank} and Ethereum tools you may already be familiar with, such as [Remix](/builders/build/eth-api/dev-env/remix/){target=\_blank} and [Hardhat](/builders/build/eth-api/dev-env/hardhat/){target=\_blank}.
+As Moonbeam is designed to be an Ethereum-compatible parachain on Polkadot, the underlying account system replaces the default Substrate-style accounts and keys with Ethereum-style accounts and keys. As a result, you can interact with your Moonbeam account using [MetaMask](/tokens/connect/metamask/){target=\_blank} and Ethereum tools you may already be familiar with, such as [Remix](/builders/ethereum/dev-env/remix/){target=\_blank} and [Hardhat](/builders/ethereum/dev-env/hardhat/){target=\_blank}.
 
 You can also interact with your Moonbeam account using Polkadot.js Apps as it natively supports H160 addresses and ECDSA keys. For more information on this integration, you can check out the [Interacting with Moonbeam Using Polkadot.js Apps](/tokens/connect/polkadotjs/){target=\_blank} guide.
 

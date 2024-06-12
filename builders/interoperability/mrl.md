@@ -12,9 +12,9 @@ Moonbeam Routed Liquidity (MRL) refers to a use case in which liquidity in any b
 - **General Message Passing (GMP)** - technology connecting multiple blockchains, including Moonbeam. With it, developers can pass messages with arbitrary data, and tokens can be sent across non-parachain blockchains through [chain-agnostic GMP protocols](/builders/interoperability/protocols/){target=\_blank}
 - [**Cross-Consensus Message Passing (XCM)**](/builders/interoperability/xcm/overview/){target=\_blank} - Polkadot's flavor of GMP. Main technology driving cross-chain interactions between Polkadot and its parachains, including Moonbeam
 - **XCM-Enabled ERC-20s** - also referred to as [local XC-20s](/builders/interoperability/xcm/xc20/overview/#local-xc20s){target=\_blank}, are all of the ERC-20 tokens that exist on Moonbeam's EVM that are XCM-enabled out of the box
-- [**GMP Precompile**](/builders/pallets-precompiles/precompiles/gmp/){target=\_blank} - a [precompiled contract](/builders/pallets-precompiles/precompiles/overview/){target=\_blank} that acts as an interface between a message passed from [Wormhole GMP protocol](/builders/interoperability/protocols/wormhole/){target=\_blank} and XCM
+- [**GMP Precompile**](/builders/ethereum/precompiles/interoperability/gmp/){target=\_blank} - a [precompiled contract](/builders/ethereum/precompiles/overview/){target=\_blank} that acts as an interface between a message passed from [Wormhole GMP protocol](/builders/interoperability/protocols/wormhole/){target=\_blank} and XCM
 
-These components are combined to offer seamless liquidity routing into parachains through Moonbeam. Liquidity can be routed to parachains using either the [GMP Precompile](/builders/pallets-precompiles/precompiles/gmp/){target=\_blank} or traditional smart contracts that interact with XCM-related precompiles, like the [X-Tokens](/builders/interoperability/xcm/xc20/send-xc20s/xtokens-precompile/){target=\_blank} Precompile.
+These components are combined to offer seamless liquidity routing into parachains through Moonbeam. Liquidity can be routed to parachains using either the [GMP Precompile](/builders/ethereum/precompiles/interoperability/gmp/){target=\_blank} or traditional smart contracts that interact with XCM-related precompiles, like the [X-Tokens](/builders/interoperability/xcm/xc20/send-xc20s/xtokens-precompile/){target=\_blank} Precompile.
 
 GMP protocols typically move assets in a lock/mint or burn/mint fashion. This liquidity exists on Moonbeam normally as ERC-20 tokens. All ERC-20s on Moonbeam are now XCM-enabled, meaning they can now exist as XC-20s in any other parachain, as long as they are registered on the other parachain. XCM-enabled ERC-20s are referred to as [local XC-20s](/builders/interoperability/xcm/xc20/overview#local-xc20s){target=\_blank} on Moonbeam.
 
@@ -48,9 +48,9 @@ While MRL intends to encompass many different GMP providers, Wormhole is the fir
 
 MRL provides a one-click solution that allows you to define a multilocation as the final destination for your assets arriving from any Wormhole chain with a [Wormhole Connect integration](https://wormhole.com/products/connect){target=\_blank}.
 
-To send tokens through Wormhole and MRL, user interfaces will use a mixture of the [Wormhole TokenBridge](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/interfaces/ITokenBridge.sol){target=\_blank} and [Moonbeam’s GMP Precompile](/builders/pallets-precompiles/precompiles/gmp/){target=\_blank}.
+To send tokens through Wormhole and MRL, user interfaces will use a mixture of the [Wormhole TokenBridge](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/interfaces/ITokenBridge.sol){target=\_blank} and [Moonbeam’s GMP Precompile](/builders/ethereum/precompiles/interoperability/gmp/){target=\_blank}.
 
-Users transferring liquidity will invoke the `transferTokensWithPayload` method on the origin chain's deployment of the Wormhole TokenBridge smart contract, which implements the `ITokenBridge.sol` interface to send tokens to the GMP Precompile. This function requires a bytes payload, formatted as a SCALE-encoded multilocation object wrapped within another precompile-specific versioned type. To learn how to build this payload, please refer to the [Building the Payload for Wormhole](/builders/pallets-precompiles/precompiles/gmp#building-the-payload-for-wormhole){target=\_blank} section of the GMP Precompile documentation.
+Users transferring liquidity will invoke the `transferTokensWithPayload` method on the origin chain's deployment of the Wormhole TokenBridge smart contract, which implements the `ITokenBridge.sol` interface to send tokens to the GMP Precompile. This function requires a bytes payload, formatted as a SCALE-encoded multilocation object wrapped within another precompile-specific versioned type. To learn how to build this payload, please refer to the [Building the Payload for Wormhole](/builders/ethereum/precompiles/interoperability/gmp#building-the-payload-for-wormhole){target=\_blank} section of the GMP Precompile documentation.
 
 Wormhole relies on a set of distributed nodes that monitor the state on several blockchains. In Wormhole, these nodes are referred to as [Guardians](https://docs.wormhole.com/wormhole/explore-wormhole/guardian){target=\_blank}. The Guardian's role is to observe messages and sign the corresponding payloads. If 2/3rds of Wormhole's signing Guardians validate a particular message, the message becomes approved and can be received on other chains.
 
@@ -73,7 +73,7 @@ In the future, the [X-Tokens Pallet](/builders/interoperability/xcm/xc20/send-xc
 
 As an example, a brief overview of the entire process of sending MRL tokens from a parachain back through Wormhole to a destination chain is as follows:
 
-1. Send a batch transaction using the `batchAll` extrinsic of the [Utility Pallet](/builders/pallets-precompiles/pallets/utility/){target=\_blank} that contains the following two calls:
+1. Send a batch transaction using the `batchAll` extrinsic of the [Utility Pallet](/builders/substrate/interfaces/utility/utility/){target=\_blank} that contains the following two calls:
     - **`xTokens.transferMultiassets`** - sends xcGLMR and the local XC-20 to the user’s [Computed Origin account](#calculate-computed-origin-account). The Computed Origin account is a keyless account on Moonbeam that an account on another parachain has control of via XCM
     - **`polkadotXcm.send`** - with the `Transact` instruction. Sends a [remote EVM call via XCM](/builders/interoperability/xcm/remote-execution/remote-evm-calls/){target=\_blank} to the Batch Precompile on Moonbeam, which batches the following two calls into a single remote EVM transaction using the `ethereumXcm.transact` extrinsic:
         - **`approve`** (of the local XC-20 contract) - approves the Wormhole relayer to transfer the local XC-20
@@ -178,7 +178,7 @@ To modify the code for Moonbeam, you'll use the following configurations:
 
 To generate the second call of the batch transaction, the `polkadotXcm.send` extrinsic, you'll need to create the EVM transaction and then assemble the XCM instructions that execute said EVM transaction.
 
-For now, you'll focus on generating the calldata for the EVM transaction. For this, you'll construct a transaction that interacts with the [Batch Precompile](/builders/pallets-precompiles/precompiles/batch/){target=\_blank} so that two transactions can happen in one. This is helpful because this EVM transaction has to approve both a Wormhole relayer to relay the local XC-20 token and the relay action itself.
+For now, you'll focus on generating the calldata for the EVM transaction. For this, you'll construct a transaction that interacts with the [Batch Precompile](/builders/ethereum/precompiles/ux/batch/){target=\_blank} so that two transactions can happen in one. This is helpful because this EVM transaction has to approve both a Wormhole relayer to relay the local XC-20 token and the relay action itself.
 
 To create the batch transaction and wrap it in a remote EVM call to be executed on Moonbeam, you'll need to take the following steps:
 

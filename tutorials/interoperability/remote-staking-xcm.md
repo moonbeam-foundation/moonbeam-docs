@@ -12,7 +12,7 @@ _by Kevin Neilson_
 
 In this tutorial, we’ll stake DEV tokens remotely by sending XCM instructions from an account on the Moonbase relay chain (equivalent to the Polkadot relay chain). This tutorial assumes a basic familiarity with [XCM](/builders/interoperability/xcm/overview/){target=\_blank} and [Remote Execution via XCM](/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-pallet/){target=\_blank}. You don’t have to be an expert on these topics but you may find it helpful to have some XCM knowledge as background.
 
-There are actually two possible approaches for staking on Moonbeam remotely via XCM. We could send a [remote EVM call](/builders/interoperability/xcm/remote-execution/remote-evm-calls/){target=\_blank} that calls the [staking precompile](/builders/pallets-precompiles/precompiles/staking/){target=\_blank}, or we could use XCM to call the [parachain staking pallet](/builders/pallets-precompiles/pallets/staking/){target=\_blank} directly without interacting with the EVM. For this tutorial, we’ll be taking the latter approach and interacting with the parachain staking pallet directly.
+There are actually two possible approaches for staking on Moonbeam remotely via XCM. We could send a [remote EVM call](/builders/interoperability/xcm/remote-execution/remote-evm-calls/){target=\_blank} that calls the [staking precompile](/builders/ethereum/precompiles/features/staking/){target=\_blank}, or we could use XCM to call the [parachain staking pallet](/builders/substrate/interfaces/features/staking/){target=\_blank} directly without interacting with the EVM. For this tutorial, we’ll be taking the latter approach and interacting with the parachain staking pallet directly.
 
 **Note that there are still limitations in what you can remotely execute through XCM messages.** In addition, **developers must understand that sending incorrect XCM messages can result in the loss of funds.** Consequently, it is essential to test XCM features on a TestNet before moving to a production environment.
 
@@ -46,11 +46,11 @@ This tutorial will cover the two-step process to perform remote staking operatio
 
 ### Generate the Encoded Call Data {: #generate-encoded-call-data }
 
-We'll be using the `delegateWithAutoCompound` function of the [Parachain Staking Pallet](/builders/pallets-precompiles/pallets/staking/){target=\_blank}, which accepts six parameters: `candidate`, `amount`, `autoCompound`, `candidateDelegationCount`, `candidateAutoCompoundingDelegationCount`, and `delegationCount`.
+We'll be using the `delegateWithAutoCompound` function of the [Parachain Staking Pallet](/builders/substrate/interfaces/features/staking/){target=\_blank}, which accepts six parameters: `candidate`, `amount`, `autoCompound`, `candidateDelegationCount`, `candidateAutoCompoundingDelegationCount`, and `delegationCount`.
 
 In order to generate the encoded call data, we'll need to assemble the arguments for each of the `delegateWithAutoCompound` parameters and use them to build a transaction which will call the `delegateWithAutoCompound` function. We are not submitting a transaction, but simply preparing one to get the encoded call data. We'll take the following steps to build our script:
 
-1. Create a [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=\_blank} provider
+1. Create a [Polkadot.js API](/builders/substrate/libraries/polkadot-js-api/){target=\_blank} provider
 2. Assemble the arguments for each of the parameters of the `delegateWithAutoCompound` function:
 
     - `candidate`- for this example we'll use the [Moonbeam Foundation 01 collator](https://moonbase.subscan.io/account/{{networks.moonbase.staking.candidates.address1}}){target=\_blank}: `{{networks.moonbase.staking.candidates.address1}}`. To retrieve the entire list of candidates, you can refer back to the [Preparing to Stake](#preparing-to-stake-on-moonbase-alpha) section
@@ -80,7 +80,7 @@ If you'd prefer not to set up a local environment, you can run a code snippet in
 
 ### Assemble and Send XCM Instructions via the Polkadot.js API {: #sending-the-xcm-instructions-via-the-polkadot-api }
 
-In this section, we'll be using the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=\_blank} to construct and send XCM instructions via the `send` extrinsic of the XCM Pallet on the Alphanet relay chain. The XCM message will transport our remote execution instructions to the Moonbase Alpha parachain to ultimately stake our desired amount of DEV tokens to a chosen collator.
+In this section, we'll be using the [Polkadot.js API](/builders/substrate/libraries/polkadot-js-api/){target=\_blank} to construct and send XCM instructions via the `send` extrinsic of the XCM Pallet on the Alphanet relay chain. The XCM message will transport our remote execution instructions to the Moonbase Alpha parachain to ultimately stake our desired amount of DEV tokens to a chosen collator.
 
 The `send` function of the XCM Pallet accepts two parameters: `dest` and `message`. You can start assembling these parameters by taking the following steps:
 
@@ -125,7 +125,7 @@ The `send` function of the XCM Pallet accepts two parameters: `dest` and `messag
 Now that you have the values for each of the parameters, you can write the script to send the XCM message. You'll take the following steps:
 
  1. Provide the values for each of the parameters of the `send` function
- 2. Create the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=\_blank} provider using the WSS endpoint of the Alphanet relay chain
+ 2. Create the [Polkadot.js API](/builders/substrate/libraries/polkadot-js-api/){target=\_blank} provider using the WSS endpoint of the Alphanet relay chain
  3. Create a Keyring instance using the mnemonic of your relay chain account, which will be used to send the transaction
  4. Craft the `xcmPallet.send` extrinsic with the `dest` and `message`
  5. Send the transaction using the `signAndSend` extrinsic and the Keyring instance you created in the third step
@@ -142,6 +142,6 @@ Now that you have the values for each of the parameters, you can write the scrip
 
 In the above snippet, besides submitting the remote staking via XCM transaction, we also print out the transaction hash to assist with any debugging.
 
-And that’s it! To verify that your delegation was successful, you can visit [Subscan](https://moonbase.subscan.io){target=\_blank} to check your staking balance. Be advised that it may take a few minutes before your staking balance is visible on Subscan. Additionally, be aware that you will not be able to see this staking operation on Moonscan, because we initiated the delegation action directly via the [Parachain Staking Pallet](/builders/pallets-precompiles/pallets/staking/){target=\_blank} (on the Substrate side) rather than through the [Staking Precompile](/builders/pallets-precompiles/precompiles/staking/){target=\_blank} (on the EVM).
+And that’s it! To verify that your delegation was successful, you can visit [Subscan](https://moonbase.subscan.io){target=\_blank} to check your staking balance. Be advised that it may take a few minutes before your staking balance is visible on Subscan. Additionally, be aware that you will not be able to see this staking operation on Moonscan, because we initiated the delegation action directly via the [Parachain Staking Pallet](/builders/substrate/interfaces/features/staking/){target=\_blank} (on the Substrate side) rather than through the [Staking Precompile](/builders/ethereum/precompiles/features/staking/){target=\_blank} (on the EVM).
 
 --8<-- 'text/_disclaimers/educational-tutorial.md'

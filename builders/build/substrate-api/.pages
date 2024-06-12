@@ -1,8 +1,0 @@
-title: Substrate Tools
-nav:
-  - index.md
-  - 'Overview': 'overview.md'
-  - 'Chopsticks': 'chopsticks.md'
-  - 'Polkadot.js API': 'polkadot-js-api.md'
-  - 'Py Substrate Interface': 'py-substrate-interface.md'
-  - 'Sidecar': 'sidecar.md'

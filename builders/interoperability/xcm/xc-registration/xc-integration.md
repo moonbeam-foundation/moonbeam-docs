@@ -30,7 +30,7 @@ The first step for a Moonriver/Moonbeam XCM integration is to integrate with the
 The entire process of getting started with Moonbase Alpha can be summarized as follows:
 
 1. [Sync a node](#sync-a-node) with the Alphanet relay chain
-2. [Calculate your parachain Sovereign account](#calculate-and-fund-the-parachain-Sovereign-account) on the Alphanet relay chain
+2. [Calculate your parachain Sovereign account](#calculate-and-fund-the-parachain-sovereign-account) on the Alphanet relay chain
 3. Once your node is fully synced, please get in touch with the Moonbeam team on [Telegram](https://t.me/Moonbeam_Official){target=\_blank} or [Discord](https://discord.com/invite/PfpUATX){target=\_blank}, so the team can onboard your parachain to the relay chain. Provide the following information for onboarding:
     - The WASM/Genesis head hash
     - Your parachain ID
@@ -91,7 +91,7 @@ Please check the HRMP channel guidelines that the community voted on for [Moonri
 The process can be summarized in the following steps:
 
 1. Open (or ensure there is) an HRMP channel from your chain to Moonriver/Moonbeam. Optionally, register MOVR/GLMR
-2. Create [two Moonbeam Community forum posts](#forum-templates) with some key information for the XCM integration:
+2. Create [two Moonbeam Community forum posts](#create-forum-posts) with some key information for the XCM integration:
     - An [XCM Disclosure post](/builders/interoperability/xcm/xc-registration/forum-templates#xcm-disclosure), where you'll provide some disclosures about the project, the code base, and social network channels
     - An [XCM Proposal post](/builders/interoperability/xcm/xc-registration/forum-templates#xcm-proposals), where you'll provide some technical information about the proposal itself
 3. Create a batch proposal on Moonbeam/Moonriver to:

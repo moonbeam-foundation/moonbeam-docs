@@ -133,7 +133,7 @@ You can also get the calldata programmatically using the [Uniswap V2 SDK](https:
 
 Now that we have the Uniswap V2 swap encoded calldata, we need to generate the bytes that the `Transact` XCM instruction from the XCM message will execute. Note that these bytes represent the action that will be executed in the remote chain. In this example, we want the XCM message execution to enter the EVM and perform the swap, from which we got the encoded calldata.
 
- To get the SCALE (encoding type) encoded calldata for the transaction parameters, we can leverage the following [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=\_blank} script (note that it requires `@polkadot/api` and `ethers`).
+ To get the SCALE (encoding type) encoded calldata for the transaction parameters, we can leverage the following [Polkadot.js API](/builders/substrate/libraries/polkadot-js-api/){target=\_blank} script (note that it requires `@polkadot/api` and `ethers`).
 
 ```js
 --8<-- 'code/tutorials/interoperability/uniswapv2-swap/generate-moonbeam-encoded-calldata.js'
@@ -148,7 +148,7 @@ Let's go through each of the main components of the snippet shown above:
      - Moonbase Alpha endpoint URL to create the providers
      - [Uniswap V2 router address](https://moonbase.moonscan.io/address/0x8a1932d6e26433f3037bd6c3a40c816222a6ccd4#code){target=\_blank} which is the one the call interacts with
      - Encoded calldata for the Uniswap V2 swap that we calculated before
- 2. Create the necessary providers. One is a [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=\_blank} provider, through which we can call [Moonbeam pallets](/builders/pallets-precompiles/pallets){target=\_blank} directly. The other one is an Ethereum API provider through Ethers.js
+ 2. Create the necessary providers. One is a [Polkadot.js API](/builders/substrate/libraries/polkadot-js-api/){target=\_blank} provider, through which we can call [Moonbeam pallets](/builders/substrate/interfaces){target=\_blank} directly. The other one is an Ethereum API provider through Ethers.js
  3. This step is mainly a best practice. Here, we are estimating the gas of the EVM call that will be executed via XCM, as this is needed later on. You can also hardcode the gas limit value, but it is not recommended
  4. [Build the remote EVM call](/builders/interoperability/xcm/remote-execution/remote-evm-calls/#build-remote-evm-call-xcm){target=\_blank}. We bumped the gas by `10000` units to provide a bit of room in case conditions change. The inputs are identical to those used for the gas estimation
  5. Create the Ethereum XCM pallet call to the `transact` method, providing the call parameters we previously built
@@ -168,7 +168,7 @@ And that is it! You have everything you need to start crafting the XCM message i
 
 ## Building the XCM Message from the Relay Chain {: #building-the-xcm-message-relay-chain }
 
-We are almost in the last part of this tutorial! In this section, we'll craft the XCM message using the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=\_blank}. We'll also dissect the message instruction per instruction to understand what is happening every step of the way.
+We are almost in the last part of this tutorial! In this section, we'll craft the XCM message using the [Polkadot.js API](/builders/substrate/libraries/polkadot-js-api/){target=\_blank}. We'll also dissect the message instruction per instruction to understand what is happening every step of the way.
 
 The XCM message we are about to build is composed of the following instructions:
 
@@ -201,7 +201,7 @@ Let's go through each of the main components of the snippet shown above:
  5. Third XCM instruction, `Transact`. The instruction will use a portion of the weight bought (defined as `requireWeightAtMost`) and execute the arbitrary bytes that are provided (`transactBytes`)
  6. Fourth XCM instruction, `DepositAsset`. Whatever is left in holding after the actions executed before (in this case, it should be only `DEV` tokens) is deposited to the Computed Origin account, set as the `beneficiary`.
  7. Build the XCM message by concatenating the instructions inside a `V2` array
- 8. Create the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=\_blank} provider
+ 8. Create the [Polkadot.js API](/builders/substrate/libraries/polkadot-js-api/){target=\_blank} provider
  9. Craft the `xcmPallet.send` extrinsic with the destination and XCM message. This method will append the [`DescendOrigin`](/builders/interoperability/xcm/core-concepts/instructions#descend-origin){target=\_blank} XCM instruction to our XCM message, and it is the instruction that will provide the necessary information to calculate the Computed Origin account
  10. Get the SCALE encoded calldata. Note that in this particular scenario, because we need the full SCALE encoded calldata, we have to use `tx.toHex()`. This is because we will submit this transaction using the calldata
 

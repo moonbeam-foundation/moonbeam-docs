@@ -38,7 +38,7 @@ Once you've downloaded the SubWallet Browser Extension, you'll be prompted to se
 
 - **Connect wallet** - *only available on the web dashboard* - allows you to connect to a browser extension wallet. You can use this method to easily connect to an account you've created using the SubWallet browser extension or another wallet, such as MetaMask
 
-The following sections will provide step-by-step instructions for [creating a new account](#create-a-new-account-extension) and [importing an existing account](#import-an-account-extension) with SubWallet.
+The following sections will provide step-by-step instructions for [creating a new account](#create-a-new-account) and [importing an existing account](#import-an-account) with SubWallet.
 
 If you're attaching an account, you can find step-by-step instructions on [SubWallet's Account management documentation](https://docs.subwallet.app/main/extension-user-guide/account-management){target=\_blank}. Similarly, if you're connecting a wallet on the web dashboard, you can find instructions on [SubWallet's Connect extension documentation](https://docs.subwallet.app/main/web-dashboard-user-guide/account-management/connect-extension){target=\_blank}.
 

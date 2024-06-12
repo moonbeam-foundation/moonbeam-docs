@@ -65,4 +65,4 @@ The following code snippet uses the Axios HTTP client to query the [Sidecar endp
 --8<-- 'code/learn/core-concepts/transfers-api/sidecar-transfer.js'
 ```
 
-You can reference the [Substrate API Sidecar page](/builders/build/substrate-api/sidecar/) for information on installing and running your own Sidecar service instance, as well as more details on how to decode Sidecar blocks for Moonbeam transactions.
+You can reference the [Substrate API Sidecar page](/builders/substrate/libraries/sidecar/) for information on installing and running your own Sidecar service instance, as well as more details on how to decode Sidecar blocks for Moonbeam transactions.

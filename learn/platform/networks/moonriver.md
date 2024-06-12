@@ -74,4 +74,4 @@ The Moonriver network is a fully decentralized Delegated Proof of Stake network 
 
 ## Limitations {: #limitations }
 
-Some [precompiles](https://www.evm.codes/precompiled){target=\_blank} are yet to be included. You can check a list of supported precompiles on the [Canonical Contract page](/builders/pallets-precompiles/precompiles/){target=\_blank}. However, all built-in functions are available.
+Some [precompiles](https://www.evm.codes/precompiled){target=\_blank} are yet to be included. You can check a list of supported precompiles on the [Canonical Contract page](/builders/ethereum/precompiles/){target=\_blank}. However, all built-in functions are available.

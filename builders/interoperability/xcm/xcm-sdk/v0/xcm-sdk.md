@@ -154,7 +154,7 @@ To be able to deposit, withdraw, and subscribe to balance information for all of
     const { moonbase } = init();
     ```
 
-If you intend to support a specific wallet, you can pass a signer into the `init` function right away. Otherwise, you'll be able to pass a signer directly when building the transfer data for a deposit or withdraw. To pass in a signer for [Ethers](/builders/build/eth-api/libraries/ethersjs/){target=\_blank} and [Polkadot](/builders/build/substrate-api/polkadot-js-api/){target=\_blank}, you can use the following snippet:
+If you intend to support a specific wallet, you can pass a signer into the `init` function right away. Otherwise, you'll be able to pass a signer directly when building the transfer data for a deposit or withdraw. To pass in a signer for [Ethers](/builders/ethereum/libraries/ethersjs/){target=\_blank} and [Polkadot](/builders/substrate/libraries/polkadot-js-api/){target=\_blank}, you can use the following snippet:
 
 === "Moonbeam"
 
@@ -266,7 +266,7 @@ Where the `id` refers to the asset ID, the `erc20id` refers to the asset's preco
 
 ### Moonbeam Native Asset Data {: #native-assets }
 
-To get information about each of the Moonbeam network's native protocol asset, such as the [precompile contract address](/builders/pallets-precompiles/precompiles/erc20/){target=\_blank} and the origin symbol, you can access the `moonAsset` property:
+To get information about each of the Moonbeam network's native protocol asset, such as the [precompile contract address](/builders/ethereum/precompiles/ux/erc20/){target=\_blank} and the origin symbol, you can access the `moonAsset` property:
 
 === "Moonbeam"
 
@@ -427,7 +427,7 @@ from(polkadot);
 
 #### Get {: #get-deposit }
 
-The `get` function requires that you pass in the receiving account on Moonbeam and a [Polkadot signer](/builders/build/substrate-api/polkadot-js-api/){target=\_blank} or the sending account on Polkadot depending on how you set up your Polkadot signer, and it gets the data required for the deposit.
+The `get` function requires that you pass in the receiving account on Moonbeam and a [Polkadot signer](/builders/substrate/libraries/polkadot-js-api/){target=\_blank} or the sending account on Polkadot depending on how you set up your Polkadot signer, and it gets the data required for the deposit.
 
 If you have a Polkadot compatible signer, you can pass the signer into the `init` function, then in the `get` function you can pass the Polkadot address for the second argument:
 

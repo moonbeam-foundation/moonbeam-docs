@@ -7,7 +7,7 @@ description: A description of the main differences that Ethereum developers need
 
 ## Introduction {: #introduction }
 
-When developing smart contracts on Moonbeam, there are some security considerations to be aware of that do not apply when developing on Ethereum. Moonbeam has several [precompiled contracts](/builders/pallets-precompiles/precompiles/){target=\_blank}, which are Solidity interfaces that enable developers to access Substrate-based functionality through the Ethereum API, but circumventing the EVM. Although the precompiled contracts are designed to improve the developer experience, there can be some unintended consequences that must be considered.
+When developing smart contracts on Moonbeam, there are some security considerations to be aware of that do not apply when developing on Ethereum. Moonbeam has several [precompiled contracts](/builders/ethereum/precompiles/){target=\_blank}, which are Solidity interfaces that enable developers to access Substrate-based functionality through the Ethereum API, but circumventing the EVM. Although the precompiled contracts are designed to improve the developer experience, there can be some unintended consequences that must be considered.
 
 This guide will outline and provide examples of some security considerations to be cognizant of when developing on Moonbeam.
 
@@ -23,7 +23,7 @@ Arbitrary code execution follows the pattern in the diagram below when **Contrac
 
 As previously mentioned, one major concern of arbitrarily executing code on Moonbeam is that Moonbeam has precompile contracts that can be called, which can be used to get around some protections that are typically available on Ethereum. To safely use arbitrary code execution on Moonbeam, you should consider the following, which **only applies to contracts that allow arbitrary code execution**:
 
-- Moonbeam [precompiled contracts](/builders/pallets-precompiles/precompiles/){target=\_blank} such as the Native ERC-20 precompile, XC-20 precompiles, and XCM-related precompiles allow users to manage and transfer assets without requiring access to the EVM. Instead, these actions are done using native Substrate code. So, if your contract holds native tokens or XC-20s and allows arbitrary code execution, these precompiles can be used to drain the balance of the contract, bypassing any security checks that are normally enforced by the EVM
+- Moonbeam [precompiled contracts](/builders/ethereum/precompiles/){target=\_blank} such as the Native ERC-20 precompile, XC-20 precompiles, and XCM-related precompiles allow users to manage and transfer assets without requiring access to the EVM. Instead, these actions are done using native Substrate code. So, if your contract holds native tokens or XC-20s and allows arbitrary code execution, these precompiles can be used to drain the balance of the contract, bypassing any security checks that are normally enforced by the EVM
 - Setting the value attribute of the transaction object to a fixed amount when using the `call()` function (for example, `call{value: 0}(...)`) can be bypassed by calling the native asset precompile and specifying an amount to transfer in the encoded call data
 - Allowing users that consume your contract to pass in arbitrary call data that will execute any function on the target contract, especially if the contract being targeted is a precompile, is **not** safe. To be safe, you can hard code the function selector for a safe function that you want to allow to be executed
 - Blacklisting target contracts (including precompiles) in the function that executes arbitrary call data is **not** considered safe, as other precompiles might be added in the future. Providing whitelisted target contracts in the function that executes the arbitrary call data is considered safe, assuming that the contracts being called are not precompiles, or that in the case they are, the contract making the call does not hold the native token or any XC-20
@@ -32,7 +32,7 @@ In the following sections, you'll learn about each of these security considerati
 
 ### Precompiles Can Override a Set Value {: #setting-a-value }
 
-On Ethereum, a smart contract that allows for arbitrary code execution could force the value of a call to be a specific amount (for example, `{value: 0}`), guaranteeing that only that amount of native currency would be sent with the transaction. Whereas on Moonbeam, the [native ERC-20 precompile contract](/builders/pallets-precompiles/precompiles/erc20/){target=\_blank} enables you to interact with the native currency on Moonbeam as an ERC-20 through the Substrate API. As a result, you can transfer the Moonbeam native asset from a smart contract by setting the `value` of a call, as well as through the native ERC-20 precompile. If you set the `value` of an arbitrary call, it can be overridden by targeting the [native ERC-20 precompile contract](/builders/pallets-precompiles/precompiles/erc20/){target=\_blank} and passing in call data to transfer the native asset. Since ERC-20s and XC-20s are not native assets, setting the value attribute doesn't provide any protection for these types of assets on Ethereum or Moonbeam.
+On Ethereum, a smart contract that allows for arbitrary code execution could force the value of a call to be a specific amount (for example, `{value: 0}`), guaranteeing that only that amount of native currency would be sent with the transaction. Whereas on Moonbeam, the [native ERC-20 precompile contract](/builders/ethereum/precompiles/ux/erc20/){target=\_blank} enables you to interact with the native currency on Moonbeam as an ERC-20 through the Substrate API. As a result, you can transfer the Moonbeam native asset from a smart contract by setting the `value` of a call, as well as through the native ERC-20 precompile. If you set the `value` of an arbitrary call, it can be overridden by targeting the [native ERC-20 precompile contract](/builders/ethereum/precompiles/ux/erc20/){target=\_blank} and passing in call data to transfer the native asset. Since ERC-20s and XC-20s are not native assets, setting the value attribute doesn't provide any protection for these types of assets on Ethereum or Moonbeam.
 
 For example, if you have a contract that allows arbitrary code execution and you pass it encoded call data that transfers the balance of a contract to another address, you could essentially drain the given contract of it's balance.
 
@@ -49,7 +49,7 @@ function getBytes(address _erc20Contract, address _arbitraryCallContract, addres
 }
 ```
 
-Once you have the encoded call data, you could make an arbitrary call to the [native ERC-20 precompile contract](/builders/pallets-precompiles/precompiles/erc20/){target=\_blank}, set the value of the call to `0`, and pass in the call data in bytes:
+Once you have the encoded call data, you could make an arbitrary call to the [native ERC-20 precompile contract](/builders/ethereum/precompiles/ux/erc20/){target=\_blank}, set the value of the call to `0`, and pass in the call data in bytes:
 
 ```solidity
 function makeArbitraryCall(address _target, bytes calldata _bytes) public {
@@ -123,7 +123,7 @@ function transferFunds(address payable _target) payable public {
 }
 ```
 
-On Ethereum, you can use this check to ensure that a given contract function can only be called once by an EOA. This is because on Ethereum, EOAs can only interact with a contract once per transaction. However, **this is not the case** on Moonbeam, as EOAs can interact with a contract multiple times at once by using precompiled contracts, such as the [batch](/builders/pallets-precompiles/precompiles/batch/){target=\_blank} and [call permit](/builders/pallets-precompiles/precompiles/call-permit/){target=\_blank} precompiles.
+On Ethereum, you can use this check to ensure that a given contract function can only be called once by an EOA. This is because on Ethereum, EOAs can only interact with a contract once per transaction. However, **this is not the case** on Moonbeam, as EOAs can interact with a contract multiple times at once by using precompiled contracts, such as the [batch](/builders/ethereum/precompiles/ux/batch/){target=\_blank} and [call permit](/builders/ethereum/precompiles/ux/call-permit/){target=\_blank} precompiles.
 
 With the batch precompile, users can perform multiple calls to a contract atomically. The caller of the batch function will be the `msg.sender` and `tx.origin`, enabling multiple contract interactions at once.
 

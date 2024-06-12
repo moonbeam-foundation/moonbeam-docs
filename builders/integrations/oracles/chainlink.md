@@ -143,7 +143,7 @@ Currently, there are data feed contracts for [Moonbeam](https://docs.chain.link/
     | USDT to USD  | {{ networks.moonbase.chainlink.feed.proxy.usdt_usd }}  |
     |  YFI to USD  |  {{ networks.moonbase.chainlink.feed.proxy.yfi_usd }}  |
 
-For example, you can use the aggregator interface to fetch the price feed of `BTC to USD` using [Remix](https://remix.ethereum.org){target=\_blank}. If you need help loading a contract into Remix, check out the [Using Remix](/builders/build/eth-api/dev-env/remix/){target=\_blank} page of the documentation site.
+For example, you can use the aggregator interface to fetch the price feed of `BTC to USD` using [Remix](https://remix.ethereum.org){target=\_blank}. If you need help loading a contract into Remix, check out the [Using Remix](/builders/ethereum/dev-env/remix/){target=\_blank} page of the documentation site.
 
 You will need to connect your MetaMask account to Remix, so make sure you have MetaMask installed and are connected to the correct network. To get help setting up MetaMask, check out the [Interacting with Moonbeam Using MetaMask](/tokens/connect/metamask/#install-the-metamask-extension){target=\_blank} guide.
 
@@ -365,7 +365,7 @@ Currently, the oracle node has a set of Job IDs for different price data for the
 | USDT to USD  | {{ networks.moonbase.chainlink.basic.usdt_usd }}  |
 |  YFI to USD  |  {{ networks.moonbase.chainlink.basic.yfi_usd }}  |
 
-For this example, you can go ahead and use the interface contract with the `BTC to USD` job ID in [Remix](/builders/build/eth-api/dev-env/remix/){target=\_blank}. After creating the file and compiling the contract, you can take the following steps:
+For this example, you can go ahead and use the interface contract with the `BTC to USD` job ID in [Remix](/builders/ethereum/dev-env/remix/){target=\_blank}. After creating the file and compiling the contract, you can take the following steps:
 
 1. Head to the **Deploy and Run Transactions** tab
 2. Make sure you have set the **ENVIRONMENT** to **Injected Web3**, and you have your MetaMask connected to Moonbase Alpha

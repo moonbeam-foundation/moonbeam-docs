@@ -357,7 +357,7 @@ Although Moonbeam is Ethereum-compatible, it is also a Substrate-based chain at 
 
 It's important to note that priority is not the sole component responsible for determining the order of transactions in a block. Other components, such as the longevity of a transaction, also play a role in the sorting process.
 
-The values of `GasPrice`, `MaxFeePerGas` and `MaxPriorityFeePerGas` for the applicable transaction types can be read from the block JSON object according to the structure described in [the Sidecar API page](/builders/build/substrate-api/sidecar/#evm-fields-mapping-in-block-json-object){target=\_blank}.
+The values of `GasPrice`, `MaxFeePerGas` and `MaxPriorityFeePerGas` for the applicable transaction types can be read from the block JSON object according to the structure described in [the Sidecar API page](/builders/substrate/libraries/sidecar/#evm-fields-mapping-in-block-json-object){target=\_blank}.
 
 The data for an Ethereum transaction in a particular block can be extracted from the following block endpoint:
 
@@ -475,9 +475,9 @@ You can use the following snippet for any Moonbeam-based network, but you'll nee
 
 ## Substrate API Transaction Fees {: #substrate-api-transaction-fees }
 
-This section of the guide assumes you are interacting with Moonbeam blocks via [the Substrate API Sidecar](/builders/build/substrate-api/sidecar/){target=\_blank} service. There are other ways of interacting with Moonbeam blocks, such as using [the Polkadot.js API library](/builders/build/substrate-api/polkadot-js-api/){target=\_blank}. The logic is identical once the blocks are retrieved.
+This section of the guide assumes you are interacting with Moonbeam blocks via [the Substrate API Sidecar](/builders/substrate/libraries/sidecar/){target=\_blank} service. There are other ways of interacting with Moonbeam blocks, such as using [the Polkadot.js API library](/builders/substrate/libraries/polkadot-js-api/){target=\_blank}. The logic is identical once the blocks are retrieved.
 
-You can reference the [Substrate API Sidecar page](/builders/build/substrate-api/sidecar/){target=\_blank} for information on installing and running your own Sidecar service instance, as well as more details on how to decode Sidecar blocks for Moonbeam transactions.
+You can reference the [Substrate API Sidecar page](/builders/substrate/libraries/sidecar/){target=\_blank} for information on installing and running your own Sidecar service instance, as well as more details on how to decode Sidecar blocks for Moonbeam transactions.
 
 **Note that the information in this section assumes you are running version {{ networks.moonbase.substrate_api_sidecar.stable_version }} of the Substrate Sidecar REST API.**
 

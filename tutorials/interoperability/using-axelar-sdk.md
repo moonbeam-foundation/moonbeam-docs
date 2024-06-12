@@ -106,7 +106,7 @@ npx hardhat compile
 
 ## Deploying the Cross-Chain Contract to Moonbase Alpha {: #deploying-the-cross-chain-contract-to-moonbase-alpha}
 
-This demo focuses on using the scripts, so it’s best to take a look at them, starting with `deploy.js`, which is similar to the [Ethers.js tutorial deployment contracts](/builders/build/eth-api/libraries/ethersjs/#deploy-contract-script){target=\_blank}.
+This demo focuses on using the scripts, so it’s best to take a look at them, starting with `deploy.js`, which is similar to the [Ethers.js tutorial deployment contracts](/builders/ethereum/libraries/ethersjs/#deploy-contract-script){target=\_blank}.
 
 `gatewayGasReceiver.js` stores many of the contract addresses in this repo, which are necessary for the deployment. You likely will not have to change any of the hardcoded addresses. Try deploying your contract to the origin chain:
 

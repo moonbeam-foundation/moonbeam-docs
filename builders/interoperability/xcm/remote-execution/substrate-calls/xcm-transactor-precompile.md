@@ -46,7 +46,7 @@ The XCM Transactor Precompiles are located at the following addresses:
     |   V2    | <pre>```{{ networks.moonbase.precompiles.xcm_transactor_v2 }}```</pre> |
     |   V3    | <pre>```{{ networks.moonbase.precompiles.xcm_transactor_v3 }}```</pre> |
 
---8<-- 'text/builders/pallets-precompiles/precompiles/security.md'
+--8<-- 'text/builders/ethereum/precompiles/security.md'
 
 ## The XCM Transactor Solidity Interface {: #xcmtrasactor-solidity-interface }
 
@@ -293,13 +293,13 @@ For this example, you'll interact with the `transactThroughSigned` function of t
         const feeLocationAddress = '0xFFFFFFFF1AB2B146C526D4154905FF12E6E57675';
         ```
 
-    - `transactRequiredWeightAtMost` - the weight required to execute the call in the `Transact` instruction. You can get this information by using the [`paymentInfo` method of the Polkadot.js API](/builders/build/substrate-api/polkadot-js-api#fees){target=\_blank} on the call
+    - `transactRequiredWeightAtMost` - the weight required to execute the call in the `Transact` instruction. You can get this information by using the [`paymentInfo` method of the Polkadot.js API](/builders/substrate/libraries/polkadot-js-api#fees){target=\_blank} on the call
 
         ```js
         const transactRequiredWeightAtMost = [1000000000n, 5000n];
         ```
 
-    - `call` - the encoded call data of the pallet, method, and input to be called. It can be constructed in [Polkadot.js Apps](https://polkadot.js.org/apps){target=\_blank} (which must be connected to the destination chain) or using the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=\_blank}. For this example, the inner call is a simple balance transfer of 1 token of the destination chain to Alice's account there:
+    - `call` - the encoded call data of the pallet, method, and input to be called. It can be constructed in [Polkadot.js Apps](https://polkadot.js.org/apps){target=\_blank} (which must be connected to the destination chain) or using the [Polkadot.js API](/builders/substrate/libraries/polkadot-js-api/){target=\_blank}. For this example, the inner call is a simple balance transfer of 1 token of the destination chain to Alice's account there:
 
         ```js
         const call =

@@ -215,7 +215,7 @@ If you want to pass in a browser extension wallet to viem, you can use the follo
 
 ### Create a Polkadot Signer {: #create-a-polkadot-signer }
 
-In this example, you can use a [Polkadot.js Keyring](/builders/build/substrate-api/polkadot-js-api#keyrings){target=\_blank} to sign transactions. Please note that this approach is not recommended for production applications.
+In this example, you can use a [Polkadot.js Keyring](/builders/substrate/libraries/polkadot-js-api#keyrings){target=\_blank} to sign transactions. Please note that this approach is not recommended for production applications.
 
 ```js
 import { Keyring } from '@polkadot/api';

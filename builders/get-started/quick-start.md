@@ -7,9 +7,9 @@ description: Everything you need to know to get started developing, deploying, a
 
 ## Quick Overview {: #overview }
 
-Moonbeam is a fully Ethereum-compatible smart contract platform on Polkadot. As such, you can interact with Moonbeam via the [Ethereum API](/builders/build/eth-api/){target=\_blank} and [Substrate API](/builders/build/substrate-api/){target=\_blank}.
+Moonbeam is a fully Ethereum-compatible smart contract platform on Polkadot. As such, you can interact with Moonbeam via the [Ethereum API](/builders/ethereum/){target=\_blank} and [Substrate API](/builders/substrate/){target=\_blank}.
 
-Although Moonbeam is a Substrate-based platform, Moonbeam uses a [unified accounts](/learn/core-concepts/unified-accounts/){target=\_blank} system, which replaces Substrate-style accounts and keys with Ethereum-style accounts and keys. As a result, you can interact with your Moonbeam account with [MetaMask](/tokens/connect/metamask/){target=\_blank}, [Ledger](/tokens/connect/ledger/){target=\_blank}, and other Ethereum-compatible wallets by simply adding Moonbeam's network configurations. Similarly, you can develop on Moonbeam using Ethereum [libraries](/builders/build/eth-api/libraries/){target=\_blank} and [development environments](/builders/build/eth-api/dev-env/){target=\_blank}.
+Although Moonbeam is a Substrate-based platform, Moonbeam uses a [unified accounts](/learn/core-concepts/unified-accounts/){target=\_blank} system, which replaces Substrate-style accounts and keys with Ethereum-style accounts and keys. As a result, you can interact with your Moonbeam account with [MetaMask](/tokens/connect/metamask/){target=\_blank}, [Ledger](/tokens/connect/ledger/){target=\_blank}, and other Ethereum-compatible wallets by simply adding Moonbeam's network configurations. Similarly, you can develop on Moonbeam using Ethereum [libraries](/builders/ethereum/libraries/){target=\_blank} and [development environments](/builders/ethereum/dev-env/){target=\_blank}.
 
 ## Moonbeam Networks {: #moonbeam-networks }
 
@@ -89,20 +89,20 @@ As Moonbeam is a Substrate-based chain that is fully Ethereum-compatible, you ca
 
     |                                     Tool                                      |      Type       |
     |:-----------------------------------------------------------------------------:|:---------------:|
-    |   [Ethers.js](/builders/build/eth-api/libraries/ethersjs/){target=\_blank}    |     Library     |
-    |     [Web3.js](/builders/build/eth-api/libraries/web3js/){target=\_blank}      |     Library     |
-    |      [Hardhat](/builders/build/eth-api/dev-env/hardhat/){target=\_blank}      | Dev Environment |
-    | [OpenZeppelin](/builders/build/eth-api/dev-env/openzeppelin/){target=\_blank} | Dev Environment |
-    |        [Remix](/builders/build/eth-api/dev-env/remix/){target=\_blank}        | Dev Environment |
-    | [Scaffold-Eth](/builders/build/eth-api/dev-env/scaffold-eth/){target=\_blank} | Dev Environment |
-    |     [thirdweb](/builders/build/eth-api/dev-env/thirdweb/){target=\_blank}     | Dev Environment |
-    | [Waffle & Mars](/builders/build/eth-api/dev-env/waffle-mars/){target=\_blank} | Dev Environment |
+    |   [Ethers.js](/builders/ethereum/libraries/ethersjs/){target=\_blank}    |     Library     |
+    |     [Web3.js](/builders/ethereum/libraries/web3js/){target=\_blank}      |     Library     |
+    |      [Hardhat](/builders/ethereum/dev-env/hardhat/){target=\_blank}      | Dev Environment |
+    | [OpenZeppelin](/builders/ethereum/dev-env/openzeppelin/){target=\_blank} | Dev Environment |
+    |        [Remix](/builders/ethereum/dev-env/remix/){target=\_blank}        | Dev Environment |
+    | [Scaffold-Eth](/builders/ethereum/dev-env/scaffold-eth/){target=\_blank} | Dev Environment |
+    |     [thirdweb](/builders/ethereum/dev-env/thirdweb/){target=\_blank}     | Dev Environment |
+    | [Waffle & Mars](/builders/ethereum/dev-env/waffle-mars/){target=\_blank} | Dev Environment |
 
 === "Substrate"
 
     |                                       Tool                                        |  Type   |
     |:---------------------------------------------------------------------------------:|:-------:|
-    | [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=\_blank} | Library |
+    | [Polkadot.js API](/builders/substrate/libraries/polkadot-js-api/){target=\_blank} | Library |
 
 ### Python Tools {: #python }
 
@@ -110,12 +110,12 @@ As Moonbeam is a Substrate-based chain that is fully Ethereum-compatible, you ca
 
     |                                 Tool                                 |      Type       |
     |:--------------------------------------------------------------------:|:---------------:|
-    | [Web3.py](/builders/build/eth-api/libraries/web3py/){target=\_blank} |     Library     |
-    |     [Ape](/builders/build/eth-api/dev-env/ape/){target=\_blank}      | Dev Environment |
-    | [Brownie](/builders/build/eth-api/dev-env/brownie/){target=\_blank}  | Dev Environment |
+    | [Web3.py](/builders/ethereum/libraries/web3py/){target=\_blank} |     Library     |
+    |     [Ape](/builders/ethereum/dev-env/ape/){target=\_blank}      | Dev Environment |
+    | [Brownie](/builders/ethereum/dev-env/brownie/){target=\_blank}  | Dev Environment |
 
 === "Substrate"
 
     |                                              Tool                                               |  Type   |
     |:-----------------------------------------------------------------------------------------------:|:-------:|
-    | [Py Substrate Interface](/builders/build/substrate-api/py-substrate-interface/){target=\_blank} | Library |
+    | [Py Substrate Interface](/builders/substrate/libraries/py-substrate-interface/){target=\_blank} | Library |

@@ -9,9 +9,9 @@ _by Kevin Neilson_
 
 ## Introduction {: #introduction }
 
-Tenderly is an all-in-one development platform for EVM networks that enables Web3 developers to build, test, monitor, and operate their smart contracts. Tenderly has a [full suite of product offerings](/builders/build/eth-api/dev-env/tenderly/) to help you as a developer throughout the lifecycle of a smart contract, from the earliest stages of development to maintenance and alerting on a live production dApp.
+Tenderly is an all-in-one development platform for EVM networks that enables Web3 developers to build, test, monitor, and operate their smart contracts. Tenderly has a [full suite of product offerings](/builders/ethereum/dev-env/tenderly/) to help you as a developer throughout the lifecycle of a smart contract, from the earliest stages of development to maintenance and alerting on a live production dApp.
 
-Most services offered by Tenderly are free to use, but you'll need to subscribe to a paid plan for advanced features like real-time alerting and war room functionality. Tenderly supports Moonbeam and Moonriver but does not support Moonbase Alpha at this time. For more information about Tenderly's product offerings, be sure to familiarize yourself with the [Introduction to Tenderly](/builders/build/eth-api/dev-env/tenderly/).
+Most services offered by Tenderly are free to use, but you'll need to subscribe to a paid plan for advanced features like real-time alerting and war room functionality. Tenderly supports Moonbeam and Moonriver but does not support Moonbase Alpha at this time. For more information about Tenderly's product offerings, be sure to familiarize yourself with the [Introduction to Tenderly](/builders/ethereum/dev-env/tenderly/).
 
 In this tutorial, we're going to explore two of Tenderly's most powerful features, the debugger and the simulator.
 
@@ -87,7 +87,7 @@ You can also access Tenderly's transaction simulator via the [Simulations API](h
 Simulations are great for one-off tests, but what if you want to test a series of interdependent transactions? A fork is a better option in this case because forks are stateful. Additionally, [Tenderly forks](https://docs.tenderly.co/forks){target=\_blank} are a terrific option when you want to interact with contracts in a private environment without redeploying existing smart contract logic on-chain.
 
 !!! note
-    There are some limitations to be aware of when using Tenderly's forking feature. You cannot interact with any of the [Moonbeam precompiled contracts](/builders/pallets-precompiles/precompiles/){target=\_blank} or their functions. Precompiles are a part of the Substrate implementation and therefore cannot be replicated in the simulated EVM environment. This prohibits you from interacting with cross-chain assets on Moonbeam and Substrate-based functionality such as staking and governance.
+    There are some limitations to be aware of when using Tenderly's forking feature. You cannot interact with any of the [Moonbeam precompiled contracts](/builders/ethereum/precompiles/){target=\_blank} or their functions. Precompiles are a part of the Substrate implementation and therefore cannot be replicated in the simulated EVM environment. This prohibits you from interacting with cross-chain assets on Moonbeam and Substrate-based functionality such as staking and governance.
 
 It's easy to create a fork with Tenderly. To do so, head to the **Forks** tab and take the following steps:
 
@@ -124,7 +124,7 @@ Great! Now let's go ahead and try to perform the transfer from Baltathar now tha
 
 Note in the upper right corner under **Fork Parameters** that the parent block is the **Previous Simulation**. This indicates that the simulation we're submitting now will build upon any state changes made in the prior one. If you notice an error indicating that the balance is insufficient, this could be a result of accidentally overriding the block number to use the same block number as the original `minter_mint` transaction.
 
-Tenderly also generates a custom RPC url for your fork, which looks something like `https://rpc.tenderly.co/fork/YOUR_UNIQUE_FORK_IDENTIFIER`. You can use this RPC url to submit transactions to your fork from [Hardhat](/builders/build/eth-api/dev-env/hardhat/){target=\_blank}, [Foundry](/builders/build/eth-api/dev-env/foundry/){target=\_blank}, or another preferred [development environment](/builders/build/eth-api/dev-env/){target=\_blank}.
+Tenderly also generates a custom RPC url for your fork, which looks something like `https://rpc.tenderly.co/fork/YOUR_UNIQUE_FORK_IDENTIFIER`. You can use this RPC url to submit transactions to your fork from [Hardhat](/builders/ethereum/dev-env/hardhat/){target=\_blank}, [Foundry](/builders/ethereum/dev-env/foundry/){target=\_blank}, or another preferred [development environment](/builders/ethereum/dev-env/){target=\_blank}.
 
 ## Debugging {: #debugging }
 

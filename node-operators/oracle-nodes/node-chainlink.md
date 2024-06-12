@@ -38,7 +38,7 @@ To follow along with this guide, you will need to have:
  - [Docker installed](https://docs.docker.com/get-docker){target=\_blank} for running Postgres DB and ChainLink node containers
  - An account with funds. You can create one with [MetaMask](/tokens/connect/metamask/){target=\_blank}.
  --8<-- 'text/_common/faucet/faucet-list-item.md'
- - Access to the [Remix IDE](https://remix.ethereum.org){target=\_blank} in case you want to use it to deploy the oracle contract. For more information you can check out the [Using Remix to Deploy to Moonbeam](/builders/build/eth-api/dev-env/remix/){target=\_blank} tutorial
+ - Access to the [Remix IDE](https://remix.ethereum.org){target=\_blank} in case you want to use it to deploy the oracle contract. For more information you can check out the [Using Remix to Deploy to Moonbeam](/builders/ethereum/dev-env/remix/){target=\_blank} tutorial
 
 ## Getting Started {: #getting-started }
 

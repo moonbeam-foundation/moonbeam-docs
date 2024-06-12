@@ -15,7 +15,7 @@ There are two available sources of randomness that provide random inputs based o
 
 For more information on the two sources of randomness, how the request and fulfillment process works, and security considerations, please refer to the [Randomness on Moonbeam](/learn/features/randomness/){target=\_blank} page.
 
-Moonbeam provides a [Randomness Precompile](/builders/pallets-precompiles/precompiles/randomness/){target=\_blank}, which is a Solidity interface that enables smart contract developers to generate randomness via local VRF or BABE epoch randomness using the Ethereum API. Moonbeam also provides a [Randomness Consumer Solidity contract](/builders/pallets-precompiles/precompiles/randomness/#randomness-consumer-solidity-interface){target=\_blank} that your contract must inherit from in order to consume fulfilled randomness requests.
+Moonbeam provides a [Randomness Precompile](/builders/ethereum/precompiles/features/randomness/){target=\_blank}, which is a Solidity interface that enables smart contract developers to generate randomness via local VRF or BABE epoch randomness using the Ethereum API. Moonbeam also provides a [Randomness Consumer Solidity contract](/builders/ethereum/precompiles/features/randomness/#randomness-consumer-solidity-interface){target=\_blank} that your contract must inherit from in order to consume fulfilled randomness requests.
 
 This guide will show you how to use the Randomness Precompile and Randomness Consumer contract to create a lottery where the winners will randomly be selected.
 
@@ -26,8 +26,8 @@ For this tutorial, you'll need the following:
 - Create or have three accounts on Moonbase Alpha to test out the lottery contract
 - All of the accounts will need to be funded with `DEV` tokens.
  --8<-- 'text/_common/faucet/faucet-list-item.md'
-- An empty Hardhat project that is configured for the Moonbase Alpha TestNet. For step-by-step instructions, please refer to the [Creating a Hardhat Project](/builders/build/eth-api/dev-env/hardhat/#creating-a-hardhat-project){target=\_blank} and the [Hardhat Configuration File](/builders/build/eth-api/dev-env/hardhat/#hardhat-configuration-file){target=\_blank} sections of our Hardhat documentation page
-- Install the [Hardhat Ethers plugin](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-ethers){target=\_blank}. This provides a convenient way to use the [Ethers.js](/builders/build/eth-api/libraries/ethersjs/){target=\_blank} library to interact with the network from your Hardhat project:
+- An empty Hardhat project that is configured for the Moonbase Alpha TestNet. For step-by-step instructions, please refer to the [Creating a Hardhat Project](/builders/ethereum/dev-env/hardhat/#creating-a-hardhat-project){target=\_blank} and the [Hardhat Configuration File](/builders/ethereum/dev-env/hardhat/#hardhat-configuration-file){target=\_blank} sections of our Hardhat documentation page
+- Install the [Hardhat Ethers plugin](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-ethers){target=\_blank}. This provides a convenient way to use the [Ethers.js](/builders/ethereum/libraries/ethersjs/){target=\_blank} library to interact with the network from your Hardhat project:
 
     ```bash
     npm install @nomicfoundation/hardhat-ethers ethers@6
@@ -40,8 +40,8 @@ For this tutorial, you'll need the following:
 
 The following are the contracts that we'll be working with today to create our lottery:
 
-- `Randomness.sol` - the [Randomness Precompile](/builders/pallets-precompiles/precompiles/randomness/){target=\_blank}, which is a Solidity interface that allows you to request randomness, get information about randomness requests, fulfill requests, and more
-- `RandomnessConsumer.sol` - the [Randomness Consumer](/builders/pallets-precompiles/precompiles/randomness#randomness-consumer-solidity-interface){target=\_blank}, which is an abstract Solidity contract that is used to interact with the Randomness Precompile. This contract is responsible for validating the origin of randomness requests, ensuring the Randomness Precompile is always the origin, and fulfilling requests
+- `Randomness.sol` - the [Randomness Precompile](/builders/ethereum/precompiles/features/randomness/){target=\_blank}, which is a Solidity interface that allows you to request randomness, get information about randomness requests, fulfill requests, and more
+- `RandomnessConsumer.sol` - the [Randomness Consumer](/builders/ethereum/precompiles/features/randomness#randomness-consumer-solidity-interface){target=\_blank}, which is an abstract Solidity contract that is used to interact with the Randomness Precompile. This contract is responsible for validating the origin of randomness requests, ensuring the Randomness Precompile is always the origin, and fulfilling requests
 - `Lottery.sol` - an example lottery contract that we'll be building in this guide together. It will rely on the Randomness Precompile and Consumer to request random words that will be used to select a winner for our lottery
 
 If you don't already have a `contracts` directory in your Hardhat project, you can create a new directory:
@@ -61,7 +61,7 @@ In the `Randomness.sol` file, you can paste in the Randomness Precompile contrac
 ??? code "Randomness.sol"
 
     ```solidity
-    --8<-- 'code/builders/pallets-precompiles/precompiles/randomness/Randomness.sol'
+    --8<-- 'code/builders/ethereum/precompiles/features/randomness/Randomness.sol'
     ```
 
 Similarly, in the `RandomnessConsumer.sol` file, you can paste in the Randomness Consumer contract. 
@@ -69,7 +69,7 @@ Similarly, in the `RandomnessConsumer.sol` file, you can paste in the Randomness
 ??? code "RandomnessConsumer.sol"
 
     ```solidity
-    --8<-- 'code/builders/pallets-precompiles/precompiles/randomness/RandomnessConsumer.sol'
+    --8<-- 'code/builders/ethereum/precompiles/features/randomness/RandomnessConsumer.sol'
     ```
 
 
@@ -434,7 +434,7 @@ mkdir scripts &&
 touch scripts/deploy.js
 ```
 
-Now to write the deployment script we can use [`ethers`](/builders/build/eth-api/libraries/ethersjs/){target=\_blank}. Because we'll be running it with Hardhat, we don't need to import any libraries. We can simply take the following steps:
+Now to write the deployment script we can use [`ethers`](/builders/ethereum/libraries/ethersjs/){target=\_blank}. Because we'll be running it with Hardhat, we don't need to import any libraries. We can simply take the following steps:
 
 1. Create a local instance of the lottery contract with the `getContractFactory` method
 2. Get the deposit required for a randomness request using the `requiredDeposit` function of the Randomness Precompile

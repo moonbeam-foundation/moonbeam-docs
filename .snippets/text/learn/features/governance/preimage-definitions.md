@@ -1,2 +1,0 @@
- - **Preimage hash** — hash of the proposal to be enacted. The first step to make a proposal is to submit a preimage. The hash is just its identifier. The proposer of the preimage can be different than the user that proposes that preimage as a formal proposal
- - **Preimage deposit** — amount of tokens that the proposer needs to bond when submitting a preimage. It is calculated as the sum of a base deposit per network plus a fee per byte of the preimage being proposed

@@ -142,7 +142,7 @@ To create a batch transaction that also sets the units per second or revert code
 - `--revert-code` or `--revert` - (optional) - registers the revert code for the asset's precompile in the EVM. If this is provided, the script will create a batch transaction for the governance proposal that, at a minimum, will register the asset and set the revert code.
 
     !!! note
-        **This flag is not necessary for proposals on Moonbeam** as it includes a `system.setStorage` call that the [OpenGov](/learn/features/governance#opengov) General Admin Origin can't execute. The dummy EVM bytecode can be set later with a call to the [Precompile Registry precompile](/builders/pallets-precompiles/precompiles/registry/){target=\_blank}, which means that you don't need to worry about going through governance to set the revert code! Please check out the [Set XC-20 Precompile Bytecode](#set-bytecode) section to learn how to set the dummy bytecode.
+        **This flag is not necessary for proposals on Moonbeam** as it includes a `system.setStorage` call that the [OpenGov](/learn/features/governance#opengov) General Admin Origin can't execute. The dummy EVM bytecode can be set later with a call to the [Precompile Registry precompile](/builders/ethereum/precompiles/utility/registry/){target=\_blank}, which means that you don't need to worry about going through governance to set the revert code! Please check out the [Set XC-20 Precompile Bytecode](#set-bytecode) section to learn how to set the dummy bytecode.
 
 As a practical example, the following command would generate the encoded calldata to register an asset from parachain 888 that has a general key of `1`:
 
@@ -264,14 +264,14 @@ If you need DEV tokens (the native token for Moonbase Alpha) to use your XC-20 a
 
 Once your XC-20 has been registered on Moonbeam, you can set the XC-20's precompile bytecode. This is necessary because precompiles are implemented inside the Moonbeam runtime and, by default, do not have bytecode. In Solidity, when a contract is called, there are checks that require the contract bytecode to be non-empty. So, setting the bytecode as a placeholder bypasses these checks and allows the precompile to be called.
 
-You can use the [Precompile Registry](/builders/pallets-precompiles/precompiles/registry/){target=\_blank}, which is a Solidity interface, to update the XC-20 precompile's bytecode to avoid any issues and ensure that the precompile is callable from Solidity. To do so, you'll use the Precompile Registry's [`updateAccountCode` function](/builders/pallets-precompiles/precompiles/registry/#the-solidity-interface){target=\_blank}.
+You can use the [Precompile Registry](/builders/ethereum/precompiles/utility/registry/){target=\_blank}, which is a Solidity interface, to update the XC-20 precompile's bytecode to avoid any issues and ensure that the precompile is callable from Solidity. To do so, you'll use the Precompile Registry's [`updateAccountCode` function](/builders/ethereum/precompiles/utility/registry/#the-solidity-interface){target=\_blank}.
 
 To get started, you'll need to [calculate your XC-20's precompile address](/builders/interoperability/xcm/xc20/overview/#calculate-xc20-address){target=\_blank} and have the Precompile Registry's ABI.
 
 ??? code "Precompile Registry ABI"
 
     ```js
-    --8<-- 'code/builders/pallets-precompiles/precompiles/registry/abi.js'
+    --8<-- 'code/builders/ethereum/precompiles/utility/registry/abi.js'
     ```
 
 Then, you can use the following scripts to set the dummy code for your XC-20's precompile.

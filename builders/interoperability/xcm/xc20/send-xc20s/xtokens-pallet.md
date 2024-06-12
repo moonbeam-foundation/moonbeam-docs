@@ -261,7 +261,7 @@ It's important to note that each chain defines its own weight requirements. To d
 
 ### X-Tokens Transfer Function {: #xtokens-transfer-function}
 
-In this example, you'll build an XCM message to transfer xcUNIT from Moonbase Alpha back to the Alphanet relay chain through the `transfer` function of the X-Tokens Pallet using the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=\_blank}.
+In this example, you'll build an XCM message to transfer xcUNIT from Moonbase Alpha back to the Alphanet relay chain through the `transfer` function of the X-Tokens Pallet using the [Polkadot.js API](/builders/substrate/libraries/polkadot-js-api/){target=\_blank}.
 
 Since you'll be interacting with the `transfer` function, you can take the following steps to gather the arguments for the `currencyId`, `amount`, `dest`, and `destWeightLimit`:
 
@@ -321,7 +321,7 @@ Now that you have the values for each of the parameters, you can write the scrip
      - The Moonbase Alpha endpoint URL to create the provider
      - The values for each of the parameters of the `transfer` function
  2. Create a Keyring instance that will be used to send the transaction
- 3. Create the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=\_blank} provider
+ 3. Create the [Polkadot.js API](/builders/substrate/libraries/polkadot-js-api/){target=\_blank} provider
  4. Craft the `xTokens.transfer` extrinsic with the `currencyId`, `amount`, `dest`, and `destWeightLimit`
  5. Send the transaction using the `signAndSend` extrinsic and the Keyring instance you created in the second step
 
@@ -412,7 +412,7 @@ Now that you have the values for each of the parameters, you can write the scrip
      - The Moonbase Alpha endpoint URL to create the provider
      - The values for each of the parameters of the `transferMultiasset` function
  2. Create a Keyring instance that will be used to send the transaction
- 3. Create the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=\_blank} provider
+ 3. Create the [Polkadot.js API](/builders/substrate/libraries/polkadot-js-api/){target=\_blank} provider
  4. Craft the `xTokens.transferMultiasset` extrinsic with the `asset`, `dest`, and `destWeightLimit`
  5. Send the transaction using the `signAndSend` extrinsic and the Keyring instance you created in the second step
 

@@ -54,12 +54,12 @@ This example is getting the balance (in DEV on Moonbase Alpha) of the `0xf24FF3a
 
 - `jsonrpc` — the JSON-RPC API version, usually "2.0"
 - `id` — an integer value that helps identify a response to a request. Can usually just keep it as `
-- `method` — the specific method to read/write data from/to the blockchain. You can see many of the [RPC methods on our docs site](/builders/json-rpc/eth-rpc/){target=\_blank}
+- `method` — the specific method to read/write data from/to the blockchain. You can see many of the [RPC methods on our docs site](/builders/ethereum/json-rpc/eth-rpc/){target=\_blank}
 - `params` — an array of the input parameters expected by the specific `method`  
 
 There are also additional elements that can be added to JSON-RPC requests, but those four will be seen the most often.  
 
-Now, these JSON-RPC requests are pretty useful, but when writing code, it can be a hassle to create a JSON object over and over again. That's why there exist libraries that help abstract and facilitate the usage of these requests. Moonbeam provides [documentation on many libraries](/builders/build/eth-api/libraries/){target=\_blank}, and the one that we will be using in this tutorial is [Ethers.js](/builders/build/eth-api/libraries/ethersjs/){target=\_blank}. Just understand that whenever we interact with the blockchain through the Ethers.js package, we're really using JSON-RPC!  
+Now, these JSON-RPC requests are pretty useful, but when writing code, it can be a hassle to create a JSON object over and over again. That's why there exist libraries that help abstract and facilitate the usage of these requests. Moonbeam provides [documentation on many libraries](/builders/ethereum/libraries/){target=\_blank}, and the one that we will be using in this tutorial is [Ethers.js](/builders/ethereum/libraries/ethersjs/){target=\_blank}. Just understand that whenever we interact with the blockchain through the Ethers.js package, we're really using JSON-RPC!  
 
 ## Smart Contracts {: #smart-contracts }
 
@@ -69,7 +69,7 @@ If coming from traditional web development, smart contracts are meant to replace
 
 When you deploy a smart contract onto Moonbeam, you upload a series of instructions that can be understood by the EVM, or the Ethereum Virtual Machine. Whenever someone interacts with a smart contract, these transparent, tamper-proof, and immutable instructions are executed by the EVM to change the blockchain's state. Writing the instructions in a smart contract properly is very important since the blockchain's state defines the most crucial information about your DApp, such as who has what amount of money.  
 
-Since the instructions are difficult to write and make sense of at a low (assembly) level, we have smart contract languages such as Solidity to make it easier to write them. To help write, debug, test, and compile these smart contract languages, developers in the Ethereum community have created developer environments such as [Hardhat](/builders/build/eth-api/dev-env/hardhat/){target=\_blank} and [Foundry](/builders/build/eth-api/dev-env/foundry/){target=\_blank}. Moonbeam's developer site provides information on a [plethora of developer environments](/builders/build/eth-api/dev-env/){target=\_blank}.
+Since the instructions are difficult to write and make sense of at a low (assembly) level, we have smart contract languages such as Solidity to make it easier to write them. To help write, debug, test, and compile these smart contract languages, developers in the Ethereum community have created developer environments such as [Hardhat](/builders/ethereum/dev-env/hardhat/){target=\_blank} and [Foundry](/builders/ethereum/dev-env/foundry/){target=\_blank}. Moonbeam's developer site provides information on a [plethora of developer environments](/builders/ethereum/dev-env/){target=\_blank}.
 
 This tutorial will use Hardhat for managing smart contracts.
 
@@ -228,7 +228,7 @@ You've now written the smart contract for your DApp! If this were a production a
 
 ### Deploy Smart Contracts {: #deploying-smart-contracts }
 
-Under the hood, Hardhat is a Node project that uses the [Ethers.js](/builders/build/eth-api/libraries/ethersjs/){target=\_blank} library to interact with the blockchain. You can also use Ethers.js in conjunction with Hardhat's tool to create scripts to do things like deploy contracts.  
+Under the hood, Hardhat is a Node project that uses the [Ethers.js](/builders/ethereum/libraries/ethersjs/){target=\_blank} library to interact with the blockchain. You can also use Ethers.js in conjunction with Hardhat's tool to create scripts to do things like deploy contracts.  
 
 Your Hardhat project should already come with a script in the `scripts` folder, called `deploy.js`. Let's replace it with a similar, albeit simpler, script.
 
@@ -283,7 +283,7 @@ cd frontend
 npm install ethers@5.6.9 @usedapp/core @mui/material @mui/system @emotion/react @emotion/styled
 ```
 
-If you remember, [Ethers.js](/builders/build/eth-api/libraries/ethersjs/){target=\_blank} is a library that assists with JSON-RPC communication. The useDApp package is a similar library that uses Ethers.js and formats them into React hooks so that they work better in frontend projects. We've also added two [MUI](https://mui.com){target=\_blank} packages for styling and components.
+If you remember, [Ethers.js](/builders/ethereum/libraries/ethersjs/){target=\_blank} is a library that assists with JSON-RPC communication. The useDApp package is a similar library that uses Ethers.js and formats them into React hooks so that they work better in frontend projects. We've also added two [MUI](https://mui.com){target=\_blank} packages for styling and components.
 
 Let's set up the `App.js` file located in the `frontend/src` directory to add some visual structure:
 

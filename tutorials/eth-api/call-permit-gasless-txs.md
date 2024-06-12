@@ -23,7 +23,7 @@ Whereas a gasless transaction may look something like this:
 
 Gasless transactions can be especially beneficial for users that make small transactions frequently, as is the case with gaming dApps like [Damned Pirates Society](https://damnedpiratessociety.io){target=\_blank} (DPS). In DPS, users go on voyages in search of treasure and with the goal of growing their fleet. There are two in-game currencies that are used in DPS: Treasure Maps (TMAP) and Doubloons (DBL). TMAP are used to buy voyages, and DBL are used to maintain flagships and buy support ships and can be earned while on voyages. Currently, if a user wants to start a voyage, they'll need TMAP to buy the voyage and GLMR to pay for transaction fees. Wouldn't it be ideal to lower the barrier to entry by implementing gasless transactions so users wouldn't need to worry about keeping a GLMR balance on top of their TMAP and DBL balances? From a dApp's perspective, it would keep users on their platform, as their users wouldn't need to leave the dApp to fund their GLMR balance; they could keep on gaming.
 
-Gasless transactions can be implemented using Moonbeam's [Call Permit Precompile](/builders/pallets-precompiles/precompiles/call-permit/){target=\_blank}, which is a Solidity interface that allows a user to sign a permit, an [EIP-712](https://eips.ethereum.org/EIPS/eip-712){target=\_blank} signed message, that can then be dispatched by your dApp. The Call Permit Precompile can be used to execute any EVM call. **The best part is that you don't need to modify your existing contracts!**
+Gasless transactions can be implemented using Moonbeam's [Call Permit Precompile](/builders/ethereum/precompiles/ux/call-permit/){target=\_blank}, which is a Solidity interface that allows a user to sign a permit, an [EIP-712](https://eips.ethereum.org/EIPS/eip-712){target=\_blank} signed message, that can then be dispatched by your dApp. The Call Permit Precompile can be used to execute any EVM call. **The best part is that you don't need to modify your existing contracts!**
 
 In this tutorial, we'll walk through the process of implementing gasless transactions in a dApp. More specifically, we'll take a closer look at how we can implement gasless transactions to buy a voyage in DPS, as an example. We'll go over building an EIP-712 signed message, signing it, and dispatching it with the Call Permit Precompile.
 
@@ -39,7 +39,7 @@ For this tutorial, you'll need the following:
 
 - An account with funds.
   --8<-- 'text/_common/faucet/faucet-list-item.md'
-- A project with [Ethers](/builders/build/eth-api/libraries/ethersjs/){target=\_blank} installed:
+- A project with [Ethers](/builders/ethereum/libraries/ethersjs/){target=\_blank} installed:
 
     ```bash
     npm i ethers
@@ -155,15 +155,15 @@ Now that we've set up the initial configurations, let's dive into building the E
 
 There are three components that we'll need to build an EIP-712 typed message: the domain separator, the typed data structure for the data that users will sign, and the actual message data.
 
-The domain separator and the typed data structure will be based on the [Call Permit Precompile](/builders/pallets-precompiles/precompiles/call-permit/){target=\_blank}. The steps to build both of these components will always be the same, regardless of the data that is being signed. The actual message data will change depending on your individual use case.
+The domain separator and the typed data structure will be based on the [Call Permit Precompile](/builders/ethereum/precompiles/ux/call-permit/){target=\_blank}. The steps to build both of these components will always be the same, regardless of the data that is being signed. The actual message data will change depending on your individual use case.
 
 ### Define the Domain Separator {: #define-domain-separator }
 
 We'll first start off with the domain separator, which will define the Call Permit Precompile as the signing domain. Permits will get dispatched by calling the `dispatch` function of the Call Permit Precompile, which is why the Call Permit Precompile is always going to be the signing domain. As previously mentioned, the goal of the domain separator is to avoid replay attacks. 
 
---8<-- 'text/builders/pallets-precompiles/precompiles/call-permit/domain-separator.md'
+--8<-- 'text/builders/ethereum/precompiles/ux/call-permit/domain-separator.md'
 
-We're using Ethers in this example, which requires the domain separator to be in the format specified by the [`TypedDataDomain` interface](https://docs.ethers.org/v6/api/hashing/#TypedDataDomain){target=\_blank}, but if desired, you could generate the domain separator as a *bytes32* representation using the [`DOMAIN_SEPARATOR()` function of the Call Permit Precompile](/builders/pallets-precompiles/precompiles/call-permit/#:~:text=DOMAIN_SEPARATOR()){target=\_blank}.
+We're using Ethers in this example, which requires the domain separator to be in the format specified by the [`TypedDataDomain` interface](https://docs.ethers.org/v6/api/hashing/#TypedDataDomain){target=\_blank}, but if desired, you could generate the domain separator as a *bytes32* representation using the [`DOMAIN_SEPARATOR()` function of the Call Permit Precompile](/builders/ethereum/precompiles/ux/call-permit/#:~:text=DOMAIN_SEPARATOR()){target=\_blank}.
 
 The domain separator for each Moonbeam network is as follows:
 
@@ -215,7 +215,7 @@ The domain separator for each Moonbeam network is as follows:
 
 Next, we'll need to define the typed data structure. The typed data structure defines the acceptable types of data that our users will be signing. We'll go into detail on the actual data in the following section.
 
-If you take a look at the [`dispatch` function of the Call Permit Precompile](/builders/pallets-precompiles/precompiles/call-permit/#the-call-permit-interface){target=\_blank}, you'll see that the data that we need to send, along with the associated types, is as follows:
+If you take a look at the [`dispatch` function of the Call Permit Precompile](/builders/ethereum/precompiles/ux/call-permit/#the-call-permit-interface){target=\_blank}, you'll see that the data that we need to send, along with the associated types, is as follows:
 
 ```solidity
 function dispatch(
@@ -281,7 +281,7 @@ Now, let's dig a little bit deeper and tackle the `TODO` items.
 
 #### Get the Encoded Call Data for Buying a Voyage {: #encoded-call-data-buying-voyage }
 
-We'll start off by calculating the `data` value. We can programmatically calculate the `data` value with [Ethers](/builders/build/eth-api/libraries/ethersjs/){target=\_blank} by creating an interface of the Cartographer V1 contract and using the `interface.encodeFunctionData` function.
+We'll start off by calculating the `data` value. We can programmatically calculate the `data` value with [Ethers](/builders/ethereum/libraries/ethersjs/){target=\_blank} by creating an interface of the Cartographer V1 contract and using the `interface.encodeFunctionData` function.
 
 If you take a look at the [`DPSCartographer.sol` contract's code](https://moonscan.io/address/0xD1A9bA3e61Ac676f58B29EA0a09Cf5D7f4f35138#code){target=\_blank}, you'll see the [`buyVoyages` function](https://moonscan.io/address/0xD1A9bA3e61Ac676f58B29EA0a09Cf5D7f4f35138#code#F1#L75){target=\_blank}. The `buyVoyages` function accepts three parameters:
 
@@ -359,7 +359,7 @@ We'll get the nonce in the next section, and then put all of the arguments toget
 
 Lastly, we'll need to get the `nonce` of the `from` account. As previously mentioned, we can use the `nonces` function of the Call Permit Precompile to get this value. To do so, you'll need to create a contract instance for the Call Permit Precompile:
 
-1. Create a new file in your project that contains the ABI of the Call Permit Precompile. You can find the [ABI on GitHub](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/builders/pallets-precompiles/precompiles/call-permit/abi.js){target=\_blank}
+1. Create a new file in your project that contains the ABI of the Call Permit Precompile. You can find the [ABI on GitHub](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/builders/ethereum/precompiles/ux/call-permit/abi.js){target=\_blank}
 2. Import the ABI into your Ethers file
 3. Create an instance of the Call Permit Precompile using the precompile's address and the ABI of the precompile. You can use either a provider or a signer. Since we are dispatching the permit later on in this tutorial, we'll use the signer associated with the third-party account for transaction fees, but if you only needed to access the `nonces` function, you could use a provider instead
 4. Call the `nonces` function and pass in the `signer.account` of the user, which is the same as the `from` account
@@ -518,7 +518,7 @@ console.log(`Transaction hash: ${dispatch.hash}`);
 ??? code "View the complete script"
 
     ```js
-    --8<-- 'code/builders/pallets-precompiles/precompiles/call-permit/dispatch-call-permit.js'
+    --8<-- 'code/builders/ethereum/precompiles/ux/call-permit/dispatch-call-permit.js'
     ```
 
     !!! remember

@@ -13,9 +13,9 @@ Token approvals are critical for interacting with smart contracts securely, prev
 
 One of the reasons why many DApps use an unlimited amount is so that users don't need to continue to sign approval transactions every time they want to move their tokens. This is in addition to the second transaction required to actually swap the tokens. For networks like Ethereum, this can be expensive. However, if the approved smart contract has a vulnerability, it could be exploited and the users' tokens could be transferred at any time without requiring further approval. In addition, if a user no longer wants the DApp's contract to have access to their tokens, they have to revoke the token approval, which requires another transaction to be sent.
 
-As a DApp developer on Moonbeam, this process can be easily avoided, providing your users with more control over their assets. This can be done using the [batch precompile](/builders/pallets-precompiles/precompiles/batch/){target=\_blank} to batch an approval and swap into a single transaction, instead of the typical two transaction process. This allows for the approval amount to be the exact swap amount instead of having unlimited access to your users' tokens.
+As a DApp developer on Moonbeam, this process can be easily avoided, providing your users with more control over their assets. This can be done using the [batch precompile](/builders/ethereum/precompiles/ux/batch/){target=\_blank} to batch an approval and swap into a single transaction, instead of the typical two transaction process. This allows for the approval amount to be the exact swap amount instead of having unlimited access to your users' tokens.
 
-In this tutorial, we'll dive into the process of batching an approval and swap into one transaction using the `batchAll` function of the batch precompile contract. We'll create and deploy an ERC-20 contract and a simple DEX contract for the swap on the [Moonbase Alpha TestNet](/builders/get-started/networks/moonbase/){target=\_blank} using [Hardhat](/builders/build/eth-api/dev-env/hardhat/){target=\_blank} and [Ethers](/builders/build/eth-api/libraries/ethersjs/){target=\_blank}.
+In this tutorial, we'll dive into the process of batching an approval and swap into one transaction using the `batchAll` function of the batch precompile contract. We'll create and deploy an ERC-20 contract and a simple DEX contract for the swap on the [Moonbase Alpha TestNet](/builders/get-started/networks/moonbase/){target=\_blank} using [Hardhat](/builders/ethereum/dev-env/hardhat/){target=\_blank} and [Ethers](/builders/ethereum/libraries/ethersjs/){target=\_blank}.
 
 ## Checking Prerequisites {: #checking-prerequisites }
 
@@ -23,13 +23,13 @@ For this tutorial, you'll need the following:
 
 - An account with funds.
   --8<-- 'text/_common/faucet/faucet-list-item.md'
-- An empty Hardhat project that is configured for the Moonbase Alpha TestNet. For step-by-step instructions, please refer to the [Creating a Hardhat Project](/builders/build/eth-api/dev-env/hardhat/#creating-a-hardhat-project){target=\_blank} and the [Hardhat Configuration File](/builders/build/eth-api/dev-env/hardhat/#hardhat-configuration-file){target=\_blank} sections of our Hardhat documentation page
+- An empty Hardhat project that is configured for the Moonbase Alpha TestNet. For step-by-step instructions, please refer to the [Creating a Hardhat Project](/builders/ethereum/dev-env/hardhat/#creating-a-hardhat-project){target=\_blank} and the [Hardhat Configuration File](/builders/ethereum/dev-env/hardhat/#hardhat-configuration-file){target=\_blank} sections of our Hardhat documentation page
 - 
   --8<-- 'text/_common/endpoint-examples-list-item.md'
 
 ### Install Dependencies {: #install-dependencies }
 
-Once you have your [Hardhat project](/builders/build/eth-api/dev-env/hardhat/){target=\_blank}, you can install the [Ethers plugin](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-ethers){target=\_blank}. This provides a convenient way to use the [Ethers.js](/builders/build/eth-api/libraries/ethersjs/){target=\_blank} library to interact with the network.
+Once you have your [Hardhat project](/builders/ethereum/dev-env/hardhat/){target=\_blank}, you can install the [Ethers plugin](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-ethers){target=\_blank}. This provides a convenient way to use the [Ethers.js](/builders/ethereum/libraries/ethersjs/){target=\_blank} library to interact with the network.
 
 You can also install the [OpenZeppelin contracts library](https://docs.openzeppelin.com/contracts){target=\_blank}, as we'll be importing the `ERC20.sol` contract and `IERC20.sol` interface in our contracts.
 
@@ -43,7 +43,7 @@ npm install @nomicfoundation/hardhat-ethers ethers@6 @openzeppelin/contracts
 
 The following are the contracts that we'll be working with today:
 
-- `Batch.sol` - one of the precompile contracts on Moonbeam that allows you to combine multiple EVM calls into one. For more information on the available methods, please refer to the [Batch Solidity Interface](/builders/pallets-precompiles/precompiles/batch/#the-batch-interface){target=\_blank} documentation
+- `Batch.sol` - one of the precompile contracts on Moonbeam that allows you to combine multiple EVM calls into one. For more information on the available methods, please refer to the [Batch Solidity Interface](/builders/ethereum/precompiles/ux/batch/#the-batch-interface){target=\_blank} documentation
 
 - `DemoToken.sol` - an ERC-20 contract for the `DemoToken` (DTOK) token, which on deployment mints an initial supply and assigns them to the contract owner. It's a standard ERC-20 token, you can review the [IERC20 interface](https://docs.openzeppelin.com/contracts/2.x/api/token/erc20#IERC20){target=\_blank} for more information on the available methods
 
@@ -129,7 +129,7 @@ In the `Batch.sol` file, you can paste in the Batch Precompile contract.
 ??? code "Batch.sol"
 
     ```solidity
-    --8<-- 'code/builders/pallets-precompiles/precompiles/batch/Batch.sol'
+    --8<-- 'code/builders/ethereum/precompiles/ux/batch/Batch.sol'
     ```
 
 
@@ -277,7 +277,7 @@ So instead of calling `demoToken.approve(spender, amount)` and then `simpleDex.s
 
 Once we have the encoded call data, we can use it to call the `batchAll` function of the batch precompile. This function performs multiple calls atomically, where the same index of each array combine into the information required for a single subcall. If a subcall reverts, all subcalls will revert. The following parameters are required by the `batchAll` function:
 
---8<-- 'text/builders/pallets-precompiles/precompiles/batch/batch-parameters.md'
+--8<-- 'text/builders/ethereum/precompiles/ux/batch/batch-parameters.md'
 
 So, the first index of each array will correspond to the approval and the second will correspond to the swap.
 

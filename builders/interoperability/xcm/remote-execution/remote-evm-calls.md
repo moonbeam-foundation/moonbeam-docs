@@ -107,7 +107,7 @@ Therefore, the maximum gas limit you can provide for a remote EVM call can be ca
 In summary, these are the main differences between regular and remote EVM calls:
 
 - Remote EVM calls use a global nonce (owned by the [Ethereum XCM Pallet](https://github.com/moonbeam-foundation/moonbeam/tree/master/pallets/ethereum-xcm){target=\_blank}) instead of a nonce per account
-- The `v-r-s` values of the signature for remote EVM calls are `0x1`. The sender can't be retrieved from the signature through standard methods (for example, through [ECRECOVER](/builders/pallets-precompiles/precompiles/eth-mainnet/#verify-signatures-with-ecrecover){target=\_blank}). Nevertheless, the `from` is included in both the transaction receipt and when getting the transaction by hash (using the Ethereum JSON-RPC)
+- The `v-r-s` values of the signature for remote EVM calls are `0x1`. The sender can't be retrieved from the signature through standard methods (for example, through [ECRECOVER](/builders/ethereum/precompiles/utility/eth-mainnet/#verify-signatures-with-ecrecover){target=\_blank}). Nevertheless, the `from` is included in both the transaction receipt and when getting the transaction by hash (using the Ethereum JSON-RPC)
 - The gas price for all remote EVM calls is zero. The EVM execution is charged at an XCM execution level and not at an EVM level
 - The current maximum gas limit you can set for a remote EVM call is different, as outlined above
 
@@ -189,7 +189,7 @@ The `xcmTransaction` parameter requires you to define the `gasLimit`, `action`, 
 
 For the action to be executed, you'll be performing a contract interaction with a simple [incrementer contract](https://moonbase.moonscan.io/address/0xa72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8#code){target=\_blank}, which is located at `0xa72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8`. You'll be calling the `increment` function, which has no input argument and will increase the value of the `number` by one. It will also store the block's timestamp in which the function is executed to the `timestamp` variable.
 
-The encoded call data for the `increment` function is `0xd09de08a`, which is the function selector and is the first eight hexadecimal characters (or 4 bytes) of the keccak256 hash of `increment()`. If you choose to interact with a function that has input parameters, they also need to be encoded. The easiest way to get the encoded call data is to emulate a transaction either in [Remix](/builders/build/eth-api/dev-env/remix/#interacting-with-a-moonbeam-based-erc-20-from-metamask){target=\_blank} or [Moonscan](https://moonbase.moonscan.io/address/0xa72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8#code){target=\_blank}. Then, in Metamask, check the **HEX DATA: 4 BYTES** selector under the **HEX** tab to get the call data. You don't need to sign the transaction.
+The encoded call data for the `increment` function is `0xd09de08a`, which is the function selector and is the first eight hexadecimal characters (or 4 bytes) of the keccak256 hash of `increment()`. If you choose to interact with a function that has input parameters, they also need to be encoded. The easiest way to get the encoded call data is to emulate a transaction either in [Remix](/builders/ethereum/dev-env/remix/#interacting-with-a-moonbeam-based-erc-20-from-metamask){target=\_blank} or [Moonscan](https://moonbase.moonscan.io/address/0xa72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8#code){target=\_blank}. Then, in Metamask, check the **HEX DATA: 4 BYTES** selector under the **HEX** tab to get the call data. You don't need to sign the transaction.
 
 Now that you have the encoded contract interaction data, you can determine the gas limit for this call using the [`eth_estimateGas` JSON-RPC method](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_estimategas){target=\_blank}. For this example, you can set the gas limit to `155000`.
 
@@ -206,7 +206,7 @@ Next, you can write the script to get the encoded call data for the transaction.
  1. Provide the input data for the call. This includes:
      - The Moonbase Alpha endpoint URL to create the provider
      - The value for the `xcmTransaction` parameter of the `transact` function
- 2. Create the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=\_blank} provider
+ 2. Create the [Polkadot.js API](/builders/substrate/libraries/polkadot-js-api/){target=\_blank} provider
  3. Craft the `ethereumXcm.transact` extrinsic with the `xcmTransaction` value
  4. Get the encoded call data for the extrinsic. You don't need to sign and send the transaction
 
@@ -223,7 +223,7 @@ You'll use the encoded call data in the `Transact` instruction in the following 
 
 When using the `Transact` instruction, you'll need to define the `requireWeightAtMost` field, which is the required weight for the transaction. This field accepts two arguments: the `refTime` and `proofSize`. The `refTime` is the amount of computational time that can be used for execution, and the `proofSize` is the amount of storage in bytes that can be used.
 
-To get an estimate for the `refTime` and `proofSize`, you can use the [`paymentInfo` method of the Polkadot.js API](/builders/build/substrate-api/polkadot-js-api#fees){target=\_blank}. Since these weights are required for the `Transact` call data, you can extend the script from the previous section to add in the call to `paymentInfo`.
+To get an estimate for the `refTime` and `proofSize`, you can use the [`paymentInfo` method of the Polkadot.js API](/builders/substrate/libraries/polkadot-js-api#fees){target=\_blank}. Since these weights are required for the `Transact` call data, you can extend the script from the previous section to add in the call to `paymentInfo`.
 
 The `paymentInfo` method accepts the same parameters you would normally pass to the `.signAndSend` method, which is the sending account and, optionally, some additional values such as a nonce or signer.
 
@@ -293,7 +293,7 @@ Now that you have the values for each of the parameters, you can write the scrip
      - The relay chain endpoint URL to create the provider
      - The values for each of the parameters of the `send` function
  2. Create a Keyring instance that will be used to send the transaction
- 3. Create the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=\_blank} provider
+ 3. Create the [Polkadot.js API](/builders/substrate/libraries/polkadot-js-api/){target=\_blank} provider
  4. Craft the `xcmPallet.send` extrinsic with the `dest` and `message` values
  5. Send the transaction using the `signAndSend` extrinsic and the Keyring instance you created in the second step
 
