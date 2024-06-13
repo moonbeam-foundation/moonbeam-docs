@@ -1,6 +1,6 @@
 ---
 title: How to use thirdweb
-description: This guide will show you some of thirdweb's features to take advantage of to develop and deploy smart contracts and interact with them in DApps on Moonbeam.
+description: This guide will show you some of Thirdweb's features, including building, testing, and deploying smart contract templates to launch DApps on Moonbeam.
 ---
 
 # Using thirdweb on Moonbeam
@@ -9,9 +9,9 @@ description: This guide will show you some of thirdweb's features to take advant
 
 [thirdweb](https://thirdweb.com){target=\_blank} is a complete Web3 development framework that provides everything you need to develop smart contracts, build DApps, and more.
 
-With thirdweb, you can access tools to help you through every phase of the DApp development cycle. You can create your own custom smart contracts or use any of thirdweb's prebuilt contracts to quickly get started. From there, you can use thirdweb's CLI to deploy your smart contracts. Then you can interact with your smart contracts by creating a Web3 application using the language of your choice, including but not limited to React, TypeScript, and Python.
+With thirdweb, you can access tools to help you through every phase of the DApp development cycle. You can create your own custom smart contracts or use any of thirdweb's prebuilt contracts to get started quickly. From there, you can use thirdweb's CLI to deploy your smart contracts. Then you can interact with your smart contracts by creating a Web3 application using the language of your choice, including but not limited to React, TypeScript, and Python.
 
-This guide will show you some of the thirdweb features you can take advantage of to develop smart contracts and DApps on Moonbeam. To check out all of the features thirdweb has to offer, please refer to the [thirdweb documentation site](https://portal.thirdweb.com){target=\_blank}.
+This guide will show you some of the thirdweb features you can use to develop smart contracts and DApps on Moonbeam. To check out all of the features thirdweb has to offer, please refer to the [thirdweb documentation site](https://portal.thirdweb.com){target=\_blank}.
 
 ## Create Contract {: #create-contract }
 
@@ -136,12 +136,12 @@ npx thirdweb install
 
 ### Specify Client ID {: #specify-client-id }
 
-Before you launch your dApp (locally or publicly deployed), you'll need to have a ThirdWeb Client ID associated with your project. A ThirdWeb Client ID is synonymous with an API key. You can create a free API key by [signing into your ThirdWeb Account and navigating to Settings -> API Keys](https://thirdweb.com/create-api-key){target=\_blank}.
+Before you launch your dApp (locally or publicly deployed), you must have a ThirdWeb Client ID associated with your project. A ThirdWeb Client ID is synonymous with an API key. You can create a free API key by [signing into your ThirdWeb Account and navigating to Settings -> API Keys](https://thirdweb.com/create-api-key){target=\_blank}.
 
 Press **Create API Key** then take the following steps:
 
 1. Give your API key a name
-2. Enter the whitelisted allowed domains that the API key should receive requests from. It's recommended that you allow only necessary domains, but for development purposes, you can select **Allow all domains**.
+2. Enter the allowed domains that the API key should accept requests from. It's recommended that you allow only necessary domains, but for development purposes, you can select **Allow all domains**.
 3. Press **Next** and Confirm the prompt on the next page. 
 
 Finally, specify your Client ID (API Key) in your `client.ts` file. ThirdWeb by default assumes it will be in your .env file named `NEXT_PUBLIC_TEMPLATE_CLIENT_ID`.
@@ -296,7 +296,7 @@ function MyApp() {
 }
 ```
 
-Next, you'll need to add in a connect wallet button to prompt end-users to login with any of the above supported wallets.
+Next, you'll add a connect wallet button to prompt end-users to log in with any of the above-supported wallets.
 
 ```javascript
 import { ConnectWallet } from '@thirdweb-dev/react';
