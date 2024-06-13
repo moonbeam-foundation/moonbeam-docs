@@ -92,8 +92,10 @@ For more information on different contracts available on Explore, check out [thi
     - `_royaltyRecipient` - wallet address to receive royalties from secondary sales
     - `_royaltyBps` - basis points (bps) that will be given to the royalty recipient for each secondary sale, e.g. 500 = 5%
 
-3. Select Moonbeam as the network
+3. Select the desired Moonbeam network, e.g., Moonbeam, Moonriver, or Moonbase Alpha
 4. Manage additional settings on your contract’s dashboard as needed such as uploading NFTs, configuring permissions, and more
+
+![thirdweb deploy](/images/builders/ethereum/dev-env/thirdweb/thirdweb-2.webp)
 
 For additional information on Deploy, please reference [thirdweb’s documentation](https://portal.thirdweb.com/contracts/deploy/overview){target=\_blank}.
 
@@ -110,9 +112,7 @@ thirdweb offers SDKs for a range of programming languages, such as React, React 
 2. Input your preferences for the command line prompts:
 
     1. Give your project a name
-    2. Choose your network. You can choose **EVM** for Moonbeam
-    3. Choose your preferred framework: **Next.js**, **Create React App**, **Vite**, **React Native**, **Node.js**, or **Express**. For this example, you can select **Create React App**
-    4. Choose your preferred language: **JavaScript** or **TypeScript**
+    2. Choose your preferred framework: **Next.js**, **Vite**, or **React Native**. For this example, select **Vite**
 
 3. Use the React or TypeScript SDK to interact with your application’s functions. This will be covered in the following section on interacting with a contract
 
@@ -133,6 +133,33 @@ Or install it into your existing project by running:
 ```bash
 npx thirdweb install
 ```
+
+### Specify Client ID {: #specify-client-id }
+
+Before you launch your dApp (locally or publicly deployed), you'll need to have a ThirdWeb Client ID associated with your project. A ThirdWeb Client ID is synonymous with an API key. You can create a free API key by [signing into your ThirdWeb Account and navigating to Settings -> API Keys](https://thirdweb.com/create-api-key){target=\_blank}.
+
+Press **Create API Key** then take the following steps:
+
+1. Give your API key a name
+2. Enter the whitelisted allowed domains that the API key should receive requests from. It's recommended that you allow only necessary domains, but for development purposes, you can select **Allow all domains**.
+3. Press **Next** and Confirm the prompt on the next page. 
+
+Finally, specify your Client ID (API Key) in your `client.ts` file. ThirdWeb by default assumes it will be in your .env file named `NEXT_PUBLIC_TEMPLATE_CLIENT_ID`.
+
+![thirdweb create API key](/images/builders/ethereum/dev-env/thirdweb/thirdweb-3.webp)
+
+### Run Locally {: #run-locally }
+
+To run your dApp locally for testing and debugging purposes, use the command: 
+
+```bash
+yarn dev
+```
+
+The app will compile and specify the localhost and port number for you to visit in your browser.
+
+![thirdweb run locally](/images/builders/ethereum/dev-env/thirdweb/thirdweb-4.webp)
+
 
 ### Initialize SDK On Moonbeam {: #initialize-sdk-on-moonbeam }
 
