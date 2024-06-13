@@ -56,7 +56,7 @@ To create a new smart contract using the thirdweb CLI, follow these steps:
     - Inheriting the contract by declaring that your contract is an `ERC721Base` contract
     - Implementing any required methods, such as the constructor
 
-5. After modifying your contract with your desired custom logic, you can deploy it to Moonbeam using [Deploy](https://portal.thirdweb.com/deploy){target=\_blank}. That will be covered in the next section!
+5. After modifying your contract with your desired custom logic, you can deploy it to Moonbeam using [Deploy](https://portal.thirdweb.com/contracts/deploy/overview){target=\_blank}. That will be covered in the next section!
 
 Alternatively, you can deploy a prebuilt contract for NFTs, tokens, or marketplace directly from the thirdweb Explore page:
 
@@ -67,11 +67,11 @@ Alternatively, you can deploy a prebuilt contract for NFTs, tokens, or marketpla
 2. Choose the type of contract you want to deploy from the available options: NFTs, tokens, marketplace, and more
 3. Follow the on-screen prompts to configure and deploy your contract
 
-For more information on different contracts available on Explore, check out [thirdweb’s documentation on prebuilt contracts](https://portal.thirdweb.com/pre-built-contracts){target=\_blank}.
+For more information on different contracts available on Explore, check out [thirdweb’s documentation on prebuilt contracts](https://portal.thirdweb.com/contracts){target=\_blank}.
 
 ## Deploy Contract {: #deploy-contract }
 
-[Deploy](https://portal.thirdweb.com/deploy){target=\_blank} is thirdweb's tool that allows you to easily deploy a smart contract to any EVM compatible network without configuring RPC URLs, exposing your private keys, writing scripts, and other additional setup such as verifying your contract.
+[Deploy](https://portal.thirdweb.com/contracts/deploy/overview){target=\_blank} is thirdweb's tool that allows you to easily deploy a smart contract to any EVM compatible network without configuring RPC URLs, exposing your private keys, writing scripts, and other additional setup such as verifying your contract.
 
 1. To deploy your smart contract using deploy, navigate to the root directory of your project and execute the following command:
 
@@ -95,7 +95,7 @@ For more information on different contracts available on Explore, check out [thi
 3. Select Moonbeam as the network
 4. Manage additional settings on your contract’s dashboard as needed such as uploading NFTs, configuring permissions, and more
 
-For additional information on Deploy, please reference [thirdweb’s documentation](https://portal.thirdweb.com/deploy){target=\_blank}.
+For additional information on Deploy, please reference [thirdweb’s documentation](https://portal.thirdweb.com/contracts/deploy/overview){target=\_blank}.
 
 ## Create Application {: #create-application }
 
@@ -118,9 +118,9 @@ thirdweb offers SDKs for a range of programming languages, such as React, React 
 
 ## Interact With a Contract {: #interact-with-a-contract }
 
-thirdweb provides several SDKs to allow you to interact with your contract including: [React](https://portal.thirdweb.com/react){target=\_blank}, [React Native](https://portal.thirdweb.com/react-native){target=\_blank}, [TypeScript](https://portal.thirdweb.com/typescript){target=\_blank}, and [Unity](https://portal.thirdweb.com/unity){target=\_blank}.
+thirdweb provides several SDKs to allow you to interact with your contract including: [React](https://portal.thirdweb.com/react/v4){target=\_blank}, [React Native](https://portal.thirdweb.com/typescript/v5/react-native){target=\_blank}, [TypeScript](https://portal.thirdweb.com/typescript/v4){target=\_blank}, and [Unity](https://portal.thirdweb.com/unity){target=\_blank}.
 
-This document will show you how to interact with your contract deployed to Moonbeam using React. You can view the [full React SDK reference](https://portal.thirdweb.com/react){target=\_blank} in thirdweb’s documentation.
+This document will show you how to interact with your contract deployed to Moonbeam using React. You can view the [full React SDK reference](https://portal.thirdweb.com/react/v4){target=\_blank} in thirdweb’s documentation.
 
 To create a new application pre-configured with thirdweb’s SDKs run and choose your preferred configurations:
 
@@ -153,7 +153,7 @@ const App = () => {
 
 ### Get Contract {: #get-contract }
 
-To connect to your contract, use the SDK’s [`getContract`](https://portal.thirdweb.com/typescript/sdk.thirdwebsdk.getcontract){target=\_blank} method.
+To connect to your contract, use the SDK’s [`getContract`](https://portal.thirdweb.com/typescript/v4/extensions){target=\_blank} method.
 
 ```javascript
 import { useContract } from '@thirdweb-dev/react';
@@ -167,7 +167,7 @@ function App() {
 
 For extension based functions, use the built-in supported hooks. There are several hooks available for you to use, the following are a few examples:
 
-- Use the NFTs extension to access a list of NFTs owned by an address via the [`useOwnedNFTs` hook](https://portal.thirdweb.com/react/react.useownednfts){target=\_blank}:
+- Use the NFTs extension to access a list of NFTs owned by an address via the [`useOwnedNFTs` hook](https://portal.thirdweb.com/references/react/v4/useOwnedNFTs){target=\_blank}:
 
     ```javascript
     import { useOwnedNFTs, useContract, useAddress } from '@thirdweb-dev/react';
@@ -182,7 +182,7 @@ For extension based functions, use the built-in supported hooks. There are sever
     }
     ```
 
-- Use the [`useContractRead` hook](https://portal.thirdweb.com/react/react.usecontractread){target=\_blank} to call any read functions on your contract by passing in the name of the function you want to use:
+- Use the [`useContractRead` hook](https://portal.thirdweb.com/references/react/v4/useContractRead){target=\_blank} to call any read functions on your contract by passing in the name of the function you want to use:
 
     ```javascript
     import { useContractRead, useContract } from '@thirdweb-dev/react';
@@ -197,7 +197,7 @@ For extension based functions, use the built-in supported hooks. There are sever
     }
     ```
 
-- Use the [`useContractWrite` hook](https://portal.thirdweb.com/react/react.usecontractwrite){target=\_blank} to call any write functions on your contract by passing in the name of the function you want to use:
+- Use the [`useContractWrite` hook](https://portal.thirdweb.com/references/react/v4/useContractWrite){target=\_blank} to call any write functions on your contract by passing in the name of the function you want to use:
 
     ```javascript
     import {
@@ -231,7 +231,7 @@ For extension based functions, use the built-in supported hooks. There are sever
 
 ### Connect Wallet {: #connect-wallet }
 
-There are a couple of ways that you can create a custom [connect wallet](https://portal.thirdweb.com/react/connecting-wallets){target=\_blank} experience. You can use the [`ConnectWallet` component](https://portal.thirdweb.com/react/connecting-wallets#using-the-connect-wallet-button){target=\_blank} or, for a more customizable approach, you can use the [`useConnect` hook](https://portal.thirdweb.com/react/connecting-wallets#using-hooks){target=\_blank}.
+There are a couple of ways that you can create a custom [connect wallet](https://portal.thirdweb.com/react/v4/connecting-wallets){target=\_blank} experience. You can use the [`ConnectWallet` component](https://portal.thirdweb.com/react/v4/connecting-wallets#using-the-connect-wallet-button){target=\_blank} or, for a more customizable approach, you can use the [`useConnect` hook](https://portal.thirdweb.com/react/v4/connecting-wallets#using-hooks){target=\_blank}.
 
 The following example will show you how to use the `ConnectWallet` component. To go this route, you will need to specify the supported wallets and pass them to your provider.
 
@@ -287,7 +287,7 @@ To host your static web application on decentralized storage, run:
 npx thirdweb deploy --app
 ```
 
-By running this command, your application is built for production and stored using [Storage](https://portal.thirdweb.com/storage){target=\_blank}, thirdweb's decentralized file management solution. The built application is uploaded to IPFS, a decentralized storage network, and a unique URL is generated for your application. This URL serves as a permanent hosting location for your application on the web.
+By running this command, your application is built for production and stored using [Storage](https://portal.thirdweb.com/infrastructure/storage/overview){target=\_blank}, thirdweb's decentralized file management solution. The built application is uploaded to IPFS, a decentralized storage network, and a unique URL is generated for your application. This URL serves as a permanent hosting location for your application on the web.
 
 If you have any further questions or encounter any issues during the process, please reach out to thirdweb support at [support.thirdweb.com](http://support.thirdweb.com){target=\_blank}.
 
