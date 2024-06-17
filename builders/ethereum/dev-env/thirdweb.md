@@ -136,18 +136,6 @@ thirdweb provides several SDKs to allow you to interact with your contract inclu
 
 This document will show you how to interact with your contract deployed to Moonbeam using React. You can view the [full React SDK reference](https://portal.thirdweb.com/typescript/v5/react){target=\_blank} in thirdweb’s documentation.
 
-To create a new application pre-configured with thirdweb’s SDKs run and choose your preferred configurations:
-
-```bash
-npx thirdweb create app --evm
-```
-
-Or install it into your existing project by running:
-
-```bash
-npx thirdweb install
-```
-
 ### Run Locally {: #run-locally }
 
 To run your dApp locally for testing and debugging purposes, use the command: 
@@ -164,7 +152,7 @@ The app will compile and specify the localhost and port number for you to visit 
 
 Wrap your application in the `ThirdwebProvider` component and change the `activeChain` to Moonbeam.
 
-```javascript title=""
+```javascript title="Initialize SDK"
 import { ThirdwebProvider } from '@thirdweb-dev/react';
 import { Moonbeam } from '@thirdweb-dev/chains';
 
