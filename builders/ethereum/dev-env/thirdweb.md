@@ -249,7 +249,7 @@ There are a couple of ways that you can create a custom [connect wallet](https:/
 
 The following example will show you how to use the `ConnectWallet` component. To go this route, you will need to specify the supported wallets and pass them to your provider.
 
-```javascript title="Use Connect Wallet"
+```javascript title="Connect Wallet"
 import {
   ThirdwebProvider,
   metamaskWallet,
@@ -285,7 +285,7 @@ function MyApp() {
 
 Next, you'll add a connect wallet button to prompt end-users to log in with any of the above-supported wallets.
 
-```javascript title="Connect Wallet"
+```javascript title="Connect Wallet Button"
 import { ConnectWallet } from '@thirdweb-dev/react';
 
 function App() {
