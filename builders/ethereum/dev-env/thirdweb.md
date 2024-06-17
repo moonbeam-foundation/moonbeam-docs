@@ -116,6 +116,20 @@ thirdweb offers SDKs for a range of programming languages, such as React, React 
 
 3. Use the React or TypeScript SDK to interact with your application’s functions. This will be covered in the following section on interacting with a contract
 
+### Specify Client ID {: #specify-client-id }
+
+Before you launch your dApp (locally or publicly deployed), you must have a ThirdWeb Client ID associated with your project. A ThirdWeb Client ID is synonymous with an API key. You can create a free API key by [signing into your ThirdWeb Account and navigating to Settings -> API Keys](https://thirdweb.com/create-api-key){target=\_blank}.
+
+Press **Create API Key** then take the following steps:
+
+1. Give your API key a name
+2. Enter the allowed domains that the API key should accept requests from. It's recommended that you allow only necessary domains, but for development purposes, you can select **Allow all domains**
+3. Press **Next** and confirm the prompt on the next page
+
+Finally, specify your Client ID (API Key) in your `client.ts` file. ThirdWeb by default assumes it will be in your `.env` file named `NEXT_PUBLIC_TEMPLATE_CLIENT_ID`.
+
+![thirdweb create API key](/images/builders/ethereum/dev-env/thirdweb/thirdweb-3.webp)
+
 ## Interact With a Contract {: #interact-with-a-contract }
 
 thirdweb provides several SDKs to allow you to interact with your contract including: [React](https://portal.thirdweb.com/typescript/v5/react){target=\_blank}, [React Native](https://portal.thirdweb.com/typescript/v5/react-native){target=\_blank}, [TypeScript](https://portal.thirdweb.com/typescript/v5){target=\_blank}, and [Unity](https://portal.thirdweb.com/unity){target=\_blank}.
@@ -134,20 +148,6 @@ Or install it into your existing project by running:
 npx thirdweb install
 ```
 
-### Specify Client ID {: #specify-client-id }
-
-Before you launch your dApp (locally or publicly deployed), you must have a ThirdWeb Client ID associated with your project. A ThirdWeb Client ID is synonymous with an API key. You can create a free API key by [signing into your ThirdWeb Account and navigating to Settings -> API Keys](https://thirdweb.com/create-api-key){target=\_blank}.
-
-Press **Create API Key** then take the following steps:
-
-1. Give your API key a name
-2. Enter the allowed domains that the API key should accept requests from. It's recommended that you allow only necessary domains, but for development purposes, you can select **Allow all domains**
-3. Press **Next** and confirm the prompt on the next page
-
-Finally, specify your Client ID (API Key) in your `client.ts` file. ThirdWeb by default assumes it will be in your `.env` file named `NEXT_PUBLIC_TEMPLATE_CLIENT_ID`.
-
-![thirdweb create API key](/images/builders/ethereum/dev-env/thirdweb/thirdweb-3.webp)
-
 ### Run Locally {: #run-locally }
 
 To run your dApp locally for testing and debugging purposes, use the command: 
@@ -164,7 +164,7 @@ The app will compile and specify the localhost and port number for you to visit 
 
 Wrap your application in the `ThirdwebProvider` component and change the `activeChain` to Moonbeam.
 
-```javascript
+```javascript title=""
 import { ThirdwebProvider } from '@thirdweb-dev/react';
 import { Moonbeam } from '@thirdweb-dev/chains';
 
@@ -179,9 +179,9 @@ const App = () => {
 
 ### Get Contract {: #get-contract }
 
-To connect to your contract, use the SDK’s [`getContract`](https://portal.thirdweb.com/typescript/v5/extensions){target=\_blank} method.
+To connect to your contract, use the SDK’s [`getContract`](https://portal.thirdweb.com/references/typescript/v5/getContract){target=\_blank} method.
 
-```javascript
+```javascript title="Get contract"
 import { useContract } from '@thirdweb-dev/react';
 
 function App() {
@@ -195,65 +195,65 @@ For extension based functions, use the built-in supported hooks. There are sever
 
 - Use the NFTs extension to access a list of NFTs owned by an address via the [`useOwnedNFTs` hook](https://portal.thirdweb.com/references/react/v4/useOwnedNFTs){target=\_blank}:
 
-    ```javascript
-    import { useOwnedNFTs, useContract, useAddress } from '@thirdweb-dev/react';
+```javascript title="Call Contract Functions"
+import { useOwnedNFTs, useContract, useAddress } from '@thirdweb-dev/react';
 
-    // Your smart contract address
-    const contractAddress = 'INSERT_CONTRACT_ADDRESS';
+// Your smart contract address
+const contractAddress = 'INSERT_CONTRACT_ADDRESS';
 
-    function App() {
-      const address = useAddress();
-      const { contract } = useContract(contractAddress);
-      const { data, isLoading, error } = useOwnedNFTs(contract, address);
-    }
-    ```
+function App() {
+  const address = useAddress();
+  const { contract } = useContract(contractAddress);
+  const { data, isLoading, error } = useOwnedNFTs(contract, address);
+}
+```
 
 - Use the [`useContractRead` hook](https://portal.thirdweb.com/references/react/v4/useContractRead){target=\_blank} to call any read functions on your contract by passing in the name of the function you want to use:
 
-    ```javascript
-    import { useContractRead, useContract } from '@thirdweb-dev/react';
+```javascript title="Read Contract Data"
+import { useContractRead, useContract } from '@thirdweb-dev/react';
 
-    // Your smart contract address
-    const contractAddress = 'INSERT_CONTRACT_ADDRESS';
+// Your smart contract address
+const contractAddress = 'INSERT_CONTRACT_ADDRESS';
 
-    function App() {
-      const { contract } = useContract(contractAddress);
-      // Read data from your smart contract using the function or variables name
-      const { data, isLoading, error } = useContractRead(contract, 'INSERT_NAME');
-    }
-    ```
+function App() {
+  const { contract } = useContract(contractAddress);
+  // Read data from your smart contract using the function or variables name
+  const { data, isLoading, error } = useContractRead(contract, 'INSERT_NAME');
+}
+```
 
 - Use the [`useContractWrite` hook](https://portal.thirdweb.com/references/react/v4/useContractWrite){target=\_blank} to call any write functions on your contract by passing in the name of the function you want to use:
 
-    ```javascript
-    import {
-      useContractWrite,
-      useContract,
-      Web3Button,
-    } from '@thirdweb-dev/react';
+```javascript title="Write contract data"
+import {
+  useContractWrite,
+  useContract,
+  Web3Button,
+} from '@thirdweb-dev/react';
 
-    // Your smart contract address
-    const contractAddress = 'INSERT_CONTRACT_ADDRESS';
+// Your smart contract address
+const contractAddress = 'INSERT_CONTRACT_ADDRESS';
 
-    function App() {
-      const { contract } = useContract(contractAddress);
-      const { mutateAsync, isLoading, error } = useContractWrite(
-        contract,
-        'INSERT_NAME'
-      );
+function App() {
+  const { contract } = useContract(contractAddress);
+  const { mutateAsync, isLoading, error } = useContractWrite(
+    contract,
+    'INSERT_NAME'
+  );
 
-      return (
-        <Web3Button
-          contractAddress={contractAddress}
-          // Calls the 'INSERT_NAME' function on your smart contract
-          // with 'INSERT_ARGUMENT' as the first argument
-          action={() => mutateAsync({ args: ['INSERT_ARGUMENT'] })}
-        >
-          Send Transaction
-        </Web3Button>
-      );
-    }
-    ```
+  return (
+    <Web3Button
+      contractAddress={contractAddress}
+      // Calls the 'INSERT_NAME' function on your smart contract
+      // with 'INSERT_ARGUMENT' as the first argument
+      action={() => mutateAsync({ args: ['INSERT_ARGUMENT'] })}
+    >
+      Send Transaction
+    </Web3Button>
+  );
+}
+```
 
 ### Connect Wallet {: #connect-wallet }
 
@@ -261,7 +261,7 @@ There are a couple of ways that you can create a custom [connect wallet](https:/
 
 The following example will show you how to use the `ConnectWallet` component. To go this route, you will need to specify the supported wallets and pass them to your provider.
 
-```javascript
+```javascript title="Use Connect Wallet"
 import {
   ThirdwebProvider,
   metamaskWallet,
@@ -297,7 +297,7 @@ function MyApp() {
 
 Next, you'll add a connect wallet button to prompt end-users to log in with any of the above-supported wallets.
 
-```javascript
+```javascript title="Connect Wallet"
 import { ConnectWallet } from '@thirdweb-dev/react';
 
 function App() {
