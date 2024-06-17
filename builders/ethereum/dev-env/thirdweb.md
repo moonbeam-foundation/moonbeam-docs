@@ -160,7 +160,6 @@ The app will compile and specify the localhost and port number for you to visit 
 
 ![thirdweb run locally](/images/builders/ethereum/dev-env/thirdweb/thirdweb-4.webp)
 
-
 ### Initialize SDK On Moonbeam {: #initialize-sdk-on-moonbeam }
 
 Wrap your application in the `ThirdwebProvider` component and change the `activeChain` to Moonbeam.
