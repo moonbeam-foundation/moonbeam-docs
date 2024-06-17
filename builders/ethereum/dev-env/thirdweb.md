@@ -118,9 +118,9 @@ thirdweb offers SDKs for a range of programming languages, such as React, React 
 
 ## Interact With a Contract {: #interact-with-a-contract }
 
-thirdweb provides several SDKs to allow you to interact with your contract including: [React](https://portal.thirdweb.com/react/v4){target=\_blank}, [React Native](https://portal.thirdweb.com/typescript/v5/react-native){target=\_blank}, [TypeScript](https://portal.thirdweb.com/typescript/v4){target=\_blank}, and [Unity](https://portal.thirdweb.com/unity){target=\_blank}.
+thirdweb provides several SDKs to allow you to interact with your contract including: [React](https://portal.thirdweb.com/typescript/v5/react){target=\_blank}, [React Native](https://portal.thirdweb.com/typescript/v5/react-native){target=\_blank}, [TypeScript](https://portal.thirdweb.com/typescript/v5){target=\_blank}, and [Unity](https://portal.thirdweb.com/unity){target=\_blank}.
 
-This document will show you how to interact with your contract deployed to Moonbeam using React. You can view the [full React SDK reference](https://portal.thirdweb.com/react/v4){target=\_blank} in thirdweb’s documentation.
+This document will show you how to interact with your contract deployed to Moonbeam using React. You can view the [full React SDK reference](https://portal.thirdweb.com/typescript/v5/react){target=\_blank} in thirdweb’s documentation.
 
 To create a new application pre-configured with thirdweb’s SDKs run and choose your preferred configurations:
 
@@ -179,7 +179,7 @@ const App = () => {
 
 ### Get Contract {: #get-contract }
 
-To connect to your contract, use the SDK’s [`getContract`](https://portal.thirdweb.com/typescript/v4/extensions){target=\_blank} method.
+To connect to your contract, use the SDK’s [`getContract`](https://portal.thirdweb.com/typescript/v5/extensions){target=\_blank} method.
 
 ```javascript
 import { useContract } from '@thirdweb-dev/react';
@@ -257,7 +257,7 @@ For extension based functions, use the built-in supported hooks. There are sever
 
 ### Connect Wallet {: #connect-wallet }
 
-There are a couple of ways that you can create a custom [connect wallet](https://portal.thirdweb.com/react/v4/connecting-wallets){target=\_blank} experience. You can use the [`ConnectWallet` component](https://portal.thirdweb.com/react/v4/connecting-wallets#using-the-connect-wallet-button){target=\_blank} or, for a more customizable approach, you can use the [`useConnect` hook](https://portal.thirdweb.com/react/v4/connecting-wallets#using-hooks){target=\_blank}.
+There are a couple of ways that you can create a custom [connect wallet](https://portal.thirdweb.com/typescript/v5/react/connecting-wallets){target=\_blank} experience. You can use the [`ConnectWallet` component](https://portal.thirdweb.com/typescript/v5/react/components/ConnectButton){target=\_blank} or, for a more customizable approach, you can use the [`useConnect` hook](https://portal.thirdweb.com/typescript/v5/react/connecting-wallets#using-hooks){target=\_blank}.
 
 The following example will show you how to use the `ConnectWallet` component. To go this route, you will need to specify the supported wallets and pass them to your provider.
 
