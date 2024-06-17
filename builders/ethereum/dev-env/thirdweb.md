@@ -1,6 +1,6 @@
 ---
 title: How to use thirdweb
-description: This guide will show you some of Thirdweb's features, including building, testing, and deploying smart contract templates to launch DApps on Moonbeam.
+description: This guide will show you some of thirdweb's features, including building, testing, and deploying smart contract templates to launch dApps on Moonbeam.
 ---
 
 # Using thirdweb on Moonbeam
