@@ -95,7 +95,7 @@ For more information on different contracts available on Explore, check out [thi
 3. Select the desired Moonbeam network, e.g., Moonbeam, Moonriver, or Moonbase Alpha
 4. Manage additional settings on your contract’s dashboard as needed such as uploading NFTs, configuring permissions, and more
 
-![thirdweb deploy](/images/builders/ethereum/dev-env/thirdweb/thirdweb-2.webp)
+    ![thirdweb deploy](/images/builders/ethereum/dev-env/thirdweb/thirdweb-2.webp)
 
 For additional information on Deploy, please reference [thirdweb’s documentation](https://portal.thirdweb.com/contracts/deploy/overview){target=\_blank}.
 
