@@ -144,7 +144,7 @@ Press **Create API Key** then take the following steps:
 2. Enter the allowed domains that the API key should accept requests from. It's recommended that you allow only necessary domains, but for development purposes, you can select **Allow all domains**
 3. Press **Next** and confirm the prompt on the next page
 
-Finally, specify your Client ID (API Key) in your `client.ts` file. ThirdWeb by default assumes it will be in your .env file named `NEXT_PUBLIC_TEMPLATE_CLIENT_ID`.
+Finally, specify your Client ID (API Key) in your `client.ts` file. ThirdWeb by default assumes it will be in your `.env` file named `NEXT_PUBLIC_TEMPLATE_CLIENT_ID`.
 
 ![thirdweb create API key](/images/builders/ethereum/dev-env/thirdweb/thirdweb-3.webp)
 
