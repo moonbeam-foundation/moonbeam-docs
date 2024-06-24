@@ -24,12 +24,12 @@ Currently, Moonriver has the following configurations:
 Some important variables/configurations to note include:
 
 === "General"
-    |       Variable        |                                  Value                                   |
-    |:---------------------:|:------------------------------------------------------------------------:|
-    |   Minimum gas price   |               {{ networks.moonriver.min_gas_price }} Gwei*               |
-    |   Target block time   |  {{ networks.moonriver.block_time }} seconds (expected to be 6 seconds)  |
-    |    Block gas limit    | {{ networks.moonriver.gas_block }} (expected to increase by at least 4x) |
-    | Transaction gas limit |  {{ networks.moonriver.gas_tx }} (expected to increase by at least 4x)   |
+    |       Variable        |                    Value                     |
+    |:---------------------:|:--------------------------------------------:|
+    |   Minimum gas price   | {{ networks.moonriver.min_gas_price }} Gwei* |
+    |   Target block time   | {{ networks.moonriver.block_time }} seconds  |
+    |    Block gas limit    |      {{ networks.moonriver.gas_block }}      |
+    | Transaction gas limit |       {{ networks.moonriver.gas_tx }}        |
 
 === "Staking"
     |             Variable              |                                                   Value                                                   |
@@ -42,6 +42,10 @@ Some important variables/configurations to note include:
     |          Unbond duration          |                  {{ networks.moonriver.delegator_timings.del_bond_less.rounds }} rounds                   |
 
 _*Read more about [token denominations](#token-denominations)_
+
+--8<-- 'text/_common/async-backing.md'
+
+    Additionally, the block and transaction gas limits increased by 4x on Moonriver.
 
 --8<-- 'text/builders/get-started/networks/moonriver/connect.md'
 

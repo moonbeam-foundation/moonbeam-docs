@@ -50,7 +50,7 @@ Before getting started, it's important to note some of the timing of different a
 !!! note
     The values presented in the previous table are subject to change in future releases.
 
---8<-- 'text/_common/async-backing-moonbase.md'
+--8<-- 'text/_common/async-backing.md'
 
 ## Become a Candidate {: #become-a-candidate }
 

@@ -42,7 +42,7 @@ Some important variables/configurations to note include:
     |           Bond duration           |                                 delegation takes effect in the next round (funds are withdrawn immediately)                                 |
     |          Unbond duration          | {{ networks.moonbase.delegator_timings.del_bond_less.rounds }} rounds ({{ networks.moonbase.delegator_timings.del_bond_less.hours }} hours) |
 
---8<-- 'text/_common/async-backing-moonbase.md'
+--8<-- 'text/_common/async-backing.md'
     
     Additionally, as of runtime 2900, the block and transaction gas limits increased by 4x on Moonbase Alpha.
 
