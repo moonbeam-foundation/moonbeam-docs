@@ -58,7 +58,7 @@ As of runtime 2900, the configuration of the XCM queue suggests that XCM message
 === "Moonriver"
 
     ```text
-    125,000,000,000 (0.125 seconds of block execution time)
+    500,000,000,000 (0.5 seconds of block execution time)
     ```
 
 === "Moonbase Alpha"
@@ -90,8 +90,8 @@ Therefore, the maximum gas limit you can provide for a remote EVM call can be ca
 === "Moonriver"
 
     ```text
-    Maximum Gas Units = (125,000,000,000 - 2,000,000,000) / 25,000
-    Maximum Gas Units = 4,920,000
+    Maximum Gas Units = (500,000,000,000 - 2,000,000,000) / 25,000
+    Maximum Gas Units = 19,920,000
     ```
 
 === "Moonbase Alpha"

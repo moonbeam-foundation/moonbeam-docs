@@ -433,15 +433,15 @@ networks:
     tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.38.0-3000-latest
     chain_spec: moonriver
     block_explorer: https://moonriver.moonscan.io/
-    spec_version: runtime-2901
+    spec_version: runtime-3000
     binary_name: moonbeam
     min_gas_price: 1.25
-    block_time: 12
-    gas_block: 15,000,000
-    gas_block_numbers_only: 15000000
-    gas_tx: 12,995,000
+    block_time: 6
+    gas_block: 60,000,000
+    gas_block_numbers_only: 60000000
+    gas_tx: 52,000,000
     mbip_5:
-      block_storage_limit: 40
+      block_storage_limit: 80
       gas_storage_ratio: 366
       example_storage: 500
       example_addtl_gas: 183000
@@ -457,7 +457,7 @@ networks:
         wei_per_weight:
           display: 50,000
     erc20_xcm:
-      transfer_gas_limit: 200,000
+      transfer_gas_limit: 400,000
     conviction:
       lock_period:
         conviction_1: 1
@@ -473,16 +473,16 @@ networks:
           decision_deposit: 100000
           prepare_period:
             time: '1 day'
-            blocks: 7200
+            blocks: 14400
           decision_period:
             time: '14 days'
-            blocks: 100800
+            blocks: 201600
           confirm_period:
             time: '1 day'
-            blocks: 7200
+            blocks: 14400
           min_enactment_period:
             time: '1 day'
-            blocks: 7200
+            blocks: 14400
           min_approval:
             time0: 'Day 0'
             percent0: 100
@@ -500,16 +500,16 @@ networks:
           decision_deposit: 10000
           prepare_period:
             time: '10 minutes'
-            blocks: 50
+            blocks: 100
           decision_period:
             time: '14 days'
-            blocks: 100800
+            blocks: 201600
           confirm_period:
             time: '10 minutes'
-            blocks: 50
+            blocks: 100
           min_enactment_period:
             time: '30 minutes'
-            blocks: 150
+            blocks: 300
           min_approval:
             time0: 'Day 0'
             percent0: 100
@@ -529,16 +529,16 @@ networks:
           decision_deposit: 500
           prepare_period:
             time: '1 hour'
-            blocks: 300
+            blocks: 600
           decision_period:
             time: '14 days'
-            blocks: 100800
+            blocks: 201600
           confirm_period:
             time: '1 day'
-            blocks: 7200
+            blocks: 14400
           min_enactment_period:
             time: '1 day'
-            blocks: 7200
+            blocks: 14400
           min_approval:
             time0: 'Day 0'
             percent0: 100
@@ -558,16 +558,16 @@ networks:
           decision_deposit: 10000
           prepare_period:
             time: '1 hour'
-            blocks: 300
+            blocks: 600
           decision_period:
             time: '14 days'
-            blocks: 100800
+            blocks: 201600
           confirm_period:
             time: '3 hours'
-            blocks: 900
+            blocks: 1800
           min_enactment_period:
             time: '10 minutes'
-            blocks: 50
+            blocks: 100
           min_approval:
             time0: 'Day 0'
             percent0: 100
@@ -587,16 +587,16 @@ networks:
           decision_deposit: 20000
           prepare_period:
             time: '1 hour'
-            blocks: 300
+            blocks: 600
           decision_period:
             time: '14 days'
-            blocks: 100800
+            blocks: 201600
           confirm_period:
             time: '3 hours'
-            blocks: 900
+            blocks: 1800
           min_enactment_period:
             time: '10 minutes'
-            blocks: 50
+            blocks: 100
           min_approval:
             time0: 'Day 0'
             percent0: 100
@@ -616,16 +616,16 @@ networks:
           decision_deposit: 500
           prepare_period:
             time: '1 hour'
-            blocks: 300
+            blocks: 600
           decision_period:
             time: '14 days'
-            blocks: 100800
+            blocks: 201600
           confirm_period:
             time: '3 hours'
-            blocks: 900
+            blocks: 1800
           min_enactment_period:
             time: '10 minutes'
-            blocks: 50
+            blocks: 100
           min_approval:
             time0: 'Day 0'
             percent0: 100

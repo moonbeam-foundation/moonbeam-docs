@@ -60,7 +60,7 @@ Some important terminology to understand in regards to treasuries:
     |             Maximum approved proposals             |                                   {{ networks.moonbase.treasury.max_approved_proposals }}                                   |
     | Target % of transaction fees allocated to Treasury |                                     {{ networks.moonbase.treasury.tx_fees_allocated }}                                      |
 
---8<-- 'text/_common/async-backing-moonbase.md'
+--8<-- 'text/_common/async-backing.md'
 
 ## Community Treasury {: #community-treasury }
 
