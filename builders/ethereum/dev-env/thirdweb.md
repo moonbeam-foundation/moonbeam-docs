@@ -118,7 +118,7 @@ thirdweb offers SDKs for a range of programming languages, such as React, React 
 
 ### Specify Client ID {: #specify-client-id }
 
-Before you launch your dApp (locally or publicly deployed), you must have a ThirdWeb Client ID associated with your project. A ThirdWeb Client ID is synonymous with an API key. You can create a free API key by [signing into your ThirdWeb Account and navigating to Settings -> API Keys](https://thirdweb.com/create-api-key){target=\_blank}.
+Before you launch your dApp (locally or publicly deployed), you must have a thirdweb Client ID associated with your project. A thirdweb Client ID is synonymous with an API key. You can create a free API key by [signing into your thirdweb Account and navigating to **Settings** then click on **API Keys**](https://thirdweb.com/create-api-key){target=\_blank}.
 
 Press **Create API Key** then take the following steps:
 
@@ -126,7 +126,10 @@ Press **Create API Key** then take the following steps:
 2. Enter the allowed domains that the API key should accept requests from. It's recommended that you allow only necessary domains, but for development purposes, you can select **Allow all domains**
 3. Press **Next** and confirm the prompt on the next page
 
-Finally, specify your Client ID (API Key) in your `client.ts` file. ThirdWeb by default assumes it will be in your `.env` file named `NEXT_PUBLIC_TEMPLATE_CLIENT_ID`.
+Finally, specify your Client ID (API Key) in your `client.ts` file. In the case of Vite, thirdweb by default assumes it will be in your `.env` file named `VITE_TEMPLATE_CLIENT_ID`.
+
+!!! note
+    The respective name for your Client ID variable will vary with the framework you've chosen, e.g., Vite will be `VITE_TEMPLATE_CLIENT_ID`, Next.js will be `NEXT_PUBLIC_TEMPLATE_CLIENT_ID`, and React Native will be `EXPO_PUBLIC_THIRDWEB_CLIENT_ID`.
 
 ![thirdweb create API key](/images/builders/ethereum/dev-env/thirdweb/thirdweb-3.webp)
 
@@ -150,17 +153,17 @@ The app will compile and specify the localhost and port number for you to visit 
 
 ### Initialize SDK On Moonbeam {: #initialize-sdk-on-moonbeam }
 
-Wrap your application in the `ThirdwebProvider` component and change the `activeChain` to Moonbeam.
+Wrap your application in the `thirdwebProvider` component and change the `activeChain` to Moonbeam.
 
 ```javascript title="Initialize SDK"
-import { ThirdwebProvider } from '@thirdweb-dev/react';
+import { thirdwebProvider } from '@thirdweb-dev/react';
 import { Moonbeam } from '@thirdweb-dev/chains';
 
 const App = () => {
   return (
-    <ThirdwebProvider activeChain={Moonbeam}>
+    <thirdwebProvider activeChain={Moonbeam}>
       <YourApp />
-    </ThirdwebProvider>
+    </thirdwebProvider>
   );
 };
 ```
@@ -251,7 +254,7 @@ The following example will show you how to use the `ConnectWallet` component. To
 
 ```javascript title="Connect Wallet"
 import {
-  ThirdwebProvider,
+  thirdwebProvider,
   metamaskWallet,
   coinbaseWallet,
   walletConnectV1,
@@ -262,7 +265,7 @@ import {
 
 function MyApp() {
   return (
-    <ThirdwebProvider
+    <thirdwebProvider
       supportedWallets={[
         metamaskWallet(),
         coinbaseWallet(),
@@ -278,7 +281,7 @@ function MyApp() {
       activeChain={Moonbeam}
     >
       <App />
-    </ThirdwebProvider>
+    </thirdwebProvider>
   );
 }
 ```
