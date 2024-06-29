@@ -76,7 +76,6 @@ export function App() {
                     <h2>Last Updated: {timestamp}</h2>
                 </div>
                 {contract && <IncrementButton contract={contract} />}
-                <ThirdwebResources />
             </div>
         </main>
     );
@@ -107,9 +106,6 @@ function Header() {
             </p>
         </header>
     );
-}
-function ThirdwebResources() {
-    // Function remains the same
 }
 
 function IncrementButton({ contract }) {

@@ -296,6 +296,15 @@ Putting it all together, you can view the full code for the App.tsx file below:
     --8<-- 'code/builders/ethereum/dev-env/thirdweb/App.tsx'
     ```
 
+
+And that's it! As a reminder, you can run your app locally with the following command:
+ 
+```bash
+yarn dev
+```
+
+![Locally built dApp](/images/builders/ethereum/dev-env/thirdweb/thirdweb-5.webp)
+
 To host your static web application on decentralized storage, run:
 
 ```bash
