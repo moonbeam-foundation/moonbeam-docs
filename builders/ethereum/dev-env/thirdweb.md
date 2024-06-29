@@ -126,7 +126,7 @@ Press **Create API Key** then take the following steps:
 2. Enter the allowed domains that the API key should accept requests from. It's recommended that you allow only necessary domains, but for development purposes, you can select **Allow all domains**
 3. Press **Next** and confirm the prompt on the next page
 
-Finally, specify your Client ID (API Key) in your `client.ts` file. In the case of Vite, thirdweb by default assumes it will be in your `.env` file named `VITE_TEMPLATE_CLIENT_ID`.
+Finally, specify your Client ID (API Key) in your `.env` file. If using Vite, thirdweb references it in the `client.ts` and assumes the API key will be in your `.env` file named `VITE_TEMPLATE_CLIENT_ID`. If you don't set this value correctly, you'll get a blank screen when trying to build the web app.
 
 !!! note
     The respective name for your Client ID variable will vary with the framework you've chosen, e.g., Vite will be `VITE_TEMPLATE_CLIENT_ID`, Next.js will be `NEXT_PUBLIC_TEMPLATE_CLIENT_ID`, and React Native will be `EXPO_PUBLIC_THIRDWEB_CLIENT_ID`.
@@ -151,152 +151,150 @@ The app will compile and specify the localhost and port number for you to visit 
 
 ![thirdweb run locally](/images/builders/ethereum/dev-env/thirdweb/thirdweb-4.webp)
 
-### Initialize SDK On Moonbeam {: #initialize-sdk-on-moonbeam }
+### Create Client ID {: #create-client-id }
 
-Wrap your application in the `thirdwebProvider` component and change the `activeChain` to Moonbeam.
+If you generated your thirdweb app with Vite, you'll have a `client.ts` file that looks like the below. As long you've created a `.env` file with your thirdweb API Key (Client ID) defined in `VITE_TEMPLATE_CLIENT_ID`, you can leave the `client.ts` as is and proceed to the next section.
 
-```javascript title="Initialize SDK"
-import { thirdwebProvider } from '@thirdweb-dev/react';
-import { Moonbeam } from '@thirdweb-dev/chains';
+```typescript title="client.ts"
+import { createThirdwebClient } from "thirdweb";
 
-const App = () => {
-  return (
-    <thirdwebProvider activeChain={Moonbeam}>
-      <YourApp />
-    </thirdwebProvider>
-  );
-};
+// Replace this with your client ID string
+// refer to https://portal.thirdweb.com/typescript/v5/client on how to get a client ID
+const clientId = import.meta.env.VITE_TEMPLATE_CLIENT_ID;
+
+export const client = createThirdwebClient({
+  clientId: clientId,
+});
+
+```
+
+### Configure Chain {: #configure-chain }
+thirdweb offers a small number of chains from `@thirdweb/chains` and does not include Moonbeam networks in that list, so you'll need to specify the network details including chain ID and RPC URL. You can create a custom chain with [`defineChain`](https://portal.thirdweb.com/references/typescript/v5/defineChain){target=\_blank} as follows:
+
+```typescript title="App.tsx"
+import { defineChain } from "thirdweb";
+
+  const moonbase = defineChain({
+  id: BigInt(1287),
+  rpc: "https://moonbase-rpc.dwellir.com",
+})
 ```
 
 ### Get Contract {: #get-contract }
 
-To connect to your contract, use the SDK’s [`getContract`](https://portal.thirdweb.com/references/typescript/v5/getContract){target=\_blank} method.
+To connect to your contract, use the SDK’s [`getContract`](https://portal.thirdweb.com/references/typescript/v5/getContract){target=\_blank} method.  As an example, let's fetch data from an [Incrementer contract on Moonbase Alpha](https://moonbase.moonscan.io/address/0xa72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8){target=\_blank}.
 
-```javascript title="Get contract"
-import { useContract } from '@thirdweb-dev/react';
+```typescript title="App.tsx"
+import { getContract } from "thirdweb";
+import { client } from "./client";
 
-function App() {
-  const { contract, isLoading, error } = useContract('INSERT_CONTRACT_ADDRESS');
-}
+const myContract = getContract({
+  client,             
+  chain: moonbase,       
+  address: INSERT_CONTRACT_ADDRESS,   
+  abi: INSERT_ABI               
+});
 ```
 
 ### Calling Contract Functions {: #calling-contract-functions }
 
-For extension based functions, use the built-in supported hooks. There are several hooks available for you to use, the following are a few examples:
+To call a contract in the latest version of the SDK, you can use [`prepareContractCall`](https://portal.thirdweb.com/typescript/v5/transactions/prepare){target=\_blank}.
 
-- Use the NFTs extension to access a list of NFTs owned by an address via the [`useOwnedNFTs` hook](https://portal.thirdweb.com/references/react/v4/useOwnedNFTs){target=\_blank}:
+```typescript title="App.tsx"
+import { prepareContractCall } from "thirdweb";
 
-```javascript title="Call Contract Functions"
-import { useOwnedNFTs, useContract, useAddress } from '@thirdweb-dev/react';
-
-// Your smart contract address
-const contractAddress = 'INSERT_CONTRACT_ADDRESS';
-
-function App() {
-  const address = useAddress();
-  const { contract } = useContract(contractAddress);
-  const { data, isLoading, error } = useOwnedNFTs(contract, address);
-}
+const tx = prepareContractCall({
+          contract,
+          method: "increment",
+          params: [],
+        });
 ```
 
-- Use the [`useContractRead` hook](https://portal.thirdweb.com/references/react/v4/useContractRead){target=\_blank} to call any read functions on your contract by passing in the name of the function you want to use:
+We can trigger this contract call from a ThirdWeb [Transaction button](https://portal.thirdweb.com/typescript/v5/react/components/TransactionButton){target=\_blank}, which has some neat features built in. For example, if you're on the incorrect network, the button will prompt you to switch networks. In the below snippet we'll also add some error handling as a good practice. 
 
-```javascript title="Read Contract Data"
-import { useContractRead, useContract } from '@thirdweb-dev/react';
+```typescript title="App.tsx"
+import { TransactionButton } from "thirdweb/react";
+import { prepareContractCall } from "thirdweb";
 
-// Your smart contract address
-const contractAddress = 'INSERT_CONTRACT_ADDRESS';
-
-function App() {
-  const { contract } = useContract(contractAddress);
-  // Read data from your smart contract using the function or variables name
-  const { data, isLoading, error } = useContractRead(contract, 'INSERT_NAME');
-}
-```
-
-- Use the [`useContractWrite` hook](https://portal.thirdweb.com/references/react/v4/useContractWrite){target=\_blank} to call any write functions on your contract by passing in the name of the function you want to use:
-
-```javascript title="Write contract data"
-import {
-  useContractWrite,
-  useContract,
-  Web3Button,
-} from '@thirdweb-dev/react';
-
-// Your smart contract address
-const contractAddress = 'INSERT_CONTRACT_ADDRESS';
-
-function App() {
-  const { contract } = useContract(contractAddress);
-  const { mutateAsync, isLoading, error } = useContractWrite(
-    contract,
-    'INSERT_NAME'
-  );
-
+function IncrementButton({ contract }) {
   return (
-    <Web3Button
-      contractAddress={contractAddress}
-      // Calls the 'INSERT_NAME' function on your smart contract
-      // with 'INSERT_ARGUMENT' as the first argument
-      action={() => mutateAsync({ args: ['INSERT_ARGUMENT'] })}
+    <TransactionButton
+      transaction={() => {
+        console.log("Preparing to call increment...");
+        // Verify that 'contract' is not undefined
+        if (!contract) {
+          console.error("Contract is undefined.");
+          return;
+        }
+        const tx = prepareContractCall({
+          contract,
+          method: "increment",
+          params: [],
+        });
+        return tx;
+      }}
+      onTransactionSent={(result) => {
+        console.log("Transaction submitted", result.transactionHash);
+      }}
+      onTransactionConfirmed={(receipt) => {
+        console.log("Transaction confirmed", receipt.transactionHash);
+      }}
+      onError={(error) => {
+        console.error("Transaction error", error);
+      }}
     >
-      Send Transaction
-    </Web3Button>
+      Increment Counter
+    </TransactionButton>
   );
 }
+```
+
+### Reading Contract State {: #read-contract-state }
+
+- Use the [`readContract` function](https://portal.thirdweb.com/typescript/v5/transactions/read){target=\_blank} to call any read functions on your contract by passing in the Solidity method signature and the params.
+
+```typescript title="App.tsx"
+import { readContract } from "thirdweb";
+
+const number = await readContract({
+      contract: contract,
+      method: "number",
+      params: [],
+    });
 ```
 
 ### Connect Wallet {: #connect-wallet }
 
-There are a couple of ways that you can create a custom [connect wallet](https://portal.thirdweb.com/typescript/v5/react/connecting-wallets){target=\_blank} experience. You can use the [`ConnectWallet` component](https://portal.thirdweb.com/typescript/v5/react/components/ConnectButton){target=\_blank} or, for a more customizable approach, you can use the [`useConnect` hook](https://portal.thirdweb.com/typescript/v5/react/connecting-wallets#using-hooks){target=\_blank}.
+Next, let's customize the [Connect Button](https://portal.thirdweb.com/typescript/v5/react/components/ConnectButton){target=\_blank} to tailor it our desired wallets. You can add or remove wallets from the wallets array to change the options available to users. ThirdWeb also offers a [ConnectButton Playground](https://thirdweb.com/dashboard/connect/playground) to customize and view changes in real-time given the high degree of flexibility offered by the button. 
 
-The following example will show you how to use the `ConnectWallet` component. To go this route, you will need to specify the supported wallets and pass them to your provider.
-
-```javascript title="Connect Wallet"
-import {
-  thirdwebProvider,
-  metamaskWallet,
-  coinbaseWallet,
-  walletConnectV1,
-  walletConnect,
-  safeWallet,
-  paperWallet,
-} from '@thirdweb-dev/react';
-
-function MyApp() {
+```typescript title="App.tsx"
+import { ConnectButton } from "thirdweb/react";
+import { createWallet, inAppWallet } from "thirdweb/wallets";
+ 
+const wallets = [
+  inAppWallet(),
+  createWallet("io.metamask"),
+  createWallet("com.coinbase.wallet"),
+  createWallet("me.rainbow"),
+];
+ 
+function Example() {
   return (
-    <thirdwebProvider
-      supportedWallets={[
-        metamaskWallet(),
-        coinbaseWallet(),
-        walletConnect({
-          projectId: 'INSERT_YOUR_PROJECT_ID', // optional
-        }),
-        walletConnectV1(),
-        safeWallet(),
-        paperWallet({
-          clientId: 'INSERT_YOUR_CLIENT_ID', // required
-        }),
-      ]}
-      activeChain={Moonbeam}
-    >
-      <App />
-    </thirdwebProvider>
+    <div>
+      <ConnectButton client={client} wallets={wallets} />
+    </div>
   );
 }
 ```
 
-Next, you'll add a connect wallet button to prompt end-users to log in with any of the above-supported wallets.
-
-```javascript title="Connect Wallet Button"
-import { ConnectWallet } from '@thirdweb-dev/react';
-
-function App() {
-  return <ConnectWallet />;
-}
-```
-
 ## Deploy Application {: #deploy-application }
+
+Putting it all together, you can view the full code for the App.tsx file below:
+
+??? code "View the complete App.tsx script"
+    ```typescript
+    --8<-- 'code/builders/ethereum/dev-env/thirdweb/App.tsx'
+    ```
 
 To host your static web application on decentralized storage, run:
 
