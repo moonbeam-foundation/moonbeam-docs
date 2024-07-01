@@ -421,18 +421,6 @@ networks:
       testnetqrngxpub: 'xpub6CuDdF9zdWTRuGybJPuZUGnU4suZowMmgu15bjFZT2o6PUtk4Lo78KGJUGBobz3pPKRaN9sLxzj21CMe6StP3zUsd8tWEJPgZBesYBMY7Wo'
       testnetqrnguint256: '0x94555f83f1addda23fdaa7c74f27ce2b764ed5cc430c66f5ff1bcf39d583da36'
       testnetqrnguint256array: '0x9877ec98695c139310480b4323b9d474d48ec4595560348a2341218670f7fbc2'
-    api3:
-      rrp: '0xa0AD79D995DdeeB18a14eAef56A549A04e3Aa1Bd'
-      quintessenceairnode: '0x224e030f03Cd3440D88BD78C9BF5Ed36458A1A25'
-      quintessencexpub: 'xpub6CyZcaXvbnbqGfqqZWvWNUbGvdd5PAJRrBeAhy9rz1bbnFmpVLg2wPj1h6TyndFrWLUG3kHWBYpwacgCTGWAHFTbUrXEg6LdLxoEBny2YDz'
-      quintessenceuint256: '0xffd1bbe880e7b2c662f6c8511b15ff22d12a4a35d5c8c17202893a5f10e25284'
-      quintessenceuint256array: '0x4554e958a68d68de6a4f6365ff868836780e84ac3cba75ce3f4c78a85faa8047'
-    api3:
-      rrp: '0xa0AD79D995DdeeB18a14eAef56A549A04e3Aa1Bd'
-      quantumblockchainsairnode: '0x07D7F4EcaC8aDf3f0412ab058a051fD8b8507348'
-      quantumblockchainsxpub: 'xpub6C7WhXL7KNoa9GnCwEfLCWzf326hXhqD3nUyKg4ZxzXvjcmFeVQ9GZENgKtHxLfo3uPa13GBHCAb1nRgdUnP5YGJFX97KqpeFvHQzpjhmoi'
-      quantumblockchainsuint256: '0x8cf0e7205eff59b8695db96b34ffe7a5a125a3ed263afa3353aef6c3d82debf9'
-      quantumblockchainsuint256array: '0x09fd3663fdc0ab359a5ebcba098571122ddb2a80b00a503960b32e67491f52d7'
   moonriver:
     public_rpc_url: https://rpc.api.moonriver.moonbeam.network # for wallets
     rpc_url: INSERT_RPC_API_ENDPOINT
@@ -750,6 +738,14 @@ networks:
       anuqrngxpub: 'xpub6DXSDTZBd4aPVXnv6Q3SmnGUweFv6j24SK77W4qrSFuhGgi666awUiXakjXruUSCDQhhctVG7AQt67gMdaRAsDnDXv23bBRKsMWvRzo6kbf'
       anuqrnguint256: '0xfb6d017bb87991b7495f563db3c8cf59ff87b09781947bb1e417006ad7f55a78'
       anuqrnguint256array: '0x27cc2713e7f968e4e86ed274a051a5c8aaee9cca66946f23af6f29ecea9704c3'
+      quintessenceairnode: '0x224e030f03Cd3440D88BD78C9BF5Ed36458A1A25'
+      quintessencexpub: 'xpub6CyZcaXvbnbqGfqqZWvWNUbGvdd5PAJRrBeAhy9rz1bbnFmpVLg2wPj1h6TyndFrWLUG3kHWBYpwacgCTGWAHFTbUrXEg6LdLxoEBny2YDz'
+      quintessenceuint256: '0xffd1bbe880e7b2c662f6c8511b15ff22d12a4a35d5c8c17202893a5f10e25284'
+      quintessenceuint256array: '0x4554e958a68d68de6a4f6365ff868836780e84ac3cba75ce3f4c78a85faa8047'
+      quantumblockchainsairnode: '0x07D7F4EcaC8aDf3f0412ab058a051fD8b8507348'
+      quantumblockchainsxpub: 'xpub6C7WhXL7KNoa9GnCwEfLCWzf326hXhqD3nUyKg4ZxzXvjcmFeVQ9GZENgKtHxLfo3uPa13GBHCAb1nRgdUnP5YGJFX97KqpeFvHQzpjhmoi'
+      quantumblockchainsuint256: '0x8cf0e7205eff59b8695db96b34ffe7a5a125a3ed263afa3353aef6c3d82debf9'
+      quantumblockchainsuint256array: '0x09fd3663fdc0ab359a5ebcba098571122ddb2a80b00a503960b32e67491f52d7'
     chainlink:
       feed:
         proxy:
@@ -1141,6 +1137,14 @@ networks:
       anuqrngxpub: 'xpub6DXSDTZBd4aPVXnv6Q3SmnGUweFv6j24SK77W4qrSFuhGgi666awUiXakjXruUSCDQhhctVG7AQt67gMdaRAsDnDXv23bBRKsMWvRzo6kbf'
       anuqrnguint256: '0xfb6d017bb87991b7495f563db3c8cf59ff87b09781947bb1e417006ad7f55a78'
       anuqrnguint256array: '0x27cc2713e7f968e4e86ed274a051a5c8aaee9cca66946f23af6f29ecea9704c3'
+      quintessenceairnode: '0x224e030f03Cd3440D88BD78C9BF5Ed36458A1A25'
+      quintessencexpub: 'xpub6CyZcaXvbnbqGfqqZWvWNUbGvdd5PAJRrBeAhy9rz1bbnFmpVLg2wPj1h6TyndFrWLUG3kHWBYpwacgCTGWAHFTbUrXEg6LdLxoEBny2YDz'
+      quintessenceuint256: '0xffd1bbe880e7b2c662f6c8511b15ff22d12a4a35d5c8c17202893a5f10e25284'
+      quintessenceuint256array: '0x4554e958a68d68de6a4f6365ff868836780e84ac3cba75ce3f4c78a85faa8047'
+      quantumblockchainsairnode: '0x07D7F4EcaC8aDf3f0412ab058a051fD8b8507348'
+      quantumblockchainsxpub: 'xpub6C7WhXL7KNoa9GnCwEfLCWzf326hXhqD3nUyKg4ZxzXvjcmFeVQ9GZENgKtHxLfo3uPa13GBHCAb1nRgdUnP5YGJFX97KqpeFvHQzpjhmoi'
+      quantumblockchainsuint256: '0x8cf0e7205eff59b8695db96b34ffe7a5a125a3ed263afa3353aef6c3d82debf9'
+      quantumblockchainsuint256array: '0x09fd3663fdc0ab359a5ebcba098571122ddb2a80b00a503960b32e67491f52d7'
     supra:
       pull_oracle: '0x2FA6DbFe4291136Cf272E1A3294362b6651e8517'
       storage: '0xD02cc7a670047b6b012556A88e275c685d25e0c9'
