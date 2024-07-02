@@ -6,167 +6,139 @@ description: Learn how to build APIs, called subgraphs, to store and fetch on-ch
 # Using The Graph on Moonbeam
 
 ## Introduction  {: #introduction }
-Getting historical data on a smart contract can be frustrating when you’re building a dapp. The Graph provides a decentralized option to query smart contract data through APIs known as subgraphs, which utilize GraphQL.  The Graph’s infrastructure relies on a decentralized network of indexers, enabling your dapp to become truly decentralized.
 
-These subgraphs only take a few minutes to set up and get running. To get started, follow these three steps:
+Indexing protocols organize information so that applications can access it more efficiently. For example, Google indexes the entire Internet to provide information rapidly when you search for something.
+
+[The Graph](https://thegraph.com/){target=\_blank} is a decentralized and open-source indexing protocol for querying networks like Ethereum. In short, it provides a way to efficiently store data emitted by events from smart contracts so that other projects or DApps can access it easily.
+
+Furthermore, developers can build APIs called subgraphs. Users or other developers can use subgraphs to query data specific to a set of smart contracts. Data is fetched with a standard GraphQL API. You can visit The Graph's documentation site to learn [about The Graph protocol](https://thegraph.com/docs/en/about/#what-the-graph-is){target=\_blank}.
+
+Due to the support of Ethereum tracing modules on Moonbeam, The Graph can index blockchain data on Moonbeam. This guide takes you through the creation of a subgraph based on the [Exiled Racers Game Asset contract](https://moonscan.io/address/0x515e20e6275CEeFe19221FC53e77E38cc32b80Fb){target=\_blank} on Moonbeam.
+
+--8<-- 'text/_disclaimers/third-party-content-intro.md'
+
+## Create a Subgraph {: #create-a-subgraph }
+
+You can quickly create a subgraph from an existing contract. To get started, you'll follow these steps:
 
 1. Initialize your subgraph project
-2. Deploy & Publish
-3. Query from your dapp
+2. Deploy your subgraph to the Subgraph Studio
+3. Publish your subgraph to The Graph's Decentralized Network
+4. Query your subgraph from your dApp
 
-Pricing: **All developers receive 100K free queries per month on the decentralized network**. After these free queries, you only pay based on usage at $4 for every 100K queries.
+!!! note
+    You can query your subgraph via the free, rate-limited development query URL, which can be used for development and staging. The free plan includes 100,000 queries per month. If you need to make more queries or want a production-ready plan, please check out [The Graph's documentation](https://thegraph.com/docs/en/billing/){target=\_blank}.
 
-Here’s a step by step walk through:
+### Create a Subgraph on Subgraph Studio {: #create-a-subgraph }
 
-## 1. Initialize your subgraph project {: #initialize-your-subgraph-project }
+To initialize your subgraph, you must head to the [Subgraph Studio](https://thegraph.com/studio/){target=\_blank} and connect your wallet. After you've connected your wallet, you'll be prompted to add an email address, which will be used to send notifications about your account. You can only associate one account with your email address, so make sure you've connected the account you intend to continue to use.
 
-### Create a subgraph on Subgraph Studio⁠
+After you get your email address set up and verified, you can create a subgraph from your dashboard by clicking **Create a Subgraph** and entering a name. Note that it is recommended to use title case for the name (i.e., Subgraph Name Chain Name); the name cannot be changed once it has been created. Then, click **Create Subgraph**.
 
-Go to the [Subgraph Studio](https://thegraph.com/studio/) and connect your wallet. Once your wallet is connected, you can begin by clicking “Create a Subgraph”. Please choose a good name for the subgraph because this name can’t be edited later. It is recommended to use Title Case: “Subgraph Name Chain Name.”
+<image>
 
-![Create a Subgraph](https://lh7-us.googleusercontent.com/docsz/AD_4nXf8OTdwMxlKQGKzIF_kYR7NPKeh9TmWnZBYxb7ft_YbdOdx_VVtbp6PslN7N1KGUzNpIDCmaXppdrllM1cw_J4L8Na03BXOWzJTK1POCve0nkRjQYgWJ60QHAdtQ4Niy83SMM8m0F0f-N-AJj4PDqDPlA5M?key=fnI6SyFgXU9SZRNX5C5vPQ)
+You will then land on your subgraph's page. Here, you can add additional information about your subgraph, such as the description, source code URL, website URL, and categories your subgraph belongs to. You'll also find all the CLI commands you need to initialize and deploy your subgraph.
 
+<image>
 
-You will then land on your subgraph’s page. All the CLI commands you need will be visible on the right side of the page:
+### Install Graph CLI⁠ {: #install-graph-cli }
 
-![CLI commands](https://lh7-us.googleusercontent.com/docsz/AD_4nXe3YvCxiOH_LupSWe8zh9AmP-VrV4PlOq3f7Ix6hNlBUYcANUFuLuVIWR74OGiBs0nrugTyT0v3o6RPmTsgHONdv_ZJNWtcDWEkRntXPHlQGFcqmEBa-D6j4aoIPzUKYdOJMVUPu8O3fwjdZ4IaXXZoTzY?key=fnI6SyFgXU9SZRNX5C5vPQ)
+To install Graph CLI on your local machine, run the following:
 
+=== "npm"
 
-### Install the Graph CLI⁠
+    ```bash
+    npm install -g @graphprotocol/graph-cli
+    ```
 
-On your local machine run the following:
-```
-npm install -g @graphprotocol/graph-cli
-```
-### Initialize your Subgraph⁠
+=== "yarn"
 
-You can copy this directly from your subgraph page to include your specific subgraph slug:
+    ```bash
+    yarn global add @graphprotocol/graph-cli
+    ```
 
-```
-graph init --studio <SUBGRAPH_SLUG>
-```
+### Initialize Your Subgraph⁠ {: #initialize-your-subgraph }
 
-You’ll be prompted to provide some info on your subgraph like this:
+Before you initialize your subgraph, you should verify the contract address from which you want to query data on Moonscan. This is so the Graph CLI can pull in the ABI directly from Moonscan for you. To learn how to verify your contracts, please refer to the [Verify Contracts](/builders/ethereum/verify-contracts/){target=\_blank} section of the docs.
 
-![cli sample](https://lh7-us.googleusercontent.com/docsz/AD_4nXdTAUsUb5vbs3GtCrhKhuXM1xYoqqooYTxw6lfJfYtLJNP8GKVOhTPmjxlM1b6Qpx-pXNVOzRuc8BL12wZXqy4MIj8ja0tp15znfuJD_Mg84SSNj3JpQ4d31lNTxPYnpba4UOzZx8pmgOIsbI7vCz70v9gC?key=fnI6SyFgXU9SZRNX5C5vPQ)
-
-
-Simply have your contract verified on the block explorer and the CLI will automatically obtain the ABI and set up your subgraph. The default settings will generate an entity for each event.
-
-## 2. Deploy & Publish  {: #deploy-and-publish }
-
-### Deploy to Subgraph Studio⁠
-
-First run these commands:
+You'll need to grab the initialization command from your subgraph's page on Subgraph Studio to initialize your subgraph. Or, if you know the name of your subgraph, you can use the following command:
 
 ```bash
-$ graph codegen
-$ graph build
+graph init --studio INSERT_SUBGRAPH_NAME
 ```
 
-Then run these to authenticate and deploy your subgraph. You can copy these commands directly from your subgraph’s page in Studio to include your specific deploy key and subgraph slug:
+To initialize your subgraph, you'll need to provide some additional information, which you will be prompted to provide in your terminal:
 
-```bash
-$ graph auth --studio <DEPLOY_KEY>
-$ graph deploy --studio <SUBGRAPH_SLUG>
-```
+1. For **Protocol**, select **ethereum**, as Moonbeam is an Ethereum-compatible chain
+2. Hit enter for **Subgraph slug** to use the default one provided, or change as needed
+3. Again, hit enter for **Directory to create the subgraph in** to use the default one provided, or change as needed
+4. For **Ethereum network**, scroll down and select the Moonbeam network you are working with. Note that the Moonbase Alpha TestNet is labeled as **mbase**
+5. Enter the contract address to index and query data from. The CLI will attempt to fetch the ABI from Etherscan. If it doesn't work, make sure that your contract has been verified and retry if needed. Otherwise, you will need to input it manually as a JSON file after your project has been successfully created
+6. Enter a start block. The start block allows you to save time by only indexing the necessary blocks. To get all of the data for this contract, you can use the block the contract was deployed
+7. **Contract Name** should be automatically populated for you, but if not, manually enter the name of the contract
+8. For **Index contract events as entities**, it is recommended to set this to **true**, as it will automatically add mappings to your subgraph for every event emitted. In other words, you'll be able to capture and store the data emitted by these events
 
-You will be asked for a version label. You can enter something like v0.0.1, but you’re free to choose the format.
+The CLI will generate your project for you, and you can continue to add additional contracts as needed.
 
-### Test your subgraph⁠
+--8<-- 'code/builders/integrations/indexers/thegraph/terminal/create-subgraph.md'
 
-You can test your subgraph by making a sample query in the playground section. The Details tab will show you an API endpoint. You can use that endpoint to test from your dapp.
+Your project will be created using the slug name you provided in step 2. At this time, you can feel free to check out the project and modify the logic as needed for your project. For more information on how to write a subgraph, check out [The Graph's documentation](https://thegraph.com/docs/en/developing/creating-a-subgraph/){target=\_blank}. Note that for this quick start example, if you selected to index contract events as entities, you don't need to modify anything; you can deploy the project as is.
 
-![Playground](https://lh7-us.googleusercontent.com/docsz/AD_4nXf3afwSins8_eO7BceGPN79VvwolDxmFNUnkPk0zAJCaUA-3-UAAjVvrMzwr7q9vNYWdrEUNgm2De2VfQpWauiT87RkFc-cVfoPSsQbYSgsmwhyY1-tpPdv2J1H4JAMq70nfWBhb8PszZBFjsbDAaJ5eto?key=fnI6SyFgXU9SZRNX5C5vPQ)
+## Deploy a Subgraph {: #deploy }
 
+To deploy your subgraph to Subgraph Studio, you must run the following commands in your terminal:
 
-### Publish Your Subgraph to The Graph’s Decentralized Network
+1. Generate types for your smart contract ABIs and the subgraph schema
 
-Once your subgraph is ready to be put into production, you can publish it to the decentralized network. On your subgraph’s page in Subgraph Studio, click on the Publish button:
+    ```bash
+    graph codegen
+    ```
 
-![publish button](https://edgeandnode.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2Fa7d6afae-8784-4b15-a90e-ee8f6ee007ba%2F2f9c4526-123d-4164-8ea8-39959c8babbf%2FUntitled.png?table=block&id=37005371-76b4-4780-b044-040a570e3af6&spaceId=a7d6afae-8784-4b15-a90e-ee8f6ee007ba&width=1420&userId=&cache=v2)
+    --8<-- 'code/builders/integrations/indexers/thegraph/terminal/graph-codegen.md'
 
+2. Compile your subgraph to WebAssembly
 
-Before you can query your subgraph, Indexers need to begin serving queries on it. In order to streamline this process, you can curate your own subgraph using GRT.
+    ```bash
+    graph build
+    ```
 
-When publishing, you’ll see the option to curate your subgraph. As of May 2024, it is recommended that you curate your own subgraph with at least 3,000 GRT to ensure that it is indexed and available for querying as soon as possible.
+    --8<-- 'code/builders/integrations/indexers/thegraph/terminal/graph-build.md'
 
-![Publish screen](https://lh7-us.googleusercontent.com/docsz/AD_4nXerUr-IgWjwBZvp9Idvz5hTq8AFB0n_VlXCzyDtUxKaCTANT4gkk-2O77oW-a0ZWOh3hnqQsY7zcSaLeCQin9XU1NTX1RVYOLFX9MuVxBEqcMryqgnGQKx-MbDnOWKuMoLBhgyVWQereg3cdWtCPcTQKFU?key=fnI6SyFgXU9SZRNX5C5vPQ)
+3. Authenticate your subgraph with your deploy key. The exact command containing the deploy key can be found on your subgraph's page in Subgraph Studio.
 
-## 3. Query your Subgraph {: #query-your-subgraph }
+    ```bash
+    graph auth --studio INSERT_DEPLOY_KEY
+    ```
 
-Congratulations! You can now query your subgraph on the decentralized network!
+    --8<-- 'code/builders/integrations/indexers/thegraph/terminal/graph-auth.md'
 
-For any subgraph on the decentralized network, you can start querying it by passing a GraphQL query into the subgraph’s query URL which can be found at the top of its Explorer page.
+4. Deploy your subgraph and specify the slug for it. Again, you can get the exact command from your subgraph's page in Subgraph Studio
 
-Here’s an example from the [CryptoPunks Ethereum subgraph](https://thegraph.com/explorer/subgraphs/HdVdERFUe8h61vm2fDyycHgxjsde5PbB832NHgJfZNqK) by Messari:
+    ```bash
+    graph deploy --studio <SUBGRAPH_SLUG>
+    ```
 
-![Query URL](https://lh7-us.googleusercontent.com/docsz/AD_4nXebivsPOUjPHAa3UVtvxoYTFXaGBao9pQOAJvFK0S7Uv0scfL6TcTVjmNCzT4DgsIloAQyrPTCqHjFPtmjyrzoKkfSeV28FjS32F9-aJJm0ILAHey2gqMr7Seu4IqPz2d__QotsWG3OKv2dEghiD74eypzs?key=fnI6SyFgXU9SZRNX5C5vPQ)
+    You will be asked for a version label. You can enter something like v0.0.1, but you're free to choose the format
 
+    --8<-- 'code/builders/integrations/indexers/thegraph/terminal/graph-deploy.md'
 
-The query URL for this subgraph is:
+Once you've successfully deployed your subgraph, you can query it using the subgraph endpoint that was printed to your terminal.
 
-https://gateway-arbitrum.network.thegraph.com/api/**[api-key]**/subgraphs/id/HdVdERFUe8h61vm2fDyycHgxjsde5PbB832NHgJfZNqK
+### Test Your Subgraph⁠ {: #test-your-subgraph }
 
-Now, you simply need to  fill in your own API Key to start sending GraphQL queries to this endpoint.
+You can test your subgraph by making a sample query in the playground section of your subgraph's page on Subgraph Studio.
 
-### Getting your own API Key
+<image>
 
-![API keys](https://lh7-us.googleusercontent.com/docsz/AD_4nXdz7H8hSRf2XqrU0jN3p3KbmuptHvQJbhRHOJh67nBfwh8RVnhTsCFDGA_JQUFizyMn7psQO0Vgk6Vy7cKYH47OyTq5PqycB0xxLyF4kSPsT7hYdMv2MEzAo433sJT6VlQbUAzgPnSxKI9a5Tn3ShSzaxI?key=fnI6SyFgXU9SZRNX5C5vPQ)
+To test from your dApp, you can use the API endpoint that was printed to your terminal. You can also find the endpoint on your subgraph's page in Subgraph Studio under the Details tab.
 
+<image>
 
-In Subgraph Studio, you’ll see the “API Keys” menu at the top of the page. Here you can create API Keys.
-
-## Appendix {: #appendix }
-
-### Sample Query
-
-This query shows the most expensive CryptoPunks sold.
-
-```graphql
-{
-  trades(orderBy: priceETH, orderDirection: desc) {
-    priceETH
-    tokenId
-  }
-}
-
-```
-
-Passing this into the query URL returns this result:
+You can use this sample code to query your subgraph:
 
 ```
-{
-  "data": {
-    "trades": [
-      {
-        "priceETH": "124457.067524886018255505",
-        "tokenId": "9998"
-      },
-      {
-        "priceETH": "8000",
-        "tokenId": "5822"
-      },
-//      ...
-```
-
-<aside>
-💡 Trivia: Looking at the top sales on [CryptoPunks website](https://cryptopunks.app/cryptopunks/topsales) it looks like the top sale is Punk #5822, not #9998. Why? Because they censor the flash-loan sale that happened.
-
-</aside>
-
-### Sample code
-
-```jsx
-const axios = require('axios');
-
-const graphqlQuery = `{
-  trades(orderBy: priceETH, orderDirection: desc) {
-    priceETH
-    tokenId
-  }
-}`;
-const queryUrl = 'https://gateway-arbitrum.network.thegraph.com/api/[api-key]/subgraphs/id/HdVdERFUe8h61vm2fDyycHgxjsde5PbB832NHgJfZNqK'
+const graphqlQuery = INSERT_QUERY;
+const queryUrl = 'https://api.studio.thegraph.com/query/80185/moonbeam-demo/version/latest'
 
 const graphQLRequest = {
   method: 'post',
@@ -182,7 +154,6 @@ axios(graphQLRequest)
     // Handle the response here
     const data = response.data.data
     console.log(data)
-
   })
   .catch((error) => {
     // Handle any errors
@@ -190,7 +161,16 @@ axios(graphQLRequest)
   });
 ```
 
-### Additional resources:
+### Publish Your Subgraph to The Graph's Decentralized Network {: #publish-your-subgraph }
 
-- To explore all the ways you can optimize & customize your subgraph for a better performance, read more about [creating a subgraph here](https://thegraph.com/docs/en/developing/creating-a-subgraph/).
-- For more information about querying data from your subgraph, read more [here](https://thegraph.com/docs/en/querying/querying-the-graph/).
+Once your subgraph is ready for production, you can publish it to the decentralized network.
+
+!!! note
+    Publishing requires Arbitrum ETH. Upgrading your subgraph also airdrops a small amount to facilitate your first protocol interactions.
+
+For publishing instructions, please refer to [The Graph's documentation](https://thegraph.com/docs/en/publishing/publishing-a-subgraph/){target=\_blank}.
+
+### Additional resources {: #additional-resources }
+
+- To explore all the ways you can optimize & customize your subgraph for better performance, read more about [creating a subgraph here](https://thegraph.com/docs/en/developing/creating-a-subgraph/){target=\_blank}
+- For more information on querying data from your subgraph, check out the [Querying the Graph](https://thegraph.com/docs/en/querying/querying-the-graph/){target=\_blank} guide
