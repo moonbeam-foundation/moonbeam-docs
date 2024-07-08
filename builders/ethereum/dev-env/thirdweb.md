@@ -172,14 +172,36 @@ export const client = createThirdwebClient({
 
 thirdweb offers a small number of chains from `@thirdweb/chains` and does not include Moonbeam networks in that list, so you'll need to specify the network details including chain ID and RPC URL. You can create a custom chain with [`defineChain`](https://portal.thirdweb.com/references/typescript/v5/defineChain){target=\_blank} as follows:
 
-```typescript title="App.tsx"
-import { defineChain } from "thirdweb";
+=== "Moonbeam"
 
-  const moonbase = defineChain({
-  id: BigInt(1287),
-  rpc: "https://moonbase-rpc.dwellir.com",
-})
-```
+    ```typescript
+    import { defineChain } from "thirdweb";
+    const moonbase = defineChain({
+    id: BigInt({{ networks.moonbeam.chain_id }}),
+    rpc: "{{ networks.moonbeam.public_rpc_url }}",
+    })
+    ```
+
+=== "Moonriver"
+
+    ```typescript
+    import { defineChain } from "thirdweb";
+    const moonbase = defineChain({
+    id: BigInt({{ networks.moonriver.chain_id }}),
+    rpc: "{{ networks.moonriver.public_rpc_url }}",
+    })
+    ```
+
+=== "Moonbase Alpha"
+
+    ```typescript
+    import { defineChain } from "thirdweb";
+    const moonbase = defineChain({
+    id: BigInt({{ networks.moonbase.chain_id }}),
+    rpc: "{{ networks.moonbase.rpc_url }}",
+    })
+    ```
+
 
 ### Get Contract {: #get-contract }
 

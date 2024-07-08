@@ -24,7 +24,7 @@ export function App() {
 
     const moonbase = defineChain({
 	  id: BigInt(1287),
-	  rpc: "https://moonbase-rpc.dwellir.com",
+	  rpc: "https://rpc.api.moonbase.moonbeam.network",
 	});
 
 	const myContract = getContract({
