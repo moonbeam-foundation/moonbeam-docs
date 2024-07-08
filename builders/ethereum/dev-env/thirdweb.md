@@ -178,7 +178,7 @@ thirdweb offers a small number of chains from `@thirdweb/chains` and does not in
     import { defineChain } from 'thirdweb';
     const moonbase = defineChain({
     id: {{ networks.moonbeam.chain_id }},
-    rpc: '{{ networks.moonbeam.public_rpc_url }}',
+    rpc: 'https://moonbeam-rpc.dwellir.com',
     })
     ```
 
@@ -188,7 +188,7 @@ thirdweb offers a small number of chains from `@thirdweb/chains` and does not in
     import { defineChain } from 'thirdweb';
     const moonbase = defineChain({
     id: {{ networks.moonriver.chain_id }},
-    rpc: '{{ networks.moonriver.public_rpc_url }}',
+    rpc: 'https://moonriver-rpc.dwellir.com',
     })
     ```
 
@@ -241,6 +241,17 @@ const myContract = getContract({
 });
 ```
 
+??? code "View the complete App.tsx script"
+    ```typescript
+    --8<-- 'code/builders/ethereum/dev-env/thirdweb/App.tsx'
+    ```
+
+```typescript title="App.tsx"
+    --8<-- 'code/builders/ethereum/dev-env/thirdweb/App.tsx:4:4'
+    --8<-- 'code/builders/ethereum/dev-env/thirdweb/App.tsx:6:6'
+    --8<-- 'code/builders/ethereum/dev-env/thirdweb/App.tsx:17:57'
+```
+
 ### Calling Contract Functions {: #calling-contract-functions }
 
 To call a contract in the latest version of the SDK, you can use [`prepareContractCall`](https://portal.thirdweb.com/typescript/v5/transactions/prepare){target=\_blank}.
@@ -261,7 +272,7 @@ We can trigger this contract call from a thirdweb [`TransactionButton` component
 import { TransactionButton } from 'thirdweb/react';
 import { prepareContractCall } from 'thirdweb';
 
-function IncrementButton({ contract }) {
+function IncrementButton({ contract }: { contract: any }) {
   return (
     <TransactionButton
       transaction={() => {
@@ -310,7 +321,7 @@ const number = await readContract({
 
 ### Connect Wallet {: #connect-wallet }
 
-Next, you can customize the [Connect Button](https://portal.thirdweb.com/typescript/v5/react/components/ConnectButton){target=\_blank} to tailor it our desired wallets. You can add or remove wallets from the wallets array to change the options available to users. ThirdWeb also offers a [ConnectButton Playground](https://thirdweb.com/dashboard/connect/playground) to customize and view changes in real-time given the high degree of flexibility offered by the button. 
+Next, you can customize the [Connect Button](https://portal.thirdweb.com/typescript/v5/react/components/ConnectButton){target=\_blank} to tailor it our desired wallets. The Connect Button accepts an optional  `wallets` parameter with an array of wallets. You can add or remove wallets from the wallets array to change the options available to users. ThirdWeb also offers a [ConnectButton Playground](https://thirdweb.com/dashboard/connect/playground) to customize and view changes in real-time given the high degree of flexibility offered by the button. 
 
 ```typescript title="App.tsx"
 import { ConnectButton } from 'thirdweb/react';
@@ -340,7 +351,6 @@ Putting it all together, you can view the full code for the App.tsx file below:
     ```typescript
     --8<-- 'code/builders/ethereum/dev-env/thirdweb/App.tsx'
     ```
-
 
 You can view the completed example project by running:
  

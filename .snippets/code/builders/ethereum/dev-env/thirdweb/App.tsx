@@ -42,11 +42,11 @@ export function App() {
       type: 'function',
     },
   ];
-  const CONTRACT_ADDRESS = '0xa72f549A1a12b9b49f30a7F3aEb1f4E96389c5d8'; // Replace with your actual contract address
+  const CONTRACT_ADDRESS = '0xa72f549A1a12b9b49f30a7F3aEb1f4E96389c5d8';
 
   const moonbase = defineChain({
     id: 1287,
-    rpc: 'https://rpc.api.moonbase.moonbeam.network',
+    rpc: 'https://moonbase-rpc.dwellir.com',
   });
 
   const myContract = getContract({
@@ -92,12 +92,6 @@ export function App() {
           <ConnectButton
             client={client}
             wallets={wallets}
-            appMetadata={{
-              name: 'Example app',
-              url: 'https://example.com',
-            }}
-            label="Connect Your Wallet" // Custom button text
-            style={{ backgroundColor: 'blue', color: 'white' }} // Custom styles
           />
         </div>
         <div>
@@ -137,7 +131,7 @@ function Header() {
   );
 }
 
-function IncrementButton({ contract }) {
+function IncrementButton({ contract }: { contract: any }) {
   return (
     <TransactionButton
       transaction={() => {
