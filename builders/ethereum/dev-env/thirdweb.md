@@ -298,7 +298,7 @@ Putting it all together, you can view the full code for the App.tsx file below:
     ```
 
 
-And that's it! As a reminder, you can run your app locally with the following command:
+You can view the completed example project by running:
  
 ```bash
 yarn dev
