@@ -252,7 +252,7 @@ function IncrementButton({ contract }) {
 
 ### Reading Contract State {: #read-contract-state }
 
-- Use the [`readContract` function](https://portal.thirdweb.com/typescript/v5/transactions/read){target=\_blank} to call any read functions on your contract by passing in the Solidity method signature and the params.
+Use the [`readContract` function](https://portal.thirdweb.com/typescript/v5/transactions/read){target=\_blank} to call any read functions on your contract by passing in the Solidity method signature and any parameters.
 
 ```typescript title="App.tsx"
 import { readContract } from "thirdweb";
