@@ -130,7 +130,7 @@ Press **Create API Key** then take the following steps:
 !!! note
     The respective name for your Client ID variable will vary with the framework you've chosen, e.g., Vite will be `VITE_TEMPLATE_CLIENT_ID`, Next.js will be `NEXT_PUBLIC_TEMPLATE_CLIENT_ID`, and React Native will be `EXPO_PUBLIC_THIRDWEB_CLIENT_ID`.
 
-Finally, specify your Client ID (API Key) in your `.env` file. If using Vite, thirdweb references it in the `client.ts` and assumes the API key will be in your `.env` file named `VITE_TEMPLATE_CLIENT_ID`. If you don't set this value correctly, you'll get a blank screen when trying to build the web app.
+Finally, specify your Client ID (API Key) in your `.env` file. Your `.env` file must be located at the root directory of the project (e.g. not the `src` folder). If using Vite, thirdweb references it in the `client.ts` and assumes the API key will be in your `.env` file named `VITE_TEMPLATE_CLIENT_ID`. If you don't set this value correctly, you'll get a blank screen when trying to build the web app.
 
 ![thirdweb create API key](/images/builders/ethereum/dev-env/thirdweb/thirdweb-3.webp)
 
@@ -168,6 +168,8 @@ export const client = createThirdwebClient({
 });
 ```
 
+You can delete the placeholder code in `App.tsx` because we'll be replacing it as part of the tutorial. 
+
 ### Configure Chain {: #configure-chain }
 
 thirdweb offers a small number of chains from `@thirdweb/chains` and does not include Moonbeam networks in that list, so you'll need to specify the network details including chain ID and RPC URL. You can create a custom chain with [`defineChain`](https://portal.thirdweb.com/references/typescript/v5/defineChain){target=\_blank} as follows:
@@ -178,7 +180,7 @@ thirdweb offers a small number of chains from `@thirdweb/chains` and does not in
     import { defineChain } from 'thirdweb';
     const moonbase = defineChain({
     id: {{ networks.moonbeam.chain_id }},
-    rpc: 'https://moonbeam-rpc.dwellir.com',
+    rpc: '{{ networks.moonbeam.public_rpc_url }}',
     })
     ```
 
@@ -188,7 +190,7 @@ thirdweb offers a small number of chains from `@thirdweb/chains` and does not in
     import { defineChain } from 'thirdweb';
     const moonbase = defineChain({
     id: {{ networks.moonriver.chain_id }},
-    rpc: 'https://moonriver-rpc.dwellir.com',
+    rpc: '{{ networks.moonriver.public_rpc_url }}',
     })
     ```
 
@@ -208,47 +210,9 @@ thirdweb offers a small number of chains from `@thirdweb/chains` and does not in
 To connect to your contract, use the SDK’s [`getContract`](https://portal.thirdweb.com/references/typescript/v5/getContract){target=\_blank} method.  As an example, you can use Thirdweb to fetch data from an [Incrementer contract on Moonbase Alpha](https://moonbase.moonscan.io/address/0xa72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8){target=\_blank}.
 
 ```typescript title="App.tsx"
-import { getContract } from 'thirdweb';
-import { client } from './client';
-
-const myContract = getContract({
-  client,             
-  chain: moonbase,       
-  address: '0xa72f549A1a12b9b49f30a7F3aEb1f4E96389c5d8',   
-  abi = [
-    {
-      inputs: [],
-      name: 'increment',
-      outputs: [],
-      stateMutability: 'nonpayable',
-      type: 'function',
-    },
-    {
-      inputs: [],
-      name: 'number',
-      outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
-      stateMutability: 'view',
-      type: 'function',
-    },
-    {
-      inputs: [],
-      name: 'timestamp',
-      outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
-      stateMutability: 'view',
-      type: 'function',
-    },
-  ];               
-});
-```
-
-??? code "View the complete App.tsx script"
-    ```typescript
-    --8<-- 'code/builders/ethereum/dev-env/thirdweb/App.tsx'
-    ```
-
-```typescript title="App.tsx"
     --8<-- 'code/builders/ethereum/dev-env/thirdweb/App.tsx:4:4'
     --8<-- 'code/builders/ethereum/dev-env/thirdweb/App.tsx:6:6'
+
     --8<-- 'code/builders/ethereum/dev-env/thirdweb/App.tsx:17:57'
 ```
 
@@ -257,52 +221,18 @@ const myContract = getContract({
 To call a contract in the latest version of the SDK, you can use [`prepareContractCall`](https://portal.thirdweb.com/typescript/v5/transactions/prepare){target=\_blank}.
 
 ```typescript title="App.tsx"
-import { prepareContractCall } from 'thirdweb';
+    --8<-- 'code/builders/ethereum/dev-env/thirdweb/App.tsx:6:6'
 
-const tx = prepareContractCall({
-          myContract,
-          method: 'increment',
-          params: [],
-        });
+    --8<-- 'code/builders/ethereum/dev-env/thirdweb/App.tsx:144:148'
 ```
 
 We can trigger this contract call from a thirdweb [`TransactionButton` component](https://portal.thirdweb.com/typescript/v5/react/components/TransactionButton){target=\_blank}, which has some neat features built in. For example, if you're on the incorrect network, the button will prompt you to switch networks. In the below snippet you'll also add some error handling as a good practice. 
 
 ```typescript title="App.tsx"
-import { TransactionButton } from 'thirdweb/react';
-import { prepareContractCall } from 'thirdweb';
+    --8<-- 'code/builders/ethereum/dev-env/thirdweb/App.tsx:2:2'
+    --8<-- 'code/builders/ethereum/dev-env/thirdweb/App.tsx:6:6'
 
-function IncrementButton({ contract }: { contract: any }) {
-  return (
-    <TransactionButton
-      transaction={() => {
-        console.log('Preparing to call increment...');
-        // Verify that 'contract' is not undefined
-        if (!contract) {
-          console.error('Contract is undefined.');
-          return;
-        }
-        const tx = prepareContractCall({
-          contract,
-          method: 'increment',
-          params: [],
-        });
-        return tx;
-      }}
-      onTransactionSent={(result) => {
-        console.log('Transaction submitted', result.transactionHash);
-      }}
-      onTransactionConfirmed={(receipt) => {
-        console.log('Transaction confirmed', receipt.transactionHash);
-      }}
-      onError={(error) => {
-        console.error('Transaction error', error);
-      }}
-    >
-      Increment Counter
-    </TransactionButton>
-  );
-}
+    --8<-- 'code/builders/ethereum/dev-env/thirdweb/App.tsx:134:164'
 ```
 
 ### Reading Contract State {: #read-contract-state }
@@ -321,26 +251,15 @@ const number = await readContract({
 
 ### Connect Wallet {: #connect-wallet }
 
-Next, you can customize the [Connect Button](https://portal.thirdweb.com/typescript/v5/react/components/ConnectButton){target=\_blank} to tailor it our desired wallets. The Connect Button accepts an optional  `wallets` parameter with an array of wallets. You can add or remove wallets from the wallets array to change the options available to users. ThirdWeb also offers a [ConnectButton Playground](https://thirdweb.com/dashboard/connect/playground) to customize and view changes in real-time given the high degree of flexibility offered by the button. 
+Next, you can customize the [Connect Button](https://portal.thirdweb.com/typescript/v5/react/components/ConnectButton){target=\_blank} to tailor it our desired wallets. The Connect Button accepts an optional  `wallets` parameter with an array of wallets. You can add or remove wallets from the wallets array to change the options available to users. ThirdWeb also offers a [ConnectButton Playground](https://thirdweb.com/dashboard/connect/playground) to customize and view changes in real-time given the high degree of flexibility offered by the button. The below snippet will also include logic to display the counter value and the increment button.
 
 ```typescript title="App.tsx"
-import { ConnectButton } from 'thirdweb/react';
-import { createWallet, inAppWallet } from 'thirdweb/wallets';
- 
-const wallets = [
-  inAppWallet(),
-  createWallet('io.metamask'),
-  createWallet('com.coinbase.wallet'),
-  createWallet('me.rainbow'),
-];
- 
-function Example() {
-  return (
-    <div>
-      <ConnectButton client={client} wallets={wallets} />
-    </div>
-  );
-}
+    --8<-- 'code/builders/ethereum/dev-env/thirdweb/App.tsx:2:2'
+    --8<-- 'code/builders/ethereum/dev-env/thirdweb/App.tsx:7:7'
+
+    --8<-- 'code/builders/ethereum/dev-env/thirdweb/App.tsx:9:15'
+
+    --8<-- 'code/builders/ethereum/dev-env/thirdweb/App.tsx:87:105'
 ```
 
 ## Deploy Application {: #deploy-application }
