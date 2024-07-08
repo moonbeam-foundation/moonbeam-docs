@@ -233,7 +233,7 @@ const tx = prepareContractCall({
         });
 ```
 
-We can trigger this contract call from a ThirdWeb [Transaction button](https://portal.thirdweb.com/typescript/v5/react/components/TransactionButton){target=\_blank}, which has some neat features built in. For example, if you're on the incorrect network, the button will prompt you to switch networks. In the below snippet we'll also add some error handling as a good practice. 
+We can trigger this contract call from a thirdweb [`TransactionButton` component](https://portal.thirdweb.com/typescript/v5/react/components/TransactionButton){target=\_blank}, which has some neat features built in. For example, if you're on the incorrect network, the button will prompt you to switch networks. In the below snippet you'll also add some error handling as a good practice. 
 
 ```typescript title="App.tsx"
 import { TransactionButton } from "thirdweb/react";
