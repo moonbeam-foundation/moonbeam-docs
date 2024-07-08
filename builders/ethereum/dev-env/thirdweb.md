@@ -177,7 +177,7 @@ thirdweb offers a small number of chains from `@thirdweb/chains` and does not in
     ```typescript
     import { defineChain } from "thirdweb";
     const moonbase = defineChain({
-    id: BigInt({{ networks.moonbeam.chain_id }}),
+    id: {{ networks.moonbeam.chain_id }},
     rpc: "{{ networks.moonbeam.public_rpc_url }}",
     })
     ```
@@ -187,7 +187,7 @@ thirdweb offers a small number of chains from `@thirdweb/chains` and does not in
     ```typescript
     import { defineChain } from "thirdweb";
     const moonbase = defineChain({
-    id: BigInt({{ networks.moonriver.chain_id }}),
+    id: {{ networks.moonriver.chain_id }},
     rpc: "{{ networks.moonriver.public_rpc_url }}",
     })
     ```
@@ -197,7 +197,7 @@ thirdweb offers a small number of chains from `@thirdweb/chains` and does not in
     ```typescript
     import { defineChain } from "thirdweb";
     const moonbase = defineChain({
-    id: BigInt({{ networks.moonbase.chain_id }}),
+    id: {{ networks.moonbase.chain_id }},
     rpc: "{{ networks.moonbase.rpc_url }}",
     })
     ```
@@ -214,8 +214,8 @@ import { client } from "./client";
 const myContract = getContract({
   client,             
   chain: moonbase,       
-  address: INSERT_CONTRACT_ADDRESS,   
-  abi: INSERT_ABI               
+  address: "0xa72f549A1a12b9b49f30a7F3aEb1f4E96389c5d8",   
+  abi: [{"inputs":[],"name":"increment","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"number","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"timestamp","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"}];               
 });
 ```
 

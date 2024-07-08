@@ -23,7 +23,7 @@ export function App() {
 	const CONTRACT_ADDRESS = "0xa72f549A1a12b9b49f30a7F3aEb1f4E96389c5d8";  // Replace with your actual contract address
 
     const moonbase = defineChain({
-	  id: BigInt(1287),
+	  id: 1287,
 	  rpc: "https://rpc.api.moonbase.moonbeam.network",
 	});
 
