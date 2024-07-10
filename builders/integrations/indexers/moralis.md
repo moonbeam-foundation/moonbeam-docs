@@ -25,7 +25,7 @@ Moralis's offerings are structured into four primary categories of API services:
 
 Head over to the [signup page](https://admin.moralis.io/register) to create an account. Once you're in, navigate to the API keys section. There, you can generate your own unique API key and be sure to copy it for future use.
 
-![Moralis API key](/images/builders/integrations/indexers/moralis/moralis-1.jpg)
+![Moralis API key](/images/builders/integrations/indexers/moralis/moralis-1.webp)
 
 ## Querying Moralis API {: #querying-moralis-api }
 
@@ -138,11 +138,11 @@ Moralis Streams API is a tool for developers to listen to and react to events ha
 
 Head over to the Streams page within Moralis and click "Create a new stream" to get started.
 
-![stream API page](/images/builders/integrations/indexers/moralis/moralis-2.jpg)
+![stream API page](/images/builders/integrations/indexers/moralis/moralis-2.webp)
 
 To get started quickly, let's choose a predefined template here. In this example, we're interested in xcDOT transactions. Select the "Contract Activity" template. This will allow us to easily listen for events related specifically to xcDOT.
 
-![template selection page](/images/builders/integrations/indexers/moralis/moralis-3.jpg)
+![template selection page](/images/builders/integrations/indexers/moralis/moralis-3.webp)
 
 On the next page, enter the following details:
 
@@ -150,29 +150,29 @@ On the next page, enter the following details:
 - Network: Select Moonbeam from the available options.
 Moralis lets you listen to events on Moonbeam, Moonriver, and Moonbase Alpha
 
-![details input page](/images/builders/integrations/indexers/moralis/moralis-4.jpg)
+![details input page](/images/builders/integrations/indexers/moralis/moralis-4.webp)
 
 Next, customize what events you want to receive. For this example, simply choose "All contract events." 
 
 You may also test the stream to confirm it's capturing the data you need.
 
-![event selection and stream test page](/images/builders/integrations/indexers/moralis/moralis-5.jpg)
+![event selection and stream test page](/images/builders/integrations/indexers/moralis/moralis-5.webp)
 
 Next, connect the stream to an endpoint which will be used to receive updates from Moralis.
 
-![webhook setup page](/images/builders/integrations/indexers/moralis/moralis-6.jpg)
+![webhook setup page](/images/builders/integrations/indexers/moralis/moralis-6.webp)
 
 All set! Once you activate your stream, you'll see a screen like this:
 
-![stream API end page](/images/builders/integrations/indexers/moralis/moralis-7.jpg)
+![stream API end page](/images/builders/integrations/indexers/moralis/moralis-7.webp)
 
 ## RPC API {: #rpc-api }
 
 Moralis also offer node services for Moonbeam networks. To leverage Moralis Moonbeam RPC endpoint, simply head over to the Nodes page.
 Select "Moonbeam" and "Mainnet" here to get started.  Don't forget, Moralis supports Moonriver and Moonbase Alpha as well.
 
-![RPC API setup page](/images/builders/integrations/indexers/moralis/moralis-8.jpg)
+![RPC API setup page](/images/builders/integrations/indexers/moralis/moralis-8.webp)
 
 Just click "Create Node," and your Moonbeam node will be up and running in seconds, ready to handle your RPC requests.
 
-![node ready page](/images/builders/integrations/indexers/moralis/moralis-9.jpg)
+![node ready page](/images/builders/integrations/indexers/moralis/moralis-9.webp)
