@@ -29,7 +29,7 @@ Head over to the [signup page](https://admin.moralis.io/register) to create an a
 
 ## Querying Moralis API {: #querying-moralis-api }
 
-With the API key, you are ready to try out Moralis' REST APIs. In this example, we'll delve into the EVM API, which allows developers to retrieve information using a JSON RPC interface. Here are some examples of how it works:
+With the API key, you can try Moralis' REST APIs. The following examples show how the EVM API works-
 
 Getting the token balance of a wallet:
 
