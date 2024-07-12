@@ -9,7 +9,7 @@ description: Learn how to build on the Moonbeam network with Moralis' API suite.
 
 As a one-stop solution for blockchain development, [Moralis](https://moralis.io/) offers a comprehensive platform that empowers developers to create, launch, and scale decentralized applications (dApps) with ease. This guide will show you how to access the API endpoints for Moonbeam using curl commands and JavaScript and Python snippets.
 
-Moralis's offerings are structured into four primary categories of API services:
+Moralis' offerings are structured into four primary categories of API services-
 
 - **EVM API**: EVM API allows developers to query essential data for Ethereum Virtual Machine (EVM)-compatible blockchains. Moralis provides dedicated APIs for four key areas: NFTs, tokens, wallets, and general blockchain information.
 
