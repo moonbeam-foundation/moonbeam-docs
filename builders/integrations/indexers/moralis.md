@@ -171,7 +171,7 @@ All set. Once you activate your stream, you'll see a screen like this:
 ## RPC API {: #rpc-api }
 
 Moralis also offers node services for Moonbeam networks. To use the Moralis Moonbeam RPC endpoint, visit the Nodes page.
-Select "Moonbeam" and "Mainnet" here to get started.  Don't forget, that Moralis supports Moonriver and Moonbase Alpha as well.
+Select **Moonbeam** and **Mainnet** here to get started. Remember, Moralis also supports Moonriver and Moonbase Alpha.
 
 ![RPC API setup page](/images/builders/integrations/indexers/moralis/moralis-8.webp)
 
