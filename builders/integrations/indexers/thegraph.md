@@ -9,7 +9,7 @@ description: Learn how to build APIs, called subgraphs, to store and fetch on-ch
 
 Indexing protocols organize information so that applications can access it more efficiently. For example, Google indexes the entire Internet to provide information rapidly when you search for something.
 
-[The Graph](https://thegraph.com/){target=\_blank} is a decentralized and open-source indexing protocol for querying networks like Ethereum. In short, it provides a way to efficiently store data emitted by events from smart contracts so that other projects or DApps can access it easily.
+[The Graph](https://thegraph.com/){target=\_blank} is a decentralized and open-source indexing protocol for querying networks like Ethereum. In short, it provides a way to efficiently store data emitted by events from smart contracts so that other projects or dApps can access it easily.
 
 Furthermore, developers can build APIs called subgraphs. Users or other developers can use subgraphs to query data specific to a set of smart contracts. Data is fetched with a standard GraphQL API. You can visit The Graph's documentation site to learn [about The Graph protocol](https://thegraph.com/docs/en/about/#what-the-graph-is){target=\_blank}.
 
@@ -23,7 +23,7 @@ You can quickly create a subgraph from an existing contract. To get started, you
 
 1. Initialize your subgraph project
 2. Deploy your subgraph to the Subgraph Studio
-3. Publish your subgraph to The Graph's Decentralized Network
+3. Publish your subgraph to The Graph's decentralized network
 4. Query your subgraph from your dApp
 
 !!! note
@@ -33,7 +33,11 @@ You can quickly create a subgraph from an existing contract. To get started, you
 
 To initialize your subgraph, you must head to the [Subgraph Studio](https://thegraph.com/studio/){target=\_blank} and connect your wallet. After you've connected your wallet, you'll be prompted to add an email address, which will be used to send notifications about your account. You can only associate one account with your email address, so make sure you've connected the account you intend to continue to use.
 
-After you get your email address set up and verified, you can create a subgraph from your dashboard by clicking **Create a Subgraph** and entering a name. Note that it is recommended to use title case for the name (i.e., Subgraph Name Chain Name); the name cannot be changed once it has been created. Then, click **Create Subgraph**.
+After you get your email address set up and verified, you can create a subgraph from your dashboard by clicking **Create a Subgraph**.
+
+
+
+ and entering a name. Note that it is recommended to use title case for the name (i.e., Subgraph Name Chain Name); the name cannot be changed once it has been created. Then, click **Create Subgraph**.
 
 <image>
 
@@ -73,7 +77,7 @@ To initialize your subgraph, you'll need to provide some additional information,
 2. Hit enter for **Subgraph slug** to use the default one provided, or change as needed
 3. Again, hit enter for **Directory to create the subgraph in** to use the default one provided, or change as needed
 4. For **Ethereum network**, scroll down and select the Moonbeam network you are working with. Note that the Moonbase Alpha TestNet is labeled as **mbase**
-5. Enter the contract address to index and query data from. The CLI will attempt to fetch the ABI from Etherscan. If it doesn't work, make sure that your contract has been verified and retry if needed. Otherwise, you will need to input it manually as a JSON file after your project has been successfully created
+5. Enter the contract address to index and query data from. The CLI will attempt to fetch the ABI from Moonscan. If it doesn't work, make sure that your contract has been verified and retry if needed. Otherwise, you will need to input it manually as a JSON file after your project has been successfully created
 6. Enter a start block. The start block allows you to save time by only indexing the necessary blocks. To get all of the data for this contract, you can use the block the contract was deployed
 7. **Contract Name** should be automatically populated for you, but if not, manually enter the name of the contract
 8. For **Index contract events as entities**, it is recommended to set this to **true**, as it will automatically add mappings to your subgraph for every event emitted. In other words, you'll be able to capture and store the data emitted by these events
@@ -82,7 +86,7 @@ The CLI will generate your project for you, and you can continue to add addition
 
 --8<-- 'code/builders/integrations/indexers/thegraph/terminal/create-subgraph.md'
 
-Your project will be created using the slug name you provided in step 2. At this time, you can feel free to check out the project and modify the logic as needed for your project. For more information on how to write a subgraph, check out [The Graph's documentation](https://thegraph.com/docs/en/developing/creating-a-subgraph/){target=\_blank}. Note that for this quick start example, if you selected to index contract events as entities, you don't need to modify anything; you can deploy the project as is.
+Your project will be created using the slug name you provided in step two. At this time, you can feel free to check out the project and modify the logic as needed for your project. For more information on how to write a subgraph, check out [The Graph's documentation](https://thegraph.com/docs/en/developing/creating-a-subgraph/){target=\_blank}. Note that for this quick start example, if you selected to index contract events as entities, you don't need to modify anything; you can deploy the project as is.
 
 ## Deploy a Subgraph {: #deploy }
 
@@ -96,7 +100,7 @@ To deploy your subgraph to Subgraph Studio, you must run the following commands 
 
     --8<-- 'code/builders/integrations/indexers/thegraph/terminal/graph-codegen.md'
 
-2. Compile your subgraph to WebAssembly
+2. Compile your subgraph to Wasm
 
     ```bash
     graph build
@@ -104,7 +108,7 @@ To deploy your subgraph to Subgraph Studio, you must run the following commands 
 
     --8<-- 'code/builders/integrations/indexers/thegraph/terminal/graph-build.md'
 
-3. Authenticate your subgraph with your deploy key. The exact command containing the deploy key can be found on your subgraph's page in Subgraph Studio.
+3. Authenticate your subgraph with your deploy key. The exact command containing the deploy key can be found on your subgraph's page in Subgraph Studio
 
     ```bash
     graph auth --studio INSERT_DEPLOY_KEY
@@ -126,39 +130,32 @@ Once you've successfully deployed your subgraph, you can query it using the subg
 
 ### Test Your Subgraph⁠ {: #test-your-subgraph }
 
-You can test your subgraph by making a sample query in the playground section of your subgraph's page on Subgraph Studio.
+You can test your subgraph by making a query in the **Playground** section of your subgraph's page on Subgraph Studio.
 
 <image>
 
-To test from your dApp, you can use the API endpoint that was printed to your terminal. You can also find the endpoint on your subgraph's page in Subgraph Studio under the Details tab.
+To test from your dApp, you can use the API endpoint that was printed to your terminal. You can also find the endpoint on your subgraph's page in Subgraph Studio under the **Details** tab.
 
 <image>
 
-You can use this sample code to query your subgraph:
+You can use the following example code to query your subgraph. First, you'll need to install [Axios](https://axios-http.com/docs/intro){target=\_blank}:
 
-```
-const graphqlQuery = INSERT_QUERY;
-const queryUrl = 'https://api.studio.thegraph.com/query/80185/moonbeam-demo/version/latest'
+=== "npm"
 
-const graphQLRequest = {
-  method: 'post',
-  url: queryUrl,
-  data: {
-    query: graphqlQuery,
-  },
-};
+    ```bash
+    npm install axios
+    ```
 
-// Send the GraphQL query
-axios(graphQLRequest)
-  .then((response) => {
-    // Handle the response here
-    const data = response.data.data
-    console.log(data)
-  })
-  .catch((error) => {
-    // Handle any errors
-    console.error(error);
-  });
+=== "yarn"
+
+    ```bash
+    yarn add axios
+    ```
+
+Then, use the code snippet below. Be sure to insert your own query and endpoint:
+
+```js
+--8<-- 'code/builders/integrations/indexers/thegraph/example-query.js'
 ```
 
 ### Publish Your Subgraph to The Graph's Decentralized Network {: #publish-your-subgraph }
@@ -166,11 +163,13 @@ axios(graphQLRequest)
 Once your subgraph is ready for production, you can publish it to the decentralized network.
 
 !!! note
-    Publishing requires Arbitrum ETH. Upgrading your subgraph also airdrops a small amount to facilitate your first protocol interactions.
+    Publishing requires Arbitrum ETH. When upgrading your subgraph, a small amount is airdropped to facilitate your initial protocol interactions.
 
 For publishing instructions, please refer to [The Graph's documentation](https://thegraph.com/docs/en/publishing/publishing-a-subgraph/){target=\_blank}.
 
-### Additional resources {: #additional-resources }
+### Additional Resources {: #additional-resources }
 
-- To explore all the ways you can optimize & customize your subgraph for better performance, read more about [creating a subgraph here](https://thegraph.com/docs/en/developing/creating-a-subgraph/){target=\_blank}
+- To explore all the ways you can optimize and customize your subgraph for better performance, read more about [creating a subgraph](https://thegraph.com/docs/en/developing/creating-a-subgraph/){target=\_blank}
 - For more information on querying data from your subgraph, check out the [Querying the Graph](https://thegraph.com/docs/en/querying/querying-the-graph/){target=\_blank} guide
+
+--8<-- 'text/_disclaimers/third-party-content.md'
