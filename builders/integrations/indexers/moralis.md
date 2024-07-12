@@ -21,7 +21,9 @@ Moralis' offerings are structured into four primary categories of API services-
 
 --8<-- 'text/_disclaimers/third-party-content-intro.md'
 
-## Sign up with Moralis {: #sign-up-with-moralis }
+## Checking prerequisites {: #checking-prerequisites }
+
+To access the endpoint, a Moralis account and API key are required.
 
 Head over to the [signup page](https://admin.moralis.io/register) to create an account. Once you're in, navigate to the API keys section. There, you can generate your own unique API key and be sure to copy it for future use.
 
@@ -31,7 +33,7 @@ Head over to the [signup page](https://admin.moralis.io/register) to create an a
 
 With the API key, you can try Moralis' REST APIs. The following examples show how the EVM API works-
 
-Getting the token balance of a wallet:
+Get the token balance of a wallet:  
 
 ```bash
 curl --request GET \
@@ -40,7 +42,7 @@ curl --request GET \
  --header 'X-API-Key: INSERT_YOUR_API_KEY' 
 ```
 
-Getting the list of owners of an NFT:
+Get the list of owners of an NFT:  
 
 ```bash
 curl --request GET \
@@ -55,9 +57,9 @@ For a comprehensive overview of the available APIs and their capabilities, pleas
 
 Moralis has an SDK that allows developers to seamlessly integrate Moralis' API into their backend infrastructure. This SDK offers a wide array of features, including-
 
-1. Data querying from both EVM and Solana APIs
-2. Integration of Web3 authentication
-3. A collection of utility functions for efficient data transformation and formatting
+- Data querying from both EVM and Solana APIs  
+- Integration of Web3 authentication  
+- A collection of utility functions for efficient data transformation and formatting  
 
 Moralis currently provides official SDK support for two primary programming languages-
 
@@ -90,7 +92,7 @@ To install Moralis SDK:
     pip install moralis
     ```
 
-Once the SDK is ready, you can leverage it to query Moralis's APIs. Here's an example of how to interact with the EVM API using a JSON RPC interface:
+Once the SDK is ready, you can leverage it to query Moralis APIs. Here's an example of how to interact with the EVM API using a JSON RPC interface:
 
 === "Javascript"
 
@@ -146,17 +148,17 @@ To get started quickly, let's choose a predefined template here. In this example
 
 ![template selection page](/images/builders/integrations/indexers/moralis/moralis-3.webp)
 
-On the next page, enter the following details:
+On the next page, enter the following details-  
 
-- Smart Contract Address: Paste 0xFfFFfFff1FcaCBd218EDc0EbA20Fc2308C778080 for [xcDot](https://moonscan.io/token/0xffffffff1fcacbd218edc0eba20fc2308c778080)
+- Smart Contract Address for [xcDot](https://moonscan.io/token/0xffffffff1fcacbd218edc0eba20fc2308c778080): 0xFfFFfFff1FcaCBd218EDc0EbA20Fc2308C778080
 - Network: Select Moonbeam from the available options.
-Moralis lets you listen to events on Moonbeam, Moonriver, and Moonbase Alpha.
+Moralis supports listening to events on Moonbeam, Moonriver, and Moonbase Alpha.  
 
 ![details input page](/images/builders/integrations/indexers/moralis/moralis-4.webp)
 
-Next, customize what events you want to receive. For this example, simply choose "All contract events." 
+Next, customize the events you want to receive. For this example, choose "All contract events." 
 
-You may also test the stream to confirm it's capturing the data you need.
+You may also test the stream to confirm it captures the needed data.  
 
 ![event selection and stream test page](/images/builders/integrations/indexers/moralis/moralis-5.webp)
 
