@@ -59,7 +59,7 @@ Moralis has an SDK that allows developers to seamlessly integrate Moralis' API i
 2. Integration of Web3 authentication
 3. A collection of utility functions for efficient data transformation and formatting
 
-Moralis currently provides official SDK support for two primary programming languages:
+Moralis currently provides official SDK support for two primary programming languages-
 
 - NodeJS
 - Python
