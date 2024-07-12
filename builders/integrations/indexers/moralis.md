@@ -175,6 +175,6 @@ Select **Moonbeam** and **Mainnet** here to get started. Remember, Moralis also 
 
 ![RPC API setup page](/images/builders/integrations/indexers/moralis/moralis-8.webp)
 
-Just click "Create Node," and your Moonbeam node will be up and running in seconds, ready to handle your RPC requests.
+Click **Create Node**, and your Moonbeam node will be up and running in seconds, ready to handle your RPC requests.
 
 ![node ready page](/images/builders/integrations/indexers/moralis/moralis-9.webp)
