@@ -37,20 +37,20 @@ pragma solidity 0.8.9;
 import "@api3/airnode-protocol/contracts/rrp/requesters/RrpRequesterV0.sol";
 import "@openzeppelin/contracts@4.9.5/access/Ownable.sol";
 
-// A Requester that will return the requested data by calling the specified Airnode
+// A Requester that will return the requested data by calling the specified Airnode.
 contract Requester is RrpRequesterV0, Ownable {
     mapping(bytes32 => bool) public incomingFulfillments;
     mapping(bytes32 => int256) public fulfilledData;
 
-    // Make sure you specify the right _rrpAddress for your chain while deploying the contract
+    // Make sure you specify the right _rrpAddress for your chain while deploying the contract.
     constructor(address _rrpAddress) RrpRequesterV0(_rrpAddress) {}
 
-    // To receive funds from the sponsor wallet and send them to the owner
+    // To receive funds from the sponsor wallet and send them to the owner.
     receive() external payable {
         payable(owner()).transfer(address(this).balance);
     }
 
-    // Calls the makeFullRequest function, which will trigger the Airnode request
+    // The main makeRequest function that will trigger the Airnode request.
     function makeRequest(
         address airnode,
         bytes32 endpointId,
@@ -70,7 +70,7 @@ contract Requester is RrpRequesterV0, Ownable {
         );
         incomingFulfillments[requestId] = true;
     }
-
+    
     function fulfill(bytes32 requestId, bytes calldata data)
         external
         onlyAirnodeRrp
@@ -81,7 +81,7 @@ contract Requester is RrpRequesterV0, Ownable {
         fulfilledData[requestId] = decodedData;
     }
 
-    // To withdraw funds from the sponsor wallet to the contract
+    // To withdraw funds from the sponsor wallet to the contract.
     function withdraw(address airnode, address sponsorWallet) external onlyOwner {
         airnodeRrp.requestWithdrawal(
         airnode,
