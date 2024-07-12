@@ -13,7 +13,7 @@ Moralis' offerings are structured into four primary categories of API services-
 
 - **EVM API**: EVM API allows developers to query essential data for Ethereum Virtual Machine (EVM)-compatible blockchains. Moralis provides dedicated APIs for four key areas: NFTs, tokens, wallets, and general blockchain information.
 
-- **Streams API**: Real-time data is crucial in the fast-paced blockchain world. Moralis's Streams API enables developers to listen for real-time events on the chain, you can listen for when a new event is emitted in your contract or when a wallet address does an NFT transfer or a transaction.
+- **Streams API**: The Streams API enables developers to listen for on-chain events, such as smart contract event emissions, in real-time. Popular use cases include real-time wallet notifications, asset monitoring, and gaming event notifications.
 
 - **RPC API**: The RPC API offers a secure and reliable connection to various blockchain networks. It provides a high-performance gateway for developers to interact with blockchain nodes, ensuring stable and efficient communication between dApps and the blockchain.
 
