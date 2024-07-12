@@ -3,7 +3,7 @@ title: Moralis
 description: Learn how to build on the Moonbeam network with Moralis' API suite.
 ---
 
-# Introduction to Moralis
+# Index Moonbeam with Moralis
 
 ## Introduction {: #introduction }
 
