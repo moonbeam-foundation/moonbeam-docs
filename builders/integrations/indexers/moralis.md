@@ -164,7 +164,7 @@ Next, you can connect the stream to an endpoint to receive updates from Moralis.
 
 ![webhook setup page](/images/builders/integrations/indexers/moralis/moralis-6.webp)
 
-All set! Once you activate your stream, you'll see a screen like this:
+All set. Once you activate your stream, you'll see a screen like this:
 
 ![stream API end page](/images/builders/integrations/indexers/moralis/moralis-7.webp)
 
