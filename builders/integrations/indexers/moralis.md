@@ -160,7 +160,7 @@ You may also test the stream to confirm it's capturing the data you need.
 
 ![event selection and stream test page](/images/builders/integrations/indexers/moralis/moralis-5.webp)
 
-Next, connect the stream to an endpoint which will be used to receive updates from Moralis.
+Next, you can connect the stream to an endpoint to receive updates from Moralis.
 
 ![webhook setup page](/images/builders/integrations/indexers/moralis/moralis-6.webp)
 
