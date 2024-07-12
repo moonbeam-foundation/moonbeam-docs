@@ -93,7 +93,7 @@ Your project will be created using the slug name you provided in step two. At th
 
 ## Deploy a Subgraph {: #deploy }
 
-To deploy your subgraph to Subgraph Studio, you must run the following commands in your terminal:
+To deploy your subgraph to Subgraph Studio, change to the subgraph directory in your terminal and run the following commands:
 
 1. Generate types for your smart contract ABIs and the subgraph schema
 
