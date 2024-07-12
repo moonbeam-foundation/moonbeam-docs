@@ -88,7 +88,7 @@ If you already have a DApp with WalletConnect support, and just want to add Moon
 
 ## Checking Prerequisites {: #checking-prerequisites }
 
-Throughout this guide, you'll use a simple front-end DApp built with [React](https://react.dev){target=\_blank} to connect to a mobile wallet via WalletConnect. So you will need a React project and the MetaMask mobile app installed for testing purposes. A template has been created that includes the required packages, some basic styling, and placeholders where logic and UI elements will need to be added. However, if you would like to use your own DApp, you'll need to install the following required dependencies:
+Throughout this guide, you'll use a simple front-end dApp built with [React](https://react.dev){target=\_blank} to connect to a mobile wallet via WalletConnect. So, you will need a React project and the MetaMask mobile app installed for testing purposes. A template has been created that includes the required packages, some basic styling, and placeholders where logic and UI elements must be added. However, if you would like to use your own dApp, you'll need to install the following required dependencies:
 
 ```bash
 npm install ethers @walletconnect/client @walletconnect/qrcode-modal
