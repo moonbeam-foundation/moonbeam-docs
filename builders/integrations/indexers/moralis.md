@@ -138,7 +138,7 @@ Once the SDK is ready, you can leverage it to query Moralis's APIs. Here's an ex
 
 Moralis Streams API is a tool for developers to listen to and react to events happening on blockchains in real time. This API lets you listen for specific events, such as a new transaction being added to a block, a particular smart contract function being called, or an NFT being transferred and delivering the event via Webhook.
 
-Head over to the Streams page within Moralis and click "Create a new stream" to get started.
+Head over to the Streams page within Moralis and click **Create a new stream** to get started.
 
 ![stream API page](/images/builders/integrations/indexers/moralis/moralis-2.webp)
 
