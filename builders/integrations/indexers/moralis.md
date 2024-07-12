@@ -53,7 +53,7 @@ For a comprehensive overview of the available APIs and their capabilities, pleas
 
 ## Moralis SDK {: #moralis-SDK }
 
-Moralis has an SDK that allows developers to seamlessly integrate Moralis' API into their backend infrastructure. This SDK offers a wide array of features, including:
+Moralis has an SDK that allows developers to seamlessly integrate Moralis' API into their backend infrastructure. This SDK offers a wide array of features, including-
 
 1. Data querying from both EVM and Solana APIs
 2. Integration of Web3 authentication
