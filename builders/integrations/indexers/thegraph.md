@@ -35,15 +35,18 @@ To initialize your subgraph, you must head to the [Subgraph Studio](https://theg
 
 After you get your email address set up and verified, you can create a subgraph from your dashboard by clicking **Create a Subgraph**.
 
+![Create a subgraph](/images/builders/integrations/indexers/the-graph/thegraph-1.webp)
 
+Then, you can:
 
- and entering a name. Note that it is recommended to use title case for the name (i.e., Subgraph Name Chain Name); the name cannot be changed once it has been created. Then, click **Create Subgraph**.
+1. Enter a name. Note that it is recommended to use title case for the name (i.e., Subgraph Name Chain Name); the name cannot be changed once it has been created
+2. Click **Create Subgraph**
 
-<image>
+![Enter a name for your subgraph](/images/builders/integrations/indexers/the-graph/thegraph-2.webp)
 
 You will then land on your subgraph's page. Here, you can add additional information about your subgraph, such as the description, source code URL, website URL, and categories your subgraph belongs to. You'll also find all the CLI commands you need to initialize and deploy your subgraph.
 
-<image>
+![The landing page for your subgraph](/images/builders/integrations/indexers/the-graph/thegraph-3.webp)
 
 ### Install Graph CLI⁠ {: #install-graph-cli }
 
@@ -132,11 +135,11 @@ Once you've successfully deployed your subgraph, you can query it using the subg
 
 You can test your subgraph by making a query in the **Playground** section of your subgraph's page on Subgraph Studio.
 
-<image>
+![The playground page for your subgraph](/images/builders/integrations/indexers/the-graph/thegraph-4.webp)
 
 To test from your dApp, you can use the API endpoint that was printed to your terminal. You can also find the endpoint on your subgraph's page in Subgraph Studio under the **Details** tab.
 
-<image>
+![The playground page for your subgraph](/images/builders/integrations/indexers/the-graph/thegraph-5.webp)
 
 You can use the following example code to query your subgraph. First, you'll need to install [Axios](https://axios-http.com/docs/intro){target=\_blank}:
 
