@@ -9,7 +9,7 @@ description: Learn how to build on the Moonbeam network with Moralis' API suite.
 
 As a one-stop solution for blockchain development, [Moralis](https://moralis.io/) offers a comprehensive platform that empowers developers to create, launch, and scale decentralized applications (dApps) with ease. This guide will show you how to access the API endpoints for Moonbeam using curl commands and JavaScript and Python snippets.
 
-Moralis' offerings are structured into four primary categories of API services-
+Moralis' offerings are structured into four primary categories of API services:
 
 - **EVM API**: EVM API allows developers to query essential data for Ethereum Virtual Machine (EVM)-compatible blockchains. Moralis provides dedicated APIs for four key areas: NFTs, tokens, wallets, and general blockchain information.
 
@@ -31,7 +31,7 @@ Head over to the [signup page](https://admin.moralis.io/register) to create an a
 
 ## Querying Moralis API {: #querying-moralis-api }
 
-With the API key, you can try Moralis' REST APIs. The following examples show how the EVM API works-
+With the API key, you can try Moralis' REST APIs. The following examples show how the EVM API works:
 
 Get the token balance of a wallet:  
 
@@ -55,13 +55,13 @@ For a comprehensive overview of the available APIs and their capabilities, pleas
 
 ## Moralis SDK {: #moralis-SDK }
 
-Moralis has an SDK that allows developers to seamlessly integrate Moralis' API into their backend infrastructure. This SDK offers a wide array of features, including-
+Moralis has an SDK that allows developers to seamlessly integrate Moralis' API into their backend infrastructure. This SDK offers a wide array of features, including:
 
 - Data querying from both EVM and Solana APIs  
 - Integration of Web3 authentication  
 - A collection of utility functions for efficient data transformation and formatting  
 
-Moralis currently provides official SDK support for two primary programming languages-
+Moralis currently provides official SDK support for two primary programming languages:
 
 - NodeJS
 - Python
@@ -148,7 +148,7 @@ To get started quickly, let's choose a predefined template here. In this example
 
 ![template selection page](/images/builders/integrations/indexers/moralis/moralis-3.webp)
 
-On the next page, enter the following details-  
+On the next page, enter the following details: 
 
 - Smart Contract Address for [xcDot](https://moonscan.io/token/0xffffffff1fcacbd218edc0eba20fc2308c778080): 0xFfFFfFff1FcaCBd218EDc0EbA20Fc2308C778080
 - Network: Select Moonbeam from the available options.
