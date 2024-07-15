@@ -27,7 +27,7 @@ Some important variables/configurations to note include (still subject to change
     |       Variable        |                                  Value                                  |
     |:---------------------:|:-----------------------------------------------------------------------:|
     |   Minimum gas price   |               {{ networks.moonbeam.min_gas_price }} Gwei*               |
-    |   Target block time   |  {{ networks.moonbeam.block_time }} seconds (expected to be 6 seconds)  |
+    |   Target block time   |               {{ networks.moonbeam.block_time }} seconds                |
     |    Block gas limit    | {{ networks.moonbeam.gas_block }} (expected to increase by at least 4x) |
     | Transaction gas limit |  {{ networks.moonbeam.gas_tx }} (expected to increase by at least 4x)   |
 
@@ -39,7 +39,7 @@ Some important variables/configurations to note include (still subject to change
     |  Maximum delegations per account  |                             {{ networks.moonbeam.staking.max_del_per_del }}                             |
     |               Round               | {{ networks.moonbeam.staking.round_blocks }} blocks ({{ networks.moonbeam.staking.round_hours }} hours) |
     |           Bond duration           |               delegation takes effect in the next round (funds are withdrawn immediately)               |
-    |          Unbond duration          |                     {{ networks.moonbeam.delegator_timings.del_bond_less.rounds }} rounds                      |
+    |          Unbond duration          |                  {{ networks.moonbeam.delegator_timings.del_bond_less.rounds }} rounds                  |
 
 _*Read more about [token denominations](#token-denominations)_
 
