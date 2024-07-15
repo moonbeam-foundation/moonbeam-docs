@@ -67,7 +67,7 @@ The basic JSON-RPC methods from the Ethereum API supported by Moonbeam are:
 
 ## Additional RPC Methods {: #additional-rpc-methods }
 
-Check out some of the non-standard Ethereum and Moonbeam-specific RPC methods-
+Check out some of the non-standard Ethereum and Moonbeam-specific RPC methods:
 
 - [Debug and Trace](/builders/ethereum/json-rpc/debug-trace/)
 - [Event Subscription](/builders/ethereum/json-rpc/pubsub/)
