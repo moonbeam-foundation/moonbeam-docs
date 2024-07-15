@@ -13,7 +13,7 @@ Nevertheless, not all Ethereum JSON-RPC methods are supported; some of those sup
 
 ## Standard Ethereum JSON-RPC Methods {: #basic-rpc-methods }
 
-The basic JSON-RPC methods from the Ethereum API supported by Moonbeam are-
+The basic JSON-RPC methods from the Ethereum API supported by Moonbeam are:
 
 - **[eth_protocolVersion](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_protocolversion){target=\_blank}** — returns `1` by default
 - **[eth_syncing](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_syncing){target=\_blank}** — returns an object with data about the sync status or `false`
