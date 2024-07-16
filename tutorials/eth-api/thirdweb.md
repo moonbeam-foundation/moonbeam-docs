@@ -252,7 +252,7 @@ The finished file can be viewed below:
 
 ## Wrapping Up {: #wrapping-up }
 
-And that's it! Congratulations on making it through the tutorial. You can head to `http://localhost:3000` after running the dApp locally via one of the following 
+And that's it! Congratulations on making it through the tutorial. You can head to `http://localhost:3000` after running the dApp locally via one of the following: 
 
 === "npm"
 
