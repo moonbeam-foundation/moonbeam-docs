@@ -24,7 +24,7 @@ thirdweb has an [NFT marketplace template](https://github.com/thirdweb-example/m
     git clone https://github.com/thirdweb-example/marketplace-template
     ```
 
-2. Install dependencies with your preferred package manager:
+2. Navigate to your project directory and install dependencies with your preferred package manager:
 
     === "npm"
 
