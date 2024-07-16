@@ -166,16 +166,16 @@ If you wish to set up your own tracing node, you can follow the [Running a Traci
 
 ???+ function "debug_traceCall"
 
-    This method executes an eth_call within the context of the given block using the final state of parent block as the base. Refer to [Geth's documentation](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-debug#debugtracecall){target=\_blank} for more information.
+    This method executes an eth_call within the context of the given block using the final state of the parent block as the base. Refer to [Geth's documentation](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-debug#debugtracecall){target=\_blank} for more information.
 
     === "Parameters"
         - `call_object` *object* the transaction object to be executed
         - `block_hash` *string* - the block hash of the base block
         - `tracer_config` *string* - a JSON object for configuring the tracer that contains the following field: 
             - `tracer` *string* - sets the type of tracer. This must be set to `callTracer`, which only returns transactions and sub-calls. Otherwise, the tracer will attempt to default to the opcode logger, which is not supported at this time due to the heavy nature of the call
-            - `stateOverrides` *stateOverrides* - Overrides for the state data for this call. [Geth's documentation](https://geth.ethereum.org/docs/developers/evm-tracing/built-in-tracers#state-overrides){target=\_blank} for detail information.
-            - `blockOverrides` *blockOverrides* - Overrides for the block data for this call.[Geth's documentation](https://geth.ethereum.org/docs/developers/evm-tracing/built-in-tracers#block-overrides){target=\_blank} for detail information.
-            - `txIndex` *number* - If set, the state at the given transaction index will be used to tracing. Default is the last transaction index in the block.
+            - `stateOverrides` *stateOverrides* - Overrides for the state data for this call. [Geth's documentation](https://geth.ethereum.org/docs/developers/evm-tracing/built-in-tracers#state-overrides){target=\_blank} for detail information
+            - `blockOverrides` *blockOverrides* - Overrides for the block data for this call.[Geth's documentation](https://geth.ethereum.org/docs/developers/evm-tracing/built-in-tracers#block-overrides){target=\_blank} for detail information
+            - `txIndex` *number* - If set, the state at the given transaction index will be used to tracing. Default is the last transaction index in the block
 
     === "Returns"
 
