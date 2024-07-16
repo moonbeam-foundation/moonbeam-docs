@@ -9,13 +9,13 @@ description: This guide will show you some of thirdweb's features, including bui
 
 [thirdweb](https://thirdweb.com){target=\_blank} is a complete Web3 development framework that provides everything you need to develop smart contracts, build DApps, and more.
 
-With thirdweb, you can access tools to help you through every phase of the DApp development cycle. You can create your own custom smart contracts or use any of thirdweb's prebuilt contracts to get started quickly. From there, you can use thirdweb's CLI to deploy your smart contracts. Then you can interact with your smart contracts by creating a Web3 application using the language of your choice, including but not limited to React, TypeScript, and Python.
+With thirdweb, you can access tools to help you through every phase of the DApp development cycle. You can create your own custom smart contracts or use any of thirdweb's prebuilt contracts to get started quickly. From there, you can use thirdweb's CLI to deploy your smart contracts. Then you can interact with your smart contracts by creating a Web3 application using the language of your choice, including but not limited to React and TypeScript. 
 
-This guide will show you some of the thirdweb features you can use to develop smart contracts and DApps on Moonbeam. To check out all of the features thirdweb has to offer, please refer to the [thirdweb documentation site](https://portal.thirdweb.com){target=\_blank}.
+This guide will show you some of the thirdweb features you can use to develop smart contracts and DApps on Moonbeam. To check out all of the features thirdweb has to offer, please refer to the [thirdweb documentation site](https://portal.thirdweb.com){target=\_blank}. For a comprehensive step-by-step tutorial for building a dApp on Moonbeam with thirdweb, be sure to check out Moonbeam's [thirdweb tutorial in the tutorials section](/tutorials/eth-api/thirdweb)  
 
 ## Create Contract {: #create-contract }
 
-To create a new smart contract using the thirdweb CLI, follow these steps:
+To create a new smart contract using the [thirdweb CLI](https://portal.thirdweb.com/cli){target=\_blank}, follow these steps:
 
 1. In your CLI, run the following command:
 
@@ -101,7 +101,7 @@ For additional information on Deploy, please reference [thirdweb’s documentati
 
 ## Create Application {: #create-application }
 
-thirdweb offers SDKs for a range of programming languages, such as React, React Native, TypeScript, Python, Go, and Unity. You'll start off by creating an application and then you can choose which SDK to use:
+thirdweb offers SDKs for a range of programming languages, such as React, React Native, TypeScript, and Unity. You'll start off by creating an application and then you can choose which SDK to use:
 
 1. In your CLI run the following command:
 
@@ -118,7 +118,7 @@ thirdweb offers SDKs for a range of programming languages, such as React, React 
 
 ### Specify Client ID {: #specify-client-id }
 
-Before you launch your dApp (locally or publicly deployed), you must have a thirdweb Client ID associated with your project. A thirdweb Client ID is synonymous with an API key. You can create a free API key by [signing into your thirdweb Account and navigating to **Settings** then click on **API Keys**](https://thirdweb.com/create-api-key){target=\_blank}.
+Before you launch your dApp (locally or publicly deployed), you must have a thirdweb Client ID associated with your project. A thirdweb Client ID is synonymous with an API key. You can create a free API key by [signing into your thirdweb Account and navigating to **Settings** then click on **API Keys**](https://thirdweb.com/dashboard/settings/api-keys){target=\_blank}.
 
 Press **Create API Key** then take the following steps:
 
@@ -134,11 +134,11 @@ Finally, specify your Client ID (API Key) in your `.env` file. Your `.env` file 
 
 ![thirdweb create API key](/images/builders/ethereum/dev-env/thirdweb/thirdweb-3.webp)
 
-## Interact With a Contract {: #interact-with-a-contract }
+## Configure and Run thirdweb dapp {: #configure-and-run-thirdweb-dapp }
 
 thirdweb provides several SDKs to allow you to interact with your contract including: [React](https://portal.thirdweb.com/typescript/v5/react){target=\_blank}, [React Native](https://portal.thirdweb.com/typescript/v5/react-native){target=\_blank}, [TypeScript](https://portal.thirdweb.com/typescript/v5){target=\_blank}, and [Unity](https://portal.thirdweb.com/unity){target=\_blank}.
 
-This document will show you how to interact with your contract deployed to Moonbeam using React. You can view the [full React SDK reference](https://portal.thirdweb.com/typescript/v5/react){target=\_blank} in thirdweb’s documentation.
+This guide will show you how to interact with your contracts deployed to Moonbeam, Moonriver or Moonbase Alpha via thirdweb using Typescript. You can view the [full SDK reference](https://portal.thirdweb.com/typescript/v5){target=\_blank} in thirdweb’s documentation.
 
 ### Run Locally {: #run-locally }
 
@@ -167,8 +167,6 @@ export const client = createThirdwebClient({
   clientId: clientId,
 });
 ```
-
-You can delete the placeholder code in `App.tsx` because we'll be replacing it as part of the tutorial. 
 
 ### Configure Chain {: #configure-chain }
 
@@ -204,80 +202,241 @@ thirdweb offers a small number of chains from `@thirdweb/chains` and does not in
     })
     ```
 
+## thirdweb sdk
+
+The following sections will provide an overview of fundamental methods of the thirdweb sdk and how to interact with them. Each code snippet will showcase the relevant important statements and demonstrate using the method in a typical scenario. This guide is intended to be used as a quick reference guide to the most common thirdweb methods that dApp developers will use. However, it does not include information on each and every offering of thirdweb. For details on the entirety of thirdweb's offerings, be sure to visit the [thirdweb documentation site](https://portal.thirdweb.com/){target=\_blank}. For a comprehensive, step-by-step guide to building a dApp with thirdweb be sure to check out Moonbeam's [thirdweb tutorial in the tutorials section](/tutorials/eth-api/thirdweb). The following sections will cover everything from connecting wallets, to preparing transactions, and more.  
+
+### Accounts and Wallets
+
+thirdweb distinguishes between accounts and wallets in the sdk. In the eyes of the thirdweb SDK, an account always has a single blockchain address and can sign messages, transactions, and typed data, but it cannot be "connected" or "disconnected." In contrast, a wallet contains one or more accounts, can be connected or disconnected, and delegates the signing tasks to its accounts. 
+
+The below code snippet demonstrates how to initialize and connect a MetaMask wallet using the thirdweb SDK, then sign and send a transaction, retrieving the transaction hash. This process is applicable to any of the 300+ wallet connectors supported by the SDK.
+
+```typescript title="Initialize and Connect a Metamask Wallet"
+import { sendTransaction } from "thirdweb";
+// MetaMask wallet used for example, the pattern is the same for all wallets
+import { createWallet } from "thirdweb/wallets";
+ 
+// initialize the wallet, Third web supports of the 300+ wallet connectors
+const wallet = createWallet("io.metamask");
+ 
+// connect the wallet, this returns a promise that resolves to the connected account
+const account = await wallet.connect({
+  // pass the client you created with `createThirdwebClient()`
+  client,
+});
+ 
+// sign & send a transaction with the account -> returns the transaction hash
+const { transactionHash } = await sendTransaction({
+  // assuming you have called `prepareTransaction()` or `prepareContractCall()` before which returns the prepared transaction to send
+  transaction,
+  // Pass the account to sign the transaction with
+  account,
+});
+```
 
 ### Get Contract {: #get-contract }
 
-To connect to your contract, use the SDK’s [`getContract`](https://portal.thirdweb.com/references/typescript/v5/getContract){target=\_blank} method.  As an example, you can use Thirdweb to fetch data from an [Incrementer contract on Moonbase Alpha](https://moonbase.moonscan.io/address/0xa72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8){target=\_blank}.
+To connect to your contract, use the SDK’s [`getContract`](https://portal.thirdweb.com/references/typescript/v5/getContract){target=\_blank} method.  As an example, you could fetch data from an [incrementer contract on Moonbase Alpha](https://moonbase.moonscan.io/address/0xa72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8){target=\_blank}.
 
-```typescript title="App.tsx"
-    --8<-- 'code/builders/ethereum/dev-env/thirdweb/App.tsx:4:4'
-    --8<-- 'code/builders/ethereum/dev-env/thirdweb/App.tsx:6:6'
+```typescript title="Get Contract"
+import { getContract } from "thirdweb";
+import { client } from "./client";
 
-    --8<-- 'code/builders/ethereum/dev-env/thirdweb/App.tsx:17:57'
+const myContract = getContract({
+  client,             
+  chain: moonbase,   
+  address: INSERT_CONTRACT_ADDRESS,   
+  abi: INSERT_ABI               
+});
 ```
 
 ### Calling Contract Functions {: #calling-contract-functions }
 
 To call a contract in the latest version of the SDK, you can use [`prepareContractCall`](https://portal.thirdweb.com/typescript/v5/transactions/prepare){target=\_blank}.
 
-```typescript title="App.tsx"
-    --8<-- 'code/builders/ethereum/dev-env/thirdweb/App.tsx:6:6'
+```typescript title="Calling Contract Functions"
+import { prepareContractCall, toWei } from "thirdweb";
 
-    --8<-- 'code/builders/ethereum/dev-env/thirdweb/App.tsx:144:148'
+const tx = prepareContractCall({
+  contract,
+  // Pass the method signature that you want to call
+  method: "function mintTo(address to, uint256 amount)",
+  // and the params for that method
+  // Their types are automatically inferred based on the method signature
+  params: ["0x123...", toWei("100")],
+});
 ```
 
-We can trigger this contract call from a thirdweb [`TransactionButton` component](https://portal.thirdweb.com/typescript/v5/react/components/TransactionButton){target=\_blank}, which has some neat features built in. For example, if you're on the incorrect network, the button will prompt you to switch networks. In the below snippet you'll also add some error handling as a good practice. 
+### Preparing Raw Transactions {: #preparing-raw-transactions }
 
-```typescript title="App.tsx"
-    --8<-- 'code/builders/ethereum/dev-env/thirdweb/App.tsx:2:2'
-    --8<-- 'code/builders/ethereum/dev-env/thirdweb/App.tsx:6:6'
+You can also prepare a transaction directly with encoded data. To do so, you'll use thirdweb's [`prepareTransaction` method](https://portal.thirdweb.com/typescript/v5/transactions/prepare){target=\_blank} and specify the `to`, `value`, `chain`, and `client` values directly. 
 
-    --8<-- 'code/builders/ethereum/dev-env/thirdweb/App.tsx:134:164'
+```typescript title="Preparing Raw Transactions"
+import { prepareTransaction, toWei } from "thirdweb";
+ 
+const transaction = prepareTransaction({
+  // The account that will be the receiver
+  to: "0x456...",
+  // The value is the amount of ether you want to send with the transaction
+  value: toWei("1"),
+  // The chain to execute the transaction on. This assumes you already set up
+  // moonbase as a custom chain as shown in the configure chain section.
+  chain: moonbase,
+  // Your thirdweb client
+  client,
+});
 ```
 
 ### Reading Contract State {: #read-contract-state }
 
 Use the [`readContract` function](https://portal.thirdweb.com/typescript/v5/transactions/read){target=\_blank} to call any read functions on your contract by passing in the Solidity method signature and any parameters.
 
-```typescript title="App.tsx"
-import { readContract } from 'thirdweb';
+```typescript title="Reading Contract State"
+import { readContract } from "thirdweb";
+
+const balance = await readContract({
+  contract: contract,
+  method: "function balanceOf(address) view returns (uint256)",
+  params: ["0x123..."],
+});
+```
+
+For a function that takes no parameters, such as the number function that returns the current number stored in the [incrementer contract](https://moonbase.moonscan.io/address/0xa72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8){target=\_blank}, you simply need to provide the function name as follows: 
+
+```typescript title="Reading Contract State"
+import { readContract } from "thirdweb";
 
 const number = await readContract({
       contract: contract,
-      method: 'number',
+      method: "number",
       params: [],
     });
 ```
 
-### Connect Wallet {: #connect-wallet }
+Did you know? With the [thirdweb CLI](https://portal.thirdweb.com/cli){target=\_blank}, you can easily and generate functions for all of the possible calls to a contract. To do so, run the following command in the command line: 
 
-Next, you can customize the [Connect Button](https://portal.thirdweb.com/typescript/v5/react/components/ConnectButton){target=\_blank} to tailor it our desired wallets. The Connect Button accepts an optional  `wallets` parameter with an array of wallets. You can add or remove wallets from the wallets array to change the options available to users. ThirdWeb also offers a [ConnectButton Playground](https://thirdweb.com/dashboard/connect/playground) to customize and view changes in real-time given the high degree of flexibility offered by the button. The below snippet will also include logic to display the counter value and the increment button.
+```bash
+npx thirdweb generate INSERT-CHAIN-ID/INSERT-CONTRACT-ADDRESS
+```
 
-```typescript title="App.tsx"
-    --8<-- 'code/builders/ethereum/dev-env/thirdweb/App.tsx:2:2'
-    --8<-- 'code/builders/ethereum/dev-env/thirdweb/App.tsx:7:7'
+For more information, see the [thirdweb's docs on the CLI](https://portal.thirdweb.com/cli/generate){target=\_blank}.
 
-    --8<-- 'code/builders/ethereum/dev-env/thirdweb/App.tsx:9:15'
+### Sending a Transaction {: #sending-a-transaction }
 
-    --8<-- 'code/builders/ethereum/dev-env/thirdweb/App.tsx:87:105'
+Every transaction sent using the SDK must first be prepared. This preparation process is synchronous and lightweight, requiring no network requests. Additionally, it provides type-safe definitions for your contract calls.
+
+You can prepare a transaction as follows:
+
+```typescript title="Prepare a transaction"
+import { prepareTransaction, toWei } from "thirdweb";
+
+const transaction = prepareTransaction({
+  to: "0x1234567890123456789012345678901234567890",
+  chain: moonbase,
+  client: thirdwebClient,
+  value: toWei("1.0"),
+  gasPrice: 150n,
+});
+```
+
+After the transaction is prepared, you can send it as follows:
+
+```typescript title="Send a transaction"
+import { sendTransaction } from "thirdweb";
+ 
+const { transactionHash } = await sendTransaction({
+  account,
+  transaction,
+});
+```
+
+You can optionally use `sendAndConfirmTransaction` to wait for the transaction to be mined. This is relevant if you want to block the user from continuing until the transaction is confirmed. 
+
+```typescript title="Send and Confirm a Transaction"
+import { sendAndConfirmTransaction } from "thirdweb";
+import { createWallet } from "thirdweb/wallets";
+ 
+const wallet = createWallet("io.metamask");
+const account = await wallet.connect({ client });
+ 
+const receipt = await sendAndConfirmTransaction({
+  transaction,
+  account,
+});
+```
+
+### Transaction Utilities {: #transaction-utilites }
+
+thirdweb provides a number of helpful utility methods surrounding preparing and sending transactions. 
+
+You can estimate the gas used by a txn as follows: 
+
+```typescript title="Estimating Gas"
+import { estimateGas } from "thirdweb";
+ 
+const gasEstimate = await estimateGas({ transaction });
+console.log("estmated gas used", gasEstimate);
+```
+
+You can estimate the gas cost in ether and wei as follows: 
+
+```typescript title="Estimating Gas Cost"
+import { estimateGas } from "thirdweb";
+
+const gasCost = await estimateGasCost({ transaction });
+console.log("cost in ether", gasCost.ether);
+```
+
+thirdweb also provides a handy way to simulate transactions and verify their integrity before actually submitting it to the blockchain. You can simulate a transaction as follows:
+
+```typescript title="Simulate a transaction"
+import { simulateTransaction } from "thirdweb";
+
+const result = await simulateTransaction({ transaction });
+console.log("simulation result", result);
+```
+
+You can encode transaction data to act on later by taking the following steps: 
+
+```typescript title="Encode transaction data"
+import { encode } from "thirdweb";
+
+const data = await encode(transaction);
+console.log("encoded data", data);
+```
+
+### Connect Wallet Button {: #connect-wallet-button }
+
+Perhaps the first and most important interaction users will have with your dApp is connecting their wallet. thirdweb provides an easy and highly customizable way for you to enable this. thirdweb provides a highly customizable [`Connect Button`](https://portal.thirdweb.com/typescript/v5/react/components/ConnectButton){target=\_blank} to tailor it to your desired wallets. The `Connect Button` accepts an optional  `wallets` parameter with an array of wallets. You can add or remove wallets from the `wallets` array to change the options available to users. thirdWeb also offers a [ConnectButton Playground](https://thirdweb.com/dashboard/connect/playground) to customize and view changes for the `ConnectButton` in real-time, given the button's high degree of flexibility.
+
+```typescript title="Connect Wallet Button"
+import { ConnectButton } from "thirdweb/react";
+import { createWallet, inAppWallet } from "thirdweb/wallets";
+ 
+const wallets = [
+  inAppWallet(),
+  createWallet("io.metamask"),
+  createWallet("com.coinbase.wallet"),
+  createWallet("me.rainbow"),
+];
+ 
+function Example() {
+  return (
+    <div>
+      <ConnectButton client={client} wallets={wallets} />
+    </div>
+  );
+}
 ```
 
 ## Deploy Application {: #deploy-application }
 
-Putting it all together, you can view the full code for the App.tsx file below:
-
-??? code "View the complete App.tsx script"
-    ```typescript
-    --8<-- 'code/builders/ethereum/dev-env/thirdweb/App.tsx'
-    ```
-
-You can view the completed example project by running:
+As a reminder, you can build your example project locally by running:
  
 ```bash
 yarn dev
 ```
-
-![Locally built dApp](/images/builders/ethereum/dev-env/thirdweb/thirdweb-5.webp)
 
 To host your static web application on decentralized storage, run:
 

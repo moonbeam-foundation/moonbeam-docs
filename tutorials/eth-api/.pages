@@ -9,6 +9,7 @@ nav:
     - '[Foundry] Development Life Cycle from Start to End': 'foundry-start-to-end.md'
     - '[Hardhat] Development Life Cycle from Start to End': 'hardhat-start-to-end.md'
     - '[Tenderly] Using Tenderly to Debug and Simulate Transactions': 'using-tenderly.md'
+    - '[ThirdWeb] Building a dApp with ThirdWeb': 'thirdweb.md'
   - 'Interact with Precompiles':
     - 'precompiles.index.md'
     - '[Batch] Approve & Swap Tokens in a Single Transaction': 'batch-approve-swap.md'
