@@ -73,7 +73,7 @@ For more information on different contracts available on Explore, check out [thi
 
 [Deploy](https://portal.thirdweb.com/contracts/deploy/overview){target=\_blank} is thirdweb's tool that allows you to easily deploy a smart contract to any EVM compatible network without configuring RPC URLs, exposing your private keys, writing scripts, and other additional setup such as verifying your contract.
 
-1. To deploy your smart contract using deploy, navigate to the root directory of your project and execute the following command:
+1. To deploy your smart contract using deploy, navigate to the `contracts` directory of your project and execute the following command:
 
     ```bash
     npx thirdweb deploy
