@@ -213,19 +213,19 @@ thirdweb distinguishes between accounts and wallets in the sdk. In the eyes of t
 The below code snippet demonstrates how to initialize and connect a MetaMask wallet using the thirdweb SDK, then sign and send a transaction, retrieving the transaction hash. This process is applicable to any of the 300+ wallet connectors supported by the SDK.
 
 ```typescript title="Initialize and Connect a Metamask Wallet"
-import { sendTransaction } from "thirdweb";
+import { sendTransaction } from 'thirdweb';
 // MetaMask wallet used for example, the pattern is the same for all wallets
-import { createWallet } from "thirdweb/wallets";
- 
+import { createWallet } from 'thirdweb/wallets';
+
 // initialize the wallet, Third web supports of the 300+ wallet connectors
-const wallet = createWallet("io.metamask");
- 
+const wallet = createWallet('io.metamask');
+
 // connect the wallet, this returns a promise that resolves to the connected account
 const account = await wallet.connect({
   // pass the client you created with `createThirdwebClient()`
   client,
 });
- 
+
 // sign & send a transaction with the account -> returns the transaction hash
 const { transactionHash } = await sendTransaction({
   // assuming you have called `prepareTransaction()` or `prepareContractCall()` before which returns the prepared transaction to send
@@ -240,14 +240,14 @@ const { transactionHash } = await sendTransaction({
 To connect to your contract, use the SDK’s [`getContract`](https://portal.thirdweb.com/references/typescript/v5/getContract){target=\_blank} method.  As an example, you could fetch data from an [incrementer contract on Moonbase Alpha](https://moonbase.moonscan.io/address/0xa72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8){target=\_blank}.
 
 ```typescript title="Get Contract"
-import { getContract } from "thirdweb";
-import { client } from "./client";
+import { getContract } from 'thirdweb';
+import { client } from './client';
 
 const myContract = getContract({
-  client,             
-  chain: moonbase,   
-  address: INSERT_CONTRACT_ADDRESS,   
-  abi: INSERT_ABI               
+  client,
+  chain: moonbase,
+  address: INSERT_CONTRACT_ADDRESS,
+  abi: INSERT_ABI,
 });
 ```
 
@@ -256,15 +256,15 @@ const myContract = getContract({
 To call a contract in the latest version of the SDK, you can use [`prepareContractCall`](https://portal.thirdweb.com/typescript/v5/transactions/prepare){target=\_blank}.
 
 ```typescript title="Calling Contract Functions"
-import { prepareContractCall, toWei } from "thirdweb";
+import { prepareContractCall, toWei } from 'thirdweb';
 
 const tx = prepareContractCall({
   contract,
   // Pass the method signature that you want to call
-  method: "function mintTo(address to, uint256 amount)",
+  method: 'function mintTo(address to, uint256 amount)',
   // and the params for that method
   // Their types are automatically inferred based on the method signature
-  params: ["0x123...", toWei("100")],
+  params: ['0x123...', toWei('100')],
 });
 ```
 
@@ -273,13 +273,13 @@ const tx = prepareContractCall({
 You can also prepare a transaction directly with encoded data. To do so, you'll use thirdweb's [`prepareTransaction` method](https://portal.thirdweb.com/typescript/v5/transactions/prepare){target=\_blank} and specify the `to`, `value`, `chain`, and `client` values directly. 
 
 ```typescript title="Preparing Raw Transactions"
-import { prepareTransaction, toWei } from "thirdweb";
- 
+import { prepareTransaction, toWei } from 'thirdweb';
+
 const transaction = prepareTransaction({
   // The account that will be the receiver
-  to: "0x456...",
+  to: '0x456...',
   // The value is the amount of ether you want to send with the transaction
-  value: toWei("1"),
+  value: toWei('1'),
   // The chain to execute the transaction on. This assumes you already set up
   // moonbase as a custom chain as shown in the configure chain section.
   chain: moonbase,
@@ -293,25 +293,25 @@ const transaction = prepareTransaction({
 Use the [`readContract` function](https://portal.thirdweb.com/typescript/v5/transactions/read){target=\_blank} to call any read functions on your contract by passing in the Solidity method signature and any parameters.
 
 ```typescript title="Reading Contract State"
-import { readContract } from "thirdweb";
+import { readContract } from 'thirdweb';
 
 const balance = await readContract({
   contract: contract,
-  method: "function balanceOf(address) view returns (uint256)",
-  params: ["0x123..."],
+  method: 'function balanceOf(address) view returns (uint256)',
+  params: ['0x123...'],
 });
 ```
 
 For a function that takes no parameters, such as the number function that returns the current number stored in the [incrementer contract](https://moonbase.moonscan.io/address/0xa72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8){target=\_blank}, you simply need to provide the function name as follows: 
 
 ```typescript title="Reading Contract State"
-import { readContract } from "thirdweb";
+import { readContract } from 'thirdweb';
 
 const number = await readContract({
-      contract: contract,
-      method: "number",
-      params: [],
-    });
+  contract: contract,
+  method: 'number',
+  params: [],
+});
 ```
 
 Did you know? With the [thirdweb CLI](https://portal.thirdweb.com/cli){target=\_blank}, you can easily and generate functions for all of the possible calls to a contract. To do so, run the following command in the command line: 
@@ -329,13 +329,13 @@ Every transaction sent using the SDK must first be prepared. This preparation pr
 You can prepare a transaction as follows:
 
 ```typescript title="Prepare a transaction"
-import { prepareTransaction, toWei } from "thirdweb";
+import { prepareTransaction, toWei } from 'thirdweb';
 
 const transaction = prepareTransaction({
-  to: "0x1234567890123456789012345678901234567890",
+  to: '0x1234567890123456789012345678901234567890',
   chain: moonbase,
   client: thirdwebClient,
-  value: toWei("1.0"),
+  value: toWei('1.0'),
   gasPrice: 150n,
 });
 ```
@@ -343,8 +343,8 @@ const transaction = prepareTransaction({
 After the transaction is prepared, you can send it as follows:
 
 ```typescript title="Send a transaction"
-import { sendTransaction } from "thirdweb";
- 
+import { sendTransaction } from 'thirdweb';
+
 const { transactionHash } = await sendTransaction({
   account,
   transaction,
@@ -354,12 +354,12 @@ const { transactionHash } = await sendTransaction({
 You can optionally use `sendAndConfirmTransaction` to wait for the transaction to be mined. This is relevant if you want to block the user from continuing until the transaction is confirmed. 
 
 ```typescript title="Send and Confirm a Transaction"
-import { sendAndConfirmTransaction } from "thirdweb";
-import { createWallet } from "thirdweb/wallets";
- 
-const wallet = createWallet("io.metamask");
+import { sendAndConfirmTransaction } from 'thirdweb';
+import { createWallet } from 'thirdweb/wallets';
+
+const wallet = createWallet('io.metamask');
 const account = await wallet.connect({ client });
- 
+
 const receipt = await sendAndConfirmTransaction({
   transaction,
   account,
@@ -373,37 +373,37 @@ thirdweb provides a number of helpful utility methods surrounding preparing and 
 You can estimate the gas used by a txn as follows: 
 
 ```typescript title="Estimating Gas"
-import { estimateGas } from "thirdweb";
- 
+import { estimateGas } from 'thirdweb';
+
 const gasEstimate = await estimateGas({ transaction });
-console.log("estmated gas used", gasEstimate);
+console.log('estmated gas used', gasEstimate);
 ```
 
 You can estimate the gas cost in ether and wei as follows: 
 
 ```typescript title="Estimating Gas Cost"
-import { estimateGas } from "thirdweb";
+import { estimateGas } from 'thirdweb';
 
 const gasCost = await estimateGasCost({ transaction });
-console.log("cost in ether", gasCost.ether);
+console.log('cost in ether', gasCost.ether);
 ```
 
 thirdweb also provides a handy way to simulate transactions and verify their integrity before actually submitting it to the blockchain. You can simulate a transaction as follows:
 
 ```typescript title="Simulate a transaction"
-import { simulateTransaction } from "thirdweb";
+import { simulateTransaction } from 'thirdweb';
 
 const result = await simulateTransaction({ transaction });
-console.log("simulation result", result);
+console.log('simulation result', result);
 ```
 
 You can encode transaction data to act on later by taking the following steps: 
 
 ```typescript title="Encode transaction data"
-import { encode } from "thirdweb";
+import { encode } from 'thirdweb';
 
 const data = await encode(transaction);
-console.log("encoded data", data);
+console.log('encoded data', data);
 ```
 
 ### Connect Wallet Button {: #connect-wallet-button }
@@ -411,14 +411,14 @@ console.log("encoded data", data);
 Perhaps the first and most important interaction users will have with your dApp is connecting their wallet. thirdweb provides an easy and highly customizable way for you to enable this. thirdweb provides a highly customizable [`Connect Button`](https://portal.thirdweb.com/typescript/v5/react/components/ConnectButton){target=\_blank} to tailor it to your desired wallets. The `Connect Button` accepts an optional  `wallets` parameter with an array of wallets. You can add or remove wallets from the `wallets` array to change the options available to users. thirdWeb also offers a [ConnectButton Playground](https://thirdweb.com/dashboard/connect/playground) to customize and view changes for the `ConnectButton` in real-time, given the button's high degree of flexibility.
 
 ```typescript title="Connect Wallet Button"
-import { ConnectButton } from "thirdweb/react";
-import { createWallet, inAppWallet } from "thirdweb/wallets";
+import { ConnectButton } from 'thirdweb/react';
+import { createWallet, inAppWallet } from 'thirdweb/wallets';
  
 const wallets = [
   inAppWallet(),
-  createWallet("io.metamask"),
-  createWallet("com.coinbase.wallet"),
-  createWallet("me.rainbow"),
+  createWallet('io.metamask'),
+  createWallet('com.coinbase.wallet'),
+  createWallet('me.rainbow'),
 ];
  
 function Example() {
