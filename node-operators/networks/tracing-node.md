@@ -21,7 +21,7 @@ Similarly to running a regular node, you can spin up a tracing node using Docker
 
 Spinning up a `debug`, `txpool`, or `tracing` node is similar to [running a full node](/node-operators/networks/run-a-node/overview/){target=\_blank}. However, there are some additional flags that you may want to enable specific tracing features:
 
-  - **`--ethapi debug`** - optional flag that enables `debug_traceTransaction`, `debug_traceBlockByNumber`, and `debug_traceBlockByHash`
+  - **`--ethapi debug`** - optional flag that enables `debug_traceTransaction`, `debug_traceBlockByNumber`, `debug_traceBlockByHash`, and `debug_traceCall`
   - **`--ethapi trace`** - optional flag that enables `trace_filter`
   - **`--ethapi txpool`** - optional flag that enables `txpool_content`, `txpool_inspect`, and `txpool_status`
   - **`--wasm-runtime-overrides <path/to/overrides>`** - **required** flag for tracing that specifies the path where the local Wasm runtimes are stored. If you're using Docker, the path is as follows: `/moonbeam/<network>-substitutes-tracing`. Accepts the network as a parameter: `moonbeam`, `moonriver`, or `moonbase` (for development nodes and Moonbase Alpha)
