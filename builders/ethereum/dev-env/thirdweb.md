@@ -7,7 +7,7 @@ description: This guide will show you some of thirdweb's features, including bui
 
 ## Introduction {: #introduction }
 
-[thirdweb](https://thirdweb.com){target=\_blank} is a complete Web3 development framework that provides everything you need to develop smart contracts, build DApps, and more.
+[thirdweb](https://thirdweb.com){target=\_blank} is a complete Web3 development framework that provides everything you need to develop smart contracts, build dApps, and more.
 
 With thirdweb, you can access tools to help you through every phase of the dApp development cycle. You can create your own custom smart contracts or use any of thirdweb's prebuilt contracts to get started quickly. From there, you can use thirdweb's CLI to deploy your smart contracts. Then you can interact with your smart contracts by creating a Web3 application using the language of your choice, including but not limited to React and TypeScript. 
 
