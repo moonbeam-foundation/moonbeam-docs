@@ -127,7 +127,7 @@ thirdweb offers a small number of chains from `@thirdweb/chains` and does not in
 
 The NFT marketplace template includes a `chains.ts` file under `src/consts/chains.ts`. To add support for Moonbase Alpha to the dApp, add the following lines: 
 
-```typescript title="App.tsx"
+```typescript title="chains.ts"
 export const moonbase = defineChain({
   id: 1287,
   rpc: 'https://rpc.api.moonbase.moonbeam.network',
