@@ -171,35 +171,11 @@ If you wish to set up your own tracing node, you can follow the [Running a Traci
     === "Parameters"
         - `call_object` *object* the transaction object to be executed
         - `block_hash` *string* - the block hash of the base block
-        - `tracer_config` *string* - a JSON object for configuring the tracer that contains the following fields: 
-            - `tracer` *string* - sets the type of tracer. Set the `tracer` field to `callTracer` to return only transactions and sub-calls. Otherwise, the tracer will default to the opcode logger, which Moonbeam does not support due to the large volume of data returned
-            - `stateOverrides` *stateOverrides* - overrides the state data for the current call. See [Geth's documentation](https://geth.ethereum.org/docs/developers/evm-tracing/built-in-tracers#state-overrides){target=\_blank} for additional details
-            - `blockOverrides` *blockOverrides* - overrides the block data for the current call. See [Geth's documentation](https://geth.ethereum.org/docs/developers/evm-tracing/built-in-tracers#block-overrides){target=\_blank} for additional details
-            - `txIndex` *number* - if set, indicates the transaction index to be used for tracing. Defaults to the last transaction index in the block
 
     === "Returns"
-
-        If you supplied a `tracer_config`, the `result` object contains the following fields:
-        
-        - `type` - the type of the call
-        - `from` - the address of the party sending the transaction
-        - `to` - the address of the intended transaction recipient
-        - `value` - the integer of the value sent with this transaction
-        - `gas` - the integer of the gas provided for the transaction execution
-        - `gasUsed` - the integer of the gas used
-        - `input` - the data given at the time of input
-        - `output` - the data returned as an output
-        - `error` - the type of error, if any
-        - `revertReason` - the Solidity revert reason, if any
-        - `calls` - a list of sub-calls, if any
-
-        <br>
-        If you used the default opcode logger, the `result` object contains the following fields:
-
         - `gas`- the integer of the gas provided for the transaction execution
         - `returnValue` - the output produced by the execution of the transaction
         - `structLogs` - an array of [objects containing a detailed log of each opcode](https://geth.ethereum.org/docs/developers/evm-tracing/built-in-tracers#struct-opcode-logger){target=\_blank} executed during the transaction
-        - `failed` - a boolean indicating whether the transaction execution failed or succeeded
 
     === "Example"
 
