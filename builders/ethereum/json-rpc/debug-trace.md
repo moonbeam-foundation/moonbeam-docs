@@ -171,26 +171,26 @@ If you wish to set up your own tracing node, you can follow the [Running a Traci
     === "Parameters"
         - `call_object` *object* the transaction object to be executed
         - `block_hash` *string* - the block hash of the base block
-        - `tracer_config` *string* - a JSON object for configuring the tracer that contains the following field: 
-            - `tracer` *string* - sets the type of tracer. This must be set to `callTracer`, which only returns transactions and sub-calls. Otherwise, the tracer will attempt to default to the opcode logger, which is not supported at this time due to the heavy nature of the call
-            - `stateOverrides` *stateOverrides* - Overrides for the state data for this call. [Geth's documentation](https://geth.ethereum.org/docs/developers/evm-tracing/built-in-tracers#state-overrides){target=\_blank} for detail information
-            - `blockOverrides` *blockOverrides* - Overrides for the block data for this call.[Geth's documentation](https://geth.ethereum.org/docs/developers/evm-tracing/built-in-tracers#block-overrides){target=\_blank} for detail information
-            - `txIndex` *number* - If set, the state at the given transaction index will be used to tracing. Default is the last transaction index in the block
+        - `tracer_config` *string* - a JSON object for configuring the tracer that contains the following fields: 
+            - `tracer` *string* - sets the type of tracer. Set the `tracer` field to `callTracer` to return only transactions and sub-calls. Otherwise, the tracer will default to the opcode logger, which Moonbeam does not support due to the large volume of data returned
+            - `stateOverrides` *stateOverrides* - overrides the state data for the current call. See [Geth's documentation](https://geth.ethereum.org/docs/developers/evm-tracing/built-in-tracers#state-overrides){target=\_blank} for additional details
+            - `blockOverrides` *blockOverrides* - overrides the block data for the current call. See [Geth's documentation](https://geth.ethereum.org/docs/developers/evm-tracing/built-in-tracers#block-overrides){target=\_blank} for additional details
+            - `txIndex` *number* - if set, indicates the transaction index to be used for tracing. Defaults to the last transaction index in the block
 
     === "Returns"
 
         If you supplied a `tracer_config`, the `result` object contains the following fields:
         
         - `type` - the type of the call
-        - `from` - the address the transaction is sent from
-        - `to` - the address the transaction is directed to
+        - `from` - the address of the party sending the transaction
+        - `to` - the address of the intended transaction recipient
         - `value` - the integer of the value sent with this transaction
         - `gas` - the integer of the gas provided for the transaction execution
         - `gasUsed` - the integer of the gas used
         - `input` - the data given at the time of input
-        - `output` - the data which is returned as an output
+        - `output` - the data returned as an output
         - `error` - the type of error, if any
-        - `revertReason` - the type solidity revert reason, if any
+        - `revertReason` - the Solidity revert reason, if any
         - `calls` - a list of sub-calls, if any
 
         <br>
@@ -209,10 +209,10 @@ If you wish to set up your own tracing node, you can follow the [Running a Traci
             "jsonrpc": "2.0",
             "id": 1,
             "method": "debug_traceCall",
-            "params": [
-              {
-                "from":0xE57eBd2d67B462E9926e04a8e33f01cD0D64346D,
-                "to":"0xE57eBd2d67B462E9926e04a8e33f01cD0D64346D","data":"0x627dd56a0f0349d7241a0150b00000001ff160024c5f99045af91d2b6d4fa0ea89fc47cf42711555078000000027101061b600a9f0e4b53cf3f6a837c2815964e2291f9c0c8000016a00004400000000cc0903988cab7950274a2073197b461ea369b36d5ee96a1c9f090ef512be21072068000000009b050a001e12088577273fb3b72306f3a59e26ab77116f5d428daa0780900000271010ffffffff5ac1f9a51a93f5c527385edf7fe98a52e57ebd2d67b462e9926e04a8e33f01cd0d64346dab3f0245b83feb11d15aaffefd7ad465a59817ed"
+            "params": [{
+                "from": "INSERT_FROM_ADDRESS",
+                "to":"INSERT_TO_ADDRESS",
+                "data":"INSERT_CALL_DATA"
                 }, "INSERT_BLOCK_HASH"]
           }'
         ```
