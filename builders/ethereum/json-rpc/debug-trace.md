@@ -163,6 +163,37 @@ If you wish to set up your own tracing node, you can follow the [Running a Traci
           }'
         ```
 
+
+???+ function "debug_traceCall"
+
+    This method executes an eth_call within the context of the given block using the final state of the parent block as the base. Refer to [Geth's documentation](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-debug#debugtracecall){target=\_blank} for more information.
+
+    === "Parameters"
+        - `call_object` *object* the transaction object to be executed
+        - `block_hash` *string* - the block hash of the base block
+
+    === "Returns"
+        - `gas`- the integer of the gas provided for the transaction execution
+        - `returnValue` - the output produced by the execution of the transaction
+        - `structLogs` - an array of [objects containing a detailed log of each opcode](https://geth.ethereum.org/docs/developers/evm-tracing/built-in-tracers#struct-opcode-logger){target=\_blank} executed during the transaction
+
+    === "Example"
+
+        ```bash
+        curl {{ networks.development.rpc_url }} -H "Content-Type:application/json;charset=utf-8" -d \
+          '{
+            "jsonrpc": "2.0",
+            "id": 1,
+            "method": "debug_traceCall",
+            "params": [{
+                "from": "INSERT_FROM_ADDRESS",
+                "to":"INSERT_TO_ADDRESS",
+                "data":"INSERT_CALL_DATA"
+                }, "INSERT_BLOCK_HASH"]
+          }'
+        ```
+
+
 ???+ function "trace_filter"
 
     This method returns matching traces for the given filters. Refer to [Open Ethereum's documentation](https://openethereum.github.io/JSONRPC-trace-module#trace_filter){target=\_blank} for more information.
