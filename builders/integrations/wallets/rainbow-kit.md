@@ -3,7 +3,7 @@ title: Add RainbowKit to a dApp
 description: Learn how to integrate RainbowKit into a dApp to allow users to connect their mobile wallets to Moonbeam, Moonriver, or Moonbase Alpha networks.
 ---
 
-# Integrate RainbowKit into a dApp
+# Integrate RainbowKit into a DApp
 
 ## Introduction {: #introduction }
 
@@ -56,9 +56,9 @@ You can now navigate to the project directory and start the development server t
 
 Your starting screen should look like this:
 
-<!--TODO: image rainbowkit-1 goes here-->
+![Scaffolded RainbowKit project landing page](/images/builders/integrations/wallets/rainbowkit/rainbowkit-1.webp)
 
-You may notice that neither Moonbeam, Moonriver, nor Moonbase Alpha is included in the list of networks on the default dropdown menu. RainbowKit provides a [manual setup](https://www.rainbowkit.com/docs/installation#manual-setup){target=\_blank} option for builders who want to customize their application further, including the ability to add networks and chains. The following guide demonstrates how to use the RainbowKit manual setup to add support for Moonbeam networks.
+You may notice that neither Moonbeam, Moonriver, nor Moonbase Alpha is included in the list of networks on the default menu. RainbowKit provides a [manual setup](https://www.rainbowkit.com/docs/installation#manual-setup){target=\_blank} option for builders who want to customize their application further, including the ability to add networks and chains. The following guide demonstrates how to use the RainbowKit manual setup to add support for Moonbeam networks.
 
 
 ## Checking Prerequisites {: #checking-prerequisites }
@@ -142,7 +142,7 @@ RainbowKit offers a `ConnectButton` component which renders the **Connect** and 
 
 If you haven't already, start the development server and spin up a local version of your dApp. Your home page should now include a visbile **Connect Wallet** button. Click the button to test the connection. You should now see the RainbowKit modal with options to get or connect a wallet. Select **MetaMask** and follow the prompts to connect your wallet.
 
-The current configuration defaults to connecting to Ethereum and displaying the current network, native token balance, an ENS or fallback avatar and the connected wallet address. Use the drop down arrow next to **Ethereum** to open the **Switch Networks** modal. Select **Moonbase Alpha** and sign the MetaMask transaction to authorize switching networks. You should now see **Moonbase Alpha** listed as connected network with your DEV token balance, avatar, and account number displayed. 
+The current configuration defaults to connecting to Ethereum and displaying the current network, native token balance, an ENS or fallback avatar and the connected wallet address. Select the arrow next to **Ethereum** to open the **Switch Networks** modal. Select **Moonbase Alpha** and sign the MetaMask transaction to authorize switching networks. You should now see **Moonbase Alpha** listed as connected network with your DEV token balance, avatar, and account number displayed. 
 
 ## Customize Rainbow Kit
 
@@ -168,9 +168,9 @@ Now it is time to disconnect MetaMask from your dApp and then reconnect to test 
 
 ### Disconnect from DApp {: #disconnect-from-dapp }
 
-RainbowKit includes a **Disconnect** button out of the box. Use the drop down arrow next to your account number to open the modal. Click the **Disconnect** button. You should now see **Connect Wallet** and your account information should no longer be visible. 
+RainbowKit includes a **Disconnect** button out of the box. Select the arrow next to your account number to open the modal. Click the **Disconnect** button. You should now see **Connect Wallet** and your account information should no longer be visible. 
 
-<!--TODO: screenshot of disconnect-->
+![Built in Disconnect button](/images/builders/integrations/wallets/rainbowkit/rainbowkit-2.webp)
 
 ### Disconnect from MetaMask Mobile {: #disconnect-from-metamask-mobile }
 
@@ -186,12 +186,11 @@ Some users prefer to disconnect from within their mobile wallet rather than usin
 
 The **Connect Wallet** button on your home page should now render in the color you entered for `accentColor` when customizing the theme. When you click **Connect Wallet**, you will see the same accent color in use. Select MetaMask and sign the transaction to authorize the connection. You should now see **Moonbase Alpha** as the connected network and your DEV token balance for the account balance without needing to manually switch networks. 
 
-<!--TODO: screenshot with custom color highlighting the connected network-->
+![Theme customization on the user modal](/images/builders/integrations/wallets/rainbowkit/rainbowkit-3.webp)
 
 This guide includes only a few of the customization options available through RainbowKit. You can learn more about the capabilities and options of this library by visiting [RainbowKit Docs](https://www.rainbowkit.com/docs/introduction){target=\_blank}.
 
-<!--TODO: where to upload this repo? then add the url-->
-You can view the complete example code in the [rainbow-manual-build-demo repository](){target=\_blank}
+You can view the complete example code in the [rainbow-manual-build-demo repository](https://github.com/papermoonio/rainbowkit-manual-build-demo){target=\_blank}
 
 --8<-- 'text/_disclaimers/third-party-content-intro.md'
 
