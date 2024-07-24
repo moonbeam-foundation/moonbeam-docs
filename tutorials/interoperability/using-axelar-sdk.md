@@ -205,15 +205,15 @@ The main meat of the code is in these five lines. First, we initialize the SDK m
 
 You can learn a bit more about the `AxelarGMPRecoveryAPI` in [Axelar’s documentation](https://docs.axelar.dev/dev/axelarjs-sdk/tx-status-query-recovery){target=\_blank}. It includes additional functionality in case a transaction goes wrong, especially if there isn’t enough gas sent along with the cross-chain transaction.
 
-To run the script, run the following command, where `INSERT_TRANSACTION_HASH` is the transaction of hash on the origin chain that you sent a cross-chain message in:
+`axelarStatus.js` file is configured as a Hardhat task rather than a script, which means that the command to run it is going to differ slightly from the style of command required to execute a script. Be sure to note these differences and carefully craft the below command, replacing `INSERT_TRANSACTION_HASH` with the transaction of hash on the origin chain that you sent a cross-chain message in:
 
 ```bash
-npx hardhat run scripts/mint.js --network INSERT_TRANSACTION_HASH
+npx hardhat axelarStatus --tx INSERT_TRANSACTION_HASH
 ```
 
 If you run the Hardhat script, you’ll end up with something like this in your console (I didn’t include all of it since it’s so large). You’re likely most interested in the status, where a list of possible ones is in [Axelar’s documentation](https://docs.axelar.dev/dev/axelarjs-sdk/tx-status-query-recovery#query-transaction-status-by-txhash){target=\_blank}. You’re looking for `destination_executed` to indicate that it was received and executed correctly, but if you’re too early you might find `source_gateway_called` or `destination_gateway_approved`.
 
-![Hardhat script console output](/images/tutorials/interoperability/axelar-sdk/axelar-3.webp)
+--8<-- 'code/tutorials/interoperability/axelar-sdk/terminal/status.md'
 
 You can learn more about debugging contracts in [Axelar’s documentation](https://docs.axelar.dev/dev/general-message-passing/debug/error-debugging){target=\_blank}, where they go into depth on specific error messages and how to use tools like Tenderly for logic errors.
 
