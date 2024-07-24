@@ -205,7 +205,7 @@ The main meat of the code is in these five lines. First, we initialize the SDK m
 
 You can learn a bit more about the `AxelarGMPRecoveryAPI` in [Axelar’s documentation](https://docs.axelar.dev/dev/axelarjs-sdk/tx-status-query-recovery){target=\_blank}. It includes additional functionality in case a transaction goes wrong, especially if there isn’t enough gas sent along with the cross-chain transaction.
 
-`axelarStatus.js` file is configured as a Hardhat task rather than a script, which means that the command to run it is going to differ slightly from the style of command required to execute a script. Be sure to note these differences and carefully craft the below command, replacing `INSERT_TRANSACTION_HASH` with the transaction of hash on the origin chain that you sent a cross-chain message in:
+`axelarStatus.js` file is configured as a Hardhat task rather than a script, which means that the command to run it will differ slightly from the command style required to execute a script. Be sure to note these differences and carefully craft the below command, replacing `INSERT_TRANSACTION_HASH` with the transaction of hash on the origin chain that you sent a cross-chain message in:
 
 ```bash
 npx hardhat axelarStatus --tx INSERT_TRANSACTION_HASH
