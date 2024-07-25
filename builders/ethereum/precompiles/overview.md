@@ -61,6 +61,7 @@ The precompiled contracts are categorized by address and based on the origin net
     |                                      [GMP](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/gmp/Gmp.sol){target=\_blank}                                       |                {{networks.moonbeam.precompiles.gmp}}                |
     |                [XCM Transactor V3](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/xcm-transactor/src/v3/XcmTransactorV3.sol){target=\_blank}                 |         {{networks.moonbeam.precompiles.xcm_transactor_v3}}         |
     |                               [Identity](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/identity/Identity.sol){target=\_blank}                               |             {{networks.moonbeam.precompiles.identity}}              |
+    |          [Relay Data Verifier](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/relay-data-verifier/RelayDataVerifier.sol){target=\_blank}          | {{networks.moonbeam.precompiles.relay_data_verifier}} |
 
 === "Moonriver"
     |                                                                           Contract                                                                            |                               Address                                |
@@ -90,6 +91,7 @@ The precompiled contracts are categorized by address and based on the origin net
     |                          [GMP](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/gmp/Gmp.sol){target=\_blank}                           |                {{networks.moonriver.precompiles.gmp}}                |
     |    [XCM Transactor V3](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/xcm-transactor/src/v3/XcmTransactorV3.sol){target=\_blank}     |         {{networks.moonriver.precompiles.xcm_transactor_v3}}         |
     |                   [Identity](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/identity/Identity.sol){target=\_blank}                   |             {{networks.moonriver.precompiles.identity}}              |
+    |          [Relay Data Verifier](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/relay-data-verifier/RelayDataVerifier.sol){target=\_blank}          | {{networks.moonbeam.precompiles.relay_data_verifier}} |
 
 === "Moonbase Alpha"
     |                                                                            Contract                                                                            |                               Address                               |
@@ -119,3 +121,4 @@ The precompiled contracts are categorized by address and based on the origin net
     |                          [GMP](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/gmp/Gmp.sol){target=\_blank}                           |                {{networks.moonbase.precompiles.gmp}}                |
     |    [XCM Transactor V3](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/xcm-transactor/src/v3/XcmTransactorV3.sol){target=\_blank}     |         {{networks.moonbase.precompiles.xcm_transactor_v3}}         |
     |                   [Identity](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/identity/Identity.sol){target=\_blank}                   |             {{networks.moonbase.precompiles.identity}}              |
+    |          [Relay Data Verifier](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/relay-data-verifier/RelayDataVerifier.sol){target=\_blank}          | {{networks.moonbeam.precompiles.relay_data_verifier}} |
