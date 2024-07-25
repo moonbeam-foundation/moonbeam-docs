@@ -10,7 +10,7 @@ keywords: ethereum, moonbeam, ECRecoverPublicKey, sha3FIPS256, StorageCleaner, p
 
 Precompiled contracts (precompiles) are a set of special, predefined functions built into the software of a blockchain client. These functions are designed to perform computation heavy cryptography, such as hashing and signature verification, in a standardized and more efficient way. These functions are grouped together and assigned a blockchain address. You can interact with precompiles using the same tools as working with your deployed contracts. 
 
-There is a group of precompiles neither specific to Moonbeam nor Ethereum but are supported for use. This group includes `Sha3FIPS256`, `ECRecoverPublicKey`, and `StorageCleaner`. 
+There is a group of precompiles that are neither specific to Moonbeam nor Ethereum but are supported for use. This group includes `Sha3FIPS256`, `ECRecoverPublicKey`, and `StorageCleaner`. 
 
 In this guide, you will learn how to use and/or verify these precompiles. 
 
@@ -27,9 +27,6 @@ Currently there is no SHA3-256 support in Solidity, so it needs to be called wit
 ```solidity
 --8<-- 'code/builders/ethereum/precompiles/utility/eth-mainnet/sha3fips.sol'
 ```
-
-## Dispatch
-
 
 ## ECRecoverPublicKey
 
