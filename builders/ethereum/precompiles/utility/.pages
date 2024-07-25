@@ -4,3 +4,5 @@ nav:
   - 'Ethereum Native': 'eth-mainnet.md'
   - 'Precompile Registry': 'registry.md'
   - 'Relay Data Verifier': 'relay-data-verifier.md'
+  - 'Neither Moonbeam Nor Ethereum Specific': 'non-specific.md'
+  
