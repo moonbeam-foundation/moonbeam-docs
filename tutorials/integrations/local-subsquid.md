@@ -1,9 +1,9 @@
 ---
 title: Index a Local Development Node
-description: Improve your DApp development experience by following this guide to learn how to index a DApp deployed locally on a Moonbeam development node with Subsquid!
+description: Improve your DApp development experience by following this guide to learn how to index a DApp deployed locally on a Moonbeam dev node with SQD (formerly Subsquid)!
 ---
 
-# Index a Local Moonbeam Development Node with Subsquid
+# Index a Local Moonbeam Development Node with SQD (formerly Subsquid)
 
 _by Erin Shaben and Kevin Neilson_
 
@@ -11,9 +11,9 @@ _by Erin Shaben and Kevin Neilson_
 
 When developing a dApp, it's beneficial to develop smart contracts using a local development environment as opposed to a live network, such as a TestNet or MainNet. Local development removes some of the hassles involved with developing on a live network, like having to fund development accounts and waiting for blocks to be produced. On Moonbeam, developers can spin up their own local [Moonbeam development node](/builders/get-started/networks/moonbeam-dev/){target=\_blank} to quickly and easily build and test applications.
 
-But what about dApps that rely on indexers to index blockchain data? How can developers of these applications streamline the development process? Thanks to [Subsquid](/builders/integrations/indexers/subsquid/){target=\_blank}, a data network for retrieving data from 100+ chains, it is now possible to index blocks in a local development environment, such as your Moonbeam development node!
+But what about dApps that rely on indexers to index blockchain data? How can developers of these applications streamline the development process? Thanks to [SQD](/builders/integrations/indexers/subsquid/){target=\_blank}, a data network for retrieving data from 100+ chains, it is now possible to index blocks in a local development environment, such as your Moonbeam development node!
 
-This tutorial will walk you through the process of indexing data on a local Moonbeam development node using Subsquid. We'll create an ERC-20 contract and use Subsquid to index transfers of our ERC-20.
+This tutorial will walk you through the process of indexing data on a local Moonbeam development node using SQD. We'll create an ERC-20 contract and use SQD to index transfers of our ERC-20.
 
 ## Check Prerequisites {: #check-prerequisites }
 
@@ -24,7 +24,7 @@ To follow along with this tutorial, you'll need to have:
 - An empty Hardhat project. For step-by-step instructions, please refer to the [Creating a Hardhat Project](/builders/ethereum/dev-env/hardhat/#creating-a-hardhat-project){target=\_blank} section of our Hardhat documentation page
 - An [ERC-20 token deployed](#deploy-an-erc-20-contract) to your local development node, unless you plan on indexing Moonbase Alpha and using an existing ERC-20
 
-We'll configure our Hardhat project and create our Subsquid project later on in the tutorial.
+We'll configure our Hardhat project and create our SQD project later on in the tutorial.
 
 ## Spin up a Local Development Node {: #spin-up-a-local-development-node }
 
@@ -200,9 +200,9 @@ As each transaction is sent, you'll see a log printed to the terminal.
 
 Now we can move on to creating our Squid to index the data on our local development node.
 
-## Create a Subsquid Project {: #create-subsquid-project }
+## Create a SQD Project {: #create-SQD-project }
 
-Now we're going to create our Subquid project. First, we'll need to install the [Subsquid CLI](https://docs.subsquid.io/squid-cli){target=\_blank}:
+Now we're going to create our Subquid project. First, we'll need to install the [SQD CLI](https://docs.subsquid.io/squid-cli){target=\_blank}:
 
 ```bash
 npm i -g @subsquid/cli@latest
@@ -273,7 +273,7 @@ This will generate the related TypeScript interface classes in the `src/abi/erc2
 
 ### Configure the Processor {: #configure-the-processor}
 
-The `processor.ts` file tells Subsquid exactly what data you'd like to ingest. Transforming that data into the exact desired format will take place at a later step. In `processor.ts`, we'll need to indicate a data source, a contract address, the event(s) to index, and a block range.
+The `processor.ts` file tells SQD exactly what data you'd like to ingest. Transforming that data into the exact desired format will take place at a later step. In `processor.ts`, we'll need to indicate a data source, a contract address, the event(s) to index, and a block range.
 
 Open up the `src` folder and head to the `processor.ts` file.
 
@@ -283,13 +283,13 @@ To get started, you can import the ERC-20 ABI, which will be used to define the 
 import * as erc20 from './abi/erc20';
 ```
 
-Next, we need to tell the Subsquid processor which contract we're interested in. Create a constant for the address in the following manner:
+Next, we need to tell the SQD processor which contract we're interested in. Create a constant for the address in the following manner:
 
 ```ts
 export const contractAddress = 'INSERT_CONTRACT_ADDRESS'.toLowerCase();
 ```
 
-The `.toLowerCase()` is critical because the Subsquid processor is case-sensitive, and some block explorers format contract addresses with capitalization. Next, you'll see the line `export const processor = new EvmBatchProcessor()`, followed by `.setDataSource`. We'll need to make a few changes here. Subsquid has [available archives for many chains, including Moonbeam, Moonriver, and Moonbase Alpha](https://docs.subsquid.io/evm-indexing/supported-networks){target=\_blank} that can speed up the data retrieval process. For indexing a local development node, there's no archive necessary so the exclusive data source will be the RPC URL of our local node. Go ahead and comment out or delete the archive line. Once done, your code should look similar to the below:
+The `.toLowerCase()` is critical because the SQD processor is case-sensitive, and some block explorers format contract addresses with capitalization. Next, you'll see the line `export const processor = new EvmBatchProcessor()`, followed by `.setDataSource`. We'll need to make a few changes here. SQD has [available archives for many chains, including Moonbeam, Moonriver, and Moonbase Alpha](https://docs.subsquid.io/evm-indexing/supported-networks){target=\_blank} that can speed up the data retrieval process. For indexing a local development node, there's no archive necessary so the exclusive data source will be the RPC URL of our local node. Go ahead and comment out or delete the archive line. Once done, your code should look similar to the below:
 
 ```ts
 .setDataSource({
@@ -300,7 +300,7 @@ The `.toLowerCase()` is critical because the Subsquid processor is case-sensitiv
 })
 ```
 
-![Run Subsquid commands](/images/tutorials/integrations/local-subsquid/new/local-squid-6.webp)
+![Run SQD commands](/images/tutorials/integrations/local-subsquid/new/local-squid-6.webp)
 
 The Squid template comes with a variable for your RPC URL defined in your `.env` file. You can replace that with the RPC URL for your local development node. For demonstration purposes, the RPC URL for a local development node is hardcoded directly, as shown above. If you're setting the RPC URL in your `.env`, the respective line will look like this:
 
@@ -354,7 +354,7 @@ Once you've completed the prior steps, your `processor.ts` file should look simi
 
 ### Transform and Save the Data {: #transform-and-save-the-data}
 
-While `processor.ts` determines the data being consumed, `main.ts` determines the bulk of actions related to processing and transforming that data. In the simplest terms, we are processing the data that was ingested via the Subsquid processor and inserting the desired pieces into a TypeORM database. For more detailed information on how Subsquid works, be sure to check out the [Subsquid docs on Developing a Squid](https://docs.subsquid.io/basics/squid-development){target=\_blank}
+While `processor.ts` determines the data being consumed, `main.ts` determines the bulk of actions related to processing and transforming that data. In the simplest terms, we are processing the data that was ingested via the SQD processor and inserting the desired pieces into a TypeORM database. For more detailed information on how SQD works, be sure to check out the [SQD docs on Developing a Squid](https://docs.subsquid.io/basics/squid-development){target=\_blank}
 
 Our `main.ts` file is going to scan through each processed block for the `Transfer` event and decode the transfer details, including the sender, receiver, and amount. The script also fetches account details for involved addresses and creates transfer objects with the extracted data. The script then inserts these records into a TypeORM database enabling them to be easily queried.
 
@@ -454,7 +454,7 @@ And that's it! You can now run queries against your Squid on the GraphQL playgro
 
 All of the transfers will be returned, including the transfer of the initial supply to Alith's account and the transfers from Alith to Baltathar, Charleth, Dorothy, and Ethan.
 
-And that's it! You've successfully used Subsquid to index data on a local Moonbeam development node! You can view the entire project on [GitHub](https://github.com/eshaben/local-squid-demo){target=\_blank}.
+And that's it! You've successfully used SQD to index data on a local Moonbeam development node! You can view the entire project on [GitHub](https://github.com/eshaben/local-squid-demo){target=\_blank}.
 
 ## Debug Your Squid {: #debug-your-squid }
 
@@ -473,7 +473,7 @@ You can also add logging statements directly to your `main.ts` file to indicate 
     --8<-- 'code/tutorials/integrations/local-subsquid/main-with-logging.ts'
     ```
 
-See the [Subsquid guide to logging](https://docs.subsquid.io/basics/logging){target=\_blank} for more information on debug mode.
+See the [SQD guide to logging](https://docs.subsquid.io/basics/logging){target=\_blank} for more information on debug mode.
 
 ### Common Errors {: #common-errors }
 
@@ -489,7 +489,7 @@ This error indicates that your indexer is trying to process blocks that don't ex
 .setBlockRange({from: 0, to: 100})
 ```
 
-Another common error can occur when you're experimenting with multiple instances of Subsquid on your machine.
+Another common error can occur when you're experimenting with multiple instances of SQD on your machine.
 
 ```text
 Error response from daemon: driver failed programming external connectivity on endpoint my-awesome-squid-db-1
@@ -497,7 +497,7 @@ Error response from daemon: driver failed programming external connectivity on e
 Bind for 0.0.0.0:23798 failed: port is already allocated
 ```
 
-This error indicates that you have another instance of Subsquid running somewhere else. You can stop that gracefully with the command `sqd down` or by pressing the **Stop** button next to the container in Docker Desktop.
+This error indicates that you have another instance of SQD running somewhere else. You can stop that gracefully with the command `sqd down` or by pressing the **Stop** button next to the container in Docker Desktop.
 
 ```text
 Error: connect ECONNREFUSED 127.0.0.1:23798
