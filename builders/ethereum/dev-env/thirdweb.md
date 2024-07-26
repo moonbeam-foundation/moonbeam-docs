@@ -203,7 +203,9 @@ thirdweb offers a small number of chains from `@thirdweb/chains` and does not in
 
 ## thirdweb SDK {: #thirdweb-sdk }
 
-The following sections will provide an overview of fundamental methods of the thirdweb sdk and how to interact with them. Each code snippet will showcase the relevant import statements and demonstrate using the method in a typical scenario. This guide is intended to be a quick reference guide to the most common thirdweb methods that dApp developers will use. However, it does not include information on each and every thirdweb offering. For details on the entirety of thirdweb's offerings, be sure to visit the [thirdweb documentation site](https://portal.thirdweb.com/){target=\_blank}. For a comprehensive, step-by-step guide to building a dApp with thirdweb be sure to check out Moonbeam's [thirdweb tutorial in the tutorials section](/tutorials/eth-api/thirdweb). The following sections will cover everything from connecting wallets, to preparing transactions, and more.  
+The following sections will provide an overview of fundamental methods of the thirdweb SDK and how to interact with them. Each code snippet will showcase the relevant import statements and demonstrate using the method in a typical scenario. This guide is intended to be a quick reference guide to the most common thirdweb methods that dApp developers will use. However, it does not include information on each and every thirdweb offering. For details on the entirety of thirdweb's offerings, be sure to visit the [thirdweb documentation site](https://portal.thirdweb.com/){target=\_blank}.
+
+For a comprehensive, step-by-step guide to building a dApp with thirdweb be sure to check out Moonbeam's [thirdweb tutorial in the tutorials section](/tutorials/eth-api/thirdweb). The following sections will cover everything from connecting wallets, to preparing transactions, and more.
 
 ### Accounts and Wallets
 
