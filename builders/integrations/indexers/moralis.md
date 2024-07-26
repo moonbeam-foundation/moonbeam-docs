@@ -146,27 +146,19 @@ To get started quickly, choose a predefined template here. This example focuses 
 
 ![template selection page](/images/builders/integrations/indexers/moralis/moralis-3.webp)
 
-On the next page, enter the following details: 
+On the next page, enter the following details:
 
-- Smart Contract Address for [xcDot](https://moonscan.io/token/0xffffffff1fcacbd218edc0eba20fc2308c778080){target=\_blank}: 0xFfFFfFff1FcaCBd218EDc0EbA20Fc2308C778080
-- Network: Select Moonbeam from the available options.
-Moralis supports listening to events on Moonbeam, Moonriver, and Moonbase Alpha.  
+1. Enter the smart contract address for [xcDot](https://moonscan.io/token/0xffffffff1fcacbd218edc0eba20fc2308c778080){target=\_blank}: 0xFfFFfFff1FcaCBd218EDc0EbA20Fc2308C778080
+2. Select Moonbeam from the available network options. Moralis supports listening to events on Moonbeam, Moonriver, and Moonbase Alpha 
+3. Customize the events you want to receive. For this example, choose All contract events. You may also test the stream to confirm it captures the needed data
+4. Connect the stream to an endpoint to receive updates from Moralis
+5. Click Save to activate your stream
 
 ![details input page](/images/builders/integrations/indexers/moralis/moralis-4.webp)
 
-Next, customize the events you want to receive. For this example, choose "All contract events." 
-
-You may also test the stream to confirm it captures the needed data.  
-
-![event selection and stream test page](/images/builders/integrations/indexers/moralis/moralis-5.webp)
-
-Next, you can connect the stream to an endpoint to receive updates from Moralis.
-
-![webhook setup page](/images/builders/integrations/indexers/moralis/moralis-6.webp)
-
 All set. Once you activate your stream, it will be added to your list of streams on your dashboard:
 
-![stream API end page](/images/builders/integrations/indexers/moralis/moralis-7.webp)
+![stream API end page](/images/builders/integrations/indexers/moralis/moralis-5.webp)
 
 ## Accessing RPC API {: #accessing-rpc-api }
 
@@ -176,11 +168,11 @@ To use the Moralis Moonbeam RPC endpoint, visit the **Nodes** page, click Create
 2. Choose **Mainnet** as the chain
 3. Click **Create Node**
 
-![RPC API setup page](/images/builders/integrations/indexers/moralis/moralis-8.webp)
+![RPC API setup page](/images/builders/integrations/indexers/moralis/moralis-5.webp)
 
 Your RPC endpoint will be generated for you to easily copy, and your Moonbeam node will be up and running in seconds, ready to handle your RPC requests. You can view your nodes at any time from your dashboard.
 
-![node ready page](/images/builders/integrations/indexers/moralis/moralis-9.webp)
+![node ready page](/images/builders/integrations/indexers/moralis/moralis-7.webp)
 
 And that's it! Hope this guide has been helpful. For advance features and more complex use cases, refer to [its official documentation](https://docs.moralis.io/) for further details.
 
