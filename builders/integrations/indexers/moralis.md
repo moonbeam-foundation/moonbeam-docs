@@ -160,7 +160,7 @@ All set. Once you activate your stream, it will be added to your list of streams
 
 ![stream API end page](/images/builders/integrations/indexers/moralis/moralis-5.webp)
 
-## Accessing RPC API {: #accessing-rpc-api }
+## Accessing the RPC API {: #accessing-rpc-api }
 
 To use the Moralis Moonbeam RPC endpoint, visit the **Nodes** page, click **Create Node**, and take the following steps:
 
