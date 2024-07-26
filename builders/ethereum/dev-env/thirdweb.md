@@ -247,8 +247,9 @@ import { client } from './client';
 const myContract = getContract({
   client,
   chain: moonbase,
-  address: INSERT_CONTRACT_ADDRESS,
-  abi: INSERT_ABI,
+  address: 0xa72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8, // Incrementer contract address on Moonbase Alpha
+  abi: '[{"inputs":[],"name":"increment","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"number","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"timestamp","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"}]';
+},
 });
 ```
 
