@@ -1,6 +1,6 @@
 ---
-title: Build an NFT Marketplace dApp with thirdweb
-description: Learn how to build an NFT marketplace dApp with thirdweb, including both frontend and smart contract components, in an end-to-end fashion.
+title: Build an NFT Marketplace DApp with thirdweb
+description: Learn how to build an NFT marketplace DApp with thirdweb, including both frontend and smart contract components, in an end-to-end fashion.
 ---
 
 # How to Build an NFT Marketplace DApp with thirdweb
@@ -10,7 +10,7 @@ _by Kevin Neilson_
 
 [thirdweb](https://thirdweb.com/explore){target=\_blank} is a powerful development platform that simplifies building and deploying Web3 applications on the blockchain. It provides pre-built smart contracts and tools, enabling developers to quickly launch applications that interact with NFTs, tokens, and more with less coding and configuration effort.  
 
-In this guide, we'll go step by step through the process of building an NFT marketplace dApp with thirdweb on Moonbeam. We'll deploy all of the associated contracts, including an ERC-721 NFT contract and a marketplace smart contract to Moonbase Alpha with thirdweb, and then we'll integrate them into the dApp.
+In this guide, we'll go step by step through the process of building an NFT marketplace DApp with thirdweb on Moonbeam. We'll deploy all of the associated contracts, including an ERC-721 NFT contract and a marketplace smart contract to Moonbase Alpha with thirdweb, and then we'll integrate them into the DApp.
 
 For a more nuts and bolts approach to thirdweb with information about available methods, the thirdweb CLI and deployment tools, be sure to check out the [thirdweb guide in the Builders section](/builders/ethereum/dev-env/thirdweb). 
 
@@ -48,7 +48,7 @@ Next, you'll need to create a client ID for your thirdweb project and specify it
 
 ## Specify Client ID {: #specify-client-id }
 
-Before you launch your dApp (locally or publicly deployed), you must have a thirdweb Client ID associated with your project. A thirdweb Client ID is synonymous with an API key. You can create a free API key by [signing into your thirdweb account and navigating to **Settings** then click on **API Keys**](https://thirdweb.com/dashboard/settings/api-keys){target=\_blank}.
+Before you launch your DApp (locally or publicly deployed), you must have a thirdweb Client ID associated with your project. A thirdweb Client ID is synonymous with an API key. You can create a free API key by [signing into your thirdweb account and navigating to **Settings** then click on **API Keys**](https://thirdweb.com/dashboard/settings/api-keys){target=\_blank}.
 
 Press **Create API Key** then take the following steps:
 
@@ -124,7 +124,7 @@ thirdweb offers a small number of chains from `@thirdweb/chains` and does not in
     })
     ```
 
-The NFT marketplace template includes a `chains.ts` file under `src/consts/chains.ts`. To add support for Moonbase Alpha to the dApp, add the following lines: 
+The NFT marketplace template includes a `chains.ts` file under `src/consts/chains.ts`. To add support for Moonbase Alpha to the DApp, add the following lines: 
 
 ```typescript title="chains.ts"
 export const moonbase = defineChain({
@@ -179,7 +179,7 @@ For aesthetic purposes, we'd like to have some NFTs show up in the marketplace t
 
 ![Mint some NFTs](/images/tutorials/eth-api/thirdweb/thirdweb-4.webp "Minting some NFTs on thirdweb")
 
-### Add NFT Contract to the dApp {: #add-nft-contract-to-the-dapp } 
+### Add NFT Contract to the DApp {: #add-nft-contract-to-the-dapp } 
 
 After deploying and minting your NFTs, you'll need to specify your NFT contract in `src/consts/nft_contract.ts`. First, add `moonbase` to the list of imports as follows: 
 
@@ -223,7 +223,7 @@ You'll be asked to confirm a transaction and provide a signature. The former dep
 
 ![Deploy marketplace contract](/images/tutorials/eth-api/thirdweb/thirdweb-6.webp "Deploying a marketplace contract on thirdweb")
 
-### Add Marketplace Contract to the dApp {: #add-marketplace-contract-to-the-dapp }
+### Add Marketplace Contract to the DApp {: #add-marketplace-contract-to-the-dapp }
 
 After deploying your marketplace contract you'll need to specify it in `src/consts/marketplace_contract.ts`. To add support for the Moonbase marketplace first add `moonbase` to the list of imports as follows: 
 
@@ -249,7 +249,7 @@ The finished file can be viewed below:
 
 ## Wrapping Up {: #wrapping-up }
 
-And that's it! Congratulations on making it through the tutorial. You can head to `http://localhost:3000` after running the dApp locally via one of the following: 
+And that's it! Congratulations on making it through the tutorial. You can head to `http://localhost:3000` after running the DApp locally via one of the following: 
 
 === "npm"
 
