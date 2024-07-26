@@ -126,7 +126,6 @@ Press **Create API Key** then take the following steps:
 2. Enter the allowed domains that the API key should accept requests from. It's recommended that you allow only necessary domains, but for development purposes, you can select **Allow all domains**
 3. Press **Next** and confirm the prompt on the next page
 
-
 !!! note
     The respective name for your Client ID variable will vary with the framework you've chosen, e.g., Vite will be `VITE_TEMPLATE_CLIENT_ID`, Next.js will be `NEXT_PUBLIC_TEMPLATE_CLIENT_ID`, and React Native will be `EXPO_PUBLIC_THIRDWEB_CLIENT_ID`.
 
