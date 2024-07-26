@@ -263,7 +263,7 @@ const tx = prepareContractCall({
   contract,
   // Pass the method signature that you want to call
   method: 'function mintTo(address to, uint256 amount)',
-  // and the params for that method
+  // Pass the params for that method.
   // Their types are automatically inferred based on the method signature
   params: ['0x123...', toWei('100')],
 });
