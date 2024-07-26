@@ -273,7 +273,7 @@ const tx = prepareContractCall({
 
 You can also prepare a transaction directly with encoded data. To do so, you'll use thirdweb's [`prepareTransaction` method](https://portal.thirdweb.com/typescript/v5/transactions/prepare){target=\_blank} and specify the `to`, `value`, `chain`, and `client` values directly. 
 
-```typescript title="Preparing Raw Transactions"
+```typescript
 import { prepareTransaction, toWei } from 'thirdweb';
 
 const transaction = prepareTransaction({
@@ -293,7 +293,7 @@ const transaction = prepareTransaction({
 
 Use the [`readContract` function](https://portal.thirdweb.com/typescript/v5/transactions/read){target=\_blank} to call any read functions on your contract by passing in the Solidity method signature and any parameters.
 
-```typescript title="Reading Contract State"
+```typescript
 import { readContract } from 'thirdweb';
 
 const balance = await readContract({
@@ -305,7 +305,7 @@ const balance = await readContract({
 
 For a function that takes no parameters, such as the number function that returns the current number stored in the [incrementer contract](https://moonbase.moonscan.io/address/0xa72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8){target=\_blank}, you simply need to provide the function name as follows: 
 
-```typescript title="Reading Contract State"
+```typescript
 import { readContract } from 'thirdweb';
 
 const number = await readContract({
@@ -318,10 +318,16 @@ const number = await readContract({
 Did you know? With the [thirdweb CLI](https://portal.thirdweb.com/cli){target=\_blank}, you can easily and generate functions for all of the possible calls to a contract. To do so, run the following command in the command line: 
 
 ```bash
-npx thirdweb generate INSERT-CHAIN-ID/INSERT-CONTRACT-ADDRESS
+npx thirdweb generate INSERT_CHAIN_ID/INSERT_CONTRACT_ADDRESS
 ```
 
-For more information, see the [thirdweb's docs on the CLI](https://portal.thirdweb.com/cli/generate){target=\_blank}.
+Both the chain id and the contract address are required. As an example, if you wanted to generate the functions for the [incrementer contract on Moonbase Alpha](https://moonbase.moonscan.io/address/0xa72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8){target=\_blank} , you would use the following command:
+
+```bash
+npx thirdweb generate 1287/0xa72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8
+```
+
+The file generated with all of the corresponding methods will be placed in a directory labelled `thirdweb/CHAIN_ID/CONTRACT_ADDRESS`. In the example shown above, the output file is located at `thirdweb/1287/0xa72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8.ts`. For more information, see the [thirdweb's docs on the CLI](https://portal.thirdweb.com/cli/generate){target=\_blank}.
 
 ### Sending a Transaction {: #sending-a-transaction }
 
@@ -371,7 +377,7 @@ const receipt = await sendAndConfirmTransaction({
 
 thirdweb provides a number of helpful utility methods surrounding preparing and sending transactions. 
 
-You can estimate the gas used by a txn as follows: 
+You can estimate the gas used by a transaction as follows: 
 
 ```typescript title="Estimating Gas"
 import { estimateGas } from 'thirdweb';
@@ -380,7 +386,7 @@ const gasEstimate = await estimateGas({ transaction });
 console.log('estmated gas used', gasEstimate);
 ```
 
-You can estimate the gas cost in ether and wei as follows: 
+You can estimate the gas cost in Ether and Wei as follows: 
 
 ```typescript title="Estimating Gas Cost"
 import { estimateGas } from 'thirdweb';
