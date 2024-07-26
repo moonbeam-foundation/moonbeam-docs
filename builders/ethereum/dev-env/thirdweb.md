@@ -209,7 +209,7 @@ For a comprehensive, step-by-step guide to building a dApp with thirdweb be sure
 
 ### Accounts and Wallets {: #accounts-and-wallets }
 
-thirdweb distinguishes between accounts and wallets in the sdk. In the eyes of the thirdweb SDK, an account always has a single blockchain address and can sign messages, transactions, and typed data, but it cannot be "connected" or "disconnected." In contrast, a wallet contains one or more accounts, can be connected or disconnected, and delegates the signing tasks to its accounts. 
+thirdweb distinguishes between accounts and wallets in the SDK. In the eyes of the thirdweb SDK, an account always has a single blockchain address and can sign messages, transactions, and typed data, but it cannot be "connected" or "disconnected." In contrast, a wallet contains one or more accounts, can be connected or disconnected, and delegates the signing tasks to its accounts. 
 
 The below code snippet demonstrates how to initialize and connect a MetaMask wallet using the thirdweb SDK, then sign and send a transaction, retrieving the transaction hash. This process is applicable to any of the 300+ wallet connectors supported by the SDK.
 
