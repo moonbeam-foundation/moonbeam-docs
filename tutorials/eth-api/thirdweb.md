@@ -10,7 +10,7 @@ _by Kevin Neilson_
 
 [thirdweb](https://thirdweb.com/explore){target=\_blank} is a powerful development platform that simplifies building and deploying Web3 applications on the blockchain. It provides pre-built smart contracts and tools, enabling developers to quickly launch applications that interact with NFTs, tokens, and more with less coding and configuration effort.  
 
-In this guide, we'll go step by step through the process of building an NFT Marketplace dApp with thirdweb on Moonbeam. We'll deploy all of the associated contracts, including an ERC-721 NFT contract and a marketplace smart contract to Moonbase Alpha with thirdweb, and then we'll integrate them into the dApp.  
+In this guide, we'll go step by step through the process of building an NFT marketplace dApp with thirdweb on Moonbeam. We'll deploy all of the associated contracts, including an ERC-721 NFT contract and a marketplace smart contract to Moonbase Alpha with thirdweb, and then we'll integrate them into the dApp.
 
 For a more nuts and bolts approach to thirdweb with information about available methods, the thirdweb CLI and deployment tools, be sure to check out the [thirdweb guide in the Builders section](/builders/ethereum/dev-env/thirdweb). 
 
