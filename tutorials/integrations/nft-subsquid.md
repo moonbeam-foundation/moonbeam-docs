@@ -1,5 +1,5 @@
 ---
-title: Index NFT Transfers with SQD (formerly Subsquid)
+title: Index NFT Transfers with SQD (Subsquid)
 description: Learn how to use SQD (formerly Subsquid), a query node framework for Substrate-based chains, to index and process NFT transfer data for Moonbeam and Moonriver.
 ---
 
