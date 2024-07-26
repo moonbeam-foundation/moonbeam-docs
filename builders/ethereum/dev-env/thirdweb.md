@@ -173,7 +173,7 @@ thirdweb offers a small number of chains from `@thirdweb/chains` and does not in
 
 === "Moonbeam"
 
-    ```typescript
+    ```typescript title="chains.ts"
     import { defineChain } from 'thirdweb';
     const moonbase = defineChain({
     id: {{ networks.moonbeam.chain_id }},
@@ -183,7 +183,7 @@ thirdweb offers a small number of chains from `@thirdweb/chains` and does not in
 
 === "Moonriver"
 
-    ```typescript
+    ```typescript title="chains.ts"
     import { defineChain } from 'thirdweb';
     const moonbase = defineChain({
     id: {{ networks.moonriver.chain_id }},
@@ -193,7 +193,7 @@ thirdweb offers a small number of chains from `@thirdweb/chains` and does not in
 
 === "Moonbase Alpha"
 
-    ```typescript
+    ```typescript title="chains.ts"
     import { defineChain } from 'thirdweb';
     const moonbase = defineChain({
     id: {{ networks.moonbase.chain_id }},
@@ -321,7 +321,7 @@ Did you know? With the [thirdweb CLI](https://portal.thirdweb.com/cli){target=\_
 npx thirdweb generate INSERT_CHAIN_ID/INSERT_CONTRACT_ADDRESS
 ```
 
-Both the chain id and the contract address are required. As an example, if you wanted to generate the functions for the [incrementer contract on Moonbase Alpha](https://moonbase.moonscan.io/address/0xa72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8){target=\_blank} , you would use the following command:
+Both the chain ID and the contract address are required. As an example, if you wanted to generate the functions for the [incrementer contract on Moonbase Alpha](https://moonbase.moonscan.io/address/0xa72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8){target=\_blank} , you would use the following command:
 
 ```bash
 npx thirdweb generate 1287/0xa72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8
@@ -413,11 +413,11 @@ const data = await encode(transaction);
 console.log('encoded data', data);
 ```
 
-### Connect Wallet Button {: #connect-wallet-button }
+### ConnectButton {: #connect-button }
 
 Perhaps the first and most important interaction users will have with your dApp is connecting their wallet. thirdweb provides an easy and highly customizable way for you to enable this. thirdweb provides a highly customizable [`ConnectButton`](https://portal.thirdweb.com/typescript/v5/react/components/ConnectButton){target=\_blank} to tailor it to your desired wallets. The `ConnectButton` accepts an optional `wallets` parameter with an array of wallets. You can add or remove wallets from the `wallets` array to change the options available to users. thirdweb also offers a [`ConnectButton` Playground](https://thirdweb.com/dashboard/connect/playground){target=\_blank} to customize and view changes for the `ConnectButton` in real-time, given the button's high degree of flexibility.
 
-```typescript title="Connect Wallet Button"
+```typescript title="ConnectButton"
 import { ConnectButton } from 'thirdweb/react';
 import { createWallet, inAppWallet } from 'thirdweb/wallets';
  

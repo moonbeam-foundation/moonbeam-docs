@@ -60,8 +60,8 @@ Press **Create API Key** then take the following steps:
 
 Now, create a file a called `.env.local` at the root level directory of your project. Add your client ID as follows:
 
-```bash
-NEXT_PUBLIC_TW_CLIENT_ID="INSERT-CLIENT-ID"
+```bash title=".env.local"
+NEXT_PUBLIC_TW_CLIENT_ID="INSERT_CLIENT_ID"
 ```
 
 There are no other fields that you need to specify in your `.env` file at this time. If you're uncertain about formatting, you can refer to the `.env.example` file included in the project.
@@ -96,7 +96,7 @@ thirdweb offers a small number of chains from `@thirdweb/chains` and does not in
 
 === "Moonbeam"
 
-    ```typescript
+    ```typescript title="chains.ts"
     import { defineChain } from 'thirdweb';
     const moonbase = defineChain({
     id: {{ networks.moonbeam.chain_id }},
@@ -106,7 +106,7 @@ thirdweb offers a small number of chains from `@thirdweb/chains` and does not in
 
 === "Moonriver"
 
-    ```typescript
+    ```typescript title="chains.ts"
     import { defineChain } from 'thirdweb';
     const moonbase = defineChain({
     id: {{ networks.moonriver.chain_id }},
@@ -116,7 +116,7 @@ thirdweb offers a small number of chains from `@thirdweb/chains` and does not in
 
 === "Moonbase Alpha"
 
-    ```typescript
+    ```typescript title="chains.ts"
     import { defineChain } from 'thirdweb';
     const moonbase = defineChain({
     id: {{ networks.moonbase.chain_id }},
@@ -169,17 +169,15 @@ Before any NFTs can be minted, you'll need to configure the claim condition. If 
 
 ![Set claim conditions](/images/tutorials/eth-api/thirdweb/thirdweb-3.webp "Setting claim conditions on thirdweb")
 
-
 ### Mint Some NFTs {: #mint-some-nfts } 
 
-For aesthetic purposes, we'd like to have some NFTs show up in the marketplace that we created. Under the **Extensions** -> **NFTs** section, press **Claim**. Then, you can mint some NFTs by taking the following steps:
+For aesthetic purposes, we'd like to have some NFTs show up in the marketplace that we created. Under the **Extensions**, **NFTs** section, press **Claim**. Then, you can mint some NFTs by taking the following steps:
 
 1. Enter the address to receive the NFTs
 2. Enter the desired quantity to mint
 3. Press **Claim NFT** and confirm the transaction in your wallet
 
 ![Mint some NFTs](/images/tutorials/eth-api/thirdweb/thirdweb-4.webp "Minting some NFTs on thirdweb")
-
 
 ### Add NFT Contract to the dApp {: #add-nft-contract-to-the-dapp } 
 
