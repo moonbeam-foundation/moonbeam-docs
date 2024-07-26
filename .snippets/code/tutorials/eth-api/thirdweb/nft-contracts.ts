@@ -13,8 +13,8 @@ export type NftContract = {
 };
 
 /**
- * Below is a list of all NFT contracts supported by your marketplace(s)
- * This is of course hard-coded for demo purpose
+ * Below is a list of all NFT contracts supported by your marketplace(s).
+ * This is of course hard-coded for demo purposes
  *
  * In reality, the list should be dynamically fetched from your own data source
  */
