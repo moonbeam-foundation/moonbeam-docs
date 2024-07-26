@@ -409,7 +409,7 @@ console.log('encoded data', data);
 
 ### Connect Wallet Button {: #connect-wallet-button }
 
-Perhaps the first and most important interaction users will have with your dApp is connecting their wallet. thirdweb provides an easy and highly customizable way for you to enable this. thirdweb provides a highly customizable [`Connect Button`](https://portal.thirdweb.com/typescript/v5/react/components/ConnectButton){target=\_blank} to tailor it to your desired wallets. The `Connect Button` accepts an optional  `wallets` parameter with an array of wallets. You can add or remove wallets from the `wallets` array to change the options available to users. thirdWeb also offers a [ConnectButton Playground](https://thirdweb.com/dashboard/connect/playground) to customize and view changes for the `ConnectButton` in real-time, given the button's high degree of flexibility.
+Perhaps the first and most important interaction users will have with your dApp is connecting their wallet. thirdweb provides an easy and highly customizable way for you to enable this. thirdweb provides a highly customizable [`ConnectButton`](https://portal.thirdweb.com/typescript/v5/react/components/ConnectButton){target=\_blank} to tailor it to your desired wallets. The `ConnectButton` accepts an optional `wallets` parameter with an array of wallets. You can add or remove wallets from the `wallets` array to change the options available to users. thirdweb also offers a [`ConnectButton` Playground](https://thirdweb.com/dashboard/connect/playground){target=\_blank} to customize and view changes for the `ConnectButton` in real-time, given the button's high degree of flexibility.
 
 ```typescript title="Connect Wallet Button"
 import { ConnectButton } from 'thirdweb/react';
