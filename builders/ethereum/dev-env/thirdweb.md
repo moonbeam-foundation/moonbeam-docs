@@ -282,7 +282,7 @@ const transaction = prepareTransaction({
   // The value is the amount of ether you want to send with the transaction
   value: toWei('1'),
   // The chain to execute the transaction on. This assumes you already set up
-  // moonbase as a custom chain as shown in the configure chain section.
+  // moonbase as a custom chain as shown in the configure chain section
   chain: moonbase,
   // Your thirdweb client
   client,
