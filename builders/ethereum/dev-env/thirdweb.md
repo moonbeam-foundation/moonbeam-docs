@@ -11,7 +11,7 @@ description: This guide will show you some of thirdweb's features, including bui
 
 With thirdweb, you can access tools to help you through every phase of the dApp development cycle. You can create your own custom smart contracts or use any of thirdweb's prebuilt contracts to get started quickly. From there, you can use thirdweb's CLI to deploy your smart contracts. Then you can interact with your smart contracts by creating a Web3 application using the language of your choice, including but not limited to React and TypeScript. 
 
-This guide will show you some of the thirdweb features you can use to develop smart contracts and dApps on Moonbeam. To check out all of the features thirdweb has to offer, please refer to the [thirdweb documentation site](https://portal.thirdweb.com){target=\_blank}. For a comprehensive step-by-step tutorial for building a dApp on Moonbeam with thirdweb, be sure to check out Moonbeam's [thirdweb tutorial in the tutorials section](/tutorials/eth-api/thirdweb)  
+This guide will show you some of the thirdweb features you can use to develop smart contracts and dApps on Moonbeam. To check out all of the features thirdweb has to offer, please refer to the [thirdweb documentation site](https://portal.thirdweb.com){target=\_blank}. For a comprehensive step-by-step tutorial for building a dApp on Moonbeam with thirdweb, be sure to check out Moonbeam's [thirdweb tutorial in the tutorials section](/tutorials/eth-api/thirdweb/).
 
 ## Create Contract {: #create-contract }
 
