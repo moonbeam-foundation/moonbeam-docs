@@ -144,7 +144,7 @@ We don't need to add any import statements because `defineChain` is already impo
 
 Of course, we'll need to have an NFT contract to showcase as part of the marketplace. You can use an existing NFT contract, but for demo purposes we'll walk through the steps of deploying a new ERC-721 contract with thirdweb. 
 
-Head to [thirdweb explore](https://thirdweb.com/explore){target=\_blank} and choose the `OpenEditionERC721` NFT standard. You can also access the [NFT contract directly](https://thirdweb.com/thirdweb.eth/OpenEditionERC721){target=\_blank}. Press **Deploy Now**, then take the following steps:
+Head to [thirdweb Explore](https://thirdweb.com/explore){target=\_blank} and choose the `OpenEditionERC721` NFT standard. You can also access the [NFT contract directly](https://thirdweb.com/thirdweb.eth/OpenEditionERC721){target=\_blank}. Press **Deploy Now**, then take the following steps:
 
 1. Add a name for your NFT
 2. Optionally add a token symbol
@@ -215,7 +215,7 @@ The finished file can be viewed below:
 
 ## Deploy Marketplace Contract {: #deploy-marketplace-contract }
 
-While the template includes existing marketplace contracts for a couple of testnets, let's deploy a similar one for Moonbase Alpha. Head to [thirdweb explore](https://thirdweb.com/explore){target=\_blank} and choose the `MarketplaceV3` contract. You can also access [`MarketplaceV3` directly](https://thirdweb.com/thirdweb.eth/MarketplaceV3){target=\_blank}. Press **Deploy Now**, then take the following steps:
+While the template includes existing marketplace contracts for a couple of TestNets, let's deploy a similar one for Moonbase Alpha. Head to [thirdweb Explore](https://thirdweb.com/explore){target=\_blank} and choose the `MarketplaceV3` contract. You can also access [`MarketplaceV3` directly](https://thirdweb.com/thirdweb.eth/MarketplaceV3){target=\_blank}. Press **Deploy Now**, then take the following steps:
 
 1. Add a name for the marketplace
 2. Select **Moonbase Alpha** as the network
