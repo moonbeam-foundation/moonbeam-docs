@@ -256,7 +256,7 @@ const myContract = getContract({
 
 To call a contract in the latest version of the SDK, you can use [`prepareContractCall`](https://portal.thirdweb.com/typescript/v5/transactions/prepare){target=\_blank}.
 
-```typescript title="Calling Contract Functions"
+```typescript
 import { prepareContractCall, toWei } from 'thirdweb';
 
 const tx = prepareContractCall({
