@@ -1,5 +1,5 @@
 ---
-title: Add RainbowKit to a dApp
+title: Add RainbowKit to a DApp
 description: Learn how to integrate RainbowKit into a dApp to allow users to connect their mobile wallets to Moonbeam, Moonriver, or Moonbase Alpha networks.
 ---
 
@@ -11,13 +11,14 @@ description: Learn how to integrate RainbowKit into a dApp to allow users to con
 
 ## Quick Start {: #quick-start }
 
-If you are starting a new project, RainbowKit can scaffold a project from the CLI, combining RainbowKit and wagmi in a [Next.js](https://nextjs.org/docs){target=\_blank} application. Use your package manager of choice to run the CLI command and start your project:
+If you are starting a new project, RainbowKit can scaffold a project from the CLI, combining RainbowKit and Wagmi in a [Next.js](https://nextjs.org/docs){target=\_blank} application. Use your package manager of choice to run the CLI command and start your project:
 
 === "npm"
 
     ```bash
     npm init @rainbow-me/rainbowkit@latest 
     ```
+
 === "pnpm"
 
     ```bash
@@ -63,7 +64,7 @@ The list of default supported networks does not include Moonbeam, Moonriver, or 
 
 ## Checking Prerequisites {: #checking-prerequisites }
 
-Following this guide requires a basic frontend dApp built with [React](https://react.dev/){target=\_blank} to connect to a mobile wallet via RainbowKit. This example uses [Next.js](https://nextjs.org/docs){target=\_blank} with the App Router. You can find examples for additional frameworks in the RainbowKit examples [repo](https://github.com/rainbow-me/rainbowkit/tree/main/examples){target=\_blank}.
+Following this guide requires a basic frontend dApp built with [React](https://react.dev/){target=\_blank} to connect to a mobile wallet via RainbowKit. This example uses [Next.js](https://nextjs.org/docs){target=\_blank} with the App Router. You can find examples for additional frameworks in the [RainbowKit examples repository](https://github.com/rainbow-me/rainbowkit/tree/main/examples){target=\_blank}.
 
 Another essential requirement is a mobile wallet of your choice. This example uses [MetaMask](https://metamask.io/){target=\_blank}. However, RainbowKit supports a variety of wallets, and you can find a complete list on the RainbowKit [Custom Wallet List](https://www.rainbowkit.com/docs/custom-wallet-list){target=\_blank}.
 
@@ -93,7 +94,7 @@ Run `npm run dev`, `pnpm run dev` or `yarn dev` to create a local dApp instance.
 
 To test the RainbowKit connection, you will use the MetaMask mobile app. To follow this guide, you must have established a connection to the Moonbase Alpha TestNet on the MetaMask mobile app.
 
-You can connect your MetaMask mobile wallet to the Moonbase Alpha TestNet in a couple of ways. You can manually add the Moonbase Alpha TestNet configurations from the **Networks** section of the **Settings** menu. Or you can also open up the **Browser** from MetaMask mobile and navigate to [docs.moonbeam.network](/){target=\_blank}, click on **Connect MetaMask** at the top of the page, and select **Moonbase Alpha** from the menu. Follow the prompts to automatically add Moonbase Alpha as a custom network without manually inputting the network configurations.
+You can connect your MetaMask mobile wallet to the Moonbase Alpha TestNet in a couple of ways. You can manually add the Moonbase Alpha TestNet configurations from the **Networks** section of the **Settings** menu. Or you can also open up the **Browser** from MetaMask mobile and navigate to the [Moonbeam documentation site (docs.moonbeam.network)](/){target=\_blank}, click on **Connect MetaMask** at the top of the page, and select **Moonbase Alpha** from the menu. Follow the prompts to automatically add Moonbase Alpha as a custom network.
 
 Next, add a file called `.env.local` to your root project directory to store your WalletConnect `projectId`. Ensure your project contains a `.gitignore` file in this same directory and `.env*.local` is added to the list of files to ignore. Add your `projectId` to the `.env.local` file as follows:
 
@@ -132,7 +133,7 @@ Next, configure the supported chains and setup a `wagmi` config .  Add `moonbase
 
 With the configuration in place, the next step is to wrap your application with the `RainbowKitProvider`, `WagmiProvider`, and `QueryClientProvider` to make them available throughout your dApp. Inside the `app` directory, create a file named `providers.tsx` and add the following code to define `Providers`:
 
-```js title="providers.tsx"
+```js title="app/providers.tsx"
 --8<-- 'code/builders/integrations/wallets/rainbowkit/providers.ts'
 ```
 
