@@ -118,7 +118,7 @@ thirdweb offers SDKs for a range of programming languages, such as React, React 
 
 ### Specify Client ID {: #specify-client-id }
 
-Before you launch your dApp (locally or publicly deployed), you must have a thirdweb Client ID associated with your project. A thirdweb Client ID is synonymous with an API key. You can create a free API key by [signing into your thirdweb Account and navigating to **Settings** then click on **API Keys**](https://thirdweb.com/dashboard/settings/api-keys){target=\_blank}.
+Before you launch your dApp (locally or publicly deployed), you must have a thirdweb Client ID associated with your project. A thirdweb Client ID is synonymous with an API key. You can create a free API key by [signing into your thirdweb account, navigating to **Settings**, and clicking on **API Keys**](https://thirdweb.com/dashboard/settings/api-keys){target=\_blank}.
 
 Press **Create API Key** then take the following steps:
 
