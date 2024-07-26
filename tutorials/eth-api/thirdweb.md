@@ -135,12 +135,10 @@ export const moonbase = defineChain({
 
 We don't need to add any import statements because `defineChain` is already imported by default as part of the template. Feel free to add additional chains if you'd like to add support for Moonbeam, Moonriver, or other networks. The full file can be viewed below:
 
-
 ??? code "View chains.ts"
     ```typescript
     --8<-- 'code/tutorials/eth-api/thirdweb/chains.ts'
     ```
-
 
 ## Deploy ERC-721 NFT Contract {: #deploy-erc-721-nft-contract }
 
