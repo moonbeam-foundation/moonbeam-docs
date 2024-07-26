@@ -207,7 +207,7 @@ The following sections will provide an overview of fundamental methods of the th
 
 For a comprehensive, step-by-step guide to building a dApp with thirdweb be sure to check out Moonbeam's [thirdweb tutorial in the tutorials section](/tutorials/eth-api/thirdweb). The following sections will cover everything from connecting wallets, to preparing transactions, and more.
 
-### Accounts and Wallets
+### Accounts and Wallets {: #accounts-and-wallets }
 
 thirdweb distinguishes between accounts and wallets in the sdk. In the eyes of the thirdweb SDK, an account always has a single blockchain address and can sign messages, transactions, and typed data, but it cannot be "connected" or "disconnected." In contrast, a wallet contains one or more accounts, can be connected or disconnected, and delegates the signing tasks to its accounts. 
 
