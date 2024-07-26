@@ -269,6 +269,20 @@ const tx = prepareContractCall({
 });
 ```
 
+Returning to our [incrementer contract](https://moonbase.moonscan.io/address/0xa72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8){target=\_blank}, preparing a call to increment the contract looks like the following:
+
+```typescript
+import { prepareContractCall } from 'thirdweb';
+
+const tx = prepareContractCall({
+  contract,
+  // Pass the method signature that you want to call
+  method: 'function increment()',
+  // Increment takes no params so we are leaving an empty array
+  params: [],
+});
+```
+
 ### Preparing Raw Transactions {: #preparing-raw-transactions }
 
 You can also prepare a transaction directly with encoded data. To do so, you'll use thirdweb's [`prepareTransaction` method](https://portal.thirdweb.com/typescript/v5/transactions/prepare){target=\_blank} and specify the `to`, `value`, `chain`, and `client` values directly. 
