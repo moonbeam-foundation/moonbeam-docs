@@ -238,7 +238,7 @@ const { transactionHash } = await sendTransaction({
 
 ### Get Contract {: #get-contract }
 
-To connect to your contract, use the SDK’s [`getContract`](https://portal.thirdweb.com/references/typescript/v5/getContract){target=\_blank} method.  As an example, you could fetch data from an [incrementer contract on Moonbase Alpha](https://moonbase.moonscan.io/address/0xa72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8){target=\_blank}.
+To connect to your contract, use the SDK’s [`getContract`](https://portal.thirdweb.com/references/typescript/v5/getContract){target=\_blank} method. As an example, you could fetch data from an [incrementer contract on Moonbase Alpha](https://moonbase.moonscan.io/address/0xa72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8){target=\_blank}.
 
 ```typescript title="Get Contract"
 import { getContract } from 'thirdweb';
