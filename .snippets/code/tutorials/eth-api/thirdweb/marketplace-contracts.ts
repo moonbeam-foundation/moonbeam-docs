@@ -7,7 +7,7 @@ type MarketplaceContract = {
 };
 
 /**
- * You need a marketplace contract on each of the chain you want to support
+ * You need a marketplace contract on each of the chains you want to support.
  * Only list one marketplace contract address for each chain
  */
 export const MARKETPLACE_CONTRACTS: MarketplaceContract[] = [
