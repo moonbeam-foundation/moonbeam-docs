@@ -44,7 +44,6 @@ thirdweb has an [NFT marketplace template](https://github.com/thirdweb-example/m
         pnpm install
         ```
 
-
 Next, you'll need to create a client ID for your thirdweb project and specify it in a `.env` file. 
 
 ## Specify Client ID {: #specify-client-id }
