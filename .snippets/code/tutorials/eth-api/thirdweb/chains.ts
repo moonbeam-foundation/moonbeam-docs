@@ -6,10 +6,6 @@ import { defineChain } from 'thirdweb';
 export { avalancheFuji, sepolia, polygonAmoy } from 'thirdweb/chains';
 
 /**
- * Define any custom chain using `defineChain`
- */
-
-/**
  * Define the Moonbase Alpha test network
  */
 export const moonbase = defineChain({
