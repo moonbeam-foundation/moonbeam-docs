@@ -158,8 +158,8 @@ If you generated your thirdweb app with Vite, you'll have a `client.ts` file tha
 ```typescript title="client.ts"
 import { createThirdwebClient } from 'thirdweb';
 
-// Replace this with your client ID string
-// refer to https://portal.thirdweb.com/typescript/v5/client on how to get a client ID
+// Replace this with your client ID string.
+// Refer to https://portal.thirdweb.com/typescript/v5/client on how to get a client ID
 const clientId = import.meta.env.VITE_TEMPLATE_CLIENT_ID;
 
 export const client = createThirdwebClient({
