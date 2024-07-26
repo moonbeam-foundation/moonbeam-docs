@@ -227,7 +227,7 @@ You'll be asked to confirm a transaction and provide a signature. The former dep
 
 ### Add Marketplace Contract to the dApp {: #add-marketplace-contract-to-the-dapp }
 
-After deploying your marketplace contract you'll need to specify it in `src/consts/marketplace_contract.ts`. To add support for the Moonbase marketplace  first add `moonbase` to the list of imports as follows: 
+After deploying your marketplace contract you'll need to specify it in `src/consts/marketplace_contract.ts`. To add support for the Moonbase marketplace first add `moonbase` to the list of imports as follows: 
 
 ```typescript title="marketplace_contract.ts"
 import { moonbase, avalancheFuji, polygonAmoy, sepolia } from "./chains";
