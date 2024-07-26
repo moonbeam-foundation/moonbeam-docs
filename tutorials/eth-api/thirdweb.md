@@ -1,5 +1,5 @@
 ---
-title: How to Build an NFT Marketplace dApp with thirdweb
+title: Build an NFT Marketplace dApp with thirdweb
 description: Learn how to build an NFT marketplace dApp with thirdweb, including both frontend and smart contract components, in an end-to-end fashion.
 ---
 
