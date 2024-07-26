@@ -126,12 +126,12 @@ Press **Create API Key** then take the following steps:
 2. Enter the allowed domains that the API key should accept requests from. It's recommended that you allow only necessary domains, but for development purposes, you can select **Allow all domains**
 3. Press **Next** and confirm the prompt on the next page
 
+![thirdweb create API key](/images/builders/ethereum/dev-env/thirdweb/thirdweb-3.webp)
+
 !!! note
     The respective name for your Client ID variable will vary with the framework you've chosen, e.g., Vite will be `VITE_TEMPLATE_CLIENT_ID`, Next.js will be `NEXT_PUBLIC_TEMPLATE_CLIENT_ID`, and React Native will be `EXPO_PUBLIC_THIRDWEB_CLIENT_ID`.
 
 Finally, specify your Client ID (API Key) in your `.env` file. Your `.env` file must be located at the root directory of the project (e.g., not the `src` folder). If using Vite, thirdweb references it in the `client.ts` and assumes the API key will be in your `.env` file named `VITE_TEMPLATE_CLIENT_ID`. If you don't set this value correctly, you'll get a blank screen when trying to build the web app.
-
-![thirdweb create API key](/images/builders/ethereum/dev-env/thirdweb/thirdweb-3.webp)
 
 ## Configure and Run thirdweb dapp {: #configure-and-run-thirdweb-dapp }
 
