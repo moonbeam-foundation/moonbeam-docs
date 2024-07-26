@@ -218,18 +218,18 @@ import { sendTransaction } from 'thirdweb';
 // MetaMask wallet used for example, the pattern is the same for all wallets
 import { createWallet } from 'thirdweb/wallets';
 
-// initialize the wallet, Third web supports of the 300+ wallet connectors
+// Initialize the wallet. thirdweb supports 300+ wallet connectors
 const wallet = createWallet('io.metamask');
 
-// connect the wallet, this returns a promise that resolves to the connected account
+// Connect the wallet. This returns a promise that resolves to the connected account
 const account = await wallet.connect({
-  // pass the client you created with `createThirdwebClient()`
+  // Pass the client you created with `createThirdwebClient()`
   client,
 });
 
-// sign & send a transaction with the account -> returns the transaction hash
+// Sign and send a transaction with the account. Returns the transaction hash
 const { transactionHash } = await sendTransaction({
-  // assuming you have called `prepareTransaction()` or `prepareContractCall()` before which returns the prepared transaction to send
+  // Assuming you have called `prepareTransaction()` or `prepareContractCall()` before, which returns the prepared transaction to send
   transaction,
   // Pass the account to sign the transaction with
   account,
