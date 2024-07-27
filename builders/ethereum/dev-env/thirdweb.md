@@ -170,20 +170,20 @@ thirdweb offers a small number of chains from `@thirdweb/chains` and does not in
 
     ```typescript title="chains.ts"
     import { defineChain } from 'thirdweb';
-    const moonbase = defineChain({
-    id: {{ networks.moonbeam.chain_id }},
-    rpc: '{{ networks.moonbeam.public_rpc_url }}',
-    })
+    const moonbeam = defineChain({
+      id: {{ networks.moonbeam.chain_id }},
+      rpc: '{{ networks.moonbeam.public_rpc_url }}',
+    });
     ```
 
 === "Moonriver"
 
     ```typescript title="chains.ts"
     import { defineChain } from 'thirdweb';
-    const moonbase = defineChain({
-    id: {{ networks.moonriver.chain_id }},
-    rpc: '{{ networks.moonriver.public_rpc_url }}',
-    })
+    const moonriver = defineChain({
+      id: {{ networks.moonriver.chain_id }},
+      rpc: '{{ networks.moonriver.public_rpc_url }}',
+    });
     ```
 
 === "Moonbase Alpha"
@@ -191,9 +191,9 @@ thirdweb offers a small number of chains from `@thirdweb/chains` and does not in
     ```typescript title="chains.ts"
     import { defineChain } from 'thirdweb';
     const moonbase = defineChain({
-    id: {{ networks.moonbase.chain_id }},
-    rpc: '{{ networks.moonbase.rpc_url }}',
-    })
+      id: {{ networks.moonbase.chain_id }},
+      rpc: '{{ networks.moonbase.rpc_url }}',
+    });
     ```
 
 ## thirdweb SDK {: #thirdweb-sdk }
