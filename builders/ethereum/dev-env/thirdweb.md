@@ -208,28 +208,10 @@ thirdweb distinguishes between accounts and wallets in the SDK. In the eyes of t
 
 The below code snippet demonstrates how to initialize and connect a MetaMask wallet using the thirdweb SDK, then sign and send a transaction, retrieving the transaction hash. This process is applicable to any of the 300+ wallet connectors supported by the SDK.
 
-```typescript title="Initialize and Connect a Metamask Wallet"
-import { sendTransaction } from 'thirdweb';
-// MetaMask wallet used for example, the pattern is the same for all wallets
-import { createWallet } from 'thirdweb/wallets';
-
-// Initialize the wallet. thirdweb supports 300+ wallet connectors
-const wallet = createWallet('io.metamask');
-
-// Connect the wallet. This returns a promise that resolves to the connected account
-const account = await wallet.connect({
-  // Pass the client you created with `createThirdwebClient()`
-  client,
-});
-
-// Sign and send a transaction with the account. Returns the transaction hash
-const { transactionHash } = await sendTransaction({
-  // Assuming you have called `prepareTransaction()` or `prepareContractCall()` before, which returns the prepared transaction to send
-  transaction,
-  // Pass the account to sign the transaction with
-  account,
-});
-```
+???+ code "Initialize and Connect a Metamask Wallet"
+    ```typescript
+    --8<-- 'code/builders/ethereum/dev-env/thirdweb/initialize.ts'
+    ```
 
 ### Get Contract {: #get-contract }
 
@@ -244,7 +226,6 @@ const myContract = getContract({
   chain: moonbase,
   address: 0xa72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8, // Incrementer contract address on Moonbase Alpha
   abi: '[{"inputs":[],"name":"increment","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"number","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"timestamp","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"}]';
-},
 });
 ```
 
