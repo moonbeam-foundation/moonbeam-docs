@@ -133,12 +133,6 @@ Press **Create API Key** then take the following steps:
 
 Finally, specify your Client ID (API Key) in your `.env` file. Your `.env` file must be located at the root directory of the project (e.g., not the `src` folder). If using Vite, thirdweb references it in the `client.ts` and assumes the API key will be in your `.env` file named `VITE_TEMPLATE_CLIENT_ID`. If you don't set this value correctly, you'll get a blank screen when trying to build the web app.
 
-### Configure and Run thirdweb DApp {: #configure-and-run-thirdweb-dapp }
-
-thirdweb provides several SDKs to allow you to interact with your contract including: [React](https://portal.thirdweb.com/typescript/v5/react){target=\_blank}, [React Native](https://portal.thirdweb.com/typescript/v5/react-native){target=\_blank}, [TypeScript](https://portal.thirdweb.com/typescript/v5){target=\_blank}, and [Unity](https://portal.thirdweb.com/unity){target=\_blank}.
-
-This guide will show you how to interact with your contracts deployed to Moonbeam, Moonriver or Moonbase Alpha via thirdweb using TypeScript. You can view the [full SDK reference](https://portal.thirdweb.com/typescript/v5){target=\_blank} in thirdweb’s documentation.
-
 ### Run Locally {: #run-locally }
 
 To run your dApp locally for testing and debugging purposes, use the command: 
