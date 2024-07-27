@@ -162,9 +162,6 @@ The app will compile and specify the localhost and port number for you to visit 
 
 ![thirdweb run locally](/images/builders/ethereum/dev-env/thirdweb/thirdweb-4.webp)
 
-### Create Client ID {: #create-client-id }
-
-
 ### Configure Chain {: #configure-chain }
 
 thirdweb offers a small number of chains from `@thirdweb/chains` and does not include Moonbeam networks in that list, so you'll need to specify the network details including chain ID and RPC URL. You can create a custom chain with [`defineChain`](https://portal.thirdweb.com/references/typescript/v5/defineChain){target=\_blank} as follows:
