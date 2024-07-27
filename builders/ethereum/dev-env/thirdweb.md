@@ -131,7 +131,24 @@ Press **Create API Key** then take the following steps:
 !!! note
     The respective name for your Client ID variable will vary with the framework you've chosen, e.g., Vite will be `VITE_TEMPLATE_CLIENT_ID`, Next.js will be `NEXT_PUBLIC_TEMPLATE_CLIENT_ID`, and React Native will be `EXPO_PUBLIC_THIRDWEB_CLIENT_ID`.
 
-Finally, specify your Client ID (API Key) in your `.env` file. Your `.env` file must be located at the root directory of the project (e.g., not the `src` folder). If using Vite, thirdweb references it in the `client.ts` and assumes the API key will be in your `.env` file named `VITE_TEMPLATE_CLIENT_ID`. If you don't set this value correctly, you'll get a blank screen when trying to build the web app.
+Finally, specify your Client ID (API Key) in your `.env` file. Your `.env` file must be located at the root directory of the project (e.g., not the `src` folder).
+
+If you generated your thirdweb app with Vite, you'll have a `client.ts` file that looks like the below. As long you've created a `.env` file with your thirdweb API Key (Client ID) defined in `VITE_TEMPLATE_CLIENT_ID`, you can leave the `client.ts` as is and proceed to the next section.
+
+```typescript title="client.ts"
+import { createThirdwebClient } from 'thirdweb';
+
+// Replace this with your client ID string.
+// Refer to https://portal.thirdweb.com/typescript/v5/client on how to get a client ID
+const clientId = import.meta.env.VITE_TEMPLATE_CLIENT_ID;
+
+export const client = createThirdwebClient({
+  clientId: clientId,
+});
+```
+
+!!! note
+    If you don't create a Client ID and specify is correctly in your `.env` file, you'll get a blank screen when trying to build the web app. There is no error message shown without digging into the console, so ensure you've set your Client ID correctly first and foremost.
 
 ### Run Locally {: #run-locally }
 
@@ -147,19 +164,6 @@ The app will compile and specify the localhost and port number for you to visit 
 
 ### Create Client ID {: #create-client-id }
 
-If you generated your thirdweb app with Vite, you'll have a `client.ts` file that looks like the below. As long you've created a `.env` file with your thirdweb API Key (Client ID) defined in `VITE_TEMPLATE_CLIENT_ID`, you can leave the `client.ts` as is and proceed to the next section.
-
-```typescript title="client.ts"
-import { createThirdwebClient } from 'thirdweb';
-
-// Replace this with your client ID string.
-// Refer to https://portal.thirdweb.com/typescript/v5/client on how to get a client ID
-const clientId = import.meta.env.VITE_TEMPLATE_CLIENT_ID;
-
-export const client = createThirdwebClient({
-  clientId: clientId,
-});
-```
 
 ### Configure Chain {: #configure-chain }
 
