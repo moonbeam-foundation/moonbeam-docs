@@ -1,5 +1,5 @@
 ---
-title: Add RainbowKit to a dApp
+title: Add RainbowKit to a DApp
 description: Learn how to integrate RainbowKit into a dApp to allow users to connect their mobile wallets to Moonbeam, Moonriver, or Moonbase Alpha networks.
 ---
 
@@ -7,11 +7,19 @@ description: Learn how to integrate RainbowKit into a dApp to allow users to con
 
 ## Introduction {: #introduction }
 
-[RainbowKit](https://www.rainbowkit.com/docs/introduction){target=\_blank} is a React library that adds wallet connection capabilities to a dApp. It supports numerous wallets and enables features such as switching connection chains, ENS address resolution, and balance display out-of-the-box. RainbowKit uses [Wagmi](https://wagmi.sh/){target=\_blank} and [viem](https://viem.sh/){target=\_blank} under the hood to connect to blockchains and perform operations. [WalletConnect](https://walletconnect.com/){target=\_blank} adds encrypted connections and enhanced UX experiences like connecting a mobile wallet by scanning a QR code. Finally, [TanStack Query](https://tanstack.com/query/latest/docs/framework/react/overview){target=\_blank} helps manage and update server state within the application. 
+[RainbowKit](https://www.rainbowkit.com/docs/introduction){target=\_blank} is a React library that adds wallet connection capabilities to a dApp. It supports numerous wallets and enables features such as switching connection chains, ENS address resolution, and balance display out-of-the-box. 
+
+RainbowKit bundles together mulitple tools to simplify adding wallet connection to your dApp: 
+- [Wagmi](https://wagmi.sh/){target=\_blank} -  a React Hooks library for interacting with Ethereum accounts, wallets, contracts, transactions, signing, ENS, and more
+- [viem](https://viem.sh/){target=\_blank} - TypeScript interface which provides low-level stateless primitives for interacting with Ethereum
+- [WalletConnect](https://walletconnect.com/){target=\_blank} - adds encrypted connections and enhanced UX experiences like connecting a mobile wallet by scanning a QR code
+- [TanStack Query](https://tanstack.com/query/latest/docs/framework/react/overview){target=\_blank} - helps manage and update server state within the application
+
+This guide takes you through adding RainbowKit to a dApp using the CLI, adding support for Moonbeam networks, and some options for further customizing your integration.
 
 ## Quick Start {: #quick-start }
 
-If you are starting a new project, RainbowKit can scaffold a project from the CLI, combining RainbowKit and wagmi in a [Next.js](https://nextjs.org/docs){target=\_blank} application. Use your package manager of choice to run the CLI command and start your project:
+If you are starting a new project, RainbowKit can scaffold a project from the CLI, combining RainbowKit and wagmi in a [Next.js](https://nextjs.org/docs){target=\_blank} application using the [pages router](https://nextjs.org/docs/pages){target=\_blank}. Use your package manager of choice to run the CLI command and create your project:
 
 === "npm"
 
@@ -58,8 +66,12 @@ Your starting screen should look like this:
 
 ![Scaffolded RainbowKit project landing page](/images/builders/integrations/wallets/rainbowkit/rainbowkit-1.webp)
 
-The list of default supported networks does not include Moonbeam, Moonriver, or Moonbase Alpha. RainbowKit provides a [manual setup](https://www.rainbowkit.com/docs/installation#manual-setup){target=\_blank} option for builders who want to customize their application further, including the ability to add networks and chains. The following guide demonstrates how to use the RainbowKit manual setup to add support for Moonbeam networks.
 
+The default list of supported networks does not include Moonbeam, Moonriver, or Moonbase Alpha. 
+
+<!--TODO: add content for adding moonbeam to the chains on the CLI template app-->
+
+If you want to add RainbowKit to an existing React application, you can complete a manual setup. The following sections will guide you through using the manual setup to install and import needed dependencies, configuring chain connections to support Moonbeam networks, and making RainbowKit functionality available to users of your dApp. You will also learn how to specify which chain the **Connect Wallet** button should connect to by default and how to customize the RainbowKit theme to fit your project.
 
 ## Checking Prerequisites {: #checking-prerequisites }
 
@@ -116,6 +128,7 @@ Ensure you are still in your project's root directory, then create a new file ca
 
 Start by adding the imports for RainbowKit, Wagmi, and TanStack Query. Make a note of the list of chains imported from `wagmi/chains`.  Wagmi provides an extensive list of [supported chains](https://wagmi.sh/core/api/chains#:~:text=core/chains%27-,Available,-Chains){target=\_blank} you can reference to locate the expected names for Moonbeam ecosystem chains. 
 
+<!--TODO: update snippet after code rework-->
 ```js title="wagmi.ts"
 --8<-- 'code/builders/integrations/wallets/rainbowkit/rainbow-imports.js'
 ```
@@ -124,6 +137,7 @@ Start by adding the imports for RainbowKit, Wagmi, and TanStack Query. Make a no
 
 Next, configure the supported chains and setup a `wagmi` config .  Add `moonbaseAlpha` to the `wagmi/chains` import and the `chains` array in the config to add it to the list of your dApp's supported networks.
 
+<!--TODO: update snippet after code rework-->
 ```js title="wagmi.ts"
 --8<-- 'code/builders/integrations/wallets/rainbowkit/wagmi-config.js'
 ```
@@ -132,12 +146,14 @@ Next, configure the supported chains and setup a `wagmi` config .  Add `moonbase
 
 With the configuration in place, the next step is to wrap your application with the `RainbowKitProvider`, `WagmiProvider`, and `QueryClientProvider` to make them available throughout your dApp. Inside the `app` directory, create a file named `providers.tsx` and add the following code to define `Providers`:
 
+<!--TODO: update snippet after code rework-->
 ```js title="providers.tsx"
 --8<-- 'code/builders/integrations/wallets/rainbowkit/providers.ts'
 ```
 
 Now open the `layout.tsx` file and modify the code to import `Providers` and wrap the application:
 
+<!--TODO: update snippet after code rework-->
 ```js title="layout.tsx"
 --8<-- 'code/builders/integrations/wallets/rainbowkit/layout.tsx'
 ```
@@ -146,6 +162,7 @@ Now open the `layout.tsx` file and modify the code to import `Providers` and wra
 
 RainbowKit offers a `ConnectButton` component, which renders the **Connect** and **Disconnect** buttons and UI elements for switching chains. This example imports the `ConnectButton` into the `page.tsx` file for simplicity, but you may want to add it to an element like a **Header** or **Navbar** so it appears at the top of each page. Update the code in `page.tsx` as follows:
 
+<!--TODO: update snippet after code rework-->
 ```js title="page.tsx"
 --8<-- 'code/builders/integrations/wallets/rainbowkit/page.tsx'
 ```
@@ -164,6 +181,7 @@ RainbowKit will connect by default to the first chain supplied to Wagmi in the c
 
 Instead, you can use the `initialChain` prop that is part of the `RainbowKitProvider` element to define which chain the wallet should initially connect to when the user selects **Connect Wallet**. Open your `providers.tsx` file and update the code to configure the `initialChain` prop. You can pass either a chain ID or chain name from the [Wagmi Chains list](https://wagmi.sh/core/api/chains){target=\_blank}.
 
+<!--TODO: update snippet after code rework-->
 ```js title="providers.tsx"
 --8<-- 'code/builders/integrations/wallets/rainbowkit/initial-chain.ts'
 ```
@@ -171,6 +189,7 @@ Instead, you can use the `initialChain` prop that is part of the `RainbowKitProv
 
 RainbowKit offers three built-in theme functions: `lightTheme`, `darkTheme`, and `midnightTheme`. These theme functions return a theme object, which you can pass into the `RainbowKitProvider` prop `theme` to set custom colors, border radius, font stack, and overlay blur. Update `providers.tsx` with the following code. Be sure to add `darkTheme` to the `@rainbow-me/rainbowkit`import statement to allow your changes to render correctly.
 
+<!--TODO: update snippet after code rework-->
 ```js title="providers.tsx"
 --8<-- 'code/builders/integrations/wallets/rainbowkit/custom-theme.ts'
 ```
@@ -189,11 +208,11 @@ RainbowKit includes a **Disconnect** button out of the box. To open the modal, s
 
 Some users prefer to disconnect from their mobile wallet rather than use a button within a dApp. To use this method: 
 
-- click on the MetaMask extension in your browser to open the modal
-- click the three dots in the upper right corner of the MetaMask modal
-- select **Connected sites**
-- review the list of sites connected to your wallet
-- select **Disconnect** for each site you want to disconnect
+1. Select the MetaMask extension in your browser to open the modal
+2. Select the three dots in the upper right corner of the MetaMask modal
+3. Select **Connected sites**
+4. Review the list of sites connected to your wallet
+5. Select **Disconnect** for each site you want to disconnect
 
 ## Final Result {: #final-result }
 
