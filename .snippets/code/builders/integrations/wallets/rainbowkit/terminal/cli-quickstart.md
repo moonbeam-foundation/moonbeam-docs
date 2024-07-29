@@ -1,8 +1,6 @@
 <div id="termynal" data-termynal>
     <span data-ty="input"><span class="file-path"></span>npm init @rainbow-me/rainbowkit@latest
 </span>
-    <span data-ty="input" data-ty-prompt=""> > npx</span>
-    <span data-ty="input" data-ty-prompt=""> > create-rainbowkit</span>
     <span data-ty="input" data-ty-prompt=""> 🌈 Welcome to RainbowKit!</span>
     <span data-ty="input" data-ty-prompt="✔ What is the name of your project?"> rainbow-demo</span>
     <span data-ty="input" data-ty-prompt=""> 🚀 Creating a new RainbowKit app in /Users/dawnkelly/Documents/papermoon_builds/RainbowKit/add-rainbow-kit/rainbow-demo</span>

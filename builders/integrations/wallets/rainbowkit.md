@@ -1,6 +1,5 @@
 ---
 title: Add RainbowKit to a DApp
-title: Add RainbowKit to a DApp
 description: Learn how to integrate RainbowKit into a dApp to allow users to connect their mobile wallets to Moonbeam, Moonriver, or Moonbase Alpha networks.
 ---
 
@@ -69,15 +68,27 @@ Your starting screen should look like this:
 ![Scaffolded RainbowKit project landing page](/images/builders/integrations/wallets/rainbowkit/rainbowkit-1.webp)
 
 
-The default list of supported networks does not include Moonbeam, Moonriver, or Moonbase Alpha. 
+Moonbeam, Moonriver, and Moonbase Alpha are not on the list of default supported networks. You can customize your dApp's supported networks in the `wagmi.ts` file by updating the chain entrypoints imported from `wagmi/chains` and passed to the `chains` property when defining `config`. Wagmi uses chain definitions established by viem which include the chain name. Chain names for Moonbeam networks: 
 
-<!--TODO: add content for adding moonbeam to the chains on the CLI template app-->
+- Moonbeam - `moonbeam`
+- Moonriver - `moonriver`
+- Moonbase Alpha - `moonbaseAlpha`
+
+Update `wagmi.ts` as follows. You will learn how to get the `projectId` value in the next section. 
+
+```js title="src/wagmi.ts"
+
+--8<-- 'code/builders/integrations/wallets/rainbowkit/wagmi.ts'
+
+```
 
 If you want to add RainbowKit to an existing React application, you can complete a manual setup. The following sections will guide you through using the manual setup to install and import needed dependencies, configuring chain connections to support Moonbeam networks, and making RainbowKit functionality available to users of your dApp. You will also learn how to specify which chain the **Connect Wallet** button should connect to by default and how to customize the RainbowKit theme to fit your project.
 
 ## Checking Prerequisites {: #checking-prerequisites }
 
 Following this guide requires a basic frontend dApp built with [React](https://react.dev/){target=\_blank} to connect to a mobile wallet via RainbowKit. This example uses [Next.js](https://nextjs.org/docs){target=\_blank} with the App Router. You can find examples for additional frameworks in the [RainbowKit examples repository](https://github.com/rainbow-me/rainbowkit/tree/main/examples){target=\_blank}.
+
+
 
 Another essential requirement is a mobile wallet of your choice. This example uses [MetaMask](https://metamask.io/){target=\_blank}. However, RainbowKit supports a variety of wallets, and you can find a complete list on the RainbowKit [Custom Wallet List](https://www.rainbowkit.com/docs/custom-wallet-list){target=\_blank}.
 
