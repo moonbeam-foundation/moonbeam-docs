@@ -63,7 +63,7 @@ Moralis has an SDK that allows developers to seamlessly integrate Moralis' API i
 
 Moralis currently provides official SDK support for two primary programming languages:
 
-- NodeJS
+- Node.js
 - Python
 
 To install Moralis SDK:
@@ -100,18 +100,18 @@ Once the SDK is ready, you can leverage it to query Moralis APIs. Here's an exam
     import Moralis from 'moralis';
 
     try {
-    await Moralis.start({
-      apiKey: 'INSERT_YOUR_API_KEY',
-    });
-
-    const response = await Moralis.EvmApi.block.getBlock({
-      chain: '0x504',
-      blockNumberOrHash: '1',
-    });
-
-    console.log(response.raw);
+      await Moralis.start({
+        apiKey: 'INSERT_YOUR_API_KEY',
+      });
+     
+      const response = await Moralis.EvmApi.block.getBlock({
+        chain: '0x504',
+        blockNumberOrHash: '1',
+      });
+      
+      console.log(response.raw);
     } catch (e) {
-    console.error(e);
+      console.error(e);
     }
     ```
 
@@ -132,7 +132,7 @@ Once the SDK is ready, you can leverage it to query Moralis APIs. Here's an exam
     print(result)
     ```
 
-For more information on advanced features and configurations within the Moralis SDK, please refer to the official [Javascript](https://moralisweb3.github.io/Moralis-JS-SDK/Introduction){target=\_blank} and [Python](https://moralisweb3.github.io/Moralis-Python-SDK/){target=\_blank} documentation.
+For more information on advanced features and configurations within the Moralis SDK, please refer to the official [JavaScript](https://moralisweb3.github.io/Moralis-JS-SDK/Introduction){target=\_blank} and [Python](https://moralisweb3.github.io/Moralis-Python-SDK/){target=\_blank} documentation.
 
 ## Accessing the Stream API {: #accessing-stream-api }
 
@@ -148,11 +148,11 @@ To get started quickly, choose a predefined template. This example focuses on tr
 
 On the next page, enter the following details:
 
-1. Enter the smart contract address for [xcDot](https://moonscan.io/token/0xffffffff1fcacbd218edc0eba20fc2308c778080){target=\_blank}: 0xFfFFfFff1FcaCBd218EDc0EbA20Fc2308C778080
+1. Enter the smart contract address for [xcDOT](https://moonscan.io/token/0xffffffff1fcacbd218edc0eba20fc2308c778080){target=\_blank}: 0xFfFFfFff1FcaCBd218EDc0EbA20Fc2308C778080
 2. Select Moonbeam from the available network options. Moralis supports listening to events on Moonbeam, Moonriver, and Moonbase Alpha 
-3. Customize the events you want to receive. For this example, choose All contract events. You may also test the stream to confirm it captures the needed data
+3. Customize the events you want to receive. For this example, choose **All contract events**. You may also test the stream to confirm it captures the needed data
 4. Connect the stream to an endpoint to receive updates from Moralis
-5. Click Save to activate your stream
+5. Click **Save** to activate your stream
 
 ![details input page](/images/builders/integrations/indexers/moralis/moralis-4.webp)
 
