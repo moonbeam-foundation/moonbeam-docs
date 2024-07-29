@@ -208,7 +208,7 @@ thirdweb distinguishes between accounts and wallets in the SDK. In the eyes of t
 
 The below code snippet demonstrates how to initialize and connect a MetaMask wallet using the thirdweb SDK, then sign and send a transaction, retrieving the transaction hash. This process is applicable to any of the 300+ wallet connectors supported by the SDK.
 
-???+ code "Initialize and Connect a Metamask Wallet"
+???+ code "initialize.ts"
     ```typescript
     --8<-- 'code/builders/ethereum/dev-env/thirdweb/initialize.ts'
     ```
