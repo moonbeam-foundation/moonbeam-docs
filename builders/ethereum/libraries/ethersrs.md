@@ -315,6 +315,8 @@ If the transaction was succesful, in your terminal you'll see the transaction de
 
 ![Terminal logs from sending a transaction](/images/builders/ethereum/libraries/ethersrs/ethersrs-1.webp)
 
+--8<-- 'code/builders/ethereum/libraries/ethers-rust/terminal/transaction.md'
+
 ## Deploy a Contract {: #deploy-a-contract }
 
 --8<-- 'text/builders/ethereum/libraries/contract.md'
@@ -491,6 +493,12 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
 You can view the [complete script on GitHub](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/builders/ethereum/libraries/ethers-rust/deploy-contract/main.rs){target=\_blank}.
 
+??? code "View the complete script"
+
+    ```rust
+    --8<-- 'code/builders/ethereum/libraries/ethers-rust/deploy-contract/main.rs'
+    ```
+
 To run the script, which will deploy the contract and return the current value stored in the `Incrementer` contract, you can enter the following command into your terminal:
 
 ```bash
@@ -500,6 +508,8 @@ cargo run
 If successful, you'll see the deployed contract's address and initial value set, which should be `5`, displayed in the terminal.
 
 ![Terminal logs from deploy the contract](/images/builders/ethereum/libraries/ethersrs/ethersrs-2.webp)
+
+--8<-- 'code/builders/ethereum/libraries/ethers-rust/terminal/deploy.md'
 
 ### Interact with Contract (Send Methods) {: #interact-with-contract }
 
@@ -552,6 +562,12 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
 You can view the [complete script on GitHub](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/builders/ethereum/libraries/ethers-rust/deploy-contract/main.rs){target=\_blank}.
 
+??? code "View the complete script"
+
+    ```rust
+    --8<-- 'code/builders/ethereum/libraries/ethers-rust/deploy-contract/main.rs'
+    ```
+
 To run the script, you can enter the following command into your terminal:
 
 ```bash
@@ -561,6 +577,8 @@ cargo run
 If successful, the transaction receipt will be displayed in the terminal. You can use the `read_number` function in the `main` function to make sure that value is changing as expected. If you're using the `read_number` function after incrementing, you'll also see the incremented number, which should be `10`.
 
 ![Terminal logs from incrementing the number](/images/builders/ethereum/libraries/ethersrs/ethersrs-3.webp)
+
+--8<-- 'code/builders/ethereum/libraries/ethers-rust/terminal/increment.md'
 
 Next you can interact with the `reset` function:
 
@@ -611,6 +629,12 @@ If successful, the transaction receipt will be displayed in the terminal. You ca
 
 ![Terminal logs from resetting the number](/images/builders/ethereum/libraries/ethersrs/ethersrs-4.webp)
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/builders/ethereum/libraries/ethers-rust/deploy-contract/main.rs){target=\_blank}.
+--8<-- 'code/builders/ethereum/libraries/ethers-rust/terminal/reset.md'
+
+??? code "View the complete script"
+
+    ```rust
+    --8<-- 'code/builders/ethereum/libraries/ethers-rust/deploy-contract/main.rs'
+    ```
 
 --8<-- 'text/_disclaimers/third-party-content.md'
