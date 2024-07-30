@@ -498,8 +498,6 @@ node increment.js
 
 If successful, the transaction hash will be displayed in the terminal. You can use the `get.js` script alongside the `increment.js` script to make sure that value is changing as expected:
 
-![Increment Contract Web3js](/images/builders/ethereum/libraries/web3js/web3js-3.webp)
-
 --8<-- 'code/builders/ethereum/libraries/web3-js/terminal/increment.md'
 
 Next, you can open the `reset.js` file and take the following steps to create the script:
@@ -576,8 +574,6 @@ node reset.js
 ```
 
 If successful, the transaction hash will be displayed in the terminal. You can use the `get.js` script alongside the `reset.js` script to make sure that value is changing as expected:
-
-![Reset Contract Web3js](/images/builders/ethereum/libraries/web3js/web3js-4.webp)
 
 --8<-- 'code/builders/ethereum/libraries/web3-js/terminal/reset.md'
 
