@@ -219,7 +219,7 @@ Have fun playing around with queries; after all, it's a _playground_!
 
 SQD offers a SaaS solution to host projects created by its community. All templates ship with a deployment manifest file named `squid.yml`, which can be used with the Squid CLI command `sqd deploy`.
 
-Please refer to the [SQD Cloud Quickstart](https://docs.subsquid.io/cloud/overview/){target=\_blank} page on Subquid's documentation site for more information.
+Please refer to the [SQD Cloud Quickstart](https://docs.subsquid.io/cloud/overview/){target=\_blank} page on SQD's documentation site for more information.
 
 ## Example Project Repository {: #example-project-repository }
 
