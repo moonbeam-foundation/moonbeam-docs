@@ -7,9 +7,10 @@ description: Learn how to integrate RainbowKit into a dApp to allow users to con
 
 ## Introduction {: #introduction }
 
-[RainbowKit](https://www.rainbowkit.com/docs/introduction){target=\_blank} is a React library that adds wallet connection capabilities to a dApp. It supports numerous wallets and enables features such as switching connection chains, ENS address resolution, and balance display out-of-the-box. 
+[RainbowKit](https://www.rainbowkit.com/docs/introduction){target=\_blank} is a React library that adds wallet connection capabilities to a dApp. It supports numerous wallets and enables features such as switching connection chains, ENS address resolution, and balance display out-of-the-box. RainbowKit offers customization options for all EVM-compatible chains, making it possible to easily connect mobile wallets to your Moonbeam dApps.
 
 RainbowKit bundles together mulitple tools to simplify adding wallet connection to your dApp: 
+
 - [Wagmi](https://wagmi.sh/){target=\_blank} -  a React Hooks library for interacting with Ethereum accounts, wallets, contracts, transactions, signing, ENS, and more
 - [viem](https://viem.sh/){target=\_blank} - TypeScript interface which provides low-level stateless primitives for interacting with Ethereum
 - [WalletConnect](https://walletconnect.com/){target=\_blank} - adds encrypted connections and enhanced UX experiences like connecting a mobile wallet by scanning a QR code
@@ -68,13 +69,27 @@ Your starting screen should look like this:
 ![Scaffolded RainbowKit project landing page](/images/builders/integrations/wallets/rainbowkit/rainbowkit-1.webp)
 
 
-Moonbeam, Moonriver, and Moonbase Alpha are not on the list of default supported networks. You can customize your dApp's supported networks in the `wagmi.ts` file by updating the chain entrypoints imported from `wagmi/chains` and passed to the `chains` property when defining `config`. Wagmi uses chain definitions established by viem which include the chain name. Chain names for Moonbeam networks: 
+Moonbeam, Moonriver, and Moonbase Alpha are not on the list of default supported networks. You can customize your dApp's supported networks in the `wagmi.ts` file by updating the chain entrypoints imported from `wagmi/chains` and passed to the `chains` property when `config` is defined. Wagmi uses [chain definitions](https://wagmi.sh/core/api/chains#available-chains) established by viem, primarily the chain name. The `wagmi/chains` names for Moonbeam networks are as follows: 
 
-- Moonbeam - `moonbeam`
-- Moonriver - `moonriver`
-- Moonbase Alpha - `moonbaseAlpha`
+=== "Moonbeam"
 
-Update `wagmi.ts` as follows. You will learn how to get the `projectId` value in the next section. 
+    ```js
+    `moonbeam`
+    ```
+
+=== "Moonriver"
+
+    ```js
+    `moonriver`
+    ```
+
+=== "Moonbase Alpha"
+
+    ```js
+    `moonbaseAlpha`
+    ```
+
+Update `wagmi.ts` as follows. You will learn how to generate the `projectId` value in the next section. 
 
 ```js title="src/wagmi.ts"
 
@@ -82,17 +97,30 @@ Update `wagmi.ts` as follows. You will learn how to get the `projectId` value in
 
 ```
 
-If you want to add RainbowKit to an existing React application, you can complete a manual setup. The following sections will guide you through using the manual setup to install and import needed dependencies, configuring chain connections to support Moonbeam networks, and making RainbowKit functionality available to users of your dApp. You will also learn how to specify which chain the **Connect Wallet** button should connect to by default and how to customize the RainbowKit theme to fit your project.
+If you want to add RainbowKit to an existing React application, you can complete a manual setup. The following sections will guide you through using the manual setup to install and import needed dependencies, configure chain connections to support Moonbeam networks, and make RainbowKit functionality available to users of your dApp. You will also learn how to specify which chain the **Connect Wallet** button should connect to by default and how to customize the RainbowKit theme to fit your project.
 
 ## Checking Prerequisites {: #checking-prerequisites }
 
-Following this guide requires a basic frontend dApp built with [React](https://react.dev/){target=\_blank} to connect to a mobile wallet via RainbowKit. This example uses [Next.js](https://nextjs.org/docs){target=\_blank} with the App Router. You can find examples for additional frameworks in the [RainbowKit examples repository](https://github.com/rainbow-me/rainbowkit/tree/main/examples){target=\_blank}.
+The following guide assumes you have:
 
+- An existing dApp built with [React](https://react.dev/){target=\_blank} and you want to use the manual setup to connect to a mobile wallet via RainbowKit. 
 
+    - This example uses [Next.js](https://nextjs.org/docs){target=\_blank} with the App Router. You can find examples for additional frameworks in the [RainbowKit examples repository](https://github.com/rainbow-me/rainbowkit/tree/main/examples){target=\_blank}. 
 
-Another essential requirement is a mobile wallet of your choice. This example uses [MetaMask](https://metamask.io/){target=\_blank}. However, RainbowKit supports a variety of wallets, and you can find a complete list on the RainbowKit [Custom Wallet List](https://www.rainbowkit.com/docs/custom-wallet-list){target=\_blank}.
+- A mobile wallet which supports Moonbeam 
 
-Lastly, visit [WalletConnect Cloud](https://cloud.walletconnect.com/){target=\_blank} to obtain a WalletConnect `projectId`. Every dApp relying on WalletConnect is required to have an associated `projectId`. It is free to create an account, and you can instantly generate an ID.  
+    - This example uses [MetaMask](https://metamask.io/){target=\_blank}. However, RainbowKit supports a variety of wallets, and you can find a complete list on the RainbowKit [Custom Wallet List](https://www.rainbowkit.com/docs/custom-wallet-list){target=\_blank}.
+
+- A WalletConnect `projectId` - Every dApp relying on WalletConnect is required to have an associated `projectId`. It is free to create an account, and you can instantly generate an ID. 
+
+To obtain a WalletConnect `projectId`:
+
+1. Visit [WalletConnect Cloud](https://cloud.walletconnect.com/){target=\_blank}
+2. On the **Projects** page, select **Create** 
+3. Add your project information (you can leave **Homepage URL** blank if you have not deployed your dApp)
+4. Select the **AppKit** SDK
+5. Select your coding environment or platform (select React for this guide)
+6. Locate your `projectId` in the left menu. You can also find it in the **Get started** code snippet of the WalletConnect Quickstart
  
 ## Getting Started {: #getting-started }
 
