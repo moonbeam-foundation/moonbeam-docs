@@ -39,6 +39,7 @@ The basic JSON-RPC methods from the Ethereum API supported by Moonbeam are:
 - **[eth_sendRawTransaction](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_sendrawtransaction){target=\_blank}** — creates a new message call transaction or a contract creation for signed transactions. Returns the transaction hash or the zero hash if the transaction is not yet available
 - **[eth_call](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_call){target=\_blank}** — executes a new message call immediately without creating a transaction on the blockchain, returning the value of the executed call
 - **[eth_estimateGas](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_estimategas){target=\_blank}** — returns an estimated amount of gas necessary for a given transaction to succeed. You can optionally specify a `gasPrice` or `maxFeePerGas` and `maxPriorityFeePerGas`
+- **[eth_maxPriorityFeePerGas](https://docs.alchemy.com/reference/eth-maxpriorityfeepergas){target=\_blank}** - returns an estimate of how much priority fee, in Wei, is needed for inclusion in a block
 - **[eth_feeHistory](https://docs.alchemy.com/reference/eth-feehistory){target=\_blank}** — returns `baseFeePerGas`, `gasUsedRatio`, `oldestBlock`, and `reward` for a specified range of up to 1024 blocks
 - **[eth_getTransactionByHash](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_gettransactionbyhash){target=\_blank}** — returns the information about a transaction with a given hash. EIP-1559 transactions have `maxPriorityFeePerGas` and `maxFeePerGas` fields
 - **[eth_getTransactionByBlockHashAndIndex](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_gettransactionbyblockhashandindex){target=\_blank}** — returns information about a transaction at a given block hash and a given index position. EIP-1559 transactions have `maxPriorityFeePerGas` and `maxFeePerGas` fields
@@ -48,10 +49,21 @@ The basic JSON-RPC methods from the Ethereum API supported by Moonbeam are:
 - **[eth_getUncleByBlockNumberAndIndex](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_getunclebyblocknumberandindex){target=\_blank}** — returns `null` by default
 - **[eth_getLogs](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_getlogs){target=\_blank}** — returns an array of all logs matching a given filter object
 - **[eth_newFilter](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_newfilter){target=\_blank}** — creates a filter object based on the input provided. Returns a filter ID
-- **[eth_newBlockFilter](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_newblockfilter){target=\_blank}** — creates a filter in the node to notify when a new block arrives. Returns a filter id
+- **[eth_newBlockFilter](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_newblockfilter){target=\_blank}** — creates a filter in the node to notify when a new block arrives. Returns a filter ID
+- **[eth_newPendingTransactionFilter](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_newpendingtransactionfilter){target=\_blank}** - creates a filter in the node to notify when new pending transactions arrive. Returns a filter ID
 - **[eth_getFilterChanges](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_getfilterchanges){target=\_blank}** — polling method for filters (see methods above). Returns an array of logs that occurred since the last poll
 - **[eth_getFilterLogs](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_getfilterlogs){target=\_blank}** — returns an array of all the logs matching the filter with a given ID
 - **[eth_uninstallFilter](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_uninstallfilter){target=\_blank}** — uninstall a filter with a given ID. It should be used when polling is no longer needed. Filters timeout when they are not requested using `eth_getFilterChanges` after some time
+
+## Unsupported Ethereum JSON-RPC Methods {: #unsupported-rpc-methods }
+
+ Moonbeam does not support the following Ethereum API JSON-RPC methods:
+
+ - **[eth_getProof](https://docs.alchemy.com/reference/eth-getproof){target=\_blank}** - returns the account and storage values of the specified account including the Merkle-proof
+ - **[eth_blobBaseFee](https://www.quicknode.com/docs/ethereum/eth_blobBaseFee){target=\_blank}** - returns the expected base fee for blobs in the next block
+ - **[eth_createAccessList](https://docs.alchemy.com/reference/eth-createaccesslist){target=\_blank}** - creates an EIP-2930 type `accessList` based on a given transaction object
+ - **[eth_sign](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_sign){target=\_blank}** - allows the user to sign an arbitrary hash to be sent at a later time. Presents a [security risk](https://support.metamask.io/privacy-and-security/what-is-eth_sign-and-why-is-it-a-risk/){target=\_blank} as the arbitrary hash can be fraudulently applied to other transactions
+ - **[eth_signTransaction](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_signtransaction){target=\_blank}** - allows the user to sign a transaction to be sent at a later time. It is rarely used due to associated security risks
 
 ## Additional RPC Methods {: #additional-rpc-methods }
 
