@@ -115,6 +115,6 @@ Press **Continue**, and you'll be taken to the proposal status page. Here, you'l
 
 ![OpenZeppelin Defender Actions Contract Proposal Pause Approve and Execute](/images/builders/ethereum/dev-env/openzeppelin/defender/new/oz-defender-7.webp)
 
-If all went smoothly, your Pausable Box Contract is now paused. If you'd like to try out additional scenarios, you can try creating a proposal to unpause your contract. And that's it! You're now well on your way to mastering OpenZeppelin Defender to manage your smart contracts on Moonbeam. For more information, be sure to check out the [OpenZeppelin Defender Docs](https://docs.openzeppelin.com/defender/v2){target=\_blank}. 
+If all went smoothly, your Pausable Box Contract is now paused. If you'd like to try out additional scenarios, you can try creating a proposal to unpause your contract. And that's it! You're now well on your way to mastering OpenZeppelin Defender to manage your smart contracts on Moonbeam. For more information, be sure to check out the [OpenZeppelin Defender Docs](https://docs.openzeppelin.com/defender/){target=\_blank}. 
 
 --8<-- 'text/_disclaimers/third-party-content.md'
