@@ -2,7 +2,7 @@
 pragma solidity >=0.8.3;
 
 /// @dev The XCM contract's address.
-address constant XCM_CONTRACT_ADDRESS = 0x0000000000000000000000000000000000000804;
+address constant XCM_CONTRACT_ADDRESS = 0x000000000000000000000000000000000000081A;
 
 /// @dev The XCM contract's instance.
 XCM constant XCM_CONTRACT = XCM(XCM_CONTRACT_ADDRESS);
