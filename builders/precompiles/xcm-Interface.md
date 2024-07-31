@@ -1,6 +1,6 @@
 ---
 title: XCM Interface Precompile
-description: Learn how to use the XCM interface precompile to perform cross chains asset transfer.
+description: Learn about the XCM interface precompile and how to use it to transfer assets from moonbeam networks to other parachains.
 ---
 
 # XCM Interface precompile
@@ -9,11 +9,11 @@ description: Learn how to use the XCM interface precompile to perform cross chai
 
 As a Polkadot parachain, Moonbeam is provided with the inherent ability to communicate and exchange data with other connected parachains. This native cross-chain communication allows safe and fast token transfers leveraging the Cross-Consensus Message format (XCM for short), which facilitates communication between different consensus systems.
 
-The communication protocol enabling token transfers is built on [Substrate](/learn/framework/overview/#substrate-framework){target=\_blank} and runs on a lower level than the EVM, making it harder for EVM developers to access.
+The communication protocol enabling token transfers is built on [Substrate](/builders/substrate/){target=\_blank} and runs on a lower level than the EVM, making it harder for EVM developers to access.
 
 Nevertheless, Moonbeam networks have an XCM precompile that fills the gap between execution layers, exposing a smart contract interface that abstracts away the underlying complexities, making the execution of cross-chain token transfers as easy as any other smart contract call.
 
-This guide will show you how to interact with the [XCM interface](https://github.com/moondance-labs/tanssi/blob/master/test/contracts/solidity/XcmInterface.sol){target=\_blank} precompile to execute cross-chain token transfers through the Ethereum API.
+This guide will show you how to interact with the [XCM interface](https://github.com/Moonsong-Labs/moonkit/blob/main/precompiles/pallet-xcm/XcmInterface.sol){target=\_blank} precompile to execute cross-chain token transfers through the Ethereum API.
 
 The XCM precompile is located at the following address:
 
@@ -39,7 +39,7 @@ The XCM precompile is located at the following address:
 
 ## The XCM Solidity Interface {: #the-xcm-solidity-interface }
 
-The [`XCMInterface.sol`](https://github.com/moondance-labs/tanssi/blob/master/test/contracts/solidity/XcmInterface.sol){target=\_blank} is a Solidity interface that allows developers to interact with the precompile's functions.
+The [`XCMInterface.sol`](https://github.com/Moonsong-Labs/moonkit/blob/main/precompiles/pallet-xcm/XcmInterface.sol){target=\_blank} is a Solidity interface that allows developers to interact with the precompile's functions.
 
 ??? code "XcmInterface.sol"
 
@@ -127,7 +127,7 @@ To follow along with this tutorial, you will need to have your prefered EVM wall
 
 You can interact with the XCM interface precompile using [Remix](https://remix.ethereum.org){target=\_blank}. To add the precompile to Remix, you will need to:
 
-1. Get a copy of [`XcmInterface.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/627410d204447486c6ff57d168e32a2112676c25/test/suites/dev/moonbase/test-precompile/test-precompile-pallet-xcm.ts){target=\_blank}
+1. Get a copy of [`XcmInterface.sol`](https://github.com/Moonsong-Labs/moonkit/blob/main/precompiles/pallet-xcm/XcmInterface.sol){target=\_blank}
 2. Paste the file contents into a Remix file named `XcmInterface.sol`
 
 ### Compile the Contract {: #compile-the-contract }
@@ -137,7 +137,7 @@ Next, you will need to compile the interface in Remix:
 1. Click on the **Compile** tab, second from top
 2. Compile the interface by clicking on **Compile XcmInterface.sol**
 
-![Compiling XcmInterface.sol](/images/builders/toolkit/ethereum-api/precompiles/xcm-interface/xcm-interface-1.webp)
+![Compiling XcmInterface.sol](/images/builders/precompiles/xcm-interface/xcm-interface-1.webp)
 
 When the compilation is completed, you will see a green checkmark next to the **Compile** tab.
 
@@ -151,7 +151,7 @@ Instead of deploying the precompile, you will access the interface given the add
 4. Ensure **XCM - XcmInterface.sol** is selected in the **CONTRACT** dropdown. Given that it is a precompiled contract, there is no deployment step. Instead, you are going to provide the address of the precompile in the **At Address** field
 5. Provide the address of the precompile: `{{networks.dancebox.precompiles.xcmInterface}}` and click **At Address**
 
-![Access the address](/images/builders/toolkit/ethereum-api/precompiles/xcm-interface/xcm-interface-2.webp)
+![Access the address](/images/builders/precompiles/xcm-interface/xcm-interface-2.webp)
 
 The **XCM Interface** precompile will appear in the list of **Deployed Contracts**.
 
@@ -163,10 +163,12 @@ To send tokens over to an account in another EVM-compatible appchain, please fol
 2. Enter the appchain ID (paraId)
 3. Enter the 20-bytes (Ethereum-like) destination account (beneficiary)
 4. Specify the tokens to be transferred. Note that this parameter is an array that contains at least one asset. Each asset is specified by its address and the total amount to transfer
+5. Enter the index of the asset that will be used to pay the fees. This index is zero-based, so the first element is `0`, the second is `1`, and so on
+6. Enter the maximum gas to pay for the transaction. This gas is derived from two parameters, the processing time (`refTime`) and the proof size (`proofSize`). In practice, setting refTime to `uint64::MAX` is equal to _unlimited weight_
+7. Click **transact**
+8. MetaMask will pop up, and you will be prompted to review the transaction details. Click **Confirm** to send the transaction
 
---8<-- 'text/builders/toolkit/ethereum-api/precompiles/xcm-interface/erc-20-note.md' 5. Enter the index of the asset that will be used to pay the fees. This index is zero-based, so the first element is `0`, the second is `1`, and so on 6. Enter the maximum gas to pay for the transaction. This gas is derived from two parameters, the processing time (`refTime`) and the proof size (`proofSize`). In practice, setting refTime to `uint64::MAX` is equal to _unlimited weight_ 7. Click **transact** 8. MetaMask will pop up, and you will be prompted to review the transaction details. Click **Confirm** to send the transaction
-
-![Confirm Approve Transaction](/images/builders/toolkit/ethereum-api/precompiles/xcm-interface/xcm-interface-3.webp)
+![Confirm Approve Transaction](/images/builders/precompiles/xcm-interface/xcm-interface-3.webp)
 
 After the transaction is confirmed, wait for a few blocks for the transfer to reach the destination chain and reflect the new balance.
 
@@ -186,7 +188,7 @@ To send tokens over to an account in a Substrate appchain, please follow these s
 7. Click **transact**
 8. MetaMask will pop up, and you will be prompted to review the transaction details. Click **Confirm** to send the transaction
 
-![Confirm Approve Transaction](/images/builders/toolkit/ethereum-api/precompiles/xcm-interface/xcm-interface-4.webp)
+![Confirm Approve Transaction](/images/builders/precompiles/xcm-interface/xcm-interface-4.webp)
 
 After the transaction is confirmed, wait for a few blocks for the transfer to reach the destination chain and reflect the new balance.
 
@@ -205,7 +207,7 @@ To send tokens over to an account in the relay chain, please follow these steps:
 6. Click **transact**
 7. MetaMask will pop up, and you will be prompted to review the transaction details. Click **Confirm** to send the transaction
 
-![Confirm Approve Transaction](/images/builders/toolkit/ethereum-api/precompiles/xcm-interface/xcm-interface-5.webp)
+![Confirm Approve Transaction](/images/builders/precompiles/xcm-interface/xcm-interface-5.webp)
 
 After the transaction is confirmed, wait for a few blocks for the transfer to reach the destination chain and reflect the new balance.
 
@@ -226,6 +228,6 @@ To send tokens to specific locations, please follow these steps:
 7. Click **transact**
 8. MetaMask will pop up, and you will be prompted to review the transaction details. Click **Confirm** to send the transaction
 
-![Confirm Approve Transaction](/images/builders/toolkit/ethereum-api/precompiles/xcm-interface/xcm-interface-6.webp)
+![Confirm Approve Transaction](/images/builders/precompiles/xcm-interface/xcm-interface-6.webp)
 
 After the transaction is confirmed, wait for a few blocks for the transfer to reach the destination chain and reflect the new balance.
