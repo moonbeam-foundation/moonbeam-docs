@@ -4,3 +4,4 @@ nav:
   - 'MetaMask': 'metamask.md'
   - 'WalletConnect': 'walletconnect.md'
   - 'Particle Network': 'particle-network.md'
+  - 'RainbowKit': 'rainbowkit.md'
