@@ -149,7 +149,7 @@ Instead of deploying the precompile, you will access the interface given the add
 2. Make sure **Injected Provider - Metamask** is selected in the **ENVIRONMENT** dropdown. Once you select **Injected Provider - Metamask**, you may be prompted by MetaMask to connect your account to Remix if it's not already connected
 3. Make sure the correct account is displayed under **ACCOUNT**
 4. Ensure **XCM - XcmInterface.sol** is selected in the **CONTRACT** dropdown. Given that it is a precompiled contract, there is no deployment step. Instead, you are going to provide the address of the precompile in the **At Address** field
-5. Provide the address of the precompile: `{{networks.dancebox.precompiles.xcmInterface}}` and click **At Address**
+5. Provide the address of the precompile: `{{networks.moonbeam.precompiles.xcmInterface}}` and click **At Address**
 
 ![Access the address](/images/builders/precompiles/xcm-interface/xcm-interface-2.webp)
 
