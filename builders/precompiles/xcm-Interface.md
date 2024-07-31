@@ -7,7 +7,7 @@ description: Learn about the XCM interface precompile and how to use it to trans
 
 ## Introduction {: #introduction }
 
-As a Polkadot parachain, Moonbeam is provided with the inherent ability to communicate and exchange data with other connected parachains. This native cross-chain communication allows safe and fast token transfers leveraging the Cross-Consensus Message format (XCM for short), which facilitates communication between different consensus systems.
+As a Polkadot parachain, Moonbeam has the inherent ability to communicate and exchange data with other connected parachains. This native cross-chain communication allows safe and fast token transfers leveraging the Cross-Consensus Message format (XCM for short), facilitating communication between different consensus systems.
 
 The communication protocol enabling token transfers is built on [Substrate](/builders/substrate/){target=\_blank} and runs on a lower level than the EVM, making it harder for EVM developers to access.
 
@@ -121,7 +121,7 @@ The interface includes the necessary data structures along with the following fu
 
 ### Checking Prerequisites {: #checking-prerequisites }
 
-To follow along with this tutorial, you will need to have your prefered EVM wallet configured and an account funded with native tokens. You can add Moonbeam to MetaMask wallet following this guide: [Interacting with Moonbeam Using MetaMask](/tokens/connect/metamask/){target=\_blank}.
+To follow along with this tutorial, you will need to have your preferred EVM wallet configured and an account funded with native tokens. You can add Moonbeam to MetaMask wallet following this guide: [Interacting with Moonbeam Using MetaMask](/tokens/connect/metamask/){target=\_blank}.
 
 ### Remix Set Up {: #remix-set-up }
 
