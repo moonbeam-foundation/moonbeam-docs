@@ -164,7 +164,7 @@ Your project's data file is where you'll add all the information for your projec
 
 #### Category and Tags {: #category-and-tags }
 
-A category is the primary classification for a project. A project can be categorized under only one category, however, a project can have multiple tags. Ensure that you carefully select the most applicable category for your project to ensure it is easily found. Any secondary classifications can be included as a tag. 
+A category is the primary classification for a project. A project can be categorized under only one category, but it can have multiple tags. Ensure you carefully select the most applicable category for your project to ensure it is easily found. Any secondary classifications can be included as a tag. 
 
 The currently supported values for `category` are:
 
@@ -324,7 +324,7 @@ https://apps.moonbeam.network/api/ds/v1/app-dir/
 
 ### Query a Project {: #query-a-project}
 
-You can retrieve all of the information for a particular project by appending `/projects/INSERT_PROJECT_NAME` to the base URL. If you're unsure of the project name, you can omit the project name to retrieve data for every listed project and find the project in the response. Here's an example of querying the API for StellaSwap, which returns the project description, social media information, user counts, relevant smart contract addresses, market data, images, and more. 
+You can retrieve all the information for a particular project by appending `/projects/INSERT_PROJECT_NAME` to the base URL. If you need clarification on the project name, you can omit the project name to retrieve data for every listed project and find the project in the response. Here's an example of querying the API for StellaSwap, which returns the project description, social media information, user counts, relevant smart contract addresses, market data, images, and more. 
 
 ```bash
 https://apps.moonbeam.network/api/ds/v1/app-dir/projects/stellaswap
@@ -356,7 +356,7 @@ https://apps.moonbeam.network/api/ds/v1/app-dir/projects?category=nfts
     --8<-- 'code/learn/dapps-list/dapp-directory/nfts.json'
     ```
 
-All possible categories and and their respective parameters to query the API are listed below. Ensure that you query the API with the parameter formatted exactly as shown in lowercase.
+Below are all possible categories and their respective parameters for querying the API. Ensure you query the API with the parameter formatted exactly as shown in lowercase.
 
 | Category | API Parameter |
 |:--------:|:-------------:|
@@ -374,7 +374,7 @@ All possible categories and and their respective parameters to query the API are
 
 ### Query a Chain {: #query-a-chain}
 
-You can query all of the listed projects on Moonbeam or Moonriver with the following queries. Note that Moonbase Alpha is not a supported network in the DApp Directory.
+The following queries can be used to query all of the listed projects on Moonbeam or Moonriver. Note that Moonbase Alpha is not a supported network in the DApp Directory.
 
 === "Moonbeam"
 
