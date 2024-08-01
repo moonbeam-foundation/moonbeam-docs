@@ -324,7 +324,13 @@ https://apps.moonbeam.network/api/ds/v1/app-dir/
 
 ### Query a Project {: #query-a-project}
 
-You can retrieve all the information for a particular project by appending `/projects/INSERT_PROJECT_NAME` to the base URL. If you need clarification on the project name, you can omit the project name to retrieve data for every listed project and find the project in the response. Here's an example of querying the API for StellaSwap, which returns the project description, social media information, user counts, relevant smart contract addresses, market data, images, and more. 
+You can retrieve all the information for a particular project by appending `/projects/INSERT_PROJECT_NAME` to the base URL. If you need clarification on the project name, you can omit the project name as shown below to retrieve data for every listed project and find the project in the response. 
+
+```bash
+https://apps.moonbeam.network/api/ds/v1/app-dir/projects
+```
+
+Here's an example of querying the API for StellaSwap, which returns the project description, social media information, user counts, relevant smart contract addresses, market data, images, and more. 
 
 ```bash
 https://apps.moonbeam.network/api/ds/v1/app-dir/projects/stellaswap
