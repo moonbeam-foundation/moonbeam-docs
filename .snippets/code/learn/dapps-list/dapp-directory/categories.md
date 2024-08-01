@@ -1,0 +1,10 @@
+- Bridges
+- DAO
+- DEX
+- DeFi
+- Gaming
+- Lending
+- NFTs
+- Other
+- Social
+- Wallets

@@ -1,0 +1,456 @@
+{
+  "project": {
+    "currentTx": {
+      "moonbeam": 2883079
+    },
+    "web3goIDs": [
+      "StellaSwap"
+    ],
+    "name": "StellaSwap",
+    "currentTVL": {
+      "moonbeam": 5046832.23328
+    },
+    "currentUsers": {
+      "moonbeam": 52455
+    },
+    "coinGeckoId": "stellaswap",
+    "shortDescription": "The leading DEX and DeFi gateway on Moonbeam",
+    "id": "stellaswap",
+    "featured": true,
+    "tags": [
+      "DEX",
+      "DeFi"
+    ],
+    "tvlChange7d": {
+      "moonbeam": -1.61482567543498
+    },
+    "urls": {
+      "telegram": "https://t.me/stellaswap",
+      "website": "https://stellaswap.com/",
+      "try": "https://stellaswap.com/",
+      "twitter": "https://twitter.com/StellaSwap",
+      "github": "https://github.com/stellaswap",
+      "medium": "https://stellaswap.medium.com/"
+    },
+    "web3goContracts": [
+      {
+        "name": "StellaSwap: stDOT Oracle Master",
+        "chain": "moonbeam",
+        "contract": "0x3b23f0675ffc45153eca239664ccaefc5e816b9c"
+      },
+      {
+        "name": "StellaSwap: stDOT Token",
+        "chain": "moonbeam",
+        "contract": "0xbc7e02c4178a7df7d3e564323a5c359dc96c4db4"
+      },
+      {
+        "name": "StellaSwap: stDOT Controller",
+        "chain": "moonbeam",
+        "contract": "0x002d34d6a1b4a8e665fec43fd5d923f4d7cd254f"
+      },
+      {
+        "name": "StellaSwap: stDOT Proxy Admin",
+        "chain": "moonbeam",
+        "contract": "0xe8a5c0039226269313c89c093a6c3524c4d39fa4"
+      },
+      {
+        "name": "StellaSwap: madUSDC GLMR V2",
+        "chain": "moonbeam",
+        "contract": "0x2ad0e92461df950e2b1c72e2f7a865c81eaa3ce6"
+      },
+      {
+        "name": "StellaSwap: Dual ETH - GLMR Rewarder V1",
+        "chain": "moonbeam",
+        "contract": "0x2ba130297d1966e077c2fb5e4b434e8802925277"
+      },
+      {
+        "name": "StellaSwap: BCMC Rewarder V1",
+        "chain": "moonbeam",
+        "contract": "0x18e75887aa81e113636e18d5a78e3ff93787ec88"
+      },
+      {
+        "name": "StellaSwap: Pulsar Position Manager V1",
+        "chain": "moonbeam",
+        "contract": "0x1ff2adaa387dd27c22b31086e658108588eda03a"
+      },
+      {
+        "name": "StellaSwap: DualETH Pool LP Token V1",
+        "chain": "moonbeam",
+        "contract": "0xa3ee3a0a36dc915fdc93062e4b386df37d00217e"
+      },
+      {
+        "name": "StellaSwap: Interlay Rewarder V1",
+        "chain": "moonbeam",
+        "contract": "0x3a7572220afaddc31a72a520642111776d92b2d2"
+      },
+      {
+        "name": "StellaSwap: Router V1",
+        "chain": "moonbeam",
+        "contract": "0xd0a01ec574d1fc6652edf79cb2f880fd47d34ab1"
+      },
+      {
+        "name": "StellaSwap: xStella - GLMR Rewarder 2nd V1",
+        "chain": "moonbeam",
+        "contract": "0xb4dba7fe6fcc613963d64204fcf789e9e376679a"
+      },
+      {
+        "name": "StellaSwap: GLMR Rewarder First V1",
+        "chain": "moonbeam",
+        "contract": "0x69f9d134991e141c4244f397514ba05d67861cc0"
+      },
+      {
+        "name": "StellaSwap: CELER Rewarder 0 V1",
+        "chain": "moonbeam",
+        "contract": "0xbebd88782a1145b71df3f4986ef7686154ce01d9"
+      },
+      {
+        "name": "StellaSwap: MATICILO V1",
+        "chain": "moonbeam",
+        "contract": "0xfffa340944ff32f50c7935e2b5d22a7c3393b313"
+      },
+      {
+        "name": "StellaSwap: ETHmad - GLMR V1",
+        "chain": "moonbeam",
+        "contract": "0x9fe074a56ffa7f4079c6190be6e8452911b7e349"
+      },
+      {
+        "name": "StellaSwap: STELLA Token",
+        "chain": "moonbeam",
+        "contract": "0x0e358838ce72d5e61e0018a2ffac4bec5f4c88d2"
+      },
+      {
+        "name": "StellaSwap: SFL - 4pool Wormhole V1",
+        "chain": "moonbeam",
+        "contract": "0xb1bc9f56103175193519ae1540a0a4572b1566f6"
+      },
+      {
+        "name": "StellaSwap: BICO Trusted Forwarder V1",
+        "chain": "moonbeam",
+        "contract": "0x3d08ce1f9609bb02f47192ff620634d9eb0e7b56"
+      },
+      {
+        "name": "StellaSwap: Gass Refund V1",
+        "chain": "moonbeam",
+        "contract": "0xee42d4861b56b32776e6fe9a2fe122af0e3f4a33"
+      },
+      {
+        "name": "StellaSwap: xcDOT - GLMR V1",
+        "chain": "moonbeam",
+        "contract": "0xe76215efea540ea87a2e1a4bf63b1af6942481f3"
+      },
+      {
+        "name": "StellaSwap: 4pool LP V1",
+        "chain": "moonbeam",
+        "contract": "0xda782836b65edc4e6811c7702c5e21786203ba9d"
+      },
+      {
+        "name": "StellaSwap: SFL LP V1",
+        "chain": "moonbeam",
+        "contract": "0xa0aa99f71033378864ed6e499eb03612264e319a"
+      },
+      {
+        "name": "StellaSwap: SFL - 4pool V1",
+        "chain": "moonbeam",
+        "contract": "0x422b5b7a15fb12c518aa29f9def640b4773427f8"
+      },
+      {
+        "name": "StellaSwap: Acala - GLMR Rewarder V1",
+        "chain": "moonbeam",
+        "contract": "0x9de8171bebfa577d6663b594c60841fe096eff97"
+      },
+      {
+        "name": "StellaSwap: Zap V1",
+        "chain": "moonbeam",
+        "contract": "0x01834cf26717f0351d9762cc9cca7dc059d140df"
+      },
+      {
+        "name": "StellaSwap: GLMR Rewarder for UST - GLMR V1",
+        "chain": "moonbeam",
+        "contract": "0xc85ddcff71200f9673137e2f93ce504bdbf7db4e"
+      },
+      {
+        "name": "StellaSwap: xStella Token",
+        "chain": "moonbeam",
+        "contract": "0x06a3b410b681c82417a906993acefb91bab6a080"
+      },
+      {
+        "name": "StellaSwap: ETHmad - GLMR V2",
+        "chain": "moonbeam",
+        "contract": "0xa6ec79c97e533e7bddb00898e22c6908742e039b"
+      },
+      {
+        "name": "StellaSwap: WBTC - USDT Contract V1",
+        "chain": "moonbeam",
+        "contract": "0xcae51da6dceacd84f79df4b88d9f92035d1479e9"
+      },
+      {
+        "name": "StellaSwap: AVAXILO V1",
+        "chain": "moonbeam",
+        "contract": "0x96bef4719ae7c053113292e6aa7fc36e62b243e8"
+      },
+      {
+        "name": "StellaSwap: Swap For Gas V1",
+        "chain": "moonbeam",
+        "contract": "0xb64dee2d182fed3dd6c273303fb08f11808c9c23"
+      },
+      {
+        "name": "StellaSwap: Farming Centre V1",
+        "chain": "moonbeam",
+        "contract": "0x0d4f8a55a5b2583189468ca3b0a32d972f90e6e5"
+      },
+      {
+        "name": "StellaSwap: FTMILO V1",
+        "chain": "moonbeam",
+        "contract": "0x096352f7ea415a336b41fc48b33142eff19a8ad8"
+      },
+      {
+        "name": "StellaSwap: Acala Rewarder V1",
+        "chain": "moonbeam",
+        "contract": "0xb7b5d3659ad213478bc8bfb94d064d0efdda8f7c"
+      },
+      {
+        "name": "StellaSwap: USDC Rewarder V1",
+        "chain": "moonbeam",
+        "contract": "0xa52123adc0bc5c4c030d1ff4f5dad966366a646c"
+      },
+      {
+        "name": "StellaSwap: Vault V1",
+        "chain": "moonbeam",
+        "contract": "0x54e2d14df9348b3fba7e372328595b9f3ae243fe"
+      },
+      {
+        "name": "StellaSwap: CELER Rewarder 1 V1",
+        "chain": "moonbeam",
+        "contract": "0x70cbd76ed57393e0cd81e796de850080c775d24f"
+      },
+      {
+        "name": "StellaSwap: Stella Timelock V1",
+        "chain": "moonbeam",
+        "contract": "0xc6f73b028cd3154a5bb87f49aa43aa259a6522fb"
+      },
+      {
+        "name": "StellaSwap: GLMR - MAI Vault V1",
+        "chain": "moonbeam",
+        "contract": "0x3a82f4da24f93a32dc3c2a28cfa9d6e63ec28531"
+      },
+      {
+        "name": "StellaSwap: UST - GLMR V1",
+        "chain": "moonbeam",
+        "contract": "0x556d9c067e7a0534564d55f394be0064993d2d3c"
+      },
+      {
+        "name": "StellaSwap: SFL - axlUSDC - 4pool V1",
+        "chain": "moonbeam",
+        "contract": "0xa1ffdc79f998e7fa91ba3a6f098b84c9275b0483"
+      },
+      {
+        "name": "StellaSwap: Stable Router V1",
+        "chain": "moonbeam",
+        "contract": "0xb0dfd6f3fddb219e60fcdc1ea3d04b22f2ffa9cc"
+      },
+      {
+        "name": "StellaSwap: ATOM - GLMR Rewarder New V1",
+        "chain": "moonbeam",
+        "contract": "0x5aa224966e302424ec13a4f51b80bcfc205984b6"
+      },
+      {
+        "name": "StellaSwap: CELR Rewarder V1",
+        "chain": "moonbeam",
+        "contract": "0x05ad30253f0b20be35d84253d6aca8bd7ec0c66c"
+      },
+      {
+        "name": "StellaSwap: Router V3",
+        "chain": "moonbeam",
+        "contract": "0xe6d0ed3759709b743707dcfecae39bc180c981fe"
+      },
+      {
+        "name": "StellaSwap: xStella - GLMR Rewarder V1",
+        "chain": "moonbeam",
+        "contract": "0x896135ff51debe8083a2e03f9d44b1d3c77a0324"
+      },
+      {
+        "name": "StellaSwap: XStella - MAI Vault V1",
+        "chain": "moonbeam",
+        "contract": "0x3756465c5b1c1c4cee473880c9726e20875284f1"
+      },
+      {
+        "name": "StellaSwap: ATOM - USDC Rewarder New V1",
+        "chain": "moonbeam",
+        "contract": "0x5546e272c67fac10719f1223b1c0212fa3e41a8f"
+      },
+      {
+        "name": "StellaSwap: SFL - athUSDC - 4pool V1",
+        "chain": "moonbeam",
+        "contract": "0x715d7721fa7e8616ae9d274704af77857779f6f0"
+      },
+      {
+        "name": "StellaSwap: IDO Locker V1",
+        "chain": "moonbeam",
+        "contract": "0x4b1381b5b959a8ba7f44414c7d758e53d500a8a9"
+      },
+      {
+        "name": "StellaSwap: Locker V1",
+        "chain": "moonbeam",
+        "contract": "0x8995066b7f1fb3abe3c88040b677d03d607a0b58"
+      },
+      {
+        "name": "StellaSwap: ATOM - USDC - GLMR Rewarder V1",
+        "chain": "moonbeam",
+        "contract": "0xe06e720aaed5f5b817cb3743108ae0a12fe69e9b"
+      },
+      {
+        "name": "StellaSwap: Mistake in Rewarder V1",
+        "chain": "moonbeam",
+        "contract": "0x168ceb7e49c21e3f37820a34590171214a765f5f"
+      },
+      {
+        "name": "StellaSwap: LP 4pool - Wormhole V1",
+        "chain": "moonbeam",
+        "contract": "0xb326b5189aa42acaa3c649b120f084ed8f4dcaa6"
+      },
+      {
+        "name": "StellaSwap: Farms V1",
+        "chain": "moonbeam",
+        "contract": "0xedfb330f5fa216c9d2039b99c8ce9da85ea91c1e"
+      },
+      {
+        "name": "StellaSwap: Factory V1",
+        "chain": "moonbeam",
+        "contract": "0x68a384d826d3678f78bb9fb1533c7e9577dacc0e"
+      },
+      {
+        "name": "StellaSwap: anyETH-madETH Pool",
+        "chain": "moonbeam",
+        "contract": "0xb86271571c90ad4e0c9776228437340b42623402"
+      },
+      {
+        "name": "StellaSwap: Dual Farms V2",
+        "chain": "moonbeam",
+        "contract": "0xf3a5454496e26ac57da879bf3285fa85debf0388"
+      },
+      {
+        "name": "StellaSwap: CELER Rewarder 01 - 02 V1",
+        "chain": "moonbeam",
+        "contract": "0x713f76076283fcd81babe06c76ff51485edf9d5e"
+      },
+      {
+        "name": "StellaSwap: SCNFT Token",
+        "chain": "moonbeam",
+        "contract": "0x5f23a6a0b6b90fdeeb4816afbfb2ec0408fda59e"
+      },
+      {
+        "name": "StellaSwap: ATOM - GLMR - GLMR Rewarder V1",
+        "chain": "moonbeam",
+        "contract": "0xe60c41de5537418fde05b804df077397dfa84d75"
+      },
+      {
+        "name": "StellaSwap: Timelock Main V1",
+        "chain": "moonbeam",
+        "contract": "0x9a8693c6f7bf0f44e885118f3f83e2cdb4e611b8"
+      },
+      {
+        "name": "StellaSwap: MAI - B4P - Wormhole V1",
+        "chain": "moonbeam",
+        "contract": "0xf0a2ae65342f143fc09c83e5f19b706abb37414d"
+      },
+      {
+        "name": "StellaSwap: LP Token V1",
+        "chain": "moonbeam",
+        "contract": "0x7b17122b941d2173192c7d8d68faabdc88421326"
+      },
+      {
+        "name": "StellaSwap: Multisig V1",
+        "chain": "moonbeam",
+        "contract": "0x4300e09284e3bb4d9044ddab31efaf5f3301daba"
+      },
+      {
+        "name": "StellaSwap: Router V2",
+        "chain": "moonbeam",
+        "contract": "0x70085a09d30d6f8c4ecf6ee10120d1847383bb57"
+      },
+      {
+        "name": "StellaSwap: DOTxc - GLMR V1",
+        "chain": "moonbeam",
+        "contract": "0x505b0a5458dd12605b84bb2928dd2bc5b44993b9"
+      },
+      {
+        "name": "StellaSwap: SFL - MAI - 4pool V1",
+        "chain": "moonbeam",
+        "contract": "0x7fbe3126c03444d43fc403626ec81e3e809e6b46"
+      },
+      {
+        "name": "StellaSwap: xStella - USDC Rewarder V1",
+        "chain": "moonbeam",
+        "contract": "0xfa16d5b8bf03677945f0a750c8d2a30001b2fa93"
+      },
+      {
+        "name": "StellaSwap: madUSDC - GLMR V1",
+        "chain": "moonbeam",
+        "contract": "0x9200cb047a9c4b34a17ccf86334e3f434f948301"
+      }
+    ],
+    "slug": "stellaswap",
+    "createdAt": 1699292612617,
+    "tvlChange1d": {
+      "moonbeam": -0.748278690902012
+    },
+    "logo": {
+      "small": {
+        "width": 36,
+        "fileName": "stellaswap-logo-small.jpeg",
+        "mimeType": "image/jpeg",
+        "height": 36
+      },
+      "large": {
+        "width": 510,
+        "fileName": "stellaswap-logo-large.jpeg",
+        "mimeType": "image/jpeg",
+        "height": 510
+      },
+      "full": {
+        "width": 3000,
+        "fileName": "stellaswap-logo-full.jpeg",
+        "mimeType": "image/jpeg",
+        "height": 3000
+      }
+    },
+    "chains": [
+      "moonbeam"
+    ],
+    "usersChange7d": {
+      "moonbeam": -17.2727272727273
+    },
+    "marketData": {
+      "symbol": "stella",
+      "marketCap": 808908,
+      "marketCapRank": 2865,
+      "priceChangePercentage1y": -43.01356,
+      "currentPrice": 0.01729378,
+      "priceChangePercentage14d": -17.23772,
+      "contracts": {
+        "moonbeam": "0x0e358838ce72d5e61e0018a2ffac4bec5f4c88d2"
+      },
+      "priceChangePercentage60d": -39.75633,
+      "priceChangePercentage30d": -26.13934,
+      "priceChangePercentage24h": -4.63782,
+      "priceChangePercentage200d": -74.57003,
+      "marketCapChangePercentage24h": -4.62971,
+      "priceChange24h": -0.0008410608839097,
+      "marketCapChange24h": -39268.122562502,
+      "priceChangePercentage7d": -7.91278
+    },
+    "projectCreationDate": 1644828523000,
+    "contracts": [
+      {
+        "chain": "moonbeam",
+        "contract": "0x0e358838ce72d5e61e0018a2ffac4bec5f4c88d2"
+      }
+    ],
+    "updatedAt": 1722544694830,
+    "category": "dex",
+    "description": "StellaSwap is one of the first automated market-making (AMM), decentralized exchange (DEX) for the Moonbeam parachain network. The unique value proposition of StellaSwap is that we're committed in establishing a strong foundation with our native token, STELLA, as a governance token, diverse farms, a built in bridge and user-centered service. \r\n\r\nStellaSwap's main objective is to create a broader range of network effects to address the issues of liquidity in the DeFi space, instead of limiting ourselves to a single solution like many DEXs are doing now. This manifests itself in the diverse product suite of StellaSwap that will be explained in more details. Our products are structured in such a way that facilitates decentralized governance of STELLA holders, while continuing to innovate on the collective foundations by design.",
+    "usersChange1d": {
+      "moonbeam": -6.18556701030928
+    }
+  }
+}
