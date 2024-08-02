@@ -153,7 +153,7 @@ If the transaction was succesful, in your terminal you'll see the transaction ha
 
 You can also use the `balances.py` script to check that the balances for the origin and receiving accounts have changed. The entire workflow would look like this:
 
-![Send Tx Web3py](/images/builders/ethereum/libraries/web3py/web3py-1.webp)
+--8<-- 'code/builders/ethereum/libraries/web3-py/terminal/transaction.md'
 
 ## Deploy a Contract {: #deploy-a-contract }
 
@@ -211,7 +211,7 @@ python3 deploy.py
 
 If successful, the contract's address will be displayed in the terminal.
 
-![Deploy Contract Web3py](/images/builders/ethereum/libraries/web3py/web3py-2.webp)
+--8<-- 'code/builders/ethereum/libraries/web3-py/terminal/deploy.md'
 
 ### Read Contract Data (Call Methods) {: #read-contract-data }
 
@@ -273,7 +273,7 @@ python3 increment.py
 
 If successful, the transaction hash will be displayed in the terminal. You can use the `get.py` script alongside the `increment.py` script to make sure that value is changing as expected:
 
-![Increment Contract Web3py](/images/builders/ethereum/libraries/web3py/web3py-3.webp)
+--8<-- 'code/builders/ethereum/libraries/web3-py/terminal/increment.md'
 
 Next you can open the `reset.py` file and take the following steps to create the script:
 
@@ -297,6 +297,6 @@ python3 reset.py
 
 If successful, the transaction hash will be displayed in the terminal. You can use the `get.py` script alongside the `reset.py` script to make sure that value is changing as expected:
 
-![Reset Contract Web3py](/images/builders/ethereum/libraries/web3py/web3py-4.webp)
+--8<-- 'code/builders/ethereum/libraries/web3-py/terminal/reset.md'
 
 --8<-- 'text/_disclaimers/third-party-content.md'
