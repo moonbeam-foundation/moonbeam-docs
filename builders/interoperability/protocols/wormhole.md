@@ -168,7 +168,7 @@ npm run testnet-spy
 
 First, you should see a few logs from the startup of the Docker container. Then, a lot of logs should be spamming the console. These are all the VAAs that are going through the Wormhole TestNet, and there are a lot! Don’t worry, you won’t have to decipher any of these logs: the code can do that for you. Leave this running in the background and get another terminal instance to move on to the next step.
 
---8<-- 'code/builders/interoperability/cross-chain/terminal/setup-spy.md'
+--8<-- 'code/builders/interoperability/protocols/wormhole/terminal/setup-spy.md'
 
 ### Setting up the Listener Component {:setting-up-the-listener-component}
 
@@ -394,7 +394,7 @@ npm run start
 
 You should see something similar to the logs below in the console.
 
---8<-- 'code/builders/interoperability/cross-chain/terminal/run-start.md'
+--8<-- 'code/builders/interoperability/protocols/wormhole/terminal/run-start.md'
 
 ### Sending a Cross-Chain Message from Moonbase with Wormhole {: #send-message-from-moonbase }
 
@@ -413,7 +413,7 @@ Use the Remix interface. This example is going to send a cross-chain message to 
 
 After a few seconds to a minute, cross-chain messages should be properly relayed through the relayer that you are hosting on your local machine.  
 
---8<-- 'code/builders/interoperability/cross-chain/terminal/send.md'
+--8<-- 'code/builders/interoperability/protocols/wormhole/terminal/send.md'
 
 ## Moonbeam Routed Liquidity Integration {: #moonbeam-routed-liquidity-integration }
 
