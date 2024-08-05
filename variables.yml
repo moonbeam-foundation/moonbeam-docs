@@ -15,7 +15,7 @@ networks:
     hex_chain_id: '0x507'
     chain_spec: alphanet
     block_explorer: https://moonbase.moonscan.io/
-    spec_version: runtime-3000
+    spec_version: runtime-3100
     parachain_release_tag: v0.39.0 # must be in this exact format for links to work
     parachain_sha256sum: 7f085fb94719e49f6784ffb41c577b6f0beec7a63db907a179ef8de1ce7f66d6
     tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.39.0-3100-latest
