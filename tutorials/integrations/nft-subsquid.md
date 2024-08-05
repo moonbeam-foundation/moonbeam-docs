@@ -1,21 +1,21 @@
 ---
-title: Index NFT Transfers with Subsquid
-description: Learn how to use Subsquid, a query node framework for Substrate-based chains, to index and process NFT transfer data for Moonbeam and Moonriver.
+title: Index NFT Transfers with SQD (Subsquid)
+description: Learn how to use SQD (formerly Subsquid), a query node framework for Substrate-based chains, to index and process NFT transfer data for Moonbeam and Moonriver.
 ---
 
-# Indexing NFT Transfers on Moonbeam with Subsquid
+# Indexing NFT Transfers on Moonbeam with SQD (formerly Subsquid)
 
 _by Massimo Luraschi_
 
 ## Introduction {: #introduction }
 
-[Subsquid](https://subsquid.io){target=\_blank} is a data network that allows rapid and cost-efficient retrieval of blockchain data from 100+ chains using Subsquid's decentralized data lake and open-source SDK.
+[SQD (formerly Subsquid)](https://subsquid.io){target=\_blank} is a data network that allows rapid and cost-efficient retrieval of blockchain data from 100+ chains using SQD's decentralized data lake and open-source SDK.
 
 The SDK offers a highly customizable Extract-Transform-Load-Query stack and indexing speeds of up to and beyond 50,000 blocks per second when indexing events and transactions.
 
-Subsquid has native and full support for the Ethereum Virtual Machine (EVM) and Substrate data. This allows developers to extract on-chain data from any of the Moonbeam networks, process EVM logs and Substrate entities (events, extrinsic, and storage items) in one single project, and serve the resulting data with one single GraphQL endpoint. With Subsquid, filtering by EVM topic, contract address, and block range are all possible.
+SQD has native and full support for the Ethereum Virtual Machine (EVM) and Substrate data. This allows developers to extract on-chain data from any of the Moonbeam networks, process EVM logs and Substrate entities (events, extrinsic, and storage items) in one single project, and serve the resulting data with one single GraphQL endpoint. With SQD, filtering by EVM topic, contract address, and block range are all possible.
 
-This guide will explain how to create a Subsquid project (also known as a _"Squid"_) from a template (indexing Moonsama transfers on Moonriver) and change it to index ERC-721 token transfers on the Moonbeam network. As such, you'll be looking at the `Transfer` EVM event topics. This guide can be adapted for Moonbase Alpha as well.
+This guide will explain how to create a SQD project (also known as a _"Squid"_) from a template (indexing Moonsama transfers on Moonriver) and change it to index ERC-721 token transfers on the Moonbeam network. As such, you'll be looking at the `Transfer` EVM event topics. This guide can be adapted for Moonbase Alpha as well.
 
 --8<-- 'text/_disclaimers/third-party-content-intro.md'
 
@@ -68,7 +68,7 @@ The generated entity classes can then be browsed in the `src/model/generated` di
 
 ## ABI Definition and Type Generation {: #abi-definition }
 
-Subsquid maintains [tools](https://docs.subsquid.io/sdk/resources/tools/typegen/generation/?typegen=substrate){target=\_blank} for the automated generation of TypeScript classes to handle Substrate data sources (events, extrinsics, storage items). Possible runtime upgrades are automatically detected and accounted for.
+SQD maintains [tools](https://docs.subsquid.io/sdk/resources/tools/typegen/generation/?typegen=substrate){target=\_blank} for the automated generation of TypeScript classes to handle Substrate data sources (events, extrinsics, storage items). Possible runtime upgrades are automatically detected and accounted for.
 
 Similar functionality is available for EVM indexing through the [`squid-evm-typegen`](https://docs.subsquid.io/sdk/resources/tools/typegen/generation/?typegen=evm){target=\_blank} tool. It generates TypeScript modules for handling EVM logs and transactions based on a [JSON ABI](https://docs.ethers.org/v6/basics/abi/){target=\_blank} of the contract.
 
@@ -84,7 +84,7 @@ The results will be stored at `src/abi`. One module will be generated for each A
 
 ## Processor Object and the Batch Handler {: #define-event-handlers }
 
-Subsquid SDK provides users with the [`SubstrateBatchProcessor` class](https://docs.subsquid.io/sdk/reference/processors/substrate-batch/context-interfaces/){target=\_blank}. The `SubstrateBatchProcessor` declaration and configurations are in the `src/processor.ts` file. Its instances connect to [Subsquid Network gateways](https://docs.subsquid.io/subsquid-network/reference/substrate-networks/){target=\_blank} at chain-specific URLs to get chain data and apply custom transformations. The indexing begins at the starting block and keeps up with new blocks after reaching the tip.
+SQD SDK provides users with the [`SubstrateBatchProcessor` class](https://docs.subsquid.io/sdk/reference/processors/substrate-batch/context-interfaces/){target=\_blank}. The `SubstrateBatchProcessor` declaration and configurations are in the `src/processor.ts` file. Its instances connect to [SQD Network gateways](https://docs.subsquid.io/subsquid-network/reference/substrate-networks/){target=\_blank} at chain-specific URLs to get chain data and apply custom transformations. The indexing begins at the starting block and keeps up with new blocks after reaching the tip.
 
 The `SubstrateBatchProcessor` [exposes methods](https://docs.subsquid.io/sdk/reference/processors/substrate-batch/general/){target=\_blank} to "subscribe" to specific data such as Substrate events, extrinsics, storage items, or, for EVM, logs, and transactions. The actual data processing is then started by calling the `.run()` function, as seen in the `src/main.ts` file. This will start generating requests to the gateway for [_batches_](https://docs.subsquid.io/sdk/resources/basics/batch-processing/){target=\_blank} of data specified in the configuration and will trigger the callback function every time a batch is returned by the gateway.
 
@@ -107,7 +107,7 @@ Now, let's take a look at the complete contents of the file:
 
 In the `src/processor.ts` file, Squids instantiate the processor (a `SubstrateBatchProcessor` in our case) and configure it.
 
-We adapt the template code to process EVM logs for the two Exiled Racers contracts and point the processor data source setting to the Moonbeam Subsquid Network gateway URL. Here is the result:
+We adapt the template code to process EVM logs for the two Exiled Racers contracts and point the processor data source setting to the Moonbeam SQD Network gateway URL. Here is the result:
 
 ```typescript title="src/processor.ts"
 --8<-- 'code/tutorials/integrations/nft-subsquid/processor.ts'
@@ -122,7 +122,7 @@ If you are adapting this guide for Moonbase Alpha, be sure to update the data so
 !!! note
     This code expects to find a working Moonbeam RPC URL in the `RPC_ENDPOINT` environment variable. You can get your own endpoint and API key from a supported [Endpoint Provider](/builders/get-started/endpoints/){target=\_blank}.
 
-    Set it in the `.env` file and [Subsquid Cloud secrets](https://docs.subsquid.io/cloud/resources/env-variables/){target=\_blank} if and when you deploy your Squid there. We tested the code using a public endpoint at `wss://wss.api.moonbeam.network`; we recommend using private endpoints for production.
+    Set it in the `.env` file and [SQD Cloud secrets](https://docs.subsquid.io/cloud/resources/env-variables/){target=\_blank} if and when you deploy your Squid there. We tested the code using a public endpoint at `wss://wss.api.moonbeam.network`; we recommend using private endpoints for production.
 
 ## Define the Batch Handler {: #define-batch-handler }
 
@@ -135,7 +135,7 @@ Here is the result:
 ```
 
 !!! note
-    The `contract.tokenURI` call accesses the **state** of the contract via a chain RPC endpoint. This can slow down indexing, but this data is only available in this way. You'll find more information on accessing state in the [dedicated section of the Subsquid docs](https://docs.subsquid.io/sdk/resources/tools/typegen/state-queries/#example-1){target=\_blank}.
+    The `contract.tokenURI` call accesses the **state** of the contract via a chain RPC endpoint. This can slow down indexing, but this data is only available in this way. You'll find more information on accessing state in the [dedicated section of the SQD docs](https://docs.subsquid.io/sdk/resources/tools/typegen/state-queries/#example-1){target=\_blank}.
 
 ## Launch and Set Up the Database {: #launch-database }
 
@@ -217,15 +217,15 @@ Have fun playing around with queries; after all, it's a _playground_!
 
 ## Publish the Project {: #publish-the-project }
 
-Subsquid offers a SaaS solution to host projects created by its community. All templates ship with a deployment manifest file named `squid.yml`, which can be used with the Squid CLI command `sqd deploy`.
+SQD offers a SaaS solution to host projects created by its community. All templates ship with a deployment manifest file named `squid.yml`, which can be used with the Squid CLI command `sqd deploy`.
 
-Please refer to the [Subsquid Cloud Quickstart](https://docs.subsquid.io/cloud/overview/){target=\_blank} page on Subquid's documentation site for more information.
+Please refer to the [SQD Cloud Quickstart](https://docs.subsquid.io/cloud/overview/){target=\_blank} page on SQD's documentation site for more information.
 
 ## Example Project Repository {: #example-project-repository }
 
-You can view the template used here and many other example repositories [on Subsquid's examples organization on GitHub](https://github.com/orgs/subsquid-labs/repositories){target=\_blank}.
+You can view the template used here and many other example repositories [on SQD's examples organization on GitHub](https://github.com/orgs/subsquid-labs/repositories){target=\_blank}.
 
-[Subsquid's documentation](https://docs.subsquid.io){target=\_blank} contains informative material, and it's the best place to start if you are curious about some aspects that were not fully explained in this guide.
+[SQD's documentation](https://docs.subsquid.io){target=\_blank} contains informative material, and it's the best place to start if you are curious about some aspects that were not fully explained in this guide.
 
 --8<-- 'text/_disclaimers/educational-tutorial.md'
 
