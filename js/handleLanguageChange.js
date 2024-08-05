@@ -34,10 +34,10 @@ const pageMappings = {
   '/tutorials/': '/cn/tutorials/',
   '/tutorials/': '/cn/tutorials/eth-api/',
   '/tutorials/eth-api/how-to-build-a-dapp/':
-    '/cn/tutorials/how-to-build-a-dapp/',
-  '/tutorials/eth-api/batch-approve-swap/': '/cn/tutorials/batch-approve-swap/',
+    '/cn/tutorials/eth-api/how-to-build-a-dapp/',
+  '/tutorials/eth-api/batch-approve-swap/': '/cn/tutorials/eth-api/batch-approve-swap/',
   '/tutorials/eth-api/call-permit-gasless-txs/':
-    '/cn/tutorials/call-permit-gasless-txs/',
+    '/cn/tutorials/eth-api/call-permit-gasless-txs/',
 };
 
 const processWindowLocation = (pathname, origin) => {
