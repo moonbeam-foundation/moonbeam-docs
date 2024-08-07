@@ -1,4 +1,4 @@
-Almost there! Register and start the service by running:
+Register and start the service by running:
 
 ```bash
 systemctl enable moonbeam.service
