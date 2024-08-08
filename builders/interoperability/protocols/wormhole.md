@@ -27,7 +27,7 @@ There are a couple of resources to get you started building cross-chain applicat
 See the list of Wormhole contracts deployed to Moonbeam, and the networks connected to Moonbeam through Wormhole.
 
 - **MainNet Contracts** - [Moonbeam](https://docs.wormhole.com/wormhole/reference/blockchain-environments/evm#moonbeam){target=\_blank}
-- **TestNet Contracts** - [Moonbase Alpha](https://docs.wormhole.com/wormhole/blockchain-environments/evm#testnet-contracts-moonbase-alphanet-1287){target=\_blank}
+- **TestNet Contracts** - [Moonbase Alpha](https://docs.wormhole.com/wormhole/reference/blockchain-environments/evm#testnet-contracts-moonbase-alphanet-1287){target=\_blank}
 
 ## Setting up a Specialized Relayer With the Relayer Engine {: #setting-up-a-specialized-relayer-with-the-relayer-engine }
 
