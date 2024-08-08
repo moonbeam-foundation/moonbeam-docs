@@ -8,6 +8,7 @@ description: Discover Moonbeam's specialized API endpoints, featuring custom JSO
 ## Introduction {: #introduction }
 
 Moonbeam nodes include support for custom JSON-RPC endpoints: 
+
 - `moon_isBlockFinalized` 
 - `moon_isTxFinalized`
 - `moon_getLatestSyncedBlock`
@@ -74,7 +75,7 @@ To begin exploring Moonbeam's custom JSON-RPC endpoints, you can try out the pro
 
     === "Returns"
 
-        Returns the latest synced block from Frontier's backend
+        Returns an integer: the latest synced block from Frontier's backend
 
     === "Example"
 
