@@ -2,6 +2,7 @@
     <span data-ty="input"><span class="file-path"></span>yarn calculate-multilocation-derivative-account \</span>
     <span data-ty>--ws-provider wss://wss.api.moonbase.moonbeam.network \</span>
     <span data-ty>--address 5Fe4nNwxJ9ai9hVkUubiy4e6BVs1tzJGDLXAdhUKuePq9CLp \</span>
+    <span data-ty>--parents 1</span>
     <br>
     <span data-ty>yarn run v1.22.10</span>
     <span data-ty>warning ../../../package.json: No license field</span>
