@@ -334,13 +334,13 @@ For an overview of the flags used in the following start-up commands, plus addit
 
 ### Collator {: #collator }
 
-Beginning with v0.39.0, Moonbeam collator nodes no longer generate session keys automatically on start-up. Run the following command to generate and store on disk the session keys that will be referenced in the start-up command:
+Beginning with v0.39.0, new Moonbeam collator nodes will no longer generate session keys automatically on start-up. When setting up a new node, run the following command to generate and store on disk the session keys that will be referenced in the start-up command:
 
 === "Moonbeam"
 
     ```bash
 
-    /var/lib/moonbeam-data key generate-node-key --file /var/lib/moonbeam-data/node-key
+    /var/lib/moonbeam-data/moonbeam key generate-node-key --file /var/lib/moonbeam-data/node-key
     
     ```
 
