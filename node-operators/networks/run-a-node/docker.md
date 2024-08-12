@@ -279,7 +279,7 @@ Beginning with v0.39.0, Moonbeam collator nodes no longer generate session keys 
 
     docker run --network="host" -v "/var/lib/moonbeam-data:/data" \
     -u $(id -u ${USER}):$(id -g ${USER}) \
-    moonbeamfoundation/moonbeam:v0.39.0 key generate-node-key --file /data/node-key
+     moonbeamfoundation/moonbeam:{{ networks.moonbeam.parachain_release_tag }} key generate-node-key --file /data/node-key
     
     ```
 
@@ -289,7 +289,7 @@ Beginning with v0.39.0, Moonbeam collator nodes no longer generate session keys 
 
     docker run --network="host" -v "/var/lib/moonriver-data:/data" \
     -u $(id -u ${USER}):$(id -g ${USER}) \
-    moonbeamfoundation/moonbeam:v0.39.0 key generate-node-key --file /data/node-key
+     moonbeamfoundation/moonbeam:{{ networks.moonriver.parachain_release_tag }} key generate-node-key --file /data/node-key
 
     ```
 
@@ -299,7 +299,7 @@ Beginning with v0.39.0, Moonbeam collator nodes no longer generate session keys 
 
     docker run --network="host" -v "/var/lib/alphanet-data:/data" \
     -u $(id -u ${USER}):$(id -g ${USER}) \
-    moonbeamfoundation/moonbeam:v0.39.0 key generate-node-key --file /data/node-key
+     moonbeamfoundation/moonbeam:{{ networks.moonbase.parachain_release_tag }} key generate-node-key --file /data/node-key
 
     ```
 
