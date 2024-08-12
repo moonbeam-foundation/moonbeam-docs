@@ -271,6 +271,45 @@ For an overview of the flags used in the following start-up commands, plus addit
 
 ### Collator Node
 
+Beginning with v0.39.0, new Moonbeam collator nodes will no longer generate session keys automatically on start-up. Nodes in existence prior to v0.39.0 do not need to make changes to how they handle session keys. 
+
+When setting up a new node, run the following command to generate and store on disk the session keys that will be referenced in the start-up command: 
+
+=== "Moonbeam"
+
+    ```bash
+
+    docker run --network="host" -v "/var/lib/moonbeam-data:/data" \
+    -u $(id -u ${USER}):$(id -g ${USER}) \
+     moonbeamfoundation/moonbeam:{{ networks.moonbeam.parachain_release_tag }} key generate-node-key --file /data/node-key
+    
+    ```
+
+=== "Moonriver"
+
+    ```bash
+
+    docker run --network="host" -v "/var/lib/moonriver-data:/data" \
+    -u $(id -u ${USER}):$(id -g ${USER}) \
+     moonbeamfoundation/moonbeam:{{ networks.moonriver.parachain_release_tag }} key generate-node-key --file /data/node-key
+
+    ```
+
+=== "Moonbase Alpha"
+
+    ```bash
+
+    docker run --network="host" -v "/var/lib/alphanet-data:/data" \
+    -u $(id -u ${USER}):$(id -g ${USER}) \
+     moonbeamfoundation/moonbeam:{{ networks.moonbase.parachain_release_tag }} key generate-node-key --file /data/node-key
+
+    ```
+
+!!! note
+    This step can be bypassed using the `--unsafe-force-node-key-generation` parameter in the start-up command, although this is not the recommended practice.
+
+Now you can run your Docker start up commands:
+
 ???+ code "Linux snippets"
 
     === "Moonbeam"
