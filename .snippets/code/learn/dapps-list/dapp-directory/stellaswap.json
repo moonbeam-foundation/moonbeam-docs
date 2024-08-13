@@ -3,9 +3,7 @@
     "currentTx": {
       "moonbeam": 2883079
     },
-    "web3goIDs": [
-      "StellaSwap"
-    ],
+    "web3goIDs": ["StellaSwap"],
     "name": "StellaSwap",
     "currentTVL": {
       "moonbeam": 5046832.23328
@@ -17,10 +15,7 @@
     "shortDescription": "The leading DEX and DeFi gateway on Moonbeam",
     "id": "stellaswap",
     "featured": true,
-    "tags": [
-      "DEX",
-      "DeFi"
-    ],
+    "tags": ["DEX", "DeFi"],
     "tvlChange7d": {
       "moonbeam": -1.61482567543498
     },
@@ -414,9 +409,7 @@
         "height": 3000
       }
     },
-    "chains": [
-      "moonbeam"
-    ],
+    "chains": ["moonbeam"],
     "usersChange7d": {
       "moonbeam": -17.2727272727273
     },

@@ -32,9 +32,7 @@
         }
       },
       "name": "NFTs2Me",
-      "chains": [
-        "moonbeam"
-      ],
+      "chains": ["moonbeam"],
       "defiLLamaTvlExist": false,
       "projectCreationDate": 1673608509000,
       "shortDescription": "NFTs2Me is a toolkit for creating and managing NFT projects.",
@@ -48,10 +46,7 @@
       "category": "nfts",
       "description": "NFTs2Me is a tool for creating and managing NFT projects. It includes features such as an art generator, delayed reveal, minting widget, token gating, and support for multiple blockchain platforms. It also offers customization options, an affiliate system, automatic logo and banner generation, and support for redeemable NFTs. It is user-friendly and suitable for those new to the world of NFTs.\n\nIn addition to these features, NFTs2Me also offers a minting widget and free IPFS hosting to make it simple to mint and store your NFTs securely and efficiently. The minting widget allows you to easily create and mint new NFTs, while the free IPFS hosting provides a secure and decentralized way to store your NFTs.",
       "id": "nfts2me",
-      "tags": [
-        "NFT",
-        "Tool"
-      ]
+      "tags": ["NFT", "Tool"]
     },
     {
       "urls": {
@@ -84,9 +79,7 @@
         }
       },
       "name": "Singular App",
-      "chains": [
-        "moonbeam"
-      ],
+      "chains": ["moonbeam"],
       "defiLLamaTvlExist": false,
       "projectCreationDate": 1686240710000,
       "shortDescription": "The home of NFTs by @RmrkApp. Create and trade your nestable, equippable, soulbound, and multi-asset NFTs with us - no coding required.",
@@ -95,9 +88,7 @@
       "category": "nfts",
       "description": "Singular is an NFT 2.0 marketplace that allows users to buy, sell, and trade both regular and advanced NFTs. Users can create and/or connect a wallet, browse digital items, and securely conduct transactions using blockchain technology.",
       "id": "singular-app",
-      "tags": [
-        "NFT Marketplaces"
-      ]
+      "tags": ["NFT Marketplaces"]
     },
     {
       "urls": {
@@ -131,9 +122,7 @@
         }
       },
       "name": "Metacourt",
-      "chains": [
-        "moonbeam"
-      ],
+      "chains": ["moonbeam"],
       "defiLLamaTvlExist": false,
       "projectCreationDate": 1663756794000,
       "shortDescription": "Metacourt created NFTdeals for anyone who wants to become an influencer and trade their social media",
@@ -142,9 +131,7 @@
       "category": "nfts",
       "description": "Influencer accelerator for anyone who wants to become an influencer in the space. We allow selling your social media through NFTs and joining influencer marketing campaigns.",
       "id": "metacourt",
-      "tags": [
-        "NFT Marketplaces"
-      ]
+      "tags": ["NFT Marketplaces"]
     },
     {
       "urls": {
@@ -178,10 +165,7 @@
         }
       },
       "name": "tofuNFT",
-      "chains": [
-        "moonbeam",
-        "moonriver"
-      ],
+      "chains": ["moonbeam", "moonriver"],
       "defiLLamaTvlExist": false,
       "projectCreationDate": 1644828523000,
       "shortDescription": "The largest multichain NFT marketplace",
@@ -190,10 +174,7 @@
       "category": "nfts",
       "description": "tofuNFT.com is an NFT marketplace focused on GameFi and collectibles, rebranded from SCV’s NFT market. Enjoy exploring & trading with your buddies!",
       "id": "tofunft",
-      "tags": [
-        "NFT Marketplaces",
-        "NFT"
-      ]
+      "tags": ["NFT Marketplaces", "NFT"]
     },
     {
       "urls": {
@@ -224,9 +205,7 @@
         }
       },
       "name": "D-book.io",
-      "chains": [
-        "moonbeam"
-      ],
+      "chains": ["moonbeam"],
       "defiLLamaTvlExist": false,
       "projectCreationDate": 1682016612000,
       "shortDescription": "Buğra Ayan is a speaker,and university lecturer in Turkey who founded the Web3 Association Turkey.",
@@ -240,10 +219,7 @@
       "category": "nfts",
       "description": "We are an NFT Book Platform that connects authors and the decentralized world, aiming for a transformation ecosystem.",
       "id": "d-book.io",
-      "tags": [
-        "NFT Marketplaces",
-        "NFT"
-      ]
+      "tags": ["NFT Marketplaces", "NFT"]
     },
     {
       "urls": {
@@ -277,9 +253,7 @@
         }
       },
       "name": "Blockchain Monster Hunt",
-      "chains": [
-        "moonbeam"
-      ],
+      "chains": ["moonbeam"],
       "defiLLamaTvlExist": false,
       "projectCreationDate": 1644828523000,
       "shortDescription": "The First Multichain NFT Monster Hunt",
@@ -288,11 +262,7 @@
       "category": "nfts",
       "description": "Blockchain Monster Hunt (BCMH) is the world’s first multi-chain game that runs entirely on the blockchain itself. Inspired by Pokémon-GO,BCMH allows players  to continuously explore brand new places on the blockchain to hunt and battle monsters. Each block on the blockchain is a unique digital space where a limited number of monsters (of the same DNA gene and rarity) may exist.  Players and collectors can hunt or battle for a chance to capture these unique monsters and to earn coins.",
       "id": "blockchain-monster-hunt",
-      "tags": [
-        "NFT",
-        "Gaming",
-        "GLMR Grants"
-      ]
+      "tags": ["NFT", "Gaming", "GLMR Grants"]
     },
     {
       "urls": {
@@ -325,9 +295,7 @@
         }
       },
       "name": "Speedboat",
-      "chains": [
-        "moonbeam"
-      ],
+      "chains": ["moonbeam"],
       "defiLLamaTvlExist": false,
       "projectCreationDate": 1657584952000,
       "shortDescription": "Your no-code Web3 toolkit",
@@ -336,10 +304,7 @@
       "category": "nfts",
       "description": "Speedboat is a Web3 toolkit for everyone. Built on the idea that NFTs are not just expensive JPEGs, but programmable experiences.",
       "id": "speedboat.studio",
-      "tags": [
-        "NFT",
-        "Tool"
-      ]
+      "tags": ["NFT", "Tool"]
     },
     {
       "urls": {
@@ -365,9 +330,7 @@
         "moonbeam": 7830
       },
       "slug": "glmr-apes",
-      "web3goIDs": [
-        "GLMR Apes"
-      ],
+      "web3goIDs": ["GLMR Apes"],
       "createdAt": 1699292616827,
       "logo": {
         "small": {
@@ -390,9 +353,7 @@
         }
       },
       "name": "GLMR APES",
-      "chains": [
-        "moonbeam"
-      ],
+      "chains": ["moonbeam"],
       "defiLLamaTvlExist": false,
       "usersChange7d": {
         "moonbeam": -66.6666666666667
@@ -407,10 +368,7 @@
       "category": "nfts",
       "description": "GLIMMER APES is the first NFT collection on GLMR by & for the community. The longer you’re bonding with GLMR Apes and the friendlier their behavior. Join the troops as soon as possible to become an EARLY APE, take part in our giveaways and games and land in the GLMR APE VIP CLUB.",
       "id": "glmr-apes",
-      "tags": [
-        "NFT",
-        "Gaming"
-      ],
+      "tags": ["NFT", "Gaming"],
       "usersChange1d": {
         "moonbeam": 0
       }
@@ -447,9 +405,7 @@
         }
       },
       "name": "Snake Soldiers",
-      "chains": [
-        "moonbeam"
-      ],
+      "chains": ["moonbeam"],
       "defiLLamaTvlExist": false,
       "projectCreationDate": 1691439275000,
       "shortDescription": "NFT game collection divided in 3 categories: Generals, Commanders and Soldiers🐍. Built on Moonbeam",
@@ -463,9 +419,7 @@
       "category": "nfts",
       "description": "Snake Soldiers is an NFT collection with a supply of at most 5k units, all unique and distributed among 3 ranks. Each snake will be usable inside a play to own game, where snakes will be the main characters, necessary to interact with the SerpenTerra ecosystem. This metaverse will be based on the RMRK 2.0 standard, making forward compatible and giving super powers to the NFTs.",
       "id": "snake-soldiers",
-      "tags": [
-        "NFT"
-      ]
+      "tags": ["NFT"]
     },
     {
       "urls": {
@@ -499,9 +453,7 @@
         }
       },
       "name": "Omni-X",
-      "chains": [
-        "moonbeam"
-      ],
+      "chains": ["moonbeam"],
       "defiLLamaTvlExist": false,
       "projectCreationDate": 1673811786000,
       "shortDescription": "The first natively omnichain NFT platform",
@@ -510,10 +462,7 @@
       "category": "nfts",
       "description": "Omni X is an omnichain NFT protocol and marketplace that connects communities, creators, and enthusiasts across multiple blockchains. \n\nWe provide tooling for creating ONFT collections, bridging regular NFTs to ONFTs and grant access to unparalleled liquidity that allows users to buy and sell NFTs from any blockchain to any other blockchain.",
       "id": "omni-x",
-      "tags": [
-        "NFT Marketplaces",
-        "Infrastructure"
-      ]
+      "tags": ["NFT Marketplaces", "Infrastructure"]
     },
     {
       "urls": {
@@ -545,9 +494,7 @@
         }
       },
       "name": "Public Pressure",
-      "chains": [
-        "moonriver"
-      ],
+      "chains": ["moonriver"],
       "defiLLamaTvlExist": false,
       "projectCreationDate": 1651597275000,
       "shortDescription": "Support your favorite artists, own their music, get rewarded.",
@@ -556,17 +503,13 @@
       "category": "nfts",
       "description": "We are the web3 music platform powered by artists, labels and fans",
       "id": "publicpressure",
-      "tags": [
-        "NFT Marketplaces"
-      ]
+      "tags": ["NFT Marketplaces"]
     },
     {
       "currentTx": {
         "moonbeam": 8409
       },
-      "web3goIDs": [
-        "Moonbeans"
-      ],
+      "web3goIDs": ["Moonbeans"],
       "name": "Moonbeans",
       "currentUsers": {
         "moonbeam": 1134
@@ -574,9 +517,7 @@
       "coinGeckoId": "moonbeans",
       "shortDescription": "Galactic Co-Op & Profit sharing NFT platform and soon to be Metaverse",
       "id": "moonbeans",
-      "tags": [
-        "NFT Marketplaces"
-      ],
+      "tags": ["NFT Marketplaces"],
       "urls": {
         "website": "https://moonbeans.io/",
         "twitter": "https://twitter.com/moonbeansio",
@@ -625,10 +566,7 @@
           "height": 3000
         }
       },
-      "chains": [
-        "moonbeam",
-        "moonriver"
-      ],
+      "chains": ["moonbeam", "moonriver"],
       "defiLLamaTvlExist": false,
       "usersChange7d": {
         "moonbeam": 0
@@ -639,9 +577,7 @@
         "priceChangePercentage1y": -62.22489,
         "currentPrice": 0.062264,
         "priceChangePercentage14d": -13.93552,
-        "contracts": {
-
-        },
+        "contracts": {},
         "priceChangePercentage60d": -44.93764,
         "priceChangePercentage30d": -33.587,
         "priceChangePercentage24h": -0.05451,
@@ -700,9 +636,7 @@
         }
       },
       "name": "Blocsport.one",
-      "chains": [
-        "moonriver"
-      ],
+      "chains": ["moonriver"],
       "defiLLamaTvlExist": false,
       "projectCreationDate": 1644828523000,
       "shortDescription": "Web 3.0 metaverse, smart sports money, athlete NFT launchpad & assets tokenization",
@@ -711,9 +645,7 @@
       "category": "nfts",
       "description": "Blocsport.one is a Swiss sports tech company founded in 2019 that is transforming the sports business by building a transparent and reliable sports ecosystem uniting athletes, clubs, and fans based on blockchain. Company owns NFTdeals.io exclusive marketplace and has the biometric-enabled football scouting DApp live. Blocsport.one helps the young promising athletes get the money and exposure for their career development, which is nobody else doing in the world.",
       "id": "blocsport-one",
-      "tags": [
-        "NFT"
-      ]
+      "tags": ["NFT"]
     },
     {
       "urls": {
@@ -747,9 +679,7 @@
         }
       },
       "name": "Mintverse",
-      "chains": [
-        "moonbeam"
-      ],
+      "chains": ["moonbeam"],
       "defiLLamaTvlExist": false,
       "projectCreationDate": 1651597514000,
       "shortDescription": "Mint, Explore & Trade Liquid NFT Assets Across Multiple Chains",
@@ -758,9 +688,7 @@
       "category": "nfts",
       "description": "Comprehensive NFT Aggregation Marketplace with a 0% trading fee",
       "id": "mintverse",
-      "tags": [
-        "NFT Marketplaces"
-      ]
+      "tags": ["NFT Marketplaces"]
     },
     {
       "urls": {
@@ -794,10 +722,7 @@
         }
       },
       "name": "Upgradooor",
-      "chains": [
-        "moonbeam",
-        "moonriver"
-      ],
+      "chains": ["moonbeam", "moonriver"],
       "defiLLamaTvlExist": false,
       "projectCreationDate": 1692259742000,
       "shortDescription": "Upgrade your NFT 1.0 collections to NFT 2.0 by wrapping them into advanced functionality",
@@ -806,10 +731,7 @@
       "category": "nfts",
       "description": "As a collection issuer, use Upgradooor to initialize the process of upgrading your collection to NFT 2.0 if you are currently using ERC721.\n\nAs a holder, once the collection owner initiates the process, you can wrap any NFT you hold in that collection and instantly turn it into an equippable, multi-asset, composable NFT with no added risk.\n\nYou can always unwrap at will, and all the changes will still wait for you when you decide to re-claim the 2.0 wrapper again.\n\nUpgrading allows you to:\n\n- add more assets (outputs) to a legacy NFT, preventing needless airdrop spam\n- airdrop NFTs into the NFT itself, preventing detachment of context, and saving tremendous amounts of gas by letting people transfer just the parent NFT\n- define equippable settings and even achieve compatibility with other collections, for cross collection equippables and thus cross collection royalties and commissions\n- see your NFTs on Singular, and use GBM auctions as a unique and novel listing mechanic",
       "id": "upgradooor",
-      "tags": [
-        "NFT",
-        "Tool"
-      ]
+      "tags": ["NFT", "Tool"]
     },
     {
       "urls": {
@@ -842,9 +764,7 @@
         }
       },
       "name": "MoonFit",
-      "chains": [
-        "moonbeam"
-      ],
+      "chains": ["moonbeam"],
       "defiLLamaTvlExist": false,
       "projectCreationDate": 1654692249000,
       "shortDescription": "Web3 & NFT Lifestyle App That Pays You Anytime You Burn Calories",
@@ -853,10 +773,7 @@
       "category": "nfts",
       "description": "MoonFit is a Web3 Lifestyle App that promotes active living by rewarding users with tokens and NFTs anytime they burn calories through physical activities.",
       "id": "moonfit",
-      "tags": [
-        "NFT",
-        "Gaming"
-      ]
+      "tags": ["NFT", "Gaming"]
     },
     {
       "urls": {
@@ -889,9 +806,7 @@
         }
       },
       "name": "RMRK",
-      "chains": [
-        "moonbeam"
-      ],
+      "chains": ["moonbeam"],
       "defiLLamaTvlExist": false,
       "marketData": {
         "symbol": "rmrk",
@@ -920,10 +835,7 @@
       "category": "nfts",
       "description": "With the RMRK NFT Building Block System\nOur ERC NFT standards allow you to unlock the true potential of NFTs.\nTailored to work with each other, these EVM smart contracts will help you create your NFT projects of varying complexity.",
       "id": "rmrk",
-      "tags": [
-        "NFT",
-        "Infrastructure"
-      ]
+      "tags": ["NFT", "Infrastructure"]
     },
     {
       "urls": {
@@ -954,9 +866,7 @@
         }
       },
       "name": "myNFT",
-      "chains": [
-        "moonbeam"
-      ],
+      "chains": ["moonbeam"],
       "defiLLamaTvlExist": false,
       "projectCreationDate": 1644828523000,
       "shortDescription": "The marketplace that puts the power back in your hands",
@@ -965,11 +875,7 @@
       "category": "nfts",
       "description": "myNFT is the marketplace that puts the power back in your hands. It is a creative workshop, a trading platform and a discovery engine, helping you tell your story and share your passions, on your own terms. myNFT is built on decentralized technologies empowering you to create, trade, and discover. myNFT is built by Perpetual Altruism, a leader in the NFT space and the creator of charitable NFT publisher Cryptograph and the GBM auction system. Perpetual Altruism is backed by prominent investors and creators and is also the recipient of grants from the Web3 Foundation and the Moonbeam network for their work on the decentralized internet, which powers myNFT.",
       "id": "mynft",
-      "tags": [
-        "NFT Marketplaces",
-        "GLMR Grants",
-        "MOVR Grants"
-      ]
+      "tags": ["NFT Marketplaces", "GLMR Grants", "MOVR Grants"]
     },
     {
       "urls": {
@@ -1002,9 +908,7 @@
         }
       },
       "name": "Readl",
-      "chains": [
-        "moonriver"
-      ],
+      "chains": ["moonriver"],
       "defiLLamaTvlExist": false,
       "projectCreationDate": 1655885161000,
       "shortDescription": "Bringing the publishing industry to web3",
@@ -1013,10 +917,7 @@
       "category": "nfts",
       "description": "Readl is the protocol that provides publishers and storytellers with the infrastructure to publish their content on the blockchain, while providing a user-friendly platform to enjoy any story, in any format.",
       "id": "readl",
-      "tags": [
-        "NFT Marketplaces",
-        "MOVR Grants"
-      ]
+      "tags": ["NFT Marketplaces", "MOVR Grants"]
     },
     {
       "urls": {
@@ -1050,9 +951,7 @@
         }
       },
       "name": "Emotes.app",
-      "chains": [
-        "moonbeam"
-      ],
+      "chains": ["moonbeam"],
       "defiLLamaTvlExist": false,
       "projectCreationDate": 1692254489000,
       "shortDescription": "React on anyone's NFT - throw 💩 at those apes, give a 🤗 to those Pudgies!",
@@ -1061,10 +960,7 @@
       "category": "nfts",
       "description": "Emotes.app is a RMRK mini-app which allows you to send emotes / reactions to anyone's NFT. It utilizes RMRK's ERC7009 and is trivial to integrate into any project wanting to take advantage of the community's reactions to their NFTs.\n\nUse it to direct storylines, affect NFT egg hatching, or just do relative price comparison when influencers like one NFTs and dislike another!",
       "id": "emotes.app",
-      "tags": [
-        "NFT",
-        "Social"
-      ]
+      "tags": ["NFT", "Social"]
     },
     {
       "urls": {
@@ -1097,9 +993,7 @@
         }
       },
       "name": "PolkaPets",
-      "chains": [
-        "moonriver"
-      ],
+      "chains": ["moonriver"],
       "defiLLamaTvlExist": false,
       "marketData": {
         "priceChangePercentage60d": 1206.42918,
@@ -1123,9 +1017,7 @@
       "category": "nfts",
       "description": "An immersive NFT collection created in partnership with the biggest and best PolkaDot projects ",
       "id": "polkapet-world",
-      "tags": [
-        "NFT"
-      ]
+      "tags": ["NFT"]
     },
     {
       "urls": {
@@ -1156,9 +1048,7 @@
         }
       },
       "name": "Moonarines",
-      "chains": [
-        "moonriver"
-      ],
+      "chains": ["moonriver"],
       "defiLLamaTvlExist": false,
       "projectCreationDate": 1654792422000,
       "shortDescription": "Be part of the conquest of the digital space",
@@ -1167,9 +1057,7 @@
       "category": "nfts",
       "description": "The Moonarines are unique NFT characters starting soon on the Moonriver Network!\nWith the Moonarines, the NFT owners will be taken to an unforgettable adventure to explore the Cryptoverse!",
       "id": "moonarines",
-      "tags": [
-        "NFT"
-      ]
+      "tags": ["NFT"]
     },
     {
       "urls": {
@@ -1203,10 +1091,7 @@
         }
       },
       "name": "NFTrade",
-      "chains": [
-        "moonbeam",
-        "moonriver"
-      ],
+      "chains": ["moonbeam", "moonriver"],
       "defiLLamaTvlExist": false,
       "marketData": {
         "symbol": "nftd",
@@ -1215,9 +1100,7 @@
         "priceChangePercentage1y": -65.38449,
         "currentPrice": 0.00502075,
         "priceChangePercentage14d": -7.09922,
-        "contracts": {
-
-        },
+        "contracts": {},
         "priceChangePercentage60d": -27.37596,
         "priceChangePercentage30d": -14.12267,
         "priceChangePercentage24h": -2.22137,
@@ -1235,10 +1118,7 @@
       "category": "nfts",
       "description": "NFTrade is a multi-chain platform for NFT creation and trading. Seamlessly launch, mint, and swap non-fungible tokens. Earn digital collectibles. NFTrade places you at the heart of the NFT economy. Create, Buy, Sell, Swap and Farm NFTs. All chains, All NFTs, One Platform.",
       "id": "nftrade",
-      "tags": [
-        "NFT Marketplaces",
-        "MOVR Grants"
-      ]
+      "tags": ["NFT Marketplaces", "MOVR Grants"]
     },
     {
       "urls": {
@@ -1270,9 +1150,7 @@
         }
       },
       "name": "PIP Cards",
-      "chains": [
-        "moonriver"
-      ],
+      "chains": ["moonriver"],
       "defiLLamaTvlExist": false,
       "projectCreationDate": 1651149583000,
       "shortDescription": "Post-generated NFT playing card decks",
@@ -1281,10 +1159,7 @@
       "category": "nfts",
       "description": "PIPS is a first-of-its-kind NFT generative playing card project that will enable NFT holders to generate an entire deck of custom cards to be used cross-chain.",
       "id": "pipcards",
-      "tags": [
-        "NFT",
-        "Gaming"
-      ]
+      "tags": ["NFT", "Gaming"]
     },
     {
       "urls": {
@@ -1319,9 +1194,7 @@
         }
       },
       "name": "Bit Hotel",
-      "chains": [
-        "moonbeam"
-      ],
+      "chains": ["moonbeam"],
       "defiLLamaTvlExist": false,
       "projectCreationDate": 1658743551000,
       "shortDescription": "Bit Hotel is a Social-first Play 2 Earn NFT Gaming Metaverse set in a Pixel-art Hotel.",
@@ -1339,10 +1212,7 @@
       "category": "nfts",
       "description": "In Bit Hotel users can compete to earn Bit Hotel tokens and acquire native NFTs. These NFTs have in-game utilities and consist of characters, hotel rooms, furniture and other assets that have their own unique perks. With over 250k Hotel Guests cross-channel, this nostalgic Hotel metaverse is taking people back to their 8bit upbringing.",
       "id": "bit-hotel",
-      "tags": [
-        "NFT",
-        "Gaming"
-      ]
+      "tags": ["NFT", "Gaming"]
     },
     {
       "tvlChange7d": {
@@ -1366,9 +1236,7 @@
         "moonbeam": 972
       },
       "slug": "moondao",
-      "web3goIDs": [
-        "MoonDAO"
-      ],
+      "web3goIDs": ["MoonDAO"],
       "createdAt": 1699292616416,
       "tvlChange1d": {
         "moonriver": -0.0349944884006391
@@ -1394,9 +1262,7 @@
         }
       },
       "name": "MoonDAO",
-      "chains": [
-        "moonbeam"
-      ],
+      "chains": ["moonbeam"],
       "currentTVL": {
         "moonriver": 76.75665
       },
@@ -1410,10 +1276,7 @@
       "category": "nfts",
       "description": "MoonDao is the first community Art Collection DAO on the Moonbeam network!\n\nWe aim to utilize input from our community to select high-end NFT’s. These NFT’s will be acquired with the MoonDao treasury and stored in the MoonDao Vault.\n\nMoon ownership grants access to DAO voting rights, future events, and additional holder perks outlined below. Welcome to the moon, we hope you stay.\n\n",
       "id": "moondao",
-      "tags": [
-        "NFT",
-        "DAO"
-      ]
+      "tags": ["NFT", "DAO"]
     },
     {
       "urls": {
@@ -1446,9 +1309,7 @@
         }
       },
       "name": "Raresama",
-      "chains": [
-        "moonbeam"
-      ],
+      "chains": ["moonbeam"],
       "defiLLamaTvlExist": false,
       "projectCreationDate": 1662528828000,
       "shortDescription": "Discover amazing Rare digital artwork",
@@ -1457,9 +1318,7 @@
       "category": "nfts",
       "description": "Raresama brings the magic of owning a piece of artwork to your fingertips. Create or browse NFT art collections and enjoy a diverse mix of artists, genres, styles and movements.",
       "id": "raresama",
-      "tags": [
-        "NFT Marketplaces"
-      ]
+      "tags": ["NFT Marketplaces"]
     },
     {
       "urls": {
@@ -1493,9 +1352,7 @@
         }
       },
       "name": "Galxe",
-      "chains": [
-        "moonbeam"
-      ],
+      "chains": ["moonbeam"],
       "defiLLamaTvlExist": false,
       "projectCreationDate": 1659868871000,
       "shortDescription": "Create Impactful Experiences With #Web3 Credentials. (Formerly Project Galaxy) ",
@@ -1504,11 +1361,7 @@
       "category": "nfts",
       "description": "Galxe is the leading Web3 credential data network in the world. A collaborative credential infrastructure enabling brands and developers to engage communities and build robust products in Web3.",
       "id": "galxe",
-      "tags": [
-        "NFT",
-        "Social",
-        "Tool"
-      ]
+      "tags": ["NFT", "Social", "Tool"]
     },
     {
       "urls": {
@@ -1541,10 +1394,7 @@
         }
       },
       "name": "Moonsama",
-      "chains": [
-        "moonriver",
-        "moonbeam"
-      ],
+      "chains": ["moonriver", "moonbeam"],
       "defiLLamaTvlExist": false,
       "projectCreationDate": 1651156798000,
       "shortDescription": "Let's build the multiverse",
@@ -1553,10 +1403,7 @@
       "category": "nfts",
       "description": "Moonsama’s protocol for bi-directional bridging of on-chain digital assets and off-chain applications. This is how we connect web2.0 games, metaverses and blockchains. It enables new games, development and community fun from across the Kusamaverse and beyond!",
       "id": "moonsama",
-      "tags": [
-        "NFT",
-        "Gaming"
-      ]
+      "tags": ["NFT", "Gaming"]
     },
     {
       "urls": {
@@ -1587,10 +1434,7 @@
         }
       },
       "name": "SmartStamp",
-      "chains": [
-        "moonbeam",
-        "moonriver"
-      ],
+      "chains": ["moonbeam", "moonriver"],
       "defiLLamaTvlExist": false,
       "projectCreationDate": 1675081766000,
       "shortDescription": "SmartStamp is the pioneering new standard in identification and authentication for the art world.",
@@ -1599,9 +1443,7 @@
       "category": "nfts",
       "description": "Developed over more than a decade, SmartStamp’s app uses patented AI technology that is designed to read and record artworks’ surface characteristics– offering artists, collectors, institutions, and all arts and culture stakeholders a way to securely and immutably link physical objects to their digital fingerprints on the blockchain. Using the SmartStamp app is as simple as taking a picture, making the groundbreaking security and timestamping power of blockchain technology accessible to anyone who can use a smartphone.",
       "id": "smartstamp",
-      "tags": [
-        "NFT"
-      ]
+      "tags": ["NFT"]
     },
     {
       "urls": {
@@ -1635,9 +1477,7 @@
         }
       },
       "name": "Yuser",
-      "chains": [
-        "moonriver"
-      ],
+      "chains": ["moonriver"],
       "defiLLamaTvlExist": false,
       "projectCreationDate": 1644828523000,
       "shortDescription": "The first NFT social networking app- by creators, for creators",
@@ -1646,11 +1486,7 @@
       "category": "nfts",
       "description": "Yuser’s mission is to build an ecosystem of interconnected applications that put power back into the hands of users by giving them full control over their content, data, and personal networks. Developers can connect via an API to instantly gain access to millions of users and incentivize them to try their product by paying them with a token.",
       "id": "yuser",
-      "tags": [
-        "NFT Marketplaces",
-        "GLMR Grants",
-        "MOVR Grants"
-      ]
+      "tags": ["NFT Marketplaces", "GLMR Grants", "MOVR Grants"]
     },
     {
       "urls": {
@@ -1682,10 +1518,7 @@
         }
       },
       "name": "Rare Gems",
-      "chains": [
-        "moonriver",
-        "moonbeam"
-      ],
+      "chains": ["moonriver", "moonbeam"],
       "defiLLamaTvlExist": false,
       "projectCreationDate": 1652705611000,
       "shortDescription": "Multichain NFT marketplace.",
@@ -1694,9 +1527,7 @@
       "category": "nfts",
       "description": "Multichain NFT marketplace\nCreated by \n@cryptosoots",
       "id": "rare-gems",
-      "tags": [
-        "NFT Marketplaces"
-      ]
+      "tags": ["NFT Marketplaces"]
     },
     {
       "urls": {
@@ -1730,10 +1561,7 @@
         }
       },
       "name": "RMRK Wizard",
-      "chains": [
-        "moonbeam",
-        "moonriver"
-      ],
+      "chains": ["moonbeam", "moonriver"],
       "defiLLamaTvlExist": false,
       "projectCreationDate": 1692255253000,
       "shortDescription": "A no-code-but-code wizard UI for building NFTs 2.0",
@@ -1742,11 +1570,7 @@
       "category": "nfts",
       "description": "A simple UI to put together NFT 2.0 legos created by the RMRK.app team. Use this tool to get started developing advanced NFT collections by picking from a set of functions you need, and the tool will compose code for you which only needs final tweaks before being deployed!",
       "id": "rmrk-wizard",
-      "tags": [
-        "NFT",
-        "Tool",
-        "Developer Tools"
-      ]
+      "tags": ["NFT", "Tool", "Developer Tools"]
     },
     {
       "urls": {
@@ -1778,9 +1602,7 @@
         }
       },
       "name": "Evelon.App",
-      "chains": [
-        "moonbeam"
-      ],
+      "chains": ["moonbeam"],
       "defiLLamaTvlExist": false,
       "projectCreationDate": 1690486894000,
       "shortDescription": "Transform the way you create and bring to life your own unique DNFTs, with the revolutionary platform that combines cutting-edge AI technology.",
@@ -1789,10 +1611,7 @@
       "category": "nfts",
       "description": "Evelon is a no code platform that allows you to create and deploy dynamic NFTs with ease. This project is a game changer in the world of NFTs and image generation. Evelon uses AI to generate high-quality images, making it possible to create NFTs with unique visuals that are both dynamic and engaging.",
       "id": "evelon-app",
-      "tags": [
-        "NFT",
-        "Tool"
-      ]
+      "tags": ["NFT", "Tool"]
     },
     {
       "urls": {
@@ -1825,9 +1644,7 @@
         }
       },
       "name": "Mintlabz",
-      "chains": [
-        "moonbeam"
-      ],
+      "chains": ["moonbeam"],
       "defiLLamaTvlExist": false,
       "projectCreationDate": 1712189524,
       "shortDescription": "MintLabz is a complete crosschain NFT solution at zero cost.",
@@ -1836,9 +1653,7 @@
       "category": "nfts",
       "description": "MintLabz aims to establish a digital NFT minting platform for third party projects to create NFT collections with utilities to reward the NFT holder. Our mission is to become the number one choice for providing complete cross-chain NFT solutions to B2B customers.",
       "id": "mintlabz",
-      "tags": [
-        "nfts"
-      ]
+      "tags": ["nfts"]
     },
     {
       "urls": {
@@ -1871,9 +1686,7 @@
         }
       },
       "name": "Golem Park",
-      "chains": [
-        "moonbeam"
-      ],
+      "chains": ["moonbeam"],
       "defiLLamaTvlExist": false,
       "projectCreationDate": 1676839105000,
       "shortDescription": "Golem Park is holders friendly NFT collection. P2E blockchain game, $GP Token, Staking Pools & more",
@@ -1887,9 +1700,7 @@
       "category": "nfts",
       "description": "First Time In Crypto History Token Burning Campaign!\n30% Of Total Token Supply Will Be Burned In 30 Days.\n\nAfter Minting We Are Going To Release Deflationary $GP Token & 50% Of Total Supply Will Be Distributed To All $GP NFT Holders, 1 NFT = 5 000 000 Tokens. Then 30 Days Each Day We'll Burn 1% Of Total Token Supply To Ensure Token Price Will Go UP!\n\nWorld Of Golems is a decentralized Play-To-Earn blockchain game.\nOnce You Become Golem Park NFT Holder You Will Be Able To Participate in the WoG Game, Own Countries And Display Your Message On Them.\n\nThe Leaderboard Shows Of TOP 5 Wealthiest Countries & Every Month Owners Of These Countries Will Be Rewarded With $GLMR.",
       "id": "golem-park",
-      "tags": [
-        "NFT"
-      ]
+      "tags": ["NFT"]
     },
     {
       "urls": {
@@ -1922,9 +1733,7 @@
         }
       },
       "name": "Rarible",
-      "chains": [
-        "moonbeam"
-      ],
+      "chains": ["moonbeam"],
       "shortDescription": "Rarible - NFT Marketplace for Brands, Communities and Traders",
       "projectCreationDate": 1721872843,
       "contracts": [],
@@ -1933,9 +1742,7 @@
       "description": "Discover, sell and buy NFTs on Rarible! Our aggregated NFT marketplace for Ethereum NFTs and Polygon NFTs powers brands, collections and creator marketplaces.",
       "id": "rarible",
       "featured": false,
-      "tags": [
-        "NFT"
-      ]
+      "tags": ["NFT"]
     },
     {
       "urls": {
@@ -1967,9 +1774,7 @@
         }
       },
       "name": "Neon Crisis",
-      "chains": [
-        "moonriver"
-      ],
+      "chains": ["moonriver"],
       "defiLLamaTvlExist": false,
       "projectCreationDate": 1654792548000,
       "shortDescription": "6,008 heroes on the $MOVR network. A $RMRK powered metaverse featuring battle simulations, equipables, and more!",
@@ -1978,10 +1783,7 @@
       "category": "nfts",
       "description": "",
       "id": "neoncrisis-io",
-      "tags": [
-        "NFT",
-        "Gaming"
-      ]
+      "tags": ["NFT", "Gaming"]
     },
     {
       "urls": {
@@ -2014,9 +1816,7 @@
         }
       },
       "name": "XP Network",
-      "chains": [
-        "moonbeam"
-      ],
+      "chains": ["moonbeam"],
       "defiLLamaTvlExist": false,
       "projectCreationDate": 1673327644000,
       "shortDescription": "A powerful NFT bridge trusted by all major blockchains ",
@@ -2025,10 +1825,7 @@
       "category": "nfts",
       "description": "We build software tools that enable experienced developers and non-coding blockchain community members to move their assets seamlessly and intuitively between versatile distributed ledgers. By doing so, we encourage unlimited growth of exchange and trade between otherwise isolated ecosystems. We enable them to enrich each other technologically with insights and discoveries. To gain access to new, previously inaccessible markets with users hungry for fresh ideas and technologies to invest in.",
       "id": "xp-network",
-      "tags": [
-        "NFT",
-        "Bridges"
-      ]
+      "tags": ["NFT", "Bridges"]
     },
     {
       "urls": {
@@ -2068,9 +1865,7 @@
         "moonriver": 20402
       },
       "slug": "damned-pirates-society",
-      "web3goIDs": [
-        "Damned Pirates Society"
-      ],
+      "web3goIDs": ["Damned Pirates Society"],
       "createdAt": 1699292616058,
       "logo": {
         "small": {
@@ -2093,9 +1888,7 @@
         }
       },
       "name": "Damned Pirates Society",
-      "chains": [
-        "moonriver"
-      ],
+      "chains": ["moonriver"],
       "defiLLamaTvlExist": false,
       "currentUsers": {
         "moonriver": 2000
@@ -2107,11 +1900,7 @@
       "category": "nfts",
       "description": "A long time ago the Fortune’s Grasp was carrying families to settle on The Islands and start a new life. In the middle of their voyage they encountered a fearsome maelstrom. The Captain and his crew worked tirelessly to keep the ship afloat. Badly damaged, the Ship limped to the edges of the storm. It was taking on water and the cries of terrified children could be heard above the crashing waves. Another ship appeared on the horizon, it’s light glowing brightly against the dark night. The Captain of the Fortune’s Grasp ordered his crew to evacuate the families, but the fifty crew members ignored the Captain, abandoning ship, taking all means of escape with them. The Captain, left on the sinking ship, cursed the cowardly crew for damning those innocent souls to the watery depths. Those Forsaken Fifty were marked with The Black Spot, doomed to row the high seas until the Reaper came to claim his mutinous crew to serve on the Ship Of The Damned. However, if they could convince another soul to take their place at the oars, protection would be offered by those Pirates who’ve cheated the Reaper before. Those who’ve served and survived are welcome in the Damned Pirates Society.\r\n\r\nThe Damned Pirate Society is an Profile Picture NFT with inbuilt utility. Stake your Pirate for Treasure Maps(TMAP) and save these for your Doubloon farming voyages on our upcoming, skill based gamified contracts.",
       "id": "damned-pirates-society",
-      "tags": [
-        "NFT",
-        "Gaming",
-        "GLMR Grants"
-      ]
+      "tags": ["NFT", "Gaming", "GLMR Grants"]
     }
   ],
   "count": 40
