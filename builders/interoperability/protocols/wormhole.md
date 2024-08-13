@@ -117,7 +117,7 @@ Now use Remix to ensure that your two connected contracts trust each other. You 
 3. Also check that the contract is still **SimpleGeneralMessage**
 4. Finally, take the address of the destination contract, and paste it into the **At Address** input
 
-![At address](/images/builders/interoperability/protocols/wormhole/wormhole-4.webp)
+![At address](/images/builders/interoperability/protocols/wormhole/wormhole-3.webp)
 
 To add trusted remote addresses:
 
@@ -127,7 +127,7 @@ To add trusted remote addresses:
 
 When you are on the alternate EVM TestNet, set the **sender** as the properly formatted (padded with 24 zeros) address of the contract you deployed on Moonbase Alpha. Set the **_chainId** as Moonbase Alpha’s Wormhole chain ID (16). Finally, transact and confirm in MetaMask.
 
-![Add trusted address](/images/builders/interoperability/protocols/wormhole/wormhole-5.webp)
+![Add trusted address](/images/builders/interoperability/protocols/wormhole/wormhole-4.webp)
 
 In this section you should have sent two transactions on two chains to whitelist addresses in both contracts. Afterwards, you should be allowed to send messages between the connected contracts.
 
@@ -409,7 +409,7 @@ Use the Remix interface. This example is going to send a cross-chain message to 
 5. Put the destination chain’s Wormhole chain ID in the **destChainId** input of the **sendMessage** section
 6. Once this is all done, transact the execution and confirm it in MetaMask
 
-![Send a transaction](/images/builders/interoperability/protocols/wormhole/wormhole-8.webp)
+![Send a transaction](/images/builders/interoperability/protocols/wormhole/wormhole-5.webp)
 
 After a few seconds to a minute, cross-chain messages should be properly relayed through the relayer that you are hosting on your local machine.  
 
@@ -418,7 +418,6 @@ After a few seconds to a minute, cross-chain messages should be properly relayed
 ## Moonbeam Routed Liquidity Integration {: #moonbeam-routed-liquidity-integration }
 
 Wormhole will provide liquidity to parachains through the Moonbeam Routed Liquidity (MRL) program. This program allows one-click transfers of liquidity from Wormhole connected chains into parachain wallets by sending liquidity through Moonbeam networks.  
-
 [MRL](/builders/interoperability/mrl/){target=\_blank} utilizes the [GMP Precompile](/builders/ethereum/precompiles/interoperability/gmp/){target=\_blank}, whose documentation explains how cross-chain messages should be constructed to properly use the precompile.
 
 --8<-- 'text/_disclaimers/third-party-content.md'
