@@ -370,7 +370,7 @@ thirdweb provides a number of helpful utility methods surrounding preparing and 
 
 You can estimate the gas used by a transaction as follows: 
 
-```typescript title="Estimating Gas"
+```typescript title="Estimating gas"
 import { estimateGas } from 'thirdweb';
 
 const gasEstimate = await estimateGas({ transaction });
@@ -379,7 +379,7 @@ console.log('estmated gas used', gasEstimate);
 
 You can estimate the gas cost in Ether and Wei as follows: 
 
-```typescript title="Estimating Gas Cost"
+```typescript title="Estimating gas cost"
 import { estimateGas } from 'thirdweb';
 
 const gasCost = await estimateGasCost({ transaction });
