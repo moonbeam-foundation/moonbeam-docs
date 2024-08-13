@@ -9,7 +9,7 @@ description: Learn how Moralis' API suite empowers developers to retrieve and le
 
 As a one-stop solution for blockchain development, [Moralis](https://moralis.io/){target=\_blank} offers a comprehensive platform that empowers developers to create, launch, and scale decentralized applications (dApps) with ease.
 
-Moralis' offerings are structured into these primary categories of API services:
+It provides a suite of tools and services designed to streamline the process of accessing Web3 data and interacting with blockchain networks. Its offerings are structured into these primary categories:
 
 - **EVM API** - EVM API allows developers to query essential data for Ethereum Virtual Machine (EVM)-compatible blockchains. Moralis provides dedicated APIs for four key areas: NFTs, tokens, wallets, and general blockchain information
 
@@ -66,7 +66,7 @@ Moralis currently provides official SDK support for two primary programming lang
 - Node.js
 - Python
 
-To install Moralis SDK:
+You can install Moralis SDK with the following commands: 
 
 === "npm"
 
@@ -136,7 +136,7 @@ For more information on advanced features and configurations within the Moralis 
 
 ## Accessing the Stream API {: #accessing-stream-api }
 
-The Moralis Streams API is a tool for developers to listen to and react to events happening on blockchains in real time. This API lets you listen for specific events, such as a new transaction being added to a block, a particular smart contract function being called, or an NFT being transferred and delivering the event via Webhook.
+The [Moralis Streams API](https://docs.moralis.io/streams-api/evm){target=\_blank} is a tool for developers to listen to and react to events happening on blockchains in real time. This API lets you listen for specific events, such as a new transaction being added to a block, a particular smart contract function being called, or an NFT being transferred and delivering the event via Webhook. 
 
 Head over to the **Streams** page from your Moralis dashboard and click **Create a new stream** to get started.
 
@@ -148,7 +148,10 @@ To get started quickly, choose a predefined template. This example focuses on tr
 
 On the next page, enter the following details:
 
-1. Enter the smart contract address for [xcDOT](https://moonscan.io/token/0xffffffff1fcacbd218edc0eba20fc2308c778080){target=\_blank}: 0xFfFFfFff1FcaCBd218EDc0EbA20Fc2308C778080
+1. Enter the smart contract address for [xcDOT](https://moonscan.io/token/0xffffffff1fcacbd218edc0eba20fc2308c778080){target=\_blank}:
+```
+0xFfFFfFff1FcaCBd218EDc0EbA20Fc2308C778080
+```
 2. Select Moonbeam from the available network options. Moralis supports listening to events on Moonbeam, Moonriver, and Moonbase Alpha 
 3. Customize the events you want to receive. For this example, choose **All contract events**. You may also test the stream to confirm it captures the needed data
 4. Connect the stream to an endpoint to receive updates from Moralis
@@ -156,7 +159,7 @@ On the next page, enter the following details:
 
 ![details input page](/images/builders/integrations/indexers/moralis/moralis-4.webp)
 
-All set. Once you activate your stream, it will be added to your list of streams on your dashboard:
+Now you're all set. Once you activate your stream, it will be added to your list of streams on your dashboard:
 
 ![stream API end page](/images/builders/integrations/indexers/moralis/moralis-5.webp)
 
@@ -174,6 +177,6 @@ Your RPC endpoint will be generated for you to easily copy, and your Moonbeam no
 
 ![node ready page](/images/builders/integrations/indexers/moralis/moralis-7.webp)
 
-And that's it! Hope this guide has been helpful. For advance features and more complex use cases, refer to [the official Moralis documentation](https://docs.moralis.io/) for further details.
+And that's it! Hope this guide has been helpful. For advanced features and more complex use cases, refer to [the official Moralis documentation](https://docs.moralis.io/) for further details.
 
 --8<-- 'text/_disclaimers/third-party-content.md'
