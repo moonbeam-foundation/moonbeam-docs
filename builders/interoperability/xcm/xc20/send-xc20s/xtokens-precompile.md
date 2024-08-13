@@ -63,7 +63,7 @@ The interface includes the following functions:
         - `destination` - the multilocation of the destination address for the tokens being sent via XCM. It supports different address formats, such as 20- or 32-byte addresses (Ethereum or Substrate). The multilocation must be formatted in a particular way, which is described in the [Building the Precompile Multilocation](#building-the-precompile-multilocation) section
         - `weight` - the weight to be purchased to pay for XCM execution on the destination chain, which is charged from the transferred asset
 
-??? function "**transferWithFee**(currencyAddress, amount, fee, destination, weight) — transfer a currency, defined as either the native token (self-reserved) or the asset ID, and specify the fee separately from the amount"
+??? function "**transferWithFee**(*address* currencyAddress, *uint256* amount, *uint256* fee, *Multilocation* *memory* destination, *uint64* weight) — transfer a currency, defined as either the native token (self-reserved) or the asset ID, and specify the fee separately from the amount"
 
     === "Parameters"
 
@@ -82,11 +82,10 @@ The interface includes the following functions:
 
         - `asset` - the multilocation of the asset to transfer. The multilocation must be formatted in a particular way, which is described in the [Building the Precompile Multilocation](#building-the-precompile-multilocation) section
         - `amount` - the number of tokens that are going to be sent via XCM
-        - `fee` — the amount to be spent to pay for the XCM execution in the target (destination) chain. If this value is not high enough to cover execution costs, the assets will be trapped in the destination chain
         - `destination` - the multilocation of the destination address for the tokens being sent via XCM. It supports different address formats, such as 20- or 32-byte addresses (Ethereum or Substrate). The multilocation must be formatted in a particular way, which is described in the [Building the Precompile Multilocation](#building-the-precompile-multilocation) section
         - `weight` - the weight to be purchased to pay for XCM execution on the destination chain, which is charged from the transferred asset
 
-??? function "**transferMultiassetWithFee**(asset, fee, destination, weight) — transfer a fungible asset, defined by its multilocation, and pay the fee with a different asset, also defined by its multilocation"
+??? function "**transferMultiassetWithFee**(*Multilocation* *memory* asset, *uint256* amount, *uint256* fee, *Multilocation* *memory* destination, *uint64* weight) — transfer a fungible asset, defined by its multilocation, and pay the fee with a different asset, also defined by its multilocation"
 
     === "Parameters"
 
@@ -96,7 +95,7 @@ The interface includes the following functions:
         - `destination` - the multilocation of the destination address for the tokens being sent via XCM. It supports different address formats, such as 20- or 32-byte addresses (Ethereum or Substrate). The multilocation must be formatted in a particular way, which is described in the [Building the Precompile Multilocation](#building-the-precompile-multilocation) section
         - `weight` - the weight to be purchased to pay for XCM execution on the destination chain, which is charged from the transferred asset
 
-??? function "**transferMulticurrencies**(currencies, feeItem, destination, weight) — transfer different currencies, specifying which is used as the fee. Each currency is defined as either the native token (self-reserved) or the asset ID"
+??? function "**transferMulticurrencies**(*Currency[]* *memory* currencies, *uint32* feeItem, *Multilocation* *memory* destination, *uint64* weight) — transfer different currencies, specifying which is used as the fee. Each currency is defined as either the native token (self-reserved) or the asset ID"
 
     === "Parameters"
 
@@ -105,7 +104,7 @@ The interface includes the following functions:
         - `destination` - the multilocation of the destination address for the tokens being sent via XCM. It supports different address formats, such as 20- or 32-byte addresses (Ethereum or Substrate). The multilocation must be formatted in a particular way, which is described in the [Building the Precompile Multilocation](#building-the-precompile-multilocation) section
         - `weight` - the weight to be purchased to pay for XCM execution on the destination chain, which is charged from the transferred asset
 
-??? function "**transferMultiassets**(assets, feeItem, destination, weight) — transfer several fungible assets, defined by their multilocation, and pay the fee with one of the assets, also defined by its multilocation"
+??? function "**transferMultiassets**(*MultiAsset[]* *memory* assets, *uint32* feeItem, *Multilocation* *memory* destination, *uint64* weight) — transfer several fungible assets, defined by their multilocation, and pay the fee with one of the assets, also defined by its multilocation"
 
     === "Parameters"
 
