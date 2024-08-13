@@ -1,6 +1,6 @@
 ---
 title: XCM Interface Precompile
-description: Learn about the XCM interface precompile and how to use it to transfer assets from moonbeam networks to other parachains.
+description: Learn about the XCM Interface Precompile and how to use it to transfer assets from Moonbeam networks to other parachains.
 ---
 
 # XCM Interface precompile
@@ -13,7 +13,7 @@ The communication protocol enabling token transfers is built on [Substrate](/bui
 
 Nevertheless, Moonbeam networks have an XCM precompile that fills the gap between execution layers, exposing a smart contract interface that abstracts away the underlying complexities, making the execution of cross-chain token transfers as easy as any other smart contract call.
 
-This guide will show you how to interact with the [XCM interface](https://github.com/Moonsong-Labs/moonkit/blob/main/precompiles/pallet-xcm/XcmInterface.sol){target=\_blank} precompile to execute cross-chain token transfers through the Ethereum API.
+This guide will show you how to interact with the [XCM Interface](https://github.com/Moonsong-Labs/moonkit/blob/main/precompiles/pallet-xcm/XcmInterface.sol){target=\_blank} precompile to execute cross-chain token transfers through the Ethereum API.
 
 The XCM precompile is located at the following address:
 
@@ -41,7 +41,7 @@ The XCM precompile is located at the following address:
 
 The [`XCMInterface.sol`](https://github.com/Moonsong-Labs/moonkit/blob/main/precompiles/pallet-xcm/XcmInterface.sol){target=\_blank} is a Solidity interface that allows developers to interact with the precompile's functions.
 
-??? code "XcmInterface.sol"
+??? code "XCMInterface.sol"
 
     ```solidity
     --8<-- 'code/builders/precompiles/xcm-interface/XcmInterface.sol'
@@ -53,11 +53,11 @@ The interface includes the necessary data structures along with the following fu
 
     === "Parameters"
 
-        - `paraId` (uint32) - the destination's appchain ID
-        - `beneficiary` (address) - the ECDSA-type account in the destination chain that will receive the tokens
-        - `assets` (`AssetAddressInfo[]` memory) - an array of assets to send
-        - `feeAssetItem` (uint32) - the index of the asset that will be used to pay fees
-        - `weight` (Weight memory)- the maximum gas to use in the whole operation. Setting uint64::MAX to `refTime` acts in practice as *unlimited weight*
+        - `paraId` *uint32* - the destination's appchain ID
+        - `beneficiary` *address* - the ECDSA-type account in the destination chain that will receive the tokens
+        - `assets` *AssetAddressInfo[] memory* - an array of assets to send
+        - `feeAssetItem` *uint32* - the index of the asset that will be used to pay fees
+        - `weight` *Weight memory* - the maximum gas to use in the whole operation. Setting uint64::MAX to `refTime` acts in practice as *unlimited weight*
 
     === "Example"
 
@@ -71,11 +71,11 @@ The interface includes the necessary data structures along with the following fu
 
     === "Parameters"
 
-        - `paraId` (uint32) - the destination's appchain ID
-        - `beneficiary` (bytes32) - the Substrate's SR25519-type account in the destination chain that will receive the tokens
-        - `assets` (`AssetAddressInfo[]` memory) - an array of assets to send
-        - `feeAssetItem` (uint32) - the index of the asset that will be used to pay fees
-        - `weight` (Weight memory) - the maximum gas to use in the whole operation. Setting uint64::MAX to `refTime` acts in practice as *unlimited weight*
+        - `paraId` *uint32* - the destination's appchain ID
+        - `beneficiary` *bytes32* - the Substrate's SR25519-type account in the destination chain that will receive the tokens
+        - `assets` *AssetAddressInfo[] memory* - an array of assets to send
+        - `feeAssetItem` *uint32* - the index of the asset that will be used to pay fees
+        - `weight` *Weight memory* - the maximum gas to use in the whole operation. Setting uint64::MAX to `refTime` acts in practice as *unlimited weight*
 
     === "Example"
 
@@ -89,10 +89,10 @@ The interface includes the necessary data structures along with the following fu
 
     === "Parameters"
 
-        - `beneficiary` (bytes32) - the Substrate's sr25519-type account in the relay chain that will receive the tokens
-        - `assets` (`AssetAddressInfo[]` memory) - an array of assets to send
-        - `feeAssetItem` (uint32) - the index of the asset that will be used to pay fees
-        - `weight` (Weight memory) - the maximum gas to use in the whole operation. Setting uint64::MAX to `refTime` acts in practice as *unlimited weight*
+        - `beneficiary` *bytes32* - the Substrate's sr25519-type account in the relay chain that will receive the tokens
+        - `assets` *AssetAddressInfo[] memory* - an array of assets to send
+        - `feeAssetItem` *uint32* - the index of the asset that will be used to pay fees
+        - `weight` *Weight memory* - the maximum gas to use in the whole operation. Setting uint64::MAX to `refTime` acts in practice as *unlimited weight*
 
     === "Example"
 
@@ -104,11 +104,11 @@ The interface includes the necessary data structures along with the following fu
 ??? function "**transferAssetsLocation**(_dest, beneficiary, assets, feeAssetItem, weight_) — sends assets using the underlying `transfer_assets()` transaction included in the XCM pallet module"
 
     === "Parameters"
-        - `dest` (Location memory) - the destination chain
-        - `beneficiary` (Location memory) - the account in the destination chain that will receive the tokens
-        - `assets` (`AssetLocationInfo[]` memory) - an array of assets to send
-        - `feeAssetItem` (uint32) - the index of the asset that will be used to pay fees
-        - `weight` (Weight memory) - the maximum gas to use in the whole operation. Setting uint64::MAX to `refTime` acts in practice as *unlimited weight*
+        - `dest` *Location memory* - the destination chain
+        - `beneficiary` *Location memory* - the account in the destination chain that will receive the tokens
+        - `assets` *AssetLocationInfo[] memory* - an array of assets to send
+        - `feeAssetItem` *uint32* - the index of the asset that will be used to pay fees
+        - `weight` *Weight memory* - the maximum gas to use in the whole operation. Setting uint64::MAX to `refTime` acts in practice as *unlimited weight*
 
     === "Example"
         - `dest` - ["1",[]]
@@ -127,8 +127,8 @@ To follow along with this tutorial, you will need to have your preferred EVM wal
 
 You can interact with the XCM interface precompile using [Remix](https://remix.ethereum.org){target=\_blank}. To add the precompile to Remix, you will need to:
 
-1. Get a copy of [`XcmInterface.sol`](https://github.com/Moonsong-Labs/moonkit/blob/main/precompiles/pallet-xcm/XcmInterface.sol){target=\_blank}
-2. Paste the file contents into a Remix file named `XcmInterface.sol`
+1. Get a copy of [`XCMInterface.sol`](https://github.com/Moonsong-Labs/moonkit/blob/main/precompiles/pallet-xcm/XcmInterface.sol){target=\_blank}
+2. Paste the file contents into a Remix file named `XCMInterface.sol`
 
 ### Compile the Contract {: #compile-the-contract }
 
@@ -137,7 +137,7 @@ Next, you will need to compile the interface in Remix:
 1. Click on the **Compile** tab, second from top
 2. Compile the interface by clicking on **Compile XcmInterface.sol**
 
-![Compiling XcmInterface.sol](/images/builders/precompiles/xcm-interface/xcm-interface-1.webp)
+![Compiling XCMInterface.sol](/images/builders/precompiles/xcm-interface/xcm-interface-1.webp)
 
 When the compilation is completed, you will see a green checkmark next to the **Compile** tab.
 
@@ -149,7 +149,7 @@ Instead of deploying the precompile, you will access the interface given the add
 2. Make sure **Injected Provider - Metamask** is selected in the **ENVIRONMENT** dropdown. Once you select **Injected Provider - Metamask**, you may be prompted by MetaMask to connect your account to Remix if it's not already connected
 3. Make sure the correct account is displayed under **ACCOUNT**
 4. Ensure **XCM - XcmInterface.sol** is selected in the **CONTRACT** dropdown. Given that it is a precompiled contract, there is no deployment step. Instead, you are going to provide the address of the precompile in the **At Address** field
-5. Provide the address of the precompile: `{{networks.moonbeam.precompiles.xcmInterface}}` and click **At Address**
+5. Provide the address of the precompile: `{{networks.moonbeam.precompiles.xcm_interface}}` and click **At Address**
 
 ![Access the address](/images/builders/precompiles/xcm-interface/xcm-interface-2.webp)
 

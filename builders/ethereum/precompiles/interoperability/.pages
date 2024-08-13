@@ -5,4 +5,4 @@ nav:
   - 'X-Tokens': '/builders/interoperability/xcm/xc20/send-xc20s/xtokens-precompile/'
   - 'XCM Transactor': '/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-precompile/'
   - 'XCM Utilities': '/builders/interoperability/xcm/xcm-utils/'
-  - 'XCM interface': '/builders/precompiles/xcm-interface/'
+  - 'XCM Interface': '/builders/precompiles/xcm-interface/'
