@@ -48,7 +48,7 @@ Next, you'll need to create a client ID for your thirdweb project and specify it
 
 ## Specify Client ID {: #specify-client-id }
 
-Before you launch your DApp (locally or publicly deployed), you must have a thirdweb Client ID associated with your project. A thirdweb Client ID is synonymous with an API key. You can create a free API key by [signing into your thirdweb account and navigating to **Settings** then click on **API Keys**](https://thirdweb.com/dashboard/settings/api-keys){target=\_blank}.
+Before you launch your dApp (locally or publicly deployed), you must have a thirdweb Client ID associated with your project. A thirdweb Client ID is synonymous with an API key. You can create a free API key by [signing into your thirdweb account and navigating to **Settings** then click on **API Keys**](https://thirdweb.com/dashboard/settings/api-keys){target=\_blank}.
 
 Press **Create API Key** then take the following steps:
 
@@ -58,7 +58,7 @@ Press **Create API Key** then take the following steps:
 
 ![thirdweb create API key](/images/tutorials/eth-api/thirdweb/thirdweb-1.webp "Creating an API key on thirdweb")
 
-Now, create a file a called `.env.local` at the root level directory of your project. Add your client ID as follows:
+Now, create a file a called `.env.local` at the root level directory of your project. Add your Client ID as follows:
 
 ```bash title=".env.local"
 NEXT_PUBLIC_TW_CLIENT_ID="INSERT_CLIENT_ID"
@@ -184,7 +184,7 @@ For aesthetic purposes, we'd like to have some NFTs show up in the marketplace t
 After deploying and minting your NFTs, you'll need to specify your NFT contract in `src/consts/nft_contract.ts`. First, add `moonbase` to the list of imports as follows: 
 
 ```typescript title="nft_contracts.ts"
-import { moonbase, avalancheFuji, polygonAmoy, sepolia } from "./chains";
+import { moonbase, avalancheFuji, polygonAmoy, sepolia } from './chains';
 ```
 
 Then, add your NFT contract to the array of marketplace contracts as follows:
@@ -228,7 +228,7 @@ You'll be asked to confirm a transaction and provide a signature. The former dep
 After deploying your marketplace contract you'll need to specify it in `src/consts/marketplace_contract.ts`. To add support for the Moonbase marketplace first add `moonbase` to the list of imports as follows: 
 
 ```typescript title="marketplace_contract.ts"
-import { moonbase, avalancheFuji, polygonAmoy, sepolia } from "./chains";
+import { moonbase, avalancheFuji, polygonAmoy, sepolia } from './chains';
 ```
 
 Then, add your marketplace contract in the array of marketplace contracts as follows:
