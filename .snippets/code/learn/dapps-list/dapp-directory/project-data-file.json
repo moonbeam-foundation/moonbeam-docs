@@ -4,8 +4,12 @@
     "name": "Moonwell",
     "category": "lending",
     "coinGeckoId": "moonwell-artemis",
-    "chains": ["moonbeam"],
-    "web3goIDs": ["Moonwell Artemis"],
+    "chains": [
+        "moonbeam"
+    ],
+    "web3goIDs": [
+        "Moonwell Artemis"
+    ],
     "logo": {
         "small": {
             "fileName": "moonwell-logo-small.jpeg",
@@ -28,7 +32,10 @@
     },
     "shortDescription": "Lending, borrowing, and DeFi protocol built on Moonbeam and Moonriver",
     "description": "Moonwell is an open lending, borrowing, and decentralized finance protocol built on Moonbeam and Moonriver. Moonwell’s composable design can accommodate a full range of DeFi applications in the greater Polkadot and Kusama (DotSama) ecosystem.\r\n\r\nOur first deployment will be on Kusama’s Moonriver, the sister network of Polkadot’s Moonbeam. Moonriver is where new products are expected to be incubated and developed prior to being deployed on Moonbeam.",
-    "tags": ["Lending", "DeFi"],
+    "tags": [
+        "Lending",
+        "DeFi"
+    ],
     "contracts": [
         {
             "contract": "0x511ab53f793683763e5a8829738301368a2411e3",

@@ -164,9 +164,19 @@ Your project's data file is where you'll add all the information for your projec
 
 #### Category and Tags {: #category-and-tags }
 
-The currently supported values for `category` and `tags` are:
+A category is the primary classification for a project. A project can be categorized under only one category, but it can have multiple tags. Ensure you carefully select the most applicable category for your project to ensure it is easily found. Any secondary classifications can be included as a tag. 
 
---8<-- 'text/learn/dapps-list/dapp-directory/category-tags.md'
+The currently supported values for `category` are:
+
+```text
+--8<-- 'code/learn/dapps-list/dapp-directory/categories.md'
+```
+
+The currently supported values for `tag` are:
+
+```text
+--8<-- 'code/learn/dapps-list/dapp-directory/tags.md'
+```
 
 #### URLs {: #urls }
 
@@ -303,6 +313,86 @@ As your project evolves, you may need to update your project's listing or images
 If you are no longer using a logo or screenshot, please remember to remove it from the `logos` or `screenshots` directory.
 
 Once your changes have been made, you must follow the same instructions in the [Submit a Pull Request](#submit-a-pull-request) section so the changes can be [reviewed](#review-process) by the Moonbeam Foundation. Please note that pull requests are reviewed on a bi-weekly basis, so if the update is urgent, you can create a [forum post](https://forum.moonbeam.network){target=\_blank} asking for assistance.
+
+## DApp Directory API {: #dapp-directory-api }
+
+The DApp Directory also features a queryable API that you can use to integrate data from Moonbeam's DApp Directory into your application. The API is public and currently does not require authentication. The base URL for the API is as follows:
+
+```bash
+https://apps.moonbeam.network/api/ds/v1/app-dir/
+```
+
+### Query a Project {: #query-a-project}
+
+You can retrieve all the information for a particular project by appending `/projects/INSERT_PROJECT_NAME` to the base URL. If you need clarification on the project name, you can omit the project name as shown below to retrieve data for every listed project and find the project in the response. 
+
+```bash
+https://apps.moonbeam.network/api/ds/v1/app-dir/projects
+```
+
+Here's an example of querying the API for StellaSwap, which returns the project description, social media information, user counts, relevant smart contract addresses, market data, images, and more. 
+
+```bash
+https://apps.moonbeam.network/api/ds/v1/app-dir/projects/stellaswap
+```
+
+You can visit the query URL directory in the browser, using a tool like Postman, or directly from the command line with Curl as follows: 
+
+```bash
+curl -H "Content-Type: application/json" -X GET 'https://apps.moonbeam.network/api/ds/v1/app-dir/projects/stellaswap'
+```
+
+??? code "API Response to Querying StellaSwap"
+
+    ```json
+    --8<-- 'code/learn/dapps-list/dapp-directory/stellaswap.json'
+    ```
+
+### Query a Category {: #query-a-category}
+
+You can also query the API by [category](#category-and-tags). For example, you can retrieve information about all NFT projects with the following query:
+
+```bash
+https://apps.moonbeam.network/api/ds/v1/app-dir/projects?category=nfts
+```
+
+??? code "API Response to Querying NFT projects"
+
+    ```json
+    --8<-- 'code/learn/dapps-list/dapp-directory/nfts.json'
+    ```
+
+Below are all possible categories and their respective parameters for querying the API. Ensure you query the API with the parameter formatted exactly as shown in lowercase.
+
+| Category | API Parameter |
+|:--------:|:-------------:|
+| Bridges  |   `bridges`   |
+|   DAO    |     `dao`     |
+|   DEX    |     `dex`     |
+|   DeFi   |    `defi`     |
+|  Gaming  |   `gaming`    |
+| Lending  |   `lending`   |
+|   NFTs   |    `nfts`     |
+|  Other   |    `other`    |
+|  Social  |   `social`    |
+| Wallets  |   `wallets`   |
+
+
+### Query a Chain {: #query-a-chain}
+
+The following queries can be used to query all of the listed projects on Moonbeam or Moonriver. Note that Moonbase Alpha is not a supported network in the DApp Directory.
+
+=== "Moonbeam"
+
+    ```bash
+    https://apps.moonbeam.network/api/ds/v1/app-dir/projects?chain=moonbeam
+    ```
+
+=== "Moonriver"
+
+    ```bash
+    https://apps.moonbeam.network/api/ds/v1/app-dir/projects?chain=moonriver
+    ```
 
 <div class="page-disclaimer">
     --8<-- 'text/_disclaimers/user-generated-content.md'
