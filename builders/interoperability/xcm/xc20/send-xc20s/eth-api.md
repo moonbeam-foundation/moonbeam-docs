@@ -137,7 +137,7 @@ Next, you will need to compile the interface in Remix:
 1. Click on the **Compile** tab, second from top
 2. Compile the interface by clicking on **Compile XcmInterface.sol**
 
-![Compiling XCMInterface.sol](/images/builders/interoperability/xcm/xc20/send-xc20s/eth-api-1.webp)
+![Compiling XCMInterface.sol](/images/builders/interoperability/xcm/xc20/send-xc20s/eth-api/eth-api-1.webp)
 
 When the compilation is completed, you will see a green checkmark next to the **Compile** tab.
 
@@ -151,7 +151,7 @@ Instead of deploying the precompile, you will access the interface given the add
 4. Ensure **XCM - XcmInterface.sol** is selected in the **CONTRACT** dropdown. Given that it is a precompiled contract, there is no deployment step. Instead, you are going to provide the address of the precompile in the **At Address** field
 5. Provide the address of the precompile: `{{networks.moonbeam.precompiles.xcm_interface}}` and click **At Address**
 
-![Access the address](/images/builders/interoperability/xcm/xc20/send-xc20s/eth-api-2.webp)
+![Access the address](/images/builders/interoperability/xcm/xc20/send-xc20s/eth-api/eth-api-2.webp)
 
 The **XCM Interface** precompile will appear in the list of **Deployed Contracts**.
 
@@ -168,7 +168,7 @@ To send tokens over to an account in another EVM-compatible appchain, please fol
 7. Click **transact**
 8. MetaMask will pop up, and you will be prompted to review the transaction details. Click **Confirm** to send the transaction
 
-![Confirm Approve Transaction](/images/builders/interoperability/xcm/xc20/send-xc20s/eth-api-3.webp)
+![Confirm Approve Transaction](/images/builders/interoperability/xcm/xc20/send-xc20s/eth-api/eth-api-3.webp)
 
 After the transaction is confirmed, wait for a few blocks for the transfer to reach the destination chain and reflect the new balance.
 
@@ -188,7 +188,7 @@ To send tokens over to an account in a Substrate appchain, please follow these s
 7. Click **transact**
 8. MetaMask will pop up, and you will be prompted to review the transaction details. Click **Confirm** to send the transaction
 
-![Confirm Approve Transaction](/images/builders/interoperability/xcm/xc20/send-xc20s/eth-api-4.webp)
+![Confirm Approve Transaction](/images/builders/interoperability/xcm/xc20/send-xc20s/eth-api/eth-api-4.webp)
 
 After the transaction is confirmed, wait for a few blocks for the transfer to reach the destination chain and reflect the new balance.
 
@@ -207,7 +207,7 @@ To send tokens over to an account in the relay chain, please follow these steps:
 6. Click **transact**
 7. MetaMask will pop up, and you will be prompted to review the transaction details. Click **Confirm** to send the transaction
 
-![Confirm Approve Transaction](/images/builders/interoperability/xcm/xc20/send-xc20s/eth-api-5.webp)
+![Confirm Approve Transaction](/images/builders/interoperability/xcm/xc20/send-xc20s/eth-api/eth-api-5.webp)
 
 After the transaction is confirmed, wait for a few blocks for the transfer to reach the destination chain and reflect the new balance.
 
@@ -228,6 +228,6 @@ To send tokens to specific locations, please follow these steps:
 7. Click **transact**
 8. MetaMask will pop up, and you will be prompted to review the transaction details. Click **Confirm** to send the transaction
 
-![Confirm Approve Transaction](/images/builders/interoperability/xcm/xc20/send-xc20s/eth-api-6.webp)
+![Confirm Approve Transaction](/images/builders/interoperability/xcm/xc20/send-xc20s/eth-api/eth-api-6.webp)
 
 After the transaction is confirmed, wait for a few blocks for the transfer to reach the destination chain and reflect the new balance.
