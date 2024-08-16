@@ -441,7 +441,7 @@ networks:
     gas_block_numbers_only: 60000000
     gas_tx: 52,000,000
     mbip_5:
-      block_storage_limit: 80
+      block_storage_limit: 160
       gas_storage_ratio: 366
       example_storage: 500
       example_addtl_gas: 183000
@@ -457,7 +457,7 @@ networks:
         wei_per_weight:
           display: 50,000
     erc20_xcm:
-      transfer_gas_limit: 400,000
+      transfer_gas_limit: 800,000 # corresponds to Erc20XcmBridgeTransferGasLimit
     conviction:
       lock_period:
         conviction_1: 1
