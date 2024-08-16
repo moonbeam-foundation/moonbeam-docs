@@ -1,7 +1,7 @@
 ---
 title: Non-Network Specific Precompiles
 description: Learn how to use precompiled contracts, which are not specific to Ethereum or Moonbeam, yet are supported for use in your application.
-keywords: ethereum, moonbeam, StorageCleaner, ECRecoverPublicKey
+keywords: ethereum, moonbeam, StorageCleaner, ECRecoverPublicKey, sha3FIPS256
 ---
 
 # Non-Network Specific Precompiled Smart Contracts
@@ -12,7 +12,7 @@ A precompiled contract, or precompile, is a set of programmed functionalities ha
 
 Precompile functionality is bundled and shared under a smart contract address which allows interactions similar to those of a traditional smart contract. Some precompiled contracts are not specific to Ethereum or to Moonbeam, but are supported for use in your Moonbeam application. 
 
-The nonspecific precompiles currently included in this category include `StorageCleaner` and `ECRecoverPublicKey`. 
+The nonspecific precompiles currently included in this category include `StorageCleaner`, `ECRecoverPublicKey`, and `SHA3FIPS256`. 
 
 In the next section, you will learn more about the functionalities included in these precompiles.  
 
@@ -20,7 +20,7 @@ In the next section, you will learn more about the functionalities included in t
 
 The primary function of the `StorageCleaner` precompile is to clear storage entry key-value pairs for a smart contract marked as self-destructed, previously referred to as 'suicided.' `StorageCleaner` includes functionality to iterate over a list of addresses to identify self-destructed contracts and delete the appropriate storage entries associated with identified addresses. You can also input a numeric limit to prevent the precompile from consuming too much gas. 
 
-With the implementation of [EIP-6780: SELFDESTRUCT](https://eips.ethereum.org/EIPS/eip-6780) as part of the Ethereum Cancun/Dencun upgrade, contracts can only be self-destructed in the same transaction where they are created. This limitation keeps storage entries small and allows them to be automatically deleted during destruction. The `StorageCleaner` precompile remains available when a legacy contract needs storage entries cleared. 
+With the implementation of [EIP-6780: SELFDESTRUCT](https://eips.ethereum.org/EIPS/eip-6780){target=\_blank} as part of the Ethereum Cancun/Dencun upgrade, contracts can only be self-destructed in the same transaction where they are created. This limitation keeps storage entries small and allows them to be automatically deleted during destruction. The `StorageCleaner` precompile remains available when a legacy contract needs storage entries cleared. 
 
 ## Retrieve a Public Key with ECRecoverPublicKey {: verifying-signatures-ecrecoverpublickey }
 
@@ -50,7 +50,7 @@ This example uses version 4.11.1. You will also use [Remix](/builders/ethereum/d
 
 ### Retrieve Transaction Signature Values
 
-To use the `ECRecoverPublicKey` precompile, you must first sign a message to create and retrieve the message hash and transaction signature values (`v`, `r`, `s`) to pass as arguments in the contract call. Please note that the address and private key values used here are hard-coded for simplicity. Always use security best practices when handling private keys. 
+To use the `ECRecoverPublicKey` precompile, you must first sign a message to create and retrieve the message hash and transaction signature values (`v`, `r`, `s`) to pass as arguments in the contract call. Always use security best practices when handling private keys. 
 
 Create a new file called `signMessage.js` in your project directory:
 
@@ -78,7 +78,7 @@ Save these values as you will need them in the next section.
 
 ### Test ECRecoverPublicKey Contract
 
-You can now visit [Remix](/builders/ethereum/dev-env/remix/){target=\_blank} to test the precompiled contract. Note that you could also use the Web3.js library, but in this case, you can go to Remix to ensure it is using the precompiled contract on the blockchain. The Solidity code you can use to retrieve the public key is the following:
+You can now visit [Remix](https://remix.ethereum.org/){target=\_blank} to test the precompiled contract. Note that you could also use the Web3.js library, but in this case, you can go to Remix to ensure it is using the precompiled contract on the blockchain. The Solidity code you can use to retrieve the public key is the following:
 
 ```solidity title="RecoverPublicKey.sol"
 --8<-- 'code/builders/ethereum/precompiles/utility/nonspecific/RecoverPublicKey.sol'
@@ -87,5 +87,17 @@ You can now visit [Remix](/builders/ethereum/dev-env/remix/){target=\_blank} to 
 Using the [Remix compiler and deployment](/builders/ethereum/dev-env/remix/){target=\_blank} and with [MetaMask pointing to Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}, you can deploy the contract and call the `recoverPublicKey()` method which returns the public key for the account that signed the message. You can now use this public key value for other cryptographic functions and verifications.
 
 ![Returned Public Key on Remix](/images/builders/ethereum/precompiles/utility/nonspecific/nonspecific-1.webp)
+
+## Create a Hash with SHA3FIPS256 {: #create-a-hash-with-sha3fips256 }
+
+SHA3-256 is part of the SHA-3 family of cryptographic hashes codified in [FIPS202](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf) that produces an output 256 bits in length. Although the name is similar to SHA256, the SHA-3 family is built with an entirely different algorithm and accordingly produces a different hash output than SHA256 for the same input. You can verify this yourself using this [SHA3-256 Hash Calculator tool](https://md5calc.com/hash/sha3-256){target=\_blank}. After calculating the SHA3-256 output, change the algorithm in the drop-down selector to SHA256 and take note of the resulting output.
+
+Currently there is no SHA3-256 support in Solidity, so it needs to be called with inline assembly. The following sample code can be used to call this precompile.
+
+```solidity
+--8<-- 'code/builders/ethereum/precompiles/utility/eth-mainnet/sha3fips.sol'
+```
+
+Using the [Remix compiler and deployment](/builders/ethereum/dev-env/remix/){target=\_blank} and with [MetaMask pointing to Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}, you can deploy the contract and call the `sha3fips(bytes memory data)` method to return the encoded string of the data parameter.
 
 --8<-- 'text/_disclaimers/third-party-content-intro.md'
