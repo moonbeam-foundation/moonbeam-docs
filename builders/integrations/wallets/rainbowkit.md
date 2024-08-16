@@ -176,19 +176,19 @@ You can connect your MetaMask mobile wallet to the Moonbase Alpha TestNet in a c
 
 Next, safely add your `projectId` to your application: 
 
-- Create a `.env.local` file in the root directory of your project
+1. Create a `.env.local` file in the root directory of your project
 
-```bash
-touch .env.local
-```
+    ```bash
+    touch .env.local
+    ```
 
-- Add your `projectId` to this file
+2. Add your `projectId` to this file
 
-```text title=".env.local"
-NEXT_PUBLIC_PROJECT_ID='INSERT_PROJECT_ID'
-```
+    ```text title=".env.local"
+    NEXT_PUBLIC_PROJECT_ID='INSERT_PROJECT_ID'
+    ```
 
-- Locate your `.gitignore` file in this same directory and ensure `.env*.local` is included in the list of files to ignore. This will prevent committing your `projectId` to GitHub
+3. Locate your `.gitignore` file in this same directory and ensure `.env*.local` is included in the list of files to ignore. This will prevent committing your `projectId` to GitHub
 
 In the next section, you will use this stored `projectId` when setting up the `wagmi` config.
 
