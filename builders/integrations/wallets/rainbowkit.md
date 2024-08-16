@@ -11,7 +11,7 @@ description: Learn how to integrate RainbowKit into a dApp to allow users to con
 
 RainbowKit bundles together mulitple tools to simplify adding wallet connection to your dApp: 
 
-- [Wagmi](https://wagmi.sh/){target=\_blank} -  a React Hooks library for interacting with Ethereum accounts, wallets, contracts, transactions, signing, ENS, and more
+- [Wagmi](https://wagmi.sh/){target=\_blank} - a React Hooks library for interacting with Ethereum accounts, wallets, contracts, transactions, signing, ENS, and more
 - [viem](https://viem.sh/){target=\_blank} - TypeScript interface which provides low-level stateless primitives for interacting with Ethereum
 - [WalletConnect](https://walletconnect.com/){target=\_blank} - adds encrypted connections and enhanced UX experiences like connecting a mobile wallet by scanning a QR code
 - [TanStack Query](https://tanstack.com/query/latest/docs/framework/react/overview){target=\_blank} - helps manage and update server state within the application
@@ -48,21 +48,21 @@ You can now navigate to the project directory, start the development server, and
 === "npm"
 
     ```bash
-    cd <project-name>
+    cd INSERT_PROJECT_NAME
     npm run dev 
     ```
 
 === "pnpm"
 
     ```bash
-    cd <project-name>
+    cd INSERT_PROJECT_NAME
     pnpm run dev
     ```
 
 === "yarn"
 
     ```bash
-    cd <project-name>
+    cd INSERT_PROJECT_NAME
     yarn dev
     ```
 
@@ -77,19 +77,19 @@ Moonbeam, Moonriver, and Moonbase Alpha are not on the list of default supported
 === "Moonbeam"
 
     ```js
-    `moonbeam`
+    moonbeam
     ```
 
 === "Moonriver"
 
     ```js
-    `moonriver`
+    moonriver
     ```
 
 === "Moonbase Alpha"
 
     ```js
-    `moonbaseAlpha`
+    moonbaseAlpha
     ```
 
 To add support for Moonbeam networks, update `wagmi.ts` as follows. You will learn how to generate the `projectId` value in the next section. 
@@ -107,15 +107,15 @@ If you want to add RainbowKit to an existing React application, you can complete
 
 The following guide assumes you have:
 
-- An existing dApp built with [React](https://react.dev/){target=\_blank} and you want to use the manual setup to connect to a mobile wallet via RainbowKit 
+- An existing dApp built with [React](https://react.dev/){target=\_blank} and you want to use the manual setup to connect to a mobile wallet via RainbowKit
 
-    - This example uses [Next.js](https://nextjs.org/docs){target=\_blank} with Typescript and the App Router. You can find examples for additional frameworks in the [RainbowKit examples repository](https://github.com/rainbow-me/rainbowkit/tree/main/examples){target=\_blank}
+    - The [RainbowKit examples repository](https://github.com/rainbow-me/rainbowkit/tree/main/examples){target=\_blank} includes templates for multiple React frameworks
+    
+    - To follow this guide, visit [Next.js](https://nextjs.org/docs){target=\_blank} and follow the **Automatic Installation** instructions, selecting Typescript and the App Router options during setup 
 
 - A mobile wallet which supports Moonbeam out of the box or allows for adding custom networks
 
-    - This example uses [MetaMask](https://metamask.io/){target=\_blank}. However, RainbowKit supports a variety of wallets, and you can find a complete list on the RainbowKit [Custom Wallet List](https://www.rainbowkit.com/docs/custom-wallet-list){target=\_blank}
-
-- A WalletConnect `projectId` - Every dApp relying on WalletConnect is required to have an associated `projectId`. It is free to create an account, and you can instantly generate an ID. 
+- A WalletConnect `projectId` - every dApp relying on WalletConnect is required to have an associated `projectId`. It is free to create an account, and you can instantly generate an ID
 
 To obtain a WalletConnect `projectId`:
 
@@ -209,35 +209,33 @@ Ensure you are still in your project's root directory, then create a new file ca
 touch wagmi.ts
 ```
 
-Start by adding the imports for RainbowKit, Wagmi, and TanStack Query. You will also import your desired list of supported chains from `wagmi/chains`.  Wagmi provides an extensive list of [supported chains](https://wagmi.sh/core/api/chains#:~:text=core/chains%27-,Available,-Chains){target=\_blank}. The expected names for Moonbeam networks are as follows:
-
 === "Moonbeam"
 
     ```js
-    `moonbeam`
+    moonbeam
     ```
 
 === "Moonriver"
 
     ```js
-    `moonriver`
+    moonriver
     ```
 
 === "Moonbase Alpha"
 
     ```js
-    `moonbaseAlpha`
+    moonbaseAlpha
     ```
 
 Add the `wagmi/chains` import with `moonbeam`, `moonriver`, and `moonbaseAlpha` as the supported chains. 
 
-```ts
+```ts title="wagmi.ts"
 --8<-- 'code/builders/integrations/wallets/rainbowkit/wagmi.ts::5'
 ```
 
 Now, setup the `config` to include Moonbeam networks by ensuring the `chains` array matches the list of chains in the `import` statement. Finally, update the `projectId` value to use the one stored in your `.env.local` file.
 
-```ts
+```ts title="wagmi.ts"
 --8<-- 'code/builders/integrations/wallets/rainbowkit/wagmi.ts:7:12'
 ```
 
@@ -252,13 +250,13 @@ touch providers.tsx
 
 Open `providers.tsx` and add the following code to define `Providers`:
 
-```ts
+```ts title="providers.tsx"
 --8<-- 'code/builders/integrations/wallets/rainbowkit/plainProviders.tsx::18'
 ```
 
 Now locate the `layout.tsx` file inside the `app` directory and modify the code to import `Providers` and wrap the application:
 
-```ts
+```ts title="layout.tsx"
 --8<-- 'code/builders/integrations/wallets/rainbowkit/layout.tsx::26'
 ```
 
@@ -268,7 +266,7 @@ Wrapping the application in the providers makes the functionalities of RainbowKi
 
 RainbowKit offers a `ConnectButton` component, which renders the **Connect** and **Disconnect** buttons and UI elements for switching chains. This example imports the `ConnectButton` into the existing `page.tsx` file for simplicity, but you may want to add it to an element like a **Header** or **Navbar** so it appears at the top of each page. Update the code in `page.tsx` as follows:
 
-```ts
+```ts title="page.tsx"
 --8<-- 'code/builders/integrations/wallets/rainbowkit/page.tsx::11'
 ```
 
@@ -288,7 +286,7 @@ Instead, you can use the `initialChain` prop that is part of the `RainbowKitProv
 
 ### Define Custom Theme Colors
 
-RainbowKit offers three built-in theme functions: `lightTheme`, `darkTheme`, and `midnightTheme`. These theme functions return a theme object, which you can pass into the `RainbowKitProvider` prop `theme` to set custom colors, border radius, font stack, and overlay blur. Update `providers.tsx` with the following code. Be sure to add `darkTheme` to the `@rainbow-me/rainbowkit`import statement to allow your changes to render correctly.
+RainbowKit offers three built-in theme functions: `lightTheme`, `darkTheme`, and `midnightTheme`. These theme functions return a theme object, which you can pass into the `RainbowKitProvider` prop `theme` to set custom colors, border radius, font stack, and overlay blur. Update `providers.tsx` with the following code. Be sure to add `darkTheme` to the `@rainbow-me/rainbowkit`import statement to allow your changes to render correctly. After customizing the initial chain and theme, your `providers.tsx` file should look like the following:
 
 ```js title="providers.tsx"
 --8<-- 'code/builders/integrations/wallets/rainbowkit/providers.tsx'
@@ -324,5 +322,5 @@ This guide includes only a few of the customization options available through Ra
 
 You can view the complete example code in the [rainbow-manual-build-demo repository](https://github.com/papermoonio/rainbowkit-manual-build-demo){target=\_blank}
 
---8<-- 'text/_disclaimers/third-party-content-intro.md'
+--8<-- 'text/_disclaimers/third-party-content.md'
 

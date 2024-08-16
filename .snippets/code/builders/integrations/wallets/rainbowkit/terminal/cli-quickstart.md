@@ -8,5 +8,5 @@
     <span data-ty="input" data-ty-prompt="">📚 Initializing git repository</span>
     <span data-ty="input" data-ty-prompt=""> 🌈 Done! Thanks for using RainbowKit 🙏</span>
     <span data-ty="input" data-ty-prompt=""> 👉 To get started, run cd rainbow-demo and then npm run dev</span>
-    <span data-ty="input" data-ty-prompt="">dawnkelly@DawnsPanMachine add-rainbow-kit % </span>
+    <span data-ty="input"><span class="file-path"></span></span>
 </div>
