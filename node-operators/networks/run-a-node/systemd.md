@@ -342,7 +342,7 @@ When setting up a new node, run the following command to generate and store on d
 
     ```bash
 
-    /var/lib/moonbeam-data/moonbeam key generate-node-key --file /var/lib/moonbeam-data/node-key
+    /var/lib/moonbeam-data/moonbeam key generate-node-key --base-path /var/lib/moonbeam-data --chain moonbeam && sudo chown -R moonbeam_service /var/lib/moonbeam-data
     
     ```
 
@@ -350,7 +350,7 @@ When setting up a new node, run the following command to generate and store on d
 
     ```bash
 
-    /var/lib/moonriver-data/moonbeam key generate-node-key --file /var/lib/moonriver-data/node-key
+    /var/lib/moonriver-data/moonbeam key generate-node-key --base-path /var/lib/moonriver-data --chain moonriver && sudo chown -R moonriver_service /var/lib/moonriver-data
 
     ```
 
@@ -358,7 +358,7 @@ When setting up a new node, run the following command to generate and store on d
 
     ```bash
 
-    /var/lib/alphanet-data/moonbeam key generate-node-key --file /var/lib/alphanet-data/node-key
+    /var/lib/alphanet-data/moonbeam key generate-node-key --base-path /var/lib/alphanet-data --chain alphanet  && sudo chown -R moonbase_service  /var/lib/alphanet-data
 
     ```
 
