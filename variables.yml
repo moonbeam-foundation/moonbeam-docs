@@ -430,7 +430,7 @@ networks:
     hex_chain_id: '0x505'
     node_directory: /var/lib/moonriver-data
     parachain_release_tag: v0.39.0
-    parachain_sha256sum: 6c2cb1e67d4fa233f5a28a4e8fd8cb40d0739e42609c9cc50601470d73623132
+    parachain_sha256sum: 7f085fb94719e49f6784ffb41c577b6f0beec7a63db907a179ef8de1ce7f66d6
     tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.39.0-3100-latest
     chain_spec: moonriver
     block_explorer: https://moonriver.moonscan.io/
@@ -815,7 +815,7 @@ networks:
     hex_chain_id: '0x504'
     node_directory: /var/lib/moonbeam-data
     parachain_release_tag: v0.39.0
-    parachain_sha256sum: 6c2cb1e67d4fa233f5a28a4e8fd8cb40d0739e42609c9cc50601470d73623132
+    parachain_sha256sum: 7f085fb94719e49f6784ffb41c577b6f0beec7a63db907a179ef8de1ce7f66d6
     tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.39.0-3100-latest
     chain_spec: moonbeam
     block_explorer: https://moonscan.io
