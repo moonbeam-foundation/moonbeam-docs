@@ -281,7 +281,7 @@ When setting up a new node, run the following command to generate and store on d
 
     docker run --network="host" -v "/var/lib/moonbeam-data:/data" \
     -u $(id -u ${USER}):$(id -g ${USER}) \
-     moonbeamfoundation/moonbeam:{{ networks.moonbeam.parachain_release_tag }} key generate-node-key --file /data/node-key
+     moonbeamfoundation/moonbeam:{{ networks.moonbeam.parachain_release_tag }} key generate-node-key --base-path /var/lib/moonbeam-data --chain moonbeam 
     
     ```
 
@@ -291,7 +291,7 @@ When setting up a new node, run the following command to generate and store on d
 
     docker run --network="host" -v "/var/lib/moonriver-data:/data" \
     -u $(id -u ${USER}):$(id -g ${USER}) \
-     moonbeamfoundation/moonbeam:{{ networks.moonriver.parachain_release_tag }} key generate-node-key --file /data/node-key
+     moonbeamfoundation/moonbeam:{{ networks.moonriver.parachain_release_tag }} key generate-node-key --base-path /var/lib/moonriver-data --chain moonriver 
 
     ```
 
@@ -301,12 +301,12 @@ When setting up a new node, run the following command to generate and store on d
 
     docker run --network="host" -v "/var/lib/alphanet-data:/data" \
     -u $(id -u ${USER}):$(id -g ${USER}) \
-     moonbeamfoundation/moonbeam:{{ networks.moonbase.parachain_release_tag }} key generate-node-key --file /data/node-key
+     moonbeamfoundation/moonbeam:{{ networks.moonbase.parachain_release_tag }} key generate-node-key --base-path /var/lib/alphanet-data --chain alphanet && sudo chown -R moonbase_service  /var/lib/alphanet-data
 
     ```
 
 !!! note
-    This step can be bypassed using the `--unsafe-force-node-key-generation` parameter in the start-up command, although this is not the recommended practice.
+    You need to [change ownership of the newly created folder](#storage-chain-data) to the specific user or current user for Docker. Node key generation steps can be bypassed using the `--unsafe-force-node-key-generation` parameter in the start-up command, although this is not the recommended practice.
 
 Now you can run your Docker start up commands:
 
