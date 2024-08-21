@@ -3,5 +3,6 @@ nav:
   - index.md
   - 'GMP': 'gmp.md'
   - 'X-Tokens': '/builders/interoperability/xcm/xc20/send-xc20s/xtokens-precompile/'
+  - 'XCM Interface': '/builders/interoperability/xcm/xc20/send-xc20s/eth-api/'
   - 'XCM Transactor': '/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-precompile/'
   - 'XCM Utilities': '/builders/interoperability/xcm/xcm-utils/'

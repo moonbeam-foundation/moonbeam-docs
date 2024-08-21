@@ -400,9 +400,10 @@ networks:
       xcm_transactor_v3: '0x0000000000000000000000000000000000000817'
       identity: '0x0000000000000000000000000000000000000818'
       relay_data_verifier: '0x0000000000000000000000000000000000000819'
+      xcm_interface: '0x000000000000000000000000000000000000081A'
     substrate_api_sidecar:
       stable_version: 18.0.0
-    tx_weight_to_gas_ratio: 25000      
+    tx_weight_to_gas_ratio: 25000
     orbiter:
       max_orbiters_per_collator: 8
       max_collators: Unlimited
@@ -732,6 +733,7 @@ networks:
       xcm_transactor_v3: '0x0000000000000000000000000000000000000817'
       identity: '0x0000000000000000000000000000000000000818'
       relay_data_verifier: '0x0000000000000000000000000000000000000819'
+      xcm_interface: '0x000000000000000000000000000000000000081A'
     api3:
       rrp: '0xa0AD79D995DdeeB18a14eAef56A549A04e3Aa1Bd'
       anuqrngairnode: '0x9d3C147cA16DB954873A498e0af5852AB39139f2'
@@ -1039,7 +1041,7 @@ networks:
             time2: 'Day 14'
             percent2: 0
       submission_deposit: 1000
-      max_votes: 512  
+      max_votes: 512
     preimage:
       base_deposit: 500
       byte_deposit: .01
@@ -1131,6 +1133,7 @@ networks:
       xcm_transactor_v3: '0x0000000000000000000000000000000000000817'
       identity: '0x0000000000000000000000000000000000000818'
       relay_data_verifier: '0x0000000000000000000000000000000000000819'
+      xcm_interface: '0x000000000000000000000000000000000000081A'
     api3:
       rrp: '0xa0AD79D995DdeeB18a14eAef56A549A04e3Aa1Bd'
       anuqrngairnode: '0x9d3C147cA16DB954873A498e0af5852AB39139f2'
@@ -1195,10 +1198,10 @@ networks:
   polkadot:
     spec_version: v1.2.0
     rocks_db:
-      read_weight: 
+      read_weight:
         display: 20,499,000
         numbers_only: 20499000
-      write_weight: 
+      write_weight:
         display: 83,471,000
         numbers_only: 83471000
     parity_db:
@@ -1214,7 +1217,7 @@ networks:
         total_weight: 1,444,000
         dot_cost: '0.0000114562'
       withdraw:
-        base_weight: 
+        base_weight:
           display: 28,457,000
           numbers_only: 28457000
         total_weight:
@@ -1235,10 +1238,10 @@ networks:
   kusama:
     spec_version: v1.2.0
     rocks_db:
-      read_weight: 
+      read_weight:
         display: 25,000,000
         numbers_only: 25000000
-      write_weight: 
+      write_weight:
         display: 100,000,000
         numbers_only: 100000000
     parity_db:
@@ -1254,7 +1257,7 @@ networks:
         total_weight: 1,415,000
         ksm_cost: '0.000000378223'
       withdraw:
-        base_weight: 
+        base_weight:
           display: 29,195,000
           numbers_only: 21195000
         total_weight:
@@ -1276,7 +1279,7 @@ networks:
     spec_version: v1.10.0
     xcm_instructions:
       withdraw:
-        total_weight: 150,098,000 
+        total_weight: 150,098,000
       clear_origin:
         total_weight: 2,620,000
       buy_exec:
@@ -1285,7 +1288,7 @@ networks:
         total_weight: 150,445,000
     xcm_message:
       transfer:
-        weight: 
+        weight:
           display: 305,986,000
           numbers_only: 305986000
   moonbase_beta:
@@ -1299,10 +1302,10 @@ networks:
 polkadot_sdk: polkadot-v1.11.0
 xcm:
   db_weights:
-    rocksdb_read: 
+    rocksdb_read:
       display: 25,000,000
       numbers_only: 25000000
-    rocksdb_write: 
+    rocksdb_write:
       display: 100,000,000
   fungible_weights:
     display: 200,000,000
@@ -1311,7 +1314,7 @@ xcm:
     clear_origin:
       display: 5,194,000
     buy_exec:
-      base_weight: 
+      base_weight:
         display: 181,080,000
         numbers_only: 181080000
       total_weight:
