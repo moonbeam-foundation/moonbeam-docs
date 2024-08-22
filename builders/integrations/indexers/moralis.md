@@ -11,7 +11,7 @@ As a one-stop solution for blockchain development, [Moralis](https://moralis.io/
 
 It provides a suite of tools and services designed to streamline the process of accessing Web3 data and interacting with blockchain networks. Its offerings are structured into these primary categories:
 
-- **EVM API** - EVM API allows developers to query essential data for Ethereum Virtual Machine (EVM)-compatible blockchains. Moralis provides dedicated APIs for four key areas: NFTs, tokens, wallets, and general blockchain information
+- **EVM API** - The EVM API allows developers to query essential data for Ethereum Virtual Machine (EVM)-compatible blockchains. Moralis provides dedicated APIs for four key areas: NFTs, tokens, wallets, and general blockchain information
 
 - **Streams API** - the Streams API enables developers to listen for on-chain events, such as smart contract event emissions, in real-time. Popular use cases include real-time wallet notifications, asset monitoring, and gaming event notifications
 
@@ -152,7 +152,7 @@ On the next page, enter the following details:
 ```
 0xFfFFfFff1FcaCBd218EDc0EbA20Fc2308C778080
 ```
-2. Select Moonbeam from the available network options. Moralis supports listening to events on Moonbeam, Moonriver, and Moonbase Alpha 
+2. Select **Moonbeam** from the available network options. Moralis supports listening to events on Moonbeam, Moonriver, and Moonbase Alpha 
 3. Customize the events you want to receive. For this example, choose **All contract events**. You may also test the stream to confirm it captures the needed data
 4. Connect the stream to an endpoint to receive updates from Moralis
 5. Click **Save** to activate your stream
