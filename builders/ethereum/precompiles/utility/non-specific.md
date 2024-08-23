@@ -10,7 +10,7 @@ keywords: ethereum, moonbeam, StorageCleaner, ECRecoverPublicKey, sha3FIPS256
 
 A precompiled contract, or precompile, is a set of programmed functionalities hard-coded into the blockchain client. Precompiles perform computationally heavy tasks, such as cryptographic processes like hashing. Moving these functionalities to the blockchain client serves the dual purpose of making the computation more efficient than using a traditional smart contract and ensuring everyone has access to the complete and accurate set of processes and algorithms required to operate correctly.
 
-Precompile functionality is bundled and shared under a smart contract address which allows interactions similar to those of a traditional smart contract. Some precompiled contracts are not specific to Ethereum or to Moonbeam, but are supported for use in your Moonbeam application. 
+Precompile functionality is bundled and shared under a smart contract address, which allows interactions similar to those of a traditional smart contract. Some precompiled contracts are not specific to Ethereum or Moonbeam, but are supported for use in your Moonbeam application. 
 
 The nonspecific precompiles currently included in this category include `StorageCleaner`, `ECRecoverPublicKey`, and `SHA3FIPS256`. 
 
@@ -98,6 +98,6 @@ Currently there is no SHA3-256 support in Solidity, so it needs to be called wit
 --8<-- 'code/builders/ethereum/precompiles/utility/eth-mainnet/sha3fips.sol'
 ```
 
-Using the [Remix compiler and deployment](/builders/ethereum/dev-env/remix/){target=\_blank} and with [MetaMask pointing to Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}, you can deploy the contract and call the `sha3fips(bytes memory data)` method to return the encoded string of the data parameter.
+Using [Remix](/builders/ethereum/dev-env/remix/){target=\_blank} with [MetaMask pointing to Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}, you can deploy the contract and call the `sha3fips(bytes memory data)` method to return the encoded string of the data parameter.
 
 --8<-- 'text/_disclaimers/third-party-content-intro.md'
