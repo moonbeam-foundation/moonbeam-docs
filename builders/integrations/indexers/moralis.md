@@ -159,9 +159,9 @@ On the next page, enter the following details:
 
 ![details input page](/images/builders/integrations/indexers/moralis/moralis-4.webp)
 
-Now you're all set. Once you activate your stream, it will be added to your list of streams on your dashboard:
+Now you're all set. Once you activate your stream, it will be added to your list of streams on your dashboard.
 
-![stream API end page](/images/builders/integrations/indexers/moralis/moralis-5.webp)
+<!-- ![List of streams on Moralis dashboard](/images/builders/integrations/indexers/moralis/moralis-5.webp) -->
 
 ## Accessing the RPC API {: #accessing-rpc-api }
 
@@ -171,7 +171,7 @@ To use the Moralis Moonbeam RPC endpoint, visit the **Nodes** page, click **Crea
 2. Choose **Mainnet** as the chain
 3. Click **Create Node**
 
-![RPC API setup page](/images/builders/integrations/indexers/moralis/moralis-5.webp)
+![RPC API setup page](/images/builders/integrations/indexers/moralis/moralis-6.webp)
 
 Your RPC endpoint will be generated for you to easily copy, and your Moonbeam node will be up and running in seconds, ready to handle your RPC requests. You can view your nodes at any time from your dashboard.
 
