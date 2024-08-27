@@ -161,7 +161,7 @@ On the next page, enter the following details:
 
 Now you're all set. Once you activate your stream, it will be added to your list of streams on your dashboard.
 
-<!-- ![List of streams on Moralis dashboard](/images/builders/integrations/indexers/moralis/moralis-5.webp) -->
+![List of streams on Moralis dashboard](/images/builders/integrations/indexers/moralis/moralis-5.webp)
 
 ## Accessing the RPC API {: #accessing-rpc-api }
 
