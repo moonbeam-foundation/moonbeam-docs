@@ -823,7 +823,7 @@ networks:
     binary_name: moonbeam
     min_gas_price: 125
     block_time: 6
-    gas_block: 15,000,000
+    gas_block: 30,000,000
     gas_block_numbers_only: 15000000
     gas_tx: 12,995,000
     mbip_5:
