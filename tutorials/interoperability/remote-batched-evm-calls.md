@@ -119,7 +119,7 @@ After inputting the address and pressing **At Address**, take the following step
 
 We've now finished preparing our EVM calldata for the batch call. Next, we'll need to prepare the XCM instructions that will execute our remote batch call.
 
-## Generating the Moonbeam Encoded Callcata {: #generating-the-moonbeam-encoded-call-data }
+## Generating the Moonbeam Encoded Calldata {: #generating-the-moonbeam-encoded-call-data }
 
 Now that we have the batch EVM calldata that contains the two mint commands, we need to generate the bytes that the `Transact` XCM instruction from the XCM message will execute. Note that these bytes represent the action that will be executed in the remote chain. In this example, we want the XCM message execution to enter the EVM and issue the two mint commands, from which we got the encoded calldata.
 
