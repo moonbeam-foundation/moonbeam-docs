@@ -129,7 +129,7 @@ Which, as one line, is:
 
 You can also get the calldata programmatically using the [Uniswap V2 SDK](https://docs.uniswap.org/sdk/v2/overview){target=\_blank}.
 
-## Generating the Moonbeam Encoded Callcata {: #generating-the-moonbeam-encoded-call-data }
+## Generating the Moonbeam Encoded Calldata {: #generating-the-moonbeam-encoded-call-data }
 
 Now that we have the Uniswap V2 swap encoded calldata, we need to generate the bytes that the `Transact` XCM instruction from the XCM message will execute. Note that these bytes represent the action that will be executed in the remote chain. In this example, we want the XCM message execution to enter the EVM and perform the swap, from which we got the encoded calldata.
 
