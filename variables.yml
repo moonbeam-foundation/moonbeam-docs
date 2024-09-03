@@ -20,8 +20,8 @@ networks:
     parachain_sha256sum: 7f085fb94719e49f6784ffb41c577b6f0beec7a63db907a179ef8de1ce7f66d6
     tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.39.0-3100-latest
     gas_block: 60,000,000
-    gas_block_numbers_only: 60000000
-    gas_tx: 52,000,000
+    gas_block_numbers_only: 60000000 # this should match gas_block, just with no commas
+    gas_tx: 52,000,000 # EXTRINSIC_GAS_LIMIT in test/helpers/constants.ts
     mbip_5:
       block_storage_limit: 160
       gas_storage_ratio: 366
@@ -439,8 +439,8 @@ networks:
     min_gas_price: 1.25
     block_time: 6
     gas_block: 60,000,000
-    gas_block_numbers_only: 60000000
-    gas_tx: 52,000,000
+    gas_block_numbers_only: 60000000 # this should match gas_block, just with no commas
+    gas_tx: 52,000,000 # EXTRINSIC_GAS_LIMIT in test/helpers/constants.ts
     mbip_5:
       block_storage_limit: 160
       gas_storage_ratio: 366
@@ -825,7 +825,7 @@ networks:
     block_time: 6
     gas_block: 30,000,000
     gas_block_numbers_only: 30000000 # this should match gas_block, just with no commas
-    gas_tx: 12,995,000
+    gas_tx: 26,000,000 # EXTRINSIC_GAS_LIMIT in test/helpers/constants.ts
     mbip_5:
       block_storage_limit: 80
       gas_storage_ratio: 366
