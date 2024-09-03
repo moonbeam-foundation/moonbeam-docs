@@ -20,8 +20,8 @@ networks:
     parachain_sha256sum: 7f085fb94719e49f6784ffb41c577b6f0beec7a63db907a179ef8de1ce7f66d6
     tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.39.0-3100-latest
     gas_block: 60,000,000
-    gas_block_numbers_only: 60000000
-    gas_tx: 52,000,000
+    gas_block_numbers_only: 60000000 # this should match gas_block, just with no commas
+    gas_tx: 52,000,000 # EXTRINSIC_GAS_LIMIT in test/helpers/constants.ts
     mbip_5:
       block_storage_limit: 160
       gas_storage_ratio: 366
@@ -439,8 +439,8 @@ networks:
     min_gas_price: 1.25
     block_time: 6
     gas_block: 60,000,000
-    gas_block_numbers_only: 60000000
-    gas_tx: 52,000,000
+    gas_block_numbers_only: 60000000 # this should match gas_block, just with no commas
+    gas_tx: 52,000,000 # EXTRINSIC_GAS_LIMIT in test/helpers/constants.ts
     mbip_5:
       block_storage_limit: 160
       gas_storage_ratio: 366
@@ -823,11 +823,11 @@ networks:
     binary_name: moonbeam
     min_gas_price: 125
     block_time: 6
-    gas_block: 15,000,000
-    gas_block_numbers_only: 15000000
-    gas_tx: 12,995,000
+    gas_block: 30,000,000
+    gas_block_numbers_only: 30000000 # this should match gas_block, just with no commas
+    gas_tx: 26,000,000 # EXTRINSIC_GAS_LIMIT in test/helpers/constants.ts
     mbip_5:
-      block_storage_limit: 40
+      block_storage_limit: 80
       gas_storage_ratio: 366
       example_storage: 500
       example_addtl_gas: 183000
@@ -857,7 +857,7 @@ networks:
           display: 33,068,783,068
           numbers_only: 33068783068
     erc20_xcm:
-      transfer_gas_limit: 200,000
+      transfer_gas_limit: 400,000 # Erc20XcmBridgeTransferGasLimit
     conviction:
       lock_period:
         conviction_1: 1
