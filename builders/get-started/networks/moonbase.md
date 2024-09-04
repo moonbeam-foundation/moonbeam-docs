@@ -32,25 +32,14 @@ If you do not have MetaMask installed, or would like to follow a tutorial to get
 
 ## Configuration {: #configuration }
 
-Please note the following gas and staking configuration parameters. These values are subject to change in future runtime upgrades.
+Please note the following gas configuration parameters. These values are subject to change in future runtime upgrades.
 
-=== "General"
-    |       Variable        |                   Value                    |
-    |:---------------------:|:------------------------------------------:|
-    |   Minimum gas price   | {{ networks.moonbase.min_gas_price }} Gwei |
-    |   Target block time   | {{ networks.moonbase.block_time }} seconds |
-    |    Block gas limit    |     {{ networks.moonbase.gas_block }}      |
-    | Transaction gas limit |       {{ networks.moonbase.gas_tx }}       |
-
-=== "Staking"
-    |             Variable              |                                                                    Value                                                                    |
-    |:---------------------------------:|:-------------------------------------------------------------------------------------------------------------------------------------------:|
-    |     Minimum delegation stake      |                                              {{ networks.moonbase.staking.min_del_stake }} DEV                                              |
-    | Maximum delegators per candidates |                                               {{ networks.moonbase.staking.max_del_per_can }}                                               |
-    |  Maximum delegations per account  |                                               {{ networks.moonbase.staking.max_del_per_del }}                                               |
-    |               Round               |                   {{ networks.moonbase.staking.round_blocks }} blocks ({{ networks.moonbase.staking.round_hours }} hour)                    |
-    |           Bond duration           |                                 delegation takes effect in the next round (funds are withdrawn immediately)                                 |
-    |          Unbond duration          | {{ networks.moonbase.delegator_timings.del_bond_less.rounds }} rounds ({{ networks.moonbase.delegator_timings.del_bond_less.hours }} hours) |
+|       Variable        |                   Value                    |
+|:---------------------:|:------------------------------------------:|
+|   Minimum gas price   | {{ networks.moonbase.min_gas_price }} Gwei |
+|   Target block time   | {{ networks.moonbase.block_time }} seconds |
+|    Block gas limit    |     {{ networks.moonbase.gas_block }}      |
+| Transaction gas limit |       {{ networks.moonbase.gas_tx }}       |
 
 ## Get Tokens {: #get-tokens }
 
