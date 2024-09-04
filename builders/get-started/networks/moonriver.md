@@ -29,3 +29,25 @@ If you already have MetaMask installed, you can easily connect MetaMask to Moonr
     MetaMask will popup asking for permission to add Moonriver as a custom network. Once you approve permissions, MetaMask will switch your current network to Moonriver.
 
 If you do not have MetaMask installed, or would like to follow a tutorial to get started, please check out the [Interacting with Moonbeam using MetaMask](/tokens/connect/metamask/) guide.
+
+## Configuration {: #configuration }
+
+Please note the following gas and staking configuration parameters. These values are subject to change in future runtime upgrades.
+
+=== "General"
+    |       Variable        |                    Value                    |
+    |:---------------------:|:-------------------------------------------:|
+    |   Minimum gas price   | {{ networks.moonriver.min_gas_price }} Gwei |
+    |   Target block time   | {{ networks.moonriver.block_time }} seconds |
+    |    Block gas limit    |     {{ networks.moonriver.gas_block }}      |
+    | Transaction gas limit |       {{ networks.moonriver.gas_tx }}       |
+
+=== "Staking"
+    |             Variable              |                                                   Value                                                   |
+    |:---------------------------------:|:---------------------------------------------------------------------------------------------------------:|
+    |     Minimum delegation stake      |                            {{ networks.moonriver.staking.min_del_stake }} MOVR                            |
+    | Maximum delegators per candidates |                             {{ networks.moonriver.staking.max_del_per_can }}                              |
+    |  Maximum delegations per account  |                             {{ networks.moonriver.staking.max_del_per_del }}                              |
+    |               Round               | {{ networks.moonriver.staking.round_blocks }} blocks ({{ networks.moonriver.staking.round_hours }} hours) |
+    |           Bond duration           |                delegation takes effect in the next round (funds are withdrawn immediately)                |
+    |          Unbond duration          |                  {{ networks.moonriver.delegator_timings.del_bond_less.rounds }} rounds                   |
