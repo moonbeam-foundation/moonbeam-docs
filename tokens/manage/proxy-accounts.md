@@ -90,10 +90,10 @@ For the purposes of this guide, you will be setting up a proxy account using the
 It's easy to create a proxy account on [apps.moonbeam.network](https://apps.moonbeam.network/moonbeam/proxy){target=\_blank}. To do so, take the following steps:
 
 1. Toggle the network switcher button to select your desired network
-2. Choose the **Proxy** Page
+2. Navigate to the **Proxy** page
 3. Ensure you're connected with the primary account that you wish to add a proxy of  
 4. Enter the address you want to delegate proxy control to
-5. From the **proxyType** dropdown, choose the desired proxy type
+5. From the **proxyType** dropdown, choose the desired proxy type, such as a balances proxy
 6. Optionally, you can add a time delay using a specified number of blocks to add an additional layer of security for the primary account to review the pending transaction
 7. Click **Add Proxy** and confirm the transaction in your wallet
 
