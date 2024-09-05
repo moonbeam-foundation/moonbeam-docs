@@ -94,7 +94,7 @@ It's easy to create a proxy account on [apps.moonbeam.network](https://apps.moon
 3. Ensure you're connected with the primary account that you wish to add a proxy of  
 4. Enter the address you want to delegate proxy control to
 5. From the **proxyType** dropdown, choose the desired proxy type, such as a balances proxy
-6. Optionally, you can add a time delay using a specified number of blocks to add an additional layer of security for the primary account to review the pending transaction
+6. Optionally, you can add a time delay using a specified number of blocks, which could allow time for the primary account to review the pending transaction
 7. Click **Add Proxy** and confirm the transaction in your wallet
 
 ![Add a proxy account via Apps.Moonbeam.Network](/images/tokens/manage/proxy-accounts/proxies-1.webp)
@@ -110,7 +110,7 @@ To get started creating your proxy account, head to the **Developer** tab and se
 3. Choose the **addProxy** extrinsic
 4. Select the **delegate** account for the proxy
 5. From the **proxyType** dropdown, choose **Balances**
-6. Optionally you can add a time delay using a specified number of blocks to add an additional layer of security for the primary account to review the pending transaction
+6. Optionally, you can add a time delay using a specified number of blocks, which could allow time for the primary account to review the pending transaction
 7. Click **Submit Transaction**
 
 ![Add a proxy account from the Extrinsics page of Polkadot.js Apps.](/images/tokens/manage/proxy-accounts/proxies-2.webp)
@@ -206,7 +206,7 @@ That's it! You've successfully executed a transaction using a proxy account on b
 
 ### Via Apps.Moonbeam.Network {: #remove-via-apps-moonbeam-network }
 
-To remove a proxy account, connect your primary account to [apps.moonbeam.network](https://apps.moonbeam.network/moonbeam/proxy){target=\_blank} and press **Remove** next to the proxy account that you want to remove. Alternatively, you can remove all proxy accounts of the primary account with **Remove All Proxies**. In either case, you will need to confirm the transaction in your wallet. 
+To remove a proxy account, connect your primary account to [apps.moonbeam.network](https://apps.moonbeam.network/moonbeam/proxy){target=\_blank} and press **Remove** next to the proxy account that you want to remove. Alternatively, you can remove all proxy accounts of the primary account with **Remove All Proxies**. In either case, you must confirm the transaction in your wallet. 
 
 ![Remove account via Apps.Moonbeam.Network](/images/tokens/manage/proxy-accounts/proxies-12.webp)
 
