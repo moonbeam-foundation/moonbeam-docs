@@ -28,8 +28,8 @@ Some important variables/configurations to note include (still subject to change
     |:---------------------:|:-----------------------------------------------------------------------:|
     |   Minimum gas price   |               {{ networks.moonbeam.min_gas_price }} Gwei*               |
     |   Target block time   |               {{ networks.moonbeam.block_time }} seconds                |
-    |    Block gas limit    | {{ networks.moonbeam.gas_block }} (expected to increase by at least 4x) |
-    | Transaction gas limit |  {{ networks.moonbeam.gas_tx }} (expected to increase by at least 4x)   |
+    |    Block gas limit    | {{ networks.moonbeam.gas_block }}  |
+    | Transaction gas limit |  {{ networks.moonbeam.gas_tx }}    |
 
 === "Staking"
     |             Variable              |                                                  Value                                                  |

@@ -29,3 +29,14 @@ If you already have MetaMask installed, you can easily connect MetaMask to Moonr
     MetaMask will popup asking for permission to add Moonriver as a custom network. Once you approve permissions, MetaMask will switch your current network to Moonriver.
 
 If you do not have MetaMask installed, or would like to follow a tutorial to get started, please check out the [Interacting with Moonbeam using MetaMask](/tokens/connect/metamask/) guide.
+
+## Configuration {: #configuration }
+
+Please note the following gas configuration parameters. These values are subject to change in future runtime upgrades.
+
+|       Variable        |                    Value                    |
+|:---------------------:|:-------------------------------------------:|
+|   Minimum gas price   | {{ networks.moonriver.min_gas_price }} Gwei |
+|   Target block time   | {{ networks.moonriver.block_time }} seconds |
+|    Block gas limit    |     {{ networks.moonriver.gas_block }}      |
+| Transaction gas limit |       {{ networks.moonriver.gas_tx }}       |

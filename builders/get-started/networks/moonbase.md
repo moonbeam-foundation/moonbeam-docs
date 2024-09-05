@@ -30,6 +30,17 @@ If you already have MetaMask installed, you can easily connect MetaMask to the M
 
 If you do not have MetaMask installed, or would like to follow a tutorial to get started, please check out the [Interacting with Moonbeam using MetaMask](/tokens/connect/metamask/){target=\_blank} guide.
 
+## Configuration {: #configuration }
+
+Please note the following gas configuration parameters. These values are subject to change in future runtime upgrades.
+
+|       Variable        |                   Value                    |
+|:---------------------:|:------------------------------------------:|
+|   Minimum gas price   | {{ networks.moonbase.min_gas_price }} Gwei |
+|   Target block time   | {{ networks.moonbase.block_time }} seconds |
+|    Block gas limit    |     {{ networks.moonbase.gas_block }}      |
+| Transaction gas limit |       {{ networks.moonbase.gas_tx }}       |
+
 ## Get Tokens {: #get-tokens }
 
 To start building on Moonbase Alpha, you can get DEV tokens from the Moonbase Alpha Faucet. For specific amounts, you can always reach out directly to us via our community channels.
