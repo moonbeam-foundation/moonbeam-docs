@@ -393,6 +393,70 @@ api.tx.utility.batch(txs).signAndSend(alice, ({ status }) => {
 !!! note
     You can check out all of the available functions for the `parachainStaking` module by adding `console.log(api.tx.parachainStaking);` to your code.
 
+
+## XCM Payment API {: #xcm-payment-api }
+
+The XCM Payment API methods provide various helpful ways to calculate fees, evaluate acceptable fee payment currencies, and more. 
+
+### Query Acceptable Fee Payment Assets {: #query-acceptable-fee-payment-assets }
+
+This function takes the XCM Version as a parameter and returns a list of acceptable fee assets in multilocation form. 
+
+```javascript
+const allowedAssets =
+  await api.call.xcmPaymentApi.queryAcceptablePaymentAssets(3);
+console.log(allowedAssets);
+```
+
+??? code "View the complete script"
+
+    ```js
+    --8<-- 'code/builders/substrate/libraries/polkadot-js-api/query-acceptable-payment-assets.js'
+    ```
+
+### Weight to Asset Fee Conversion {: #weight-to-asset-fee-conversion }
+
+This method converts a weight into a fee for the specified asset. It takes as parameters a weight and an asset multilocation and returns the respective fee amount.
+
+```javascript
+const fee = await api.call.xcmPaymentApi.queryWeightToAssetFee(
+  {
+    refTime: 10_000_000_000n,
+    proofSize: 0n,
+  },
+  {
+    V3: {
+      Concrete: { parents: 1, interior: 'Here' },
+    },
+  }
+);
+
+console.log(fee);
+```
+
+??? code "View the complete script"
+
+    ```js
+    --8<-- 'code/builders/substrate/libraries/polkadot-js-api/weight-to-asset-fee-conversion.js'
+    ```
+
+### Query XCM Weight {: #query-xcm-weight}
+
+This method takes an XCM message as a parameter and returns the weight of the message. 
+
+```javascript
+const message = { V3: [instr1, instr2] };
+
+const theWeight = await api.call.xcmPaymentApi.queryXcmWeight(message);
+console.log(theWeight);
+```
+
+??? code "View the complete script"
+
+    ```js
+    --8<-- 'code/builders/substrate/libraries/polkadot-js-api/query-xcm-weight.js'
+    ```
+
 ## Substrate and Custom JSON-RPC Endpoints {: #substrate-and-custom-json-rpc-endpoints }
 
 RPCs are exposed as a method on a specific module. This means that once available, you can call any RPC via `api.rpc.<module>.<method>(...params[])`. This also works for accessing Ethereum RPCs using the Polkadot.js API, in the form of `polkadotApi.rpc.eth.*`.
