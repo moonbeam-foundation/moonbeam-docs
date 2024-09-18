@@ -76,7 +76,7 @@ And it should display the network endpoint you have just set.
 
 ## Generating the Types Bundle {: #generating-the-types-bundle }
 
-Moonbeam introduces custom types that differ from the standard Substrate types. In order for API clients like Substrate API Sidecar to properly understand and decode these custom types, it's important that you provide Substrate API Sidecar with the corresponding custom types bundle for the respective network that you're interacting with. Generating the custom types bundle and associating it with Substrate API Sidecar is a quick process. 
+Moonbeam introduces custom types that differ from the standard Substrate types. For API clients like Substrate API Sidecar to properly understand and decode these custom types, you must provide Substrate API Sidecar with the corresponding custom types bundle for the respective network you're interacting with. Generating the custom types bundle and associating it with Substrate API Sidecar is quick. 
 
 First, ensure that you installed [Parity's `generate-types-bundle` package](https://github.com/paritytech/generate-type-bundle){target=\_blank}:
 
@@ -84,7 +84,7 @@ First, ensure that you installed [Parity's `generate-types-bundle` package](http
 npm install -g @substrate/generate-type-bundle
 ```
 
-Then, run the following command for to generative the types bundle for the respective network:
+Then, run the following command to generate the types bundle for the respective network:
 
 === "Moonbeam"
 
@@ -104,13 +104,13 @@ Then, run the following command for to generative the types bundle for the respe
     generate-type-bundle -p . -s moonbase
     ```
 
-Note that running subsequent commands will overrite the existing `typesBundle.json`. You'll then need to set the `SAS_SUBSTRATE_TYPES_BUNDLE` environment variable as shown below. If you've renamed the `typesBundle.json`, ensure you use the correct file name. 
+Note that running subsequent commands will overwrite the existing `typesBundle.json.` You'll then need to set the `SAS_SUBSTRATE_TYPES_BUNDLE` environment variable as shown below. If you've renamed the `typesBundle.json,` ensure you use the correct file name. 
 
 ```bash
 export SAS_SUBSTRATE_TYPES_BUNDLE="./typesBundle.json"
 ```
 
-After setting the environmental variable, you can use the `echo` command to check that the environmental variable has been set correctly, by typing:
+After setting the environmental variable, you can use the `echo` command to check that the environmental variable has been set correctly by typing:
 
 ```bash
 echo $SAS_SUBSTRATE_TYPES_BUNDLE
