@@ -84,6 +84,12 @@ First, ensure that you installed [Parity's `generate-types-bundle` package](http
 npm install -g @substrate/generate-type-bundle
 ```
 
+Then, navigate to the following directory within your project:
+
+```bash
+cd /node_modules/@substrate/api-sidecar/build/src/
+```
+
 Then, run the following command to generate the types bundle for the respective network:
 
 === "Moonbeam"
