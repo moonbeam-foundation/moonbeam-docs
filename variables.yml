@@ -118,7 +118,7 @@ networks:
         account_id_hex: '0xc4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a063'
       instructions:
         wei_per_weight:
-          display: 50,000
+          display: 12,500
       units_per_second:
         xcbetadev:
           transact_numbers_only: 50000000000000000
@@ -456,7 +456,7 @@ networks:
         account_id_hex: '0x5a071f642798f89d68b050384132eea7b65db483b00dbb05548d3ce472cfef48'
       instructions:
         wei_per_weight:
-          display: 50,000
+          display: 12,500
     erc20_xcm:
       transfer_gas_limit: 800,000 # corresponds to Erc20XcmBridgeTransferGasLimit
     conviction:
@@ -841,8 +841,8 @@ networks:
         account_id_hex: '0x5a071f642798f89d68b050384132eea7b65db483b00dbb05548d3ce472cfef48'
       instructions:
         wei_per_weight:
-          display: 5,000,000
-          numbers_only: 5000000
+          display: 1,250,000
+          numbers_only: 1250000
       transfer_dot:
         total_weight:
           display: 753,242,000
