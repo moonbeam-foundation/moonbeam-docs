@@ -854,8 +854,8 @@ networks:
         glmr_cost: 0.001
       units_per_second:
         xcdot:
-          display: 33,068,783,068
-          numbers_only: 33068783068
+          display: 20,080,321,285
+          numbers_only: 20080321285
     erc20_xcm:
       transfer_gas_limit: 400,000 # Erc20XcmBridgeTransferGasLimit
     conviction:
@@ -1303,10 +1303,10 @@ polkadot_sdk: polkadot-v1.11.0
 xcm:
   db_weights:
     rocksdb_read:
-      display: 25,000,000
-      numbers_only: 25000000
+      display: 41,742,000
+      numbers_only: 41742000
     rocksdb_write:
-      display: 100,000,000
+      display: 81,283,000
   fungible_weights:
     display: 200,000,000
     numbers_only: 200000000
@@ -1318,5 +1318,5 @@ xcm:
         display: 181,080,000
         numbers_only: 181080000
       total_weight:
-        display: 281,080,000
-        numbers_only: 281080000
+        display: 348,048,000
+        numbers_only: 348048000

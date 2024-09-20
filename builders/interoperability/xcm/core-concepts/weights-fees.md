@@ -266,7 +266,7 @@ To find out the `UnitsPerSecond` for a given asset, you can use the following sc
 --8<-- 'code/builders/interoperability/xcm/core-concepts/weights-fees/units-per-second.js'
 ```
 
-Once you run the script, you should see `The UnitsPerSecond for xcDOT is 33,068,783,068` printed to your terminal.
+Once you run the script, you should see `The UnitsPerSecond for xcDOT is {{ networks.moonbeam.xcm.units_per_second.xcdot.display }}` printed to your terminal.
 
 Remember that one unit of weight is defined as one picosecond of execution time. Therefore, the formula to determine execution time is as follows:
 
