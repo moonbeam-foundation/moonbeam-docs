@@ -851,7 +851,7 @@ networks:
         xcdot_cost: 0.001512681768
       transfer_glmr:
         wei_cost: 250000000000000
-        glmr_cost: 0.001
+        glmr_cost: 0.00025
       units_per_second:
         xcdot:
           display: 20,080,321,285
