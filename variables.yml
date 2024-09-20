@@ -845,10 +845,10 @@ networks:
           numbers_only: 5000000
       transfer_dot:
         total_weight:
-          display: 686,274,000
-          numbers_only: 686274000
-        exec_time: 0.000686274
-        xcdot_cost: 0.0022694246
+          display: 753,242,000
+          numbers_only: 753242000
+        exec_time: 0.000753242
+        xcdot_cost: 0.001512681768
       transfer_glmr:
         wei_cost: 1000000000000000
         glmr_cost: 0.001
