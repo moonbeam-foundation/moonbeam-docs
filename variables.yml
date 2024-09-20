@@ -850,7 +850,7 @@ networks:
         exec_time: 0.000753242
         xcdot_cost: 0.001512681768
       transfer_glmr:
-        wei_cost: 1000000000000000
+        wei_cost: 250000000000000
         glmr_cost: 0.001
       units_per_second:
         xcdot:
