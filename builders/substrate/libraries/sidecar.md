@@ -116,7 +116,7 @@ Note that running subsequent commands will overwrite the existing `typesBundle.j
 export SAS_SUBSTRATE_TYPES_BUNDLE="./typesBundle.json"
 ```
 
-After setting the environmental variable, you can use the `echo` command to check that the environmental variable has been set correctly by typing:
+After setting the environment variable, you can verify that you set it correctly by using the following `echo` command:
 
 ```bash
 echo $SAS_SUBSTRATE_TYPES_BUNDLE
