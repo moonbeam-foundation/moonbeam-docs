@@ -85,7 +85,7 @@ For the purposes of this guide, you will be setting up a proxy account using the
 ## Creating a Proxy Account {: #creating-a-proxy-account }
 
 
-### Via Apps.Moonbeam.Network {: #create-via-apps-moonbeam-network }
+### Via the Moonbeam DApp {: #create-via-apps-moonbeam-network }
 
 It's easy to create a proxy account on [apps.moonbeam.network](https://apps.moonbeam.network/moonbeam/proxy){target=\_blank}. To do so, take the following steps:
 
