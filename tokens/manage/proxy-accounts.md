@@ -147,7 +147,7 @@ In the next section, you will learn how to verify that your proxy account was se
 
 ### Via the Moonbeam DApp {: #verify-via-apps-moonbeam-network }
 
-When connected to [apps.moonbeam.network](https://apps.moonbeam.network/moonbeam/proxy){target=\_blank} with your primary account, you can see a list of accounts with proxy control over your connected primary account in the **Your Proxies** section.
+When connected to [the Moonbeam dApp](https://apps.moonbeam.network/moonbeam/proxy){target=\_blank} with your primary account, you can see a list of accounts with proxy control over your connected primary account in the **Your Proxies** section.
 
 ![Verify proxy created via apps.moonbeam.network](/images/tokens/manage/proxy-accounts/proxies-6.webp)
 
