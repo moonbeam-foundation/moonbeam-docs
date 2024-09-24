@@ -76,7 +76,7 @@ And it should display the network endpoint you have just set.
 
 ## Generating the Types Bundle {: #generating-the-types-bundle }
 
-Moonbeam introduces custom types that differ from the standard Substrate types. For API clients like Substrate API Sidecar to properly understand and decode these custom types, you must provide Substrate API Sidecar with the corresponding custom types bundle for the respective network you're interacting with. Generating the custom types bundle and associating it with Substrate API Sidecar is quick. 
+Moonbeam introduces custom types that differ from the standard Substrate types. For API clients like Substrate API Sidecar to properly understand and decode these custom types, you must provide Substrate API Sidecar with the corresponding custom types bundle for the respective network you're interacting with. Generating and associating the custom types bundle with Substrate API Sidecar is quick. 
 
 First, ensure that you installed [Parity's `generate-types-bundle` package](https://github.com/paritytech/generate-type-bundle){target=\_blank}:
 
