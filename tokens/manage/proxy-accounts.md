@@ -204,7 +204,7 @@ That's it! You've successfully executed a transaction using a proxy account on b
 
 ## Removing a Proxy Account {: #removing-a-proxy-account }
 
-### Via Apps.Moonbeam.Network {: #remove-via-apps-moonbeam-network }
+### Via the Moonbeam DApp {: #remove-via-apps-moonbeam-network }
 
 To remove a proxy account, connect your primary account to [the Moonbeam dApp](https://apps.moonbeam.network/moonbeam/proxy){target=\_blank} and press **Remove** next to the proxy account that you want to remove. Alternatively, you can remove all proxy accounts of the primary account with **Remove All Proxies**. In either case, you must confirm the transaction in your wallet. 
 
