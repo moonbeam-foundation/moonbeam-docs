@@ -151,7 +151,7 @@ When connected to [the Moonbeam dApp](https://apps.moonbeam.network/moonbeam/pro
 
 ![Verify proxy created via apps.moonbeam.network](/images/tokens/manage/proxy-accounts/proxies-6.webp)
 
-Alternatively, by connecting the proxy account to [apps.moonbeam.network](https://apps.moonbeam.network/moonbeam/proxy){target=\_blank}, you can see a list of accounts over which the connected account has proxy control in the **Proxied accounts to you** section.
+Alternatively, by connecting the proxy account to [the Moonbeam dApp](https://apps.moonbeam.network/moonbeam/proxy){target=\_blank}, you can see a list of accounts over which the connected account has proxy control in the **Proxied accounts to you** section.
 
 ![Verify proxy control accounts via apps.moonbeam.network](/images/tokens/manage/proxy-accounts/proxies-7.webp)
 
