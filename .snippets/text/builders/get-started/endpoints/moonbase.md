@@ -21,6 +21,6 @@
 
 To connect to the Moonbase Alpha relay chain, you can use the following WS Endpoint:
 
-| Provider |                                       RPC URL                                        |
-|:--------:|:------------------------------------------------------------------------------------:|
-| OpsLayer | <pre>```wss://fro-moon-rpc-1-moonbase-relay-rpc-1.moonbase.ol-infra.network```</pre> |
+| Provider |                          RPC URL                           |
+|:--------:|:----------------------------------------------------------:|
+| OpsLayer | <pre>```wss://relay.api.moonbase.moonbeam.network```</pre> |

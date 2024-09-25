@@ -74,6 +74,54 @@ echo $SAS_SUBSTRATE_URL
 
 And it should display the network endpoint you have just set.
 
+## Generating the Types Bundle {: #generating-the-types-bundle }
+
+Moonbeam introduces custom types that differ from the standard Substrate types. For API clients like Substrate API Sidecar to properly understand and decode these custom types, you must provide Substrate API Sidecar with the corresponding custom types bundle for the respective network you're interacting with. Generating and associating the custom types bundle with Substrate API Sidecar is quick. 
+
+First, ensure that you installed [Parity's `generate-types-bundle` package](https://github.com/paritytech/generate-type-bundle){target=\_blank}:
+
+```bash
+npm install -g @substrate/generate-type-bundle
+```
+
+Then, navigate to the following directory within your project:
+
+```bash
+cd /node_modules/@substrate/api-sidecar/build/src/
+```
+
+Then, run the following command to generate the types bundle for the respective network:
+
+=== "Moonbeam"
+
+    ```bash
+    generate-type-bundle -p . -s moonbeam
+    ```
+
+=== "Moonriver"
+
+    ```bash
+    generate-type-bundle -p . -s moonriver
+    ```
+
+=== "Moonbase Alpha"
+
+    ```bash
+    generate-type-bundle -p . -s moonbase
+    ```
+
+Note that running subsequent commands will overwrite the existing `typesBundle.json.` You'll then need to set the `SAS_SUBSTRATE_TYPES_BUNDLE` environment variable as shown below. If you've renamed the `typesBundle.json,` ensure you use the correct file name. 
+
+```bash
+export SAS_SUBSTRATE_TYPES_BUNDLE="./typesBundle.json"
+```
+
+After setting the environment variable, you can verify that you set it correctly by using the following `echo` command:
+
+```bash
+echo $SAS_SUBSTRATE_TYPES_BUNDLE
+```
+
 ## Running Substrate API Sidecar {: #running-substrate-api-sidecar }
 
 With the network endpoint environmental variable set, and from the installation directory root, run:
