@@ -1,22 +1,3 @@
----
-title: Runtime Upgrades
-description: A historical record of each runtime upgrade and the block at which the runtime was executed for Moonbeam, Moonriver, and the Moonbase Alpha TestNet.
----
-
-# Runtime Upgrades
-
-## Introduction {: #introduction }
-
-Moonbeam runtime upgrades allow for the maintenance and evolution of the chain logic without the need for a hard fork. These runtime upgrades can introduce new features, improve performance, fix bugs, and respond to changing requirements.
-
-This page provides a historical record of runtime upgrades by block for each of the Moonbeam-based networks.
-
-## Runtime Upgrades by Block {: #runtime-upgrades-by-block }
-
-The following table contains a list of the runtime upgrades and the block at which the upgrade occurred for each network. Runtime upgrades occur first on Moonbase Alpha before being released on Moonriver and then on Moonbeam. You can read the release notes for each runtime on the [Moonbeam releases GitHub page](https://github.com/moonbeam-foundation/moonbeam/releases){target=\_blank}.
-
-Not all runtime upgrades are released on each network, as sometimes after releasing the initial runtime upgrade, the need for a subsequent upgrade arises. If a runtime upgrade version has been skipped or hasn't been released yet (only applicable to the latest runtime upgrade), you'll see a `-` in that row.
-
 |                                         Runtime                                          |                               Moonbeam                               |                               Moonriver                               |                            Moonbase Alpha                            |
 |:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|:---------------------------------------------------------------------:|:--------------------------------------------------------------------:|
 |                                            40                                            |                                  -                                   |                                   -                                   |       [0](https://moonbase.subscan.io/block/0){target=\_blank}       |
@@ -81,5 +62,5 @@ Not all runtime upgrades are released on each network, as sometimes after releas
 | [3000](https://forum.moonbeam.network/t/runtime-rt3000-schedule/1752/2){target=\_blank}  |                                  -                                   | [7043011](https://moonriver.subscan.io/block/7043011){target=\_blank} | [7299818](https://moonbase.subscan.io/block/7299818){target=\_blank} |
 |                                           3001                                           | [6593037](https://moonbeam.subscan.io/block/6593037){target=\_blank} |                                   -                                   |                                  -                                   |
 |  [3100](https://forum.moonbeam.network/t/runtime-rt3100-schedule/1801){target=\_blank}   | [7303601](https://moonbeam.subscan.io/block/7303601){target=\_blank} | [7829527](https://moonriver.subscan.io/block/7829527){target=\_blank} | [8034666](https://moonbase.subscan.io/block/8034666){target=\_blank} |
-|  [3102](https://forum.moonbeam.network/t/runtime-rt3100-schedule/1801/10){target=\_blank}   | [7586782](https://moonbeam.subscan.io/block/7586782){target=\_blank} | - | - |
+| [3102](https://forum.moonbeam.network/t/runtime-rt3100-schedule/1801/10){target=\_blank} | [7586782](https://moonbeam.subscan.io/block/7586782){target=\_blank} |                                   -                                   |                                  -                                   |
 |                                           3200                                           |                                  -                                   |                                   -                                   | [8722328](https://moonbase.subscan.io/block/8722328){target=\_blank} |
