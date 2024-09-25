@@ -1,3 +1,22 @@
+---
+title: Runtime Upgrades
+description: A historical record of each runtime upgrade and the block at which the runtime was executed for Moonbeam, Moonriver, and the Moonbase Alpha TestNet.
+---
+
+# Runtime Upgrades
+
+## Introduction {: #introduction }
+
+Moonbeam runtime upgrades allow for the maintenance and evolution of the chain logic without the need for a hard fork. These runtime upgrades can introduce new features, improve performance, fix bugs, and respond to changing requirements.
+
+This page provides a historical record of runtime upgrades by block for each of the Moonbeam-based networks.
+
+## Runtime Upgrades by Block {: #runtime-upgrades-by-block }
+
+The following table contains a list of the runtime upgrades and the block at which the upgrade occurred for each network. Runtime upgrades occur first on Moonbase Alpha before being released on Moonriver and then on Moonbeam. You can read the release notes for each runtime on the [Moonbeam releases GitHub page](https://github.com/moonbeam-foundation/moonbeam/releases){target=\_blank}.
+
+Not all runtime upgrades are released on each network, as sometimes after releasing the initial runtime upgrade, the need for a subsequent upgrade arises. If a runtime upgrade version has been skipped or hasn't been released yet (only applicable to the latest runtime upgrade), you'll see a `-` in that row.
+
 |                                         Runtime                                          |                               Moonbeam                               |                               Moonriver                               |                            Moonbase Alpha                            |
 |:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|:---------------------------------------------------------------------:|:--------------------------------------------------------------------:|
 |                                            40                                            |                                  -                                   |                                   -                                   |       [0](https://moonbase.subscan.io/block/0){target=\_blank}       |
