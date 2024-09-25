@@ -823,9 +823,9 @@ networks:
     binary_name: moonbeam
     min_gas_price: 125
     block_time: 6
-    gas_block: 30,000,000
-    gas_block_numbers_only: 30000000 # this should match gas_block, just with no commas
-    gas_tx: 26,000,000 # EXTRINSIC_GAS_LIMIT in test/helpers/constants.ts
+    gas_block: 60,000,000
+    gas_block_numbers_only: 60000000 # this should match gas_block, just with no commas
+    gas_tx: 52,000,000 # EXTRINSIC_GAS_LIMIT in test/helpers/constants.ts
     mbip_5:
       block_storage_limit: 80
       gas_storage_ratio: 366
