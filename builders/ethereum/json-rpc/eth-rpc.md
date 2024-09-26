@@ -88,7 +88,6 @@ The following methods can be queried with the default block parameters in place 
  - **[eth_sign](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_sign){target=\_blank}** - allows the user to sign an arbitrary hash to be sent at a later time. Presents a [security risk](https://support.metamask.io/privacy-and-security/what-is-eth_sign-and-why-is-it-a-risk/){target=\_blank} as the arbitrary hash can be fraudulently applied to other transactions
  - **[eth_signTransaction](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_signtransaction){target=\_blank}** - allows the user to sign a transaction to be sent at a later time. It is rarely used due to associated security risks
 
-
 ## Additional RPC Methods {: #additional-rpc-methods }
 
 Check out some of the non-standard Ethereum and Moonbeam-specific RPC methods:
