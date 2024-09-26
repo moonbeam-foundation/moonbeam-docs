@@ -274,14 +274,20 @@ Remember that one unit of weight is defined as one picosecond of execution time.
 ExecutionTime = Weight / Picosecond
 ```
 
-To determine the total weight for Alice's transfer of DOT to Moonbeam, you'll need the weight for each of the four XCM instructions required for the transfer:
+To determine the total weight for Alice's transfer of DOT to Moonbeam, you'll need the weight for each of the four XCM instructions required for the transfer. Note that while the first three instructions have specific weights corresponding to these instructions, `DepositAsset` relies on the EVM operation `MintInto` and a `WeightPerGas` conversion of `{{ xcm.generic_weights.weight_per_gas.display }}` per gas. The weight of `DepositAsset` can thus be calculated as: 
+
+```text
+{{ xcm.generic_weights.mint_into_gas.numbers_only }} gas * {{ xcm.generic_weights.weight_per_gas.numbers_only }} weight per gas = {{ xcm.generic_weights.deposit_asset.numbers_only }}
+```
+
+The weights for each of the four XCM instructions can be found below:
 
 |                                                                                           Instruction                                                                                            |                            Weight                             |
 |:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------:|
 | [`ReserveAssetDeposited`](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbeam.spec_version }}/pallets/moonbeam-xcm-benchmarks/src/weights/fungible.rs#L71){target=\_blank} |              {{ xcm.fungible_weights.display }}               |
 |      [`ClearOrigin`](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbeam.spec_version }}/pallets/moonbeam-xcm-benchmarks/src/weights/generic.rs#L191){target=\_blank}      |        {{ xcm.generic_weights.clear_origin.display }}         |
 |   [`BuyExecution`](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbeam.spec_version }}/pallets/moonbeam-xcm-benchmarks/src/weights/generic.rs#L128-L129){target=\_blank}   |    {{ xcm.generic_weights.buy_exec.total_weight.display }}    |
-|     [`DepositAsset`](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbeam.spec_version }}/pallets/moonbeam-xcm-benchmarks/src/weights/fungible.rs#L60){target=\_blank}      |              {{ xcm.fungible_weights.display }}               |
+|     [`DepositAsset`](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbeam.spec_version }}/pallets/moonbeam-xcm-benchmarks/src/weights/fungible.rs#L60){target=\_blank}      |              {{ xcm.generic_weights.deposit_asset.display }}               |
 |                                                                                            **TOTAL**                                                                                             | {{ networks.moonbeam.xcm.transfer_dot.total_weight.display }} |
 
 !!! note

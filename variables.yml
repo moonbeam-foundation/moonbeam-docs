@@ -845,9 +845,9 @@ networks:
           numbers_only: 1250000
       transfer_dot:
         total_weight:
-          display: 753,242,000
-          numbers_only: 753242000
-        exec_time: 0.000753242
+          display: 4,428,242,000
+          numbers_only: 4428242000
+        exec_time: 0.004428242
         xcdot_cost: 0.001512681768
       transfer_glmr:
         wei_cost: 250000000000000
@@ -1311,6 +1311,15 @@ xcm:
     display: 200,000,000
     numbers_only: 200000000
   generic_weights:
+    weight_per_gas:
+      display: 25,000
+      numbers_only: 25000
+    mint_into_gas:
+      display: 155,000
+      numbers_only: 155000
+    deposit_asset:
+      display: 3,875,000,000
+      numbers_only: 3875000000
     clear_origin:
       display: 5,194,000
     buy_exec:
