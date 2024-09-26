@@ -848,7 +848,7 @@ networks:
           display: 4,428,242,000
           numbers_only: 4428242000
         exec_time: 0.004428242
-        xcdot_cost: 0.001512681768
+        xcdot_cost: 0.008892
       transfer_glmr:
         wei_cost: 250000000000000
         glmr_cost: 0.00025

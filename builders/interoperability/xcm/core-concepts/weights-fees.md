@@ -274,7 +274,7 @@ Remember that one unit of weight is defined as one picosecond of execution time.
 ExecutionTime = Weight / Picosecond
 ```
 
-To determine the total weight for Alice's transfer of DOT to Moonbeam, you'll need the weight for each of the four XCM instructions required for the transfer. Note that while the first three instructions have specific weights corresponding to these instructions, `DepositAsset` relies on the EVM operation `MintInto` and a `WeightPerGas` conversion of `{{ xcm.generic_weights.weight_per_gas.display }}` per gas. The weight of `DepositAsset` can thus be calculated as: 
+To determine the total weight for Alice's transfer of DOT to Moonbeam, you'll need the weight for each of the four XCM instructions required for the transfer. Note that while the first three instructions have specific weights corresponding to these instructions, `DepositAsset` relies on the EVM operation [`MintInto`](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbeam.spec_version }}/pallets/moonbeam-foreign-assets/src/evm.rs#L38){target=\_blank} and a `WeightPerGas` conversion of `{{ xcm.generic_weights.weight_per_gas.display }}` per gas. The weight of `DepositAsset` can thus be calculated as: 
 
 ```text
 {{ xcm.generic_weights.mint_into_gas.numbers_only }} gas * {{ xcm.generic_weights.weight_per_gas.numbers_only }} weight per gas = {{ xcm.generic_weights.deposit_asset.numbers_only }}
