@@ -39,10 +39,10 @@ As with Ethereum, there are two main types of accounts: user-owned and contract 
 
 ### Calculating Your Transferable Balance {: #calculating-your-transferable-balance }
 
-An account's transferable or spendable balance can be calculated as the free balance minus the maximum of `0` or the absolute difference between frozen and reserved tokens: 
+An account's transferable or spendable balance can be calculated as the free balance minus the maximum of `0` or the difference between frozen and reserved tokens: 
 
 ```text
-Transferable balance = free - max(0, |frozen - reserved| )
+Transferable balance = free - max(0, frozen - reserved )
 ```
 
 Here are two examples of calculating transferable balances:
@@ -50,13 +50,13 @@ Here are two examples of calculating transferable balances:
 An account has `1000` free tokens, `200` frozen tokens, and `50` reserved tokens. The transferable balance is calculated as:
 
 ```text
-Transferable = 1000 - max(0, |200 - 50|) = 1000 - 150 = 850 tokens.
+Transferable = 1000 - max(0, 200 - 50) = 1000 - 150 = 850
 ```
 
 If the frozen tokens are less than the reserved tokens, with `1000` free tokens, `100` frozen tokens, and `150` reserved tokens, the transferable balance would be:
 
 ```text
-Transferable = 1000 - max(0, |100 - 150|) = 1000 - 50 = 950 tokens.
+Transferable = 1000 - max(0, 100 - 150) = 1000 - 0 = 1000
 ```
 
 ### Retrieve Your Balance {: #retrieve-your-balance }
