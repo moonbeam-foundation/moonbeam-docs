@@ -58,13 +58,13 @@ The basic JSON-RPC methods from the Ethereum API supported by Moonbeam are:
 
 ## Default Block Parameters {: #default-block-parameters }
 
-Moonbeam supports several default block parameters that allow you to query a subset of JSON-RPC methods at significant block heights. The following default block parameters are supported by Moonbeam: 
+Moonbeam supports several default block parameters that allow you to query a subset of JSON-RPC methods at significant block heights. Moonbeam supports the following default block parameters: 
 
-- `finalized` - Refers to the most recent block that has been finalized by Polkadot validators
+- `finalized` - Refers to the most recent block that Polkadot validators have finalized
 - `safe` - Synonymous with `finalized` in Moonbeam. In Ethereum, `safe` refers to the most recent block that is considered safe by the network, meaning it is unlikely to be reverted but has not yet been finalized. With Moonbeam's fast and deterministic finality, `finalized` and `safe` refer to the same blocks. 
 - `earliest` - Refers to the genesis block of the blockchain
 - `pending` - Represents the latest state, including pending transactions that have not yet been mined into a block. This is a live view of the mempool
-- `latest` - Refers to the latest confirmed block in the blockchain which may not be finalized
+- `latest` - Refers to the latest confirmed block in the blockchain, which may not be finalized
 
 The following methods can be queried with the default block parameters in place of an actual block number: 
 
