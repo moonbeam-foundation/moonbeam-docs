@@ -30,7 +30,7 @@ const instr2 = {
   },
 };
 const message = { V4: [instr1, instr2] };
-const maxWeight = { refTime: 400000000n, proofSize: 14484n };
+const maxWeight = { refTime: 7750000000n, proofSize: 4960000n };
 
 
 const executeXcmMessage = async () => {

@@ -1320,6 +1320,9 @@ xcm:
     deposit_asset:
       display: 3,875,000,000
       numbers_only: 3875000000
+    withdraw_asset:
+      display: 3,875,000,000
+      numbers_only: 3875000000
     clear_origin:
       display: 5,194,000
     buy_exec:
@@ -1329,3 +1332,8 @@ xcm:
       total_weight:
         display: 348,048,000
         numbers_only: 348048000
+  proof_size:
+    withdraw_asset:
+      display: 2,480,000
+      numbers_only: 2480000
+    
