@@ -74,6 +74,9 @@ The following methods can be queried with the default block parameters in place 
 - **[eth_getTransactionCount](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_gettransactioncount){target=\_blank}** — returns the number of transactions sent from the given address (nonce)
 - **[eth_getStorageAt](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_getstorageat){target=\_blank}** — returns the content of the storage at a given address
 - **[eth_call](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_call){target=\_blank}** — executes a new message call immediately without creating a transaction on the blockchain, returning the value of the executed call
+- **[eth_estimateGas](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_estimategas){target=\_blank}** — returns an estimated amount of gas necessary for a given transaction to succeed. You can optionally specify a `gasPrice` or `maxFeePerGas` and `maxPriorityFeePerGas`
+- **[eth_getTransactionByBlockNumberAndIndex](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_gettransactionbyblocknumberandindex){target=\_blank}** — returns information about a transaction at a given block number and a given index position. EIP-1559 transactions have `maxPriorityFeePerGas` and `maxFeePerGas` fields
+- **[eth_getLogs](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_getlogs){target=\_blank}** — returns an array of all logs matching a given filter object
 
 ## Unsupported Ethereum JSON-RPC Methods {: #unsupported-rpc-methods }
 
@@ -84,9 +87,7 @@ The following methods can be queried with the default block parameters in place 
  - **[eth_createAccessList](https://docs.alchemy.com/reference/eth-createaccesslist){target=\_blank}** - creates an EIP-2930 type `accessList` based on a given transaction object
  - **[eth_sign](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_sign){target=\_blank}** - allows the user to sign an arbitrary hash to be sent at a later time. Presents a [security risk](https://support.metamask.io/privacy-and-security/what-is-eth_sign-and-why-is-it-a-risk/){target=\_blank} as the arbitrary hash can be fraudulently applied to other transactions
  - **[eth_signTransaction](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_signtransaction){target=\_blank}** - allows the user to sign a transaction to be sent at a later time. It is rarely used due to associated security risks
- - **[eth_estimateGas](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_estimategas){target=\_blank}** — returns an estimated amount of gas necessary for a given transaction to succeed. You can optionally specify a `gasPrice` or `maxFeePerGas` and `maxPriorityFeePerGas`
- - **[eth_getTransactionByBlockNumberAndIndex](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_gettransactionbyblocknumberandindex){target=\_blank}** — returns information about a transaction at a given block number and a given index position. EIP-1559 transactions have `maxPriorityFeePerGas` and `maxFeePerGas` fields
- - **[eth_getLogs](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_getlogs){target=\_blank}** — returns an array of all logs matching a given filter object
+
 
 ## Additional RPC Methods {: #additional-rpc-methods }
 
