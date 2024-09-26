@@ -37,9 +37,31 @@ As with Ethereum, there are two main types of accounts: user-owned and contract 
 
 ![Moonbeam balances diagram](/images/learn/core-concepts/balances/balances-2.webp)
 
+### Calculating Your Transferable Balance {: #calculating-your-transferable-balance }
+
+An account's transferable or spendable balance can be calculated as the free balance minus the maximum of `0` or the absolute difference between frozen and reserved tokens: 
+
+```text
+Transferable balance = free - max(0, |frozen - reserved| )
+```
+
+Here are two examples of calculating transferable balances:
+
+An account has `1000` free tokens, `200` frozen tokens, and `50` reserved tokens. The transferable balance is calculated as:
+
+```text
+Transferable = 1000 - max(0, |200 - 50|) = 1000 - 150 = 850 tokens.
+```
+
+If the frozen tokens are less than the reserved tokens, with `1000` free tokens, `100` frozen tokens, and `150` reserved tokens, the transferable balance would be:
+
+```text
+Transferable = 1000 - max(0, |100 - 150|) = 1000 - 50 = 950 tokens.
+```
+
 ### Retrieve Your Balance {: #retrieve-your-balance }
 
-You can check on your balances, including your free (or transferrable) and reserved balances (if exists), using the [Polkadot.js API](/builders/substrate/libraries/polkadot-js-api/){target=\_blank}.
+You can check on your balances, including your free (or transferable) and reserved balances (if exists), using the [Polkadot.js API](/builders/substrate/libraries/polkadot-js-api/){target=\_blank}.
 
 !!! note
     --8<-- 'text/_common/endpoint-examples.md'
