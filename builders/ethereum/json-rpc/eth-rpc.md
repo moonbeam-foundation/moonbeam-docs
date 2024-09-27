@@ -67,18 +67,6 @@ Moonbeam supports several default block parameters that allow you to query a sub
 - `pending` - Represents the latest state, including pending transactions that have not yet been mined into a block. This is a live view of the mempool
 - `latest` - Refers to the latest confirmed block in the blockchain, which may not be finalized
 
-The following methods can be queried with the default block parameters in place of an actual block number: 
-
-- **[eth_getBlockByNumber](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_getblockbynumber){target=\_blank}** — returns information about the block specified by block number, including `baseFeePerGas` on post-London blocks
-- **[eth_getBalance](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_getbalance){target=\_blank}** — returns the balance of the given address
-- **[eth_getCode](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_getcode){target=\_blank}** — returns the code at the given address at the given block number
-- **[eth_getTransactionCount](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_gettransactioncount){target=\_blank}** — returns the number of transactions sent from the given address (nonce). 
-- **[eth_getStorageAt](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_getstorageat){target=\_blank}** — returns the content of the storage at a given address. 
-- **[eth_call](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_call){target=\_blank}** — executes a new message call immediately without creating a transaction on the blockchain, returning the value of the executed call
-- **[eth_estimateGas](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_estimategas){target=\_blank}** — returns an estimated amount of gas necessary for a given transaction to succeed. You can optionally specify a `gasPrice` or `maxFeePerGas` and `maxPriorityFeePerGas`
-- **[eth_getTransactionByBlockNumberAndIndex](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_gettransactionbyblocknumberandindex){target=\_blank}** — returns information about a transaction at a given block number and a given index position. EIP-1559 transactions have `maxPriorityFeePerGas` and `maxFeePerGas` fields
-- **[eth_getLogs](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_getlogs){target=\_blank}** — returns an array of all logs matching a given filter object
-
 ## Unsupported Ethereum JSON-RPC Methods {: #unsupported-rpc-methods }
 
  Moonbeam does not support the following Ethereum API JSON-RPC methods:
