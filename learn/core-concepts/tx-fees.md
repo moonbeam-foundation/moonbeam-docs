@@ -385,8 +385,7 @@ The paths to the relevant values have also been truncated and reproduced below:
 
 ### Transaction Weight {: #transaction-weight}
 
-`TransactionWeight` is a Substrate mechanism used to measure the execution time a given transaction takes to be executed within a block. A transaction's weight is a vector of two components: `refTime` and `proofSize`. Weight is a struct that contains two fields, `refTime` and `proofSize`. Previously, Moonbeam relied on a single weight derived primarily from `refTime` but weight is now defined as a struct taking into account both `refTime` and `proofSize`. 
-
+`TransactionWeight` is a Substrate mechanism used to measure the execution time a given transaction takes to be executed within a block. A transaction's weight is a vector of two components: `refTime` and `proofSize`. Previously, Moonbeam relied on a single weight derived primarily from `refTime` but weight is now defined as a struct taking into account both `refTime` and `proofSize`. 
 
 For all transactions types, `TransactionWeight` can be retrieved under the event of the relevant extrinsic where the `method` field is set to:
 
@@ -394,10 +393,16 @@ For all transactions types, `TransactionWeight` can be retrieved under the event
 pallet: "system", method: "ExtrinsicSuccess" 
 ```
 
-And then `TransactionWeight` is mapped to the following field of the block JSON object:
+And then `TransactionWeight` is mapped to the following two fields of the block JSON object. `proofSize` is mapped as follows:
 
 ```text
-extrinsics[extrinsic_number].events[event_number].data[0].weight
+extrinsics[extrinsic_number].events[event_number].data[0].weight.proof_size 
+```
+
+And `refTime` is mapped as follows:
+
+```text
+extrinsics[extrinsic_number].events[event_number].data[0].weight.ref_time 
 ```
 
 ### Fee History Endpoint {: #eth-feehistory-endpoint }
