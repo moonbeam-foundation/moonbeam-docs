@@ -1283,7 +1283,8 @@ networks:
       clear_origin:
         total_weight: 2,620,000
       buy_exec:
-        total_weight: 2,823,000
+        ref_time: 348,048,000
+        proof_size: 19,056
       deposit_asset:
         total_weight: 150,445,000
     xcm_message:
@@ -1291,6 +1292,8 @@ networks:
         weight:
           display: 305,986,000
           numbers_only: 305986000
+        ref_time: 8,103,242,000
+        proof_size: 4,979,056
   moonbase_beta:
     xcm_message:
       transact:
