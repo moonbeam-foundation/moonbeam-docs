@@ -213,10 +213,10 @@ Now that you know the weight costs for database reads and writes for Moonbase Al
 
 For example, the `WithdrawAsset` instruction is part of the fungible XCM instructions. Therefore, it is not benchmarked, and the total weight cost of the [`WithdrawAsset` instruction](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbase.spec_version }}/pallets/moonbeam-xcm-benchmarks/src/weights/fungible.rs#L36){target=\_blank} is `{{ xcm.fungible_weights.display }}`, except for when transferring local XC-20s. The total weight cost for the `WithdrawAsset` instruction for local XC-20s is based on a conversion of Ethereum gas to Substrate weight.
 
-The [`BuyExecution` instruction](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbase.spec_version }}/pallets/moonbeam-xcm-benchmarks/src/weights/generic.rs#L128-L129){target=\_blank} has a base weight of `{{ xcm.generic_weights.buy_exec.base_weight.display }}`, and performs four database reads (`assetManager` pallet to get the `unitsPerSecond`). Therefore, the total weight cost of the `BuyExecution` instruction is calculated as follows:
+The [`BuyExecution` instruction](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbase.spec_version }}/pallets/moonbeam-xcm-benchmarks/src/weights/generic.rs#L128-L129){target=\_blank} has a base weight of `{{ xcm.generic_weights.ref_time.buy_exec.base_weight.display }}`, and performs four database reads (`assetManager` pallet to get the `unitsPerSecond`). Therefore, the total weight cost of the `BuyExecution` instruction is calculated as follows:
 
 ```text
-{{ xcm.generic_weights.buy_exec.base_weight.numbers_only }} + 4 * {{ xcm.db_weights.rocksdb_read.numbers_only }} = {{ xcm.generic_weights.buy_exec.total_weight.numbers_only }}
+{{ xcm.generic_weights.ref_time.buy_exec.base_weight.numbers_only }} + 4 * {{ xcm.db_weights.rocksdb_read.numbers_only }} = {{ xcm.generic_weights.ref_time.buy_exec.total_weight.numbers_only }}
 ```
 
 You can find all the weight values for all the XCM instructions in the following table, which apply to all Moonbeam-based networks:
@@ -256,39 +256,34 @@ The total cost is `{{ networks.moonbeam.xcm.transfer_glmr.glmr_cost }} GLMR` for
 
 ### Fee Calculation for External Assets {: #fee-calc-external-assets }
 
-Considering the scenario of Alice sending DOT to Alith's account on Moonbeam, the fees are taken from the amount of xcDOT Alith receives. To determine how much to charge, Moonbeam uses a concept called `UnitsPerSecond`, which refers to the units of tokens that the network charges per second of XCM execution time (considering decimals). This concept is used by Moonbeam (and maybe other parachains) to determine how much to charge for XCM execution using a different asset than its reserve.
+Moonbeam charges fees for external assets based on the weight of the call. Weight is a struct that contains two fields, `ref_time` and `proof_size`. Previously, Moonbeam relied on a single weight derived primarily from `ref_time` but weight is now defined as a struct taking into account both `ref_time` and `proof_size`. 
 
-Moreover, XCM execution on Moonbeam can be paid for by multiple assets ([XC-20s](/builders/interoperability/xcm/xc20/overview/){target=\_blank}) that originate in the chain where the asset is coming from. For example, at the time of writing, an XCM message sent from [Kusama Asset Hub](https://polkadot.js.org/apps/?rpc=wss://kusama-asset-hub-rpc.polkadot.io#/explorer){target=\_blank} (formerly Statemine) can be paid in xcKSM, xcRMRK, or xcUSDT. As long as that asset has the `UnitsPerSecond` set in Moonbeam/Moonriver, it can be used to pay XCM execution for an XCM message coming from that specific chain.
-
-To find out the `UnitsPerSecond` for a given asset, you can use the following script, which queries the `assetManager.assetTypeUnitsPerSecond`, and make sure to pass in the multilocation of the asset in question. If you're unsure of the multilocation, you can retrieve it using the `assetManager.assetIdType` query.
-
-```js
---8<-- 'code/builders/interoperability/xcm/core-concepts/weights-fees/units-per-second.js'
-```
-
-Once you run the script, you should see `The UnitsPerSecond for xcDOT is {{ networks.moonbeam.xcm.units_per_second.xcdot.display }}` printed to your terminal.
-
-Remember that one unit of weight is defined as one picosecond of execution time. Therefore, the formula to determine execution time is as follows:
+To determine the total weight for Alice's transfer of DOT to Moonbeam, you'll need the weight for each of the four XCM instructions required for the transfer. Note that while the first three instructions have specific `ref_time` and `proof_size` values corresponding to these instructions, `DepositAsset` relies on the EVM operation [`MintInto`](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbeam.spec_version }}/pallets/moonbeam-foreign-assets/src/evm.rs#L38){target=\_blank} and a `WeightPerGas` conversion of `{{ xcm.generic_weights.weight_per_gas.display }}` per gas. The weight of `DepositAsset` can thus be calculated as: 
 
 ```text
-ExecutionTime = Weight / Picosecond
+{{ xcm.generic_weights.ref_time.mint_into_gas.numbers_only }} gas * {{ xcm.generic_weights.weight_per_gas.numbers_only }} weight per gas = {{ xcm.generic_weights.ref_time.deposit_asset.numbers_only }}
 ```
 
-To determine the total weight for Alice's transfer of DOT to Moonbeam, you'll need the weight for each of the four XCM instructions required for the transfer. Note that while the first three instructions have specific weights corresponding to these instructions, `DepositAsset` relies on the EVM operation [`MintInto`](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbeam.spec_version }}/pallets/moonbeam-foreign-assets/src/evm.rs#L38){target=\_blank} and a `WeightPerGas` conversion of `{{ xcm.generic_weights.weight_per_gas.display }}` per gas. The weight of `DepositAsset` can thus be calculated as: 
+#### Weight to Gas Mapping {: #weight-to-gas-mapping }
 
-```text
-{{ xcm.generic_weights.mint_into_gas.numbers_only }} gas * {{ xcm.generic_weights.weight_per_gas.numbers_only }} weight per gas = {{ xcm.generic_weights.deposit_asset.numbers_only }}
-```
+For weights that are derived from EVM operations, you can calculate their respective weight values by multiplying the gas limit by weight multipliers. For `ref_time`, you'll need to multiply the gas limit by `{{ xcm.generic_weights.weight_per_gas.numbers_only }}` and for `proof_size` you'll need to multiply the gas limit by `{{ xcm.generic_weights.proof_size.weight_per_gas }}`.  A chart is included below for convenience. 
+
+| Weight Type | Multiplier Value |
+|:-----------:|:----------------:|
+| Ref Time    | {{ xcm.generic_weights.weight_per_gas.display }} |
+| Proof Size  | {{ xcm.generic_weights.proof_size.weight_per_gas }} |
+
 
 The weights for each of the four XCM instructions can be found below:
 
-|                                                                                           Instruction                                                                                            |                            Weight                             |
-|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------:|
-| [`ReserveAssetDeposited`](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbeam.spec_version }}/pallets/moonbeam-xcm-benchmarks/src/weights/fungible.rs#L71){target=\_blank} |              {{ xcm.fungible_weights.display }}               |
-|      [`ClearOrigin`](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbeam.spec_version }}/pallets/moonbeam-xcm-benchmarks/src/weights/generic.rs#L191){target=\_blank}      |        {{ xcm.generic_weights.clear_origin.display }}         |
-|   [`BuyExecution`](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbeam.spec_version }}/pallets/moonbeam-xcm-benchmarks/src/weights/generic.rs#L128-L129){target=\_blank}   |    {{ xcm.generic_weights.buy_exec.total_weight.display }}    |
-|     [`DepositAsset`](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbeam.spec_version }}/pallets/moonbeam-xcm-benchmarks/src/weights/fungible.rs#L60){target=\_blank}      |              {{ xcm.generic_weights.deposit_asset.display }}               |
-|                                                                                            **TOTAL**                                                                                             | {{ networks.moonbeam.xcm.transfer_dot.total_weight.display }} |
+|                                                                                           Instruction                                                                                            |                            Ref Time                             |                       Proof Size                        |
+|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------:|:-------------------------------------------------------:|
+| [`ReserveAssetDeposited`](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbeam.spec_version }}/pallets/moonbeam-xcm-benchmarks/src/weights/fungible.rs#L71){target=\_blank} |              {{ xcm.fungible_weights.display }}               |                          {{ xcm.generic_weights.proof_size.zero }}                       |
+|      [`ClearOrigin`](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbeam.spec_version }}/pallets/moonbeam-xcm-benchmarks/src/weights/generic.rs#L191){target=\_blank}      |        {{ xcm.generic_weights.ref_time.clear_origin.display }}         |                          {{ xcm.generic_weights.proof_size.zero }}                       |
+|   [`BuyExecution`](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbeam.spec_version }}/pallets/moonbeam-xcm-benchmarks/src/weights/generic.rs#L128-L129){target=\_blank}   |    {{ xcm.generic_weights.ref_time.buy_exec.total_weight.display }}    |                          {{ xcm.generic_weights.proof_size.buy_execution.display }}                       |
+|     [`DepositAsset`](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbeam.spec_version }}/pallets/moonbeam-xcm-benchmarks/src/weights/fungible.rs#L60){target=\_blank}      |              {{ xcm.generic_weights.ref_time.deposit_asset.display }}  |                          {{ xcm.generic_weights.proof_size.deposit_asset.display }}                       |
+|                                                                                            **TOTAL**                                                                                             | {{ networks.moonbeam.xcm.transfer_dot.total_weight.display }} |                          {{ xcm.generic_weights.proof_size.transfer_dot_total.display }}                     |
+
 
 !!! note
     For the `BuyExecution` instruction, the [units of weight for the four database reads](#moonbeam-xcm-fee-calc) are accounted for in the above table.
@@ -316,3 +311,66 @@ XCM-Cost = ( {{ networks.moonbeam.xcm.units_per_second.xcdot.numbers_only }} / 1
 ```
 
 The total cost to transfer Alice's DOT to Alith's account for xcDOT is `{{ networks.moonbeam.xcm.transfer_dot.xcdot_cost }} xcDOT`.
+
+## XCM Payment API {: #xcm-payment-api }
+
+The XCM Payment API methods provide various helpful ways to calculate fees, evaluate acceptable fee payment currencies, and more. 
+
+### Query Acceptable Fee Payment Assets {: #query-acceptable-fee-payment-assets }
+
+This function takes the XCM Version as a parameter and returns a list of acceptable fee assets in multilocation form. 
+
+```javascript
+const allowedAssets =
+  await api.call.xcmPaymentApi.queryAcceptablePaymentAssets(3);
+console.log(allowedAssets);
+```
+
+??? code "View the complete script"
+
+    ```js
+    --8<-- 'code/builders/interoperability/xcm/core-concepts/weights-fees/query-acceptable-payment-assets.js'
+    ```
+
+### Weight to Asset Fee Conversion {: #weight-to-asset-fee-conversion }
+
+This method converts a weight into a fee for the specified asset. It takes as parameters a weight and an asset multilocation and returns the respective fee amount.
+
+```javascript
+const fee = await api.call.xcmPaymentApi.queryWeightToAssetFee(
+  {
+    refTime: 10_000_000_000n,
+    proofSize: 0n,
+  },
+  {
+    V3: {
+      Concrete: { parents: 1, interior: 'Here' },
+    },
+  }
+);
+
+console.log(fee);
+```
+
+??? code "View the complete script"
+
+    ```js
+    --8<-- 'code/builders/interoperability/xcm/core-concepts/weights-fees/weight-to-asset-fee-conversion.js'
+    ```
+
+### Query XCM Weight {: #query-xcm-weight}
+
+This method takes an XCM message as a parameter and returns the weight of the message. 
+
+```javascript
+const message = { V3: [instr1, instr2] };
+
+const theWeight = await api.call.xcmPaymentApi.queryXcmWeight(message);
+console.log(theWeight);
+```
+
+??? code "View the complete script"
+
+    ```js
+    --8<-- 'code/builders/interoperability/xcm/core-concepts/weights-fees/query-xcm-weight.js'
+    ```

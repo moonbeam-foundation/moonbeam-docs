@@ -1314,26 +1314,38 @@ xcm:
     weight_per_gas:
       display: 25,000
       numbers_only: 25000
-    mint_into_gas:
-      display: 155,000
-      numbers_only: 155000
-    deposit_asset:
-      display: 3,875,000,000
-      numbers_only: 3875000000
-    withdraw_asset:
-      display: 3,875,000,000
-      numbers_only: 3875000000
-    clear_origin:
-      display: 5,194,000
-    buy_exec:
-      base_weight:
-        display: 181,080,000
-        numbers_only: 181080000
-      total_weight:
-        display: 348,048,000
-        numbers_only: 348048000
-  proof_size:
-    withdraw_asset:
-      display: 2,480,000
-      numbers_only: 2480000
+    ref_time:
+      mint_into_gas:
+        display: 155,000
+        numbers_only: 155000
+      deposit_asset:
+        display: 3,875,000,000
+        numbers_only: 3875000000
+      withdraw_asset:
+        display: 3,875,000,000
+        numbers_only: 3875000000
+      clear_origin:
+        display: 5,194,000
+      buy_exec:
+        base_weight:
+          display: 181,080,000
+          numbers_only: 181080000
+        total_weight:
+          display: 281,080,000
+          numbers_only: 281,080,000
+    proof_size:
+      zero: 0
+      weight_per_gas: 16
+      withdraw_asset:
+        display: 2,480,000
+        numbers_only: 2480000
+      buy_execution:
+        display: 19,056
+        numbers_only: 19056
+      deposit_asset:
+        display: 2,480,000
+        numbers_only: 2480000
+      transfer_dot_total:
+        display: 2,499,056
+        numbers_only: 2499056
     
