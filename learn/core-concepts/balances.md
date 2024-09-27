@@ -31,15 +31,37 @@ As with Ethereum, there are two main types of accounts: user-owned and contract 
 
  - **Free** — refers to the balance that can be used (not locked/frozen) from the Substrate API. The concept of `free` balance depends on the action to be executed. For example, voting in democracy will not subtract the allocated balance to the vote from `free` balance, but token holders won't be able to transfers that balance
  - **Reducible** — refers to the balance that can be used (not locked/frozen) through the Ethereum API on Moonbeam. For example, this is the balance displayed by MetaMask. It is the real spendable balance, accounting for all democracy locks (displayed as transferable in Polkadot.js Apps)
- - **Reserved** — refers to the balance held due to on-chain requirements, and that can be freed by performing some on-chain action.  For example, bonds for creating a proxy account or setting an on-chain identity are shown as `reserved balance`. These funds are **not** accessible via the Ethereum API until they are freed
- - **Misc frozen** — represents a balance that the `free` balance may not drop below when withdrawing funds, except for transaction fee payment. For example, funds being used to vote on a governance proposal are shown as `misc frozen`. These funds are **not** accessible via the Ethereum API until they are freed
- - **Fee frozen** — represents a balance that the `free` balance may not drop below when specifically paying for transaction fees. These funds are **not** accessible via the Ethereum API until they are freed
+ - **Reserved** — refers to the balance held due to on-chain requirements, and that can be freed by performing some on-chain action.  For example, bonds for creating a proxy account or setting an on-chain identity are shown as `reserved balance`. These funds are **not** transferable or accessible via the Ethereum API until they are freed
+ - **Misc frozen** — represents a balance that the `free` balance may not drop below when withdrawing funds, except for transaction fee payment. For example, funds being used to vote on a governance proposal are shown as `misc frozen`. These funds are **not** transferable or accessible via the Ethereum API until they are freed
+ - **Fee frozen** — represents a balance that the `free` balance may not drop below when specifically paying for transaction fees. These funds are **not** transferable or accessible via the Ethereum API until they are freed
 
 ![Moonbeam balances diagram](/images/learn/core-concepts/balances/balances-2.webp)
 
+### Calculating Your Transferable Balance {: #calculating-your-transferable-balance }
+
+An account's transferable or spendable balance can be calculated as the free balance minus the maximum of `0` or the difference between frozen and reserved tokens: 
+
+```text
+Transferable = free - max(0, frozen - reserved )
+```
+
+Here are two examples of calculating transferable balances:
+
+An account has `1000` free tokens, `200` frozen tokens, and `50` reserved tokens. The transferable balance is calculated as:
+
+```text
+Transferable = 1000 - max(0, 200 - 50) = 1000 - 150 = 850
+```
+
+If the frozen tokens are less than the reserved tokens, with `1000` free tokens, `100` frozen tokens, and `150` reserved tokens, the transferable balance would be:
+
+```text
+Transferable = 1000 - max(0, 100 - 150) = 1000 - 0 = 1000
+```
+
 ### Retrieve Your Balance {: #retrieve-your-balance }
 
-You can check on your balances, including your free (or transferrable) and reserved balances (if exists), using the [Polkadot.js API](/builders/substrate/libraries/polkadot-js-api/){target=\_blank}.
+You can check on your balances, including your free (or transferable) and reserved balances (if exists), using the [Polkadot.js API](/builders/substrate/libraries/polkadot-js-api/){target=\_blank}.
 
 !!! note
     --8<-- 'text/_common/endpoint-examples.md'
