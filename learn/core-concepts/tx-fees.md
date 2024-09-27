@@ -385,7 +385,10 @@ The paths to the relevant values have also been truncated and reproduced below:
 
 ### Transaction Weight {: #transaction-weight}
 
-`TransactionWeight` is a Substrate mechanism used to measure the execution time a given transaction takes to be executed within a block. For all transactions types, `TransactionWeight` can be retrieved under the event of the relevant extrinsic where the `method` field is set to:
+`TransactionWeight` is a Substrate mechanism used to measure the execution time a given transaction takes to be executed within a block. A transaction's weight is a vector of two components: `refTime` and `proofSize`. Weight is a struct that contains two fields, `refTime` and `proofSize`. Previously, Moonbeam relied on a single weight derived primarily from `refTime` but weight is now defined as a struct taking into account both `refTime` and `proofSize`. 
+
+
+For all transactions types, `TransactionWeight` can be retrieved under the event of the relevant extrinsic where the `method` field is set to:
 
 ```text
 pallet: "system", method: "ExtrinsicSuccess" 
