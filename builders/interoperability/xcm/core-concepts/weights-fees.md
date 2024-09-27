@@ -258,23 +258,33 @@ The total cost is `{{ networks.moonbeam.xcm.transfer_glmr.glmr_cost }} GLMR` for
 
 Moonbeam charges fees for external assets based on the weight of the call. Weight is a struct that contains two fields, `ref_time` and `proof_size`. Previously, Moonbeam relied on a single weight derived primarily from `ref_time` but weight is now defined as a struct taking into account both `ref_time` and `proof_size`. 
 
-To determine the total weight for Alice's transfer of DOT to Moonbeam, you'll need the weight for each of the four XCM instructions required for the transfer. Note that while the first three instructions have specific `ref_time` and `proof_size` values corresponding to these instructions, `DepositAsset` relies on the EVM operation [`MintInto`](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbeam.spec_version }}/pallets/moonbeam-foreign-assets/src/evm.rs#L38){target=\_blank} and a `WeightPerGas` conversion of `{{ xcm.generic_weights.weight_per_gas.display }}` per gas. The weight of `DepositAsset` can thus be calculated as: 
+### Querying XCM Weights {: #query-xcm-weights} 
 
-```text
-{{ xcm.generic_weights.ref_time.mint_into_gas.numbers_only }} gas * {{ xcm.generic_weights.weight_per_gas.numbers_only }} weight per gas = {{ xcm.generic_weights.ref_time.deposit_asset.numbers_only }}
-```
+You can query the `ref_time` and `proof_size` of an XCM instruction with the [`queryXcmWeight` method of the `xcmPaymentApi`](#query-xcm-weight). You can do this [programmatically](#query-xcm-weight) or by visiting the [Runtime Calls tab of Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoonbeam.api.onfinality.io%2Fpublic-ws#/runtime){target=\_blank}. The `queryXcmWeight` method takes an XCM version and instruction has a parameter and returns the corresponding `refTime` and `proofSize` values.
 
 #### Weight to Gas Mapping {: #weight-to-gas-mapping }
 
-For weights that are derived from EVM operations, you can calculate their respective weight values by multiplying the gas limit by weight multipliers. For `ref_time`, you'll need to multiply the gas limit by `{{ xcm.generic_weights.weight_per_gas.numbers_only }}` and for `proof_size` you'll need to multiply the gas limit by `{{ xcm.generic_weights.proof_size.weight_per_gas }}`.  A chart is included below for convenience. 
+For calls that are derived from EVM operations, such as the `DepositAsset` instruction which relies on the EVM operation `MintInto`, you can calculate their respective weight values by multiplying the gas limit by weight multipliers. For `ref_time`, you'll need to multiply the gas limit by `{{ xcm.generic_weights.weight_per_gas.numbers_only }}` and for `proof_size` you'll need to multiply the gas limit by `{{ xcm.generic_weights.proof_size.weight_per_gas }}`.  A chart is included below for convenience. 
 
 | Weight Type | Multiplier Value |
 |:-----------:|:----------------:|
 | Ref Time    | {{ xcm.generic_weights.weight_per_gas.display }} |
 | Proof Size  | {{ xcm.generic_weights.proof_size.weight_per_gas }} |
 
+To determine the total weight for Alice's transfer of DOT to Moonbeam, you'll need the weight for each of the four XCM instructions required for the transfer. Note that while the first three instructions have specific `ref_time` and `proof_size` values corresponding to these instructions that can be retrieved via [`queryXcmWeight` method of the `xcmPaymentApi`](#query-xcm-weight), `DepositAsset` relies on the EVM operation [`MintInto`](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbeam.spec_version }}/pallets/moonbeam-foreign-assets/src/evm.rs#L38){target=\_blank} and a `WeightPerGas` conversion of `{{ xcm.generic_weights.weight_per_gas.display }}` per gas. The `refTime` of `DepositAsset` can thus be calculated as: 
 
-The weights for each of the four XCM instructions can be found below:
+```text
+{{ xcm.generic_weights.ref_time.mint_into_gas.numbers_only }} gas * {{ xcm.generic_weights.weight_per_gas.numbers_only }} weight per gas = {{ xcm.generic_weights.ref_time.deposit_asset.numbers_only }}
+```
+
+And the `proof_size` of `DepositAsset` can be calculated as:
+
+```text
+{{ xcm.generic_weights.ref_time.mint_into_gas.numbers_only }} gas * {{ xcm.generic_weights.proof_size.weight_per_gas }} weight per gas = {{ xcm.generic_weights.proof_size.deposit_asset.numbers_only }}
+```
+
+
+The weights for each of the four XCM instructions for Alice's DOT transfer to Moonbeam can be found below:
 
 |                                                                                           Instruction                                                                                            |                            Ref Time                             |                       Proof Size                        |
 |:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------:|:-------------------------------------------------------:|
@@ -288,7 +298,13 @@ The weights for each of the four XCM instructions can be found below:
 !!! note
     For the `BuyExecution` instruction, the [units of weight for the four database reads](#moonbeam-xcm-fee-calc) are accounted for in the above table.
 
-With the total weight, you can calculate the execution time for Alice's transfer of DOT to Moonbeam using the following calculation:
+### Weight to Asset Fee Conversion {: #weight-to-asset-fee-conversion} 
+
+Once you have the sum of the `refTime` and `proofSize` values, you can easily retrive the required commensurate fee amount. The [`queryWeightToAssetFee` method of the `xcmPaymentApi`](#weight-to-asset-fee-conversion) takes a `refTime`, `proofSize` and asset multilocation as parameters and returns the commensurate fee. By providing the amounts obtained above of `{{ networks.moonbeam.xcm.transfer_dot.total_weight.display }}` `refTime` and `{{ xcm.generic_weights.proof_size.transfer_dot_total.display }}` `proofSize`, and the asset multilocation for DOT, we get a fee amount of `88,920,522` Plank, which is the smallest unit in Polkadot. We can convert this to DOT by dividing by `10^10` which gets us a DOT fee amount of `{{ networks.moonbeam.xcm.transfer_dot.xcdot_cost }}` DOT. 
+
+#### Previous Weight Calculations
+
+In earlier runtimes, you could calculate the necessary fees by deriving the execution time from the total weight. With the total weight, you can calculate the execution time for Alice's transfer of DOT to Moonbeam using the following calculation:
 
 ```text
 ExecutionTime = {{ networks.moonbeam.xcm.transfer_dot.total_weight.numbers_only }} / 10^12
@@ -312,9 +328,9 @@ XCM-Cost = ( {{ networks.moonbeam.xcm.units_per_second.xcdot.numbers_only }} / 1
 
 The total cost to transfer Alice's DOT to Alith's account for xcDOT is `{{ networks.moonbeam.xcm.transfer_dot.xcdot_cost }} xcDOT`.
 
-## XCM Payment API {: #xcm-payment-api }
+## XCM Payment API Expanded Examples {: #xcm-payment-api-exanded-examples }
 
-The XCM Payment API methods provide various helpful ways to calculate fees, evaluate acceptable fee payment currencies, and more. 
+The XCM Payment API methods provide various helpful ways to calculate fees, evaluate acceptable fee payment currencies, and more. Remember that in addition to accessing this via API, you can also interact with the XCM Payment API via the [Runtime Calls tab of Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoonbeam.api.onfinality.io%2Fpublic-ws#/runtime){target=\_blank}.
 
 ### Query Acceptable Fee Payment Assets {: #query-acceptable-fee-payment-assets }
 
