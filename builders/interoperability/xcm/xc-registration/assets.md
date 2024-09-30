@@ -39,65 +39,20 @@ To create a forum post on the [Moonbeam Community Forum](https://forum.moonbeam.
 
 ### Create a Proposal to Register an Asset {: #create-a-proposal }
 
-To register an asset native to another chain on Moonbeam, you'll need to submit a governance proposal that will call the `assetManager.registerForeignAsset` extrinsic. Additionally, you'll need to set the asset's units per second value through the `assetManager.setAssetUnitsPerSecond` extrinsic. The units per second value is the units of tokens to charge per second of execution time during XCM transfers. How to calculate the units per second will be covered in the following section.
+To register an asset native to another chain on Moonbeam, you'll need to submit a governance proposal that will call the `evmForeignAssets.createForeignAsset` extrinsic. Additionally, you'll need to register the asset's price (formerly known as units per second) through the `xcmWeightTrader.addAsset` extrinsic so that XCM fees can be properly calculated. An existing asset's price can be updated with `xcmWeightTrader.editAsset`. 
 
 To get started, you'll need to collect some information about the asset:
 
-- The ID of the parachain the asset lives on
+- `assetId`: an arbitrary unique integer
+- `xcmLocation`: a scale encoded xcm v4 multilocation of asset reserve relative to Moonbeam
 - The metadata of the asset. This includes:
   - The asset name
   - The asset symbol. You'll need to prepend "xc" to the asset symbol to indicate that the asset is an XCM-enabled asset
   - The number of decimals the asset has
-  - The units per second
-- The multilocation of the asset as seen from Moonbeam
 
-With this information in hand, you can get the encoded calldata for both calls and batch the calldata into a single transaction. From there, you can start the governance process, which includes using the calldata to submit a preimage and then using the preimage to create a proposal. If you're also opening a channel at the same time, you can add the channel-related calldata to the batch asset registration calldata and open a single proposal for everything. Asset and channel registration proposals on Moonbeam should be assigned to the General Admin Track.
+With this information in hand, you can prepare a governance proposal to register a foreign asset. The allowed origins that permit registration of a foreign asset are `FastGeneralAdmin`, `OpenTechCommittee` or `Root`.
 
 ![Overview of the proposal process](/images/builders/interoperability/xcm/xc-registration/assets/assets-3.webp)
-
-### Calculate the Asset's Units Per Second {: #calculate-units-per-second }
-
-Units per second is the number of tokens charged per second of execution of an XCM message. The target cost for an XCM transfer is $0.02 at the time of registration. The units per second might get updated through governance as the token price fluctuates.
-
-The easiest way to calculate an asset's units per second is through the [`calculate-units-per-second.ts` script](https://github.com/Moonsong-Labs/xcm-tools/blob/main/scripts/calculate-units-per-second.ts){target=\_blank} in the [xcm-tools](https://github.com/Moonsong-Labs/xcm-tools){target=\_blank} repository. The script accepts the following arguments:
-
-- `--decimals` or `--d` - decimals of the tokens you are calculating the units per second for
-- `--xcm-weight-cost` or `--xwc` - total weight cost of the execution of the entire XCM message. The estimated weight per XCM operation on each Moonbeam chain is:  
-
-    === "Moonbeam"
-
-        ```text
-        800000000
-        ```
-
-    === "Moonriver"
-
-        ```text
-        800000000
-        ```
-
-    === "Moonbase Alpha"
-
-        ```text
-        638978000
-        ```
-
-- `--target` or `--t` - (optional) target price for XCM execution, defaults to `$0.02`
-- `--asset` or `--a` - (optional) the token [Coingecko API ID](https://www.coingecko.com){target=\_blank}
-- `--price` or `--p` - (optional) if the Coingecko API does not support the token, you can specify the price manually
-
-For example, to calculate the units per second of DOT (Polkadot token), which has 10 decimals, on Moonbeam, you can run:
-
-```bash
-yarn calculate-units-per-second --d 10 --a polkadot --xwc 800000000 
-```
-
-Which should result in the following output (at the time of writing):  
-
-```text
-Token Price is $7.33
-The UnitsPerSecond needs to be set 34106412005
-```
 
 ### Generate the Encoded Calldata for the Asset Registration {: #generate-encoded-calldata-for-asset-registration }
 
