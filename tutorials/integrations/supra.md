@@ -23,7 +23,7 @@ Supra uses a pull model as a customized approach that publishes price data upon 
 2. Smart contracts are utilized for cryptographically verifying and writing the latest price data on-chain, where it lives on immutable ledgers, using [Supra's Pull contract](https://supra.com/docs/data-feeds/pull-model){target=\_blank}
 3. Once the data has been written on-chain, the most recently published price feed data will be available in Supra's Storage contract
 
-You can fetch price data from Supra for any [available data pairs](https://supra.com/docs/data-feeds/data-feeds-index){target=\_blank}.
+You can fetch price data from Supra for any [available data pairs](https://docs.supra.com/oracles/data-feeds/data-feeds-index){target=\_blank}.
 
 The addresses for Supra's contracts on Moonbeam are as follows:
 
@@ -109,7 +109,7 @@ Then, you can copy the following code snippets and add them to their respective 
 
 ### Use the Pull Service Client to Fetch Price Data {: #use-the-pull-service-client }
 
-In this section, you'll create an instance of the `PullServiceClient` to retrieve the proof for the ETH_USDT pair. You can modify this example for any of the [available data pairs](https://supra.com/docs/data-feeds/data-feeds-index){target=\_blank}.
+In this section, you'll create an instance of the `PullServiceClient` to retrieve the proof for the ETH_USDT pair. You can modify this example for any of the [available data pairs](https://docs.supra.com/oracles/data-feeds/data-feeds-index){target=\_blank}.
 
 To get started, create a file to add our logic:
 
@@ -125,7 +125,7 @@ In the `main.js` file, take the following steps to add the logic for retrieving 
     --8<-- 'code/tutorials/integrations/supra/main-mb.js::1'
     ```
 
-2. Create a variable to store the index of the data pair for which you want to retrieve the price data. This example requests the ETH_USDT data pair, but you can use the [index of any available data pair](https://supra.com/docs/data-feeds/data-feeds-index){target=\_blank}
+2. Create a variable to store the index of the data pair for which you want to retrieve the price data. This example requests the ETH_USDT data pair, but you can use the [index of any available data pair](https://docs.supra.com/oracles/data-feeds/data-feeds-index){target=\_blank}
 
     ```js title="main.js"
     --8<-- 'code/tutorials/integrations/supra/main-mb.js::1'
@@ -665,7 +665,7 @@ The terminal output should now include the price data.
 
 --8<-- 'code/tutorials/integrations/supra/terminal/price-data-output.md'
 
-And that's it! You've successfully fetched the proof data from Supra, verified and published it on-chain, and retrieved it! For more information on Supra Oracles, please check out their [documentation](https://supra.com/docs){target=\_blank}.
+And that's it! You've successfully fetched the proof data from Supra, verified and published it on-chain, and retrieved it! For more information on Supra Oracles, please check out their [documentation](https://docs.supra.com/){target=\_blank}.
 
 --8<-- 'text/_disclaimers/educational-tutorial.md'
 

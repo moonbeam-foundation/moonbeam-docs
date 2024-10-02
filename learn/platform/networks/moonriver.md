@@ -55,7 +55,7 @@ You can see current Moonriver telemetry information by visiting [Polkadot's Tele
 
 ## Tokens {: #tokens }
 
-The tokens on Moonriver will also be called Moonriver (MOVR). Check out the Moonbeam Foundation site for more information on the [Moonriver token](https://moonbeam.network/moonriver-token-tokenomics){target=\_blank}.
+The tokens on Moonriver will also be called Moonriver (MOVR). Check out the Moonbeam Foundation site for more information on the [Moonriver token](https://moonbeam.foundation/moonriver-token-tokenomics){target=\_blank}.
 
 ### Token Denominations {: #token-denominations }
 

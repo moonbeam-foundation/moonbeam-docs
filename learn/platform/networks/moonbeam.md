@@ -51,7 +51,7 @@ You can see current Moonbeam telemetry information by visiting [Polkadot's Telem
 
 ## Tokens {: #tokens }
 
-The tokens on Moonbeam are called Glimmer (GLMR). Check out the Moonbeam Foundation site for more information on the [Glimmer](https://moonbeam.network/glimmer-token-tokenomics){target=\_blank} token.
+The tokens on Moonbeam are called Glimmer (GLMR). Check out the Moonbeam Foundation site for more information on the [Glimmer](https://moonbeam.foundation/glimmer-token-tokenomics){target=\_blank} token.
 
 ### Token Denominations {: #token-denominations }
 
