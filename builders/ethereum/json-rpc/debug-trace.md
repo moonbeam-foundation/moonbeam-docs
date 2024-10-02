@@ -11,7 +11,7 @@ Geth's [debug](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-debug
 
 This guide will cover the supported RPC methods available on Moonbeam and how to invoke them using curl commands against a tracing node with the debug, txpool, and tracing flags enabled. You can access a tracing node in one of two ways: through a supported tracing RPC provider or by spinning up a tracing node of your own.
 
-To view a list of tracing RPC providers, please check out the [Network Endpoints](/builders/get-started/endpoints#tracing-providers){target=\_blank} page.
+To view a list of tracing RPC providers, please check out the [Network Endpoints](/builders/get-started/endpoints/#tracing-providers){target=\_blank} page.
 
 If you wish to set up your own tracing node, you can follow the [Running a Tracing Node](/node-operators/networks/tracing-node/){target=\_blank} guide. The RPC HTTP endpoint of your tracing node should be at `{{ networks.development.rpc_url }}` and your node should display similar logs to the following:
 

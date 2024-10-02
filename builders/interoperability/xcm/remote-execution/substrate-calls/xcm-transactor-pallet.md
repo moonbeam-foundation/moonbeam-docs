@@ -9,7 +9,7 @@ description: This guide provides an introduction to the XCM Transactor Pallet an
 
 XCM messages are comprised of a [series of instructions](/builders/interoperability/xcm/core-concepts/instructions/){target=\_blank} that are executed by the Cross-Consensus Virtual Machine (XCVM). Combinations of these instructions result in predetermined actions such as cross-chain token transfers and, more interestingly, remote cross-chain execution. Remote execution involves executing operations or actions on one blockchain from another blockchain while maintaining the integrity of the sender's identity and permissions.
 
-Typically, XCM messages are sent from the root origin (that is, SUDO or through governance), which is not ideal for projects that want to leverage remote cross-chain calls via a simple transaction. The [XCM Transactor Pallet](https://github.com/moonbeam-foundation/moonbeam/blob/master/pallets/xcm-transactor/src/lib.rs){target=\_blank} makes it easy to transact on a remote chain through either the [Sovereign account](/builders/interoperability/xcm/overview#general-xcm-definitions){target=\_blank}, which should only be allowed through governance, or a [Computed Origin account](/builders/interoperability/xcm/remote-execution/computed-origins/){target=\_blank} via a simple transaction from the source chain.
+Typically, XCM messages are sent from the root origin (that is, SUDO or through governance), which is not ideal for projects that want to leverage remote cross-chain calls via a simple transaction. The [XCM Transactor Pallet](https://github.com/moonbeam-foundation/moonbeam/blob/master/pallets/xcm-transactor/src/lib.rs){target=\_blank} makes it easy to transact on a remote chain through either the [Sovereign account](/builders/interoperability/xcm/overview/#general-xcm-definitions){target=\_blank}, which should only be allowed through governance, or a [Computed Origin account](/builders/interoperability/xcm/remote-execution/computed-origins/){target=\_blank} via a simple transaction from the source chain.
 
 This guide will show you how to use the XCM Transactor Pallet to send XCM messages from a Moonbeam-based network to other chains in the ecosystem. In addition, you'll also learn how to use the XCM Transactor Precompile to perform the same actions via the Ethereum API.
 
@@ -34,9 +34,9 @@ The XCM Transactor Pallet provides the following extrinsics (functions):
             - `currency` -  defines how you are specifying the token to use to pay for the fees, which can be either of the following:
                 - `AsCurrencyId` - the currency ID of the asset to use for the fees. The currency ID can be either:
                     - `SelfReserve` - uses the native asset
-                    - `ForeignAsset` - uses an [external XC-20](/builders/interoperability/xcm/xc20/overview#external-xc20s){target=\_blank}. It requires you to specify the asset ID of the XC-20
+                    - `ForeignAsset` - uses an [external XC-20](/builders/interoperability/xcm/xc20/overview/#external-xc20s){target=\_blank}. It requires you to specify the asset ID of the XC-20
                      - `LocalAssetReserve` - *deprecated* - use [Local XC-20s](/builders/interoperability/xcm/xc20/overview/#local-xc20s){target=\_blank} instead via the `Erc20` currency type
-                    - `Erc20` - uses a [local XC-20](/builders/interoperability/xcm/xc20/overview#local-xc20s){target=\_blank}. It requires you to specify the contract address of the local XC-20
+                    - `Erc20` - uses a [local XC-20](/builders/interoperability/xcm/xc20/overview/#local-xc20s){target=\_blank}. It requires you to specify the contract address of the local XC-20
                 - `AsMultiLocation` - the XCM versioned multilocation for the asset to use for the fees
             - `feeAmount` - (optional) the amount to use for fees
         - `weightInfo` - the weight information to be used. The `weightInfo` structure contains the following:
@@ -126,9 +126,9 @@ The XCM Transactor Pallet provides the following extrinsics (functions):
             - `currency` -  defines how you are specifying the token to use to pay for the fees, which can be either of the following:
                 - `AsCurrencyId` - the currency ID of the asset to use for the fees. The currency ID can be either:
                     - `SelfReserve` - uses the native asset
-                    - `ForeignAsset` - uses an [external XC-20](/builders/interoperability/xcm/xc20/overview#external-xc20s){target=\_blank}. It requires you to specify the asset ID of the XC-20
+                    - `ForeignAsset` - uses an [external XC-20](/builders/interoperability/xcm/xc20/overview/#external-xc20s){target=\_blank}. It requires you to specify the asset ID of the XC-20
                      - `LocalAssetReserve` - *deprecated* - use [Local XC-20s](/builders/interoperability/xcm/xc20/overview/#local-xc20s){target=\_blank} instead via the `Erc20` currency type
-                    - `Erc20` - uses a [local XC-20](/builders/interoperability/xcm/xc20/overview#local-xc20s){target=\_blank}. It requires you to specify the contract address of the local XC-20
+                    - `Erc20` - uses a [local XC-20](/builders/interoperability/xcm/xc20/overview/#local-xc20s){target=\_blank}. It requires you to specify the contract address of the local XC-20
                 - `AsMultiLocation` - the XCM versioned multilocation for the asset to use for the fees
             - `feeAmount` - (optional) the amount to use for fees
         - `call` - encoded call data of the call that will be executed in the target chain
@@ -162,9 +162,9 @@ The XCM Transactor Pallet provides the following extrinsics (functions):
             - `currency` -  defines how you are specifying the token to use to pay for the fees, which can be either of the following:
                 - `AsCurrencyId` - the currency ID of the asset to use for the fees. The currency ID can be either:
                     - `SelfReserve` - uses the native asset
-                    - `ForeignAsset` - uses an [external XC-20](/builders/interoperability/xcm/xc20/overview#external-xc20s){target=\_blank}. It requires you to specify the asset ID of the XC-20
+                    - `ForeignAsset` - uses an [external XC-20](/builders/interoperability/xcm/xc20/overview/#external-xc20s){target=\_blank}. It requires you to specify the asset ID of the XC-20
                      - `LocalAssetReserve` - *deprecated* - use [Local XC-20s](/builders/interoperability/xcm/xc20/overview/#local-xc20s){target=\_blank} instead via the `Erc20` currency type
-                    - `Erc20` - uses a [local XC-20](/builders/interoperability/xcm/xc20/overview#local-xc20s){target=\_blank}. It requires you to specify the contract address of the local XC-20
+                    - `Erc20` - uses a [local XC-20](/builders/interoperability/xcm/xc20/overview/#local-xc20s){target=\_blank}. It requires you to specify the contract address of the local XC-20
                 - `AsMultiLocation` - the XCM versioned multilocation for the asset to use for the fees
             - `feeAmount` - (optional) the amount to use for fees
         - `call` - encoded call data of the call that will be executed in the target chain
@@ -299,10 +299,10 @@ The XCM Transactor Pallet includes the following read-only functions to obtain p
 
 The relevant [XCM instructions](/builders/interoperability/xcm/core-concepts/instructions/){target=\_blank} to perform remote execution through XCM are, but are not limited to:
 
- - [`DescendOrigin`](/builders/interoperability/xcm/core-concepts/instructions#descend-origin){target=\_blank} - gets executed in the target chain. It mutates the origin on the target chain to match the origin on the source chain, ensuring execution on the target chain occurs on behalf of the same entity initiating the XCM message on the source chain
- - [`WithdrawAsset`](/builders/interoperability/xcm/core-concepts/instructions#withdraw-asset){target=\_blank} - gets executed in the target chain. Removes assets and places them into a holding register
- - [`BuyExecution`](/builders/interoperability/xcm/core-concepts/instructions#buy-execution){target=\_blank} - gets executed in the target chain. Takes the assets from holding to pay for execution fees. The fees to pay are determined by the target chain
- - [`Transact`](/builders/interoperability/xcm/core-concepts/instructions#transact){target=\_blank} - gets executed in the target chain. Dispatches encoded call data from a given origin, allowing for the execution of specific operations or functions
+ - [`DescendOrigin`](/builders/interoperability/xcm/core-concepts/instructions/#descend-origin){target=\_blank} - gets executed in the target chain. It mutates the origin on the target chain to match the origin on the source chain, ensuring execution on the target chain occurs on behalf of the same entity initiating the XCM message on the source chain
+ - [`WithdrawAsset`](/builders/interoperability/xcm/core-concepts/instructions/#withdraw-asset){target=\_blank} - gets executed in the target chain. Removes assets and places them into a holding register
+ - [`BuyExecution`](/builders/interoperability/xcm/core-concepts/instructions/#buy-execution){target=\_blank} - gets executed in the target chain. Takes the assets from holding to pay for execution fees. The fees to pay are determined by the target chain
+ - [`Transact`](/builders/interoperability/xcm/core-concepts/instructions/#transact){target=\_blank} - gets executed in the target chain. Dispatches encoded call data from a given origin, allowing for the execution of specific operations or functions
 
 ## Transact through a Computed Origin Account {: #xcmtransactor-transact-through-signed }
 
@@ -369,7 +369,7 @@ Since you'll be interacting with the `transactThroughSigned` function of the XCM
     ```
 
     !!! note
-        For accurate estimates of the `refTime` and `proofSize` figures for `transactRequiredAtMost`, you can use the [`paymentInfo` method of the Polkadot.js API](/builders/substrate/libraries/polkadot-js-api#fees){target=\_blank}.
+        For accurate estimates of the `refTime` and `proofSize` figures for `transactRequiredAtMost`, you can use the [`paymentInfo` method of the Polkadot.js API](/builders/substrate/libraries/polkadot-js-api/#fees){target=\_blank}.
 
 5. To refund any leftover XCM fees, you can set the `refund` value to `true`. Otherwise, set it to `false`
 

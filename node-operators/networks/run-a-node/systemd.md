@@ -18,7 +18,7 @@ If you're interested in compiling the binary yourself, which may take over 30 mi
 The following sections go through the process of using the binary and running a Moonbeam full node as a systemd service. To get started, you'll need to:
 
 - Make sure you're running Ubuntu 18.04, 20.04, or 22.04. Moonbeam may work with other Linux flavors, but Ubuntu is currently the only tested version
-- Make sure that your system meets the [requirements](/node-operators/networks/run-a-node/overview#requirements){target=\_blank}. When connecting to Moonriver on Kusama or Moonbeam on Polkadot, it will take a few days to completely sync the embedded relay chain
+- Make sure that your system meets the [requirements](/node-operators/networks/run-a-node/overview/#requirements){target=\_blank}. When connecting to Moonriver on Kusama or Moonbeam on Polkadot, it will take a few days to completely sync the embedded relay chain
 
 ## Download the Latest Release Binary {: #the-release-binary }
 
@@ -477,7 +477,7 @@ journalctl -f -u moonbeam.service
 During the syncing process, you will see logs from both the embedded relay chain ([Relaychain]) and the parachain ([🌗]). These logs display a target block (live network state) and a best block (local node synced state).
 
 !!! note
-    It may take a few days to completely sync the embedded relay chain. Make sure that your system meets the [requirements](/node-operators/networks/run-a-node/overview#requirements){target=\_blank}.
+    It may take a few days to completely sync the embedded relay chain. Make sure that your system meets the [requirements](/node-operators/networks/run-a-node/overview/#requirements){target=\_blank}.
 
 If you need to stop the service for any reason, you can run:
 

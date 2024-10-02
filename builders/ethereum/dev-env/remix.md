@@ -27,7 +27,7 @@ If you followed the guides above, you should have a local Moonbeam node, which w
 
 ![The terminal logs of for a local Moonbeam development node that is producing blocks.](/images/builders/ethereum/dev-env/remix/remix-1.webp)
 
-Your development node comes with 10 pre-funded accounts. You should have MetaMask connected to your Moonbeam development node and have imported at least one of the pre-funded accounts. You can refer to the [Import Accounts](/tokens/connect/metamask#import-accounts){target=\_blank} section of the MetaMask docs for step-by-step instructions on how to import a development account.
+Your development node comes with 10 pre-funded accounts. You should have MetaMask connected to your Moonbeam development node and have imported at least one of the pre-funded accounts. You can refer to the [Import Accounts](/tokens/connect/metamask/#import-accounts){target=\_blank} section of the MetaMask docs for step-by-step instructions on how to import a development account.
 
 ![The main screen of MetaMask, which shows an account connected to a Moonbeam development node and its balance.](/images/builders/ethereum/dev-env/remix/remix-2.webp)
 
@@ -181,6 +181,6 @@ On the other hand, if you call the `approve` function, which will approve an acc
 
 ![The inputs for the approve function of the ERC-20 contract and the MetaMask pop-up for the approval.](/images/builders/ethereum/dev-env/remix/remix-14.webp)
 
-To view your balance or approvals, or transfer MYTOKs, you can add the MYTOK to your wallet. For information on how to add a token to MetaMask, you can refer to the [Add an ERC-20 Token](/tokens/connect/metamask#add-erc20){target=\_blank} section of [our MetaMask documentation](/tokens/connect/metamask/){target=\_blank}.
+To view your balance or approvals, or transfer MYTOKs, you can add the MYTOK to your wallet. For information on how to add a token to MetaMask, you can refer to the [Add an ERC-20 Token](/tokens/connect/metamask/#add-erc20){target=\_blank} section of [our MetaMask documentation](/tokens/connect/metamask/){target=\_blank}.
 
 --8<-- 'text/_disclaimers/third-party-content.md'

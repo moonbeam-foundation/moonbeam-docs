@@ -118,11 +118,11 @@ This section of the guide covers the process of building a custom XCM message to
 
 In the following example, you'll transfer DEV tokens from one account to another on Moonbase Alpha. To do so, you'll be building an XCM message that contains the following XCM instructions, which are executed locally (in this case, on Moonbase Alpha):
 
- - [`WithdrawAsset`](/builders/interoperability/xcm/core-concepts/instructions#withdraw-asset){target=\_blank} - removes assets and places them into the holding register
- - [`DepositAsset`](/builders/interoperability/xcm/core-concepts/instructions#deposit-asset){target=\_blank} - removes the assets from the holding register and deposits the equivalent assets to a beneficiary account
+ - [`WithdrawAsset`](/builders/interoperability/xcm/core-concepts/instructions/#withdraw-asset){target=\_blank} - removes assets and places them into the holding register
+ - [`DepositAsset`](/builders/interoperability/xcm/core-concepts/instructions/#deposit-asset){target=\_blank} - removes the assets from the holding register and deposits the equivalent assets to a beneficiary account
 
 !!! note
-    Typically, when you send an XCM message cross-chain to a target chain, the [`BuyExecution` instruction](/builders/interoperability/xcm/core-concepts/instructions#buy-execution){target=\_blank} is needed to pay for remote execution. However, for local execution, this instruction is not necessary as you are already getting charged via the extrinsic call.
+    Typically, when you send an XCM message cross-chain to a target chain, the [`BuyExecution` instruction](/builders/interoperability/xcm/core-concepts/instructions/#buy-execution){target=\_blank} is needed to pay for remote execution. However, for local execution, this instruction is not necessary as you are already getting charged via the extrinsic call.
 
 ### Execute an XCM Message with the Polkadot.js API {: #execute-an-xcm-message-with-polkadotjs-api }
 
@@ -253,9 +253,9 @@ For the XCM message to be successfully executed, the target chain needs to be ab
 
 In the following example, you'll be building an XCM message that contains the following XCM instructions, which will be executed in the Alphanet relay chain:
 
- - [`WithdrawAsset`](/builders/interoperability/xcm/core-concepts/instructions#withdraw-asset){target=\_blank} - removes assets and places them into the holding register
- - [`BuyExecution`](/builders/interoperability/xcm/core-concepts/instructions#buy-execution){target=\_blank} - takes the assets from holding to pay for execution fees. The fees to pay are determined by the target chain
- - [`DepositAsset`](/builders/interoperability/xcm/core-concepts/instructions#deposit-asset){target=\_blank}- removes the assets from the holding register and deposits the equivalent assets to a beneficiary account
+ - [`WithdrawAsset`](/builders/interoperability/xcm/core-concepts/instructions/#withdraw-asset){target=\_blank} - removes assets and places them into the holding register
+ - [`BuyExecution`](/builders/interoperability/xcm/core-concepts/instructions/#buy-execution){target=\_blank} - takes the assets from holding to pay for execution fees. The fees to pay are determined by the target chain
+ - [`DepositAsset`](/builders/interoperability/xcm/core-concepts/instructions/#deposit-asset){target=\_blank}- removes the assets from the holding register and deposits the equivalent assets to a beneficiary account
 
 Together, the intention of these instructions is to transfer the native asset of the relay chain, which is UNIT for the Alphanet relay chain, from Moonbase Alpha to an account on the relay chain. This example is for demonstration purposes only to show you how a custom XCM message could be sent cross-chain. Please keep in mind that the target chain needs to be able to understand the instructions in the message to execute them.
 

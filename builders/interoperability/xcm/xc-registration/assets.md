@@ -9,7 +9,7 @@ description: This guide includes everything you need to know to register local a
 
 For an asset to be transferred across chains via XCM, there needs to be an open channel between the two chains, and the asset needs to be registered on the destination chain. If a channel doesn't exist between the two chains, one will need to be opened. Please check out the [XC Channel Registration](/builders/interoperability/xcm/xc-registration/xc-integration/){target=\_blank} guide for information on how to establish a channel between Moonbeam and another chain.
 
-This guide will show you how to register [external XC-20s](/builders/interoperability/xcm/xc20/overview#external-xc20s){target=\_blank} on Moonbeam and provide the information you need to register Moonbeam assets, including Moonbeam native assets (GLMR, MOVR, and DEV) and [local XC-20s](/builders/interoperability/xcm/xc20/overview#local-xc20s){target=\_blank} (XCM-enabled ERC-20s), on another chain.
+This guide will show you how to register [external XC-20s](/builders/interoperability/xcm/xc20/overview/#external-xc20s){target=\_blank} on Moonbeam and provide the information you need to register Moonbeam assets, including Moonbeam native assets (GLMR, MOVR, and DEV) and [local XC-20s](/builders/interoperability/xcm/xc20/overview/#local-xc20s){target=\_blank} (XCM-enabled ERC-20s), on another chain.
 
 The examples in this guide use a CLI tool developed to ease the entire process, which you can find in the [xcm-tools GitHub repository](https://github.com/Moonsong-Labs/xcm-tools){target=\_blank}.
 
@@ -23,7 +23,7 @@ yarn
 
 Registering External XC-20s on Moonbeam is a multi-step process that, at a high level, involves proposing the asset registration on the [Moonbeam Community Forum](https://forum.moonbeam.network){target=\_blank} and creating an on-chain governance proposal.
 
-If a channel between Moonbeam and the origin chain of the asset does not yet exist, one will need to be opened. You can batch the channel-related calls with the asset registration calls, so you only need to submit a single proposal. You'll need to start by creating a couple of forum posts: an [XCM Disclosure](/builders/interoperability/xcm/xc-registration/forum-templates#xcm-disclosures){target=\_blank} post and an [XCM Proposal](/builders/interoperability/xcm/xc-registration/forum-templates#xcm-proposals){target=\_blank} post.
+If a channel between Moonbeam and the origin chain of the asset does not yet exist, one will need to be opened. You can batch the channel-related calls with the asset registration calls, so you only need to submit a single proposal. You'll need to start by creating a couple of forum posts: an [XCM Disclosure](/builders/interoperability/xcm/xc-registration/forum-templates/#xcm-disclosures){target=\_blank} post and an [XCM Proposal](/builders/interoperability/xcm/xc-registration/forum-templates/#xcm-proposals){target=\_blank} post.
 
 After you've collected feedback from community members, you can create a proposal to open a channel and register any assets. Please refer to the [Establishing an XC Integration with Moonbeam](/builders/interoperability/xcm/xc-registration/xc-integration/){target=\_blank} guide for more information on opening a channel.
 
@@ -35,7 +35,7 @@ If a channel between the chains already exists, you'll need to create a forum po
 
 ### Create a Forum Post {: #create-a-forum-post }
 
-To create a forum post on the [Moonbeam Community Forum](https://forum.moonbeam.network){target=\_blank}, you'll need to make sure that you're adding the post to the correct category and adding relevant content. For general guidelines and a template to follow, please refer to the [Moonbeam Community Forum Templates for XCM Integrations](/builders/interoperability/xcm/xc-registration/forum-templates#){target=\_blank} page.
+To create a forum post on the [Moonbeam Community Forum](https://forum.moonbeam.network){target=\_blank}, you'll need to make sure that you're adding the post to the correct category and adding relevant content. For general guidelines and a template to follow, please refer to the [Moonbeam Community Forum Templates for XCM Integrations](/builders/interoperability/xcm/xc-registration/forum-templates/#){target=\_blank} page.
 
 ### Create a Proposal to Register an Asset {: #create-a-proposal }
 
@@ -142,7 +142,7 @@ To create a batch transaction that also sets the units per second or revert code
 - `--revert-code` or `--revert` - (optional) - registers the revert code for the asset's precompile in the EVM. If this is provided, the script will create a batch transaction for the governance proposal that, at a minimum, will register the asset and set the revert code.
 
     !!! note
-        **This flag is not necessary for proposals on Moonbeam** as it includes a `system.setStorage` call that the [OpenGov](/learn/features/governance#opengov) General Admin Origin can't execute. The dummy EVM bytecode can be set later with a call to the [Precompile Registry precompile](/builders/ethereum/precompiles/utility/registry/){target=\_blank}, which means that you don't need to worry about going through governance to set the revert code! Please check out the [Set XC-20 Precompile Bytecode](#set-bytecode) section to learn how to set the dummy bytecode.
+        **This flag is not necessary for proposals on Moonbeam** as it includes a `system.setStorage` call that the [OpenGov](/learn/features/governance/#opengov) General Admin Origin can't execute. The dummy EVM bytecode can be set later with a call to the [Precompile Registry precompile](/builders/ethereum/precompiles/utility/registry/){target=\_blank}, which means that you don't need to worry about going through governance to set the revert code! Please check out the [Set XC-20 Precompile Bytecode](#set-bytecode) section to learn how to set the dummy bytecode.
 
 As a practical example, the following command would generate the encoded calldata to register an asset from parachain 888 that has a general key of `1`:
 
@@ -173,7 +173,7 @@ The script provides the option to programmatically submit a preimage and democra
 - `--send-proposal-as` or `--s` - (optional) - specifies how the proposal should be sent. The following options are accepted:
     - `democracy` - sends the proposal through regular democracy using Governance v1
     - `council-external` - sends the proposal as an external proposal that will be voted on by the council using Governance v1
-    - `v2` - sends the proposal through OpenGov (Governance v2). This option should be used for Moonbeam. If you choose this option, you'll also need to use the `--track` argument to specify which [Track](/learn/features/governance#general-definitions--general-definitions-gov2){target=\_blank} the proposal will go through and the `--delay` argument to specify the delay period (in blocks) after the proposal has passed and before the proposal is executed
+    - `v2` - sends the proposal through OpenGov (Governance v2). This option should be used for Moonbeam. If you choose this option, you'll also need to use the `--track` argument to specify which [Track](/learn/features/governance/#general-definitions--general-definitions-gov2){target=\_blank} the proposal will go through and the `--delay` argument to specify the delay period (in blocks) after the proposal has passed and before the proposal is executed
 - `--collectiveThreshold` or `--c` - (optional) - the number of council votes that are needed to approve the proposal. Defaults to `1`
 - `--at-block` - (optional) - the block number at which the call should get executed
 - `--track` - (optional) - the Track the proposal should go through for OpenGov proposals. For Moonbeam, the General Admin Origin should be used

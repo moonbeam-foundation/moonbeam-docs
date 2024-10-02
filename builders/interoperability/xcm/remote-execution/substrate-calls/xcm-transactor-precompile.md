@@ -7,7 +7,7 @@ description: This guide describes the XCM Transactor Precompile and shows how to
 
 XCM messages are comprised of a [series of instructions](/builders/interoperability/xcm/core-concepts/instructions/){target=\_blank} that are executed by the Cross-Consensus Virtual Machine (XCVM). Combinations of these instructions result in predetermined actions such as cross-chain token transfers and, more interestingly, remote cross-chain execution. Remote execution involves executing operations or actions on one blockchain from another blockchain while maintaining the integrity of the sender's identity and permissions.
 
-Typically, XCM messages are sent from the root origin (that is, SUDO or through governance), which is not ideal for projects that want to leverage remote cross-chain calls via a simple transaction. The [XCM Transactor Pallet](https://github.com/moonbeam-foundation/moonbeam/blob/master/pallets/xcm-transactor/src/lib.rs){target=\_blank} makes it easy to transact on a remote chain through either the [Sovereign account](/builders/interoperability/xcm/overview#general-xcm-definitions){target=\_blank}, which should only be allowed through governance, or a [Computed Origin account](/builders/interoperability/xcm/remote-execution/computed-origins/){target=\_blank} via a simple transaction from the source chain.
+Typically, XCM messages are sent from the root origin (that is, SUDO or through governance), which is not ideal for projects that want to leverage remote cross-chain calls via a simple transaction. The [XCM Transactor Pallet](https://github.com/moonbeam-foundation/moonbeam/blob/master/pallets/xcm-transactor/src/lib.rs){target=\_blank} makes it easy to transact on a remote chain through either the [Sovereign account](/builders/interoperability/xcm/overview/#general-xcm-definitions){target=\_blank}, which should only be allowed through governance, or a [Computed Origin account](/builders/interoperability/xcm/remote-execution/computed-origins/){target=\_blank} via a simple transaction from the source chain.
 
 However, the XCM Transactor Pallet is coded in Rust and is normally not accessible from the Ethereum API side of Moonbeam. As such, Moonbeam introduced the XCM Transactor Precompile, which is a Solidity interface that allows you to interact directly with the Substrate pallet using the Ethereum API.
 
@@ -146,7 +146,7 @@ The interface varies slightly from version to version. You can find an overview 
     }
     ```
 
-    Additionally, support for the [`RefundSurplus`](/builders/interoperability/xcm/core-concepts/instructions#refund-surplus){target=\_blank} and [`DepositAsset`](/builders/interoperability/xcm/core-concepts/instructions#deposit-asset){target=\_blank} instructions was added. To append the `RefundSurplus` instruction to the XCM message, you can use the `refund` parameter, which will refund any leftover funds not used for the `Transact` if set to `true`.
+    Additionally, support for the [`RefundSurplus`](/builders/interoperability/xcm/core-concepts/instructions/#refund-surplus){target=\_blank} and [`DepositAsset`](/builders/interoperability/xcm/core-concepts/instructions/#deposit-asset){target=\_blank} instructions was added. To append the `RefundSurplus` instruction to the XCM message, you can use the `refund` parameter, which will refund any leftover funds not used for the `Transact` if set to `true`.
 
     The V3 interface includes the following functions:
 
@@ -222,10 +222,10 @@ The interface varies slightly from version to version. You can find an overview 
 
 The relevant [XCM instructions](/builders/interoperability/xcm/core-concepts/instructions/){target=\_blank} to perform remote execution through XCM are, but are not limited to:
 
- - [`DescendOrigin`](/builders/interoperability/xcm/core-concepts/instructions#descend-origin){target=\_blank} - gets executed in the target chain. It mutates the origin on the target chain to match the origin on the source chain, ensuring execution on the target chain occurs on behalf of the same entity initiating the XCM message on the source chain
- - [`WithdrawAsset`](/builders/interoperability/xcm/core-concepts/instructions#withdraw-asset){target=\_blank} - gets executed in the target chain. Removes assets and places them into a holding register
- - [`BuyExecution`](/builders/interoperability/xcm/core-concepts/instructions#buy-execution){target=\_blank} - gets executed in the target chain. Takes the assets from holding to pay for execution fees. The fees to pay are determined by the target chain
- - [`Transact`](/builders/interoperability/xcm/core-concepts/instructions#transact){target=\_blank} - gets executed in the target chain. Dispatches encoded call data from a given origin, allowing for the execution of specific operations or functions
+ - [`DescendOrigin`](/builders/interoperability/xcm/core-concepts/instructions/#descend-origin){target=\_blank} - gets executed in the target chain. It mutates the origin on the target chain to match the origin on the source chain, ensuring execution on the target chain occurs on behalf of the same entity initiating the XCM message on the source chain
+ - [`WithdrawAsset`](/builders/interoperability/xcm/core-concepts/instructions/#withdraw-asset){target=\_blank} - gets executed in the target chain. Removes assets and places them into a holding register
+ - [`BuyExecution`](/builders/interoperability/xcm/core-concepts/instructions/#buy-execution){target=\_blank} - gets executed in the target chain. Takes the assets from holding to pay for execution fees. The fees to pay are determined by the target chain
+ - [`Transact`](/builders/interoperability/xcm/core-concepts/instructions/#transact){target=\_blank} - gets executed in the target chain. Dispatches encoded call data from a given origin, allowing for the execution of specific operations or functions
 
 ## Building the Precompile Multilocation {: #building-the-precompile-multilocation }
 
@@ -293,7 +293,7 @@ For this example, you'll interact with the `transactThroughSigned` function of t
         const feeLocationAddress = '0xFFFFFFFF1AB2B146C526D4154905FF12E6E57675';
         ```
 
-    - `transactRequiredWeightAtMost` - the weight required to execute the call in the `Transact` instruction. You can get this information by using the [`paymentInfo` method of the Polkadot.js API](/builders/substrate/libraries/polkadot-js-api#fees){target=\_blank} on the call
+    - `transactRequiredWeightAtMost` - the weight required to execute the call in the `Transact` instruction. You can get this information by using the [`paymentInfo` method of the Polkadot.js API](/builders/substrate/libraries/polkadot-js-api/#fees){target=\_blank} on the call
 
         ```js
         const transactRequiredWeightAtMost = [1000000000n, 5000n];
