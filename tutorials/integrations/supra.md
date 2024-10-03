@@ -20,7 +20,7 @@ In this guide, you'll learn about Supra's pull model and how to use their price 
 Supra uses a pull model as a customized approach that publishes price data upon request. It combines Web2 and Web3 methods to achieve low latency when sending data from Supra to destination chains. The process involves the following steps:
 
 1. Web2 methods are used to retrieve price data from Supra
-2. Smart contracts are utilized for cryptographically verifying and writing the latest price data on-chain, where it lives on immutable ledgers, using [Supra's Pull contract](https://supra.com/docs/data-feeds/pull-model){target=\_blank}
+2. Smart contracts are utilized for cryptographically verifying and writing the latest price data on-chain, where it lives on immutable ledgers, using [Supra's Pull contract](https://docs.supra.com/oracles/data-feeds/pull-oracle){target=\_blank}
 3. Once the data has been written on-chain, the most recently published price feed data will be available in Supra's Storage contract
 
 You can fetch price data from Supra for any [available data pairs](https://docs.supra.com/oracles/data-feeds/data-feeds-index){target=\_blank}.
