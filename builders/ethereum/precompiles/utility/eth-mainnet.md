@@ -153,3 +153,40 @@ The Solidity compiler does not support it, so it needs to be called with inline 
 ```
 
 You can try this in [Remix](/builders/ethereum/dev-env/remix/){target=\_blank}. Use the function `verify()`, passing the base, exponent, and modulus. The function will store the value in the `checkResult` variable.
+
+## P256 Verify {: #p256-verify }
+
+The P256Verify Precompile adds support for RIP-7212, signature verification for secp256r1 elliptic curve. This precompile adds a WASM implementation of the signature verification and is intended to be replaced by a native runtime function call once offered by Polkadot. 
+
+```solidity
+--8<-- 'code/builders/ethereum/precompiles/utility/eth-mainnet/p256verify.sol'
+```
+
+In the below file, there are two different test cases, one to test successful verification and another that should fail. 
+
+??? code "p256verifywithtests.sol"
+    ```solidity
+    --8<-- 'code/builders/ethereum/precompiles/utility/eth-mainnet/p256verifywithtests.sol'
+    ```
+
+Using the [Remix compiler and deployment](/builders/ethereum/dev-env/remix/){target=\_blank} and with [MetaMask pointing to Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}, you can deploy the contract and call the `verify` method with the following parameters: 
+
+=== "Valid Signature"
+
+	| Parameter    | Value                                                                                                                                          |
+	|--------------|------------------------------------------------------------------------------------------------------------------------------------------------|
+	| `msg_hash`   | `0xb5a77e7a90aa14e0bf5f337f06f597148676424fae26e175c6e5621c34351955`                                                                           |
+	| `signature`  | `["0x289f319789da424845c9eac935245fcddd805950e2f02506d09be7e411199556", "0xd262144475b1fa46ad85250728c600c53dfd10f8b3f4adf140e27241aec3c2da"]` |
+	| `public_key` | `["0x3a81046703fccf468b48b145f939efdbb96c3786db712b3113bb2488ef286cdc", "0xef8afe82d200a5bb36b5462166e8ce77f2d831a52ef2135b2af188110beaefb1"]` | 
+	| Expected Result | `true`                                                                                                                                        |
+
+=== "Invalid Signature"
+
+	| Parameter       | Value                                                                                                                                          |
+	|-----------------|------------------------------------------------------------------------------------------------------------------------------------------------|
+	| `msg_hash`      | `0xd182e6ad7f520e511f6c3e2b8c68059b6bbd41fbabd9831f79217e1319cde05b`                                                                           |
+	| `signature`     | `["0x6162630000000000000000000000000000000000000000000000000000000000", "0x6162630000000000000000000000000000000000000000000000000000000000"]` |
+	| `public_key`    | `["0x6162630000000000000000000000000000000000000000000000000000000000", "0x6162630000000000000000000000000000000000000000000000000000000000"]` |
+	| Expected Result | `false`                                                                                                                                        |
+
+You'll receive two booleans in response, the first one indicates whether the signature was valid, and the second indicates whether the call to the P256Verify precompile was successful. The second boolean should always return true, and the first boolean is the one to check to see if the signature is valid. 
