@@ -213,7 +213,7 @@ After the transaction is confirmed, wait for a few blocks for the transfer to re
 
 ### Send Tokens Over Specific Locations {: #transfer-locations }
 
-This function is more generic than the others, allowing the destination chain, destination account, and assets to be specified using [XCM Multilocations](/learn/framework/xcm/#message-destinations){target=\_blank}.
+This function is more generic than the others, allowing the destination chain, destination account, and assets to be specified using [XCM Multilocations](/builders/interoperability/xcm/core-concepts/multilocations/){target=\_blank}.
 To send tokens to specific locations, please follow these steps:
 
 1. Expand the **transferAssetsLocation** function

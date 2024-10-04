@@ -244,7 +244,7 @@ produceBlock();
 
 ## Prefunded Development Accounts {: #pre-funded-development-accounts }
 
-Moonbeam has a [unified accounts](/learn/core-concepts/unified-accounts/){target=\_blank} system, which enables users to have an Ethereum-styled H160 account that can interact with the Substrate API and the Ethereum API. As a result, you can interact with your account through [Polkadot.js Apps](/tokens/connect/polkadotjs#connect-polkadotjs-apps){target=\_blank} or [MetaMask](/tokens/connect/metamask/){target=\_blank} (or any other [EVM wallet](/tokens/connect/){target=\_blank}). In addition, you can also use other [development tools](/builders/ethereum/dev-env/){target=\_blank}, such as [Remix](/builders/ethereum/dev-env/remix/){target=\_blank} and [Hardhat](/builders/ethereum/dev-env/hardhat/){target=\_blank}.
+Moonbeam has a [unified accounts](/learn/core-concepts/unified-accounts/){target=\_blank} system, which enables users to have an Ethereum-styled H160 account that can interact with the Substrate API and the Ethereum API. As a result, you can interact with your account through [Polkadot.js Apps](/tokens/connect/polkadotjs/#connect-polkadotjs-apps){target=\_blank} or [MetaMask](/tokens/connect/metamask/){target=\_blank} (or any other [EVM wallet](/tokens/connect/){target=\_blank}). In addition, you can also use other [development tools](/builders/ethereum/dev-env/){target=\_blank}, such as [Remix](/builders/ethereum/dev-env/remix/){target=\_blank} and [Hardhat](/builders/ethereum/dev-env/hardhat/){target=\_blank}.
 
 Your Moonbeam development node comes with ten prefunded Ethereum-styled accounts for development. The addresses are derived from Substrate's canonical development mnemonic:
 

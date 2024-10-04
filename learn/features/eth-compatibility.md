@@ -17,7 +17,7 @@ Moonbeam incorporates a fully compatible EVM to execute smart contracts in Solid
 
 Learn more:
 
-- [Moonbeam's Ethereum-compatibility architecture](/learn/platform/technology#ethereum-compatibility-architecture){target=\_blank}
+- [Moonbeam's Ethereum-compatibility architecture](/learn/platform/technology/#ethereum-compatibility-architecture){target=\_blank}
 
 ### Ethereum-style Accounts {: #ethereum-style-accounts }
 
@@ -67,7 +67,7 @@ Due to Moonbeam's native interoperability, ERC-20s can be sent cross-chain to ot
 Learn more:
 
 - [Create common OpenZeppelin contracts such as ERC-20, ERC-721, and ERC-1155 tokens](/builders/ethereum/dev-env/openzeppelin/contracts/){target=\_blank}
-- [XCM-enabled ERC-20s](/builders/interoperability/xcm/xc20/overview#local-xc20s){target=\_blank} (also referred to as local XC-20s)
+- [XCM-enabled ERC-20s](/builders/interoperability/xcm/xc20/overview/#local-xc20s){target=\_blank} (also referred to as local XC-20s)
 
 ## Key Differences {: #key-differences }
 
@@ -77,7 +77,7 @@ Moonbeam uses a Delegated Proof-of-Stake (DPoS) consensus mechanism, where token
 
 Learn more:
 
-- [Differences between PoS and DPoS](/learn/core-concepts/consensus-finality#main-differences){target=_blank}
+- [Differences between PoS and DPoS](/learn/core-concepts/consensus-finality/#main-differences){target=_blank}
 
 ### Finality {: #finality }
 

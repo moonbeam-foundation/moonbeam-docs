@@ -77,7 +77,7 @@ The snippets below follow this strategy to check transaction finality. It uses t
 
 Moonbeam has added support for two custom RPC endpoints, `moon_isBlockFinalized` and `moon_isTxFinalized`, that can be used to check whether an on-chain event is finalized. These methods are a bit more straightforward, as you don't need to compare block numbers to ensure your transaction is finalized.
 
-For more information, you can go to the [Finality RPC Endpoints](/builders/ethereum/json-rpc/moonbeam-custom-api#rpc-methods){target=\_blank} section of the Moonbeam Custom API page.
+For more information, you can go to the [Finality RPC Endpoints](/builders/ethereum/json-rpc/moonbeam-custom-api/#rpc-methods){target=\_blank} section of the Moonbeam Custom API page.
 
 You can modify the scripts from the Ethereum RPC section above to use `moon_isBlockFinalized` and `moon_isTxFinalized`. To do this, you can make custom calls to the Substrate JSON-RPC using the `send` method of both [Web3.js](https://web3js.readthedocs.io){target=\_blank} and [Ethers.js](https://docs.ethers.org/v6){target=\_blank}. Custom RPC requests are also possible using [Web3.py](https://web3py.readthedocs.io){target=\_blank} with the `make_request` method. You'll need to pass in the method name and the parameters to the custom request, which you can find on the [Moonbeam Custom API](/builders/ethereum/json-rpc/moonbeam-custom-api/){target=\_blank} page.
 
