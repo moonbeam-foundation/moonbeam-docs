@@ -156,13 +156,13 @@ You can try this in [Remix](/builders/ethereum/dev-env/remix/){target=\_blank}. 
 
 ## P256 Verify {: #p256-verify }
 
-The P256Verify Precompile adds support for [RIP-7212](https://github.com/ethereum/RIPs/blob/master/RIPS/rip-7212.md){target=\_blank}, signature verification for Secp256r1 elliptic curve. This precompile adds a WASM implementation of the signature verification and is intended to be replaced by a native runtime function call once offered by Polkadot. 
+The P256Verify Precompile adds support for [RIP-7212](https://github.com/ethereum/RIPs/blob/master/RIPS/rip-7212.md){target=\_blank}, signature verification for Secp256r1 elliptic curve. This precompile adds a WASM implementation of the signature verification and is intended to be replaced by a native runtime function call once Polkadot offers it. 
 
 ```solidity
 --8<-- 'code/builders/ethereum/precompiles/utility/eth-mainnet/p256verify.sol'
 ```
 
-In the below file, there are two different test cases, one with a valid signature test and a second with an invalid signature test.
+The file below contains two different test cases: one with a valid signature test and a second with an invalid signature test.
 
 ??? code "p256verifywithtests.sol"
     ```solidity
@@ -189,4 +189,4 @@ Using the [Remix compiler and deployment](/builders/ethereum/dev-env/remix/){tar
 	| `public_key`    | `["0x6162630000000000000000000000000000000000000000000000000000000000", "0x6162630000000000000000000000000000000000000000000000000000000000"]` |
 	| Expected Result | `false`                                                                                                                                        |
 
-You'll receive two booleans in response, the first one indicates whether the signature was valid, and the second indicates whether the call to the P256Verify precompile was successful. The second boolean should always return true, and the first boolean is the one to check to see if the signature is valid. 
+You'll receive two booleans in response; the first one indicates whether the signature was valid, and the second indicates whether the call to the P256Verify precompile was successful. The second boolean should always return true; the first is the one to check to see if the signature is valid. 
