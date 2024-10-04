@@ -12,6 +12,7 @@
     |                 [BN128Mul](/builders/ethereum/precompiles/utility/eth-mainnet/#bn128mul){target=\_blank}                 | 0x0000000000000000000000000000000000000007 |
     |             [BN128Pairing](/builders/ethereum/precompiles/utility/eth-mainnet/#bn128pairing){target=\_blank}             | 0x0000000000000000000000000000000000000008 |
     | [Blake2](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm_precompile_blake2/struct.Blake2F.html){target=\_blank} | 0x0000000000000000000000000000000000000009 |
+    | [P256Verify](https://github.com/ethereum/RIPs/blob/master/RIPS/rip-7212.md){target=\_blank} | 0x0000000000000000000000000000000000000100 |
 
 === "Moonriver"
     |                                                          Contract                                                           |                  Address                   |
@@ -25,6 +26,7 @@
     |                 [BN128Mul](/builders/ethereum/precompiles/utility/eth-mainnet/#bn128mul){target=\_blank}                 | 0x0000000000000000000000000000000000000007 |
     |             [BN128Pairing](/builders/ethereum/precompiles/utility/eth-mainnet/#bn128pairing){target=\_blank}             | 0x0000000000000000000000000000000000000008 |
     | [Blake2](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm_precompile_blake2/struct.Blake2F.html){target=\_blank} | 0x0000000000000000000000000000000000000009 |
+    | [P256Verify](https://github.com/ethereum/RIPs/blob/master/RIPS/rip-7212.md){target=\_blank} | 0x0000000000000000000000000000000000000100 |
 
 === "Moonbase Alpha"
     |                                                          Contract                                                           |                  Address                   |
@@ -38,3 +40,4 @@
     |                 [BN128Mul](/builders/ethereum/precompiles/utility/eth-mainnet/#bn128mul){target=\_blank}                 | 0x0000000000000000000000000000000000000007 |
     |             [BN128Pairing](/builders/ethereum/precompiles/utility/eth-mainnet/#bn128pairing){target=\_blank}             | 0x0000000000000000000000000000000000000008 |
     | [Blake2](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm_precompile_blake2/struct.Blake2F.html){target=\_blank} | 0x0000000000000000000000000000000000000009 |
+    | [P256Verify](https://github.com/ethereum/RIPs/blob/master/RIPS/rip-7212.md){target=\_blank} | 0x0000000000000000000000000000000000000100 |
