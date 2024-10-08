@@ -1,7 +1,7 @@
 <div id="termynal" data-termynal>
-  <span data-ty="input"><span class="file-path"></span>docker pull moonbeamfoundation/moonbeam:v0.40.0</span>
+  <span data-ty="input"><span class="file-path"></span>docker pull moonbeamfoundation/moonbeam:v0.40.1</span>
   <br>
-  <span data-ty>v0.40.0: Pulling from moonbeamfoundation/moonbeam
+  <span data-ty>v0.40.1: Pulling from moonbeamfoundation/moonbeam
     <br> b0a0cf830b12: Pull complete
     <br> fbff687640dd: Pull complete
     <br> 58ea427410e2: Pull complete
