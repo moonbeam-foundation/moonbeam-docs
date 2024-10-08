@@ -6,7 +6,7 @@
   <br>
   <span data-ty>CLI parameter `--execution` has no effect anymore and will be removed in the future!
     <br> 2024-04-29 06:09:29 Moonbeam Parachain Collator
-    <br> 2024-04-29 06:09:29 ✌️  0.40.0-be5032c7749
+    <br> 2024-04-29 06:09:29 ✌️  0.40.1-7df6c4e6c5ab
     <br> 2024-04-29 06:09:29 ❤️  by PureStake, 2019-2024
     <br> 2024-04-29 06:09:29 📋 Chain specification: Moonbase Development Testnet
     <br> 2024-04-29 06:09:29 🏷  Node name: black-and-white-sticks-9174
