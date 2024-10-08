@@ -9,8 +9,8 @@
     <br> 4316d5f1b914: Pull complete
     <br> 128693ce218e: Pull complete
     <br> a3ac90b88463: Pull complete
-    <br> Digest: sha256:1def3370159ee7d14fce3951a1198bda7c51af566e0b3d69ce4644338e29f046
-    <br> Status: Downloaded newer image for moonbeamfoundation/moonbeam:v0.40.0
-    <br> docker.io/moonbeamfoundation/moonbeam:v0.40.0
+    <br> Digest: sha256:5f993e9445da4ca7ae7eaf28ee80b21b7a4cec4341aa75c10c5a9baed41de1a6
+    <br> Status: Downloaded newer image for moonbeamfoundation/moonbeam:v0.40.1
+    <br> docker.io/moonbeamfoundation/moonbeam:v0.40.1
   </span>
 </div>
