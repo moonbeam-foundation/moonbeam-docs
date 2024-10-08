@@ -1,6 +1,6 @@
 <div id="termynal" data-termynal>
   <span data-ty="input"><span class="file-path"></span>docker run --rm --name moonbeam_development --network host \
-    <br> moonbeamfoundation/moonbeam:v0.40.0 \
+    <br> moonbeamfoundation/moonbeam:v0.40.1 \
     <br> --dev --rpc-external
   </span>
   <br>
