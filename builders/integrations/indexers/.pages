@@ -3,7 +3,7 @@ hide: false
 nav:
   - index.md
   - 'The Graph': 'thegraph.md'
-  - 'Covalent API': 'covalent.md'
+  - 'Goldrush API': 'covalent.md'
   - 'Moralis': 'moralis.md'
   - 'SubQuery': 'subquery.md'
   - 'SQD': 'subsquid.md'
