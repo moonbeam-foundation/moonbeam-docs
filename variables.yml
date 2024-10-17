@@ -1,6 +1,6 @@
 networks:
   development:
-    build_tag: v0.40.1
+    build_tag: v0.41.0
     tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.40.1-3200-ae11
     rpc_url: http://127.0.0.1:9944
     wss_url: ws://127.0.0.1:9944
@@ -15,10 +15,10 @@ networks:
     hex_chain_id: '0x507'
     chain_spec: alphanet
     block_explorer: https://moonbase.moonscan.io/
-    spec_version: runtime-3200
-    parachain_release_tag: v0.40.1 # must be in this exact format for links to work
-    parachain_sha256sum: db91ff9bd00e283b0105bf2997b401dbaf729a8d6ce53757c380b3c99ba9a275
-    tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.40.1-3200-ae11
+    spec_version: runtime-3300
+    parachain_release_tag: v0.41.0 # must be in this exact format for links to work
+    parachain_sha256sum: d199266180adcdb25c19aa0ac9d8f5a7157ef1235393fac616d48bb68ba8bcde
+    tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.41.0-3300-d3e6
     gas_block: 60,000,000
     gas_block_numbers_only: 60000000 # this should match gas_block, just with no commas
     gas_tx: 52,000,000 # EXTRINSIC_GAS_LIMIT in test/helpers/constants.ts
