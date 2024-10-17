@@ -258,8 +258,6 @@ The total cost is `{{ networks.moonbeam.xcm.transfer_glmr.glmr_cost }} GLMR` for
 
 Moonbeam charges fees for external assets based on the weight of the call. Weight is a struct that contains two fields, `refTime` and `proofSize`. `refTime` refers to the amount of computational time that can be used for execution. `proofSize` refers to size of the PoV (Proof of Validity) of the Moonbeam block that gets submitted to the Polkadot Relay Chain for validation. Since both `refTime` and `proofSize` are integral components of determining a weight, it is impossible to obtain an accurate weight value with just one of these values.
 
-### Querying XCM Weights {: #query-xcm-weights} 
-
 You can query the `refTime` and `proofSize` of an XCM instruction with the [`queryXcmWeight` method of the `xcmPaymentApi`](#query-xcm-weight). You can do this [programmatically](#query-xcm-weight) or by visiting the [Runtime Calls tab of Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoonbeam.api.onfinality.io%2Fpublic-ws#/runtime){target=\_blank}. The `queryXcmWeight` method takes an XCM version and instruction has a parameter and returns the corresponding `refTime` and `proofSize` values.
 
 #### Weight to Gas Mapping {: #weight-to-gas-mapping }
@@ -301,32 +299,6 @@ The weights for each of the four XCM instructions for Alice's DOT transfer to Mo
 ### Weight to Asset Fee Conversion {: #weight-to-asset-fee-conversion} 
 
 Once you have the sum of the `refTime` and `proofSize` values, you can easily retrive the required commensurate fee amount. The [`queryWeightToAssetFee` method of the `xcmPaymentApi`](#weight-to-asset-fee-conversion) takes a `refTime`, `proofSize` and asset multilocation as parameters and returns the commensurate fee. By providing the amounts obtained above of `{{ networks.moonbeam.xcm.transfer_dot.total_weight.display }}` `refTime` and `{{ xcm.generic_weights.proof_size.transfer_dot_total.display }}` `proofSize`, and the asset multilocation for DOT, we get a fee amount of `88,920,522` Plank, which is the smallest unit in Polkadot. We can convert this to DOT by dividing by `10^10` which gets us a DOT fee amount of `{{ networks.moonbeam.xcm.transfer_dot.xcdot_cost }}` DOT. 
-
-#### Previous Weight Calculations
-
-In earlier runtimes, you could calculate the necessary fees by deriving the execution time from the total weight. With the total weight, you can calculate the execution time for Alice's transfer of DOT to Moonbeam using the following calculation:
-
-```text
-ExecutionTime = {{ networks.moonbeam.xcm.transfer_dot.total_weight.numbers_only }} / 10^12
-```
-
-Which means that the four XCM instructions for the transfer cost `{{ networks.moonbeam.xcm.transfer_dot.exec_time }}` seconds of block execution time.
-
-To calculate the total cost in xcDOT, you'll also need the number of decimals the asset in question uses, which for xcDOT is 10 decimals. You can determine the number of decimals for any asset by [querying the asset metadata](/builders/interoperability/xcm/xc20/overview/#list-xchain-assets){target=\_blank}.
-
-The block execution formula can then be used to determine how much Alice's transfer of DOT to Alith's account on Moonbeam costs. The formula for finding the total cost is as follows:
-
-```text
-XCM-Cost = ( UnitsPerSecond / DecimalConversion ) * ExecutionTime
-```
-
-Then the calculation for the transfer is:
-
-```text
-XCM-Cost = ( {{ networks.moonbeam.xcm.units_per_second.xcdot.numbers_only }} / 10^10 ) * {{ networks.moonbeam.xcm.transfer_dot.exec_time }}
-```
-
-The total cost to transfer Alice's DOT to Alith's account for xcDOT is `{{ networks.moonbeam.xcm.transfer_dot.xcdot_cost }} xcDOT`.
 
 ## XCM Payment API Expanded Examples {: #xcm-payment-api-exanded-examples }
 
