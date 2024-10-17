@@ -385,7 +385,7 @@ The paths to the relevant values have also been truncated and reproduced below:
 
 ### Transaction Weight {: #transaction-weight}
 
-`TransactionWeight` is a Substrate mechanism used to measure the execution time a given transaction takes to be executed within a block. A transaction's weight is a vector of two components: `refTime` and `proofSize`. Previously, Moonbeam relied on a single weight derived primarily from `refTime` but weight is now defined as a struct taking into account both `refTime` and `proofSize`. 
+`TransactionWeight` is a Substrate mechanism used to measure the execution time a given transaction takes to be executed within a block. A transaction's weight is a vector of two components: `refTime` and `proofSize`. `refTime` refers to the amount of computational time that can be used for execution. `proofSize` refers to the size of the PoV (Proof of Validity) of the Moonbeam block that gets submitted to the Polkadot Relay Chain for validation. Since both `refTime` and `proofSize` are integral components of determining a weight, it is impossible to obtain an accurate weight value with just one of these values.
 
 For all transactions types, `TransactionWeight` can be retrieved under the event of the relevant extrinsic where the `method` field is set to:
 

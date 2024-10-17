@@ -14,7 +14,11 @@ const instr1 = {
 };
 const instr2 = {
   DepositAsset: {
-    assets: { Wild: 'All' },
+    assets: {
+      Wild: {
+        AllCounted: 1,
+      },
+    },
     beneficiary: {
       parents: 0,
       interior: {
@@ -30,7 +34,7 @@ const instr2 = {
   },
 };
 const message = { V4: [instr1, instr2] };
-const maxWeight = { refTime: 7750000000n, proofSize: 4960000n };
+const maxWeight = { refTime: 7250000000n, proofSize: 19374n };
 
 
 const executeXcmMessage = async () => {
