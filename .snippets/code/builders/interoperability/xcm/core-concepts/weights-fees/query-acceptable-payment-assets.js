@@ -6,7 +6,7 @@ const main = async () => {
   const api = await ApiPromise.create({ provider: wsProvider });
 
   const allowedAssets =
-    await api.call.xcmPaymentApi.queryAcceptablePaymentAssets(3);
+    await api.call.xcmPaymentApi.queryAcceptablePaymentAssets(4);
   console.log(allowedAssets);
 
   // Disconnect the API

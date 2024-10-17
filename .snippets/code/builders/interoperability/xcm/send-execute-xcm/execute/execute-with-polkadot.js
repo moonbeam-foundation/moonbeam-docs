@@ -36,7 +36,6 @@ const instr2 = {
 const message = { V4: [instr1, instr2] };
 const maxWeight = { refTime: 7250000000n, proofSize: 19374n };
 
-
 const executeXcmMessage = async () => {
   // 2. Create Keyring instance
   await cryptoWaitReady();
