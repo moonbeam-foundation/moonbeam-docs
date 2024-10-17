@@ -156,7 +156,7 @@ You can try this in [Remix](/builders/ethereum/dev-env/remix/){target=\_blank}. 
 
 ## P256 Verify {: #p256-verify }
 
-The P256Verify Precompile adds support for [RIP-7212](https://github.com/ethereum/RIPs/blob/master/RIPS/rip-7212.md){target=\_blank}, signature verification for Secp256r1 elliptic curve. This precompile adds a WASM implementation of the signature verification and is intended to be replaced by a native runtime function call once Polkadot offers it. 
+The P256Verify Precompile adds support for [RIP-7212](https://github.com/ethereum/RIPs/blob/master/RIPS/rip-7212.md){target=\_blank}, signature verification for Secp256r1 elliptic curve. This precompile adds a WASM implementation of the signature verification and is intended to be replaced by a native runtime function call once available.
 
 ```solidity
 --8<-- 'code/builders/ethereum/precompiles/utility/eth-mainnet/p256verify.sol'
