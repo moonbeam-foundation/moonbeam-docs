@@ -124,6 +124,12 @@ echo $SAS_SUBSTRATE_TYPES_BUNDLE
 
 ## Running Substrate API Sidecar {: #running-substrate-api-sidecar }
 
+Navigate back to the root directory of the project: 
+
+```bash
+cd ../../../../..
+```
+
 With the network endpoint environmental variable set, and from the installation directory root, run:
 
 ```bash
