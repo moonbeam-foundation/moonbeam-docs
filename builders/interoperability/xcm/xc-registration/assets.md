@@ -49,17 +49,6 @@ To get started, you'll need to collect some information about the asset:
 - The asset symbol. You'll need to prepend "xc" to the asset symbol to indicate that the asset is an XCM-enabled asset
 - The number of decimals the asset has
 
-You can use the below script to generate the encoded call data for the `createForeignAsset` call. Remember to replace the example parameter values shown in the script with the ones relevant to your asset. 
-
-???+ code "Get encoded call data for createForeignAsset"
-    ```typescript
-    --8<-- 'code/builders/interoperability/xcm/xc-registration/assets/create-foreign-asset.js'
-    ```
-
-The resulting output will be something like:
-
---8<-- 'code/builders/interoperability/xcm/xc-registration/assets/terminal/createForeignAsset.md'
-
 With this information in hand, you can prepare a governance proposal to register a foreign asset. Foreign asset registration proposals should be submitted through the `FastGeneralAdmin` track.
 
 ![Overview of the proposal process](/images/builders/interoperability/xcm/xc-registration/assets/assets-3.webp)
@@ -80,93 +69,58 @@ To get the encoded calldata for the `evmForeignAssets.createForeignAsset` extrin
 - `symbol`  - the symbol of the asset. **Remember that "xc" should be prepended to the symbol to indicate the asset is an XCM-enabled asset**
 - `name` - The asset name
 
+You can use the below script to generate the encoded call data for the `createForeignAsset` call. Remember to replace the example parameter values shown in the script with the ones relevant to your asset. 
+
+???+ code "Get encoded call data for createForeignAsset"
+    ```typescript
+    --8<-- 'code/builders/interoperability/xcm/xc-registration/assets/create-foreign-asset.js'
+    ```
+
+The resulting output will be something like:
+
+--8<-- 'code/builders/interoperability/xcm/xc-registration/assets/terminal/createForeignAsset.md'
+
 To get the encoded calldata for the `xcmWeightTrader.addAsset` extrinsic, you will need to provide the following arguments:
 
 - `xcmLocation` - the multilocation of the asset relative to Moonbeam 
 - `relativePrice` - the the cost of an asset in terms of weight, used to determine how much of the asset is required to cover the fees for cross-chain (XCM) operations. It is calculated by comparing the asset's value to the network's native token in terms of the weight-to-fee conversion
 
-To create a batch transaction that also sets the units per second or revert code of the asset's precompile in addition to the asset registration, you can choose to add these arguments:
+You can use the below script to generate the encoded call data for the `addAsset` call. Remember to replace the example parameter values shown in the script with the ones relevant to your asset. 
 
-- `--units-per-second` or `--u` - (optional) - the units per second, which specifies the amount to charge per second of execution in the registered asset. You should have calculated this value in the [previous section](#calculate-units-per-second). If this is provided, the script will create a batch transaction for the governance proposal that, at a minimum, will register the asset and set the units per second on-chain
-- `--revert-code` or `--revert` - (optional) - registers the revert code for the asset's precompile in the EVM. If this is provided, the script will create a batch transaction for the governance proposal that, at a minimum, will register the asset and set the revert code.
+??? code "Get encoded call data for xcmWeightTrader"
+    ```typescript
+    --8<-- 'code/builders/interoperability/xcm/xc-registration/assets/weight-trader.js'
+    ```
 
-    !!! note
-        **This flag is not necessary for proposals on Moonbeam** as it includes a `system.setStorage` call that the [OpenGov](/learn/features/governance/#opengov) General Admin Origin can't execute. The dummy EVM bytecode can be set later with a call to the [Precompile Registry precompile](/builders/ethereum/precompiles/utility/registry/){target=\_blank}, which means that you don't need to worry about going through governance to set the revert code! Please check out the [Set XC-20 Precompile Bytecode](#set-bytecode) section to learn how to set the dummy bytecode.
+The resulting output will be something like:
 
-As a practical example, the following command would generate the encoded calldata to register an asset from parachain 888 that has a general key of `1`:
+--8<-- 'code/builders/interoperability/xcm/xc-registration/assets/terminal/weightTrader.md'
 
-```bash
-yarn register-asset -w wss://wss.api.moonbase.moonbeam.network \
---asset '{ "parents": 1, "interior": { "X2": [{ "Parachain": 888 }, {"GeneralKey": "0x000000000000000001"}]}}' \
---symbol "xcEXTN" --decimals 18 \
---name "Example Token" \
---units-per-second 20070165297881393351 \ 
---ed 1 --sufficient true
-```
+To create a batch transaction that combines both the `xcmWeightTrader.addAsset` and the `evmForeignAssets.createForeignAsset` calls together, you can use the following script. Remember to replace the example parameter values shown in the script with the ones relevant to your asset. 
 
-Its output would look like the following:
+??? code "Get encoded call data for batch call"
+    ```typescript
+    --8<-- 'code/builders/interoperability/xcm/xc-registration/assets/batch-calls.js'
+    ```
 
-```text
-Encoded proposal for registerAsset is 0x1f0000010200e10d0624000000000000000001344578616d706c6520546f6b656e1878634558544e12000000000000000000000000000000000000
-Encoded proposal for setAssetUnitsPerSecond is 0x1f0100010200e10d0624000000000000000001c7a8978b008d8716010000000000000026000000
-Encoded calldata for tx is 0x0102081f0000010200e10d0624000000000000000001344578616d706c6520546f6b656e1878634558544e120000000000000000000000000000000000001f0100010200e10d0624000000000000000001c7a8978b008d8716010000000000000026000000
-```
+The resulting output will be something like:
+
+--8<-- 'code/builders/interoperability/xcm/xc-registration/assets/terminal/batchCall.md'
 
 ### Programmatically Submit the Preimage and Proposal for Asset Registration {: #submit-preimage-proposal }
 
-The script provides the option to programmatically submit a preimage and democracy proposal for the asset registration if you pass in the following optional arguments:
+You can programmatically submit the preimage of your batched call containing both the `xcmWeightTrader.addAsset` and the `evmForeignAssets.createForeignAsset` calls as shown in the following script. As this is an on-chain transaction, you'll need to provide a wallet. (Never store your private keys in a javascript file - this is provided for demonstration purposes only). Remember to replace the encoded call data with the respective relevant batch call for your asset. You can also adapt this script for a different network.
 
-- `--account-priv-key` or `--account` - (optional) - the private key of the account that will submit the preimage and proposal
-- `--sudo` or `--x` - (optional) - wraps the transaction with `sudo.sudo`. This can be used for Moonbase Alpha, if you want to provide the SCALE encoded calldata to the team so that it is submitted via SUDO
-- `--send-preimage-hash` or `--h` - (optional) - submits the preimage
-- `--send-proposal-as` or `--s` - (optional) - specifies how the proposal should be sent. The following options are accepted:
-    - `democracy` - sends the proposal through regular democracy using Governance v1
-    - `council-external` - sends the proposal as an external proposal that will be voted on by the council using Governance v1
-    - `v2` - sends the proposal through OpenGov (Governance v2). This option should be used for Moonbeam. If you choose this option, you'll also need to use the `--track` argument to specify which [Track](/learn/features/governance/#general-definitions--general-definitions-gov2){target=\_blank} the proposal will go through and the `--delay` argument to specify the delay period (in blocks) after the proposal has passed and before the proposal is executed
-- `--collectiveThreshold` or `--c` - (optional) - the number of council votes that are needed to approve the proposal. Defaults to `1`
-- `--at-block` - (optional) - the block number at which the call should get executed
-- `--track` - (optional) - the Track the proposal should go through for OpenGov proposals. For Moonbeam, the General Admin Origin should be used
-- `--delay` - (optional) - the delay period (in blocks) after a proposal has passed and before it can be executed. Defaults to `100` blocks
-
-Altogether, you can use the following command to submit a preimage and proposal using OpenGov, which batches the asset registration and sets the asset's units per second.
-
-=== "Moonbeam"
-
-    ```bash
-    yarn register-asset -w wss://wss.api.moonbeam.network  \
-    --asset 'INSERT_ASSET_MULTILOCATION' \
-    --symbol "INSERT_TOKEN_SYMBOL" \
-    --decimals INSERT_TOKEN_DECIMALS \
-    --name "INSERT_TOKEN_NAME" \
-    --units-per-second INSERT_UNITS_PER_SECOND \
-    --existential-deposit 1 \
-    --sufficient true \
-    --account-priv-key "0x5fb92d6e98884f76de468fa3f6278f8807c48bebc13595d45af5bdc4da702133" \
-    --send-preimage-hash true \
-    --send-proposal-as v2
-    --track '{ "Origins": "GeneralAdmin" }'
+??? code "Submit preimage for batch call"
+    ```typescript
+    --8<-- 'code/builders/interoperability/xcm/xc-registration/assets/submit-preimage.js'
     ```
 
-=== "Moonriver"
+The resulting output will be something like:
 
-    ```bash
-    yarn register-asset -w wss://wss.api.moonriver.moonbeam.network  \
-    --asset 'INSERT_ASSET_MULTILOCATION' \
-    --symbol "INSERT_TOKEN_SYMBOL" \
-    --decimals INSERT_TOKEN_DECIMALS \
-    --name "INSERT_TOKEN_NAME" \
-    --units-per-second INSERT_UNITS_PER_SECOND \
-    --existential-deposit 1 \
-    --sufficient true \
-    --account-priv-key "0x5fb92d6e98884f76de468fa3f6278f8807c48bebc13595d45af5bdc4da702133" \
-    --send-preimage-hash true \
-    --send-proposal-as v2
-    --track '{ "Origins": "GeneralAdmin" }'
-    ```
+--8<-- 'code/builders/interoperability/xcm/xc-registration/assets/terminal/submitPreimage.md'
 
-For Moonbase Alpha, you will not need to go through governance. Instead, you can use the `--sudo` flag and provide the output to the Moonbeam team so that the asset and channel can be added quickly through sudo.
-
-You can see additional [examples in the `README.md` of the xcm-tools repository](https://github.com/Moonsong-Labs/xcm-tools#example-to-note-pre-image-and-propose-through-opengov2-with-custom-track){target=\_blank}.
+For Moonbase Alpha, you do not need to go through governance, as Moonbase Alpha has `sudo` access. Instead, you can provide the output of the batch call data to the Moonbeam team, and the Moonbeam Team can submit the call with `sudo`. This will be a faster and easier process than going thru governance, however, you may still wish to go through governance on Moonbase Alpha in order to prepare for the governance process on Moonbeam. 
 
 ### Test the Asset Registration on Moonbeam {: #test-asset-registration }
 
