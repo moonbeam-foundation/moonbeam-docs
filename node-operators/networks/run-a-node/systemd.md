@@ -9,58 +9,103 @@ description: How to run a full parachain node so you can have your own RPC endpo
 
 Running a full node on a Moonbeam-based network allows you to connect to the network, sync with a bootnode, obtain local access to RPC endpoints, author blocks on the parachain, and more.
 
-In this guide, you'll learn how to spin up a Moonbeam node using [Systemd](https://systemd.io/){target=_blank} and how to maintain and purge your node.
+In this guide, you'll learn how to spin up a Moonbeam node using [Systemd](https://systemd.io){target=\_blank} and how to maintain and purge your node.
 
-If you're interested in compiling the binary yourself, which may take over 30 min and require 32GB of memory, you can check out the [Manually Compile the Moonbeam Binary](/node-operators/networks/run-a-node/compile-binary){target=_blank} guide.
+If you're interested in compiling the binary yourself, which may take over 30 min and require 32GB of memory, you can check out the [Manually Compile the Moonbeam Binary](/node-operators/networks/run-a-node/compile-binary/){target=\_blank} guide.
 
 ## Checking Prerequisites {: #checking-prerequisites }
 
 The following sections go through the process of using the binary and running a Moonbeam full node as a systemd service. To get started, you'll need to:
 
 - Make sure you're running Ubuntu 18.04, 20.04, or 22.04. Moonbeam may work with other Linux flavors, but Ubuntu is currently the only tested version
-- Make sure that your system meets the [requirements](/node-operators/networks/run-a-node/overview#requirements){target=_blank}. When connecting to Moonriver on Kusama or Moonbeam on Polkadot, it will take a few days to completely sync the embedded relay chain
+- Make sure that your system meets the [requirements](/node-operators/networks/run-a-node/overview/#requirements){target=\_blank}. When connecting to Moonriver on Kusama or Moonbeam on Polkadot, it will take a few days to completely sync the embedded relay chain
 
 ## Download the Latest Release Binary {: #the-release-binary }
 
-To get started, use `wget` to grab the latest [release binary](https://github.com/moonbeam-foundation/moonbeam/releases):
+To download the latest [release binary](https://github.com/moonbeam-foundation/moonbeam/releases){target=\_blank}, take the following steps:
 
-=== "Moonbeam"
+1. Create a directory to store the binary and chain data (you might need `sudo`)
 
-    ```bash
-    wget https://github.com/moonbeam-foundation/moonbeam/releases/download/{{ networks.moonbeam.parachain_release_tag }}/moonbeam
-    ```
+    === "Moonbeam"
 
-=== "Moonriver"
+        ```bash
+        mkdir {{ networks.moonbeam.node_directory }}
+        ```
 
-    ```bash
-    wget https://github.com/moonbeam-foundation/moonbeam/releases/download/{{ networks.moonriver.parachain_release_tag }}/moonbeam
-    ``` 
+    === "Moonriver"
 
-=== "Moonbase Alpha"
+        ```bash
+        mkdir {{ networks.moonriver.node_directory }}
+        ```
 
-    ```bash
-    wget https://github.com/moonbeam-foundation/moonbeam/releases/download/{{ networks.moonbase.parachain_release_tag }}/moonbeam
-    ```
+    === "Moonbase Alpha"
 
-To verify that you have downloaded the correct version, you can run `sha256sum moonbeam` in your terminal. You should receive the following output:
+        ```bash
+        mkdir {{ networks.moonbase.node_directory }}
+        ```
 
-=== "Moonbeam"
+2. Use `wget` to grab the latest [release binary](https://github.com/moonbeam-foundation/moonbeam/releases){target=\_blank} and output it to the directory created in the previous step
 
-    ```text
-    {{ networks.moonbeam.parachain_sha256sum }}
-    ```
+    === "Moonbeam"
 
-=== "Moonriver"
+        ```bash
+        wget https://github.com/moonbeam-foundation/moonbeam/releases/download/{{ networks.moonbeam.parachain_release_tag }}/moonbeam \
+        -O {{ networks.moonbeam.node_directory }}/moonbeam
+        ```
 
-    ```text
-    {{ networks.moonriver.parachain_sha256sum }}
-    ```
+    === "Moonriver"
 
-=== "Moonbase Alpha"
+        ```bash
+        wget https://github.com/moonbeam-foundation/moonbeam/releases/download/{{ networks.moonriver.parachain_release_tag }}/moonbeam \
+        -O {{ networks.moonriver.node_directory }}/moonbeam
+        ``` 
 
-    ```text
-    {{ networks.moonbase.parachain_sha256sum }}
-    ```
+    === "Moonbase Alpha"
+
+        ```bash
+        wget https://github.com/moonbeam-foundation/moonbeam/releases/download/{{ networks.moonbase.parachain_release_tag }}/moonbeam \
+        -O {{ networks.moonbase.node_directory }}/moonbeam
+        ```
+
+3. To verify that you have downloaded the correct version, you can run the following command in your terminal
+
+    === "Moonbeam"
+
+        ```bash
+        sha256sum {{ networks.moonbeam.node_directory }}/moonbeam
+        ```
+
+    === "Moonriver"
+
+        ```bash
+        sha256sum {{ networks.moonriver.node_directory }}/moonbeam
+        ```
+
+    === "Moonbase Alpha"
+
+        ```bash
+        sha256sum {{ networks.moonbase.node_directory }}/moonbeam
+        ```
+
+    You should receive the following output:
+
+    === "Moonbeam"
+
+        ```text
+        {{ networks.moonbeam.parachain_sha256sum }}
+        ```
+
+    === "Moonriver"
+
+        ```text
+        {{ networks.moonriver.parachain_sha256sum }}
+        ```
+
+    === "Moonbase Alpha"
+
+        ```text
+        {{ networks.moonbase.parachain_sha256sum }}
+        ```
 
 ## Setup the Service {: #setup-the-service }
 
@@ -86,64 +131,27 @@ The following commands will set up everything regarding running the service:
         adduser moonbase_service --system --no-create-home
         ```
 
-2. Create a directory to store the binary and data (you might need `sudo`)
-
-    === "Moonbeam"
-
-        ```bash
-        mkdir {{ networks.moonbeam.node_directory }}
-        ```
-
-    === "Moonriver"
-
-        ```bash
-        mkdir {{ networks.moonriver.node_directory }}
-        ```
-
-    === "Moonbase Alpha"
-
-        ```bash
-        mkdir {{ networks.moonbase.node_directory }}
-        ```
-
-3. Move the binary built in the last section to the created folder (you might need sudo)
-
-    === "Moonbeam"
-
-        ```bash
-        mv ./{{ networks.moonbeam.binary_name }} {{ networks.moonbeam.node_directory }}
-        ```
-
-    === "Moonriver"
-
-        ```bash
-        mv ./{{ networks.moonriver.binary_name }} {{ networks.moonriver.node_directory }}
-        ```
-
-    === "Moonbase Alpha"
-
-        ```bash
-        mv ./{{ networks.moonbase.binary_name }} {{ networks.moonbase.node_directory }}
-        ```
-
-4. Make sure you set the ownership and permissions accordingly for the local directory that stores the chain data:
+2. Ensure that you properly configure the ownership and permissions for the local directory housing the chain data, and also remember to grant execute permission to the binary file
 
     === "Moonbeam"
 
         ```bash
         sudo chown -R moonbeam_service {{ networks.moonbeam.node_directory }}
+        sudo chmod +x {{ networks.moonbeam.node_directory }}/moonbeam
         ```
 
     === "Moonriver"
 
         ```bash
         sudo chown -R moonriver_service {{ networks.moonriver.node_directory }}
+        sudo chmod +x {{ networks.moonriver.node_directory }}/moonbeam
         ```
 
     === "Moonbase Alpha"
 
         ```bash
         sudo chown -R moonbase_service {{ networks.moonbase.node_directory }}
+        sudo chmod +x {{ networks.moonbase.node_directory }}/moonbeam
         ```
 
 ## Create the Configuration File {: #create-the-configuration-file }
@@ -159,7 +167,7 @@ Note that in the following start-up configurations, you have to:
 - Double-check that the binary is in the proper path as described below (_ExecStart_)
 - Double-check the base path if you've used a different directory
 
-For an overview of the flags used in the following start-up commands, plus additional commonly used flags, please refer to the [Flags](/node-operators/networks/run-a-node/flags){target=_blank} page of our documentation.
+For an overview of the flags used in the following start-up commands, plus additional commonly used flags, please refer to the [Flags](/node-operators/networks/run-a-node/flags/){target=\_blank} page of our documentation.
 
 ### Full Node {: #full-node }
 
@@ -180,14 +188,15 @@ For an overview of the flags used in the following start-up commands, plus addit
     SyslogFacility=local7
     KillSignal=SIGHUP
     ExecStart={{ networks.moonbeam.node_directory }}/{{ networks.moonbeam.binary_name }} \
-         --state-pruning=archive \
+         --state-pruning archive \
          --trie-cache-size 1073741824 \
          --db-cache INSERT_RAM_IN_MB \
          --base-path {{ networks.moonbeam.node_directory }} \
          --chain {{ networks.moonbeam.chain_spec }} \
          --name "INSERT_YOUR_NODE_NAME" \
          -- \
-         --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
+         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
+         --sync fast
     
     [Install]
     WantedBy=multi-user.target
@@ -210,14 +219,15 @@ For an overview of the flags used in the following start-up commands, plus addit
     SyslogFacility=local7
     KillSignal=SIGHUP
     ExecStart={{ networks.moonriver.node_directory }}/{{ networks.moonriver.binary_name }} \
-         --state-pruning=archive \
+         --state-pruning archive \
          --trie-cache-size 1073741824 \
          --db-cache INSERT_RAM_IN_MB \
          --base-path {{ networks.moonriver.node_directory }} \
          --chain {{ networks.moonriver.chain_spec }} \
          --name "INSERT_YOUR_NODE_NAME" \
          -- \
-         --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
+         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
+         --sync fast
     
     [Install]
     WantedBy=multi-user.target
@@ -240,14 +250,15 @@ For an overview of the flags used in the following start-up commands, plus addit
     SyslogFacility=local7
     KillSignal=SIGHUP
     ExecStart={{ networks.moonbase.node_directory }}/{{ networks.moonbase.binary_name }} \
-         --state-pruning=archive \
+         --state-pruning archive \
          --trie-cache-size 1073741824 \
          --db-cache INSERT_RAM_IN_MB \
          --base-path {{ networks.moonbase.node_directory }} \
          --chain {{ networks.moonbase.chain_spec }} \
          --name "INSERT_YOUR_NODE_NAME" \
          -- \
-         --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
+         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
+         --sync fast
 
     [Install]
     WantedBy=multi-user.target
@@ -272,7 +283,7 @@ For an overview of the flags used in the following start-up commands, plus addit
     SyslogFacility=local7
     KillSignal=SIGHUP
     ExecStart={{ networks.moonbeam.node_directory }}/{{ networks.moonbeam.binary_name }} \
-         --state-pruning=archive \
+         --state-pruning archive \
          --trie-cache-size 1073741824 \
          --db-cache INSERT_RAM_IN_MB \
          --base-path {{ networks.moonbeam.node_directory }} \
@@ -280,7 +291,8 @@ For an overview of the flags used in the following start-up commands, plus addit
          --name "INSERT_YOUR_NODE_NAME" \
          --unsafe-rpc-external \
          -- \
-         --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
+         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
+         --sync fast
     
     [Install]
     WantedBy=multi-user.target
@@ -305,7 +317,7 @@ For an overview of the flags used in the following start-up commands, plus addit
     SyslogFacility=local7
     KillSignal=SIGHUP
     ExecStart={{ networks.moonbeam.node_directory }}/{{ networks.moonbeam.binary_name }} \
-         --state-pruning=archive \
+         --state-pruning archive \
          --trie-cache-size 1073741824 \
          --db-cache INSERT_RAM_IN_MB \
          --base-path {{ networks.moonbeam.node_directory }} \
@@ -313,13 +325,47 @@ For an overview of the flags used in the following start-up commands, plus addit
          --name "INSERT_YOUR_NODE_NAME" \
          --frontier-backend-type sql \
          -- \
-         --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
+         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
+         --sync fast
     
     [Install]
     WantedBy=multi-user.target
     ```
 
 ### Collator {: #collator }
+
+Beginning with v0.39.0, new Moonbeam collator nodes will no longer generate session keys automatically on start-up. Nodes in existence prior to v0.39.0 do not need to make changes to how they handle session keys.
+
+When setting up a new node, run the following command to generate and store on disk the session keys that will be referenced in the start-up command:
+
+=== "Moonbeam"
+
+    ```bash
+
+    /var/lib/moonbeam-data/moonbeam key generate-node-key --base-path /var/lib/moonbeam-data --chain moonbeam && sudo chown -R moonbeam_service /var/lib/moonbeam-data
+    
+    ```
+
+=== "Moonriver"
+
+    ```bash
+
+    /var/lib/moonriver-data/moonbeam key generate-node-key --base-path /var/lib/moonriver-data --chain moonriver && sudo chown -R moonriver_service /var/lib/moonriver-data
+
+    ```
+
+=== "Moonbase Alpha"
+
+    ```bash
+
+    /var/lib/alphanet-data/moonbeam key generate-node-key --base-path /var/lib/alphanet-data --chain alphanet  && sudo chown -R moonbase_service  /var/lib/alphanet-data
+
+    ```
+
+!!! note
+    This step can be bypassed using the `--unsafe-force-node-key-generation` parameter in the start-up command, although this is not the recommended practice.
+
+Now you can create the systemd configuration file:
 
 === "Moonbeam"
 
@@ -345,7 +391,8 @@ For an overview of the flags used in the following start-up commands, plus addit
          --chain {{ networks.moonbeam.chain_spec }} \
          --name "INSERT_YOUR_NODE_NAME" \
          -- \
-         --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
+         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
+         --sync fast
     
     [Install]
     WantedBy=multi-user.target
@@ -375,7 +422,8 @@ For an overview of the flags used in the following start-up commands, plus addit
          --chain {{ networks.moonriver.chain_spec }} \
          --name "INSERT_YOUR_NODE_NAME" \
          -- \
-         --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
+         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
+         --sync fast
     
     [Install]
     WantedBy=multi-user.target
@@ -405,7 +453,8 @@ For an overview of the flags used in the following start-up commands, plus addit
          --chain {{ networks.moonbase.chain_spec }} \
          --name "INSERT_YOUR_NODE_NAME" \
          -- \
-         --name="INSERT_YOUR_NODE_NAME (Embedded Relay)"
+         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
+         --sync fast
 
     [Install]
     WantedBy=multi-user.target
@@ -415,7 +464,7 @@ For an overview of the flags used in the following start-up commands, plus addit
 
 --8<-- 'text/node-operators/networks/run-a-node/systemd/run-service.md'
 
-![Service Status](/images/node-operators/networks/run-a-node/systemd/systemd-1.png)
+![Service Status](/images/node-operators/networks/run-a-node/systemd/systemd-1.webp)
 
 You can also check the logs by executing:
 
@@ -423,12 +472,12 @@ You can also check the logs by executing:
 journalctl -f -u moonbeam.service
 ```
 
-![Service Logs](/images/node-operators/networks/run-a-node/systemd/systemd-2.png)
+![Service Logs](/images/node-operators/networks/run-a-node/systemd/systemd-2.webp)
 
 During the syncing process, you will see logs from both the embedded relay chain ([Relaychain]) and the parachain ([🌗]). These logs display a target block (live network state) and a best block (local node synced state).
 
 !!! note
-    It may take a few days to completely sync the embedded relay chain. Make sure that your system meets the [requirements](/node-operators/networks/run-a-node/overview#requirements){target=_blank}.
+    It may take a few days to completely sync the embedded relay chain. Make sure that your system meets the [requirements](/node-operators/networks/run-a-node/overview/#requirements){target=\_blank}.
 
 If you need to stop the service for any reason, you can run:
 
@@ -438,7 +487,7 @@ systemctl stop moonbeam.service
 
 ## Maintain Your Node {: #maintain-your-node }
 
-As Moonbeam development continues, it will sometimes be necessary to upgrade your node software. Node operators will be notified on our [Discord channel](https://discord.gg/PfpUATX) when upgrades are available and whether they are necessary (some client upgrades are optional). The upgrade process is straightforward and is the same for a full node or collator.
+As Moonbeam development continues, it will sometimes be necessary to upgrade your node software. Node operators will be notified on our [Discord channel](https://discord.com/invite/PfpUATX){target=\_blank} when upgrades are available and whether they are necessary (some client upgrades are optional). The upgrade process is straightforward and is the same for a full node or collator.
 
 If you want to update your client, you can keep your existing chain data in tact, and only update the binary by following these steps:
 
@@ -453,76 +502,71 @@ If you want to update your client, you can keep your existing chain data in tact
     === "Moonbeam"
 
         ```bash
-        rm  {{ networks.moonbeam.node_directory }}/moonbeam
+        rm {{ networks.moonbeam.node_directory }}/moonbeam
         ```
 
     === "Moonriver"
 
         ```bash
-        rm  {{ networks.moonriver.node_directory }}/moonbeam
+        rm {{ networks.moonriver.node_directory }}/moonbeam
         ```
 
     === "Moonbase Alpha"
 
         ```bash
-        rm  {{ networks.moonbase.node_directory }}/moonbeam
+        rm {{ networks.moonbase.node_directory }}/moonbeam
         ```
 
-3. Get the latest version of Moonbeam from the [Moonbeam GitHub Release](https://github.com/moonbeam-foundation/moonbeam/releases/) page
-
-4. Update the version
-
-    ```bash
-    wget https://github.com/moonbeam-foundation/moonbeam/releases/download/INSERT_NEW_VERSION_TAG/moonbeam
-    ```
-
-5. Move the binary to the data directory
+3. Get the latest version of the [Moonbeam release binary on GitHub](https://github.com/moonbeam-foundation/moonbeam/releases){target=\_blank} and run the following command to update to that version
 
     === "Moonbeam"
 
         ```bash
-        mv ./{{ networks.moonbeam.binary_name }} {{ networks.moonbeam.node_directory }}
+        wget https://github.com/moonbeam-foundation/moonbeam/releases/download/INSERT_NEW_VERSION_TAG/moonbeam \
+        -O {{ networks.moonbeam.node_directory }}/moonbeam
         ```
 
     === "Moonriver"
 
         ```bash
-        mv ./{{ networks.moonriver.binary_name }} {{ networks.moonriver.node_directory }}
+        wget https://github.com/moonbeam-foundation/moonbeam/releases/download/INSERT_NEW_VERSION_TAG/moonbeam \
+        -O {{ networks.moonriver.node_directory }}/moonbeam
         ```
 
     === "Moonbase Alpha"
 
         ```bash
-        mv ./{{ networks.moonbase.binary_name }} {{ networks.moonbase.node_directory }}
+        wget https://github.com/moonbeam-foundation/moonbeam/releases/download/INSERT_NEW_VERSION_TAG/moonbeam \
+        -O {{ networks.moonbase.node_directory }}/moonbeam
         ```
 
     !!! note
-        If you [compiled the binary manually](/node-operators/networks/run-a-node/compile-binary){target=_blank}, you'll need to move the binary from `./target/release/{{ networks.moonbeam.binary_name }}` to the data directory.
+        If you [compiled the binary manually](/node-operators/networks/run-a-node/compile-binary/){target=\_blank}, you'll need to move the binary from `./target/release/{{ networks.moonbeam.binary_name }}` to the data directory.
 
-6. Update permissions
+4. Update permissions
 
     === "Moonbeam"
 
         ```bash
-        chmod +x moonbeam
-        chown moonbeam_service moonbeam
+        chmod +x {{ networks.moonbeam.node_directory }}/moonbeam
+        chown moonbeam_service {{ networks.moonbeam.node_directory }}/moonbeam
         ```
 
     === "Moonriver"
 
         ```bash
-        chmod +x moonbeam
-        chown moonriver_service moonbeam
+        chmod +x {{ networks.moonriver.node_directory }}/moonbeam
+        chown moonriver_service {{ networks.moonriver.node_directory }}/moonbeam
         ```
 
     === "Moonbase Alpha"
 
         ```bash
-        chmod +x moonbeam
-        chown moonbase_service moonbeam
+        chmod +x {{ networks.moonbase.node_directory }}/moonbeam
+        chown moonbase_service {{ networks.moonbase.node_directory }}/moonbeam
         ```
 
-7. Start your service
+5. Start your service
 
     ```bash
     systemctl start moonbeam.service

@@ -1,7 +1,7 @@
 import { ApiPromise, WsProvider } from '@polkadot/api';
 
 const dest = {
-  V3: {
+  V4: {
     parents: INSERT_PARENTS,
     interior: INSERT_INTERIOR,
   },
@@ -20,7 +20,7 @@ const weightInfo = {
     refTime: INSERT_REF_TIME,
     proofSize: INSERT_PROOF_SIZE,
   },
-  overallWeight: { refTime: INSERT_REF_TIME, proofSize: INSERT_PROOF_SIZE },
+  overallWeight: { Unlimited: null },
 };
 const refund = INSERT_BOOLEAN_FOR_REFUND;
 

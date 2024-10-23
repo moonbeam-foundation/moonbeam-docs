@@ -1,125 +1,83 @@
-// These language variables are also used in other scripts
-const supportedLanguages = ['cn'];
-
 const selectWrapper = document.querySelector('.language-select-wrapper');
-const languageSelect = document.querySelector('.language-select');
-const languageOptions = document.querySelectorAll(
-  '.language-select-wrapper .language-select li'
-);
-const selectLabel = document.querySelector('.language-select-label');
+const enLink = document.querySelector('li.en a');
+const cnLink = document.querySelector('li.cn a');
 const openArrow = document.querySelector('.selector-open');
 const closedArrow = document.querySelector('.selector-closed');
 
-const english = document.querySelector('.en');
-const selected = 'selected';
-let isStaging = false;
-
-/* Get current language and path */
-let currentLanguage;
-let currentPath = window.location.pathname;
-
-const getCurrentPath = () => {
-  currentPath = window.location.pathname.split('/');
-  // If user is on a language other than English, the language will be the 2nd item in the array
-  if (supportedLanguages.includes(currentPath[1])) {
-    currentLanguage = currentPath[1];
-    // Remove the language from the path
-    currentPath = currentPath.join('/').slice(3);
-  } else {
-    currentLanguage = 'en';
-    currentPath = currentPath.join('/');
-  }
-
-  return currentPath;
+/* English to chinese mappings */
+const pageMappings = {
+  '/': '/cn/',
+  '/builders/': '/cn/builders/',
+  '/builders/ethereum/libraries/': '/cn/builders/libraries/',
+  '/builders/ethereum/libraries/ethersjs/':
+    '/cn/builders/libraries/ethersjs/',
+  '/builders/ethereum/libraries/ethersrs/':
+    '/cn/builders/libraries/ethersrs/',
+  '/builders/ethereum/libraries/viem/': '/cn/builders/libraries/viem/',
+  '/builders/ethereum/libraries/web3js/': '/cn/builders/libraries/web3js/',
+  '/builders/ethereum/libraries/web3py/': '/cn/builders/libraries/web3py/',
+  '/builders/ethereum/dev-env/': '/cn/builders/dev-env/',
+  '/builders/ethereum/dev-env/hardhat/': '/cn/builders/dev-env/hardhat/',
+  '/builders/ethereum/dev-env/foundry/': '/cn/builders/dev-env/foundry/',
+  '/builders/ethereum/dev-env/remix/': '/cn/builders/dev-env/remix/',
+  '/builders/ethereum/dev-env/tenderly/': '/cn/builders/dev-env/tenderly/',
+  '/builders/ethereum/dev-env/thirdweb/': '/cn/builders/dev-env/thirdweb/',
+  '/builders/ethereum/dev-env/openzeppelin/contracts/':
+    '/cn/builders/dev-env/oz-contracts/',
+  '/builders/integrations/': '/cn/builders/integrations/',
+  '/builders/integrations/wallets/metamask/':
+    '/cn/builders/integrations/metamask/',
+  '/builders/integrations/wallets/particle-network/':
+    '/cn/builders/integrations/particle-network/',
+  '/builders/integrations/wallets/walletconnect/':
+    '/cn/builders/integrations/walletconnect/',
+  '/tutorials/': '/cn/tutorials/',
+  '/tutorials/': '/cn/tutorials/eth-api/',
+  '/tutorials/eth-api/how-to-build-a-dapp/':
+    '/cn/tutorials/eth-api/how-to-build-a-dapp/',
+  '/tutorials/eth-api/batch-approve-swap/': '/cn/tutorials/eth-api/batch-approve-swap/',
+  '/tutorials/eth-api/call-permit-gasless-txs/':
+    '/cn/tutorials/eth-api/call-permit-gasless-txs/',
 };
 
-/* Show user the current language on the dropdown */
-const displayLanguage = (label, language, abbreviatedLanguage) => {
-  let isMobile = false;
-  (function (a) {
-    if (
-      /(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i.test(
-        a
-      ) ||
-      /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(
-        a.substr(0, 4)
-      )
-    )
-      isMobile = true;
-  })(navigator.userAgent || navigator.vendor || window.opera);
+const processWindowLocation = (pathname, origin) => {
+  let displaySelector = false;
+  for (const [key, value] of Object.entries(pageMappings)) {
+    if (key === pathname || value === pathname) {
+      // Set paths
+      enLink.href = origin + key;
+      cnLink.href = origin + value;
 
-  if (isMobile) {
-    // Display ISO format for each language
-    // https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
-    label.textContent = abbreviatedLanguage;
+      // Update flag to display the language selector
+      displaySelector = true;
+    }
+  }
+
+  if (displaySelector) {
+    selectWrapper.classList.add('display');
   } else {
-    if (language) {
-      label.textContent = language;
+    const removeSelector = selectWrapper.classList.contains('display');
+    if (removeSelector) {
+      selectWrapper.classList.remove('display');
     }
   }
 };
 
-// If user is on staging site, no modifications to the currentPath are necessary and the
-// language will be in the host object instead of the pathname object
-if (window.location.origin.includes('stage')) {
-  isStaging = true;
-  // If user is on a language other than English, the language will be the 2nd item in the array
-  if (supportedLanguages.includes(window.location.host.split('-')[1])) {
-    currentLanguage = window.location.host.split('-')[1];
-  } else {
-    currentLanguage = 'en';
-  }
-} else {
-  getCurrentPath();
-}
+// With the navigation.instant feature of mkdocs, when navigating between pages they aren't reloaded.
+// So, we need to listen for page changes and if we are on one of the pages where a CN page exists,
+// we need to render the language selector.
+window.location$.subscribe((newLocation) => {
+  const { pathname, origin } = newLocation;
+  processWindowLocation(pathname, origin);
+});
 
-if (currentLanguage === 'en') {
-  english.classList.add(selected);
-  displayLanguage(selectLabel, 'Eng', 'EN');
-} else {
-  const currentLanguageElement = document.querySelector(`.${currentLanguage}`);
-  currentLanguageElement.classList.add(selected);
-  displayLanguage(
-    selectLabel,
-    currentLanguageElement.textContent,
-    currentLanguage.toUpperCase()
-  );
-}
+// On page load, check the window location and see if we need to add the language selector
+const { pathname } = window.location;
+processWindowLocation(pathname, origin);
 
-/* Add event listeners */
-selectWrapper.addEventListener('click', (e) => {
-  e.preventDefault();
-
-  // Make sure we have the latest current path. Due to mkdocs navigation.instant the page doesn't
-  // always reload so this script doesn't always run. So, if we grab it after the user has clicked
-  // on the dropdown menu, we're sure to get the correct path before redirecting them
-  currentPath = getCurrentPath();
-
+// Add event listeners
+selectWrapper.addEventListener('click', () => {
   selectWrapper.classList.toggle('active');
   openArrow.classList.toggle('active');
   closedArrow.classList.toggle('active');
-});
-
-languageOptions.forEach((option) => {
-  const destinationLanguage = option.attributes.value.value;
-  displayLanguage(option, null, destinationLanguage.toUpperCase());
-  option.addEventListener('click', (e) => {
-    e.preventDefault();
-
-    // Redirect users to the destination language
-    if (supportedLanguages.includes(destinationLanguage)) {
-      if (isStaging) {
-        window.location = `http://docs-${destinationLanguage}-stage.moonbeam.network${currentPath}`;
-      } else {
-        window.location = `${window.location.origin}/${destinationLanguage}${currentPath}`;
-      }
-    } else {
-      // Default to English
-      if (isStaging) {
-        window.location = `http://docs-stage.moonbeam.network${currentPath}`;
-      } else {
-        window.location = `${window.location.origin}${currentPath}`;
-      }
-    }
-  });
 });

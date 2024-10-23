@@ -1,5 +1,6 @@
-import { ApiPromise, WsProvider } from '@polkadot/api'; // Version 9.13.6
-import { ethers } from 'ethers'; // Version 6.0.2
+import { ApiPromise, WsProvider } from '@polkadot/api'; // Version 10.13.1
+import { ethers } from 'ethers'; // Version 6.12.0
+import BN from 'bn.js'; // Importing directly from bn.js
 
 // 1. Input Data
 const providerWsURL = 'wss://wss.api.moonbase.moonbeam.network';
@@ -21,12 +22,15 @@ const generateCallData = async () => {
   });
   console.log(`Gas required for call is ${gasLimit.toString()}`);
 
+  // Convert ethers' BigNumber to Polkadot's BN and add some extra
+  const totalGasLimit = new BN(gasLimit.toString()).add(new BN(10000));
+
   // 4. Call Parameters
   const callParams = {
     V2: {
-      gasLimit: gasLimit + 10000n, // Estimated plus some extra gas
+      gasLimit: totalGasLimit, // Estimated plus some extra gas
       action: { Call: uniswapV2Router }, // Uniswap V2 router address
-      value: ethers.parseEther('0.01'), // 0.01 DEV
+      value: new BN(ethers.parseEther('0.01').toString()), // 0.01 DEV
       input: contractCall, // Swap encoded calldata
     },
   };

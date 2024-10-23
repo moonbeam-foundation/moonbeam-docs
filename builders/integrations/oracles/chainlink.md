@@ -7,7 +7,7 @@ description: Review price feed contracts for Moonbeam-based networks and learn h
 
 ## Introduction {: #introduction }
 
-Developers can now use [Chainlink's decentralized Oracle network](https://chain.link/){target=_blank} to fetch data from a Moonbeam-based network. There are two main architectures: [Price Feeds](https://docs.chain.link/docs/architecture-decentralized-model){target=_blank} and [Basic Request Model](https://docs.chain.link/architecture-overview/architecture-request-model?parent=gettingStarted){target=_blank}. Price Feeds contain real-time price data that is continuously updated by Oracle operators in a smart contract so that other smart contracts can fetch and consume it. The Basic Request Model describes an on-chain architecture for requesting data from a single oracle source. This guide will show you how to fetch the latest price data using both architectures.
+Developers can now use [Chainlink's decentralized Oracle network](https://chain.link){target=\_blank} to fetch data from a Moonbeam-based network. There are two main architectures: [Price Feeds](https://docs.chain.link/architecture-overview/architecture-decentralized-model){target=\_blank} and [Basic Request Model](https://docs.chain.link/architecture-overview/architecture-request-model?parent=gettingStarted){target=\_blank}. Price Feeds contain real-time price data that is continuously updated by Oracle operators in a smart contract so that other smart contracts can fetch and consume it. The Basic Request Model describes an on-chain architecture for requesting data from a single oracle source. This guide will show you how to fetch the latest price data using both architectures.
 
 --8<-- 'text/_disclaimers/third-party-content-intro.md'
 
@@ -15,11 +15,11 @@ Developers can now use [Chainlink's decentralized Oracle network](https://chain.
 
 Before going into fetching the data itself, it is important to understand the basics of price feeds.
 
-In a standard configuration, each price feed is updated by a decentralized oracle network. Each oracle node is rewarded for publishing the price data to the [aggregator contract](https://github.com/smartcontractkit/chainlink/blob/develop/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol){target=_blank}. The aggregator contract receives periodic data updates from the network of oracles and aggregates and stores the data on-chain so that consumers can easily fetch it. However, the information is only updated if a minimum number of responses from oracle nodes are received (during an aggregation round).
+In a standard configuration, each price feed is updated by a decentralized oracle network. Each oracle node is rewarded for publishing the price data to the [aggregator contract](https://github.com/smartcontractkit/chainlink/blob/develop/contracts/src/v0.8/shared/interfaces/AggregatorV3Interface.sol){target=\_blank}. The aggregator contract receives periodic data updates from the network of oracles and aggregates and stores the data on-chain so that consumers can easily fetch it. However, the information is only updated if a minimum number of responses from oracle nodes are received (during an aggregation round).
 
 The end-user can retrieve price feeds with read-only operations via an aggregator interface, or via a Consumer interface through the Proxy.
 
-![Price Feed Diagram](/images/builders/integrations/oracles/chainlink/chainlink-price-feed.png)
+![Price Feed Diagram](/images/builders/integrations/oracles/chainlink/chainlink-price-feed.webp)
 
 ### Fetch Price Data {: #fetch-price-data }
 
@@ -28,6 +28,7 @@ There are data feed contracts available for Moonbeam-based networks to help simp
 The data lives in a series of smart contracts (one per price feed) and can be fetched with the aggregator interface:
 
 ```solidity
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
 interface AggregatorV3Interface {
@@ -58,9 +59,9 @@ interface AggregatorV3Interface {
 }
 ```  
 
-As seen above in the interface, there are five functions for fetching data: `decimal`, `description`, `version`, `getRoundData`, and `latestRoundData`.
+As seen above in the interface, there are five functions for fetching data: `decimals`, `description`, `version`, `getRoundData`, and `latestRoundData`.
 
-Currently, there are data feed contracts for [Moonbeam](https://docs.chain.link/docs/data-feeds-moonbeam/){target=_blank}, [Moonriver](https://docs.chain.link/docs/data-feeds-moonriver/){target=_blank}, and Moonbase Alpha for the the following price pairs (proxy addresses):
+Currently, there are data feed contracts for [Moonbeam](https://docs.chain.link/data-feeds/price-feeds/addresses/?network=moonbeam&page=1){target=\_blank}, [Moonriver](https://docs.chain.link/data-feeds/price-feeds/addresses/?network=moonriver&page=1){target=\_blank}, and Moonbase Alpha for the following price pairs (proxy addresses):
 
 === "Moonbeam"
     | Base/Quote  |          Data Feed Contract  (Proxy Address)          |
@@ -142,9 +143,9 @@ Currently, there are data feed contracts for [Moonbeam](https://docs.chain.link/
     | USDT to USD  | {{ networks.moonbase.chainlink.feed.proxy.usdt_usd }}  |
     |  YFI to USD  |  {{ networks.moonbase.chainlink.feed.proxy.yfi_usd }}  |
 
-For example, you can use the aggregator interface to fetch the price feed of `BTC to USD` using [Remix](https://remix.ethereum.org/){target=_blank}. If you need help loading a contract into Remix, check out the [Using Remix](/builders/build/eth-api/dev-env/remix/){target=_blank} page of the documentation site.
+For example, you can use the aggregator interface to fetch the price feed of `BTC to USD` using [Remix](https://remix.ethereum.org){target=\_blank}. If you need help loading a contract into Remix, check out the [Using Remix](/builders/ethereum/dev-env/remix/){target=\_blank} page of the documentation site.
 
-You will need to connect your MetaMask account to Remix, so make sure you have MetaMask installed and are connected to the correct network. To get help setting up MetaMask, check out the [Interacting with Moonbeam Using MetaMask](/tokens/connect/metamask/#install-the-metamask-extension){target=_blank} guide.
+You will need to connect your MetaMask account to Remix, so make sure you have MetaMask installed and are connected to the correct network. To get help setting up MetaMask, check out the [Interacting with Moonbeam Using MetaMask](/tokens/connect/metamask/#install-the-metamask-extension){target=\_blank} guide.
 
 After creating the file and compiling the contract, you will need to follow these steps:
 
@@ -172,18 +173,18 @@ After creating the file and compiling the contract, you will need to follow thes
         {{ networks.moonbase.chainlink.feed.proxy.btc_usd }}
         ```
 
-![Load the Chainlink Price Feed Aggregator Interface on Moonriver](/images/builders/integrations/oracles/chainlink/chainlink-2.png)
+![Load the Chainlink Price Feed Aggregator Interface on Moonriver](/images/builders/integrations/oracles/chainlink/chainlink-2.webp)
 
 This will create an instance of the aggregator interface that you can interact with and it will appear under the **Deployed Contracts** section in Remix. To get the latest price data you can follow these steps:
 
 1. Expand the `AggregatorV3Interface` contract to reveal the available functions
 2. Click `latestRoundData()` to query the data of the corresponding price feed, in this case BTC to USD
 
-![Interact with the Chainlink Price Feed Aggregator Interface on Moonriver](/images/builders/integrations/oracles/chainlink/chainlink-3.png)
+![Interact with the Chainlink Price Feed Aggregator Interface on Moonriver](/images/builders/integrations/oracles/chainlink/chainlink-3.webp)
 
 Note that to obtain the real price, you must account for the decimals of the price feed, available with the `decimals()` method.
 
-If there is any specific pair you want to be included, feel free to reach out through [Discord](https://discord.com/invite/PfpUATX){target=_blank}.
+If there is any specific pair you want to be included, feel free to reach out through [Discord](https://discord.com/invite/PfpUATX){target=\_blank}.
 
 ## Basic Request Model {: #basic-request-model }
 
@@ -208,6 +209,7 @@ If you want to skip the hurdles of deploying all contracts, setting up your orac
 The client contract deployed on Moonbase Alpha is as follows:
 
 ```solidity
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.6.6;
 
 import "https://github.com/smartcontractkit/chainlink/blob/develop/contracts/src/v0.6/ChainlinkClient.sol";
@@ -306,6 +308,7 @@ The client contract is deployed at `{{ networks.moonbase.chainlink.client_contra
 
 
 ```solidity
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.6.6;
 
 /**
@@ -362,7 +365,7 @@ Currently, the oracle node has a set of Job IDs for different price data for the
 | USDT to USD  | {{ networks.moonbase.chainlink.basic.usdt_usd }}  |
 |  YFI to USD  |  {{ networks.moonbase.chainlink.basic.yfi_usd }}  |
 
-For this example, you can go ahead and use the interface contract with the `BTC to USD` job ID in [Remix](/builders/build/eth-api/dev-env/remix/){target=_blank}. After creating the file and compiling the contract, you can take the following steps:
+For this example, you can go ahead and use the interface contract with the `BTC to USD` job ID in [Remix](/builders/ethereum/dev-env/remix/){target=\_blank}. After creating the file and compiling the contract, you can take the following steps:
 
 1. Head to the **Deploy and Run Transactions** tab
 2. Make sure you have set the **ENVIRONMENT** to **Injected Web3**, and you have your MetaMask connected to Moonbase Alpha
@@ -371,9 +374,9 @@ For this example, you can go ahead and use the interface contract with the `BTC 
 5. Confirm the transaction. You will have to wait until the whole request process that was previously explained occurs
 6. You can then check the price using the view function, `currentPrice()`
 
-![Chainlink Basic Request on Moonbase Alpha](/images/builders/integrations/oracles/chainlink/chainlink-1.png)
+![Chainlink Basic Request on Moonbase Alpha](/images/builders/integrations/oracles/chainlink/chainlink-1.webp)
 
-If there is any specific pair you want to be included, feel free to reach out to the Moonbeam team through [Discord](https://discord.com/invite/PfpUATX){target=_blank}.
+If there is any specific pair you want to be included, feel free to reach out to the Moonbeam team through [Discord](https://discord.com/invite/PfpUATX){target=\_blank}.
 
 ### Create a Custom Client Contract {: #create-a-custom-client-contract }
 
@@ -389,20 +392,20 @@ If you decide to go this route, please keep in mind that the oracle node only su
 To build your own client contract using the `ChainlinkClient`, you'll need to start by importing the contract:
 
 ```solidity
-import "https://github.com/smartcontractkit/chainlink/evm-contracts/src/v0.8/ChainlinkClient.sol";
+import "https://github.com/smartcontractkit/chainlink/blob/develop/contracts/src/v0.6/ChainlinkClient.sol";
 ```
 
-You can checkout out the [Chainlink documentation on ChainlinkClient API Reference](https://docs.chain.link/docs/chainlink-framework/){target=_blank} for more information.
+You can checkout out the [Chainlink documentation on ChainlinkClient API Reference](https://docs.chain.link/any-api/api-reference){target=\_blank} for more information.
 
 Keep in mind that the LINK token payment is set to zero.
 
 ### Create Custom Contracts using your own Oracle Node {: #create-custom-contracts-using-your-own-oracle-node }
 
-To get started with your own setup, including your own client contract, oracle contract, and oracle node, you'll need to start off running an oracle node. You can follow the [Run a Chainlink Oracle Node on Moonbeam](/node-operators/oracle-nodes/node-chainlink/){target=_blank} guide to spin up your own oracle node. You'll also learn how to setup your oracle contract and create jobs.
+To get started with your own setup, including your own client contract, oracle contract, and oracle node, you'll need to start off running an oracle node. You can follow the [Run a Chainlink Oracle Node on Moonbeam](/node-operators/oracle-nodes/node-chainlink/){target=\_blank} guide to spin up your own oracle node. You'll also learn how to setup your oracle contract and create jobs.
 
-If you [created a job to be used with any API](/node-operators/oracle-nodes/node-chainlink/#using-any-api){target=_blank}, you can then create a client contract that sets the API endpoint URL to perform the GET request on.
+If you [created a job to be used with any API](/node-operators/oracle-nodes/node-chainlink/#using-any-api){target=\_blank}, you can then create a client contract that sets the API endpoint URL to perform the GET request on.
 
-Note that the client contract must have a LINK tokens balance to be able to pay for requests. Therefore, you will need to set the LINK value to zero in your `ChainlinkClient.sol` contract. You'll also need to make sure that your oracle node has a `MINIMUM_CONTRACT_PAYMENT` of `0`. You can verify that it has been set to zero by checking out the [**Configuration** section of your node](http://localhost:6688/config){target=_blank}.
+Note that the client contract must have a LINK tokens balance to be able to pay for requests. Therefore, you will need to set the LINK value to zero in your `ChainlinkClient.sol` contract. You'll also need to make sure that your oracle node has a `MINIMUM_CONTRACT_PAYMENT` of `0`. You can verify that it has been set to zero by checking out the [**Configuration** section of your node](http://localhost:6688/config){target=\_blank}.
 
 The following client contract is an example of how to use any API from within your client contract:
 
@@ -473,6 +476,6 @@ contract Client is ChainlinkClient {
 !!! note
     The above example uses the pre-deployed LINK token contract address. You also have the option of deploying your own LINK token contract and using that instead.
 
-Once you've deployed the contract on Remix, you can begin to request the volume data. After you make a request, you can check the status of the job by going to the [**Jobs** section of your node](http://localhost:6688/jobs){target=_blank}.
+Once you've deployed the contract on Remix, you can begin to request the volume data. After you make a request, you can check the status of the job by going to the [**Jobs** section of your node](http://localhost:6688/jobs){target=\_blank}.
 
 --8<-- 'text/_disclaimers/third-party-content.md'

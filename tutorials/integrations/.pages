@@ -4,5 +4,8 @@ nav:
   - index.md
   - 'Use Indexers to Query Chain Data':
     - 'indexers.index.md'
-    - '[Subsquid] Index a Local Dev Node': 'local-subsquid.md'
-    - '[Subsquid] Index NFT Transfers': 'nft-subsquid.md'
+    - '[SQD] Index a Local Dev Node': 'local-subsquid.md'
+    - '[SQD] Index NFT Transfers': 'nft-subsquid.md'
+  - 'Use Oracles to Fetch Off-Chain Data':
+    - 'oracles.index.md'
+    - '[Supra] Fetch Price Data': 'supra.md'

@@ -9,16 +9,16 @@ description: Learn about all of the necessary details to run a full parachain no
 
 Running a full node on a Moonbeam-based network allows you to connect to the network, sync with a bootnode, obtain local access to RPC endpoints, author blocks on the parachain, and more.
 
-There are multiple deployments of Moonbeam, including the Moonbase Alpha TestNet, Moonriver on Kusama, and Moonbeam on Polkadot. Here's how these environments are named and their corresponding [chain specification file](https://substrate.dev/docs/en/knowledgebase/integrate/chain-spec) names:
+There are multiple deployments of Moonbeam, including the Moonbase Alpha TestNet, Moonriver on Kusama, and Moonbeam on Polkadot. Here's how these environments are named and their corresponding [chain specification file](https://docs.substrate.io/build/chain-spec/) names:
 
-|    Network     | Hosted By |             Chain Name              |
-|:--------------:|:---------:|:-----------------------------------:|
-| Moonbase Alpha | PureStake | {{ networks.moonbase.chain_spec }}  |
-|   Moonriver    |  Kusama   | {{ networks.moonriver.chain_spec }} |
-|    Moonbeam    | Polkadot  | {{ networks.moonbeam.chain_spec }}  |
+|    Network     |      Hosted By      |             Chain Name              |
+|:--------------:|:-------------------:|:-----------------------------------:|
+| Moonbase Alpha | Moonbeam Foundation | {{ networks.moonbase.chain_spec }}  |
+|   Moonriver    |       Kusama        | {{ networks.moonriver.chain_spec }} |
+|    Moonbeam    |      Polkadot       | {{ networks.moonbeam.chain_spec }}  |
 
 !!! note
-    Moonbase Alpha is still considered an Alphanet, and as such _will not_ have 100% uptime. The parachain might be purged as needed. During the development of your application, make sure you implement a method to redeploy your contracts and accounts to a fresh parachain quickly. If a chain purge is required, it will be announced via our [Discord channel](https://discord.gg/PfpUATX) at least 24 hours in advance.
+    Moonbase Alpha is still considered an Alphanet, and as such _will not_ have 100% uptime. The parachain might be purged as needed. During the development of your application, make sure you implement a method to redeploy your contracts and accounts to a fresh parachain quickly. If a chain purge is required, it will be announced via our [Discord channel](https://discord.com/invite/PfpUATX) at least 24 hours in advance.
 
 ## Requirements {: #requirements }
 
@@ -81,12 +81,12 @@ The only ports that need to be open for incoming traffic are those designated fo
 
 There are a couple different guides to help you get started running a Moonbeam-based node:
 
-- [Using Docker](/node-operators/networks/run-a-node/docker) - this method provides a quick and easy way to get started with a Docker container
-- [Using Systemd](/node-operators/networks/run-a-node/systemd) - this method is recommended for those with experience compiling a Substrate node
+- [Using Docker](/node-operators/networks/run-a-node/docker/) - this method provides a quick and easy way to get started with a Docker container
+- [Using Systemd](/node-operators/networks/run-a-node/systemd/) - this method is recommended for those with experience compiling a Substrate node
 
 ## Debug, Trace and TxPool APIs {: #debug-trace-txpool-apis }
 
-You can also gain access to some non-standard RPC methods by running a tracing node, which allow developers to inspect and debug transactions during runtime. Tracing nodes use a different Docker image than a standard Moonbase Alpha, Moonriver, or Moonbeam node. Check out the [Run a Tracing Node](/node-operators/networks/tracing-node) guide and be sure to switch to the right network tab throughout the instructions. Then to interact with your tracing node, check out the [Debug & Trace](/builders/build/eth-api/debug-trace) guide.
+You can also gain access to some non-standard RPC methods by running a tracing node, which allow developers to inspect and debug transactions during runtime. Tracing nodes use a different Docker image than a standard Moonbase Alpha, Moonriver, or Moonbeam node. Check out the [Run a Tracing Node](/node-operators/networks/tracing-node/) guide and be sure to switch to the right network tab throughout the instructions. Then to interact with your tracing node, check out the [Debug & Trace](/builders/ethereum/json-rpc/debug-trace/) guide.
 
 ## Logs and Troubleshooting {: #logs-and-troubleshooting }
 
@@ -111,9 +111,9 @@ chain (our genesis: GENESIS_ID theirs: OTHER_GENESIS_ID)
 
 This typically means that you are running an older version and will need to upgrade.
 
-We announce the upgrades (and corresponding chain purge) via our [Discord channel](https://discord.gg/PfpUATX) at least 24 hours in advance.
+We announce the upgrades (and corresponding chain purge) via our [Discord channel](https://discord.com/invite/PfpUATX) at least 24 hours in advance.
 
 Instructions for purging chain data will vary slightly depending on how you spun up your node:
 
-  - For Docker, you can check out the [Purge Your Node](/node-operators/networks/run-a-node/docker/#purge-your-node) section of the [Using Docker](/node-operators/networks/run-a-node/docker) page
-  - For Systemd, you can take a look at the [Purge Your Node](/node-operators/networks/run-a-node/systemd/#purge-your-node) section of the [Using Systemd](/node-operators/networks/run-a-node/systemd) page
+  - For Docker, you can check out the [Purge Your Node](/node-operators/networks/run-a-node/docker/#purge-your-node) section of the [Using Docker](/node-operators/networks/run-a-node/docker/) page
+  - For Systemd, you can take a look at the [Purge Your Node](/node-operators/networks/run-a-node/systemd/#purge-your-node) section of the [Using Systemd](/node-operators/networks/run-a-node/systemd/) page

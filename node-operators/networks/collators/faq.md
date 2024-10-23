@@ -15,19 +15,19 @@ Running a Moobeam collator requires Linux systems administration skills, careful
 
 **Q: Where can I get help?**
 
-**A:** There is an active and friendly [Discord](https://discord.gg/RyVefR79FA){target=_blank} community for collators. Join the server and introduce yourself even before you need help. Send **gilmouta** or **artkaseman** a DM and let them know who you are, and they can reach out to you if they see any issues with your node.
+**A:** There is an active and friendly [Discord](https://discord.com/invite/RyVefR79FA){target=\_blank} community for collators. Join the server and introduce yourself even before you need help. Send **gilmouta** or **artkaseman** a DM and let them know who you are, and they can reach out to you if they see any issues with your node.
 
 ***
 
 **Q: How do I stay up to date?**
 
-**A:** All upgrades and important technical information are announced on [Discord](https://discord.gg/PhfEbKYqak){target=_blank}, in the **#tech-upgrades-announcements** channel. Join and follow this channel. You can set up integrations to Slack or Telegram if those are your preferred communication channels.
+**A:** All upgrades and important technical information are announced on [Discord](https://discord.com/invite/PhfEbKYqak){target=\_blank}, in the **#tech-upgrades-announcements** channel. Join and follow this channel. You can set up integrations to Slack or Telegram if those are your preferred communication channels.
 
 ***
 
 **Q: How do I register my node?**
 
-**A:** There is a [questionnaire](https://docs.google.com/forms/d/e/1FAIpQLSfjmcXdiOXWtquYlBhdgXBunCKWHadaQCgPuBtzih1fd0W3aA/viewform){target=_blank}, in which you will be able to provide your contact information as well as some basic hardware specs. You must be running a collator node on Moonbase Alpha to fill out the questionnaire.
+**A:** There is a [questionnaire](https://docs.google.com/forms/d/e/1FAIpQLSfjmcXdiOXWtquYlBhdgXBunCKWHadaQCgPuBtzih1fd0W3aA/viewform){target=\_blank}, in which you will be able to provide your contact information as well as some basic hardware specs. You must be running a collator node on Moonbase Alpha to fill out the questionnaire.
 
 ***
 
@@ -85,7 +85,7 @@ Hardware recommendations:
 
 **Q: Is there a CPU optimized binary?**
 
-**A:** On each [release page](https://github.com/moonbam-foundation/moonbeam/releases){target=_blank} are CPU optimized binaries. Select the binary for your CPU architecture.
+**A:** On each [release page](https://github.com/moonbeam-foundation/moonbeam/releases){target=\_blank} are CPU optimized binaries. Select the binary for your CPU architecture.
 
 - **Moonbeam-znver3** - Ryzen 9
 - **Moonbeam-skylake** - Intel
@@ -95,7 +95,7 @@ Hardware recommendations:
 
 **Q: What are the recommendations on monitoring my node?**
 
-**A:** Monitoring is very important for the health of the network and to maximize your rewards. We recommend using [Grafana Labs](https://grafana.com){target=_blank}. They have a free tier which should handle 6+ moonbeam servers.
+**A:** Monitoring is very important for the health of the network and to maximize your rewards. We recommend using [Grafana Labs](https://grafana.com){target=\_blank}. They have a free tier which should handle 6+ moonbeam servers.
 
 ***
 
@@ -107,25 +107,25 @@ Hardware recommendations:
 
 **Q: How should I setup alerting?**
 
-**A:** Alerting is critical to keeping your moonbeam node producing blocks and earning rewards. We recommend [pagerduty.com](https://www.pagerduty.com/){target=_blank}, which is supported by [Grafana Labs](https://grafana.com){target=_blank}. Use the [KPI query](#:~:text=substrate_proposer_block_constructed_count) above and set an alert when this drops below 1. The alert should page the person on-call 24/7.  
+**A:** Alerting is critical to keeping your moonbeam node producing blocks and earning rewards. We recommend [pagerduty.com](https://www.pagerduty.com){target=\_blank}, which is supported by [Grafana Labs](https://grafana.com){target=\_blank}. Use the [KPI query](#:~:text=substrate_proposer_block_constructed_count) above and set an alert when this drops below 1. The alert should page the person on-call 24/7.  
 
 ***
 
 **Q: What are Nimbus keys?**
 
-**A:** Nimbus keys are just like [session keys in Polkadot](https://wiki.polkadot.network/docs/learn-keys#session-keys){target=_blank}. You should have unique keys on your primary and backup servers. Save the key output somewhere safe where you can access it in the middle of the night if you receive an alert. To create your keys, please refer to the [Session Keys](/node-operators/networks/collators/account-management/#session-keys){target=_blank} section of the documentation.
+**A:** Nimbus keys are just like [session keys in Polkadot](https://wiki.polkadot.network/docs/learn-keys#session-keys){target=\_blank}. You should have unique keys on your primary and backup servers. Save the key output somewhere safe where you can access it in the middle of the night if you receive an alert. To create your keys, please refer to the [Session Keys](/node-operators/networks/collators/account-management/#session-keys){target=\_blank} section of the documentation.
 
 ***
 
 **Q: What is the failover process if my primary node is down?**
 
-**A:** When the primary server is down, the best way to perform a failover to the backup server is to perform a key association update. Each server should have a unique set of [keys](#:~:text=What are Nimbus keys) already. Run the `setKeys` author mapping extrinsic. You can follow the [Mapping Extrinsic](/node-operators/networks/collators/account-management/#mapping-extrinsic){target=_blank} instructions and modify the instructions to use the `setKeys` extrinsic.
+**A:** When the primary server is down, the best way to perform a failover to the backup server is to perform a key association update. Each server should have a unique set of [keys](#:~:text=What are Nimbus keys) already. Run the `setKeys` author mapping extrinsic. You can follow the [Mapping Extrinsic](/node-operators/networks/collators/account-management/#mapping-extrinsic){target=\_blank} instructions and modify the instructions to use the `setKeys` extrinsic.
 
 ***
 
 **Q: Should I set up centralized logging?**
 
-**A:** [Grafana Labs](https://grafana.com){target=_blank} can also be configured for centralized logging and is recommended. You can see all your nodes in one place. [Kibana](https://www.elastic.co/kibana/){target=_blank} has a more robust centralized logging offering, but Grafana is simple and good enough to start.
+**A:** [Grafana Labs](https://grafana.com){target=\_blank} can also be configured for centralized logging and is recommended. You can see all your nodes in one place. [Kibana](https://www.elastic.co/kibana){target=\_blank} has a more robust centralized logging offering, but Grafana is simple and good enough to start.
 
 ***
 
@@ -138,11 +138,11 @@ Hardware recommendations:
 
 You should see **Idle** in your logs when your node is in sync.
 
-![In sync Relay chain and parachain](/images/node-operators/networks/collators/account-management/account-1.png)
+![In sync Relay chain and parachain](/images/node-operators/networks/collators/account-management/account-1.webp)
 
 A common issue is joining the pool before your node is in sync. You will be unable to produce any blocks or receive any rewards. Wait until you are in sync and idle before joining the candidate pool.
 
-![Relay chain not in sync yet](/images/node-operators/networks/run-a-node/docker/full-node-docker-2.png)
+![Relay chain not in sync yet](/images/node-operators/networks/run-a-node/docker/full-node-docker-2.webp)
 
 The relay chain takes much longer to sync than the parachain. You will not see any finalized blocks until the relay chain has synced.
 
@@ -152,13 +152,13 @@ The relay chain takes much longer to sync than the parachain. You will not see a
 
 **A:** There are two bonds you need to be aware of. Make sure your node is configured and in sync before proceeding with these steps.
 
-The first is the [bond to join the collators](/node-operators/networks/collators/activities/#become-a-candidate){target=_blank} pool:
+The first is the [bond to join the collators](/node-operators/networks/collators/activities/#become-a-candidate){target=\_blank} pool:
 
 - **Moonbeam** - minimum of {{ networks.moonbeam.staking.min_can_stk }} GLMR
 - **Moonriver** - minimum of {{ networks.moonriver.staking.min_can_stk }} MOVR
 - **Moonbase Alpha** - minimum of {{ networks.moonbase.staking.min_can_stk }} DEV
 
-The second is the [bond for key association](/node-operators/networks/collators/account-management/#mapping-bonds){target=_blank}:
+The second is the [bond for key association](/node-operators/networks/collators/account-management/#mapping-bonds){target=\_blank}:
 
 - **Moonbeam** - minimum of {{ networks.moonbeam.staking.collator_map_bond }} GLMR
 - **Moonriver** - minimum of {{ networks.moonriver.staking.collator_map_bond }} MOVR
@@ -168,4 +168,4 @@ The second is the [bond for key association](/node-operators/networks/collators/
 
 **Q: How do I set an identity on my collator account?**  
 
-**A:** Setting an identity on chain will help to identify your node and attract delegations. You can set an identity by following the instructions on the [Managing an Identity](/tokens/manage/identity/){target=_blank} page of our documentation.
+**A:** Setting an identity on chain will help to identify your node and attract delegations. You can set an identity by following the instructions on the [Managing an Identity](/tokens/manage/identity/){target=\_blank} page of our documentation.

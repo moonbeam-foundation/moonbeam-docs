@@ -4,5 +4,6 @@ nav:
   - index.md
   - 'The Graph': 'thegraph.md'
   - 'Covalent API': 'covalent.md'
+  - 'Moralis': 'moralis.md'
   - 'SubQuery': 'subquery.md'
-  - 'Subsquid': 'subsquid.md'
+  - 'SQD': 'subsquid.md'

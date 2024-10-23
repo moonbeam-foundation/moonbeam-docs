@@ -7,7 +7,7 @@ description: This tutorial shows you how to integrate MetaMask into a DApp and a
 
 ## Introduction {: #introduction }
 
-With the release of MetaMask's [Custom Networks API](https://consensys.net/blog/metamask/connect-users-to-layer-2-networks-with-the-metamask-custom-networks-api/){target=_blank}, users can be prompted to add Moonbeam's Testnet, Moonbase Alpha.
+With the release of MetaMask's [Custom Networks API](https://consensys.io/blog/connect-users-to-layer-2-networks-with-the-metamask-custom-networks-api){target=\_blank}, users can be prompted to add Moonbeam's Testnet, Moonbase Alpha.
 
 This section will take you through the process of adding a "Connect to Moonbase Alpha" button that will prompt users to connect their MetaMask account(s) to Moonbase Alpha. Your users will no longer need to know or worry about Moonbase Alpha's network configurations and adding a custom network to MetaMask. To interact with Moonbeam from your dApp, all users will need to do is click a few buttons to connect to Moonbase Alpha and get started.
 
@@ -57,7 +57,7 @@ Now that you have created the button, you need to add the `configureMoonbaseAlph
     };
     ```
 
-2. Request the user's accounts by calling the `eth_requestAccounts` method. This will prompt MetaMask to pop-up and ask the user to select which accounts they would like to connect to. Behind the scenes, permissions are being checked by calling `wallet_requestPermissions`. Currently the only permissions are for `eth_accounts`. So you're ultimately verifying that you have access to the user's addresses returned from `eth_accounts`. If you're interested in learning more about the permissions system, check out [EIP-2255](https://eips.ethereum.org/EIPS/eip-2255){target=_blank}
+2. Request the user's accounts by calling the `eth_requestAccounts` method. This will prompt MetaMask to pop-up and ask the user to select which accounts they would like to connect to. Behind the scenes, permissions are being checked by calling `wallet_requestPermissions`. Currently the only permissions are for `eth_accounts`. So you're ultimately verifying that you have access to the user's addresses returned from `eth_accounts`. If you're interested in learning more about the permissions system, check out [EIP-2255](https://eips.ethereum.org/EIPS/eip-2255){target=\_blank}
 
     ```javascript
     import detectEthereumProvider from '@metamask/detect-provider';
@@ -75,7 +75,7 @@ Now that you have created the button, you need to add the `configureMoonbaseAlph
     };
     ```
 
-    ![Add accounts to MetaMask](/images/builders/integrations/wallets/metamask/metamask-1.png)
+    ![Add accounts to MetaMask](/images/builders/integrations/wallets/metamask/metamask-1.webp)
 
 3. Add Moonbase Alpha as a new chain by calling `wallet_addEthereumChain`. This will prompt the user to provide permission to add Moonbase Alpha as a custom network. Once the network has been successfully added, it will also prompt the user to then switch to Moonbase Alpha
 
@@ -112,7 +112,7 @@ Now that you have created the button, you need to add the `configureMoonbaseAlph
     };
     ```
 
-    ![Add and switch networks in MetaMask](/images/builders/integrations/wallets/metamask/metamask-2.png)
+    ![Add and switch networks in MetaMask](/images/builders/integrations/wallets/metamask/metamask-2.webp)
 
 So, now you should have a button that, on click, walks users through the entire process of connecting their MetaMask accounts to Moonbase Alpha.
 

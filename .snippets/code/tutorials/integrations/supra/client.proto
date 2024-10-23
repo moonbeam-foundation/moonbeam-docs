@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package pull_service;
+
+message PullResponse {
+  oneof resp {
+    PullResponseEvm evm = 1;
+    PullResponseSui sui = 2;
+    PullResponseAptos aptos = 3;
+  }
+}
+
+service PullService {
+  rpc GetProof(PullRequest) returns (PullResponse);
+}
+
+message PullRequest {
+  repeated uint32 pair_indexes = 1;
+  string chain_type = 2;
+}
+
+message PullResponseEvm {
+  repeated uint32 pair_indexes = 1;
+  bytes proof_bytes = 2;
+}

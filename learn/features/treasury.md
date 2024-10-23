@@ -5,13 +5,13 @@ description: As a Polkadot parachain, Moonbeam has an on-chain treasury controll
 
 # Treasury on Moonbeam
 
-## Introduction {: #introduction } 
+## Introduction {: #introduction }
 
-A Treasury is an on-chain managed collection of funds. Each Moonbeam-based network has a community Treasury for supporting network initiatives to further the network, funded by a percentage of transaction fees of the network it is on and managed by the Council. 
+A Treasury is an on-chain managed collection of funds. Each Moonbeam-based network has a community Treasury for supporting network initiatives to further the network, funded by a percentage of transaction fees of the network it is on and managed by the Council.
 
 As of October 19th, 2022 a community submitted referendum for an Interim Treasury Program was passed by the community. This 6-month program establishes a separate community Treasury Council to manage Treasury funds, a budget for Treasury spending, and a required discussion time to gather community feedback on possible future Treasury proposals.
 
-## General Definitions {: #general-definitions } 
+## General Definitions {: #general-definitions }
 
 Some important terminology to understand in regards to treasuries:
 
@@ -60,18 +60,20 @@ Some important terminology to understand in regards to treasuries:
     |             Maximum approved proposals             |                                   {{ networks.moonbase.treasury.max_approved_proposals }}                                   |
     | Target % of transaction fees allocated to Treasury |                                     {{ networks.moonbase.treasury.tx_fees_allocated }}                                      |
 
-## Community Treasury {: #community-treasury } 
+--8<-- 'text/_common/async-backing.md'
 
-The Treasury is funded by a percentage of each block's transaction fees. The remaining percentage of the fees is burned (check the table above). The Treasury allows stakeholders to submit spending proposals to be reviewed and voted on by the Treasury Council. These spending proposals should include initiatives to further the network or boost network engagement. Some network initiatives could include funding integrations or collaborations, community events, network outreach, and more. Before a proposal is submitted, the author of the proposal can submit their idea for their proposal to the designated Treasury [discussion forum](https://forum.moonbeam.foundation/){target=_blank} for feedback from the community for at least five days.
+## Community Treasury {: #community-treasury }
 
-To deter spam, proposals must be submitted with a deposit, also known as a proposal bond. The proposal bond is a percentage (check the table above) of the amount requested by the proposer, with a minimum amount and no upper limit (compared to Polkadot and Kusama, which have a maximum bond amount). A governance proposal can change these values. So, any token holder with enough tokens to cover the deposit can submit a proposal. If the proposer doesn't have enough funds to cover the deposit, the extrinsic will fail due to insufficient funds, but transaction fees will still be deducted. 
+The Treasury is funded by a percentage of each block's transaction fees. The remaining percentage of the fees is burned (check the table above). The Treasury allows stakeholders to submit spending proposals to be reviewed and voted on by the Treasury Council. These spending proposals should include initiatives to further the network or boost network engagement. Some network initiatives could include funding integrations or collaborations, community events, network outreach, and more. Before a proposal is submitted, the author of the proposal can submit their idea for their proposal to the designated Treasury [discussion forum](https://forum.moonbeam.network){target=\_blank} for feedback from the community for at least five days.
 
-Once a proposal has been submitted, a Treasury Council member may motion for a vote on the proposal. The Treasury Council then votes on it during the motion duration. The threshold for accepting a treasury proposal is at least three-fifths of the treasury council. On the other hand, the threshold for rejecting a proposal is at least one-half of the treasury council. If any member(s) of the Treasury Council fails to vote during the motion duration, the vote of the Treasury Council member that holds the "Default Vote" position acts as the default. The "Default Vote" position mirrors that of [Polkadot's "Prime Member"](https://wiki.polkadot.network/docs/learn-governance#prime-members){target=_blank}. Please note that there is no way for a user to revoke a treasury proposal after it has been submitted.
- 
-If approved by the treasury council, the proposal enters a queue to be placed into a spend period. If the spending queue happens to contain the number of maximum approved proposals, the proposal submission will fail similarly to how it would if the proposer's balance is too low. If the proposal gets rejected, the deposit is non-refundable. 
+To deter spam, proposals must be submitted with a deposit, also known as a proposal bond. The proposal bond is a percentage (check the table above) of the amount requested by the proposer, with a minimum amount and no upper limit (compared to Polkadot and Kusama, which have a maximum bond amount). A governance proposal can change these values. So, any token holder with enough tokens to cover the deposit can submit a proposal. If the proposer doesn't have enough funds to cover the deposit, the extrinsic will fail due to insufficient funds, but transaction fees will still be deducted.
+
+Once a proposal has been submitted, a Treasury Council member may motion for a vote on the proposal. The Treasury Council then votes on it during the motion duration. The threshold for accepting a treasury proposal is at least three-fifths of the treasury council. On the other hand, the threshold for rejecting a proposal is at least one-half of the treasury council. If any member(s) of the Treasury Council fails to vote during the motion duration, the vote of the Treasury Council member that holds the "Default Vote" position acts as the default. The "Default Vote" position mirrors that of [Polkadot's "Prime Member"](https://wiki.polkadot.network/docs/learn/learn-governance#prime-members){target=\_blank}. Please note that there is no way for a user to revoke a treasury proposal after it has been submitted.
+
+If approved by the treasury council, the proposal enters a queue to be placed into a spend period. If the spending queue happens to contain the number of maximum approved proposals, the proposal submission will fail similarly to how it would if the proposer's balance is too low. If the proposal gets rejected, the deposit is non-refundable.
 
 Once the proposal is in a spend period, the funds will get distributed to the beneficiary, and the original deposit will be returned to the proposer. If the treasury runs out of funds, the remaining approved proposals will remain in storage until the following spend period when the treasury has enough funds again.
 
 The happy path for a treasury proposal is shown in the following diagram:
 
-![Treasury Proposal Happy Path Diagram](/images/learn/features/treasury/treasury-proposal-roadmap.png)
+![Treasury Proposal Happy Path Diagram](/images/learn/features/treasury/treasury-proposal-roadmap.webp)

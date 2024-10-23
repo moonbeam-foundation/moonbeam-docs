@@ -15,6 +15,6 @@ Moonbeam is implemented using the Substrate framework.  The source code for Subs
 
 We also work on Ethereum compatibility features along with engineers from Parity as part of the Frontier project.  Source code for Frontier can be found here:
 
-[:fontawesome-brands-github: https://github.com/paritytech/frontier](https://github.com/paritytech/frontier)
+[:fontawesome-brands-github: https://github.com/polkadot-evm/frontier](https://github.com/polkadot-evm/frontier)
 
 If you are interested in contributing code to Moonbeam, reach out to us on [:moonbeam-element: Element](https://matrix.to/#/!dzULkAiPePEaverEEP:matrix.org?via=matrix.org).

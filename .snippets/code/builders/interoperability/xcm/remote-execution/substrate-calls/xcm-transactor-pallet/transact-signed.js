@@ -1,12 +1,13 @@
-import { ApiPromise, WsProvider, Keyring } from '@polkadot/api'; // Version 9.13.6
+import { ApiPromise, WsProvider, Keyring } from '@polkadot/api'; // Version 10.13.1
+import { cryptoWaitReady } from '@polkadot/util-crypto';
 
 // 1. Provide input data
 const providerWsURL = 'wss://wss.api.moonbase.moonbeam.network';
 const privateKey = 'INSERT_PRIVATE_KEY';
 const dest = {
-  V3: {
+  V4: {
     parents: 1,
-    interior: { X1: { Parachain: 888 } },
+    interior: { X1: [{ Parachain: 888 }] },
   },
 };
 const fee = {
@@ -18,15 +19,16 @@ const fee = {
 const call = '0x030044236223ab4291b93eed10e4b511b37a398dee5513000064a7b3b6e00d';
 const weightInfo = {
   transactRequiredWeightAtMost: { refTime: 1000000000n, proofSize: 40000n },
-  overallWeight: { refTime: 2000000000n, proofSize: 50000n },
+  overallWeight: { Unlimited: null },
 };
 const refund = true;
 
-// 2. Create Keyring instance
-const keyring = new Keyring({ type: 'ethereum' });
-const alice = keyring.addFromUri(privateKey);
-
 const transactThroughSigned = async () => {
+  // 2. Create Keyring instance
+  await cryptoWaitReady();
+  const keyring = new Keyring({ type: 'ethereum' });
+  const alice = keyring.addFromUri(privateKey);
+  
   // 3. Create Substrate API provider
   const substrateProvider = new WsProvider(providerWsURL);
   const api = await ApiPromise.create({ provider: substrateProvider });

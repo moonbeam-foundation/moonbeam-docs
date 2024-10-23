@@ -3,4 +3,5 @@ nav:
   - index.md
   - 'Overview': 'overview.md'
   - 'Using the Substrate API': 'xtokens-pallet.md'
-  - 'Using the Ethereum API': 'xtokens-precompile.md'
+  - 'Using the Ethereum API: X-Tokens Precompile': 'xtokens-precompile.md'
+  - 'Using the Ethereum API: XCM Precompile' : 'eth-api.md'

@@ -1,8 +1,0 @@
-title: Ethereum API
-nav:
-  - index.md
-  - libraries
-  - dev-env
-  - verify-contracts
-  - 'Debug & Trace': 'debug-trace.md'
-  - 'Events Subscription': 'pubsub.md'
