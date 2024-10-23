@@ -17,7 +17,7 @@ There are some key differences between the transaction fee model on Moonbeam and
 
   - The [dynamic fee mechanism](https://forum.moonbeam.network/t/proposal-status-idea-dynamic-fee-mechanism-for-moonbeam-and-moonriver/241){target=\_blank} resembles that of [EIP-1559](https://eips.ethereum.org/EIPS/eip-1559){target=\_blank} but the implementation is different
 
-  - The amount of gas used in Moonbeam's transaction fee model is mapped from the transaction's Substrate extrinsic weight value via a fixed factor of {{ networks.moonbase.tx_weight_to_gas_ratio }}. This value is then multiplied with the unit gas price to calculate the transaction fee. This fee model means it can potentially be significantly cheaper to send transactions such as basic balance transfers via the Ethereum API than the Substrate API
+  - The amount of gas used in Moonbeam's transaction fee model is mapped from the transaction's Substrate extrinsic `refTime` component of the transaction weight via a fixed factor of `{{ networks.moonbase.tx_weight_to_gas_ratio }}` and `proofSize` component of the transaction weight via a fixed factor of `{{ xcm.generic_weights.proof_size.weight_per_gas }}`. The transaction weight vector is then multiplied with the unit gas price to calculate the transaction fee. This fee model means it can potentially be significantly cheaper to send transactions such as basic balance transfers via the Ethereum API than the Substrate API.
 
   - The EVM is designed to solely have capacity for gas and Moonbeam requires additional metrics outside of gas. In particular, Moonbeam needs the ability to record proof size, which is the amount of storage required on Moonbeam for a relay chain validator to verify a state transition. When the capacity limit for proof size has been reached for the current block, which is 25% of the block limit, an "Out of Gas" error will be thrown. This can happen even if there is remaining *legacy* gas in the gasometer. This additional metric also impacts refunds. Refunds are based on the more consumed resource after the execution. In other words, if more proof size has been consumed proportionally than legacy gas, the refund will be calculated using proof size
 
@@ -385,16 +385,24 @@ The paths to the relevant values have also been truncated and reproduced below:
 
 ### Transaction Weight {: #transaction-weight}
 
-`TransactionWeight` is a Substrate mechanism used to measure the execution time a given transaction takes to be executed within a block. For all transactions types, `TransactionWeight` can be retrieved under the event of the relevant extrinsic where the `method` field is set to:
+`TransactionWeight` is a Substrate mechanism used to measure the execution time a given transaction takes to be executed within a block. A transaction's weight is a vector of two components: `refTime` and `proofSize`. `refTime` refers to the amount of computational time that can be used for execution. `proofSize` refers to the size of the PoV (Proof of Validity) of the Moonbeam block that gets submitted to the Polkadot Relay Chain for validation. Since both `refTime` and `proofSize` are integral components of determining a weight, it is impossible to obtain an accurate weight value with just one of these values.
+
+For all transactions types, `TransactionWeight` can be retrieved under the event of the relevant extrinsic where the `method` field is set to:
 
 ```text
 pallet: "system", method: "ExtrinsicSuccess" 
 ```
 
-And then `TransactionWeight` is mapped to the following field of the block JSON object:
+And then `TransactionWeight` is mapped to the following two fields of the block JSON object. `proofSize` is mapped as follows:
 
 ```text
-extrinsics[extrinsic_number].events[event_number].data[0].weight
+extrinsics[extrinsic_number].events[event_number].data[0].weight.proof_size 
+```
+
+And `refTime` is mapped as follows:
+
+```text
+extrinsics[extrinsic_number].events[event_number].data[0].weight.ref_time 
 ```
 
 ### Fee History Endpoint {: #eth-feehistory-endpoint }

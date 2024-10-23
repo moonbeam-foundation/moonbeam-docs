@@ -41,7 +41,7 @@ For this tutorial, you'll need the following:
 The following are the contracts that we'll be working with today to create our lottery:
 
 - `Randomness.sol` - the [Randomness Precompile](/builders/ethereum/precompiles/features/randomness/){target=\_blank}, which is a Solidity interface that allows you to request randomness, get information about randomness requests, fulfill requests, and more
-- `RandomnessConsumer.sol` - the [Randomness Consumer](/builders/ethereum/precompiles/features/randomness#randomness-consumer-solidity-interface){target=\_blank}, which is an abstract Solidity contract that is used to interact with the Randomness Precompile. This contract is responsible for validating the origin of randomness requests, ensuring the Randomness Precompile is always the origin, and fulfilling requests
+- `RandomnessConsumer.sol` - the [Randomness Consumer](/builders/ethereum/precompiles/features/randomness/#randomness-consumer-solidity-interface){target=\_blank}, which is an abstract Solidity contract that is used to interact with the Randomness Precompile. This contract is responsible for validating the origin of randomness requests, ensuring the Randomness Precompile is always the origin, and fulfilling requests
 - `Lottery.sol` - an example lottery contract that we'll be building in this guide together. It will rely on the Randomness Precompile and Consumer to request random words that will be used to select a winner for our lottery
 
 If you don't already have a `contracts` directory in your Hardhat project, you can create a new directory:

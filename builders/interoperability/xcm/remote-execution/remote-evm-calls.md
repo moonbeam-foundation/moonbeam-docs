@@ -34,10 +34,10 @@ A regular EVM call has an apparent sender who signs the Ethereum transaction wit
 
 With remote EVM calls, the signer signs an XCM transaction in another chain. Moonbeam receives that XCM message, which follows the conventional remote execution via XCM form:
 
- - [`DescendOrigin`](/builders/interoperability/xcm/core-concepts/instructions#descend-origin){target=\_blank} (optional)
- - [`WithdrawAsset`](/builders/interoperability/xcm/core-concepts/instructions#withdraw-asset){target=\_blank}
- - [`BuyExecution`](/builders/interoperability/xcm/core-concepts/instructions#buy-execution){target=\_blank}
- - [`Transact`](/builders/interoperability/xcm/core-concepts/instructions#transact){target=\_blank}
+ - [`DescendOrigin`](/builders/interoperability/xcm/core-concepts/instructions/#descend-origin){target=\_blank} (optional)
+ - [`WithdrawAsset`](/builders/interoperability/xcm/core-concepts/instructions/#withdraw-asset){target=\_blank}
+ - [`BuyExecution`](/builders/interoperability/xcm/core-concepts/instructions/#buy-execution){target=\_blank}
+ - [`Transact`](/builders/interoperability/xcm/core-concepts/instructions/#transact){target=\_blank}
 
 XCM execution happens through a [Computed Origin account mechanism](/builders/interoperability/xcm/remote-execution/computed-origins/){target=\_blank}, which by default uses the source chain's Sovereign account in the destination chain. If `DescendOrigin` is included, Moonbeam will mutate the origin of the XCM call to a keyless account that a user from the source chain can control remotely via XCM. The remote EVM call is dispatched from that keyless account (or a related [proxy](/tokens/manage/proxy-accounts/){target=\_blank}). Therefore, because the transaction is not signed, it does not have the real `v-r-s` values of the signature, but `0x1` instead.
 
@@ -72,7 +72,7 @@ As of runtime 2900, the configuration of the XCM queue suggests that XCM message
 
 Suppose the XCM message can't be executed due to the lack of execution time in a given block, and the weight requirement exceeds the above limits. In that case, the XCM message will be marked as `overweight` and only be executable through democracy.
 
-The maximum weight limit per XCM message constrains the gas limit available for remote EVM calls through XCM. For all Moonbeam-based networks, there is a ratio of [`25,000` units of gas per unit of weight](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbase.spec_version }}/runtime/moonbase/src/lib.rs#L428){target=\_blank} ([`WEIGHT_REF_TIME_PER_SECOND`](https://paritytech.github.io/substrate/master/frame_support/weights/constants/constant.WEIGHT_REF_TIME_PER_SECOND.html){target=\_blank} / [`GAS_PER_SECOND`](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbase.spec_version }}/runtime/moonbase/src/lib.rs#L424){target=\_blank}). Considering that you need some XCM message weight to execute the XCM instructions, a remote EVM call might consume 2,000,000,000 units. The following equation can be used to determine the maximum gas units for a remote EVM call:
+The maximum weight limit per XCM message constrains the gas limit available for remote EVM calls through XCM. For all Moonbeam-based networks, there is a ratio of [`25,000` units of gas per unit of weight](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbase.spec_version }}/runtime/moonbase/src/lib.rs#L446){target=\_blank} ([`WEIGHT_REF_TIME_PER_SECOND`](https://paritytech.github.io/substrate/master/frame_support/weights/constants/constant.WEIGHT_REF_TIME_PER_SECOND.html){target=\_blank} / [`GAS_PER_SECOND`](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbase.spec_version }}/runtime/moonbase/src/lib.rs#L442){target=\_blank}). Considering that you need some XCM message weight to execute the XCM instructions, a remote EVM call might consume 2,000,000,000 units. The following equation can be used to determine the maximum gas units for a remote EVM call:
 
 ```text
 Maximum Gas Units = (Maximum Weight Units - Remote EVM Weight Units) / 25,000
@@ -223,7 +223,7 @@ You'll use the encoded call data in the `Transact` instruction in the following 
 
 When using the `Transact` instruction, you'll need to define the `requireWeightAtMost` field, which is the required weight for the transaction. This field accepts two arguments: the `refTime` and `proofSize`. The `refTime` is the amount of computational time that can be used for execution, and the `proofSize` is the amount of storage in bytes that can be used.
 
-To get an estimate for the `refTime` and `proofSize`, you can use the [`paymentInfo` method of the Polkadot.js API](/builders/substrate/libraries/polkadot-js-api#fees){target=\_blank}. Since these weights are required for the `Transact` call data, you can extend the script from the previous section to add in the call to `paymentInfo`.
+To get an estimate for the `refTime` and `proofSize`, you can use the [`paymentInfo` method of the Polkadot.js API](/builders/substrate/libraries/polkadot-js-api/#fees){target=\_blank}. Since these weights are required for the `Transact` call data, you can extend the script from the previous section to add in the call to `paymentInfo`.
 
 The `paymentInfo` method accepts the same parameters you would normally pass to the `.signAndSend` method, which is the sending account and, optionally, some additional values such as a nonce or signer.
 

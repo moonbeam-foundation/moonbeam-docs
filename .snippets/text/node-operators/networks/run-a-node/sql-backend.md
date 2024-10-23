@@ -4,4 +4,4 @@ The default [Frontier](/learn/platform/technology/#frontier){target=\_blank} dat
 
 To spin up a node with a Frontier SQL backend, you'll need to add the `--frontier-backend-type sql` flag to your start-up command.
 
-There are additional flags you can use to configure the pool size, query timeouts, and more for your SQL backend; please refer to the [Flags](/node-operators/networks/run-a-node/flags#flags-for-sql-backend){target=\_blank} page for more information.
+There are additional flags you can use to configure the pool size, query timeouts, and more for your SQL backend; please refer to the [Flags](/node-operators/networks/run-a-node/flags/#flags-for-sql-backend){target=\_blank} page for more information.

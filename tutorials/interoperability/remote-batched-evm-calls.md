@@ -23,7 +23,7 @@ The goal of this tutorial is to show you how the [Batch Precompile](/builders/et
 Throughout this tutorial, we will refer to the account executing the batch EVM calls via XCM as Alice. Let's preview the flow of this tutorial:
 
 1. Alice has an account on the relay chain, and she wants to mint Mars (MARS) and Neptune (NEPT) tokens (ERC-20s on Moonbase Alpha) using [Moonbase Minter](https://moonbase-minterc20.netlify.app){target=\_blank}. Alice needs to send an XCM message to Moonbase Alpha from her relay chain account
-2. The XCM message will be received by Moonbase Alpha and its instructions executed. The instructions state Alice's intention to buy some block execution time in Moonbase Alpha and execute a call to Moonbase's Batch Precompile, composed of two distinct mint calls. The batch EVM call is dispatched through a special account Alice controls on Moonbase Alpha via XCM messages. This account is known as the [Computed Origin account](/builders/interoperability/xcm/remote-execution/computed-origins/){target=\_blank}. Even though this is a keyless account (private key is unknown), the public address can be [calculated in a deterministic way](/builders/interoperability/xcm/remote-execution/computed-origins#calculate-computed-origin){target=\_blank}
+2. The XCM message will be received by Moonbase Alpha and its instructions executed. The instructions state Alice's intention to buy some block execution time in Moonbase Alpha and execute a call to Moonbase's Batch Precompile, composed of two distinct mint calls. The batch EVM call is dispatched through a special account Alice controls on Moonbase Alpha via XCM messages. This account is known as the [Computed Origin account](/builders/interoperability/xcm/remote-execution/computed-origins/){target=\_blank}. Even though this is a keyless account (private key is unknown), the public address can be [calculated in a deterministic way](/builders/interoperability/xcm/remote-execution/computed-origins/#calculate-computed-origin){target=\_blank}
 3. The successful XCM execution will result in the mint commands being executed by the EVM, and Alice will receive her MARS and NEPT tokens in her special account
 4. The execution of the remote EVM call through XCM will result in some EVM logs that are picked up by explorers. There is an EVM transaction and receipt that anyone can query to verify
 
@@ -162,10 +162,10 @@ We are almost in the last part of this tutorial! In this section, we'll craft th
 
 The XCM message we are about to build is composed of the following instructions:
 
- - [`WithdrawAsset`](/builders/interoperability/xcm/core-concepts/instructions#withdraw-asset){target=\_blank} — takes funds from the account dispatching the XCM in the destination chain and puts them in holding where they can be used for later actions
- - [`BuyExecution`](/builders/interoperability/xcm/core-concepts/instructions#buy-execution){target=\_blank} — buy a certain amount of block execution time
- - [`Transact`](/builders/interoperability/xcm/core-concepts/instructions#transact){target=\_blank} — use part of the block execution time bought with the previous instruction to execute some arbitrary bytes
- - [`DepositAsset`](/builders/interoperability/xcm/core-concepts/instructions#deposit-asset){target=\_blank} — takes assets from holding and deposits them to a given account
+ - [`WithdrawAsset`](/builders/interoperability/xcm/core-concepts/instructions/#withdraw-asset){target=\_blank} — takes funds from the account dispatching the XCM in the destination chain and puts them in holding where they can be used for later actions
+ - [`BuyExecution`](/builders/interoperability/xcm/core-concepts/instructions/#buy-execution){target=\_blank} — buy a certain amount of block execution time
+ - [`Transact`](/builders/interoperability/xcm/core-concepts/instructions/#transact){target=\_blank} — use part of the block execution time bought with the previous instruction to execute some arbitrary bytes
+ - [`DepositAsset`](/builders/interoperability/xcm/core-concepts/instructions/#deposit-asset){target=\_blank} — takes assets from holding and deposits them to a given account
 
 To build the XCM message, which will initiate the remote EVM call through XCM, and get its SCALE encoded calldata, you can use the following snippet:
 
@@ -192,7 +192,7 @@ Let's go through each of the main components of the snippet shown above:
  6. Fourth XCM instruction, `DepositAsset`. Whatever is left in holding after the actions executed before (in this case, it should be only DEV tokens) is deposited into the Computed Origin account, set as the `beneficiary`.
  7. Build the XCM message by concatenating the instructions inside a `V3` array
  8. Create the [Polkadot.js API](/builders/substrate/libraries/polkadot-js-api/){target=\_blank} provider
- 9. Craft the `xcmPallet.send` extrinsic with the destination and XCM message. This method will append the [`DescendOrigin`](/builders/interoperability/xcm/core-concepts/instructions#descend-origin){target=\_blank} XCM instruction to our XCM message, and it is the instruction that will provide the necessary information to calculate the Computed Origin account
+ 9. Craft the `xcmPallet.send` extrinsic with the destination and XCM message. This method will append the [`DescendOrigin`](/builders/interoperability/xcm/core-concepts/instructions/#descend-origin){target=\_blank} XCM instruction to our XCM message, and it is the instruction that will provide the necessary information to calculate the Computed Origin account
  10. Get the SCALE encoded calldata. Note that in this particular scenario, because we need the full SCALE encoded calldata, we have to use `tx.toHex()`. This is because we will submit this transaction using the calldata
 
 Once you have the code set up, you can execute it with `node`, and you'll get the relay chain XCM calldata:
@@ -237,7 +237,7 @@ This action will emit different events. The first one is only relevant [in the r
  - `parachainSystem.DownwardMessagesReceived` — states that there was an XCM message received
  - `evm.Log` — internal events emitted by the different contract calls. The structure is the same: contract address, topics, and relevant data
  - `ethereum.Executed` — contains information on the `from` address, the `to` address, and the transaction hash of an EVM call done
- - `polkadotXcm.AssetsTrapped` — flags that some assets were in holding and were not deposited to a given address. If the `Transact` XCM instruction does not exhaust the tokens allocated to it, it will execute a [`RefundSurplus`](/builders/interoperability/xcm/core-concepts/instructions#refund-surplus){target=\_blank} after the XCM is processed. This instruction will take any leftover tokens from the execution bought and put them in holding. We could prevent this by adjusting the fee provided to the `Transact` instruction or by adding the instruction right after the `Transact`
+ - `polkadotXcm.AssetsTrapped` — flags that some assets were in holding and were not deposited to a given address. If the `Transact` XCM instruction does not exhaust the tokens allocated to it, it will execute a [`RefundSurplus`](/builders/interoperability/xcm/core-concepts/instructions/#refund-surplus){target=\_blank} after the XCM is processed. This instruction will take any leftover tokens from the execution bought and put them in holding. We could prevent this by adjusting the fee provided to the `Transact` instruction or by adding the instruction right after the `Transact`
  - `dmpQueue.ExecutedDownward` — states the result of executing a message received from the relay chain (a DMP message). In this case, the `outcome` is marked as `Complete`
 
 Our XCM was successfully executed! If you visit [Moonbase Alpha Moonscan](https://moonbase.moonscan.io){target=\_blank} and search for [the transaction hash](https://moonbase.moonscan.io/tx/0xd5e855bc3ade42d040f3c29abe129bd8f488dee0014e731eba4617883aac3891){target=\_blank}, you'll find the call to the Batch Precompile that was executed via the XCM message. Note that you can only call the `mint` commands once per hour per planet. If you wish to experiment further and make additional mint calls, simply change the destination contract address to a different planet when configuring the batch call.

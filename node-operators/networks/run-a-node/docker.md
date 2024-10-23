@@ -16,7 +16,7 @@ In this guide, you'll learn how to quickly spin up a Moonbeam node using [Docker
 To get started, you'll need to:
 
 - [Install Docker](https://docs.docker.com/get-docker){target=\_blank}. At the time of writing, the Docker version used was 24.0.6
-- Make sure that your system meets the [requirements](/node-operators/networks/run-a-node/overview#requirements){target=\_blank}. When connecting to Moonriver on Kusama or Moonbeam on Polkadot, it will take a few days to completely sync the embedded relay chain
+- Make sure that your system meets the [requirements](/node-operators/networks/run-a-node/overview/#requirements){target=\_blank}. When connecting to Moonriver on Kusama or Moonbeam on Polkadot, it will take a few days to completely sync the embedded relay chain
 
 ## Set up Storage for Chain Data {: #storage-chain-data }
 
@@ -426,7 +426,7 @@ During the syncing process, you will see logs from both the embedded relay chain
 If you followed the installation instructions for Moonbase Alpha, once synced, you will have a node of the Moonbase Alpha TestNet running locally! For Moonbeam or Moonriver, once synced, you will be connected to peers and see blocks being produced on the network!
 
 !!! note
-    It may take a few days to completely sync the embedded relay chain. Make sure that your system meets the [requirements](/node-operators/networks/run-a-node/overview#requirements){target=\_blank}.
+    It may take a few days to completely sync the embedded relay chain. Make sure that your system meets the [requirements](/node-operators/networks/run-a-node/overview/#requirements){target=\_blank}.
 
 ## Maintain Your Node {: #maintain-your-node }
 

@@ -44,7 +44,7 @@ The addresses for Supra's contracts on Moonbeam are as follows:
 
 ### List of Available Price Feeds {: #list-of-available-price-feeds }
 
-To view a complete list of the available data pairs provided by Supra, please check out their [data feeds catalog](https://supra.com/docs/data-feeds/data-feeds-index) on their documentation site.
+To view a complete list of the available data pairs provided by Supra, please check out their [data feeds catalog](https://docs.supra.com/oracles/data-feeds/data-feeds-index) on their documentation site.
 
 To interact with any of these data pairs, you'll need to take note of the pair's **Pair ID**.
 
@@ -57,7 +57,7 @@ Try out a basic example of how to fetch price data using Supra's pull model with
 Still looking for answers? Supra's got them! Check out all the ways you can reach the Supra team:
 
 - Visit [Supra's websites at supraoracles.com](https://supra.com){target=\_blank}
-- Read their [docs](https://supra.com/docs/overview){target=\_blank}
+- Read their [docs](https://docs.supra.com/oracles/overview){target=\_blank}
 - Chat with them on [Telegram](https://t.me/SupraOracles){target=\_blank}
 - Follow them on [Twitter](https://twitter.com/SupraOracles){target=\_blank}
 - Join their [Discord](https://discord.com/invite/supraoracles){target=\_blank}

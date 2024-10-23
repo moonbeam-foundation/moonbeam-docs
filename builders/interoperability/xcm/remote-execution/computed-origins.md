@@ -11,7 +11,7 @@ The Computed Origin, previously referred to as the multilocation-derivative acco
 
 Computed origins are keyless (the private key is unknown). Consequently, Computed Origins can only be accessed through XCM extrinsics from the origin account. In other words, the origin account is the only account that can initiate transactions on your Computed Origin account, and if you lose access to your origin account, you’ll also lose access to your Computed Origin account.
 
-The Computed Origin is calculated from the origin that is being used to execute the XCM in the destination chain. By default, this is the Sovereign account of the source chain in the destination chain. This origin can be mutated by the [`DescendOrigin`](/builders/interoperability/xcm/core-concepts/instructions#descend-origin){target=\_blank} XCM instruction. However, the destination chain can decide whether or not to use the newly mutated origin for the execution of the XCM. On Moonbeam, the Computed Origin account is used to execute the XCM.
+The Computed Origin is calculated from the origin that is being used to execute the XCM in the destination chain. By default, this is the Sovereign account of the source chain in the destination chain. This origin can be mutated by the [`DescendOrigin`](/builders/interoperability/xcm/core-concepts/instructions/#descend-origin){target=\_blank} XCM instruction. However, the destination chain can decide whether or not to use the newly mutated origin for the execution of the XCM. On Moonbeam, the Computed Origin account is used to execute the XCM.
 
 Moonbeam-based networks follow [the Computed Origins standard set by Polkadot](https://github.com/paritytech/polkadot-sdk/blob/{{ polkadot_sdk }}/polkadot/xcm/xcm-builder/src/location_conversion.rs){target=\_blank}, that is, through a `blake2` hash of a data structure that depends on the origin of the XCM message. However, because Moonbeam uses Ethereum-styled accounts, Computed Origins are truncated to 20 bytes.
 
@@ -19,7 +19,7 @@ Moonbeam-based networks follow [the Computed Origins standard set by Polkadot](h
 
 The [origin conversion](https://github.com/paritytech/polkadot-sdk/blob/{{ polkadot_sdk }}/polkadot/xcm/xcm-executor/src/lib.rs#L719){target=\_blank} for a remote call happens when the `Transact` instruction gets executed. The new origin on the target chain is the one that pays for the fees for XCM execution on the target chain.
 
-For example, from the relay chain, the [`DescendOrigin`](/builders/interoperability/xcm/core-concepts/instructions#descend-origin){target=\_blank} instruction is natively injected by the [XCM Pallet](https://github.com/paritytech/polkadot-sdk/blob/{{ polkadot_sdk }}/polkadot/xcm/pallet-xcm/src/lib.rs){target=\_blank}. In the case of Moonbase Alpha's relay chain (based on Westend), it has the following format (a multilocation junction):
+For example, from the relay chain, the [`DescendOrigin`](/builders/interoperability/xcm/core-concepts/instructions/#descend-origin){target=\_blank} instruction is natively injected by the [XCM Pallet](https://github.com/paritytech/polkadot-sdk/blob/{{ polkadot_sdk }}/polkadot/xcm/pallet-xcm/src/lib.rs){target=\_blank}. In the case of Moonbase Alpha's relay chain (based on Westend), it has the following format (a multilocation junction):
 
 ```js
 {

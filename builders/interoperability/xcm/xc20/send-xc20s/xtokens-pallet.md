@@ -25,9 +25,9 @@ The X-Tokens Pallet provides the following extrinsics (functions):
 
         - `currencyId` - the ID of the currency being sent via XCM. Different runtimes have different ways to define the IDs. In the case of Moonbeam-based networks, a currency can be defined as one of the following:
             - `SelfReserve` - uses the native asset
-            - `ForeignAsset` - uses an [external XC-20](/builders/interoperability/xcm/xc20/overview#external-xc20s){target=\_blank}. It requires you to specify the asset ID of the XC-20
+            - `ForeignAsset` - uses an [external XC-20](/builders/interoperability/xcm/xc20/overview/#external-xc20s){target=\_blank}. It requires you to specify the asset ID of the XC-20
              - `LocalAssetReserve` - *deprecated* - use [Local XC-20s](/builders/interoperability/xcm/xc20/overview/#local-xc20s){target=\_blank} instead via the `Erc20` currency type
-            - `Erc20` along with the contract address of the [local XC-20](/builders/interoperability/xcm/xc20/overview#local-xc20s){target=\_blank}
+            - `Erc20` along with the contract address of the [local XC-20](/builders/interoperability/xcm/xc20/overview/#local-xc20s){target=\_blank}
         - `amount` - the number of tokens that are going to be sent via XCM
         - `dest` - the multilocation of the destination address for the tokens being sent via XCM. It supports different address formats, such as 20 or 32-byte addresses (Ethereum or Substrate)
         - `destWeightLimit` - the weight to be purchased to pay for XCM execution on the destination chain, which is charged from the transferred asset. The weight limit can be defined as either:
@@ -104,9 +104,9 @@ The X-Tokens Pallet provides the following extrinsics (functions):
 
         - `currencies` - the IDs of the currencies being sent via XCM. Different runtimes have different ways to define the IDs. In the case of Moonbeam-based networks, a currency can be defined as one of the following:
             - `SelfReserve` - uses the native asset
-            - `ForeignAsset` - uses an [external XC-20](/builders/interoperability/xcm/xc20/overview#external-xc20s){target=\_blank}. It requires you to specify the asset ID of the XC-20
+            - `ForeignAsset` - uses an [external XC-20](/builders/interoperability/xcm/xc20/overview/#external-xc20s){target=\_blank}. It requires you to specify the asset ID of the XC-20
              - `LocalAssetReserve` - *deprecated* - use [Local XC-20s](/builders/interoperability/xcm/xc20/overview/#local-xc20s){target=\_blank} instead via the `Erc20` currency type
-            - `Erc20` along with the contract address of the [local XC-20](/builders/interoperability/xcm/xc20/overview#local-xc20s){target=\_blank}
+            - `Erc20` along with the contract address of the [local XC-20](/builders/interoperability/xcm/xc20/overview/#local-xc20s){target=\_blank}
         - `feeItem` — an index to define the asset position of an array of assets being sent, used to pay for the XCM execution in the target chain. For example, if only one asset is being sent, the `feeItem` would be `0`
         - `dest` - the multilocation of the destination address for the tokens being sent via XCM. It supports different address formats, such as 20 or 32-byte addresses (Ethereum or Substrate)
         - `destWeightLimit` - the weight to be purchased to pay for XCM execution on the destination chain, which is charged from the transferred asset. The weight limit can be defined as either:
@@ -127,9 +127,9 @@ The X-Tokens Pallet provides the following extrinsics (functions):
 
         - `currencyId` - the ID of the currency being sent via XCM. Different runtimes have different ways to define the IDs. In the case of Moonbeam-based networks, a currency can be defined as one of the following:
             - `SelfReserve` - uses the native asset
-            - `ForeignAsset` - uses an [external XC-20](/builders/interoperability/xcm/xc20/overview#external-xc20s){target=\_blank}. It requires you to specify the asset ID of the XC-20
+            - `ForeignAsset` - uses an [external XC-20](/builders/interoperability/xcm/xc20/overview/#external-xc20s){target=\_blank}. It requires you to specify the asset ID of the XC-20
              - `LocalAssetReserve` - *deprecated* - use [Local XC-20s](/builders/interoperability/xcm/xc20/overview/#local-xc20s){target=\_blank} instead via the `Erc20` currency type
-            - `Erc20` along with the contract address of the [local XC-20](/builders/interoperability/xcm/xc20/overview#local-xc20s){target=\_blank}
+            - `Erc20` along with the contract address of the [local XC-20](/builders/interoperability/xcm/xc20/overview/#local-xc20s){target=\_blank}
         - `amount` - the number of tokens that are going to be sent via XCM
         - `fee` — the amount to be spent to pay for the XCM execution in the target (destination) chain. If this value is not high enough to cover execution costs, the assets will be trapped in the destination chain
         - `dest` - the multilocation of the destination address for the tokens being sent via XCM. It supports different address formats, such as 20 or 32-byte addresses (Ethereum or Substrate)
@@ -242,13 +242,13 @@ To determine the weight needed for XCM execution on the destination chain, you'l
 
 In this example, where you're transferring xcUNIT from Moonbase Alpha to the Alphanet relay chain, the instructions that are executed on Alphanet are:
 
-|                                                                                                     Instruction                                                                                                      |                               Weight                                |
-|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------:|
-| [`WithdrawAsset`](https://github.com/paritytech/polkadot-sdk/blob/polkadot-{{ networks.alphanet.spec_version }}/polkadot/runtime/westend/src/weights/xcm/pallet_xcm_benchmarks_fungible.rs#L54-L62){target=\_blank}  |   {{ networks.alphanet.xcm_instructions.withdraw.total_weight }}    |
-|  [`ClearOrigin`](https://github.com/paritytech/polkadot-sdk/blob/polkadot-{{ networks.alphanet.spec_version }}/polkadot/runtime/westend/src/weights/xcm/pallet_xcm_benchmarks_generic.rs#L134-L140){target=\_blank}  | {{ networks.alphanet.xcm_instructions.clear_origin.total_weight }}  |
-|  [`BuyExecution`](https://github.com/paritytech/polkadot-sdk/blob/polkadot-{{ networks.alphanet.spec_version }}/polkadot/runtime/westend/src/weights/xcm/pallet_xcm_benchmarks_generic.rs#L75-L81){target=\_blank}   |   {{ networks.alphanet.xcm_instructions.buy_exec.total_weight }}    |
-| [`DepositAsset`](https://github.com/paritytech/polkadot-sdk/blob/polkadot-{{ networks.alphanet.spec_version }}/polkadot/runtime/westend/src/weights/xcm/pallet_xcm_benchmarks_fungible.rs#L132-L140){target=\_blank} | {{ networks.alphanet.xcm_instructions.deposit_asset.total_weight }} |
-|                                                                                                      **TOTAL**                                                                                                       |   **{{ networks.alphanet.xcm_message.transfer.weight.display }}**   |
+|                                                                                         Instruction                                                                                          |                          Ref Time                          |                          Proof Size                          |
+|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------:|:------------------------------------------------------------:|
+|   [`WithdrawAsset`](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbeam.spec_version }}/pallets/moonbeam-xcm-benchmarks/src/weights/fungible.rs#L35){target=\_blank}   |  {{ xcm.generic_weights.ref_time.deposit_asset.display }}  |  {{ xcm.generic_weights.proof_size.deposit_asset.display }}  |
+|    [`ClearOrigin`](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbeam.spec_version }}/pallets/moonbeam-xcm-benchmarks/src/weights/generic.rs#L191){target=\_blank}    |  {{ xcm.generic_weights.ref_time.clear_origin.display }}   |          {{ xcm.generic_weights.proof_size.zero }}           |
+| [`BuyExecution`](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbeam.spec_version }}/pallets/moonbeam-xcm-benchmarks/src/weights/generic.rs#L128-L129){target=\_blank} | {{ networks.alphanet.xcm_instructions.buy_exec.ref_time }} | {{ networks.alphanet.xcm_instructions.buy_exec.proof_size }} |
+|   [`DepositAsset`](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbeam.spec_version }}/pallets/moonbeam-xcm-benchmarks/src/weights/fungible.rs#L60){target=\_blank}    |  {{ xcm.generic_weights.ref_time.deposit_asset.display }}  |  {{ xcm.generic_weights.proof_size.deposit_asset.display }}  |
+|                                                                                          **TOTAL**                                                                                           | **{{ networks.alphanet.xcm_message.transfer.ref_time }}**  | **{{ networks.alphanet.xcm_message.transfer.proof_size }}**  |
 
 !!! note
     Some weights include database reads and writes; for example, the `WithdrawAsset` and `DepositAsset` instructions include both one database read and one write. To get the total weight, you'll need to add the weight of any required database reads or writes to the base weight of the given instruction.
