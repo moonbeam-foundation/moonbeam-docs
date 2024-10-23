@@ -23,7 +23,7 @@ yarn
 
 Registering External XC-20s on Moonbeam is a multi-step process that, at a high level, involves proposing the asset registration on the [Moonbeam Community Forum](https://forum.moonbeam.network){target=\_blank} and creating an on-chain governance proposal.
 
-If a channel between Moonbeam and the origin chain of the asset does not yet exist, one will need to be opened. You can batch the channel-related calls with the asset registration calls, so you only need to submit a single proposal. You'll need to start by creating a couple of forum posts: an [XCM Disclosure](/builders/interoperability/xcm/xc-registration/forum-templates/#xcm-disclosures){target=\_blank} post and an [XCM Proposal](/builders/interoperability/xcm/xc-registration/forum-templates/#xcm-proposals){target=\_blank} post.
+If a channel between Moonbeam and the origin chain of the asset does not yet exist, one will need to be opened. You can batch the channel-related calls with the asset registration calls, so you only need to submit a single proposal. You must start by creating a couple of forum posts: an [XCM Disclosure](/builders/interoperability/xcm/xc-registration/forum-templates/#xcm-disclosures){target=\_blank} post and an [XCM Proposal](/builders/interoperability/xcm/xc-registration/forum-templates/#xcm-proposals){target=\_blank} post.
 
 After you've collected feedback from community members, you can create a proposal to open a channel and register any assets. Please refer to the [Establishing an XC Integration with Moonbeam](/builders/interoperability/xcm/xc-registration/xc-integration/){target=\_blank} guide for more information on opening a channel.
 
@@ -69,7 +69,7 @@ To get the encoded calldata for the `evmForeignAssets.createForeignAsset` extrin
 - `symbol`  - the symbol of the asset. **Remember that "xc" should be prepended to the symbol to indicate the asset is an XCM-enabled asset**
 - `name` - The asset name
 
-You can use the below script to generate the encoded call data for the `createForeignAsset` call. Remember to replace the example parameter values shown in the script with the ones relevant to your asset. 
+You can use the script below to generate the encoded call data for the `createForeignAsset` call. Remember to replace the example parameter values shown in the script with the ones relevant to your asset. 
 
 ???+ code "Get encoded call data for createForeignAsset"
     ```typescript
@@ -85,7 +85,7 @@ To get the encoded calldata for the `xcmWeightTrader.addAsset` extrinsic, you wi
 - `xcmLocation` - the multilocation of the asset relative to Moonbeam 
 - `relativePrice` - the the cost of an asset in terms of weight, used to determine how much of the asset is required to cover the fees for cross-chain (XCM) operations. It is calculated by comparing the asset's value to the network's native token in terms of the weight-to-fee conversion
 
-You can use the below script to generate the encoded call data for the `addAsset` call. Remember to replace the example parameter values shown in the script with the ones relevant to your asset. 
+You can use the script below to generate the encoded call data for the `addAsset` call. Remember to replace the example parameter values shown in the script with the ones relevant to your asset. 
 
 ??? code "Get encoded call data for xcmWeightTrader"
     ```typescript
@@ -109,7 +109,7 @@ The resulting output will be something like:
 
 ### Programmatically Submit the Preimage and Proposal for Asset Registration {: #submit-preimage-proposal }
 
-You can programmatically submit the preimage of your batched call containing both the `xcmWeightTrader.addAsset` and the `evmForeignAssets.createForeignAsset` calls as shown in the following script. As this is an on-chain transaction, you'll need to provide a wallet. (Never store your private keys in a javascript file - this is provided for demonstration purposes only). Remember to replace the encoded call data with the respective relevant batch call for your asset. You can also adapt this script for a different network.
+You can programmatically submit the preimage of your batched call containing both the `xcmWeightTrader.addAsset` and the `evmForeignAssets.createForeignAsset` calls as shown in the following script. As this is an on-chain transaction, you'll need to provide a wallet. (Never store your private keys in a javascript file - this is provided for demonstration purposes only). Remember to replace the encoded call data with your asset's relevant batch call. You can also adapt this script for a different network.
 
 ??? code "Submit preimage for batch call"
     ```typescript
@@ -120,7 +120,7 @@ The resulting output will be something like:
 
 --8<-- 'code/builders/interoperability/xcm/xc-registration/assets/terminal/submitPreimage.md'
 
-For Moonbase Alpha, you do not need to go through governance, as Moonbase Alpha has `sudo` access. Instead, you can provide the output of the batch call data to the Moonbeam team, and the Moonbeam Team can submit the call with `sudo`. This will be a faster and easier process than going thru governance, however, you may still wish to go through governance on Moonbase Alpha in order to prepare for the governance process on Moonbeam. 
+For Moonbase Alpha, you do not need to go through governance, as Moonbase Alpha has `sudo` access. Instead, you can provide the output of the batch call data to the Moonbeam team, and the Moonbeam Team can submit the call with `sudo`. This will be a faster and easier process than going through governance. However, you may still wish to go through governance on Moonbase Alpha in order to prepare for the governance process on Moonbeam.
 
 After submitting the preimage, you can submit the proposal as follows:
 
@@ -137,9 +137,9 @@ The resulting output will be something like:
 
 After your asset is registered, the team will provide the asset ID and the [XC-20 precompile](/builders/interoperability/xcm/xc20/interact/#the-erc20-interface){target=\_blank} address.
 
-Your XC-20 precompile address is calculated by converting the asset ID decimal number to hex and prepending it with F's until you get a 40 hex character (plus the “0x”) address. For more information on how it is calculated, please refer to the [Calculate External XC-20 Precompile Addresses](/builders/interoperability/xcm/xc20/interact/#calculate-xc20-address){target=\_blank} section of the External XC-20 guide.
+Your XC-20 precompile address is calculated by converting the asset ID decimal number to hex and prepending it with F's until you get a 40-hex character (plus the “0x”) address. For more information on how it is calculated, please refer to the [Calculate External XC-20 Precompile Addresses](/builders/interoperability/xcm/xc20/interact/#calculate-xc20-address){target=\_blank} section of the External XC-20 guide.
 
-After the asset is successfully registered, you can try transferring tokens from your parachain to the Moonbeam-based network you are integrating with.
+After the asset is successfully registered, you can transfer tokens from your parachain to the Moonbeam-based network you are integrating with.
 
 !!! note
     Remember that Moonbeam-based networks use AccountKey20 (Ethereum-style addresses).
@@ -215,7 +215,7 @@ After running the script to set the bytecode, you should see `The XC-20 precompi
 
 ## Register Moonbeam Assets on Another Chain {: #register-moonbeam-assets-on-another-chain }
 
-In order to enable cross-chain transfers of Moonbeam assets, including Moonbeam native assets (GLMR, MOVR, DEV) and local XC-20s (XCM-enabled ERC-20s) deployed on Moonbeam, between Moonbeam and another chain, you'll need to register the assets on the other chain. Since each chain stores cross-chain assets differently, the exact steps to register Moonbeam assets on another chain will vary depending on the chain. At the very least, you'll need to know the metadata and the multilocation of the assets on Moonbeam.
+To enable cross-chain transfers of Moonbeam assets, including Moonbeam native assets (GLMR, MOVR, DEV) and local XC-20s (XCM-enabled ERC-20s) deployed on Moonbeam, between Moonbeam and another chain, you'll need to register the assets on the other chain. Since each chain stores cross-chain assets differently, the exact steps to register Moonbeam assets on another chain will vary depending on the chain. At the very least, you'll need to know the metadata and the multilocation of the assets on Moonbeam.
 
 There are additional steps aside from asset registration that will need to be taken to enable cross-chain integration with Moonbeam. For more information, please refer to the [Establishing an XC Integration with Moonbeam](/builders/interoperability/xcm/xc-registration/xc-integration/){target=\_blank} guide.
 
@@ -400,7 +400,7 @@ After completing the [registration process](#introduction) for an XC asset, you 
 
 ### Updating Foreign Asset XCM Location {: #updating-foreign-asset-xcm-location }
 
-You can update the multilocation of an asset with the `evmForeignAssets.changeXcmLocation` call, which takes as parameters, the `assetId` and the new multilocation. You'll need to raise a [governance proposal](/tokens/governance/proposals/) and submit the update under the `FastGeneralAdmin` track. If you're testing in Moonbase Alpha, you can optionally ask the Moonbeam Team to submit the extrinsic using Sudo to speed up the process. You can also submit the requisite governance proposal on Moonbase Alpha. 
+You can update the multilocation of an asset with the `evmForeignAssets.changeXcmLocation` call, which takes as parameters, the `assetId` and the new multilocation. You'll need to raise a [governance proposal](/tokens/governance/proposals/) and submit the update under the `FastGeneralAdmin` track. If you're testing in Moonbase Alpha, you can ask the Moonbeam Team to submit the extrinsic using Sudo to speed up the process. You can also submit the requisite governance proposal on Moonbase Alpha. 
 
 ### Freezing a Foreign Asset {: #freezing-a--foreign-asset }
 
