@@ -1,16 +1,16 @@
 ---
 title: Ethereum MainNet Precompiles
 description: Learn how to use the standard precompiled contracts availble on Ethereum such as ECRECOVER, SHA256, and more on Moonbeam.
-keywords: ethereum, moonbeam, ecrecover, sha256, sha3FIPS256, ripemd-160, Bn128Add, Bn128Mul, Bn128Pairing
+keywords: ethereum, moonbeam, ecrecover, sha256, ripemd-160, Bn128Add, Bn128Mul, Bn128Pairing
 ---
 
 # Ethereum MainNet Precompiled Contracts
 
 ## Introduction {: #introduction }
 
-Precompiled contracts in Ethereum are contracts that include complex cryptographic computations, but do not require the overhead of the EVM. There are nine precompiles that can be used within the EVM that handle specific common operations such as hashing and signature schemes.
+Precompiled contracts in Ethereum are contracts that include complex cryptographic computations, but do not require the overhead of the EVM. These precompiles can be used within the EVM to handle specific common operations such as hashing and signature schemes.
 
-The following precompiles are currently included: ecrecover, sha256, sha3FIPS256, ripemd-160, Bn128Add, Bn128Mul, Bn128Pairing, the identity function, and modular exponentiation.
+The following precompiles are currently included: ecrecover, sha256, ripemd-160, Bn128Add, Bn128Mul, Bn128Pairing, the identity function, and modular exponentiation.
 
 These precompiles are natively available on Ethereum and, to maintain Ethereum compatibility, they are also available on Moonbeam.
 
@@ -69,18 +69,6 @@ This hashing function returns the SHA256 hash from the given data. To test this 
 ```
 
 Once the contract is deployed, you can call the `checkHash()` method that returns **true** if the hash returned by `calculateHash()` is equal to the hash provided.
-
-## Hashing with SHA3FIPS256 {: #hashing-with-sha3fips256 }
-
-SHA3-256 is part of the SHA-3 family of cryptographic hashes codified in [FIPS202](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf) that produces an output 256 bits in length. Although the name is similar to SHA256, the SHA-3 family is built with an entirely different algorithm and accordingly produces a different hash output than SHA256 for the same input. You can verify this yourself using this [SHA3-256 Hash Calculator tool](https://md5calc.com/hash/sha3-256){target=\_blank}. After calculating the SHA3-256 output, change the algorithm in the drop-down selector to SHA256 and take note of the resulting output.
-
-Currently there is no SHA3-256 support in Solidity, so it needs to be called with inline assembly. The following sample code can be used to call this precompile.
-
-```solidity
---8<-- 'code/builders/ethereum/precompiles/utility/eth-mainnet/sha3fips.sol'
-```
-
-Using the [Remix compiler and deployment](/builders/ethereum/dev-env/remix/){target=\_blank} and with [MetaMask pointing to Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}, you can deploy the contract and call the `sha3fips(bytes memory data)` method to return the encoded string of the data parameter.
 
 ## Hashing with RIPEMD160 {: #hashing-with-ripemd-160 }
 
