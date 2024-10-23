@@ -45,10 +45,9 @@ To get started, you'll need to collect some information about the asset:
 
 - `assetId`: unique identifier of the asset
 - `xcmLocation`: a scale encoded xcm v4 multilocation of asset reserve relative to Moonbeam
-- The metadata of the asset. This includes:
-  - The asset name
-  - The asset symbol. You'll need to prepend "xc" to the asset symbol to indicate that the asset is an XCM-enabled asset
-  - The number of decimals the asset has
+- The asset name
+- The asset symbol. You'll need to prepend "xc" to the asset symbol to indicate that the asset is an XCM-enabled asset
+- The number of decimals the asset has
 
 With this information in hand, you can prepare a governance proposal to register a foreign asset. The allowed origins that permit registration of a foreign asset are `FastGeneralAdmin`, `OpenTechCommittee` or `Root`.
 
