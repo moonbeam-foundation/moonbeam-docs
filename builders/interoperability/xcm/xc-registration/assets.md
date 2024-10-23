@@ -49,7 +49,18 @@ To get started, you'll need to collect some information about the asset:
 - The asset symbol. You'll need to prepend "xc" to the asset symbol to indicate that the asset is an XCM-enabled asset
 - The number of decimals the asset has
 
-With this information in hand, you can prepare a governance proposal to register a foreign asset. The allowed origins that permit registration of a foreign asset are `FastGeneralAdmin`, `OpenTechCommittee` or `Root`.
+You can use the below script to generate the encoded call data for the `createForeignAsset` call. Remember to replace the example parameter values shown in the script with the ones relevant to your asset. 
+
+???+ code "Get encoded call data for createForeignAsset"
+    ```typescript
+    --8<-- 'code/builders/interoperability/xcm/xc-registration/assets/create-foreign-asset.js'
+    ```
+
+The resulting output will be something like:
+
+--8<-- 'code/builders/interoperability/xcm/xc-registration/assets/terminal/createForeignAsset.md'
+
+With this information in hand, you can prepare a governance proposal to register a foreign asset. Foreign asset registration proposals should be submitted through the `FastGeneralAdmin` track.
 
 ![Overview of the proposal process](/images/builders/interoperability/xcm/xc-registration/assets/assets-3.webp)
 
@@ -57,38 +68,22 @@ With this information in hand, you can prepare a governance proposal to register
 
 If you're not familiar with the governance system on Moonbeam, you can find out more information on the [Governance on Moonbeam](/learn/features/governance/){target=\_blank} page. With any governance proposal on Moonbeam, you'll need to submit a preimage, which defines the actions to be executed, and then use the preimage to submit a proposal.
 
-To submit a preimage, you'll need to get the encoded calldata for each extrinsic that you want to execute. As previously mentioned, you'll use the `assetManager.registerForeignAsset`, and optionally, the `assetManager.setAssetUnitsPerSecond`, and `system.setStorage` extrinsics.
+To submit a preimage, you'll need to get the encoded calldata for each extrinsic that you want to execute. As previously mentioned, you'll use the `evmForeignAssets.createForeignAsset` and the `xcmWeightTrader.addAsset` extrinsics.
 
-You can use the [`xcm-asset-registrator.ts` script](https://github.com/Moonsong-Labs/xcm-tools/blob/main/scripts/xcm-asset-registrator.ts){target=\_blank} to calculate the encoded calldata and even submit the preimage and proposal if you desire. Proposals must be submitted via the General Admin Track. If you're registering an asset and opening a channel, you'll want to wait to submit the preimage and proposal until you have the calldata for the channel-related calls.
+Proposals must be submitted via the `FastGeneralAdmin` track. If you're opening a channel and registering an asset and you'll want to wait until the channel is established prior to attempting to register the asset. 
 
-To get the encoded calldata for the `assetManager.registerForeignAsset` extrinsic, you can use the following arguments:
+To get the encoded calldata for the `evmForeignAssets.createForeignAsset` extrinsic, you will need to provide the following arguments:
 
-- `--ws-provider` or `--w` - the WebSocket provider to be used for the requests. The WSS network endpoints for each Moonbeam-based network are as follows:
+- `assetId` - unique identifier of the asset
+- `xcmLocation` - the multilocation of the asset relative to Moonbeam 
+- `decimals` - the number of decimals of the asset
+- `symbol`  - the symbol of the asset. **Remember that "xc" should be prepended to the symbol to indicate the asset is an XCM-enabled asset**
+- `name` - The asset name
 
-    === "Moonbeam"
+To get the encoded calldata for the `xcmWeightTrader.addAsset` extrinsic, you will need to provide the following arguments:
 
-        ```text
-        wss://wss.api.moonbeam.network
-        ```
-
-    === "Moonriver"
-
-        ```text
-        wss://wss.api.moonriver.moonbeam.network
-        ```
-
-    === "Moonbase Alpha"
-
-        ```text
-        {{ networks.moonbase.wss_url }}
-        ```
-
-- `--asset` or `--a` - the multilocation of the asset
-- `--name` or `--n` - the name of the asset
-- `--symbol` or `--sym` - the symbol of the asset. **Remember that "xc" should be prepended to the symbol to indicate the asset is an XCM-enabled asset**
-- `--decimals` or `--d` - the number of decimals of the asset
-- `--existential-deposit` or `--ed` - (optional) - the existential deposit of the registered asset. This should always be set to `1`
-- `--sufficient` or `--suf` - (optional) - the sufficiency, which dictates whether an asset can be sent to an account without a native token balance. This should always be set to `true`
+- `xcmLocation` - the multilocation of the asset relative to Moonbeam 
+- `relativePrice` - the the cost of an asset in terms of weight, used to determine how much of the asset is required to cover the fees for cross-chain (XCM) operations. It is calculated by comparing the asset's value to the network's native token in terms of the weight-to-fee conversion
 
 To create a batch transaction that also sets the units per second or revert code of the asset's precompile in addition to the asset registration, you can choose to add these arguments:
 
