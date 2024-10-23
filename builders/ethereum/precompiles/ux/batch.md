@@ -42,13 +42,32 @@ The precompile is located at the following address:
 
 The interface includes the following functions:
 
-- **batchSome**(*address[]* to, *uint256[]* value, *bytes[]* callData, *uint64[]* gasLimit) — performs multiple calls, where the same index of each array combine into the information required for a single subcall. If a subcall reverts, following subcalls will still be attempted
-- **batchSomeUntilFailure**(*address[]* to, *uint256[]* value, *bytes[]* callData, *uint64[]* gasLimit) — performs multiple calls, where the same index of each array combine into the information required for a single subcall. If a subcall reverts, no following subcalls will be executed
-- **batchAll**(*address[]* to, *uint256[]* value, *bytes[]* callData, *uint64[]* gasLimit) — performs multiple calls atomically, where the same index of each array combine into the information required for a single subcall. If a subcall reverts, all subcalls will revert
+??? function "**batchSome**(*address[]* to, *uint256[]* value, *bytes[]* callData, *uint64[]* gasLimit) - performs multiple calls, where the same index of each array combine into the information required for a single subcall. If a subcall reverts, following subcalls will still be attempted"
 
-Each of these functions have the following parameters:
+    === "Parameters"
 
---8<-- 'text/builders/ethereum/precompiles/ux/batch/batch-parameters.md'
+        - `to` - address[] array of addresses to direct subtransactions to, where each entry is a subtransaction
+        - `value` - uint256[] array of native currency values to send in the subtransactions, where the index corresponds to the subtransaction of the same index in the to array. If this array is shorter than the to array, all the following subtransactions will default to a value of 0
+        - `callData` - bytes[] array of call data to include in the subtransactions, where the index corresponds to the subtransaction of the same index in the to array. If this array is shorter than the to array, all of the following subtransactions will include no call data
+        - `gasLimit` - uint64[] array of gas limits in the subtransactions, where the index corresponds to the subtransaction of the same index in the to array. Values of 0 are interpreted as unlimited and will have all remaining gas of the batch transaction forwarded. If this array is shorter than the to array, all of the following subtransactions will have all remaining gas forwarded
+
+??? function "**batchSomeUntilFailure**(*address[]* to, *uint256[]* value, *bytes[]* callData, *uint64[]* gasLimit) - performs multiple calls, where the same index of each array combine into the information required for a single subcall. If a subcall reverts, no following subcalls will be executed"
+
+    === "Parameters"
+
+        - `to` - address[] array of addresses to direct subtransactions to, where each entry is a subtransaction
+        - `value` - uint256[] array of native currency values to send in the subtransactions, where the index corresponds to the subtransaction of the same index in the to array. If this array is shorter than the to array, all the following subtransactions will default to a value of 0
+        - `callData` - bytes[] array of call data to include in the subtransactions, where the index corresponds to the subtransaction of the same index in the to array. If this array is shorter than the to array, all of the following subtransactions will include no call data
+        - `gasLimit` - uint64[] array of gas limits in the subtransactions, where the index corresponds to the subtransaction of the same index in the to array. Values of 0 are interpreted as unlimited and will have all remaining gas of the batch transaction forwarded. If this array is shorter than the to array, all of the following subtransactions will have all remaining gas forwarded
+
+??? function "**batchAll**(*address[]* to, *uint256[]* value, *bytes[]* callData, *uint64[]* gasLimit) - performs multiple calls atomically, where the same index of each array combine into the information required for a single subcall. If a subcall reverts, all subcalls will revert"
+
+    === "Parameters"
+
+        - `to` - address[] array of addresses to direct subtransactions to, where each entry is a subtransaction
+        - `value` - uint256[] array of native currency values to send in the subtransactions, where the index corresponds to the subtransaction of the same index in the to array. If this array is shorter than the to array, all the following subtransactions will default to a value of 0
+        - `callData` - bytes[] array of call data to include in the subtransactions, where the index corresponds to the subtransaction of the same index in the to array. If this array is shorter than the to array, all of the following subtransactions will include no call data
+        - `gasLimit` - uint64[] array of gas limits in the subtransactions, where the index corresponds to the subtransaction of the same index in the to array. Values of 0 are interpreted as unlimited and will have all remaining gas of the batch transaction forwarded. If this array is shorter than the to array, all of the following subtransactions will have all remaining gas forwarded
 
 The interface also includes the following required events:
 
