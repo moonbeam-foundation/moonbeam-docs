@@ -83,7 +83,7 @@ The resulting output will be something like:
 To get the encoded calldata for the `xcmWeightTrader.addAsset` extrinsic, you will need to provide the following arguments:
 
 - `xcmLocation` - the multilocation of the asset relative to Moonbeam 
-- `relativePrice` - the the cost of an asset in terms of weight, used to determine how much of the asset is required to cover the fees for cross-chain (XCM) operations. It is calculated by comparing the asset's value to the network's native token in terms of the weight-to-fee conversion
+- `relativePrice` - the cost of an asset in terms of weight, used to determine how much of the asset is required to cover the fees for cross-chain (XCM) operations. It is calculated by comparing the asset's value to the network's native token in terms of the weight-to-fee conversion
 
 You can use the script below to generate the encoded call data for the `addAsset` call. Remember to replace the example parameter values shown in the script with the ones relevant to your asset. 
 
