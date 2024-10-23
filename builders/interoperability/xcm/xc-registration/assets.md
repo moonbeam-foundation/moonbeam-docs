@@ -43,7 +43,7 @@ To register an asset native to another chain on Moonbeam, you'll need to submit 
 
 To get started, you'll need to collect some information about the asset:
 
-- `assetId`: an arbitrary unique integer
+- `assetId`: unique identifier of the asset
 - `xcmLocation`: a scale encoded xcm v4 multilocation of asset reserve relative to Moonbeam
 - The metadata of the asset. This includes:
   - The asset name
