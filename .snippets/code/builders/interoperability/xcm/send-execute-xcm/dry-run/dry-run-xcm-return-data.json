@@ -1,0 +1,60 @@
+Ok: {
+  executionResult: {
+    Complete: {
+      used: {
+        refTime: 76,473,048,000
+        proofSize: 222,483
+      }
+    }
+  }
+  emittedEvents: [
+    {
+      method: Burned
+      section: assets
+      index: 0x1d03
+      data: {
+        assetId: 42,259,045,809,535,163,221,576,417,993,425,387,648
+        owner: 0x506172656E740000000000000000000000000000
+        balance: 1,000,000,000,000
+      }
+    }
+    {
+      method: NewAccount
+      section: system
+      index: 0x0003
+      data: {
+        account: 0x1Ccc29B6C837be6A0C03d544b5Aa8580f9fb9489
+      }
+    }
+    {
+      method: Issued
+      section: assets
+      index: 0x1d01
+      data: {
+        assetId: 42,259,045,809,535,163,221,576,417,993,425,387,648
+        owner: 0x1Ccc29B6C837be6A0C03d544b5Aa8580f9fb9489
+        amount: 959,944,978,002
+      }
+    }
+    {
+      method: Issued
+      section: assets
+      index: 0x1d01
+      data: {
+        assetId: 42,259,045,809,535,163,221,576,417,993,425,387,648
+        owner: 0x6d6F646c70632f74727372790000000000000000
+        amount: 40,055,021,998
+      }
+    }
+  ]
+  forwardedXcms: [
+    [
+      {
+        V4: {
+          parents: 1
+          interior: Here
+        }
+      }
+      []
+    ] // Additional events returned here
+      // Omitted for clarity 

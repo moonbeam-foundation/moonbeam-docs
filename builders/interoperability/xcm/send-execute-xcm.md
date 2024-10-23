@@ -180,6 +180,75 @@ Now that you have the values for each of the parameters, you can write the scrip
 
 Once the transaction is processed, the 0.1 DEV tokens should be withdrawn from Alice's account along with the associated XCM fees, and the destination account should have received 0.1 DEV tokens in their account. A `polkadotXcm.Attempted` event will be emitted with the outcome.
 
+
+### Test an XCM Message with the XCM Dry Run API {: #test-an-xcm-message-with-the-dry-run-api }
+
+The XCM Dry Run API is an easy and convenient way to test the integrity of your XCM message without incurring any transaction fees. The XCM Dry Run API can be accessed from the [Runtime Calls](https://polkadot.js.org/apps/#/runtime){target=\_blank} tab of the **Developer** section of Polkadot.js Apps. 
+
+#### Dry Run Call API Method {: #dry-run-call-api-method }
+
+This method takes as a parameter the origin and the call data and returns an execution result, actual weight, and event data.  
+
+```javascript
+const testAccount = api.createType(
+  'AccountId20',
+  '0x88bcE0b038eFFa09e58fE6d24fDe4b5Af21aa798'
+);
+const callData =
+  '0x1c030408000400010403001300008a5d784563010d010204000103003cd0a705a2dc65e5b1e1205896baa2be8a07c6e007803822b001ba2e0100';
+const callDataU8a = hexToU8a(callData);
+
+const result = await api.call.dryRunApi.dryRunCall(
+  { system: { Signed: testAccount } },
+  callDataU8a
+);
+```
+
+??? code "View the complete script"
+
+    ```js
+    --8<-- 'code/builders/interoperability/xcm/send-execute-xcm/dry-run/dry-run-call.js'
+    ```
+
+Upon calling the XCM Dry Run API, the method will tell you whether the call would be successful and returns the event data that would be emitted if the XCM were to be actually submitted on chain. You can view the initial output of the `dryRunCall` below.
+
+??? code "View the complete output"
+
+    ```json
+    --8<-- 'code/builders/interoperability/xcm/send-execute-xcm/dry-run/dry-run-call-return-data.json'
+    ```
+
+#### Dry Run XCM API Method {: #dry-run-xcm-api-method }
+
+The `dryRunXCM` method of the XCM Dry Run API takes a full XCM message as a parameter instead of an encoded call, as well as the origin of the message.
+
+`dryRunXCM` takes as a parameter the origin and the XCM message and returns an execution result, actual weight, and event data.  
+
+```javascript
+// Define the origin
+const origin = { V4: { parents: 1, interior: 'Here' } };
+
+const message = // Insert XCM Message Here;
+
+// Perform the dry run XCM call
+const result = await api.call.dryRunApi.dryRunXcm(origin, message);
+```
+
+??? code "View the complete script"
+
+    ```js
+    --8<-- 'code/builders/interoperability/xcm/send-execute-xcm/dry-run/dry-run-xcm.js'
+    ```
+
+Upon calling the XCM Dry Run API, the method will tell you whether the call would be successful and returns the event data that would be emitted if the XCM were to be actually submitted on chain. You can view the initial output of the `dryRunXCM` below.
+
+??? code "View the complete output"
+
+    ```json
+    --8<-- 'code/builders/interoperability/xcm/send-execute-xcm/dry-run/dry-run-xcm-return-data.json'
+    ```
+
+
 ### Execute an XCM Message with the XCM Utilities Precompile {: #execute-xcm-utils-precompile }
 
 In this section, you'll use the `xcmExecute` function of the [XCM Utilities Precompile](/builders/interoperability/xcm/xcm-utils/){target=\_blank}, which is only supported on Moonbase Alpha, to execute an XCM message locally. The XCM Utilities Precompile is located at the following address:
