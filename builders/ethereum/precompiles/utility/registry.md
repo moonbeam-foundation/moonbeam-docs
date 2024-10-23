@@ -43,9 +43,37 @@ The Registry Precompile is located at the following address:
     --8<-- 'code/builders/ethereum/precompiles/utility/registry/PrecompileRegistry.sol'
     ```
 
-- **isPrecompile**(*address* a) - returns a *bool* indicating whether a given address is a precompile or not. Returns `true` for active and deprecated precompiles
-- **isActivePrecompile**(*address* a) - returns a *bool* indicating whether a given address is an active precompile or not. Returns `false` if a precompile has been deprecated
-- **updateAccountCode**(*address* a) - updates a given precompile's bytecode with dummy code (`0x60006000fd`) given the address of the precompile. Precompiles, by default, don't have bytecode associated with them. This function can be used to add dummy bytecode to bypass requirements in Solidity that check if a contract's bytecode is not empty before its functions can be called
+The interface includes the following functions:
+
+??? function "**isPrecompile**(*address* a) - returns a boolean indicating whether a given address is a precompile or not. Returns `true` for active and deprecated precompiles"
+
+    === "Parameters"
+
+        - `a` - address to check if it is a precompile
+
+    === "Returns"
+
+        - `bool` whether the address is a precompile (active or deprecated)
+
+??? function "**isActivePrecompile**(*address* a) - returns a boolean indicating whether a given address is an active precompile or not. Returns `false` if a precompile has been deprecated"
+
+    === "Parameters"
+
+        - `a` - address to check if it is an active precompile
+
+    === "Returns"
+
+        - `bool` whether the address is an active precompile
+
+??? function "**updateAccountCode**(*address* a) - updates a given precompile's bytecode with dummy code (`0x60006000fd`) given the address of the precompile. Precompiles, by default, don't have bytecode associated with them. This function can be used to add dummy bytecode to bypass requirements in Solidity that check if a contract's bytecode is not empty before its functions can be called"
+
+    === "Parameters"
+
+        - `a` - address of the precompile to update with dummy bytecode
+
+    === "Returns"
+
+        None.
 
 ## Interact with the Precompile Registry Solidity Interface {: #interact-with-precompile-registry-interface }
 
