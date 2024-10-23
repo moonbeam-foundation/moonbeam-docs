@@ -122,6 +122,17 @@ The resulting output will be something like:
 
 For Moonbase Alpha, you do not need to go through governance, as Moonbase Alpha has `sudo` access. Instead, you can provide the output of the batch call data to the Moonbeam team, and the Moonbeam Team can submit the call with `sudo`. This will be a faster and easier process than going thru governance, however, you may still wish to go through governance on Moonbase Alpha in order to prepare for the governance process on Moonbeam. 
 
+After submitting the preimage, you can submit the proposal as follows:
+
+??? code "Submit proposal for batch call"
+    ```typescript
+    --8<-- 'code/builders/interoperability/xcm/xc-registration/assets/submit-proposal.js'
+    ```
+
+The resulting output will be something like:
+
+--8<-- 'code/builders/interoperability/xcm/xc-registration/assets/terminal/submitProposal.md'
+
 ### Test the Asset Registration on Moonbeam {: #test-asset-registration }
 
 After your asset is registered, the team will provide the asset ID and the [XC-20 precompile](/builders/interoperability/xcm/xc20/interact/#the-erc20-interface){target=\_blank} address.
@@ -385,7 +396,7 @@ Since local XC-20s are ERC-20s on Moonbeam, there are no deposits required to cr
 
 ## Managing XC Assets 
 
-After completing the [registration process](#introduction) for an XC asset, you may need to periodically update asset details, such as the XCM multilocation details or asset price. This guide will cover these topics and more. 
+After completing the [registration process](#introduction) for an XC asset, you may need to periodically update asset details, such as the XCM multilocation details or asset price. This section will cover these topics.
 
 ### Updating Foreign Asset XCM Location {: #updating-foreign-asset-xcm-location }
 
