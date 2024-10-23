@@ -87,7 +87,7 @@ npm install -g @substrate/generate-type-bundle
 Then, navigate to the following directory within your project:
 
 ```bash
-cd /node_modules/@substrate/api-sidecar/build/src/
+cd ./node_modules/@substrate/api-sidecar/build/src/
 ```
 
 Then, run the following command to generate the types bundle for the respective network:
@@ -123,6 +123,12 @@ echo $SAS_SUBSTRATE_TYPES_BUNDLE
 ```
 
 ## Running Substrate API Sidecar {: #running-substrate-api-sidecar }
+
+Navigate back to the root directory of the project: 
+
+```bash
+cd ../../../../..
+```
 
 With the network endpoint environmental variable set, and from the installation directory root, run:
 
