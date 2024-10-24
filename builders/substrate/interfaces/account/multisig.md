@@ -20,180 +20,174 @@ This page will provide an overview of the extrinsics, storage methods, and gette
 The Multisig Pallet provides the following extrinsics (functions):
 
 ??? function "**asMulti**(threshold, otherSignatories, maybeTimepoint, call, maxWeight) - approves and if possible dispatches a call from a composite origin formed from a number of signed origins (a multisig). If the call has been approved by enough of the other signatories, the call will be dispatched. The [`depositBase`](#constants) will be reserved if this is the first approval plus the `threshold` times the [`depositFactor`](#constants). The total reserved amount will be returned once the call is dispatched or cancelled. This function should be used if it is the final approval, otherwise you'll want to use `approveAsMulti` instead since it only requires a hash of the call"
-
     === "Parameters"
-
-        - `threshold` -
-        - `otherSignatories` -
-        - `maybeTimepoint` -
-        - `call` -
-        - `maxWeight` -
-
+        - `threshold` - The total number of approvals required for the dispatch to be executed
+        - `otherSignatories` - The accounts (other than the sender) who can approve the dispatch
+        - `maybeTimepoint` - The timepoint (block number and transaction index) of the first approval transaction. Must be `None` if this is the first approval
+        - `call` - The actual call to be executed once approved
+        - `maxWeight` - The maximum weight allowed for the dispatch
     === "Returns"
-
         TODO
-
     === "Polkadot.js API Example"
-
         ```js
         TODO
         ```
 
 ??? function "**approveAsMulti**(threshold, otherSignatories, maybeTimepoint, callHash, maxWeight) - approves a call from a composite origin. For the final approval, you'll want to use `asMulti` instead"
-
     === "Parameters"
-
-        - `threshold` -
-        - `otherSignatories` -
-        - `maybeTimepoint` -
-        - `callHash` -
-        - `maxWeight` -
-
-    === "Returns"
-
-        TODO
-
+        - `threshold` - The total number of approvals required for the dispatch to be executed
+        - `otherSignatories` - The accounts (other than the sender) who can approve the dispatch
+        - `maybeTimepoint` - The timepoint (block number and transaction index) of the first approval transaction. Must be `None` if this is the first approval
+        - `callHash` - The hash of the call to be executed
+        - `maxWeight` - The maximum weight allowed for the dispatch
     === "Polkadot.js API Example"
-
         ```js
-        TODO
+        import { ApiPromise, WsProvider } from '@polkadot/api';
+        import { Keyring } from '@polkadot/keyring';
+
+        const main = async () => {
+          const api = await ApiPromise.create({
+            provider: new WsProvider('wss://moonbase-alpha.public.blastapi.io')
+          });
+
+          const keyring = new Keyring({ type: 'ethereum' });
+
+          try {
+            const PRIVATE_KEY = 'INSERT_PRIVATE_KEY';
+            
+            const threshold = 2;
+            const otherSignatories = [
+              'INSERT_SIGNER_1',
+              'INSERT_SIGNER_2'
+            ].sort();
+
+            const callHash = 'INSERT_CALL_HASH';
+            
+            const maxWeight = {
+              refTime: '806342022',
+              proofSize: '211174'
+            };
+
+            // Query the multisig address instead of the signer's address
+            const MULTISIG_ADDRESS = 'INSERT_ADDRESS_MULTISIG';
+            const multisigs = await api.query.multisig.multisigs(MULTISIG_ADDRESS, callHash);
+            
+            if (!multisigs.isSome) {
+              console.error('No existing multisig found for this call hash');
+              process.exit(1);
+            }
+
+            const multisigInfo = multisigs.unwrap();
+            const timepoint = {
+              height: multisigInfo.when.height.toNumber(),
+              index: multisigInfo.when.index.toNumber()
+            };
+
+            const account = keyring.addFromUri(PRIVATE_KEY);
+
+            console.log('Found timepoint:', timepoint);
+            console.log('Validation checks:');
+            console.log('Account address:', account.address);
+            console.log('Multisig address:', MULTISIG_ADDRESS);
+            console.log('Other signatories:', otherSignatories);
+            console.log('Threshold:', threshold);
+            console.log('Call hash:', callHash);
+            console.log('Max weight:', maxWeight);
+            console.log('Timepoint:', timepoint);
+
+            const tx = api.tx.multisig.approveAsMulti(
+              threshold,
+              otherSignatories,
+              timepoint,
+              callHash,
+              maxWeight
+            );
+
+            await tx.signAndSend(account, ({ status, events }) => {
+              if (status.isInBlock) {
+                console.log(`Transaction included in block hash: ${status.asInBlock}`);
+                
+                events.forEach(({ event }) => {
+                  const { section, method, data } = event;
+                  console.log(`\t${section}.${method}:`, data.toString());
+
+                  if (section === 'system' && method === 'ExtrinsicFailed') {
+                    const [dispatchError] = data;
+                    let errorInfo;
+
+                    if (dispatchError.isModule) {
+                      const decoded = api.registry.findMetaError(dispatchError.asModule);
+                      errorInfo = `${decoded.section}.${decoded.name}: ${decoded.docs}`;
+                    } else {
+                      errorInfo = dispatchError.toString();
+                    }
+
+                    console.error('Failure reason:', errorInfo);
+                  }
+                });
+                process.exit(0);
+              }
+            });
+
+          } catch (error) {
+            console.error('Error in multisig approval:', error);
+            process.exit(1);
+          }
+        };
+
+        main().catch(error => {
+          console.error('Script error:', error);
+          process.exit(1);
+        });
+        ```    
+
+    === "Example Response"
+        ```bash
+        Found timepoint: { height: 9174086, index: 5 }
+        Validation checks:
+        Account address: 0x3B939FeaD1557C741Ff06492FD0127bd287A421e
+        Multisig address: 0x2c6a9d09E7C01f3D4154000193BDDcC597523221
+        Other signatories: [
+          '0x253b05C595222a1e3E7Bcf1611cA1307194a030F',
+          '0x4B718e1CCeb83bfE87FD5f79cb98FFc2d4600C7E'
+        ]
+        Threshold: 2
+        Call hash: 0xa2902805948bdd92fcaf661965215efd6a5980d0092c065e7470859c1b37b6a9
+        Max weight: { refTime: '806342022', proofSize: '211174' }
+        Timepoint: { height: 9174086, index: 5 }
+        Transaction included in block hash: 0xb7b0f712dc7aa3d471e1db89e0d182b59e1febf8bb1df73a03f36417fe19b506
+            balances.Withdraw: ["0x3B939FeaD1557C741Ff06492FD0127bd287A421e",4512391685922]
+            multisig.MultisigApproval: ["0x3B939FeaD1557C741Ff06492FD0127bd287A421e",{"height":9174086,"index":5},"0x2c6a9d09E7C01f3D4154000193BDDcC597523221","0xa2902805948bdd92fcaf661965215efd6a5980d0092c065e7470859c1b37b6a9"]
+            balances.Deposit: ["0x3B939FeaD1557C741Ff06492FD0127bd287A421e",1025179732500]
+            balances.Deposit: ["0x6d6F646c70632f74727372790000000000000000",697442390685]
+            transactionPayment.TransactionFeePaid: ["0x3B939FeaD1557C741Ff06492FD0127bd287A421e",3487211953422,0]
+            system.ExtrinsicSuccess: [{"weight":{"refTime":389364247,"proofSize":5587},"class":"Normal","paysFee":"Yes"}]
         ```
 
+
 ??? function "**asMultiThreshold**(otherSignatories, call) - immediately dispatches a multisig call using a single approval from the caller"
-
     === "Parameters"
-
-        - `otherSignatories` -
-        - `call` -
-
+        - `otherSignatories` - The accounts (other than the sender) who can approve the dispatch
+        - `call` - The actual call to be executed once approved
     === "Returns"
-
         TODO
-
     === "Polkadot.js API Example"
-
         ```js
         TODO
         ```
 
 ??? function "**cancelAsMulti**(threshold, otherSignatories, maybeTimepoint, callHash) - cancels a preexisting, ongoing call from a composite origin. Any reserved deposit will be returned upon successful cancellation"
-
     === "Parameters"
-
-        - `threshold` -
-        - `otherSignatories` -
-        - `maybeTimepoint` -
-        - `callHash` -
-
+        - `threshold` - The total number of approvals required for the dispatch to be executed
+        - `otherSignatories` - The accounts (other than the sender) who can approve the dispatch
+        - `maybeTimepoint` - The timepoint (block number and transaction index) of the first approval transaction. Must be `None` if this is the first approval
+        - `callHash` - The hash of the call to be executed
     === "Returns"
-
         TODO
-
     === "Polkadot.js API Example"
-
         ```js
         TODO
         ```
-
-
-Where the inputs that need to be provided can be defined as:
-
-??? function "**threshold** - the total number of approvals required for a dispatch to be executed"
-
-    === "Parameters"
-
-        TODO
-
-    === "Returns"
-
-        TODO
-
-    === "Polkadot.js API Example"
-
-       ```js
-        TODO
-       ```
-
-??? function "**otherSignatories** - the accounts (other than the sender) who can approve the dispatch"
-
-    === "Parameters"
-
-        TODO
-
-    === "Returns"
-
-        TODO
-
-    === "Polkadot.js API Example"
-
-       ```js
-        TODO
-       ```
-
-??? function "**maybeTimepoint** - the timepoint (block number and transaction index) of the first approval transaction, unless it is the first approval then this field must be `None`"
-
-    === "Parameters"
-
-        TODO
-
-    === "Returns"
-
-        TODO
-
-    === "Polkadot.js API Example"
-
-       ```js
-        TODO
-       ```
-
-??? function "**call** - the call to be executed"
-
-    === "Parameters"
-
-        TODO
-
-    === "Returns"
-
-        TODO
-
-    === "Polkadot.js API Example"
-
-       ```js
-        TODO
-       ```
-
-??? function "**callHash** - the hash of the call to be executed"
-
-    === "Parameters"
-
-        TODO
-
-    === "Returns"
-
-        TODO
-
-    === "Polkadot.js API Example"
-
-       ```js
-        TODO
-       ```
-
-??? function "**maxWeight** - the maximum weight for the dispatch"
-
-    === "Parameters"
-
-        TODO
-
-    === "Returns"
-
-        TODO
-
-    === "Polkadot.js API Example"
-
-       ```js
-        TODO
-       ```
-
 
 ### Storage Methods {: #storage-methods }
 
@@ -203,32 +197,109 @@ The Multisig Pallet includes the following read-only storage methods to obtain c
 
     === "Parameters"
 
-        - `` -
-
-    === "Returns"
-
-        TODO
+        - `account` - The address of the multisig
+        - `callHash` - (Optional) The hash of the multisig call
 
     === "Polkadot.js API Example"
 
         ```js
-        TODO
+        import { ApiPromise, WsProvider } from '@polkadot/api';
+
+        const main = async () => {
+          const api = await ApiPromise.create({
+            provider: new WsProvider('wss://moonbase-alpha.public.blastapi.io')
+          });
+
+          try {
+            // The account to query multisigs for
+            const account = 'INSERT_ACCOUNT';
+
+            // Get all storage keys and values for this account's multisigs
+            const entries = await api.query.multisig.multisigs.entries(account);
+            
+            if (entries.length === 0) {
+              console.log('No multisigs found for this account');
+            } else {
+              console.log(`Found ${entries.length} multisig(s):`);
+              
+              entries.forEach(([key, value]) => {
+                // The key contains the call hash in its final 32 bytes
+                const callHash = key.args[1].toHex();
+                console.log('\nCall Hash:', callHash);
+                console.log('Details:', value.unwrap().toHuman());
+              });
+            }
+
+          } catch (error) {
+            console.error('Error querying multisigs:', error);
+          } finally {
+            await api.disconnect();
+          }
+        };
+
+        main().catch(error => {
+          console.error('Script error:', error);
+          process.exit(1);
+        });
         ```
+
+    === "Example Response"
+        ```
+        [
+          [
+            [
+              0x2c6a9d09E7C01f3D4154000193BDDcC597523221
+              0xa2902805948bdd92fcaf661965215efd6a5980d0092c065e7470859c1b37b6a9
+            ]
+            {
+              when: {
+                height: 9,174,086
+                index: 5
+              }
+              deposit: 1,013,600,000,000,000,000
+              depositor: 0x253b05C595222a1e3E7Bcf1611cA1307194a030F
+              approvals: [
+                0x253b05C595222a1e3E7Bcf1611cA1307194a030F
+              ]
+            }
+          ]
+        ]
+        ```  
+
+
 
 ??? function "**palletVersion**() - returns the current pallet version"
 
     === "Parameters"
 
-        - `` -
+        None
 
     === "Returns"
 
-        TODO
+        The version of the pallet, e.g. `1`
 
     === "Polkadot.js API Example"
 
         ```js
-        TODO
+        import { ApiPromise, WsProvider } from '@polkadot/api';
+
+        const main = async () => {
+          // Create the API instance
+          const api = await ApiPromise.create({
+            provider: new WsProvider('wss://moonbase-alpha.public.blastapi.io')
+          });
+
+          // Query the identity pallet version
+          const version = await api.query.multisig.palletVersion();
+          
+          // Log the version to console
+          console.log('Identity Pallet Version:', version.toString());
+
+          // Disconnect from the API
+          await api.disconnect();
+        };
+
+        main().catch(console.error);
         ```
 
 
@@ -240,50 +311,117 @@ The Multisig Pallet includes the following read-only functions to obtain pallet 
 
     === "Parameters"
 
-        - `` -
-
-    === "Returns"
-
-        TODO
+        None
 
     === "Polkadot.js API Example"
 
         ```js
-        TODO
+        import { ApiPromise, WsProvider } from '@polkadot/api';
+
+        const main = async () => {
+          const api = await ApiPromise.create({
+            provider: new WsProvider('wss://moonbase-alpha.public.blastapi.io')
+          });
+
+          try {
+            const depositBase = api.consts.multisig.depositBase;
+            console.log('Multisig Deposit Base:', depositBase.toHuman());
+
+          } catch (error) {
+            console.error('Error querying deposit base:', error);
+          } finally {
+            await api.disconnect();
+          }
+        };
+
+        main().catch(error => {
+          console.error('Script error:', error);
+          process.exit(1);
+        });
+        ```
+
+    === "Example Reponse"
+
+        ```
+        Multisig Deposit Base: 1,009,600,000,000,000,000
         ```
 
 ??? function "**depositFactor**() - returns the amount of currency needed per unit threshold when creating a multisig execution. This is held for adding 20 bytes more into a preexisting storage value"
 
     === "Parameters"
 
-        - `` -
-
-    === "Returns"
-
-        TODO
+        None
 
     === "Polkadot.js API Example"
 
         ```js
-        TODO
+        import { ApiPromise, WsProvider } from '@polkadot/api';
+
+        const main = async () => {
+          const api = await ApiPromise.create({
+            provider: new WsProvider('wss://moonbase-alpha.public.blastapi.io')
+          });
+
+          try {
+            const depositFactor = api.consts.multisig.depositFactor;
+            console.log('Multisig Deposit Factor:', depositFactor.toHuman());
+
+          } catch (error) {
+            console.error('Error querying deposit factor:', error);
+          } finally {
+            await api.disconnect();
+          }
+        };
+
+        main().catch(error => {
+          console.error('Script error:', error);
+          process.exit(1);
+        });
+        ```
+
+    === "Example Response"
+
+        ```
+        Multisig Deposit Factor: 2,000,000,000,000,000
         ```
 
 ??? function "**maxSignatories**() - returns the maximum amount of signatories allowed in the multisig"
 
     === "Parameters"
 
-        - `` -
-
-    === "Returns"
-
-        TODO
+        None
 
     === "Polkadot.js API Example"
 
         ```js
-        TODO
+        import { ApiPromise, WsProvider } from '@polkadot/api';
+
+        const main = async () => {
+          const api = await ApiPromise.create({
+            provider: new WsProvider('wss://moonbase-alpha.public.blastapi.io')
+          });
+
+          try {
+            const maxSignatories = api.consts.multisig.maxSignatories;
+            console.log('Multisig Max Signatories:', maxSignatories.toHuman());
+
+          } catch (error) {
+            console.error('Error querying max signatories:', error);
+          } finally {
+            await api.disconnect();
+          }
+        };
+
+        main().catch(error => {
+          console.error('Script error:', error);
+          process.exit(1);
+        });
         ```
 
+    === "Example Response"
+           ```
+           Multisig Max Signatories: 100
+           ```
 
 ## How to Create a Multisig Account {: #create-a-multisig-account }
 
