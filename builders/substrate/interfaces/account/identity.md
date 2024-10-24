@@ -535,71 +535,262 @@ The Identity Pallet includes the following read-only storage methods to obtain c
     === "Polkadot.js API Example"
 
         ```js
-        TODO
+        import { ApiPromise, WsProvider } from '@polkadot/api';
+
+        // Helper function to decode hex to string
+        const hexToString = (hex) => {
+          // Remove '0x' prefix if present
+          const cleanHex = hex.startsWith('0x') ? hex.slice(2) : hex;
+          // Convert hex to string
+          const str = Buffer.from(cleanHex, 'hex').toString('utf8');
+          return str;
+        };
+
+        const main = async () => {
+          const api = await ApiPromise.create({
+            provider: new WsProvider('wss://moonbase-alpha.public.blastapi.io')
+          });
+
+          try {
+            const account = 'INSERT_ACCOUNT';
+            const identity = await api.query.identity.identityOf(account);
+            
+            console.log('Raw identity response:', identity.toString());
+
+            if (identity) {
+              // Parse the raw response
+              const rawResponse = JSON.parse(identity.toString());
+              
+              if (rawResponse[0]) {
+                const formattedIdentity = {
+                  judgements: rawResponse[0].judgements,
+                  deposit: rawResponse[0].deposit,
+                  info: {
+                    additional: rawResponse[0].info.additional,
+                    display: rawResponse[0].info.display.raw ? 
+                      hexToString(rawResponse[0].info.display.raw) : null,
+                    legal: rawResponse[0].info.legal,
+                    web: rawResponse[0].info.web,
+                    riot: rawResponse[0].info.riot,
+                    email: rawResponse[0].info.email,
+                    pgpFingerprint: rawResponse[0].info.pgpFingerprint,
+                    image: rawResponse[0].info.image,
+                    twitter: rawResponse[0].info.twitter
+                  }
+                };
+
+                console.log('Formatted Identity:', JSON.stringify(formattedIdentity, null, 2));
+              } else {
+                console.log('No identity data found in the response');
+              }
+            } else {
+              console.log('No identity found for this account');
+            }
+          } catch (error) {
+            console.error('Error querying identity:', error);
+          } finally {
+            await api.disconnect();
+          }
+        };
+
+        main().catch(error => {
+          console.error('Script error:', error);
+          process.exit(1);
+        });
         ```
 
 ??? function "**palletVersion**() - returns the current pallet version"
 
     === "Parameters"
 
-        - `` -
+        None
 
     === "Returns"
 
-        TODO
+        The version of the pallet, e.g. `1`
 
     === "Polkadot.js API Example"
 
         ```js
-        TODO
+        import { ApiPromise, WsProvider } from '@polkadot/api';
+
+        const main = async () => {
+          // Create the API instance
+          const api = await ApiPromise.create({
+            provider: new WsProvider('wss://moonbase-alpha.public.blastapi.io')
+          });
+
+          // Query the identity pallet version
+          const version = await api.query.identity.palletVersion();
+          
+          // Log the version to console
+          console.log('Identity Pallet Version:', version.toString());
+
+          // Disconnect from the API
+          await api.disconnect();
+        };
+
+        main().catch(console.error);
         ```
 
 ??? function "**registrars**() - returns the set of registrars"
 
     === "Parameters"
 
-        - `` -
+        None
 
     === "Returns"
 
-        TODO
+        The set of registrators as a vector
 
     === "Polkadot.js API Example"
 
         ```js
-        TODO
+        import { ApiPromise, WsProvider } from '@polkadot/api';
+
+        const main = async () => {
+          // Create the API instance
+          const api = await ApiPromise.create({
+            provider: new WsProvider('wss://moonbase-alpha.public.blastapi.io')
+          });
+
+          // Query the registrars
+          const registrars = await api.query.identity.registrars();
+          
+          // Format and log the registrars data
+          const formattedRegistrars = registrars.map(reg => {
+            if (!reg.isSome) return null;
+            const { account, fee, fields } = reg.unwrap();
+            return {
+              account: account.toString(),
+              fee: fee.toHuman(),
+              fields: fields.toNumber()
+            };
+          }).filter(reg => reg !== null);
+
+          console.log('Registrars:', JSON.stringify(formattedRegistrars, null, 2));
+
+          // Disconnect from the API
+          await api.disconnect();
+        };
+
+        main().catch(console.error);
         ```
 
 ??? function "**subsOf**(AccountId20) - returns the sub identities for all accounts or for a given account"
 
     === "Parameters"
 
-        - `AccountId20` -
+        - `AccountId20` the account to check the sub identities for
 
     === "Returns"
 
-        TODO
+        The sub identities, if any.
+
+        ```
+        Raw subs response: [0,[]]
+            Formatted Subs: {
+              "deposit": "0",
+              "subAccounts": []
+            }
+            Number of sub accounts: 0
+        ```
 
     === "Polkadot.js API Example"
 
         ```js
-        TODO
+        import { ApiPromise, WsProvider } from '@polkadot/api';
+
+        const main = async () => {
+          const api = await ApiPromise.create({
+            provider: new WsProvider('wss://moonbase-alpha.public.blastapi.io')
+          });
+
+          try {
+            const account = 'INSERT_ACCOUNT';
+            const subs = await api.query.identity.subsOf(account);
+            
+            // Log raw response for debugging
+            console.log('Raw subs response:', subs.toString());
+
+            if (subs) {
+              // The response includes a tuple of [deposit, accounts]
+              const [deposit, subAccounts] = subs;
+              
+              const formattedSubs = {
+                deposit: deposit.toHuman(),
+                subAccounts: subAccounts.toHuman()
+              };
+
+              console.log('Formatted Subs:', JSON.stringify(formattedSubs, null, 2));
+              console.log('Number of sub accounts:', subAccounts.length);
+            } else {
+              console.log('No sub identities found for this account');
+            }
+          } catch (error) {
+            console.error('Error querying sub identities:', error);
+          } finally {
+            await api.disconnect();
+          }
+        };
+
+        main().catch(error => {
+          console.error('Script error:', error);
+          process.exit(1);
+        });
         ```
 
 ??? function "**superOf**(AccountId20) - returns the super identity of all sub-accounts or for a given sub-account"
 
     === "Parameters"
 
-        - `AccountId20` -
+        - `AccountId20` - the account to check the super identities of
 
     === "Returns"
 
-        TODO
+        The super identities, if any.
 
     === "Polkadot.js API Example"
 
         ```js
-        TODO
+        import { ApiPromise, WsProvider } from '@polkadot/api';
+
+        const main = async () => {
+          const api = await ApiPromise.create({
+            provider: new WsProvider('wss://moonbase-alpha.public.blastapi.io')
+          });
+
+          try {
+            const account = 'INSERT_ACCOUNT';
+            const superOf = await api.query.identity.superOf(account);
+            
+            // Log raw response for debugging
+            console.log('Raw superOf response:', superOf.toString());
+
+            if (superOf.isSome) {
+              // The response includes a tuple of [parentAccount, dataName]
+              const [parentAccount, dataName] = superOf.unwrap();
+              
+              const formattedSuper = {
+                parentAccount: parentAccount.toString(),
+                dataName: dataName.toHuman()
+              };
+
+              console.log('Formatted Super Identity:', JSON.stringify(formattedSuper, null, 2));
+            } else {
+              console.log('This account is not a sub-identity of any other account');
+            }
+          } catch (error) {
+            console.error('Error querying super identity:', error);
+          } finally {
+            await api.disconnect();
+          }
+        };
+
+        main().catch(error => {
+          console.error('Script error:', error);
+          process.exit(1);
+        });
         ```
 
 ### Pallet Constants {: #constants }
@@ -610,94 +801,199 @@ The Identity Pallet includes the following read-only functions to obtain pallet 
 
     === "Parameters"
 
-        - `` -
-
-    === "Returns"
-
-        TODO
+        None
 
     === "Polkadot.js API Example"
 
         ```js
-        TODO
+        import { ApiPromise, WsProvider } from '@polkadot/api';
+
+        const main = async () => {
+          const api = await ApiPromise.create({
+            provider: new WsProvider('wss://moonbase-alpha.public.blastapi.io')
+          });
+
+          try {
+            // Query the basicDeposit constant
+            const basicDeposit = api.consts.identity.basicDeposit;
+            
+            // Log raw response for debugging
+            console.log('Raw basicDeposit response:', basicDeposit.toString());
+
+            // Format the deposit amount
+            console.log('Basic Deposit (formatted):', basicDeposit.toHuman());
+            
+          } catch (error) {
+            console.error('Error querying basic deposit:', error);
+          } finally {
+            await api.disconnect();
+          }
+        };
+
+        main().catch(error => {
+          console.error('Script error:', error);
+          process.exit(1);
+        });
         ```
 
-??? function "**fieldDeposit**() - returns the amount held on deposit per additional field for a registered identity"
+    === "Example Response"
+
+        ```bash
+        Raw basicDeposit response: 1025800000000000000
+        Basic Deposit (formatted): 1,025,800,000,000,000,000
+        ```
+
+??? function "**byteDeposit**() - returns the amount held on deposit per additional bytes of data for a registered identity"
 
     === "Parameters"
 
-        - `` -
+        None
 
-    === "Returns"
-
-        TODO
 
     === "Polkadot.js API Example"
 
         ```js
-        TODO
+        import { ApiPromise, WsProvider } from '@polkadot/api';
+
+        const main = async () => {
+          const api = await ApiPromise.create({
+            provider: new WsProvider('wss://moonbase-alpha.public.blastapi.io')
+          });
+
+          try {
+            // Query the byteDeposit constant
+            const byteDeposit = api.consts.identity.byteDeposit;
+            
+            // Log raw response for debugging
+            console.log('Raw byteDeposit response:', byteDeposit.toString());
+
+            // Format the deposit amount
+            console.log('Byte Deposit (formatted):', byteDeposit.toHuman());
+            
+            } catch (error) {
+            console.error('Error querying byte deposit:', error);
+          } finally {
+            await api.disconnect();
+          }
+        };
+
+        main().catch(error => {
+          console.error('Script error:', error);
+          process.exit(1);
+        });
         ```
 
-??? function "**maxAdditionalFields**() - returns the maximum number of fields that can be stored in an ID"
-
-    === "Parameters"
-
-        - `` -
-
-    === "Returns"
-
-        TODO
-
-    === "Polkadot.js API Example"
-
-        ```js
-        TODO
+    === "Example Response"
+        ```
+        Raw byteDeposit response: 100000000000000
+        Byte Deposit (formatted): 100,000,000,000,000
         ```
 
 ??? function "**maxRegistrars**() - returns the maximum number of registrars allowed in the system"
 
     === "Parameters"
-
-        - `` -
-
+        None
     === "Returns"
-
-        TODO
-
+        - `u32` - Maximum number of registrars allowed
     === "Polkadot.js API Example"
-
         ```js
-        TODO
+        import { ApiPromise, WsProvider } from '@polkadot/api';
+
+        const main = async () => {
+          const api = await ApiPromise.create({
+            provider: new WsProvider('wss://moonbase-alpha.public.blastapi.io')
+          });
+
+          try {
+            // Query the maxRegistrars constant
+            const maxRegistrars = api.consts.identity.maxRegistrars;
+            
+            // Get the number as a plain integer
+            console.log('Max Registrars (number):', maxRegistrars.toNumber());
+
+          } catch (error) {
+            console.error('Error querying max registrars:', error);
+          } finally {
+            await api.disconnect();
+          }
+        };
+
+        main().catch(error => {
+          console.error('Script error:', error);
+          process.exit(1);
+        });
         ```
 
 ??? function "**maxSubAccounts**() - returns the maximum number of sub-accounts allowed per account"
 
     === "Parameters"
-
-        - `` -
-
+        None
     === "Returns"
-
-        TODO
-
+        - `u32` - Maximum number of sub-accounts allowed per identity
     === "Polkadot.js API Example"
-
         ```js
-        TODO
+        import { ApiPromise, WsProvider } from '@polkadot/api';
+
+        const main = async () => {
+          const api = await ApiPromise.create({
+            provider: new WsProvider('wss://moonbase-alpha.public.blastapi.io')
+          });
+
+          try {
+            const maxSubAccounts = api.consts.identity.maxSubAccounts;
+            console.log('Max SubAccounts (number):', maxSubAccounts.toNumber());
+          } catch (error) {
+            console.error('Error querying max subaccounts:', error);
+          } finally {
+            await api.disconnect();
+          }
+        };
+
+        main().catch(error => {
+          console.error('Script error:', error);
+          process.exit(1);
+        });
         ```
 
 ??? function "**subAccountDeposit**() - returns the amount held on deposit for a registered sub-account"
 
     === "Parameters"
-
-        - `` -
-
+        None
     === "Returns"
-
-        TODO
-
+        - `Balance` - Amount of currency held on deposit for a sub-account
     === "Polkadot.js API Example"
+        ```js
+        TODO
+        ```
 
+??? function "**pendingUsernameExpiration**() - returns the time period for which a username remains pending"
+
+    === "Parameters"
+        None
+    === "Returns"
+        - `BlockNumber` - Number of blocks before a pending username expires
+    === "Polkadot.js API Example"
+        ```js
+        TODO
+        ```
+
+??? function "**maxSuffixLength**() - returns the maximum length allowed for a username suffix"
+
+    === "Parameters"
+        None
+    === "Returns"
+        - `u32` - Maximum number of characters allowed in a username suffix
+    === "Polkadot.js API Example"
+        ```js
+        TODO
+        ```
+
+??? function "**maxUsernameLength**() - returns the maximum length allowed for a username"
+    === "Parameters"
+        None
+    === "Returns"
+        - `u32` - Maximum number of characters allowed in a username
+    === "Polkadot.js API Example"
         ```js
         TODO
         ```
