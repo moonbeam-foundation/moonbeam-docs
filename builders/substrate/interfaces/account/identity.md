@@ -963,7 +963,27 @@ The Identity Pallet includes the following read-only functions to obtain pallet 
         - `Balance` - Amount of currency held on deposit for a sub-account
     === "Polkadot.js API Example"
         ```js
-        TODO
+        import { ApiPromise, WsProvider } from '@polkadot/api';
+
+        const main = async () => {
+          const api = await ApiPromise.create({
+            provider: new WsProvider('wss://moonbase-alpha.public.blastapi.io')
+          });
+
+          try {
+            const subAccountDeposit = api.consts.identity.subAccountDeposit;
+            console.log('SubAccount Deposit:', subAccountDeposit.toHuman());
+          } catch (error) {
+            console.error('Error querying subaccount deposit:', error);
+          } finally {
+            await api.disconnect();
+          }
+        };
+
+        main().catch(error => {
+          console.error('Script error:', error);
+          process.exit(1);
+        });
         ```
 
 ??? function "**pendingUsernameExpiration**() - returns the time period for which a username remains pending"
@@ -974,7 +994,29 @@ The Identity Pallet includes the following read-only functions to obtain pallet 
         - `BlockNumber` - Number of blocks before a pending username expires
     === "Polkadot.js API Example"
         ```js
-        TODO
+        import { ApiPromise, WsProvider } from '@polkadot/api';
+
+        const main = async () => {
+          const api = await ApiPromise.create({
+            provider: new WsProvider('wss://moonbase-alpha.public.blastapi.io')
+          });
+
+          try {
+            // Query the pendingUsernameExpiration constant from identity pallet
+            const pendingExpiration = api.consts.identity.pendingUsernameExpiration;
+            console.log('Pending Username Expiration:', pendingExpiration.toHuman());
+
+          } catch (error) {
+            console.error('Error querying pending username expiration:', error);
+          } finally {
+            await api.disconnect();
+          }
+        };
+
+        main().catch(error => {
+          console.error('Script error:', error);
+          process.exit(1);
+        });
         ```
 
 ??? function "**maxSuffixLength**() - returns the maximum length allowed for a username suffix"
@@ -985,7 +1027,28 @@ The Identity Pallet includes the following read-only functions to obtain pallet 
         - `u32` - Maximum number of characters allowed in a username suffix
     === "Polkadot.js API Example"
         ```js
-        TODO
+        import { ApiPromise, WsProvider } from '@polkadot/api';
+
+        const main = async () => {
+          const api = await ApiPromise.create({
+            provider: new WsProvider('wss://moonbase-alpha.public.blastapi.io')
+          });
+
+          try {
+            const maxSuffixLength = api.consts.identity.maxSuffixLength;
+            console.log('Max Suffix Length:', maxSuffixLength.toHuman());
+
+          } catch (error) {
+            console.error('Error querying max suffix length:', error);
+          } finally {
+            await api.disconnect();
+          }
+        };
+
+        main().catch(error => {
+          console.error('Script error:', error);
+          process.exit(1);
+        });
         ```
 
 ??? function "**maxUsernameLength**() - returns the maximum length allowed for a username"
@@ -995,5 +1058,26 @@ The Identity Pallet includes the following read-only functions to obtain pallet 
         - `u32` - Maximum number of characters allowed in a username
     === "Polkadot.js API Example"
         ```js
-        TODO
+        import { ApiPromise, WsProvider } from '@polkadot/api';
+
+        const main = async () => {
+          const api = await ApiPromise.create({
+            provider: new WsProvider('wss://moonbase-alpha.public.blastapi.io')
+          });
+
+          try {
+            const maxUsernameLength = api.consts.identity.maxUsernameLength;
+            console.log('Max Username Length:', maxUsernameLength.toHuman());
+
+          } catch (error) {
+            console.error('Error querying max username length:', error);
+          } finally {
+            await api.disconnect();
+          }
+        };
+
+        main().catch(error => {
+          console.error('Script error:', error);
+          process.exit(1);
+        });
         ```
