@@ -49,26 +49,95 @@ The interfaces includes a `Conviction` enum that defines the [Conviction multipl
 
 The interface includes the following functions:
 
-- **votingFor**(*address* who, *uint16* trackId) - returns the votes for a given account and Track
-- **classLocksFor**(*address* who) - returns the class locks for a given account
-- **voteYes**(*uint32* pollIndex, *uint256* voteAmount, *Conviction* conviction) - votes a Conviction-weighted "Aye" on a poll (referendum)
-- **voteNo**(*uint32* pollIndex, *uint256* voteAmount, *Conviction* conviction) - votes a Conviction-weighted "Nay" on a poll (referendum)
-- **voteSplit**(*uint32* pollIndex, *uint256* aye, *uint256* nay) - votes a split vote, with a given amount locked for "Aye" and a given amount locked for "Nay", on a poll (referendum)
-- **voteSplitAbstain**(*uint32* pollIndex, *uint256* aye, *uint256* nay) - votes a split abstained vote, with a given amount locked for "Aye", a given amount locked for "Nay", and a given amount locked for an abstain vote (support), on a poll (referendum)
-- **removeVote**(*uint32* pollIndex) - [removes a vote](/builders/substrate/interfaces/features/governance/conviction-voting/#extrinsics){target=\_blank} in a poll (referendum)
-- **removeVoteForTrack**(*uint32* pollIndex, *uint16* trackId) - [removes a vote](/builders/substrate/interfaces/features/governance/conviction-voting/#extrinsics){target=\_blank} from a specific track in a poll (referendum)
-- **removeOtherVote**(*address* target, *uint16* trackId, *uint32* pollIndex) - [removes a vote](/builders/substrate/interfaces/features/governance/conviction-voting/#extrinsics){target=\_blank} in a poll (referendum) for another voter
-- **delegate**(*uint16* trackId, *address* representative, *Conviction* conviction, *uint256* amount) - delegates another account as a representative to place a Conviction-weighted vote on the behalf of the sending account for a specific Track
-- **undelegate**(*uint16* trackId) - removes the caller's vote delegations for a specific Track
-- **unlock**(*uint16* trackId, *address* target) - unlocks the locked tokens of a specific account for a specific Track
+The interface includes the following functions:
 
-Each of these functions have the following parameters:
+??? function "**votingFor**(*address* who, *uint16* trackId) - returns the votes for a given account and Track"
 
-- **uint32 pollIndex** - index of the poll (referendum)
-- **uint256 voteAmount** - the balance to be locked for the vote
-- **Conviction** - represents a value from the aforementioned `Conviction` enum
-- **address target** - the address that has a vote or tokens to be removed or unlocked
-- **uint16 trackId** - the Track ID where the requested changes need to occur
+    === "Parameters"
+
+        - `who` - address of the account to query the votes for
+        - `trackId` - uint16 Track ID where the requested changes need to occur
+
+??? function "**classLocksFor**(*address* who) - returns the class locks for a given account"
+
+    === "Parameters"
+
+        - `who` - address of the account to query the class locks for
+
+??? function "**voteYes**(*uint32* pollIndex, *uint256* voteAmount, *Conviction* conviction) - votes a Conviction-weighted "Aye" on a poll (referendum)"
+
+    === "Parameters"
+
+        - `pollIndex` - uint32 index of the poll (referendum)
+        - `voteAmount` - uint256 balance to be locked for the vote
+        - `conviction` - Conviction represents a value from the aforementioned `Conviction` enum
+
+??? function "**voteNo**(*uint32* pollIndex, *uint256* voteAmount, *Conviction* conviction) - votes a Conviction-weighted "Nay" on a poll (referendum)"
+
+    === "Parameters"
+
+        - `pollIndex` - uint32 index of the poll (referendum)
+        - `voteAmount` - uint256 balance to be locked for the vote
+        - `conviction` - Conviction represents a value from the aforementioned `Conviction` enum
+
+??? function "**voteSplit**(*uint32* pollIndex, *uint256* aye, *uint256* nay) - votes a split vote, with a given amount locked for "Aye" and a given amount locked for "Nay", on a poll (referendum)"
+
+    === "Parameters"
+
+        - `pollIndex` - uint32 index of the poll (referendum)
+        - `aye` - uint256 balance to be locked for the "Aye" vote
+        - `nay` - uint256 balance to be locked for the "Nay" vote
+
+??? function "**voteSplitAbstain**(*uint32* pollIndex, *uint256* aye, *uint256* nay) - votes a split abstained vote, with a given amount locked for "Aye", a given amount locked for "Nay", and a given amount locked for an abstain vote (support), on a poll (referendum)"
+
+    === "Parameters"
+
+        - `pollIndex` - uint32 index of the poll (referendum)
+        - `aye` - uint256 balance to be locked for the "Aye" vote
+        - `nay` - uint256 balance to be locked for the "Nay" vote
+
+??? function "**removeVote**(*uint32* pollIndex) - [removes a vote](/builders/substrate/interfaces/features/governance/conviction-voting/#extrinsics){target=\_blank} in a poll (referendum)"
+
+    === "Parameters"
+
+        - `pollIndex` - uint32 index of the poll (referendum)
+
+??? function "**removeVoteForTrack**(*uint32* pollIndex, *uint16* trackId) - [removes a vote](/builders/substrate/interfaces/features/governance/conviction-voting/#extrinsics){target=\_blank} from a specific track in a poll (referendum)"
+
+    === "Parameters"
+
+        - `pollIndex` - uint32 index of the poll (referendum)
+        - `trackId` - uint16 Track ID where the requested changes need to occur
+
+??? function "**removeOtherVote**(*address* target, *uint16* trackId, *uint32* pollIndex) - [removes a vote](/builders/substrate/interfaces/features/governance/conviction-voting/#extrinsics){target=\_blank} in a poll (referendum) for another voter"
+
+    === "Parameters"
+
+        - `target` - address that has a vote or tokens to be removed or unlocked
+        - `trackId` - uint16 Track ID where the requested changes need to occur
+        - `pollIndex` - uint32 index of the poll (referendum)
+
+??? function "**delegate**(*uint16* trackId, *address* representative, *Conviction* conviction, *uint256* amount) - delegates another account as a representative to place a Conviction-weighted vote on the behalf of the sending account for a specific Track"
+
+    === "Parameters"
+
+        - `trackId` - uint16 Track ID where the requested changes need to occur
+        - `representative` - address of the account to be delegated as representative
+        - `conviction` - Conviction represents a value from the aforementioned `Conviction` enum
+        - `amount` - uint256 balance to be delegated
+
+??? function "**undelegate**(*uint16* trackId) - removes the caller's vote delegations for a specific Track"
+
+    === "Parameters"
+
+        - `trackId` - uint16 Track ID where the requested changes need to occur
+
+??? function "**unlock**(*uint16* trackId, *address* target) - unlocks the locked tokens of a specific account for a specific Track"
+
+    === "Parameters"
+
+        - `trackId` - uint16 Track ID where the requested changes need to occur
+        - `target` - address that has a vote or tokens to be removed or unlocked
 
 The interface also includes the following events:
 

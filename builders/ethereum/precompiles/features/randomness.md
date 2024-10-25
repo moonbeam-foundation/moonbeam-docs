@@ -56,26 +56,109 @@ The interface includes functions, constants, events, and enums, as covered in th
 
 The interface includes the following functions:
 
-- **relayEpochIndex**() — returns the current relay epoch index, where an epoch represents real time and not a block number
-- **requiredDeposit**() — returns the deposit required to perform a randomness request
-- **getRequestStatus**(*uint256* requestId) — returns the request status of a given randomness request
-- **getRequest**(*uint256* requestId) — returns the request details of a given randomness request
-- **requestLocalVRFRandomWords**(*address* refundAddress, *uint256* fee, *uint64* gasLimit, *bytes32* salt, *uint8* numWords, *uint64* delay) — request random words generated from the parachain VRF
-- **requestRelayBabeEpochRandomWords**(*address* refundAddress, *uint256* fee, *uint64* gasLimit, *bytes32* salt, *uint8* numWords) — request random words generated from the relay chain BABE consensus
-- **fulfillRequest**(*uint256* requestId) — fulfill the request which will call the consumer contract method [`fulfillRandomWords`](#:~:text=rawFulfillRandomWords(uint256 requestId, uint256[] memory randomWords)). Fees of the caller are refunded if the request is fulfillable
-- **increaseRequestFee**(*uint256* requestId, *uint256* feeIncrease) — increases the fee associated with a given randomness request. This is needed if the gas price increases significantly before the request is fulfilled
-- **purgeExpiredRequest**(*uint256* requestId) — removes a given expired request from storage and transfers the request fees to the caller and the deposit back to the original requester
+??? function "**relayEpochIndex**() - returns the current relay epoch index, where an epoch represents real time and not a block number"
 
-Where the inputs that need to be provided can be defined as:
+    === "Parameters"
 
-- **requestId** - the ID of the randomness request
-- **refundAddress** - the address receiving the left-over fees after the fulfillment
-- **fee** - the amount to set aside to pay for the fulfillment
-- **gasLimit** - the gas limit to use for the fulfillment
-- **salt** - a string that is mixed with the randomness seed to obtain different random words
-- **numWords** - the number of random words requested, up to the maximum number of random words
-- **delay** - the number of blocks that must pass before the request can be fulfilled. This value will need to be between the minimum and maximum number of blocks before a local VRF request can be fulfilled
-- **feeIncrease** - the amount to increase fees by
+        None.
+
+    === "Returns"
+
+        - `uint256` current relay epoch index
+
+??? function "**requiredDeposit**() - returns the deposit required to perform a randomness request"
+
+    === "Parameters"
+
+        None.
+
+    === "Returns"
+
+        - `uint256` required deposit amount
+
+??? function "**getRequestStatus**(*uint256* requestId) - returns the request status of a given randomness request"
+
+    === "Parameters"
+
+        - `requestId` - uint256 ID of the randomness request
+
+    === "Returns"
+
+        - `uint8` status code of the request
+
+??? function "**getRequest**(*uint256* requestId) - returns the request details of a given randomness request"
+
+    === "Parameters"
+
+        - `requestId` - uint256 ID of the randomness request
+
+    === "Returns"
+
+        - `bool` whether the request is ready or not
+        - `bool` whether the request is expired or not
+        - `uint256` deposit amount
+        - `uint256` fee amount
+
+??? function "**requestLocalVRFRandomWords**(*address* refundAddress, *uint256* fee, *uint64* gasLimit, *bytes32* salt, *uint8* numWords, *uint64* delay) - request random words generated from the parachain VRF"
+
+    === "Parameters"
+
+        - `refundAddress` - address receiving the left-over fees after the fulfillment
+        - `fee` - uint256 amount to set aside to pay for the fulfillment
+        - `gasLimit` - uint64 gas limit to use for the fulfillment
+        - `salt` - bytes32 string that is mixed with the randomness seed to obtain different random words
+        - `numWords` - uint8 number of random words requested, up to the maximum number of random words
+        - `delay` - uint64 number of blocks that must pass before the request can be fulfilled. This value will need to be between the minimum and maximum number of blocks before a local VRF request can be fulfilled
+
+    === "Returns"
+
+        - `uint256` ID of the created request
+
+??? function "**requestRelayBabeEpochRandomWords**(*address* refundAddress, *uint256* fee, *uint64* gasLimit, *bytes32* salt, *uint8* numWords) - request random words generated from the relay chain BABE consensus"
+
+    === "Parameters"
+
+        - `refundAddress` - address receiving the left-over fees after the fulfillment
+        - `fee` - uint256 amount to set aside to pay for the fulfillment
+        - `gasLimit` - uint64 gas limit to use for the fulfillment
+        - `salt` - bytes32 string that is mixed with the randomness seed to obtain different random words
+        - `numWords` - uint8 number of random words requested, up to the maximum number of random words
+
+    === "Returns"
+
+        - `uint256` ID of the created request
+
+??? function "**fulfillRequest**(*uint256* requestId) - fulfill the request which will call the consumer contract method [`fulfillRandomWords`](#:~:text=rawFulfillRandomWords(uint256 requestId, uint256[] memory randomWords)). Fees of the caller are refunded if the request is fulfillable"
+
+    === "Parameters"
+
+        - `requestId` - uint256 ID of the randomness request
+
+    === "Returns"
+
+        None.
+
+??? function "**increaseRequestFee**(*uint256* requestId, *uint256* feeIncrease) - increases the fee associated with a given randomness request. This is needed if the gas price increases significantly before the request is fulfilled"
+
+    === "Parameters"
+
+        - `requestId` - uint256 ID of the randomness request
+        - `feeIncrease` - uint256 amount to increase fees by
+
+    === "Returns"
+
+        None.
+
+??? function "**purgeExpiredRequest**(*uint256* requestId) - removes a given expired request from storage and transfers the request fees to the caller and the deposit back to the original requester"
+
+    === "Parameters"
+
+        - `requestId` - uint256 ID of the randomness request
+
+    === "Returns"
+
+        None.
+
 
 ### Constants {: #constants }
 

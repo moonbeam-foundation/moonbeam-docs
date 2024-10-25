@@ -37,70 +37,192 @@ The Referenda Precompile is located at the following address:
 
 [`Referenda.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/referenda/Referenda.sol){target=\_blank} is a Solidity interface that allows developers to interact with the precompile's methods. The methods are as follows:
 
-- **referendumCount**() - a read-only function that returns the total referendum count
-- **submissionDeposit**() - a read-only function that returns the Submission Deposit required for each referendum
-- **decidingCount**(*uint16* trackId) - a read-only function that returns the total count of deciding referenda for a given Track
-- **trackIds**() - a read-only function that returns a list of the Track IDs for all Tracks (and Origins)
-- **trackInfo**(*uint16* trackId) - a read-only function that returns the following governance parameters configured for a given Track ID:
+The methods are as follows:
 
-     - *string* name - the name of the Track
-     - *uint256* maxDeciding - the maximum number of referenda that can be decided on at once
-     - *uint256* decisionDeposit - the amount of the Decision Deposit
-     - *uint256* preparePeriod - the duration of the Prepare Period
-     - *uint256* decisionPeriod - the duration of the Decide Period
-     - *uint256* confirmPeriod - the duration of the Confirm Period
-     - *uint256* minEnactmentPeriod - the minimum amount of time the Enactment Period must be
-     - *bytes* minApproval - the minimum "Aye" votes as a percentage of overall Conviction-weighted votes needed for an approval
-     - *bytes* minSupport - minimum number of "Aye" votes, not taking into consideration Conviction-weighted votes, needed as a percent of the total supply needed for an approval
+??? function "**referendumCount**() - a read-only function that returns the total referendum count"
 
-- **referendumStatus**(*uint32* referendumIndex) - a read-only function that returns the status for a given referendum. The `ReferendumStatus` enum defines the possible statuses:
+    === "Parameters"
 
-     ```solidity
-     enum ReferendumStatus {
-          Ongoing,
-          Approved,
-          Rejected,
-          Cancelled,
-          TimedOut,
-          Killed
-     }
-     ```
+        None.
 
-- **ongoingReferendumInfo**(*uint32* referendumIndex) - a read-only function that returns the following information pertaining to an ongoing referendum:
+    === "Returns"
 
-     - *uint16* trackId - the Track of this referendum
-     - *bytes* origin - the Origin for this referendum
-     - *bytes* proposal - the hash of the proposal up for referendum
-     - *bool* enactmentType - `true` if the proposal is scheduled to be dispatched *at* enactment time and `false` if *after* enactment time
-     - *uint256* enactmentTime - the time the proposal should be scheduled for enactment
-     - *uint256* submissionTime -  the time of submission
-     - *address* submissionDepositor - the address of the depositor for the Submission Deposit
-     - *uint256* submissionDeposit - the amount of the Submission Deposit
-     - *address* decisionDepositor - the address of the depositor for the Decision Deposit
-     - *uint256* decisionDeposit - the amount of the Decision Deposit
-     - *uint256* decidingSince - when this referendum entered the Decide Period. If confirming, then the end will actually be delayed until the end of the Confirm Period
-     - *uint256* decidingConfirmingEnd - when this referendum is scheduled to leave the Confirm Period as long as it doesn't lose its approval in the meantime
-     - *uint256* ayes - the number of "Aye" votes, expressed in terms of post-conviction lock-vote
-     - *uint32* support - percent of "Aye" votes, expressed pre-conviction, over total votes in the class
-     - *uint32* approval - percent of "Aye" votes over "Aye" and "Nay" votes
-     - *bool* inQueue - `true` if this referendum has been placed in the queue for being decided or `false` if not
-     - *uint256* alarmTime - the next scheduled wake-up
-     - *bytes* taskAddress - scheduler task address if scheduled
+        - `uint256` total count of referenda
 
-- **closedReferendumInfo**(*uint32* referendumIndex) - a read-only function that returns the following information pertaining to a closed referendum:
+??? function "**submissionDeposit**() - a read-only function that returns the Submission Deposit required for each referendum"
 
-     - *uint256* end - when the referendum ended
-     - *address* submissionDepositor - the address of the depositor for the Submission Deposit
-     - *uint256* submissionDeposit - the amount of the Submission Deposit
-     - *address* decisionDepositor - the address of the depositor for the Decision Deposit
-     - *uint256* decisionDeposit - the amount of the Decision Deposit
+    === "Parameters"
 
-- **killedReferendumBlock**(*uint32* referendumIndex) - a read-only function that returns the block a given referendum was killed
-- **submitAt**(*uint16* trackId, *bytes32* proposalHash, *uint32* proposalLen, *uint32* block) - submits a referendum given a Track ID corresponding to the origin from which the proposal is to be dispatched, the preimage hash of the proposed runtime call, the length of the proposal, and the block number *at* which this will be executed. Returns the referendum index of the submitted referendum
-- **submitAfter**(*uint16* trackId, *bytes32* proposalHash, *uint32* proposalLen, *uint32* block) - submits a referendum given a Track ID corresponding to the origin from which the proposal is to be dispatched, the preimage hash of the proposed runtime call, the length of the proposal, and the block number *after* which this will be executed. Returns the referendum index of the submitted referendum
-- **placeDecisionDeposit**(*uint32* index) - posts the Decision Deposit for a referendum given the index of the going referendum
-- **refundDecisionDeposit**(*uint32* index) - refunds the Decision Deposit for a closed referendum back to the depositor given the index of the closed referendum in which the Decision Deposit is still locked
-- **refundSubmissionDeposit**(*uint32* index) - refunds the Submission Deposit for a closed referendum back to the depositor given the index of a closed referendum
+        None.
+
+    === "Returns"
+
+        - `uint256` amount of the required Submission Deposit
+
+??? function "**decidingCount**(*uint16* trackId) - a read-only function that returns the total count of deciding referenda for a given Track"
+
+    === "Parameters"
+
+        - `trackId` - uint16 Track ID to query the deciding count for
+
+    === "Returns"
+
+        - `uint256` count of deciding referenda for the specified Track
+
+??? function "**trackIds**() - a read-only function that returns a list of the Track IDs for all Tracks (and Origins)"
+
+    === "Parameters"
+
+        None.
+
+    === "Returns"
+
+        - `uint16[]` array of Track IDs
+
+??? function "**trackInfo**(*uint16* trackId) - a read-only function that returns the following governance parameters configured for a given Track ID"
+
+    === "Parameters"
+
+        - `trackId` - uint16 Track ID to query the parameters for
+
+    === "Returns"
+
+        - `string` name - the name of the Track
+        - `uint256` maxDeciding - the maximum number of referenda that can be decided on at once
+        - `uint256` decisionDeposit - the amount of the Decision Deposit
+        - `uint256` preparePeriod - the duration of the Prepare Period
+        - `uint256` decisionPeriod - the duration of the Decide Period
+        - `uint256` confirmPeriod - the duration of the Confirm Period
+        - `uint256` minEnactmentPeriod - the minimum amount of time the Enactment Period must be
+        - `bytes` minApproval - the minimum "Aye" votes as a percentage of overall Conviction-weighted votes needed for an approval
+        - `bytes` minSupport - minimum number of "Aye" votes, not taking into consideration Conviction-weighted votes, needed as a percent of the total supply needed for an approval
+
+??? function "**referendumStatus**(*uint32* referendumIndex) - a read-only function that returns the status for a given referendum"
+
+    === "Parameters"
+
+        - `referendumIndex` - uint32 index of the referendum to query the status for
+
+    === "Returns"
+
+        ReferendumStatus enum:
+        ```solidity
+        enum ReferendumStatus {
+             Ongoing,
+             Approved,
+             Rejected,
+             Cancelled,
+             TimedOut,
+             Killed
+        }
+        ```
+
+??? function "**ongoingReferendumInfo**(*uint32* referendumIndex) - a read-only function that returns information pertaining to an ongoing referendum"
+
+    === "Parameters"
+
+        - `referendumIndex` - uint32 index of the ongoing referendum to query
+
+    === "Returns"
+
+        - `uint16` trackId - the Track of this referendum
+        - `bytes` origin - the Origin for this referendum
+        - `bytes` proposal - the hash of the proposal up for referendum
+        - `bool` enactmentType - `true` if the proposal is scheduled to be dispatched *at* enactment time and `false` if *after* enactment time
+        - `uint256` enactmentTime - the time the proposal should be scheduled for enactment
+        - `uint256` submissionTime - the time of submission
+        - `address` submissionDepositor - the address of the depositor for the Submission Deposit
+        - `uint256` submissionDeposit - the amount of the Submission Deposit
+        - `address` decisionDepositor - the address of the depositor for the Decision Deposit
+        - `uint256` decisionDeposit - the amount of the Decision Deposit
+        - `uint256` decidingSince - when this referendum entered the Decide Period
+        - `uint256` decidingConfirmingEnd - when this referendum is scheduled to leave the Confirm Period
+        - `uint256` ayes - the number of "Aye" votes, expressed in terms of post-conviction lock-vote
+        - `uint32` support - percent of "Aye" votes, expressed pre-conviction, over total votes in the class
+        - `uint32` approval - percent of "Aye" votes over "Aye" and "Nay" votes
+        - `bool` inQueue - `true` if this referendum has been placed in the queue for being decided
+        - `uint256` alarmTime - the next scheduled wake-up
+        - `bytes` taskAddress - scheduler task address if scheduled
+
+??? function "**closedReferendumInfo**(*uint32* referendumIndex) - a read-only function that returns information pertaining to a closed referendum"
+
+    === "Parameters"
+
+        - `referendumIndex` - uint32 index of the closed referendum to query
+
+    === "Returns"
+
+        - `uint256` end - when the referendum ended
+        - `address` submissionDepositor - the address of the depositor for the Submission Deposit
+        - `uint256` submissionDeposit - the amount of the Submission Deposit
+        - `address` decisionDepositor - the address of the depositor for the Decision Deposit
+        - `uint256` decisionDeposit - the amount of the Decision Deposit
+
+??? function "**killedReferendumBlock**(*uint32* referendumIndex) - a read-only function that returns the block a given referendum was killed"
+
+    === "Parameters"
+
+        - `referendumIndex` - uint32 index of the killed referendum to query
+
+    === "Returns"
+
+        - `uint256` block number at which the referendum was killed
+
+??? function "**submitAt**(*uint16* trackId, *bytes32* proposalHash, *uint32* proposalLen, *uint32* block) - submits a referendum given a Track ID corresponding to the origin from which the proposal is to be dispatched. Returns the referendum index of the submitted referendum"
+
+    === "Parameters"
+
+        - `trackId` - uint16 Track ID corresponding to the origin from which the proposal is to be dispatched
+        - `proposalHash` - bytes32 preimage hash of the proposed runtime call
+        - `proposalLen` - uint32 length of the proposal
+        - `block` - uint32 block number *at* which this will be executed
+
+    === "Returns"
+
+        - `uint32` index of the submitted referendum
+
+??? function "**submitAfter**(*uint16* trackId, *bytes32* proposalHash, *uint32* proposalLen, *uint32* block) - submits a referendum given a Track ID corresponding to the origin from which the proposal is to be dispatched. Returns the referendum index of the submitted referendum"
+
+    === "Parameters"
+
+        - `trackId` - uint16 Track ID corresponding to the origin from which the proposal is to be dispatched
+        - `proposalHash` - bytes32 preimage hash of the proposed runtime call
+        - `proposalLen` - uint32 length of the proposal
+        - `block` - uint32 block number *after* which this will be executed
+
+    === "Returns"
+
+        - `uint32` index of the submitted referendum
+
+??? function "**placeDecisionDeposit**(*uint32* index) - posts the Decision Deposit for a referendum given the index of the going referendum"
+
+    === "Parameters"
+
+        - `index` - uint32 index of the ongoing referendum to place the Decision Deposit for
+
+    === "Returns"
+
+        None.
+
+??? function "**refundDecisionDeposit**(*uint32* index) - refunds the Decision Deposit for a closed referendum back to the depositor"
+
+    === "Parameters"
+
+        - `index` - uint32 index of the closed referendum in which the Decision Deposit is still locked
+
+    === "Returns"
+
+        None.
+
+??? function "**refundSubmissionDeposit**(*uint32* index) - refunds the Submission Deposit for a closed referendum back to the depositor"
+
+    === "Parameters"
+
+        - `index` - uint32 index of the closed referendum to refund the Submission Deposit for
+
+    === "Returns"
+
+        None.
 
 The interface also includes the following events:
 

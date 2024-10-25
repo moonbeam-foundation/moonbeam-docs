@@ -42,10 +42,36 @@ The Proxy Precompile is located at the following address:
 
 The interface includes the following functions:
 
- - **addProxy**(*address* delegate, *ProxyType* proxyType, *uint32* delay) — registers a proxy account for the sender after a specified number of `delay` blocks (generally zero). Will fail if a proxy for the caller already exists
- - **removeProxy**(*address* delegate, *ProxyType* proxyType, *uint32* delay) — removes a registered proxy for the sender
- - **removeProxies**() — removes all of the proxy accounts delegated to the sender
- - **isProxy**(*address* real, *address* delegate, *ProxyType* proxyType, *uint32* delay) — returns a boolean, `true` if the delegate address is a proxy of type `proxyType`, for address `real`, with the specified `delay`
+??? function "**addProxy**(*address* delegate, *ProxyType* proxyType, *uint32* delay) - registers a proxy account for the sender after a specified number of `delay` blocks (generally zero). Will fail if a proxy for the caller already exists"
+
+    === "Parameters"
+
+        - `delegate` - address of the account to be registered as a proxy
+        - `proxyType` - ProxyType enumeration specifying the type of proxy to be registered
+        - `delay` - uint32 number of blocks before the proxy registration becomes active
+
+??? function "**removeProxy**(*address* delegate, *ProxyType* proxyType, *uint32* delay) - removes a registered proxy for the sender"
+
+    === "Parameters"
+
+        - `delegate` - address of the proxy account to be removed
+        - `proxyType` - ProxyType enumeration of the proxy type to be removed
+        - `delay` - uint32 delay value of the proxy to be removed
+
+??? function "**removeProxies**() - removes all of the proxy accounts delegated to the sender"
+
+    === "Parameters"
+
+        None.
+
+??? function "**isProxy**(*address* real, *address* delegate, *ProxyType* proxyType, *uint32* delay) - returns a boolean, `true` if the delegate address is a proxy of type `proxyType`, for address `real`, with the specified `delay`"
+
+    === "Parameters"
+
+        - `real` - address of the account that might be represented by the proxy
+        - `delegate` - address of the potential proxy account
+        - `proxyType` - ProxyType enumeration of the proxy type to check
+        - `delay` - uint32 delay value to check
 
 The `proxyType` parameter is defined by the following `ProxyType` enum, where the values start at `0` with the most permissive proxy type and are represented as `uint8` values:
 
