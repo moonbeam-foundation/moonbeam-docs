@@ -4,7 +4,7 @@ const main = async () => {
   try {
     // Initialize connection to the network
     const api = await ApiPromise.create({
-      provider: new WsProvider('wss://moonbase-alpha.public.blastapi.io')
+      provider: new WsProvider('wss://moonbase-alpha.public.blastapi.io'),
     });
 
     // The account address to query proxies for
@@ -12,7 +12,7 @@ const main = async () => {
 
     // Query proxies
     const [proxies, deposit] = await api.query.proxy.proxies(accountAddress);
-    
+
     // Log the results with formatted JSON
     console.log('Querying proxies for account:', accountAddress);
     console.log('\nProxies:', JSON.stringify(proxies.toHuman(), null, 2));
@@ -35,7 +35,7 @@ const main = async () => {
 };
 
 // Execute the script
-main().catch(error => {
+main().catch((error) => {
   console.error('Script error:', error);
   process.exit(1);
 });

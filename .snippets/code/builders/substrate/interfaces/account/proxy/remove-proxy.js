@@ -4,7 +4,7 @@ import { Keyring } from '@polkadot/keyring';
 const main = async () => {
   // Initialize the API
   const api = await ApiPromise.create({
-    provider: new WsProvider('wss://moonbase-alpha.public.blastapi.io')
+    provider: new WsProvider('wss://moonbase-alpha.public.blastapi.io'),
   });
 
   // Initialize the keyring with ethereum type
@@ -14,10 +14,10 @@ const main = async () => {
     // Setup the account that wants to remove a specific proxy
     const PRIVATE_KEY = 'INSERT_PRIVATE_KEY';
     const account = keyring.addFromUri(PRIVATE_KEY);
-    
+
     // The proxy account to remove
     const proxyToRemove = 'INSERT_PROXY_ACCOUNT';
-    
+
     // Must match the original proxy type and delay that was set when adding the proxy
     const proxyType = { Any: null };
     const delay = 0;
@@ -33,29 +33,29 @@ const main = async () => {
     console.log('\nCurrent proxies before removal:', proxiesBefore.toHuman());
 
     // Create the removeProxy transaction
-    const tx = api.tx.proxy.removeProxy(
-      proxyToRemove,
-      proxyType,
-      delay
-    );
+    const tx = api.tx.proxy.removeProxy(proxyToRemove, proxyType, delay);
 
     // Sign and send the transaction
     await tx.signAndSend(account, ({ status, events }) => {
       if (status.isInBlock) {
-        console.log(`\nTransaction included in block hash: ${status.asInBlock}`);
-        
+        console.log(
+          `\nTransaction included in block hash: ${status.asInBlock}`
+        );
+
         // Process events
         events.forEach(({ event }) => {
           const { section, method, data } = event;
           console.log(`\t${section}.${method}:`, data.toString());
-          
+
           // Handle any failures
           if (section === 'system' && method === 'ExtrinsicFailed') {
             const [dispatchError] = data;
             let errorInfo;
-            
+
             if (dispatchError.isModule) {
-              const decoded = api.registry.findMetaError(dispatchError.asModule);
+              const decoded = api.registry.findMetaError(
+                dispatchError.asModule
+              );
               errorInfo = `${decoded.section}.${decoded.name}: ${decoded.docs}`;
             } else {
               errorInfo = dispatchError.toString();
@@ -75,13 +75,12 @@ const main = async () => {
         });
 
         // Optional: Query proxies after removal to confirm
-        api.query.proxy.proxies(account.address).then(afterProxies => {
+        api.query.proxy.proxies(account.address).then((afterProxies) => {
           console.log('\nProxies after removal:', afterProxies.toHuman());
           process.exit(0);
         });
       }
     });
-
   } catch (error) {
     console.error('Error in removing proxy:', error);
     process.exit(1);
@@ -89,7 +88,7 @@ const main = async () => {
 };
 
 // Execute the script
-main().catch(error => {
+main().catch((error) => {
   console.error('Script error:', error);
   process.exit(1);
 });

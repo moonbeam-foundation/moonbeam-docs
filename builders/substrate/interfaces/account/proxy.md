@@ -406,9 +406,11 @@ The proxy pallet includes the following read-only storage methods to obtain chai
             - delay: Number (The announcement delay in blocks)
         - Balance (The amount reserved to place the proxies)
     === "Polkadot.js API Example"
+        
         ```js
-       --8<-- 'code/builders/substrate/interfaces/account/proxy/proxies.js'
+        --8<-- 'code/builders/substrate/interfaces/account/proxy/proxies.js'
         ```
+
 ### Pallet Constants {: #constants }
 
 The proxy pallet includes the following read-only functions to obtain pallet constants:
@@ -423,23 +425,7 @@ The proxy pallet includes the following read-only functions to obtain pallet con
 
     === "Polkadot.js API Example"
            ```js
-           import { ApiPromise, WsProvider } from '@polkadot/api';
-
-           const main = async () => {
-             // Initialize the API
-             const api = await ApiPromise.create({
-               provider: new WsProvider('wss://moonbase-alpha.public.blastapi.io')
-             });
-
-             // Query the base deposit
-             const baseDeposit = await api.consts.proxy.announcementDepositBase;
-             
-             console.log('Announcement Base Deposit:', baseDeposit.toHuman());
-             
-             process.exit(0);
-           };
-
-           main().catch(console.error);
+           --8<-- 'code/builders/substrate/interfaces/account/proxy/announcement-deposit-base.js'
            ```
 
 ??? function "**announcementDepositFactor**() - returns the amount of currency needed per announcement made"

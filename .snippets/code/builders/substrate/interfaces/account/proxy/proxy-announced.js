@@ -4,7 +4,7 @@ import { Keyring } from '@polkadot/keyring';
 const main = async () => {
   // Initialize the API
   const api = await ApiPromise.create({
-    provider: new WsProvider('wss://moonbase-alpha.public.blastapi.io')
+    provider: new WsProvider('wss://moonbase-alpha.public.blastapi.io'),
   });
 
   // Initialize the keyring with ethereum type
@@ -14,13 +14,13 @@ const main = async () => {
     // Setup proxy account from private key (this is the account executing the call)
     const PROXY_PRIVATE_KEY = 'INSERT_PROXY_PRIVATE_KEY';
     const proxyAccount = keyring.addFromUri(PROXY_PRIVATE_KEY);
-    
+
     // The account that delegated proxy rights
     const realAccount = 'INSERT_REAL_ACCOUNT';
-    
+
     // The delegate account (the proxy account that made the announcement)
     const delegateAccount = proxyAccount.address;
-    
+
     // Destination account for the transfer
     const destinationAccount = 'INSERT_DESTINATION_ADDRESS';
 
@@ -53,19 +53,21 @@ const main = async () => {
     await tx.signAndSend(proxyAccount, ({ status, events }) => {
       if (status.isInBlock) {
         console.log(`Transaction included in block hash: ${status.asInBlock}`);
-        
+
         // Process events
         events.forEach(({ event }) => {
           const { section, method, data } = event;
           console.log(`\t${section}.${method}:`, data.toString());
-          
+
           // Handle any failures
           if (section === 'system' && method === 'ExtrinsicFailed') {
             const [dispatchError] = data;
             let errorInfo;
-            
+
             if (dispatchError.isModule) {
-              const decoded = api.registry.findMetaError(dispatchError.asModule);
+              const decoded = api.registry.findMetaError(
+                dispatchError.asModule
+              );
               errorInfo = `${decoded.section}.${decoded.name}: ${decoded.docs}`;
             } else {
               errorInfo = dispatchError.toString();
@@ -87,11 +89,10 @@ const main = async () => {
             console.log('Amount:', amount.toString());
           }
         });
-        
+
         process.exit(0);
       }
     });
-
   } catch (error) {
     console.error('Error in proxy announced transaction:', error);
     process.exit(1);
@@ -99,7 +100,7 @@ const main = async () => {
 };
 
 // Execute the script
-main().catch(error => {
+main().catch((error) => {
   console.error('Script error:', error);
   process.exit(1);
 });

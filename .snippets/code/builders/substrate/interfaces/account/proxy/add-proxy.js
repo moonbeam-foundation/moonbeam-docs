@@ -4,7 +4,7 @@ import { Keyring } from '@polkadot/keyring';
 const main = async () => {
   // Initialize the API
   const api = await ApiPromise.create({
-    provider: new WsProvider('wss://moonbase-alpha.public.blastapi.io')
+    provider: new WsProvider('wss://moonbase-alpha.public.blastapi.io'),
   });
 
   // Initialize the keyring with ethereum type
@@ -14,10 +14,10 @@ const main = async () => {
     // Setup account from private key
     const PRIVATE_KEY = 'INSERT_PRIVATE_KEY';
     const account = keyring.addFromUri(PRIVATE_KEY);
-    
+
     // Use an existing account as proxy
     const proxyAccount = 'INSERT_PROXY_ACCOUNT';
-    
+
     // Define proxy parameters
     // Use the Staking variant from the ProxyType enum
     const proxyType = { Staking: null };
@@ -30,29 +30,27 @@ const main = async () => {
     console.log('Delay:', delay);
 
     // Create the addProxy transaction
-    const tx = api.tx.proxy.addProxy(
-      proxyAccount,
-      proxyType,
-      delay
-    );
+    const tx = api.tx.proxy.addProxy(proxyAccount, proxyType, delay);
 
     // Sign and send the transaction
     await tx.signAndSend(account, ({ status, events }) => {
       if (status.isInBlock) {
         console.log(`Transaction included in block hash: ${status.asInBlock}`);
-        
+
         // Process events
         events.forEach(({ event }) => {
           const { section, method, data } = event;
           console.log(`\t${section}.${method}:`, data.toString());
-          
+
           // Handle any failures
           if (section === 'system' && method === 'ExtrinsicFailed') {
             const [dispatchError] = data;
             let errorInfo;
-            
+
             if (dispatchError.isModule) {
-              const decoded = api.registry.findMetaError(dispatchError.asModule);
+              const decoded = api.registry.findMetaError(
+                dispatchError.asModule
+              );
               errorInfo = `${decoded.section}.${decoded.name}: ${decoded.docs}`;
             } else {
               errorInfo = dispatchError.toString();
@@ -65,11 +63,10 @@ const main = async () => {
             console.log('Proxy successfully added!');
           }
         });
-        
+
         process.exit(0);
       }
     });
-
   } catch (error) {
     console.error('Error in adding proxy:', error);
     process.exit(1);
@@ -77,7 +74,7 @@ const main = async () => {
 };
 
 // Execute the script
-main().catch(error => {
+main().catch((error) => {
   console.error('Script error:', error);
   process.exit(1);
 });

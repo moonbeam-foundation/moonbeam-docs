@@ -4,12 +4,12 @@ const main = async () => {
   try {
     // Initialize connection to the network
     const api = await ApiPromise.create({
-      provider: new WsProvider('wss://moonbase-alpha.public.blastapi.io')
+      provider: new WsProvider('wss://moonbase-alpha.public.blastapi.io'),
     });
 
     // Query pallet version
     const version = await api.query.proxy.palletVersion();
-    
+
     // Log the result
     console.log('Proxy Pallet Version:', version.toHuman());
 
@@ -21,7 +21,7 @@ const main = async () => {
 };
 
 // Execute the script
-main().catch(error => {
+main().catch((error) => {
   console.error('Script error:', error);
   process.exit(1);
 });

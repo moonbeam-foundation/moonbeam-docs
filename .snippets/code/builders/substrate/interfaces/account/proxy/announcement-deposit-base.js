@@ -6,10 +6,10 @@ const main = async () => {
     provider: new WsProvider('wss://moonbase-alpha.public.blastapi.io'),
   });
 
-  // Query the base deposit for proxy creation
-  const baseDeposit = await api.consts.proxy.proxyDepositBase;
+  // Query the base deposit
+  const baseDeposit = await api.consts.proxy.announcementDepositBase;
 
-  console.log('Proxy Base Deposit:', baseDeposit.toHuman());
+  console.log('Announcement Base Deposit:', baseDeposit.toHuman());
 
   process.exit(0);
 };
