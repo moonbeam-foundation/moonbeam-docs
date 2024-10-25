@@ -90,7 +90,7 @@ Using the [Remix compiler and deployment](/builders/ethereum/dev-env/remix/){tar
 
 ## Create a Hash with SHA3FIPS256 {: #create-a-hash-with-sha3fips256 }
 
-SHA3-256 is part of the SHA-3 family of cryptographic hashes codified in [FIPS202](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf) that produces an output 256 bits in length. Although the name is similar to SHA256, the SHA-3 family is built with an entirely different algorithm and accordingly produces a different hash output than SHA256 for the same input. You can verify this yourself using this [SHA3-256 Hash Calculator tool](https://md5calc.com/hash/sha3-256){target=\_blank}. After calculating the SHA3-256 output, change the algorithm in the drop-down selector to SHA256 and take note of the resulting output.
+SHA3-256 is part of the SHA-3 family of cryptographic hashes codified in [FIPS202](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf){target=\_blank} that produces an output 256 bits in length. Although the name is similar to SHA256, the SHA-3 family is built with an entirely different algorithm and accordingly produces a different hash output than SHA256 for the same input. You can verify this yourself using this [SHA3-256 Hash Calculator tool](https://md5calc.com/hash/sha3-256){target=\_blank}. After calculating the SHA3-256 output, change the algorithm in the drop-down selector to SHA256 and take note of the resulting output.
 
 Currently there is no SHA3-256 support in Solidity, so it needs to be called with inline assembly. The following sample code can be used to call this precompile.
 
