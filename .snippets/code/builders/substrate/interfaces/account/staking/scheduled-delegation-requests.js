@@ -8,7 +8,7 @@ const main = async () => {
 
   try {
     // Example collator address
-    const collatorAddress = '0x89c14eF3D6267032F94c4dEbFb9361D7E2d5C13d';
+    const collatorAddress = 'INSERT_COLLATOR_ADDRESS';
 
     // Get current round information for context
     const round = await api.query.parachainStaking.round();

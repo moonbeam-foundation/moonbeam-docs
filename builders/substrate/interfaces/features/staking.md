@@ -493,7 +493,7 @@ The parachain staking pallet includes the following read-only storage methods to
     === "Polkadot.js API Example"
 
         ```js
-        TODO
+        --8<-- 'code/builders/substrate/interfaces/account/staking/query-delegator-state.js'
         ```
 
 ??? function "**enabledMarkingOffline**() - returns a boolean indicating whether or not the marking offline feature for inactive collators is enabled"
@@ -509,7 +509,7 @@ The parachain staking pallet includes the following read-only storage methods to
     === "Polkadot.js API Example"
 
         ```js
-        TODO
+        --8<-- 'code/builders/substrate/interfaces/account/staking/query-enabled-marking-offline.js'
         ```
 
 ??? function "**inflationConfig**() - returns the inflation configuration"
@@ -525,7 +525,7 @@ The parachain staking pallet includes the following read-only storage methods to
     === "Polkadot.js API Example"
 
         ```js
-        TODO
+        --8<-- 'code/builders/substrate/interfaces/account/staking/inflation-config.js'
         ```
 
 ??? function "**nominatorState2**(AccountId20) - *deprecated as of runtime 1001* - use `delegatorState` instead"
@@ -536,12 +536,12 @@ The parachain staking pallet includes the following read-only storage methods to
 
     === "Returns"
 
-        TODO
+        Deprecated as of runtime 1001* - use `delegatorState` instead"
 
     === "Polkadot.js API Example"
 
         ```js
-        TODO
+        Deprecated as of runtime 1001* - use `delegatorState` instead"
         ```
 
 ??? function "**palletVersion**() - returns the current pallet version"
@@ -557,23 +557,7 @@ The parachain staking pallet includes the following read-only storage methods to
     === "Polkadot.js API Example"
 
         ```js
-        TODO
-        ```
-
-??? function "**parachainBondInfo**() - returns the parachain bond reserve account and the percentage of annual inflation"
-
-    === "Parameters"
-
-        None.
-
-    === "Returns"
-
-        TODO
-
-    === "Polkadot.js API Example"
-
-        ```js
-        TODO
+        --8<-- 'code/builders/substrate/interfaces/account/staking/pallet-version.js'
         ```
 
 ??? function "**points**(u32) - returns the total points awarded to collators for block production in all rounds or for a given round"
@@ -589,7 +573,7 @@ The parachain staking pallet includes the following read-only storage methods to
     === "Polkadot.js API Example"
 
         ```js
-        TODO
+        --8<-- 'code/builders/substrate/interfaces/account/staking/query-collator-points.js'
         ```
 
 ??? function "**round**() - returns the current round number, the first block of the current round, and the length of the round"
@@ -605,7 +589,7 @@ The parachain staking pallet includes the following read-only storage methods to
     === "Polkadot.js API Example"
 
         ```js
-        TODO
+        --8<-- 'code/builders/substrate/interfaces/account/staking/query-current-round.js'
         ```
 
 ??? function "**selectedCandidates**() - returns the collator candidates selected to be in the active set for the current round"
@@ -621,23 +605,7 @@ The parachain staking pallet includes the following read-only storage methods to
     === "Polkadot.js API Example"
 
         ```js
-        TODO
-        ```
-
-??? function "**staked**(u32) - returns the total counted stake for collator candidates in the active set for all rounds or for a given round"
-
-    === "Parameters"
-
-        - `u32` -
-
-    === "Returns"
-
-        TODO
-
-    === "Polkadot.js API Example"
-
-        ```js
-        TODO
+        --8<-- 'code/builders/substrate/interfaces/account/staking/query-selected-candidates.js'
         ```
 
 ??? function "**topDelegations**(AccountId20) - returns at the most the top 300 delegations for all collators or for a given collator's address"
@@ -653,7 +621,7 @@ The parachain staking pallet includes the following read-only storage methods to
     === "Polkadot.js API Example"
 
         ```js
-        TODO
+        --8<-- 'code/builders/substrate/interfaces/account/staking/query-top-delegations.js'
         ```
 
 ??? function "**total**() - returns the total capital locked in the staking pallet"
@@ -669,7 +637,7 @@ The parachain staking pallet includes the following read-only storage methods to
     === "Polkadot.js API Example"
 
         ```js
-        TODO
+        --8<-- 'code/builders/substrate/interfaces/account/staking/query-total.js'
         ```
 
 ??? function "**totalSelected**() - returns the total number of collator candidates that can be selected for the active set"
@@ -685,7 +653,7 @@ The parachain staking pallet includes the following read-only storage methods to
     === "Polkadot.js API Example"
 
         ```js
-        TODO
+        --8<-- 'code/builders/substrate/interfaces/account/staking/query-total-selected.js'
         ```
 
 
@@ -706,7 +674,7 @@ The parachain staking pallet includes the following read-only functions to obtai
     === "Polkadot.js API Example"
 
         ```js
-        TODO
+        --8<-- 'code/builders/substrate/interfaces/account/staking/candidate-bond-less-delay.js'
         ```
 
 ??? function "**defaultBlocksPerRound**() -  *deprecated as of runtime 1900* - returns the default number of blocks per round"
@@ -722,7 +690,7 @@ The parachain staking pallet includes the following read-only functions to obtai
     === "Polkadot.js API Example"
 
         ```js
-        TODO
+        *Deprecated as of runtime 1900* - returns the default number of blocks per round"
         ```
 
 ??? function "**defaultCollatorCommission**() - *deprecated as of runtime 1900* - returns the default commission due to collators"
@@ -738,7 +706,7 @@ The parachain staking pallet includes the following read-only functions to obtai
     === "Polkadot.js API Example"
 
         ```js
-        TODO
+        *Deprecated as of runtime 1900* - returns the default commission due to collators"
         ```
 
 ??? function "**defaultParachainBondReservePercent**() - *deprecated as of runtime 1900* - returns the default percent of inflation set aside for the parachain bond account"
@@ -754,7 +722,7 @@ The parachain staking pallet includes the following read-only functions to obtai
     === "Polkadot.js API Example"
 
         ```js
-        TODO
+        *Deprecated as of runtime 1900*
         ```
 
 ??? function "**delegationBondLessDelay**() - returns the number of rounds that must be waited until a scheduled request to decrease a delegation can be executed"
@@ -770,7 +738,7 @@ The parachain staking pallet includes the following read-only functions to obtai
     === "Polkadot.js API Example"
 
         ```js
-        TODO
+        --8<-- 'code/builders/substrate/interfaces/account/staking/delegation-bond-less-delay.js'
         ```
 
 ??? function "**leaveCandidatesDelay**() - returns the number of rounds that must be waited before a scheduled request for a candidate to leave the candidate pool can be executed"
@@ -786,7 +754,7 @@ The parachain staking pallet includes the following read-only functions to obtai
     === "Polkadot.js API Example"
 
         ```js
-        TODO
+        --8<-- 'code/builders/substrate/interfaces/account/staking/leave-candidates-delay.js'
         ```
 
 ??? function "**leaveDelegatorsDelay**() - returns the number of rounds that must be waited before a scheduled request for a delegator to leave the set of delegators can be executed"
@@ -802,7 +770,7 @@ The parachain staking pallet includes the following read-only functions to obtai
     === "Polkadot.js API Example"
 
         ```js
-        TODO
+        --8<-- 'code/builders/substrate/interfaces/account/staking/leave-delegators-delay.js'
         ```
 
 ??? function "**maxBottomDelegationsPerCandidate**() - returns the maximum number of bottom delegations per candidate"
@@ -818,7 +786,7 @@ The parachain staking pallet includes the following read-only functions to obtai
     === "Polkadot.js API Example"
 
         ```js
-        TODO
+        --8<-- 'code/builders/substrate/interfaces/account/staking/max-bottom-delegations.js'
         ```
 
 ??? function "**maxCandidates**() - returns the maximum number of candidates allowed in the candidate pool"
@@ -834,7 +802,7 @@ The parachain staking pallet includes the following read-only functions to obtai
     === "Polkadot.js API Example"
 
         ```js
-        TODO
+        --8<-- 'code/builders/substrate/interfaces/account/staking/max-candidates.js'
         ```
 
 ??? function "**maxDelegationsPerDelegator**() - returns the maximum number of delegations per delegator"
@@ -850,7 +818,7 @@ The parachain staking pallet includes the following read-only functions to obtai
     === "Polkadot.js API Example"
 
         ```js
-        TODO
+        --8<-- 'code/builders/substrate/interfaces/account/staking/max-delegations.js'
         ```
 
 ??? function "**maxOfflineRounds**() - returns the number of rounds that must pass before a collator that has stopped producing blocks is marked as inactive"
@@ -866,7 +834,7 @@ The parachain staking pallet includes the following read-only functions to obtai
     === "Polkadot.js API Example"
 
         ```js
-        TODO
+        --8<-- 'code/builders/substrate/interfaces/account/staking/max-offline-rounds.js'
         ```
 
 ??? function "**maxTopDelegationsPerCandidate**() - returns the maximum number of top delegations per candidate"
@@ -882,7 +850,7 @@ The parachain staking pallet includes the following read-only functions to obtai
     === "Polkadot.js API Example"
 
         ```js
-        TODO
+        --8<-- 'code/builders/substrate/interfaces/account/staking/max-top-per-candidate.js'
         ```
 
 ??? function "**minBlocksPerRound**() - returns the minimum number of blocks per round"
@@ -898,7 +866,7 @@ The parachain staking pallet includes the following read-only functions to obtai
     === "Polkadot.js API Example"
 
         ```js
-        TODO
+        --8<-- 'code/builders/substrate/interfaces/account/staking/min-blocks-per-round.js'
         ```
 
 ??? function "**minCandidateStk**() - returns the minimum stake required for a candidate to be a collator candidate"
@@ -914,7 +882,7 @@ The parachain staking pallet includes the following read-only functions to obtai
     === "Polkadot.js API Example"
 
         ```js
-        TODO
+        --8<-- 'code/builders/substrate/interfaces/account/staking/min-cand-stake.js'
         ```
 
 ??? function "**minCollatorStk**() - *deprecated as of runtime 2400* - returns the minimum stake required for a candidate to be in the active set"
@@ -925,12 +893,12 @@ The parachain staking pallet includes the following read-only functions to obtai
 
     === "Returns"
 
-        TODO
+        *Deprecated as of runtime 2400.* Returns minimum stake required for a candidate to be in the active set
 
     === "Polkadot.js API Example"
 
         ```js
-        TODO
+        *Deprecated as of runtime 2400*
         ```
 
 ??? function "**minDelegation**() - returns the minimum delegation amount"
@@ -946,7 +914,7 @@ The parachain staking pallet includes the following read-only functions to obtai
     === "Polkadot.js API Example"
 
         ```js
-        TODO
+        --8<-- 'code/builders/substrate/interfaces/account/staking/min-delegation.js'
         ```
 
 ??? function "**minDelegatorStk**() - *deprecated as of runtime 2500* - returns the minimum stake for an account to be a delegator"
@@ -957,12 +925,12 @@ The parachain staking pallet includes the following read-only functions to obtai
 
     === "Returns"
 
-        TODO
+        *Deprecated as of runtime 2500*. Returns the minimum stake for an account to be a delegator
 
     === "Polkadot.js API Example"
 
         ```js
-        TODO
+        *Deprecated as of runtime 2500*
         ```
 
 ??? function "**minSelectedCandidates**() - returns the minimum number of selected candidates in the active set every round"
@@ -978,7 +946,7 @@ The parachain staking pallet includes the following read-only functions to obtai
     === "Polkadot.js API Example"
 
         ```js
-        TODO
+        --8<-- 'code/builders/substrate/interfaces/account/staking/min-selected-candidates.js'
         ```
 
 ??? function "**revokeDelegationDelay**() - returns the number of rounds that must be waited before a scheduled request to revoke a delegation can be executed"
@@ -994,7 +962,7 @@ The parachain staking pallet includes the following read-only functions to obtai
     === "Polkadot.js API Example"
 
         ```js
-        TODO
+        --8<-- 'code/builders/substrate/interfaces/account/staking/revoke-delegation-delay.js'
         ```
 
 ??? function "**rewardPaymentDelay**() - returns the number of rounds that must be waited after which block authors are rewarded"
@@ -1010,5 +978,5 @@ The parachain staking pallet includes the following read-only functions to obtai
     === "Polkadot.js API Example"
 
         ```js
-        TODO
+        --8<-- 'code/builders/substrate/interfaces/account/staking/reward-delay.js'
         ```
