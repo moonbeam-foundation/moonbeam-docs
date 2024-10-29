@@ -973,7 +973,7 @@ The parachain staking pallet includes the following read-only functions to obtai
 
     === "Returns"
 
-        TODO
+        `u32` - The number of rounds that must be waited after which block authors are rewarded
 
     === "Polkadot.js API Example"
 
