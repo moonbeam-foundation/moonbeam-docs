@@ -612,7 +612,7 @@ The parachain staking pallet includes the following read-only storage methods to
 
     === "Parameters"
 
-        - `AccountId20` -
+        - `AccountId20` - Address of the given collator. If no address is provided then the top 300 delegations for all collators is returned.
 
     === "Returns"
 
@@ -632,7 +632,7 @@ The parachain staking pallet includes the following read-only storage methods to
 
     === "Returns"
 
-        TODO
+        `u128` - returns the total capital locked in the staking pallet
 
     === "Polkadot.js API Example"
 
@@ -648,7 +648,7 @@ The parachain staking pallet includes the following read-only storage methods to
 
     === "Returns"
 
-        TODO
+        `u32` - returns the total number of collator candidates that can be selected for the active set
 
     === "Polkadot.js API Example"
 
@@ -669,7 +669,7 @@ The parachain staking pallet includes the following read-only functions to obtai
 
     === "Returns"
 
-        TODO
+        `u32` - returns the number of rounds that must be waited until a candidate's scheduled request to decrease their self bond can be executed
 
     === "Polkadot.js API Example"
 
@@ -685,7 +685,7 @@ The parachain staking pallet includes the following read-only functions to obtai
 
     === "Returns"
 
-        TODO
+        *Deprecated as of runtime 1900*
 
     === "Polkadot.js API Example"
 
@@ -701,12 +701,12 @@ The parachain staking pallet includes the following read-only functions to obtai
 
     === "Returns"
 
-        TODO
+        *Deprecated as of runtime 1900* returns the default commission due to collators"
 
     === "Polkadot.js API Example"
 
         ```js
-        *Deprecated as of runtime 1900* - returns the default commission due to collators"
+        *Deprecated as of runtime 1900*
         ```
 
 ??? function "**defaultParachainBondReservePercent**() - *deprecated as of runtime 1900* - returns the default percent of inflation set aside for the parachain bond account"
@@ -717,7 +717,7 @@ The parachain staking pallet includes the following read-only functions to obtai
 
     === "Returns"
 
-        TODO
+        *Deprecated as of runtime 1900*
 
     === "Polkadot.js API Example"
 
@@ -733,7 +733,7 @@ The parachain staking pallet includes the following read-only functions to obtai
 
     === "Returns"
 
-        TODO
+        `u32` - returns the number of rounds that must be waited until a scheduled request to decrease a delegation can be executed
 
     === "Polkadot.js API Example"
 
@@ -749,7 +749,7 @@ The parachain staking pallet includes the following read-only functions to obtai
 
     === "Returns"
 
-        TODO
+        `u32` - returns the number of rounds that must be waited before a scheduled request for a candidate to leave the candidate pool can be executed
 
     === "Polkadot.js API Example"
 
@@ -765,7 +765,7 @@ The parachain staking pallet includes the following read-only functions to obtai
 
     === "Returns"
 
-        TODO
+        `u32` - returns the number of rounds that must be waited before a scheduled request for a delegator to leave the set of delegators can be executed
 
     === "Polkadot.js API Example"
 
@@ -781,7 +781,7 @@ The parachain staking pallet includes the following read-only functions to obtai
 
     === "Returns"
 
-        TODO
+        `u32` - returns the maximum number of bottom delegations per candidate
 
     === "Polkadot.js API Example"
 
@@ -797,7 +797,7 @@ The parachain staking pallet includes the following read-only functions to obtai
 
     === "Returns"
 
-        TODO
+        `u32` - returns the maximum number of candidates allowed in the candidate pool
 
     === "Polkadot.js API Example"
 
@@ -813,7 +813,7 @@ The parachain staking pallet includes the following read-only functions to obtai
 
     === "Returns"
 
-        TODO
+        `u32` - returns the maximum number of delegations per delegator
 
     === "Polkadot.js API Example"
 
@@ -829,7 +829,7 @@ The parachain staking pallet includes the following read-only functions to obtai
 
     === "Returns"
 
-        TODO
+        `u32` - returns the number of rounds that must pass before a collator that has stopped producing blocks is marked as inactive
 
     === "Polkadot.js API Example"
 
@@ -845,7 +845,7 @@ The parachain staking pallet includes the following read-only functions to obtai
 
     === "Returns"
 
-        TODO
+        `u32` - returns the maximum number of top delegations per candidate
 
     === "Polkadot.js API Example"
 
@@ -861,7 +861,7 @@ The parachain staking pallet includes the following read-only functions to obtai
 
     === "Returns"
 
-        TODO
+        `u32` - returns the minimum number of blocks per round
 
     === "Polkadot.js API Example"
 
@@ -877,7 +877,7 @@ The parachain staking pallet includes the following read-only functions to obtai
 
     === "Returns"
 
-        TODO
+        `u128` - returns the minimum stake required for a candidate to be a collator candidate
 
     === "Polkadot.js API Example"
 
@@ -909,7 +909,7 @@ The parachain staking pallet includes the following read-only functions to obtai
 
     === "Returns"
 
-        TODO
+        `u128` - returns the minimum delegation amount
 
     === "Polkadot.js API Example"
 
@@ -941,7 +941,7 @@ The parachain staking pallet includes the following read-only functions to obtai
 
     === "Returns"
 
-        TODO
+        `u32` - the minimum number of selected candidates in the active set every round
 
     === "Polkadot.js API Example"
 
@@ -957,7 +957,7 @@ The parachain staking pallet includes the following read-only functions to obtai
 
     === "Returns"
 
-        TODO
+        `u32` - the number of rounds that must be waited before a scheduled request to revoke a delegation can be executed
 
     === "Polkadot.js API Example"
 
