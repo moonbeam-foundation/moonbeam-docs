@@ -228,7 +228,7 @@ The `dryRunXCM` method of the XCM Dry Run API takes a full XCM message as a para
 // Define the origin
 const origin = { V4: { parents: 1, interior: 'Here' } };
 
-const message = // Insert XCM Message Here;
+const message = []; // Insert XCM Message Here
 
 // Perform the dry run XCM call
 const result = await api.call.dryRunApi.dryRunXcm(origin, message);
