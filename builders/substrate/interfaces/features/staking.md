@@ -306,12 +306,12 @@ The parachain staking pallet includes the following read-only storage methods to
 
     === "Parameters"
 
-        - `u32` -
-        - `AccountId20` -
+        - `u32` - round number
+        - `AccountId20` - collator address to query. If omitted, information about all collators will be returned
 
     === "Returns"
 
-        TODO
+        Inform
 
     === "Polkadot.js API Example"
 
@@ -323,11 +323,11 @@ The parachain staking pallet includes the following read-only storage methods to
 
     === "Parameters"
 
-        - `AccountId20` -
+        - `AccountId20` - the collator address to query. If omitted, information about all collators will be returned
 
     === "Returns"
 
-        TODO
+        The list of delegators who have auto-compounding enabled and the respective percentage of rewards they have set to be auto-compounded
 
     === "Polkadot.js API Example"
 
@@ -339,12 +339,12 @@ The parachain staking pallet includes the following read-only storage methods to
 
     === "Parameters"
 
-        - `u32` -
-        - `AccountId20` -
+        - `u32` - the round number
+        - `AccountId20` - the collator to query. If omitted, information about all collators will be returned
 
     === "Returns"
 
-        TODO
+        The number of awarded points for a given round and collator. 
 
     === "Polkadot.js API Example"
 
@@ -356,11 +356,11 @@ The parachain staking pallet includes the following read-only storage methods to
 
     === "Parameters"
 
-        - `AccountId20` -
+        - `AccountId20` - the collator to query. If omitted, information about all collators will be returned
 
     === "Returns"
 
-        TODO
+        The bottom 50 delegations for a given collator address
 
     === "Polkadot.js API Example"
 
@@ -372,11 +372,11 @@ The parachain staking pallet includes the following read-only storage methods to
 
     === "Parameters"
 
-        - `AccountId20` -
+        - `AccountId20` - The collator address to query. If omitted, information about all collators will be returned
 
     === "Returns"
 
-        TODO
+        Information about the relevant collator including collator bond, total backing stake, delegation count, lowest included delegation amount, collator status, and capacity information
 
     === "Polkadot.js API Example"
 
@@ -392,7 +392,7 @@ The parachain staking pallet includes the following read-only storage methods to
 
     === "Returns"
 
-        TODO
+        A list of each of the candidates in the pool and their total backing stake
 
     === "Polkadot.js API Example"
 
@@ -404,11 +404,11 @@ The parachain staking pallet includes the following read-only storage methods to
 
     === "Parameters"
 
-        - `AccountId20` -
+        - `AccountId20` - the collator account to query
 
     === "Returns"
 
-        TODO
+        *Deprecated as of runtime 1200* - use `candidateInfo` instead"
 
     === "Polkadot.js API Example"
 
@@ -424,7 +424,7 @@ The parachain staking pallet includes the following read-only storage methods to
 
     === "Returns"
 
-        
+        The percent collator commission, e.g. `20.00%` 
 
     === "Polkadot.js API Example"
 
@@ -436,27 +436,27 @@ The parachain staking pallet includes the following read-only storage methods to
 
     === "Parameters"
 
-        - `AccountId20` -
+        - `AccountId20` - the collator to query
 
     === "Returns"
 
-        TODO
+        Deprecated as of runtime 1001* - use `candidateInfo` instead"
 
     === "Polkadot.js API Example"
 
         ```js
-        Ddeprecated as of runtime 1001* - use `candidateInfo` instead"
+        Deprecated as of runtime 1001* - use `candidateInfo` instead"
         ```
 
 ??? function "**delayedPayouts**(u32) - returns the delayed payouts for all rounds or for a given round"
 
     === "Parameters"
 
-        - `u32` -
+        - `u32` - the round to query. If omitted, the latest round information will be returned
 
     === "Returns"
 
-        TODO
+        The round issuance, the total staking reward, and collator commission.
 
     === "Polkadot.js API Example"
 
@@ -468,11 +468,11 @@ The parachain staking pallet includes the following read-only storage methods to
 
     === "Parameters"
 
-        - `AccountId20` -
+        - `AccountId20` - the address of the collator. If omitted, information about all collators will be returned
 
     === "Returns"
 
-        TODO
+        The set of pending scheduled delegation requests including the delegator's address, the action requested, and eligible block at which the action can be executed.
 
     === "Polkadot.js API Example"
 
@@ -488,7 +488,7 @@ The parachain staking pallet includes the following read-only storage methods to
 
     === "Returns"
 
-        TODO
+        Delegator state information including the collators delegated and their respective amounts
 
     === "Polkadot.js API Example"
 
@@ -504,7 +504,7 @@ The parachain staking pallet includes the following read-only storage methods to
 
     === "Returns"
 
-        TODO
+        `boolean` - Indicating whether or not the marking offline feature for inactive collators is enabled
 
     === "Polkadot.js API Example"
 
@@ -520,7 +520,7 @@ The parachain staking pallet includes the following read-only storage methods to
 
     === "Returns"
 
-        TODO
+        A JSON object that contains the minimum, ideal, and maximum inflation parameters in each of the following thresholds: expected, annual, and round. 
 
     === "Polkadot.js API Example"
 
@@ -532,7 +532,7 @@ The parachain staking pallet includes the following read-only storage methods to
 
     === "Parameters"
 
-        - `AccountId20` -
+        - `AccountId20` - The account to query
 
     === "Returns"
 
@@ -552,7 +552,7 @@ The parachain staking pallet includes the following read-only storage methods to
 
     === "Returns"
 
-        TODO
+        `u16` - current pallet version
 
     === "Polkadot.js API Example"
 
@@ -564,11 +564,11 @@ The parachain staking pallet includes the following read-only storage methods to
 
     === "Parameters"
 
-        - `u32` -
+        - `u32` - a round number. If omitted, the data for the last three rounds will be returned
 
     === "Returns"
 
-        TODO
+        - `u32` - total points awarded to collators in the given round 
 
     === "Polkadot.js API Example"
 
@@ -584,7 +584,7 @@ The parachain staking pallet includes the following read-only storage methods to
 
     === "Returns"
 
-        TODO
+        Returns the current round number, the first block of the current round, and the length of the round
 
     === "Polkadot.js API Example"
 
@@ -600,7 +600,7 @@ The parachain staking pallet includes the following read-only storage methods to
 
     === "Returns"
 
-        TODO
+        A set of `AccountId20`s - collator candidates selected to be in the active set for the current round  
 
     === "Polkadot.js API Example"
 
