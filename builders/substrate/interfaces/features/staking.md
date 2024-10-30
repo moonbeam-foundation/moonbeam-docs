@@ -691,7 +691,7 @@ The parachain staking pallet includes the following read-only functions to obtai
 
     === "Returns"
 
-        *Deprecated as of runtime 1900* returns the default commission due to collators"
+        *Deprecated as of runtime 1900*
 
     === "Polkadot.js API Example"
 
@@ -879,7 +879,7 @@ The parachain staking pallet includes the following read-only functions to obtai
 
     === "Returns"
 
-        *Deprecated as of runtime 2400.* Returns minimum stake required for a candidate to be in the active set
+        *Deprecated as of runtime 2400*
 
     === "Polkadot.js API Example"
 
@@ -909,7 +909,7 @@ The parachain staking pallet includes the following read-only functions to obtai
 
     === "Returns"
 
-        *Deprecated as of runtime 2500*. Returns the minimum stake for an account to be a delegator
+        *Deprecated as of runtime 2500*
 
     === "Polkadot.js API Example"
 
