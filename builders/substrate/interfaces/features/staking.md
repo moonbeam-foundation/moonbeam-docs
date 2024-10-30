@@ -113,7 +113,7 @@ The parachain staking pallet provides the following extrinsics (functions):
     === "Polkadot.js API Example"
 
         ```
-        *deprecated as of runtime 2400*
+        *Deprecated as of runtime 2400*
         Use the `delegateWithAutoCompound` extrinsic instead 
         ```
 
@@ -121,25 +121,25 @@ The parachain staking pallet provides the following extrinsics (functions):
 
     === "Parameters"
 
-        - `candidate` -
-        - `amount` -
-        - `autoCompound` -
-        - `candidateDelegationCount` -
-        - `candidateAutoCompoundingDelegationCount` -
-        - `delegationCount` -
+        - `candidate` - The collator's address you want to delegate to
+        - `amount` - The amount to delegate (in Wei, e.g. 1000000000000000000 for 1 DEV)
+        - `autoCompound` - The percentage of rewards to automatically compound (0-100)
+        - `candidateDelegationCount` - The current number of delegations to the collator
+        - `candidateAutoCompoundingDelegationCount` - The current number of auto-compounding delegations for the collator
+        - `delegationCount` - The total number of delegations you have across all collators
 
     === "Polkadot.js API Example"
 
         ```js
-        --8<-- 'code/builders/substrate/interfaces/account/staking/delegate-with-autocompound.js'
+        --8<-- 'code/builders/substrate/interfaces/account/staking/delegate-with-auto-compound.js'
         ```
 
 ??? function "**delegatorBondMore**(candidate, more) - request to increase a delegator's amount delegated for a specific candidate"
 
     === "Parameters"
 
-        - `candidate` -
-        - `more` -
+        - `candidate` - the address of the respective collator
+        - `more` - The amount you want to increase your delegation by (in Wei, e.g. 1000000000000000000 for 1 DEV)
 
     === "Polkadot.js API Example"
 
@@ -151,7 +151,7 @@ The parachain staking pallet provides the following extrinsics (functions):
 
     === "Parameters"
 
-        - `candidate` -
+        - `candidate` - the address of the respective collator
 
     === "Polkadot.js API Example"
 
@@ -163,8 +163,8 @@ The parachain staking pallet provides the following extrinsics (functions):
 
     === "Parameters"
 
-        - `delegator` -
-        - `candidate` -
+        - `delegator` - The address of the delegator who made the delegation request
+        - `candidate` - The collator's address associated with the delegation request
 
     === "Polkadot.js API Example"
 
@@ -176,8 +176,8 @@ The parachain staking pallet provides the following extrinsics (functions):
 
     === "Parameters"
 
-        - `candidate` -
-        - `candidateDelegationCount` -
+        - `candidate` - The address of the collator who requested to leave the candidate pool
+        - `candidateDelegationCount` - The current number of delegations for the leaving candidate
 
     === "Polkadot.js API Example"
 
@@ -213,8 +213,8 @@ The parachain staking pallet provides the following extrinsics (functions):
 
     === "Parameters"
 
-        - `bond` -
-        - `candidateCount` -
+        - `bond` - The amount to stake as collator bond (in Wei, e.g. 500000000000000000000 for 500 DEV)
+        - `candidateCount` - The total number of candidates currently in the candidate pool
 
     === "Polkadot.js API Example"
 
@@ -226,7 +226,7 @@ The parachain staking pallet provides the following extrinsics (functions):
 
     === "Parameters"
 
-        - `collator` -
+        - `collator` - the address of the collator to be notified
 
     === "Polkadot.js API Example"
 
@@ -238,7 +238,7 @@ The parachain staking pallet provides the following extrinsics (functions):
 
     === "Parameters"
 
-        - `less` -
+        - `less` - The amount you want to decrease your delegation by (in Wei, e.g. 1000000000000000000 for 1 DEV)
 
     === "Polkadot.js API Example"
 
@@ -250,8 +250,8 @@ The parachain staking pallet provides the following extrinsics (functions):
 
     === "Parameters"
 
-        - `candidate` -
-        - `less` -
+        - `candidate` - The collator's address for which you want to decrease your delegation
+        - `less` - The amount you want to decrease your delegation by (in Wei, e.g. 1000000000000000000 for 1 DEV)
 
     === "Polkadot.js API Example"
 
@@ -263,7 +263,7 @@ The parachain staking pallet provides the following extrinsics (functions):
 
     === "Parameters"
 
-        - `candidateCount` -
+        - `candidateCount` - The total number of candidates currently in the candidate pool
 
     === "Polkadot.js API Example"
 
@@ -275,7 +275,7 @@ The parachain staking pallet provides the following extrinsics (functions):
 
     === "Parameters"
 
-        - `collator` -
+        - `collator` - The collator's address from which you want to revoke your delegation
 
     === "Polkadot.js API Example"
 
@@ -287,10 +287,10 @@ The parachain staking pallet provides the following extrinsics (functions):
 
     === "Parameters"
 
-        - `candidate` -
-        - `value` -
-        - `candidateAutoCompoundingDelegationCountHint` -
-        - `delegationCountHint` -
+        - `candidate` - The collator's address you're delegating to
+        - `value` - Auto-compound percentage (0-100)
+        - `candidateAutoCompoundingDelegationCountHint` - Number of auto-compounding delegations for this collator
+        - `delegationCountHint` - Total number of delegations you have across all collators
 
     === "Polkadot.js API Example"
 
@@ -311,7 +311,7 @@ The parachain staking pallet includes the following read-only storage methods to
 
     === "Returns"
 
-        Inform
+        Information about a collator's delegations including delegator addresses, amounts, and auto-compound percentages
 
     === "Polkadot.js API Example"
 
