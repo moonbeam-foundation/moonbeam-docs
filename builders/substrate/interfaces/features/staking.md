@@ -62,7 +62,7 @@ The parachain staking pallet provides the following extrinsics (functions):
     === "Polkadot.js API Example"
 
         ```js
-         --8<-- 'code/builders/substrate/interfaces/account/staking/cancel-candidate-bond-less.js'
+         --8<-- 'code/builders/substrate/interfaces/features/staking/cancel-candidate-bond-less.js'
         ```
 
 ??? function "**cancelDelegationRequest**(candidate) - cancels any pending delegation requests provided the address of a candidate"
@@ -74,7 +74,7 @@ The parachain staking pallet provides the following extrinsics (functions):
     === "Polkadot.js API Example"
 
         ```js
-        --8<-- 'code/builders/substrate/interfaces/account/staking/cancel-delegation-request.js'
+        --8<-- 'code/builders/substrate/interfaces/features/staking/cancel-delegation-request.js'
         ```
 
 ??? function "**cancelLeaveCandidates**(candidateCount) - cancels a candidate's pending scheduled request to leave the candidate pool given the current number of candidates in the pool"
@@ -86,7 +86,7 @@ The parachain staking pallet provides the following extrinsics (functions):
     === "Polkadot.js API Example"
 
         ```js
-        --8<-- 'code/builders/substrate/interfaces/account/staking/cancel-leave-candidates.js'
+        --8<-- 'code/builders/substrate/interfaces/features/staking/cancel-leave-candidates.js'
         ```
 
 ??? function "**candidateBondMore**(more) - request to increase a candidate's self bond by a specified amount"
@@ -98,7 +98,7 @@ The parachain staking pallet provides the following extrinsics (functions):
     === "Polkadot.js API Example"
 
         ```js
-        --8<-- 'code/builders/substrate/interfaces/account/staking/candidate-bond-more.js'
+        --8<-- 'code/builders/substrate/interfaces/features/staking/candidate-bond-more.js'
         ```
 
 ??? function "**delegate**(candidate, amount, candidateDelegationCount, delegationCount) - *deprecated as of runtime 2400* - request to add a delegation to a specific candidate for a given amount. Use the `delegateWithAutoCompound` extrinsic instead"
@@ -129,7 +129,7 @@ The parachain staking pallet provides the following extrinsics (functions):
     === "Polkadot.js API Example"
 
         ```js
-        --8<-- 'code/builders/substrate/interfaces/account/staking/delegate-with-auto-compound.js'
+        --8<-- 'code/builders/substrate/interfaces/features/staking/delegate-with-auto-compound.js'
         ```
 
 ??? function "**delegatorBondMore**(candidate, more) - request to increase a delegator's amount delegated for a specific candidate"
@@ -142,7 +142,7 @@ The parachain staking pallet provides the following extrinsics (functions):
     === "Polkadot.js API Example"
 
         ```js
-        --8<-- 'code/builders/substrate/interfaces/account/staking/delegator-bond-more.js'
+        --8<-- 'code/builders/substrate/interfaces/features/staking/delegator-bond-more.js'
         ```
 
 ??? function "**executeCandidateBondLess**(candidate) - executes any scheduled due requests to decrease a candidate's self bond amount"
@@ -154,7 +154,7 @@ The parachain staking pallet provides the following extrinsics (functions):
     === "Polkadot.js API Example"
 
         ```js
-        --8<-- 'code/builders/substrate/interfaces/account/staking/execute-candidate-bond-less.js'
+        --8<-- 'code/builders/substrate/interfaces/features/staking/execute-candidate-bond-less.js'
         ```
 
 ??? function "**executeDelegationRequest**(delegator, candidate) - executes any scheduled due delegation requests for a specific delegator provided the address of the candidate"
@@ -167,7 +167,7 @@ The parachain staking pallet provides the following extrinsics (functions):
     === "Polkadot.js API Example"
 
         ```js
-        --8<-- 'code/builders/substrate/interfaces/account/staking/execute-delegation-request.js'
+        --8<-- 'code/builders/substrate/interfaces/features/staking/execute-delegation-request.js'
         ```
 
 ??? function "**executeLeaveCandidates**(candidate, candidateDelegationCount) - executes any scheduled due requests to leave the set of collator candidates"
@@ -180,7 +180,7 @@ The parachain staking pallet provides the following extrinsics (functions):
     === "Polkadot.js API Example"
 
         ```js
-        --8<-- 'code/builders/substrate/interfaces/account/staking/execute-leave-candidates.js'
+        --8<-- 'code/builders/substrate/interfaces/features/staking/execute-leave-candidates.js'
         ```
 
 ??? function "**goOffline**() - allows a collator candidate to temporarily leave the pool of candidates without unbonding"
@@ -192,7 +192,7 @@ The parachain staking pallet provides the following extrinsics (functions):
     === "Polkadot.js API Example"
 
         ```js
-        --8<-- 'code/builders/substrate/interfaces/account/staking/go-offline.js'
+        --8<-- 'code/builders/substrate/interfaces/features/staking/go-offline.js'
         ```
 
 ??? function "**goOnline**() - allows a collator candidate to rejoin the pool of candidates after previously calling `goOffline()`"
@@ -204,7 +204,7 @@ The parachain staking pallet provides the following extrinsics (functions):
     === "Polkadot.js API Example"
 
         ```js
-        --8<-- 'code/builders/substrate/interfaces/account/staking/go-online.js'
+        --8<-- 'code/builders/substrate/interfaces/features/staking/go-online.js'
         ```
 
 ??? function "**joinCandidates**(bond, candidateCount) - request to join the set of collator candidates with a specified bond amount and provided the current candidate count"
@@ -217,7 +217,7 @@ The parachain staking pallet provides the following extrinsics (functions):
     === "Polkadot.js API Example"
 
         ```js
-        --8<-- 'code/builders/substrate/interfaces/account/staking/join-candidates.js'
+        --8<-- 'code/builders/substrate/interfaces/features/staking/join-candidates.js'
         ```
 
 ??? function "**notifyInactiveCollator**(collator) - marks a collator as inactive if they have not been producing blocks for the maximum number of offline rounds, as returned by the [`maxOfflineRounds` pallet constant](#constants)"
@@ -229,7 +229,7 @@ The parachain staking pallet provides the following extrinsics (functions):
     === "Polkadot.js API Example"
 
         ```js
-        --8<-- 'code/builders/substrate/interfaces/account/staking/notify-inactive-collator.js'
+        --8<-- 'code/builders/substrate/interfaces/features/staking/notify-inactive-collator.js'
         ```
 
 ??? function "**scheduleCandidateBondLess**(less) - schedules a request to decrease a candidate's self bond by a specified amount. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `executeCandidateBondLess` extrinsic"
@@ -241,7 +241,7 @@ The parachain staking pallet provides the following extrinsics (functions):
     === "Polkadot.js API Example"
 
         ```js
-        --8<-- 'code/builders/substrate/interfaces/account/staking/schedule-candidate-bond-less.js'
+        --8<-- 'code/builders/substrate/interfaces/features/staking/schedule-candidate-bond-less.js'
         ```
 
 ??? function "**scheduleDelegatorBondLess**(candidate, less) - schedules a request for a delegator to bond less with respect to a specific candidate. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `executeDelegationRequest` extrinsic"
@@ -254,7 +254,7 @@ The parachain staking pallet provides the following extrinsics (functions):
     === "Polkadot.js API Example"
 
         ```js
-        --8<-- 'code/builders/substrate/interfaces/account/staking/schedule-delegator-bond-less.js'
+        --8<-- 'code/builders/substrate/interfaces/features/staking/schedule-delegator-bond-less.js'
         ```
 
 ??? function "**scheduleLeaveCandidates**(candidateCount) - schedules a request for a candidate to remove themselves from the candidate pool. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `executeLeaveCandidates` extrinsic"
@@ -266,7 +266,7 @@ The parachain staking pallet provides the following extrinsics (functions):
     === "Polkadot.js API Example"
 
         ```js
-        --8<-- 'code/builders/substrate/interfaces/account/staking/schedule-leave-candidates.js'
+        --8<-- 'code/builders/substrate/interfaces/features/staking/schedule-leave-candidates.js'
         ```
 
 ??? function "**scheduleRevokeDelegation**(collator) - schedules a request to revoke a delegation given the address of a candidate. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `executeDelegationRequest` extrinsic"
@@ -278,7 +278,7 @@ The parachain staking pallet provides the following extrinsics (functions):
     === "Polkadot.js API Example"
 
         ```js
-        --8<-- 'code/builders/substrate/interfaces/account/staking/schedule-revoke-delegation.js'
+        --8<-- 'code/builders/substrate/interfaces/features/staking/schedule-revoke-delegation.js'
         ```
 
 ??? function "**setAutoCompound**(candidate, value, candidateAutoCompoundingDelegationCountHint, delegationCountHint) - sets the percentage of rewards to be auto-compounded for an existing delegation given an integer (no decimals) for the `value` between 0-100"
@@ -293,7 +293,7 @@ The parachain staking pallet provides the following extrinsics (functions):
     === "Polkadot.js API Example"
 
         ```js
-        --8<-- 'code/builders/substrate/interfaces/account/staking/set-auto-compound.js'
+        --8<-- 'code/builders/substrate/interfaces/features/staking/set-auto-compound.js'
         ```
 
 ### Storage Methods {: #storage-methods }
@@ -314,7 +314,7 @@ The parachain staking pallet includes the following read-only storage methods to
     === "Polkadot.js API Example"
 
         ```js
-        --8<-- 'code/builders/substrate/interfaces/account/staking/at-stake.js'
+        --8<-- 'code/builders/substrate/interfaces/features/staking/at-stake.js'
         ```
 
 ??? function "**autoCompoundingDelegations**(AccountId20) - returns a list of delegators for a given candidate that have set up auto-compounding along with the percentage of rewards set to be auto-compounded"
@@ -330,7 +330,7 @@ The parachain staking pallet includes the following read-only storage methods to
     === "Polkadot.js API Example"
 
         ```js
-        --8<-- 'code/builders/substrate/interfaces/account/staking/get-autocompounding.js'
+        --8<-- 'code/builders/substrate/interfaces/features/staking/get-autocompounding.js'
         ```
 
 ??? function "**awardedPts**(u32, AccountId20) - returns the awarded points for each collator per round given a round number and, optionally, the collator's address"
@@ -347,7 +347,7 @@ The parachain staking pallet includes the following read-only storage methods to
     === "Polkadot.js API Example"
 
         ```js
-        --8<-- 'code/builders/substrate/interfaces/account/staking/query-awarded-points.js'
+        --8<-- 'code/builders/substrate/interfaces/features/staking/query-awarded-points.js'
         ```
 
 ??? function "**bottomDelegations**(AccountId20) - returns at the most the bottom 50 delegations for all candidates or for a given candidate's address"
@@ -363,7 +363,7 @@ The parachain staking pallet includes the following read-only storage methods to
     === "Polkadot.js API Example"
 
         ```js
-         --8<-- 'code/builders/substrate/interfaces/account/staking/bottom.js'
+         --8<-- 'code/builders/substrate/interfaces/features/staking/bottom.js'
         ```
 
 ??? function "**candidateInfo**(AccountId20) - returns candidate information such as the candidate's bond, delegation count, and more for all candidates or for a given candidate's address"
@@ -379,7 +379,7 @@ The parachain staking pallet includes the following read-only storage methods to
     === "Polkadot.js API Example"
 
         ```js
-        --8<-- 'code/builders/substrate/interfaces/account/staking/candidate-info.js'
+        --8<-- 'code/builders/substrate/interfaces/features/staking/candidate-info.js'
         ```
 
 ??? function "**candidatePool**() - returns a list of each of the candidates in the pool and their total backing stake"
@@ -395,7 +395,7 @@ The parachain staking pallet includes the following read-only storage methods to
     === "Polkadot.js API Example"
 
         ```js
-        --8<-- 'code/builders/substrate/interfaces/account/staking/query-candidate-pool.js'
+        --8<-- 'code/builders/substrate/interfaces/features/staking/query-candidate-pool.js'
         ```
 
 ??? function "**candidateState**(AccountId20) - *deprecated as of runtime 1200* - use `candidateInfo` instead"
@@ -425,7 +425,7 @@ The parachain staking pallet includes the following read-only storage methods to
     === "Polkadot.js API Example"
 
         ```js
-        --8<-- 'code/builders/substrate/interfaces/account/staking/collator-commission.js'
+        --8<-- 'code/builders/substrate/interfaces/features/staking/collator-commission.js'
         ```
 
 ??? function "**collatorState2**(AccountId20) - *deprecated as of runtime 1001* - use `candidateInfo` instead"
@@ -455,7 +455,7 @@ The parachain staking pallet includes the following read-only storage methods to
     === "Polkadot.js API Example"
 
         ```js
-        --8<-- 'code/builders/substrate/interfaces/account/staking/query-delayed-payouts.js'
+        --8<-- 'code/builders/substrate/interfaces/features/staking/query-delayed-payouts.js'
         ```
 
 ??? function "**delegationScheduledRequests**(AccountId20) - returns the outstanding scheduled delegation requests for all collators or for a given collator's address"
@@ -471,7 +471,7 @@ The parachain staking pallet includes the following read-only storage methods to
     === "Polkadot.js API Example"
 
         ```js
-        --8<-- 'code/builders/substrate/interfaces/account/staking/scheduled-delegation-requests.js'
+        --8<-- 'code/builders/substrate/interfaces/features/staking/scheduled-delegation-requests.js'
         ```
 
 ??? function "**delegatorState**(AccountId20) - returns delegator information such as their delegations, delegation status, and total delegation amount for all delegators or for a given delegator's address"
@@ -487,7 +487,7 @@ The parachain staking pallet includes the following read-only storage methods to
     === "Polkadot.js API Example"
 
         ```js
-        --8<-- 'code/builders/substrate/interfaces/account/staking/query-delegator-state.js'
+        --8<-- 'code/builders/substrate/interfaces/features/staking/query-delegator-state.js'
         ```
 
 ??? function "**enabledMarkingOffline**() - returns a boolean indicating whether or not the marking offline feature for inactive collators is enabled"
@@ -503,7 +503,7 @@ The parachain staking pallet includes the following read-only storage methods to
     === "Polkadot.js API Example"
 
         ```js
-        --8<-- 'code/builders/substrate/interfaces/account/staking/query-enabled-marking-offline.js'
+        --8<-- 'code/builders/substrate/interfaces/features/staking/query-enabled-marking-offline.js'
         ```
 
 ??? function "**inflationConfig**() - returns the inflation configuration"
@@ -519,7 +519,7 @@ The parachain staking pallet includes the following read-only storage methods to
     === "Polkadot.js API Example"
 
         ```js
-        --8<-- 'code/builders/substrate/interfaces/account/staking/inflation-config.js'
+        --8<-- 'code/builders/substrate/interfaces/features/staking/inflation-config.js'
         ```
 
 ??? function "**nominatorState2**(AccountId20) - *deprecated as of runtime 1001* - use `delegatorState` instead"
@@ -549,7 +549,7 @@ The parachain staking pallet includes the following read-only storage methods to
     === "Polkadot.js API Example"
 
         ```js
-        --8<-- 'code/builders/substrate/interfaces/account/staking/pallet-version.js'
+        --8<-- 'code/builders/substrate/interfaces/features/staking/pallet-version.js'
         ```
 
 ??? function "**points**(u32) - returns the total points awarded to collators for block production in all rounds or for a given round"
@@ -565,7 +565,7 @@ The parachain staking pallet includes the following read-only storage methods to
     === "Polkadot.js API Example"
 
         ```js
-        --8<-- 'code/builders/substrate/interfaces/account/staking/query-collator-points.js'
+        --8<-- 'code/builders/substrate/interfaces/features/staking/query-collator-points.js'
         ```
 
 ??? function "**round**() - returns the current round number, the first block of the current round, and the length of the round"
@@ -581,7 +581,7 @@ The parachain staking pallet includes the following read-only storage methods to
     === "Polkadot.js API Example"
 
         ```js
-        --8<-- 'code/builders/substrate/interfaces/account/staking/query-current-round.js'
+        --8<-- 'code/builders/substrate/interfaces/features/staking/query-current-round.js'
         ```
 
 ??? function "**selectedCandidates**() - returns the collator candidates selected to be in the active set for the current round"
@@ -597,7 +597,7 @@ The parachain staking pallet includes the following read-only storage methods to
     === "Polkadot.js API Example"
 
         ```js
-        --8<-- 'code/builders/substrate/interfaces/account/staking/query-selected-candidates.js'
+        --8<-- 'code/builders/substrate/interfaces/features/staking/query-selected-candidates.js'
         ```
 
 ??? function "**topDelegations**(AccountId20) - returns at the most the top 300 delegations for all collators or for a given collator's address"
@@ -613,7 +613,7 @@ The parachain staking pallet includes the following read-only storage methods to
     === "Polkadot.js API Example"
 
         ```js
-        --8<-- 'code/builders/substrate/interfaces/account/staking/query-top-delegations.js'
+        --8<-- 'code/builders/substrate/interfaces/features/staking/query-top-delegations.js'
         ```
 
 ??? function "**total**() - returns the total capital locked in the staking pallet"
@@ -629,7 +629,7 @@ The parachain staking pallet includes the following read-only storage methods to
     === "Polkadot.js API Example"
 
         ```js
-        --8<-- 'code/builders/substrate/interfaces/account/staking/query-total.js'
+        --8<-- 'code/builders/substrate/interfaces/features/staking/query-total.js'
         ```
 
 ??? function "**totalSelected**() - returns the total number of collator candidates that can be selected for the active set"
@@ -645,7 +645,7 @@ The parachain staking pallet includes the following read-only storage methods to
     === "Polkadot.js API Example"
 
         ```js
-        --8<-- 'code/builders/substrate/interfaces/account/staking/query-total-selected.js'
+        --8<-- 'code/builders/substrate/interfaces/features/staking/query-total-selected.js'
         ```
 
 
@@ -666,7 +666,7 @@ The parachain staking pallet includes the following read-only functions to obtai
     === "Polkadot.js API Example"
 
         ```js
-        --8<-- 'code/builders/substrate/interfaces/account/staking/candidate-bond-less-delay.js'
+        --8<-- 'code/builders/substrate/interfaces/features/staking/candidate-bond-less-delay.js'
         ```
 
 ??? function "**defaultBlocksPerRound**() -  *deprecated as of runtime 1900* - returns the default number of blocks per round"
@@ -724,7 +724,7 @@ The parachain staking pallet includes the following read-only functions to obtai
     === "Polkadot.js API Example"
 
         ```js
-        --8<-- 'code/builders/substrate/interfaces/account/staking/delegation-bond-less-delay.js'
+        --8<-- 'code/builders/substrate/interfaces/features/staking/delegation-bond-less-delay.js'
         ```
 
 ??? function "**leaveCandidatesDelay**() - returns the number of rounds that must be waited before a scheduled request for a candidate to leave the candidate pool can be executed"
@@ -740,7 +740,7 @@ The parachain staking pallet includes the following read-only functions to obtai
     === "Polkadot.js API Example"
 
         ```js
-        --8<-- 'code/builders/substrate/interfaces/account/staking/leave-candidates-delay.js'
+        --8<-- 'code/builders/substrate/interfaces/features/staking/leave-candidates-delay.js'
         ```
 
 ??? function "**leaveDelegatorsDelay**() - returns the number of rounds that must be waited before a scheduled request for a delegator to leave the set of delegators can be executed"
@@ -756,7 +756,7 @@ The parachain staking pallet includes the following read-only functions to obtai
     === "Polkadot.js API Example"
 
         ```js
-        --8<-- 'code/builders/substrate/interfaces/account/staking/leave-delegators-delay.js'
+        --8<-- 'code/builders/substrate/interfaces/features/staking/leave-delegators-delay.js'
         ```
 
 ??? function "**maxBottomDelegationsPerCandidate**() - returns the maximum number of bottom delegations per candidate"
@@ -772,7 +772,7 @@ The parachain staking pallet includes the following read-only functions to obtai
     === "Polkadot.js API Example"
 
         ```js
-        --8<-- 'code/builders/substrate/interfaces/account/staking/max-bottom-delegations.js'
+        --8<-- 'code/builders/substrate/interfaces/features/staking/max-bottom-delegations.js'
         ```
 
 ??? function "**maxCandidates**() - returns the maximum number of candidates allowed in the candidate pool"
@@ -788,7 +788,7 @@ The parachain staking pallet includes the following read-only functions to obtai
     === "Polkadot.js API Example"
 
         ```js
-        --8<-- 'code/builders/substrate/interfaces/account/staking/max-candidates.js'
+        --8<-- 'code/builders/substrate/interfaces/features/staking/max-candidates.js'
         ```
 
 ??? function "**maxDelegationsPerDelegator**() - returns the maximum number of delegations per delegator"
@@ -804,7 +804,7 @@ The parachain staking pallet includes the following read-only functions to obtai
     === "Polkadot.js API Example"
 
         ```js
-        --8<-- 'code/builders/substrate/interfaces/account/staking/max-delegations.js'
+        --8<-- 'code/builders/substrate/interfaces/features/staking/max-delegations.js'
         ```
 
 ??? function "**maxOfflineRounds**() - returns the number of rounds that must pass before a collator that has stopped producing blocks is marked as inactive"
@@ -820,7 +820,7 @@ The parachain staking pallet includes the following read-only functions to obtai
     === "Polkadot.js API Example"
 
         ```js
-        --8<-- 'code/builders/substrate/interfaces/account/staking/max-offline-rounds.js'
+        --8<-- 'code/builders/substrate/interfaces/features/staking/max-offline-rounds.js'
         ```
 
 ??? function "**maxTopDelegationsPerCandidate**() - returns the maximum number of top delegations per candidate"
@@ -836,7 +836,7 @@ The parachain staking pallet includes the following read-only functions to obtai
     === "Polkadot.js API Example"
 
         ```js
-        --8<-- 'code/builders/substrate/interfaces/account/staking/max-top-per-candidate.js'
+        --8<-- 'code/builders/substrate/interfaces/features/staking/max-top-per-candidate.js'
         ```
 
 ??? function "**minBlocksPerRound**() - returns the minimum number of blocks per round"
@@ -852,7 +852,7 @@ The parachain staking pallet includes the following read-only functions to obtai
     === "Polkadot.js API Example"
 
         ```js
-        --8<-- 'code/builders/substrate/interfaces/account/staking/min-blocks-per-round.js'
+        --8<-- 'code/builders/substrate/interfaces/features/staking/min-blocks-per-round.js'
         ```
 
 ??? function "**minCandidateStk**() - returns the minimum stake required for a candidate to be a collator candidate"
@@ -868,7 +868,7 @@ The parachain staking pallet includes the following read-only functions to obtai
     === "Polkadot.js API Example"
 
         ```js
-        --8<-- 'code/builders/substrate/interfaces/account/staking/min-cand-stake.js'
+        --8<-- 'code/builders/substrate/interfaces/features/staking/min-cand-stake.js'
         ```
 
 ??? function "**minCollatorStk**() - *deprecated as of runtime 2400* - returns the minimum stake required for a candidate to be in the active set"
@@ -898,7 +898,7 @@ The parachain staking pallet includes the following read-only functions to obtai
     === "Polkadot.js API Example"
 
         ```js
-        --8<-- 'code/builders/substrate/interfaces/account/staking/min-delegation.js'
+        --8<-- 'code/builders/substrate/interfaces/features/staking/min-delegation.js'
         ```
 
 ??? function "**minDelegatorStk**() - *deprecated as of runtime 2500* - returns the minimum stake for an account to be a delegator"
@@ -928,7 +928,7 @@ The parachain staking pallet includes the following read-only functions to obtai
     === "Polkadot.js API Example"
 
         ```js
-        --8<-- 'code/builders/substrate/interfaces/account/staking/min-selected-candidates.js'
+        --8<-- 'code/builders/substrate/interfaces/features/staking/min-selected-candidates.js'
         ```
 
 ??? function "**revokeDelegationDelay**() - returns the number of rounds that must be waited before a scheduled request to revoke a delegation can be executed"
@@ -944,7 +944,7 @@ The parachain staking pallet includes the following read-only functions to obtai
     === "Polkadot.js API Example"
 
         ```js
-        --8<-- 'code/builders/substrate/interfaces/account/staking/revoke-delegation-delay.js'
+        --8<-- 'code/builders/substrate/interfaces/features/staking/revoke-delegation-delay.js'
         ```
 
 ??? function "**rewardPaymentDelay**() - returns the number of rounds that must be waited after which block authors are rewarded"
@@ -960,5 +960,5 @@ The parachain staking pallet includes the following read-only functions to obtai
     === "Polkadot.js API Example"
 
         ```js
-        --8<-- 'code/builders/substrate/interfaces/account/staking/reward-delay.js'
+        --8<-- 'code/builders/substrate/interfaces/features/staking/reward-delay.js'
         ```
