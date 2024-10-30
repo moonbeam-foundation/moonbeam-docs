@@ -57,7 +57,7 @@ The parachain staking pallet provides the following extrinsics (functions):
 
     === "Parameters"
 
-        None.
+        None
 
     === "Polkadot.js API Example"
 
@@ -112,10 +112,8 @@ The parachain staking pallet provides the following extrinsics (functions):
 
     === "Polkadot.js API Example"
 
-        ```
         *Deprecated as of runtime 2400*
         Use the `delegateWithAutoCompound` extrinsic instead 
-        ```
 
 ??? function "**delegateWithAutoCompound**(candidate, amount, autoCompound, candidateDelegationCount, candidateAutoCompoundingDelegationCount, delegationCount) - delegates a collator candidate and sets the percentage of rewards to auto-compound given an integer (no decimals) for the `amount` between 0-100. If the caller is not a delegator, this function adds them to the set of delegators. If the caller is already a delegator, then it adjusts their delegation amount"
 
@@ -189,7 +187,7 @@ The parachain staking pallet provides the following extrinsics (functions):
 
     === "Parameters"
 
-        None.
+        None
 
     === "Polkadot.js API Example"
 
@@ -201,7 +199,7 @@ The parachain staking pallet provides the following extrinsics (functions):
 
     === "Parameters"
 
-        None.
+        None
 
     === "Polkadot.js API Example"
 
@@ -388,7 +386,7 @@ The parachain staking pallet includes the following read-only storage methods to
 
     === "Parameters"
 
-        None.
+        None
 
     === "Returns"
 
@@ -408,19 +406,17 @@ The parachain staking pallet includes the following read-only storage methods to
 
     === "Returns"
 
-        *Deprecated as of runtime 1200* - use `candidateInfo` instead"
+        *Deprecated as of runtime 1200* - use `candidateInfo` instead
 
     === "Polkadot.js API Example"
 
-        ```js
-        *Deprecated as of runtime 1200* - use `candidateInfo` instead"
-        ```
+        *Deprecated as of runtime 1200* - use `candidateInfo` instead
 
 ??? function "**collatorCommission**() - returns the commission percent taken off of rewards for all collators"
 
     === "Parameters"
 
-        None.
+        None
 
     === "Returns"
 
@@ -440,13 +436,11 @@ The parachain staking pallet includes the following read-only storage methods to
 
     === "Returns"
 
-        Deprecated as of runtime 1001* - use `candidateInfo` instead"
+        Deprecated as of runtime 1001* - use `candidateInfo` instead
 
     === "Polkadot.js API Example"
 
-        ```js
-        Deprecated as of runtime 1001* - use `candidateInfo` instead"
-        ```
+        Deprecated as of runtime 1001* - use `candidateInfo` instead
 
 ??? function "**delayedPayouts**(u32) - returns the delayed payouts for all rounds or for a given round"
 
@@ -484,7 +478,7 @@ The parachain staking pallet includes the following read-only storage methods to
 
     === "Parameters"
 
-        - `AccountId20` -
+        - `AccountId20` - the address of the delegator to query
 
     === "Returns"
 
@@ -500,7 +494,7 @@ The parachain staking pallet includes the following read-only storage methods to
 
     === "Parameters"
 
-        None.
+        None
 
     === "Returns"
 
@@ -516,7 +510,7 @@ The parachain staking pallet includes the following read-only storage methods to
 
     === "Parameters"
 
-        None.
+        None
 
     === "Returns"
 
@@ -536,19 +530,17 @@ The parachain staking pallet includes the following read-only storage methods to
 
     === "Returns"
 
-        Deprecated as of runtime 1001* - use `delegatorState` instead"
+        Deprecated as of runtime 1001* - use `delegatorState` instead
 
     === "Polkadot.js API Example"
 
-        ```js
-        Deprecated as of runtime 1001* - use `delegatorState` instead"
-        ```
+        Deprecated as of runtime 1001* - use `delegatorState` instead
 
 ??? function "**palletVersion**() - returns the current pallet version"
 
     === "Parameters"
 
-        None.
+        None
 
     === "Returns"
 
@@ -580,7 +572,7 @@ The parachain staking pallet includes the following read-only storage methods to
 
     === "Parameters"
 
-        None.
+        None
 
     === "Returns"
 
@@ -596,7 +588,7 @@ The parachain staking pallet includes the following read-only storage methods to
 
     === "Parameters"
 
-        None.
+        None
 
     === "Returns"
 
@@ -616,7 +608,7 @@ The parachain staking pallet includes the following read-only storage methods to
 
     === "Returns"
 
-        TODO
+        Returns up to the top 300 delegations for a given collator, including the address of the delegator and the amount delegated
 
     === "Polkadot.js API Example"
 
@@ -628,7 +620,7 @@ The parachain staking pallet includes the following read-only storage methods to
 
     === "Parameters"
 
-        None.
+        None
 
     === "Returns"
 
@@ -644,7 +636,7 @@ The parachain staking pallet includes the following read-only storage methods to
 
     === "Parameters"
 
-        None.
+        None
 
     === "Returns"
 
@@ -665,7 +657,7 @@ The parachain staking pallet includes the following read-only functions to obtai
 
     === "Parameters"
 
-        None.
+        None
 
     === "Returns"
 
@@ -681,7 +673,7 @@ The parachain staking pallet includes the following read-only functions to obtai
 
     === "Parameters"
 
-        None.
+        None
 
     === "Returns"
 
@@ -689,15 +681,13 @@ The parachain staking pallet includes the following read-only functions to obtai
 
     === "Polkadot.js API Example"
 
-        ```js
-        *Deprecated as of runtime 1900* - returns the default number of blocks per round"
-        ```
+        *Deprecated as of runtime 1900*
 
 ??? function "**defaultCollatorCommission**() - *deprecated as of runtime 1900* - returns the default commission due to collators"
 
     === "Parameters"
 
-        None.
+        None
 
     === "Returns"
 
@@ -705,15 +695,13 @@ The parachain staking pallet includes the following read-only functions to obtai
 
     === "Polkadot.js API Example"
 
-        ```js
         *Deprecated as of runtime 1900*
-        ```
 
 ??? function "**defaultParachainBondReservePercent**() - *deprecated as of runtime 1900* - returns the default percent of inflation set aside for the parachain bond account"
 
     === "Parameters"
 
-        None.
+        None
 
     === "Returns"
 
@@ -721,15 +709,13 @@ The parachain staking pallet includes the following read-only functions to obtai
 
     === "Polkadot.js API Example"
 
-        ```js
         *Deprecated as of runtime 1900*
-        ```
 
 ??? function "**delegationBondLessDelay**() - returns the number of rounds that must be waited until a scheduled request to decrease a delegation can be executed"
 
     === "Parameters"
 
-        None.
+        None
 
     === "Returns"
 
@@ -745,7 +731,7 @@ The parachain staking pallet includes the following read-only functions to obtai
 
     === "Parameters"
 
-        None.
+        None
 
     === "Returns"
 
@@ -761,7 +747,7 @@ The parachain staking pallet includes the following read-only functions to obtai
 
     === "Parameters"
 
-        None.
+        None
 
     === "Returns"
 
@@ -777,7 +763,7 @@ The parachain staking pallet includes the following read-only functions to obtai
 
     === "Parameters"
 
-        None.
+        None
 
     === "Returns"
 
@@ -793,7 +779,7 @@ The parachain staking pallet includes the following read-only functions to obtai
 
     === "Parameters"
 
-        None.
+        None
 
     === "Returns"
 
@@ -809,7 +795,7 @@ The parachain staking pallet includes the following read-only functions to obtai
 
     === "Parameters"
 
-        None.
+        None
 
     === "Returns"
 
@@ -825,7 +811,7 @@ The parachain staking pallet includes the following read-only functions to obtai
 
     === "Parameters"
 
-        None.
+        None
 
     === "Returns"
 
@@ -841,7 +827,7 @@ The parachain staking pallet includes the following read-only functions to obtai
 
     === "Parameters"
 
-        None.
+        None
 
     === "Returns"
 
@@ -857,7 +843,7 @@ The parachain staking pallet includes the following read-only functions to obtai
 
     === "Parameters"
 
-        None.
+        None
 
     === "Returns"
 
@@ -873,7 +859,7 @@ The parachain staking pallet includes the following read-only functions to obtai
 
     === "Parameters"
 
-        None.
+        None
 
     === "Returns"
 
@@ -889,7 +875,7 @@ The parachain staking pallet includes the following read-only functions to obtai
 
     === "Parameters"
 
-        None.
+        None
 
     === "Returns"
 
@@ -897,15 +883,13 @@ The parachain staking pallet includes the following read-only functions to obtai
 
     === "Polkadot.js API Example"
 
-        ```js
         *Deprecated as of runtime 2400*
-        ```
 
 ??? function "**minDelegation**() - returns the minimum delegation amount"
 
     === "Parameters"
 
-        None.
+        None
 
     === "Returns"
 
@@ -921,7 +905,7 @@ The parachain staking pallet includes the following read-only functions to obtai
 
     === "Parameters"
 
-        None.
+        None
 
     === "Returns"
 
@@ -929,15 +913,13 @@ The parachain staking pallet includes the following read-only functions to obtai
 
     === "Polkadot.js API Example"
 
-        ```js
         *Deprecated as of runtime 2500*
-        ```
 
 ??? function "**minSelectedCandidates**() - returns the minimum number of selected candidates in the active set every round"
 
     === "Parameters"
 
-        None.
+        None
 
     === "Returns"
 
@@ -953,7 +935,7 @@ The parachain staking pallet includes the following read-only functions to obtai
 
     === "Parameters"
 
-        None.
+        None
 
     === "Returns"
 
@@ -969,7 +951,7 @@ The parachain staking pallet includes the following read-only functions to obtai
 
     === "Parameters"
 
-        None.
+        None
 
     === "Returns"
 
