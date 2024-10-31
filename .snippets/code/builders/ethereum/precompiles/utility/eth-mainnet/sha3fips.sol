@@ -1,4 +1,4 @@
-pragma solidity >=0.4.21;
+pragma solidity ^0.7.0;
 
 contract Precompiles {
     function sha3fips(bytes memory data) public view returns (bytes32) {
