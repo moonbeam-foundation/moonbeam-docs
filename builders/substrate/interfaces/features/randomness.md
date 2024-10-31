@@ -24,48 +24,54 @@ The randomness pallet includes the following read-only storage methods to obtain
 
     === "Parameters"
 
-        - `` -
+        None
 
     === "Returns"
 
-        TODO
+        `H256` - A 32-byte (256-bit) hex value, starting with "0x"`
 
     === "Polkadot.js API Example"
 
         ```js
-        TODO
+        --8<-- 'code/builders/substrate/interfaces/features/randomness/local-vrf-output.js'
         ```
 
 ??? function "**palletVersion**() - returns the current pallet version"
 
     === "Parameters"
 
-        - `` -
+        None
 
     === "Returns"
 
-        TODO
+        `u16` - The pallet version
 
     === "Polkadot.js API Example"
 
         ```js
-        TODO
+        --8<-- 'code/builders/substrate/interfaces/features/randomness/pallet-version.js'
         ```
 
 ??? function "**randomnessResults**(PalletRandomnessRequestType) - snapshot of randomness to fulfill all requests that are for the same raw randomness"
 
     === "Parameters"
 
-        - `PalletRandomnessRequestType` -
+        - `PalletRandomnessRequestType` - You can optionally provide the type of randomness you'd like, e.g. `Local` or `BabeEpoch` Randomness. If you omit this, you'll receive all types of randomness. 
 
     === "Returns"
 
-        TODO
+        The query returns mappings of request types to their randomness outcomes, where:
+
+        1. Key: Identifies the source and timing of the randomness request. e.g. `{ Local: '4,619,640' }` indicates this was a Local randomness request from block number 4,619,640. The Local type uses block numbers as identifiers, while BabeEpoch uses epoch numbers.
+
+        2. Value: Contains two pieces of information, including `randomness`: A 32-byte hex string (0x15b5f6...c816) representing the random value generated and `requestCount`: The number of requests that used this same random value (e.g. '1')
+
+        Multiple requests for randomness at the same block/epoch would share the same random value, which is why there's a requestCount field.
 
     === "Polkadot.js API Example"
 
         ```js
-        TODO
+        --8<-- 'code/builders/substrate/interfaces/features/randomness/randomness-results.js'
         ```
 
 ??? function "**relayEpoch**() - returns the relay epoch"
