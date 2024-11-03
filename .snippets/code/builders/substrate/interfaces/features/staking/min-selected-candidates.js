@@ -3,14 +3,18 @@ import { ApiPromise, WsProvider } from '@polkadot/api';
 const main = async () => {
   // Initialize the API
   const api = await ApiPromise.create({
-    provider: new WsProvider('wss://moonbase-alpha.public.blastapi.io')
+    provider: new WsProvider('wss://moonbase-alpha.public.blastapi.io'),
   });
 
   try {
     // Get the minimum number of selected candidates
-    const minSelectedCandidates = await api.consts.parachainStaking.minSelectedCandidates;
-    
-    console.log('Minimum Selected Candidates:', minSelectedCandidates.toString());
+    const minSelectedCandidates =
+      await api.consts.parachainStaking.minSelectedCandidates;
+
+    console.log(
+      'Minimum Selected Candidates:',
+      minSelectedCandidates.toString()
+    );
 
     process.exit(0);
   } catch (error) {
@@ -20,7 +24,7 @@ const main = async () => {
 };
 
 // Execute the script
-main().catch(error => {
+main().catch((error) => {
   console.error('Script error:', error);
   process.exit(1);
 });

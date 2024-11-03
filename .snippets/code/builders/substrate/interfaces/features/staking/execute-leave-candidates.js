@@ -4,7 +4,7 @@ import { Keyring } from '@polkadot/keyring';
 const main = async () => {
   // Initialize the API
   const api = await ApiPromise.create({
-    provider: new WsProvider('wss://moonbase-alpha.public.blastapi.io')
+    provider: new WsProvider('wss://moonbase-alpha.public.blastapi.io'),
   });
 
   // Initialize the keyring with ethereum type
@@ -19,7 +19,8 @@ const main = async () => {
     const candidateAddress = 'INSERT_COLLATOR_ADDRESS';
 
     // Get candidate information and delegation count
-    const candidateInfo = await api.query.parachainStaking.candidateInfo(candidateAddress);
+    const candidateInfo =
+      await api.query.parachainStaking.candidateInfo(candidateAddress);
     let candidateDelegationCount = 0;
 
     console.log('Execution Details:');
@@ -46,20 +47,24 @@ const main = async () => {
     // Sign and send the transaction
     await tx.signAndSend(executor, ({ status, events }) => {
       if (status.isInBlock) {
-        console.log(`\nTransaction included in block hash: ${status.asInBlock}`);
-        
+        console.log(
+          `\nTransaction included in block hash: ${status.asInBlock}`
+        );
+
         // Process events
         events.forEach(({ event }) => {
           const { section, method, data } = event;
           console.log(`\t${section}.${method}:`, data.toString());
-          
+
           // Handle any failures
           if (section === 'system' && method === 'ExtrinsicFailed') {
             const [dispatchError] = data;
             let errorInfo;
-            
+
             if (dispatchError.isModule) {
-              const decoded = api.registry.findMetaError(dispatchError.asModule);
+              const decoded = api.registry.findMetaError(
+                dispatchError.asModule
+              );
               errorInfo = `${decoded.section}.${decoded.name}: ${decoded.docs}`;
             } else {
               errorInfo = dispatchError.toString();
@@ -78,18 +83,21 @@ const main = async () => {
         });
 
         // Query final candidate state
-        api.query.parachainStaking.candidateInfo(candidateAddress).then(finalState => {
-          if (finalState.isNone) {
-            console.log('\nCandidate has been successfully removed from the candidate pool');
-          } else {
-            console.log('\nWarning: Candidate still exists in the pool');
-            console.log('Current state:', finalState.unwrap().toString());
-          }
-          process.exit(0);
-        });
+        api.query.parachainStaking
+          .candidateInfo(candidateAddress)
+          .then((finalState) => {
+            if (finalState.isNone) {
+              console.log(
+                '\nCandidate has been successfully removed from the candidate pool'
+              );
+            } else {
+              console.log('\nWarning: Candidate still exists in the pool');
+              console.log('Current state:', finalState.unwrap().toString());
+            }
+            process.exit(0);
+          });
       }
     });
-
   } catch (error) {
     console.error('Error in executing leave candidates request:', error);
     process.exit(1);
@@ -97,7 +105,7 @@ const main = async () => {
 };
 
 // Execute the script
-main().catch(error => {
+main().catch((error) => {
   console.error('Script error:', error);
   process.exit(1);
 });

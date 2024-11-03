@@ -4,7 +4,7 @@ import { Keyring } from '@polkadot/keyring';
 const main = async () => {
   // Initialize the API
   const api = await ApiPromise.create({
-    provider: new WsProvider('wss://moonbase-alpha.public.blastapi.io')
+    provider: new WsProvider('wss://moonbase-alpha.public.blastapi.io'),
   });
 
   // Initialize the keyring with ethereum type
@@ -17,7 +17,7 @@ const main = async () => {
 
     // The candidate's address to delegate to
     const candidateAddress = 'INSERT_COLLATOR_ADDRESS';
-    
+
     // Amount to delegate (e.g., 1 DEV = 1_000_000_000_000_000_000)
     const amount = '1000000000000000000';
 
@@ -25,9 +25,15 @@ const main = async () => {
     const autoCompound = 50; // 50% of rewards will be auto-compounded
 
     // Get current delegation counts
-    const candidateInfo = await api.query.parachainStaking.candidateInfo(candidateAddress);
-    const delegatorState = await api.query.parachainStaking.delegatorState(delegator.address);
-    const autoCompoundDelegations = await api.query.parachainStaking.autoCompoundingDelegations(candidateAddress);
+    const candidateInfo =
+      await api.query.parachainStaking.candidateInfo(candidateAddress);
+    const delegatorState = await api.query.parachainStaking.delegatorState(
+      delegator.address
+    );
+    const autoCompoundDelegations =
+      await api.query.parachainStaking.autoCompoundingDelegations(
+        candidateAddress
+      );
 
     // Get delegation counts
     let candidateDelegationCount = 0;
@@ -50,8 +56,14 @@ const main = async () => {
     console.log('Delegation amount:', amount, 'Wei (1 DEV)');
     console.log('Auto-compound percentage:', autoCompound, '%');
     console.log('\nCurrent Stats:');
-    console.log('Candidate delegation count:', candidateDelegationCount.toString());
-    console.log('Candidate auto-compounding delegation count:', candidateAutoCompoundingDelegationCount.toString());
+    console.log(
+      'Candidate delegation count:',
+      candidateDelegationCount.toString()
+    );
+    console.log(
+      'Candidate auto-compounding delegation count:',
+      candidateAutoCompoundingDelegationCount.toString()
+    );
     console.log('Delegator total delegations:', delegationCount.toString());
 
     // Create the delegate with auto-compound transaction
@@ -67,20 +79,24 @@ const main = async () => {
     // Sign and send the transaction
     await tx.signAndSend(delegator, ({ status, events }) => {
       if (status.isInBlock) {
-        console.log(`\nTransaction included in block hash: ${status.asInBlock}`);
-        
+        console.log(
+          `\nTransaction included in block hash: ${status.asInBlock}`
+        );
+
         // Process events
         events.forEach(({ event }) => {
           const { section, method, data } = event;
           console.log(`\t${section}.${method}:`, data.toString());
-          
+
           // Handle any failures
           if (section === 'system' && method === 'ExtrinsicFailed') {
             const [dispatchError] = data;
             let errorInfo;
-            
+
             if (dispatchError.isModule) {
-              const decoded = api.registry.findMetaError(dispatchError.asModule);
+              const decoded = api.registry.findMetaError(
+                dispatchError.asModule
+              );
               errorInfo = `${decoded.section}.${decoded.name}: ${decoded.docs}`;
             } else {
               errorInfo = dispatchError.toString();
@@ -95,14 +111,17 @@ const main = async () => {
             console.log('Delegator:', delegator.toString());
             console.log('Candidate:', candidate.toString());
             console.log('Amount:', amount.toString());
-            console.log('Auto-compound percentage:', autoCompound.toString(), '%');
+            console.log(
+              'Auto-compound percentage:',
+              autoCompound.toString(),
+              '%'
+            );
           }
         });
-        
+
         process.exit(0);
       }
     });
-
   } catch (error) {
     console.error('Error in delegation with auto-compound:', error);
     process.exit(1);
@@ -110,7 +129,7 @@ const main = async () => {
 };
 
 // Execute the script
-main().catch(error => {
+main().catch((error) => {
   console.error('Script error:', error);
   process.exit(1);
 });

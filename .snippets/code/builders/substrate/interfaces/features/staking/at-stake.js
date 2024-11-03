@@ -3,7 +3,7 @@ import { ApiPromise, WsProvider } from '@polkadot/api';
 const main = async () => {
   // Initialize the API
   const api = await ApiPromise.create({
-    provider: new WsProvider('wss://moonbase-alpha.public.blastapi.io')
+    provider: new WsProvider('wss://moonbase-alpha.public.blastapi.io'),
   });
 
   try {
@@ -20,8 +20,11 @@ const main = async () => {
 
     // Query current round
     console.log('\nQuerying current round stake...');
-    const currentStake = await api.query.parachainStaking.atStake(currentRound, collatorAddress);
-    
+    const currentStake = await api.query.parachainStaking.atStake(
+      currentRound,
+      collatorAddress
+    );
+
     if (currentStake) {
       console.log('\nCurrent Round Stake Details:');
       const stakeInfo = currentStake.toHuman();
@@ -37,8 +40,11 @@ const main = async () => {
     // Query previous round
     const previousRound = currentRound - 1;
     console.log('\nQuerying previous round stake...');
-    const previousStake = await api.query.parachainStaking.atStake(previousRound, collatorAddress);
-    
+    const previousStake = await api.query.parachainStaking.atStake(
+      previousRound,
+      collatorAddress
+    );
+
     if (previousStake) {
       console.log('\nPrevious Round Stake Details:');
       const previousStakeInfo = previousStake.toHuman();
@@ -46,8 +52,11 @@ const main = async () => {
     }
 
     // Get scheduled delegation requests
-    const delegationRequests = await api.query.parachainStaking.delegationScheduledRequests(collatorAddress);
-    
+    const delegationRequests =
+      await api.query.parachainStaking.delegationScheduledRequests(
+        collatorAddress
+      );
+
     console.log('\nScheduled Delegation Changes:');
     if (delegationRequests.length > 0) {
       console.log(JSON.stringify(delegationRequests.toHuman(), null, 2));
@@ -56,8 +65,11 @@ const main = async () => {
     }
 
     // Get auto-compound settings
-    const autoCompound = await api.query.parachainStaking.autoCompoundingDelegations(collatorAddress);
-    
+    const autoCompound =
+      await api.query.parachainStaking.autoCompoundingDelegations(
+        collatorAddress
+      );
+
     console.log('\nAuto-Compound Settings:');
     if (autoCompound.length > 0) {
       console.log(JSON.stringify(autoCompound.toHuman(), null, 2));
@@ -73,7 +85,7 @@ const main = async () => {
 };
 
 // Execute the script
-main().catch(error => {
+main().catch((error) => {
   console.error('Script error:', error);
   process.exit(1);
 });

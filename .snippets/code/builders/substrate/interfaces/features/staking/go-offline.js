@@ -4,7 +4,7 @@ import { Keyring } from '@polkadot/keyring';
 const main = async () => {
   // Initialize the API
   const api = await ApiPromise.create({
-    provider: new WsProvider('wss://moonbase-alpha.public.blastapi.io')
+    provider: new WsProvider('wss://moonbase-alpha.public.blastapi.io'),
   });
 
   // Initialize the keyring with ethereum type
@@ -16,11 +16,13 @@ const main = async () => {
     const collator = keyring.addFromUri(PRIVATE_KEY);
 
     // Query current collator info before going offline
-    const candidateInfo = await api.query.parachainStaking.candidateInfo(collator.address);
-    
+    const candidateInfo = await api.query.parachainStaking.candidateInfo(
+      collator.address
+    );
+
     console.log('Collator Details:');
     console.log('Collator address:', collator.address);
-    
+
     if (candidateInfo.isSome) {
       const info = candidateInfo.unwrap();
       console.log('\nCurrent Status:');
@@ -38,20 +40,24 @@ const main = async () => {
     // Sign and send the transaction
     await tx.signAndSend(collator, ({ status, events }) => {
       if (status.isInBlock) {
-        console.log(`\nTransaction included in block hash: ${status.asInBlock}`);
-        
+        console.log(
+          `\nTransaction included in block hash: ${status.asInBlock}`
+        );
+
         // Process events
         events.forEach(({ event }) => {
           const { section, method, data } = event;
           console.log(`\t${section}.${method}:`, data.toString());
-          
+
           // Handle any failures
           if (section === 'system' && method === 'ExtrinsicFailed') {
             const [dispatchError] = data;
             let errorInfo;
-            
+
             if (dispatchError.isModule) {
-              const decoded = api.registry.findMetaError(dispatchError.asModule);
+              const decoded = api.registry.findMetaError(
+                dispatchError.asModule
+              );
               errorInfo = `${decoded.section}.${decoded.name}: ${decoded.docs}`;
             } else {
               errorInfo = dispatchError.toString();
@@ -60,7 +66,10 @@ const main = async () => {
           }
 
           // Log successful offline status change
-          if (section === 'parachainStaking' && method === 'CandidateWentOffline') {
+          if (
+            section === 'parachainStaking' &&
+            method === 'CandidateWentOffline'
+          ) {
             const [collatorAccount] = data;
             console.log('\nSuccessfully went offline!');
             console.log('Collator:', collatorAccount.toString());
@@ -68,19 +77,20 @@ const main = async () => {
         });
 
         // Query final collator state
-        api.query.parachainStaking.candidateInfo(collator.address).then(finalState => {
-          if (finalState.isSome) {
-            const info = finalState.unwrap();
-            console.log('\nUpdated Status:');
-            console.log('Bond:', info.bond.toString());
-            console.log('Delegation Count:', info.delegationCount.toString());
-            console.log('Status:', info.status.toString());
-          }
-          process.exit(0);
-        });
+        api.query.parachainStaking
+          .candidateInfo(collator.address)
+          .then((finalState) => {
+            if (finalState.isSome) {
+              const info = finalState.unwrap();
+              console.log('\nUpdated Status:');
+              console.log('Bond:', info.bond.toString());
+              console.log('Delegation Count:', info.delegationCount.toString());
+              console.log('Status:', info.status.toString());
+            }
+            process.exit(0);
+          });
       }
     });
-
   } catch (error) {
     console.error('Error in going offline:', error);
     process.exit(1);
@@ -88,7 +98,7 @@ const main = async () => {
 };
 
 // Execute the script
-main().catch(error => {
+main().catch((error) => {
   console.error('Script error:', error);
   process.exit(1);
 });

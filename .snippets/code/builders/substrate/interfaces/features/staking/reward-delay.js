@@ -3,14 +3,19 @@ import { ApiPromise, WsProvider } from '@polkadot/api';
 const main = async () => {
   // Initialize the API
   const api = await ApiPromise.create({
-    provider: new WsProvider('wss://moonbase-alpha.public.blastapi.io')
+    provider: new WsProvider('wss://moonbase-alpha.public.blastapi.io'),
   });
 
   try {
     // Get the reward payment delay
-    const rewardPaymentDelay = await api.consts.parachainStaking.rewardPaymentDelay;
-    
-    console.log('Reward Payment Delay:', rewardPaymentDelay.toString(), 'rounds');
+    const rewardPaymentDelay =
+      await api.consts.parachainStaking.rewardPaymentDelay;
+
+    console.log(
+      'Reward Payment Delay:',
+      rewardPaymentDelay.toString(),
+      'rounds'
+    );
 
     process.exit(0);
   } catch (error) {
@@ -20,7 +25,7 @@ const main = async () => {
 };
 
 // Execute the script
-main().catch(error => {
+main().catch((error) => {
   console.error('Script error:', error);
   process.exit(1);
 });

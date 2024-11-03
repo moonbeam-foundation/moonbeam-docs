@@ -4,7 +4,7 @@ import { Keyring } from '@polkadot/keyring';
 const main = async () => {
   // Initialize the API
   const api = await ApiPromise.create({
-    provider: new WsProvider('wss://moonbase-alpha.public.blastapi.io')
+    provider: new WsProvider('wss://moonbase-alpha.public.blastapi.io'),
   });
 
   // Initialize the keyring with ethereum type
@@ -23,9 +23,10 @@ const main = async () => {
 
     // Get current round info
     const round = await api.query.parachainStaking.round();
-    
+
     // Get collator info
-    const collatorInfo = await api.query.parachainStaking.candidateInfo(inactiveCollator);
+    const collatorInfo =
+      await api.query.parachainStaking.candidateInfo(inactiveCollator);
 
     console.log('Notify Inactive Collator Details:');
     console.log('Notifier address:', notifier.address);
@@ -42,27 +43,29 @@ const main = async () => {
     }
 
     // Create the notify inactive collator transaction
-    const tx = api.tx.parachainStaking.notifyInactiveCollator(
-      inactiveCollator
-    );
+    const tx = api.tx.parachainStaking.notifyInactiveCollator(inactiveCollator);
 
     // Sign and send the transaction
     await tx.signAndSend(notifier, ({ status, events }) => {
       if (status.isInBlock) {
-        console.log(`\nTransaction included in block hash: ${status.asInBlock}`);
-        
+        console.log(
+          `\nTransaction included in block hash: ${status.asInBlock}`
+        );
+
         // Process events
         events.forEach(({ event }) => {
           const { section, method, data } = event;
           console.log(`\t${section}.${method}:`, data.toString());
-          
+
           // Handle any failures
           if (section === 'system' && method === 'ExtrinsicFailed') {
             const [dispatchError] = data;
             let errorInfo;
-            
+
             if (dispatchError.isModule) {
-              const decoded = api.registry.findMetaError(dispatchError.asModule);
+              const decoded = api.registry.findMetaError(
+                dispatchError.asModule
+              );
               errorInfo = `${decoded.section}.${decoded.name}: ${decoded.docs}`;
             } else {
               errorInfo = dispatchError.toString();
@@ -71,7 +74,10 @@ const main = async () => {
           }
 
           // Log successful notification
-          if (section === 'parachainStaking' && method === 'CollatorWentOffline') {
+          if (
+            section === 'parachainStaking' &&
+            method === 'CollatorWentOffline'
+          ) {
             const [collatorAccount] = data;
             console.log('\nSuccessfully notified inactive collator!');
             console.log('Collator:', collatorAccount.toString());
@@ -79,19 +85,20 @@ const main = async () => {
         });
 
         // Query final collator state
-        api.query.parachainStaking.candidateInfo(inactiveCollator).then(finalState => {
-          if (finalState.isSome) {
-            const info = finalState.unwrap();
-            console.log('\nUpdated Collator Status:');
-            console.log('Bond:', info.bond.toString());
-            console.log('Delegation Count:', info.delegationCount.toString());
-            console.log('Status:', info.status.toString());
-          }
-          process.exit(0);
-        });
+        api.query.parachainStaking
+          .candidateInfo(inactiveCollator)
+          .then((finalState) => {
+            if (finalState.isSome) {
+              const info = finalState.unwrap();
+              console.log('\nUpdated Collator Status:');
+              console.log('Bond:', info.bond.toString());
+              console.log('Delegation Count:', info.delegationCount.toString());
+              console.log('Status:', info.status.toString());
+            }
+            process.exit(0);
+          });
       }
     });
-
   } catch (error) {
     console.error('Error in notifying inactive collator:', error);
     process.exit(1);
@@ -99,7 +106,7 @@ const main = async () => {
 };
 
 // Execute the script
-main().catch(error => {
+main().catch((error) => {
   console.error('Script error:', error);
   process.exit(1);
 });

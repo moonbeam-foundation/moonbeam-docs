@@ -3,13 +3,13 @@ import { ApiPromise, WsProvider } from '@polkadot/api';
 const main = async () => {
   // Initialize the API
   const api = await ApiPromise.create({
-    provider: new WsProvider('wss://moonbase-alpha.public.blastapi.io')
+    provider: new WsProvider('wss://moonbase-alpha.public.blastapi.io'),
   });
 
   try {
     // Get the bond less delay constant
     const delay = await api.consts.parachainStaking.candidateBondLessDelay;
-    
+
     console.log('Candidate Bond Less Delay:', delay.toString(), 'rounds');
 
     process.exit(0);
@@ -20,7 +20,7 @@ const main = async () => {
 };
 
 // Execute the script
-main().catch(error => {
+main().catch((error) => {
   console.error('Script error:', error);
   process.exit(1);
 });

@@ -4,7 +4,7 @@ import { Keyring } from '@polkadot/keyring';
 const main = async () => {
   // Initialize the API
   const api = await ApiPromise.create({
-    provider: new WsProvider('wss://moonbase-alpha.public.blastapi.io')
+    provider: new WsProvider('wss://moonbase-alpha.public.blastapi.io'),
   });
 
   // Initialize the keyring with ethereum type
@@ -17,16 +17,22 @@ const main = async () => {
 
     // The candidate's address for the delegation
     const candidateAddress = 'INSERT_COLLATOR_ADDRESS';
-    
+
     // Auto-compound percentage (0-100)
     const autoCompoundValue = 50; // 50% of rewards will be auto-compounded
 
     // Get auto-compounding delegations count
-    const autoCompoundDelegations = await api.query.parachainStaking.autoCompoundingDelegations(candidateAddress);
-    const candidateAutoCompoundingDelegationCount = autoCompoundDelegations.length;
+    const autoCompoundDelegations =
+      await api.query.parachainStaking.autoCompoundingDelegations(
+        candidateAddress
+      );
+    const candidateAutoCompoundingDelegationCount =
+      autoCompoundDelegations.length;
 
     // Get delegator state for delegation count
-    const delegatorState = await api.query.parachainStaking.delegatorState(delegator.address);
+    const delegatorState = await api.query.parachainStaking.delegatorState(
+      delegator.address
+    );
     let delegationCount = 0;
 
     console.log('Set Auto-Compound Details:');
@@ -37,13 +43,19 @@ const main = async () => {
     if (delegatorState.isSome) {
       const state = delegatorState.unwrap();
       delegationCount = state.delegations.length;
-      const currentDelegation = state.delegations.find(d => 
-        d.owner.toString().toLowerCase() === candidateAddress.toLowerCase()
+      const currentDelegation = state.delegations.find(
+        (d) =>
+          d.owner.toString().toLowerCase() === candidateAddress.toLowerCase()
       );
       if (currentDelegation) {
-        console.log('\nCurrent Delegation Amount:', currentDelegation.amount.toString());
+        console.log(
+          '\nCurrent Delegation Amount:',
+          currentDelegation.amount.toString()
+        );
       } else {
-        console.log('\nWarning: No existing delegation found for this candidate');
+        console.log(
+          '\nWarning: No existing delegation found for this candidate'
+        );
         process.exit(1);
       }
     } else {
@@ -52,7 +64,10 @@ const main = async () => {
     }
 
     console.log('\nDelegation Counts:');
-    console.log('Auto-compounding delegations:', candidateAutoCompoundingDelegationCount);
+    console.log(
+      'Auto-compounding delegations:',
+      candidateAutoCompoundingDelegationCount
+    );
     console.log('Total delegations:', delegationCount);
 
     // Create the set auto-compound transaction
@@ -66,20 +81,24 @@ const main = async () => {
     // Sign and send the transaction
     await tx.signAndSend(delegator, ({ status, events }) => {
       if (status.isInBlock) {
-        console.log(`\nTransaction included in block hash: ${status.asInBlock}`);
-        
+        console.log(
+          `\nTransaction included in block hash: ${status.asInBlock}`
+        );
+
         // Process events
         events.forEach(({ event }) => {
           const { section, method, data } = event;
           console.log(`\t${section}.${method}:`, data.toString());
-          
+
           // Handle any failures
           if (section === 'system' && method === 'ExtrinsicFailed') {
             const [dispatchError] = data;
             let errorInfo;
-            
+
             if (dispatchError.isModule) {
-              const decoded = api.registry.findMetaError(dispatchError.asModule);
+              const decoded = api.registry.findMetaError(
+                dispatchError.asModule
+              );
               errorInfo = `${decoded.section}.${decoded.name}: ${decoded.docs}`;
             } else {
               errorInfo = dispatchError.toString();
@@ -98,19 +117,22 @@ const main = async () => {
         });
 
         // Query updated auto-compound settings
-        api.query.parachainStaking.autoCompoundingDelegations(candidateAddress).then(newAutoCompound => {
-          const delegatorSetting = newAutoCompound.find(d => 
-            d.delegator.toString().toLowerCase() === delegator.address.toLowerCase()
-          );
-          if (delegatorSetting) {
-            console.log('\nUpdated Auto-Compound Setting:');
-            console.log('Value:', delegatorSetting.value.toString(), '%');
-          }
-          process.exit(0);
-        });
+        api.query.parachainStaking
+          .autoCompoundingDelegations(candidateAddress)
+          .then((newAutoCompound) => {
+            const delegatorSetting = newAutoCompound.find(
+              (d) =>
+                d.delegator.toString().toLowerCase() ===
+                delegator.address.toLowerCase()
+            );
+            if (delegatorSetting) {
+              console.log('\nUpdated Auto-Compound Setting:');
+              console.log('Value:', delegatorSetting.value.toString(), '%');
+            }
+            process.exit(0);
+          });
       }
     });
-
   } catch (error) {
     console.error('Error in setting auto-compound:', error);
     process.exit(1);
@@ -118,7 +140,7 @@ const main = async () => {
 };
 
 // Execute the script
-main().catch(error => {
+main().catch((error) => {
   console.error('Script error:', error);
   process.exit(1);
 });

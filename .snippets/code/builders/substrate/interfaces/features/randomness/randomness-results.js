@@ -3,17 +3,21 @@ import { ApiPromise, WsProvider } from '@polkadot/api';
 const main = async () => {
   // Initialize the API
   const api = await ApiPromise.create({
-    provider: new WsProvider('wss://moonbase-alpha.public.blastapi.io')
+    provider: new WsProvider('wss://moonbase-alpha.public.blastapi.io'),
   });
 
   try {
     // Query Babe Epoch randomness results
-    const babeResults = await api.query.randomness.randomnessResults({ BabeEpoch: 0 });
+    const babeResults = await api.query.randomness.randomnessResults({
+      BabeEpoch: 0,
+    });
     console.log('\nBabe Epoch Randomness Results:');
     console.log(babeResults.toHuman());
 
     // Query Local randomness results
-    const localResults = await api.query.randomness.randomnessResults({ Local: 0 });
+    const localResults = await api.query.randomness.randomnessResults({
+      Local: 0,
+    });
     console.log('\nLocal Randomness Results:');
     console.log(localResults.toHuman());
 
@@ -21,7 +25,10 @@ const main = async () => {
     console.log('\nAll Available Randomness Results:');
     const entries = await api.query.randomness.randomnessResults.entries();
     entries.forEach(([key, value]) => {
-      console.log('Key:', key.args.map((k) => k.toHuman()));
+      console.log(
+        'Key:',
+        key.args.map((k) => k.toHuman())
+      );
       console.log('Value:', value.toHuman());
       console.log('---');
     });
@@ -34,7 +41,7 @@ const main = async () => {
 };
 
 // Execute the script
-main().catch(error => {
+main().catch((error) => {
   console.error('Script error:', error);
   process.exit(1);
 });

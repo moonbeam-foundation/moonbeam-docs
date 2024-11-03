@@ -3,14 +3,18 @@ import { ApiPromise, WsProvider } from '@polkadot/api';
 const main = async () => {
   // Initialize the API
   const api = await ApiPromise.create({
-    provider: new WsProvider('wss://moonbase-alpha.public.blastapi.io')
+    provider: new WsProvider('wss://moonbase-alpha.public.blastapi.io'),
   });
 
   try {
     // Get the maximum number of delegations per delegator
-    const maxDelegations = await api.consts.parachainStaking.maxDelegationsPerDelegator;
-    
-    console.log('Maximum Delegations Per Delegator:', maxDelegations.toString());
+    const maxDelegations =
+      await api.consts.parachainStaking.maxDelegationsPerDelegator;
+
+    console.log(
+      'Maximum Delegations Per Delegator:',
+      maxDelegations.toString()
+    );
 
     process.exit(0);
   } catch (error) {
@@ -20,7 +24,7 @@ const main = async () => {
 };
 
 // Execute the script
-main().catch(error => {
+main().catch((error) => {
   console.error('Script error:', error);
   process.exit(1);
 });

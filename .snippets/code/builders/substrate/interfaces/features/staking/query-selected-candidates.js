@@ -3,7 +3,7 @@ import { ApiPromise, WsProvider } from '@polkadot/api';
 const main = async () => {
   // Initialize the API
   const api = await ApiPromise.create({
-    provider: new WsProvider('wss://moonbase-alpha.public.blastapi.io')
+    provider: new WsProvider('wss://moonbase-alpha.public.blastapi.io'),
   });
 
   try {
@@ -12,22 +12,28 @@ const main = async () => {
     console.log('Current Round:', round.current.toString());
 
     // Query selected candidates
-    const selectedCandidates = await api.query.parachainStaking.selectedCandidates();
-    
+    const selectedCandidates =
+      await api.query.parachainStaking.selectedCandidates();
+
     console.log('\nSelected Candidates:');
     console.log('Total Selected:', selectedCandidates.length);
 
     // Get detailed information for each candidate
     console.log('\nDetailed Candidate Information:');
     for (const [index, candidate] of selectedCandidates.entries()) {
-      const candidateInfo = await api.query.parachainStaking.candidateInfo(candidate);
-      
+      const candidateInfo =
+        await api.query.parachainStaking.candidateInfo(candidate);
+
       if (candidateInfo.isSome) {
         const info = candidateInfo.unwrap();
         console.log(`\nCandidate #${index + 1}:`);
         console.log('Address:', candidate.toString());
         console.log('Bond:', info.bond.toString(), 'Wei');
-        console.log('Bond in DEV:', (BigInt(info.bond) / BigInt(10 ** 18)).toString(), 'DEV');
+        console.log(
+          'Bond in DEV:',
+          (BigInt(info.bond) / BigInt(10 ** 18)).toString(),
+          'DEV'
+        );
         console.log('Delegation Count:', info.delegationCount.toString());
         console.log('Status:', info.status.toString());
 
@@ -52,7 +58,8 @@ const main = async () => {
     let totalDelegations = 0;
 
     for (const candidate of selectedCandidates) {
-      const candidateInfo = await api.query.parachainStaking.candidateInfo(candidate);
+      const candidateInfo =
+        await api.query.parachainStaking.candidateInfo(candidate);
       if (candidateInfo.isSome) {
         const info = candidateInfo.unwrap();
         totalBond += BigInt(info.bond);
@@ -62,9 +69,24 @@ const main = async () => {
 
     console.log('\nCollective Statistics:');
     console.log('Total Bonded:', totalBond.toString(), 'Wei');
-    console.log('Total Bonded in DEV:', (totalBond / BigInt(10 ** 18)).toString(), 'DEV');
-    console.log('Average Bond in DEV:', (totalBond / BigInt(selectedCandidates.length) / BigInt(10 ** 18)).toString(), 'DEV');
-    console.log('Average Delegations per Candidate:', (totalDelegations / selectedCandidates.length).toFixed(2));
+    console.log(
+      'Total Bonded in DEV:',
+      (totalBond / BigInt(10 ** 18)).toString(),
+      'DEV'
+    );
+    console.log(
+      'Average Bond in DEV:',
+      (
+        totalBond /
+        BigInt(selectedCandidates.length) /
+        BigInt(10 ** 18)
+      ).toString(),
+      'DEV'
+    );
+    console.log(
+      'Average Delegations per Candidate:',
+      (totalDelegations / selectedCandidates.length).toFixed(2)
+    );
 
     process.exit(0);
   } catch (error) {
@@ -74,7 +96,7 @@ const main = async () => {
 };
 
 // Execute the script
-main().catch(error => {
+main().catch((error) => {
   console.error('Script error:', error);
   process.exit(1);
 });

@@ -3,7 +3,7 @@ import { ApiPromise, WsProvider } from '@polkadot/api';
 const main = async () => {
   // Initialize the API
   const api = await ApiPromise.create({
-    provider: new WsProvider('wss://moonbase-alpha.public.blastapi.io')
+    provider: new WsProvider('wss://moonbase-alpha.public.blastapi.io'),
   });
 
   try {
@@ -14,8 +14,9 @@ const main = async () => {
     // Query most recent request as an example
     if (requestCount > 0) {
       const latestRequestId = requestCount - 1;
-      const specificRequest = await api.query.randomness.requests(latestRequestId);
-      
+      const specificRequest =
+        await api.query.randomness.requests(latestRequestId);
+
       console.log('\nLatest Request (ID:', latestRequestId.toString(), '):');
       if (specificRequest.isSome) {
         console.log(specificRequest.unwrap().toHuman());
@@ -27,7 +28,7 @@ const main = async () => {
     // Query all available requests
     console.log('\nAll Pending Requests:');
     const allRequests = await api.query.randomness.requests.entries();
-    
+
     if (allRequests.length === 0) {
       console.log('No pending requests found');
     } else {
@@ -53,7 +54,7 @@ const main = async () => {
 };
 
 // Execute the script
-main().catch(error => {
+main().catch((error) => {
   console.error('Script error:', error);
   process.exit(1);
 });

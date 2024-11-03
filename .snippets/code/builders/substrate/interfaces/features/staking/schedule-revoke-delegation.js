@@ -4,7 +4,7 @@ import { Keyring } from '@polkadot/keyring';
 const main = async () => {
   // Initialize the API
   const api = await ApiPromise.create({
-    provider: new WsProvider('wss://moonbase-alpha.public.blastapi.io')
+    provider: new WsProvider('wss://moonbase-alpha.public.blastapi.io'),
   });
 
   // Initialize the keyring with ethereum type
@@ -19,21 +19,29 @@ const main = async () => {
     const collatorAddress = 'INSERT_COLLATOR_ADDRESS';
 
     // Get current delegation info
-    const delegatorState = await api.query.parachainStaking.delegatorState(delegator.address);
-    
+    const delegatorState = await api.query.parachainStaking.delegatorState(
+      delegator.address
+    );
+
     console.log('Schedule Revoke Delegation Details:');
     console.log('Delegator address:', delegator.address);
     console.log('Collator address:', collatorAddress);
 
     if (delegatorState.isSome) {
       const state = delegatorState.unwrap();
-      const currentDelegation = state.delegations.find(d => 
-        d.owner.toString().toLowerCase() === collatorAddress.toLowerCase()
+      const currentDelegation = state.delegations.find(
+        (d) =>
+          d.owner.toString().toLowerCase() === collatorAddress.toLowerCase()
       );
       if (currentDelegation) {
-        console.log('\nCurrent Delegation Amount:', currentDelegation.amount.toString());
+        console.log(
+          '\nCurrent Delegation Amount:',
+          currentDelegation.amount.toString()
+        );
       } else {
-        console.log('\nWarning: No existing delegation found for this collator');
+        console.log(
+          '\nWarning: No existing delegation found for this collator'
+        );
         process.exit(1);
       }
     } else {
@@ -46,27 +54,30 @@ const main = async () => {
     console.log('Current round:', round.current.toString());
 
     // Create the schedule revoke transaction
-    const tx = api.tx.parachainStaking.scheduleRevokeDelegation(
-      collatorAddress
-    );
+    const tx =
+      api.tx.parachainStaking.scheduleRevokeDelegation(collatorAddress);
 
     // Sign and send the transaction
     await tx.signAndSend(delegator, ({ status, events }) => {
       if (status.isInBlock) {
-        console.log(`\nTransaction included in block hash: ${status.asInBlock}`);
-        
+        console.log(
+          `\nTransaction included in block hash: ${status.asInBlock}`
+        );
+
         // Process events
         events.forEach(({ event }) => {
           const { section, method, data } = event;
           console.log(`\t${section}.${method}:`, data.toString());
-          
+
           // Handle any failures
           if (section === 'system' && method === 'ExtrinsicFailed') {
             const [dispatchError] = data;
             let errorInfo;
-            
+
             if (dispatchError.isModule) {
-              const decoded = api.registry.findMetaError(dispatchError.asModule);
+              const decoded = api.registry.findMetaError(
+                dispatchError.asModule
+              );
               errorInfo = `${decoded.section}.${decoded.name}: ${decoded.docs}`;
             } else {
               errorInfo = dispatchError.toString();
@@ -75,35 +86,45 @@ const main = async () => {
           }
 
           // Log successful scheduling
-          if (section === 'parachainStaking' && method === 'DelegationRevocationScheduled') {
+          if (
+            section === 'parachainStaking' &&
+            method === 'DelegationRevocationScheduled'
+          ) {
             const [round, delegator, candidate, executeRound] = data;
             console.log('\nSuccessfully scheduled delegation revocation!');
             console.log('Round:', round.toString());
             console.log('Delegator:', delegator.toString());
             console.log('Collator:', candidate.toString());
             console.log('Execute round:', executeRound.toString());
-            console.log(`\nNote: You must wait until round ${executeRound.toString()} to execute the revocation request`);
+            console.log(
+              `\nNote: You must wait until round ${executeRound.toString()} to execute the revocation request`
+            );
           }
         });
 
         // Query final delegation state
-        api.query.parachainStaking.delegatorState(delegator.address).then(finalState => {
-          if (finalState.isSome) {
-            const state = finalState.unwrap();
-            const updatedDelegation = state.delegations.find(d => 
-              d.owner.toString().toLowerCase() === collatorAddress.toLowerCase()
-            );
-            if (updatedDelegation) {
-              console.log('\nCurrent Delegation Status:');
-              console.log('Amount:', updatedDelegation.amount.toString());
-              console.log('Note: Delegation will be fully revoked after execution in the scheduled round');
+        api.query.parachainStaking
+          .delegatorState(delegator.address)
+          .then((finalState) => {
+            if (finalState.isSome) {
+              const state = finalState.unwrap();
+              const updatedDelegation = state.delegations.find(
+                (d) =>
+                  d.owner.toString().toLowerCase() ===
+                  collatorAddress.toLowerCase()
+              );
+              if (updatedDelegation) {
+                console.log('\nCurrent Delegation Status:');
+                console.log('Amount:', updatedDelegation.amount.toString());
+                console.log(
+                  'Note: Delegation will be fully revoked after execution in the scheduled round'
+                );
+              }
             }
-          }
-          process.exit(0);
-        });
+            process.exit(0);
+          });
       }
     });
-
   } catch (error) {
     console.error('Error in scheduling delegation revocation:', error);
     process.exit(1);
@@ -111,7 +132,7 @@ const main = async () => {
 };
 
 // Execute the script
-main().catch(error => {
+main().catch((error) => {
   console.error('Script error:', error);
   process.exit(1);
 });
