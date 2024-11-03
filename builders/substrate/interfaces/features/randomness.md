@@ -78,48 +78,53 @@ The randomness pallet includes the following read-only storage methods to obtain
 
     === "Parameters"
 
-        - `` -
+        None
 
     === "Returns"
 
-        TODO
+        `u64` -  the relay epoch
 
     === "Polkadot.js API Example"
 
         ```js
-        TODO
+        --8<-- 'code/builders/substrate/interfaces/features/randomness/check-epoch.js'
         ```
 
 ??? function "**requestCount**() - returns the number of randomness requests made so far, and is used to generate the next request's uid"
 
     === "Parameters"
 
-        - `` -
+        None
 
     === "Returns"
 
-        TODO
+        `u64` -  the request count
 
     === "Polkadot.js API Example"
 
         ```js
-        TODO
+        --8<-- 'code/builders/substrate/interfaces/features/randomness/request-count.js'
         ```
 
 ??? function "**requests**(u64) - returns a given randomness request or all of the randomness requests that have not been fulfilled nor purged yet"
 
     === "Parameters"
 
-        - `u64` -
+        - `u64` - The request ID number (optional)
 
     === "Returns"
 
-        TODO
+        Returns an Option containing the request information if it exists and hasn't been fulfilled/purged, including:
 
+        - The request type (Local or Babe)
+        - When it can be fulfilled
+        - Number of random words requested
+        - The requester's information
+   
     === "Polkadot.js API Example"
 
         ```js
-        TODO
+        --8<-- 'code/builders/substrate/interfaces/features/randomness/query-requests.js'
         ```
 
 
@@ -131,95 +136,95 @@ The randomness pallet includes the following read-only functions to obtain palle
 
     === "Parameters"
 
-        - `` -
+        None
 
     === "Returns"
 
-        TODO
+        `u32` - the number of blocks that must pass before a local VRF request expires and can be purged
 
     === "Polkadot.js API Example"
 
         ```js
-        TODO
+        --8<-- 'code/builders/substrate/interfaces/features/randomness/block-expiration-delay.js'
         ```
 
 ??? function "**deposit**() - the amount that should be taken as a security deposit when requesting random words. There is one deposit per request"
 
     === "Parameters"
 
-        - `` -
+        None
 
     === "Returns"
 
-        TODO
+        `u128` - the amount that should be taken as a security deposit when requesting random words
 
     === "Polkadot.js API Example"
 
         ```js
-        TODO
+        --8<-- 'code/builders/substrate/interfaces/features/randomness/query-deposit-constant.js'
         ```
 
 ??? function "**epochExpirationDelay**() - the number of epochs that must pass before a BABE request expires and can be purged"
 
     === "Parameters"
 
-        - `` -
+        None
 
     === "Returns"
 
-        TODO
+        `u64` - the number of epochs that must pass before a BABE request expires and can be purged
 
     === "Polkadot.js API Example"
 
         ```js
-        TODO
+        --8<-- 'code/builders/substrate/interfaces/features/randomness/epoch-expiration-delay.js'
         ```
 
 ??? function "**maxBlockDelay**() - the maximum number of blocks (after the block in which the request was made) that can pass before a local VRF request is fulfilled"
 
     === "Parameters"
 
-        - `` -
+        None
 
     === "Returns"
 
-        TODO
+        `u32` - the maximum number of blocks that can pass before a local VRF request is fulfilled
 
     === "Polkadot.js API Example"
 
         ```js
-        TODO
+        --8<-- 'code/builders/substrate/interfaces/features/randomness/max-block-delay.js'
         ```
 
 ??? function "**maxRandomWords**() - the maximum number of random words that can be requested"
 
     === "Parameters"
 
-        - `` -
+        None
 
     === "Returns"
 
-        TODO
+        `u8` - the maximum number of random words that can be requested
 
     === "Polkadot.js API Example"
 
         ```js
-        TODO
+        --8<-- 'code/builders/substrate/interfaces/features/randomness/max-random-words.js'
         ```
 
 ??? function "**minBlockDelay**() - the minimum number of blocks (after the block in which the request was made) that must pass before a local VRF request can be fulfilled"
 
     === "Parameters"
 
-        - `` -
+        None
 
     === "Returns"
 
-        TODO
+        `u32` - the minimum number of blocks (after the block in which the request was made) that must pass before a local VRF request can be fulfilled
 
     === "Polkadot.js API Example"
 
         ```js
-        TODO
+        --8<-- 'code/builders/substrate/interfaces/features/randomness/min-block-delay.js'
         ```
 
