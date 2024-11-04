@@ -48,12 +48,12 @@ To use Particle Connect on Moonbeam, you'll need to begin by creating an account
 
 ## Install Dependencies {: #install-dependencies }
 
-To integrate Particle Connect into your Moonbeam application, you’ll need just a few dependencies. Particle Connect includes built-in Account Abstraction (AA) support.
+You'll need only a few dependencies to integrate Particle Connect into your Moonbeam application. Particle Connect offers built-in Account Abstraction (AA) support; however, in this example, we'll install the Particle AA SDK to utilize EIP-1193 providers, such as ethers.
 
 === "yarn"
 
     ```bash
-    yarn add @particle-network/connectkit viem@^2
+    yarn add @particle-network/connectkit viem@^2 @particle-network/aa ethers
     ```
 
 > Note that this tutorial is based on a [Next.js app](https://nextjs.org/docs/getting-started/installation){target=\_blank} with TypeScript and Tailwind CSS.
@@ -102,6 +102,24 @@ After completing the configuration, wrap your application with the `ParticleConn
 ```
 
 Wrapping your application in `ParticleConnectKit` provides global access to the SDK, making features like social logins and wallet generation available throughout your app. This setup in `layout.tsx` ensures all components can access Particle Connect’s capabilities.
+
+### Connecting Wallet
+
+With the configured `layout.tsx` file, the next step is to add a central **Connect Wallet** button for user connectivity. You can achieve this by importing `ConnectButton` from `@particle-network/connectkit`. Once the user logs in, the `ConnectButton` transforms into an embedded widget.
+
+```js
+--8<-- 'code/builders/integrations/wallets/particle/connect.js'
+```
+
+### Sending transactions with an EIP-1193 provider
+
+Using Particle Connect alongside the Particle AA SDK enables you to work with an EIP-1193 provider like ethers. This approach is beneficial because you're likely already familiar with these providers or if you integrate Particle Connect into an existing application.
+
+To set this up, wrap the smart account provided by Particle Connect with an instance of ethers to create a `customProvider.` From there, you can use ethers as usual, with the smart account as the underlying transaction signer.
+
+```js
+--8<-- 'code/builders/integrations/wallets/particle/ethers-tx.js'
+```
 
 ## Example of Utilization {: #example-of-utilization }
 
