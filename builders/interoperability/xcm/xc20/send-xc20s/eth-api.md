@@ -103,25 +103,73 @@ The interface includes the necessary data structures along with the following fu
         - `assets` - [[[1, ["0x010000000000000000000000000000000000000800"]], 1000000000000000000]]
         - `feeAssetItem` - 0
 
-??? function "**transferAssetsUsingTypeAndThenLocation**(_dest, assets, assetsTransferType, remoteFeesIdIndex, feesTransferType, customXcmOnDest_) — sends assets through `transfer_assets_using_type_and_then()` pallet-xcm extrinsic. Important: RemoteReserve type (for either assets or fees) is not allowed. For sending assets and fees (in Location format) with a remote reserve, use `transferAssetsUsingTypeAndThenLocation`"
+??? function "**transferAssetsUsingTypeAndThenLocation**(_dest, assets, assetsTransferType, remoteFeesIdIndex, feesTransferType, customXcmOnDest_) — sends assets through `transfer_assets_using_type_and_then()` pallet-xcm extrinsic. Important: RemoteReserve type (for either assets or fees) is not allowed. For sending assets and fees (in Location format) with a remote reserve, use the subsequent `transferAssetsUsingTypeAndThenLocation` which shares the same function name as this but takes a different set of parameters"
 
     === "Parameters"
         - `dest` *Location memory* - the destination chain
         - `assets` *AssetLocationInfo[] memory* - an array of assets to send in Location format
-        - `assetsTransferType` *TransferType* - the TransferType corresponding to assets being sent
+        - `assetsTransferType` *TransferType* - the TransferType corresponding to assets being sent (Teleport = 0, LocalReserve = 1, DestinationReserve = 2)
         - `remoteFeesIdIndex` *uint8* - the index of the asset (inside assets array) to use as fees
-        - `feesTransferType` *TransferType* - the TransferType corresponding to the asset used as fees
+        - `feesTransferType` *TransferType* - the TransferType corresponding to the asset used as fees (Teleport = 0, LocalReserve = 1, DestinationReserve = 2)
         - `customXcmOnDest` *bytes memory* - the XCM message to execute on destination chain
 
     === "Example"
         - `dest` - ["1",[]]
         - `assets` - [[[1, ["0x010000000000000000000000000000000000000800"]], 1000000000000000000]]
-        - `assetsTransferType` - 0 // Assuming 0 represents a valid TransferType enum value
+        - `assetsTransferType` - 0  // Teleport
         - `remoteFeesIdIndex` - 0
-        - `feesTransferType` - 1 // Assuming 1 represents a valid TransferType enum value
-        - `customXcmOnDest` - 0x... // Example XCM encoded message
+        - `feesTransferType` - 1    // LocalReserve
+        - `customXcmOnDest` - 0x...  // Example XCM encoded message
 
+??? function "**transferAssetsUsingTypeAndThenLocation**(_dest, assets, remoteFeesIdIndex, customXcmOnDest, remoteReserve_) — sends assets through `transfer_assets_using_type_and_then()` pallet-xcm extrinsic. Important: The remote reserve must be shared between assets and fees"
 
+    === "Parameters"
+        - `dest` *Location memory* - the destination chain
+        - `assets` *AssetLocationInfo[] memory* - an array of assets to send in Location format
+        - `remoteFeesIdIndex` *uint8* - the index of the asset (inside assets array) to use as fees
+        - `customXcmOnDest` *bytes memory* - the XCM message to execute on destination chain
+        - `remoteReserve` *Location memory* - the remote reserve corresponding for assets and fees (must be shared)
+
+    === "Example"
+        - `dest` - ["1",[]]
+        - `assets` - [[[1, ["0x010000000000000000000000000000000000000800"]], 1000000000000000000]]
+        - `remoteFeesIdIndex` - 0
+        - `customXcmOnDest` - 0x...  // Example XCM encoded message
+        - `remoteReserve` - ["1", ["0x01"]]  // Example remote reserve location
+
+??? function "**transferAssetsUsingTypeAndThenAddress**(_dest, assets, assetsTransferType, remoteFeesIdIndex, feesTransferType, customXcmOnDest_) — sends assets through `transfer_assets_using_type_and_then()` pallet-xcm extrinsic. Important: RemoteReserve type (for either assets or fees) is not allowed. For sending assets and fees (in Address format) with a remote reserve, use the subsequent `transferAssetsUsingTypeAndThenAddress`, which shares the same name as this function but takes a different set of parameters"
+
+    === "Parameters"
+        - `dest` *Location memory* - the destination chain
+        - `assets` *AssetAddressInfo[] memory* - an array of assets to send in Address format
+        - `assetsTransferType` *TransferType* - the TransferType corresponding to assets being sent (Teleport = 0, LocalReserve = 1, DestinationReserve = 2)
+        - `remoteFeesIdIndex` *uint8* - the index of the asset (inside assets array) to use as fees
+        - `feesTransferType` *TransferType* - the TransferType corresponding to the asset used as fees (Teleport = 0, LocalReserve = 1, DestinationReserve = 2)
+        - `customXcmOnDest` *bytes memory* - the XCM message to execute on destination chain
+
+    === "Example"
+        - `dest` - ["1",[]]
+        - `assets` - [["0x0000000000000000000000000000000000000800", 1000000000000000000]]
+        - `assetsTransferType` - 0  // Teleport
+        - `remoteFeesIdIndex` - 0
+        - `feesTransferType` - 1    // LocalReserve
+        - `customXcmOnDest` - 0x...  // Example XCM encoded message
+
+??? function "**transferAssetsUsingTypeAndThenAddress**(_dest, assets, remoteFeesIdIndex, customXcmOnDest, remoteReserve_) — sends assets through `transfer_assets_using_type_and_then()` pallet-xcm extrinsic. Important: The remote reserve must be shared between assets and fees"
+
+    === "Parameters"
+        - `dest` *Location memory* - the destination chain
+        - `assets` *AssetAddressInfo[] memory* - an array of assets to send in Address format
+        - `remoteFeesIdIndex` *uint8* - the index of the asset (inside assets array) to use as fees
+        - `customXcmOnDest` *bytes memory* - the XCM message to execute on destination chain
+        - `remoteReserve` *Location memory* - the remote reserve corresponding for assets and fees (must be shared)
+
+    === "Example"
+        - `dest` - ["1",[]]
+        - `assets` - [["0x0000000000000000000000000000000000000800", 1000000000000000000]]
+        - `remoteFeesIdIndex` - 0
+        - `customXcmOnDest` - 0x...  // Example XCM encoded message
+        - `remoteReserve` - ["1", ["0x01"]]  // Example remote reserve location
 
 ## Interact with the Solidity Interface {: #interact-with-the-solidity-interface }
 
