@@ -3,17 +3,15 @@ title: Add Particle Network to a dApp
 description: Learn how to integrate Particle Network's Wallet-as-a-Service into a dApp built on Moonbeam to enable MPC-based onboarding and ERC-4337 AA interaction.
 ---
 
-# Particle Network Smart Wallet-as-a-Service
+# Particle Network Wallet Abstraction
 
 ## Introduction {: #introduction }
 
-[Particle Network](https://particle.network){target=\_blank} is a [Smart Wallet-as-a-Service](https://docs.particle.network/getting-started/smart-wallet-as-a-service){target=\_blank} provider that enhances user experience with modular and customizable Externally Owned Account (EOA) and [Account Abstraction (AA)](https://docs.particle.network/developers/account-abstraction){target=\_blank} embedded wallet components.
+[Particle Network](https://particle.network){target=\_blank} offers Wallet Abstraction services with an Account Abstraction stack, providing a suite of SDKs focused on reducing user onboarding friction. 
 
-One key component of Particle's Smart Wallet-as-a-Service stack is [Particle Connect](https://developers.particle.network/api-reference/connect/desktop/web){target=\_blank}, which streamlines user onboarding by supporting familiar Web2 accounts—like Google, email, and phone numbers—alongside Web3 methods. This functionality is powered by [Multi-Party Computation-based Threshold Signature Scheme (MPC-TSS)](https://docs.particle.network/developers/auth-service){target=\_blank} technology for secure and efficient key management.
+By embedding customizable Externally Owned Account (EOA) and [Account Abstraction (AA)](https://docs.particle.network/developers/account-abstraction){target=\_blank} components, Particle allows quick 2-click onboarding via social logins like Google, email, and phone, as well as traditional Web3 methods. This approach removes the need for users to manage a conventional wallet, delivering a streamlined, application-specific experience for Web3 interactions.
 
-For a full overview of Particle's stack, see the blog post: [Introducing Our Smart Wallet-as-a-Service Modular Stack](https://blog.particle.network/announcing-our-smart-wallet-as-a-service-modular-stack-upgrading-waas-with-erc-4337){target=\_blank}.
-
-Particle Network supports Moonbeam, Moonriver, and the Moonbase Alpha TestNet with both standard EOA interactions and native [ERC-4337](https://eips.ethereum.org/EIPS/eip-4337){target=\_blank} SimpleAccount implementations, providing full-stack account abstraction.
+Particle Network supports Moonbeam, Moonriver, and the Moonbase Alpha TestNet with both standard EOA interactions and native [ERC-4337](https://eips.ethereum.org/EIPS/eip-4337){target=\_blank} `SimpleAccount` implementations, providing full-stack account abstraction.
 
 Key components of Particle Network's Moonbeam integration include:
 
