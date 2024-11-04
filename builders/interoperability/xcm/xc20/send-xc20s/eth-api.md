@@ -39,7 +39,7 @@ The XCM Precompile is located at the following address:
 
 ## The XCM Solidity Interface {: #the-xcm-solidity-interface }
 
-The [`XCMInterface.sol`](https://github.com/Moonsong-Labs/moonkit/blob/main/precompiles/pallet-xcm/XcmInterface.sol){target=\_blank} is a Solidity interface that allows developers to interact with the precompile's functions.
+The [`XCMInterface.sol`](https://github.com/Moonsong-Labs/moonkit/blob/main/precompiles/pallet-xcm/XcmInterface.sol){target=\_blank} is a Solidity interface that allows developers to interact with the methods of `pallet-xcm`.
 
 ??? code "XCMInterface.sol"
 
