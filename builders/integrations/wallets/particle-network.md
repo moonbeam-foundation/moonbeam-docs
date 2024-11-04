@@ -86,7 +86,7 @@ Here’s the code to add to your `ConnectKit.tsx` file:
 --8<-- 'code/builders/integrations/wallets/particle/configure-particle.js'
 ```
 
-This setup initializes the `ParticleConnectKit` component with your project keys and defines essential SDK configurations, including supported chains (such as Moonbeam), wallet positioning and visibility options, and an instance of a `SIMPLE` smart account.
+This setup initializes `ParticleConnectKit`, a wrapper for the configured `ConnectKitProvider` instance, using your project keys. It also defines essential SDK settings, such as supported chains (e.g., Moonbeam), wallet positioning and visibility options, and a `SIMPLE` smart account instance.
 
 For further customization options, refer to the [Particle Connect documentation](https://developers.particle.network/api-reference/connect/desktop/web#configuration){target=\_blank}.
 
