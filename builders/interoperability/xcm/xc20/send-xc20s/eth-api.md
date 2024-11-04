@@ -11,7 +11,7 @@ As a Polkadot parachain, Moonbeam has the inherent ability to communicate and ex
 
 The communication protocol enabling token transfers is built on [Substrate](/builders/substrate/){target=\_blank} and runs on a lower level than the EVM, making it harder for EVM developers to access.
 
-Nevertheless, Moonbeam networks have an XCM Precompile that fills the gap between execution layers, exposing a smart contract interface that abstracts away the underlying complexities, making the execution of cross-chain token transfers as easy as any other smart contract call.
+Nevertheless, Moonbeam networks have an XCM Precompile that fills the gap between execution layers. This precompile exposes a smart contract interface that abstracts away the underlying complexities, making the execution of cross-chain token transfers as easy as any other smart contract call. 
 
 This guide will show you how to interact with the [XCM Interface](https://github.com/Moonsong-Labs/moonkit/blob/main/precompiles/pallet-xcm/XcmInterface.sol){target=\_blank} precompile to execute cross-chain token transfers through the Ethereum API.
 
@@ -103,7 +103,7 @@ The interface includes the necessary data structures along with the following fu
         - `assets` - [[[1, ["0x010000000000000000000000000000000000000800"]], 1000000000000000000]]
         - `feeAssetItem` - 0
 
-??? function "**transferAssetsUsingTypeAndThenLocation**(_dest, assets, assetsTransferType, remoteFeesIdIndex, feesTransferType, customXcmOnDest_) — sends assets through `transfer_assets_using_type_and_then()` pallet-xcm extrinsic. Important: RemoteReserve type (for either assets or fees) is not allowed. For sending assets and fees (in Location format) with a remote reserve, use the subsequent `transferAssetsUsingTypeAndThenLocation` which shares the same function name as this but takes a different set of parameters"
+??? function "**transferAssetsUsingTypeAndThenLocation**(_dest, assets, assetsTransferType, remoteFeesIdIndex, feesTransferType, customXcmOnDest_) — sends assets through `transfer_assets_using_type_and_then()` pallet-xcm extrinsic. Important: RemoteReserve type (for either assets or fees) is prohibited. For sending assets and fees (in Location format) with a remote reserve, use the subsequent `transferAssetsUsingTypeAndThenLocation` which shares the same function name as this but takes a different set of parameters"
 
     === "Parameters"
         - `dest` *Location memory* - the destination chain
@@ -175,7 +175,7 @@ The interface includes the necessary data structures along with the following fu
 
 ### Checking Prerequisites {: #checking-prerequisites }
 
-To follow along with this tutorial, you will need to have your preferred EVM wallet configured and an account funded with native tokens. You can add Moonbeam to MetaMask wallet following this guide: [Interacting with Moonbeam Using MetaMask](/tokens/connect/metamask/){target=\_blank}.
+To follow this tutorial, you must have your preferred EVM wallet configured and an account funded with native tokens. You can add Moonbeam to MetaMask wallet following this guide: [Interacting with Moonbeam Using MetaMask](/tokens/connect/metamask/){target=\_blank}.
 
 ### Remix Set Up {: #remix-set-up }
 
@@ -215,7 +215,7 @@ To send tokens over to an account in another EVM-compatible appchain, please fol
 
 1. Expand the **transferAssetsToPara20** function
 2. Enter the appchain ID (paraId)
-3. Enter the 20-bytes (Ethereum-like) destination account (beneficiary)
+3. Enter the 20-byte (Ethereum-like) destination account (beneficiary)
 4. Specify the tokens to be transferred. Note that this parameter is an array that contains at least one asset. Each asset is specified by its address and the total amount to transfer
 5. Enter the index of the asset that will be used to pay the fees. This index is zero-based, so the first element is `0`, the second is `1`, and so on
 6. Click **transact**
@@ -223,7 +223,7 @@ To send tokens over to an account in another EVM-compatible appchain, please fol
 
 ![Confirm Approve Transaction](/images/builders/interoperability/xcm/xc20/send-xc20s/eth-api/eth-api-3.webp)
 
-After the transaction is confirmed, wait for a few blocks for the transfer to reach the destination chain and reflect the new balance.
+After the transaction is confirmed, wait a few blocks for the transfer to reach the destination chain and reflect the new balance.
 
 ### Send Tokens Over to a Substrate Appchain {: #transfer-to-substrate-chains }
 
@@ -242,7 +242,7 @@ To send tokens over to an account in a Substrate appchain, please follow these s
 
 ![Confirm Approve Transaction](/images/builders/interoperability/xcm/xc20/send-xc20s/eth-api/eth-api-4.webp)
 
-After the transaction is confirmed, wait for a few blocks for the transfer to reach the destination chain and reflect the new balance.
+After the transaction is confirmed, wait a few blocks for the transfer to reach the destination chain and reflect the new balance.
 
 ### Send Tokens Over to the Relay Chain {: #transfer-to-relay-chain }
 
@@ -255,18 +255,18 @@ To send tokens over to an account in the relay chain, please follow these steps:
    --8<-- 'text/builders/toolkit/ethereum-api/precompiles/xcm-interface/erc-20-note.md'
 
 4. Enter the index of the asset that will be used to pay the fees. This index is zero-based, so the first element is `0`, the second is `1`, and so on
-5. Enter the maximum gas to pay for the transaction. This gas is derived from two parameters, the processing time (refTime) and the proof size (proofSize). In practice, setting refTime to `uint64::MAX` is equal to _unlimited weight_
-6. Click **transact**
-7. MetaMask will pop up, and you will be prompted to review the transaction details. Click **Confirm** to send the transaction
+5. Click **transact**
+6. MetaMask will pop up, and you will be prompted to review the transaction details. Click **Confirm** to send the transaction
 
 ![Confirm Approve Transaction](/images/builders/interoperability/xcm/xc20/send-xc20s/eth-api/eth-api-5.webp)
 
-After the transaction is confirmed, wait for a few blocks for the transfer to reach the destination chain and reflect the new balance.
+After the transaction is confirmed, wait a few blocks for the transfer to reach the destination chain and reflect the new balance.
 
 ### Send Tokens Over Specific Locations {: #transfer-locations }
 
-This function is more generic than the others, allowing the destination chain, destination account, and assets to be specified using [XCM Multilocations](/builders/interoperability/xcm/core-concepts/multilocations/){target=\_blank}.
-To send tokens to specific locations, please follow these steps:
+There are two methods that share names with closely related methods, `transferAssetsUsingTypeAndThenLocation` and `transferAssetsUsingTypeAndThenAddress`. However, these are not duplicates. For each function, there is one that accepts five parameters and another that accepts six. The function with five parameters can only be used when the remote reserve is shared between assets and fees. If the remote reserve is not shared between assets and fees, you can use the six parameter version of the method to specify the information needed.
+
+The following example will demonstrate `transferAssetsUsingTypeAndThenAddress` when the remote reverse is shared between assets and fees. To follow along with the tutorial, take the following steps:
 
 1. Expand the **transferAssetsUsingTypeAndThenAddress** function
 2. Enter the multilocation that specifies the destination chain. Note that any chain can be specified, regardless of its configuration or type
@@ -279,4 +279,4 @@ To send tokens to specific locations, please follow these steps:
 
 ![Confirm Approve Transaction](/images/builders/interoperability/xcm/xc20/send-xc20s/eth-api/eth-api-6.webp)
 
-After the transaction is confirmed, wait for a few blocks for the transfer to reach the destination chain and reflect the new balance.
+After the transaction is confirmed, wait a few blocks for the transfer to reach the destination chain and reflect the new balance.
