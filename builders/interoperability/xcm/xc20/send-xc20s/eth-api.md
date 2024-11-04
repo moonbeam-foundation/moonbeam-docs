@@ -49,73 +49,79 @@ The [`XCMInterface.sol`](https://github.com/Moonsong-Labs/moonkit/blob/main/prec
 
 The interface includes the necessary data structures along with the following functions:
 
-???+ function "**transferAssetsToPara20**(_paraId, beneficiary, assets, feeAssetItem, weight_) — sends assets to another EVM-compatible appchain using the underlying `transfer_assets()` transaction included in the XCM pallet module"
-
+???+ function "**transferAssetsToPara20**(_paraId, beneficiary, assets, feeAssetItem_) — sends assets via XCM to a 20 byte-like parachain using the underlying `transfer_assets()` transaction included in the XCM pallet module"
+   
     === "Parameters"
-
-        - `paraId` *uint32* - the destination's appchain ID
+        - `paraId` *uint32* - the para-id of the destination chain
         - `beneficiary` *address* - the ECDSA-type account in the destination chain that will receive the tokens
-        - `assets` *AssetAddressInfo[] memory* - an array of assets to send
+        - `assets` *AssetAddressInfo[] memory* - an array of assets to send in Address format
         - `feeAssetItem` *uint32* - the index of the asset that will be used to pay fees
-        - `weight` *Weight memory* - the maximum gas to use in the whole operation. Setting uint64::MAX to `refTime` acts in practice as *unlimited weight*
 
     === "Example"
-
         - `paraId` - 888
         - `beneficiary` - 0x3f0Aef9Bd799F1291b80376aD57530D353ab0217
         - `assets` - [["0x0000000000000000000000000000000000000800", 1000000000000000000]]
         - `feeAssetItem` - 0
-        - `weight` - [9223372036854775807, 9223372036854775807]
 
-??? function "**transferAssetsToPara32**(_paraId, beneficiary, assets,feeAssetItem, weight_) — sends assets to a Substrate appchain using the underlying `transfer_assets()` transaction included in the XCM pallet module"
+??? function "**transferAssetsToPara32**(_paraId, beneficiary, assets, feeAssetItem_) — sends assets via XCM to a 32 byte-like parachain using the underlying `transfer_assets()` transaction included in the XCM pallet module"
 
     === "Parameters"
-
-        - `paraId` *uint32* - the destination's appchain ID
-        - `beneficiary` *bytes32* - the Substrate's SR25519-type account in the destination chain that will receive the tokens
-        - `assets` *AssetAddressInfo[] memory* - an array of assets to send
+        - `paraId` *uint32* - the para-id of the destination chain
+        - `beneficiary` *bytes32* - the actual account that will receive the tokens on paraId destination
+        - `assets` *AssetAddressInfo[] memory* - an array of assets to send in Address format
         - `feeAssetItem` *uint32* - the index of the asset that will be used to pay fees
-        - `weight` *Weight memory* - the maximum gas to use in the whole operation. Setting uint64::MAX to `refTime` acts in practice as *unlimited weight*
 
     === "Example"
-
         - `paraId` - 888
         - `beneficiary` - 0xf831d83025f527daeed39a644d64d335a4e627b5f4becc78fb67f05976889a06
         - `assets` - [["0x0000000000000000000000000000000000000800", 1000000000000000000]]
         - `feeAssetItem` - 0
-        - `weight` - [9223372036854775807, 9223372036854775807]
 
-??? function "**transferAssetsToRelay**(_beneficiary, assets, feeAssetItem, weight_) — sends assets to the relay chain using the underlying `transfer_assets()` transaction included in the XCM pallet module"
+??? function "**transferAssetsToRelay**(_beneficiary, assets, feeAssetItem_) — sends assets via XCM to the relay chain using the underlying `transfer_assets()` transaction included in the XCM pallet module"
 
     === "Parameters"
-
-        - `beneficiary` *bytes32* - the Substrate's sr25519-type account in the relay chain that will receive the tokens
-        - `assets` *AssetAddressInfo[] memory* - an array of assets to send
+        - `beneficiary` *bytes32* - the actual account that will receive the tokens on the relay chain
+        - `assets` *AssetAddressInfo[] memory* - an array of assets to send in Address format
         - `feeAssetItem` *uint32* - the index of the asset that will be used to pay fees
-        - `weight` *Weight memory* - the maximum gas to use in the whole operation. Setting uint64::MAX to `refTime` acts in practice as *unlimited weight*
 
     === "Example"
-
         - `beneficiary` - 0xf831d83025f527daeed39a644d64d335a4e627b5f4becc78fb67f05976889a06
         - `assets` - [["0x0000000000000000000000000000000000000800", 1000000000000000000]]
         - `feeAssetItem` - 0
-        - `weight` - [9223372036854775807, 9223372036854775807]
 
-??? function "**transferAssetsLocation**(_dest, beneficiary, assets, feeAssetItem, weight_) — sends assets using the underlying `transfer_assets()` transaction included in the XCM pallet module"
+??? function "**transferAssetsLocation**(_dest, beneficiary, assets, feeAssetItem_) — sends assets using the underlying `transfer_assets()` transaction included in the XCM pallet module"
 
     === "Parameters"
         - `dest` *Location memory* - the destination chain
         - `beneficiary` *Location memory* - the account in the destination chain that will receive the tokens
         - `assets` *AssetLocationInfo[] memory* - an array of assets to send
         - `feeAssetItem` *uint32* - the index of the asset that will be used to pay fees
-        - `weight` *Weight memory* - the maximum gas to use in the whole operation. Setting uint64::MAX to `refTime` acts in practice as *unlimited weight*
 
     === "Example"
         - `dest` - ["1",[]]
         - `beneficiary` - [0, ["0x01f831d83025f527daeed39a644d64d335a4e627b5f4becc78fb67f05976889a0600"]]
         - `assets` - [[[1, ["0x010000000000000000000000000000000000000800"]], 1000000000000000000]]
         - `feeAssetItem` - 0
-        - `weight` - [9223372036854775807, 9223372036854775807]
+
+??? function "**transferAssetsUsingTypeAndThenLocation**(_dest, assets, assetsTransferType, remoteFeesIdIndex, feesTransferType, customXcmOnDest_) — sends assets through `transfer_assets_using_type_and_then()` pallet-xcm extrinsic. Important: RemoteReserve type (for either assets or fees) is not allowed. For sending assets and fees (in Location format) with a remote reserve, use `transferAssetsUsingTypeAndThenLocation`"
+
+    === "Parameters"
+        - `dest` *Location memory* - the destination chain
+        - `assets` *AssetLocationInfo[] memory* - an array of assets to send in Location format
+        - `assetsTransferType` *TransferType* - the TransferType corresponding to assets being sent
+        - `remoteFeesIdIndex` *uint8* - the index of the asset (inside assets array) to use as fees
+        - `feesTransferType` *TransferType* - the TransferType corresponding to the asset used as fees
+        - `customXcmOnDest` *bytes memory* - the XCM message to execute on destination chain
+
+    === "Example"
+        - `dest` - ["1",[]]
+        - `assets` - [[[1, ["0x010000000000000000000000000000000000000800"]], 1000000000000000000]]
+        - `assetsTransferType` - 0 // Assuming 0 represents a valid TransferType enum value
+        - `remoteFeesIdIndex` - 0
+        - `feesTransferType` - 1 // Assuming 1 represents a valid TransferType enum value
+        - `customXcmOnDest` - 0x... // Example XCM encoded message
+
+
 
 ## Interact with the Solidity Interface {: #interact-with-the-solidity-interface }
 
