@@ -8,7 +8,11 @@ import {
   usePublicClient,
   useSmartAccount,
 } from "@particle-network/connectkit";
-import { parseEther, formatEther } from "viem";
+
+// Eip1193 and AA Provider
+import { AAWrapProvider, SendTransactionMode } from "@particle-network/aa"; // Only needed with Eip1193 provider
+import { ethers, type Eip1193Provider } from "ethers";
+import { formatEther, parseEther } from "viem";
 
 export default function Home() {
   const { isConnected, chain } = useAccount();
@@ -19,6 +23,17 @@ export default function Home() {
   const [balance, setBalance] = useState<string | null>(null);
   const [recipientAddress, setRecipientAddress] = useState<string>("");
   const [transactionHash, setTransactionHash] = useState<string | null>(null);
+
+  // Init custom provider with gasless transaction mode
+  const customProvider = smartAccount
+    ? new ethers.BrowserProvider(
+        new AAWrapProvider(
+          smartAccount,
+          SendTransactionMode.Gasless
+        ) as Eip1193Provider,
+        "any"
+      )
+    : null;
 
   /**
    * Fetches the balance of a given address.
@@ -60,29 +75,25 @@ export default function Home() {
   }, [isConnected, smartAccount]);
 
   /**
-   * Sends a transaction using the native AA Particle provider with gasless mode.
+   * Sends a transaction using the ethers.js library.
+   * This transaction is gasless since the customProvider is initialized as gasless
    */
-  const executeTxNative = async () => {
+  const executeTxEthers = async () => {
+    if (!customProvider) return;
+
+    const signer = await customProvider.getSigner();
     try {
       const tx = {
         to: recipientAddress,
         value: parseEther("0.01").toString(),
-        data: "0x",
       };
 
-      const feeQuotesResult = await smartAccount?.getFeeQuotes(tx);
-      const { userOp, userOpHash } =
-        feeQuotesResult?.verifyingPaymasterGasless || {};
+      const txResponse = await signer.sendTransaction(tx);
+      const txReceipt = await txResponse.wait();
 
-      if (userOp && userOpHash) {
-        const txHash = await smartAccount?.sendUserOperation({
-          userOp,
-          userOpHash,
-        });
-        setTransactionHash(txHash || null);
-      }
+      setTransactionHash(txReceipt?.hash || null);
     } catch (error) {
-      console.error("Failed to send transaction:", error);
+      console.error("Failed to send transaction using ethers.js:", error);
     }
   };
 
@@ -109,7 +120,7 @@ export default function Home() {
             />
             <button
               className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded mt-4"
-              onClick={executeTxNative}
+              onClick={executeTxEthers}
               disabled={!recipientAddress}
             >
               Send 0.001 {chain?.nativeCurrency.name}

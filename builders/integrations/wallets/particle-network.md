@@ -125,12 +125,14 @@ To set this up, wrap the smart account provided by Particle Connect with an inst
 
 With the aforementioned established, Particle Connect can be used similarly, as shown in the example application below.
 
-Specifically, this application creates a smart account on Moonbeam MainNet through social login, then uses it to send a gasless transaction of 0.001 GLMR.
+Specifically, this application creates a smart account on Moonbeam MainNet through social login, then uses it to send a gasless transaction of 0.001 GLMR with the ethers provider.
 
 ```js
 --8<-- 'code/builders/integrations/wallets/particle/example-app.js'
 ```
 
 That concludes the brief introduction to Particle's Smart Wallet-as-a-Service stack and how to get started with Particle on Moonbeam. For more information, you can check out [Particle Network's documentation](https://docs.particle.network){target=\_blank}.
+
+Find the repository with the full code implementation on the [Particle Network GitHub](https://github.com/Particle-Network/connect-moonbeam-tutorial).
 
 --8<-- 'text/_disclaimers/third-party-content.md'
