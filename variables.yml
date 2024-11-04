@@ -429,12 +429,12 @@ networks:
     chain_id: 1285
     hex_chain_id: '0x505'
     node_directory: /var/lib/moonriver-data
-    parachain_release_tag: v0.40.1
-    parachain_sha256sum: db91ff9bd00e283b0105bf2997b401dbaf729a8d6ce53757c380b3c99ba9a275
-    tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.40.1-3200-ae11
+    parachain_release_tag: v0.41.0
+    parachain_sha256sum: d199266180adcdb25c19aa0ac9d8f5a7157ef1235393fac616d48bb68ba8bcde
+    tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.41.0-3300-d3e6
     chain_spec: moonriver
     block_explorer: https://moonriver.moonscan.io/
-    spec_version: runtime-3200
+    spec_version: runtime-3300
     binary_name: moonbeam
     min_gas_price: 1.25
     block_time: 6
@@ -814,9 +814,9 @@ networks:
     chain_id: 1284
     hex_chain_id: '0x504'
     node_directory: /var/lib/moonbeam-data
-    parachain_release_tag: v0.40.1
-    parachain_sha256sum: db91ff9bd00e283b0105bf2997b401dbaf729a8d6ce53757c380b3c99ba9a275
-    tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.40.1-3200-ae11
+    parachain_release_tag: v0.41.0
+    parachain_sha256sum: d199266180adcdb25c19aa0ac9d8f5a7157ef1235393fac616d48bb68ba8bcde
+    tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.41.0-3300-d3e6
     chain_spec: moonbeam
     block_explorer: https://moonscan.io
     spec_version: runtime-3200
