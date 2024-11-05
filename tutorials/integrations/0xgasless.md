@@ -1,6 +1,6 @@
 ---
 title: Gasless Transactions with 0xGasless
-description: Learn how to enable gasless transactions using 0xGasless.
+description: Learn how to implement gasless transactions on Moonbeam using 0xGasless, enabling users to interact with smart contracts without holding native tokens.
 ---
 
 # Enabling Gasless Transactions with 0xGasless
