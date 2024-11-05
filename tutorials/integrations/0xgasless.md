@@ -7,7 +7,7 @@ description: Learn how to implement gasless transactions on Moonbeam using 0xGas
 
 ## Why Gasless Transactions?
 
-One of the primary challenges in blockchain development has been the requirement for users to hold native tokens (like ETH or GLMR) to pay for transaction fees. This traditional EOA-based model creates unnecessary friction, particularly when onboarding users who expect Web2-like experiences.
+One of the primary challenges in blockchain development has been the requirement for users to hold native tokens (like ETH or GLMR) to pay transaction fees. This traditional EOA-based model creates unnecessary friction, particularly when onboarding users who expect Web2-like experiences.
 
 Gasless transactions can help solve this through Account Abstraction ([ERC-4337](https://eips.ethereum.org/EIPS/eip-4337){target=\_blank}), implementing meta-transactions that separate user actions from fee payment. This architecture allows dApps or third-party paymasters to cover gas costs on behalf of users while smart contract wallets handle the transaction execution. [0xGasless](https://0xgasless.com/index.html){target=\_blank} leverages these principles in its SDK, enabling Moonbeam developers to implement sophisticated features like social logins, transaction batching, and custom wallet controls – all while abstracting away the complexity of gas management from end users.
 
@@ -99,7 +99,7 @@ Do not use the deprecated format:
 https://paymaster.0xgasless.com/api/v1/1284/rpc/INSERT_API_KEY
 ```
 
-The difference is the removal of `/api` from the path. Make sure your code uses the current format.
+The difference is that `/api` has been removed from the path. Make sure your code uses the current format.
 
 ### Sending the Transaction
 
@@ -131,9 +131,9 @@ Upon running the script, you'll see output that looks like the following:
 
 --8<-- 'code/tutorials/integrations/0xgasless/output.md'
 
-Since the gasless transaction we initiated interacts with an [Incrementer](https://moonscan.io/address/0x3ae26f2c909eb4f1edf97bf60b36529744b09213#readContract){target=\_blank} smart contract on Moonbeam, it's easy to check to see if the transaction was initiated successfully. You can return to [Read Contract section of the Incrementer contract on Moonscan](https://moonscan.io/address/0x3ae26f2c909eb4f1edf97bf60b36529744b09213#readContract) and check the number stored in the contract. Alternatively, you can head to the **Internal Transactions** tab and toggle advanced mode on to see the contract call incrementing the contract. 
+Since the gasless transaction we initiated interacts with an [Incrementer](https://moonscan.io/address/0x3ae26f2c909eb4f1edf97bf60b36529744b09213#readContract){target=\_blank} smart contract on Moonbeam, it's easy to check to see if the transaction was initiated successfully. You can return to [Read Contract section of the Incrementer contract on Moonscan](https://moonscan.io/address/0x3ae26f2c909eb4f1edf97bf60b36529744b09213#readContract) and check the number stored in the contract. Alternatively, you can head to the **Internal Transactions** tab and toggle advanced mode **ON** to see the contract call incrementing the contract. 
 
-For more information about integrating support for Gasless transactions into your dApp, be sure to check out the [0xGasless docs](https://gitbook.0xgasless.com/){target=\_blank}.
+For more information about integrating support for gasless transactions into your dApp, be sure to check out the [0xGasless docs](https://gitbook.0xgasless.com/){target=\_blank}.
 
 
 --8<-- 'text/_disclaimers/educational-tutorial.md'
