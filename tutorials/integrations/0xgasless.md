@@ -25,8 +25,8 @@ First, you'll need to [register for an account on 0xGasless](https://dashboard.0
 
 Your paymaster needs funds to cover gas fees for sponsored transactions. To deposit GLMR into your paymaster, take the following steps:
 
-1. Enter the amount you would like to deposit. 
-2. Press **Deposit**
+1. Enter the amount you would like to deposit
+2. Press **Deposit** and confirm the transaction in your wallet
 
 ![Fund Paymaster](/images/tutorials/integrations/0xgasless/0xgasless-2.webp)
 
