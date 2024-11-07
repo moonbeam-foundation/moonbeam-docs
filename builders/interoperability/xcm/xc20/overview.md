@@ -50,52 +50,55 @@ Cross-chain transfers of XC-20s are done using the X-Tokens Pallet. To learn how
 The current list of available external XC-20 assets per network is as follows:
 
 === "Moonbeam"
-    |        Origin         |  Symbol   |                                                           XC-20 Address                                                            |
-    |:---------------------:|:---------:|:----------------------------------------------------------------------------------------------------------------------------------:|
-    |       Polkadot        |   xcDOT   | [0xFfFFfFff1FcaCBd218EDc0EbA20Fc2308C778080](https://moonscan.io/token/0xFfFFfFff1FcaCBd218EDc0EbA20Fc2308C778080){target=\_blank} |
-    |         Acala         |  xcaSEED  | [0xfFfFFFFF52C56A9257bB97f4B2b6F7B2D624ecda](https://moonscan.io/token/0xfFfFFFFF52C56A9257bB97f4B2b6F7B2D624ecda){target=\_blank} |
-    |         Acala         |   xcACA   | [0xffffFFffa922Fef94566104a6e5A35a4fCDDAA9f](https://moonscan.io/token/0xffffFFffa922Fef94566104a6e5A35a4fCDDAA9f){target=\_blank} |
-    |         Acala         |  xcLDOT   | [0xFFfFfFffA9cfFfa9834235Fe53f4733F1b8B28d4](https://moonscan.io/token/0xFFfFfFffA9cfFfa9834235Fe53f4733F1b8B28d4){target=\_blank} |
-    |        Apillon        |  xcNCTR   | [0xFfFFfFfF8A9736B44EbF188972725bED67BF694E](https://moonscan.io/token/0xFfFFfFfF8A9736B44EbF188972725bED67BF694E){target=\_blank} |
-    |         Astar         |  xcASTR   | [0xFfFFFfffA893AD19e540E172C10d78D4d479B5Cf](https://moonscan.io/token/0xFfFFFfffA893AD19e540E172C10d78D4d479B5Cf){target=\_blank} |
-    |        Bifrost        |   xcBNC   | [0xFFffffFf7cC06abdF7201b350A1265c62C8601d2](https://moonscan.io/token/0xFFffffFf7cC06abdF7201b350A1265c62C8601d2){target=\_blank} |
-    |        Bifrost        |  xcBNCS   | [0xfFfffffF6aF229AE7f0F4e0188157e189a487D59](https://moonscan.io/token/0xfFfffffF6aF229AE7f0F4e0188157e189a487D59){target=\_blank} |
-    |        Bifrost        |   xcFIL   | [0xfFFfFFFF6C57e17D210DF507c82807149fFd70B2](https://moonscan.io/token/0xfFFfFFFF6C57e17D210DF507c82807149fFd70B2){target=\_blank} |
-    |        Bifrost        |  xcvASTR  | [0xFffFffff55C732C47639231a4C4373245763d26E](https://moonscan.io/token/0xFffFffff55C732C47639231a4C4373245763d26E){target=\_blank} |
-    |        Bifrost        |  xcvDOT   | [0xFFFfffFf15e1b7E3dF971DD813Bc394deB899aBf](https://moonscan.io/token/0xFFFfffFf15e1b7E3dF971DD813Bc394deB899aBf){target=\_blank} |
-    |        Bifrost        |  xcvFIL   | [0xFffffFffCd0aD0EA6576B7b285295c85E94cf4c1](https://moonscan.io/token/0xFffffFffCd0aD0EA6576B7b285295c85E94cf4c1){target=\_blank} |
-    |        Bifrost        |  xcvGLMR  | [0xFfFfFFff99dABE1a8De0EA22bAa6FD48fdE96F6c](https://moonscan.io/token/0xFfFfFFff99dABE1a8De0EA22bAa6FD48fdE96F6c){target=\_blank} |
-    |        Bifrost        | xcvMANTA  | [0xFFfFFfFfdA2a05FB50e7ae99275F4341AEd43379](https://moonscan.io/token/0xFFfFFfFfdA2a05FB50e7ae99275F4341AEd43379){target=\_blank} |
-    |      Centrifuge       |   xcCFG   | [0xFFfFfFff44bD9D2FFEE20B25D1Cf9E78Edb6Eae3](https://moonscan.io/token/0xFFfFfFff44bD9D2FFEE20B25D1Cf9E78Edb6Eae3){target=\_blank} |
-    |      Composable       | xcIBCMOVR | [0xFfFfffFF3AFcd2cAd6174387df17180a0362E592](https://moonscan.io/token/0xFfFfffFF3AFcd2cAd6174387df17180a0362E592){target=\_blank} |
-    |      Composable       | xcIBCPICA | [0xfFFFFfFFABe9934e61db3b11be4251E6e869cf59](https://moonscan.io/token/0xfFFFFfFFABe9934e61db3b11be4251E6e869cf59){target=\_blank} |
-    |      Composable       | xcIBCIST  | [0xfFfFffff6A3977d5B65D1044FD744B14D9Cef932](https://moonscan.io/token/0xfFfFffff6A3977d5B65D1044FD744B14D9Cef932){target=\_blank} |
-    |      Composable       | xcIBCBLD  | [0xFffFffff9664be0234ea4dc64558F695C4f2A9EE](https://moonscan.io/token/0xFffFffff9664be0234ea4dc64558F695C4f2A9EE){target=\_blank} |
-    |      Composable       | xcIBCTIA  | [0xFFFfFfff644a12F6F01b754987D175F5A780A75B](https://moonscan.io/token/0xFFFfFfff644a12F6F01b754987D175F5A780A75B){target=\_blank} |
-    |      Composable       | xcIBCATOM | [0xffFFFffF6807D5082ff2f6F86BdE409245e2D953](https://moonscan.io/token/0xffFFFffF6807D5082ff2f6F86BdE409245e2D953){target=\_blank} |
-    |       Darwinia        |  xcRING   | [0xFfffFfff5e90e365eDcA87fB4c8306Df1E91464f](https://moonscan.io/token/0xFfffFfff5e90e365eDcA87fB4c8306Df1E91464f){target=\_blank} |
-    |          DED          |   xcDED   | [0xfFffFFFf5da2d7214D268375cf8fb1715705FdC6](https://moonscan.io/token/0xfFffFFFf5da2d7214D268375cf8fb1715705FdC6){target=\_blank} |
-    |      Equilibrium      |   xcEQ    | [0xFffFFfFf8f6267e040D8a0638C576dfBa4F0F6D6](https://moonscan.io/token/0xFffFFfFf8f6267e040D8a0638C576dfBa4F0F6D6){target=\_blank} |
-    |      Equilibrium      |   xcEQD   | [0xFFffFfFF8cdA1707bAF23834d211B08726B1E499](https://moonscan.io/token/0xFFffFfFF8cdA1707bAF23834d211B08726B1E499){target=\_blank} |
-    |        HydraDX        |   xcHDX   | [0xFFFfFfff345Dc44DDAE98Df024Eb494321E73FcC](https://moonscan.io/token/0xFFFfFfff345Dc44DDAE98Df024Eb494321E73FcC){target=\_blank} |
-    |       Interlay        |  xcIBTC   | [0xFFFFFfFf5AC1f9A51A93F5C527385edF7Fe98A52](https://moonscan.io/token/0xFFFFFfFf5AC1f9A51A93F5C527385edF7Fe98A52){target=\_blank} |
-    |       Interlay        |  xcINTR   | [0xFffFFFFF4C1cbCd97597339702436d4F18a375Ab](https://moonscan.io/token/0xFffFFFFF4C1cbCd97597339702436d4F18a375Ab){target=\_blank} |
-    |         Manta         |  xcMANTA  | [0xfFFffFFf7D3875460d4509eb8d0362c611B4E841](https://moonscan.io/token/0xfFFffFFf7D3875460d4509eb8d0362c611B4E841){target=\_blank} |
-    |         Nodle         |  xcNODL   | [0xfffffffFe896ba7Cb118b9Fa571c6dC0a99dEfF1](https://moonscan.io/token/0xfffffffFe896ba7Cb118b9Fa571c6dC0a99dEfF1){target=\_blank} |
-    | OriginTrail Parachain |  xcNEURO  | [0xFfffffFfB3229c8E7657eABEA704d5e75246e544](https://moonscan.io/token/0xFfffffFfB3229c8E7657eABEA704d5e75246e544){target=\_blank} |
-    |       Parallel        |  xcPARA   | [0xFfFffFFF18898CB5Fe1E88E668152B4f4052A947](https://moonscan.io/token/0xFfFffFFF18898CB5Fe1E88E668152B4f4052A947){target=\_blank} |
-    |         Peaq          |  xcPEAQ   | [0xFffFFFFFEC4908b74688a01374f789B48E9a3eab](https://moonscan.io/token/0xFffFFFFFEC4908b74688a01374f789B48E9a3eab){target=\_blank} |
-    |       Pendulum        |   xcPEN   | [0xffFFfFFf2257622F345E1ACDe0D4f46D7d1D77D0](https://moonscan.io/token/0xffFFfFFf2257622F345E1ACDe0D4f46D7d1D77D0){target=\_blank} |
-    |         Phala         |   xcPHA   | [0xFFFfFfFf63d24eCc8eB8a7b5D0803e900F7b6cED](https://moonscan.io/token/0xFFFfFfFf63d24eCc8eB8a7b5D0803e900F7b6cED){target=\_blank} |
-    |       Polkadex        |  xcPDEX   | [0xfFffFFFF43e0d9b84010b1b67bA501bc81e33C7A](https://moonscan.io/token/0xfFffFFFF43e0d9b84010b1b67bA501bc81e33C7A){target=\_blank} |
-    |  Polkadot Asset Hub   |  xcPINK   | [0xfFfFFfFf30478fAFBE935e466da114E14fB3563d](https://moonscan.io/token/0xfFfFFfFf30478fAFBE935e466da114E14fB3563d){target=\_blank} |
-    |  Polkadot Asset Hub   |  xcSTINK  | [0xFffFffFf54c556bD1d0F64ec6c78f1B477525E56](https://moonscan.io/token/0xFffFffFf54c556bD1d0F64ec6c78f1B477525E56){target=\_blank} |
-    |  Polkadot Asset Hub   |  xcUSDC   | [0xFFfffffF7D2B0B761Af01Ca8e25242976ac0aD7D](https://moonscan.io/token/0xFFfffffF7D2B0B761Af01Ca8e25242976ac0aD7D){target=\_blank} |
-    |  Polkadot Asset Hub   |  xcUSDT   | [0xFFFFFFfFea09FB06d082fd1275CD48b191cbCD1d](https://moonscan.io/token/0xFFFFFFfFea09FB06d082fd1275CD48b191cbCD1d){target=\_blank} |
-    |  Polkadot Asset Hub   |  xcWIFD   | [0xfffffffF2e1D1ac9eA1686255bEfe995B31abc96](https://moonscan.io/token/0xfffffffF2e1D1ac9eA1686255bEfe995B31abc96){target=\_blank} |
-    |       Subsocial       |   xcSUB   | [0xfFfFffFf43B4560Bc0C451a3386E082bff50aC90](https://moonscan.io/token/0xfFfFffFf43B4560Bc0C451a3386E082bff50aC90){target=\_blank} |
-    |        Unique         |   xcUNQ   | [0xFffffFFFD58f77E6693CFB99EbE273d73C678DC2](https://moonscan.io/token/0xFffffFFFD58f77E6693CFB99EbE273d73C678DC2){target=\_blank} |
-    |       Zeitgeist       |   xcZTG   | [0xFFFFfffF71815ab6142E0E20c7259126C6B40612](https://moonscan.io/token/0xFFFFfffF71815ab6142E0E20c7259126C6B40612){target=\_blank} |
+    |        Origin         |  Symbol   |                                                            XC-20 Address                                                             |
+    |:---------------------:|:---------:|:------------------------------------------------------------------------------------------------------------------------------------:|
+    |       Polkadot        |   xcDOT   |  [0xFfFFfFff1FcaCBd218EDc0EbA20Fc2308C778080](https://moonscan.io/token/0xFfFFfFff1FcaCBd218EDc0EbA20Fc2308C778080){target=\_blank}  |
+    |         Acala         |  xcaSEED  |  [0xfFfFFFFF52C56A9257bB97f4B2b6F7B2D624ecda](https://moonscan.io/token/0xfFfFFFFF52C56A9257bB97f4B2b6F7B2D624ecda){target=\_blank}  |
+    |         Acala         |   xcACA   |  [0xffffFFffa922Fef94566104a6e5A35a4fCDDAA9f](https://moonscan.io/token/0xffffFFffa922Fef94566104a6e5A35a4fCDDAA9f){target=\_blank}  |
+    |         Acala         |  xcLDOT   |  [0xFFfFfFffA9cfFfa9834235Fe53f4733F1b8B28d4](https://moonscan.io/token/0xFFfFfFffA9cfFfa9834235Fe53f4733F1b8B28d4){target=\_blank}  |
+    |        Apillon        |  xcNCTR   |  [0xFfFFfFfF8A9736B44EbF188972725bED67BF694E](https://moonscan.io/token/0xFfFFfFfF8A9736B44EbF188972725bED67BF694E){target=\_blank}  |
+    |         Astar         |  xcASTR   |  [0xFfFFFfffA893AD19e540E172C10d78D4d479B5Cf](https://moonscan.io/token/0xFfFFFfffA893AD19e540E172C10d78D4d479B5Cf){target=\_blank}  |
+    |        Bifrost        |   xcBNC   |  [0xFFffffFf7cC06abdF7201b350A1265c62C8601d2](https://moonscan.io/token/0xFFffffFf7cC06abdF7201b350A1265c62C8601d2){target=\_blank}  |
+    |        Bifrost        |  xcBNCS   |  [0xfFfffffF6aF229AE7f0F4e0188157e189a487D59](https://moonscan.io/token/0xfFfffffF6aF229AE7f0F4e0188157e189a487D59){target=\_blank}  |
+    |        Bifrost        |   xcFIL   |  [0xfFFfFFFF6C57e17D210DF507c82807149fFd70B2](https://moonscan.io/token/0xfFFfFFFF6C57e17D210DF507c82807149fFd70B2){target=\_blank}  |
+    |        Bifrost        |  xcvASTR  |  [0xFffFffff55C732C47639231a4C4373245763d26E](https://moonscan.io/token/0xFffFffff55C732C47639231a4C4373245763d26E){target=\_blank}  |
+    |        Bifrost        |  xcvDOT   |  [0xFFFfffFf15e1b7E3dF971DD813Bc394deB899aBf](https://moonscan.io/token/0xFFFfffFf15e1b7E3dF971DD813Bc394deB899aBf){target=\_blank}  |
+    |        Bifrost        |  xcvFIL   |  [0xFffffFffCd0aD0EA6576B7b285295c85E94cf4c1](https://moonscan.io/token/0xFffffFffCd0aD0EA6576B7b285295c85E94cf4c1){target=\_blank}  |
+    |        Bifrost        |  xcvGLMR  |  [0xFfFfFFff99dABE1a8De0EA22bAa6FD48fdE96F6c](https://moonscan.io/token/0xFfFfFFff99dABE1a8De0EA22bAa6FD48fdE96F6c){target=\_blank}  |
+    |        Bifrost        | xcvMANTA  |  [0xFFfFFfFfdA2a05FB50e7ae99275F4341AEd43379](https://moonscan.io/token/0xFFfFFfFfdA2a05FB50e7ae99275F4341AEd43379){target=\_blank}  |
+    |      Centrifuge       |   xcCFG   |  [0xFFfFfFff44bD9D2FFEE20B25D1Cf9E78Edb6Eae3](https://moonscan.io/token/0xFFfFfFff44bD9D2FFEE20B25D1Cf9E78Edb6Eae3){target=\_blank}  |
+    |      Composable       | xcIBCMOVR |  [0xFfFfffFF3AFcd2cAd6174387df17180a0362E592](https://moonscan.io/token/0xFfFfffFF3AFcd2cAd6174387df17180a0362E592){target=\_blank}  |
+    |      Composable       | xcIBCPICA |  [0xfFFFFfFFABe9934e61db3b11be4251E6e869cf59](https://moonscan.io/token/0xfFFFFfFFABe9934e61db3b11be4251E6e869cf59){target=\_blank}  |
+    |      Composable       | xcIBCIST  |  [0xfFfFffff6A3977d5B65D1044FD744B14D9Cef932](https://moonscan.io/token/0xfFfFffff6A3977d5B65D1044FD744B14D9Cef932){target=\_blank}  |
+    |      Composable       | xcIBCBLD  |  [0xFffFffff9664be0234ea4dc64558F695C4f2A9EE](https://moonscan.io/token/0xFffFffff9664be0234ea4dc64558F695C4f2A9EE){target=\_blank}  |
+    |      Composable       | xcIBCTIA  |  [0xFFFfFfff644a12F6F01b754987D175F5A780A75B](https://moonscan.io/token/0xFFFfFfff644a12F6F01b754987D175F5A780A75B){target=\_blank}  |
+    |      Composable       | xcIBCATOM |  [0xffFFFffF6807D5082ff2f6F86BdE409245e2D953](https://moonscan.io/token/0xffFFFffF6807D5082ff2f6F86BdE409245e2D953){target=\_blank}  |
+    |       Darwinia        |  xcRING   |  [0xFfffFfff5e90e365eDcA87fB4c8306Df1E91464f](https://moonscan.io/token/0xFfffFfff5e90e365eDcA87fB4c8306Df1E91464f){target=\_blank}  |
+    |          DED          |   xcDED   |  [0xfFffFFFf5da2d7214D268375cf8fb1715705FdC6](https://moonscan.io/token/0xfFffFFFf5da2d7214D268375cf8fb1715705FdC6){target=\_blank}  |
+    |      Equilibrium      |   xcEQ    |  [0xFffFFfFf8f6267e040D8a0638C576dfBa4F0F6D6](https://moonscan.io/token/0xFffFFfFf8f6267e040D8a0638C576dfBa4F0F6D6){target=\_blank}  |
+    |      Equilibrium      |   xcEQD   |  [0xFFffFfFF8cdA1707bAF23834d211B08726B1E499](https://moonscan.io/token/0xFFffFfFF8cdA1707bAF23834d211B08726B1E499){target=\_blank}  |
+    |        HydraDX        |   xcHDX   |  [0xFFFfFfff345Dc44DDAE98Df024Eb494321E73FcC](https://moonscan.io/token/0xFFFfFfff345Dc44DDAE98Df024Eb494321E73FcC){target=\_blank}  |
+    |       Interlay        |  xcIBTC   |  [0xFFFFFfFf5AC1f9A51A93F5C527385edF7Fe98A52](https://moonscan.io/token/0xFFFFFfFf5AC1f9A51A93F5C527385edF7Fe98A52){target=\_blank}  |
+    |       Interlay        |  xcINTR   |  [0xFffFFFFF4C1cbCd97597339702436d4F18a375Ab](https://moonscan.io/token/0xFffFFFFF4C1cbCd97597339702436d4F18a375Ab){target=\_blank}  |
+    |         Manta         |  xcMANTA  |  [0xfFFffFFf7D3875460d4509eb8d0362c611B4E841](https://moonscan.io/token/0xfFFffFFf7D3875460d4509eb8d0362c611B4E841){target=\_blank}  |
+    |         Nodle         |  xcNODL   |  [0xfffffffFe896ba7Cb118b9Fa571c6dC0a99dEfF1](https://moonscan.io/token/0xfffffffFe896ba7Cb118b9Fa571c6dC0a99dEfF1){target=\_blank}  |
+    | OriginTrail Parachain |  xcNEURO  |  [0xFfffffFfB3229c8E7657eABEA704d5e75246e544](https://moonscan.io/token/0xFfffffFfB3229c8E7657eABEA704d5e75246e544){target=\_blank}  |
+    |       Parallel        |  xcPARA   |  [0xFfFffFFF18898CB5Fe1E88E668152B4f4052A947](https://moonscan.io/token/0xFfFffFFF18898CB5Fe1E88E668152B4f4052A947){target=\_blank}  |
+    |         Peaq          |  xcPEAQ   |  [0xFffFFFFFEC4908b74688a01374f789B48E9a3eab](https://moonscan.io/token/0xFffFFFFFEC4908b74688a01374f789B48E9a3eab){target=\_blank}  |
+    |       Pendulum        |   xcPEN   |  [0xffFFfFFf2257622F345E1ACDe0D4f46D7d1D77D0](https://moonscan.io/token/0xffFFfFFf2257622F345E1ACDe0D4f46D7d1D77D0){target=\_blank}  |
+    |         Phala         |   xcPHA   |  [0xFFFfFfFf63d24eCc8eB8a7b5D0803e900F7b6cED](https://moonscan.io/token/0xFFFfFfFf63d24eCc8eB8a7b5D0803e900F7b6cED){target=\_blank}  |
+    |       Polkadex        |  xcPDEX   |  [0xfFffFFFF43e0d9b84010b1b67bA501bc81e33C7A](https://moonscan.io/token/0xfFffFFFF43e0d9b84010b1b67bA501bc81e33C7A){target=\_blank}  |
+    |  Polkadot Asset Hub   |  xcPINK   |  [0xfFfFFfFf30478fAFBE935e466da114E14fB3563d](https://moonscan.io/token/0xfFfFFfFf30478fAFBE935e466da114E14fB3563d){target=\_blank}  |
+    |  Polkadot Asset Hub   |  xcSTINK  |  [0xFffFffFf54c556bD1d0F64ec6c78f1B477525E56](https://moonscan.io/token/0xFffFffFf54c556bD1d0F64ec6c78f1B477525E56){target=\_blank}  |
+    |  Polkadot Asset Hub   |  xcUSDC   |  [0xFFfffffF7D2B0B761Af01Ca8e25242976ac0aD7D](https://moonscan.io/token/0xFFfffffF7D2B0B761Af01Ca8e25242976ac0aD7D){target=\_blank}  |
+    |  Polkadot Asset Hub   |  xcUSDT   |  [0xFFFFFFfFea09FB06d082fd1275CD48b191cbCD1d](https://moonscan.io/token/0xFFFFFFfFea09FB06d082fd1275CD48b191cbCD1d){target=\_blank}  |
+    |  Polkadot Asset Hub   |  xcWIFD   |  [0xfffffffF2e1D1ac9eA1686255bEfe995B31abc96](https://moonscan.io/token/0xfffffffF2e1D1ac9eA1686255bEfe995B31abc96){target=\_blank}  |
+    |      Snowbridge       |  WBTC.e   | [0xfFffFFFf1B4Bb1ac5749F73D866FfC91a3432c47](https://moonscan.io/address/0xffffffff1B4BB1AC5749F73D866FFC91A3432C47){target=\_blank} |
+    |      Snowbridge       | wstETH.e  |  [0xFfFFFfFF5D5DEB44BF7278DEE5381BEB24CB6573](https://moonscan.io/token/0xFfFFFfFF5D5DEB44BF7278DEE5381BEB24CB6573){target=\_blank}  |
+    |      Snowbridge       |  WETH.e   |  [0xfFffFFFF86829AFE1521AD2296719DF3ACE8DED7](https://moonscan.io/token/0xfFffFFFF86829AFE1521AD2296719DF3ACE8DED7){target=\_blank}  |
+    |       Subsocial       |   xcSUB   |  [0xfFfFffFf43B4560Bc0C451a3386E082bff50aC90](https://moonscan.io/token/0xfFfFffFf43B4560Bc0C451a3386E082bff50aC90){target=\_blank}  |
+    |        Unique         |   xcUNQ   |  [0xFffffFFFD58f77E6693CFB99EbE273d73C678DC2](https://moonscan.io/token/0xFffffFFFD58f77E6693CFB99EbE273d73C678DC2){target=\_blank}  |
+    |       Zeitgeist       |   xcZTG   |  [0xFFFFfffF71815ab6142E0E20c7259126C6B40612](https://moonscan.io/token/0xFFFFfffF71815ab6142E0E20c7259126C6B40612){target=\_blank}  |
 
      _*You can check each [Asset ID](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbeam.network#/assets){target=\_blank} on Polkadot.js Apps_
 

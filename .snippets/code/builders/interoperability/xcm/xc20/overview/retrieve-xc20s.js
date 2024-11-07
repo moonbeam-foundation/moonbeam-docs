@@ -1,30 +1,36 @@
-import { ApiPromise, WsProvider } from '@polkadot/api'; // Version 9.13.6
+import { ApiPromise, WsProvider } from '@polkadot/api';
 
 const getXc20s = async () => {
-  // 1. Create API provider
-  const substrateProvider = new WsProvider(
-    'wss://wss.api.moonbase.moonbeam.network'
-  );
-  const api = await ApiPromise.create({ provider: substrateProvider });
+  try {
+    const substrateProvider = new WsProvider('INSERT_WSS_ENDPOINT');
+    const api = await ApiPromise.create({ provider: substrateProvider });
 
-  // 2. Query the assets pallet for all assets
-  const assets = await api.query.assets.asset.entries();
-  
-  // 3. Get metadata for each asset using the ID
-  assets.forEach(
-    async ([
-      {
-        args: [id],
-      },
-    ]) => {
-      const metadata = await api.query.assets.metadata(id);
-      console.log(`Asset ID: ${id}`);
-      console.log(`Metadata: ${metadata.toHuman()}`);
-      console.log('-----');
-    }
-  );
+    const assets = await api.query.assets.asset.entries();
 
-  api.disconnect();
+    await Promise.all(
+      assets.map(async ([{ args: [id] }]) => {
+        try {
+          const metadata = await api.query.assets.metadata(id);
+          const humanMetadata = metadata.toHuman();
+          
+          console.log(`\nAsset ID: ${id}`);
+          console.log('Metadata:');
+          console.log('  Name:', humanMetadata.name);
+          console.log('  Symbol:', humanMetadata.symbol);
+          console.log('  Decimals:', humanMetadata.decimals);
+          console.log('  Deposit:', humanMetadata.deposit);
+          console.log('  IsFrozen:', humanMetadata.isFrozen);
+          console.log('-----');
+        } catch (error) {
+          console.error(`Error fetching metadata for asset ${id}:`, error);
+        }
+      })
+    );
+
+    await api.disconnect();
+  } catch (error) {
+    console.error('Error in getXc20s:', error);
+  }
 };
 
-getXc20s();
+getXc20s().catch(console.error);
