@@ -50,7 +50,6 @@ To use Particle Connect on Moonbeam, you'll need to begin by creating an account
 
 You'll need only a few dependencies to integrate Particle Connect into your Moonbeam application. Particle Connect offers built-in Account Abstraction (AA) support; however, in this example, we'll install the Particle AA SDK to utilize EIP-1193 providers, such as ethers.
 
-=== "yarn"
 
     ```bash
     yarn add @particle-network/connectkit viem@^2 @particle-network/aa ethers
