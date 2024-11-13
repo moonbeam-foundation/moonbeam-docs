@@ -72,7 +72,7 @@ These keys are essential as they connect your Particle Connect instance with the
 Place the API keys in a `.env` file in the following format:
 
 ```shell
-NEXT_PUBLIC_PROJECT_ID='PROJECT_ID'
+NEXT_PUBLIC_PROJECT_ID='INSERT_PROJECT_ID'
 NEXT_PUBLIC_CLIENT_KEY='CLIENT_KEY'
 NEXT_PUBLIC_APP_ID='APP_ID'
 ```
