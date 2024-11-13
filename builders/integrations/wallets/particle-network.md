@@ -66,7 +66,7 @@ Before proceeding, head back to the [Particle dashboard](https://dashboard.parti
 
 - **`projectId`** – your project’s unique ID
 - **`clientKey`** – your client-specific key
-- **`appId`** – your application ID.
+- **`appId`** – your application ID
 
 These keys are essential as they connect your Particle Connect instance with the Particle dashboard, enabling features like no-code customization, user activity tracking, and API request authentication.
 
