@@ -15,7 +15,7 @@ Particle Network supports Moonbeam, Moonriver, and the Moonbase Alpha TestNet wi
 
 Key components of Particle Network's Moonbeam integration include:
 
-- **Particle Connect**: Particle's flagship Wallet-as-a-Service solution, offering embedded wallets powered by MPC-TSS for smooth, Web2-like onboarding and interactions, with Account Abstraction support integrated within a single SDK.
+- **Particle Connect**: Particle's flagship Wallet-as-a-Service solution, offering embedded wallets powered by MPC-TSS for smooth, Web2-like onboarding and interactions, with Account Abstraction support integrated within a single SDK
 - **Particle Network Modular [AA Stack](https://docs.particle.network/developers/account-abstraction){target=\_blank}**: Beyond the default EOA-based interactions, Particle also offers a modular AA stack for ERC-4337 account abstraction on Moonbeam, allowing flexibility in the smart account, bundler, and paymaster configurations to suit AA-enabled applications.
 
 ![Particle Network Smart WaaS map](/images/builders/integrations/wallets/particle/particle-1.webp)
