@@ -133,6 +133,6 @@ Specifically, this application creates a smart account on Moonbeam MainNet throu
 
 That concludes the brief introduction to Particle's Smart Wallet-as-a-Service stack and how to get started with Particle on Moonbeam. For more information, you can check out [Particle Network's documentation](https://docs.particle.network){target=\_blank}.
 
-Find the repository with the full code implementation on the [Particle Network GitHub](https://github.com/Particle-Network/connect-moonbeam-tutorial).
+Find the repository with the full code implementation on the [Particle Network GitHub](https://github.com/Particle-Network/connect-moonbeam-tutorial){target=\_blank}.
 
 --8<-- 'text/_disclaimers/third-party-content.md'
