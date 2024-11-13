@@ -64,7 +64,7 @@ To start, we’ll configure and initialize Particle Connect (Particle's flagship
 
 Before proceeding, head back to the [Particle dashboard](https://dashboard.particle.network){target=\_blank} and retrieve the following API keys:
 
-- **`projectId`** – your project’s unique ID.
+- **`projectId`** – your project’s unique ID
 - **`clientKey`** – your client-specific key.
 - **`appId`** – your application ID.
 
