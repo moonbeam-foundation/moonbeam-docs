@@ -52,7 +52,7 @@ You'll need only a few dependencies to integrate Particle Connect into your Moon
 
 
     ```bash
- yarn add @particle-network/connectkit viem@^2 @particle-network/aa ethers
+    yarn add @particle-network/connectkit viem@^2 @particle-network/aa ethers
     ```
 
 > Note that this tutorial is based on a [Next.js app](https://nextjs.org/docs/getting-started/installation){target=\_blank} with TypeScript and Tailwind CSS.
