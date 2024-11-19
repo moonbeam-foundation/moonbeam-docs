@@ -299,16 +299,14 @@ Returns a mapping of locations to their supported XCM versions. Each entry conta
     === "Polkadot.js API Example"
 
         ```js
-        --8<-- 'code/builders/interoperability/xcm/xc20/send-xc20s/xtokens-pallet/interface-examples/pallet-version.js'
+         --8<-- 'code/builders/interoperability/xcm/xc20/send-xc20s/polkadot-xcm/pallet-version.js'
         ```
-
-
 
 ### Pallet Constants {: #constants }
 
 There are no constants part of the PolkadotXCM pallet.
 
-## Building an XCM Message with the X-Tokens Pallet {: #build-xcm-xtokens-pallet}
+## Building an XCM Message with the PolkadotXCM Pallet {: #build-with-PolkadotXCM-pallet}
 
 This guide covers the process of building an XCM message using the X-Tokens Pallet, more specifically, with the `transfer` and `transferMultiasset` functions. Nevertheless, these two cases can be extrapolated to the other functions in the pallet, especially once you become familiar with multilocations.
 
@@ -317,7 +315,7 @@ This guide covers the process of building an XCM message using the X-Tokens Pall
 
 You'll be transferring xcUNIT tokens, which are the [XC-20](/builders/interoperability/xcm/xc20/overview/){target=\_blank} representation of the Alphanet relay chain token, UNIT. You can adapt this guide for any other XC-20.
 
-### Checking Prerequisites {: #xtokens-check-prerequisites}
+### Checking Prerequisites {: #polkadotxcm-check-prerequisites}
 
 To follow along with the examples in this guide, you need to have the following:
 
@@ -340,85 +338,48 @@ To check your xcUNIT balance, you can add the XC-20's [precompile address](/buil
 
 In this example, you'll build an XCM message to transfer xcUNIT from Moonbase Alpha back to the Alphanet relay chain through the `limitedReserveTransferAssets` function of the PolkadotXcm Pallet using the [Polkadot.js API](/builders/substrate/libraries/polkadot-js-api/){target=\_blank}. `LimitedReserveTransferAssets` is the right method to select in this case because we're transferring the xcUnit tokens back to their original chain (reserve chain). 
 
-Since you'll be interacting with the `transfer` function, you can take the following steps to gather the arguments for the `currencyId`, `amount`, `dest`, and `destWeightLimit`:
+To perform a limited reserve transfer using the `polkadotXcm` pallet, follow these steps:
 
-1. Define the `currencyId`. For external XC-20s, you'll use the `ForeignAsset` currency type and the asset ID of the asset, which in this case is `42259045809535163221576417993425387648`. For a local XC-20, you'll need the address of the token. In JavaScript, this translates to:
+1. Install the required dependencies: `@polkadot/api` for blockchain interaction, `@polkadot/util` for utility functions, and `@polkadot/util-crypto` for cryptographic functions.
 
-    === "External XC-20"
+2. Set up your network connection by creating a WebSocket provider using the Moonbase Alpha endpoint: `wss://wss.api.moonbase.moonbeam.network`. Initialize the Polkadot API with this provider.
 
+3. Configure your account using the Ethereum format. Create a keyring instance for Ethereum addresses, then add your account using your private key. Remember to prepend the private key with `0x`, which is omitted when exporting your keys from MetaMask 
+
+    !!! remember
+        This is for demo purposes only. Never store your private key in a JavaScript file.
+
+4. Prepare the destination address by converting the SS58 format address to raw bytes using the `decodeAddress` function. If the destination SS58 address is already in hexideimcal format, no conversion is needed 
+
+5. Construct the XCM transfer transaction with: the relay chain as the destination (parent chain with `parents: 1`), beneficiary (using `AccountId32` format), assets (amount with 12 decimals), fee asset item (0), and weight limit ('Unlimited').
+
+    ??? code "Define the destination, beneficiary, and asset"
         ```js
-        --8<-- 'code/builders/interoperability/xcm/xc20/send-xc20s/xtokens-pallet/transfer.js:9:13'
+        --8<-- 'code/builders/interoperability/xcm/xc20/send-xc20s/polkadot-xcm/destination-beneficiary-fee.js'
         ```
 
-    === "Local XC-20"
+6. Submit your transaction and implement monitoring logic with error handling 
 
-        ```js
-        const currencyId = { Erc20: { contractAddress: 'INSERT_ERC_20_ADDRESS' } };
-        ```
+7. Once the transaction is finalized, the script will automatically exit. Any errors during the process will be logged to the console for troubleshooting
 
-2. Specify the `amount` to transfer. For this example, you are sending 1 xcUNIT, which has 12 decimals:
 
+???+ code "View the full script"
     ```js
-    --8<-- 'code/builders/interoperability/xcm/xc20/send-xc20s/xtokens-pallet/transfer.js:14:14'
+    --8<-- 'code/builders/interoperability/xcm/xc20/send-xc20s/polkadot-xcm/send-xcm.js'
     ```
-
-3. Define the multilocation of the destination, which will target an account on the relay chain from Moonbase Alpha. Note that the only asset that the relay chain can receive is its own
-
-    ```js
-    --8<-- 'code/builders/interoperability/xcm/xc20/send-xc20s/xtokens-pallet/transfer.js:15:20'
-    ```
-
-    !!! note
-        For an `AccountId32`, `AccountIndex64`, or `AccountKey20`, you have the option of specifying a `network` parameter. If you don't specify one, it will default to `None`.
-
-4. Set the `destWeightLimit`. Since the weight required to execute XCM messages varies for each chain, you can set the weight limit to be `Unlimited`, or if you have an estimate of the weight needed, you can use `Limited`, but please note that if set below the requirements, the execution may fail
-
-    === "Unlimited"
-
-        ```js
-        --8<-- 'code/builders/interoperability/xcm/xc20/send-xc20s/xtokens-pallet/transfer.js:21:21'
-        ```
-
-    === "Limited"
-
-        ```js
-        const destWeightLimit = {
-          Limited: {
-            refTime: 'INSERT_ALLOWED_AMOUNT',
-            proofSize: 'INSERT_ALLOWED_AMOUNT',
-          },
-        };
-        ```
-        
-        As outlined in the [Determining Weight Needed for XCM Execution](#determining-weight) section, you'll need {{ networks.alphanet.xcm_message.transfer.weight.display }} weight units for the XCM execution on Alphanet. You can set the `refTime` to `{{ networks.alphanet.xcm_instructions.deposit_asset.total_weight.numbers_only }}`. The `proofSize` can be `0`, as the Alphanet relay chain does not currently account for `proofSize`.
-
-Now that you have the values for each of the parameters, you can write the script for the transfer. You'll take the following steps:
-
- 1. Provide the input data for the call. This includes:
-     - The Moonbase Alpha endpoint URL to create the provider
-     - The values for each of the parameters of the `transfer` function
- 2. Create a Keyring instance that will be used to send the transaction
- 3. Create the [Polkadot.js API](/builders/substrate/libraries/polkadot-js-api/){target=\_blank} provider
- 4. Craft the `xTokens.transfer` extrinsic with the `currencyId`, `amount`, `dest`, and `destWeightLimit`
- 5. Send the transaction using the `signAndSend` extrinsic and the Keyring instance you created in the second step
-
-!!! remember
-    This is for demo purposes only. Never store your private key in a JavaScript file.
-
-```js
---8<-- 'code/builders/interoperability/xcm/xc20/send-xc20s/xtokens-pallet/transfer.js'
-```
 
 !!! note
     You can view an example of the above script, which sends 1 xcUNIT to Alice's account on the relay chain, on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/extrinsics/decode/0x1c080401000400010100d4620637e11439598c5fbae0506dc68b9fb1edb33b316761bf99987a1034a96b0404010000070010a5d4e80000000000){target=\_blank} using the following encoded calldata: `0x1c080401000400010100d4620637e11439598c5fbae0506dc68b9fb1edb33b316761bf99987a1034a96b0404010000070010a5d4e80000000000`.
 
 Once the transaction is processed, the target account on the relay chain should have received the transferred amount minus a small fee that is deducted to execute the XCM on the destination chain. 
 
-If you're having trouble replicating the demo, take the following troubleshooting steps:
+#### Troubleshooting
 
- - Ensure your sending account is funded with DEV tokens. 
+If you're having difficulty replicating the demo, take the following troubleshooting steps:
+
+ - Ensure your sending account is funded with DEV tokens 
  - Ensure your sending account is funded with xcUNIT tokens (or another XC-20 that you have specified)
  - Check the [Explorer](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoonbase-alpha.public.blastapi.io#/explorer){target=\_blank} on Polkadot.js Apps on Moonbase Alpha to ensure a successful transaction on the origin chain
- - Check the [Explorer](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Frelay.api.moonbase.moonbeam.network#/explorer){target=\_blank} on Polkadot.js Apps on Moonbase Relay Chain to ensure a successful transaction on the origin chain
+ - Check the [Explorer](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Frelay.api.moonbase.moonbeam.network#/explorer){target=\_blank} on Polkadot.js Apps and review the XCM messages received on Moonbase Relay Chain
 
 
