@@ -1,6 +1,6 @@
 ---
 title: Send XC-20s to Other Chains
-description: This guide provides an introduction to the PolkadotXCM Pallet and explains how to send XC-20s to another chain using the pallet's extrinsics.
+description: This guide introduces the PolkadotXCM Pallet and explains how to send XC-20s to another chain using some of the pallet's extrinsics.
 ---
 
 # Using the PolkadotXCM Pallet To Send XC-20s
@@ -11,18 +11,18 @@ description: This guide provides an introduction to the PolkadotXCM Pallet and e
 
     The PolkadotXCM Pallet replaces the deprecated XTokens Pallet. Accordingly, ensure that you are using the PolkadotXCM Pallet to interact with XC-20s.
 
-Building an XCM message for fungible asset transfers is not an easy task. Consequently, there are wrapper functions and pallets that developers can leverage to use XCM features on Polkadot and Kusama. One example of such wrappers is the [XCM](https://wiki.polkadot.network/docs/learn-xcm-pallet){target=\_blank} Pallet, which provides different methods to transfer fungible assets via XCM.
+Manually crafting an XCM message for fungible asset transfers is a challenging task. Consequently, developers can leverage wrapper functions and pallets to use XCM features on Polkadot and Kusama. One example of such wrappers is the [XCM](https://wiki.polkadot.network/docs/learn-xcm-pallet){target=\_blank} Pallet, which provides different methods to transfer fungible assets via XCM.
 
-This guide will show you how to leverage the X-Tokens Pallet to send [XC-20s](/builders/interoperability/xcm/xc20/overview/){target=\_blank} from a Moonbeam-based network to other chains in the ecosystem (relay chain/parachains).
+This guide will show you how to leverage the PolkadotXCM Pallet to send [XC-20s](/builders/interoperability/xcm/xc20/overview/){target=\_blank} from a Moonbeam-based network to other chains in the ecosystem (relay chain/parachains).
 
-**Developers must understand that sending incorrect XCM messages can result in the loss of funds.** Consequently, it is essential to test XCM features on a TestNet before moving to a production environment.
+**Developers must understand that sending incorrect XCM messages can result in the loss of funds.** Consequently, testing XCM features on a TestNet is essential before moving to a production environment.
 
 ## Nomenclature {: #nomenclature }
 
-Because there are a variety of XCM-related pallets and precompiles with similar sounding names, the following section will clarify the differences between each of them. 
+Because there are various XCM-related pallets and precompiles with similar-sounding names, the following section will clarify the differences between each. 
 
 - `PolkadotXCM` - this pallet (and the focus of this page) enables you to interact with XC-20s on Moonbeam, replacing the deprecated `XTokens` pallet 
-- `pallet-xcm`- this is the general Polkadot XCM pallet that allows you to interact with cross-chain assets. Moonbeam's `PolkadotXCM` pallet is essentially a wrapper of `pallet-xcm`. Because of this, you may see `PolkadotXCM` and `pallet-xcm` referred to interchangeably
+- `pallet-xcm`- the general Polkadot XCM pallet allows you to interact with cross-chain assets. Moonbeam's `PolkadotXCM` pallet is essentially a wrapper of `pallet-xcm`. Because of this, you may see `PolkadotXCM` and `pallet-xcm` referred to interchangeably
 - `XTokens` - This pallet is now deprecated and replaced by `PolkadotXCM`
 - `XCMInterface.sol` - This precompile is the solidity interface that replaces `XTokens.sol` and enables you to interact with the methods of `PolkadotXCM` from the EVM via a solidity interface
 
@@ -88,7 +88,7 @@ The PolkadotXCM Pallet provides the following extrinsics (functions):
            The transfer behavior varies based on asset reserve location:
            
            - **Local Reserve**: 
-               - Transfers assets to destination chain's sovereign account
+               - Transfers assets to the destination chain's sovereign account
                - Sends XCM to mint and deposit reserve-based assets to beneficiary
            
            - **Destination Reserve**:
@@ -115,7 +115,7 @@ The PolkadotXCM Pallet provides the following extrinsics (functions):
                - `Unlimited` - allows an unlimited amount of weight
                - `Limited` - specifies a maximum weight value
 
-           As a reminder, the origin must be capable of both withdrawing the specified assets and executing XCM. If more weight is needed than specified in `weightLimit`, the operation will fail and teleported assets may be at risk
+           As a reminder, the origin must be capable of withdrawing the specified assets and executing XCM. If more weight is needed than specified in `weightLimit`, the operation will fail and teleported assets may be at risk
 
 ??? function "**reserveTransferAssets**(dest, beneficiary, assets, feeAssetItem) — transfers assets from the local chain to a destination chain via their reserve location. This function is deprecated. Use `limitedReserveTransferAssets` instead"
 
@@ -196,7 +196,7 @@ The PolkadotXCM Pallet provides the following extrinsics (functions):
 
 ### Storage Methods {: #storage-methods }
 
-The X-Tokens Pallet includes the following read-only storage method:
+The PolkadotXCM Pallet includes the following read-only storage methods. Note, this is not an exhaustive list. To see the current available storage methods, check the [Chain State of Polkadot.js Apps](https://polkadot.js.org/apps/#/chainstate){target=\_blank}.
 
 ???+ function "**assetTraps**(h256 hash) — returns the count of trapped assets for a given hash"
     === "Parameters"
@@ -248,38 +248,19 @@ The X-Tokens Pallet includes the following read-only storage method:
         --8<-- 'code/builders/interoperability/xcm/xc20/send-xc20s/polkadot-xcm/safe-xcm-version.js'
         ```
 
-??? function "**supportedVersion**(xcmVersion) — default version to encode XCM when destination version is unknown"
+??? function "**supportedVersion**(XcmVersion, Multilocation) — returns the supported XCM version for a given location"
 
     === "Parameters"
-
-        `xcmVersion` - `u32` - the latest XCM version that a known location supports. E.g. Enter `4` for XCM V4. 
-        `xcmVersionedLocation` - Optionally, you can provide a multilocation that you wish to check. Otherwise you can omit this field and all known locations that support the provided xcmVersion will be returned. 
+        - version `u32`: XcmVersion - The version number to check
+        - location: MultiLocation - The location to check for version support
 
     === "Returns"
-
-        `u32` - default version to encode XCM when destination version is unknown
+        Returns a mapping of locations to their supported XCM versions. Each entry contains a MultiLocation specifying the parachain location (including parent and interior information) and an XcmVersion number indicating the supported version
 
     === "Polkadot.js API Example"
-
         ```js
-        
+        --8<-- 'code/builders/interoperability/xcm/xc20/send-xc20s/polkadot-xcm/check-xcm-version.js'
         ```
-
-
-??? function "supportedVersion(XcmVersion, MultiLocation) → Option<XcmVersion> — returns the supported XCM version for a given location"
-
-=== "Parameters"
-- version `u32`: XcmVersion - The version number to check
-- location: MultiLocation - The location to check for version support
-
-=== "Returns"
-Returns a mapping of locations to their supported XCM versions. Each entry contains:
-- A MultiLocation specifying the parachain location (including parent and interior information)
-- An XcmVersion number indicating the supported version
-
-=== "Polkadot.js API Example"
-
-
 
 ??? function "**palletVersion**() — returns current pallet version from storage"
 
@@ -308,7 +289,7 @@ There are no constants part of the PolkadotXCM pallet.
 
 ## Building an XCM Message with the PolkadotXCM Pallet {: #build-with-PolkadotXCM-pallet}
 
-This guide covers the process of building an XCM message using the X-Tokens Pallet, more specifically, with the `transfer` and `transferMultiasset` functions. Nevertheless, these two cases can be extrapolated to the other functions in the pallet, especially once you become familiar with multilocations.
+This guide covers the process of building an XCM message using the PolkadotXCM Pallet, specifically the `limitedReserveTransferAssets` function. It can be adapted for different assets using the other methods of the PolkadotXCM Pallet.
 
 !!! note
     Each parachain can allow and forbid specific methods from a pallet. Consequently, developers must ensure that they use methods that are allowed, or the transaction will fail with an error similar to `system.CallFiltered`.
@@ -349,7 +330,7 @@ To perform a limited reserve transfer using the `polkadotXcm` pallet, follow the
     !!! remember
         This is for demo purposes only. Never store your private key in a JavaScript file.
 
-4. Prepare the destination address by converting the SS58 format address to raw bytes using the `decodeAddress` function. If the destination SS58 address is already in hexideimcal format, no conversion is needed 
+4. Prepare the destination address by converting the SS58 format address to raw bytes using the `decodeAddress` function. If the destination SS58 address is already in hexadecimal format, no conversion is needed 
 
 5. Construct the XCM transfer transaction with: the relay chain as the destination (parent chain with `parents: 1`), beneficiary (using `AccountId32` format), assets (amount with 12 decimals), fee asset item (0), and weight limit ('Unlimited').
 
@@ -381,5 +362,3 @@ If you're having difficulty replicating the demo, take the following troubleshoo
  - Ensure your sending account is funded with xcUNIT tokens (or another XC-20 that you have specified)
  - Check the [Explorer](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoonbase-alpha.public.blastapi.io#/explorer){target=\_blank} on Polkadot.js Apps on Moonbase Alpha to ensure a successful transaction on the origin chain
  - Check the [Explorer](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Frelay.api.moonbase.moonbeam.network#/explorer){target=\_blank} on Polkadot.js Apps and review the XCM messages received on Moonbase Relay Chain
-
-
