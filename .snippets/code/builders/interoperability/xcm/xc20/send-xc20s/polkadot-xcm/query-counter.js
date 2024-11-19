@@ -6,7 +6,7 @@ const main = async () => {
   });
 
   const queryIndex = await api.query.polkadotXcm.queryCounter();
-  
+
   console.log('Query Index:', queryIndex.toNumber());
 };
 

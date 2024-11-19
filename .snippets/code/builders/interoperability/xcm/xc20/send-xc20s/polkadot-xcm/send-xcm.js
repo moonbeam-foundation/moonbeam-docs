@@ -21,8 +21,8 @@ const main = async () => {
       {
         V3: {
           parents: 1,
-          interior: 'Here'
-        }
+          interior: 'Here',
+        },
       },
       // beneficiary
       {
@@ -32,11 +32,11 @@ const main = async () => {
             X1: {
               AccountId32: {
                 id: Array.from(beneficiaryRaw),
-                network: null
-              }
-            }
-          }
-        }
+                network: null,
+              },
+            },
+          },
+        },
       },
       // assets
       {
@@ -45,14 +45,14 @@ const main = async () => {
             id: {
               Concrete: {
                 parents: 1,
-                interior: 'Here'
-              }
+                interior: 'Here',
+              },
             },
             fun: {
-              Fungible: '1000000000000'
-            }
-          }
-        ]
+              Fungible: '1000000000000',
+            },
+          },
+        ],
       },
       0, // feeAssetItem
       'Unlimited' // weightLimit
@@ -68,7 +68,6 @@ const main = async () => {
         process.exit(0);
       }
     });
-
   } catch (error) {
     console.error('Error:', error);
     process.exit(1);

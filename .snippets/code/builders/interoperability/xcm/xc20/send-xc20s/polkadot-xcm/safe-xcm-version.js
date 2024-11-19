@@ -6,7 +6,7 @@ const main = async () => {
   });
 
   const safeVersion = await api.query.polkadotXcm.safeXcmVersion();
-  
+
   console.log('Safe XCM Version:', safeVersion.toHuman());
 };
 

@@ -8,15 +8,15 @@ const main = async () => {
   const testLocation = {
     V4: {
       parents: 1,
-      interior: 'Here'
-    }
+      interior: 'Here',
+    },
   };
 
   const supportedVersion = await api.query.polkadotXcm.supportedVersion(
-    4,  // Testing XCM v4
+    4, // Testing XCM v4
     testLocation
   );
-  
+
   console.log('Location:', JSON.stringify(testLocation, null, 2));
   console.log('Supported Version:', supportedVersion.toHuman());
 };
