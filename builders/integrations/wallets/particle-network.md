@@ -24,7 +24,7 @@ In this guide, you'll go through a step-by-step example of using Particle Connec
 
 ## Create an Application {: #create-an-application }
 
-To use Particle Connect on Moonbeam, you'll need to begin by creating an account on the [Particle Network dashboard](https://dashboard.particle.network) and spinning up an application.
+To use Particle Connect on Moonbeam, you'll need to create an account on the [Particle Network dashboard](https://dashboard.particle.network){target=\_blank} and spin up an application
 
 1. Navigate to the Particle Network dashboard, then sign up or log in
 
@@ -48,18 +48,18 @@ To use Particle Connect on Moonbeam, you'll need to begin by creating an account
 
 ## Install Dependencies {: #install-dependencies }
 
-You'll need only a few dependencies to integrate Particle Connect into your Moonbeam application. Particle Connect offers built-in Account Abstraction (AA) support; however, in this example, we'll install the Particle AA SDK to utilize EIP-1193 providers, such as ethers.
+To integrate Particle Connect into your Moonbeam application, you'll need only a few dependencies. Particle Connect offers built-in Account Abstraction (AA) support; however, in this example, we'll install the Particle AA SDK to utilize EIP-1193 providers, such as ethers.
 
 
-    ```bash
-    yarn add @particle-network/connectkit viem@^2 @particle-network/aa ethers
-    ```
+```bash
+yarn add @particle-network/connectkit viem@^2 @particle-network/aa ethers
+```
 
 > Note that this tutorial is based on a [Next.js app](https://nextjs.org/docs/getting-started/installation){target=\_blank} with TypeScript and Tailwind CSS.
 
 ## Configure Particle Connect {: #configure-particle-network }
 
-To start, we’ll configure and initialize Particle Connect (Particle's flagship authentication SDK). Begin by creating a new file called `ConnectKit.tsx` in your project’s root directory, where we’ll set up the `ParticleConnectKit` component as the main interface for configuration.
+We’ll configure and initialize Particle Connect (Particle's flagship authentication SDK). Begin by creating a new file called `ConnectKit.tsx` in your project’s root directory, where we’ll set up the `ParticleConnectKit` component as the primary interface for configuration.
 
 Before proceeding, head back to the [Particle dashboard](https://dashboard.particle.network){target=\_blank} and retrieve the following API keys:
 
@@ -89,8 +89,7 @@ This setup initializes `ParticleConnectKit`, a wrapper for the configured `Conne
 
 For further customization options, refer to the [Particle Connect documentation](https://developers.particle.network/api-reference/connect/desktop/web#configuration){target=\_blank}.
 
-
-At this point, you've signed up and created an application, installed all required dependencies, and configured `ParticleConnectKit`, along with `SmartAccount`, if applicable.
+At this point, you've signed up and created an application, installed all required dependencies, and configured `ParticleConnectKit` and `SmartAccount,` if applicable.
 
 ## Integrate the `ParticleConnectKit` Component in Your App {: #integrate-particleconnectkit }
 
@@ -114,7 +113,7 @@ With the configured `layout.tsx` file, the next step is to add a central **Conne
 
 Using Particle Connect alongside the Particle AA SDK enables you to work with an EIP-1193 provider like ethers. This approach is beneficial because you're likely already familiar with these providers or if you integrate Particle Connect into an existing application.
 
-To set this up, wrap the smart account provided by Particle Connect with an instance of ethers to create a `customProvider.` From there, you can use ethers as usual, with the smart account as the underlying transaction signer.
+To set this up, wrap the smart account provided by Particle Connect with an instance of ethers to create a `customProvider.` You can use ethers as usual from there, with the smart account as the underlying transaction signer.
 
 ```js
 --8<-- 'code/builders/integrations/wallets/particle/ethers-tx.js'
@@ -122,7 +121,7 @@ To set this up, wrap the smart account provided by Particle Connect with an inst
 
 ## Example of Utilization {: #example-of-utilization }
 
-With the aforementioned established, Particle Connect can be used similarly, as shown in the example application below.
+With those above established, Particle Connect can be used similarly, as shown in the example application below.
 
 Specifically, this application creates a smart account on Moonbeam MainNet through social login, then uses it to send a gasless transaction of 0.001 GLMR with the ethers provider.
 
@@ -132,6 +131,6 @@ Specifically, this application creates a smart account on Moonbeam MainNet throu
 
 That concludes the brief introduction to Particle's Smart Wallet-as-a-Service stack and how to get started with Particle on Moonbeam. For more information, you can check out [Particle Network's documentation](https://docs.particle.network){target=\_blank}.
 
-Find the repository with the full code implementation on the [Particle Network GitHub](https://github.com/Particle-Network/connect-moonbeam-tutorial){target=\_blank}.
+Find the repository with the complete code implementation on the [Particle Network GitHub](https://github.com/Particle-Network/connect-moonbeam-tutorial){target=\_blank}.
 
 --8<-- 'text/_disclaimers/third-party-content.md'
