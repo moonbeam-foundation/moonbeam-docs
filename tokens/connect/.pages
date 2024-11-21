@@ -9,3 +9,4 @@ nav:
   - 'SubWallet': 'subwallet.md'
   - 'Talisman': 'talisman.md'
   - 'Trezor': 'trezor.md'
+  - 'On Ramps': 'on-ramps.md'
