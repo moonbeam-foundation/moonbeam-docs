@@ -19,34 +19,260 @@ This page will provide an overview of the extrinsics, storage methods, and gette
 
 The Multisig Pallet provides the following extrinsics (functions):
 
-- **asMulti**(threshold, otherSignatories, maybeTimepoint, call, maxWeight) - approves and if possible dispatches a call from a composite origin formed from a number of signed origins (a multisig). If the call has been approved by enough of the other signatories, the call will be dispatched. The [`depositBase`](#constants) will be reserved if this is the first approval plus the `threshold` times the [`depositFactor`](#constants). The total reserved amount will be returned once the call is dispatched or cancelled. This function should be used if it is the final approval, otherwise you'll want to use `approveAsMulti` instead since it only requires a hash of the call
-- **approveAsMulti**(threshold, otherSignatories, maybeTimepoint, callHash, maxWeight) - approves a call from a composite origin. For the final approval, you'll want to use `asMulti` instead
-- **asMultiThreshold**(otherSignatories, call) - immediately dispatches a multisig call using a single approval from the caller
-- **cancelAsMulti**(threshold, otherSignatories, maybeTimepoint, callHash) - cancels a preexisting, ongoing call from a composite origin. Any reserved deposit will be returned upon successful cancellation
+??? function "**asMulti**(threshold, otherSignatories, maybeTimepoint, call, maxWeight) - approves and if possible dispatches a call from a composite origin formed from a number of signed origins (a multisig). If the call has been approved by enough of the other signatories, the call will be dispatched. The [`depositBase`](#constants) will be reserved if this is the first approval plus the `threshold` times the [`depositFactor`](#constants). The total reserved amount will be returned once the call is dispatched or cancelled. This function should be used if it is the final approval, otherwise you'll want to use `approveAsMulti` instead since it only requires a hash of the call"
+    === "Parameters"
+        - `threshold` - The total number of approvals required for the dispatch to be executed
+        - `otherSignatories` - The accounts (other than the sender) who can approve the dispatch
+        - `maybeTimepoint` - The timepoint (block number and transaction index) of the first approval transaction. Must be `None` if this is the first approval
+        - `call` - The actual call to be executed once approved
+        - `maxWeight` - The maximum weight allowed for the dispatch
+    === "Polkadot.js API Example"
+        ```js
+        --8<-- 'code/builders/substrate/interfaces/account/multisig/as-multi.js'
+        ```
 
-Where the inputs that need to be provided can be defined as:
+    === "Example Response"
+        ```
+        Validation checks:
+        Account address: 0x3B939FeaD1557C741Ff06492FD0127bd287A421e
+        Multisig address: 0x2c6a9d09E7C01f3D4154000193BDDcC597523221
+        Other signatories: [
+          '0x253b05C595222a1e3E7Bcf1611cA1307194a030F',
+          '0x4B718e1CCeb83bfE87FD5f79cb98FFc2d4600C7E'
+        ]
+        Threshold: 2
+        Call hash: 0xdbbc67f35ca518976f4d392fb32745786e6b58fc526fab0dafb6eda44d9850a3
+        Max weight: { refTime: '806342022', proofSize: '211174' }
+        Timepoint: null
+        Transaction included in block hash: 0x0050f1b137e5814dc4eb16390d10287d9234de1d5827dd64ba85c878d4c53849
+            balances.Withdraw: ["0x3B939FeaD1557C741Ff06492FD0127bd287A421e",4858229333763]
+            balances.Reserved: ["0x3B939FeaD1557C741Ff06492FD0127bd287A421e","0x00000000000000000e1107d468560000"]
+            multisig.NewMultisig: ["0x3B939FeaD1557C741Ff06492FD0127bd287A421e","0x2c6a9d09E7C01f3D4154000193BDDcC597523221","0xdbbc67f35ca518976f4d392fb32745786e6b58fc526fab0dafb6eda44d9850a3"]
+            balances.Deposit: ["0x3B939FeaD1557C741Ff06492FD0127bd287A421e",1222550823750]
+            balances.Deposit: ["0x6d6F646c70632f74727372790000000000000000",727135702003]
+            transactionPayment.TransactionFeePaid: ["0x3B939FeaD1557C741Ff06492FD0127bd287A421e",3635678510013,0]
+            system.ExtrinsicSuccess: [{"weight":{"refTime":404917324,"proofSize":5587},"class":"Normal","paysFee":"Yes"}]
+        Multisig event: NewMultisig
+        ```
 
-- **threshold** - the total number of approvals required for a dispatch to be executed
-- **otherSignatories** - the accounts (other than the sender) who can approve the dispatch
-- **maybeTimepoint** - the timepoint (block number and transaction index) of the first approval transaction, unless it is the first approval then this field must be `None`
-- **call** - the call to be executed
-- **callHash** - the hash of the call to be executed
-- **maxWeight** - the maximum weight for the dispatch
+??? function "**approveAsMulti**(threshold, otherSignatories, maybeTimepoint, callHash, maxWeight) - approves a call from a composite origin. For the final approval, you'll want to use `asMulti` instead"
+    === "Parameters"
+        - `threshold` - The total number of approvals required for the dispatch to be executed
+        - `otherSignatories` - The accounts (other than the sender) who can approve the dispatch
+        - `maybeTimepoint` - The timepoint (block number and transaction index) of the first approval transaction. Must be `None` if this is the first approval
+        - `callHash` - The hash of the call to be executed
+        - `maxWeight` - The maximum weight allowed for the dispatch
+    === "Polkadot.js API Example"
+        ```js
+        --8<-- 'code/builders/substrate/interfaces/account/multisig/approve-as-multi.js'
+        ```    
+
+    === "Example Response"
+        ```bash
+        Found timepoint: { height: 9174086, index: 5 }
+        Validation checks:
+        Account address: 0x3B939FeaD1557C741Ff06492FD0127bd287A421e
+        Multisig address: 0x2c6a9d09E7C01f3D4154000193BDDcC597523221
+        Other signatories: [
+          '0x253b05C595222a1e3E7Bcf1611cA1307194a030F',
+          '0x4B718e1CCeb83bfE87FD5f79cb98FFc2d4600C7E'
+        ]
+        Threshold: 2
+        Call hash: 0xa2902805948bdd92fcaf661965215efd6a5980d0092c065e7470859c1b37b6a9
+        Max weight: { refTime: '806342022', proofSize: '211174' }
+        Timepoint: { height: 9174086, index: 5 }
+        Transaction included in block hash: 0xb7b0f712dc7aa3d471e1db89e0d182b59e1febf8bb1df73a03f36417fe19b506
+            balances.Withdraw: ["0x3B939FeaD1557C741Ff06492FD0127bd287A421e",4512391685922]
+            multisig.MultisigApproval: ["0x3B939FeaD1557C741Ff06492FD0127bd287A421e",{"height":9174086,"index":5},"0x2c6a9d09E7C01f3D4154000193BDDcC597523221","0xa2902805948bdd92fcaf661965215efd6a5980d0092c065e7470859c1b37b6a9"]
+            balances.Deposit: ["0x3B939FeaD1557C741Ff06492FD0127bd287A421e",1025179732500]
+            balances.Deposit: ["0x6d6F646c70632f74727372790000000000000000",697442390685]
+            transactionPayment.TransactionFeePaid: ["0x3B939FeaD1557C741Ff06492FD0127bd287A421e",3487211953422,0]
+            system.ExtrinsicSuccess: [{"weight":{"refTime":389364247,"proofSize":5587},"class":"Normal","paysFee":"Yes"}]
+        ```
+
+
+??? function "**asMultiThreshold**(otherSignatories, call) - immediately dispatches a multisig call using a single approval from the caller"
+    === "Parameters"
+        - `otherSignatories` - The accounts (other than the sender) who can approve the dispatch
+        - `call` - The actual call to be executed once approved
+    === "Polkadot.js API Example"
+        ```js
+        --8<-- 'code/builders/substrate/interfaces/account/multisig/as-multi-threshold.js'
+        ```
+
+    === "Example Response"
+        ```
+        Found timepoint: { height: 9174086, index: 5 }
+        Validation checks:
+        Account address: 0x3B939FeaD1557C741Ff06492FD0127bd287A421e
+        Multisig address: 0x2c6a9d09E7C01f3D4154000193BDDcC597523221
+        Other signatories: [
+          '0x253b05C595222a1e3E7Bcf1611cA1307194a030F',
+          '0x4B718e1CCeb83bfE87FD5f79cb98FFc2d4600C7E'
+        ]
+        Threshold: 2
+        Call hash: 0xa2902805948bdd92fcaf661965215efd6a5980d0092c065e7470859c1b37b6a9
+        Max weight: { refTime: '806342022', proofSize: '211174' }
+        Timepoint: { height: 9174086, index: 5 }
+        Transaction included in block hash: 0xb7b0f712dc7aa3d471e1db89e0d182b59e1febf8bb1df73a03f36417fe19b506
+            balances.Withdraw: ["0x3B939FeaD1557C741Ff06492FD0127bd287A421e",4512391685922]
+            multisig.MultisigApproval: ["0x3B939FeaD1557C741Ff06492FD0127bd287A421e",{"height":9174086,"index":5},"0x2c6a9d09E7C01f3D4154000193BDDcC597523221","0xa2902805948bdd92fcaf661965215efd6a5980d0092c065e7470859c1b37b6a9"]
+            balances.Deposit: ["0x3B939FeaD1557C741Ff06492FD0127bd287A421e",1025179732500]
+            balances.Deposit: ["0x6d6F646c70632f74727372790000000000000000",697442390685]
+            transactionPayment.TransactionFeePaid: ["0x3B939FeaD1557C741Ff06492FD0127bd287A421e",3487211953422,0]
+            system.ExtrinsicSuccess: [{"weight":{"refTime":389364247,"proofSize":5587},"class":"Normal","paysFee":"Yes"}]
+        ```
+
+
+??? function "**cancelAsMulti**(threshold, otherSignatories, maybeTimepoint, callHash) - cancels a preexisting, ongoing call from a composite origin. Any reserved deposit will be returned upon successful cancellation"
+    === "Parameters"
+        - `threshold` - The total number of approvals required for the dispatch to be executed
+        - `otherSignatories` - The accounts (other than the sender) who can approve the dispatch
+        - `maybeTimepoint` - The timepoint (block number and transaction index) of the first approval transaction. Must be `None` if this is the first approval
+        - `callHash` - The hash of the call to be executed
+
+    === "Polkadot.js API Example"
+        ```js
+        --8<-- 'code/builders/substrate/interfaces/account/multisig/cancel-as-multi.js'
+        ```
+
+    === "Example Response"
+        ```bash
+        Found timepoint: { height: 9174086, index: 5 }
+        Validation checks:
+        Account address: 0x3B939FeaD1557C741Ff06492FD0127bd287A421e
+        Multisig address: 0x2c6a9d09E7C01f3D4154000193BDDcC597523221
+        Other signatories: [
+          '0x253b05C595222a1e3E7Bcf1611cA1307194a030F',
+          '0x4B718e1CCeb83bfE87FD5f79cb98FFc2d4600C7E'
+        ]
+        Threshold: 2
+        Call hash: 0xa2902805948bdd92fcaf661965215efd6a5980d0092c065e7470859c1b37b6a9
+        Max weight: { refTime: '806342022', proofSize: '211174' }
+        Timepoint: { height: 9174086, index: 5 }
+        Transaction included in block hash: 0xb7b0f712dc7aa3d471e1db89e0d182b59e1febf8bb1df73a03f36417fe19b506
+            balances.Withdraw: ["0x3B939FeaD1557C741Ff06492FD0127bd287A421e",4512391685922]
+            multisig.MultisigApproval: ["0x3B939FeaD1557C741Ff06492FD0127bd287A421e",{"height":9174086,"index":5},"0x2c6a9d09E7C01f3D4154000193BDDcC597523221","0xa2902805948bdd92fcaf661965215efd6a5980d0092c065e7470859c1b37b6a9"]
+            balances.Deposit: ["0x3B939FeaD1557C741Ff06492FD0127bd287A421e",1025179732500]
+            balances.Deposit: ["0x6d6F646c70632f74727372790000000000000000",697442390685]
+            transactionPayment.TransactionFeePaid: ["0x3B939FeaD1557C741Ff06492FD0127bd287A421e",3487211953422,0]
+            system.ExtrinsicSuccess: [{"weight":{"refTime":389364247,"proofSize":5587},"class":"Normal","paysFee":"Yes"}]
+        ```
 
 ### Storage Methods {: #storage-methods }
 
 The Multisig Pallet includes the following read-only storage methods to obtain chain state data:
 
-- **multisigs**() - returns the set of open multisig operations for a given account.
-- **palletVersion**() - returns the current pallet version
+??? function "**multisigs**() - returns the set of open multisig operations for a given account."
+
+    === "Parameters"
+
+        - `account` - The address of the multisig
+        - `callHash` - (Optional) The hash of the multisig call
+
+    === "Polkadot.js API Example"
+
+        ```js
+        --8<-- 'code/builders/substrate/interfaces/account/multisig/multisigs.js'
+        ```
+
+    === "Example Response"
+        ```
+        [
+          [
+            [
+              0x2c6a9d09E7C01f3D4154000193BDDcC597523221
+              0xa2902805948bdd92fcaf661965215efd6a5980d0092c065e7470859c1b37b6a9
+            ]
+            {
+              when: {
+                height: 9,174,086
+                index: 5
+              }
+              deposit: 1,013,600,000,000,000,000
+              depositor: 0x253b05C595222a1e3E7Bcf1611cA1307194a030F
+              approvals: [
+                0x253b05C595222a1e3E7Bcf1611cA1307194a030F
+              ]
+            }
+          ]
+        ]
+        ```  
+
+
+
+??? function "**palletVersion**() - returns the current pallet version"
+
+    === "Parameters"
+
+        None
+
+    === "Polkadot.js API Example"
+
+        ```js
+        --8<-- 'code/builders/substrate/interfaces/account/multisig/pallet-version.js'
+        ```
+
+    === "Example Response"
+
+        `1`
 
 ### Pallet Constants {: #constants }
 
 The Multisig Pallet includes the following read-only functions to obtain pallet constants:
 
-- **depositBase**() - returns the base amount of currency needed to reserve for creating a multisig execution or to store a dispatch call for later. This is held for an additional storage item whose key size is `32 + sizeof(AccountId)` bytes, which is `32 + 20` on Moonbeam, and whose value size is `4 + sizeof((BlockNumber, Balance, AccountId))` bytes, which is `4 + 4 + 16 +20` bytes on Moonbeam
-- **depositFactor**() - returns the amount of currency needed per unit threshold when creating a multisig execution. This is held for adding 20 bytes more into a preexisting storage value
-- **maxSignatories**() - returns the maximum amount of signatories allowed in the multisig
+??? function "**depositBase**() - returns the base amount of currency needed to reserve for creating a multisig execution or to store a dispatch call for later. This is held for an additional storage item whose key size is `32 + sizeof(AccountId)` bytes, which is `32 + 20` on Moonbeam, and whose value size is `4 + sizeof((BlockNumber, Balance, AccountId))` bytes, which is `4 + 4 + 16 +20` bytes on Moonbeam"
+
+    === "Parameters"
+
+        None
+
+    === "Polkadot.js API Example"
+
+        ```js
+        --8<-- 'code/builders/substrate/interfaces/account/multisig/deposit-base.js'
+        ```
+
+    === "Example Reponse"
+
+        ```
+        Multisig Deposit Base: 1,009,600,000,000,000,000
+        ```
+
+??? function "**depositFactor**() - returns the amount of currency needed per unit threshold when creating a multisig execution. This is held for adding 20 bytes more into a preexisting storage value"
+
+    === "Parameters"
+
+        None
+
+    === "Polkadot.js API Example"
+
+        ```js
+        --8<-- 'code/builders/substrate/interfaces/account/multisig/deposit-factor.js'
+        ```
+
+    === "Example Response"
+
+        ```
+        Multisig Deposit Factor: 2,000,000,000,000,000
+        ```
+
+??? function "**maxSignatories**() - returns the maximum amount of signatories allowed in the multisig"
+
+    === "Parameters"
+
+        None
+
+    === "Polkadot.js API Example"
+
+        ```js
+        --8<-- 'code/builders/substrate/interfaces/account/multisig/max-signatories.js'
+        ```
+
+    === "Example Response"
+           ```
+           Multisig Max Signatories: 100
+           ```
 
 ## How to Create a Multisig Account {: #create-a-multisig-account }
 
