@@ -88,6 +88,34 @@ There are a couple different guides to help you get started running a Moonbeam-b
 
 You can also gain access to some non-standard RPC methods by running a tracing node, which allow developers to inspect and debug transactions during runtime. Tracing nodes use a different Docker image than a standard Moonbase Alpha, Moonriver, or Moonbeam node. Check out the [Run a Tracing Node](/node-operators/networks/tracing-node/) guide and be sure to switch to the right network tab throughout the instructions. Then to interact with your tracing node, check out the [Debug & Trace](/builders/ethereum/json-rpc/debug-trace/) guide.
 
+## Lazy Loading {: #lazy-loading }
+
+Lazy loading lets a Moonbeam node operate while downloading network state in the background, eliminating the need to wait for full synchronization before use. You can activate lazy loading with the following flag:
+
+- **`fork-chain-from-rpc`** - allows lazy loading by relying on a specified RPC for network state until node is fully synchronized e.g. `--fork-chain-from-rpc 'https://moonbeam.public.blastapi.io'`
+
+Upon spooling up a node with this feature, you'll see output like the following:
+
+--8<-- 'code/node-operators/networks/run-a-node/terminal/lazy-loading.md'
+
+You can further customize your use of the lazy loading functionality with the following optional parameters:
+
+- **`block`** - specifies the block number from which to start forking the chain
+- **`runtime-override`** - path to a WASM file to override the runtime when forking
+- **`fork-state-overrides`** - path to a JSON file containing state overrides to be applied when forking 
+
+The state overrides file should define the respective pallet, storage item, and value that you seek to override as follows:
+
+```json
+[
+ {
+     "pallet": "System",
+     "storage": "SelectedCandidates",
+     "value": "0x04f24ff3a9cf04c71dbc94d0b566f7a27b94566cac"
+ }
+]
+```
+
 ## Logs and Troubleshooting {: #logs-and-troubleshooting }
 
 You will see logs from both the relay chain and the parachain. The relay chain will be prefixed by `[Relaychain]`, while the parachain has no prefix.

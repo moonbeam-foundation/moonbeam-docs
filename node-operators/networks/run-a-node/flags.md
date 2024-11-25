@@ -45,16 +45,15 @@ This guide will cover some of the most common flags and show you how to access a
 
 ## Lazy Loading Flags {: #lazy-loading-flags }
 
-Lazy loading lets a blockchain node operate while downloading network state in the background, eliminating the need to wait for full synchronization before use. 
+Lazy loading lets a Moonbeam node operate while downloading network state in the background, eliminating the need to wait for full synchronization before use. 
 
-- **`fork-chain-from-rpc`** - allows lazy loading by relying on a specified RPC for network state until node is fully synchronized e.g. `--fork-chain-from-rpc 'wss://moonbeam-rpc.dwellir.com'`
+- **`fork-chain-from-rpc`** - allows lazy loading by relying on a specified RPC for network state until node is fully synchronized e.g. `--fork-chain-from-rpc 'https://moonbeam.public.blastapi.io'`
 
-You can further customize the lazy loading with the following optional parameters:
+You can further customize your use of the lazy loading functionality with the following optional parameters:
 
 - **`block`** - specifies the block number from which to start forking the chain
 - **`fork-state-overrides`** - path to a JSON file containing state overrides to be applied when forking 
 - **`runtime-override`** - path to a WASM file to override the runtime when forking
-
 
 ## Flags for Configuring a SQL Backend {: #flags-for-sql-backend }
 
