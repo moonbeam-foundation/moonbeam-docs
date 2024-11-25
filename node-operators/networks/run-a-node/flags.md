@@ -47,7 +47,7 @@ This guide will cover some of the most common flags and show you how to access a
 
 Lazy loading lets a Moonbeam node operate while downloading network state in the background, eliminating the need to wait for full synchronization before use. 
 
-- **`fork-chain-from-rpc`** - allows lazy loading by relying on a specified RPC for network state until node is fully synchronized e.g. `--fork-chain-from-rpc 'https://moonbeam.public.blastapi.io'`
+- **`fork-chain-from-rpc`** - allows lazy loading by relying on a specified RPC for network state until the node is fully synchronized e.g. `--fork-chain-from-rpc 'https://moonbeam.public.blastapi.io'`
 
 You can further customize your use of the lazy loading functionality with the following optional parameters:
 
