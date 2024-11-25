@@ -85,21 +85,21 @@ const CONTRACT_ADDRESS = '0x3aE26f2c909EB4F1EdF97bf60B36529744b09213';
 const FUNCTION_SELECTOR = '0xd09de08a';
 ```
 
-#### Paymaster URL Formatting Note
+!!! warning
 
-The Paymaster URL format has recently changed. Use:
+    The Paymaster URL format has recently changed. Use:
 
-```
-https://paymaster.0xgasless.com/v1/1284/rpc/INSERT_API_KEY
-```
+    ```
+    https://paymaster.0xgasless.com/v1/1284/rpc/INSERT_API_KEY
+    ```
 
-Do not use the deprecated format:
+    Do not use the deprecated format:
 
-```
-https://paymaster.0xgasless.com/api/v1/1284/rpc/INSERT_API_KEY
-```
+    ```
+    https://paymaster.0xgasless.com/api/v1/1284/rpc/INSERT_API_KEY
+    ```
 
-The difference is that `/api` has been removed from the path. Make sure your code uses the current format.
+    The difference is that `/api` has been removed from the path. Make sure your code uses the current format.
 
 ### Sending the Transaction
 
