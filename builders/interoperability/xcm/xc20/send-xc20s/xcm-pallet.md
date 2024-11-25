@@ -32,99 +32,11 @@ Because there are various XCM-related pallets and precompiles with similar-sound
 
 The PolkadotXCM Pallet provides the following extrinsics (functions):
 
-???+ function "**claimAssets**(assets, beneficiary) — claims assets that were trapped in this pallet during XCM execution"
-    === "Parameters"
-        - `assets` - the exact assets, specified as multilocation, that were trapped during XCM execution
-        - `beneficiary` - the destination where the claimed assets will be deposited. This specifies the location/account that will receive the claimed assets
-
-??? function "**execute**(message, maxWeight) — executes an XCM message from a local, signed origin. Event will be emitted to indicate whether the message was executed completely or partially. If the `maxWeight` provided is less than what's required to execute the message, no execution attempt will be made"
-    === "Parameters"
-           - `message` - the XCM message to be executed
-           - `maxWeight` - the maximum weight that can be used for executing the message. This can be defined by:
-               - `refTime` - the amount of computational time that can be used for execution
-               - `proofSize` - the amount of storage in bytes that can be used
-
 ??? function "**forceDefaultXcmVersion**(maybeXcmVersion) — sets a safe default XCM version for message encoding (admin origins only)"
     === "Parameters"
            - `maybeXcmVersion` - the default XCM encoding version to be used when a destination's supported version is unknown. Can be either:
                - A version number
                - `None` to disable the default version setting
-
-??? function "**forceSubscribeVersionNotify**(location) — subscribes to XCM version updates from a specific location (admin origins only)"
-    === "Parameters"
-           - `location` - the location from which to receive XCM version notifications. This specifies the source that will notify about their current XCM version and any subsequent changes
-
-??? function "**forceSuspension**(suspended) — sets or unsets the global suspension state of the XCM executor (admin origins only)"
-    === "Parameters"
-           - `suspended` - a boolean value that controls the suspension state:
-               - `true` - suspends the XCM executor
-               - `false` - resumes the XCM executor
-
-??? function "**forceUnsubscribeVersionNotify**(location) — removes a subscription to XCM version notifications from a specific location (admin origins only)"
-    === "Parameters"
-           - `location` - the location from which to stop receiving XCM version notifications. This specifies the source to unsubscribe from version updates
-
-??? function "**forceXcmVersion**(location, version) — specifies the XCM version supported by a particular destination. This function can only be called by an origin specified by AdminOrigin. This manually sets the XCM version for a destination rather than relying on version notifications"
-    === "Parameters"
-           - `location` - the destination whose XCM version capability is being declared
-           - `version` - the latest XCM version number that the specified location supports
-
-
-??? function "**limitedReserveTransferAssets**(dest, beneficiary, assets, feeAssetItem, weightLimit) — transfers assets from the local chain to a destination chain via their reserve location"
-    === "Parameters"
-           - `dest` - the destination context for the assets. Typically specified as:
-               - `[Parent, Parachain(..)]` for parachain to parachain transfers
-               - `[Parachain(..)]` for relay to parachain transfers
-           - `beneficiary` - the recipient location in the context of the destination. Generally an `AccountId32` value
-           - `assets` - the assets to be transferred. Must:
-               - Have the same reserve location
-               - Not be teleportable to the destination
-               - Include assets for fee payment
-           - `feeAssetItem` - the index in the `assets` array indicating which asset should be used to pay fees
-           - `weightLimit` - the weight limit for XCM fee purchase on the destination chain. Can be defined as:
-               - `Unlimited` - allows an unlimited amount of weight
-               - `Limited` - specifies a maximum weight value
-
-           The transfer behavior varies based on asset reserve location:
-           
-           - **Local Reserve**: 
-               - Transfers assets to the destination chain's sovereign account
-               - Sends XCM to mint and deposit reserve-based assets to beneficiary
-           
-           - **Destination Reserve**:
-               - Burns local assets
-               - Notifies destination to withdraw reserves from this chain's sovereign account
-               - Deposits to beneficiary
-           
-           - **Remote Reserve**:
-               - Burns local assets
-               - Sends XCM to move reserves between sovereign accounts
-               - Notifies destination to mint and deposit to beneficiary
-               
-            As a reminder, if more weight is needed than specified in `weightLimit`, the operation will fail and transferred assets may be at risk
-
-??? function "**limitedTeleportAssets**(dest, beneficiary, assets, feeAssetItem, weightLimit) — teleports assets from the local chain to a destination chain"
-    === "Parameters"
-           - `dest` - the destination context for the assets. Typically specified as:
-               - `[Parent, Parachain(..)]` for parachain to parachain transfers
-               - `[Parachain(..)]` for relay to parachain transfers
-           - `beneficiary` - the recipient location in the context of the destination. Generally an `AccountId32` value
-           - `assets` - the assets to be teleported. Must include assets necessary for fee payment on the destination chain
-           - `feeAssetItem` - the index in the `assets` array indicating which asset should be used to pay fees
-           - `weightLimit` - the weight limit for XCM fee purchase on the destination chain. Can be defined as:
-               - `Unlimited` - allows an unlimited amount of weight
-               - `Limited` - specifies a maximum weight value
-
-           As a reminder, the origin must be capable of withdrawing the specified assets and executing XCM. If more weight is needed than specified in `weightLimit`, the operation will fail and teleported assets may be at risk
-
-??? function "**reserveTransferAssets**(dest, beneficiary, assets, feeAssetItem) — transfers assets from the local chain to a destination chain via their reserve location. This function is deprecated. Use `limitedReserveTransferAssets` instead"
-
-??? function "**send**(dest, message) — sends an XCM message to a destination"
-    === "Parameters"
-        - `dest` - the destination to which the XCM message will be sent
-        - `message` - the XCM message to be sent
-
-??? function "**teleportAssets**(dest, beneficiary, assets, feeAssetItem) — teleports assets from the local chain to a destination chain. This function is deprecated. Use `limitedTeleportAssets` instead"
 
 ??? function "**transferAssets**(dest, beneficiary, assets, feeAssetItem, weightLimit) — transfers assets from the local chain to a destination chain using reserve or teleport methods"
     === "Parameters"
@@ -350,7 +262,7 @@ To perform a limited reserve transfer using the `polkadotXcm` pallet, follow the
     ```
 
 !!! note
-    You can view an example of the above script, which sends 1 xcUNIT to Alice's account on the relay chain, on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/extrinsics/decode/0x1c080401000400010100d4620637e11439598c5fbae0506dc68b9fb1edb33b316761bf99987a1034a96b0404010000070010a5d4e80000000000){target=\_blank} using the following encoded calldata: `0x1c080401000400010100d4620637e11439598c5fbae0506dc68b9fb1edb33b316761bf99987a1034a96b0404010000070010a5d4e80000000000`.
+    You can view an example of the above script, which sends 1 xcUNIT to Alice's account on the relay chain, on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/extrinsics/decode/0x1c0b0401000400010100d4620637e11439598c5fbae0506dc68b9fb1edb33b316761bf99987a1034a96b0404010000070010a5d4e80000000000){target=\_blank} using the following encoded calldata: `0x1c0b0401000400010100d4620637e11439598c5fbae0506dc68b9fb1edb33b316761bf99987a1034a96b0404010000070010a5d4e80000000000`.
 
 Once the transaction is processed, the target account on the relay chain should have received the transferred amount minus a small fee that is deducted to execute the XCM on the destination chain. 
 

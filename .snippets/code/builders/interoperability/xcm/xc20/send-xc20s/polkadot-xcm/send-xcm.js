@@ -16,7 +16,7 @@ const main = async () => {
 
   try {
     // Create the transaction
-    const tx = api.tx.polkadotXcm.limitedReserveTransferAssets(
+    const tx = api.tx.polkadotXcm.transferAssets(
       // dest
       {
         V3: {
