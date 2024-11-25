@@ -119,7 +119,7 @@ For more information on each of the methods of the Unified API and for an intera
         --8<-- 'code/builders/integrations/indexers/covalent/token-balances/response.sh'
         ```
 
-???+ function "Native Token Balances"
+??? function "Native Token Balances"
 
     The [native token balances endpoint](https://goldrush.mintlify.app/docs/api/balances/get-native-token-balance){target=\_blank} retrieves the native token balance for a given address in a streamlined manner. 
 
@@ -164,7 +164,7 @@ For more information on each of the methods of the Unified API and for an intera
         --8<-- 'code/builders/integrations/indexers/covalent/get-a-transaction/response.sh'
         ```
 
-???+ function "Get transaction summary for address"
+??? function "Get transaction summary for address"
 
     [Get transaction summary for address](https://goldrush.mintlify.app/docs/api/transactions/get-transaction-summary-for-address){target=\_blank} retrieves key wallet activity data, including the first and most recent transactions, and total transaction count. It enables quick analysis of wallet age, inactive periods, and overall Web3 engagement levels.
 
@@ -185,7 +185,7 @@ For more information on each of the methods of the Unified API and for an intera
         --8<-- 'code/builders/integrations/indexers/covalent/transaction-summary/response.sh'
         ```
 
-???+ function "Get earliest transactions for address (v3)"
+??? function "Get earliest transactions for address (v3)"
 
     [Get earliest transactions for address](https://goldrush.mintlify.app/docs/api/transactions/get-earliest-transactions-for-address-v3){target=\_blank} retrieves the earliest transactions involving an address.
 
@@ -206,7 +206,7 @@ For more information on each of the methods of the Unified API and for an intera
         --8<-- 'code/builders/integrations/indexers/covalent/earliest-transactions/response.sh'
         ```
 
-???+ function "Get recent transactions for address (v3)"
+??? function "Get recent transactions for address (v3)"
 
     [Get recent transactions for address](https://goldrush.mintlify.app/docs/api/transactions/get-recent-transactions-for-address-v3){target=\_blank} retrieves the most recent transactions involving an address.
 
@@ -227,7 +227,7 @@ For more information on each of the methods of the Unified API and for an intera
         --8<-- 'code/builders/integrations/indexers/covalent/recent-transactions/response.sh'
         ```
 
-???+ function "Get paginated transactions for address (v3)"
+??? function "Get paginated transactions for address (v3)"
 
     [Get paginated transactions for address (v3)](https://goldrush.mintlify.app/docs/api/transactions/get-paginated-transactions-for-address-v3){target=\_blank} fetches the transactions involving an address and the specified page, starting from a 0 index.
 
@@ -249,7 +249,7 @@ For more information on each of the methods of the Unified API and for an intera
         --8<-- 'code/builders/integrations/indexers/covalent/get-paginated-transactions/response.sh'
         ```
 
-???+ function "Get bulk time bucket transactions for address (v3)"
+??? function "Get bulk time bucket transactions for address (v3)"
 
     [Get bulk time bucket transactions for address (v3)](https://goldrush.mintlify.app/docs/api/transactions/get-time-bucket-transactions-for-address-v3){target=\_blank} is used to fetch all transactions including their decoded log events in a 15-minute time bucket interval.
 
@@ -271,7 +271,7 @@ For more information on each of the methods of the Unified API and for an intera
         --8<-- 'code/builders/integrations/indexers/covalent/get-bulk-time/response.sh'
         ```
 
-???+ function "Get all transactions in a block by page (v3)"
+??? function "Get all transactions in a block by page (v3)"
 
     [Get all transactions in a block by page (v3)](https://goldrush.mintlify.app/docs/api/transactions/get-all-transactions-in-a-block-by-page){target=\_blank} is used to fetch all transactions including their decoded log events in a block and further flag interesting wallets or transactions.
 
@@ -293,7 +293,7 @@ For more information on each of the methods of the Unified API and for an intera
         --8<-- 'code/builders/integrations/indexers/covalent/get-all-txns-in-block/response.sh'
         ```
 
-???+ function "Get all transactions in a block (v3)"
+??? function "Get all transactions in a block (v3)"
 
     [Get all transactions in a block (v3)](https://goldrush.mintlify.app/docs/api/transactions/get-all-transactions-in-a-block){target=\_blank} is used to used to fetch all transactions including their decoded log events in a block and further flag interesting wallets or transactions. It takes a blockhash as a parameter and it does not accept a page parameter.
 
@@ -314,7 +314,7 @@ For more information on each of the methods of the Unified API and for an intera
         --8<-- 'code/builders/integrations/indexers/covalent/all-txns-by-block-hash/response.sh'
         ```
 
-???+ function "Get ERC-20 Token Transfers for Address"
+??? function "Get ERC-20 Token Transfers for Address"
 
     [Get ERC-20 Token Transfers for Address](https://goldrush.mintlify.app/docs/api/transactions/get-erc20-token-transfers-for-address){target=\_blank} is used to fetch the transfer-in and transfer-out of a token along with historical prices from an address, when provided both a wallet address and an ERC-20 token contract address
 
@@ -384,7 +384,7 @@ For more information on each of the methods of the Unified API and for an intera
         ```
 
 
-???+ function "Get NFT approvals for address"
+??? function "Get NFT approvals for address"
 
     [Get NFT approvals for address](https://goldrush.mintlify.app/docs/api/security/get-nft-approvals){target=\_blank} is used to get a list of NFT approvals across all token contracts categorized by spenders for a wallet’s assets
 
