@@ -201,7 +201,7 @@ There are no constants part of the PolkadotXCM pallet.
 
 ## Building an XCM Message with the PolkadotXCM Pallet {: #build-with-PolkadotXCM-pallet}
 
-This guide covers the process of building an XCM message using the PolkadotXCM Pallet, specifically the `limitedReserveTransferAssets` function. It can be adapted for different assets using the other methods of the PolkadotXCM Pallet.
+This guide covers the process of building an XCM message using the PolkadotXCM Pallet, specifically the `transferAssets` function.
 
 !!! note
     Each parachain can allow and forbid specific methods from a pallet. Consequently, developers must ensure that they use methods that are allowed, or the transaction will fail with an error similar to `system.CallFiltered`.
@@ -227,9 +227,9 @@ To check your xcUNIT balance, you can add the XC-20's [precompile address](/buil
 0xFfFFfFff1FcaCBd218EDc0EbA20Fc2308C778080
 ```
 
-### PolkadotXCM Limited Reserve Transfer Assets Function {: #polkadotxcm-limited-reserve-transfer-assets-function}
+### PolkadotXCM Transfer Assets Function {: #polkadotxcm-transfer-assets-function}
 
-In this example, you'll build an XCM message to transfer xcUNIT from Moonbase Alpha back to the Alphanet relay chain through the `limitedReserveTransferAssets` function of the PolkadotXcm Pallet using the [Polkadot.js API](/builders/substrate/libraries/polkadot-js-api/){target=\_blank}. `LimitedReserveTransferAssets` is the right method to select in this case because we're transferring the xcUnit tokens back to their original chain (reserve chain). 
+In this example, you'll build an XCM message to transfer xcUNIT from Moonbase Alpha back to the Alphanet relay chain through the `transferAssets` function of the PolkadotXcm Pallet using the [Polkadot.js API](/builders/substrate/libraries/polkadot-js-api/){target=\_blank}.
 
 To perform a limited reserve transfer using the `polkadotXcm` pallet, follow these steps:
 
