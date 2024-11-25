@@ -50,24 +50,24 @@ The GMP precompile has one method:
 
 VAAs are payload-containing packages generated after origin-chain transactions and are discovered by Wormhole [Guardians](https://wormhole.com/docs/learn/infrastructure/guardians/){target=\_blank}.
 
-The most common instance that a user will have to interact with the precompile is in the case of a recovery, where a relayer doesn’t complete an MRL transaction. For example, a user would have to search for the VAA that comes with their origin chain transaction and then manually invoke the `wormholeTransferERC20` function.
+The most common instance in which a user will have to interact with the precompile is during a recovery, where a relayer doesn’t complete an MRL transaction. For example, a user must search for the VAA that comes with their origin chain transaction and manually invoke the `wormholeTransferERC20` function.
 
 ## Building the Payload for Wormhole {: #building-the-payload-for-wormhole }
 
-Currently the GMP precompile only supports sending liquidity with Wormhole, through Moonbeam, and into other parachains. The GMP precompile does not assist with a route from parachains back to Moonbeam and subsequently Wormhole connected chains.  
+Currently, the GMP precompile only supports sending liquidity with Wormhole, through Moonbeam, and into other parachains. The GMP precompile does not assist with a route from parachains back to Moonbeam and subsequently, Wormhole-connected chains.    
 
 To send liquidity from a Wormhole-connected origin chain like Ethereum, users must invoke the [`transferTokensWithPayload` method](https://wormhole.com/docs/learn/infrastructure/vaas/#token--message){target=\_blank} on the [origin-chain's deployment](https://wormhole.com/docs/learn/infrastructure/core-contracts/#token-bridge){target=\_blank} of the [WormholeTokenBridge smart contract](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/interfaces/ITokenBridge.sol){target=\_blank}. This function requires a bytes payload, which must be formatted as a SCALE encoded multilocation object wrapped within [another precompile-specific versioned type](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbase.spec_version }}/precompiles/gmp/src/types.rs#L25-L48){target=\_blank}.
 
-You may be unfamiliar with both SCALE encoding and multilocations if you are not familiar with the Polkadot ecosystem. [SCALE encoding](https://docs.substrate.io/reference/scale-codec){target=\_blank} is a compact form of encoding that Polkadot uses. The [`MultiLocation` type](https://wiki.polkadot.network/docs/learn-xcvm){target=\_blank} is used to define a relative point in Polkadot, such as a specific account on a specific parachain (Polkadot blockchain).  
+You may be unfamiliar with SCALE encoding and multilocations if you are unfamiliar with the Polkadot ecosystem. [SCALE encoding](https://docs.substrate.io/reference/scale-codec){target=\_blank} is a compact form of encoding that Polkadot uses. The [`MultiLocation` type](https://wiki.polkadot.network/docs/learn-xcvm){target=\_blank} is used to define a relative point in Polkadot, such as a specific account on a specific parachain (Polkadot blockchain).  
 
-Moonbeam’s GMP protocol requires a multilocation to represent the destination for liquidity routing, which most likely means an account on some other parachain. Whatever it is, this destination must be expressed as relative to Moonbeam.  
+Moonbeam’s GMP protocol requires a multilocation to represent the destination for liquidity routing, which most likely means an account on another parachain. Whatever it is, this destination must be expressed as relative to Moonbeam.  
 
 !!! remember
     Multilocations being relative is important, because a parachain team may erroneously give you a multilocation relative to their own chain, which can be different. Providing an incorrect multilocation can result in **loss of funds**!
 
-Each parachain will have their own methods of interpreting a multilocation, and should confirm with the project that the multilocation that you form is correct. That being said, it is most likely that you will be forming a multilocation with an account.
+Each parachain will have its specific methods of interpreting a multilocation, and should confirm with the project that the multilocation that you formed is correct. However, you will most likely be forming a multilocation with an account.
 
-There are multiple types of accounts that can be included in a multilocation, which you must know beforehand when constructing your multilocation. The two most common are:
+Multiple types of accounts can be included in a multilocation, which you must know beforehand when constructing your multilocation. The two most common are:
 
 - **AccountKey20** — an account ID that is 20-bytes in length, including Ethereum-compatible account IDs such as those on Moonbeam
 - **AccountId32** — an account ID that is 32-bytes in length, standard in Polkadot and its parachains
@@ -114,9 +114,9 @@ The following multilocation templates target accounts on other parachains with M
     };
     ```
 
-It can be difficult to correctly SCALE encode the entire payload without the right tools, especially due to the [custom types expected by the precompile](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbase.spec_version }}/precompiles/gmp/src/types.rs#L25-L48){target=\_blank}. Fortunately, the Polkadot.js API can assist with this.
+It can be challenging to correctly SCALE encode the entire payload without the right tools, mainly due to the [custom types expected by the precompile](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbase.spec_version }}/precompiles/gmp/src/types.rs#L25-L48){target=\_blank}. Fortunately, the Polkadot.js API can assist with this.
 
-The versioned user action expected by the precompile accepts two versions: V1 and V2. V1 accepts the `XcmRoutingUserAction` type, which attempts to route the transferred assets to the destination defined by the multilocation. V2 accepts the `XcmRoutingUserActionWithFee` type, which also attempts to route the transferred assets to the destination but also allows a fee to be paid. Relayers can use V2 to specify a fee to charge on Moonbeam to relay the transaction to the given destination.
+The versioned user action expected by the precompile accepts two versions: V1 and V2. V1 accepts the `XcmRoutingUserAction` type, which attempts to route the transferred assets to the destination defined by the multilocation. V2 accepts the `XcmRoutingUserActionWithFee` type, which also attempts to route the transferred assets to the destination and allows a fee to be paid. Relayers can use V2 to specify a fee on Moonbeam to relay the transaction to the given destination.
 
 The following script shows how to create a `Uint8Array` that can be used as a payload for the GMP precompile:  
 
@@ -139,5 +139,5 @@ The GMP precompile is currently in its early stages. There are many restrictions
 - There is currently no fee mechanism. Relayers that run the forwarding of liquidity on Moonbeam to a parachain will be subsidizing transactions. This may change in the future
 - The precompile does not check to ensure that the destination chain supports the token that is being sent to it. **Incorrect multilocations may result in loss of funds**
 - Errors in constructing a multilocation will result in reverts, which will trap tokens and result in a loss of funds
-- There is currently no recommended path backwards, from parachains to other chains like Ethereum. There is additional protocol level work that must be done before a one-click method can be realized
+- There is currently no recommended path backward, from parachains to other chains like Ethereum. There is additional protocol-level work that must be done before a one-click method can be realized
   - Due to a restriction with the ERC-20 XC-assets, the only way to send tokens from a parachain back through Moonbeam is to have xcGLMR on the origin parachain and use it as a fee asset when sending tokens back  
