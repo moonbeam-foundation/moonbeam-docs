@@ -405,7 +405,7 @@ For more information on each of the methods of the Unified API and for an intera
         --8<-- 'code/builders/integrations/indexers/covalent/nft-approvals/response.sh'
         ```
 
-Many more methods are offered by the GoldRush API, including NFT and Utility methods. Be sure to check out the [GoldRush docs](https://goldrush.mintlify.app/api-reference/overview){target=\_blank} for more information on each of these methods.  
+Many more methods are offered by the GoldRush API, including NFT and Utility methods. Be sure to check out the [GoldRush docs](https://goldrush.mintlify.app/docs/api/overview){target=\_blank} for more information on each of these methods.  
 
 ## API Parameters and Resources
 
