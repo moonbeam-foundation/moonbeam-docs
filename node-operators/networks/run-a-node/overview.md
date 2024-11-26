@@ -98,6 +98,9 @@ Upon spooling up a node with this feature, you'll see output like the following:
 
 --8<-- 'code/node-operators/networks/run-a-node/terminal/lazy-loading.md'
 
+!!! note
+    Lazy loading is resource-intensive. Ensure your node meets the minimum [System Requirements](#requirements). 
+
 You can further customize your use of the lazy loading functionality with the following optional parameters:
 
 - **`block`** - specifies the block number from which to start forking the chain
