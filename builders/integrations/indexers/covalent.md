@@ -9,7 +9,7 @@ description: Querying blockchain data such as balances, transactions, transfers,
 
 [GoldRush](https://goldrush.dev/){target=\_blank}, formerly known as Covalent, is a hosted blockchain data solution providing access to historical and current on-chain data for [100+ supported blockchains](https://goldrush.dev/docs/networks/?utm_source=moonbeam&utm_medium=partner-docs){target=\_blank}, including [Moonbeam](https://goldrush.dev/chains/moonbeam/){target=\_blank}, [Moonriver](https://goldrush.dev/chains/moonriver/){target=\_blank}, and [Moonbase Alpha](https://goldrush.dev/chains/moonbeam-moonbase-alpha-testnet/){target=\_blank}. GoldRush maintains a full archival copy of every supported blockchain, meaning every balance, transaction, log event, and NFT asset data is available from the genesis block. This data is available via:
 
-- [Unified API](#unified-api) - incorporate blockchain data into your app with a familiar REST API
+- [Unified API](#unified-api-overview) - incorporate blockchain data into your app with a familiar REST API
 
 This guide will cover all of the details needed to get started with the [GoldRush API](https://goldrush.dev/docs/unified-api/){target=\_blank} and how to access the API endpoints for Moonbeam using curl commands and JavaScript and Python snippets.
 
