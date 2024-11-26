@@ -316,7 +316,7 @@ For more information on each of the methods of the Unified API and for an intera
 
 ??? function "Get ERC-20 Token Transfers for Address"
 
-    [Get ERC-20 Token Transfers for Address](https://goldrush.mintlify.app/docs/api/transactions/get-erc20-token-transfers-for-address){target=\_blank} is used to fetch the transfer-in and transfer-out of a token along with historical prices from an address, when provided both a wallet address and an ERC-20 token contract address
+    [Get ERC-20 Token Transfers for Address](https://goldrush.mintlify.app/docs/api/balances/get-erc20-token-transfers-for-address){target=\_blank} is used to fetch the transfer-in and transfer-out of a token along with historical prices from an address, when provided both a wallet address and an ERC-20 token contract address
 
     === "Parameters"
 
