@@ -42,7 +42,7 @@ This guide will cover some of the most common flags and show you how to access a
     - **`fast-unsafe`** - same as `fast`, but skips downloading the state proofs
     - **`warp`** - downloads the latest state and proof
 - **`--prometheus-port`** - specifies a custom Prometheus port
-- **`fork-chain-from-rpc`** - allows lazy loading by relying on a specified RPC for network state until the node is fully synchronized e.g. `--fork-chain-from-rpc 'https://moonbeam.public.blastapi.io'`
+- **`fork-chain-from-rpc`** - allows [lazy loading](/node-operators/networks/run-a-node/overview/#lazy-loading){target=\_blank} by relying on a specified RPC for network state until the node is fully synchronized e.g. `--fork-chain-from-rpc 'https://moonbeam.public.blastapi.io'`
 - **`block`** - related to lazy loading, specifies the block number from which to start forking the chain
 - **`fork-state-overrides`** - related to lazy loading, path to a JSON file containing state overrides to be applied when forking 
 - **`runtime-override`** - related to lazy loading, path to a WASM file to override the runtime when forking
