@@ -10,6 +10,9 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10.12'
 
       - name: Allow to move dotfiles
         run: |
@@ -24,7 +27,7 @@ jobs:
       - name: Move moonbeam-docs contents to mkdocs repository
         run: |
           mkdir moonbeam-mkdocs/moonbeam-docs
-          mv * moonbeam-mkdocs/moonbeam-docs &> /dev/null || echo "Error with mv expected due to recursively moving all contents into subfolder"
+          find . -mindepth 1 -maxdepth 1 ! -name 'moonbeam-mkdocs' -exec mv {} moonbeam-mkdocs/moonbeam-docs/ \;
 
       - name: Install pip requirements
         run: |
