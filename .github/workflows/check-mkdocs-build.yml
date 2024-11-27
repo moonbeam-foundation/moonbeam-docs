@@ -27,7 +27,7 @@ jobs:
       - name: Move moonbeam-docs contents to mkdocs repository
         run: |
           mkdir moonbeam-mkdocs/moonbeam-docs
-          mv * moonbeam-mkdocs/moonbeam-docs &> /dev/null || echo "Error with mv expected due to recursively moving all contents into subfolder"
+          find . -mindepth 1 -maxdepth 1 ! -name 'moonbeam-mkdocs' -exec mv {} moonbeam-mkdocs/moonbeam-docs/ \;
 
       - name: Install pip requirements
         run: |
