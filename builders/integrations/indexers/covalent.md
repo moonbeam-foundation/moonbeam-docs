@@ -140,6 +140,27 @@ For more information on each of the methods of the Unified API and for an intera
         --8<-- 'code/builders/integrations/indexers/covalent/native-token-balances/response.sh'
         ```
 
+??? function "Get ERC-20 Token Transfers for Address"
+
+    [Get ERC-20 Token Transfers for Address](https://goldrush.mintlify.app/docs/api/balances/get-erc20-token-transfers-for-address){target=\_blank} is used to fetch the transfer-in and transfer-out of a token along with historical prices from an address, when provided both a wallet address and an ERC-20 token contract address
+
+    === "Parameters"
+
+        - `chainName` *string* - e.g. `moonbeam-mainnet`, `moonbeam-moonriver`, or `moonbeam-moonbase-alpha` 
+        - `walletAddress` *string* - the address you wish to query
+        - `contractAddress` *string* - the ERC20 token contract to query
+
+    === "Example Request"
+
+        ```bash
+        --8<-- 'code/builders/integrations/indexers/covalent/get-erc20-transfers/request.sh'
+        ```
+
+    === "Example Response"
+
+        ```bash
+        --8<-- 'code/builders/integrations/indexers/covalent/get-erc20-transfers/response.sh'
+        ```
 
 ### Transactions {: #transactions }
 
@@ -314,29 +335,6 @@ For more information on each of the methods of the Unified API and for an intera
         --8<-- 'code/builders/integrations/indexers/covalent/all-txns-by-block-hash/response.sh'
         ```
 
-??? function "Get ERC-20 Token Transfers for Address"
-
-    [Get ERC-20 Token Transfers for Address](https://goldrush.mintlify.app/docs/api/balances/get-erc20-token-transfers-for-address){target=\_blank} is used to fetch the transfer-in and transfer-out of a token along with historical prices from an address, when provided both a wallet address and an ERC-20 token contract address
-
-    === "Parameters"
-
-        - `chainName` *string* - e.g. `moonbeam-mainnet`, `moonbeam-moonriver`, or `moonbeam-moonbase-alpha` 
-        - `walletAddress` *string* - the address you wish to query
-        - `contractAddress` *string* - the ERC20 token contract to query
-
-    === "Example Request"
-
-        ```bash
-        --8<-- 'code/builders/integrations/indexers/covalent/get-erc20-transfers/request.sh'
-        ```
-
-    === "Example Response"
-
-        ```bash
-        --8<-- 'code/builders/integrations/indexers/covalent/get-erc20-transfers/response.sh'
-        ```
-
-
 ### Cross Chain {: #cross-chain }
 
 ???+ function "Get cross-chain activity for address"
@@ -407,7 +405,7 @@ For more information on each of the methods of the Unified API and for an intera
 
 Many more methods are offered by the GoldRush API, including NFT and Utility methods. Be sure to check out the [GoldRush docs](https://goldrush.mintlify.app/docs/api/overview){target=\_blank} for more information on each of these methods.  
 
-## API Parameters and Resources
+## API Parameters and Resources {: #api-parameters-and-resources }
 
 ### API Parameters {: #api-parameters }
 
