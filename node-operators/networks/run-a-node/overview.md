@@ -99,7 +99,7 @@ Upon spooling up a node with this feature, you'll see output like the following:
 --8<-- 'code/node-operators/networks/run-a-node/terminal/lazy-loading.md'
 
 !!! note
-    Lazy loading is resource-intensive. Ensure your node meets the minimum [System Requirements](#requirements). 
+    Lazy loading a Moonbeam requires a large number of RPC requests. To avoid being rate-limited by a public endpoint, it's highly recommended to use a [dedicated endpoint](/builders/get-started/endpoints#endpoint-providers)  
 
 You can further customize your use of the lazy loading functionality with the following optional parameters:
 

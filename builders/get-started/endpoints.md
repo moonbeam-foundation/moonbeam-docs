@@ -156,6 +156,42 @@ To get started, head to the [Ankr Protocol](https://www.ankr.com/protocol){targe
 
 ![Ankr](/images/builders/get-started/endpoints/endpoints-5.webp)-->
 
+## Lazy Loading with RPC Endpoint Providers {: #lazy-loading-with-RPC-Endpoint-Providers }
+
+Lazy loading lets a Moonbeam node operate while downloading network state in the background, eliminating the need to wait for full synchronization before use. 
+
+To spin up a Moonbeam node with lazy loading, you'll need to either clone the Moonbeam release binary or use Docker. You can activate lazy loading with the following flag:
+
+- **`fork-chain-from-rpc`** - allows lazy loading by relying on a specified RPC for network state until the node is fully synchronized e.g. `--fork-chain-from-rpc 'INSERT-RPC-URL'`
+
+Lazy loading is highly-resource intensive, requiring a large number of RPC requests to function. To avoid being throttled, it's highly recommended that you use a [dedicated endpoint](#endpoint-providers) (i.e. an endpoint with an API key) rather than a public endpoint. It's likely that that you be rate limited if you attempt to use lazy loading with a public endpoint. 
+
+Upon spooling up a node with this feature, you'll see output like the following:
+
+--8<-- 'code/node-operators/networks/run-a-node/terminal/lazy-loading.md'
+
+
+By default, you won't see detailed logging in the terminal. To override this setting and show lazy loading logs, you can add the following flag to your command to start the Moonbeam node: `-l debug`
+
+You can further customize your use of the lazy loading functionality with the following optional parameters:
+
+- **`block`** - specifies the block number from which to start forking the chain
+- **`runtime-override`** - path to a WASM file to override the runtime when forking
+- **`fork-state-overrides`** - path to a JSON file containing state overrides to be applied when forking 
+
+The state overrides file should define the respective pallet, storage item, and value that you seek to override as follows:
+
+```json
+[
+ {
+     "pallet": "System",
+     "storage": "SelectedCandidates",
+     "value": "0x04f24ff3a9cf04c71dbc94d0b566f7a27b94566cac"
+ }
+]
+```
+
+
 ## Tracing RPC Endpoint Providers {: #tracing-providers }
 
 Tracing RPC endpoints allow you to access non-standard RPC methods, such as those that belong to Geth's `debug` and `txpool` APIs and OpenEthereum's `trace` module. To see a list of the supported non-standard RPC methods on Moonbeam for debugging and tracing, please refer to the [Debug API & Trace Module](/builders/ethereum/json-rpc/debug-trace/){target=\_blank} guide.
