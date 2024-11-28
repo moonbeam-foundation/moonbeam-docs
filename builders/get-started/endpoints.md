@@ -158,7 +158,7 @@ To get started, head to the [Ankr Protocol](https://www.ankr.com/protocol){targe
 
 ## Lazy Loading with RPC Endpoint Providers {: #lazy-loading-with-RPC-Endpoint-Providers }
 
-Lazy loading lets a Moonbeam node operate while downloading network state in the background, eliminating the need to wait for full synchronization before use. To spin up a Moonbeam node with lazy loading, you'll need to either clone the Moonbeam release binary or use [Docker](/node-operators/networks/run-a-node/docker/){target=_blank}. You can activate lazy loading with the following flag:
+Lazy loading lets a Moonbeam node operate while downloading network state in the background, eliminating the need to wait for full synchronization before use. To spin up a Moonbeam node with lazy loading, you'll need to either [download the Moonbeam release binary](/node-operators/networks/run-a-node/systemd/#the-release-binary){target=_blank} or use [Docker](/node-operators/networks/run-a-node/docker/){target=_blank}. You can activate lazy loading with the following flag:
 
 `--fork-chain-from-rpc 'INSERT-RPC-URL'`
 
@@ -168,9 +168,7 @@ Upon spooling up a node with this feature, you'll see output like the following:
 
 --8<-- 'code/node-operators/networks/run-a-node/terminal/lazy-loading.md'
 
-By default, you won't see detailed logging in the terminal. To override this setting and show lazy loading logs, you can add the following flag to your command to start the Moonbeam node: `-l debug`
-
-You can further customize your use of the lazy loading functionality with the following optional parameters:
+By default, you won't see detailed logging in the terminal. To override this setting and show lazy loading logs, you can add the following flag to your command to start the Moonbeam node: `-l debug`. You can further customize your use of the lazy loading functionality with the following optional parameters:
 
 - **`block`** - specifies the block number from which to start forking the chain
 - **`runtime-override`** - path to a WASM file to override the runtime when forking
