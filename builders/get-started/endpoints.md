@@ -162,7 +162,7 @@ Lazy loading lets a Moonbeam node operate while downloading network state in the
 
 `--fork-chain-from-rpc 'INSERT-RPC-URL'`
 
-Lazy loading is highly-resource intensive, requiring a large number of RPC requests to function. To avoid being throttled, it's highly recommended that you use a [dedicated endpoint](#endpoint-providers) (i.e. an endpoint with an API key) rather than a public endpoint. It's likely that that you be rate limited if you attempt to use lazy loading with a public endpoint. 
+Lazy loading is highly resource-intensive, requiring many RPC requests to function. To avoid being throttled, it's recommended that you use a [dedicated endpoint](#endpoint-providers) (i.e., an endpoint with an API key) rather than a public endpoint. It's likely that you will be rate-limited if you attempt to use lazy loading with a public endpoint.  
 
 Upon spooling up a node with this feature, you'll see output like the following:
 
@@ -185,7 +185,6 @@ The state overrides file should define the respective pallet, storage item, and 
  }
 ]
 ```
-
 
 ## Tracing RPC Endpoint Providers {: #tracing-providers }
 
