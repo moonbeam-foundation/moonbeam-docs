@@ -158,18 +158,15 @@ To get started, head to the [Ankr Protocol](https://www.ankr.com/protocol){targe
 
 ## Lazy Loading with RPC Endpoint Providers {: #lazy-loading-with-RPC-Endpoint-Providers }
 
-Lazy loading lets a Moonbeam node operate while downloading network state in the background, eliminating the need to wait for full synchronization before use. 
+Lazy loading lets a Moonbeam node operate while downloading network state in the background, eliminating the need to wait for full synchronization before use. To spin up a Moonbeam node with lazy loading, you'll need to either clone the Moonbeam release binary or use [Docker](/node-operators/networks/run-a-node/docker/){target=_blank}. You can activate lazy loading with the following flag:
 
-To spin up a Moonbeam node with lazy loading, you'll need to either clone the Moonbeam release binary or use Docker. You can activate lazy loading with the following flag:
-
-- **`fork-chain-from-rpc`** - allows lazy loading by relying on a specified RPC for network state until the node is fully synchronized e.g. `--fork-chain-from-rpc 'INSERT-RPC-URL'`
+`--fork-chain-from-rpc 'INSERT-RPC-URL'`
 
 Lazy loading is highly-resource intensive, requiring a large number of RPC requests to function. To avoid being throttled, it's highly recommended that you use a [dedicated endpoint](#endpoint-providers) (i.e. an endpoint with an API key) rather than a public endpoint. It's likely that that you be rate limited if you attempt to use lazy loading with a public endpoint. 
 
 Upon spooling up a node with this feature, you'll see output like the following:
 
 --8<-- 'code/node-operators/networks/run-a-node/terminal/lazy-loading.md'
-
 
 By default, you won't see detailed logging in the terminal. To override this setting and show lazy loading logs, you can add the following flag to your command to start the Moonbeam node: `-l debug`
 
