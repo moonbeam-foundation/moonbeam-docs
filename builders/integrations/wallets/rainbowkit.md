@@ -9,7 +9,7 @@ description: Learn how to integrate RainbowKit into a dApp to allow users to con
 
 [RainbowKit](https://www.rainbowkit.com/docs/introduction){target=\_blank} is a React library that adds wallet connection capabilities to a dApp. It supports numerous wallets and enables features such as switching connection chains, ENS address resolution, and balance display out-of-the-box. RainbowKit offers customization options for all EVM-compatible chains, making it possible to easily connect mobile wallets to your Moonbeam dApps.
 
-RainbowKit bundles together mulitple tools to simplify adding wallet connection to your dApp: 
+RainbowKit bundles together multiple tools to simplify adding wallet connection to your dApp: 
 
 - [Wagmi](https://wagmi.sh/){target=\_blank} - a React Hooks library for interacting with Ethereum accounts, wallets, contracts, transactions, signing, ENS, and more
 - [viem](https://viem.sh/){target=\_blank} - TypeScript interface which provides low-level stateless primitives for interacting with Ethereum

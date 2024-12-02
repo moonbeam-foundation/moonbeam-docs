@@ -9,7 +9,7 @@ description: Learn how to create and manage an on-chain identity, which includes
 
 The [Substrate](/learn/platform/technology/#substrate-framework){target=\_blank} Identity pallet is an out-of-the-box solution for adding personal information to your on-chain account. Personal information can include default fields such as your legal name, display name, website, Twitter handle, Riot (now known as Element) name. You can also take advantage of custom fields to include any other relevant information.
 
-Once your identity information is on-chain, you can request verification of your identity from a registrar. A registrar will perform proper due dilligence to verify the submitted identity information and based on their findings will provide their judgement on-chain and a green check mark will appear next to your account.
+Once your identity information is on-chain, you can request verification of your identity from a registrar. A registrar will perform proper due diligence to verify the submitted identity information and based on their findings will provide their judgement on-chain and a green check mark will appear next to your account.
 
 This guide will show you how to set an identity, clear it, and request judgement on the Moonbase Alpha TestNet. This guide can also be adapted to be used on Moonbeam and Moonriver.
 
@@ -188,7 +188,7 @@ After submitting your identity information, you can request verification of your
 
 Registrar applicants are appointed via on-chain democracy. If an appointed registrar issues incorrect judgements or proves to be untrustworthy, they can be removed through democracy.
 
-A registrar will perform proper due dilligence to verify the submitted identity information and based on their findings will provide judgement and assign up to seven levels of confidence:
+A registrar will perform proper due diligence to verify the submitted identity information and based on their findings will provide judgement and assign up to seven levels of confidence:
 
 - **Unknown** - no judgement made yet. This is the default value
 - **Fee Paid** - indicates a user has requested judgement and it is in progress

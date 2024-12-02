@@ -40,7 +40,7 @@ Some important terminology to understand in regards to treasuries:
     |                      Variable                      |                                                             Value                                                             |
     |:--------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------------------------:|
     |          Current Treasury Council members          |                               {{ networks.moonriver.treasury.current_council_members }} members                               |
-    |                   Proposal bond                    |                 the minimim amount or {{ networks.moonriver.treasury.proposal_bond }}% of the proposed spend                  |
+    |                   Proposal bond                    |                 the minimum amount or {{ networks.moonriver.treasury.proposal_bond }}% of the proposed spend                  |
     |               Proposal bond minimum                |                                   {{ networks.moonriver.treasury.proposal_bond_min }} MOVR                                    |
     |               Proposal bond maximum                |                                      {{ networks.moonriver.treasury.proposal_bond_max }}                                      |
     |                  Motion duration                   | {{ networks.moonriver.treasury.motion_duration_blocks }} blocks ({{ networks.moonriver.treasury.motion_duration_days }} days) |
