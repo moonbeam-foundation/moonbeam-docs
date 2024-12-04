@@ -255,7 +255,7 @@ If a referendum meets the above criteria, it moves to the Decide Period and take
 
 Once in the Confirm Period, a referendum must continuously meet the Approval and Support requirements for the duration of the period. If a referendum fails to meet the requirements at any point, it is returned to the Decide Period. If the referendum meets the Approval and Support requirements again, it can progress to the Confirm Period again and the Decide Period will be delayed until the end of the Confirm Period. If the Decide Period ends and not enough Approval and Support was received, the referendum will be rejected and the Decision Deposit will be returned. The proposal can be proposed again at any time.
 
-If a referendum continously receives enough Approval and Support during the Confirm Period, it will be approved and move to the Enactment Period. It will wait the duration of the Enactment Period before it gets dispatched.
+If a referendum continuously receives enough Approval and Support during the Confirm Period, it will be approved and move to the Enactment Period. It will wait the duration of the Enactment Period before it gets dispatched.
 
 The happy path for a proposal is shown in the following diagram:
 
