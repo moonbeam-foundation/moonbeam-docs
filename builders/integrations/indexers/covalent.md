@@ -78,7 +78,7 @@ The GoldRush API has three classes of endpoints:
 
 For a full list of supported endpoints, refer to the [GoldRush API reference](https://goldrush.mintlify.app/api-reference/overview){target=\_blank}. A subset of the supported endpoints include:
 
-- **Token Balances**: Get all token balances (native, ERC20, ERC721, ERC1155) with current market prices for an address
+- **Token Balances**: Get all token balances (native, ERC-20, ERC-721, ERC-1155) with current market prices for an address
 - **Native Token Balances**: Retrieve native token balance for an address
 - **Get a Transaction**: Fetch and render a single transaction with decoded log events
 - **Transaction Summary**: Retrieve key wallet activity data for an address
@@ -100,7 +100,7 @@ For more information on each of the methods of the Unified API and for an intera
 
 ???+ function "Token Balances"
 
-    The [token balances endpoint](https://goldrush.mintlify.app/docs/api/balances/get-token-balances-for-address){target=\_blank} retrieves native tokens, fungible (ERC20) tokens, and non-fungible (ERC721 & ERC1155) tokens associated with a given address. The returned data includes current market prices and additional token metadata.
+    The [token balances endpoint](https://goldrush.mintlify.app/docs/api/balances/get-token-balances-for-address){target=\_blank} retrieves native tokens, fungible (ERC-20) tokens, and non-fungible (ERC-721 & ERC-1155) tokens associated with a given address. The returned data includes current market prices and additional token metadata.
 
     === "Parameters"
 
@@ -148,7 +148,7 @@ For more information on each of the methods of the Unified API and for an intera
 
         - `chainName` *string* - e.g. `moonbeam-mainnet`, `moonbeam-moonriver`, or `moonbeam-moonbase-alpha` 
         - `walletAddress` *string* - the address you wish to query
-        - `contractAddress` *string* - the ERC20 token contract to query
+        - `contractAddress` *string* - the ERC-20 token contract to query
 
     === "Example Request"
 
