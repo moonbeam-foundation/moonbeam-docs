@@ -438,7 +438,7 @@ Many more methods are offered by the GoldRush API, including NFT and Utility met
 
 ### API Resources {: #api-resources }
 
-- [API Reference & In-Browser Endpoint Demo](https://goldrush.mintlify.app/docs/api/overview){target=\_blank}
+- [API Reference and In-Browser Endpoint Demo](https://goldrush.mintlify.app/docs/api/overview){target=\_blank}
 - [GoldRush Quickstart](https://goldrush.mintlify.app/docs/quickstart){target=\_blank}
 - [Written Guides](https://goldrush.dev/docs/unified-api/guides/?utm_source=moonbeam&utm_medium=partner-docs){target=\_blank}
 
