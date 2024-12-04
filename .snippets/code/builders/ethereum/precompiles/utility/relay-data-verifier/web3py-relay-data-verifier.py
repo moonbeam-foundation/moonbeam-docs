@@ -1,7 +1,7 @@
 # Import packages
+from eth_account import Account
 from substrateinterface import SubstrateInterface
 from web3 import Web3
-from eth_account import Account
 
 # Initialize variables
 abi = INSERT_ABI
@@ -9,7 +9,7 @@ abi = INSERT_ABI
 privateKey = "INSERT_PRIVATE_KEY"
 precompileAddress = "0x0000000000000000000000000000000000000819"
 moonbeamURL = "https://rpc.api.moonbase.moonbeam.network"
-relayURL = "wss://fro-moon-rpc-1-moonbase-relay-rpc-1.moonbase.ol-infra.network"
+relayURL = "wss://relay.api.moonbase.moonbeam.network"
 
 # Create provider for Moonbeam network
 web3 = Web3(Web3.HTTPProvider(moonbeamURL))

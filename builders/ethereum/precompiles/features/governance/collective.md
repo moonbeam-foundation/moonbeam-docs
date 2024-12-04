@@ -42,21 +42,42 @@ The Collective Precompiles are located at the following addresses:
 
 The interface includes the following functions:
 
-- **execute**(*bytes memory* proposal) - executes a proposal as a single member of the collective. The sender must be a member of the collective. This will *not* revert if the Substrate proposal is dispatched but fails
-- **propose**(*uint32* threshold, *bytes memory* proposal) - adds a new proposal to be voted on. The sender must be a member of the collective. If the threshold is less than two then the proposal will be dispatched and executed directly, with the proposer as dispatcher. If the threshold is met, the index of the new proposal is returned
-- **vote**(*bytes32* proposalHash, *uint32* proposalIndex, *bool* approve) - votes on a proposal. The sender must be a member of the collective
-- **close**(*bytes32* proposalHash, *uint32* proposalIndex, *uint64* proposalWeightBound, *uint32* lengthBound) - closes a proposal. Can be called by anyone once there are enough votes. Returns a boolean indicating whether the proposal was executed or removed
-- **proposalHash**(*bytes memory* proposal) - computes the hash of a proposal
+??? function "**execute**(*bytes memory* proposal) - executes a proposal as a single member of the collective. The sender must be a member of the collective. This will *not* revert if the Substrate proposal is dispatched but fails"
 
-Where the inputs that need to be provided can be defined as:
+    === "Parameters"
 
-- **proposal** - the [SCALE encoded](https://docs.substrate.io/reference/scale-codec){target=\_blank} Substrate call that proposes an action
-- **threshold** - amount of members required to dispatch the proposal
-- **proposalHash** - the hash of the proposal
-- **proposalIndex** - the index of the proposal
-- **approve** - the vote to approve the proposal or not
-- **proposalWeightBound** - the maximum amount of Substrate weight the proposal can use. If the proposal call uses more, the call will revert
-- **lengthBound** - a value higher or equal to the length of the SCALE encoded proposal in bytes
+        - `proposal` - bytes memory containing the [SCALE encoded](https://docs.substrate.io/reference/scale-codec){target=\_blank} Substrate call that proposes an action
+
+??? function "**propose**(*uint32* threshold, *bytes memory* proposal) - adds a new proposal to be voted on. The sender must be a member of the collective. If the threshold is less than two then the proposal will be dispatched and executed directly, with the proposer as dispatcher. If the threshold is met, the index of the new proposal is returned"
+
+    === "Parameters"
+
+        - `threshold` - uint32 amount of members required to dispatch the proposal
+        - `proposal` - bytes memory containing the [SCALE encoded](https://docs.substrate.io/reference/scale-codec){target=\_blank} Substrate call that proposes an action
+
+??? function "**vote**(*bytes32* proposalHash, *uint32* proposalIndex, *bool* approve) - votes on a proposal. The sender must be a member of the collective"
+
+    === "Parameters"
+
+        - `proposalHash` - bytes32 hash of the proposal
+        - `proposalIndex` - uint32 index of the proposal
+        - `approve` - bool indicating the vote to approve the proposal or not
+
+??? function "**close**(*bytes32* proposalHash, *uint32* proposalIndex, *uint64* proposalWeightBound, *uint32* lengthBound) - closes a proposal. Can be called by anyone once there are enough votes. Returns a boolean indicating whether the proposal was executed or removed"
+
+    === "Parameters"
+
+        - `proposalHash` - bytes32 hash of the proposal
+        - `proposalIndex` - uint32 index of the proposal
+        - `proposalWeightBound` - uint64 maximum amount of Substrate weight the proposal can use. If the proposal call uses more, the call will revert
+        - `lengthBound` - uint32 value higher or equal to the length of the SCALE encoded proposal in bytes
+
+??? function "**proposalHash**(*bytes memory* proposal) - computes the hash of a proposal"
+
+    === "Parameters"
+
+        - `proposal` - bytes memory containing the [SCALE encoded](https://docs.substrate.io/reference/scale-codec){target=\_blank} Substrate call that proposes an action
+
 
 The interface includes the following events:
 

@@ -20,20 +20,211 @@ This page will provide an overview of the storage methods and getters for the pa
 
 The randomness pallet includes the following read-only storage methods to obtain chain state data:
 
-- **localVrfOutput**() - returns the current local per-block VRF randomness
-- **palletVersion**() - returns the current pallet version
-- **randomnessResults**(PalletRandomnessRequestType) - snapshot of randomness to fulfill all requests that are for the same raw randomness
-- **relayEpoch**() - returns the relay epoch
-- **requestCount**() - returns the number of randomness requests made so far, and is used to generate the next request's uid
-- **requests**(u64) - returns a given randomness request or all of the randomness requests that have not been fulfilled nor purged yet
+??? function "**localVrfOutput**() - returns the current local per-block VRF randomness"
+
+    === "Parameters"
+
+        None
+
+    === "Returns"
+
+        `H256` - A 32-byte (256-bit) hex value, starting with "0x"`
+
+    === "Polkadot.js API Example"
+
+        ```js
+        --8<-- 'code/builders/substrate/interfaces/features/randomness/local-vrf-output.js'
+        ```
+
+??? function "**palletVersion**() - returns the current pallet version"
+
+    === "Parameters"
+
+        None
+
+    === "Returns"
+
+        `u16` - The pallet version
+
+    === "Polkadot.js API Example"
+
+        ```js
+        --8<-- 'code/builders/substrate/interfaces/features/randomness/pallet-version.js'
+        ```
+
+??? function "**randomnessResults**(PalletRandomnessRequestType) - snapshot of randomness to fulfill all requests that are for the same raw randomness"
+
+    === "Parameters"
+
+        - `PalletRandomnessRequestType` - You can optionally provide the type of randomness you'd like, e.g. `Local` or `BabeEpoch` Randomness. If you omit this, you'll receive all types of randomness. 
+
+    === "Returns"
+
+        The query returns mappings of request types to their randomness outcomes, where:
+
+        1. Key: Identifies the source and timing of the randomness request. e.g. `{ Local: '4,619,640' }` indicates this was a Local randomness request from block number 4,619,640. The Local type uses block numbers as identifiers, while BabeEpoch uses epoch numbers.
+
+        2. Value: Contains two pieces of information, including `randomness`: A 32-byte hex string (0x15b5f6...c816) representing the random value generated and `requestCount`: The number of requests that used this same random value (e.g. '1')
+
+        Multiple requests for randomness at the same block/epoch would share the same random value, which is why there's a requestCount field.
+
+    === "Polkadot.js API Example"
+
+        ```js
+        --8<-- 'code/builders/substrate/interfaces/features/randomness/randomness-results.js'
+        ```
+
+??? function "**relayEpoch**() - returns the relay epoch"
+
+    === "Parameters"
+
+        None
+
+    === "Returns"
+
+        `u64` -  the relay epoch
+
+    === "Polkadot.js API Example"
+
+        ```js
+        --8<-- 'code/builders/substrate/interfaces/features/randomness/check-epoch.js'
+        ```
+
+??? function "**requestCount**() - returns the number of randomness requests made so far, and is used to generate the next request's uid"
+
+    === "Parameters"
+
+        None
+
+    === "Returns"
+
+        `u64` -  the request count
+
+    === "Polkadot.js API Example"
+
+        ```js
+        --8<-- 'code/builders/substrate/interfaces/features/randomness/request-count.js'
+        ```
+
+??? function "**requests**(u64) - returns a given randomness request or all of the randomness requests that have not been fulfilled nor purged yet"
+
+    === "Parameters"
+
+        - `u64` - The request ID number (optional)
+
+    === "Returns"
+
+        Returns an Option containing the request information if it exists and hasn't been fulfilled/purged, including:
+
+        - The request type (Local or Babe)
+        - When it can be fulfilled
+        - Number of random words requested
+        - The requester's information
+   
+    === "Polkadot.js API Example"
+
+        ```js
+        --8<-- 'code/builders/substrate/interfaces/features/randomness/query-requests.js'
+        ```
+
 
 ### Pallet Constants {: #constants }
 
 The randomness pallet includes the following read-only functions to obtain pallet constants:
 
-- **blockExpirationDelay**() - the number of blocks that must pass before a local VRF request expires and can be purged
-- **deposit**() - the amount that should be taken as a security deposit when requesting random words. There is one deposit per request
-- **epochExpirationDelay**() - the number of epochs that must pass before a BABE request expires and can be purged
-- **maxBlockDelay**() - the maximum number of blocks (after the block in which the request was made) that can pass before a local VRF request is fulfilled
-- **maxRandomWords**() - the maximum number of random words that can be requested
-- **minBlockDelay**() - the minimum number of blocks (after the block in which the request was made) that must pass before a local VRF request can be fulfilled
+??? function "**blockExpirationDelay**() - the number of blocks that must pass before a local VRF request expires and can be purged"
+
+    === "Parameters"
+
+        None
+
+    === "Returns"
+
+        `u32` - the number of blocks that must pass before a local VRF request expires and can be purged
+
+    === "Polkadot.js API Example"
+
+        ```js
+        --8<-- 'code/builders/substrate/interfaces/features/randomness/block-expiration-delay.js'
+        ```
+
+??? function "**deposit**() - the amount that should be taken as a security deposit when requesting random words. There is one deposit per request"
+
+    === "Parameters"
+
+        None
+
+    === "Returns"
+
+        `u128` - the amount that should be taken as a security deposit when requesting random words
+
+    === "Polkadot.js API Example"
+
+        ```js
+        --8<-- 'code/builders/substrate/interfaces/features/randomness/query-deposit-constant.js'
+        ```
+
+??? function "**epochExpirationDelay**() - the number of epochs that must pass before a BABE request expires and can be purged"
+
+    === "Parameters"
+
+        None
+
+    === "Returns"
+
+        `u64` - the number of epochs that must pass before a BABE request expires and can be purged
+
+    === "Polkadot.js API Example"
+
+        ```js
+        --8<-- 'code/builders/substrate/interfaces/features/randomness/epoch-expiration-delay.js'
+        ```
+
+??? function "**maxBlockDelay**() - the maximum number of blocks (after the block in which the request was made) that can pass before a local VRF request is fulfilled"
+
+    === "Parameters"
+
+        None
+
+    === "Returns"
+
+        `u32` - the maximum number of blocks that can pass before a local VRF request is fulfilled
+
+    === "Polkadot.js API Example"
+
+        ```js
+        --8<-- 'code/builders/substrate/interfaces/features/randomness/max-block-delay.js'
+        ```
+
+??? function "**maxRandomWords**() - the maximum number of random words that can be requested"
+
+    === "Parameters"
+
+        None
+
+    === "Returns"
+
+        `u8` - the maximum number of random words that can be requested
+
+    === "Polkadot.js API Example"
+
+        ```js
+        --8<-- 'code/builders/substrate/interfaces/features/randomness/max-random-words.js'
+        ```
+
+??? function "**minBlockDelay**() - the minimum number of blocks (after the block in which the request was made) that must pass before a local VRF request can be fulfilled"
+
+    === "Parameters"
+
+        None
+
+    === "Returns"
+
+        `u32` - the minimum number of blocks (after the block in which the request was made) that must pass before a local VRF request can be fulfilled
+
+    === "Polkadot.js API Example"
+
+        ```js
+        --8<-- 'code/builders/substrate/interfaces/features/randomness/min-block-delay.js'
+        ```
+

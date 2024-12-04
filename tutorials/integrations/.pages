@@ -9,3 +9,4 @@ nav:
   - 'Use Oracles to Fetch Off-Chain Data':
     - 'oracles.index.md'
     - '[Supra] Fetch Price Data': 'supra.md'
+  - 'Enable Gasless Transactions': '0xgasless.md'

@@ -42,19 +42,32 @@ The Call Permit Precompile is located at the following address:
 
 The interface includes the following functions:
 
-- **dispatch**(*address* from, *address* to, *uint256* value, *bytes* data, *uint64[]* gaslimit, *uint256* deadline, *uint8* v, *bytes32* r, *bytes32* s) — dispatches a call on the behalf of another user with a EIP-712 permit. This function can be called by anyone or any smart contract. The transaction will revert if the permit is not valid or if the dispatched call reverts or errors (such as out of gas). If successful, the nonce of the signer is increased to prevent this permit to be replayed. An overview of the parameters is as follows:
-     - `from` - the signer of the permit. The call will be dispatched on behalf of this address
-     - `to` - the address the call is made to
-     - `value` - the value being transferred from the `from` account
-     - `data` - the call data, or action to be executed
-     - `gasLimit` - the gas limit the dispatched call requires. Providing an argument for this parameter prevents the dispatcher from manipulating the gas limit
-     - `deadline` - the time in UNIX seconds after which the permit will no longer be valid. In JavaScript, you can get the current time in UNIX seconds by running `console.log(Date.now())` in a JavaScript script or a browser console
-     - `v` - the recovery ID of the signature. The last one byte of the concatenated signature
-     - `r` - the first 32 bytes of the concatenated signature
-     - `s` - the second 32 bytes of the concatenated signature
+??? function "**dispatch**(*address* from, *address* to, *uint256* value, *bytes* data, *uint64[]* gaslimit, *uint256* deadline, *uint8* v, *bytes32* r, *bytes32* s) - dispatches a call on the behalf of another user with a EIP-712 permit. This function can be called by anyone or any smart contract. The transaction will revert if the permit is not valid or if the dispatched call reverts or errors (such as out of gas). If successful, the nonce of the signer is increased to prevent this permit to be replayed"
 
-- **nonces**(*address* owner) - returns the current nonce for given owner
-- **DOMAIN_SEPARATOR**() - returns the EIP-712 domain separator which is used to avoid replay attacks. It follows the [EIP-2612](https://eips.ethereum.org/EIPS/eip-2612#specification){target=\_blank} implementation
+    === "Parameters"
+
+        - `from` - address of the signer of the permit. The call will be dispatched on behalf of this address
+        - `to` - address the call is made to
+        - `value` - uint256 value being transferred from the `from` account
+        - `data` - bytes containing the call data, or action to be executed
+        - `gasLimit` - uint64[] gas limit the dispatched call requires. Providing an argument for this parameter prevents the dispatcher from manipulating the gas limit
+        - `deadline` - uint256 time in UNIX seconds after which the permit will no longer be valid. In JavaScript, you can get the current time in UNIX seconds by running `console.log(Date.now())` in a JavaScript script or a browser console
+        - `v` - uint8 recovery ID of the signature. The last one byte of the concatenated signature
+        - `r` - bytes32 first 32 bytes of the concatenated signature
+        - `s` - bytes32 second 32 bytes of the concatenated signature
+
+??? function "**nonces**(*address* owner) - returns the current nonce for given owner"
+
+    === "Parameters"
+
+        - `owner` - address of the account to query the nonce for
+
+??? function "**DOMAIN_SEPARATOR**() - returns the EIP-712 domain separator which is used to avoid replay attacks. It follows the [EIP-2612](https://eips.ethereum.org/EIPS/eip-2612#specification){target=\_blank} implementation"
+
+    === "Parameters"
+
+        None.
+
 
 --8<-- 'text/builders/ethereum/precompiles/ux/call-permit/domain-separator.md'
 

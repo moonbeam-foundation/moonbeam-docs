@@ -1,16 +1,32 @@
-import { ParticleNetwork } from '@particle-network/auth';
-import { Moonbeam } from '@particle-network/chains';
+"use client";
 
-// Project ID, Client Key, and App ID from https://dashboard.particle.network
-const config = {
-  projectId: process.env.REACT_APP_PROJECT_ID,
-  clientKey: process.env.REACT_APP_CLIENT_KEY,
-  appId: process.env.REACT_APP_APP_ID,
-};
+import React from "react";
+import { ConnectKitProvider, createConfig } from "@particle-network/connectkit";
+import { authWalletConnectors } from "@particle-network/connectkit/auth";
+import { moonbeam } from "@particle-network/connectkit/chains";
+import { wallet, EntryPosition } from "@particle-network/connectkit/wallet";
+import { aa } from "@particle-network/connectkit/aa";
 
-const particle = new ParticleNetwork({
-  ...config,
-  chainName: Moonbeam.name,
-  chainId: Moonbeam.id,
-  wallet: { displayWalletEntry: true },
+const config = createConfig({
+  projectId: process.env.NEXT_PUBLIC_PROJECT_ID!,
+  clientKey: process.env.NEXT_PUBLIC_CLIENT_KEY!,
+  appId: process.env.NEXT_PUBLIC_APP_ID!,
+
+  walletConnectors: [authWalletConnectors({})],
+
+  plugins: [
+    wallet({
+      entryPosition: EntryPosition.BR, // Positions the modal button at the bottom right on login
+      visible: true, // Determines if the wallet modal is displayed
+    }),
+    aa({
+      name: "SIMPLE",
+      version: "2.0.0",
+    }),
+  ],
+  chains: [moonbeam],
 });
+
+export const ParticleConnectkit = ({ children }: React.PropsWithChildren) => {
+  return <ConnectKitProvider config={config}>{children}</ConnectKitProvider>;
+};

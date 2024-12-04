@@ -71,67 +71,559 @@ Some of the Parachain Staking Pallet extrinsics include exit delays that you mus
 
 The Solidity interface includes the following functions:
 
- - **isDelegator**(*address* delegator) — read-only function that checks whether the specified address is currently a staking delegator. Uses the [`delegatorState`](/builders/substrate/interfaces/features/staking/#:~:text=delegatorState(AccountId20)){target=\_blank} method of the Parachain Staking Pallet
- - **isCandidate**(*address* candidate) — read-only function that checks whether the specified address is currently a collator candidate. Uses the [`candidateState`](/builders/substrate/interfaces/features/staking/#:~:text=candidateState(AccountId20)){target=\_blank} method of the Parachain Staking Pallet
- - **isSelectedCandidate**(*address* candidate) - read-only function that checks whether the specified address is currently part of the active collator set. Uses the [`selectedCandidates`](/builders/substrate/interfaces/features/staking/#:~:text=selectedCandidates()){target=\_blank} method of the Parachain Staking Pallet
- - **points**(*uint256* round) - read-only function that gets the total points awarded to all collators in a given round. Uses the [`points`](/builders/substrate/interfaces/features/staking/#:~:text=points(u32)){target=\_blank} method of the Parachain Staking Pallet
- - **awardedPoints**(*uint32* round, *address* candidate) - read-only function that returns the total points awarded in a given round to a given collator. If `0` is returned, it could be because no blocks were produced or the storage for that round has been removed. Uses the [`points`](/builders/substrate/interfaces/features/staking/#:~:text=awardedPts(u32, AccountId20)){target=\_blank} method of the Parachain Staking Pallet
- - **delegationAmount**(*address* delegator, *address* candidate) - read-only function that returns the amount delegated by a given delegator in support of a given candidate. Uses the [`delegatorState`](/builders/substrate/interfaces/features/staking/#:~:text=delegatorState(AccountId20)){target=\_blank} method of the Parachain Staking Pallet
- - **isInTopDelegations**(*address* delegator, *address* candidate) - read-only function that returns a boolean indicating whether the given delegator is in the top delegations for the given candidate. Uses the [`topDelegations`](/builders/substrate/interfaces/features/staking/#:~:text=topDelegations(AccountId20)){target=\_blank} method of the Parachain Staking Pallet
- - **minDelegation**() — read-only function that gets the minimum delegation amount. Uses the [`minDelegation`](/builders/substrate/interfaces/features/staking/#:~:text=minDelegation()){target=\_blank} method of the Parachain Staking Pallet
- - **candidateCount**() - read-only function that gets the current amount of collator candidates. Uses the [`candidatePool`](/builders/substrate/interfaces/features/staking/#:~:text=candidatePool()){target=\_blank} method of the Parachain Staking Pallet
- - **round**() - read-only function that returns the current round number. Uses the [`round`](/builders/substrate/interfaces/features/staking/#:~:text=round()){target=\_blank} method of the Parachain Staking Pallet
- - **candidateDelegationCount**(*address* candidate) - read-only function that returns the number of delegations for the specified collator candidate address. Uses the [`candidateInfo`](/builders/substrate/interfaces/features/staking/#:~:text=candidateInfo(AccountId20)){target=\_blank} method of the Parachain Staking Pallet
- - **candidateAutoCompoundingDelegationCount**(*address* candidate) - a read-only function that returns the number of auto-compounding delegations for the specified candidate. Uses the [`autoCompoundingDelegations`](/builders/substrate/interfaces/features/staking/#:~:text=autoCompoundingDelegations(AccountId20)){target=\_blank} method of the Parachain Staking Pallet
- - **delegatorDelegationCount**(*address* delegator) - read-only function that returns the number of delegations for the specified delegator address. Uses the [`delegatorState`](/builders/substrate/interfaces/features/staking/#:~:text=delegatorState(AccountId20)){target=\_blank} method of the Parachain Staking Pallet
- - **selectedCandidates**() - read-only function that gets the selected candidates for the current round. Uses the [`selectedCandidates`](/builders/substrate/interfaces/features/staking/#:~:text=selectedCandidates()){target=\_blank} method of the Parachain Staking Pallet
- - **delegationRequestIsPending**(*address* delegator, *address* candidate) - returns a boolean to indicate whether there is a pending delegation request made by a given delegator for a given candidate
- - **candidateExitIsPending**(*address* candidate) - returns a boolean to indicate whether a pending exit exists for a specific candidate. Uses the [`candidateInfo`](/builders/substrate/interfaces/features/staking/#:~:text=candidateInfo(AccountId20)){target=\_blank} method of the Parachain Staking Pallet
- - **candidateRequestIsPending**(*address* candidate) - returns a boolean to indicate whether there is a pending bond less request made by a given candidate. Uses the [`candidateInfo`](/builders/substrate/interfaces/features/staking/#:~:text=candidateInfo(AccountId20)){target=\_blank} method of the Parachain Staking Pallet
- - **delegationAutoCompound**(*address* delegator, *address* candidate) - returns the auto-compound percentage for a delegation given the delegator and candidate
- - **joinCandidates**(*uint256* amount, *uint256* candidateCount) — allows the account to join the set of collator candidates with the specified bond amount and the current candidate count. Uses the [`joinCandidates`](/builders/substrate/interfaces/features/staking/#:~:text=joinCandidates(bond, candidateCount)){target=\_blank} method of the Parachain Staking Pallet
- - **scheduleLeaveCandidates**(*uint256* candidateCount) - schedules a request for a candidate to remove themselves from the candidate pool. Scheduling the request does not automatically execute it. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `executeLeaveCandidates` extrinsic. Uses the [`scheduleLeaveCandidates`](/builders/substrate/interfaces/features/staking/#:~:text=scheduleLeaveCandidates(candidateCount)){target=\_blank} method of the Parachain Staking Pallet
- - **executeLeaveCandidates**(*address* candidate, *uint256* candidateDelegationCount) - executes the due request to leave the set of collator candidates. Uses the [`executeLeaveCandidates`](/builders/substrate/interfaces/features/staking/#:~:text=executeLeaveCandidates(candidate, candidateDelegationCount)){target=\_blank} method of the Parachain Staking Pallet
- - **cancelLeaveCandidates**(*uint256* candidateCount) - allows a candidate to cancel a pending scheduled request to leave the candidate pool. Given the current number of candidates in the pool. Uses the [`cancelLeaveCandidates`](/builders/substrate/interfaces/features/staking/#:~:text=cancelLeaveCandidates(candidateCount)){target=\_blank} method of the Parachain Staking Pallet
- - **goOffline**() — temporarily leave the set of collator candidates without unbonding. Uses the [`goOffline`](/builders/substrate/interfaces/features/staking/#:~:text=goOffline()){target=\_blank} method of the Parachain Staking Pallet
- - **goOnline**() — rejoin the set of collator candidates after previously calling `goOffline()`. Uses the [`goOnline`](/builders/substrate/interfaces/features/staking/#:~:text=goOnline()){target=\_blank} method of the Parachain Staking Pallet
- - **candidateBondMore**(*uint256* more) — collator candidate increases bond by the specified amount. Uses the [`candidateBondMore`](/builders/substrate/interfaces/features/staking/#:~:text=candidateBondMore(more)){target=\_blank} method of the Parachain Staking Pallet
- - **scheduleCandidateBondLess**(*uint256* less) - schedules a request to decrease a candidates bond by the specified amount. Scheduling the request does not automatically execute it. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `execute_candidate_bond_request` extrinsic. Uses the [`scheduleCandidateBondLess`](/builders/substrate/interfaces/features/staking/#:~:text=scheduleCandidateBondLess(less)){target=\_blank} method of the Parachain Staking Pallet
- - **executeCandidateBondLess**(*address* candidate) - executes any due requests to decrease a specified candidate's bond amount. Uses the [`executeCandidateBondLess`](/builders/substrate/interfaces/features/staking/#:~:text=executeCandidateBondLess(candidate)){target=\_blank} method of the Parachain Staking Pallet
- - **cancelCandidateBondLess**() - allows a candidate to cancel a pending scheduled request to decrease a candidates bond. Uses the [`cancelCandidateBondLess`](/builders/substrate/interfaces/features/staking/#:~:text=cancelCandidateBondLess()){target=\_blank} method of the Parachain Staking Pallet
- - **delegateWithAutoCompound**(*address* candidate, *uint256* amount, *uint8* autoCompound, *uint256* candidateDelegationCount, *uint256* candidateAutoCompoundingDelegationCount, *uint256* delegatorDelegationCount) - makes a delegation in support of a collator candidate and automatically sets the percent of rewards to auto-compound given an integer (no decimals) for `autoCompound` between 0-100. Uses the [`delegateWithAutoCompound`](/builders/substrate/interfaces/features/staking/#:~:text=delegateWithAutoCompound){target=\_blank} method of the Parachain Staking Pallet
- - **scheduleRevokeDelegation**(*address* candidate) — schedules a request to revoke a delegation given the address of a candidate. Scheduling the request does not automatically execute it. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `executeDelegationRequest` extrinsic. Uses the [`scheduleRevokeDelegation`](/builders/substrate/interfaces/features/staking/#:~:text=scheduleRevokeDelegation(collator)){target=\_blank} method of the Parachain Staking Pallet
- - **delegatorBondMore**(*address* candidate, *uint256* more) — delegator increases bond to a collator by the specified amount. Uses the [`delegatorBondMore`](/builders/substrate/interfaces/features/staking/#:~:text=delegatorBondMore(candidate, more)){target=\_blank} method of the Parachain Staking Pallet
- - **scheduleDelegatorBondLess**(*address* candidate, *uint256* less) — schedules a request for a delegator to bond less with respect to a specific candidate. Scheduling the request does not automatically execute it. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `executeDelegationRequest` extrinsic. Uses the [`scheduleDelegatorBondLess`](/builders/substrate/interfaces/features/staking/#:~:text=scheduleDelegatorBondLess(candidate, less)){target=\_blank} method of the Parachain Staking Pallet
- - **executeDelegationRequest**(*address* delegator, *address* candidate) - executes any due delegation requests provided the address of a delegator and a candidate. Uses the [`executeDelegationRequest`](/builders/substrate/interfaces/features/staking/#:~:text=executeDelegationRequest(delegator, candidate)){target=\_blank} method of the Parachain Staking Pallet
- - **cancelDelegationRequest**(*address* candidate) - cancels any pending delegation requests provided the address of a candidate. Uses the [`cancelDelegationRequest`](/builders/substrate/interfaces/features/staking/#:~:text=cancelDelegationRequest(candidate)){target=\_blank} method of the Parachain Staking Pallet
- - **setAutoCompound**(*address* candidate, *uint8* value, *uint256* candidateAutoCompoundingDelegationCount, *uint256* delegatorDelegationCount) - sets an auto-compound value for an existing delegation given an integer (no decimals) for the `value` between 0-100. Uses the [`setAutoCompound`](/builders/substrate/interfaces/features/staking/#:~:text=setAutoCompound){target=\_blank} method of the Parachain Staking Pallet
- - **getDelegatorTotalStaked**(*address* delegator) - read-only function that returns the total staked amount of a given delegator, regardless of the candidate. Uses the [`delegatorState`](/builders/substrate/interfaces/features/staking/#:~:text=delegatorState(AccountId20)){target=\_blank} method of the Parachain Staking Pallet
- - **getCandidateTotalCounted**(*address* candidate) - read-only function that returns the total amount staked for a given candidate. Uses the [`candidateInfo`](/builders/substrate/interfaces/features/staking/#:~:text=candidateInfo(AccountId20)){target=\_blank} method of the Parachain Staking Pallet
+??? function "**isDelegator**(*address* delegator) - read-only function that checks whether the specified address is currently a staking delegator. Uses the [`delegatorState`](/builders/substrate/interfaces/features/staking/#:~:text=delegatorState(AccountId20)){target=\_blank} method of the Parachain Staking Pallet"
+
+    === "Parameters"
+
+        - `delegator` - address to check if they are currently a delegator
+
+    === "Returns"
+
+        - `bool` whether the address is currently a delegator
+
+??? function "**isCandidate**(*address* candidate) - read-only function that checks whether the specified address is currently a collator candidate. Uses the [`candidateState`](/builders/substrate/interfaces/features/staking/#:~:text=candidateState(AccountId20)){target=\_blank} method of the Parachain Staking Pallet"
+
+    === "Parameters"
+
+        - `candidate` - address to check if they are currently a collator candidate
+
+    === "Returns"
+
+        - `bool` whether the address is currently a candidate
+
+??? function "**isSelectedCandidate**(*address* candidate) - read-only function that checks whether the specified address is currently part of the active collator set. Uses the [`selectedCandidates`](/builders/substrate/interfaces/features/staking/#:~:text=selectedCandidates()){target=\_blank} method of the Parachain Staking Pallet"
+
+    === "Parameters"
+
+        - `candidate` - address to check if they are currently an active collator
+
+    === "Returns"
+
+        - `bool` whether the address is currently an active collator
+
+??? function "**points**(*uint256* round) - read-only function that gets the total points awarded to all collators in a given round. Uses the [`points`](/builders/substrate/interfaces/features/staking/#:~:text=points(u32)){target=\_blank} method of the Parachain Staking Pallet"
+
+    === "Parameters"
+
+        - `round` - uint256 round number to query points for
+
+    === "Returns"
+
+        - `uint256` total points awarded in the specified round
+
+??? function "**awardedPoints**(*uint32* round, *address* candidate) - read-only function that returns the total points awarded in a given round to a given collator. If `0` is returned, it could be because no blocks were produced or the storage for that round has been removed. Uses the [`points`](/builders/substrate/interfaces/features/staking/#:~:text=awardedPts(u32, AccountId20)){target=\_blank} method of the Parachain Staking Pallet"
+
+    === "Parameters"
+
+        - `round` - uint32 round number to query
+        - `candidate` - address of the collator to query points for
+
+    === "Returns"
+
+        - `uint256` points awarded to the collator in the specified round
+
+??? function "**delegationAmount**(*address* delegator, *address* candidate) - read-only function that returns the amount delegated by a given delegator in support of a given candidate. Uses the [`delegatorState`](/builders/substrate/interfaces/features/staking/#:~:text=delegatorState(AccountId20)){target=\_blank} method of the Parachain Staking Pallet"
+
+    === "Parameters"
+
+        - `delegator` - address of the delegator
+        - `candidate` - address of the candidate
+
+    === "Returns"
+
+        - `uint256` amount delegated
+
+??? function "**isInTopDelegations**(*address* delegator, *address* candidate) - read-only function that returns a boolean indicating whether the given delegator is in the top delegations for the given candidate. Uses the [`topDelegations`](/builders/substrate/interfaces/features/staking/#:~:text=topDelegations(AccountId20)){target=\_blank} method of the Parachain Staking Pallet"
+
+    === "Parameters"
+
+        - `delegator` - address of the delegator to check
+        - `candidate` - address of the candidate
+
+    === "Returns"
+
+        - `bool` whether the delegator is in the top delegations
+
+??? function "**minDelegation**() - read-only function that gets the minimum delegation amount. Uses the [`minDelegation`](/builders/substrate/interfaces/features/staking/#:~:text=minDelegation()){target=\_blank} method of the Parachain Staking Pallet"
+
+    === "Parameters"
+
+        None.
+
+    === "Returns"
+
+        - `uint256` minimum delegation amount
+
+??? function "**candidateCount**() - read-only function that gets the current amount of collator candidates. Uses the [`candidatePool`](/builders/substrate/interfaces/features/staking/#:~:text=candidatePool()){target=\_blank} method of the Parachain Staking Pallet"
+
+    === "Parameters"
+
+        None.
+
+    === "Returns"
+
+        - `uint256` current number of collator candidates
+
+??? function "**round**() - read-only function that returns the current round number. Uses the [`round`](/builders/substrate/interfaces/features/staking/#:~:text=round()){target=\_blank} method of the Parachain Staking Pallet"
+
+    === "Parameters"
+
+        None.
+
+    === "Returns"
+
+        - `uint256` current round number
+
+??? function "**candidateDelegationCount**(*address* candidate) - read-only function that returns the number of delegations for the specified collator candidate address. Uses the [`candidateInfo`](/builders/substrate/interfaces/features/staking/#:~:text=candidateInfo(AccountId20)){target=\_blank} method of the Parachain Staking Pallet"
+
+    === "Parameters"
+
+        - `candidate` - address of the collator candidate to query
+
+    === "Returns"
+
+        - `uint256` number of delegations for the candidate
+
+??? function "**candidateAutoCompoundingDelegationCount**(*address* candidate) - a read-only function that returns the number of auto-compounding delegations for the specified candidate. Uses the [`autoCompoundingDelegations`](/builders/substrate/interfaces/features/staking/#:~:text=autoCompoundingDelegations(AccountId20)){target=\_blank} method of the Parachain Staking Pallet"
+
+    === "Parameters"
+
+        - `candidate` - address of the candidate to query
+
+    === "Returns"
+
+        - `uint256` number of auto-compounding delegations
+
+??? function "**delegatorDelegationCount**(*address* delegator) - read-only function that returns the number of delegations for the specified delegator address. Uses the [`delegatorState`](/builders/substrate/interfaces/features/staking/#:~:text=delegatorState(AccountId20)){target=\_blank} method of the Parachain Staking Pallet"
+
+    === "Parameters"
+
+        - `delegator` - address of the delegator to query
+
+    === "Returns"
+
+        - `uint256` number of delegations for the delegator
+
+??? function "**selectedCandidates**() - read-only function that gets the selected candidates for the current round. Uses the [`selectedCandidates`](/builders/substrate/interfaces/features/staking/#:~:text=selectedCandidates()){target=\_blank} method of the Parachain Staking Pallet"
+
+    === "Parameters"
+
+        None.
+
+    === "Returns"
+
+        - `address[]` array of selected candidate addresses
+
+??? function "**delegationRequestIsPending**(*address* delegator, *address* candidate) - returns a boolean to indicate whether there is a pending delegation request made by a given delegator for a given candidate"
+
+    === "Parameters"
+
+        - `delegator` - address of the delegator
+        - `candidate` - address of the candidate
+
+    === "Returns"
+
+        - `bool` whether there is a pending delegation request
+
+??? function "**candidateExitIsPending**(*address* candidate) - returns a boolean to indicate whether a pending exit exists for a specific candidate. Uses the [`candidateInfo`](/builders/substrate/interfaces/features/staking/#:~:text=candidateInfo(AccountId20)){target=\_blank} method of the Parachain Staking Pallet"
+
+    === "Parameters"
+
+        - `candidate` - address of the candidate to check
+
+    === "Returns"
+
+        - `bool` whether there is a pending exit request
+
+??? function "**candidateRequestIsPending**(*address* candidate) - returns a boolean to indicate whether there is a pending bond less request made by a given candidate. Uses the [`candidateInfo`](/builders/substrate/interfaces/features/staking/#:~:text=candidateInfo(AccountId20)){target=\_blank} method of the Parachain Staking Pallet"
+
+    === "Parameters"
+
+        - `candidate` - address of the candidate to check
+
+    === "Returns"
+
+        - `bool` whether there is a pending bond less request
+
+??? function "**delegationAutoCompound**(*address* delegator, *address* candidate) - returns the auto-compound percentage for a delegation given the delegator and candidate"
+
+    === "Parameters"
+
+        - `delegator` - address of the delegator
+        - `candidate` - address of the candidate
+
+    === "Returns"
+
+        - `uint256` auto-compound percentage
+
+??? function "**getDelegatorTotalStaked**(*address* delegator) - read-only function that returns the total staked amount of a given delegator, regardless of the candidate. Uses the [`delegatorState`](/builders/substrate/interfaces/features/staking/#:~:text=delegatorState(AccountId20)){target=\_blank} method of the Parachain Staking Pallet"
+
+    === "Parameters"
+
+        - `delegator` - address of the delegator to query
+
+    === "Returns"
+
+        - `uint256` total staked amount
+
+??? function "**getCandidateTotalCounted**(*address* candidate) - read-only function that returns the total amount staked for a given candidate. Uses the [`candidateInfo`](/builders/substrate/interfaces/features/staking/#:~:text=candidateInfo(AccountId20)){target=\_blank} method of the Parachain Staking Pallet"
+
+    === "Parameters"
+
+        - `candidate` - address of the candidate to query
+
+    === "Returns"
+
+        - `uint256` total amount staked for the candidate
+
+??? function "**joinCandidates**(*uint256* amount, *uint256* candidateCount) - allows the account to join the set of collator candidates with the specified bond amount and the current candidate count. Uses the [`joinCandidates`](/builders/substrate/interfaces/features/staking/#:~:text=joinCandidates(bond, candidateCount)){target=\_blank} method of the Parachain Staking Pallet"
+
+    === "Parameters"
+
+        - `amount` - uint256 bond amount to stake as a candidate
+        - `candidateCount` - uint256 current number of candidates in the pool
+
+    === "Returns"
+
+        None.
+
+??? function "**scheduleLeaveCandidates**(*uint256* candidateCount) - schedules a request for a candidate to remove themselves from the candidate pool. Scheduling the request does not automatically execute it. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `executeLeaveCandidates` extrinsic. Uses the [`scheduleLeaveCandidates`](/builders/substrate/interfaces/features/staking/#:~:text=scheduleLeaveCandidates(candidateCount)){target=\_blank} method of the Parachain Staking Pallet"
+
+    === "Parameters"
+
+        - `candidateCount` - uint256 current number of candidates in the pool
+
+    === "Returns"
+
+        None.
+
+??? function "**executeLeaveCandidates**(*address* candidate, *uint256* candidateDelegationCount) - executes the due request to leave the set of collator candidates. Uses the [`executeLeaveCandidates`](/builders/substrate/interfaces/features/staking/#:~:text=executeLeaveCandidates(candidate, candidateDelegationCount)){target=\_blank} method of the Parachain Staking Pallet"
+
+    === "Parameters"
+
+        - `candidate` - address of the candidate leaving the pool
+        - `candidateDelegationCount` - uint256 number of delegations for the candidate
+
+    === "Returns"
+
+        None.
+
+??? function "**cancelLeaveCandidates**(*uint256* candidateCount) - allows a candidate to cancel a pending scheduled request to leave the candidate pool. Given the current number of candidates in the pool. Uses the [`cancelLeaveCandidates`](/builders/substrate/interfaces/features/staking/#:~:text=cancelLeaveCandidates(candidateCount)){target=\_blank} method of the Parachain Staking Pallet"
+
+    === "Parameters"
+
+        - `candidateCount` - uint256 current number of candidates in the pool
+
+    === "Returns"
+
+        None.
+
+??? function "**goOffline**() - temporarily leave the set of collator candidates without unbonding. Uses the [`goOffline`](/builders/substrate/interfaces/features/staking/#:~:text=goOffline()){target=\_blank} method of the Parachain Staking Pallet"
+
+    === "Parameters"
+
+        None.
+
+    === "Returns"
+
+        None.
+
+??? function "**goOnline**() - rejoin the set of collator candidates after previously calling `goOffline()`. Uses the [`goOnline`](/builders/substrate/interfaces/features/staking/#:~:text=goOnline()){target=\_blank} method of the Parachain Staking Pallet"
+
+    === "Parameters"
+
+        None.
+
+    === "Returns"
+
+        None.
+
+??? function "**candidateBondMore**(*uint256* more) - collator candidate increases bond by the specified amount. Uses the [`candidateBondMore`](/builders/substrate/interfaces/features/staking/#:~:text=candidateBondMore(more)){target=\_blank} method of the Parachain Staking Pallet"
+
+    === "Parameters"
+
+        - `more` - uint256 amount to increase the bond by
+
+    === "Returns"
+
+        None.
+
+??? function "**scheduleCandidateBondLess**(*uint256* less) - schedules a request to decrease a candidates bond by the specified amount. Scheduling the request does not automatically execute it. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `execute_candidate_bond_request` extrinsic. Uses the [`scheduleCandidateBondLess`](/builders/substrate/interfaces/features/staking/#:~:text=scheduleCandidateBondLess(less)){target=\_blank} method of the Parachain Staking Pallet"
+
+    === "Parameters"
+
+        - `less` - uint256 amount to decrease the bond by
+
+    === "Returns"
+
+        None.
+
+??? function "**executeCandidateBondLess**(*address* candidate) - executes any due requests to decrease a specified candidate's bond amount. Uses the [`executeCandidateBondLess`](/builders/substrate/interfaces/features/staking/#:~:text=executeCandidateBondLess(candidate)){target=\_blank} method of the Parachain Staking Pallet"
+
+    === "Parameters"
+
+        - `candidate` - address of the candidate to execute the bond decrease for
+
+    === "Returns"
+
+        None.
+
+??? function "**cancelCandidateBondLess**() - allows a candidate to cancel a pending scheduled request to decrease a candidates bond. Uses the [`cancelCandidateBondLess`](/builders/substrate/interfaces/features/staking/#:~:text=cancelCandidateBondLess()){target=\_blank} method of the Parachain Staking Pallet"
+
+    === "Parameters"
+
+        None.
+
+    === "Returns"
+
+        None.
+
+??? function "**delegateWithAutoCompound**(*address* candidate, *uint256* amount, *uint8* autoCompound, *uint256* candidateDelegationCount, *uint256* candidateAutoCompoundingDelegationCount, *uint256* delegatorDelegationCount) - makes a delegation in support of a collator candidate and automatically sets the percent of rewards to auto-compound given an integer (no decimals) for `autoCompound` between 0-100. Uses the [`delegateWithAutoCompound`](/builders/substrate/interfaces/features/staking/#:~:text=delegateWithAutoCompound){target=\_blank} method of the Parachain Staking Pallet"
+
+    === "Parameters"
+
+        - `candidate` - address of the candidate to delegate to
+        - `amount` - uint256 amount to delegate
+        - `autoCompound` - uint8 percentage of rewards to auto-compound (0-100)
+        - `candidateDelegationCount` - uint256 current number of delegations for the candidate
+        - `candidateAutoCompoundingDelegationCount` - uint256 current number of auto-compounding delegations for the candidate
+        - `delegatorDelegationCount` - uint256 current number of delegations from the delegator
+
+    === "Returns"
+
+        None.
+
+??? function "**scheduleRevokeDelegation**(*address* candidate) - schedules a request to revoke a delegation given the address of a candidate. Scheduling the request does not automatically execute it. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `executeDelegationRequest` extrinsic. Uses the [`scheduleRevokeDelegation`](/builders/substrate/interfaces/features/staking/#:~:text=scheduleRevokeDelegation(collator)){target=\_blank} method of the Parachain Staking Pallet"
+
+    === "Parameters"
+
+        - `candidate` - address of the candidate to revoke delegation from
+
+    === "Returns"
+
+        None.
+
+??? function "**delegatorBondMore**(*address* candidate, *uint256* more) - delegator increases bond to a collator by the specified amount. Uses the [`delegatorBondMore`](/builders/substrate/interfaces/features/staking/#:~:text=delegatorBondMore(candidate, more)){target=\_blank} method of the Parachain Staking Pallet"
+
+    === "Parameters"
+
+        - `candidate` - address of the candidate to increase delegation for
+        - `more` - uint256 amount to increase the delegation by
+
+    === "Returns"
+
+        None.
+
+??? function "**scheduleDelegatorBondLess**(*address* candidate, *uint256* less) - schedules a request for a delegator to bond less with respect to a specific candidate. Scheduling the request does not automatically execute it. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `executeDelegationRequest` extrinsic. Uses the [`scheduleDelegatorBondLess`](/builders/substrate/interfaces/features/staking/#:~:text=scheduleDelegatorBondLess(candidate, less)){target=\_blank} method of the Parachain Staking Pallet"
+
+    === "Parameters"
+
+        - `candidate` - address of the candidate to decrease delegation for
+        - `less` - uint256 amount to decrease the delegation by
+
+    === "Returns"
+
+        None.
+
+??? function "**executeDelegationRequest**(*address* delegator, *address* candidate) - executes any due delegation requests provided the address of a delegator and a candidate. Uses the [`executeDelegationRequest`](/builders/substrate/interfaces/features/staking/#:~:text=executeDelegationRequest(delegator, candidate)){target=\_blank} method of the Parachain Staking Pallet"
+
+    === "Parameters"
+
+        - `delegator` - address of the delegator
+        - `candidate` - address of the candidate
+
+    === "Returns"
+
+        None.
+
+??? function "**cancelDelegationRequest**(*address* candidate) - cancels any pending delegation requests provided the address of a candidate. Uses the [`cancelDelegationRequest`](/builders/substrate/interfaces/features/staking/#:~:text=cancelDelegationRequest(candidate)){target=\_blank} method of the Parachain Staking Pallet"
+
+    === "Parameters"
+
+        - `candidate` - address of the candidate to cancel the delegation request for
+
+    === "Returns"
+
+        None.
+
+??? function "**setAutoCompound**(*address* candidate, *uint8* value, *uint256* candidateAutoCompoundingDelegationCount, *uint256* delegatorDelegationCount) - sets an auto-compound value for an existing delegation given an integer (no decimals) for the `value` between 0-100. Uses the [`setAutoCompound`](/builders/substrate/interfaces/features/staking/#:~:text=setAutoCompound){target=\_blank} method of the Parachain Staking Pallet"
+
+    === "Parameters"
+
+        - `candidate` - address of the candidate
+        - `value` - uint8 percentage to auto-compound (0-100)
+        - `candidateAutoCompoundingDelegationCount` - uint256 current number of auto-compounding delegations for the candidate
+        - `delegatorDelegationCount` - uint256 current number of delegations from the delegator
+
+    === "Returns"
+
+        None.
 
 As of runtime 2400, the following methods are **deprecated**:
 
- - **delegate**(*address* candidate, *uint256* amount, *uint256* candidateDelegationCount, *uint256* delegatorDelegationCount) - makes a delegation in support of a collator candidate and automatically sets the percent of rewards to auto-compound to `0`. Use `delegateWithAutoCompound` instead
+??? function "**delegate**(*address* candidate, *uint256* amount, *uint256* candidateDelegationCount, *uint256* delegatorDelegationCount) - makes a delegation in support of a collator candidate and automatically sets the percent of rewards to auto-compound to `0`. Use `delegateWithAutoCompound` instead"
+
+    === "Parameters"
+
+        - `candidate` - address of the candidate to delegate to
+        - `amount` - uint256 amount to delegate
+        - `candidateDelegationCount` - uint256 current number of delegations for the candidate
+        - `delegatorDelegationCount` - uint256 current number of delegations from the delegator
+
+    === "Returns"
+
+        None.
 
 As of runtime 1800, the following methods are **deprecated** and, as of runtime 2500, have been removed:
 
- - **scheduleLeaveDelegators**() — schedules a request to leave the set of delegators and revoke all ongoing delegations. Scheduling the request does not automatically execute it. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `executeLeaveDelegators` extrinsic. Use the [batch utility](/builders/ethereum/precompiles/ux/batch/){target=\_blank} with `scheduleRevokeDelegation` for all delegations instead
- - **executeLeaveDelegators**(*address* delegator, *uint256* delegatorDelegationCount) - executes the due request to leave the set of delegators and revoke all delegations. Use the [batch utility](/builders/ethereum/precompiles/ux/batch/){target=\_blank} with `executeDelegationRequest` for all delegations instead
- - **cancelLeaveDelegators**() - cancels a pending scheduled request to leave the set of delegators. Use the [batch utility](/builders/ethereum/precompiles/ux/batch/){target=\_blank} with `cancelDelegationRequest` for all delegations instead
+??? function "**scheduleLeaveDelegators**() - schedules a request to leave the set of delegators and revoke all ongoing delegations. Scheduling the request does not automatically execute it. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `executeLeaveDelegators` extrinsic. Use the [batch utility](/builders/ethereum/precompiles/ux/batch/){target=\_blank} with `scheduleRevokeDelegation` for all delegations instead"
+
+    === "Parameters"
+
+        None.
+
+    === "Returns"
+
+        None.
+
+??? function "**executeLeaveDelegators**(*address* delegator, *uint256* delegatorDelegationCount) - executes the due request to leave the set of delegators and revoke all delegations. Use the [batch utility](/builders/ethereum/precompiles/ux/batch/){target=\_blank} with `executeDelegationRequest` for all delegations instead"
+
+    === "Parameters"
+
+        - `delegator` - address of the delegator leaving
+        - `delegatorDelegationCount` - uint256 current number of delegations from the delegator
+
+    === "Returns"
+
+        None.
+
+??? function "**cancelLeaveDelegators**() - cancels a pending scheduled request to leave the set of delegators. Use the [batch utility](/builders/ethereum/precompiles/ux/batch/){target=\_blank} with `cancelDelegationRequest` for all delegations instead"
+
+    === "Parameters"
+
+        None.
+
+    === "Returns"
+
+        None.
 
 As of runtime 1001, the following methods are **deprecated** and, as of runtime 1800, have been removed:
 
- - **is_nominator**(*address* nominator) — read-only function that checks whether the specified address is currently a staking delegator. Use `isDelegator` instead
- - **min_nomination**() — read-only function that gets the minimum delegation amount. Use `minDelegation` instead
- - **collator_nomination_count**(*address* collator) - read-only function that returns the number of delegations for the specified collator address. Use `candidateDelegationCount` instead
- - **nominator_nomination_count**(*address* nominator) - read-only function that returns the number of delegations for the specified delegator address. Use `delegatorDelegationCount` instead
- - **leave_candidates**(*uint256* amount, *uint256* candidateCount) — immediately removes the account from the candidate pool to prevent others from selecting it as a collator and triggers unbonding. Use `scheduleLeaveCandidates` and `executeLeaveCandidates` instead
- - **candidate_bond_less**(*uint256* less) — collator candidate decreases bond by the specified amount. Use `scheduleCandidateBondLess` and `executeCandidateBondLess` instead
- - **nominate**(*address* collator, *uint256* amount, *uint256* collatorNominationCount, *uint256* nominatorNominationCount) — if the caller is not a delegator, this function adds them to the set of delegators. If the caller is already a delegator, then it adjusts their delegation amount. Use `delegateWithWithAutoCompound` instead
- - **leave_nominators**(*uint256* nominatorNominationCount) — leave the set of delegators and revoke all ongoing delegations. Use the [batch utility](/builders/ethereum/precompiles/ux/batch/){target=\_blank} with `scheduleRevokeDelegation` for all delegations instead
- - **revoke_nominations**(*address* collator) — revoke a specific delegation. Use `scheduleRevokeDelegation` and `executeDelegationRequest` instead
- - **nominator_bond_more**(*address* collator, *uint256* more) — delegator increases bond to a collator by the specified amount. Use `delegatorBondMore` instead
- - **nominator_bond_less**(*address* collator, *uint256* less) — delegator decreases bond to a collator by the specified amount. Use `scheduleDelegatorBondLess` and `executeDelegationRequest` instead
+??? function "**is_nominator**(*address* nominator) - read-only function that checks whether the specified address is currently a staking delegator. Use `isDelegator` instead"
+
+    === "Parameters"
+
+        - `nominator` - address to check if they are currently a delegator
+
+    === "Returns"
+
+        - `bool` whether the address is currently a delegator
+
+??? function "**min_nomination**() - read-only function that gets the minimum delegation amount. Use `minDelegation` instead"
+
+    === "Parameters"
+
+        None.
+
+    === "Returns"
+
+        - `uint256` minimum delegation amount
+
+??? function "**collator_nomination_count**(*address* collator) - read-only function that returns the number of delegations for the specified collator address. Use `candidateDelegationCount` instead"
+
+    === "Parameters"
+
+        - `collator` - address of the collator to query
+
+    === "Returns"
+
+        - `uint256` number of delegations for the collator
+
+??? function "**nominator_nomination_count**(*address* nominator) - read-only function that returns the number of delegations for the specified delegator address. Use `delegatorDelegationCount` instead"
+
+    === "Parameters"
+
+        - `nominator` - address of the delegator to query
+
+    === "Returns"
+
+        - `uint256` number of delegations for the delegator
+
+??? function "**leave_candidates**(*uint256* amount, *uint256* candidateCount) - immediately removes the account from the candidate pool to prevent others from selecting it as a collator and triggers unbonding. Use `scheduleLeaveCandidates` and `executeLeaveCandidates` instead"
+
+    === "Parameters"
+
+        - `amount` - uint256 bond amount
+        - `candidateCount` - uint256 current number of candidates in the pool
+
+    === "Returns"
+
+        None.
+
+??? function "**candidate_bond_less**(*uint256* less) - collator candidate decreases bond by the specified amount. Use `scheduleCandidateBondLess` and `executeCandidateBondLess` instead"
+
+    === "Parameters"
+
+        - `less` - uint256 amount to decrease the bond by
+
+    === "Returns"
+
+        None.
+
+??? function "**nominate**(*address* collator, *uint256* amount, *uint256* collatorNominationCount, *uint256* nominatorNominationCount) - if the caller is not a delegator, this function adds them to the set of delegators. If the caller is already a delegator, then it adjusts their delegation amount. Use `delegateWithWithAutoCompound` instead"
+
+    === "Parameters"
+
+        - `collator` - address of the collator to nominate
+        - `amount` - uint256 amount to delegate
+        - `collatorNominationCount` - uint256 current number of nominations for the collator
+        - `nominatorNominationCount` - uint256 current number of nominations from the nominator
+
+    === "Returns"
+
+        None.
+
+??? function "**leave_nominators**(*uint256* nominatorNominationCount) - leave the set of delegators and revoke all ongoing delegations. Use the [batch utility](/builders/ethereum/precompiles/ux/batch/){target=\_blank} with `scheduleRevokeDelegation` for all delegations instead"
+
+    === "Parameters"
+
+        - `nominatorNominationCount` - uint256 current number of nominations from the nominator
+
+    === "Returns"
+
+        None.
+
+??? function "**revoke_nominations**(*address* collator) - revoke a specific delegation. Use `scheduleRevokeDelegation` and `executeDelegationRequest` instead"
+
+    === "Parameters"
+
+        - `collator` - address of the collator to revoke nomination from
+
+    === "Returns"
+
+        None.
+
+??? function "**nominator_bond_more**(*address* collator, *uint256* more) - delegator increases bond to a collator by the specified amount. Use `delegatorBondMore` instead"
+
+    === "Parameters"
+
+        - `collator` - address of the collator to increase bond for
+        - `more` - uint256 amount to increase the bond by
+
+    === "Returns"
+
+        None.
+
+??? function "**nominator_bond_less**(*address* collator, *uint256* less) - delegator decreases bond to a collator by the specified amount. Use `scheduleDelegatorBondLess` and `executeDelegationRequest` instead"
+
+    === "Parameters"
+
+        - `collator` - address of the collator to decrease bond for
+        - `less` - uint256 amount to decrease the bond by
+
+    === "Returns"
+
+        None.
 
 ## Interact with the Solidity Interface {: #interact-with-solidity-interface }
 

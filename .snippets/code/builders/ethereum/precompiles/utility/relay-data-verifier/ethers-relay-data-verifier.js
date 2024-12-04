@@ -9,7 +9,7 @@ const abi = JSON.parse(fs.readFileSync('./RelayChainDataVerifierABI.json'));
 const privateKey = 'INSERT_PRIVATE_KEY';
 const precompileAddress = '0x0000000000000000000000000000000000000819';
 const moonbeamURL = 'https://rpc.api.moonbase.moonbeam.network';
-const relayURL = 'wss://fro-moon-rpc-1-moonbase-relay-rpc-1.moonbase.ol-infra.network';
+const relayURL = 'wss://relay.api.moonbase.moonbeam.network';
 
 // Create Ethers provider and signer
 const provider = new ethers.JsonRpcProvider(moonbeamURL);

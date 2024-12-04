@@ -41,7 +41,7 @@ This guide will cover some of the most common flags and show you how to access a
     - **`fast`** - downloads blocks without executing them and downloads the latest state with proofs
     - **`fast-unsafe`** - same as `fast`, but skips downloading the state proofs
     - **`warp`** - downloads the latest state and proof
-    - **`--prometheus-port`** - specifies a custom Prometheus port
+- **`--prometheus-port`** - specifies a custom Prometheus port
 
 ## Flags for Configuring a SQL Backend {: #flags-for-sql-backend }
 

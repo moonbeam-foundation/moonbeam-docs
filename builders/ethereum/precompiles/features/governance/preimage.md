@@ -37,8 +37,17 @@ The Preimage Precompile is located at the following address:
 
 [`Preimage.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/preimage/Preimage.sol){target=\_blank} is a Solidity interface that allows developers to interact with the precompile's two methods:
 
-- **notePreimage**(*bytes memory* encodedPropsal) — registers a preimage on-chain for an upcoming proposal given the encoded proposal and returns the preimage hash. This doesn't require the proposal to be in the dispatch queue but does require a deposit which is returned once enacted. Uses the [`notePreimage`](/builders/substrate/interfaces/features/governance/preimage/#:~:text=notePreimage(encodedProposal)){target=\_blank} method of the preimage pallet
-- **unnotePreimage**(*bytes32* hash) - clears an unrequested preimage from storage given the hash of the preimage to be removed. Uses the [`unnotePreimage`](/builders/substrate/interfaces/features/governance/preimage/#:~:text=notePreimage(hash)){target=\_blank} method of the preimage pallet
+??? function "**notePreimage**(*bytes memory* encodedPropsal) - registers a preimage on-chain for an upcoming proposal. This doesn't require the proposal to be in the dispatch queue but does require a deposit which is returned once enacted. Uses the [`notePreimage`](/builders/substrate/interfaces/features/governance/preimage/#:~:text=notePreimage(encodedProposal)){target=\_blank} method of the preimage pallet"
+
+    === "Parameters"
+
+        - `encodedProposal` - bytes memory containing the encoded proposal to be registered. Returns the preimage hash
+
+??? function "**unnotePreimage**(*bytes32* hash) - clears an unrequested preimage from storage. Uses the [`unnotePreimage`](/builders/substrate/interfaces/features/governance/preimage/#:~:text=notePreimage(hash)){target=\_blank} method of the preimage pallet"
+
+    === "Parameters"
+
+        - `hash` - bytes32 hash of the preimage to be removed from storage
 
 The interface also includes the following events:
 
@@ -114,7 +123,7 @@ Now you can take the **bytes** of the encoded proposal that you got from [Polkad
 
 1. Expand the Preimage Precompile contract to see the available functions
 2. Find the **notePreimage** function and press the button to expand the section
-3. Provide the **bytes** of the encoded proposal that you noted in the prior section. Note, the encoded proposal is not the same as the preimage hash. Ensure you are are entering the correct value into this field
+3. Provide the **bytes** of the encoded proposal that you noted in the prior section. Note, the encoded proposal is not the same as the preimage hash. Ensure you are entering the correct value into this field
 4. Press **transact** and confirm the transaction in MetaMask
 
 ![Submit the preimage using the notePreimage function of the Preimage Precompile.](/images/builders/ethereum/precompiles/features/governance/preimage/preimage-7.webp)
