@@ -690,6 +690,22 @@ For more information, you can review the [relative PR on GitHub](https://github.
 
 ***
 
+#### Renaming of Parachain Bond Reserve Events {: #renaming-of-parachain-bond-reserve-events }
+
+Prior to Runtime 3300, the `ReservedForParachainBond` event was emitted once per round to indicate parachain bond reserve funding through inflation. In Runtime 3300, this same event was renamed to `InflationDistributed`.
+
+This change took effect at the following runtimes and blocks:
+
+|    Network     | Executed Runtime | Block Applied |
+|:--------------:|:----------------:|:-------------:|
+|    Moonbeam    |      RT3300      |    8381443    |
+|   Moonriver    |      RT3300      |    8894416    |
+| Moonbase Alpha |      RT3300      |    9062316    |
+
+For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/2976){target=\_blank}.
+
+***
+
 ### Referenda Pallet {: #referenda-pallet }
 
 A migration was introduced to support refunds for Submission Deposits on closed referenda that updated the `ReferendumInfo` type. The following invariants of `ReferendumInfo` were changed so that the second parameter, `Deposit<AccountId, Balance>`, is now optional, `Option<Deposit<AccountId, Balance>>`: `Approved`, `Rejected`, `Cancelled`, and `TimedOut`.
