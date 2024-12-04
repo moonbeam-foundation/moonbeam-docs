@@ -23,7 +23,7 @@ GoldRush's Unified API is a powerful but easy-to-use REST API that offers visibi
 
 It's easy to get started querying the Unified API after you've secured a GoldRush API Key. Make sure you have [your API Key](https://goldrush.dev/platform/auth/register/){target=\_blank} which begins with `cqt_` or `ckey_`. 
 
-You can interact with any of the API methods in the web interface of the GoldRush docs. To try out the token balances API, head to the [Token Balances docs](https://goldrush.mintlify.app/docs/api/balances/get-token-balances-for-address){target=\_blank} and take the following steps:
+You can interact with any of the API methods in the web interface of the GoldRush docs. To try out the token balances API, head to the [token balances docs](https://goldrush.mintlify.app/docs/api/balances/get-token-balances-for-address){target=\_blank} and take the following steps:
 
 1. Paste in your API key
 2. Enter the desired `chainName`, such as `moonbeam-moonbase-alpha` for Moonbase Alpha. Reference the [Quick Start section](#quick-start) if you're unsure what the chainName should be for your desired network
@@ -78,19 +78,19 @@ The GoldRush API has three classes of endpoints:
 
 For a full list of supported endpoints, refer to the [GoldRush API reference](https://goldrush.mintlify.app/api-reference/overview){target=\_blank}. A subset of the supported endpoints include:
 
-- **Token Balances**: Get all token balances (native, ERC-20, ERC-721, ERC-1155) with current market prices for an address
-- **Native Token Balances**: Retrieve native token balance for an address
-- **Get a Transaction**: Fetch and render a single transaction with decoded log events
-- **Transaction Summary**: Retrieve key wallet activity data for an address
-- **Earliest Transactions**: Get the earliest transactions for an address
-- **Recent Transactions**: Fetch the most recent transactions for an address
-- **Paginated Transactions**: Get paginated transactions for an address
-- **Bulk Time Bucket Transactions**: Fetch all transactions in 15-minute time buckets
-- **Block Transactions**: Get all transactions in a specific block
-- **ERC-20 Token Transfers**: Fetch transfer history of a specific ERC-20 token for an address
-- **Cross-chain Activity**: Locate chains on which an address is active
-- **Token Approvals**: Get a list of token approvals for an address
-- **NFT Approvals**: Retrieve NFT approvals for an address
+- **Token balances**- get all token balances (native, ERC-20, ERC-721, ERC-1155) with current market prices for an address
+- **Native token balances**- retrieve native token balance for an address
+- **Get a transaction**- fetch and render a single transaction with decoded log events
+- **Transaction summary**- retrieve key wallet activity data for an address
+- **Earliest transactions**- get the earliest transactions for an address
+- **Recent transactions**- fetch the most recent transactions for an address
+- **Paginated transactions**- get paginated transactions for an address
+- **Bulk time bucket transactions**- fetch all transactions in 15-minute time buckets
+- **Block transactions**- get all transactions in a specific block
+- **ERC-20 token transfers**- fetch transfer history of a specific ERC-20 token for an address
+- **Cross-chain activity**- locate chains on which an address is active
+- **Token approvals**- get a list of token approvals for an address
+- **NFT approvals**- retrieve NFT approvals for an address
 
 ## Unified API Methods {: #unified-api-methods }
 
