@@ -21,9 +21,9 @@ GoldRush's Unified API is a powerful but easy-to-use REST API that offers visibi
 
 ### Querying the Unified API {: #querying-the-unified-api }
 
-It's easy to get started querying the Unified API after you've secured a Goldrush API Key. Make sure you have [your API Key](https://goldrush.dev/platform/auth/register/){target=\_blank} which begins with `cqt_` or `ckey_`. 
+It's easy to get started querying the Unified API after you've secured a GoldRush API Key. Make sure you have [your API Key](https://goldrush.dev/platform/auth/register/){target=\_blank} which begins with `cqt_` or `ckey_`. 
 
-You can interact with any of the API methods in the web interface of the Goldrush docs. To try out the token balances API, head to the [Token Balances docs](https://goldrush.mintlify.app/docs/api/balances/get-token-balances-for-address){target=\_blank} and take the following steps:
+You can interact with any of the API methods in the web interface of the GoldRush docs. To try out the token balances API, head to the [Token Balances docs](https://goldrush.mintlify.app/docs/api/balances/get-token-balances-for-address){target=\_blank} and take the following steps:
 
 1. Paste in your API key
 2. Enter the desired chainName, such as `moonbeam-moonbase-alpha` for Moonbase Alpha. Reference the [Quick Start section](#quick-start) if you're unsure what the chainName should be for your desired network
