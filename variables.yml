@@ -402,7 +402,7 @@ networks:
       relay_data_verifier: '0x0000000000000000000000000000000000000819'
       xcm_interface: '0x000000000000000000000000000000000000081A'
     substrate_api_sidecar:
-      stable_version: 19.2.0
+      stable_version: 19.3.1
     tx_weight_to_gas_ratio: 25000
     orbiter:
       max_orbiters_per_collator: 8
@@ -796,7 +796,7 @@ networks:
       epoch_expiration: 10000
       epoch_fulfillment_delay: 2
     substrate_api_sidecar:
-      stable_version: 19.2.0
+      stable_version: 19.3.1
     tx_weight_to_gas_ratio: 25000
     orbiter:
       max_orbiters_per_collator: 3
@@ -1174,7 +1174,7 @@ networks:
       epoch_expiration: 10000
       epoch_fulfillment_delay: 2
     substrate_api_sidecar:
-      stable_version: 19.2.0
+      stable_version: 19.3.1
       tx_weight_to_gas_ratio: 25000
     orbiter:
       max_orbiters_per_collator: 6
