@@ -233,7 +233,7 @@ The Multisig Pallet includes the following read-only functions to obtain pallet 
         --8<-- 'code/builders/substrate/interfaces/account/multisig/deposit-base.js'
         ```
 
-    === "Example Reponse"
+    === "Example Response"
 
         ```
         Multisig Deposit Base: 1,009,600,000,000,000,000

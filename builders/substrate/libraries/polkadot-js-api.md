@@ -397,7 +397,7 @@ api.tx.utility.batch(txs).signAndSend(alice, ({ status }) => {
 
 RPCs are exposed as a method on a specific module. This means that once available, you can call any RPC via `api.rpc.<module>.<method>(...params[])`. This also works for accessing Ethereum RPCs using the Polkadot.js API, in the form of `polkadotApi.rpc.eth.*`.
 
-Some of the methods availabe through the Polkadot.js API interface are also available as JSON-RPC endpoints on Moonbeam nodes. This section will provide some examples; you can check for a list of exposed RPC endpoints by calling `api.rpc.rpc.methods()` or the `rpc_methods` endpoint listed below.
+Some of the methods available through the Polkadot.js API interface are also available as JSON-RPC endpoints on Moonbeam nodes. This section will provide some examples; you can check for a list of exposed RPC endpoints by calling `api.rpc.rpc.methods()` or the `rpc_methods` endpoint listed below.
 
 - **[`methods()`](https://polkadot.js.org/docs/substrate/rpc/#methods-rpcmethods){target=\_blank}**
     - **Interface** -  `api.rpc.rpc.methods`

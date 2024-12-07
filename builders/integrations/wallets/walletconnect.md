@@ -201,7 +201,7 @@ const killSession = () => {
 };
 ```
 
-Now that you have all of the logic required to handle the disconnection, you will need the **Disconnect** button that `onClick` will call the `killSession` function. Since you only want to display the **Disconnect** button once a user is connected, you can use [conditional renderering](https://react.dev/learn/conditional-rendering){target=\_blank}. Conditional rendering allows you to check against certain variables and if a condition applies you can render one element or another. In this case, if you are not fetching the initial connection and the connector exists, you can render the **Disconnect** button, otherwise render the **Connect Wallet** button. You can replace the existing `<Button>` with the following:
+Now that you have all of the logic required to handle the disconnection, you will need the **Disconnect** button that `onClick` will call the `killSession` function. Since you only want to display the **Disconnect** button once a user is connected, you can use [conditional rendering](https://react.dev/learn/conditional-rendering){target=\_blank}. Conditional rendering allows you to check against certain variables and if a condition applies you can render one element or another. In this case, if you are not fetching the initial connection and the connector exists, you can render the **Disconnect** button, otherwise render the **Connect Wallet** button. You can replace the existing `<Button>` with the following:
 
 ```js
 {

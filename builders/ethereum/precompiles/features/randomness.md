@@ -325,7 +325,7 @@ To request randomness, you're going to use the `requestRandomness` function of t
 
 ![Request a random number using the random number generator contract in Remix.](/images/builders/ethereum/precompiles/features/randomness/randomness-5.webp)
 
-Once you submit the transaction, the `requestId` will be updated with the ID of the request. You can use the `requestId` call of the Random Number contract to get the request ID and the `getRequestStatus` functon of the Randomness Precompile to check the status of this request ID.
+Once you submit the transaction, the `requestId` will be updated with the ID of the request. You can use the `requestId` call of the Random Number contract to get the request ID and the `getRequestStatus` function of the Randomness Precompile to check the status of this request ID.
 
 ### Fulfill the Request and Save the Random Number {: #fulfill-request-save-number }
 
