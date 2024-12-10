@@ -16,7 +16,7 @@ networks:
     chain_spec: alphanet
     block_explorer: https://moonbase.moonscan.io/
     spec_version: runtime-3400
-    parachain_release_tag: v0.41.0 # must be in this exact format for links to work
+    parachain_release_tag: v0.42.1 # must be in this exact format for links to work
     parachain_sha256sum: d199266180adcdb25c19aa0ac9d8f5a7157ef1235393fac616d48bb68ba8bcde
     tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.41.0-3300-d3e6
     gas_block: 60,000,000
