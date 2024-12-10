@@ -5,6 +5,9 @@ description: Learn how to build APIs, called subgraphs, to store and fetch on-ch
 
 # Using The Graph on Moonbeam
 
+<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/MO8LKfz1XAc?si=bAma3bu-IQWdswg6' frameborder='0' allowfullscreen></iframe></div>
+<style>.caption { font-family: Open Sans, sans-serif; font-size: 0.9em; color: rgba(170, 170, 170, 1); font-style: italic; letter-spacing: 0px; position: relative;}</style>
+
 ## Introduction  {: #introduction }
 
 Indexing protocols organize information so that applications can access it more efficiently. For example, Google indexes the entire Internet to provide information rapidly when you search for something.
