@@ -18,7 +18,7 @@ networks:
     spec_version: runtime-3400
     parachain_release_tag: v0.42.1 # must be in this exact format for links to work
     parachain_sha256sum: 9b645b2fd9e575b26ea727e96dc2a81486a73461bb961ba33ea2136e4c9060d8
-    tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.41.0-3300-d3e6
+    tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.42.1-3400-3ebd
     gas_block: 60,000,000
     gas_block_numbers_only: 60000000 # this should match gas_block, just with no commas
     gas_tx: 52,000,000 # EXTRINSIC_GAS_LIMIT in test/helpers/constants.ts
