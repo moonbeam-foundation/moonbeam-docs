@@ -293,19 +293,22 @@ The `BaseFee` is the minimum amount charged to send a transaction and is a value
 The minimum gas price for each network is as follows:
 
 === "Moonbeam"
-    |     Variable      |  Value   |
-    |:-----------------:|:--------:|
-    | Minimum Gas Price | 125 Gwei |
+
+    |     Variable      |                   Value                    |
+    |:-----------------:|:------------------------------------------:|
+    | Minimum Gas Price | {{ networks.moonbeam.min_gas_price }} Gwei |
 
 === "Moonriver"
-    |     Variable      |   Value   |
-    |:-----------------:|:---------:|
-    | Minimum Gas Price | 1.25 Gwei |
+
+    |     Variable      |                   Value                    |
+    |:-----------------:|:------------------------------------------:|
+    | Minimum Gas Price | {{ networks.moonriver.min_gas_price }} Gwei |
 
 === "Moonbase Alpha"
-    |     Variable      |   Value    |
-    |:-----------------:|:----------:|
-    | Minimum Gas Price | 0.125 Gwei |
+
+    |     Variable      |                   Value                    |
+    |:-----------------:|:------------------------------------------:|
+    | Minimum Gas Price | {{ networks.moonbase.min_gas_price }} Gwei |
 
 To calculate the dynamic base fee, the following calculation is used:
 
