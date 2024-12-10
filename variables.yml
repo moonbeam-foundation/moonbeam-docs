@@ -17,7 +17,7 @@ networks:
     block_explorer: https://moonbase.moonscan.io/
     spec_version: runtime-3400
     parachain_release_tag: v0.42.1 # must be in this exact format for links to work
-    parachain_sha256sum: d199266180adcdb25c19aa0ac9d8f5a7157ef1235393fac616d48bb68ba8bcde
+    parachain_sha256sum: 9b645b2fd9e575b26ea727e96dc2a81486a73461bb961ba33ea2136e4c9060d8
     tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.41.0-3300-d3e6
     gas_block: 60,000,000
     gas_block_numbers_only: 60000000 # this should match gas_block, just with no commas
