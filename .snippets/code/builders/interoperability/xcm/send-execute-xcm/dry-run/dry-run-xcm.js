@@ -1,4 +1,5 @@
 import { ApiPromise, WsProvider } from '@polkadot/api';
+import { hexToU8a } from '@polkadot/util';
 
 const main = async () => {
   try {
@@ -9,13 +10,7 @@ const main = async () => {
 
     // Define the origin
     const origin = { V4: { parents: 1, interior: 'Here' } };
-
-    const assetMultiLocation = {
-      parents: 0,
-      interior: { X1: { PalletInstance: 3 } },
-    }; // The asset's location (adjust PalletInstance as needed)
-
-    const amountToSend = 1000000000000; // Adjust this value as needed
+    const amountToSend = 1000000000000;
 
     const message = {
       V4: [
@@ -37,21 +32,35 @@ const main = async () => {
           },
         },
         {
-          ClearOrigin: null,
-        },
+          DepositAsset: {
+            assets: { Wild: { AllOf: { id: { parents: 1, interior: 'Here' } } } },
+            maxAssets: 1,
+            beneficiary: {
+              parents: 0,
+              interior: {
+                X1: [
+                  {
+                    AccountKey20: {
+                      network: null,
+                      key: hexToU8a('0x3B939FeaD1557C741Ff06492FD0127bd287A421e')
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
       ],
     };
 
     // Perform the dry run XCM call
     const result = await api.call.dryRunApi.dryRunXcm(origin, message);
-
-    // Use JSON.stringify for better output formatting
+    
     console.log(
       'Dry run XCM result:',
       JSON.stringify(result.toJSON(), null, 2)
     );
 
-    // Disconnect the API
     await api.disconnect();
     console.log('Disconnected from the API.');
   } catch (error) {

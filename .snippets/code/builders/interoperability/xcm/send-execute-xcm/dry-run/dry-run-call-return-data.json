@@ -1,46 +1,93 @@
-Ok: {
-    executionResult: {
-      Ok: {
-        actualWeight: {
-          refTime: 7,301,734,000
-          proofSize: 20,928
-        }
-        paysFee: Yes
+Dry run XCM result: {
+  "ok": {
+    "executionResult": {
+      "ok": {
+        "actualWeight": {
+          "refTime": 7301615000,
+          "proofSize": 20928
+        },
+        "paysFee": "Yes"
       }
-    }
-    emittedEvents: [
+    },
+    "emittedEvents": [
       {
-        method: Burned
-        section: balances
-        index: 0x030b
-        data: {
-          who: 0x88bcE0b038eFFa09e58fE6d24fDe4b5Af21aa798
-          amount: 100,000,000,000,000,000
-        }
+        "index": "0x030b",
+        "data": [
+          "0x88bcE0b038eFFa09e58fE6d24fDe4b5Af21aa798",
+          "0x0000000000000000016345785d8a0000"
+        ]
+      },
+      {
+        "index": "0x0300",
+        "data": [
+          "0x3Cd0A705a2DC65e5b1E1205896BaA2be8A07c6e0",
+          "0x0000000000000000016345785d8a0000"
+        ]
+      },
+      {
+        "index": "0x030a",
+        "data": [
+          "0x3Cd0A705a2DC65e5b1E1205896BaA2be8A07c6e0",
+          "0x0000000000000000016345785d8a0000"
+        ]
+      },
+      {
+        "index": "0x1c00",
+        "data": [
+          {
+            "complete": {
+              "used": {
+                "refTime": 7250000000,
+                "proofSize": 19374
+              }
+            }
+          }
+        ]
       }
-      {
-        method: Minted
-        section: balances
-        index: 0x030a
-        data: {
-          who: 0x3Cd0A705a2DC65e5b1E1205896BaA2be8A07c6e0
-          amount: 100,000,000,000,000,000
-        }
-      }
-      {
-        method: Attempted
-        section: polkadotXcm
-        index: 0x1c00
-        data: {
-          outcome: {
-            Complete: {
-              used: {
-                refTime: 7,250,000,000
-                proofSize: 19,374
+    ],
+    "localXcm": {
+      "v4": [
+        {
+          "withdrawAsset": [
+            {
+              "id": {
+                "parents": 0,
+                "interior": {
+                  "x1": [
+                    {
+                      "palletInstance": 3
+                    }
+                  ]
+                }
+              },
+              "fun": {
+                "fungible": "0x0000000000000000016345785d8a0000"
+              }
+            }
+          ]
+        },
+        {
+          "depositAsset": {
+            "assets": {
+              "wild": {
+                "allCounted": 1
+              }
+            },
+            "beneficiary": {
+              "parents": 0,
+              "interior": {
+                "x1": [
+                  {
+                    "accountKey20": {
+                      "network": null,
+                      "key": "0x3cd0a705a2dc65e5b1e1205896baa2be8a07c6e0"
+                    }
+                  }
+                ]
               }
             }
           }
         }
-      }
-    ] // Additional events returned here
+      ]
+    } // Additional events returned here
       // Omitted for clarity 

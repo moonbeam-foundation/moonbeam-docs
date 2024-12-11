@@ -28,7 +28,10 @@ const main = async () => {
       callDataU8a // call
     );
 
-    console.log('Dry run result:', result.toHuman());
+    console.log(
+      'Dry run XCM result:',
+      JSON.stringify(result.toJSON(), null, 2)
+    );
 
     // Disconnect the API
     await api.disconnect();
