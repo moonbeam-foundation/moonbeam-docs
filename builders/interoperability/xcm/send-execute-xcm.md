@@ -1,6 +1,6 @@
 ---
 title: Send, Execute and Test XCM Messages
-description: Build a custom XCM message, verify its construction and integrity using the XCM Dry Run API, then execute it locally on Moonbeam to observe the results.  
+description: Build a custom XCM message, verify its construction and integrity using the XCM Dry Run API, and then execute it locally on Moonbeam to observe the results. 
 ---
 
 # Send, Execute, and Test XCM Messages
@@ -210,7 +210,7 @@ const result = await api.call.dryRunApi.dryRunCall(
     --8<-- 'code/builders/interoperability/xcm/send-execute-xcm/dry-run/dry-run-call.js'
     ```
 
-Upon calling the XCM Dry Run API, the method will tell you whether the call would be successful and returns the event data that would be emitted if the XCM were to be actually submitted on chain. You can view the initial output of the `dryRunCall` below.
+Upon calling the XCM Dry Run API, the method will tell you whether the call would be successful and returns the event data that would be emitted if the call were actually submitted on chain. You can view the initial output of the `dryRunCall` below.
 
 ??? code "View the complete output"
 
