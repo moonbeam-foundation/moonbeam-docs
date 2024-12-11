@@ -279,9 +279,9 @@ There are a number of ways to add an account to the keyring instance, including 
 
 ## Dry Run API  {: #dry-run-api }
 
-The Dry Run API is an easy and convenient way to test the integrity of a call without incurring any transaction fees. The XCM Dry Run API can be accessed from the [Runtime Calls](https://polkadot.js.org/apps/#/runtime){target=\_blank} tab of the **Developer** section of Polkadot.js Apps. While primarily intended for the [testing of XCM messages](/builders/interoperability/xcm/send-execute-xcm/#test-an-xcm-message-with-the-dry-run-api), the Dry Run API can be used to test any arbitrary call. 
+The Dry Run API is an easy and convenient way to test the integrity of a call without incurring any transaction fees. The Dry Run API can be accessed from the [Runtime Calls](https://polkadot.js.org/apps/#/runtime){target=\_blank} tab of the **Developer** section of Polkadot.js Apps. While primarily intended for the [testing of XCM messages](/builders/interoperability/xcm/send-execute-xcm/#test-an-xcm-message-with-the-dry-run-api){target=\_blank} , the Dry Run API can be used to test any arbitrary call. 
 
-This method takes as a parameter the origin and the call data and returns an execution result, actual weight, and event data.  
+This method takes as a parameter the origin and the call data and returns an execution result and additional event data. 
 
 ```javascript
 const testAccount = api.createType(
@@ -304,7 +304,7 @@ const result = await api.call.dryRunApi.dryRunCall(
     --8<-- 'code/builders/substrate/libraries/polkadot-js-api/dry-run.js'
     ```
 
-Upon calling the XCM Dry Run API, the method will tell you whether the call would be successful and returns the event data that would be emitted if the XCM were to be actually submitted on chain. You can view the initial output of the `dryRunCall` below.
+Upon calling the Dry Run API, the method will tell you whether the call would be successful and returns the event data that would be emitted if the call were to be actually submitted on chain. You can view the initial output of the `dryRunCall` below.
 
 ??? code "View the complete output"
 
