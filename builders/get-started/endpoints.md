@@ -198,7 +198,7 @@ To override the balance of a particular account, you can override the account st
     "pallet": "System",
     "storage": "Account",
     "key": "0x3b939fead1557c741ff06492fd0127bd287a421e",
-    "value": "0x460c000002000000010000000600000069e10d7e66d78000000000000000000040a556b0e032de12000000000000000004083a09e15c74c1b0100000000000000000000000000000000000000000000080"
+    "value": "0x460c000002000000010000000600000069e10de76676d0800000000000000000040a556b0e032de12000000000000000004083a09e15c74c1b0100000000000000000000000000000000000000000000080"
   }
 ]
 ```
@@ -232,7 +232,7 @@ Note that this encoded storage key will change alongside any input changes, such
 0x460c0000020000000100000006000000a4d92a6a4e6b3a5045000000000000000040a556b0e032de12000000000000004083a09e15c74c1b010000000000000000000000000000000000000000000080
 ```
 
-There is quite a bit of data encoded in the value field because it is a complex struct comprised of multiple values. Let's take a closer look at each:
+There is quite a bit of data encoded in the value field because it is a complex struct comprised of multiple values. The struct is comprised of:
 
 ```
 struct AccountInfo {
@@ -249,11 +249,7 @@ struct AccountInfo {
 }
 ```
 
-The value that is returned corresponding to the key of Alice's account is: 
-
-`0x460c0000020000000100000006000000b0cafee901640c14010000000000000040a556b0e032de12000000000000004083a09e15c74c1b010000000000000000000000000000000000000000000080`
-
-The following section will associate each part of the SCALE encoded struct with the value that it represents:
+You can associate each part of the SCALE encoded struct with the corresponding piece of Alice's account information that it represents:
 
 ```
 0x460c0000        // nonce (u32): 3,142 
@@ -276,7 +272,7 @@ a4d92a6a4e6b3a5045000000000000000
 
 Remember that the values are Little Endian encoded. To convert the Hexidecimal Little Endian encoded values to decimal, you can use [this converter](https://www.shawntabrizi.com/substrate-js-utilities/){target=_blank}, using the `Balance to Hex (Little Endian)` converter.
 
-In this example, the existing free balance of 1,278,606,392,142,175,328,676 wei or approximately 1278.60 DEV is `a4d92a6a4e6b3a5045`. Let's change the value to 500,000 DEV as an example, which is `500,000,000,000,000,000,000,000` wei or `0x000080d07666e70de169` encoded as a hexidecimal Little Endian value. When properly padded to fit into the SCALE encoded storage value, it becomes `69e10d7e66d78000000000000000000`, such that the table now looks like:
+In this example, the existing free balance of `1,278,606,392,142,175,328,676` wei or approximately `1278.60` DEV is `a4d92a6a4e6b3a5045`. The following example will change the value to `500,000` DEV, which is `500,000,000,000,000,000,000,000` wei or `0x000080d07666e70de169` encoded as a hexidecimal Little Endian value. When properly padded to fit into the SCALE encoded storage value, it becomes `69e10de76676d08000000000000000000`, such that the table now looks like:
 
 ```
 0x460c0000        // nonce (u32): 3,142 
@@ -284,7 +280,7 @@ In this example, the existing free balance of 1,278,606,392,142,175,328,676 wei 
 01000000          // providers (u32): 1  
 06000000          // sufficients (u32): 6
 
-69e10d7e66d78000000000000000000
+69e10de76676d08000000000000000000
 // free (u128): 500,000,000,000,000,000,000,000
 
 40a556b0e032de1200000000000000000  
@@ -299,7 +295,7 @@ In this example, the existing free balance of 1,278,606,392,142,175,328,676 wei 
 
 Therefore, the SCALE encoded override value is as follows:
 
-`0x460c000002000000010000000600000069e10d7e66d78000000000000000000040a556b0e032de12000000000000000004083a09e15c74c1b0100000000000000000000000000000000000000000000080`
+`0x460c000002000000010000000600000069e10de76676d0800000000000000000040a556b0e032de12000000000000000004083a09e15c74c1b0100000000000000000000000000000000000000000000080`
 
 You can now specify the SCALE encoded override value in your `state-overrides.json` file as follows:
 
@@ -309,7 +305,7 @@ You can now specify the SCALE encoded override value in your `state-overrides.js
     "pallet": "System",
     "storage": "Account",
     "key": "0x3b939fead1557c741ff06492fd0127bd287a421e",
-    "value": "0x460c000002000000010000000600000069e10d7e66d78000000000000000000040a556b0e032de12000000000000000004083a09e15c74c1b0100000000000000000000000000000000000000000000080"
+    "value": "0x460c000002000000010000000600000069e10de76676d0800000000000000000040a556b0e032de12000000000000000004083a09e15c74c1b0100000000000000000000000000000000000000000000080"
   }
 ]
 ```
