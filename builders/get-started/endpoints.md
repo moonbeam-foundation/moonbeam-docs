@@ -203,7 +203,7 @@ To override the balance of a particular account, you can override the account st
 ]
 ```
 
-Overriding an account balance as shown above can be a complex process. However, this guide will break it down into steps that are easy to follow. Before making any changes, you should obtain the existing value corresponding to the key (i.e. the account in this case). You can go to [Chain State on Polkadot.js Apps](https://polkadot.js.org/apps/#/chainstate){target=_blank} and query the System pallet by providing the Account you'd like to query. Upon submitting the query, you'll get back a readable account structure like so:
+Overriding an account balance, as shown above, can be a complex process. However, this guide will break it down into steps that are easy to follow. Before making any changes, you should obtain the existing value corresponding to the key (i.e., the account in this case). You can go to [Chain State on Polkadot.js Apps](https://polkadot.js.org/apps/#/chainstate){target=_blank} and query the System pallet by providing the account you'd like to query. Upon submitting the query, you'll get back a readable account structure like so:
 
 ```
 {
@@ -220,19 +220,19 @@ Overriding an account balance as shown above can be a complex process. However, 
 }
 ```
 
-While this is useful as a reference, the piece of information that you're actually looking for is the encoded storage key, and this is accessible even without submitted the chain state query. In this instance, the encoded storage key corresponding to the system pallet and the selected account `0x3B939FeaD1557C741Ff06492FD0127bd287A421e` is:
+While this is useful as a reference, the information you're looking for is the encoded storage key, which is accessible even without submitting the chain state query. In this instance, the encoded storage key corresponding to the system pallet and the selected account `0x3B939FeaD1557C741Ff06492FD0127bd287A421e` is:
 
 ```
 0x26aa394eea5630e07c48ae0c9558cef7b99d880ec681799c0cf30e8886371da9b882fedb4f75b055c709ec5b66b5d9933b939fead1557c741ff06492fd0127bd287a421e
 ```
 
-Note that this encoded storage key will change alongside any changes to the inputs, such as a different account being queried. Then, head over the **Raw Storage** tab on [Polkadot.js Apps](https://polkadot.js.org/apps/#/chainstate/raw){target=_blank}. Input the above storage key and submit the query. The response is the SCALE encoded account struct, a part of which contains the free balance information to be modified as part of this example: 
+Note that this encoded storage key will change alongside any input changes, such as a different account being queried. Then, head over the **Raw Storage** tab on [Polkadot.js Apps](https://polkadot.js.org/apps/#/chainstate/raw){target=_blank}. Input the above storage key and submit the query. The response is the SCALE encoded account struct, a part of which contains the free balance information to be modified as part of this example: 
 
 ```
 0x460c0000020000000100000006000000a4d92a6a4e6b3a5045000000000000000040a556b0e032de12000000000000004083a09e15c74c1b010000000000000000000000000000000000000000000080
 ```
 
-There is a quite a bit of data encoded in the value field because it is a complex struct comprised of multiple values. Let's take a closer look at each:
+There is quite a bit of data encoded in the value field because it is a complex struct comprised of multiple values. Let's take a closer look at each:
 
 ```
 struct AccountInfo {
@@ -249,11 +249,11 @@ struct AccountInfo {
 }
 ```
 
-The value that we're provided to the key corresponding to Alice's account is 
+The value that is returned corresponding to the key of Alice's account is: 
 
 `0x460c0000020000000100000006000000b0cafee901640c14010000000000000040a556b0e032de12000000000000004083a09e15c74c1b010000000000000000000000000000000000000000000080`
 
-You may not wish to override every single component of this struct, in fact, you may only wish to override one value, such as the free balance. When constructing the `state-override.json` file, you can query the current chain state to get the struct as it currently exists, and carefully modify only the piece that you're interested in, without modifying other values like the nonce. 
+The following section will associate each part of the SCALE encoded struct with the value that it represents:
 
 ```
 0x460c0000        // nonce (u32): 3,142 
@@ -274,9 +274,9 @@ a4d92a6a4e6b3a5045000000000000000
 // flags (u128): 170,141,183,460,469,231,731,687,303,715,884,105,728
 ```
 
-Remember that the values are Little Endian encoded. In order to convert the Hexidecimal Little Endian encoded values to decimal, you can use [this converter](https://www.shawntabrizi.com/substrate-js-utilities/){target=_blank}, using the `Balance to Hex (Little Endian)` converter.
+Remember that the values are Little Endian encoded. To convert the Hexidecimal Little Endian encoded values to decimal, you can use [this converter](https://www.shawntabrizi.com/substrate-js-utilities/){target=_blank}, using the `Balance to Hex (Little Endian)` converter.
 
-In this example, the existing free balance of 1,278,606,392,142,175,328,676 wei or approximately 1278.60 DEV is `a4d92a6a4e6b3a5045`. Let's change the value to 500,000 DEV as an example, which is `500,000,000,000,000,000,000,000` wei or `0x000080d07666e70de169` encoded as a Hexidecimal Little Endian value. When properly padded to fit into the SCALE encoded storage value, it becomes `69e10d7e66d78000000000000000000`, such that the table now looks like:
+In this example, the existing free balance of 1,278,606,392,142,175,328,676 wei or approximately 1278.60 DEV is `a4d92a6a4e6b3a5045`. Let's change the value to 500,000 DEV as an example, which is `500,000,000,000,000,000,000,000` wei or `0x000080d07666e70de169` encoded as a hexidecimal Little Endian value. When properly padded to fit into the SCALE encoded storage value, it becomes `69e10d7e66d78000000000000000000`, such that the table now looks like:
 
 ```
 0x460c0000        // nonce (u32): 3,142 
