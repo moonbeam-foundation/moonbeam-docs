@@ -197,7 +197,7 @@ To override the balance of a particular account, you can override the account st
   {
     "pallet": "System",
     "storage": "Account",
-    "key": "0x3b939fead1557c741ff06492fd0127bd287a421e",
+    "key": "TARGET_ADDRESS",
     "value": "0x460c000002000000010000000600000069e10de76676d0800000000000000000040a556b0e032de12000000000000000004083a09e15c74c1b0100000000000000000000000000000000000000000000080"
   }
 ]
