@@ -49,7 +49,7 @@ To get started, you'll need to collect some information about the asset:
 - The asset symbol. You'll need to prepend "xc" to the asset symbol to indicate that the asset is an XCM-enabled asset
 - The number of decimals the asset has
 
-With this information in hand, you can prepare a governance proposal to register a foreign asset. Foreign asset registration proposals should be submitted through the `FastGeneralAdmin` track.
+With this information in hand, you can prepare a governance proposal to register a foreign asset. Foreign asset registration proposals should be submitted through the `GeneralAdmin` track.
 
 ![Overview of the proposal process](/images/builders/interoperability/xcm/xc-registration/assets/assets-3.webp)
 
@@ -59,7 +59,7 @@ If you're not familiar with the governance system on Moonbeam, you can find out 
 
 To submit a preimage, you'll need to get the encoded calldata for each extrinsic that you want to execute. As previously mentioned, you'll use the `evmForeignAssets.createForeignAsset` and the `xcmWeightTrader.addAsset` extrinsics.
 
-Proposals must be submitted via the `FastGeneralAdmin` track. If you're opening a channel and registering an asset and you'll want to wait until the channel is established prior to attempting to register the asset. 
+Proposals must be submitted via the `GeneralAdmin` track. If you're opening a channel and registering an asset and you'll want to wait until the channel is established prior to attempting to register the asset. 
 
 To get the encoded calldata for the `evmForeignAssets.createForeignAsset` extrinsic, you will need to provide the following arguments:
 
@@ -400,7 +400,7 @@ After completing the [registration process](#introduction) for an XC asset, you 
 
 ### Updating Foreign Asset XCM Location {: #updating-foreign-asset-xcm-location }
 
-You can update the multilocation of an asset with the `evmForeignAssets.changeXcmLocation` call, which takes as parameters, the `assetId` and the new multilocation. You'll need to raise a [governance proposal](/tokens/governance/proposals/) and submit the update under the `FastGeneralAdmin` track. If you're testing in Moonbase Alpha, you can ask the Moonbeam Team to submit the extrinsic using Sudo to speed up the process. You can also submit the requisite governance proposal on Moonbase Alpha. 
+You can update the multilocation of an asset with the `evmForeignAssets.changeXcmLocation` call, which takes as parameters, the `assetId` and the new multilocation. You'll need to raise a [governance proposal](/tokens/governance/proposals/) and submit the update under the `GeneralAdmin` track. If you're testing in Moonbase Alpha, you can ask the Moonbeam Team to submit the extrinsic using Sudo to speed up the process. You can also submit the requisite governance proposal on Moonbase Alpha. 
 
 ### Freezing a Foreign Asset {: #freezing-a--foreign-asset }
 
