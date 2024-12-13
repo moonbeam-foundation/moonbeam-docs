@@ -55,91 +55,45 @@ With this information in hand, you can prepare a governance proposal to register
 
 ### Generate the Encoded Calldata for the Asset Registration {: #generate-encoded-calldata-for-asset-registration }
 
-If you're not familiar with the governance system on Moonbeam, you can find out more information on the [Governance on Moonbeam](/learn/features/governance/){target=\_blank} page. With any governance proposal on Moonbeam, you'll need to submit a preimage, which defines the actions to be executed, and then use the preimage to submit a proposal.
+Submitting a governance proposal on Moonbeam requires two steps: first, submit a preimage that defines the actions to be executed, then use that preimage to submit the proposal. For more details, see the [Governance on Moonbeam](/learn/features/governance/){target=\_blank} page. To submit a preimage for asset registration, you'll need the encoded calldata for both the `evmForeignAssets.createForeignAsset` and `xcmWeightTrader.addAsset` extrinsics.
 
-To submit a preimage, you'll need to get the encoded calldata for each extrinsic that you want to execute. As previously mentioned, you'll use the `evmForeignAssets.createForeignAsset` and the `xcmWeightTrader.addAsset` extrinsics.
-
-Proposals must be submitted via the `GeneralAdmin` track. If you're opening a channel and registering an asset and you'll want to wait until the channel is established prior to attempting to register the asset. 
-
-To get the encoded calldata for the `evmForeignAssets.createForeignAsset` extrinsic, you will need to provide the following arguments:
+Proposals must be submitted via the `GeneralAdmin` track. If you're opening a channel and registering an asset and you'll want to wait until the channel is established prior to attempting to register the asset. To get the encoded calldata for the `evmForeignAssets.createForeignAsset` extrinsic, you will need to provide the following arguments:
 
 - `assetId` - unique identifier of the asset
 - `xcmLocation` - the multilocation of the asset relative to Moonbeam 
 - `decimals` - the number of decimals of the asset
-- `symbol`  - the symbol of the asset. **Remember that "xc" should be prepended to the symbol to indicate the asset is an XCM-enabled asset**
+- `symbol`  - the symbol of the asset. Remember that "xc" should be prepended to the symbol to indicate the asset is an XCM-enabled asset
 - `name` - The asset name
 
-You can use the script below to generate the encoded call data for the `createForeignAsset` call. Remember to replace the example parameter values shown in the script with the ones relevant to your asset. 
-
-???+ code "Get encoded call data for createForeignAsset"
-    ```typescript
-    --8<-- 'code/builders/interoperability/xcm/xc-registration/assets/create-foreign-asset.js'
-    ```
-
-The resulting output will be something like:
-
---8<-- 'code/builders/interoperability/xcm/xc-registration/assets/terminal/createForeignAsset.md'
+Using the above information, you can generate the encoded call data for the `createForeignAsset` call either via the Polkadot API or on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbeam.network#/extrinsics){target=\_blank}.
 
 To get the encoded calldata for the `xcmWeightTrader.addAsset` extrinsic, you will need to provide the following arguments:
 
 - `xcmLocation` - the multilocation of the asset relative to Moonbeam 
-- `relativePrice` - the cost of an asset in terms of weight, used to determine how much of the asset is required to cover the fees for cross-chain (XCM) operations. It is calculated by comparing the asset's value to the network's native token in terms of the weight-to-fee conversion
+- `relativePrice` - A numeric value (u128) that represents the amount of a non-native asset needed to equal the value of one unit of the network's native token (e.g., GLMR), expressed with 18 decimal places. This value is used to calculate cross-chain transaction fees by determining how much of the non-native asset is required to cover XCM operation costs. For example, if an asset is worth half as much as the native token, its `relativePrice` would be `500,000,000,000,000,000` (to represent 0.5 with 18 decimal places)
 
-You can use the script below to generate the encoded call data for the `addAsset` call. Remember to replace the example parameter values shown in the script with the ones relevant to your asset. 
+You can use the following script (also available as part of [XCM-tools](https://github.com/Moonsong-Labs/xcm-tools){target=\_blank} ) to calculate the correct `relativePrice` value for your asset.
 
-??? code "Get encoded call data for xcmWeightTrader"
+??? code "Calculate Relative Price"
     ```typescript
-    --8<-- 'code/builders/interoperability/xcm/xc-registration/assets/weight-trader.js'
+    --8<-- 'code/builders/interoperability/xcm/xc-registration/assets/calculate-relative-price.ts'
     ```
 
-The resulting output will be something like:
+Using the above information, you can generate the encoded call data for the `addAsset` call either via the Polkadot API or on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbeam.network#/extrinsics){target=\_blank}.
 
---8<-- 'code/builders/interoperability/xcm/xc-registration/assets/terminal/weightTrader.md'
+To create a batch transaction that combines both the `xcmWeightTrader.addAsset` and the `evmForeignAssets.createForeignAsset` calls together, you can use the [Polkadot API's Batch Method](/builders/substrate/libraries/polkadot-js-api/#batching-transactions){target=\_blank}. 
 
-To create a batch transaction that combines both the `xcmWeightTrader.addAsset` and the `evmForeignAssets.createForeignAsset` calls together, you can use the following script. Remember to replace the example parameter values shown in the script with the ones relevant to your asset. 
+### Submit the Preimage and Proposal for Asset Registration {: #submit-preimage-proposal }
 
-??? code "Get encoded call data for batch call"
-    ```typescript
-    --8<-- 'code/builders/interoperability/xcm/xc-registration/assets/batch-calls.js'
-    ```
-
-The resulting output will be something like:
-
---8<-- 'code/builders/interoperability/xcm/xc-registration/assets/terminal/batchCall.md'
-
-### Programmatically Submit the Preimage and Proposal for Asset Registration {: #submit-preimage-proposal }
-
-You can programmatically submit the preimage of your batched call containing both the `xcmWeightTrader.addAsset` and the `evmForeignAssets.createForeignAsset` calls as shown in the following script. As this is an on-chain transaction, you'll need to provide a wallet. (Never store your private keys in a javascript file - this is provided for demonstration purposes only). Remember to replace the encoded call data with your asset's relevant batch call. You can also adapt this script for a different network.
-
-??? code "Submit preimage for batch call"
-    ```typescript
-    --8<-- 'code/builders/interoperability/xcm/xc-registration/assets/submit-preimage.js'
-    ```
-
-The resulting output will be something like:
-
---8<-- 'code/builders/interoperability/xcm/xc-registration/assets/terminal/submitPreimage.md'
+Your next task is to submit the preimage of your batched call containing both the `xcmWeightTrader.addAsset` and the `evmForeignAssets.createForeignAsset` by following the guidelines in the [Submit a Democracy Proposal Guide](/tokens/governance/proposals/#submitting-a-preimage-of-the-proposal){target=\_blank}.
 
 For Moonbase Alpha, you do not need to go through governance, as Moonbase Alpha has `sudo` access. Instead, you can provide the output of the batch call data to the Moonbeam team, and the Moonbeam Team can submit the call with `sudo`. This will be a faster and easier process than going through governance. However, you may still wish to go through governance on Moonbase Alpha in order to prepare for the governance process on Moonbeam.
 
-After submitting the preimage, you can submit the proposal as follows:
-
-??? code "Submit proposal for batch call"
-    ```typescript
-    --8<-- 'code/builders/interoperability/xcm/xc-registration/assets/submit-proposal.js'
-    ```
-
-The resulting output will be something like:
-
---8<-- 'code/builders/interoperability/xcm/xc-registration/assets/terminal/submitProposal.md'
+After submitting the preimage, you can submit the proposal by following the guidelines in the [Submitting a Proposal](/tokens/governance/proposals/#submitting-a-proposal-v2){target=\_blank} section
 
 ### Test the Asset Registration on Moonbeam {: #test-asset-registration }
 
-After your asset is registered, the team will provide the asset ID and the [XC-20 precompile](/builders/interoperability/xcm/xc20/interact/#the-erc20-interface){target=\_blank} address.
-
-Your XC-20 precompile address is calculated by converting the asset ID decimal number to hex and prepending it with F's until you get a 40-hex character (plus the “0x”) address. For more information on how it is calculated, please refer to the [Calculate External XC-20 Precompile Addresses](/builders/interoperability/xcm/xc20/interact/#calculate-xc20-address){target=\_blank} section of the External XC-20 guide.
-
-After the asset is successfully registered, you can transfer tokens from your parachain to the Moonbeam-based network you are integrating with.
+After your asset is registered, the team will provide the asset ID and the [XC-20 precompile](/builders/interoperability/xcm/xc20/interact/#the-erc20-interface){target=\_blank} address. Your XC-20 precompile address is calculated by converting the asset ID decimal number to hex and prepending it with F's until you get a 40-hex character (plus the “0x”) address. For more information on how it is calculated, please refer to the [Calculate External XC-20 Precompile Addresses](/builders/interoperability/xcm/xc20/interact/#calculate-xc20-address){target=\_blank} section of the External XC-20 guide. After the asset is successfully registered, you can transfer tokens from your parachain to the Moonbeam-based network you are integrating with.
 
 !!! note
     Remember that Moonbeam-based networks use AccountKey20 (Ethereum-style addresses).
