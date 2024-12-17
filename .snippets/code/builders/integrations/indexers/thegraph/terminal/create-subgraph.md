@@ -1,5 +1,5 @@
 <div id="termynal" data-termynal>
-    <span data-ty="input"><span class="file-path"></span>graph init --studio moonbeam-demo</span>
+    <span data-ty="input"><span class="file-path"></span>graph init moonbeam-demo</span>
     <span data-ty="input" data-ty-prompt="✔ Protocol"> · ethereum</span>
     <span data-ty="input" data-ty-prompt="✔ Subgraph slug"> · moonbeam-demo</span>
     <span data-ty="input" data-ty-prompt="✔ Directory to create the subgraph in"> · moonbeam-demo</span>

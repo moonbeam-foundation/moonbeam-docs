@@ -74,7 +74,7 @@ Before you initialize your subgraph, you should verify the contract address from
 You'll need to grab the initialization command from your subgraph's page on Subgraph Studio to initialize your subgraph. Or, if you know the name of your subgraph, you can use the following command:
 
 ```bash
-graph init --studio INSERT_SUBGRAPH_NAME
+graph init INSERT_SUBGRAPH_NAME
 ```
 
 To initialize your subgraph, you'll need to provide some additional information, which you will be prompted to provide in your terminal:
@@ -83,7 +83,7 @@ To initialize your subgraph, you'll need to provide some additional information,
 2. Hit enter for **Subgraph slug** to use the default one provided, or change as needed
 3. Again, hit enter for **Directory to create the subgraph in** to use the default one provided, or change as needed
 4. For **Ethereum network**, scroll down and select the Moonbeam network you are working with. Note that the Moonbase Alpha TestNet is labeled as **mbase**
-5. Enter the contract address to index and query data from. The CLI will attempt to fetch the ABI from Moonscan. If it doesn't work, make sure that your contract has been verified and retry if needed. Otherwise, you will need to input it manually as a JSON file after your project has been successfully created
+5. Enter the contract address to index and query data from. The CLI will attempt to fetch the ABI from Moonscan. If it doesn't work, make sure that your contract has been verified and retry if needed. Otherwise, you will need to input it manually as a JSON file after your project has been successfully created. If you don't have a smart contract in mind and want to follow along with the tutorial, you can use the EXR contract address: `0x515e20e6275CEeFe19221FC53e77E38cc32b80Fb`
 6. Enter a start block. The start block allows you to save time by only indexing the necessary blocks. To get all of the data for this contract, you can use the block the contract was deployed
 7. **Contract Name** should be automatically populated for you, but if not, manually enter the name of the contract
 8. For **Index contract events as entities**, it is recommended to set this to **true**, as it will automatically add mappings to your subgraph for every event emitted. In other words, you'll be able to capture and store the data emitted by these events
@@ -117,7 +117,7 @@ To deploy your subgraph to Subgraph Studio, change to the subgraph directory in 
 3. Authenticate your subgraph with your deploy key. The exact command containing the deploy key can be found on your subgraph's page in Subgraph Studio
 
     ```bash
-    graph auth --studio INSERT_DEPLOY_KEY
+    graph auth INSERT_DEPLOY_KEY
     ```
 
     --8<-- 'code/builders/integrations/indexers/thegraph/terminal/graph-auth.md'
@@ -125,7 +125,7 @@ To deploy your subgraph to Subgraph Studio, change to the subgraph directory in 
 4. Deploy your subgraph and specify the slug for it. Again, you can get the exact command from your subgraph's page in Subgraph Studio
 
     ```bash
-    graph deploy --studio <SUBGRAPH_SLUG>
+    graph deploy <SUBGRAPH_SLUG>
     ```
 
     You will be asked for a version label. You can enter something like v0.0.1, but you're free to choose the format

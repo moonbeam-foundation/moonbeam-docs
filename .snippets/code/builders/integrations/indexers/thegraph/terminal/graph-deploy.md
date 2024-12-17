@@ -1,5 +1,5 @@
 <div id="termynal" data-termynal>
-    <span data-ty="input"><span class="file-path"></span>graph deploy --studio moonbeam-demo</span>
+    <span data-ty="input"><span class="file-path"></span>graph deploy moonbeam-demo</span>
     <span data-ty="input" data-ty-prompt="Which version label to use? (e.g. 'v0.0.1'):"> v0.1</span>
     <span data-ty> Skip migration: Bump mapping apiVersion from 0.0.1 to 0.0.2</span>
     <span data-ty> Skip migration: Bump mapping apiVersion from 0.0.2 to 0.0.3</span>
