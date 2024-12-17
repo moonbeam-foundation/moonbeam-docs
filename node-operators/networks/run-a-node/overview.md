@@ -92,7 +92,7 @@ You can also gain access to some non-standard RPC methods by running a tracing n
 
 Lazy loading lets a Moonbeam node operate while downloading network state in the background, eliminating the need to wait for full synchronization before use. You can activate lazy loading with the following flag:
 
-- **`fork-chain-from-rpc`** - allows lazy loading by relying on a specified RPC for network state until the node is fully synchronized e.g. `--fork-chain-from-rpc 'INSERT-RPC-URL'`
+- **`--lazy-loading-remote-rpc`** - allows lazy loading by relying on a specified RPC for network state until the node is fully synchronized e.g. `--lazy-loading-remote-rpc 'INSERT-RPC-URL'`
 
 Upon spooling up a node with this feature, you'll see output like the following:
 
@@ -103,9 +103,11 @@ Upon spooling up a node with this feature, you'll see output like the following:
 
 You can further customize your use of the lazy loading functionality with the following optional parameters:
 
-- **`block`** - specifies the block number from which to start forking the chain
-- **`runtime-override`** - path to a WASM file to override the runtime when forking
-- **`fork-state-overrides`** - path to a JSON file containing state overrides to be applied when forking 
+- **`--lazy-loading-block`** - specifies a block hash from which to start loading data. If not provided, the latest block will be used
+- **`--lazy-loading-delay-between-requests`** - the delay (in milliseconds) between RPC requests when using lazy loading. This parameter controls the amount of time to wait between consecutive RPC requests. This can help manage request rate and avoid overwhelming the server. Default value is `100` milliseconds
+- **`--lazy-loading-max-retries-per-request`** - the maximum number of retries for an RPC request when using lazy loading. Default value is `10` retries
+- **`--lazy-loading-runtime-override`** - path to a WASM file to override the runtime when forking. If not provided, it will fetch the runtime from the block being forked
+- **`--lazy-loading-state-overrides`** - path to a JSON file containing state overrides to be applied when forking 
 
 The state overrides file should define the respective pallet, storage item, and value that you seek to override as follows:
 

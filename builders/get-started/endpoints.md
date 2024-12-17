@@ -160,7 +160,7 @@ To get started, head to the [Ankr Protocol](https://www.ankr.com/protocol){targe
 
 Lazy loading lets a Moonbeam node operate while downloading network state in the background, eliminating the need to wait for full synchronization before use. To spin up a Moonbeam node with lazy loading, you'll need to either [download the Moonbeam release binary](/node-operators/networks/run-a-node/systemd/#the-release-binary){target=_blank} or [compile the binary](/node-operators/networks/run-a-node/compile-binary/#compile-the-binary){target=_blank}. You can activate lazy loading with the following flag:
 
-`--fork-chain-from-rpc 'INSERT-RPC-URL'`
+`--lazy-loading-remote-rpc 'INSERT-RPC-URL'`
 
 Lazy loading is highly resource-intensive, requiring many RPC requests to function. To avoid being throttled, it's recommended that you use a [dedicated endpoint](#endpoint-providers) (i.e., an endpoint with an API key) rather than a public endpoint. You will likely be rate-limited if you use lazy loading with a public endpoint. Upon spooling up a node with this feature, you'll see output like the following:
 
@@ -170,9 +170,11 @@ Lazy loading is highly resource-intensive, requiring many RPC requests to functi
 
 By default, you won't see detailed logging in the terminal. To override this setting and show lazy loading logs, you can add the following flag to your command to start the Moonbeam node: `-l debug`. You can further customize your use of the lazy loading functionality with the following optional parameters:
 
-- **`block`** - specifies the block number from which to start forking the chain
-- **`runtime-override`** - path to a WASM file to override the runtime when forking
-- **`fork-state-overrides`** - path to a JSON file containing state overrides to be applied when forking 
+- **`--lazy-loading-block`** - specifies a block hash from which to start loading data. If not provided, the latest block will be used
+- **`--lazy-loading-delay-between-requests`** - the delay (in milliseconds) between RPC requests when using lazy loading. This parameter controls the amount of time to wait between consecutive RPC requests. This can help manage request rate and avoid overwhelming the server. Default value is `100` milliseconds
+- **`--lazy-loading-max-retries-per-request`** - the maximum number of retries for an RPC request when using lazy loading. Default value is `10` retries
+- **`--lazy-loading-runtime-override`** - path to a WASM file to override the runtime when forking. If not provided, it will fetch the runtime from the block being forked
+- **`--lazy-loading-state-overrides`** - path to a JSON file containing state overrides to be applied when forking 
 
 ### Simple Storage Item Override
 
@@ -313,7 +315,7 @@ You can now specify the SCALE encoded override value in your `state-overrides.js
 To run lazy loading with the balance state override, you can use the following command: 
 
 ```
---fork-chain-from-rpc 'INSERT-RPC-URL' --fork-state-overrides ./state-override.json
+--lazy-loading-remote-rpc 'INSERT-RPC-URL' --fork-state-overrides ./state-override.json
 ```
 
 ## Tracing RPC Endpoint Providers {: #tracing-providers }
