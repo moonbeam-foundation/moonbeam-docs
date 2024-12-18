@@ -317,7 +317,7 @@ To override the balance of a particular account, you can override the account st
     To run lazy loading with the balance state override, you can use the following command: 
 
     ```
-    --lazy-loading-remote-rpc 'INSERT-RPC-URL' --lazy-loading-state-overrides ./state-override.json
+    --lazy-loading-remote-rpc 'INSERT-RPC-URL' --lazy-loading-state-overrides ./state-overrides.json
     ```
 
 ## Tracing RPC Endpoint Providers {: #tracing-providers }
