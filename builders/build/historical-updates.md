@@ -728,13 +728,13 @@ For more information, you can review the [relative PR on GitHub](https://github.
 
 #### Restore Corrupted Referenda Deposits {: restore-corrupted-referenda-deposits }
 
-A migration was introduced to support restoring corrupted referenda deposits. 
+A migration was introduced to support restoring corrupted referenda deposits.
 
 This migration was executed at the following runtimes and blocks:
 
 | Network  | Executed Runtime | Block Applied |
 | :------: | :--------------: | :-----------: |
-| Moonbeam |      RT3100      |               |
+| Moonbeam |      RT3100      |    7303601    |
 
 ### XCM-Related Pallets {: #xcm-related-pallets }
 
