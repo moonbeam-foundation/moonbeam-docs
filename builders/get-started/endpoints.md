@@ -205,118 +205,120 @@ To override the balance of a particular account, you can override the account st
 ]
 ```
 
-Overriding an account balance, as shown above, can be a complex process. However, this guide will break it down into steps that are easy to follow. Before making any changes, you should obtain the existing value corresponding to the key (i.e., the account in this case). You can go to [Chain State on Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbeam.network#/chainstate){target=_blank} and query the System pallet by providing the account you'd like to query. Upon submitting the query, you'll get back a readable account structure like so:
+??? "Click to see more details about overriding account balances"
 
-```
-{
-  nonce: 3,142
-  consumers: 2
-  providers: 1
-  sufficients: 6
-  data: {
-    free: 1,278,606,392,142,175,328,676
-    reserved: 348,052,500,000,000,000,000
-    frozen: 20,413,910,106,633,175,872
-    flags: 170,141,183,460,469,231,731,687,303,715,884,105,728
-  }
-}
-```
+    Overriding an account balance, as shown above, can be a complex process. However, this guide will break it down into steps that are easy to follow. Before making any changes, you should obtain the existing value corresponding to the key (i.e., the account in this case). You can go to [Chain State on Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbeam.network#/chainstate){target=_blank} and query the System pallet by providing the account you'd like to query. Upon submitting the query, you'll get back a readable account structure like so:
 
-While this is useful as a reference, the information you're looking for is the encoded storage key, which is accessible even without submitting the chain state query. In this instance, the encoded storage key corresponding to the system pallet and the selected account `0x3B939FeaD1557C741Ff06492FD0127bd287A421e` is:
-
-```
-0x26aa394eea5630e07c48ae0c9558cef7b99d880ec681799c0cf30e8886371da9b882fedb4f75b055c709ec5b66b5d9933b939fead1557c741ff06492fd0127bd287a421e
-```
-
-Note that this encoded storage key will change alongside any input changes, such as a different account being queried. Then, head over the **Raw Storage** tab on [Polkadot.js Apps](https://polkadot.js.org/apps/#/chainstate/raw){target=_blank}. Input the above storage key and submit the query. The response is the SCALE encoded account struct, a part of which contains the free balance information to be modified as part of this example: 
-
-```
-0x460c0000020000000100000006000000a4d92a6a4e6b3a5045000000000000000040a556b0e032de12000000000000004083a09e15c74c1b010000000000000000000000000000000000000000000080
-```
-
-There is quite a bit of data encoded in the value field because it is a complex struct comprised of multiple values. The struct is comprised of:
-
-```
-struct AccountInfo {
-    nonce: u32,             // Transaction count
-    consumers: u32,         // Number of consumers 
-    providers: u32,         // Number of providers
-    sufficients: u32,       // Number of sufficients
-    data: AccountData {     // The balance info
-        free: u128,         // Free balance
-        reserved: u128,     // Reserved balance
-        frozen: u128,       // Frozen balance
-        flags: u128         // Account flags
+    ```
+    {
+      nonce: 3,142
+      consumers: 2
+      providers: 1
+      sufficients: 6
+      data: {
+        free: 1,278,606,392,142,175,328,676
+        reserved: 348,052,500,000,000,000,000
+        frozen: 20,413,910,106,633,175,872
+        flags: 170,141,183,460,469,231,731,687,303,715,884,105,728
+      }
     }
-}
-```
+    ```
 
-You can associate each part of the SCALE encoded struct with the corresponding piece of Alice's account information that it represents:
+    While this is useful as a reference, the information you're looking for is the encoded storage key, which is accessible even without submitting the chain state query. In this instance, the encoded storage key corresponding to the system pallet and the selected account `0x3B939FeaD1557C741Ff06492FD0127bd287A421e` is:
 
-```
-0x460c0000        // nonce (u32): 3,142 
-02000000          // consumers (u32): 2
-01000000          // providers (u32): 1  
-06000000          // sufficients (u32): 6
+    ```
+    0x26aa394eea5630e07c48ae0c9558cef7b99d880ec681799c0cf30e8886371da9b882fedb4f75b055c709ec5b66b5d9933b939fead1557c741ff06492fd0127bd287a421e
+    ```
 
-a4d92a6a4e6b3a5045000000000000000  
-// free (u128): 1,278,606,392,142,175,328,676
+    Note that this encoded storage key will change alongside any input changes, such as a different account being queried. Then, head over the **Raw Storage** tab on [Polkadot.js Apps](https://polkadot.js.org/apps/#/chainstate/raw){target=_blank}. Input the above storage key and submit the query. The response is the SCALE encoded account struct, a part of which contains the free balance information to be modified as part of this example: 
 
-40a556b0e032de1200000000000000000  
-// reserved (u128): 348,052,500,000,000,000,000  
+    ```
+    0x460c0000020000000100000006000000a4d92a6a4e6b3a5045000000000000000040a556b0e032de12000000000000004083a09e15c74c1b010000000000000000000000000000000000000000000080
+    ```
 
-4083a09e15c74c1b01000000000000000  
-// frozen (u128): 20,413,910,106,633,175,872
+    There is quite a bit of data encoded in the value field because it is a complex struct comprised of multiple values. The struct is comprised of:
 
-00000000000000000000000000000080   
-// flags (u128): 170,141,183,460,469,231,731,687,303,715,884,105,728
-```
+    ```
+    struct AccountInfo {
+        nonce: u32,             // Transaction count
+        consumers: u32,         // Number of consumers 
+        providers: u32,         // Number of providers
+        sufficients: u32,       // Number of sufficients
+        data: AccountData {     // The balance info
+            free: u128,         // Free balance
+            reserved: u128,     // Reserved balance
+            frozen: u128,       // Frozen balance
+            flags: u128         // Account flags
+        }
+    }
+    ```
 
-Remember that the values are Little Endian encoded. To convert the Hexidecimal Little Endian encoded values to decimal, you can use [this converter](https://www.shawntabrizi.com/substrate-js-utilities/){target=_blank}, using the `Balance to Hex (Little Endian)` converter.
+    You can associate each part of the SCALE encoded struct with the corresponding piece of Alice's account information that it represents:
 
-In this example, the existing free balance of `1,278,606,392,142,175,328,676` wei or approximately `1278.60` DEV is `a4d92a6a4e6b3a5045`. The following example will change the value to `500,000` DEV, which is `500,000,000,000,000,000,000,000` wei or `0x000080d07666e70de169` encoded as a hexidecimal Little Endian value. When properly padded to fit into the SCALE encoded storage value, it becomes `69e10de76676d08000000000000000000`, such that the table now looks like:
+    ```
+    0x460c0000        // nonce (u32): 3,142 
+    02000000          // consumers (u32): 2
+    01000000          // providers (u32): 1  
+    06000000          // sufficients (u32): 6
 
-```
-0x460c0000        // nonce (u32): 3,142 
-02000000          // consumers (u32): 2
-01000000          // providers (u32): 1  
-06000000          // sufficients (u32): 6
+    a4d92a6a4e6b3a5045000000000000000  
+    // free (u128): 1,278,606,392,142,175,328,676
 
-69e10de76676d08000000000000000000
-// free (u128): 500,000,000,000,000,000,000,000
+    40a556b0e032de1200000000000000000  
+    // reserved (u128): 348,052,500,000,000,000,000  
 
-40a556b0e032de1200000000000000000  
-// reserved (u128): 348,052,500,000,000,000,000  
+    4083a09e15c74c1b01000000000000000  
+    // frozen (u128): 20,413,910,106,633,175,872
 
-4083a09e15c74c1b01000000000000000  
-// frozen (u128): 20,413,910,106,633,175,872
+    00000000000000000000000000000080   
+    // flags (u128): 170,141,183,460,469,231,731,687,303,715,884,105,728
+    ```
 
-00000000000000000000000000000080   
-// flags (u128): 170,141,183,460,469,231,731,687,303,715,884,105,728
-```
+    Remember that the values are Little Endian encoded. To convert the Hexidecimal Little Endian encoded values to decimal, you can use [this converter](https://www.shawntabrizi.com/substrate-js-utilities/){target=_blank}, using the `Balance to Hex (Little Endian)` converter.
 
-Therefore, the SCALE encoded override value is as follows:
+    In this example, the existing free balance of `1,278,606,392,142,175,328,676` wei or approximately `1278.60` DEV is `a4d92a6a4e6b3a5045`. The following example will change the value to `500,000` DEV, which is `500,000,000,000,000,000,000,000` wei or `0x000080d07666e70de169` encoded as a hexidecimal Little Endian value. When properly padded to fit into the SCALE encoded storage value, it becomes `69e10de76676d08000000000000000000`, such that the table now looks like:
 
-`0x460c000002000000010000000600000069e10de76676d0800000000000000000040a556b0e032de12000000000000000004083a09e15c74c1b0100000000000000000000000000000000000000000000080`
+    ```
+    0x460c0000        // nonce (u32): 3,142 
+    02000000          // consumers (u32): 2
+    01000000          // providers (u32): 1  
+    06000000          // sufficients (u32): 6
 
-You can now specify the SCALE encoded override value in your `state-overrides.json` file as follows:
+    69e10de76676d08000000000000000000
+    // free (u128): 500,000,000,000,000,000,000,000
 
-```json
-[
-  {
-    "pallet": "System",
-    "storage": "Account",
-    "key": "0x3b939fead1557c741ff06492fd0127bd287a421e",
-    "value": "0x460c000002000000010000000600000069e10de76676d0800000000000000000040a556b0e032de12000000000000000004083a09e15c74c1b0100000000000000000000000000000000000000000000080"
-  }
-]
-```
+    40a556b0e032de1200000000000000000  
+    // reserved (u128): 348,052,500,000,000,000,000  
 
-To run lazy loading with the balance state override, you can use the following command: 
+    4083a09e15c74c1b01000000000000000  
+    // frozen (u128): 20,413,910,106,633,175,872
 
-```
---lazy-loading-remote-rpc 'INSERT-RPC-URL' --lazy-loading-state-overrides ./state-override.json
-```
+    00000000000000000000000000000080   
+    // flags (u128): 170,141,183,460,469,231,731,687,303,715,884,105,728
+    ```
+
+    Therefore, the SCALE encoded override value is as follows:
+
+    `0x460c000002000000010000000600000069e10de76676d0800000000000000000040a556b0e032de12000000000000000004083a09e15c74c1b0100000000000000000000000000000000000000000000080`
+
+    You can now specify the SCALE encoded override value in your `state-overrides.json` file as follows:
+
+    ```json
+    [
+      {
+        "pallet": "System",
+        "storage": "Account",
+        "key": "0x3b939fead1557c741ff06492fd0127bd287a421e",
+        "value": "0x460c000002000000010000000600000069e10de76676d0800000000000000000040a556b0e032de12000000000000000004083a09e15c74c1b0100000000000000000000000000000000000000000000080"
+      }
+    ]
+    ```
+
+    To run lazy loading with the balance state override, you can use the following command: 
+
+    ```
+    --lazy-loading-remote-rpc 'INSERT-RPC-URL' --lazy-loading-state-overrides ./state-override.json
+    ```
 
 ## Tracing RPC Endpoint Providers {: #tracing-providers }
 
