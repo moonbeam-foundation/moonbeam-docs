@@ -42,6 +42,12 @@ This guide will cover some of the most common flags and show you how to access a
     - **`fast-unsafe`** - same as `fast`, but skips downloading the state proofs
     - **`warp`** - downloads the latest state and proof
 - **`--prometheus-port`** - specifies a custom Prometheus port
+- **`--lazy-loading-remote-rpc`** - allows [lazy loading](/node-operators/networks/run-a-node/overview/#lazy-loading){target=\_blank} by relying on a specified RPC endpoint for network state until the node is fully synchronized e.g. `--lazy-loading-remote-rpc 'https://moonbeam.unitedbloc.com'`, as long as the specified RPC endpoint has sufficient rate limits to handle the expected load. Private (API key) endpoints are strongly recommended over public endpoints
+- **`--lazy-loading-block`** - optional parameter to specify the block hash for lazy loading. This parameter allows you to specify a block hash from which to start loading data. If not provided, the latest block will be used
+- **`--lazy-loading-state-overrides`** - optional parameter to specify state overrides during lazy loading. This parameter allows you to provide a path to a file containing state overrides. The file can contain any custom state modifications that should be applied
+- **`--lazy-loading-runtime-override`** - optional parameter to specify a runtime override when starting the lazy loading. If not provided, it will fetch the runtime from the block being forked
+- **`--lazy-loading-delay-between-requests`** - the delay (in milliseconds) between RPC requests when using lazy loading. This parameter controls the amount of time to wait between consecutive RPC requests. This can help manage request rate and avoid overwhelming the server. Default value is `100` milliseconds
+- **`--lazy-loading-max-retries-per-request`** - the maximum number of retries for an RPC request when using lazy loading. Default value is `10` retries
 
 ## Flags for Configuring a SQL Backend {: #flags-for-sql-backend }
 
