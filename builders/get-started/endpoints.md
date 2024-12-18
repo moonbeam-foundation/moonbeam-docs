@@ -315,7 +315,7 @@ You can now specify the SCALE encoded override value in your `state-overrides.js
 To run lazy loading with the balance state override, you can use the following command: 
 
 ```
---lazy-loading-remote-rpc 'INSERT-RPC-URL' --fork-state-overrides ./state-override.json
+--lazy-loading-remote-rpc 'INSERT-RPC-URL' --lazy-loading-state-overrides ./state-override.json
 ```
 
 ## Tracing RPC Endpoint Providers {: #tracing-providers }
