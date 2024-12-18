@@ -11,7 +11,7 @@ description: Learn how to request a dedicated DIA oracle for your dApp, enabling
 
 By collecting billions of raw trades directly from over 90 sources, including CEXs, DEXs, and NFT marketplaces, DIA enables full transparency, customization, and control throughout the entire value stack. DIA's data and oracle suite comprise price feeds for 20,000+ assets, including cryptocurrencies, NFT collections, and liquid-staked tokens, as well as random number generation and other data feed types.
 
-You can visit DIA's documentation to learn how to [Request a Custom Oracle](https://docs.diadata.org/introduction/intro-to-dia-oracles/request-an-oracle){target=\_blank}.
+You can visit DIA's documentation to learn how to [Request a Custom Oracle](https://docs.diadata.org/support/request-a-custom-oracle){target=\_blank}.
 
 --8<-- 'text/_disclaimers/third-party-content-intro.md'
 
@@ -28,7 +28,7 @@ DIA has deployed the following demo oracles for the Moonbeam community, which pr
 |   Moonriver    | [`0x11f74b94afb5968119c98ea277a2b73208bb39ab`](https://moonriver.moonscan.io/address/0x11f74b94afb5968119c98ea277a2b73208bb39ab){target=\_blank} |
 | Moonbase Alpha | [`0xe23d8713aa3a0a2c102af772d2467064821b8d46`](https://moonbase.moonscan.io/address/0xe23d8713aa3a0a2c102af772d2467064821b8d46){target=\_blank}  |
 
-The demo oracle contracts deployed to Moonbeam are the [DIA Key-Value Oracle Contract V2](https://docs.diadata.org/introduction/intro-to-dia-oracles/oracle-structures/access-the-oracle#dia-key-value-oracle-contract-v2){target=\_blank}. The contract is structured as follows:
+The demo oracle contracts deployed to Moonbeam are the [DIA Key-Value Oracle Contract V2](https://docs.diadata.org/use-nexus-product/how-to-dia-nexus-oracles/oracle-structures/access-the-oracle#dia-key-value-oracle-contract-v2){target=\_blank}. The contract is structured as follows:
 
 ```solidity
 pragma solidity 0.7.4;
@@ -67,7 +67,7 @@ contract DIAOracleV2 {
 ```
 
 !!! note
-    DIA demo oracles are not intended for use in production environments. Developers can request a dedicated, production-ready oracle with custom price feeds and configuration settings. To start the request process, you can check out the [Request a Custom Oracle](https://docs.diadata.org/introduction/intro-to-dia-oracles/request-an-oracle){target=\_blank} documentation.
+    DIA demo oracles are not intended for use in production environments. Developers can request a dedicated, production-ready oracle with custom price feeds and configuration settings. To start the request process, you can check out the [Request a Custom Oracle](https://docs.diadata.org/support/request-a-custom-oracle){target=\_blank} documentation.
 
 #### Included Price Feeds {: #price-feeds }
 
@@ -168,21 +168,21 @@ You can refer to DIA's documentation on [Rest API Endpoints](https://docs.diadat
 
 ## NFT Floor Price Feeds {: #nft-floor-price-feeds }
 
-DIA NFT floor price feeds provide smart contracts with real-time price information for [18,000+ NFT collections](https://www.diadata.org/app/floor-price){target=\_blank}, sourced on-chain with 100% transparency from [multiple cross-chain NFT marketplaces](https://www.diadata.org/app/source/nft){target=\_blank}.
+DIA NFT floor price feeds provide smart contracts with real-time price information for [18,000+ NFT collections](https://www.diadata.org/nft-api-oracle/){target=\_blank}, sourced on-chain with 100% transparency from [multiple cross-chain NFT marketplaces](https://www.diadata.org/app/source/nft){target=\_blank}.
 
-Please refer to DIA's documentation to find out how you can [request a custom NFT oracle](https://docs.diadata.org/products/nft-floor-price-feeds/request-an-nft-oracle){target=\_blank} for NFTs on Moonbeam.
+Please refer to DIA's documentation to find out how you can [request a custom NFT oracle](https://docs.diadata.org/support/request-a-custom-oracle){target=\_blank} for NFTs on Moonbeam.
 
 ### Supported NFT API Endpoints {: #supported-nft-api-endpoints }
 
-DIA also supports API endpoints to return cryptocurrency price data. Developers can directly access the example endpoints listed in [DIA's documentation](https://docs.diadata.org/products/nft-floor-price-feeds/access-api-endpoints){target=\_blank}.
+DIA also supports API endpoints to return cryptocurrency price data. Developers can directly access the example endpoints listed in [DIA's documentation](https://docs.diadata.org/use-nexus-product/readme/token-price-feeds/access-api-endpoints){target=\_blank}.
 
 ## Random Number Generation {: #random-number-generation }
 
 [DIA xRandom](https://docs.diadata.org/products/randomness-oracle){target=\_blank} provides smart contracts with unpredictable and unbiased random numbers, facilitating the development of on-chain use cases such as lotteries, prediction markets, NFT launches, and more.
 
-DIA leverages the Drand public randomness beacon, and updates its oracle with round numbers, randomness and a signature. Drand runs distributed nodes to produce their randomness beacon. Drand uses [Pedersen's DKG (Distributed Key Generation) protocol](https://drand.love/docs/cryptography/#distributed-key-generation-dkg){target=\_blank} to create collective private and public keys. Participants in their League of Entropy then generate randomness in rounds and broadcast it together with its signature.
+DIA leverages the Drand public randomness beacon, and updates its oracle with round numbers, randomness and a signature. Drand runs distributed nodes to produce their randomness beacon. Drand uses [Pedersen's DKG (Distributed Key Generation) protocol](https://drand.love/docs/cryptography#distributed-key-generation-dkg){target=\_blank} to create collective private and public keys. Participants in their League of Entropy then generate randomness in rounds and broadcast it together with its signature.
 
-To learn more about Drand’s randomness beacon, watch the [On-Chain Randomness Oracle | DIA Developer Tutorial](https://youtu.be/7HALDJr8V3g){target=\_blank} and read [Drand’s documentation](https://drand.love/docs/overview/#how-drand-works){target=\_blank}.
+To learn more about Drand’s randomness beacon, watch the [On-Chain Randomness Oracle | DIA Developer Tutorial](https://youtu.be/7HALDJr8V3g){target=\_blank} and read [Drand’s documentation](https://drand.love/docs#how-drand-works){target=\_blank}.
 
 ### Moonbeam Demo Randomness Oracle {: #moonbeam-demo-randomness-oracle }
 
@@ -261,7 +261,7 @@ contract DIARandomOracle {
 ```
 
 !!! note
-    DIA demo oracles are not intended for use in production environments. Developers can request a dedicated, production-ready randomness oracle. To start the request process, you can check out the [Request a Random Oracle](https://docs.diadata.org/products/randomness-oracle/request-a-random-oracle){target=\_blank} documentation.
+    DIA demo oracles are not intended for use in production environments. Developers can request a dedicated, production-ready randomness oracle. To start the request process, you can check out the [Request a Random Oracle](https://docs.diadata.org/use-nexus-product/readme/randomness-oracle/request-a-random-oracle){target=\_blank} documentation.
 
 ### How to Use the DIA Randomness Oracle {: #how-to-use-the-dia-randomness-oracle }
 
