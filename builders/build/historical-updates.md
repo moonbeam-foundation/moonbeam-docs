@@ -728,7 +728,7 @@ For more information, you can review the [relative PR on GitHub](https://github.
 
 #### Restore Corrupted Referenda Deposits {: restore-corrupted-referenda-deposits }
 
-A migration was introduced to support restoring corrupted referenda deposits.
+A migration was introduced to support restoring referenda deposits affected by corrupted storage values. As the number of values to correct was finite and small, this migration created a list to update them by hand.
 
 This migration was executed at the following runtimes and blocks:
 
