@@ -20,7 +20,7 @@ For invalid transactions where the transaction cost couldn't be paid, the EVM pa
 This bug only impacted Moonriver and Moonbase Alpha and existed during the following runtimes and block ranges:
 
 |    Network     | Introduced | Fixed | Impacted Block Range |
-| :------------: | :--------: | :---: | :------------------: |
+|:--------------:|:----------:|:-----:|:--------------------:|
 |   Moonriver    |    RT49    | RT600 |      0 - 455106      |
 | Moonbase Alpha |    RT40    | RT600 |      0 - 675175      |
 
@@ -35,7 +35,7 @@ The Moonbeam fee model for transactions allocates 20% of the fees to the on-chai
 This bug only impacted Moonriver and Moonbase Alpha and existed during the following runtimes and block ranges:
 
 |    Network     | Introduced | Fixed | Impacted Block Range |
-| :------------: | :--------: | :---: | :------------------: |
+|:--------------:|:----------:|:-----:|:--------------------:|
 |   Moonriver    |    RT49    | RT800 |      0 - 684728      |
 | Moonbase Alpha |    RT40    | RT800 |      0 - 915684      |
 
@@ -50,7 +50,7 @@ Moonbeam is configured to set the existential deposit to 0, meaning that account
 This bug existed during the following runtimes and block ranges:
 
 |    Network     | Introduced | Fixed  | Impacted Block Range |
-| :------------: | :--------: | :----: | :------------------: |
+|:--------------:|:----------:|:------:|:--------------------:|
 |    Moonbeam    |   RT900    | RT1001 |       0 - 5164       |
 |   Moonriver    |    RT49    | RT1001 |     0 - 1052241      |
 | Moonbase Alpha |    RT40    | RT1001 |     0 - 1285915      |
@@ -66,7 +66,7 @@ The total delegations for collator candidates were not correctly updated when a 
 This bug existed during the following runtimes and block ranges:
 
 |    Network     | Introduced | Fixed  | Impacted Block Range |
-| :------------: | :--------: | :----: | :------------------: |
+|:--------------:|:----------:|:------:|:--------------------:|
 |    Moonbeam    |   RT900    | RT1300 |      0 - 524762      |
 |   Moonriver    |    RT49    | RT1300 |     0 - 1541735      |
 | Moonbase Alpha |    RT40    | RT1300 |     0 - 1761128      |
@@ -82,7 +82,7 @@ The `System.NewAccount` event is emitted when a new account is created. However,
 The hotfix was applied in the following block ranges:
 
 |    Network     |                                                              Block Range                                                              |
-| :------------: | :-----------------------------------------------------------------------------------------------------------------------------------: |
+|:--------------:|:-------------------------------------------------------------------------------------------------------------------------------------:|
 |    Moonbeam    | [1041355 - 1041358 and 1100752](https://moonbeam.subscan.io/extrinsic?module=evm&call=hotfix_inc_account_sufficients){target=\_blank} |
 |   Moonriver    |      [1835760 - 1835769](https://moonriver.subscan.io/extrinsic?module=evm&call=hotfix_inc_account_sufficients){target=\_blank}       |
 | Moonbase Alpha |  [2097782 - 2097974](https://moonbase.subscan.io/extrinsic?address=&module=evm&call=hotfix_inc_account_sufficients){target=\_blank}   |
@@ -90,7 +90,7 @@ The hotfix was applied in the following block ranges:
 This bug existed during the following runtimes and block ranges:
 
 |    Network     | Introduced | Fixed  | Impacted Block Range |
-| :------------: | :--------: | :----: | :------------------: |
+|:--------------:|:----------:|:------:|:--------------------:|
 |    Moonbeam    |   RT900    | RT1401 |      0 - 915320      |
 |   Moonriver    |    RT49    | RT1401 |     0 - 1705939      |
 | Moonbase Alpha |    RT40    | RT1400 |     0 - 1962557      |
@@ -106,7 +106,7 @@ EIP-2612 and Ethereum blocks deal with timestamps in seconds; however, the Subst
 This bug existed during the following runtimes and block ranges:
 
 |    Network     | Introduced | Fixed  | Impacted Block Range |
-| :------------: | :--------: | :----: | :------------------: |
+|:--------------:|:----------:|:------:|:--------------------:|
 |    Moonbeam    |   RT900    | RT1606 |     0 - 1326697      |
 |   Moonriver    |    RT49    | RT1605 |     0 - 2077598      |
 | Moonbase Alpha |    RT40    | RT1603 |     0 - 2285346      |
@@ -122,7 +122,7 @@ Tips for Substrate-based transactions weren't handled properly. The entire porti
 This bug existed during the following runtimes and block ranges:
 
 |    Network     | Introduced | Fixed  | Impacted Block Range |
-| :------------: | :--------: | :----: | :------------------: |
+|:--------------:|:----------:|:------:|:--------------------:|
 |    Moonbeam    |   RT900    | RT2403 |     0 - 4163078      |
 |   Moonriver    |    RT49    | RT2401 |     0 - 4668844      |
 | Moonbase Alpha |    RT40    | RT2401 |     0 - 4591616      |
@@ -138,7 +138,7 @@ The reward payouts for all delegations and collators were underestimated wheneve
 This bug existed during the following runtimes and block ranges:
 
 |    Network     | Introduced | Fixed  | Impacted Block Range |
-| :------------: | :--------: | :----: | :------------------: |
+|:--------------:|:----------:|:------:|:--------------------:|
 |    Moonbeam    |   RT1001   | RT1802 |    5165 - 1919457    |
 |   Moonriver    |   RT1001   | RT1801 |  1052242 - 2572555   |
 | Moonbase Alpha |   RT1001   | RT1800 |  1285916 - 2748785   |
@@ -154,7 +154,7 @@ After EIP-1559 support was introduced, which included the transition to new Ethe
 This bug only impacted Moonbase Alpha and only impacted the following block:
 
 |    Network     | Introduced | Fixed  | Impacted Block |
-| :------------: | :--------: | :----: | :------------: |
+|:--------------:|:----------:|:------:|:--------------:|
 | Moonbase Alpha |   RT1200   | RT1201 |    1648995     |
 
 While the root issue was fixed in RT1201, the incorrect hash was corrected in RT2601.
@@ -170,7 +170,7 @@ With the introduction of EIP-1559 support, the logic for handling `maxFeePerGas`
 This bug existed during the following runtimes and block ranges:
 
 |    Network     | Introduced | Fixed  | Impacted Block Range |
-| :------------: | :--------: | :----: | :------------------: |
+|:--------------:|:----------:|:------:|:--------------------:|
 |    Moonbeam    |   RT1201   | RT1401 |   415946 - 915320    |
 |   Moonriver    |   RT1201   | RT1401 |  1471037 - 1705939   |
 | Moonbase Alpha |   RT1200   | RT1400 |  1648994 - 1962557   |
@@ -186,7 +186,7 @@ For blocks that included EIP-1559 transactions where a priority fee was applied,
 This bug existed during the following runtimes and block ranges:
 
 |    Network     | Introduced | Fixed  | Impacted Block Range |
-| :------------: | :--------: | :----: | :------------------: |
+|:--------------:|:----------:|:------:|:--------------------:|
 |    Moonbeam    |   RT1201   | RT1504 |   415946 - 1117309   |
 |   Moonriver    |   RT1201   | RT1504 |  1471037 - 1910639   |
 | Moonbase Alpha |   RT1200   | RT1504 |  1648994 - 2221772   |
@@ -202,7 +202,7 @@ The state root hash was miscalculated for non-legacy transactions as the transac
 This bug existed during the following runtimes and block ranges:
 
 |    Network     | Introduced | Fixed  | Impacted Block Range |
-| :------------: | :--------: | :----: | :------------------: |
+|:--------------:|:----------:|:------:|:--------------------:|
 |    Moonbeam    |   RT1201   | RT1701 |   415946 - 1581456   |
 |   Moonriver    |   RT1201   | RT1701 |  1471037 - 2281722   |
 | Moonbase Alpha |   RT1200   | RT1700 |  1648994 - 2529735   |
@@ -218,7 +218,7 @@ An upstream bug was introduced to Frontier in the Ethereum Pallet, causing pendi
 Only Moonriver and Moonbase Alpha were impacted. The bug was introduced in the following runtimes and affected the following blocks:
 
 |    Network     | Introduced |   Impacted Blocks   |
-| :------------: | :--------: | :-----------------: |
+|:--------------:|:----------:|:-------------------:|
 |   Moonriver    |   RT1605   | 2077599 and 2077600 |
 | Moonbase Alpha |   RT1603   | 2285347 and 2285348 |
 
@@ -276,7 +276,7 @@ When a non-transactional call, such as `eth_call` or `eth_estimateGas`, is made 
 This bug existed during the following runtimes and block ranges:
 
 |    Network     | Introduced | Fixed  | Impacted Block Range |
-| :------------: | :--------: | :----: | :------------------: |
+|:--------------:|:----------:|:------:|:--------------------:|
 |    Moonbeam    |   RT1701   | RT1802 |  1581457 - 1919457   |
 |   Moonriver    |   RT1701   | RT1802 |  2281723 - 2616189   |
 | Moonbase Alpha |   RT1700   | RT1802 |  2529736 - 2879402   |
@@ -292,7 +292,7 @@ When multiple remote EVM calls were sent from different accounts with the same t
 This bug only existed on Moonbase Alpha during the following runtimes and block ranges:
 
 |    Network     | Introduced | Fixed  | Impacted Block Range |
-| :------------: | :--------: | :----: | :------------------: |
+|:--------------:|:----------:|:------:|:--------------------:|
 | Moonbase Alpha |   RT1700   | RT1900 |  2529736 - 3069634   |
 
 You can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/1790){target=\_blank} for more information.
@@ -306,7 +306,7 @@ There was a difference between estimating the gas for a transaction using a non-
 This bug existed during the following runtimes and block ranges:
 
 |    Network     | Introduced | Fixed  | Impacted Block Range |
-| :------------: | :--------: | :----: | :------------------: |
+|:--------------:|:----------:|:------:|:--------------------:|
 |    Moonbeam    |   RT1201   | RT2501 |   415946 - 4543267   |
 |   Moonriver    |   RT1201   | RT2500 |  1471037 - 5175574   |
 | Moonbase Alpha |   RT1200   | RT2500 |  1648994 - 5053547   |
@@ -322,7 +322,7 @@ The `effectiveGasPrice` value returned by `eth_getTransactionReceipt` was differ
 This bug existed during the following runtimes and block ranges:
 
 |    Network     | Introduced | Fixed  | Impacted Block Range |
-| :------------: | :--------: | :----: | :------------------: |
+|:--------------:|:----------:|:------:|:--------------------:|
 |    Moonbeam    |   RT1201   | RT2801 |   415946 - 5899847   |
 |   Moonriver    |   RT1201   | RT2801 |  1471037 - 6411588   |
 | Moonbase Alpha |   RT1200   | RT2801 |  1648994 - 6209638   |
@@ -344,7 +344,7 @@ This migration updated the now deprecated `Mapping` storage item of the author m
 This migration was only applied to Moonriver and Moonbase Alpha and was executed at the following runtimes and blocks:
 
 |    Network     | Executed Runtime | Block Applied |
-| :------------: | :--------------: | :-----------: |
+|:--------------:|:----------------:|:-------------:|
 |   Moonriver    |      RT800       |    684728     |
 | Moonbase Alpha |      RT800       |    915684     |
 
@@ -359,7 +359,7 @@ When VRF key support was introduced, the `MappingWithDeposit` storage item of th
 This migration was executed at the following runtimes and blocks:
 
 |    Network     | Executed Runtime | Block Applied |
-| :------------: | :--------------: | :-----------: |
+|:--------------:|:----------------:|:-------------:|
 |    Moonbeam    |      RT1502      |    1107285    |
 |   Moonriver    |      RT1502      |    1814458    |
 | Moonbase Alpha |      RT1502      |    2112058    |
@@ -375,7 +375,7 @@ A migration was applied to ensure that an account ID can have only one Nimbus ID
 This migration was executed at the following runtimes and blocks:
 
 |    Network     | Executed Runtime | Block Applied |
-| :------------: | :--------------: | :-----------: |
+|:--------------:|:----------------:|:-------------:|
 |    Moonbeam    |      RT1606      |    1326697    |
 |   Moonriver    |      RT1605      |    2077599    |
 | Moonbase Alpha |      RT1603      |    2285347    |
@@ -393,7 +393,7 @@ This migration sets the `Elasticity` storage item of the base fee pallet to zero
 This migration was executed at the following runtimes and blocks:
 
 |    Network     | Executed Runtime | Block Applied |
-| :------------: | :--------------: | :-----------: |
+|:--------------:|:----------------:|:-------------:|
 |    Moonbeam    |      RT1300      |    524762     |
 |   Moonriver    |      RT1300      |    1541735    |
 | Moonbase Alpha |      RT1300      |    1761128    |
@@ -413,7 +413,7 @@ There was one preimage that was affected in Moonbeam, which was dropped from the
 This migration was executed at the following runtimes and blocks:
 
 |    Network     | Executed Runtime | Block Applied |
-| :------------: | :--------------: | :-----------: |
+|:--------------:|:----------------:|:-------------:|
 |    Moonbeam    |      RT2000      |    3310369    |
 |   Moonriver    |      RT2000      |    3202604    |
 | Moonbase Alpha |      RT2000      |    2673234    |
@@ -429,7 +429,7 @@ A migration was applied to remove the governance V1 collectives, which included 
 This migration was executed at the following runtimes and blocks:
 
 |    Network     | Executed Runtime | Block Applied |
-| :------------: | :--------------: | :-----------: |
+|:--------------:|:----------------:|:-------------:|
 |    Moonbeam    |      RT2801      |    5899847    |
 |   Moonriver    |      RT2801      |    6411588    |
 | Moonbase Alpha |      RT2801      |    6209638    |
@@ -439,7 +439,7 @@ For more information, you can review the [relative PR on GitHub](https://github.
 A follow-up migration was required to properly clear the storage entries associated with the governance V1 collectives, which was executed at the following runtimes and blocks:
 
 |    Network     | Executed Runtime | Block Applied |
-| :------------: | :--------------: | :-----------: |
+|:--------------:|:----------------:|:-------------:|
 |    Moonbeam    |      RT2901      |    6197065    |
 |   Moonriver    |      RT2901      |    6699589    |
 | Moonbase Alpha |      RT2901      |    6710531    |
@@ -455,7 +455,7 @@ A migration was applied to remove the storage associated with the Democracy Pall
 This migration was executed at the following runtimes and blocks:
 
 |    Network     | Executed Runtime | Block Applied |
-| :------------: | :--------------: | :-----------: |
+|:--------------:|:----------------:|:-------------:|
 |    Moonbeam    |      RT2901      |    6197065    |
 |   Moonriver    |      RT2901      |    6699589    |
 | Moonbase Alpha |      RT2901      |    6710531    |
@@ -473,7 +473,7 @@ A migration was introduced to automate the manual process of setting EVM contrac
 This migration was executed at the following runtimes and blocks:
 
 | Network  | Executed Runtime | Block Applied |
-| :------: | :--------------: | :-----------: |
+|:--------:|:----------------:|:-------------:|
 | Moonbeam |      RT3200      |    7985204    |
 
 ***
@@ -487,7 +487,7 @@ A migration was applied to the Moonbeam Orbiter Pallet that sets the bonds of th
 This migration was executed at the following runtimes and blocks:
 
 |    Network     | Executed Runtime | Block Applied |
-| :------------: | :--------------: | :-----------: |
+|:--------------:|:----------------:|:-------------:|
 |    Moonbeam    |      RT2602      |    4977160    |
 |   Moonriver    |      RT2602      |    5638536    |
 | Moonbase Alpha |      RT2601      |    5474345    |
@@ -510,7 +510,7 @@ A migration was applied that updated the `Collator` storage item of the parachai
 This migration was only applied to Moonriver and Moonbase Alpha and was executed at the following runtimes and blocks:
 
 |    Network     | Executed Runtime | Block Applied |
-| :------------: | :--------------: | :-----------: |
+|:--------------:|:----------------:|:-------------:|
 |   Moonriver    |       RT53       |     9696      |
 | Moonbase Alpha |       RT52       |    238827     |
 
@@ -525,7 +525,7 @@ A migration was applied to the `total` staked amount of the `CollatorState` stor
 This migration was only applied to Moonriver and Moonbase Alpha and was executed at the following runtimes and blocks:
 
 |    Network     | Executed Runtime | Block Applied |
-| :------------: | :--------------: | :-----------: |
+|:--------------:|:----------------:|:-------------:|
 |   Moonriver    |       RT53       |     9696      |
 | Moonbase Alpha |       RT52       |    238827     |
 
@@ -540,7 +540,7 @@ The exit queue for handling candidate exits had been updated to include support 
 These migrations were only applied to Moonriver and Moonbase Alpha and were executed at the following runtimes and blocks:
 
 |    Network     | Executed Runtime | Block Applied |
-| :------------: | :--------------: | :-----------: |
+|:--------------:|:----------------:|:-------------:|
 |   Moonriver    |      RT200       |    259002     |
 | Moonbase Alpha |      RT200       |    457614     |
 
@@ -555,7 +555,7 @@ A migration was applied to purge staking storage bloat for the `Points` and `AtS
 This migration was executed at the following runtimes and blocks:
 
 |    Network     | Executed Runtime | Block Applied |
-| :------------: | :--------------: | :-----------: |
+|:--------------:|:----------------:|:-------------:|
 |    Moonbeam    |      RT1001      |     5165      |
 |   Moonriver    |      RT1001      |    1052242    |
 | Moonbase Alpha |      RT1001      |    1285916    |
@@ -576,7 +576,7 @@ In addition, a change was made to switch from Nominated Proof of Stake (NPoS) to
 These migrations were executed at the following runtimes and blocks:
 
 |    Network     | Executed Runtime | Block Applied |
-| :------------: | :--------------: | :-----------: |
+|:--------------:|:----------------:|:-------------:|
 |    Moonbeam    |      RT1001      |     5165      |
 |   Moonriver    |      RT1001      |    1052242    |
 | Moonbase Alpha |      RT1001      |    1285916    |
@@ -592,7 +592,7 @@ A migration was applied to increase the maximum number of delegations per candid
 This migration was executed at the following runtimes and blocks:
 
 |    Network     | Executed Runtime | Block Applied |
-| :------------: | :--------------: | :-----------: |
+|:--------------:|:----------------:|:-------------:|
 |    Moonbeam    |      RT1101      |    171061     |
 |   Moonriver    |      RT1101      |    1188000    |
 | Moonbase Alpha |      RT1100      |    1426319    |
@@ -612,7 +612,7 @@ This migration splits the deprecated `CandidateState` storage item of the parach
 This migration was executed at the following runtimes and blocks:
 
 |    Network     | Executed Runtime | Block Applied |
-| :------------: | :--------------: | :-----------: |
+|:--------------:|:----------------:|:-------------:|
 |    Moonbeam    |      RT1201      |    415946     |
 |   Moonriver    |      RT1201      |    1471037    |
 | Moonbase Alpha |      RT1200      |    1648994    |
@@ -628,7 +628,7 @@ There was a migration applied to fix the [Incorrect Collator Selection](#incorre
 This migration was executed at the following runtimes and blocks:
 
 |    Network     | Executed Runtime | Block Applied |
-| :------------: | :--------------: | :-----------: |
+|:--------------:|:----------------:|:-------------:|
 |    Moonbeam    |      RT1300      |    524762     |
 |   Moonriver    |      RT1300      |    1541735    |
 | Moonbase Alpha |      RT1300      |    1761128    |
@@ -644,7 +644,7 @@ A migration was applied that moved pending delegator requests from the `Delegato
 This migration was executed at the following runtimes and blocks:
 
 |    Network     | Executed Runtime | Block Applied |
-| :------------: | :--------------: | :-----------: |
+|:--------------:|:----------------:|:-------------:|
 |    Moonbeam    |      RT1502      |    1107285    |
 |   Moonriver    |      RT1502      |    1814458    |
 | Moonbase Alpha |      RT1502      |    2112058    |
@@ -660,7 +660,7 @@ A migration was applied that changed users' staking reserved balances to locked 
 This migration was executed at the following runtimes and blocks:
 
 |    Network     | Executed Runtime | Block Applied |
-| :------------: | :--------------: | :-----------: |
+|:--------------:|:----------------:|:-------------:|
 |    Moonbeam    |      RT1701      |    1581457    |
 |   Moonriver    |      RT1701      |    2281723    |
 | Moonbase Alpha |      RT1700      |    2529736    |
@@ -679,7 +679,7 @@ To support auto-compounding, two migrations were applied to the `AtStake` storag
 These migrations were executed at the following runtimes and blocks:
 
 |    Network     | Executed Runtime | Block Applied |
-| :------------: | :--------------: | :-----------: |
+|:--------------:|:----------------:|:-------------:|
 |    Moonbeam    |      RT1901      |    2317683    |
 |   Moonriver    |      RT1901      |    2911863    |
 | Moonbase Alpha |      RT1900      |    3069635    |
@@ -695,7 +695,7 @@ A migration was applied to switch from time-based staking rounds to fixed block-
 This migration was executed at the following runtimes and blocks:
 
 |    Network     | Executed Runtime | Block Applied |
-| :------------: | :--------------: | :-----------: |
+|:--------------:|:----------------:|:-------------:|
 |    Moonbeam    |      RT2801      |    5899847    |
 |   Moonriver    |      RT2801      |    6411588    |
 | Moonbase Alpha |      RT2801      |    6209638    |
@@ -711,7 +711,7 @@ Prior to Runtime 3300, the `ReservedForParachainBond` event was emitted once per
 This change took effect at the following runtimes and blocks:
 
 |    Network     | Executed Runtime | Block Applied |
-| :------------: | :--------------: | :-----------: |
+|:--------------:|:----------------:|:-------------:|
 |    Moonbeam    |      RT3300      |    8381443    |
 |   Moonriver    |      RT3300      |    8894416    |
 | Moonbase Alpha |      RT3300      |    9062316    |
@@ -729,7 +729,7 @@ This stemmed from an upstream change to the [Substrate](https://github.com/parit
 This migration was executed at the following runtimes and blocks:
 
 |    Network     | Executed Runtime | Block Applied |
-| :------------: | :--------------: | :-----------: |
+|:--------------:|:----------------:|:-------------:|
 |    Moonbeam    |      RT2302      |    3456477    |
 |   Moonriver    |      RT2302      |    4133065    |
 | Moonbase Alpha |      RT2301      |    4172407    |
@@ -751,7 +751,7 @@ There was a migration applied to the `TransactInfo` storage item of the XCM Tran
 This migration was executed at the following runtimes and blocks:
 
 |    Network     | Executed Runtime | Block Applied |
-| :------------: | :--------------: | :-----------: |
+|:--------------:|:----------------:|:-------------:|
 |    Moonbeam    |      RT1201      |    415946     |
 |   Moonriver    |      RT1201      |    1471037    |
 | Moonbase Alpha |      RT1200      |    1648994    |
@@ -771,7 +771,7 @@ The following three migrations were added to the asset manager pallet to avoid i
 These migrations were executed at the following runtimes and blocks:
 
 |    Network     | Executed Runtime | Block Applied |
-| :------------: | :--------------: | :-----------: |
+|:--------------:|:----------------:|:-------------:|
 |    Moonbeam    |      RT1201      |    415946     |
 |   Moonriver    |      RT1201      |    1471037    |
 | Moonbase Alpha |      RT1200      |    1648994    |
@@ -787,7 +787,7 @@ A migration was applied to the asset manager pallet, creating a new `SupportedFe
 This migration was executed at the following runtimes and blocks:
 
 |    Network     | Executed Runtime | Block Applied |
-| :------------: | :--------------: | :-----------: |
+|:--------------:|:----------------:|:-------------:|
 |    Moonbeam    |      RT1300      |    524762     |
 |   Moonriver    |      RT1300      |    1541735    |
 | Moonbase Alpha |      RT1300      |    1761128    |
@@ -803,7 +803,7 @@ With the support of XCM V3, a migration was applied to update the XCM Transactor
 This migration was executed at the following runtimes and blocks:
 
 |    Network     | Executed Runtime | Block Applied |
-| :------------: | :--------------: | :-----------: |
+|:--------------:|:----------------:|:-------------:|
 |    Moonbeam    |      RT2302      |    3456477    |
 |   Moonriver    |      RT2302      |    4133065    |
 | Moonbase Alpha |      RT2301      |    4172407    |
@@ -819,7 +819,7 @@ Mintable XC-20s were deprecated in favor of XCM-enabled ERC-20s; as such, a migr
 This migration was executed at the following runtimes and blocks:
 
 |    Network     | Executed Runtime | Block Applied |
-| :------------: | :--------------: | :-----------: |
+|:--------------:|:----------------:|:-------------:|
 |    Moonbeam    |      RT2801      |    5899847    |
 |   Moonriver    |      RT2801      |    6411588    |
 | Moonbase Alpha |      RT2801      |    6209638    |
@@ -837,7 +837,7 @@ A breaking change was applied to the Nimbus repository, deprecating `EligibleRat
 This migration was executed at the following runtimes and blocks:
 
 |    Network     | Executed Runtime | Block Applied |
-| :------------: | :--------------: | :-----------: |
+|:--------------:|:----------------:|:-------------:|
 |    Moonbeam    |      RT1502      |    1107285    |
 |   Moonriver    |      RT1502      |    1814458    |
 | Moonbase Alpha |      RT1502      |    2112058    |
