@@ -730,7 +730,7 @@ For more information, you can review the [relative PR on GitHub](https://github.
 
 A migration was introduced to support restoring referenda deposits affected by corrupted storage values. The issue arose when a migration was applied twice due to a pallet version error, resulting in invalid values and non-refundable submission deposits. As the number of values to correct was finite and small, this migration created a list to update them by hand.
 
-This migration was executed at the following runtimes and blocks:
+This migration was only applied to Moonbeam and was executed at the following runtimes and blocks:
 
 | Network  | Executed Runtime | Block Applied |
 |:--------:|:----------------:|:-------------:|
