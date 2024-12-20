@@ -10,7 +10,8 @@ const graphqlQuery = `query MyQuery {
 }`;
 
 const queryUrl =
-  'https://api.studio.thegraph.com/query/80185/moonbeam-demo/version/latest';
+  'INSERT_QUERY_URL'; // Will look something like this: 
+  // https://api.studio.thegraph.com/query/80185/moonbeam-demo/version/latest
 
 const graphQLRequest = {
   method: 'post',
