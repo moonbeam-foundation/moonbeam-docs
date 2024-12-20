@@ -320,6 +320,130 @@ To override the balance of a particular account, you can override the account st
     --lazy-loading-remote-rpc 'INSERT-RPC-URL' --lazy-loading-state-overrides ./state-overrides.json
     ```
 
+### Override an ERC-20 Token Balance
+
+To override an ERC-20 token balance, identify the storage slot in the EVM’s AccountStorages where the `balanceOf` data for the given token contract and account is stored. This storage slot is determined by the token contract’s H160 address and the corresponding H256 storage key. Once you have this slot, specify the new balance value in the `state-overrides.json` file to implement the override.
+
+In the example below, we override the token balance of the [Wormhole USDC Contract (`0x931715FEE2d06333043d11F658C8CE934aC61D0c`)](https://moonscan.io/address/0x931715FEE2d06333043d11F658C8CE934aC61D0c){target=\_blank} for the account `0x3b939fead1557c741ff06492fd0127bd287a421e` to $5,000 USDC. Since Wormhole USDC uses 6 decimal places, $5,000 corresponds to `5000000000` in integer form, which is `0x12a05f200` in hexadecimal.
+
+```json
+[
+  {
+    "pallet": "EVM",
+    "storage": "AccountStorages",
+    "key": [
+      "0x931715FEE2d06333043d11F658C8CE934aC61D0c",
+      "0x8c9902c0f94ae586c91ba539eb52087d3dd1578da91158308d79ff24a8d4f342"
+    ],
+    // Set whatever value you want here
+    "value": "0x000000000000000000000000000000000000000000000000000000012a05f200" 
+  }
+]
+```
+
+You can calculate the exact storage slot to override for your own account with the following script:
+
+```js
+import { ethers } from 'ethers';
+
+function getBalanceSlot(accountAddress) {
+    // Convert address to bytes32 and normalize
+    const addr = ethers.zeroPadValue(accountAddress, 32);
+    
+    // Pack with mapping position 5
+    const packedData = ethers.concat([
+        addr,
+        ethers.zeroPadValue(ethers.toBeHex(5), 32)
+    ]);
+    
+    // Calculate keccak256
+    return ethers.keccak256(packedData);
+}
+
+// Example usage
+const address = "INSERT-ADDRESS-HERE";
+console.log(getBalanceSlot(address));
+```
+
+You can apply the same process for other ERC-20 token contracts. The following sections demonstrate overrides for the `0x3B939FeaD1557C741Ff06492FD0127bd287A421e` account with various ERC-20 tokens. Remember to update the H160 token contract address whenever you switch to a different token. Also, you will need to recalculate the H256 storage slot for each distinct account whose balance you want to override.
+
+??? "Override Wormhole BTC Token Balance"
+
+    ```json
+    [
+      {
+        "pallet": "EVM",
+        "storage": "AccountStorages",
+        "key": [
+          "0xE57eBd2d67B462E9926e04a8e33f01cD0D64346D",
+          "0x8c9902c0f94ae586c91ba539eb52087d3dd1578da91158308d79ff24a8d4f342"
+        ],
+        // Set whatever value you want here
+        "value": "0x000000000000000000000000000000000000000000000000000000012a05f200" 
+      }
+    ]
+    ```
+
+??? "Override Wormhole ETH Token Balance"
+
+    ```json
+    [
+      {
+        "pallet": "EVM",
+        "storage": "AccountStorages",
+        "key": [
+          "0xab3f0245B83feB11d15AAffeFD7AD465a59817eD",
+          "0x8c9902c0f94ae586c91ba539eb52087d3dd1578da91158308d79ff24a8d4f342"
+        ],
+        // Set whatever value you want here
+        "value": "0x000000000000000000000000000000000000000000000000000000012a05f200" 
+      }
+    ]
+    ```
+
+??? "Override WELL Token Balance"
+
+    Because the [WELL token](https://moonbeam.moonscan.io/token/0x511ab53f793683763e5a8829738301368a2411e3){target=\_blank} does not use a proxy implementation contract, the storage slot calculation differs. Instead of slot `5`, the balance mapping resides at slot `1`. You can determine the exact storage slot to override the WELL token balance for your own account using the following script:
+
+    ```js
+    import { ethers } from 'ethers';
+
+    function getBalanceSlot(accountAddress) {
+        // Convert address to bytes32 and normalize
+        const addr = ethers.zeroPadValue(accountAddress, 32);
+        
+        // Pack with mapping position 1
+        const packedData = ethers.concat([
+            addr,
+            ethers.zeroPadValue(ethers.toBeHex(1), 32)
+        ]);
+        
+        // Calculate keccak256
+        return ethers.keccak256(packedData);
+    }
+
+    // Example usage
+    const address = "INSERT-ADDRESS-HERE";
+    console.log(getBalanceSlot(address));
+    ```
+
+    Thus, the storage override would be:
+
+    ```json
+    [
+      {
+        "pallet": "EVM",
+        "storage": "AccountStorages",
+        "key": [
+          "0x511aB53F793683763E5a8829738301368a2411E3",
+          "0x728d3daf4878939a6bb58cbc263f39655bb57ea15db7daa0b306f3bf2c3f1227"
+        ],
+        // Set whatever value you want here
+        "value": "0x000000000000000000000000000000000000000000000000000000012a05f200" 
+      }
+    ]
+    ```
+
 ## Tracing RPC Endpoint Providers {: #tracing-providers }
 
 Tracing RPC endpoints allow you to access non-standard RPC methods, such as those that belong to Geth's `debug` and `txpool` APIs and OpenEthereum's `trace` module. To see a list of the supported non-standard RPC methods on Moonbeam for debugging and tracing, please refer to the [Debug API & Trace Module](/builders/ethereum/json-rpc/debug-trace/){target=\_blank} guide.
