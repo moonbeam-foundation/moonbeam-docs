@@ -350,7 +350,9 @@ function getBalanceSlot(accountAddress) {
     // Convert address to bytes32 and normalize
     const addr = ethers.zeroPadValue(accountAddress, 32);
     
-    // Pack with mapping position 5
+    // CAUTION! The storage slot used here is 5, which 
+    // is specific to Wormhole contracts 
+    // The storage slot index for other tokens may vary
     const packedData = ethers.concat([
         addr,
         ethers.zeroPadValue(ethers.toBeHex(5), 32)
@@ -412,7 +414,8 @@ You can apply the same process for other ERC-20 token contracts. The following s
         // Convert address to bytes32 and normalize
         const addr = ethers.zeroPadValue(accountAddress, 32);
         
-        // Pack with mapping position 1
+        // Caution! The storage slot index used here is 1
+        // The storage slot index for other tokens may vary
         const packedData = ethers.concat([
             addr,
             ethers.zeroPadValue(ethers.toBeHex(1), 32)
