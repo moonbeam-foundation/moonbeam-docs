@@ -116,7 +116,7 @@ The [MoonLink Dashboard](https://moonlink-dashboard.netlify.app){target=\_blank}
 [Moonbeam WalletConnect](https://moonbeam-walletconnect-demo.netlify.app){target=\_blank} shows how easy it is to integrate [WalletConnect](https://walletconnect.com){target=\_blank} into your DApps and unlock support for a great variety of crypto wallets. Be sure to check out the [demo app repository](https://github.com/papermoonio/moonbeam-walletconnect-demo){target=\_blank} to see exactly how the WalletConnect integration works. To get started, you can take the following steps:
 
 1. Press **Connect Wallet**
-2. Scan the QR code using a [wallet compatible with WalletConnect](https://explorer.walletconnect.com/registry?type=wallet){target=\_blank}
+2. Scan the QR code using a [wallet compatible with WalletConnect](https://walletguide.walletconnect.network/){target=\_blank}
 
 ![Moonbeam WalletConnect](/images/builders/get-started/networks/moonbase/moonbase-7.webp)
 
