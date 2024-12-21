@@ -24,11 +24,11 @@ interface ParachainStaking {
 
     /// @dev Check whether the specified address is currently a collator candidate
     /// @custom:selector d51b9e93
-    /// @param candidate the address that we want to confirm is a collator andidate
+    /// @param candidate the address that we want to confirm is a collator candidate
     /// @return A boolean confirming whether the address is a collator candidate
     function isCandidate(address candidate) external view returns (bool);
 
-    /// @dev Check whether the specifies address is currently a part of the active set
+    /// @dev Check whether the specified address is currently a part of the active set
     /// @custom:selector 740d7d2a
     /// @param candidate the address that we want to confirm is a part of the active set
     /// @return A boolean confirming whether the address is a part of the active set
@@ -136,9 +136,9 @@ interface ParachainStaking {
         address candidate
     ) external view returns (bool);
 
-    /// @dev Whether there exists a pending bond less request made by a candidate
+    /// @dev Whether there exists a pending bondless request made by a candidate
     /// @custom:selector d0deec11
-    /// @param candidate the candidate which made the request
+    /// @param candidate the candidate who made the request
     /// @return Whether a pending bond less request was made by the candidate
     function candidateRequestIsPending(
         address candidate
