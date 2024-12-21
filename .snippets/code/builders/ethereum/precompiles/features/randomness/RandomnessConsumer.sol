@@ -65,7 +65,7 @@ address constant RANDOMNESS_ADDRESS = 0x0000000000000000000000000000000000000809
  * @dev your contract's user-significant behavior.
  *
  * @dev Since the output of the random words generated for
- * @dev *requestLocalVRFRandomWords* is dependant of the collator producing the
+ * @dev *requestLocalVRFRandomWords* is dependent on the collator producing the
  * @dev block at fulfillment, the collator could skip its block forcing the
  * @dev fulfillment to be executed by a different collator, and therefore
  * @dev generating a different VRF.
