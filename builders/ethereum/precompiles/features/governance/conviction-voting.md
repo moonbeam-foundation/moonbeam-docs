@@ -187,7 +187,7 @@ The below example is demonstrated on Moonbase Alpha, however, similar steps can 
 
 ### Vote on a Referendum {: #vote-on-a-referendum }
 
-You can lock tokens and vote on a referendum at anytime during the Lead-in Period or the Decide Period. In order for a referendum to pass, it needs to garner minimum Approval and Support, which vary by track. For more information on each of the relative periods and the Approval and Support requirments by Track, please refer to the [OpenGov section of the governance overview page](/learn/features/governance/#opengov){target=\_blank}.
+You can lock tokens and vote on a referendum at anytime during the Lead-in Period or the Decide Period. In order for a referendum to pass, it needs to garner minimum Approval and Support, which vary by track. For more information on each of the relative periods and the Approval and Support requirements by Track, please refer to the [OpenGov section of the governance overview page](/learn/features/governance/#opengov){target=\_blank}.
 
 First, you'll need to get the index of the referendum you wish to vote on. To get the index of a referendum, head to [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network%2Fpublic-ws#/referenda){target=\_blank} and take the following steps:
 
