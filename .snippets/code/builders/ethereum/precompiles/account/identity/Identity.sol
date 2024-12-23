@@ -14,7 +14,7 @@ Identity constant IDENTITY_CONTRACT = Identity(IDENTITY_ADDRESS);
 interface Identity {
     /// @dev Associated raw data.
     struct Data {
-        /// Is `true` if it represents data, else the absense of data is represented by `false`.
+        /// Is `true` if it represents data, else the absence of data is represented by `false`.
         bool hasData;
         /// The contained value.
         bytes value;
@@ -236,7 +236,7 @@ interface Identity {
     /// @dev Rename a "sub" identity account of the caller.
     /// @custom:selector 452df561
     /// @param sub The sub account
-    /// @param data The new assocaited data
+    /// @param data The new associated data
     function renameSub(address sub, Data memory data) external;
 
     /// @dev Removes a "sub" identity account of the caller.

@@ -241,7 +241,7 @@ And that is it! You have fully set up a Chainlink oracle node that is running on
 
 ### Using Any API {: #using-any-api }
 
-You can also create and use a job spec to work with any API. You can search for preexisting jobs from an independent listing service such as [market.link](https://market.link){target=\_blank}. Please note that although the jobs might be implented for other networks, you'll be able to use the job spec to create the job for your oracle node on Moonbase Alpha. Once you find a job that fits your needs, you'll need to copy the job spec JSON and use it to create a new job.
+You can also create and use a job spec to work with any API. You can search for preexisting jobs from an independent listing service such as [market.link](https://market.link){target=\_blank}. Please note that although the jobs might be implemented for other networks, you'll be able to use the job spec to create the job for your oracle node on Moonbase Alpha. Once you find a job that fits your needs, you'll need to copy the job spec JSON and use it to create a new job.
 
 For example, the previous job spec can be altered to be more generic so it can be used for any API:
 

@@ -9,7 +9,7 @@ Batch constant BATCH_CONTRACT = Batch(BATCH_ADDRESS);
 
 /// @author The Moonbeam Team
 /// @title Batch precompile
-/// @dev Allows to perform multiple calls throught one call to the precompile.
+/// @dev Allows to perform multiple calls through one call to the precompile.
 /// Can be used by EOA to do multiple calls in a single transaction.
 /// @custom:address 0x0000000000000000000000000000000000000808
 interface Batch {
