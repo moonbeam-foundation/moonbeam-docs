@@ -360,7 +360,7 @@ To target another parachain (for example, a parachain that has an ID of 1234) fr
 
 ### Location to Account API {: #location-to-account-api }
 
-The Location to Account API is an easy way to convert a multilocation into an `AccountID20` address. The Location to Account API can be accessed from the [Runtime Calls](https://polkadot.js.org/apps/#/runtime){target=\_blank} tab of the **Developer** section of Polkadot.js Apps. The `convertLocation` method of the Location to Account API takes a multilocation as a parameter and returns an `AccountID20` address. 
+The Location to Account API is an easy way to convert a multilocation into an `AccountID20` address. The Location to Account API can be accessed from the [Runtime Calls](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbeam.network#/runtime){target=\_blank} tab of the **Developer** section of Polkadot.js Apps. The `convertLocation` method of the Location to Account API takes a multilocation as a parameter and returns an `AccountID20` address. 
 
 ```javascript
 // Query the locationToAccountApi using convertLocation method
