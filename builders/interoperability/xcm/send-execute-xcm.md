@@ -1,9 +1,9 @@
 ---
-title: Send & Execute XCM Messages
-description: Learn how to build a custom XCM message, by combining and experimenting with different XCM instructions, and execute it locally on Moonbeam to see the results.
+title: Send, Execute and Test XCM Messages
+description: Build a custom XCM message, verify its construction and integrity using the XCM Dry Run API, and then execute it locally on Moonbeam to observe the results. 
 ---
 
-# Send and Execute XCM Messages
+# Send, Execute, and Test XCM Messages
 
 ## Introduction {: #introduction }
 
@@ -180,7 +180,76 @@ Now that you have the values for each of the parameters, you can write the scrip
 
 Once the transaction is processed, the 0.1 DEV tokens should be withdrawn from Alice's account along with the associated XCM fees, and the destination account should have received 0.1 DEV tokens in their account. A `polkadotXcm.Attempted` event will be emitted with the outcome.
 
-### Execute an XCM Message with the XCM Utilities Precompile {: #execute-xcm-utils-precompile }
+
+## Test an XCM Message with the Dry Run API {: #test-an-xcm-message-with-the-dry-run-api }
+
+The XCM Dry Run API is an easy and convenient way to test the integrity of your XCM message without incurring any transaction fees. The XCM Dry Run API can be accessed from the [Runtime Calls](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbeam.network#/runtime){target=\_blank} tab of the **Developer** section of Polkadot.js Apps. 
+
+### Dry Run Call API Method {: #dry-run-call-api-method }
+
+This method takes as a parameter the origin and the call data and returns an execution result, actual weight, and event data.  
+
+```javascript
+const testAccount = api.createType(
+  'AccountId20',
+  '0x88bcE0b038eFFa09e58fE6d24fDe4b5Af21aa798'
+);
+const callData =
+  '0x1c030408000400010403001300008a5d784563010d010204000103003cd0a705a2dc65e5b1e1205896baa2be8a07c6e007803822b001ba2e0100';
+const callDataU8a = hexToU8a(callData);
+
+const result = await api.call.dryRunApi.dryRunCall(
+  { system: { Signed: testAccount } },
+  callDataU8a
+);
+```
+
+??? code "View the complete script"
+
+    ```js
+    --8<-- 'code/builders/interoperability/xcm/send-execute-xcm/dry-run/dry-run-call.js'
+    ```
+
+Upon calling the XCM Dry Run API, the method will tell you whether the call would be successful and returns the event data that would be emitted if the call were actually submitted on chain. You can view the initial output of the `dryRunCall` below.
+
+??? code "View the complete output"
+
+    ```json
+    --8<-- 'code/builders/interoperability/xcm/send-execute-xcm/dry-run/dry-run-call-return-data.json'
+    ```
+
+### Dry Run XCM API Method {: #dry-run-xcm-api-method }
+
+The `dryRunXCM` method of the XCM Dry Run API takes a full XCM message as a parameter instead of an encoded call, as well as the origin of the message.
+
+`dryRunXCM` takes as a parameter the origin and the XCM message and returns an execution result, actual weight, and event data.  
+
+```javascript
+// Define the origin
+const origin = { V4: { parents: 1, interior: 'Here' } };
+
+const message = []; // Insert XCM Message Here
+
+// Perform the dry run XCM call
+const result = await api.call.dryRunApi.dryRunXcm(origin, message);
+```
+
+??? code "View the complete script"
+
+    ```js
+    --8<-- 'code/builders/interoperability/xcm/send-execute-xcm/dry-run/dry-run-xcm.js'
+    ```
+
+Upon calling the XCM Dry Run API, the method will tell you whether the call would be successful and returns the event data that would be emitted if the XCM were to be actually submitted on chain. You can view the initial output of the `dryRunXCM` below.
+
+??? code "View the complete output"
+
+    ```json
+    --8<-- 'code/builders/interoperability/xcm/send-execute-xcm/dry-run/dry-run-xcm-return-data.json'
+    ```
+
+
+## Execute an XCM Message with the XCM Utilities Precompile {: #execute-xcm-utils-precompile }
 
 In this section, you'll use the `xcmExecute` function of the [XCM Utilities Precompile](/builders/interoperability/xcm/xcm-utils/){target=\_blank}, which is only supported on Moonbase Alpha, to execute an XCM message locally. The XCM Utilities Precompile is located at the following address:
 
@@ -194,7 +263,7 @@ The `xcmExecute` function accepts two parameters: the SCALE encoded versioned XC
 
 First, you'll learn how to generate the encoded calldata, and then you'll learn how to use the encoded calldata to interact with the XCM Utilities Precompile.
 
-#### Generate the Encoded Calldata of an XCM Message {: #generate-encoded-calldata }
+### Generate the Encoded Calldata of an XCM Message {: #generate-encoded-calldata }
 
 To get the encoded calldata of the XCM message, you can create a script similar to the one you created in the [Execute an XCM Message with the Polkadot.js API](#execute-an-xcm-message-with-polkadotjs-api) section. Instead of building the message and sending the transaction, you'll build the message to get the encoded calldata. You'll take the following steps:
 
@@ -211,7 +280,7 @@ The entire script is as follows:
 --8<-- 'code/builders/interoperability/xcm/send-execute-xcm/execute/generate-encoded-calldata.js'
 ```
 
-#### Execute the XCM Message {: #execute-xcm-message }
+### Execute the XCM Message {: #execute-xcm-message }
 
 Now that you have the SCALE encoded XCM message, you can use the following code snippets to programmatically call the `xcmExecute` function of the XCM Utilities Precompile using your [Ethereum library](/builders/ethereum/libraries/){target=\_blank} of choice. Generally speaking, you'll take the following steps:
 
