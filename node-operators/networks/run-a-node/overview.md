@@ -88,6 +88,39 @@ There are a couple different guides to help you get started running a Moonbeam-b
 
 You can also gain access to some non-standard RPC methods by running a tracing node, which allow developers to inspect and debug transactions during runtime. Tracing nodes use a different Docker image than a standard Moonbase Alpha, Moonriver, or Moonbeam node. Check out the [Run a Tracing Node](/node-operators/networks/tracing-node/) guide and be sure to switch to the right network tab throughout the instructions. Then to interact with your tracing node, check out the [Debug & Trace](/builders/ethereum/json-rpc/debug-trace/) guide.
 
+## Lazy Loading {: #lazy-loading }
+
+Lazy loading lets a Moonbeam node operate while downloading network state in the background, eliminating the need to wait for full synchronization before use. You can activate lazy loading with the following flag:
+
+- **`--lazy-loading-remote-rpc`** - allows lazy loading by relying on a specified RPC for network state until the node is fully synchronized e.g. `--lazy-loading-remote-rpc 'INSERT-RPC-URL'`
+
+Upon spooling up a node with this feature, you'll see output like the following:
+
+--8<-- 'code/node-operators/networks/run-a-node/terminal/lazy-loading.md'
+
+!!! note
+    Lazy loading a Moonbeam requires a large number of RPC requests. To avoid being rate-limited by a public endpoint, it's highly recommended to use a [dedicated endpoint](/builders/get-started/endpoints#endpoint-providers).  
+
+You can further customize your use of the lazy loading functionality with the following optional parameters:
+
+- **`--lazy-loading-block`** - specifies a block hash from which to start loading data. If not provided, the latest block will be used
+- **`--lazy-loading-delay-between-requests`** - the delay (in milliseconds) between RPC requests when using lazy loading. This parameter controls the amount of time to wait between consecutive RPC requests. This can help manage request rate and avoid overwhelming the server. Default value is `100` milliseconds
+- **`--lazy-loading-max-retries-per-request`** - the maximum number of retries for an RPC request when using lazy loading. Default value is `10` retries
+- **`--lazy-loading-runtime-override`** - path to a WASM file to override the runtime when forking. If not provided, it will fetch the runtime from the block being forked
+- **`--lazy-loading-state-overrides`** - path to a JSON file containing state overrides to be applied when forking 
+
+The state overrides file should define the respective pallet, storage item, and value that you seek to override as follows:
+
+```json
+[
+ {
+     "pallet": "System",
+     "storage": "SelectedCandidates",
+     "value": "0x04f24ff3a9cf04c71dbc94d0b566f7a27b94566cac"
+ }
+]
+```
+
 ## Logs and Troubleshooting {: #logs-and-troubleshooting }
 
 You will see logs from both the relay chain and the parachain. The relay chain will be prefixed by `[Relaychain]`, while the parachain has no prefix.
