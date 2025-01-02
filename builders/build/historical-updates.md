@@ -710,7 +710,7 @@ For more information, you can review the [relative PR on GitHub](https://github.
 
 #### Refunds for Submission Deposits {: #refunds-for-submission-deposits }
 
-A migration was introduced to support refunds for Submission Deposits on closed referenda that updated the `ReferendumInfo` type. The following invariants of `ReferendumInfo` were changed so that the second parameter, `Deposit<AccountId, Balance>`, is now optional, `Option<Deposit<AccountId, Balance>>`: `Approved`, `Rejected`, `Cancelled`, and `TimedOut`.
+A migration was introduced to support refunds for submission deposits on closed referenda that updated the `ReferendumInfo` type. The following invariants of `ReferendumInfo` were changed so that the second parameter, `Deposit<AccountId, Balance>`, is now optional, `Option<Deposit<AccountId, Balance>>`: `Approved`, `Rejected`, `Cancelled`, and `TimedOut`.
 
 This stemmed from an upstream change to the [Substrate](https://github.com/paritytech/substrate/pull/12788){target=\_blank} repository.
 
