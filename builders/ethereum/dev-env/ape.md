@@ -248,7 +248,7 @@ To interact with your newly deployed contract, you can launch the Ape console by
 === "Moonbase Alpha"
 
     ```bash
-    ape run deploy --network moonbeam:moonbase
+    ape console --network moonbeam:moonbase
     ```
 
 === "Moonbeam Dev Node"
