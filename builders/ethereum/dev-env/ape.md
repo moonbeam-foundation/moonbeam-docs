@@ -191,25 +191,25 @@ Take the following steps to initiate and send the deployment transaction:
     === "Moonbeam"
 
         ```bash
-        ape run deploy --network {{ networks.moonbeam.rpc_url }}
+        ape run deploy --network moonbeam:mainnet
         ```
 
     === "Moonriver"
 
         ```bash
-        ape run deploy --network {{ networks.moonriver.rpc_url }}
+        ape run deploy --network moonbeam:moonriver
         ```
 
     === "Moonbase Alpha"
 
         ```bash
-        ape run deploy --network {{ networks.moonbase.rpc_url }}
+        ape run deploy --network moonbeam:moonbase
         ```
 
     === "Moonbeam Dev Node"
 
         ```bash
-        ape run deploy --network {{ networks.development.rpc_url }}
+        ape run deploy --network ethereum:local_moonbeam:http://127.0.0.1:9944
         ``` 
 
     !!! note
@@ -236,19 +236,19 @@ To interact with your newly deployed contract, you can launch the Ape console by
 === "Moonbeam"
 
     ```bash
-    ape console --network {{ networks.moonbeam.rpc_url }}
+    ape console --network moonbeam:mainnet
     ```
 
 === "Moonriver"
 
     ```bash
-    ape console --network {{ networks.moonriver.rpc_url }}
+    ape console --network moonbeam:moonriver
     ```
 
 === "Moonbase Alpha"
 
     ```bash
-    ape console --network {{ networks.moonbase.rpc_url }}
+    ape run deploy --network moonbeam:moonbase
     ```
 
 === "Moonbeam Dev Node"
@@ -312,25 +312,25 @@ Now, you can run the script to set the stored value and retrieve it:
     === "Moonbeam"
 
         ```bash
-        ape run store-and-retrieve --network {{ networks.moonbeam.rpc_url }}
+        ape run store-and-retrieve --network moonbeam:mainnet
         ```
 
     === "Moonriver"
 
         ```bash
-        ape run store-and-retrieve --network {{ networks.moonriver.rpc_url }}
+        ape run store-and-retrieve --network moonbeam:moonriver
         ```
 
     === "Moonbase Alpha"
 
         ```bash
-        ape run store-and-retrieve --network {{ networks.moonbase.rpc_url }}
+        ape run store-and-retrieve --network moonbeam:moonbase
         ```
 
     === "Moonbeam Dev Node"
 
         ```bash
-        ape run store-and-retrieve --network {{ networks.development.rpc_url }}
+        ape run store-and-retrieve --network ethereum:local_moonbeam:http://127.0.0.1:9944
         ```
 
 2. Review the transaction details and enter **y** to sign the transaction
@@ -342,5 +342,21 @@ Once completed, you should see a transaction hash and a value of `4` printed to 
 --8<-- 'code/builders/ethereum/dev-env/ape/terminal/store-and-retrieve.md'
 
 Congratulations! You have successfully deployed and interacted with a contract using Ape!
+
+## Using Ape with a Local Node {: #using-ape-with-a-local-node }
+
+There are some nuances associated with using Ape with a local Moonbeam node. As a Moonbeam local node is not included as a preset network with Ape, you'll need to customize your `ape-config.yaml` before you can use Ape with a local Moonbeam node. Adjust your `ape-config.yaml` as follows: 
+
+--8<-- 'code/builders/ethereum/dev-env/ape/terminal/ape-config.yaml'
+
+After configuring your `ape-config.yaml`, you can target your local Moonbeam node by appending  to the respective Ape command. 
+
+```bash
+--network ethereum:local_moonbeam:http://127.0.0.1:9944
+```
+
+Additionally, when deploying or interacting with contracts on a local Moonbeam node using Ape, the CLI will by default wait for two block confirmations before allowing you to proceed. However, because a local Moonbeam node employs instant sealing, only producing blocks when new transactions occur, this can lead to a stalemate situation that may lead you to think something is wrong.
+
+To circumvent this, you can either run your local Moonbeam node with a sealing flag to produce blocks at a set interval, such as every `6` seconds with the command: `--sealing 6000`. Alternatively, you can just submit dummy transactions to your local Moonbeam node to force new blocks to be authored. 
 
 --8<-- 'text/_disclaimers/third-party-content.md'
