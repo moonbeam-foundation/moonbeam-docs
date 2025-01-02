@@ -184,7 +184,7 @@ Next, you'll need to write the deployment script. You'll need to load the accoun
 Now you're ready to deploy the `Box` contract!
 --8<-- 'text/_common/endpoint-setup.md'
 
-Take the following steps to initiate and send the deployment transaction:
+Take the following steps to initiate and send the deployment transaction. Note that there are some nuances associated with [using Ape with a local Moonbeam node](#using-ape-with-a-local-node).
 
 1. Run the deployment script using the `ape run deploy` command
 
@@ -349,7 +349,7 @@ There are some nuances associated with using Ape with a local Moonbeam node. As 
 
 --8<-- 'code/builders/ethereum/dev-env/ape/terminal/ape-config.yaml'
 
-After configuring your `ape-config.yaml`, you can target your local Moonbeam node by appending  to the respective Ape command. 
+After configuring your `ape-config.yaml`, you can target your local Moonbeam node by appending the following network configuration flag to your Ape command:
 
 ```bash
 --network ethereum:local_moonbeam:http://127.0.0.1:9944
