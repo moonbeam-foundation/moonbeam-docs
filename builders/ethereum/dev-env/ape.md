@@ -345,7 +345,7 @@ Congratulations! You have successfully deployed and interacted with a contract u
 
 ## Using Ape with a Local Node {: #using-ape-with-a-local-node }
 
-There are some nuances associated with using Ape with a local Moonbeam node. As a Moonbeam local node is not included as a preset network with Ape, you'll need to customize your `ape-config.yaml` before you can use Ape with a local Moonbeam node. Adjust your `ape-config.yaml` as follows: 
+There are some nuances associated with using Ape with a local Moonbeam node. As a Moonbeam local node is not included as a preset network with Ape, you'll need to customize your `ape-config.yaml` before using Ape with a local Moonbeam node. Adjust your `ape-config.yaml` as follows: 
 
 --8<-- 'code/builders/ethereum/dev-env/ape/terminal/ape-config.yaml'
 
@@ -355,8 +355,8 @@ After configuring your `ape-config.yaml`, you can target your local Moonbeam nod
 --network ethereum:local_moonbeam:http://127.0.0.1:9944
 ```
 
-Additionally, when deploying or interacting with contracts on a local Moonbeam node using Ape, the CLI will by default wait for two block confirmations before allowing you to proceed. However, because a local Moonbeam node employs instant sealing, only producing blocks when new transactions occur, this can lead to a stalemate situation that may lead you to think something is wrong.
+Additionally, when deploying or interacting with contracts on a local Moonbeam node using Ape, the CLI will, by default, wait for two block confirmations before allowing you to proceed. However, because a local Moonbeam node employs instant sealing, only producing blocks when new transactions occur, this can lead to a stalemate situation that may lead you to think something is wrong.
 
-To circumvent this, you can either run your local Moonbeam node with a sealing flag to produce blocks at a set interval, such as every `6` seconds with the command: `--sealing 6000`. Alternatively, you can just submit dummy transactions to your local Moonbeam node to force new blocks to be authored. 
+To circumvent this, you can run your local Moonbeam node with a sealing flag to produce blocks at a set interval, such as every `6` seconds, with the command: `--sealing 6000`. Alternatively, you can submit dummy transactions to your local Moonbeam node to force new blocks to be authored. 
 
 --8<-- 'text/_disclaimers/third-party-content.md'
