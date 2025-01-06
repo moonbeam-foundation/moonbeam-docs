@@ -254,7 +254,7 @@ To interact with your newly deployed contract, you can launch the Ape console by
 === "Moonbeam Dev Node"
 
     ```bash
-    ape console --network {{ networks.development.rpc_url }}
+    ape console --network ethereum:local_moonbeam:http://127.0.0.1:9944
     ``` 
 
 Next, you'll need to create a contract instance using the contract's address:
