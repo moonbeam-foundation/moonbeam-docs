@@ -270,7 +270,7 @@ Now, you can interact with your contract instance! For example, you can set the 
 1. Call the `store` method by passing in a value to store and the account you want to use to send the transaction:
 
     ```bash
-    box.store(4, sender=alice)
+    box.store(5, sender=alice)
     ```
 
 2. Review the transaction details and enter **y** to sign the transaction
@@ -337,7 +337,7 @@ Now, you can run the script to set the stored value and retrieve it:
 3. If you previously locked your account, you must enter your passphrase to unlock it. Otherwise, Ape will use the cached key for your account
 4. If you unlocked your account in the previous step, you'll be asked if you want to leave your account unlocked. You can enter **y** to leave it unlocked or **n** to lock it
 
-Once completed, you should see a transaction hash and a value of `4` printed to the console.
+Once completed, you should see a transaction hash and a value of `5` printed to the console.
 
 --8<-- 'code/builders/ethereum/dev-env/ape/terminal/store-and-retrieve.md'
 
