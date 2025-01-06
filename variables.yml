@@ -1,7 +1,7 @@
 networks:
   development:
     build_tag: v0.42.1
-    tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.41.0-3300-d3e6
+    tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.42.1-3400-3ebd
     rpc_url: http://127.0.0.1:9944
     wss_url: ws://127.0.0.1:9944
     chain_id: 1281
@@ -814,9 +814,9 @@ networks:
     chain_id: 1284
     hex_chain_id: '0x504'
     node_directory: /var/lib/moonbeam-data
-    parachain_release_tag: v0.41.0
-    parachain_sha256sum: d199266180adcdb25c19aa0ac9d8f5a7157ef1235393fac616d48bb68ba8bcde
-    tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.41.0-3300-d3e6
+    parachain_release_tag: v0.42.1
+    parachain_sha256sum: 9b645b2fd9e575b26ea727e96dc2a81486a73461bb961ba33ea2136e4c9060d8
+    tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.42.1-3400-3ebd
     chain_spec: moonbeam
     block_explorer: https://moonscan.io
     spec_version: runtime-3300
