@@ -1,5 +1,5 @@
 <div id="termynal" data-termynal>
-    <span data-ty="input"><span class="file-path"></span>ape run deploy --network moonbeam:moonbase</span>
+    <span data-ty="input"><span class="file-path"></span>ape run deploy --network https://rpc.api.moonbase.moonbeam.network</span>
     <span data-ty>INFO: Connecting to a 'moonbase' node.</span>
     <br>
     <span data-ty>DynamicFeeTransaction:</span>

@@ -191,25 +191,25 @@ Take the following steps to initiate and send the deployment transaction. Note t
     === "Moonbeam"
 
         ```bash
-        ape run deploy --network moonbeam:mainnet
+        ape run deploy --network {{ networks.moonbeam.rpc_url }}
         ```
 
     === "Moonriver"
 
         ```bash
-        ape run deploy --network moonbeam:moonriver
+        ape run deploy --network {{ networks.moonriver.rpc_url }}
         ```
 
     === "Moonbase Alpha"
 
         ```bash
-        ape run deploy --network moonbeam:moonbase
+        ape run deploy --network {{ networks.moonbase.rpc_url }}
         ```
 
     === "Moonbeam Dev Node"
 
         ```bash
-        ape run deploy --network ethereum:local_moonbeam:http://127.0.0.1:9944
+        ape run deploy --network {{ networks.development.rpc_url }}
         ``` 
 
     !!! note
@@ -236,13 +236,13 @@ To interact with your newly deployed contract, you can launch the Ape console by
 === "Moonbeam"
 
     ```bash
-    ape console --network moonbeam:mainnet
+    ape console --network {{ networks.moonbeam.rpc_url }}
     ```
 
 === "Moonriver"
 
     ```bash
-    ape console --network moonbeam:moonriver
+    ape console --network {{ networks.moonriver.rpc_url }}
     ```
 
 === "Moonbase Alpha"
@@ -312,25 +312,25 @@ Now, you can run the script to set the stored value and retrieve it:
     === "Moonbeam"
 
         ```bash
-        ape run store-and-retrieve --network moonbeam:mainnet
+        ape run store-and-retrieve --network {{ networks.moonbeam.rpc_url }}
         ```
 
     === "Moonriver"
 
         ```bash
-        ape run store-and-retrieve --network moonbeam:moonriver
+        ape run store-and-retrieve --network {{ networks.moonriver.rpc_url }}
         ```
 
     === "Moonbase Alpha"
 
         ```bash
-        ape run store-and-retrieve --network moonbeam:moonbase
+        ape run store-and-retrieve --network {{ networks.moonbase.rpc_url }}
         ```
 
     === "Moonbeam Dev Node"
 
         ```bash
-        ape run store-and-retrieve --network ethereum:local_moonbeam:http://127.0.0.1:9944
+        ape run store-and-retrieve --network {{ networks.development.rpc_url }}
         ```
 
 2. Review the transaction details and enter **y** to sign the transaction

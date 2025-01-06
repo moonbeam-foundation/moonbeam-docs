@@ -26,7 +26,7 @@ This bug only impacted Moonriver and Moonbase Alpha and existed during the follo
 
 For more information, you can review the [relative Frontier PR on GitHub](https://github.com/polkadot-evm/frontier/pull/465){target=\_blank}.
 
-***
+---
 
 #### Ethereum Fees Weren't Sent to Treasury {: #ethereum-fees-to-treasury }
 
@@ -41,7 +41,7 @@ This bug only impacted Moonriver and Moonbase Alpha and existed during the follo
 
 For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/732){target=\_blank}.
 
-***
+---
 
 #### Missing Refunds {: #missing-refunds }
 
@@ -57,7 +57,7 @@ This bug existed during the following runtimes and block ranges:
 
 For more information, you can review the [relative Frontier PR](https://github.com/polkadot-evm/frontier/pull/509){target=\_blank} and the associated [Substrate PR on GitHub](https://github.com/paritytech/substrate/issues/10117){target=\_blank}.
 
-***
+---
 
 #### Incorrect Collator Selection {: #incorrect-collator-selection }
 
@@ -73,7 +73,7 @@ This bug existed during the following runtimes and block ranges:
 
 For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/1291){target=\_blank}.
 
-***
+---
 
 #### New Account Event Bug {: #new-account-event }
 
@@ -97,7 +97,7 @@ This bug existed during the following runtimes and block ranges:
 
 For more information, you can review the [relative Frontier PR on GitHub](https://github.com/moonbeam-foundation/frontier/pull/46/files){target=\_blank}.
 
-***
+---
 
 #### Incorrect Timestamp Units {: #incorrect-timestamp-units }
 
@@ -113,7 +113,7 @@ This bug existed during the following runtimes and block ranges:
 
 For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/1451){target=\_blank}.
 
-***
+---
 
 #### Substrate Tips Missing Treasury Distribution {: #substrate-tips }
 
@@ -129,7 +129,7 @@ This bug existed during the following runtimes and block ranges:
 
 For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/2291){target=\_blank}.
 
-***
+---
 
 #### Incorrect Delegation Reward Calculation {: #incorrect-delegation-reward-calculation }
 
@@ -145,7 +145,7 @@ This bug existed during the following runtimes and block ranges:
 
 You can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/1719){target=\_blank} for more information.
 
-***
+---
 
 #### Block Parent Hash Calculated Incorrectly {: #block-parent-hash-calculated-incorrectly }
 
@@ -161,7 +161,7 @@ While the root issue was fixed in RT1201, the incorrect hash was corrected in RT
 
 For more information on the root fix, you can review the [relative Frontier PR on GitHub](https://github.com/polkadot-evm/frontier/pull/570/){target=\_blank}. To take a look at the correction of the parent hash, check out the corresponding [Moonbeam PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/2524){target=\_blank}.
 
-***
+---
 
 #### Incorrect Handling of EIP-1559 Gas Fees {: #incorrect-gas-fees-eip1559 }
 
@@ -177,7 +177,7 @@ This bug existed during the following runtimes and block ranges:
 
 For more information, you can review the [relative Frontier PR](https://github.com/moonbeam-foundation/frontier/pull/45){target=\_blank}.
 
-***
+---
 
 #### Transaction Fees Paid to Collators {: #transaction-fees-paid-to-collators }
 
@@ -193,7 +193,7 @@ This bug existed during the following runtimes and block ranges:
 
 For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/1528){target=\_blank}.
 
-***
+---
 
 #### Incorrect State Root Hash {: #incorrect-state-root-hash }
 
@@ -209,7 +209,7 @@ This bug existed during the following runtimes and block ranges:
 
 For more information, you can review the [relative Frontier PR](https://github.com/moonbeam-foundation/frontier/pull/86){target=\_blank} and [Moonbeam PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/1678/files){target=\_blank}.
 
-***
+---
 
 #### Ethereum Transactions Duplicated in Storage {: #ethereum-transactions-duplicated-in-storage }
 
@@ -267,7 +267,7 @@ The duplicated transactions belong to the first block. So, on Moonriver, the tra
 
 For more information, you can review the [relative Frontier PR on GitHub](https://github.com/polkadot-evm/frontier/pull/638){target=\_blank}.
 
-***
+---
 
 #### Gas Limit Too High for Non-Transactional Calls {: #gas-limit-too-high-for-non-transactional-calls }
 
@@ -283,7 +283,7 @@ This bug existed during the following runtimes and block ranges:
 
 You can review the [relative Frontier PR on GitHub](https://github.com/polkadot-evm/frontier/pull/935){target=\_blank} for more information.
 
-***
+---
 
 #### Remote EVM Calls Return Identical Transaction Hashes {: #remote-evm-calls-return-identical-tx-hashes }
 
@@ -297,7 +297,7 @@ This bug only existed on Moonbase Alpha during the following runtimes and block 
 
 You can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/1790){target=\_blank} for more information.
 
-***
+---
 
 #### Gas Estimation Discrepancy {: #gas-estimation-discrepancy }
 
@@ -313,7 +313,7 @@ This bug existed during the following runtimes and block ranges:
 
 You can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/1790/){target=\_blank} for more information.
 
-***
+---
 
 #### Incorrect Effective Gas Price In Transaction Receipts {: #incorrect-effective-gas-price }
 
@@ -329,7 +329,7 @@ This bug existed during the following runtimes and block ranges:
 
 You can review the [relative Frontier PR](https://github.com/polkadot-evm/frontier/pull/1280){target=\_blank} and [Moonbeam PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/2610){target=\_blank} for more information.
 
-***
+---
 
 ## Migrations {: #migrations }
 
@@ -350,7 +350,7 @@ This migration was only applied to Moonriver and Moonbase Alpha and was executed
 
 For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/679){target=\_blank}.
 
-***
+---
 
 #### Add Support for VRF Keys {: #add-support-for-vrf-keys }
 
@@ -366,7 +366,7 @@ This migration was executed at the following runtimes and blocks:
 
 For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/1407){target=\_blank}.
 
-***
+---
 
 #### One Nimbus ID per Account ID {: #one-nimbus-id-per-account-id }
 
@@ -382,7 +382,7 @@ This migration was executed at the following runtimes and blocks:
 
 For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/1525){target=\_blank}.
 
-***
+---
 
 ### Base Fee Pallet {: #base-fee }
 
@@ -400,7 +400,7 @@ This migration was executed at the following runtimes and blocks:
 
 For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/1744){target=\_blank}.
 
-***
+---
 
 ### Democracy Pallet {: #democracy }
 
@@ -420,7 +420,7 @@ This migration was executed at the following runtimes and blocks:
 
 For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/1962){target=\_blank}.
 
-***
+---
 
 #### Remove Governance V1 Collectives {: #remove-gov-v1-collectives }
 
@@ -446,7 +446,7 @@ A follow-up migration was required to properly clear the storage entries associa
 
 For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/2711){target=\_blank}.
 
-***
+---
 
 #### Remove Governance V1 Democracy Pallet {: #remove-gov-v1-collectives }
 
@@ -462,7 +462,7 @@ This migration was executed at the following runtimes and blocks:
 
 For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/2685){target=\_blank}.
 
-***
+---
 
 ### Moonbeam Orbiter Pallet {: #moonbeam-orbiter }
 
@@ -480,7 +480,7 @@ This migration was executed at the following runtimes and blocks:
 
 For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/2526){target=\_blank}.
 
-***
+---
 
 ### Parachain Staking Pallet {: #parachain-staking }
 
@@ -502,7 +502,7 @@ This migration was only applied to Moonriver and Moonbase Alpha and was executed
 
 For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/505){target=\_blank}.
 
-***
+---
 
 #### Patch Total Staked Amount {: #patch-total-staked-amount }
 
@@ -517,11 +517,11 @@ This migration was only applied to Moonriver and Moonbase Alpha and was executed
 
 For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/502){target=\_blank}.
 
-***
+---
 
 #### Support Delayed Nominator (Delegator) Exits {: #support-delayed-nominator-exits }
 
-The exit queue for handling candidate exits had been updated to include support for delayed nominator (delegator) exits and revocations, which required a migration to update the `ExitQueue` parachain staking pallet storage item to `ExitQueue2`. The `NominatorState` storage item was also migrated to `NominatorState2`  to prevent a nominator from performing more nominations when they already have scheduled an exit.
+The exit queue for handling candidate exits had been updated to include support for delayed nominator (delegator) exits and revocations, which required a migration to update the `ExitQueue` parachain staking pallet storage item to `ExitQueue2`. The `NominatorState` storage item was also migrated to `NominatorState2` to prevent a nominator from performing more nominations when they already have scheduled an exit.
 
 These migrations were only applied to Moonriver and Moonbase Alpha and were executed at the following runtimes and blocks:
 
@@ -532,7 +532,7 @@ These migrations were only applied to Moonriver and Moonbase Alpha and were exec
 
 For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/610){target=\_blank}.
 
-***
+---
 
 #### Purge Staking Storage Bloat {: #purge-staking-storage-bloat }
 
@@ -548,7 +548,7 @@ This migration was executed at the following runtimes and blocks:
 
 For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/970){target=\_blank}.
 
-***
+---
 
 #### Support Manual Exits and DPoS Terminology {: #support-manual-exits-dpos-terminology }
 
@@ -569,7 +569,7 @@ These migrations were executed at the following runtimes and blocks:
 
 For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/810){target=\_blank}.
 
-***
+---
 
 #### Increase Max Delegations per Candidate {: #increase-max-delegations-per-candidate }
 
@@ -585,7 +585,7 @@ This migration was executed at the following runtimes and blocks:
 
 For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/1096){target=\_blank}.
 
-***
+---
 
 #### Split Candidate Delegations into Top and Bottom {: #split-candidate-delegations-top-bottom }
 
@@ -605,7 +605,7 @@ This migration was executed at the following runtimes and blocks:
 
 For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/1117){target=\_blank}.
 
-***
+---
 
 #### Patch Incorrect Total Delegations {: #patch-incorrect-total-delegations }
 
@@ -621,11 +621,11 @@ This migration was executed at the following runtimes and blocks:
 
 For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/1291){target=\_blank}.
 
-***
+---
 
 #### Split Delegator State into Delegation Scheduled Requests {: #split-delegator-state }
 
-A migration was applied that moved pending delegator requests from the `DelegatorState` storage item of the parachain staking pallet into a new `DelegationScheduledRequests` storage item. 
+A migration was applied that moved pending delegator requests from the `DelegatorState` storage item of the parachain staking pallet into a new `DelegationScheduledRequests` storage item.
 
 This migration was executed at the following runtimes and blocks:
 
@@ -637,7 +637,7 @@ This migration was executed at the following runtimes and blocks:
 
 For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/1408){target=\_blank}.
 
-***
+---
 
 #### Replace Staking Reserves with Locks {: #replace-staking-reserves }
 
@@ -653,14 +653,14 @@ This migration was executed at the following runtimes and blocks:
 
 For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/1604){target=\_blank}.
 
-***
+---
 
 #### Auto-Compounding Support {: #auto-compounding-support }
 
 To support auto-compounding, two migrations were applied to the `AtStake` storage item in the parachain staking pallet:
 
-- `RemovePaidRoundsFromAtStake` -  to remove any stale `AtStake` entries relating to already paid-out rounds with candidates that didn't produce any blocks. This migration is a prerequisite for the `MigrateAtStakeAutoCompound` migration
-- `MigrateAtStakeAutoCompound` -  migrates the snapshots for unpaid rounds for `AtStake` entries
+- `RemovePaidRoundsFromAtStake` - to remove any stale `AtStake` entries relating to already paid-out rounds with candidates that didn't produce any blocks. This migration is a prerequisite for the `MigrateAtStakeAutoCompound` migration
+- `MigrateAtStakeAutoCompound` - migrates the snapshots for unpaid rounds for `AtStake` entries
 
 These migrations were executed at the following runtimes and blocks:
 
@@ -672,7 +672,7 @@ These migrations were executed at the following runtimes and blocks:
 
 For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/1878){target=\_blank}.
 
-***
+---
 
 #### Switch to Block-Based Staking Rounds {: #block-based-staking-rounds }
 
@@ -688,7 +688,7 @@ This migration was executed at the following runtimes and blocks:
 
 For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/2690){target=\_blank}.
 
-***
+---
 
 #### Renaming of Parachain Bond Reserve Events {: #renaming-of-parachain-bond-reserve-events }
 
@@ -704,11 +704,13 @@ This change took effect at the following runtimes and blocks:
 
 For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/2976){target=\_blank}.
 
-***
+---
 
 ### Referenda Pallet {: #referenda-pallet }
 
-A migration was introduced to support refunds for Submission Deposits on closed referenda that updated the `ReferendumInfo` type. The following invariants of `ReferendumInfo` were changed so that the second parameter, `Deposit<AccountId, Balance>`, is now optional, `Option<Deposit<AccountId, Balance>>`: `Approved`, `Rejected`, `Cancelled`, and `TimedOut`.
+#### Refunds for Submission Deposits {: #refunds-for-submission-deposits }
+
+A migration was introduced to support refunds for submission deposits on closed referenda that updated the `ReferendumInfo` type. The following invariants of `ReferendumInfo` were changed so that the second parameter, `Deposit<AccountId, Balance>`, is now optional, `Option<Deposit<AccountId, Balance>>`: `Approved`, `Rejected`, `Cancelled`, and `TimedOut`.
 
 This stemmed from an upstream change to the [Substrate](https://github.com/paritytech/substrate/pull/12788){target=\_blank} repository.
 
@@ -722,7 +724,17 @@ This migration was executed at the following runtimes and blocks:
 
 For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/2134){target=\_blank}.
 
-***
+---
+
+#### Restore Corrupted Referenda Deposits {: restore-corrupted-referenda-deposits }
+
+A migration was introduced to support restoring referenda deposits affected by corrupted storage values. The issue arose when a migration was applied twice due to a pallet version error, resulting in invalid values and non-refundable submission deposits. As the number of values to correct was finite and small, this migration created a list to update them by hand.
+
+This migration was only applied to Moonbeam and was executed at the following runtimes and blocks:
+
+| Network  | Executed Runtime | Block Applied |
+|:--------:|:----------------:|:-------------:|
+| Moonbeam |      RT3100      |    7303601    |
 
 ### XCM-Related Pallets {: #xcm-related-pallets }
 
@@ -744,13 +756,13 @@ This migration was executed at the following runtimes and blocks:
 
 For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/1114){target=\_blank}.
 
-***
+---
 
 #### Add Support for Kusama Asset Hub (Statemine) Prefix Breaking Change {: #add-support-statemine-prefix }
 
 The following three migrations were added to the asset manager pallet to avoid issues with Kusama Asset Hub's (previously referred to as Statemine) [breaking change to the way it represents assets](https://github.com/paritytech/cumulus/pull/831){target=\_blank} and possible future breaking changes:
 
-- `UnitsWithAssetType` - updates the `AssetTypeUnitsPerSecond` storage item  to a mapping of the `AssetType` to `units_per_second`, instead of the mapping `AssetId` to `units_per_second`. This is done to avoid additional migrations whenever a breaking change arises
+- `UnitsWithAssetType` - updates the `AssetTypeUnitsPerSecond` storage item to a mapping of the `AssetType` to `units_per_second`, instead of the mapping `AssetId` to `units_per_second`. This is done to avoid additional migrations whenever a breaking change arises
 - `PopulateAssetTypeIdStorage` - creates a new `AssetTypeId` storage item that holds the `AssetType` to `AssetId` mapping, which allows the decoupling of `assetIds` and `AssetTypes`
 - `ChangeStateminePrefixes` - updates already registered Kusama Asset Hub (Statemine) assets to their new form
 
@@ -764,7 +776,7 @@ These migrations were executed at the following runtimes and blocks:
 
 For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/1159){target=\_blank}.
 
-***
+---
 
 #### Add New Supported Fee Payment Assets Storage Item {: #add-supported-fee-payment-assets }
 
@@ -780,7 +792,7 @@ This migration was executed at the following runtimes and blocks:
 
 For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/1118){target=\_blank}.
 
-***
+---
 
 #### Update the XCM Transactor Storage from V2 to V3 {: #update-xcm-transactor }
 
@@ -796,7 +808,7 @@ This migration was executed at the following runtimes and blocks:
 
 For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/2145){target=\_blank}.
 
-***
+---
 
 #### Remove Mintable XC-20s {: #remove-local-assets }
 
@@ -812,7 +824,7 @@ This migration was executed at the following runtimes and blocks:
 
 For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/2634){target=\_blank}.
 
-***
+---
 
 ### Nimbus Author Filter Pallet {: #nimbus }
 
