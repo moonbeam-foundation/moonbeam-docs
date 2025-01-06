@@ -61,7 +61,7 @@ In the following sections, you'll update the network configurations in the Hardh
 
 You can begin by making modifications to the Hardhat component under the `packages/hardhat` folder. You'll primarily be editing the `hardhat.config.js` file to configure it for Moonbeam. However, you'll also need to create a `.env` file to store a couple of variables that will be consumed by the `hardhat.config.js` file.
 
-You can refer to the `.env.example` file for the variables that are already used in the `hardhat.config.js` file. For Moonbeam, you'll only need to manually create one variable, the `ETHERSCAN_API_KEY`.
+You can refer to the `.env.example` file for the variables that are already used in the `hardhat.config.js` file. For Moonbeam, you'll only need to create two variables: `DEPLOYED_PRIVATE_KEY` and `ETHERSCAN_API_KEY`.
 
 Check out the [Etherscan Plugins](/builders/ethereum/verify-contracts/etherscan-plugins/#generating-a-moonscan-api-key){target=\_blank} documentation to learn how to generate a Moonscan API key.
 
@@ -74,20 +74,13 @@ touch packages/hardhat/.env
 Edit your `.env` file to include the following variables:
 
 ```text
+DEPLOYER_PRIVATE_KEY=INSERT_PRIVATE_KEY
 ETHERSCAN_API_KEY=INSERT_MOONSCAN_API_KEY
 ```
 
-Next, import your deployment account by either generating a new one with `yarn generate` or importing an existing one using `yarn account:import`. If importing, you'll need to provide your private key and create a password to encrypt it. The encrypted key will be saved in your `.env` file. Keep your password safe as you'll need it to decrypt the private key for future deployments. Remember to never share or commit your private keys or `.env` file. For this example, we'll import an existing private key with the following command: 
+The private key you add to your `.env` file corresponds to the account that will deploy and interact with the smart contracts in your Hardhat project. Additionally, the Etherscan API key will correspond to your Moonscan API key and will be used to verify your deployed smart contracts. To learn how to generate a Moonscan API key, check out the [Etherscan Plugins](/builders/ethereum/verify-contracts/etherscan-plugins/#generating-a-moonscan-api-key){target=\_blank} documentation.
 
-```bash
-yarn account:import
-```
-
---8<-- 'code/builders/ethereum/dev-env/scaffold-eth/terminal/account-import.md'
-
-The private key you add in the account import workflow corresponds to the account that will deploy and interact with the smart contracts in your Hardhat project. Additionally, the Etherscan API key will correspond to your Moonscan API key and will be used to verify your deployed smart contracts. To learn how to generate a Moonscan API key, check out the [Etherscan Plugins](/builders/ethereum/verify-contracts/etherscan-plugins/#generating-a-moonscan-api-key){target=\_blank} documentation.
-
-With the deployment account and the Etherscan API key taken care of, next you can modify the `hardhat.config.js` file for Moonbeam:
+With the environment variables taken care of, next you can modify the `hardhat.config.js` file for Moonbeam:
 
 1. Set the constant `defaultNetwork` to the network you are deploying the smart contract to
 
@@ -167,7 +160,7 @@ First, you can compile your contract by running:
 yarn compile
 ```
 
---8<-- 'code/builders/ethereum/dev-env/scaffold-eth/terminal/compile.md'
+![The terminal output from running the compile command.](/images/builders/ethereum/dev-env/scaffold-eth/new/scaffold-eth-1.webp)
 
 Then, you can run the following command from the root directory of your project:
 
@@ -175,7 +168,7 @@ Then, you can run the following command from the root directory of your project:
 yarn deploy
 ```
 
---8<-- 'code/builders/ethereum/dev-env/scaffold-eth/terminal/deploy.md'
+![The terminal output from running the deploy command.](/images/builders/ethereum/dev-env/scaffold-eth/new/scaffold-eth-2.webp)
 
 !!! note
     If you did not set the `defaultNetwork` config in the `hardhat.config.js` file, you can append `--network INSERT_NETWORK` to the command. For example, the following command would deploy a contract to Moonbeam.
@@ -219,7 +212,7 @@ You can use the following command to verify the smart contract:
 
 After a short wait, the console output will display the verification result and, if successful, the URL to the verified contract on Moonscan.
 
---8<-- 'code/builders/ethereum/dev-env/scaffold-eth/terminal/verify.md'
+![The terminal outut from running the verify command.](/images/builders/ethereum/dev-env/scaffold-eth/new/scaffold-eth-3.webp)
 
 For more information about verifying smart contracts on Moonbeam using the Hardhat Etherscan plugin, please refer to the [Etherscan Plugins page](/builders/ethereum/verify-contracts/etherscan-plugins/#using-the-hardhat-etherscan-plugin){target=\_blank}.
 
@@ -265,11 +258,11 @@ After all the modifications to the configuration files are done, you can launch 
 yarn start
 ```
 
---8<-- 'code/builders/ethereum/dev-env/scaffold-eth/terminal/start.md'
+![The terminal outut from running the start command.](/images/builders/ethereum/dev-env/scaffold-eth/new/scaffold-eth-4.webp)
 
 This will launch the React-based DApp frontend at [http://localhost:3000/](http://localhost:3000){target=\_blank} by default. You can then point your browser to [http://localhost:3000/](http://localhost:3000){target=\_blank} and interact with the React frontend by connecting your wallet or checking out the contract debugger page.
 
-![The frontend of the DApp on the browser.](/images/builders/ethereum/dev-env/scaffold-eth/new/scaffold-eth-1.webp)
+![The frontend of the DApp on the browser.](/images/builders/ethereum/dev-env/scaffold-eth/new/scaffold-eth-5.webp)
 
 And that's it! Now that you have the basics down, feel free to create and deploy your own smart contracts and modify the frontend to fit your dApp's needs! For more information, you can check out the [Scaffold-ETH 2 docs](https://docs.scaffoldeth.io){target=\_blank}.
 

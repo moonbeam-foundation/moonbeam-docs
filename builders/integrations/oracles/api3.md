@@ -9,7 +9,7 @@ description: Learn how to use API3 to request and receive off-chain data from wi
 
 API3 is a decentralized solution for delivering traditional API services to smart contract platforms in an easily accessible and scalable way. It is governed by a Decentralized Autonomous Organization (DAO), the API3 DAO. API3 enables developers to access off-chain resources from within their smart contracts without worrying about security implications. API3 makes this possible through Airnodes, which are first-party oracles, and on-chain data feeds sourced from these oracles.
 
-Developers can use [Airnode](https://api3.org/airnode/){target=\_blank} to request off-chain data inside their smart contracts on Moonbeam networks. An Airnode is a first-party oracle that pushes off-chain API data to your on-chain contract. Airnode lets API providers easily run their own first-party oracle nodes. That way, they can provide data to any on-chain dApp interested in their services, all without an intermediary.
+Developers can use [Airnode](https://docs.api3.org/explore/airnode/what-is-airnode.html){target=\_blank} to request off-chain data inside their smart contracts on Moonbeam networks. An Airnode is a first-party oracle that pushes off-chain API data to your on-chain contract. Airnode lets API providers easily run their own first-party oracle nodes. That way, they can provide data to any on-chain dApp interested in their services, all without an intermediary.
 
 An on-chain smart contract requests the [RRP (Request Response Protocol)](https://docs.api3.org/reference/airnode/latest/concepts){target=\_blank} contract ([`AirnodeRrpV0.sol`](https://github.com/api3dao/airnode/blob/v0.11/packages/airnode-protocol/contracts/rrp/AirnodeRrpV0.sol){target=\_blank}) that adds the request to the event logs. The Airnode then accesses the event logs, fetches the API data, and performs a callback to the requester with the requested data.
 
@@ -136,15 +136,15 @@ The callback to the requester contract contains two parameters:
 
 ## dAPIs: API3 Data Feeds {: #dapis }
 
-[dAPIs](https://docs.api3.org/oev-searchers/in-depth/dapis/#dapis){target=\_blank} are continuously updated streams of off-chain data, such as the latest cryptocurrency, stock, and commodity prices. They can power decentralized applications such as DeFi lending, synthetic assets, stablecoins, derivatives, NFTs, and more.
+[dAPIs](https://docs.api3.org/explore/dapis/what-are-dapis.html){target=\_blank} are continuously updated streams of off-chain data, such as the latest cryptocurrency, stock, and commodity prices. They can power decentralized applications such as DeFi lending, synthetic assets, stablecoins, derivatives, NFTs, and more.
 
-The data feeds are continuously updated by [first-party oracles](https://docs.api3.org/oev-searchers/glossary.html#first-party-oracles){target=\_blank} using signed data. DApp owners can read the on-chain value of any dAPI in real-time.
+The data feeds are continuously updated by [first-party oracles](https://docs.api3.org/explore/introduction/first-party.html){target=\_blank} using signed data. DApp owners can read the on-chain value of any dAPI in real-time.
 
 Because they are composed of first-party data feeds, dAPIs offer security, transparency, cost-efficiency, and scalability in a turnkey package.
 
 ![The API3 Market dashboard.](/images/builders/integrations/oracles/api3/api3-3.webp)
 
-To learn more about how dAPIs work, please refer to [API3's documentation](https://docs.api3.org/oev-searchers/in-depth/dapis/#dapis){target=\_blank}.
+To learn more about how dAPIs work, please refer to [API3's documentation](https://docs.api3.org/explore/dapis/what-are-dapis.html){target=\_blank}.
 
 ### Subscribe to dAPIs {: #subscribing-to-dapis }
 

@@ -123,47 +123,48 @@ If you're curious about additional Hardhat plugins, here is [a complete list of 
 
 For the examples in this guide, you'll need to add your private keys for your two accounts on Moonbase Alpha. Since some of the testing will be done on a development node, you'll also need to add the private keys of two of the prefunded development node accounts, which for this example, we can use Alice and Bob. In addition, you'll add your Moonscan API key, which can be used for both Moonbase Alpha and Moonbeam.
 
-You can modify the `hardhat.config.js` file to use any of the Moonbeam networks:
+--8<-- 'text/builders/ethereum/dev-env/hardhat/hardhat-configuration-file.md'
+    You can modify the `hardhat.config.js` file to use any of the Moonbeam networks:
 
-=== "Moonbeam"
+    === "Moonbeam"
 
-    ```js
+        ```js
         moonbeam: {
           url: '{{ networks.moonbeam.rpc_url }}', // Insert your RPC URL here
           chainId: {{ networks.moonbeam.chain_id }}, // (hex: {{ networks.moonbeam.hex_chain_id }}),
           accounts: [privateKey]
         },
-    ```
+        ```
 
-=== "Moonriver"
+    === "Moonriver"
 
-    ```js
+        ```js
         moonriver: {
           url: '{{ networks.moonriver.rpc_url }}', // Insert your RPC URL here
           chainId: {{ networks.moonriver.chain_id }}, // (hex: {{ networks.moonriver.hex_chain_id }}),
           accounts: [privateKey]
         },
-    ```
+        ```
 
-=== "Moonbase Alpha"
+    === "Moonbase Alpha"
 
-    ```js
+        ```js
         moonbase: {
           url: '{{ networks.moonbase.rpc_url }}',
           chainId: {{ networks.moonbase.chain_id }}, // (hex: {{ networks.moonbase.hex_chain_id }}),
           accounts: [privateKey]
         },
-    ```
+        ```
 
-=== "Moonbeam Dev Node"
+    === "Moonbeam Dev Node"
 
-    ```js
+        ```js
         dev: {
           url: '{{ networks.development.rpc_url }}',
           chainId: {{ networks.development.chain_id }}, // (hex: {{ networks.development.hex_chain_id }}),
           accounts: [privateKey]
         },
-    ```
+        ```
 
 5. Add your [Moonscan API key](/builders/ethereum/verify-contracts/etherscan-plugins/#generating-a-moonscan-api-key){target=\_blank}, which is required for the verification steps we'll be taking later in this tutorial
 

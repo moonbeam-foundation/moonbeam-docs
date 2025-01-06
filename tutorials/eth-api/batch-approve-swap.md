@@ -141,7 +141,7 @@ To compile the contracts, we'll go ahead and run the following Hardhat command:
 npx hardhat compile
 ```
 
---8<-- 'code/tutorials/eth-api/batch-approve-swap/terminal/compile.md'
+![Compile contracts](/images/tutorials/eth-api/batch-approve-swap/batch-1.webp)
 
 After compilation, an `artifacts` directory is created: it holds the bytecode and metadata of the contract, which are `.json` files. It’s a good idea to add this directory to the `.gitignore` file.
 
@@ -190,7 +190,7 @@ npx hardhat run --network moonbase scripts/deploy.js
 !!! note
     If you want to run the script in a standalone fashion using `node <script>`, you'll need to require the Hardhat Runtime Environment explicitly using `const hre = require('hardhat');` in the `deploy.js` file.
 
---8<-- 'code/tutorials/eth-api/batch-approve-swap/terminal/deploy.md'
+![Deploy contracts](/images/tutorials/eth-api/batch-approve-swap/batch-2.webp)
 
 After a few seconds, the contract will be deployed, and you should see the address in the terminal. We'll need to use the address in the following sections to interact with the contract, so make sure you save it.
 
@@ -337,7 +337,7 @@ In the terminal, you should see the following items:
 - The DEX's DTOK balance after the batch approval and swap
 - Your account's DTOK balance after the batch approval and swap
 
---8<-- 'code/tutorials/eth-api/batch-approve-swap/terminal/swap.md'
+![Swap tokens](/images/tutorials/eth-api/batch-approve-swap/batch-3.webp)
 
 And that's it! You've successfully used the batch precompile contract to batch an approval and swap into a single transaction, allowing for the approval amount to be the exact swap amount.
 
