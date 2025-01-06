@@ -1,7 +1,7 @@
 <div id="termynal" data-termynal>
   <span data-ty="input"><span class="file-path"></span>node_modules/.bin/substrate-api-sidecar</span>
   <br>
-  <span data-ty>v0.41.0: Pulling from moonbeamfoundation/moonbeam
+  <span data-ty>v0.42.1: Pulling from moonbeamfoundation/moonbeam
     <br>SAS:
         <br>📦 LOG:
         <br>    ✅ LEVEL: "info"
