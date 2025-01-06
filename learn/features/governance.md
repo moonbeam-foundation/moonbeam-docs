@@ -39,7 +39,7 @@ Some of the main components of this governance model include:
  - **Council & Technical Committee Governance V1** — a group of community members who have special voting rights within the system. With the deprecation and removal of Governance v1, both of these committees were dissolved as of the [runtime 2800 release](https://forum.moonbeam.network/t/runtime-rt2801-schedule/1616/4){target=\_blank}
  - **OpenGov Technical Committee** — a group of community members who can add certain proposals to the Whitelisted Track
 
-For more details on how these Substrate frame pallets implement on-chain governance, you can checkout the [Walkthrough of Polkadot’s Governance](https://polkadot.network/a-walkthrough-of-polkadots-governance){target=\_blank} blog post and the [Polkadot Governance Wiki](https://wiki.polkadot.network/docs/learn-polkadot-opengov){target=\_blank}.
+For more details on how these Substrate frame pallets implement on-chain governance, you can checkout the [Walkthrough of Polkadot’s Governance](https://polkadot.com/blog/a-walkthrough-of-polkadots-governance){target=\_blank} blog post and the [Polkadot Governance Wiki](https://wiki.polkadot.network/docs/learn-polkadot-opengov){target=\_blank}.
 
 ## Governance v2: OpenGov {: #opengov }
 

@@ -50,7 +50,7 @@ Some important variables/configurations to note include:
 
 ## Alphanet Relay Chain {: #relay-chain }
 
-The Alphanet relay chain is connected to Moonbase Alpha and is [Westend](https://polkadot.network/blog/westend-introducing-a-new-testnet-for-polkadot-and-kusama){target=\_blank}-based but unique to the Moonbeam ecosystem. It resembles how you would interact with Kusama or Polkadot. The native tokens of the Alphanet relay chain are UNIT tokens, which are for testing purposes only and have no real value.
+The Alphanet relay chain is connected to Moonbase Alpha and is [Westend](https://polkadot.com/blog/westend-introducing-a-new-testnet-for-polkadot-and-kusama){target=\_blank}-based but unique to the Moonbeam ecosystem. It resembles how you would interact with Kusama or Polkadot. The native tokens of the Alphanet relay chain are UNIT tokens, which are for testing purposes only and have no real value.
 
 ## Telemetry {: #telemetry }
 
