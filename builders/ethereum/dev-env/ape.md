@@ -347,7 +347,9 @@ Congratulations! You have successfully deployed and interacted with a contract u
 
 There are some nuances associated with using Ape with a local Moonbeam node. As a Moonbeam local node is not included as a preset network with Ape, you'll need to customize your `ape-config.yaml` before using Ape with a local Moonbeam node. Adjust your `ape-config.yaml` as follows: 
 
---8<-- 'code/builders/ethereum/dev-env/ape/terminal/ape-config.yaml'
+```bash
+--8<-- 'code/builders/ethereum/dev-env/ape/ape-config.yaml'
+```
 
 After configuring your `ape-config.yaml`, you can target your local Moonbeam node by appending the following network configuration flag to your Ape command:
 
