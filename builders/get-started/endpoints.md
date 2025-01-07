@@ -156,6 +156,297 @@ To get started, head to the [Ankr Protocol](https://www.ankr.com/protocol){targe
 
 ![Ankr](/images/builders/get-started/endpoints/endpoints-5.webp)-->
 
+## Lazy Loading with RPC Endpoint Providers {: #lazy-loading-with-RPC-Endpoint-Providers }
+
+Lazy loading lets a Moonbeam node operate while downloading network state in the background, eliminating the need to wait for full synchronization before use. To spin up a Moonbeam node with lazy loading, you'll need to either [download the Moonbeam release binary](/node-operators/networks/run-a-node/systemd/#the-release-binary){target=_blank} or [compile the binary](/node-operators/networks/run-a-node/compile-binary/#compile-the-binary){target=_blank}. You can activate lazy loading with the following flag:
+
+`--lazy-loading-remote-rpc 'INSERT-RPC-URL'`
+
+Lazy loading is highly resource-intensive, requiring many RPC requests to function. To avoid being throttled, it's recommended that you use a [dedicated endpoint](#endpoint-providers) (i.e., an endpoint with an API key) rather than a public endpoint. You will likely be rate-limited if you use lazy loading with a public endpoint. Upon spooling up a node with this feature, you'll see output like the following:
+
+--8<-- 'code/node-operators/networks/run-a-node/terminal/lazy-loading.md'
+
+## Overriding State with Lazy Loading
+
+By default, you won't see detailed logging in the terminal. To override this setting and show lazy loading logs, you can add the following flag to your command to start the Moonbeam node: `-l debug`. You can further customize your use of the lazy loading functionality with the following optional parameters:
+
+- **`--lazy-loading-block`** - specifies a block hash from which to start loading data. If not provided, the latest block will be used
+- **`--lazy-loading-delay-between-requests`** - the delay (in milliseconds) between RPC requests when using lazy loading. This parameter controls the amount of time to wait between consecutive RPC requests. This can help manage request rate and avoid overwhelming the server. Default value is `100` milliseconds
+- **`--lazy-loading-max-retries-per-request`** - the maximum number of retries for an RPC request when using lazy loading. Default value is `10` retries
+- **`--lazy-loading-runtime-override`** - path to a WASM file to override the runtime when forking. If not provided, it will fetch the runtime from the block being forked
+- **`--lazy-loading-state-overrides`** - path to a JSON file containing state overrides to be applied when forking 
+
+### Simple Storage Item Override
+
+The state overrides file should define the respective pallet, storage item, and value that you seek to override as follows:
+
+```json
+[
+ {
+     "pallet": "System",
+     "storage": "SelectedCandidates",
+     "value": "0x04f24ff3a9cf04c71dbc94d0b566f7a27b94566cac"
+ }
+]
+```
+
+### Override an Account's Free Balance
+
+To override the balance of a particular account, you can override the account storage item of the system pallet for the respective account as follows:
+
+```json
+[
+  {
+    "pallet": "System",
+    "storage": "Account",
+    "key": "TARGET_ADDRESS",
+    "value": "0x460c000002000000010000000600000069e10de76676d0800000000000000000040a556b0e032de12000000000000000004083a09e15c74c1b0100000000000000000000000000000000000000000000080"
+  }
+]
+```
+
+??? "Click to see more details about overriding account balances"
+
+    Overriding an account balance, as shown above, can be a complex process. However, this guide will break it down into steps that are easy to follow. Before making any changes, you should obtain the existing value corresponding to the key (i.e., the account in this case). You can go to [Chain State on Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbeam.network#/chainstate){target=_blank} and query the System pallet by providing the account you'd like to query. Upon submitting the query, you'll get back a readable account structure like so:
+
+    ```
+    {
+      nonce: 3,142
+      consumers: 2
+      providers: 1
+      sufficients: 6
+      data: {
+        free: 1,278,606,392,142,175,328,676
+        reserved: 348,052,500,000,000,000,000
+        frozen: 20,413,910,106,633,175,872
+        flags: 170,141,183,460,469,231,731,687,303,715,884,105,728
+      }
+    }
+    ```
+
+    While this is useful as a reference, the information you're looking for is the encoded storage key, which is accessible even without submitting the chain state query. In this instance, the encoded storage key corresponding to the system pallet and the selected account `0x3B939FeaD1557C741Ff06492FD0127bd287A421e` is:
+
+    ```
+    0x26aa394eea5630e07c48ae0c9558cef7b99d880ec681799c0cf30e8886371da9b882fedb4f75b055c709ec5b66b5d9933b939fead1557c741ff06492fd0127bd287a421e
+    ```
+
+    Note that this encoded storage key will change alongside any input changes, such as a different account being queried. Then, head over the **Raw Storage** tab on [Polkadot.js Apps](https://polkadot.js.org/apps/#/chainstate/raw){target=_blank}. Input the above storage key and submit the query. The response is the SCALE encoded account struct, a part of which contains the free balance information to be modified as part of this example: 
+
+    ```
+    0x460c0000020000000100000006000000a4d92a6a4e6b3a5045000000000000000040a556b0e032de12000000000000004083a09e15c74c1b010000000000000000000000000000000000000000000080
+    ```
+
+    There is quite a bit of data encoded in the value field because it is a complex struct comprised of multiple values. The struct is comprised of:
+
+    ```
+    struct AccountInfo {
+        nonce: u32,             // Transaction count
+        consumers: u32,         // Number of consumers 
+        providers: u32,         // Number of providers
+        sufficients: u32,       // Number of sufficients
+        data: AccountData {     // The balance info
+            free: u128,         // Free balance
+            reserved: u128,     // Reserved balance
+            frozen: u128,       // Frozen balance
+            flags: u128         // Account flags
+        }
+    }
+    ```
+
+    You can associate each part of the SCALE encoded struct with the corresponding piece of Alice's account information that it represents:
+
+    ```
+    0x460c0000        // nonce (u32): 3,142 
+    02000000          // consumers (u32): 2
+    01000000          // providers (u32): 1  
+    06000000          // sufficients (u32): 6
+
+    a4d92a6a4e6b3a5045000000000000000  
+    // free (u128): 1,278,606,392,142,175,328,676
+
+    40a556b0e032de1200000000000000000  
+    // reserved (u128): 348,052,500,000,000,000,000  
+
+    4083a09e15c74c1b01000000000000000  
+    // frozen (u128): 20,413,910,106,633,175,872
+
+    00000000000000000000000000000080   
+    // flags (u128): 170,141,183,460,469,231,731,687,303,715,884,105,728
+    ```
+
+    Remember that the values are Little Endian encoded. To convert the Hexidecimal Little Endian encoded values to decimal, you can use [this converter](https://www.shawntabrizi.com/substrate-js-utilities/){target=_blank}, using the `Balance to Hex (Little Endian)` converter.
+
+    In this example, the existing free balance of `1,278,606,392,142,175,328,676` wei or approximately `1278.60` DEV is `a4d92a6a4e6b3a5045`. The following example will change the value to `500,000` DEV, which is `500,000,000,000,000,000,000,000` wei or `0x000080d07666e70de169` encoded as a hexidecimal Little Endian value. When properly padded to fit into the SCALE encoded storage value, it becomes `69e10de76676d08000000000000000000`, such that the table now looks like:
+
+    ```
+    0x460c0000        // nonce (u32): 3,142 
+    02000000          // consumers (u32): 2
+    01000000          // providers (u32): 1  
+    06000000          // sufficients (u32): 6
+
+    69e10de76676d08000000000000000000
+    // free (u128): 500,000,000,000,000,000,000,000
+
+    40a556b0e032de1200000000000000000  
+    // reserved (u128): 348,052,500,000,000,000,000  
+
+    4083a09e15c74c1b01000000000000000  
+    // frozen (u128): 20,413,910,106,633,175,872
+
+    00000000000000000000000000000080   
+    // flags (u128): 170,141,183,460,469,231,731,687,303,715,884,105,728
+    ```
+
+    Therefore, the SCALE encoded override value is as follows:
+
+    `0x460c000002000000010000000600000069e10de76676d0800000000000000000040a556b0e032de12000000000000000004083a09e15c74c1b0100000000000000000000000000000000000000000000080`
+
+    You can now specify the SCALE encoded override value in your `state-overrides.json` file as follows:
+
+    ```json
+    [
+      {
+        "pallet": "System",
+        "storage": "Account",
+        "key": "0x3b939fead1557c741ff06492fd0127bd287a421e",
+        "value": "0x460c000002000000010000000600000069e10de76676d0800000000000000000040a556b0e032de12000000000000000004083a09e15c74c1b0100000000000000000000000000000000000000000000080"
+      }
+    ]
+    ```
+
+    To run lazy loading with the balance state override, you can use the following command: 
+
+    ```
+    --lazy-loading-remote-rpc 'INSERT-RPC-URL' --lazy-loading-state-overrides ./state-overrides.json
+    ```
+
+### Override an ERC-20 Token Balance
+
+To override an ERC-20 token balance, identify the storage slot in the EVM’s AccountStorages where the `balanceOf` data for the given token contract and account is stored. This storage slot is determined by the token contract’s H160 address and the corresponding H256 storage key. Once you have this slot, specify the new balance value in the `state-overrides.json` file to implement the override.
+
+In the example below, we override the token balance of the [Wormhole USDC Contract (`0x931715FEE2d06333043d11F658C8CE934aC61D0c`)](https://moonscan.io/address/0x931715FEE2d06333043d11F658C8CE934aC61D0c){target=\_blank} for the account `0x3b939fead1557c741ff06492fd0127bd287a421e` to $5,000 USDC. Since Wormhole USDC uses 6 decimal places, $5,000 corresponds to `5000000000` in integer form, which is `0x12a05f200` in hexadecimal.
+
+```json
+[
+  {
+    "pallet": "EVM",
+    "storage": "AccountStorages",
+    "key": [
+      "0x931715FEE2d06333043d11F658C8CE934aC61D0c",
+      "0x8c9902c0f94ae586c91ba539eb52087d3dd1578da91158308d79ff24a8d4f342"
+    ],
+    // Set whatever value you want here
+    "value": "0x000000000000000000000000000000000000000000000000000000012a05f200" 
+  }
+]
+```
+
+You can calculate the exact storage slot to override for your own account with the following script:
+
+```js
+import { ethers } from 'ethers';
+
+function getBalanceSlot(accountAddress) {
+    // Convert address to bytes32 and normalize
+    const addr = ethers.zeroPadValue(accountAddress, 32);
+    
+    // CAUTION! The storage slot used here is 5, which 
+    // is specific to Wormhole contracts 
+    // The storage slot index for other tokens may vary
+    const packedData = ethers.concat([
+        addr,
+        ethers.zeroPadValue(ethers.toBeHex(5), 32)
+    ]);
+    
+    // Calculate keccak256
+    return ethers.keccak256(packedData);
+}
+
+// Example usage
+const address = "INSERT-ADDRESS-HERE";
+console.log(getBalanceSlot(address));
+```
+
+You can apply the same process for other ERC-20 token contracts. The following sections demonstrate overrides for the `0x3B939FeaD1557C741Ff06492FD0127bd287A421e` account with various ERC-20 tokens. Remember to update the H160 token contract address whenever you switch to a different token. Also, you will need to recalculate the H256 storage slot for each distinct account whose balance you want to override.
+
+??? "Override Wormhole BTC Token Balance"
+
+    ```json
+    [
+      {
+        "pallet": "EVM",
+        "storage": "AccountStorages",
+        "key": [
+          "0xE57eBd2d67B462E9926e04a8e33f01cD0D64346D",
+          "0x8c9902c0f94ae586c91ba539eb52087d3dd1578da91158308d79ff24a8d4f342"
+        ],
+        // Set whatever value you want here
+        "value": "0x000000000000000000000000000000000000000000000000000000012a05f200" 
+      }
+    ]
+    ```
+
+??? "Override Wormhole ETH Token Balance"
+
+    ```json
+    [
+      {
+        "pallet": "EVM",
+        "storage": "AccountStorages",
+        "key": [
+          "0xab3f0245B83feB11d15AAffeFD7AD465a59817eD",
+          "0x8c9902c0f94ae586c91ba539eb52087d3dd1578da91158308d79ff24a8d4f342"
+        ],
+        // Set whatever value you want here
+        "value": "0x000000000000000000000000000000000000000000000000000000012a05f200" 
+      }
+    ]
+    ```
+
+??? "Override WELL Token Balance"
+
+    Because the [WELL token](https://moonbeam.moonscan.io/token/0x511ab53f793683763e5a8829738301368a2411e3){target=\_blank} does not use a proxy implementation contract, the storage slot calculation differs. Instead of slot `5`, the balance mapping resides at slot `1`. You can determine the exact storage slot to override the WELL token balance for your own account using the following script:
+
+    ```js
+    import { ethers } from 'ethers';
+
+    function getBalanceSlot(accountAddress) {
+        // Convert address to bytes32 and normalize
+        const addr = ethers.zeroPadValue(accountAddress, 32);
+        
+        // Caution! The storage slot index used here is 1
+        // The storage slot index for other tokens may vary
+        const packedData = ethers.concat([
+            addr,
+            ethers.zeroPadValue(ethers.toBeHex(1), 32)
+        ]);
+        
+        // Calculate keccak256
+        return ethers.keccak256(packedData);
+    }
+
+    // Example usage
+    const address = "INSERT-ADDRESS-HERE";
+    console.log(getBalanceSlot(address));
+    ```
+
+    Thus, the storage override would be:
+
+    ```json
+    [
+      {
+        "pallet": "EVM",
+        "storage": "AccountStorages",
+        "key": [
+          "0x511aB53F793683763E5a8829738301368a2411E3",
+          "0x728d3daf4878939a6bb58cbc263f39655bb57ea15db7daa0b306f3bf2c3f1227"
+        ],
+        // Set whatever value you want here
+        "value": "0x000000000000000000000000000000000000000000000000000000012a05f200" 
+      }
+    ]
+    ```
+
 ## Tracing RPC Endpoint Providers {: #tracing-providers }
 
 Tracing RPC endpoints allow you to access non-standard RPC methods, such as those that belong to Geth's `debug` and `txpool` APIs and OpenEthereum's `trace` module. To see a list of the supported non-standard RPC methods on Moonbeam for debugging and tracing, please refer to the [Debug API & Trace Module](/builders/ethereum/json-rpc/debug-trace/){target=\_blank} guide.

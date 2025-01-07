@@ -71,11 +71,11 @@ To start, your `hardhat.config.js` should resemble the following:
 ```js
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
-  solidity: '0.8.20',
+  solidity: '0.8.28',
 };
 ```
 
-For this example, you can leave the Solidity compiler version to `0.8.20`; however, if you are using a different contract that requires a newer version, don't forget to update the version here.
+For this example, you can leave the Solidity compiler version to `0.8.28`; however, if you are using a different contract that requires a newer version, don't forget to update the version here.
 
 Next, you'll need to modify your configuration file to add the network configurations for the network you want to deploy your contract to. For Moonbeam networks, you'll need to specify the following:
 
@@ -89,7 +89,7 @@ For this example, the network will be Moonbase Alpha, but you can modify the con
 
     ```js
     module.exports = {
-      solidity: '0.8.20',
+      solidity: '0.8.28',
       networks: {
         moonbeam: {
           url: '{{ networks.moonbeam.rpc_url }}', // Insert your RPC URL here
@@ -104,7 +104,7 @@ For this example, the network will be Moonbase Alpha, but you can modify the con
 
     ```js
     module.exports = {
-      solidity: '0.8.20',
+      solidity: '0.8.28',
       networks: {
         moonriver: {
           url: '{{ networks.moonriver.rpc_url }}', // Insert your RPC URL here
@@ -119,7 +119,7 @@ For this example, the network will be Moonbase Alpha, but you can modify the con
 
     ```js
     module.exports = {
-      solidity: '0.8.20',
+      solidity: '0.8.28',
       networks: {
         moonbase: {
           url: '{{ networks.moonbase.rpc_url }}', // Insert your RPC URL here
@@ -134,7 +134,7 @@ For this example, the network will be Moonbase Alpha, but you can modify the con
 
     ```js
     module.exports = {
-      solidity: '0.8.20',
+      solidity: '0.8.28',
       networks: {
         dev: {
           url: '{{ networks.development.rpc_url }}', // Insert your RPC URL here
@@ -172,7 +172,7 @@ require('@nomicfoundation/hardhat-ignition-ethers');
 const privateKey = 'INSERT_PRIVATE_KEY';
 
 module.exports = {
-  solidity: '0.8.20',
+  solidity: '0.8.28',
   networks: {
     moonbase: {
       url: 'https://rpc.api.moonbase.moonbeam.network',
@@ -321,10 +321,10 @@ Next, you can take the following steps, entering one line at a time:
     const Box = await ethers.getContractFactory('Box');
     ```
 
-2. Connect the local instance to the deployed contract, using the address of the contract
+2. Connect the local instance to the deployed contract, using the address of the contract shown in the prior step under **Deployed Addresses**
 
     ```js
-    const box = await Box.attach('0xfBD78CE8C9E1169851119754C4Ea2f70AB159289');
+    const box = await Box.attach('INSERT-CONTRACT-ADDRESS');
     ```
 
 3. Interact with the attached contract. For this example, you can call the `store` method and store a simple value
@@ -364,7 +364,7 @@ async function main() {
   const Box = await ethers.getContractFactory('Box');
 
   // Connect the instance to the deployed contract
-  const box = await Box.attach('0xfBD78CE8C9E1169851119754C4Ea2f70AB159289');
+  const box = await Box.attach('INSERT-CONTRACT-ADDRESS');
 
   // Store a new value
   await box.store(2);

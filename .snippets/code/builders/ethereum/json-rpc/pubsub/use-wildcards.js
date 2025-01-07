@@ -19,7 +19,7 @@ const main = async () => {
     }
   );
 
-  console.log("🕔 Subscrition set up. Waiting for new logs")
+  console.log("🕔 Subscription set up. Waiting for new logs")
 
   subscription.on('connected', function (subscriptionId) {
     console.log(subscriptionId);

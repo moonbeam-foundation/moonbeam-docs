@@ -110,7 +110,7 @@ interface XcmTransactorV3 {
     /// Transact through XCM using fee based on its multilocation through signed origins
     /// @custom:selector 27b1d492
     /// @dev No token is burnt before sending the message. The caller must ensure the destination
-    /// is able to undertand the DescendOrigin message, and create a unique account from which
+    /// is able to understand the DescendOrigin message, and create a unique account from which
     /// dispatch the call
     /// @param dest The destination chain (as multilocation) where to send the message
     /// @param feeLocation The asset multilocation that indentifies the fee payment currency
@@ -134,7 +134,7 @@ interface XcmTransactorV3 {
     /// Transact through XCM using fee based on its erc20 address through signed origins
     /// @custom:selector b18270cf
     /// @dev No token is burnt before sending the message. The caller must ensure the destination
-    /// is able to undertand the DescendOrigin message, and create a unique account from which
+    /// is able to understand the DescendOrigin message, and create a unique account from which
     /// dispatch the call
     /// @param dest The destination chain (as multilocation) where to send the message
     /// @param feeLocationAddress The ERC20 address of the token we want to use to pay for fees

@@ -277,6 +277,41 @@ There are a number of ways to add an account to the keyring instance, including 
     --8<-- 'code/builders/substrate/libraries/polkadot-js-api/adding-accounts-private-key.js'
     ```
 
+## Dry Run API  {: #dry-run-api }
+
+The Dry Run API is an easy and convenient way to test the integrity of a call without incurring any transaction fees. The Dry Run API can be accessed from the [Runtime Calls](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbeam.network#/runtime){target=\_blank} tab of the **Developer** section of Polkadot.js Apps. While primarily intended for the [testing of XCM messages](/builders/interoperability/xcm/send-execute-xcm/#test-an-xcm-message-with-the-dry-run-api){target=\_blank} , the Dry Run API can be used to test any arbitrary call. 
+
+This method takes the origin and call data as parameters and returns an execution result and additional event data. 
+
+```javascript
+const testAccount = api.createType(
+  'AccountId20',
+  '0x88bcE0b038eFFa09e58fE6d24fDe4b5Af21aa798'
+);
+const callData =
+  '0x030088bce0b038effa09e58fe6d24fde4b5af21aa79813000064a7b3b6e00d';
+const callDataU8a = hexToU8a(callData);
+
+const result = await api.call.dryRunApi.dryRunCall(
+  { system: { Signed: testAccount } },
+  callDataU8a
+);
+```
+
+??? code "View the complete script"
+
+    ```js
+    --8<-- 'code/builders/substrate/libraries/polkadot-js-api/dry-run.js'
+    ```
+
+Upon calling the Dry Run API, the method will tell you whether the call would be successful and returns the event data that would be emitted if the call were actually submitted on chain. You can view the initial output of the `dryRunCall` below.
+
+??? code "View the complete output"
+
+    ```json
+    --8<-- 'code/builders/substrate/libraries/polkadot-js-api/dry-run-result.json'
+    ```
+
 ## Send Transactions on Moonbeam  {: #transactions }
 
 Transaction endpoints are exposed on endpoints generally of the form `api.tx.<module>.<method>`, where the module and method decorations are generated through metadata. These allow you to submit transactions for inclusion in blocks, be it transfers, interacting with pallets, or anything else Moonbeam supports. You can see a list of all available endpoints by examining the `api.tx` object, for example via:

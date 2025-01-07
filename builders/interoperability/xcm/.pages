@@ -7,5 +7,5 @@ nav:
   - xc20
   - remote-execution
   - 'XCM SDK': 'https://moonbeam-foundation.github.io/xcm-sdk/latest/'
-  - 'Send & Execute XCM Messages': 'send-execute-xcm.md'
+  - 'Send, Execute, & Test XCMs': 'send-execute-xcm.md'
   - 'XCM Utilities': 'xcm-utils.md'

@@ -1,0 +1,13 @@
+Dry run XCM result: {
+  "ok": {
+    "executionResult": {
+      "ok": {
+        "actualWeight": null,
+        "paysFee": "Yes"
+      }
+    },
+    "emittedEvents": [],
+    "localXcm": null,
+
+      // Additional data returned here
+      // Omitted for clarity 

@@ -28,7 +28,7 @@ interface ParachainStaking {
     /// @return A boolean confirming whether the address is a collator candidate
     function isCandidate(address candidate) external view returns (bool);
 
-    /// @dev Check whether the specifies address is currently a part of the active set
+    /// @dev Check whether the specified address is currently a part of the active set
     /// @custom:selector 740d7d2a
     /// @param candidate the address that we want to confirm is a part of the active set
     /// @return A boolean confirming whether the address is a part of the active set

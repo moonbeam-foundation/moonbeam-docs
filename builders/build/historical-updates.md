@@ -464,21 +464,6 @@ For more information, you can review the [relative PR on GitHub](https://github.
 
 ---
 
-### EVM Pallet {: evm-pallet }
-
-#### EVM Contract Metadata
-
-A migration was introduced to automate the manual process of setting EVM contract metadata for contracts deployed more than two years ago that hadn't been interacted with after the introduction of metadata storage item. This migration replaces the need to manually call `createContractMetadata(address)` on these contracts to make them compatible with the current runtime. 
-
-This migration was executed at the following runtimes and blocks:
-
-|  Network  | Executed Runtime | Block Applied |
-|:---------:|:----------------:|:-------------:|
-| Moonbeam  |      RT3200      |    7985204    |
-| Moonriver |      RT3200      |    8519187    |
-
-***
-
 ### Moonbeam Orbiter Pallet {: #moonbeam-orbiter }
 
 #### Remove the Minimum Bond Requirement for Orbiter Collators {: #remove-orbiter-minimum-bond }
@@ -723,7 +708,9 @@ For more information, you can review the [relative PR on GitHub](https://github.
 
 ### Referenda Pallet {: #referenda-pallet }
 
-A migration was introduced to support refunds for Submission Deposits on closed referenda that updated the `ReferendumInfo` type. The following invariants of `ReferendumInfo` were changed so that the second parameter, `Deposit<AccountId, Balance>`, is now optional, `Option<Deposit<AccountId, Balance>>`: `Approved`, `Rejected`, `Cancelled`, and `TimedOut`.
+#### Refunds for Submission Deposits {: #refunds-for-submission-deposits }
+
+A migration was introduced to support refunds for submission deposits on closed referenda that updated the `ReferendumInfo` type. The following invariants of `ReferendumInfo` were changed so that the second parameter, `Deposit<AccountId, Balance>`, is now optional, `Option<Deposit<AccountId, Balance>>`: `Approved`, `Rejected`, `Cancelled`, and `TimedOut`.
 
 This stemmed from an upstream change to the [Substrate](https://github.com/paritytech/substrate/pull/12788){target=\_blank} repository.
 
@@ -738,6 +725,16 @@ This migration was executed at the following runtimes and blocks:
 For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/2134){target=\_blank}.
 
 ---
+
+#### Restore Corrupted Referenda Deposits {: restore-corrupted-referenda-deposits }
+
+A migration was introduced to support restoring referenda deposits affected by corrupted storage values. The issue arose when a migration was applied twice due to a pallet version error, resulting in invalid values and non-refundable submission deposits. As the number of values to correct was finite and small, this migration created a list to update them by hand.
+
+This migration was only applied to Moonbeam and was executed at the following runtimes and blocks:
+
+| Network  | Executed Runtime | Block Applied |
+|:--------:|:----------------:|:-------------:|
+| Moonbeam |      RT3100      |    7303601    |
 
 ### XCM-Related Pallets {: #xcm-related-pallets }
 

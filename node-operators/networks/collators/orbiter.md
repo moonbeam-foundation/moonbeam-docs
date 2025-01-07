@@ -7,7 +7,7 @@ description: Learn about the Moonbeam Orbiter Program for collators, including t
 
 ## Introduction {: #introduction }
 
-The Moonbeam Foundation is announcing a limited trial of the orbiter program. Similar to the [Kusama 1000 validators program](https://wiki.polkadot.network/docs/thousand-validators){target=\_blank}, this program allows collators to participate in the diversity and security of the network even if they do not have enough funds or backing to otherwise be in the active set. This program was developed with the input from the community.
+The Moonbeam Foundation is announcing a limited trial of the orbiter program. Similar to the [Kusama 1000 validators program](https://wiki.polkadot.network/docs/learn/thousand-validators){target=\_blank}, this program allows collators to participate in the diversity and security of the network even if they do not have enough funds or backing to otherwise be in the active set. This program was developed with the input from the community.
 
 The Moonbeam Foundation will maintain orbiter pools in the active set, and will assign authority to produce blocks to each of the members in the program, who are called orbiters. 
 
@@ -102,7 +102,7 @@ To join the orbiter program, you'll need to start by filling out an application 
     <a href="https://docs.google.com/forms/d/e/1FAIpQLSewdSAFgs0ZbgvlflmZbHrSpe6uH9HdXdGIL7i07AB2pFgxVQ/viewform" target="_blank" class="md-button">Moonbeam Orbiter Program Application</a>
 </div>
 
-Once you've passed identity verification and have been accepted into the program, you'll be notified and then the onboarding process will begin. New orbiters must run a Moonbase Alpha node for two weeks to be eligible to run a Moonriver node. Orbiters then must run a Moonriver node for four weeks to be elible to run a Moonbeam node. Once you are eligible, you are not required to run orbiters on any network. You can leave other networks at any time by [unregistering](#leaving-the-program) and you will receive your bond back. To join again on that network you will need to re-register and will be at the end of the queue.
+Once you've passed identity verification and have been accepted into the program, you'll be notified and then the onboarding process will begin. New orbiters must run a Moonbase Alpha node for two weeks to be eligible to run a Moonriver node. Orbiters then must run a Moonriver node for four weeks to be eligible to run a Moonbeam node. Once you are eligible, you are not required to run orbiters on any network. You can leave other networks at any time by [unregistering](#leaving-the-program) and you will receive your bond back. To join again on that network you will need to re-register and will be at the end of the queue.
 
 An outline of the onboarding process is as follows:
 
