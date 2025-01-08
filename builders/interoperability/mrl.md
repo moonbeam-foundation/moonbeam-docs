@@ -69,7 +69,7 @@ The reason for batching is to offer a one-click solution. Nevertheless, for now,
 - Local XC-20s (XCM-enabled ERC-20s) can't be used to pay for XCM execution on Moonbeam. This was a design decision, as it was preferred to treat them as ERC-20s and utilize the native `transfer` function of the ERC-20 interface. Consequently, XCM instructions handling the XC-20s are only limited to moving funds from one account to another and don't understand the Holding Register that is inherent to the XCM flow
 - Currently, XCM-related pallets limit XCM messages' ability to send tokens with different reserve chains. Consequently, you can't send an XC-20 and set the fee token to be the native parachain token
 
-In the future, the [X-Tokens Pallet](/builders/interoperability/xcm/xc20/send-xc20s/xtokens-pallet/){target=\_blank} will be updated, allowing your native gas currency to be used as a fee token instead. Parachains using a different pallet must implement their own solution to transfer reserve and non-reserve assets in a single message.
+Note that as of late 2024, the XTokens precompile now uses the PolkadotXCM pallet under the hood, replacing the XTokens pallet. Parachains using a different pallet must implement their own solution to transfer reserve and non-reserve assets in a single message.
 
 As an example, a brief overview of the entire process of sending MRL tokens from a parachain back through Wormhole to a destination chain is as follows:
 
@@ -158,7 +158,7 @@ You can begin to tackle the `xTokens.transferMultiassets` extrinsic, which accep
 - `dest` - a multilocation that defines the Computed Origin account that you calculated in the previous section on Moonbase Alpha
 - `destWeightLimit` - the weight to be purchased to pay for XCM execution on the destination chain
 
-You can find more information on each parameter in the [X-Tokens Pallet Interface](/builders/interoperability/xcm/xc20/send-xc20s/xtokens-pallet/#x-tokens-pallet-interface){target=\_blank} documentation.
+You can find more information on each parameter in the [X-Tokens Precompile page](/builders/interoperability/xcm/xc20/send-xc20s/xtokens-precompile/#xtokens-solidity-interface){target=\_blank} documentation.
 
 In the `build-transfer-multiassets-call.js` file, you'll build the `xTokens.transferMultiassets` extrinsic and export it.
 
