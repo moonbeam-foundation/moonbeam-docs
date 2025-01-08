@@ -69,7 +69,7 @@ In addition, ERC-20s that are deployed to Moonbeam can be sent to other chains i
 
 ![Moonbeam XC-20 XCM Integration With Polkadot](/images/builders/interoperability/xcm/overview/overview-3.webp)
 
-To send XC-20s across the Polkadot ecosystem from Moonbeam, developers need to use the [PolkadotXCM Pallet](/builders/interoperability/xcm/xc20/send-xc20s/xcm-pallet/){target=\_blank} for transfers via the Substrate API and the [X-Tokens Precompile](/builders/interoperability/xcm/xc20/send-xc20s/xtokens-precompile/){target=\_blank} for transfers via the Ethereum API.
+To send XC-20s across the Polkadot ecosystem from Moonbeam, developers need to use the [PolkadotXCM Pallet](/builders/interoperability/xcm/xc20/send-xc20s/xcm-pallet/){target=\_blank} for transfers via the Substrate API and the [X-Tokens Precompile](/builders/interoperability/xcm/xc20/send-xc20s/xtokens-precompile/){target=\_blank} or the [XCM Precompile](/builders/interoperability/xcm/xc20/send-xc20s/eth-api/){target=\_blank} for transfers via the Ethereum API.
 
 Another unique feature of Moonbeam is the ability to initiate XCM actions from EVM smart contracts or to call its EVM through XCM messages via remote execution. This unlocks a new set of possibilities, where contracts on Moonbeam can access parachain-specific functionalities via XCM, or other parachain ecosystems can use EVM smart contracts on Moonbeam to expand their functions.
 
