@@ -1,4 +1,4 @@
-To match the Substrate standard, Moonbeam collator's session keys are [SR25519](https://wiki.polkadot.network/docs/learn-keys#what-is-sr25519-and-where-did-it-come-from){target=\_blank}. This guide will show you how you can create/rotate your session keys associated with your collator node.
+To match the Substrate standard, Moonbeam collator's session keys are [SR25519](https://wiki.polkadot.network/docs/learn-cryptography#what-is-sr25519-and-where-did-it-come-from){target=\_blank}. This guide will show you how you can create/rotate your session keys associated with your collator node.
 
 First, make sure you're [running a collator node](/node-operators/networks/run-a-node/overview/){target=\_blank}. Once you have your collator node running, your terminal should print similar logs:
 
