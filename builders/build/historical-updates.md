@@ -473,7 +473,7 @@ This migration was executed at the following runtimes and blocks:
 |  Network  | Executed Runtime | Block Applied |
 |:---------:|:----------------:|:-------------:|
 | Moonbeam  |      RT3200      |    7985204    |
-| Moonriver |      RT3200      |    8519186    |
+| Moonriver |      RT3200      |    8519187    |
 
 ---
 
