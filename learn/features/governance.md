@@ -47,10 +47,10 @@ This section will cover everything you need to know about OpenGov on Moonbeam.
 
 ### General Definitions {: #general-definitions-gov2 }
 
---8<-- 'text/learn/features/governance/proposal-definitions.md'
-
---8<-- 'text/learn/features/governance/preimage-definitions.md'
-
+ - **Proposal** — an action or item, defined by the preimage hash, being proposed by a token holder and open for consideration and discussion by token holders
+ - **Referendum** — a proposal that is up for token-holder voting. Each referendum is tied to a specific proposal for a change to the Moonbeam system including values for key parameters, code upgrades, or changes to the governance system itself
+ - **Preimage hash** — hash of the proposal to be enacted. The first step to make a proposal is to submit a preimage. The hash is just its identifier. The proposer of the preimage can be different than the user that proposes that preimage as a formal proposal
+ - **Preimage deposit** — amount of tokens that the proposer needs to bond when submitting a preimage. It is calculated as the sum of a base deposit per network plus a fee per byte of the preimage being proposed
  - **Origin** - an authorization-based dispatch source for an operation, which is used to determine the Track that a referendum is posted under
  - **Track** - an Origin-specific pipeline that outlines the life cycle of proposals. Currently, there are five Tracks:
 
@@ -63,18 +63,23 @@ This section will cover everything you need to know about OpenGov on Moonbeam.
     |  Emergency Killer   |       For killing of bad/malicious referendum. Decision Deposit is slashed       |                         Malicious referendum                         |
     | Fast General Admin  |                      For faster general on-chain decisions                       |                       HRMP channel management                        |
 
---8<-- 'text/learn/features/governance/vote-conviction-definitions.md'
+    Tracks have different criteria parameters that are proportional to their level of Origin class. For example, more dangerous and privileged referenda will have more safeguards, higher thresholds, and longer consideration periods for approval. Please refer to the [Governance Parameters](#governance-parameters-v2) section for more information.
 
---8<-- 'text/learn/features/governance/approval-support-definitions.md'
-
---8<-- 'text/learn/features/governance/lead-in-definitions.md'
-    Please refer to the [Governance Parameters](#governance-parameters-v2) section for more information
-
+ - **Voting** — a mechanism for token holders to support (Aye), oppose (Nay), or remain neutral (Abstain) on a proposal. For Aye and Nay, the voting weight is determined by both the number of tokens locked and the lock duration (Conviction). Abstain votes do not receive additional weighting.
+    - **Conviction** — the time that token holders voluntarily lock their tokens when voting; the longer they are locked, the more weight their vote has
+    - **Lock balance** — the number of tokens that a user commits to a vote (note, this is not the same as a user's total account balance)
+    Moonbeam uses the concept of voluntary locking, which allows token holders to increase their voting power by locking tokens for a longer period of time. Specifying no Lock Period means a user's vote is valued at 10% of their lock balance. Specifying a greater Conviction increases voting power. For each increase in Conviction (vote multiplier), the Lock Periods double
+ - **Approval** — minimum "Aye" votes as a percentage of overall Conviction-weighted votes needed for approval
+ - **Support** — the minimum portion of Aye and Abstain votes (ignoring conviction) needed as a percentage of the total active supply for a proposal to pass. Nay votes do not count toward Support
+ - **Lead-in Period** — the initial proposal voting and discussion period. At this stage, proposals are in an undecided state until they pass some criteria for the given Track. The criteria include:
+    - **Prepare Period** — the minimum time the referendum needs to wait before it can progress to the next phase after submission
+    - **Capacity** — limit for the number of referenda on a given Track that can be decided at once
+    - **Decision Deposit** — the minimum deposit amount required for a referendum to progress to the decision phase after the end of the Lead-in Period. Since each Track has a defined Capacity, this deposit is larger than the submission deposit, and its goal is to mitigate spam. 
  - **Decide Period** - token holders continue to vote on the referendum. If a referendum does not pass by the end of the period, it will be rejected, and the Decision Deposit will be refunded
  - **Confirm Period** - a period of time within the Decide Period where the referendum needs to have maintained enough Approval and Support to be approved and move to the Enactment Period
  - **Enactment Period** - a specified time, which is defined at the time the proposal was created, that an approved referendum waits before it can be dispatched. There is a minimum amount of time for each Track
-
---8<-- 'text/learn/features/governance/delegation-definitions.md'
+ - **Vote Delegation** — a voter can give their voting power, including Conviction voting, to another token holder (delegate), who may be more knowledgeable and able to make specific decisions
+ - **Multirole Delegation** — the ability to delegate voting power on a Track-by-Track basis, where a token holder can specify different delegates for each Track
 
 ### Governance Parameters {: #governance-parameters-v2 }
 
