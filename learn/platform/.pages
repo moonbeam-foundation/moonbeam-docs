@@ -4,6 +4,7 @@ nav:
   - networks
   - 'Vision': 'vision.md'
   - 'Why Polkadot': 'why-polkadot.md'
+  - 'Substrate': 'substrate.md'
   - 'Technology & Architecture': 'technology.md'
   - 'Tokens': 'tokens.md'
   - 'Source Code': 'code.md'
