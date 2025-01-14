@@ -63,13 +63,14 @@ This section will cover everything you need to know about OpenGov on Moonbeam.
     |  Emergency Killer   |       For killing of bad/malicious referendum. Decision Deposit is slashed       |                         Malicious referendum                         |
     | Fast General Admin  |                      For faster general on-chain decisions                       |                       HRMP channel management                        |
 
+Tracks have different criteria parameters that are proportional to their level of Origin class. For example, more dangerous and privileged referenda will have more safeguards, higher thresholds, and longer consideration periods for approval. Please refer to the [Governance Parameters](#governance-parameters-v2) section for more information.
+
 --8<-- 'text/learn/features/governance/vote-conviction-definitions.md'
 
 --8<-- 'text/learn/features/governance/approval-support-definitions.md'
 
 --8<-- 'text/learn/features/governance/lead-in-definitions.md'
-    Please refer to the [Governance Parameters](#governance-parameters-v2) section for more information
-
+    
  - **Decide Period** - token holders continue to vote on the referendum. If a referendum does not pass by the end of the period, it will be rejected, and the Decision Deposit will be refunded
  - **Confirm Period** - a period of time within the Decide Period where the referendum needs to have maintained enough Approval and Support to be approved and move to the Enactment Period
  - **Enactment Period** - a specified time, which is defined at the time the proposal was created, that an approved referendum waits before it can be dispatched. There is a minimum amount of time for each Track
