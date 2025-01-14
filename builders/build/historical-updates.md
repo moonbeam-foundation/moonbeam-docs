@@ -464,6 +464,19 @@ For more information, you can review the [relative PR on GitHub](https://github.
 
 ---
 
+### EVM Pallet {: evm-pallet }
+#### EVM Contract Metadata
+A migration was introduced to automate the manual process of setting EVM contract metadata for contracts deployed more than two years ago that hadn't been interacted with after the introduction of metadata storage item. This migration replaces the need to manually call `createContractMetadata(address)` on these contracts to make them compatible with the current runtime. 
+
+This migration was executed at the following runtimes and blocks:
+
+|  Network  | Executed Runtime | Block Applied |
+|:---------:|:----------------:|:-------------:|
+| Moonbeam  |      RT3200      |    7985204    |
+| Moonriver |      RT3200      |    8519187    |
+
+---
+
 ### Moonbeam Orbiter Pallet {: #moonbeam-orbiter }
 
 #### Remove the Minimum Bond Requirement for Orbiter Collators {: #remove-orbiter-minimum-bond }
