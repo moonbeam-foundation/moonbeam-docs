@@ -213,7 +213,7 @@ Now that you know the weight costs for database reads and writes for Moonbase Al
 
 For example, the `WithdrawAsset` instruction is part of the fungible XCM instructions. Therefore, it is not benchmarked, and the total weight cost of the [`WithdrawAsset` instruction](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbase.spec_version }}/pallets/moonbeam-xcm-benchmarks/src/weights/fungible.rs#L36){target=\_blank} is `{{ xcm.fungible_weights.display }}`, except for when transferring local XC-20s. The total weight cost for the `WithdrawAsset` instruction for local XC-20s is based on a conversion of Ethereum gas to Substrate weight.
 
-The [`BuyExecution` instruction](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbase.spec_version }}/pallets/moonbeam-xcm-benchmarks/src/weights/generic.rs#L128-L129){target=\_blank} has a base weight of `{{ xcm.generic_weights.ref_time.buy_exec.base_weight.display }}`, and performs four database reads (`assetManager` pallet to get the `unitsPerSecond`). Therefore, the total weight cost of the `BuyExecution` instruction is calculated as follows:
+The [`BuyExecution` instruction](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbase.spec_version }}/pallets/moonbeam-xcm-benchmarks/src/weights/generic.rs#L128-L129){target=\_blank} has a base weight of `{{ xcm.generic_weights.ref_time.buy_exec.base_weight.display }}`, and performs four database reads. Therefore, the total weight cost of the `BuyExecution` instruction is calculated as follows:
 
 ```text
 {{ xcm.generic_weights.ref_time.buy_exec.base_weight.numbers_only }} + 4 * {{ xcm.db_weights.rocksdb_read.numbers_only }} = {{ xcm.generic_weights.ref_time.buy_exec.total_weight.numbers_only }}
