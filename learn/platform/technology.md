@@ -15,7 +15,7 @@ Rust is a good language for implementing a blockchain. It is highly performant l
 
 ### Substrate Framework {: #substrate-framework }
 
-Substrate provides a rich set of tools for creating blockchains, including a runtime execution environment that enables a generic state transition function and a pluggable set of modules (pallets) that implement various blockchain subsystems. By using Substrate, Moonbeam can integrate with the Polkadot relay chain to become a parachain, which enables:
+Substrate provides a rich set of tools for creating blockchains, including a runtime execution environment that enables a generic state transition function and a pluggable set of modules (pallets) that implement various blockchain subsystems. By using Substrate, Moonbeam can leverage a number of key features offered to parachains launched on the Polkadot Relay Chain, including:
 
 - **Shared security** — Polkadot's validators secure all parachains  
 - **Cross-Consensus Messaging (XCM)** — native interoperability with other parachains  
@@ -96,8 +96,7 @@ When a user submits a raw Ethereum transaction, it converts into a Substrate tra
 
 The [EVM pallet](https://polkadot-evm.github.io/frontier/frame/ethereum.html){target=\_blank} implements a sandboxed virtual stack machine and uses the [SputnikVM](https://github.com/rust-ethereum/evm){target=\_blank} as the underlying EVM engine. It executes Ethereum smart contract bytecode in a manner similar to Ethereum mainnet, including gas metering and state changes.
 
-Moonbeam uses **unified accounts**, meaning an H160 (Ethereum-style) address is also a valid Substrate address, so you only need a single account to interact with the Substrate runtime and the EVM. Once a balance exists in the EVM, smart contracts can be created and interacted with through standard Ethereum RPC calls.  
-
+Moonbeam uses unified accounts, meaning an H160 (Ethereum-style) address is also a valid Substrate address, so you only need a single account to interact with the Substrate runtime and the EVM. Once a balance exists in the EVM, smart contracts can be created and interacted with through standard Ethereum RPC calls.  
 The EVM pallet should produce nearly identical execution results to Ethereum, such as gas cost and balance changes. However, there are some differences. Please refer to the [EVM module vs Ethereum network](https://polkadot-evm.github.io/frontier/frame/evm.html#evm-module-vs-ethereum-network){target=\_blank} section of the Frontier EVM Pallet documentation for more information. Although the EVM pallet aims for near-identical behavior to Ethereum, some differences exist, for example, Moonbeam’s [dynamic fee mechanism](https://forum.moonbeam.network/t/proposal-dynamic-fee-mechanism-for-moonbeam-and-moonriver/241){target=\_blank}For more information, refer to the [Frontier EVM Pallet documentation](https://polkadot-evm.github.io/frontier/frame/evm.html#evm-module-vs-ethereum-network){target=\_blank}.
 
 Moonbeam also includes additional EVM precompiles for functionalities like cryptographic operations (ECRecover, SHA256, BLAKE2, BN128) and dispatching Substrate calls directly from within the EVM. Moonbeam uses the following EVM precompiles:
@@ -117,4 +116,4 @@ While Substrate allows developers to create blockchains, one of its biggest adva
 
 A relay chain is a central chain that connects several blockchains, known as parachains. Each parachain is a distinct blockchain with its own runtime and state, but all are connected to and secured by the relay chain. Once connected, parachains can communicate via [Cross-Consensus Messaging (XCM)](/builders/interoperability/xcm/overview/){target=_blank} to exchange information and conduct transactions in the same language, enabling a wide range of interoperable applications.  
 
-Moonbeam’s networks have established or planned XCM connections with various parachains. You can view upcoming XCM integrations in the [XCM section of the Moonbeam forum](https://forum.moonbeam.network/c/xcm-hrmp/13){target=_blank}.
+Moonbeam and Moonriver have established XCM connections with a large number of parachains. You can see a visualization of all XCM integrations in this [XCM Channel Viewer](https://dotsama-channels.vercel.app/#/){target=_blank}.
