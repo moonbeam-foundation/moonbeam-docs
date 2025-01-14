@@ -15,7 +15,7 @@ Rust is a good language for implementing a blockchain. It is highly performant l
 
 ### Substrate Framework {: #substrate-framework }
 
-Substrate provides a rich set of tools for creating blockchains, including a runtime execution environment that enables a generic state transition function and a pluggable set of modules (pallets) that implement various blockchain subsystems. By using Substrate, Moonbeam can leverage a number of key features offered to parachains launched on the Polkadot Relay Chain, including:
+Substrate provides a rich set of tools for creating blockchains, including a runtime execution environment that enables a generic state transition function and a pluggable set of modules (pallets) that implement various blockchain subsystems. By using Substrate, Moonbeam can leverage several key features offered to parachains launched on the Polkadot Relay Chain, including:
 
 - **Shared security** — Polkadot's validators secure all parachains  
 - **Cross-Consensus Messaging (XCM)** — native interoperability with other parachains  
@@ -32,7 +32,7 @@ Pallets are at the heart of Substrate-based chains, providing specific functiona
 
 In addition to these pallets provided by Polkadot’s Substrate, developers can [create their own pallets](https://docs.substrate.io/tutorials/collectibles-workshop/03-create-pallet){target=_blank} to add custom functionality. Moonbeam leverages multiple existing Substrate frame pallets as well as several custom pallets for features such as cross-chain token integration, the [Orbiter Program](/node-operators/networks/collators/orbiter/){target=_blank}, and more. You can find the Moonbeam runtime (built using Substrate) and related pallets in the [Moonbeam GitHub repository](https://github.com/moonbeam-foundation/moonbeam){target=_blank}.
 
-Moonbeam also uses the Cumulus library to provide integration to the Polkadot relay chain.
+Moonbeam also uses the Cumulus library to facilitate integration with the Polkadot relay chain.
 
 ### Frontier: Substrate's Ethereum Compatibility Layer {: #frontier }
 
@@ -74,23 +74,23 @@ One of the best things about developing on Polkadot with Substrate is the abilit
 
 Substrate takes a different approach by separating the blockchain’s state (data) from its logic (rules). Logic lives in the runtime, which is itself stored on-chain. Whenever a new runtime is uploaded (via FRAME’s `set_code` call) and approved through on-chain governance, all nodes automatically switch to the new runtime at a specified block. This process is seamless and does not split the network.  
 
-Moonbeam regularly uses forkless upgrades to add features or fixes without requiring node operators to manually upgrade their software. You can keep track of and discuss upcoming Moonbeam upgrades on the [Moonbeam forum](https://forum.moonbeam.network){target=_blank}.
+Moonbeam regularly uses forkless upgrades to add features or fixes without requiring node operators to upgrade their software manually. You can keep track of and discuss upcoming Moonbeam upgrades on the [Moonbeam forum](https://forum.moonbeam.network){target=_blank}.
 
 ## Ethereum Compatibility Architecture {: #ethereum-compatibility-architecture }
 
-Smart contracts on Moonbeam can be implemented using Solidity, Vyper, and any other language that can compile smart contracts to EVM-compatible bytecode. Moonbeam aims to provide a low-friction and secure environment for the development, testing, and execution of smart contracts, while remaining compatible with the existing Ethereum developer toolchain.
+Smart contracts on Moonbeam can be implemented using Solidity, Vyper, and any other language that compiles smart contracts to EVM-compatible bytecode. Moonbeam aims to provide a low-friction and secure environment for the development, testing, and execution of smart contracts while remaining compatible with the existing Ethereum developer toolchain.
 
 The execution behavior and semantics of Moonbeam-based smart contracts strive to be as close as possible to Ethereum Layer 1. Moonbeam is a single shard, so cross-contract calls have the same synchronous execution semantics as on Ethereum Layer 1.
 
 ![Diagram showing the interactions made possible through Moonbeam's Ethereum compatibility](/images/learn/platform/technology-diagram.webp)
 
-A high-level interaction flow is shown above. A Web3 RPC call from a DApp or existing Ethereum developer tool, such as Hardhat, is received by a Moonbeam node. The node has both Web3 RPCs and Substrate RPCs available, meaning you can use Ethereum or Substrate tools when interacting with a Moonbeam node. These RPC calls are handled by associated Substrate runtime functions. The Substrate runtime checks signatures and handles any extrinsics. Smart contract calls are ultimately passed to the EVM to execute the state transitions.
+A high-level interaction flow is shown above. A Web3 RPC call from a DApp or existing Ethereum developer tool, such as Hardhat, is received by a Moonbeam node. The node has both Web3 RPCs and Substrate RPCs available, meaning you can use Ethereum or Substrate tools when interacting with a Moonbeam node. Associated Substrate runtime functions handle these RPC calls. The Substrate runtime checks signatures and handles any extrinsics. Smart contract calls are ultimately passed to the EVM to execute the state transitions.
 
 ### Ethereum Pallet {: #ethereum-pallet}
 
 The [Ethereum pallet](https://polkadot-evm.github.io/frontier/frame/ethereum.html){target=\_blank} is responsible for handling blocks and transaction receipts and statuses. It enables sending and receiving Ethereum-formatted data to and from Moonbeam by storing an Ethereum-style block and its associated transaction hashes in the Substrate runtime.
 
-When a user submits a raw Ethereum transaction, it converts into a Substrate transaction through the Ethereum pallet’s `transact` extrinsic. Using the Ethereum pallet as the sole executor of the EVM pallet forces all of the data to be stored and transacted in an Ethereum-compatible way, which is how explorers like [Moonscan](/builders/get-started/explorers/#moonscan){target=\_blank} (built by Etherscan) can index block data.
+When a user submits a raw Ethereum transaction, it converts into a Substrate transaction through the Ethereum pallet’s `transact` extrinsic—using the Ethereum pallet as the sole executor of the EVM pallet forces all of the data to be stored and transacted in an Ethereum-compatible way, which is how explorers like [Moonscan](/builders/get-started/explorers/#moonscan){target=\_blank} (built by Etherscan) can index block data.
 
 ### EVM Pallet {: #evm-pallet }
 
@@ -99,7 +99,7 @@ The [EVM pallet](https://polkadot-evm.github.io/frontier/frame/ethereum.html){ta
 Moonbeam uses unified accounts, meaning an H160 (Ethereum-style) address is also a valid Substrate address, so you only need a single account to interact with the Substrate runtime and the EVM. Once a balance exists in the EVM, smart contracts can be created and interacted with through standard Ethereum RPC calls.  
 The EVM pallet should produce nearly identical execution results to Ethereum, such as gas cost and balance changes. However, there are some differences. Please refer to the [EVM module vs Ethereum network](https://polkadot-evm.github.io/frontier/frame/evm.html#evm-module-vs-ethereum-network){target=\_blank} section of the Frontier EVM Pallet documentation for more information. Although the EVM pallet aims for near-identical behavior to Ethereum, some differences exist, for example, Moonbeam’s [dynamic fee mechanism](https://forum.moonbeam.network/t/proposal-dynamic-fee-mechanism-for-moonbeam-and-moonriver/241){target=\_blank}For more information, refer to the [Frontier EVM Pallet documentation](https://polkadot-evm.github.io/frontier/frame/evm.html#evm-module-vs-ethereum-network){target=\_blank}.
 
-Moonbeam also includes additional EVM precompiles for functionalities like cryptographic operations (ECRecover, SHA256, BLAKE2, BN128) and dispatching Substrate calls directly from within the EVM. Moonbeam uses the following EVM precompiles:
+Moonbeam includes additional EVM precompiles for functionalities like cryptographic operations (ECRecover, SHA256, BLAKE2, BN128) and dispatching Substrate calls directly from within the EVM. Moonbeam uses the following EVM precompiles:
 
 - **[pallet-evm-precompile-simple](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm_precompile_simple){target=\_blank}** - includes five basic precompiles: ECRecover, ECRecoverPublicKey, Identity, RIPEMD160, SHA256
 - **[pallet-evm-precompile-blake2](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm_precompile_blake2/struct.Blake2F.html){target=\_blank}** - includes the BLAKE2 precompile
@@ -112,8 +112,8 @@ You can find an overview of most of these precompiles on the [Ethereum MainNet P
 
 ## Native Interoperability {: #native-interoperability }
 
-While Substrate allows developers to create blockchains, one of its biggest advantages is that it supports integration for native interoperability through relay chains like Polkadot and Kusama.  
+While Substrate allows developers to create blockchains, one of its most significant advantages is that it supports integration for native interoperability through relay chains like Polkadot and Kusama.  
 
-A relay chain is a central chain that connects several blockchains, known as parachains. Each parachain is a distinct blockchain with its own runtime and state, but all are connected to and secured by the relay chain. Once connected, parachains can communicate via [Cross-Consensus Messaging (XCM)](/builders/interoperability/xcm/overview/){target=_blank} to exchange information and conduct transactions in the same language, enabling a wide range of interoperable applications.  
+A relay chain is a central chain that connects several blockchains, known as parachains. Each parachain is a distinct blockchain with its runtime and state, but all are connected to and secured by the relay chain. Once connected, parachains can communicate via [Cross-Consensus Messaging (XCM)](/builders/interoperability/xcm/overview/){target=_blank} to exchange information and conduct transactions in the same language, enabling a wide range of interoperable applications.  
 
 Moonbeam and Moonriver have established XCM connections with a large number of parachains. You can see a visualization of all XCM integrations in this [XCM Channel Viewer](https://dotsama-channels.vercel.app/#/){target=_blank}.
