@@ -1,0 +1,2 @@
+ - **Approval** — minimum "Aye" votes as a percentage of overall Conviction-weighted votes needed for approval
+ - **Support** — the minimum portion of Aye and Abstain votes (ignoring conviction) needed as a percentage of the total active supply for a proposal to pass. Nay votes do not count toward Support
