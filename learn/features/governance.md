@@ -284,7 +284,7 @@ The Approval and Support percentages can be calculated using the following:
 === "Support"
 
     ```text
-    Support = 100 * ( Total non-Conviction-weighted votes / Total supply )
+    Support = 100 * ( Total Aye + Abstain votes, ignoring conviction / Total supply )
     ```
 
 ### Proposal Cancellations {: #proposal-cancellations }
