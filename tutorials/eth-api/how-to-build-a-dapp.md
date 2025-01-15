@@ -327,7 +327,7 @@ npm run start
 !!! note
     At this point, you may see a couple compilation warnings, but as we continue to build the DApp, we'll make changes that will resolve the warnings.
 
-Your frontend will be available at [localhost:3000](http://localhost:3000){target=\_blank}.
+Your frontend will be available at `http://localhost:3000`.
 
 At this point, our frontend project is set up well enough to start working on the functional code!  
 

@@ -31,7 +31,7 @@ Later on in this guide, you have the option of deploying your project to a local
 
 To get started, you'll need to [create a SubQuery project](https://academy.subquery.network/quickstart/quickstart.html){target=\_blank}:
 
-1. Globally install the [SubQuery CLI](https://academy.subquery.network/run_publish/cli.html){target=\_blank}:
+1. Globally install the [SubQuery CLI](https://academy.subquery.network/indexer/quickstart/quickstart.html#_1-install-the-subquery-cli){target=\_blank}:
 
     === "npm"
 
@@ -44,6 +44,9 @@ To get started, you'll need to [create a SubQuery project](https://academy.subqu
         ```bash
         yarn global add @subql/cli
         ```    
+
+!!! note
+    Using yarn to install `@subql/cli` is discouraged due to its poor dependency management, which can result in various errors.
 
 2. Initialize your SubQuery project using the following command:
 
@@ -368,13 +371,13 @@ To run your indexer locally using Docker, you can take the following steps:
 
     ![The terminal output after starting up the Docker container for your project.](/images/builders/integrations/indexers/subquery/new/subquery-7.webp)
 
-3. Head to [localhost:3000](http://localhost:3000){target=\_blank} to open the GraphQL playground and submit queries. You can open up the **DOCS** or **SCHEMA** tab on the playground as a reference when creating your queries
+3. Head to `http://localhost:3000` to open the GraphQL playground and submit queries. You can open up the **DOCS** or **SCHEMA** tab on the playground as a reference when creating your queries
 
     !!! note
         It may take a few minutes before the GraphQL server is ready. You'll be able to access the playground after you see the following log:
 
         ```bash
-        substrate-demo-graphql-engine-1  | <subql-query> INFO Started playground at http://localhost:3000 
+        substrate-demo-graphql-engine-1  | <subql-query> INFO Started playground at `http://localhost:3000`
         ```
 
     ![The GraphQL playground in the browser.](/images/builders/integrations/indexers/subquery/new/subquery-8.webp)

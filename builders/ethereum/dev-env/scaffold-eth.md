@@ -267,7 +267,7 @@ yarn start
 
 --8<-- 'code/builders/ethereum/dev-env/scaffold-eth/terminal/start.md'
 
-This will launch the React-based DApp frontend at [http://localhost:3000/](http://localhost:3000){target=\_blank} by default. You can then point your browser to [http://localhost:3000/](http://localhost:3000){target=\_blank} and interact with the React frontend by connecting your wallet or checking out the contract debugger page.
+This will launch the React-based DApp frontend at `http://localhost:3000/` by default. You can then point your browser to `http://localhost:3000/` and interact with the React frontend by connecting your wallet or checking out the contract debugger page.
 
 ![The frontend of the DApp on the browser.](/images/builders/ethereum/dev-env/scaffold-eth/new/scaffold-eth-1.webp)
 
