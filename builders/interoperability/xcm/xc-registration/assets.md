@@ -359,3 +359,7 @@ You can update the multilocation of an asset with the `evmForeignAssets.changeXc
 ### Freezing a Foreign Asset {: #freezing-a--foreign-asset }
 
 You can freeze a foreign asset by calling `evmForeignAssets.freezeForeignAsset`, which takes as parameters the `assetId` and an `allowXcmDeposit` boolean. If set to true, XCM deposits from remote chains will still be allowed and mint tokens. If set to false, XCM deposits from remote chains will fail as no minting will be permitted. 
+
+### Paying XCM Fees with Foreign Assets {: #paying-xcm-fees-with-foreign-assets }
+
+After you've registered the foreign asset via the `evmForeignAssets` and the `xcmWeightTrader` pallet, your asset will now be among the supported assets for paying XCM fees. To verify, you can query the `xcmWeightTrader` pallet and the `supportedAssets` chain state query. Toggle the **Include Option** slider off to see the complete list, or, you can filter the list by the multilocation of your asset. 
