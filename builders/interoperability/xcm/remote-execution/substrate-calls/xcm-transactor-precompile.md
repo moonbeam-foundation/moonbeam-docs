@@ -358,7 +358,7 @@ You can calculate the relative price with a script in the [XCM Tools repo](https
     --8<-- 'code/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-pallet/calculate-relative-price.ts'
     ```
 
-Note that the relative price value is related to the cost estimated in the [Relay Chain XCM Fee Calculation](/builders/interoperability/xcm/core-concepts/weights-fees/#polkadot){target=\_blank} section or to the one shown in the [Units per weight](/builders/interoperability/xcm/core-concepts/weights-fees/#moonbeam-reserve-assets){target=\_blank} section if the target is another parachain. You'll need to find the correct value to ensure that the amount of tokens the Computed Origin account holds is correct. Calculating the associated XCM execution fee is as simple as multiplying the `transactExtraWeightSigned` times the `relativePrice` (for an estimation):
+Note that the relative price value is related to the cost estimated in the [relay chain XCM fee calculation](/builders/interoperability/xcm/core-concepts/weights-fees/#polkadot){target=\_blank} section or to the one shown in the [units per weight](/builders/interoperability/xcm/core-concepts/weights-fees/#moonbeam-reserve-assets){target=\_blank} section if the target is another parachain. You'll need to find the correct value to ensure that the amount of tokens the Computed Origin account holds is correct. Calculating the associated XCM execution fee is as simple as multiplying the `transactExtraWeightSigned` times the `relativePrice` (for an estimation):
 
 ```text
 XCM-Wei-Token-Cost = transactExtraWeightSigned * relativePrice
