@@ -23,7 +23,7 @@ This page covers the fundamentals of XCM remote transfers. If you want to learn 
 
 The X-Tokens Pallet and X-Tokens Precompile make it easy to send assets cross-chain by abstracting away the process of building the XCM message for the transfer. This guide aims to fill in some knowledge gaps about the abstracted logic, in particular, what XCM instructions are used to build the XCM message to send assets cross-chain.
 
-The XCM extrinsics used by the PolkadotXCM Pallet are defined at the top of the [Using the PolkadotXCM Pallet To Send XC-20s guide](/builders/interoperability/xcm/xc20/send-xc20s/xcm-pallet/){target=\_blank}.
+The XCM extrinsics used by the Polkadot XCM Pallet are defined at the top of the [Using the Polkadot XCM Pallet To Send XC-20s guide](/builders/interoperability/xcm/xc20/send-xc20s/xcm-pallet/){target=\_blank}.
 
 The set of XCM instructions to be used depends on the token being transferred and the route taken. For example, there is one set of XCM instructions for sending the native asset back to its origin chain (reserve chain), such as xcDOT from Moonbeam back to Polkadot, and another set of XCM instructions for sending the native asset from the origin chain to a destination chain, such as DOT from Polkadot to Moonbeam.
 
