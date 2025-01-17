@@ -43,7 +43,7 @@ Within Moonbeam, local XC-20s can only be transferred through their regular ERC-
 
 The main difference between these two types of assets is that local XC-20s are EVM ERC-20s that have XCM capabilities, while external XC-20s are Substrate assets with an ERC-20 interface on top.
 
-Cross-chain transfers of XC-20s are done using the PolkadotXCM Pallet. To learn how to use the PolkadotXCM Pallet to transfer XC-20s, you can refer to the [Using the PolkadotXCM Pallet](/builders/interoperability/xcm/xc20/send-xc20s/xcm-pallet/){target=\_blank} guide.
+Cross-chain transfers of XC-20s are done using the Polkadot XCM Pallet. To learn how to use this pallet to transfer XC-20s, you can refer to the [Using the Polkadot XCM Pallet](/builders/interoperability/xcm/xc20/send-xc20s/xcm-pallet/){target=\_blank} guide.
 
 ## Current List of External XC-20s {: #current-xc20-assets }
 
