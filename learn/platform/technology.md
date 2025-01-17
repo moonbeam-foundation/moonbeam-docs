@@ -15,7 +15,7 @@ Rust is a good language for implementing a blockchain. It is highly performant l
 
 ### Substrate Framework {: #substrate-framework }
 
-Substrate provides a rich set of tools for creating blockchains, including a runtime execution environment that enables a generic state transition function and a pluggable set of modules (pallets) that implement various blockchain subsystems. By using Substrate, Moonbeam can leverage several key features offered to parachains launched on the Polkadot Relay Chain, including:
+Substrate provides a rich set of tools for creating blockchains, including a runtime execution environment that enables a generic state transition function and a pluggable set of modules (pallets) that implement various blockchain subsystems. By using Substrate, Moonbeam can leverage several key features offered to parachains launched on the Polkadot relay chain, including:
 
 - **Shared security** — Polkadot's validators secure all parachains  
 - **Cross-Consensus Messaging (XCM)** — native interoperability with other parachains  
