@@ -19,7 +19,7 @@ Substrate provides a rich set of tools for creating blockchains, including a run
 
 - **Shared security** — Polkadot's validators secure all parachains  
 - **Cross-Consensus Messaging (XCM)** — native interoperability with other parachains  
-- **Flexible Upgrades** — Substrate’s forkless upgrade mechanism
+- **Flexible upgrades** — Substrate’s forkless upgrade mechanism
 
 Pallets are at the heart of Substrate-based chains, providing specific functionality in modular form. Examples include:
 
