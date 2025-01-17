@@ -8,5 +8,4 @@
     <span data-ty>Fee: $0.00, Ξ0.0</span>
     <span data-ty>Balance： $4142380208.17，Ξ1207925.819614629174706176</span>
     <span data-ty>ENTER to submit, Ctrl+C to exit...</span>
-
 </div>
