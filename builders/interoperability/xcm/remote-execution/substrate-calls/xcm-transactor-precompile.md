@@ -349,16 +349,19 @@ To estimate the amount of token Alice's Computed Origin account will need to hav
 --8<-- 'code/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-precompile/transact-info-with-signed.js'
 ```
 
-From the response, you can see that the `transactExtraWeightSigned` is `{{ networks.moonbase_beta.xcm_message.transact.weight.display }}`. This is the weight needed to execute the four XCM instructions for this remote call in that specific destination chain. Next, you need to find out how much the destination chain charges per weight of XCM execution. Normally, you would look into the units per second for that particular chain. But in this scenario, no XC-20 tokens are burned. Therefore, units per second can be used for reference, but it does not ensure that the estimated number of tokens is correct. To get the units per second as a reference value, you can use the following script:
+The response shows that the `transactExtraWeightSigned` is `{{ networks.moonbase_beta.xcm_message.transact.weight.display }}`. This weight is needed to execute the four XCM instructions for this remote call in that specific destination chain. Next, you need to find out how much the destination chain charges per weight of XCM execution in reference to the asset's price. Previously, this was done by sourcing a units per second value. However, this method has been replaced by calculating a relative price. Relative price refers to how many units of the foreign asset correspond to one unit of the native token (GLMR or MOVR) from a value (i.e., price) perspective. For example, if the foreign asset is worth $5 and GLMR is worth $0.25, the relative price would be 0.05. However, we must scale the result to 18 decimals to correspond to the Wei units used. In this case, the relative price would be `50000000000000000`.
 
-```js
---8<-- 'code/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-precompile/fee-per-second.js'
-```
+You can calculate the relative price with a script in the [XCM Tools repo](https://github.com/Moonsong-Labs/xcm-tools?tab=readme-ov-file#calculate-relative-price){target=\_blank}. The script is also reproduced below: 
 
-Note that the units per second is related to the cost estimated in the [Relay Chain XCM Fee Calculation](/builders/interoperability/xcm/core-concepts/weights-fees/#polkadot){target=\_blank} section or to the one shown in the [Units per weight](/builders/interoperability/xcm/core-concepts/weights-fees/#moonbeam-reserve-assets){target=\_blank} section if the target is another parachain. You'll need to find the correct value to ensure that the amount of tokens the Computed Origin account holds is correct. Calculating the associated XCM execution fee is as simple as multiplying the `transactExtraWeightSigned` times the `unitsPerSecond` (for an estimation):
+??? code "Calculate Relative Price"
+    ```typescript
+    --8<-- 'code/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-pallet/calculate-relative-price.ts'
+    ```
+
+Note that the relative price value is related to the cost estimated in the [relay chain XCM fee calculation](/builders/interoperability/xcm/core-concepts/weights-fees/#polkadot){target=\_blank} section or to the one shown in the [units per weight](/builders/interoperability/xcm/core-concepts/weights-fees/#moonbeam-reserve-assets){target=\_blank} section if the target is another parachain. You'll need to find the correct value to ensure that the amount of tokens the Computed Origin account holds is correct. Calculating the associated XCM execution fee is as simple as multiplying the `transactExtraWeightSigned` times the `relativePrice` (for an estimation):
 
 ```text
-XCM-Wei-Token-Cost = transactExtraWeightSigned * unitsPerSecond
+XCM-Wei-Token-Cost = transactExtraWeightSigned * relativePrice
 XCM-Token-Cost = XCM-Wei-Token-Cost / DecimalConversion
 ```
 
