@@ -40,7 +40,7 @@ Moonbeam also uses the Cumulus library to facilitate integration with the Polkad
 
 - **EVM pallet** — responsible for executing EVM operations  
 - **Ethereum pallet** — manages block data storage and offers RPC compatibility  
-- **Base Fee pallet & Dynamic Fee pallet** — provide EIP-1559 functionality (not used in Moonbeam)
+- **Base Fee pallet and Dynamic Fee pallet** — provide EIP-1559 functionality (not used in Moonbeam)
 
 Moonbeam uses the EVM and Ethereum pallets to achieve full Ethereum compatibility. Instead of the Base Fee or Dynamic Fee pallets, Moonbeam has its own [dynamic fee mechanism](https://forum.moonbeam.network/t/proposal-dynamic-fee-mechanism-for-moonbeam-and-moonriver/241){target=\_blank} for base fee calculations. Basing the EVM implementation on the Substrate EVM Pallet provides a Rust-based EVM engine and support from the Parity engineering team.
 
