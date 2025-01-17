@@ -161,7 +161,7 @@ That is all you need to do to configure Waffle, now you're all set to compile th
 npm run build
 ```
 
---8<-- 'code/builders/ethereum/dev-env/waffle-mars/terminal/build.md'
+--8<-- 'code/builders/ethereum/dev-env/waffle-mars/terminal/build-1.md'
 
 After compiling your contracts, Waffle stores the JSON output in the `build` directory. Since the contract in this guide is based on OpenZeppelin's ERC-20 template, relevant ERC-20 JSON files will appear in the `build` directory too.
 
@@ -443,7 +443,7 @@ You've configured the deployment, now it's time to actually deploy to Moonbase A
 
 2. In your Terminal, Mars will prompt you to press `ENTER` to send your transaction
 
-    --8<-- 'code/builders/ethereum/dev-env/waffle-mars/terminal/deploy.md'
+    --8<-- 'code/builders/ethereum/dev-env/waffle-mars/terminal/deploy-1.md'
 
 If successful, you should see details about your transaction including it's hash, the block it was included in, and it's address.
 
