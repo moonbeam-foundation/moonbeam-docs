@@ -41,6 +41,6 @@ It calls `TransferReserveAsset` and passes in `assets`, `dest`, and `xcm` as par
 
 --8<-- 'text/builders/interoperability/xcm/xc20/send-xc20s/overview/xcDOT-to-DOT-instructions.md'
 
-For more information on constructing an XCM message to transfer reserve assets to a target chain, such as xcDOT to Polkadot, you can refer to the guide to the [PolkadotXCM Pallet](/builders/interoperability/xcm/xc20/send-xc20s/xcm-pallet/){target=\_blank}.
+For more information on constructing an XCM message to transfer reserve assets to a target chain, such as xcDOT to Polkadot, you can refer to the guide to the [Polkadot XCM Pallet](/builders/interoperability/xcm/xc20/send-xc20s/xcm-pallet/){target=\_blank}.
 
 It calls `WithdrawAsset`, then `InitiateReserveWithdraw`, and passes in `assets`, `dest`, and `xcm` as parameters. In particular, the `xcm` parameter includes the `BuyExecution` and `DepositAsset` instructions. If you then head over to the Polkadot GitHub repository, you can find the [`InitiateReserveWithdraw` instruction](https://github.com/paritytech/polkadot-sdk/blob/{{polkadot_sdk}}/polkadot/xcm/xcm-executor/src/lib.rs#L903){target=\_blank}. The XCM message is constructed by combining the `WithdrawAsset` and `ClearOrigin` instructions with the `xcm` parameter, which, as mentioned, includes the `BuyExecution` and `DepositAsset` instructions.
