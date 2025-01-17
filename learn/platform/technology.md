@@ -23,12 +23,12 @@ Substrate provides a rich set of tools for creating blockchains, including a run
 
 Pallets are at the heart of Substrate-based chains, providing specific functionality in modular form. Examples include:
 
-- **Balances Pallet** — manages account balances and transfers  
-- **Assets Pallet** — handles the creation and management of on-chain fungible assets  
-- **Consensus Pallets** — provide mechanisms like AURA or BABE for block production  
-- **Governance Pallets** — facilitate on-chain governance  
-- **Frontier Pallets** — the Ethereum compatibility layer pioneered by the Moonbeam team  
-- **Parachain Staking Pallet** — enables Delegated Proof of Stake (DPoS)  
+- **Balances pallet** — manages account balances and transfers  
+- **Assets pallet** — handles the creation and management of on-chain fungible assets  
+- **Consensus pallets** — provide mechanisms like AURA or BABE for block production  
+- **Governance pallets** — facilitate on-chain governance  
+- **Frontier pallets** — the Ethereum compatibility layer pioneered by the Moonbeam team  
+- **Parachain Staking pallet** — enables Delegated Proof of Stake (DPoS)  
 
 In addition to these pallets provided by Polkadot’s Substrate, developers can [create their own pallets](https://docs.substrate.io/tutorials/collectibles-workshop/03-create-pallet){target=_blank} to add custom functionality. Moonbeam leverages multiple existing Substrate frame pallets as well as several custom pallets for features such as cross-chain token integration, the [Orbiter Program](/node-operators/networks/collators/orbiter/){target=_blank}, and more. You can find the Moonbeam runtime (built using Substrate) and related pallets in the [Moonbeam GitHub repository](https://github.com/moonbeam-foundation/moonbeam){target=_blank}.
 
