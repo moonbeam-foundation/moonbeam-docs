@@ -187,7 +187,7 @@ Finally, in a separate terminal window, launch the GraphQL server:
 sqd serve
 ```
 
-Visit [`localhost:4350/graphql`](http://localhost:4350/graphql){target=\_blank} to access the [GraphiQL](https://github.com/graphql/graphiql){target=\_blank} console. From this window, you can perform queries such as this one to fetch a batch of owners:
+Visit `http://localhost:4350/graphql` to access the [GraphiQL](https://github.com/graphql/graphiql){target=\_blank} console. From this window, you can perform queries such as this one to fetch a batch of owners:
 
 ```graphql
 query MyQuery {
