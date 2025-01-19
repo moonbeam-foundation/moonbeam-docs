@@ -194,7 +194,7 @@ The last step to have a fully configured Chainlink oracle is to create a job. Re
 
 Seeing an oracle as an API service, a job here would be one of the functions that you can call and that will return a result. To get started creating your first job, take the following steps:
 
-1. Go to the `Jobs sections` of your node `http://localhost:6688/jobs`
+1. Go to the **Jobs** sections of your node at `http://localhost:6688/jobs`
 2. Click on **New Job**
 
 ![Chainlink oracle New Job](/images/node-operators/oracle-nodes/chainlink/chainlink-node-6.webp)
