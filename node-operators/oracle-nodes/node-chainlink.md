@@ -147,7 +147,7 @@ docker logs --tail 50 {INSERT_CONTAINER_ID} #Logs progressing
 
 With the oracle node running, you can start to configure the smart contract side of things. First, you'll need to fund the oracle node by taking the following steps:
 
-1. Retrieve the address that the oracle node will use to send transactions and write data on-chain by logging into the `ChainLink node's UI` (located at `http://localhost:6688/`). You'll need to use the credentials from the `.api` file
+1. Retrieve the address that the oracle node will use to send transactions and write data on-chain by logging into the Chainlink node's UI (located at `http://localhost:6688/`). You'll need to use the credentials from the `.api` file
 
     ![Chainlink login](/images/node-operators/oracle-nodes/chainlink/chainlink-node-2.webp)
 
