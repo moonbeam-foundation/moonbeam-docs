@@ -280,7 +280,7 @@ All of your files should now be under the **Staged Changes** section. All you ha
 1. Enter a descriptive commit message, such as "Add My Project", making sure to use your actual project name
 2. Click **Commit & Push**
 
-![Comitting the staged files on GitHub's browser-based editor](/images/learn/dapps-list/dapp-directory/directory-7.webp)
+![Committing the staged files on GitHub's browser-based editor](/images/learn/dapps-list/dapp-directory/directory-7.webp)
 
 Now that you've committed the changes, you'll need to head over to the [`app-directory-data` repository](https://github.com/moonbeam-foundation/app-directory-data){target=\_blank} and open a pull request against the `develop` branch:
 
