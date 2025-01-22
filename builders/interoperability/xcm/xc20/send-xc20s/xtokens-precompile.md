@@ -7,9 +7,9 @@ description: Learn how to send assets cross-chain via Cross-Consensus Messaging 
 
 ## Introduction {: #introduction }
 
-Building an XCM message for fungible asset transfers is not an easy task. Consequently, there are wrapper functions and pallets that developers can leverage to use XCM features on Polkadot and Kusama. One example of such wrappers is the [X-Tokens](/builders/interoperability/xcm/xc20/send-xc20s/xtokens-pallet/){target=\_blank} Pallet, which provides different methods to transfer fungible assets via XCM.
+Building an XCM message for fungible asset transfers is not an easy task. Consequently, there are wrapper functions and pallets that developers can leverage to use XCM features on Polkadot and Kusama. One example of such wrappers is the [Polkadot XCM](/builders/interoperability/xcm/xc20/send-xc20s/xcm-pallet/){target=\_blank} Pallet, which provides different methods to transfer fungible assets via XCM.
 
-The X-Tokens Pallet is coded in Rust and is normally not accessible from the Ethereum API side of Moonbeam. However, the X-Tokens Precompile allows you to interact directly with the Substrate pallet to send XC-20s from a Solidity interface.
+The [Polkadot XCM Pallet](/builders/interoperability/xcm/xc20/send-xc20s/xcm-pallet/){target=\_blank} is coded in Rust and is normally not accessible from the Ethereum API side of Moonbeam. However, the [XCM Precompile](/builders/interoperability/xcm/xc20/send-xc20s/eth-api/){target=\_blank} and the X-Tokens Precompile allow you to interact directly with the Polkadot XCM pallet to send XC-20s from a Solidity interface.
 
 This guide will show you how to leverage the X-Tokens Precompile to send [XC-20s](/builders/interoperability/xcm/xc20/overview/){target=\_blank} from a Moonbeam-based network to other chains in the ecosystem (relay chain/parachains) using Ethereum libraries like Ethers and Web3.
 

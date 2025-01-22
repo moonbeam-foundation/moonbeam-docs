@@ -1,19 +1,19 @@
 ---
 title: Send XC-20s to Other Chains
-description: This guide introduces the PolkadotXCM Pallet and explains how to send XC-20s to another chain using some of the pallet's extrinsics.
+description: This guide introduces the Polkadot XCM Pallet and explains how to send XC-20s to another chain using some of the pallet's extrinsics.
 ---
 
-# Using the PolkadotXCM Pallet To Send XC-20s
+# Using the Polkadot XCM Pallet To Send XC-20s
 
 ## Introduction {: #introduction }
 
 !!! note
 
-    The PolkadotXCM Pallet replaces the deprecated XTokens Pallet. Accordingly, ensure that you are using the PolkadotXCM Pallet to interact with XC-20s.
+    The Polkadot XCM Pallet replaces the deprecated XTokens Pallet. Accordingly, ensure that you are using the Polkadot XCM Pallet to interact with XC-20s.
 
 Manually crafting an XCM message for fungible asset transfers is a challenging task. Consequently, developers can leverage wrapper functions and pallets to use XCM features on Polkadot and Kusama. One example of such wrappers is the [XCM](https://wiki.polkadot.network/docs/learn-xcm-pallet){target=\_blank} Pallet, which provides different methods to transfer fungible assets via XCM.
 
-This guide will show you how to leverage the PolkadotXCM Pallet to send [XC-20s](/builders/interoperability/xcm/xc20/overview/){target=\_blank} from a Moonbeam-based network to other chains in the ecosystem (relay chain/parachains).
+This guide will show you how to leverage the Polkadot XCM Pallet to send [XC-20s](/builders/interoperability/xcm/xc20/overview/){target=\_blank} from a Moonbeam-based network to other chains in the ecosystem (relay chain/parachains).
 
 **Developers must understand that sending incorrect XCM messages can result in the loss of funds.** Consequently, testing XCM features on a TestNet is essential before moving to a production environment.
 
@@ -26,11 +26,11 @@ Because there are various XCM-related pallets and precompiles with similar-sound
 - `XTokens` - This pallet is now deprecated and replaced by `PolkadotXCM`
 - `XCMInterface.sol` - This precompile is the solidity interface that replaces `XTokens.sol` and enables you to interact with the methods of `PolkadotXCM` from the EVM via a solidity interface
 
-## PolkadotXCM Pallet Interface {: #polkadotxcm-pallet-interface }
+## Polkadot XCM Pallet Interface {: #polkadotxcm-pallet-interface }
 
 ### Extrinsics {: #extrinsics }
 
-The PolkadotXCM Pallet provides the following extrinsics (functions):
+The Polkadot XCM Pallet provides the following extrinsics (functions):
 
 ??? function "**forceDefaultXcmVersion**(maybeXcmVersion) — sets a safe default XCM version for message encoding (admin origins only)"
     === "Parameters"
@@ -108,7 +108,7 @@ The PolkadotXCM Pallet provides the following extrinsics (functions):
 
 ### Storage Methods {: #storage-methods }
 
-The PolkadotXCM Pallet includes the following read-only storage methods. Note, this is not an exhaustive list. To see the current available storage methods, check the [Chain State of Polkadot.js Apps](https://polkadot.js.org/apps/#/chainstate){target=\_blank}.
+The Polkadot XCM Pallet includes the following read-only storage methods. Note, this is not an exhaustive list. To see the current available storage methods, check the [Chain State of Polkadot.js Apps](https://polkadot.js.org/apps/#/chainstate){target=\_blank}.
 
 ???+ function "**assetTraps**(h256 hash) — returns the count of trapped assets for a given hash"
     === "Parameters"
@@ -197,11 +197,11 @@ The PolkadotXCM Pallet includes the following read-only storage methods. Note, t
 
 ### Pallet Constants {: #constants }
 
-There are no constants part of the PolkadotXCM pallet.
+There are no constants part of the Polkadot XCM pallet.
 
-## Building an XCM Message with the PolkadotXCM Pallet {: #build-with-PolkadotXCM-pallet}
+## Building an XCM Message with the Polkadot XCM Pallet {: #build-with-PolkadotXCM-pallet}
 
-This guide covers the process of building an XCM message using the PolkadotXCM Pallet, specifically the `transferAssets` function.
+This guide covers the process of building an XCM message using the Polkadot XCM Pallet, specifically the `transferAssets` function.
 
 !!! note
     Each parachain can allow and forbid specific methods from a pallet. Consequently, developers must ensure that they use methods that are allowed, or the transaction will fail with an error similar to `system.CallFiltered`.
@@ -227,9 +227,9 @@ To check your xcUNIT balance, you can add the XC-20's [precompile address](/buil
 0xFfFFfFff1FcaCBd218EDc0EbA20Fc2308C778080
 ```
 
-### PolkadotXCM Transfer Assets Function {: #polkadotxcm-transfer-assets-function}
+### Polkadot XCM Transfer Assets Function {: #polkadotxcm-transfer-assets-function}
 
-In this example, you'll build an XCM message to transfer xcUNIT from Moonbase Alpha back to the Alphanet relay chain through the `transferAssets` function of the PolkadotXcm Pallet using the [Polkadot.js API](/builders/substrate/libraries/polkadot-js-api/){target=\_blank}.
+In this example, you'll build an XCM message to transfer xcUNIT from Moonbase Alpha back to the Alphanet relay chain through the `transferAssets` function of the Polkadot XCM Pallet using the [Polkadot.js API](/builders/substrate/libraries/polkadot-js-api/){target=\_blank}.
 
 To perform a limited reserve transfer using the `polkadotXcm` pallet, follow these steps:
 

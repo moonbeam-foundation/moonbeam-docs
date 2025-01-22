@@ -1,5 +1,5 @@
 title: Interoperability
 nav:
   - index.md
-  - 'X-Tokens': '/builders/interoperability/xcm/xc20/send-xc20s/xtokens-pallet/'
+  - 'Polkadot XCM': '/builders/interoperability/xcm/xc20/send-xc20s/xcm-pallet/'
   - 'XCM Transactor': '/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-pallet/'

@@ -11,7 +11,7 @@ The [Cross-Consensus Message (XCM)](https://wiki.polkadot.network/docs/learn-cro
 
 Remote execution via XCM opens a new set of possibilities for cross-chain interactions, from chains executing actions on other chains to users performing remote actions without switching chains.
 
-This page covers the fundamentals of XCM remote execution. If you want to learn how to perform remote execution via XCM, please refer to the [Remote Execution via the Substrate API](/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-pallet/){target=\_blank} or the [Remote Execution via the Ethereum API](/builders/interoperability/xcm/xc20/send-xc20s/xtokens-pallet/){target=\_blank} guides.
+This page covers the fundamentals of XCM remote execution. If you want to learn how to perform remote execution via XCM, please refer to the [Remote Execution via the Substrate API](/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-pallet/){target=\_blank} or the [Remote Execution via the Ethereum API](/builders/interoperability/xcm/xc20/send-xc20s/xtokens-precompile/){target=\_blank} guides.
 
 ## Execution Origin {: #execution-origin }
 
