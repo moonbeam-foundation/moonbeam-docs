@@ -135,7 +135,7 @@ Before any messages can be sent from your parachain to Moonbeam, an HRMP channel
 3. [Transact](/builders/interoperability/xcm/core-concepts/instructions/#transact){target=\_blank} - provides the relay chain call data to be executed. In this case, the call will be an HRMP extrinsic
 
 !!! note
-You can add [DepositAsset](/builders/interoperability/xcm/core-concepts/instructions/#deposit-asset){target=\_blank} to refund the leftover funds after the execution. If this is not provided, no refunds will be made. In addition, you could also add a [RefundSurplus](/builders/interoperability/xcm/core-concepts/instructions/#refund-surplus){target=\_blank} after [Transact](/builders/interoperability/xcm/core-concepts/instructions/#transact){target=\_blank} to get any leftover funds not used for the Transact. But you'll have to calculate if it is worth paying the execution cost of the extra XCM instructions.
+    You can add [DepositAsset](/builders/interoperability/xcm/core-concepts/instructions/#deposit-asset){target=\_blank} to refund the leftover funds after the execution. If this is not provided, no refunds will be made. In addition, you could also add a [RefundSurplus](/builders/interoperability/xcm/core-concepts/instructions/#refund-surplus){target=\_blank} after [Transact](/builders/interoperability/xcm/core-concepts/instructions/#transact){target=\_blank} to get any leftover funds not used for the Transact. But you'll have to calculate if it is worth paying the execution cost of the extra XCM instructions.
 
 To send these XCM messages to the relay chain, the [Polkadot XCM Pallet](https://github.com/paritytech/polkadot-sdk/tree/{{ polkadot_sdk }}/polkadot/xcm/pallet-xcm){target=\_blank} is typically invoked. Moonbeam also has an [XCM Transactor Pallet](/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-pallet/){target=\_blank} that simplifies the process into a call that abstracts the XCM messaging constructor.
 
@@ -193,7 +193,7 @@ Running the following command will provide the encoded calldata to accept an ope
     ```
 
 !!! note
-You can adapt the script for your parachain by changing the `parachain-ws-provider`.
+    You can adapt the script for your parachain by changing the `parachain-ws-provider`.
 
 Running the script as shown above will return the encoded calldata to accept an HRMP channel. You can also use the script to create and submit a preimage and proposal on chain for the given HRMP action. For Moonbeam and Moonriver, the proposal must be submitted via the General Admin Track.
 
@@ -242,7 +242,7 @@ Running the following command will provide the encoded calldata to create the HR
     ```
 
 !!! note
-You can readapt the script for your parachain by changing the `parachain-ws-provider`.
+     You can readapt the script for your parachain by changing the `parachain-ws-provider`.
 
 Running the script as shown above will return the encoded calldata to open an HRMP channel. You can also use the script to create and submit a preimage and proposal on-chain for the given HRMP action. For Moonbeam and Moonriver, the proposal must be submitted via the General Admin Track.
 
@@ -296,7 +296,7 @@ You can add a `--call "INSERT_CALL"` for each call you want to batch. Replace th
     ```
 
 !!! note
-You can readapt the script for your parachain by changing the `parachain-ws-provider`.
+    You can readapt the script for your parachain by changing the `parachain-ws-provider`.
 
 With the encoded calldata, you can then submit the governance proposal. For Moonbeam and Moonriver, you must assign the proposal to the General Admin Track. It is recommended to become familiar with the [OpenGov: Governance v2 process on Moonbeam-based networks](/learn/features/governance/#opengov){target=\_blank}.
 
@@ -332,4 +332,4 @@ The complete options that can be used with the script are as follows:
 |     fee-currency     |    string (multilocation)     |                                      (Required for non-Moonbeam chains that use XCM Transactor) The multilocation of the relay chain's asset                                       |
 
 !!! note
-The track option must be specified like so: `'{ "Origins": "INSERT_ORIGIN" }'`, where you can insert any of the following as the Origin: "Root", "WhitelistedCaller", "GeneralAdmin", "ReferendumCanceller", "ReferendumKiller".
+    The track option must be specified like so: `'{ "Origins": "INSERT_ORIGIN" }'`, where you can insert any of the following as the Origin: "Root", "WhitelistedCaller", "GeneralAdmin", "ReferendumCanceller", "ReferendumKiller".
