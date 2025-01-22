@@ -147,7 +147,7 @@ docker logs --tail 50 {INSERT_CONTAINER_ID} #Logs progressing
 
 With the oracle node running, you can start to configure the smart contract side of things. First, you'll need to fund the oracle node by taking the following steps:
 
-1. Retrieve the address that the oracle node will use to send transactions and write data on-chain by logging into the [ChainLink node's UI](http://localhost:6688){target=\_blank} (located at `http://localhost:6688/`). You'll need to use the credentials from the `.api` file
+1. Retrieve the address that the oracle node will use to send transactions and write data on-chain by logging into the Chainlink node's UI (located at `http://localhost:6688/`). You'll need to use the credentials from the `.api` file
 
     ![Chainlink login](/images/node-operators/oracle-nodes/chainlink/chainlink-node-2.webp)
 
@@ -194,7 +194,7 @@ The last step to have a fully configured Chainlink oracle is to create a job. Re
 
 Seeing an oracle as an API service, a job here would be one of the functions that you can call and that will return a result. To get started creating your first job, take the following steps:
 
-1. Go to the [Jobs sections of your node](http://localhost:6688/jobs){target=\_blank}
+1. Go to the **Jobs** sections of your node at `http://localhost:6688/jobs`
 2. Click on **New Job**
 
 ![Chainlink oracle New Job](/images/node-operators/oracle-nodes/chainlink/chainlink-node-6.webp)

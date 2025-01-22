@@ -43,7 +43,7 @@ The script will prompt you for a project name, generate a new directory with the
 
 --8<-- 'code/builders/integrations/wallets/rainbowkit/terminal/cli-quickstart.md'
 
-You can now navigate to the project directory, start the development server, and navigate to [http://localhost:3000](http://localhost:3000){target=\_blank} to view your project locally:
+You can now navigate to the project directory, start the development server, and navigate to `http://localhost:3000` to view your project locally:
 
 === "npm"
 
@@ -168,7 +168,7 @@ Next, start the development server to create a local dApp instance:
     yarn dev
     ```
 
-If you navigate to [http://localhost:3000](http://localhost:3000){target=\_blank},  you should see the starter Next.js application in your browser.
+If you navigate to `http://localhost:3000`,  you should see the starter Next.js application in your browser.
 
 To test the RainbowKit connection, you will use the MetaMask mobile app. To follow this guide, you must have established a connection to the Moonbase Alpha TestNet on the MetaMask mobile app.
 

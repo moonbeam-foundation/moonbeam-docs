@@ -405,7 +405,7 @@ To get started with your own setup, including your own client contract, oracle c
 
 If you [created a job to be used with any API](/node-operators/oracle-nodes/node-chainlink/#using-any-api){target=\_blank}, you can then create a client contract that sets the API endpoint URL to perform the GET request on.
 
-Note that the client contract must have a LINK tokens balance to be able to pay for requests. Therefore, you will need to set the LINK value to zero in your `ChainlinkClient.sol` contract. You'll also need to make sure that your oracle node has a `MINIMUM_CONTRACT_PAYMENT` of `0`. You can verify that it has been set to zero by checking out the [**Configuration** section of your node](http://localhost:6688/config){target=\_blank}.
+Note that the client contract must have a LINK tokens balance to be able to pay for requests. Therefore, you will need to set the LINK value to zero in your `ChainlinkClient.sol` contract. You'll also need to make sure that your oracle node has a `MINIMUM_CONTRACT_PAYMENT` of `0`. You can verify that it has been set to zero by checking out the **Configuration** section of your node at `http://localhost:6688/config`.
 
 The following client contract is an example of how to use any API from within your client contract:
 
@@ -476,6 +476,6 @@ contract Client is ChainlinkClient {
 !!! note
     The above example uses the pre-deployed LINK token contract address. You also have the option of deploying your own LINK token contract and using that instead.
 
-Once you've deployed the contract on Remix, you can begin to request the volume data. After you make a request, you can check the status of the job by going to the [**Jobs** section of your node](http://localhost:6688/jobs){target=\_blank}.
+Once you've deployed the contract on Remix, you can begin to request the volume data. After you make a request, After you make a request, you can check the job status under the **Jobs** section on your node at `http://localhost:6688/jobs`.
 
 --8<-- 'text/_disclaimers/third-party-content.md'
