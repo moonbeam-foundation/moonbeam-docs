@@ -712,7 +712,7 @@ This change took effect at the following runtimes and blocks:
 |    Network     | Executed Runtime | Block Applied |
 |:--------------:|:----------------:|:-------------:|
 |    Moonbeam    |      RT3300      |    8381443    |
-|   Moonriver    |      RT3300      |    8894416    |
+|   Moonriver    |      RT3300      |    8894417    |
 | Moonbase Alpha |      RT3300      |    9062316    |
 
 For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/2976){target=\_blank}.
