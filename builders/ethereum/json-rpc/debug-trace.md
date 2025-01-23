@@ -99,8 +99,8 @@ If you wish to set up your own tracing node, you can follow the [Running a Traci
 
     === "Returns"
 
-        The method returns an object with a top-level result array. Each element in that result array corresponds to one transaction in the block and contains a `txHash` plus a `result` with the transaction details.
-
+        The method returns a JSON object with a top-level result property that is an array. Each element in this array corresponds to a single transaction in the block and includes a `txHash` and a `result` object as follows: 
+        
         - `txHash` - the transaction hash
 
         The `result` object contains the following fields:
@@ -141,8 +141,8 @@ If you wish to set up your own tracing node, you can follow the [Running a Traci
 
     === "Returns"
 
-        The method returns an object with a top-level result array. Each element in that result array corresponds to one transaction in the block and contains a `txHash` plus a `result` with the transaction details.
-
+        The method returns a JSON object with a top-level result property that is an array. Each element in this array corresponds to a single transaction in the block and includes a `txHash` and a `result` object as follows: 
+        
         - `txHash` - the transaction hash
 
         The `result` object contains the following fields:
