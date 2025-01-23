@@ -99,7 +99,11 @@ If you wish to set up your own tracing node, you can follow the [Running a Traci
 
     === "Returns"
 
-        The `result` array contains objects with the following fields:
+        The method returns an object with a top-level result array. Each element in that result array corresponds to one transaction in the block and contains a `txHash` plus a `result` with the transaction details.
+
+        - `txHash` - the transaction hash
+
+        The `result` object contains the following fields:
 
         - `type` - the type of the call
         - `from` - the address the transaction is sent from
@@ -137,7 +141,11 @@ If you wish to set up your own tracing node, you can follow the [Running a Traci
 
     === "Returns"
 
-        The `result` array contains objects with the following fields:
+        The method returns an object with a top-level result array. Each element in that result array corresponds to one transaction in the block and contains a `txHash` plus a `result` with the transaction details.
+
+        - `txHash` - the transaction hash
+
+        The `result` object contains the following fields:
 
         - `type` - the type of the call
         - `from` - the address the transaction is sent from
