@@ -1,15 +1,14 @@
-import axios from 'axios';
-import chalk from 'chalk';
+import axios from "axios";
 
 // CoinGecko IDs for the networks
 const NETWORK_IDS = {
-  GLMR: 'moonbeam',
-  MOVR: 'moonriver',
+  GLMR: "moonbeam",
+  MOVR: "moonriver",
 };
 
 async function calculateRelativePrice(
   assetPrice: number,
-  network: 'GLMR' | 'MOVR'
+  network: "GLMR" | "MOVR"
 ): Promise<string> {
   try {
     // Fetch the native token price from CoinGecko
@@ -37,30 +36,30 @@ async function calculateRelativePrice(
 function validateInput(
   price: string,
   network: string
-): { assetPrice: number; network: 'GLMR' | 'MOVR' } {
+): { assetPrice: number; network: "GLMR" | "MOVR" } {
   // Validate price
   const assetPrice = parseFloat(price);
   if (isNaN(assetPrice) || assetPrice <= 0) {
-    throw new Error('Price must be a positive number');
+    throw new Error("Price must be a positive number");
   }
 
   // Validate network
-  const upperNetwork = network.toUpperCase() as 'GLMR' | 'MOVR';
-  if (!['GLMR', 'MOVR'].includes(upperNetwork)) {
-    throw new Error('Network must be either GLMR or MOVR');
+  const upperNetwork = network.toUpperCase() as "GLMR" | "MOVR";
+  if (!["GLMR", "MOVR"].includes(upperNetwork)) {
+    throw new Error("Network must be either GLMR or MOVR");
   }
 
   return { assetPrice, network: upperNetwork };
 }
 
 function printUsage() {
-  console.log('\nUsage:');
-  console.log('npx ts-node relative-price-calculator.ts <price> <network>');
-  console.log('\nExample:');
-  console.log('npx ts-node relative-price-calculator.ts 0.25 GLMR');
-  console.log('\nParameters:');
-  console.log('price   - The price of your asset in USD');
-  console.log('network - Either GLMR or MOVR');
+  console.log("\nUsage:");
+  console.log("npx ts-node relative-price-calculator.ts <price> <network>");
+  console.log("\nExample:");
+  console.log("npx ts-node relative-price-calculator.ts 0.25 GLMR");
+  console.log("\nParameters:");
+  console.log("price   - The price of your asset in USD");
+  console.log("network - Either GLMR or MOVR");
 }
 
 async function main() {
@@ -69,14 +68,14 @@ async function main() {
     const [, , price, network] = process.argv;
 
     // Check if help flag is passed
-    if (price === '--help' || price === '-h') {
+    if (price === "--help" || price === "-h") {
       printUsage();
       return;
     }
 
     // Check if required arguments are provided
     if (!price || !network) {
-      console.error('Error: Missing required arguments');
+      console.error("Error: Missing required arguments");
       printUsage();
       process.exit(1);
     }
@@ -87,10 +86,7 @@ async function main() {
     console.log(
       `\nCalculating relative price for asset worth $${assetPrice} against ${validNetwork}...`
     );
-    const relativePrice = await calculateRelativePrice(
-      assetPrice,
-      validNetwork
-    );
+    const relativePrice = await calculateRelativePrice(assetPrice, validNetwork);
     const nativeTokenPrice = (
       await axios.get(
         `https://api.coingecko.com/api/v3/simple/price?ids=${NETWORK_IDS[validNetwork]}&vs_currencies=usd`
@@ -112,12 +108,12 @@ async function main() {
     console.log(
       `With 18 decimals, 1 ${validNetwork} or in WEI, 1000000000000000000 is equal to a relative price of ${relativePrice} units of your token`
     );
-    console.log(chalk.bold(`\nRelative Price: ${relativePrice}`));
+    console.log(`\nRelative Price: ${relativePrice}`);
     console.log(
       `\nThe relative price you should specify in asset registration steps is ${relativePrice}\n`
     );
   } catch (error) {
-    console.error('\nError:', error instanceof Error ? error.message : error);
+    console.error("\nError:", error instanceof Error ? error.message : error);
     process.exit(1);
   }
 }
