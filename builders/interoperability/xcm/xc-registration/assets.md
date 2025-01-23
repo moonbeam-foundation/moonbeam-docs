@@ -43,7 +43,7 @@ To register an asset native to another chain on Moonbeam, you'll need to submit 
 
 To get started, you'll need to collect some information about the asset:
 
-- `assetId`: unique identifier of the asset
+- `assetId`: unique identifier of the asset. This can be any unique arbitrary integer, but it's recommended that you create this using the [`calculate-external-asset-info.ts`](https://github.com/Moonsong-Labs/xcm-tools/blob/main/scripts/calculate-external-asset-info.ts){target=\_blank} script. This provides a standardized way to generate a unique `assetId`
 - `xcmLocation`: a scale encoded xcm v4 multilocation of asset reserve relative to Moonbeam
 - The asset name
 - The asset symbol. You'll need to prepend "xc" to the asset symbol to indicate that the asset is an XCM-enabled asset
@@ -59,7 +59,7 @@ Submitting a governance proposal on Moonbeam requires two steps: first, submit a
 
 Proposals must be submitted via the `GeneralAdmin` track. If you're opening a channel and registering an asset and you'll want to wait until the channel is established prior to attempting to register the asset. To get the encoded calldata for the `evmForeignAssets.createForeignAsset` extrinsic, you will need to provide the following arguments:
 
-- `assetId` - unique identifier of the asset
+- `assetId` - unique identifier of the asset, generated from the [`calculate-external-asset-info.ts`](https://github.com/Moonsong-Labs/xcm-tools/blob/main/scripts/calculate-external-asset-info.ts){target=\_blank} script
 - `xcmLocation` - the multilocation of the asset relative to Moonbeam 
 - `decimals` - the number of decimals of the asset
 - `symbol`  - the symbol of the asset. Remember that "xc" should be prepended to the symbol to indicate the asset is an XCM-enabled asset
