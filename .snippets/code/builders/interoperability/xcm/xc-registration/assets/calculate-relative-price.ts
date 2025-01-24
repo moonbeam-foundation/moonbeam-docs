@@ -19,9 +19,9 @@ async function calculateRelativePrice(
     const nativeTokenPrice = response.data[NETWORK_IDS[network]].usd;
 
     // Calculate relative price with 18 decimal places
-    // Formula: (nativeTokenPrice / assetPrice) * 10^18
+    // Formula: (assetPrice / nativeTokenPrice) * 10^18
     // This gives us how many units of the asset we need to equal 1 unit of native token
-    const relativePrice = (nativeTokenPrice / assetPrice) * Math.pow(10, 18);
+    const relativePrice = ( assetPrice / nativeTokenPrice ) * Math.pow(10, 18);
 
     // Return as string to preserve precision
     return relativePrice.toFixed(0);
