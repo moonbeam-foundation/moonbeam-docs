@@ -81,7 +81,7 @@ You can use the following script (also available as part of [XCM-tools](https://
 
 Using the above information, you can generate the encoded call data for the `addAsset` call either via the Polkadot API or on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbeam.network#/extrinsics){target=\_blank}.
 
-To create a batch transaction that combines both the `xcmWeightTrader.addAsset` and the `evmForeignAssets.createForeignAsset` calls together, you can use the [Polkadot API's Batch Method](/builders/substrate/libraries/polkadot-js-api/#batching-transactions){target=\_blank}. The [XCM Asset Registrator](https://github.com/Moonsong-Labs/xcm-tools/blob/main/scripts/xcm-asset-registrator.ts){target=\_blank} script can help you build and submit the required calls. 
+To create a batch transaction that combines both the `xcmWeightTrader.addAsset` and the `evmForeignAssets.createForeignAsset` calls together, you can use the [Polkadot API's Batch Method](/builders/substrate/libraries/polkadot-js-api/#batching-transactions){target=\_blank}. Additionally, the [XCM Asset Registrator](https://github.com/Moonsong-Labs/xcm-tools/blob/main/scripts/xcm-asset-registrator.ts){target=\_blank} script can help you build and submit the required calls. 
 
 ### Submit the Preimage and Proposal for Asset Registration {: #submit-preimage-proposal }
 
