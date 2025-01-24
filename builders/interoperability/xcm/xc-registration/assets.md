@@ -89,7 +89,7 @@ Your next task is to submit the preimage of your batched call containing both th
 
 For Moonbase Alpha, you do not need to go through governance, as Moonbase Alpha has `sudo` access. Instead, you can provide the output of the batch call data to the Moonbeam team, and the Moonbeam Team can submit the call with `sudo`. This will be a faster and easier process than going through governance. However, you may still wish to go through governance on Moonbase Alpha in order to prepare for the governance process on Moonbeam.
 
-After submitting the preimage, you can submit the proposal by following the guidelines in the [Submitting a Proposal](/tokens/governance/proposals/#submitting-a-proposal-v2){target=\_blank} section
+After submitting the preimage, you can submit the proposal by following the guidelines in the [Submitting a Proposal](/tokens/governance/proposals/#submitting-a-proposal-v2){target=\_blank} section.
 
 ### Test the Asset Registration on Moonbeam {: #test-asset-registration }
 
