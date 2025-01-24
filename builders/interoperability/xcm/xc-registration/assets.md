@@ -70,7 +70,7 @@ Using the above information, you can generate the encoded call data for the `cre
 To get the encoded calldata for the `xcmWeightTrader.addAsset` extrinsic, you will need to provide the following arguments:
 
 - `xcmLocation` - the multilocation of the asset relative to Moonbeam 
-- `relativePrice` - A numeric value (u128) that represents the amount of a non-native asset needed to equal the value of one unit of the network's native token (e.g., GLMR), expressed with 18 decimal places. This value is used to calculate cross-chain transaction fees by determining how much of the non-native asset is required to cover XCM operation costs. For example, if an asset is worth half as much as the native token, its `relativePrice` would be `500,000,000,000,000,000` (to represent 0.5 with 18 decimal places)
+- `relativePrice` - A numeric value (u128) representing the fraction of the native token’s price that your asset’s price constitutes, scaled to 18 decimals. This value is used to calculate cross-chain fees by determining how many units of the non-native asset are required to cover XCM operation costs. For example, if the chosen asset is priced at exactly half the native token’s price (GLMR or MOVR), then `relativePrice` = `assetPrice` / `nativeTokenPrice` = `0.5`. Then, this figure must be multiplied by 10^18 to generate an 18-decimal integer of `500,000,000,000,000,000`
 
 You can use the following script (also available as part of [XCM-tools](https://github.com/Moonsong-Labs/xcm-tools){target=\_blank} ) to calculate the correct `relativePrice` value for your asset.
 
@@ -81,7 +81,7 @@ You can use the following script (also available as part of [XCM-tools](https://
 
 Using the above information, you can generate the encoded call data for the `addAsset` call either via the Polkadot API or on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbeam.network#/extrinsics){target=\_blank}.
 
-To create a batch transaction that combines both the `xcmWeightTrader.addAsset` and the `evmForeignAssets.createForeignAsset` calls together, you can use the [Polkadot API's Batch Method](/builders/substrate/libraries/polkadot-js-api/#batching-transactions){target=\_blank}. 
+To create a batch transaction that combines both the `xcmWeightTrader.addAsset` and the `evmForeignAssets.createForeignAsset` calls together, you can use the [Polkadot API's Batch Method](/builders/substrate/libraries/polkadot-js-api/#batching-transactions){target=\_blank}. The [XCM Asset Registrator](https://github.com/Moonsong-Labs/xcm-tools/blob/main/scripts/xcm-asset-registrator.ts){target=\_blank} script can help you build and submit the required calls. 
 
 ### Submit the Preimage and Proposal for Asset Registration {: #submit-preimage-proposal }
 
