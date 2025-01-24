@@ -1,40 +1,44 @@
-      // dest
+ // dest
       {
-        V3: {
+        V4: {
           parents: 1,
-          interior: 'Here'
+          interior: {
+            Here: null
+          }
         }
       },
       // beneficiary
       {
-        V3: {
-          parents: 0,
+        V4: {
+          parents: 1,                   
           interior: {
-            X1: {
-              AccountId32: {
-                id: Array.from(beneficiaryRaw),
-                network: null
+            X1: [                        
+              {
+                AccountId32: {
+                  id: Array.from(beneficiaryRaw),
+                  network: null
+                }
               }
-            }
+            ]
           }
         }
       },
       // assets
       {
-        V3: [
+        V4: [                           
           {
-            id: {
-              Concrete: {
-                parents: 1,
-                interior: 'Here'
-              }
+            fun: {                      
+              Fungible: 1000000000000n 
             },
-            fun: {
-              Fungible: '1000000000000'
+            id: {                       
+              parents: 1,
+              interior: {
+                Here: null              
+              }
             }
           }
         ]
       },
-      0, // feeAssetItem
-      'Unlimited' // weightLimit
+      0,           // feeAssetItem
+      'Unlimited'  // weightLimit
     );
