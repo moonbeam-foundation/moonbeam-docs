@@ -1,6 +1,6 @@
 ---
 title: XC-20 Transfers Overview
-description: Explore the types of asset transfers and some of the fundamentals of remote asset transfers via XCM, including the XCM instructions used for asset transfers.
+description: Explore the types of asset transfers and some of the fundamentals of remote asset transfers via XCM, including the XCM instructions for asset transfers.
 ---
 
 # Overview of XC-20 Transfers
