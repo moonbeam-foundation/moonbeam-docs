@@ -63,7 +63,7 @@ The important caveat is that, on a purely Ethereum-level view, ETH remains gover
 
 ## Multilocation Overview
 
-A multilocation is a structured way to pinpoint where an asset or account lives in the Polkadot/Kusama ecosystem. It specifies how many “hops” up or down the chain hierarchy are needed (the parents), and which detailed paths (the interior junctions) must be followed to get to a specific parachain, account, pallet, or asset.
+A [multilocation](/builders/interoperability/xcm/core-concepts/multilocations/){target=\_blank} is a structured way to pinpoint where an asset or account lives in the Polkadot/Kusama ecosystem. It specifies how many “hops” up or down the chain hierarchy are needed (the parents), and which detailed paths (the interior junctions) must be followed to get to a specific parachain, account, pallet, or asset.
 
 When you see an XC-20 on Moonbeam that’s not native to Moonbeam (for example, xcDOT or xcASTR), it corresponds to a foreign asset whose reserve or “home” is on another parachain or the relay chain.
 
