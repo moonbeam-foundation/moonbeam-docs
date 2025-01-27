@@ -49,13 +49,13 @@ Cross-chain transfers of XC-20s are done using the Polkadot XCM Pallet. To learn
 
 ### Remote Reserve Assets
 
-A remote reserve asset is a token whose canonical ledger—the original source of truth for minting and burning—resides on a different chain than where it’s currently in use. In the case of xcDOT on Moonbeam, the original DOT supply is maintained on the Polkadot relay chain, with xcDOT serving as a wrapped representation in Moonbeam’s EVM environment.
+A remote reserve asset is a token whose canonical ledger—the original source of truth for minting and burning—resides on a different chain than where it’s currently in use. In the case of xcDOT on Moonbeam, the underlying DOT tokens representing the xcDOT remain locked in Moonbeam’s sovereign account on the Polkadot relay chain, while xcDOT functions as a wrapped representation in Moonbeam’s EVM environment.
 
-Users can hold and transact with xcDOT as a fully fungible asset on Moonbeam (for DeFi, governance, etc.), while the underlying DOT remains locked on the relay chain. At any point, xcDOT can be redeemed for the original DOT, effectively destroying the xcDOT in return for the DOT tokens back on the Polkadot relay chain.
+Users can hold and transact with xcDOT on Moonbeam (for DeFi, governance, and more), knowing that the underlying DOT is safely locked on the relay chain. At any point, the wrapped xcDOT can be redeemed for the original DOT, effectively burning the xcDOT and unlocking the corresponding DOT tokens on Polkadot.
 
 ### Local Reserve Assets 
 
-A local reserve asset on Moonbeam is a token whose canonical ledger—from an XCM perspective—resides on Moonbeam itself. In other words, Moonbeam is the asset’s home chain, where minting and burning take place.
+A local reserve asset on Moonbeam is a token whose canonical ledger—from an XCM perspective—resides natively on Moonbeam. In other words, Moonbeam is the asset’s home chain, where minting and burning take place. 
 
 For example, Wormhole-wrapped ETH (wETH) is considered a local reserve asset on Moonbeam, even though Ethereum is the ultimate source of ETH. Once ETH is wrapped by Wormhole and enters the Polkadot ecosystem via Moonbeam, wETH can be transferred to other parachains through [Moonbeam Routed Liquidity (MRL)](/builders/interoperability/mrl/){target=\_blank}.
 
