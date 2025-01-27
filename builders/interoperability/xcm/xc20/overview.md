@@ -45,6 +45,35 @@ The key difference is that local XC-20s are EVM-native ERC-20s with XCM capabili
 
 Cross-chain transfers of XC-20s are done using the Polkadot XCM Pallet. To learn how to use this pallet to transfer XC-20s, you can refer to the [Using the Polkadot XCM Pallet](/builders/interoperability/xcm/xc20/send-xc20s/xcm-pallet/){target=\_blank} guide.
 
+## Asset Reserves 
+
+### Remote Reserve Assets
+
+A remote reserve asset is a token whose canonical ledger—the original source of truth for minting and burning—resides on a different chain than where it’s currently in use. In the case of xcDOT on Moonbeam, the original DOT supply is maintained on the Polkadot relay chain, with xcDOT serving as a wrapped representation in Moonbeam’s EVM environment.
+
+Users can hold and transact with xcDOT as a fully fungible asset on Moonbeam (for DeFi, governance, etc.), while the underlying DOT remains locked on the relay chain. At any point, xcDOT can be redeemed for the original DOT, effectively destroying the xcDOT in return for the DOT tokens back on the Polkadot relay chain.
+
+### Local Reserve Assets 
+
+A local reserve asset on Moonbeam is a token whose canonical ledger—from an XCM perspective—resides on Moonbeam itself. In other words, Moonbeam is the asset’s home chain, where minting and burning take place.
+
+For example, Wormhole-wrapped ETH (wETH) is considered a local reserve asset on Moonbeam, even though Ethereum is the ultimate source of ETH. Once ETH is wrapped by Wormhole and enters the Polkadot ecosystem via Moonbeam, wETH can be transferred to other parachains through [Moonbeam Routed Liquidity (MRL)](/builders/interoperability/mrl/){target=\_blank}.
+
+The important caveat is that, on a purely Ethereum-level view, ETH remains governed by and minted on Ethereum. However, from an XCM standpoint, wETH on Moonbeam is treated as a local reserve asset, meaning the canonical supply of wETH (as far as Polkadot ecosystems are concerned) exists on Moonbeam.
+
+## Multilocation Overview
+
+A multilocation is a structured way to pinpoint where an asset or account lives in the Polkadot/Kusama ecosystem. It specifies how many “hops” up or down the chain hierarchy are needed (the parents), and which detailed paths (the interior junctions) must be followed to get to a specific parachain, account, pallet, or asset.
+
+When you see an XC-20 on Moonbeam that’s not native to Moonbeam (for example, xcDOT or xcASTR), it corresponds to a foreign asset whose reserve or “home” is on another parachain or the relay chain.
+
+Keep in mind that multilocations are always relative to a current position. For instance, defining a multilocation on Moonbeam differs from defining one on the Polkadot relay chain, even if both refer to the same asset. The multilocation identifies the asset’s origin chain and asset ID such that the XCM virtual machine knows precisely where to lock, unlock, or update tokens. It identifies that asset’s origin chain and asset ID so that XCM knows:
+
+- Where to lock/unlock the real tokens (on the origin chain)
+- How to mint/burn the wrapped representation on Moonbeam (critical to ensuring correct redemptions on the origin chain)
+
+As an exmaple, to construct a multilocation identifying Moonbeam’s native asset, imagine sending tokens from another parachain. In that case, you often set parents: `1` to “move up” to the relay chain level, then include two junctions under interior. The first `({ Parachain: 2004 })` indicates Moonbeam’s parachain ID, while the second `({ PalletInstance: 10 })` identifies the Balances pallet that manages the native asset, GLMR. This multilocation defines GLMR from the perspective of another parachain. For more information on defining and constructing multilocations, be sure to check the [multilocations guide](/builders/interoperability/xcm/core-concepts/multilocations/){target=\_blank}.
+
 ## Current List of External XC-20s {: #current-xc20-assets }
 
 The current list of available external XC-20 assets per network is as follows:
