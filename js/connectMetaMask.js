@@ -39,8 +39,8 @@ const supportedNetworks = {
 };
 
 /*
-  -connectNetwork - Add or switch to the specified network, then request accounts
-  -NOTE: This calls "eth_requestAccounts" at the end, which prompts for wallet connection
+  Add or switch to the specified network, then request accounts
+  NOTE: This calls "eth_requestAccounts" at the end, which prompts for wallet connection
  */
 const connectNetwork = async (network) => {
   try {
@@ -96,8 +96,8 @@ const handleError = (message) => {
 };
 
 /*
-  -NAV BUTTON: Already working code (DON'T touch it THIS IS FINE)
-  -Shows modal and sets up .connect-network links inside the modal
+  Handles the logic for the Connect Wallet button in the top navigation.
+  Shows modal and sets up .connect-network links inside the modal
 */
 
 const connectMetaMaskNav = document.querySelector('.connectMetaMask-nav');
@@ -134,8 +134,8 @@ connectMetaMaskNav.addEventListener('click', async (e) => {
 });
 
 /*
- - BODY BUTTON: NEW code
- - Directly connect to the network specified in 'value'
+ Handles the logic for the buttons inside of content pages (i.e., the Connect MetaMask guide).
+ Directly connect to the network specified in 'value'
  */
 const connectMetaMaskBodyButtons = document.querySelectorAll('.connectMetaMask');
 connectMetaMaskBodyButtons.forEach((btn) => {
