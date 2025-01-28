@@ -61,7 +61,7 @@ const connectNetwork = async (network) => {
   }
 };
 
-// Original getConnectedNetwork
+// Get the network that the user is currently connected to
 const getConnectedNetwork = async () => {
   const chainId = await provider.request({ method: 'eth_chainId' });
   const connectedMoonbeamNetwork = Object.values(supportedNetworks).find(
@@ -77,7 +77,7 @@ const getConnectedNetwork = async () => {
   }
 };
 
-// Original displayConnectedAccount
+// Display the account that is connected and the Moonbeam network the account is connected to
 const displayConnectedAccount = async (connectedNetwork, networkButton) => {
   const accounts = await provider.request({ method: 'eth_requestAccounts' });
   if (!accounts || accounts.length === 0) return;
@@ -87,7 +87,7 @@ const displayConnectedAccount = async (connectedNetwork, networkButton) => {
   networkButton.className += ' disabled-button';
 };
 
-// Original handleError
+// Displays an error message to the user
 const handleError = (message) => {
   const errorModalContainer = document.querySelector('.error-modal-container');
   const errorMessage = document.querySelector('.error-message');
@@ -156,6 +156,9 @@ connectMetaMaskBodyButtons.forEach((btn) => {
 
     
     await connectNetwork(network);
+    //Update the button to reflect the "connected" state
+    btn.textContent = 'Connected';
+    btn.classList.add('disabled-button');
   });
 });
 
