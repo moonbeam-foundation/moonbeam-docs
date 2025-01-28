@@ -22,7 +22,7 @@
         "value": "0",
         "gas_offered": 582957,
         "gas_spent": 551928,
-        "gas_price": 125000000,
+        "gas_price": 31250000,
         "fees_paid": "68991000000000",
         "log_events": [
           {

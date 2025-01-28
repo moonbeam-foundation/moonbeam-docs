@@ -315,19 +315,19 @@ To calculate the dynamic base fee, the following calculation is used:
 === "Moonbeam"
 
     ```text
-    BaseFee = NextFeeMultiplier * 125000000000 / 10^18
+    BaseFee = NextFeeMultiplier * 31250000000 / 10^18
     ```
 
 === "Moonriver"
 
     ```text
-    BaseFee = NextFeeMultiplier * 1250000000 / 10^18
+    BaseFee = NextFeeMultiplier * 312500000 / 10^18
     ```
 
 === "Moonbase Alpha"
 
     ```text
-    BaseFee = NextFeeMultiplier * 125000000 / 10^18
+    BaseFee = NextFeeMultiplier * 31250000 / 10^18
     ```
 
 The value of `NextFeeMultiplier` can be retrieved from the Substrate Sidecar API, via the following endpoint:
