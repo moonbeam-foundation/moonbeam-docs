@@ -62,6 +62,7 @@ The current list of available external XC-20 assets per network is as follows:
     |        Bifrost        |  xcBNCS   |  [0xfFfffffF6aF229AE7f0F4e0188157e189a487D59](https://moonscan.io/token/0xfFfffffF6aF229AE7f0F4e0188157e189a487D59){target=\_blank}  |
     |        Bifrost        |   xcFIL   |  [0xfFFfFFFF6C57e17D210DF507c82807149fFd70B2](https://moonscan.io/token/0xfFFfFFFF6C57e17D210DF507c82807149fFd70B2){target=\_blank}  |
     |        Bifrost        |  xcvASTR  |  [0xFffFffff55C732C47639231a4C4373245763d26E](https://moonscan.io/token/0xFffFffff55C732C47639231a4C4373245763d26E){target=\_blank}  |
+    |        Bifrost        |  xcvBNC   |  [0xffFffFff31d724194b6A76e1d639C8787E16796b](https://moonscan.io/token/0xffFffFff31d724194b6A76e1d639C8787E16796b){target=\_blank}  |
     |        Bifrost        |  xcvDOT   |  [0xFFFfffFf15e1b7E3dF971DD813Bc394deB899aBf](https://moonscan.io/token/0xFFFfffFf15e1b7E3dF971DD813Bc394deB899aBf){target=\_blank}  |
     |        Bifrost        |  xcvFIL   |  [0xFffffFffCd0aD0EA6576B7b285295c85E94cf4c1](https://moonscan.io/token/0xFffffFffCd0aD0EA6576B7b285295c85E94cf4c1){target=\_blank}  |
     |        Bifrost        |  xcvGLMR  |  [0xFfFfFFff99dABE1a8De0EA22bAa6FD48fdE96F6c](https://moonscan.io/token/0xFfFfFFff99dABE1a8De0EA22bAa6FD48fdE96F6c){target=\_blank}  |
