@@ -819,9 +819,9 @@ networks:
     tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.42.1-3401-bc1d
     chain_spec: moonbeam
     block_explorer: https://moonscan.io
-    spec_version: runtime-3300
+    spec_version: runtime-3400
     binary_name: moonbeam
-    min_gas_price: 125
+    min_gas_price: 31.25
     block_time: 6
     gas_block: 60,000,000
     gas_block_numbers_only: 60000000 # this should match gas_block, just with no commas
