@@ -17,7 +17,7 @@
         "fees_paid": "120825750000000",
         "gas_offered": 1010593,
         "gas_spent": 966606,
-        "gas_price": 125000000,
+        "gas_price": 31250000,
         "gas_quote": null,
         "gas_quote_rate": null
       },
@@ -31,7 +31,7 @@
         "fees_paid": "13762000000000",
         "gas_offered": 169164,
         "gas_spent": 110096,
-        "gas_price": 125000000,
+        "gas_price": 31250000,
         "gas_quote": null,
         "gas_quote_rate": null,
         "log_events": [

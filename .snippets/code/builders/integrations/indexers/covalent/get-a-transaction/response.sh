@@ -31,7 +31,7 @@
         },
         "gas_offered": 169164,
         "gas_spent": 110096,
-        "gas_price": 125000000,
+        "gas_price": 31250000,
         "fees_paid": "13762000000000",
         "gas_quote": null,
         "pretty_gas_quote": null,

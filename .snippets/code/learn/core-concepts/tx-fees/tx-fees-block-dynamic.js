@@ -15,9 +15,9 @@ const endpointNodeVersion = 'http://127.0.0.1:8080/node/version';
 
 // Define the minimum base fee for each network
 const baseFee = {
-  moonbeam: 125000000000n,
-  moonriver: 1250000000n,
-  moonbase: 125000000n,
+  moonbeam: 31250000000n,
+  moonriver: 312500000n,
+  moonbase: 31250000n,
 };
 
 async function main() {
