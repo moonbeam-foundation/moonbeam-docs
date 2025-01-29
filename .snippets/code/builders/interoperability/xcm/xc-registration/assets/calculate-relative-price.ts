@@ -8,8 +8,9 @@ const NETWORK_IDS = {
 
 async function calculateRelativePrice(
   assetPrice: number,
+  assetDecimals: number,
   network: "GLMR" | "MOVR"
-): Promise<string> {
+): Promise<bigint> {
   try {
     // Fetch the native token price from CoinGecko
     const response = await axios.get(
@@ -21,10 +22,12 @@ async function calculateRelativePrice(
     // Calculate relative price with 18 decimal places
     // Formula: (assetPrice / nativeTokenPrice) * 10^18
     // This gives us how many units of the asset we need to equal 1 unit of native token
-    const relativePrice = ( assetPrice / nativeTokenPrice ) * Math.pow(10, 18);
+    const relativePrice = BigInt(
+      0.175 * Math.pow(10, 18 - assetDecimals) * (assetPrice / nativeTokenPrice) * Math.pow(10, 18)
+    );
 
     // Return as string to preserve precision
-    return relativePrice.toFixed(0);
+    return relativePrice;
   } catch (error) {
     if (error instanceof Error) {
       throw new Error(`Failed to calculate relative price: ${error.message}`);
@@ -35,12 +38,19 @@ async function calculateRelativePrice(
 
 function validateInput(
   price: string,
+  decimals: string,
   network: string
-): { assetPrice: number; network: "GLMR" | "MOVR" } {
+): { assetPrice: number; assetDecimals: number; network: "GLMR" | "MOVR" } {
   // Validate price
   const assetPrice = parseFloat(price);
   if (isNaN(assetPrice) || assetPrice <= 0) {
     throw new Error("Price must be a positive number");
+  }
+
+  // Validate decimals
+  const assetDecimals = parseFloat(decimals);
+  if (isNaN(assetDecimals) || assetDecimals <= 0) {
+    throw new Error("Decimals must be a positive number");
   }
 
   // Validate network
@@ -49,23 +59,24 @@ function validateInput(
     throw new Error("Network must be either GLMR or MOVR");
   }
 
-  return { assetPrice, network: upperNetwork };
+  return { assetPrice, assetDecimals, network: upperNetwork };
 }
 
 function printUsage() {
   console.log("\nUsage:");
-  console.log("npx ts-node relative-price-calculator.ts <price> <network>");
+  console.log("npx ts-node calculate-relative-price.ts <price> <decimals> <network>");
   console.log("\nExample:");
-  console.log("npx ts-node relative-price-calculator.ts 0.25 GLMR");
+  console.log("npx ts-node calculate-relative-price.ts 0.25 12 GLMR");
   console.log("\nParameters:");
-  console.log("price   - The price of your asset in USD");
-  console.log("network - Either GLMR or MOVR");
+  console.log("price      - The price of your asset in USD");
+  console.log("decimals   - The decimals of your asset");
+  console.log("network    - Either GLMR or MOVR");
 }
 
 async function main() {
   try {
     // Get command line arguments
-    const [, , price, network] = process.argv;
+    const [, , price, decimals, network] = process.argv;
 
     // Check if help flag is passed
     if (price === "--help" || price === "-h") {
@@ -74,19 +85,23 @@ async function main() {
     }
 
     // Check if required arguments are provided
-    if (!price || !network) {
+    if (!price || !decimals || !network) {
       console.error("Error: Missing required arguments");
       printUsage();
       process.exit(1);
     }
 
     // Validate inputs
-    const { assetPrice, network: validNetwork } = validateInput(price, network);
+    const {
+      assetPrice,
+      assetDecimals,
+      network: validNetwork,
+    } = validateInput(price, decimals, network);
 
     console.log(
       `\nCalculating relative price for asset worth $${assetPrice} against ${validNetwork}...`
     );
-    const relativePrice = await calculateRelativePrice(assetPrice, validNetwork);
+    const relativePrice = await calculateRelativePrice(assetPrice, assetDecimals, validNetwork);
     const nativeTokenPrice = (
       await axios.get(
         `https://api.coingecko.com/api/v3/simple/price?ids=${NETWORK_IDS[validNetwork]}&vs_currencies=usd`
