@@ -109,7 +109,7 @@ If you're not interested in the mechanics of the relative price feel free to ski
 1. Fetch the native token price (GLMR or MOVR) from CoinGecko (in USD) 
 2. Calculate the ratio of `assetPrice` / `nativeTokenPrice`  
 3. Multiply that ratio by `0.175`. This factor intentionally overestimates the relative price by ~5–6× to provide a buffer against market fluctuations 
-4. Multiply by `10 ^ (18 - `assetDecimals`). For example, if the asset uses 12 decimals, you’d multiply by 10^(18 - 12) = 10^6. This accounts for any difference between your asset’s decimals and the 18 decimals used by the native token 
+4. Multiply by `10 ^ (18 - assetDecimals`). For example, if the asset uses 12 decimals, you’d multiply by 10^(18 - 12) = 10^6. This accounts for any difference between your asset’s decimals and the 18 decimals used by the native token 
 5. Multiply by `10^18`. This final step scales everything up to 18 decimals (the common WEI format)
 6. Convert to `BigInt`
 
@@ -129,11 +129,26 @@ Proposals must be submitted via the `GeneralAdmin` track. If you're opening a ch
 
 Using the above information, you can generate the encoded call data for the `createForeignAsset` call either via the Polkadot API or on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbeam.network#/extrinsics){target=\_blank}.
 
+You can generate this required calldata using the 
+
+```bash
+yarn register-asset --w wss://wss.api.moonbeam.network  \
+--asset 'INSERT_MULTILOCATION' \
+--symbol "INSERT_ASSET_SYMBOL" \
+--decimals INSERT_DECIMALS \
+--name "INSERT_ASSET_NAME" \
+--relative-price INSERT_RELATIVE_PRICE
+```
+
+For example, 
+
+--8<-- 'code/builders/interoperability/xcm/xc-registration/assets/terminal/calculate-relative-price.md'
+
+
 To get the encoded calldata for the `xcmWeightTrader.addAsset` extrinsic, you will need to provide the following arguments:
 
 - `xcmLocation` - the multilocation of the asset relative to Moonbeam 
-- `relativePrice` - A numeric value (u128) representing the fraction of the native token’s price that your asset’s price constitutes, scaled to 18 decimals. This value is used to calculate cross-chain fees by determining how many units of the non-native asset are required to cover XCM operation costs. For example, if the chosen asset is priced at exactly half the native token’s price (GLMR or MOVR), then `relativePrice` = `assetPrice` / `nativeTokenPrice` = `0.5`. Then, this figure must be multiplied by 10^18 to generate an 18-decimal integer of `500,000,000,000,000,000`
-
+- `relativePrice` - A numeric value (u128) representing the fraction of the native token’s price that your asset’s price constitutes, scaled to 18 decimals. This value is used to calculate cross-chain fees by determining how many units of the non-native asset are required to cover XCM operation costs. 
 
 Using the above information, you can generate the encoded call data for the `addAsset` call either via the Polkadot API or on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbeam.network#/extrinsics){target=\_blank}.
 
