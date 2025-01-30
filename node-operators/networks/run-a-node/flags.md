@@ -48,6 +48,7 @@ This guide will cover some of the most common flags and show you how to access a
 - **`--lazy-loading-runtime-override`** - optional parameter to specify a runtime override when starting the lazy loading. If not provided, it will fetch the runtime from the block being forked
 - **`--lazy-loading-delay-between-requests`** - the delay (in milliseconds) between RPC requests when using lazy loading. This parameter controls the amount of time to wait between consecutive RPC requests. This can help manage request rate and avoid overwhelming the server. Default value is `100` milliseconds
 - **`--lazy-loading-max-retries-per-request`** - the maximum number of retries for an RPC request when using lazy loading. Default value is `10` retries
+- **`--experimental-block-import-strategy`** - defaults the client to operating in low latency mode. When this flag is added, the client will derive the "best" block from the imported block instead of the included blocks, which will result in a substantially faster, "snappier" feeling end-user experience. Note that finalization is unchanged when using this flag - finality is derived from the relay chain
 
 ## Flags for Configuring a SQL Backend {: #flags-for-sql-backend }
 
