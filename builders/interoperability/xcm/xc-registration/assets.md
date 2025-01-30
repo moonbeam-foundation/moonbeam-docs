@@ -53,6 +53,68 @@ With this information in hand, you can prepare a governance proposal to register
 
 ![Overview of the proposal process](/images/builders/interoperability/xcm/xc-registration/assets/assets-3.webp)
 
+### Calculate Relative Price {: #calculate-relative-price }
+
+An asset's `relativePrice` refers to a `u128` value that indicates how many units of said asset (in its smallest denomination) equate to one unit**—i.e., `1 × 10^18 wei`—of the native token (GLMR or MOVR). This helps determine how much of your asset to use for fees originally quoted in the native token, particularly in cross-chain messaging (XCM).
+
+You can use the following script (also available as part of [XCM-tools](https://github.com/Moonsong-Labs/xcm-tools){target=\_blank} ) to calculate the correct `relativePrice` value for your asset.
+
+??? code "Calculate Relative Price"
+    ```typescript
+    --8<-- 'code/builders/interoperability/xcm/xc-registration/assets/calculate-relative-price.ts'
+    ```
+
+If you're in a hurry, you can input the required values and continue on your way. The next section will cover additional background information on relative price and how its calculated. 
+
+Only three parameters are required to calculate the relative price of an asset: 
+
+- Asset Price (USD): A positive number representing how much 1 unit (in human-readable form) of your asset costs in USD
+- Asset Decimals: The number of decimal places your asset uses. For example, if your token has 12 decimals, specify 12
+- Network: Either GLMR (Moonbeam) or MOVR (Moonriver). This should correspond to the network that you're registering the asset on, and this determines which native token’s USD price the script will fetch from CoinGecko
+
+First, ensure that you've installed the required dependencies by running:
+
+```bash
+npm install
+```
+
+Execute the script:
+
+```bash
+npx ts-node calculate-relative-price.ts INSERT_ASSET_PRICE INSERT_DECIMALS GLMR
+```
+
+For example, if the asset you're registering has a USD price of $0.25 and 12 decimals and you're registering the asset on the Moonbeam network, you would run: 
+
+```bash
+npx ts-node calculate-relative-price.ts 0.25 12 GLMR
+```
+
+This instructs the script to calculate how many smallest units of an asset (priced at $0.25, with 12 decimals) correspond to 1 GLMR token.
+
+--8<-- 'code/builders/interoperability/xcm/xc-registration/assets/terminal/calculate-relative-price.md'
+
+Upon successful execution, the script prints the computed `relativePrice` as a `BigInt`. This value represents the scaled ratio between the asset’s USD price and the native token’s USD price, multiplied up to 18 decimals. You can then use this result in on-chain asset registration or fee calculation scenarios—especially where a `u128` 18-decimal format is required.
+
+For additional info, usage details, or to see an example in action, you can invoke the help command by running: 
+
+```bash
+npx ts-node calculate-relative-price.ts --help
+```
+
+### How Relative Price is Constructed
+
+If you're not interested in the mechanics of the relative price feel free to skip this section. The relative price calculation script performs the following steps:
+
+1. Fetch the native token price (GLMR or MOVR) from CoinGecko (in USD) 
+2. Calculate the ratio of `assetPrice` / `nativeTokenPrice`  
+3. Multiply that ratio by `0.175`. This factor intentionally overestimates the relative price by ~5–6× to provide a buffer against market fluctuations 
+4. Multiply by `10 ^ (18 - `assetDecimals`). For example, if the asset uses 12 decimals, you’d multiply by 10^(18 - 12) = 10^6. This accounts for any difference between your asset’s decimals and the 18 decimals used by the native token 
+5. Multiply by `10^18`. This final step scales everything up to 18 decimals (the common WEI format)
+6. Convert to `BigInt`
+
+Why is there a `0.175` Factor? The main reason  why we don't take the direct relative price of asset price / native token price is to provide a buffer for volatility. Market prices can shift rapidly. An exact 1:1 ratio might under-collect fees if prices move unexpectedly. The `0.175` provides for an approximate 5x overestimation. Generally speaking, the fees are expected to be extremely low so the `5x` multiplier, while a conservative overestimate, is not meant to be unduly burdensome. 
+
 ### Generate the Encoded Calldata for the Asset Registration {: #generate-encoded-calldata-for-asset-registration }
 
 Submitting a governance proposal on Moonbeam requires two steps: first, submit a preimage that defines the actions to be executed, then use that preimage to submit the proposal. For more details, see the [Governance on Moonbeam](/learn/features/governance/){target=\_blank} page. To submit a preimage for asset registration, you'll need the encoded calldata for both the `evmForeignAssets.createForeignAsset` and `xcmWeightTrader.addAsset` extrinsics.
@@ -72,12 +134,6 @@ To get the encoded calldata for the `xcmWeightTrader.addAsset` extrinsic, you wi
 - `xcmLocation` - the multilocation of the asset relative to Moonbeam 
 - `relativePrice` - A numeric value (u128) representing the fraction of the native token’s price that your asset’s price constitutes, scaled to 18 decimals. This value is used to calculate cross-chain fees by determining how many units of the non-native asset are required to cover XCM operation costs. For example, if the chosen asset is priced at exactly half the native token’s price (GLMR or MOVR), then `relativePrice` = `assetPrice` / `nativeTokenPrice` = `0.5`. Then, this figure must be multiplied by 10^18 to generate an 18-decimal integer of `500,000,000,000,000,000`
 
-You can use the following script (also available as part of [XCM-tools](https://github.com/Moonsong-Labs/xcm-tools){target=\_blank} ) to calculate the correct `relativePrice` value for your asset.
-
-??? code "Calculate Relative Price"
-    ```typescript
-    --8<-- 'code/builders/interoperability/xcm/xc-registration/assets/calculate-relative-price.ts'
-    ```
 
 Using the above information, you can generate the encoded call data for the `addAsset` call either via the Polkadot API or on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbeam.network#/extrinsics){target=\_blank}.
 
