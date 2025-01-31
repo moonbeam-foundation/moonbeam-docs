@@ -7,7 +7,7 @@ description: This guide includes everything you need to know to register local a
 
 ## Introduction {: #introduction }
 
-For an asset to be transferred across chains via XCM, there needs to be an open channel between the two chains, and the asset needs to be registered on the destination chain. If a channel doesn't exist between the two chains, one will need to be opened. Please check out the [XC Channel Registration](/builders/interoperability/xcm/xc-registration/xc-integration/){target=\_blank} guide for information on how to establish a channel between Moonbeam and another chain.
+For an asset to be transferred across chains via XCM, there needs to be an open channel between the two chains, and the asset needs to be registered on the destination chain. If a channel does not exist between the two chains, one will need to be opened. Please check out the [XC Channel Registration](/builders/interoperability/xcm/xc-registration/xc-integration/){target=\_blank} guide for information on how to establish a channel between Moonbeam and another chain.
 
 This guide will show you how to register [external XC-20s](/builders/interoperability/xcm/xc20/overview/#external-xc20s){target=\_blank} on Moonbeam and provide the information you need to register Moonbeam assets, including Moonbeam native assets (GLMR, MOVR, and DEV) and [local XC-20s](/builders/interoperability/xcm/xc20/overview/#local-xc20s){target=\_blank} (XCM-enabled ERC-20s), on another chain.
 
@@ -55,7 +55,7 @@ With this information in hand, you can prepare a governance proposal to register
 
 ### Calculate Relative Price {: #calculate-relative-price }
 
-An asset's `relativePrice` refers to a `u128` value that indicates how many units of said asset (in its smallest denomination) equate to one unit**—i.e., `1 × 10^18 wei`—of the native token (GLMR or MOVR). This helps determine how much of your asset to use for fees originally quoted in the native token, particularly in cross-chain messaging (XCM).
+An asset's `relativePrice` refers to a `u128` value that indicates how many units of said asset (in its smallest denomination) equate to one unit**—i.e., `1 × 10^18 wei`—of the native token (GLMR or MOVR). This helps determine how much of your asset to use for fees initially quoted in the native token, particularly in cross-chain messaging (XCM).
 
 You can use the following script (also available as part of [XCM-tools](https://github.com/Moonsong-Labs/xcm-tools){target=\_blank} ) to calculate the correct `relativePrice` value for your asset.
 
@@ -64,7 +64,7 @@ You can use the following script (also available as part of [XCM-tools](https://
     --8<-- 'code/builders/interoperability/xcm/xc-registration/assets/calculate-relative-price.ts'
     ```
 
-If you're in a hurry, you can input the required values and continue on your way. The next section will cover additional background information on relative price and how its calculated. 
+If you're in a hurry, you can input the required values and continue. The following section will cover additional background information on relative price and how it's calculated. 
 
 Only three parameters are required to calculate the relative price of an asset: 
 
@@ -78,7 +78,7 @@ First, ensure that you've installed the required dependencies by running:
 npm install
 ```
 
-Execute the script:
+Execute the script, making sure to provide the USD price of the asset you're registering, the number of decimals it has, and the network you're registering the asset on (either GLMR or MOVR):
 
 ```bash
 npx ts-node calculate-relative-price.ts INSERT_ASSET_PRICE INSERT_DECIMALS GLMR
@@ -113,13 +113,13 @@ If you're not interested in the mechanics of the relative price feel free to ski
 5. Multiply by `10^18`. This final step scales everything up to 18 decimals (the common WEI format)
 6. Convert to `BigInt`
 
-Why is there a `0.175` Factor? The main reason  why we don't take the direct relative price of asset price / native token price is to provide a buffer for volatility. Market prices can shift rapidly. An exact 1:1 ratio might under-collect fees if prices move unexpectedly. The `0.175` provides for an approximate 5x overestimation. Generally speaking, the fees are expected to be extremely low so the `5x` multiplier, while a conservative overestimate, is not meant to be unduly burdensome. 
+Why is there a `0.175` Factor? The main reason why we don't take the direct relative price of asset price / native token price is to provide a buffer for volatility. Market prices can shift rapidly. An exact 1:1 ratio might under-collect fees if prices move unexpectedly. The `0.175` provides for an approximate `5x` overestimation. Generally speaking, fees are expected to be extremely low so the `5x` multiplier, while a conservative overestimate, is not meant to be unduly burdensome. 
 
 ### Generate the Encoded Calldata for the Asset Registration {: #generate-encoded-calldata-for-asset-registration }
 
 Submitting a governance proposal on Moonbeam requires two steps: first, submit a preimage that defines the actions to be executed, then use that preimage to submit the proposal. For more details, see the [Governance on Moonbeam](/learn/features/governance/){target=\_blank} page. To submit a preimage for asset registration, you'll need the encoded calldata for both the `evmForeignAssets.createForeignAsset` and `xcmWeightTrader.addAsset` extrinsics.
 
-Proposals must be submitted via the `GeneralAdmin` track. If you're opening a channel and registering an asset and you'll want to wait until the channel is established prior to attempting to register the asset. To get the encoded calldata for the `evmForeignAssets.createForeignAsset` extrinsic, you will need to provide the following arguments:
+Proposals must be submitted via the `GeneralAdmin` track. A channel must be established before an asset can be registered. To get the encoded calldata for the `evmForeignAssets.createForeignAsset` extrinsic, you will need to provide the following arguments:
 
 - `assetId` - unique identifier of the asset, generated from the [`calculate-external-asset-info.ts`](https://github.com/Moonsong-Labs/xcm-tools/blob/main/scripts/calculate-external-asset-info.ts){target=\_blank} script
 - `xcmLocation` - the multilocation of the asset relative to Moonbeam 
@@ -150,14 +150,14 @@ The script will provide the encoded call data for each of the following calls:
 - The `setRelativePrice` call
 - The `batch` call that combines each all of the above
 
-Typically, you can submit the `batch` call as part of a single governance proposal to register the asset and set the relative price in one go under the `FastGeneralAdmin` track. However, currently there is a limitation that requires the two calls to be submitted independently. The `registerAsset` call must be submitted under the `FastGeneralAdmin` track, and the `setRelativePrice` call must be submitted under the `GeneralAdmin track`. The latter is a temporary limitation, and in the future is expected to be able to submit both calls as a single `batch` call under the `FastGeneralAdmin` track.
+Typically, you can submit the `batch` call as part of a single governance proposal to register the asset and set the relative price in one go under the `FastGeneralAdmin` track. However, a limitation currently requires the two calls to be submitted independently. The `registerAsset` call must be submitted under the `FastGeneralAdmin` track, and the `setRelativePrice` call must be submitted under the `GeneralAdmin track`. The latter is a temporary limitation, and in the future, it is expected to be able to submit both calls as a single `batch` call under the `FastGeneralAdmin` track.
 
 ### Construct the Add Asset Call
 
 If you've already used the [xcm-asset-registrator script](https://github.com/Moonsong-Labs/xcm-tools/blob/main/scripts/xcm-asset-registrator.ts){target=\_blank} shown above, you can skip this section. This section dives into more detail about how the `xcmWeightTrader.addAsset` call is constructued. To get the encoded calldata for the `xcmWeightTrader.addAsset` extrinsic, you will need to provide the following arguments:
 
 - `xcmLocation` - the multilocation of the asset relative to Moonbeam 
-- `relativePrice` - A numeric value (u128) representing the fraction of the native token’s price that your asset’s price constitutes, scaled to 18 decimals. This value is used to calculate cross-chain fees by determining how many units of the non-native asset are required to cover XCM operation costs. 
+- `relativePrice` - A numeric value (u128) representing the fraction of the native token’s price that your asset’s price constitutes, scaled to 18 decimals. This value calculates cross-chain fees by determining how many units of the non-native asset are required to cover XCM operation costs. 
 
 Using the above information, you can generate the encoded call data for the `addAsset` call either via the Polkadot API or on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbeam.network#/extrinsics){target=\_blank}.
 
@@ -167,7 +167,7 @@ To create a batch transaction that combines both the `xcmWeightTrader.addAsset` 
 
 Your next task is to submit the preimage of your batched call containing both the `xcmWeightTrader.addAsset` and the `evmForeignAssets.createForeignAsset` by following the guidelines in the [Submit a Democracy Proposal Guide](/tokens/governance/proposals/#submitting-a-preimage-of-the-proposal){target=\_blank}.
 
-For Moonbase Alpha, you do not need to go through governance, as Moonbase Alpha has `sudo` access. Instead, you can provide the output of the batch call data to the Moonbeam team, and the Moonbeam Team can submit the call with `sudo`. This will be a faster and easier process than going through governance. However, you may still wish to go through governance on Moonbase Alpha in order to prepare for the governance process on Moonbeam.
+For Moonbase Alpha, you do not need to go through governance, as Moonbase Alpha has `sudo` access. Instead, you can provide the output of the batch call data to the Moonbeam team, and the Moonbeam Team can submit the call with `sudo`. This will be a faster and easier process than going through governance. However, you may still wish to go through governance on Moonbase Alpha to prepare for Moonbeam's governance process.
 
 After submitting the preimage, you can submit the proposal by following the guidelines in the [Submitting a Proposal](/tokens/governance/proposals/#submitting-a-proposal-v2){target=\_blank} section.
 
@@ -428,7 +428,7 @@ You can use the following multilocation to register a local XC-20:
     }
     ```
 
-Since local XC-20s are ERC-20s on Moonbeam, there are no deposits required to create an ERC-20 on Moonbeam. There may, however, be deposits required to register the asset on another parachain. Please consult with the parachain team you wish to register the asset with for more information.
+Since local XC-20s are ERC-20s on Moonbeam, there are no deposits required to create an ERC-20 on Moonbeam. However, deposits may be required to register the asset on another parachain. Please consult with the parachain team you wish to register the asset with for more information.
 
 ## Managing XC Assets 
 
@@ -436,7 +436,7 @@ After completing the [registration process](#introduction) for an XC asset, you 
 
 ### Updating Foreign Asset XCM Location {: #updating-foreign-asset-xcm-location }
 
-You can update the multilocation of an asset with the `evmForeignAssets.changeXcmLocation` call, which takes as parameters, the `assetId` and the new multilocation. You'll need to raise a [governance proposal](/tokens/governance/proposals/) and submit the update under the `GeneralAdmin` track. If you're testing in Moonbase Alpha, you can ask the Moonbeam Team to submit the extrinsic using Sudo to speed up the process. You can also submit the requisite governance proposal on Moonbase Alpha. 
+You can update the multilocation of an asset with the `evmForeignAssets.changeXcmLocation` call, which takes as parameters the `assetId` and the new multilocation. You'll need to raise a [governance proposal](/tokens/governance/proposals/) and submit the update under the `GeneralAdmin` track. If you're testing in Moonbase Alpha, you can ask the Moonbeam Team to submit the extrinsic using Sudo to speed up the process. You can also submit the requisite governance proposal on Moonbase Alpha. 
 
 ### Freezing a Foreign Asset {: #freezing-a--foreign-asset }
 
@@ -444,4 +444,4 @@ You can freeze a foreign asset by calling `evmForeignAssets.freezeForeignAsset`,
 
 ### Paying XCM Fees with Foreign Assets {: #paying-xcm-fees-with-foreign-assets }
 
-After you've registered the foreign asset via the `evmForeignAssets` and the `xcmWeightTrader` pallet, your asset will now be among the supported assets for paying XCM fees. To verify, you can query the `xcmWeightTrader` pallet and the `supportedAssets` chain state query. Toggle the **Include Option** slider off to see the complete list, or, you can filter the list by the multilocation of your asset. 
+After you've registered the foreign asset via the `evmForeignAssets` and the `xcmWeightTrader` pallet, your asset will now be among the supported assets for paying XCM fees. To verify, you can query the `xcmWeightTrader` pallet and the `supportedAssets` chain state query. Toggle the **Include Option** slider off to see the complete list, or you can filter the list by the multilocation of your asset. 
