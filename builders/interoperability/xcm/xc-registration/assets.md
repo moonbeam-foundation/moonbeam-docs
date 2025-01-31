@@ -129,7 +129,7 @@ Proposals must be submitted via the `GeneralAdmin` track. If you're opening a ch
 
 Using the above information, you can generate the encoded call data for the `createForeignAsset` call either via the Polkadot API or on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbeam.network#/extrinsics){target=\_blank}.
 
-You can generate this required calldata using the 
+You can generate this required calldata using the [xcm-asset-registrator script](https://github.com/Moonsong-Labs/xcm-tools/blob/main/scripts/xcm-asset-registrator.ts){target=\_blank} as follows:
 
 ```bash
 yarn register-asset --w wss://wss.api.moonbeam.network  \
@@ -140,19 +140,28 @@ yarn register-asset --w wss://wss.api.moonbeam.network  \
 --relative-price INSERT_RELATIVE_PRICE
 ```
 
-For example, 
+Upon running the script with the relevant parameters, you'll see output like the following: 
 
---8<-- 'code/builders/interoperability/xcm/xc-registration/assets/terminal/calculate-relative-price.md'
+--8<-- 'code/builders/interoperability/xcm/xc-registration/assets/terminal/register-asset.md'
 
+The script will provide the encoded call data for each of the following calls:
 
-To get the encoded calldata for the `xcmWeightTrader.addAsset` extrinsic, you will need to provide the following arguments:
+- The `registerAsset` call
+- The `setRelativePrice` call
+- The `batch` call that combines each all of the above
+
+Typically, you can submit the `batch` call as part of a single governance proposal to register the asset and set the relative price in one go under the `FastGeneralAdmin` track. However, currently there is a limitation that requires the two calls to be submitted independently. The `registerAsset` call must be submitted under the `FastGeneralAdmin` track, and the `setRelativePrice` call must be submitted under the `GeneralAdmin track`. The latter is a temporary limitation, and in the future is expected to be able to submit both calls as a single `batch` call under the `FastGeneralAdmin` track.
+
+### Construct the Add Asset Call
+
+If you've already used the [xcm-asset-registrator script](https://github.com/Moonsong-Labs/xcm-tools/blob/main/scripts/xcm-asset-registrator.ts){target=\_blank} shown above, you can skip this section. This section dives into more detail about how the `xcmWeightTrader.addAsset` call is constructued. To get the encoded calldata for the `xcmWeightTrader.addAsset` extrinsic, you will need to provide the following arguments:
 
 - `xcmLocation` - the multilocation of the asset relative to Moonbeam 
 - `relativePrice` - A numeric value (u128) representing the fraction of the native token’s price that your asset’s price constitutes, scaled to 18 decimals. This value is used to calculate cross-chain fees by determining how many units of the non-native asset are required to cover XCM operation costs. 
 
 Using the above information, you can generate the encoded call data for the `addAsset` call either via the Polkadot API or on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbeam.network#/extrinsics){target=\_blank}.
 
-To create a batch transaction that combines both the `xcmWeightTrader.addAsset` and the `evmForeignAssets.createForeignAsset` calls together, you can use the [Polkadot API's Batch Method](/builders/substrate/libraries/polkadot-js-api/#batching-transactions){target=\_blank}. Additionally, the [XCM Asset Registrator](https://github.com/Moonsong-Labs/xcm-tools/blob/main/scripts/xcm-asset-registrator.ts){target=\_blank} script can help you build and submit the required calls. 
+To create a batch transaction that combines both the `xcmWeightTrader.addAsset` and the `evmForeignAssets.createForeignAsset` calls together, you can use the [Polkadot API's Batch Method](/builders/substrate/libraries/polkadot-js-api/#batching-transactions){target=\_blank}. As mentioned previously, the [XCM Asset Registrator](https://github.com/Moonsong-Labs/xcm-tools/blob/main/scripts/xcm-asset-registrator.ts){target=\_blank} script can help you build and submit the required calls. 
 
 ### Submit the Preimage and Proposal for Asset Registration {: #submit-preimage-proposal }
 
@@ -161,6 +170,8 @@ Your next task is to submit the preimage of your batched call containing both th
 For Moonbase Alpha, you do not need to go through governance, as Moonbase Alpha has `sudo` access. Instead, you can provide the output of the batch call data to the Moonbeam team, and the Moonbeam Team can submit the call with `sudo`. This will be a faster and easier process than going through governance. However, you may still wish to go through governance on Moonbase Alpha in order to prepare for the governance process on Moonbeam.
 
 After submitting the preimage, you can submit the proposal by following the guidelines in the [Submitting a Proposal](/tokens/governance/proposals/#submitting-a-proposal-v2){target=\_blank} section.
+
+If you prefer the script method and you're comfortable working with the scripts in the XCM tools repo, you can use the [Generic Call Proposer](https://github.com/Moonsong-Labs/xcm-tools/blob/main/scripts/generic-call-proposer.ts){target=\_blank} by passing in the requisite calls, including the acceptance and proposal of the XCM Channel, and the asset registration. 
 
 ### Test the Asset Registration on Moonbeam {: #test-asset-registration }
 
