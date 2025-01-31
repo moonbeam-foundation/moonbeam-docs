@@ -104,7 +104,7 @@ npx ts-node calculate-relative-price.ts --help
 
 ### How Relative Price is Constructed
 
-If you're not interested in the mechanics of the relative price feel free to skip this section. The relative price calculation script performs the following steps:
+If you're not interested in the mechanics of the relative price, feel free to skip this section. The relative price calculation script performs the following steps:
 
 1. Fetch the native token price (GLMR or MOVR) from CoinGecko (in USD) 
 2. Calculate the ratio of `assetPrice` / `nativeTokenPrice`  
@@ -150,11 +150,11 @@ The script will provide the encoded call data for each of the following calls:
 - The `setRelativePrice` call
 - The `batch` call that combines each all of the above
 
-Typically, you can submit the `batch` call as part of a single governance proposal to register the asset and set the relative price in one go under the `FastGeneralAdmin` track. However, a limitation currently requires the two calls to be submitted independently. The `registerAsset` call must be submitted under the `FastGeneralAdmin` track, and the `setRelativePrice` call must be submitted under the `GeneralAdmin track`. The latter is a temporary limitation, and in the future, it is expected to be able to submit both calls as a single `batch` call under the `FastGeneralAdmin` track.
+Typically, you can submit the `batch` call as part of a single governance proposal to register the asset and set the relative price in one go under the `FastGeneralAdmin` track. However, a limitation currently requires the two calls to be submitted independently. The `registerAsset` call must be submitted under the `FastGeneralAdmin` track, and the `setRelativePrice` call must be submitted under the `GeneralAdmin` track. The latter is a temporary limitation, and in the future, it is expected to be able to submit both calls as a single `batch` call under the `FastGeneralAdmin` track.
 
 ### Construct the Add Asset Call
 
-If you've already used the [xcm-asset-registrator script](https://github.com/Moonsong-Labs/xcm-tools/blob/main/scripts/xcm-asset-registrator.ts){target=\_blank} shown above, you can skip this section. This section dives into more detail about how the `xcmWeightTrader.addAsset` call is constructued. To get the encoded calldata for the `xcmWeightTrader.addAsset` extrinsic, you will need to provide the following arguments:
+If you've already used the [xcm-asset-registrator script](https://github.com/Moonsong-Labs/xcm-tools/blob/main/scripts/xcm-asset-registrator.ts){target=\_blank} shown above, you can skip this section. This section dives into more detail about how the `xcmWeightTrader.addAsset` call is constructed. To get the encoded calldata for the `xcmWeightTrader.addAsset` extrinsic, you will need to provide the following arguments:
 
 - `xcmLocation` - the multilocation of the asset relative to Moonbeam 
 - `relativePrice` - A numeric value (u128) representing the fraction of the native token’s price that your asset’s price constitutes, scaled to 18 decimals. This value calculates cross-chain fees by determining how many units of the non-native asset are required to cover XCM operation costs. 
