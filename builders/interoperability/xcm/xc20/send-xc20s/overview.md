@@ -43,6 +43,6 @@ This process calls `TransferReserveAsset` with `assets`, `dest`, and `xcm` param
 
 --8<-- 'text/builders/interoperability/xcm/xc20/send-xc20s/overview/xcDOT-to-DOT-instructions.md'
 
-For details on constructing an XCM message to move reserve assets back to their reserve chain—such as xcDOT from Moonbeam to Polkadot—refer to the [Polkadot XCM Pallet guide](/builders/interoperability/xcm/xc20/send-xc20s/xcm-pallet/){target=_blank}.
+For details on constructing an XCM message to move reserve assets back to their reserve chain—such as xcDOT from Moonbeam to Polkadot—refer to the [Polkadot XCM Pallet guide](/builders/interoperability/xcm/xc20/send-xc20s/xcm-pallet/){target=\_blank}.
 
 It calls `WithdrawAsset` followed by `InitiateReserveWithdraw` with `assets`, `dest`, and `xcm` parameters. Within `xcm`, the typical instructions are `BuyExecution` and `DepositAsset`. The [`InitiateReserveWithdraw` instruction](https://github.com/paritytech/polkadot-sdk/blob/{{ polkadot_sdk }}/polkadot/xcm/xcm-executor/src/lib.rs#L903){target=_blank} combines `WithdrawAsset` and `ClearOrigin` with `BuyExecution` and `DepositAsset` to complete the transfer.
