@@ -245,7 +245,7 @@ There will also be three values for the `value` array. The first address in the 
 ["1000000000000000000", "0", "0"]
 ```
 
-You will need three values for the `callData` array. Since transferring native currency does not require call data, the string is simply blank. The second and third values in the array correspond to invokations of **setMessage** that set messages to ids 5 and 6.
+You will need three values for the `callData` array. Since transferring native currency does not require call data, the string is simply blank. The second and third values in the array correspond to invocations of **setMessage** that set messages to ids 5 and 6.
 
 ```text
 [
