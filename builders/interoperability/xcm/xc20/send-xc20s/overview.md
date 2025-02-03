@@ -30,7 +30,7 @@ The instructions in each XCM transfer vary depending on the asset and the transf
 
 --8<-- 'text/builders/interoperability/xcm/xc20/send-xc20s/overview/DOT-to-xcDOT-instructions.md'
 
-This process invokes TransferReserveAsset with `assets`, `dest`, and `xcm`parameters. Within the `xcm` parameter, you typically specify the `BuyExecution` and `DepositAsset` instructions. As shown in the [`TransferReserveAsset` instruction](https://github.com/paritytech/polkadot-sdk/blob/{{ polkadot_sdk }}/polkadot/xcm/xcm-executor/src/lib.rs#L630){target=\_blank}, the flow also includes ReserveAssetDeposited and ClearOrigin to finalize the transfer.
+This process invokes TransferReserveAsset with `assets`, `dest`, and `xcm`parameters. Within the `xcm` parameter, you typically specify the `BuyExecution` and `DepositAsset` instructions. As shown in the [`TransferReserveAsset` instruction](https://github.com/paritytech/polkadot-sdk/blob/{{ polkadot_sdk }}/polkadot/xcm/xcm-executor/src/lib.rs#L630){target=\_blank}, the flow also includes `ReserveAssetDeposited` and `ClearOrigin` to complete the transfer.
 
 For more information on constructing an XCM message for asset transfers, such as DOT to Moonbeam, refer to the [Polkadot XCM Pallet guide](/builders/interoperability/xcm/xc20/send-xc20s/xcm-pallet/){target=\_blank}.
 
