@@ -23,7 +23,7 @@ This page covers the fundamentals of XCM-based remote transfers. To learn how to
 
 ## XCM Instructions for Asset Transfers {: #xcm-instructions-for-asset-transfers }
 
-The `X-Tokens` Pallet and `XCM` Precompile simplify cross-chain asset transfers by abstracting away the process of building the underlying XCM message. This guide provides insight into the underlying instructions used by XCM to transfer assets cross-chain.
+The X-Tokens Pallet and XCM Precompile simplify cross-chain asset transfers by abstracting away the process of building the XCM message. This guide provides insight into the underlying instructions used by XCM to transfer assets cross-chain.
 
 For reference, the XCM extrinsics used by the Polkadot XCM Pallet are defined at the top of the [Using the Polkadot XCM Pallet To Send XC-20s guide](/builders/interoperability/xcm/xc20/send-xc20s/xcm-pallet/){target=_blank}.
 
