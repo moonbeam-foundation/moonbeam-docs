@@ -7,15 +7,15 @@ description: Learn about the types of cross-chain assets on Moonbeam, in particu
 
 ## Introduction {: #introduction }
 
-The [Cross-Consensus Message (XCM)](https://wiki.polkadot.network/docs/learn-crosschain){target=_blank} format provides a universal way for blockchains to exchange messages and transfer assets. To extend this interoperability to the EVM, Moonbeam introduced XC-20s, ERC-20 tokens on Moonbeam that are fully compatible with XCM transfers.
+The [Cross-Consensus Message (XCM)](https://wiki.polkadot.network/docs/learn-crosschain){target=\_blank} format provides a universal way for blockchains to exchange messages and transfer assets. To extend this interoperability to the EVM, Moonbeam introduced XC-20s, ERC-20 tokens on Moonbeam that are fully compatible with XCM transfers.
 
-Thanks to [runtime 2301](https://github.com/moonbeam-foundation/moonbeam/tree/runtime-2301){target=_blank}, any ERC-20 deployed on Moonbeam can be configured as an XC-20, making it accessible to any chain connected via XCM. This allows EVM-focused developers to work with familiar ERC-20 workflows while benefiting from Polkadot’s native cross-chain functionality, all without needing Substrate-specific expertise.
+Thanks to [runtime 2301](https://github.com/moonbeam-foundation/moonbeam/tree/runtime-2301){target=\_blank}, any ERC-20 deployed on Moonbeam can be configured as an XC-20, making it accessible to any chain connected via XCM. This allows EVM-focused developers to work with familiar ERC-20 workflows while benefiting from Polkadot’s native cross-chain functionality, all without needing Substrate-specific expertise.
 
 From a technical standpoint, local XC-20s are ERC-20 tokens originating on Moonbeam (including bridged tokens deemed native once issued on Moonbeam), whereas external XC-20s are wrapped representations of tokens whose canonical ledger exists on another parachain or the relay chain. In all cases, XC-20s function just like standard ERC-20s—supporting common EVM-based use cases (such as DeFi, DEXs, and lending platforms)—but with the added advantage of seamless cross-chain operability.
 
 ![Moonbeam XC-20 XCM Integration With Polkadot](/images/builders/interoperability/xcm/overview/overview-3.webp)
 
-This page aims to cover the basics on XC-20s; if you want to learn how to interact with or transfer XC-20s, please refer to the [Interact with XC-20s](/builders/interoperability/xcm/xc20/interact/){target=\_blank} or the [Using the X-Tokens Precompile To Send XC-20s](/builders/interoperability/xcm/xc20/send-xc20s/xtokens-precompile/){target=\_blank} guides.
+This page aims to cover the basics on XC-20s; if you want to learn how to interact with or transfer XC-20s, please refer to the [Send XC-20s guide](/builders/interoperability/xcm/xc20/send-xc20s/overview/){target=\_blank}.
 
 ## Types of XC-20s {: #types-of-xc-20s }
 
@@ -39,9 +39,9 @@ Local XC-20s are EVM-native ERC-20 tokens whose “home” (or reserve chain) is
 
 External XC-20s, on the other hand, are ERC-20 representations of tokens whose canonical ledger remains on another parachain or the relay chain. Moonbeam holds the “wrapped” version, while the underlying tokens stay locked in Moonbeam’s sovereign account on the originating chain.
 
-From a cross-chain transfer perspective, both local and external XC-20s can be sent through Polkadot’s XCM infrastructure using either the Ethereum or Substrate API, and EVM logs are generated for both asset types. Using Substrate calls for cross-chain transfers doesn’t create logs that appear in EVM-based explorers such as [Moonscan](https://moonscan.io){target=_blank}, whereas transfers initiated via the Ethereum API do generate EVM logs visible in those explorers. Aside from cross-chain transfers through XCM, all other XC-20 interactions (for example, querying balances or adjusting allowances) must take place in the EVM.
+From a cross-chain transfer perspective, both local and external XC-20s can be sent through Polkadot’s XCM infrastructure using either the Ethereum or Substrate API, and EVM logs are generated for both asset types. Using Substrate calls for cross-chain transfers doesn’t create logs that appear in EVM-based explorers such as [Moonscan](https://moonscan.io){target=\_blank}, whereas transfers initiated via the Ethereum API do generate EVM logs visible in those explorers. Aside from cross-chain transfers through XCM, all other XC-20 interactions (for example, querying balances or adjusting allowances) must take place in the EVM.
 
-Cross-chain transfers of XC-20s are executed via the Polkadot XCM Pallet. If you’d like to learn how to send XC-20s using that pallet, refer to the [Using the Polkadot XCM Pallet](/builders/interoperability/xcm/xc20/send-xc20s/xcm-pallet/){target=_blank} guide.
+Cross-chain transfers of XC-20s are executed via the Polkadot XCM Pallet. If you’d like to learn how to send XC-20s using that pallet, refer to the [Using the Polkadot XCM Pallet](/builders/interoperability/xcm/xc20/send-xc20s/xcm-pallet/){target=\_blank} guide.
 
 
 ## Asset Reserves 
