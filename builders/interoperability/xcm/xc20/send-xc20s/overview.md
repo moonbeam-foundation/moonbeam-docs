@@ -35,7 +35,7 @@ Examples of the XCM instructions typically involved in token transfers are inclu
 
 --8<-- 'text/builders/interoperability/xcm/xc20/send-xc20s/overview/DOT-to-xcDOT-instructions.md'
 
-For more information on constructing an XCM message for self-reserve (native) assets—such as DOT to Moonbeam—refer to the [Polkadot XCM Pallet guide](https://docs.moonbeam.network/builders/interoperability/xcm/xc20/send-xc20s/xcm-pallet/){target=_blank}.
+For more information on constructing an XCM message for self-reserve (native) asset transfers—such as DOT to Moonbeam—refer to the [Polkadot XCM Pallet guide](/builders/interoperability/xcm/xc20/send-xc20s/xcm-pallet/){target=\_blank}.
 
 This process calls `TransferReserveAsset` with `assets`, `dest`, and `xcm` parameters. Within `xcm`, the typical instructions are `BuyExecution` and `DepositAsset`. The [`TransferReserveAsset` instruction](https://github.com/paritytech/polkadot-sdk/blob/{{ polkadot_sdk }}/polkadot/xcm/xcm-executor/src/lib.rs#L671){target=_blank} on GitHub includes `ReserveAssetDeposited` and `ClearOrigin` alongside `BuyExecution` and `DepositAsset` to finalize the transfer.
 
