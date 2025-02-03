@@ -33,7 +33,7 @@ Note that, post-RT2301, creating a local XC-20 is equivalent to simply deploying
 
 External XC-20s are native cross-chain assets originating from another parachain or the relay chain and have wrapped representations minted on Moonbeam. These assets are Substrate assets at their core. When transferring external XC-20s, the underlying native tokens reside in Moonbeam's Sovereign account in each chain. Recall that a Sovereign account is a special type of keyless account that can hold assets and interact with other chains and is governed by Moonbeam’s runtime rather than by any individual. The wrapped versions can then be freely utilized on Moonbeam.
 
-External XC-20s all have _xc_ prepended to their names to distinguish them as native cross-chain assets. For example, DOT, native to the Polkadot Relay Chain, is known as xcDOT when it exists in XC-20 form on Moonbeam. 
+External XC-20s all have _xc_ prepended to their names to distinguish them as native cross-chain assets. For example, DOT, native to the Polkadot relay chain, is known as xcDOT when it exists in XC-20 form on Moonbeam. 
 
 ### Local XC-20s vs External XC-20s {: #xc-20-comparison }
 
