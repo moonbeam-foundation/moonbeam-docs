@@ -9,7 +9,7 @@ description: Explore the types of asset transfers and some of the fundamentals o
 
 Assets can move between parachains using XCM. Two main approaches exist:
 
-- **Asset teleporting** – Destroys tokens on the origin chain and mints the same amount on the destination chain. Each chain holds the native asset as a reserve, similar to a burn-mint bridging mechanism. Because each chain can create tokens, a degree of trust is required
+- **Asset teleporting** – destroys tokens on the origin chain and mints the same amount on the destination chain. Each chain holds the native asset as a reserve, similar to a burn-mint bridging mechanism. Because each chain can create tokens, a degree of trust is required
 - **Remote transfers** – Moves tokens from the origin chain to a Sovereign account (an account on the origin chain that is trustlessly controlled by the destination chain). The destination chain then mints a wrapped (also called “virtual” or “cross-chain”) representation. This wrapped version is always interchangeable 1:1 with the original asset, functioning like a lock-mint and burn-unlock bridge. The chain where the asset originates is known as the reserve chain
 
 ![Asset Teleporting and Remote Transfers](/images/builders/interoperability/xcm/xc20/send-xc20s/overview/overview-1.webp)
