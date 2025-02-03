@@ -464,7 +464,7 @@ Now you can create the systemd configuration file:
 
 --8<-- 'text/node-operators/networks/run-a-node/systemd/run-service.md'
 
-![Service Status](/images/node-operators/networks/run-a-node/systemd/systemd-1.webp)
+--8<-- 'code/node-operators/networks/run-a-node/systemd/terminal/status.md'
 
 You can also check the logs by executing:
 
@@ -472,7 +472,7 @@ You can also check the logs by executing:
 journalctl -f -u moonbeam.service
 ```
 
-![Service Logs](/images/node-operators/networks/run-a-node/systemd/systemd-2.webp)
+--8<-- 'code/node-operators/networks/run-a-node/systemd/terminal/logs.md'
 
 During the syncing process, you will see logs from both the embedded relay chain ([Relaychain]) and the parachain ([🌗]). These logs display a target block (live network state) and a best block (local node synced state).
 
