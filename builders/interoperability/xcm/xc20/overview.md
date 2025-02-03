@@ -7,13 +7,11 @@ description: Learn about the types of cross-chain assets on Moonbeam, in particu
 
 ## Introduction {: #introduction }
 
-The [Cross-Consensus Message (XCM)](https://wiki.polkadot.network/docs/learn-crosschain){target=\_blank} format defines a universal way for different blockchains to exchange messages. Using XCM, developers can send messages and transfer Substrate-based assets between the relay chain and other parachains in the Polkadot/Kusama ecosystems.
+The [Cross-Consensus Message (XCM)](https://wiki.polkadot.network/docs/learn-crosschain){target=_blank} format provides a universal way for blockchains to exchange messages and transfer assets. To extend this interoperability to the EVM, Moonbeam introduced XC-20s, ERC-20 tokens on Moonbeam that are fully compatible with XCM transfers.
 
-While Substrate assets are inherently interoperable, interacting with them requires using the Substrate API, which offers little visibility into the EVM. This creates a barrier for EVM-focused developers. To address this gap and extend Polkadot/Kusama’s native interoperability to the EVM, Moonbeam introduced the concept of XC-20s.
+Thanks to [runtime 2301](https://github.com/moonbeam-foundation/moonbeam/tree/runtime-2301){target=_blank}, any ERC-20 deployed on Moonbeam can be configured as an XC-20, making it accessible to any chain connected via XCM. This allows EVM-focused developers to work with familiar ERC-20 workflows while benefiting from Polkadot’s native cross-chain functionality, all without needing Substrate-specific expertise.
 
-Initially, Moonbeam offered XC-20s as a specialized asset type, requiring cross-chain configuration during asset creation to enable full cross-chain capabilities. Now, since [runtime 2301](https://github.com/moonbeam-foundation/moonbeam/tree/runtime-2301){target=\_blank}, any ERC-20 token on Moonbeam can be configured for cross-chain transfers at any time effectively allowing all ERC-20s to function as XC-20s. Said differently, it is possible to make any ERC-20 an XC-20 at any time, by following the steps in the [XC Registration section](/builders/interoperability/xcm/xc-registration/){target=\_blank}.  
-
-XC-20s are a unique asset class on Moonbeam that blend the native interoperability of Substrate assets with a standard [ERC-20 interface](/builders/interoperability/xcm/xc20/interact/#the-erc20-interface){target=\_blank}. This means developers and users can interact with them just like any other ERC-20 token, with no Substrate knowledge needed, allowing seamless integration with EVM-based smart contracts (such as DEXs, lending platforms, and more) and familiar Ethereum development frameworks.
+From a technical standpoint, local XC-20s are ERC-20 tokens originating on Moonbeam (including bridged tokens deemed native once issued on Moonbeam), whereas external XC-20s are wrapped representations of tokens whose canonical ledger exists on another parachain or the relay chain. In all cases, XC-20s function just like standard ERC-20s—supporting common EVM-based use cases (such as DeFi, DEXs, and lending platforms)—but with the added advantage of seamless cross-chain operability.
 
 ![Moonbeam XC-20 XCM Integration With Polkadot](/images/builders/interoperability/xcm/overview/overview-3.webp)
 
@@ -29,29 +27,24 @@ Local XC-20s are all ERC-20s that exist on the EVM, and that can be transferred 
 
 Note that, post-RT2301, creating a local XC-20 is equivalent to simply deploying a standard ERC-20 and enabling cross-chain features.
 
-### What are External XC-20s? {: #external-xc20s }
+### What are External XC-20s? {: #what-are-external-xc-20s }
 
-External XC-20s are native cross-chain assets originating from another parachain or the relay chain and have wrapped representations minted on Moonbeam. These assets are Substrate assets at their core. When transferring external XC-20s, the underlying native tokens reside in Moonbeam's Sovereign account in each chain. Recall that a Sovereign account is a special type of keyless account that can hold assets and interact with other chains and is governed by Moonbeam’s runtime rather than by any individual. The wrapped versions can then be freely utilized on Moonbeam.
+External XC-20s are cross-chain tokens originating from another parachain or the relay chain, and they are represented on Moonbeam as ERC-20 tokens. The original tokens remain locked in a sovereign account on their home chain, while the wrapped ERC-20 representation can be freely utilized on Moonbeam. A sovereign account is a keyless account governed by Moonbeam’s runtime—rather than an individual—that can hold assets and interact with other chains. When you transfer external XC-20s, the canonical assets remain in the sovereign account on their source chain, while the ERC-20 representation is what circulates on Moonbeam.
 
-External XC-20s all have _xc_ prepended to their names to distinguish them as native cross-chain assets. For example, DOT, native to the Polkadot relay chain, is known as xcDOT when it exists in XC-20 form on Moonbeam. 
+External XC-20s all have _xc_ prepended to their names to distinguish them as cross-chain assets. For example, DOT, native to the Polkadot relay chain, is known as xcDOT when represented as an XC-20 on Moonbeam.
 
-### Local XC-20s vs External XC-20s {: #xc-20-comparison }
+### Local XC-20s vs External XC-20s {: #local-xc-20s-vs-external-xc-20s }
 
-Both local and external XC-20s can be transferred to other parachains as if they were Substrate assets, using the Ethereum or Substrate API. However, when using the Substrate API, EVM logs are generated for local XC-20s but not for external ones. As a result, the Ethereum API is recommended for better visibility in EVM-based explorers such as [Moonscan](https://moonscan.io){target=\_blank}.
+Local XC-20s are EVM-native ERC-20 tokens whose “home” (or reserve chain) is Moonbeam from a Polkadot perspective. This includes tokens originally bridged in from outside Polkadot (for example, Wormhole-wrapped ETH), because once they’re issued on Moonbeam as ERC-20s, Polkadot views them as local to Moonbeam. When local XC-20s are transferred to another parachain, the tokens move into that chain’s sovereign account on Moonbeam.
 
-On Moonbeam, both local and external XC-20s can be transferred cross-chain using either the Substrate or Ethereum interfaces. Beyond XCM transfers, all other interactions (such as balances or allowances) must be performed through the EVM directly. Note that if you transfer external XC-20s using the Substrate API, those transactions will not appear in EVM-based explorers, such as Moonscan. Only operations performed via the Ethereum API are visible on EVM block explorers.
+External XC-20s, on the other hand, are ERC-20 representations of tokens whose canonical ledger remains on another parachain or the relay chain. Moonbeam holds the “wrapped” version, while the underlying tokens stay locked in Moonbeam’s sovereign account on the originating chain.
 
-The key difference is that local XC-20s are EVM-native ERC-20 tokens with XCM capabilities, whereas external XC-20s are also ERC-20 tokens on Moonbeam but represent assets that originate on other chains. 
+From a cross-chain transfer perspective, both local and external XC-20s can be sent through Polkadot’s XCM infrastructure using either the Ethereum or Substrate API, and EVM logs are generated for both asset types. Using Substrate calls for cross-chain transfers doesn’t create logs that appear in EVM-based explorers such as [Moonscan](https://moonscan.io){target=_blank}, whereas transfers initiated via the Ethereum API do generate EVM logs visible in those explorers. Aside from cross-chain transfers through XCM, all other XC-20 interactions (for example, querying balances or adjusting allowances) must take place in the EVM.
 
-Cross-chain transfers of XC-20s are done using the Polkadot XCM Pallet. To learn how to use this pallet to transfer XC-20s, you can refer to the [Using the Polkadot XCM Pallet](/builders/interoperability/xcm/xc20/send-xc20s/xcm-pallet/){target=\_blank} guide.
+Cross-chain transfers of XC-20s are executed via the Polkadot XCM Pallet. If you’d like to learn how to send XC-20s using that pallet, refer to the [Using the Polkadot XCM Pallet](/builders/interoperability/xcm/xc20/send-xc20s/xcm-pallet/){target=_blank} guide.
+
 
 ## Asset Reserves 
-
-### Remote Reserve Assets
-
-A remote reserve asset is a token whose canonical ledger—the source of truth for minting and burning—resides on a chain different from where it’s currently in use. In the case of xcDOT on Moonbeam, the underlying DOT tokens representing the xcDOT remain locked in Moonbeam’s sovereign account on the Polkadot relay chain, while xcDOT functions as a wrapped representation in Moonbeam’s EVM environment.
-
-Users can hold and transact with xcDOT on Moonbeam (for DeFi, governance, and more), knowing that the underlying DOT is safely locked on the relay chain. At any point, the wrapped xcDOT can be redeemed for the original DOT, effectively burning the xcDOT and unlocking the corresponding DOT tokens on Polkadot.
 
 ### Local Reserve Assets 
 
@@ -60,6 +53,12 @@ A local reserve asset on Moonbeam is a token whose canonical ledger—from an XC
 For example, Wormhole-wrapped ETH (wETH) is considered a local reserve asset on Moonbeam, even though Ethereum is the ultimate source of ETH. Once ETH is wrapped by Wormhole and enters the Polkadot ecosystem via Moonbeam, wETH can be transferred to other parachains through [Moonbeam Routed Liquidity (MRL)](/builders/interoperability/mrl/){target=\_blank}.
 
 The important caveat is that, on a purely Ethereum-level view, ETH remains governed by and minted on Ethereum. However, from an XCM standpoint, wETH on Moonbeam is treated as a local reserve asset, meaning the canonical supply of wETH (as far as Polkadot ecosystems are concerned) exists on Moonbeam.
+
+### Remote Reserve Assets
+
+A remote reserve asset is a token whose canonical ledger—the source of truth for minting and burning—resides on a chain different from where it’s currently in use. In the case of xcDOT on Moonbeam, the underlying DOT tokens representing the xcDOT remain locked in Moonbeam’s sovereign account on the Polkadot relay chain, while xcDOT functions as a wrapped representation in Moonbeam’s EVM environment.
+
+Users can hold and transact with xcDOT on Moonbeam (for DeFi, governance, and more), knowing that the underlying DOT is safely locked on the relay chain. At any point, the wrapped xcDOT can be redeemed for the original DOT, effectively burning the xcDOT and unlocking the corresponding DOT tokens on Polkadot.
 
 ## Current List of External XC-20s {: #current-xc20-assets }
 
