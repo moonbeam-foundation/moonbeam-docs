@@ -61,19 +61,6 @@ For example, Wormhole-wrapped ETH (wETH) is considered a local reserve asset on 
 
 The important caveat is that, on a purely Ethereum-level view, ETH remains governed by and minted on Ethereum. However, from an XCM standpoint, wETH on Moonbeam is treated as a local reserve asset, meaning the canonical supply of wETH (as far as Polkadot ecosystems are concerned) exists on Moonbeam.
 
-## Multilocation Overview
-
-A [multilocation](/builders/interoperability/xcm/core-concepts/multilocations/){target=\_blank} is a structured way to pinpoint where an asset or account lives in the Polkadot/Kusama ecosystem. It specifies how many hops up or down the chain hierarchy are needed (the parents), and which detailed paths (the interior junctions) must be followed to get to a specific parachain, account, pallet, or asset.
-
-When you see an XC-20 on Moonbeam that’s not native to Moonbeam (for example, xcDOT or xcASTR), it corresponds to a foreign asset whose reserve or home is on another parachain or the relay chain.
-
-Keep in mind that multilocations are always relative to a current position. For instance, defining a multilocation on Moonbeam differs from defining one on the Polkadot relay chain, even if both refer to the same asset. The multilocation identifies the asset’s origin chain and asset ID so the XCM virtual machine knows precisely where to lock, unlock, or update tokens. It identifies that asset’s origin chain and asset ID so that XCM knows:
-
-- Where to lock/unlock the real tokens (on the origin chain)
-- How to mint/burn the wrapped representation on Moonbeam (critical to ensuring correct redemptions on the origin chain)
-
-As an example, to construct a multilocation identifying Moonbeam’s native asset, imagine sending tokens from another parachain. In that case, you often set parents: `1` to move up to the relay chain level, then include two junctions under interior. The first `({ Parachain: 2004 })` indicates Moonbeam’s parachain ID, while the second `({ PalletInstance: 10 })` identifies the Balances pallet that manages the native asset, GLMR. This multilocation defines GLMR from the perspective of another parachain. For more information on defining and constructing multilocations, be sure to check the [multilocations guide](/builders/interoperability/xcm/core-concepts/multilocations/){target=\_blank}.
-
 ## Current List of External XC-20s {: #current-xc20-assets }
 
 The current list of available external XC-20 assets per network is as follows:
