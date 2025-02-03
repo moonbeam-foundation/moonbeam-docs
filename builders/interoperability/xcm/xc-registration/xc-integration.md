@@ -120,7 +120,7 @@ An example of this process with a successful proposal on Moonbeam is depicted in
 
 ![Moonbeam and Moonriver cross-chain integration process](/images/builders/interoperability/xcm/xc-registration/xc-integration/channels-2.webp)
 
-Once these steps are succesfully completed, marketing efforts can be coordinated, and the new XC-20 on Moonriver/Moonbeam can be added to the **Cross Chain Assets** section of the [Moonbeam DApp](https://apps.moonbeam.network){target=\_blank}.
+Once these steps are successfully completed, marketing efforts can be coordinated, and the new XC-20 on Moonriver/Moonbeam can be added to the **Cross Chain Assets** section of the [Moonbeam DApp](https://apps.moonbeam.network){target=\_blank}.
 
 ### Create Forum Posts {: #create-forum-posts }
 
@@ -322,7 +322,7 @@ The complete options that can be used with the script are as follows:
 |         Flag         |             Type              |                                                                                    Description                                                                                     |
 | :------------------: | :---------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
 |   account-priv-key   |            string             |                                   (Required for send-proposal-as, send-preimage-hash) The private key of the account to send a transaction with                                    |
-|         sudo         |            boolean            |                Whether to wrap the extrinsic calldata inside of a `sudo.sudo` extrinsic. If `account-priv-key` is present, it will attempt to send the transaciton                 |
+|         sudo         |            boolean            |                Whether to wrap the extrinsic calldata inside of a `sudo.sudo` extrinsic. If `account-priv-key` is present, it will attempt to send the transaction                 |
 |  send-preimage-hash  |            boolean            |                                                     Whether to submit the encoded calldata as a preimage and retrieve its hash                                                     |
 |   send-proposal-as   | democracy/council-external/v2 |                                   Whether to send the encoded calldata through democracy or Council (Governance v1), or OpenGov (Governance v2)                                    |
 | collective-threshold |            number             |                                                (Required for council-external) The threshold for the Council deciding the proposal                                                 |

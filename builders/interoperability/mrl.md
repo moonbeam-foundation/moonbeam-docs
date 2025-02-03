@@ -58,7 +58,7 @@ The Guardian signatures and the message form a proof called a [Verified Action A
 
 A relayer's only job is to pass the transactions approved by Wormhole Guardians to the destination chain. MRL is supported by some relayers already, but anyone can run one. Furthermore, users can manually execute their transaction in the destination chain when bridging through Wormhole and avoid relayers altogether.
 
-![Transfering wormhole MRL](/images/builders/interoperability/mrl/mrl-1.webp)
+![Transferring wormhole MRL](/images/builders/interoperability/mrl/mrl-1.webp)
 
 ### Send Tokens From a Parachain Back Through Wormhole {: #sending-tokens-back-through-wormhole }
 
@@ -81,7 +81,7 @@ As an example, a brief overview of the entire process of sending MRL tokens from
 2. The Guardian Network will pick up on the Wormhole transaction and sign it
 3. A Wormhole relayer will relay the tokens to the destination chain and destination account
 
-![Transfering Wormhole MRL out](/images/builders/interoperability/mrl/mrl-2.webp)
+![Transferring Wormhole MRL out](/images/builders/interoperability/mrl/mrl-2.webp)
 
 Now that you have a general idea of the game plan, you can begin implementing it. The example in this guide will show you how to transfer assets from a parachain to Moonbase Alpha and back through Wormhole to the destination chain, but this guide can be adapted for Moonbeam.
 
