@@ -9,7 +9,7 @@ description: Learn about the types of cross-chain assets on Moonbeam, in particu
 
 The [Cross-Consensus Message (XCM)](https://wiki.polkadot.network/docs/learn-crosschain){target=\_blank} format provides a universal way for blockchains to exchange messages and transfer assets. To extend this interoperability to the EVM, Moonbeam introduced XC-20s, ERC-20 tokens on Moonbeam that are fully compatible with XCM transfers.
 
-Thanks to [runtime 2301](https://github.com/moonbeam-foundation/moonbeam/tree/runtime-2301){target=\_blank}, any ERC-20 deployed on Moonbeam can be configured as an XC-20, making it accessible to any chain connected via XCM. This allows EVM-focused developers to work with familiar ERC-20 workflows while benefiting from Polkadot’s native cross-chain functionality, all without needing Substrate-specific expertise.
+Any ERC-20 deployed on Moonbeam can be configured as an XC-20, making it accessible to any chain connected via XCM. This allows EVM-focused developers to work with familiar ERC-20 workflows while benefiting from Polkadot’s native cross-chain functionality, all without needing Substrate-specific expertise.
 
 From a technical standpoint, local XC-20s are ERC-20 tokens originating on Moonbeam (including bridged tokens deemed native once issued on Moonbeam), whereas external XC-20s are wrapped representations of tokens whose canonical ledger exists on another parachain or the relay chain. In all cases, XC-20s function just like standard ERC-20s—supporting common EVM-based use cases (such as DeFi, DEXs, and lending platforms)—but with the added advantage of seamless cross-chain operability.
 
