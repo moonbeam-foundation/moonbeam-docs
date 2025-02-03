@@ -39,9 +39,9 @@ External XC-20s all have _xc_ prepended to their names to distinguish them as na
 
 Both local and external XC-20s can be transferred to other parachains as if they were Substrate assets, using the Ethereum or Substrate API. However, when using the Substrate API, EVM logs are generated for local XC-20s but not for external ones. As a result, the Ethereum API is recommended for better visibility in EVM-based explorers such as [Moonscan](https://moonscan.io){target=\_blank}.
 
-Within Moonbeam, local XC-20s can only be transferred via their standard ERC-20 interface. By contrast, external XC-20s support both the Substrate and ERC-20 interfaces. Remember that transfers of external XC-20s through the Substrate API will not appear in EVM-based explorers; only transactions performed via the Ethereum API are visible in those explorers.
+On Moonbeam, both local and external XC-20s can be transferred cross-chain using either the Substrate or Ethereum interfaces. Beyond XCM transfers, all other interactions (such as balances or allowances) must be performed through the EVM directly. Note that if you transfer external XC-20s using the Substrate API, those transactions will not appear in EVM-based explorers, such as Moonscan. Only operations performed via the Ethereum API are visible on EVM block explorers.
 
-The key difference is that local XC-20s are EVM-native ERC-20s with XCM capabilities, whereas external XC-20s are inherently Substrate assets that expose an ERC-20 interface.
+The key difference is that local XC-20s are EVM-native ERC-20 tokens with XCM capabilities, whereas external XC-20s are also ERC-20 tokens on Moonbeam but represent assets that originate on other chains. 
 
 Cross-chain transfers of XC-20s are done using the Polkadot XCM Pallet. To learn how to use this pallet to transfer XC-20s, you can refer to the [Using the Polkadot XCM Pallet](/builders/interoperability/xcm/xc20/send-xc20s/xcm-pallet/){target=\_blank} guide.
 
