@@ -18,8 +18,8 @@ Moonbeam currently uses remote transfers for XC-20 transfers.
 
 This page covers the fundamentals of XCM-based remote transfers. To learn how to perform actual XC-20 transfers, refer to the following guides:
 
-- [XC-20 transfers via the Substrate API](/builders/interoperability/xcm/xc20/send-xc20s/xcm-pallet/){target=_blank}
-- [XC-20 transfers via the Ethereum API](/builders/interoperability/xcm/xc20/send-xc20s/xtokens-precompile/){target=_blank}
+- [XC-20 transfers via the Substrate API](/builders/interoperability/xcm/xc20/send-xc20s/xcm-pallet/){target=\_blank}
+- [XC-20 transfers via the Ethereum API](/builders/interoperability/xcm/xc20/send-xc20s/xtokens-precompile/){target=\_blank}
 
 ## XCM Instructions for Asset Transfers {: #xcm-instructions-for-asset-transfers }
 
