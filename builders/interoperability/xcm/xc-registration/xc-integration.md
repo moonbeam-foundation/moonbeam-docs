@@ -120,7 +120,7 @@ An example of this process with a successful proposal on Moonbeam is depicted in
 
 ![Moonbeam and Moonriver cross-chain integration process](/images/builders/interoperability/xcm/xc-registration/xc-integration/channels-2.webp)
 
-Once these steps are succesfully completed, marketing efforts can be coordinated, and the new XC-20 on Moonriver/Moonbeam can be added to the **Cross Chain Assets** section of the [Moonbeam DApp](https://apps.moonbeam.network){target=\_blank}.
+Once these steps are successfully completed, marketing efforts can be coordinated, and the new XC-20 on Moonriver/Moonbeam can be added to the **Cross Chain Assets** section of the [Moonbeam DApp](https://apps.moonbeam.network){target=\_blank}.
 
 ### Create Forum Posts {: #create-forum-posts }
 
