@@ -21,7 +21,7 @@ This page aims to cover the basics on XC-20s; if you want to learn how to intera
 
 There are two types of XC-20s: local and external.
 
-### What are Local XC-20s? {: #local-xc20s }
+### What are Local XC-20s? {: #what-are-local-xc-20s }
 
 Local XC-20s are all ERC-20s that exist on the EVM, and that can be transferred cross-chain through XCM. For local XC-20s to be transferred to another parachain, the asset must be registered on that chain. When transferring local XC-20s, the underlying tokens reside in the destination chain's Sovereign account on Moonbeam. Local XC-20s must follow [the ERC-20 interface outlined in this guide](/builders/interoperability/xcm/xc20/interact/#the-erc20-interface){target=\_blank}. They must implement the standard ERC-20 function signatures, including the correct function selector of the `transfer` function as described in [EIP-20](https://eips.ethereum.org/EIPS/eip-20){target=\_blank}. However, additional functionality can still be added as long as it doesn’t break the base methods. 
 
@@ -57,13 +57,13 @@ For example, Wormhole-wrapped ETH (wETH) is considered a local reserve asset on 
 
 The important caveat is that, on a purely Ethereum-level view, ETH remains governed by and minted on Ethereum. However, from an XCM standpoint, wETH on Moonbeam is treated as a local reserve asset, meaning the canonical supply of wETH (as far as Polkadot ecosystems are concerned) exists on Moonbeam.
 
-### Remote Reserve Assets
+### Remote Reserve Assets {: #remote-reserve-assets }
 
 A remote reserve asset is a token whose canonical ledger—the source of truth for minting and burning—resides on a chain different from where it’s currently in use. In the case of xcDOT on Moonbeam, the underlying DOT tokens representing the xcDOT remain locked in Moonbeam’s sovereign account on the Polkadot relay chain, while xcDOT functions as a wrapped representation in Moonbeam’s EVM environment.
 
 Users can hold and transact with xcDOT on Moonbeam (for DeFi, governance, and more), knowing that the underlying DOT is safely locked on the relay chain. At any point, the wrapped xcDOT can be redeemed for the original DOT, effectively burning the xcDOT and unlocking the corresponding DOT tokens on Polkadot.
 
-## Current List of External XC-20s {: #current-xc20-assets }
+## Current List of External XC-20s {: #current-list-of-external-xc-20s }
 
 The current list of available external XC-20 assets per network is as follows:
 
@@ -157,7 +157,7 @@ The current list of available external XC-20 assets per network is as follows:
 
      _*You can check each [Asset ID](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/assets){target=\_blank} on Polkadot.js Apps_
 
-### Retrieve List of External XC-20s and Their Metadata {: #list-xchain-assets }
+### Retrieve List of External XC-20s and Their Metadata {: #retrieve-list-of-external-xc-20s-and-their-metadata }
 
 To fetch a list of the currently available external XC-20s along with their associated metadata, you can query the chain state using the [Polkadot.js API](/builders/substrate/libraries/polkadot-js-api/){target=\_blank}. You'll take the following steps:
 
