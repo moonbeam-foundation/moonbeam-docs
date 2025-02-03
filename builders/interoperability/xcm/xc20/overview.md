@@ -43,10 +43,13 @@ From a cross-chain transfer perspective, both local and external XC-20s can be s
 
 Cross-chain transfers of XC-20s are executed via the Polkadot XCM Pallet. If you’d like to learn how to send XC-20s using that pallet, refer to the [Using the Polkadot XCM Pallet](/builders/interoperability/xcm/xc20/send-xc20s/xcm-pallet/){target=\_blank} guide.
 
+## Asset Reserves {: #asset-reserves }
 
-## Asset Reserves 
+When transferring tokens across chains in the Polkadot or Kusama ecosystems, each token has a “reserve” chain that holds its canonical ledger—the source of truth for minting, burning, and supply management. For XC-20s, understanding which chain is the reserve determines whether the asset is managed locally on Moonbeam or remotely on another chain.
 
-### Local Reserve Assets 
+Regardless of where the reserve is located, XC-20s on Moonbeam are still ERC-20 tokens that developers and users can interact with in the EVM. However, from an XCM perspective, the reserve chain determines how the tokens are locked, unlocked, minted, or burned behind the scenes when performing cross-chain operations.
+
+### Local Reserve Assets {: #local-reserve-assets }
 
 A local reserve asset on Moonbeam is a token whose canonical ledger—from an XCM perspective—resides natively on Moonbeam. In other words, Moonbeam is the asset’s home chain, where minting and burning take place. 
 
