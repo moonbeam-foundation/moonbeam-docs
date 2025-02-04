@@ -274,7 +274,7 @@ To override the balance of a particular account, you can override the account st
     // flags (u128): 170,141,183,460,469,231,731,687,303,715,884,105,728
     ```
 
-    Remember that the values are Little Endian encoded. To convert the Hexadecimal Little Endian encoded values to decimal, you can use [this converter](https://www.shawntabrizi.com/substrate-js-utilities/){target=_blank}, using the `Balance to Hex (Little Endian)` converter.
+    Remember that the values are little endian encoded. To convert the hexadecimal little endian encoded values to decimal, you can use [this converter](https://www.shawntabrizi.com/substrate-js-utilities/){target=_blank}, using the `Balance to Hex (Little Endian)` converter.
 
     In this example, the existing free balance of `1,278,606,392,142,175,328,676` Wei or approximately `1278.60` DEV is `a4d92a6a4e6b3a5045`. The following example will change the value to `500,000` DEV, which is `500,000,000,000,000,000,000,000` Wei or `0x000080d07666e70de169` encoded as a hexadecimal little endian value. When properly padded to fit into the SCALE encoded storage value, it becomes `69e10de76676d08000000000000000000`, such that the table now looks like:
 
