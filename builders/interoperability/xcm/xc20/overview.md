@@ -27,7 +27,7 @@ Local XC-20s are all ERC-20s that exist on the EVM, and that can be transferred 
 
 Note that, post-RT2301, creating a local XC-20 is equivalent to simply deploying a standard ERC-20 and enabling cross-chain features.
 
-### What are External XC-20s? {: #what-are-external-xc-20s }
+### What are External XC-20s? {: #external-xc-20s }
 
 External XC-20s are cross-chain tokens originating from another parachain or the relay chain, and they are represented on Moonbeam as ERC-20 tokens. The original tokens remain locked in a sovereign account on their home chain, while the wrapped ERC-20 representation can be freely utilized on Moonbeam. A sovereign account is a keyless account governed by Moonbeam’s runtime—rather than an individual—that can hold assets and interact with other chains. When you transfer external XC-20s, the canonical assets remain in the sovereign account on their source chain, while the ERC-20 representation is what circulates on Moonbeam.
 
