@@ -29,7 +29,7 @@ Note that, post-RT2301, creating a local XC-20 is equivalent to simply deploying
 
 ### What are External XC-20s? {: #external-xc-20s }
 
-External XC-20s are cross-chain tokens originating from another parachain or the relay chain, and they are represented on Moonbeam as ERC-20 tokens. The original tokens remain locked in a sovereign account on their home chain, while the wrapped ERC-20 representation can be freely utilized on Moonbeam. A sovereign account is a keyless account governed by Moonbeam’s runtime—rather than an individual—that can hold assets and interact with other chains. When you transfer external XC-20s, the canonical assets remain in the sovereign account on their source chain, while the ERC-20 representation is what circulates on Moonbeam.
+External XC-20s are cross-chain tokens originating from another parachain or the relay chain, and they are represented on Moonbeam as ERC-20 tokens. The original tokens remain locked in a Moonbeam sovereign account on their home chain, while the wrapped ERC-20 representation can be freely utilized on Moonbeam. A sovereign account is a keyless account governed by a blockchainruntime—rather than an individual—that can hold assets and interact with other chains. When you transfer external XC-20s, the canonical assets remain in the sovereign account on their source chain, while the ERC-20 representation is what circulates on Moonbeam.
 
 External XC-20s all have _xc_ prepended to their names to distinguish them as cross-chain assets. For example, DOT, native to the Polkadot relay chain, is known as xcDOT when represented as an XC-20 on Moonbeam.
 
