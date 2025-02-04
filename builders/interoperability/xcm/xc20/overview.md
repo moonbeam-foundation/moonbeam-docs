@@ -157,7 +157,7 @@ The current list of available external XC-20 assets per network is as follows:
 
      _*You can check each [Asset ID](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/assets){target=\_blank} on Polkadot.js Apps_
 
-### Retrieve List of External XC-20s and Their Metadata {: #retrieve-list-of-external-xc-20s-and-their-metadata }
+### Retrieve List of External XC-20s and Their Metadata {: #list-xchain-assets }
 
 To fetch a list of the currently available external XC-20s along with their associated metadata, you can query the chain state using the [Polkadot.js API](/builders/substrate/libraries/polkadot-js-api/){target=\_blank}. You'll take the following steps:
 
