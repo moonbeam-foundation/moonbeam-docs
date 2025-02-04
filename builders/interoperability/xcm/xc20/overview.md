@@ -63,7 +63,7 @@ A remote reserve asset is a token whose canonical ledger—the source of truth f
 
 Users can hold and transact with xcDOT on Moonbeam (for DeFi, governance, and more), knowing that the underlying DOT is safely locked on the relay chain. At any point, the wrapped xcDOT can be redeemed for the original DOT, effectively burning the xcDOT and unlocking the corresponding DOT tokens on Polkadot.
 
-## Current List of External XC-20s {: #current-list-of-external-xc-20s }
+## Current List of External XC-20s {: #current-xc20-assets }
 
 The current list of available external XC-20 assets per network is as follows:
 
