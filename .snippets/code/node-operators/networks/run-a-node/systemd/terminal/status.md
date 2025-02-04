@@ -1,5 +1,5 @@
 <div id="termynal" data-termynal>
-    <span data-ty="input"> systemctl status moonbeam.service</span>
+    <span data-ty="input"><span class="file-path"></span> systemctl status moonbeam.service</span>
     <span data-ty>• moonbeam.service - "Moonbase Alpha systemd service"</span>
     <span data-ty>   Loaded: loaded (/etc/systemd/system/moonbeam.service; enabled; vendor preset:></span>
     <span data-ty>   Active: active (running) since Mon 2025-02-03 03:30:41 UTC; 45 ago</span>
