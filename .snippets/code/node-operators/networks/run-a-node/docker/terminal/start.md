@@ -1,5 +1,5 @@
 <div id="termynal" data-termynal>
-     <span data-ty="input"> $ docker run --network="host" -v "/var/lib/alphanet-data:/d ata" -u $(id-u ${USER}):$(id -g #{USER}) purestake/moonbeam:v0.42.1 --base-path=/d ata --chain alphanet --name="TestNode" --state-pruning archive --trie-cache-size 1073741824 --db-cache 8000 ----name="TestNode (Embedded Relay)"</span>
+     <span data-ty="input"><span class="file-path"></span>docker run --network="host" -v "/var/lib/alphanet-data:/d ata" -u $(id-u ${USER}):$(id -g #{USER}) purestake/moonbeam:v0.42.1 --base-path=/d ata --chain alphanet --name="TestNode" --state-pruning archive --trie-cache-size 1073741824 --db-cache 8000 ----name="TestNode (Embedded Relay)"</span>
     <span data-ty>Unable to find image 'purestake/moonbeam:0.42.1 ' locally</span>
     <span data-ty>0.42.1 : Pulling from purestake/moonbeam</span>
     <span data-ty>Digest: sha256:10a4ef3a9bc6adc97344fe2160b868b99e295d188bf226ce0539a8591addf1d3</span>
