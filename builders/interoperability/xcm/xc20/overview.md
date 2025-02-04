@@ -21,7 +21,7 @@ This page aims to cover the basics on XC-20s; if you want to learn how to intera
 
 There are two types of XC-20s: local and external.
 
-### What are Local XC-20s? {: #what-are-local-xc-20s }
+### What are Local XC-20s? {: #local-xc-20s }
 
 Local XC-20s are all ERC-20s that exist on the EVM, and that can be transferred cross-chain through XCM. For local XC-20s to be transferred to another parachain, the asset must be registered on that chain. When transferring local XC-20s, the underlying tokens reside in the destination chain's Sovereign account on Moonbeam. Local XC-20s must follow [the ERC-20 interface outlined in this guide](/builders/interoperability/xcm/xc20/interact/#the-erc20-interface){target=\_blank}. They must implement the standard ERC-20 function signatures, including the correct function selector of the `transfer` function as described in [EIP-20](https://eips.ethereum.org/EIPS/eip-20){target=\_blank}. However, additional functionality can still be added as long as it doesn’t break the base methods. 
 
