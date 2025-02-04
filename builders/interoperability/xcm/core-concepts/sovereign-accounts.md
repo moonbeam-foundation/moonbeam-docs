@@ -34,4 +34,4 @@ The relay address is how the Polkadot or Kusama relay chain references the sover
 
 ## Learn More {: #learn-more }
 
-Sovereign accounts form the backbone of reserve-backed transfers, enabling safe custody of assets for minting wrapped tokens across Polkadot’s ecosystem. By combining sovereign accounts with the XCM framework, parachains can interoperate seamlessly—locking and unlocking assets in a transparent, trust-minimized way. For more information about how sovereign accounts facilitate cross-chain transfers with XCM, be sure to check out the [Send XC-20s section](/builders/interoperability/xcm/xc20/send-xc20s/overview/){target=_blank}.
+Sovereign accounts form the backbone of reserve-backed transfers, enabling safe custody of assets for minting wrapped tokens across Polkadot’s ecosystem. By combining sovereign accounts with the XCM framework, parachains can interoperate seamlessly—locking and unlocking assets in a transparent, trust-minimized way. For more information about how sovereign accounts facilitate cross-chain transfers with XCM, be sure to check out the [Send XC-20s section](/builders/interoperability/xcm/xc20/send-xc20s/overview/){target=\_blank}.
