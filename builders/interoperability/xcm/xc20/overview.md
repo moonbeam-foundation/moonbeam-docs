@@ -41,7 +41,7 @@ External XC-20s, on the other hand, are ERC-20 representations of tokens whose c
 
 From a cross-chain transfer perspective, local and external XC-20s can be sent through Polkadot’s XCM infrastructure using the Ethereum or Substrate API. Because the underlying asset is an ERC-20 with EVM bytecode following the [EIP-20 token standard](https://eips.ethereum.org/EIPS/eip-20){target=\_blank}, both transfers initiated via the Substrate and Ehereum APIs generate EVM logs visible to EVM-based explorers such as [Moonscan](https://moonscan.io){target=\_blank}. In contrast, you can't send a regular ERC-20 transfer using the Substrate API. Aside from cross-chain transfers through XCM, all other XC-20 interactions (such as querying balances or adjusting allowances) must occur in the EVM.
 
-Cross-chain transfers of XC-20s are executed via the Polkadot XCM Pallet. If you’d like to learn how to send XC-20s using that pallet, refer to the [Using the Polkadot XCM Pallet](/builders/interoperability/xcm/xc20/send-xc20s/xcm-pallet/){target=\_blank} guide.
+Cross-chain transfers of XC-20s are executed via the Polkadot XCM Pallet, which utilizes regular mint, burn, and transfer mechanisms of ERC-20s for the XCM asset flow. If you’d like to learn how to send XC-20s using that pallet, refer to the [Using the Polkadot XCM Pallet](/builders/interoperability/xcm/xc20/send-xc20s/xcm-pallet/){target=\_blank} guide.
 
 ## Asset Reserves {: #asset-reserves }
 
