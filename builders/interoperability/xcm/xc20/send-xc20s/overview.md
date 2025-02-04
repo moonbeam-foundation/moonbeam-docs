@@ -34,7 +34,7 @@ This process invokes `TransferReserveAsset` with `assets`, `dest`, and `xcm`para
 
 For more information on constructing an XCM message for asset transfers, such as DOT to Moonbeam, refer to the [Polkadot XCM Pallet guide](/builders/interoperability/xcm/xc20/send-xc20s/xcm-pallet/){target=\_blank}.
 
-### Instructions to Transfer a Reserve Asset back to the Reserve Chain {: #instructions-to-transfer-a-reserve-asset-back-to-the-reserve-chain }
+### Instructions to Transfer a Reserve Asset back to the Reserve Chain {: #transfer-native-to-origin }
 
 --8<-- 'text/builders/interoperability/xcm/xc20/send-xc20s/overview/xcDOT-to-DOT-instructions.md'
 
