@@ -1,0 +1,66 @@
+name: Validate llms.txt
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  check-llms:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+
+      - name: Get SHA256 hash of the PR's llms.txt file
+        id: pr_llms_hash
+        run: |
+          if [ -f "llms.txt" ]; then
+            # Calculate SHA256 hash of the llms.txt file in the PR branch (checked out by default)
+            sha256sum llms.txt | awk '{ print $1 }' > pr_sha256.txt
+          else
+            echo "0000" > pr_sha256.txt
+          fi
+          cat pr_sha256.txt
+
+      - name: Generate llms.txt using the Python script
+        run: python3 scripts/generate_llms.py
+
+      - name: Calculate SHA256 hash of the generated llms.txt
+        id: generated_llms_hash
+        run: |
+          # Full path to the generated llms.txt file
+          llms_file="/home/runner/work/moonbeam-docs/moonbeam-docs/llms.txt"
+
+          # Check if the file exists before calculating the hash
+          if [ -f "$llms_file" ]; then
+            sha256sum "$llms_file" | awk '{ print $1 }' > generated_sha256.txt
+          else
+            echo "Error: llms.txt not found at $llms_file"
+            exit 1
+          fi
+          cat generated_sha256.txt
+
+      - name: Compare the SHA256 hashes
+        run: |
+          generated_hash=$(cat generated_sha256.txt)
+          pr_hash=$(cat pr_sha256.txt)
+
+          if [ "$generated_hash" != "$pr_hash" ]; then
+            echo "Error: SHA256 hashes do not match. The generated llms.txt file differs from the one in the PR."
+            echo "You need to run the generate LLMS script:"
+            echo "python3 scripts/generate_llms.py"
+            exit 1
+          else
+            echo "SHA256 hashes match. The llms.txt file is consistent."
+          fi
