@@ -38,7 +38,7 @@ Considering all the steps summarized in the [introduction](#introduction), the f
 
 ## Calculating your Computed Origin Account {: #calculating-your-computed-origin-account }
 
---8<-- 'text/builders/interoperability/xcm/calculate-Computed Origin-account.md'
+--8<-- 'text/builders/interoperability/xcm/calculate-computed-origin-account.md'
 
 For our case, we will send the remote EVM call via XCM from Alice's account, which is `5GKh9gMK5dn9SJp6qfMNcJiMMnY7LReYmgug2Fr5fKE64imn`, so the command and response would look like the following image.
 
