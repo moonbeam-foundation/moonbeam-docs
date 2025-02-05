@@ -51,7 +51,7 @@ When spinning up your own Moonbeam node, there are some required and optional fl
 ## Flags for Configuring a SQL Backend {: #flags-for-sql-backend }
 
 - **`--frontier-backend-type`** - sets the Frontier backend type to one of the following options:
-    - **`key-value`** - uses either RocksDB or ParityDB as per interited from the global backend settings. This is the default option and RocksDB is the default backend
+    - **`key-value`** - uses either RocksDB or ParityDB as per inherited from the global backend settings. This is the default option and RocksDB is the default backend
     - **`sql`** - uses a SQL database with custom log indexing
 - **`frontier-sql-backend-pool-size`** - sets the Frontier SQL backend's maximum number of database connections that a connection pool can simultaneously handle. The default is `100`
 - **`frontier-sql-backend-num-ops-timeout`** - sets the Frontier SQL backend's query timeout in number of VM operations. The default is `10000000`
