@@ -67,7 +67,7 @@ To begin exploring Moonbeam's custom JSON-RPC endpoints, you can try out the pro
 
 ???+ function "moon_getEthSyncBlockRange"
 
-    Returns the range of blocks that are fully indexed in frontier's backend.
+    Returns the range of blocks that are fully indexed in Frontier's backend.
 
     === "Parameters"
 
@@ -75,7 +75,7 @@ To begin exploring Moonbeam's custom JSON-RPC endpoints, you can try out the pro
 
     === "Returns"
 
-        Returns the range of blocks that are fully indexed in frontier's backend. An example response below includes the Substrate block hashes of block `0` and the latest fully indexed block:
+        Returns the range of blocks that are fully indexed in Frontier's backend. An example response below includes the Substrate block hashes of block `0` and the latest fully indexed block:
 
         ```[
         "0x91bc6e169807aaa54802737e1c504b2577d4fafedd5a02c10293b1cd60e39527",
