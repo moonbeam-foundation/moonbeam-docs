@@ -2,7 +2,7 @@ import { ApiPromise, WsProvider } from '@polkadot/api';
 
 const main = async () => {
   // Replace with the appropriate WebSocket endpoint
-  const provider = new WsProvider('wss://moonbase-alpha.public.blastapi.io');
+  const provider = new WsProvider('INSERT_WSS_ENDPOINT');
   const api = await ApiPromise.create({ provider });
 
   // Define the parameter key

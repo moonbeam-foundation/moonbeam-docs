@@ -1,4 +1,4 @@
-// We will give an example of crafting the encoded call data via the Polkadot API
+// This is an example of crafting the encoded call data via the Polkadot API
 // but remember you won't submit the call here as it needs to go thru governance.
 
 import { ApiPromise, WsProvider } from '@polkadot/api';

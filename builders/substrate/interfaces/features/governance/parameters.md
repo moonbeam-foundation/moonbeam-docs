@@ -1,7 +1,7 @@
 ---
 title: Parameters Pallet
 description: Learn how Moonbeam’s Parameters Pallet safely and dynamically modifies network config items via on-chain governance, removing the need for runtime upgrades.
-keywords: democracy, substrate, pallet, moonbeam, polkadot, voting, vote, referenda
+keywords: democracy, substrate, pallet, moonbeam, polkadot, voting, vote, referenda, parameters
 ---
 
 # The Parameters Pallet
@@ -18,7 +18,7 @@ This guide will provide an overview of the extrinsics, storage methods, and gett
 
 The Parameters Pallet provides one extrinsic (functions):
 
-???+ function "**setParameter**(keyValue) - Sets the value of a paramter"
+???+ function "**setParameter**(keyValue) - Sets the value of a parameter"
 
     === "Parameters"
 
@@ -26,7 +26,7 @@ The Parameters Pallet provides one extrinsic (functions):
 
     === "Example"
 
-        Suppose you want to adjust the deposit parameter for the randomness pallet. You’d start by crafting a call to the setParameter function, specifying the randomness pallet’s key and the new deposit value. In Polkadot.js Apps, this involves selecting parameters.setParameter(keyValue) and then updating the Deposit field for PalletRandomness. While you can generate and review this call data ahead of time, the actual change must still go through the governance process—meaning it needs to be proposed, voted on, and approved by the community before the new deposit value takes effect on-chain
+        Suppose you want to adjust the deposit parameter for the randomness pallet. You’d start by crafting a call to the setParameter function, specifying the randomness pallet’s key and the new deposit value. In Polkadot.js Apps, this involves selecting parameters.setParameter(keyValue) and then updating the Deposit field for PalletRandomness. While you can generate and review this call data ahead of time, the actual change must still go through the governance process—meaning it needs to be proposed, voted on, and approved by the community before the new deposit value takes effect on-chain.
 
     === "Polkadot.js API Example"
 
@@ -36,7 +36,7 @@ The Parameters Pallet provides one extrinsic (functions):
 
 ### Storage Methods {: #storage-methods }
 
-The Parameter Pallet includes the following read-only storage methods to obtain chain state data:
+The Parameters Pallet includes the following read-only storage methods to obtain chain state data:
 
 ???+ function "**parameters**(parameters) - When queried with a parameter key, it returns either the corresponding value variant (e.g., RuntimeConfig with FeesTreasuryProportion) or None if no value is set."
 
