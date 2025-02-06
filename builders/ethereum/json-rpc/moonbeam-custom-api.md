@@ -11,7 +11,7 @@ Moonbeam nodes include support for custom JSON-RPC endpoints:
 
 - `moon_isBlockFinalized` 
 - `moon_isTxFinalized`
-- `moon_getLatestSyncedBlock`
+- `moon_getEthSyncBlockRange`
 
 These endpoints provide valuable functionality for checking the finality of on-chain events.
 
@@ -65,9 +65,9 @@ To begin exploring Moonbeam's custom JSON-RPC endpoints, you can try out the pro
         }' {{ networks.moonbase.rpc_url }}
         ```
 
-???+ function "moon_getLatestSyncedBlock"
+???+ function "moon_getEthSyncBlockRange"
 
-    Returns the latest synced block number.
+    Returns the range of blocks that are fully indexed in frontier's backend.
 
     === "Parameters"
 
@@ -75,7 +75,12 @@ To begin exploring Moonbeam's custom JSON-RPC endpoints, you can try out the pro
 
     === "Returns"
 
-        Returns an integer: the latest synced block from Frontier's backend
+        Returns the range of blocks that are fully indexed in frontier's backend. An example response below includes the Substrate block hashes of block `0` and the latest fully indexed block:
+
+        ```[
+        "0x91bc6e169807aaa54802737e1c504b2577d4fafedd5a02c10293b1cd60e39527",
+        "0xb1b49bd709ca9fe0e751b8648951ffbb2173e1258b8de8228cfa0ab27003f612"
+        ]```
 
     === "Example"
 
@@ -83,7 +88,7 @@ To begin exploring Moonbeam's custom JSON-RPC endpoints, you can try out the pro
         curl -H "Content-Type: application/json" -X POST --data '{
           "jsonrpc": "2.0",
           "id": "1",
-          "method": "moon_getLatestSyncedBlock",
+          "method": "moon_getEthSyncBlockRange",
           "params": []
         }' {{ networks.moonbase.rpc_url }}
         ```
