@@ -2,5 +2,6 @@ title: Governance
 nav:
   - index.md
   - 'Conviction Voting': 'conviction-voting.md'
+  - 'Parameters': 'parameters.md'
   - 'Preimage': 'preimage.md'
   - 'Referenda': 'referenda.md'
