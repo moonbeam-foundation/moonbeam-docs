@@ -15,8 +15,6 @@ const main = async () => {
 
   if (currentValue.isSome) {
     const unwrapped = currentValue.unwrap();
-
-    // Log entire structure for debugging
     console.log('Unwrapped value (toHuman):', unwrapped.toHuman());
     console.log('Unwrapped value (toJSON):', unwrapped.toJSON());
   } else {
