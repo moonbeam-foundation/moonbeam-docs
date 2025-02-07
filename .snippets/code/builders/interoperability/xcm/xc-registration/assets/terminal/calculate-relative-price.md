@@ -1,5 +1,5 @@
 <div id="termynal" data-termynal>
-    <span data-ty>npx ts-node calculate-relative-price.ts 0.25 12 GLMR</span>
+    <span data-ty>yarn calculate-relative-price 0.25 12 GLMR</span>
     <span data-ty></span>
     <span data-ty>Calculating relative price for asset worth $0.25 against GLMR...</span>
     <span data-ty></span>
