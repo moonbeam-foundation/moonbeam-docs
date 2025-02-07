@@ -48,8 +48,6 @@ You can use the following script (also available as part of [XCM-tools](https://
     --8<-- 'code/builders/interoperability/xcm/xc-registration/assets/calculate-relative-price.ts'
     ```
 
-If you're in a hurry, you can input the required values and continue. The following section will cover additional background information on relative price and how it's calculated. 
-
 Only three parameters are required to calculate the relative price of an asset: 
 
 - Asset Price (USD): A positive number representing how much 1 unit (in human-readable form) of your asset costs in USD
