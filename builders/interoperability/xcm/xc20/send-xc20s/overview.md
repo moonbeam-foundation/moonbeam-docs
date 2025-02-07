@@ -26,7 +26,7 @@ For reference, you can find the Polkadot XCM Pallet extrinsics for sending XC-20
 
 The instructions in each XCM transfer vary depending on the asset and the transfer route. For example, returning a native token like xcDOT to its reserve chain (from Moonbeam to Polkadot) differs from sending DOT from Polkadot to Moonbeam. Below are examples of the instructions commonly involved in these token transfers.
 
-### Instructions to Transfer a Reserve Asset from the Reserve Chain {: #instructions-to-transfer-a-reserve-asset-from-the-reserve-chain }
+### Instructions to Transfer a Reserve Asset from the Reserve Chain {: #transfer-native-from-origin }
 
 --8<-- 'text/builders/interoperability/xcm/xc20/send-xc20s/overview/DOT-to-xcDOT-instructions.md'
 
