@@ -99,7 +99,7 @@ Upon successful execution, the script prints the computed `relativePrice` as a `
 For additional info, usage details, or to see an example in action, you can invoke the help command by running: 
 
 ```bash
-npx ts-node calculate-relative-price.ts --help
+yarn calculate-relative-price.ts --help
 ```
 
 ### How Relative Price is Constructed
