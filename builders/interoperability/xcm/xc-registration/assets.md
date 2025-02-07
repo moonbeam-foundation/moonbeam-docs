@@ -81,7 +81,7 @@ npm install
 Execute the script, making sure to provide the USD price of the asset you're registering, the number of decimals it has, and the network you're registering the asset on (either GLMR or MOVR):
 
 ```bash
-npx ts-node calculate-relative-price.ts INSERT_ASSET_PRICE INSERT_DECIMALS GLMR
+yarn calculate-relative-price.ts <INSERT_ASSET_PRICE> <INSERT_DECIMALS> GLMR
 ```
 
 For example, if the asset you're registering has a USD price of $0.25 and 12 decimals and you're registering the asset on the Moonbeam network, you would run: 
