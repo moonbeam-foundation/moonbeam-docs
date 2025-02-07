@@ -157,7 +157,15 @@ For Moonbase Alpha, you do not need to go through governance, as Moonbase Alpha 
 
 After submitting the preimage, you can submit the proposal by following the guidelines in the [Submitting a Proposal](/tokens/governance/proposals/#submitting-a-proposal-v2){target=\_blank} section.
 
-If you prefer the script method and you're comfortable working with the scripts in the XCM tools repo, you can use the [Generic Call Proposer](https://github.com/Moonsong-Labs/xcm-tools/blob/main/scripts/generic-call-proposer.ts){target=\_blank} by passing in the requisite calls, including the acceptance and proposal of the XCM Channel, and the asset registration. 
+If you prefer the script method and you're comfortable working with the scripts in the XCM tools repo, you can use the [Generic Call Proposer](https://github.com/Moonsong-Labs/xcm-tools/blob/main/scripts/generic-call-proposer.ts){target=\_blank} by passing in the requisite calls, including the acceptance and proposal of the XCM Channel, and the asset registration. The [Generic Call Proposer](https://github.com/Moonsong-Labs/xcm-tools/blob/main/scripts/generic-call-proposer.ts){target=\_blank} can help you assemble the multiple requisite calls as follows:
+
+```bash
+yarn generic-call-propose \
+  --call INSERT_CALLDATA_INCOMING_XCM_CHANNEL \
+  --call INSERT_CALLDATA_OUTGOING_XCM_CHANNEL \
+  --call INSERT_CALLDATA_BATCH_ASSET_REGISTRATION \
+  --ws-provider INSERT_WSS_PROVIDER
+```
 
 ### Test the Asset Registration on Moonbeam {: #test-asset-registration }
 
