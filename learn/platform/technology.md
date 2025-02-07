@@ -90,7 +90,7 @@ A high-level interaction flow is shown above. A Web3 RPC call from a DApp or exi
 
 The [Ethereum pallet](https://polkadot-evm.github.io/frontier/frame/ethereum.html){target=\_blank} is responsible for handling blocks and transaction receipts and statuses. It enables sending and receiving Ethereum-formatted data to and from Moonbeam by storing an Ethereum-style block and its associated transaction hashes in the Substrate runtime.
 
-When a user submits a raw Ethereum transaction, it converts into a Substrate transaction through the Ethereum pallet’s `transact` extrinsic—using the Ethereum pallet as the sole executor of the EVM pallet forces all of the data to be stored and transacted in an Ethereum-compatible way, which is how explorers like [Moonscan](/builders/get-started/explorers/#moonscan){target=\_blank} (built by Etherscan) can index block data.
+When a user submits a raw Ethereum transaction, it converts into a Substrate transaction through the Ethereum pallet's `transact` extrinsic—using the Ethereum pallet as the sole executor of the EVM pallet forces all of the data to be stored and transacted in an Ethereum-compatible way, which is how explorers like [Moonscan](/builders/get-started/explorers/#moonscan){target=\_blank} (built by Etherscan) can index block data.
 
 ### EVM Pallet {: #evm-pallet }
 
