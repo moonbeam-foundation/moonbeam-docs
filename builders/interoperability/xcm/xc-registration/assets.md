@@ -75,7 +75,7 @@ Only three parameters are required to calculate the relative price of an asset:
 First, ensure that you've installed the required dependencies by running:
 
 ```bash
-npm install
+yarn
 ```
 
 Execute the script, making sure to provide the USD price of the asset you're registering, the number of decimals it has, and the network you're registering the asset on (either GLMR or MOVR):
