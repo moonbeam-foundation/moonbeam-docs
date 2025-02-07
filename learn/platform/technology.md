@@ -70,7 +70,7 @@ In addition to these Substrate FRAME Pallets, Moonbeam implements custom pallets
 
 ### Forkless Upgrades {: #forkless-upgrades }
 
-One of the best things about developing on Polkadot with Substrate is the ability to introduce [forkless upgrades](https://docs.substrate.io/maintain/runtime-upgrades){target=_blank} to blockchain runtimes. In traditional blockchain architectures, substantial changes to the blockchain’s rules often require a hard fork, which can be disruptive and contentious.  
+One of the best things about developing on Polkadot with Substrate is the ability to introduce [forkless upgrades](https://docs.substrate.io/maintain/runtime-upgrades){target=_blank} to blockchain runtimes. In traditional blockchain architectures, substantial changes to the blockchain's rules often require a hard fork, which can be disruptive and contentious.  
 
 Substrate takes a different approach by separating the blockchain's state (data) from its logic (rules). Logic lives in the runtime, which is itself stored on-chain. Whenever a new runtime is uploaded (via FRAME's `set_code` call) and approved through on-chain governance, all nodes automatically switch to the new runtime at a specified block. This process is seamless and does not split the network.  
 
