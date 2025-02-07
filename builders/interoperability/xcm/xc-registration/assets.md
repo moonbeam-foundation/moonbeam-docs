@@ -37,22 +37,6 @@ If a channel between the chains already exists, you'll need to create a forum po
 
 To create a forum post on the [Moonbeam Community Forum](https://forum.moonbeam.network){target=\_blank}, you'll need to make sure that you're adding the post to the correct category and adding relevant content. For general guidelines and a template to follow, please refer to the [Moonbeam Community Forum Templates for XCM Integrations](/builders/interoperability/xcm/xc-registration/forum-templates/#){target=\_blank} page.
 
-### Create a Proposal to Register an Asset {: #create-a-proposal }
-
-To register an asset native to another chain on Moonbeam, you must submit a governance proposal that will call the `evmForeignAssets.createForeignAsset` extrinsic via the `FastGeneralAdmin` track. Additionally, in the same proposal, you'll need to register the asset's price through the `xcmWeightTrader.addAsset` extrinsic so that XCM fees can be properly calculated. An existing asset's price can be updated with `xcmWeightTrader.editAsset`. 
-
-To get started, you'll need to collect some information about the asset:
-
-- `assetId` - unique identifier of the asset. This can be any unique arbitrary integer, but it's recommended that you create this using the [`calculate-external-asset-info.ts`](https://github.com/Moonsong-Labs/xcm-tools/blob/main/scripts/calculate-external-asset-info.ts){target=\_blank} script. This provides a standardized way to generate a unique `assetId`
-- `xcmLocation` - an [XCM multilocation](/builders/interoperability/xcm/core-concepts/multilocations/){target=\_blank} of asset in its reserve chain relative to Moonbeam
-- The asset name
-- The asset symbol. You'll need to prepend "xc" to the asset symbol to indicate that the asset is an XCM-enabled asset
-- The number of decimals the asset has
-
-With this information in hand, you can prepare a governance proposal to register a foreign asset. Foreign asset registration proposals should be submitted through the `FastGeneralAdmin` track.
-
-![Overview of the proposal process](/images/builders/interoperability/xcm/xc-registration/assets/assets-3.webp)
-
 ### Calculate Relative Price {: #calculate-relative-price }
 
 An asset's `relativePrice` refers to a `u128` value that indicates how many units of said asset (in its smallest denomination) equate to one unit**—i.e., `1 × 10^18 wei`—of the native token (GLMR or MOVR). This helps determine how much of your asset to use for fees initially quoted in the native token, particularly in cross-chain messaging (XCM).
@@ -104,7 +88,7 @@ yarn calculate-relative-price --help
 
 ### Generate the Encoded Calldata for the Asset Registration {: #generate-encoded-calldata-for-asset-registration }
 
-Submitting a governance proposal on Moonbeam requires two steps: first, submit a preimage that defines the actions to be executed, then use that preimage to submit the proposal. For more details, see the [Governance on Moonbeam](/learn/features/governance/){target=\_blank} page. To submit a preimage for asset registration, you'll need the encoded calldata for both the `evmForeignAssets.createForeignAsset` and `xcmWeightTrader.addAsset` extrinsics.
+Submitting a governance proposal on Moonbeam requires two steps: first, submit a preimage that defines the actions to be executed, then use that preimage to submit the proposal. For more details, see the [Governance on Moonbeam](/learn/features/governance/){target=\_blank} page. To submit a preimage for asset registration, you'll need the encoded calldata for both the `evmForeignAssets.createForeignAsset` and `xcmWeightTrader.addAsset` extrinsics. An existing asset's price can be updated with `xcmWeightTrader.editAsset`. 
 
 Proposals must be submitted via the `FastGeneralAdmin` track. A channel must be established before an asset can be registered. To get the encoded calldata for the `evmForeignAssets.createForeignAsset` extrinsic, you will need to provide the following arguments:
 
@@ -137,6 +121,7 @@ The script will provide the encoded call data for each of the following calls:
 - The `setRelativePrice` call
 - The `batch` call that combines each all of the above
 
+![Overview of the proposal process](/images/builders/interoperability/xcm/xc-registration/assets/assets-3.webp)
 
 ### Construct the Add Asset Call
 
