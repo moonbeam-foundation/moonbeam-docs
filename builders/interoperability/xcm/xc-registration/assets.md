@@ -102,19 +102,6 @@ For additional info, usage details, or to see an example in action, you can invo
 yarn calculate-relative-price.ts --help
 ```
 
-### How Relative Price is Constructed
-
-If you're not interested in the mechanics of the relative price, feel free to skip this section. The relative price calculation script performs the following steps:
-
-1. Fetch the native token price (GLMR or MOVR) from CoinGecko (in USD) 
-2. Calculate the ratio of `assetPrice` / `nativeTokenPrice`  
-3. Multiply that ratio by `0.175`. This factor intentionally overestimates the relative price by ~5–6× to provide a buffer against market fluctuations 
-4. Multiply by `10 ^ (18 - assetDecimals`). For example, if the asset uses 12 decimals, you’d multiply by 10^(18 - 12) = 10^6. This accounts for any difference between your asset’s decimals and the 18 decimals used by the native token 
-5. Multiply by `10^18`. This final step scales everything up to 18 decimals (the common WEI format)
-6. Convert to `BigInt`
-
-Why is there a `0.175` Factor? The main reason why we don't take the direct relative price of asset price / native token price is to provide a buffer for volatility. Market prices can shift rapidly. An exact 1:1 ratio might under-collect fees if prices move unexpectedly. The `0.175` provides for an approximate `5x` overestimation. Generally speaking, fees are expected to be extremely low so the `5x` multiplier, while a conservative overestimate, is not meant to be unduly burdensome. 
-
 ### Generate the Encoded Calldata for the Asset Registration {: #generate-encoded-calldata-for-asset-registration }
 
 Submitting a governance proposal on Moonbeam requires two steps: first, submit a preimage that defines the actions to be executed, then use that preimage to submit the proposal. For more details, see the [Governance on Moonbeam](/learn/features/governance/){target=\_blank} page. To submit a preimage for asset registration, you'll need the encoded calldata for both the `evmForeignAssets.createForeignAsset` and `xcmWeightTrader.addAsset` extrinsics.
