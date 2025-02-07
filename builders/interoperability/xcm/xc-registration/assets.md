@@ -106,7 +106,7 @@ yarn calculate-relative-price.ts --help
 
 Submitting a governance proposal on Moonbeam requires two steps: first, submit a preimage that defines the actions to be executed, then use that preimage to submit the proposal. For more details, see the [Governance on Moonbeam](/learn/features/governance/){target=\_blank} page. To submit a preimage for asset registration, you'll need the encoded calldata for both the `evmForeignAssets.createForeignAsset` and `xcmWeightTrader.addAsset` extrinsics.
 
-Proposals must be submitted via the `GeneralAdmin` track. A channel must be established before an asset can be registered. To get the encoded calldata for the `evmForeignAssets.createForeignAsset` extrinsic, you will need to provide the following arguments:
+Proposals must be submitted via the `FastGeneralAdmin` track. A channel must be established before an asset can be registered. To get the encoded calldata for the `evmForeignAssets.createForeignAsset` extrinsic, you will need to provide the following arguments:
 
 - `assetId` - unique identifier of the asset, generated from the [`calculate-external-asset-info.ts`](https://github.com/Moonsong-Labs/xcm-tools/blob/main/scripts/calculate-external-asset-info.ts){target=\_blank} script
 - `xcmLocation` - the multilocation of the asset relative to Moonbeam 
