@@ -39,7 +39,7 @@ To create a forum post on the [Moonbeam Community Forum](https://forum.moonbeam.
 
 ### Create a Proposal to Register an Asset {: #create-a-proposal }
 
-To register an asset native to another chain on Moonbeam, you'll need to submit a governance proposal that will call the `evmForeignAssets.createForeignAsset` extrinsic. Additionally, you'll need to register the asset's price (formerly known as units per second) through the `xcmWeightTrader.addAsset` extrinsic so that XCM fees can be properly calculated. An existing asset's price can be updated with `xcmWeightTrader.editAsset`. 
+To register an asset native to another chain on Moonbeam, you must submit a governance proposal that will call the `evmForeignAssets.createForeignAsset` extrinsic via the `FastGeneralAdmin` track. Additionally, in the same proposal, you'll need to register the asset's price through the `xcmWeightTrader.addAsset` extrinsic so that XCM fees can be properly calculated. An existing asset's price can be updated with `xcmWeightTrader.editAsset`. 
 
 To get started, you'll need to collect some information about the asset:
 
