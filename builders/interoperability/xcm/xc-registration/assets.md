@@ -49,7 +49,7 @@ To get started, you'll need to collect some information about the asset:
 - The asset symbol. You'll need to prepend "xc" to the asset symbol to indicate that the asset is an XCM-enabled asset
 - The number of decimals the asset has
 
-With this information in hand, you can prepare a governance proposal to register a foreign asset. Foreign asset registration proposals should be submitted through the `GeneralAdmin` track.
+With this information in hand, you can prepare a governance proposal to register a foreign asset. Foreign asset registration proposals should be submitted through the `FastGeneralAdmin` track.
 
 ![Overview of the proposal process](/images/builders/interoperability/xcm/xc-registration/assets/assets-3.webp)
 
