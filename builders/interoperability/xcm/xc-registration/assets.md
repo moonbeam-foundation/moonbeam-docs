@@ -87,7 +87,7 @@ yarn calculate-relative-price.ts <INSERT_ASSET_PRICE> <INSERT_DECIMALS> GLMR
 For example, if the asset you're registering has a USD price of $0.25 and 12 decimals and you're registering the asset on the Moonbeam network, you would run: 
 
 ```bash
-npx ts-node calculate-relative-price.ts 0.25 12 GLMR
+yarn calculate-relative-price.ts 0.25 12 GLMR
 ```
 
 This instructs the script to calculate how many smallest units of an asset (priced at $0.25, with 12 decimals) correspond to 1 GLMR token.
