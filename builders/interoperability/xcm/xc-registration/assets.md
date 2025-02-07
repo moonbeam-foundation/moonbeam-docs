@@ -137,7 +137,6 @@ The script will provide the encoded call data for each of the following calls:
 - The `setRelativePrice` call
 - The `batch` call that combines each all of the above
 
-Typically, you can submit the `batch` call as part of a single governance proposal to register the asset and set the relative price in one go under the `FastGeneralAdmin` track. However, a limitation currently requires the two calls to be submitted independently. The `registerAsset` call must be submitted under the `FastGeneralAdmin` track, and the `setRelativePrice` call must be submitted under the `GeneralAdmin` track. The latter is a temporary limitation, and in the future, it is expected to be able to submit both calls as a single `batch` call under the `FastGeneralAdmin` track.
 
 ### Construct the Add Asset Call
 
