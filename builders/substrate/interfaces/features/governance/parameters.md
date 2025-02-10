@@ -26,7 +26,7 @@ The Parameters Pallet provides one extrinsic (functions):
 
     === "Example"
 
-        Suppose you want to adjust the deposit parameter for the randomness pallet. You’d start by crafting a call to the setParameter function, specifying the randomness pallet’s key and the new deposit value. In Polkadot.js Apps, this involves selecting parameters.setParameter(keyValue) and then updating the Deposit field for PalletRandomness. While you can generate and review this call data beforehand, the actual change must still go through the governance process—meaning it needs to be proposed, voted on, and approved by the community before the new deposit value takes effect on-chain.
+        Suppose you want to adjust the deposit parameter for the randomness pallet. You'd start by crafting a call to the `setParameter` function, specifying the randomness pallet's key and the new deposit value. In Polkadot.js Apps, this involves selecting `parameters.setParameter(keyValue)` and then updating the Deposit field for `PalletRandomness`. While you can generate and review this call data beforehand, the actual change must still go through the governance process—meaning it needs to be proposed, voted on, and approved by the community before the new deposit value takes effect on-chain.
 
     === "Polkadot.js API Example"
 
