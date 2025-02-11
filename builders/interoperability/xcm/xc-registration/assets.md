@@ -39,7 +39,7 @@ To create a forum post on the [Moonbeam Community Forum](https://forum.moonbeam.
 
 ### Calculate Relative Price {: #calculate-relative-price }
 
-An asset's `relativePrice` refers to a `u128` value that indicates how many units of said asset (in its smallest denomination) equate to one unit**—i.e., `1 × 10^18 Wei`—of the native token (GLMR or MOVR). This helps determine how much of your asset to use for fees initially quoted in the native token, particularly in cross-chain messaging (XCM).
+An asset's `relativePrice` refers to a `u128` value that indicates how many units of said asset (in its smallest denomination) equate to one unit—i.e., `1 × 10^18 Wei`—of the native token (GLMR or MOVR). This helps determine how much of your asset to use for fees initially quoted in the native token, particularly in cross-chain messaging (XCM).
 
 You can use the following script (also available as part of [xcm-tools](https://github.com/Moonsong-Labs/xcm-tools){target=\_blank} ) to calculate the correct `relativePrice` value for your asset.
 
