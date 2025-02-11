@@ -21,7 +21,7 @@ The Parameters Pallet provides one extrinsic (functions):
 
     === "Parameters"
 
-        - `keyValue` - The key to the storage item to be modified. 
+        - `keyValue` - the key to the storage item to be modified
 
     === "Example"
 
