@@ -136,7 +136,7 @@ To create a batch transaction that combines both the `xcmWeightTrader.addAsset` 
 
 Your next task is to submit the preimage of your batched call containing both the `xcmWeightTrader.addAsset` and the `evmForeignAssets.createForeignAsset` by following the guidelines in the [Submit a Democracy Proposal Guide](/tokens/governance/proposals/#submitting-a-preimage-of-the-proposal){target=\_blank}.
 
-For Moonbase Alpha, you do not need to go through governance, as Moonbase Alpha has `sudo` access. Instead, you can provide the output of the batch call data to the Moonbeam team, and the Moonbeam Team can submit the call with `sudo`. This will be a faster and easier process than going through governance. However, you may still wish to go through governance on Moonbase Alpha to prepare for Moonbeam's governance process.
+You do not need to go through governance for Moonbase Alpha, as Moonbase Alpha has sudo access. Instead, you can provide the output of the batch call data to the Moonbeam team, and they can submit the call with sudo. This will be a faster and easier process than going through governance. However, you may still wish to go through governance on Moonbase Alpha to prepare for Moonbeam's governance process.
 
 After submitting the preimage, you can submit the proposal by following the guidelines in the [Submitting a Proposal](/tokens/governance/proposals/#submitting-a-proposal-v2){target=\_blank} section.
 
