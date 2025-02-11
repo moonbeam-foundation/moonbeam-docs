@@ -38,7 +38,7 @@ For more information on constructing an XCM message for asset transfers, such as
 
 --8<-- 'text/builders/interoperability/xcm/xc20/send-xc20s/overview/xcDOT-to-DOT-instructions.md'
 
-Steps 3 through 6 are automatically triggered by the `InitiateReserveWithdraw` instruction (Step 2) and execute on Polkadot. Once `InitiateReserveWithdraw` is invoked on Moonbeam, the assembled XCM message instructs Polkadot to run those final instructions, completing the cross-chain transfer. In other words, while Moonbeam constructs the XCM instructions behind the scenes, they ultimately execute on Polkadot to complete the asset’s return to its reserve chain.
+Steps 3 through 6 are automatically triggered by the `InitiateReserveWithdraw` instruction (step 2) and execute on Polkadot. Once `InitiateReserveWithdraw` is invoked on Moonbeam, the assembled XCM message instructs Polkadot to run those final instructions, completing the cross-chain transfer. In other words, while Moonbeam constructs the XCM instructions behind the scenes, they ultimately execute on Polkadot to complete the asset’s return to its reserve chain.
 
 For more information on constructing an XCM message to transfer reserve assets to a target chain, such as xcDOT to Polkadot, you refer to the guide to the [Polkadot XCM Pallet](/builders/interoperability/xcm/xc20/send-xc20s/xcm-pallet/){target=_blank}.
 
