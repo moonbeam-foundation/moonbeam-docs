@@ -18,7 +18,7 @@ You can calculate a parachain’s sovereign account on a given relay chain using
 1. Clone or navigate to the [xcm-tools repository](https://github.com/Moonsong-Labs/xcm-tools){target=\_blank}
 2. Use the `calculate-sovereign-account` script, specifying the **Parachain ID** with the `--p` flag and the relay chain with the `--r` flag (default is `polkadot`; other accepted values are `kusama` or `moonbase`)
 
-The parachain ID you need can be found on the respective relay chain’s [Polkadot.js Apps Parachains page](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Frelay.api.moonbase.moonbeam.network#/parachains){target=\_blank}. The Parachains page can be accessed under the **Network** dropdown.
+The parachain ID you need can be found on the respective relay chain’s [Polkadot.js Apps **Parachains** page](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Frelay.api.moonbase.moonbeam.network#/parachains){target=\_blank}. The **Parachains** page can be accessed under the **Network** dropdown.
 
 For example, to calculate the sovereign account address for parachain `1000` on the Moonbase Alpha testnet:
 
