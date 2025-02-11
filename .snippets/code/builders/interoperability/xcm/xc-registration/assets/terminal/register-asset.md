@@ -1,5 +1,5 @@
 <div id="termynal" data-termynal>
-    <span data-ty>scripts % yarn register-asset --w wss://wss.api.moonbeam.network  \</span>
+    <span data-ty><span class="file-path"></span>yarn register-asset --w wss://wss.api.moonbeam.network  \</span>
     <span data-ty>--asset '{ "parents": 1, "interior": {"X1": [{ "Parachain": 3370}]}}' \</span>
     <span data-ty>--symbol "xcLAOS" \</span>
     <span data-ty>--decimals 18 \</span>
