@@ -1,7 +1,6 @@
 ---
 title: Parameters Pallet
 description: Learn how Moonbeam's Parameters Pallet safely and dynamically modifies network config items via on-chain governance, removing the need for runtime upgrades.
-keywords: democracy, substrate, pallet, moonbeam, polkadot, voting, vote, referenda, parameters
 ---
 
 # The Parameters Pallet
