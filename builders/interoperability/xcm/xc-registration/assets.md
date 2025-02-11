@@ -94,7 +94,7 @@ Proposals must be submitted via the `FastGeneralAdmin` track. A channel must be 
 - `xcmLocation` - the multilocation of the asset relative to Moonbeam 
 - `decimals` - the number of decimals of the asset
 - `symbol`  - the symbol of the asset. Remember that "xc" should be prepended to the symbol to indicate the asset is an XCM-enabled asset
-- `name` - The asset name
+- `name` - the asset name
 
 Using the above information, you can generate the encoded call data for the `createForeignAsset` call either via the Polkadot API or on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbeam.network#/extrinsics){target=\_blank}.
 
