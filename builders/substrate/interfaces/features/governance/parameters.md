@@ -17,7 +17,7 @@ This guide will provide an overview of the extrinsics, storage methods, and gett
 
 The Parameters Pallet provides one extrinsic (functions):
 
-???+ function "**setParameter**(keyValue) - Sets the value of a parameter"
+???+ function "**setParameter**(keyValue) - sets the value of a parameter"
 
     === "Parameters"
 
@@ -25,7 +25,7 @@ The Parameters Pallet provides one extrinsic (functions):
 
     === "Example"
 
-        Suppose you want to adjust the deposit parameter for the randomness pallet. You'd start by crafting a call to the `setParameter` function, specifying the randomness pallet's key and the new deposit value. In Polkadot.js Apps, this involves selecting `parameters.setParameter(keyValue)` and then updating the Deposit field for `PalletRandomness`. While you can generate and review this call data beforehand, the actual change must still go through the governance process—meaning it needs to be proposed, voted on, and approved by the community before the new deposit value takes effect on-chain.
+        Suppose you want to adjust the deposit parameter for the randomness pallet. You'd start by crafting a call to the `setParameter` function, specifying the randomness pallet's key and the new deposit value. In Polkadot.js Apps, this involves selecting `parameters.setParameter(keyValue)` and then updating the deposit field for `PalletRandomness`. While you can generate and review this call data beforehand, the actual change must still go through the governance process—meaning it needs to be proposed, voted on, and approved by the community before the new deposit value takes effect on-chain
 
     === "Polkadot.js API Example"
 
@@ -37,15 +37,15 @@ The Parameters Pallet provides one extrinsic (functions):
 
 The Parameters Pallet includes the following read-only storage methods to obtain chain state data:
 
-???+ function "**parameters**(parameters) - When queried with a parameter key, it returns either the corresponding value variant (e.g., RuntimeConfig with FeesTreasuryProportion) or None if no value is set."
+???+ function "**parameters**(parameters) - when queried with a parameter key, it returns either the corresponding value variant (e.g., RuntimeConfig with FeesTreasuryProportion) or None if no value is set."
 
     === "Parameters"
 
-        - `parameters` - The name of the pallet combined with the specific key identifying the storage item to retrieve.
+        - `parameters` - the name of the pallet combined with the specific key identifying the storage item to retrieve
 
     === "Returns"
 
-        The parameters.parameters(...) storage method is a dictionary that stores dynamic runtime parameters under specific keys. When queried with a parameter key, it returns either the corresponding value variant (e.g., RuntimeConfig with FeesTreasuryProportion) or None if no value is set.
+        The parameters.parameters(...) storage method is a dictionary that stores dynamic runtime parameters under specific keys. When queried with a parameter key, it returns either the corresponding value variant (e.g., `RuntimeConfig` with `FeesTreasuryProportion`) or None if no value is set
 
     === "Polkadot.js API Example"
 
@@ -57,11 +57,11 @@ The Parameters Pallet includes the following read-only storage methods to obtain
 
     === "Parameters"
 
-        None.
+        None
 
     === "Returns"
 
-        A number representing the current version of the pallet.
+        A number representing the current version of the pallet
 
         ```js
         // If using Polkadot.js API and calling toJSON() on the query results
