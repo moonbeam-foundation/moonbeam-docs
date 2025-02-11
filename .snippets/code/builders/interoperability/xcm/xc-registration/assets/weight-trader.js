@@ -16,7 +16,7 @@ async function getEncodedCallData() {
   };
 
   // Relative price as u128
-  const relativePrice = 'INSERT-RELATIVE-PRICE'; // Insert value generated 
+  const relativePrice = 'INSERT_RELATIVE_PRICE'; // Insert value generated 
   // from the relative price script e.g. 1299476000000000000
 
   try {
