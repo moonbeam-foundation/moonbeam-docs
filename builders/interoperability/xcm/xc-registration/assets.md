@@ -102,7 +102,7 @@ You can generate this required calldata using the [xcm-asset-registrator script]
 
 ```bash
 yarn register-asset --w wss://wss.api.moonbeam.network  \
---asset 'INSERT_MULTILOCATION' \
+--asset "INSERT_MULTILOCATION" \
 --symbol "INSERT_ASSET_SYMBOL" \
 --decimals INSERT_DECIMALS \
 --name "INSERT_ASSET_NAME" \
