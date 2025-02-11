@@ -413,7 +413,7 @@ After completing the [registration process](#introduction) for an XC asset, you 
 
 ### Updating Foreign Asset XCM Location {: #updating-foreign-asset-xcm-location }
 
-You can update the multilocation of an asset with the `evmForeignAssets.changeXcmLocation` call, which takes as parameters the `assetId` and the new multilocation. You'll need to raise a [governance proposal](/tokens/governance/proposals/) and submit the update under the `GeneralAdmin` track. If you're testing in Moonbase Alpha, you can ask the Moonbeam Team to submit the extrinsic using Sudo to speed up the process. You can also submit the requisite governance proposal on Moonbase Alpha. 
+You can update the multilocation of an asset with the `evmForeignAssets.changeXcmLocation` call, which takes as parameters the `assetId` and the new multilocation. You'll need to raise a [governance proposal](/tokens/governance/proposals/) and submit the update under the General Admin track. If you're testing in Moonbase Alpha, you can ask the Moonbeam Team to submit the extrinsic using Sudo to speed up the process. You can also submit the requisite governance proposal on Moonbase Alpha. 
 
 ### Freezing a Foreign Asset {: #freezing-a--foreign-asset }
 
