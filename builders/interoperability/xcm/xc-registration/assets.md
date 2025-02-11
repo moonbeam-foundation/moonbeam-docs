@@ -50,9 +50,9 @@ You can use the following script (also available as part of [xcm-tools](https://
 
 Only three parameters are required to calculate the relative price of an asset: 
 
-- Asset Price (USD): A positive number representing how much 1 unit (in human-readable form) of your asset costs in USD
-- Asset Decimals: The number of decimal places your asset uses. For example, if your token has 12 decimals, specify 12
-- Network: Either GLMR (Moonbeam) or MOVR (Moonriver). This should correspond to the network that you're registering the asset on, and this determines which native token’s USD price the script will fetch from CoinGecko
+- **Asset Price (USD)** - a positive number representing how much 1 unit (in human-readable form) of your asset costs in USD
+- **Asset Decimals** - the number of decimal places your asset uses. For example, if your token has 12 decimals, specify 12
+- **Network** - either GLMR (Moonbeam) or MOVR (Moonriver). This should correspond to the network that you're registering the asset on, and this determines which native token’s USD price the script will fetch from CoinGecko
 
 First, ensure that you've installed the required dependencies by running:
 
