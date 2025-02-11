@@ -91,10 +91,10 @@ Submitting a governance proposal on Moonbeam requires two steps: first, submit a
 Proposals must be submitted via the Fast General Admin track. A channel must be established before an asset can be registered. To get the encoded calldata for the `evmForeignAssets.createForeignAsset` extrinsic, you will need to provide the following arguments:
 
 - **`assetId`** - unique identifier of the asset, generated from the [`calculate-external-asset-info.ts`](https://github.com/Moonsong-Labs/xcm-tools/blob/main/scripts/calculate-external-asset-info.ts){target=\_blank} script
-- `xcmLocation` - the multilocation of the asset relative to Moonbeam 
-- `decimals` - the number of decimals of the asset
-- `symbol`  - the symbol of the asset. Remember that "xc" should be prepended to the symbol to indicate the asset is an XCM-enabled asset
-- `name` - the asset name
+- **`xcmLocation`** - the multilocation of the asset relative to Moonbeam 
+- **`decimals`** - the number of decimals of the asset
+- **`symbol`**  - the symbol of the asset. Remember that "xc" should be prepended to the symbol to indicate the asset is an XCM-enabled asset
+- **`name`** - the asset name
 
 Using the above information, you can generate the encoded call data for the `createForeignAsset` call either via the Polkadot API or on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbeam.network#/extrinsics){target=\_blank}.
 
@@ -125,8 +125,8 @@ The script will provide the encoded call data for each of the following calls:
 
 If you've already used the [xcm-asset-registrator script](https://github.com/Moonsong-Labs/xcm-tools/blob/main/scripts/xcm-asset-registrator.ts){target=\_blank} shown above, you can skip this section. This section dives into more detail about how the `xcmWeightTrader.addAsset` call is constructed. To get the encoded calldata for the `xcmWeightTrader.addAsset` extrinsic, you will need to provide the following arguments:
 
-- `xcmLocation` - the multilocation of the asset relative to Moonbeam 
-- `relativePrice` - A numeric value (u128) representing the fraction of the native token’s price that your asset’s price constitutes, scaled to 18 decimals. This value calculates cross-chain fees by determining how many units of the non-native asset are required to cover XCM operation costs. 
+- **`xcmLocation`** - the multilocation of the asset relative to Moonbeam 
+- **`relativePrice`** - A numeric value (u128) representing the fraction of the native token’s price that your asset’s price constitutes, scaled to 18 decimals. This value calculates cross-chain fees by determining how many units of the non-native asset are required to cover XCM operation costs. 
 
 Using the above information, you can generate the encoded call data for the `addAsset` call either via the Polkadot API or on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbeam.network#/extrinsics){target=\_blank}.
 
