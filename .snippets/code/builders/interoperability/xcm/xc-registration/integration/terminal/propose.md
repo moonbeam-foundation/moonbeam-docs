@@ -1,5 +1,5 @@
 <div id="termynal" data-termynal>
-    <span data-ty>yarn hrmp-manipulator --target-para-id 3370 \</span>
+    <span data-ty><span class="file-path"></span>yarn hrmp-manipulator --target-para-id 3370 \</span>
     <span data-ty>--parachain-ws-provider wss://moonbeam.public.blastapi.io  \</span>
     <span data-ty>--relay-ws-provider wss://polkadot-rpc.publicnode.com \</span>
     <span data-ty>--max-capacity 1000 --max-message-size 102400 \</span>
