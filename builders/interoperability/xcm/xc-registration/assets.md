@@ -140,7 +140,7 @@ You do not need to go through governance for Moonbase Alpha, as Moonbase Alpha h
 
 After submitting the preimage, you can submit the proposal by following the guidelines in the [Submitting a Proposal](/tokens/governance/proposals/#submitting-a-proposal-v2){target=\_blank} section.
 
-If you prefer the script method and you're comfortable working with the scripts in the XCM tools repo, you can use the [Generic Call Proposer](https://github.com/Moonsong-Labs/xcm-tools/blob/main/scripts/generic-call-proposer.ts){target=\_blank} by passing in the requisite calls, including the acceptance and proposal of the XCM Channel, and the asset registration. The [Generic Call Proposer](https://github.com/Moonsong-Labs/xcm-tools/blob/main/scripts/generic-call-proposer.ts){target=\_blank} can help you assemble the multiple requisite calls as follows:
+If you prefer the script method and you're comfortable working with the scripts in the XCM tools repo, you can use the [generic call proposer](https://github.com/Moonsong-Labs/xcm-tools/blob/main/scripts/generic-call-proposer.ts){target=\_blank} by passing in the requisite calls, including the acceptance and proposal of the XCM Channel, and the asset registration. The [generic call proposer](https://github.com/Moonsong-Labs/xcm-tools/blob/main/scripts/generic-call-proposer.ts){target=\_blank} can help you assemble the multiple requisite calls as follows:
 
 ```bash
 yarn generic-call-propose \
