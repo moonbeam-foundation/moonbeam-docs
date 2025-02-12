@@ -234,7 +234,7 @@ To send tokens over to an account in a Substrate appchain, please follow these s
 3. Enter the sr25519-type destination account (beneficiary)
 4. Specify the tokens to be transferred. Note that this parameter is an array that contains at least one asset. Each asset is specified by its address and the total amount to transfer
 
-   --8<-- 'text/builders/toolkit/ethereum-api/precompiles/xcm-interface/erc-20-note.md'
+   --8<-- 'text/builders/toolkit/ethereum-api/precompiles/security.md'
 
 5. Enter the index of the asset that will be used to pay the fees. This index is zero-based, so the first element is `0`, the second is `1`, and so on
 6. Click **transact**
@@ -252,7 +252,7 @@ To send tokens over to an account in the relay chain, please follow these steps:
 2. Enter the sr25519-type destination account (beneficiary)
 3. Specify the tokens to be transferred. Note that this parameter is an array that contains at least one asset. Each asset is specified by its address and the total amount to transfer
 
-   --8<-- 'text/builders/toolkit/ethereum-api/precompiles/xcm-interface/erc-20-note.md'
+   --8<-- 'text/builders/toolkit/ethereum-api/precompiles/xcm-interface/security.md'
 
 4. Enter the index of the asset that will be used to pay the fees. This index is zero-based, so the first element is `0`, the second is `1`, and so on
 5. Click **transact**

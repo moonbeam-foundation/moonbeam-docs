@@ -277,7 +277,10 @@ So instead of calling `demoToken.approve(spender, amount)` and then `simpleDex.s
 
 Once we have the encoded call data, we can use it to call the `batchAll` function of the batch precompile. This function performs multiple calls atomically, where the same index of each array combine into the information required for a single subcall. If a subcall reverts, all subcalls will revert. The following parameters are required by the `batchAll` function:
 
---8<-- 'text/builders/ethereum/precompiles/ux/batch/batch-parameters.md'
+- ***address[]* to** - an array of addresses to direct subtransactions to, where each entry is a subtransaction
+- ***uint256[]* value** - an array of native currency values to send in the subtransactions, where the index corresponds to the subtransaction of the same index in the *to* array. If this array is shorter than the *to* array, all the following subtransactions will default to a value of 0
+- ***bytes[]* callData** - an array of call data to include in the subtransactions, where the index corresponds to the subtransaction of the same index in the *to* array. If this array is shorter than the *to* array, all of the following subtransactions will include no call data
+- ***uint64[]* gasLimit** - an array of gas limits in the subtransactions, where the index corresponds to the subtransaction of the same index in the *to* array. Values of 0 are interpreted as unlimited and will have all remaining gas of the batch transaction forwarded. If this array is shorter than the *to* array, all of the following subtransactions will have all remaining gas forwarded
 
 So, the first index of each array will correspond to the approval and the second will correspond to the swap.
 
