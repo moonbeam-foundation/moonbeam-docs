@@ -1,46 +1,46 @@
 ---
 title: XC-20 Transfers Overview
-description: Explore the types of asset transfers and some of the fundamentals of remote asset transfers via XCM, including the XCM instructions used for asset transfers.
+description: Explore the types of asset transfers and some of the fundamentals of remote asset transfers via XCM, including the XCM instructions for asset transfers.
 ---
 
 # Overview of XC-20 Transfers
 
 ## Introduction {: #introduction }
 
-The right combination of XCM instructions can be used to move an asset from one parachain to another. Currently, there are two main types of asset transfers using XCM: asset teleporting and remote transfers.
+Assets can move between parachains using XCM. Two main approaches exist:
 
-Asset teleporting consists of moving an asset from one blockchain to another by destroying the amount being transferred in the origin chain and creating a clone (same amount as destroyed) on the target chain. In such cases, each chain holds the native asset as a reserve, similar to a burn-mint bridging mechanism. The model requires a certain degree of trust, as any of the two chains could maliciously mint more assets.
-
-Remote transfers consist of moving an asset from one blockchain to another via an intermediate account in the origin chain that is trustlessly owned by the target chain. This intermediate account is known as the "Sovereign" account. In such cases, the origin chain asset is not destroyed but held by the Sovereign account. The XCM execution in the target chain mints a wrapped (also referred to as "virtual" or  "cross-chain" asset) representation to a target address. The wrapped representation is always interchangeable on a 1:1 basis with the native asset. This is similar to a lock-mint and burn-unlock bridging mechanism. The chain where the asset originated is called the reserve chain.
+- **Asset teleporting** – destroys tokens on the reserve chain and mints the same amount on the destination chain. Each chain holds the native asset as a reserve, similar to a burn-mint bridging mechanism. Because each chain can create tokens, a degree of trust is required
+- **Remote transfers** – moves tokens from the reserve chain to a Sovereign account (an account on the reserve chain trustlessly controlled by the destination chain). The destination chain then mints a wrapped (also called “virtual” or “cross-chain”) representation. This wrapped version is always interchangeable 1:1 with the original asset, functioning like a lock-mint and burn-unlock bridge. The chain where the asset originates is known as the reserve chain
 
 ![Asset Teleporting and Remote Transfers](/images/builders/interoperability/xcm/xc20/send-xc20s/overview/overview-1.webp)
 
-Moonbeam currently uses remote transfers for XC-20 transfers via XCM.
+Moonbeam currently uses remote transfers for XC-20 transfers.
 
-This page covers the fundamentals of XCM remote transfers. If you want to learn how to perform XC-20 token transfers, please refer to the [XC-20 transfers via the Substrate API](/builders/interoperability/xcm/xc20/send-xc20s/xcm-pallet/){target=\_blank} or the [XC-20 transfers via the Ethereum API](/builders/interoperability/xcm/xc20/send-xc20s/xtokens-precompile/){target=\_blank} guides.
+This page covers the fundamentals of XCM-based remote transfers. To learn how to perform XC-20 transfers, refer to the the [XC-20 transfers via the Substrate API](/builders/interoperability/xcm/xc20/send-xc20s/xcm-pallet/){target=\_blank} guide.
 
 ## XCM Instructions for Asset Transfers {: #xcm-instructions-for-asset-transfers }
 
-The X-Tokens Pallet and X-Tokens Precompile make it easy to send assets cross-chain by abstracting away the process of building the XCM message for the transfer. This guide aims to fill in some knowledge gaps about the abstracted logic, in particular, what XCM instructions are used to build the XCM message to send assets cross-chain.
+The XCM Pallet and Precompile abstract much of the complexity involved in cross-chain asset transfers, automatically constructing the necessary XCM messages. Nevertheless, having a basic understanding of the underlying instructions can be useful. 
 
-The XCM extrinsics used by the Polkadot XCM Pallet are defined at the top of the [Using the Polkadot XCM Pallet To Send XC-20s guide](/builders/interoperability/xcm/xc20/send-xc20s/xcm-pallet/){target=\_blank}.
+For reference, you can find the Polkadot XCM Pallet extrinsics for sending XC-20s in the [Using the Polkadot XCM Pallet To Send XC-20s guide](/builders/interoperability/xcm/xc20/send-xc20s/xcm-pallet/){target=_blank}.
 
-The set of XCM instructions to be used depends on the token being transferred and the route taken. For example, there is one set of XCM instructions for sending the native asset back to its origin chain (reserve chain), such as xcDOT from Moonbeam back to Polkadot, and another set of XCM instructions for sending the native asset from the origin chain to a destination chain, such as DOT from Polkadot to Moonbeam.
-
-The following sections provide some examples of the XCM instructions involved in token transfers via XCM.
+The instructions in each XCM transfer vary depending on the asset and the transfer route. For example, returning a native token like xcDOT to its reserve chain (from Moonbeam to Polkadot) differs from sending DOT from Polkadot to Moonbeam. Below are examples of the instructions commonly involved in these token transfers.
 
 ### Instructions to Transfer a Reserve Asset from the Reserve Chain {: #transfer-native-from-origin }
 
 --8<-- 'text/builders/interoperability/xcm/xc20/send-xc20s/overview/DOT-to-xcDOT-instructions.md'
 
-For more information on constructing an XCM message to transfer self-reserve (native) assets to a target chain, such as DOT to Moonbeam, you can refer to the guide to the [Polkadot XCM Pallet](/builders/interoperability/xcm/xc20/send-xc20s/xcm-pallet/){target=\_blank}.
+This process invokes `TransferReserveAsset` with `assets`, `dest`, and `xcm`parameters. Within the `xcm` parameter, you typically specify the `BuyExecution` and `DepositAsset` instructions. As shown in the [`TransferReserveAsset` instruction](https://github.com/paritytech/polkadot-sdk/blob/{{ polkadot_sdk }}/polkadot/xcm/xcm-executor/src/lib.rs#L630){target=\_blank}, the flow also includes `ReserveAssetDeposited` and `ClearOrigin` to complete the transfer.
 
-It calls `TransferReserveAsset` and passes in `assets`, `dest`, and `xcm` as parameters. In particular, the `xcm` parameter includes the `BuyExecution` and `DepositAsset` instructions. If you then head over to the Polkadot GitHub repository, you can find the [`TransferReserveAsset` instruction](https://github.com/paritytech/polkadot-sdk/blob/{{ polkadot_sdk }}/polkadot/xcm/xcm-executor/src/lib.rs#L671){target=\_blank}. The XCM message is constructed by combining the `ReserveAssetDeposited` and `ClearOrigin` instructions with the `xcm` parameter, which, as mentioned, includes the `BuyExecution` and `DepositAsset` instructions.
+For more information on constructing an XCM message for asset transfers, such as DOT to Moonbeam, refer to the [Polkadot XCM Pallet guide](/builders/interoperability/xcm/xc20/send-xc20s/xcm-pallet/){target=\_blank}.
 
 ### Instructions to Transfer a Reserve Asset back to the Reserve Chain {: #transfer-native-to-origin }
 
 --8<-- 'text/builders/interoperability/xcm/xc20/send-xc20s/overview/xcDOT-to-DOT-instructions.md'
 
-For more information on constructing an XCM message to transfer reserve assets to a target chain, such as xcDOT to Polkadot, you can refer to the guide to the [Polkadot XCM Pallet](/builders/interoperability/xcm/xc20/send-xc20s/xcm-pallet/){target=\_blank}.
+Steps 3 through 6 are automatically triggered by the `InitiateReserveWithdraw` instruction (step 2) and execute on Polkadot. Once `InitiateReserveWithdraw` is invoked on Moonbeam, the assembled XCM message instructs Polkadot to run those final instructions, completing the cross-chain transfer. In other words, while Moonbeam constructs the XCM instructions behind the scenes, they ultimately execute on Polkadot to complete the asset’s return to its reserve chain.
 
-It calls `WithdrawAsset`, then `InitiateReserveWithdraw`, and passes in `assets`, `dest`, and `xcm` as parameters. In particular, the `xcm` parameter includes the `BuyExecution` and `DepositAsset` instructions. If you then head over to the Polkadot GitHub repository, you can find the [`InitiateReserveWithdraw` instruction](https://github.com/paritytech/polkadot-sdk/blob/{{polkadot_sdk}}/polkadot/xcm/xcm-executor/src/lib.rs#L903){target=\_blank}. The XCM message is constructed by combining the `WithdrawAsset` and `ClearOrigin` instructions with the `xcm` parameter, which, as mentioned, includes the `BuyExecution` and `DepositAsset` instructions.
+For more information on constructing an XCM message to transfer reserve assets to a target chain, such as xcDOT to Polkadot, you refer to the guide to the [Polkadot XCM Pallet](/builders/interoperability/xcm/xc20/send-xc20s/xcm-pallet/){target=_blank}.
+
+!!! note
+	The specific instructions may vary over time, but this overall flow remains consistent: the tokens are withdrawn from the user on Moonbeam, burned from the local representation, and unlocked on the reserve chain. At the end of the process, they become fully accessible again on their reserve chain.

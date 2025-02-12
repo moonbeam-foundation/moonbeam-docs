@@ -4,3 +4,4 @@ nav:
   - 'XCM Instructions': 'instructions.md'
   - 'Multilocations': 'multilocations.md'
   - 'Weights and Fees': 'weights-fees.md'
+  - 'Sovereign Accounts': 'sovereign-accounts.md'
