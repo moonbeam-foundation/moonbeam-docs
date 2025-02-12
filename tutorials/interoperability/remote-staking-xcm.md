@@ -26,7 +26,7 @@ For development purposes this tutorial is written for Moonbase Alpha and Moonbas
 
 ## Calculating your Computed Origin Account {: #calculating-your-computed-origin-account }
 
---8<-- 'text/builders/interoperability/xcm/calculate-multilocation-derivative-account.md'
+--8<-- 'text/builders/interoperability/xcm/calculate-computed-origin-account.md'
 
 Here, we have specified a parents value of `1` because the relay chain is the origin of the request (and the relay chain is considered a parent to the Moonbase alpha parachain). The relay chain does not have a parachain id so that field is omitted.
 

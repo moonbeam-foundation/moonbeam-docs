@@ -40,7 +40,7 @@ Considering all the steps summarized in the [introduction](#introduction), the f
 
 ## Calculating your Computed Origin Account {: #calculating-your-computed-origin-account }
 
---8<-- 'text/builders/interoperability/xcm/calculate-multilocation-derivative-account.md'
+--8<-- 'text/builders/interoperability/xcm/calculate-computed-origin-account.md'
 
 For our case, we will send the remote EVM call via XCM from Alice's account, which is `5Fe4nNwxJ9ai9hVkUubiy4e6BVs1tzJGDLXAdhUKuePq9CLp`. A parachain ID is omitted from the command since we are sending the XCM instruction from the relay chain. A parents value of `1` indicates that the relay chain is a parent of the destination parachain. The command and response should resemble the following image:
 
