@@ -37,7 +37,7 @@ The Parameters Pallet provides one extrinsic (functions):
 
 The Parameters Pallet includes the following read-only storage methods to obtain chain state data:
 
-???+ function "**parameters**(parameters) - when queried with a parameter key, it returns either the corresponding value variant (e.g., RuntimeConfig with FeesTreasuryProportion) or None if no value is set."
+???+ function "**parameters**(parameters) - when queried with a parameter key, it returns either the corresponding value variant (e.g., `RuntimeConfig` with `FeesTreasuryProportion`) or `None` if no value is set"
 
     === "Parameters"
 
