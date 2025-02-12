@@ -166,7 +166,7 @@ The judgment-related functions that must be called by a registrar and the caller
 The following sections will cover how to interact with the Identity Precompile using [Ethereum libraries](/builders/ethereum/libraries/){target=\_blank}, such as [Ethers.js](/builders/ethereum/libraries/ethersjs/){target=\_blank}, [Web3.js](/builders/ethereum/libraries/web3js/){target=\_blank}, and [Web3.py](/builders/ethereum/libraries/web3py/){target=\_blank}.
 
 The examples in this guide will be on Moonbase Alpha.
---8<-- 'text/common/endpoint-examples.md'
+--8<-- 'text/_common/endpoint-examples.md'
 
 ### Using Ethereum Libraries {: #use-ethereum-libraries }
 
