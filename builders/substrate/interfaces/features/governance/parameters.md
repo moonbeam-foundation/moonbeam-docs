@@ -45,7 +45,7 @@ The Parameters Pallet includes the following read-only storage methods to obtain
 
     === "Returns"
 
-        The parameters.parameters(...) storage method is a dictionary that stores dynamic runtime parameters under specific keys. When queried with a parameter key, it returns either the corresponding value variant (e.g., `RuntimeConfig` with `FeesTreasuryProportion`) or None if no value is set
+        The `parameters` storage method is a dictionary that stores dynamic runtime parameters under specific keys. When queried with a parameter key, it returns either the corresponding value variant (e.g., `RuntimeConfig` with `FeesTreasuryProportion`) or `None` if no value is set
 
     === "Polkadot.js API Example"
 
