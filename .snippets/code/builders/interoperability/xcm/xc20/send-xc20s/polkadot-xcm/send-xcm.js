@@ -1,5 +1,4 @@
 import { ApiPromise, WsProvider, Keyring } from '@polkadot/api';
-import { BN } from '@polkadot/util';
 import { decodeAddress } from '@polkadot/util-crypto';
 
 const main = async () => {
@@ -15,51 +14,55 @@ const main = async () => {
   const beneficiaryRaw = decodeAddress('INSERT_DESTINATION_ADDRESS');
 
   try {
-    // Create the transaction
+    // Create the transaction (XCM v4)
     const tx = api.tx.polkadotXcm.transferAssets(
-      // dest
+      // Destination (V4)
       {
-        V3: {
+        V4: {
           parents: 1,
-          interior: 'Here',
-        },
-      },
-      // beneficiary
-      {
-        V3: {
-          parents: 0,
           interior: {
-            X1: {
-              AccountId32: {
-                id: Array.from(beneficiaryRaw),
-                network: null,
-              },
-            },
-          },
-        },
+            Here: null
+          }
+        }
       },
-      // assets
+      // Beneficiary (V4)
       {
-        V3: [
-          {
-            id: {
-              Concrete: {
-                parents: 1,
-                interior: 'Here',
-              },
-            },
-            fun: {
-              Fungible: '1000000000000',
-            },
-          },
-        ],
+        V4: {
+          parents: 1,
+          interior: {
+            X1: [
+              {
+                AccountId32: {
+                  network: null,
+                  id: beneficiaryRaw
+                }
+              }
+            ]
+          }
+        }
       },
-      0, // feeAssetItem
-      'Unlimited' // weightLimit
+      // Assets (V4)
+      {
+        V4: [
+          {
+            fun: {
+              Fungible: 1000000000000n
+            },
+            id: {
+              parents: 1,
+              interior: {
+                Here: null
+              }
+            }
+          }
+        ]
+      },
+      0,           // feeAssetItem
+      'Unlimited'  // weightLimit
     );
 
-    // Sign and send the transaction, displaying the transaction hash
-    const unsub = await tx.signAndSend(account, ({ status, events }) => {
+    // Sign and send the transaction
+    const unsub = await tx.signAndSend(account, ({ status }) => {
       if (status.isInBlock) {
         console.log(`Transaction included in blockHash ${status.asInBlock}`);
       } else if (status.isFinalized) {
