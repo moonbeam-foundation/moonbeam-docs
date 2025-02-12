@@ -30,7 +30,7 @@ The Parameters Pallet provides one extrinsic (functions):
     === "Polkadot.js API Example"
 
         ```js
-        --8<-- 'code/builders/pallets-precompiles/pallets/parameters/set_parameter.js'
+        --8<-- 'code/builders/pallets-precompiles/pallets/parameters/set-parameter.js'
         ```
 
 ### Storage Methods {: #storage-methods }
@@ -50,7 +50,7 @@ The Parameters Pallet includes the following read-only storage methods to obtain
     === "Polkadot.js API Example"
 
         ```js
-        --8<-- 'code/builders/pallets-precompiles/pallets/parameters/get_storage_item.js'
+        --8<-- 'code/builders/pallets-precompiles/pallets/parameters/get-storage-item.js'
         ```
 
 ??? function "**palletVersion**() - returns the current pallet version"
@@ -71,7 +71,7 @@ The Parameters Pallet includes the following read-only storage methods to obtain
     === "Polkadot.js API Example"
 
         ```js
-        --8<-- 'code/builders/pallets-precompiles/pallets/parameters/pallet_version.js'
+        --8<-- 'code/builders/pallets-precompiles/pallets/parameters/pallet-version.js'
         ```
 
 ### Pallet Constants {: #constants }
