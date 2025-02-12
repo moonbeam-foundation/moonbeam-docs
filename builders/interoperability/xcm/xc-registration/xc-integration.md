@@ -195,6 +195,10 @@ Running the following command will provide the encoded calldata to accept an ope
 !!! note
     You can adapt the script for your parachain by changing the `parachain-ws-provider`.
 
+After running the script, you'll see output that looks like the following:
+
+--8<-- 'code/builders/interoperability/xcm/xc-registration/integration/terminal/accept.md'
+
 Running the script as shown above will return the encoded calldata to accept an HRMP channel. You can also use the script to create and submit a preimage and proposal on chain for the given HRMP action. For Moonbeam and Moonriver, the proposal must be submitted via the General Admin Track.
 
 Please refer to the [README](https://github.com/Moonsong-Labs/xcm-tools/tree/main#hrmp-manipulator-script){target=\_blank} for a complete list of the arguments, including optional arguments, and examples on how to use the HRMP-manipulator script.
@@ -243,6 +247,10 @@ Running the following command will provide the encoded calldata to create the HR
 
 !!! note
      You can readapt the script for your parachain by changing the `parachain-ws-provider`.
+
+After running the script, you'll see output that looks like the following:
+
+--8<-- 'code/builders/interoperability/xcm/xc-registration/integration/terminal/propose.md'
 
 Running the script as shown above will return the encoded calldata to open an HRMP channel. You can also use the script to create and submit a preimage and proposal on-chain for the given HRMP action. For Moonbeam and Moonriver, the proposal must be submitted via the General Admin Track.
 
