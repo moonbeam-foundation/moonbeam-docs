@@ -235,7 +235,7 @@ To send tokens over to an account in a Substrate appchain, please follow these s
 4. Specify the tokens to be transferred. Note that this parameter is an array that contains at least one asset. Each asset is specified by its address and the total amount to transfer
 
    --8<-- 'text/builders/ethereum/precompiles/security.md'
-moonbeam-mkdocs/moonbeam-docs/.snippets/text/builders/ethereum/precompiles/security.md
+
 5. Enter the index of the asset that will be used to pay the fees. This index is zero-based, so the first element is `0`, the second is `1`, and so on
 6. Click **transact**
 7. MetaMask will pop up, and you will be prompted to review the transaction details. Click **Confirm** to send the transaction
