@@ -3,4 +3,3 @@ hide: false
 nav:
   - index.md
   - 'Moonbeam Foundation DApp Directory': 'dapp-directory.md'
-  - 'DappRadar': 'dapp-radar.md'
