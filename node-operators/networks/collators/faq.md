@@ -131,7 +131,7 @@ Hardware recommendations:
 
 **Q: What should I look for in the logs?**
 
-**A:** Logs are very useful to determine if you are in sync and ready to join the collators pool. Look at the tail end of the logs to determine if:
+**A:** Logs are very useful to determine if you are in sync and ready to join the collators pool. Look at the tail end of the logs to determine if: 
 
 1. Your Relay chain is in sync
 2. Your parachain is in sync
@@ -142,7 +142,7 @@ You should see **Idle** in your logs when your node is in sync.
 
 A common issue is joining the pool before your node is in sync. You will be unable to produce any blocks or receive any rewards. Wait until you are in sync and idle before joining the candidate pool.
 
-![Relay chain not in sync yet](/images/node-operators/networks/run-a-node/docker/full-node-docker-2.webp)
+![Relay chain not in sync yet](/images/node-operators/networks/faq/full-node-docker-2.webp)
 
 The relay chain takes much longer to sync than the parachain. You will not see any finalized blocks until the relay chain has synced.
 
