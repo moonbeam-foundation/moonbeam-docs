@@ -142,7 +142,7 @@ You should see **Idle** in your logs when your node is in sync.
 
 A common issue is joining the pool before your node is in sync. You will be unable to produce any blocks or receive any rewards. Wait until you are in sync and idle before joining the candidate pool.
 
-![Relay chain not in sync yet](/images/node-operators/networks/faq/full-node-docker-2.webp)
+--8<-- 'code/node-operators/networks/run-a-node/docker/terminal/logs.md'
 
 The relay chain takes much longer to sync than the parachain. You will not see any finalized blocks until the relay chain has synced.
 
