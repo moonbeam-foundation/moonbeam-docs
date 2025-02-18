@@ -73,7 +73,7 @@ To get started with a free Developer plan endpoint, simply sign up with email or
 2. Sign up.
 3. Deploy a Moonbeam node.
 
-![Chainstack](/images/builders/get-started/endpoints/endpoints-3.webp)
+![Chainstack](/images/builders/get-started/endpoints/endpoints-7.webp)
 
 ### Dwellir {: #dwellir }
 
