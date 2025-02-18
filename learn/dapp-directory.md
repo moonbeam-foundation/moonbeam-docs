@@ -1,11 +1,12 @@
 ---
 title: List your Dapp on the Moonbeam DApp Directory
 description: Follow this tutorial to learn how to list your Moonbeam or Moonriver project or update a current listing on the Moonbeam Foundation DApp Directory.
+dropdown_description: Explore the DApp Directory and listing process
 ---
 
 # How to List your Project on the Moonbeam DApp Directory
 
-## Introduction to The Moonbeam DApp Directory {: #introduction-to-state-of-the-dapps }
+## Introduction to The Moonbeam DApp Directory {: #introduction-to-the-moonbeam-dapp-directory }
 
 The Moonbeam ecosystem comprises two distinct production networks: Moonbeam and Moonriver. Each network has its own dedicated [DApp Directory](https://apps.moonbeam.network/moonbeam/app-dir){target=\_blank}, maintained by the Moonbeam Foundation. These directories categorize projects spanning from DeFi to NFTs to gaming, providing users with comprehensive access to diverse applications.
 

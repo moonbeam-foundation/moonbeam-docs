@@ -5,4 +5,4 @@ nav:
   - platform
   - core-concepts
   - features
-  - dapps-list
+  - 'DApp Directory': 'dapp-directory.md'
