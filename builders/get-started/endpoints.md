@@ -31,6 +31,7 @@ You can create your own endpoint suitable for development or production use usin
 
 - [1RPC](#1rpc)
 - [Blast](#blast)
+- [Chainstack](#chainstack)
 - [Dwellir](#dwellir)
 - [GetBlock](#getblock)
 - [OnFinality](#onfinality)
@@ -61,6 +62,18 @@ To get started, you'll need to head to [Blast](https://blastapi.io){target=\_bla
 5. You'll now see your chosen network under **Active Endpoints**. Click on the network and you'll see your custom RPC and WSS endpoints on the next page
 
 ![Bware Labs](/images/builders/get-started/endpoints/endpoints-2.webp)
+
+### Chainstack {: #chainstack }
+
+[Chainstack](https://chainstack.com/){target=\_blank} the leading Web3 infrastructure provider, offering free and paid endpoints for Moonbeam. The free Developer plan starts with 3 million requests per month and 25 requests per second (RPS). You can easily scale with the paid plans.
+
+To get started with a free Developer plan endpoint, simply sign up with email or any social account, like GitHub or X (Twitter).
+
+1. Visit [Chainstack](https://console.chainstack.com/){target=\_blank}
+2. Sign up.
+3. Deploy a Moonbeam node.
+
+![Chainstack](/images/builders/get-started/endpoints/endpoints-3.webp)
 
 ### Dwellir {: #dwellir }
 
