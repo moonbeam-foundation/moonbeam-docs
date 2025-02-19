@@ -65,16 +65,15 @@ To get started, you'll need to head to [Blast](https://blastapi.io){target=\_bla
 
 ### Chainstack {: #chainstack }
 
-[Chainstack](https://chainstack.com/){target=\_blank} the leading Web3 infrastructure provider, offering free and paid endpoints for Moonbeam. The free Developer plan starts with 3 million requests per month and 25 requests per second (RPS). You can easily scale with the paid plans.
+[Chainstack](https://chainstack.com/){target=\_blank}, the Web3 infrastructure provider, offers free and paid endpoints for Moonbeam. The free Developer plan starts with 3 million monthly requests and 25 requests per second (RPS). You can easily scale with the paid plans.
 
-To get started with a free Developer plan endpoint, simply sign up with email or any social account, like GitHub or X (Twitter).
+To start with a free Developer plan endpoint, sign up using an email or any social account, like GitHub or X (Twitter).
 
 1. Visit [Chainstack](https://console.chainstack.com/){target=\_blank}
-2. Sign up.
-3. Deploy a Moonbeam node.
+2. Sign up
+3. Deploy a Moonbeam node
 
 ![Chainstack](/images/builders/get-started/endpoints/endpoints-7.webp)
-
 ### Dwellir {: #dwellir }
 
 [Dwellir](https://www.dwellir.com){target=\_blank} is a blockchain operation service that ensures global scalability, low latency, and a 99.99% uptime guarantee, providing fast and reliable node operations wherever your business stands. The public endpoint service is geographically distributed bare metal servers globally. As the service is public, there are no sign-up or API keys to manage.
