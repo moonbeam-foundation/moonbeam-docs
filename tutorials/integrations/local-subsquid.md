@@ -9,7 +9,7 @@ _by Erin Shaben and Kevin Neilson_
 
 ## Introduction {: #introduction }
 
-When developing a dApp, it's beneficial to develop smart contracts using a local development environment as opposed to a live network, such as a TestNet or MainNet. Local development removes some of the hassles involved with developing on a live network, like having to fund development accounts and waiting for blocks to be produced. On Moonbeam, developers can spin up their own local [Moonbeam development node](/builders/get-started/networks/moonbeam-dev/){target=\_blank} to quickly and easily build and test applications.
+When developing a DApp, it's beneficial to develop smart contracts using a local development environment as opposed to a live network, such as a TestNet or MainNet. Local development removes some of the hassles involved with developing on a live network, like having to fund development accounts and waiting for blocks to be produced. On Moonbeam, developers can spin up their own local [Moonbeam development node](/builders/get-started/networks/moonbeam-dev/){target=\_blank} to quickly and easily build and test applications.
 
 But what about dApps that rely on indexers to index blockchain data? How can developers of these applications streamline the development process? Thanks to [SQD](/builders/integrations/indexers/subsquid/){target=\_blank}, a data network for retrieving data from 100+ chains, it is now possible to index blocks in a local development environment, such as your Moonbeam development node!
 
