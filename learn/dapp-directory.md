@@ -14,7 +14,7 @@ You'll supply core project details like name, description, and relevant links wh
 
 Despite the distinction between the Moonbeam and Moonriver DApp directories, the submission process remains the same. To list your project on the DApp Directory, you must submit a pull request to the [Moonbeam Foundation's App Directory Data repository on GitHub](https://github.com/moonbeam-foundation/app-directory-data){target=\_blank}. This guide outlines the necessary data and formatting specifics for your submission.
 
-![The Moonbeam DApp Directory home page](/images/learn/dapps-list/dapp-directory/directory-1.webp)
+![The Moonbeam DApp Directory home page](/images/learn/dapps-list/directory-1.webp)
 
 ## Overview of the Project Data {: #overview-project-data }
 
@@ -81,7 +81,7 @@ As mentioned, you must submit a pull request to the Moonbeam Foundation's GitHub
 
 To begin, you have two options for adding your project information to the [`app-directory-data` repository on GitHub](https://github.com/moonbeam-foundation/app-directory-data){targe\_blank}. You can utilize [GitHub's browser-based editor](https://github.dev/moonbeam-foundation/app-directory-data){target=\_blank}, which offers a user-friendly interface.
 
-![The app-directory-data repository loaded on GitHub's browser-based editor](/images/learn/dapps-list/dapp-directory/directory-2.webp)
+![The app-directory-data repository loaded on GitHub's browser-based editor](/images/learn/dapps-list/directory-2.webp)
 
 Or you can clone the repository locally and make modifications using your preferred code editor, in which you can use the following command to clone the repository:
 
@@ -95,7 +95,7 @@ Once you've cloned the project, you can create a new branch to which you will ad
 2. A menu will appear at the top of the page. Enter the name of your branch
 3. Click **Create new branch...**
 
-![Create a new branch on GitHub's browser-based editor](/images/learn/dapps-list/dapp-directory/directory-3.webp)
+![Create a new branch on GitHub's browser-based editor](/images/learn/dapps-list/directory-3.webp)
 
 The page will reload, and your branch name will now be displayed in the bottom left corner.
 
@@ -128,10 +128,10 @@ To get started, you must have a name that uniquely and properly identifies your 
 ??? code "Example folder structure"
 
     ```text
-    --8<-- 'code/learn/dapps-list/dapp-directory/folder-structure.md'
+    --8<-- 'code/learn/dapps-list/folder-structure.md'
     ```
 
-![The file structure displayed on GitHub's browser-based editor](/images/learn/dapps-list/dapp-directory/directory-4.webp)
+![The file structure displayed on GitHub's browser-based editor](/images/learn/dapps-list//directory-4.webp)
 
 With the foundational file structure in place, you're ready to populate the necessary information for your project submission.
 
@@ -160,7 +160,7 @@ Your project's data file is where you'll add all the information for your projec
 ??? code "Example project data file"
 
     ```json
-    --8<-- 'code/learn/dapps-list/dapp-directory/project-data-file.json'
+    --8<-- 'code/learn/dapps-list/project-data-file.json'
     ```
 
 #### Category and Tags {: #category-and-tags }
@@ -170,13 +170,13 @@ A category is the primary classification for a project. A project can be categor
 The currently supported values for `category` are:
 
 ```text
---8<-- 'code/learn/dapps-list/dapp-directory/categories.md'
+--8<-- 'code/learn/dapps-list/categories.md'
 ```
 
 The currently supported values for `tag` are:
 
 ```text
---8<-- 'code/learn/dapps-list/dapp-directory/tags.md'
+--8<-- 'code/learn/dapps-list/tags.md'
 ```
 
 #### URLs {: #urls }
@@ -198,7 +198,7 @@ The following table lists the supported `urls` properties:
 The format of the property name/value pairs should follow the JSON standard, for example:
 
 ```json
---8<-- 'code/learn/dapps-list/dapp-directory/urls.json'
+--8<-- 'code/learn/dapps-list/urls.json'
 ```
 
 #### Logos {: #logos }
@@ -219,7 +219,7 @@ Currently, only the `small` size is utilized, and the dimensions for small logos
 Here is an example showing the structure of the `logo` property that supplies `small` and `full` logos:
 
 ```json
---8<-- 'code/learn/dapps-list/dapp-directory/logo.json'
+--8<-- 'code/learn/dapps-list/logo.json'
 ```
 
 #### Screenshots {: #screenshots }
@@ -240,7 +240,7 @@ The following table lists the properties of the image JSON object:
 Here is an example showing the structure of the `screenshot` property for two screenshots (`screenshot1` and `screenshot2`):
 
 ```json
---8<-- 'code/learn/dapps-list/dapp-directory/screenshots.json'
+--8<-- 'code/learn/dapps-list/screenshots.json'
 ```
 
 #### Contracts {: #contracts }
@@ -260,28 +260,28 @@ The following table lists the properties found in the contract JSON object:
 Here is a `contracts` array with a single smart contract for the WGLMR token:
 
 ```json
---8<-- 'code/learn/dapps-list/dapp-directory/contracts.json'
+--8<-- 'code/learn/dapps-list/contracts.json'
 ```
 
 ### Submit a Pull Request {: #submit-a-pull-request }
 
 After you've populated the project data file and added your logos and screenshots, you should be ready to submit your pull request.
 
-![All of the project files added on GitHub's browser-based editor](/images/learn/dapps-list/dapp-directory/directory-5.webp)
+![All of the project files added on GitHub's browser-based editor](/images/learn/dapps-list/directory-5.webp)
 
 From the web-based editor, take the following steps to commit your changes to the `app-directory-data` repository:
 
 1. Click on the **Source Control** tab, which should show you how many pages have been added or changed
 2. Review the files under the **Changes** section. Click the **+** button next to **Changes**, or as you review each file, click the **+** button next to the file name to add them to the list of **Staged Changes**
 
-![Staging the changed files on GitHub's browser-based editor](/images/learn/dapps-list/dapp-directory/directory-6.webp)
+![Staging the changed files on GitHub's browser-based editor](/images/learn/dapps-list//directory-6.webp)
 
 All of your files should now be under the **Staged Changes** section. All you have to commit and push the changes are:
 
 1. Enter a descriptive commit message, such as "Add My Project", making sure to use your actual project name
 2. Click **Commit & Push**
 
-![Committing the staged files on GitHub's browser-based editor](/images/learn/dapps-list/dapp-directory/directory-7.webp)
+![Committing the staged files on GitHub's browser-based editor](/images/learn/dapps-list//directory-7.webp)
 
 Now that you've committed the changes, you'll need to head over to the [`app-directory-data` repository](https://github.com/moonbeam-foundation/app-directory-data){target=\_blank} and open a pull request against the `develop` branch:
 
@@ -290,7 +290,7 @@ Now that you've committed the changes, you'll need to head over to the [`app-dir
 3. Click the **Contribute** dropdown
 4. Click the **Open pull request** button
 
-![The main page of the app-directory-data repository on GitHub](/images/learn/dapps-list/dapp-directory/directory-8.webp)
+![The main page of the app-directory-data repository on GitHub](/images/learn/dapps-list//directory-8.webp)
 
 You'll be taken to the **Comparing changes** page, where you'll need to:
 
@@ -299,7 +299,7 @@ You'll be taken to the **Comparing changes** page, where you'll need to:
 3. Add a description of the changes
 4. Click **Create pull request**
 
-![Submit a pull request on the Comparing changes page of the app-directory-data repository on GitHub](/images/learn/dapps-list/dapp-directory/directory-9.webp)
+![Submit a pull request on the Comparing changes page of the app-directory-data repository on GitHub](/images/learn/dapps-list//directory-9.webp)
 
 ### The Review Process {: #review-process }
 
@@ -346,7 +346,7 @@ curl -H "Content-Type: application/json" -X GET 'https://apps.moonbeam.network/a
 ??? code "API Response to Querying StellaSwap"
 
     ```json
-    --8<-- 'code/learn/dapps-list/dapp-directory/stellaswap.json'
+    --8<-- 'code/learn/dapps-list/stellaswap.json'
     ```
 
 ### Query a Category {: #query-a-category}
@@ -360,7 +360,7 @@ https://apps.moonbeam.network/api/ds/v1/app-dir/projects?category=nfts
 ??? code "API Response to Querying NFT projects"
 
     ```json
-    --8<-- 'code/learn/dapps-list/dapp-directory/nfts.json'
+    --8<-- 'code/learn/dapps-list/nfts.json'
     ```
 
 Below are all possible categories and their respective parameters for querying the API. Ensure you query the API with the parameter formatted exactly as shown in lowercase.
