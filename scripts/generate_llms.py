@@ -3,7 +3,7 @@ import re
 
 # Moonbeam-specific input
 docs_repo = 'moonbeam-docs'
-docs_url = 'https://docs.moonbeam.network'
+docs_url = 'https://docs.moonbeam.network/'
 
 # Set the base directory to the root of docs
 base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
