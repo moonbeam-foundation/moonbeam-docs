@@ -96,7 +96,7 @@ Proposals must be submitted via the Fast General Admin track. A channel must be 
 - **`symbol`**  - the symbol of the asset. Remember that "xc" should be prepended to the symbol to indicate the asset is an XCM-enabled asset
 - **`name`** - the asset name
 
-Using the above information, you can generate the encoded call data for the `createForeignAsset` call either via the Polkadot API or on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbeam.network#/extrinsics){target=\_blank}.
+Using the above information, you can generate the encoded call data for the `createForeignAsset` call either via the Polkadot API or on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbeam.network#/extrinsics){target=\_blank}.
 
 You can generate this required calldata using the [xcm-asset-registrator script](https://github.com/Moonsong-Labs/xcm-tools/blob/main/scripts/xcm-asset-registrator.ts){target=\_blank} as follows:
 
@@ -128,7 +128,7 @@ If you've already used the [xcm-asset-registrator script](https://github.com/Moo
 - **`xcmLocation`** - the multilocation of the asset relative to Moonbeam 
 - **`relativePrice`** - A numeric value (u128) representing the fraction of the native token’s price that your asset’s price constitutes, scaled to 18 decimals. This value calculates cross-chain fees by determining how many units of the non-native asset are required to cover XCM operation costs 
 
-Using the above information, you can generate the encoded call data for the `addAsset` call either via the Polkadot API or on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbeam.network#/extrinsics){target=\_blank}.
+Using the above information, you can generate the encoded call data for the `addAsset` call either via the Polkadot API or on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbeam.network#/extrinsics){target=\_blank}.
 
 To create a batch transaction that combines both the `xcmWeightTrader.addAsset` and the `evmForeignAssets.createForeignAsset` calls together, you can use the [Polkadot API's `batch` method](/builders/substrate/libraries/polkadot-js-api/#batching-transactions){target=\_blank}. As mentioned previously, the [XCM asset registrator script](https://github.com/Moonsong-Labs/xcm-tools/blob/main/scripts/xcm-asset-registrator.ts){target=\_blank} can help you build and submit the required calls. 
 
