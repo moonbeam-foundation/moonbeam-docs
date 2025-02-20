@@ -57,7 +57,7 @@ If your code contained logic to deploy your contract or send a transaction, you'
 
 ### Add a Contract {: #add-a-contract }
 
-A good place to start with the Tenderly dashboard is to add a deployed smart contract. Once you've added a contract, you'll be able to create transaction simulations and virtual TestNets, use the debugger, set up monitoring and alerts, and more.
+A good place to start with the Tenderly dashboard is to add a deployed smart contract. Once you've added a contract, you'll be able to create transaction simulations and Virtual TestNets, use the debugger, set up monitoring and alerts, and more.
 
 To add a new contract, you can click on **Contracts** on the left-side panel and click **Add Contract**. A pop-up will appear and you can take the following steps:
 
@@ -87,19 +87,19 @@ Tenderly makes creating a TestNet through the dashboard quite simple. To get sta
 2. (Optional) Give your TestNet a name
 3. Select your **Chain ID** you can use a custom one or the original network ID. It is recommended to set a custom Chain ID to prevent replay attacks and avoid issues when adding the Virtual TestNet to wallets
 4. Choose whether to enable or disable the **Public Explorer**
-5. **State Sync** Enable this option if you want to keep your Virtual TestNet updated in real-time with the parent network
-6. If you only need data up until a specific block, you can toggle the **Use Latest Block** checkbox off and specify the block number. Otherwise, leave it enabled to include all blocks up until the latest block
+5. Enable **State Sync** if you want to keep your Virtual TestNet updated in real-time with the parent network
+6. To limit data to a specific block, disable **Use Latest Block** and enter the block number. Otherwise, keep it enabled to include all blocks up to the latest
 7. Click **Create**
 
 ![Virtual TestNet Moonbeam](/images/builders/ethereum/dev-env/tenderly/tenderly-5.webp)
 
 Once you've created your Virtual TestNet, you can start using it by deploying a contract to it or creating a transaction simulation using it.
 
-To deploy a contract to your Virtual TestNet, click on  **Contracts**  in the left menu, You can use a contract from the **Watched Contracts** tab or upload your contract's address by clicking the **Watch Contract** button in the upper left corner. Once you submit the address, the contract will appear in the **Contracts** tab, where you can click on it to see more information.
+To deploy a contract, go to Contracts in the left menu. Use one from **Watched Contracts** or add a new one via **Watch Contract**. Once added, it will appear in **Contracts**, where you can view its details.
 
 ![TestNet simulations](/images/builders/ethereum/dev-env/tenderly/tenderly-6.webp)
 
-To create a simulation, click the, **Simulation** button and enter in the configurations for the simulation. For more information on simulations, please refer to Tenderly's [Simulator UI Overview](https://docs.tenderly.co/simulator-ui/using-simulation-ui){target=\_blank} documentation.
+To create a simulation, click the **Simulation** button and enter the configurations for the simulation. For more information on simulations, please refer to Tenderly's [Simulator UI Overview](https://docs.tenderly.co/simulator-ui/using-simulation-ui){target=\_blank} documentation.
 
 Now that you've learned how to get started with a few of Tenderly's features on Moonbeam, please feel free to dive in and check out the other tools available in their development platform. You can visit [Tenderly's documentation site](https://docs.tenderly.co){target=\_blank} for more information. You can also check out Moonbeam's tutorial on [Using Tenderly to Simulate and Debug Transactions](/tutorials/eth-api/using-tenderly/){target=\_blank}.
 
