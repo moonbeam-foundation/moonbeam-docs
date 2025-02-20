@@ -279,7 +279,7 @@ There are a number of ways to add an account to the keyring instance, including 
 
 ## Dry Run API  {: #dry-run-api }
 
-The Dry Run API is an easy and convenient way to test the integrity of a call without incurring any transaction fees. The Dry Run API can be accessed from the [Runtime Calls](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbeam.network#/runtime){target=\_blank} tab of the **Developer** section of Polkadot.js Apps. While primarily intended for the [testing of XCM messages](/builders/interoperability/xcm/send-execute-xcm/#test-an-xcm-message-with-the-dry-run-api){target=\_blank} , the Dry Run API can be used to test any arbitrary call. 
+The Dry Run API is an easy and convenient way to test the integrity of a call without incurring any transaction fees. The Dry Run API can be accessed from the [Runtime Calls](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbeam.network#/runtime){target=\_blank} tab of the **Developer** section of Polkadot.js Apps. While primarily intended for the [testing of XCM messages](/builders/interoperability/xcm/send-execute-xcm/#test-an-xcm-message-with-the-dry-run-api){target=\_blank}, the Dry Run API can be used to test any arbitrary call.
 
 This method takes the origin and call data as parameters and returns an execution result and additional event data. 
 

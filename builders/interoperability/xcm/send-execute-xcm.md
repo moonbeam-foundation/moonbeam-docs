@@ -183,7 +183,7 @@ Once the transaction is processed, the 0.1 DEV tokens should be withdrawn from A
 
 ## Test an XCM Message with the Dry Run API {: #test-an-xcm-message-with-the-dry-run-api }
 
-The XCM Dry Run API is an easy and convenient way to test the integrity of your XCM message without incurring any transaction fees. The XCM Dry Run API can be accessed from the [Runtime Calls](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbeam.network#/runtime){target=\_blank} tab of the **Developer** section of Polkadot.js Apps. 
+The XCM Dry Run API is an easy and convenient way to test the integrity of your XCM message without incurring any transaction fees. The XCM Dry Run API can be accessed from the [Runtime Calls](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbeam.network#/runtime){target=\_blank} tab of the **Developer** section of Polkadot.js Apps.
 
 ### Dry Run Call API Method {: #dry-run-call-api-method }
 
@@ -247,7 +247,6 @@ Upon calling the XCM Dry Run API, the method will tell you whether the call woul
     ```json
     --8<-- 'code/builders/interoperability/xcm/send-execute-xcm/dry-run/dry-run-xcm-return-data.json'
     ```
-
 
 ## Execute an XCM Message with the XCM Utilities Precompile {: #execute-xcm-utils-precompile }
 
