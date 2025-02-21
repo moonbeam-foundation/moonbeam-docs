@@ -28,7 +28,7 @@ The Tenderly platform provides the following features:
 - **[Sandbox](https://sandbox.tenderly.co){target=\_blank}** - write, compile, execute, and debug your smart contracts directly in your browser with baked-in JavaScript and Solidity editors. Every time you run your code, Tenderly creates a temporary fork that comes with 10 pre-funded accounts, each with 100 tokens for testing purposes
 
 !!! note
- Tenderly fully supports Moonbeam, Moonriver, and Moonbase Alpha, with the exception of the Web3 Gateway. For more information, check out Tenderly's documentation on [Supported Networks](https://docs.tenderly.co/supported-networks-and-languages#supported-networks){target=\_blank}.
+    Tenderly fully supports Moonbeam, Moonriver, and Moonbase Alpha, with the exception of the Web3 Gateway. For more information, check out Tenderly's documentation on [Supported Networks](https://docs.tenderly.co/supported-networks-and-languages#supported-networks){target=\_blank}.
 
 ## Getting Started
 
