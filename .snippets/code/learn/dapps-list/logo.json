@@ -1,0 +1,14 @@
+"logo": {
+    "small": {
+        "fileName": "my-project-logo-small.jpeg",
+        "width": 40,
+        "height": 40,
+        "mimeType": "image/jpeg"
+    },
+    "full": {
+        "fileName": "my-project-logo-full.jpeg",
+        "width": 3000,
+        "height": 3000,
+        "mimeType": "image/jpeg"
+    }
+}

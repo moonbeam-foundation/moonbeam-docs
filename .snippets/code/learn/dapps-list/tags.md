@@ -1,0 +1,24 @@
+- Bridges
+- DAO
+- DEX
+- DeFi
+- DePIN
+- Developer Tools
+- Explorers
+- Files
+- GLMR Grants
+- Gaming
+- Infrastructure
+- IoT
+- Lending
+- MOVR Grants
+- Messaging
+- NFT
+- NFT Marketplaces
+- On-ramp
+- Other
+- Social
+- Tool
+- VPN
+- Wallets
+- ZeroTrust
