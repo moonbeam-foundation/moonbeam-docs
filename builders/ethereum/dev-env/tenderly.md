@@ -88,7 +88,7 @@ Tenderly makes creating a TestNet through the dashboard quite simple. To get sta
 3. Select your **Chain ID**; you can use a custom one or the original network ID. It is recommended to set a custom Chain ID to prevent replay attacks and avoid issues when adding the Virtual TestNet to wallets
 4. Choose whether to turn on or off the **Public Explorer**
 5. Enable **State Sync** if you want to keep your Virtual TestNet updated in real-time with the parent network
-6. To limit data to a specific block, disable **Use Latest Block** and enter the block number. Otherwise, keep it enabled to include all blocks up to the latest
+6. To limit data to a specific block, disable **Use latest block** and enter the block number. Otherwise, keep it enabled to include all blocks up to the latest
 7. Click **Create**
 
 ![Virtual TestNet Moonbeam](/images/builders/ethereum/dev-env/tenderly/tenderly-5.webp)
