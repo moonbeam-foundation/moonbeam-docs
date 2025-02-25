@@ -1,5 +1,5 @@
 <div id="termynal" data-termynal>
-    <span data-ty="input"><span class="file-path"></span>purestake@ubuntu-bionic:~$ curl http://127.0.0.1:9933 -H "Content-Type:application/json;char set=utf-8" -d '{</span>
+    <span data-ty="input"><span class="file-path"></span>curl http://127.0.0.1:9933 -H "Content-Type:application/json;char set=utf-8" -d '{</span>
     <span data-ty>"jsonrpc":"2.0"</span>
     <span data-ty>"id" :1,</span>
     <span data-ty>"method": "author_hasKey",</span>
