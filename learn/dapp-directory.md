@@ -299,7 +299,7 @@ You'll be taken to the **Comparing changes** page, where you'll need to:
 3. Add a description of the changes
 4. Click **Create pull request**
 
-![Submit a pull request on the Comparing changes page of the app-directory-data repository on GitHub](/images/learn/dapps-list/directory-9.webp)
+![Submit a pull request on the Comparing changes page of the app-directory-data repository on GitHub](/images/learn/dapps-list//directory-9.webp)
 
 ### The Review Process {: #review-process }
 
