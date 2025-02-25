@@ -47,7 +47,7 @@ The following sections will show you how to get started with Tenderly on Moonbea
 To deploy contracts to Moonbeam with a Tenderly Sandbox, you can navigate to [sandbox.tenderly.co](https://sandbox.tenderly.co){target=\_blank} and take the following steps:
 
 1. Enter your smart contract into the Solidity editor on the left-hand side
-2. Select **Moonbeam** or **Moonriver** from the **Network** menu, adjust any of the compilation settings, and specify the block to run your code on if needed
+2. Configure the environment by selecting **Moonbeam**, **Moonriver**, or **Moonbase Alpha** as the network. This can be done either by clicking **Configure** in the bottom-right corner to open the settings window or by directly modifying the parameters in the left-hand panel. Adjust any of the compilation settings, and specify the block to run your code on if needed
 3. Update the JavaScript editor on the right-hand side of your contract. [Ethers.js](/builders/ethereum/libraries/ethersjs/){target=\_blank} and [Web3.js](/builders/ethereum/libraries/web3js/){target=\_blank} are included in the Sandbox by default and can be instantiated with `ethers` and `web3`, respectively. It's also important to note that the Sandbox includes [global variables](https://docs.tenderly.co/tenderly-sandbox#available-javascript-global-variables){target=\_blank} to ease development, so you don't need to worry about updating the RPC URL for Moonbeam
 4. Click on **RUN** when you're ready to compile your contract and execute your code
 
