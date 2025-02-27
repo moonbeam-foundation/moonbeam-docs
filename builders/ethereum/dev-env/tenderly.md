@@ -19,7 +19,7 @@ The Tenderly platform provides the following features:
 
 - **[Simulator](https://docs.tenderly.co/simulator-ui){target=\_blank}** - simulate transactions in a TestNet development environment to learn how your transactions will behave without having to send them on-chain. This way, you can know the transaction's outcome and ensure it works as expected before sending it to the network. You can experiment with different parameters, simulate historical and current transactions, and edit the contract source code. You can access the simulator from the Tenderly dashboard, or you can use the [Tenderly Simulation API](https://docs.tenderly.co/reference/api#tag/Simulations){target=\_blank} to take advantage of the simulator programmatically
 
-- **[Virtual TestNets](https://docs.tenderly.co/virtual-testnets){target=\_blank}** - simulate the live Moonbeam network in an isolated environment, allowing interaction with deployed contracts and real-time on-chain data. These test environments provide a controlled setting for developing, testing, and debugging dApps, covering smart contracts, UI, backend, and data indexing layers. They also support transaction simulations by enabling multiple simulations to be executed sequentially, allowing for the testing of complex scenarios where one transaction depends on another. There are some limitations to be aware of when using this feature. You cannot interact with any of the [Moonbeam precompiled contracts](/builders/ethereum/precompiles/){target=\_blank} and their functions. Precompiles are a part of the Substrate implementation and, therefore, cannot be replicated in the simulated EVM environment. This prohibits you from interacting with cross-chain assets on Moonbeam and Substrate-based functionality such as staking and governance
+- **[Virtual TestNets](https://docs.tenderly.co/virtual-testnets){target=\_blank}** - simulate the live Moonbeam network in an isolated environment to interact with deployed contracts and real-time on-chain data. These test environments enable controlled development, testing, and debugging across smart contracts, UI, backend, and data indexing. They support sequential transaction simulations for complex scenarios. There are some limitations to be aware of when using this feature. [Moonbeam precompiled contracts](https://github.com/builders/ethereum/precompiles/){target=_blank} are not supported, as they are part of the Substrate implementation and cannot be replicated in the simulated EVM environment, prohibiting you from interacting with cross-chain assets, staking, and governance.
 
 - **[Alerting](https://docs.tenderly.co/alerts/intro-to-alerts){target=\_blank}** - configure real-time alerts to notify you whenever a specific event occurs, allowing you to stay informed about what's going on with your smart contracts
 
@@ -28,7 +28,7 @@ The Tenderly platform provides the following features:
 - **[Sandbox](https://sandbox.tenderly.co){target=\_blank}** - write, compile, execute, and debug your smart contracts directly in your browser with baked-in JavaScript and Solidity editors. Every time you run your code, Tenderly creates a temporary fork that comes with 10 pre-funded accounts, each with 100 tokens for testing purposes
 
 !!! note
-    Tenderly fully supports Moonbeam, Moonriver, and Moonbase Alpha, with the exception of the Web3 Gateway. For more information, check out Tenderly's documentation on [Supported Networks](https://docs.tenderly.co/supported-networks-and-languages#supported-networks){target=\_blank}.
+    Tenderly supports Moonbeam, Moonriver, and Moonbase Alpha, except for the Web3 Gateway. For more information, check out Tenderly's documentation on [Supported Networks](https://docs.tenderly.co/supported-networks-and-languages#supported-networks){target=\_blank}.
 
 ## Getting Started
 
@@ -47,8 +47,8 @@ The following sections will show you how to get started with Tenderly on Moonbea
 To deploy contracts to Moonbeam with a Tenderly Sandbox, you can navigate to [sandbox.tenderly.co](https://sandbox.tenderly.co){target=\_blank} and take the following steps:
 
 1. Enter your smart contract into the Solidity editor on the left-hand side
-2. Configure the environment by selecting **Moonbeam**, **Moonriver**, or **Moonbase Alpha** as the network. This can be done either by clicking **Configure** in the bottom-right corner to open the settings window or by directly modifying the parameters in the left-hand panel. Adjust any of the compilation settings, and specify the block to run your code on if needed
-3. Update the JavaScript editor on the right-hand side of your contract. [Ethers.js](/builders/ethereum/libraries/ethersjs/){target=\_blank} and [Web3.js](/builders/ethereum/libraries/web3js/){target=\_blank} are included in the Sandbox by default and can be instantiated with `ethers` and `web3`, respectively. It's also important to note that the Sandbox includes [global variables](https://docs.tenderly.co/tenderly-sandbox#available-javascript-global-variables){target=\_blank} to ease development, so you don't need to worry about updating the RPC URL for Moonbeam
+2. Click **Configure** to select **Moonbeam**, **Moonriver**, or **Moonbase Alpha** as the network to deploy to
+3. Update the JavaScript editor on the right. The Sandbox includes [Ethers.js](https://github.com/builders/ethereum/libraries/ethersjs/){target=_blank} and [Web3.js](https://github.com/builders/ethereum/libraries/web3js/){target=_blank}, accessible via `ethers` and `web3`. It also provides [global variables](https://docs.tenderly.co/tenderly-sandbox#available-javascript-global-variables){target=_blank}, so you don’t need to update the RPC URL for Moonbeam
 4. Click on **RUN** when you're ready to compile your contract and execute your code
 
 If your code contained logic to deploy your contract or send a transaction, you'll see the transaction(s) appear under the **Simulated Transactions** section on the bottom left-hand side.
@@ -64,7 +64,7 @@ To add a new contract, you can click on **Contracts** on the left-side panel and
 1. Enter the contract address
 2. (Optional) You can give your contract a name
 3. Choose **Moonbeam** or **Moonriver** as the network, depending on which network you've deployed your smart contract to
-4. (Optional) You can toggle the **Add more** slider if you want to add additional contracts. This will allow you to add more contracts after the initial contract has been added
+4. (Optional) Toggle the **Add more** slider to add additional contracts after the initial one
 5. Finally, to add the contract to the dashboard, click **Save**
 
 ![Add a contract](/images/builders/ethereum/dev-env/tenderly/tenderly-3.webp)
@@ -75,7 +75,7 @@ After a contract has been added, it will appear in the list of contracts on the 
 
 To take full advantage of the Tenderly tool set, it is recommended that you verify your smart contracts, which you can do by clicking on **Verify**. You can choose to verify your contract by uploading the contract's JSON, ABI, or source code. For more information, please refer to Tenderly's documentation on [Smart Contract Verification](https://docs.tenderly.co/contract-verification#verifying-a-smart-contract){target=\_blank}.
 
-### Create a Virtual TestNets {: #virtual-testnets-moonbeam }
+### Create a Virtual TestNet {: #virtual-testnets-moonbeam }
 
 Tenderly's Virtual TestNets feature simulates the live Moonbeam network in an isolated environment, which enables you to interact with deployed contracts and live on-chain data.
 
@@ -83,12 +83,12 @@ There are some limitations to be aware of when using this feature. You cannot in
 
 Tenderly makes creating a TestNet through the dashboard quite simple. To get started, click on **Virtual TestNets** on the left-side menu and then click **Create Virtual TestNet**. From there, you can take the following steps:
 
-1. Select **Moonbeam**, **Moonriver**, or **Moonbase Alpha** from the **Network** dropdown
+1. Select **Moonbeam**, **Moonriver**, or **Moonbase Alpha** from the **Parent network** dropdown
 2. (Optional) Give your TestNet a name
 3. Select your **Chain ID**; you can use a custom one or the original network ID. It is recommended to set a custom Chain ID to prevent replay attacks and avoid issues when adding the Virtual TestNet to wallets
 4. Choose whether to turn on or off the **Public Explorer**
 5. Enable **State Sync** if you want to keep your Virtual TestNet updated in real-time with the parent network
-6. To limit data to a specific block, disable **Use latest block** and enter the block number. Otherwise, keep it enabled to include all blocks up to the latest
+6. To limit data, disable **Use latest block** and enter a block number, or keep it enabled to include all blocks
 7. Click **Create**
 
 ![Virtual TestNet Moonbeam](/images/builders/ethereum/dev-env/tenderly/tenderly-5.webp)
