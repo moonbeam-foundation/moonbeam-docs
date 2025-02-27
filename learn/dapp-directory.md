@@ -274,14 +274,14 @@ From the web-based editor, take the following steps to commit your changes to th
 1. Click on the **Source Control** tab, which should show you how many pages have been added or changed
 2. Review the files under the **Changes** section. Click the **+** button next to **Changes**, or as you review each file, click the **+** button next to the file name to add them to the list of **Staged Changes**
 
-![Staging the changed files on GitHub's browser-based editor](/images/learn/dapps-list//directory-6.webp)
+![Staging the changed files on GitHub's browser-based editor](/images/learn/dapps-list/directory-6.webp)
 
 All of your files should now be under the **Staged Changes** section. All you have to commit and push the changes are:
 
 1. Enter a descriptive commit message, such as "Add My Project", making sure to use your actual project name
 2. Click **Commit & Push**
 
-![Committing the staged files on GitHub's browser-based editor](/images/learn/dapps-list//directory-7.webp)
+![Committing the staged files on GitHub's browser-based editor](/images/learn/dapps-list/directory-7.webp)
 
 Now that you've committed the changes, you'll need to head over to the [`app-directory-data` repository](https://github.com/moonbeam-foundation/app-directory-data){target=\_blank} and open a pull request against the `develop` branch:
 
@@ -290,7 +290,7 @@ Now that you've committed the changes, you'll need to head over to the [`app-dir
 3. Click the **Contribute** dropdown
 4. Click the **Open pull request** button
 
-![The main page of the app-directory-data repository on GitHub](/images/learn/dapps-list//directory-8.webp)
+![The main page of the app-directory-data repository on GitHub](/images/learn/dapps-list/directory-8.webp)
 
 You'll be taken to the **Comparing changes** page, where you'll need to:
 
@@ -299,7 +299,7 @@ You'll be taken to the **Comparing changes** page, where you'll need to:
 3. Add a description of the changes
 4. Click **Create pull request**
 
-![Submit a pull request on the Comparing changes page of the app-directory-data repository on GitHub](/images/learn/dapps-list//directory-9.webp)
+![Submit a pull request on the Comparing changes page of the app-directory-data repository on GitHub](/images/learn/dapps-list/directory-9.webp)
 
 ### The Review Process {: #review-process }
 
