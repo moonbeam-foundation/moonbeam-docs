@@ -63,7 +63,7 @@ To add a new contract, you can click on **Contracts** on the left-side panel and
 
 1. Enter the contract address
 2. (Optional) You can give your contract a name
-3. Choose **Moonbeam** or **Moonriver** as the network, depending on which network you've deployed your smart contract to
+3. Choose **Moonbeam**, **Moonriver**, or **Moonbase Alpha** as the network, depending on which network you've deployed your smart contract to
 4. (Optional) Toggle the **Add more** slider to add additional contracts after the initial one
 5. Finally, to add the contract to the dashboard, click **Save**
 
