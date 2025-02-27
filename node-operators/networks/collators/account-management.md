@@ -83,7 +83,7 @@ To create the mapping from [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=
  4. Enter the **keys**. It is the response obtained via the RPC call `author_rotateKeys` in the previous section, which is the concatenated public keys of your Nimbus ID and VRF key
  5. Click on **Submit Transaction**
 
-![Author ID Mapping to Account Extrinsic](/images/node-operators/networks/collators/account-management/account-3.webp)
+![Author ID Mapping to Account Extrinsic](/images/node-operators/networks/collators/account-management/account-1.webp)
 
 !!! note
     If you receive the following error, you may need to try rotating and mapping your keys again: `VRF PreDigest was not included in the digests (check rand key is in keystore)`.
@@ -111,7 +111,7 @@ curl {{ networks.development.rpc_url }} -H "Content-Type:application/json;charse
 
 If it's correct the response should return `"result": true`.
 
-![Check Nimbus Key](/images/node-operators/networks/collators/account-management/account-4.webp)
+--8<-- 'code/node-operators/networks/collators/account-management/check-nimbus-key.md'
 
 From [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/assets){target=\_blank}, click on **Developer** at the top of the page, then choose **Chain State** from the dropdown, and take the following steps:
 
@@ -120,7 +120,7 @@ From [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase
  3. Provide a Nimbus ID to query. Optionally, you can disable the slider to retrieve all mappings 
  4. Click on the **+** button to send the RPC call
 
-![Nimbus ID Mapping Chain State](/images/node-operators/networks/collators/account-management/account-5.webp)
+![Nimbus ID Mapping Chain State](/images/node-operators/networks/collators/account-management/account-2.webp)
 
 You should be able to see the H160 account associated with the Nimbus ID provided and the deposit paid. If no Nimbus ID was included, this would return all the mappings stored on-chain.
 
@@ -135,7 +135,7 @@ From [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase
  3. Provide a collator's address to query. Optionally, you can disable the slider to retrieve all mappings
  4. Click on the **+** button to send the RPC call
 
-![Nimbus ID Mapping Chain State](/images/node-operators/networks/collators/account-management/account-6.webp)
+![Nimbus ID Mapping Chain State](/images/node-operators/networks/collators/account-management/account-3.webp)
 
 You should be able to see the nimbus ID associated with the H160 account provided. If no account was provided, this would return all the mappings stored on-chain.
 
@@ -151,7 +151,7 @@ From [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase
 2. Choose the **authorMapping** pallet and the **removeKeys** extrinsic
 3. Click **Submit Transaction**
 
-![Remove session keys on Polkadot.js Apps](/images/node-operators/networks/collators/account-management/account-7.webp)
+![Remove session keys on Polkadot.js Apps](/images/node-operators/networks/collators/account-management/account-4.webp)
 
 Once the transaction goes through, the mapping bond will be returned to you. To make sure that the keys were removed, you can follow the steps in the [Check Mappings](#checking-the-mappings) section.
 
