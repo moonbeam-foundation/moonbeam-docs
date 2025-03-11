@@ -2,7 +2,7 @@
     <span data-ty="input"><span class="file-path"></span> systemctl status moonbeam.service</span>
     <span data-ty>• moonbeam.service - "Moonbase Alpha systemd service"</span>
     <span data-ty>   Loaded: loaded (/etc/systemd/system/moonbeam.service; enabled; vendor preset:></span>
-    <span data-ty>   Active: active (running) since Mon 2025-02-03 03:30:41 UTC; 45 ago</span>
+    <span data-ty>   Active: active (running) since Tue 2025-03-11 03:30:41 UTC; 45 ago</span>
     <span data-ty>   Main PID: 52847 (moonbeam)</span>
     <span data-ty>   Tasks: 13 (limit: 4662)</span>
     <span data-ty>   Memory: 113.7M</span>
