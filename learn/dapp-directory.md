@@ -95,7 +95,7 @@ Once you've cloned the project, you can create a new branch to which you will ad
 2. A menu will appear at the top of the page. Enter the name of your branch
 3. Click **Create new branch...**
 
-![Create a new branch on GitHub's browser-based editor](/images/learn/dapps-list/directory-3.webp)
+![Create a new branch on GitHub's browser-based editor](/images/learn/dapps-list/directory-4.webp)
 
 The page will reload, and your branch name will now be displayed in the bottom left corner.
 
