@@ -87,7 +87,7 @@ To get started with a developer endpoint or dedicated node, you'll need to conta
 
 ### GetBlock {: #getblock }
 
-[GetBlock](https://getblock.io){target=\_blank} is a service that provides instant API access to Moonbeam and Moonriver and is available through shared and dedicated nodes. [Dedicated nodes](https://getblock.io/dedicated-nodes){target=\_blank} provide access to a private server with fast speeds and without rate limits. [Shared nodes](https://getblock.io/nodes){target=\_blank} provide a free API key based endpoint for you to get started quickly.
+[GetBlock](https://getblock.io){target=\_blank} is a service that provides instant API access to Moonbeam and Moonriver and is available through shared and dedicated nodes. [Dedicated nodes](https://docs.getblock.io/getting-started/plans-and-limits/choosing-your-plan#dedicated-nodes){target=\_blank} provide access to a private server with fast speeds and without rate limits. [Shared nodes](https://docs.getblock.io/getting-started/plans-and-limits/choosing-your-plan#shared-nodes){target=\_blank} provide a free API key based endpoint for you to get started quickly.
 
 To get started with GetBlock and obtain an API key, you can go the [GetBlock registration page](https://account.getblock.io/sign-up){target=\_blank} and sign up. From the **GetBlock Dashboard**, you can view and manage your existing API keys and create new API keys.
 
