@@ -268,7 +268,7 @@ You should see an output that displays the token address. Make sure to **save it
 
 ## Create a DApp Frontend {: #creating-a-dapp-frontend }
 
-Frontends provide an interface for users to interact with blockchain-based applications. React, a popular JavaScript library for building user interfaces, is often used for developing DApp frontends due to its component-based architecture, which promotes reusable code and efficient rendering. The [useDApp package](https://usedapp.io){target=\_blank}, an Ethers.js based React framework for DApps, further simplifies the process of building DApp frontends by providing a comprehensive set of hooks and components that streamline the integration of Ethereum blockchain functionality.  
+Frontends provide an interface for users to interact with blockchain-based applications. React, a popular JavaScript library for building user interfaces, is often used for developing DApp frontends due to its component-based architecture, which promotes reusable code and efficient rendering. The [useDApp package](https://github.com/TrueFiEng/useDApp){target=\_blank}, an Ethers.js based React framework for DApps, further simplifies the process of building DApp frontends by providing a comprehensive set of hooks and components that streamline the integration of Ethereum blockchain functionality.  
 
 !!! note
     Typically, a larger project will create separate GitHub repositories for their frontend and smart contracts, but this is a small enough project to create a monorepo.
