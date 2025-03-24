@@ -159,7 +159,7 @@ They also provide a [public Grafana dashboard](https://monitoring.unitedbloc.com
 dRPC.org offers public and paid [Moonbeam RPC](https://drpc.org/chainlist/moonbeam) endpoints, providing an efficient, low-latency connection to blockchain nodes. The paid tiers include higher request limits, lower latency, and advanced analytics for optimized performance.
 
 How to use dRPC:
-1. Sign up or log in at [dRPC.org](https://drpc.org/).
+1. Sign up or log in at [dRPC.org](https://drpc.org/){target=\_blank}
 2. In the dashboard, create an API key
 3. Click the key and select the desired endpoint
 
