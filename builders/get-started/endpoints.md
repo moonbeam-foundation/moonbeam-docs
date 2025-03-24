@@ -156,7 +156,8 @@ The collators involved in this initiative are:
 They also provide a [public Grafana dashboard](https://monitoring.unitedbloc.com:3030/public-dashboards/7444d2ab76ee45eda181618b0f0ecb98?orgId=1){target=\_blank} with some cool metrics.
 
 ### dRPC.org {: #drpc }
-dRPC.org offers public and paid [Moonbeam RPC](https://drpc.org/chainlist/moonbeam) endpoints, providing an efficient, low-latency connection to blockchain nodes. The paid tiers include higher request limits, lower latency, and advanced analytics for optimized performance.
+
+dRPC.org offers public and paid [Moonbeam RPC](https://drpc.org/chainlist/moonbeam){target=\_blank} endpoints, providing an efficient, low-latency connection to blockchain nodes. The paid tiers include higher request limits, lower latency, and advanced analytics for optimized performance.
 
 How to use dRPC:
 1. Sign up or log in at [dRPC.org](https://drpc.org/){target=\_blank}
