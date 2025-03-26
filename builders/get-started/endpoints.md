@@ -75,6 +75,17 @@ To start with a free Developer plan endpoint, sign up using an email or any soci
 
 ![Chainstack](/images/builders/get-started/endpoints/endpoints-3.webp)
 
+### dRPC.org {: #drpc }
+
+dRPC.org offers public and paid [Moonbeam RPC](https://drpc.org/chainlist/moonbeam){target=\_blank} endpoints, providing an efficient, low-latency connection to blockchain nodes. The paid tiers include higher request limits, lower latency, and advanced analytics for optimized performance.
+
+How to use dRPC:
+1. Sign up or log in at [dRPC.org](https://drpc.org/){target=\_blank}
+2. In the dashboard, create an API key
+3. Click the key and select the desired endpoint
+
+For 24/7 support, join dRPC [discord](https://drpc.org/discord).
+
 ### Dwellir {: #dwellir }
 
 [Dwellir](https://www.dwellir.com){target=\_blank} is a blockchain operation service that ensures global scalability, low latency, and a 99.99% uptime guarantee, providing fast and reliable node operations wherever your business stands. The public endpoint service is geographically distributed bare metal servers globally. As the service is public, there are no sign-up or API keys to manage.
@@ -156,17 +167,6 @@ The collators involved in this initiative are:
 They also provide a [public Grafana dashboard](https://monitoring.unitedbloc.com:3030/public-dashboards/7444d2ab76ee45eda181618b0f0ecb98?orgId=1){target=\_blank} with some cool metrics.
 
 Check the [public endpoints section](#public-endpoints) to get the relevant URL. You can contact them via their [Telegram channel](https://t.me/+tRvy3z5-Kp1mMGMx){target=\_blank}, or read more about their initiative on their [blogpost page](https://medium.com/unitedbloc/unitedbloc-rpc-c84972f69457){target=\_blank}.
-
-### dRPC.org {: #drpc }
-
-dRPC.org offers public and paid [Moonbeam RPC](https://drpc.org/chainlist/moonbeam){target=\_blank} endpoints, providing an efficient, low-latency connection to blockchain nodes. The paid tiers include higher request limits, lower latency, and advanced analytics for optimized performance.
-
-How to use dRPC:
-1. Sign up or log in at [dRPC.org](https://drpc.org/){target=\_blank}
-2. In the dashboard, create an API key
-3. Click the key and select the desired endpoint
-
-For 24/7 support, join dRPC [discord](https://drpc.org/discord).
 
 ## Lazy Loading with RPC Endpoint Providers {: #lazy-loading-with-RPC-Endpoint-Providers }
 
