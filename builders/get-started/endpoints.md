@@ -37,6 +37,7 @@ You can create your own endpoint suitable for development or production use usin
 - [OnFinality](#onfinality)
 - [Pocket Network](#pokt)
 - [UnitedBloc](#unitedbloc)
+- [dRPC](#drpc)
 
 ### 1RPC {: #1rpc}
 
@@ -73,6 +74,18 @@ To start with a free Developer plan endpoint, sign up using an email or any soci
 3. Deploy a Moonbeam node
 
 ![Chainstack](/images/builders/get-started/endpoints/endpoints-3.webp)
+
+### dRPC.org {: #drpc }
+
+dRPC.org offers public and paid [Moonbeam RPC](https://drpc.org/chainlist/moonbeam){target=\_blank} endpoints, providing an efficient, low-latency connection to blockchain nodes. The paid tiers include higher request limits, lower latency, and advanced analytics for optimized performance.
+
+How to use dRPC:
+
+1. Sign up or log in at [dRPC.org](https://drpc.org/){target=\_blank}
+2. In the dashboard, create an API key
+3. Click the key and select the desired endpoint
+
+For 24/7 support, join dRPC's [Discord](https://drpc.org/discord){target=\_blank}.
 
 ### Dwellir {: #dwellir }
 
