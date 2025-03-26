@@ -175,7 +175,7 @@ If your script's execution succeeds, your terminal should resemble the output be
 
 --8<-- 'code/builders/ethereum/dev-env/foundry/terminal/script.md'
 
-And that's it! For more information about Solidity scripting with Foundry, be sure to check out [Foundry's documentation site](https://book.getfoundry.sh/tutorials/solidity-scripting){target=\_blank}.
+And that's it! For more information about Solidity scripting with Foundry, be sure to check out [Foundry's documentation site](https://book.getfoundry.sh/guides/scripting-with-solidity){target=\_blank}.
 
 ## Interacting with the Contract {: #interacting-with-the-contract }
 
