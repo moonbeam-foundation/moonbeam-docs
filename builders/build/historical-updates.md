@@ -860,11 +860,11 @@ For more information, you can review the [relative Nimbus PR](https://github.com
 A migration was applied to transition existing foreign assets to a new design that manages XCM derivative assets on Moonbeam through EVM smart contracts instead of the previous implementation using the `asset-manager` and `pallet-asset` pallets.
 The migration process involved several extrinsics in the `pallet-moonbeam-lazy-migration`:
 
-- `approve_assets_to_migrate` - Sets the list of asset IDs approved for migration
-- `start_foreign_asset_migration` - Initiates migration for a specific foreign asset by freezing the original asset and creating a new EVM smart contract
-- `migrate_foreign_asset_balances` - Migrates asset balances in batches from old assets pallet to the new system
-- `migrate_foreign_asset_approvals` - Migrates asset approvals in batches while unreserving deposits from the old approval system
-- `finish_foreign_asset_migration` - Completes migration after all balances and approvals are migrated and performs final cleanup
+- **`approve_assets_to_migrate`** - sets the list of asset IDs approved for migration
+- **`start_foreign_asset_migration`** - initiates migration for a specific foreign asset by freezing the original asset and creating a new EVM smart contract
+- **`migrate_foreign_asset_balances`** - migrates asset balances in batches from old assets pallet to the new system
+- **`migrate_foreign_asset_approvals`** - migrates asset approvals in batches while unreserving deposits from the old approval system
+- **`finish_foreign_asset_migration`** - completes migration after all balances and approvals are migrated and performs final cleanup
 
 The new foreign assets implementation offers several advantages over the previous system:
 
