@@ -866,13 +866,6 @@ The migration process involved several extrinsics in the `pallet-moonbeam-lazy-m
 - **`migrate_foreign_asset_approvals`** - migrates asset approvals in batches while unreserving deposits from the old approval system
 - **`finish_foreign_asset_migration`** - completes migration after all balances and approvals are migrated and performs final cleanup
 
-The new foreign assets implementation offers several advantages over the previous system:
-
-- Enables protocols to use Ethereum ecosystem tools (like Foundry)
-- Reduces gas costs for certain operations (e.g., approve)
-- Decreases runtime size by removing two pallets
-- Simplifies runtime code for better maintenance
-
 This migration preserves compatibility with existing foreign assets by identifying each foreign asset with the same AssetID integer as before. This migration was executed at the following runtimes and blocks:
 
 |    Network     | Executed Runtime | Block Applied |
