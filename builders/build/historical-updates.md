@@ -837,6 +837,26 @@ This migration was executed at the following runtimes and blocks:
 
 For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/2634){target=\_blank}.
 
+#### Foreign Assets Migration {: #foreign-assets-migration }
+
+A migration was applied to transition existing foreign assets to a new design that manages XCM derivative assets on Moonbeam through EVM smart contracts instead of the previous implementation using the asset and asset manager pallets. The migration process involved several extrinsics in the moonbeam lazy migration pallet:
+
+- **`approve_assets_to_migrate`** - sets the list of asset IDs approved for migration
+- **`start_foreign_asset_migration`** - initiates migration for a specific foreign asset by freezing the original asset and creating a new EVM smart contract
+- **`migrate_foreign_asset_balances`** - migrates asset balances in batches from old assets pallet to the new system
+- **`migrate_foreign_asset_approvals`** - migrates asset approvals in batches while unreserving deposits from the old approval system
+- **`finish_foreign_asset_migration`** - completes migration after all balances and approvals are migrated and performs final cleanup
+
+This migration preserves compatibility with existing foreign assets by identifying each foreign asset with the same AssetID integer as before. This migration was executed at the following runtimes and blocks:
+
+|    Network     | Executed Runtime | Block Applied |
+|:--------------:|:----------------:|:-------------:|
+|    Moonbeam    |      RT3501      |    10056989   |
+|   Moonriver    |      RT3501      |    10665393   |
+| Moonbase Alpha |      RT3500      |    10750816   |
+
+For more information, you can review the relative PRs on GitHub: [2869](https://github.com/moonbeam-foundation/moonbeam/pull/2869){target=\_blank} and [3020](https://github.com/moonbeam-foundation/moonbeam/pull/3020){target=\_blank}.
+
 ---
 
 ### Nimbus Author Filter Pallet {: #nimbus }
@@ -854,24 +874,3 @@ This migration was executed at the following runtimes and blocks:
 | Moonbase Alpha |      RT1502      |    2112058    |
 
 For more information, you can review the [relative Nimbus PR](https://github.com/moonbeam-foundation/nimbus/pull/45){target=\_blank} and [Moonbeam PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/1400){target=\_blank}.
-
-### Foreign Assets Migration {: #foreign-assets-migration }
-
-A migration was applied to transition existing foreign assets to a new design that manages XCM derivative assets on Moonbeam through EVM smart contracts instead of the previous implementation using the `asset-manager` and `pallet-asset` pallets.
-The migration process involved several extrinsics in the `pallet-moonbeam-lazy-migration`:
-
-- **`approve_assets_to_migrate`** - sets the list of asset IDs approved for migration
-- **`start_foreign_asset_migration`** - initiates migration for a specific foreign asset by freezing the original asset and creating a new EVM smart contract
-- **`migrate_foreign_asset_balances`** - migrates asset balances in batches from old assets pallet to the new system
-- **`migrate_foreign_asset_approvals`** - migrates asset approvals in batches while unreserving deposits from the old approval system
-- **`finish_foreign_asset_migration`** - completes migration after all balances and approvals are migrated and performs final cleanup
-
-This migration preserves compatibility with existing foreign assets by identifying each foreign asset with the same AssetID integer as before. This migration was executed at the following runtimes and blocks:
-
-|    Network     | Executed Runtime | Block Applied |
-|:--------------:|:----------------:|:-------------:|
-|    Moonbeam    |      RT3501      |    10056989   |
-|   Moonriver    |      RT3501      |    10665393   |
-| Moonbase Alpha |      RT3500      |    10750816   |
-
-For more information, you can review the relative PRs on GitHub: [2869](https://github.com/moonbeam-foundation/moonbeam/pull/2869){target=\_blank}, [3020](https://github.com/moonbeam-foundation/moonbeam/pull/3020){target=\_blank}, and [3190](https://github.com/moonbeam-foundation/moonbeam/pull/3190){target=\_blank}.
