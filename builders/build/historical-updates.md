@@ -842,7 +842,7 @@ For more information, you can review the [relative PR on GitHub](https://github.
 
 #### Manage Foreign Assets via Smart Contracts  {: #foreign-assets-migration }
 
-A migration was applied to transition existing foreign assets to a new design that manages XCM derivative assets on Moonbeam through EVM smart contracts instead of the previous implementation using the asset and asset manager pallets. The migration process involved several extrinsics in the moonbeam lazy migration pallet:
+A migration was applied to transition existing foreign assets to a new design that manages XCM derivative assets on Moonbeam through EVM smart contracts instead of the previous implementation using the Asset and Asset Manager pallets. The migration process involved several extrinsics in the Moonbeam Lazy Migration pallet:
 
 - **`approve_assets_to_migrate`** - sets the list of asset IDs approved for migration
 - **`start_foreign_asset_migration`** - initiates migration for a specific foreign asset by freezing the original asset and creating a new EVM smart contract
