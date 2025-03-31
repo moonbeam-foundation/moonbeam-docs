@@ -837,7 +837,10 @@ This migration was executed at the following runtimes and blocks:
 
 For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/2634){target=\_blank}.
 
-#### Foreign Assets Migration {: #foreign-assets-migration }
+
+---
+
+#### Manage Foreign Assets via Smart Contracts  {: #foreign-assets-migration }
 
 A migration was applied to transition existing foreign assets to a new design that manages XCM derivative assets on Moonbeam through EVM smart contracts instead of the previous implementation using the asset and asset manager pallets. The migration process involved several extrinsics in the moonbeam lazy migration pallet:
 
