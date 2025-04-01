@@ -665,7 +665,7 @@ networks:
       max_del_per_can: 300
       max_del_per_del: 100
     treasury:
-      current_council_members: 6
+      current_council_members: 5
       motion_duration_days: 3
       motion_duration_blocks: 21600
       proposal_bond: 5
@@ -1066,7 +1066,7 @@ networks:
       candidates:
         address1: '0x1C86E56007FCBF759348dcF0479596a9857Ba105'
     treasury:
-      current_council_members: 6
+      current_council_members: 5
       motion_duration_days: 3
       motion_duration_blocks: 21600
       proposal_bond: 5
