@@ -34,7 +34,6 @@ Some important terminology to understand in regards to treasuries:
     |                  Motion duration                   | {{ networks.moonbeam.treasury.motion_duration_blocks }} blocks ({{ networks.moonbeam.treasury.motion_duration_days }} days) |
     |                    Spend period                    |    {{ networks.moonbeam.treasury.spend_period_blocks }} blocks ({{ networks.moonbeam.treasury.spend_period_days}} days)     |
     |             Maximum approved proposals             |                                   {{ networks.moonbeam.treasury.max_approved_proposals }}                                   |
-    | Target % of transaction fees allocated to Treasury |                                     {{ networks.moonbeam.treasury.tx_fees_allocated }}                                      |
 
 === "Moonriver"
     |                      Variable                      |                                                             Value                                                             |
@@ -46,7 +45,6 @@ Some important terminology to understand in regards to treasuries:
     |                  Motion duration                   | {{ networks.moonriver.treasury.motion_duration_blocks }} blocks ({{ networks.moonriver.treasury.motion_duration_days }} days) |
     |                    Spend period                    |    {{ networks.moonriver.treasury.spend_period_blocks }} blocks ({{ networks.moonriver.treasury.spend_period_days}} days)     |
     |             Maximum approved proposals             |                                   {{ networks.moonriver.treasury.max_approved_proposals }}                                    |
-    | Target % of transaction fees allocated to Treasury |                                      {{ networks.moonriver.treasury.tx_fees_allocated }}                                      |
 
 === "Moonbase Alpha"
     |                      Variable                      |                                                            Value                                                            |
@@ -58,7 +56,6 @@ Some important terminology to understand in regards to treasuries:
     |                  Motion duration                   | {{ networks.moonbase.treasury.motion_duration_blocks }} blocks ({{ networks.moonbase.treasury.motion_duration_days }} days) |
     |                    Spend period                    |    {{ networks.moonbase.treasury.spend_period_blocks }} blocks ({{ networks.moonbase.treasury.spend_period_days}} days)     |
     |             Maximum approved proposals             |                                   {{ networks.moonbase.treasury.max_approved_proposals }}                                   |
-    | Target % of transaction fees allocated to Treasury |                                     {{ networks.moonbase.treasury.tx_fees_allocated }}                                      |
 
 --8<-- 'text/_common/async-backing.md'
 
