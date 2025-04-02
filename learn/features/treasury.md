@@ -20,10 +20,6 @@ Some important terminology to understand in regard to treasuries:
 - **Treasury Council** — a group consisting of Moonbeam Foundation representatives and external, independent members. The Council reviews funding proposals, ensures alignment with the community, and ultimately authorizes treasury spending
 - **Proposal** — a plan or suggestion to further the network that is put forth by stakeholders to be approved by the Treasury Council
 
-## Treasury Council {: #treasury-council }
-
-The Treasury Council oversees spending of the Moonbeam treasury and votes on funding proposals. It comprises two members from the Moonbeam Foundation and three external, independent members. The same treasury council oversees treasury requests for both Moonbeam and Moonriver. The Council meets periodically to review proposals submitted on the [Moonbeam Forum](https://forum.moonbeam.network/c/governance/treasury-proposals/8){target=\_blank}. Once a proposal is agreed upon, the Council members must complete the on-chain approval process. 
-
 ### Treasury Council Voting Process {: #treasury-council-voting-process }
 
 A member of the Treasury Council must first open [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbeam.network#/explorer){target=\_blank}  and navigate to the **Extrinsics** tab. From there, the treasury council member will submit a `treasury.spend` call. This call requires specifying the amount (for example, 1,000 GLMR) and the beneficiary account to receive the funds. Once this extrinsic is submitted, it creates a new Treasury Council collective proposal containing the specified spending information. Other members of the treasury council vote on the proposal with the `treasuryCouncilCollective.vote` extrinsic by providing a hash to the proposal, the proposal index, and aye/nay boolean to approve. Finally, a member of the treasury council closes the vote with the `treasuryCouncilCollective.close` extrinsic.
