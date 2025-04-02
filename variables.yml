@@ -343,6 +343,7 @@ networks:
       max_approved_proposals: 100
       tx_fees_allocated: 0
       tx_fees_burned: 100
+      months_elected: 6
     proxy:
       deposit_base: 1.0008
       deposit_factor: 0.0021
@@ -676,6 +677,7 @@ networks:
       max_approved_proposals: 100
       tx_fees_allocated: 0
       tx_fees_burned: 100
+      months_elected: 6
     proxy:
       deposit_base: 1.0008
       deposit_factor: 0.0021
@@ -1077,6 +1079,7 @@ networks:
       max_approved_proposals: 100
       tx_fees_allocated: 0
       tx_fees_burned: 100
+      months_elected: 6
     proxy:
       deposit_base: 10.08
       deposit_factor: 0.21
