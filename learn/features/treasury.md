@@ -1,76 +1,49 @@
 ---
 title: Treasury
-description: As a Polkadot parachain, Moonbeam has an on-chain treasury controlled by council members, enabling stakeholders to submit proposals to further the network.
+description: As a Polkadot parachain, Moonbeam has an on-chain treasury controlled by treasury council members, enabling stakeholders to submit proposals to further the network.
 ---
 
 # Treasury on Moonbeam
 
 ## Introduction {: #introduction }
 
-A Treasury is an on-chain managed collection of funds. Each Moonbeam-based network has a community Treasury for supporting network initiatives to further the network, funded by a percentage of transaction fees of the network it is on and managed by the Council.
+The Moonbeam Treasury is an on-chain collection of funds that was launched at the genesis of the network. The Treasury was pre-funded with 0.5% of the total token supply at network launch and accumulates GLMR steadily as {{ networks.moonbeam.inflation.parachain_bond_treasury }}% of the Parachain bond reserve inflation goes to the Treasury. The Moonbeam Treasury is intended to help fund key projects that help maintain and further the growth of the Moonbeam network.
 
-As of October 19th, 2022 a community submitted referendum for an Interim Treasury Program was passed by the community. This 6-month program establishes a separate community Treasury Council to manage Treasury funds, a budget for Treasury spending, and a required discussion time to gather community feedback on possible future Treasury proposals.
+The Treasury allows stakeholders to submit spending proposals to be reviewed and voted on by the Treasury Council. These spending proposals should include initiatives to further the network or boost network engagement. Some network initiatives could include funding integrations or collaborations, community events, network outreach, and more. The principle responsibility of a treasury spend proposer is to craft the proposal and submit to the Moonbeam Forum. To submit a treasury proposal, see the instructions for [submitting a treasury spend](/tokens/governance/treasury-spend/){target=\_blank}.
+
+The Treasury Council oversees spending of the Moonbeam treasury and votes on funding proposals. It comprises two members from the Moonbeam Foundation and three external, independent members. The same treasury council oversees treasury requests for both Moonbeam and Moonriver. The Council meets periodically to review proposals submitted on the [Moonbeam Forum](https://forum.moonbeam.network/c/governance/treasury-proposals/8){target=\_blank}. Once a proposal is agreed upon, the Council members must complete the on-chain approval process.
 
 ## General Definitions {: #general-definitions }
 
 Some important terminology to understand in regards to treasuries:
 
-- **Treasury council** — a collective of community appointed individuals that control how Treasury funds will be spent with the community approved budget
+- **Treasury council** — a group consisting of both Moonbeam Foundation representatives and external, independent members. The Council reviews funding proposals, ensures alignment with the community, and ultimately authorizes treasury spending
 - **Proposal** — a plan or suggestion to further the network that is put forth by stakeholders to be approved by the Treasury Council
-- **Proposal bond** — a deposit equal to a percentage of the total proposal spend amount, as long as it meets the proposal bond minimum, otherwise the deposit is equal to the minimum
-- **Proposal bond minimum** — minimum amount for a proposal bond. This is the lower limit of the bond for a Treasury proposal
-- **Proposal bond maximum** — maximum amount (cap) for a proposal bond. **Proposal bonds are currently uncapped in all Moonbeam-based networks**
-- **Motion duration** - the maximum amount of time, in blocks, for Treasury Council members to vote on motions. Motions may end in fewer blocks if enough votes are cast to determine the result
-- **Spend period** — the amount of days, in blocks, during which the Treasury funds as many proposals as possible without exceeding the maximum
-- **Maximum approved proposals** — the maximum amount of proposals that can wait in the spending queue
 
-=== "Moonbeam"
-    |                      Variable                      |                                                            Value                                                            |
-    |:--------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------:|
-    |          Current Treasury Council members          |                              {{ networks.moonbeam.treasury.current_council_members }} members                               |
-    |                   Proposal bond                    |             {{ networks.moonbeam.treasury.proposal_bond }}% of the proposed spend or the proposal bond minimum              |
-    |               Proposal bond minimum                |                                   {{ networks.moonbeam.treasury.proposal_bond_min }} GLMR                                   |
-    |               Proposal bond maximum                |                                     {{ networks.moonbeam.treasury.proposal_bond_max }}                                      |
-    |                  Motion duration                   | {{ networks.moonbeam.treasury.motion_duration_blocks }} blocks ({{ networks.moonbeam.treasury.motion_duration_days }} days) |
-    |                    Spend period                    |    {{ networks.moonbeam.treasury.spend_period_blocks }} blocks ({{ networks.moonbeam.treasury.spend_period_days}} days)     |
-    |             Maximum approved proposals             |                                   {{ networks.moonbeam.treasury.max_approved_proposals }}                                   |
+## Treasury Council {: #treasury-council }
 
-=== "Moonriver"
-    |                      Variable                      |                                                             Value                                                             |
-    |:--------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------------------------:|
-    |          Current Treasury Council members          |                               {{ networks.moonriver.treasury.current_council_members }} members                               |
-    |                   Proposal bond                    |                 {{ networks.moonriver.treasury.proposal_bond }}% of the proposed spend or the proposal bond minimum                  |
-    |               Proposal bond minimum                |                                   {{ networks.moonriver.treasury.proposal_bond_min }} MOVR                                    |
-    |               Proposal bond maximum                |                                      {{ networks.moonriver.treasury.proposal_bond_max }}                                      |
-    |                  Motion duration                   | {{ networks.moonriver.treasury.motion_duration_blocks }} blocks ({{ networks.moonriver.treasury.motion_duration_days }} days) |
-    |                    Spend period                    |    {{ networks.moonriver.treasury.spend_period_blocks }} blocks ({{ networks.moonriver.treasury.spend_period_days}} days)     |
-    |             Maximum approved proposals             |                                   {{ networks.moonriver.treasury.max_approved_proposals }}                                    |
+The Treasury Council oversees spending of the Moonbeam treasury and votes on funding proposals. It comprises two members from the Moonbeam Foundation and three external, independent members. The same treasury council oversees treasury requests for both Moonbeam and Moonriver. The Council meets periodically to review proposals submitted on the [Moonbeam Forum](https://forum.moonbeam.network/c/governance/treasury-proposals/8){target=\_blank}. Once a proposal is agreed upon, the Council members must complete the on-chain approval process. 
 
-=== "Moonbase Alpha"
-    |                      Variable                      |                                                            Value                                                            |
-    |:--------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------:|
-    |          Current Treasury Council members          |                              {{ networks.moonbase.treasury.current_council_members }} members                               |
-    |                   Proposal bond                    |             {{ networks.moonbase.treasury.proposal_bond }}% of the proposed spend or the proposal bond minimum              |
-    |               Proposal bond minimum                |                                   {{ networks.moonbase.treasury.proposal_bond_min }} DEV                                    |
-    |               Proposal bond maximum                |                                     {{ networks.moonbase.treasury.proposal_bond_max }}                                      |
-    |                  Motion duration                   | {{ networks.moonbase.treasury.motion_duration_blocks }} blocks ({{ networks.moonbase.treasury.motion_duration_days }} days) |
-    |                    Spend period                    |    {{ networks.moonbase.treasury.spend_period_blocks }} blocks ({{ networks.moonbase.treasury.spend_period_days}} days)     |
-    |             Maximum approved proposals             |                                   {{ networks.moonbase.treasury.max_approved_proposals }}                                   |
+### Treasury Council Voting Process {: #treasury-council-voting-process }
 
---8<-- 'text/_common/async-backing.md'
+A member of the Treasury Council must first open [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbeam.network#/explorer){target=\_blank}  and navigate to the **Extrinsics** tab. From there, the treasury council member will submit a `treasury.spend` call. This call requires specifying the amount (for example, 1,000 GLMR) and the beneficiary account to receive the funds. Once this extrinsic is submitted, it creates a new Treasury Council collective proposal containing the specified spending information. Other members of the treasury council vote on the proposal with the `treasuryCouncilCollective.vote` extrinsic by providing a hash to the proposal, the proposal index, and aye/nay boolean to approve. Finally, a member of the treasury council closes the vote with the `treasuryCouncilCollective.close` extrinsic.
+ 
+!!! note
+    There is no on-chain action for the proposer or beneficiary of the treasury spend request.
+    All treasury spend actions will be completed by members of the treasury council.
 
-## Community Treasury {: #community-treasury }
+Note that this process has changed significantly from prior treasury processes, where tokenholders could submit treasury proposals with bonds attached. Now, no on-chain action is necessary to receive a treasury proposal - rather, all that is needed is to raise a treasury council request on the [Moonbeam Forum](https://forum.moonbeam.network/c/governance/treasury-proposals/8){target=\_blank} and the treasury council will take care of the on-chain component to process a treasury spend if the proposal is approved.
 
-The Treasury was pre-funded with 0.5% of the total token supply at network launch and accumulates GLMR steadily as {{ networks.moonbeam.inflation.parachain_bond_treasury }}% of the Parachain bond reserve inflation goes to the Treasury. The Treasury allows stakeholders to submit spending proposals to be reviewed and voted on by the Treasury Council. These spending proposals should include initiatives to further the network or boost network engagement. Some network initiatives could include funding integrations or collaborations, community events, network outreach, and more. Before a proposal is submitted, the author of the proposal can submit their idea for their proposal to the designated Treasury [discussion forum](https://forum.moonbeam.network){target=\_blank} for feedback from the community for at least five days.
+### The Happy Path of a Treasury Spend Request {: #the-happy-path-of-a-treasury-spend-request }
 
-To deter spam, proposals must be submitted with a deposit, also known as a proposal bond. The proposal bond is a percentage (check the table above) of the amount requested by the proposer, with a minimum amount and no upper limit (compared to Polkadot and Kusama, which have a maximum bond amount). A governance proposal can change these values. So, any token holder with enough tokens to cover the deposit can submit a proposal. If the proposer doesn't have enough funds to cover the deposit, the extrinsic will fail due to insufficient funds, but transaction fees will still be deducted.
+The happy path of a treasury spend request is as follows:
 
-Once a proposal has been submitted, a Treasury Council member may motion for a vote on the proposal. The Treasury Council then votes on it during the motion duration. The threshold for accepting a treasury proposal is at least three-fifths of the treasury council. On the other hand, the threshold for rejecting a proposal is at least one-half of the treasury council. If any member(s) of the Treasury Council fails to vote during the motion duration, the vote of the Treasury Council member that holds the "Default Vote" position acts as the default. The "Default Vote" position mirrors that of [Polkadot's "Prime Member"](https://wiki.polkadot.network/docs/learn/learn-governance#prime-members){target=\_blank}. Please note that there is no way for a user to revoke a treasury proposal after it has been submitted.
+1. **Proposal Submission** - The user submits a proposal to the [Moonbeam Forum](https://forum.moonbeam.network/c/governance/treasury-proposals/8){target=\_blank}
 
-If approved by the treasury council, the proposal enters a queue to be placed into a spend period. If the spending queue happens to contain the number of maximum approved proposals, the proposal submission will fail similarly to how it would if the proposer's balance is too low. If the proposal gets rejected, the deposit is non-refundable.
+2. **Forum Discussion** - The proposal is discussed by the community on the Forum. The ultimate yay/nay decision is determined by the treasury council
 
-Once the proposal is in a spend period, the funds will get distributed to the beneficiary, and the original deposit will be returned to the proposer. If the treasury runs out of funds, the remaining approved proposals will remain in storage until the following spend period when the treasury has enough funds again.
+3. **Treasury Approval & Action** - If the Treasury Council agrees, it authorizes the treasury spending and moves the process forward
 
-The happy path for a treasury proposal is shown in the following diagram:
+### After the Treasury Council Approval
 
-![Treasury Proposal Happy Path Diagram](/images/learn/features/treasury/treasury-proposal-roadmap.webp)
+The final step in the treasury spend request flow is for the `treasury.payout` extrinsic to be called. This may be called by anyone after the treasury council has approved the spend on-chain by providing the index of the treasury spend approved. For more information on submitting a treasury spend proposal, see the instructions for [submitting a treasury spend](/tokens/governance/treasury-spend/){target=\_blank}.

@@ -1,6 +1,6 @@
 ---
 title: How to Propose a Treasury Spend
-description: Learn about the full life cycle of a Treasury proposal from the initial proposal on Moonbeam's Community Forum to submitting the Treasury spend on-chain.
+description: Learn about the full life cycle of a Treasury proposal from the initial proposal on Moonbeam's Community Forum to the Treasury collective approving the spend on-chain.
 ---
 
 # How to Propose a Treasury Spend
@@ -9,89 +9,95 @@ description: Learn about the full life cycle of a Treasury proposal from the ini
 
 As mentioned in the [Treasury overview page](/learn/features/governance/#definitions){target=\_blank}, the Moonbeam Treasury is an on-chain collection of funds that was launched at the genesis of the network. The Treasury was pre-funded with 0.5% of the total token supply at network launch and accumulates GLMR steadily as {{ networks.moonbeam.inflation.parachain_bond_treasury }}% of the Parachain bond reserve inflation goes to the Treasury. The Moonbeam Treasury is intended to help fund key projects that help maintain and further the growth of the Moonbeam network.
 
-Moonbeam has adopted an interim [community Treasury program](https://moonbeam.network/news/proposal-for-interim-treasury-program-approved-by-moonbeam-community){target=\_blank}, which established a Treasury Council comprised of two Moonbeam foundation members and three non-foundation members. The Treasury Council facilitates community discussions on spending ideas and votes on spending proposals. The community Treasury program kicked off in October of 2022 with an initial duration of six months. At the end of the six-month period the program will be evaluated and considered alongside relevant [Gov2](https://moonbeam.network/news/opengov-what-is-polkadot-gov2){target=\_blank} changes. If initial budgeting parameters are maintained, the on-chain Treasury has sufficient funds to operate for a period of not less than four years.
-
-It is extremely important that you understand the [process of the community Treasury program](https://github.com/moonbeam-foundation/treasury/blob/main/interim/interim_treasury_proposal.md){target=\_blank} prior to initiating an on-chain Treasury proposal. The outlined process allows for revisions based on feedback provided by the Treasury Council. Thoughtful iteration based on feedback from the Treasury Council can improve the chances of your Treasury spend proposal successfully passing.
-
-Creating a Treasury proposal differs from proposing other types of governance actions. This guide outlines the process of how to create a Treasury proposal. There is a separate guide on [How to Propose an Action](/tokens/governance/proposals/){target=\_blank} which discusses proposing governance actions unrelated to the Treasury.
-
-!!! note
-    Proposing a Treasury spend is not a riskless action. Bonds may be locked for an indefinite period of time and the entirety of your bond is forfeited if your proposal is rejected. You should carefully consider these ramifications and proceed with raising a Treasury spend proposal only at the advice of the Treasury Council.
+The Treasury Council oversees spending of the Moonbeam treasury and votes on funding proposals. It comprises two members from the Moonbeam Foundation and three external, independent members. The same treasury council oversees treasury requests for both Moonbeam and Moonriver. The Council meets periodically to review proposals submitted on the [Moonbeam Forum](https://forum.moonbeam.network/c/governance/treasury-proposals/8){target=\_blank}. Once a proposal is agreed upon, the Council members must complete the on-chain approval process. 
 
 ## Definitions {: #definitions }
 
 Some of the key parameters for this guide are the following:
 
- - **Proposal Bond** — the percentage of proposed Treasury spend amount required to be submitted at the origination of the proposal. These tokens might be locked for an indeterminate amount of time because there is no guarantee the proposal will be acted upon. This bond is transferred to the Treasury if the proposal is rejected but refunded if the proposal is passed
- - **Minimum Bond** — the minimum bond accepted with a proposed Treasury spend regardless of the amount of the Treasury spend. This minimum bond amount may render small Treasury proposal amounts infeasible
  - **Treasury address** — the address where Treasury funds accrue and are disbursed from
  - **Beneficiary** — the address, such as a [Moonbeam Safe multisig](/tokens/manage/multisig-safe/){target=\_blank}, that will receive the funds of the Treasury proposal if enacted
- - **Value** — the amount that is being asked for and will be allocated to the beneficiary address if the Treasury proposal is enacted
- - **Spend period** — the waiting period after a Treasury proposal has been approved, but before the funds have been disbursed to the beneficiary
+ - **Value** — the amount that is being asked for and will be allocated to the beneficiary address if the Treasury proposal is passed
+
+The treasury address for each respective network can be found below:
 
 === "Moonbeam"
-    |     Variable     |                                                                    Value                                                                    |
-    |:----------------:|:-------------------------------------------------------------------------------------------------------------------------------------------:|
-    |  Proposal Bond   |                                      {{ networks.moonbeam.treasury.proposal_bond}}% of proposed spend                                       |
-    |   Minimum Bond   |                                           {{ networks.moonbeam.treasury.proposal_bond_min}} GLMR                                            |
-    |   Spend Period   |                                           {{ networks.moonbeam.treasury.spend_period_days}} days                                            |
-    | Treasury Address | [0x6d6f646C70792f74727372790000000000000000](https://moonbeam.subscan.io/account/0x6d6f646C70792f74727372790000000000000000){target=\_blank} |
+
+    [0x6d6F646c70632f74727372790000000000000000](https://moonbase.subscan.io/account/0x6d6F646c70632f74727372790000000000000000){target=_blank}
 
 === "Moonriver"
-    |     Variable     |                                                                    Value                                                                     |
-    |:----------------:|:--------------------------------------------------------------------------------------------------------------------------------------------:|
-    |  Proposal Bond   |                                      {{ networks.moonriver.treasury.proposal_bond}}% of proposed spend                                       |
-    |   Minimum Bond   |                                           {{ networks.moonriver.treasury.proposal_bond_min}} MOVR                                            |
-    |   Spend Period   |                                           {{ networks.moonriver.treasury.spend_period_days}} days                                            |
-    | Treasury Address | [0x6d6f646C70792f74727372790000000000000000](https://moonriver.subscan.io/account/0x6d6f646C70792f74727372790000000000000000){target=\_blank} |
+
+    [0x6d6f646C70792f74727372790000000000000000](https://moonriver.subscan.io/account/0x6d6f646C70792f74727372790000000000000000){target=_blank}
 
 === "Moonbase Alpha"
-    |     Variable     |                                                                    Value                                                                    |
-    |:----------------:|:-------------------------------------------------------------------------------------------------------------------------------------------:|
-    |  Proposal Bond   |                                      {{ networks.moonbase.treasury.proposal_bond}}% of proposed spend                                       |
-    |   Minimum Bond   |                                            {{ networks.moonbase.treasury.proposal_bond_min}} DEV                                            |
-    |   Spend Period   |                                           {{ networks.moonbase.treasury.spend_period_days}} days                                            |
-    | Treasury Address | [0x6d6f646C70792f74727372790000000000000000](https://moonbase.subscan.io/account/0x6d6F646c70632f74727372790000000000000000){target=\_blank} |
 
-This guide will show you how to submit a proposal on Moonbase Alpha. It can be adapted for Moonbeam or Moonriver. In any case, it's recommended that you familiarize yourself with the steps of submitting a Treasury proposal on Moonbase Alpha or a local dev node before taking the steps on Moonbeam or Moonriver.
+    [0x6d6F646c70632f74727372790000000000000000](https://moonbase.subscan.io/account/0x6d6F646c70632f74727372790000000000000000){target=_blank}
+
 
 ## Roadmap of a Treasury Proposal {: #roadmap-of-a-treasury-proposal }
 
-You can find a full explanation of the [happy path for a Treasury proposal on the Treasury overview page](/learn/features/treasury/){target=\_blank}. For more information on the process, see this [guide to the interim community Treasury program](https://moonbeam.network/news/proposal-for-interim-treasury-program-approved-by-moonbeam-community){target=\_blank}.
+The happy path of a treasury spend request is as follows:
 
-![Proposal Roadmap](/images/tokens/governance/treasury-proposals/treasury-proposal-roadmap.webp)
+1. **Proposal Submission** - The user submits a proposal to the [Moonbeam Forum](https://forum.moonbeam.network/c/governance/treasury-proposals/8){target=\_blank}
 
-## Submitting your Idea to the Forum {: #submitting-your-idea-to-the-forum }
+2. **Forum Discussion** - The proposal is discussed by the community on the Forum. The ultimate yay/nay decision is determined by the treasury council
 
-It's highly recommended that you preface any proposal with a post on [Moonbeam's Community Forum](https://forum.moonbeam.network){target=\_blank}. You should allow a period of five days for the community to provide feedback on the Moonbeam Forum post. This is especially important for Treasury proposals because of the irrevocable bond required to submit a Treasury spend proposal. You can submit your idea for a Treasury spend proposal by following [the instructions in the Using the Moonbeam Community Forum to Submit a Treasury Proposal guide](https://moonbeam.network/news/using-the-moonbeam-community-forum-to-submit-a-treasury-proposal){target=\_blank}.
+3. **Treasury Approval & Action** - If the Treasury Council agrees, it authorizes the treasury spending and moves the process forward
 
 ![Moonbeam Forum Home](/images/tokens/governance/treasury-proposals/treasury-proposal-1.webp)
 
-## Proposing an Action {: #proposing-an-action }
+## Submitting your Idea to the Forum {: #submitting-your-idea-to-the-forum }
 
-This guide focuses on the mechanics of submitting an on-chain Treasury proposal after you have worked with the Treasury Council to refine your idea. If you haven't yet completed the prior steps of the Treasury proposal process, please take a moment to review the [guidelines of the community Treasury program](https://github.com/moonbeam-foundation/treasury/blob/main/interim/interim_treasury_proposal.md){target=\_blank} and evaluate your standing. Engaging the community and revising your proposal based on feedback received is the most critical piece of your proposal. Submitting the on-chain Treasury proposal is the easy part, demonstrated in the following guide.
+As mentioned in the happy path above, the first step of a treasury proposal is to submit the proposal to the [Moonbeam Forum](https://forum.moonbeam.network/c/governance/treasury-proposals/8){target=\_blank}. To properly submit a treasury spend request, take the following steps:
 
-To get started, head to [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/treasury){target=\_blank} and take the following steps:
+1. From the [governance section](https://forum.moonbeam.network/c/governance/treasury-proposals/8){target=\_blank}, click **New Topic**. By starting the topic in the governance section, the proposal will come pre-filled with a template to ensure you cover all the necessary points 
+2. Provide a title for the proposal
+3. Enter the contents of the proposal, making sure to cover each of the following categories:
 
-1. Select the **Governance** heading
-2. Click on **Treasury**
-3. Click **Submit Proposal**
+    - **Title** and **Proposal Status** 
 
-![Treasury home](/images/tokens/governance/treasury-proposals/treasury-proposal-2.webp)
+    - **Abstract** - two or three sentences that summarize the MBTP
 
-Then, take the following steps:
+    - **Motivation** - a statement on why the Moonbeam Community via the Treasury Council should support the MBTP
 
-1. Select the account that will be the creator of the Treasury proposal. Make sure that the account selected here is sufficiently funded with your proposal bond
-2. Select the beneficiary of the proposal. This should correspond to the account indicated in your forum post
-3. Indicate the value of the spend proposal. The required bond is {{ networks.moonbeam.treasury.proposal_bond}}% of the proposal's value. The bond committed to a Treasury spend proposal is irrevocable
-4. Review each field for accuracy then press **Submit proposal** and sign the transaction
+    - **Project Overview and Team Experience** - description of project and relevant team experience
 
-![Submitting a Treasury spend proposal](/images/tokens/governance/treasury-proposals/treasury-proposal-3.webp)
+    - **Rationale** - an explanation of how the MBTP would add value to the Moonbeam Ecosystem
 
-After submitting your Treasury proposal, you can refresh Polkadot.js Apps and you should see your proposal listed. If you don't see your proposal appear here, your account may not have contained sufficient funds for the required bond.
+    - **Key Terms *(optional)*** - definitions of any terms within the proposal that are unique to the MBTP
 
-If you login to [Polkassembly](https://moonbeam.polkassembly.io/opengov){target=\_blank} with the same account that you used to create the Treasury spend proposal, you'll be able to edit the description of the proposal to include a link to the proposal discussion on the [Moonbeam Community Forum](https://forum.moonbeam.network){target=\_blank}. This is a helpful step because while Polkassembly auto-generates a post for each proposal, it doesn't provide context information on the contents of the proposal.
+    - **Overall Cost** - the total cost of the MBTP and how this cost ties to the deliverables or milestones
 
-After submitting the on-chain proposal, you’ll need to edit your proposal on the [Moonbeam Community Forum](https://forum.moonbeam.network){target=\_blank}. You will need to update the title to include the proposal ID, and the status will need to be changed to `Submitted` state. The full instructions to edit your Moonbeam Community Forum post are available on [this guide to using the Moonbeam Community Forum](https://moonbeam.network/news/using-the-moonbeam-community-forum-to-submit-a-treasury-proposal){target=\_blank}.
+    - **Use of Treasury Funds** - detailed explanation of use of Treasury Funds including deliverables/ milestones and timeline
 
-![Polkassembly](/images/tokens/governance/treasury-proposals/treasury-proposal-4.webp)
+    - **Specifications** - a detailed breakdown of the platforms and technologies that will be used
+
+    - **Steps to Implement** - the steps to implement the MBTP, including associated costs, manpower, and other resources for each step where applicable
+
+4. Press **Create Topic**
+
+![Submit a treasury spend proposal](/images/tokens/governance/treasury-proposals/treasury-proposal-2.webp)
+
+
+### Treasury Council Voting Process {: #treasury-council-voting-process }
+
+A member of the Treasury Council must first open [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbeam.network#/explorer){target=\_blank}  and navigate to the **Extrinsics** tab. From there, the treasury council member will submit a `treasury.spend` call. This call requires specifying the amount (for example, 1,000 GLMR) and the beneficiary account to receive the funds. Once this extrinsic is submitted, it creates a new Treasury Council collective proposal containing the specified spending information. Other members of the treasury council vote on the proposal with the `treasuryCouncilCollective.vote` extrinsic by providing a hash to the proposal, the proposal index, and aye/nay boolean to approve. Finally, a member of the treasury council closes the vote with the `treasuryCouncilCollective.close` extrinsic.
+ 
+!!! note
+    There is no on-chain action for the proposer or beneficiary of the treasury spend request.
+    All treasury spend actions will be completed by members of the treasury council.
+
+Note that this process has changed significantly from prior treasury processes, where tokenholders could submit treasury proposals with bonds attached. Now, no on-chain action is necessary to receive a treasury proposal - rather, all that is needed is to raise a treasury council request on the [Moonbeam Forum](https://forum.moonbeam.network/c/governance/treasury-proposals/8){target=\_blank} and the treasury council will take care of the on-chain component to process a treasury spend if the proposal is approved.
+
+## After the Treasury Council Approval
+
+The final step in the treasury spend request flow is for the `treasury.payout` extrinsic to be called. This may be called by anyone after the treasury council has approved the spend on-chain by providing the index of the treasury spend approved. Most likely, this step will be completed by a member of the treasury council, however, this step is documented here as it is one of the only steps that can be completed by anyone. 
+
+To do so, open [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbeam.network#/explorer){target=\_blank} and navigate to the **Extrinsics** tab and take the following steps:
+
+1. Select the **treasury** pallet
+2. Select the **payout** extrinsic
+3. Specify the index of the treasury collective spend
+4. Press **Submit Transaction** and confirm the transaction in your wallet
+
+![Call treasury.payout](/images/tokens/governance/treasury-proposals/treasury-proposal-3.webp)
