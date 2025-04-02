@@ -58,7 +58,7 @@ As mentioned in the happy path above, the first step of a treasury proposal is t
 
     - **Abstract** - two or three sentences that summarize the MBTP
 
-    - **Motivation** - a statement on why the Moonbeam Community via the Treasury Council should support the MBTP
+    - **Motivation** - a statement on why the Moonbeam community via the Treasury Council should support the MBTP
 
     - **Project Overview and Team Experience** - description of project and relevant team experience
 
