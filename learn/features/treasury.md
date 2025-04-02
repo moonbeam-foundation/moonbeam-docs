@@ -42,7 +42,7 @@ The happy path of a treasury spend request is as follows:
 
 2. **Forum discussion** - the proposal is discussed by the community on the Forum. The ultimate aye/nay decision is determined by the treasury council
 
-3. **Treasury Approval & Action** - If the Treasury Council agrees, it authorizes the treasury spending and moves the process forward
+3. **Treasury approval and action** - if the Treasury Council agrees, it authorizes the treasury spending and moves the process forward
 
 ### After the Treasury Council Approval
 
