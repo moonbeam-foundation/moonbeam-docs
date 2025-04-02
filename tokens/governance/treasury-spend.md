@@ -52,28 +52,7 @@ As mentioned in the happy path above, the first step of a treasury proposal is t
 
 1. From the [governance section](https://forum.moonbeam.network/c/governance/treasury-proposals/8){target=\_blank}, click **New Topic**. By starting the topic in the governance section, the proposal will come pre-filled with a template to ensure you cover all the necessary points 
 2. Provide a title for the proposal
-3. Enter the contents of the proposal, making sure to cover each of the following categories:
-
-    - **Title** and **Proposal Status** 
-
-    - **Abstract** - two or three sentences that summarize the MBTP
-
-    - **Motivation** - a statement on why the Moonbeam Community via the Treasury Council should support the MBTP
-
-    - **Project Overview and Team Experience** - description of project and relevant team experience
-
-    - **Rationale** - an explanation of how the MBTP would add value to the Moonbeam Ecosystem
-
-    - **Key Terms *(optional)*** - definitions of any terms within the proposal that are unique to the MBTP
-
-    - **Overall Cost** - the total cost of the MBTP and how this cost ties to the deliverables or milestones
-
-    - **Use of Treasury Funds** - detailed explanation of use of Treasury Funds including deliverables/ milestones and timeline
-
-    - **Specifications** - a detailed breakdown of the platforms and technologies that will be used
-
-    - **Steps to Implement** - the steps to implement the MBTP, including associated costs, manpower, and other resources for each step where applicable
-
+3. Enter the contents of the proposal, covering: the Title and Proposal Status, a brief Abstract, the Motivation, a Project Overview with Team Experience, the Rationale, any Key Terms, the Overall Cost, the Use of Treasury Funds, the technical Specifications, and the Steps to Implement
 4. Press **Create Topic**
 
 ![Submit a treasury spend proposal](/images/tokens/governance/treasury-proposals/treasury-proposal-2.webp)
