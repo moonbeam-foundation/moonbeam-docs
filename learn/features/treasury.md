@@ -7,7 +7,7 @@ description: As a Polkadot parachain, Moonbeam has an on-chain treasury controll
 
 ## Introduction {: #introduction }
 
-The Moonbeam Treasury is an on-chain collection of funds launched at the network's genesis. The Treasury was pre-funded with 0.5% of the total token supply at network launch and accumulates GLMR steadily as {{ networks.moonbeam.inflation.parachain_bond_treasury }}% of the Parachain bond reserve inflation goes to the Treasury. The Moonbeam Treasury is intended to help fund key projects that help maintain and further the growth of the Moonbeam network.
+The Moonbeam Treasury is an on-chain collection of funds launched at the network's genesis. The Treasury was pre-funded with 0.5% of the total token supply at network launch and accumulates GLMR steadily as {{ networks.moonbeam.inflation.parachain_bond_treasury }}% of the parachain bond reserve inflation goes to the Treasury. The Moonbeam Treasury is intended to help fund key projects that help maintain and further the growth of the Moonbeam network.
 
 The Treasury allows stakeholders to submit spending proposals to be reviewed and voted on by the Treasury Council. These spending proposals should include initiatives to boost network engagement. Some network initiatives could include funding integrations or collaborations, community events, network outreach, and more. The principal responsibility of a treasury spend proposer is to craft the proposal and submit to the Moonbeam Forum. To submit a treasury proposal, see the instructions for [submitting a treasury spend](/tokens/governance/treasury-spend/){target=\_blank}.
 
