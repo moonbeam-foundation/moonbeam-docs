@@ -40,7 +40,7 @@ The happy path of a treasury spend request is as follows:
 
 1. **Proposal submission** - the user submits a proposal to the [Moonbeam Forum](https://forum.moonbeam.network/c/governance/treasury-proposals/8){target=\_blank}
 
-2. **Forum Discussion** - The proposal is discussed by the community on the Forum. The ultimate yay/nay decision is determined by the treasury council
+2. **Forum discussion** - the proposal is discussed by the community on the Forum. The ultimate aye/nay decision is determined by the treasury council
 
 3. **Treasury Approval & Action** - If the Treasury Council agrees, it authorizes the treasury spending and moves the process forward
 
