@@ -91,7 +91,7 @@ Note that this process has changed significantly from prior treasury processes, 
 
 ## After the Treasury Council Approval
 
-The final step in the treasury spend request flow is for the `treasury.payout` extrinsic to be called. This may be called by anyone after the treasury council has approved the spend on-chain by providing the index of the treasury spend approved. Most likely, this step will be completed by a member of the treasury council, however, this step is documented here as it is one of the only steps that can be completed by anyone. 
+The final step in the treasury spend request flow is for the `treasury.payout` extrinsic to be called. This may be called by anyone after the treasury council has approved the spend on-chain by providing the index of the treasury spend approved. Most likely, this step will be completed by a member of the treasury council, however, this step is documented here as it is one of the only steps that anyone can complete. 
 
 To do so, open [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbeam.network#/explorer){target=\_blank} and navigate to the **Extrinsics** tab and take the following steps:
 

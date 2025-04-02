@@ -7,17 +7,17 @@ description: As a Polkadot parachain, Moonbeam has an on-chain treasury controll
 
 ## Introduction {: #introduction }
 
-The Moonbeam Treasury is an on-chain collection of funds that was launched at the genesis of the network. The Treasury was pre-funded with 0.5% of the total token supply at network launch and accumulates GLMR steadily as {{ networks.moonbeam.inflation.parachain_bond_treasury }}% of the Parachain bond reserve inflation goes to the Treasury. The Moonbeam Treasury is intended to help fund key projects that help maintain and further the growth of the Moonbeam network.
+The Moonbeam Treasury is an on-chain collection of funds launched at the network's genesis. The Treasury was pre-funded with 0.5% of the total token supply at network launch and accumulates GLMR steadily as {{ networks.moonbeam.inflation.parachain_bond_treasury }}% of the Parachain bond reserve inflation goes to the Treasury. The Moonbeam Treasury is intended to help fund key projects that help maintain and further the growth of the Moonbeam network.
 
-The Treasury allows stakeholders to submit spending proposals to be reviewed and voted on by the Treasury Council. These spending proposals should include initiatives to further the network or boost network engagement. Some network initiatives could include funding integrations or collaborations, community events, network outreach, and more. The principle responsibility of a treasury spend proposer is to craft the proposal and submit to the Moonbeam Forum. To submit a treasury proposal, see the instructions for [submitting a treasury spend](/tokens/governance/treasury-spend/){target=\_blank}.
+The Treasury allows stakeholders to submit spending proposals to be reviewed and voted on by the Treasury Council. These spending proposals should include initiatives to boost network engagement. Some network initiatives could include funding integrations or collaborations, community events, network outreach, and more. The principal responsibility of a treasury spend proposer is to craft the proposal and submit to the Moonbeam Forum. To submit a treasury proposal, see the instructions for [submitting a treasury spend](/tokens/governance/treasury-spend/){target=\_blank}.
 
 The Treasury Council oversees spending of the Moonbeam treasury and votes on funding proposals. It comprises two members from the Moonbeam Foundation and three external, independent members. The same treasury council oversees treasury requests for both Moonbeam and Moonriver. The Council meets periodically to review proposals submitted on the [Moonbeam Forum](https://forum.moonbeam.network/c/governance/treasury-proposals/8){target=\_blank}. Once a proposal is agreed upon, the Council members must complete the on-chain approval process.
 
 ## General Definitions {: #general-definitions }
 
-Some important terminology to understand in regards to treasuries:
+Some important terminology to understand in regard to treasuries:
 
-- **Treasury council** — a group consisting of both Moonbeam Foundation representatives and external, independent members. The Council reviews funding proposals, ensures alignment with the community, and ultimately authorizes treasury spending
+- **Treasury council** — a group consisting of Moonbeam Foundation representatives and external, independent members. The Council reviews funding proposals, ensures alignment with the community, and ultimately authorizes treasury spending
 - **Proposal** — a plan or suggestion to further the network that is put forth by stakeholders to be approved by the Treasury Council
 
 ## Treasury Council {: #treasury-council }
