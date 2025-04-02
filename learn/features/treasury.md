@@ -20,7 +20,7 @@ Some important terminology to understand in regard to treasuries:
 - **Treasury Council** — a group consisting of Moonbeam Foundation representatives and external, independent members. The Council reviews funding proposals, ensures alignment with the community, and ultimately authorizes Treasury spending
 - **Proposal** — a plan or suggestion to further the network that is put forth by stakeholders to be approved by the Treasury Council
 
-## The Happy Path of a Treasury Spend Request {: #the-happy-path-of-a-Treasury-spend-request }
+## The Happy Path of a Treasury Spend Request {: #the-happy-path-of-a-treasury-spend-request }
 
 The happy path of a Treasury spend request is as follows:
 
