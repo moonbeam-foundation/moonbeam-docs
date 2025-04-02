@@ -46,7 +46,7 @@ The happy path of a treasury spend request is as follows:
 
 ![Moonbeam Forum Home](/images/tokens/governance/treasury-proposals/treasury-proposal-1.webp)
 
-## Submitting your Idea to the Forum {: #submitting-your-idea-to-the-forum }
+## Submitting Your Idea to the Forum {: #submitting-your-idea-to-the-forum }
 
 As mentioned in the happy path above, the first step of a treasury proposal is to submit the proposal to the [Moonbeam Forum](https://forum.moonbeam.network/c/governance/treasury-proposals/8){target=\_blank}. To properly submit a treasury spend request, take the following steps:
 
