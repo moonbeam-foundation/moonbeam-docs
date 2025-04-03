@@ -56,7 +56,8 @@ As mentioned in the happy path above, the first step of a Treasury proposal is t
 1. From the [**Governance** section](https://forum.moonbeam.network/c/governance/Treasury-proposals/8){target=\_blank}, click **New Topic**. By starting the topic in the **Governance** section, the proposal will come pre-filled with a template to ensure you cover all the necessary points 
 2. Provide a title for the proposal
 3. Enter the contents of the proposal, covering: the Title and Proposal Status, a brief Abstract, the Motivation, a Project Overview with Team Experience, the Rationale, any Key Terms, the Overall Cost, the Use of Treasury Funds, the technical Specifications, and the Steps to Implement
-4. Press **Create Topic**
+4. Choose either **Moonbeam** or **Moonriver** as a tag to indicate which network your treasury proposal applies to
+5. Press **Create Topic**
 
 ![Submit a Treasury spend proposal](/images/tokens/governance/treasury-proposals/treasury-proposal-2.webp)
 
