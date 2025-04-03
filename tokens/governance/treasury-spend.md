@@ -44,7 +44,7 @@ The happy path of a Treasury spend request is as follows:
 
 3. **Treasury approval & action** - if the Treasury Council agrees, it authorizes the Treasury spending and moves the process forward
 
-![Moonbeam Forum Home](/images/tokens/governance/Treasury-proposals/Treasury-proposal-1.webp)
+![Moonbeam Forum Home](/images/tokens/governance/treasury-proposals/treasury-proposal-1.webp)
 
 ## Submitting Your Idea to the Forum {: #submitting-your-idea-to-the-forum }
 
