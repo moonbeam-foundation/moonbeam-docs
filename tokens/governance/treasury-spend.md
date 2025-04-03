@@ -7,7 +7,7 @@ description: Learn about the full life cycle of a Treasury proposal from the ini
 
 ## Introduction {: #introduction }
 
-Treasury spending proposals enable community members to request funding for projects that benefit the Moonbeam network, such as infrastructure improvements, resources, events, and ecosystem tools. The Treasury Council reviews proposals and weighs community feedback received in the Moonbeam Forum, however, ultimate aye/nay decision rests with the Council. For more information about the structure of the Treasury Council, see the [Treasury page](/learn/features/treasury/){target=\_blank}.
+Treasury spending proposals enable community members to request funding for projects that benefit the Moonbeam network, such as infrastructure improvements, resources, events, and ecosystem tools. The Treasury Council reviews proposals and weighs community feedback received in the Moonbeam Forum, however, the ultimate Aye/Nay decision rests with the Council. For more information about the structure of the Treasury Council, see the [Treasury page](/learn/features/treasury/){target=\_blank}.
 
 In this guide, you'll learn how to prepare and submit a Treasury spending proposal and understand the full lifecycle of a Treasury Proposal. 
 
@@ -40,7 +40,7 @@ The happy path of a Treasury spend request is as follows:
 
 1. **Proposal submission** - the user submits a proposal to the [Moonbeam Forum](https://forum.moonbeam.network/c/governance/Treasury-proposals/8){target=\_blank}
 
-2. **Forum discussion** - the proposal is discussed by the community on the Forum. The ultimate yay/nay decision is determined by the Treasury council
+2. **Forum discussion** - the proposal is discussed by the community on the Forum. The ultimate Aye/Nay decision is determined by the Treasury council
 
 3. **Treasury approval & action** - if the Treasury Council agrees, it authorizes the Treasury spending and moves the process forward
 
