@@ -40,13 +40,4 @@ As mentioned in the happy path above, the first step of a Treasury proposal is t
 
 ## Next Steps {: #next-steps }
 
-No further steps are required by the proposer. Members of the Treasury Council will complete all on-chain actions. For more information about the Treasury Council voting process, see the [Treasury page](/learn/features/treasury/#Treasury-council-voting-process){target=\_blank}. The final step in the Treasury spend request flow is for the `treasury.payout` extrinsic to be called. This may be called by anyone after the Treasury council has approved the spend on-chain by providing the index of the Treasury spend approved. Most likely, this step will be completed by a member of the Treasury council, however, this step is documented here as it is one of the only steps that anyone can complete. 
-
-To do so, open [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbeam.network#/explorer){target=\_blank} and navigate to the **Extrinsics** tab and take the following steps:
-
-1. Select the **Treasury** pallet
-2. Select the **payout** extrinsic
-3. Specify the index of the Treasury collective spend
-4. Press **Submit Transaction** and confirm the transaction in your wallet
-
-![Call Treasury.payout](/images/tokens/governance/Treasury-proposals/Treasury-proposal-3.webp)
+No further steps are required by the proposer. Members of the Treasury Council will complete all on-chain actions. If approved by the Treasury Council, the delivery of the Treasury payment to the designated beneficiary will happen automatically. For more information about the Treasury Council voting process, see the [Treasury page](/learn/features/treasury/#Treasury-council-voting-process){target=\_blank}.
