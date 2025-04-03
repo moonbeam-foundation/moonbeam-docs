@@ -20,15 +20,7 @@ Some important terminology to understand in regard to treasuries:
 - **Treasury Council** — a group consisting of Moonbeam Foundation representatives and external, community members. The Council reviews funding proposals, ensures alignment with the community, and ultimately authorizes Treasury spending
 - **Proposal** — a plan or suggestion to further the network that is put forth by stakeholders to be approved by the Treasury Council
 
-## The Happy Path of a Treasury Spend Request {: #the-happy-path-of-a-treasury-spend-request }
-
-The happy path of a Treasury spend request is as follows:
-
-1. **Proposal submission** - the user submits a proposal to the [Moonbeam Forum](https://forum.moonbeam.network/c/governance/Treasury-proposals/8){target=\_blank}. 
-
-2. **Forum discussion** - the proposal is discussed by the community on the Forum. The ultimate Aye/Bay decision is determined by the Treasury Council
-
-3. **Treasury approval and action** - if the Treasury Council agrees, it authorizes the Treasury spending and moves the process forward
+--8<-- 'text/learn/features/treasury/treasury-addresses-path.md'
 
 ## Treasury Council Voting Process {: #Treasury-council-voting-process }
 
