@@ -40,4 +40,4 @@ As mentioned in the happy path above, the first step of a Treasury proposal is t
 
 ## Next Steps {: #next-steps }
 
-No further steps are required by the proposer. Members of the Treasury Council will complete all on-chain actions. If approved by the Treasury Council, the delivery of the Treasury payment to the designated beneficiary will happen automatically. For more information about the Treasury Council voting process, see the [Treasury page](/learn/features/treasury/#Treasury-council-voting-process){target=\_blank}.
+No further steps are required after proposing the spend. Members of the Treasury Council will complete all on-chain actions. If approved by the Treasury Council, the delivery of the Treasury payment to the designated beneficiary will happen automatically. For more information about the Treasury Council voting process, see the [Treasury page](/learn/features/treasury/#Treasury-council-voting-process){target=\_blank}.
