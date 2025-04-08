@@ -101,20 +101,6 @@ The parachain staking pallet provides the following extrinsics (functions):
         --8<-- 'code/builders/substrate/interfaces/features/staking/candidate-bond-more.js'
         ```
 
-??? function "**delegate**(candidate, amount, candidateDelegationCount, delegationCount) - *deprecated as of runtime 2400* - request to add a delegation to a specific candidate for a given amount. Use the `delegateWithAutoCompound` extrinsic instead"
-
-    === "Parameters"
-
-        - `candidate` - The address of the collator candidate to delegate to (H160 format address, e.g., '0x123...')
-        - `amount` - The amount to delegate in Wei (e.g., 1 DEV = 1_000_000_000_000_000_000 Wei)
-        - `candidateDelegationCount` - The current number of delegations to the candidate
-        - `delegationCount` - The current number of delegations from the delegator
-
-    === "Polkadot.js API Example"
-
-        *Deprecated as of runtime 2400*
-        Use the `delegateWithAutoCompound` extrinsic instead 
-
 ??? function "**delegateWithAutoCompound**(candidate, amount, autoCompound, candidateDelegationCount, candidateAutoCompoundingDelegationCount, delegationCount) - delegates a collator candidate and sets the percentage of rewards to auto-compound given an integer (no decimals) for the `amount` between 0-100. If the caller is not a delegator, this function adds them to the set of delegators. If the caller is already a delegator, then it adjusts their delegation amount"
 
     === "Parameters"
