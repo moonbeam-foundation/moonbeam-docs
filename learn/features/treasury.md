@@ -15,7 +15,7 @@ The [Treasury Council](https://forum.moonbeam.network/g/TreasuryCouncil){target=
 
 ## General Definitions {: #general-definitions }
 
-Some important terminology to understand in regard to treasuries:
+Some important terminology to understand regarding treasuries:
 
 - **Treasury Council** — a group consisting of Moonbeam Foundation representatives and external, community members. The Council reviews funding proposals, ensures alignment with the community, and ultimately authorizes Treasury spending
 - **Proposal** — a plan or suggestion to further the network that is put forth by stakeholders to be approved by the Treasury Council
