@@ -22,7 +22,7 @@ Some important terminology to understand in regard to treasuries:
 
 --8<-- 'text/learn/features/treasury/treasury-addresses-path.md'
 
-## Treasury Council Voting Process {: #Treasury-council-voting-process }
+## Treasury Council Voting Process {: #treasury-council-voting-process }
 
 A member of the Treasury Council will submit a `treasury.spend` call. This call requires specifying the amount, the asset type, and the beneficiary account to receive the funds. The Treasury supports spending various token types beyond GLMR, including native USDT/USDC. Once this extrinsic is submitted, it creates a new Treasury Council collective proposal containing the specified spending information, and is available for members of the council to vote on. Once approved through the Treasury Council's internal voting process, the funds can be released to the beneficiary account through the `treasury.payout` extrinsic.
  
