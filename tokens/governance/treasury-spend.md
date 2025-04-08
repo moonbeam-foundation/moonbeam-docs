@@ -23,7 +23,7 @@ Some of the key parameters for this guide are the following:
 
 ![Moonbeam Forum Home](/images/tokens/governance/treasury-proposals/treasury-proposal-1.webp)
 
-## Submitting Your Idea to the Forum {: #submitting-your-idea-to-the-forum }
+## Submit Your Idea to the Forum {: #submitting-your-idea-to-the-forum }
 
 !!! note
     You'll need to have an account on the [Moonbeam Forum](https://forum.moonbeam.network/){target=\_blank} and be logged in before submitting a Treasury spend proposal.
