@@ -13,7 +13,7 @@ The Treasury address for each respective network can be found below:
     [0x6d6F646c70632f74727372790000000000000000](https://moonbase.subscan.io/account/0x6d6F646c70632f74727372790000000000000000){target=_blank}
 
 
-## Roadmap of a Treasury Proposal {: #roadmap-of-a-Treasury-proposal }
+## Roadmap of a Treasury Proposal {: #roadmap-of-a-treasury-proposal }
 
 The happy path of a Treasury spend request is as follows:
 
