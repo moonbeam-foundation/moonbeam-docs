@@ -1,7 +1,7 @@
 const axios = require('axios');
 
-const API_KEY = 'your_api_key';
-const address = 'user_wallet_address';
+const API_KEY = 'INSERT_API_KEY';
+const address = 'INSERT_WALLET_ADDRESS';
 const chain = 'moonbeam';
 
 axios.get(`https://api.zapper.xyz/v1/protocols/tokens/balances`, {

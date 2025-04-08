@@ -7,51 +7,67 @@ description: Learn how to track your holdings on Moonbeam using Zapper and inter
 
 ## What is Zapper?
 
-Zapper is a powerful Web3 application that allows users to explore on-chain data, manage portfolios, and interact with various decentralized finance (DeFi) protocols across multiple networks, including Moonbeam. By integrating with Zapper, users can seamlessly monitor and manage assets across Moonbeam's DeFi ecosystem, including Moonwell, StellaSwap, OmniLST, and Prime Protocol.
+[Zapper](https://zapper.xyz){target=\_blank} is a powerful Web3 application that allows users to explore on-chain data, manage portfolios, and interact with various decentralized finance (DeFi) protocols across multiple networks, including Moonbeam. By integrating with Zapper, users can seamlessly monitor and manage assets across Moonbeam's DeFi ecosystem, including Moonwell, StellaSwap, OmniLST, and Prime Protocol.
 
 This tutorial provides a detailed step-by-step guide for both users and developers to integrate with Zapper and maximize their experience within the Moonbeam ecosystem.
 
-## Accessing Moonbeam Assets on Zapper
+## Getting Started on Zapper
 
 You can navigate to [Zapper's official website](https://zapper.xyz){target=\_blank} and take the following steps to start interacting with the application:
 
-1. Click on the **Connect Wallet** button at the top right corner.
-2. Select your preferred wallet from the supported options (e.g., MetaMask, Talisman, Coinbase Wallet).
-3. Follow the on-screen prompts to connect securely to Zapper.
+- Click on the **Connect Wallet** button at the top right corner.
 
 ![Zapper main site](/images/tutorials/integrations/Zapper/zapper-1.webp)
 
+- Select your preferred wallet from the supported options (e.g., MetaMask, Talisman, Coinbase Wallet).
+
 ![Zapper wallet modal](/images/tutorials/integrations/Zapper/zapper-2.webp)
+
+- Follow the on-screen prompts to connect securely to Zapper.
 
 ### Explore Your Portfolio
 
 Once your wallet is connected, Zapper will automatically detect and display your assets across supported networks, including Moonbeam. You can navigate to your main dashboard by clicking on **My Profile** on the left sidebar or selecting it from the wallet icon on the top-right corner. The dashboard provides an overview of your holdings and activity split in the following categories:
 
-- **Net Worth Summary**: Displays your total assets, liabilities, and net worth across all networks.
-- **Token Balances**: Lists all tokens held in your connected wallet, including GLMR (Moonbeam's native token) and any ERC-20 tokens.
-- **DeFi Positions**: Shows active positions in Moonbeam-based DeFi platforms such as lending, liquidity pools, and staking.
-- **NFTs**: Displays any NFTs you own on Moonbeam or other supported chains.
-- **On-Chain Activity**: Zapper's dashboard provides real-time data, enabling efficient management of your DeFi activities.
+- **Net Worth Summary**: Displays your total assets, liabilities, and net worth across all networks
+- **Token Balances**: Lists all tokens held in your connected wallet, including GLMR (Moonbeam's native token) and any ERC-20 tokens
+- **DeFi Positions**: Shows active positions in Moonbeam-based DeFi platforms such as lending, liquidity pools, and staking
+- **NFTs**: Displays any NFTs you own on Moonbeam or other supported chains
+- **On-Chain Activity**: Zapper's dashboard provides real-time data, enabling efficient management of your DeFi activities
 
 ![Zapper Dashboard](/images/tutorials/integrations/Zapper/zapper-3.webp)
 
 ### Engage with Moonbeam's DeFi Ecosystem
 
-Zapper provides access to interact directly with Moonbeam's DeFi protocols such as:
+Zapper provides access to view the activity on Moonbeam's DeFi protocols such as:
 
-- **Moonwell**: Access lending and borrowing services.
-- **StellaSwap**: Participate in token swaps and liquidity provision by depositing token pairs into StellaSwap liquidity pools.
-- **OmniLST**: Engage in liquid staking opportunities (Stake GLMR tokens to receive liquid staking tokens and use them in other DeFi applications).
-- **Prime Protocol**: Manage cross-chain assets and leverage borrowing services (deposit assets as collateral to borrow across multiple chains).
+- **Moonwell**: For accessing lending and borrowing services
+- **StellaSwap**: For participating in token swaps and liquidity provision by depositing token pairs into StellaSwap's liquidity pools
+- **OmniLST**: For Engaging in liquid staking opportunities (Stake GLMR tokens to receive liquid staking tokens and use them in other DeFi applications)
+- **Prime Protocol**: For managing cross-chain assets and accesing borrowing services (deposit assets as collateral to borrow across multiple chains)
 
-Follow these steps to interact with any of these protocols:
+You can follow these steps to review any of the aforementioned protocols:
 
-1. Select **Moonbeam** in the chain filter on the left sidebar.
-2. Go to the **DeFi** section below Trending Apps and chose the protocol you want to interact with.
-3. You'll be able to view your supplied and borrowed assets on Moonwell, Swap tokens using StellaSwap’s decentralized exchange, Stake GLMR on OmniLST, or interact with any other supported platform.
+- Select **Moonbeam** in the chain filter on the left sidebar. Go to the **DeFi** section below Trending Apps and choose the application you want to review. 
 
 ![Zapper DeFi Section](/images/tutorials/integrations/Zapper/zapper-4.webp)
 
+- In the **Activity** tab, You'll be able to see the latest transactions for the selected protocol: Token swaps, LP or staking on StellaSwap’s decentralized exchange, lending and borrowing transactions on Moonwell, Staked GLMR on OmniLST and any other supported DApp on Zapper. 
+
+![StellaSwap on Zapper](/images/tutorials/integrations/Zapper/zapper-5.webp)
+
+- You'll also be able to view other details of the selected protocol, such as the daily active users and the daily transactions in the left side-bar, all deployed smart contracts in the **Contracts** tab and your own holdings on the protocol by going to the **Properties** tab.
+
+
+## Accessing Moonbeam Assets on Zapper
+
+Zapper also has an integrated modal for seamlessly swapping assets on Moonbeam. User's can access this feature by selecting **Moonbeam** in the chain filter on the left sidebar and choosing the desired token on the right sidebar.
+
+![Zapper Token Selection](/images/tutorials/integrations/Zapper/zapper-6.webp)
+
+Inside the token page user's will be able to see the asset's performance (price action, volumes, holders and transactions). The swap modal will be located at the right-side of the price chart, where you can select the assets for swapping, input the desired quantity for the token you want to sell and click on **Review Order** to sign and submit the swap transaction.
+
+![Zapper Swap Modal](/images/tutorials/integrations/Zapper/zapper-7.webp)
 
 ## Integrating with Zapper's API
 
@@ -61,9 +77,9 @@ You can register for an API key by visiting the [Zapper API portal](https://prot
 
 Zapper offers several endpoints to fetch relevant data such as:
 
-- **Balances**: Retrieve asset balances for addresses on Moonbeam.
-- **Transactions**: Access transaction histories.
-- **Prices**: Obtain real-time token prices.
+- **Balances**: Retrieve asset balances for addresses on Moonbeam
+- **Transactions**: Access transaction histories
+- **Prices**: Obtain real-time token prices
 
 Furthermore, you can familiarize yourself with the [Zapper API documentation](https://protocol.zapper.xyz/docs/api){target=\_blank}, which provides detailed information on the available endpoints, request structures, and response formats.
 
