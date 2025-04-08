@@ -1051,8 +1051,8 @@ networks:
       collator_reward_inflation: 20
       parachain_bond_inflation: 30
     staking:
-      min_can_stk: 2000000
-      min_can_stk_wei: 2000000000000000000000000
+      min_can_stk: 500000
+      min_can_stk_wei: 500000000000000000000000
       collator_map_bond: 10000
       max_candidates: 76
       round_blocks: 1800
