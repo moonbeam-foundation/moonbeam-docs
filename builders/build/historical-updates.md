@@ -117,7 +117,9 @@ For more information, you can review the [relative PR on GitHub](https://github.
 
 #### Substrate Tips Missing Treasury Distribution {: #substrate-tips }
 
-Tips for Substrate-based transactions weren't handled properly. The entire portion of the tip was burned because it was not handled in the runtime code. A fix was applied so that 20% is paid to the Treasury and 80% is burned, consistent with all other fee behavior. Note that RT3401 introduced a parameters pallet fee configuration allowing governance to adjust how fees are split between the treasury and burning. After this runtime upgrade combined with the passage of MB101 (https://forum.moonbeam.network/t/proposal-mb101-burn-100-of-transaction-fees-on-moonbeam/2022), 100% of all transaction fees on both Moonbeam and Moonriver are now burned.
+Tips for Substrate-based transactions weren't handled properly. The entire portion of the tip was burned because it was not handled in the runtime code. A fix was applied so that 20% was paid to the Treasury and 80% was burned, consistent with all other fee behavior at that time.
+
+Note that RT3401 introduced a parameters pallet fee configuration allowing governance to adjust how fees are split between the Treasury and burning. After this runtime upgrade combined with the passage of [MB101](https://forum.moonbeam.network/t/proposal-mb101-burn-100-of-transaction-fees-on-moonbeam/2022){target=\_blank}, 100% of all transaction fees on both Moonbeam and Moonriver are now burned.
 
 This bug existed during the following runtimes and block ranges:
 
