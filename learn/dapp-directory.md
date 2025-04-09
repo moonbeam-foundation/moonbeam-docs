@@ -131,7 +131,7 @@ To get started, you must have a name that uniquely and properly identifies your 
     --8<-- 'code/learn/dapps-list/folder-structure.md'
     ```
 
-![The file structure displayed on GitHub's browser-based editor](/images/learn/dapps-list//directory-4.webp)
+![The file structure displayed on GitHub's browser-based editor](/images/learn/dapps-list/directory-4.webp)
 
 With the foundational file structure in place, you're ready to populate the necessary information for your project submission.
 
