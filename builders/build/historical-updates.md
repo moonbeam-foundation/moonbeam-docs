@@ -30,7 +30,7 @@ For more information, you can review the [relative Frontier PR on GitHub](https:
 
 #### Ethereum Fees Weren't Sent to Treasury {: #ethereum-fees-to-treasury }
 
-The Moonbeam fee model for transactions previously mandated a 20% allocation of fees sent to the on-chain Treasury and 80% burned as a deflationary force. Before runtime 800, Ethereum transactions did not allocate 20% of the transaction fees to the on-chain Treasury. However, RT3401 introduced a parameters pallet fee configuration allowing governance to adjust how fees are split between the treasury and burning. After this runtime upgrade combined with the passage of MB101 (https://forum.moonbeam.network/t/proposal-mb101-burn-100-of-transaction-fees-on-moonbeam/2022), 100% of all transaction fees on both Moonbeam and Moonriver are now burned.
+The Moonbeam transaction fee model before Runtime 3401 and the passage of [MB101](https://forum.moonbeam.network/t/proposal-mb101-burn-100-of-transaction-fees-on-moonbeam/2022){target=\_blank} mandated a 20% allocation of fees sent to the on-chain Treasury and 80% burned as a deflationary force. However, before runtime 800, Ethereum transactions did not correctly allocate 20% of the transaction fees to the on-chain Treasury.
 
 This bug only impacted Moonriver and Moonbase Alpha and existed during the following runtimes and block ranges:
 
