@@ -115,7 +115,7 @@ If you do not provide any topics, you subscribe to all events emitted by the con
 
 By executing this code, you'll establish a subscription to monitor ERC-20 token transfer events on Moonbeam. The terminal will display a subscription ID indicating a successful setup and await any new events emitted by the contract.
 
-![Subscription ID](/images/builders/ethereum/json-rpc/pubsub/pubsub-1.webp)
+--8<-- 'code/builders/ethereum/json-rpc/pubsub/terminal/contract-events.md'
 
 #### Understanding Event Logs {: #understanding-event-logs }
 
@@ -127,7 +127,7 @@ To illustrate the process, assume that an ERC-20 token transfer has been sent wi
 
 The event logs emitted by the transaction are as follows:
 
-![Log of the transfer event](/images/builders/ethereum/json-rpc/pubsub/pubsub-2.webp)
+--8<-- 'code/builders/ethereum/json-rpc/pubsub/terminal/log-transfer-event.md'
 
 If you look at the `topics` array, there are a total of three topics present (in this order):
 
@@ -137,7 +137,7 @@ If you look at the `topics` array, there are a total of three topics present (in
 
 As there are a total of three topics (the maximum is four), this corresponds to the LOG3 opcode:
 
-![Description of LOG3](/images/builders/ethereum/json-rpc/pubsub/pubsub-3.webp)
+![Description of LOG3](/images/builders/ethereum/json-rpc/pubsub/pubsub-1.webp)
 
 Indexed topics, such as the `from` and `to` addresses, are typically represented by 256-bit (64 hexadecimal character) values. If necessary, they are padded with zeros to reach the full length.
 
@@ -159,7 +159,7 @@ In the case of this subscription, you are notifying that you want to only receiv
 
 As before, this subscription's output will display the event signature in `topic_0` to tell you which event the contract emitted.
 
-![Conditional Subscription](/images/builders/ethereum/json-rpc/pubsub/pubsub-4.webp)
+--8<-- 'code/builders/ethereum/json-rpc/pubsub/terminal/conditional-subscription.md'
 
 As shown, after you provided the two addresses with conditional formatting, you should have received two logs with the same subscription ID. Events emitted by transactions from different addresses will not throw any logs to this subscription.
 
@@ -169,7 +169,7 @@ This example showed how you could subscribe to just the event logs of a specific
 
 To subscribe to pending transactions, you can use the [`web3.eth.subscribe('pendingTransactions')`](https://docs.web3js.org/libdocs/Web3Eth/#subscribependingtransactions){target=\_blank} method, implementing the same callback function to check for the response. The transaction hash of the pending transactions is returned.
 
-![Subscribe pending transactions response](/images/builders/ethereum/json-rpc/pubsub/pubsub-5.webp)
+--8<-- 'code/builders/ethereum/json-rpc/pubsub/terminal/pending-txn.md'
 
 You can try this by sending a transaction and verifying that the transaction hash returned by the subscription is the same one returned by the development tool or wallet you are using.
 
@@ -177,7 +177,7 @@ You can try this by sending a transaction and verifying that the transaction has
 
 You can also subscribe to new block headers using the [`web3.eth.subscribe('newHeads')`](https://docs.web3js.org/libdocs/Web3Eth/#subscribenewheads){target=\_blank} method, implementing the same callback function to check for the response. This subscription provides incoming block headers and can be used to track changes in the blockchain.
 
-![Subscribe to block headers response](/images/builders/ethereum/json-rpc/pubsub/pubsub-6.webp)
+--8<-- 'code/builders/ethereum/json-rpc/pubsub/terminal/block-headers.md'
 
 Note that only one block header is shown in the image. These messages are displayed for every block produced so they can quickly fill up the terminal.
 
@@ -185,7 +185,7 @@ Note that only one block header is shown in the image. These messages are displa
 
 With pubsub, checking whether a particular node is currently synchronizing with the network is also possible. You can use the [`web3.eth.subscribe('syncing')`](https://docs.web3js.org/libdocs/Web3Eth/#subscribesyncing){target=\_blank} method, implementing the same callback function to check for the response. This subscription will either return a boolean when `syncing` is false or an object describing the syncing progress when `syncing` is true, as seen below.
 
-![Subscribe to syncing response](/images/builders/ethereum/json-rpc/pubsub/pubsub-7.webp)
+--8<-- 'code/builders/ethereum/json-rpc/pubsub/terminal/syncing.md'
 
 !!! note
     The pubsub implementation in [Frontier](https://github.com/polkadot-evm/frontier){target=\_blank} is still in active development. This current version allows users to subscribe to specific event types, but there may still be some limitations.
