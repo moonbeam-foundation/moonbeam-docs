@@ -316,6 +316,7 @@ networks:
       delegator_reward_inflation: 50
       collator_reward_inflation: 20
       parachain_bond_inflation: 30
+      parachain_bond_treasury: 80
     staking:
       min_can_stk: 500
       min_can_stk_wei: 500000000000000000000
@@ -340,8 +341,9 @@ networks:
       spend_period_blocks: 86400
       spend_period_days: 6
       max_approved_proposals: 100
-      tx_fees_allocated: 20
-      tx_fees_burned: 80
+      tx_fees_allocated: 0
+      tx_fees_burned: 100
+      months_elected: 6
     proxy:
       deposit_base: 1.0008
       deposit_factor: 0.0021
@@ -651,6 +653,7 @@ networks:
       delegator_reward_inflation: 50
       collator_reward_inflation: 20
       parachain_bond_inflation: 30
+      parachain_bond_treasury: 80
     staking:
       min_can_stk: 500
       min_can_stk_wei: 500000000000000000000
@@ -672,8 +675,9 @@ networks:
       spend_period_blocks: 43200
       spend_period_days: 6
       max_approved_proposals: 100
-      tx_fees_allocated: 20
-      tx_fees_burned: 80
+      tx_fees_allocated: 0
+      tx_fees_burned: 100
+      months_elected: 6
     proxy:
       deposit_base: 1.0008
       deposit_factor: 0.0021
@@ -1050,6 +1054,7 @@ networks:
       delegator_reward_inflation: 50
       collator_reward_inflation: 20
       parachain_bond_inflation: 30
+      parachain_bond_treasury: 80
     staking:
       min_can_stk: 2000000
       min_can_stk_wei: 2000000000000000000000000
@@ -1072,8 +1077,9 @@ networks:
       spend_period_blocks: 43200
       spend_period_days: 6
       max_approved_proposals: 100
-      tx_fees_allocated: 20
-      tx_fees_burned: 80
+      tx_fees_allocated: 0
+      tx_fees_burned: 100
+      months_elected: 6
     proxy:
       deposit_base: 10.08
       deposit_factor: 0.21

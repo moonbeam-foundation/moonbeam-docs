@@ -30,7 +30,7 @@ For more information, you can review the [relative Frontier PR on GitHub](https:
 
 #### Ethereum Fees Weren't Sent to Treasury {: #ethereum-fees-to-treasury }
 
-The Moonbeam fee model for transactions allocates 20% of the fees to the on-chain Treasury and burns 80% as a deflationary force. Before runtime 800, Ethereum transactions did not allocate 20% of the transaction fees to the on-chain Treasury.
+The Moonbeam transaction fee model before Runtime 3401 and the passage of [MB101](https://forum.moonbeam.network/t/proposal-mb101-burn-100-of-transaction-fees-on-moonbeam/2022){target=\_blank} mandated a 20% allocation of fees sent to the on-chain Treasury and 80% burned as a deflationary force. However, before runtime 800, Ethereum transactions did not correctly allocate 20% of the transaction fees to the on-chain Treasury.
 
 This bug only impacted Moonriver and Moonbase Alpha and existed during the following runtimes and block ranges:
 
@@ -117,7 +117,9 @@ For more information, you can review the [relative PR on GitHub](https://github.
 
 #### Substrate Tips Missing Treasury Distribution {: #substrate-tips }
 
-Tips for Substrate-based transactions weren't handled properly. The entire portion of the tip was burned because it was not handled in the runtime code. A fix was applied so that 20% is paid to the Treasury and 80% is burned, consistent with all other fee behavior.
+Tips for Substrate-based transactions weren't handled properly. The entire portion of the tip was burned because it was not handled in the runtime code. A fix was applied so that 20% was paid to the Treasury and 80% was burned, consistent with all other fee behavior at that time.
+
+Note that RT3401 introduced a parameters pallet fee configuration allowing governance to adjust how fees are split between the Treasury and burning. After this runtime upgrade combined with the passage of [MB101](https://forum.moonbeam.network/t/proposal-mb101-burn-100-of-transaction-fees-on-moonbeam/2022){target=\_blank}, 100% of all transaction fees on both Moonbeam and Moonriver are now burned.
 
 This bug existed during the following runtimes and block ranges:
 
@@ -181,7 +183,9 @@ For more information, you can review the [relative Frontier PR](https://github.c
 
 #### Transaction Fees Paid to Collators {: #transaction-fees-paid-to-collators }
 
-For blocks that included EIP-1559 transactions where a priority fee was applied, the transaction fees were incorrectly calculated and distributed to the block's collator. The fee model on Moonbeam for transactions and smart contract execution is handled so that 20% of the fees go to the on-chain Treasury and 80% are burned as a deflationary force. Due to this bug, the transaction fees of the impacted transactions were not burned as expected.
+For blocks that included EIP-1559 transactions where a priority fee was applied, the transaction fees were incorrectly calculated and distributed to the block's collator. The fee model on Moonbeam for transactions and smart contract execution was previously handled so that 20% of the fees went to the on-chain Treasury and 80% were burned as a deflationary force. Due to this bug, the transaction fees of the impacted transactions were not burned as expected.
+
+Note that RT3401 introduced a parameters pallet fee configuration allowing governance to adjust how fees are split between the Treasury and burning. After this runtime upgrade combined with the passage of [MB101](https://forum.moonbeam.network/t/proposal-mb101-burn-100-of-transaction-fees-on-moonbeam/2022){target=\_blank}, 100% of all transaction fees on both Moonbeam and Moonriver are now burned.
 
 This bug existed during the following runtimes and block ranges:
 
