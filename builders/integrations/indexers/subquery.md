@@ -58,14 +58,14 @@ To get started, you'll need to [create a SubQuery project](https://academy.subqu
 
     1. For the **Select a network family** question, although Moonbeam is EVM compatible, the Moonbeam templates are under the **Polkadot** family, so you can choose **Polkadot**
 
-        ![The SubQuery CLI choose a network family menu.](/images/builders/integrations/indexers/subquery/new/subquery-1.webp)
+        --8<-- 'code/builders/integrations/indexers/subquery/terminal/select-network-polkadot.md'
 
     2. The next screen will prompt you to **Select a network**. You can choose between Moonbeam and Moonriver
 
         !!! note
             To build a project on Moonbase Alpha, you can select either network and adapt it later on
 
-        ![The SubQuery CLI choose a network menu.](/images/builders/integrations/indexers/subquery/new/subquery-2.webp)
+        --8<-- 'code/builders/integrations/indexers/subquery/terminal/select-network-moonbeam.md'
 
     3. You'll be prompted to **Select a template project**. Depending on the network you chose in the prior step, the template options may vary
 
@@ -84,14 +84,14 @@ To get started, you'll need to [create a SubQuery project](https://academy.subqu
             | `moonriver-evm-starter` |    A starter EVM project that indexes ERC-20 `Transfer` events and `approve` calls     |
             |   `Moonriver-starter`   | A starter Substrate project that indexes balance transfers through the Balances Pallet |
 
-        ![The SubQuery CLI choose a template project menu.](/images/builders/integrations/indexers/subquery/new/subquery-3.webp)
+        --8<-- 'code/builders/integrations/indexers/subquery/terminal/select-template.md'
 
     4. You'll be prompted to add additional information, such as the RPC endpoint, the project's author, and the description of the project. For these, you can just hit enter and accept the default or customize them as you see fit
 
         !!! note
             To avoid hitting the rate limits of public RPC endpoints, it is recommended to have your own endpoint and API key, which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=\_blank}
 
-        ![The terminal output after creating a project using the SubQuery CLI.](/images/builders/integrations/indexers/subquery/new/subquery-4.webp)
+        --8<-- 'code/builders/integrations/indexers/subquery/terminal/select-rpc.md'
 
 4. After you've gone through all of the prompts, the starter project will be cloned. You'll just need to install dependencies from within the project directory:
 
@@ -168,7 +168,7 @@ In the `schema.graphql` file, you can use GraphQL entities to define the shape o
     yarn codegen
     ```
 
-![The terminal output after generating the GraphQL models.](/images/builders/integrations/indexers/subquery/new/subquery-5.webp)
+--8<-- 'code/builders/integrations/indexers/subquery/terminal/codegen.md'
 
 The generated models will be created in the `src/types/models` directory. These models will be used in the mapping handlers that process the indexed data.
 
@@ -350,7 +350,7 @@ To run your indexer locally using Docker, you can take the following steps:
         yarn build
         ```
 
-    ![The terminal output after building your project.](/images/builders/integrations/indexers/subquery/new/subquery-6.webp)
+    --8<-- 'code/builders/integrations/indexers/subquery/terminal/npm-run-build.md'
 
     !!! note
         If you make changes to the `project.ts` file, you'll need to rebuild your project.
@@ -369,7 +369,7 @@ To run your indexer locally using Docker, you can take the following steps:
         yarn start:docker
         ```
 
-    ![The terminal output after starting up the Docker container for your project.](/images/builders/integrations/indexers/subquery/new/subquery-7.webp)
+    --8<-- 'code/builders/integrations/indexers/subquery/terminal/logs.md'
 
 3. Head to `http://localhost:3000` to open the GraphQL playground and submit queries. You can open up the **DOCS** or **SCHEMA** tab on the playground as a reference when creating your queries
 
@@ -380,7 +380,7 @@ To run your indexer locally using Docker, you can take the following steps:
         substrate-demo-graphql-engine-1  | <subql-query> INFO Started playground at `http://localhost:3000`
         ```
 
-    ![The GraphQL playground in the browser.](/images/builders/integrations/indexers/subquery/new/subquery-8.webp)
+    ![The GraphQL playground in the browser.](/images/builders/integrations/indexers/subquery/subquery-1.webp)
 
 And that's it! For a step-by-step tutorial on how to use the `moonbeam-substrate-evm-starter` template project, you can refer to [SubQuery's Moonbeam (EVM) Quick Start documentation](https://academy.subquery.network/quickstart/quickstart_chains/polkadot-moonbeam.html){target=\_blank}.
 

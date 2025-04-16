@@ -243,7 +243,7 @@ queryData();
 
 You can execute this code with a node, and the following `dataQuery` output should look like this:
 
-![Band Protocol JavaScript Library](/images/builders/integrations/oracles/band/band-console.webp)
+--8<-- 'code/builders/integrations/oracles/band/terminal/get-data.md'
 
 Note that compared to the request done via smart contracts, the result is given directly in the correct units.
 
