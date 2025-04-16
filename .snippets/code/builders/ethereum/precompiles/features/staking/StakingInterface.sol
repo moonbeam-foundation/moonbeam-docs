@@ -11,7 +11,7 @@ ParachainStaking constant PARACHAIN_STAKING_CONTRACT = ParachainStaking(
 
 /// @author The Moonbeam Team
 /// @title Pallet Parachain Staking Interface
-/// @dev The interface through which Solidity contracts will interact with Parachain Staking
+/// @dev The interface through which solidity contracts will interact with Parachain Staking
 /// We follow this same interface including four-byte function selectors, in the precompile that
 /// wraps the pallet
 /// @custom:address 0x0000000000000000000000000000000000000800
@@ -28,7 +28,7 @@ interface ParachainStaking {
     /// @return A boolean confirming whether the address is a collator candidate
     function isCandidate(address candidate) external view returns (bool);
 
-    /// @dev Check whether the specified address is currently a part of the active set
+    /// @dev Check whether the specifies address is currently a part of the active set
     /// @custom:selector 740d7d2a
     /// @param candidate the address that we want to confirm is a part of the active set
     /// @return A boolean confirming whether the address is a part of the active set
@@ -205,20 +205,6 @@ interface ParachainStaking {
     /// @dev Cancel pending candidate bond request
     /// @custom:selector b5ad5f07
     function cancelCandidateBondLess() external;
-
-    /// @notice DEPRECATED use delegateWithAutoCompound instead for lower weight and better UX
-    /// @dev Make a delegation in support of a collator candidate
-    /// @custom:selector 829f5ee3
-    /// @param candidate The address of the supported collator candidate
-    /// @param amount The amount bonded in support of the collator candidate
-    /// @param candidateDelegationCount The number of delegations in support of the candidate
-    /// @param delegatorDelegationCount The number of existing delegations by the caller
-    function delegate(
-        address candidate,
-        uint256 amount,
-        uint256 candidateDelegationCount,
-        uint256 delegatorDelegationCount
-    ) external;
 
     /// @dev Make a delegation in support of a collator candidate
     /// @custom:selector 4b8bc9bf
