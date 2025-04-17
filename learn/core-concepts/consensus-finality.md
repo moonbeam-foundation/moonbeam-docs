@@ -131,7 +131,7 @@ Using the following three RPC requests from the Substrate JSON-RPC, you can fetc
 
 The [Polkadot.js API package](/builders/substrate/libraries/polkadot-js-api/){target=\_blank} and [Python Substrate Interface package](/builders/substrate/libraries/py-substrate-interface/){target=\_blank} provide developers with a way to interact with Substrate chains using JavaScript and Python.
 
-You can find more information about Polkadot.js and the Substrate JSON-RPC in the [official Polkadot.js documentation site](https://polkadot.js.org/docs/substrate/rpc){target=\_blank}, and more about Python Substrate Interface in the [official PySubstrate documentation site](https://polkascan.github.io/py-substrate-interface){target=\_blank}.
+You can find more information about Polkadot.js and the Substrate JSON-RPC in the [official Polkadot.js documentation site](https://polkadot.js.org/docs/substrate/rpc){target=\_blank}, and more about Python Substrate Interface in the [official PySubstrate documentation site](https://jamdottech.github.io/py-polkadot-sdk/){target=\_blank}.
 
 === "Polkadot.js"
 
