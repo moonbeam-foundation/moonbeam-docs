@@ -252,7 +252,7 @@ keypair = Keypair.create_from_mnemonic(mnemonic, crypto_type=KeypairType.ECDSA)
 
 The [`compose_call`](https://jamdottech.github.io/py-polkadot-sdk/reference/base/?h=compose_call#substrateinterface.base.SubstrateInterface.compose_call){target=\_blank} method can be used to compose a call payload which can be used as an unsigned extrinsic or a proposal.
 
-Then the payload can be signed using a keypair through the [`create_signed_extrinsic`](https://polkascan.github.io/py-substrate-interface/#substrateinterface.SubstrateInterface.create_signed_extrinsic){target=\_blank} method.
+Then the payload can be signed using a keypair through the [`create_signed_extrinsic`](https://jamdottech.github.io/py-polkadot-sdk/reference/base/?h=create_signed_extrinsic#substrateinterface.base.SubstrateInterface.create_signed_extrinsic){target=\_blank} method.
 
 The signed extrinsic can then be submitted using the [`submit_extrinsic`](https://jamdottech.github.io/py-polkadot-sdk/reference/base/?h=submi#substrateinterface.base.SubstrateInterface.submit_extrinsic){target=\_blank} method.
 
