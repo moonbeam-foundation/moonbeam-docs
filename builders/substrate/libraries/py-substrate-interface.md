@@ -90,7 +90,7 @@ In this section, you will learn how to query for on-chain information of Moonbea
 
 ### Accessing Runtime Constants {: #accessing-runtime-constants }
 
-All runtime constants, such as `BlockWeights`, `DefaultBlocksPerRound` and `ExistentialDeposit`, are provided in the metadata. You can use the [`get_metadata_constants`](https://jamdottech.github.io/py-polkadot-sdk/reference/base/?h=get+constant+metadata#substrateinterface.base.SubstrateInterface.get_constant){target=\_blank} method to see a list of available runtime constants within Moonbeam network's metadata.
+All runtime constants, such as `BlockWeights`, `DefaultBlocksPerRound` and `ExistentialDeposit`, are provided in the metadata. You can use the [`get_metadata_constants`](https://jamdottech.github.io/py-polkadot-sdk/reference/base/?h=get+constant+metadata#substrateinterface.base.SubstrateInterface.get_metadata_constants){target=\_blank} method to see a list of available runtime constants within Moonbeam network's metadata.
 
 Runtime constants available in the metadata can be queried through the [`get_constant`](https://jamdottech.github.io/py-polkadot-sdk/reference/base/?h=get+constant+metadata#substrateinterface.base.SubstrateInterface.get_constant){target=\_blank} method.
 
@@ -116,9 +116,9 @@ print(constant.value)
 
 You can retrieve basic information about Moonbeam networks, such as blocks and extrinsics, using the Python Substrate Interface API.
 
-To retrieve a block, you can use the [`get_block`](https://jamdottech.github.io/py-polkadot-sdk/reference/base/?h=get+constant+metadata#substrateinterface.base.SubstrateInterface.get_constant){target=\_blank} method. You can also access extrinsics and their data fields inside a block object, which is simply a Python dictionary.
+To retrieve a block, you can use the [`get_block`](https://jamdottech.github.io/py-polkadot-sdk/reference/base/?h=get+constant+metadata#substrateinterface.base.SubstrateInterface.get_block){target=\_blank} method. You can also access extrinsics and their data fields inside a block object, which is simply a Python dictionary.
 
-To retrieve a block header, you can use the [`get_block_header`](https://jamdottech.github.io/py-polkadot-sdk/reference/base/?h=get+constant+metadata#substrateinterface.base.SubstrateInterface.get_constant){target=\_blank} method.  
+To retrieve a block header, you can use the [`get_block_header`](https://jamdottech.github.io/py-polkadot-sdk/reference/base/?h=get+constant+metadata#substrateinterface.base.SubstrateInterface.get_block_header){target=\_blank} method.  
 
 ```python
 # Imports
