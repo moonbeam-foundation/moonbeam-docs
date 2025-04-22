@@ -124,25 +124,6 @@ To create a custom OnFinality endpoint, go to [OnFinality](https://onfinality.io
 
 ![OnFinality](/images/builders/get-started/endpoints/endpoints-6.webp)
 
-### Pocket Network {: #pokt }
-
-[Pocket Network](https://www.pokt.network){target=\_blank} is a decentralized node service that provides a free personal endpoint to DApps on Moonbeam & Moonriver.  
-
-To get your own endpoint, go to [Pocket Network](https://mainnet.portal.pokt.network/#){target=\_blank} and sign up or log in. From the **Portal**, you can:  
-
-1. Click on **Apps**
-2. Select **Create**
-3. Enter the name of your DApp and select your corresponding network
-4. Your new endpoint will be generated and displayed for you in the following app screen
-
-![Pocket Network](/images/builders/get-started/endpoints/endpoints-7.webp)
-
-You don't have to generate a new DApp for every endpoint! You can add a new chain to your preexisting DApp:  
-
-1. Click on your preexisting app in the **Apps** menu
-2. In the **Endpoint** section, select the **Add new** button and search for your desired network in the dropdown
-3. Your new endpoint will be generated and displayed for you
-
 ### UnitedBloc {: #unitedbloc }
 
 [UnitedBloc](https://medium.com/unitedbloc/unitedbloc-rpc-c84972f69457){target=\_blank} is a collective of community collators from both Moonbeam and Moonriver. To provide value for the community, they offer public RPC services for the Moonbeam, Moonriver, and Moonbase Alpha networks.
