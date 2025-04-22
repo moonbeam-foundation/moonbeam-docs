@@ -335,7 +335,7 @@ You can review the [relative Frontier PR](https://github.com/polkadot-evm/fronti
 
 ---
 
-#### EVM Tracing Weight Limits {: #evm-tracing-weight-limits }
+#### Skipped Ethereum Transaction Traces {: #skipped-ethereum-transaction-traces }
 
 Runtimes with the `evm-tracing` feature enabled introduced additional `ref_time` overhead due to special logic that traces Ethereum transactions (emitting events for each component: gasometer, runtime, EVM) used to fill information for RPC calls like `debug_traceTransaction` and `trace_filter`. 
 
