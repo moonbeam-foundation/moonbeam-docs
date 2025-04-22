@@ -186,7 +186,7 @@ result = ws_provider.subscribe_block_headers(subscription_handler)
 
 ### Querying for Storage Information {: #querying-for-storage-information }
 
-You can use the [`get_metadata_storage_functions`](https://jamdottech.github.io/py-polkadot-sdk/reference/base/?h=get+constant+metadata#substrateinterface.base.SubstrateInterface.get_metadata_storage_function){target=\_blank} to see a list of available storage functions within Moonbeam network's metadata.
+You can use the [`get_metadata_storage_functions`](https://jamdottech.github.io/py-polkadot-sdk/reference/base/?h=get+constant+metadata#substrateinterface.base.SubstrateInterface.get_metadata_storage_functions){target=\_blank} to see a list of available storage functions within Moonbeam network's metadata.
 
 Chain states that are provided in the metadata through storage functions can be queried through the [`query`](https://jamdottech.github.io/py-polkadot-sdk/reference/base/?h=get+constant+metadata#substrateinterface.base.SubstrateInterface.query){target=\_blank} method.
 
@@ -254,7 +254,7 @@ The [`compose_call`](https://jamdottech.github.io/py-polkadot-sdk/reference/base
 
 Then the payload can be signed using a keypair through the [`create_signed_extrinsic`](https://jamdottech.github.io/py-polkadot-sdk/reference/base/?h=create_signed_extrinsic#substrateinterface.base.SubstrateInterface.create_signed_extrinsic){target=\_blank} method.
 
-The signed extrinsic can then be submitted using the [`submit_extrinsic`](https://jamdottech.github.io/py-polkadot-sdk/reference/base/?h=submi#substrateinterface.base.SubstrateInterface.submit_extrinsic){target=\_blank} method.
+The signed extrinsic can then be submitted using the [`submit_extrinsic`](https://jamdottech.github.io/py-polkadot-sdk/reference/base/#substrateinterface.base.SubstrateInterface.submit_extrinsic){target=\_blank} method.
 
 This method will also return an `ExtrinsicReceipt` object which contains information about the on-chain execution of the extrinsic. If you need to examine the receipt object, you can set the `wait_for_inclusion` to `True` when submitting the extrinsic to wait until the extrinsic is successfully included into the block.
 
