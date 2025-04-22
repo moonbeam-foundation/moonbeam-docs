@@ -436,7 +436,7 @@ networks:
     tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.44.0-3600-a941
     chain_spec: moonriver
     block_explorer: https://moonriver.moonscan.io/
-    spec_version: runtime-3501
+    spec_version: runtime-3600
     binary_name: moonbeam
     min_gas_price: 0.3125
     block_time: 6
