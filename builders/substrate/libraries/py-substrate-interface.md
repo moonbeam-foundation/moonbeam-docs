@@ -90,9 +90,10 @@ In this section, you will learn how to query for on-chain information of Moonbea
 
 ### Accessing Runtime Constants {: #accessing-runtime-constants }
 
-All runtime constants, such as `BlockWeights`, `DefaultBlocksPerRound` and `ExistentialDeposit`, are provided in the metadata. You can use the [`get_metadata_constants`](https://jamdottech.github.io/py-polkadot-sdk/reference/base/?h=get+constant+metadata#substrateinterface.base.SubstrateInterface.get_metadata_constants){target=\_blank} method to see a list of available runtime constants within Moonbeam network's metadata.
+All runtime constants, such as `BlockWeights`, `DefaultBlocksPerRound` and `ExistentialDeposit`, are provided in the metadata. You can use the [`get_metadata_constants`](https://jamdottech.github.io/py-polkadot-sdk/reference/base/#substrateinterface.base.SubstrateInterface.get_metadata_constants){target=\_blank} method to see a list of available runtime constants within Moonbeam network's metadata.
 
-Runtime constants available in the metadata can be queried through the [`get_constant`](https://jamdottech.github.io/py-polkadot-sdk/reference/base/?h=get+constant+metadata#substrateinterface.base.SubstrateInterface.get_constant){target=\_blank} method.
+Runtime constants available in the metadata can be queried through the [`get_constant`](https://jamdottech.github.io/py-polkadot-sdk/reference/base/#substrateinterface.base.SubstrateInterface.get_constant
+){target=\_blank} method.
 
 ```python
 # Imports
@@ -116,9 +117,9 @@ print(constant.value)
 
 You can retrieve basic information about Moonbeam networks, such as blocks and extrinsics, using the Python Substrate Interface API.
 
-To retrieve a block, you can use the [`get_block`](https://jamdottech.github.io/py-polkadot-sdk/reference/base/?h=get+constant+metadata#substrateinterface.base.SubstrateInterface.get_block){target=\_blank} method. You can also access extrinsics and their data fields inside a block object, which is simply a Python dictionary.
+To retrieve a block, you can use the [`get_block`](https://jamdottech.github.io/py-polkadot-sdk/reference/base/#substrateinterface.base.SubstrateInterface.get_block){target=\_blank} method. You can also access extrinsics and their data fields inside a block object, which is simply a Python dictionary.
 
-To retrieve a block header, you can use the [`get_block_header`](https://jamdottech.github.io/py-polkadot-sdk/reference/base/?h=get+constant+metadata#substrateinterface.base.SubstrateInterface.get_block_header){target=\_blank} method.  
+To retrieve a block header, you can use the [`get_block_header`](https://jamdottech.github.io/py-polkadot-sdk/reference/base/#substrateinterface.base.SubstrateInterface.get_block_header){target=\_blank} method.  
 
 ```python
 # Imports
@@ -186,9 +187,9 @@ result = ws_provider.subscribe_block_headers(subscription_handler)
 
 ### Querying for Storage Information {: #querying-for-storage-information }
 
-You can use the [`get_metadata_storage_functions`](https://jamdottech.github.io/py-polkadot-sdk/reference/base/?h=get+constant+metadata#substrateinterface.base.SubstrateInterface.get_metadata_storage_functions){target=\_blank} to see a list of available storage functions within Moonbeam network's metadata.
+You can use the [`get_metadata_storage_functions`](https://jamdottech.github.io/py-polkadot-sdk/reference/base/#substrateinterface.base.SubstrateInterface.get_metadata_storage_functions){target=\_blank} to see a list of available storage functions within Moonbeam network's metadata.
 
-Chain states that are provided in the metadata through storage functions can be queried through the [`query`](https://jamdottech.github.io/py-polkadot-sdk/reference/base/?h=get+constant+metadata#substrateinterface.base.SubstrateInterface.query){target=\_blank} method.
+Chain states that are provided in the metadata through storage functions can be queried through the [`query`](https://jamdottech.github.io/py-polkadot-sdk/reference/base/#substrateinterface.base.SubstrateInterface.query){target=\_blank} method.
 
 The Substrate system modules, such as `System`, `Timestamp`, and `Balances`, can be queried to provide basic information such as account nonce and balance. The available storage functions are read from the metadata dynamically, so you can also query for storage information on Moonbeam custom modules, such as `ParachainStaking` and `Democracy`, for state information that's specific to Moonbeam.
 
@@ -250,9 +251,9 @@ keypair = Keypair.create_from_mnemonic(mnemonic, crypto_type=KeypairType.ECDSA)
 
 ### Forming and Sending a Transaction {: #forming-and-sending-a-transaction }
 
-The [`compose_call`](https://jamdottech.github.io/py-polkadot-sdk/reference/base/?h=compose_call#substrateinterface.base.SubstrateInterface.compose_call){target=\_blank} method can be used to compose a call payload which can be used as an unsigned extrinsic or a proposal.
+The [`compose_call`](https://jamdottech.github.io/py-polkadot-sdk/reference/base/#substrateinterface.base.SubstrateInterface.compose_call){target=\_blank} method can be used to compose a call payload which can be used as an unsigned extrinsic or a proposal.
 
-Then the payload can be signed using a keypair through the [`create_signed_extrinsic`](https://jamdottech.github.io/py-polkadot-sdk/reference/base/?h=create_signed_extrinsic#substrateinterface.base.SubstrateInterface.create_signed_extrinsic){target=\_blank} method.
+Then the payload can be signed using a keypair through the [`create_signed_extrinsic`](https://jamdottech.github.io/py-polkadot-sdk/reference/base/#substrateinterface.base.SubstrateInterface.create_signed_extrinsic){target=\_blank} method.
 
 The signed extrinsic can then be submitted using the [`submit_extrinsic`](https://jamdottech.github.io/py-polkadot-sdk/reference/base/#substrateinterface.base.SubstrateInterface.submit_extrinsic){target=\_blank} method.
 
@@ -303,7 +304,7 @@ except SubstrateRequestException as e:
 
 ### Offline Signing {: #offline-signing }
 
-You can sign transaction payloads or any arbitrary data using a keypair object through the [`sign`](https://jamdottech.github.io/py-polkadot-sdk/usage/keypair-creation-and-signing/?h=sign#keypair-creation-and-signing){target=\_blank} method. This can be used for offline signing of transactions.
+You can sign transaction payloads or any arbitrary data using a keypair object through the [`sign`](https://jamdottech.github.io/py-polkadot-sdk/usage/keypair-creation-and-signing/#keypair-creation-and-signing){target=\_blank} method. This can be used for offline signing of transactions.
 
 1. First, generate the signature payload on an online machine:
 
@@ -390,7 +391,7 @@ You can sign transaction payloads or any arbitrary data using a keypair object t
 
 ## Custom RPC Requests {: #custom-rpc-requests }
 
-You can also make custom RPC requests with the [`rpc_request`](https://jamdottech.github.io/py-polkadot-sdk/reference/base/?h=rpc#substrateinterface.base.SubstrateInterface.rpc_request){target=\_blank} method.
+You can also make custom RPC requests with the [`rpc_request`](https://jamdottech.github.io/py-polkadot-sdk/reference/base/#substrateinterface.base.SubstrateInterface.rpc_request){target=\_blank} method.
 
 This is particularly useful for interacting with Moonbeam's [Ethereum JSON-RPC](/builders/ethereum/json-rpc/eth-rpc/){target=\_blank} endpoints or Moonbeam's [custom RPC](/builders/ethereum/json-rpc/moonbeam-custom-api/){target=\_blank} endpoints.
 
