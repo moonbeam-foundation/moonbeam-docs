@@ -1,16 +1,14 @@
-name: Use Reusable MkDocs Build
+name: Trigger MkDocs Build
 
 on:
-  push:
+  pull_request_target:
     branches: [main]
-  pull_request:
-    branches: [main]
-  workflow_dispatch:
 
 jobs:
-  build-docs:
-    uses: Telucero/workflows/.github/workflows/check-mkdocs-build.yml@Central_repo_test  # Specify the branch name here
+  call-build-docs:
+    uses: Telucero/workflows/.github/workflows/check-mkdocs-build.yml@Central_repo_test
     with:
-      mkdocs_repo: Telucero/moonbeam-mkdocs  # or the appropriate repo for the client
-      docs_dir: docs
-      deploy: false
+      repo_name: moonbeam-docs
+      mkdocs_repo: Telucero/moonbeam-mkdocs
+    secrets:
+      REPO_SCOPED_TOKEN: ${{ secrets.REPO_SCOPED_TOKEN }}
