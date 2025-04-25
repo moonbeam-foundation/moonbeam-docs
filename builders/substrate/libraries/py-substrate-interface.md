@@ -92,8 +92,7 @@ In this section, you will learn how to query for on-chain information of Moonbea
 
 All runtime constants, such as `BlockWeights`, `DefaultBlocksPerRound` and `ExistentialDeposit`, are provided in the metadata. You can use the [`get_metadata_constants`](https://jamdottech.github.io/py-polkadot-sdk/reference/base/#substrateinterface.base.SubstrateInterface.get_metadata_constants){target=\_blank} method to see a list of available runtime constants within Moonbeam network's metadata.
 
-Runtime constants available in the metadata can be queried through the [`get_constant`](https://jamdottech.github.io/py-polkadot-sdk/reference/base/#substrateinterface.base.SubstrateInterface.get_constant
-){target=\_blank} method.
+Runtime constants available in the metadata can be queried through the [`get_constant`](https://jamdottech.github.io/py-polkadot-sdk/reference/base/#substrateinterface.base.SubstrateInterface.get_constant){target=\_blank} method.
 
 ```python
 # Imports
@@ -304,7 +303,7 @@ except SubstrateRequestException as e:
 
 ### Offline Signing {: #offline-signing }
 
-You can sign transaction payloads or any arbitrary data using a keypair object through the [`sign`](https://jamdottech.github.io/py-polkadot-sdk/usage/keypair-creation-and-signing/#keypair-creation-and-signing){target=\_blank} method. This can be used for offline signing of transactions.
+You can sign transaction payloads or any arbitrary data using a keypair object through the [`sign`](https://jamdottech.github.io/py-polkadot-sdk/reference/keypair/#substrateinterface.keypair.Keypair.sign){target=\_blank} method. This can be used for offline signing of transactions.
 
 1. First, generate the signature payload on an online machine:
 
