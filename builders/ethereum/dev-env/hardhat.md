@@ -145,7 +145,7 @@ npm install --save-dev hardhat@^3.0.0
     npx hardhat keystore set DEV_PRIVATE_KEY
     ```
 
-3. Update your configuration file to use the encrypted secrets:
+Then, update your configuration file to use the encrypted secrets:
 
 === "Moonbeam"
 
@@ -154,6 +154,8 @@ npm install --save-dev hardhat@^3.0.0
       solidity: '0.8.28',
       networks: {
         moonbeam: {
+          type: "http",
+          chainType: "generic",
           url: configVariable("MOONBEAM_RPC_URL"),
           chainId: {{ networks.moonbeam.chain_id }}, // (hex: {{ networks.moonbeam.hex_chain_id }}),
           accounts: [configVariable("MOONBEAM_PRIVATE_KEY")],
@@ -169,6 +171,8 @@ npm install --save-dev hardhat@^3.0.0
       solidity: '0.8.28',
       networks: {
         moonriver: {
+          type: "http",
+          chainType: "generic",
           url: configVariable("MOONRIVER_RPC_URL"),
           chainId: {{ networks.moonriver.chain_id }}, // (hex: {{ networks.moonriver.hex_chain_id }}),
           accounts: [configVariable("MOONRIVER_PRIVATE_KEY")],
@@ -184,6 +188,8 @@ npm install --save-dev hardhat@^3.0.0
       solidity: '0.8.28',
       networks: {
         moonbase: {
+          type: "http",
+          chainType: "generic",
           url: configVariable("MOONBASE_RPC_URL"),
           chainId: {{ networks.moonbase.chain_id }}, // (hex: {{ networks.moonbase.hex_chain_id }}),
           accounts: [configVariable("MOONBASE_PRIVATE_KEY")],
@@ -199,6 +205,8 @@ npm install --save-dev hardhat@^3.0.0
       solidity: '0.8.28',
       networks: {
         dev: {
+          type: "http",
+          chainType: "generic",
           url: configVariable("DEV_RPC_URL"),
           chainId: {{ networks.development.chain_id }}, // (hex: {{ networks.development.hex_chain_id }}),
           accounts: [configVariable("DEV_PRIVATE_KEY")],
@@ -250,16 +258,16 @@ Now that you've configured your project, you can begin the development process b
 
 To add the contract, you'll take the following steps:
 
-1. Create a `contracts` directory
+1. Change into the `contracts` directory
 
     ```sh
-    mkdir contracts
+    cd contracts
     ```
 
 2. Create a `Box.sol` file
 
     ```sh
-    touch contracts/Box.sol
+    touch Box.sol
     ```
 
 3. Open the file and add the following contract to it:
@@ -311,7 +319,7 @@ To deploy the contract, you'll use Hardhat Ignition, a declarative framework for
 To set up the proper file structure for your Ignition module, create a folder named `ignition` and a subdirectory called `modules`.  Then add a new file to it called `Box.js`. You can take all three of these steps with the following command:
 
 ```sh
-mkdir ignition ignition/modules && touch ignition/modules/Box.js
+cd ignition/modules && touch Box.js
 ```
 
 Next, you can write your Hardhat Ignition module. To get started, take the following steps:
@@ -323,36 +331,35 @@ Next, you can write your Hardhat Ignition module. To get started, take the follo
 5. Return an object from the module. This makes the `Box` contract accessible for interaction in Hardhat tests and scripts
 
 ```js
-// 1.  Import the `buildModule` function from the Hardhat Ignition module
-const { buildModule } = require("@nomicfoundation/hardhat-ignition/modules");
+// 1. Import the `buildModule` function from the Hardhat Ignition module
+import { buildModule } from "@nomicfoundation/hardhat-ignition/modules";
 
 // 2. Export a module using `buildModule`
-module.exports = buildModule("BoxModule", (m) => {
-  
+// Use `export default` instead of `module.exports`
+export default buildModule("BoxModule", (m) => {
   // 3. Use the `getAccount` method to select the deployer account
   const deployer = m.getAccount(0);
-
+  
   // 4. Deploy the `Box` contract
   const box = m.contract("Box", [], {
-    from: deployer,
+    from: deployer, 
   });
-
-  // 5. Return an object from the module 
+  
+  // 5. Return an object from the module
   return { box };
 });
-
 ```
 
 To run the script and deploy the `Box.sol` contract, use the following command, which requires you to specify the network name as defined in your `hardhat.config.js`. If you don't specify a network, hardhat will deploy the contract to a local hardhat network by default. 
 
 ```sh
-npx hardhat ignition deploy ./ignition/modules/Box.js --network moonbase
+npx hardhat ignition deploy ./Box.js --network moonbase
 ```
 
 !!! note
     If you're using another Moonbeam network, make sure that you specify the correct network. The network name needs to match how it's defined in the `hardhat.config.js` file.
 
-You'll be prompted to confirm the network you wish to deploy to. After a few seconds after you confirm, the contract is deployed, and you'll see the contract address in the terminal.
+You'll be prompted to enter your password for Hardhat secrets manager. Next, you'll be prompted to confirm the network you wish to deploy to. After a few seconds after you confirm, the contract is deployed, and you'll see the contract address in the terminal.
 
 --8<-- 'code/builders/ethereum/dev-env/hardhat/terminal/deploy-moonbase.md'
 
