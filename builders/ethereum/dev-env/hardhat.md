@@ -66,9 +66,8 @@ You will need to create a Hardhat project if you don't already have one. You can
      - A TypeScript Hardhat project using Mocha and Ethers.js
 
     For this example, you can choose either option based on your preference. If you choose the Mocha and Ethers.js option, you'll get a project structure with:
-    - A sample contract in `contracts/Lock.sol`
-    - A test file in `test/Lock.ts`
-    - A deployment script in `scripts/deploy.ts`
+    - A sample contract in `contracts/Counter.sol`
+    - A test file in `test/Counter.ts`
     - TypeScript configuration
     - Mocha and Ethers.js dependencies
 
@@ -308,7 +307,7 @@ npx hardhat compile
 
 --8<-- 'code/builders/ethereum/dev-env/hardhat/terminal/compile.md'
 
-After compilation, an `artifacts` directory is created that holds the bytecode and metadata of the contract, which are `.json` files. It’s a good idea to add this directory to a `.gitignore` file.
+After compilation, an `artifacts` directory is created that holds the bytecode and metadata of the contract, which are `.json` files. It's a good idea to add this directory to a `.gitignore` file.
 
 If you make changes to the contract after you've compiled it, you can compile it again using the same command. Hardhat will look for any changes and recompile the contract. If no changes are found, nothing will be compiled. If needed, you can force a compilation using the `clean` task, which will clear the cache and delete the old artifacts.
 
