@@ -419,7 +419,7 @@ Similarly to the deployment script, you can create a script to interact with you
 To get started, create a `set-value.js` file in the `scripts` directory:
 
 ```sh
-mkdir scripts && touch scripts/set-value.js
+cd scripts && touch set-value.js
 ```
 
 Now paste the following contract into the `set-value.js` file:
@@ -452,7 +452,7 @@ main()
 To run the script, you can use the following command:
 
 ```sh
-npx hardhat run --network moonbase scripts/set-value.js
+npx hardhat run --network moonbase set-value.js
 ```
 
 The script should return `2` as the value.
