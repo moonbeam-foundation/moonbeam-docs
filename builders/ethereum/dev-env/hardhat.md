@@ -59,13 +59,15 @@ You will need to create a Hardhat project if you don't already have one. You can
         `npx` is used to run executables installed locally in your project. Although Hardhat can be installed globally, it is recommended to install it locally in each project so that you can control the version on a project-by-project basis.
 
 5. You'll be prompted with a series of questions to set up your project:
-   - Choose where to initialize the project (default is current directory)
-   - Confirm converting to ESM (required for Hardhat v3)
-   - Select the type of project to initialize:
-     - A TypeScript Hardhat project using Node Test Runner and Viem
-     - A TypeScript Hardhat project using Mocha and Ethers.js
+
+    - Choose where to initialize the project (default is current directory)
+    - Confirm converting to ESM (required for Hardhat v3)
+    - Select the type of project to initialize:
+        - A TypeScript Hardhat project using Node Test Runner and Viem
+        - A TypeScript Hardhat project using Mocha and Ethers.js
 
     For this example, you can choose either option based on your preference. If you choose the Mocha and Ethers.js option, you'll get a project structure with:
+    
     - A sample contract in `contracts/Counter.sol`
     - A test file in `test/Counter.ts`
     - TypeScript configuration
