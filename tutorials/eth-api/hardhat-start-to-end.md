@@ -181,6 +181,8 @@ npm install hardhat@3.0.0-next.5
     ```bash
     npx hardhat keystore set DEV_RPC_URL
     npx hardhat keystore set DEV_PRIVATE_KEY
+    npx hardhat keystore set ALICE_PRIVATE_KEY
+    npx hardhat keystore set BOB_PRIVATE_KEY
     ```
 
 Then, update your configuration file to use the encrypted secrets:
@@ -246,8 +248,12 @@ Then, update your configuration file to use the encrypted secrets:
           type: "http",
           chainType: "generic",
           url: configVariable("DEV_RPC_URL"),
-          chainId: {{ networks.development.chain_id }}, // (hex: {{ networks.development.hex_chain_id }}),
-          accounts: [configVariable("DEV_PRIVATE_KEY")],
+          chainId: 1281, // 0x501 in hex
+          accounts: [
+            configVariable("DEV_PRIVATE_KEY"),
+            configVariable("ALICE_PRIVATE_KEY"), // Alice (Alith) account
+            configVariable("BOB_PRIVATE_KEY")    // Bob (Baltathar) account
+          ],
         },
       },
     };
@@ -276,8 +282,12 @@ module.exports = {
       type: "http",
       chainType: "generic",
       url: configVariable("DEV_RPC_URL"),
-      chainId: {{ networks.development.chain_id }}, // {{ networks.development.hex_chain_id }} in hex
-      accounts: [configVariable("DEV_PRIVATE_KEY")],
+      chainId: 1281, // 0x501 in hex
+      accounts: [
+        configVariable("DEV_PRIVATE_KEY"),
+        configVariable("ALICE_PRIVATE_KEY"), // Alice (Alith) account
+        configVariable("BOB_PRIVATE_KEY")    // Bob (Baltathar) account
+      ],
     },
     moonbeam: {
       type: "http",
@@ -299,7 +309,12 @@ module.exports = {
 ```
 
 !!! note
-    Any real funds sent to the Alice and Bob development accounts will be lost immediately. Take precautions to never send MainNet funds to exposed development accounts.
+    Any real funds sent to the Alice and Bob development accounts will be lost immediately. Take precautions to never send MainNet funds to exposed development accounts. The private keys for these accounts are:
+    
+    - Alice (Alith): `0x5fb92d6e98884f76de468fa3f6278f8807c48bebc13595d45af5bdc4da702133`
+    - Bob (Baltathar): `0x8075991ce870b93a8870eca0c0f91913d12f47948ca0fd25b49c6fa7cdbeee8b`
+    
+    These accounts should only be used on the local development node and never on Moonbeam MainNet or Moonbase Alpha.
 
 You're now ready to move on to compilation and testing.
 
