@@ -99,42 +99,55 @@ There are two primary ways to deploy contracts using Foundry. The first is the s
 
 ### Using Forge Create {: #using-forge-create }
 
-Deploying the contract with `forge create` takes a single command, but you must include an RPC endpoint, a funded private key, and constructor arguments. `MyToken.sol` asks for an initial supply of tokens in its constructor, so each of the following commands includes 100 as a constructor argument. You can deploy the `MyToken.sol` contract using the following command for the correct network:
+Before deploying, you'll need to set up your keystore by importing your private key. You can do this using the `cast wallet import` command as follows:
+
+```bash
+cast wallet import deployer --interactive
+```
+
+This will prompt you to:
+
+1. Enter your private key
+2. Enter a password to encrypt the keystore
+
+The account will be saved as "deployer" in your keystore. You can then use this account name in the deployment commands. You'll be prompted for your keystore password when deploying contracts or sending transactions. 
+
+Deploying the contract with `forge create` takes a single command, but you must include an RPC endpoint and constructor arguments. `MyToken.sol` asks for an initial supply of tokens in its constructor, so each of the following commands includes 100 as a constructor argument. You can deploy the `MyToken.sol` contract using the following command for the correct network:
 
 === "Moonbeam"
 
     ```bash
-    forge create --rpc-url {{ networks.moonbeam.rpc_url }} \
-    --constructor-args 100 \
-    --private-key INSERT_YOUR_PRIVATE_KEY \
-    src/MyToken.sol:MyToken
+    forge create src/MyToken.sol:MyToken \
+    --rpc-url {{ networks.moonbeam.rpc_url }} \
+    --account deployer \
+    --constructor-args 100
     ```
 
 === "Moonriver"
 
     ```bash
-    forge create --rpc-url {{ networks.moonriver.rpc_url }} \
-    --constructor-args 100 \
-    --private-key INSERT_YOUR_PRIVATE_KEY \
-    src/MyToken.sol:MyToken
+    forge create src/MyToken.sol:MyToken \
+    --rpc-url {{ networks.moonriver.rpc_url }} \
+    --account deployer \
+    --constructor-args 100
     ```
 
 === "Moonbase Alpha"
 
     ```bash
-    forge create --rpc-url {{ networks.moonbase.rpc_url }} \
-    --constructor-args 100 \
-    --private-key INSERT_YOUR_PRIVATE_KEY \
-    src/MyToken.sol:MyToken
+    forge create src/MyToken.sol:MyToken \
+    --rpc-url {{ networks.moonbase.rpc_url }} \
+    --account deployer \
+    --constructor-args 100
     ```
 
 === "Moonbeam Dev Node"
 
     ```bash
-    forge create --rpc-url {{ networks.development.rpc_url }} \
-    --constructor-args 100 \
-    --private-key INSERT_YOUR_PRIVATE_KEY \
-    src/MyToken.sol:MyToken
+    forge create src/MyToken.sol:MyToken \
+    --rpc-url {{ networks.development.rpc_url }} \
+    --account deployer \
+    --constructor-args 100
     ```
 
 After you've deployed the contract and a few seconds have passed, you should see the address in the terminal.
@@ -160,15 +173,12 @@ Now, go ahead and write the script. In the script folder, create a file named `M
 --8<-- 'code/builders/ethereum/dev-env/foundry/MyToken-script.sol'
 ```
 
-!!! remember
-    Remember never to store a production private key in a file, as shown above. This example is strictly for demonstration purposes.
-
 Notice that even though the above script is not being deployed, it still requires all the typical formatting for a Solidity contract, such as the pragma statement.
 
 You can deploy the `MyToken.sol` contract with the below command. Remember that it will execute all relevant steps in order. For this example, Foundry will first attempt a local simulation and a simulation against the provided RPC before deploying the contract. Foundry won't proceed with the deployment if any of the simulations fail.
 
 ```bash
-forge script script/MyToken.s.sol --rpc-url {{ networks.moonbase.rpc_url }} --broadcast
+forge script script/MyToken.s.sol --rpc-url {{ networks.moonbase.rpc_url }} --broadcast --account deployer
 ```
 
 If your script's execution succeeds, your terminal should resemble the output below.
@@ -372,7 +382,7 @@ Since you're done with this code, you can clear the state of Chisel so that it d
 !clear
 ```
 
-There's an even easier way to test with Chisel. When writing code that ends with a semicolon (`;`), Chisel will run it as a statement, storing its value in Chisel's runtime state. But if you only needed to see how the ABI-encoded data was represented, then you could get away with running the code as an expression. To try this out with the same `abi` example, write the following in the Chisel shell:  
+There's an even easier way to test with Chisel. When writing code that ends with a semicolon (`;`), Chisel will run it as a statement, storing its value in Chisel's runtime state. But if you only needed to see how the ABI-encoded data was represented, then you could get away with running the code as an expression. To try this out with the same `abi` example, write the following in the Chisel shell:
 
 ```bash
 abi.encode(100, true, "Develop on Moonbeam")
