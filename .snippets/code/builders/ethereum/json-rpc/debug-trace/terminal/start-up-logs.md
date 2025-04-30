@@ -1,7 +1,7 @@
 <div id="termynal" data-termynal>
   <span data-ty="input"><span class="file-path"></span>docker run --network host  \
     <br>-u $(id -u ${USER}):$(id -g ${USER}) \
-        moonbeamfoundation/moonbeam-tracing:v0.44.0-3600-a941 \
+        moonbeamfoundation/moonbeam-tracing:v0.44.1-3600-a941 \
     <br>--name="Moonbean-Tracing-Tutorial" \
     <br>--unsafe-rpc-external \
     <br>--ethapi=debug,trace,txpool \
@@ -11,7 +11,7 @@
   </span>
   <br>
   <span data-ty> 2025-04-01 16:02:43 Moonbeam Parachain Collator
-    <br> 2025-04-01 16:02:43 ✌️  version 0.44.0-a8825ca4776
+    <br> 2025-04-01 16:02:43 ✌️  version 0.44.1-a8825ca4776
     <br> 2025-04-01 16:02:43 ❤️  by PureStake, 2019-2025
     <br> 2025-04-01 16:02:43 📋 Chain specification: Moonbase Development Testnet
     <br> 2025-04-01 16:02:43 🏷  Node name: Moonbean-Tracing-Tutorial
