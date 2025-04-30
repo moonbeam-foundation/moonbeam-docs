@@ -11,3 +11,4 @@ jobs:
     with:
         llms_filename: llms-full.txt
         repo_dir: moonbeam-docs
+        llms_script_dir: scripts/llms-scripts
