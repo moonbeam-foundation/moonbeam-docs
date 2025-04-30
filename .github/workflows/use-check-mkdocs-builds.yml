@@ -3,7 +3,7 @@ name: CheckMkDocsBuild
 on:
   pull_request_target:
     branches:
-      - master
+      - main
 
 jobs:
   build-docs:
