@@ -1,14 +1,15 @@
-name: Trigger MkDocs Build
+name: CheckMkDocsBuild
 
 on:
   pull_request_target:
-    branches: [main]
+    branches:
+      - master
 
 jobs:
-  call-build-docs:
-    uses: Telucero/workflows/.github/workflows/check-mkdocs-build.yml@Central_repo_test
+  build-docs:
+    uses: Telucero/workflows/.github/workflows/mkdocs-build.yml@main
     with:
-      repo_name: moonbeam-docs
-      mkdocs_repo: Telucero/moonbeam-mkdocs
+      mkdocs_repo: papermoonio/moonbeam-mkdocs
+      docs_dir: moonbeam-docs
     secrets:
-      REPO_SCOPED_TOKEN: ${{ secrets.REPO_SCOPED_TOKEN }}
+      token: ${{ secrets.REPO_SCOPED_TOKEN }}
