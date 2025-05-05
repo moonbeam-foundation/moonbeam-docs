@@ -818,12 +818,12 @@ networks:
     chain_id: 1284
     hex_chain_id: '0x504'
     node_directory: /var/lib/moonbeam-data
-    parachain_release_tag: v0.44.0
-    parachain_sha256sum: bea023a6b8896075d52848d6e79b31f8f08cf69b812634fbda8c68729681188d
-    tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.44.0-3600-a941
+    parachain_release_tag: v0.44.1
+    parachain_sha256sum: 766c2063681f55805d7b11428e39d6191ef7ceaca2c400129662ff03a4d62f4e
+    tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.44.1-3600-a941
     chain_spec: moonbeam
     block_explorer: https://moonscan.io
-    spec_version: runtime-3501
+    spec_version: runtime-3600
     binary_name: moonbeam
     min_gas_price: 31.25
     block_time: 6
