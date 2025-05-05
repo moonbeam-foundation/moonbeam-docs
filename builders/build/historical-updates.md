@@ -335,6 +335,24 @@ You can review the [relative Frontier PR](https://github.com/polkadot-evm/fronti
 
 ---
 
+#### Skipped Ethereum Transaction Traces {: #skipped-ethereum-transaction-traces }
+
+Runtimes with the `evm-tracing` feature enabled introduced additional `ref_time` overhead due to special logic that traces Ethereum transactions (emitting events for each component: gasometer, runtime, EVM) used to fill information for RPC calls like `debug_traceTransaction` and `trace_filter`. 
+
+Since the real `ref_time` in production runtimes is smaller, this could cause the block weight limits to be reached when replaying a block in an EVM-tracing runtime, resulting in skipped transaction traces. This was observed in Moonbeam block [9770044](https://moonbeam.subscan.io/block/9770044){target=\_blank}.
+
+The fix consisted of resetting the previously consumed weight before tracing each Ethereum transaction. It's important to note that this issue only affected code under `evm-tracing`, which is not included in any production runtime.
+
+This bug was fixed in the following runtime:
+
+|    Network     | Fixed  | Impacted Block |
+|:--------------:|:------:|:--------------:|
+|    Moonbeam    | RT3501 |    9770044     |
+
+For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/3210){target=\_blank}.
+
+---
+
 ## Migrations {: #migrations }
 
 Migrations are necessary when a storage item is changed or added and needs to be populated with data. The migrations listed below have been organized by the impacted pallet(s).
@@ -840,7 +858,6 @@ This migration was executed at the following runtimes and blocks:
 | Moonbase Alpha |      RT2801      |    6209638    |
 
 For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/2634){target=\_blank}.
-
 
 ---
 
