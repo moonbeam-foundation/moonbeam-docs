@@ -19,9 +19,7 @@ You can also [open an issue](https://github.com/moonbeam-foundation/moonbeam-doc
 ## Moonbeam Community
 
 - **Discord** - technical support and development-focused conversation is found on our [Discord channel](https://discord.com/invite/PfpUATX)
-- **Element** - technical discussions and support are encouraged in our [Element (formerly Riot) room](https://app.element.io/#/room/#moonbeam:matrix.org)
 - **Telegram** - general information and other non-technical topics can be discussed in our [Telegram group](https://t.me/Moonbeam_Official)
 - **X (formerly Twitter)** - follow us on Twitter for regular updates: [@MoonbeamNetwork](https://x.com/MoonbeamNetwork)
 - **YouTube** - for video-tutorials and related content, subscribe to our [YouTube channel](https://www.youtube.com/c/MoonbeamNetwork)
 - **Newsletter** - We send a monthly newsletter with project updates that you can [sign up for](https://moonbeam.network/newsletter)
-
