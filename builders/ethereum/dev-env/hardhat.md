@@ -56,7 +56,8 @@ You will need to create a Hardhat project if you don't already have one. You can
     ```
 
     !!! note
-        `npx` is used to run executables installed locally in your project. Although Hardhat can be installed globally, it is recommended to install it locally in each project so that you can control the version on a project-by-project basis.
+        `npx` is used to run executables installed locally in your project. Although Hardhat can be installed globally, installing it locally in each project is recommended so you can control the version on a project-by-project basis.
+
 
 5. You'll be prompted with a series of questions to set up your project:
 
@@ -216,7 +217,7 @@ Then, update your configuration file to use the encrypted secrets:
     };
     ```
 
-When you run tasks that require these secrets, Hardhat will prompt you for the password to decrypt them. The secrets are only decrypted when needed, which means you only need to enter the password if a Hardhat task actually uses a secret.
+When you run tasks that require these secrets, Hardhat will prompt you for the password to decrypt them. The secrets are only decrypted when needed, meaning you only need to enter the password if a Hardhat task uses a secret.
 
 If you are planning on using any plugins with your project, you'll need to install the plugin and import it into the `hardhat.config.js` file. Once a plugin has been imported, it becomes part of the [Hardhat Runtime Environment](https://hardhat.org/hardhat-runner/docs/advanced/hardhat-runtime-environment){target=\_blank}, and you can leverage the plugin's functionality within tasks, scripts, and more.
 
@@ -317,7 +318,7 @@ If you make changes to the contract after you've compiled it, you can compile it
 
 To deploy the contract, you'll use Hardhat Ignition, a declarative framework for deploying smart contracts. Hardhat Ignition is designed to make it easy to manage recurring tasks surrounding smart contract  deployment and testing. For more information, be sure to check out the [Hardhat Ignition docs](https://hardhat.org/ignition/docs/getting-started#overview){target=\_blank}. 
 
-To set up the proper file structure for your Ignition module, create a folder named `ignition` and a subdirectory called `modules`.  Then add a new file to it called `Box.js`. You can take all three of these steps with the following command:
+To set up the proper file structure for your Ignition module, create a folder named `ignition` and a subdirectory called `modules`. Then add a new file to it called `Box.js`. You can take all three of these steps with the following command:
 
 ```sh
 cd ignition/modules && touch Box.js
@@ -351,16 +352,16 @@ export default buildModule("BoxModule", (m) => {
 });
 ```
 
-To run the script and deploy the `Box.sol` contract, use the following command, which requires you to specify the network name as defined in your `hardhat.config.js`. If you don't specify a network, hardhat will deploy the contract to a local hardhat network by default. 
+To run the script and deploy the `Box.sol` contract, use the following command, which requires you to specify the network name as defined in your `hardhat.config.js`. If you don't specify a network, hardhat will deploy the contract to a local Hardhat network by default. 
 
 ```sh
 npx hardhat ignition deploy ./Box.js --network moonbase
 ```
 
 !!! note
-    If you're using another Moonbeam network, make sure that you specify the correct network. The network name needs to match how it's defined in the `hardhat.config.js` file.
+    If you're using another Moonbeam network, make sure that you specify the correct network. The network name needs to match the one defined in the `hardhat.config.js` file.
 
-You'll be prompted to enter your password for Hardhat secrets manager. Next, you'll be prompted to confirm the network you wish to deploy to. After a few seconds after you confirm, the contract is deployed, and you'll see the contract address in the terminal.
+You'll be prompted to enter your password for the Hardhat secrets manager. Next, you'll be prompted to confirm the network you wish to deploy to. A few seconds after you confirm, the contract is deployed, and you'll see the contract address in the terminal.
 
 --8<-- 'code/builders/ethereum/dev-env/hardhat/terminal/deploy-moonbase.md'
 

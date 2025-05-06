@@ -55,7 +55,7 @@ You will need to create a Hardhat project if you don't already have one. You can
     ```
 
     !!! note
-        `npx` is used to run executables installed locally in your project. Although Hardhat can be installed globally, it is recommended to install it locally in each project so that you can control the version on a project by project basis.
+        `npx` is used to run executables installed locally in your project. Although Hardhat can be installed globally, installing it locally in each project is recommended so that you can control the version on a project-by-project basis.
 
 5. You'll be prompted with a series of questions to set up your project:
 
@@ -135,7 +135,7 @@ npm install --save-dev @nomicfoundation/hardhat-toolbox
 
 If you're curious about additional Hardhat plugins, here is [a complete list of official Hardhat plugins](https://hardhat.org/hardhat-runner/plugins){target=\_blank}.
 
-Hardhat 3 includes an encrypted secrets manager that makes it easier to handle sensitive information like private keys and API keys. This ensures you don't have to hardcode secrets in your source code or store them in plain text.
+Hardhat 3 includes an encrypted secrets manager that makes handling sensitive information like private keys and API keys easier. This ensures you don't have to hardcode secrets in your source code or store them in plain text.
 
 !!! note
     The encrypted secrets manager is only available in Hardhat 3 or higher. As of writing this guide, Hardhat 3 is in alpha. You can install the latest alpha version with:
@@ -259,7 +259,7 @@ Then, update your configuration file to use the encrypted secrets:
     };
     ```
 
-For this example, you'll need to add your private keys for your two accounts on Moonbase Alpha. Since some of the testing will be done on a development node, you'll also need to add the private keys of two of the prefunded development node accounts, which for this example, we can use Alice and Bob. In addition, you'll add your Moonscan API key, which can be used for both Moonbase Alpha and Moonbeam.
+For this example, you'll need to add your private keys for your two accounts on Moonbase Alpha. Since some of the testing will be done on a development node, you'll also need to add the private keys of two of the pre-funded development node accounts, which, for this example, we can use Alice and Bob. In addition, you'll add your Moonscan API key, which can be used for both Moonbase Alpha and Moonbeam.
 
 ```js
 // 1. Import the Hardhat Toolbox plugin
@@ -309,7 +309,7 @@ module.exports = {
 ```
 
 !!! note
-    Any real funds sent to the Alice and Bob development accounts will be lost immediately. Take precautions to never send MainNet funds to exposed development accounts. The private keys for these accounts are:
+    Any real funds sent to the Alice and Bob development accounts will be lost immediately.Take precautions never to send MainNet funds to exposed development accounts. The private keys for these accounts are:
     
     - Alice (Alith): `0x5fb92d6e98884f76de468fa3f6278f8807c48bebc13595d45af5bdc4da702133`
     - Bob (Baltathar): `0x8075991ce870b93a8870eca0c0f91913d12f47948ca0fd25b49c6fa7cdbeee8b`
@@ -541,7 +541,7 @@ In the following steps, we'll deploy the `DelegationDAO` to the Moonbase Alpha T
 
 As a side note, `DelegationDAO` relies on [`StakingInterface.sol`](/builders/ethereum/precompiles/features/staking/){target=\_blank}, which is a Substrate-based offering unique to Moonbeam networks. The Hardhat Network and forked networks are simulated EVM environments which do not include the Substrate-based precompiles like `StakingInterface.sol`. Therefore, `DelegationDAO` will not work properly if deployed to the local default Hardhat Network or a [forked network](/builders/ethereum/dev-env/hardhat/#forking-moonbeam){target=\_blank}.
 
-To deploy `DelegationDAO`, you'll use Hardhat Ignition, a declarative framework for deploying smart contracts. Hardhat Ignition is designed to make it easy to manage recurring tasks surrounding smart contract  deployment and testing. For more information about Hardhat Ignition and its architecture, be sure to check out the [Hardhat Ignition docs](https://hardhat.org/ignition/docs/getting-started#overview){target=\_blank}.
+To deploy `DelegationDAO`, you'll use Hardhat Ignition, a declarative framework for deploying smart contracts. Hardhat Ignition is designed to make managing recurring tasks surrounding smart contract deployment and testing easy. For more information about Hardhat Ignition and its architecture, be sure to check out the [Hardhat Ignition docs](https://hardhat.org/ignition/docs/getting-started#overview){target=\_blank}.
 
 To set up the proper file structure for your Ignition module, change to the ignition directory and create the DelegationDao.js file:
 
