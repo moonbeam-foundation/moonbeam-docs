@@ -175,7 +175,7 @@ Now, go ahead and write the script. In the script folder, create a file named `M
 
 Notice that even though the above script is not being deployed, it still requires all the typical formatting for a Solidity contract, such as the pragma statement.
 
-You can deploy the `MyToken.sol` contract with the below command. Remember that it will execute all relevant steps in order. For this example, Foundry will first attempt a local simulation and a simulation against the provided RPC before deploying the contract. Foundry won't proceed with the deployment if any of the simulations fail.
+For this example, Foundry will first attempt a local simulation and a simulation against the provided RPC before deploying the contract. Remember that it will execute all relevant steps in order. Foundry won't proceed with the deployment if any of the simulations fail. You can deploy the `MyToken.sol` contract with this command.
 
 ```bash
 forge script script/MyToken.s.sol --rpc-url {{ networks.moonbase.rpc_url }} --broadcast --account deployer
