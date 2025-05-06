@@ -7,7 +7,7 @@ description: Learn how to track your holdings on Moonbeam using Zapper and explo
 
 ## Introduction
 
-[Zapper](https://zapper.xyz){target=\_blank} is a powerful Web3 application that allows users to explore on-chain data, manage portfolios, and interact with various decentralized finance (DeFi) protocols across multiple networks, including Moonbeam. Integrating with Zapper allows users to seamlessly monitor and manage assets across Moonbeam's DeFi ecosystem, including Moonwell, StellaSwap, OmniLST, and Prime Protocol.
+[Zapper](https://zapper.xyz){target=\_blank} is a Web3 application that enables users to explore on-chain data, manage their portfolios, and interact with decentralized finance (DeFi) protocols across multiple networks, including Moonbeam. Through its integration with Zapper, users can monitor and manage assets across Moonbeam’s DeFi ecosystem, including platforms such as Moonwell, StellaSwap, OmniLST, and Prime Protocol.
 
 This tutorial provides a detailed step-by-step guide for users and developers to integrate with Zapper and maximize their experience within the Moonbeam ecosystem.
 
@@ -44,14 +44,14 @@ Zapper provides access to view the activity on Moonbeam's DeFi protocols, such a
 
 You can follow these steps to review any of the aforementioned protocols:
 
-1. Select **Moonbeam** in the chain filter on the left sidebar. You'll be able to view the most trending DApps in the ecosystem and click on the protocol you want to explore 
+1. Select **Moonbeam** from the chain filter in the left sidebar. This will display the most trending dApps in the ecosystem. Click on the protocol you wish to explore
 ![Zapper DeFi Section](/images/tutorials/integrations/Zapper/zapper-4.webp)
-2. In the **Activity** tab, you'll be able to see the latest transactions for the selected protocol: token swaps, LP or staking on StellaSwap’s decentralized exchange, lending and borrowing transactions on Moonwell, staked GLMR on OmniLST and any other supported DApp on Zapper
+2. In the **Activity** tab, view the latest transactions for the selected protocol, including token swaps, LP or staking on StellaSwap, lending and borrowing on Moonwell, staked GLMR on OmniLST, and activity on other supported dApps
 ![StellaSwap on Zapper](/images/tutorials/integrations/Zapper/zapper-5.webp)
-3. You'll also be able to view other details of the selected protocol, such as the daily active users and the daily transactions in the left side-bar, all deployed smart contracts in the **Contracts** tab and your own holdings on the protocol by going to the **Properties** tab
+3. View additional details for the selected protocol, including daily active users and daily transactions in the left sidebar, deployed smart contracts in the **Contracts** tab, and your holdings in the protocol via the **Properties** tab.
 
 
-### Access Moonbeam Assets on Zapper
+### Access and Manage Moonbeam Assets
 
 Zapper also has an integrated modal for seamlessly swapping assets on Moonbeam. You can access this feature by selecting **Moonbeam** in the chain filter on the left sidebar and choosing the desired token on the right sidebar.
 
