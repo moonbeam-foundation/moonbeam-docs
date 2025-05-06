@@ -7,7 +7,7 @@ description: Learn how to track your holdings on Moonbeam using Zapper and explo
 
 ## Introduction
 
-[Zapper](https://zapper.xyz){target=\_blank} is a Web3 application that enables users to explore on-chain data, manage their portfolios, and interact with decentralized finance (DeFi) protocols across multiple networks, including Moonbeam. Through its integration with Zapper, users can monitor and manage assets across Moonbeam’s DeFi ecosystem, including platforms such as Moonwell, StellaSwap, OmniLST, and Prime Protocol.
+[Zapper](https://zapper.xyz){target=\_blank} is a Web3 application that enables users to explore on-chain data, manage their portfolios, and interact with decentralized finance (DeFi) protocols across multiple networks, including Moonbeam. Through their integration with Zapper, users can monitor and manage assets across Moonbeam’s DeFi ecosystem, including platforms such as Moonwell, StellaSwap, OmniLST, and Prime Protocol.
 
 This tutorial provides a detailed step-by-step guide for users and developers to integrate with Zapper and maximize their experience within the Moonbeam ecosystem.
 
@@ -82,7 +82,7 @@ Furthermore, you can familiarize yourself with the [Zapper API documentation](ht
 Depending on your preferred programming language, you can set up your environment to make HTTP requests to Zapper's API. Below is an example of retrieving token balances for a specified wallet address on Moonbeam using Node.js and [Axios](https://axios-http.com/docs/intro){target=\_blank}:
 
 ```javascript
---8<-- 'code/tutorials/integrations/Zapper/token-balances.js'
+--8<-- 'code/builders/integrations/Zapper/token-balances.js'
 ```
 !!! note 
 

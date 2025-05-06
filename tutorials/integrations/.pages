@@ -10,4 +10,3 @@ nav:
     - 'oracles.index.md'
     - '[Supra] Fetch Price Data': 'supra.md'
   - 'Enable Gasless Transactions': '0xgasless.md'
-  - 'Portfolio Tracking on Moonbeam': 'zapper.md'

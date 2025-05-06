@@ -5,3 +5,4 @@ nav:
   - indexers
   - oracles
   - wallets
+  - 'Portfolio Tracking on Moonbeam': 'zapper.md'
