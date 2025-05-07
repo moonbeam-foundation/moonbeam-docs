@@ -114,7 +114,7 @@ To use encrypted secrets, you'll need to:
 
 1. Install Hardhat 3 or later:
 ```bash
-npm install --save-dev hardhat@^3.0.0
+npm install hardhat@3.0.0-next.5
 ```
 
 2. Set up your secrets using the keystore:
