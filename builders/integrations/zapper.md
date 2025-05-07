@@ -48,7 +48,7 @@ You can follow these steps to review any of the aforementioned protocols:
 ![Zapper DeFi Section](/images/builders/integrations/zapper/zapper-4.webp)
 2. In the **Activity** tab, view the latest transactions for the selected protocol, including token swaps, LP or staking on StellaSwap, lending and borrowing on Moonwell, staked GLMR on OmniLST, and activity on other supported dApps
 ![StellaSwap on Zapper](/images/builders/integrations/zapper/zapper-5.webp)
-3. View additional details for the selected protocol, including daily active users and daily transactions in the left sidebar, deployed smart contracts in the **Contracts** tab, and your holdings in the protocol via the **Properties** tab.
+3. View additional details for the selected protocol, including daily active users and daily transactions in the left sidebar, deployed smart contracts in the **Contracts** tab, and your holdings in the protocol via the **Properties** tab
 
 
 ### Access and Manage Moonbeam Assets
@@ -94,7 +94,5 @@ By following this tutorial, users and developers will have effectively learned h
 ## Additional Resources
 
 You can also explore the [Zapper API GitHub repository](https://github.com/Zapper-fi/Docs){target=\_blank} for code examples and community contributions, or refer to [Zapper's integration guides](https://zapper.gitbook.io/integrations){target=\_blank} for detailed instructions and best practices.
-
---8<-- 'text/_disclaimers/educational-tutorial.md'
 
 --8<-- 'text/_disclaimers/third-party-content.md'
