@@ -71,7 +71,7 @@ The current list of available external XC-20 assets per network is as follows:
     |        Origin         |  Symbol   |                                                            XC-20 Address                                                             |
     |:---------------------:|:---------:|:------------------------------------------------------------------------------------------------------------------------------------:|
     |       Polkadot        |   xcDOT   |  [0xFfFFfFff1FcaCBd218EDc0EbA20Fc2308C778080](https://moonscan.io/token/0xFfFFfFff1FcaCBd218EDc0EbA20Fc2308C778080){target=\_blank}  |
-    |         Acala         |  xcaSEED  |  [0xfFfFFFFF52C56A9257bB97f4B2b6F7B2D624ecda](https://moonscan.io/token/0xfFfFFFFF52C56A9257bB97f4B2b6F7B2D624ecda){target=\_blank}  |
+    |         Acala         |  xcaUSD   |  [0xfFfFFFFF52C56A9257bB97f4B2b6F7B2D624ecda](https://moonscan.io/token/0xfFfFFFFF52C56A9257bB97f4B2b6F7B2D624ecda){target=\_blank}  |
     |         Acala         |   xcACA   |  [0xffffFFffa922Fef94566104a6e5A35a4fCDDAA9f](https://moonscan.io/token/0xffffFFffa922Fef94566104a6e5A35a4fCDDAA9f){target=\_blank}  |
     |         Acala         |  xcLDOT   |  [0xFFfFfFffA9cfFfa9834235Fe53f4733F1b8B28d4](https://moonscan.io/token/0xFFfFfFffA9cfFfa9834235Fe53f4733F1b8B28d4){target=\_blank}  |
     |        Apillon        |  xcNCTR   |  [0xFfFFfFfF8A9736B44EbF188972725bED67BF694E](https://moonscan.io/token/0xFfFFfFfF8A9736B44EbF188972725bED67BF694E){target=\_blank}  |
