@@ -5,13 +5,15 @@ description: This guide shows sibling parachain teams how to register native tok
 
 # Creating Foreign Assets from Sibling Parachains
 
+## Introduction {: #introduction }
+
 Registering your parachain’s native tokens on Moonbeam or Moonriver lets your community enjoy ERC‑20–style UX and deep EVM integrations while retaining full on‑chain provenance. This guide shows sibling Polkadot parachain teams how to self‑register a foreign asset using the new `ForeignAssetOwnerOrigin` introduced in Moonbeam Runtime 3600.
 
-## Why a New Origin?
+## Why a New Origin? {: #why-a-new-origin }
 
 Moonbeam introduced a new dedicated origin called `ForeignAssetOwnerOrigin`, that only permits an XCM message whose origin contains the asset’s MultiLocation to execute calls in the `evm‑foreign‑assets` pallet. In practice, that means only the sovereign account of the parachain that owns the asset, or Moonbeam governance, can create, freeze, unfreeze, or relocate it. Alongside this, a configurable runtime constant called `ForeignAssetCreationDeposit` is reserved from the caller’s sovereign account at creation time. The deposit discourages spam registrations.
 
-## Required Deposits
+## Required Deposits {: #required-deposits }
 
 To prevent spam, a `ForeignAssetCreationDeposit` is required that is locked for the lifetime of the asset. The deposit is funded from the sibling parachain's sovereign account on the Moonbeam network - which thus needs to be sufficiently funded to cover the asset deposit and the associated transaction fees. If the asset is destroyed through governance the deposit is unreserved and returned to the original sovereign account.
 
@@ -35,14 +37,14 @@ Deposits are network‑specific and can be adjusted by Moonbeam governance via t
      {{ networks.moonbase.xcm.foreign_asset_deposit.display }} DEV
      ```
 
-## Prerequisites
+## Prerequisites {: #prerequisites }
 
 There are a few prerequisites to be aware of: 
 
 1. The sibling parachain's [sovereign account](/builders/interoperability/xcm/core-concepts/sovereign-accounts/){target=\_blank} on Moonbeam must be sufficiently funded to cover the asset deposit and the transaction fees. It's recommended that you have an extra buffer of additional funds for any subsequent transactions. See this [guide to calculating a sovereign account](/builders/interoperability/xcm/core-concepts/sovereign-accounts/){target=\_blank}
 2. Your parachain should support XCM V4
 
-## Assemble your Asset Details
+## Assemble your Asset Details {: #assemble-your-asset-details }
 
 Before registering your asset on Moonbeam, you'll need to have a sense of the following four parameters: asset ID, decimals, symbol, and name. Asset ID can be any integer between 0 and 255 that isn't already used as a foreign asset ID on Moonbeam. 
 
@@ -53,7 +55,7 @@ const SYMBOL      = "TEST";
 const NAME        = "Test Token";
 ```
 
-## Construct the Asset MultiLocation
+## Construct the Asset MultiLocation {: #construct-the-asset-multilocation }
 
 `assetLocation` is a SCALE‑encoded MultiLocation that pinpoints the existing token on your sibling parachain. There are a variety of ways to define assets and your MultiLocation may including parachain ID, the pallet that manages assets there, and the local asset index. Because the extrinsic executes on Moonbeam, you describe the path from Moonbeam’s perspective: first hop up one level to the Relay ("parents": 1), then down into your parachain (Parachain: <paraId>), the pallet, and the asset index. Moonbeam uses this to verify that the caller actually "contains" the asset before allowing any registration or updates.
 
@@ -72,7 +74,7 @@ Once you've constructed your MultiLocation, keep it handy, as you'll need it in 
 }
 ```
 
-## Generating the Encoded Call Data
+## Generating the Encoded Call Data {: #generating-the-encoded-call-data }
 
 If you only need the SCALE‑encoded payload—for example to embed inside an XCM `Transact` dispatched by your runtime—use the snippet below.
 
@@ -104,7 +106,7 @@ console.log("Call hash:", blake2AsHex(encodedCall));
 
 On success Moonbeam emits a `EvmForeignAssets.ForeignAssetCreated` with the respective assetID, MultiLocation, and creator (Parachain ID) parameters. 
 
-## Managing an Existing Foreign Asset
+## Managing an Existing Foreign Asset {: #managing-an-existing-foreign-asset }
 
 After a foreign asset has been created, the following extrinsics can be used to update the foreign asset. Note that in the case of the sovereign account sending a call, the sovereign account and location must still be inside origin. Otherwise, the only other authorized origin is `Root` from a Moonbeam governance action. 
 
@@ -113,7 +115,7 @@ After a foreign asset has been created, the following extrinsics can be used to 
 | `changeXcmLocation`                           | Sibling Sovereign account or Moonbeam governance | Requires deposit already reserved.                    |
 | `freezeForeignAsset` / `unfreezeForeignAsset` | Sibling Sovereign account or Moonbeam governance | `freeze` optionally destroys the asset’s metadata.    |
 
-## FAQs
+## FAQs {: #faqs }
 
 ### How do I reclaim the deposit?
 
