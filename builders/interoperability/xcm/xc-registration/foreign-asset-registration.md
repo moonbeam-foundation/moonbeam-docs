@@ -9,13 +9,13 @@ Registering your parachain’s native tokens on Moonbeam or Moonriver lets your 
 
 ## Why a New Origin?
 
-Moonbeam introduced a new dedicated origin called `ForeignAssetOwnerOrigin`, that only permits an XCM message whose origin contains the asset’s MultiLocation to execute calls in the `evm‑foreign‑assets` pallet. In practice, that means only the sovereign account of the parachain that owns the asset, or Moonbeam governance, can create, freeze, unfreeze, or relocate it. Alongside this, a configurable runtime constant called `ForeignAssetCreationDeposit` is reserved from the caller’s sovereign account at creation time. The deposit discourages spam registrations and provides a funding buffer for any future asset migrations or clean‑up.
+Moonbeam introduced a new dedicated origin called `ForeignAssetOwnerOrigin`, that only permits an XCM message whose origin contains the asset’s MultiLocation to execute calls in the `evm‑foreign‑assets` pallet. In practice, that means only the sovereign account of the parachain that owns the asset, or Moonbeam governance, can create, freeze, unfreeze, or relocate it. Alongside this, a configurable runtime constant called `ForeignAssetCreationDeposit` is reserved from the caller’s sovereign account at creation time. The deposit discourages spam registrations.
 
 ## Required Deposits
 
 To prevent spam, a `ForeignAssetCreationDeposit` is required that is locked for the lifetime of the asset. The deposit is funded from the sibling parachain's sovereign account on the Moonbeam network - which thus needs to be sufficiently funded to cover the asset deposit and the associated transaction fees. If the asset is destroyed through governance the deposit is unreserved and returned to the original sovereign account.
 
-Deposits are network‑specific and adjustable via `pallet‑parameters`:
+Deposits are network‑specific and can be adjusted by Moonbeam governance via the `parameters` pallet:
 
 === "Moonbeam"
 
