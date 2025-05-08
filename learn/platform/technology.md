@@ -30,7 +30,7 @@ Pallets are at the heart of Substrate-based chains, providing specific functiona
 - **Frontier pallets** — the Ethereum compatibility layer pioneered by the Moonbeam team  
 - **Parachain Staking pallet** — enables Delegated Proof of Stake (DPoS)  
 
-In addition to these pallets provided by Polkadot's Substrate, developers can [create their own pallets](https://docs.substrate.io/tutorials/collectibles-workshop/03-create-pallet){target=_blank} to add custom functionality. Moonbeam leverages multiple existing Substrate frame pallets as well as several custom pallets for features such as cross-chain token integration, the [Orbiter Program](/node-operators/networks/collators/orbiter/){target=_blank}, and more. You can find the Moonbeam runtime (built using Substrate) and related pallets in the [Moonbeam GitHub repository](https://github.com/moonbeam-foundation/moonbeam){target=_blank}.
+In addition to these pallets provided by Polkadot's Substrate, developers can [create their own pallets](https://docs.polkadot.com/develop/parachains/customize-parachain/make-custom-pallet/){target=_blank} to add custom functionality. Moonbeam leverages multiple existing Substrate frame pallets as well as several custom pallets for features such as cross-chain token integration, the [Orbiter Program](/node-operators/networks/collators/orbiter/){target=_blank}, and more. You can find the Moonbeam runtime (built using Substrate) and related pallets in the [Moonbeam GitHub repository](https://github.com/moonbeam-foundation/moonbeam){target=_blank}.
 
 Moonbeam also uses the Cumulus library to facilitate integration with the Polkadot relay chain.
 
@@ -70,7 +70,7 @@ In addition to these Substrate FRAME Pallets, Moonbeam implements custom pallets
 
 ### Forkless Upgrades {: #forkless-upgrades }
 
-One of the best things about developing on Polkadot with Substrate is the ability to introduce [forkless upgrades](https://docs.substrate.io/maintain/runtime-upgrades){target=_blank} to blockchain runtimes. In traditional blockchain architectures, substantial changes to the blockchain's rules often require a hard fork, which can be disruptive and contentious.  
+One of the best things about developing on Polkadot with Substrate is the ability to introduce [forkless upgrades](https://docs.polkadot.com/develop/parachains/maintenance/runtime-upgrades/){target=_blank} to blockchain runtimes. In traditional blockchain architectures, substantial changes to the blockchain's rules often require a hard fork, which can be disruptive and contentious.  
 
 Substrate takes a different approach by separating the blockchain's state (data) from its logic (rules). Logic lives in the runtime, which is itself stored on-chain. Whenever a new runtime is uploaded (via FRAME's `set_code` call) and approved through on-chain governance, all nodes automatically switch to the new runtime at a specified block. This process is seamless and does not split the network.  
 
