@@ -1,9 +1,9 @@
 ---
-title: Register Foreign Assets on Moonbeam
-description: This guide shows sibling parachain teams how to register native tokens as foreign assets on Moonbeam networks using the ForeignAssetOwnerOrigin, enabling ERC-20 UX with on-chain provenance.
+title: Self Serve Asset Registration for Sibling Parachains
+description: This guide shows sibling parachains how to register native tokens as foreign assets on Moonbeam via ForeignAssetOwnerOrigin to unlock ERC-20 UX on Moonbeam.
 ---
 
-# Creating Foreign Assets from Sibling Parachains
+# Self Serve Asset Registration for Sibling Parachains
 
 ## Introduction {: #introduction }
 
