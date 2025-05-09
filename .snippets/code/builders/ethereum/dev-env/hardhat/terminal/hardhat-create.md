@@ -9,12 +9,12 @@
   <span data-ty>888&nbsp;&nbsp;&nbsp;&nbsp;888&nbsp;888&nbsp;&nbsp;888&nbsp;888&nbsp;&nbsp;&nbsp;&nbsp;Y88b&nbsp;888&nbsp;888&nbsp;&nbsp;888&nbsp;888&nbsp;&nbsp;888&nbsp;Y88b.</span>
   <span data-ty>888&nbsp;&nbsp;&nbsp;&nbsp;888&nbsp;"Y888888&nbsp;888&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Y88888&nbsp;888&nbsp;&nbsp;888&nbsp;"Y888888&nbsp;&nbsp;"Y888</span>
     <br>
-  <span data-ty>👷 Welcome to Hardhat v2.22.2 👷‍</span>
+  <span data-ty>👷 Welcome to Hardhat v3.0.0-next.5 👷‍</span>
     <br>
-  <span data-ty="input" data-ty-prompt="?">&nbsp;What do you want to do? …</span>
-  <span data-ty>&nbsp;&nbsp;Create a JavaScript project </span>
-  <span data-ty>&nbsp;&nbsp;Create a TypeScript project </span>
-  <span data-ty>&nbsp;&nbsp;Create a TypeScript project (with Viem) </span>
-  <span data-ty="input" data-ty-prompt="❯ Create an empty hardhat.config.js"></span>
-  <span data-ty>&nbsp;&nbsp;Quit </span>
+  <span data-ty="input" data-ty-prompt="✔">&nbsp;Where would you like to initialize the project?</span>
+  <span data-ty="input" data-ty-prompt="Please provide either a relative or an absolute path:">&nbsp;.</span>
+  <span data-ty="input" data-ty-prompt="✔">&nbsp;Hardhat only supports ESM projects. Would you like to change "package.json" to turn your project into ESM? (Y/n) · true</span>
+  <span data-ty="input" data-ty-prompt="?">&nbsp;What type of project would you like to initialize? …</span>
+  <span data-ty>&nbsp;&nbsp;A TypeScript Hardhat project using Node Test Runner and Viem</span>
+  <span data-ty="input" data-ty-prompt="❯">&nbsp;A TypeScript Hardhat project using Mocha and Ethers.js</span>
 </div>

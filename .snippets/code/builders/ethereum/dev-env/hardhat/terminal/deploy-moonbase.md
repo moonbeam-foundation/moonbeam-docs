@@ -1,5 +1,5 @@
 <div id="termynal" data-termynal>
-    <span data-ty="input"><span class="file-path"></span> npx hardhat ignition deploy ./ignition/modules/Box.js --network moonbase</span>
+    <span data-ty="input"><span class="file-path"></span> npx hardhat ignition deploy ./Box.js --network moonbase</span>
     <br>
     <span data-ty>✅ Confirm deploy to network moonbase (1287)? … yes</span>
     <span data-ty>Hardhat Ignition 🚀</span>
