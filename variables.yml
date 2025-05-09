@@ -122,6 +122,9 @@ networks:
       units_per_second:
         xcbetadev:
           transact_numbers_only: 50000000000000000
+      foreign_asset_deposit: 
+        display: 100
+        numbers_only: 100
     erc20_xcm:
       transfer_gas_limit: 800,000
     conviction:
@@ -459,6 +462,9 @@ networks:
       instructions:
         wei_per_weight:
           display: 12,500
+      foreign_asset_deposit: 
+        display: 1,000
+        numbers_only: 100
     erc20_xcm:
       transfer_gas_limit: 800,000 # corresponds to Erc20XcmBridgeTransferGasLimit
     conviction:
@@ -860,6 +866,9 @@ networks:
         xcdot:
           display: 20,080,321,285
           numbers_only: 20080321285
+      foreign_asset_deposit: 
+          display: 10,000
+          numbers_only: 10000
     erc20_xcm:
       transfer_gas_limit: 400,000 # Erc20XcmBridgeTransferGasLimit
     conviction:
@@ -1059,7 +1068,7 @@ networks:
       min_can_stk: 500000
       min_can_stk_wei: 500000000000000000000000
       collator_map_bond: 10000
-      max_candidates: 75
+      max_candidates: 74
       round_blocks: 1800
       round_hours: 6
       min_del_stake: 50

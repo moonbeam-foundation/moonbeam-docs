@@ -71,7 +71,7 @@ If your contract could have concurrent requests open, you can use the `requestId
 
 ## BABE Epoch Randomness {: #babe-epoch-randomness }
 
-BABE epoch randomness is based on a hash of the VRF values from the blocks produced in the relay chain epoch before last. On Polkadot, an [epoch lasts for roughly 4 hours](https://wiki.polkadot.network/docs/maintain-polkadot-parameters#periods-of-common-actions-and-attributes){target=\_blank}, and on Kusama, an [epoch lasts for roughly 1 hour](https://guide.kusama.network/docs/kusama-parameters/#periods-of-common-actions-and-attributes){target=\_blank}. The hashing is completed on the relay chain, and as such, it is not possible for a collator on Moonbeam to influence the randomness value unless they are also a validator on the relay chain and were responsible for producing the last output included in an epoch.
+BABE epoch randomness is based on a hash of the VRF values from the blocks produced in the relay chain epoch before last. On Polkadot, an [epoch lasts for roughly 4 hours](https://wiki.polkadot.network/learn/learn-cryptography/#vrf){target=\_blank}, and on Kusama, an [epoch lasts for roughly 1 hour](https://guide.kusama.network/docs/maintain-polkadot-parameters#periods-of-common-actions-and-attributes){target=\_blank}. The hashing is completed on the relay chain, and as such, it is not possible for a collator on Moonbeam to influence the randomness value unless they are also a validator on the relay chain and were responsible for producing the last output included in an epoch.
 
 The randomness is constant during a full epoch, so if a collator skips block production, the next collator can fulfill it with the same random value.
 
