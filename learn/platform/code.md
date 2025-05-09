@@ -17,4 +17,4 @@ We also work on Ethereum compatibility features along with engineers from Parity
 
 [:fontawesome-brands-github: https://github.com/polkadot-evm/frontier](https://github.com/polkadot-evm/frontier){target=\_blank}
 
-If you are interested in contributing code to Moonbeam, please raise an issue or PR on the [Moonbeam Github Repository](https://github.com/moonbeam-foundation/moonbeam){target=\_blank}
+If you are interested in contributing code to Moonbeam, please raise an issue or PR on the [Moonbeam GitHub repository](https://github.com/moonbeam-foundation/moonbeam){target=\_blank}
