@@ -74,7 +74,7 @@ Once you've constructed your MultiLocation, keep it handy, as you'll need it in 
 }
 ```
 
-## Generating the Encoded Call Data {: #generating-the-encoded-call-data }
+## Generate the Encoded Call Data {: #generating-the-encoded-call-data }
 
 If you only need the SCALE‑encoded payload—for example to embed inside an XCM `Transact` dispatched by your runtime—use the snippet below.
 
