@@ -41,8 +41,8 @@ Deposits are network‑specific and can be adjusted by Moonbeam governance via t
 
 There are a few prerequisites to be aware of: 
 
-1. The sibling parachain's [sovereign account](/builders/interoperability/xcm/core-concepts/sovereign-accounts/){target=\_blank} on Moonbeam must be sufficiently funded to cover the asset deposit and the transaction fees. It's recommended that you have an extra buffer of additional funds for any subsequent transactions. See this [guide to calculating a sovereign account](/builders/interoperability/xcm/core-concepts/sovereign-accounts/){target=\_blank}
-2. Your parachain should support XCM V4
+- The sibling parachain's [sovereign account](/builders/interoperability/xcm/core-concepts/sovereign-accounts/){target=\_blank} on Moonbeam must be sufficiently funded to cover the asset deposit and the transaction fees. It's recommended that you have an extra buffer of additional funds for any subsequent transactions. See this [guide to calculating a sovereign account](/builders/interoperability/xcm/core-concepts/sovereign-accounts/){target=\_blank}
+- Your parachain should support XCM V4
 
 ## Assemble Your Asset Details {: #assemble-your-asset-details }
 
@@ -74,7 +74,7 @@ Once you've constructed your MultiLocation, keep it handy, as you'll need it in 
 }
 ```
 
-## Generate the Encoded Call Data {: #generating-the-encoded-call-data }
+## Generate the Encoded Call Data {: #generate-the-encoded-call-data }
 
 If you only need the SCALE‑encoded payload—for example to embed inside an XCM `Transact` dispatched by your runtime—use the snippet below.
 
