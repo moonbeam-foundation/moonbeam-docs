@@ -45,7 +45,7 @@ You will need to create a Hardhat project if you don't already have one. You can
 3. Install Hardhat
 
     ```bash
-    npm install hardhat
+    npm install hardhat@3.0.0-next.5
     ```
 
 4. Create a project
