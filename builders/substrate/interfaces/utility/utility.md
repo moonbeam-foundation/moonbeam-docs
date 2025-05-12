@@ -126,7 +126,7 @@ You can then pass the `encodedCallData` value into the extrinsic that you're usi
 
 ## Using the Batch Extrinsics  {: #using-the-batch-extrinsics }
 
-You can access the batch extrinsics using the Polkadot.js Apps interface or through the Polkadot.js API. This example will show you how to use the `batch` extrinsic with Polkadot.js Apps. If you're using the Polkadot.js API, you can access the Utility Pallet through the `api.tx.utility.batch` interface. For more information on batching transactions with the API, please refer to the [Polkadot.js API Library](/builders/build/substrate-api/polkadot-js-api/#batching-transactions){target=_blank} page.
+You can access the batch extrinsics using the Polkadot.js Apps interface or through the Polkadot.js API. This example will show you how to use the `batch` extrinsic with Polkadot.js Apps. If you're using the Polkadot.js API, you can access the Utility Pallet through the `api.tx.utility.batch` interface. For more information on batching transactions with the API, please refer to the [Polkadot.js API Library](/builders/substrate/libraries/polkadot-js-api/#batch-transactions){target=_blank} page.
 
 To get started, you can navigate to [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/extrinsics){target=\_blank} and connect to Moonbase Alpha. This example can also be adapted for Moonbeam or Moonriver.
 
