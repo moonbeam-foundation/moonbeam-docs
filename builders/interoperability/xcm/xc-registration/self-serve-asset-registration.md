@@ -9,7 +9,7 @@ description: This guide shows sibling parachains how to register native tokens a
 
 Registering your parachain’s native tokens on Moonbeam or Moonriver lets your community enjoy ERC‑20–style UX and deep EVM integrations while retaining full on‑chain provenance. This guide shows sibling Polkadot parachain teams how to self‑register a foreign asset using the new `ForeignAssetOwnerOrigin` introduced in Moonbeam Runtime 3600.
 
-## Why a New Origin? {: #why-a-new-origin }
+### Why a New Origin? {: #why-a-new-origin }
 
 Moonbeam introduced a new dedicated origin called `ForeignAssetOwnerOrigin`, which only permits an XCM message whose origin contains the asset’s MultiLocation to execute calls in the `evm‑foreign‑assets` pallet. In practice, that means only the sovereign account of the parachain that owns the asset, or Moonbeam governance, can create, freeze, unfreeze, or relocate it. Alongside this, a configurable runtime constant called `ForeignAssetCreationDeposit` is reserved from the caller’s sovereign account at creation time. The deposit discourages spam registrations.
 
@@ -21,21 +21,19 @@ Deposits are network‑specific and can be adjusted by Moonbeam governance via t
 
 === "Moonbeam"
 
-     ```text
-     {{ networks.moonbeam.xcm.foreign_asset_deposit.display }} GLMR
-     ```
-
+    |    Variable    |                       Value                       |
+    |:--------------:|:-------------------------------------------------:|
+    | Foreign Asset Deposit | {{ networks.moonbeam.xcm.foreign_asset_deposit.display }} GLMR |
 === "Moonriver"
 
-     ```text
-     {{ networks.moonriver.xcm.foreign_asset_deposit.display }} MOVR
-     ```
-
+    |    Variable    |                       Value                       |
+    |:--------------:|:-------------------------------------------------:|
+    | Foreign Asset Deposit | {{ networks.moonriver.xcm.foreign_asset_deposit.display }} MOVR |
 === "Moonbase Alpha"
 
-     ```text
-     {{ networks.moonbase.xcm.foreign_asset_deposit.display }} DEV
-     ```
+    |    Variable    |                       Value                       |
+    |:--------------:|:-------------------------------------------------:|
+    | Foreign Asset Deposit | {{ networks.moonbase.xcm.foreign_asset_deposit.display }} DEV |
 
 ## Prerequisites {: #prerequisites }
 
@@ -43,6 +41,7 @@ There are a few prerequisites to be aware of:
 
 - The sibling parachain's [sovereign account](/builders/interoperability/xcm/core-concepts/sovereign-accounts/){target=\_blank} on Moonbeam must be sufficiently funded to cover the asset deposit and the transaction fees. It's recommended that you have an extra buffer of additional funds for any subsequent transactions. See this [guide to calculating a sovereign account](/builders/interoperability/xcm/core-concepts/sovereign-accounts/){target=\_blank}
 - Your parachain should support XCM V4
+- Your parachain needs bidirectional XCM channels with Moonbeam. See this [guide for information on opening XCM channels with Moonbeam](builders/interoperability/xcm/xc-registration/xc-integration/){target=\_blank} 
 
 ## Assemble Your Asset Details {: #assemble-your-asset-details }
 
