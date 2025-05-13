@@ -41,7 +41,7 @@ There are a few prerequisites to be aware of:
 
 - The sibling parachain's [sovereign account](/builders/interoperability/xcm/core-concepts/sovereign-accounts/){target=\_blank} on Moonbeam must be sufficiently funded to cover the asset deposit and the transaction fees. It's recommended that you have an extra buffer of additional funds for any subsequent transactions. See this [guide to calculating a sovereign account](/builders/interoperability/xcm/core-concepts/sovereign-accounts/){target=\_blank}
 - Your parachain should support XCM V4
-- Your parachain needs bidirectional XCM channels with Moonbeam. See this [guide for information on opening XCM channels with Moonbeam](builders/interoperability/xcm/xc-registration/xc-integration/){target=\_blank} 
+- Your parachain needs bidirectional XCM channels with Moonbeam. See this [guide for information on opening XCM channels with Moonbeam](/builders/interoperability/xcm/xc-registration/xc-integration/){target=\_blank} 
 
 ## Assemble Your Asset Details {: #assemble-your-asset-details }
 
@@ -50,7 +50,7 @@ Before registering your asset on Moonbeam, you'll need to formulate the followin
 ```typescript
 const ASSET_ID    = 1;
 const DECIMALS    = 18n;
-const SYMBOL      = "TEST";
+const SYMBOL      = "xcTEST";
 const NAME        = "Test Token";
 ```
 
