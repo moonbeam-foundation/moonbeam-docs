@@ -355,7 +355,7 @@ For more information, you can review the [relative PR on GitHub](https://github.
 
 #### Notify Inactive Collator Fails for Long-Inactive Collators {: #notify-inactive-collator-fails }
 
-The `notifyInactiveCollator` extrinsic, which is designed to remove collators from the pool if they haven't produced any blocks in the last two rounds, was failing for collators who had been inactive for significantly longer than two rounds. The transaction would only succeed when executed within the first few blocks of a new round.
+The `notifyInactiveCollator` extrinsic, designed to remove collators from the pool if they haven't produced any blocks in the last two rounds, failed for collators who had been inactive for significantly longer than two rounds. The transaction would only succeed within the first few blocks of a new round.
 
 This bug was fixed in the following runtimes:
 
