@@ -353,6 +353,20 @@ For more information, you can review the [relative PR on GitHub](https://github.
 
 ---
 
+#### Notify Inactive Collator Fails for Long-Inactive Collators {: #notify-inactive-collator-fails }
+
+The `notifyInactiveCollator` extrinsic, which is designed to remove collators from the pool if they haven't produced any blocks in the last two rounds, was failing for collators who had been inactive for significantly longer than two rounds. The transaction would only succeed when executed within the first few blocks of a new round.
+
+This bug was fixed in the following runtimes:
+
+|    Network     | Fixed  | Fixed at Block |
+|:--------------:|:------:|:--------------:|
+|    Moonbase    | RT3500 | [10750816](https://moonbase.subscan.io/block/10750816){target=\_blank} |
+|   Moonriver    | RT3501 | [10665393](https://moonriver.subscan.io/block/10665393){target=\_blank} |
+|    Moonbeam    | RT3501 | [10056989](https://moonbeam.subscan.io/block/10056989){target=\_blank} |
+
+---
+
 ## Migrations {: #migrations }
 
 Migrations are necessary when a storage item is changed or added and needs to be populated with data. The migrations listed below have been organized by the impacted pallet(s).
