@@ -30,7 +30,7 @@ For more information, you can review the [relative Frontier PR on GitHub](https:
 
 #### Ethereum Fees Weren't Sent to Treasury {: #ethereum-fees-to-treasury }
 
-The Moonbeam fee model for transactions allocates 20% of the fees to the on-chain Treasury and burns 80% as a deflationary force. Before runtime 800, Ethereum transactions did not allocate 20% of the transaction fees to the on-chain Treasury.
+The Moonbeam transaction fee model before Runtime 3401 and the passage of [MB101](https://forum.moonbeam.network/t/proposal-mb101-burn-100-of-transaction-fees-on-moonbeam/2022){target=\_blank} mandated a 20% allocation of fees sent to the on-chain Treasury and 80% burned as a deflationary force. However, before runtime 800, Ethereum transactions did not correctly allocate 20% of the transaction fees to the on-chain Treasury.
 
 This bug only impacted Moonriver and Moonbase Alpha and existed during the following runtimes and block ranges:
 
@@ -117,7 +117,9 @@ For more information, you can review the [relative PR on GitHub](https://github.
 
 #### Substrate Tips Missing Treasury Distribution {: #substrate-tips }
 
-Tips for Substrate-based transactions weren't handled properly. The entire portion of the tip was burned because it was not handled in the runtime code. A fix was applied so that 20% is paid to the Treasury and 80% is burned, consistent with all other fee behavior.
+Tips for Substrate-based transactions weren't handled properly. The entire portion of the tip was burned because it was not handled in the runtime code. A fix was applied so that 20% was paid to the Treasury and 80% was burned, consistent with all other fee behavior at that time.
+
+Note that RT3401 introduced a parameters pallet fee configuration allowing governance to adjust how fees are split between the Treasury and burning. After this runtime upgrade combined with the passage of [MB101](https://forum.moonbeam.network/t/proposal-mb101-burn-100-of-transaction-fees-on-moonbeam/2022){target=\_blank}, 100% of all transaction fees on both Moonbeam and Moonriver are now burned.
 
 This bug existed during the following runtimes and block ranges:
 
@@ -181,7 +183,9 @@ For more information, you can review the [relative Frontier PR](https://github.c
 
 #### Transaction Fees Paid to Collators {: #transaction-fees-paid-to-collators }
 
-For blocks that included EIP-1559 transactions where a priority fee was applied, the transaction fees were incorrectly calculated and distributed to the block's collator. The fee model on Moonbeam for transactions and smart contract execution is handled so that 20% of the fees go to the on-chain Treasury and 80% are burned as a deflationary force. Due to this bug, the transaction fees of the impacted transactions were not burned as expected.
+For blocks that included EIP-1559 transactions where a priority fee was applied, the transaction fees were incorrectly calculated and distributed to the block's collator. The fee model on Moonbeam for transactions and smart contract execution was previously handled so that 20% of the fees went to the on-chain Treasury and 80% were burned as a deflationary force. Due to this bug, the transaction fees of the impacted transactions were not burned as expected.
+
+Note that RT3401 introduced a parameters pallet fee configuration allowing governance to adjust how fees are split between the Treasury and burning. After this runtime upgrade combined with the passage of [MB101](https://forum.moonbeam.network/t/proposal-mb101-burn-100-of-transaction-fees-on-moonbeam/2022){target=\_blank}, 100% of all transaction fees on both Moonbeam and Moonriver are now burned.
 
 This bug existed during the following runtimes and block ranges:
 
@@ -328,6 +332,24 @@ This bug existed during the following runtimes and block ranges:
 | Moonbase Alpha |   RT1200   | RT2801 |  1648994 - 6209638   |
 
 You can review the [relative Frontier PR](https://github.com/polkadot-evm/frontier/pull/1280){target=\_blank} and [Moonbeam PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/2610){target=\_blank} for more information.
+
+---
+
+#### Skipped Ethereum Transaction Traces {: #skipped-ethereum-transaction-traces }
+
+Runtimes with the `evm-tracing` feature enabled introduced additional `ref_time` overhead due to special logic that traces Ethereum transactions (emitting events for each component: gasometer, runtime, EVM) used to fill information for RPC calls like `debug_traceTransaction` and `trace_filter`. 
+
+Since the real `ref_time` in production runtimes is smaller, this could cause the block weight limits to be reached when replaying a block in an EVM-tracing runtime, resulting in skipped transaction traces. This was observed in Moonbeam block [9770044](https://moonbeam.subscan.io/block/9770044){target=\_blank}.
+
+The fix consisted of resetting the previously consumed weight before tracing each Ethereum transaction. It's important to note that this issue only affected code under `evm-tracing`, which is not included in any production runtime.
+
+This bug was fixed in the following runtime:
+
+|    Network     | Fixed  | Impacted Block |
+|:--------------:|:------:|:--------------:|
+|    Moonbeam    | RT3501 |    9770044     |
+
+For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/3210){target=\_blank}.
 
 ---
 
@@ -836,6 +858,28 @@ This migration was executed at the following runtimes and blocks:
 | Moonbase Alpha |      RT2801      |    6209638    |
 
 For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/2634){target=\_blank}.
+
+---
+
+#### Manage Foreign Assets via Smart Contracts  {: #foreign-assets-migration }
+
+A migration was applied to transition existing foreign assets to a new design that manages XCM derivative assets on Moonbeam through EVM smart contracts instead of the previous implementation using the Asset and Asset Manager pallets. The migration process involved several extrinsics in the Moonbeam Lazy Migration pallet:
+
+- **`approve_assets_to_migrate`** - sets the list of asset IDs approved for migration
+- **`start_foreign_asset_migration`** - initiates migration for a specific foreign asset by freezing the original asset and creating a new EVM smart contract
+- **`migrate_foreign_asset_balances`** - migrates asset balances in batches from old assets pallet to the new system
+- **`migrate_foreign_asset_approvals`** - migrates asset approvals in batches while unreserving deposits from the old approval system
+- **`finish_foreign_asset_migration`** - completes migration after all balances and approvals are migrated and performs final cleanup
+
+This migration preserves compatibility with existing foreign assets by identifying each foreign asset with the same AssetID integer as before. This migration was executed at the following runtimes and blocks:
+
+|    Network     | Executed Runtime | Block Applied |
+|:--------------:|:----------------:|:-------------:|
+|    Moonbeam    |      RT3501      |    10056989   |
+|   Moonriver    |      RT3501      |    10665393   |
+| Moonbase Alpha |      RT3500      |    10750816   |
+
+For more information, you can review the relative PRs on GitHub: [2869](https://github.com/moonbeam-foundation/moonbeam/pull/2869){target=\_blank} and [3020](https://github.com/moonbeam-foundation/moonbeam/pull/3020){target=\_blank}.
 
 ---
 

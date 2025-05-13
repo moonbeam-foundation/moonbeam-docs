@@ -11,7 +11,7 @@ import requests
 base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 docs_dir = os.path.join(base_dir, docs_repo)
 yaml_dir = os.path.join(base_dir, docs_repo, 'variables.yml')
-output_file = os.path.join(docs_dir, 'llms.txt')
+output_file = os.path.join(docs_dir, 'llms-full.txt')
 snippet_dir = os.path.join(docs_dir, '.snippets')
 
 # Regex to find lines like: --8<-- 'code/build/applications/...' and --8<-- 'http....'
@@ -213,7 +213,7 @@ def main():
     yaml_file = load_yaml(yaml_dir)
 
     # Header
-    llms_content = "# llms.txt\n"
+    llms_content = "# llms-full.txt\n"
     llms_content += "# Generated automatically. Do not edit directly.\n\n"
     llms_content += f"Documentation: {docs_url}\n\n"
 
@@ -223,11 +223,11 @@ def main():
     # Add the full content
     llms_content += build_content_section(files, yaml_file)
 
-    # Write to llms.txt
+    # Write to llms-full.txt
     with open(output_file, 'w', encoding='utf-8') as output:
         output.write(llms_content)
 
-    print(f"llms.txt created or updated at: {output_file}")
+    print(f"llms-full.txt created or updated at: {output_file}")
 
 
 if __name__ == "__main__":

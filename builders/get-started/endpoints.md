@@ -37,6 +37,7 @@ You can create your own endpoint suitable for development or production use usin
 - [OnFinality](#onfinality)
 - [Pocket Network](#pokt)
 - [UnitedBloc](#unitedbloc)
+- [dRPC](#drpc)
 
 ### 1RPC {: #1rpc}
 
@@ -74,6 +75,18 @@ To start with a free Developer plan endpoint, sign up using an email or any soci
 
 ![Chainstack](/images/builders/get-started/endpoints/endpoints-3.webp)
 
+### dRPC.org {: #drpc }
+
+dRPC.org offers public and paid [Moonbeam RPC](https://drpc.org/chainlist/moonbeam){target=\_blank} endpoints, providing an efficient, low-latency connection to blockchain nodes. The paid tiers include higher request limits, lower latency, and advanced analytics for optimized performance.
+
+How to use dRPC:
+
+1. Sign up or log in at [dRPC.org](https://drpc.org/){target=\_blank}
+2. In the dashboard, create an API key
+3. Click the key and select the desired endpoint
+
+For 24/7 support, join dRPC's [Discord](https://drpc.org/discord){target=\_blank}.
+
 ### Dwellir {: #dwellir }
 
 [Dwellir](https://www.dwellir.com){target=\_blank} is a blockchain operation service that ensures global scalability, low latency, and a 99.99% uptime guarantee, providing fast and reliable node operations wherever your business stands. The public endpoint service is geographically distributed bare metal servers globally. As the service is public, there are no sign-up or API keys to manage.
@@ -87,7 +100,7 @@ To get started with a developer endpoint or dedicated node, you'll need to conta
 
 ### GetBlock {: #getblock }
 
-[GetBlock](https://getblock.io){target=\_blank} is a service that provides instant API access to Moonbeam and Moonriver and is available through shared and dedicated nodes. [Dedicated nodes](https://getblock.io/dedicated-nodes){target=\_blank} provide access to a private server with fast speeds and without rate limits. [Shared nodes](https://getblock.io/nodes){target=\_blank} provide a free API key based endpoint for you to get started quickly.
+[GetBlock](https://getblock.io){target=\_blank} is a service that provides instant API access to Moonbeam and Moonriver and is available through shared and dedicated nodes. [Dedicated nodes](https://docs.getblock.io/getting-started/plans-and-limits/choosing-your-plan#dedicated-nodes){target=\_blank} provide access to a private server with fast speeds and without rate limits. [Shared nodes](https://docs.getblock.io/getting-started/plans-and-limits/choosing-your-plan#shared-nodes){target=\_blank} provide a free API key based endpoint for you to get started quickly.
 
 To get started with GetBlock and obtain an API key, you can go the [GetBlock registration page](https://account.getblock.io/sign-up){target=\_blank} and sign up. From the **GetBlock Dashboard**, you can view and manage your existing API keys and create new API keys.
 

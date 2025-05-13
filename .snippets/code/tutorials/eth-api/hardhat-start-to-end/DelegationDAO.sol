@@ -12,6 +12,9 @@ contract DelegationDAO is AccessControl {
     // Role definition for contract members
     bytes32 public constant MEMBER = keccak256("MEMBER");
 
+    // Auto-compounding percentage (100%)
+    uint8 public constant AUTOCOMPOUNDING_PERCENT = 100;
+
     // Possible states for the DAO to be in:
     // COLLECTING: the DAO is collecting funds before creating a delegation once the minimum delegation stake has been reached
     // STAKING: the DAO has an active delegation
@@ -58,7 +61,7 @@ contract DelegationDAO is AccessControl {
         // Directly grant roles
         _grantRole(DEFAULT_ADMIN_ROLE, admin);
         _grantRole(MEMBER, admin);
-        
+
         //Sets the collator that this DAO nominating
         target = _target;
 
@@ -115,10 +118,12 @@ contract DelegationDAO is AccessControl {
                 return;
             } else {
                 //initialiate the delegation and change the state
-                staking.delegate(
+                staking.delegateWithAutoCompound(
                     target,
                     address(this).balance,
+                    AUTOCOMPOUNDING_PERCENT,
                     staking.candidateDelegationCount(target),
+                    staking.candidateAutoCompoundingDelegationCount(target),
                     staking.delegatorDelegationCount(address(this))
                 );
                 currentState = daoState.STAKING;
