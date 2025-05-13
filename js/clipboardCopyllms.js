@@ -15,13 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
           const copiedToClipboardMessage =
             copiedToClipboard.querySelector('.md-dialog__inner');
-          if (
-            copiedToClipboardMessage &&
-            copiedToClipboardMessage.textContent !==
-              "{{ lang.t('clipboard.copied') }}"
-          ) {
-            copiedToClipboardMessage.textContent =
-              "{{ lang.t('clipboard.copied') }}";
+          if (copiedToClipboardMessage) {
+            copiedToClipboardMessage.textContent = "Copied to clipboard";
           }
           // Set a timer to remove the after 2 seconds (2000ms)
           setTimeout(() => {
