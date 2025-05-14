@@ -31,7 +31,7 @@ The Identity Pallet provides the following extrinsics (functions):
         --8<-- 'code/builders/substrate/interfaces/account/identity/add-registrar.js'
         ```
 
-??? function "**addSub**(sub, data) - adds an account as a sub-account of the caller. You can optionally provide a name for the sub-account. This function is not callable via a `NonTransfer` proxy. You can sign the transaction directly or use a different proxy type (`Any`, `IdentityJudgement`, etc.)" 
+??? function "**addSub**(sub, data) - adds an account as a sub-account of the caller. You can optionally provide a name for the sub-account. This function is not callable via a `NonTransfer` proxy. You can sign the transaction directly or use a different [proxy type](/tokens/manage/proxy-accounts/#proxy-types){target=\_blank} (`Any`, `IdentityJudgement`, etc.)" 
 
     === "Parameters"
 
