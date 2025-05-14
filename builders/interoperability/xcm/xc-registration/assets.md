@@ -3,7 +3,7 @@ title: Register XC Assets
 description: This guide includes everything you need to know to register local and external XC-20s so you can begin transferring assets cross-chain via XCM.
 ---
 
-# How to Register Cross-Chain Assets
+# How to Register Cross-Chain Assets via Governance
 
 ## Introduction {: #introduction }
 
