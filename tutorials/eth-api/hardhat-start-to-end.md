@@ -45,23 +45,37 @@ You will need to create a Hardhat project if you don't already have one. You can
 3. Install Hardhat
 
     ```bash
-    npm install hardhat
+    npm install hardhat@3.0.0-next.5
     ```
 
 4. Create a project
 
     ```bash
-    npx hardhat init
+    npx hardhat --init
     ```
 
     !!! note
-        `npx` is used to run executables installed locally in your project. Although Hardhat can be installed globally, it is recommended to install it locally in each project so that you can control the version on a project by project basis.
+        `npx` is used to run executables installed locally in your project. Although Hardhat can be installed globally, installing it locally in each project is recommended so that you can control the version on a project-by-project basis.
 
-5. A menu will appear allowing you to create a new project or use a sample project. For this example, you can choose **Create an empty hardhat.config.js**
+5. You'll be prompted with a series of questions to set up your project:
+
+    - Choose where to initialize the project (default is current directory)
+    - Confirm converting to ESM (required for Hardhat v3)
+    - Select the type of project to initialize:
+        - A TypeScript Hardhat project using Node Test Runner and Viem
+        - A TypeScript Hardhat project using Mocha and Ethers.js
+
+    For this example, you can choose either option based on your preference. If you choose the Mocha and Ethers.js option, you'll get a project structure with:
+    
+    - A sample contract in `contracts/Counter.sol`
+    - A test file in `test/Counter.ts`
+    - TypeScript configuration
+    - Mocha and Ethers.js dependencies
+
+    The project will be set up with all necessary dependencies and configurations for you to start developing.
 
 --8<-- 'code/tutorials/eth-api/hardhat-start-to-end/terminal/hardhat-create.md'
 
-This will create a Hardhat config file (`hardhat.config.js`) in your project directory.
 
 ## Add Smart Contracts {: #add-smart-contracts }
 
@@ -72,16 +86,16 @@ The smart contract featured in this tutorial is more complex than the one in the
 
 To get started, take the following steps:
 
-1. Create a `contracts` directory to hold your project's smart contracts
+1. Change to the contracts directory
 
     ```bash
-    mkdir contracts
+    cd contracts
     ```
 
 2. Create a new file called `DelegationDAO.sol`
 
     ```bash
-    touch contracts/DelegationDAO.sol
+    touch DelegationDAO.sol
     ```
 
 3. Copy and paste the contents of [DelegationDAO.sol](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-intro-course-resources/main/delegation-dao-lesson-one/DelegationDAO.sol){target=\_blank} into `DelegationDAO.sol`
@@ -94,7 +108,7 @@ To get started, take the following steps:
 4. Create a new file called `StakingInterface.sol` in the `contracts` directory
 
     ```bash
-    touch contracts/StakingInterface.sol
+    touch StakingInterface.sol
     ```
 
 5. Copy and paste the contents of [StakingInterface.sol](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam/master/precompiles/parachain-staking/StakingInterface.sol){target=\_blank} into `StakingInterface.sol`
@@ -121,106 +135,196 @@ npm install --save-dev @nomicfoundation/hardhat-toolbox
 
 If you're curious about additional Hardhat plugins, here is [a complete list of official Hardhat plugins](https://hardhat.org/hardhat-runner/plugins){target=\_blank}.
 
-For the examples in this guide, you'll need to add your private keys for your two accounts on Moonbase Alpha. Since some of the testing will be done on a development node, you'll also need to add the private keys of two of the prefunded development node accounts, which for this example, we can use Alice and Bob. In addition, you'll add your Moonscan API key, which can be used for both Moonbase Alpha and Moonbeam.
+Hardhat 3 includes an encrypted secrets manager that makes handling sensitive information like private keys and API keys easier. This ensures you don't have to hardcode secrets in your source code or store them in plain text.
 
-You can modify the `hardhat.config.js` file to use any of the Moonbeam networks:
+!!! note
+    The encrypted secrets manager is only available in Hardhat 3 or higher. As of writing this guide, Hardhat 3 is in alpha. You can install the latest alpha version with:
+
+    ```bash
+    npm install hardhat@3.0.0-next.5
+    ```
+
+    For the latest releases and updates, check the [Hardhat releases page](https://github.com/NomicFoundation/hardhat/releases/).
+
+To use encrypted secrets, you'll need to:
+
+1. Install Hardhat 3 or later:
+```bash
+npm install hardhat@3.0.0-next.5
+```
+
+2. Set up your secrets using the keystore:
+
+=== "Moonbeam"
+
+    ```bash
+    npx hardhat keystore set MOONBEAM_RPC_URL
+    npx hardhat keystore set MOONBEAM_PRIVATE_KEY
+    ```
+
+=== "Moonriver"
+
+    ```bash
+    npx hardhat keystore set MOONRIVER_RPC_URL
+    npx hardhat keystore set MOONRIVER_PRIVATE_KEY
+    ```
+
+=== "Moonbase Alpha"
+
+    ```bash
+    npx hardhat keystore set MOONBASE_RPC_URL
+    npx hardhat keystore set MOONBASE_PRIVATE_KEY
+    ```
+
+=== "Moonbeam Dev Node"
+
+    ```bash
+    npx hardhat keystore set DEV_RPC_URL
+    npx hardhat keystore set DEV_PRIVATE_KEY
+    npx hardhat keystore set ALICE_PRIVATE_KEY
+    npx hardhat keystore set BOB_PRIVATE_KEY
+    ```
+
+Then, update your configuration file to use the encrypted secrets:
 
 === "Moonbeam"
 
     ```js
+    module.exports = {
+      solidity: '0.8.20',
+      networks: {
         moonbeam: {
-          url: '{{ networks.moonbeam.rpc_url }}', // Insert your RPC URL here
+          type: "http",
+          chainType: "generic",
+          url: configVariable("MOONBEAM_RPC_URL"),
           chainId: {{ networks.moonbeam.chain_id }}, // (hex: {{ networks.moonbeam.hex_chain_id }}),
-          accounts: [privateKey]
+          accounts: [configVariable("MOONBEAM_PRIVATE_KEY")],
         },
+      },
+    };
     ```
 
 === "Moonriver"
 
     ```js
+    module.exports = {
+      solidity: '0.8.20',
+      networks: {
         moonriver: {
-          url: '{{ networks.moonriver.rpc_url }}', // Insert your RPC URL here
+          type: "http",
+          chainType: "generic",
+          url: configVariable("MOONRIVER_RPC_URL"),
           chainId: {{ networks.moonriver.chain_id }}, // (hex: {{ networks.moonriver.hex_chain_id }}),
-          accounts: [privateKey]
+          accounts: [configVariable("MOONRIVER_PRIVATE_KEY")],
         },
+      },
+    };
     ```
 
 === "Moonbase Alpha"
 
     ```js
+    module.exports = {
+      solidity: '0.8.20',
+      networks: {
         moonbase: {
-          url: '{{ networks.moonbase.rpc_url }}',
+          type: "http",
+          chainType: "generic",
+          url: configVariable("MOONBASE_RPC_URL"),
           chainId: {{ networks.moonbase.chain_id }}, // (hex: {{ networks.moonbase.hex_chain_id }}),
-          accounts: [privateKey]
+          accounts: [configVariable("MOONBASE_PRIVATE_KEY")],
         },
+      },
+    };
     ```
 
 === "Moonbeam Dev Node"
 
     ```js
+    module.exports = {
+      solidity: '0.8.20',
+      networks: {
         dev: {
-          url: '{{ networks.development.rpc_url }}',
-          chainId: {{ networks.development.chain_id }}, // (hex: {{ networks.development.hex_chain_id }}),
-          accounts: [privateKey]
+          type: "http",
+          chainType: "generic",
+          url: configVariable("DEV_RPC_URL"),
+          chainId: 1281, // 0x501 in hex
+          accounts: [
+            configVariable("DEV_PRIVATE_KEY"),
+            configVariable("ALICE_PRIVATE_KEY"), // Alice (Alith) account
+            configVariable("BOB_PRIVATE_KEY")    // Bob (Baltathar) account
+          ],
         },
+      },
+    };
     ```
 
-5. Add your [Moonscan API key](/builders/ethereum/verify-contracts/etherscan-plugins/#generating-a-moonscan-api-key){target=\_blank}, which is required for the verification steps we'll be taking later in this tutorial
+For this example, you'll need to add your private keys for your two accounts on Moonbase Alpha. Since some of the testing will be done on a development node, you'll also need to add the private keys of two of the pre-funded development node accounts, which, for this example, we can use Alice and Bob. In addition, you'll add your Moonscan API key, which can be used for both Moonbase Alpha and Moonbeam.
 
 ```js
 // 1. Import the Hardhat Toolbox plugin
 require('@nomicfoundation/hardhat-toolbox');
 require('@nomicfoundation/hardhat-ignition-ethers');
 
-// 2. Create variables for your private keys from your pre-funded Moonbase Alpha
-// testing accounts and your Moonscan API key
-const privateKey = 'INSERT_PRIVATE_KEY';
-const privateKey2 = 'INSERT_ANOTHER_PRIVATE_KEY';
-const moonscanAPIKey = 'INSERT_MOONSCAN_API_KEY';
-
 module.exports = {
-  // 3. Specify the Solidity version
+  // 2. Specify the Solidity version
   solidity: '0.8.20',
   networks: {
-    // 4. Add the Moonbase Alpha network specification
+    // 3. Add the Moonbase Alpha network specification
     moonbase: {
-      url: '{{ networks.moonbase.rpc_url }}',
+      type: "http",
+      chainType: "generic",
+      url: configVariable("MOONBASE_RPC_URL"),
       chainId: {{ networks.moonbase.chain_id }}, // {{ networks.moonbase.hex_chain_id }} in hex
-      accounts: [privateKey, privateKey2],
+      accounts: [configVariable("MOONBASE_PRIVATE_KEY")],
     },
     dev: {
-      url: '{{ networks.development.rpc_url }}',
-      chainId: {{ networks.development.chain_id }}, // {{ networks.development.hex_chain_id }} in hex
+      type: "http",
+      chainType: "generic",
+      url: configVariable("DEV_RPC_URL"),
+      chainId: 1281, // 0x501 in hex
       accounts: [
-        '0x5fb92d6e98884f76de468fa3f6278f8807c48bebc13595d45af5bdc4da702133', // Alice's PK
-        '0x8075991ce870b93a8870eca0c0f91913d12f47948ca0fd25b49c6fa7cdbeee8b', // Bob's PK
+        configVariable("DEV_PRIVATE_KEY"),
+        configVariable("ALICE_PRIVATE_KEY"), // Alice (Alith) account
+        configVariable("BOB_PRIVATE_KEY")    // Bob (Baltathar) account
       ],
     },
     moonbeam: {
-      url: '{{ networks.moonbeam.public_rpc_url }}', // Or insert your own RPC URL here
+      type: "http",
+      chainType: "generic",
+      url: configVariable("MOONBEAM_RPC_URL"),
       chainId: {{ networks.moonbeam.chain_id }}, // {{ networks.moonbeam.hex_chain_id }} in hex
-      accounts: [privateKey, privateKey2],
+      accounts: [configVariable("MOONBEAM_PRIVATE_KEY")],
     },
   },
-  // 5. Set up your Moonscan API key for contract verification
+  // 4. Set up your Moonscan API key for contract verification
   // Moonbeam and Moonbase Alpha Moonscan use the same API key
   etherscan: {
     apiKey: {
-      moonbaseAlpha: moonscanAPIKey, // Moonbase Moonscan API Key
-      moonbeam: moonscanAPIKey, // Moonbeam Moonscan API Key
+      moonbaseAlpha: configVariable("MOONSCAN_API_KEY"), // Moonbase Moonscan API Key
+      moonbeam: configVariable("MOONSCAN_API_KEY"), // Moonbeam Moonscan API Key
     },
   },
 };
 ```
 
 !!! note
-    Any real funds sent to the Alice and Bob development accounts will be lost immediately. Take precautions to never send MainNet funds to exposed development accounts.
+    Any real funds sent to the Alice and Bob development accounts will be lost immediately.Take precautions never to send MainNet funds to exposed development accounts. The private keys for these accounts are:
+    
+    - Alice (Alith): `0x5fb92d6e98884f76de468fa3f6278f8807c48bebc13595d45af5bdc4da702133`
+    - Bob (Baltathar): `0x8075991ce870b93a8870eca0c0f91913d12f47948ca0fd25b49c6fa7cdbeee8b`
+    
+    These accounts should only be used on the local development node and never on Moonbeam MainNet or Moonbase Alpha.
 
 You're now ready to move on to compilation and testing.
 
 ## Compiling the Contract {: #compiling-the-contract }
 
-To compile the contract you can simply run:
+Now that you have your Hardhat project set up with the encrypted secrets manager, you can proceed with compilation and testing. The project comes with a sample contract and test file that you can use to verify your setup.
+
+### Compiling the Contract {: #compiling-the-contract }
+
+To compile the sample contract, run:
 
 ```bash
 npx hardhat compile
@@ -437,12 +541,12 @@ In the following steps, we'll deploy the `DelegationDAO` to the Moonbase Alpha T
 
 As a side note, `DelegationDAO` relies on [`StakingInterface.sol`](/builders/ethereum/precompiles/features/staking/){target=\_blank}, which is a Substrate-based offering unique to Moonbeam networks. The Hardhat Network and forked networks are simulated EVM environments which do not include the Substrate-based precompiles like `StakingInterface.sol`. Therefore, `DelegationDAO` will not work properly if deployed to the local default Hardhat Network or a [forked network](/builders/ethereum/dev-env/hardhat/#forking-moonbeam){target=\_blank}.
 
-To deploy `DelegationDAO`, you'll use Hardhat Ignition, a declarative framework for deploying smart contracts. Hardhat Ignition is designed to make it easy to manage recurring tasks surrounding smart contract  deployment and testing. For more information about Hardhat Ignition and its architecture, be sure to check out the [Hardhat Ignition docs](https://hardhat.org/ignition/docs/getting-started#overview){target=\_blank}.
+To deploy `DelegationDAO`, you'll use Hardhat Ignition, a declarative framework for deploying smart contracts. Hardhat Ignition is designed to make managing recurring tasks surrounding smart contract deployment and testing easy. For more information about Hardhat Ignition and its architecture, be sure to check out the [Hardhat Ignition docs](https://hardhat.org/ignition/docs/getting-started#overview){target=\_blank}.
 
-To set up the proper file structure for your Ignition module, create a folder named `ignition` and a subdirectory called `modules`.  Then, add a new file to it called `DelegationDao.js`. You can take all three of these steps with the following command:
+To set up the proper file structure for your Ignition module, change to the ignition directory and create the DelegationDao.js file:
 
 ```sh
-mkdir ignition ignition/modules && touch ignition/modules/DelegationDao.js
+cd ignition/modules && touch DelegationDao.js
 ```
 
 Next, you can write your Hardhat Ignition module. To get started, take the following steps:
@@ -458,16 +562,16 @@ When all is said and done your deployment script should look similar to the foll
 
 ```javascript
 // 1. Import the required function from the Hardhat Ignition module
-const { buildModule } = require('@nomicfoundation/hardhat-ignition/modules');
+import { buildModule } from '@nomicfoundation/hardhat-ignition/modules';
 
 // 2. Define and export your deployment module using `buildModule`
-module.exports = buildModule('DelegationDAOModule', (m) => {
+const DelegationDAOModule = buildModule('DelegationDAOModule', (m) => {
   // 3. Specify the target collator address for the DAO
-  const targetCollator = '{{ networks.moonbase.staking.candidates.address1 }}';
-
+  const targetCollator = '0x12E7BCCA9b1B15f33585b5fc898B967149BDb9a5';
+  
   // 4. Use the `getAccount` method to select the deployer account
   const deployer = m.getAccount(0);
-
+  
   // 5. Deploy the `DelegationDAO` contract
   const delegationDao = m.contract(
     'DelegationDAO',
@@ -476,16 +580,19 @@ module.exports = buildModule('DelegationDAOModule', (m) => {
       from: deployer,
     }
   );
-
+  
   // 6. Return an object from the module including references to deployed contracts, allowing the contract to be accessible for interaction in Hardhat tests and scripts
   return { delegationDao };
 });
+
+// Export the module as default
+export default DelegationDAOModule;
 ```
 
 To run the script and deploy the `DelegationDAO.sol` contract, use the following command, which requires you to specify the network name as defined in your `hardhat.config.js`. If you don't specify a network, Hardhat will deploy the contract to a local Hardhat network by default. 
 
 ```sh
-npx hardhat ignition deploy ./ignition/modules/DelegationDao.js --network moonbase --deployment-id INSERT_YOUR_NAME
+npx hardhat ignition deploy ./DelegationDao.js --network moonbase --deployment-id INSERT_YOUR_NAME
 ```
 
 You'll be prompted to confirm the network you wish to deploy to. After a few seconds after you confirm, the contract is deployed, and you'll see the contract address in the terminal.
@@ -525,16 +632,16 @@ In the following steps, we'll be deploying the `DelegationDAO` contract to the M
 
 ```javascript
 // 1. Import the required function from the Hardhat Ignition module
-const { buildModule } = require('@nomicfoundation/hardhat-ignition/modules');
+import { buildModule } from '@nomicfoundation/hardhat-ignition/modules';
 
 // 2. Define and export your deployment module using `buildModule`
-module.exports = buildModule('DelegationDAOModule', (m) => {
+const DelegationDAOModule = buildModule('DelegationDAOModule', (m) => {
   // 3. Specify the target collator address for the DAO
-  const targetCollator = '{{ networks.moonbeam.staking.candidates.address1 }}';
-
+  const targetCollator = '0x1C86E56007FCBF759348dcF0479596a9857Ba105';
+  
   // 4. Use the `getAccount` method to select the deployer account
   const deployer = m.getAccount(0);
-
+  
   // 5. Deploy the `DelegationDAO` contract
   const delegationDao = m.contract(
     'DelegationDAO',
@@ -543,10 +650,13 @@ module.exports = buildModule('DelegationDAOModule', (m) => {
       from: deployer,
     }
   );
-
+  
   // 6. Return an object from the module including references to deployed contracts, allowing the contract to be accessible for interaction in Hardhat tests and scripts
   return { delegationDao };
 });
+
+// Export the module as default
+export default DelegationDAOModule;
 
 ```
 
