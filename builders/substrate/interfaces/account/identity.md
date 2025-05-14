@@ -233,7 +233,7 @@ The Identity Pallet provides the following extrinsics (functions):
         --8<-- 'code/builders/substrate/interfaces/account/identity/set-identity.js'
         ```
 
-??? function "**setSubs**(subs) - sets the sub-accounts for the caller. This function is not callable via a `NonTransfer` proxy. You can sign the transaction directly or use a different proxy type (`Any`, `IdentityJudgement`, etc.)"
+??? function "**setSubs**(subs) - sets the sub-accounts for the caller. This function is not callable via a `NonTransfer` proxy. You can sign the transaction directly or use a different [proxy type](/tokens/manage/proxy-accounts/#proxy-types){target=\_blank} (`Any`, `IdentityJudgement`, etc.)"
 
     === "Parameters"
 
