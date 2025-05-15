@@ -357,7 +357,7 @@ For more information, you can review the [relative PR on GitHub](https://github.
 
 The `notifyInactiveCollator` extrinsic, designed to remove collators from the pool if they haven't produced any blocks in the last two rounds, failed for collators who had been inactive for significantly longer than two rounds. The transaction would only succeed within the first few blocks of a new round.
 
-The bug existed during the following runtimes and block ranges and was fixed by [PR #3128](https://github.com/moonbeam-foundation/moonbeam/pull/3128):
+The bug existed during the following runtimes and block ranges:
 
 |    Network     | Introduced | Fixed  | Impacted Block Range |
 |:--------------:|:----------:|:------:|:--------------------:|
@@ -365,6 +365,7 @@ The bug existed during the following runtimes and block ranges and was fixed by 
 |   Moonriver    |   RT2602   | RT3501 |  5638536 – 10665393  |
 |    Moonbeam    |   RT2602   | RT3501 |  4977160 – 10056989  |
 
+For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/3128){target=\_blank}.
 ---
 
 ## Migrations {: #migrations }
