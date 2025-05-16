@@ -9,9 +9,9 @@ description: Learn how to use API3 to request and receive off-chain data from wi
 
 API3 is a decentralized solution for delivering traditional API services to smart contract platforms in an easily accessible and scalable way. It is governed by a Decentralized Autonomous Organization (DAO), the API3 DAO. API3 enables developers to access off-chain resources from within their smart contracts without worrying about security implications. API3 makes this possible through Airnodes, which are first-party oracles, and on-chain data feeds sourced from these oracles.
 
-Developers can use [Airnode](https://api3.org/airnode/){target=\_blank} to request off-chain data inside their smart contracts on Moonbeam networks. An Airnode is a first-party oracle that pushes off-chain API data to your on-chain contract. Airnode lets API providers easily run their own first-party oracle nodes. That way, they can provide data to any on-chain dApp interested in their services, all without an intermediary.
+Developers can use [Airnode](https://docs.api3.org/oev-searchers/glossary.html#airnode){target=\_blank} to request off-chain data inside their smart contracts on Moonbeam networks. An Airnode is a first-party oracle that pushes off-chain API data to your on-chain contract. Airnode lets API providers easily run their own first-party oracle nodes. That way, they can provide data to any on-chain dApp interested in their services, all without an intermediary.
 
-An on-chain smart contract requests the [RRP (Request Response Protocol)](https://docs.api3.org/reference/airnode/latest/concepts){target=\_blank} contract ([`AirnodeRrpV0.sol`](https://github.com/api3dao/airnode/blob/v0.11/packages/airnode-protocol/contracts/rrp/AirnodeRrpV0.sol){target=\_blank}) that adds the request to the event logs. The Airnode then accesses the event logs, fetches the API data, and performs a callback to the requester with the requested data.
+An on-chain smart contract requests the [RRP (Request Response Protocol)](https://github.com/api3dao/airnode/tree/v0.11/packages/airnode-protocol/contracts/rrp){target=\_blank} contract ([`AirnodeRrpV0.sol`](https://github.com/api3dao/airnode/blob/v0.11/packages/airnode-protocol/contracts/rrp/AirnodeRrpV0.sol){target=\_blank}) that adds the request to the event logs. The Airnode then accesses the event logs, fetches the API data, and performs a callback to the requester with the requested data.
 
 ![A diagram detailing the Airnode flow.](/images/builders/integrations/oracles/api3/api3-1.webp)
 
@@ -122,7 +122,7 @@ The `makeRequest()` function expects the following parameters to make a valid re
 - [**`airnode`**](https://docs.api3.org/reference/airnode/latest/concepts/airnode.html){target=\_blank} - specifies the Airnode address
 - [**`endpointId`**](https://docs.api3.org/reference/airnode/latest/concepts/endpoint.html){target=\_blank} - specifies which endpoint to be used
 - [**`sponsor`**](https://docs.api3.org/reference/airnode/latest/concepts/sponsor.html){target=\_blank} and [**`sponsorWallet`**](https://docs.api3.org/reference/airnode/latest/concepts/sponsor.html#sponsorwallet){target=\_blank} - specifies which wallet will be used to fulfill the request
-- [**`parameters`**](https://docs.api3.org/reference/ois/latest/reserved-parameters.html){target=\_blank} - specifies the API and Reserved Parameters (see [Airnode ABI specifications](https://docs.api3.org/reference/airnode/latest/specifications/airnode-abi.html){target=\_blank} for how these are encoded). Parameters can be encoded off-chain using the `@airnode-abi` library
+- [**`parameters`**](https://docs.api3.org/reference/ois/latest/reserved-parameters.html){target=\_blank} - specifies the API and Reserved Parameters (see [Airnode ABI specifications](https://docs.api3.org/oev-searchers/glossary.html#airnode-abi){target=\_blank} for how these are encoded). Parameters can be encoded off-chain using the `@airnode-abi` library
 
 ### Response Parameters {: #response-params }
 
