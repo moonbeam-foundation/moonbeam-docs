@@ -9,9 +9,9 @@ description: Learn how to use API3 to request and receive off-chain data from wi
 
 API3 is a decentralized solution for delivering traditional API services to smart contract platforms in an easily accessible and scalable way. It is governed by a Decentralized Autonomous Organization (DAO), the API3 DAO. API3 enables developers to access off-chain resources from within their smart contracts without worrying about security implications. API3 makes this possible through Airnodes, which are first-party oracles, and on-chain data feeds sourced from these oracles.
 
-Developers can use [Airnode](https://docs.api3.org/oev-searchers/glossary.html#airnode){target=\_blank} to request off-chain data inside their smart contracts on Moonbeam networks. An Airnode is a first-party oracle that pushes off-chain API data to your on-chain contract. Airnode lets API providers easily run their own first-party oracle nodes. That way, they can provide data to any on-chain dApp interested in their services, all without an intermediary.
+Developers can use [Airnode](https://airnode-docs.api3.org/reference/airnode/latest/understand/){target=\_blank} to request off-chain data inside their smart contracts on Moonbeam networks. An Airnode is a first-party oracle that pushes off-chain API data to your on-chain contract. Airnode lets API providers easily run their own first-party oracle nodes. That way, they can provide data to any on-chain dApp interested in their services, all without an intermediary.
 
-An on-chain smart contract requests the [RRP (Request Response Protocol)](https://github.com/api3dao/airnode/tree/v0.11/packages/airnode-protocol/contracts/rrp){target=\_blank} contract ([`AirnodeRrpV0.sol`](https://github.com/api3dao/airnode/blob/v0.11/packages/airnode-protocol/contracts/rrp/AirnodeRrpV0.sol){target=\_blank}) that adds the request to the event logs. The Airnode then accesses the event logs, fetches the API data, and performs a callback to the requester with the requested data.
+An on-chain smart contract requests the [RRP (Request Response Protocol)](https://airnode-docs.api3.org/reference/airnode/latest/developers/){target=\_blank} contract ([`AirnodeRrpV0.sol`](https://github.com/api3dao/airnode/blob/v0.11/packages/airnode-protocol/contracts/rrp/AirnodeRrpV0.sol){target=\_blank}) that adds the request to the event logs. The Airnode then accesses the event logs, fetches the API data, and performs a callback to the requester with the requested data.
 
 ![A diagram detailing the Airnode flow.](/images/builders/integrations/oracles/api3/api3-1.webp)
 
@@ -95,7 +95,7 @@ You can also try [deploying the example contract on Remix](https://remix.ethereu
 
 ### Contract Addresses {: #contract-addresses }
 
-The `_rrpAddress` is the main `airnodeRrpAddress`. The RRP contracts have already been deployed on-chain. The [addresses for the `_rrpAddress`](https://docs.api3.org/reference/airnode/latest){target=\_blank} on Moonbeam networks are as follows:
+The `_rrpAddress` is the main `airnodeRrpAddress`. The RRP contracts have already been deployed on-chain. The [addresses for the `_rrpAddress`](https://airnode-docs.api3.org/reference/airnode/latest/){target=\_blank} on Moonbeam networks are as follows:
 
 === "Moonbeam"
 
@@ -228,7 +228,7 @@ The example contract contains two functions:
 
 To request randomness on-chain, the requester submits a request for a random number to `AirnodeRrpV0`. The QRNG Airnode gathers the request from the `AirnodeRrpV0` protocol contract, retrieves the random number off-chain, and sends it back to `AirnodeRrpV0`. Once received, it performs a callback to the requester with the random number.
 
-Click here to check out the [`AirnodeRrpV0`](https://docs.api3.org/reference/qrng/chains.html){target=\_blank} and available [QRNG Providers](https://docs.api3.org/reference/qrng/providers.html){target=\_blank} on Moonbeam.
+Click here to check out the [`AirnodeRrpV0`](https://github.com/api3dao/airnode/blob/v0.11/packages/airnode-protocol/contracts/rrp/AirnodeRrpV0.sol){target=\_blank} and available [QRNG Providers](https://docs.api3.org/reference/qrng/providers.html){target=\_blank} on Moonbeam.
 
 Here is an example of a basic `QrngRequester` that requests a random number:
 
@@ -427,7 +427,7 @@ You can try QRNG using the following Airnodes and endpoints:
     |  TestNet QRNG Endpoint ID (uint256)  |   `{{ networks.moonbase.api3.testnetqrnguint256 }}`    |
     | TestNet QRNG Endpoint ID (uint256[]) | `{{ networks.moonbase.api3.testnetqrnguint256array }}` |
 
-For a complete list of all the QRNG Providers, please refer to [API3's documentation](https://docs.api3.org/reference/qrng/providers.html){target=\_blank}.
+For a complete list of all the QRNG Providers, please refer to [API3's documentation](https://airnode-docs.api3.org/reference/airnode/latest/understand/){target=\_blank}.
 
 ## Additional Resources {: #additional-resources }
 
@@ -435,8 +435,8 @@ Here are some additional developer resources:
 
 - [API3 Market](https://market.api3.org/moonbeam){target=\_blank}
 - [API3 Docs](https://docs.api3.org){target=\_blank}
-    - [Getting started with dAPIs](https://docs.api3.org/guides/dapis/){target=\_blank}
-    - [Getting started with QRNG](https://docs.api3.org/guides/qrng/){target=\_blank}
+    - [Getting started with dAPIs](https://docs.api3.org/oev-searchers/glossary.html#dapi){target=\_blank}
+    - [Getting started with QRNG](https://airnode-docs.api3.org/reference/airnode/latest/understand/){target=\_blank}
 - [API3 DAO GitHub](https://github.com/api3dao){target=\_blank}
 - [API3 Medium](https://medium.com/api3){target=\_blank}
 - [API3 YouTube](https://www.youtube.com/API3DAO){target=\_blank}

@@ -35,7 +35,6 @@ You can create your own endpoint suitable for development or production use usin
 - [Dwellir](#dwellir)
 - [GetBlock](#getblock)
 - [OnFinality](#onfinality)
-- [Pocket Network](#pokt)
 - [UnitedBloc](#unitedbloc)
 - [dRPC](#drpc)
 
@@ -100,17 +99,20 @@ To get started with a developer endpoint or dedicated node, you'll need to conta
 
 ### GetBlock {: #getblock }
 
-[GetBlock](https://getblock.io){target=\_blank} is a service that provides instant API access to Moonbeam and Moonriver and is available through shared and dedicated nodes. [Dedicated nodes](https://docs.getblock.io/getting-started/plans-and-limits/choosing-your-plan#dedicated-nodes){target=\_blank} provide access to a private server with fast speeds and without rate limits. [Shared nodes](https://docs.getblock.io/getting-started/plans-and-limits/choosing-your-plan#shared-nodes){target=\_blank} provide a free API key based endpoint for you to get started quickly.
+[GetBlock](https://getblock.io){target=\_blank} is a service that provides instant API access to Moonbeam and Moonriver and is available through shared and dedicated nodes. [Dedicated nodes](https://docs.getblock.io/getting-started/plans-and-limits/choosing-your-plan#dedicated-nodes){target=\_blank} provide access to a private server with fast speeds and without rate limits. [Shared nodes](https://docs.getblock.io/getting-started/plans-and-limits/choosing-your-plan#shared-nodes){target=\_blank} provide a free API/Add-on based endpoint for you to get started quickly.
 
-To get started with GetBlock and obtain an API key, you can go the [GetBlock registration page](https://account.getblock.io/sign-up){target=\_blank} and sign up. From the **GetBlock Dashboard**, you can view and manage your existing API keys and create new API keys.
+To get started with GetBlock, you can go to the [GetBlock registration page](https://account.getblock.io/sign-up){target=\_blank} and sign up for a new account. From your account **Dashboard**, you can view and manage your existing endpoints for multiple protocols, and also create new ones.
 
-Creating a new API key is simple, all you have to do is:
+![GetBlock](/images/builders/get-started/endpoints/get_block_new_UI_1.webp)
 
-1. Click **Create a new API key**
-2. Enter a name for your API key
-3. Click **Create** to generate your API key
+Creating a new API/Add-on based endpoint is simple, all you have to do is:
 
-![GetBlock](/images/builders/get-started/endpoints/endpoints-5.webp)
+1. Fill the information for the desired Protocol from the list of available blockchains
+2. Choose the Network you want your endpoint to point to (Mainnet, Testnet, etc)
+3. Select the API/Add-on (JSON-RPC)
+4. Click the **Get** button at the far right and you're all set to go! 
+
+![GetBlock](/images/builders/get-started/endpoints/get_block_new_UI_2.webp)
 
 ### OnFinality {: #onfinality }
 
