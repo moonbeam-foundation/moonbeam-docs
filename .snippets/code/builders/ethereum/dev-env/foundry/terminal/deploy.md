@@ -1,8 +1,8 @@
 <div id="termynal" data-termynal>
-    <span data-ty="input"><span class="file-path"></span>forge create --rpc-url https://rpc.api.moonbase.moonbeam.network \
---constructor-args 100 \
---private-key INSERT_PRIVATE_KEY \
-src/MyToken.sol:MyToken</span>
+    <span data-ty="input"><span class="file-path"></span>forge create src/MyToken.sol:MyToken \
+--rpc-url https://rpc.api.moonbase.moonbeam.network \
+--account deployer \
+--constructor-args 100</span>
     <br>
     <span data-ty>[⠒] Compiling...</span>
     <span data-ty>No files changed, compilation skipped</span>
