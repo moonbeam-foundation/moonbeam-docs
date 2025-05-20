@@ -136,7 +136,7 @@ The callback to the requester contract contains two parameters:
 
 ## dAPIs: API3 Data Feeds {: #dapis }
 
-[dAPIs](https://airnode-docs.api3.org/reference/airnode/latest/concepts/airnode.html){target=\_blank} are continuously updated streams of off-chain data, such as the latest cryptocurrency, stock, and commodity prices. They can power decentralized applications such as DeFi lending, synthetic assets, stablecoins, derivatives, NFTs, and more.
+[dAPIs](https://docs.api3.org/oev-searchers/in-depth/data-feeds/){target=\_blank} are continuously updated streams of off-chain data, such as the latest cryptocurrency, stock, and commodity prices. They can power decentralized applications such as DeFi lending, synthetic assets, stablecoins, derivatives, NFTs, and more.
 
 The data feeds are continuously updated by [first-party oracles](https://docs.api3.org/oev-searchers/glossary.html#first-party-oracles){target=\_blank} using signed data. DApp owners can read the on-chain value of any dAPI in real-time.
 
@@ -144,7 +144,7 @@ Because they are composed of first-party data feeds, dAPIs offer security, trans
 
 ![The API3 Market dashboard.](/images/builders/integrations/oracles/api3/api3-3.webp)
 
-To learn more about how dAPIs work, please refer to [API3's documentation](https://docs.api3.org/oev-searchers/glossary.html#dapi){target=\_blank}.
+To learn more about how dAPIs work, please refer to [API3's documentation](https://docs.api3.org/oev-searchers/in-depth/data-feeds/){target=\_blank}.
 
 ### Subscribe to dAPIs {: #subscribing-to-dapis }
 
@@ -229,7 +229,6 @@ Here are some additional developer resources:
 
 - [API3 Market](https://market.api3.org/moonbeam){target=\_blank}
 - [API3 Docs](https://docs.api3.org){target=\_blank}
-    - [Getting started with dAPIs](https://airnode-docs.api3.org/reference/airnode/latest/concepts/airnode.html){target=\_blank}
 - [API3 DAO GitHub](https://github.com/api3dao){target=\_blank}
 - [API3 Medium](https://medium.com/api3){target=\_blank}
 - [API3 YouTube](https://www.youtube.com/API3DAO){target=\_blank}

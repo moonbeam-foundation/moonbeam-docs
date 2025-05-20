@@ -99,20 +99,20 @@ To get started with a developer endpoint or dedicated node, you'll need to conta
 
 ### GetBlock {: #getblock }
 
-[GetBlock](https://getblock.io){target=\_blank} is a service that provides instant API access to Moonbeam and Moonriver and is available through shared and dedicated nodes. [Dedicated nodes](https://docs.getblock.io/getting-started/plans-and-limits/choosing-your-plan#dedicated-nodes){target=\_blank} provide access to a private server with fast speeds and without rate limits. [Shared nodes](https://docs.getblock.io/getting-started/plans-and-limits/choosing-your-plan#shared-nodes){target=\_blank} provide a free API/Add-on based endpoint for you to get started quickly.
+[GetBlock](https://getblock.io){target=\_blank} is a service that provides instant API access to Moonbeam and Moonriver and is available through shared and dedicated nodes. [Dedicated nodes](https://docs.getblock.io/getting-started/plans-and-limits/choosing-your-plan#dedicated-nodes){target=\_blank} provide access to a private server with fast speeds and without rate limits. [Shared nodes](https://docs.getblock.io/getting-started/plans-and-limits/choosing-your-plan#shared-nodes){target=\_blank} provide a free API/add-on based endpoint for you to get started quickly.
 
-To get started with GetBlock, you can go to the [GetBlock registration page](https://account.getblock.io/sign-up){target=\_blank} and sign up for a new account. From your account **Dashboard**, you can view and manage your existing endpoints for multiple protocols, and also create new ones.
+To get started with GetBlock, you can go to the [GetBlock registration page](https://account.getblock.io/sign-up){target=\_blank} and sign up for a new account. Then, from your account **Dashboard**, you can view and manage your existing endpoints for multiple protocols, and also create new ones.
 
-![GetBlock](/images/builders/get-started/endpoints/get_block_new_UI_1.webp)
+Creating a new API/add-on based endpoint is simple, all you have to do is:
 
-Creating a new API/Add-on based endpoint is simple, all you have to do is:
-
-1. Fill the information for the desired Protocol from the list of available blockchains
-2. Choose the Network you want your endpoint to point to (Mainnet, Testnet, etc)
-3. Select the API/Add-on (JSON-RPC)
+1. Fill the information for the desired protocol from the list of available blockchains
+2. Choose the network you want your endpoint to point to (**Mainnet**, **Testnet**, etc)
+3. Select **JSON-RPC** from the **API/Add-on** dropdown
 4. Click the **Get** button at the far right and you're all set to go! 
 
-![GetBlock](/images/builders/get-started/endpoints/get_block_new_UI_2.webp)
+![GetBlock](/images/builders/get-started/endpoints/endpoints-5.webp)
+
+
 
 ### OnFinality {: #onfinality }
 
