@@ -1,7 +1,7 @@
 <div id="termynal" data-termynal>
   <span data-ty="input"><span class="file-path"></span>docker run --network host  \
     <br>-u $(id -u ${USER}):$(id -g ${USER}) \
-        moonbeamfoundation/moonbeam-tracing:v0.44.1-3600-a941 \
+        moonbeamfoundation/moonbeam-tracing:v0.45.0-3700-4174 \
     <br>--name="Moonbean-Tracing-Tutorial" \
     <br>--unsafe-rpc-external \
     <br>--ethapi=debug,trace,txpool \
