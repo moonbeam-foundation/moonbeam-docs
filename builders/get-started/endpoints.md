@@ -35,7 +35,6 @@ You can create your own endpoint suitable for development or production use usin
 - [Dwellir](#dwellir)
 - [GetBlock](#getblock)
 - [OnFinality](#onfinality)
-- [Pocket Network](#pokt)
 - [UnitedBloc](#unitedbloc)
 - [dRPC](#drpc)
 
@@ -100,17 +99,20 @@ To get started with a developer endpoint or dedicated node, you'll need to conta
 
 ### GetBlock {: #getblock }
 
-[GetBlock](https://getblock.io){target=\_blank} is a service that provides instant API access to Moonbeam and Moonriver and is available through shared and dedicated nodes. [Dedicated nodes](https://docs.getblock.io/getting-started/plans-and-limits/choosing-your-plan#dedicated-nodes){target=\_blank} provide access to a private server with fast speeds and without rate limits. [Shared nodes](https://docs.getblock.io/getting-started/plans-and-limits/choosing-your-plan#shared-nodes){target=\_blank} provide a free API key based endpoint for you to get started quickly.
+[GetBlock](https://getblock.io){target=\_blank} is a service that provides instant API access to Moonbeam and Moonriver and is available through shared and dedicated nodes. [Dedicated nodes](https://docs.getblock.io/getting-started/plans-and-limits/choosing-your-plan#dedicated-nodes){target=\_blank} provide access to a private server with fast speeds and without rate limits. [Shared nodes](https://docs.getblock.io/getting-started/plans-and-limits/choosing-your-plan#shared-nodes){target=\_blank} provide a free API/add-on based endpoint for you to get started quickly.
 
-To get started with GetBlock and obtain an API key, you can go the [GetBlock registration page](https://account.getblock.io/sign-up){target=\_blank} and sign up. From the **GetBlock Dashboard**, you can view and manage your existing API keys and create new API keys.
+To get started with GetBlock, you can go to the [GetBlock registration page](https://account.getblock.io/sign-up){target=\_blank} and sign up for a new account. Then, from your account **Dashboard**, you can view and manage your existing endpoints for multiple protocols, and also create new ones.
 
-Creating a new API key is simple, all you have to do is:
+Creating a new API/add-on based endpoint is simple, all you have to do is:
 
-1. Click **Create a new API key**
-2. Enter a name for your API key
-3. Click **Create** to generate your API key
+1. Fill the information for the desired protocol from the list of available blockchains
+2. Choose the network you want your endpoint to point to (**Mainnet**, **Testnet**, etc)
+3. Select **JSON-RPC** from the **API/Add-on** dropdown
+4. Click the **Get** button at the far right and you're all set to go! 
 
 ![GetBlock](/images/builders/get-started/endpoints/endpoints-5.webp)
+
+
 
 ### OnFinality {: #onfinality }
 
@@ -123,25 +125,6 @@ To create a custom OnFinality endpoint, go to [OnFinality](https://onfinality.io
 3. Your custom API endpoint will be generated automatically
 
 ![OnFinality](/images/builders/get-started/endpoints/endpoints-6.webp)
-
-### Pocket Network {: #pokt }
-
-[Pocket Network](https://www.pokt.network){target=\_blank} is a decentralized node service that provides a free personal endpoint to DApps on Moonbeam & Moonriver.  
-
-To get your own endpoint, go to [Pocket Network](https://mainnet.portal.pokt.network/#){target=\_blank} and sign up or log in. From the **Portal**, you can:  
-
-1. Click on **Apps**
-2. Select **Create**
-3. Enter the name of your DApp and select your corresponding network
-4. Your new endpoint will be generated and displayed for you in the following app screen
-
-![Pocket Network](/images/builders/get-started/endpoints/endpoints-7.webp)
-
-You don't have to generate a new DApp for every endpoint! You can add a new chain to your preexisting DApp:  
-
-1. Click on your preexisting app in the **Apps** menu
-2. In the **Endpoint** section, select the **Add new** button and search for your desired network in the dropdown
-3. Your new endpoint will be generated and displayed for you
 
 ### UnitedBloc {: #unitedbloc }
 
