@@ -3,4 +3,5 @@ nav:
   - index.md
   - 'Forum Templates': 'forum-templates.md'
   - 'XC Channel Registration': 'xc-integration.md'
-  - 'XC Asset Registration': 'assets.md'
+  - 'XC Asset Registration via Governance': 'assets.md'
+  - 'Self-Serve Asset Registration': 'self-serve-asset-registration.md'
