@@ -45,14 +45,63 @@ There are a few prerequisites to be aware of:
 
 ## Assemble Your Asset Details {: #assemble-your-asset-details }
 
-Before registering your asset on Moonbeam, you'll need to formulate the following four parameters: asset ID, decimals, symbol, and name. Asset ID can be any integer between 0 and 255 that isn't already used as a foreign asset ID on Moonbeam. 
+Before you register your sibling-parachain token on Moonbeam, you'll need to gather four pieces of information:
+
+* **`assetID`**: A deterministic `u128` derived from the token's `MultiLocation` (see below)
+* **`decimals`**: How many decimal places the token uses (for example, `18`)
+* **`symbol`**: A short ticker such as `xcTEST`
+* **`name`**: A human-readable name such as `Test Token`
 
 ```typescript
-const ASSET_ID    = 1;
-const DECIMALS    = 18n;
-const SYMBOL      = "xcTEST";
-const NAME        = "Test Token";
+const ASSET_ID = 42259045809535163221576417993425387648n;
+const DECIMALS = 18n;
+const SYMBOL   = "xcTEST";
+const NAME     = "Test Token";
 ```
+
+### How to Calculate Deterministic AssetID {: #calculate-asset-id }
+
+1. You can build the token’s multilocation as follows: From Moonbeam’s perspective, go up to the Relay (`parents: 1`), then down into your parachain (`Parachain: <paraId>`), the asset-managing pallet, and the local asset index.
+
+2. Next, SCALE-encode the `MultiLocation`.
+
+   ```ts
+   const loc   = api.createType('XcmVersionedMultiLocation', { V4: yourLocation });
+   const bytes = loc.toU8a();          // Uint8Array
+   ``` 
+3. Finally, hash the encoded bytes with `blake2_256`, take the first 16 bytes of the resulting digest, and then reverse their order (Substrate stores `u128` values in little-endian).
+
+   ```ts
+   import { blake2AsU8a } from "@polkadot/util-crypto";
+
+   const digest  = blake2AsU8a(bytes);              // 32-byte hash
+   const idBytes = [...digest.slice(0, 16)].reverse();
+   const assetId = BigInt('0x' + Buffer.from(idBytes).toString('hex'));
+   ```
+
+`assetID` is now ready to pass to `evmForeignAssets.createForeignAsset`.
+
+
+### Derive the XC-20 address
+
+Convert `assetID` to hex, left-pad it to 32 hex chars, and prepend eight `F`s as follows:
+
+```
+xc20Address = 0xFFFFFFFF + hex(assetId).padStart(32, '0')
+```
+
+The XC-20 address of xcDOT as an example can be calculated like so: 
+
+=== "Formula"
+
+    ```ts
+    const xc20Address = `0xFFFFFFFF${hex(assetId).padStart(32, "0")}`;
+    ```
+=== "Example"
+
+    ```bash
+    0xFFFFFFFF1FCACBD218EDC0EBA20FC2308C778080
+    ```
 
 ## Construct the Asset MultiLocation {: #construct-the-asset-multilocation }
 
