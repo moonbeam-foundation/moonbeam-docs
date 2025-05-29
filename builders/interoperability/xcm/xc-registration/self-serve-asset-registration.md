@@ -47,10 +47,10 @@ There are a few prerequisites to be aware of:
 
 Before you register your sibling-parachain token on Moonbeam, you'll need to gather four pieces of information:
 
-* **`assetID`**: A deterministic `u128` derived from the token's `MultiLocation` (see below)
-* **`decimals`**: How many decimal places the token uses (for example, `18`)
-* **`symbol`**: A short ticker such as `xcTEST`. The ticker should be prepended with `xc`.
-* **`name`**: A human-readable name such as `Test Token`
+* **`AssetID`**: A deterministic `u128` derived from the token's `MultiLocation` (see below).
+* **`Decimals`**: How many decimal places the token uses (for example, `18`).
+* **`Symbol`**: A short ticker such as `xcTEST`. The ticker should be prepended with `xc`.
+* **`Name`**: A human-readable name such as `Test Token`.
 
 ```typescript
 const ASSET_ID = 42259045809535163221576417993425387648n;
@@ -61,7 +61,7 @@ const NAME     = "Test Token";
 
 ### How to Calculate AssetID {: #calculate-asset-id }
 
-To generate a token's assetID, you'll first need to know its multilocation. `assetLocation` is a SCALE‑encoded MultiLocation that pinpoints the existing token on your sibling parachain. There are various ways to define assets and your MultiLocation may including parachain ID, the pallet that manages assets there, and the local asset index. Because the extrinsic executes on Moonbeam, you describe the path from Moonbeam’s perspective: first hop up one level to the Relay `("parents": 1)`, then down into your parachain `(Parachain: <paraId>)`, the pallet, and the asset index. Moonbeam uses this to verify that the caller actually "contains" the asset before allowing any registration or updates.
+To generate a token's asset ID, you'll first need to know its multilocation. `assetLocation` is a SCALE‑encoded MultiLocation that pinpoints the existing token on your sibling parachain. There are various ways to define assets and your MultiLocation may including parachain ID, the pallet that manages assets there, and the local asset index. Because the extrinsic executes on Moonbeam, you describe the path from Moonbeam’s perspective: first hop up one level to the Relay `("parents": 1)`, then down into your parachain `(Parachain: <paraId>)`, the pallet, and the asset index. Moonbeam uses this to verify that the caller actually "contains" the asset before allowing any registration or updates. 
 
 Once you've constructed your MultiLocation, keep it handy, as you'll need it in the next step. A typical asset MultiLocation looks like this:
 
@@ -78,24 +78,15 @@ Once you've constructed your MultiLocation, keep it handy, as you'll need it in 
 }
 ```
 
-Next, SCALE-encode the `MultiLocation`.
+The XCM tools repo has a helpful [Calculate External Asset Info script](https://github.com/Moonsong-Labs/xcm-tools/blob/main/scripts/calculate-external-asset-info.ts){target=\_blank} that you can use to generate the asset ID programmatically. The script takes two parameters, namely, the MultiLocation of your asset and the target network (Moonbeam or Moonriver). Call the `calculate-external-asset-info.ts` helper script with your asset’s MultiLocation and target network, as shown below, to easily generate its asset ID.
 
-   ```ts
-   const loc   = api.createType('XcmVersionedMultiLocation', { V4: yourLocation });
-   const bytes = loc.toU8a();          // Uint8Array
-   ``` 
+```bash
+ts-node scripts/calculate-external-asset-info.ts \
+  --asset '{"parents":1,"interior":{"X3":[{"Parachain":4},{"PalletInstance":12},{"GeneralIndex":15}]}}' \
+  --network moonbeam
+```
 
-Finally, hash the encoded bytes with `blake2_256`, take the first 16 bytes of the resulting digest, and then reverse their order (Substrate stores `u128` values in little-endian).
-
-   ```ts
-   import { blake2AsU8a } from "@polkadot/util-crypto";
-
-   const digest  = blake2AsU8a(bytes);              // 32-byte hash
-   const idBytes = [...digest.slice(0, 16)].reverse();
-   const assetId = BigInt('0x' + Buffer.from(idBytes).toString('hex'));
-   ```
-
-`assetID` is now ready to pass to `evmForeignAssets.createForeignAsset`.
+The script will return the `assetID` you are now ready to pass to `evmForeignAssets.createForeignAsset`.
 
 ### Derive the XC-20 Address
 
@@ -146,30 +137,24 @@ console.log("Encoded call data:", encodedCall);
 console.log("Call hash:", blake2AsHex(encodedCall));
 ```
 
-### Dispatch the call with XCM Transact {: #dispatch-the--call-with-xcm-transact }
+### Dispatch the call with XCM Transact {: #dispatch-the-call-with-xcm-transact }
 
-To register your asset, your parachain must send a three-instruction XCM v4 message that looks like the following instruction set:
+To register your asset, wrap the SCALE‑encoded `createForeignAsset` bytes in a single `Transact` instruction executed from your parachain’s sovereign account. The basic structure of the call is outlined below:
 
 ```text
-1. WithdrawAsset { assets: (Here, <fee>), effects: [] }
-2. BuyExecution  { fees:   (Here, <fee>), weightLimit: Unlimited }
-3. Transact {
-     originKind: SovereignAccount,
-     requireWeightAtMost: <weight>,
-     call: <encodedCall>
-   }
+Transact {
+  originKind: SovereignAccount,
+  requireWeightAtMost: <weight>,
+  call: <encodedCall>
+}
 ```
 
-- `WithdrawAsset` debits the fee from your parachain’s sovereign account on Moonbeam; `Here` means the payment is in GLMR / MOVR / DEV that the account already holds.
-- `BuyExecution` purchases enough weight for the call. You can also use `Unlimited`.
-- `Transact` executes the SCALE-encoded `createForeignAsset` call as your sovereign account (`originKind: SovereignAccount`), with `<weight>` matching or below the weight you bought.
-
-Send the message with `xcmPallet.send` (also known as `polkadotXcm.send`) from your parachain’s root or governance origin, targeting Parachain `2004` for Moonbeam (`2023` for Moonriver):
+Send the transact instruction via `xcmPallet.send`, targeting Parachain `2004` for Moonbeam (or `2023` for Moonriver. 
 
 ```rust
 xcmPallet.send(
-    dest: { Parachain: 2004 },
-    message: VersionedXcm::V4(<program above>)
+  dest: { Parachain: 2004 },
+  message: VersionedXcm::V4(INSERT_TRANSACT_INSTRUCTION)
 );
 ```
 
