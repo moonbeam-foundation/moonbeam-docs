@@ -97,7 +97,7 @@ Finally, hash the encoded bytes with `blake2_256`, take the first 16 bytes of th
 
 `assetID` is now ready to pass to `evmForeignAssets.createForeignAsset`.
 
-### Derive the XC-20 address
+### Derive the XC-20 Address
 
 Convert `assetID` to hex, left-pad it to 32 hex chars, and prepend eight `F`s as follows:
 
