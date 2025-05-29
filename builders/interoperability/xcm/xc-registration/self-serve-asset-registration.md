@@ -49,7 +49,7 @@ Before you register your sibling-parachain token on Moonbeam, you'll need to gat
 
 * **`assetID`**: A deterministic `u128` derived from the token's `MultiLocation` (see below)
 * **`decimals`**: How many decimal places the token uses (for example, `18`)
-* **`symbol`**: A short ticker such as `xcTEST`. The ticker should be prepended with `xc`
+* **`symbol`**: A short ticker such as `xcTEST`. The ticker should be prepended with `xc`.
 * **`name`**: A human-readable name such as `Test Token`
 
 ```typescript
