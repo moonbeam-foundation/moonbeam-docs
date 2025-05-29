@@ -181,17 +181,6 @@ EvmForeignAssets.ForeignAssetCreated(assetId, location, creator)
 
 Its presence confirms the XC-20 asset is live.
 
-### Test First with Chopsticks {: #test-first-with-chopsticks }
-
-Before broadcasting on MainNet, run the flow end-to-end in [Chopsticks](https://github.com/AcalaNetwork/chopsticks){target=\_blank} to verify you have the correct call structure. You can take the following steps in Chopsticks to simulate the call: 
-
-1. Open an HRMP channel between the local parachain and Moonbeam.
-2. Fund the parachain’s sovereign account on the Moonbeam node.
-3. Send the XCM `Transact` from the parachain mock chain.
-4. Observe the `ForeignAssetCreated` event in the Moonbeam logs.
-
-Chopsticks prints full XCM traces, making it easy to verify weight limits, origin matching, and the final event emission.
-
 ## Managing an Existing Foreign Asset {: #managing-an-existing-foreign-asset }
 
 After a foreign asset has been created, the following extrinsics can be used to update the foreign asset. Note that in the case of the sovereign account sending a call, the sovereign account and location must still be inside the origin. Otherwise, the only other authorized origin is `Root` from a Moonbeam governance action. 
