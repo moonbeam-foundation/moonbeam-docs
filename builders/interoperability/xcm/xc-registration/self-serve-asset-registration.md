@@ -130,7 +130,7 @@ Transact {
 }
 ```
 
-Send the transact instruction via `xcmPallet.send`, targeting Parachain `2004` for Moonbeam (or `2023` for Moonriver. 
+Send the transact instruction via `xcmPallet.send`, targeting parachain `2004` for Moonbeam (or `2023` for Moonriver). 
 
 ```rust
 xcmPallet.send(
