@@ -92,7 +92,7 @@ The script will return the `assetID` you are now ready to pass to `evmForeignAss
 
 Convert `assetID` to hex, left-pad it to 32 hex chars, and prepend eight `F`s as follows:
 
-```
+```text
 xc20Address = 0xFFFFFFFF + hex(assetId).padStart(32, '0')
 ```
 
