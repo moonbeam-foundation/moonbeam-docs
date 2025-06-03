@@ -59,7 +59,7 @@ const SYMBOL   = "xcTEST";
 const NAME     = "Test Token";
 ```
 
-### How to Calculate AssetID {: #calculate-asset-id }
+### How to Calculate Asset ID {: #calculate-asset-id }
 
 To generate a token's asset ID, you'll first need to know its multilocation. `assetLocation` is a SCALE‑encoded multilocation that pinpoints the existing token on your sibling parachain. There are various ways to define assets and your multilocation may including parachain ID, the pallet that manages assets there, and the local asset index. Because the extrinsic executes on Moonbeam, you describe the path from Moonbeam's perspective: first hop up one level to the Relay `("parents": 1)`, then down into your parachain `(Parachain: <paraId>)`, the pallet, and the asset index. Moonbeam uses this to verify that the caller actually "contains" the asset before allowing any registration or updates. 
 
