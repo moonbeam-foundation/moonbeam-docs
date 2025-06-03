@@ -137,7 +137,7 @@ console.log("Encoded call data:", encodedCall);
 console.log("Call hash:", blake2AsHex(encodedCall));
 ```
 
-### Dispatch the call with XCM Transact {: #dispatch-the-call-with-xcm-transact }
+### Dispatch the Call with XCM Transact {: #dispatch-the-call-with-xcm-transact }
 
 To register your asset, wrap the SCALE‑encoded `createForeignAsset` bytes in a single `Transact` instruction executed from your parachain’s sovereign account. The basic structure of the call is outlined below:
 
