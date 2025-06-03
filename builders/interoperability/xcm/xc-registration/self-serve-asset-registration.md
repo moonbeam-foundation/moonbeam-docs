@@ -1,5 +1,5 @@
 ---
-title: Self-Serve Asset Registration for Sibling Parachains
+title: Self-Serve Asset Registration
 description: This guide shows sibling parachains how to register native tokens as foreign assets on Moonbeam via ForeignAssetOwnerOrigin to unlock ERC-20 UX on Moonbeam.
 ---
 
