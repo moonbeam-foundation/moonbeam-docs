@@ -67,9 +67,9 @@ Once you've constructed your multilocation, keep it handy, as you'll need it in 
 
 ```jsonc
 {
-  "parents": 1,          // up to Relay
+  "parents": 1,          // Up to Relay
   "interior": {
-    "X3": [              // down to sibling para asset
+    "X3": [              // Down to sibling para asset
       { "Parachain": 4 },
       { "PalletInstance": 12 },
       { "GeneralIndex": 15 }  // Arbitrary example values
