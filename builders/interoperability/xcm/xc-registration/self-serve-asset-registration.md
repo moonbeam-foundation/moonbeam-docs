@@ -168,7 +168,7 @@ Its presence confirms the XC-20 asset is live.
 
 ## Managing an Existing Foreign Asset {: #managing-an-existing-foreign-asset }
 
-After a foreign asset has been created, the following extrinsics can be used to update the foreign asset. Note that in the case of the sovereign account sending a call, the sovereign account and location must still be inside the origin. Otherwise, the only other authorized origin is `Root` from a Moonbeam governance action. 
+After a foreign asset has been created, the following extrinsics can be used to update it. Note that in the case of the sovereign account sending a call, the sovereign account and location must still be inside the origin. Otherwise, the only other authorized origin is `Root` from a Moonbeam governance action. 
 
 | Extrinsic                                     | Who can call?                                    | Notes                                                 |
 |-----------------------------------------------|--------------------------------------------------|-------------------------------------------------------|
