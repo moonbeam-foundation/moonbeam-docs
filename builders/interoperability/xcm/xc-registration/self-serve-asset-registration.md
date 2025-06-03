@@ -114,27 +114,8 @@ The XC-20 address of xcDOT as an example can be calculated like so:
 
 The snippet below shows how to build the call that needs to be sent to Moonbeam that creates the foreign asset. Save the resulting hex string because you will embed it inside a subsequent XCM `Transact` call dispatched from your sibling parachain.
 
-```typescript
-import "@moonbeam-network/api-augment";
-import { ApiPromise, WsProvider } from "@polkadot/api";
-import { blake2AsHex } from "@polkadot/util-crypto";
-
-const moonbeam = await ApiPromise.create({ provider: new WsProvider(MOONBEAM_WSS) });
-
-const tx = moonbeam.tx.evmForeignAssets.createForeignAsset(
-  ASSET_ID,
-  assetLocation,
-  DECIMALS,
-  SYMBOL,
-  NAME
-);
-
-// SCALE-encoded call data (includes call index 0x3800)
-const encodedCall = tx.method.toHex();
-console.log("Encoded call data:", encodedCall);
-
-// Optional: 32-byte call hash (blake2_256)
-console.log("Call hash:", blake2AsHex(encodedCall));
+```ts
+--8<-- 'code/builders/interoperability/xcm/xc-registration/self-serve-asset-registration/generate-call-data.ts'
 ```
 
 ### Dispatch the Call with XCM Transact {: #dispatch-the-call-with-xcm-transact }
