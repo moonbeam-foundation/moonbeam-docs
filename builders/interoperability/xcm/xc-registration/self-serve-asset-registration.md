@@ -160,7 +160,7 @@ xcmPallet.send(
 
 Finally, look for the following event emitted successfully on Moonbeam:
 
-```
+```text
 EvmForeignAssets.ForeignAssetCreated(assetId, location, creator)
 ```
 
