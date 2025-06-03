@@ -7,11 +7,11 @@ description: This guide shows sibling parachains how to register native tokens a
 
 ## Introduction {: #introduction }
 
-Registering your parachain’s native tokens on Moonbeam or Moonriver lets your community enjoy ERC‑20–style UX and deep EVM integrations while retaining full on‑chain provenance. This guide shows sibling Polkadot parachain teams how to self‑register a foreign asset using the new `ForeignAssetOwnerOrigin` introduced in Moonbeam Runtime 3600.
+Registering your parachain's native tokens on Moonbeam or Moonriver lets your community enjoy ERC‑20–style UX and deep EVM integrations while retaining full on‑chain provenance. This guide shows sibling Polkadot parachain teams how to self‑register a foreign asset using the new `ForeignAssetOwnerOrigin` introduced in Moonbeam Runtime 3600.
 
 ### Why a New Origin? {: #why-a-new-origin }
 
-Moonbeam introduced a new dedicated origin called `ForeignAssetOwnerOrigin`, which only permits an XCM message whose origin contains the asset’s MultiLocation to execute calls in the `evm‑foreign‑assets` pallet. In practice, that means only the sovereign account of the parachain that owns the asset, or Moonbeam governance, can create, freeze, unfreeze, or relocate it. Alongside this, a configurable runtime constant called `ForeignAssetCreationDeposit` is reserved from the caller’s sovereign account at creation time. The deposit discourages spam registrations.
+Moonbeam introduced a new dedicated origin called `ForeignAssetOwnerOrigin`, which only permits an XCM message whose origin contains the asset's multilocation to execute calls in the `evm‑foreign‑assets` pallet. In practice, that means only the sovereign account of the parachain that owns the asset, or Moonbeam governance, can create, freeze, unfreeze, or relocate it. Alongside this, a configurable runtime constant called `ForeignAssetCreationDeposit` is reserved from the caller's sovereign account at creation time. The deposit discourages spam registrations.
 
 ## Required Deposits {: #required-deposits }
 
@@ -47,7 +47,7 @@ There are a few prerequisites to be aware of:
 
 Before you register your sibling-parachain token on Moonbeam, you'll need to gather four pieces of information:
 
-* **`AssetID`**: A deterministic `u128` derived from the token's `MultiLocation` (see below).
+* **`AssetID`**: A deterministic `u128` derived from the token's `multilocation` (see below).
 * **`Decimals`**: How many decimal places the token uses (for example, `18`).
 * **`Symbol`**: A short ticker such as `xcTEST`. The ticker should be prepended with `xc`.
 * **`Name`**: A human-readable name such as `Test Token`.
@@ -61,9 +61,9 @@ const NAME     = "Test Token";
 
 ### How to Calculate AssetID {: #calculate-asset-id }
 
-To generate a token's asset ID, you'll first need to know its multilocation. `assetLocation` is a SCALE‑encoded MultiLocation that pinpoints the existing token on your sibling parachain. There are various ways to define assets and your MultiLocation may including parachain ID, the pallet that manages assets there, and the local asset index. Because the extrinsic executes on Moonbeam, you describe the path from Moonbeam’s perspective: first hop up one level to the Relay `("parents": 1)`, then down into your parachain `(Parachain: <paraId>)`, the pallet, and the asset index. Moonbeam uses this to verify that the caller actually "contains" the asset before allowing any registration or updates. 
+To generate a token's asset ID, you'll first need to know its multilocation. `assetLocation` is a SCALE‑encoded multilocation that pinpoints the existing token on your sibling parachain. There are various ways to define assets and your multilocation may including parachain ID, the pallet that manages assets there, and the local asset index. Because the extrinsic executes on Moonbeam, you describe the path from Moonbeam's perspective: first hop up one level to the Relay `("parents": 1)`, then down into your parachain `(Parachain: <paraId>)`, the pallet, and the asset index. Moonbeam uses this to verify that the caller actually "contains" the asset before allowing any registration or updates. 
 
-Once you've constructed your MultiLocation, keep it handy, as you'll need it in the next step. A typical asset MultiLocation looks like this:
+Once you've constructed your multilocation, keep it handy, as you'll need it in the next step. A typical asset multilocation looks like this:
 
 ```jsonc
 {
@@ -78,7 +78,7 @@ Once you've constructed your MultiLocation, keep it handy, as you'll need it in 
 }
 ```
 
-The XCM tools repo has a helpful [Calculate External Asset Info script](https://github.com/Moonsong-Labs/xcm-tools/blob/main/scripts/calculate-external-asset-info.ts){target=\_blank} that you can use to generate the asset ID programmatically. The script takes two parameters, namely, the MultiLocation of your asset and the target network (Moonbeam or Moonriver). Call the `calculate-external-asset-info.ts` helper script with your asset’s MultiLocation and target network, as shown below, to easily generate its asset ID.
+The XCM tools repo has a helpful [Calculate External Asset Info script](https://github.com/Moonsong-Labs/xcm-tools/blob/main/scripts/calculate-external-asset-info.ts){target=\_blank} that you can use to generate the asset ID programmatically. The script takes two parameters, namely, the multilocation of your asset and the target network (Moonbeam or Moonriver). Call the `calculate-external-asset-info.ts` helper script with your asset's multilocation and target network, as shown below, to easily generate its asset ID.
 
 ```bash
 ts-node scripts/calculate-external-asset-info.ts \
