@@ -15,7 +15,7 @@ Moonbeam introduced a new dedicated origin called `ForeignAssetOwnerOrigin`, whi
 
 ## Required Deposits {: #required-deposits }
 
-To prevent spam, a `ForeignAssetCreationDeposit` is required and locked for the asset's lifetime. The deposit is funded from the sibling parachain's sovereign account on the Moonbeam network, which thus needs to be sufficiently funded to cover the asset deposit and the associated transaction fees. If the asset is destroyed through governance, the deposit is unreserved and returned to the original sovereign account.
+To prevent spam, a `ForeignAssetCreationDeposit` is required and locked for the lifetime of the asset. The deposit is funded from the sibling parachain's sovereign account on the Moonbeam network, which thus needs to be sufficiently funded to cover the asset deposit and the associated transaction fees. If the asset is destroyed through governance, the deposit is unreserved and returned to the original sovereign account.
 
 Deposits are network‑specific and can be adjusted by Moonbeam governance via the `parameters` pallet:
 
