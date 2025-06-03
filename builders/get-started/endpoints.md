@@ -56,9 +56,9 @@ To get started, you'll need to head to [Blast](https://blastapi.io){target=_blan
 
 1. Create a new project
 2. Click on **Available Endpoints**
-3. Select a network for your endpoint. There are three options to choose from: Moonbeam, Moonriver and Moonbase Alpha
+3. Select Moonbeam network for your endpoint
 4. Confirm the selected network and Press **Activate**
-5. You'll now see your chosen network under **Active Endpoints**. Click on the network and you'll see your custom RPC and WSS endpoints on the next page
+5. You'll now see Moonbeam under **Active Endpoints**. Click on the network and you'll see your custom RPC and WSS endpoints on the next page
 
 ![Bware Labs](/images/builders/get-started/endpoints/endpoints-2.webp)
 
