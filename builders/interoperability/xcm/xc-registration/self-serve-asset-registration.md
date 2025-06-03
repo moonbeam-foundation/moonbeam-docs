@@ -139,7 +139,7 @@ console.log("Call hash:", blake2AsHex(encodedCall));
 
 ### Dispatch the Call with XCM Transact {: #dispatch-the-call-with-xcm-transact }
 
-To register your asset, wrap the SCALE‑encoded `createForeignAsset` bytes in a single `Transact` instruction executed from your parachain’s sovereign account. The basic structure of the call is outlined below:
+To register your asset, wrap the SCALE‑encoded `createForeignAsset` bytes in a single `Transact` instruction executed from your parachain's sovereign account. The basic structure of the call is outlined below:
 
 ```text
 Transact {
@@ -172,8 +172,8 @@ After a foreign asset has been created, the following extrinsics can be used to 
 
 | Extrinsic                                     | Who can call?                                    | Notes                                                 |
 |-----------------------------------------------|--------------------------------------------------|-------------------------------------------------------|
-| `changeXcmLocation`                           | Sibling Sovereign account or Moonbeam governance | Requires deposit already reserved.                    |
-| `freezeForeignAsset` / `unfreezeForeignAsset` | Sibling Sovereign account or Moonbeam governance | `freeze` optionally destroys the asset’s metadata.    |
+| `changeXcmLocation`                           | Sibling sovereign account or Moonbeam governance | Requires deposit already reserved.                    |
+| `freezeForeignAsset` / `unfreezeForeignAsset` | Sibling sovereign account or Moonbeam governance | `freeze` optionally destroys the asset's metadata.    |
 
 ## FAQs {: #faqs }
 
