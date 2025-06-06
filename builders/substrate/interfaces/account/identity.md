@@ -363,6 +363,29 @@ The Identity Pallet includes the following read-only storage methods to obtain c
         --8<-- 'code/builders/substrate/interfaces/account/identity/super-of.js'
         ```
 
+??? function "**pendingUsernames**(username) - returns information for a pending username"
+
+    === "Parameters"
+
+        - `username` – the username to query.  
+          Pass it as a `Bytes` value (hex-encoded or plain ASCII).
+
+    === "Returns"
+
+        An `Option` that is:
+
+        - `null` – if the username is **not** pending, or  
+        - `(AccountId20, u32, PalletIdentityProvider)` – when pending, where  
+            - `AccountId20` is the account that has been offered the username  
+            - `u32` is the **block number deadline** by which the account must accept it  
+            - `PalletIdentityProvider` is the authority that issued the username :contentReference[oaicite:0]{index=0}
+
+    === "Polkadot.js API Example"
+
+        ```js
+        --8<-- 'code/builders/substrate/interfaces/account/identity/pending-usernames.js'
+        ```
+
 ### Pallet Constants {: #constants }
 
 The Identity Pallet includes the following read-only functions to obtain pallet constants:
