@@ -378,12 +378,49 @@ The Identity Pallet includes the following read-only storage methods to obtain c
         - `(AccountId20, u32, PalletIdentityProvider)` – when pending, where  
             - `AccountId20` is the account that has been offered the username  
             - `u32` is the **block number deadline** by which the account must accept it  
-            - `PalletIdentityProvider` is the authority that issued the username :contentReference[oaicite:0]{index=0}
+            - `PalletIdentityProvider` is the authority that issued the username
 
     === "Polkadot.js API Example"
 
         ```js
         --8<-- 'code/builders/substrate/interfaces/account/identity/pending-usernames.js'
+        ```
+
+??? function "**usernameInfoOf**(username) – returns information for a given username"
+
+    === "Parameters"
+
+        - `username` – the username to look up.  
+          Supply it as a `Bytes` value (plain ASCII or hex).
+
+    === "Returns"
+
+        An `AccountId20` of the Account currently bound to the username and a provider value, i.e., the authority that issued the username.
+
+        If the username is **unregistered** the call returns `null`.
+
+    === "Polkadot.js API Example"
+
+        ```js
+        --8<-- 'code/builders/substrate/interfaces/account/identity/username-info-of.js'
+        ```
+
+??? function "**authorityOf**(account) – returns authority properties for a given account"
+
+    === "Parameters"
+
+        - `account` – the 20-byte account ID (`AccountId20`) you want to inspect.
+
+    === "Returns"
+
+        An `Option<PalletIdentityAuthorityProperties>`
+
+        If the supplied account **is not** a username-granting authority the call returns `null`.
+
+    === "Polkadot.js API Example"
+
+        ```js
+        --8<-- 'code/builders/substrate/interfaces/account/identity/authority.js'
         ```
 
 ### Pallet Constants {: #constants }
