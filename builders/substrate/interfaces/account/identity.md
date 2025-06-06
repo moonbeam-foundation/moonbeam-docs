@@ -255,6 +255,24 @@ The Identity Pallet provides the following extrinsics (functions):
 
 The Identity Pallet includes the following read-only storage methods to obtain chain state data:
 
+??? function "**authorityOf**(account) – returns authority properties for a given account"
+
+    === "Parameters"
+
+        - `account` – the 20-byte account ID (`AccountId20`) you want to inspect.
+
+    === "Returns"
+
+        An `Option<PalletIdentityAuthorityProperties>`
+
+        If the supplied account **is not** a username-granting authority the call returns `null`.
+
+    === "Polkadot.js API Example"
+
+        ```js
+        --8<-- 'code/builders/substrate/interfaces/account/identity/authority.js'
+        ```
+
 ??? function "**identityOf**(account) - returns identity information for a given account"
 
     === "Parameters"
@@ -304,6 +322,29 @@ The Identity Pallet includes the following read-only storage methods to obtain c
 
         ```js
         --8<-- 'code/builders/substrate/interfaces/account/identity/pallet-version.js'
+        ```
+
+??? function "**pendingUsernames**(username) - returns information for a pending username"
+
+    === "Parameters"
+
+        - `username` – the username to query.  
+          Pass it as a `Bytes` value (hex-encoded or plain ASCII).
+
+    === "Returns"
+
+        An `Option` that is:
+
+        - `null` – if the username is **not** pending, or  
+        - `(AccountId20, u32, PalletIdentityProvider)` – when pending, where  
+            - `AccountId20` is the account that has been offered the username  
+            - `u32` is the **block number deadline** by which the account must accept it  
+            - `PalletIdentityProvider` is the authority that issued the username
+
+    === "Polkadot.js API Example"
+
+        ```js
+        --8<-- 'code/builders/substrate/interfaces/account/identity/pending-usernames.js'
         ```
 
 ??? function "**registrars**() - returns the set of registrars"
@@ -363,27 +404,20 @@ The Identity Pallet includes the following read-only storage methods to obtain c
         --8<-- 'code/builders/substrate/interfaces/account/identity/super-of.js'
         ```
 
-??? function "**pendingUsernames**(username) - returns information for a pending username"
+??? function "**unbindingUsernames**(username) – returns the block height at which a username being revoked will be released"
 
     === "Parameters"
 
-        - `username` – the username to query.  
-          Pass it as a `Bytes` value (hex-encoded or plain ASCII).
+        - `username` – the username to inspect, supplied as `Bytes` (plain ASCII or hex).
 
     === "Returns"
 
-        An `Option` that is:
-
-        - `null` – if the username is **not** pending, or  
-        - `(AccountId20, u32, PalletIdentityProvider)` – when pending, where  
-            - `AccountId20` is the account that has been offered the username  
-            - `u32` is the **block number deadline** by which the account must accept it  
-            - `PalletIdentityProvider` is the authority that issued the username
+        An `Option<u32>`: it is `null` when the username is **not** in the unbinding process; otherwise it contains the block number after which the username becomes free to claim again.
 
     === "Polkadot.js API Example"
 
         ```js
-        --8<-- 'code/builders/substrate/interfaces/account/identity/pending-usernames.js'
+        --8<-- 'code/builders/substrate/interfaces/account/identity/unbinding-usernames.js'
         ```
 
 ??? function "**usernameInfoOf**(username) – returns information for a given username"
@@ -405,22 +439,20 @@ The Identity Pallet includes the following read-only storage methods to obtain c
         --8<-- 'code/builders/substrate/interfaces/account/identity/username-info-of.js'
         ```
 
-??? function "**authorityOf**(account) – returns authority properties for a given account"
+??? function "**usernameOf**(account) – returns the primary username bound to an account"
 
     === "Parameters"
 
-        - `account` – the 20-byte account ID (`AccountId20`) you want to inspect.
+        - `account` – the `AccountId20` you want to query.
 
     === "Returns"
 
-        An `Option<PalletIdentityAuthorityProperties>`
-
-        If the supplied account **is not** a username-granting authority the call returns `null`.
+        Returns an `Option<Bytes>`: it is null when the account has no primary username; otherwise it contains a Bytes value with the UTF-8 (or hex-encoded) string of the account’s primary username.
 
     === "Polkadot.js API Example"
 
         ```js
-        --8<-- 'code/builders/substrate/interfaces/account/identity/authority.js'
+        --8<-- 'code/builders/substrate/interfaces/account/identity/username-of.js'
         ```
 
 ### Pallet Constants {: #constants }
