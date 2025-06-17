@@ -265,7 +265,7 @@ The Identity Pallet includes the following read-only storage methods to obtain c
 
         An `Option<PalletIdentityAuthorityProperties>`
 
-        If the supplied account **is not** a username-granting authority the call returns `null`.
+        If the supplied account **is not** a username-granting authority, the call returns `null`.
 
     === "Polkadot.js API Example"
 
