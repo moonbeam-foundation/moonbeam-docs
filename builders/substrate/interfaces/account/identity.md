@@ -447,7 +447,7 @@ The Identity Pallet includes the following read-only storage methods to obtain c
 
     === "Returns"
 
-        Returns an `Option<Bytes>`: it is null when the account has no primary username; otherwise it contains a Bytes value with the UTF-8 (or hex-encoded) string of the account’s primary username.
+        Returns an `Option<Bytes>`: it is null when the account has no primary username; otherwise, it contains a Bytes value with the UTF-8 (or hex-encoded) string of the account’s primary username.
 
     === "Polkadot.js API Example"
 
