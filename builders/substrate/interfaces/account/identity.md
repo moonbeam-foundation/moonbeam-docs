@@ -431,7 +431,7 @@ The Identity Pallet includes the following read-only storage methods to obtain c
 
         An `AccountId20` of the Account currently bound to the username and a provider value, i.e., the authority that issued the username.
 
-        If the username is **unregistered** the call returns `null`.
+        If the username is **unregistered**, the call returns `null`.
 
     === "Polkadot.js API Example"
 
