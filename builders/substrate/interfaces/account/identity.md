@@ -281,7 +281,7 @@ The Identity Pallet includes the following read-only storage methods to obtain c
 
     === "Returns"
 
-        Identity information for the given account, including judgements (if account has requested a judgement from a registrar), the deposit being held for the identity, and the identity information. If the account does not have an identity set, `null` is returned.
+        Identity information for the given account, including judgments (if the account has requested a judgment from a registrar), the deposit is held for the identity and the identity information. If the account does not have an identity set, `null` is returned.
 
         ```js
         // If using Polkadot.js API and calling toJSON() on the query results
@@ -363,15 +363,15 @@ The Identity Pallet includes the following read-only storage methods to obtain c
         --8<-- 'code/builders/substrate/interfaces/account/identity/registrars.js'
         ```
 
-??? function "**subsOf**(AccountId20) - returns the sub identities for all accounts or for a given account"
+??? function "**subsOf**(AccountId20) - returns the sub-identities for all accounts or a given account"
 
     === "Parameters"
 
-        - `AccountId20` the account to check the sub identities for
+        - `AccountId20` the account to check the sub-identities for
 
     === "Returns"
 
-        The sub identities, if any.
+        The sub-identities, if any.
 
         ```
         Raw subs response: [0,[]]
@@ -379,7 +379,7 @@ The Identity Pallet includes the following read-only storage methods to obtain c
               "deposit": "0",
               "subAccounts": []
             }
-            Number of sub accounts: 0
+            Number of sub-accounts: 0
         ```
 
     === "Polkadot.js API Example"
