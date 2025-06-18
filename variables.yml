@@ -126,7 +126,7 @@ networks:
         display: 100
         numbers_only: 100
     erc20_xcm:
-      transfer_gas_limit: 800,000
+      transfer_gas_limit: 400,000
     conviction:
       lock_period:
         conviction_1: 1
@@ -439,7 +439,7 @@ networks:
     tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.45.0-3701-a160
     chain_spec: moonriver
     block_explorer: https://moonriver.moonscan.io/
-    spec_version: runtime-3601
+    spec_version: runtime-3701
     binary_name: moonbeam
     min_gas_price: 0.3125
     block_time: 6
@@ -466,7 +466,7 @@ networks:
         display: 1,000
         numbers_only: 100
     erc20_xcm:
-      transfer_gas_limit: 800,000 # corresponds to Erc20XcmBridgeTransferGasLimit
+      transfer_gas_limit: 400,000 # corresponds to Erc20XcmBridgeTransferGasLimit
     conviction:
       lock_period:
         conviction_1: 1
@@ -1353,17 +1353,17 @@ xcm:
           numbers_only: 281,080,000
     proof_size:
       zero: 0
-      weight_per_gas: 16
+      weight_per_gas: 8
       withdraw_asset:
-        display: 2,480,000
-        numbers_only: 2480000
+        display: 1,240,000
+        numbers_only: 1240000
       buy_execution:
         display: 19,056
         numbers_only: 19056
       deposit_asset:
-        display: 2,480,000
-        numbers_only: 2480000
+        display: 1,240,000
+        numbers_only: 1240000
       transfer_dot_total:
-        display: 2,499,056
-        numbers_only: 2499056
+        display: 1,259,056
+        numbers_only: 1,259,056
     
