@@ -41,11 +41,11 @@ All the scenarios described above will effectively transfer base-layer network t
 
 ## Monitor Native Token Balance Transfers {: #monitor-transfers }
 
-The following code samples will demonstrate how to listen to both types of native token transfers, sent via the Substrate or Ethereum API, using either the [Polkadot.js API library](https://polkadot.js.org/docs/api/start){target=\_blank} or [Substrate API Sidecar](https://github.com/paritytech/substrate-api-sidecar){target=\_blank}. The following code snippets are for demo purposes only and should not be used without modification and further testing in a production environment.
+The following code samples will demonstrate how to listen to both types of native token transfers, sent via the Substrate or Ethereum API, using either the [Polkadot.js API library](https://polkadot.js.org/docs/api/start/){target=\_blank} or [Substrate API Sidecar](https://github.com/paritytech/substrate-api-sidecar){target=\_blank}. The following code snippets are for demo purposes only and should not be used without modification and further testing in a production environment.
 
 ### Using Polkadot.js API {: #using-polkadotjs-api }
 
-The [Polkadot.js API package](https://polkadot.js.org/docs/api/start){target=\_blank} provides developers a way to interact with Substrate chains using JavaScript.
+The [Polkadot.js API package](https://polkadot.js.org/docs/api/start/){target=\_blank} provides developers a way to interact with Substrate chains using JavaScript.
 
 The following code snippet uses [`subscribeFinalizedHeads`](https://polkadot.js.org/docs/substrate/rpc/#subscribefinalizedheads-header){target=\_blank} to subscribe to new finalized block headers, loops through extrinsics fetched from the block, and retrieves the events of each extrinsic. Then, it checks if any event corresponds to a `balances.Transfer` event. If so, it will extract the `from`, `to`, `amount`, and the `tx hash` of the transfer and display it on the console. Note that the `amount` is shown in the smallest unit (Wei).  You can find all the available information about Polkadot.js and the Substrate JSON-RPC on their [official documentation site](https://polkadot.js.org/docs/substrate/rpc){target=\_blank}.
 

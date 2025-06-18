@@ -19,7 +19,7 @@ This tutorial will walk you through the process of indexing data on a local Moon
 
 To follow along with this tutorial, you'll need to have:
 
-- [Docker installed](https://docs.docker.com/get-docker){target=\_blank}
+- [Docker installed](https://docs.docker.com/get-started/get-docker/){target=\_blank}
 - [Docker Compose installed](https://docs.docker.com/compose/install){target=\_blank}
 - An empty Hardhat project. For step-by-step instructions, please refer to the [Creating a Hardhat Project](/builders/ethereum/dev-env/hardhat/#creating-a-hardhat-project){target=\_blank} section of our Hardhat documentation page
 - An [ERC-20 token deployed](#deploy-an-erc-20-contract) to your local development node, unless you plan on indexing Moonbase Alpha and using an existing ERC-20
@@ -202,7 +202,7 @@ Now we can move on to creating our Squid to index the data on our local developm
 
 ## Create a SQD Project {: #create-SQD-project }
 
-Now we're going to create our Subquid project. First, we'll need to install the [SQD CLI](https://docs.subsquid.io/squid-cli){target=\_blank}:
+Now we're going to create our Subquid project. First, we'll need to install the [SQD CLI](https://docs.sqd.ai/squid-cli/){target=\_blank}:
 
 ```bash
 npm i -g @subsquid/cli@latest
@@ -289,7 +289,7 @@ Next, we need to tell the SQD processor which contract we're interested in. Crea
 export const contractAddress = 'INSERT_CONTRACT_ADDRESS'.toLowerCase();
 ```
 
-The `.toLowerCase()` is critical because the SQD processor is case-sensitive, and some block explorers format contract addresses with capitalization. Next, you'll see the line `export const processor = new EvmBatchProcessor()`, followed by `.setDataSource`. We'll need to make a few changes here. SQD has [available archives for many chains, including Moonbeam, Moonriver, and Moonbase Alpha](https://docs.subsquid.io/evm-indexing/supported-networks){target=\_blank} that can speed up the data retrieval process. For indexing a local development node, there's no archive necessary so the exclusive data source will be the RPC URL of our local node. Go ahead and comment out or delete the archive line. Once done, your code should look similar to the below:
+The `.toLowerCase()` is critical because the SQD processor is case-sensitive, and some block explorers format contract addresses with capitalization. Next, you'll see the line `export const processor = new EvmBatchProcessor()`, followed by `.setDataSource`. We'll need to make a few changes here. SQD has [available archives for many chains, including Moonbeam, Moonriver, and Moonbase Alpha](http://docs.sqd.ai/evm-indexing/supported-networks/){target=\_blank} that can speed up the data retrieval process. For indexing a local development node, there's no archive necessary so the exclusive data source will be the RPC URL of our local node. Go ahead and comment out or delete the archive line. Once done, your code should look similar to the below:
 
 ```ts
 .setDataSource({
@@ -352,7 +352,7 @@ Once you've completed the prior steps, your `processor.ts` file should look simi
 
 ### Transform and Save the Data {: #transform-and-save-the-data}
 
-While `processor.ts` determines the data being consumed, `main.ts` determines the bulk of actions related to processing and transforming that data. In the simplest terms, we are processing the data that was ingested via the SQD processor and inserting the desired pieces into a TypeORM database. For more detailed information on how SQD works, be sure to check out the [SQD docs on Developing a Squid](https://docs.subsquid.io/basics/squid-development){target=\_blank}
+While `processor.ts` determines the data being consumed, `main.ts` determines the bulk of actions related to processing and transforming that data. In the simplest terms, we are processing the data that was ingested via the SQD processor and inserting the desired pieces into a TypeORM database. For more detailed information on how SQD works, be sure to check out the [SQD docs on Developing a Squid](https://docs.sqd.ai/sdk/how-to-start/squid-development/){target=\_blank}
 
 Our `main.ts` file is going to scan through each processed block for the `Transfer` event and decode the transfer details, including the sender, receiver, and amount. The script also fetches account details for involved addresses and creates transfer objects with the extracted data. The script then inserts these records into a TypeORM database enabling them to be easily queried.
 
@@ -471,7 +471,7 @@ You can also add logging statements directly to your `main.ts` file to indicate 
     --8<-- 'code/tutorials/integrations/local-subsquid/main-with-logging.ts'
     ```
 
-See the [SQD guide to logging](https://docs.subsquid.io/basics/logging){target=\_blank} for more information on debug mode.
+See the [SQD guide to logging](https://docs.sqd.ai/sdk/reference/logger/){target=\_blank} for more information on debug mode.
 
 ### Common Errors {: #common-errors }
 

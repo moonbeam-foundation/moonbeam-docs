@@ -9,14 +9,14 @@ description: Learn how to integrate Particle Network's Wallet-as-a-Service into 
 
 [Particle Network](https://particle.network){target=\_blank} offers Wallet Abstraction services with an Account Abstraction stack, providing a suite of SDKs focused on reducing user onboarding friction. 
 
-By embedding customizable Externally Owned Account (EOA) and [Account Abstraction (AA)](https://docs.particle.network/developers/account-abstraction){target=\_blank} components, Particle allows quick 2-click onboarding via social logins like Google, email, and phone, as well as traditional Web3 methods. This approach removes the need for users to manage a conventional wallet, delivering a streamlined, application-specific experience for Web3 interactions.
+By embedding customizable Externally Owned Account (EOA) and [Account Abstraction (AA)](https://developers.particle.network/api-reference/aa/introduction#account-abstraction){target=\_blank} components, Particle allows quick 2-click onboarding via social logins like Google, email, and phone, as well as traditional Web3 methods. This approach removes the need for users to manage a conventional wallet, delivering a streamlined, application-specific experience for Web3 interactions.
 
 Particle Network supports Moonbeam, Moonriver, and the Moonbase Alpha TestNet with both standard EOA interactions and native [ERC-4337](https://eips.ethereum.org/EIPS/eip-4337){target=\_blank} `SimpleAccount` implementations, providing full-stack account abstraction.
 
 Key components of Particle Network's Moonbeam integration include:
 
 - **Particle Connect**: Particle's flagship Wallet-as-a-Service solution, offering embedded wallets powered by MPC-TSS for smooth, Web2-like onboarding and interactions, with Account Abstraction support integrated within a single SDK
-- **Particle Network Modular [AA Stack](https://docs.particle.network/developers/account-abstraction){target=\_blank}**: Beyond the default EOA-based interactions, Particle also offers a modular AA stack for ERC-4337 account abstraction on Moonbeam, allowing flexibility in the smart account, bundler, and paymaster configurations to suit AA-enabled applications
+- **Particle Network Modular [AA Stack](https://developers.particle.network/landing/realized-vision){target=\_blank}**: Beyond the default EOA-based interactions, Particle also offers a modular AA stack for ERC-4337 account abstraction on Moonbeam, allowing flexibility in the smart account, bundler, and paymaster configurations to suit AA-enabled applications
 
 ![Particle Network Smart WaaS map](/images/builders/integrations/wallets/particle/particle-1.webp)
 
@@ -55,7 +55,7 @@ To integrate Particle Connect into your Moonbeam application, you'll need only a
 yarn add @particle-network/connectkit viem@^2 @particle-network/aa ethers
 ```
 
-> Note that this tutorial is based on a [Next.js app](https://nextjs.org/docs/getting-started/installation){target=\_blank} with TypeScript and Tailwind CSS.
+> Note that this tutorial is based on a [Next.js app](https://nextjs.org/docs/app/getting-started/installation){target=\_blank} with TypeScript and Tailwind CSS.
 
 ## Configure Particle Connect {: #configure-particle-network }
 
@@ -129,7 +129,7 @@ Specifically, this application creates a smart account on Moonbeam MainNet throu
 --8<-- 'code/builders/integrations/wallets/particle/example-app.js'
 ```
 
-That concludes the brief introduction to Particle's Smart Wallet-as-a-Service stack and how to get started with Particle on Moonbeam. For more information, you can check out [Particle Network's documentation](https://docs.particle.network){target=\_blank}.
+That concludes the brief introduction to Particle's Smart Wallet-as-a-Service stack and how to get started with Particle on Moonbeam. For more information, you can check out [Particle Network's documentation](https://developers.particle.network/landing/introduction){target=\_blank}.
 
 Find the repository with the complete code implementation on the [Particle Network GitHub](https://github.com/Particle-Network/connect-moonbeam-tutorial){target=\_blank}.
 

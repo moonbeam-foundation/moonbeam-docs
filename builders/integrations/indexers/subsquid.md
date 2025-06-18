@@ -7,7 +7,7 @@ description: Learn how to use SQD (Subsquid), a query node framework for Substra
 
 ## Introduction {: #introduction }
 
-[SQD (formerly Subsquid)](https://subsquid.io){target=\_blank} is a data network that allows rapid and cost-efficient retrieval of blockchain data from 100+ chains using SQD’s decentralized data lake and open-source SDK. In very simple terms, SQD can be thought of as an ETL (extract, transform, and load) tool with a GraphQL server included. It enables comprehensive filtering, pagination, and even full-text search capabilities.
+[SQD (formerly Subsquid)](https://www.sqd.ai/){target=\_blank} is a data network that allows rapid and cost-efficient retrieval of blockchain data from 100+ chains using SQD’s decentralized data lake and open-source SDK. In very simple terms, SQD can be thought of as an ETL (extract, transform, and load) tool with a GraphQL server included. It enables comprehensive filtering, pagination, and even full-text search capabilities.
 
 SQD has native and full support for both Ethereum Virtual Machine (EVM) and Substrate data. Since Moonbeam is a Substrate-based smart contact platform that is EVM-compatible, SQD can be used to index both EVM and Substrate-based data. SQD offers a Substrate Archive and Processor and an EVM Archive and Processor. The Substrate Archive and Processor can be used to index both Substrate and EVM data. This allows developers to extract on-chain data from any of the Moonbeam networks and process EVM logs as well as Substrate entities (events, extrinsics, and storage items) in one single project and serve the resulting data with one single GraphQL endpoint. If you exclusively want to index EVM data, it is recommended to use the EVM Archive and Processor.
 
@@ -20,8 +20,8 @@ This quick-start guide will show you how to create Substrate and EVM projects wi
 To get started with SQD, you'll need to have the following:
 
 - [Node.js](https://nodejs.org/en/download/package-manager){target=\_blank} version 16 or newer
-- [Docker](https://docs.docker.com/get-docker){target=\_blank}
-- [Squid CLI](https://docs.subsquid.io/squid-cli/installation){target=\_blank}
+- [Docker](https://docs.docker.com/get-started/get-docker/){target=\_blank}
+- [Squid CLI](https://docs.sqd.ai/squid-cli/installation/){target=\_blank}
 
 !!! note
     The Squid template is not compatible with `yarn`, so you'll need to use `npm` instead.
@@ -36,7 +36,7 @@ To get started indexing Substrate data on Moonbeam, you'll need to create a SQD 
     sqd init INSERT_SQUID_NAME --template substrate
     ```
 
-    For more information on getting started with this template, please check out the [Quickstart: Substrate chains](https://docs.subsquid.io/quickstart/quickstart-substrate){target=\_blank} guide on SQD's documentation site.
+    For more information on getting started with this template, please check out the [Quickstart: Substrate chains](http://docs.sqd.ai/quickstart/quickstart-substrate/){target=\_blank} guide on SQD's documentation site.
 
 2. Navigate into the root directory of your Squid project and install dependencies by running:  
 
@@ -64,7 +64,7 @@ To get started indexing Substrate data on Moonbeam, you'll need to create a SQD 
         "specVersions": "https://v2.archive.subsquid.io/metadata/moonbase",
         ```
 
-4. Modify the `src/processor.ts` file, which is where Squids instantiate the processor, configure it, and attach handler functions. The processor fetches historical on-chain data from an [Archive](https://docs.subsquid.io/glossary/#archives){target=\_blank}, which is a specialized data lake. You'll need to configure your processor to pull data from the Archive that corresponds to the [network](https://docs.subsquid.io/substrate-indexing/supported-networks){target=\_blank} you are indexing data on:
+4. Modify the `src/processor.ts` file, which is where Squids instantiate the processor, configure it, and attach handler functions. The processor fetches historical on-chain data from an [Archive](https://docs.sqd.ai/glossary/#archives){target=\_blank}, which is a specialized data lake. You'll need to configure your processor to pull data from the Archive that corresponds to the [network](http://docs.sqd.ai/substrate-indexing/supported-networks/){target=\_blank} you are indexing data on:
 
     === "Moonbeam"
 
@@ -138,8 +138,8 @@ To get started indexing EVM data on Moonbeam, you'll need to create a SQD projec
 
     For more information on getting started with both of these templates, please check out the following SQD docs:
       
-      - [Quickstart: EVM chains](https://docs.subsquid.io/quickstart/quickstart-ethereum){target=\_blank}
-      - [Quickstart: generate from ABI](https://docs.subsquid.io/quickstart/quickstart-abi){target=\_blank}
+      - [Quickstart: EVM chains](http://docs.sqd.ai/quickstart/quickstart-ethereum/){target=\_blank}
+      - [Quickstart: generate from ABI](http://docs.sqd.ai/quickstart/quickstart-abi/){target=\_blank}
 
 2. Navigate into the root directory of your Squid project and install dependencies by running:
 
@@ -147,7 +147,7 @@ To get started indexing EVM data on Moonbeam, you'll need to create a SQD projec
     npm ci
     ```
 
-3. Modify the `src/processor.ts` file, which is where Squids instantiate the processor, configure it, and attach handler functions. The processor fetches historical on-chain data from an [Archive](https://docs.subsquid.io/glossary/#archives){target=\_blank}, which is a specialized data lake. You'll need to configure your processor to pull data from the Archive that corresponds to the [network](https://docs.subsquid.io/evm-indexing/supported-networks){target=\_blank} you are indexing data on:
+3. Modify the `src/processor.ts` file, which is where Squids instantiate the processor, configure it, and attach handler functions. The processor fetches historical on-chain data from an [Archive](https://docs.sqd.ai/glossary/#archives){target=\_blank}, which is a specialized data lake. You'll need to configure your processor to pull data from the Archive that corresponds to the [network](http://docs.sqd.ai/evm-indexing/supported-networks/){target=\_blank} you are indexing data on:
 
     === "Moonbeam"
 

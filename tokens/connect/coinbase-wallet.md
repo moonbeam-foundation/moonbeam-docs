@@ -128,7 +128,7 @@ And that's it! You've successfully set up your Coinbase Wallet app, connected it
 
 ## Subscribe to Updates from Moonbeam {: #subscribe-to-updates-from-moonbeam }
 
-Coinbase Wallet has a messaging and subscription feature that uses [XMTP](https://xmtp.org/docs/introduction){target=\_blank}, an on-chain messaging network designed to deliver fully encrypted messages between wallet addresses. In addition to messaging other Coinbase Wallet users who have enabled this feature, you can subscribe to updates from the Moonbeam Foundation. These updates are designed to provide timely and essential information from the Moonbeam Foundation, such as governance and protocol upgrade notifications. 
+Coinbase Wallet has a messaging and subscription feature that uses [XMTP](https://docs.xmtp.org/){target=\_blank}, an on-chain messaging network designed to deliver fully encrypted messages between wallet addresses. In addition to messaging other Coinbase Wallet users who have enabled this feature, you can subscribe to updates from the Moonbeam Foundation. These updates are designed to provide timely and essential information from the Moonbeam Foundation, such as governance and protocol upgrade notifications. 
 
 ### Setting up Coinbase Wallet on Mobile {: #setting-up-coinbase-wallet-on-mobile }
 

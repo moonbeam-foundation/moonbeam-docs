@@ -7,7 +7,7 @@ description: Learn how Moralis' API suite empowers developers to retrieve and le
 
 ## Introduction {: #introduction }
 
-As a one-stop solution for blockchain development, [Moralis](https://moralis.io/){target=\_blank} offers a comprehensive platform that empowers developers to create, launch, and scale decentralized applications (dApps) with ease.
+As a one-stop solution for blockchain development, [Moralis](https://developers.moralis.com/){target=\_blank} offers a comprehensive platform that empowers developers to create, launch, and scale decentralized applications (dApps) with ease.
 
 It provides a suite of tools and services designed to streamline the process of accessing Web3 data and interacting with blockchain networks. Its offerings are structured into these primary categories:
 
@@ -25,7 +25,7 @@ This guide will show you how to access the API endpoints for Moonbeam using curl
 
 To interact with Moralis' API endpoints, an account and API key are required.
 
-Head to the [sign up page](https://admin.moralis.io/register){target=\_blank} to create an account. Once you're in, navigate to the **API keys** section. There, you can generate your own unique API key. Be sure to copy it for future use.
+Head to the [sign up page](https://admin.moralis.com/register){target=\_blank} to create an account. Once you're in, navigate to the **API keys** section. There, you can generate your own unique API key. Be sure to copy it for future use.
 
 ![Moralis API key](/images/builders/integrations/indexers/moralis/moralis-1.webp)
 

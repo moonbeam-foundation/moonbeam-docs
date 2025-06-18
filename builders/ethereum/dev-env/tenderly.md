@@ -13,7 +13,7 @@ The Tenderly platform provides the following features:
 
 - **[Contract Verification](https://docs.tenderly.co/contract-verification){target=\_blank}** - as it is essential to verify your smart contracts to take full advantage of all of Tenderly's features, Tenderly provides several methods of verification. You can verify smart contracts through [the Tenderly dashboard](https://docs.tenderly.co/contract-verification/dashboard){target=\_blank}, [the Tenderly CLI and Foundry](https://docs.tenderly.co/contract-verification/foundry){target=\_blank}, or [the Tenderly Hardhat plugin](https://docs.tenderly.co/contract-verification/hardhat){target=\_blank}
 
-- **[Debugger](https://docs.tenderly.co/debugger){target=\_blank}** - use the visual debugger to inspect transactions and get better insight into the behavior of your code. With the debugger, you can review a transaction's stack trace, view the calls made in a transaction, step through a contract, and review decoded inputs, outputs, and state variables. You can use the debugger on the Tenderly dashboard or the [Tenderly Debugger Chrome Extension](https://docs.tenderly.co/debugger/tenderly-debugger-extension){target=\_blank}
+- **[Debugger](https://docs.tenderly.co/debugger){target=\_blank}** - use the visual debugger to inspect transactions and get better insight into the behavior of your code. With the debugger, you can review a transaction's stack trace, view the calls made in a transaction, step through a contract, and review decoded inputs, outputs, and state variables. You can use the debugger on the Tenderly dashboard or the [Tenderly Debugger Chrome Extension](https://docs.tenderly.co/debugger/dev-toolkit-browser-extension){target=\_blank}
 
 - **[Gas Profiler](https://docs.tenderly.co/debugger/gas-profiler){target=\_blank}** - view how much gas you're spending on a granular level, so you can optimize your smart contracts and reduce transaction gas costs
 
@@ -28,7 +28,7 @@ The Tenderly platform provides the following features:
 - **[Sandbox](https://sandbox.tenderly.co){target=\_blank}** - write, compile, execute, and debug your smart contracts directly in your browser with baked-in JavaScript and Solidity editors. Every time you run your code, Tenderly creates a temporary fork that comes with 10 pre-funded accounts, each with 100 tokens for testing purposes
 
 !!! note
-    Tenderly supports Moonbeam, Moonriver, and Moonbase Alpha, except for the Web3 Gateway. For more information, check out Tenderly's documentation on [Supported Networks](https://docs.tenderly.co/supported-networks-and-languages#supported-networks){target=\_blank}.
+    Tenderly supports Moonbeam, Moonriver, and Moonbase Alpha, except for the Web3 Gateway. For more information, check out Tenderly's documentation on [Supported Networks](https://docs.tenderly.co/supported-networks#supported-networks){target=\_blank}.
 
 ## Getting Started
 

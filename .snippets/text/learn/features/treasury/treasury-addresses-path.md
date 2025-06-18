@@ -19,7 +19,7 @@ The Treasury address for each respective network can be found below:
 
 The happy path of a Treasury spend request is as follows:
 
-1. **Proposal submission** - the user submits a proposal to the [Moonbeam Forum](https://forum.moonbeam.network/c/governance/Treasury-proposals/8){target=\_blank}
+1. **Proposal submission** - the user submits a proposal to the [Moonbeam Forum](https://forum.moonbeam.network/c/governance/treasury-proposals/8){target=\_blank}
 
 2. **Forum discussion** - the proposal is discussed by the community on the Forum. The ultimate Aye/Nay decision is determined by the Treasury council
 

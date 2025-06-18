@@ -207,14 +207,14 @@ The current registrars are as follows:
 === "Moonbeam"
     |                                                                Registrar                                                                |                              Operator                               |                  Address                   | Index |
     |:---------------------------------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------:|:------------------------------------------:|:-----:|
-    |        [Registrar #0](https://forum.moonbeam.network/t/referendum-73-status-passed-identity-registrar-0/208){target=\_blank}        | [Moonbeam Foundation](https://moonbeam.foundation){target=\_blank} | 0xbE6E642b25Fa7925AFA1600C48Ab9aA3461DC7f1 |   0   |
-    | [Registrar #1](https://forum.moonbeam.network/t/referendum-82-status-passed-new-registrar-proposal-registrar-1/319){target=\_blank} |         [Chevdor](https://www.chevdor.com){target=\_blank}         | 0xeaB597B91b66d9C3EA5E3a39e22C524c287d61a5 |   1   |
+    |        [Registrar #0](https://forum.moonbeam.network/t/referendum-73-identity-registrar-0/208){target=\_blank}        | [Moonbeam Foundation](https://moonbeam.foundation){target=\_blank} | 0xbE6E642b25Fa7925AFA1600C48Ab9aA3461DC7f1 |   0   |
+    | [Registrar #1](https://forum.moonbeam.network/t/referendum-82-new-registrar-proposal-registrar-1/319){target=\_blank} |         [Chevdor](https://www.chevdor.com){target=\_blank}         | 0xeaB597B91b66d9C3EA5E3a39e22C524c287d61a5 |   1   |
 
 === "Moonriver"
     |                                                                Registrar                                                                 |                              Operator                               |                  Address                   | Index |
     |:----------------------------------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------:|:------------------------------------------:|:-----:|
-    |         [Registrar #0](https://forum.moonbeam.network/t/proposal-32-status-voting-identity-registrar-0/187){target=\_blank}          | [Moonbeam Foundation](https://moonbeam.foundation){target=\_blank} | 0x031590D13434CC554f7257A89B2E0B10d67CCCBa |   0   |
-    | [Registrar #1](https://forum.moonbeam.network/t/referendum-125-status-passed-new-registrar-proposal-registrar-1/303){target=\_blank} |         [Chevdor](https://www.chevdor.com){target=\_blank}         | 0x2d18250E01312A155E81381F938B8bA8bb4d97B3 |   1   |
+    |         [Registrar #0](https://forum.moonbeam.network/t/referendum-120-identity-registrar-0/187){target=\_blank}          | [Moonbeam Foundation](https://moonbeam.foundation){target=\_blank} | 0x031590D13434CC554f7257A89B2E0B10d67CCCBa |   0   |
+    | [Registrar #1](https://forum.moonbeam.network/t/referendum-125-new-registrar-proposal-registrar-1/303){target=\_blank} |         [Chevdor](https://www.chevdor.com){target=\_blank}         | 0x2d18250E01312A155E81381F938B8bA8bb4d97B3 |   1   |
 
 === "Moonbase Alpha"
     |                                      Registrar                                       |                      Operator                       |                  Address                   | Index |

@@ -81,7 +81,7 @@ Learn more:
 
 ### Finality {: #finality }
 
-Moonbeam and Ethereum have different finality processes. On Ethereum, there is a checkpoint system where validators determine finality at checkpoint blocks, which takes at least 6.4 minutes for a block to be finalized. Moonbeam relies on Polkadot's [GRANDPA](https://wiki.polkadot.network/docs/learn-consensus#finality-gadget-grandpa){target=\_blank} finality gadget, which expedites finality by completing the process parallel to block production and allowing relay chain validators to vote on the highest block, finalizing all blocks leading up to that block.
+Moonbeam and Ethereum have different finality processes. On Ethereum, there is a checkpoint system where validators determine finality at checkpoint blocks, which takes at least 6.4 minutes for a block to be finalized. Moonbeam relies on Polkadot's [GRANDPA](https://docs.polkadot.com/polkadot-protocol/architecture/polkadot-chain/pos-consensus/#finality-gadget-grandpa){target=\_blank} finality gadget, which expedites finality by completing the process parallel to block production and allowing relay chain validators to vote on the highest block, finalizing all blocks leading up to that block.
 
 Learn more:
 
@@ -93,7 +93,7 @@ On both Moonbeam and Ethereum, accounts can be controlled by two main types of a
 
 Learn more:
 
-- [An overview of proxy accounts](https://wiki.polkadot.network/docs/learn-proxies){target=\_blank}
+- [An overview of proxy accounts](https://wiki.polkadot.network/learn/learn-proxies/){target=\_blank}
 - [How to set up a proxy account](/tokens/manage/proxy-accounts/){target=\_blank}
 
 ### Account Balances {: #account-balances }
