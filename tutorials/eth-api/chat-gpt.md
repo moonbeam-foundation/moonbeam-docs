@@ -17,7 +17,7 @@ In this tutorial, we'll look at how ChatGPT can help you write, deploy, and debu
 
 ### What is ChatGPT? {: #what-is-chatgpt }
 
-[ChatGPT](https://chat.openai.com){target=\_blank} is a text-based Large Language Model (LLM) created by the company OpenAI. According to OpenAI, *"The dialogue format makes it possible for ChatGPT to answer followup questions, admit its mistakes, challenge incorrect premises, and reject inappropriate requests."* ChatGPT can hold a conversation with you and remember your chat history until a new session is started. To learn more about ChatGPT, check out [this introduction to ChatGPT on the OpenAI Blog](https://openai.com/index/chatgpt){target=\_blank}.
+[ChatGPT](https://chatgpt.com/){target=\_blank} is a text-based Large Language Model (LLM) created by the company OpenAI. According to OpenAI, *"The dialogue format makes it possible for ChatGPT to answer followup questions, admit its mistakes, challenge incorrect premises, and reject inappropriate requests."* ChatGPT can hold a conversation with you and remember your chat history until a new session is started. To learn more about ChatGPT, check out [this introduction to ChatGPT on the OpenAI Blog](https://openai.com/index/chatgpt){target=\_blank}.
 
 ### GPT-4 vs. ChatGPT {: #gpt-4-vs-chatgpt }
 
@@ -39,19 +39,19 @@ As of the time of writing, GPT-4 was the latest version offered as part of the C
 
 For this tutorial, you'll need the following:
 
-- A free [OpenAI account to access ChatGPT](https://chat.openai.com){target=\_blank}
+- A free [OpenAI account to access ChatGPT](https://chatgpt.com/){target=\_blank}
 - An account funded with DEV tokens to be used on the Moonbase Alpha TestNet if you'd like to deploy any resulting contracts.
   --8<-- 'text/_common/faucet/faucet-list-item.md'
 
 ## Sign up for an OpenAI Account {: #sign-up-for-an-openai-account }
 
-You can sign up for a free account to access ChatGPT by heading to [OpenAI's website.](https://chat.openai.com/auth/login){target=\_blank} You'll need to provide both an email address and a phone number. A subscription to ChatGPT Plus is not required to complete this tutorial.
+You can sign up for a free account to access ChatGPT by heading to [OpenAI's website.](https://chatgpt.com/auth/login){target=\_blank} You'll need to provide both an email address and a phone number. A subscription to ChatGPT Plus is not required to complete this tutorial.
 
 ![Sign up for OpenAI account](/images/tutorials/eth-api/chatgpt/chatgpt-2.webp)
 
 ## Create an ERC-20 Token Contract {: #create-an-erc-20-token-contract }
 
-To start interacting with [ChatGPT](https://chat.openai.com/?model=gpt-4){target=\_blank}, take the following steps:
+To start interacting with [ChatGPT](https://chatgpt.com/?model=gpt-4){target=\_blank}, take the following steps:
 
 1. Press **New Chat** in the upper left hand corner
 2. Select the model you would like to use. Either model is suitable for this tutorial

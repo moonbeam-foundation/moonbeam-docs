@@ -7,7 +7,7 @@ description: Learn how to integrate RainbowKit into a dApp to allow users to con
 
 ## Introduction {: #introduction }
 
-[RainbowKit](https://www.rainbowkit.com/docs/introduction){target=\_blank} is a React library that adds wallet connection capabilities to a dApp. It supports numerous wallets and enables features such as switching connection chains, ENS address resolution, and balance display out-of-the-box. RainbowKit offers customization options for all EVM-compatible chains, making it possible to easily connect mobile wallets to your Moonbeam dApps.
+[RainbowKit](https://rainbowkit.com/docs/introduction){target=\_blank} is a React library that adds wallet connection capabilities to a dApp. It supports numerous wallets and enables features such as switching connection chains, ENS address resolution, and balance display out-of-the-box. RainbowKit offers customization options for all EVM-compatible chains, making it possible to easily connect mobile wallets to your Moonbeam dApps.
 
 RainbowKit bundles together multiple tools to simplify adding wallet connection to your dApp: 
 
@@ -276,7 +276,7 @@ The current configuration defaults to connecting to Moonbeam and displaying the 
 
 ## Customize Rainbow Kit
 
-Not only does RainbowKit abstract away the complexities of managing wallet connections, but the library offers several options for customizing UI and functionality to meet the needs of your dApp. You can find a complete list of customization options in the RainbowKit [documentation](https://www.rainbowkit.com/docs/introduction){target=\_blank}. This section covers customizing the **Connect Wallet** button to connect initially to Moonbase Alpha and render it in a custom color. 
+Not only does RainbowKit abstract away the complexities of managing wallet connections, but the library offers several options for customizing UI and functionality to meet the needs of your dApp. You can find a complete list of customization options in the RainbowKit [documentation](https://rainbowkit.com/docs/introduction){target=\_blank}. This section covers customizing the **Connect Wallet** button to connect initially to Moonbase Alpha and render it in a custom color. 
 
 ### Set Custom Initial Chain
 
@@ -318,7 +318,7 @@ The **Connect Wallet** button on your home page should now render in the color y
 
 ![Theme customization on the user modal](/images/builders/integrations/wallets/rainbowkit/rainbowkit-3.webp)
 
-This guide includes only a few of the customization options available through RainbowKit. You can learn more about the capabilities and options of this library by visiting [RainbowKit Docs](https://www.rainbowkit.com/docs/introduction){target=\_blank}.
+This guide includes only a few of the customization options available through RainbowKit. You can learn more about the capabilities and options of this library by visiting [RainbowKit Docs](https://rainbowkit.com/docs/introduction){target=\_blank}.
 
 You can view the complete example code in the [rainbow-manual-build-demo repository](https://github.com/papermoonio/rainbowkit-manual-build-demo){target=\_blank}
 

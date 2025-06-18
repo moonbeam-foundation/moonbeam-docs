@@ -55,7 +55,7 @@ To integrate Particle Connect into your Moonbeam application, you'll need only a
 yarn add @particle-network/connectkit viem@^2 @particle-network/aa ethers
 ```
 
-> Note that this tutorial is based on a [Next.js app](https://nextjs.org/docs/getting-started/installation){target=\_blank} with TypeScript and Tailwind CSS.
+> Note that this tutorial is based on a [Next.js app](https://nextjs.org/docs/app/getting-started/installation){target=\_blank} with TypeScript and Tailwind CSS.
 
 ## Configure Particle Connect {: #configure-particle-network }
 
