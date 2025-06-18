@@ -20,7 +20,7 @@ If you follow this guide to the end, you will have a Moonbeam development node r
 
 ## Spin Up a Moonbeam Development Node {: #spin-up-a-node }
 
-There are two ways to get started running a Moonbeam node. You can use [Docker to run a pre-built binary](#getting-started-with-docker) or you can [compile the binary locally](#getting-started-with-the-binary-file) and set up a development node yourself. Using Docker is a quick and convenient way to get started, as you won't have to install Substrate and all the dependencies, and you can skip the node-building process as well. It does require you to [install Docker](https://docs.docker.com/get-docker){target=\_blank}. On the other hand, if you decide you want to go through the process of building your development node, it could take roughly 30 minutes or longer to complete, depending on your hardware.
+There are two ways to get started running a Moonbeam node. You can use [Docker to run a pre-built binary](#getting-started-with-docker) or you can [compile the binary locally](#getting-started-with-the-binary-file) and set up a development node yourself. Using Docker is a quick and convenient way to get started, as you won't have to install Substrate and all the dependencies, and you can skip the node-building process as well. It does require you to [install Docker](https://docs.docker.com/get-started/get-docker/){target=\_blank}. On the other hand, if you decide you want to go through the process of building your development node, it could take roughly 30 minutes or longer to complete, depending on your hardware.
 
 ### Spin Up a Node with Docker {: #getting-started-with-docker }
 

@@ -11,10 +11,10 @@ description: Learn how to use Foundry, an Ethereum development environment, to c
 
 Four tools make up Foundry:  
 
-- **[Forge](https://book.getfoundry.sh/forge){target=\_blank}** - compiles, tests, and deploys contracts
-- **[Cast](https://book.getfoundry.sh/cast){target=\_blank}** - a command line interface for interacting with contracts
-- **[Anvil](https://book.getfoundry.sh/anvil){target=\_blank}** - a local TestNet node for development purposes that can fork preexisting networks
-- **[Chisel](https://book.getfoundry.sh/chisel){target=\_blank}** - a Solidity REPL for quickly testing Solidity snippets
+- **[Forge](https://getfoundry.sh/forge/overview/){target=\_blank}** - compiles, tests, and deploys contracts
+- **[Cast](https://getfoundry.sh/cast/overview/){target=\_blank}** - a command line interface for interacting with contracts
+- **[Anvil](https://getfoundry.sh/anvil/overview/){target=\_blank}** - a local TestNet node for development purposes that can fork preexisting networks
+- **[Chisel](https://getfoundry.sh/chisel/overview/){target=\_blank}** - a Solidity REPL for quickly testing Solidity snippets
 
 This guide will cover how to use Foundry to compile, deploy, and debug Ethereum smart contracts on the Moonbase Alpha TestNet. This guide can also be adapted for Moonbeam, Moonriver, or a Moonbeam development node.
 
@@ -26,7 +26,7 @@ To get started, you will need the following:
   --8<-- 'text/_common/faucet/faucet-list-item.md'
  - 
 --8<-- 'text/_common/endpoint-examples-list-item.md'
- - Have [Foundry installed](https://book.getfoundry.sh/getting-started/installation){target=\_blank}
+ - Have [Foundry installed](https://getfoundry.sh/introduction/installation/){target=\_blank}
 
 ## Creating a Foundry Project {: #creating-a-foundry-project }
 
@@ -185,7 +185,7 @@ If your script's execution succeeds, your terminal should resemble the output be
 
 --8<-- 'code/builders/ethereum/dev-env/foundry/terminal/script.md'
 
-And that's it! For more information about Solidity scripting with Foundry, be sure to check out [Foundry's documentation site](https://book.getfoundry.sh/guides/scripting-with-solidity){target=\_blank}.
+And that's it! For more information about Solidity scripting with Foundry, be sure to check out [Foundry's documentation site](https://getfoundry.sh/guides/scripting-with-solidity/){target=\_blank}.
 
 ## Interacting with the Contract {: #interacting-with-the-contract }
 
@@ -444,7 +444,7 @@ Then, for example, you can query the balance of one of Moonbase Alpha's collator
 
 --8<-- 'code/builders/ethereum/dev-env/foundry/terminal/query-balance.md'
 
-If you want to learn more about Chisel, download Foundry and refer to its [official reference page](https://book.getfoundry.sh/reference/chisel){target=\_blank}.
+If you want to learn more about Chisel, download Foundry and refer to its [official reference page](https://getfoundry.sh/chisel/reference/){target=\_blank}.
 
 ## Foundry With Hardhat {: #foundry-with-hardhat }  
 

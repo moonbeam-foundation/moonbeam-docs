@@ -113,7 +113,7 @@ Hardware recommendations:
 
 **Q: What are Nimbus keys?**
 
-**A:** Nimbus keys are just like [session keys in Polkadot](https://wiki.polkadot.network/docs/learn-keys#session-keys){target=\_blank}. You should have unique keys on your primary and backup servers. Save the key output somewhere safe where you can access it in the middle of the night if you receive an alert. To create your keys, please refer to the [Session Keys](/node-operators/networks/collators/account-management/#session-keys){target=\_blank} section of the documentation.
+**A:** Nimbus keys are just like [session keys in Polkadot](https://wiki.polkadot.network/general/web3-and-polkadot/#session-keys){target=\_blank}. You should have unique keys on your primary and backup servers. Save the key output somewhere safe where you can access it in the middle of the night if you receive an alert. To create your keys, please refer to the [Session Keys](/node-operators/networks/collators/account-management/#session-keys){target=\_blank} section of the documentation.
 
 ***
 

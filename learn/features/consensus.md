@@ -7,9 +7,9 @@ description: Learn about all the parts of Moonbeam's Nimbus consensus framework 
 
 ## Introduction {: #introduction }
 
-Polkadot relies on a [hybrid consensus model](https://wiki.polkadot.network/docs/learn-consensus). In such a scheme, the block finality gadget and the block production mechanism are separate. Consequently, parachains only have to worry about producing blocks and rely on the relay chain to validate the state transitions.
+Polkadot relies on a [hybrid consensus model](https://docs.polkadot.com/polkadot-protocol/architecture/polkadot-chain/pos-consensus/). In such a scheme, the block finality gadget and the block production mechanism are separate. Consequently, parachains only have to worry about producing blocks and rely on the relay chain to validate the state transitions.
 
-At a parachain level, block producers are called [collators](https://wiki.polkadot.network/docs/learn-collator). They maintain parachains (such as Moonbeam) by collecting transactions from users and offering blocks to the relay chain [validators](https://wiki.polkadot.network/docs/learn-validator).
+At a parachain level, block producers are called [collators](https://wiki.polkadot.network/learn/learn-collator/). They maintain parachains (such as Moonbeam) by collecting transactions from users and offering blocks to the relay chain [validators](https://wiki.polkadot.network/learn/learn-validator/).
 
 However, parachains might find the following problems they need to solve in a trustless and decentralized matter (if applicable):
 
@@ -20,7 +20,7 @@ Enter Nimbus. Nimbus is a framework for building slot-based consensus algorithms
 
 For example, Moonbeam uses a two-layer approach. The first layer comprises the parachain staking filter, which helps select an active collator pool among all collator candidates using a staked-based ranking. The second layer adds another filter which narrows down the number of collators to a subset for each slot.
 
-Notice that Nimbus can only answer which collator(s) are eligible to produce a parachain block in the next available slot. It is the [Cumulus](https://wiki.polkadot.network/docs/build-pdk#cumulus) consensus mechanism that marks this parachain block as best, and ultimately the [BABE](https://wiki.polkadot.network/docs/learn-consensus#babe) and [GRANDPA](https://wiki.polkadot.network/docs/learn-consensus#grandpa-finality-gadget) hybrid consensus model (of the relay chain) that will include this parachain block in the relay chain and finalize it. Once any relay chain forks are resolved at a relay chain level, that parachain block is deterministically finalized.
+Notice that Nimbus can only answer which collator(s) are eligible to produce a parachain block in the next available slot. It is the [Cumulus](https://docs.polkadot.com/develop/parachains/#cumulus) consensus mechanism that marks this parachain block as best, and ultimately the [BABE](https://docs.polkadot.com/polkadot-protocol/architecture/polkadot-chain/pos-consensus/#babe) and [GRANDPA](https://docs.polkadot.com/polkadot-protocol/architecture/polkadot-chain/pos-consensus/#grandpa-finality-gadget) hybrid consensus model (of the relay chain) that will include this parachain block in the relay chain and finalize it. Once any relay chain forks are resolved at a relay chain level, that parachain block is deterministically finalized.
 
 The following two sections go over the filtering strategy currently used on Moonbeam.
 
@@ -64,7 +64,7 @@ Some technical benefits of Nimbus are considered in the following sections.
 
 ### Weight and Extra Execution {: #weight-and-extra-execution }
 
-Nimbus puts the author-checking execution in a [Substrate pallet](https://docs.substrate.io/reference/frame-pallets/). At first glance, you might think this adds a higher execution load to a single block compared to doing this check off-chain. But consider this from a validator’s perspective
+Nimbus puts the author-checking execution in a [Substrate pallet](https://docs.polkadot.com/develop/parachains/customize-parachain/overview/). At first glance, you might think this adds a higher execution load to a single block compared to doing this check off-chain. But consider this from a validator’s perspective
 
 The validators will also have to check the author. By putting the author-checking execution logic in a pallet, the execution time can be benchmarked and quantified with weights. If this execution time is not accounted for, there is the risk of a block exceeding the relay chain Wasm execution limit (currently 0.5 seconds).
 
@@ -81,6 +81,6 @@ For example, the [relay-chain provided consensus](https://github.com/paritytech/
 Teams building parachains may want to change, tune, or adjust their consensus algorithm from time to time. Without nimbus, swapping consensus would require a client upgrade and hard fork.
 
 With the Nimbus framework, writing a consensus engine is as easy as writing a
-[Substrate pallet](https://docs.substrate.io/build/custom-pallets/). Consequently, swapping consensus is as easy as upgrading a pallet.
+[Substrate pallet](https://docs.polkadot.com/develop/parachains/customize-parachain/make-custom-pallet/). Consequently, swapping consensus is as easy as upgrading a pallet.
 
 Nonetheless, hot swapping is still bounded by consensus engines (filters) that fit within Nimbus, but it might be helpful for teams that are yet confident on what consensus they want to implement in the long run.

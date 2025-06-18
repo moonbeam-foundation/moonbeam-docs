@@ -105,7 +105,7 @@ Another observation is that the RPC URL it generated is outdated, although still
 !!! note
     ChatGPT's knowledge date cutoff is approximately September 2021. It does not have access to current events or other data after this date.
 
-Code snippets of ChatGPT's output are intentionally omitted to encourage you to try this on your own! And remember, prompting it with the exact same instructions will yield at least slightly different results - this is [an inherent quality of LLMs](https://blog.dataiku.com/large-language-model-chatgpt){target=\_blank}.
+Code snippets of ChatGPT's output are intentionally omitted to encourage you to try this on your own! And remember, prompting it with the exact same instructions will yield at least slightly different results - this is [an inherent quality of LLMs](https://www.dataiku.com/stories/detail/generative-ai/){target=\_blank}.
 
 ## Writing Test Cases {: #writing-test-cases }
 

@@ -21,7 +21,7 @@ To get started, you will need the following:
   --8<-- 'text/_common/faucet/faucet-list-item.md'
  - 
 --8<-- 'text/_common/endpoint-examples-list-item.md'
- - Have [Foundry installed](https://book.getfoundry.sh/getting-started/installation){target=\_blank}
+ - Have [Foundry installed](https://getfoundry.sh/introduction/installation/){target=\_blank}
  - Have a [Moonscan API Key](/builders/ethereum/verify-contracts/api-verification/#generating-a-moonscan-api-key){target=\_blank}
 
 ## Create a Foundry Project {: #create-a-foundry-project }
@@ -132,7 +132,7 @@ Let's start by writing a test for the token smart contract. Open up `MyToken.t.s
 --8<-- 'code/tutorials/eth-api/foundry-start-to-end/MyToken-initial-test.sol'
 ```
 
-Let's break down what's happening here. The first line is typical for a Solidity file: setting the Solidity version. The next two lines are imports. `forge-std/Test.sol` is the standard library that Forge (and thus Foundry) includes to help with testing. This includes the `Test` smart contract, certain assertions, and [forge cheatcodes](https://book.getfoundry.sh/forge/cheatcodes){target=\_blank}.  
+Let's break down what's happening here. The first line is typical for a Solidity file: setting the Solidity version. The next two lines are imports. `forge-std/Test.sol` is the standard library that Forge (and thus Foundry) includes to help with testing. This includes the `Test` smart contract, certain assertions, and [forge cheatcodes](https://getfoundry.sh/forge/tests/cheatcodes/){target=\_blank}.  
 
 If you take a look at the `MyTokenTest` smart contract, you'll see two functions. The first is `setUp`, which is run before each test. So in this test contract, a new instance of `MyToken` is deployed every time a test function is run. You know if a function is a test function if it starts with the word *"test"*, so the second function, `testConstructorMint` is a test function.  
 

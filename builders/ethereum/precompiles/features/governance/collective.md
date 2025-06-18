@@ -46,14 +46,14 @@ The interface includes the following functions:
 
     === "Parameters"
 
-        - `proposal` - bytes memory containing the [SCALE encoded](https://docs.substrate.io/reference/scale-codec){target=\_blank} Substrate call that proposes an action
+        - `proposal` - bytes memory containing the [SCALE encoded](https://docs.polkadot.com/polkadot-protocol/basics/data-encoding/){target=\_blank} Substrate call that proposes an action
 
 ??? function "**propose**(*uint32* threshold, *bytes memory* proposal) - adds a new proposal to be voted on. The sender must be a member of the collective. If the threshold is less than two then the proposal will be dispatched and executed directly, with the proposer as dispatcher. If the threshold is met, the index of the new proposal is returned"
 
     === "Parameters"
 
         - `threshold` - uint32 amount of members required to dispatch the proposal
-        - `proposal` - bytes memory containing the [SCALE encoded](https://docs.substrate.io/reference/scale-codec){target=\_blank} Substrate call that proposes an action
+        - `proposal` - bytes memory containing the [SCALE encoded](https://docs.polkadot.com/polkadot-protocol/basics/data-encoding/){target=\_blank} Substrate call that proposes an action
 
 ??? function "**vote**(*bytes32* proposalHash, *uint32* proposalIndex, *bool* approve) - votes on a proposal. The sender must be a member of the collective"
 
@@ -76,7 +76,7 @@ The interface includes the following functions:
 
     === "Parameters"
 
-        - `proposal` - bytes memory containing the [SCALE encoded](https://docs.substrate.io/reference/scale-codec){target=\_blank} Substrate call that proposes an action
+        - `proposal` - bytes memory containing the [SCALE encoded](https://docs.polkadot.com/polkadot-protocol/basics/data-encoding/){target=\_blank} Substrate call that proposes an action
 
 
 The interface includes the following events:
