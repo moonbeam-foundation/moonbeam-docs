@@ -45,7 +45,7 @@ Since remote EVM calls do not have the actual `v-r-s` values of the signature, t
 
 Another significant difference is in terms of the gas price. The fee for remote EVM calls is charged at an XCM execution level. Consequently, the gas price at an EVM level is zero, and the EVM will not charge for the execution itself. This can also be seen in the receipt of a remote EVM call transaction. Accordingly, the XCM message must be configured so that the `BuyExecution` buys enough weight to cover the gas cost.
 
-The last difference is in terms of the gas limit. Ethereum uses a gas-metered system to moderate the amount of execution that can be done in a block. On the contrary, Moonbeam uses a [weight-based system](https://docs.substrate.io/build/tx-weights-fees){target=\_blank} in which each call is characterized by the time it takes to execute in a block. Each unit of weight corresponds to one picosecond of execution time.
+The last difference is in terms of the gas limit. Ethereum uses a gas-metered system to moderate the amount of execution that can be done in a block. On the contrary, Moonbeam uses a [weight-based system](https://docs.polkadot.com/polkadot-protocol/parachain-basics/blocks-transactions-fees/fees/){target=\_blank} in which each call is characterized by the time it takes to execute in a block. Each unit of weight corresponds to one picosecond of execution time.
 
 As of runtime 2900, the configuration of the XCM queue suggests that XCM messages should be executable within the following weight units:
 

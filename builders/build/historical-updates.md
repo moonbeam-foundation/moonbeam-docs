@@ -305,7 +305,7 @@ You can review the [relative PR on GitHub](https://github.com/moonbeam-foundatio
 
 #### Gas Estimation Discrepancy {: #gas-estimation-discrepancy }
 
-There was a difference between estimating the gas for a transaction using a non-transaction call, such as `eth_call`, and the execution of it on-chain. The discrepancy occurred because the non-transactional calls were not properly accounting for `maxFeePerGas` and `maxPriorityFeePerGas`, as such, the ([Proof of Validity](https://wiki.polkadot.network/docs/glossary#proof-of-validity){target=\_blank}) consumed by the Ethereum transaction was counted differently. This was fixed by properly accounting for these fields when estimating the size of the on-chain transaction.
+There was a difference between estimating the gas for a transaction using a non-transaction call, such as `eth_call`, and the execution of it on-chain. The discrepancy occurred because the non-transactional calls were not properly accounting for `maxFeePerGas` and `maxPriorityFeePerGas`, as such, the ([Proof of Validity](https://wiki.polkadot.network/general/glossary/#proof-of-validity){target=\_blank}) consumed by the Ethereum transaction was counted differently. This was fixed by properly accounting for these fields when estimating the size of the on-chain transaction.
 
 This bug existed during the following runtimes and block ranges:
 

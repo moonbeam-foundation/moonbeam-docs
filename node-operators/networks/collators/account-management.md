@@ -7,7 +7,7 @@ description: Learn how to manage your collator account, including generating ses
 
 ## Introduction {: #introduction }
 
-When running a collator node on Moonbeam-based networks, there are some account management activities that you will need to be aware of. First and foremost you will need to create [session keys](https://wiki.polkadot.network/docs/learn-keys#session-keys){target=\_blank} for your primary and backup servers which will be used to determine block production and sign blocks.
+When running a collator node on Moonbeam-based networks, there are some account management activities that you will need to be aware of. First and foremost you will need to create [session keys](https://wiki.polkadot.network/general/web3-and-polkadot/#session-keys){target=\_blank} for your primary and backup servers which will be used to determine block production and sign blocks.
 
 In addition, there are some optional account management activities that you can consider such as setting an on-chain identity or setting up proxy accounts.
 

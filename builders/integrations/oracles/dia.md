@@ -180,9 +180,9 @@ DIA also supports API endpoints to return cryptocurrency price data. Developers 
 
 [DIA xRandom](https://docs.diadata.org/products/randomness-oracle){target=\_blank} provides smart contracts with unpredictable and unbiased random numbers, facilitating the development of on-chain use cases such as lotteries, prediction markets, NFT launches, and more.
 
-DIA leverages the Drand public randomness beacon, and updates its oracle with round numbers, randomness and a signature. Drand runs distributed nodes to produce their randomness beacon. Drand uses [Pedersen's DKG (Distributed Key Generation) protocol](https://drand.love/docs/cryptography#distributed-key-generation-dkg){target=\_blank} to create collective private and public keys. Participants in their League of Entropy then generate randomness in rounds and broadcast it together with its signature.
+DIA leverages the Drand public randomness beacon, and updates its oracle with round numbers, randomness and a signature. Drand runs distributed nodes to produce their randomness beacon. Drand uses [Pedersen's DKG (Distributed Key Generation) protocol](https://docs.drand.love/docs/cryptography/#distributed-key-generation-dkg){target=\_blank} to create collective private and public keys. Participants in their League of Entropy then generate randomness in rounds and broadcast it together with its signature.
 
-To learn more about Drand’s randomness beacon, watch the [On-Chain Randomness Oracle | DIA Developer Tutorial](https://youtu.be/7HALDJr8V3g){target=\_blank} and read [Drand’s documentation](https://drand.love/docs#how-drand-works){target=\_blank}.
+To learn more about Drand’s randomness beacon, watch the [On-Chain Randomness Oracle | DIA Developer Tutorial](https://youtu.be/7HALDJr8V3g){target=\_blank} and read [Drand’s documentation](https://docs.drand.love/#how-drand-works){target=\_blank}.
 
 ### Moonbeam Demo Randomness Oracle {: #moonbeam-demo-randomness-oracle }
 
@@ -281,7 +281,7 @@ To learn how to deploy a randomness-consuming contract on Moonbeam, please refer
 
 - [Twitter](https://twitter.com/DIAdata_org){target=\_blank}
 - [Discord](https://discord.com/invite/ZvGjVY5uvs){target=\_blank}
-- [Website](https://diadata.org){target=\_blank}
+- [Website](https://www.diadata.org/){target=\_blank}
 - [Docs](https://docs.diadata.org){target=\_blank}
 - [Explore data](https://www.diadata.org/app){target=\_blank}
 

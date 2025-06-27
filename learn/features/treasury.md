@@ -30,6 +30,6 @@ A member of the Treasury Council will submit a `treasury.spend` call. This call 
     There is no on-chain action for the proposer or beneficiary of the Treasury spend request.
     All Treasury spend actions will be completed by members of the Treasury Council.
 
-Note that this process has changed significantly from prior Treasury processes, where tokenholders could submit Treasury proposals with bonds attached. Now, no on-chain action is necessary to submit a Treasury proposal. Rather, all that is needed is to raise a Treasury Council request on the [Moonbeam Forum](https://forum.moonbeam.network/c/governance/Treasury-proposals/8){target=\_blank} and the Treasury Council will take care of the on-chain components. 
+Note that this process has changed significantly from prior Treasury processes, where tokenholders could submit Treasury proposals with bonds attached. Now, no on-chain action is necessary to submit a Treasury proposal. Rather, all that is needed is to raise a Treasury Council request on the [Moonbeam Forum](https://forum.moonbeam.network/c/governance/treasury-proposals/8){target=\_blank} and the Treasury Council will take care of the on-chain components. 
 
 For more information, see [How to Propose a Treasury Spend](/tokens/governance/treasury-spend/#next-steps){target=\_blank}
