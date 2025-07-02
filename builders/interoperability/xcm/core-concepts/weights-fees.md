@@ -205,21 +205,6 @@ And the `proofSize` of `DepositAsset` can be calculated as:
 {{ xcm.generic_weights.ref_time.mint_into_gas.numbers_only }} gas * {{ xcm.generic_weights.proof_size.weight_per_gas }} weight per gas = {{ xcm.generic_weights.proof_size.deposit_asset.numbers_only }}
 ```
 
-
-The weights for each of the four XCM instructions for Alice's DOT transfer to Moonbeam can be found below:
-
-|                                                                                           Instruction                                                                                            |                             Ref Time                             |                           Proof Size                            |
-|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------:|:---------------------------------------------------------------:|
-| [`ReserveAssetDeposited`](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbeam.spec_version }}/pallets/moonbeam-xcm-benchmarks/src/weights/fungible.rs#L69){target=\_blank} |                {{ xcm.fungible_weights.display }}                |            {{ xcm.generic_weights.proof_size.zero }}            |
-|      [`ClearOrigin`](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbeam.spec_version }}/pallets/moonbeam-xcm-benchmarks/src/weights/generic.rs#L195){target=\_blank}      |     {{ xcm.generic_weights.ref_time.clear_origin.display }}      |            {{ xcm.generic_weights.proof_size.zero }}            |
-|   [`BuyExecution`](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbeam.spec_version }}/pallets/moonbeam-xcm-benchmarks/src/weights/generic.rs#L132-L133){target=\_blank}   | {{ xcm.generic_weights.ref_time.buy_exec.total_weight.display }} |   {{ xcm.generic_weights.proof_size.buy_execution.display }}    |
-|     [`DepositAsset`](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbeam.spec_version }}/pallets/moonbeam-xcm-benchmarks/src/weights/fungible.rs#L58){target=\_blank}      |     {{ xcm.generic_weights.ref_time.deposit_asset.display }}     |   {{ xcm.generic_weights.proof_size.deposit_asset.display }}    |
-|                                                                                            **TOTAL**                                                                                             |  {{ networks.moonbeam.xcm.transfer_dot.total_weight.display }}   | {{ xcm.generic_weights.proof_size.transfer_dot_total.display }} |
-
-
-!!! note
-    For the `BuyExecution` instruction, the [units of weight for the four database reads](#moonbeam-xcm-fee-calc) are accounted for in the above table.
-
 ### Weight to Asset Fee Conversion {: #weight-to-asset-fee-conversion} 
 
 Once you have the sum of the `refTime` and `proofSize` values, you can easily retrieve the required commensurate fee amount. The [`queryWeightToAssetFee` method of the `xcmPaymentApi`](#weight-to-asset-fee-conversion) takes a `refTime`, `proofSize` and asset multilocation as parameters and returns the commensurate fee. By providing the amounts obtained above of `{{ networks.moonbeam.xcm.transfer_dot.total_weight.display }}` `refTime` and `{{ xcm.generic_weights.proof_size.transfer_dot_total.display }}` `proofSize`, and the asset multilocation for DOT, we get a fee amount of `88,920,522` Plank, which is the smallest unit in Polkadot. We can convert this to DOT by dividing by `10^10` which gets us a DOT fee amount of `{{ networks.moonbeam.xcm.transfer_dot.xcdot_cost }}` DOT. 
