@@ -212,7 +212,7 @@ The client contract deployed on Moonbase Alpha is as follows:
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.6.6;
 
-import "https://github.com/smartcontractkit/chainlink/blob/develop/contracts/src/v0.6/ChainlinkClient.sol";
+import "https://github.com/smartcontractkit/chainlink/blob/v1.13.3/contracts/src/v0.6/ChainlinkClient.sol";
 
 /**
  * @title Client based in ChainlinkClient
@@ -392,7 +392,7 @@ If you decide to go this route, please keep in mind that the oracle node only su
 To build your own client contract using the `ChainlinkClient`, you'll need to start by importing the contract:
 
 ```solidity
-import "https://github.com/smartcontractkit/chainlink/blob/develop/contracts/src/v0.6/ChainlinkClient.sol";
+import "https://github.com/smartcontractkit/chainlink/blob/v1.13.3/contracts/src/v0.6/ChainlinkClient.sol";
 ```
 
 You can checkout out the [Chainlink documentation on ChainlinkClient API Reference](https://docs.chain.link/any-api/api-reference){target=\_blank} for more information.
