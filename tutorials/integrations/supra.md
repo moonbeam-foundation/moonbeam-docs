@@ -55,7 +55,7 @@ To follow along with this guide, you will need:
 
 To build out the Web2 component required to fetch price data from Supra, you can use their [Pull Service Client library](https://github.com/Entropy-Foundation/oracle-pull-example){target=\_blank}, designed to interact with a gRPC server to fetch price data. gRPC is a modern remote procedure call (RPC) framework created by Google. You can check out the [gRPC documentation](https://grpc.io/docs/what-is-grpc){target=\_blank} for more information if you need to familiarize yourself.
 
-The library offers JavaScript or Rust-based clients for EVM, Sui, and Aptos-based chains. For Moonbeam, you can use the JavaScript or Rust-based EVM client. We'll use the [JavaScript client](https://github.com/Entropy-Foundation/oracle-pull-example/tree/master/javascript/evm_client){target=\_blank}.
+The library offers JavaScript or Rust-based clients for EVM, Sui, and Aptos-based chains. For Moonbeam, you can use the JavaScript or Rust-based EVM client. We'll use the [JavaScript client](https://github.com/Entropy-Foundation/oracle-pull-example/tree/master/rest/javascript/evm_client){target=\_blank}.
 
 We'll copy the JavaScript client code and add it to our project, but you can also clone the [repository](https://github.com/Entropy-Foundation/oracle-pull-example){target=\_blank} with all the clients.
 
