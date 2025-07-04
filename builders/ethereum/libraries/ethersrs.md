@@ -67,7 +67,7 @@ There are multiple ways to create a provider and signer, but the easiest way is 
 
 1. Import `Provider` and `Http` from the `ethers` crate
 2. Add a `Client` type for convenience, which will be used once you start to create the functions for sending a transaction and deploying a contract
-3. Add a `tokio` attribute above `async fn main()` for asynchronous excution
+3. Add a `tokio` attribute above `async fn main()` for asynchronous execution
 4. Use `try_from` to attempt to instantiate a JSON-RPC provider object from an RPC endpoint
 5. Use a private key to create a wallet object (the private key will be used to sign transactions). **Note: This is for example purposes only. Never store your private keys in a plain Rust file**
 6. Wrap the provider and wallet together into a client by providing them to a `SignerMiddleware` object
@@ -311,7 +311,7 @@ To run the script, which will send the transaction and then check the balances o
 cargo run
 ```
 
-If the transaction was succesful, in your terminal you'll see the transaction details printed out along with the balance of your address.
+If the transaction was successful, in your terminal you'll see the transaction details printed out along with the balance of your address.
 
 --8<-- 'code/builders/ethereum/libraries/ethers-rust/terminal/transaction.md'
 
