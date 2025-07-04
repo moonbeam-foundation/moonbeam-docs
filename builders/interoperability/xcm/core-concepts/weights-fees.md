@@ -133,7 +133,7 @@ XCM-KSM-Cost = XCM-Planck-KSM-Cost / KSMDecimalConversion
 
 ## Moonbeam-based Networks XCM Fee Calculation  {: #moonbeam-xcm-fee-calc }
 
-Substrate has introduced a weight system that determines how heavy or, in other words, how expensive an extrinsic is from a computational cost perspective. One unit of weight is defined as one picosecond of execution time. When it comes to paying fees, users will pay a transaction fee based on the weight of the call that is being made, and each parachain can decide how to convert from weight to fee, for example, accounting for additional costs for transaction size and storage costs.
+Substrate has introduced a weight system that determines how heavy or, in other words, how expensive an extrinsic is from a computational cost perspective. One unit of weight is defined as one picosecond of execution time. When it comes to paying fees, users will pay a transaction fee based on the weight of the call being made, and each parachain can decide how to convert weight to fee. For example, this may account for additional costs related to transaction size and storage.
 
 For all Moonbeam-based networks, the generic XCM instructions are benchmarked, while the fungible XCM instructions still use a fixed amount of weight per instruction. Consequently, the total weight cost of the benchmarked XCM instructions considers the number of database reads and writes in addition to the weight required for a given instruction. The Polkadot SDK has a breakdown of the relevant [RocksDB database weights](https://github.com/paritytech/polkadot-sdk/blob/{{polkadot_sdk}}/substrate/frame/support/src/weights/rocksdb_weights.rs#L27-L28){target=\_blank}.
 
