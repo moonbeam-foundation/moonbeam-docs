@@ -264,7 +264,7 @@ To run the script, you can run the following command in your terminal:
 node transaction.js
 ```
 
-If the transaction was succesful, in your terminal you'll see the transaction hash has been printed out.
+If the transaction was successful, in your terminal you'll see the transaction hash has been printed out.
 
 You can also use the `balances.js` script to check that the balances for the origin and receiving accounts have changed. The entire workflow would look like this:
 
