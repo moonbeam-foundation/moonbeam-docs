@@ -72,7 +72,7 @@ To get started creating a Safe, navigate to the [Moonbeam Safe](https://multisig
 
 ### Connect MetaMask {: #connect-metamask }
 
-Once on the [Moonbase Alpha](https://multisig.moonbeam.network/moonbase){target=\_blank} page, you can begin to create a Safe by first connecting your wallet:
+Once on the [Moonbase Alpha](https://multisig.moonbeam.network/){target=\_blank} page, you can begin to create a Safe by first connecting your wallet:
 
  1. Click **Connect Wallet**
  2. Select a wallet to connect to Moonbeam Safe. For this example you can use MetaMask. If MetaMask doesn't appear in the list of options, click **Show More** and select **MetaMask**
