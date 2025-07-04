@@ -90,7 +90,6 @@ There are a few resources you can check out to help you select a collator to del
     |:----------------------------:|:-------------------------------------------------------------------------------:|
     |     Stake GLMR Dashboard     |              [Stake GLMR](https://stakeglmr.com){target=\_blank}               |
     |    Collators Leaderboard     |       [Moonscan](https://moonbeam.moonscan.io/collators){target=\_blank}       |
-    | Staking Simulation Dashboard |             [Web3Go](https://web3go.xyz/#/Moonbeam){target=\_blank}             |
     |      Collator Dashboard      | [DappLooker](https://dapplooker.com/dashboard/moonbeam-collator-dashboard-91){target=\_blank} |
 
 === "Moonriver"
@@ -98,7 +97,6 @@ There are a few resources you can check out to help you select a collator to del
     |:----------------------------:|:--------------------------------------------------------------------------------:|
     |     Stake MOVR Dashboard     |               [Stake MOVR](https://stakemovr.com){target=\_blank}               |
     |    Collators Leaderboard     |       [Moonscan](https://moonriver.moonscan.io/collators){target=\_blank}       |
-    | Staking Simulation Dashboard |             [Web3Go](https://web3go.xyz/#/Moonriver){target=\_blank}             |
     |      Collator Dashboard      | [DappLooker](https://dapplooker.com/dashboard/moonriver-collator-dashboard-28){target=\_blank} |
 
 === "Moonbase Alpha"
