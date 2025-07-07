@@ -1322,7 +1322,7 @@ xcm:
   db_weights:
     rocksdb_read:
       display: 25,000,000
-      numbers_only: 41742000
+      numbers_only: 25000000
     rocksdb_write:
       display: 100,000,000
   fungible_weights:
