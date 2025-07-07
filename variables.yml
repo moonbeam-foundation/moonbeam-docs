@@ -854,8 +854,6 @@ networks:
           display: 1,250,000
           numbers_only: 1250000
       transfer_dot:
-        total_weight:
-          numbers_only: 4428242000
         exec_time: 0.004428242
         xcdot_cost: 0.008892
       transfer_glmr:
@@ -1224,12 +1222,10 @@ networks:
     xcm_message:
       transfer:
     xcm_instructions:
-      buy_exec:
       withdraw:
         base_weight:
           display: 28,457,000
           numbers_only: 28457000
-        planck_dot_cost: 10506327.1036296
       clear_origin:
       deposit_asset:
       planck_dot_weight: 0.0793367448
@@ -1256,25 +1252,14 @@ networks:
         base_weight:
           display: 29,195,000
           numbers_only: 21195000
-        total_weight:
-        planck_ksm_cost: 39077243.0089112
-      clear_origin:
-        ksm_cost: '0.000000351493'
-      deposit_asset:
-      planck_ksm_weight: '0.267295345319'
     extrinsic_base_weight:
   alphanet:
     spec_version: v1.10.0
     xcm_instructions:
-      withdraw:
-      clear_origin:
       buy_exec:
         ref_time: 348,048,000
         proof_size: 19,056
-      deposit_asset:
     xcm_message:
-      transfer:
-        weight:
         ref_time: 8,103,242,000
         proof_size: 4,979,056
   moonbase_beta:
@@ -1315,18 +1300,12 @@ xcm:
         base_weight:
           display: 181,080,000
           numbers_only: 181080000
-        total_weight:
-          numbers_only: 281,080,000
     proof_size:
       zero: 0
       weight_per_gas: 8
       withdraw_asset:
         display: 1,240,000
         numbers_only: 1240000
-      buy_execution:
-        numbers_only: 19056
       deposit_asset:
         display: 1,240,000
         numbers_only: 1240000
-      transfer_dot_total:
-    
