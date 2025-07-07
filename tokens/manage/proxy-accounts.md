@@ -180,7 +180,7 @@ A pop-up will appear where you can view an overview of all of your proxy account
 
 ## Executing a Proxy Transaction {: #executing-a-proxy-transaction }
 
-Now that you have created a proxy account and verified that it was successfuly set up, you can execute a transaction using the proxy account on behalf of the primary account.
+Now that you have created a proxy account and verified that it was successfully set up, you can execute a transaction using the proxy account on behalf of the primary account.
 
 To execute a transaction, you can navigate back to the [**Extrinsics** page](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/extrinsics){target=\_blank} and take the following steps:
 
