@@ -1317,7 +1317,7 @@ networks:
           numbers_only: 400000000
         wei_betadev_cost: 20000000000000
         betadev_cost: '0.00002'
-polkadot_sdk: polkadot-v1.18.6
+polkadot_sdk: polkadot-v1.17.7
 xcm:
   db_weights:
     rocksdb_read:
