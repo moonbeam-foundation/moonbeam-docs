@@ -1321,10 +1321,10 @@ polkadot_sdk: polkadot-v1.18.6
 xcm:
   db_weights:
     rocksdb_read:
-      display: 41,742,000
-      numbers_only: 41742000
+      display: 25,000,000
+      numbers_only: 25000000
     rocksdb_write:
-      display: 81,283,000
+      display: 100,000,000
   fungible_weights:
     display: 200,000,000
     numbers_only: 200000000
