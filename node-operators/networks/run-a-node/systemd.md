@@ -107,7 +107,7 @@ To download the latest [release binary](https://github.com/moonbeam-foundation/m
         {{ networks.moonbase.parachain_sha256sum }}
         ```
 
-## Setup the Service {: #setup-the-service }
+## Set Up the Service {: #set-up-the-service }
 
 The following commands will set up everything regarding running the service:
 
@@ -156,7 +156,7 @@ The following commands will set up everything regarding running the service:
 
 ## Create the Configuration File {: #create-the-configuration-file }
 
-The next step is to create the systemd configuration file. If you are setting up a collator node, make sure to follow the code snippets for [collators](#collator).
+Next, create the systemd service file. If you're configuring a collator node, use the [collator-specific](#collator) configuration snippets below.
 
 First, you'll need to create a file named `/etc/systemd/system/moonbeam.service` to store the configurations.
 
