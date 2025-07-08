@@ -56,7 +56,7 @@ Similar to Polkadot validators, you need to create an account. For Moonbeam, thi
 
 There are many Ethereum wallets that can be used, but for production purposes it is recommended to generate keys as securely as possible. It is also recommended to generate backup keys. You can actually generate keys using the Moonbeam binary through a tool called Moonkey. It can be used to generate both Ethereum-style accounts and Substrate-style accounts.
 
-To generate keys securely it is recommended to do so on an air-gapped machine. Once you generate your keys make sure you store them safely. To securely store your keys, here are some recommendations, from least to most secure:
+To generate keys securely it is recommended to do so on an air-gapped machine. Once you generate your keys, make sure you store them safely. To securely store your keys, here are some recommendations, from least to most secure:
 
 - Write down and laminate your keys
 - Engrave your keys into a metal plate
@@ -137,7 +137,7 @@ First, you will need a minimum amount of tokens staked (self-bonded) to be consi
 
 ### Key Association Bond {: #key-association-bond }
 
-Secondly, you will need a bond for key association. This bond is sent when [mapping your author ID](/node-operators/networks/collators/account-management/){target=\_blank} (session keys) with your account for block rewards, and is per author ID registered.
+Secondly, you will need a bond for key association. This bond is required  when [mapping your author ID](/node-operators/networks/collators/account-management/){target=\_blank} (session keys) with your account for block rewards, and is per author ID registered.
 
 === "Moonbeam"
     |   Variable   |                         Value                          |
@@ -156,4 +156,4 @@ Secondly, you will need a bond for key association. This bond is sent when [mapp
 
 ## Collator Questionnaire {: #collator-questionnaire }
 
-There is a [Collator Questionnaire](https://docs.google.com/forms/d/e/1FAIpQLSfjmcXdiOXWtquYlBhdgXBunCKWHadaQCgPuBtzih1fd0W3aA/viewform){target=\_blank}, that aims to assess the state of all collators on Moonbase Alpha. You should be running a collator node on Moonbase Alpha before filling out this form.You will be able to provide your contact information as well as some basic hardware specs. It provides a way to open the lines of communication between you and the Moonbeam team in case any problems with your node arise.
+There is a [Collator Questionnaire](https://docs.google.com/forms/d/e/1FAIpQLSfjmcXdiOXWtquYlBhdgXBunCKWHadaQCgPuBtzih1fd0W3aA/viewform){target=\_blank}, that aims to assess the state of all collators on Moonbase Alpha. You should be running a collator node on Moonbase Alpha before filling out this form. You will be able to provide your contact information as well as some basic hardware specs. It provides a way to open the lines of communication between you and the Moonbeam team in case any problems with your node arise.
