@@ -119,7 +119,7 @@ Creating a new API/add-on based endpoint is simple, all you have to do is:
 
 1. Visit the [Grove Portal](https://portal.grove.city/api/auth/auth0?signup=true){target=\_blank} and sign up for an account
 2. From your dashboard, create a new application
-3. Copy your Moonbeam or Moonriver Endpoints
+3. Copy your Moonbeam or Moonriver endpoints
 4. Start making requests to your custom Grove endpoint
 
 Grove provides detailed analytics, request monitoring, and flexible rate limiting to help you optimize your application's performance.
