@@ -598,7 +598,7 @@ Once you have the necessary information, you can take the following steps in Rem
 4. Enter the auto-compounding delegation count for the candidate
 5. Enter your delegation count
 6. Press **transact**
-7. MetaMask will pop sup, you can review the details and confirm the transaction
+7. MetaMask will pop up, you can review the details and confirm the transaction
 
 ![Set or update auto-compound percentage](/images/builders/ethereum/precompiles/features/staking/staking-11.webp)
 
