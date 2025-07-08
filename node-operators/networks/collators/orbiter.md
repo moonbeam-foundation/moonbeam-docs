@@ -34,7 +34,7 @@ A private discord group will be created for this program, and most communication
 
 ## Orbiters and Orbiter Pool Configurations {: #configuration }
 
-Orbiter pools are maintained by the Moonbeam Foundation, and will assign block production authority to each orbiters. The maximum number of orbiters per orbiter pool for each network is as follows:
+Orbiter pools are maintained by the Moonbeam Foundation, and will assign block production authority to each orbiter. The maximum number of orbiters per orbiter pool for each network is as follows:
 
 === "Moonbeam"
 
