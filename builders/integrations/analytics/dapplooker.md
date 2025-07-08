@@ -17,7 +17,7 @@ This guide will cover all of the details needed to register your project with th
 
 ## Checking Prerequisites {: #checking-prerequisites }
 
-To get started with this guide, you'll need to create or have a Dapplooker account. You can [signup](https://dapplooker.com/user/signup){target=\_blank} and create an account. If you've already have signed up, you can [login](https://dapplooker.com/user/login){target=\_blank} to your account.
+To get started with this guide, you'll need to create or have a Dapplooker account. You can [signup](https://dapplooker.com/user/signup){target=\_blank} and create an account. If you've already signed up, you can [login](https://dapplooker.com/user/login){target=\_blank} to your account.
 
 ![Login to Dapplooker](/images/builders/integrations/analytics/dapplooker/dapplooker-1.webp)
 
