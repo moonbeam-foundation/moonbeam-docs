@@ -10,7 +10,6 @@ _by Jeremy Boetticher_
 ## Introduction {: #introduction }
 
 Foundry has become an increasingly popular development environment for smart contracts because it requires only one language: Solidity. Moonbeam offers [introductory documentation on using Foundry](/builders/ethereum/dev-env/foundry/){target=\_blank} with Moonbeam networks, which is recommended to read to get an introduction to using Foundry. In this tutorial, we will dip our toes deeper into the library to get a more cohesive look at properly developing, testing, and deploying with Foundry.  
-
 In this demonstration, we will deploy two smart contracts. One is a token, and the other will depend on that token. We will also write unit tests to ensure the contracts work as expected. To deploy them, we will write a script that Foundry will use to determine the deployment logic. Finally, we will verify the smart contracts on Moonbeam's blockchain explorer.
 
 ## Checking Prerequisites {: #checking-prerequisites }
@@ -79,7 +78,7 @@ The first addition is a specification of the `solc_version`, underneath `profile
 Smart contracts in Foundry destined for deployment by default belong in the `src` folder. In this tutorial, we'll write two smart contracts. Starting with the token:
 
 ```bash
-touch MyToken.sol
+touch src/MyToken.sol
 ```
 
 Open the file and add the following to it:
@@ -93,7 +92,7 @@ As you can see, the OpenZeppelin `ERC20` smart contract is imported by the mappi
 The second smart contract, which we'll name `Container.sol`, will depend on this token contract. It is a simple contract that holds the ERC-20 token we'll deploy. You can create the file by executing:  
 
 ```bash
-touch Container.sol
+touch src/Container.sol
 ```
 
 Open the file and add the following to it:
