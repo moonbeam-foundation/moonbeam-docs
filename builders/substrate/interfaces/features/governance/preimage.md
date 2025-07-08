@@ -97,7 +97,7 @@ The Preimage Pallet includes the following read-only storage methods to obtain c
 
     === "Parameters"
 
-        - `[hash, length]` - the hash and length of the preimage
+        - `[hash, length]` - a tuple containing the hash and the length of the preimage
 
     === "Returns"
 

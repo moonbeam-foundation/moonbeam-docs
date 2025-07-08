@@ -361,7 +361,7 @@ If you wish to set up your own tracing node, you can follow the [Running a Traci
           '{
             "jsonrpc": "2.0",
             "id": 1,
-            "method" "txpool_inspect", "params":[]
+            "method": "txpool_inspect", "params":[]
           }'
         ```
 
