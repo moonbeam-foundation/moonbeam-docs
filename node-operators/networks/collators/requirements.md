@@ -137,7 +137,7 @@ First, you will need a minimum amount of tokens staked (self-bonded) to be consi
 
 ### Key Association Bond {: #key-association-bond }
 
-Secondly, you will need a bond for key association. This bond is required  when [mapping your author ID](/node-operators/networks/collators/account-management/){target=\_blank} (session keys) with your account for block rewards, and is per author ID registered.
+Secondly, you will need a bond for key association. This bond is required when [mapping your author ID](/node-operators/networks/collators/account-management/){target=\_blank} (session keys) with your account for block rewards, and is per author ID registered.
 
 === "Moonbeam"
     |   Variable   |                         Value                          |
