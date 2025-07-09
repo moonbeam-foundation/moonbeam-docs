@@ -22,7 +22,7 @@ There are multiple deployments of Moonbeam, including the Moonbase Alpha TestNet
 
 ## Requirements {: #requirements }
 
-Running a parachain node is similar to a typical Substrate node, but there are some differences. A Substrate parachain node is a bigger build because it contains code to run the parachain itself, as well as code to sync the relay chain, and facilitate communication between the two. As such, this build is quite large and may take over 30 min and require 32GB of memory.
+Running a parachain node is similar to a typical Substrate node, but there are some differences. A Substrate parachain node is a bigger build because it contains code to run the parachain itself, as well as code to sync the relay chain and facilitate communication between the two. As such, this build is quite large and may take over 30 min and require 32GB of memory.
 
 The minimum specs recommended to run a node are shown in the following table. For our Kusama and Polkadot MainNet deployments, disk requirements will be higher as the network grows.
 

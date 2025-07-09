@@ -100,7 +100,7 @@ To view and manage your assets, you can click on **Assets** from the bottom navi
 Since you created a new wallet in this demo, the app displays a balance of `$0.00` and doesn't list any assets in the **Crypto** tab. You can change this by sending some GLMR to this account. To send funds to your Coinbase Wallet account, take the following steps:
 
  1. Tap on **Receive**
- 2. Tap on the QR code icon or the copy icon next to **Ethereum address**. Since Moonbeam is Ethereum-compatible, you can use the Ethereum account it provides you on Moonbeam
+ 2. Tap on the QR code icon or the copy icon next to **Ethereum address**. Since Moonbeam is Ethereum-compatible, you can use the Ethereum account it provides you with on Moonbeam
 
 ![Copy your Ethereum address so you can receive funds.](/images/tokens/connect/coinbase-wallet/coinbase-5.webp)
 

@@ -9,7 +9,7 @@ There's a great deal of terminology that's specific to Polkadot, Substrate, and 
 
 ### Collators {: #collators }
 
-One of the key network participants needed to support parachains within the Polkadot Network.  In Moonbeam, collators are the nodes that are responsible for block production and for submitting produced blocks up to the Polkadot relay chain for finalization.
+One of the key network participants needed to support parachains within the Polkadot Network.  In Moonbeam, collators are the nodes that are responsible for block production and for submitting produced blocks up to the Polkadot Relay Chain for finalization.
 
 ### Delegators {: #delegators }
 
@@ -17,7 +17,7 @@ Moonbeam token holders who stake tokens, vouching for specific collator candidat
 
 ### Nominators {: #nominators }
 
-Relay chain token holders who select to "back" a validator. They can receive part of the validator's reward, but are subject to slashing of their staked tokens in case the validator misbehaves. A nominator can back up to 16 validators, and their bond is fully distributed between the backed validators that were selected for the validator set.
+Relay Chain token holders who select to "back" a validator. They can receive part of the validator's reward, but are subject to slashing of their staked tokens in case the validator misbehaves. A nominator can back up to 16 validators, and their bond is fully distributed between the backed validators that were selected for the validator set.
 
 ### Nominated Proof of Stake {: #nominated-proof-of-stake }
 
@@ -25,7 +25,7 @@ The mechanism used by Polkadot for selecting its block validator set to maximize
 
 ### Parachains {: #parachains }
 
-A blockchain which has a slot and is connected to Polkadot.  Parachains receive shared security from Polkadot and the ability to interact with other parachains on the Polkadot network. They must lock DOT, the native relay chain token, to secure a slot for a specific period (up two years).
+A blockchain which has a slot and is connected to Polkadot. Parachains receive shared security from Polkadot and the ability to interact with other parachains on the Polkadot network. They must lock DOT, the native relay chain token, to secure a slot for a specific period (up two years).
 
 ### Parathreads {: #parathreads }
 
@@ -37,7 +37,7 @@ A network of connected blockchains that provides shared security and the ability
 
 ### Relay Chain {: #relay-chain }
 
-The backbone blockchain supporting the Polkadot network.  Parachains connect to the relay Chain and use it for shared security and message passing.  Validators on the relay Chain help secure the parachains.
+The backbone blockchain supporting the Polkadot network.  Parachains connect to the Relay Chain and use it for shared security and message passing.  Validators on the Relay Chain help secure the parachains.
 
 ### Smart Contract {: #smart-contract }
 
@@ -53,7 +53,7 @@ Substrate Frame Pallets are a collection of Rust-based modules, providing the fu
 
 ### Validators {: #validators }
 
-A node that secures the Polkadot relay Chain by staking DOT in the network, which is slashed if they misbehave. They finalize blocks from collators on parachains and also participate on consensus for the next relay Chain block with other validators.
+A node that secures the Polkadot Relay Chain by staking DOT in the network, which is slashed if they misbehave. They finalize blocks from collators on parachains and also participate on consensus for the next Relay Chain block with other validators.
 
 ### WebAssembly/Wasm {: #webassemblywasm }
 

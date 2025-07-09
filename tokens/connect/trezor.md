@@ -19,7 +19,7 @@ Please note that your Trezor device will sign transactions in whichever MetaMask
 
 ## Checking Prerequisites {: #checking-prerequisites }
 
-Before you get started, update [Trezor Suite](https://suite.trezor.io){target=\_blank} to the latest version available. Also, make sure you've your Trezor hardware wallet device running the latest firmware. The Trezor wiki offers tutorials on how to update the firmware of both [Trezor One](https://trezor.io/learn/a/update-trezor-device-firmware){target=\_blank} and [Trezor Model T](https://trezor.io/learn/a/update-trezor-device-firmware){target=\_blank} devices.
+Before you get started, update [Trezor Suite](https://suite.trezor.io){target=\_blank} to the latest version available. Also, make sure your Trezor hardware wallet is running the latest firmware. The Trezor wiki offers tutorials on how to update the firmware of both [Trezor One](https://trezor.io/learn/a/update-trezor-device-firmware){target=\_blank} and [Trezor Model T](https://trezor.io/learn/a/update-trezor-device-firmware){target=\_blank} devices.
 
 At the time of writing, the following versions were used:
 
@@ -31,7 +31,7 @@ In addition, you'll need MetaMask as an intermediary between your Trezor device 
 
 ## Importing your Trezor Account to MetaMask {: #importing-your-trezor-account-to-metamask }
 
-To get started, you need to have set up a wallet (either standard or a hidden wallet). Once you've connected your Trezor device, unlocked it, and get a wallet setup in Trezor Suite. Next, to import your Trezor Ethereum account to MetaMask, take the following steps:
+To get started, you need to have set up a wallet (either standard or a hidden wallet). Once you've connected your Trezor device, unlocked it, and set up a wallet in Trezor Suite. Next, to import your Trezor Ethereum account to MetaMask, take the following steps:
 
  1. Click on the top-right logo to expand the menu
  2. Select **Connect Hardware Wallet**
@@ -57,7 +57,7 @@ On the next screen, take the following steps:
 
 ![Trezor Hardware Wallet Connect Wizard Select and Connect Device](/images/tokens/connect/trezor/trezor-4.webp)
 
-Once you've your device connected, you need to allow MetaMask to read its public keys. Therefore, click on **Allow once for this session**. Optionally, you can also check the **Don't ask me again** box.
+Once your device is connected, you need to allow MetaMask to read its public keys. Therefore, click on **Allow once for this session**. Optionally, you can also check the **Don't ask me again** box.
 
 ![Trezor Hardware Wallet Connect Wizard Allow Read Public Keys](/images/tokens/connect/trezor/trezor-5.webp)
 

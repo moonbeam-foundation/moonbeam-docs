@@ -22,7 +22,7 @@ Guiding "soft" principles for engagement with Moonbeam's governance process incl
  - Being inclusive to token holders that want to engage with Moonbeam and that are affected by governance decisions
  - Favoring token holder engagement, even with views contrary to our own, versus a lack of engagement
  - A commitment to openness and transparency in the decision-making process
- - Working to keep the greater good of the network ahead of any personal gain  
+ - Working to keep the greater good of the network above personal gain
  - Acting at all times as a moral agent that considers the consequences of action (or inaction) from a moral standpoint
  - Being patient and generous in our interactions with other token holders, but not tolerating abusive or destructive language, actions, and behavior, and abiding by [Moonbeam’s Code of Conduct](https://github.com/moonbeam-foundation/code-of-conduct){target=\_blank}
 
@@ -35,7 +35,7 @@ The "hard" governance process for Moonbeam will be driven by an on-chain process
 Some of the main components of this governance model include:
 
  - **Referenda** — a stake-based voting scheme where each referendum is tied to a specific proposal for a change to the Moonbeam system including values for key parameters, code upgrades, or changes to the governance system itself
- - **Voting** — referendum will be voted on by token holders on a stake-weighted basis. Referenda which pass are subject to delayed enactment such that people that disagree with the direction of the decision have time to exit the network
+ - **Voting** — referenda will be voted on by token holders on a stake-weighted basis. Referenda which pass are subject to delayed enactment so that people who disagree with the direction of the decision have time to exit the network
  - **Council & Technical Committee Governance V1** — a group of community members who have special voting rights within the system. With the deprecation and removal of Governance v1, both of these committees were dissolved as of the [runtime 2800 release](https://forum.moonbeam.network/t/runtime-rt2801-schedule/1616/4){target=\_blank}
  - **OpenGov Technical Committee** — a group of community members who can add certain proposals to the Whitelisted Track
 
@@ -57,7 +57,7 @@ This section will cover everything you need to know about OpenGov on Moonbeam.
     |    Origin Track     |                                   Description                                    |                         Referendum Examples                          |
     |:-------------------:|:--------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
     |        Root         |                                Highest privilege                                 |           Runtime upgrades, Technical Committee management           |
-    |     Whitelisted     | Proposals to be whitelisted by the Technical Committee before getting dispatched |                       Fast-tracked operations                        |
+    |     Whitelisted     | Proposals to be whitelisted by the Technical Committee before being dispatched |                       Fast-tracked operations                        |
     |    General Admin    |                          For general on-chain decisions                          | Changes to XCM fees, Orbiter program, Staking parameters, Registrars |
     | Emergency Canceller |          For cancellation of a referendum. Decision Deposit is refunded          |                    Wrongly constructed referendum                    |
     |  Emergency Killer   |       For killing of bad/malicious referendum. Decision Deposit is slashed       |                         Malicious referendum                         |
@@ -244,7 +244,7 @@ The Conviction multiplier values for each network are:
 
 ### Roadmap of a Proposal {: #roadmap-of-a-proposal-v2 }
 
-Before a proposal is submitted, the author of the proposal can submit their idea for their proposal to the designated Democracy Proposals section of the [Moonbeam Governance discussion forum](https://forum.moonbeam.network/c/governance/2){target=\_blank} for feedback from the community for at least five days. From there, the author can make adjustments to the proposal based on the feedback they've collected.
+Before a proposal is submitted, the author of the proposal can submit their proposal idea to the designated Democracy Proposals section of the [Moonbeam Governance discussion forum](https://forum.moonbeam.network/c/governance/2){target=\_blank} for feedback from the community for at least five days. From there, the author can make adjustments to the proposal based on the feedback they've collected.
 
 Once the author is ready, they can submit their proposal on-chain. To do so, first, they need to submit the preimage of the proposal. The submitter needs to bond a fee to store the preimage on-chain. The bond is returned once the submitter unnotes the preimage. Next, they can submit the actual proposal and pay the Submission Deposit, which is enough to cover the on-chain storage cost of the proposal. Then the Lead-in Period begins and the community can begin voting "Aye" or "Nay" on the proposal by locking tokens. In order for the referendum to advance and move out of the Lead-in Period to the Decide period, the following criteria must be met:
 
