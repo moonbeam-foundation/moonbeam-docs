@@ -69,7 +69,7 @@ Moonbeam supports several default block parameters that allow you to query a sub
 
 ## Unsupported Ethereum JSON-RPC Methods {: #unsupported-rpc-methods }
 
- Moonbeam does not support the following Ethereum API JSON-RPC methods:
+Moonbeam does not support the following Ethereum API JSON-RPC methods:
 
  - **[eth_getProof](https://www.alchemy.com/docs/node/ethereum/ethereum-api-endpoints/eth-get-proof){target=\_blank}** - returns the account and storage values of the specified account including the Merkle-proof
  - **[eth_blobBaseFee](https://www.quicknode.com/docs/ethereum/eth_blobBaseFee){target=\_blank}** - returns the expected base fee for blobs in the next block

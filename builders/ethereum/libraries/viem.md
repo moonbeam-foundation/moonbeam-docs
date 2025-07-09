@@ -117,7 +117,7 @@ To create a client for reading chain data, you can take the following steps:
     const rpcUrl = '{{ networks.development.rpc_url }}'
     const publicClient = createPublicClient({
       chain: moonbeamDev,
-      transport: http(rpcUrl);
+      transport: http(rpcUrl),
     })
     ```
 

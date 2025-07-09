@@ -14,7 +14,7 @@ Governance-related functionality is based on three new pallets and precompiles: 
 
 This guide will provide an overview of the extrinsics, storage methods, and getters for the pallet constants available in the Referenda Pallet on Moonbeam. This guide assumes you are familiar with governance-related terminology, if not, please check out the [governance overview page](/learn/features/governance/#opengov){target=\_blank} for more information.
 
-## Referenda Pallet Interface {: #preimage-pallet-interface }
+## Referenda Pallet Interface {: #referenda-pallet-interface }
 
 ### Extrinsics {: #extrinsics }
 
@@ -242,7 +242,7 @@ The Referenda Pallet includes the following read-only storage methods to obtain 
         
         === "Rejected"
             
-            The referendum ended with a rejection. The returned data includes the block at which the proposal was approved and deposit information, including the account(s) that placed a deposit and the deposit amount for that account.
+            The referendum ended with a rejection. The returned data includes the block at which the proposal was rejected and deposit information, including the account(s) that placed a deposit and the deposit amount for that account.
 
             ```js
             // If using Polkadot.js API and calling toJSON() on the query results
@@ -260,7 +260,7 @@ The Referenda Pallet includes the following read-only storage methods to obtain 
 
         === "Cancelled"
 
-            The referendum ended with a cancellation. The returned data includes the block at which the proposal was approved and deposit information, including the account(s) that placed a deposit and the deposit amount for that account.
+            The referendum ended with a cancellation. The returned data includes the block at which the proposal was cancelled and deposit information, including the account(s) that placed a deposit and the deposit amount for that account.
 
             ```js
             // If using Polkadot.js API and calling toJSON() on the query results
@@ -278,7 +278,7 @@ The Referenda Pallet includes the following read-only storage methods to obtain 
 
         === "Timed Out"
 
-            The referendum ended and was never decided. The returned data includes the block at which the proposal was approved and deposit information, including the account(s) that placed a deposit and the deposit amount for that account.
+            The referendum ended and was never decided. The returned data includes the block at which the proposal timed out and deposit information, including the account(s) that placed a deposit and the deposit amount for that account.
 
             ```js
             // If using Polkadot.js API and calling toJSON() on the query results

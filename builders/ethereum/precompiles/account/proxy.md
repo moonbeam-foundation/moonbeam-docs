@@ -146,7 +146,7 @@ You can add a proxy for your account via the Proxy Precompile if your account do
 
 1. Expand the Proxy Precompile contract to see the available functions
 2. Find the **addProxy** function and press the button to expand the section
-3. Insert your second account's address as the **delegate**, `5` as **proxyType**, `0` and as **delay**
+3. Insert your second account's address as the **delegate**, `5` as **proxyType**, and `0` as **delay**
 4. Press **transact** and confirm the transaction in MetaMask
 
 !!! note

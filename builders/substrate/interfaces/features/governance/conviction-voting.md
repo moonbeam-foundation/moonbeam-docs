@@ -12,7 +12,7 @@ The Conviction Voting Pallet allows token holders to make, delegate, and manage 
 
 Governance-related functionality is based on three new pallets and precompiles: the [Preimage Pallet](/builders/substrate/interfaces/features/governance/preimage/){target=\_blank} and [Preimage Precompile](/builders/ethereum/precompiles/features/governance/preimage/){target=\_blank}, the [Referenda Pallet](/builders/substrate/interfaces/features/governance/referenda/){target=\_blank} and [Referenda Precompile](/builders/ethereum/precompiles/features/governance/referenda/){target=\_blank}, and the [Conviction Voting Pallet](/builders/substrate/interfaces/features/governance/conviction-voting/){target=\_blank} and [Conviction Voting Precompile](/builders/ethereum/precompiles/features/governance/conviction-voting/){target=\_blank}. The aforementioned precompiles are Solidity interfaces that enable you to perform governance functions using the Ethereum API.
 
-This guide will provide an overview of the extrinsics, storage methods, and getters for the pallet constants available in the Preimage Pallet on Moonbeam. This guide assumes you are familiar with governance-related terminology; if not, please check out the [governance overview page](/learn/features/governance/#opengov){target=_blank} for more information.
+This guide will provide an overview of the extrinsics, storage methods, and getters for the pallet constants available in the Conviction Voting Pallet on Moonbeam on Moonbeam. This guide assumes you are familiar with governance-related terminology; if not, please check out the [governance overview page](/learn/features/governance/#opengov){target=_blank} for more information.
 
 ## Conviction Voting Pallet Interface {: #preimage-pallet-interface }
 
@@ -264,7 +264,7 @@ The Conviction Voting Pallet includes the following read-only storage methods to
 
         === "Delegating"
 
-            If the voter is actively delegating their votes to another voter. If the voter was previously delegated by another voter, they're votes will appear under `delegations`.
+            If the voter is actively delegating their votes to another voter. If the voter was previously delegated by another voter, their votes will appear under `delegations`.
 
             ```js
             // If using Polkadot.js API and calling toJSON() on the query results

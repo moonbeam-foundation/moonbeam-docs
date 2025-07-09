@@ -15,7 +15,7 @@ This guide will provide an overview of the extrinsics, storage methods, and gett
 
 ### Extrinsics {: #extrinsics }
 
-The Parameters Pallet provides one extrinsic (functions):
+The Parameters Pallet provides one extrinsic (function):
 
 ???+ function "**setParameter**(keyValue) - sets the value of a parameter"
 

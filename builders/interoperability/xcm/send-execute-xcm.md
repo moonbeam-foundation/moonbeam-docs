@@ -315,7 +315,7 @@ And that's it! You've successfully used the Polkadot XCM Pallet and the XCM Util
 
 This section of the guide covers the process of sending a custom XCM message cross-chain (i.e., from Moonbeam to a target chain, such as the relay chain) via two different methods: the `send` function of the Polkadot XCM Pallet and the `xcmSend` function of the [XCM Utilities Precompile](/builders/interoperability/xcm/xcm-utils/){target=\_blank}.
 
-For the XCM message to be successfully executed, the target chain needs to be able to understand the instructions in the message. If it doesn't, you'll see a `Barrier` filter on the destination chain. For security reasons, the XCM message is prepended with the [`DecendOrigin`](https://github.com/paritytech/xcm-format#descendorigin){target=\_blank} instruction to prevent XCM execution on behalf of the origin chain Sovereign account. **The example in this section will not work for the reasons mentioned above, it is purely for demonstration purposes**.
+For the XCM message to be successfully executed, the target chain needs to be able to understand the instructions in the message. If it doesn't, you'll see a `Barrier` filter on the destination chain. For security reasons, the XCM message is prepended with the [`DescendOrigin`](https://github.com/paritytech/xcm-format#descendorigin){target=\_blank} instruction to prevent XCM execution on behalf of the origin chain Sovereign account. **The example in this section will not work for the reasons mentioned above, it is purely for demonstration purposes**.
 
 In the following example, you'll be building an XCM message that contains the following XCM instructions, which will be executed in the Alphanet relay chain:
 
@@ -386,7 +386,7 @@ Now that you have the values for each of the parameters, you can write the scrip
 ```
 
 !!! note
-    You can view an example of the above script, which sends 1 UNIT to Bobs's relay chain account, on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/extrinsics/decode/0x1c00040100040c0004010000070010a5d4e813010000070010a5d4e8000d0100010101000c36e9ba26fa63c60ec728fe75fe57b86a450d94e7fee7f9f9eddd0d3f400d67){target=\_blank} using the following encoded calldata: `0x1c00040100040c0004010000070010a5d4e813010000070010a5d4e8000d0100010101000c36e9ba26fa63c60ec728fe75fe57b86a450d94e7fee7f9f9eddd0d3f400d67`.
+    You can view an example of the above script, which sends 1 UNIT to Bob's relay chain account, on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/extrinsics/decode/0x1c00040100040c0004010000070010a5d4e813010000070010a5d4e8000d0100010101000c36e9ba26fa63c60ec728fe75fe57b86a450d94e7fee7f9f9eddd0d3f400d67){target=\_blank} using the following encoded calldata: `0x1c00040100040c0004010000070010a5d4e813010000070010a5d4e8000d0100010101000c36e9ba26fa63c60ec728fe75fe57b86a450d94e7fee7f9f9eddd0d3f400d67`.
 
 Once the transaction is processed, a `polkadotXcm.sent` event is emitted with the details of the sent XCM message.
 

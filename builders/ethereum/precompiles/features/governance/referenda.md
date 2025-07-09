@@ -35,7 +35,7 @@ The Referenda Precompile is located at the following address:
 
 ## The Referenda Solidity Interface {: #the-referenda-solidity-interface }
 
-[`Referenda.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/referenda/Referenda.sol){target=\_blank} is a Solidity interface that allows developers to interact with the precompile's methods. The methods are as follows:
+[`Referenda.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/referenda/Referenda.sol){target=\_blank} is a Solidity interface that allows developers to interact with the precompile's methods.
 
 The methods are as follows:
 
@@ -312,10 +312,10 @@ Once a referendum has either been approved or rejected, the Decision Deposit can
 
 To refund the Decision Deposit, you can use the `refundDecisionDeposit` function of the Referenda Precompile. To do so, you can take the following steps:
 
-1. Find the **placeDecisionDeposit** function and press the button to expand the section
+1. Find the **refundDecisionDeposit** function and press the button to expand the section
 2. Enter the index of the referendum
 3. Press **transact** and confirm the transaction in MetaMask
 
-![Refund the Decision Deposit for a Referenda using the placeDecisionDeposit function of the Referenda Precompile.](/images/builders/ethereum/precompiles/features/governance/referenda/referenda-6.webp)
+![Refund the Decision Deposit for a Referenda using the refundDecisionDeposit function of the Referenda Precompile.](/images/builders/ethereum/precompiles/features/governance/referenda/referenda-6.webp)
 
 And that's it! You've completed your introduction to the Referenda Precompile. There are a few more functions that are documented in [`Referenda.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/referenda/Referenda.sol){target=\_blank} — feel free to reach out on [Discord](https://discord.com/invite/PfpUATX){target=\_blank} if you have any questions about those functions or any other aspect of the Referenda Precompile.

@@ -28,7 +28,7 @@ The Registry Precompile is located at the following address:
 === "Moonbase Alpha"
 
      ```text
-     {{networks.moonriver.precompiles.registry }}
+     {{networks.moonbase.precompiles.registry }}
      ```
 
 --8<-- 'text/builders/ethereum/precompiles/security.md'
@@ -107,7 +107,7 @@ Then you can take the following steps to compile, deploy, and interact with the 
 
     ![Interact with the Precompile Registry contract](/images/builders/ethereum/precompiles/utility/registry/registry-4.webp)
 
-### Use Ethereuem Libraries to Interact with the Precompile Registry {: #use-ethereum-libraries }
+### Use Ethereum Libraries to Interact with the Precompile Registry {: #use-ethereum-libraries }
 
 To interact with the Precompile Registry's Solidity interface with an Ethereum library, you'll need the Precompile Registry's ABI.
 

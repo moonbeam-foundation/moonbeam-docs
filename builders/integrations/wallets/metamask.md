@@ -17,7 +17,7 @@ MetaMask injects a global Ethereum API into websites users visit at `window.ethe
 - Request the user's account address
 - Add Moonbase Alpha as a new chain
 
-This guide is divided into two sections. First, it'll cover adding a button that will be used to trigger MetaMask to pop-up and connect to Moonbase Alpha. The second part of the guide will create the logic for connecting the user to MetaMask. This way when you click the button you can actually test the functionality as you go through the guide.
+This guide is divided into two sections. First, it'll cover adding a button that will be used to trigger MetaMask to pop up and connect to Moonbase Alpha. The second part of the guide will create the logic for connecting the user to MetaMask. This way when you click the button you can actually test the functionality as you go through the guide.
 
 ## Checking Prerequisites {: #checking-prerequisites }
 
@@ -57,7 +57,7 @@ Now that you have created the button, you need to add the `configureMoonbaseAlph
     };
     ```
 
-2. Request the user's accounts by calling the `eth_requestAccounts` method. This will prompt MetaMask to pop-up and ask the user to select which accounts they would like to connect to. Behind the scenes, permissions are being checked by calling `wallet_requestPermissions`. Currently the only permissions are for `eth_accounts`. So you're ultimately verifying that you have access to the user's addresses returned from `eth_accounts`. If you're interested in learning more about the permissions system, check out [EIP-2255](https://eips.ethereum.org/EIPS/eip-2255){target=\_blank}
+2. Request the user's accounts by calling the `eth_requestAccounts` method. This will prompt MetaMask to pop up and ask the user to select which accounts they would like to connect to. Behind the scenes, permissions are being checked by calling `wallet_requestPermissions`. Currently the only permissions are for `eth_accounts`. So you're ultimately verifying that you have access to the user's addresses returned from `eth_accounts`. If you're interested in learning more about the permissions system, check out [EIP-2255](https://eips.ethereum.org/EIPS/eip-2255){target=\_blank}
 
     ```javascript
     import detectEthereumProvider from '@metamask/detect-provider';

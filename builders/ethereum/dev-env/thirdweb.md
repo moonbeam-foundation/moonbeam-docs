@@ -364,7 +364,7 @@ const receipt = await sendAndConfirmTransaction({
 });
 ```
 
-### Transaction Utilities {: #transaction-utilites }
+### Transaction Utilities {: #transaction-utilities }
 
 thirdweb provides a number of helpful utility methods surrounding preparing and sending transactions. 
 

@@ -13,7 +13,7 @@ LayerZero is a transport layer that enables asset transfer with low-level commun
 
 ![LayerZero Technology Stack diagram](/images/builders/interoperability/protocols/layerzero/layerzero-1.webp)
 
-The LayerZero APIs provide a rich suite for developing Web3 applications, ensuring that developers have the tools they need for building. With these tools and APIs, developers can use the LayerZero protocol and its APIs to write dApps that can be easily deployed across all Hyperlane-connected ecosystems.
+The LayerZero APIs provide a rich suite for developing Web3 applications, ensuring that developers have the tools they need for building. With these tools and APIs, developers can use the LayerZero protocol and its APIs to write dApps that can be easily deployed across all LayerZero-connected ecosystems.
 
 --8<-- 'text/_disclaimers/third-party-content-intro.md'
 

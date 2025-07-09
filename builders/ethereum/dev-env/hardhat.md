@@ -316,7 +316,7 @@ If you make changes to the contract after you've compiled it, you can compile it
 
 ## Deploy the Contract {: #deploying-the-contract }
 
-To deploy the contract, you'll use Hardhat Ignition, a declarative framework for deploying smart contracts. Hardhat Ignition is designed to make it easy to manage recurring tasks surrounding smart contract  deployment and testing. For more information, be sure to check out the [Hardhat Ignition docs](https://hardhat.org/ignition/docs/getting-started#overview){target=\_blank}. 
+To deploy the contract, you'll use Hardhat Ignition, a declarative framework for deploying smart contracts. Hardhat Ignition is designed to make it easy to manage recurring tasks surrounding smart contract deployment and testing. For more information, be sure to check out the [Hardhat Ignition docs](https://hardhat.org/ignition/docs/getting-started#overview){target=\_blank}. 
 
 To set up the proper file structure for your Ignition module, create a folder named `ignition` and a subdirectory called `modules`. Then add a new file to it called `Box.js`. You can take all three of these steps with the following command:
 

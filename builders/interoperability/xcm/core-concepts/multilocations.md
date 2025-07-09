@@ -20,7 +20,7 @@ A multilocation contains two parameters:
 - `parents` - refers to how many "hops" up into a parent blockchain you need to take from a given origin. From the perspective of a parachain within the relay chain ecosystem, there can only be one parent, so the value for `parents` can only ever be `0` to represent the parachain or `1` to represent the relay chain. When defining universal locations that consider other consensus systems like Ethereum, `parents` can have higher values
 - `interior` - refers to how many fields you need to define the target point. From the relay chain, you can drill down to target a specific parachain, or account, asset, or pallet on that parachain. Since this downward movement can be more complex, [Junctions](#junctions) are used to represent the steps needed to reach the target location and are defined by `XN`, where `N` is the number of Junctions required. If no Junctions are required to define the target point, its value would be `Here` as opposed to `X1`
 
-For example,if you are targeting the relay chain specifically, you'll use `Here` since you aren't defining an account on the relay chain, a parachain, or a specific point within a parachain.
+For example, if you are targeting the relay chain specifically, you'll use `Here` since you aren't defining an account on the relay chain, a parachain, or a specific point within a parachain.
 
 On the flip side, if you're targeting an account on the relay chain, or a parachain, or a specific point within a parachain, you'll use one or more Junctions, as needed.
 

@@ -301,7 +301,7 @@ const accountFrom = {
   address: 'INSERT_PUBLIC_ADDRESS_OF_PK',
 };
 
-// 4. Get the bytecode and API
+// 4. Get the bytecode and ABI
 const bytecode = contractFile.evm.bytecode.object;
 const abi = contractFile.abi;
 

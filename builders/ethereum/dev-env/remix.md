@@ -168,9 +168,9 @@ If the function you're interacting with is payable, you'll be able to enter an a
 
 If you expand the **MYTOKEN** contract dropdown, you'll be able to see all of the available functions you can interact with. To interact with a given function, you can provide any inputs, if needed, and then click on the button containing the function name you want to interact with.
 
-For example, if you wanted to call the `tokenSupply` function, you wouldn't need to sign a transaction, as you'd get a response right away.
+For example, if you wanted to call the `totalSupply` function, you wouldn't need to sign a transaction, as you'd get a response right away.
 
-![A view of the functions available in the deployed ERC-20 contract and the response from calling the tokenSupply function.](/images/builders/ethereum/dev-env/remix/remix-13.webp)
+![A view of the functions available in the deployed ERC-20 contract and the response from calling the totalSupply function.](/images/builders/ethereum/dev-env/remix/remix-13.webp)
 
 On the other hand, if you call the `approve` function, which will approve an account as a spender of a given amount of MYTOK tokens, you'll need to submit the approval in MetaMask. To test this out, you can take the following steps:
 
