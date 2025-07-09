@@ -7,7 +7,7 @@
     | UnitedBloc  |          <pre>```https://moonbeam.unitedbloc.com```</pre>          | 32 req/sec  |
     | RadiumBlock | <pre>```https://moonbeam.public.curie.radiumblock.co/http```</pre> | 200 req/sec |
     |    1RPC     |               <pre>```https://1rpc.io/glmr```</pre>                | 10k req/day |
-    |    Grove    |         <pre>```https://moonbeam.rpc.grove.city/v1/01fdb492```</pre>         | 5k per day  |
+    |    Grove    |         <pre>```https://moonbeam.rpc.grove.city/v1/01fdb492```</pre>         | 5k req/day  |
 
 
 
