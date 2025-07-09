@@ -47,11 +47,11 @@ An XCM message is comprised of a series of XCM instructions. As a result, differ
 
 --8<-- 'text/builders/interoperability/xcm/xc20/send-xc20s/overview/DOT-to-xcDOT-instructions.md'
 
-To check how the instructions for an XCM message are built to transfer self-reserve assets to a target chain, such as DOT to Moonbeam, you can refer to the [X-Tokens Open Runtime Module Library](https://github.com/moonbeam-foundation/open-runtime-module-library/blob/moonbeam-{{ polkadot_sdk }}/xtokens){target=\_blank} repository (as an example). You'll want to take a look at the [`transfer_self_reserve_asset`](https://github.com/moonbeam-foundation/open-runtime-module-library/blob/moonbeam-{{ polkadot_sdk }}/xtokens/src/lib.rs#L699){target=\_blank} function. You'll notice it calls `TransferReserveAsset` and passes in `assets`, `dest`, and `xcm` as parameters. In particular, the `xcm` parameter includes the `BuyExecution` and `DepositAsset` instructions. If you then head over to the Polkadot GitHub repository, you can find the [`TransferReserveAsset` instruction](https://github.com/paritytech/polkadot-sdk/blob/{{ polkadot_sdk }}/polkadot/xcm/xcm-executor/src/lib.rs#L671){target=\_blank}. The XCM message is constructed by combining the `ReserveAssetDeposited` and `ClearOrigin` instructions with the `xcm` parameter, which as mentioned includes the `BuyExecution` and `DepositAsset` instructions.
+To check how the instructions for an XCM message are built to transfer self-reserve assets to a target chain, such as DOT to Moonbeam, you can refer to the [X-Tokens Open Runtime Module Library](https://github.com/moonbeam-foundation/open-runtime-module-library/blob/master/xtokens/src/lib.rs){target=\_blank} repository (as an example). You'll want to take a look at the [`transfer_self_reserve_asset`](https://github.com/moonbeam-foundation/open-runtime-module-library/blob/master/xtokens/src/lib.rs#L699){target=\_blank} function. You'll notice it calls `TransferReserveAsset` and passes in `assets`, `dest`, and `xcm` as parameters. In particular, the `xcm` parameter includes the `BuyExecution` and `DepositAsset` instructions. If you then head over to the Polkadot GitHub repository, you can find the [`TransferReserveAsset` instruction](https://github.com/paritytech/polkadot-sdk/blob/{{ polkadot_sdk }}/polkadot/xcm/xcm-executor/src/lib.rs#L671){target=\_blank}. The XCM message is constructed by combining the `ReserveAssetDeposited` and `ClearOrigin` instructions with the `xcm` parameter, which as mentioned includes the `BuyExecution` and `DepositAsset` instructions.
 
 --8<-- 'text/builders/interoperability/xcm/xc20/send-xc20s/overview/xcDOT-to-DOT-instructions.md'
 
-To check how the instructions for an XCM message are built to transfer reserve assets to a target chain, such as xcDOT to Polkadot, you can refer to the [X-Tokens Open Runtime Module Library](https://github.com/moonbeam-foundation/open-runtime-module-library/blob/moonbeam-{{ polkadot_sdk }}/xtokens){target=\_blank} repository. You'll want to take a look at the [`transfer_to_reserve`](https://github.com/moonbeam-foundation/open-runtime-module-library/blob/moonbeam-{{ polkadot_sdk }}/xtokens/src/lib.rs#L716){target=\_blank} function. You'll notice that it calls `WithdrawAsset`, then `InitiateReserveWithdraw` and passes in `assets`, `dest`, and `xcm` as parameters. In particular, the `xcm` parameter includes the `BuyExecution` and `DepositAsset` instructions. If you then head over to the Polkadot GitHub repository, you can find the [`InitiateReserveWithdraw` instruction](https://github.com/paritytech/polkadot-sdk/blob/{{polkadot_sdk}}/polkadot/xcm/xcm-executor/src/lib.rs#L903){target=\_blank}. The XCM message is constructed by combining the `WithdrawAsset` and `ClearOrigin` instructions with the `xcm` parameter, which as mentioned includes the `BuyExecution` and `DepositAsset` instructions.
+To check how the instructions for an XCM message are built to transfer reserve assets to a target chain, such as xcDOT to Polkadot, you can refer to the [X-Tokens Open Runtime Module Library](https://github.com/moonbeam-foundation/open-runtime-module-library/tree/master/xtokens){target=\_blank} repository. You'll want to take a look at the [`transfer_to_reserve`](https://github.com/moonbeam-foundation/open-runtime-module-library/blob/master/xtokens/src/lib.rs#L719){target=\_blank} function. You'll notice that it calls `WithdrawAsset`, then `InitiateReserveWithdraw` and passes in `assets`, `dest`, and `xcm` as parameters. In particular, the `xcm` parameter includes the `BuyExecution` and `DepositAsset` instructions. If you then head over to the Polkadot GitHub repository, you can find the [`InitiateReserveWithdraw` instruction](https://github.com/paritytech/polkadot-sdk/blob/{{polkadot_sdk}}/polkadot/xcm/xcm-executor/src/lib.rs#L903){target=\_blank}. The XCM message is constructed by combining the `WithdrawAsset` and `ClearOrigin` instructions with the `xcm` parameter, which as mentioned includes the `BuyExecution` and `DepositAsset` instructions.
 
 ## Relay Chain XCM Fee Calculation  {: #rel-chain-xcm-fee-calc }
 
@@ -63,22 +63,9 @@ There are two databases available in Polkadot and Kusama: RocksDB (which is the 
 
 ### Polkadot {: #polkadot }
 
-The total weight costs on Polkadot take into consideration database reads and writes in addition to the weight required for a given instruction. Polkadot uses benchmarked weights for instructions and database read and write operations. The breakdown of weight costs for the database operations is as follows:
-
-|                                                                                       Database                                                                                       |                         Read                         |                         Write                         |
-|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------:|:-----------------------------------------------------:|
-| [RocksDB (default)](https://github.com/polkadot-fellows/runtimes/blob/{{ networks.polkadot.spec_version }}/relay/polkadot/constants/src/weights/rocksdb_weights.rs){target=\_blank} | {{ networks.polkadot.rocks_db.read_weight.display }} | {{ networks.polkadot.rocks_db.write_weight.display }} |
-|     [ParityDB](https://github.com/polkadot-fellows/runtimes/blob/{{ networks.polkadot.spec_version }}/relay/polkadot/constants/src/weights/paritydb_weights.rs){target=\_blank}     |    {{ networks.polkadot.parity_db.read_weight }}     |    {{ networks.polkadot.parity_db.write_weight }}     |
+The total weight costs on Polkadot take into consideration database reads and writes in addition to the weight required for a given instruction. Polkadot uses benchmarked weights for instructions, and database read-and-write operations. The breakdown of weight costs for the database operations can be found on the respective repository files for [RocksDB (default)](https://github.com/polkadot-fellows/runtimes/blob/{{ networks.polkadot.spec_version }}/relay/polkadot/constants/src/weights/rocksdb_weights.rs){target=\_blank} and [ParityDB](https://github.com/polkadot-fellows/runtimes/blob/{{ networks.polkadot.spec_version }}/relay/polkadot/constants/src/weights/paritydb_weights.rs){target=\_blank}.  
 
 Now that you are aware of the weight costs for database reads and writes on Polkadot, you can calculate the weight cost for a given instruction using the base weight for instructions.
-
-For example, the [`WithdrawAsset` instruction](https://github.com/polkadot-fellows/runtimes/blob/{{ networks.polkadot.spec_version }}/relay/polkadot/src/weights/xcm/pallet_xcm_benchmarks_fungible.rs#L51-L60){target=\_blank} has a base weight of `{{ networks.polkadot.xcm_instructions.withdraw.base_weight.display }}`, and performs one database read and one database write. Therefore, the total weight cost of the `WithdrawAsset` instruction is calculated as:
-
-```text
-{{ networks.polkadot.xcm_instructions.withdraw.base_weight.numbers_only }} + {{ networks.polkadot.rocks_db.read_weight.numbers_only }} + {{ networks.polkadot.rocks_db.write_weight.numbers_only }} = {{ networks.polkadot.xcm_instructions.withdraw.total_weight.numbers_only }}
-```
-
-The [`BuyExecution` instruction](https://github.com/polkadot-fellows/runtimes/blob/{{networks.polkadot.spec_version}}/relay/polkadot/src/weights/xcm/pallet_xcm_benchmarks_generic.rs#L69-L76){target=\_blank} has a base weight of `{{ networks.polkadot.xcm_instructions.buy_exec.base_weight }}` and doesn't include any database reads or writes. Therefore, the total weight cost of the `BuyExecution` instruction is `{{ networks.polkadot.xcm_instructions.buy_exec.total_weight }}`.
 
 On Polkadot, the benchmarked base weights are broken up into two categories: fungible and generic. Fungible weights are for XCM instructions that involve moving assets, and generic weights are for everything else. You can view the current weights for [fungible assets](https://github.com/polkadot-fellows/runtimes/blob/{{ networks.polkadot.spec_version }}/relay/polkadot/src/weights/xcm/pallet_xcm_benchmarks_fungible.rs#L46){target=\_blank} and [generic assets](https://github.com/polkadot-fellows/runtimes/blob/{{networks.polkadot.spec_version}}/relay/polkadot/src/weights/xcm/pallet_xcm_benchmarks_generic.rs#L46){target=\_blank} directly in the Polkadot Runtime code.
 
@@ -98,64 +85,22 @@ Where `DOTWeightToFeeCoefficient` is a constant (map to 1 cent), and can be calc
 DOTWeightToFeeCoefficient = 10^10 / ( 10 * 100 * DOTExtrinsicBaseWeight )
 ```
 
-Using the actual values:
-
-```text
-DOTWeightToFeeCoefficient = 10^10 / ( 10 * 100 * {{ networks.polkadot.extrinsic_base_weight.numbers_only }} )
-```
-
-As a result, `DOTWeightToFeeCoefficient` is equal to `{{ networks.polkadot.xcm_instructions.planck_dot_weight }} Planck-DOT`. Now, you can begin to calculate the final fee in DOT, using `DOTWeightToFeeCoefficient` as a constant and `TotalWeight` as the variable:
+Now, you can begin to calculate the final fee in DOT, using `DOTWeightToFeeCoefficient` as a constant and `TotalWeight` as the variable:
 
 ```text
 XCM-Planck-DOT-Cost = TotalWeight * DOTWeightToFeeCoefficient
 XCM-DOT-Cost = XCM-Planck-DOT-Cost / DOTDecimalConversion
 ```
 
-Therefore, the actual calculation for the `WithdrawAsset` instruction is:
-
-```text
-XCM-Planck-DOT-Cost = {{ networks.polkadot.xcm_instructions.withdraw.total_weight.numbers_only }} * {{ networks.polkadot.xcm_instructions.planck_dot_weight }} 
-XCM-DOT-Cost = {{ networks.polkadot.xcm_instructions.withdraw.planck_dot_cost }} / 10^10
-```
-
-The total cost for that particular instruction is `{{ networks.polkadot.xcm_instructions.withdraw.dot_cost }} DOT`.
-
-As an example, you can calculate the total cost of DOT for sending an XCM message that transfers xcDOT to DOT on Polkadot using the following weights and instruction costs:
-
-|                                                                                             Instruction                                                                                             |                                 Weight                                 |                                Cost                                 |
-|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------:|:-------------------------------------------------------------------:|
-| [`WithdrawAsset`](https://github.com/polkadot-fellows/runtimes/blob/{{ networks.polkadot.spec_version }}/relay/polkadot/src/weights/xcm/pallet_xcm_benchmarks_fungible.rs#L51-L60){target=\_blank}  | {{ networks.polkadot.xcm_instructions.withdraw.total_weight.display }} |   {{ networks.polkadot.xcm_instructions.withdraw.dot_cost }} DOT    |
-|   [`ClearOrigin`](https://github.com/polkadot-fellows/runtimes/blob/{{networks.polkadot.spec_version}}/relay/polkadot/src/weights/xcm/pallet_xcm_benchmarks_generic.rs#L136-L143){target=\_blank}   |   {{ networks.polkadot.xcm_instructions.clear_origin.total_weight }}   | {{ networks.polkadot.xcm_instructions.clear_origin.dot_cost }} DOT  |
-|   [`BuyExecution`](https://github.com/polkadot-fellows/runtimes/blob/{{networks.polkadot.spec_version}}/relay/polkadot/src/weights/xcm/pallet_xcm_benchmarks_generic.rs#L69-L76){target=\_blank}    |     {{ networks.polkadot.xcm_instructions.buy_exec.total_weight }}     |   {{ networks.polkadot.xcm_instructions.buy_exec.dot_cost }} DOT    |
-| [`DepositAsset`](https://github.com/polkadot-fellows/runtimes/blob/{{ networks.polkadot.spec_version }}/relay/polkadot/src/weights/xcm/pallet_xcm_benchmarks_fungible.rs#L137-L146){target=\_blank} |  {{ networks.polkadot.xcm_instructions.deposit_asset.total_weight }}   | {{ networks.polkadot.xcm_instructions.deposit_asset.dot_cost }} DOT |
-|                                                                                              **TOTAL**                                                                                              |        **{{ networks.polkadot.xcm_message.transfer.weight }}**         |      **{{ networks.polkadot.xcm_message.transfer.cost }} DOT**      |
-
 ### Kusama {: #kusama }
 
-The total weight costs on Kusama take into consideration database reads and writes in addition to the weight required for a given instruction. Database read and write operations have not been benchmarked, while instruction weights have been. The breakdown of weight costs for the database operations is as follows:
-
-|                                                                                    Database                                                                                     |                        Read                        |                        Write                        |
-|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------:|:---------------------------------------------------:|
-| [RocksDB (default)](https://github.com/polkadot-fellows/runtimes/blob/{{ networks.kusama.spec_version }}/relay/kusama/constants/src/weights/rocksdb_weights.rs){target=\_blank} | {{ networks.kusama.rocks_db.read_weight.display }} | {{ networks.kusama.rocks_db.write_weight.display }} |
-|     [ParityDB](https://github.com/polkadot-fellows/runtimes/blob/{{ networks.kusama.spec_version }}/relay/kusama/constants/src/weights/paritydb_weights.rs){target=\_blank}     |    {{ networks.kusama.parity_db.read_weight }}     |    {{ networks.kusama.parity_db.write_weight }}     |
-
-Now that you are aware of the weight costs for database reads and writes on Kusama, you can calculate the weight cost for a given instruction using the base weight for instructions.
-
-For example, the [`WithdrawAsset` instruction](https://github.com/polkadot-fellows/runtimes/blob/{{ networks.kusama.spec_version }}/relay/kusama/src/weights/xcm/pallet_xcm_benchmarks_fungible.rs#L51-L60){target=\_blank} has a base weight of `{{ networks.kusama.xcm_instructions.withdraw.base_weight.display }}`, and performs one database read and one database write. Therefore, the total weight cost of the `WithdrawAsset` instruction is calculated as:
-
-```text
-{{ networks.kusama.xcm_instructions.withdraw.base_weight.numbers_only }} + {{ networks.kusama.rocks_db.read_weight.numbers_only }} + {{ networks.kusama.rocks_db.write_weight.numbers_only }} = {{ networks.kusama.xcm_instructions.withdraw.total_weight.numbers_only }}
-```
-
-The [`BuyExecution` instruction](https://github.com/polkadot-fellows/runtimes/blob/{{networks.kusama.spec_version}}/relay/kusama/src/weights/xcm/pallet_xcm_benchmarks_generic.rs#L69-L76){target=\_blank} has a base weight of `{{ networks.kusama.xcm_instructions.buy_exec.base_weight }}` and doesn't include any database reads or writes. Therefore, the total weight cost of the `BuyExecution` instruction is `{{ networks.kusama.xcm_instructions.buy_exec.total_weight }}`.
+The total weight costs on Kusama take into consideration database reads and writes in addition to the weight required for a given instruction. The breakdown of weight costs for the database operations can be found on the respective repository files for [RocksDB (default)](https://github.com/polkadot-fellows/runtimes/blob/{{ networks.kusama.spec_version }}/relay/kusama/constants/src/weights/rocksdb_weights.rs){target=\_blank} and [ParityDB](https://github.com/polkadot-fellows/runtimes/blob/{{ networks.kusama.spec_version }}/relay/kusama/constants/src/weights/paritydb_weights.rs){target=\_blank}. 
 
 On Kusama, the benchmarked base weights are broken up into two categories: fungible and generic. Fungible weights are for XCM instructions that involve moving assets, and generic weights are for everything else. You can view the current weights for [fungible assets](https://github.com/polkadot-fellows/runtimes/blob/{{ networks.kusama.spec_version }}/relay/kusama/src/weights/xcm/pallet_xcm_benchmarks_fungible.rs#L46){target=\_blank} and [generic assets](https://github.com/polkadot-fellows/runtimes/blob/{{networks.kusama.spec_version}}/relay/kusama/src/weights/xcm/pallet_xcm_benchmarks_generic.rs#L46){target=\_blank} directly in the Kusama Runtime code.
 
-With the instruction weight cost established, you can calculate the cost of the instruction in KSM.
+With the instruction weight cost established, you can calculate the cost of the instruction in KSM with the [`ExtrinsicBaseWeight`](https://github.com/polkadot-fellows/runtimes/blob/{{networks.kusama.spec_version}}/relay/kusama/constants/src/weights/extrinsic_weights.rs#L56){target=\_blank} and the [weight fee mapping](https://github.com/polkadot-fellows/runtimes/blob/{{networks.kusama.spec_version}}/relay/kusama/constants/src/lib.rs#L90){target=\_blank}.
 
-In Kusama, the [`ExtrinsicBaseWeight`](https://github.com/polkadot-fellows/runtimes/blob/{{networks.kusama.spec_version}}/relay/kusama/constants/src/weights/extrinsic_weights.rs#L56){target=\_blank} is set to `{{ networks.kusama.extrinsic_base_weight.display }}` which is [mapped to 1/10th](https://github.com/polkadot-fellows/runtimes/blob/{{networks.kusama.spec_version}}/relay/kusama/constants/src/lib.rs#L90){target=\_blank} of a cent. Where 1 cent is `10^12 / 30,000`.
-
-Therefore, to calculate the cost of executing an XCM instruction, you can use the following formula:
+To calculate the cost of executing an XCM instruction, you can use the following formula:
 
 ```text
 XCM-KSM-Cost = XCMInstrWeight * KSMWeightToFeeCoefficient
@@ -167,63 +112,30 @@ Where `KSMWeightToFeeCoefficient` is a constant (map to 1 cent), and can be calc
 KSMWeightToFeeCoefficient = 10^12 / ( 10 * 3000 * KSMExtrinsicBaseWeight )
 ```
 
-Using the actual values:
-
-```text
-KSMWeightToFeeCoefficient = 10^12 / ( 10 * 3000 * {{ networks.kusama.extrinsic_base_weight.numbers_only }} )
-```
-
-As a result, `KSMWeightToFeeCoefficient` is equal to `{{ networks.kusama.xcm_instructions.planck_ksm_weight }} Planck-KSM`. Now, you can begin to calculate the final fee in KSM, using `KSMWeightToFeeCoefficient` as a constant and `TotalWeight` ({{ networks.kusama.xcm_instructions.withdraw.total_weight.display }}) as the variable:
+Now, you can begin to calculate the final fee in KSM, using `KSMWeightToFeeCoefficient` as a constant and `TotalWeight` as the variable:
 
 ```text
 XCM-Planck-KSM-Cost = TotalWeight * KSMWeightToFeeCoefficient
 XCM-KSM-Cost = XCM-Planck-KSM-Cost / KSMDecimalConversion
 ```
 
-Therefore, the actual calculation for the `WithdrawAsset` instruction is:
-
-```text
-XCM-Planck-KSM-Cost = {{ networks.kusama.xcm_instructions.withdraw.total_weight.numbers_only }} * {{ networks.kusama.xcm_instructions.planck_ksm_weight }} 
-XCM-KSM-Cost = {{ networks.kusama.xcm_instructions.withdraw.planck_ksm_cost }} / 10^12
-```
-
-The total cost for that particular instruction is `{{ networks.kusama.xcm_instructions.withdraw.ksm_cost }} KSM`.
-
-As an example, you can calculate the total cost of KSM for sending an XCM message that transfers xcKSM to KSM on Kusama using the following weights and instruction costs:
-
-|                                                                                           Instruction                                                                                           |                                Weight                                |                               Cost                                |
-|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|:-----------------------------------------------------------------:|
-| [`WithdrawAsset`](https://github.com/polkadot-fellows/runtimes/blob/{{ networks.kusama.spec_version }}/relay/kusama/src/weights/xcm/pallet_xcm_benchmarks_fungible.rs#L51-L60){target=\_blank}  | {{ networks.kusama.xcm_instructions.withdraw.total_weight.display }} |   {{ networks.kusama.xcm_instructions.withdraw.ksm_cost }} KSM    |
-|   [`ClearOrigin`](https://github.com/polkadot-fellows/runtimes/blob/{{networks.kusama.spec_version}}/relay/kusama/src/weights/xcm/pallet_xcm_benchmarks_generic.rs#L136-L143){target=\_blank}   |   {{ networks.kusama.xcm_instructions.clear_origin.total_weight }}   | {{ networks.kusama.xcm_instructions.clear_origin.ksm_cost }} KSM  |
-|   [`BuyExecution`](https://github.com/polkadot-fellows/runtimes/blob/{{networks.kusama.spec_version}}/relay/kusama/src/weights/xcm/pallet_xcm_benchmarks_generic.rs#L69-L76){target=\_blank}    |     {{ networks.kusama.xcm_instructions.buy_exec.total_weight }}     |   {{ networks.kusama.xcm_instructions.buy_exec.ksm_cost }} KSM    |
-| [`DepositAsset`](https://github.com/polkadot-fellows/runtimes/blob/{{ networks.kusama.spec_version }}/relay/kusama/src/weights/xcm/pallet_xcm_benchmarks_fungible.rs#L137-L146){target=\_blank} |  {{ networks.kusama.xcm_instructions.deposit_asset.total_weight }}   | {{ networks.kusama.xcm_instructions.deposit_asset.ksm_cost }} KSM |
-|                                                                                            **TOTAL**                                                                                            |        **{{ networks.kusama.xcm_message.transfer.weight }}**         |      **{{ networks.kusama.xcm_message.transfer.cost }} KSM**      |
-
 ## Moonbeam-based Networks XCM Fee Calculation  {: #moonbeam-xcm-fee-calc }
 
-Substrate has introduced a weight system that determines how heavy or, in other words, how expensive an extrinsic is from a computational cost perspective. One unit of weight is defined as one picosecond of execution time. When it comes to paying fees, users will pay a transaction fee based on the weight of the call that is being made, and each parachain can decide how to convert from weight to fee, for example, accounting for additional costs for transaction size and storage costs.
+Substrate has introduced a weight system that determines how heavy or, in other words, how expensive an extrinsic is from a computational cost perspective. One unit of weight is defined as one picosecond of execution time. When it comes to paying fees, users will pay a transaction fee based on the weight of the call being made, and each parachain can decide how to convert weight to fee. For example, this may account for additional costs related to transaction size and storage.
 
-For all Moonbeam-based networks, the generic XCM instructions are benchmarked, while the fungible XCM instructions still use a fixed amount of weight per instruction. Consequently, the total weight cost of the benchmarked XCM instructions considers the number of database reads and writes in addition to the weight required for a given instruction. The breakdown of weight cost for database operations is as follows:
-
-|                                                                               Database                                                                               |                   Read                    |                   Write                    |
-|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:-----------------------------------------:|:------------------------------------------:|
-| [RocksDB (default)](https://github.com/paritytech/polkadot-sdk/blob/{{polkadot_sdk}}/substrate/frame/support/src/weights/rocksdb_weights.rs#L27-L28){target=\_blank} | {{ xcm.db_weights.rocksdb_read.display }} | {{ xcm.db_weights.rocksdb_write.display }} |
+For all Moonbeam-based networks, the generic XCM instructions are benchmarked, while the fungible XCM instructions still use a fixed amount of weight per instruction. Consequently, the total weight cost of the benchmarked XCM instructions considers the number of database reads and writes in addition to the weight required for a given instruction. The Polkadot SDK has a breakdown of the relevant [RocksDB database weights](https://github.com/paritytech/polkadot-sdk/blob/{{polkadot_sdk}}/substrate/frame/support/src/weights/rocksdb_weights.rs#L27-L28){target=\_blank}.
 
 Now that you know the weight costs for database reads and writes for Moonbase Alpha, you can calculate the weight cost for both fungible and generic XCM instructions using the base weight for instruction and the extra database reads and writes if applicable.
 
-For example, the `WithdrawAsset` instruction is part of the fungible XCM instructions. Therefore, it is not benchmarked, and the total weight cost of the [`WithdrawAsset` instruction](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbase.spec_version }}/pallets/moonbeam-xcm-benchmarks/src/weights/fungible.rs#L36){target=\_blank} is `{{ xcm.fungible_weights.display }}`, except for when transferring local XC-20s. The total weight cost for the `WithdrawAsset` instruction for local XC-20s is based on a conversion of Ethereum gas to Substrate weight.
+For example, the `WithdrawAsset` instruction is part of the fungible XCM instructions. Therefore, it is not benchmarked, and the total weight cost of the [`WithdrawAsset` instruction](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbase.spec_version }}/pallets/moonbeam-xcm-benchmarks/src/weights/fungible.rs#L36){target=\_blank} is `{{ xcm.fungible_weights.display }}`, except for when transferring local XC-20s. The total weight cost for the `WithdrawAsset` instruction for local XC-20s is based on converting Ethereum gas to Substrate weight.
 
-The [`BuyExecution` instruction](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbase.spec_version }}/pallets/moonbeam-xcm-benchmarks/src/weights/generic.rs#L132-L133){target=\_blank} has a base weight of `{{ xcm.generic_weights.ref_time.buy_exec.base_weight.display }}`, and performs four database reads. Therefore, the total weight cost of the `BuyExecution` instruction is calculated as follows:
-
-```text
-{{ xcm.generic_weights.ref_time.buy_exec.base_weight.numbers_only }} + 4 * {{ xcm.db_weights.rocksdb_read.numbers_only }} = {{ xcm.generic_weights.ref_time.buy_exec.total_weight.numbers_only }}
-```
+The [`BuyExecution` instruction base weight](https://github.com/moonbeam-foundation/moonbeam/blob/master/runtime/moonbeam/src/weights/xcm/generic.rs#L132-L133){target=\_blank} can be found on the [Moonbeam Runtime](https://github.com/moonbeam-foundation/moonbeam/blob/master/runtime/moonbeam/src/weights/xcm/generic.rs#L132-L133){target=\_blank} or by multiplying the cost of performing four database reads. 
 
 You can find all the weight values for all the XCM instructions in the following table, which apply to all Moonbeam-based networks:
 
 |                                                                                     Benchmarked Instructions                                                                                     |                                                                                    Non-Benchmarked Instructions                                                                                    |
 |:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-| [Generic XCM Instructions](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbase.spec_version }}/pallets/moonbeam-xcm-benchmarks/src/weights/generic.rs#L97){target=\_blank} | [Fungible XCM Instructions](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbase.spec_version }}/pallets/moonbeam-xcm-benchmarks/src/weights/fungible.rs#L29){target=\_blank} |
+| [Generic XCM Instructions](https://github.com/moonbeam-foundation/moonbeam/blob/master/runtime/moonbeam/src/weights/xcm/generic.rs#L97){target=\_blank} | [Fungible XCM Instructions](https://github.com/moonbeam-foundation/moonbeam/blob/master/runtime/moonbeam/src/weights/xcm/fungible.rs#L29){target=\_blank} |
 
 The following sections will break down how to calculate XCM fees for Moonbeam-based networks. There are two main scenarios:
 
@@ -281,24 +193,9 @@ And the `proofSize` of `DepositAsset` can be calculated as:
 {{ xcm.generic_weights.ref_time.mint_into_gas.numbers_only }} gas * {{ xcm.generic_weights.proof_size.weight_per_gas }} weight per gas = {{ xcm.generic_weights.proof_size.deposit_asset.numbers_only }}
 ```
 
-
-The weights for each of the four XCM instructions for Alice's DOT transfer to Moonbeam can be found below:
-
-|                                                                                           Instruction                                                                                            |                             Ref Time                             |                           Proof Size                            |
-|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------:|:---------------------------------------------------------------:|
-| [`ReserveAssetDeposited`](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbeam.spec_version }}/pallets/moonbeam-xcm-benchmarks/src/weights/fungible.rs#L69){target=\_blank} |                {{ xcm.fungible_weights.display }}                |            {{ xcm.generic_weights.proof_size.zero }}            |
-|      [`ClearOrigin`](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbeam.spec_version }}/pallets/moonbeam-xcm-benchmarks/src/weights/generic.rs#L195){target=\_blank}      |     {{ xcm.generic_weights.ref_time.clear_origin.display }}      |            {{ xcm.generic_weights.proof_size.zero }}            |
-|   [`BuyExecution`](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbeam.spec_version }}/pallets/moonbeam-xcm-benchmarks/src/weights/generic.rs#L132-L133){target=\_blank}   | {{ xcm.generic_weights.ref_time.buy_exec.total_weight.display }} |   {{ xcm.generic_weights.proof_size.buy_execution.display }}    |
-|     [`DepositAsset`](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbeam.spec_version }}/pallets/moonbeam-xcm-benchmarks/src/weights/fungible.rs#L58){target=\_blank}      |     {{ xcm.generic_weights.ref_time.deposit_asset.display }}     |   {{ xcm.generic_weights.proof_size.deposit_asset.display }}    |
-|                                                                                            **TOTAL**                                                                                             |  {{ networks.moonbeam.xcm.transfer_dot.total_weight.display }}   | {{ xcm.generic_weights.proof_size.transfer_dot_total.display }} |
-
-
-!!! note
-    For the `BuyExecution` instruction, the [units of weight for the four database reads](#moonbeam-xcm-fee-calc) are accounted for in the above table.
-
 ### Weight to Asset Fee Conversion {: #weight-to-asset-fee-conversion} 
 
-Once you have the sum of the `refTime` and `proofSize` values, you can easily retrieve the required commensurate fee amount. The [`queryWeightToAssetFee` method of the `xcmPaymentApi`](#weight-to-asset-fee-conversion) takes a `refTime`, `proofSize` and asset multilocation as parameters and returns the commensurate fee. By providing the amounts obtained above of `{{ networks.moonbeam.xcm.transfer_dot.total_weight.display }}` `refTime` and `{{ xcm.generic_weights.proof_size.transfer_dot_total.display }}` `proofSize`, and the asset multilocation for DOT, we get a fee amount of `88,920,522` Plank, which is the smallest unit in Polkadot. We can convert this to DOT by dividing by `10^10` which gets us a DOT fee amount of `{{ networks.moonbeam.xcm.transfer_dot.xcdot_cost }}` DOT. 
+Once you have the sum of the `refTime` and `proofSize` values, you can easily retrieve the required commensurate fee amount. The [`queryWeightToAssetFee` method of the `xcmPaymentApi`](#weight-to-asset-fee-conversion) takes a `refTime`, `proofSize`, and asset multilocation as parameters and returns the commensurate fee. By providing the amounts obtained above of `{{ networks.moonbeam.xcm.transfer_dot.total_weight.display }}` `refTime` and `{{ xcm.generic_weights.proof_size.transfer_dot_total.display }}` `proofSize`, and the asset multilocation for DOT, we get a fee amount of `88,920,522` Plank, which is the smallest unit in Polkadot. We can convert this to DOT by dividing by `10^10` which gets us a DOT fee amount of `{{ networks.moonbeam.xcm.transfer_dot.xcdot_cost }}` DOT. 
 
 ## XCM Payment API Expanded Examples {: #xcm-payment-api-exanded-examples }
 
