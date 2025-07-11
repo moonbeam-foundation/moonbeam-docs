@@ -19,7 +19,7 @@ Please note that your Trezor device will sign transactions in whichever MetaMask
 
 ## Checking Prerequisites {: #checking-prerequisites }
 
-Before you get started, update [Trezor Suite](https://suite.trezor.io){target=\_blank} to the latest version available. Also, make sure you've your Trezor hardware wallet device running the latest firmware. The Trezor wiki offers tutorials on how to update the firmware of both [Trezor One](https://trezor.io/learn/a/update-trezor-device-firmware){target=\_blank} and [Trezor Model T](https://trezor.io/learn/a/update-trezor-device-firmware){target=\_blank} devices.
+Before you get started, update [Trezor Suite](https://suite.trezor.io){target=\_blank} to the latest version available. Also, make sure you've your Trezor hardware wallet device running the latest firmware. The Trezor wiki offers tutorials on how to update the firmware of both [Trezor One](https://trezor.io/guides/trezor-suite/trezor-suite-desktop/update-trezor-device-firmware){target=\_blank} and [Trezor Model T](https://trezor.io/guides/trezor-suite/trezor-suite-desktop/update-trezor-device-firmware){target=\_blank} devices.
 
 At the time of writing, the following versions were used:
 

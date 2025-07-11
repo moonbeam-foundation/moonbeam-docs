@@ -11,7 +11,7 @@ description: Learn how to request a dedicated DIA oracle for your dApp, enabling
 
 By collecting billions of raw trades directly from over 90 sources, including CEXs, DEXs, and NFT marketplaces, DIA enables full transparency, customization, and control throughout the entire value stack. DIA's data and oracle suite comprise price feeds for 20,000+ assets, including cryptocurrencies, NFT collections, and liquid-staked tokens, as well as random number generation and other data feed types.
 
-You can visit DIA's documentation to learn how to [Request a Custom Oracle](https://docs.diadata.org/support/request-a-custom-oracle){target=\_blank}.
+You can visit DIA's documentation to learn how to [Request a Custom Oracle](https://www.diadata.org/docs/how-to-guides/request-a-custom-oracle#request-a-custom-oracle){target=\_blank}.
 
 --8<-- 'text/_disclaimers/third-party-content-intro.md'
 
@@ -28,7 +28,7 @@ DIA has deployed the following demo oracles for the Moonbeam community, which pr
 |   Moonriver    | [`0x11f74b94afb5968119c98ea277a2b73208bb39ab`](https://moonriver.moonscan.io/address/0x11f74b94afb5968119c98ea277a2b73208bb39ab){target=\_blank} |
 | Moonbase Alpha | [`0xe23d8713aa3a0a2c102af772d2467064821b8d46`](https://moonbase.moonscan.io/address/0xe23d8713aa3a0a2c102af772d2467064821b8d46){target=\_blank}  |
 
-The demo oracle contracts deployed to Moonbeam are the [DIA Key-Value Oracle Contract V2](https://docs.diadata.org/use-nexus-product/how-to-dia-nexus-oracles/oracle-structures/access-the-oracle#dia-key-value-oracle-contract-v2){target=\_blank}. The contract is structured as follows:
+The demo oracle contracts deployed to Moonbeam are the [DIA Key-Value Oracle Contract V2](https://www.diadata.org/docs/nexus/reference/smart-contracts/diaoraclev2.sol#diaoraclev2-sol){target=\_blank}. The contract is structured as follows:
 
 ```solidity
 pragma solidity 0.7.4;
@@ -67,7 +67,7 @@ contract DIAOracleV2 {
 ```
 
 !!! note
-    DIA demo oracles are not intended for use in production environments. Developers can request a dedicated, production-ready oracle with custom price feeds and configuration settings. To start the request process, you can check out the [Request a Custom Oracle](https://docs.diadata.org/support/request-a-custom-oracle){target=\_blank} documentation.
+    DIA demo oracles are not intended for use in production environments. Developers can request a dedicated, production-ready oracle with custom price feeds and configuration settings. To start the request process, you can check out the [Request a Custom Oracle](https://www.diadata.org/docs/how-to-guides/request-a-custom-oracle#request-a-custom-oracle){target=\_blank} documentation.
 
 #### Included Price Feeds {: #price-feeds }
 
@@ -89,11 +89,11 @@ The response contains two values:
 - The current asset price in USD with a fix-comma notation of 8 decimals
 - The UNIX timestamp of the last oracle update
 
-You can find DIA's oracle integration samples in Solidity and Vyper languages by visiting the [Access the Oracle](https://docs.diadata.org/products/token-price-feeds/access-the-oracle){target=\_blank} guide on DIA's documentation site.
+You can find DIA's oracle integration samples in Solidity and Vyper languages by visiting the [Access the Oracle](https://www.diadata.org/docs/nexus/how-to-guides/fetch-price-data){target=\_blank} guide on DIA's documentation site.
 
 ### Supported Token API Endpoints {: #supported-token-api-endpoints }
 
-DIA also supports Rest and GraphQL endpoints to return cryptocurrency price data. You can [visit the DIA documentation](https://docs.diadata.org/products/token-price-feeds/access-api-endpoints){target=\_blank} to see all API endpoints.
+DIA also supports Rest and GraphQL endpoints to return cryptocurrency price data. You can [visit the DIA documentation](https://www.diadata.org/docs/reference/apis/token-prices){target=\_blank} to see all API endpoints.
 
 For example, you can use the following JavaScript scripts to access the [BTC/USD price feed](#price-feeds):
 
@@ -164,21 +164,17 @@ For example, you can use the following JavaScript scripts to access the [BTC/USD
       });
     ```
 
-You can refer to DIA's documentation on [Rest API Endpoints](https://docs.diadata.org/products/token-price-feeds/access-api-endpoints/api-endpoints){target=\_blank} and the [GraphQL Endpoint](https://docs.diadata.org/products/token-price-feeds/access-api-endpoints/graphql-endpoint){target=\_blank} for information on the parameters and return data.
+You can refer to DIA's documentation on [Rest API Endpoints](https://www.diadata.org/docs/reference/apis/token-prices/api-endpoints){target=\_blank} and the [GraphQL Endpoint](https://www.diadata.org/docs/reference/apis/token-prices/graphql){target=\_blank} for information on the parameters and return data.
 
 ## NFT Floor Price Feeds {: #nft-floor-price-feeds }
 
 DIA NFT floor price feeds provide smart contracts with real-time price information for [18,000+ NFT collections](https://www.diadata.org/nft-api-oracle/){target=\_blank}, sourced on-chain with 100% transparency from [multiple cross-chain NFT marketplaces](https://www.diadata.org/app/source/nft){target=\_blank}.
 
-Please refer to DIA's documentation to find out how you can [request a custom NFT oracle](https://docs.diadata.org/support/request-a-custom-oracle){target=\_blank} for NFTs on Moonbeam.
-
-### Supported NFT API Endpoints {: #supported-nft-api-endpoints }
-
-DIA also supports API endpoints to return cryptocurrency price data. Developers can directly access the example endpoints listed in [DIA's documentation](https://docs.diadata.org/use-nexus-product/readme/token-price-feeds/access-api-endpoints){target=\_blank}.
+Please refer to DIA's documentation to find out how you can [request a custom NFT oracle](https://www.diadata.org/docs/request-a-custom-oracle#forum-request){target=\_blank} for NFTs on Moonbeam.
 
 ## Random Number Generation {: #random-number-generation }
 
-[DIA xRandom](https://docs.diadata.org/products/randomness-oracle){target=\_blank} provides smart contracts with unpredictable and unbiased random numbers, facilitating the development of on-chain use cases such as lotteries, prediction markets, NFT launches, and more.
+[DIA xRandom](https://www.diadata.org/docs/nexus/data-products/randomness#randomness){target=\_blank} provides smart contracts with unpredictable and unbiased random numbers, facilitating the development of on-chain use cases such as lotteries, prediction markets, NFT launches, and more.
 
 DIA leverages the Drand public randomness beacon, and updates its oracle with round numbers, randomness and a signature. Drand runs distributed nodes to produce their randomness beacon. Drand uses [Pedersen's DKG (Distributed Key Generation) protocol](https://docs.drand.love/docs/cryptography/#distributed-key-generation-dkg){target=\_blank} to create collective private and public keys. Participants in their League of Entropy then generate randomness in rounds and broadcast it together with its signature.
 
@@ -261,7 +257,7 @@ contract DIARandomOracle {
 ```
 
 !!! note
-    DIA demo oracles are not intended for use in production environments. Developers can request a dedicated, production-ready randomness oracle. To start the request process, you can check out the [Request a Random Oracle](https://docs.diadata.org/use-nexus-product/readme/randomness-oracle/request-a-random-oracle){target=\_blank} documentation.
+    DIA demo oracles are not intended for use in production environments. Developers can request a dedicated, production-ready randomness oracle. To start the request process, you can check out the [Request a Random Oracle](https://www.diadata.org/docs/nexus/how-to-guides/generate-randomness/chain-specific-guide/alephium#support){target=\_blank} documentation.
 
 ### How to Use the DIA Randomness Oracle {: #how-to-use-the-dia-randomness-oracle }
 
@@ -282,7 +278,7 @@ To learn how to deploy a randomness-consuming contract on Moonbeam, please refer
 - [Twitter](https://twitter.com/DIAdata_org){target=\_blank}
 - [Discord](https://discord.com/invite/ZvGjVY5uvs){target=\_blank}
 - [Website](https://www.diadata.org/){target=\_blank}
-- [Docs](https://docs.diadata.org){target=\_blank}
+- [Docs](https://www.diadata.org/docs/home){target=\_blank}
 - [Explore data](https://www.diadata.org/app){target=\_blank}
 
 --8<-- 'text/_disclaimers/third-party-content.md'
