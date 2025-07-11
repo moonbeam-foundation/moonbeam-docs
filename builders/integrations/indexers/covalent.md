@@ -100,7 +100,7 @@ For more information on each of the methods of the Unified API and for an intera
 
 ???+ function "Token Balances"
 
-    The [token balances endpoint](https://goldrush.dev/docs/api-reference/foundational-api/balances/get-token-balances-for-addres){target=\_blank} retrieves native tokens, fungible (ERC-20) tokens, and non-fungible (ERC-721 & ERC-1155) tokens associated with a given address. The returned data includes current market prices and additional token metadata.
+    The [token balances endpoint](https://goldrush.dev/docs/api-reference/foundational-api/balances/get-token-balances-for-address){target=\_blank} retrieves native tokens, fungible (ERC-20) tokens, and non-fungible (ERC-721 & ERC-1155) tokens associated with a given address. The returned data includes current market prices and additional token metadata.
 
     === "Parameters"
 
