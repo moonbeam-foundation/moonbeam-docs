@@ -1,7 +1,7 @@
 ---
 title: Non-Network Specific Precompiles
 description: Learn how to use precompiled contracts, which are not specific to Ethereum or Moonbeam, yet are supported for use in your application.
-keywords: ethereum, moonbeam, StorageCleaner, ECRecoverPublicKey, sha3FIPS256
+keywords: ethereum, moonbeam, ECRecoverPublicKey, sha3FIPS256
 ---
 
 # Non-Network Specific Precompiled Smart Contracts
@@ -12,15 +12,9 @@ A precompiled contract, or precompile, is a set of programmed functionalities ha
 
 Precompile functionality is bundled and shared under a smart contract address, which allows interactions similar to those of a traditional smart contract. Some precompiled contracts are not specific to Ethereum or Moonbeam, but are supported for use in your Moonbeam application. 
 
-The nonspecific precompiles currently included in this category include `StorageCleaner`, `ECRecoverPublicKey`, and `SHA3FIPS256`. 
+The nonspecific precompiles currently included in this category are the `ECRecoverPublicKey` and `SHA3FIPS256` precompiles. 
 
 In the next section, you will learn more about the functionalities included in these precompiles.  
-
-## Clear Storage Entries with StorageCleaner {: #clear-storage-with-storagecleaner }
-
-The primary function of the `StorageCleaner` precompile is to clear storage entry key-value pairs for a smart contract marked as self-destructed, previously referred to as 'suicided.' `StorageCleaner` includes functionality to iterate over a list of addresses to identify self-destructed contracts and delete the appropriate storage entries associated with identified addresses. You can also input a numeric limit to prevent the precompile from consuming too much gas. 
-
-With the implementation of [EIP-6780: SELFDESTRUCT](https://eips.ethereum.org/EIPS/eip-6780){target=\_blank} as part of the Ethereum Cancun/Dencun upgrade, contracts can only be self-destructed in the same transaction where they are created. This limitation keeps storage entries small and allows them to be automatically deleted during destruction. The `StorageCleaner` precompile remains available when a legacy contract needs storage entries cleared. 
 
 ## Retrieve a Public Key with ECRecoverPublicKey {: verifying-signatures-ecrecoverpublickey }
 

@@ -90,7 +90,7 @@ For this example, no additional configurations are needed. To compile the `MyTok
 
 If you tried to compile your smart contract but there was an error or warning, you can easily debug the issue with the help of ChatGPT directly from the Solidity compiler plugin in Remix.
 
-For example, if you only provided the token name to the ERC-20 constructor but forgot the token symbol and tried to compile the contract, an error would appear in the side panel. You can scroll down to read the error, and you'll see that there is also an **ASK GPT** button. To get help debugging the issue, you can click on **ASK GPT**, and a response will be returned in the Remix terminal that will guide you in the right direction to try and fix the issue. If you need additional help, you can go straight to the source and ask [ChatGPT](https://chat.openai.com){target=\_blank} directly.
+For example, if you only provided the token name to the ERC-20 constructor but forgot the token symbol and tried to compile the contract, an error would appear in the side panel. You can scroll down to read the error, and you'll see that there is also an **ASK GPT** button. To get help debugging the issue, you can click on **ASK GPT**, and a response will be returned in the Remix terminal that will guide you in the right direction to try and fix the issue. If you need additional help, you can go straight to the source and ask [ChatGPT](https://chatgpt.com/){target=\_blank} directly.
 
 ![An error message shown in the side panel for the Solidity compiler plugin with an ASK GPT button for debugging.](/images/builders/ethereum/dev-env/remix/remix-7.webp)
 

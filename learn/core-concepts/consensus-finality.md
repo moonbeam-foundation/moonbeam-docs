@@ -11,7 +11,7 @@ While Moonbeam strives to be compatible with Ethereum's Web3 API and EVM, there 
 
 In short, consensus is a way for different parties to agree on a shared state. As blocks are created, nodes in the network must decide which block will represent the next valid state. Finality defines when that valid state cannot be altered or reversed.
 
-Ethereum began by using a consensus protocol based on [Proof-of-Work (PoW)](https://ethereum.org/en/developers/docs/consensus-mechanisms/pow){target=\_blank}, which provides probabilistic finality. However, in 2022, Ethereum switched to [Proof-of-Stake (PoS)](https://ethereum.org/en/developers/docs/consensus-mechanisms/pos){target=\_blank}, which provides deterministic finality, and no longer uses PoW. In contrast, Moonbeam uses a hybrid consensus protocol based on Delegated Proof-of-Stake (DPoS), which also provides deterministic finality. DPoS is an evolution of Polkadot's [Nominated Proof of Stake (NPoS)](https://wiki.polkadot.network/docs/learn-consensus){target=\_blank} concept, that puts more power into the hands of token holders by allowing delegators to choose which collator candidate they want to support and in what magnitude.
+Ethereum began by using a consensus protocol based on [Proof-of-Work (PoW)](https://ethereum.org/en/developers/docs/consensus-mechanisms/pow){target=\_blank}, which provides probabilistic finality. However, in 2022, Ethereum switched to [Proof-of-Stake (PoS)](https://ethereum.org/en/developers/docs/consensus-mechanisms/pos){target=\_blank}, which provides deterministic finality, and no longer uses PoW. In contrast, Moonbeam uses a hybrid consensus protocol based on Delegated Proof-of-Stake (DPoS), which also provides deterministic finality. DPoS is an evolution of Polkadot's [Nominated Proof of Stake (NPoS)](https://docs.polkadot.com/polkadot-protocol/architecture/polkadot-chain/pos-consensus/){target=\_blank} concept, that puts more power into the hands of token holders by allowing delegators to choose which collator candidate they want to support and in what magnitude.
 
 This guide will outline some of these main differences around consensus and finality, and what to expect when using Moonbeam for the first time.
 
@@ -25,7 +25,7 @@ Finality is deterministic in Ethereum's PoS consensus protocol and is achieved t
 
 In Polkadot, there are collators and validators. [Collators](https://wiki.polkadot.network/docs/en/learn-collator){target=\_blank} maintain parachains (in this case, Moonbeam) by collecting transactions from users and producing state transition proofs for the relay chain [validators](https://wiki.polkadot.network/docs/en/learn-validator){target=\_blank}. The collator set (nodes that produce blocks) is selected based on the [stake they have in the network](/learn/features/consensus/){target=\_blank}.
 
-For finality, Polkadot and Kusama rely on [GRANDPA](https://wiki.polkadot.network/docs/learn-consensus#finality-gadget-grandpa){target=\_blank}. GRANDPA provides deterministic finality for any given transaction (block). In other words, when a block or transaction is marked as final, it can't be reverted except via on-chain governance or forking. Moonbeam follows this deterministic finality.
+For finality, Polkadot and Kusama rely on [GRANDPA](https://docs.polkadot.com/polkadot-protocol/architecture/polkadot-chain/pos-consensus/#finality-gadget-grandpa){target=\_blank}. GRANDPA provides deterministic finality for any given transaction (block). In other words, when a block or transaction is marked as final, it can't be reverted except via on-chain governance or forking. Moonbeam follows this deterministic finality.
 
 ## Main Differences Between PoS and DPoS {: #main-differences }
 
@@ -131,7 +131,7 @@ Using the following three RPC requests from the Substrate JSON-RPC, you can fetc
 
 The [Polkadot.js API package](/builders/substrate/libraries/polkadot-js-api/){target=\_blank} and [Python Substrate Interface package](/builders/substrate/libraries/py-substrate-interface/){target=\_blank} provide developers with a way to interact with Substrate chains using JavaScript and Python.
 
-You can find more information about Polkadot.js and the Substrate JSON-RPC in the [official Polkadot.js documentation site](https://polkadot.js.org/docs/substrate/rpc){target=\_blank}, and more about Python Substrate Interface in the [official PySubstrate documentation site](https://polkascan.github.io/py-substrate-interface){target=\_blank}.
+You can find more information about Polkadot.js and the Substrate JSON-RPC in the [official Polkadot.js documentation site](https://polkadot.js.org/docs/substrate/rpc){target=\_blank}, and more about Python Substrate Interface in the [official PySubstrate documentation site](https://jamdottech.github.io/py-polkadot-sdk/){target=\_blank}.
 
 === "Polkadot.js"
 

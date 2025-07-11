@@ -69,7 +69,7 @@ If you have the identifier and are ready to submit your project to the Moonbeam 
 
 If a project has a token, it is possible to display the name of the token, current price, and contract in the DApp Directory.
 
-However, the data is pulled from [CoinGecko](https://www.coingecko.com){target=\_blank}, so the project's token must be listed there. If your token is not listed there, you can complete [CoinGecko's Request Form](https://www.coingecko.com/request){target=\_blank} to initiate the listing process.
+However, the data is pulled from [CoinGecko](https://www.coingecko.com){target=\_blank}, so the project's token must be listed there. If your token is not listed there, you can complete [CoinGecko's Request Form](https://support.coingecko.com/hc/en-us/requests/new){target=\_blank} to initiate the listing process.
 
 Assuming your project's token is listed there, you must obtain the CoinGecko **API ID** value. You can find the **API ID** value in the **Information** section of the token's page on CoinGecko. For example, the **API ID** on [Moonwell's token page](https://www.coingecko.com/en/coins/moonwell){target=\_blank} is `moonwell-artemis`.
 
@@ -131,7 +131,7 @@ To get started, you must have a name that uniquely and properly identifies your 
     --8<-- 'code/learn/dapps-list/folder-structure.md'
     ```
 
-![The file structure displayed on GitHub's browser-based editor](/images/learn/dapps-list//directory-4.webp)
+![The file structure displayed on GitHub's browser-based editor](/images/learn/dapps-list/directory-4.webp)
 
 With the foundational file structure in place, you're ready to populate the necessary information for your project submission.
 
@@ -212,7 +212,7 @@ The following table lists the properties of the image JSON object:
 | `fileName` | String |                                         The name of the image file (unqualified) stored in the `logos` directory                                         |
 |  `width`   |  int   |                                                          The width of the logo image in pixels                                                           |
 |  `height`  |  int   |                                                          The height of the logo image in pixels                                                          |
-| `mimeType` | String | The standard [MIME type](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types){target=\_blank} of the file. E.g., `"image/jpeg"` |
+| `mimeType` | String | The standard [MIME type](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/MIME_types){target=\_blank} of the file. E.g., `"image/jpeg"` |
 
 Currently, only the `small` size is utilized, and the dimensions for small logos should be 40x40 pixels.
 
@@ -235,7 +235,7 @@ The following table lists the properties of the image JSON object:
 | `fileName` | String |                                      The name of the image file (unqualified) stored in the `screenshots` directory                                      |
 |  `width`   |  int   |                                                          The width of the logo image in pixels                                                           |
 |  `height`  |  int   |                                                          The height of the logo image in pixels                                                          |
-| `mimeType` | String | The standard [MIME type](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types){target=\_blank} of the file. E.g., `"image/jpeg"` |
+| `mimeType` | String | The standard [MIME type](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/MIME_types){target=\_blank} of the file. E.g., `"image/jpeg"` |
 
 Here is an example showing the structure of the `screenshot` property for two screenshots (`screenshot1` and `screenshot2`):
 

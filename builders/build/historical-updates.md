@@ -305,7 +305,7 @@ You can review the [relative PR on GitHub](https://github.com/moonbeam-foundatio
 
 #### Gas Estimation Discrepancy {: #gas-estimation-discrepancy }
 
-There was a difference between estimating the gas for a transaction using a non-transaction call, such as `eth_call`, and the execution of it on-chain. The discrepancy occurred because the non-transactional calls were not properly accounting for `maxFeePerGas` and `maxPriorityFeePerGas`, as such, the ([Proof of Validity](https://wiki.polkadot.network/docs/glossary#proof-of-validity){target=\_blank}) consumed by the Ethereum transaction was counted differently. This was fixed by properly accounting for these fields when estimating the size of the on-chain transaction.
+There was a difference between estimating the gas for a transaction using a non-transaction call, such as `eth_call`, and the execution of it on-chain. The discrepancy occurred because the non-transactional calls were not properly accounting for `maxFeePerGas` and `maxPriorityFeePerGas`, as such, the ([Proof of Validity](https://wiki.polkadot.network/general/glossary/#proof-of-validity){target=\_blank}) consumed by the Ethereum transaction was counted differently. This was fixed by properly accounting for these fields when estimating the size of the on-chain transaction.
 
 This bug existed during the following runtimes and block ranges:
 
@@ -333,6 +333,39 @@ This bug existed during the following runtimes and block ranges:
 
 You can review the [relative Frontier PR](https://github.com/polkadot-evm/frontier/pull/1280){target=\_blank} and [Moonbeam PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/2610){target=\_blank} for more information.
 
+---
+
+#### Skipped Ethereum Transaction Traces {: #skipped-ethereum-transaction-traces }
+
+Runtimes with the `evm-tracing` feature enabled introduced additional `ref_time` overhead due to special logic that traces Ethereum transactions (emitting events for each component: gasometer, runtime, EVM) used to fill information for RPC calls like `debug_traceTransaction` and `trace_filter`. 
+
+Since the real `ref_time` in production runtimes is smaller, this could cause the block weight limits to be reached when replaying a block in an EVM-tracing runtime, resulting in skipped transaction traces. This was observed in Moonbeam block [9770044](https://moonbeam.subscan.io/block/9770044){target=\_blank}.
+
+The fix consisted of resetting the previously consumed weight before tracing each Ethereum transaction. It's important to note that this issue only affected code under `evm-tracing`, which is not included in any production runtime.
+
+This bug was fixed in the following runtime:
+
+|    Network     | Fixed  | Impacted Block |
+|:--------------:|:------:|:--------------:|
+|    Moonbeam    | RT3501 |    9770044     |
+
+For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/3210){target=\_blank}.
+
+---
+
+#### Notify Inactive Collator Fails for Long-Inactive Collators {: #notify-inactive-collator-fails }
+
+The `notifyInactiveCollator` extrinsic, designed to remove collators from the pool if they haven't produced any blocks in the last two rounds, failed for collators who had been inactive for significantly longer than two rounds. The transaction would only succeed within the first few blocks of a new round.
+
+The bug existed during the following runtimes and block ranges:
+
+|    Network     | Introduced | Fixed  | Impacted Block Range |
+|:--------------:|:----------:|:------:|:--------------------:|
+| Moonbase Alpha |   RT2601   | RT3500 |  5474345 – 10750816  |
+|   Moonriver    |   RT2602   | RT3501 |  5638536 – 10665393  |
+|    Moonbeam    |   RT2602   | RT3501 |  4977160 – 10056989  |
+
+For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/3128){target=\_blank}.
 ---
 
 ## Migrations {: #migrations }
@@ -840,7 +873,6 @@ This migration was executed at the following runtimes and blocks:
 | Moonbase Alpha |      RT2801      |    6209638    |
 
 For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/2634){target=\_blank}.
-
 
 ---
 

@@ -30,7 +30,7 @@ You can quickly create a subgraph from an existing contract. To get started, you
 4. Query your subgraph from your dApp
 
 !!! note
-    You can query your subgraph via the free, rate-limited development query URL, which can be used for development and staging. The free plan includes 100,000 queries per month. If you need to make more queries or want a production-ready plan, please check out [The Graph's documentation](https://thegraph.com/docs/en/billing/){target=\_blank}.
+    You can query your subgraph via the free, rate-limited development query URL, which can be used for development and staging. The free plan includes 100,000 queries per month. If you need to make more queries or want a production-ready plan, please check out [The Graph's documentation](https://thegraph.com/docs/en/subgraphs/billing/){target=\_blank}.
 
 ### Create a Subgraph on Subgraph Studio {: #create-a-subgraph }
 
@@ -95,7 +95,7 @@ The CLI will generate your project for you, and you can continue to add addition
 
 --8<-- 'code/builders/integrations/indexers/thegraph/terminal/create-subgraph.md'
 
-Your project will be created using the slug name you provided in step two. At this time, you can feel free to check out the project and modify the logic as needed for your project. For more information on how to write a subgraph, check out [The Graph's documentation](https://thegraph.com/docs/en/developing/creating-a-subgraph/){target=\_blank}. Note that for this quick start example, if you selected to index contract events as entities, you don't need to modify anything; you can deploy the project as is.
+Your project will be created using the slug name you provided in step two. At this time, you can feel free to check out the project and modify the logic as needed for your project. For more information on how to write a subgraph, check out [The Graph's documentation](https://thegraph.com/docs/en/subgraphs/developing/creating/starting-your-subgraph/){target=\_blank}. Note that for this quick start example, if you selected to index contract events as entities, you don't need to modify anything; you can deploy the project as is.
 
 ## Deploy a Subgraph {: #deploy }
 
@@ -178,7 +178,7 @@ For publishing instructions, please refer to [The Graph's documentation](https:/
 
 ### Additional Resources {: #additional-resources }
 
-- To explore all the ways you can optimize and customize your subgraph for better performance, read more about [creating a subgraph](https://thegraph.com/docs/en/developing/creating-a-subgraph/){target=\_blank}
-- For more information on querying data from your subgraph, check out the [Querying the Graph](https://thegraph.com/docs/en/querying/querying-the-graph/){target=\_blank} guide
+- To explore all the ways you can optimize and customize your subgraph for better performance, read more about [creating a subgraph](https://thegraph.com/docs/en/subgraphs/developing/creating/starting-your-subgraph/){target=\_blank}
+- For more information on querying data from your subgraph, check out the [Querying the Graph](https://thegraph.com/docs/en/subgraphs/querying/introduction/){target=\_blank} guide
 
 --8<-- 'text/_disclaimers/third-party-content.md'

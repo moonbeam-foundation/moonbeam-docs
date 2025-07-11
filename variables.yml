@@ -1,7 +1,7 @@
 networks:
   development:
-    build_tag: v0.44.0
-    tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.44.0-3600-a941
+    build_tag: v0.46.0
+    tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.46.0-3800-ea4a
     rpc_url: http://127.0.0.1:9944
     wss_url: ws://127.0.0.1:9944
     chain_id: 1281
@@ -15,10 +15,10 @@ networks:
     hex_chain_id: '0x507'
     chain_spec: alphanet
     block_explorer: https://moonbase.moonscan.io/
-    spec_version: runtime-3600
-    parachain_release_tag: v0.44.0 # must be in this exact format for links to work
-    parachain_sha256sum: bea023a6b8896075d52848d6e79b31f8f08cf69b812634fbda8c68729681188d
-    tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.44.0-3600-a941
+    spec_version: runtime-3800
+    parachain_release_tag: v0.46.0 # must be in this exact format for links to work
+    parachain_sha256sum: 51d63742aa38a076ab105087c1fab7b82b7f5df368db41130a0e352f240ec0aa
+    tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.46.0-3800-ea4a
     gas_block: 60,000,000
     gas_block_numbers_only: 60000000 # this should match gas_block, just with no commas
     gas_tx: 52,000,000 # EXTRINSIC_GAS_LIMIT in test/helpers/constants.ts
@@ -122,8 +122,11 @@ networks:
       units_per_second:
         xcbetadev:
           transact_numbers_only: 50000000000000000
+      foreign_asset_deposit: 
+        display: 100
+        numbers_only: 100
     erc20_xcm:
-      transfer_gas_limit: 800,000
+      transfer_gas_limit: 400,000
     conviction:
       lock_period:
         conviction_1: 1
@@ -321,7 +324,7 @@ networks:
       min_can_stk: 500
       min_can_stk_wei: 500000000000000000000
       collator_map_bond: 100
-      max_candidates: 36
+      max_candidates: 12
       round_blocks: 1200
       round_hours: 2
       min_del_stake: 1
@@ -404,7 +407,7 @@ networks:
       relay_data_verifier: '0x0000000000000000000000000000000000000819'
       xcm_interface: '0x000000000000000000000000000000000000081A'
     substrate_api_sidecar:
-      stable_version: 19.3.1
+      stable_version: 20.2.0
     tx_weight_to_gas_ratio: 25000
     orbiter:
       max_orbiters_per_collator: 8
@@ -431,12 +434,12 @@ networks:
     chain_id: 1285
     hex_chain_id: '0x505'
     node_directory: /var/lib/moonriver-data
-    parachain_release_tag: v0.44.0
-    parachain_sha256sum: bea023a6b8896075d52848d6e79b31f8f08cf69b812634fbda8c68729681188d
-    tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.44.0-3600-a941
+    parachain_release_tag: v0.46.0
+    parachain_sha256sum: 51d63742aa38a076ab105087c1fab7b82b7f5df368db41130a0e352f240ec0aa
+    tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.46.0-3800-ea4a
     chain_spec: moonriver
     block_explorer: https://moonriver.moonscan.io/
-    spec_version: runtime-3501
+    spec_version: runtime-3702
     binary_name: moonbeam
     min_gas_price: 0.3125
     block_time: 6
@@ -459,8 +462,11 @@ networks:
       instructions:
         wei_per_weight:
           display: 12,500
+      foreign_asset_deposit: 
+        display: 1,000
+        numbers_only: 100
     erc20_xcm:
-      transfer_gas_limit: 800,000 # corresponds to Erc20XcmBridgeTransferGasLimit
+      transfer_gas_limit: 400,000 # corresponds to Erc20XcmBridgeTransferGasLimit
     conviction:
       lock_period:
         conviction_1: 1
@@ -800,7 +806,7 @@ networks:
       epoch_expiration: 10000
       epoch_fulfillment_delay: 2
     substrate_api_sidecar:
-      stable_version: 19.3.1
+      stable_version: 20.2.0
     tx_weight_to_gas_ratio: 25000
     orbiter:
       max_orbiters_per_collator: 3
@@ -818,12 +824,12 @@ networks:
     chain_id: 1284
     hex_chain_id: '0x504'
     node_directory: /var/lib/moonbeam-data
-    parachain_release_tag: v0.44.0
-    parachain_sha256sum: bea023a6b8896075d52848d6e79b31f8f08cf69b812634fbda8c68729681188d
-    tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.44.0-3600-a941
+    parachain_release_tag: v0.46.0
+    parachain_sha256sum: 51d63742aa38a076ab105087c1fab7b82b7f5df368db41130a0e352f240ec0aa
+    tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.46.0-3800-ea4a
     chain_spec: moonbeam
     block_explorer: https://moonscan.io
-    spec_version: runtime-3501
+    spec_version: runtime-3702
     binary_name: moonbeam
     min_gas_price: 31.25
     block_time: 6
@@ -831,7 +837,7 @@ networks:
     gas_block_numbers_only: 60000000 # this should match gas_block, just with no commas
     gas_tx: 52,000,000 # EXTRINSIC_GAS_LIMIT in test/helpers/constants.ts
     mbip_5:
-      block_storage_limit: 80
+      block_storage_limit: 160
       gas_storage_ratio: 366
       example_storage: 500
       example_addtl_gas: 183000
@@ -860,6 +866,9 @@ networks:
         xcdot:
           display: 20,080,321,285
           numbers_only: 20080321285
+      foreign_asset_deposit: 
+          display: 10,000
+          numbers_only: 10000
     erc20_xcm:
       transfer_gas_limit: 400,000 # Erc20XcmBridgeTransferGasLimit
     conviction:
@@ -1056,10 +1065,10 @@ networks:
       parachain_bond_inflation: 30
       parachain_bond_treasury: 80
     staking:
-      min_can_stk: 2000000
-      min_can_stk_wei: 2000000000000000000000000
+      min_can_stk: 500000
+      min_can_stk_wei: 500000000000000000000000
       collator_map_bond: 10000
-      max_candidates: 76
+      max_candidates: 74
       round_blocks: 1800
       round_hours: 6
       min_del_stake: 50
@@ -1180,7 +1189,7 @@ networks:
       epoch_expiration: 10000
       epoch_fulfillment_delay: 2
     substrate_api_sidecar:
-      stable_version: 19.3.1
+      stable_version: 20.2.0
       tx_weight_to_gas_ratio: 25000
     orbiter:
       max_orbiters_per_collator: 6
@@ -1312,10 +1321,10 @@ polkadot_sdk: polkadot-v1.11.0
 xcm:
   db_weights:
     rocksdb_read:
-      display: 41,742,000
-      numbers_only: 41742000
+      display: 25,000,000
+      numbers_only: 25000000
     rocksdb_write:
-      display: 81,283,000
+      display: 100,000,000
   fungible_weights:
     display: 200,000,000
     numbers_only: 200000000
@@ -1344,17 +1353,17 @@ xcm:
           numbers_only: 281,080,000
     proof_size:
       zero: 0
-      weight_per_gas: 16
+      weight_per_gas: 8
       withdraw_asset:
-        display: 2,480,000
-        numbers_only: 2480000
+        display: 1,240,000
+        numbers_only: 1240000
       buy_execution:
         display: 19,056
         numbers_only: 19056
       deposit_asset:
-        display: 2,480,000
-        numbers_only: 2480000
+        display: 1,240,000
+        numbers_only: 1240000
       transfer_dot_total:
-        display: 2,499,056
-        numbers_only: 2499056
+        display: 1,259,056
+        numbers_only: 1,259,056
     

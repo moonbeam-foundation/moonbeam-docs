@@ -11,10 +11,10 @@ description: Learn how to use Foundry, an Ethereum development environment, to c
 
 Four tools make up Foundry:  
 
-- **[Forge](https://book.getfoundry.sh/forge){target=\_blank}** - compiles, tests, and deploys contracts
-- **[Cast](https://book.getfoundry.sh/cast){target=\_blank}** - a command line interface for interacting with contracts
-- **[Anvil](https://book.getfoundry.sh/anvil){target=\_blank}** - a local TestNet node for development purposes that can fork preexisting networks
-- **[Chisel](https://book.getfoundry.sh/chisel){target=\_blank}** - a Solidity REPL for quickly testing Solidity snippets
+- **[Forge](https://getfoundry.sh/forge/overview/){target=\_blank}** - compiles, tests, and deploys contracts
+- **[Cast](https://getfoundry.sh/cast/overview/){target=\_blank}** - a command line interface for interacting with contracts
+- **[Anvil](https://getfoundry.sh/anvil/overview/){target=\_blank}** - a local TestNet node for development purposes that can fork preexisting networks
+- **[Chisel](https://getfoundry.sh/chisel/overview/){target=\_blank}** - a Solidity REPL for quickly testing Solidity snippets
 
 This guide will cover how to use Foundry to compile, deploy, and debug Ethereum smart contracts on the Moonbase Alpha TestNet. This guide can also be adapted for Moonbeam, Moonriver, or a Moonbeam development node.
 
@@ -26,7 +26,7 @@ To get started, you will need the following:
   --8<-- 'text/_common/faucet/faucet-list-item.md'
  - 
 --8<-- 'text/_common/endpoint-examples-list-item.md'
- - Have [Foundry installed](https://book.getfoundry.sh/getting-started/installation){target=\_blank}
+ - Have [Foundry installed](https://getfoundry.sh/introduction/installation/){target=\_blank}
 
 ## Creating a Foundry Project {: #creating-a-foundry-project }
 
@@ -99,42 +99,55 @@ There are two primary ways to deploy contracts using Foundry. The first is the s
 
 ### Using Forge Create {: #using-forge-create }
 
-Deploying the contract with `forge create` takes a single command, but you must include an RPC endpoint, a funded private key, and constructor arguments. `MyToken.sol` asks for an initial supply of tokens in its constructor, so each of the following commands includes 100 as a constructor argument. You can deploy the `MyToken.sol` contract using the following command for the correct network:
+Before deploying, you'll need to set up your keystore by importing your private key. You can do this using the `cast wallet import` command as follows:
+
+```bash
+cast wallet import deployer --interactive
+```
+
+This will prompt you to:
+
+1. Enter your private key
+2. Enter a password to encrypt the keystore
+
+The account will be saved as "deployer" in your keystore. You can then use this account name in the deployment commands. You'll be prompted for your keystore password when deploying contracts or sending transactions. 
+
+Deploying the contract with `forge create` takes a single command, but you must include an RPC endpoint and constructor arguments. `MyToken.sol` asks for an initial supply of tokens in its constructor, so each of the following commands includes 100 as a constructor argument. You can deploy the `MyToken.sol` contract using the following command for the correct network:
 
 === "Moonbeam"
 
     ```bash
-    forge create --rpc-url {{ networks.moonbeam.rpc_url }} \
-    --constructor-args 100 \
-    --private-key INSERT_YOUR_PRIVATE_KEY \
-    src/MyToken.sol:MyToken
+    forge create src/MyToken.sol:MyToken \
+    --rpc-url {{ networks.moonbeam.rpc_url }} \
+    --account deployer \
+    --constructor-args 100
     ```
 
 === "Moonriver"
 
     ```bash
-    forge create --rpc-url {{ networks.moonriver.rpc_url }} \
-    --constructor-args 100 \
-    --private-key INSERT_YOUR_PRIVATE_KEY \
-    src/MyToken.sol:MyToken
+    forge create src/MyToken.sol:MyToken \
+    --rpc-url {{ networks.moonriver.rpc_url }} \
+    --account deployer \
+    --constructor-args 100
     ```
 
 === "Moonbase Alpha"
 
     ```bash
-    forge create --rpc-url {{ networks.moonbase.rpc_url }} \
-    --constructor-args 100 \
-    --private-key INSERT_YOUR_PRIVATE_KEY \
-    src/MyToken.sol:MyToken
+    forge create src/MyToken.sol:MyToken \
+    --rpc-url {{ networks.moonbase.rpc_url }} \
+    --account deployer \
+    --constructor-args 100
     ```
 
 === "Moonbeam Dev Node"
 
     ```bash
-    forge create --rpc-url {{ networks.development.rpc_url }} \
-    --constructor-args 100 \
-    --private-key INSERT_YOUR_PRIVATE_KEY \
-    src/MyToken.sol:MyToken
+    forge create src/MyToken.sol:MyToken \
+    --rpc-url {{ networks.development.rpc_url }} \
+    --account deployer \
+    --constructor-args 100
     ```
 
 After you've deployed the contract and a few seconds have passed, you should see the address in the terminal.
@@ -160,22 +173,19 @@ Now, go ahead and write the script. In the script folder, create a file named `M
 --8<-- 'code/builders/ethereum/dev-env/foundry/MyToken-script.sol'
 ```
 
-!!! remember
-    Remember never to store a production private key in a file, as shown above. This example is strictly for demonstration purposes.
-
 Notice that even though the above script is not being deployed, it still requires all the typical formatting for a Solidity contract, such as the pragma statement.
 
-You can deploy the `MyToken.sol` contract with the below command. Remember that it will execute all relevant steps in order. For this example, Foundry will first attempt a local simulation and a simulation against the provided RPC before deploying the contract. Foundry won't proceed with the deployment if any of the simulations fail.
+For this example, Foundry will first attempt a local simulation and a simulation against the provided RPC before deploying the contract. Remember that it will execute all relevant steps in order. Foundry won't proceed with the deployment if any of the simulations fail. You can deploy the `MyToken.sol` contract with this command.
 
 ```bash
-forge script script/MyToken.s.sol --rpc-url {{ networks.moonbase.rpc_url }} --broadcast
+forge script script/MyToken.s.sol --rpc-url {{ networks.moonbase.rpc_url }} --broadcast --account deployer
 ```
 
 If your script's execution succeeds, your terminal should resemble the output below.
 
 --8<-- 'code/builders/ethereum/dev-env/foundry/terminal/script.md'
 
-And that's it! For more information about Solidity scripting with Foundry, be sure to check out [Foundry's documentation site](https://book.getfoundry.sh/guides/scripting-with-solidity){target=\_blank}.
+And that's it! For more information about Solidity scripting with Foundry, be sure to check out [Foundry's documentation site](https://getfoundry.sh/guides/scripting-with-solidity/){target=\_blank}.
 
 ## Interacting with the Contract {: #interacting-with-the-contract }
 
@@ -372,7 +382,7 @@ Since you're done with this code, you can clear the state of Chisel so that it d
 !clear
 ```
 
-There's an even easier way to test with Chisel. When writing code that ends with a semicolon (`;`), Chisel will run it as a statement, storing its value in Chisel's runtime state. But if you only needed to see how the ABI-encoded data was represented, then you could get away with running the code as an expression. To try this out with the same `abi` example, write the following in the Chisel shell:  
+There's an even easier way to test with Chisel. When writing code that ends with a semicolon (`;`), Chisel will run it as a statement, storing its value in Chisel's runtime state. But if you only needed to see how the ABI-encoded data was represented, then you could get away with running the code as an expression. To try this out with the same `abi` example, write the following in the Chisel shell:
 
 ```bash
 abi.encode(100, true, "Develop on Moonbeam")
@@ -434,7 +444,7 @@ Then, for example, you can query the balance of one of Moonbase Alpha's collator
 
 --8<-- 'code/builders/ethereum/dev-env/foundry/terminal/query-balance.md'
 
-If you want to learn more about Chisel, download Foundry and refer to its [official reference page](https://book.getfoundry.sh/reference/chisel){target=\_blank}.
+If you want to learn more about Chisel, download Foundry and refer to its [official reference page](https://getfoundry.sh/chisel/reference/){target=\_blank}.
 
 ## Foundry With Hardhat {: #foundry-with-hardhat }  
 

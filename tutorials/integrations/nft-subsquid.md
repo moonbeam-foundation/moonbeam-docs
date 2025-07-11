@@ -25,12 +25,12 @@ For a Squid project to be able to run, you need to have the following installed:
 
 - Familiarity with Git
 - [Node.js](https://nodejs.org/en/download/package-manager){target=\_blank} version 16 or later
-- [Docker](https://docs.docker.com/get-docker){target=\_blank}
-- [Squid CLI](https://docs.subsquid.io/squid-cli/installation/){target=\_blank}
+- [Docker](https://docs.docker.com/get-started/get-docker/){target=\_blank}
+- [Squid CLI](https://docs.sqd.ai/squid-cli/installation/){target=\_blank}
 
 ## Scaffold a Project From a Template {: #scaffolding-using-sqd-init }
 
-We will start with the [`frontier-evm` squid template](https://github.com/subsquid-labs/squid-frontier-evm-template){target=\_blank}, available through [`sqd init`](https://docs.subsquid.io/squid-cli/init/){target=\_blank}. It is built to index EVM smart contracts deployed on Moonriver, but it can also index Substrate events. To retrieve the template and install the dependencies, run the following:
+We will start with the [`frontier-evm` squid template](https://github.com/subsquid-labs/squid-frontier-evm-template){target=\_blank}, available through [`sqd init`](https://docs.sqd.ai/squid-cli/init/){target=\_blank}. It is built to index EVM smart contracts deployed on Moonriver, but it can also index Substrate events. To retrieve the template and install the dependencies, run the following:
 
 ```bash
 sqd init moonbeam-tutorial --template frontier-evm
@@ -40,7 +40,7 @@ npm ci
 
 ## Define the Entity Schema {: #define-entity-schema }
 
-Next, we ensure the Squid's data [schema](https://docs.subsquid.io/sdk/reference/schema-file/intro/){target=\_blank} defines the [entities](https://docs.subsquid.io/sdk/reference/schema-file/entities/){target=\_blank} that we want to track. We are interested in:
+Next, we ensure the Squid's data [schema](https://docs.sqd.ai/sdk/reference/schema-file/intro/){target=\_blank} defines the [entities](https://docs.sqd.ai/sdk/reference/schema-file/entities/){target=\_blank} that we want to track. We are interested in:
 
 - Token transfers
 - Ownership of tokens
@@ -52,10 +52,10 @@ The EVM template already contains a schema file that defines `Token` and `Transf
 --8<-- 'code/tutorials/integrations/nft-subsquid/schema.graphql'
 ```
 
-It's worth noting a couple of things in this [schema definition](https://docs.subsquid.io/sdk/reference/schema-file/){target=\_blank}:
+It's worth noting a couple of things in this [schema definition](https://docs.sqd.ai/sdk/reference/schema-file/){target=\_blank}:
 
 - **`@entity`** - signals that this type will be translated into an ORM model that is going to be persisted in the database
-- **`@derivedFrom`** - signals that the field will not be persisted in the database. Instead, it will be [derived from](https://docs.subsquid.io/sdk/reference/schema-file/entity-relations/){target=\_blank} the entity relations
+- **`@derivedFrom`** - signals that the field will not be persisted in the database. Instead, it will be [derived from](https://docs.sqd.ai/sdk/reference/schema-file/entity-relations/){target=\_blank} the entity relations
 - **type references** (e.g., `owner: Owner`) - when used on entity types, they establish a relation between two entities
 
 TypeScript entity classes have to be regenerated whenever the schema is changed, and to do that, we use the `squid-typeorm-codegen` tool. The pre-packaged `commands.json` already comes with a `codegen` shortcut, so we can invoke it with `sqd`:
@@ -68,9 +68,9 @@ The generated entity classes can then be browsed in the `src/model/generated` di
 
 ## ABI Definition and Type Generation {: #abi-definition }
 
-SQD maintains [tools](https://docs.subsquid.io/sdk/resources/tools/typegen/generation/?typegen=substrate){target=\_blank} for the automated generation of TypeScript classes to handle Substrate data sources (events, extrinsics, storage items). Possible runtime upgrades are automatically detected and accounted for.
+SQD maintains [tools](https://docs.sqd.ai/sdk/resources/tools/typegen/generation/?typegen=substrate){target=\_blank} for the automated generation of TypeScript classes to handle Substrate data sources (events, extrinsics, storage items). Possible runtime upgrades are automatically detected and accounted for.
 
-Similar functionality is available for EVM indexing through the [`squid-evm-typegen`](https://docs.subsquid.io/sdk/resources/tools/typegen/generation/?typegen=evm){target=\_blank} tool. It generates TypeScript modules for handling EVM logs and transactions based on a [JSON ABI](https://docs.ethers.org/v6/basics/abi/){target=\_blank} of the contract.
+Similar functionality is available for EVM indexing through the [`squid-evm-typegen`](https://docs.sqd.ai/sdk/resources/tools/typegen/generation/?typegen=evm){target=\_blank} tool. It generates TypeScript modules for handling EVM logs and transactions based on a [JSON ABI](https://docs.ethers.org/v6/basics/abi/){target=\_blank} of the contract.
 
 We will need such a module for the [ERC-721](https://eips.ethereum.org/EIPS/eip-721){target=\_blank}-compliant part of the contracts' interfaces for our squid. Once again, the template repository already includes it, but it is still important to explain what needs to be done in case one wants to index a different type of contract.
 
@@ -84,9 +84,9 @@ The results will be stored at `src/abi`. One module will be generated for each A
 
 ## Processor Object and the Batch Handler {: #define-event-handlers }
 
-SQD SDK provides users with the [`SubstrateBatchProcessor` class](https://docs.subsquid.io/sdk/reference/processors/substrate-batch/context-interfaces/){target=\_blank}. The `SubstrateBatchProcessor` declaration and configurations are in the `src/processor.ts` file. Its instances connect to [SQD Network gateways](https://docs.subsquid.io/subsquid-network/reference/substrate-networks/){target=\_blank} at chain-specific URLs to get chain data and apply custom transformations. The indexing begins at the starting block and keeps up with new blocks after reaching the tip.
+SQD SDK provides users with the [`SubstrateBatchProcessor` class](https://docs.sqd.ai/sdk/reference/processors/substrate-batch/context-interfaces/){target=\_blank}. The `SubstrateBatchProcessor` declaration and configurations are in the `src/processor.ts` file. Its instances connect to [SQD Network gateways](https://docs.sqd.ai/subsquid-network/reference/networks/){target=\_blank} at chain-specific URLs to get chain data and apply custom transformations. The indexing begins at the starting block and keeps up with new blocks after reaching the tip.
 
-The `SubstrateBatchProcessor` [exposes methods](https://docs.subsquid.io/sdk/reference/processors/substrate-batch/general/){target=\_blank} to "subscribe" to specific data such as Substrate events, extrinsics, storage items, or, for EVM, logs, and transactions. The actual data processing is then started by calling the `.run()` function, as seen in the `src/main.ts` file. This will start generating requests to the gateway for [_batches_](https://docs.subsquid.io/sdk/resources/basics/batch-processing/){target=\_blank} of data specified in the configuration and will trigger the callback function every time a batch is returned by the gateway.
+The `SubstrateBatchProcessor` [exposes methods](https://docs.sqd.ai/sdk/reference/processors/substrate-batch/general/){target=\_blank} to "subscribe" to specific data such as Substrate events, extrinsics, storage items, or, for EVM, logs, and transactions. The actual data processing is then started by calling the `.run()` function, as seen in the `src/main.ts` file. This will start generating requests to the gateway for [_batches_](https://docs.sqd.ai/sdk/resources/batch-processing/){target=\_blank} of data specified in the configuration and will trigger the callback function every time a batch is returned by the gateway.
 
 This callback function expresses all the mapping logic. This is where chain data decoding should be implemented and where the code to save processed data on the database should be defined.
 
@@ -122,7 +122,7 @@ If you are adapting this guide for Moonbase Alpha, be sure to update the data so
 !!! note
     This code expects to find a working Moonbeam RPC URL in the `RPC_ENDPOINT` environment variable. You can get your own endpoint and API key from a supported [Endpoint Provider](/builders/get-started/endpoints/){target=\_blank}.
 
-    Set it in the `.env` file and [SQD Cloud secrets](https://docs.subsquid.io/cloud/resources/env-variables/){target=\_blank} if and when you deploy your Squid there. We tested the code using a public endpoint at `wss://wss.api.moonbeam.network`; we recommend using private endpoints for production.
+    Set it in the `.env` file and [SQD Cloud secrets](https://docs.sqd.ai/cloud/resources/env-variables/){target=\_blank} if and when you deploy your Squid there. We tested the code using a public endpoint at `wss://wss.api.moonbeam.network`; we recommend using private endpoints for production.
 
 ## Define the Batch Handler {: #define-batch-handler }
 
@@ -135,7 +135,7 @@ Here is the result:
 ```
 
 !!! note
-    The `contract.tokenURI` call accesses the **state** of the contract via a chain RPC endpoint. This can slow down indexing, but this data is only available in this way. You'll find more information on accessing state in the [dedicated section of the SQD docs](https://docs.subsquid.io/sdk/resources/tools/typegen/state-queries/#example-1){target=\_blank}.
+    The `contract.tokenURI` call accesses the **state** of the contract via a chain RPC endpoint. This can slow down indexing, but this data is only available in this way. You'll find more information on accessing state in the [dedicated section of the SQD docs](https://docs.sqd.ai/sdk/resources/tools/typegen/state-queries/#example-1){target=\_blank}.
 
 ## Launch and Set Up the Database {: #launch-database }
 
@@ -219,13 +219,13 @@ Have fun playing around with queries; after all, it's a _playground_!
 
 SQD offers a SaaS solution to host projects created by its community. All templates ship with a deployment manifest file named `squid.yml`, which can be used with the Squid CLI command `sqd deploy`.
 
-Please refer to the [SQD Cloud Quickstart](https://docs.subsquid.io/cloud/overview/){target=\_blank} page on SQD's documentation site for more information.
+Please refer to the [SQD Cloud Quickstart](https://docs.sqd.ai/cloud/overview/){target=\_blank} page on SQD's documentation site for more information.
 
 ## Example Project Repository {: #example-project-repository }
 
 You can view the template used here and many other example repositories [on SQD's examples organization on GitHub](https://github.com/orgs/subsquid-labs/repositories){target=\_blank}.
 
-[SQD's documentation](https://docs.subsquid.io){target=\_blank} contains informative material, and it's the best place to start if you are curious about some aspects that were not fully explained in this guide.
+[SQD's documentation](https://docs.sqd.ai/){target=\_blank} contains informative material, and it's the best place to start if you are curious about some aspects that were not fully explained in this guide.
 
 --8<-- 'text/_disclaimers/educational-tutorial.md'
 

@@ -21,7 +21,7 @@ To get started, you will need the following:
   --8<-- 'text/_common/faucet/faucet-list-item.md'
  - 
 --8<-- 'text/_common/endpoint-examples-list-item.md'
- - Have [Foundry installed](https://book.getfoundry.sh/getting-started/installation){target=\_blank}
+ - Have [Foundry installed](https://getfoundry.sh/introduction/installation/){target=\_blank}
  - Have a [Moonscan API Key](/builders/ethereum/verify-contracts/api-verification/#generating-a-moonscan-api-key){target=\_blank}
 
 ## Create a Foundry Project {: #create-a-foundry-project }
@@ -132,7 +132,7 @@ Let's start by writing a test for the token smart contract. Open up `MyToken.t.s
 --8<-- 'code/tutorials/eth-api/foundry-start-to-end/MyToken-initial-test.sol'
 ```
 
-Let's break down what's happening here. The first line is typical for a Solidity file: setting the Solidity version. The next two lines are imports. `forge-std/Test.sol` is the standard library that Forge (and thus Foundry) includes to help with testing. This includes the `Test` smart contract, certain assertions, and [forge cheatcodes](https://book.getfoundry.sh/forge/cheatcodes){target=\_blank}.  
+Let's break down what's happening here. The first line is typical for a Solidity file: setting the Solidity version. The next two lines are imports. `forge-std/Test.sol` is the standard library that Forge (and thus Foundry) includes to help with testing. This includes the `Test` smart contract, certain assertions, and [forge cheatcodes](https://getfoundry.sh/forge/tests/cheatcodes/){target=\_blank}.  
 
 If you take a look at the `MyTokenTest` smart contract, you'll see two functions. The first is `setUp`, which is run before each test. So in this test contract, a new instance of `MyToken` is deployed every time a test function is run. You know if a function is a test function if it starts with the word *"test"*, so the second function, `testConstructorMint` is a test function.  
 
@@ -278,37 +278,28 @@ Let's break this script down. The first line is standard: declaring the solidity
 
 Now let's look at the logic in the contract. There is a single function, `run`, which is where the script logic is hosted. In this `run` function, the `vm` object is used often. This is where all of the Forge cheatcodes are stored, which determines the state of the virtual machine that the solidity is run in.  
 
-In the first line within the `run` function, `vm.envUint` is used to get a private key from the system's environment variables (we will do this soon). In the second line, `vm.startBroadcast` starts a broadcast, which indicates that the following logic should take place on-chain. So when the `MyToken` and the `Container` contracts are instantiated with the `new` keyword, they are instantiated on-chain. The final line, `vm.stopBroadcast` ends the broadcast.  
+In the first line within the `run` function, `vm.startBroadcast` starts a broadcast, which indicates that the following logic should take place on-chain. So when the `MyToken` and the `Container` contracts are instantiated with the `new` keyword, they are instantiated on-chain. The final line, `vm.stopBroadcast` ends the broadcast.  
 
-Before we run this script, let's set up some of our environment variables. Create a new `.env` file:  
-
-```bash
-touch .env
-```
-
-And within this file, add the following:  
-
-```text
-PRIVATE_KEY=YOUR_PRIVATE_KEY
-MOONSCAN_API_KEY=YOUR_MOONSCAN_API_KEY
-```
-
-!!! note
-    Foundry provides [additional options for handling your private key](https://book.getfoundry.sh/reference/forge/forge-script#wallet-options---raw){target=\_blank}. It is up to you to decide whether or not you would rather use it in the console, have it stored in your device's environment, using a hardware wallet, or using a keystore.
-
-To add these environment variables, run the following command:  
+Before we run this script, you'll need to set up your keystore by importing your private key. You can do this using the cast wallet import command as follows:
 
 ```bash
-source .env
+cast wallet import deployer --interactive
 ```
 
-Now your script and project should be ready for deployment! Use the following command to do so:  
+This will prompt you to:
+
+1. Enter your private key
+2. Enter a password to encrypt the keystore
+
+The account will be saved as "deployer" in your keystore. You can then use this account name in the deployment commands. You'll be prompted for your keystore password when deploying contracts or sending transactions.
+
+Now, your script and project should be ready for deployment! Use the following command to do so:  
 
 ```bash
-forge script Container.s.sol:ContainerDeployScript --broadcast --verify -vvvv --legacy --rpc-url moonbase
+forge script Container.s.sol:ContainerDeployScript --broadcast --verify -vvvv --legacy --rpc-url moonbase --account deployer
 ```
 
-This command runs the `ContainerDeployScript` contract as a script. The `--broadcast` option tells Forge to allow broadcasting of transactions, the `--verify` option tells Forge to verify to Moonscan when deploying, `-vvvv` makes the command output verbose, and `--rpc-url moonbase` sets the network to what `moonbase` was set to in `foundry.toml`. The `--legacy` flag instructs Foundry to bypass EIP-1559. While all Moonbeam networks support EIP-1559, Foundry will refuse to submit the transaction to Moonbase and revert to a local simulation if you omit the `--legacy` flag.
+This command runs the `ContainerDeployScript` contract as a script. The `--broadcast` option tells Forge to allow broadcasting of transactions, the `--verify` option tells Forge to verify to Moonscan when deploying, `-vvvv` makes the command output verbose, and `--rpc-url moonbase` sets the network to what `moonbase` was set to in `foundry.toml`. The `--legacy` flag instructs Foundry to bypass EIP-1559. While all Moonbeam networks support EIP-1559, Foundry will refuse to submit the transaction to Moonbase and revert to a local simulation if you omit the `--legacy` flag. The `--account deployer` flag tells Foundry to use the "deployer" account from your keystore.
 
 You should see something like this as output:  
 
@@ -326,13 +317,11 @@ The entire deployment script is available below:
 
 ### Deploy on Moonbeam MainNet {: #deploy-on-moonbeam-mainnet }
 
-Let's say that you're comfortable with your smart contracts and you want to deploy on the Moonbeam MainNet! The process isn't too different from what was just done, you just have to change the command's rpc-url from `moonbase` to `moonbeam`, since you've already added Moonbeam MainNet's information in the `foundry.toml` file:
+Let's say you're comfortable with your smart contracts and want to deploy on the Moonbeam MainNet! The process isn't too different from what was just done, you just have to change the command's rpc-url from `moonbase` to `moonbeam`, since you've already added Moonbeam MainNet's information in the `foundry.toml` file:
 
 ```bash
-forge script Container.s.sol:ContainerDeployScript --broadcast --verify -vvvv --legacy --rpc-url moonbeam
+forge script Container.s.sol:ContainerDeployScript --broadcast --verify -vvvv --legacy --rpc-url moonbeam --account deployer
 ```
-
-It's important to note that there are additional, albeit more complex, [ways of handling private keys in Foundry](https://book.getfoundry.sh/reference/forge/forge-script#wallet-options---raw){target=\_blank}. Some of these methods can be considered safer than storing a production private key in environment variables.  
 
 That's it! You've gone from nothing to a fully tested, deployed, and verified Foundry project. You can now adapt this so that you can use Foundry in your own projects!
 

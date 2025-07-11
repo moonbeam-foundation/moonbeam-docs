@@ -13,7 +13,7 @@ One of the key network participants needed to support parachains within the Polk
 
 ### Delegators {: #delegators }
 
-Moonbeam token holders who stake tokens, vouching for specific collator candidates on the parachain. Any user that holds a minimum amount of tokens as [free balance](https://wiki.polkadot.network/docs/learn-accounts#balance-types){target=\_blank} can become a delegator by staking their tokens.
+Moonbeam token holders who stake tokens, vouching for specific collator candidates on the parachain. Any user that holds a minimum amount of tokens as [free balance](https://wiki.polkadot.network/learn/learn-accounts/#balance-types){target=\_blank} can become a delegator by staking their tokens.
 
 ### Nominators {: #nominators }
 
@@ -45,7 +45,7 @@ A smart contract is a computer program or a transaction protocol that is intende
 
 ### Substrate {: #substrate }
 
-A Rust-based blockchain development framework created by Parity Technologies based on their experience implementing multiple blockchain clients.  Substrate comes with many modules and functionalities that are needed when building a blockchain, including P2P networking, consensus mechanisms, staking, cryptocurrency, on-chain governance modules, and more.  It dramatically reduces the time and engineering effort required to implement a blockchain.
+A Rust-based blockchain development framework created by Parity Technologies based on their experience implementing multiple blockchain clients.  Substrate comes with many modules and functionalities that are needed when building a blockchain, including P2P networking, consensus mechanisms, staking, cryptocurrency, on-chain governance modules, and more.  It dramatically reduces the time and engineering effort required to implement a blockchain. Substrate is now part of the [Polkadot SDK](https://polkadot.com/platform/sdk/){target=\_blank}.
 
 ### Substrate Frame Pallets {: #substrate-frame-pallets }
 

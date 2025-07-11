@@ -35,7 +35,7 @@ If you are familiar with running Chainlink oracle nodes, this information will g
 
 To follow along with this guide, you will need to have:
 
- - [Docker installed](https://docs.docker.com/get-docker){target=\_blank} for running Postgres DB and ChainLink node containers
+ - [Docker installed](https://docs.docker.com/get-started/get-docker/){target=\_blank} for running Postgres DB and ChainLink node containers
  - An account with funds. You can create one with [MetaMask](/tokens/connect/metamask/){target=\_blank}.
  --8<-- 'text/_common/faucet/faucet-list-item.md'
  - Access to the [Remix IDE](https://remix.ethereum.org){target=\_blank} in case you want to use it to deploy the oracle contract. For more information you can check out the [Using Remix to Deploy to Moonbeam](/builders/ethereum/dev-env/remix/){target=\_blank} tutorial
@@ -159,7 +159,7 @@ With the oracle node running, you can start to configure the smart contract side
 
 Next, you'll need to deploy the oracle contract, which is the middleware between the chain and the node. The contract emits an event with all the necessary information, which is read by the oracle node. Then, the node fulfills the request and writes the requested data in the caller's contract.
 
-The source code of the oracle contract can be found in [Chainlink's official GitHub repository](https://github.com/smartcontractkit/chainlink/tree/develop/contracts/src/v0.6/Oracle.sol){target=\_blank}. For this example, you can use Remix to interact with Moonbase Alpha and deploy the contract. In [Remix](https://remix.ethereum.org){target=\_blank}, you can create a new file and copy the following code:
+The source code of the oracle contract can be found in [Chainlink's official GitHub repository](https://github.com/smartcontractkit/chainlink/blob/v1.13.3/contracts/src/v0.6/Oracle.sol){target=\_blank}. For this example, you can use Remix to interact with Moonbase Alpha and deploy the contract. In [Remix](https://remix.ethereum.org){target=\_blank}, you can create a new file and copy the following code:
 
 ```bash
 pragma solidity ^0.6.6;

@@ -15,7 +15,7 @@ This guide will show you how to get started running a tracing node on Moonbeam w
 
 ## Checking Prerequisites {: #checking-prerequisites }
 
-Similarly to running a regular node, you can spin up a tracing node using Docker or Systemd. If you choose to use Docker, you must [install Docker](https://docs.docker.com/get-docker){target=\_blank} if you haven't already. At the time of writing, the Docker version used was 19.03.6.
+Similarly to running a regular node, you can spin up a tracing node using Docker or Systemd. If you choose to use Docker, you must [install Docker](https://docs.docker.com/get-started/get-docker/){target=\_blank} if you haven't already. At the time of writing, the Docker version used was 19.03.6.
 
 ## Tracing Node Flags {: #tracing-node-flags }
 

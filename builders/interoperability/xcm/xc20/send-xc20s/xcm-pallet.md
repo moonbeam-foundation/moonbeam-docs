@@ -11,7 +11,7 @@ description: This guide introduces the Polkadot XCM Pallet and explains how to s
 
     The Polkadot XCM Pallet replaces the deprecated XTokens Pallet. Accordingly, ensure that you are using the Polkadot XCM Pallet to interact with XC-20s.
 
-Manually crafting an XCM message for fungible asset transfers is a challenging task. Consequently, developers can leverage wrapper functions and pallets to use XCM features on Polkadot and Kusama. One example of such wrappers is the [XCM](https://wiki.polkadot.network/docs/learn-xcm-pallet){target=\_blank} Pallet, which provides different methods to transfer fungible assets via XCM.
+Manually crafting an XCM message for fungible asset transfers is a challenging task. Consequently, developers can leverage wrapper functions and pallets to use XCM features on Polkadot and Kusama. One example of such wrappers is the [XCM](https://docs.polkadot.com/develop/interoperability/send-messages/){target=\_blank} Pallet, which provides different methods to transfer fungible assets via XCM.
 
 This guide will show you how to leverage the Polkadot XCM Pallet to send [XC-20s](/builders/interoperability/xcm/xc20/overview/){target=\_blank} from a Moonbeam-based network to other chains in the ecosystem (relay chain/parachains).
 
@@ -219,7 +219,7 @@ To follow along with the examples in this guide, you need to have the following:
     !!! note
         You can adapt this guide to transfer another [external XC-20 or a local XC-20](/builders/interoperability/xcm/xc20/overview/){target=\_blank}. For external XC-20s, you'll need the asset ID and the number of decimals the asset has. For local XC-20s, you'll need the contract address.
 
-    ![Moonbeam Swap xcUNIT](/images/builders/interoperability/xcm/xc20/send-xc20s/xtokens-pallet/xtokens-1.webp)
+    ![Moonbeam Swap xcUNIT](/images/builders/interoperability/xcm/xc20/send-xc20s/xcm-pallet/xtokens-1.webp)
 
 To check your xcUNIT balance, you can add the XC-20's [precompile address](/builders/interoperability/xcm/xc20/overview/#calculate-xc20-address){target=\_blank} to MetaMask with the following address:
 

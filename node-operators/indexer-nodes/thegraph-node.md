@@ -20,7 +20,7 @@ There are two ways you can set up a Graph Node: you can use Docker to run an all
 
 Before diving into setting up a Graph Node, you need to have the following installed on your system:
 
- - [Docker](https://docs.docker.com/get-docker){target=\_blank}
+ - [Docker](https://docs.docker.com/get-started/get-docker/){target=\_blank}
  - [Docker Compose](https://docs.docker.com/compose/install){target=\_blank}
  - [JQ](https://stedolan.github.io/jq/download){target=\_blank}
 

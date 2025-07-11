@@ -188,9 +188,9 @@ We can start off by creating the base for the cross-chain DAO and then edit it s
 
 ### Starting with the OpenZeppelin Contract Wizard {: #starting-with-the-openzeppelin-contract-wizard }
 
-A logical starting point for thinking about writing a cross-chain DAO is its predecessor: a single-chain DAO. There are many different implementations that exist, but since [OpenZeppelin](https://www.openzeppelin.com/contracts){target=\_blank} hosts an already popular smart contract repository, we will use their Governance smart contracts. A second reason why we're using OpenZeppelin's smart contracts is because they're based off of Compound Finance's DAO, which we've already investigated in the [previous section](#intuition-and-planning).  
+A logical starting point for thinking about writing a cross-chain DAO is its predecessor: a single-chain DAO. There are many different implementations that exist, but since [OpenZeppelin](https://www.openzeppelin.com/solidity-contracts){target=\_blank} hosts an already popular smart contract repository, we will use their Governance smart contracts. A second reason why we're using OpenZeppelin's smart contracts is because they're based off of Compound Finance's DAO, which we've already investigated in the [previous section](#intuition-and-planning).  
 
-A good way to play with the configurations of the `Governor` smart contract is to use the OpenZeppelin smart contract wizard. By going to the [OpenZeppelin contract page](https://www.openzeppelin.com/contracts){target=\_blank}, scrolling down, and clicking on the **Governor** tab, you can view the different ways that you can configure the `Governor` smart contract.
+A good way to play with the configurations of the `Governor` smart contract is to use the OpenZeppelin smart contract wizard. By going to the [OpenZeppelin contract page](https://www.openzeppelin.com/solidity-contracts){target=\_blank}, scrolling down, and clicking on the **Governor** tab, you can view the different ways that you can configure the `Governor` smart contract.
 
 We're going to generate as simple of a base smart contract as possible for demonstration purposes:  
 
@@ -479,7 +479,7 @@ This function allows any user to start the collection process for a specific `pr
 Recall that each spoke chain will have a `DAOSatellite` smart contract associated with it that can also receive and send cross-chain messages. This function sends a cross-chain message to every registered spoke chain's `DAOSatellite` during the collection phase. The message contains a function selector, `1`, and a proposal ID. The function selector is used to request voting data for the given proposal instead of some other action (we will revisit [this concept very soon](#receiving-votes-from-spoke-chains)) from the destination `DAOSatellite` contract.
 
 !!! note
-    By using LayerZero, multiple messages must be sent in a single transaction so that every spoke chain can receive data. LayerZero, along with other cross-chain protocols, [is **unicast** instead of **multicast**](https://layerzero.gitbook.io/docs/faq/messaging-properties#multicast){target=\_blank}. As in, a cross-chain message can only arrive to a single destination. When designing a hub-and-spoke architecture, research if your [protocol supports multicast messaging](https://docs.wormhole.com/wormhole/explore-wormhole/core-contracts#multicast){target=\_blank}, as it may be more succinct.
+    By using LayerZero, multiple messages must be sent in a single transaction so that every spoke chain can receive data. LayerZero, along with other cross-chain protocols, is **unicast** instead of **multicast**. As in, a cross-chain message can only arrive to a single destination. When designing a hub-and-spoke architecture, research if your [protocol supports multicast messaging](https://wormhole.com/docs/protocol/infrastructure/core-contracts/#multicast){target=\_blank}, as it may be more succinct.
 
 This should be it for requesting data, since most of the logic afterwards will be hosted within the [DAO Satellite](#dao-satellite-contract). Just understand that when sending the proposal to the
 

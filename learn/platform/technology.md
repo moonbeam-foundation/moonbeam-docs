@@ -30,7 +30,7 @@ Pallets are at the heart of Substrate-based chains, providing specific functiona
 - **Frontier pallets** — the Ethereum compatibility layer pioneered by the Moonbeam team  
 - **Parachain Staking pallet** — enables Delegated Proof of Stake (DPoS)  
 
-In addition to these pallets provided by Polkadot's Substrate, developers can [create their own pallets](https://docs.substrate.io/tutorials/collectibles-workshop/03-create-pallet){target=_blank} to add custom functionality. Moonbeam leverages multiple existing Substrate frame pallets as well as several custom pallets for features such as cross-chain token integration, the [Orbiter Program](/node-operators/networks/collators/orbiter/){target=_blank}, and more. You can find the Moonbeam runtime (built using Substrate) and related pallets in the [Moonbeam GitHub repository](https://github.com/moonbeam-foundation/moonbeam){target=_blank}.
+In addition to these pallets provided by Polkadot's Substrate, developers can [create their own pallets](https://docs.polkadot.com/develop/parachains/customize-parachain/make-custom-pallet/){target=_blank} to add custom functionality. Moonbeam leverages multiple existing Substrate frame pallets as well as several custom pallets for features such as cross-chain token integration, the [Orbiter Program](/node-operators/networks/collators/orbiter/){target=_blank}, and more. You can find the Moonbeam runtime (built using Substrate) and related pallets in the [Moonbeam GitHub repository](https://github.com/moonbeam-foundation/moonbeam){target=_blank}.
 
 Moonbeam also uses the Cumulus library to facilitate integration with the Polkadot relay chain.
 
@@ -70,7 +70,7 @@ In addition to these Substrate FRAME Pallets, Moonbeam implements custom pallets
 
 ### Forkless Upgrades {: #forkless-upgrades }
 
-One of the best things about developing on Polkadot with Substrate is the ability to introduce [forkless upgrades](https://docs.substrate.io/maintain/runtime-upgrades){target=_blank} to blockchain runtimes. In traditional blockchain architectures, substantial changes to the blockchain's rules often require a hard fork, which can be disruptive and contentious.  
+One of the best things about developing on Polkadot with Substrate is the ability to introduce [forkless upgrades](https://docs.polkadot.com/develop/parachains/maintenance/runtime-upgrades/){target=_blank} to blockchain runtimes. In traditional blockchain architectures, substantial changes to the blockchain's rules often require a hard fork, which can be disruptive and contentious.  
 
 Substrate takes a different approach by separating the blockchain's state (data) from its logic (rules). Logic lives in the runtime, which is itself stored on-chain. Whenever a new runtime is uploaded (via FRAME's `set_code` call) and approved through on-chain governance, all nodes automatically switch to the new runtime at a specified block. This process is seamless and does not split the network.  
 
@@ -88,16 +88,17 @@ A high-level interaction flow is shown above. A Web3 RPC call from a DApp or exi
 
 ### Ethereum Pallet {: #ethereum-pallet}
 
-The [Ethereum pallet](https://polkadot-evm.github.io/frontier/frame/ethereum.html){target=\_blank} is responsible for handling blocks and transaction receipts and statuses. It enables sending and receiving Ethereum-formatted data to and from Moonbeam by storing an Ethereum-style block and its associated transaction hashes in the Substrate runtime.
+The [Ethereum pallet](https://polkadot-evm.github.io/frontier/overview){target=\_blank} is responsible for handling blocks and transaction receipts and statuses. It enables sending and receiving Ethereum-formatted data to and from Moonbeam by storing an Ethereum-style block and its associated transaction hashes in the Substrate runtime.
 
 When a user submits a raw Ethereum transaction, it converts into a Substrate transaction through the Ethereum pallet's `transact` extrinsic—using the Ethereum pallet as the sole executor of the EVM pallet forces all of the data to be stored and transacted in an Ethereum-compatible way, which is how explorers like [Moonscan](/builders/get-started/explorers/#moonscan){target=\_blank} (built by Etherscan) can index block data.
 
 ### EVM Pallet {: #evm-pallet }
 
-The [EVM pallet](https://polkadot-evm.github.io/frontier/frame/ethereum.html){target=\_blank} implements a sandboxed virtual stack machine and uses the [SputnikVM](https://github.com/rust-ethereum/evm){target=\_blank} as the underlying EVM engine. It executes Ethereum smart contract bytecode in a manner similar to Ethereum mainnet, including gas metering and state changes.
+The [EVM pallet](https://polkadot-evm.github.io/frontier/overview){target=\_blank} implements a sandboxed virtual stack machine and uses the [SputnikVM](https://github.com/rust-ethereum/evm){target=\_blank} as the underlying EVM engine. It executes Ethereum smart contract bytecode in a manner similar to Ethereum mainnet, including gas metering and state changes.
 
 Moonbeam uses unified accounts, meaning an H160 (Ethereum-style) address is also a valid Substrate address, so you only need a single account to interact with the Substrate runtime and the EVM. Once a balance exists in the EVM, smart contracts can be created and interacted with through standard Ethereum RPC calls.  
-The EVM pallet should produce nearly identical execution results to Ethereum, such as gas cost and balance changes. However, there are some differences. Please refer to the [EVM module vs Ethereum network](https://polkadot-evm.github.io/frontier/frame/evm.html#evm-module-vs-ethereum-network){target=\_blank} section of the Frontier EVM Pallet documentation for more information. Although the EVM pallet aims for near-identical behavior to Ethereum, some differences exist, for example, Moonbeam's [dynamic fee mechanism](https://forum.moonbeam.network/t/proposal-dynamic-fee-mechanism-for-moonbeam-and-moonriver/241){target=\_blank}. For more information, refer to the [Frontier EVM Pallet documentation](https://polkadot-evm.github.io/frontier/frame/evm.html#evm-module-vs-ethereum-network){target=\_blank}.
+
+The EVM pallet should produce nearly identical execution results to Ethereum, such as gas cost and balance changes. However, there are some differences. Although the EVM pallet aims for near-identical behavior to Ethereum, some differences exist, for example, Moonbeam's [dynamic fee mechanism](https://forum.moonbeam.network/t/proposal-dynamic-fee-mechanism-for-moonbeam-and-moonriver/241){target=\_blank}. For more information, refer to the [Frontier EVM Pallet documentation](https://polkadot-evm.github.io/frontier/){target=\_blank}.
 
 Moonbeam includes additional EVM precompiles for functionalities like cryptographic operations (ECRecover, SHA256, BLAKE2, BN128) and dispatching Substrate calls directly from within the EVM. Moonbeam uses the following EVM precompiles:
 
