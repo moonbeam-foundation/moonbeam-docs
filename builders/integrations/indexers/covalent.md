@@ -11,7 +11,7 @@ description: Querying blockchain data such as balances, transactions, transfers,
 
 - [Unified API](#unified-api-overview) - incorporate blockchain data into your app with a familiar REST API
 
-This guide will cover all of the details needed to get started with the [Fundational API](https://goldrush.dev/docs/goldrush-foundational-api/quickstart){target=\_blank} and how to access the API endpoints for Moonbeam using curl commands and JavaScript and Python snippets.
+This guide will cover all of the details needed to get started with the [Foundational API](https://goldrush.dev/docs/goldrush-foundational-api/quickstart){target=\_blank} and how to access the API endpoints for Moonbeam using curl commands and JavaScript and Python snippets.
 
 --8<-- 'text/_disclaimers/third-party-content-intro.md'
 
