@@ -19,7 +19,7 @@ This strategy allows us to de-risk software upgrades to Moonbeam on the Polkadot
 
 The Moonbeam production MainNet is a parachain on Polkadot and has been since December 17th, 2021. Moonbeam features the highest levels of security and availability. Code running on the MainNet has generally been vetted through one or more of the other networks listed above.
 
-Moonbeam will offer parachain-related functionalities such as [XCMP](https://wiki.polkadot.network/docs/learn-crosschain){target=\_blank} and [SPREE](https://wiki.polkadot.network/learn/learn-spree/){target=\_blank} as these features become available.
+Moonbeam will offer parachain-related functionalities such as [XCMP](https://wiki.polkadot.network/learn/learn-xcm-transport/#xcmp-cross-chain-message-passing){target=\_blank} and [SPREE](https://wiki.polkadot.network/learn/learn-spree/){target=\_blank} as these features become available.
 
 [Learn more about Moonbeam](/learn/platform/networks/moonbeam/).
 
@@ -27,7 +27,7 @@ Moonbeam will offer parachain-related functionalities such as [XCMP](https://wik
 
 In advance of deploying to the Polkadot MainNet, [Moonbeam launched Moonriver](https://moonbeam.network/news/moonriver-won-a-parachain-slot-and-is-now-producing-blocks-on-the-kusama-network){target=\_blank} as a parachain on the Kusama network. The parachain functionality is live on Kusama.
 
-Moonriver will offer parachain-related functionalities such as [XCMP](https://wiki.polkadot.network/docs/learn-crosschain){target=\_blank} and [SPREE](https://wiki.polkadot.network/learn/learn-spree/){target=\_blank} as these features become available.
+Moonriver will offer parachain-related functionalities such as [XCMP](https://wiki.polkadot.network/learn/learn-xcm-transport/#xcmp-cross-chain-message-passing){target=\_blank} and [SPREE](https://wiki.polkadot.network/learn/learn-spree/){target=\_blank} as these features become available.
 
 [Learn more about Moonriver](/learn/platform/networks/moonriver/).
 
