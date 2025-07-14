@@ -1,6 +1,7 @@
 ---
 title: How to use thirdweb
 description: This guide will show you some of thirdweb's features, including building, testing, and deploying smart contract templates to launch dApps on Moonbeam.
+categories: Dev Environments, Ethereum Toolkit
 ---
 
 # Using thirdweb on Moonbeam

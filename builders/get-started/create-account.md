@@ -1,6 +1,7 @@
 ---
 title: Create an Account
 description: To begin developing on Moonbeam, you must create an account. This guide will provide you with the information needed to create one to use on Moonbeam.
+categories: Basics
 ---
 
 # Create an Account

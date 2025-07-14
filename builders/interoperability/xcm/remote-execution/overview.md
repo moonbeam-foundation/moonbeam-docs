@@ -1,6 +1,7 @@
 ---
 title: Remote Execution Overview
 description: Learn the basics of remote execution via XCM messages, which allow users to execute actions on other blockchains using accounts they control remotely via XCM.
+categories: XCM Remote Execution, Basics
 ---
 
 # Remote Execution via XCM

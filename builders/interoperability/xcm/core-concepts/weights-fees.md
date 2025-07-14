@@ -1,6 +1,7 @@
 ---
 title: XCM Execution Fees
 description: Learn about the XCM instructions involved in handling XCM execution fee payments and how to calculate fees on Polkadot, Kusama, and Moonbeam-based networks.
+categories: XCM
 ---
 
 # XCM Fees on Moonbeam

@@ -1,6 +1,7 @@
 ---
 title: Moonbeam Routed Liquidity
 description: Learn how to receive Moonbeam Routed Liquidity after establishing a cross-chain integration with a Moonbeam-based network.
+categories: XCM
 ---
 
 # Moonbeam Routed Liquidity

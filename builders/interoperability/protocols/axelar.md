@@ -1,6 +1,7 @@
 ---
 title: Cross-Chain Via Axelar
 description: Learn about Axelar, a GMP protocol for cross-chain asset transfers, and how to get started building cross-chain applications with Axelar on Moonbeam.
+categories: GMP Providers
 ---
 
 # Axelar Network

@@ -1,6 +1,7 @@
 ---
 title: Run a Moonbeam Development Node
 description: Follow this tutorial to learn how to spin up your first Moonbeam development node, how to configure it for development purposes, and connect to it.
+categories: Basics
 ---
 
 # Getting Started with a Local Moonbeam Development Node

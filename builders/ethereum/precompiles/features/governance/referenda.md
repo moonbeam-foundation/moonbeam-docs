@@ -1,6 +1,7 @@
 ---
 title: Referenda Precompile Contract
 description: Learn how to view and submit proposals on-chain to be put forth for referenda, directly through a Solidity interface with the Referenda Precompile on Moonbeam.
+categories: Precompiles, Ethereum Toolkit
 ---
 
 # Interacting with the Referenda Precompile

@@ -1,6 +1,7 @@
 ---
 title: How to use Ethers.rs Ethereum Library
 description: Learn how to use the Ethereum Ethers.rs Library to send transactions and deploy Solidity smart contracts to Moonbeam via the Rust language.
+categories: Libraries and SDKs, Ethereum Toolkit
 ---
 
 # Ethers.rs Rust Library

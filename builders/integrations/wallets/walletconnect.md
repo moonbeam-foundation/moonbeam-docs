@@ -1,6 +1,7 @@
 ---
 title: Add WalletConnect to a DApp
 description: Learn how to integrate WalletConnect into a DApp built on any of the Moonbeam networks, specifically so users can connect with their mobile wallets.
+categories: Tokens and Accounts
 ---
 
 # Integrate WalletConnect into a DApp

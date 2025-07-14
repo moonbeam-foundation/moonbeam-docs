@@ -1,6 +1,7 @@
 ---
 title: Send, Execute and Test XCM Messages
-description: Build a custom XCM message, verify its construction and integrity using the XCM Dry Run API, and then execute it locally on Moonbeam to observe the results. 
+description: Build a custom XCM message, verify its construction and integrity using the XCM Dry Run API, and then execute it locally on Moonbeam to observe the results.
+categories: XCM
 ---
 
 # Send, Execute, and Test XCM Messages

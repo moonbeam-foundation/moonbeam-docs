@@ -1,6 +1,7 @@
 ---
 title: GoldRush API
 description: Querying blockchain data such as balances, transactions, transfers, token holders, and event logs on Moonbeam with the GoldRush (formerly Covalent) API.
+categories: Indexer Nodes and Queries
 ---
 
 # Getting Started with the GoldRush API

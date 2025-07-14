@@ -1,6 +1,7 @@
 ---
 title: An Overview of OpenZeppelin on Moonbeam
 description: Learn how to use OpenZeppelin products for creating and managing Solidity smart contracts on Moonbeam, thanks to its Ethereum compatibility features.
+categories: Basics, Ethereum Toolkit
 ---
 
 # OpenZeppelin

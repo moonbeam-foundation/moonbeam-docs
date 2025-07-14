@@ -1,6 +1,7 @@
 ---
 title: Index Data with SQD (formerly Subsquid)
 description: Learn how to use SQD (Subsquid), a query node framework for Substrate-based chains, to index and process Substrate and EVM data for Moonbeam and Moonriver.
+categories: Indexer Nodes and Queries
 ---
 
 # Indexing Moonbeam with SQD (formerly Subsquid)
