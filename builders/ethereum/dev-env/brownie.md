@@ -285,7 +285,7 @@ In order to deploy the `Box.sol` smart contract, you will need to write a simple
 cd scripts && touch deploy.py
 ```
 
-Next, you need to write your deployment script. To get started start, take the following steps:
+Next, you need to write your deployment script. To get started, take the following steps:
 
 1. Import the `Box` contract and the `accounts` module from `brownie`
 2. Load your account using `accounts.load()` which decrypts a keystore file and returns the account information for the given account name

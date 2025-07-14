@@ -130,7 +130,7 @@ The Identity Precompile contains some functions that can be called by anyone and
 
 The judgment-related functions that must be called by a registrar and the caller must be the registrar account that corresponds to the `regIndex` are:
 
-??? function "**setFee**(*uint32* regIndex, *uint256* fee) - sets the fee for a registar"
+??? function "**setFee**(*uint32* regIndex, *uint256* fee) - sets the fee for a registrar"
 
     === "Parameters"
 

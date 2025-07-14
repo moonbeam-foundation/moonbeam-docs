@@ -238,7 +238,7 @@ from substrateinterface import Keypair, KeypairType
 # Define the shortform private key
 privatekey = bytes.fromhex("INSERT_PRIVATE_KEY_WITHOUT_0X_PREFIX")
 
-# Define the account mnenomic
+# Define the account mnemonic
 mnemonic = "INSERT_MNEMONIC"
 
 # Generate the keypair from shortform private key

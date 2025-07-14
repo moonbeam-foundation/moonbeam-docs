@@ -117,7 +117,7 @@ The script will provide the encoded call data for each of the following calls:
 
 - The `registerAsset` call
 - The `setRelativePrice` call
-- The `batch` call that combines each all of the above
+- The `batch` call that combines all of the above
 
 ![Overview of the proposal process](/images/builders/interoperability/xcm/xc-registration/assets/assets-3.webp)
 
