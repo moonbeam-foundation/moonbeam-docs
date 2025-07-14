@@ -445,7 +445,7 @@ You've configured the deployment, now it's time to actually deploy to Moonbase A
 
     --8<-- 'code/builders/ethereum/dev-env/waffle-mars/terminal/deploy-1.md'
 
-If successful, you should see details about your transaction including it's hash, the block it was included in, and it's address.
+If successful, you should see details about your transaction including its hash, the block it was included in, and it's address.
 
 --8<-- 'code/builders/ethereum/dev-env/waffle-mars/terminal/deploy-2.md'
 

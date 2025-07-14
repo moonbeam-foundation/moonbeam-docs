@@ -47,7 +47,7 @@ Please note that the examples in this section require installing [wscat](https:/
 
 ???+ function "eth_unsubscribe"
 
-    Creates a subscription for a given subscription name.
+    Cancels an existing subscription given its subscription ID.
 
     === "Parameters"
 
@@ -80,7 +80,7 @@ The examples in this guide are based on an Ubuntu 22.04 environment. You will al
 - MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}
 - An account with funds.
   --8<-- 'text/_common/faucet/faucet-list-item.md'
-- To deploy your own ERC-20 token on Moonbase Alpha. You can do this following [our Remix tutorial](/builders/ethereum/dev-env/remix/){target=\_blank} while first pointing MetaMask to Moonbase Alpha
+- To deploy your own ERC-20 token on Moonbase Alpha. You can do this by following [our Remix tutorial](/builders/ethereum/dev-env/remix/){target=\_blank} while first pointing MetaMask to Moonbase Alpha
 - Web3.js or the Ethereum library of your choice installed. You can install Web3.js via npm:
 
     ```bash
