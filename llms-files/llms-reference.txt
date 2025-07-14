@@ -1,0 +1,271 @@
+# Moonbeam Developer Documentation (LLMS Format)
+
+This file contains documentation for Moonbeam (https://moonbeam.network/). Moonbeam is a smart contract platform that makes it easy to build natively interoperable applications on Polkadot and Ethereum.
+It is intended for use with large language models (LLMs) to support developers working with Moonbeam. The content includes selected pages from the official docs, organized by section.
+
+This file includes documentation related to the category: Reference
+
+## List of doc pages:
+Doc-Page: https://raw.githubusercontent.com/moondance-labs/tanssi-docs/refs/heads/main/https://docs.moonbeam.network/learn/platform/glossary.md [type: learn]
+Doc-Page: https://raw.githubusercontent.com/moondance-labs/tanssi-docs/refs/heads/main/https://docs.moonbeam.network/builders/ethereum/precompiles/overview.md [type: builders]
+
+## Full content for each doc page
+
+Doc-Content: https://docs.moonbeam.network/learn/platform/glossary/
+--- BEGIN CONTENT ---
+---
+title: Glossary
+description: We've compiled a glossary of terms related to Polkadot that'll make it easier to learn more about the ecosystem.
+categories: Reference
+---
+
+# Glossary
+
+There's a great deal of terminology that's specific to Polkadot, Substrate, and the emerging Parity/Web3 ecosystem. We've compiled a list of terms we think you'll want to know as you review the Moonbeam documentation, plans, and tutorials.
+
+### Collators {: #collators }
+
+One of the key network participants needed to support parachains within the Polkadot Network.  In Moonbeam, collators are the nodes that are responsible for block production and for submitting produced blocks up to the Polkadot relay chain for finalization.
+
+### Delegators {: #delegators }
+
+Moonbeam token holders who stake tokens, vouching for specific collator candidates on the parachain. Any user that holds a minimum amount of tokens as [free balance](https://wiki.polkadot.network/learn/learn-accounts/#balance-types){target=\_blank} can become a delegator by staking their tokens.
+
+### Nominators {: #nominators }
+
+Relay chain token holders who select to "back" a validator. They can receive part of the validator's reward, but are subject to slashing of their staked tokens in case the validator misbehaves. A nominator can back up to 16 validators, and their bond is fully distributed between the backed validators that were selected for the validator set.
+
+### Nominated Proof of Stake {: #nominated-proof-of-stake }
+
+The mechanism used by Polkadot for selecting its block validator set to maximize chain security. At its core, it is a Proof-of-Stake system (PoS) in which nominators back validators. The latter with the highest backing are selected to be part of the validator set for a session. The stake of a validator is slashed in case of misbehavior. Thus, nominators are expected to do due diligence on the validators they nominate.
+
+### Parachains {: #parachains }
+
+A blockchain which has a slot and is connected to Polkadot.  Parachains receive shared security from Polkadot and the ability to interact with other parachains on the Polkadot network. They must lock DOT, the native relay chain token, to secure a slot for a specific period (up two years).
+
+### Parathreads {: #parathreads }
+
+A blockchain which can connect to Polkadot.  Parathreads are able to interact with other members of the Polkadot network, but they bid for block finalization (in DOT) on a block-to-block basis. They compete with other parathreads for block finalization, meaning that the block with the highest bid is selected to be finalize in that round.
+
+### Polkadot {: #polkadot }
+
+A network of connected blockchains that provides shared security and the ability to interact between chains.  Polkadot is built using the Substrate development framework.  Chains that connect to Polkadot are called parachains.
+
+### Relay Chain {: #relay-chain }
+
+The backbone blockchain supporting the Polkadot network.  Parachains connect to the relay Chain and use it for shared security and message passing.  Validators on the relay Chain help secure the parachains.
+
+### Smart Contract {: #smart-contract }
+
+A smart contract is a computer program or a transaction protocol that is intended to automatically execute, control, or document legally relevant events and actions according to the terms of a contract or an agreement. Smart contracts intend to reduce the need for trusted intermediators, arbitrations, and enforcement costs, as well as reduce fraud losses and malicious and accidental exceptions. [Learn more](https://en.wikipedia.org/wiki/Smart_contract){target=\_blank}.
+
+### Substrate {: #substrate }
+
+A Rust-based blockchain development framework created by Parity Technologies based on their experience implementing multiple blockchain clients.  Substrate comes with many modules and functionalities that are needed when building a blockchain, including P2P networking, consensus mechanisms, staking, cryptocurrency, on-chain governance modules, and more.  It dramatically reduces the time and engineering effort required to implement a blockchain. Substrate is now part of the [Polkadot SDK](https://polkadot.com/platform/sdk/){target=\_blank}.
+
+### Substrate Frame Pallets {: #substrate-frame-pallets }
+
+Substrate Frame Pallets are a collection of Rust-based modules, providing the functionality required for building a blockchain.  
+
+### Validators {: #validators }
+
+A node that secures the Polkadot relay Chain by staking DOT in the network, which is slashed if they misbehave. They finalize blocks from collators on parachains and also participate on consensus for the next relay Chain block with other validators.
+
+### WebAssembly/Wasm {: #webassemblywasm }
+
+WebAssembly is an open standard that defines a portable binary code format. It is supported by different programming languages, compilers, and browsers.
+--- END CONTENT ---
+
+Doc-Content: https://docs.moonbeam.network/builders/ethereum/precompiles/overview/
+--- BEGIN CONTENT ---
+---
+title: Solidity Precompiles
+description: An overview of the available Solidity precompiles on Moonbeam. Precompiles enable you to interact with Substrate features using the Ethereum API.
+categories: Reference
+---
+
+# Overview of the Precompiled Contracts on Moonbeam
+
+## Overview {: #introduction }
+
+On Moonbeam, a precompiled contract is native Substrate code that has an Ethereum-style address and can be called using the Ethereum API, like any other smart contract. The precompiles allow you to call the Substrate runtime directly which is not normally accessible from the Ethereum side of Moonbeam.
+
+The Substrate code responsible for implementing precompiles can be found in the [EVM pallet](/learn/platform/technology/#evm-pallet){target=\_blank}. The EVM pallet includes the [standard precompiles found on Ethereum and some additional precompiles that are not specific to Ethereum](https://github.com/polkadot-evm/frontier/tree/master/frame/evm/precompile){target=\_blank}. It also provides the ability to create and execute custom precompiles through the generic [`Precompiles` trait](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm/trait.Precompile.html){target=\_blank}. There are several custom Moonbeam-specific precompiles that have been created, all of which can be found in the [Moonbeam codebase](https://github.com/moonbeam-foundation/moonbeam/tree/master/precompiles){target=\_blank}. It is important to highlight that the precompiles from this list with the `CallableByContract` check are not callable inside the contract constructor.
+
+The Ethereum precompiled contracts contain complex functionality that is computationally intensive, such as hashing and encryption. The custom precompiled contracts on Moonbeam provide access to Substrate-based functionality such as staking, governance, XCM-related functions, and more.
+
+The Moonbeam-specific precompiles can be interacted with through familiar and easy-to-use Solidity interfaces using the Ethereum API, which are ultimately used to interact with the underlying Substrate interface. This flow is depicted in the following diagram:
+
+![Precompiled Contracts Diagram](/images/builders/ethereum/precompiles/overview/overview-1.webp)
+
+!!! note
+    There can be some unintended consequences when using the precompiled contracts on Moonbeam. Please refer to the [Security Considerations](/learn/core-concepts/security/){target=\_blank} page for more information.
+
+## Precompiled Contract Addresses {: #precompiled-contract-addresses }
+
+The precompiled contracts are categorized by address and based on the origin network. If you were to convert the precompiled addresses to decimal format, and break them into categories by numeric value, the categories are as follows:
+
+- **0-1023** - [Ethereum MainNet precompiles](#ethereum-mainnet-precompiles)
+- **1024-2047** - precompiles that are [not in Ethereum and not Moonbeam specific](#non-moonbeam-specific-nor-ethereum-precomiles)
+- **2048-4095** - [Moonbeam specific precompiles](#moonbeam-specific-precompiles)
+
+### Ethereum MainNet Precompiles {: #ethereum-mainnet-precompiles }
+
+=== "Moonbeam"
+    |                                                          Contract                                                           |                  Address                   |
+    |:---------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------:|
+    |      [ECRECOVER](/builders/ethereum/precompiles/utility/eth-mainnet/#verify-signatures-with-ecrecover){target=\_blank}      | 0x0000000000000000000000000000000000000001 |
+    |              [SHA256](/builders/ethereum/precompiles/utility/eth-mainnet/#hashing-with-sha256){target=\_blank}              | 0x0000000000000000000000000000000000000002 |
+    |          [RIPEMD160](/builders/ethereum/precompiles/utility/eth-mainnet/#hashing-with-ripemd-160){target=\_blank}           | 0x0000000000000000000000000000000000000003 |
+    |            [Identity](/builders/ethereum/precompiles/utility/eth-mainnet/#the-identity-function){target=\_blank}            | 0x0000000000000000000000000000000000000004 |
+    |    [Modular Exponentiation](/builders/ethereum/precompiles/utility/eth-mainnet/#modular-exponentiation){target=\_blank}     | 0x0000000000000000000000000000000000000005 |
+    |                  [BN128Add](/builders/ethereum/precompiles/utility/eth-mainnet/#bn128add){target=\_blank}                   | 0x0000000000000000000000000000000000000006 |
+    |                  [BN128Mul](/builders/ethereum/precompiles/utility/eth-mainnet/#bn128mul){target=\_blank}                   | 0x0000000000000000000000000000000000000007 |
+    |              [BN128Pairing](/builders/ethereum/precompiles/utility/eth-mainnet/#bn128pairing){target=\_blank}               | 0x0000000000000000000000000000000000000008 |
+    | [Blake2](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm_precompile_blake2/struct.Blake2F.html){target=\_blank} | 0x0000000000000000000000000000000000000009 |
+    |                 [P256Verify](https://github.com/ethereum/RIPs/blob/master/RIPS/rip-7212.md){target=\_blank}                 | 0x0000000000000000000000000000000000000100 |
+
+=== "Moonriver"
+    |                                                          Contract                                                           |                  Address                   |
+    |:---------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------:|
+    |      [ECRECOVER](/builders/ethereum/precompiles/utility/eth-mainnet/#verify-signatures-with-ecrecover){target=\_blank}      | 0x0000000000000000000000000000000000000001 |
+    |              [SHA256](/builders/ethereum/precompiles/utility/eth-mainnet/#hashing-with-sha256){target=\_blank}              | 0x0000000000000000000000000000000000000002 |
+    |          [RIPEMD160](/builders/ethereum/precompiles/utility/eth-mainnet/#hashing-with-ripemd-160){target=\_blank}           | 0x0000000000000000000000000000000000000003 |
+    |            [Identity](/builders/ethereum/precompiles/utility/eth-mainnet/#the-identity-function){target=\_blank}            | 0x0000000000000000000000000000000000000004 |
+    |    [Modular Exponentiation](/builders/ethereum/precompiles/utility/eth-mainnet/#modular-exponentiation){target=\_blank}     | 0x0000000000000000000000000000000000000005 |
+    |                  [BN128Add](/builders/ethereum/precompiles/utility/eth-mainnet/#bn128add){target=\_blank}                   | 0x0000000000000000000000000000000000000006 |
+    |                  [BN128Mul](/builders/ethereum/precompiles/utility/eth-mainnet/#bn128mul){target=\_blank}                   | 0x0000000000000000000000000000000000000007 |
+    |              [BN128Pairing](/builders/ethereum/precompiles/utility/eth-mainnet/#bn128pairing){target=\_blank}               | 0x0000000000000000000000000000000000000008 |
+    | [Blake2](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm_precompile_blake2/struct.Blake2F.html){target=\_blank} | 0x0000000000000000000000000000000000000009 |
+    |                 [P256Verify](https://github.com/ethereum/RIPs/blob/master/RIPS/rip-7212.md){target=\_blank}                 | 0x0000000000000000000000000000000000000100 |
+
+=== "Moonbase Alpha"
+    |                                                          Contract                                                           |                  Address                   |
+    |:---------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------:|
+    |      [ECRECOVER](/builders/ethereum/precompiles/utility/eth-mainnet/#verify-signatures-with-ecrecover){target=\_blank}      | 0x0000000000000000000000000000000000000001 |
+    |              [SHA256](/builders/ethereum/precompiles/utility/eth-mainnet/#hashing-with-sha256){target=\_blank}              | 0x0000000000000000000000000000000000000002 |
+    |          [RIPEMD160](/builders/ethereum/precompiles/utility/eth-mainnet/#hashing-with-ripemd-160){target=\_blank}           | 0x0000000000000000000000000000000000000003 |
+    |            [Identity](/builders/ethereum/precompiles/utility/eth-mainnet/#the-identity-function){target=\_blank}            | 0x0000000000000000000000000000000000000004 |
+    |    [Modular Exponentiation](/builders/ethereum/precompiles/utility/eth-mainnet/#modular-exponentiation){target=\_blank}     | 0x0000000000000000000000000000000000000005 |
+    |                  [BN128Add](/builders/ethereum/precompiles/utility/eth-mainnet/#bn128add){target=\_blank}                   | 0x0000000000000000000000000000000000000006 |
+    |                  [BN128Mul](/builders/ethereum/precompiles/utility/eth-mainnet/#bn128mul){target=\_blank}                   | 0x0000000000000000000000000000000000000007 |
+    |              [BN128Pairing](/builders/ethereum/precompiles/utility/eth-mainnet/#bn128pairing){target=\_blank}               | 0x0000000000000000000000000000000000000008 |
+    | [Blake2](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm_precompile_blake2/struct.Blake2F.html){target=\_blank} | 0x0000000000000000000000000000000000000009 |
+    |                 [P256Verify](https://github.com/ethereum/RIPs/blob/master/RIPS/rip-7212.md){target=\_blank}                 | 0x0000000000000000000000000000000000000100 |
+
+### Non-Moonbeam Specific nor Ethereum Precompiles {: #non-moonbeam-specific-nor-ethereum-precompiles }
+
+=== "Moonbeam"
+    |                                                                      Contract                                                                      |                  Address                   |
+    |:--------------------------------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------:|
+    |                    [SHA3FIPS256](/builders/ethereum/precompiles/utility/eth-mainnet/#hashing-with-sha3fips256){target=\_blank}                     | 0x0000000000000000000000000000000000000400 |
+    |                                                                 Dispatch [Removed]                                                                 | 0x0000000000000000000000000000000000000401 |
+    | [ECRecoverPublicKey](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm_precompile_simple/struct.ECRecoverPublicKey.html){target=\_blank} | 0x0000000000000000000000000000000000000402 |
+
+=== "Moonriver"
+    |                                                                      Contract                                                                      |                  Address                   |
+    |:--------------------------------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------:|
+    |                    [SHA3FIPS256](/builders/ethereum/precompiles/utility/eth-mainnet/#hashing-with-sha3fips256){target=\_blank}                     | 0x0000000000000000000000000000000000000400 |
+    |                                                                 Dispatch [Removed]                                                                 | 0x0000000000000000000000000000000000000401 |
+    | [ECRecoverPublicKey](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm_precompile_simple/struct.ECRecoverPublicKey.html){target=\_blank} | 0x0000000000000000000000000000000000000402 |
+
+=== "Moonbase Alpha"
+    |                                                                           Contract                                                                            |                  Address                   |
+    |:-------------------------------------------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------:|
+    |                          [SHA3FIPS256](/builders/ethereum/precompiles/utility/eth-mainnet/#hashing-with-sha3fips256){target=\_blank}                          | 0x0000000000000000000000000000000000000400 |
+    |                                                                      Dispatch [Removed]                                                                       | 0x0000000000000000000000000000000000000401 |
+    |      [ECRecoverPublicKey](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm_precompile_simple/struct.ECRecoverPublicKey.html){target=\_blank}       | 0x0000000000000000000000000000000000000402 |
+
+### Moonbeam Specific Precompiles {: #moonbeam-specific-precompiles }
+
+=== "Moonbeam"
+    |                                                                                        Contract                                                                                        |                               Address                               |
+    |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------:|
+    |                  [Parachain Staking](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol){target=\_blank}                  |              {{networks.moonbeam.precompiles.staking}}              |
+    |                 [Crowdloan Rewards](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/crowdloan-rewards/CrowdloanInterface.sol){target=\_blank}                 |             {{networks.moonbeam.precompiles.crowdloan}}             |
+    |                         [ERC-20 Interface](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/balances-erc20/ERC20.sol){target=\_blank}                          |               {{networks.moonbeam.precompiles.erc20}}               |
+    |                                                                      Democracy [Removed]                                                                      |             {{networks.moonbeam.precompiles.democracy}}             |
+    |                                [X-Tokens](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/xtokens/Xtokens.sol){target=\_blank}                                |              {{networks.moonbeam.precompiles.xtokens}}              |
+    |                        [Relay Encoder](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/relay-encoder/RelayEncoder.sol){target=\_blank}                        |           {{networks.moonbeam.precompiles.relay_encoder}}           |
+    |                [XCM Transactor V1](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/xcm-transactor/src/v1/XcmTransactorV1.sol){target=\_blank}                 |         {{networks.moonbeam.precompiles.xcm_transactor_v1}}         |
+    |                  [Author Mapping](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/author-mapping/AuthorMappingInterface.sol){target=\_blank}                  |          {{networks.moonbeam.precompiles.author_mapping}}           |
+    |                                   [Batch](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/batch/Batch.sol){target=\_blank}                                    |               {{networks.moonbeam.precompiles.batch}}               |
+    |                            [Randomness](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/randomness/Randomness.sol){target=\_blank}                            |            {{networks.moonbeam.precompiles.randomness}}             |
+    |                           [Call Permit](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/call-permit/CallPermit.sol){target=\_blank}                           |            {{networks.moonbeam.precompiles.call_permit}}            |
+    |                                   [Proxy](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/proxy/Proxy.sol){target=\_blank}                                    |               {{networks.moonbeam.precompiles.proxy}}               |
+    |                            [XCM Utilities](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/xcm-utils/XcmUtils.sol){target=\_blank}                            |             {{networks.moonbeam.precompiles.xcm_utils}}             |
+    |                [XCM Transactor V2](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/xcm-transactor/src/v2/XcmTransactorV2.sol){target=\_blank}                 |         {{networks.moonbeam.precompiles.xcm_transactor_v2}}         |
+    |                   [Council Collective [Removed]](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/collective/Collective.sol){target=\_blank}                   |        {{networks.moonbeam.precompiles.collective_council}}         |
+    |             [Technical Committee Collective [Removed]](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/collective/Collective.sol){target=\_blank}             |     {{networks.moonbeam.precompiles.collective_tech_committee}}     |
+    |                   [Treasury Council Collective](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/collective/Collective.sol){target=\_blank}                    |        {{networks.moonbeam.precompiles.collective_treasury}}        |
+    |                             [Referenda](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/referenda/Referenda.sol){target=\_blank}                              |             {{networks.moonbeam.precompiles.referenda}}             |
+    |                  [Conviction Voting](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/conviction-voting/ConvictionVoting.sol){target=\_blank}                  |         {{networks.moonbeam.precompiles.conviction_voting}}         |
+    |                               [Preimage](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/preimage/Preimage.sol){target=\_blank}                               |             {{networks.moonbeam.precompiles.preimage}}              |
+    |                      [OpenGov Tech Committee](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/collective/Collective.sol){target=\_blank}                      | {{networks.moonbeam.precompiles.collective_opengov_tech_committee}} |
+    |               [Precompile Registry](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/precompile-registry/PrecompileRegistry.sol){target=\_blank}               |             {{networks.moonbeam.precompiles.registry}}              |
+    |                                      [GMP](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/gmp/Gmp.sol){target=\_blank}                                       |                {{networks.moonbeam.precompiles.gmp}}                |
+    |                [XCM Transactor V3](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/xcm-transactor/src/v3/XcmTransactorV3.sol){target=\_blank}                 |         {{networks.moonbeam.precompiles.xcm_transactor_v3}}         |
+    |                               [XCM interface](https://github.com/Moonsong-Labs/moonkit/blob/main/precompiles/pallet-xcm/XcmInterface.sol){target=\_blank}                               |             {{networks.moonbeam.precompiles.xcm_interface}}              |
+    |                               [Identity](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/identity/Identity.sol){target=\_blank}                               |             {{networks.moonbeam.precompiles.identity}}              |
+    
+
+=== "Moonriver"
+    |                                                                           Contract                                                                            |                               Address                                |
+    |:-------------------------------------------------------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
+    |      [Parachain Staking](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol){target=\_blank}      |              {{networks.moonriver.precompiles.staking}}              |
+    |     [Crowdloan Rewards](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/crowdloan-rewards/CrowdloanInterface.sol){target=\_blank}     |             {{networks.moonriver.precompiles.crowdloan}}             |
+    |             [ERC-20 Interface](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/balances-erc20/ERC20.sol){target=\_blank}              |               {{networks.moonriver.precompiles.erc20}}               |
+    |                                                                     Democracy [Disabled]                                                                      |             {{networks.moonriver.precompiles.democracy}}             |
+    |                    [X-Tokens](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/xtokens/Xtokens.sol){target=\_blank}                    |              {{networks.moonriver.precompiles.xtokens}}              |
+    |            [Relay Encoder](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/relay-encoder/RelayEncoder.sol){target=\_blank}            |           {{networks.moonriver.precompiles.relay_encoder}}           |
+    |    [XCM Transactor V1](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/xcm-transactor/src/v1/XcmTransactorV1.sol){target=\_blank}     |         {{networks.moonriver.precompiles.xcm_transactor_v1}}         |
+    |      [Author Mapping](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/author-mapping/AuthorMappingInterface.sol){target=\_blank}      |          {{networks.moonriver.precompiles.author_mapping}}           |
+    |                       [Batch](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/batch/Batch.sol){target=\_blank}                        |               {{networks.moonriver.precompiles.batch}}               |
+    |                [Randomness](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/randomness/Randomness.sol){target=\_blank}                |            {{networks.moonriver.precompiles.randomness}}             |
+    |               [Call Permit](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/call-permit/CallPermit.sol){target=\_blank}               |            {{networks.moonriver.precompiles.call_permit}}            |
+    |                       [Proxy](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/proxy/Proxy.sol){target=\_blank}                        |               {{networks.moonriver.precompiles.proxy}}               |
+    |                [XCM Utilities](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/xcm-utils/XcmUtils.sol){target=\_blank}                |             {{networks.moonriver.precompiles.xcm_utils}}             |
+    |    [XCM Transactor V2](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/xcm-transactor/src/v2/XcmTransactorV2.sol){target=\_blank}     |         {{networks.moonriver.precompiles.xcm_transactor_v2}}         |
+    |       [Council Collective [Removed]](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/collective/Collective.sol){target=\_blank}       |        {{networks.moonriver.precompiles.collective_council}}         |
+    | [Technical Committee Collective [Removed]](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/collective/Collective.sol){target=\_blank} |     {{networks.moonriver.precompiles.collective_tech_committee}}     |
+    |       [Treasury Council Collective](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/collective/Collective.sol){target=\_blank}        |        {{networks.moonriver.precompiles.collective_treasury}}        |
+    |                 [Referenda](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/referenda/Referenda.sol){target=\_blank}                  |             {{networks.moonriver.precompiles.referenda}}             |
+    |      [Conviction Voting](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/conviction-voting/ConvictionVoting.sol){target=\_blank}      |         {{networks.moonriver.precompiles.conviction_voting}}         |
+    |                   [Preimage](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/preimage/Preimage.sol){target=\_blank}                   |             {{networks.moonriver.precompiles.preimage}}              |
+    |          [OpenGov Tech Committee](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/collective/Collective.sol){target=\_blank}          | {{networks.moonriver.precompiles.collective_opengov_tech_committee}} |
+    |   [Precompile Registry](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/precompile-registry/PrecompileRegistry.sol){target=\_blank}   |             {{networks.moonriver.precompiles.registry}}              |
+    |                          [GMP](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/gmp/Gmp.sol){target=\_blank}                           |                {{networks.moonriver.precompiles.gmp}}                |
+    |    [XCM Transactor V3](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/xcm-transactor/src/v3/XcmTransactorV3.sol){target=\_blank}     |         {{networks.moonriver.precompiles.xcm_transactor_v3}}         |
+    |                               [XCM interface](https://github.com/Moonsong-Labs/moonkit/blob/main/precompiles/pallet-xcm/XcmInterface.sol){target=\_blank}                               |             {{networks.moonriver.precompiles.xcm_interface}}              |
+    |                   [Identity](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/identity/Identity.sol){target=\_blank}                   |             {{networks.moonriver.precompiles.identity}}              |
+
+=== "Moonbase Alpha"
+    |                                                                            Contract                                                                            |                               Address                               |
+    |:--------------------------------------------------------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------:|
+    |      [Parachain Staking](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol){target=\_blank}      |              {{networks.moonbase.precompiles.staking}}              |
+    |     [Crowdloan Rewards](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/crowdloan-rewards/CrowdloanInterface.sol){target=\_blank}     |             {{networks.moonbase.precompiles.crowdloan}}             |
+    |             [ERC-20 Interface](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/balances-erc20/ERC20.sol){target=\_blank}              |               {{networks.moonbase.precompiles.erc20}}               |
+    |                                                                      Democracy [Removed]                                                                       |             {{networks.moonbase.precompiles.democracy}}             |
+    |                    [X-Tokens](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/xtokens/Xtokens.sol){target=\_blank}                    |              {{networks.moonbase.precompiles.xtokens}}              |
+    |            [Relay Encoder](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/relay-encoder/RelayEncoder.sol){target=\_blank}            |           {{networks.moonbase.precompiles.relay_encoder}}           |
+    |    [XCM Transactor V1](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/xcm-transactor/src/v1/XcmTransactorV1.sol){target=\_blank}     |         {{networks.moonbase.precompiles.xcm_transactor_v1}}         |
+    |      [Author Mapping](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/author-mapping/AuthorMappingInterface.sol){target=\_blank}      |          {{networks.moonbase.precompiles.author_mapping}}           |
+    |                       [Batch](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/batch/Batch.sol){target=\_blank}                        |               {{networks.moonbase.precompiles.batch}}               |
+    |                [Randomness](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/randomness/Randomness.sol){target=\_blank}                |            {{networks.moonbase.precompiles.randomness}}             |
+    |               [Call Permit](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/call-permit/CallPermit.sol){target=\_blank}               |            {{networks.moonbase.precompiles.call_permit}}            |
+    |                       [Proxy](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/proxy/Proxy.sol){target=\_blank}                        |               {{networks.moonbase.precompiles.proxy}}               |
+    |                [XCM Utilities](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/xcm-utils/XcmUtils.sol){target=\_blank}                |             {{networks.moonbase.precompiles.xcm_utils}}             |
+    |    [XCM Transactor V2](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/xcm-transactor/src/v2/XcmTransactorV2.sol){target=\_blank}     |         {{networks.moonbase.precompiles.xcm_transactor_v2}}         |
+    |       [Council Collective [Removed]](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/collective/Collective.sol){target=\_blank}       |        {{networks.moonbase.precompiles.collective_council}}         |
+    | [Technical Committee Collective [Removed]](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/collective/Collective.sol){target=\_blank} |     {{networks.moonbase.precompiles.collective_tech_committee}}     |
+    |       [Treasury Council Collective](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/collective/Collective.sol){target=\_blank}        |        {{networks.moonbase.precompiles.collective_treasury}}        |
+    |                 [Referenda](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/referenda/Referenda.sol){target=\_blank}                  |             {{networks.moonbase.precompiles.referenda}}             |
+    |      [Conviction Voting](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/conviction-voting/ConvictionVoting.sol){target=\_blank}      |         {{networks.moonbase.precompiles.conviction_voting}}         |
+    |                   [Preimage](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/preimage/Preimage.sol){target=\_blank}                   |             {{networks.moonbase.precompiles.preimage}}              |
+    |          [OpenGov Tech Committee](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/collective/Collective.sol){target=\_blank}          | {{networks.moonbase.precompiles.collective_opengov_tech_committee}} |
+    |   [Precompile Registry](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/precompile-registry/PrecompileRegistry.sol){target=\_blank}   |             {{networks.moonbase.precompiles.registry}}              |
+    |                          [GMP](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/gmp/Gmp.sol){target=\_blank}                           |                {{networks.moonbase.precompiles.gmp}}                |
+    |    [XCM Transactor V3](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/xcm-transactor/src/v3/XcmTransactorV3.sol){target=\_blank}     |         {{networks.moonbase.precompiles.xcm_transactor_v3}}         |
+    |                               [XCM Interface](https://github.com/Moonsong-Labs/moonkit/blob/main/precompiles/pallet-xcm/XcmInterface.sol){target=\_blank}                               |             {{networks.moonbeam.precompiles.xcm_interface}}              |
+    |                   [Identity](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/identity/Identity.sol){target=\_blank}                   |             {{networks.moonbase.precompiles.identity}}              |
+--- END CONTENT ---

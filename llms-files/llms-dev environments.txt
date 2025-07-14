@@ -1,0 +1,2083 @@
+# Moonbeam Developer Documentation (LLMS Format)
+
+This file contains documentation for Moonbeam (https://moonbeam.network/). Moonbeam is a smart contract platform that makes it easy to build natively interoperable applications on Polkadot and Ethereum.
+It is intended for use with large language models (LLMs) to support developers working with Moonbeam. The content includes selected pages from the official docs, organized by section.
+
+This file includes documentation related to the product: Dev Environments
+
+## AI Prompt Template
+
+You are an AI developer assistant for Moonbeam (https://moonbeam.network/). Your task is to assist developers in understanding and using the product described in this file.
+- Provide accurate answers based on the included documentation.
+- Do not assume undocumented features, behaviors, or APIs.
+- If unsure, respond with “Not specified in the documentation.
+
+## List of doc pages:
+Doc-Page: https://raw.githubusercontent.com/moondance-labs/tanssi-docs/refs/heads/main/https://docs.moonbeam.network/builders/ethereum/dev-env/ape.md [type: builders]
+Doc-Page: https://raw.githubusercontent.com/moondance-labs/tanssi-docs/refs/heads/main/https://docs.moonbeam.network/builders/ethereum/dev-env/brownie.md [type: builders]
+
+## Full content for each doc page
+
+Doc-Content: https://docs.moonbeam.network/builders/ethereum/dev-env/ape/
+--- BEGIN CONTENT ---
+---
+title: Deploy Contracts with Ape
+description: Use Ape, a Python framework, to compile, deploy, and debug smart contracts using Python on Moonbeam, thanks to its Ethereum compatibility.
+categories: Dev Environments
+---
+
+# Using Ape to Deploy To Moonbeam
+
+## Introduction {: #introduction }
+
+[Ape](https://docs.apeworx.io/ape/stable){target=\_blank} is an Ethereum development environment that helps Python developers manage and automate the recurring tasks inherent to building smart contracts and DApps. Ape can directly interact with Moonbeam's Ethereum API, so you can also use Ape to deploy smart contracts on Moonbeam.
+
+This guide will walk you through using Ape to compile, deploy, and interact with Ethereum smart contracts on the Moonbase Alpha TestNet. You can adapt this guide for Moonbeam, Moonriver, or a Moonbeam development node.
+
+## Checking Prerequisites {: #checking-prerequisites }
+
+To get started, ensure you have the following:
+
+ - MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}
+ - An account with funds.
+  You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}
+ - 
+To test out the examples in this guide on Moonbeam or Moonriver, you will need to have your own endpoint and API key, which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=\_blank}
+
+## Creating an Ape Project {: #creating-an-ape-project }
+
+If you don't already have an Ape project, you must install Ape and create a new one. You can follow the steps below to get started and create an empty project:
+
+1. Create a directory for your project
+
+    ```bash
+    mkdir ape && cd ape
+    ```
+
+2. If you don't have `pipx` installed, install it
+
+    ```bash
+    python3 -m pip install --user pipx
+    python3 -m pipx ensurepath
+    ```
+
+3. [Install Ape using `pipx`](https://ape.readthedocs.io/en/stable/install.html){target=\_blank}
+
+    ```bash
+    pipx install eth-ape
+    ```
+
+4. Create a project
+
+    ```bash
+    ape init
+    ```
+
+5. Enter a name for your project
+
+    <div id="termynal" data-termynal>
+    <span data-ty="input"><span class="file-path"></span>ape init</span>
+    <span data-ty>Please enter project name: ape-demo</span>
+    <br>
+    <span data-ty>SUCCESS: ape-demo is written in ape-config.yaml</span>
+    <br>
+    <span data-ty="input"><span class="file-path"></span>ls</span>
+    <span data-ty>ape-config.yaml  contracts  scripts  tests</span>
+</div>
+
+Your Ape project contains a bare-bones `ape-config.yaml` file for customizing specific settings and the following empty directories:
+
+- `contracts` - an empty directory for storing smart contracts
+- `scripts` - an empty directory for storing Python scripts, such as deployment scripts and scripts to interact with your deployed contracts
+- `tests` - an empty directory for pytest testing scripts
+
+## Configure Accounts {: #configure-accounts }
+
+You'll need to import an account before you can deploy smart contracts or interact with previously deployed contracts from your Ape project. You can run the following command, which will import your account and give it a name:
+
+```bash
+ape accounts import INSERT_ACCOUNT_NAME
+```
+
+You'll then be prompted to enter your private key and add a password to encrypt your account.
+
+<div id="termynal" data-termynal>
+    <span data-ty="input"><span class="file-path"></span>ape accounts import alice</span>
+    <span data-ty>Enter Private Key:</span>
+    <span data-ty>Create Passphrase to encrypt account:</span>
+    <span data-ty>Repeat for confirmation:</span>
+    <span data-ty>SUCCESS: A new account '0x097D9Eea23DE2D3081169e0225173d0C55768338' has been added with the id 'alice'</span>
+</div>
+
+!!! note
+    If you wish to use a mnemonic instead, you can append the `--use-mnemonic` option to the import command.
+
+## Create Smart Contracts {: #the-contract-file }
+
+Now that you have set up your account, you can start writing smart contracts. As a basic example, you can use the following `Box` contract to store a value you can retrieve later.
+
+Start by creating a file named `Box.sol` inside the contracts directory:
+
+```bash
+touch contracts/Box.sol
+```
+
+Open the file and add the following contract to it:
+
+```solidity
+// SPDX-License-Identifier: MIT 
+pragma solidity ^0.8.1;
+
+contract Box {
+    uint256 private value;
+
+    event ValueChanged(uint256 newValue);
+
+    function store(uint256 newValue) public {
+        value = newValue;
+        emit ValueChanged(newValue);
+    }
+
+    function retrieve() public view returns (uint256) {
+        return value;
+    }
+}
+```
+
+You can store any additional contracts in the `contracts` directory.
+
+## Compile the Solidity Contract {: #compiling-solidity }
+
+Before compiling the Solidity, you must install the Solidity compiler plugin. Running the following command will install the latest version of the plugin:
+
+```bash
+ape plugins install solidity
+```
+
+To use a specific version of Solidity or a specific EVM version, you can modify your `ape-config.yaml` file as follows:
+
+```yaml
+solidity:
+  version: INSERT_VERSION
+  evm_version: INSERT_VERSION
+```
+
+For more information on the Solidity plugin, please refer to the [README of the `ape-solidity` repository on GitHub](https://github.com/ApeWorX/ape-solidity/blob/main/README.md){target=_blank}.
+
+With the Solidity plugin installed, the next step is to compile the smart contract:
+
+```bash
+ape compile
+```
+
+<div id="termynal" data-termynal>
+    <span data-ty="input"><span class="file-path"></span>ape compile</span>
+    <span data-ty>INFO: Compiling 'Box.sol'.</span>
+    <span data-ty>INFO: Compiling using Solidity compiler '0.8.23+commit.f704f362'.</span>
+</div>
+
+After compilation, you can find the bytecode and ABI for your contracts in the `.build` directory.
+
+## Test the Contract {: #test-the-contract }
+
+Before you deploy your contract, you can test it out directly inside your Ape project using the [pytest framework](https://docs.pytest.org/en/latest){target=\_blank} to make sure it works as you expect.
+
+You should already have a `tests` directory where you'll create your tests, but if not, please create one, as all tests must be located in a directory named `tests`. Additionally, each test file name must start with `test_` and end with `.py`. So, first, you can create a test file for the `Box.sol` contract:
+
+```bash
+touch tests/test_box.py
+```
+
+In addition to the test file, you can create a `conftest.py` file that will define a couple of essential [fixtures](https://docs.pytest.org/en/stable/explanation/fixtures.html){target=\_blank}. Fixtures allow you to define functions that set up the necessary environment or resources to run your tests. Note that while the `Box.sol` contract is simple, incorporating fixtures into your testing process is good practice.
+
+To create the file, you can run the following command:
+
+```bash
+touch tests/conftest.py
+```
+
+Since your tests will rely on the injection of the fixtures, you must define the fixtures first. When defining fixtures, you need to apply the `pytest.fixture` decorator above each function. For this example, you'll create two fixtures: one that defines the owner of the contract and one that deploys the contract from the owner's account.
+
+The `owner` fixture will use the built-in `accounts` fixture to take the first account in the list of test accounts provided by Ape and return it. The `box` fixture will deploy the `Box` contract type using the built-in `project` fixture, you simply have to provide the name of the contract and use the `owner` fixture to deploy it.
+
+```python title="tests/conftest.py"
+import pytest
+
+
+@pytest.fixture
+def owner(accounts):
+    return accounts[0]
+
+
+@pytest.fixture
+def box(owner, project):
+    return owner.deploy(project.Box)
+```
+
+Now that you've created the fixtures, you can start creating your tests. Each test function name must start with `test_` and describe what the test does. For this example, you can use `test_store_value`, as you'll create a test for the `store` function. The test will store a value and then retrieve it, asserting that the retrieved value is equal to the value passed into the `store` function.
+
+To use the `owner` and `box` fixtures, you must pass them into your test function, which will inject the fixtures automatically for you to use. The `owner` account will be used to call the `store` function of the `box` contract instance.
+
+```py title="tests/test_box.py"
+def test_store_value(box, owner):
+    new_value = 5
+    box.store(new_value, sender=owner)
+    assert box.retrieve() == new_value
+```
+
+And that's it! That's all you'll need inside your test file. You can use the following command to run the test:
+
+```bash
+ape test
+```
+
+The results of running the test will be printed to the terminal.
+
+<div id="termynal" data-termynal>
+    <span data-ty="input"><span class="file-path"></span>ape test</span>
+    <span data-ty>===================== test session starts ======================</span>
+    <span data-ty>platform darwin -- Python 3.10.4, pytest-7.2.1, pluggy-1.4.0</span>
+    <span data-ty>rootdir: /Users/moonbeam/ape</span>
+    <span data-ty>plugins: eth-ape-0.7.7, web3-6.15.1</span>
+    <span data-ty>collected 1 item</span>
+    <br>
+    <span data-ty>tests/test_box.py .                                      [100%]</span>
+    <br>
+    <span data-ty>====================== 1 passed in 0.70s =======================</span>
+</div>
+
+Now that you have confidence in your contract, the next step is to deploy it.
+
+## Deploy the Contract {: #deploy-the-contract }
+
+To deploy your contracts, create a deployment script named `deploy.py` inside of the `scripts` directory:
+
+```bash
+touch scripts/deploy.py
+```
+
+Next, you'll need to write the deployment script. You'll need to load the account you will use to deploy the contract and access it by its name using the project manager.
+
+```python title="scripts/deploy.py"
+from ape import project, accounts
+
+
+def main():
+    # Load your account by its name
+    account = accounts.load("alice")
+    # Deploy the contract using your account
+    return account.deploy(project.Box)
+```
+
+Now you're ready to deploy the `Box` contract!
+To configure your project for Moonbeam or Moonriver, you will need to have your own endpoint and API key, which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=\_blank}.
+
+Take the following steps to initiate and send the deployment transaction. Note that there are some nuances associated with [using Ape with a local Moonbeam node](#using-ape-with-a-local-node).
+
+1. Run the deployment script using the `ape run deploy` command
+
+    === "Moonbeam"
+
+        ```bash
+        ape run deploy --network moonbeam:mainnet
+        ```
+
+    === "Moonriver"
+
+        ```bash
+        ape run deploy --network moonbeam:moonriver
+        ```
+
+    === "Moonbase Alpha"
+
+        ```bash
+        ape run deploy --network moonbeam:moonbase
+        ```
+
+    === "Moonbeam Dev Node"
+
+        ```bash
+        ape run deploy --network ethereum:local_moonbeam:http://127.0.0.1:9944
+        ``` 
+
+    !!! note
+        For the `ape run deploy` command to work as intended, the deployment script must be named `deploy.py` and stored in the `scripts` directory, and the script must define a `main()` method.
+
+2. Review the transaction details and enter **y** to sign the transaction
+3. Enter your passphrase for your account
+4. Enter **y** to leave your account unlocked or **n** to lock it
+
+After you follow the prompts and submit the transaction, the transaction hash, total fees paid, and contract address will be displayed in the terminal.
+
+<div id="termynal" data-termynal>
+    <span data-ty="input"><span class="file-path"></span>ape run deploy --network https://rpc.api.moonbase.moonbeam.network</span>
+    <span data-ty>INFO: Connecting to a 'moonbase' node.</span>
+    <br>
+    <span data-ty>DynamicFeeTransaction:</span>
+    <span data-ty>  chainId: 1287</span>
+    <span data-ty>  from: 0x097D9Eea23DE2D3081169e0225173d0C55768338</span>
+    <span data-ty>  gas: 123964</span>
+    <span data-ty>  nonce: 372</span>
+    <span data-ty>  value: 0</span>
+    <span data-ty>  data: 0x307836...303333</span>
+    <span data-ty>  type: 2</span>
+    <span data-ty>  maxFeePerGas: 125000000</span>
+    <span data-ty>  maxPriorityFeePerGas: 0</span>
+    <span data-ty>  accessList: []</span>
+    <br>
+    <span data-ty>Sign:  [y/N]: y</span>
+    <span data-ty>Enter passphrase to unlock 'alice' []:</span>
+    <span data-ty>Leave 'alice' unlocked? [y/N]: n</span>
+    <span data-ty>INFO: Confirmed 0x365cd903e7fac5ad1f815d7a6f211b1aa32bd7d78630c2e81d67514cfb9e55bb (total fees paid = 15326250000000)</span>
+    <span data-ty>SUCCESS: Contract 'Box' deployed to: 0x68039277300E8B104dDf848029dCA04C2EFe8610</span>
+ </span>
+</div>
+
+Congratulations! Your contract is live! Save the address to interact with your contract in the following section.
+
+## Interact with the Contract {: #interact-with-the-contract }
+
+You can interact with contracts using the Ape console for quick debugging and testing, or write a script.
+
+### Using The Ape Console {: #using-ape-console }
+
+To interact with your newly deployed contract, you can launch the Ape console by running:
+
+=== "Moonbeam"
+
+    ```bash
+    ape console --network moonbeam:mainnet
+    ```
+
+=== "Moonriver"
+
+    ```bash
+    ape console --network moonbeam:moonriver
+    ```
+
+=== "Moonbase Alpha"
+
+    ```bash
+    ape console --network moonbeam:moonbase
+    ```
+
+=== "Moonbeam Dev Node"
+
+    ```bash
+    ape console --network ethereum:local_moonbeam:http://127.0.0.1:9944
+    ``` 
+
+Next, you'll need to create a contract instance using the contract's address:
+
+```bash
+box = Contract("INSERT_CONTRACT_ADDRESS")
+```
+
+<div id="termynal" data-termynal>
+    <span data-ty="input"><span class="file-path"></span>ape console --network https://rpc.api.moonbase.moonbeam.network</span>
+    <span data-ty>INFO: Connecting to a 'moonbase' node.</span>
+    <br>
+    <span data-ty="input" data-ty-prompt="In [1]:"> alice = accounts.load("alice")</span>
+    <span data-ty="input" data-ty-prompt="In [2]:"> box = Contract("0x68039277300E8B104dDf848029dCA04C2EFe8610")</span>
+</div>
+
+Now, you can interact with your contract instance! For example, you can set the variable to be stored in the `Box` contract using the following commands:
+
+1. Call the `store` method by passing in a value to store and the account you want to use to send the transaction:
+
+    ```bash
+    box.store(5, sender=alice)
+    ```
+
+2. Review the transaction details and enter **y** to sign the transaction
+3. If you previously locked your account, you must enter your passphrase to unlock it. Otherwise, Ape will use the cached key for your account
+4. If you unlocked your account in the previous step, you'll be asked if you want to leave your account unlocked. You can enter **y** to leave it unlocked or **n** to lock it
+
+After you follow the prompts and submit the transaction, the transaction hash and total fees paid will be displayed in the terminal.
+
+<div id="termynal" data-termynal>
+    <span data-ty="input" data-ty-prompt="In [3]:"> box.store(4, sender=alice)</span>
+    <span data-ty>DynamicFeeTransaction:</span>
+    <span data-ty>  chainId: 1287</span>
+    <span data-ty>  to: 0x68039277300E8B104dDf848029dCA04C2EFe8610</span>
+    <span data-ty>  from: 0x097D9Eea23DE2D3081169e0225173d0C55768338</span>
+    <span data-ty>  gas: 45668</span>
+    <span data-ty>  nonce: 373</span>
+    <span data-ty>  value: 0</span>
+    <span data-ty>  data: 0x307836...303034</span>
+    <span data-ty>  type: 2</span>
+    <span data-ty>  maxFeePerGas: 125000000</span>
+    <span data-ty>  maxPriorityFeePerGas: 0</span>
+    <span data-ty>  accessList: []</span>
+    <br>
+    <span data-ty>Sign:  [y/N]: y</span>
+    <span data-ty>Enter passphrase to unlock 'alice' []:</span>
+    <span data-ty>Leave 'alice' unlocked? [y/N]: n</span>
+    <span data-ty>INFO: Confirmed 0xd2e8305f22f33c1ab8ccaaef94252a93ff0f69c9bf98503fc2744bf257f1ef67 (total fees paid = 5573750000000)</span>
+    <span data-ty="input" data-ty-prompt="Out [3]:"> Receipt 0xd2e8305f22f33c1ab8ccaaef94252a93ff0f69c9bf98503fc2744bf257f1ef67</span>
+</div>
+
+Then, you can retrieve the stored value by calling the `retrieve` method:
+
+```bash
+box.retrieve()
+```
+
+The number you just stored in the previous steps will be printed to the console.
+
+<div id="termynal" data-termynal>
+    <span data-ty="input" data-ty-prompt="In [4]:"> contract.retrieve()</span>
+    <span data-ty="input" data-ty-prompt="Out [4]:"> 5</span>
+</div>
+
+### Using a Script {: #using-a-script }
+
+You can also write a script to interact with your newly deployed contract. To get started, you can create a new file in the `scripts` directory:
+
+```bash
+touch scripts/store-and-retrieve.py
+```
+
+Next, you can write a script that stores and retrieves a value. Note that when creating a contract instance to interact with, you must pass in the address of the deployed contract.
+
+```python title="scripts/store-and-retrieve.py"
+from ape import Contract, accounts
+
+
+def main():
+    account = accounts.load("alice")
+    box = Contract("INSERT_CONTRACT_ADDRESS")
+    store = box.store(4, sender=account)
+    print("Transaction hash for updating the stored value:", store.txn_hash)
+
+    retrieve = box.retrieve()
+    print("Stored value:", retrieve)
+```
+
+Now, you can run the script to set the stored value and retrieve it:
+
+1. Run the script
+
+    === "Moonbeam"
+
+        ```bash
+        ape run store-and-retrieve --network moonbeam:mainnet
+        ```
+
+    === "Moonriver"
+
+        ```bash
+        ape run store-and-retrieve --network moonbeam:moonriver
+        ```
+
+    === "Moonbase Alpha"
+
+        ```bash
+        ape run store-and-retrieve --network moonbeam:moonbase
+        ```
+
+    === "Moonbeam Dev Node"
+
+        ```bash
+        ape run store-and-retrieve --network ethereum:local_moonbeam:http://127.0.0.1:9944
+        ```
+
+2. Review the transaction details and enter **y** to sign the transaction
+3. If you previously locked your account, you must enter your passphrase to unlock it. Otherwise, Ape will use the cached key for your account
+4. If you unlocked your account in the previous step, you'll be asked if you want to leave your account unlocked. You can enter **y** to leave it unlocked or **n** to lock it
+
+Once completed, you should see a transaction hash and a value of `5` printed to the console.
+
+<div id="termynal" data-termynal>
+    <span data-ty="input"><span class="file-path"></span>ape run store-and-retrieve --network https://rpc.api.moonbase.moonbeam.network</span>
+    <span data-ty>DynamicFeeTransaction:</span>
+    <span data-ty>  chainId: 1287</span>
+    <span data-ty>  to: 0x68039277300E8B104dDf848029dCA04C2EFe8610</span>
+    <span data-ty>  from: 0x097D9Eea23DE2D3081169e0225173d0C55768338</span>
+    <span data-ty>  gas: 25974</span>
+    <span data-ty>  nonce: 374</span>
+    <span data-ty>  value: 0</span>
+    <span data-ty>  data: 0x307836...303035</span>
+    <span data-ty>  type: 2</span>
+    <span data-ty>  maxFeePerGas: 125000000</span>
+    <span data-ty>  maxPriorityFeePerGas: 0</span>
+    <span data-ty>  accessList: []</span>
+    <br>
+    <span data-ty>Sign:  [y/N]: y</span>
+    <span data-ty>Enter passphrase to unlock 'alice' []:</span>
+    <span data-ty>Leave 'alice' unlocked? [y/N]: n</span>
+    <span data-ty>INFO: Confirmed 0x6d74e48c23fd48438bf48baad34e235693c737bd880ef0077c0fb996f3896f5f (total fees paid = 3086250000000)</span>
+    <span data-ty>Transaction hash for updating the stored value:  0x6d74e48c23fd48438bf48baad34e235693c737bd880ef0077c0fb996f3896f5f</span>
+    <span data-ty>Stored value: 5</span>
+</div>
+
+Congratulations! You have successfully deployed and interacted with a contract using Ape!
+
+## Using Ape with a Local Node {: #using-ape-with-a-local-node }
+
+There are some nuances associated with using Ape with a local Moonbeam node. As a Moonbeam local node is not included as a preset network with Ape, you'll need to customize your `ape-config.yaml` before using Ape with a local Moonbeam node. Adjust your `ape-config.yaml` as follows: 
+
+```bash
+# ape-config.yaml
+name: ape-demo
+
+default_ecosystem: ethereum
+
+ethereum:
+  default_network: local_moonbeam
+
+  local_moonbeam:
+    default_transaction_type: 0
+    gas_limit: "auto"
+    block_time: 6
+    transaction_acceptance_timeout: 60
+    max_receipt_retries: 10
+
+networks:
+  custom:
+    - name: local_moonbeam
+      chain_id: 1281                    
+      ecosystem: ethereum
+      base_ecosystem_plugin: ethereum
+      default_provider: node
+
+node:
+  ethereum:
+    local_moonbeam:
+      uri: http://127.0.0.1:9944
+```
+
+After configuring your `ape-config.yaml`, you can target your local Moonbeam node by appending the following network configuration flag to your Ape command:
+
+```bash
+--network ethereum:local_moonbeam:http://127.0.0.1:9944
+```
+
+Additionally, when deploying or interacting with contracts on a local Moonbeam node using Ape, the CLI will, by default, wait for two block confirmations before allowing you to proceed. However, because a local Moonbeam node employs instant sealing, only producing blocks when new transactions occur, this can lead to a stalemate situation that may lead you to think something is wrong. To circumvent this, you can run your local Moonbeam node with a sealing flag to produce blocks at a set interval, such as every `6` seconds, with the command: `--sealing 6000`. Alternatively, you can submit dummy transactions to your local Moonbeam node to force new blocks to be authored. 
+
+<div class="page-disclaimer">
+  The information presented herein has been provided by third parties and is made available solely for general information purposes. Moonbeam does not endorse any project listed and described on the Moonbeam Doc Website (https://docs.moonbeam.network/). Moonbeam Foundation does not warrant the accuracy, completeness or usefulness of this information. Any reliance you place on such information is strictly at your own risk. Moonbeam Foundation disclaims all liability and responsibility arising from any reliance placed on this information by you or by anyone who may be informed of any of its contents. All statements and/or opinions expressed in these materials are solely the responsibility of the person or entity providing those materials and do not necessarily represent the opinion of Moonbeam Foundation. The information should not be construed as professional or financial advice of any kind. Advice from a suitably qualified professional should always be sought in relation to any particular matter or circumstance. The information herein may link to or integrate with other websites operated or content provided by third parties, and such other websites may link to this website. Moonbeam Foundation has no control over any such other websites or their content and will have no liability arising out of or related to such websites or their content. The existence of any such link does not constitute an endorsement of such websites, the content of the websites, or the operators of the websites. These links are being provided to you only as a convenience and you release and hold Moonbeam Foundation harmless from any and all liability arising from your use of this information or the information provided by any third-party website or service.
+</div>
+--- END CONTENT ---
+
+Doc-Content: https://docs.moonbeam.network/builders/ethereum/dev-env/brownie/
+--- BEGIN CONTENT ---
+---
+title: Brownie
+description: Use Brownie, an Ethereum development environment, to compile, deploy, and debug smart contracts using Python on Moonbeam, thanks to its Ethereum compatibility.
+categories: Dev Environments
+---
+
+# Using Brownie to Deploy To Moonbeam
+
+## Introduction {: #introduction }
+
+[Brownie](https://eth-brownie.readthedocs.io){target=\_blank} is an Ethereum development environment that helps Python developers manage and automate the recurring tasks inherent to building smart contracts and DApps. Brownie can directly interact with Moonbeam's Ethereum API so it can also be used to deploy smart contracts on Moonbeam.
+
+This guide will cover how to use Brownie to compile, deploy, and interact with Ethereum smart contracts on the Moonbase Alpha TestNet. This guide can also be adapted for Moonbeam, Moonriver, or Moonbeam development node.
+
+**Please note that Brownie is no longer actively maintained.** You can check out [Ape](https://docs.apeworx.io/ape/stable){target=\_blank} as an alternative Python Ethereum development environment.
+
+## Checking Prerequisites {: #checking-prerequisites }
+
+To get started, you will need the following:
+
+ - Have MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}
+ - Have an account with funds.
+  You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}
+ - 
+To test out the examples in this guide on Moonbeam or Moonriver, you will need to have your own endpoint and API key, which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=\_blank}
+
+For this guide, Python version 3.9.10, pip version 22.0.3, and pipx version 1.0.0 were used.
+
+## Creating a Brownie Project {: #creating-a-brownie-project }
+
+You will need to install Brownie and create a Brownie project if you don't already have one. You can choose to either create an empty project or use a [Brownie mix](https://eth-brownie.readthedocs.io/en/stable/init.html?highlight=brownie%20mix#creating-a-project-from-a-template){target=\_blank}, which is essentially a template to build your project on. For this example, you can create an empty project. You can get started by completing the following steps:
+
+1. Create a directory for your project
+
+    ```bash
+    mkdir brownie && cd brownie
+    ```
+
+2. If you don't already have `pipx` installed, go ahead and install it
+
+    ```bash
+    python3 -m pip install --user pipx
+    python3 -m pipx ensurepath
+    ```
+
+3. [Install Brownie using `pipx`](https://eth-brownie.readthedocs.io/en/stable/install.html){target=\_blank}, which is used to run executables installed locally in your project. Brownie will be installed into a virtual environment and be available directly from the command line
+
+    ```bash
+    pipx install eth-brownie
+    ```
+
+    !!! note
+        A common error while installing Brownie on Ubuntu is:
+
+        ```text
+        pip seemed to fail to build package:
+            pyyaml==5.4.1
+
+        Some possibly relevant errors from pip install:
+            error: subprocess-exited-with-error
+            AttributeError: cython_sources
+
+        Error installing eth-brownie.
+        ```
+
+        This can be resolved by using the following command:
+
+        ```bash
+        pip3 install wheel && \
+        pip3 install --no-build-isolation "Cython<3" "pyyaml==5.4.1" && \
+        pip3 install --upgrade --no-cache-dir eth-brownie
+        ```
+
+4. Create a project
+
+    ```bash
+    brownie init
+    ```
+
+    <div id="termynal" data-termynal>
+    <span data-ty="input"><span class="file-path"></span>brownie init</span>
+    <span data-ty>Brownie v1.19.1 - Python development framework for Ethereum</span>
+    <br>
+    <span data-ty>SUCCESS: A new Brownie project has been initialized at /home/moonbeam/brownie</span>
+    <br>
+    <span data-ty="input"><span class="file-path"></span>ls</span>
+    <span data-ty>build contracts interfaces reports scripts tests</span>
+</div>
+
+Your Brownie project should contain the following empty directories:
+
+- **build** - for project data such as contract artifacts from compilation
+- **contracts** - to store the smart contract files
+- **interfaces** - for smart contract interfaces that are required for your project
+- **reports** - for JSON report files for use in the [Brownie GUI](https://eth-brownie.readthedocs.io/en/stable/gui.html){target=\_blank}
+- **scripts** - where Python scripts used for deploying contracts or other automated tasks will live
+- **tests** - to store Python scripts for testing your project. Brownie uses the `pytest` framework for unit testing
+
+Another important file to note that is not included in an empty project is the `brownie-config.yaml` configuration file. The configuration file is optional and comes in handy when customizing specific settings such as a default network, compiler version and settings, and more.
+
+## Network Configuration  {: #network-configuration }
+
+To deploy to a Moonbeam-based network, you'll need to add and configure the network. Network configurations in Brownie are added from the command line. Brownie can be used with both development and live environments.
+
+Moonbeam, Moonriver, and Moonbase Alpha are supported out of the box with Brownie as of version 1.19.3. To view the complete list of supported networks, you can run the following command:
+
+```bash
+brownie networks list
+```
+
+<div id="termynal" data-termynal>
+    <span data-ty="input"><span class="file-path"></span>brownie networks list</span>
+    <br>
+    <span data-ty>Moonbeam</span>
+    <span data-ty>   ├─Mainnet: moonbeam-main</span>
+    <span data-ty>   └─Moonbase Alpha: moonbeam-test</span>
+    <span data-ty>     </span>
+    <span data-ty>Moonriver     </span>
+    <span data-ty>  └─Mainnet: moonriver-main</span>
+</div>
+
+If you're looking to deploy a contract to a Moonbeam development node you'll need to add the network configurations. Under the hood, Brownie uses Ganache for development environments. However, since a Moonbeam development node acts as your own personal development environment, Ganache isn't needed. Therefore, you can configure a development node as a "live" network.
+
+To add Moonbeam development node configurations, you can run the following command:
+
+```bash
+brownie networks add Moonbeam moonbeam-dev host={{ networks.development.rpc_url }} name=Development chainid={{ networks.development.chain_id }}
+```
+
+If you successfully added the network, you'll see a success message along with the network details in the terminal.
+
+To deploy to a Moonbeam network, or run tests on a specific network, you can specify the network by appending the following to the given command:
+
+=== "Moonbeam"
+
+    ```bash
+    --network moonbeam-main
+    ```
+
+=== "Moonriver"
+
+    ```bash
+    --network moonriver-main
+    ```
+
+=== "Moonbase Alpha"
+
+    ```bash
+    --network moonbeam-test
+    ```
+
+=== "Moonbeam Dev Node"
+
+    ```bash
+    --network moonbeam-dev
+    ```
+
+If you would like to set a default network, you can do so by adding the following snippet to the `brownie-config.yaml` configuration file:
+
+=== "Moonbeam"
+
+    ```yaml
+    networks:
+        default: moonbeam-main
+    ```
+
+=== "Moonriver"
+
+    ```yaml
+    networks:
+        default: moonriver-main
+    ```
+
+=== "Moonbase Alpha"
+
+    ```yaml
+    networks:
+        default: moonbeam-test
+    ```
+
+=== "Moonbeam Dev Node"
+
+    ```yaml
+    networks:
+        default: moonbeam-dev
+    ```
+
+!!! note
+    Keep in mind that the `brownie-config.yaml` file isn't automatically created, you can optionally create it yourself.
+
+### Setting your Networks RPC URLs
+
+It is recommended that you override the default Brownie RPC URLs to [your own RPC endpoint](/builders/get-started/endpoints/#rpc-endpoint-providers){target=\_blank} or the public Moonbeam network endpoints. You can override the default Brownie RPC URL for each network as follows:
+
+=== "Moonbeam"
+
+    ```bash
+    brownie networks modify moonbeam-main host={{ networks.moonbeam.rpc_url }}
+    ```
+
+=== "Moonriver"
+
+    ```bash
+    brownie networks modify moonriver-main host={{ networks.moonriver.rpc_url }}
+    ```
+
+=== "Moonbase Alpha"
+
+    ```bash
+    brownie networks modify moonbeam-test host={{ networks.moonbase.rpc_url }}
+    ```
+
+<div id="termynal" data-termynal>
+    <span data-ty="input"><span class="file-path"></span>brownie networks modify moonbeam-main host=https://rpc.api.moonbeam.network</span>
+    <br>
+    <span data-ty>SUCCESS: Network 'Mainnet' has been modified</span>
+    <span data-ty>   └─Mainnet</span>
+    <span data-ty>     ├─id: moonbeam-main</span>
+    <span data-ty>     ├─chainid: 1284</span>
+    <span data-ty>     ├─explorer: https://api-moonbeam.moonscan.io/api</span>
+    <span data-ty>     ├─host: https://rpc.api.moonbeam.network</span>
+    <span data-ty>     └─multicall2: 0x1337BedC9D22ecbe766dF105c9623922A27963EC</span>
+</div>
+
+## Account Configuration {: #account-configuration }
+
+Before you can deploy a contract, you'll need to configure your account, which is also done from the command line. To add a new account you can run:
+
+```bash
+brownie accounts new INSERT_ACCOUNT_NAME
+```
+
+Make sure to replace `INSERT_ACCOUNT_NAME` with your name of choice. For this example, `alice` will be used as the account name.
+
+You'll be prompted to enter in your private key and a password to encrypt the account with. If the account was successfully configured, you'll see your account address printed to the terminal.
+
+<div id="termynal" data-termynal>
+    <span data-ty="input"><span class="file-path"></span>brownie accounts new alice</span>
+    <span data-ty>Brownie v1.19.1 - Python development framework for Ethereum</span>
+    <br>
+    <span data-ty>Enter the private key you wish to add: </span>
+    <span data-ty="input"><span class="file-path"></span>0x5b92d6e98884f76de468fa3f6278f880748bebc13595d45af5bdc4da702133</span>
+    <span data-ty>Enter the password to encrypt this account with: </span>
+    <span data-ty="input"><span class="file-path"></span></span>
+    <span data-ty>SUCCESS: A new account 'Oxf24FF3a9CF04c71Dbc94D06566f7A27B94566cac' has been generated with the id 'alice'</span>
+</div>
+
+## The Contract File {: #the-contract-file }
+
+Next you can create a contract inside of the `contracts` directory. The smart contract that you'll deploy as an example will be called `Box`, it will let you store a value that can be retrieved later. You can create a `Box.sol` contract by running the following command:
+
+```bash
+cd contracts && touch Box.sol
+```
+
+Open the file and add the following contract to it:
+
+```solidity
+// contracts/Box.sol
+pragma solidity ^0.8.1;
+
+contract Box {
+    uint256 private value;
+
+    // Emitted when the stored value changes
+    event ValueChanged(uint256 newValue);
+
+    // Stores a new value in the contract
+    function store(uint256 newValue) public {
+        value = newValue;
+        emit ValueChanged(newValue);
+    }
+
+    // Reads the last stored value
+    function retrieve() public view returns (uint256) {
+        return value;
+    }
+}
+```
+
+## Compiling Solidity {: #compiling-solidity }
+
+To compile the contract you can simply run:
+
+```bash
+brownie compile
+```
+
+<div id="termynal" data-termynal>
+    <span data-ty="input"><span class="file-path"></span>brownie compile</span>
+    <span data-ty>Brownie v1.19.1 - Python development framework for Ethereum</span>
+    <br>
+    <span data-ty>New compatible solc version available: 0.8.4</span>
+    <span data-ty>Compiling contracts...</span>
+    <span data-ty>  Solc version: 0.8.4</span>
+    <span data-ty>  Optimizer: Enabled  Runs: 200</span>
+    <span data-ty>  EVM Version: Istanbul</span>
+    <span data-ty>Generating build data...</span>
+    <span data-ty> - Box</span>
+    <span data-ty>Project has been compiled. Build artifacts saved at /home/moonbeam/brownie/build/contracts</span>
+    <span data-ty="input"><span class="file-path"></span> </span>
+ </span>
+</div>
+
+!!! note
+    The first time you compile your contracts it may take longer than usual while the `solc` binary is installed.
+
+After compilation, you'll find the build artifacts in the `build/contracts` directory. The artifacts contain the bytecode and metadata of the contract, which are `.json` files. The `build` directory should already be in the `.gitignore` file but if it's not, it’s a good idea to add it there.
+
+If you want to specify the compiler version or compilation settings, you can do so in the `brownie-config.yaml` file. Please note that if you haven't already created this file, you will need to do so. Then you can specify the compiler like so:
+
+```yaml
+compiler:
+  evm_version: null
+  solc:
+    version: 0.8.13
+    optimizer:
+      enabled: true
+      runs: 200
+```
+
+!!! note
+    You can view the list of [EVM versions supported by Brownie](https://github.com/eth-brownie/brownie/blob/master/docs/compile.rst#the-evm-version){target=\_blank} in their documentation.
+
+Your contracts will only be compiled again if Brownie notices that a change has been made. To force a new compilation, you can run:
+
+```bash
+brownie compile --all
+```
+
+## Deploying the Contract {: #deploying-the-contract }
+
+In order to deploy the `Box.sol` smart contract, you will need to write a simple deployment script. You can create a new file under the `scripts` directory and name it `deploy.py`:
+
+```bash
+cd scripts && touch deploy.py
+```
+
+Next, you need to write your deployment script. To get started, take the following steps:
+
+1. Import the `Box` contract and the `accounts` module from `brownie`
+2. Load your account using `accounts.load()` which decrypts a keystore file and returns the account information for the given account name
+3. Use the `deploy` method that exists within this instance to instantiate the smart contract specifying the `from` account and the `gas_limit`
+
+```py
+# scripts/deploy.py
+from brownie import Box, accounts
+
+
+def main():
+    account = accounts.load("alice")
+    return Box.deploy({"from": account, "gas_limit": "200000"})
+```
+
+You can now deploy the `Box.sol` contract using the `run` command and specifying the network:
+
+=== "Moonbeam"
+
+    ```bash
+    brownie run scripts/deploy.py --network moonbeam-main
+    ```
+
+=== "Moonriver"
+
+    ```bash
+    brownie run scripts/deploy.py --network moonriver-main
+    ```
+
+=== "Moonbase Alpha"
+
+    ```bash
+    brownie run scripts/deploy.py --network moonbeam-test
+    ```
+
+=== "Moonbeam Dev Node"
+
+    ```bash
+    brownie run scripts/deploy.py --network moonbeam-dev
+    ```
+
+After a few seconds, the contract is deployed, and you should see the address in the terminal.
+
+<div id="termynal" data-termynal>
+    <span data-ty="input"><span class="file-path"></span>brownie run scripts/deploy.py --network moonbeam-testnet</span>
+    <span data-ty>Brownie v1.19.1 - Python development framework for Ethereum</span>
+    <br>
+    <span data-ty>BrownieProject is the active project.</span>
+    <br>
+    <span data-ty>Running 'scripts/deploy.py: :main</span>
+      <span data-ty>Enter password for "alice":</span>
+      <span data-ty>Transaction sent: Oxf091d0415d1a4614ccd76a5f5f985fdf6abbd68d7481647fb3144dfecffb333</span>
+      <span data-ty>Gas price: 1.0 gwei Gas limit: 200000 Nonce: 15298</span>
+      <span data-ty>Box.constructor confirmed Block: 1901367 Gas used: 103095 (51.55%)</span>
+      <span data-ty>Box deployed at: OxccA4aDdD51Af1E76beZaBE5FD04A82EB6063C65</span>
+      <br>
+      <span data-ty="input"><span class="file-path"></span> </span>
+ </span>
+</div>
+
+Congratulations, your contract is live! Save the address, as you will use it to interact with this contract instance in the next step.
+
+## Interacting with the Contract {: #interacting-with-the-contract }
+
+You can interact with contracts using the Brownie console for quick debugging and testing or you can also write a script to interact.
+
+### Using Brownie Console {: #using-brownie-console }
+
+To interact with your newly deployed contract, you can launch the Brownie `console` by running:
+
+=== "Moonbeam"
+
+    ```bash
+    brownie console --network moonbeam-main
+    ```
+
+=== "Moonriver"
+
+    ```bash
+    brownie console --network moonriver-main
+    ```
+
+=== "Moonbase Alpha"
+
+    ```bash
+    brownie console --network moonbeam-test
+    ```
+
+=== "Moonbeam Dev Node"
+
+    ```bash
+    brownie console --network moonbeam-dev
+    ```
+
+The contract instance will automatically be accessible from the console. It will be wrapped in a `ContractContainer` which also enables you to deploy new contract instances. To access the deployed contract you can use `Box[0]`. To call the `store` method and set the value to `5`, you can take the following steps:
+
+1. Create a variable for the contract
+    ```bash
+    box = Box[0]
+    ```
+2. Call the `store` method using your account and set the value to `5`
+    ```bash
+    box.store(5, {'from': accounts.load('alice'), 'gas_limit': '50000'})
+    ```
+3. Enter the password for your account
+
+The transaction will be signed by your account and broadcasted to the network. Now, you can retrieve the value by taking these steps:
+
+1. Call the `retrieve` method
+    ```bash
+    box.retrieve({'from': accounts.load('alice')})
+    ```
+2. Enter your password
+
+You should see `5` or the value you have stored initially.
+
+<div id="termynal" data-termynal>
+    <span data-ty="input"><span class="file-path"></span>brownie console --network moonbeam-testnet</span>
+    <span data-ty>Brownie v1.19.1 - Python development framework for Ethereum</span>
+    <br>
+    <span data-ty>BrownieProject is the active project.</span>
+    <span data-ty>Brownie environment is ready.</span>
+    <span data-ty="input" data-ty-prompt=">>>">box = Box[0]</span>
+    <br>
+    <span data-ty="input" data-ty-prompt=">>>">box. store(5, {'from': accounts. load('alice"), 'gas-limit: "50000").</span>
+    <span data-ty>Enter password for "alice":</span>
+      <span data-ty>Transaction sent: 0x2418038735934917861dfa77068fe6dadd0b3c7e4362d6f73c1712aaf6a89a</span>
+      <span data-ty>Gas price: 1.0 gwei Box.store confirmed Gas limit: 50000 Nonce: 15299</span>
+      <span data-ty>Box.store confirmed Block: 1901372 Gas used: 44593 (89.19%)</span>
+      <br>
+      <span data-ty>Transaction '0×24180387359349178b1dfa770e68fe6dadd0b3c7e4362d6f73c1712aaf6a89a'</span>
+      <span data-ty="input" data-ty-prompt=">>>">box.retrieve ({'from': accounts. load('alice")})</span>
+      <span data-ty>Enter password for "alice":</span>
+      <span data-ty>5</span>
+      <span data-ty="input" data-ty-prompt=">>>"> </span>
+ </span>
+</div>
+
+### Using a Script {: #using-a-script }
+
+You can also write a script to interact with your newly deployed contract. To get started, you can create a new file in the `scripts` directory:
+
+```bash
+cd scripts && touch store-and-retrieve.py
+```
+
+Next, you need to write your script that will store and then retrieve a value. To get started, take the following steps:
+
+1. Import the `Box` contract and the `accounts` module from `brownie`
+2. Load your account using `accounts.load()` which decrypts a keystore file and returns the account information for the given account name
+3. Create a variable for the `Box` contract
+4. Use the `store` and `retrieve` functions to store a value and then retrieve it and print it to the console
+
+```py
+# scripts/store-and-retrieve.py
+from brownie import Box, accounts
+
+
+def main():
+    account = accounts.load("alice")
+    box = Box[0]
+    store = box.store(5, {"from": accounts.load("alice"), "gas_limit": "50000"})
+    retrieve = box.retrieve({"from": accounts.load("alice")})
+
+    print("Transaction hash for updating the stored value: " + store)
+    print("Stored value: " + retrieve)
+```
+
+To run the script, you can use the following command:
+
+=== "Moonbeam"
+
+    ```bash
+    brownie run scripts/store-and-retrieve.py --network moonbeam-main
+    ```
+
+=== "Moonriver"
+
+    ```bash
+    brownie run scripts/store-and-retrieve.py --network moonriver-main
+    ```
+
+=== "Moonbase Alpha"
+
+    ```bash
+    brownie run scripts/store-and-retrieve.py --network moonbeam-test
+    ```
+
+=== "Moonbeam Dev Node"
+
+    ```bash
+    brownie run scripts/store-and-retrieve.py --network moonbeam-dev
+    ```
+
+You'll need to enter the password for Alice to send the transaction to update the stored value. Once the transaction goes through, you should see a transaction hash and a value of `5` printed to the console.
+
+Congratulations, you have successfully deployed and interacted with a contract using Brownie!
+
+<div class="page-disclaimer">
+  The information presented herein has been provided by third parties and is made available solely for general information purposes. Moonbeam does not endorse any project listed and described on the Moonbeam Doc Website (https://docs.moonbeam.network/). Moonbeam Foundation does not warrant the accuracy, completeness or usefulness of this information. Any reliance you place on such information is strictly at your own risk. Moonbeam Foundation disclaims all liability and responsibility arising from any reliance placed on this information by you or by anyone who may be informed of any of its contents. All statements and/or opinions expressed in these materials are solely the responsibility of the person or entity providing those materials and do not necessarily represent the opinion of Moonbeam Foundation. The information should not be construed as professional or financial advice of any kind. Advice from a suitably qualified professional should always be sought in relation to any particular matter or circumstance. The information herein may link to or integrate with other websites operated or content provided by third parties, and such other websites may link to this website. Moonbeam Foundation has no control over any such other websites or their content and will have no liability arising out of or related to such websites or their content. The existence of any such link does not constitute an endorsement of such websites, the content of the websites, or the operators of the websites. These links are being provided to you only as a convenience and you release and hold Moonbeam Foundation harmless from any and all liability arising from your use of this information or the information provided by any third-party website or service.
+</div>
+--- END CONTENT ---
+
+## Basics Concepts [shared: true]
+
+The following section contains foundational documentation shared across all Moonbeam products.
+It describes the architecture and infrastructure that serve as the backbone for all integrations built with Moonbeam.
+This includes the network development framework, Substrate and EVM development tools, developer tooling, and guidance for node operators.
+This context is provided to help understand how the system works under the hood, but responses should stay focused on the specific product unless the user explicitly asks about the general architecture.
+
+---
+
+## List of shared concept pages:
+
+
+## Full content for shared concepts:
+
+Doc-Content: https://docs.moonbeam.network/learn/core-concepts/balances/
+--- BEGIN CONTENT ---
+---
+title: Account Balances
+description: A description of the main differences that Ethereum developers need to understand in terms of account balances on Moonbeam and how they differ from Ethereum.
+categories: Basics
+---
+
+# Moonbeam Account Balances
+
+## Introduction {: #introduction }
+
+While Moonbeam strives to be compatible with Ethereum's Web3 API and EVM, there are some important Moonbeam differences that developers should know and understand in terms of account balances.
+
+One of the design goals of Moonbeam is to create an environment that is as close as possible to Ethereum, and to offer a set of Web3 RPC endpoints that are compatible with Ethereum. However, Moonbeam is also a Substrate based chain, which means that it exposes Substrate RPCs, and that it has integral functionality that is powered by Substrate such as Staking, Governance, and other features which are not part of the Ethereum API.
+
+Moonbeam [unified accounts](/learn/core-concepts/unified-accounts/){target=\_blank} are one way that Moonbeam achieves Ethereum compatibility, by changing the underlying account type in the protocol to be Ethereum-like (H160 or 20 byte addresses starting with `0x`). Unified accounts are used by both the Substrate and Ethereum APIs, and map to the same underlying data storage on the blockchain. Nevertheless, there are important differences that users coming from Ethereum should understand when using Moonbeam accounts via the Ethereum API.
+
+This guide will outline some of these main differences and what to expect when using Moonbeam for the first time.
+
+## Ethereum Account Balances {: #ethereum-account-balances }
+
+An account on Ethereum is an entity with a token balance (Ether or ETH in this case). Account-holders can send Ether transactions on Ethereum and accounts can be controlled by either users (with the private key for signing) or smart contracts.
+
+Therefore, Ethereum has two main types of accounts: user-owned and contract-owned. No matter the type, an Ethereum account has a single balance field that represents the number of Wei owned by this address, where Wei is a denomination of ETH (1 x 10^18 Wei per ETH).
+
+![Ethereum balances diagram](/images/learn/core-concepts/balances/balances-1.webp)
+
+## Moonbeam Account Balances {: #moonbeam-account-balances }
+
+An account on Moonbeam is also an entity with a token balance (the token will depend on the network). Like on Ethereum, account holders can send token transactions on the Moonbeam Network they are connected to. In addition, accounts can be controlled by users (with the private key for signing) or smart contracts.
+
+As with Ethereum, there are two main types of accounts: user-owned and contract owned. However, on Moonbeam, within both account types, there are also [proxy accounts](https://wiki.polkadot.network/learn/learn-proxies/){target=\_blank}, which can perform a limited number of actions on behalf of another account. In terms of balances, all of Moonbeam account types have five (5) different [balance types](https://wiki.polkadot.network/learn/learn-accounts/#balance-types){target=\_blank}:
+
+ - **Free** — refers to the balance that can be used (not locked/frozen) from the Substrate API. The concept of `free` balance depends on the action to be executed. For example, voting in democracy will not subtract the allocated balance to the vote from `free` balance, but token holders won't be able to transfer that balance
+ - **Reducible** — refers to the balance that can be used (not locked/frozen) through the Ethereum API on Moonbeam. For example, this is the balance displayed by MetaMask. It is the real spendable balance, accounting for all democracy locks (displayed as transferable in Polkadot.js Apps)
+ - **Reserved** — refers to the balance held due to on-chain requirements, and that can be freed by performing some on-chain action.  For example, bonds for creating a proxy account or setting an on-chain identity are shown as `reserved balance`. These funds are **not** transferable or accessible via the Ethereum API until they are freed
+ - **Misc frozen** — represents a balance that the `free` balance may not drop below when withdrawing funds, except for transaction fee payment. For example, funds being used to vote on a governance proposal are shown as `misc frozen`. These funds are **not** transferable or accessible via the Ethereum API until they are freed
+ - **Fee frozen** — represents a balance that the `free` balance may not drop below when specifically paying for transaction fees. These funds are **not** transferable or accessible via the Ethereum API until they are freed
+
+![Moonbeam balances diagram](/images/learn/core-concepts/balances/balances-2.webp)
+
+### Calculating Your Transferable Balance {: #calculating-your-transferable-balance }
+
+An account's transferable or spendable balance can be calculated as the free balance minus the maximum of `0` or the difference between frozen and reserved tokens: 
+
+```text
+Transferable = free - max(0, frozen - reserved )
+```
+
+Here are two examples of calculating transferable balances:
+
+An account has `1000` free tokens, `200` frozen tokens, and `50` reserved tokens. The transferable balance is calculated as:
+
+```text
+Transferable = 1000 - max(0, 200 - 50) = 1000 - 150 = 850
+```
+
+If the frozen tokens are less than the reserved tokens, with `1000` free tokens, `100` frozen tokens, and `150` reserved tokens, the transferable balance would be:
+
+```text
+Transferable = 1000 - max(0, 100 - 150) = 1000 - 0 = 1000
+```
+
+### Retrieve Your Balance {: #retrieve-your-balance }
+
+You can check on your balances, including your free (or transferable) and reserved balances (if exists), using the [Polkadot.js API](/builders/substrate/libraries/polkadot-js-api/){target=\_blank}.
+
+!!! note
+    To test out the examples in this guide on Moonbeam or Moonriver, you will need to have your own endpoint and API key, which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=\_blank}.
+
+```js
+import { ApiPromise, WsProvider } from '@polkadot/api';
+
+const wsProvider = new WsProvider('wss://wss.api.moonbase.moonbeam.network');
+
+const main = async () => {
+  const polkadotApi = await ApiPromise.create({
+    provider: wsProvider,
+  });
+
+  const balances = await polkadotApi.query.system.account('INSERT_ADDRESS');
+  console.log(balances.toHuman());
+};
+
+main();
+```
+
+You can also retrieve your balance locks using the Polkadot.js API.
+
+```js
+import { ApiPromise, WsProvider } from '@polkadot/api';
+
+const wsProvider = new WsProvider('wss://wss.api.moonbase.moonbeam.network');
+
+const main = async () => {
+  const polkadotApi = await ApiPromise.create({
+    provider: wsProvider,
+  });
+
+  const locks = await polkadotApi.query.balances.locks('INSERT_ADDRESS');
+  console.log(locks.toHuman());
+};
+
+main();
+```
+
+## Main Differences {: #main-differences }
+
+The main difference between account balances on Ethereum and Moonbeam lies in the concept of locked and reserved balance on Moonbeam. These are tokens that are still owned by that account, but they are not spendable (yet).
+
+From the Ethereum's API perspective, an account might show that it has a certain balance (called `reducible` balance). However, after an on-chain action, this value might increase (or decrease) without an actual balance transfer.
+
+It is important to note that the account and behavior differences described here apply to account balances with the base asset (GLMR, MOVR) only and the balances of that asset that aren't interacting with smart contracts. As soon as a Moonbeam account balance is interacting with smart contracts, the behavior will be the same as Ethereum behavior. For example, if you wrap MOVR on Moonriver there is no way for the underlying balance to change via staking or governance actions, because that is part of the storage of the contract. In this case the reducible balance of that account has been committed to the wrapped MOVR smart contract and can't be modified by Substrate actions.
+--- END CONTENT ---
+
+Doc-Content: https://docs.moonbeam.network/learn/platform/links/
+--- BEGIN CONTENT ---
+---
+title: Important Moonbeam Related Links
+description: If you're new to Moonbeam or the Polkadot network, here are some important links to review, including compatible Ethereum tools.
+categories: Basics
+---
+
+# Links
+
+ - **[Polkadot Docs](https://docs.polkadot.com/){target=\_blank}** - starting point for learning about the [Polkadot SDK](https://docs.polkadot.com/develop/parachains/intro-polkadot-sdk/){target=\_blank}, a Rust-based framework for developing blockchains. Moonbeam is developed using Substrate and uses many of the modules that come with it
+ - **[Polkadot.com](https://polkadot.com){target=\_blank}** - learn about Polkadot, including the vision behind the network and how the system works, i.e., staking, governance, etc.
+ - **[Polkadot-JS Apps](https://polkadot.js.org/apps){target=\_blank}** - a web-based interface for interacting with Substrate based nodes, including Moonbeam
+ - **[Solidity Docs](https://solidity.readthedocs.io){target=\_blank}** - Solidity is the main smart contract programming language supported by Ethereum and Moonbeam.  The Solidity docs site is very comprehensive
+ - **[Remix](https://remix.ethereum.org){target=\_blank}** - web-based IDE for Solidity smart contract development that is compatible with Moonbeam
+ - **[Hardhat](https://hardhat.org){target=\_blank}** - development tools for Solidity, including debugging, testing, and automated deployment that is compatible with Moonbeam
+--- END CONTENT ---
+
+Doc-Content: https://docs.moonbeam.network/builders/get-started/networks/moonbase/
+--- BEGIN CONTENT ---
+---
+title: Moonbase Alpha Get Started Guide
+description: The Moonbeam TestNet, named Moonbase Alpha, is the easiest way to get started with a Polkadot environment. Follow this tutorial to connect to the TestNet.
+categories: Basics
+---
+
+# Get Started with Moonbase Alpha
+
+## Network Endpoints {: #network-endpoints }
+
+Moonbase Alpha has two types of endpoints available for users to connect to: one for HTTPS and one for WSS.
+
+If you're looking for your own endpoints suitable for production use, you can check out the [Endpoint Providers](/builders/get-started/endpoints/#endpoint-providers){target=\_blank} section of our documentation. Otherwise, to get started quickly you can use one of the following public HTTPS or WSS endpoints.
+
+=== "HTTPS"
+    |      Provider       |                              RPC URL                               |   Limits    |
+    |:-------------------:|:------------------------------------------------------------------:|:-----------:|
+    |       Dwellir       |         <pre>```https://moonbase-rpc.dwellir.com```</pre>          | 20 req/sec  |
+    |     OnFinality      |  <pre>```https://moonbeam-alpha.api.onfinality.io/public```</pre>  | 40 req/sec  |
+    | Moonbeam Foundation |     <pre>```https://rpc.api.moonbase.moonbeam.network```</pre>     | 25 req/sec  |
+    |     UnitedBloc      |          <pre>```https://moonbase.unitedbloc.com```</pre>          | 32 req/sec  |
+    |     RadiumBlock     | <pre>```https://moonbase.public.curie.radiumblock.co/http```</pre> | 200 req/sec |
+
+=== "WSS"
+    |      Provider       |                              RPC URL                              |   Limits    |
+    |:-------------------:|:-----------------------------------------------------------------:|:-----------:|
+    |       Dwellir       |          <pre>```wss://moonbase-rpc.dwellir.com```</pre>          | 20 req/sec  |
+    |     OnFinality      | <pre>```wss://moonbeam-alpha.api.onfinality.io/public-ws```</pre> | 40 req/sec  |
+    | Moonbeam Foundation |     <pre>```wss://wss.api.moonbase.moonbeam.network```</pre>      | 25 req/sec  |
+    |     UnitedBloc      |          <pre>```wss://moonbase.unitedbloc.com```</pre>           | 32 req/sec  |
+    |     RadiumBlock     |  <pre>```wss://moonbase.public.curie.radiumblock.co/ws```</pre>   | 200 req/sec |
+
+
+#### Relay Chain {: #relay-chain }
+
+To connect to the Moonbase Alpha relay chain, you can use the following WS Endpoint:
+
+| Provider |                          RPC URL                           |
+|:--------:|:----------------------------------------------------------:|
+| OpsLayer | <pre>```wss://relay.api.moonbase.moonbeam.network```</pre> |
+
+## Quick Start {: #quick-start }
+
+For the [Web3.js library](/builders/ethereum/libraries/web3js/){target=\_blank}, you can create a local Web3 instance and set the provider to connect to Moonbase Alpha (both HTTP and WS are supported):
+
+```js
+const { Web3 } = require('web3'); // Load Web3 library
+.
+.
+.
+// Create local Web3 instance - set Moonbase Alpha as provider
+const web3 = new Web3('https://rpc.api.moonbase.moonbeam.network'); 
+```
+
+For the [Ethers.js library](/builders/ethereum/libraries/ethersjs/){target=\_blank}, define the provider by using `ethers.JsonRpcProvider(providerURL, {object})` and setting the provider URL to Moonbase Alpha:
+
+```js
+const ethers = require('ethers'); // Load Ethers library
+
+const providerURL = 'https://rpc.api.moonbase.moonbeam.network';
+// Define provider
+const provider = new ethers.JsonRpcProvider(providerURL, {
+    chainId: 1287,
+    name: 'moonbase-alphanet'
+});
+```
+
+Any Ethereum wallet should be able to generate a valid address for Moonbeam (for example, [MetaMask](https://metamask.io){target=\_blank}).
+
+## Chain ID {: #chain-id }
+
+Moonbase Alpha TestNet chain ID is: `1287`, which is `0x507` in hex.
+
+## Block Explorers
+
+For Moonbase Alpha, you can use any of the following block explorers:
+
+ - **Ethereum API (Etherscan Equivalent)** — [Moonscan](https://moonbase.moonscan.io){target=\_blank}
+ - **Ethereum API JSON-RPC based** — [Moonbeam Basic Explorer](https://moonbeam-explorer.netlify.app/?network=MoonbaseAlpha){target=\_blank}
+ - **Substrate API** — [Subscan](https://moonbase.subscan.io){target=\_blank} or [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/explorer){target=\_blank}
+
+For more information on each of the available block explorers, please head to the [Block Explorers](/builders/get-started/explorers/){target=\_blank} section of the documentation.
+
+## Connect MetaMask
+
+If you already have MetaMask installed, you can easily connect MetaMask to the Moonbase Alpha TestNet:
+
+<div class="button-wrapper">
+    <a href="#" class="md-button connectMetaMask" value="moonbase">Connect MetaMask</a>
+</div>
+
+!!! note
+    MetaMask will popup asking for permission to add Moonbase Alpha as a custom network. Once you approve permissions, MetaMask will switch your current network to Moonbase Alpha.
+
+If you do not have MetaMask installed, or would like to follow a tutorial to get started, please check out the [Interacting with Moonbeam using MetaMask](/tokens/connect/metamask/){target=\_blank} guide.
+
+## Configuration {: #configuration }
+
+Please note the following gas configuration parameters. These values are subject to change in future runtime upgrades.
+
+|       Variable        |                   Value                    |
+|:---------------------:|:------------------------------------------:|
+|   Minimum gas price   | {{ networks.moonbase.min_gas_price }} Gwei |
+|   Target block time   | {{ networks.moonbase.block_time }} seconds |
+|    Block gas limit    |     {{ networks.moonbase.gas_block }}      |
+| Transaction gas limit |       {{ networks.moonbase.gas_tx }}       |
+
+## Get Tokens {: #get-tokens }
+
+To start building on Moonbase Alpha, you can get DEV tokens from the Moonbase Alpha Faucet. For specific amounts, you can always reach out directly to us via our community channels.
+
+To request DEV tokens from the faucet, you can enter your address on the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank} website. The faucet dispenses {{ networks.moonbase.website_faucet_amount }} every 24 hours.
+
+![Moonbase Alpha Faucet Website.](/images/builders/get-started/networks/moonbase/moonbase-1.webp)
+
+!!! note
+    Moonbase Alpha DEV tokens have no value. Please don't spam the faucet with unnecessary requests.
+
+You can also use the [ChainDrop Faucet](https://chaindrop.org/?chainid=1287&token=0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee){target=\_blank} to request DEV tokens, which dispenses {{ networks.moonbase.chaindrop_faucet_amount }} per request.
+
+![ChainDrop Faucet Website.](/images/builders/get-started/networks/moonbase/moonbase-2.webp)
+
+## Demo DApps {: #Demo-DApps }
+
+There are a variety of DApps deployed to Moonbase Alpha enabling you to experiment with various apps and integrations. You can also acquire a variety of test tokens through the [Moonbase ERC20 Minter](https://moonbase-minterc20.netlify.app){target=\_blank} or [Moonbeam Uniswap](https://moonbeam-swap.netlify.app/#/swap){target=\_blank} DApps. For example, [Moonbeam Uniswap](https://moonbeam-swap.netlify.app/#/swap){target=\_blank} can help you acquire cross-chain assets such as xcUNIT or xcKarura for testing XCM related functions. In the below table, you'll find each sample DApp, its associated URL, and GitHub repository.
+
+### Quick Links {: #quick-links }
+
+|                                            DApp                                            |    Description     |                                                                            Repository                                                                            |
+|:------------------------------------------------------------------------------------------:|:------------------:|:----------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+|     [Moonbase ERC-20 Minter](https://moonbase-minterc20.netlify.app){target=\_blank}      |   ERC-20 Faucet    |                 [https://github.com/papermoonio/moonbase-mintableERC20](https://github.com/papermoonio/moonbase-mintableERC20){target=\_blank}                  |
+|        [Moonbeam Uniswap](https://moonbeam-swap.netlify.app/#/swap){target=\_blank}        |  Uniswap V2 Fork   |                       [https://github.com/papermoonio/moonbeam-uniswap](https://github.com/papermoonio/moonbeam-uniswap){target=\_blank}                        |
+|       [MoonLink Dashboard](https://moonlink-dashboard.netlify.app){target=\_blank}        |   Chainlink Demo   |                     [https://github.com/papermoonio/moonlink-dashboard](https://github.com/papermoonio/moonlink-dashboard){target=\_blank}                      |
+|        [MoonLotto Lottery](https://moonbase-moonlotto.netlify.app){target=\_blank}        |   TheGraph Demo    | [Interface](https://github.com/papermoonio/moonlotto-interface){target=\_blank}, [Subgraph](https://github.com/papermoonio/moonlotto-subgraph){target=\_blank} |
+| [Moonbeam WalletConnect](https://moonbeam-walletconnect-demo.netlify.app){target=\_blank} | WalletConnect Demo |            [https://github.com/papermoonio/moonbeam-walletconnect-demo](https://github.com/papermoonio/moonbeam-walletconnect-demo){target=\_blank}             |
+|              [MoonGas](https://moonbeam-gasinfo.netlify.app){target=\_blank}              | Gas Price Tracker  |                    [https://github.com/albertov19/moonbeam-gas-station](https://github.com/albertov19/moonbeam-gas-station){target=\_blank}                     |
+
+!!! note
+    These DApps are intended for demonstration purposes only and may be incomplete or unsuitable for production deployments.
+
+### Moonbase ERC20 Minter {: #moonbase-erc20-minter }
+
+The [Moonbase ERC-20 Minter](https://moonbase-minterc20.netlify.app){target=\_blank} enables you to mint a variety of ERC-20 test tokens corresponding to the 8 planets of the solar system, and Pluto. To mint tokens, first press **Connect MetaMask** in the upper right hand corner. Then scroll to the **Mint Tokens** section and the choose desired ERC-20 contract. Press **Submit Tx** and confirm the transaction in MetaMask. Each mint will grant you 100 tokens, and you can mint tokens for each contract once per hour.
+
+![ERC20 Minter](/images/builders/get-started/networks/moonbase/moonbase-3.webp)
+
+### Moonbeam Uniswap {: #moonbeam-uniswap }
+
+[Moonbeam Uniswap](https://moonbeam-swap.netlify.app/#/swap){target=\_blank} is a fork of [Uniswap-V2](https://blog.uniswap.org/uniswap-v2){target=\_blank} deployed to Moonbase Alpha. Notably, Moonbeam Uniswap allows developers to easily make a swap to acquire [cross-chain assets](/builders/interoperability/xcm/xc20/){target=\_blank} such as xcKarura or xcUNIT for XCM testing purposes. To perform your first swap, take the following steps:
+
+1. Press **Select a token**
+2. Connect your MetaMask wallet and ensure you're on the Moonbase Alpha network
+3. Press **Choose a List** on the prompt
+4. Select **Moon Menu**
+5. Search for or select your desired asset from the list then continue with the swap
+
+![Moonbeam Swap](/images/builders/get-started/networks/moonbase/moonbase-4.webp)
+
+!!! note
+    If you see only a partial list of assets under **Moon Menu**, your browser may have cached an older version of **Moon Menu**. Clearing the cache and re-adding **Moon Menu** will resolve this.
+
+### MoonLink Dashboard {: #moonlink-dashboard }
+
+The [MoonLink Dashboard](https://moonlink-dashboard.netlify.app){target=\_blank} showcases Chainlink price feeds in action. For more information, including a full listing of all Chainlink price feeds across all Moonbeam networks and a step-by-step guide of how to fetch price feed data, [head to the Oracles section of the Moonbeam Docs Site](/builders/integrations/oracles/chainlink/){target=\_blank}. You can also check out the [repository for the MoonLink Dashboard](https://github.com/papermoonio/moonlink-dashboard){target=\_blank}.
+
+![MoonLink Dashboard](/images/builders/get-started/networks/moonbase/moonbase-5.webp)
+
+### MoonLotto Lottery {: #moonlotto-lottery }
+
+[MoonLotto](https://moonbase-moonlotto.netlify.app){target=\_blank} is a simple lottery game on Moonbase Alpha derived from [The Graph's Example Subgraph](https://github.com/graphprotocol/example-subgraph){target=\_blank}.  Purchasing a ticket costs 1 DEV and a winner is chosen each half hour if there are at least 10 participants. [MoonLotto.sol](https://github.com/papermoonio/moonlotto-subgraph/blob/main/contracts/MoonLotto.sol){target=\_blank} holds the contract logic for the lottery. To participate, take the following steps:
+
+1. Connect your MetaMask wallet and ensure you're on the Moonbase Alpha network
+2. Enter the address of the recipient of lotto ticket or check **I want to buy a ticket for my address**
+3. Press **Submit on MetaMask** and confirm the transaction in MetaMask
+
+![MoonLotto Lottery](/images/builders/get-started/networks/moonbase/moonbase-6.webp)
+
+### Moonbeam WalletConnect {: #moonbeam-walletconnect }
+
+[Moonbeam WalletConnect](https://moonbeam-walletconnect-demo.netlify.app){target=\_blank} shows how easy it is to integrate [WalletConnect](https://walletconnect.com){target=\_blank} into your DApps and unlock support for a great variety of crypto wallets. Be sure to check out the [demo app repository](https://github.com/papermoonio/moonbeam-walletconnect-demo){target=\_blank} to see exactly how the WalletConnect integration works. To get started, you can take the following steps:
+
+1. Press **Connect Wallet**
+2. Scan the QR code using a [wallet compatible with WalletConnect](https://walletguide.walletconnect.network/){target=\_blank}
+
+![Moonbeam WalletConnect](/images/builders/get-started/networks/moonbase/moonbase-7.webp)
+
+### MoonGas {: #moongas }
+
+[MoonGas](https://moonbeam-gasinfo.netlify.app){target=\_blank} is a convenient dashboard for viewing the minimum, maximum, and average gas price of transactions in the prior block across all Moonbeam networks. Note, these statistics can fluctuate widely by block and occasionally include outlier values. You can check out the [repository for MoonGas](https://github.com/albertov19/moonbeam-gas-station){target=\_blank}.
+
+You'll notice that the minimum gas price for Moonbeam is {{ networks.moonbeam.min_gas_price }} Gwei, while the minimum for Moonriver is {{ networks.moonriver.min_gas_price }} Gwei and Moonbase Alpha is {{ networks.moonbase.min_gas_price }} Gwei. This difference stems from the [100 to 1 re-denomination of GLMR](https://moonbeam.network/news/moonbeam-foundation-announces-liquidity-programs-a-new-token-event-and-glmr-redenomination){target=\_blank} and thus the {{ networks.moonbeam.min_gas_price }} Gwei minimum on Moonbeam corresponds to a {{ networks.moonriver.min_gas_price }} Gwei minimum on Moonriver and a {{ networks.moonbase.min_gas_price }} Gwei on Moonbase.
+
+![MoonGas](/images/builders/get-started/networks/moonbase/moonbase-8.webp)
+--- END CONTENT ---
+
+Doc-Content: https://docs.moonbeam.network/builders/get-started/networks/moonbeam/
+--- BEGIN CONTENT ---
+---
+title: Get Started with Moonbeam
+description: Learn how to connect to Moonbeam via RPC and WSS endpoints, how to connect MetaMask to Moonbeam, and about the available Moonbeam block explorers.
+categories: Basics
+---
+
+# Get Started with Moonbeam
+
+## Network Endpoints {: #network-endpoints }
+
+Moonbeam has two types of endpoints available for users to connect to: one for HTTPS and one for WSS.
+
+If you're looking for your own endpoints suitable for production use, you can check out the [Endpoint Providers](/builders/get-started/endpoints/#endpoint-providers){target=\_blank} section of our documentation. Otherwise, to get started quickly you can use one of the following public HTTPS or WSS endpoints:
+
+=== "HTTPS"
+    |  Provider   |                              RPC URL                               |   Limits    |
+    |:-----------:|:------------------------------------------------------------------:|:-----------:|
+    |    Blast    |        <pre>```https://moonbeam.public.blastapi.io```</pre>        | 80 req/sec  |
+    |   Dwellir   |         <pre>```https://moonbeam-rpc.dwellir.com```</pre>          | 20 req/sec  |
+    | OnFinality  |     <pre>```https://moonbeam.api.onfinality.io/public```</pre>     | 40 req/sec  |
+    | UnitedBloc  |          <pre>```https://moonbeam.unitedbloc.com```</pre>          | 32 req/sec  |
+    | RadiumBlock | <pre>```https://moonbeam.public.curie.radiumblock.co/http```</pre> | 200 req/sec |
+    |    1RPC     |               <pre>```https://1rpc.io/glmr```</pre>                | 10k req/day |
+
+
+
+=== "WSS"
+    |  Provider   |                            RPC URL                             |   Limits    |
+    |:-----------:|:--------------------------------------------------------------:|:-----------:|
+    |    Blast    |       <pre>```wss://moonbeam.public.blastapi.io```</pre>       | 80 req/sec  |
+    |   Dwellir   |        <pre>```wss://moonbeam-rpc.dwellir.com```</pre>         | 20 req/sec  |
+    | OnFinality  |  <pre>```wss://moonbeam.api.onfinality.io/public-ws```</pre>   | 40 req/sec  |
+    | UnitedBloc  |         <pre>```wss://moonbeam.unitedbloc.com```</pre>         | 32 req/sec  |
+    | RadiumBlock | <pre>```wss://moonbeam.public.curie.radiumblock.co/ws```</pre> | 200 req/sec |
+    |    1RPC     |              <pre>```wss://1rpc.io/glmr```</pre>               | 10k req/day |
+
+## Quick Start {: #quick-start }
+
+Before getting started, make sure you've retrieved your own endpoint and API key from one of the custom [Endpoint Providers](/builders/get-started/endpoints/){target=\_blank}. Then for the [Web3.js library](/builders/ethereum/libraries/web3js/){target=\_blank}, you can create a local Web3 instance and set the provider to connect to Moonbeam (both HTTP and WS are supported):
+
+```js
+const { Web3 } = require('web3'); // Load Web3 library
+.
+.
+.
+// Create local Web3 instance - set Moonbeam as provider
+const web3 = new Web3('INSERT_RPC_API_ENDPOINT'); // Insert your RPC URL here
+```
+
+For the [Ethers.js library](/builders/ethereum/libraries/ethersjs/){target=\_blank}, define the provider by using `ethers.JsonRpcProvider(providerURL, {object})` and setting the provider URL to Moonbeam:
+
+```js
+const ethers = require('ethers'); // Load Ethers library
+
+const providerURL = 'INSERT_RPC_API_ENDPOINT'; // Insert your RPC URL here
+
+// Define provider
+const provider = new ethers.JsonRpcProvider(providerURL, {
+    chainId: 1284,
+    name: 'moonbeam'
+});
+```
+
+Any Ethereum wallet should be able to generate a valid address for Moonbeam (for example, [MetaMask](https://metamask.io){target=\_blank}).
+
+## Chain ID {: #chain-id }
+
+Moonbeam chain ID is: `1284`, or `0x504` in hex.
+
+## Block Explorers {: #block-explorers }
+
+For Moonbeam, you can use any of the following block explorers:
+
+ - **Ethereum API (Etherscan Equivalent)** — [Moonscan](https://moonbeam.moonscan.io){target=\_blank}
+ - **Ethereum API JSON-RPC based** — [Moonbeam Basic Explorer](https://moonbeam-explorer.netlify.app/?network=Moonbeam){target=\_blank}
+ - **Substrate API** — [Subscan](https://moonbeam.subscan.io){target=\_blank} or [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbeam.network#/explorer){target=\_blank}
+
+For more information on each of the available block explorers, please head to the [Block Explorers](/builders/get-started/explorers/){target=\_blank} section of the documentation.
+
+## Connect MetaMask {: #connect-metamask }
+
+If you already have MetaMask installed, you can easily connect MetaMask to Moonbeam:
+
+<div class="button-wrapper">
+    <a href="#" class="md-button connectMetaMask" value="moonbeam">Connect MetaMask</a>
+</div>
+
+!!! note
+    MetaMask will popup asking for permission to add Moonbeam as a custom network. Once you approve permissions, MetaMask will switch your current network to Moonbeam.
+
+If you do not have MetaMask installed, or would like to follow a tutorial to get started, please check out the [Interacting with Moonbeam using MetaMask](/tokens/connect/metamask/){target=\_blank} guide.
+
+## Configuration {: #configuration }
+
+Please note the following gas configuration parameters. These values are subject to change in future runtime upgrades.
+
+
+|       Variable        |                   Value                    |
+|:---------------------:|:------------------------------------------:|
+|   Minimum gas price   | {{ networks.moonbeam.min_gas_price }} Gwei |
+|   Target block time   | {{ networks.moonbeam.block_time }} seconds |
+|    Block gas limit    |     {{ networks.moonbeam.gas_block }}      |
+| Transaction gas limit |       {{ networks.moonbeam.gas_tx }}       |
+--- END CONTENT ---
+
+Doc-Content: https://docs.moonbeam.network/builders/get-started/networks/moonriver/
+--- BEGIN CONTENT ---
+---
+title: Moonriver Get Started Guide
+description: Learn how to connect to Moonriver via RPC and WSS endpoints, how to connect MetaMask to Moonriver, and about the available Moonriver block explorers.
+categories: Basics
+---
+
+# Get Started with Moonriver
+
+## Network Endpoints {: #network-endpoints }
+
+Moonriver has two types of endpoints available for users to connect to: one for HTTPS and one for WSS.
+
+If you're looking for your own endpoints suitable for production use, you can check out the [Endpoint Providers](/builders/get-started/endpoints/#endpoint-providers){target=\_blank} section of our documentation. Otherwise, to get started quickly you can use one of the following public HTTPS or WSS endpoints:
+
+=== "HTTPS"
+      |  Provider   |                               RPC URL                               |   Limits    |
+      |:-----------:|:-------------------------------------------------------------------:|:-----------:|
+      |   Dwellir   |         <pre>```https://moonriver-rpc.dwellir.com```</pre>          | 20 req/sec  |
+      | OnFinality  |     <pre>```https://moonriver.api.onfinality.io/public```</pre>     | 40 req/sec  |
+      | UnitedBloc  |          <pre>```https://moonriver.unitedbloc.com```</pre>          | 32 req/sec  |
+      | RadiumBlock | <pre>```https://moonriver.public.curie.radiumblock.co/http```</pre> | 200 req/sec |
+
+=== "WSS"
+    |  Provider   |                             RPC URL                             |   Limits    |
+    |:-----------:|:---------------------------------------------------------------:|:-----------:|
+    |   Dwellir   |        <pre>```wss://moonriver-rpc.dwellir.com```</pre>         | 20 req/sec  |
+    | OnFinality  |  <pre>```wss://moonriver.api.onfinality.io/public-ws```</pre>   | 40 req/sec  |
+    | UnitedBloc  |         <pre>```wss://moonriver.unitedbloc.com```</pre>         | 32 req/sec  |
+    | RadiumBlock | <pre>```wss://moonriver.public.curie.radiumblock.co/ws```</pre> | 200 req/sec |
+
+## Quick Start {: #quick-start }
+
+Before getting started, make sure you've retrieved your own endpoint and API key from one of the custom [Endpoint Providers](/builders/get-started/endpoints/){target=\_blank}. Then for the [Web3.js library](/builders/ethereum/libraries/web3js/){target=\_blank}, you can create a local Web3 instance and set the provider to connect to Moonriver (both HTTP and WS are supported):
+
+```js
+const { Web3 } = require('web3'); // Load Web3 library
+.
+.
+.
+// Create local Web3 instance - set Moonriver as provider
+const web3 = new Web3('INSERT_RPC_API_ENDPOINT'); // Insert your RPC URL here
+```
+
+For the [Ethers.js library](/builders/ethereum/libraries/ethersjs/){target=\_blank}, define the provider by using `ethers.JsonRpcProvider(providerURL, {object})` and setting the provider URL to Moonriver:
+
+```js
+const ethers = require('ethers'); // Load Ethers library
+
+const providerURL = 'INSERT_RPC_API_ENDPOINT'; // Insert your RPC URL here
+
+// Define provider
+const provider = new ethers.JsonRpcProvider(providerURL, {
+    chainId: 1285,
+    name: 'moonriver'
+});
+```
+
+Any Ethereum wallet should be able to generate a valid address for Moonbeam (for example, [MetaMask](https://metamask.io){target=\_blank}).
+
+## Chain ID {: #chain-id }
+
+Moonriver chain ID is: `1285`, or `0x505` in hex.
+
+## Block Explorers {: #block-explorers }
+
+For Moonriver, you can use any of the following block explorers:
+
+ - **Ethereum API (Etherscan Equivalent)** — [Moonscan](https://moonriver.moonscan.io){target=\_blank}
+ - **Ethereum API JSON-RPC based** — [Moonbeam Basic Explorer](https://moonbeam-explorer.netlify.app/?network=Moonriver){target=\_blank}
+ - **Substrate API** — [Subscan](https://moonriver.subscan.io){target=\_blank} or [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonriver.moonbeam.network#/explorer){target=\_blank}
+ 
+For more information on each of the available block explorers, please head to the [Block Explorers](/builders/get-started/explorers/) section of the documentation.
+
+## Connect MetaMask {: #connect-metamask }
+
+If you already have MetaMask installed, you can easily connect MetaMask to Moonriver:
+
+<div class="button-wrapper">
+    <a href="#" class="md-button connectMetaMask" value="moonriver">Connect MetaMask</a>
+</div>
+
+!!! note
+    MetaMask will popup asking for permission to add Moonriver as a custom network. Once you approve permissions, MetaMask will switch your current network to Moonriver.
+
+If you do not have MetaMask installed, or would like to follow a tutorial to get started, please check out the [Interacting with Moonbeam using MetaMask](/tokens/connect/metamask/) guide.
+
+## Configuration {: #configuration }
+
+Please note the following gas configuration parameters. These values are subject to change in future runtime upgrades.
+
+|       Variable        |                    Value                    |
+|:---------------------:|:-------------------------------------------:|
+|   Minimum gas price   | {{ networks.moonriver.min_gas_price }} Gwei |
+|   Target block time   | {{ networks.moonriver.block_time }} seconds |
+|    Block gas limit    |     {{ networks.moonriver.gas_block }}      |
+| Transaction gas limit |       {{ networks.moonriver.gas_tx }}       |
+--- END CONTENT ---
+
+Doc-Content: https://docs.moonbeam.network/builders/get-started/quick-start/
+--- BEGIN CONTENT ---
+---
+title: Quickly Get Started
+description: Everything you need to know to get started developing, deploying, and interacting with smart contracts on Moonbeam.
+categories: Basics
+---
+
+# Quick Start Guide for Developing on Moonbeam
+
+## Quick Overview {: #overview }
+
+Moonbeam is a fully Ethereum-compatible smart contract platform on Polkadot. As such, you can interact with Moonbeam via the [Ethereum API](/builders/ethereum/){target=\_blank} and [Substrate API](/builders/substrate/){target=\_blank}.
+
+Although Moonbeam is a Substrate-based platform, Moonbeam uses a [unified accounts](/learn/core-concepts/unified-accounts/){target=\_blank} system, which replaces Substrate-style accounts and keys with Ethereum-style accounts and keys. As a result, you can interact with your Moonbeam account with [MetaMask](/tokens/connect/metamask/){target=\_blank}, [Ledger](/tokens/connect/ledger/){target=\_blank}, and other Ethereum-compatible wallets by simply adding Moonbeam's network configurations. Similarly, you can develop on Moonbeam using Ethereum [libraries](/builders/ethereum/libraries/){target=\_blank} and [development environments](/builders/ethereum/dev-env/){target=\_blank}.
+
+## Moonbeam Networks {: #moonbeam-networks }
+
+To get started developing on Moonbeam, it's important to be aware of the various networks within the Moonbeam ecosystem.
+
+|                                          Network                                          | Network Type  |                                   Relay Chain                                    | Native Asset Symbol | Native Asset Decimals |
+|:-----------------------------------------------------------------------------------------:|:-------------:|:--------------------------------------------------------------------------------:|:-------------------:|:---------------------:|
+|           [Moonbeam](/builders/get-started/networks/moonbeam/){target=\_blank}            |    MainNet    |                 [Polkadot](https://polkadot.com){target=\_blank}                 |        GLMR         |          18           |
+|          [Moonriver](/builders/get-started/networks/moonriver/){target=\_blank}           |    MainNet    |                 [Kusama](https://kusama.network){target=\_blank}                 |        MOVR         |          18           |
+|        [Moonbase Alpha](/builders/get-started/networks/moonbase/){target=\_blank}         |    TestNet    | [Alphanet relay](/learn/platform/networks/moonbase/#relay-chain){target=\_blank} |         DEV         |          18           |
+| [Moonbeam Development Node](/builders/get-started/networks/moonbeam-dev/){target=\_blank} | Local TestNet |                                       None                                       |         DEV         |          18           |
+
+!!! note
+    A Moonbeam development node doesn't have a relay chain as its purpose is to be your own personal development environment where you can get started developing quickly without the overhead of a relay chain.
+
+### Network Configurations {: #network-configurations }
+
+When working with developer tools, depending on the tool, you might need to configure Moonbeam to interact with the network. To do so, you can use the following information:
+
+=== "Moonbeam"
+
+    |    Variable     |                                                 Value                                                  |
+    |:---------------:|:------------------------------------------------------------------------------------------------------:|
+    |    Chain ID     |                           <pre>```{{ networks.moonbeam.chain_id }}```</pre>                            |
+    | Public RPC URLs | <pre>```https://moonbeam.public.blastapi.io```</pre>  <pre>```https://moonbeam.unitedbloc.com```</pre> |
+    | Public WSS URLs |                           <pre>```wss://moonbeam.public.blastapi.io```</pre>                           |
+
+=== "Moonriver"
+
+    |    Variable     |                                                  Value                                                   |
+    |:---------------:|:--------------------------------------------------------------------------------------------------------:|
+    |    Chain ID     |                            <pre>```{{ networks.moonriver.chain_id }}```</pre>                            |
+    | Public RPC URLs | <pre>```https://moonriver.public.blastapi.io```</pre>  <pre>```https://moonriver.unitedbloc.com```</pre> |
+    | Public WSS URLs |                           <pre>```wss://moonriver.public.blastapi.io```</pre>                            |
+
+=== "Moonbase Alpha"
+
+    |    Variable     |                                                    Value                                                    |
+    |:---------------:|:-----------------------------------------------------------------------------------------------------------:|
+    |    Chain ID     |                              <pre>```{{ networks.moonbase.chain_id }}```</pre>                              |
+    | Public RPC URLs | <pre>```https://moonbase-alpha.public.blastapi.io```</pre> <pre>```{{ networks.moonbase.rpc_url }}```</pre> |
+    | Public WSS URLs |  <pre>```wss://moonbase-alpha.public.blastapi.io```</pre> <pre>```{{ networks.moonbase.wss_url }}```</pre>  |
+
+=== "Moonbeam Dev Node"
+
+    |   Variable    |                        Value                         |
+    |:-------------:|:----------------------------------------------------:|
+    |   Chain ID    | <pre>```{{ networks.development.chain_id }}```</pre> |
+    | Local RPC URL | <pre>```{{ networks.development.rpc_url }}```</pre>  |
+    | Local WSS URL | <pre>```{{ networks.development.wss_url }}```</pre>  |
+
+!!! note
+    You can create your own endpoint suitable for development or production from one of the [supported RPC providers](/builders/get-started/endpoints/#endpoint-providers){target=\_blank}.
+
+### Block Explorers {: #explorers }
+
+Moonbeam provides two different kinds of explorers: ones to query the Ethereum API, and others dedicated to the Substrate API. All EVM-based transactions are accessible via the Ethereum API whereas the Substrate API can be relied upon for Substrate-native functions such as governance, staking, and some information about EVM-based transactions. For more information on each explorer, please check out the [Block Explorers](/builders/get-started/explorers/){target=\_blank} page.
+
+=== "Moonbeam"
+    | Block Explorer |   Type    |                                                                  URL                                                                  |
+    |:--------------:|:---------:|:-------------------------------------------------------------------------------------------------------------------------------------:|
+    |    Moonscan    |    EVM    |                            [https://moonbeam.moonscan.io/](https://moonbeam.moonscan.io){target=\_blank}                             |
+    |   Expedition   |    EVM    |  [https://moonbeam-explorer.netlify.app/?network=Moonbeam](https://moonbeam-explorer.netlify.app/?network=Moonbeam){target=\_blank}  |
+    |    Subscan     | Substrate |                             [https://moonbeam.subscan.io/](https://moonbeam.subscan.io){target=\_blank}                              |
+    |  Polkadot.js   | Substrate | [https://polkadot.js.org/apps/#/explorer](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbeam.network#/explorer){target=\_blank} |
+
+=== "Moonriver"
+    | Block Explorer |   Type    |                                                                       URL                                                                       |
+    |:--------------:|:---------:|:-----------------------------------------------------------------------------------------------------------------------------------------------:|
+    |    Moonscan    |    EVM    |                                [https://moonriver.moonscan.io/](https://moonriver.moonscan.io){target=\_blank}                                 |
+    |   Expedition   |    EVM    |      [https://moonbeam-explorer.netlify.app/?network=Moonriver](https://moonbeam-explorer.netlify.app/?network=Moonriver){target=\_blank}      |
+    |    Subscan     | Substrate |                                 [https://moonriver.subscan.io/](https://moonriver.subscan.io){target=\_blank}                                  |
+    |  Polkadot.js   | Substrate | [https://polkadot.js.org/apps/#/explorer](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonrvier.moonbeam.network#/explorer){target=\_blank} |
+
+=== "Moonbase Alpha"
+    | Block Explorer |   Type    |                                                                      URL                                                                       |
+    |:--------------:|:---------:|:----------------------------------------------------------------------------------------------------------------------------------------------:|
+    |    Moonscan    |    EVM    |                                 [https://moonbase.moonscan.io/](https://moonbase.moonscan.io){target=\_blank}                                 |
+    |   Expedition   |    EVM    | [https://moonbeam-explorer.netlify.app/?network=MoonbaseAlpha](https://moonbeam-explorer.netlify.app/?network=MoonbaseAlpha){target=\_blank}  |
+    |    Subscan     | Substrate |                                  [https://moonbase.subscan.io/](https://moonbase.subscan.io){target=\_blank}                                  |
+    |  Polkadot.js   | Substrate | [https://polkadot.js.org/apps/#/explorer](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/explorer){target=\_blank} |
+
+=== "Moonbeam Dev Node"
+    | Block Explorer |   Type    |                                                                        URL                                                                        |
+    |:--------------:|:---------:|:-------------------------------------------------------------------------------------------------------------------------------------------------:|
+    |   Expedition   |    EVM    | [https://moonbeam-explorer.netlify.app/?network=MoonbeamDevNode](https://moonbeam-explorer.netlify.app/?network=MoonbeamDevNode){target=\_blank} |
+    |  Polkadot.js   | Substrate |     [https://polkadot.js.org/apps/#/explorer](https://polkadot.js.org/apps/?rpc=wss://ws%3A%2F%2F127.0.0.1%3A9944#/explorer){target=\_blank}      |
+
+## Funding TestNet Accounts {: #testnet-tokens }
+
+To get started developing on one of the TestNets, you'll need to fund your account with DEV tokens to send transactions. Please note that DEV tokens have no real value and are for testing purposes only.
+
+|                                          TestNet                                          |                                                                           Where To Get Tokens From                                                                           |
+|:-----------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+|        [Moonbase Alpha](/builders/get-started/networks/moonbase/){target=\_blank}         | The [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank} website. <br> The faucet dispenses {{ networks.moonbase.website_faucet_amount }} every 24 hours |
+| [Moonbeam Development Node](/builders/get-started/networks/moonbeam-dev/){target=\_blank} | Any of the [ten pre-funded accounts](/builders/get-started/networks/moonbeam-dev/#pre-funded-development-accounts){target=\_blank} that come with your <br> development node |
+
+## Development Tools {: #development-tools }
+
+As Moonbeam is a Substrate-based chain that is fully Ethereum-compatible, you can use Substrate-based tools and Ethereum-based tools.
+
+### JavaScript Tools {: #javascript }
+
+=== "Ethereum"
+
+    |                                   Tool                                   |      Type       |
+    |:------------------------------------------------------------------------:|:---------------:|
+    |   [Ethers.js](/builders/ethereum/libraries/ethersjs/){target=\_blank}    |     Library     |
+    |     [Web3.js](/builders/ethereum/libraries/web3js/){target=\_blank}      |     Library     |
+    |      [Hardhat](/builders/ethereum/dev-env/hardhat/){target=\_blank}      | Dev Environment |
+    | [OpenZeppelin](/builders/ethereum/dev-env/openzeppelin/){target=\_blank} | Dev Environment |
+    |        [Remix](/builders/ethereum/dev-env/remix/){target=\_blank}        | Dev Environment |
+    | [Scaffold-Eth](/builders/ethereum/dev-env/scaffold-eth/){target=\_blank} | Dev Environment |
+    |     [thirdweb](/builders/ethereum/dev-env/thirdweb/){target=\_blank}     | Dev Environment |
+    | [Waffle & Mars](/builders/ethereum/dev-env/waffle-mars/){target=\_blank} | Dev Environment |
+
+=== "Substrate"
+
+    |                                       Tool                                        |  Type   |
+    |:---------------------------------------------------------------------------------:|:-------:|
+    | [Polkadot.js API](/builders/substrate/libraries/polkadot-js-api/){target=\_blank} | Library |
+
+### Python Tools {: #python }
+
+=== "Ethereum"
+
+    |                              Tool                               |      Type       |
+    |:---------------------------------------------------------------:|:---------------:|
+    | [Web3.py](/builders/ethereum/libraries/web3py/){target=\_blank} |     Library     |
+    |     [Ape](/builders/ethereum/dev-env/ape/){target=\_blank}      | Dev Environment |
+    | [Brownie](/builders/ethereum/dev-env/brownie/){target=\_blank}  | Dev Environment |
+
+=== "Substrate"
+
+    |                                              Tool                                               |  Type   |
+    |:-----------------------------------------------------------------------------------------------:|:-------:|
+    | [Py Substrate Interface](/builders/substrate/libraries/py-substrate-interface/){target=\_blank} | Library |
+--- END CONTENT ---
+
+## Reference Concepts [shared: true]
+
+The following section contains reference material for Moonbeam.
+It includes network endpoints, JSON RPC methods, and contract or token addresses.
+While it may not be required for all use cases, it offers a deeper technical layer for advanced development work.
+
+---
+
+## List of shared concept pages:
+
+
+## Full content for shared concepts:
+
+Doc-Content: https://docs.moonbeam.network/learn/platform/glossary/
+--- BEGIN CONTENT ---
+---
+title: Glossary
+description: We've compiled a glossary of terms related to Polkadot that'll make it easier to learn more about the ecosystem.
+categories: Reference
+---
+
+# Glossary
+
+There's a great deal of terminology that's specific to Polkadot, Substrate, and the emerging Parity/Web3 ecosystem. We've compiled a list of terms we think you'll want to know as you review the Moonbeam documentation, plans, and tutorials.
+
+### Collators {: #collators }
+
+One of the key network participants needed to support parachains within the Polkadot Network.  In Moonbeam, collators are the nodes that are responsible for block production and for submitting produced blocks up to the Polkadot relay chain for finalization.
+
+### Delegators {: #delegators }
+
+Moonbeam token holders who stake tokens, vouching for specific collator candidates on the parachain. Any user that holds a minimum amount of tokens as [free balance](https://wiki.polkadot.network/learn/learn-accounts/#balance-types){target=\_blank} can become a delegator by staking their tokens.
+
+### Nominators {: #nominators }
+
+Relay chain token holders who select to "back" a validator. They can receive part of the validator's reward, but are subject to slashing of their staked tokens in case the validator misbehaves. A nominator can back up to 16 validators, and their bond is fully distributed between the backed validators that were selected for the validator set.
+
+### Nominated Proof of Stake {: #nominated-proof-of-stake }
+
+The mechanism used by Polkadot for selecting its block validator set to maximize chain security. At its core, it is a Proof-of-Stake system (PoS) in which nominators back validators. The latter with the highest backing are selected to be part of the validator set for a session. The stake of a validator is slashed in case of misbehavior. Thus, nominators are expected to do due diligence on the validators they nominate.
+
+### Parachains {: #parachains }
+
+A blockchain which has a slot and is connected to Polkadot.  Parachains receive shared security from Polkadot and the ability to interact with other parachains on the Polkadot network. They must lock DOT, the native relay chain token, to secure a slot for a specific period (up two years).
+
+### Parathreads {: #parathreads }
+
+A blockchain which can connect to Polkadot.  Parathreads are able to interact with other members of the Polkadot network, but they bid for block finalization (in DOT) on a block-to-block basis. They compete with other parathreads for block finalization, meaning that the block with the highest bid is selected to be finalize in that round.
+
+### Polkadot {: #polkadot }
+
+A network of connected blockchains that provides shared security and the ability to interact between chains.  Polkadot is built using the Substrate development framework.  Chains that connect to Polkadot are called parachains.
+
+### Relay Chain {: #relay-chain }
+
+The backbone blockchain supporting the Polkadot network.  Parachains connect to the relay Chain and use it for shared security and message passing.  Validators on the relay Chain help secure the parachains.
+
+### Smart Contract {: #smart-contract }
+
+A smart contract is a computer program or a transaction protocol that is intended to automatically execute, control, or document legally relevant events and actions according to the terms of a contract or an agreement. Smart contracts intend to reduce the need for trusted intermediators, arbitrations, and enforcement costs, as well as reduce fraud losses and malicious and accidental exceptions. [Learn more](https://en.wikipedia.org/wiki/Smart_contract){target=\_blank}.
+
+### Substrate {: #substrate }
+
+A Rust-based blockchain development framework created by Parity Technologies based on their experience implementing multiple blockchain clients.  Substrate comes with many modules and functionalities that are needed when building a blockchain, including P2P networking, consensus mechanisms, staking, cryptocurrency, on-chain governance modules, and more.  It dramatically reduces the time and engineering effort required to implement a blockchain. Substrate is now part of the [Polkadot SDK](https://polkadot.com/platform/sdk/){target=\_blank}.
+
+### Substrate Frame Pallets {: #substrate-frame-pallets }
+
+Substrate Frame Pallets are a collection of Rust-based modules, providing the functionality required for building a blockchain.  
+
+### Validators {: #validators }
+
+A node that secures the Polkadot relay Chain by staking DOT in the network, which is slashed if they misbehave. They finalize blocks from collators on parachains and also participate on consensus for the next relay Chain block with other validators.
+
+### WebAssembly/Wasm {: #webassemblywasm }
+
+WebAssembly is an open standard that defines a portable binary code format. It is supported by different programming languages, compilers, and browsers.
+--- END CONTENT ---
+
+Doc-Content: https://docs.moonbeam.network/builders/ethereum/precompiles/overview/
+--- BEGIN CONTENT ---
+---
+title: Solidity Precompiles
+description: An overview of the available Solidity precompiles on Moonbeam. Precompiles enable you to interact with Substrate features using the Ethereum API.
+categories: Reference
+---
+
+# Overview of the Precompiled Contracts on Moonbeam
+
+## Overview {: #introduction }
+
+On Moonbeam, a precompiled contract is native Substrate code that has an Ethereum-style address and can be called using the Ethereum API, like any other smart contract. The precompiles allow you to call the Substrate runtime directly which is not normally accessible from the Ethereum side of Moonbeam.
+
+The Substrate code responsible for implementing precompiles can be found in the [EVM pallet](/learn/platform/technology/#evm-pallet){target=\_blank}. The EVM pallet includes the [standard precompiles found on Ethereum and some additional precompiles that are not specific to Ethereum](https://github.com/polkadot-evm/frontier/tree/master/frame/evm/precompile){target=\_blank}. It also provides the ability to create and execute custom precompiles through the generic [`Precompiles` trait](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm/trait.Precompile.html){target=\_blank}. There are several custom Moonbeam-specific precompiles that have been created, all of which can be found in the [Moonbeam codebase](https://github.com/moonbeam-foundation/moonbeam/tree/master/precompiles){target=\_blank}. It is important to highlight that the precompiles from this list with the `CallableByContract` check are not callable inside the contract constructor.
+
+The Ethereum precompiled contracts contain complex functionality that is computationally intensive, such as hashing and encryption. The custom precompiled contracts on Moonbeam provide access to Substrate-based functionality such as staking, governance, XCM-related functions, and more.
+
+The Moonbeam-specific precompiles can be interacted with through familiar and easy-to-use Solidity interfaces using the Ethereum API, which are ultimately used to interact with the underlying Substrate interface. This flow is depicted in the following diagram:
+
+![Precompiled Contracts Diagram](/images/builders/ethereum/precompiles/overview/overview-1.webp)
+
+!!! note
+    There can be some unintended consequences when using the precompiled contracts on Moonbeam. Please refer to the [Security Considerations](/learn/core-concepts/security/){target=\_blank} page for more information.
+
+## Precompiled Contract Addresses {: #precompiled-contract-addresses }
+
+The precompiled contracts are categorized by address and based on the origin network. If you were to convert the precompiled addresses to decimal format, and break them into categories by numeric value, the categories are as follows:
+
+- **0-1023** - [Ethereum MainNet precompiles](#ethereum-mainnet-precompiles)
+- **1024-2047** - precompiles that are [not in Ethereum and not Moonbeam specific](#non-moonbeam-specific-nor-ethereum-precomiles)
+- **2048-4095** - [Moonbeam specific precompiles](#moonbeam-specific-precompiles)
+
+### Ethereum MainNet Precompiles {: #ethereum-mainnet-precompiles }
+
+=== "Moonbeam"
+    |                                                          Contract                                                           |                  Address                   |
+    |:---------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------:|
+    |      [ECRECOVER](/builders/ethereum/precompiles/utility/eth-mainnet/#verify-signatures-with-ecrecover){target=\_blank}      | 0x0000000000000000000000000000000000000001 |
+    |              [SHA256](/builders/ethereum/precompiles/utility/eth-mainnet/#hashing-with-sha256){target=\_blank}              | 0x0000000000000000000000000000000000000002 |
+    |          [RIPEMD160](/builders/ethereum/precompiles/utility/eth-mainnet/#hashing-with-ripemd-160){target=\_blank}           | 0x0000000000000000000000000000000000000003 |
+    |            [Identity](/builders/ethereum/precompiles/utility/eth-mainnet/#the-identity-function){target=\_blank}            | 0x0000000000000000000000000000000000000004 |
+    |    [Modular Exponentiation](/builders/ethereum/precompiles/utility/eth-mainnet/#modular-exponentiation){target=\_blank}     | 0x0000000000000000000000000000000000000005 |
+    |                  [BN128Add](/builders/ethereum/precompiles/utility/eth-mainnet/#bn128add){target=\_blank}                   | 0x0000000000000000000000000000000000000006 |
+    |                  [BN128Mul](/builders/ethereum/precompiles/utility/eth-mainnet/#bn128mul){target=\_blank}                   | 0x0000000000000000000000000000000000000007 |
+    |              [BN128Pairing](/builders/ethereum/precompiles/utility/eth-mainnet/#bn128pairing){target=\_blank}               | 0x0000000000000000000000000000000000000008 |
+    | [Blake2](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm_precompile_blake2/struct.Blake2F.html){target=\_blank} | 0x0000000000000000000000000000000000000009 |
+    |                 [P256Verify](https://github.com/ethereum/RIPs/blob/master/RIPS/rip-7212.md){target=\_blank}                 | 0x0000000000000000000000000000000000000100 |
+
+=== "Moonriver"
+    |                                                          Contract                                                           |                  Address                   |
+    |:---------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------:|
+    |      [ECRECOVER](/builders/ethereum/precompiles/utility/eth-mainnet/#verify-signatures-with-ecrecover){target=\_blank}      | 0x0000000000000000000000000000000000000001 |
+    |              [SHA256](/builders/ethereum/precompiles/utility/eth-mainnet/#hashing-with-sha256){target=\_blank}              | 0x0000000000000000000000000000000000000002 |
+    |          [RIPEMD160](/builders/ethereum/precompiles/utility/eth-mainnet/#hashing-with-ripemd-160){target=\_blank}           | 0x0000000000000000000000000000000000000003 |
+    |            [Identity](/builders/ethereum/precompiles/utility/eth-mainnet/#the-identity-function){target=\_blank}            | 0x0000000000000000000000000000000000000004 |
+    |    [Modular Exponentiation](/builders/ethereum/precompiles/utility/eth-mainnet/#modular-exponentiation){target=\_blank}     | 0x0000000000000000000000000000000000000005 |
+    |                  [BN128Add](/builders/ethereum/precompiles/utility/eth-mainnet/#bn128add){target=\_blank}                   | 0x0000000000000000000000000000000000000006 |
+    |                  [BN128Mul](/builders/ethereum/precompiles/utility/eth-mainnet/#bn128mul){target=\_blank}                   | 0x0000000000000000000000000000000000000007 |
+    |              [BN128Pairing](/builders/ethereum/precompiles/utility/eth-mainnet/#bn128pairing){target=\_blank}               | 0x0000000000000000000000000000000000000008 |
+    | [Blake2](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm_precompile_blake2/struct.Blake2F.html){target=\_blank} | 0x0000000000000000000000000000000000000009 |
+    |                 [P256Verify](https://github.com/ethereum/RIPs/blob/master/RIPS/rip-7212.md){target=\_blank}                 | 0x0000000000000000000000000000000000000100 |
+
+=== "Moonbase Alpha"
+    |                                                          Contract                                                           |                  Address                   |
+    |:---------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------:|
+    |      [ECRECOVER](/builders/ethereum/precompiles/utility/eth-mainnet/#verify-signatures-with-ecrecover){target=\_blank}      | 0x0000000000000000000000000000000000000001 |
+    |              [SHA256](/builders/ethereum/precompiles/utility/eth-mainnet/#hashing-with-sha256){target=\_blank}              | 0x0000000000000000000000000000000000000002 |
+    |          [RIPEMD160](/builders/ethereum/precompiles/utility/eth-mainnet/#hashing-with-ripemd-160){target=\_blank}           | 0x0000000000000000000000000000000000000003 |
+    |            [Identity](/builders/ethereum/precompiles/utility/eth-mainnet/#the-identity-function){target=\_blank}            | 0x0000000000000000000000000000000000000004 |
+    |    [Modular Exponentiation](/builders/ethereum/precompiles/utility/eth-mainnet/#modular-exponentiation){target=\_blank}     | 0x0000000000000000000000000000000000000005 |
+    |                  [BN128Add](/builders/ethereum/precompiles/utility/eth-mainnet/#bn128add){target=\_blank}                   | 0x0000000000000000000000000000000000000006 |
+    |                  [BN128Mul](/builders/ethereum/precompiles/utility/eth-mainnet/#bn128mul){target=\_blank}                   | 0x0000000000000000000000000000000000000007 |
+    |              [BN128Pairing](/builders/ethereum/precompiles/utility/eth-mainnet/#bn128pairing){target=\_blank}               | 0x0000000000000000000000000000000000000008 |
+    | [Blake2](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm_precompile_blake2/struct.Blake2F.html){target=\_blank} | 0x0000000000000000000000000000000000000009 |
+    |                 [P256Verify](https://github.com/ethereum/RIPs/blob/master/RIPS/rip-7212.md){target=\_blank}                 | 0x0000000000000000000000000000000000000100 |
+
+### Non-Moonbeam Specific nor Ethereum Precompiles {: #non-moonbeam-specific-nor-ethereum-precompiles }
+
+=== "Moonbeam"
+    |                                                                      Contract                                                                      |                  Address                   |
+    |:--------------------------------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------:|
+    |                    [SHA3FIPS256](/builders/ethereum/precompiles/utility/eth-mainnet/#hashing-with-sha3fips256){target=\_blank}                     | 0x0000000000000000000000000000000000000400 |
+    |                                                                 Dispatch [Removed]                                                                 | 0x0000000000000000000000000000000000000401 |
+    | [ECRecoverPublicKey](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm_precompile_simple/struct.ECRecoverPublicKey.html){target=\_blank} | 0x0000000000000000000000000000000000000402 |
+
+=== "Moonriver"
+    |                                                                      Contract                                                                      |                  Address                   |
+    |:--------------------------------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------:|
+    |                    [SHA3FIPS256](/builders/ethereum/precompiles/utility/eth-mainnet/#hashing-with-sha3fips256){target=\_blank}                     | 0x0000000000000000000000000000000000000400 |
+    |                                                                 Dispatch [Removed]                                                                 | 0x0000000000000000000000000000000000000401 |
+    | [ECRecoverPublicKey](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm_precompile_simple/struct.ECRecoverPublicKey.html){target=\_blank} | 0x0000000000000000000000000000000000000402 |
+
+=== "Moonbase Alpha"
+    |                                                                           Contract                                                                            |                  Address                   |
+    |:-------------------------------------------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------:|
+    |                          [SHA3FIPS256](/builders/ethereum/precompiles/utility/eth-mainnet/#hashing-with-sha3fips256){target=\_blank}                          | 0x0000000000000000000000000000000000000400 |
+    |                                                                      Dispatch [Removed]                                                                       | 0x0000000000000000000000000000000000000401 |
+    |      [ECRecoverPublicKey](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm_precompile_simple/struct.ECRecoverPublicKey.html){target=\_blank}       | 0x0000000000000000000000000000000000000402 |
+
+### Moonbeam Specific Precompiles {: #moonbeam-specific-precompiles }
+
+=== "Moonbeam"
+    |                                                                                        Contract                                                                                        |                               Address                               |
+    |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------:|
+    |                  [Parachain Staking](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol){target=\_blank}                  |              {{networks.moonbeam.precompiles.staking}}              |
+    |                 [Crowdloan Rewards](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/crowdloan-rewards/CrowdloanInterface.sol){target=\_blank}                 |             {{networks.moonbeam.precompiles.crowdloan}}             |
+    |                         [ERC-20 Interface](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/balances-erc20/ERC20.sol){target=\_blank}                          |               {{networks.moonbeam.precompiles.erc20}}               |
+    |                                                                      Democracy [Removed]                                                                      |             {{networks.moonbeam.precompiles.democracy}}             |
+    |                                [X-Tokens](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/xtokens/Xtokens.sol){target=\_blank}                                |              {{networks.moonbeam.precompiles.xtokens}}              |
+    |                        [Relay Encoder](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/relay-encoder/RelayEncoder.sol){target=\_blank}                        |           {{networks.moonbeam.precompiles.relay_encoder}}           |
+    |                [XCM Transactor V1](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/xcm-transactor/src/v1/XcmTransactorV1.sol){target=\_blank}                 |         {{networks.moonbeam.precompiles.xcm_transactor_v1}}         |
+    |                  [Author Mapping](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/author-mapping/AuthorMappingInterface.sol){target=\_blank}                  |          {{networks.moonbeam.precompiles.author_mapping}}           |
+    |                                   [Batch](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/batch/Batch.sol){target=\_blank}                                    |               {{networks.moonbeam.precompiles.batch}}               |
+    |                            [Randomness](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/randomness/Randomness.sol){target=\_blank}                            |            {{networks.moonbeam.precompiles.randomness}}             |
+    |                           [Call Permit](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/call-permit/CallPermit.sol){target=\_blank}                           |            {{networks.moonbeam.precompiles.call_permit}}            |
+    |                                   [Proxy](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/proxy/Proxy.sol){target=\_blank}                                    |               {{networks.moonbeam.precompiles.proxy}}               |
+    |                            [XCM Utilities](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/xcm-utils/XcmUtils.sol){target=\_blank}                            |             {{networks.moonbeam.precompiles.xcm_utils}}             |
+    |                [XCM Transactor V2](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/xcm-transactor/src/v2/XcmTransactorV2.sol){target=\_blank}                 |         {{networks.moonbeam.precompiles.xcm_transactor_v2}}         |
+    |                   [Council Collective [Removed]](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/collective/Collective.sol){target=\_blank}                   |        {{networks.moonbeam.precompiles.collective_council}}         |
+    |             [Technical Committee Collective [Removed]](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/collective/Collective.sol){target=\_blank}             |     {{networks.moonbeam.precompiles.collective_tech_committee}}     |
+    |                   [Treasury Council Collective](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/collective/Collective.sol){target=\_blank}                    |        {{networks.moonbeam.precompiles.collective_treasury}}        |
+    |                             [Referenda](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/referenda/Referenda.sol){target=\_blank}                              |             {{networks.moonbeam.precompiles.referenda}}             |
+    |                  [Conviction Voting](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/conviction-voting/ConvictionVoting.sol){target=\_blank}                  |         {{networks.moonbeam.precompiles.conviction_voting}}         |
+    |                               [Preimage](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/preimage/Preimage.sol){target=\_blank}                               |             {{networks.moonbeam.precompiles.preimage}}              |
+    |                      [OpenGov Tech Committee](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/collective/Collective.sol){target=\_blank}                      | {{networks.moonbeam.precompiles.collective_opengov_tech_committee}} |
+    |               [Precompile Registry](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/precompile-registry/PrecompileRegistry.sol){target=\_blank}               |             {{networks.moonbeam.precompiles.registry}}              |
+    |                                      [GMP](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/gmp/Gmp.sol){target=\_blank}                                       |                {{networks.moonbeam.precompiles.gmp}}                |
+    |                [XCM Transactor V3](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/xcm-transactor/src/v3/XcmTransactorV3.sol){target=\_blank}                 |         {{networks.moonbeam.precompiles.xcm_transactor_v3}}         |
+    |                               [XCM interface](https://github.com/Moonsong-Labs/moonkit/blob/main/precompiles/pallet-xcm/XcmInterface.sol){target=\_blank}                               |             {{networks.moonbeam.precompiles.xcm_interface}}              |
+    |                               [Identity](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/identity/Identity.sol){target=\_blank}                               |             {{networks.moonbeam.precompiles.identity}}              |
+    
+
+=== "Moonriver"
+    |                                                                           Contract                                                                            |                               Address                                |
+    |:-------------------------------------------------------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
+    |      [Parachain Staking](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol){target=\_blank}      |              {{networks.moonriver.precompiles.staking}}              |
+    |     [Crowdloan Rewards](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/crowdloan-rewards/CrowdloanInterface.sol){target=\_blank}     |             {{networks.moonriver.precompiles.crowdloan}}             |
+    |             [ERC-20 Interface](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/balances-erc20/ERC20.sol){target=\_blank}              |               {{networks.moonriver.precompiles.erc20}}               |
+    |                                                                     Democracy [Disabled]                                                                      |             {{networks.moonriver.precompiles.democracy}}             |
+    |                    [X-Tokens](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/xtokens/Xtokens.sol){target=\_blank}                    |              {{networks.moonriver.precompiles.xtokens}}              |
+    |            [Relay Encoder](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/relay-encoder/RelayEncoder.sol){target=\_blank}            |           {{networks.moonriver.precompiles.relay_encoder}}           |
+    |    [XCM Transactor V1](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/xcm-transactor/src/v1/XcmTransactorV1.sol){target=\_blank}     |         {{networks.moonriver.precompiles.xcm_transactor_v1}}         |
+    |      [Author Mapping](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/author-mapping/AuthorMappingInterface.sol){target=\_blank}      |          {{networks.moonriver.precompiles.author_mapping}}           |
+    |                       [Batch](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/batch/Batch.sol){target=\_blank}                        |               {{networks.moonriver.precompiles.batch}}               |
+    |                [Randomness](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/randomness/Randomness.sol){target=\_blank}                |            {{networks.moonriver.precompiles.randomness}}             |
+    |               [Call Permit](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/call-permit/CallPermit.sol){target=\_blank}               |            {{networks.moonriver.precompiles.call_permit}}            |
+    |                       [Proxy](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/proxy/Proxy.sol){target=\_blank}                        |               {{networks.moonriver.precompiles.proxy}}               |
+    |                [XCM Utilities](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/xcm-utils/XcmUtils.sol){target=\_blank}                |             {{networks.moonriver.precompiles.xcm_utils}}             |
+    |    [XCM Transactor V2](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/xcm-transactor/src/v2/XcmTransactorV2.sol){target=\_blank}     |         {{networks.moonriver.precompiles.xcm_transactor_v2}}         |
+    |       [Council Collective [Removed]](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/collective/Collective.sol){target=\_blank}       |        {{networks.moonriver.precompiles.collective_council}}         |
+    | [Technical Committee Collective [Removed]](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/collective/Collective.sol){target=\_blank} |     {{networks.moonriver.precompiles.collective_tech_committee}}     |
+    |       [Treasury Council Collective](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/collective/Collective.sol){target=\_blank}        |        {{networks.moonriver.precompiles.collective_treasury}}        |
+    |                 [Referenda](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/referenda/Referenda.sol){target=\_blank}                  |             {{networks.moonriver.precompiles.referenda}}             |
+    |      [Conviction Voting](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/conviction-voting/ConvictionVoting.sol){target=\_blank}      |         {{networks.moonriver.precompiles.conviction_voting}}         |
+    |                   [Preimage](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/preimage/Preimage.sol){target=\_blank}                   |             {{networks.moonriver.precompiles.preimage}}              |
+    |          [OpenGov Tech Committee](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/collective/Collective.sol){target=\_blank}          | {{networks.moonriver.precompiles.collective_opengov_tech_committee}} |
+    |   [Precompile Registry](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/precompile-registry/PrecompileRegistry.sol){target=\_blank}   |             {{networks.moonriver.precompiles.registry}}              |
+    |                          [GMP](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/gmp/Gmp.sol){target=\_blank}                           |                {{networks.moonriver.precompiles.gmp}}                |
+    |    [XCM Transactor V3](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/xcm-transactor/src/v3/XcmTransactorV3.sol){target=\_blank}     |         {{networks.moonriver.precompiles.xcm_transactor_v3}}         |
+    |                               [XCM interface](https://github.com/Moonsong-Labs/moonkit/blob/main/precompiles/pallet-xcm/XcmInterface.sol){target=\_blank}                               |             {{networks.moonriver.precompiles.xcm_interface}}              |
+    |                   [Identity](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/identity/Identity.sol){target=\_blank}                   |             {{networks.moonriver.precompiles.identity}}              |
+
+=== "Moonbase Alpha"
+    |                                                                            Contract                                                                            |                               Address                               |
+    |:--------------------------------------------------------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------:|
+    |      [Parachain Staking](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol){target=\_blank}      |              {{networks.moonbase.precompiles.staking}}              |
+    |     [Crowdloan Rewards](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/crowdloan-rewards/CrowdloanInterface.sol){target=\_blank}     |             {{networks.moonbase.precompiles.crowdloan}}             |
+    |             [ERC-20 Interface](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/balances-erc20/ERC20.sol){target=\_blank}              |               {{networks.moonbase.precompiles.erc20}}               |
+    |                                                                      Democracy [Removed]                                                                       |             {{networks.moonbase.precompiles.democracy}}             |
+    |                    [X-Tokens](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/xtokens/Xtokens.sol){target=\_blank}                    |              {{networks.moonbase.precompiles.xtokens}}              |
+    |            [Relay Encoder](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/relay-encoder/RelayEncoder.sol){target=\_blank}            |           {{networks.moonbase.precompiles.relay_encoder}}           |
+    |    [XCM Transactor V1](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/xcm-transactor/src/v1/XcmTransactorV1.sol){target=\_blank}     |         {{networks.moonbase.precompiles.xcm_transactor_v1}}         |
+    |      [Author Mapping](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/author-mapping/AuthorMappingInterface.sol){target=\_blank}      |          {{networks.moonbase.precompiles.author_mapping}}           |
+    |                       [Batch](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/batch/Batch.sol){target=\_blank}                        |               {{networks.moonbase.precompiles.batch}}               |
+    |                [Randomness](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/randomness/Randomness.sol){target=\_blank}                |            {{networks.moonbase.precompiles.randomness}}             |
+    |               [Call Permit](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/call-permit/CallPermit.sol){target=\_blank}               |            {{networks.moonbase.precompiles.call_permit}}            |
+    |                       [Proxy](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/proxy/Proxy.sol){target=\_blank}                        |               {{networks.moonbase.precompiles.proxy}}               |
+    |                [XCM Utilities](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/xcm-utils/XcmUtils.sol){target=\_blank}                |             {{networks.moonbase.precompiles.xcm_utils}}             |
+    |    [XCM Transactor V2](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/xcm-transactor/src/v2/XcmTransactorV2.sol){target=\_blank}     |         {{networks.moonbase.precompiles.xcm_transactor_v2}}         |
+    |       [Council Collective [Removed]](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/collective/Collective.sol){target=\_blank}       |        {{networks.moonbase.precompiles.collective_council}}         |
+    | [Technical Committee Collective [Removed]](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/collective/Collective.sol){target=\_blank} |     {{networks.moonbase.precompiles.collective_tech_committee}}     |
+    |       [Treasury Council Collective](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/collective/Collective.sol){target=\_blank}        |        {{networks.moonbase.precompiles.collective_treasury}}        |
+    |                 [Referenda](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/referenda/Referenda.sol){target=\_blank}                  |             {{networks.moonbase.precompiles.referenda}}             |
+    |      [Conviction Voting](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/conviction-voting/ConvictionVoting.sol){target=\_blank}      |         {{networks.moonbase.precompiles.conviction_voting}}         |
+    |                   [Preimage](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/preimage/Preimage.sol){target=\_blank}                   |             {{networks.moonbase.precompiles.preimage}}              |
+    |          [OpenGov Tech Committee](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/collective/Collective.sol){target=\_blank}          | {{networks.moonbase.precompiles.collective_opengov_tech_committee}} |
+    |   [Precompile Registry](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/precompile-registry/PrecompileRegistry.sol){target=\_blank}   |             {{networks.moonbase.precompiles.registry}}              |
+    |                          [GMP](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/gmp/Gmp.sol){target=\_blank}                           |                {{networks.moonbase.precompiles.gmp}}                |
+    |    [XCM Transactor V3](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/xcm-transactor/src/v3/XcmTransactorV3.sol){target=\_blank}     |         {{networks.moonbase.precompiles.xcm_transactor_v3}}         |
+    |                               [XCM Interface](https://github.com/Moonsong-Labs/moonkit/blob/main/precompiles/pallet-xcm/XcmInterface.sol){target=\_blank}                               |             {{networks.moonbeam.precompiles.xcm_interface}}              |
+    |                   [Identity](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/identity/Identity.sol){target=\_blank}                   |             {{networks.moonbase.precompiles.identity}}              |
+--- END CONTENT ---

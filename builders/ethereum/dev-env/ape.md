@@ -1,6 +1,7 @@
 ---
 title: Deploy Contracts with Ape
 description: Use Ape, a Python framework, to compile, deploy, and debug smart contracts using Python on Moonbeam, thanks to its Ethereum compatibility.
+categories: Dev Environments
 ---
 
 # Using Ape to Deploy To Moonbeam
