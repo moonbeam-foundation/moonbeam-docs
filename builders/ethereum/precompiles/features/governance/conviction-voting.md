@@ -49,8 +49,6 @@ The interfaces includes a `Conviction` enum that defines the [Conviction multipl
 
 The interface includes the following functions:
 
-The interface includes the following functions:
-
 ??? function "**votingFor**(*address* who, *uint16* trackId) - returns the votes for a given account and Track"
 
     === "Parameters"

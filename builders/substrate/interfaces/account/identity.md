@@ -148,7 +148,7 @@ The Identity Pallet provides the following extrinsics (functions):
 
     === "Parameters"
 
-        - `regIndex` - the index of the registar to request judgement from
+        - `regIndex` - the index of the registrar to request judgement from
         - `maxFee` - the maximum fee in Wei that can be paid to the registrar for providing judgement
 
     === "Polkadot.js API Example"
