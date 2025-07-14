@@ -484,7 +484,7 @@ The below example is demonstrated on Moonbase Alpha, however, similar steps can 
 1. Click on the **Compile** tab, second from top
 2. Then to compile the interface, click on **Compile StakingInterface.sol**
 
-![Compiling StakingInteface.sol](/images/builders/ethereum/precompiles/features/staking/staking-2.webp)
+![Compiling StakingInterface.sol](/images/builders/ethereum/precompiles/features/staking/staking-2.webp)
 
 ### Access the Contract {: #access-the-contract }
 
@@ -541,7 +541,7 @@ Now that you have obtained the [candidate delegator count](#:~:text=To obtain th
 6. Enter the auto-compounding delegation count for the candidate
 7. Enter your delegation count
 8. Press **transact**
-9. MetaMask will pop-up, you can review the details and confirm the transaction
+9. MetaMask will pop up, you can review the details and confirm the transaction
 
 ![Delegate a Collator](/images/builders/ethereum/precompiles/features/staking/staking-7.webp)
 
@@ -598,7 +598,7 @@ Once you have the necessary information, you can take the following steps in Rem
 4. Enter the auto-compounding delegation count for the candidate
 5. Enter your delegation count
 6. Press **transact**
-7. MetaMask will pop-up, you can review the details and confirm the transaction
+7. MetaMask will pop up, you can review the details and confirm the transaction
 
 ![Set or update auto-compound percentage](/images/builders/ethereum/precompiles/features/staking/staking-11.webp)
 
@@ -615,7 +615,7 @@ To revoke a delegation and receive your tokens back, head back over to Remix, th
 1. Find and expand the **scheduleRevokeDelegation** function
 2. Enter the candidate address you would like to revoke the delegation for
 3. Click **transact**
-4. MetaMask will pop, you can review the transaction details, and click **Confirm**
+4. MetaMask will pop up, you can review the transaction details, and click **Confirm**
 
 ![Revoke delegation](/images/builders/ethereum/precompiles/features/staking/staking-12.webp)
 
@@ -627,7 +627,7 @@ After the exit delay has passed, you can go back to Remix and follow these steps
 2. Enter the address of the delegator you would like to revoke the delegation for
 3. Enter the candidate address you would like to revoke the delegation from
 4. Click **transact**
-5. MetaMask will pop, you can review the transaction details, and click **Confirm**
+5. MetaMask will pop up, you can review the transaction details, and click **Confirm**
 
 After the call is complete, the results will be displayed and the delegation will be revoked for the given delegator and from the specified candidate. You can also check your delegator state again on Polkadot.js Apps to confirm.
 
@@ -636,6 +636,6 @@ If for any reason you need to cancel a pending scheduled request to revoke a del
 1. Find and expand the **cancelDelegationRequest** function
 2. Enter the candidate address you would like to cancel the pending request for
 3. Click **transact**
-4. MetaMask will pop, you can review the transaction details, and click **Confirm**
+4. MetaMask will pop up, you can review the transaction details, and click **Confirm**
 
 You can check your delegator state again on Polkadot.js Apps to confirm that your delegation is still intact.
