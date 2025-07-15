@@ -1,7 +1,7 @@
 ---
 title: Index Data with SubQuery & GraphQL
 description: Learn how to use SubQuery to index Substrate and EVM chain data for Moonbeam and Moonriver, and query the data using GraphQL.
-categories: Indexer Nodes and Queries
+categories: Indexers and Queries
 ---
 
 # Indexing Moonbeam with SubQuery

@@ -1,7 +1,7 @@
 ---
 title: Interact with Moralis APIs
 description: Learn how Moralis' API suite empowers developers to retrieve and leverage various data sets from Moonbeam, Moonriver, and Moonbase Alpha.
-categories: Indexer Nodes and Queries
+categories: Indexers and Queries
 ---
 
 # Access Moonbeam Data via Moralis APIs
