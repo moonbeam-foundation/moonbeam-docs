@@ -19,7 +19,7 @@ To follow along with this tutorial, you will need to have:
 
 - [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/explorer){target=\_blank} open and connected to Moonbase Alpha
 - Create or have two accounts on Moonbase Alpha
-- At least one of the accounts will need to be funded with `DEV` tokens.
+- At least one of the accounts must be funded with `DEV` tokens.
  --8<-- 'text/_common/faucet/faucet-list-item.md'
 
 If you need help importing your accounts into Polkadot.js Apps, please check out the [Interacting with Moonbeam using Polkadot.js Apps](/tokens/connect/polkadotjs/#creating-or-importing-an-h160-account){target=\_blank} guide.
@@ -163,7 +163,7 @@ To check your proxy accounts from the [**Chain state** page](https://polkadot.js
 
 1. From the **selected state query** dropdown, select **proxy**
 2. Choose the **proxies** extrinsic
-3. Select your primary/proxied account
+3. Select your primary (proxied) account
 4. Click on the **+** button to send the query
 
 ![Verify your proxy accounts via the Extrinsics page of Polkadot.js Apps.](/images/tokens/manage/proxy-accounts/proxies-8.webp)
@@ -182,7 +182,7 @@ A pop-up will appear where you can view an overview of all of your proxy account
 
 Now that you have created a proxy account and verified that it was successfully set up, you can execute a transaction using the proxy account on behalf of the primary account.
 
-To execute a transaction, you can navigate back to the [**Extrinsics** page](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/extrinsics){target=\_blank} and take the following steps:
+To execute a transaction, navigate back to the [**Extrinsics** page](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/extrinsics){target=\_blank} and take the following steps:
 
 1. Select the proxy account to submit the transaction from the **using the select account** dropdown
 2. From the **submit the following extrinsic** menu, select **proxy**
@@ -226,7 +226,7 @@ To remove a proxy from the [**Extrinsics** page](https://polkadot.js.org/apps/?r
 
 ![Remove a proxy account from the Extrinsics page of Polkadot.js Apps](/images/tokens/manage/proxy-accounts/proxies-13.webp)
 
-A pop-up will appear for you to authorize and sign the transaction. There is the option of signing and sending the transaction from the primary account or the proxy account, but in order to remove the proxy, the transaction must be sent from the primary account. Enter your password and click **Sign and Submit**.
+A pop-up will appear for you to authorize and sign the transaction. While either account can sign transactions generally, removing a proxy must be performed by the primary account. Enter your password and click **Sign and Submit**.
 
 You can follow the steps in the [Verifying your Proxy Account](#verifying-your-proxy-account) section to check that the proxy or proxies have been removed.
 
