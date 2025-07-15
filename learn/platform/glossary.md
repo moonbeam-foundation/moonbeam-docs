@@ -9,7 +9,7 @@ There's a great deal of terminology that's specific to Polkadot, Substrate, and 
 
 ### Collators {: #collators }
 
-One of the key network participants needed to support parachains within the Polkadot Network.  In Moonbeam, collators are the nodes that are responsible for block production and for submitting produced blocks up to the Polkadot Relay Chain for finalization.
+One of the key network participants needed to support parachains within the Polkadot Network.  In Moonbeam, collators are the nodes that are responsible for block production and for submitting produced blocks up to the Polkadot relay chain for finalization.
 
 ### Delegators {: #delegators }
 
