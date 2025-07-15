@@ -2,6 +2,7 @@
 title: Conviction Voting Pallet
 description: This guide covers the available functions in the Conviction Voting Pallet on Moonbeam, which are used to vote, delegate votes, remove votes, and more.
 keywords: democracy, substrate, pallet, moonbeam, polkadot, voting, vote, referenda
+categories: Substrate Toolkit
 ---
 
 # The Conviction Voting Pallet

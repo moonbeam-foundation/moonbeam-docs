@@ -1,6 +1,7 @@
 ---
 title: Randomness
 description: Learn about the sources of VRF randomness on Moonbeam, the request and fulfillment process, and some security considerations when using on-chain randomness.
+categories: Basics
 ---
 
 # Randomness on Moonbeam

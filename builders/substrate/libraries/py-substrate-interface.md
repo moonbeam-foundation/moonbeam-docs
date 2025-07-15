@@ -1,6 +1,7 @@
 ---
 title: How to use the Python Substrate Interface
 description: Learn the basics of how to use the Python Substrate Interface library to query chain data, send transactions, and more on Moonbeam networks.
+categories: Substrate Toolkit, Libraries and SDKs
 ---
 
 # Python Substrate Interface

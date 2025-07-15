@@ -1,6 +1,7 @@
 ---
 title: Treasury
 description: Moonbeam has an on-chain Treasury controlled by Treasury Council members, enabling stakeholders to submit proposals to further the network.
+categories: Basics
 ---
 
 # Treasury on Moonbeam

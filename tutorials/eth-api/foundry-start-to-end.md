@@ -1,6 +1,7 @@
 ---
 title: Foundry Development Life Cycle from Start to End
 description: Follow a step-by-step tutorial on how to use Foundry to build a project on Moonbeam, from writing smart contracts and tests to deploying on TestNet and MainNet.
+categories: Tutorials, Dev Environments
 ---
 
 # Using Foundry Start to End with Moonbeam

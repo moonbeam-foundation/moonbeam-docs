@@ -2,6 +2,7 @@
 title:  Author Mapping Precompile
 description: A guide for collators to learn how to use the Author Mapping Solidity interface to map session keys to a Moonbeam address where block rewards are paid out. 
 keywords: solidity, ethereum, author mapping, collator, moonbeam, precompiled, contracts, block producer
+categories: Node Operators and Collators
 ---
 
 # Interacting with the Author Mapping Precompile

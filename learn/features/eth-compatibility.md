@@ -1,6 +1,7 @@
 ---
 title: Ethereum Compatibility
 description: Transitioning from Ethereum to Moonbeam? Here's a brief overview of the key components and key differences of Moonbeam's Ethereum compatibility.
+categories: Basics
 ---
 
 # Ethereum Compatibility

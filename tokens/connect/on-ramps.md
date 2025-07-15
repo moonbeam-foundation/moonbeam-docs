@@ -1,6 +1,7 @@
 ---
 title: Fiat On-Ramps Available for Moonbeam
-description: This guide introduces on-ramps for Moonbeam, including Transak and Onramp, and provides an overview of the process to acquire GLMR from each. 
+description: This guide introduces on-ramps for Moonbeam, including Transak and Onramp, and provides an overview of the process to acquire GLMR from each.
+categories: Tokens and Accounts, Ethereum Toolkit
 ---
 
 # Fiat On-Ramp Services to Acquire GLMR for Moonbeam

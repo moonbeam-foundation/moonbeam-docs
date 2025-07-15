@@ -1,6 +1,7 @@
 ---
 title: Run a Node
 description: Learn about all of the necessary details to run a full parachain node for the Moonbeam Network to have your RPC endpoint or produce blocks.
+categories: Basics, Node Operators and Collators
 ---
 
 # Run a Node on Moonbeam

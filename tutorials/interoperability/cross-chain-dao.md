@@ -1,6 +1,7 @@
 ---
 title: Build a Cross-Chain DAO with OpenZeppelin's Governor
 description: In this step-by-step tutorial, you'll learn about connected contracts and how to create a cross-chain DAO using OpenZeppelin's Governor contract on Moonbeam.
+categories: Tutorials
 ---
 
 # Building a Cross-Chain DAO with OpenZeppelin's Governor Contract

@@ -1,6 +1,7 @@
 ---
 title: Consensus & Finality
 description: The main differences that Ethereum developers should understand in terms of consensus and finality on Moonbeam and how it differs from Ethereum.
+categories: Basics
 ---
 
 # Moonbeam Consensus & Finality

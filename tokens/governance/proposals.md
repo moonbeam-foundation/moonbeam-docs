@@ -1,6 +1,7 @@
 ---
 title: How to Propose an Action in OpenGov
-description: Follow these step-by-step instructions to learn how to submit a Democracy proposal for other token holders to vote on in Governance v2 (OpenGov) on Moonbeam. 
+description: Follow these step-by-step instructions to learn how to submit a Democracy proposal for other token holders to vote on in Governance v2 (OpenGov) on Moonbeam.
+categories: Governance
 ---
 
 # How to Propose an Action in OpenGov (Governance v2)

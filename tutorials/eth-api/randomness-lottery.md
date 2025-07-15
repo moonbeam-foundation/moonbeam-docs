@@ -1,6 +1,7 @@
 ---
 title: Create a Lottery with the Randomness Precompile
 description: Looking to create a lottery smart contract? Follow this step-by-step tutorial on using Moonbeam's Randomness Precompile (a Solidity interface) to get started.
+categories: Tutorials, Precompiles
 ---
 
 # Create a Lottery Contract using the Randomness Precompile
