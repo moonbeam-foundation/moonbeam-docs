@@ -37,7 +37,7 @@ A network of connected blockchains that provides shared security and the ability
 
 ### Relay Chain {: #relay-chain }
 
-The backbone blockchain supporting the Polkadot network.  Parachains connect to the Relay Chain and use it for shared security and message passing.  Validators on the Relay Chain help secure the parachains.
+The backbone blockchain supporting the Polkadot network.  Parachains connect to the relay chain and use it for shared security and message passing.  Validators on the relay chain help secure the parachains.
 
 ### Smart Contract {: #smart-contract }
 
