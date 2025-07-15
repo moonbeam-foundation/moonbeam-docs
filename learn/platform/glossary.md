@@ -53,7 +53,7 @@ Substrate Frame Pallets are a collection of Rust-based modules, providing the fu
 
 ### Validators {: #validators }
 
-A node that secures the Polkadot Relay Chain by staking DOT in the network, which is slashed if they misbehave. They finalize blocks from collators on parachains and also participate on consensus for the next Relay Chain block with other validators.
+A node that secures the Polkadot relay chain by staking DOT in the network, which is slashed if they misbehave. They finalize blocks from collators on parachains and also participate on consensus for the next relay chain block with other validators.
 
 ### WebAssembly/Wasm {: #webassemblywasm }
 
