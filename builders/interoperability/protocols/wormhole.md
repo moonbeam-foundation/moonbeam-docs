@@ -63,7 +63,7 @@ First things first, the code in this smart contract is simplified in certain are
 
 ![Set up smart contract deployment](/images/builders/interoperability/protocols/wormhole/wormhole-2.webp)
 
-To deploy on each chain, you will need the local instance of the Wormhole core bridge and the chain ID of the chain mentioned. All of this data has been provided for a select few TestNets in the table below. You can find other networks’ endpoints on Wormhole’s [documentation site](https://wormhole.com/docs/products/reference/supported-networks/#testnet-contracts-moonbase-alphanet-1287){target=\_blank}. Keep in mind that you should only use EVMs for this demonstration, since the smart contract and relayer designed for this demonstration only supports EVMs.
+To deploy on each chain, you will need the local instance of the Wormhole core bridge and the chain ID of the chain mentioned. All of this data has been provided for a select few TestNets in the table below. You can find other networks’ endpoints on Wormhole’s [documentation site](https://wormhole.com/docs/products/reference/supported-networks/){target=\_blank}. Keep in mind that you should only use EVMs for this demonstration, since the smart contract and relayer designed for this demonstration only supports EVMs.
 
 |                           Network & Faucet                           |            Core Bridge Address             | Wormhole Chain ID |
 |:--------------------------------------------------------------------:|:------------------------------------------:|:-----------------:|

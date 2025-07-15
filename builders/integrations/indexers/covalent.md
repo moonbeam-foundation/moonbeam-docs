@@ -381,7 +381,7 @@ For more information on each of the methods of the Unified API and for an intera
         --8<-- 'code/builders/integrations/indexers/covalent/erc20-approvals/response.sh'
         ```
 
-Many more methods are offered by the GoldRush API, including NFT, Prices, Bitcoin and Utility methods. Be sure to check out the [GoldRush API](https://goldrush.dev/docs/api-reference/foundational-api/cross-chain/get-address-activity){target=\_blank} for more information on each of these methods.  
+The GoldRush API offers many additional methods, including NFT, price, Bitcoin, and utility methods. Be sure to check out the [GoldRush API](https://goldrush.dev/docs/api-reference/foundational-api/cross-chain/get-address-activity){target=\_blank} for more information on each of these methods.  
 
 ## API Parameters and Resources {: #api-parameters-and-resources }
 
