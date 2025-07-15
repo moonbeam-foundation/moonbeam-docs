@@ -4,6 +4,7 @@
 
 ## Docs
 
+- [AI Resources] (No categories available.) (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/main/ai-resources/ai-resources.md): Download LLM-optimized files of the Moonbeam documentation, including full content and category-specific resources for AI agents.
 - [Historical Updates] (Reference) (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/main/builders/build/historical-updates.md): An overview of the historical updates made on Moonbeam and Moonriver, such as migrations and bug fixes applied to the Moonbeam source code.
 - [Runtime Upgrades] (Reference) (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/main/builders/build/runtime-upgrades.md): A historical record of each runtime upgrade and the block at which the runtime was executed for Moonbeam, Moonriver, and the Moonbase Alpha TestNet.
 - [Canonical Contract Addresses on Moonbeam] (Reference, Precompiles, Ethereum Toolkit) (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/main/builders/ethereum/canonical-contracts.md): Overview of the canonical contracts available on Moonbeam, Moonriver, & Moonbase Alpha, including common-good contracts and precompiles.

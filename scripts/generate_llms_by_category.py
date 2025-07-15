@@ -75,7 +75,7 @@ def extract_category(category, shared_data=None):
         return
 
     # Output file for this category
-    output_file = os.path.join(output_dir, f"llms-{category.lower()}.txt") # write to output file
+    output_file = os.path.join(output_dir, f"llms-{category.lower().replace(' ', '-')}.txt") # write to output file
     with open(output_file, 'w', encoding='utf-8') as f:
 
         # Intro context block to help LLMs understand purpose of the file
