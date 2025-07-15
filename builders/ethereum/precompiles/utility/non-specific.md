@@ -22,7 +22,7 @@ The primary function of the `ECRecoverPublicKey` precompile is to recover the pu
 
 In the following sections, you will learn how to use the `ECRecoverPublicKey` precompile.
 
-### Checking Prerequisites {: checking-prerequisites }
+### Checking Prerequisites {: #checking-prerequisites }
 
 --8<-- 'text/_common/install-nodejs.md'
 

@@ -66,7 +66,7 @@ When working with developer tools, depending on the tool, you might need to conf
 
 ### Block Explorers {: #explorers }
 
-Moonbeam provides two different kind of explorers: ones to query the Ethereum API, and others dedicated to the Substrate API. All EVM-based transactions are accessible via the Ethereum API whereas the Substrate API can be relied upon for Substrate-native functions such as governance, staking, and some information about EVM-based transactions. For more information on each explorer, please check out the [Block Explorers](/builders/get-started/explorers/){target=\_blank} page.
+Moonbeam provides two different kinds of explorers: ones to query the Ethereum API, and others dedicated to the Substrate API. All EVM-based transactions are accessible via the Ethereum API whereas the Substrate API can be relied upon for Substrate-native functions such as governance, staking, and some information about EVM-based transactions. For more information on each explorer, please check out the [Block Explorers](/builders/get-started/explorers/){target=\_blank} page.
 
 --8<-- 'text/builders/get-started/explorers/explorers.md'
 

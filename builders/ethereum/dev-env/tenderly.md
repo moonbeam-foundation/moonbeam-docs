@@ -32,7 +32,7 @@ The Tenderly platform provides the following features:
 
 ## Getting Started
 
-The Tenderly dashboard provides access to the all-in-one Web3 development platform. To get started with the dashboard, you'll need to [sign up](https://dashboard.tenderly.co/register){target=\_blank} for an account. Once you've signed up, you'll be able to start exploring your Tenderly dashboard.
+The Tenderly dashboard provides access to an all-in-one Web3 development platform. To get started with the dashboard, you'll need to [sign up](https://dashboard.tenderly.co/register){target=\_blank} for an account. Once you've signed up, you'll be able to start exploring your Tenderly dashboard.
 
 ![Tenderly dashboard](/images/builders/ethereum/dev-env/tenderly/tenderly-1.webp)
 

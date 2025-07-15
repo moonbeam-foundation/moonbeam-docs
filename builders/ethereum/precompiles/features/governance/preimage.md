@@ -43,7 +43,7 @@ The Preimage Precompile is located at the following address:
 
         - `encodedProposal` - bytes memory containing the encoded proposal to be registered. Returns the preimage hash
 
-??? function "**unnotePreimage**(*bytes32* hash) - clears an unrequested preimage from storage. Uses the [`unnotePreimage`](/builders/substrate/interfaces/features/governance/preimage/#:~:text=notePreimage(hash)){target=\_blank} method of the preimage pallet"
+??? function "**unnotePreimage**(*bytes32* hash) - clears an unrequested preimage from storage. Uses the [`unnotePreimage`](/builders/substrate/interfaces/features/governance/preimage/#:~:text=unnotePreimage(hash)){target=\_blank} method of the preimage pallet"
 
     === "Parameters"
 
@@ -86,7 +86,7 @@ The below example is demonstrated on Moonbase Alpha, however, similar steps can 
 4. Provide the address of the Preimage Precompile for Moonbase Alpha: `{{ networks.moonbase.precompiles.preimage }}` and click **At Address**
 5. The Preimage Precompile will appear in the list of **Deployed Contracts**
 
-![Access the Preimage.sol interface by provide the precompile's address.](/images/builders/ethereum/precompiles/features/governance/preimage/preimage-3.webp)
+![Access the Preimage.sol interface by providing the precompile's address.](/images/builders/ethereum/precompiles/features/governance/preimage/preimage-3.webp)
 
 ### Submit a Preimage of a Proposal {: #submit-a-preimage }
 
@@ -112,7 +112,7 @@ Then take the following steps:
 On the next screen, take the following steps:
 
  1. Press the triangle icon to reveal the encoded proposal in bytes
- 2. Copy the **bytes** representing the encoded proposal - you'll need this when calling the `notePreimage` function in a later step
+ 2. Copy the **bytes** (encoded proposal) — you'll need them when calling the `notePreimage` function
 
 ![Get the encoded proposal](/images/builders/ethereum/precompiles/features/governance/preimage/preimage-6.webp)
 
