@@ -17,7 +17,7 @@ Moonbeam token holders who stake tokens, vouching for specific collator candidat
 
 ### Nominators {: #nominators }
 
-Relay Chain token holders who select to "back" a validator. They can receive part of the validator's reward, but are subject to slashing of their staked tokens in case the validator misbehaves. A nominator can back up to 16 validators, and their bond is fully distributed between the backed validators that were selected for the validator set.
+Relay chain token holders who select to "back" a validator. They can receive part of the validator's reward, but are subject to slashing of their staked tokens in case the validator misbehaves. A nominator can back up to 16 validators, and their bond is fully distributed between the backed validators that were selected for the validator set.
 
 ### Nominated Proof of Stake {: #nominated-proof-of-stake }
 
