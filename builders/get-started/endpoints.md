@@ -117,7 +117,7 @@ Creating a new API/add-on based endpoint is simple, all you have to do is:
 
 [Grove](https://grove.city){target=_blank} is a decentralized RPC network that provides reliable Web3 infrastructure with enterprise-grade performance and security. Grove offers both free and paid tiers, with the free tier providing generous limits for development use, while paid plans offer higher throughput, dedicated support, and advanced features for production applications. Grove's decentralized approach ensures high availability and censorship resistance by distributing requests across multiple node operators. The network supports both JSON-RPC and WebSocket connections for real-time applications. To get started with Grove:
 
-1. Visit the [Grove Portal](https://portal.grove.city/api/auth/auth0?signup=true){target=\_blank} and sign up for an account
+1. Visit the [Grove Portal](https://portal.grove.city/){target=\_blank} and sign up for an account
 2. From your dashboard, create a new application
 3. Copy your Moonbeam or Moonriver endpoints
 4. Start making requests to your custom Grove endpoint
