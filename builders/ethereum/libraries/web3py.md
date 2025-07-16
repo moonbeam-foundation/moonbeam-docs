@@ -7,7 +7,7 @@ description: Follow this tutorial to learn how to use the Ethereum Web3 Python L
 
 ## Introduction {: #introduction }
 
-[Web3.py](https://web3py.readthedocs.io) is a set of libraries that allow developers to interact with Ethereum nodes using HTTP, IPC, or WebSocket protocols with Python. Moonbeam has an Ethereum-like API available that is fully compatible with Ethereum-style JSON-RPC invocations. Therefore, developers can leverage this compatibility and use the Web3.py library to interact with a Moonbeam python3 as if they were doing so on Ethereum.
+[Web3.py](https://web3py.readthedocs.io) is a set of libraries that allow developers to interact with Ethereum nodes using HTTP, IPC, or WebSocket protocols with Python. Moonbeam has an Ethereum-like API available that is fully compatible with Ethereum-style JSON-RPC invocations. Therefore, developers can leverage this compatibility and use the Web3.py library to interact with a Moonbeam node as if they were doing so on Ethereum.
 
 In this guide, you'll learn how to use the Web3.py library to send a transaction and deploy a contract on Moonbase Alpha. This guide can be adapted for [Moonbeam](/builders/get-started/networks/moonbeam/){target=\_blank}, [Moonriver](/builders/get-started/networks/moonriver/){target=\_blank}, or a [Moonbeam development node](/builders/get-started/networks/moonbeam-dev/){target=\_blank}.
 
@@ -149,7 +149,7 @@ To run the script, you can run the following command in your terminal:
 python3 transaction.py
 ```
 
-If the transaction was succesful, in your terminal you'll see the transaction hash has been printed out.
+If the transaction was successful, in your terminal you'll see the transaction hash has been printed out.
 
 You can also use the `balances.py` script to check that the balances for the origin and receiving accounts have changed. The entire workflow would look like this:
 

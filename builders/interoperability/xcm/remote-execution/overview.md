@@ -34,7 +34,7 @@ The core XCM instructions required to perform remote execution on Moonbeam (as a
  - [`BuyExecution`](/builders/interoperability/xcm/core-concepts/instructions/#buy-execution){target=\_blank} - gets executed in Moonbeam. Uses the funds taken by the previous XCM instruction to pay for the XCM execution, including the remote call
  - [`Transact`](/builders/interoperability/xcm/core-concepts/instructions/#transact){target=\_blank} - gets executed in Moonbeam. Executes the arbitrary bytes provided in the XCM instruction
 
-The XCM instructions detailed above can be complemented by other XCM instructions to handle certain scenarios, like failure on execution, more correctly. One example is the inclusion of [`SetAppendix`](/builders/interoperability/xcm/core-concepts/instructions/#set-appendix){target=\_blank}, [`RefundSurplus`](/builders/interoperability/xcm/core-concepts/instructions/#refund-surplus){target=\_blank}, and [`Deposit`](/builders/interoperability/xcm/core-concepts/instructions/#deposit-asset){target=\_blank}.
+The XCM instructions detailed above can be complemented by other XCM instructions to handle certain scenarios, like failure on execution, more accurately. One example is the inclusion of [`SetAppendix`](/builders/interoperability/xcm/core-concepts/instructions/#set-appendix){target=\_blank}, [`RefundSurplus`](/builders/interoperability/xcm/core-concepts/instructions/#refund-surplus){target=\_blank}, and [`Deposit`](/builders/interoperability/xcm/core-concepts/instructions/#deposit-asset){target=\_blank}.
 
 ## General Remote Execution via XCM Flow {: #general-remote-execution-via-xcm-flow }
 

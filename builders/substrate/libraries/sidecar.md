@@ -28,7 +28,7 @@ npm install @substrate/api-sidecar@{{ networks.moonbase.substrate_api_sidecar.st
 ```
 
 !!! note
-    If the current folder does not already have a Node.js project structure, you need to manually created the `node_modules` directory by typing `mkdir node_modules`.
+    If the current folder does not already have a Node.js project structure, you need to manually create the `node_modules` directory by typing `mkdir node_modules`.
 
 Substrate API Sidecar v{{ networks.moonbase.substrate_api_sidecar.stable_version }} is the current stable version that has been tested to work with Moonbeam networks. You can verify the installation was successful by typing from the installation directory root:
 

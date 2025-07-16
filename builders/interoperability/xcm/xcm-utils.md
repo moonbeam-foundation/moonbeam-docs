@@ -1,6 +1,6 @@
 ---
 title:  XCM Utilities Precompile Contract
-description:  Learn the various XCM related utility functions available to smart contact developers with Moonbeam's precompiled XCM Utilities contract.
+description:  Learn the various XCM related utility functions available to smart contract developers with Moonbeam's precompiled XCM Utilities contract.
 keywords: solidity, ethereum, xcm, utils, moonbeam, precompiled, contracts
 ---
 
