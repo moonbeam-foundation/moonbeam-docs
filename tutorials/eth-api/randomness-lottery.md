@@ -87,7 +87,7 @@ To get started, let's set up our lottery contract. We'll need to:
 
 - Import the `Randomness.sol` precompile and `RandomnessConsumer.sol` interface
 - Inherit the Randomness Consumer interface
-- Create a variable for the Randomness Precompile so we can easily access it's functions later on
+- Create a variable for the Randomness Precompile so we can easily access its functions later on
 
 ```solidity
 // SPDX-License-Identifier: GPL-3.0-only
