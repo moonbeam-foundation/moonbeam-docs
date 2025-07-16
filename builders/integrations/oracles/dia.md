@@ -89,7 +89,7 @@ The response contains two values:
 - The current asset price in USD with a fix-comma notation of 8 decimals
 - The UNIX timestamp of the last oracle update
 
-You can find DIA's oracle integration samples in Solidity and Vyper languages by visiting the [Access the Oracle](https://www.diadata.org/docs/nexus/how-to-guides/fetch-price-data){target=\_blank} guide on DIA's documentation site.
+You can find DIA's oracle integration samples in Solidity and Vyper languages by visiting the [Fetch Price Data](https://www.diadata.org/docs/nexus/how-to-guides/fetch-price-data){target=\_blank} guide on DIA's documentation site.
 
 ### Supported Token API Endpoints {: #supported-token-api-endpoints }
 
@@ -164,7 +164,7 @@ For example, you can use the following JavaScript scripts to access the [BTC/USD
       });
     ```
 
-You can refer to DIA's documentation on [Rest API Endpoints](https://www.diadata.org/docs/reference/apis/token-prices/api-endpoints){target=\_blank} and the [GraphQL Endpoint](https://www.diadata.org/docs/reference/apis/token-prices/graphql){target=\_blank} for information on the parameters and return data.
+You can refer to DIA's documentation on [Rest API endpoints](https://www.diadata.org/docs/reference/apis/token-prices/api-endpoints){target=\_blank} and the [GraphQL Endpoint](https://www.diadata.org/docs/reference/apis/token-prices/graphql){target=\_blank} for information on the parameters and return data.
 
 ## NFT Floor Price Feeds {: #nft-floor-price-feeds }
 
@@ -257,7 +257,7 @@ contract DIARandomOracle {
 ```
 
 !!! note
-    DIA demo oracles are not intended for use in production environments. Developers can request a dedicated, production-ready randomness oracle. To start the request process, you can check out the [Request a Random Oracle](https://www.diadata.org/docs/nexus/how-to-guides/generate-randomness/chain-specific-guide/alephium#support){target=\_blank} documentation.
+    DIA demo oracles are not intended for use in production environments. Developers can request a dedicated, production-ready randomness oracle. To start the request process, you can  Contact The [Integrations Team](https://t.me/DIABDteam){target=\_blank} on Telegram.
 
 ### How to Use the DIA Randomness Oracle {: #how-to-use-the-dia-randomness-oracle }
 
