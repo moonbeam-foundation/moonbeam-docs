@@ -9,7 +9,7 @@ description: Discover how sovereign accounts work on Moonbeam, how to calculate 
 
 In Polkadot-based ecosystems, a sovereign account is a unique, keyless account controlled by a blockchain’s runtime through XCM rather than an individual or organization. These accounts are used to store assets when transferring tokens cross-chain. For example, if you send a reserve tokens transfer from a parachain to Moonbeam, the originating parachain locks those tokens in Moonbeam’s sovereign account on the source chain, while a wrapped representation of those tokens is minted on Moonbeam.
 
-Sovereign accounts play a central role in [reserve-backed transfers](https://wiki.polkadot.network/docs/learn/xcm/journey/transfers-reserve){target=\_blank}, where one chain (the “reserve”) holds the real assets and other chains hold derivative tokens. When tokens move across chains, the reserve (or origin) chain locks or unlocks the underlying asset, and derivative tokens are minted or burned on the destination chain.
+Sovereign accounts play a central role in [reserve-backed transfers](https://wiki.polkadot.network/learn/learn-xcm-usecases/#reserve-asset-transfer){target=\_blank}, where one chain (the “reserve”) holds the real assets and other chains hold derivative tokens. When tokens move across chains, the reserve (or origin) chain locks or unlocks the underlying asset, and derivative tokens are minted or burned on the destination chain.
 
 ## Calculating a Parachain Sovereign Account {: #calculating-sovereign }
 
