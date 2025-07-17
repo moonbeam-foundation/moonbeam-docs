@@ -257,7 +257,7 @@ contract DIARandomOracle {
 ```
 
 !!! note
-    DIA demo oracles are not intended for use in production environments. Developers can request a dedicated, production-ready randomness oracle. To start the request process, you can  Contact The [Integrations Team](https://t.me/DIABDteam){target=\_blank} on Telegram.
+    DIA demo oracles are not intended for use in production environments. Developers can request a dedicated, production-ready randomness oracle. To start the request process, you can contact the [integrations team](https://t.me/DIABDteam){target=\_blank} on Telegram.
 
 ### How to Use the DIA Randomness Oracle {: #how-to-use-the-dia-randomness-oracle }
 
