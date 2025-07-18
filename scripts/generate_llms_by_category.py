@@ -3,7 +3,7 @@ import os
 import json
 
 # Project-specific input
-docs_repo = 'tanssi-docs'
+docs_repo = 'moonbeam-docs'
 docs_url = 'https://docs.tanssi.network/'
 
 # Load configuration from llms_config.json

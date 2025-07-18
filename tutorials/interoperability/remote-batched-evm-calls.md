@@ -2,7 +2,7 @@
 title: Remote Batch EVM Calls via XCM
 description: In this guide, we'll use remote EVM execution via XCM coupled with the Batch Precompile to execute multiple contract calls in Moonbeam's EVM remotely via XCM.
 template: main.html
-categories: Tutorials, Ethereum Toolkit 
+categories: Tutorials, Ethereum Toolkit
 ---
 
 # Remote Batch EVM Calls via XCM

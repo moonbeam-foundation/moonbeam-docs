@@ -126,7 +126,7 @@ def fetch_local_snippet(snippet_ref, snippet_directory):
             snippet_content = '\n'.join(lines[line_start - 1 : line_end])
 
     # 🚀 Recursively process the snippet content for any nested --8<--
-    snippet_content = replace_snippet_placeholders(snippet_content, snippet_directory, {})
+    snippet_content = replace_snippet_placeholders(snippet_content, snippet_directory, yaml_file)
 
     return snippet_content.strip()
 
