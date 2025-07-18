@@ -72,6 +72,27 @@ def build_index_section(files):
     for file in files:
         relative_path = os.path.relpath(file, docs_dir)
 
+        # Read file content before extracting metadata frontmatter
+        with open(file, 'r', encoding='utf-8') as f:
+            content = f.read()
+
+        # Extract metadata frontmatter
+        metadata_match = re.search(r"---\n(.*?)\n---", content, re.DOTALL)
+        if metadata_match:
+            try:
+                metadata_yaml = yaml.safe_load(metadata_match.group(1))
+                title = metadata_yaml.get('title', 'Untitled')
+                description = metadata_yaml.get('description', 'No description available.')
+                categories = metadata_yaml.get('categories', 'No categories available.')
+            except yaml.YAMLError:
+                title = 'Untitled'
+                description = 'No description available.'
+                categories = 'No categories available.'
+        else:
+            title = 'Untitled'
+            description = 'No description available.'
+            categories = 'No categories available.'
+
         # Skip .snippets from the index
         if '.snippets' in relative_path.split(os.sep):
             continue
@@ -80,7 +101,7 @@ def build_index_section(files):
         rel_path = os.path.relpath(file, docs_dir)
         raw_url = f"{raw_base_url}/{rel_path.replace(os.sep, '/')}"
         
-        section += f"Doc-Page: {raw_url}\n"
+        section += f"[{title}]({categories}): ({raw_url}) ({description})\n"
     return section
 
 # Parse snippet paths to extract file and line ranges if available.
