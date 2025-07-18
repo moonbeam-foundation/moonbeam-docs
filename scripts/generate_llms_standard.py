@@ -131,17 +131,24 @@ def fetch_local_snippet(snippet_ref, snippet_directory):
     return snippet_content.strip()
 
 def fetch_remote_snippet(snippet_ref, yaml_data):
-    
-    # Match URL with optional line range (start:end)
-    match = re.match(r'^(https?://[^:]+)(?::(\d+))?(?::(\d+))?$', snippet_ref)
+
+    # Match URL with optional line range. Cases:
+    # - http://example.com:1:3 (this means extract lines 1 to 3)
+    # - http://example.com::1 (this means extract until line 1)
+    # - http://example.com (no line range specified, fetch entire content)
+    match = re.match(r'^(https?://[^\s:]+)(?::(\d*))?(?::(\d*))?$', snippet_ref)
 
     if not match:
         print(f"Invalid snippet reference format: {snippet_ref}")
         return f"Invalid snippet reference: {snippet_ref}"
 
     url = match.group(1)
-    line_start = int(match.group(2)) if match.group(2) else None
-    line_end = int(match.group(3)) if match.group(3) else None
+    line_start = match.group(2)
+    line_end = match.group(3)
+
+    line_start = int(line_start) if line_start and line_start.isdigit() else None
+    line_end = int(line_end) if line_end and line_end.isdigit() else None
+
 
     url = resolve_placeholders(url, yaml_data) # resolve any template placeholders using the yaml_data
 
@@ -156,9 +163,12 @@ def fetch_remote_snippet(snippet_ref, yaml_data):
         snippet_content = response.text        
 
         # Extract specific lines if requested
-        if line_start is not None and line_end is not None:
+        if line_start is not None or line_end is not None:
             lines = snippet_content.split('\n')
-            snippet_content = '\n'.join(lines[line_start-1:line_end])
+            # Python slice: start is inclusive, end is exclusive
+            start = (line_start - 1) if line_start else 0
+            end = line_end if line_end else len(lines)
+            snippet_content = '\n'.join(lines[start:end])
 
         return snippet_content.strip()
     except requests.RequestException as e:
