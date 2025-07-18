@@ -206,7 +206,7 @@ The encoded calldata for this example is:
 ```
 
 !!! note
-    The encoded calldata for you should be slightly different, as you should have replaced the Computed Origin account in the script with the one you created in the [Calculation your Computed Origin Account](#calculating-your-computed-origin-account) section.
+    The encoded calldata for you should be slightly different, as you should have replaced the Computed Origin account in the script with the one you created in the [Calculating Your Computed Origin Account](#calculating-your-computed-origin-account) section.
 
 Now that we have the SCALE encoded calldata, the last step is to submit the transaction, which will send our XCM message to Moonbase Alpha, and do the remote batch EVM call!
 

@@ -335,7 +335,7 @@ Now that we have the encoded call data for buying a voyage, we can use it to est
 ```js
 const gasEstimate = await provider.estimateGas({
   from: userSigner.address,
-  to: '0xD1A9bA3e61Ac676f58B29EA0a09Cf5D7f4f35138', // Cartographer V1 contraact
+  to: '0xD1A9bA3e61Ac676f58B29EA0a09Cf5D7f4f35138', // Cartographer V1 contract
   data,
 })
 ```
@@ -472,7 +472,7 @@ The components of the hash can be broken down as follows:
 
 - **\x19** - makes the encoding deterministic
 - **\x01** - the version byte, which makes the hash compliant with [EIP-191](https://eips.ethereum.org/EIPS/eip-191){target=\_blank}
-- **domainSeparator** - the 32-byte domain seperator, which was [previously covered](#define-the-domain-separator) and can be easily retrieved using the `DOMAIN_SEPARATOR` function of the Call Permit Precompile
+- **domainSeparator** - the 32-byte domain separator, which was [previously covered](#define-the-domain-separator) and can be easily retrieved using the `DOMAIN_SEPARATOR` function of the Call Permit Precompile
 - **hashStruct(message)** - the 32-byte data to sign, which is based on the typed data structure and the actual data. For more information, please refer to the [EIP-712 specification](https://eips.ethereum.org/EIPS/eip-712#definition-of-hashstruct){target=\_blank}
 
 Now that we have an understanding of what the `signTypedData` function does, we can go ahead and pass in the data we've assembled in the previous sections:

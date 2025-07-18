@@ -20,7 +20,7 @@ Moonbeam uses the [Nimbus Parachain Consensus Framework](/learn/features/consens
  - The parachain staking filter selects the top candidates in terms of tokens staked in each network. For the exact number of top candidates per each network and the minimum bond amount, you can check out the [Minimum Collator Bond](/node-operators/networks/collators/requirements/#minimum-collator-bond){target=\_blank} section of our documentation. This filtered pool is called selected candidates (also known as the active set), which are rotated every round
  - The fixed size subset filter picks a pseudo-random subset of the previously selected candidates for each block production slot
 
-Users can spin up full nodes on Moonbeam, Moonriver, and Moonbase Alpha and activate the `collate` feature to participate in the ecosystem as collator candidates. To do, you can checkout the [Run a Node](/node-operators/networks/run-a-node/){target=\_blank} section of the documentation and spin up a node using either [Docker](/node-operators/networks/run-a-node/docker/){target=\_blank} or [Systemd](/node-operators/networks/run-a-node/systemd/){target=\_blank}.
+Users can spin up full nodes on Moonbeam, Moonriver, and Moonbase Alpha and activate the `collate` feature to participate in the ecosystem as collator candidates. To do this, you can checkout the [Run a Node](/node-operators/networks/run-a-node/){target=\_blank} section of the documentation and spin up a node using either [Docker](/node-operators/networks/run-a-node/docker/){target=\_blank} or [Systemd](/node-operators/networks/run-a-node/systemd/){target=\_blank}.
 
 ## Join the Discord {: #join-discord }
 
@@ -28,7 +28,7 @@ As a collator, it is important to keep track of updates and changes to configura
 
 For this purpose, we use [Discord](https://discord.com/invite/moonbeam){target=\_blank}. The most relevant Discord channels for collators are the following:
 
- - **tech-upgrades-announcements** — here we will publish any updates or changes in configuration collators will be required to follow. We will also announce any technical issues to watch out for, such as network stalls
+ - **tech-upgrades-announcements** — here we will publish any updates or changes in configuration changes collators will be required to follow. We will also announce any technical issues to monitor, such as network stalls
  - **collators** — this is the general collator discussion channel. We are proud of having an active and friendly collator community so if you have any questions, this is the place to ask. We will also ping collators here for any issues that require their attention.
  - **meet-the-collators** — in this channel you can introduce yourself to potential delegators
 
