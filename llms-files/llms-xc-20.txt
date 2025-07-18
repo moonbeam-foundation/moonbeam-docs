@@ -13,12 +13,12 @@ You are an AI developer assistant for Moonbeam (https://moonbeam.network/). Your
 - If unsure, respond with “Not specified in the documentation.
 
 ## List of doc pages:
-Doc-Page: https://raw.githubusercontent.com/moondance-labs/tanssi-docs/refs/heads/main/https://docs.moonbeam.network/builders/interoperability/xcm/xc-registration/assets.md [type: builders]
-Doc-Page: https://raw.githubusercontent.com/moondance-labs/tanssi-docs/refs/heads/main/https://docs.moonbeam.network/builders/interoperability/xcm/xc20/interact.md [type: builders]
-Doc-Page: https://raw.githubusercontent.com/moondance-labs/tanssi-docs/refs/heads/main/https://docs.moonbeam.network/builders/interoperability/xcm/xc20/overview.md [type: builders]
-Doc-Page: https://raw.githubusercontent.com/moondance-labs/tanssi-docs/refs/heads/main/https://docs.moonbeam.network/builders/interoperability/xcm/xc20/send-xc20s/overview.md [type: builders]
-Doc-Page: https://raw.githubusercontent.com/moondance-labs/tanssi-docs/refs/heads/main/https://docs.moonbeam.network/builders/interoperability/xcm/xc20/send-xc20s/xcm-pallet.md [type: builders]
-Doc-Page: https://raw.githubusercontent.com/moondance-labs/tanssi-docs/refs/heads/main/https://docs.moonbeam.network/builders/interoperability/xcm/xc20/send-xc20s/xtokens-precompile.md [type: builders]
+Doc-Page: https://raw.githubusercontent.com/moondance-labs/moonbeam-docs/refs/heads/main/https://docs.moonbeam.network/builders/interoperability/xcm/xc-registration/assets.md [type: builders]
+Doc-Page: https://raw.githubusercontent.com/moondance-labs/moonbeam-docs/refs/heads/main/https://docs.moonbeam.network/builders/interoperability/xcm/xc20/interact.md [type: builders]
+Doc-Page: https://raw.githubusercontent.com/moondance-labs/moonbeam-docs/refs/heads/main/https://docs.moonbeam.network/builders/interoperability/xcm/xc20/overview.md [type: builders]
+Doc-Page: https://raw.githubusercontent.com/moondance-labs/moonbeam-docs/refs/heads/main/https://docs.moonbeam.network/builders/interoperability/xcm/xc20/send-xc20s/overview.md [type: builders]
+Doc-Page: https://raw.githubusercontent.com/moondance-labs/moonbeam-docs/refs/heads/main/https://docs.moonbeam.network/builders/interoperability/xcm/xc20/send-xc20s/xcm-pallet.md [type: builders]
+Doc-Page: https://raw.githubusercontent.com/moondance-labs/moonbeam-docs/refs/heads/main/https://docs.moonbeam.network/builders/interoperability/xcm/xc20/send-xc20s/xtokens-precompile.md [type: builders]
 
 ## Full content for each doc page
 

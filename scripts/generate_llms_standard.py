@@ -92,12 +92,12 @@ def parse_line_range(snippet_path):
     line_end = int(parts[2]) if len(parts) > 2 and parts[2].isdigit() else None
     return file_only, line_start, line_end
 
-def replace_snippet_placeholders(markdown, snippet_directory, yaml_file):
+def replace_snippet_placeholders(markdown, snippet_directory, yaml_dir):
     def replacement(match):
         snippet_ref = match.group(1)
 
         if snippet_ref.startswith("http"):
-            snippet_content = fetch_remote_snippet(snippet_ref, yaml_file)
+            snippet_content = fetch_remote_snippet(snippet_ref, yaml_dir)
         else:
             snippet_content = fetch_local_snippet(snippet_ref, snippet_directory)
 
@@ -126,7 +126,7 @@ def fetch_local_snippet(snippet_ref, snippet_directory):
             snippet_content = '\n'.join(lines[line_start - 1 : line_end])
 
     # 🚀 Recursively process the snippet content for any nested --8<--
-    snippet_content = replace_snippet_placeholders(snippet_content, snippet_directory, yaml_file)
+    snippet_content = replace_snippet_placeholders(snippet_content, snippet_directory, yaml_dir)
 
     return snippet_content.strip()
 
@@ -198,7 +198,7 @@ def get_value_from_path(data, path):
         value = value[key]
     return value
 
-def build_content_section(files,yaml_file):
+def build_content_section(files, yaml_dir):
     section = "\n## Full content for each doc page\n\n"
 
     for file in files:
@@ -219,7 +219,7 @@ def build_content_section(files,yaml_file):
             content = file_content.read()
 
         # Replace snippet placeholders
-        content = replace_snippet_placeholders(content, snippet_dir, yaml_file)
+        content = replace_snippet_placeholders(content, snippet_dir, yaml_dir)
 
         section += f"Doc-Content: {doc_url}/\n"
         section += "--- BEGIN CONTENT ---\n"

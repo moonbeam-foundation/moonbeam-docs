@@ -13,19 +13,19 @@ You are an AI developer assistant for Moonbeam (https://moonbeam.network/). Your
 - If unsure, respond with “Not specified in the documentation.
 
 ## List of doc pages:
-Doc-Page: https://raw.githubusercontent.com/moondance-labs/tanssi-docs/refs/heads/main/https://docs.moonbeam.network/node-operators/networks/collators/account-management.md [type: node-operators]
-Doc-Page: https://raw.githubusercontent.com/moondance-labs/tanssi-docs/refs/heads/main/https://docs.moonbeam.network/node-operators/networks/collators/activities.md [type: node-operators]
-Doc-Page: https://raw.githubusercontent.com/moondance-labs/tanssi-docs/refs/heads/main/https://docs.moonbeam.network/node-operators/networks/collators/author-mapping.md [type: node-operators]
-Doc-Page: https://raw.githubusercontent.com/moondance-labs/tanssi-docs/refs/heads/main/https://docs.moonbeam.network/node-operators/networks/collators/faq.md [type: node-operators]
-Doc-Page: https://raw.githubusercontent.com/moondance-labs/tanssi-docs/refs/heads/main/https://docs.moonbeam.network/node-operators/networks/collators/orbiter.md [type: node-operators]
-Doc-Page: https://raw.githubusercontent.com/moondance-labs/tanssi-docs/refs/heads/main/https://docs.moonbeam.network/node-operators/networks/collators/overview.md [type: node-operators]
-Doc-Page: https://raw.githubusercontent.com/moondance-labs/tanssi-docs/refs/heads/main/https://docs.moonbeam.network/node-operators/networks/collators/requirements.md [type: node-operators]
-Doc-Page: https://raw.githubusercontent.com/moondance-labs/tanssi-docs/refs/heads/main/https://docs.moonbeam.network/node-operators/networks/run-a-node/compile-binary.md [type: node-operators]
-Doc-Page: https://raw.githubusercontent.com/moondance-labs/tanssi-docs/refs/heads/main/https://docs.moonbeam.network/node-operators/networks/run-a-node/docker.md [type: node-operators]
-Doc-Page: https://raw.githubusercontent.com/moondance-labs/tanssi-docs/refs/heads/main/https://docs.moonbeam.network/node-operators/networks/run-a-node/flags.md [type: node-operators]
-Doc-Page: https://raw.githubusercontent.com/moondance-labs/tanssi-docs/refs/heads/main/https://docs.moonbeam.network/node-operators/networks/run-a-node/overview.md [type: node-operators]
-Doc-Page: https://raw.githubusercontent.com/moondance-labs/tanssi-docs/refs/heads/main/https://docs.moonbeam.network/node-operators/networks/run-a-node/systemd.md [type: node-operators]
-Doc-Page: https://raw.githubusercontent.com/moondance-labs/tanssi-docs/refs/heads/main/https://docs.moonbeam.network/node-operators/networks/tracing-node.md [type: node-operators]
+Doc-Page: https://raw.githubusercontent.com/moondance-labs/moonbeam-docs/refs/heads/main/https://docs.moonbeam.network/node-operators/networks/collators/account-management.md [type: node-operators]
+Doc-Page: https://raw.githubusercontent.com/moondance-labs/moonbeam-docs/refs/heads/main/https://docs.moonbeam.network/node-operators/networks/collators/activities.md [type: node-operators]
+Doc-Page: https://raw.githubusercontent.com/moondance-labs/moonbeam-docs/refs/heads/main/https://docs.moonbeam.network/node-operators/networks/collators/author-mapping.md [type: node-operators]
+Doc-Page: https://raw.githubusercontent.com/moondance-labs/moonbeam-docs/refs/heads/main/https://docs.moonbeam.network/node-operators/networks/collators/faq.md [type: node-operators]
+Doc-Page: https://raw.githubusercontent.com/moondance-labs/moonbeam-docs/refs/heads/main/https://docs.moonbeam.network/node-operators/networks/collators/orbiter.md [type: node-operators]
+Doc-Page: https://raw.githubusercontent.com/moondance-labs/moonbeam-docs/refs/heads/main/https://docs.moonbeam.network/node-operators/networks/collators/overview.md [type: node-operators]
+Doc-Page: https://raw.githubusercontent.com/moondance-labs/moonbeam-docs/refs/heads/main/https://docs.moonbeam.network/node-operators/networks/collators/requirements.md [type: node-operators]
+Doc-Page: https://raw.githubusercontent.com/moondance-labs/moonbeam-docs/refs/heads/main/https://docs.moonbeam.network/node-operators/networks/run-a-node/compile-binary.md [type: node-operators]
+Doc-Page: https://raw.githubusercontent.com/moondance-labs/moonbeam-docs/refs/heads/main/https://docs.moonbeam.network/node-operators/networks/run-a-node/docker.md [type: node-operators]
+Doc-Page: https://raw.githubusercontent.com/moondance-labs/moonbeam-docs/refs/heads/main/https://docs.moonbeam.network/node-operators/networks/run-a-node/flags.md [type: node-operators]
+Doc-Page: https://raw.githubusercontent.com/moondance-labs/moonbeam-docs/refs/heads/main/https://docs.moonbeam.network/node-operators/networks/run-a-node/overview.md [type: node-operators]
+Doc-Page: https://raw.githubusercontent.com/moondance-labs/moonbeam-docs/refs/heads/main/https://docs.moonbeam.network/node-operators/networks/run-a-node/systemd.md [type: node-operators]
+Doc-Page: https://raw.githubusercontent.com/moondance-labs/moonbeam-docs/refs/heads/main/https://docs.moonbeam.network/node-operators/networks/tracing-node.md [type: node-operators]
 
 ## Full content for each doc page
 

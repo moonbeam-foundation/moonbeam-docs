@@ -13,14 +13,14 @@ You are an AI developer assistant for Moonbeam (https://moonbeam.network/). Your
 - If unsure, respond with “Not specified in the documentation.
 
 ## List of doc pages:
-Doc-Page: https://raw.githubusercontent.com/moondance-labs/tanssi-docs/refs/heads/main/https://docs.moonbeam.network/builders/ethereum/libraries/ethersjs.md [type: builders]
-Doc-Page: https://raw.githubusercontent.com/moondance-labs/tanssi-docs/refs/heads/main/https://docs.moonbeam.network/builders/ethereum/libraries/ethersrs.md [type: builders]
-Doc-Page: https://raw.githubusercontent.com/moondance-labs/tanssi-docs/refs/heads/main/https://docs.moonbeam.network/builders/ethereum/libraries/viem.md [type: builders]
-Doc-Page: https://raw.githubusercontent.com/moondance-labs/tanssi-docs/refs/heads/main/https://docs.moonbeam.network/builders/ethereum/libraries/web3js.md [type: builders]
-Doc-Page: https://raw.githubusercontent.com/moondance-labs/tanssi-docs/refs/heads/main/https://docs.moonbeam.network/builders/ethereum/libraries/web3py.md [type: builders]
-Doc-Page: https://raw.githubusercontent.com/moondance-labs/tanssi-docs/refs/heads/main/https://docs.moonbeam.network/builders/substrate/libraries/polkadot-js-api.md [type: builders]
-Doc-Page: https://raw.githubusercontent.com/moondance-labs/tanssi-docs/refs/heads/main/https://docs.moonbeam.network/builders/substrate/libraries/py-substrate-interface.md [type: builders]
-Doc-Page: https://raw.githubusercontent.com/moondance-labs/tanssi-docs/refs/heads/main/https://docs.moonbeam.network/builders/substrate/libraries/sidecar.md [type: builders]
+Doc-Page: https://raw.githubusercontent.com/moondance-labs/moonbeam-docs/refs/heads/main/https://docs.moonbeam.network/builders/ethereum/libraries/ethersjs.md [type: builders]
+Doc-Page: https://raw.githubusercontent.com/moondance-labs/moonbeam-docs/refs/heads/main/https://docs.moonbeam.network/builders/ethereum/libraries/ethersrs.md [type: builders]
+Doc-Page: https://raw.githubusercontent.com/moondance-labs/moonbeam-docs/refs/heads/main/https://docs.moonbeam.network/builders/ethereum/libraries/viem.md [type: builders]
+Doc-Page: https://raw.githubusercontent.com/moondance-labs/moonbeam-docs/refs/heads/main/https://docs.moonbeam.network/builders/ethereum/libraries/web3js.md [type: builders]
+Doc-Page: https://raw.githubusercontent.com/moondance-labs/moonbeam-docs/refs/heads/main/https://docs.moonbeam.network/builders/ethereum/libraries/web3py.md [type: builders]
+Doc-Page: https://raw.githubusercontent.com/moondance-labs/moonbeam-docs/refs/heads/main/https://docs.moonbeam.network/builders/substrate/libraries/polkadot-js-api.md [type: builders]
+Doc-Page: https://raw.githubusercontent.com/moondance-labs/moonbeam-docs/refs/heads/main/https://docs.moonbeam.network/builders/substrate/libraries/py-substrate-interface.md [type: builders]
+Doc-Page: https://raw.githubusercontent.com/moondance-labs/moonbeam-docs/refs/heads/main/https://docs.moonbeam.network/builders/substrate/libraries/sidecar.md [type: builders]
 
 ## Full content for each doc page
 

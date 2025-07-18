@@ -13,11 +13,11 @@ You are an AI developer assistant for Moonbeam (https://moonbeam.network/). Your
 - If unsure, respond with “Not specified in the documentation.
 
 ## List of doc pages:
-Doc-Page: https://raw.githubusercontent.com/moondance-labs/tanssi-docs/refs/heads/main/https://docs.moonbeam.network/builders/ethereum/json-rpc/debug-trace.md [type: builders]
-Doc-Page: https://raw.githubusercontent.com/moondance-labs/tanssi-docs/refs/heads/main/https://docs.moonbeam.network/builders/ethereum/json-rpc/eth-rpc.md [type: builders]
-Doc-Page: https://raw.githubusercontent.com/moondance-labs/tanssi-docs/refs/heads/main/https://docs.moonbeam.network/builders/ethereum/json-rpc/moonbeam-custom-api.md [type: builders]
-Doc-Page: https://raw.githubusercontent.com/moondance-labs/tanssi-docs/refs/heads/main/https://docs.moonbeam.network/builders/ethereum/json-rpc/pubsub.md [type: builders]
-Doc-Page: https://raw.githubusercontent.com/moondance-labs/tanssi-docs/refs/heads/main/https://docs.moonbeam.network/builders/get-started/endpoints.md [type: builders]
+Doc-Page: https://raw.githubusercontent.com/moondance-labs/moonbeam-docs/refs/heads/main/https://docs.moonbeam.network/builders/ethereum/json-rpc/debug-trace.md [type: builders]
+Doc-Page: https://raw.githubusercontent.com/moondance-labs/moonbeam-docs/refs/heads/main/https://docs.moonbeam.network/builders/ethereum/json-rpc/eth-rpc.md [type: builders]
+Doc-Page: https://raw.githubusercontent.com/moondance-labs/moonbeam-docs/refs/heads/main/https://docs.moonbeam.network/builders/ethereum/json-rpc/moonbeam-custom-api.md [type: builders]
+Doc-Page: https://raw.githubusercontent.com/moondance-labs/moonbeam-docs/refs/heads/main/https://docs.moonbeam.network/builders/ethereum/json-rpc/pubsub.md [type: builders]
+Doc-Page: https://raw.githubusercontent.com/moondance-labs/moonbeam-docs/refs/heads/main/https://docs.moonbeam.network/builders/get-started/endpoints.md [type: builders]
 
 ## Full content for each doc page
 

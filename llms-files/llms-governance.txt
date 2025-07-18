@@ -13,10 +13,10 @@ You are an AI developer assistant for Moonbeam (https://moonbeam.network/). Your
 - If unsure, respond with “Not specified in the documentation.
 
 ## List of doc pages:
-Doc-Page: https://raw.githubusercontent.com/moondance-labs/tanssi-docs/refs/heads/main/https://docs.moonbeam.network/learn/features/governance.md [type: learn]
-Doc-Page: https://raw.githubusercontent.com/moondance-labs/tanssi-docs/refs/heads/main/https://docs.moonbeam.network/tokens/governance/proposals.md [type: other]
-Doc-Page: https://raw.githubusercontent.com/moondance-labs/tanssi-docs/refs/heads/main/https://docs.moonbeam.network/tokens/governance/treasury-spend.md [type: other]
-Doc-Page: https://raw.githubusercontent.com/moondance-labs/tanssi-docs/refs/heads/main/https://docs.moonbeam.network/tokens/governance/voting.md [type: other]
+Doc-Page: https://raw.githubusercontent.com/moondance-labs/moonbeam-docs/refs/heads/main/https://docs.moonbeam.network/learn/features/governance.md [type: learn]
+Doc-Page: https://raw.githubusercontent.com/moondance-labs/moonbeam-docs/refs/heads/main/https://docs.moonbeam.network/tokens/governance/proposals.md [type: other]
+Doc-Page: https://raw.githubusercontent.com/moondance-labs/moonbeam-docs/refs/heads/main/https://docs.moonbeam.network/tokens/governance/treasury-spend.md [type: other]
+Doc-Page: https://raw.githubusercontent.com/moondance-labs/moonbeam-docs/refs/heads/main/https://docs.moonbeam.network/tokens/governance/voting.md [type: other]
 
 ## Full content for each doc page
 
