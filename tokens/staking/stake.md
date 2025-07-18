@@ -1,6 +1,7 @@
 ---
 title: How to Stake your MOVR & GLMR Tokens
 description: A guide that shows how you can stake your tokens and earn rewards on Moonbeam by delegating collator candidates.
+categories: Staking
 ---
 
 # How to Stake your Tokens

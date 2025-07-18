@@ -1,6 +1,7 @@
 ---
 title: Technology & Architecture
 description: Moonbeam is built using Rust and Polkadot's Substrate framework, enabling rich tools for implementation while allowing for specialization and optimization.
+categories: Basics
 ---
 
 # Technology & Architecture

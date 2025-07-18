@@ -1,6 +1,7 @@
 ---
 title: Run a Chainlink Node
 description: How to set up a Chainlink Oracle node for the Moonbeam Network to feed data on-chain to be used by smart contracts.
+categories: Oracle Nodes
 ---
 
 # Run a Chainlink Oracle Node on Moonbeam

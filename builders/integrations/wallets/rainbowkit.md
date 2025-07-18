@@ -1,6 +1,7 @@
 ---
 title: Add RainbowKit to a DApp
 description: Learn how to integrate RainbowKit into a dApp to allow users to connect their mobile wallets to Moonbeam, Moonriver, or Moonbase Alpha networks.
+categories: Tokens and Accounts
 ---
 
 # Integrate RainbowKit into a DApp

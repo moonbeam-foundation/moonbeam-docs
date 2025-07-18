@@ -1,6 +1,7 @@
 ---
 title: Moonbeam Collator Activities
 description: Instructions on how to dive in and learn about the related activities for becoming and maintaining a collator node in the Moonbeam Network.
+categories: Node Operators and Collators
 ---
 
 # Collator Activities

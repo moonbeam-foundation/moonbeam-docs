@@ -2,6 +2,7 @@
 title: Staking Precompile Contract
 description: Unlock the potential of staking with a specialized precompiled contract designed to streamline and optimize participation in Moonbeam.
 keywords: solidity, ethereum, staking, moonbeam, precompiled, contracts
+categories: Precompiles, Ethereum Toolkit
 ---
 
 # Interacting with the Staking Precompile

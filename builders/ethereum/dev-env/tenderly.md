@@ -1,6 +1,7 @@
 ---
 title: Tenderly Development Platform
 description: Learn how to use Tenderly, an Ethereum development platform, to build, debug, and monitor Solidity smart contracts on Moonbeam.
+categories: Dev Environments, Ethereum Toolkit
 ---
 
 # Using Tenderly on Moonbeam

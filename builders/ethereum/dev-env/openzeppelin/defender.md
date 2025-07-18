@@ -1,6 +1,7 @@
 ---
 title: How to use OpenZeppelin Defender
 description:  Learn how to use OpenZeppelin Defender to manage smart contracts securely on Moonbeam, thanks to its Ethereum compatibility features
+categories: Dev Environments, Ethereum Toolkit
 ---
 
 # OpenZeppelin Defender

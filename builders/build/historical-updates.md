@@ -1,6 +1,7 @@
 ---
 title: Historical Updates
 description: An overview of the historical updates made on Moonbeam and Moonriver, such as migrations and bug fixes applied to the Moonbeam source code.
+categories: Reference
 ---
 
 # Historical Updates

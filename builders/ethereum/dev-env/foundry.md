@@ -1,6 +1,7 @@
 ---
 title: Deploy Contracts with Foundry
 description: Learn how to use Foundry, an Ethereum development environment, to compile, deploy, and debug Solidity smart contracts on Moonbeam.
+categories: Dev Environments, Ethereum Toolkit
 ---
 
 # Using Foundry to Deploy To Moonbeam

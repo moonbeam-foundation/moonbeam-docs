@@ -1,6 +1,7 @@
 ---
 title: Computed Origin Accounts
 description: Learn about Computed Origin accounts, which can be used to execute remote cross-chain calls through a simple transaction, and how to calculate these accounts.
+categories: XCM Remote Execution
 ---
 
 # Computed Origin Accounts
