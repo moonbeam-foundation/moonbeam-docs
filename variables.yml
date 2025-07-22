@@ -324,7 +324,7 @@ networks:
       min_can_stk: 500
       min_can_stk_wei: 500000000000000000000
       collator_map_bond: 100
-      max_candidates: 12
+      max_candidates: 11
       round_blocks: 1200
       round_hours: 2
       min_del_stake: 1
