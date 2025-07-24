@@ -7,7 +7,7 @@ description: Check out this tutorial to learn how to use the viem TypeScript int
 
 ## Introduction {: #introduction }
 
-[viem](https://viem.sh){target=\_blank} is a modular TypeScript library that allows developers to interact with abstractions over the JSON-RPC API, making it easy to interact with Ethereum nodes. Since Moonbeam has an Ethereum-like API available that is fully compatible with Ethereum-style JSON RPC invocations, developers can leverage this compatibility to interact with Moonbeam nodes. For more information on viem, check out their [documentation site](https://viem.sh/docs/getting-started.html){target=\_blank}.
+[viem](https://viem.sh){target=\_blank} is a modular TypeScript library that allows developers to interact with abstractions over the JSON-RPC API, making it easy to interact with Ethereum nodes. Since Moonbeam has an Ethereum-like API available that is fully compatible with Ethereum-style JSON RPC invocations, developers can leverage this compatibility to interact with Moonbeam nodes. For more information on viem, check out their [documentation site](https://viem.sh/docs/getting-started){target=\_blank}.
 
 In this guide, you'll learn how to use viem to send a transaction and deploy a contract on the Moonbase Alpha TestNet. This guide can be adapted for [Moonbeam](/builders/get-started/networks/moonbeam/){target=\_blank}, [Moonriver](/builders/get-started/networks/moonriver/){target=\_blank}, or a [Moonbeam development node](/builders/get-started/networks/moonbeam-dev/){target=\_blank}.
 
