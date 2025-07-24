@@ -27,8 +27,8 @@ To create a new smart contract using the [thirdweb CLI](https://portal.thirdweb.
     1. Give your project a name
     2. Choose your preferred framework: **Hardhat** or **Foundry**
     3. Name your smart contract
-    4. Choose the type of base contract: **Empty**, [**ERC20**](https://portal.thirdweb.com/contracts/build/base-contracts/erc-20/base){target=\_blank}, [**ERC721**](https://portal.thirdweb.com/contracts/build/base-contracts/erc-721/base){target=\_blank}, or [**ERC1155**](https://portal.thirdweb.com/contracts/build/base-contracts/erc-1155/base){target=\_blank}
-    5. Add any desired [extensions](https://portal.thirdweb.com/contracts/build/extensions){target=\_blank}
+    4. Choose the type of base contract: **Empty**, [**ERC20**](https://portal.thirdweb.com/tokens/build/base-contracts/erc-20/base){target=\_blank}, [**ERC721**](https://portal.thirdweb.com/tokens/build/base-contracts/erc-721/base){target=\_blank}, or [**ERC1155**](https://portal.thirdweb.com/tokens/build/base-contracts/erc-1155/base){target=\_blank}
+    5. Add any desired [extensions](https://portal.thirdweb.com/tokens/build/extensions){target=\_blank}
 3. Once created, navigate to your project’s directory and open in your preferred code editor
 4. If you open the `contracts` folder, you will find your smart contract; this is your smart contract written in Solidity
 
