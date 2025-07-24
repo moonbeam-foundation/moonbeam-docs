@@ -10394,7 +10394,7 @@ Instructions for purging chain data will vary slightly depending on how you spun
 ## Reference Concepts [shared: true]
 
 The following section contains reference material for Moonbeam.
-It includes network endpoints, JSON RPC methods, and contract or token addresses.
+It includes network endpoints, JSON-RPC methods, and contract or token addresses.
 While it may not be required for all use cases, it offers a deeper technical layer for advanced development work.
 
 ---
