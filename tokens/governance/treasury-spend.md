@@ -1,6 +1,7 @@
 ---
 title: How to Propose a Treasury Spend
 description: Learn about the full life cycle of a Treasury proposal from the initial proposal on Moonbeam's Community Forum to Council approval of the on-chain spend.
+categories: Governance
 ---
 
 # How to Propose a Treasury Spend

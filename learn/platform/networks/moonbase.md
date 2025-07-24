@@ -1,6 +1,7 @@
 ---
 title: Moonbase Alpha TestNet Overview
 description: An overview of the current configuration of the Moonbeam TestNet, Moonbase Alpha, and information on how to start building on it using Solidity.
+categories: Basics
 ---
 
 # The Moonbase Alpha TestNet

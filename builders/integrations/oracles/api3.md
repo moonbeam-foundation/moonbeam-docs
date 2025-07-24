@@ -1,6 +1,7 @@
 ---
 title: Request Off-Chain Data with API3
 description: Learn how to use API3 to request and receive off-chain data from within your smart contracts using API3 Airnodes and dAPIs (data feeds) on Moonbeam networks.
+categories: Oracle Nodes
 ---
 
 # Use API3 To Request Off-Chain Data on Moonbeam

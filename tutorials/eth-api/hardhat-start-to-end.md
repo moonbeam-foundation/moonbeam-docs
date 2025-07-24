@@ -1,6 +1,7 @@
 ---
 title: Hardhat Developer Workflow
 description: Learn how to develop, test, and deploy smart contracts with Hardhat and how to take your contracts from a local development node to Moonbeam MainNet.
+categories: Tutorials, Dev Environments
 ---
 
 # Hardhat Developer Workflow

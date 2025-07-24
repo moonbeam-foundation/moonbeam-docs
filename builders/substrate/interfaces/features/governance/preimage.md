@@ -2,6 +2,7 @@
 title: Preimage Pallet
 description: Learn about the available extrinsics and storage methods for the Preimage Pallet on Moonbeam, which are used to store and manage on-chain preimages.
 keywords: democracy, substrate, pallet, moonbeam, polkadot, preimage
+categories: Substrate Toolkit
 ---
 
 # The Preimage Pallet

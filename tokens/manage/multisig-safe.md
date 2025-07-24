@@ -1,6 +1,7 @@
 ---
 title: Moonbeam Multisig Safe
 description: Learn how to use and manage funds with the Moonbeam Safe. Create a new multisig safe and receive and send tokens to the safe, as well as ERC-20s, on Moonbeam.
+categories: Tokens and Accounts
 ---
 
 # Interacting with Moonbeam Safe

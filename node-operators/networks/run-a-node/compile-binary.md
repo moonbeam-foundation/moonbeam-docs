@@ -1,6 +1,7 @@
 ---
 title: Compile the Binary to Run a Node
 description: Learn how to manually compile the binary to run a full Moonbeam node. Compiling the binary can take around 30 minutes and requires at least 32GB of memory.
+categories: Node Operators and Collators
 ---
 
 # Manually Compile the Moonbeam Binary

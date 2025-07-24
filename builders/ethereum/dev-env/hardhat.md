@@ -1,6 +1,7 @@
 ---
 title: Deploy Contracts with Hardhat
 description: Learn how to use Hardhat, an Ethereum development environment, to compile, deploy, and debug Solidity smart contracts on Moonbeam.
+categories: Dev Environments, Ethereum Toolkit
 ---
 
 # Using Hardhat to Deploy To Moonbeam

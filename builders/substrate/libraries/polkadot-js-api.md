@@ -1,6 +1,7 @@
 ---
 title: How to use the Polkadot.js API
 description: Learn how to use the Polkadot.js API to interact with a Moonbeam node to get chain data and send transactions (extrinsics) via the Substrate side of Moonbeam.
+categories: Substrate Toolkit, Libraries and SDKs
 ---
 
 # Polkadot.js API Library

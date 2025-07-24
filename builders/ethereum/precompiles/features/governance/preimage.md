@@ -1,6 +1,7 @@
 ---
 title: Preimage Precompile Contract
 description: Learn how to take the first necessary step to submit a proposal on-chain by submitting a preimage that contains the action to be carried out in the proposal.
+categories: Precompiles, Ethereum Toolkit
 ---
 
 # Interacting with the Preimage Precompile

@@ -1,6 +1,7 @@
 ---
 title: Cross-Chain Communication
 description: This guide covers the ways you can build cross-chain dApps with Moonbeam, including via XCM, cross consensus messaging, and GMP, general message passing.
+categories: Basics, XCM
 ---
 
 # Cross-Chain Communication Methods

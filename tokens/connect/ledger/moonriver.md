@@ -1,6 +1,7 @@
 ---
 title: Using the Moonriver Ledger App
 description: This guide walks you through how to use your Ledger hardware wallet to sign transactions on Moonriver using the native Moonriver Ledger Live app.
+categories: Tokens and Accounts, Ethereum Toolkit
 ---
 
 # Interacting with Moonriver Using Ledger and the Moonriver App

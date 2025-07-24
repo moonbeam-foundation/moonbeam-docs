@@ -1,6 +1,7 @@
 ---
 title: How to Build a DApp
 description: Learn about the frontend, smart contracts, and storage system of Decentralized Applications (DApp) by dissecting an entire example project.
+categories: Tutorials
 ---
 
 # How to Build a DApp: Complete DApp Architecture
