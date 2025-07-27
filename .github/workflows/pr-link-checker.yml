@@ -10,8 +10,7 @@ jobs:
     with:
       mkdocs_repo: papermoonio/moonbeam-mkdocs
       docs_repo: moonbeam-foundation/moonbeam-docs
-      mkdocs_repo_name: moonbeam-mkdocs
-      docs_repo_name: moonbeam-docs
+      docs_checkout: moonbeam-docs
       url: https://docs.moonbeam.network
     secrets:
       GH_TOKEN: ${{ secrets.GH_PR_404_CHECKER }}
