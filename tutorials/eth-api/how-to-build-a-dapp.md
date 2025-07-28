@@ -54,7 +54,7 @@ So now you have a URL. How do you use it? Over `HTTPS`, JSON-RPC requests are `P
 This example is getting the balance (in DEV on Moonbase Alpha) of the `0xf24FF3a9CF04c71Dbc94D0b566f7A27B94566cac` account. Let's break down the elements:  
 
 - `jsonrpc` — the JSON-RPC API version, usually "2.0"
-- `id` — an integer value that helps identify a response to a request. Can usually just keep it as `
+- `id` — an integer value that helps identify a response to a request. Can usually just keep it as 1
 - `method` — the specific method to read/write data from/to the blockchain. You can see many of the [RPC methods on our docs site](/builders/ethereum/json-rpc/eth-rpc/){target=\_blank}
 - `params` — an array of the input parameters expected by the specific `method`  
 

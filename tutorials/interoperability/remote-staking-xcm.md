@@ -81,7 +81,7 @@ If you'd prefer not to set up a local environment, you can run a code snippet in
 
 ### Assemble and Send XCM Instructions via the Polkadot.js API {: #sending-the-xcm-instructions-via-the-polkadot-api }
 
-In this section, we'll be using the [Polkadot.js API](/builders/substrate/libraries/polkadot-js-api/){target=\_blank} to construct and send XCM instructions via the `send` extrinsic of the XCM Pallet on the Alphanet relay chain. The XCM message will transport our remote execution instructions to the Moonbase Alpha parachain to ultimately stake our desired amount of DEV tokens to a chosen collator.
+In this section, we'll be using the [Polkadot.js API](/builders/substrate/libraries/polkadot-js-api/){target=\_blank} to construct and send XCM instructions via the `send` extrinsic of the XCM Pallet on the Moonbase relay chain. The XCM message will transport our remote execution instructions to the Moonbase Alpha parachain to ultimately stake our desired amount of DEV tokens to a chosen collator.
 
 The `send` function of the XCM Pallet accepts two parameters: `dest` and `message`. You can start assembling these parameters by taking the following steps:
 

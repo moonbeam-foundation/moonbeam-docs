@@ -9,9 +9,9 @@ categories: Node Operators and Collators
 
 ## Introduction {: #introduction }
 
-The author mapping precompiled contract on Moonbeam allows collator candidates to map session keys to a Moonbeam address, where block rewards are paid out, through a familiar and easy-to-use Solidity interface. This enables candidates to complete author mapping with a Ledger or any other Ethereum wallet compatible with Moonbeam. However, it is recommended to generate your keys on an air-gapped machine. You can find out more information by referring to the [account requirements section of the Collator Requirements page](/node-operators/networks/collators/requirements/#account-requirements){target=\_blank}.
+The author mapping precompiled contract on Moonbeam allows collator candidates to map session keys to a Moonbeam address where block rewards are paid out, through a familiar and easy-to-use Solidity interface. This enables candidates to complete author mapping with a Ledger or any other Ethereum wallet compatible with Moonbeam. However, it is recommended to generate your keys on an air-gapped machine. You can find out more information by referring to the [account requirements section of the Collator Requirements page](/node-operators/networks/collators/requirements/#account-requirements){target=\_blank}.
 
-To become a collator candidate, you must be [running a collator node](/node-operators/networks/run-a-node/overview/){target=\_blank}. You'll also need to [join the candidate pool](/node-operators/networks/collators/activities/#become-a-candidate){target=\_blank} and submit a [bond](#bonds) and fully sync your node before you can generate your session keys and map them to your account. There is an [additional bond](#bonds) that must be paid when mapping your session keys.
+To become a collator candidate, you must be [running a collator node](/node-operators/networks/run-a-node/overview/){target=\_blank}. You'll also need to [join the candidate pool](/node-operators/networks/collators/activities/#become-a-candidate){target=\_blank} fully sync your node and submit the required [bonds](#bonds) before generating your session keys and mapping them to your account. There is an [additional bond](#bonds) that must be paid when mapping your session keys.
 
 The precompile is located at the following address:
 

@@ -12,7 +12,7 @@ Moonbeam uses a block production mechanism based on [Polkadot's Proof-of-Stake m
 
 The candidates in the active set of collators (nodes that produce blocks) are selected based on their stake in the network. And here is where staking comes in.
 
-Collator candidates (and token holders if they delegate) have a stake in the network. The top N candidates by staked amount are chosen to produce blocks with a valid set of transactions, where N is a configurable parameter. Part of each block reward goes to the collators that produced the block, who then shares it with the delegators considering their percental contributions towards the collator's stake. In such a way, network members are incentivized to stake tokens to improve the overall security. Since staking is done at a protocol level through the staking interface, if you choose to delegate, the collators you delegate do not have access to your tokens.
+Collator candidates (and token holders if they delegate) have a stake in the network. The top N candidates by staked amount are chosen to produce blocks with a valid set of transactions, where N is a configurable parameter. Part of each block reward goes to the collators that produced the block, who then share it with the delegators considering their percental contributions towards the collator's stake. In such a way, network members are incentivized to stake tokens to improve the overall security. Since staking is done at a protocol level through the staking interface, if you choose to delegate, the collators you delegate to do not have access to your tokens.
 
 To easily manage staking related actions, you can visit the [Moonbeam Network DApp](https://apps.moonbeam.network){target=\_blank} and use the network tabs at the top of the page to easily switch between Moonbeam networks. To learn how to use the DApp, you can check out the [How to Stake MOVR Tokens](https://moonbeam.network/news/how-to-stake-movr-tokens-on-moonriver-and-earn-staking-rewards){target=\_blank} guide or [video tutorial](https://www.youtube.com/watch?v=8GwetYmzEJM){target=\_blank}, both of which can be adapted for the Moonbeam and the Moonbase Alpha TestNet.
 
@@ -20,7 +20,7 @@ To easily manage staking related actions, you can visit the [Moonbeam Network DA
 
 Some important parameters to understand in relation to the staking system on Moonbeam include:
 
- - **Round** — a specific number of blocks around which staking actions are enforced. For example, new delegations are enacted when the next round starts. When bonding less or revoking delegations, funds are returned after a certain amount of rounds
+ - **Round** — a specific number of blocks around which staking actions are enforced. For example, new delegations are enacted when the next round starts. When bonding less or revoking delegations, funds are returned after a specified number of rounds
  - **Candidates** - node operators that are eligible to become block producers if they can acquire enough stake to be in the active set
  - **Collators** — active set of candidates that are selected to be block producers. They collect transactions from users and produce state transition proofs for the relay chain to validate
  - **Delegators** — token holders who stake tokens, vouching for specific collator candidates. Any user that holds a minimum amount of tokens as [free balance](https://wiki.polkadot.network/learn/learn-accounts/#balance-types) can become a delegator
@@ -120,9 +120,9 @@ There are a few resources you can check out to help you select a collator to del
 
 Rewards for collators and their delegators are calculated at the start of every round for their work prior to the [reward payout delay](#quick-reference). For example, on Moonriver the rewards are calculated for the collators work from {{ networks.moonriver.delegator_timings.rewards_payouts.rounds }} rounds ago.
 
-The calculated rewards are then paid out on a block-by-block basis starting at the second block of the round. For every block, one collator will be chosen to receive their entire reward payout from the prior round, along with their delegators, until all of the rewards have been paid for that round. For example, if there are {{ networks.moonriver.staking.max_candidates }} collators who produced blocks in the prior round, all of the collators and their delegators would be paid by block {{ networks.moonriver.staking.paid_out_block }} of the new round.
+The calculated rewards are then paid out on a block-by-block basis starting at the second block of the round. For every block, one collator will be chosen to receive their entire reward payout from the prior round, along with their delegators, until all rewards have been paid out for that round. For example, if there are {{ networks.moonriver.staking.max_candidates }} collators who produced blocks in the prior round, all of the collators and their delegators will be paid by block {{ networks.moonriver.staking.paid_out_block }} of the new round.
 
-You can choose to auto-compound your delegation rewards so you no longer have to manually delegate rewards. If you choose to set up auto-compounding, you can specify the percentage of your rewards to be auto-compounded and they'll automatically be added to the delegation in which you received the rewards from.
+You can choose to auto-compound your delegation rewards so you no longer have to manually delegate rewards. If you choose to set up auto-compounding, you can specify the percentage of rewards to be auto-compounded. These rewards will then be automatically added to your delegation.
 
 ### Annual Inflation {: #annual-inflation}
 

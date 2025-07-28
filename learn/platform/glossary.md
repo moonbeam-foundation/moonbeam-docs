@@ -26,7 +26,7 @@ The mechanism used by Polkadot for selecting its block validator set to maximize
 
 ### Parachains {: #parachains }
 
-A blockchain which has a slot and is connected to Polkadot.  Parachains receive shared security from Polkadot and the ability to interact with other parachains on the Polkadot network. They must lock DOT, the native relay chain token, to secure a slot for a specific period (up two years).
+A blockchain which has a slot and is connected to Polkadot. Parachains receive shared security from Polkadot and the ability to interact with other parachains on the Polkadot network. They must lock DOT, the native relay chain token, to secure a slot for a specific period (up two years).
 
 ### Parathreads {: #parathreads }
 
@@ -38,7 +38,7 @@ A network of connected blockchains that provides shared security and the ability
 
 ### Relay Chain {: #relay-chain }
 
-The backbone blockchain supporting the Polkadot network.  Parachains connect to the relay Chain and use it for shared security and message passing.  Validators on the relay Chain help secure the parachains.
+The backbone blockchain supporting the Polkadot network.  Parachains connect to the relay chain and use it for shared security and message passing.  Validators on the relay chain help secure the parachains.
 
 ### Smart Contract {: #smart-contract }
 
@@ -54,7 +54,7 @@ Substrate Frame Pallets are a collection of Rust-based modules, providing the fu
 
 ### Validators {: #validators }
 
-A node that secures the Polkadot relay Chain by staking DOT in the network, which is slashed if they misbehave. They finalize blocks from collators on parachains and also participate on consensus for the next relay Chain block with other validators.
+A node that secures the Polkadot relay chain by staking DOT in the network, which is slashed if they misbehave. They finalize blocks from collators on parachains and also participate on consensus for the next relay chain block with other validators.
 
 ### WebAssembly/Wasm {: #webassemblywasm }
 

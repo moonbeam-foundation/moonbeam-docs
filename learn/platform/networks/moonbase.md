@@ -40,7 +40,7 @@ Some important variables/configurations to note include:
     | Maximum delegators per candidates |                                               {{ networks.moonbase.staking.max_del_per_can }}                                               |
     |  Maximum delegations per account  |                                               {{ networks.moonbase.staking.max_del_per_del }}                                               |
     |               Round               |                   {{ networks.moonbase.staking.round_blocks }} blocks ({{ networks.moonbase.staking.round_hours }} hour)                    |
-    |           Bond duration           |                                 delegation takes effect in the next round (funds are withdrawn immediately)                                 |
+    |           Bond duration           |                                 Delegations take effect in the next round; funds are withdrawn immediately                                 |
     |          Unbond duration          | {{ networks.moonbase.delegator_timings.del_bond_less.rounds }} rounds ({{ networks.moonbase.delegator_timings.del_bond_less.hours }} hours) |
 
 --8<-- 'text/_common/async-backing.md'

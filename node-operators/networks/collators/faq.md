@@ -10,7 +10,7 @@ categories: Node Operators and Collators
 
 Collators are an integral part of the parachains they take part in. They receive transactions and create state transition proofs for the relay chain validators.
 
-Running a Moobeam collator requires Linux systems administration skills, careful monitoring, and attention to detail. Below are some tips and tricks that have been accumulated which should help you get up and running quickly.
+Running a Moonbeam collator requires Linux systems administration skills, careful monitoring, and an attention to detail. Below are some tips and tricks that have been accumulated which should help you get up and running quickly.
 
 ## Q & A
 
@@ -53,7 +53,7 @@ Hardware recommendations:
     - Intel Xeon E-2386 or E-2388
 - Primary and backup bare metal servers in different data centers and countries (Hetzner is OK for one of them)
 - Dedicated server for Moonbeam that isn't shared with any other apps
-- 1 TB NVMe HDD
+- 1 TB NVMe SSD
 - 32 GB RAM
 
 ***
@@ -66,7 +66,7 @@ Hardware recommendations:
 
 **Q: What are the different networks?**
 
-**A:** There are three networks, each will require dedicated hardware. The Moonbase Alpha TestNet is free and should be used to familiarize yourself with the setup.
+**A:** There are three networks, and each requires dedicated hardware. The Moonbase Alpha TestNet is free and should be used to familiarize yourself with the setup.
 
 - **Moonbeam** - production network on Polkadot
 - **Moonriver** - production network on Kusama

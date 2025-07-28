@@ -570,7 +570,7 @@ OpenZeppelin's `Governor` smart contract came with a `propose` function, but unf
 !!! note
     Technically, the cross-chain messages should be sent when the voting delay is over to sync with when the voting weight snapshot is taken. In this instance, the proposal and snapshot are made at the same time.
 
-We'll rename the original `propose` function included in the `Governor` smart contract to be `crossCahinPropose`. Then we'll modify it to send cross-chain messages with information on the proposal to every spoke chain, the IDs of which you may remember being stored in the [`CrossChainGovernorCountingSimple` contract](#counting-votes-with-cross-chain-governor-counting-contract){target=\_blank}:
+We'll rename the original `propose` function included in the `Governor` smart contract to be `crossChainPropose`. Then we'll modify it to send cross-chain messages with information on the proposal to every spoke chain, the IDs of which you may remember being stored in the [`CrossChainGovernorCountingSimple` contract](#counting-votes-with-cross-chain-governor-counting-contract){target=\_blank}:
 
 ```solidity
 function crossChainPropose(address[] memory targets, uint256[] memory values, bytes[] memory calldatas, string memory description) 

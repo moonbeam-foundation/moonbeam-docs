@@ -26,7 +26,7 @@ Some of the key parameters for this guide are the following:
 
 ## Submit Your Idea to the Forum {: #submitting-your-idea-to-the-forum }
 
-As mentioned in the happy path above, the first step of a Treasury proposal is to submit the proposal to the [Moonbeam Forum](https://forum.moonbeam.network/c/governance/treasury-proposals/8){target=\_blank}. You'll need to have an account on the [Moonbeam Forum](https://forum.moonbeam.network/){target=\_blank} and be logged in before submitting a Treasury spend proposal. To properly submit a Treasury spend request, take the following steps:
+As mentioned in the happy path above, the first step of a Treasury proposal is to submit the proposal to the [Moonbeam Forum](https://forum.moonbeam.network/c/governance/treasury-proposals/8){target=\_blank}. You'll need to have an account on the [Moonbeam Forum](https://forum.moonbeam.network/){target=\_blank} and be logged in before submitting a Treasury spend proposal. To submit a Treasury spend proposal, follow these steps:
 
 1. From the [**Governance** section](https://forum.moonbeam.network/c/governance/treasury-proposals/8){target=\_blank}, click **New Topic**. By starting the topic in the **Governance** section, the proposal will come pre-filled with a template to ensure you cover all the necessary points 
 2. Provide a **title** for the proposal

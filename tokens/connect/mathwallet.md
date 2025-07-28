@@ -8,7 +8,7 @@ categories: Tokens and Accounts, Ethereum Toolkit
 
 ## Introduction {: #introduction }
 
-MathWallet [announced](https://mathwallet.org/moonbeam-wallet/en) that is now natively supporting each of the [Moonbeam-based networks](/learn/platform/networks/){target=\_blank}. This means that you are now able to interact with any of the networks using another wallet besides MetaMask.
+MathWallet [announced](https://mathwallet.org/moonbeam-wallet/en) that it is now natively supporting each of the [Moonbeam-based networks](/learn/platform/networks/){target=\_blank}. This means that you are now able to interact with any of the networks using another wallet besides MetaMask.
 
 In this tutorial, we'll go through how to setup MathWallet to connect to each of the networks: [Moonbeam](#connect-to-moonbeam), [Moonriver](#connect-to-moonriver), and [Moonbase Alpha](#connect-to-moonbase-alpha). We'll also present a brief example of using MathWallet as a Web3 provider for other tools such as [Remix](/builders/ethereum/dev-env/remix/){target=\_blank}.
 

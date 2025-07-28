@@ -11,7 +11,7 @@ _by Alberto Viera_
 
 ## Introduction {: #introduction }
 
-In this tutorial, we’ll perform a Uniswap V2-styled swap from a relay chain (what Polkadot is to Moonbeam) using Polkadot's intra-operability general message passing protocol called [XCM](/builders/interoperability/xcm/overview/){target=\_blank}. To do so, we'll be using a particular combination of XCM instructions that allow you to [call Moonbeam's EVM through an XCM message](/builders/interoperability/xcm/remote-execution/remote-evm-calls/){target=\_blank}. Consequently, any blockchain that is able to send an XCM message to Moonbeam can tap into its EVM and all the dApps built on top of it.
+In this tutorial, we’ll perform a Uniswap V2-styled swap from a relay chain (what Polkadot is to Moonbeam) using Polkadot's interoperability general message passing protocol called [XCM](/builders/interoperability/xcm/overview/){target=\_blank}. To do so, we'll be using a particular combination of XCM instructions that allow you to [call Moonbeam's EVM through an XCM message](/builders/interoperability/xcm/remote-execution/remote-evm-calls/){target=\_blank}. Consequently, any blockchain that is able to send an XCM message to Moonbeam can tap into its EVM and all the dApps built on top of it.
 
 **The content of this tutorial is for educational purposes only!**
 

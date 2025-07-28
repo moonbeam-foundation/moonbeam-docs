@@ -24,10 +24,10 @@ As the program progresses, the Moonbeam Foundation will assess the results and m
 
 To participate in the orbiter program, you must meet the following eligibility criteria:
 
-- Due to the nature of the program, each orbiter must pass a identity verification check, and cannot be a resident of certain jurisdictions
+- Due to the nature of the program, each orbiter must pass an identity verification check, and cannot be a resident of certain jurisdictions
 - Each orbiter must post a bond. This bond is posted to protect against bad behavior and will be subject to slashing
 - Each entity (person or group) may only run one orbiter per network (i.e., one on Moonriver and one on Moonbeam)
-- Orbiters cannot run another active collator on the same network as their orbiter. They can, however, run a active collator on Moonbeam and an orbiter on Moonriver, or vice versa, as long as they do not also have both on the same network
+- Orbiters cannot run another active collator on the same network as their orbiter. They can, however, run an active collator on Moonbeam and an orbiter on Moonriver, or vice versa, as long as they do not also have both on the same network
 
 ## Communication {: #communication }
 
@@ -35,7 +35,7 @@ A private discord group will be created for this program, and most communication
 
 ## Orbiters and Orbiter Pool Configurations {: #configuration }
 
-Orbiter pools are maintained by the Moonbeam Foundation, and will assign authority to each of the orbiters to produce blocks. The maximum number of orbiters per orbiter pool for each network is as follows:
+Orbiter pools are maintained by the Moonbeam Foundation, and will assign block production authority to each orbiter. The maximum number of orbiters per orbiter pool for each network is as follows:
 
 === "Moonbeam"
 

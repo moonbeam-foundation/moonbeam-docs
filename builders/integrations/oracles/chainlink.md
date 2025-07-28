@@ -16,7 +16,7 @@ Developers can now use [Chainlink's decentralized Oracle network](https://chain.
 
 Before going into fetching the data itself, it is important to understand the basics of price feeds.
 
-In a standard configuration, each price feed is updated by a decentralized oracle network. Each oracle node is rewarded for publishing the price data to the [aggregator contract](https://github.com/smartcontractkit/chainlink/blob/develop/contracts/src/v0.8/shared/interfaces/AggregatorV3Interface.sol){target=\_blank}. The aggregator contract receives periodic data updates from the network of oracles and aggregates and stores the data on-chain so that consumers can easily fetch it. However, the information is only updated if a minimum number of responses from oracle nodes are received (during an aggregation round).
+In a standard configuration, each price feed is updated by a decentralized oracle network. Each oracle node is rewarded for publishing the price data to the [aggregator contract](https://github.com/smartcontractkit/chainlink-evm/blob/develop/contracts/src/v0.8/shared/interfaces/AggregatorV3Interface.sol){target=\_blank}. The aggregator contract receives periodic data updates from the network of oracles and aggregates and stores the data on-chain so that consumers can easily fetch it. However, the information is only updated if a minimum number of responses from oracle nodes are received (during an aggregation round).
 
 The end-user can retrieve price feeds with read-only operations via an aggregator interface, or via a Consumer interface through the Proxy.
 

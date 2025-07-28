@@ -133,7 +133,7 @@ It could take a few minutes to process the transaction and create the Safe, but 
 
 ## Configure Safe {: #configure-safe }
 
-You can always manage your Safe and change some of the parameters set when creating it. To do you can click in the **Settings** option on the left hand side menu. 
+You can always manage your Safe and change some of the parameters set when creating it. To do so, you can click on the **Settings** option on the left-hand side menu. 
 
 ![Modify Safe Settings](/images/tokens/manage/multisig-safe/safe-8.webp)
 

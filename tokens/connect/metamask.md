@@ -46,7 +46,7 @@ After installing [MetaMask](https://metamask.io){target=\_blank}, the setup will
 
 ![Metamask Setup Interface](/images/tokens/connect/metamask/metamask-1.webp)
 
-Once you've clicked on the option that adapts to your needs, follow the steps, and you should be all setup.
+Once you've selected the option that fits your needs, follow the steps, and you should be all set.
 
 !!! note
     Multiple accounts can be derived from a seed phrase by changing what is known as the address index. By default, when creating or importing an account from the seed phrase, you get the account with the address index 0. You can get the other indexes by just adding new accounts in the main Metamask screen.
