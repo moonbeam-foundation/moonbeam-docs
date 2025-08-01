@@ -1,6 +1,7 @@
 ---
 title: Multisig Pallet
 description: Learn about the Multisig Pallet, which taps into Substrate functionality to provide the ability to approve and dispatch calls from a multisig on Moonbeam.
+categories: Substrate Toolkit
 ---
 
 # The Multisig Pallet

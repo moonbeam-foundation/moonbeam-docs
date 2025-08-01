@@ -1,6 +1,7 @@
 ---
 title: Calculating Transaction Fees
-description: Learn about the transaction fee model used in Moonbeam and the differences compared to Ethereum that developers should be aware of. 
+description: Learn about the transaction fee model used in Moonbeam and the differences compared to Ethereum that developers should be aware of.
+categories: Basics
 ---
 
 # Calculating Transaction Fees on Moonbeam

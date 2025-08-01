@@ -1,6 +1,7 @@
 ---
 title: Unified Accounts
 description:  Moonbeam replaced the default Substrate account system with native support for the Ethereum-based H160 accounts and ECDSA keys. Find out more information!
+categories: Basics
 ---
 
 # Unified Accounts

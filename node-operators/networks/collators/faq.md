@@ -1,6 +1,7 @@
 ---
 title: Collators FAQ
 description: Some FAQs around becoming a collator, collator activities, and things to be aware of when running and operating a collator node on Moonbeam.
+categories: Node Operators and Collators
 ---
 
 # Frequently Asked Questions

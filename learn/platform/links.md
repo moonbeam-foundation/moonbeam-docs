@@ -1,6 +1,7 @@
 ---
 title: Important Moonbeam Related Links
 description: If you're new to Moonbeam or the Polkadot network, here are some important links to review, including compatible Ethereum tools.
+categories: Basics
 ---
 
 # Links

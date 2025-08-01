@@ -1,6 +1,7 @@
 ---
 title: Orbiter Program for Collators
 description: Learn about the Moonbeam Orbiter Program for collators, including the eligibility criteria, bond requirements, rewards, performance metrics, and more.
+categories: Node Operators and Collators
 ---
 
 # Moonbeam Orbiter Program

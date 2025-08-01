@@ -1,6 +1,7 @@
 ---
 title: Cross-Consensus Messaging (XCM)
 description: An overview of how cross-consensus messaging (XCM) works and how developers can leverage Polkadot/Kusama XCM to gain access to new assets.
+categories: Basics, XCM
 ---
 
 # Cross-Consensus Messaging (XCM)

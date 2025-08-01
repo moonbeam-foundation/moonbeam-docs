@@ -1,6 +1,7 @@
 ---
 title: Remote EVM Calls Through XCM
 description: How to do remote calls to smart contracts on Moonbeam EVM through XCM from any Polkadot parachain that has an XCM channel established with Moonbeam.
+categories: XCM Remote Execution, Ethereum Toolkit
 ---
 
 # Remote EVM Calls Through XCM

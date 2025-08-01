@@ -1,6 +1,7 @@
 ---
 title: XCM Instructions
 description: When XCM instructions are combined, they form an XCM message that performs a cross-chain action. Take a look at some of the most common instructions.
+categories: XCM, Basics
 ---
 
 # XCM Instructions

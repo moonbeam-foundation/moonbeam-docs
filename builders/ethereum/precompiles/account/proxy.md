@@ -2,6 +2,7 @@
 title: Interacting with the Proxy Precompile
 description: How to use the Moonbeam proxy Solidity precompile interface to add and remove proxy accounts from Substrate's Proxy Pallet.
 keywords: solidity, ethereum, proxy, moonbeam, precompiled, contracts, substrate
+categories: Precompiles, Ethereum Toolkit
 ---
 
 # Interacting with the Proxy Precompile

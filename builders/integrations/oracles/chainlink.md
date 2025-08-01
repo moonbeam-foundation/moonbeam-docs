@@ -1,6 +1,7 @@
 ---
 title: Chainlink Oracle
-description: Review price feed contracts for Moonbeam-based networks and learn how to request data from a Chainlink Oracle in your DApp using smart contracts or JavaScript. 
+description: Review price feed contracts for Moonbeam-based networks and learn how to request data from a Chainlink Oracle in your DApp using smart contracts or JavaScript.
+categories: Oracle Nodes
 ---
 
 # Chainlink Oracle
