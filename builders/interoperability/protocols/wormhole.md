@@ -54,7 +54,7 @@ Unlike other cross-chain protocols, Wormhole doesn’t provide a parent smart co
 
 The [smart contract](https://github.com/jboetticher/relayer-engine-docs-example/blob/main/SimpleGeneralMessage.sol){target=\_blank} that you will be deploying today is stored in a Git repository that is forked from Wormhole’s relayer engine repository. It sends a string from one chain to another, and stores strings when received through Wormhole's protocol. To deploy the script, either copy and paste the contract into Remix or open up this [Remix gist link](https://remix.ethereum.org/?gist=6aac8f954e245d6394f685af5d404b4b){target=\_blank}.  
 
-First things first, the code in this smart contract is based off of [Wormhole’s best practices documentation](https://docs.wormhole.com/wormhole/quick-start/cross-chain-dev){target=\_blank}, but simplified in certain areas (like security). When writing a smart contract for production, review their documentation for a better understanding of standards. To be clear, **do not use the following smart contract in production**.  
+First things first, the code in this smart contract is simplified in certain areas (like security). When writing a smart contract for production, review the [Wormhole documentation](https://wormhole.com/docs/){target=\_blank} for a better understanding of standards. To be clear, **do not use the following smart contract in production**.
 
 1. Go to the **Solidity Compiler** tab
 2. Press the **Compile** button
@@ -63,7 +63,7 @@ First things first, the code in this smart contract is based off of [Wormhole’
 
 ![Set up smart contract deployment](/images/builders/interoperability/protocols/wormhole/wormhole-2.webp)
 
-To deploy on each chain, you will need the local instance of the Wormhole core bridge and the chain ID of the chain mentioned. All of this data has been provided for a select few TestNets in the table below. You can find other networks’ endpoints on Wormhole’s [documentation site](https://docs.wormhole.com/wormhole/blockchain-environments/evm#testnet-contracts-moonbase-alphanet-1287){target=\_blank}. Keep in mind that you should only use EVMs for this demonstration, since the smart contract and relayer designed for this demonstration only supports EVMs.
+To deploy on each chain, you will need the local instance of the Wormhole core bridge and the chain ID of the chain mentioned. All of this data has been provided for a select few TestNets in the table below. You can find other networks’ endpoints on Wormhole’s [supported networks documentation](https://wormhole.com/docs/products/reference/supported-networks/){target=\_blank}. Keep in mind that you should only use EVMs for this demonstration, since the smart contract and relayer designed for this demonstration only supports EVMs.
 
 |                           Network & Faucet                           |            Core Bridge Address             | Wormhole Chain ID |
 |:--------------------------------------------------------------------:|:------------------------------------------:|:-----------------:|

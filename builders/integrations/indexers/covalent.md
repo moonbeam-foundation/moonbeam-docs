@@ -7,11 +7,11 @@ description: Querying blockchain data such as balances, transactions, transfers,
 
 ## Introduction {: #introduction }
 
-[GoldRush](https://goldrush.dev/){target=\_blank}, formerly known as Covalent, is a hosted blockchain data solution providing access to historical and current on-chain data for [100+ supported blockchains](https://goldrush.dev/docs/networks/?utm_source=moonbeam&utm_medium=partner-docs){target=\_blank}, including [Moonbeam](https://goldrush.dev/chains/moonbeam/){target=\_blank}, [Moonriver](https://goldrush.dev/chains/moonriver/){target=\_blank}, and [Moonbase Alpha](https://goldrush.dev/chains/moonbeam-moonbase-alpha-testnet/){target=\_blank}. GoldRush maintains a full archival copy of every supported blockchain, meaning every balance, transaction, log event, and NFT asset data is available from the genesis block. This data is available via:
+[GoldRush](https://goldrush.dev/){target=\_blank}, formerly known as Covalent, is a hosted blockchain data solution providing access to historical and current on-chain data for [100+ supported blockchains](https://goldrush.dev/docs/chains/overview#supported-chains){target=\_blank}, including [Moonbeam](https://goldrush.dev/docs/chains/moonbeam){target=\_blank}, [Moonriver](https://goldrush.dev/docs/chains/moonriver){target=\_blank}, and [Moonbase Alpha](https://goldrush.dev/docs/chains/moonbeam-moonbase-alpha){target=\_blank}. GoldRush maintains a full archival copy of every supported blockchain, meaning every balance, transaction, log event, and NFT asset data is available from the genesis block. This data is available via:
 
 - [Unified API](#unified-api-overview) - incorporate blockchain data into your app with a familiar REST API
 
-This guide will cover all of the details needed to get started with the [GoldRush API](https://goldrush.dev/docs/unified-api/){target=\_blank} and how to access the API endpoints for Moonbeam using curl commands and JavaScript and Python snippets.
+This guide will cover all of the details needed to get started with the [Foundational API](https://goldrush.dev/docs/goldrush-foundational-api/quickstart){target=\_blank} and how to access the API endpoints for Moonbeam using curl commands and JavaScript and Python snippets.
 
 --8<-- 'text/_disclaimers/third-party-content-intro.md'
 
@@ -23,7 +23,7 @@ GoldRush's Unified API is a powerful but easy-to-use REST API that offers visibi
 
 It's easy to get started querying the Unified API after you've secured a GoldRush API Key. Make sure you have [your API Key](https://goldrush.dev/platform/auth/register/){target=\_blank} which begins with `cqt_` or `ckey_`. 
 
-You can interact with any of the API methods in the web interface of the GoldRush docs. To try out the token balances API, head to the [token balances docs](https://goldrush.mintlify.app/docs/api/balances/get-token-balances-for-address){target=\_blank} and take the following steps:
+You can interact with any of the API methods in the web interface of the GoldRush docs. To try out the token balances API, head to the [token balances docs](https://goldrush.dev/docs/api-reference/foundational-api/balances/get-token-balances-for-address){target=\_blank} and take the following steps:
 
 1. Paste in your API key
 2. Enter the desired `chainName`, such as `moonbeam-moonbase-alpha` for Moonbase Alpha. Reference the [Quick Start section](#quick-start) if you're unsure what the chainName should be for your desired network
@@ -76,7 +76,7 @@ The GoldRush API has three classes of endpoints:
 
 ### Sample Supported Endpoints {: #sample-supported-endpoints }
 
-For a full list of supported endpoints, refer to the [GoldRush API reference](https://goldrush.mintlify.app/api-reference/overview){target=\_blank}. A subset of the supported endpoints include:
+For a full list of supported endpoints, refer to the [GoldRush API reference](https://goldrush.dev/docs/api-reference/foundational-api/cross-chain/get-address-activity){target=\_blank}. A subset of the supported endpoints include:
 
 - **Token balances**- get all token balances (native, ERC-20, ERC-721, ERC-1155) with current market prices for an address
 - **Native token balances**- retrieve native token balance for an address
@@ -94,13 +94,13 @@ For a full list of supported endpoints, refer to the [GoldRush API reference](ht
 
 ## Unified API Methods {: #unified-api-methods }
 
-For more information on each of the methods of the Unified API and for an interactive interface to try out each of the methods, be sure to check out the [GoldRush docs](https://goldrush.mintlify.app/api-reference/overview){target=\_blank}.  
+For more information on each of the methods of the Unified API and for an interactive interface to try out each of the methods, be sure to check out the [GoldRush docs](https://goldrush.dev/docs/goldrush-foundational-api/overview){target=\_blank}.  
 
 ### Balances {: #balances }
 
 ???+ function "Token Balances"
 
-    The [token balances endpoint](https://goldrush.mintlify.app/docs/api/balances/get-token-balances-for-address){target=\_blank} retrieves native tokens, fungible (ERC-20) tokens, and non-fungible (ERC-721 & ERC-1155) tokens associated with a given address. The returned data includes current market prices and additional token metadata.
+    The [token balances endpoint](https://goldrush.dev/docs/api-reference/foundational-api/balances/get-token-balances-for-address){target=\_blank} retrieves native tokens, fungible (ERC-20) tokens, and non-fungible (ERC-721 & ERC-1155) tokens associated with a given address. The returned data includes current market prices and additional token metadata.
 
     === "Parameters"
 
@@ -121,7 +121,7 @@ For more information on each of the methods of the Unified API and for an intera
 
 ??? function "Native Token Balances"
 
-    The [native token balances endpoint](https://goldrush.mintlify.app/docs/api/balances/get-native-token-balance){target=\_blank} retrieves the native token balance for a given address in a streamlined manner. 
+    The [native token balances endpoint](https://goldrush.dev/docs/api-reference/foundational-api/balances/get-native-token-balance){target=\_blank} retrieves the native token balance for a given address in a streamlined manner. 
 
     === "Parameters"
 
@@ -142,7 +142,7 @@ For more information on each of the methods of the Unified API and for an intera
 
 ??? function "Get ERC-20 Token Transfers for Address"
 
-    [Get ERC-20 Token Transfers for Address](https://goldrush.mintlify.app/docs/api/balances/get-erc20-token-transfers-for-address){target=\_blank} is used to fetch the transfer-in and transfer-out of a token along with historical prices from an address, when provided both a wallet address and an ERC-20 token contract address
+    [Get ERC-20 Token Transfers for Address](https://goldrush.dev/docs/api-reference/foundational-api/balances/get-erc20-token-transfers-for-address){target=\_blank} is used to fetch the transfer-in and transfer-out of a token along with historical prices from an address, when provided both a wallet address and an ERC-20 token contract address
 
     === "Parameters"
 
@@ -166,7 +166,7 @@ For more information on each of the methods of the Unified API and for an intera
 
 ???+ function "Get a transaction"
 
-    [Get a transaction](https://goldrush.mintlify.app/docs/api/transactions/get-a-transaction){target=\_blank} is used fetch and render a single transaction including its decoded log events. 
+    [Get a transaction](https://goldrush.dev/docs/api-reference/foundational-api/transactions/get-a-transaction){target=\_blank} is used fetch and render a single transaction including its decoded log events. 
 
     === "Parameters"
 
@@ -187,7 +187,7 @@ For more information on each of the methods of the Unified API and for an intera
 
 ??? function "Get transaction summary for address"
 
-    [Get transaction summary for address](https://goldrush.mintlify.app/docs/api/transactions/get-transaction-summary-for-address){target=\_blank} retrieves key wallet activity data, including the first and most recent transactions, and total transaction count. It enables quick analysis of wallet age, inactive periods, and overall Web3 engagement levels.
+    [Get transaction summary for address](https://goldrush.dev/docs/api-reference/foundational-api/transactions/get-transaction-summary-for-address){target=\_blank} retrieves key wallet activity data, including the first and most recent transactions, and total transaction count. It enables quick analysis of wallet age, inactive periods, and overall Web3 engagement levels.
 
     === "Parameters"
 
@@ -208,7 +208,7 @@ For more information on each of the methods of the Unified API and for an intera
 
 ??? function "Get earliest transactions for address (v3)"
 
-    [Get earliest transactions for address](https://goldrush.mintlify.app/docs/api/transactions/get-earliest-transactions-for-address-v3){target=\_blank} retrieves the earliest transactions involving an address.
+    [Get earliest transactions for address](https://goldrush.dev/docs/api-reference/foundational-api/transactions/get-earliest-transactions-for-address-v3){target=\_blank} retrieves the earliest transactions involving an address.
 
     === "Parameters"
 
@@ -229,7 +229,7 @@ For more information on each of the methods of the Unified API and for an intera
 
 ??? function "Get recent transactions for address (v3)"
 
-    [Get recent transactions for address](https://goldrush.mintlify.app/docs/api/transactions/get-recent-transactions-for-address-v3){target=\_blank} retrieves the most recent transactions involving an address.
+    [Get recent transactions for address](https://goldrush.dev/docs/api-reference/foundational-api/transactions/get-recent-transactions-for-address-v3){target=\_blank} retrieves the most recent transactions involving an address.
 
     === "Parameters"
 
@@ -250,7 +250,7 @@ For more information on each of the methods of the Unified API and for an intera
 
 ??? function "Get paginated transactions for address (v3)"
 
-    [Get paginated transactions for address (v3)](https://goldrush.mintlify.app/docs/api/transactions/get-paginated-transactions-for-address-v3){target=\_blank} fetches the transactions involving an address and the specified page, starting from a 0 index.
+    [Get paginated transactions for address (v3)](https://goldrush.dev/docs/api-reference/foundational-api/transactions/get-paginated-transactions-for-address-v3){target=\_blank} fetches the transactions involving an address and the specified page, starting from a 0 index.
 
     === "Parameters"
 
@@ -272,7 +272,7 @@ For more information on each of the methods of the Unified API and for an intera
 
 ??? function "Get bulk time bucket transactions for address (v3)"
 
-    [Get bulk time bucket transactions for address (v3)](https://goldrush.mintlify.app/docs/api/transactions/get-time-bucket-transactions-for-address-v3){target=\_blank} is used to fetch all transactions including their decoded log events in a 15-minute time bucket interval.
+    [Get bulk time bucket transactions for address (v3)](https://goldrush.dev/docs/api-reference/foundational-api/transactions/get-time-bucket-transactions-for-address-v3){target=\_blank} is used to fetch all transactions including their decoded log events in a 15-minute time bucket interval.
 
     === "Parameters"
 
@@ -294,7 +294,7 @@ For more information on each of the methods of the Unified API and for an intera
 
 ??? function "Get all transactions in a block by page (v3)"
 
-    [Get all transactions in a block by page (v3)](https://goldrush.mintlify.app/docs/api/transactions/get-all-transactions-in-a-block-by-page){target=\_blank} is used to fetch all transactions including their decoded log events in a block and further flag interesting wallets or transactions.
+    [Get all transactions in a block by page (v3)](https://goldrush.dev/docs/api-reference/foundational-api/transactions/get-all-transactions-in-a-block-by-page){target=\_blank} is used to fetch all transactions including their decoded log events in a block and further flag interesting wallets or transactions.
 
     === "Parameters"
 
@@ -316,7 +316,7 @@ For more information on each of the methods of the Unified API and for an intera
 
 ??? function "Get all transactions in a block (v3)"
 
-    [Get all transactions in a block (v3)](https://goldrush.mintlify.app/docs/api/transactions/get-all-transactions-in-a-block){target=\_blank} is used to used to fetch all transactions including their decoded log events in a block and further flag interesting wallets or transactions. It takes a blockhash as a parameter and it does not accept a page parameter.
+    [Get all transactions in a block (v3)](https://goldrush.dev/docs/api-reference/foundational-api/transactions/get-all-transactions-in-a-block){target=\_blank} is used to used to fetch all transactions including their decoded log events in a block and further flag interesting wallets or transactions. It takes a blockhash as a parameter and it does not accept a page parameter.
 
     === "Parameters"
 
@@ -339,7 +339,7 @@ For more information on each of the methods of the Unified API and for an intera
 
 ???+ function "Get cross-chain activity for address"
 
-    [Get cross-chain activity for address](https://goldrush.mintlify.app/docs/api/cross-chain/get-address-activity){target=\_blank} is used to locate chains which an address is active on with a single API call
+    [Get cross-chain activity for address](https://goldrush.dev/docs/api-reference/foundational-api/cross-chain/get-address-activity){target=\_blank} is used to locate chains which an address is active on with a single API call
 
     === "Parameters"
 
@@ -362,7 +362,7 @@ For more information on each of the methods of the Unified API and for an intera
 
 ???+ function "Get token approvals for address"
 
-    [Get token approvals for address](https://goldrush.mintlify.app/docs/api/security/get-token-approvals-for-address){target=\_blank} is used to get a list of approvals across all token contracts categorized by spenders for a wallet’s assets
+    [Get token approvals for address](https://goldrush.dev/docs/api-reference/foundational-api/security/get-token-approvals-for-address){target=\_blank} is used to get a list of approvals across all token contracts categorized by spenders for a wallet’s assets
 
     === "Parameters"
 
@@ -381,29 +381,7 @@ For more information on each of the methods of the Unified API and for an intera
         --8<-- 'code/builders/integrations/indexers/covalent/erc20-approvals/response.sh'
         ```
 
-
-??? function "Get NFT approvals for address"
-
-    [Get NFT approvals for address](https://goldrush.mintlify.app/docs/api/security/get-nft-approvals){target=\_blank} is used to get a list of NFT approvals across all token contracts categorized by spenders for a wallet’s assets
-
-    === "Parameters"
-
-        - `chainName` *string* - e.g. `moonbeam-mainnet`, `moonbeam-moonriver`, or `moonbeam-moonbase-alpha` 
-        - `walletAddress` *string* - the address you wish to query
-
-    === "Example Request"
-
-        ```bash
-        --8<-- 'code/builders/integrations/indexers/covalent/nft-approvals/request.sh'
-        ```
-
-    === "Example Response"
-
-        ```bash
-        --8<-- 'code/builders/integrations/indexers/covalent/nft-approvals/response.sh'
-        ```
-
-Many more methods are offered by the GoldRush API, including NFT and Utility methods. Be sure to check out the [GoldRush docs](https://goldrush.mintlify.app/docs/api/overview){target=\_blank} for more information on each of these methods.  
+The GoldRush API offers many additional methods, including NFT, price, Bitcoin, and utility methods. Be sure to check out the [GoldRush API](https://goldrush.dev/docs/api-reference/foundational-api/cross-chain/get-address-activity){target=\_blank} for more information on each of these methods.  
 
 ## API Parameters and Resources {: #api-parameters-and-resources }
 

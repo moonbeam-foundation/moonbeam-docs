@@ -154,13 +154,13 @@ ChatGPT spots the exact error, explains the source of the problem, and lets us k
 
 ## Advanced Prompt Engineering {: #advanced-prompt-engineering }
 
-[Prompt engineering](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/prompt-engineering){target=\_blank} is both an art and a science, and mastering it can help you get the most out of generative AI tools like ChatGPT. While not an exhaustive list, here are some general concepts that can help you write better prompts:
+[Prompt engineering](https://learn.microsoft.com/en-us/azure/ai-foundry/openai/concepts/prompt-engineering?tabs=chat){target=\_blank} is both an art and a science, and mastering it can help you get the most out of generative AI tools like ChatGPT. While not an exhaustive list, here are some general concepts that can help you write better prompts:
 
 - Be specific and parameterize your request. The more detail you can provide to ChatGPT, the more closely the actual output will match what you desire
 - Don't be afraid of revisions! You don't need to repeat the whole prompt, you can ask for just the change and ChatGPT will revise its prior output accordingly
 - Consider repeating or rephrasing critical parts of the prompt. Some research has indicated that LLMs will emphasize components that you repeat. You can always finish a prompt by reiterating the most important concepts you'd like addressed
 
-For more information, be sure to check out this post on [advanced prompt engineering](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/advanced-prompt-engineering?pivots=programming-language-chat-completions){target=\_blank} from Microsoft.
+For more information, be sure to check out this post on [advanced prompt engineering](https://learn.microsoft.com/en-us/azure/ai-foundry/openai/concepts/advanced-prompt-engineering?pivots=programming-language-chat-completions){target=\_blank} from Microsoft.
 
 ## Conclusion {: #conclusion }
 
