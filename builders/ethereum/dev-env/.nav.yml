@@ -3,7 +3,6 @@ nav:
   - index.md
   - openzeppelin
   - 'Ape': 'ape.md'
-  - 'Brownie': 'brownie.md'
   - 'Foundry': 'foundry.md'
   - 'Hardhat': 'hardhat.md'
   - 'Remix': 'remix.md'
