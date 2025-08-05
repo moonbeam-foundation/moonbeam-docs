@@ -1,6 +1,7 @@
 ---
 title: Debug & Trace Transactions
 description: Check out the non-standard JSON-RPC methods included in Geth's Debug and Txpool APIs and OpenEthereum's Trace module, which are supported on Moonbeam.
+categories: JSON-RPC APIs, Ethereum Toolkit
 ---
 
 # Debug API & Trace Module

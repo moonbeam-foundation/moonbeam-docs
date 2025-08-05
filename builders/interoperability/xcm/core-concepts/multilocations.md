@@ -1,6 +1,7 @@
 ---
 title: XCM Multilocations
 description: Learn everything there is to know about multilocations, their role in XCM, and how to format a multilocation to target a specific point in the ecosystem.
+categories: XCM
 ---
 
 # Multilocations

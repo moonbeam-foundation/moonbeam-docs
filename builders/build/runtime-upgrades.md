@@ -1,6 +1,7 @@
 ---
 title: Runtime Upgrades
 description: A historical record of each runtime upgrade and the block at which the runtime was executed for Moonbeam, Moonriver, and the Moonbase Alpha TestNet.
+categories: Reference
 ---
 
 # Runtime Upgrades

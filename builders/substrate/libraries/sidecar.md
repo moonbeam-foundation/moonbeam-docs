@@ -1,6 +1,7 @@
 ---
 title: Using Substrate API Sidecar with Moonbeam
 description: Learn how to use Sidecar, a Substrate-based REST service, with Moonbeam-based networks to access blocks, account balances, compute gas used, and more.
+categories: Substrate Toolkit, Libraries and SDKs
 ---
 
 # Using Substrate API Sidecar with Moonbeam

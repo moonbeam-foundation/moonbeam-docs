@@ -1,6 +1,7 @@
 ---
 title: XCM Precompile
 description: Learn about the XCM Precompile and how to use it to transfer assets from Moonbeam networks to other parachains.
+categories: XCM, Precompiles
 ---
 
 # XCM Precompile

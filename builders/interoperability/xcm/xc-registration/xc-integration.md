@@ -1,6 +1,7 @@
 ---
 title: Open a Cross-Chain Channel
 description: Learn how to establish a cross-chain integration with a Moonbeam-based network. Including opening and accepting an HRMP channel and registering assets.
+categories: XCM, Integrations
 ---
 
 # How to Establish an XC Integration with Moonbeam

@@ -1,6 +1,7 @@
 ---
 title: Forum Templates for XCM Integrations
 description: Learn about and how to craft the two posts you need to make on the Moonbeam Community Forum when creating a cross-chain integration with Moonbeam.
+categories: XCM, Integrations
 ---
 
 # Moonbeam Community Forum Templates for XCM Integrations

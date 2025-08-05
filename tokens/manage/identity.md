@@ -1,6 +1,7 @@
 ---
 title: Managing an Identity
 description: Learn how to create and manage an on-chain identity, which includes personal information such as your name and social handles, on Moonbeam-based networks.
+categories: Tokens and Accounts
 ---
 
 # Managing your Account Identity

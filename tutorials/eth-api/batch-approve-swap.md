@@ -1,6 +1,7 @@
 ---
 title: Approve & Swap with the Batch Precompile
 description: Learn how to use the Batch Precompile on Moonbeam to batch an approval and swap into a single call, so you can approve the exact amount of tokens for the swap.
+categories: Tutorials, Precompiles
 ---
 
 # Use the Batch Precompile to Approve and Swap Tokens in a Single Transaction

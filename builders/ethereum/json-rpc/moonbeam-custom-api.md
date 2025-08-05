@@ -1,6 +1,7 @@
 ---
 title: Moonbeam-specific RPC Methods
 description: Discover Moonbeam's specialized API endpoints, featuring custom JSON-RPC methods designed exclusively for Moonbeam functionality.
+categories: JSON-RPC APIs, Reference
 ---
 
 # Moonbeam Custom API

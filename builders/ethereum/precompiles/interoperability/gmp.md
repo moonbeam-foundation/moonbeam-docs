@@ -2,6 +2,7 @@
 title: GMP Precompile
 description: Learn about the GMP precompile on Moonbeam and how to use it with the Moonbeam Routed Liquidity program provided by bridges like Wormhole.
 keywords: solidity, ethereum, GMP, wormhole, moonbeam, bridge, connected, contracts, MRL
+categories: Precompiles, Ethereum Toolkit
 ---
 
 # Interacting with the GMP Precompile

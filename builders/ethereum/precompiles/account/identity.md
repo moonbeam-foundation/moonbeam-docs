@@ -1,6 +1,7 @@
 ---
 title: Identity Precompile
 description: Learn all you need to know about the Identity Precompile, such as its address, Solidity interface, and how to interact with it using popular Ethereum libraries.
+categories: Precompiles, Ethereum Toolkit
 ---
 
 # Identity Precompile on Moonbeam

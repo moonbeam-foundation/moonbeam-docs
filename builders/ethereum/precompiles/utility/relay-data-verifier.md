@@ -2,6 +2,7 @@
 title: Relay Data Verifier Precompile Contract
 description: Learn how to verify data availability and authenticity on the relay chain via a Solidity interface with Moonbeam's Relay Data Verifier Precompile contract.
 keywords: solidity, ethereum, verify, proof, relay chain, transaction, moonbeam, precompiled, contracts
+categories: Precompiles, Ethereum Toolkit
 ---
 
 # Interacting with the Relay Data Verifier Precompile

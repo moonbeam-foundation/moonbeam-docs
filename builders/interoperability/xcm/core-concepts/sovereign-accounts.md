@@ -1,6 +1,7 @@
 ---
 title: Sovereign Accounts and Reserve-Backed Transfers
 description: Discover how sovereign accounts work on Moonbeam, how to calculate them, and their role in cross-chain asset transfers.
+categories: XCM
 ---
 
 # Overview of Sovereign Accounts

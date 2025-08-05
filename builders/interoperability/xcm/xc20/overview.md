@@ -1,6 +1,7 @@
 ---
 title: XC-20s and Cross-Chain Assets
 description: Learn about the types of cross-chain assets on Moonbeam, in particular, local and external XC-20s, and view a list of the external XC-20s on Moonbeam.
+categories: Basics, XC-20
 ---
 
 # Overview of XC-20s

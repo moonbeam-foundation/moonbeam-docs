@@ -1,6 +1,7 @@
 ---
 title: How to use Chopsticks to Fork Moonbeam
 description: Learn the basics of how to use Chopsticks to replay blocks, dissect state changes, test XCM interactions, and locally fork the entirety of a Moonbeam network.
+categories: Substrate Toolkit, Dev Environments
 ---
 
 # How to Use Chopsticks to Fork Moonbeam

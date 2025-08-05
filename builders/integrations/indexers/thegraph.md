@@ -1,6 +1,7 @@
 ---
 title: Build APIs with The Graph
-description: Learn how to build APIs, called subgraphs, to store and fetch on-chain data for a given smart contract using The Graph indexing protocol on Moonbeam. 
+description: Learn how to build APIs, called subgraphs, to store and fetch on-chain data for a given smart contract using The Graph indexing protocol on Moonbeam.
+categories: Indexers and Queries
 ---
 
 # Using The Graph on Moonbeam

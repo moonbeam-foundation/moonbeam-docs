@@ -1,6 +1,7 @@
 ---
 title: Moonriver Get Started Guide
 description: Learn how to connect to Moonriver via RPC and WSS endpoints, how to connect MetaMask to Moonriver, and about the available Moonriver block explorers.
+categories: Basics
 ---
 
 # Get Started with Moonriver
