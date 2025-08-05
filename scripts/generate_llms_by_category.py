@@ -4,7 +4,7 @@ import json
 
 # Project-specific input
 docs_repo = 'moonbeam-docs'
-docs_url = 'https://docs.tanssi.network/'
+docs_url = 'https://docs.moonbeam.network/'
 
 # Load configuration from llms_config.json
 config_path = os.path.join(os.path.dirname(__file__), 'llms_config.json')
@@ -22,7 +22,7 @@ CORE_CONTEXT_DESCRIPTION = config["coreContextDescription"].format(PROJECT_NAME=
 REFERENCE_CONTEXT_DESCRIPTION = config["referenceContextDescription"].format(PROJECT_NAME=PROJECT_NAME)
 
 # Use raw GitHub links for source URLs
-RAW_BASE_URL = f"https://raw.githubusercontent.com/moondance-labs/{docs_repo}/refs/heads/main"
+RAW_BASE_URL = f"https://raw.githubusercontent.com/moonbeam-foundation/{docs_repo}/refs/heads/main"
 
 
 docs_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..')) # path to docs directory 
