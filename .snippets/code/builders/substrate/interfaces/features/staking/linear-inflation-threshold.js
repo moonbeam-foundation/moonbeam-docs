@@ -6,7 +6,7 @@ const main = async () => {
   const api = await ApiPromise.create({ provider: wsProvider });
 
   // Get the linear inflation threshold constant
-  const linearInflationThreshold = await api.consts.parachainStaking.linearInflationThreshold;
+  const linearInflationThreshold = api.consts.parachainStaking.linearInflationThreshold;
   
   console.log(`Linear Inflation Threshold: ${linearInflationThreshold.toHuman()}`);
   
