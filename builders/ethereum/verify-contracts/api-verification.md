@@ -17,9 +17,9 @@ This page will outline the steps for using these API-based tools for verifying s
 
 Moonscan exposes a set of REST API endpoints similar to the [Etherscan API](https://docs.etherscan.io){target=\_blank} endpoints that can be used to verify smart contracts, retrieve verified contract ABI and source code, or otherwise interact with verified contracts on Moonbeam networks.
 
-### Generating a Moonscan API Key {: #generating-a-moonscan-api-key }
+### Generating an Etherscan API Key {: #generating-an-etherscan-api-key }
 
-Before using the Moonscan API, you need to generate a Moonscan API key. Please follow the instructions in [the key generation section](/builders/ethereum/verify-contracts/etherscan-plugins/#generating-a-moonscan-api-key){target=\_blank} of the Etherscan plug-in verification page, as the API keys generated are used for both.
+Before using the Moonscan API, you need to generate an Etherscan API key. Please follow the instructions in [the key generation section](/builders/ethereum/verify-contracts/etherscan-plugins/#generating-an-etherscan-api-key){target=\_blank} of the Etherscan plug-in verification page, as the API keys generated are used for both.
 
 ### Moonscan Public API URL {: #moonscan-public-api-url }
 

@@ -19,7 +19,7 @@ To get started, you will need the following:
 
 - An account with funds.
   --8<-- 'text/_common/faucet/faucet-list-item.md'
-- [A Moonscan API key](/builders/ethereum/verify-contracts/etherscan-plugins/#generating-a-moonscan-api-key){target=\_blank}
+- [An Etherscan API key](/builders/ethereum/verify-contracts/etherscan-plugins/#generating-an-etherscan-api-key){target=\_blank}
 - 
   --8<-- 'text/_common/endpoint-examples-list-item.md'
 
@@ -47,7 +47,7 @@ The process for developing a project with Scaffold-ETH 2 can be outlined as foll
 2. Add your smart contracts to the `packages/hardhat/contracts`
 3. Edit your deployment scripts in the `packages/hardhat/deploy`
 4. Deploy your smart contracts to Moonbeam
-5. Verify your smart contracts with the Etherscan plugin and your Moonscan API key
+5. Verify your smart contracts with the Etherscan plugin and your Etherscan API key
 6. Configure your frontend to target Moonbeam in the `packages/nextjs/scaffold.config.ts` file
 7. Edit your frontend as needed in the `packages/nextjs/pages` directory
 
@@ -63,7 +63,7 @@ You can begin by making modifications to the Hardhat component under the `packag
 
 You can refer to the `.env.example` file for the variables that are already used in the `hardhat.config.js` file. For Moonbeam, you'll only need to manually create one variable, the `ETHERSCAN_API_KEY`.
 
-Check out the [Etherscan Plugins](/builders/ethereum/verify-contracts/etherscan-plugins/#generating-a-moonscan-api-key){target=\_blank} documentation to learn how to generate a Moonscan API key.
+Check out the [Etherscan Plugins](/builders/ethereum/verify-contracts/etherscan-plugins/#generating-an-etherscan-api-key){target=\_blank} documentation to learn how to generate an Etherscan API key.
 
 To get started, create a `.env` file:
 
@@ -74,7 +74,7 @@ touch packages/hardhat/.env
 Edit your `.env` file to include the following variables:
 
 ```text
-ETHERSCAN_API_KEY=INSERT_MOONSCAN_API_KEY
+ETHERSCAN_API_KEY=INSERT_ETHERSCAN_API_KEY
 ```
 
 Next, import your deployment account by either generating a new one with `yarn generate` or importing an existing one using `yarn account:import`. If importing, you'll need to provide your private key and create a password to encrypt it. The encrypted key will be saved in your `.env` file. Keep your password safe as you'll need it to decrypt the private key for future deployments. Remember to never share or commit your private keys or `.env` file. For this example, we'll import an existing private key with the following command: 
@@ -85,7 +85,7 @@ yarn account:import
 
 --8<-- 'code/builders/ethereum/dev-env/scaffold-eth/terminal/account-import.md'
 
-The private key you add in the account import workflow corresponds to the account that will deploy and interact with the smart contracts in your Hardhat project. Additionally, the Etherscan API key will correspond to your Moonscan API key and will be used to verify your deployed smart contracts. To learn how to generate a Moonscan API key, check out the [Etherscan Plugins](/builders/ethereum/verify-contracts/etherscan-plugins/#generating-a-moonscan-api-key){target=\_blank} documentation.
+The private key you add in the account import workflow corresponds to the account that will deploy and interact with the smart contracts in your Hardhat project. Additionally, the Etherscan API key will correspond to your Etherscan API key and will be used to verify your deployed smart contracts. To learn how to generate an Etherscan API key, check out the [Etherscan Plugins](/builders/ethereum/verify-contracts/etherscan-plugins/#generating-an-etherscan-api-key){target=\_blank} documentation.
 
 With the deployment account and the Etherscan API key taken care of, next you can modify the `hardhat.config.js` file for Moonbeam:
 
@@ -186,7 +186,7 @@ yarn deploy
 
 ### Verify Your Deployed Contract {: #verify-contracts }
 
-If you would also like to use Scaffold-ETH 2 to verify the deployed smart contract and have entered your Moonscan API key into the `.env` file, you can go ahead and verify your deployed contract.
+If you would also like to use Scaffold-ETH 2 to verify the deployed smart contract and have entered your Etherscan API key into the `.env` file, you can go ahead and verify your deployed contract.
 
 If the smart contract you are verifying has constructor method parameters, you will also need to append the parameters used to the end of the command.
 

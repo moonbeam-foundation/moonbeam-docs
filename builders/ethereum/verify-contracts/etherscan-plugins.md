@@ -20,12 +20,14 @@ To follow along with this tutorial, you will need to have:
 - [MetaMask installed and connected to the Moonbase Alpha](/tokens/connect/metamask/){target=\_blank} TestNet
 - An account funded with `DEV` tokens.
  --8<-- 'text/_common/faucet/faucet-list-item.md'
-- A Moonscan API key for the network you're trying to verify a contract on. For Moonbeam and Moonbase Alpha, you'll need a [Moonbeam Moonscan](https://moonscan.io){target=\_blank} API key. For Moonriver, you'll need a [Moonriver Moonscan](https://moonriver.moonscan.io){target=\_blank} API key
+- An Etherscan API key
 - Git installed and configured
 
-## Generating a Moonscan API Key {: generating-a-moonscan-api-key }
+## Generating an Etherscan API Key {: generating-an-etherscan-api-key }
 
-To generate a Moonscan API Key, you will need to sign up for an account. Depending on which network you want to verify a contract on, you'll have to make sure you create an API key from the correct network on Moonscan. For Moonbeam or Moonbase Alpha, you can navigate to the [Moonbeam Moonscan](https://moonscan.io){target=\_blank}. For Moonriver, you can head to the [Moonriver Moonscan](https://moonriver.moonscan.io){target=\_blank}. To sign up for an account, you can take the following steps:
+To verify contracts on Moonscan for any Moonbeam network, you’ll need [an Etherscan API key](https://docs.etherscan.io/etherscan-v2/getting-an-api-key){target=\_blank}. Because Moonscan belongs to Etherscan’s ecosystem of 50-plus chains, a single key works across all supported networks.
+
+To create an [Etherscan account](https://etherscan.io/){target=\_blank} and generate your key, follow these steps:
 
 1. Click **Sign In**
 2. Select **Click to sign up** and then register your new account
@@ -34,7 +36,7 @@ To generate a Moonscan API Key, you will need to sign up for an account. Dependi
 
 Once you have an account and are signed in, you will then be able to create an API key.
 
-1. Select **API-KEYs** from the left side menu
+1. Select **API Dashboard** from the left side menu
 2. To add a new key, click the **+ Add** button
 
 ![Add an API key](/images/builders/ethereum/verify-contracts/etherscan-plugins/plugins-2.webp)
@@ -51,9 +53,9 @@ To get started with the Hardhat Etherscan plugin, you will need to first install
 npm install --save-dev @nomicfoundation/hardhat-verify
 ```
 
-You can add your Moonscan API key to the `hardhat.config.js` file. For this example, you'll need a [Moonbeam Moonscan](https://moonscan.io){target=\_blank} API key. If you want to verify a contract on Moonriver, you'll need a [Moonriver Moonscan](https://moonriver.moonscan.io){target=\_blank} API key.
+You can add your Etherscan API key to the `hardhat.config.js` file. Because Moonscan belongs to Etherscan’s ecosystem of 50-plus chains, a single key works across all supported networks, including Moonbeam, Moonriver, and Moonbase Alpha.
 
-From within your Hardhat project, open your `hardhat.config.js` file. You'll need to import the `hardhat-verify` plugin, your Moonscan API key, and add the config for Etherscan:
+From within your Hardhat project, open your `hardhat.config.js` file. You'll need to import the `hardhat-verify` plugin, your Etherscan API key, and add the config for Etherscan:
 
 ```js
 require('@nomicfoundation/hardhat-verify');
@@ -66,9 +68,9 @@ module.exports = {
   },
   etherscan: {
     apiKey: {
-      moonbeam: 'INSERT_MOONSCAN_API_KEY', // Moonbeam Moonscan API Key
-      moonriver: 'INSERT_MOONSCAN_API_KEY', // Moonriver Moonscan API Key
-      moonbaseAlpha: 'INSERT_MOONSCAN_API_KEY', // Moonbeam Moonscan API Key    
+      moonbeam: 'INSERT_ETHERSCAN_API_KEY',
+      moonriver: 'INSERT_ETHERSCAN_API_KEY',
+      moonbaseAlpha: 'INSERT_ETHERSCAN_API_KEY', 
     },
   },
 };
@@ -102,7 +104,7 @@ Please refer to the [Hardhat Verify documentation](https://hardhat.org/hardhat-r
 
 The example in this section of the guide will use the `MyToken.sol` contract that was created in the [Using Foundry to Deploy to Moonbeam](/builders/ethereum/dev-env/foundry/){target=\_blank} guide. 
 
-In addition to the Foundry project, you will need a [Moonbeam Moonscan](https://moonscan.io){target=\_blank} API key. This API key can be used for both the Moonbeam and Moonbase Alpha networks. If you want to verify a contract on Moonriver, you'll need a [Moonriver Moonscan](https://moonriver.moonscan.io){target=\_blank} API key.
+In addition to the Foundry project, you will need an [Etherscan API key](https://etherscan.io/){target=\_blank} to verify your contract. 
 
 If you have already deployed the example contract, you can verify it with the `verify-contract` command. Before you can verify the contract, you will need to ABI-encode the constructor arguments. To do so for the example contract, you can run the following command:
 
@@ -119,7 +121,7 @@ The result should be `0x00000000000000000000000000000000000000000000000000000000
     YOUR_CONTRACT_ADDRESS \
     --constructor-args 0x0000000000000000000000000000000000000000000000000000000000000064 \
     src/MyToken.sol:MyToken \
-    --etherscan-api-key INSERT_YOUR_MOONSCAN_API_KEY
+    --etherscan-api-key INSERT_YOUR_ETHERSCAN_API_KEY
     ```
 
 === "Moonriver"
@@ -129,7 +131,7 @@ The result should be `0x00000000000000000000000000000000000000000000000000000000
     YOUR_CONTRACT_ADDRESS \
     --constructor-args 0x0000000000000000000000000000000000000000000000000000000000000064 \
     src/MyToken.sol:MyToken \
-    --etherscan-api-key INSERT_YOUR_MOONSCAN_API_KEY
+    --etherscan-api-key INSERT_YOUR_ETHERSCAN_API_KEY
     ```
 
 === "Moonbase Alpha"
@@ -139,7 +141,7 @@ The result should be `0x00000000000000000000000000000000000000000000000000000000
     YOUR_CONTRACT_ADDRESS \
     --constructor-args 0x0000000000000000000000000000000000000000000000000000000000000064 \
     src/MyToken.sol:MyToken \
-    --etherscan-api-key INSERT_YOUR_MOONSCAN_API_KEY
+    --etherscan-api-key INSERT_YOUR_ETHERSCAN_API_KEY
     ```
 
 --8<-- 'code/builders/ethereum/verify-contracts/etherscan-plugins/terminal/forge-verify.md'
@@ -151,7 +153,7 @@ If you wanted to deploy the example contract and verify at the same time, then y
     ```bash
     forge create --rpc-url {{ networks.moonbeam.rpc_url }} \
     --constructor-args 100 \
-    --etherscan-api-key INSERT_YOUR_MOONSCAN_API_KEY \
+    --etherscan-api-key INSERT_YOUR_ETHERSCAN_API_KEY \
     --verify --private-key YOUR_PRIVATE_KEY \
     src/MyToken.sol:MyToken
     ```
@@ -161,7 +163,7 @@ If you wanted to deploy the example contract and verify at the same time, then y
     ```bash
     forge create --rpc-url {{ networks.moonriver.rpc_url }} \
     --constructor-args 100 \
-    --etherscan-api-key INSERT_YOUR_MOONSCAN_API_KEY \
+    --etherscan-api-key INSERT_YOUR_ETHERSCAN_API_KEY \
     --verify --private-key YOUR_PRIVATE_KEY \
     src/MyToken.sol:MyToken
     ```
@@ -171,7 +173,7 @@ If you wanted to deploy the example contract and verify at the same time, then y
     ```bash
     forge create --rpc-url {{ networks.moonbase.rpc_url }} \
     --constructor-args 100 \
-    --etherscan-api-key INSERT_YOUR_MOONSCAN_API_KEY \
+    --etherscan-api-key INSERT_YOUR_ETHERSCAN_API_KEY \
     --verify --private-key YOUR_PRIVATE_KEY \
     src/MyToken.sol:MyToken
     ```
