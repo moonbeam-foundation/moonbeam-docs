@@ -33,7 +33,6 @@ networks:
     min_gas_price: 0.03125
     block_time: 6
     website_faucet_amount: 1.1 DEV tokens
-    chaindrop_faucet_amount: 0.1 DEV tokens
     node:
       cores: 8
       ram: 16
