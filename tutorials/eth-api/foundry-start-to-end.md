@@ -189,7 +189,7 @@ One of the best ways that developers can test many inputs is through fuzzing, or
 --8<-- 'code/tutorials/eth-api/foundry-start-to-end/Fuzz-test.sol'
 ```
 
-This test includes `uint256 amountToMint` as input, which tells Foundry to fuzz with `uint256` inputs! By default, Foundry will input 256 different inputs, but this can be configured with the [`FOUNDRY_FUZZ_RUNS` environment variable](https://book.getfoundry.sh/reference/config/testing#runs){target=\_blank}.  
+This test includes `uint256 amountToMint` as input, which tells Foundry to fuzz with `uint256` inputs! By default, Foundry will input 256 different inputs, but this can be configured with the [`FOUNDRY_FUZZ_RUNS` environment variable](https://getfoundry.sh/config/reference/testing/#runs){target=\_blank}.  
 
 Additionally, the first line in the function uses `vm.assume` to only use inputs that are less than or equal to one ether since the `mint` function reverts if someone tries to mint more than one ether at a time. This cheatcode helps you direct the fuzzing into the right range.  
 

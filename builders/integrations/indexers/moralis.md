@@ -8,7 +8,7 @@ categories: Indexers and Queries
 
 ## Introduction {: #introduction }
 
-As a one-stop solution for blockchain development, [Moralis](https://developers.moralis.com/){target=\_blank} offers a comprehensive platform that empowers developers to create, launch, and scale decentralized applications (dApps) with ease.
+As a one-stop solution for blockchain development, [Moralis](https://moralis.com/){target=\_blank} offers a comprehensive platform that empowers developers to create, launch, and scale decentralized applications (dApps) with ease.
 
 It provides a suite of tools and services designed to streamline the process of accessing Web3 data and interacting with blockchain networks. Its offerings are structured into these primary categories:
 

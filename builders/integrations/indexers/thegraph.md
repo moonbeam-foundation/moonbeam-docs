@@ -175,7 +175,7 @@ Once your subgraph is ready for production, you can publish it to the decentrali
 !!! note
     Publishing requires Arbitrum ETH. When upgrading your subgraph, a small amount is airdropped to facilitate your initial protocol interactions.
 
-For publishing instructions, please refer to [The Graph's documentation](https://thegraph.com/docs/en/publishing/publishing-a-subgraph/){target=\_blank}.
+For publishing instructions, please refer to [The Graph's documentation](https://thegraph.com/docs/en/subgraphs/developing/publishing/publishing-a-subgraph/){target=\_blank}.
 
 ### Additional Resources {: #additional-resources }
 

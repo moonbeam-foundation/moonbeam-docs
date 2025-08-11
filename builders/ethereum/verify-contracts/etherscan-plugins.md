@@ -97,7 +97,7 @@ Please refer to the [Hardhat Verify documentation](https://hardhat.org/hardhat-r
 - [libraries with undetectable addresses](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-verify#libraries-with-undetectable-addresses){target=\_blank}
 - using [multiple API keys](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-verify#multiple-api-keys-and-alternative-block-explorers){target=\_blank}
 - using the [`verify` command programmatically](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-verify#using-programmatically){target=\_blank}
-- [determining the correct constructor arguments](https://info.etherscan.com/determine-correct-constructor-argument-during-source-code-verification-on-etherscan){target=\_blank}
+- [determining the correct constructor arguments](https://info.etherscan.com/determine-correct-constructor-argument-during-source-code-verification-on-etherscan/){target=\_blank}
 
 ## Using Foundry to Verify {: #using-foundry-to-verify }
 
