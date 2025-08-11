@@ -745,6 +745,24 @@ The parachain staking pallet includes the following read-only functions to obtai
         --8<-- 'code/builders/substrate/interfaces/features/staking/leave-delegators-delay.js'
         ```
 
+??? function "**linearInflationThreshold**() - returns the total supply threshold at which inflation becomes linear instead of exponential"
+
+    === "Parameters"
+
+        None
+
+    === "Returns"
+
+        `Option<u128>` - returns the total supply threshold at which inflation becomes linear instead of exponential. When the total supply reaches this amount, inflation transitions from exponential to linear. Returns `Some(value)` if configured, or `None` if not set.
+
+        Example values are approximately 1.2B DEV for Moonbase, 1.0B MOVR for Moonriver, and 1.2B GLMR for Moonbeam.
+
+    === "Polkadot.js API Example"
+
+        ```js
+        --8<-- 'code/builders/substrate/interfaces/features/staking/linear-inflation-threshold.js'
+        ```
+
 ??? function "**maxBottomDelegationsPerCandidate**() - returns the maximum number of bottom delegations per candidate"
 
     === "Parameters"
