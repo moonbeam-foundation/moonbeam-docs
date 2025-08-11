@@ -19,7 +19,7 @@ To get started, you will need the following:
 
 - An account with funds.
   --8<-- 'text/_common/faucet/faucet-list-item.md'
-- [An Etherscan API key](/builders/ethereum/verify-contracts/etherscan-plugins/#generating-an-etherscan-api-key){target=\_blank}
+- An [Etherscan API key](/builders/ethereum/verify-contracts/etherscan-plugins/#generating-an-etherscan-api-key){target=\_blank}
 - 
   --8<-- 'text/_common/endpoint-examples-list-item.md'
 
