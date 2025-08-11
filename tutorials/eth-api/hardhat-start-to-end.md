@@ -301,8 +301,8 @@ module.exports = {
   // Moonbeam and Moonbase Alpha use the same Etherscan API key
   etherscan: {
     apiKey: {
-      moonbaseAlpha: configVariable("ETHERSCAN_API_KEY"), // Moonbase Etherscan API Key
-      moonbeam: configVariable("ETHERSCAN_API_KEY"), // Moonbeam Etherscan API Key
+      moonbaseAlpha: configVariable("ETHERSCAN_API_KEY"),
+      moonbeam: configVariable("ETHERSCAN_API_KEY"),
     },
   },
 };
