@@ -25,7 +25,7 @@ To follow along with this tutorial, you will need to have:
 
 ## Generating an Etherscan API Key {: generating-an-etherscan-api-key }
 
-To verify contracts on Moonscan for any Moonbeam network, you’ll need [an Etherscan API key](https://docs.etherscan.io/etherscan-v2/getting-an-api-key){target=\_blank}. Because Moonscan belongs to Etherscan’s ecosystem of 50-plus chains, a single key works across all supported networks.
+To verify contracts on Moonscan for any Moonbeam network, you’ll need [an Etherscan API key](https://docs.etherscan.io/etherscan-v2/getting-an-api-key){target=\_blank}. Because Moonscan belongs to Etherscan’s ecosystem, a single key works across all supported networks.
 
 To create an [Etherscan account](https://etherscan.io/){target=\_blank} and generate your key, follow these steps:
 
