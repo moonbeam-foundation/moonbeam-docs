@@ -13,20 +13,18 @@ You are an AI developer assistant for Moonbeam (https://moonbeam.network/). Your
 - If unsure, respond with “Not specified in the documentation.
 
 ## List of doc pages:
-Doc-Page: https://raw.githubusercontent.com/moondance-labs/moonbeam-docs/refs/heads/main/https://docs.moonbeam.network/builders/ethereum/dev-env/ape.md [type: builders]
-Doc-Page: https://raw.githubusercontent.com/moondance-labs/moonbeam-docs/refs/heads/main/https://docs.moonbeam.network/builders/ethereum/dev-env/brownie.md [type: builders]
-Doc-Page: https://raw.githubusercontent.com/moondance-labs/moonbeam-docs/refs/heads/main/https://docs.moonbeam.network/builders/ethereum/dev-env/foundry.md [type: builders]
-Doc-Page: https://raw.githubusercontent.com/moondance-labs/moonbeam-docs/refs/heads/main/https://docs.moonbeam.network/builders/ethereum/dev-env/hardhat.md [type: builders]
-Doc-Page: https://raw.githubusercontent.com/moondance-labs/moonbeam-docs/refs/heads/main/https://docs.moonbeam.network/builders/ethereum/dev-env/openzeppelin/contracts.md [type: builders]
-Doc-Page: https://raw.githubusercontent.com/moondance-labs/moonbeam-docs/refs/heads/main/https://docs.moonbeam.network/builders/ethereum/dev-env/openzeppelin/defender.md [type: builders]
-Doc-Page: https://raw.githubusercontent.com/moondance-labs/moonbeam-docs/refs/heads/main/https://docs.moonbeam.network/builders/ethereum/dev-env/remix.md [type: builders]
-Doc-Page: https://raw.githubusercontent.com/moondance-labs/moonbeam-docs/refs/heads/main/https://docs.moonbeam.network/builders/ethereum/dev-env/scaffold-eth.md [type: builders]
-Doc-Page: https://raw.githubusercontent.com/moondance-labs/moonbeam-docs/refs/heads/main/https://docs.moonbeam.network/builders/ethereum/dev-env/tenderly.md [type: builders]
-Doc-Page: https://raw.githubusercontent.com/moondance-labs/moonbeam-docs/refs/heads/main/https://docs.moonbeam.network/builders/ethereum/dev-env/thirdweb.md [type: builders]
-Doc-Page: https://raw.githubusercontent.com/moondance-labs/moonbeam-docs/refs/heads/main/https://docs.moonbeam.network/builders/ethereum/dev-env/waffle-mars.md [type: builders]
-Doc-Page: https://raw.githubusercontent.com/moondance-labs/moonbeam-docs/refs/heads/main/https://docs.moonbeam.network/builders/substrate/dev-env/chopsticks.md [type: builders]
-Doc-Page: https://raw.githubusercontent.com/moondance-labs/moonbeam-docs/refs/heads/main/https://docs.moonbeam.network/tutorials/eth-api/foundry-start-to-end.md [type: tutorials]
-Doc-Page: https://raw.githubusercontent.com/moondance-labs/moonbeam-docs/refs/heads/main/https://docs.moonbeam.network/tutorials/eth-api/hardhat-start-to-end.md [type: tutorials]
+Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/main/builders/ethereum/dev-env/ape.md [type: builders]
+Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/main/builders/ethereum/dev-env/foundry.md [type: builders]
+Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/main/builders/ethereum/dev-env/hardhat.md [type: builders]
+Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/main/builders/ethereum/dev-env/openzeppelin/contracts.md [type: builders]
+Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/main/builders/ethereum/dev-env/remix.md [type: builders]
+Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/main/builders/ethereum/dev-env/scaffold-eth.md [type: builders]
+Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/main/builders/ethereum/dev-env/tenderly.md [type: builders]
+Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/main/builders/ethereum/dev-env/thirdweb.md [type: builders]
+Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/main/builders/ethereum/dev-env/waffle-mars.md [type: builders]
+Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/main/builders/substrate/dev-env/chopsticks.md [type: builders]
+Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/main/tutorials/eth-api/foundry-start-to-end.md [type: tutorials]
+Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/main/tutorials/eth-api/hardhat-start-to-end.md [type: tutorials]
 
 ## Full content for each doc page
 
@@ -572,550 +570,6 @@ Additionally, when deploying or interacting with contracts on a local Moonbeam n
 </div>
 --- END CONTENT ---
 
-Doc-Content: https://docs.moonbeam.network/builders/ethereum/dev-env/brownie/
---- BEGIN CONTENT ---
----
-title: Brownie
-description: Use Brownie, an Ethereum development environment, to compile, deploy, and debug smart contracts using Python on Moonbeam, thanks to its Ethereum compatibility.
-categories: Dev Environments
----
-
-# Using Brownie to Deploy To Moonbeam
-
-## Introduction {: #introduction }
-
-[Brownie](https://eth-brownie.readthedocs.io){target=\_blank} is an Ethereum development environment that helps Python developers manage and automate the recurring tasks inherent to building smart contracts and DApps. Brownie can directly interact with Moonbeam's Ethereum API so it can also be used to deploy smart contracts on Moonbeam.
-
-This guide will cover how to use Brownie to compile, deploy, and interact with Ethereum smart contracts on the Moonbase Alpha TestNet. This guide can also be adapted for Moonbeam, Moonriver, or Moonbeam development node.
-
-**Please note that Brownie is no longer actively maintained.** You can check out [Ape](https://docs.apeworx.io/ape/stable){target=\_blank} as an alternative Python Ethereum development environment.
-
-## Checking Prerequisites {: #checking-prerequisites }
-
-To get started, you will need the following:
-
- - Have MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}
- - Have an account with funds.
-  You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}
- - 
-To test out the examples in this guide on Moonbeam or Moonriver, you will need to have your own endpoint and API key, which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=\_blank}
-
-For this guide, Python version 3.9.10, pip version 22.0.3, and pipx version 1.0.0 were used.
-
-## Creating a Brownie Project {: #creating-a-brownie-project }
-
-You will need to install Brownie and create a Brownie project if you don't already have one. You can choose to either create an empty project or use a [Brownie mix](https://eth-brownie.readthedocs.io/en/stable/init.html?highlight=brownie%20mix#creating-a-project-from-a-template){target=\_blank}, which is essentially a template to build your project on. For this example, you can create an empty project. You can get started by completing the following steps:
-
-1. Create a directory for your project
-
-    ```bash
-    mkdir brownie && cd brownie
-    ```
-
-2. If you don't already have `pipx` installed, go ahead and install it
-
-    ```bash
-    python3 -m pip install --user pipx
-    python3 -m pipx ensurepath
-    ```
-
-3. [Install Brownie using `pipx`](https://eth-brownie.readthedocs.io/en/stable/install.html){target=\_blank}, which is used to run executables installed locally in your project. Brownie will be installed into a virtual environment and be available directly from the command line
-
-    ```bash
-    pipx install eth-brownie
-    ```
-
-    !!! note
-        A common error while installing Brownie on Ubuntu is:
-
-        ```text
-        pip seemed to fail to build package:
-            pyyaml==5.4.1
-
-        Some possibly relevant errors from pip install:
-            error: subprocess-exited-with-error
-            AttributeError: cython_sources
-
-        Error installing eth-brownie.
-        ```
-
-        This can be resolved by using the following command:
-
-        ```bash
-        pip3 install wheel && \
-        pip3 install --no-build-isolation "Cython<3" "pyyaml==5.4.1" && \
-        pip3 install --upgrade --no-cache-dir eth-brownie
-        ```
-
-4. Create a project
-
-    ```bash
-    brownie init
-    ```
-
-    <div id="termynal" data-termynal>
-    <span data-ty="input"><span class="file-path"></span>brownie init</span>
-    <span data-ty>Brownie v1.19.1 - Python development framework for Ethereum</span>
-    <br>
-    <span data-ty>SUCCESS: A new Brownie project has been initialized at /home/moonbeam/brownie</span>
-    <br>
-    <span data-ty="input"><span class="file-path"></span>ls</span>
-    <span data-ty>build contracts interfaces reports scripts tests</span>
-</div>
-
-Your Brownie project should contain the following empty directories:
-
-- **build** - for project data such as contract artifacts from compilation
-- **contracts** - to store the smart contract files
-- **interfaces** - for smart contract interfaces that are required for your project
-- **reports** - for JSON report files for use in the [Brownie GUI](https://eth-brownie.readthedocs.io/en/stable/gui.html){target=\_blank}
-- **scripts** - where Python scripts used for deploying contracts or other automated tasks will live
-- **tests** - to store Python scripts for testing your project. Brownie uses the `pytest` framework for unit testing
-
-Another important file to note that is not included in an empty project is the `brownie-config.yaml` configuration file. The configuration file is optional and comes in handy when customizing specific settings such as a default network, compiler version and settings, and more.
-
-## Network Configuration  {: #network-configuration }
-
-To deploy to a Moonbeam-based network, you'll need to add and configure the network. Network configurations in Brownie are added from the command line. Brownie can be used with both development and live environments.
-
-Moonbeam, Moonriver, and Moonbase Alpha are supported out of the box with Brownie as of version 1.19.3. To view the complete list of supported networks, you can run the following command:
-
-```bash
-brownie networks list
-```
-
-<div id="termynal" data-termynal>
-    <span data-ty="input"><span class="file-path"></span>brownie networks list</span>
-    <br>
-    <span data-ty>Moonbeam</span>
-    <span data-ty>   ├─Mainnet: moonbeam-main</span>
-    <span data-ty>   └─Moonbase Alpha: moonbeam-test</span>
-    <span data-ty>     </span>
-    <span data-ty>Moonriver     </span>
-    <span data-ty>  └─Mainnet: moonriver-main</span>
-</div>
-
-If you're looking to deploy a contract to a Moonbeam development node you'll need to add the network configurations. Under the hood, Brownie uses Ganache for development environments. However, since a Moonbeam development node acts as your own personal development environment, Ganache isn't needed. Therefore, you can configure a development node as a "live" network.
-
-To add Moonbeam development node configurations, you can run the following command:
-
-```bash
-brownie networks add Moonbeam moonbeam-dev host={{ networks.development.rpc_url }} name=Development chainid={{ networks.development.chain_id }}
-```
-
-If you successfully added the network, you'll see a success message along with the network details in the terminal.
-
-To deploy to a Moonbeam network, or run tests on a specific network, you can specify the network by appending the following to the given command:
-
-=== "Moonbeam"
-
-    ```bash
-    --network moonbeam-main
-    ```
-
-=== "Moonriver"
-
-    ```bash
-    --network moonriver-main
-    ```
-
-=== "Moonbase Alpha"
-
-    ```bash
-    --network moonbeam-test
-    ```
-
-=== "Moonbeam Dev Node"
-
-    ```bash
-    --network moonbeam-dev
-    ```
-
-If you would like to set a default network, you can do so by adding the following snippet to the `brownie-config.yaml` configuration file:
-
-=== "Moonbeam"
-
-    ```yaml
-    networks:
-        default: moonbeam-main
-    ```
-
-=== "Moonriver"
-
-    ```yaml
-    networks:
-        default: moonriver-main
-    ```
-
-=== "Moonbase Alpha"
-
-    ```yaml
-    networks:
-        default: moonbeam-test
-    ```
-
-=== "Moonbeam Dev Node"
-
-    ```yaml
-    networks:
-        default: moonbeam-dev
-    ```
-
-!!! note
-    Keep in mind that the `brownie-config.yaml` file isn't automatically created, you can optionally create it yourself.
-
-### Setting your Networks RPC URLs
-
-It is recommended that you override the default Brownie RPC URLs to [your own RPC endpoint](/builders/get-started/endpoints/#rpc-endpoint-providers){target=\_blank} or the public Moonbeam network endpoints. You can override the default Brownie RPC URL for each network as follows:
-
-=== "Moonbeam"
-
-    ```bash
-    brownie networks modify moonbeam-main host={{ networks.moonbeam.rpc_url }}
-    ```
-
-=== "Moonriver"
-
-    ```bash
-    brownie networks modify moonriver-main host={{ networks.moonriver.rpc_url }}
-    ```
-
-=== "Moonbase Alpha"
-
-    ```bash
-    brownie networks modify moonbeam-test host={{ networks.moonbase.rpc_url }}
-    ```
-
-<div id="termynal" data-termynal>
-    <span data-ty="input"><span class="file-path"></span>brownie networks modify moonbeam-main host=https://rpc.api.moonbeam.network</span>
-    <br>
-    <span data-ty>SUCCESS: Network 'Mainnet' has been modified</span>
-    <span data-ty>   └─Mainnet</span>
-    <span data-ty>     ├─id: moonbeam-main</span>
-    <span data-ty>     ├─chainid: 1284</span>
-    <span data-ty>     ├─explorer: https://api-moonbeam.moonscan.io/api</span>
-    <span data-ty>     ├─host: https://rpc.api.moonbeam.network</span>
-    <span data-ty>     └─multicall2: 0x1337BedC9D22ecbe766dF105c9623922A27963EC</span>
-</div>
-
-## Account Configuration {: #account-configuration }
-
-Before you can deploy a contract, you'll need to configure your account, which is also done from the command line. To add a new account you can run:
-
-```bash
-brownie accounts new INSERT_ACCOUNT_NAME
-```
-
-Make sure to replace `INSERT_ACCOUNT_NAME` with your name of choice. For this example, `alice` will be used as the account name.
-
-You'll be prompted to enter in your private key and a password to encrypt the account with. If the account was successfully configured, you'll see your account address printed to the terminal.
-
-<div id="termynal" data-termynal>
-    <span data-ty="input"><span class="file-path"></span>brownie accounts new alice</span>
-    <span data-ty>Brownie v1.19.1 - Python development framework for Ethereum</span>
-    <br>
-    <span data-ty>Enter the private key you wish to add: </span>
-    <span data-ty="input"><span class="file-path"></span>0x5b92d6e98884f76de468fa3f6278f880748bebc13595d45af5bdc4da702133</span>
-    <span data-ty>Enter the password to encrypt this account with: </span>
-    <span data-ty="input"><span class="file-path"></span></span>
-    <span data-ty>SUCCESS: A new account 'Oxf24FF3a9CF04c71Dbc94D06566f7A27B94566cac' has been generated with the id 'alice'</span>
-</div>
-
-## The Contract File {: #the-contract-file }
-
-Next you can create a contract inside of the `contracts` directory. The smart contract that you'll deploy as an example will be called `Box`, it will let you store a value that can be retrieved later. You can create a `Box.sol` contract by running the following command:
-
-```bash
-cd contracts && touch Box.sol
-```
-
-Open the file and add the following contract to it:
-
-```solidity
-// contracts/Box.sol
-pragma solidity ^0.8.1;
-
-contract Box {
-    uint256 private value;
-
-    // Emitted when the stored value changes
-    event ValueChanged(uint256 newValue);
-
-    // Stores a new value in the contract
-    function store(uint256 newValue) public {
-        value = newValue;
-        emit ValueChanged(newValue);
-    }
-
-    // Reads the last stored value
-    function retrieve() public view returns (uint256) {
-        return value;
-    }
-}
-```
-
-## Compiling Solidity {: #compiling-solidity }
-
-To compile the contract you can simply run:
-
-```bash
-brownie compile
-```
-
-<div id="termynal" data-termynal>
-    <span data-ty="input"><span class="file-path"></span>brownie compile</span>
-    <span data-ty>Brownie v1.19.1 - Python development framework for Ethereum</span>
-    <br>
-    <span data-ty>New compatible solc version available: 0.8.4</span>
-    <span data-ty>Compiling contracts...</span>
-    <span data-ty>  Solc version: 0.8.4</span>
-    <span data-ty>  Optimizer: Enabled  Runs: 200</span>
-    <span data-ty>  EVM Version: Istanbul</span>
-    <span data-ty>Generating build data...</span>
-    <span data-ty> - Box</span>
-    <span data-ty>Project has been compiled. Build artifacts saved at /home/moonbeam/brownie/build/contracts</span>
-    <span data-ty="input"><span class="file-path"></span> </span>
- </span>
-</div>
-
-!!! note
-    The first time you compile your contracts it may take longer than usual while the `solc` binary is installed.
-
-After compilation, you'll find the build artifacts in the `build/contracts` directory. The artifacts contain the bytecode and metadata of the contract, which are `.json` files. The `build` directory should already be in the `.gitignore` file but if it's not, it’s a good idea to add it there.
-
-If you want to specify the compiler version or compilation settings, you can do so in the `brownie-config.yaml` file. Please note that if you haven't already created this file, you will need to do so. Then you can specify the compiler like so:
-
-```yaml
-compiler:
-  evm_version: null
-  solc:
-    version: 0.8.13
-    optimizer:
-      enabled: true
-      runs: 200
-```
-
-!!! note
-    You can view the list of [EVM versions supported by Brownie](https://github.com/eth-brownie/brownie/blob/master/docs/compile.rst#the-evm-version){target=\_blank} in their documentation.
-
-Your contracts will only be compiled again if Brownie notices that a change has been made. To force a new compilation, you can run:
-
-```bash
-brownie compile --all
-```
-
-## Deploying the Contract {: #deploying-the-contract }
-
-In order to deploy the `Box.sol` smart contract, you will need to write a simple deployment script. You can create a new file under the `scripts` directory and name it `deploy.py`:
-
-```bash
-cd scripts && touch deploy.py
-```
-
-Next, you need to write your deployment script. To get started, take the following steps:
-
-1. Import the `Box` contract and the `accounts` module from `brownie`
-2. Load your account using `accounts.load()` which decrypts a keystore file and returns the account information for the given account name
-3. Use the `deploy` method that exists within this instance to instantiate the smart contract specifying the `from` account and the `gas_limit`
-
-```py
-# scripts/deploy.py
-from brownie import Box, accounts
-
-
-def main():
-    account = accounts.load("alice")
-    return Box.deploy({"from": account, "gas_limit": "200000"})
-```
-
-You can now deploy the `Box.sol` contract using the `run` command and specifying the network:
-
-=== "Moonbeam"
-
-    ```bash
-    brownie run scripts/deploy.py --network moonbeam-main
-    ```
-
-=== "Moonriver"
-
-    ```bash
-    brownie run scripts/deploy.py --network moonriver-main
-    ```
-
-=== "Moonbase Alpha"
-
-    ```bash
-    brownie run scripts/deploy.py --network moonbeam-test
-    ```
-
-=== "Moonbeam Dev Node"
-
-    ```bash
-    brownie run scripts/deploy.py --network moonbeam-dev
-    ```
-
-After a few seconds, the contract is deployed, and you should see the address in the terminal.
-
-<div id="termynal" data-termynal>
-    <span data-ty="input"><span class="file-path"></span>brownie run scripts/deploy.py --network moonbeam-testnet</span>
-    <span data-ty>Brownie v1.19.1 - Python development framework for Ethereum</span>
-    <br>
-    <span data-ty>BrownieProject is the active project.</span>
-    <br>
-    <span data-ty>Running 'scripts/deploy.py: :main</span>
-      <span data-ty>Enter password for "alice":</span>
-      <span data-ty>Transaction sent: Oxf091d0415d1a4614ccd76a5f5f985fdf6abbd68d7481647fb3144dfecffb333</span>
-      <span data-ty>Gas price: 1.0 gwei Gas limit: 200000 Nonce: 15298</span>
-      <span data-ty>Box.constructor confirmed Block: 1901367 Gas used: 103095 (51.55%)</span>
-      <span data-ty>Box deployed at: OxccA4aDdD51Af1E76beZaBE5FD04A82EB6063C65</span>
-      <br>
-      <span data-ty="input"><span class="file-path"></span> </span>
- </span>
-</div>
-
-Congratulations, your contract is live! Save the address, as you will use it to interact with this contract instance in the next step.
-
-## Interacting with the Contract {: #interacting-with-the-contract }
-
-You can interact with contracts using the Brownie console for quick debugging and testing or you can also write a script to interact.
-
-### Using Brownie Console {: #using-brownie-console }
-
-To interact with your newly deployed contract, you can launch the Brownie `console` by running:
-
-=== "Moonbeam"
-
-    ```bash
-    brownie console --network moonbeam-main
-    ```
-
-=== "Moonriver"
-
-    ```bash
-    brownie console --network moonriver-main
-    ```
-
-=== "Moonbase Alpha"
-
-    ```bash
-    brownie console --network moonbeam-test
-    ```
-
-=== "Moonbeam Dev Node"
-
-    ```bash
-    brownie console --network moonbeam-dev
-    ```
-
-The contract instance will automatically be accessible from the console. It will be wrapped in a `ContractContainer` which also enables you to deploy new contract instances. To access the deployed contract you can use `Box[0]`. To call the `store` method and set the value to `5`, you can take the following steps:
-
-1. Create a variable for the contract
-    ```bash
-    box = Box[0]
-    ```
-2. Call the `store` method using your account and set the value to `5`
-    ```bash
-    box.store(5, {'from': accounts.load('alice'), 'gas_limit': '50000'})
-    ```
-3. Enter the password for your account
-
-The transaction will be signed by your account and broadcasted to the network. Now, you can retrieve the value by taking these steps:
-
-1. Call the `retrieve` method
-    ```bash
-    box.retrieve({'from': accounts.load('alice')})
-    ```
-2. Enter your password
-
-You should see `5` or the value you have stored initially.
-
-<div id="termynal" data-termynal>
-    <span data-ty="input"><span class="file-path"></span>brownie console --network moonbeam-testnet</span>
-    <span data-ty>Brownie v1.19.1 - Python development framework for Ethereum</span>
-    <br>
-    <span data-ty>BrownieProject is the active project.</span>
-    <span data-ty>Brownie environment is ready.</span>
-    <span data-ty="input" data-ty-prompt=">>>">box = Box[0]</span>
-    <br>
-    <span data-ty="input" data-ty-prompt=">>>">box. store(5, {'from': accounts. load('alice"), 'gas-limit: "50000").</span>
-    <span data-ty>Enter password for "alice":</span>
-      <span data-ty>Transaction sent: 0x2418038735934917861dfa77068fe6dadd0b3c7e4362d6f73c1712aaf6a89a</span>
-      <span data-ty>Gas price: 1.0 gwei Box.store confirmed Gas limit: 50000 Nonce: 15299</span>
-      <span data-ty>Box.store confirmed Block: 1901372 Gas used: 44593 (89.19%)</span>
-      <br>
-      <span data-ty>Transaction '0×24180387359349178b1dfa770e68fe6dadd0b3c7e4362d6f73c1712aaf6a89a'</span>
-      <span data-ty="input" data-ty-prompt=">>>">box.retrieve ({'from': accounts. load('alice")})</span>
-      <span data-ty>Enter password for "alice":</span>
-      <span data-ty>5</span>
-      <span data-ty="input" data-ty-prompt=">>>"> </span>
- </span>
-</div>
-
-### Using a Script {: #using-a-script }
-
-You can also write a script to interact with your newly deployed contract. To get started, you can create a new file in the `scripts` directory:
-
-```bash
-cd scripts && touch store-and-retrieve.py
-```
-
-Next, you need to write your script that will store and then retrieve a value. To get started, take the following steps:
-
-1. Import the `Box` contract and the `accounts` module from `brownie`
-2. Load your account using `accounts.load()` which decrypts a keystore file and returns the account information for the given account name
-3. Create a variable for the `Box` contract
-4. Use the `store` and `retrieve` functions to store a value and then retrieve it and print it to the console
-
-```py
-# scripts/store-and-retrieve.py
-from brownie import Box, accounts
-
-
-def main():
-    account = accounts.load("alice")
-    box = Box[0]
-    store = box.store(5, {"from": accounts.load("alice"), "gas_limit": "50000"})
-    retrieve = box.retrieve({"from": accounts.load("alice")})
-
-    print("Transaction hash for updating the stored value: " + store)
-    print("Stored value: " + retrieve)
-```
-
-To run the script, you can use the following command:
-
-=== "Moonbeam"
-
-    ```bash
-    brownie run scripts/store-and-retrieve.py --network moonbeam-main
-    ```
-
-=== "Moonriver"
-
-    ```bash
-    brownie run scripts/store-and-retrieve.py --network moonriver-main
-    ```
-
-=== "Moonbase Alpha"
-
-    ```bash
-    brownie run scripts/store-and-retrieve.py --network moonbeam-test
-    ```
-
-=== "Moonbeam Dev Node"
-
-    ```bash
-    brownie run scripts/store-and-retrieve.py --network moonbeam-dev
-    ```
-
-You'll need to enter the password for Alice to send the transaction to update the stored value. Once the transaction goes through, you should see a transaction hash and a value of `5` printed to the console.
-
-Congratulations, you have successfully deployed and interacted with a contract using Brownie!
-
-<div class="page-disclaimer">
-  The information presented herein has been provided by third parties and is made available solely for general information purposes. Moonbeam does not endorse any project listed and described on the Moonbeam Doc Website (https://docs.moonbeam.network/). Moonbeam Foundation does not warrant the accuracy, completeness or usefulness of this information. Any reliance you place on such information is strictly at your own risk. Moonbeam Foundation disclaims all liability and responsibility arising from any reliance placed on this information by you or by anyone who may be informed of any of its contents. All statements and/or opinions expressed in these materials are solely the responsibility of the person or entity providing those materials and do not necessarily represent the opinion of Moonbeam Foundation. The information should not be construed as professional or financial advice of any kind. Advice from a suitably qualified professional should always be sought in relation to any particular matter or circumstance. The information herein may link to or integrate with other websites operated or content provided by third parties, and such other websites may link to this website. Moonbeam Foundation has no control over any such other websites or their content and will have no liability arising out of or related to such websites or their content. The existence of any such link does not constitute an endorsement of such websites, the content of the websites, or the operators of the websites. These links are being provided to you only as a convenience and you release and hold Moonbeam Foundation harmless from any and all liability arising from your use of this information or the information provided by any third-party website or service.
-</div>
---- END CONTENT ---
-
 Doc-Content: https://docs.moonbeam.network/builders/ethereum/dev-env/foundry/
 --- BEGIN CONTENT ---
 ---
@@ -1524,7 +978,7 @@ Congratulations, you have successfully deployed and interacted with a contract u
 
 ## Forking with Anvil {: #forking-with-cast-anvil }
 
-As previously mentioned, [Anvil](https://book.getfoundry.sh/anvil){target=\_blank} is a local TestNet node for development purposes that can fork preexisting networks. Forking Moonbeam allows you to interact with live contracts deployed on the network.
+As previously mentioned, [Anvil](https://getfoundry.sh/anvil/overview/#anvil){target=\_blank} is a local TestNet node for development purposes that can fork preexisting networks. Forking Moonbeam allows you to interact with live contracts deployed on the network.
 
 There are some limitations to be aware of when forking with Anvil. Since Anvil is based on an EVM implementation, you cannot interact with any of the Moonbeam precompiled contracts and their functions. Precompiles are a part of the Substrate implementation and therefore cannot be replicated in the simulated EVM environment. This prohibits you from interacting with cross-chain assets on Moonbeam and Substrate-based functionality such as staking and governance.
 
@@ -2964,169 +2418,6 @@ And that is it! You've deployed an ERC-1155 token contract using OpenZeppelin's 
 </div>
 --- END CONTENT ---
 
-Doc-Content: https://docs.moonbeam.network/builders/ethereum/dev-env/openzeppelin/defender/
---- BEGIN CONTENT ---
----
-title: How to use OpenZeppelin Defender
-description:  Learn how to use OpenZeppelin Defender to manage smart contracts securely on Moonbeam, thanks to its Ethereum compatibility features
-categories: Dev Environments, Ethereum Toolkit
----
-
-# OpenZeppelin Defender
-
-## Introduction {: #introduction }
-
-[OpenZeppelin Defender](https://docs.openzeppelin.com/defender){target=\_blank} is a web-based application that allows developers to perform and automate smart contract operations in a secure way. Defender V2 offers the following components:
-
- - [**Code Inspector**](https://defender.openzeppelin.com/v2/#/code){target=\_blank} — Automatic code analysis powered by AI models and tools developed by OpenZeppelin engineers
- - [**Audit**](https://defender.openzeppelin.com/v2/#/audit){target=\_blank} — Manage the smart contract audit process and track issues and resolutions
- - [**Deploy**](https://defender.openzeppelin.com/v2/#/deploy){target=\_blank} — Manage deployments and upgrades to ensure secure releases
- - [**Monitor**](https://defender.openzeppelin.com/v2/#/monitor){target=\_blank} — to monitor your smart contract's events, functions, and transactions, and receive notifications via email
- - [**Incident Response**](https://defender.openzeppelin.com/v2/#/incident-response){target=\_blank} — Configure predefined incident response scenarios triggered automatically by monitors or on-demand
- - [**Actions**](https://defender.openzeppelin.com/v2/#/actions/automatic){target=\_blank} — Create automated actions to perform on-chain and off-chain operations
- - [**Access Control**](https://defender.openzeppelin.com/v2/#/access-control/contracts){target=\_blank} — Manage smart contract accounts, roles, and permissions easily
-
-
-OpenZeppelin Defender can be used on Moonbeam, Moonriver, and the Moonbase Alpha TestNet. This guide will show you how to get started with Defender and demonstrate using OpenZeppelin Actions and Access Control to pause a smart contract on Moonbase Alpha. This guide can be adapted for Moonbeam and Moonriver.
-
-## Getting Started with Defender {: #getting-started-with-defender }
-
-This section goes through the steps for getting started with OpenZeppelin Defender on Moonbase Alpha.
-
-### Checking Prerequisites {: #checking-prerequisites }
-
-The steps described in this section assume you have [MetaMask](https://metamask.io){target=\_blank} installed and connected to the Moonbase Alpha TestNet. If you haven't connected MetaMask to the TestNet, check out our [MetaMask integration guide](/tokens/connect/metamask/){target=\_blank}.
-
-In addition, you need to sign up for a free OpenZeppelin Defender account, which you can do on the main [Defender website](https://defender.openzeppelin.com/v2/#/overview){target=\_blank}.
-
-### Deploying the Pausable Box Contract {: #deploying-the-pauseable-box-contract }
-
-The contract used in this guide is an extension of the `Box.sol` contract used in the [upgrading smart contracts guide](https://docs.openzeppelin.com/learn/upgrading-smart-contracts){target=\_blank} from the OpenZeppelin documentation. Also, the contract was made upgradable and [pausable](https://docs.openzeppelin.com/contracts/4.x/api/security#Pausable){target=\_blank} to take full advantage of the Admin component. You can deploy your contract using the following code and following the [upgrading smart contracts guide](https://docs.openzeppelin.com/learn/upgrading-smart-contracts){target=\_blank}:
-
-```solidity
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
-
-import "@openzeppelin/contracts-upgradeable/security/PausableUpgradeable.sol";
-import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
-
-contract PausableBox is Initializable, PausableUpgradeable, OwnableUpgradeable {
-    uint256 private value;
- 
-    // Emitted when the stored value changes
-    event ValueChanged(uint256 newValue);
-
-    // Initialize
-    function initialize() initializer public {
-        __Ownable_init(_msgSender());
-        __Pausable_init_unchained();
-    }
- 
-    // Stores a new value in the contract
-    function store(uint256 newValue) whenNotPaused public {
-        value = newValue;
-        emit ValueChanged(newValue);
-    }
- 
-    // Reads the last stored value
-    function retrieve() public view returns (uint256) {
-        return value;
-    }
-    
-    function pause() public onlyOwner {
-        _pause();
-    }
-
-    function unpause() public onlyOwner {
-        _unpause();
-    }
-}
-```
-
-!!! note
-    After deploying the above contract using Remix or another tool such as Hardhat, you'll need to call the `initialize` function to properly set the owner of the upgradeable contract. If you don't call this function, the owner will be set to the zero address, and you will be unable to proceed with the remainder of this tutorial.
-
-## Using the Access Control Component {: #using-the-access-control-component }
-
-This section goes through the steps for getting started with the [OpenZeppelin Defender Access Control component](https://defender.openzeppelin.com/v2/#/access-control/contracts){target=\_blank} to manage smart contracts on Moonbase Alpha.
-
-### Importing Your Contract {: #importing-your-contract }
-
-The first step to using Defender Access Control is to add the contract you want to manage. To do so, take the following steps:
-
- 1. Click on the **Access Control** menu item
- 2. Click **Add Contract**
- 3. Add a name for your contract
- 4. Select the **Network** on which the contract is deployed. For the demo, Moonbase Alpha is selected
- 5. Paste the contract address
- 6. If you have verified your contract, the ABI will be automatically imported. Otherwise, paste the contract ABI. This can be obtained either in [Remix](https://remix.ethereum.org){target=\_blank} or in the `.json` file generally created after the compilation process (for example, in Hardhat)
- 7. Once you've checked all the information, click on the **Create** button
-
-![OpenZeppelin Defender Access Control Add Contract](/images/builders/ethereum/dev-env/openzeppelin/defender/new/oz-defender-1.webp)
-
-If everything was successfully imported, you should see your contract on the **Access Control Contracts** main screen. You should see the address that you used to deploy the Pausable Box contract in the **Owner** field. If you see `0x0000000000000000000000000000000000000000`, this means that you didn't call the `initialize` function after deploying the Pausable Box contract. To simplify a later step, take a moment to add your address to your Defender Address Book by hovering over the address in the **Owner** field and clicking **Import into Defender 2.0**.  
-
-![OpenZeppelin Defender Access Control Contract Added](/images/builders/ethereum/dev-env/openzeppelin/defender/new/oz-defender-2.webp)
-
-Then, you can add your address to the Defender Address Book as follows: 
-
-1. Enter a name for your address
-2. Select the relevant network that the address pertains to
-3. Paste the address
-4. Review all the information and press **Create**
-
-![OpenZeppelin Defender Manage Address Book](/images/builders/ethereum/dev-env/openzeppelin/defender/new/oz-defender-3.webp)
-
-### Create a Contract Proposal {: #create-a-contract-proposal }
-
-Proposals are actions to be carried out in the contract. You can propose any function of the contract to be enacted, including but not limited to:
-
-- **Pause** — available if the pause feature is detected. Pauses token transfers, minting, and burning
-- **Upgrade** — available if the upgrade feature is detected. Allows for a contract to be [upgraded via a proxy contract](https://docs.openzeppelin.com/learn/upgrading-smart-contracts){target=\_blank}
-- **Admin action** — call to any function in the managed contract
-
-In this case, a new proposal is created to pause the contract. To do so, take the following steps:
-
- 1. Click on the **Actions** menu item 
- 2. Click **Transaction Proposals**
- 3. Enter a name for the proposal
- 4. Optionally, you may enter a description of the proposal
- 5. Select the target contract from the dropdown of [imported contracts](#importing-your-contract)
- 6. Select the function to be carried out as part of the proposal
- 7. Select the desired approval process. For demo purposes, a simple approval process consisting of only the owner will be created in the following step 
-
-![OpenZeppelin Defender Actions New Pause Proposal](/images/builders/ethereum/dev-env/openzeppelin/defender/new/oz-defender-4.webp)
-
-To create a simple new approval process consisting of only the contract owner, take the following steps:
-
- 1. Enter a name for the approval process
- 2. Select **EOA**
- 3. Select the owner of the Pausable Box contract
- 4. Review all information and press **Save Changes**
-
-![OpenZeppelin Defender Actions Create Approval Process](/images/builders/ethereum/dev-env/openzeppelin/defender/new/oz-defender-5.webp)
-
-The last step remaining is to submit the transaction proposal. To do so, take the following steps:
-
-1. Press **Connect Wallet** and connect your EVM account to Defender
-2. Press **Submit Transaction Proposal**
-
-![OpenZeppelin Defender Actions Contract Submit Proposal](/images/builders/ethereum/dev-env/openzeppelin/defender/new/oz-defender-6.webp)
-
-
-### Approve a Contract Proposal {: #approve-a-contract-proposal }
-
-Press **Continue**, and you'll be taken to the proposal status page. Here, you'll be able to execute the proposal. Press **Approve and Execute**, and confirm the transaction in your EVM wallet. Once the transaction is processed, the status should show **Executed**.
-
-![OpenZeppelin Defender Actions Contract Proposal Pause Approve and Execute](/images/builders/ethereum/dev-env/openzeppelin/defender/new/oz-defender-7.webp)
-
-If all went smoothly, your Pausable Box Contract is now paused. If you'd like to try out additional scenarios, you can try creating a proposal to unpause your contract. And that's it! You're now well on your way to mastering OpenZeppelin Defender to manage your smart contracts on Moonbeam. For more information, be sure to check out the [OpenZeppelin Defender Docs](https://docs.openzeppelin.com/defender/){target=\_blank}. 
-
-<div class="page-disclaimer">
-  The information presented herein has been provided by third parties and is made available solely for general information purposes. Moonbeam does not endorse any project listed and described on the Moonbeam Doc Website (https://docs.moonbeam.network/). Moonbeam Foundation does not warrant the accuracy, completeness or usefulness of this information. Any reliance you place on such information is strictly at your own risk. Moonbeam Foundation disclaims all liability and responsibility arising from any reliance placed on this information by you or by anyone who may be informed of any of its contents. All statements and/or opinions expressed in these materials are solely the responsibility of the person or entity providing those materials and do not necessarily represent the opinion of Moonbeam Foundation. The information should not be construed as professional or financial advice of any kind. Advice from a suitably qualified professional should always be sought in relation to any particular matter or circumstance. The information herein may link to or integrate with other websites operated or content provided by third parties, and such other websites may link to this website. Moonbeam Foundation has no control over any such other websites or their content and will have no liability arising out of or related to such websites or their content. The existence of any such link does not constitute an endorsement of such websites, the content of the websites, or the operators of the websites. These links are being provided to you only as a convenience and you release and hold Moonbeam Foundation harmless from any and all liability arising from your use of this information or the information provided by any third-party website or service.
-</div>
---- END CONTENT ---
-
 Doc-Content: https://docs.moonbeam.network/builders/ethereum/dev-env/remix/
 --- BEGIN CONTENT ---
 ---
@@ -3832,7 +3123,7 @@ To create a new smart contract using the [thirdweb CLI](https://portal.thirdweb.
     - Inheriting the contract by declaring that your contract is an `ERC721Base` contract
     - Implementing any required methods, such as the constructor
 
-5. After modifying your contract with your desired custom logic, you can deploy it to Moonbeam using [Deploy](https://portal.thirdweb.com/contracts#deploy-a-contract){target=\_blank}. That will be covered in the next section!
+5. After modifying your contract with your desired custom logic, you can deploy it to Moonbeam. That will be covered in the next section!
 
 Alternatively, you can deploy a prebuilt contract for NFTs, tokens, or marketplace directly from the thirdweb Explore page:
 
@@ -3845,11 +3136,11 @@ Alternatively, you can deploy a prebuilt contract for NFTs, tokens, or marketpla
 
 For more information on different contracts available on Explore, check out [thirdweb’s documentation on prebuilt contracts](https://portal.thirdweb.com/contracts){target=\_blank}.
 
-## Deploy Contract {: #deploy-contract }
+## Deploy a Contract {: #deploy-contract }
 
-[Deploy](https://portal.thirdweb.com/contracts#deploy-a-contract){target=\_blank} is thirdweb's tool that allows you to easily deploy a smart contract to any EVM compatible network without configuring RPC URLs, exposing your private keys, writing scripts, and other additional setup such as verifying your contract.
+thirdweb allows you to easily deploy a smart contract to any EVM compatible network without configuring RPC URLs, exposing your private keys, writing scripts, and other additional setup such as verifying your contract.
 
-1. To deploy your smart contract using deploy, navigate to the `contracts` directory of your project and execute the following command:
+1. To deploy your smart contract using the CLI, navigate to the `contracts` directory of your project and execute the following command:
 
     ```bash
     npx thirdweb deploy
@@ -3873,7 +3164,7 @@ For more information on different contracts available on Explore, check out [thi
 
     ![thirdweb deploy](/images/builders/ethereum/dev-env/thirdweb/thirdweb-2.webp)
 
-For additional information on Deploy, please reference [thirdweb’s documentation](https://portal.thirdweb.com/contracts#deploy-a-contract){target=\_blank}.
+For additional information on deploying contracts, please reference [thirdweb’s documentation](https://portal.thirdweb.com/contracts/deploy){target=\_blank}.
 
 ## Create Application {: #create-application }
 
@@ -5413,7 +4704,7 @@ function testMintOneEtherOrBelow(uint256 amountToMint) public {
 }
 ```
 
-This test includes `uint256 amountToMint` as input, which tells Foundry to fuzz with `uint256` inputs! By default, Foundry will input 256 different inputs, but this can be configured with the [`FOUNDRY_FUZZ_RUNS` environment variable](https://book.getfoundry.sh/reference/config/testing#runs){target=\_blank}.  
+This test includes `uint256 amountToMint` as input, which tells Foundry to fuzz with `uint256` inputs! By default, Foundry will input 256 different inputs, but this can be configured with the [`FOUNDRY_FUZZ_RUNS` environment variable](https://getfoundry.sh/config/reference/testing/#runs){target=\_blank}.  
 
 Additionally, the first line in the function uses `vm.assume` to only use inputs that are less than or equal to one ether since the `mint` function reverts if someone tries to mint more than one ether at a time. This cheatcode helps you direct the fuzzing into the right range.  
 
@@ -7357,7 +6648,7 @@ Finality is deterministic in Ethereum's PoS consensus protocol and is achieved t
 
 ## Moonbeam Consensus and Finality {: #moonbeam-consensus-and-finality }
 
-In Polkadot, there are collators and validators. [Collators](https://wiki.polkadot.network/docs/en/learn-collator){target=\_blank} maintain parachains (in this case, Moonbeam) by collecting transactions from users and producing state transition proofs for the relay chain [validators](https://wiki.polkadot.network/docs/en/learn-validator){target=\_blank}. The collator set (nodes that produce blocks) is selected based on the [stake they have in the network](/learn/features/consensus/){target=\_blank}.
+In Polkadot, there are collators and validators. [Collators](https://wiki.polkadot.network/learn/learn-collator/){target=\_blank} maintain parachains (in this case, Moonbeam) by collecting transactions from users and producing state transition proofs for the relay chain [validators](https://wiki.polkadot.network/learn/learn-validator/){target=\_blank}. The collator set (nodes that produce blocks) is selected based on the [stake they have in the network](/learn/features/consensus/){target=\_blank}.
 
 For finality, Polkadot and Kusama rely on [GRANDPA](https://docs.polkadot.com/polkadot-protocol/architecture/polkadot-chain/pos-consensus/#finality-gadget-grandpa){target=\_blank}. GRANDPA provides deterministic finality for any given transaction (block). In other words, when a block or transaction is marked as final, it can't be reverted except via on-chain governance or forking. Moonbeam follows this deterministic finality.
 
@@ -9119,7 +8410,7 @@ A high eligibility ratio results in fewer chances for the network to skip a bloc
 
 A lower eligibility ratio might provide faster block finalization times and a fairer block production distribution amongst collators. However, if the eligible collators are not able to propose a block (for whatever reason), the network will skip a block, affecting its stability.
 
-Once the size of the subset is defined, collators are randomly selected using a source of entropy. Currently, an internal coin-flipping algorithm is implemented, but this will later be migrated to use the relay chain's [randomness beacon](https://wiki.polkadot.network/docs/learn-randomness){target=\_blank}. Consequently, a new subset of eligible collators is selected for every relay chain block. For a given round and a given block `XYZ`, the following diagram describes the fixed-size subset filtering:
+Once the size of the subset is defined, collators are randomly selected using a source of entropy. Currently, an internal coin-flipping algorithm is implemented, but this will later be migrated to use [Verifiable random function](https://docs.polkadot.com/polkadot-protocol/parachain-basics/randomness/){target=\_blank}. Consequently, a new subset of eligible collators is selected for every relay chain block. For a given round and a given block `XYZ`, the following diagram describes the fixed-size subset filtering:
 
 ![Nimbus Parachain Staking Filter](/images/learn/features/consensus/consensus-2.webp)
 
@@ -10573,7 +9864,7 @@ This strategy allows us to de-risk software upgrades to Moonbeam on the Polkadot
 
 The Moonbeam production MainNet is a parachain on Polkadot and has been since December 17th, 2021. Moonbeam features the highest levels of security and availability. Code running on the MainNet has generally been vetted through one or more of the other networks listed above.
 
-Moonbeam will offer parachain-related functionalities such as [XCMP](https://wiki.polkadot.network/docs/learn-crosschain){target=\_blank} and [SPREE](https://wiki.polkadot.network/learn/learn-spree/){target=\_blank} as these features become available.
+Moonbeam will offer parachain-related functionalities such as [XCMP](https://wiki.polkadot.network/learn/learn-xcm-transport/#xcmp-cross-chain-message-passing){target=\_blank} and [SPREE](https://wiki.polkadot.network/learn/learn-spree/){target=\_blank} as these features become available.
 
 [Learn more about Moonbeam](/learn/platform/networks/moonbeam/).
 
@@ -10581,7 +9872,7 @@ Moonbeam will offer parachain-related functionalities such as [XCMP](https://wik
 
 In advance of deploying to the Polkadot MainNet, [Moonbeam launched Moonriver](https://moonbeam.network/news/moonriver-won-a-parachain-slot-and-is-now-producing-blocks-on-the-kusama-network){target=\_blank} as a parachain on the Kusama network. The parachain functionality is live on Kusama.
 
-Moonriver will offer parachain-related functionalities such as [XCMP](https://wiki.polkadot.network/docs/learn-crosschain){target=\_blank} and [SPREE](https://wiki.polkadot.network/learn/learn-spree/){target=\_blank} as these features become available.
+Moonriver will offer parachain-related functionalities such as [XCMP](https://wiki.polkadot.network/learn/learn-xcm-transport/#xcmp-cross-chain-message-passing){target=\_blank} and [SPREE](https://wiki.polkadot.network/learn/learn-spree/){target=\_blank} as these features become available.
 
 [Learn more about Moonriver](/learn/platform/networks/moonriver/).
 
@@ -10867,14 +10158,12 @@ Currently, the following OpenZeppelin products/solutions work on the different n
 |:---------------------:|:------------:|:-------------:|:------------------:|:---------------------:|
 | Contracts & libraries |      ✓       |       ✓       |         ✓          |           ✓           |
 |   Contracts Wizard    |      ✓       |       ✓       |         ✓          |           ✓           |
-|       Defender        |      ✓       |       ✓       |         ✓          |           X           |
 
 You will find a corresponding tutorial for each product in the following links:
 
  - [**Contracts Wizard**](/builders/ethereum/dev-env/openzeppelin/contracts/#openzeppelin-contract-wizard) — where you'll find a guide on how to use OpenZeppelin web-based wizard to create different token contracts with different functionalities
  - [**Contracts & libraries**](/builders/ethereum/dev-env/openzeppelin/contracts/#deploying-openzeppelin-contracts-on-moonbeam) — where you'll find tutorials to deploy the most common token contracts using OpenZeppelin's templates: ERC-20, ERC-721 and ERC-1155
- - [**Defender**](/builders/ethereum/dev-env/openzeppelin/defender/) — where you'll find a guide on how to use OpenZeppelin Defender to manage your smart contracts in the Moonbase Alpha TestNet. This guide can also be adapted for Moonbeam and Moonriver
-
+ 
 <div class="page-disclaimer">
   The information presented herein has been provided by third parties and is made available solely for general information purposes. Moonbeam does not endorse any project listed and described on the Moonbeam Doc Website (https://docs.moonbeam.network/). Moonbeam Foundation does not warrant the accuracy, completeness or usefulness of this information. Any reliance you place on such information is strictly at your own risk. Moonbeam Foundation disclaims all liability and responsibility arising from any reliance placed on this information by you or by anyone who may be informed of any of its contents. All statements and/or opinions expressed in these materials are solely the responsibility of the person or entity providing those materials and do not necessarily represent the opinion of Moonbeam Foundation. The information should not be construed as professional or financial advice of any kind. Advice from a suitably qualified professional should always be sought in relation to any particular matter or circumstance. The information herein may link to or integrate with other websites operated or content provided by third parties, and such other websites may link to this website. Moonbeam Foundation has no control over any such other websites or their content and will have no liability arising out of or related to such websites or their content. The existence of any such link does not constitute an endorsement of such websites, the content of the websites, or the operators of the websites. These links are being provided to you only as a convenience and you release and hold Moonbeam Foundation harmless from any and all liability arising from your use of this information or the information provided by any third-party website or service.
 </div>
@@ -12226,7 +11515,6 @@ As Moonbeam is a Substrate-based chain that is fully Ethereum-compatible, you ca
     |:---------------------------------------------------------------:|:---------------:|
     | [Web3.py](/builders/ethereum/libraries/web3py/){target=\_blank} |     Library     |
     |     [Ape](/builders/ethereum/dev-env/ape/){target=\_blank}      | Dev Environment |
-    | [Brownie](/builders/ethereum/dev-env/brownie/){target=\_blank}  | Dev Environment |
 
 === "Substrate"
 
@@ -12322,9 +11610,9 @@ categories: Basics, XCM
 
 [Polkadot's architecture](https://wiki.polkadot.network/learn/learn-architecture/){target=\_blank} allows parachains to natively interoperate with each other, enabling cross-blockchain transfers of any type of data or asset.
 
-To do so, a [Cross-Consensus Message (XCM)](https://wiki.polkadot.network/docs/learn-crosschain){target=\_blank} format defines a language around how the message transfer between two interoperating blockchains should be performed. XCM is not specific to Polkadot, as it aims to be a generic and extensible language between different consensus systems.
+To do so, a [Cross-Consensus Message (XCM)](https://wiki.polkadot.network/learn/learn-xcm/){target=\_blank} format defines a language around how the message transfer between two interoperating blockchains should be performed. XCM is not specific to Polkadot, as it aims to be a generic and extensible language between different consensus systems.
 
-This page is a brief introduction and overview of XCM and other related elements. More information can be found in [Polkadot's Wiki](https://wiki.polkadot.network/docs/learn-crosschain){target=\_blank}.
+This page is a brief introduction and overview of XCM and other related elements. More information can be found in [Polkadot's Wiki](https://wiki.polkadot.network/learn/learn-xcm/){target=\_blank}.
 
 If you want to jump to more XCM-related content, feel free to check out the following pages:
 
@@ -12464,7 +11752,7 @@ categories: XCM Remote Execution, Basics
 
 ## Introduction {: #introduction }
 
-The [Cross-Consensus Message (XCM)](https://wiki.polkadot.network/docs/learn-crosschain){target=\_blank} format defines how messages can be sent between interoperable blockchains. This format opens the door to sending an XCM message that executes an arbitrary set of bytes in a Moonbeam-based network, the relay chain, or other parachains in the Polkadot/Kusama ecosystems.
+The [Cross-Consensus Message (XCM)](https://wiki.polkadot.network/learn/learn-xcm/){target=\_blank} format defines how messages can be sent between interoperable blockchains. This format opens the door to sending an XCM message that executes an arbitrary set of bytes in a Moonbeam-based network, the relay chain, or other parachains in the Polkadot/Kusama ecosystems.
 
 Remote execution via XCM opens a new set of possibilities for cross-chain interactions, from chains executing actions on other chains to users performing remote actions without switching chains.
 
@@ -12520,7 +11808,7 @@ categories: Basics, XC-20
 
 ## Introduction {: #introduction }
 
-The [Cross-Consensus Message (XCM)](https://wiki.polkadot.network/docs/learn-crosschain){target=\_blank} format provides a universal way for blockchains to exchange messages and transfer assets. To extend this interoperability to the EVM, Moonbeam introduced XC-20s, ERC-20 tokens on Moonbeam that are fully compatible with XCM transfers.
+The [Cross-Consensus Message (XCM)](https://wiki.polkadot.network/learn/learn-xcm/){target=\_blank} format provides a universal way for blockchains to exchange messages and transfer assets. To extend this interoperability to the EVM, Moonbeam introduced XC-20s, ERC-20 tokens on Moonbeam that are fully compatible with XCM transfers.
 
 Any ERC-20 deployed on Moonbeam can be configured as an XC-20, making it accessible to any chain connected via XCM. This allows EVM-focused developers to work with familiar ERC-20 workflows while benefiting from Polkadot’s native cross-chain functionality, all without needing Substrate-specific expertise.
 
@@ -17535,7 +16823,7 @@ Not all runtime upgrades are released on each network, as sometimes after releas
 | [3700](https://forum.moonbeam.network/t/runtime-rt3700-schedule/2129){target=\_blank}    |                                   -                                    |                                    -                                    | [12152458](https://moonbase.subscan.io/block/12152458){target=\_blank} |
 | [3701](https://forum.moonbeam.network/t/runtime-rt3700-schedule/2129){target=\_blank}    |                                   [11426910](https://moonbeam.subscan.io/block/11426910)                                    |                                    [12003279](https://moonriver.subscan.io/block/12003279){target=\_blank}                                   | [12242104](https://moonbase.subscan.io/block/12242104){target=\_blank} |
 | [3702](https://forum.moonbeam.network/t/proposals-mr81-mb118-authorize-upgrade-to-rt3702-on-moonriver-and-moonbeam-via-whitelist/2173){target=\_blank}                                           | [11499659](https://moonbeam.subscan.io/block/11499659){target=\_blank} | [12156948](https://moonriver.subscan.io/block/12156948){target=\_blank} | [12683255](https://moonbase.subscan.io/block/12683255){target=\_blank} |
-| [3800](https://forum.moonbeam.network/t/runtime-rt3800-schedule/2188){target=\_blank}    |                                   -                                    |                                    -                                    | [12853655](https://moonbase.subscan.io/block/12853655){target=\_blank} |
+| [3800](https://forum.moonbeam.network/t/runtime-rt3800-schedule/2188){target=\_blank}    |                                   -                                    | [12540836](https://moonriver.subscan.io/block/12540836){target=\_blank} | [12853655](https://moonbase.subscan.io/block/12853655){target=\_blank} |
 --- END CONTENT ---
 
 Doc-Content: https://docs.moonbeam.network/builders/ethereum/canonical-contracts/

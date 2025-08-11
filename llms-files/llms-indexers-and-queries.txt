@@ -13,11 +13,11 @@ You are an AI developer assistant for Moonbeam (https://moonbeam.network/). Your
 - If unsure, respond with “Not specified in the documentation.
 
 ## List of doc pages:
-Doc-Page: https://raw.githubusercontent.com/moondance-labs/moonbeam-docs/refs/heads/main/https://docs.moonbeam.network/builders/integrations/indexers/covalent.md [type: builders]
-Doc-Page: https://raw.githubusercontent.com/moondance-labs/moonbeam-docs/refs/heads/main/https://docs.moonbeam.network/builders/integrations/indexers/moralis.md [type: builders]
-Doc-Page: https://raw.githubusercontent.com/moondance-labs/moonbeam-docs/refs/heads/main/https://docs.moonbeam.network/builders/integrations/indexers/subquery.md [type: builders]
-Doc-Page: https://raw.githubusercontent.com/moondance-labs/moonbeam-docs/refs/heads/main/https://docs.moonbeam.network/builders/integrations/indexers/subsquid.md [type: builders]
-Doc-Page: https://raw.githubusercontent.com/moondance-labs/moonbeam-docs/refs/heads/main/https://docs.moonbeam.network/builders/integrations/indexers/thegraph.md [type: builders]
+Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/main/builders/integrations/indexers/covalent.md [type: builders]
+Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/main/builders/integrations/indexers/moralis.md [type: builders]
+Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/main/builders/integrations/indexers/subquery.md [type: builders]
+Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/main/builders/integrations/indexers/subsquid.md [type: builders]
+Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/main/builders/integrations/indexers/thegraph.md [type: builders]
 
 ## Full content for each doc page
 
@@ -33,11 +33,11 @@ categories: Indexers and Queries
 
 ## Introduction {: #introduction }
 
-[GoldRush](https://goldrush.dev/){target=\_blank}, formerly known as Covalent, is a hosted blockchain data solution providing access to historical and current on-chain data for [100+ supported blockchains](https://goldrush.dev/docs/networks/?utm_source=moonbeam&utm_medium=partner-docs){target=\_blank}, including [Moonbeam](https://goldrush.dev/chains/moonbeam/){target=\_blank}, [Moonriver](https://goldrush.dev/chains/moonriver/){target=\_blank}, and [Moonbase Alpha](https://goldrush.dev/chains/moonbeam-moonbase-alpha-testnet/){target=\_blank}. GoldRush maintains a full archival copy of every supported blockchain, meaning every balance, transaction, log event, and NFT asset data is available from the genesis block. This data is available via:
+[GoldRush](https://goldrush.dev/){target=\_blank}, formerly known as Covalent, is a hosted blockchain data solution providing access to historical and current on-chain data for [100+ supported blockchains](https://goldrush.dev/docs/chains/overview#supported-chains){target=\_blank}, including [Moonbeam](https://goldrush.dev/docs/chains/moonbeam){target=\_blank}, [Moonriver](https://goldrush.dev/docs/chains/moonriver){target=\_blank}, and [Moonbase Alpha](https://goldrush.dev/docs/chains/moonbeam-moonbase-alpha){target=\_blank}. GoldRush maintains a full archival copy of every supported blockchain, meaning every balance, transaction, log event, and NFT asset data is available from the genesis block. This data is available via:
 
 - [Unified API](#unified-api-overview) - incorporate blockchain data into your app with a familiar REST API
 
-This guide will cover all of the details needed to get started with the [GoldRush API](https://goldrush.dev/docs/unified-api/){target=\_blank} and how to access the API endpoints for Moonbeam using curl commands and JavaScript and Python snippets.
+This guide will cover all of the details needed to get started with the [Foundational API](https://goldrush.dev/docs/goldrush-foundational-api/quickstart){target=\_blank} and how to access the API endpoints for Moonbeam using curl commands and JavaScript and Python snippets.
 
 <div class="intro-disclaimer">
   The information presented herein is for informational purposes only and has been provided by third parties. Moonbeam does not endorse any project listed and described on the Moonbeam docs website (https://docs.moonbeam.network/).
@@ -51,7 +51,7 @@ GoldRush's Unified API is a powerful but easy-to-use REST API that offers visibi
 
 It's easy to get started querying the Unified API after you've secured a GoldRush API Key. Make sure you have [your API Key](https://goldrush.dev/platform/auth/register/){target=\_blank} which begins with `cqt_` or `ckey_`. 
 
-You can interact with any of the API methods in the web interface of the GoldRush docs. To try out the token balances API, head to the [token balances docs](https://goldrush.mintlify.app/docs/api/balances/get-token-balances-for-address){target=\_blank} and take the following steps:
+You can interact with any of the API methods in the web interface of the GoldRush docs. To try out the token balances API, head to the [token balances docs](https://goldrush.dev/docs/api-reference/foundational-api/balances/get-token-balances-for-address){target=\_blank} and take the following steps:
 
 1. Paste in your API key
 2. Enter the desired `chainName`, such as `moonbeam-moonbase-alpha` for Moonbase Alpha. Reference the [Quick Start section](#quick-start) if you're unsure what the chainName should be for your desired network
@@ -104,7 +104,7 @@ The GoldRush API has three classes of endpoints:
 
 ### Sample Supported Endpoints {: #sample-supported-endpoints }
 
-For a full list of supported endpoints, refer to the [GoldRush API reference](https://goldrush.mintlify.app/api-reference/overview){target=\_blank}. A subset of the supported endpoints include:
+For a full list of supported endpoints, refer to the [GoldRush API reference](https://goldrush.dev/docs/api-reference/foundational-api/cross-chain/get-address-activity){target=\_blank}. A subset of the supported endpoints include:
 
 - **Token balances**- get all token balances (native, ERC-20, ERC-721, ERC-1155) with current market prices for an address
 - **Native token balances**- retrieve native token balance for an address
@@ -122,13 +122,13 @@ For a full list of supported endpoints, refer to the [GoldRush API reference](ht
 
 ## Unified API Methods {: #unified-api-methods }
 
-For more information on each of the methods of the Unified API and for an interactive interface to try out each of the methods, be sure to check out the [GoldRush docs](https://goldrush.mintlify.app/api-reference/overview){target=\_blank}.  
+For more information on each of the methods of the Unified API and for an interactive interface to try out each of the methods, be sure to check out the [GoldRush docs](https://goldrush.dev/docs/goldrush-foundational-api/overview){target=\_blank}.  
 
 ### Balances {: #balances }
 
 ???+ function "Token Balances"
 
-    The [token balances endpoint](https://goldrush.mintlify.app/docs/api/balances/get-token-balances-for-address){target=\_blank} retrieves native tokens, fungible (ERC-20) tokens, and non-fungible (ERC-721 & ERC-1155) tokens associated with a given address. The returned data includes current market prices and additional token metadata.
+    The [token balances endpoint](https://goldrush.dev/docs/api-reference/foundational-api/balances/get-token-balances-for-address){target=\_blank} retrieves native tokens, fungible (ERC-20) tokens, and non-fungible (ERC-721 & ERC-1155) tokens associated with a given address. The returned data includes current market prices and additional token metadata.
 
     === "Parameters"
 
@@ -194,7 +194,7 @@ For more information on each of the methods of the Unified API and for an intera
 
 ??? function "Native Token Balances"
 
-    The [native token balances endpoint](https://goldrush.mintlify.app/docs/api/balances/get-native-token-balance){target=\_blank} retrieves the native token balance for a given address in a streamlined manner. 
+    The [native token balances endpoint](https://goldrush.dev/docs/api-reference/foundational-api/balances/get-native-token-balance){target=\_blank} retrieves the native token balance for a given address in a streamlined manner. 
 
     === "Parameters"
 
@@ -245,7 +245,7 @@ For more information on each of the methods of the Unified API and for an intera
 
 ??? function "Get ERC-20 Token Transfers for Address"
 
-    [Get ERC-20 Token Transfers for Address](https://goldrush.mintlify.app/docs/api/balances/get-erc20-token-transfers-for-address){target=\_blank} is used to fetch the transfer-in and transfer-out of a token along with historical prices from an address, when provided both a wallet address and an ERC-20 token contract address
+    [Get ERC-20 Token Transfers for Address](https://goldrush.dev/docs/api-reference/foundational-api/balances/get-erc20-token-transfers-for-address){target=\_blank} is used to fetch the transfer-in and transfer-out of a token along with historical prices from an address, when provided both a wallet address and an ERC-20 token contract address
 
     === "Parameters"
 
@@ -339,7 +339,7 @@ For more information on each of the methods of the Unified API and for an intera
 
 ???+ function "Get a transaction"
 
-    [Get a transaction](https://goldrush.mintlify.app/docs/api/transactions/get-a-transaction){target=\_blank} is used fetch and render a single transaction including its decoded log events. 
+    [Get a transaction](https://goldrush.dev/docs/api-reference/foundational-api/transactions/get-a-transaction){target=\_blank} is used fetch and render a single transaction including its decoded log events. 
 
     === "Parameters"
 
@@ -465,7 +465,7 @@ For more information on each of the methods of the Unified API and for an intera
 
 ??? function "Get transaction summary for address"
 
-    [Get transaction summary for address](https://goldrush.mintlify.app/docs/api/transactions/get-transaction-summary-for-address){target=\_blank} retrieves key wallet activity data, including the first and most recent transactions, and total transaction count. It enables quick analysis of wallet age, inactive periods, and overall Web3 engagement levels.
+    [Get transaction summary for address](https://goldrush.dev/docs/api-reference/foundational-api/transactions/get-transaction-summary-for-address){target=\_blank} retrieves key wallet activity data, including the first and most recent transactions, and total transaction count. It enables quick analysis of wallet age, inactive periods, and overall Web3 engagement levels.
 
     === "Parameters"
 
@@ -513,7 +513,7 @@ For more information on each of the methods of the Unified API and for an intera
 
 ??? function "Get earliest transactions for address (v3)"
 
-    [Get earliest transactions for address](https://goldrush.mintlify.app/docs/api/transactions/get-earliest-transactions-for-address-v3){target=\_blank} retrieves the earliest transactions involving an address.
+    [Get earliest transactions for address](https://goldrush.dev/docs/api-reference/foundational-api/transactions/get-earliest-transactions-for-address-v3){target=\_blank} retrieves the earliest transactions involving an address.
 
     === "Parameters"
 
@@ -620,7 +620,7 @@ For more information on each of the methods of the Unified API and for an intera
 
 ??? function "Get recent transactions for address (v3)"
 
-    [Get recent transactions for address](https://goldrush.mintlify.app/docs/api/transactions/get-recent-transactions-for-address-v3){target=\_blank} retrieves the most recent transactions involving an address.
+    [Get recent transactions for address](https://goldrush.dev/docs/api-reference/foundational-api/transactions/get-recent-transactions-for-address-v3){target=\_blank} retrieves the most recent transactions involving an address.
 
     === "Parameters"
 
@@ -709,7 +709,7 @@ For more information on each of the methods of the Unified API and for an intera
 
 ??? function "Get paginated transactions for address (v3)"
 
-    [Get paginated transactions for address (v3)](https://goldrush.mintlify.app/docs/api/transactions/get-paginated-transactions-for-address-v3){target=\_blank} fetches the transactions involving an address and the specified page, starting from a 0 index.
+    [Get paginated transactions for address (v3)](https://goldrush.dev/docs/api-reference/foundational-api/transactions/get-paginated-transactions-for-address-v3){target=\_blank} fetches the transactions involving an address and the specified page, starting from a 0 index.
 
     === "Parameters"
 
@@ -775,7 +775,7 @@ For more information on each of the methods of the Unified API and for an intera
 
 ??? function "Get bulk time bucket transactions for address (v3)"
 
-    [Get bulk time bucket transactions for address (v3)](https://goldrush.mintlify.app/docs/api/transactions/get-time-bucket-transactions-for-address-v3){target=\_blank} is used to fetch all transactions including their decoded log events in a 15-minute time bucket interval.
+    [Get bulk time bucket transactions for address (v3)](https://goldrush.dev/docs/api-reference/foundational-api/transactions/get-time-bucket-transactions-for-address-v3){target=\_blank} is used to fetch all transactions including their decoded log events in a 15-minute time bucket interval.
 
     === "Parameters"
 
@@ -857,7 +857,7 @@ For more information on each of the methods of the Unified API and for an intera
 
 ??? function "Get all transactions in a block by page (v3)"
 
-    [Get all transactions in a block by page (v3)](https://goldrush.mintlify.app/docs/api/transactions/get-all-transactions-in-a-block-by-page){target=\_blank} is used to fetch all transactions including their decoded log events in a block and further flag interesting wallets or transactions.
+    [Get all transactions in a block by page (v3)](https://goldrush.dev/docs/api-reference/foundational-api/transactions/get-all-transactions-in-a-block-by-page){target=\_blank} is used to fetch all transactions including their decoded log events in a block and further flag interesting wallets or transactions.
 
     === "Parameters"
 
@@ -935,7 +935,7 @@ For more information on each of the methods of the Unified API and for an intera
 
 ??? function "Get all transactions in a block (v3)"
 
-    [Get all transactions in a block (v3)](https://goldrush.mintlify.app/docs/api/transactions/get-all-transactions-in-a-block){target=\_blank} is used to used to fetch all transactions including their decoded log events in a block and further flag interesting wallets or transactions. It takes a blockhash as a parameter and it does not accept a page parameter.
+    [Get all transactions in a block (v3)](https://goldrush.dev/docs/api-reference/foundational-api/transactions/get-all-transactions-in-a-block){target=\_blank} is used to used to fetch all transactions including their decoded log events in a block and further flag interesting wallets or transactions. It takes a blockhash as a parameter and it does not accept a page parameter.
 
     === "Parameters"
 
@@ -1011,7 +1011,7 @@ For more information on each of the methods of the Unified API and for an intera
 
 ???+ function "Get cross-chain activity for address"
 
-    [Get cross-chain activity for address](https://goldrush.mintlify.app/docs/api/cross-chain/get-address-activity){target=\_blank} is used to locate chains which an address is active on with a single API call
+    [Get cross-chain activity for address](https://goldrush.dev/docs/api-reference/foundational-api/cross-chain/get-address-activity){target=\_blank} is used to locate chains which an address is active on with a single API call
 
     === "Parameters"
 
@@ -1072,7 +1072,7 @@ For more information on each of the methods of the Unified API and for an intera
 
 ???+ function "Get token approvals for address"
 
-    [Get token approvals for address](https://goldrush.mintlify.app/docs/api/security/get-token-approvals-for-address){target=\_blank} is used to get a list of approvals across all token contracts categorized by spenders for a wallet’s assets
+    [Get token approvals for address](https://goldrush.dev/docs/api-reference/foundational-api/security/get-token-approvals-for-address){target=\_blank} is used to get a list of approvals across all token contracts categorized by spenders for a wallet’s assets
 
     === "Parameters"
 
@@ -1148,62 +1148,7 @@ For more information on each of the methods of the Unified API and for an intera
 }
         ```
 
-
-??? function "Get NFT approvals for address"
-
-    [Get NFT approvals for address](https://goldrush.mintlify.app/docs/api/security/get-nft-approvals){target=\_blank} is used to get a list of NFT approvals across all token contracts categorized by spenders for a wallet’s assets
-
-    === "Parameters"
-
-        - `chainName` *string* - e.g. `moonbeam-mainnet`, `moonbeam-moonriver`, or `moonbeam-moonbase-alpha` 
-        - `walletAddress` *string* - the address you wish to query
-
-    === "Example Request"
-
-        ```bash
-        curl --request GET \
-  --url https://api.covalenthq.com/v1/moonbeam-moonbase-alpha/nft/approvals/0xe469220D444D4c30361F1416082EA4Bf3f2A55B3/ \
-  --header 'Authorization: Bearer INSERT_API_KEY'
-        ```
-
-    === "Example Response"
-
-        ```bash
-        {
-  "data": {
-    "address": "0xe469220d444d4c30361f1416082ea4bf3f2a55b3",
-    "updated_at": "2024-10-09T02:15:19.177294353Z",
-    "chain_id": 1287,
-    "chain_name": "moonbeam-moonbase-alpha",
-    "items": [
-      {
-        "contract_address": "0x7806e7fc775c19fd747a93ab2c7ee96de61c6574",
-        "contract_address_label": null,
-        "contract_ticker_symbol": null,
-        "token_balances": [],
-        "spenders": [
-          {
-            "block_height": 2949079,
-            "tx_offset": 0,
-            "log_offset": 0,
-            "block_signed_at": "2022-10-03T23:39:36Z",
-            "tx_hash": "0xabe2cf9b495895fa1943c2f40f16a7127da6ddeadd50728acf648eb4cefc4ac8",
-            "spender_address": "0x9ebda263b3868970e117519903c597211a7b447b",
-            "spender_address_label": null,
-            "allowance": "UNLIMITED",
-            "token_ids_approved": "ALL"
-          }
-        ]
-      }
-    ]
-  },
-  "error": false,
-  "error_message": null,
-  "error_code": null
-}
-        ```
-
-Many more methods are offered by the GoldRush API, including NFT and Utility methods. Be sure to check out the [GoldRush docs](https://goldrush.mintlify.app/docs/api/overview){target=\_blank} for more information on each of these methods.  
+The GoldRush API offers many additional methods, including NFT, price, Bitcoin, and utility methods. Be sure to check out the [GoldRush API](https://goldrush.dev/docs/api-reference/foundational-api/cross-chain/get-address-activity){target=\_blank} for more information on each of these methods.  
 
 ## API Parameters and Resources {: #api-parameters-and-resources }
 
@@ -1375,7 +1320,7 @@ categories: Indexers and Queries
 
 ## Introduction {: #introduction }
 
-As a one-stop solution for blockchain development, [Moralis](https://developers.moralis.com/){target=\_blank} offers a comprehensive platform that empowers developers to create, launch, and scale decentralized applications (dApps) with ease.
+As a one-stop solution for blockchain development, [Moralis](https://moralis.com/){target=\_blank} offers a comprehensive platform that empowers developers to create, launch, and scale decentralized applications (dApps) with ease.
 
 It provides a suite of tools and services designed to streamline the process of accessing Web3 data and interacting with blockchain networks. Its offerings are structured into these primary categories:
 
@@ -2599,7 +2544,7 @@ Once your subgraph is ready for production, you can publish it to the decentrali
 !!! note
     Publishing requires Arbitrum ETH. When upgrading your subgraph, a small amount is airdropped to facilitate your initial protocol interactions.
 
-For publishing instructions, please refer to [The Graph's documentation](https://thegraph.com/docs/en/publishing/publishing-a-subgraph/){target=\_blank}.
+For publishing instructions, please refer to [The Graph's documentation](https://thegraph.com/docs/en/subgraphs/developing/publishing/publishing-a-subgraph/){target=\_blank}.
 
 ### Additional Resources {: #additional-resources }
 
@@ -2769,7 +2714,7 @@ Finality is deterministic in Ethereum's PoS consensus protocol and is achieved t
 
 ## Moonbeam Consensus and Finality {: #moonbeam-consensus-and-finality }
 
-In Polkadot, there are collators and validators. [Collators](https://wiki.polkadot.network/docs/en/learn-collator){target=\_blank} maintain parachains (in this case, Moonbeam) by collecting transactions from users and producing state transition proofs for the relay chain [validators](https://wiki.polkadot.network/docs/en/learn-validator){target=\_blank}. The collator set (nodes that produce blocks) is selected based on the [stake they have in the network](/learn/features/consensus/){target=\_blank}.
+In Polkadot, there are collators and validators. [Collators](https://wiki.polkadot.network/learn/learn-collator/){target=\_blank} maintain parachains (in this case, Moonbeam) by collecting transactions from users and producing state transition proofs for the relay chain [validators](https://wiki.polkadot.network/learn/learn-validator/){target=\_blank}. The collator set (nodes that produce blocks) is selected based on the [stake they have in the network](/learn/features/consensus/){target=\_blank}.
 
 For finality, Polkadot and Kusama rely on [GRANDPA](https://docs.polkadot.com/polkadot-protocol/architecture/polkadot-chain/pos-consensus/#finality-gadget-grandpa){target=\_blank}. GRANDPA provides deterministic finality for any given transaction (block). In other words, when a block or transaction is marked as final, it can't be reverted except via on-chain governance or forking. Moonbeam follows this deterministic finality.
 
@@ -4531,7 +4476,7 @@ A high eligibility ratio results in fewer chances for the network to skip a bloc
 
 A lower eligibility ratio might provide faster block finalization times and a fairer block production distribution amongst collators. However, if the eligible collators are not able to propose a block (for whatever reason), the network will skip a block, affecting its stability.
 
-Once the size of the subset is defined, collators are randomly selected using a source of entropy. Currently, an internal coin-flipping algorithm is implemented, but this will later be migrated to use the relay chain's [randomness beacon](https://wiki.polkadot.network/docs/learn-randomness){target=\_blank}. Consequently, a new subset of eligible collators is selected for every relay chain block. For a given round and a given block `XYZ`, the following diagram describes the fixed-size subset filtering:
+Once the size of the subset is defined, collators are randomly selected using a source of entropy. Currently, an internal coin-flipping algorithm is implemented, but this will later be migrated to use [Verifiable random function](https://docs.polkadot.com/polkadot-protocol/parachain-basics/randomness/){target=\_blank}. Consequently, a new subset of eligible collators is selected for every relay chain block. For a given round and a given block `XYZ`, the following diagram describes the fixed-size subset filtering:
 
 ![Nimbus Parachain Staking Filter](/images/learn/features/consensus/consensus-2.webp)
 
@@ -5985,7 +5930,7 @@ This strategy allows us to de-risk software upgrades to Moonbeam on the Polkadot
 
 The Moonbeam production MainNet is a parachain on Polkadot and has been since December 17th, 2021. Moonbeam features the highest levels of security and availability. Code running on the MainNet has generally been vetted through one or more of the other networks listed above.
 
-Moonbeam will offer parachain-related functionalities such as [XCMP](https://wiki.polkadot.network/docs/learn-crosschain){target=\_blank} and [SPREE](https://wiki.polkadot.network/learn/learn-spree/){target=\_blank} as these features become available.
+Moonbeam will offer parachain-related functionalities such as [XCMP](https://wiki.polkadot.network/learn/learn-xcm-transport/#xcmp-cross-chain-message-passing){target=\_blank} and [SPREE](https://wiki.polkadot.network/learn/learn-spree/){target=\_blank} as these features become available.
 
 [Learn more about Moonbeam](/learn/platform/networks/moonbeam/).
 
@@ -5993,7 +5938,7 @@ Moonbeam will offer parachain-related functionalities such as [XCMP](https://wik
 
 In advance of deploying to the Polkadot MainNet, [Moonbeam launched Moonriver](https://moonbeam.network/news/moonriver-won-a-parachain-slot-and-is-now-producing-blocks-on-the-kusama-network){target=\_blank} as a parachain on the Kusama network. The parachain functionality is live on Kusama.
 
-Moonriver will offer parachain-related functionalities such as [XCMP](https://wiki.polkadot.network/docs/learn-crosschain){target=\_blank} and [SPREE](https://wiki.polkadot.network/learn/learn-spree/){target=\_blank} as these features become available.
+Moonriver will offer parachain-related functionalities such as [XCMP](https://wiki.polkadot.network/learn/learn-xcm-transport/#xcmp-cross-chain-message-passing){target=\_blank} and [SPREE](https://wiki.polkadot.network/learn/learn-spree/){target=\_blank} as these features become available.
 
 [Learn more about Moonriver](/learn/platform/networks/moonriver/).
 
@@ -6279,14 +6224,12 @@ Currently, the following OpenZeppelin products/solutions work on the different n
 |:---------------------:|:------------:|:-------------:|:------------------:|:---------------------:|
 | Contracts & libraries |      ✓       |       ✓       |         ✓          |           ✓           |
 |   Contracts Wizard    |      ✓       |       ✓       |         ✓          |           ✓           |
-|       Defender        |      ✓       |       ✓       |         ✓          |           X           |
 
 You will find a corresponding tutorial for each product in the following links:
 
  - [**Contracts Wizard**](/builders/ethereum/dev-env/openzeppelin/contracts/#openzeppelin-contract-wizard) — where you'll find a guide on how to use OpenZeppelin web-based wizard to create different token contracts with different functionalities
  - [**Contracts & libraries**](/builders/ethereum/dev-env/openzeppelin/contracts/#deploying-openzeppelin-contracts-on-moonbeam) — where you'll find tutorials to deploy the most common token contracts using OpenZeppelin's templates: ERC-20, ERC-721 and ERC-1155
- - [**Defender**](/builders/ethereum/dev-env/openzeppelin/defender/) — where you'll find a guide on how to use OpenZeppelin Defender to manage your smart contracts in the Moonbase Alpha TestNet. This guide can also be adapted for Moonbeam and Moonriver
-
+ 
 <div class="page-disclaimer">
   The information presented herein has been provided by third parties and is made available solely for general information purposes. Moonbeam does not endorse any project listed and described on the Moonbeam Doc Website (https://docs.moonbeam.network/). Moonbeam Foundation does not warrant the accuracy, completeness or usefulness of this information. Any reliance you place on such information is strictly at your own risk. Moonbeam Foundation disclaims all liability and responsibility arising from any reliance placed on this information by you or by anyone who may be informed of any of its contents. All statements and/or opinions expressed in these materials are solely the responsibility of the person or entity providing those materials and do not necessarily represent the opinion of Moonbeam Foundation. The information should not be construed as professional or financial advice of any kind. Advice from a suitably qualified professional should always be sought in relation to any particular matter or circumstance. The information herein may link to or integrate with other websites operated or content provided by third parties, and such other websites may link to this website. Moonbeam Foundation has no control over any such other websites or their content and will have no liability arising out of or related to such websites or their content. The existence of any such link does not constitute an endorsement of such websites, the content of the websites, or the operators of the websites. These links are being provided to you only as a convenience and you release and hold Moonbeam Foundation harmless from any and all liability arising from your use of this information or the information provided by any third-party website or service.
 </div>
@@ -7638,7 +7581,6 @@ As Moonbeam is a Substrate-based chain that is fully Ethereum-compatible, you ca
     |:---------------------------------------------------------------:|:---------------:|
     | [Web3.py](/builders/ethereum/libraries/web3py/){target=\_blank} |     Library     |
     |     [Ape](/builders/ethereum/dev-env/ape/){target=\_blank}      | Dev Environment |
-    | [Brownie](/builders/ethereum/dev-env/brownie/){target=\_blank}  | Dev Environment |
 
 === "Substrate"
 
@@ -7734,9 +7676,9 @@ categories: Basics, XCM
 
 [Polkadot's architecture](https://wiki.polkadot.network/learn/learn-architecture/){target=\_blank} allows parachains to natively interoperate with each other, enabling cross-blockchain transfers of any type of data or asset.
 
-To do so, a [Cross-Consensus Message (XCM)](https://wiki.polkadot.network/docs/learn-crosschain){target=\_blank} format defines a language around how the message transfer between two interoperating blockchains should be performed. XCM is not specific to Polkadot, as it aims to be a generic and extensible language between different consensus systems.
+To do so, a [Cross-Consensus Message (XCM)](https://wiki.polkadot.network/learn/learn-xcm/){target=\_blank} format defines a language around how the message transfer between two interoperating blockchains should be performed. XCM is not specific to Polkadot, as it aims to be a generic and extensible language between different consensus systems.
 
-This page is a brief introduction and overview of XCM and other related elements. More information can be found in [Polkadot's Wiki](https://wiki.polkadot.network/docs/learn-crosschain){target=\_blank}.
+This page is a brief introduction and overview of XCM and other related elements. More information can be found in [Polkadot's Wiki](https://wiki.polkadot.network/learn/learn-xcm/){target=\_blank}.
 
 If you want to jump to more XCM-related content, feel free to check out the following pages:
 
@@ -7876,7 +7818,7 @@ categories: XCM Remote Execution, Basics
 
 ## Introduction {: #introduction }
 
-The [Cross-Consensus Message (XCM)](https://wiki.polkadot.network/docs/learn-crosschain){target=\_blank} format defines how messages can be sent between interoperable blockchains. This format opens the door to sending an XCM message that executes an arbitrary set of bytes in a Moonbeam-based network, the relay chain, or other parachains in the Polkadot/Kusama ecosystems.
+The [Cross-Consensus Message (XCM)](https://wiki.polkadot.network/learn/learn-xcm/){target=\_blank} format defines how messages can be sent between interoperable blockchains. This format opens the door to sending an XCM message that executes an arbitrary set of bytes in a Moonbeam-based network, the relay chain, or other parachains in the Polkadot/Kusama ecosystems.
 
 Remote execution via XCM opens a new set of possibilities for cross-chain interactions, from chains executing actions on other chains to users performing remote actions without switching chains.
 
@@ -7932,7 +7874,7 @@ categories: Basics, XC-20
 
 ## Introduction {: #introduction }
 
-The [Cross-Consensus Message (XCM)](https://wiki.polkadot.network/docs/learn-crosschain){target=\_blank} format provides a universal way for blockchains to exchange messages and transfer assets. To extend this interoperability to the EVM, Moonbeam introduced XC-20s, ERC-20 tokens on Moonbeam that are fully compatible with XCM transfers.
+The [Cross-Consensus Message (XCM)](https://wiki.polkadot.network/learn/learn-xcm/){target=\_blank} format provides a universal way for blockchains to exchange messages and transfer assets. To extend this interoperability to the EVM, Moonbeam introduced XC-20s, ERC-20 tokens on Moonbeam that are fully compatible with XCM transfers.
 
 Any ERC-20 deployed on Moonbeam can be configured as an XC-20, making it accessible to any chain connected via XCM. This allows EVM-focused developers to work with familiar ERC-20 workflows while benefiting from Polkadot’s native cross-chain functionality, all without needing Substrate-specific expertise.
 
@@ -12947,7 +12889,7 @@ Not all runtime upgrades are released on each network, as sometimes after releas
 | [3700](https://forum.moonbeam.network/t/runtime-rt3700-schedule/2129){target=\_blank}    |                                   -                                    |                                    -                                    | [12152458](https://moonbase.subscan.io/block/12152458){target=\_blank} |
 | [3701](https://forum.moonbeam.network/t/runtime-rt3700-schedule/2129){target=\_blank}    |                                   [11426910](https://moonbeam.subscan.io/block/11426910)                                    |                                    [12003279](https://moonriver.subscan.io/block/12003279){target=\_blank}                                   | [12242104](https://moonbase.subscan.io/block/12242104){target=\_blank} |
 | [3702](https://forum.moonbeam.network/t/proposals-mr81-mb118-authorize-upgrade-to-rt3702-on-moonriver-and-moonbeam-via-whitelist/2173){target=\_blank}                                           | [11499659](https://moonbeam.subscan.io/block/11499659){target=\_blank} | [12156948](https://moonriver.subscan.io/block/12156948){target=\_blank} | [12683255](https://moonbase.subscan.io/block/12683255){target=\_blank} |
-| [3800](https://forum.moonbeam.network/t/runtime-rt3800-schedule/2188){target=\_blank}    |                                   -                                    |                                    -                                    | [12853655](https://moonbase.subscan.io/block/12853655){target=\_blank} |
+| [3800](https://forum.moonbeam.network/t/runtime-rt3800-schedule/2188){target=\_blank}    |                                   -                                    | [12540836](https://moonriver.subscan.io/block/12540836){target=\_blank} | [12853655](https://moonbase.subscan.io/block/12853655){target=\_blank} |
 --- END CONTENT ---
 
 Doc-Content: https://docs.moonbeam.network/builders/ethereum/canonical-contracts/
