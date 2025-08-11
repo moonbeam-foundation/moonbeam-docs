@@ -53,7 +53,7 @@ To get started with the Hardhat Etherscan plugin, you will need to first install
 npm install --save-dev @nomicfoundation/hardhat-verify
 ```
 
-You can add your Etherscan API key to the `hardhat.config.js` file. Because Moonscan belongs to Etherscan’s ecosystem of 50-plus chains, a single key works across all supported networks, including Moonbeam, Moonriver, and Moonbase Alpha.
+You can add your Etherscan API key to the `hardhat.config.js` file.
 
 From within your Hardhat project, open your `hardhat.config.js` file. You'll need to import the `hardhat-verify` plugin, your Etherscan API key, and add the config for Etherscan:
 
