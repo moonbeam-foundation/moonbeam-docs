@@ -1,6 +1,7 @@
 ---
 title: The XCM Transactor Pallet
 description: This guide provides an introduction to the XCM Transactor Pallet and explains how to send remote calls to another chain using some of the pallet's extrinsics.
+categories: XCM Remote Execution
 ---
 
 # Using the XCM Transactor Pallet for Remote Execution

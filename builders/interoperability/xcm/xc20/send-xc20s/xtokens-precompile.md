@@ -1,6 +1,7 @@
 ---
 title: Send XC-20s to Other Chains
 description: Learn how to send assets cross-chain via Cross-Consensus Messaging (XCM) using the X-Tokens Precompile with familiar Ethereum libraries like Ethers and Web3.
+categories: Precompiles, XC-20, Ethereum Toolkit
 ---
 
 # Using the X-Tokens Precompile To Send XC-20s

@@ -1,6 +1,7 @@
 ---
 title: Get Started with Moonbeam
 description: Learn how to connect to Moonbeam via RPC and WSS endpoints, how to connect MetaMask to Moonbeam, and about the available Moonbeam block explorers.
+categories: Basics
 ---
 
 # Get Started with Moonbeam

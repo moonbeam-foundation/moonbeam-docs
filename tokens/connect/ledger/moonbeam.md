@@ -1,6 +1,7 @@
 ---
 title: Moonbeam App
 description: This guide walks you through how to use your Ledger hardware wallet to sign transactions in Moonbeam using the native Moonbeam Ledger Live app.
+categories: Tokens and Accounts, Ethereum Toolkit
 ---
 
 # Interacting with Moonbeam Using Ledger and the Moonbeam App

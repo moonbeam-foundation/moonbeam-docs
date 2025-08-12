@@ -2,6 +2,7 @@
 title: Randomness Precompile
 description: Learn about the sources of VRF randomness on Moonbeam and how to use the randomness precompile and consumer interface to generate on-chain randomness.
 keywords: solidity, ethereum, randomness, VRF, moonbeam, precompiled, contracts
+categories: Precompiles, Ethereum Toolkit
 ---
 
 # Interacting with the Randomness Precompile

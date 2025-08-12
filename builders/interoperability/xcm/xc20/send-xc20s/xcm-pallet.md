@@ -1,6 +1,7 @@
 ---
 title: Send XC-20s to Other Chains
 description: This guide introduces the Polkadot XCM Pallet and explains how to send XC-20s to another chain using some of the pallet's extrinsics.
+categories: XC-20
 ---
 
 # Using the Polkadot XCM Pallet To Send XC-20s

@@ -2,6 +2,7 @@
 title:  Call Permit Precompile Contract
 description: Learn how to use the Call Permit Precompile contract on Moonbeam to sign a permit for any EVM call that can be dispatched by anyone or any smart contract.
 keywords: solidity, ethereum, call permit, permit, gasless transaction, moonbeam, precompiled, contracts
+categories: Precompiles, Ethereum Toolkit
 ---
 
 # Interacting with the Call Permit Precompile

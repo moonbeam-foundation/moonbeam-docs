@@ -1,6 +1,7 @@
 ---
 title: How to use Polkadot.js Apps
 description: Follow this quick tutorial to learn how to use Moonbeam’s Ethereum-style H160 addresses and send transactions with Polkadot.js Apps.
+categories: Tokens and Accounts, Ethereum Toolkit
 ---
 
 # How to use Polkadot.js Apps to Interact with Moonbeam

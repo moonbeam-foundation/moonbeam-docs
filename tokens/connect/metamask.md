@@ -1,6 +1,7 @@
 ---
 title: How to Connect MetaMask
 description: This guide walks you through how to connect MetaMask, a browser-based Ethereum wallet, to Moonbeam-based networks and how to transfer funds.
+categories: Tokens and Accounts, Ethereum Toolkit
 ---
 
 # Interacting with Moonbeam Using MetaMask

@@ -1,6 +1,7 @@
 ---
 title: Precompile Registry
 description: Learn how to access and interact with the Precompile Registry on Moonbeam, which can be used to check if a given address is a precompile and if it is supported.
+categories: Precompiles, Ethereum Toolkit
 ---
 
 # Precompile Registry on Moonbeam

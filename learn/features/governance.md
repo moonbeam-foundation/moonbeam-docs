@@ -1,6 +1,7 @@
 ---
 title: Governance
 description: As a Polkadot parachain, Moonbeam uses an on-chain governance system, allowing for a stake-weighted vote on public referenda.
+categories: Governance, Basics
 ---
 
 # Governance on Moonbeam

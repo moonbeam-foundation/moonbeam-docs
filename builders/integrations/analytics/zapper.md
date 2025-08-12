@@ -1,6 +1,7 @@
 ---
 title: Portfolio Tracking on Moonbeam with Zapper
 description: Learn how to track your holdings on Moonbeam using Zapper and explore different DeFi platforms in the Moonbeam ecosystem.
+categories: Integrations
 ---
 
 # Portfolio Tracking with Zapper

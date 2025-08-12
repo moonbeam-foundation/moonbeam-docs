@@ -1,6 +1,7 @@
 ---
 title: Subscribe to Ethereum-style Events on Moonbeam
 description: Take a look at the non-standard Ethereum JSON-RPC methods supported on Moonbeam that offer publish-subscribe functionality for specific events.
+categories: JSON-RPC APIs, Ethereum Toolkit
 ---
 
 # Subscribe to Events

@@ -1,6 +1,7 @@
 ---
 title: Utility Tokens
 description: Each of the Moonbeam networks require a utility token to function. Glimmer (GLMR) for Moonbeam on Polkadot and Moonriver (MOVR) for Moonriver on Kusama.
+categories: Basics
 ---
 
 # Introduction

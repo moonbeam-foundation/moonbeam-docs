@@ -1,6 +1,7 @@
 ---
 title: How to Connect SubWallet to Moonbeam
-description: This guide walks you through how to connect SubWallet, a comprehensive Polkadot, Substrate, and Ethereum wallet, to Moonbeam. 
+description: This guide walks you through how to connect SubWallet, a comprehensive Polkadot, Substrate, and Ethereum wallet, to Moonbeam.
+categories: Tokens and Accounts, Ethereum Toolkit
 ---
 
 # Interacting with Moonbeam Using SubWallet

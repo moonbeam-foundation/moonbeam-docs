@@ -1,6 +1,7 @@
 ---
 title: Cross-Chain Via Hyperlane
 description: Learn about Hyperlane, a GMP protocol for cross-chain asset transfers, and how to get started building cross-chain applications with Hyperlane on Moonbeam.
+categories: GMP Providers
 ---
 
 # Hyperlane Protocol

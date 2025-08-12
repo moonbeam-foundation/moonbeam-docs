@@ -1,6 +1,7 @@
 ---
 title: Verify Smart Contracts with Plugins
 description: Learn how to verify smart contracts on Moonbeam networks using built-in tools from Hardhat and Foundry that support Moonscan’s API.
+categories: Ethereum Toolkit
 ---
 
 # Verify Smart Contracts with Etherscan Plugins

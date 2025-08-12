@@ -1,6 +1,7 @@
 ---
 title: DIA Oracle
 description: Learn how to request a dedicated DIA oracle for your dApp, enabling access to price data for 2500+ tokens, randomness, and more.
+categories: Oracle Nodes
 ---
 
 # Introduction to DIA Oracles

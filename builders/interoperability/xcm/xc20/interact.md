@@ -1,6 +1,7 @@
 ---
 title: Interact with XC-20s
 description: Check out the XC-20 Solidity interfaces, including the ERC-20 and ERC-20 Permit interfaces, and how to interact with external XC-20s using these interfaces.
+categories: XC-20
 ---
 
 # Interact with XC-20s on Moonbeam

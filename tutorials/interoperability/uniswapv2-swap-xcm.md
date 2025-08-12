@@ -2,6 +2,7 @@
 title: Uniswap V2 Swap on Moonbeam from Polkadot via XCM
 description: In this guide, we'll use remote EVM execution via XCM to perform a Uniswap V2 swap to showcase how Moonbeam can be leveraged in a connected contracts approach.
 template: main.html
+categories: Tutorials, XCM
 ---
 
 # Uniswap V2 Swap from Polkadot via XCM

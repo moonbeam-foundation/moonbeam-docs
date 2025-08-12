@@ -1,6 +1,7 @@
 ---
 title: Supra Oracles
 description: Supra's Pull Oracle provides low-latency, on-demand price feed updates for a variety of use cases. Learn how to integrate Supra's oracle on Moonbeam.
+categories: Oracle Nodes
 ---
 
 # Supra Oracles

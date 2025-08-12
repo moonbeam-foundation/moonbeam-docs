@@ -1,6 +1,7 @@
 ---
 title: Dapplooker
 description: Use Dapplooker to analyze and query on-chain data, and create dashboards to visualize analytics for Moonbeam and Moonriver.
+categories: Integrations
 ---
 
 # Getting Started with Dapplooker

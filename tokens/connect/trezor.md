@@ -1,6 +1,7 @@
 ---
 title: How to Connect & Use Trezor
 description: Learn how to import your Trezor hardware wallet to MetaMask and how to use your Trezor to sign transactions on Moonbeam.
+categories: Tokens and Accounts
 ---
 
 # Interacting with Moonbeam Using Trezor Hardware Wallet

@@ -1,6 +1,7 @@
 ---
 title: Cross-Chain Via LayerZero
 description: Learn about LayerZero, a GMP protocol for cross-chain asset transfers, and how to get started building cross-chain applications with LayerZero on Moonbeam.
+categories: GMP Providers
 ---
 
 # LayerZero Protocol

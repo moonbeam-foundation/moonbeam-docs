@@ -1,6 +1,7 @@
 ---
 title: Add Token Information on Moonscan
 description: Add token information and create a token profile on Moonscan for ERC-20, ERC-721, and ERC-1155 tokens deployed to Moonbeam-based networks.
+categories: Tokens and Accounts, Ethereum Toolkit
 ---
 
 # Add Token Information on Moonscan

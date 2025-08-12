@@ -2,6 +2,7 @@
 title: Parachain Staking Pallet
 description: Learn about the Parachain Staking Pallet interface on Moonbeam, which can be used to perform delegator and collator activities and retrieve staking information.
 keywords: staking, substrate, pallet, moonbeam, polkadot
+categories: Substrate Toolkit, Staking
 ---
 
 # The Parachain Staking Pallet

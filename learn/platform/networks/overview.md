@@ -1,6 +1,7 @@
 ---
 title: Overview of Networks
 description: An overview of all of the MainNet and TestNet deployments of Moonbeam, an Ethereum-compatible smart contract parachain on Polkadot and Kusama.
+categories: Basics
 ---
 
 # Networks

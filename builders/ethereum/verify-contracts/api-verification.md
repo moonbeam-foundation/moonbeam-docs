@@ -1,6 +1,7 @@
 ---
 title: Verify Smart Contracts through APIs
-description: Learn how to verify smart contracts on Moonbeam-based networks using one of the available API-based verification methods. 
+description: Learn how to verify smart contracts on Moonbeam-based networks using one of the available API-based verification methods.
+categories: Ethereum Toolkit
 ---
 
 # API-based Contract Verification

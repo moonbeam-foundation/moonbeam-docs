@@ -1,6 +1,7 @@
 ---
 title: Standard Ethereum JSON-RPC Methods
-description: Explore a comprehensive list of standard Ethereum JSON-RPC methods that can be used to interface with Moonbeam nodes programmatically. 
+description: Explore a comprehensive list of standard Ethereum JSON-RPC methods that can be used to interface with Moonbeam nodes programmatically.
+categories: JSON-RPC APIs, Reference, Ethereum Toolkit
 ---
 
 # Supported Ethereum RPC Methods

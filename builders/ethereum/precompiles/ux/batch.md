@@ -2,6 +2,7 @@
 title:  Batch Precompile Contract
 description: Learn how to transact multiple transfers and contract interactions at once via a Solidity interface with Moonbeam's Batch Precompile contract.
 keywords: solidity, ethereum, batch, transaction, moonbeam, precompiled, contracts
+categories: Precompiles, Ethereum Toolkit
 ---
 
 # Interacting with the Batch Precompile

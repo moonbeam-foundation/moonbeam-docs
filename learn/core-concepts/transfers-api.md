@@ -1,6 +1,7 @@
 ---
 title: Transfer & Monitor Balances on Moonbeam
 description: A description of the main differences that developers need to understand in terms of the different balance transfers available on Moonbeam compared to Ethereum.
+categories: Basics
 ---
 
 # Balance Transfers on Moonbeam

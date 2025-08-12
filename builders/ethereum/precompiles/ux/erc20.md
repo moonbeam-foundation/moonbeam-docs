@@ -2,6 +2,7 @@
 title:  Native Token ERC-20 Precompile
 description:  Learn how to access and interact with an ERC-20 representation of the native token on Moonbeam through the precompiled ERC-20 Interface.
 keywords: solidity, ethereum, native, token, moonbeam, precompiled, contracts
+categories: Precompiles, Ethereum Toolkit
 ---
 
 #  Native Token ERC-20 Precompile

@@ -1,6 +1,7 @@
 ---
 title: Quickly Get Started
 description: Everything you need to know to get started developing, deploying, and interacting with smart contracts on Moonbeam.
+categories: Basics
 ---
 
 # Quick Start Guide for Developing on Moonbeam

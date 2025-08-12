@@ -1,6 +1,7 @@
 ---
 title: Razor Network Oracle
 description: How to request data from a Razor Network Oracle in your Moonbeam Ethereum DApp using smart contracts.
+categories: Oracle Nodes
 ---
 
 # Razor Network Oracle

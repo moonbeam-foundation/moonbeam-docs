@@ -2,6 +2,7 @@
 title: Utility Pallet
 description: Learn about the available extrinsics for the Utility Pallet on Moonbeam and how to interact with them using Polkadot.js Apps and the Polkadot.js API.
 keywords: utility, batch, substrate, pallet, moonbeam, polkadot
+categories: Substrate Toolkit
 ---
 
 # The Utility Pallet
