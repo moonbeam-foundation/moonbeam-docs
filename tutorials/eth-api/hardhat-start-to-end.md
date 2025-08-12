@@ -21,7 +21,7 @@ To get started, you will need the following:
 
  - A Moonbase Alpha account funded with DEV.
   --8<-- 'text/_common/faucet/faucet-list-item.md'
- - A [Moonscan API Key](/builders/ethereum/verify-contracts/etherscan-plugins/#generating-a-moonscan-api-key){target=\_blank}
+ - An [Etherscan API Key](/builders/ethereum/verify-contracts/etherscan-plugins/#generating-an-etherscan-api-key){target=\_blank}
  - For the [Testing section](#running-your-tests), you'll need to have [a local Moonbeam node up and running](/builders/get-started/networks/moonbeam-dev/){target=\_blank}
  - 
   --8<-- 'text/_common/endpoint-examples-list-item.md'
@@ -259,7 +259,7 @@ Then, update your configuration file to use the encrypted secrets:
     };
     ```
 
-For this example, you'll need to add your private keys for your two accounts on Moonbase Alpha. Since some of the testing will be done on a development node, you'll also need to add the private keys of two of the pre-funded development node accounts, which, for this example, we can use Alice and Bob. In addition, you'll add your Moonscan API key, which can be used for both Moonbase Alpha and Moonbeam.
+For this example, you'll need to add your private keys for your two accounts on Moonbase Alpha. Since some of the testing will be done on a development node, you'll also need to add the private keys of two of the pre-funded development node accounts, which, for this example, we can use Alice and Bob. In addition, you'll add your Etherscan API key, which can be used for both Moonbase Alpha and Moonbeam.
 
 ```js
 // 1. Import the Hardhat Toolbox plugin
@@ -297,12 +297,12 @@ module.exports = {
       accounts: [configVariable("MOONBEAM_PRIVATE_KEY")],
     },
   },
-  // 4. Set up your Moonscan API key for contract verification
-  // Moonbeam and Moonbase Alpha Moonscan use the same API key
+  // 4. Set up your Etherscan API key for contract verification
+  // Moonbeam and Moonbase Alpha use the same Etherscan API key
   etherscan: {
     apiKey: {
-      moonbaseAlpha: configVariable("MOONSCAN_API_KEY"), // Moonbase Moonscan API Key
-      moonbeam: configVariable("MOONSCAN_API_KEY"), // Moonbeam Moonscan API Key
+      moonbaseAlpha: configVariable("ETHERSCAN_API_KEY"),
+      moonbeam: configVariable("ETHERSCAN_API_KEY"),
     },
   },
 };
@@ -607,7 +607,7 @@ Contract verification is an essential step of any developer's workflow, particul
 
 While it's possible to verify smart contracts on the [Moonscan website](https://moonscan.io/verifyContract){target=\_blank}, the Hardhat Etherscan plugin enables us to verify our staking DAO in a faster and easier manner. It's not an exaggeration to say that the plugin dramatically simplifies the contract verification process, especially for projects that include multiple Solidity files or libraries.
 
-Before beginning the contract verification process, you'll need to [acquire a Moonscan API Key](/builders/ethereum/verify-contracts/etherscan-plugins/#generating-a-moonscan-api-key){target=\_blank}. Note that Moonbeam and Moonbase Alpha use the same [Moonbeam Moonscan](https://moonscan.io){target=\_blank} API key, whereas you'll need a distinct API key for [Moonriver](https://moonriver.moonscan.io){target=\_blank}.
+Before beginning the contract verification process, you'll need to [acquire an Etherscan API Key](/builders/ethereum/verify-contracts/etherscan-plugins/#generating-an-etherscan-api-key){target=\_blank}. Note that Moonbeam, Moonriver, and Moonbase Alpha all use the same unified [Etherscan](https://etherscan.io){target=\_blank} API key.
 
 To verify the contract, you will run the `ignition verify` command and pass the name of your deployment you set in the prior step.
 
@@ -674,7 +674,7 @@ Congratulations, your contract is live on Moonbeam! Save the address, as you wil
 
 ## Verifying Contracts on Moonbeam {: #verifying-contracts-on-moonbeam }
 
-In this section, we'll be verifying the contract that was just deployed on Moonbeam. Before beginning the contract verification process, you'll need to [acquire a Moonscan API Key](/builders/ethereum/verify-contracts/etherscan-plugins/#generating-a-moonscan-api-key){target=\_blank}. Note that Moonbeam and Moonbase Alpha use the same [Moonbeam Moonscan](https://moonscan.io){target=\_blank} API key, whereas you'll need a distinct API key for [Moonriver](https://moonriver.moonscan.io){target=\_blank}.
+In this section, we'll be verifying the contract that was just deployed on Moonbeam. Before beginning the contract verification process, you'll need to [acquire an Etherscan API Key](/builders/ethereum/verify-contracts/etherscan-plugins/#generating-an-etherscan-api-key){target=\_blank}. Note that Moonbeam, Moonriver, and Moonbase Alpha all use the same unified [Etherscan](https://etherscan.io){target=\_blank} API key.
 
 To verify the contract, you will run the `ignition verify` command and pass the name of your deployment you set in the prior step.
 
