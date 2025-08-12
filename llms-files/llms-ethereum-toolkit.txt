@@ -2937,7 +2937,7 @@ To get started, you will need the following:
 
 - An account with funds.
   You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}
-- [A Moonscan API key](/builders/ethereum/verify-contracts/etherscan-plugins/#generating-a-moonscan-api-key){target=\_blank}
+- An [Etherscan API key](/builders/ethereum/verify-contracts/etherscan-plugins/#generating-an-etherscan-api-key){target=\_blank}
 - 
   To test out the examples in this guide on Moonbeam or Moonriver, you will need to have your own endpoint and API key, which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=\_blank}
 
@@ -2965,7 +2965,7 @@ The process for developing a project with Scaffold-ETH 2 can be outlined as foll
 2. Add your smart contracts to the `packages/hardhat/contracts`
 3. Edit your deployment scripts in the `packages/hardhat/deploy`
 4. Deploy your smart contracts to Moonbeam
-5. Verify your smart contracts with the Etherscan plugin and your Moonscan API key
+5. Verify your smart contracts with the Etherscan plugin and your Etherscan API key
 6. Configure your frontend to target Moonbeam in the `packages/nextjs/scaffold.config.ts` file
 7. Edit your frontend as needed in the `packages/nextjs/pages` directory
 
@@ -2981,7 +2981,7 @@ You can begin by making modifications to the Hardhat component under the `packag
 
 You can refer to the `.env.example` file for the variables that are already used in the `hardhat.config.js` file. For Moonbeam, you'll only need to manually create one variable, the `ETHERSCAN_API_KEY`.
 
-Check out the [Etherscan Plugins](/builders/ethereum/verify-contracts/etherscan-plugins/#generating-a-moonscan-api-key){target=\_blank} documentation to learn how to generate a Moonscan API key.
+Check out the [Etherscan Plugins](/builders/ethereum/verify-contracts/etherscan-plugins/#generating-an-etherscan-api-key){target=\_blank} documentation to learn how to generate an Etherscan API key.
 
 To get started, create a `.env` file:
 
@@ -2992,7 +2992,7 @@ touch packages/hardhat/.env
 Edit your `.env` file to include the following variables:
 
 ```text
-ETHERSCAN_API_KEY=INSERT_MOONSCAN_API_KEY
+ETHERSCAN_API_KEY=INSERT_ETHERSCAN_API_KEY
 ```
 
 Next, import your deployment account by either generating a new one with `yarn generate` or importing an existing one using `yarn account:import`. If importing, you'll need to provide your private key and create a password to encrypt it. The encrypted key will be saved in your `.env` file. Keep your password safe as you'll need it to decrypt the private key for future deployments. Remember to never share or commit your private keys or `.env` file. For this example, we'll import an existing private key with the following command: 
@@ -3013,7 +3013,7 @@ yarn account:import
     <span data-ty="input"> </span>
 </div>
 
-The private key you add in the account import workflow corresponds to the account that will deploy and interact with the smart contracts in your Hardhat project. Additionally, the Etherscan API key will correspond to your Moonscan API key and will be used to verify your deployed smart contracts. To learn how to generate a Moonscan API key, check out the [Etherscan Plugins](/builders/ethereum/verify-contracts/etherscan-plugins/#generating-a-moonscan-api-key){target=\_blank} documentation.
+The private key you add in the account import workflow corresponds to the account that will deploy and interact with the smart contracts in your Hardhat project. Additionally, the Etherscan API key will correspond to your Etherscan API key and will be used to verify your deployed smart contracts. To learn how to generate an Etherscan API key, check out the [Etherscan Plugins](/builders/ethereum/verify-contracts/etherscan-plugins/#generating-an-etherscan-api-key){target=\_blank} documentation.
 
 With the deployment account and the Etherscan API key taken care of, next you can modify the `hardhat.config.js` file for Moonbeam:
 
@@ -3129,7 +3129,7 @@ yarn deploy
 
 ### Verify Your Deployed Contract {: #verify-contracts }
 
-If you would also like to use Scaffold-ETH 2 to verify the deployed smart contract and have entered your Moonscan API key into the `.env` file, you can go ahead and verify your deployed contract.
+If you would also like to use Scaffold-ETH 2 to verify the deployed smart contract and have entered your Etherscan API key into the `.env` file, you can go ahead and verify your deployed contract.
 
 If the smart contract you are verifying has constructor method parameters, you will also need to append the parameters used to the end of the command.
 
@@ -3272,8 +3272,6 @@ The Tenderly platform provides the following features:
 
 - **[Web3 Actions](https://docs.tenderly.co/web3-actions/intro-to-web3-actions){target=\_blank}** - create programmable functions in JavaScript or TypeScript that are executed automatically by Tenderly when a specific smart contract or chain event occurs
 
-- **[Sandbox](https://sandbox.tenderly.co){target=\_blank}** - write, compile, execute, and debug your smart contracts directly in your browser with baked-in JavaScript and Solidity editors. Every time you run your code, Tenderly creates a temporary fork that comes with 10 pre-funded accounts, each with 100 tokens for testing purposes
-
 !!! note
     Tenderly supports Moonbeam, Moonriver, and Moonbase Alpha, except for the Web3 Gateway. For more information, check out Tenderly's documentation on [Supported Networks](https://docs.tenderly.co/supported-networks#supported-networks){target=\_blank}.
 
@@ -3289,19 +3287,6 @@ To interact with Tenderly's features programmatically, you can check out the [Te
 
 The following sections will show you how to get started with Tenderly on Moonbeam. For more detailed documentation, please refer to [Tenderly's documentation site](https://docs.tenderly.co){target=\_blank}.
 
-### Create a Sandbox {: #create-a-moonbeam-sandbox }
-
-To deploy contracts to Moonbeam with a Tenderly Sandbox, you can navigate to [sandbox.tenderly.co](https://sandbox.tenderly.co){target=\_blank} and take the following steps:
-
-1. Enter your smart contract into the Solidity editor on the left-hand side
-2. Click **Configure** to select **Moonbeam**, **Moonriver**, or **Moonbase Alpha** as the network to deploy to
-3. Update the JavaScript editor on the right. The Sandbox includes [Ethers.js](https://github.com/ethers-io/ethers.js){target=_blank} and [Web3.js](https://github.com/web3/web3.js){target=_blank}, accessible via `ethers` and `web3`. It also provides [global variables](https://docs.tenderly.co/tenderly-sandbox#available-javascript-global-variables){target=_blank}, so you don’t need to update the RPC URL for Moonbeam
-4. Click on **RUN** when you're ready to compile your contract and execute your code
-
-If your code contained logic to deploy your contract or send a transaction, you'll see the transaction(s) appear under the **Simulated Transactions** section on the bottom left-hand side.
-
-![Tenderly Sandbox](/images/builders/ethereum/dev-env/tenderly/tenderly-2.webp)
-
 ### Add a Contract {: #add-a-contract }
 
 A good place to start with the Tenderly dashboard is to add a deployed smart contract. Once you've added a contract, you'll be able to create transaction simulations and Virtual TestNets, use the debugger, set up monitoring and alerts, and more.
@@ -3314,11 +3299,11 @@ To add a new contract, you can click on **Contracts** on the left-side panel and
 4. (Optional) Toggle the **Add more** slider to add additional contracts after the initial one
 5. Finally, to add the contract to the dashboard, click **Save**
 
-![Add a contract](/images/builders/ethereum/dev-env/tenderly/tenderly-3.webp)
+![Add a contract](/images/builders/ethereum/dev-env/tenderly/tenderly-2.webp)
 
 After a contract has been added, it will appear in the list of contracts on the **Contracts** dashboard. If the contract hasn't been verified yet, the dashboard will display an **Unverified** status along with a **Verify** button.
 
-![Contract in list of contracts](/images/builders/ethereum/dev-env/tenderly/tenderly-4.webp)
+![Contract in list of contracts](/images/builders/ethereum/dev-env/tenderly/tenderly-3.webp)
 
 To take full advantage of the Tenderly tool set, it is recommended that you verify your smart contracts, which you can do by clicking on **Verify**. You can choose to verify your contract by uploading the contract's JSON, ABI, or source code. For more information, please refer to Tenderly's documentation on [Smart Contract Verification](https://docs.tenderly.co/contract-verification#verifying-a-smart-contract){target=\_blank}.
 
@@ -3338,7 +3323,7 @@ Tenderly makes creating a TestNet through the dashboard quite simple. To get sta
 6. To limit data, disable **Use latest block** and enter a block number, or keep it enabled to include all blocks
 7. Click **Create**
 
-![Virtual TestNet Moonbeam](/images/builders/ethereum/dev-env/tenderly/tenderly-5.webp)
+![Virtual TestNet Moonbeam](/images/builders/ethereum/dev-env/tenderly/tenderly-4.webp)
 
 Once you've created your Virtual TestNet, you can start using it by deploying a contract or creating a transaction simulation.
 
@@ -3346,7 +3331,7 @@ To deploy a contract, go to Contracts in the left menu. Use one from **Watched C
 
 To create a simulation, click the **Simulation** button and enter the configurations for the simulation. For more information on simulations, please refer to Tenderly's [Simulator UI Overview](https://docs.tenderly.co/simulator-ui/using-simulation-ui){target=\_blank} documentation.
 
-![TestNet simulations](/images/builders/ethereum/dev-env/tenderly/tenderly-6.webp)
+![TestNet simulations](/images/builders/ethereum/dev-env/tenderly/tenderly-5.webp)
 
 Now that you've learned how to get started with a few of Tenderly's features on Moonbeam, please feel free to dive in and check out the other tools available in their development platform. You can visit [Tenderly's documentation site](https://docs.tenderly.co){target=\_blank} for more information. You can also check out Moonbeam's tutorial on [Using Tenderly to Simulate and Debug Transactions](/tutorials/eth-api/using-tenderly/){target=\_blank}.
 
@@ -17009,11 +16994,11 @@ This page will outline the steps for using these API-based tools for verifying s
 
 [Moonscan](https://moonscan.io){target=\_blank} is an official fork of Etherscan that can be used to view and search on-chain data, and comes with a suite of developer tools and analytics to interact with data on Moonbeam networks.
 
-Moonscan exposes a set of REST API endpoints similar to the [Etherscan API](https://docs.etherscan.io){target=\_blank} endpoints that can be used to verify smart contracts, retrieve verified contract ABI and source code, or otherwise interact with verified contracts on Moonbeam networks.
+The [Etherscan API](https://docs.etherscan.io){target=\_blank} provides a variety of endpoints for verifying smart contracts, retrieving verified contract ABI and source code, and interacting with verified contracts on Moonbeam networks.
 
-### Generating a Moonscan API Key {: #generating-a-moonscan-api-key }
+### Generating an Etherscan API Key {: #generating-an-etherscan-api-key }
 
-Before using the Moonscan API, you need to generate a Moonscan API key. Please follow the instructions in [the key generation section](/builders/ethereum/verify-contracts/etherscan-plugins/#generating-a-moonscan-api-key){target=\_blank} of the Etherscan plug-in verification page, as the API keys generated are used for both.
+Before using the Moonscan API, you need to generate an Etherscan API key. Please follow the instructions in [the key generation section](/builders/ethereum/verify-contracts/etherscan-plugins/#generating-an-etherscan-api-key){target=\_blank} of the Etherscan plug-in verification page, as the API keys generated are used for both.
 
 ### Moonscan Public API URL {: #moonscan-public-api-url }
 
@@ -17751,12 +17736,14 @@ To follow along with this tutorial, you will need to have:
 - [MetaMask installed and connected to the Moonbase Alpha](/tokens/connect/metamask/){target=\_blank} TestNet
 - An account funded with `DEV` tokens.
  You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}
-- A Moonscan API key for the network you're trying to verify a contract on. For Moonbeam and Moonbase Alpha, you'll need a [Moonbeam Moonscan](https://moonscan.io){target=\_blank} API key. For Moonriver, you'll need a [Moonriver Moonscan](https://moonriver.moonscan.io){target=\_blank} API key
+- An Etherscan API key
 - Git installed and configured
 
-## Generating a Moonscan API Key {: generating-a-moonscan-api-key }
+## Generating an Etherscan API Key {: generating-an-etherscan-api-key }
 
-To generate a Moonscan API Key, you will need to sign up for an account. Depending on which network you want to verify a contract on, you'll have to make sure you create an API key from the correct network on Moonscan. For Moonbeam or Moonbase Alpha, you can navigate to the [Moonbeam Moonscan](https://moonscan.io){target=\_blank}. For Moonriver, you can head to the [Moonriver Moonscan](https://moonriver.moonscan.io){target=\_blank}. To sign up for an account, you can take the following steps:
+To verify contracts on Moonscan for any Moonbeam network, you’ll need an [Etherscan API key](https://docs.etherscan.io/etherscan-v2/getting-an-api-key){target=\_blank}. Because Moonscan is part of Etherscan’s ecosystem, a single key works across all supported networks.
+
+To create an [Etherscan account](https://etherscan.io/){target=\_blank} and generate your key, follow these steps:
 
 1. Click **Sign In**
 2. Select **Click to sign up** and then register your new account
@@ -17765,7 +17752,7 @@ To generate a Moonscan API Key, you will need to sign up for an account. Dependi
 
 Once you have an account and are signed in, you will then be able to create an API key.
 
-1. Select **API-KEYs** from the left side menu
+1. Select **API Dashboard** from the left side menu
 2. To add a new key, click the **+ Add** button
 
 ![Add an API key](/images/builders/ethereum/verify-contracts/etherscan-plugins/plugins-2.webp)
@@ -17782,9 +17769,9 @@ To get started with the Hardhat Etherscan plugin, you will need to first install
 npm install --save-dev @nomicfoundation/hardhat-verify
 ```
 
-You can add your Moonscan API key to the `hardhat.config.js` file. For this example, you'll need a [Moonbeam Moonscan](https://moonscan.io){target=\_blank} API key. If you want to verify a contract on Moonriver, you'll need a [Moonriver Moonscan](https://moonriver.moonscan.io){target=\_blank} API key.
+You can add your Etherscan API key to the `hardhat.config.js` file.
 
-From within your Hardhat project, open your `hardhat.config.js` file. You'll need to import the `hardhat-verify` plugin, your Moonscan API key, and add the config for Etherscan:
+From within your Hardhat project, open your `hardhat.config.js` file. You'll need to import the `hardhat-verify` plugin, your Etherscan API key, and add the config for Etherscan:
 
 ```js
 require('@nomicfoundation/hardhat-verify');
@@ -17797,9 +17784,9 @@ module.exports = {
   },
   etherscan: {
     apiKey: {
-      moonbeam: 'INSERT_MOONSCAN_API_KEY', // Moonbeam Moonscan API Key
-      moonriver: 'INSERT_MOONSCAN_API_KEY', // Moonriver Moonscan API Key
-      moonbaseAlpha: 'INSERT_MOONSCAN_API_KEY', // Moonbeam Moonscan API Key    
+      moonbeam: 'INSERT_ETHERSCAN_API_KEY',
+      moonriver: 'INSERT_ETHERSCAN_API_KEY',
+      moonbaseAlpha: 'INSERT_ETHERSCAN_API_KEY', 
     },
   },
 };
@@ -17843,7 +17830,7 @@ Please refer to the [Hardhat Verify documentation](https://hardhat.org/hardhat-r
 
 The example in this section of the guide will use the `MyToken.sol` contract that was created in the [Using Foundry to Deploy to Moonbeam](/builders/ethereum/dev-env/foundry/){target=\_blank} guide. 
 
-In addition to the Foundry project, you will need a [Moonbeam Moonscan](https://moonscan.io){target=\_blank} API key. This API key can be used for both the Moonbeam and Moonbase Alpha networks. If you want to verify a contract on Moonriver, you'll need a [Moonriver Moonscan](https://moonriver.moonscan.io){target=\_blank} API key.
+In addition to the Foundry project, you will need an [Etherscan API key](https://etherscan.io/){target=\_blank} to verify your contract. 
 
 If you have already deployed the example contract, you can verify it with the `verify-contract` command. Before you can verify the contract, you will need to ABI-encode the constructor arguments. To do so for the example contract, you can run the following command:
 
@@ -17860,7 +17847,7 @@ The result should be `0x00000000000000000000000000000000000000000000000000000000
     YOUR_CONTRACT_ADDRESS \
     --constructor-args 0x0000000000000000000000000000000000000000000000000000000000000064 \
     src/MyToken.sol:MyToken \
-    --etherscan-api-key INSERT_YOUR_MOONSCAN_API_KEY
+    --etherscan-api-key INSERT_YOUR_ETHERSCAN_API_KEY
     ```
 
 === "Moonriver"
@@ -17870,7 +17857,7 @@ The result should be `0x00000000000000000000000000000000000000000000000000000000
     YOUR_CONTRACT_ADDRESS \
     --constructor-args 0x0000000000000000000000000000000000000000000000000000000000000064 \
     src/MyToken.sol:MyToken \
-    --etherscan-api-key INSERT_YOUR_MOONSCAN_API_KEY
+    --etherscan-api-key INSERT_YOUR_ETHERSCAN_API_KEY
     ```
 
 === "Moonbase Alpha"
@@ -17880,7 +17867,7 @@ The result should be `0x00000000000000000000000000000000000000000000000000000000
     YOUR_CONTRACT_ADDRESS \
     --constructor-args 0x0000000000000000000000000000000000000000000000000000000000000064 \
     src/MyToken.sol:MyToken \
-    --etherscan-api-key INSERT_YOUR_MOONSCAN_API_KEY
+    --etherscan-api-key INSERT_YOUR_ETHERSCAN_API_KEY
     ```
 
 <div id="termynal" data-termynal>
@@ -17888,7 +17875,7 @@ The result should be `0x00000000000000000000000000000000000000000000000000000000
     <span data-ty>YOUR_CONTRACT_ADDRESS \</span>
     <span data-ty>--constructor-args 0x0000000000000000000000000000000000000000000000000000000000000064 \</span>
     <span data-ty>src/MyToken.sol:MyToken \</span>
-    <span data-ty>--etherscan-api-key INSERT_YOUR_MOONSCAN_API_KEY</span>
+    <span data-ty>--etherscan-api-key INSERT_YOUR_ETHERSCAN_API_KEY</span>
     <br>
     <span data-ty>Submitting verification for [src/MyToken. sol:MyToken] Ok("0×5A05EBOA18ee616bb5dac2C4D0a48991a83533d2" ) .</span>
     <span data-ty>Submitted contract for verification:</span>
@@ -17907,7 +17894,7 @@ If you wanted to deploy the example contract and verify at the same time, then y
     ```bash
     forge create --rpc-url {{ networks.moonbeam.rpc_url }} \
     --constructor-args 100 \
-    --etherscan-api-key INSERT_YOUR_MOONSCAN_API_KEY \
+    --etherscan-api-key INSERT_YOUR_ETHERSCAN_API_KEY \
     --verify --private-key YOUR_PRIVATE_KEY \
     src/MyToken.sol:MyToken
     ```
@@ -17917,7 +17904,7 @@ If you wanted to deploy the example contract and verify at the same time, then y
     ```bash
     forge create --rpc-url {{ networks.moonriver.rpc_url }} \
     --constructor-args 100 \
-    --etherscan-api-key INSERT_YOUR_MOONSCAN_API_KEY \
+    --etherscan-api-key INSERT_YOUR_ETHERSCAN_API_KEY \
     --verify --private-key YOUR_PRIVATE_KEY \
     src/MyToken.sol:MyToken
     ```
@@ -17927,7 +17914,7 @@ If you wanted to deploy the example contract and verify at the same time, then y
     ```bash
     forge create --rpc-url {{ networks.moonbase.rpc_url }} \
     --constructor-args 100 \
-    --etherscan-api-key INSERT_YOUR_MOONSCAN_API_KEY \
+    --etherscan-api-key INSERT_YOUR_ETHERSCAN_API_KEY \
     --verify --private-key YOUR_PRIVATE_KEY \
     src/MyToken.sol:MyToken
     ```
@@ -17935,7 +17922,7 @@ If you wanted to deploy the example contract and verify at the same time, then y
 <div id="termynal" data-termynal>
     <span data-ty="input"><span class="file-path"></span>forge create --rpc-url INSERT_RPC_API_ENDPOINT \</span>
     <span data-ty>--constructor-args 100 \</span>
-    <span data-ty>--etherscan-api-key INSERT_YOUR_MOONSCAN_API_KEY \</span>
+    <span data-ty>--etherscan-api-key INSERT_YOUR_ETHERSCAN_API_KEY \</span>
     <span data-ty>--verify --private-key YOUR_PRIVATE_KEY \</span>
     <span data-ty>src/MyToken.sol:MyToken</span>
     <br>
@@ -25793,10 +25780,6 @@ To request DEV tokens from the faucet, you can enter your address on the [Moonba
 !!! note
     Moonbase Alpha DEV tokens have no value. Please don't spam the faucet with unnecessary requests.
 
-You can also use the [ChainDrop Faucet](https://chaindrop.org/?chainid=1287&token=0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee){target=\_blank} to request DEV tokens, which dispenses {{ networks.moonbase.chaindrop_faucet_amount }} per request.
-
-![ChainDrop Faucet Website.](/images/builders/get-started/networks/moonbase/moonbase-2.webp)
-
 ## Demo DApps {: #Demo-DApps }
 
 There are a variety of DApps deployed to Moonbase Alpha enabling you to experiment with various apps and integrations. You can also acquire a variety of test tokens through the [Moonbase ERC20 Minter](https://moonbase-minterc20.netlify.app){target=\_blank} or [Moonbeam Uniswap](https://moonbeam-swap.netlify.app/#/swap){target=\_blank} DApps. For example, [Moonbeam Uniswap](https://moonbeam-swap.netlify.app/#/swap){target=\_blank} can help you acquire cross-chain assets such as xcUNIT or xcKarura for testing XCM related functions. In the below table, you'll find each sample DApp, its associated URL, and GitHub repository.
@@ -25819,7 +25802,7 @@ There are a variety of DApps deployed to Moonbase Alpha enabling you to experime
 
 The [Moonbase ERC-20 Minter](https://moonbase-minterc20.netlify.app){target=\_blank} enables you to mint a variety of ERC-20 test tokens corresponding to the 8 planets of the solar system, and Pluto. To mint tokens, first press **Connect MetaMask** in the upper right hand corner. Then scroll to the **Mint Tokens** section and the choose desired ERC-20 contract. Press **Submit Tx** and confirm the transaction in MetaMask. Each mint will grant you 100 tokens, and you can mint tokens for each contract once per hour.
 
-![ERC20 Minter](/images/builders/get-started/networks/moonbase/moonbase-3.webp)
+![ERC20 Minter](/images/builders/get-started/networks/moonbase/moonbase-2.webp)
 
 ### Moonbeam Uniswap {: #moonbeam-uniswap }
 
@@ -25831,7 +25814,7 @@ The [Moonbase ERC-20 Minter](https://moonbase-minterc20.netlify.app){target=\_bl
 4. Select **Moon Menu**
 5. Search for or select your desired asset from the list then continue with the swap
 
-![Moonbeam Swap](/images/builders/get-started/networks/moonbase/moonbase-4.webp)
+![Moonbeam Swap](/images/builders/get-started/networks/moonbase/moonbase-3.webp)
 
 !!! note
     If you see only a partial list of assets under **Moon Menu**, your browser may have cached an older version of **Moon Menu**. Clearing the cache and re-adding **Moon Menu** will resolve this.
@@ -25840,7 +25823,7 @@ The [Moonbase ERC-20 Minter](https://moonbase-minterc20.netlify.app){target=\_bl
 
 The [MoonLink Dashboard](https://moonlink-dashboard.netlify.app){target=\_blank} showcases Chainlink price feeds in action. For more information, including a full listing of all Chainlink price feeds across all Moonbeam networks and a step-by-step guide of how to fetch price feed data, [head to the Oracles section of the Moonbeam Docs Site](/builders/integrations/oracles/chainlink/){target=\_blank}. You can also check out the [repository for the MoonLink Dashboard](https://github.com/papermoonio/moonlink-dashboard){target=\_blank}.
 
-![MoonLink Dashboard](/images/builders/get-started/networks/moonbase/moonbase-5.webp)
+![MoonLink Dashboard](/images/builders/get-started/networks/moonbase/moonbase-4.webp)
 
 ### MoonLotto Lottery {: #moonlotto-lottery }
 
@@ -25850,7 +25833,7 @@ The [MoonLink Dashboard](https://moonlink-dashboard.netlify.app){target=\_blank}
 2. Enter the address of the recipient of lotto ticket or check **I want to buy a ticket for my address**
 3. Press **Submit on MetaMask** and confirm the transaction in MetaMask
 
-![MoonLotto Lottery](/images/builders/get-started/networks/moonbase/moonbase-6.webp)
+![MoonLotto Lottery](/images/builders/get-started/networks/moonbase/moonbase-5.webp)
 
 ### Moonbeam WalletConnect {: #moonbeam-walletconnect }
 
@@ -25859,7 +25842,7 @@ The [MoonLink Dashboard](https://moonlink-dashboard.netlify.app){target=\_blank}
 1. Press **Connect Wallet**
 2. Scan the QR code using a [wallet compatible with WalletConnect](https://walletguide.walletconnect.network/){target=\_blank}
 
-![Moonbeam WalletConnect](/images/builders/get-started/networks/moonbase/moonbase-7.webp)
+![Moonbeam WalletConnect](/images/builders/get-started/networks/moonbase/moonbase-6.webp)
 
 ### MoonGas {: #moongas }
 
@@ -25867,7 +25850,7 @@ The [MoonLink Dashboard](https://moonlink-dashboard.netlify.app){target=\_blank}
 
 You'll notice that the minimum gas price for Moonbeam is {{ networks.moonbeam.min_gas_price }} Gwei, while the minimum for Moonriver is {{ networks.moonriver.min_gas_price }} Gwei and Moonbase Alpha is {{ networks.moonbase.min_gas_price }} Gwei. This difference stems from the [100 to 1 re-denomination of GLMR](https://moonbeam.network/news/moonbeam-foundation-announces-liquidity-programs-a-new-token-event-and-glmr-redenomination){target=\_blank} and thus the {{ networks.moonbeam.min_gas_price }} Gwei minimum on Moonbeam corresponds to a {{ networks.moonriver.min_gas_price }} Gwei minimum on Moonriver and a {{ networks.moonbase.min_gas_price }} Gwei on Moonbase.
 
-![MoonGas](/images/builders/get-started/networks/moonbase/moonbase-8.webp)
+![MoonGas](/images/builders/get-started/networks/moonbase/moonbase-7.webp)
 --- END CONTENT ---
 
 Doc-Content: https://docs.moonbeam.network/builders/get-started/networks/moonbeam-dev/

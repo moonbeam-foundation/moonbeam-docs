@@ -5234,10 +5234,6 @@ To request DEV tokens from the faucet, you can enter your address on the [Moonba
 !!! note
     Moonbase Alpha DEV tokens have no value. Please don't spam the faucet with unnecessary requests.
 
-You can also use the [ChainDrop Faucet](https://chaindrop.org/?chainid=1287&token=0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee){target=\_blank} to request DEV tokens, which dispenses {{ networks.moonbase.chaindrop_faucet_amount }} per request.
-
-![ChainDrop Faucet Website.](/images/builders/get-started/networks/moonbase/moonbase-2.webp)
-
 ## Demo DApps {: #Demo-DApps }
 
 There are a variety of DApps deployed to Moonbase Alpha enabling you to experiment with various apps and integrations. You can also acquire a variety of test tokens through the [Moonbase ERC20 Minter](https://moonbase-minterc20.netlify.app){target=\_blank} or [Moonbeam Uniswap](https://moonbeam-swap.netlify.app/#/swap){target=\_blank} DApps. For example, [Moonbeam Uniswap](https://moonbeam-swap.netlify.app/#/swap){target=\_blank} can help you acquire cross-chain assets such as xcUNIT or xcKarura for testing XCM related functions. In the below table, you'll find each sample DApp, its associated URL, and GitHub repository.
@@ -5260,7 +5256,7 @@ There are a variety of DApps deployed to Moonbase Alpha enabling you to experime
 
 The [Moonbase ERC-20 Minter](https://moonbase-minterc20.netlify.app){target=\_blank} enables you to mint a variety of ERC-20 test tokens corresponding to the 8 planets of the solar system, and Pluto. To mint tokens, first press **Connect MetaMask** in the upper right hand corner. Then scroll to the **Mint Tokens** section and the choose desired ERC-20 contract. Press **Submit Tx** and confirm the transaction in MetaMask. Each mint will grant you 100 tokens, and you can mint tokens for each contract once per hour.
 
-![ERC20 Minter](/images/builders/get-started/networks/moonbase/moonbase-3.webp)
+![ERC20 Minter](/images/builders/get-started/networks/moonbase/moonbase-2.webp)
 
 ### Moonbeam Uniswap {: #moonbeam-uniswap }
 
@@ -5272,7 +5268,7 @@ The [Moonbase ERC-20 Minter](https://moonbase-minterc20.netlify.app){target=\_bl
 4. Select **Moon Menu**
 5. Search for or select your desired asset from the list then continue with the swap
 
-![Moonbeam Swap](/images/builders/get-started/networks/moonbase/moonbase-4.webp)
+![Moonbeam Swap](/images/builders/get-started/networks/moonbase/moonbase-3.webp)
 
 !!! note
     If you see only a partial list of assets under **Moon Menu**, your browser may have cached an older version of **Moon Menu**. Clearing the cache and re-adding **Moon Menu** will resolve this.
@@ -5281,7 +5277,7 @@ The [Moonbase ERC-20 Minter](https://moonbase-minterc20.netlify.app){target=\_bl
 
 The [MoonLink Dashboard](https://moonlink-dashboard.netlify.app){target=\_blank} showcases Chainlink price feeds in action. For more information, including a full listing of all Chainlink price feeds across all Moonbeam networks and a step-by-step guide of how to fetch price feed data, [head to the Oracles section of the Moonbeam Docs Site](/builders/integrations/oracles/chainlink/){target=\_blank}. You can also check out the [repository for the MoonLink Dashboard](https://github.com/papermoonio/moonlink-dashboard){target=\_blank}.
 
-![MoonLink Dashboard](/images/builders/get-started/networks/moonbase/moonbase-5.webp)
+![MoonLink Dashboard](/images/builders/get-started/networks/moonbase/moonbase-4.webp)
 
 ### MoonLotto Lottery {: #moonlotto-lottery }
 
@@ -5291,7 +5287,7 @@ The [MoonLink Dashboard](https://moonlink-dashboard.netlify.app){target=\_blank}
 2. Enter the address of the recipient of lotto ticket or check **I want to buy a ticket for my address**
 3. Press **Submit on MetaMask** and confirm the transaction in MetaMask
 
-![MoonLotto Lottery](/images/builders/get-started/networks/moonbase/moonbase-6.webp)
+![MoonLotto Lottery](/images/builders/get-started/networks/moonbase/moonbase-5.webp)
 
 ### Moonbeam WalletConnect {: #moonbeam-walletconnect }
 
@@ -5300,7 +5296,7 @@ The [MoonLink Dashboard](https://moonlink-dashboard.netlify.app){target=\_blank}
 1. Press **Connect Wallet**
 2. Scan the QR code using a [wallet compatible with WalletConnect](https://walletguide.walletconnect.network/){target=\_blank}
 
-![Moonbeam WalletConnect](/images/builders/get-started/networks/moonbase/moonbase-7.webp)
+![Moonbeam WalletConnect](/images/builders/get-started/networks/moonbase/moonbase-6.webp)
 
 ### MoonGas {: #moongas }
 
@@ -5308,7 +5304,7 @@ The [MoonLink Dashboard](https://moonlink-dashboard.netlify.app){target=\_blank}
 
 You'll notice that the minimum gas price for Moonbeam is {{ networks.moonbeam.min_gas_price }} Gwei, while the minimum for Moonriver is {{ networks.moonriver.min_gas_price }} Gwei and Moonbase Alpha is {{ networks.moonbase.min_gas_price }} Gwei. This difference stems from the [100 to 1 re-denomination of GLMR](https://moonbeam.network/news/moonbeam-foundation-announces-liquidity-programs-a-new-token-event-and-glmr-redenomination){target=\_blank} and thus the {{ networks.moonbeam.min_gas_price }} Gwei minimum on Moonbeam corresponds to a {{ networks.moonriver.min_gas_price }} Gwei minimum on Moonriver and a {{ networks.moonbase.min_gas_price }} Gwei on Moonbase.
 
-![MoonGas](/images/builders/get-started/networks/moonbase/moonbase-8.webp)
+![MoonGas](/images/builders/get-started/networks/moonbase/moonbase-7.webp)
 --- END CONTENT ---
 
 Doc-Content: https://docs.moonbeam.network/builders/get-started/networks/moonbeam-dev/
