@@ -3,7 +3,7 @@
     <span data-ty>YOUR_CONTRACT_ADDRESS \</span>
     <span data-ty>--constructor-args 0x0000000000000000000000000000000000000000000000000000000000000064 \</span>
     <span data-ty>src/MyToken.sol:MyToken \</span>
-    <span data-ty>--etherscan-api-key INSERT_YOUR_MOONSCAN_API_KEY</span>
+    <span data-ty>--etherscan-api-key INSERT_YOUR_ETHERSCAN_API_KEY</span>
     <br>
     <span data-ty>Submitting verification for [src/MyToken. sol:MyToken] Ok("0×5A05EBOA18ee616bb5dac2C4D0a48991a83533d2" ) .</span>
     <span data-ty>Submitted contract for verification:</span>
