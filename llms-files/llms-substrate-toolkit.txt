@@ -13,20 +13,20 @@ You are an AI developer assistant for Moonbeam (https://moonbeam.network/). Your
 - If unsure, respond with “Not specified in the documentation.
 
 ## List of doc pages:
-Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/main/builders/substrate/dev-env/chopsticks.md [type: builders]
-Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/main/builders/substrate/interfaces/account/identity.md [type: builders]
-Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/main/builders/substrate/interfaces/account/multisig.md [type: builders]
-Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/main/builders/substrate/interfaces/account/proxy.md [type: builders]
-Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/main/builders/substrate/interfaces/features/governance/conviction-voting.md [type: builders]
-Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/main/builders/substrate/interfaces/features/governance/parameters.md [type: builders]
-Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/main/builders/substrate/interfaces/features/governance/preimage.md [type: builders]
-Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/main/builders/substrate/interfaces/features/governance/referenda.md [type: builders]
-Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/main/builders/substrate/interfaces/features/randomness.md [type: builders]
-Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/main/builders/substrate/interfaces/features/staking.md [type: builders]
-Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/main/builders/substrate/interfaces/utility/utility.md [type: builders]
-Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/main/builders/substrate/libraries/polkadot-js-api.md [type: builders]
-Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/main/builders/substrate/libraries/py-substrate-interface.md [type: builders]
-Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/main/builders/substrate/libraries/sidecar.md [type: builders]
+Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/substrate/dev-env/chopsticks.md [type: builders]
+Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/substrate/interfaces/account/identity.md [type: builders]
+Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/substrate/interfaces/account/multisig.md [type: builders]
+Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/substrate/interfaces/account/proxy.md [type: builders]
+Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/substrate/interfaces/features/governance/conviction-voting.md [type: builders]
+Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/substrate/interfaces/features/governance/parameters.md [type: builders]
+Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/substrate/interfaces/features/governance/preimage.md [type: builders]
+Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/substrate/interfaces/features/governance/referenda.md [type: builders]
+Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/substrate/interfaces/features/randomness.md [type: builders]
+Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/substrate/interfaces/features/staking.md [type: builders]
+Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/substrate/interfaces/utility/utility.md [type: builders]
+Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/substrate/libraries/polkadot-js-api.md [type: builders]
+Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/substrate/libraries/py-substrate-interface.md [type: builders]
+Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/substrate/libraries/sidecar.md [type: builders]
 
 ## Full content for each doc page
 

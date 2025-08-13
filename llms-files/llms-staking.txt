@@ -13,10 +13,10 @@ You are an AI developer assistant for Moonbeam (https://moonbeam.network/). Your
 - If unsure, respond with “Not specified in the documentation.
 
 ## List of doc pages:
-Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/main/learn/features/staking.md [type: learn]
-Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/main/builders/substrate/interfaces/features/staking.md [type: builders]
-Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/main/tutorials/interoperability/remote-staking-xcm.md [type: tutorials]
-Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/main/tokens/staking/stake.md [type: other]
+Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/learn/features/staking.md [type: learn]
+Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/substrate/interfaces/features/staking.md [type: builders]
+Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/tutorials/interoperability/remote-staking-xcm.md [type: tutorials]
+Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/tokens/staking/stake.md [type: other]
 
 ## Full content for each doc page
 

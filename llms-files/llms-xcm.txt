@@ -13,21 +13,21 @@ You are an AI developer assistant for Moonbeam (https://moonbeam.network/). Your
 - If unsure, respond with “Not specified in the documentation.
 
 ## List of doc pages:
-Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/main/learn/features/xchain-plans.md [type: learn]
-Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/main/builders/interoperability/mrl.md [type: builders]
-Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/main/builders/interoperability/xcm/core-concepts/instructions.md [type: builders]
-Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/main/builders/interoperability/xcm/core-concepts/multilocations.md [type: builders]
-Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/main/builders/interoperability/xcm/core-concepts/sovereign-accounts.md [type: builders]
-Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/main/builders/interoperability/xcm/core-concepts/weights-fees.md [type: builders]
-Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/main/builders/interoperability/xcm/overview.md [type: builders]
-Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/main/builders/interoperability/xcm/send-execute-xcm.md [type: builders]
-Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/main/builders/interoperability/xcm/xc-registration/forum-templates.md [type: builders]
-Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/main/builders/interoperability/xcm/xc-registration/self-serve-asset-registration.md [type: builders]
-Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/main/builders/interoperability/xcm/xc-registration/xc-integration.md [type: builders]
-Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/main/builders/interoperability/xcm/xc20/send-xc20s/eth-api.md [type: builders]
-Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/main/builders/interoperability/xcm/xcm-utils.md [type: builders]
-Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/main/tutorials/interoperability/remote-staking-xcm.md [type: tutorials]
-Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/main/tutorials/interoperability/uniswapv2-swap-xcm.md [type: tutorials]
+Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/learn/features/xchain-plans.md [type: learn]
+Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/interoperability/mrl.md [type: builders]
+Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/interoperability/xcm/core-concepts/instructions.md [type: builders]
+Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/interoperability/xcm/core-concepts/multilocations.md [type: builders]
+Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/interoperability/xcm/core-concepts/sovereign-accounts.md [type: builders]
+Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/interoperability/xcm/core-concepts/weights-fees.md [type: builders]
+Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/interoperability/xcm/overview.md [type: builders]
+Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/interoperability/xcm/send-execute-xcm.md [type: builders]
+Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/interoperability/xcm/xc-registration/forum-templates.md [type: builders]
+Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/interoperability/xcm/xc-registration/self-serve-asset-registration.md [type: builders]
+Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/interoperability/xcm/xc-registration/xc-integration.md [type: builders]
+Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/interoperability/xcm/xc20/send-xc20s/eth-api.md [type: builders]
+Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/interoperability/xcm/xcm-utils.md [type: builders]
+Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/tutorials/interoperability/remote-staking-xcm.md [type: tutorials]
+Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/tutorials/interoperability/uniswapv2-swap-xcm.md [type: tutorials]
 
 ## Full content for each doc page
 

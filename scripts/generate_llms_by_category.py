@@ -22,7 +22,7 @@ CORE_CONTEXT_DESCRIPTION = config["coreContextDescription"].format(PROJECT_NAME=
 REFERENCE_CONTEXT_DESCRIPTION = config["referenceContextDescription"].format(PROJECT_NAME=PROJECT_NAME)
 
 # Use raw GitHub links for source URLs
-RAW_BASE_URL = f"https://raw.githubusercontent.com/moonbeam-foundation/{docs_repo}/refs/heads/main"
+RAW_BASE_URL = f"https://raw.githubusercontent.com/moonbeam-foundation/{docs_repo}/refs/heads/master"
 
 
 docs_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..')) # path to docs directory 

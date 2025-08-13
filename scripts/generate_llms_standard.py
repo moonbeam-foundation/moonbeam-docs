@@ -26,7 +26,7 @@ yaml_dir = os.path.join(base_dir, docs_repo, 'variables.yml')
 output_file = os.path.join(docs_dir, 'llms-full.txt')
 snippet_dir = os.path.join(docs_dir, '.snippets')
 # GitHub raw URL base (instead of website)
-raw_base_url = f"https://raw.githubusercontent.com/{docs_org}/{docs_repo}/refs/heads/main"
+raw_base_url = f"https://raw.githubusercontent.com/{docs_org}/{docs_repo}/refs/heads/master"
 
 # Regex to find lines like: --8<-- 'code/build/applications/...' and --8<-- 'http....'
 SNIPPET_REGEX = r"--8<--\s*['\"]([^'\"]+)['\"]"
