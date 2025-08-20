@@ -6521,7 +6521,6 @@ If you're looking for your own endpoints suitable for production use, you can ch
 === "HTTPS"
     |  Provider   |                              RPC URL                               |   Limits    |
     |:-----------:|:------------------------------------------------------------------:|:-----------:|
-    |    Blast    |        <pre>```https://moonbeam.public.blastapi.io```</pre>        | 80 req/sec  |
     |   Dwellir   |         <pre>```https://moonbeam-rpc.dwellir.com```</pre>          | 20 req/sec  |
     | OnFinality  |     <pre>```https://moonbeam.api.onfinality.io/public```</pre>     | 40 req/sec  |
     | UnitedBloc  |          <pre>```https://moonbeam.unitedbloc.com```</pre>          | 32 req/sec  |
@@ -6534,7 +6533,6 @@ If you're looking for your own endpoints suitable for production use, you can ch
 === "WSS"
     |  Provider   |                            RPC URL                             |   Limits    |
     |:-----------:|:--------------------------------------------------------------:|:-----------:|
-    |    Blast    |       <pre>```wss://moonbeam.public.blastapi.io```</pre>       | 80 req/sec  |
     |   Dwellir   |        <pre>```wss://moonbeam-rpc.dwellir.com```</pre>         | 20 req/sec  |
     | OnFinality  |  <pre>```wss://moonbeam.api.onfinality.io/public-ws```</pre>   | 40 req/sec  |
     | UnitedBloc  |         <pre>```wss://moonbeam.unitedbloc.com```</pre>         | 32 req/sec  |
@@ -8083,7 +8081,6 @@ If you're looking for your own endpoints suitable for production use, you can ch
 === "HTTPS"
     |  Provider   |                              RPC URL                               |   Limits    |
     |:-----------:|:------------------------------------------------------------------:|:-----------:|
-    |    Blast    |        <pre>```https://moonbeam.public.blastapi.io```</pre>        | 80 req/sec  |
     |   Dwellir   |         <pre>```https://moonbeam-rpc.dwellir.com```</pre>          | 20 req/sec  |
     | OnFinality  |     <pre>```https://moonbeam.api.onfinality.io/public```</pre>     | 40 req/sec  |
     | UnitedBloc  |          <pre>```https://moonbeam.unitedbloc.com```</pre>          | 32 req/sec  |
@@ -8096,7 +8093,6 @@ If you're looking for your own endpoints suitable for production use, you can ch
 === "WSS"
     |  Provider   |                            RPC URL                             |   Limits    |
     |:-----------:|:--------------------------------------------------------------:|:-----------:|
-    |    Blast    |       <pre>```wss://moonbeam.public.blastapi.io```</pre>       | 80 req/sec  |
     |   Dwellir   |        <pre>```wss://moonbeam-rpc.dwellir.com```</pre>         | 20 req/sec  |
     | OnFinality  |  <pre>```wss://moonbeam.api.onfinality.io/public-ws```</pre>   | 40 req/sec  |
     | UnitedBloc  |         <pre>```wss://moonbeam.unitedbloc.com```</pre>         | 32 req/sec  |
@@ -14353,7 +14349,6 @@ If you are looking for an API provider suitable for production use, you can chec
 === "HTTPS"
     |  Provider   |                              RPC URL                               |   Limits    |
     |:-----------:|:------------------------------------------------------------------:|:-----------:|
-    |    Blast    |        <pre>```https://moonbeam.public.blastapi.io```</pre>        | 80 req/sec  |
     |   Dwellir   |         <pre>```https://moonbeam-rpc.dwellir.com```</pre>          | 20 req/sec  |
     | OnFinality  |     <pre>```https://moonbeam.api.onfinality.io/public```</pre>     | 40 req/sec  |
     | UnitedBloc  |          <pre>```https://moonbeam.unitedbloc.com```</pre>          | 32 req/sec  |
@@ -14366,7 +14361,6 @@ If you are looking for an API provider suitable for production use, you can chec
 === "WSS"
     |  Provider   |                            RPC URL                             |   Limits    |
     |:-----------:|:--------------------------------------------------------------:|:-----------:|
-    |    Blast    |       <pre>```wss://moonbeam.public.blastapi.io```</pre>       | 80 req/sec  |
     |   Dwellir   |        <pre>```wss://moonbeam-rpc.dwellir.com```</pre>         | 20 req/sec  |
     | OnFinality  |  <pre>```wss://moonbeam.api.onfinality.io/public-ws```</pre>   | 40 req/sec  |
     | UnitedBloc  |         <pre>```wss://moonbeam.unitedbloc.com```</pre>         | 32 req/sec  |
@@ -14426,7 +14420,6 @@ To connect to the Moonbase Alpha relay chain, you can use the following WS Endpo
 You can create your own endpoint suitable for development or production use using any of the following API providers:
 
 - [1RPC](#1rpc)
-- [Blast](#blast)
 - [Chainstack](#chainstack)
 - [dRPC](#drpc)
 - [Dwellir](#dwellir)
@@ -14445,19 +14438,6 @@ Head over to [1RPC](https://www.1rpc.io){target=_blank} official site to set it 
 
 ![1RPC](/images/builders/get-started/endpoints/endpoints-1.webp)
 
-### Blast {: #blast}
-
-As a user of [Blast](https://blastapi.io){target=_blank} powered by Bware Labs, you will be able to obtain your own free endpoint allowing you to interact with Moonbeam, just by performing a few simple clicks within a user-friendly interface.
-
-To get started, you'll need to head to [Blast](https://blastapi.io){target=_blank}, and launch the app, and connect your wallet. Once your wallet is connected you will be able to create a project and then generate your own custom endpoint. To generate an endpoint:
-
-1. Create a new project
-2. Click on **Available Endpoints**
-3. Select Moonbeam network for your endpoint
-4. Confirm the selected network and Press **Activate**
-5. You'll now see Moonbeam under **Active Endpoints**. Click on the network and you'll see your custom RPC and WSS endpoints on the next page
-
-![Bware Labs](/images/builders/get-started/endpoints/endpoints-2.webp)
 
 ### Chainstack {: #chainstack }
 
