@@ -31,7 +31,6 @@ If you are looking for an API provider suitable for production use, you can chec
 You can create your own endpoint suitable for development or production use using any of the following API providers:
 
 - [1RPC](#1rpc)
-- [Blast](#blast)
 - [Chainstack](#chainstack)
 - [dRPC](#drpc)
 - [Dwellir](#dwellir)
@@ -50,19 +49,6 @@ Head over to [1RPC](https://www.1rpc.io){target=_blank} official site to set it 
 
 ![1RPC](/images/builders/get-started/endpoints/endpoints-1.webp)
 
-### Blast {: #blast}
-
-As a user of [Blast](https://blastapi.io){target=_blank} powered by Bware Labs, you will be able to obtain your own free endpoint allowing you to interact with Moonbeam, just by performing a few simple clicks within a user-friendly interface.
-
-To get started, you'll need to head to [Blast](https://blastapi.io){target=_blank}, and launch the app, and connect your wallet. Once your wallet is connected you will be able to create a project and then generate your own custom endpoint. To generate an endpoint:
-
-1. Create a new project
-2. Click on **Available Endpoints**
-3. Select Moonbeam network for your endpoint
-4. Confirm the selected network and Press **Activate**
-5. You'll now see Moonbeam under **Active Endpoints**. Click on the network and you'll see your custom RPC and WSS endpoints on the next page
-
-![Bware Labs](/images/builders/get-started/endpoints/endpoints-2.webp)
 
 ### Chainstack {: #chainstack }
 
