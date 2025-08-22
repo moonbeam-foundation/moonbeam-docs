@@ -419,7 +419,7 @@ The GoldRush API offers many additional methods, including NFT, price, Bitcoin, 
 
 - [API Reference and In-Browser Endpoint Demo](https://goldrush.mintlify.app/docs/api/overview){target=\_blank}
 - [GoldRush Quickstart](https://goldrush.mintlify.app/docs/quickstart){target=\_blank}
-- [Written Guides](https://goldrush.dev/docs/unified-api/guides/?utm_source=moonbeam&utm_medium=partner-docs){target=\_blank}
+- [Written Guides](https://goldrush.dev/docs/overview){target=\_blank}
 
 ## How to Use the Unified API {: #how-to-use-the-unified-api }
 

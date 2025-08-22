@@ -94,7 +94,7 @@ On both Moonbeam and Ethereum, accounts can be controlled by two main types of a
 
 Learn more:
 
-- [An overview of proxy accounts](https://wiki.polkadot.network/learn/learn-proxies/){target=\_blank}
+- [An overview of proxy accounts](https://wiki.polkadot.com/learn/learn-proxies/){target=\_blank}
 - [How to set up a proxy account](/tokens/manage/proxy-accounts/){target=\_blank}
 
 ### Account Balances {: #account-balances }

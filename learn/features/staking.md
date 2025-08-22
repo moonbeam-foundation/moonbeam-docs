@@ -8,7 +8,7 @@ categories: Basics, Staking
 
 ## Introduction {: #introduction }
 
-Moonbeam uses a block production mechanism based on [Polkadot's Proof-of-Stake model](https://docs.polkadot.com/polkadot-protocol/architecture/polkadot-chain/pos-consensus/){target=\_blank}, where there are collators and validators. [Collators](https://wiki.polkadot.network/learn/learn-collator/){target=\_blank} maintain parachains (in this case, Moonbeam) by collecting transactions from users and producing state transition proofs for the relay chain [validators](https://wiki.polkadot.network/learn/learn-validator/){target=\_blank}.
+Moonbeam uses a block production mechanism based on [Polkadot's Proof-of-Stake model](https://docs.polkadot.com/polkadot-protocol/architecture/polkadot-chain/pos-consensus/){target=\_blank}, where there are collators and validators. [Collators](https://wiki.polkadot.com/learn/learn-collator/){target=\_blank} maintain parachains (in this case, Moonbeam) by collecting transactions from users and producing state transition proofs for the relay chain [validators](https://wiki.polkadot.com/learn/learn-validator/){target=\_blank}.
 
 The candidates in the active set of collators (nodes that produce blocks) are selected based on their stake in the network. And here is where staking comes in.
 
@@ -23,7 +23,7 @@ Some important parameters to understand in relation to the staking system on Moo
  - **Round** — a specific number of blocks around which staking actions are enforced. For example, new delegations are enacted when the next round starts. When bonding less or revoking delegations, funds are returned after a specified number of rounds
  - **Candidates** - node operators that are eligible to become block producers if they can acquire enough stake to be in the active set
  - **Collators** — active set of candidates that are selected to be block producers. They collect transactions from users and produce state transition proofs for the relay chain to validate
- - **Delegators** — token holders who stake tokens, vouching for specific collator candidates. Any user that holds a minimum amount of tokens as [free balance](https://wiki.polkadot.network/learn/learn-accounts/#balance-types) can become a delegator
+ - **Delegators** — token holders who stake tokens, vouching for specific collator candidates. Any user that holds a minimum amount of tokens as [free balance](https://wiki.polkadot.com/learn/learn-accounts/#balance-types#balance-types) can become a delegator
  - **Minimum delegation per candidate** — minimum amount of tokens to delegate candidates once a user is in the set of delegators
  - **Maximum delegators per candidate** — maximum number of delegators, by staked amount, that a candidate can have which are eligible to receive staking rewards
  - **Maximum delegations** — maximum number of candidates a delegator can delegate
