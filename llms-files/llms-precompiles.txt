@@ -11012,7 +11012,7 @@ The `startLottery` function will include the following logic:
     - The number of random words requested, which is based off the number of winners that will be selected
     - (For local VRF only) The delay, which is the number of blocks that must pass before the request can be fulfilled
 
-Since the lottery function should only be called by the owner, we'll also add in an `onlyOwner` modifer that requires the `msg.sender` to be the `owner`.
+Since the lottery function should only be called by the owner, we'll also add in an `onlyOwner` modifier that requires the `msg.sender` to be the `owner`.
 
 ```solidity
 function startLottery() external payable onlyOwner {

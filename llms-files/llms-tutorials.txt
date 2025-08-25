@@ -4253,7 +4253,7 @@ Our frontend should now display the correct data!
 ![Displaying data](/images/tutorials/eth-api/how-to-build-a-dapp/how-to-build-a-dapp-3.webp)
 
 !!! challenge
-    There's additonal information that could be helpful to display, such as the amount of tokens that the connected account currently has: `balanceOf(address)`. Can you add that to the frontend yourself?
+    There's additional information that could be helpful to display, such as the amount of tokens that the connected account currently has: `balanceOf(address)`. Can you add that to the frontend yourself?
 
 ### Send Transactions {: #sending-transactions }
 
@@ -5315,7 +5315,7 @@ The `startLottery` function will include the following logic:
     - The number of random words requested, which is based off the number of winners that will be selected
     - (For local VRF only) The delay, which is the number of blocks that must pass before the request can be fulfilled
 
-Since the lottery function should only be called by the owner, we'll also add in an `onlyOwner` modifer that requires the `msg.sender` to be the `owner`.
+Since the lottery function should only be called by the owner, we'll also add in an `onlyOwner` modifier that requires the `msg.sender` to be the `owner`.
 
 ```solidity
 function startLottery() external payable onlyOwner {
