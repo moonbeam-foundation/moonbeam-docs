@@ -1,0 +1,231 @@
+name: Trigger n8n Webhook with Complete PR Info
+
+on:
+  pull_request:
+    types: [opened, reopened]
+  workflow_dispatch: {} 
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  gather-and-send:
+    runs-on: ubuntu-latest
+    environment: n8n-sending
+    steps:
+
+      # 1. Checkout repository
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Generate Run UUID
+
+      - name: Generate Run UUID
+        id: uuid
+        run: echo "run_token=$(uuidgen)" >> $GITHUB_OUTPUT
+
+
+      # 3. Pre-flight checks
+
+      - name: Validate setup
+        run: |
+          if [[ -z "${{ secrets.GITHUB_TOKEN }}" ]]; then
+            echo "Missing GITHUB_TOKEN secret."
+            exit 1
+          fi
+
+          if [[ -z "${{ github.event.pull_request.number }}" ]]; then
+            echo "No PR number found in event payload."
+            exit 1
+          fi
+
+          if [[ -z "${{ secrets.N8N_SENDING_TOKEN }}" ]]; then
+            echo "Missing N8N_SENDING_TOKEN secret."
+            exit 1
+          fi
+
+      # 4-6. Fetch PR metadata, files, commits
+
+      - name: Fetch PR metadata
+        run: |
+          gh api repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }} > pr.json
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Fetch PR files
+        run: |
+          gh api repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/files > files.json
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Fetch PR commits
+        run: |
+          gh api repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/commits > commits.json
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # 7. Fetch PR diff and compress
+
+      - name: Fetch PR diff and compress
+        run: |
+          curl -sSL \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github.v3.diff" \
+            "https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}" \
+            > pr.diff
+
+          gzip -c pr.diff > pr.diff.gz
+          base64 -w 0 pr.diff.gz > diff.b64
+          echo "::add-mask::$(cat diff.b64)"
+
+      # 8. Debug payload size
+
+      - name: Debug payload size
+        run: |
+          echo "PR metadata size: $(stat -c%s pr.json) bytes"
+          echo "Files metadata size: $(stat -c%s files.json) bytes"
+          echo "Commits metadata size: $(stat -c%s commits.json) bytes"
+          echo "Compressed diff size: $(stat -c%s pr.diff.gz) bytes"
+
+      # 8b. Remove llms-related files before payload
+
+      - name: Remove llms-related files
+        run: |
+          jq 'map(select(.filename | test("llms"; "i") | not))' files.json > cleaned.json
+          mv cleaned.json files.json
+
+      # 9. Combine and send payload to n8n
+      
+      - name: Combine and send to n8n webhook
+        env:
+          N8N_WEBHOOK_URL: ${{ secrets.N8N_WEBHOOK_URL }}
+          N8N_SENDING_TOKEN: ${{ secrets.N8N_SENDING_TOKEN }}
+        run: |
+          set -e
+
+          jq -n \
+            --slurpfile pr pr.json \
+            --slurpfile files files.json \
+            --slurpfile commits commits.json \
+            --arg diff_base64 "$(cat diff.b64)" \
+            --arg run_token "${{ steps.uuid.outputs.run_token }}" \
+            --arg n8n_sending_token "$N8N_SENDING_TOKEN" \
+            '{
+              pr: $pr[0],
+              files: $files[0],
+              commits: $commits[0],
+              diff_base64: $diff_base64,
+              token: $run_token,
+              n8n_sending_token: $n8n_sending_token
+            }' > payload.json
+
+          echo "::add-mask::$N8N_SENDING_TOKEN"
+
+          PAYLOAD_SIZE=$(stat -c%s payload.json)
+          MAX_BYTES=$((10*1024*1024))
+          if (( PAYLOAD_SIZE > MAX_BYTES )); then
+            echo "Payload too large ($PAYLOAD_SIZE bytes). Aborting send."
+            exit 1
+          fi
+
+          RESPONSE=$(curl -s -w "\n%{http_code}" -X POST \
+            -H "Content-Type: application/json" \
+            --data-binary @payload.json \
+            "$N8N_WEBHOOK_URL")
+
+          HTTP_BODY=$(echo "$RESPONSE" | sed '$d')
+          HTTP_STATUS=$(echo "$RESPONSE" | tail -n1)
+
+          echo "n8n responded with status: $HTTP_STATUS"
+          echo "$HTTP_BODY" > response_body.json
+
+          STATUS=$(jq -r ".status" response_body.json)
+          MATCHED=$(jq -r ".token" response_body.json)
+          if [ "$MATCHED" != "${{ steps.uuid.outputs.run_token }}" ] || [ "$STATUS" != "completed" ]; then
+            echo "n8n workflow failed or token mismatch"
+            exit 1
+          fi
+
+          if [ "$HTTP_STATUS" -lt 200 ] || [ "$HTTP_STATUS" -ge 300 ]; then
+            echo "n8n workflow failed (HTTP $HTTP_STATUS)"
+            exit 1
+          fi
+
+      # 9b. Upload n8n response artifact
+      
+      - name: Upload n8n response artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: n8n-response
+          path: response_body.json
+          if-no-files-found: error
+          retention-days: 1
+
+  
+  # Step 10 moved to a separate job under n8n-receiving env
+  
+  receive-validate-and-comment:
+    runs-on: ubuntu-latest
+    needs: gather-and-send
+    environment: n8n-receiving
+    steps:
+      
+      # 1. Checkout repository (fix for gh pr comment)
+      
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      
+      # 2. Download n8n response
+      
+      - name: Download n8n response
+        uses: actions/download-artifact@v4
+        with:
+          name: n8n-response
+          path: .
+
+      
+      # 3. Validate receiving token from n8n response
+      
+      - name: Validate receiving token
+        env:
+          EXPECTED_TOKEN: ${{ secrets.N8N_RECEIVING_TOKEN }}
+        run: |
+          RECEIVED_TOKEN=$(jq -r 'if type=="array" then .[0].receiving_token else .receiving_token end // empty' response_body.json)
+
+          if [ -z "$RECEIVED_TOKEN" ]; then
+            echo "No receiving_token provided by n8n"
+            exit 1
+          fi
+
+          if [ "$RECEIVED_TOKEN" != "$EXPECTED_TOKEN" ]; then
+            echo "Receiving token mismatch"
+            exit 1
+          fi
+
+          echo "✅ Receiving token validated successfully"
+
+      # 4. Parse verification claims and post PR comments
+    
+      - name: Post PR comments
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          RESPONSE_BODY=$(cat response_body.json)
+          PR_NUMBER=$(echo "$RESPONSE_BODY" | jq -r ".pr_number")
+          COMMENTS_JSON=$(echo "$RESPONSE_BODY" | jq -r ".comment")
+
+          if [ -z "$COMMENTS_JSON" ] || [ "$COMMENTS_JSON" == "null" ]; then
+            echo "No comments to post."
+            exit 0
+          fi
+
+          echo "$COMMENTS_JSON" | jq -c '.' | jq -c '.[]' | while read -r item; do
+            FORMATTED_REVIEW=$(echo "$item" | jq -r '.formattedReview')
+            if [ -n "$FORMATTED_REVIEW" ] && [ "$FORMATTED_REVIEW" != "null" ]; then
+              echo "Posting feedback to PR #$PR_NUMBER..."
+              gh pr comment "$PR_NUMBER" --body "$FORMATTED_REVIEW"
+            fi
+          done
