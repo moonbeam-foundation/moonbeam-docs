@@ -1,6 +1,7 @@
 ---
 title: Supra Oracles
 description: In this step-by-step tutorial, learn about Supra's pull model and how to use their price feeds to fetch price data in smart contracts on Moonbeam.
+categories: Tutorials
 ---
 
 # Fetching Price Data with Supra Oracles

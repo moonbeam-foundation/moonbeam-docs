@@ -1,6 +1,7 @@
 ---
 title: Use GPT-4 to Develop Smart Contracts
 description: Learn how you can use OpenAI's ChatGPT (GPT-4) generative AI LLM to write, debug, and deploy Solidity smart contracts on the Moonbeam network.
+categories: Tutorials
 ---
 
 # Using GPT-4 to Write and Debug Solidity Smart Contracts

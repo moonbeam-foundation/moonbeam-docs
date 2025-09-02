@@ -1,6 +1,7 @@
 ---
 title: How to use Ethers.js Ethereum Library
 description: Follow this tutorial to learn how to use the Ethereum Ethers.js Library to send transactions and deploy Solidity smart contracts to Moonbeam.
+categories: Libraries and SDKs, Ethereum Toolkit
 ---
 
 # Ethers.js JavaScript Library

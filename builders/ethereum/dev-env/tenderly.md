@@ -1,6 +1,7 @@
 ---
 title: Tenderly Development Platform
 description: Learn how to use Tenderly, an Ethereum development platform, to build, debug, and monitor Solidity smart contracts on Moonbeam.
+categories: Dev Environments, Ethereum Toolkit
 ---
 
 # Using Tenderly on Moonbeam
@@ -25,8 +26,6 @@ The Tenderly platform provides the following features:
 
 - **[Web3 Actions](https://docs.tenderly.co/web3-actions/intro-to-web3-actions){target=\_blank}** - create programmable functions in JavaScript or TypeScript that are executed automatically by Tenderly when a specific smart contract or chain event occurs
 
-- **[Sandbox](https://sandbox.tenderly.co){target=\_blank}** - write, compile, execute, and debug your smart contracts directly in your browser with baked-in JavaScript and Solidity editors. Every time you run your code, Tenderly creates a temporary fork that comes with 10 pre-funded accounts, each with 100 tokens for testing purposes
-
 !!! note
     Tenderly supports Moonbeam, Moonriver, and Moonbase Alpha, except for the Web3 Gateway. For more information, check out Tenderly's documentation on [Supported Networks](https://docs.tenderly.co/supported-networks#supported-networks){target=\_blank}.
 
@@ -42,19 +41,6 @@ To interact with Tenderly's features programmatically, you can check out the [Te
 
 The following sections will show you how to get started with Tenderly on Moonbeam. For more detailed documentation, please refer to [Tenderly's documentation site](https://docs.tenderly.co){target=\_blank}.
 
-### Create a Sandbox {: #create-a-moonbeam-sandbox }
-
-To deploy contracts to Moonbeam with a Tenderly Sandbox, you can navigate to [sandbox.tenderly.co](https://sandbox.tenderly.co){target=\_blank} and take the following steps:
-
-1. Enter your smart contract into the Solidity editor on the left-hand side
-2. Click **Configure** to select **Moonbeam**, **Moonriver**, or **Moonbase Alpha** as the network to deploy to
-3. Update the JavaScript editor on the right. The Sandbox includes [Ethers.js](https://github.com/ethers-io/ethers.js){target=_blank} and [Web3.js](https://github.com/web3/web3.js){target=_blank}, accessible via `ethers` and `web3`. It also provides [global variables](https://docs.tenderly.co/tenderly-sandbox#available-javascript-global-variables){target=_blank}, so you don’t need to update the RPC URL for Moonbeam
-4. Click on **RUN** when you're ready to compile your contract and execute your code
-
-If your code contained logic to deploy your contract or send a transaction, you'll see the transaction(s) appear under the **Simulated Transactions** section on the bottom left-hand side.
-
-![Tenderly Sandbox](/images/builders/ethereum/dev-env/tenderly/tenderly-2.webp)
-
 ### Add a Contract {: #add-a-contract }
 
 A good place to start with the Tenderly dashboard is to add a deployed smart contract. Once you've added a contract, you'll be able to create transaction simulations and Virtual TestNets, use the debugger, set up monitoring and alerts, and more.
@@ -67,11 +53,11 @@ To add a new contract, you can click on **Contracts** on the left-side panel and
 4. (Optional) Toggle the **Add more** slider to add additional contracts after the initial one
 5. Finally, to add the contract to the dashboard, click **Save**
 
-![Add a contract](/images/builders/ethereum/dev-env/tenderly/tenderly-3.webp)
+![Add a contract](/images/builders/ethereum/dev-env/tenderly/tenderly-2.webp)
 
 After a contract has been added, it will appear in the list of contracts on the **Contracts** dashboard. If the contract hasn't been verified yet, the dashboard will display an **Unverified** status along with a **Verify** button.
 
-![Contract in list of contracts](/images/builders/ethereum/dev-env/tenderly/tenderly-4.webp)
+![Contract in list of contracts](/images/builders/ethereum/dev-env/tenderly/tenderly-3.webp)
 
 To take full advantage of the Tenderly tool set, it is recommended that you verify your smart contracts, which you can do by clicking on **Verify**. You can choose to verify your contract by uploading the contract's JSON, ABI, or source code. For more information, please refer to Tenderly's documentation on [Smart Contract Verification](https://docs.tenderly.co/contract-verification#verifying-a-smart-contract){target=\_blank}.
 
@@ -91,7 +77,7 @@ Tenderly makes creating a TestNet through the dashboard quite simple. To get sta
 6. To limit data, disable **Use latest block** and enter a block number, or keep it enabled to include all blocks
 7. Click **Create**
 
-![Virtual TestNet Moonbeam](/images/builders/ethereum/dev-env/tenderly/tenderly-5.webp)
+![Virtual TestNet Moonbeam](/images/builders/ethereum/dev-env/tenderly/tenderly-4.webp)
 
 Once you've created your Virtual TestNet, you can start using it by deploying a contract or creating a transaction simulation.
 
@@ -99,7 +85,7 @@ To deploy a contract, go to Contracts in the left menu. Use one from **Watched C
 
 To create a simulation, click the **Simulation** button and enter the configurations for the simulation. For more information on simulations, please refer to Tenderly's [Simulator UI Overview](https://docs.tenderly.co/simulator-ui/using-simulation-ui){target=\_blank} documentation.
 
-![TestNet simulations](/images/builders/ethereum/dev-env/tenderly/tenderly-6.webp)
+![TestNet simulations](/images/builders/ethereum/dev-env/tenderly/tenderly-5.webp)
 
 Now that you've learned how to get started with a few of Tenderly's features on Moonbeam, please feel free to dive in and check out the other tools available in their development platform. You can visit [Tenderly's documentation site](https://docs.tenderly.co){target=\_blank} for more information. You can also check out Moonbeam's tutorial on [Using Tenderly to Simulate and Debug Transactions](/tutorials/eth-api/using-tenderly/){target=\_blank}.
 

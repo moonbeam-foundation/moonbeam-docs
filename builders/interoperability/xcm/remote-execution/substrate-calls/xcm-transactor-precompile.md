@@ -1,6 +1,7 @@
 ---
 title: The XCM Transactor Precompile
 description: This guide describes the XCM Transactor Precompile and shows how to use some of its functions to send remote calls to other chains using Ethereum libraries.
+categories: XCM Remote Execution
 ---
 
 # Using the XCM Transactor Precompile for Remote Execution

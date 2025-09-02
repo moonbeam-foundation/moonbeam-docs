@@ -1,7 +1,7 @@
 <div id="termynal" data-termynal>
     <span data-ty="input"><span class="file-path"></span>forge create --rpc-url INSERT_RPC_API_ENDPOINT \</span>
     <span data-ty>--constructor-args 100 \</span>
-    <span data-ty>--etherscan-api-key INSERT_YOUR_MOONSCAN_API_KEY \</span>
+    <span data-ty>--etherscan-api-key INSERT_YOUR_ETHERSCAN_API_KEY \</span>
     <span data-ty>--verify --private-key YOUR_PRIVATE_KEY \</span>
     <span data-ty>src/MyToken.sol:MyToken</span>
     <br>

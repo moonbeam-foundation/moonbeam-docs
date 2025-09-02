@@ -1,6 +1,7 @@
 ---
 title: Identity Pallet
 description: This guide covers the available functions in the Identity Pallet on Moonbeam, which are used to create and manage on-chain identities.
+categories: Substrate Toolkit
 ---
 
 # The Identity Pallet

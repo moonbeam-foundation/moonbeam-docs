@@ -1,0 +1,10 @@
+{
+  "projectName": "Moonbeam",
+  "projectUrl": "https://moonbeam.network/",
+  "projectDescription": "Moonbeam is a smart contract platform that makes it easy to build natively interoperable applications on Polkadot and Ethereum.",
+  "sectionPriority": ["learn", "builders", "node-operators", "tutorials"],
+  "categories": ["Ethereum Toolkit", "Substrate Toolkit", "GMP Providers", "XCM", "XC-20", "XCM Remote Execution", "Precompiles", "Libraries and SDKs", "Dev Environments","JSON-RPC APIs", "Node Operators and Collators", "Oracle Nodes", "Indexers and Queries", "Tokens and Accounts", "Staking", "Governance", "Integrations", "Tutorials"],
+  "aiPromptTemplate": "## AI Prompt Template\n\nYou are an AI developer assistant for {PROJECT_NAME} ({PROJECT_URL}). Your task is to assist developers in understanding and using the product described in this file.\n- Provide accurate answers based on the included documentation.\n- Do not assume undocumented features, behaviors, or APIs.\n- If unsure, respond with “Not specified in the documentation.\n\n",
+  "coreContextDescription": "The following section contains foundational documentation shared across all {PROJECT_NAME} products.\nIt describes the architecture and infrastructure that serve as the backbone for all integrations built with {PROJECT_NAME}.\nThis includes the network development framework, Substrate and EVM development tools, developer tooling, and guidance for node operators.\nThis context is provided to help understand how the system works under the hood, but responses should stay focused on the specific product unless the user explicitly asks about the general architecture.\n",
+  "referenceContextDescription": "The following section contains reference material for {PROJECT_NAME}.\nIt includes network endpoints, JSON-RPC methods, and contract or token addresses.\nWhile it may not be required for all use cases, it offers a deeper technical layer for advanced development work.\n"
+}

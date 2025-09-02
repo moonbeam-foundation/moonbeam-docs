@@ -2,6 +2,7 @@
 title: Non-Network Specific Precompiles
 description: Learn how to use precompiled contracts, which are not specific to Ethereum or Moonbeam, yet are supported for use in your application.
 keywords: ethereum, moonbeam, ECRecoverPublicKey, sha3FIPS256
+categories: Precompiles, Ethereum Toolkit
 ---
 
 # Non-Network Specific Precompiled Smart Contracts

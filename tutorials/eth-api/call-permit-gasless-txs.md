@@ -1,6 +1,7 @@
 ---
 title: Gasless Transactions with the Call Permit Precompile
 description: Enable gas-less transactions in your DApp with Moonbeam's Call Permit Precompile! Learn how to implement the Call Permit Precompile to improve user experience.
+categories: Tutorials, Precompiles
 ---
 
 # Use the Call Permit Precompile to Send Gasless Transactions

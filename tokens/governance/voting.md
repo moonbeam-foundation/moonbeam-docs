@@ -1,6 +1,7 @@
 ---
 title: How to Vote on a Proposal in OpenGov
-description: Follow this guide to learn how to vote and lock your tokens to support or reject a proposal put forth for a referendum in Governance v2 (OpenGov) on Moonbeam. 
+description: Follow this guide to learn how to vote and lock your tokens to support or reject a proposal put forth for a referendum in Governance v2 (OpenGov) on Moonbeam.
+categories: Governance
 ---
 
 # How to Vote on a Proposal in Governance v2: OpenGov

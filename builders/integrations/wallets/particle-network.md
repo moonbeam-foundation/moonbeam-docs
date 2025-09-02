@@ -1,6 +1,7 @@
 ---
 title: Add Particle Network to a dApp
 description: Learn how to integrate Particle Network's Wallet-as-a-Service into a dApp built on Moonbeam to enable MPC-based onboarding and ERC-4337 AA interaction.
+categories: Tokens and Accounts
 ---
 
 # Particle Network Wallet Abstraction

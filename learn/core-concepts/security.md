@@ -1,6 +1,7 @@
 ---
 title: Security Considerations
 description: A description of the main differences that Ethereum developers need to understand in terms of security considerations when developing on Moonbeam.
+categories: Basics
 ---
 
 # Security Considerations

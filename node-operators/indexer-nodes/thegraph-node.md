@@ -1,6 +1,7 @@
 ---
 title: Run a Graph Node
 description: Use Docker to spin up and run your own Graph node to provide indexing and querying services of on-chain data on Moonbeam.
+categories: Indexer Nodes and Queries
 ---
 
 # Running a Graph Node on Moonbeam

@@ -2,6 +2,7 @@
 title: Referenda Pallet
 description: This guide covers the available functions for the Referenda Pallet on Moonbeam, of which are used to view and submit data related to on-chain referenda
 keywords: democracy, substrate, pallet, moonbeam, polkadot, voting, vote, referenda
+categories: Substrate Toolkit
 ---
 
 # The Referenda Pallet

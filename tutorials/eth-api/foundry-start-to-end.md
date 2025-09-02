@@ -1,6 +1,7 @@
 ---
 title: Foundry Development Life Cycle from Start to End
 description: Follow a step-by-step tutorial on how to use Foundry to build a project on Moonbeam, from writing smart contracts and tests to deploying on TestNet and MainNet.
+categories: Tutorials, Dev Environments
 ---
 
 # Using Foundry Start to End with Moonbeam
@@ -22,7 +23,7 @@ To get started, you will need the following:
  - 
 --8<-- 'text/_common/endpoint-examples-list-item.md'
  - Have [Foundry installed](https://getfoundry.sh/introduction/installation/){target=\_blank}
- - Have a [Moonscan API Key](/builders/ethereum/verify-contracts/api-verification/#generating-a-moonscan-api-key){target=\_blank}
+ - Have an [Etherscan API Key](/builders/ethereum/verify-contracts/api-verification/#generating-an-etherscan-api-key){target=\_blank}
 
 ## Create a Foundry Project {: #create-a-foundry-project }
 
