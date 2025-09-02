@@ -1,7 +1,7 @@
 networks:
   development:
     build_tag: v0.46.0
-    tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.46.0-3800-ea4a
+    tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.46.0-3800-536b
     rpc_url: http://127.0.0.1:9944
     wss_url: ws://127.0.0.1:9944
     chain_id: 1281
@@ -18,7 +18,7 @@ networks:
     spec_version: runtime-3800
     parachain_release_tag: v0.46.0 # must be in this exact format for links to work
     parachain_sha256sum: 51d63742aa38a076ab105087c1fab7b82b7f5df368db41130a0e352f240ec0aa
-    tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.46.0-3800-ea4a
+    tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.46.0-3800-536b
     gas_block: 60,000,000
     gas_block_numbers_only: 60000000 # this should match gas_block, just with no commas
     gas_tx: 52,000,000 # EXTRINSIC_GAS_LIMIT in test/helpers/constants.ts
@@ -45,62 +45,7 @@ networks:
     supra:
       pull_oracle: '0xaa2f56843Cec7840F0C106F0202313d8d8CB13d6'
       storage: '0x4591d1B110ad451d8220d82252F829E8b2a91B17'
-    chainlink:
-      oracle_contract: '0x1d693d883BeAeE16edD0D7588D6a9f7E1967E798'
-      link_contract: '0xa36085F69e2889c224210F603D836748e7dC0088'
-      client_contract: '0x8ea35EdC1709ea0Ea2C86241C7D1C84Fd0dDeB11'
-      basic:
-        aave_usd: '7ddc5b9e9eef410184666620dbc740a4'
-        avax_usd: '007ba4a3bf424ea79d2fad13fd763808'
-        algo_usd: '9ac119b772ed4d2580965fa84ef26f56'
-        band_usd: '6405edbca42e4b92bd4de2601310de79'
-        bnb_usd: 'f4d1d07ce01d4039a410f0592ab9df4c'
-        btc_usd: '02d8ae1716924ea7af12dba7d08aa9a2'
-        comp_usd: '35c893eca2eb4a35b6ee8b786920df2d'
-        crv_usd: 'f8b5326162214b22874d3df2394f4da2'
-        cvx_usd: 'a0f8e66321a64383b4ab92b98c44a500'
-        dai_usd: 'e191bd95b8134508bb258fc8c4375956'
-        dot_usd: '58a5aba286a143b68f9fcf9c1f022fd5'
-        eth_usd: 'e539daf468bb465c9c795deb5ff7fe22'
-        frax_usd: '2a6d5b0b0e4b4d38b63dc4ea7a4aa2b9'
-        ftm_usd: '6bf63cdfd9d54512b53671375d489079'
-        ksm_usd: 'db34748e6cad4eab895eae8cbfacc80b'
-        link_usd: 'caea548c900d49959c91d595ef3854b6'
-        mkr_usd: '2b32e18e39404182a8357c1caa9c6f74'
-        op_usd: '99c4ff9ec4194208a06c082353cef852'
-        steth_usd: '7d8b047a8e5e4a88adf4d24896a833e5'
-        sushi_usd: '36e18c5b30b24b988c007dc9343cad5e'
-        uni_usd: '49f014fd0475434cbe32e8f14d0d5d6d'
-        usdc_usd: '76dcaca128a24ec4aa46a3f17d084d02'
-        usdt_usd: '7407e378b901429d884eebee1c1b7ee6'
-        yfi_usd: 'f0f56b5c976649cb9d681f18efce34d1'
-      feed:
-        proxy:
-          aave_usd: '0x9DA76AE39AECA424801DF1b63e9E2750643F9e76'
-          algo_usd: '0x49E1021974902B4a279fC7D359b4890FC38F8261'
-          avax_usd: '0xA356990bCDed8Cc6865Be606D64E7381bfe00B72'
-          band_usd: '0x8997c0A8Dc9d13061FCf303711D1db4278e53a1B'
-          bnb_usd: '0x4ADfBA6138A5bdA31f980EF5D59Fc7f8440A5D92'
-          btc_usd: '0xa39d8684B8cd74821db73deEB4836Ea46E145300'
-          comp_usd: '0xaa18FFaF5E2f410250D318b57EAd2C68603A382c'
-          crv_usd: '0x1a435D01CB50E6B1F8e429a32EE03BF164B43ece'
-          cvx_usd: '0x3A1Ac4DA79a3c813b2B335d1a631adEec360A59c'
-          dai_usd: '0x5A5737F6C0683be63863131bfCAd793a9F828DDa'
-          dot_usd: '0xA8B2138c8E765288D4f6fb7D3ebCe2507A006a9C'
-          eth_usd: '0x0BAA6E884cfD628b33867F9E081B44a76276fA2D'
-          frax_usd: '0xB616464cB6135AF542de908FAa3FbE3a0b3048e4'
-          ftm_usd: '0xD23f056ceD090Bc9Cf6c75d2FB43c0ccC35AD542'
-          glmr_usd: '0x537879A0beA294c1ce04161Ae827919e92C23e92'
-          ksm_usd: '0x4E9A1ebc0bEebe3516a8A9a911D781c37414bb39'
-          link_usd: '0x5310f2d4B531BCEA8126e2aEE40BAd71B707f530'
-          mkr_usd: '0x2257c46D4ddF160bACBD00cd67cD6Fd87C48c581'
-          op_usd: '0xC5837B50a86fD87e1D2FbE4FEbFe7C042a9CFBE8'
-          steth_usd: '0x49CEee3f8e9e05f26A81f1122A78D058Ef3c05a9'
-          sushi_usd: '0xd265FAfc809108D9cf47b6970d750419ba9355B8'
-          uni_usd: '0x326fAFb9E9B5188d7c2e95C0D782ECB19E5EfDF9'
-          usdc_usd: '0xCb1c08B86C6EaC617b1bEd5D1E9cD7Fd308FdA4d'
-          usdt_usd: '0x141Ec95dB9298cB4Bb20CbAC422A42A047a764b1'
-          yfi_usd: '0x8E812AA9f56BBAa5B936c8F08B0a260f3eF7cF46'
+
     randomness:
       max_random_words: 100
       min_vrf_blocks_delay: 2
@@ -435,10 +380,10 @@ networks:
     node_directory: /var/lib/moonriver-data
     parachain_release_tag: v0.46.0
     parachain_sha256sum: 51d63742aa38a076ab105087c1fab7b82b7f5df368db41130a0e352f240ec0aa
-    tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.46.0-3800-ea4a
+    tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.46.0-3800-536b
     chain_spec: moonriver
     block_explorer: https://moonriver.moonscan.io/
-    spec_version: runtime-3702
+    spec_version: runtime-3800
     binary_name: moonbeam
     min_gas_price: 0.3125
     block_time: 6
@@ -757,43 +702,7 @@ networks:
       quantumblockchainsxpub: 'xpub6C7WhXL7KNoa9GnCwEfLCWzf326hXhqD3nUyKg4ZxzXvjcmFeVQ9GZENgKtHxLfo3uPa13GBHCAb1nRgdUnP5YGJFX97KqpeFvHQzpjhmoi'
       quantumblockchainsuint256: '0x8cf0e7205eff59b8695db96b34ffe7a5a125a3ed263afa3353aef6c3d82debf9'
       quantumblockchainsuint256array: '0x09fd3663fdc0ab359a5ebcba098571122ddb2a80b00a503960b32e67491f52d7'
-    chainlink:
-      feed:
-        proxy:
-          inch_usd: '0x1466b4bD0C4B6B8e1164991909961e0EE6a66d8c'
-          aave_usd: '0x37f35ef6735c594e6E803bC81577bAC759d8179C'
-          ankr_usd: '0x94Ee35E8b9B1b4Cd3BDB720242d6d1796b43C2Ff'
-          avax_usd: '0x992F9B8Aa09B8e084acf4e3213d8b2da5D366D6a'
-          axs_usd: '0x9322CeAd48BA0C76Fecc78e82499ce8a829Eab89'
-          bnb_usd: '0xD6B013A65C22C372F995864CcdAE202D0194f9bf'
-          btc_usd: '0x1B5C6cF9Df1CBF30387C24CC7DB1787CCf65C797'
-          busd_usd: '0x596129F6ABCaB2E6E81D19284B78eA73C176D170'
-          cake_usd: '0xc44ecD8C11fd1F281A3d6044CA65e649484B228c'
-          comp_usd: '0x29710821d57a1Fc46E2D9FdDE65Df2cF205bad2A'
-          crv_usd: '0x03d44d68EdF41c540A90C6eB2BE27C4a75ee689f'
-          dai_usd: '0x7ba0e3EbCe25DD3b5A0f36dd7aB34019B863b08D'
-          dot_usd: '0x54B584eb643375C41c55ddD8Da4b90124b18d05c'
-          eth_usd: '0xc3cF399566220dc5Ed6C8CFbf8247214Af103C72'
-          eur_usd: '0xe6Ccbe1Cb33dF799a59E37a1382c7009dbaBE9ff'
-          frax_usd: '0xD080d4760318710e795B0a59f181f6C1512ffB15'
-          ftm_usd: '0x5e70fC5f38cB930F9BE8BEAEaF80CF927Af3B17E'
-          fxs_usd: '0xE5B624e1098C25C94279bA20A0CC68Fa9215e63b'
-          ksm_usd: '0x6e0513145FCE707Cd743528DB7C1cAB537DE9d1B'
-          link_usd: '0xdD27789b504fEd690F406A82F16B45a0901172C0'
-          luna_usd: '0x5F8E0c452EcA522a2208Fff7443515AaFF3cAaE6'
-          mana_usd: '0x424807fA7B16f747CbD30963fAe25fB8Db0b97bF'
-          mim_usd: '0xdD6296BD7515271F7E4b10C3A87A2f9863fECa97'
-          mkr_usd: '0xD8542f327FaD60b80D8C19025147E6b9d857bb99'
-          movr_usd: '0x3f8BFbDc1e79777511c00Ad8591cef888C2113C1'
-          sand_usd: '0x5403385DF6eb607fc1fA6983eF5801A11eC7fD9a'
-          snx_usd: '0x26E3F9273abC8a01228bE97a106E60FA38b98df2'
-          sushi_usd: '0x28A9E2747a10eE94D2d7359DEB60023D19FfdD96'
-          theta_usd: '0xA0784167e040906b5580e3c4a53932B288f615ce'
-          uni_usd: '0x05Ec3Fb5B7CB3bE9D7150FBA1Fb0749407e5Aa8a'
-          usdc_usd: '0x12870664a77Dd55bBdcDe32f91EB3244F511eF2e'
-          usdt_usd: '0xF80DAd54AF79257D41c30014160349896ca5370a'
-          xrp_usd: '0x3FD363679fb59596d45881bbfBe4bb864f3545A2'
-          yfi_usd: '0xE3324ea60FA272BBB4511dDBD4776feFE4674fa0'
+
     randomness:
       max_random_words: 100
       min_vrf_blocks_delay: 2
@@ -825,10 +734,10 @@ networks:
     node_directory: /var/lib/moonbeam-data
     parachain_release_tag: v0.46.0
     parachain_sha256sum: 51d63742aa38a076ab105087c1fab7b82b7f5df368db41130a0e352f240ec0aa
-    tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.46.0-3800-ea4a
+    tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.46.0-3800-536b
     chain_spec: moonbeam
     block_explorer: https://moonscan.io
-    spec_version: runtime-3702
+    spec_version: runtime-3800
     binary_name: moonbeam
     min_gas_price: 31.25
     block_time: 6
@@ -1165,18 +1074,7 @@ networks:
     supra:
       pull_oracle: '0x2FA6DbFe4291136Cf272E1A3294362b6651e8517'
       storage: '0xD02cc7a670047b6b012556A88e275c685d25e0c9'
-    chainlink:
-      feed:
-        proxy:
-          atom_usd: '0x4F152D143c97B5e8d2293bc5B2380600f274a5dd'
-          bnb_usd: '0x0147f2Ad7F1e2Bc51F998CC128a8355d5AE8C32D'
-          btc_usd: '0x8c4425e141979c66423A83bE2ee59135864487Eb'
-          dot_usd: '0x1466b4bD0C4B6B8e1164991909961e0EE6a66d8c'
-          eth_usd: '0x9ce2388a1696e22F870341C3FC1E89710C7569B5'
-          frax_usd: '0x05Ec3Fb5B7CB3bE9D7150FBA1Fb0749407e5Aa8a'
-          glmr_usd: '0x4497B606be93e773bbA5eaCFCb2ac5E2214220Eb'
-          link_usd: '0xd61D7398B7734aBe7C4B143fE57dC666D2fe83aD'
-          usdc_usd: '0xA122591F60115D63421f66F752EF9f6e0bc73abC'
+
     randomness:
       max_random_words: 100
       min_vrf_blocks_delay: 2
