@@ -14,7 +14,7 @@ One of the key network participants needed to support parachains within the Polk
 
 ### Delegators {: #delegators }
 
-Moonbeam token holders who stake tokens, vouching for specific collator candidates on the parachain. Any user that holds a minimum amount of tokens as [free balance](https://wiki.polkadot.network/learn/learn-accounts/#balance-types){target=\_blank} can become a delegator by staking their tokens.
+Moonbeam token holders who stake tokens, vouching for specific collator candidates on the parachain. Any user that holds a minimum amount of tokens as [free balance](https://wiki.polkadot.com/learn/learn-accounts/#balance-types#balance-types){target=\_blank} can become a delegator by staking their tokens.
 
 ### Nominators {: #nominators }
 
@@ -42,7 +42,7 @@ The backbone blockchain supporting the Polkadot network.  Parachains connect to 
 
 ### Smart Contract {: #smart-contract }
 
-A smart contract is a computer program or a transaction protocol that is intended to automatically execute, control, or document legally relevant events and actions according to the terms of a contract or an agreement. Smart contracts intend to reduce the need for trusted intermediators, arbitrations, and enforcement costs, as well as reduce fraud losses and malicious and accidental exceptions. [Learn more](https://en.wikipedia.org/wiki/Smart_contract){target=\_blank}.
+A [smart contract](https://en.wikipedia.org/wiki/Smart_contract){target=\_blank} is a computer program or a transaction protocol that is intended to automatically execute, control, or document legally relevant events and actions according to the terms of a contract or an agreement. Smart contracts intend to reduce the need for trusted intermediators, arbitrations, and enforcement costs, as well as reduce fraud losses and malicious and accidental exceptions.
 
 ### Substrate {: #substrate }
 

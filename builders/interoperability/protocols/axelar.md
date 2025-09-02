@@ -23,7 +23,7 @@ The Axelar APIs provide a rich suite for developing Web3 applications, ensuring 
 There are a couple of resources to get you started building cross-chain applications with Axelar:
 
 - **[Developer documentation](https://docs.axelar.dev/dev/intro){target=\_blank}** - for technical guides
-- **[Satellite](https://satellite.money){target=\_blank}** - a bridging UI used to transfer assets across chains
+- **[Squid](https://app.squidrouter.com/){target=\_blank}** - a bridging UI used to transfer assets across chains
 
 There is also a block explorer available to track your cross-chain transfers and more:
 

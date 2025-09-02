@@ -40,7 +40,7 @@ Some of the main components of this governance model include:
  - **Council & Technical Committee Governance V1** — a group of community members who have special voting rights within the system. With the deprecation and removal of Governance v1, both of these committees were dissolved as of the [runtime 2800 release](https://forum.moonbeam.network/t/runtime-rt2801-schedule/1616/4){target=\_blank}
  - **OpenGov Technical Committee** — a group of community members who can add certain proposals to the Whitelisted Track
 
-For more details on how these Substrate frame pallets implement on-chain governance, you can checkout the [Walkthrough of Polkadot’s Governance](https://polkadot.com/blog/a-walkthrough-of-polkadots-governance){target=\_blank} blog post and the [Polkadot Governance Wiki](https://wiki.polkadot.network/learn/learn-polkadot-opengov/){target=\_blank}.
+For more details on how these Substrate frame pallets implement on-chain governance, you can checkout the [Walkthrough of Polkadot’s Governance](https://polkadot.com/blog/a-walkthrough-of-polkadots-governance){target=\_blank} blog post and the [Polkadot Governance Wiki](https://wiki.polkadot.com/learn/learn-polkadot-opengov/){target=\_blank}.
 
 ## Governance v2: OpenGov {: #opengov }
 
@@ -300,7 +300,7 @@ In addition, there is a Kill Origin, which is for bad referenda intending to har
 
 ### Rights of the OpenGov Technical Committee {: #rights-of-the-opengov-technical-committee }
 
-On Polkadot, the Technical Committee from Governance v1 was replaced with the Fellowship, which is a "mostly self-governing expert body with a primary goal of representing humans who embody and contain the technical knowledge base of the Kusama and/or Polkadot networks and protocol," according to [Polkadot's wiki](https://wiki.polkadot.network/general/web3-and-polkadot/#fellowship){target=\_blank}.
+On Polkadot, the Technical Committee from Governance v1 was replaced with the Fellowship, which is a "mostly self-governing expert body with a primary goal of representing humans who embody and contain the technical knowledge base of the Kusama and/or Polkadot networks and protocol," according to [Polkadot's wiki](https://wiki.polkadot.com/general/web3-and-polkadot/#fellowship){target=\_blank}.
 
 For Moonbeam's implementation of OpenGov, instead of the Fellowship, there is a community OpenGov Technical Committee that has very similar power to that of the Fellowship. Their power in governance resides in their ability to whitelist a proposal. OpenGov Technical Committee members may only vote to whitelist a proposal if whitelisting that proposal would protect against a security vulnerability to the network. The passing threshold of the OpenGov Technical Committee members on whether to whitelist a proposal is determined by governance. As such, the OpenGov Technical Committee has very limited power over the network. Its purpose is to provide technical review of urgent security issues that are proposed by token holders.
 
