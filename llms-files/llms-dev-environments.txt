@@ -12474,7 +12474,7 @@ categories: Reference
 
 ## Introduction to the Moonbeam DApp Directory {: #introduction-to-state-of-the-dapps }
 
-The Moonbeam ecosystem comprises two distinct production networks: Moonbeam and Moonriver. Each network has its own dedicated [DApp Directory](https://apps.moonbeam.network/moonbeam/app-dir){target=\_blank}, maintained by the Moonbeam Foundation. These directories categorize projects spanning from DeFi to NFTs to gaming, providing users with comprehensive access to diverse applications.
+The Moonbeam ecosystem comprises two distinct production networks: Moonbeam and Moonriver. Each network has its own dedicated DApp Directory, maintained by the Moonbeam Foundation: [Moonbeam](https://apps.moonbeam.network/moonbeam/app-dir){target=\_blank} and [Moonriver](https://apps.moonbeam.network/moonriver/app-dir){target=\_blank}. These directories categorize projects spanning from DeFi to NFTs to gaming, providing users with comprehensive access to diverse applications.
 
 You'll supply core project details like name, description, and relevant links when adding your project. Depending on your project type, you may include additional data such as on-chain stats and token information.
 
@@ -12487,7 +12487,7 @@ Despite the distinction between the Moonbeam and Moonriver DApp directories, the
 There are four main sources of data that are used for a project's listing in the Moonbeam DApp Directory:
 
 - **Core Project Data** - core project data such as descriptions, logos, and screenshots. This data also includes IDs used to query data from external platforms
-- **Active Users and Transaction Volume** - on-chain data based on smart contract activity for all of the contracts associated with the project. Data is discovered via the use of contract labeling in Moonscan, which is then indexed by Web3Go and consumed by the DApp Directory
+- **Active Users and Transaction Volume** - on-chain data based on smart contract activity for all of the contracts associated with the project. Data is discovered via the use of contract labeling in Moonscan and is indexed and consumed by the DApp Directory
 - **TVL Data** - TVL data for the protocol, sourced from the project's listing on DefiLlama
 - **Project Token Information** - token information, which is sourced from the project's listing on CoinGecko
 
@@ -12503,10 +12503,38 @@ The end-to-end flow for linking smart contract activity to the DApp Directory is
 
 1. The smart contract owner fills in the [form to label contracts on Moonscan](https://moonscan.io/contactus?id=5){target=\_blank}
 2. The contracts become labeled in Moonscan
-3. Periodically, the entire list of labeled contracts is exported and transmitted to Web3Go to be ingested
-4. Every hour, Web3Go loads smart contract activity within Moonbeam and Moonriver and runs a job to index this data by the labels
+3. Labeled contracts can then be ingested by ecosystem analytics providers to index activity for your project
+4. (Recommended) Register your project with FiDi so your activity can be indexed and publicly viewable. See the FiDi registration section below
 
-To get your project's smart contracts properly labeled on [Moonscan](https://moonscan.io){target=\_blank}, please refer to Web3Go's documentation on the [Labeling Structure](https://dinlol.gitbook.io/moonscan-smart-contract-label-for-projects/labeling-structure){target=\_blank} and [How to Submit Contract Information](https://dinlol.gitbook.io/moonscan-smart-contract-label-for-projects/how-to-submit-contract-information){target=\_blank} on Moonscan.
+To get your project's smart contracts properly labeled on [Moonscan](https://moonscan.io){target=\_blank}, submit the [Moonscan contract labeling form](https://moonscan.io/contactus?id=5){target=\_blank} with your project and contract details.
+
+### Register with FiDi for Analytics (Recommended) {: #register-with-fidi }
+
+New and existing projects are encouraged to register with FiDi so your project's activity can be indexed and surfaced in public analytics. Submit your project using the [FiDi Project Listing Form](https://docs.google.com/forms/d/e/1FAIpQLSc8c5iOzwIHhLJKRTnC48j7CAj9JY8i_lHxryNBdJdzIyDx3Q/viewform){target=\_blank}.
+
+After submission, Moonbeam FiDi analytics can be viewed on the [Moonbeam FiDi Dashboard](https://moonbeam.fidi.tech/dashboard/moonbeam){target=\_blank}.
+
+Required Project Information:
+
+Where possible, include a short purpose description for each contract to improve completeness.
+
+- **Core Smart Contracts** - addresses of main contracts that define core functionality and interact significantly with the network. Optionally, include a brief description of each contract's purpose
+- **Factory Contracts** - if applicable, addresses of any contracts that deploy other contracts as part of your dApp. Please also provide the creation topic (hash of the creation event) for each factory contract
+- **Deployer Wallets** - if applicable, addresses of wallets used to deploy your project's contracts
+
+Additional Project-Specific Information (Optional):
+
+- **Treasury/Admin Wallets** - addresses of wallets with administrative control or funds. Optionally, include a brief description of each wallet's function
+- **Oracle Contracts** - addresses of any oracle contracts. Optionally, include a brief description of what data these oracles provide
+- **Bridge Contracts** - addresses of any bridge contracts and the list of connected chains
+- **Governance Contracts** - addresses of any contracts related to on-chain governance. Optionally, include a brief explanation of your governance model
+
+Additional considerations:
+
+- If your project batches transactions, consider using the Batch Precompile
+- Factory contracts should derive from or mimic the standard Uniswap factory
+- Diamond (multi-facet proxy) contracts are supported and will be indexed correctly
+- Typical listing time is 1–2 weeks; FiDi may reach out for clarifications
 
 Once you've labeled your smart contracts and are ready to submit your project to the DApp Directory, configuring the Directory to utilize your smart contract data becomes straightforward. You'll only need the **Project** component of your labeled contracts.
 
@@ -12545,7 +12573,7 @@ If you have the CoinGecko ID and are ready to submit your project to the Moonbea
 
 As mentioned, you must submit a pull request to the Moonbeam Foundation's GitHub repository that holds the DApp Directory's data. Before getting started, it's worth noting that to expedite the review process, the GitHub user who submits the pull request is recommended to be a major contributor to the project's GitHub so that the Moonbeam Foundation can quickly verify that they represent the project. You can check out the [Review Process](#review-process) section for more information.
 
-To begin, you have two options for adding your project information to the [`app-directory-data` repository on GitHub](https://github.com/moonbeam-foundation/app-directory-data){targe\_blank}. You can utilize [GitHub's browser-based editor](https://github.dev/moonbeam-foundation/app-directory-data){target=\_blank}, which offers a user-friendly interface.
+To begin, you have two options for adding your project information to the [`app-directory-data` repository on GitHub](https://github.com/moonbeam-foundation/app-directory-data){target=\_blank}. You can utilize [GitHub's browser-based editor](https://github.dev/moonbeam-foundation/app-directory-data){target=\_blank}, which offers a user-friendly interface.
 
 ![The app-directory-data repository loaded on GitHub's browser-based editor](/images/learn/dapps-list/directory-2.webp)
 
@@ -12622,7 +12650,6 @@ Your project's data file is where you'll add all the information for your projec
 |               `category`               |                        String                         |                                         The category the project should be associated with. A project can only have one category, and it corresponds to the category list in the left-hand nav of the DApp Directory. See the [Category and Tags](#category-and-tags) section for the accepted list of values                                          |
 |             `coinGeckoId`              |                        String                         |                                              If the project has a token listed on CoinGecko, this property should have the **API ID** value corresponding to the given token. See the [Configure the Data Source for Project Token Information](#project-token-information) section for more information                                               |
 |                `chains`                |                   Array of Strings                    |                                                                                                               List of Moonbeam ecosystem chains on which the project is deployed. Valid values are currently `moonbeam` and `moonriver`                                                                                                                |
-|              `web3goIDs`               |                   Array of Strings                    | List of Web3Go identifiers for a given dApp. The identifiers should correspond to the **Project** component of the smart contract labels set up in Moonscan. Generally, there should only be one value in the array. See the [Configure the Data Source for Active Users and Transaction Volume](#configure-active-users) section for more information |
 |                 `logo`                 |            Map of Strings to JSON objects             |                                                                                                     Map of logo image files associated with this project and stored in the `logos` directory. See the [Logos](#logos) section for more information                                                                                                     |
 |           `shortDescription`           |                        String                         |                                                                                                      A short description of the project used in the display card when browsing dapps in the directory. This should be kept to under 80 characters                                                                                                      |
 |             `description`              |                        String                         |                                                                               A longer description used in the project detail page. Markdown or similar formatting cannot be used. Line breaks can be used using `\r\n`. The text should be limited to a few paragraphs                                                                                |
@@ -12643,9 +12670,6 @@ Your project's data file is where you'll add all the information for your projec
     "coinGeckoId": "moonwell-artemis",
     "chains": [
         "moonbeam"
-    ],
-    "web3goIDs": [
-        "Moonwell Artemis"
     ],
     "logo": {
         "small": {
@@ -12809,7 +12833,7 @@ The following table lists the supported `urls` properties:
 |:-------------:|:------------------------------------------------------------------------------------------------------------------:|:-----------------------------------------------:|
 |   `website`   |                                          The main website for the project                                          |            https://moonbeam.network/            |
 |     `try`     | URL a user should visit if they want to try out the dApp. Typically, this page will have a link to launch the dApp |            https://moonbeam.network/            |
-|   `twitter`   |                                           The project's Twitter profile                                            |       https://twitter.com/MoonbeamNetwork       |
+|   `twitter`   |                                     The project's X (Twitter) profile                                      |       https://twitter.com/MoonbeamNetwork       |
 |   `medium`    |                                             The project's Medium site                                              |       https://medium.com/moonbeam-network       |
 |  `telegram`   |                                               The project's Telegram                                               |         https://t.me/Moonbeam_Official          |
 |   `github`    |                                          The project's GitHub repository                                           | https://github.com/moonbeam-foundation/moonbeam |
