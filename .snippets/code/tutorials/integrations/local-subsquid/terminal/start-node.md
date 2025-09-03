@@ -1,6 +1,6 @@
 <div id="termynal" data-termynal>
     <span data-ty="input"><span class="file-path"></span>docker run --rm --name moonbeam_development -p 9944:9944 \</span>
-    <span data-ty>moonbeamfoundation/moonbeam:v0.45.0 \</span>
+    <span data-ty>moonbeamfoundation/moonbeam:v0.47.0 \</span>
     <span data-ty>--dev --rpc-external</span>
     <span data-ty>2025-07-10 09:04:26 Moonbeam Parachain Collator</span>
     <span data-ty>2025-07-10 09:04:26 ✌️  version 0.46.0-d7df89e7161</span>
