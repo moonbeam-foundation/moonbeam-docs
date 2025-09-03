@@ -10285,9 +10285,9 @@ Using Docker enables you to spin up a node in a matter of seconds. Once you have
     The tail end of the console log should look like this:
 
     <div id="termynal" data-termynal>
-  <span data-ty="input"><span class="file-path"></span>docker pull moonbeamfoundation/moonbeam:v0.43.0</span>
+  <span data-ty="input"><span class="file-path"></span>docker pull moonbeamfoundation/moonbeam:v0.46.0</span>
   <br>
-  <span data-ty>v0.43.0: Pulling from moonbeamfoundation/moonbeam
+  <span data-ty>v0.46.0: Pulling from moonbeamfoundation/moonbeam
     <br> b0a0cf830b12: Pull complete
     <br> fbff687640dd: Pull complete
     <br> 58ea427410e2: Pull complete
@@ -10296,8 +10296,8 @@ Using Docker enables you to spin up a node in a matter of seconds. Once you have
     <br> 128693ce218e: Pull complete
     <br> a3ac90b88463: Pull complete
     <br> Digest: sha256:86421aca2381265cd2e5283cb98705e24be0bc92a73937363f79d9d6e0d62088
-    <br> Status: Downloaded newer image for moonbeamfoundation/moonbeam:v0.43.0
-    <br> docker.io/moonbeamfoundation/moonbeam:v0.43.0
+    <br> Status: Downloaded newer image for moonbeamfoundation/moonbeam:v0.46.0
+    <br> docker.io/moonbeamfoundation/moonbeam:v0.46.0
   </span>
 </div>
 
@@ -10327,14 +10327,26 @@ Using Docker enables you to spin up a node in a matter of seconds. Once you have
         --dev --rpc-external
         ```
 
-!!! note
-    On MacOS with silicon chips, Docker images may perform poorly. To improve performance, try [spinning up a Node with a Binary File](#getting-started-with-the-binary-file).
+    !!! note "For Apple Silicon users"
+        If the Docker commands fail or behave unexpectedly on Apple Silicon, enable "Use Rosetta for x86_64/amd64 emulation on Apple Silicon" in Docker Desktop settings and use the `amd64` platform for both pull and run commands:
+
+        ```bash
+        docker pull --platform=linux/amd64 moonbeamfoundation/moonbeam:{{ networks.development.build_tag }}
+        ```
+
+        ```bash
+        docker run --rm --platform=linux/amd64 --name {{ networks.development.container_name }} -p 9944:9944 \
+        moonbeamfoundation/moonbeam:{{ networks.development.build_tag }} \
+        --dev --rpc-external
+        ```
+
+        If performance is still insufficient, consider [spinning up a Node with a Binary File](#getting-started-with-the-binary-file).
 
 If successful, you should see an output showing an idle state waiting for blocks to be authored:
 
 <div id="termynal" data-termynal>
   <span data-ty="input"><span class="file-path"></span>docker run --rm --name moonbeam_development --network host \
-    <br> moonbeamfoundation/moonbeam:v0.45.0 \
+    <br> moonbeamfoundation/moonbeam:v0.46.0 \
     <br> --dev --rpc-external
   </span>
   <br>
