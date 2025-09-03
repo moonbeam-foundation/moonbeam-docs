@@ -1852,7 +1852,7 @@ If you're having difficulty replicating the demo, take the following troubleshoo
 
  - Ensure your sending account is funded with DEV tokens 
  - Ensure your sending account is funded with xcUNIT tokens (or another XC-20 that you have specified)
- - Check the [Explorer](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoonbase-alpha.public.blastapi.io#/explorer){target=\_blank} on Polkadot.js Apps on Moonbase Alpha to ensure a successful transaction on the origin chain
+ - Check the [Explorer](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/explorer){target=\_blank} on Polkadot.js Apps on Moonbase Alpha to ensure a successful transaction on the origin chain
  - Check the [Explorer](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Frelay.api.moonbase.moonbeam.network#/explorer){target=\_blank} on Polkadot.js Apps and review the XCM messages received on Moonbase Relay Chain
 --- END CONTENT ---
 
@@ -7812,24 +7812,24 @@ When working with developer tools, depending on the tool, you might need to conf
     |    Variable     |                                                 Value                                                  |
     |:---------------:|:------------------------------------------------------------------------------------------------------:|
     |    Chain ID     |                           <pre>```{{ networks.moonbeam.chain_id }}```</pre>                            |
-    | Public RPC URLs | <pre>```https://moonbeam.public.blastapi.io```</pre>  <pre>```https://moonbeam.unitedbloc.com```</pre> |
-    | Public WSS URLs |                           <pre>```wss://moonbeam.public.blastapi.io```</pre>                           |
+    | Public RPC URLs | <pre>```https://rpc.api.moonbeam.network```</pre>  <pre>```https://moonbeam.unitedbloc.com```</pre> |
+    | Public WSS URLs |                           <pre>```wss://wss.api.moonbeam.network```</pre>                           |
 
 === "Moonriver"
 
     |    Variable     |                                                  Value                                                   |
     |:---------------:|:--------------------------------------------------------------------------------------------------------:|
     |    Chain ID     |                            <pre>```{{ networks.moonriver.chain_id }}```</pre>                            |
-    | Public RPC URLs | <pre>```https://moonriver.public.blastapi.io```</pre>  <pre>```https://moonriver.unitedbloc.com```</pre> |
-    | Public WSS URLs |                           <pre>```wss://moonriver.public.blastapi.io```</pre>                            |
+    | Public RPC URLs | <pre>```https://rpc.api.moonriver.moonbeam.network```</pre>  <pre>```https://moonriver.unitedbloc.com```</pre> |
+    | Public WSS URLs |                           <pre>```wss://wss.api.moonriver.moonbeam.network```</pre>                            |
 
 === "Moonbase Alpha"
 
     |    Variable     |                                                    Value                                                    |
     |:---------------:|:-----------------------------------------------------------------------------------------------------------:|
     |    Chain ID     |                              <pre>```{{ networks.moonbase.chain_id }}```</pre>                              |
-    | Public RPC URLs | <pre>```https://moonbase-alpha.public.blastapi.io```</pre> <pre>```{{ networks.moonbase.rpc_url }}```</pre> |
-    | Public WSS URLs |  <pre>```wss://moonbase-alpha.public.blastapi.io```</pre> <pre>```{{ networks.moonbase.wss_url }}```</pre>  |
+    | Public RPC URLs | <pre>```{{ networks.moonbase.rpc_url }}```</pre> |
+    | Public WSS URLs |  <pre>```{{ networks.moonbase.wss_url }}```</pre>  |
 
 === "Moonbeam Dev Node"
 

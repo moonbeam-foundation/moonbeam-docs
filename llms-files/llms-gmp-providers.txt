@@ -6010,24 +6010,24 @@ When working with developer tools, depending on the tool, you might need to conf
     |    Variable     |                                                 Value                                                  |
     |:---------------:|:------------------------------------------------------------------------------------------------------:|
     |    Chain ID     |                           <pre>```{{ networks.moonbeam.chain_id }}```</pre>                            |
-    | Public RPC URLs | <pre>```https://moonbeam.public.blastapi.io```</pre>  <pre>```https://moonbeam.unitedbloc.com```</pre> |
-    | Public WSS URLs |                           <pre>```wss://moonbeam.public.blastapi.io```</pre>                           |
+    | Public RPC URLs | <pre>```https://rpc.api.moonbeam.network```</pre>  <pre>```https://moonbeam.unitedbloc.com```</pre> |
+    | Public WSS URLs |                           <pre>```wss://wss.api.moonbeam.network```</pre>                           |
 
 === "Moonriver"
 
     |    Variable     |                                                  Value                                                   |
     |:---------------:|:--------------------------------------------------------------------------------------------------------:|
     |    Chain ID     |                            <pre>```{{ networks.moonriver.chain_id }}```</pre>                            |
-    | Public RPC URLs | <pre>```https://moonriver.public.blastapi.io```</pre>  <pre>```https://moonriver.unitedbloc.com```</pre> |
-    | Public WSS URLs |                           <pre>```wss://moonriver.public.blastapi.io```</pre>                            |
+    | Public RPC URLs | <pre>```https://rpc.api.moonriver.moonbeam.network```</pre>  <pre>```https://moonriver.unitedbloc.com```</pre> |
+    | Public WSS URLs |                           <pre>```wss://wss.api.moonriver.moonbeam.network```</pre>                            |
 
 === "Moonbase Alpha"
 
     |    Variable     |                                                    Value                                                    |
     |:---------------:|:-----------------------------------------------------------------------------------------------------------:|
     |    Chain ID     |                              <pre>```{{ networks.moonbase.chain_id }}```</pre>                              |
-    | Public RPC URLs | <pre>```https://moonbase-alpha.public.blastapi.io```</pre> <pre>```{{ networks.moonbase.rpc_url }}```</pre> |
-    | Public WSS URLs |  <pre>```wss://moonbase-alpha.public.blastapi.io```</pre> <pre>```{{ networks.moonbase.wss_url }}```</pre>  |
+    | Public RPC URLs | <pre>```{{ networks.moonbase.rpc_url }}```</pre> |
+    | Public WSS URLs |  <pre>```{{ networks.moonbase.wss_url }}```</pre>  |
 
 === "Moonbeam Dev Node"
 
