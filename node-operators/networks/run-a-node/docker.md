@@ -86,6 +86,17 @@ Note that in the following start-up command, you have to:
 
 For an overview of the flags used in the following start-up commands, plus additional commonly used flags, please refer to the [Flags](/node-operators/networks/run-a-node/flags/){target=\_blank} page of our documentation.
 
+!!! note "For Apple Silicon users"
+    If Docker commands fail or behave unexpectedly on Apple Silicon, enable "Use Rosetta for x86_64/amd64 emulation on Apple Silicon" in Docker Desktop settings and use the `amd64` platform for both pull and run commands. For example:
+
+    ```bash
+    docker pull --platform=linux/amd64 moonbeamfoundation/moonbeam:{{ networks.moonbeam.parachain_release_tag }}
+    ```
+
+    ```bash
+    docker run --platform=linux/amd64 ...
+    ```
+
 ### Full Node {: #full-node }
 
 ???+ code "Linux snippets"
