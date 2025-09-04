@@ -5384,7 +5384,7 @@ Using Docker enables you to spin up a node in a matter of seconds. Once you have
         ```
 
     !!! note "For Apple Silicon users"
-        If the Docker commands fail or behave unexpectedly on Apple Silicon, enable "Use Rosetta for x86_64/amd64 emulation on Apple Silicon" in Docker Desktop settings and use the `amd64` platform for both pull and run commands:
+        If the Docker commands fail or behave unexpectedly on Apple Silicon, enable **Use Rosetta for x86_64/amd64 emulation on Apple Silicon** in Docker Desktop settings and use the `amd64` platform for both pull and run commands:
 
         ```bash
         docker pull --platform=linux/amd64 moonbeamfoundation/moonbeam:{{ networks.development.build_tag }}
