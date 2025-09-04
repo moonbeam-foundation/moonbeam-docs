@@ -63,8 +63,20 @@ Using Docker enables you to spin up a node in a matter of seconds. Once you have
         --dev --rpc-external
         ```
 
-!!! note
-    On MacOS with silicon chips, Docker images may perform poorly. To improve performance, try [spinning up a Node with a Binary File](#getting-started-with-the-binary-file).
+    !!! note "For Apple Silicon users"
+        If the Docker commands fail or behave unexpectedly on Apple Silicon, enable **Use Rosetta for x86_64/amd64 emulation on Apple Silicon** in Docker Desktop settings and use the `amd64` platform for both pull and run commands:
+
+        ```bash
+        docker pull --platform=linux/amd64 moonbeamfoundation/moonbeam:{{ networks.development.build_tag }}
+        ```
+
+        ```bash
+        docker run --rm --platform=linux/amd64 --name {{ networks.development.container_name }} -p 9944:9944 \
+        moonbeamfoundation/moonbeam:{{ networks.development.build_tag }} \
+        --dev --rpc-external
+        ```
+
+        If performance is still insufficient, consider [spinning up a node with a binary file](#getting-started-with-the-binary-file).
 
 If successful, you should see an output showing an idle state waiting for blocks to be authored:
 
