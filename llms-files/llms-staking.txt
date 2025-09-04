@@ -10558,7 +10558,7 @@ Using Docker enables you to spin up a node in a matter of seconds. Once you have
         --dev --rpc-external
         ```
 
-        If performance is still insufficient, consider [spinning up a Node with a Binary File](#getting-started-with-the-binary-file).
+        If performance is still insufficient, consider [spinning up a node with a binary file](#getting-started-with-the-binary-file).
 
 If successful, you should see an output showing an idle state waiting for blocks to be authored:
 
