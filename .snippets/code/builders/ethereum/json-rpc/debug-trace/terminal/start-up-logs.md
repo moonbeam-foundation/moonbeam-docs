@@ -11,7 +11,7 @@
   </span>
   <br>
   <span data-ty> 2025-07-10 09:04:26 Moonbeam Parachain Collator
-    <br> 2025-07-10 09:04:26 ✌️  version 0.46.0-d7df89e7161
+    <br> 2025-07-10 09:04:26 ✌️  version 0.47.0-d7df89e7161
     <br> 2025-07-10 09:04:26 ❤️  by PureStake, 2019-2025
     <br> 2025-07-10 09:04:26 📋 Chain specification: Moonbase Development Testnet
     <br> 2025-07-10 09:04:26 🏷  Node name: Moonbean-Tracing-Tutorial

@@ -1,7 +1,7 @@
 <div id="termynal" data-termynal>
      <span data-ty="input"><span class="file-path"></span>docker run --network="host" -v "/var/lib/alphanet-data:/d ata" -u $(id-u ${USER}):$(id -g #{USER}) moonbeam-foundation/moonbeam:v0.47.0 --base-path=/d ata --chain alphanet --name="TestNode" --state-pruning archive --trie-cache-size 1073741824 --db-cache 8000 ----name="TestNode (Embedded Relay)"</span>
     <span data-ty>2025-07-10 09:04:26 Moonbeam Parachain Collator </span>
-    <span data-ty>2025-07-10 09:04:26 ✌️  version 0.46.0-d7df89e7161 </span>
+    <span data-ty>2025-07-10 09:04:26 ✌️  version 0.47.0-d7df89e7161 </span>
     <span data-ty>2025-07-10 09:04:26 ❤️  by PureStake, 2019-2025 </span>
     <span data-ty>2025-07-10 09:04:26 📋 Chain specification: Moonbase Development Testnet </span>
     <span data-ty>2025-07-10 09:04:26 🏷  Node name: TestNode </span>
