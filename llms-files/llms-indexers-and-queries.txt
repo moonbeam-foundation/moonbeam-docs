@@ -6794,7 +6794,6 @@ Using Docker enables you to spin up a node in a matter of seconds. Once you have
     The tail end of the console log should look like this:
 
     <div id="termynal" data-termynal>
-<<<<<<< HEAD
   <span data-ty="input"><span class="file-path"></span>docker pull moonbeamfoundation/moonbeam:v0.47.0</span>
   <br>
   <span data-ty>v0.47.0: Pulling from moonbeamfoundation/moonbeam

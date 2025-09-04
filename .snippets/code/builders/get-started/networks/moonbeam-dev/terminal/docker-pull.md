@@ -1,5 +1,4 @@
 <div id="termynal" data-termynal>
-<<<<<<< HEAD
   <span data-ty="input"><span class="file-path"></span>docker pull moonbeamfoundation/moonbeam:v0.47.0</span>
   <br>
   <span data-ty>v0.47.0: Pulling from moonbeamfoundation/moonbeam
