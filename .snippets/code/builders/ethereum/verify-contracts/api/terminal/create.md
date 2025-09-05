@@ -14,7 +14,9 @@
     <span data-ty>Transaction hash: 0x3ab6002497ca35971d2025b0a7d544f703de465513327d4b640886354d11f612</span>
     <span data-ty>Starting contract verification...</span>
     <span data-ty>Waiting for etherscan to detect contract deployment...</span>
+    <br>
     <span data-ty>Submitting verification for [MyToken] "0x6A489374557354CE325D4F4a0Dd8F1CB98c1592"</span>
+    <br>
     <span data-ty>• Submitting verification for [MyToken] "0x6A489374557354CE325D4F4a0Dd8F1CB98c1592"</span>
     <span data-ty>• Contract source code already verified. Storage Timestamp: 2025-09-04 00:06:03.787Z</span>
     <span data-ty="input"><span class="file-path"></span></span>
