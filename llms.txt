@@ -4,6 +4,14 @@
 
 ## Docs
 
+- [Untitled] (No categories available.) (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/.venv/lib/python3.11/site-packages/backrefs-5.9.dist-info/licenses/LICENSE.md): No description available.
+- [Untitled] (No categories available.) (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/.venv/lib/python3.11/site-packages/idna-3.10.dist-info/LICENSE.md): No description available.
+- [Untitled] (No categories available.) (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/.venv/lib/python3.11/site-packages/markdown-3.9.dist-info/licenses/LICENSE.md): No description available.
+- [Untitled] (No categories available.) (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/.venv/lib/python3.11/site-packages/material/templates/.icons/simple/LICENSE.md): No description available.
+- [Untitled] (No categories available.) (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/.venv/lib/python3.11/site-packages/mkdocs_get_deps-0.2.0.dist-info/licenses/LICENSE.md): No description available.
+- [Untitled] (No categories available.) (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/.venv/lib/python3.11/site-packages/mkdocs_material_extensions-1.3.1.dist-info/licenses/LICENSE.md): No description available.
+- [Untitled] (No categories available.) (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/.venv/lib/python3.11/site-packages/pip-25.2.dist-info/licenses/src/pip/_vendor/idna/LICENSE.md): No description available.
+- [Untitled] (No categories available.) (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/.venv/lib/python3.11/site-packages/pymdown_extensions-10.16.1.dist-info/licenses/LICENSE.md): No description available.
 - [AI-Compatible Docs] (No categories available.) (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/ai-resources/ai-resources.md): Download LLM-optimized files of the Moonbeam documentation, including full content and category-specific resources for AI agents.
 - [Historical Updates] (Reference) (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/build/historical-updates.md): An overview of the historical updates made on Moonbeam and Moonriver, such as migrations and bug fixes applied to the Moonbeam source code.
 - [Runtime Upgrades] (Reference) (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/build/runtime-upgrades.md): A historical record of each runtime upgrade and the block at which the runtime was executed for Moonbeam, Moonriver, and the Moonbase Alpha TestNet.
