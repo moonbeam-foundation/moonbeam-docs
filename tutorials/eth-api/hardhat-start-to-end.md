@@ -46,7 +46,7 @@ You will need to create a Hardhat project if you don't already have one. You can
 3. Install Hardhat
 
     ```bash
-    npm install hardhat@3.0.0-next.5
+    npm install hardhat
     ```
 
 4. Create a project
@@ -60,6 +60,7 @@ You will need to create a Hardhat project if you don't already have one. You can
 
 5. You'll be prompted with a series of questions to set up your project:
 
+    - **Select Hardhat version**: Choose **Hardhat 3 Beta (recommended for new projects)** rather than Hardhat 2
     - Choose where to initialize the project (default is current directory)
     - Confirm converting to ESM (required for Hardhat v3)
     - Select the type of project to initialize:
@@ -139,19 +140,19 @@ If you're curious about additional Hardhat plugins, here is [a complete list of 
 Hardhat 3 includes an encrypted secrets manager that makes handling sensitive information like private keys and API keys easier. This ensures you don't have to hardcode secrets in your source code or store them in plain text.
 
 !!! note
-    The encrypted secrets manager is only available in Hardhat 3 or higher. As of writing this guide, Hardhat 3 is in alpha. You can install the latest alpha version with:
+    The encrypted secrets manager is only available in Hardhat 3 or higher. You can install the latest version with:
 
     ```bash
-    npm install hardhat@3.0.0-next.5
+    npm install hardhat
     ```
 
     For the latest releases and updates, check the [Hardhat releases page](https://github.com/NomicFoundation/hardhat/releases/).
 
 To use encrypted secrets, you'll need to:
 
-1. Install Hardhat 3 or later:
+1. Install Hardhat (latest version):
 ```bash
-npm install hardhat@3.0.0-next.5
+npm install hardhat
 ```
 
 2. Set up your secrets using the keystore:
