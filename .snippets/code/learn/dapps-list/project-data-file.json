@@ -7,9 +7,6 @@
     "chains": [
         "moonbeam"
     ],
-    "web3goIDs": [
-        "Moonwell Artemis"
-    ],
     "logo": {
         "small": {
             "fileName": "moonwell-logo-small.jpeg",
