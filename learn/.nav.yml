@@ -1,0 +1,8 @@
+title: Learn
+hide: false
+nav:
+  - index.md
+  - platform
+  - core-concepts
+  - features
+  - 'DApp Directory': 'dapp-directory.md'
