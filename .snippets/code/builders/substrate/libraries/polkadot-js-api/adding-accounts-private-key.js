@@ -1,10 +1,18 @@
 // Import the required packages
+import { ethers } from 'ethers';
 import Keyring from '@polkadot/keyring';
 
-// Import Ethereum account from mnemonic
-const keyringECDSA = new Keyring({ type: 'ethereum' });
-const privateKeyInput = 'INSERT_PK';
+// Define the private key (with 0x prefix)
+const privateKey = 'INSERT_PRIVATE_KEY'; // e.g., '0x...'
 
-// Extract address from private key
-const alice = keyringECDSA.addFromUri(privateKeyInput);
-console.log(`Derived Address from provided Private Key: ${alice.address}`);
+// Option 1: Get address using ethers (recommended for verification)
+const wallet = new ethers.Wallet(privateKey);
+console.log(`Address from ethers: ${wallet.address}`);
+
+// Option 2: Create keyring pair for transaction signing
+const keyring = new Keyring({ type: 'ethereum' });
+const keyringPair = keyring.addFromUri(privateKey);
+console.log(`Address from keyring: ${keyringPair.address}`);
+
+// Verify addresses match
+console.log(`Addresses match: ${wallet.address === keyringPair.address}`);

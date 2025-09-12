@@ -29,16 +29,16 @@ First, you need to install the Polkadot.js API library for your project through 
 === "npm"
 
     ```bash
-    npm i @polkadot/api
+    npm i @polkadot/api ethers
     ```
 
 === "yarn"
 
     ```bash
-    yarn add @polkadot/api
+    yarn add @polkadot/api ethers
     ```
 
-The library also includes other core components like Keyring for account management, or some utilities that are used throughout this guide.
+The library also includes other core components like Keyring for account management, or some utilities that are used throughout this guide. The `ethers` library is recommended for Ethereum-compatible key derivation from mnemonics.
 
 ## Create an API Provider Instance {: #creating-an-API-provider-instance }
 
@@ -264,12 +264,12 @@ const keyring = new Keyring({ type: 'ethereum' });
 
 ### Add an Account to a Keyring {: #adding-accounts }
 
-There are a number of ways to add an account to the keyring instance, including from the mnemonic phrase and from the shortform private key.
+There are a number of ways to add an account to the keyring instance. For Ethereum compatibility, the recommended approach is to use ethers.js for key derivation and then add the private key to the Polkadot.js Keyring for transaction signing.
 
-=== "From Mnemonic"
+=== "From Mnemonic (Recommended)"
 
     ```javascript
-    --8<-- 'code/builders/substrate/libraries/polkadot-js-api/adding-accounts-mnemonic.js'
+    --8<-- 'code/builders/substrate/libraries/polkadot-js-api/adding-accounts-mnemonic-modern.js'
     ```
 
 === "From Private Key"
@@ -277,6 +277,9 @@ There are a number of ways to add an account to the keyring instance, including 
     ```javascript
     --8<-- 'code/builders/substrate/libraries/polkadot-js-api/adding-accounts-private-key.js'
     ```
+
+!!! note "Why This Hybrid Approach?"
+    Using ethers.js for key derivation ensures full Ethereum wallet compatibility (MetaMask, Ledger, etc.), while Polkadot.js Keyring is still required for signing Substrate transactions via `signAndSend()`. Both approaches validate addresses match for consistency.
 
 ## Dry Run API  {: #dry-run-api }
 
