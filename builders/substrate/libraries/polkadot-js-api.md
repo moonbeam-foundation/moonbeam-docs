@@ -279,7 +279,7 @@ There are several ways to add an account to the keyring instance. For Ethereum c
     ```
 
 !!! note "Why This Hybrid Approach?"
-    Using ethers.js for key derivation ensures full Ethereum wallet compatibility (MetaMask, Ledger, etc.), while Polkadot.js Keyring is still required for signing Substrate transactions via `signAndSend()`. Both approaches validate addresses match for consistency.
+    There are a number of ways to add an account to the keyring instance. For Ethereum compatibility, the recommended approach is to use ethers.js for key derivation and then add the private key to the Polkadot.js Keyring for transaction signing.
 
 ## Dry Run API  {: #dry-run-api }
 
