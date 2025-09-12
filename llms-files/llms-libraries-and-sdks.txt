@@ -4772,7 +4772,7 @@ import Keyring from '@polkadot/keyring';
 // Define the mnemonic and derivation path
 const mnemonic = 'INSERT_MNEMONIC';
 const index = 0;
-const ethDerPath = "m/44'/60'/0'/0/" + index;
+const ethDerPath = `m/44'/60'/0'/0/${index}`;
 
 // Derive using BIP-39 + BIP-44 via ethers (recommended for Ethereum compatibility)
 const wallet = HDNodeWallet.fromPhrase(mnemonic, undefined, ethDerPath);
