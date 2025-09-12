@@ -3807,7 +3807,7 @@ To see how this MBIP differentiates Moonbeam from Ethereum firsthand, you can es
 
 ```solidity
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.30;
 
 contract SayHello {
     mapping(address => string) public addressToName;

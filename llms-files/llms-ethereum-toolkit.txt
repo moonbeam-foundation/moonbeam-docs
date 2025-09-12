@@ -3381,7 +3381,7 @@ To create a new smart contract using the [thirdweb CLI](https://portal.thirdweb.
 
     ```solidity
     // SPDX-License-Identifier: MIT
-    pragma solidity ^0.8.0;
+    pragma solidity ^0.8.30;
 
     import '@thirdweb-dev/contracts/base/ERC721Base.sol';
 
@@ -3922,7 +3922,7 @@ For this guide, you will create an ERC-20 contract that mints a specified amount
 2. Add the following contract to `MyToken.sol`:
 
     ```solidity
-    pragma solidity ^0.8.0;
+    pragma solidity ^0.8.30;
 
     import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
@@ -3949,12 +3949,12 @@ Now that you have written a smart contract, the next step is to use Waffle to co
     cd .. && touch waffle.json
     ```
 
-2. Edit the `waffle.json` to specify compiler configurations, the directory containing your contracts, and more. For this example, we'll use `solcjs` and the Solidity version you used for the contract, which is `0.8.0`:
+2. Edit the `waffle.json` to specify compiler configurations, the directory containing your contracts, and more. For this example, we'll use `solcjs` and the Solidity version you used for the contract, which is `0.8.30`:
 
     ```json
     {
         "compilerType": "solcjs",
-        "compilerVersion": "0.8.0",
+        "compilerVersion": "0.8.30",
         "compilerOptions": {
             "optimizer": {
                 "enabled": true,
@@ -5228,13 +5228,13 @@ For this guide, you'll need to install the Ethers.js library and the Solidity co
 === "npm"
 
     ```bash
-    npm install ethers solc@0.8.0
+    npm install ethers solc@0.8.30
     ```
 
 === "yarn"
 
     ```bash
-    yarn add ethers solc@0.8.0
+    yarn add ethers solc@0.8.30
     ```
 
 ## Setting up the Ethers Provider {: #setting-up-the-ethers-provider }
@@ -7245,13 +7245,13 @@ For this guide, you'll need to install the viem library and the Solidity compile
 === "npm"
 
     ```bash
-    npm install typescript ts-node viem solc@0.8.0
+    npm install typescript ts-node viem solc@0.8.30
     ```
 
 === "yarn"
 
     ```bash
-    yarn add typescript ts-node viem solc@0.8.0
+    yarn add typescript ts-node viem solc@0.8.30
     ```
 
 You can create a TypeScript configuration file by running:
@@ -8049,13 +8049,13 @@ For this guide, you'll need to install the Web3.js library and the Solidity comp
 === "npm"
 
     ```bash
-    npm install web3 solc@0.8.0
+    npm install web3 solc@0.8.30
     ```
 
 === "yarn"
 
     ```bash
-    yarn add web3 solc@0.8.0
+    yarn add web3 solc@0.8.30
     ```
 
 ## Setup Web3.js with Moonbeam {: #setup-web3-with-moonbeam }
@@ -22932,7 +22932,7 @@ To see how this MBIP differentiates Moonbeam from Ethereum firsthand, you can es
 
 ```solidity
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.30;
 
 contract SayHello {
     mapping(address => string) public addressToName;

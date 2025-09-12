@@ -91,7 +91,7 @@ We will create a new file named `OFTVotes.sol`:
 ```solidity
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.30;
 
 import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Votes.sol";
 import "@openzeppelin/contracts/utils/introspection/IERC165.sol";
@@ -139,7 +139,7 @@ The `OFTVotes` contract is abstract, so let's create a final smart contract that
 
 ```solidity
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.30;
 
 import "./OFTVotes.sol";
 
@@ -621,7 +621,7 @@ We'll take the following steps to create the new `DAOSatellite` contract:
 
 ```solidity
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.30;
 
 import "@layerzerolabs/solidity-examples/contracts/lzApp/NonblockingLzApp.sol";
 import "@openzeppelin/contracts/utils/Timers.sol";
