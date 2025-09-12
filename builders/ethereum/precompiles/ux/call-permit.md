@@ -52,7 +52,7 @@ The interface includes the following functions:
         - `value` - uint256 value being transferred from the `from` account
         - `data` - bytes containing the call data, or action to be executed
         - `gasLimit` - uint64[] gas limit the dispatched call requires. Providing an argument for this parameter prevents the dispatcher from manipulating the gas limit
-        - `deadline` - uint256 time in UNIX seconds after which the permit will no longer be valid. In JavaScript, you can get the current time in UNIX seconds by running `console.log(Date.now())` in a JavaScript script or a browser console
+        - `deadline` - uint256 time in UNIX seconds after which the permit will no longer be valid. In JavaScript, you can get the current time in UNIX seconds by running `console.log(Math.floor(Date.now() / 1000))` in a JavaScript script or a browser console
         - `v` - uint8 recovery ID of the signature. The last one byte of the concatenated signature
         - `r` - bytes32 first 32 bytes of the concatenated signature
         - `s` - bytes32 second 32 bytes of the concatenated signature
@@ -192,7 +192,7 @@ In order to get the signature arguments (`v`, `r`, and `s`), you'll need to sign
      0x4ed3885e0000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000b68656c6c6f20776f726c64000000000000000000000000000000000000000000
      ```
 - `gasLimit` - `100000` will be enough to send the dispatched call
-- `deadline` - you can get the current time in UNIX seconds by running `console.log(Date.now())` in a JavaScript script or a browser console. Once you have the current time, you can add additional time in seconds to represent when the call permit will expire
+- `deadline` - you can get the current time in UNIX seconds by running `console.log(Math.floor(Date.now() / 1000))` in a JavaScript script or a browser console. Once you have the current time, you can add additional time in seconds to represent when the call permit will expire
 
 The nonce of the signer will also be needed. If this is your first time signing a call permit the nonce will be `0`. You can also check the nonce in Remix:
 
@@ -266,7 +266,7 @@ node getSignature.js
 
 In the console, you should see the concatenated signature along with the values for the signature including the `v`, `r`, and `s` values. Copy these values as you'll need them when interacting with the Call Permit Precompile in the following sections.
 
-![Signature values in the console](/images/builders/ethereum/precompiles/ux/call-permit/call-10.webp)
+--8<-- 'code/builders/ethereum/precompiles/ux/call-permit/signature-output.md'
 
 ## Interact with the Solidity Interface {: #interact-with-the-solidity-interface }
 
@@ -291,7 +291,7 @@ When you send the `dispatch` function, you'll need the same arguments as you use
 10. Click **transact** to send the transaction
 11. MetaMask should pop-up and you can confirm the transaction
 
-![Dispatch the call permit](/images/builders/ethereum/precompiles/ux/call-permit/call-11.webp)
+![Dispatch the call permit](/images/builders/ethereum/precompiles/ux/call-permit/call-10.webp)
 
 Once the transaction goes through, you can verify that the message was updated to `hello world`. To do so, you can:
 
@@ -299,6 +299,6 @@ Once the transaction goes through, you can verify that the message was updated t
 2. Click on **get**
 3. The result will appear below the function, and it should show `hello world`
 
-![Verify the dispatch was executed as intended](/images/builders/ethereum/precompiles/ux/call-permit/call-12.webp)
+![Verify the dispatch was executed as intended](/images/builders/ethereum/precompiles/ux/call-permit/call-11.webp)
 
 Congratulations! You've successfully generated a call permit signature and used it to dispatch a call on behalf of the call permit signer.
