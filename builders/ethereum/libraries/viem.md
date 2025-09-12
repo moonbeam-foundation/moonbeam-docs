@@ -37,13 +37,13 @@ For this guide, you'll need to install the viem library and the Solidity compile
 === "npm"
 
     ```bash
-    npm install typescript ts-node viem solc@0.8.0
+    npm install typescript ts-node viem solc@0.8.30
     ```
 
 === "yarn"
 
     ```bash
-    yarn add typescript ts-node viem solc@0.8.0
+    yarn add typescript ts-node viem solc@0.8.30
     ```
 
 You can create a TypeScript configuration file by running:

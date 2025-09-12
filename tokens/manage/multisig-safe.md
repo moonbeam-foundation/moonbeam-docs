@@ -52,7 +52,7 @@ Towards the end of this guide, you will be learning how to interact with a smart
 You can head to [Remix](https://remix.ethereum.org){target=\_blank} and create a new file for the following `SetText.sol` contract:
 
 ```solidity
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.30;
 
 contract SetText {
     string public text;
