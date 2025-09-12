@@ -5,17 +5,17 @@ networks:
     rpc_url: http://127.0.0.1:9944
     wss_url: ws://127.0.0.1:9944
     chain_id: 1281
-    hex_chain_id: '0x501'
+    hex_chain_id: "0x501"
     container_name: moonbeam_development
     block_explorer: https://moonbeam-explorer.netlify.app/
   moonbase:
     rpc_url: https://rpc.api.moonbase.moonbeam.network
     wss_url: wss://wss.api.moonbase.moonbeam.network
     chain_id: 1287
-    hex_chain_id: '0x507'
+    hex_chain_id: "0x507"
     chain_spec: alphanet
     block_explorer: https://moonbase.moonscan.io/
-    spec_version: runtime-3800
+    spec_version: runtime-3900
     parachain_release_tag: v0.46.0 # must be in this exact format for links to work
     parachain_sha256sum: 51d63742aa38a076ab105087c1fab7b82b7f5df368db41130a0e352f240ec0aa
     tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.46.0-3800-536b
@@ -38,13 +38,13 @@ networks:
       ram: 16
       hd: 2
     thegraph:
-      lotto_contract: '0x44ddD2EC5BE2A7f3e4A465C21600bE8df644093f'
+      lotto_contract: "0x44ddD2EC5BE2A7f3e4A465C21600bE8df644093f"
       block_number: 132605
     razor:
-      bridge_address: '0xC6F33c0F15FE5e3A51A019524ac43574cFF29EFB'
+      bridge_address: "0xC6F33c0F15FE5e3A51A019524ac43574cFF29EFB"
     supra:
-      pull_oracle: '0xaa2f56843Cec7840F0C106F0202313d8d8CB13d6'
-      storage: '0x4591d1B110ad451d8220d82252F829E8b2a91B17'
+      pull_oracle: "0xaa2f56843Cec7840F0C106F0202313d8d8CB13d6"
+      storage: "0x4591d1B110ad451d8220d82252F829E8b2a91B17"
 
     randomness:
       max_random_words: 100
@@ -58,15 +58,15 @@ networks:
       epoch_fulfillment_delay: 2
     xcm:
       channel:
-        account_id: '5GWpSdqkkKGZmdKQ9nkSF7TmHp6JWt28BMGQNuG4MXtSvq3e'
-        account_id_hex: '0xc4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a063'
+        account_id: "5GWpSdqkkKGZmdKQ9nkSF7TmHp6JWt28BMGQNuG4MXtSvq3e"
+        account_id_hex: "0xc4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a063"
       instructions:
         wei_per_weight:
           display: 12,500
       units_per_second:
         xcbetadev:
           transact_numbers_only: 50000000000000000
-      foreign_asset_deposit: 
+      foreign_asset_deposit:
         display: 100
         numbers_only: 100
     erc20_xcm:
@@ -85,173 +85,173 @@ networks:
           max_deciding: 5
           decision_deposit: 100000
           prepare_period:
-            time: '1 day'
+            time: "1 day"
             blocks: 14400
           decision_period:
-            time: '14 days'
+            time: "14 days"
             blocks: 201600
           confirm_period:
-            time: '1 day'
+            time: "1 day"
             blocks: 14400
           min_enactment_period:
-            time: '1 day'
+            time: "1 day"
             blocks: 14400
           min_approval:
-            time0: 'Day 0'
+            time0: "Day 0"
             percent0: 100
-            time1: 'Day 4'
+            time1: "Day 4"
             percent1: 80
-            time2: 'Day 14'
+            time2: "Day 14"
             percent2: 50
           min_support:
-            time0: 'Day 0'
+            time0: "Day 0"
             percent0: 25
-            time1: 'Day 14'
+            time1: "Day 14"
             percent1: .5
         whitelisted:
           max_deciding: 100
           decision_deposit: 10000
           prepare_period:
-            time: '10 minutes'
+            time: "10 minutes"
             blocks: 100
           decision_period:
-            time: '14 days'
+            time: "14 days"
             blocks: 201600
           confirm_period:
-            time: '10 minutes'
+            time: "10 minutes"
             blocks: 100
           min_enactment_period:
-            time: '30 minutes'
+            time: "30 minutes"
             blocks: 300
           min_approval:
-            time0: 'Day 0'
+            time0: "Day 0"
             percent0: 100
-            time1: 'Day 1'
+            time1: "Day 1"
             percent1: 96
-            time2: 'Day 14'
+            time2: "Day 14"
             percent2: 50
           min_support:
-            time0: 'Day 0'
+            time0: "Day 0"
             percent0: 2
-            time1: 'Hour 1'
+            time1: "Hour 1"
             percent1: 1
-            time2: 'Day 14'
+            time2: "Day 14"
             percent2: 0
         general_admin:
           max_deciding: 10
           decision_deposit: 500
           prepare_period:
-            time: '1 hour'
+            time: "1 hour"
             blocks: 600
           decision_period:
-            time: '14 days'
+            time: "14 days"
             blocks: 201600
           confirm_period:
-            time: '1 day'
+            time: "1 day"
             blocks: 14400
           min_enactment_period:
-            time: '1 day'
+            time: "1 day"
             blocks: 14400
           min_approval:
-            time0: 'Day 0'
+            time0: "Day 0"
             percent0: 100
-            time1: 'Day 4'
+            time1: "Day 4"
             percent1: 80
-            time2: 'Day 14'
+            time2: "Day 14"
             percent2: 50
           min_support:
-            time0: 'Day 0'
+            time0: "Day 0"
             percent0: 50
-            time1: 'Day 7'
+            time1: "Day 7"
             percent1: 10
-            time2: 'Day 14'
+            time2: "Day 14"
             percent2: 0
         canceller:
           max_deciding: 20
           decision_deposit: 10000
           prepare_period:
-            time: '1 hour'
+            time: "1 hour"
             blocks: 600
           decision_period:
-            time: '14 days'
+            time: "14 days"
             blocks: 201600
           confirm_period:
-            time: '3 hours'
+            time: "3 hours"
             blocks: 1800
           min_enactment_period:
-            time: '10 minutes'
+            time: "10 minutes"
             blocks: 100
           min_approval:
-            time0: 'Day 0'
+            time0: "Day 0"
             percent0: 100
-            time1: 'Day 1'
+            time1: "Day 1"
             percent1: 96
-            time2: 'Day 14'
+            time2: "Day 14"
             percent2: 50
           min_support:
-            time0: 'Day 0'
+            time0: "Day 0"
             percent0: 50
-            time1: 'Day 1'
+            time1: "Day 1"
             percent1: 1
-            time2: 'Day 14'
+            time2: "Day 14"
             percent2: 0
         killer:
           max_deciding: 100
           decision_deposit: 20000
           prepare_period:
-            time: '1 hour'
+            time: "1 hour"
             blocks: 600
           decision_period:
-            time: '14 days'
+            time: "14 days"
             blocks: 201600
           confirm_period:
-            time: '3 hours'
+            time: "3 hours"
             blocks: 1800
           min_enactment_period:
-            time: '10 minutes'
+            time: "10 minutes"
             blocks: 100
           min_approval:
-            time0: 'Day 0'
+            time0: "Day 0"
             percent0: 100
-            time1: 'Day 1'
+            time1: "Day 1"
             percent1: 96
-            time2: 'Day 14'
+            time2: "Day 14"
             percent2: 50
           min_support:
-            time0: 'Day 0'
+            time0: "Day 0"
             percent0: 10
-            time1: 'Day 1'
+            time1: "Day 1"
             percent1: 1
-            time2: 'Day 14'
+            time2: "Day 14"
             percent2: 0
         fast_general_admin:
           max_deciding: 10
           decision_deposit: 500
           prepare_period:
-            time: '1 hour'
+            time: "1 hour"
             blocks: 600
           decision_period:
-            time: '14 days'
+            time: "14 days"
             blocks: 201600
           confirm_period:
-            time: '3 hours'
+            time: "3 hours"
             blocks: 1800
           min_enactment_period:
-            time: '10 minutes'
+            time: "10 minutes"
             blocks: 100
           min_approval:
-            time0: 'Day 0'
+            time0: "Day 0"
             percent0: 100
-            time1: 'Day 4'
+            time1: "Day 4"
             percent1: 80
-            time2: 'Day 14'
+            time2: "Day 14"
             percent2: 50
           min_support:
-            time0: 'Day 0'
+            time0: "Day 0"
             percent0: 50
-            time1: 'Day 5'
+            time1: "Day 5"
             percent1: 1
-            time2: 'Day 14'
+            time2: "Day 14"
             percent2: 0
       submission_deposit: 10
       max_votes: 512
@@ -276,8 +276,8 @@ networks:
       max_del_per_can: 300
       max_del_per_del: 100
       candidates:
-        address1: '0x12E7BCCA9b1B15f33585b5fc898B967149BDb9a5'
-        address2: '0x95651f0777D9c7EF56f2edEe62D5F28743E0635a'
+        address1: "0x12E7BCCA9b1B15f33585b5fc898B967149BDb9a5"
+        address2: "0x95651f0777D9c7EF56f2edEe62D5F28743E0635a"
     treasury:
       current_council_members: 2
       motion_duration_days: 3
@@ -323,33 +323,33 @@ networks:
         rounds: 2
         hours: 4
     precompiles:
-      staking: '0x0000000000000000000000000000000000000800'
-      crowdloan: '0x0000000000000000000000000000000000000801'
-      erc20: '0x0000000000000000000000000000000000000802'
-      democracy: '0x0000000000000000000000000000000000000803'
-      xtokens: '0x0000000000000000000000000000000000000804'
-      relay_encoder: '0x0000000000000000000000000000000000000805'
-      xcm_transactor_v1: '0x0000000000000000000000000000000000000806'
-      author_mapping: '0x0000000000000000000000000000000000000807'
-      batch: '0x0000000000000000000000000000000000000808'
-      randomness: '0x0000000000000000000000000000000000000809'
-      call_permit: '0x000000000000000000000000000000000000080a'
-      proxy: '0x000000000000000000000000000000000000080b'
-      xcm_utils: '0x000000000000000000000000000000000000080C'
-      xcm_transactor_v2: '0x000000000000000000000000000000000000080d'
-      collective_council: '0x000000000000000000000000000000000000080e'
-      collective_tech_committee: '0x000000000000000000000000000000000000080f'
-      collective_treasury: '0x0000000000000000000000000000000000000810'
-      referenda: '0x0000000000000000000000000000000000000811'
-      conviction_voting: '0x0000000000000000000000000000000000000812'
-      preimage: '0x0000000000000000000000000000000000000813'
-      collective_opengov_tech_committee: '0x0000000000000000000000000000000000000814'
-      registry: '0x0000000000000000000000000000000000000815'
-      gmp: '0x0000000000000000000000000000000000000816'
-      xcm_transactor_v3: '0x0000000000000000000000000000000000000817'
-      identity: '0x0000000000000000000000000000000000000818'
-      relay_data_verifier: '0x0000000000000000000000000000000000000819'
-      xcm_interface: '0x000000000000000000000000000000000000081A'
+      staking: "0x0000000000000000000000000000000000000800"
+      crowdloan: "0x0000000000000000000000000000000000000801"
+      erc20: "0x0000000000000000000000000000000000000802"
+      democracy: "0x0000000000000000000000000000000000000803"
+      xtokens: "0x0000000000000000000000000000000000000804"
+      relay_encoder: "0x0000000000000000000000000000000000000805"
+      xcm_transactor_v1: "0x0000000000000000000000000000000000000806"
+      author_mapping: "0x0000000000000000000000000000000000000807"
+      batch: "0x0000000000000000000000000000000000000808"
+      randomness: "0x0000000000000000000000000000000000000809"
+      call_permit: "0x000000000000000000000000000000000000080a"
+      proxy: "0x000000000000000000000000000000000000080b"
+      xcm_utils: "0x000000000000000000000000000000000000080C"
+      xcm_transactor_v2: "0x000000000000000000000000000000000000080d"
+      collective_council: "0x000000000000000000000000000000000000080e"
+      collective_tech_committee: "0x000000000000000000000000000000000000080f"
+      collective_treasury: "0x0000000000000000000000000000000000000810"
+      referenda: "0x0000000000000000000000000000000000000811"
+      conviction_voting: "0x0000000000000000000000000000000000000812"
+      preimage: "0x0000000000000000000000000000000000000813"
+      collective_opengov_tech_committee: "0x0000000000000000000000000000000000000814"
+      registry: "0x0000000000000000000000000000000000000815"
+      gmp: "0x0000000000000000000000000000000000000816"
+      xcm_transactor_v3: "0x0000000000000000000000000000000000000817"
+      identity: "0x0000000000000000000000000000000000000818"
+      relay_data_verifier: "0x0000000000000000000000000000000000000819"
+      xcm_interface: "0x000000000000000000000000000000000000081A"
     substrate_api_sidecar:
       stable_version: 20.2.0
     tx_weight_to_gas_ratio: 25000
@@ -366,17 +366,17 @@ networks:
       rocksdb_read: 25,000,000
       rocksdb_write: 100,000,000
     api3:
-      rrp: '0xa0AD79D995DdeeB18a14eAef56A549A04e3Aa1Bd'
-      testnetqrngairnode: '0x6238772544f029ecaBfDED4300f13A3c4FE84E1D'
-      testnetqrngxpub: 'xpub6CuDdF9zdWTRuGybJPuZUGnU4suZowMmgu15bjFZT2o6PUtk4Lo78KGJUGBobz3pPKRaN9sLxzj21CMe6StP3zUsd8tWEJPgZBesYBMY7Wo'
-      testnetqrnguint256: '0x94555f83f1addda23fdaa7c74f27ce2b764ed5cc430c66f5ff1bcf39d583da36'
-      testnetqrnguint256array: '0x9877ec98695c139310480b4323b9d474d48ec4595560348a2341218670f7fbc2'
+      rrp: "0xa0AD79D995DdeeB18a14eAef56A549A04e3Aa1Bd"
+      testnetqrngairnode: "0x6238772544f029ecaBfDED4300f13A3c4FE84E1D"
+      testnetqrngxpub: "xpub6CuDdF9zdWTRuGybJPuZUGnU4suZowMmgu15bjFZT2o6PUtk4Lo78KGJUGBobz3pPKRaN9sLxzj21CMe6StP3zUsd8tWEJPgZBesYBMY7Wo"
+      testnetqrnguint256: "0x94555f83f1addda23fdaa7c74f27ce2b764ed5cc430c66f5ff1bcf39d583da36"
+      testnetqrnguint256array: "0x9877ec98695c139310480b4323b9d474d48ec4595560348a2341218670f7fbc2"
   moonriver:
     public_rpc_url: https://rpc.api.moonriver.moonbeam.network # for wallets
     rpc_url: INSERT_RPC_API_ENDPOINT
     wss_url: INSERT_WSS_API_ENDPOINT
     chain_id: 1285
-    hex_chain_id: '0x505'
+    hex_chain_id: "0x505"
     node_directory: /var/lib/moonriver-data
     parachain_release_tag: v0.46.0
     parachain_sha256sum: 51d63742aa38a076ab105087c1fab7b82b7f5df368db41130a0e352f240ec0aa
@@ -401,12 +401,12 @@ networks:
       hd: 2
     xcm:
       channel:
-        account_id: '5E6kHM4zFdH5KEJE3YEzX5QuqoETVKUQadeY8LVmeh2HyHGt'
-        account_id_hex: '0x5a071f642798f89d68b050384132eea7b65db483b00dbb05548d3ce472cfef48'
+        account_id: "5E6kHM4zFdH5KEJE3YEzX5QuqoETVKUQadeY8LVmeh2HyHGt"
+        account_id_hex: "0x5a071f642798f89d68b050384132eea7b65db483b00dbb05548d3ce472cfef48"
       instructions:
         wei_per_weight:
           display: 12,500
-      foreign_asset_deposit: 
+      foreign_asset_deposit:
         display: 1,000
         numbers_only: 100
     erc20_xcm:
@@ -425,173 +425,173 @@ networks:
           max_deciding: 5
           decision_deposit: 100000
           prepare_period:
-            time: '1 day'
+            time: "1 day"
             blocks: 14400
           decision_period:
-            time: '14 days'
+            time: "14 days"
             blocks: 201600
           confirm_period:
-            time: '1 day'
+            time: "1 day"
             blocks: 14400
           min_enactment_period:
-            time: '1 day'
+            time: "1 day"
             blocks: 14400
           min_approval:
-            time0: 'Day 0'
+            time0: "Day 0"
             percent0: 100
-            time1: 'Day 4'
+            time1: "Day 4"
             percent1: 80
-            time2: 'Day 14'
+            time2: "Day 14"
             percent2: 50
           min_support:
-            time0: 'Day 0'
+            time0: "Day 0"
             percent0: 25
-            time1: 'Day 14'
+            time1: "Day 14"
             percent1: .5
         whitelisted:
           max_deciding: 100
           decision_deposit: 10000
           prepare_period:
-            time: '10 minutes'
+            time: "10 minutes"
             blocks: 100
           decision_period:
-            time: '14 days'
+            time: "14 days"
             blocks: 201600
           confirm_period:
-            time: '10 minutes'
+            time: "10 minutes"
             blocks: 100
           min_enactment_period:
-            time: '30 minutes'
+            time: "30 minutes"
             blocks: 300
           min_approval:
-            time0: 'Day 0'
+            time0: "Day 0"
             percent0: 100
-            time1: 'Day 1'
+            time1: "Day 1"
             percent1: 96
-            time2: 'Day 14'
+            time2: "Day 14"
             percent2: 50
           min_support:
-            time0: 'Day 0'
+            time0: "Day 0"
             percent0: 2
-            time1: 'Hour 1'
+            time1: "Hour 1"
             percent1: 1
-            time2: 'Day 14'
+            time2: "Day 14"
             percent2: 0
         general_admin:
           max_deciding: 10
           decision_deposit: 500
           prepare_period:
-            time: '1 hour'
+            time: "1 hour"
             blocks: 600
           decision_period:
-            time: '14 days'
+            time: "14 days"
             blocks: 201600
           confirm_period:
-            time: '1 day'
+            time: "1 day"
             blocks: 14400
           min_enactment_period:
-            time: '1 day'
+            time: "1 day"
             blocks: 14400
           min_approval:
-            time0: 'Day 0'
+            time0: "Day 0"
             percent0: 100
-            time1: 'Day 4'
+            time1: "Day 4"
             percent1: 80
-            time2: 'Day 14'
+            time2: "Day 14"
             percent2: 50
           min_support:
-            time0: 'Day 0'
+            time0: "Day 0"
             percent0: 50
-            time1: 'Day 7'
+            time1: "Day 7"
             percent1: 10
-            time2: 'Day 14'
+            time2: "Day 14"
             percent2: 0
         canceller:
           max_deciding: 20
           decision_deposit: 10000
           prepare_period:
-            time: '1 hour'
+            time: "1 hour"
             blocks: 600
           decision_period:
-            time: '14 days'
+            time: "14 days"
             blocks: 201600
           confirm_period:
-            time: '3 hours'
+            time: "3 hours"
             blocks: 1800
           min_enactment_period:
-            time: '10 minutes'
+            time: "10 minutes"
             blocks: 100
           min_approval:
-            time0: 'Day 0'
+            time0: "Day 0"
             percent0: 100
-            time1: 'Day 1'
+            time1: "Day 1"
             percent1: 96
-            time2: 'Day 14'
+            time2: "Day 14"
             percent2: 50
           min_support:
-            time0: 'Day 0'
+            time0: "Day 0"
             percent0: 10
-            time1: 'Day 1'
+            time1: "Day 1"
             percent1: 1
-            time2: 'Day 14'
+            time2: "Day 14"
             percent2: 0
         killer:
           max_deciding: 100
           decision_deposit: 20000
           prepare_period:
-            time: '1 hour'
+            time: "1 hour"
             blocks: 600
           decision_period:
-            time: '14 days'
+            time: "14 days"
             blocks: 201600
           confirm_period:
-            time: '3 hours'
+            time: "3 hours"
             blocks: 1800
           min_enactment_period:
-            time: '10 minutes'
+            time: "10 minutes"
             blocks: 100
           min_approval:
-            time0: 'Day 0'
+            time0: "Day 0"
             percent0: 100
-            time1: 'Day 1'
+            time1: "Day 1"
             percent1: 96
-            time2: 'Day 14'
+            time2: "Day 14"
             percent2: 50
           min_support:
-            time0: 'Day 0'
+            time0: "Day 0"
             percent0: 10
-            time1: 'Day 1'
+            time1: "Day 1"
             percent1: 1
-            time2: 'Day 14'
+            time2: "Day 14"
             percent2: 0
         fast_general_admin:
           max_deciding: 10
           decision_deposit: 500
           prepare_period:
-            time: '1 hour'
+            time: "1 hour"
             blocks: 600
           decision_period:
-            time: '14 days'
+            time: "14 days"
             blocks: 201600
           confirm_period:
-            time: '3 hours'
+            time: "3 hours"
             blocks: 1800
           min_enactment_period:
-            time: '10 minutes'
+            time: "10 minutes"
             blocks: 100
           min_approval:
-            time0: 'Day 0'
+            time0: "Day 0"
             percent0: 100
-            time1: 'Day 4'
+            time1: "Day 4"
             percent1: 80
-            time2: 'Day 14'
+            time2: "Day 14"
             percent2: 50
           min_support:
-            time0: 'Day 0'
+            time0: "Day 0"
             percent0: 50
-            time1: 'Day 5'
+            time1: "Day 5"
             percent1: 1
-            time2: 'Day 14'
+            time2: "Day 14"
             percent2: 0
       submission_deposit: 10
       max_votes: 512
@@ -661,47 +661,47 @@ networks:
         rounds: 24
         hours: 48
     precompiles:
-      staking: '0x0000000000000000000000000000000000000800'
-      crowdloan: '0x0000000000000000000000000000000000000801'
-      erc20: '0x0000000000000000000000000000000000000802'
-      democracy: '0x0000000000000000000000000000000000000803'
-      xtokens: '0x0000000000000000000000000000000000000804'
-      relay_encoder: '0x0000000000000000000000000000000000000805'
-      xcm_transactor_v1: '0x0000000000000000000000000000000000000806'
-      author_mapping: '0x0000000000000000000000000000000000000807'
-      batch: '0x0000000000000000000000000000000000000808'
-      randomness: '0x0000000000000000000000000000000000000809'
-      call_permit: '0x000000000000000000000000000000000000080a'
-      proxy: '0x000000000000000000000000000000000000080b'
-      xcm_utils: '0x000000000000000000000000000000000000080C'
-      xcm_transactor_v2: '0x000000000000000000000000000000000000080d'
-      collective_council: '0x000000000000000000000000000000000000080e'
-      collective_tech_committee: '0x000000000000000000000000000000000000080f'
-      collective_treasury: '0x0000000000000000000000000000000000000810'
-      referenda: '0x0000000000000000000000000000000000000811'
-      conviction_voting: '0x0000000000000000000000000000000000000812'
-      preimage: '0x0000000000000000000000000000000000000813'
-      collective_opengov_tech_committee: '0x0000000000000000000000000000000000000814'
-      registry: '0x0000000000000000000000000000000000000815'
-      gmp: '0x0000000000000000000000000000000000000816'
-      xcm_transactor_v3: '0x0000000000000000000000000000000000000817'
-      identity: '0x0000000000000000000000000000000000000818'
-      relay_data_verifier: '0x0000000000000000000000000000000000000819'
-      xcm_interface: '0x000000000000000000000000000000000000081A'
+      staking: "0x0000000000000000000000000000000000000800"
+      crowdloan: "0x0000000000000000000000000000000000000801"
+      erc20: "0x0000000000000000000000000000000000000802"
+      democracy: "0x0000000000000000000000000000000000000803"
+      xtokens: "0x0000000000000000000000000000000000000804"
+      relay_encoder: "0x0000000000000000000000000000000000000805"
+      xcm_transactor_v1: "0x0000000000000000000000000000000000000806"
+      author_mapping: "0x0000000000000000000000000000000000000807"
+      batch: "0x0000000000000000000000000000000000000808"
+      randomness: "0x0000000000000000000000000000000000000809"
+      call_permit: "0x000000000000000000000000000000000000080a"
+      proxy: "0x000000000000000000000000000000000000080b"
+      xcm_utils: "0x000000000000000000000000000000000000080C"
+      xcm_transactor_v2: "0x000000000000000000000000000000000000080d"
+      collective_council: "0x000000000000000000000000000000000000080e"
+      collective_tech_committee: "0x000000000000000000000000000000000000080f"
+      collective_treasury: "0x0000000000000000000000000000000000000810"
+      referenda: "0x0000000000000000000000000000000000000811"
+      conviction_voting: "0x0000000000000000000000000000000000000812"
+      preimage: "0x0000000000000000000000000000000000000813"
+      collective_opengov_tech_committee: "0x0000000000000000000000000000000000000814"
+      registry: "0x0000000000000000000000000000000000000815"
+      gmp: "0x0000000000000000000000000000000000000816"
+      xcm_transactor_v3: "0x0000000000000000000000000000000000000817"
+      identity: "0x0000000000000000000000000000000000000818"
+      relay_data_verifier: "0x0000000000000000000000000000000000000819"
+      xcm_interface: "0x000000000000000000000000000000000000081A"
     api3:
-      rrp: '0xa0AD79D995DdeeB18a14eAef56A549A04e3Aa1Bd'
-      anuqrngairnode: '0x9d3C147cA16DB954873A498e0af5852AB39139f2'
-      anuqrngxpub: 'xpub6DXSDTZBd4aPVXnv6Q3SmnGUweFv6j24SK77W4qrSFuhGgi666awUiXakjXruUSCDQhhctVG7AQt67gMdaRAsDnDXv23bBRKsMWvRzo6kbf'
-      anuqrnguint256: '0xfb6d017bb87991b7495f563db3c8cf59ff87b09781947bb1e417006ad7f55a78'
-      anuqrnguint256array: '0x27cc2713e7f968e4e86ed274a051a5c8aaee9cca66946f23af6f29ecea9704c3'
-      quintessenceairnode: '0x224e030f03Cd3440D88BD78C9BF5Ed36458A1A25'
-      quintessencexpub: 'xpub6CyZcaXvbnbqGfqqZWvWNUbGvdd5PAJRrBeAhy9rz1bbnFmpVLg2wPj1h6TyndFrWLUG3kHWBYpwacgCTGWAHFTbUrXEg6LdLxoEBny2YDz'
-      quintessenceuint256: '0xffd1bbe880e7b2c662f6c8511b15ff22d12a4a35d5c8c17202893a5f10e25284'
-      quintessenceuint256array: '0x4554e958a68d68de6a4f6365ff868836780e84ac3cba75ce3f4c78a85faa8047'
-      quantumblockchainsairnode: '0x07D7F4EcaC8aDf3f0412ab058a051fD8b8507348'
-      quantumblockchainsxpub: 'xpub6C7WhXL7KNoa9GnCwEfLCWzf326hXhqD3nUyKg4ZxzXvjcmFeVQ9GZENgKtHxLfo3uPa13GBHCAb1nRgdUnP5YGJFX97KqpeFvHQzpjhmoi'
-      quantumblockchainsuint256: '0x8cf0e7205eff59b8695db96b34ffe7a5a125a3ed263afa3353aef6c3d82debf9'
-      quantumblockchainsuint256array: '0x09fd3663fdc0ab359a5ebcba098571122ddb2a80b00a503960b32e67491f52d7'
+      rrp: "0xa0AD79D995DdeeB18a14eAef56A549A04e3Aa1Bd"
+      anuqrngairnode: "0x9d3C147cA16DB954873A498e0af5852AB39139f2"
+      anuqrngxpub: "xpub6DXSDTZBd4aPVXnv6Q3SmnGUweFv6j24SK77W4qrSFuhGgi666awUiXakjXruUSCDQhhctVG7AQt67gMdaRAsDnDXv23bBRKsMWvRzo6kbf"
+      anuqrnguint256: "0xfb6d017bb87991b7495f563db3c8cf59ff87b09781947bb1e417006ad7f55a78"
+      anuqrnguint256array: "0x27cc2713e7f968e4e86ed274a051a5c8aaee9cca66946f23af6f29ecea9704c3"
+      quintessenceairnode: "0x224e030f03Cd3440D88BD78C9BF5Ed36458A1A25"
+      quintessencexpub: "xpub6CyZcaXvbnbqGfqqZWvWNUbGvdd5PAJRrBeAhy9rz1bbnFmpVLg2wPj1h6TyndFrWLUG3kHWBYpwacgCTGWAHFTbUrXEg6LdLxoEBny2YDz"
+      quintessenceuint256: "0xffd1bbe880e7b2c662f6c8511b15ff22d12a4a35d5c8c17202893a5f10e25284"
+      quintessenceuint256array: "0x4554e958a68d68de6a4f6365ff868836780e84ac3cba75ce3f4c78a85faa8047"
+      quantumblockchainsairnode: "0x07D7F4EcaC8aDf3f0412ab058a051fD8b8507348"
+      quantumblockchainsxpub: "xpub6C7WhXL7KNoa9GnCwEfLCWzf326hXhqD3nUyKg4ZxzXvjcmFeVQ9GZENgKtHxLfo3uPa13GBHCAb1nRgdUnP5YGJFX97KqpeFvHQzpjhmoi"
+      quantumblockchainsuint256: "0x8cf0e7205eff59b8695db96b34ffe7a5a125a3ed263afa3353aef6c3d82debf9"
+      quantumblockchainsuint256array: "0x09fd3663fdc0ab359a5ebcba098571122ddb2a80b00a503960b32e67491f52d7"
 
     randomness:
       max_random_words: 100
@@ -730,7 +730,7 @@ networks:
     rpc_url: INSERT_RPC_API_ENDPOINT
     wss_url: INSERT_WSS_API_ENDPOINT
     chain_id: 1284
-    hex_chain_id: '0x504'
+    hex_chain_id: "0x504"
     node_directory: /var/lib/moonbeam-data
     parachain_release_tag: v0.46.0
     parachain_sha256sum: 51d63742aa38a076ab105087c1fab7b82b7f5df368db41130a0e352f240ec0aa
@@ -755,8 +755,8 @@ networks:
       hd: 3
     xcm:
       channel:
-        account_id: '5E6kHM4zFdH5KEJE3YEzX5QuqoETVKUQadeY8LVmeh2HyHGt'
-        account_id_hex: '0x5a071f642798f89d68b050384132eea7b65db483b00dbb05548d3ce472cfef48'
+        account_id: "5E6kHM4zFdH5KEJE3YEzX5QuqoETVKUQadeY8LVmeh2HyHGt"
+        account_id_hex: "0x5a071f642798f89d68b050384132eea7b65db483b00dbb05548d3ce472cfef48"
       instructions:
         wei_per_weight:
           display: 1,250,000
@@ -774,9 +774,9 @@ networks:
         xcdot:
           display: 20,080,321,285
           numbers_only: 20080321285
-      foreign_asset_deposit: 
-          display: 10,000
-          numbers_only: 10000
+      foreign_asset_deposit:
+        display: 10,000
+        numbers_only: 10000
     erc20_xcm:
       transfer_gas_limit: 400,000 # Erc20XcmBridgeTransferGasLimit
     conviction:
@@ -793,173 +793,173 @@ networks:
           max_deciding: 5
           decision_deposit: 2000000
           prepare_period:
-            time: '1 day'
+            time: "1 day"
             blocks: 14400
           decision_period:
-            time: '14 days'
+            time: "14 days"
             blocks: 201600
           confirm_period:
-            time: '1 day'
+            time: "1 day"
             blocks: 14400
           min_enactment_period:
-            time: '1 day'
+            time: "1 day"
             blocks: 14400
           min_approval:
-            time0: 'Day 0'
+            time0: "Day 0"
             percent0: 100
-            time1: 'Day 4'
+            time1: "Day 4"
             percent1: 80
-            time2: 'Day 14'
+            time2: "Day 14"
             percent2: 50
           min_support:
-            time0: 'Day 0'
+            time0: "Day 0"
             percent0: 25
-            time1: 'Day 14'
+            time1: "Day 14"
             percent1: .5
         whitelisted:
           max_deciding: 100
           decision_deposit: 200000
           prepare_period:
-            time: '10 minutes'
+            time: "10 minutes"
             blocks: 100
           decision_period:
-            time: '14 days'
+            time: "14 days"
             blocks: 201600
           confirm_period:
-            time: '10 minutes'
+            time: "10 minutes"
             blocks: 100
           min_enactment_period:
-            time: '30 minutes'
+            time: "30 minutes"
             blocks: 300
           min_approval:
-            time0: 'Day 0'
+            time0: "Day 0"
             percent0: 100
-            time1: 'Day 1'
+            time1: "Day 1"
             percent1: 96
-            time2: 'Day 14'
+            time2: "Day 14"
             percent2: 50
           min_support:
-            time0: 'Day 0'
+            time0: "Day 0"
             percent0: 2
-            time1: 'Hour 1'
+            time1: "Hour 1"
             percent1: 1
-            time2: 'Day 14'
+            time2: "Day 14"
             percent2: 0
         general_admin:
           max_deciding: 10
           decision_deposit: 10000
           prepare_period:
-            time: '1 hour'
+            time: "1 hour"
             blocks: 600
           decision_period:
-            time: '14 days'
+            time: "14 days"
             blocks: 201600
           confirm_period:
-            time: '1 day'
+            time: "1 day"
             blocks: 14400
           min_enactment_period:
-            time: '1 day'
+            time: "1 day"
             blocks: 14400
           min_approval:
-            time0: 'Day 0'
+            time0: "Day 0"
             percent0: 100
-            time1: 'Day 4'
+            time1: "Day 4"
             percent1: 80
-            time2: 'Day 14'
+            time2: "Day 14"
             percent2: 50
           min_support:
-            time0: 'Day 0'
+            time0: "Day 0"
             percent0: 50
-            time1: 'Day 7'
+            time1: "Day 7"
             percent1: 10
-            time2: 'Day 14'
+            time2: "Day 14"
             percent2: 0
         canceller:
           max_deciding: 20
           decision_deposit: 200000
           prepare_period:
-            time: '1 hour'
+            time: "1 hour"
             blocks: 600
           decision_period:
-            time: '14 days'
+            time: "14 days"
             blocks: 201600
           confirm_period:
-            time: '3 hours'
+            time: "3 hours"
             blocks: 1800
           min_enactment_period:
-            time: '10 minutes'
+            time: "10 minutes"
             blocks: 100
           min_approval:
-            time0: 'Day 0'
+            time0: "Day 0"
             percent0: 100
-            time1: 'Day 1'
+            time1: "Day 1"
             percent1: 96
-            time2: 'Day 14'
+            time2: "Day 14"
             percent2: 50
           min_support:
-            time0: 'Day 0'
+            time0: "Day 0"
             percent0: 10
-            time1: 'Day 1'
+            time1: "Day 1"
             percent1: 1
-            time2: 'Day 14'
+            time2: "Day 14"
             percent2: 0
         killer:
           max_deciding: 100
           decision_deposit: 400000
           prepare_period:
-            time: '1 hour'
+            time: "1 hour"
             blocks: 600
           decision_period:
-            time: '14 days'
+            time: "14 days"
             blocks: 201600
           confirm_period:
-            time: '3 hours'
+            time: "3 hours"
             blocks: 1800
           min_enactment_period:
-            time: '10 minutes'
+            time: "10 minutes"
             blocks: 100
           min_approval:
-            time0: 'Day 0'
+            time0: "Day 0"
             percent0: 100
-            time1: 'Day 1'
+            time1: "Day 1"
             percent1: 96
-            time2: 'Day 14'
+            time2: "Day 14"
             percent2: 50
           min_support:
-            time0: 'Day 0'
+            time0: "Day 0"
             percent0: 10
-            time1: 'Day 1'
+            time1: "Day 1"
             percent1: 1
-            time2: 'Day 14'
+            time2: "Day 14"
             percent2: 0
         fast_general_admin:
           max_deciding: 10
           decision_deposit: 10000
           prepare_period:
-            time: '1 hour'
+            time: "1 hour"
             blocks: 600
           decision_period:
-            time: '14 days'
+            time: "14 days"
             blocks: 201600
           confirm_period:
-            time: '3 hours'
+            time: "3 hours"
             blocks: 1800
           min_enactment_period:
-            time: '10 minutes'
+            time: "10 minutes"
             blocks: 100
           min_approval:
-            time0: 'Day 0'
+            time0: "Day 0"
             percent0: 100
-            time1: 'Day 4'
+            time1: "Day 4"
             percent1: 80
-            time2: 'Day 14'
+            time2: "Day 14"
             percent2: 50
           min_support:
-            time0: 'Day 0'
+            time0: "Day 0"
             percent0: 50
-            time1: 'Day 5'
+            time1: "Day 5"
             percent1: 1
-            time2: 'Day 14'
+            time2: "Day 14"
             percent2: 0
       submission_deposit: 1000
       max_votes: 512
@@ -983,7 +983,7 @@ networks:
       max_del_per_can: 300
       max_del_per_del: 100
       candidates:
-        address1: '0x1C86E56007FCBF759348dcF0479596a9857Ba105'
+        address1: "0x1C86E56007FCBF759348dcF0479596a9857Ba105"
     treasury:
       current_council_members: 5
       motion_duration_days: 3
@@ -1030,50 +1030,50 @@ networks:
         rounds: 28
         hours: 168
     precompiles:
-      staking: '0x0000000000000000000000000000000000000800'
-      crowdloan: '0x0000000000000000000000000000000000000801'
-      erc20: '0x0000000000000000000000000000000000000802'
-      democracy: '0x0000000000000000000000000000000000000803'
-      xtokens: '0x0000000000000000000000000000000000000804'
-      relay_encoder: '0x0000000000000000000000000000000000000805'
-      xcm_transactor_v1: '0x0000000000000000000000000000000000000806'
-      author_mapping: '0x0000000000000000000000000000000000000807'
-      batch: '0x0000000000000000000000000000000000000808'
-      randomness: '0x0000000000000000000000000000000000000809'
-      call_permit: '0x000000000000000000000000000000000000080a'
-      proxy: '0x000000000000000000000000000000000000080b'
-      xcm_utils: '0x000000000000000000000000000000000000080C'
-      xcm_transactor_v2: '0x000000000000000000000000000000000000080d'
-      collective_council: '0x000000000000000000000000000000000000080e'
-      collective_tech_committee: '0x000000000000000000000000000000000000080f'
-      collective_treasury: '0x0000000000000000000000000000000000000810'
-      referenda: '0x0000000000000000000000000000000000000811'
-      conviction_voting: '0x0000000000000000000000000000000000000812'
-      preimage: '0x0000000000000000000000000000000000000813'
-      collective_opengov_tech_committee: '0x0000000000000000000000000000000000000814'
-      registry: '0x0000000000000000000000000000000000000815'
-      gmp: '0x0000000000000000000000000000000000000816'
-      xcm_transactor_v3: '0x0000000000000000000000000000000000000817'
-      identity: '0x0000000000000000000000000000000000000818'
-      relay_data_verifier: '0x0000000000000000000000000000000000000819'
-      xcm_interface: '0x000000000000000000000000000000000000081A'
+      staking: "0x0000000000000000000000000000000000000800"
+      crowdloan: "0x0000000000000000000000000000000000000801"
+      erc20: "0x0000000000000000000000000000000000000802"
+      democracy: "0x0000000000000000000000000000000000000803"
+      xtokens: "0x0000000000000000000000000000000000000804"
+      relay_encoder: "0x0000000000000000000000000000000000000805"
+      xcm_transactor_v1: "0x0000000000000000000000000000000000000806"
+      author_mapping: "0x0000000000000000000000000000000000000807"
+      batch: "0x0000000000000000000000000000000000000808"
+      randomness: "0x0000000000000000000000000000000000000809"
+      call_permit: "0x000000000000000000000000000000000000080a"
+      proxy: "0x000000000000000000000000000000000000080b"
+      xcm_utils: "0x000000000000000000000000000000000000080C"
+      xcm_transactor_v2: "0x000000000000000000000000000000000000080d"
+      collective_council: "0x000000000000000000000000000000000000080e"
+      collective_tech_committee: "0x000000000000000000000000000000000000080f"
+      collective_treasury: "0x0000000000000000000000000000000000000810"
+      referenda: "0x0000000000000000000000000000000000000811"
+      conviction_voting: "0x0000000000000000000000000000000000000812"
+      preimage: "0x0000000000000000000000000000000000000813"
+      collective_opengov_tech_committee: "0x0000000000000000000000000000000000000814"
+      registry: "0x0000000000000000000000000000000000000815"
+      gmp: "0x0000000000000000000000000000000000000816"
+      xcm_transactor_v3: "0x0000000000000000000000000000000000000817"
+      identity: "0x0000000000000000000000000000000000000818"
+      relay_data_verifier: "0x0000000000000000000000000000000000000819"
+      xcm_interface: "0x000000000000000000000000000000000000081A"
     api3:
-      rrp: '0xa0AD79D995DdeeB18a14eAef56A549A04e3Aa1Bd'
-      anuqrngairnode: '0x9d3C147cA16DB954873A498e0af5852AB39139f2'
-      anuqrngxpub: 'xpub6DXSDTZBd4aPVXnv6Q3SmnGUweFv6j24SK77W4qrSFuhGgi666awUiXakjXruUSCDQhhctVG7AQt67gMdaRAsDnDXv23bBRKsMWvRzo6kbf'
-      anuqrnguint256: '0xfb6d017bb87991b7495f563db3c8cf59ff87b09781947bb1e417006ad7f55a78'
-      anuqrnguint256array: '0x27cc2713e7f968e4e86ed274a051a5c8aaee9cca66946f23af6f29ecea9704c3'
-      quintessenceairnode: '0x224e030f03Cd3440D88BD78C9BF5Ed36458A1A25'
-      quintessencexpub: 'xpub6CyZcaXvbnbqGfqqZWvWNUbGvdd5PAJRrBeAhy9rz1bbnFmpVLg2wPj1h6TyndFrWLUG3kHWBYpwacgCTGWAHFTbUrXEg6LdLxoEBny2YDz'
-      quintessenceuint256: '0xffd1bbe880e7b2c662f6c8511b15ff22d12a4a35d5c8c17202893a5f10e25284'
-      quintessenceuint256array: '0x4554e958a68d68de6a4f6365ff868836780e84ac3cba75ce3f4c78a85faa8047'
-      quantumblockchainsairnode: '0x07D7F4EcaC8aDf3f0412ab058a051fD8b8507348'
-      quantumblockchainsxpub: 'xpub6C7WhXL7KNoa9GnCwEfLCWzf326hXhqD3nUyKg4ZxzXvjcmFeVQ9GZENgKtHxLfo3uPa13GBHCAb1nRgdUnP5YGJFX97KqpeFvHQzpjhmoi'
-      quantumblockchainsuint256: '0x8cf0e7205eff59b8695db96b34ffe7a5a125a3ed263afa3353aef6c3d82debf9'
-      quantumblockchainsuint256array: '0x09fd3663fdc0ab359a5ebcba098571122ddb2a80b00a503960b32e67491f52d7'
+      rrp: "0xa0AD79D995DdeeB18a14eAef56A549A04e3Aa1Bd"
+      anuqrngairnode: "0x9d3C147cA16DB954873A498e0af5852AB39139f2"
+      anuqrngxpub: "xpub6DXSDTZBd4aPVXnv6Q3SmnGUweFv6j24SK77W4qrSFuhGgi666awUiXakjXruUSCDQhhctVG7AQt67gMdaRAsDnDXv23bBRKsMWvRzo6kbf"
+      anuqrnguint256: "0xfb6d017bb87991b7495f563db3c8cf59ff87b09781947bb1e417006ad7f55a78"
+      anuqrnguint256array: "0x27cc2713e7f968e4e86ed274a051a5c8aaee9cca66946f23af6f29ecea9704c3"
+      quintessenceairnode: "0x224e030f03Cd3440D88BD78C9BF5Ed36458A1A25"
+      quintessencexpub: "xpub6CyZcaXvbnbqGfqqZWvWNUbGvdd5PAJRrBeAhy9rz1bbnFmpVLg2wPj1h6TyndFrWLUG3kHWBYpwacgCTGWAHFTbUrXEg6LdLxoEBny2YDz"
+      quintessenceuint256: "0xffd1bbe880e7b2c662f6c8511b15ff22d12a4a35d5c8c17202893a5f10e25284"
+      quintessenceuint256array: "0x4554e958a68d68de6a4f6365ff868836780e84ac3cba75ce3f4c78a85faa8047"
+      quantumblockchainsairnode: "0x07D7F4EcaC8aDf3f0412ab058a051fD8b8507348"
+      quantumblockchainsxpub: "xpub6C7WhXL7KNoa9GnCwEfLCWzf326hXhqD3nUyKg4ZxzXvjcmFeVQ9GZENgKtHxLfo3uPa13GBHCAb1nRgdUnP5YGJFX97KqpeFvHQzpjhmoi"
+      quantumblockchainsuint256: "0x8cf0e7205eff59b8695db96b34ffe7a5a125a3ed263afa3353aef6c3d82debf9"
+      quantumblockchainsuint256array: "0x09fd3663fdc0ab359a5ebcba098571122ddb2a80b00a503960b32e67491f52d7"
     supra:
-      pull_oracle: '0x2FA6DbFe4291136Cf272E1A3294362b6651e8517'
-      storage: '0xD02cc7a670047b6b012556A88e275c685d25e0c9'
+      pull_oracle: "0x2FA6DbFe4291136Cf272E1A3294362b6651e8517"
+      storage: "0xD02cc7a670047b6b012556A88e275c685d25e0c9"
 
     randomness:
       max_random_words: 100
@@ -1122,12 +1122,12 @@ networks:
     xcm_message:
       transfer:
         weight: 260,920,000
-        cost: '0.0020700543'
+        cost: "0.0020700543"
     xcm_instructions:
       buy_exec:
         base_weight: 1,444,000
         total_weight: 1,444,000
-        dot_cost: '0.0000114562'
+        dot_cost: "0.0000114562"
       withdraw:
         base_weight:
           display: 28,457,000
@@ -1136,13 +1136,13 @@ networks:
           display: 132,427,000
           numbers_only: 132427000
         planck_dot_cost: 10506327.1036296
-        dot_cost: '0.0010506327'
+        dot_cost: "0.0010506327"
       clear_origin:
         total_weight: 1,354,000
-        dot_cost: '0.0000107422'
+        dot_cost: "0.0000107422"
       deposit_asset:
         total_weight: 125,695,000
-        dot_cost: '0.0009972232'
+        dot_cost: "0.0009972232"
       planck_dot_weight: 0.0793367448
     extrinsic_base_weight:
       display: 126,045,000
@@ -1162,12 +1162,12 @@ networks:
     xcm_message:
       transfer:
         weight: 303,670,000
-        cost: '0.000081169577'
+        cost: "0.000081169577"
     xcm_instructions:
       buy_exec:
         base_weight: 1,415,000
         total_weight: 1,415,000
-        ksm_cost: '0.000000378223'
+        ksm_cost: "0.000000378223"
       withdraw:
         base_weight:
           display: 29,195,000
@@ -1176,14 +1176,14 @@ networks:
           display: 154,195,000
           numbers_only: 154195000
         planck_ksm_cost: 39077243.0089112
-        ksm_cost: '0.000041215606'
+        ksm_cost: "0.000041215606"
       clear_origin:
         total_weight: 1,315,000
-        ksm_cost: '0.000000351493'
+        ksm_cost: "0.000000351493"
       deposit_asset:
         total_weight: 146,745,000
-        ksm_cost: '0.000039224255'
-      planck_ksm_weight: '0.267295345319'
+        ksm_cost: "0.000039224255"
+      planck_ksm_weight: "0.267295345319"
     extrinsic_base_weight:
       display: 124,706,000
       numbers_only: 124706000
@@ -1213,7 +1213,7 @@ networks:
           display: 400,000,000
           numbers_only: 400000000
         wei_betadev_cost: 20000000000000
-        betadev_cost: '0.00002'
+        betadev_cost: "0.00002"
 polkadot_sdk: polkadot-v1.17.1
 xcm:
   db_weights:
