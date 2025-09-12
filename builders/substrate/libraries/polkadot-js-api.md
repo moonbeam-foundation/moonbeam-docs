@@ -264,7 +264,7 @@ const keyring = new Keyring({ type: 'ethereum' });
 
 ### Add an Account to a Keyring {: #adding-accounts }
 
-There are a number of ways to add an account to the keyring instance. For Ethereum compatibility, the recommended approach is to use ethers.js for key derivation and then add the private key to the Polkadot.js Keyring for transaction signing.
+There are several ways to add an account to the keyring instance. For Ethereum compatibility, the recommended approach is to use Ethers.js for key derivation and then add the private key to the Polkadot.js Keyring for transaction signing.
 
 === "From Mnemonic (Recommended)"
 
