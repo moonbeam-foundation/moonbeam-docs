@@ -661,7 +661,7 @@ Our frontend should now display the correct data!
 ![Displaying data](/images/tutorials/eth-api/how-to-build-a-dapp/how-to-build-a-dapp-3.webp)
 
 !!! challenge
-    There's additonal information that could be helpful to display, such as the amount of tokens that the connected account currently has: `balanceOf(address)`. Can you add that to the frontend yourself?
+    There's additional information that could be helpful to display, such as the amount of tokens that the connected account currently has: `balanceOf(address)`. Can you add that to the frontend yourself?
 
 ### Send Transactions {: #sending-transactions }
 
