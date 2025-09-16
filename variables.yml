@@ -15,7 +15,7 @@ networks:
     hex_chain_id: '0x507'
     chain_spec: alphanet
     block_explorer: https://moonbase.moonscan.io/
-    spec_version: runtime-3800
+    spec_version: runtime-3900
     parachain_release_tag: v0.47.0 # must be in this exact format for links to work
     parachain_sha256sum: ca2c664c2bc9d5221130a412313aa05bac907c15c911fb09cdc9a0551893fa2e
     tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.47.0-3900-b897
@@ -66,7 +66,7 @@ networks:
       units_per_second:
         xcbetadev:
           transact_numbers_only: 50000000000000000
-      foreign_asset_deposit: 
+      foreign_asset_deposit:
         display: 100
         numbers_only: 100
     erc20_xcm:
@@ -406,7 +406,7 @@ networks:
       instructions:
         wei_per_weight:
           display: 12,500
-      foreign_asset_deposit: 
+      foreign_asset_deposit:
         display: 1,000
         numbers_only: 100
     erc20_xcm:
@@ -774,9 +774,9 @@ networks:
         xcdot:
           display: 20,080,321,285
           numbers_only: 20080321285
-      foreign_asset_deposit: 
-          display: 10,000
-          numbers_only: 10000
+      foreign_asset_deposit:
+        display: 10,000
+        numbers_only: 10000
     erc20_xcm:
       transfer_gas_limit: 400,000 # Erc20XcmBridgeTransferGasLimit
     conviction:
