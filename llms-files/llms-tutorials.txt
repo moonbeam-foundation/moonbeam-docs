@@ -2232,7 +2232,7 @@ You will need to create a Hardhat project if you don't already have one. You can
 3. Install Hardhat
 
     ```bash
-    npm install hardhat@3.0.0-next.5
+    npm install hardhat
     ```
 
 4. Create a project
@@ -2246,6 +2246,7 @@ You will need to create a Hardhat project if you don't already have one. You can
 
 5. You'll be prompted with a series of questions to set up your project:
 
+    - Choose **Hardhat 3 Beta (recommended for new projects)** rather than Hardhat 2
     - Choose where to initialize the project (default is current directory)
     - Confirm converting to ESM (required for Hardhat v3)
     - Select the type of project to initialize:
@@ -2272,7 +2273,11 @@ You will need to create a Hardhat project if you don't already have one. You can
   <span data-ty>888&nbsp;&nbsp;&nbsp;&nbsp;888&nbsp;888&nbsp;&nbsp;888&nbsp;888&nbsp;&nbsp;&nbsp;&nbsp;Y88b&nbsp;888&nbsp;888&nbsp;&nbsp;888&nbsp;888&nbsp;&nbsp;888&nbsp;Y88b.</span>
   <span data-ty>888&nbsp;&nbsp;&nbsp;&nbsp;888&nbsp;"Y888888&nbsp;888&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Y88888&nbsp;888&nbsp;&nbsp;888&nbsp;"Y888888&nbsp;&nbsp;"Y888</span>
     <br>
-  <span data-ty>👷 Welcome to Hardhat v3.0.0-next.5 👷‍</span>
+  <span data-ty>👷 Welcome to Hardhat v3.0.4 👷‍</span>
+    <br>
+  <span data-ty="input" data-ty-prompt="?">&nbsp;Which version of Hardhat would you like to use? …</span>
+  <span data-ty="input" data-ty-prompt="❯">&nbsp;Hardhat 3 Beta (recommended for new projects)</span>
+  <span data-ty>&nbsp;&nbsp;Hardhat 2 (older version)</span>
     <br>
   <span data-ty="input" data-ty-prompt="✔">&nbsp;Where would you like to initialize the project?</span>
   <span data-ty="input" data-ty-prompt="Please provide either a relative or an absolute path:">&nbsp;.</span>
@@ -2857,19 +2862,19 @@ If you're curious about additional Hardhat plugins, here is [a complete list of 
 Hardhat 3 includes an encrypted secrets manager that makes handling sensitive information like private keys and API keys easier. This ensures you don't have to hardcode secrets in your source code or store them in plain text.
 
 !!! note
-    The encrypted secrets manager is only available in Hardhat 3 or higher. As of writing this guide, Hardhat 3 is in alpha. You can install the latest alpha version with:
+    The encrypted secrets manager is only available in Hardhat 3 or higher. You can install the latest version with:
 
     ```bash
-    npm install hardhat@3.0.0-next.5
+    npm install hardhat
     ```
 
     For the latest releases and updates, check the [Hardhat releases page](https://github.com/NomicFoundation/hardhat/releases/).
 
 To use encrypted secrets, you'll need to:
 
-1. Install Hardhat 3 or later:
+1. Install Hardhat (latest version):
 ```bash
-npm install hardhat@3.0.0-next.5
+npm install hardhat
 ```
 
 2. Set up your secrets using the keystore:
@@ -6655,10 +6660,10 @@ This will start up our development node, which can be accessed on port 9944. Not
 
 <div id="termynal" data-termynal>
     <span data-ty="input"><span class="file-path"></span>docker run --rm --name moonbeam_development -p 9944:9944 \</span>
-    <span data-ty>moonbeamfoundation/moonbeam:v0.45.0 \</span>
+    <span data-ty>moonbeamfoundation/moonbeam:v0.47.0 \</span>
     <span data-ty>--dev --rpc-external</span>
     <span data-ty>2025-07-10 09:04:26 Moonbeam Parachain Collator</span>
-    <span data-ty>2025-07-10 09:04:26 ✌️  version 0.46.0-d7df89e7161</span>
+    <span data-ty>2025-07-10 09:04:26 ✌️  version 0.47.0-d7df89e7161</span>
     <span data-ty>2025-07-10 09:04:26 ❤️  by PureStake, 2019-2025</span>
     <span data-ty>2025-07-10 09:04:26 📋 Chain specification: Moonbase Development Testnet</span>
     <span data-ty>2025-07-10 09:04:26 🏷  Node name: truthful-volcano-8206</span>
@@ -18679,9 +18684,9 @@ Using Docker enables you to spin up a node in a matter of seconds. Once you have
     The tail end of the console log should look like this:
 
     <div id="termynal" data-termynal>
-  <span data-ty="input"><span class="file-path"></span>docker pull moonbeamfoundation/moonbeam:v0.46.0</span>
+  <span data-ty="input"><span class="file-path"></span>docker pull moonbeamfoundation/moonbeam:v0.47.0</span>
   <br>
-  <span data-ty>v0.46.0: Pulling from moonbeamfoundation/moonbeam
+  <span data-ty>v0.47.0: Pulling from moonbeamfoundation/moonbeam
     <br> b0a0cf830b12: Pull complete
     <br> fbff687640dd: Pull complete
     <br> 58ea427410e2: Pull complete
@@ -18690,6 +18695,8 @@ Using Docker enables you to spin up a node in a matter of seconds. Once you have
     <br> 128693ce218e: Pull complete
     <br> a3ac90b88463: Pull complete
     <br> Digest: sha256:86421aca2381265cd2e5283cb98705e24be0bc92a73937363f79d9d6e0d62088
+    <br> Status: Downloaded newer image for moonbeamfoundation/moonbeam:v0.47.0
+    <br> docker.io/moonbeamfoundation/moonbeam:v0.47.0
     <br> Status: Downloaded newer image for moonbeamfoundation/moonbeam:v0.46.0
     <br> docker.io/moonbeamfoundation/moonbeam:v0.46.0
   </span>
@@ -18740,13 +18747,13 @@ If successful, you should see an output showing an idle state waiting for blocks
 
 <div id="termynal" data-termynal>
   <span data-ty="input"><span class="file-path"></span>docker run --rm --name moonbeam_development --network host \
-    <br> moonbeamfoundation/moonbeam:v0.46.0 \
+    <br> moonbeamfoundation/moonbeam:v0.47.0 \
     <br> --dev --rpc-external
   </span>
   <br>
   <span data-ty>CLI parameter `--execution` has no effect anymore and will be removed in the future!
     <br> 2025-07-10 09:04:26 Moonbeam Parachain Collator
-    <br> 2025-07-10 09:04:26 ✌️  version 0.46.0-d7df89e7161
+    <br> 2025-07-10 09:04:26 ✌️  version 0.47.0-d7df89e7161
     <br> 2025-07-10 09:04:26 ❤️  by PureStake, 2019-2025
     <br> 2025-07-10 09:04:26 📋 Chain specification: Moonbase Development Testnet
     <br> 2025-07-10 09:04:26 🏷  Node name: black-and-white-sticks-9174
@@ -18874,7 +18881,7 @@ You should see an output that looks like the following, showing an idle state wa
   <span data-ty="input"><span class="file-path"></span>./target/release/moonbeam --dev</span>
   <br>
   <span data-ty> 2025-07-10 09:04:26 Moonbeam Parachain Collator
-    <br> 2025-07-10 09:04:26 ✌️  version 0.46.0-d7df89e7161
+    <br> 2025-07-10 09:04:26 ✌️  version 0.47.0-d7df89e7161
     <br> 2025-07-10 09:04:26 ❤️  by PureStake, 2019-2025
     <br> 2025-07-10 09:04:26 📋 Chain specification: Moonbase Development Testnet
     <br> 2025-07-10 09:04:26 🏷  Node name: black-and-white-sticks-9174

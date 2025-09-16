@@ -966,6 +966,7 @@ Deploying the contract with `forge create` takes a single command, but you must 
     ```bash
     forge create src/MyToken.sol:MyToken \
     --rpc-url {{ networks.moonbeam.rpc_url }} \
+    --broadcast \
     --account deployer \
     --constructor-args 100
     ```
@@ -975,6 +976,7 @@ Deploying the contract with `forge create` takes a single command, but you must 
     ```bash
     forge create src/MyToken.sol:MyToken \
     --rpc-url {{ networks.moonriver.rpc_url }} \
+    --broadcast \
     --account deployer \
     --constructor-args 100
     ```
@@ -984,6 +986,7 @@ Deploying the contract with `forge create` takes a single command, but you must 
     ```bash
     forge create src/MyToken.sol:MyToken \
     --rpc-url {{ networks.moonbase.rpc_url }} \
+    --broadcast \
     --account deployer \
     --constructor-args 100
     ```
@@ -993,6 +996,7 @@ Deploying the contract with `forge create` takes a single command, but you must 
     ```bash
     forge create src/MyToken.sol:MyToken \
     --rpc-url {{ networks.development.rpc_url }} \
+    --broadcast \
     --account deployer \
     --constructor-args 100
     ```
@@ -1647,7 +1651,7 @@ You will need to create a Hardhat project if you don't already have one. You can
 3. Install Hardhat
 
     ```sh
-    npm install hardhat@3.0.0-next.5
+    npm install hardhat
     ```
 
 4. Create a Hardhat project
@@ -1662,6 +1666,7 @@ You will need to create a Hardhat project if you don't already have one. You can
 
 5. You'll be prompted with a series of questions to set up your project:
 
+    - Choose **Hardhat 3 Beta (recommended for new projects)** rather than Hardhat 2
     - Choose where to initialize the project (default is current directory)
     - Confirm converting to ESM (required for Hardhat v3)
     - Select the type of project to initialize:
@@ -1688,7 +1693,11 @@ You will need to create a Hardhat project if you don't already have one. You can
   <span data-ty>888&nbsp;&nbsp;&nbsp;&nbsp;888&nbsp;888&nbsp;&nbsp;888&nbsp;888&nbsp;&nbsp;&nbsp;&nbsp;Y88b&nbsp;888&nbsp;888&nbsp;&nbsp;888&nbsp;888&nbsp;&nbsp;888&nbsp;Y88b.</span>
   <span data-ty>888&nbsp;&nbsp;&nbsp;&nbsp;888&nbsp;"Y888888&nbsp;888&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Y88888&nbsp;888&nbsp;&nbsp;888&nbsp;"Y888888&nbsp;&nbsp;"Y888</span>
     <br>
-  <span data-ty>👷 Welcome to Hardhat v3.0.0-next.5 👷‍</span>
+  <span data-ty>👷 Welcome to Hardhat v3.0.4 👷‍</span>
+    <br>
+  <span data-ty="input" data-ty-prompt="?">&nbsp;Which version of Hardhat would you like to use? …</span>
+  <span data-ty="input" data-ty-prompt="❯">&nbsp;Hardhat 3 Beta (recommended for new projects)</span>
+  <span data-ty>&nbsp;&nbsp;Hardhat 2 (older version)</span>
     <br>
   <span data-ty="input" data-ty-prompt="✔">&nbsp;Where would you like to initialize the project?</span>
   <span data-ty="input" data-ty-prompt="Please provide either a relative or an absolute path:">&nbsp;.</span>
@@ -1722,19 +1731,19 @@ Next, you'll need to modify your configuration file to add the network configura
 Hardhat 3 includes an encrypted secrets manager that makes it easier to handle sensitive information like private keys. This ensures you don't have to hardcode secrets in your source code or store them in plain text.
 
 !!! note
-    The encrypted secrets manager is only available in Hardhat 3 or higher. As of writing this guide, Hardhat 3 is in alpha. You can install the latest alpha version with:
+    The encrypted secrets manager is only available in Hardhat 3 or higher. You can install the latest version with:
 
     ```bash
-    npm install hardhat@3.0.0-next.5
+    npm install hardhat
     ```
 
     For the latest releases and updates, check the [Hardhat releases page](https://github.com/NomicFoundation/hardhat/releases/).
 
 To use encrypted secrets, you'll need to:
 
-1. Install Hardhat 3 or later:
+1. Install Hardhat (latest version):
 ```bash
-npm install hardhat@3.0.0-next.5
+npm install hardhat
 ```
 
 2. Set up your secrets using the keystore:
@@ -4346,7 +4355,7 @@ If you wish to set up your own tracing node, you can follow the [Running a Traci
 <div id="termynal" data-termynal>
   <span data-ty="input"><span class="file-path"></span>docker run --network host  \
     <br>-u $(id -u ${USER}):$(id -g ${USER}) \
-        moonbeamfoundation/moonbeam-tracing:v0.45.0-3701-a160 \
+        moonbeamfoundation/moonbeam-tracing:v0.47.0-3900-b897 \
     <br>--name="Moonbean-Tracing-Tutorial" \
     <br>--unsafe-rpc-external \
     <br>--ethapi=debug,trace,txpool \
@@ -4356,7 +4365,7 @@ If you wish to set up your own tracing node, you can follow the [Running a Traci
   </span>
   <br>
   <span data-ty> 2025-07-10 09:04:26 Moonbeam Parachain Collator
-    <br> 2025-07-10 09:04:26 ✌️  version 0.46.0-d7df89e7161
+    <br> 2025-07-10 09:04:26 ✌️  version 0.47.0-d7df89e7161
     <br> 2025-07-10 09:04:26 ❤️  by PureStake, 2019-2025
     <br> 2025-07-10 09:04:26 📋 Chain specification: Moonbase Development Testnet
     <br> 2025-07-10 09:04:26 🏷  Node name: Moonbean-Tracing-Tutorial
@@ -16234,7 +16243,7 @@ The interface includes the following functions:
         - `value` - uint256 value being transferred from the `from` account
         - `data` - bytes containing the call data, or action to be executed
         - `gasLimit` - uint64[] gas limit the dispatched call requires. Providing an argument for this parameter prevents the dispatcher from manipulating the gas limit
-        - `deadline` - uint256 time in UNIX seconds after which the permit will no longer be valid. In JavaScript, you can get the current time in UNIX seconds by running `console.log(Date.now())` in a JavaScript script or a browser console
+        - `deadline` - uint256 time in UNIX seconds after which the permit will no longer be valid. In JavaScript, you can get the current time in UNIX seconds by running `console.log(Math.floor(Date.now() / 1000))` in a JavaScript script or a browser console
         - `v` - uint8 recovery ID of the signature. The last one byte of the concatenated signature
         - `r` - bytes32 first 32 bytes of the concatenated signature
         - `s` - bytes32 second 32 bytes of the concatenated signature
@@ -16386,7 +16395,7 @@ In order to get the signature arguments (`v`, `r`, and `s`), you'll need to sign
      0x4ed3885e0000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000b68656c6c6f20776f726c64000000000000000000000000000000000000000000
      ```
 - `gasLimit` - `100000` will be enough to send the dispatched call
-- `deadline` - you can get the current time in UNIX seconds by running `console.log(Date.now())` in a JavaScript script or a browser console. Once you have the current time, you can add additional time in seconds to represent when the call permit will expire
+- `deadline` - you can get the current time in UNIX seconds by running `console.log(Math.floor(Date.now() / 1000))` in a JavaScript script or a browser console. Once you have the current time, you can add additional time in seconds to represent when the call permit will expire
 
 The nonce of the signer will also be needed. If this is your first time signing a call permit the nonce will be `0`. You can also check the nonce in Remix:
 
@@ -16656,7 +16665,20 @@ node getSignature.js
 
 In the console, you should see the concatenated signature along with the values for the signature including the `v`, `r`, and `s` values. Copy these values as you'll need them when interacting with the Call Permit Precompile in the following sections.
 
-![Signature values in the console](/images/builders/ethereum/precompiles/ux/call-permit/call-10.webp)
+<div id="termynal" data-termynal>
+    <span data-ty="input"><span class="file-path"> </span>node getSignature.js</span>
+    <span data-ty>Transaction successful with hash: 0x76c23a766ad2135095e56a5d799794a6a9f84ed7a9da9759daa592d58632419948d111bdd46079013aa6a2c733c7a608fa05295b0ec5d8ab6a8bfbca01b3bd291c</span>
+    <span data-ty>{</span>
+    <span data-ty>  r: "0x76c23a766ad2135095e56a5d799794a6a9f84ed7a9da9759daa592d586324199",</span>
+    <span data-ty>  s: "0x48d111bdd46079013aa6a2c733c7a608fa05295b0ec5d8ab6a8bfbca01b3bd29",</span>
+    <span data-ty>  _vs: "0xc8d111bdd46079013aa6a2c733c7a608fa05295b0ec5d8ab6a8bfbca01b3bd29",</span>
+    <span data-ty>  recoveryParam: 1,</span>
+    <span data-ty>  v: 28,</span>
+    <span data-ty>  yParityAndS: "0xc8d111bdd46079013aa6a2c733c7a608fa05295b0ec5d8ab6a8bfbca01b3bd29",</span>
+    <span data-ty>  compact: "0x76c23a766ad2135095e56a5d799794a6a9f84ed7a9da9759daa592d586324199c8d111bdd46079013aa6a2c733c7a608fa05295b0ec5d8ab6a8bfbca01b3bd29"</span>
+    <span data-ty>}</span>
+    <span data-ty="input"><span class="file-path"> </span></span>
+</div>
 
 ## Interact with the Solidity Interface {: #interact-with-the-solidity-interface }
 
@@ -16681,7 +16703,7 @@ When you send the `dispatch` function, you'll need the same arguments as you use
 10. Click **transact** to send the transaction
 11. MetaMask should pop-up and you can confirm the transaction
 
-![Dispatch the call permit](/images/builders/ethereum/precompiles/ux/call-permit/call-11.webp)
+![Dispatch the call permit](/images/builders/ethereum/precompiles/ux/call-permit/call-10.webp)
 
 Once the transaction goes through, you can verify that the message was updated to `hello world`. To do so, you can:
 
@@ -16689,7 +16711,7 @@ Once the transaction goes through, you can verify that the message was updated t
 2. Click on **get**
 3. The result will appear below the function, and it should show `hello world`
 
-![Verify the dispatch was executed as intended](/images/builders/ethereum/precompiles/ux/call-permit/call-12.webp)
+![Verify the dispatch was executed as intended](/images/builders/ethereum/precompiles/ux/call-permit/call-11.webp)
 
 Congratulations! You've successfully generated a call permit signature and used it to dispatch a call on behalf of the call permit signer.
 --- END CONTENT ---
@@ -25919,9 +25941,9 @@ Using Docker enables you to spin up a node in a matter of seconds. Once you have
     The tail end of the console log should look like this:
 
     <div id="termynal" data-termynal>
-  <span data-ty="input"><span class="file-path"></span>docker pull moonbeamfoundation/moonbeam:v0.46.0</span>
+  <span data-ty="input"><span class="file-path"></span>docker pull moonbeamfoundation/moonbeam:v0.47.0</span>
   <br>
-  <span data-ty>v0.46.0: Pulling from moonbeamfoundation/moonbeam
+  <span data-ty>v0.47.0: Pulling from moonbeamfoundation/moonbeam
     <br> b0a0cf830b12: Pull complete
     <br> fbff687640dd: Pull complete
     <br> 58ea427410e2: Pull complete
@@ -25930,6 +25952,8 @@ Using Docker enables you to spin up a node in a matter of seconds. Once you have
     <br> 128693ce218e: Pull complete
     <br> a3ac90b88463: Pull complete
     <br> Digest: sha256:86421aca2381265cd2e5283cb98705e24be0bc92a73937363f79d9d6e0d62088
+    <br> Status: Downloaded newer image for moonbeamfoundation/moonbeam:v0.47.0
+    <br> docker.io/moonbeamfoundation/moonbeam:v0.47.0
     <br> Status: Downloaded newer image for moonbeamfoundation/moonbeam:v0.46.0
     <br> docker.io/moonbeamfoundation/moonbeam:v0.46.0
   </span>
@@ -25980,13 +26004,13 @@ If successful, you should see an output showing an idle state waiting for blocks
 
 <div id="termynal" data-termynal>
   <span data-ty="input"><span class="file-path"></span>docker run --rm --name moonbeam_development --network host \
-    <br> moonbeamfoundation/moonbeam:v0.46.0 \
+    <br> moonbeamfoundation/moonbeam:v0.47.0 \
     <br> --dev --rpc-external
   </span>
   <br>
   <span data-ty>CLI parameter `--execution` has no effect anymore and will be removed in the future!
     <br> 2025-07-10 09:04:26 Moonbeam Parachain Collator
-    <br> 2025-07-10 09:04:26 ✌️  version 0.46.0-d7df89e7161
+    <br> 2025-07-10 09:04:26 ✌️  version 0.47.0-d7df89e7161
     <br> 2025-07-10 09:04:26 ❤️  by PureStake, 2019-2025
     <br> 2025-07-10 09:04:26 📋 Chain specification: Moonbase Development Testnet
     <br> 2025-07-10 09:04:26 🏷  Node name: black-and-white-sticks-9174
@@ -26114,7 +26138,7 @@ You should see an output that looks like the following, showing an idle state wa
   <span data-ty="input"><span class="file-path"></span>./target/release/moonbeam --dev</span>
   <br>
   <span data-ty> 2025-07-10 09:04:26 Moonbeam Parachain Collator
-    <br> 2025-07-10 09:04:26 ✌️  version 0.46.0-d7df89e7161
+    <br> 2025-07-10 09:04:26 ✌️  version 0.47.0-d7df89e7161
     <br> 2025-07-10 09:04:26 ❤️  by PureStake, 2019-2025
     <br> 2025-07-10 09:04:26 📋 Chain specification: Moonbase Development Testnet
     <br> 2025-07-10 09:04:26 🏷  Node name: black-and-white-sticks-9174
