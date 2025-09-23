@@ -29,16 +29,16 @@ First, you need to install the Polkadot.js API library for your project through 
 === "npm"
 
     ```bash
-    npm i @polkadot/api ethers
+    npm i @polkadot/api
     ```
 
 === "yarn"
 
     ```bash
-    yarn add @polkadot/api ethers
+    yarn add @polkadot/api
     ```
 
-The library also includes other core components like Keyring for account management, or some utilities that are used throughout this guide. The `ethers` library is recommended for Ethereum-compatible key derivation from mnemonics.
+The library also includes other core components like Keyring for account management, or some utilities that are used throughout this guide.
 
 ## Create an API Provider Instance {: #creating-an-API-provider-instance }
 
@@ -264,12 +264,12 @@ const keyring = new Keyring({ type: 'ethereum' });
 
 ### Add an Account to a Keyring {: #adding-accounts }
 
-There are several ways to add an account to the keyring instance. For Ethereum compatibility, the recommended approach is to use Ethers.js for key derivation and then add the private key to the Polkadot.js Keyring for transaction signing.
+There are several ways to add an account to the keyring instance. The following examples demonstrate the native Polkadot.js approaches for adding accounts from mnemonics and private keys.
 
-=== "From Mnemonic (Recommended)"
+=== "From Mnemonic"
 
     ```javascript
-    --8<-- 'code/builders/substrate/libraries/polkadot-js-api/adding-accounts-mnemonic-modern.js'
+    --8<-- 'code/builders/substrate/libraries/polkadot-js-api/adding-accounts-mnemonic.js'
     ```
 
 === "From Private Key"
@@ -278,8 +278,6 @@ There are several ways to add an account to the keyring instance. For Ethereum c
     --8<-- 'code/builders/substrate/libraries/polkadot-js-api/adding-accounts-private-key.js'
     ```
 
-!!! note "Why This Hybrid Approach?"
-    There are a number of ways to add an account to the keyring instance. For Ethereum compatibility, the recommended approach is to use ethers.js for key derivation and then add the private key to the Polkadot.js Keyring for transaction signing.
 
 ## Dry Run API  {: #dry-run-api }
 

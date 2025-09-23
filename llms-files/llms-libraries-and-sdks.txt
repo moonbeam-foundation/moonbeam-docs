@@ -4449,16 +4449,16 @@ First, you need to install the Polkadot.js API library for your project through 
 === "npm"
 
     ```bash
-    npm i @polkadot/api ethers
+    npm i @polkadot/api
     ```
 
 === "yarn"
 
     ```bash
-    yarn add @polkadot/api ethers
+    yarn add @polkadot/api
     ```
 
-The library also includes other core components like Keyring for account management, or some utilities that are used throughout this guide. The `ethers` library is recommended for Ethereum-compatible key derivation from mnemonics.
+The library also includes other core components like Keyring for account management, or some utilities that are used throughout this guide.
 
 ## Create an API Provider Instance {: #creating-an-API-provider-instance }
 
@@ -4760,12 +4760,39 @@ const keyring = new Keyring({ type: 'ethereum' });
 
 ### Add an Account to a Keyring {: #adding-accounts }
 
-There are several ways to add an account to the keyring instance. For Ethereum compatibility, the recommended approach is to use Ethers.js for key derivation and then add the private key to the Polkadot.js Keyring for transaction signing.
+There are several ways to add an account to the keyring instance. The following examples demonstrate the native Polkadot.js approaches for adding accounts from mnemonics and private keys.
 
-=== "From Mnemonic (Recommended)"
+=== "From Mnemonic"
 
     ```javascript
-    code/builders/substrate/libraries/polkadot-js-api/adding-accounts-mnemonic-modern.js
+    // Import required packages
+import Keyring from '@polkadot/keyring';
+import { u8aToHex } from '@polkadot/util';
+import { mnemonicToLegacySeed, hdEthereum, cryptoWaitReady } from '@polkadot/util-crypto';
+
+(async function main() {
+  await cryptoWaitReady();
+
+  // Define the mnemonic and derivation path
+  const mnemonic = 'INSERT_MNEMONIC';
+  const index = 0;
+  const ethDerPath = `m/44'/60'/0'/0/${index}`;
+
+  // Derive Ethereum account from mnemonic using createFromUri
+  const keyring = new Keyring({ type: 'ethereum' });
+  const uri = `${mnemonic}/${ethDerPath}`;
+  const pair = keyring.createFromUri(uri, undefined, 'ethereum', undefined, 2048);
+
+  console.log(`Mnemonic: ${mnemonic}`);
+  console.log(`Ethereum Derivation Path: ${ethDerPath}`);
+  console.log(`Derived Address: ${pair.address}`);
+
+  // Derive private key explicitly with hdEthereum
+  const seed = mnemonicToLegacySeed(mnemonic, '', false, 64);
+  const hd = hdEthereum(seed, ethDerPath);
+  const privateKeyHex = `0x${u8aToHex(hd.secretKey).slice(-64)}`;
+  console.log(`Derived Private Key: ${privateKeyHex}`);
+})();
     ```
 
 === "From Private Key"
@@ -4785,8 +4812,6 @@ const alice = keyringECDSA.addFromUri(privateKeyInput);
 console.log(`Derived Address from provided Private Key: ${alice.address}`);
     ```
 
-!!! note "Why This Hybrid Approach?"
-    There are a number of ways to add an account to the keyring instance. For Ethereum compatibility, the recommended approach is to use ethers.js for key derivation and then add the private key to the Polkadot.js Keyring for transaction signing.
 
 ## Dry Run API  {: #dry-run-api }
 
