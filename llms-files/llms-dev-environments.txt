@@ -647,7 +647,7 @@ touch MyToken.sol
 Open the file and add the following contract to it:
 
 ```solidity
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.30;
 
 // Import OpenZeppelin Contract
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
@@ -2500,7 +2500,7 @@ The main panel will switch to an empty file where you can add the Solidity code 
 
 ```solidity
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.30;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
@@ -3097,7 +3097,7 @@ To create a new smart contract using the [thirdweb CLI](https://portal.thirdweb.
 
     ```solidity
     // SPDX-License-Identifier: MIT
-    pragma solidity ^0.8.0;
+    pragma solidity ^0.8.30;
 
     import '@thirdweb-dev/contracts/base/ERC721Base.sol';
 
@@ -3638,7 +3638,7 @@ For this guide, you will create an ERC-20 contract that mints a specified amount
 2. Add the following contract to `MyToken.sol`:
 
     ```solidity
-    pragma solidity ^0.8.0;
+    pragma solidity ^0.8.30;
 
     import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
@@ -3665,12 +3665,12 @@ Now that you have written a smart contract, the next step is to use Waffle to co
     cd .. && touch waffle.json
     ```
 
-2. Edit the `waffle.json` to specify compiler configurations, the directory containing your contracts, and more. For this example, we'll use `solcjs` and the Solidity version you used for the contract, which is `0.8.0`:
+2. Edit the `waffle.json` to specify compiler configurations, the directory containing your contracts, and more. For this example, we'll use `solcjs` and the Solidity version you used for the contract, which is `0.8.30`:
 
     ```json
     {
         "compilerType": "solcjs",
-        "compilerVersion": "0.8.0",
+        "compilerVersion": "0.8.30",
         "compilerOptions": {
             "optimizer": {
                 "enabled": true,
@@ -4438,7 +4438,7 @@ Open the file and add the following to it:
 
 ```solidity
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.30;
 
 // Import OpenZeppelin Contract
 import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
@@ -4469,7 +4469,7 @@ Open the file and add the following to it:
 
 ```solidity
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.30;
 
 // Import OpenZeppelin Contract
 import {MyToken} from "./MyToken.sol";
@@ -4538,7 +4538,7 @@ By convention, all of your tests should end with `.t.sol` and start with the nam
 Let's start by writing a test for the token smart contract. Open up `MyToken.t.sol` and add:  
 
 ```solidity
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.30;
 
 import "forge-std/Test.sol";
 import "../src/MyToken.sol";
@@ -4572,7 +4572,7 @@ And add the following:
 
 ```solidity
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.30;
 
 import "forge-std/Test.sol";
 import {MyToken} from "../src/MyToken.sol";
@@ -4821,7 +4821,7 @@ That's it for testing! You can find the complete `Container.t.sol` and `MyToken.
 
     ```solidity
     // SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.30;
 
 import "forge-std/Test.sol";
 import {MyToken} from "../src/MyToken.sol";
@@ -4891,7 +4891,7 @@ contract ContainerHarness is Container {
 
     ```solidity
     // SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.30;
 
 import "forge-std/Test.sol";
 import "../src/MyToken.sol";
@@ -5211,7 +5211,7 @@ To get started, take the following steps:
         ```solidity
         // SPDX-License-Identifier: GPL-3.0-only
 // This is a PoC to use the staking precompile wrapper as a Solidity developer.
-pragma solidity >=0.8.0;
+pragma solidity ^0.8.30;
 
 import "./StakingInterface.sol";
 import "@openzeppelin/contracts/access/AccessControl.sol";
@@ -7740,7 +7740,7 @@ To see how this MBIP differentiates Moonbeam from Ethereum firsthand, you can es
 
 ```solidity
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.30;
 
 contract SayHello {
     mapping(address => string) public addressToName;
