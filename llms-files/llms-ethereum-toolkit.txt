@@ -13136,7 +13136,7 @@ Without further ado, the contract is as follows:
 
 ```solidity
 // SPDX-License-Identifier: GPL-3.0-only
-pragma solidity >=0.8.0;
+pragma solidity ^0.8.30;
 
 import "https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/randomness/Randomness.sol";
 import {RandomnessConsumer} from "https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/randomness/RandomnessConsumer.sol";
@@ -15931,7 +15931,7 @@ The contract `SimpleContract.sol` will be used as an example of batching contrac
 
 ```solidity
 // SPDX-License-Identifier: GPL-3.0-only
-pragma solidity >=0.8.0;
+pragma solidity ^0.8.30;
 
 contract SimpleContract {
     mapping(uint256 => string) public messages;
