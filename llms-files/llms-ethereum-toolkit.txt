@@ -903,7 +903,7 @@ touch MyToken.sol
 Open the file and add the following contract to it:
 
 ```solidity
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.30;
 
 // Import OpenZeppelin Contract
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
@@ -2784,7 +2784,7 @@ The main panel will switch to an empty file where you can add the Solidity code 
 
 ```solidity
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.30;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
@@ -5573,7 +5573,7 @@ Next, you can add the Solidity code to the file:
 ```solidity
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.30;
 
 contract Incrementer {
     uint256 public number;
@@ -6524,7 +6524,7 @@ Next, you can add the Solidity code to the file:
 ```solidity
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.30;
 
 contract Incrementer {
     uint256 public number;
@@ -7598,7 +7598,7 @@ Next, you can add the Solidity code to the file:
 ```solidity
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.30;
 
 contract Incrementer {
     uint256 public number;
@@ -8355,7 +8355,7 @@ Next, you can add the Solidity code to the file:
 ```solidity
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.30;
 
 contract Incrementer {
     uint256 public number;
@@ -9195,7 +9195,7 @@ Next, you can add the Solidity code to the file:
 ```solidity
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.30;
 
 contract Incrementer {
     uint256 public number;
@@ -17655,7 +17655,7 @@ The contract used is a simple incrementer, arbitrarily named `Incrementer.sol`. 
 ```solidity
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.30;
 
 contract Incrementer {
     uint256 public number;

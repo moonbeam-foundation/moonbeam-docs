@@ -1542,7 +1542,7 @@ Open the file and add the following to it:
 
 ```solidity
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.30;
 
 // Import OpenZeppelin Contract
 import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
@@ -1573,7 +1573,7 @@ Open the file and add the following to it:
 
 ```solidity
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.30;
 
 // Import OpenZeppelin Contract
 import {MyToken} from "./MyToken.sol";
@@ -1642,7 +1642,7 @@ By convention, all of your tests should end with `.t.sol` and start with the nam
 Let's start by writing a test for the token smart contract. Open up `MyToken.t.sol` and add:  
 
 ```solidity
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.30;
 
 import "forge-std/Test.sol";
 import "../src/MyToken.sol";
@@ -1676,7 +1676,7 @@ And add the following:
 
 ```solidity
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.30;
 
 import "forge-std/Test.sol";
 import {MyToken} from "../src/MyToken.sol";
@@ -1925,7 +1925,7 @@ That's it for testing! You can find the complete `Container.t.sol` and `MyToken.
 
     ```solidity
     // SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.30;
 
 import "forge-std/Test.sol";
 import {MyToken} from "../src/MyToken.sol";
@@ -1995,7 +1995,7 @@ contract ContainerHarness is Container {
 
     ```solidity
     // SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.30;
 
 import "forge-std/Test.sol";
 import "../src/MyToken.sol";
