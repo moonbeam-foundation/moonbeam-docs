@@ -23,6 +23,8 @@ import { mnemonicToLegacySeed, hdEthereum, cryptoWaitReady } from '@polkadot/uti
   // Derive private key explicitly with hdEthereum
   const seed = mnemonicToLegacySeed(mnemonic, '', false, 64);
   const hd = hdEthereum(seed, ethDerPath);
+  // Ethereum private keys are 32 bytes (256 bits), which is 64 hexadecimal characters.
+  // We use .slice(-64) to ensure we get exactly the 64 hex characters representing the private key.
   const privateKeyHex = `0x${u8aToHex(hd.secretKey).slice(-64)}`;
   console.log(`Derived Private Key: ${privateKeyHex}`);
 })();
