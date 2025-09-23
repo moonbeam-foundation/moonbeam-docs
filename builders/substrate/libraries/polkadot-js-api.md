@@ -264,7 +264,7 @@ const keyring = new Keyring({ type: 'ethereum' });
 
 ### Add an Account to a Keyring {: #adding-accounts }
 
-There are a number of ways to add an account to the keyring instance, including from the mnemonic phrase and from the shortform private key.
+There are several ways to add an account to the keyring instance. The following examples demonstrate the native Polkadot.js approaches for adding accounts from mnemonics and private keys.
 
 === "From Mnemonic"
 
@@ -277,6 +277,7 @@ There are a number of ways to add an account to the keyring instance, including 
     ```javascript
     --8<-- 'code/builders/substrate/libraries/polkadot-js-api/adding-accounts-private-key.js'
     ```
+
 
 ## Dry Run API  {: #dry-run-api }
 

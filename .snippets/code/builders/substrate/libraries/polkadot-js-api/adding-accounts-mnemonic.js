@@ -1,26 +1,30 @@
-// Import the required packages
+// Import required packages
 import Keyring from '@polkadot/keyring';
 import { u8aToHex } from '@polkadot/util';
-import { mnemonicToLegacySeed, hdEthereum } from '@polkadot/util-crypto';
+import { mnemonicToLegacySeed, hdEthereum, cryptoWaitReady } from '@polkadot/util-crypto';
 
-// Import Ethereum account from mnemonic
-const keyringECDSA = new Keyring({ type: 'ethereum' });
-const mnemonic = 'INSERT_MNEMONIC';
+(async function main() {
+  await cryptoWaitReady();
 
-// Define index of the derivation path and the derivation path
-const index = 0;
-const ethDerPath = "m/44'/60'/0'/0/" + index;
-console.log(`Mnemonic: ${mnemonic}`);
-console.log(`--------------------------\n`);
+  // Define the mnemonic and derivation path
+  const mnemonic = 'INSERT_MNEMONIC';
+  const index = 0;
+  const ethDerPath = `m/44'/60'/0'/0/${index}`;
 
-// Extract Ethereum address from mnemonic
-const alice = keyringECDSA.addFromUri(`${mnemonic}/${ethDerPath}`);
-console.log(`Ethereum Derivation Path: ${ethDerPath}`);
-console.log(`Derived Ethereum Address from Mnemonic: ${alice.address}`);
+  // Derive Ethereum account from mnemonic using createFromUri
+  const keyring = new Keyring({ type: 'ethereum' });
+  const uri = `${mnemonic}/${ethDerPath}`;
+  const pair = keyring.createFromUri(uri, undefined, 'ethereum', undefined, 2048);
 
-// Extract private key from mnemonic
-const privateKey = u8aToHex(
-  hdEthereum(mnemonicToLegacySeed(mnemonic, '', false, 64), ethDerPath)
-    .secretKey
-);
-console.log(`Derived Private Key from Mnemonic: ${privateKey}`);
+  console.log(`Mnemonic: ${mnemonic}`);
+  console.log(`Ethereum Derivation Path: ${ethDerPath}`);
+  console.log(`Derived Address: ${pair.address}`);
+
+  // Derive private key explicitly with hdEthereum
+  const seed = mnemonicToLegacySeed(mnemonic, '', false, 64);
+  const hd = hdEthereum(seed, ethDerPath);
+  // Ethereum private keys are 32 bytes (256 bits), which is 64 hexadecimal characters.
+  // We use .slice(-64) to ensure we get exactly the 64 hex characters representing the private key.
+  const privateKeyHex = `0x${u8aToHex(hd.secretKey).slice(-64)}`;
+  console.log(`Derived Private Key: ${privateKeyHex}`);
+})();
