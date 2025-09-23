@@ -12254,61 +12254,33 @@ const keyring = new Keyring({ type: 'ethereum' });
 
 ### Add an Account to a Keyring {: #adding-accounts }
 
-There are a number of ways to add an account to the keyring instance. For Ethereum compatibility, the recommended approach is to use ethers.js for key derivation and then add the private key to the Polkadot.js Keyring for transaction signing.
+There are several ways to add an account to the keyring instance. For Ethereum compatibility, the recommended approach is to use Ethers.js for key derivation and then add the private key to the Polkadot.js Keyring for transaction signing.
 
 === "From Mnemonic (Recommended)"
 
     ```javascript
-    // Import the required packages
-import { HDNodeWallet } from 'ethers';
-import Keyring from '@polkadot/keyring';
-
-// Define the mnemonic and derivation path
-const mnemonic = 'INSERT_MNEMONIC';
-const index = 0;
-const ethDerPath = `m/44'/60'/0'/0/${index}`;
-
-// Derive using BIP-39 + BIP-44 via ethers (recommended for Ethereum compatibility)
-const wallet = HDNodeWallet.fromPhrase(mnemonic, undefined, ethDerPath);
-console.log(`Mnemonic: ${mnemonic}`);
-console.log(`Ethereum Derivation Path: ${ethDerPath}`);
-console.log(`Derived Address: ${wallet.address}`);
-console.log(`Derived Private Key: ${wallet.privateKey}`);
-
-// Create keyring and add the derived private key for transaction signing
-const keyring = new Keyring({ type: 'ethereum' });
-const keyringPair = keyring.addFromUri(wallet.privateKey);
-console.log(`Keyring Address: ${keyringPair.address}`);
-
-// Verify addresses match
-console.log(`Addresses match: ${wallet.address === keyringPair.address}`);
+    code/builders/substrate/libraries/polkadot-js-api/adding-accounts-mnemonic-modern.js
     ```
 
 === "From Private Key"
 
     ```javascript
     // Import the required packages
-import { ethers } from 'ethers';
 import Keyring from '@polkadot/keyring';
 
-// Define the private key (with 0x prefix)
-const privateKey = 'INSERT_PRIVATE_KEY'; // e.g., '0x...'
+// Import Ethereum account from mnemonic
+const keyringECDSA = new Keyring({ type: 'ethereum' });
 
-// Option 1: Get address using ethers (recommended for verification)
-const wallet = new ethers.Wallet(privateKey);
-console.log(`Address from ethers: ${wallet.address}`);
+// Ensure private key is prefixed with Ox 
+const privateKeyInput = 'INSERT_PRIVATE_KEY';
 
-// Option 2: Create keyring pair for transaction signing
-const keyring = new Keyring({ type: 'ethereum' });
-const keyringPair = keyring.addFromUri(privateKey);
-console.log(`Address from keyring: ${keyringPair.address}`);
-
-// Verify addresses match
-console.log(`Addresses match: ${wallet.address === keyringPair.address}`);
+// Extract address from private key
+const alice = keyringECDSA.addFromUri(privateKeyInput);
+console.log(`Derived Address from provided Private Key: ${alice.address}`);
     ```
 
 !!! note "Why This Hybrid Approach?"
-    Using ethers.js for key derivation ensures full Ethereum wallet compatibility (MetaMask, Ledger, etc.), while Polkadot.js Keyring is still required for signing Substrate transactions via `signAndSend()`. Both approaches validate addresses match for consistency.
+    There are a number of ways to add an account to the keyring instance. For Ethereum compatibility, the recommended approach is to use ethers.js for key derivation and then add the private key to the Polkadot.js Keyring for transaction signing.
 
 ## Dry Run API  {: #dry-run-api }
 
