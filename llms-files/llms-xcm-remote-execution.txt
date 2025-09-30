@@ -4527,7 +4527,7 @@ For starters, Ethereum transactions consume gas units based on their computation
 
 There are some key differences between the transaction fee model on Moonbeam and the one on Ethereum that developers should be mindful of when developing on Moonbeam:
 
-  - The [dynamic fee mechanism](https://forum.moonbeam.network/t/proposal-status-idea-dynamic-fee-mechanism-for-moonbeam-and-moonriver/241){target=\_blank} resembles that of [EIP-1559](https://eips.ethereum.org/EIPS/eip-1559){target=\_blank} but the implementation is different
+  - The [dynamic fee mechanism](https://forum.moonbeam.network/t/proposal-dynamic-fee-mechanism-for-moonbeam-and-moonriver/241){target=\_blank} resembles that of [EIP-1559](https://eips.ethereum.org/EIPS/eip-1559){target=\_blank} but the implementation is different
 
   - The amount of gas used in Moonbeam's transaction fee model is mapped from the transaction's Substrate extrinsic `refTime` component of the transaction weight via a fixed factor of `{{ networks.moonbase.tx_weight_to_gas_ratio }}` and `proofSize` component of the transaction weight via a fixed factor of `{{ xcm.generic_weights.proof_size.weight_per_gas }}`. The transaction weight vector is then multiplied with the unit gas price to calculate the transaction fee. This fee model means it can potentially be significantly cheaper to send transactions such as basic balance transfers via the Ethereum API than the Substrate API.
 
@@ -4800,7 +4800,7 @@ The following sections describe in more detail each of the components needed to 
 
 ### Base Fee {: #base-fee}
 
-The `BaseFee` is the minimum amount charged to send a transaction and is a value set by the network itself. It was introduced in [EIP-1559](https://eips.ethereum.org/EIPS/eip-1559){target=\_blank}. Moonbeam has its own [dynamic fee mechanism](https://forum.moonbeam.network/t/proposal-status-idea-dynamic-fee-mechanism-for-moonbeam-and-moonriver/241){target=\_blank} for calculating the base fee, which is adjusted based on block congestion. As of runtime 2300, the dynamic fee mechanism has been rolled out to all of the Moonbeam-based networks.
+The `BaseFee` is the minimum amount charged to send a transaction and is a value set by the network itself. It was introduced in [EIP-1559](https://eips.ethereum.org/EIPS/eip-1559){target=\_blank}. Moonbeam has its own [dynamic fee mechanism](https://forum.moonbeam.network/t/proposal-dynamic-fee-mechanism-for-moonbeam-and-moonriver/241){target=\_blank} for calculating the base fee, which is adjusted based on block congestion. As of runtime 2300, the dynamic fee mechanism has been rolled out to all of the Moonbeam-based networks.
 
 The minimum gas price for each network is as follows:
 
@@ -5882,7 +5882,7 @@ If your contract could have concurrent requests open, you can use the `requestId
 
 ## BABE Epoch Randomness {: #babe-epoch-randomness }
 
-BABE epoch randomness is based on a hash of the VRF values from the blocks produced in the relay chain epoch before last. On Polkadot, an [epoch lasts for roughly 4 hours](https://wiki.polkadot.com/learn/learn-cryptography/#vrf){target=\_blank}, and on Kusama, an [epoch lasts for roughly 1 hour](https://guide.kusama.network/docs/maintain-polkadot-parameters#periods-of-common-actions-and-attributes){target=\_blank}. The hashing is completed on the relay chain, and as such, it is not possible for a collator on Moonbeam to influence the randomness value unless they are also a validator on the relay chain and were responsible for producing the last output included in an epoch.
+BABE epoch randomness is based on a hash of the VRF values from the blocks produced in the relay chain epoch before last. On Polkadot, an [epoch lasts for roughly 4 hours](https://wiki.polkadot.com/learn/learn-cryptography/#vrf){target=\_blank}, and on Kusama, an [epoch lasts for roughly 1 hour](https://wiki.polkadot.com/kusama/kusama-getting-started/#periods-of-common-actions-and-attributes){target=\_blank}. The hashing is completed on the relay chain, and as such, it is not possible for a collator on Moonbeam to influence the randomness value unless they are also a validator on the relay chain and were responsible for producing the last output included in an epoch.
 
 The randomness remains constant during an epoch. If a collator skips block production, the next eligible collator can fulfill the request using the same random value.
 
@@ -8571,7 +8571,7 @@ To learn how to register an asset on Moonbeam and the information necessary to a
 
 As Moonbeam is a parachain within the Polkadot ecosystems, one of the most direct implementations of XCM is to enable asset transfer from Polkadot and other parachains from/to Moonbeam. This allows users to bring their tokens to Moonbeam and all its dApps.
 
-To this end, Moonbeam has introduced [XC-20s](/builders/interoperability/xcm/xc20/overview/){target=\_blank}, which expand on Moonbeam's unique Ethereum compatibility features. XC-20s allow Polkadot native assets to be represented via a standard [ERC-20 interface](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/assets-erc20/ERC20.sol){target=\_blank} through a precompiled contract. When these assets are registered on Moonbeam, they can be set as XCM execution fee assets. Consequently, when a user transfers such an asset to Moonbeam, a small part of the amount will be used to cover the XCM execution fees.
+To this end, Moonbeam has introduced [XC-20s](/builders/interoperability/xcm/xc20/overview/){target=\_blank}, which expand on Moonbeam's unique Ethereum compatibility features. XC-20s allow Polkadot native assets to be represented via a standard [ERC-20 interface](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/balances-erc20/ERC20.sol){target=\_blank} through a precompiled contract. When these assets are registered on Moonbeam, they can be set as XCM execution fee assets. Consequently, when a user transfers such an asset to Moonbeam, a small part of the amount will be used to cover the XCM execution fees.
 
 In addition, ERC-20s that are deployed to Moonbeam can be sent to other chains in the Polkadot ecosystem via XCM. Consequently, from a developer's perspective, XC-20s are ERC-20 tokens with the added benefit of being an XCM cross-chain asset, and dApps can easily support them through a familiar ERC-20 interface.
 
@@ -14502,7 +14502,7 @@ To start with a free Developer plan endpoint, sign up using an email or any soci
 
 ### dRPC.org {: #drpc }
 
-dRPC.org offers public and paid [Moonbeam RPC](https://drpc.org/chainlist/moonbeam){target=_blank} endpoints, providing an efficient, low-latency connection to blockchain nodes. The paid tiers include higher request limits, lower latency, and advanced analytics for optimized performance.
+dRPC.org offers public and paid [Moonbeam RPC](https://drpc.org/chainlist/moonbeam-mainnet-rpc){target=_blank} endpoints, providing an efficient, low-latency connection to blockchain nodes. The paid tiers include higher request limits, lower latency, and advanced analytics for optimized performance.
 
 How to use dRPC:
 
@@ -14553,9 +14553,9 @@ Grove provides detailed analytics, request monitoring, and flexible rate limitin
 
 ### OnFinality {: #onfinality }
 
-[OnFinality](https://onfinality.io){target=_blank} provides a free API key based endpoint for customers in place of a public endpoint. Additionally, OnFinality offers paid tiers of service that offer increased rate limits and higher performance than those offered by the free tier. You also receive more in depth analytics of the usage of your application.
+[OnFinality](https://onfinality.io/en){target=_blank} provides a free API key based endpoint for customers in place of a public endpoint. Additionally, OnFinality offers paid tiers of service that offer increased rate limits and higher performance than those offered by the free tier. You also receive more in depth analytics of the usage of your application.
 
-To create a custom OnFinality endpoint, go to [OnFinality](https://onfinality.io){target=_blank} and sign up, or if you already have signed up you can go ahead and log in. From the OnFinality **Dashboard**, you can:
+To create a custom OnFinality endpoint, go to [OnFinality](https://onfinality.io/en){target=_blank} and sign up, or if you already have signed up you can go ahead and log in. From the OnFinality **Dashboard**, you can:
 
 1. Click on **API Service**
 2. Select the network from the dropdown
@@ -14900,7 +14900,7 @@ The following providers provide tracing RPC endpoints:
 
 ### OnFinality {: #onfinality-tracing }
 
-[OnFinality](https://onfinality.io){target=_blank}'s Trace API can be used to quickly get started tracing and debugging transactions on Moonbeam and Moonriver. It is only available to users on their [Growth and Ultimate plans](https://onfinality.io/pricing){target=_blank}.
+[OnFinality](https://onfinality.io/en){target=_blank}'s Trace API can be used to quickly get started tracing and debugging transactions on Moonbeam and Moonriver. It is only available to users on their [Growth and Ultimate plans](https://onfinality.io/en/pricing){target=_blank}.
 
 To use the Trace API, you simply call the trace method of your choice from your [private RPC endpoint](#onfinality). For a list of the supported networks and trace methods, please check out [OnFinality's Trace API documentation](https://documentation.onfinality.io/support/trace-api#TraceAPI-SupportedNetworks){target=_blank}.
 
