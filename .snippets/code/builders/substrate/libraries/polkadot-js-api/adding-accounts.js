@@ -1,32 +1,41 @@
 // Import the required packages
 import Keyring from '@polkadot/keyring';
 import { u8aToHex } from '@polkadot/util';
-import { mnemonicToLegacySeed, hdEthereum } from '@polkadot/util-crypto';
+import { hdEthereum } from '@polkadot/util-crypto';
+import { mnemonicToSeedSync } from 'bip39';
 
 // Import Ethereum account from mnemonic
-const keyringECDSA = new Keyring({ type: 'ethereum' });
 const mnemonic = 'INSERT_MNEMONIC';
 const privateKeyInput = 'INSERT_PK';
 
-// Define index of the derivation path and the derivation path
-const index = 0;
-const ethDerPath = "m/44'/60'/0'/0/" + index;
+// Use the exact EVM derivation path
+const ethDerPath = "m/44'/60'/0'/0/0";
 console.log(`Mnemonic: ${mnemonic}`);
 console.log(`--------------------------\n`);
 
 // Extract Ethereum address from mnemonic
-const newPairEth = keyringECDSA.addFromUri(`${mnemonic}/${ethDerPath}`);
+const keyring = new Keyring();
+const newPairEth = keyring.createFromUri(
+  `${mnemonic}/${ethDerPath}`,
+  undefined,
+  'ethereum',
+  undefined,
+  2048
+);
 console.log(`Ethereum Derivation Path: ${ethDerPath}`);
 console.log(`Derived Ethereum Address from Mnemonic: ${newPairEth.address}`);
 
 // Extract private key from mnemonic
-const privateKey = u8aToHex(
-  hdEthereum(mnemonicToLegacySeed(mnemonic, '', false, 64), ethDerPath)
-    .secretKey
-);
+const seed = mnemonicToSeedSync(mnemonic, '');   // Buffer
+const node = hdEthereum(seed, ethDerPath);       // "m/44'/60'/0'/0/0"
+const privateKey = u8aToHex(node.secretKey);
 console.log(`Derived Private Key from Mnemonic: ${privateKey}`);
 console.log(`--------------------------\n`);
 
 // Extract address from private key
-const otherPair = keyringECDSA.addFromUri(privateKeyInput);
+const otherPair = keyring.createFromUri(
+  privateKeyInput,
+  undefined,
+  'ethereum'
+);
 console.log(`Derived Address from provided Private Key: ${otherPair.address}`);
