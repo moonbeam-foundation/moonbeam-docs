@@ -47,6 +47,9 @@ When spinning up your own Moonbeam node, there are some required and optional fl
 - **`--lazy-loading-runtime-override`** - optional parameter to specify a runtime override when starting the lazy loading. If not provided, it will fetch the runtime from the block being forked
 - **`--lazy-loading-delay-between-requests`** - the delay (in milliseconds) between RPC requests when using lazy loading. This parameter controls the amount of time to wait between consecutive RPC requests. This can help manage request rate and avoid overwhelming the server. Default value is `100` milliseconds
 - **`--lazy-loading-max-retries-per-request`** - the maximum number of retries for an RPC request when using lazy loading. Default value is `10` retries
+- **`--pool-type`** - selects the transaction pool implementation. The available options are:
+    - **`fork-aware`** - tracks pending transactions across competing forks ("views"), which reduces dropped/re-validated transactions and nonce/order glitches during brief reorgs. This is the default on current Moonbeam builds (Polkadot SDK change; default from ~RT3600+) and is recommended on collators and RPC nodes
+    - **`single-state`** - uses the legacy single-view pool. On older binaries, explicitly set `--pool-type=fork-aware` to opt in to the improved implementation
 
 ## Flags for Configuring a SQL Backend {: #flags-for-sql-backend }
 
