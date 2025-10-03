@@ -113,6 +113,7 @@ For an overview of the flags used in the following start-up commands, plus addit
         --state-pruning archive \
         --trie-cache-size 1073741824 \
         --db-cache INSERT_RAM_IN_MB \
+        --pool-type=fork-aware \
         -- \
         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
         --sync fast
@@ -130,6 +131,7 @@ For an overview of the flags used in the following start-up commands, plus addit
         --state-pruning archive \
         --trie-cache-size 1073741824 \
         --db-cache INSERT_RAM_IN_MB \
+        --pool-type=fork-aware \
         -- \
         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
         --sync fast
@@ -147,6 +149,7 @@ For an overview of the flags used in the following start-up commands, plus addit
         --state-pruning archive \
         --trie-cache-size 1073741824 \
         --db-cache INSERT_RAM_IN_MB \
+        --pool-type=fork-aware \
         -- \
         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
         --sync fast
@@ -165,6 +168,7 @@ For an overview of the flags used in the following start-up commands, plus addit
         --name "INSERT_YOUR_NODE_NAME" \
         --state-pruning archive \
         --trie-cache-size 1073741824 \
+        --pool-type=fork-aware \
         -- \
         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
         --sync fast
@@ -181,6 +185,7 @@ For an overview of the flags used in the following start-up commands, plus addit
         --name "INSERT_YOUR_NODE_NAME" \
         --state-pruning archive \
         --trie-cache-size 1073741824 \
+        --pool-type=fork-aware \
         -- \
         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
         --sync fast
@@ -197,6 +202,7 @@ For an overview of the flags used in the following start-up commands, plus addit
         --name "INSERT_YOUR_NODE_NAME" \
         --state-pruning archive \
         --trie-cache-size 1073741824 \
+        --pool-type=fork-aware \
         -- \
         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
         --sync fast
@@ -218,6 +224,7 @@ For an overview of the flags used in the following start-up commands, plus addit
         --state-pruning archive \
         --trie-cache-size 1073741824 \
         --db-cache INSERT_RAM_IN_MB \
+        --pool-type=fork-aware \
         --unsafe-rpc-external \
         -- \
         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
@@ -235,6 +242,7 @@ For an overview of the flags used in the following start-up commands, plus addit
         --name "INSERT_YOUR_NODE_NAME" \
         --state-pruning archive \
         --trie-cache-size 1073741824 \
+        --pool-type=fork-aware \
         --unsafe-rpc-external \
         -- \
         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
@@ -258,6 +266,7 @@ For an overview of the flags used in the following start-up commands, plus addit
         --trie-cache-size 1073741824 \
         # This is a comment
         --db-cache INSERT_RAM_IN_MB \
+        --pool-type=fork-aware \
         --frontier-backend-type sql \
         -- \
         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
@@ -275,6 +284,7 @@ For an overview of the flags used in the following start-up commands, plus addit
         --name "INSERT_YOUR_NODE_NAME" \
         --state-pruning archive \
         --trie-cache-size 1073741824 \
+        --pool-type=fork-aware \
         --frontier-backend-type sql \
         -- \
         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
@@ -336,6 +346,7 @@ Now you can run your Docker start up commands:
         --collator \
         --trie-cache-size 1073741824 \
         --db-cache INSERT_RAM_IN_MB \
+        --pool-type=fork-aware \
         -- \
         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
         --sync fast
@@ -353,6 +364,7 @@ Now you can run your Docker start up commands:
         --collator \
         --trie-cache-size 1073741824 \
         --db-cache INSERT_RAM_IN_MB \
+        --pool-type=fork-aware \
         -- \
         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
         --sync fast
@@ -370,6 +382,7 @@ Now you can run your Docker start up commands:
         --collator \
         --trie-cache-size 1073741824 \
         --db-cache INSERT_RAM_IN_MB \
+        --pool-type=fork-aware \
         -- \
         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
         --sync fast
@@ -388,6 +401,7 @@ Now you can run your Docker start up commands:
         --name "INSERT_YOUR_NODE_NAME" \
         --collator \
         --trie-cache-size 1073741824 \
+        --pool-type=fork-aware \
         -- \
         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
         --sync fast
@@ -404,6 +418,7 @@ Now you can run your Docker start up commands:
         --name "INSERT_YOUR_NODE_NAME" \
         --collator \
         --trie-cache-size 1073741824 \
+        --pool-type=fork-aware \
         -- \
         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
         --sync fast
@@ -420,6 +435,7 @@ Now you can run your Docker start up commands:
         --name "INSERT_YOUR_NODE_NAME" \
         --collator \
         --trie-cache-size 1073741824 \
+        --pool-type=fork-aware \
         -- \
         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
         --sync fast

@@ -1494,6 +1494,7 @@ For an overview of the flags used in the following start-up commands, plus addit
         --state-pruning archive \
         --trie-cache-size 1073741824 \
         --db-cache INSERT_RAM_IN_MB \
+        --pool-type=fork-aware \
         -- \
         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
         --sync fast
@@ -1511,6 +1512,7 @@ For an overview of the flags used in the following start-up commands, plus addit
         --state-pruning archive \
         --trie-cache-size 1073741824 \
         --db-cache INSERT_RAM_IN_MB \
+        --pool-type=fork-aware \
         -- \
         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
         --sync fast
@@ -1528,6 +1530,7 @@ For an overview of the flags used in the following start-up commands, plus addit
         --state-pruning archive \
         --trie-cache-size 1073741824 \
         --db-cache INSERT_RAM_IN_MB \
+        --pool-type=fork-aware \
         -- \
         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
         --sync fast
@@ -1546,6 +1549,7 @@ For an overview of the flags used in the following start-up commands, plus addit
         --name "INSERT_YOUR_NODE_NAME" \
         --state-pruning archive \
         --trie-cache-size 1073741824 \
+        --pool-type=fork-aware \
         -- \
         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
         --sync fast
@@ -1562,6 +1566,7 @@ For an overview of the flags used in the following start-up commands, plus addit
         --name "INSERT_YOUR_NODE_NAME" \
         --state-pruning archive \
         --trie-cache-size 1073741824 \
+        --pool-type=fork-aware \
         -- \
         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
         --sync fast
@@ -1578,6 +1583,7 @@ For an overview of the flags used in the following start-up commands, plus addit
         --name "INSERT_YOUR_NODE_NAME" \
         --state-pruning archive \
         --trie-cache-size 1073741824 \
+        --pool-type=fork-aware \
         -- \
         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
         --sync fast
@@ -1601,6 +1607,7 @@ If you want to run an RPC endpoint, connect to Polkadot.js Apps, or run your own
         --state-pruning archive \
         --trie-cache-size 1073741824 \
         --db-cache INSERT_RAM_IN_MB \
+        --pool-type=fork-aware \
         --unsafe-rpc-external \
         -- \
         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
@@ -1618,6 +1625,7 @@ If you want to run an RPC endpoint, connect to Polkadot.js Apps, or run your own
         --name "INSERT_YOUR_NODE_NAME" \
         --state-pruning archive \
         --trie-cache-size 1073741824 \
+        --pool-type=fork-aware \
         --unsafe-rpc-external \
         -- \
         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
@@ -1647,6 +1655,7 @@ There are additional flags you can use to configure the pool size, query timeout
         --trie-cache-size 1073741824 \
         # This is a comment
         --db-cache INSERT_RAM_IN_MB \
+        --pool-type=fork-aware \
         --frontier-backend-type sql \
         -- \
         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
@@ -1664,6 +1673,7 @@ There are additional flags you can use to configure the pool size, query timeout
         --name "INSERT_YOUR_NODE_NAME" \
         --state-pruning archive \
         --trie-cache-size 1073741824 \
+        --pool-type=fork-aware \
         --frontier-backend-type sql \
         -- \
         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
@@ -1725,6 +1735,7 @@ Now you can run your Docker start up commands:
         --collator \
         --trie-cache-size 1073741824 \
         --db-cache INSERT_RAM_IN_MB \
+        --pool-type=fork-aware \
         -- \
         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
         --sync fast
@@ -1742,6 +1753,7 @@ Now you can run your Docker start up commands:
         --collator \
         --trie-cache-size 1073741824 \
         --db-cache INSERT_RAM_IN_MB \
+        --pool-type=fork-aware \
         -- \
         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
         --sync fast
@@ -1759,6 +1771,7 @@ Now you can run your Docker start up commands:
         --collator \
         --trie-cache-size 1073741824 \
         --db-cache INSERT_RAM_IN_MB \
+        --pool-type=fork-aware \
         -- \
         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
         --sync fast
@@ -1777,6 +1790,7 @@ Now you can run your Docker start up commands:
         --name "INSERT_YOUR_NODE_NAME" \
         --collator \
         --trie-cache-size 1073741824 \
+        --pool-type=fork-aware \
         -- \
         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
         --sync fast
@@ -1793,6 +1807,7 @@ Now you can run your Docker start up commands:
         --name "INSERT_YOUR_NODE_NAME" \
         --collator \
         --trie-cache-size 1073741824 \
+        --pool-type=fork-aware \
         -- \
         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
         --sync fast
@@ -1809,6 +1824,7 @@ Now you can run your Docker start up commands:
         --name "INSERT_YOUR_NODE_NAME" \
         --collator \
         --trie-cache-size 1073741824 \
+        --pool-type=fork-aware \
         -- \
         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
         --sync fast
@@ -1999,6 +2015,9 @@ When spinning up your own Moonbeam node, there are some required and optional fl
 - **`--lazy-loading-runtime-override`** - optional parameter to specify a runtime override when starting the lazy loading. If not provided, it will fetch the runtime from the block being forked
 - **`--lazy-loading-delay-between-requests`** - the delay (in milliseconds) between RPC requests when using lazy loading. This parameter controls the amount of time to wait between consecutive RPC requests. This can help manage request rate and avoid overwhelming the server. Default value is `100` milliseconds
 - **`--lazy-loading-max-retries-per-request`** - the maximum number of retries for an RPC request when using lazy loading. Default value is `10` retries
+- **`--pool-type`** - selects the transaction pool implementation. The available options are:
+    - **`fork-aware`** - tracks pending transactions across competing forks ("views"), which reduces dropped/re-validated transactions and nonce/order glitches during brief reorgs. This is the default on current Moonbeam builds (Polkadot SDK change; default from ~RT3600+) and is recommended on collators and RPC nodes
+    - **`single-state`** - uses the legacy single-view pool. On older binaries, explicitly set `--pool-type=fork-aware` to opt in to the improved implementation
 
 ## Flags for Configuring a SQL Backend {: #flags-for-sql-backend }
 
