@@ -2508,7 +2508,7 @@ contract MyToken is ERC20 {
 
 Before you compile a contract, make sure you've selected the file of the contract from the **File explorer** tab. Then, select the **Solidity Compiler** option from the plugin panel.
 
-Make sure that the compiler version in the top-left corner meets the version defined in your contract and the version defined in [OpenZeppelin's `ERC20.sol` contract](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/ERC20.sol){target=\_blank}. For example, the `MyToken.sol` contract requires Solidity ^0.8.0, but at the time of writing, OpenZeppelin's `ERC20.sol` contract requires ^0.8.20, so the compiler needs to be set to version 0.8.20 or newer.
+Make sure that the compiler version in the top-left corner meets the version defined in your contract and the version defined in [OpenZeppelin's `ERC20.sol` contract](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/ERC20.sol){target=\_blank}. For example, the `MyToken.sol` contract requires Solidity ^0.8.30, and OpenZeppelin's `ERC20.sol` contract is compatible with ^0.8.30, so the compiler needs to be set to version 0.8.30 or newer.
 
 The Solidity compiler plugin also lets you change some settings and apply advanced configurations for the compiler. If you're planning on iterating over the smart contract, you can check the **Auto compile** box, and whenever you make a change, the contract will automatically be recompiled.
 
