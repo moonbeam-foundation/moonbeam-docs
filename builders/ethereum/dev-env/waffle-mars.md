@@ -103,7 +103,7 @@ For this guide, you will create an ERC-20 contract that mints a specified amount
 2. Add the following contract to `MyToken.sol`:
 
     ```solidity
-    pragma solidity ^0.8.0;
+    pragma solidity ^0.8.30;
 
     import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
@@ -130,12 +130,12 @@ Now that you have written a smart contract, the next step is to use Waffle to co
     cd .. && touch waffle.json
     ```
 
-2. Edit the `waffle.json` to specify compiler configurations, the directory containing your contracts, and more. For this example, we'll use `solcjs` and the Solidity version you used for the contract, which is `0.8.0`:
+2. Edit the `waffle.json` to specify compiler configurations, the directory containing your contracts, and more. For this example, we'll use `solcjs` and the Solidity version you used for the contract, which is `0.8.30`:
 
     ```json
     {
         "compilerType": "solcjs",
-        "compilerVersion": "0.8.0",
+        "compilerVersion": "0.8.30",
         "compilerOptions": {
             "optimizer": {
                 "enabled": true,

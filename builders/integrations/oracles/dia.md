@@ -192,7 +192,7 @@ DIA has deployed a demo oracle on Moonbase Alpha, which can be accessed at the f
 The DIA randomness smart contract is structured as follows:
 
 ```solidity
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.30;
 
 contract DIARandomOracle {
   struct Random {

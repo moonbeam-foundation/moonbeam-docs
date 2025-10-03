@@ -392,7 +392,7 @@ Open the file and add the following contract to it:
 
 ```solidity
 // SPDX-License-Identifier: MIT 
-pragma solidity ^0.8.1;
+pragma solidity ^0.8.30;
 
 contract Box {
     uint256 private value;
@@ -903,7 +903,7 @@ touch MyToken.sol
 Open the file and add the following contract to it:
 
 ```solidity
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.30;
 
 // Import OpenZeppelin Contract
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
@@ -1033,7 +1033,7 @@ Now, go ahead and write the script. In the script folder, create a file named `M
 
 ```solidity
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.13;
+pragma solidity ^0.8.30;
 
 import "forge-std/Script.sol";
 import "../src/MyToken.sol";
@@ -2488,7 +2488,7 @@ The first step is to go to [Remix](https://remix.ethereum.org) and take the foll
 ```solidity
 // SPDX-License-Identifier: MIT
 // Compatible with OpenZeppelin Contracts ^5.0.0
-pragma solidity ^0.8.20;
+pragma solidity ^0.8.30;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
@@ -2551,7 +2551,7 @@ Next, you'll need to write the smart contract and compile it. For this example, 
 ```solidity
 // SPDX-License-Identifier: MIT
 // Compatible with OpenZeppelin Contracts ^5.0.0
-pragma solidity ^0.8.20;
+pragma solidity ^0.8.30;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
@@ -2630,14 +2630,14 @@ As shown for the [ERC-20 token](#deploying-an-erc-20-token), you'll need to writ
 ```solidity
 // SPDX-License-Identifier: MIT
 // Compatible with OpenZeppelin Contracts ^5.0.0
-pragma solidity ^0.8.20;
+pragma solidity ^0.8.30;
 
 import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC1155/extensions/ERC1155Pausable.sol";
 
 contract MyToken is ERC1155, Ownable, ERC1155Pausable {
-    constructor() ERC1155("") Ownable() {
+    constructor() ERC1155("") Ownable(msg.sender) {  // ✅ Fixed
         _mint(msg.sender, 0, 1000 * 10 ** 18, "");
         _mint(msg.sender, 1, 1, "");
     }
@@ -2654,7 +2654,6 @@ contract MyToken is ERC1155, Ownable, ERC1155Pausable {
         _unpause();
     }
 
-    // The following function is an override required by Solidity
     function _update(address from, address to, uint256[] memory ids, uint256[] memory values)
         internal
         override(ERC1155, ERC1155Pausable)
@@ -2793,7 +2792,7 @@ The main panel will switch to an empty file where you can add the Solidity code 
 
 ```solidity
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.30;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
@@ -2810,7 +2809,7 @@ contract MyToken is ERC20 {
 
 Before you compile a contract, make sure you've selected the file of the contract from the **File explorer** tab. Then, select the **Solidity Compiler** option from the plugin panel.
 
-Make sure that the compiler version in the top-left corner meets the version defined in your contract and the version defined in [OpenZeppelin's `ERC20.sol` contract](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/ERC20.sol){target=\_blank}. For example, the `MyToken.sol` contract requires Solidity ^0.8.0, but at the time of writing, OpenZeppelin's `ERC20.sol` contract requires ^0.8.20, so the compiler needs to be set to version 0.8.20 or newer.
+Make sure that the compiler version in the top-left corner meets the version defined in your contract and the version defined in [OpenZeppelin's `ERC20.sol` contract](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/ERC20.sol){target=\_blank}. For example, the `MyToken.sol` contract requires Solidity ^0.8.30, and OpenZeppelin's `ERC20.sol` contract is compatible with ^0.8.30, so the compiler needs to be set to version 0.8.30 or newer.
 
 The Solidity compiler plugin also lets you change some settings and apply advanced configurations for the compiler. If you're planning on iterating over the smart contract, you can check the **Auto compile** box, and whenever you make a change, the contract will automatically be recompiled.
 
@@ -3390,7 +3389,7 @@ To create a new smart contract using the [thirdweb CLI](https://portal.thirdweb.
 
     ```solidity
     // SPDX-License-Identifier: MIT
-    pragma solidity ^0.8.0;
+    pragma solidity ^0.8.30;
 
     import '@thirdweb-dev/contracts/base/ERC721Base.sol';
 
@@ -3931,7 +3930,7 @@ For this guide, you will create an ERC-20 contract that mints a specified amount
 2. Add the following contract to `MyToken.sol`:
 
     ```solidity
-    pragma solidity ^0.8.0;
+    pragma solidity ^0.8.30;
 
     import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
@@ -3958,12 +3957,12 @@ Now that you have written a smart contract, the next step is to use Waffle to co
     cd .. && touch waffle.json
     ```
 
-2. Edit the `waffle.json` to specify compiler configurations, the directory containing your contracts, and more. For this example, we'll use `solcjs` and the Solidity version you used for the contract, which is `0.8.0`:
+2. Edit the `waffle.json` to specify compiler configurations, the directory containing your contracts, and more. For this example, we'll use `solcjs` and the Solidity version you used for the contract, which is `0.8.30`:
 
     ```json
     {
         "compilerType": "solcjs",
-        "compilerVersion": "0.8.0",
+        "compilerVersion": "0.8.30",
         "compilerOptions": {
             "optimizer": {
                 "enabled": true,
@@ -5237,13 +5236,13 @@ For this guide, you'll need to install the Ethers.js library and the Solidity co
 === "npm"
 
     ```bash
-    npm install ethers solc@0.8.0
+    npm install ethers solc@0.8.30
     ```
 
 === "yarn"
 
     ```bash
-    yarn add ethers solc@0.8.0
+    yarn add ethers solc@0.8.30
     ```
 
 ## Setting up the Ethers Provider {: #setting-up-the-ethers-provider }
@@ -5582,7 +5581,7 @@ Next, you can add the Solidity code to the file:
 ```solidity
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.30;
 
 contract Incrementer {
     uint256 public number;
@@ -6533,7 +6532,7 @@ Next, you can add the Solidity code to the file:
 ```solidity
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.30;
 
 contract Incrementer {
     uint256 public number;
@@ -7254,13 +7253,13 @@ For this guide, you'll need to install the viem library and the Solidity compile
 === "npm"
 
     ```bash
-    npm install typescript ts-node viem solc@0.8.0
+    npm install typescript ts-node viem solc@0.8.30
     ```
 
 === "yarn"
 
     ```bash
-    yarn add typescript ts-node viem solc@0.8.0
+    yarn add typescript ts-node viem solc@0.8.30
     ```
 
 You can create a TypeScript configuration file by running:
@@ -7607,7 +7606,7 @@ Next, you can add the Solidity code to the file:
 ```solidity
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.30;
 
 contract Incrementer {
     uint256 public number;
@@ -8058,13 +8057,13 @@ For this guide, you'll need to install the Web3.js library and the Solidity comp
 === "npm"
 
     ```bash
-    npm install web3 solc@0.8.0
+    npm install web3 solc@0.8.30
     ```
 
 === "yarn"
 
     ```bash
-    yarn add web3 solc@0.8.0
+    yarn add web3 solc@0.8.30
     ```
 
 ## Setup Web3.js with Moonbeam {: #setup-web3-with-moonbeam }
@@ -8364,7 +8363,7 @@ Next, you can add the Solidity code to the file:
 ```solidity
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.30;
 
 contract Incrementer {
     uint256 public number;
@@ -9204,7 +9203,7 @@ Next, you can add the Solidity code to the file:
 ```solidity
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.30;
 
 contract Incrementer {
     uint256 public number;
@@ -13145,7 +13144,7 @@ Without further ado, the contract is as follows:
 
 ```solidity
 // SPDX-License-Identifier: GPL-3.0-only
-pragma solidity >=0.8.0;
+pragma solidity ^0.8.30;
 
 import "https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/randomness/Randomness.sol";
 import {RandomnessConsumer} from "https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/randomness/RandomnessConsumer.sol";
@@ -15940,7 +15939,7 @@ The contract `SimpleContract.sol` will be used as an example of batching contrac
 
 ```solidity
 // SPDX-License-Identifier: GPL-3.0-only
-pragma solidity >=0.8.0;
+pragma solidity ^0.8.30;
 
 contract SimpleContract {
     mapping(uint256 => string) public messages;
@@ -17677,7 +17676,7 @@ The contract used is a simple incrementer, arbitrarily named `Incrementer.sol`. 
 ```solidity
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.30;
 
 contract Incrementer {
     uint256 public number;
@@ -22954,7 +22953,7 @@ To see how this MBIP differentiates Moonbeam from Ethereum firsthand, you can es
 
 ```solidity
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.30;
 
 contract SayHello {
     mapping(address => string) public addressToName;

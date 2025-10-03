@@ -37,13 +37,13 @@ For this guide, you'll need to install the Ethers.js library and the Solidity co
 === "npm"
 
     ```bash
-    npm install ethers solc@0.8.0
+    npm install ethers solc@0.8.30
     ```
 
 === "yarn"
 
     ```bash
-    yarn add ethers solc@0.8.0
+    yarn add ethers solc@0.8.30
     ```
 
 ## Setting up the Ethers Provider {: #setting-up-the-ethers-provider }
