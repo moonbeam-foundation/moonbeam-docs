@@ -392,7 +392,7 @@ Open the file and add the following contract to it:
 
 ```solidity
 // SPDX-License-Identifier: MIT 
-pragma solidity ^0.8.1;
+pragma solidity ^0.8.30;
 
 contract Box {
     uint256 private value;
@@ -1029,7 +1029,7 @@ Now, go ahead and write the script. In the script folder, create a file named `M
 
 ```solidity
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.13;
+pragma solidity ^0.8.30;
 
 import "forge-std/Script.sol";
 import "../src/MyToken.sol";
@@ -2479,7 +2479,7 @@ The first step is to go to [Remix](https://remix.ethereum.org) and take the foll
 ```solidity
 // SPDX-License-Identifier: MIT
 // Compatible with OpenZeppelin Contracts ^5.0.0
-pragma solidity ^0.8.20;
+pragma solidity ^0.8.30;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
@@ -2542,7 +2542,7 @@ Next, you'll need to write the smart contract and compile it. For this example, 
 ```solidity
 // SPDX-License-Identifier: MIT
 // Compatible with OpenZeppelin Contracts ^5.0.0
-pragma solidity ^0.8.20;
+pragma solidity ^0.8.30;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
@@ -2621,14 +2621,14 @@ As shown for the [ERC-20 token](#deploying-an-erc-20-token), you'll need to writ
 ```solidity
 // SPDX-License-Identifier: MIT
 // Compatible with OpenZeppelin Contracts ^5.0.0
-pragma solidity ^0.8.20;
+pragma solidity ^0.8.30;
 
 import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC1155/extensions/ERC1155Pausable.sol";
 
 contract MyToken is ERC1155, Ownable, ERC1155Pausable {
-    constructor() ERC1155("") Ownable() {
+    constructor() ERC1155("") Ownable(msg.sender) {  // ✅ Fixed
         _mint(msg.sender, 0, 1000 * 10 ** 18, "");
         _mint(msg.sender, 1, 1, "");
     }
@@ -2645,7 +2645,6 @@ contract MyToken is ERC1155, Ownable, ERC1155Pausable {
         _unpause();
     }
 
-    // The following function is an override required by Solidity
     function _update(address from, address to, uint256[] memory ids, uint256[] memory values)
         internal
         override(ERC1155, ERC1155Pausable)

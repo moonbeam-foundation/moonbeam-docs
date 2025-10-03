@@ -2045,7 +2045,7 @@ In this script, add:
 
 ```solidity
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.13;
+pragma solidity ^0.8.30;
 
 import "forge-std/Script.sol";
 import {MyToken} from "../src/MyToken.sol";
@@ -2139,7 +2139,7 @@ The entire deployment script is available below:
 
     ```solidity
     // SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.13;
+pragma solidity ^0.8.30;
 
 import "forge-std/Script.sol";
 import {MyToken} from "../src/MyToken.sol";
@@ -6803,7 +6803,7 @@ Now we can edit the `MyTok.sol` file to include the following contract, which wi
 
     ```solidity
     // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.20;
+pragma solidity ^0.8.30;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
@@ -9938,7 +9938,7 @@ You can take the following steps to create our smart contract:
 
     ```solidity title="OracleClient.sol"
     // SPDX-License-Identifier: UNLICENSED
-pragma solidity 0.8.20;
+pragma solidity ^0.8.30;
 
 interface ISupraOraclePull {
     // Verified price data
@@ -10039,7 +10039,7 @@ contract OracleClient {
 
     ```solidity
     // SPDX-License-Identifier: UNLICENSED
-pragma solidity 0.8.20;
+pragma solidity ^0.8.30;
 
 interface ISupraOraclePull {
     // Verified price data
@@ -11094,7 +11094,7 @@ To create the contract, you can take the following steps:
 
     ```solidity title="FeedClient.sol"
     // SPDX-License-Identifier: UNLICENSED
-pragma solidity 0.8.20;
+pragma solidity ^0.8.30;
 
 interface ISupraSValueFeed {
     function getSvalue(uint64 _pairIndex) external view returns (bytes32, bool);
@@ -11168,7 +11168,7 @@ interface ISupraSValueFeed {
 
     ```solidity
     // SPDX-License-Identifier: UNLICENSED
-pragma solidity 0.8.20;
+pragma solidity ^0.8.30;
 
 interface ISupraSValueFeed {
     function getSvalue(uint64 _pairIndex) external view returns (bytes32, bool);
@@ -14107,7 +14107,7 @@ You can find the full code for the `CrossChainNFT.sol` below.
     ```solidity
     // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.9;
+pragma solidity ^0.8.30;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
