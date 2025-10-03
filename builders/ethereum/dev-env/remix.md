@@ -26,9 +26,7 @@ For the purposes of this guide, you'll need to have the following:
 
 If you followed the guides above, you should have a local Moonbeam node, which will begin to author blocks as transactions arrive.
 
-```bash
 --8<-- 'code/builders/ethereum/dev-env/remix/terminal/node.md'
-```
 
 Your development node comes with 10 pre-funded accounts. You should have MetaMask connected to your Moonbeam development node and have imported at least one of the pre-funded accounts. You can refer to the [Import Accounts](/tokens/connect/metamask/#import-accounts){target=\_blank} section of the MetaMask docs for step-by-step instructions on how to import a development account.
 
