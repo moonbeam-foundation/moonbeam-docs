@@ -18,7 +18,7 @@ Both types of XC-20s have the standard ERC-20 interface. In addition, all extern
 
 ### The ERC-20 Solidity Interface {: #the-erc20-interface }
 
-As mentioned, you can interact with XC-20s via an ERC-20 interface. The [ERC20.sol](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/assets-erc20/ERC20.sol){target=\_blank} interface on Moonbeam follows the [EIP-20 Token Standard](https://eips.ethereum.org/EIPS/eip-20){target=\_blank}, which is the standard API interface for tokens within smart contracts. The standard defines the required functions and events that a token contract must implement to be interoperable with different applications.
+As mentioned, you can interact with XC-20s via an ERC-20 interface. The [ERC20.sol](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/balances-erc20/ERC20.sol){target=\_blank} interface on Moonbeam follows the [EIP-20 Token Standard](https://eips.ethereum.org/EIPS/eip-20){target=\_blank}, which is the standard API interface for tokens within smart contracts. The standard defines the required functions and events that a token contract must implement to be interoperable with different applications.
 
 The interface includes the following functions:
 
@@ -122,7 +122,7 @@ Now that you've calculated the external XC-20 precompile address, you can use th
 
 You can interact with the ERC-20 interface using [Remix](https://remix.ethereum.org){target=\_blank}. First, you will need to add the interface to Remix:
 
-1. Get a copy of [ERC20.sol](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/assets-erc20/ERC20.sol){target=\_blank}
+1. Get a copy of [ERC20.sol](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/balances-erc20/ERC20.sol){target=\_blank}
 2. Paste the file contents into a Remix file named **IERC20.sol**
 
 ![Load the interface in Remix](/images/builders/interoperability/xcm/xc20/interact/interact-1.webp)

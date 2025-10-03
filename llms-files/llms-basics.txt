@@ -1175,7 +1175,7 @@ For starters, Ethereum transactions consume gas units based on their computation
 
 There are some key differences between the transaction fee model on Moonbeam and the one on Ethereum that developers should be mindful of when developing on Moonbeam:
 
-  - The [dynamic fee mechanism](https://forum.moonbeam.network/t/proposal-status-idea-dynamic-fee-mechanism-for-moonbeam-and-moonriver/241){target=\_blank} resembles that of [EIP-1559](https://eips.ethereum.org/EIPS/eip-1559){target=\_blank} but the implementation is different
+  - The [dynamic fee mechanism](https://forum.moonbeam.network/t/proposal-dynamic-fee-mechanism-for-moonbeam-and-moonriver/241){target=\_blank} resembles that of [EIP-1559](https://eips.ethereum.org/EIPS/eip-1559){target=\_blank} but the implementation is different
 
   - The amount of gas used in Moonbeam's transaction fee model is mapped from the transaction's Substrate extrinsic `refTime` component of the transaction weight via a fixed factor of `{{ networks.moonbase.tx_weight_to_gas_ratio }}` and `proofSize` component of the transaction weight via a fixed factor of `{{ xcm.generic_weights.proof_size.weight_per_gas }}`. The transaction weight vector is then multiplied with the unit gas price to calculate the transaction fee. This fee model means it can potentially be significantly cheaper to send transactions such as basic balance transfers via the Ethereum API than the Substrate API.
 
@@ -1448,7 +1448,7 @@ The following sections describe in more detail each of the components needed to 
 
 ### Base Fee {: #base-fee}
 
-The `BaseFee` is the minimum amount charged to send a transaction and is a value set by the network itself. It was introduced in [EIP-1559](https://eips.ethereum.org/EIPS/eip-1559){target=\_blank}. Moonbeam has its own [dynamic fee mechanism](https://forum.moonbeam.network/t/proposal-status-idea-dynamic-fee-mechanism-for-moonbeam-and-moonriver/241){target=\_blank} for calculating the base fee, which is adjusted based on block congestion. As of runtime 2300, the dynamic fee mechanism has been rolled out to all of the Moonbeam-based networks.
+The `BaseFee` is the minimum amount charged to send a transaction and is a value set by the network itself. It was introduced in [EIP-1559](https://eips.ethereum.org/EIPS/eip-1559){target=\_blank}. Moonbeam has its own [dynamic fee mechanism](https://forum.moonbeam.network/t/proposal-dynamic-fee-mechanism-for-moonbeam-and-moonriver/241){target=\_blank} for calculating the base fee, which is adjusted based on block congestion. As of runtime 2300, the dynamic fee mechanism has been rolled out to all of the Moonbeam-based networks.
 
 The minimum gas price for each network is as follows:
 
@@ -2530,7 +2530,7 @@ If your contract could have concurrent requests open, you can use the `requestId
 
 ## BABE Epoch Randomness {: #babe-epoch-randomness }
 
-BABE epoch randomness is based on a hash of the VRF values from the blocks produced in the relay chain epoch before last. On Polkadot, an [epoch lasts for roughly 4 hours](https://wiki.polkadot.com/learn/learn-cryptography/#vrf){target=\_blank}, and on Kusama, an [epoch lasts for roughly 1 hour](https://guide.kusama.network/docs/maintain-polkadot-parameters#periods-of-common-actions-and-attributes){target=\_blank}. The hashing is completed on the relay chain, and as such, it is not possible for a collator on Moonbeam to influence the randomness value unless they are also a validator on the relay chain and were responsible for producing the last output included in an epoch.
+BABE epoch randomness is based on a hash of the VRF values from the blocks produced in the relay chain epoch before last. On Polkadot, an [epoch lasts for roughly 4 hours](https://wiki.polkadot.com/learn/learn-cryptography/#vrf){target=\_blank}, and on Kusama, an [epoch lasts for roughly 1 hour](https://wiki.polkadot.com/kusama/kusama-getting-started/#periods-of-common-actions-and-attributes){target=\_blank}. The hashing is completed on the relay chain, and as such, it is not possible for a collator on Moonbeam to influence the randomness value unless they are also a validator on the relay chain and were responsible for producing the last output included in an epoch.
 
 The randomness remains constant during an epoch. If a collator skips block production, the next eligible collator can fulfill the request using the same random value.
 
@@ -4272,9 +4272,9 @@ Using Docker enables you to spin up a node in a matter of seconds. Once you have
     The tail end of the console log should look like this:
 
     <div id="termynal" data-termynal>
-  <span data-ty="input"><span class="file-path"></span>docker pull moonbeamfoundation/moonbeam:v0.46.0</span>
+  <span data-ty="input"><span class="file-path"></span>docker pull moonbeamfoundation/moonbeam:v0.47.0</span>
   <br>
-  <span data-ty>v0.46.0: Pulling from moonbeamfoundation/moonbeam
+  <span data-ty>v0.47.0: Pulling from moonbeamfoundation/moonbeam
     <br> b0a0cf830b12: Pull complete
     <br> fbff687640dd: Pull complete
     <br> 58ea427410e2: Pull complete
@@ -4283,6 +4283,8 @@ Using Docker enables you to spin up a node in a matter of seconds. Once you have
     <br> 128693ce218e: Pull complete
     <br> a3ac90b88463: Pull complete
     <br> Digest: sha256:86421aca2381265cd2e5283cb98705e24be0bc92a73937363f79d9d6e0d62088
+    <br> Status: Downloaded newer image for moonbeamfoundation/moonbeam:v0.47.0
+    <br> docker.io/moonbeamfoundation/moonbeam:v0.47.0
     <br> Status: Downloaded newer image for moonbeamfoundation/moonbeam:v0.46.0
     <br> docker.io/moonbeamfoundation/moonbeam:v0.46.0
   </span>
@@ -4333,13 +4335,13 @@ If successful, you should see an output showing an idle state waiting for blocks
 
 <div id="termynal" data-termynal>
   <span data-ty="input"><span class="file-path"></span>docker run --rm --name moonbeam_development --network host \
-    <br> moonbeamfoundation/moonbeam:v0.46.0 \
+    <br> moonbeamfoundation/moonbeam:v0.47.0 \
     <br> --dev --rpc-external
   </span>
   <br>
   <span data-ty>CLI parameter `--execution` has no effect anymore and will be removed in the future!
     <br> 2025-07-10 09:04:26 Moonbeam Parachain Collator
-    <br> 2025-07-10 09:04:26 ✌️  version 0.46.0-d7df89e7161
+    <br> 2025-07-10 09:04:26 ✌️  version 0.47.0-d7df89e7161
     <br> 2025-07-10 09:04:26 ❤️  by PureStake, 2019-2025
     <br> 2025-07-10 09:04:26 📋 Chain specification: Moonbase Development Testnet
     <br> 2025-07-10 09:04:26 🏷  Node name: black-and-white-sticks-9174
@@ -4467,7 +4469,7 @@ You should see an output that looks like the following, showing an idle state wa
   <span data-ty="input"><span class="file-path"></span>./target/release/moonbeam --dev</span>
   <br>
   <span data-ty> 2025-07-10 09:04:26 Moonbeam Parachain Collator
-    <br> 2025-07-10 09:04:26 ✌️  version 0.46.0-d7df89e7161
+    <br> 2025-07-10 09:04:26 ✌️  version 0.47.0-d7df89e7161
     <br> 2025-07-10 09:04:26 ❤️  by PureStake, 2019-2025
     <br> 2025-07-10 09:04:26 📋 Chain specification: Moonbase Development Testnet
     <br> 2025-07-10 09:04:26 🏷  Node name: black-and-white-sticks-9174
@@ -5217,7 +5219,7 @@ To learn how to register an asset on Moonbeam and the information necessary to a
 
 As Moonbeam is a parachain within the Polkadot ecosystems, one of the most direct implementations of XCM is to enable asset transfer from Polkadot and other parachains from/to Moonbeam. This allows users to bring their tokens to Moonbeam and all its dApps.
 
-To this end, Moonbeam has introduced [XC-20s](/builders/interoperability/xcm/xc20/overview/){target=\_blank}, which expand on Moonbeam's unique Ethereum compatibility features. XC-20s allow Polkadot native assets to be represented via a standard [ERC-20 interface](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/assets-erc20/ERC20.sol){target=\_blank} through a precompiled contract. When these assets are registered on Moonbeam, they can be set as XCM execution fee assets. Consequently, when a user transfers such an asset to Moonbeam, a small part of the amount will be used to cover the XCM execution fees.
+To this end, Moonbeam has introduced [XC-20s](/builders/interoperability/xcm/xc20/overview/){target=\_blank}, which expand on Moonbeam's unique Ethereum compatibility features. XC-20s allow Polkadot native assets to be represented via a standard [ERC-20 interface](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/balances-erc20/ERC20.sol){target=\_blank} through a precompiled contract. When these assets are registered on Moonbeam, they can be set as XCM execution fee assets. Consequently, when a user transfers such an asset to Moonbeam, a small part of the amount will be used to cover the XCM execution fees.
 
 In addition, ERC-20s that are deployed to Moonbeam can be sent to other chains in the Polkadot ecosystem via XCM. Consequently, from a developer's perspective, XC-20s are ERC-20 tokens with the added benefit of being an XCM cross-chain asset, and dApps can easily support them through a familiar ERC-20 interface.
 
@@ -5448,8 +5450,11 @@ The current list of available external XC-20 assets per network is as follows:
     |         Nodle         |  xcNODL   |  [0xfffffffFe896ba7Cb118b9Fa571c6dC0a99dEfF1](https://moonscan.io/token/0xfffffffFe896ba7Cb118b9Fa571c6dC0a99dEfF1){target=\_blank}  |
     | OriginTrail Parachain |  xcNEURO  |  [0xFfffffFfB3229c8E7657eABEA704d5e75246e544](https://moonscan.io/token/0xFfffffFfB3229c8E7657eABEA704d5e75246e544){target=\_blank}  |
     |       Parallel        |  xcPARA   |  [0xFfFffFFF18898CB5Fe1E88E668152B4f4052A947](https://moonscan.io/token/0xFfFffFFF18898CB5Fe1E88E668152B4f4052A947){target=\_blank}  |
+    |         LAOS          |  xcLAOS   |  [0xfffFFffFdd704e8e824a5EEc47de88f5B9e13588](https://moonscan.io/token/0xfffFFffFdd704e8e824a5EEc47de88f5B9e13588){target=\_blank}  |
+    |        Moonriver      |  MOVR.mr  |  [0xFfffFffF54c47F43713fd9211724362697f1a302](https://moonscan.io/token/0xFfffFffF54c47F43713fd9211724362697f1a302){target=\_blank}  |
     |         Peaq          |  xcPEAQ   |  [0xFffFFFFFEC4908b74688a01374f789B48E9a3eab](https://moonscan.io/token/0xFffFFFFFEC4908b74688a01374f789B48E9a3eab){target=\_blank}  |
     |       Pendulum        |   xcPEN   |  [0xffFFfFFf2257622F345E1ACDe0D4f46D7d1D77D0](https://moonscan.io/token/0xffFFfFFf2257622F345E1ACDe0D4f46D7d1D77D0){target=\_blank}  |
+    |       Pendulum        | xcEURC.s  |  [0xFfFfffFfa608Ec1332131289cBD8A97a0bB3D90F](https://moonscan.io/token/0xFfFfffFfa608Ec1332131289cBD8A97a0bB3D90F){target=\_blank}  |
     |         Phala         |   xcPHA   |  [0xFFFfFfFf63d24eCc8eB8a7b5D0803e900F7b6cED](https://moonscan.io/token/0xFFFfFfFf63d24eCc8eB8a7b5D0803e900F7b6cED){target=\_blank}  |
     |       Polkadex        |  xcPDEX   |  [0xfFffFFFF43e0d9b84010b1b67bA501bc81e33C7A](https://moonscan.io/token/0xfFffFFFF43e0d9b84010b1b67bA501bc81e33C7A){target=\_blank}  |
     |  Polkadot Asset Hub   |  xcPINK   |  [0xfFfFFfFf30478fAFBE935e466da114E14fB3563d](https://moonscan.io/token/0xfFfFFfFf30478fAFBE935e466da114E14fB3563d){target=\_blank}  |
@@ -5457,6 +5462,10 @@ The current list of available external XC-20 assets per network is as follows:
     |  Polkadot Asset Hub   |  xcUSDC   |  [0xFFfffffF7D2B0B761Af01Ca8e25242976ac0aD7D](https://moonscan.io/token/0xFFfffffF7D2B0B761Af01Ca8e25242976ac0aD7D){target=\_blank}  |
     |  Polkadot Asset Hub   |  xcUSDT   |  [0xFFFFFFfFea09FB06d082fd1275CD48b191cbCD1d](https://moonscan.io/token/0xFFFFFFfFea09FB06d082fd1275CD48b191cbCD1d){target=\_blank}  |
     |  Polkadot Asset Hub   |  xcWIFD   |  [0xfffffffF2e1D1ac9eA1686255bEfe995B31abc96](https://moonscan.io/token/0xfffffffF2e1D1ac9eA1686255bEfe995B31abc96){target=\_blank}  |
+    |      Snowbridge       |   DAI.e   |  [0xfFfffFFf9DE12E6658C49B4834f9278f6A39f5d7](https://moonscan.io/token/0xfFfffFFf9DE12E6658C49B4834f9278f6A39f5d7){target=\_blank}  |
+    |      Snowbridge       |   ETH.e   |  [0xFFFfFFffaFF6dF83d0A1935dDA2e5F1F402C0c45](https://moonscan.io/token/0xFFFfFFffaFF6dF83d0A1935dDA2e5F1F402C0c45){target=\_blank}  |
+    |      Snowbridge       |  USDC.e   |  [0xfffFFFFF166F84967F054AE95ab5764c38Cf3aEd](https://moonscan.io/token/0xfffFFFFF166F84967F054AE95ab5764c38Cf3aEd){target=\_blank}  |
+    |      Snowbridge       |  USDT.e   |  [0xFFffFfff7bc304425217b49E9598415C514ae81B](https://moonscan.io/token/0xFFffFfff7bc304425217b49E9598415C514ae81B){target=\_blank}  |
     |      Snowbridge       |  WBTC.e   | [0xfFffFFFf1B4Bb1ac5749F73D866FfC91a3432c47](https://moonscan.io/address/0xffffffff1B4BB1AC5749F73D866FFC91A3432C47){target=\_blank} |
     |      Snowbridge       | wstETH.e  |  [0xFfFFFfFF5D5DEB44BF7278DEE5381BEB24CB6573](https://moonscan.io/token/0xFfFFFfFF5D5DEB44BF7278DEE5381BEB24CB6573){target=\_blank}  |
     |      Snowbridge       |  WETH.e   |  [0xfFffFFFF86829AFE1521AD2296719DF3ACE8DED7](https://moonscan.io/token/0xfFffFFFF86829AFE1521AD2296719DF3ACE8DED7){target=\_blank}  |
@@ -5483,7 +5492,7 @@ The current list of available external XC-20 assets per network is as follows:
     |      Karura      | xcaSEED | [0xFfFffFFfa1B026a00FbAA67c86D5d1d5BF8D8228](https://moonriver.moonscan.io/token/0xFfFffFFfa1B026a00FbAA67c86D5d1d5BF8D8228){target=\_blank} |
     |      Khala       |  xcPHA  | [0xffFfFFff8E6b63d9e447B6d4C45BDA8AF9dc9603](https://moonriver.moonscan.io/token/0xffFfFFff8E6b63d9e447B6d4C45BDA8AF9dc9603){target=\_blank} |
     |     Kintsugi     | xcKINT  | [0xfffFFFFF83F4f317d3cbF6EC6250AeC3697b3fF2](https://moonriver.moonscan.io/token/0xfffFFFFF83F4f317d3cbF6EC6250AeC3697b3fF2){target=\_blank} |
-    |     Kintsugi     | xckBTC  | [0xFFFfFfFfF6E528AD57184579beeE00c5d5e646F0](https://moonriver.moonscan.io/token/0xFFFfFfFfF6E528AD57184579beeE00c5d5e646F0){target=\_blank} |
+    |     Kintsugi     | xcKBTC  | [0xFFFfFfFfF6E528AD57184579beeE00c5d5e646F0](https://moonriver.moonscan.io/token/0xFFFfFfFfF6E528AD57184579beeE00c5d5e646F0){target=\_blank} |
     | Kusama Asset Hub | xcRMRK  | [0xffffffFF893264794d9d57E1E0E21E0042aF5A0A](https://moonriver.moonscan.io/token/0xffffffFF893264794d9d57E1E0E21E0042aF5A0A){target=\_blank} |
     | Kusama Asset Hub | xcUSDT  | [0xFFFFFFfFea09FB06d082fd1275CD48b191cbCD1d](https://moonriver.moonscan.io/token/0xFFFFFFfFea09FB06d082fd1275CD48b191cbCD1d){target=\_blank} |
     |      Litmus      |  xcLIT  | [0xfffFFfFF31103d490325BB0a8E40eF62e2F614C0](https://moonriver.moonscan.io/token/0xfffFFfFF31103d490325BB0a8E40eF62e2F614C0){target=\_blank} |
@@ -5493,6 +5502,10 @@ The current list of available external XC-20 assets per network is as follows:
     |      Shiden      |  xcSDN  | [0xFFFfffFF0Ca324C842330521525E7De111F38972](https://moonriver.moonscan.io/token/0xFFFfffFF0Ca324C842330521525E7De111F38972){target=\_blank} |
     |    Tinkernet     | xcTNKR  | [0xfFFfFffF683474B842852111cc31d470bD8f5081](https://moonriver.moonscan.io/token/0xffffffff683474b842852111cc31d470bd8f5081){target=\_blank} |
     |      Turing      |  xcTUR  | [0xfFffffFf6448d0746f2a66342B67ef9CAf89478E](https://moonriver.moonscan.io/token/0xfFffffFf6448d0746f2a66342B67ef9CAf89478E){target=\_blank} |
+    |     Moonbeam     | GLMR.mb | [0xFfFffFff1a49463978f19dfD6983f2fa1885C254](https://moonriver.moonscan.io/token/0xFfFffFff1a49463978f19dfD6983f2fa1885C254){target=\_blank} |
+    |     Moonbeam     |xcUSDC.mb| [0xFFFFFFfF2215880E56fe63a96E54E073757C3092](https://moonriver.moonscan.io/token/0xFFFFFFfF2215880E56fe63a96E54E073757C3092){target=\_blank} |
+    |     Moonbeam     |xcUSDT.mb| [0xFFFFFFFFc70260a3bf46A91cF87B6F5e6Abba712](https://moonriver.moonscan.io/token/0xFFFFFFFFc70260a3bf46A91cF87B6F5e6Abba712){target=\_blank} |
+    |     Moonbeam     |whUSDC.mb| [0xFfFfffff9E27Ab60FADFd33ABf71B39A7445f7eD](https://moonriver.moonscan.io/token/0xFfFfffff9E27Ab60FADFd33ABf71B39A7445f7eD){target=\_blank} |
 
     _*You can check each [Asset ID](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonriver.moonbeam.network#/assets){target=\_blank} on Polkadot.js Apps_
 

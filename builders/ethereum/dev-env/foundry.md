@@ -120,6 +120,7 @@ Deploying the contract with `forge create` takes a single command, but you must 
     ```bash
     forge create src/MyToken.sol:MyToken \
     --rpc-url {{ networks.moonbeam.rpc_url }} \
+    --broadcast \
     --account deployer \
     --constructor-args 100
     ```
@@ -129,6 +130,7 @@ Deploying the contract with `forge create` takes a single command, but you must 
     ```bash
     forge create src/MyToken.sol:MyToken \
     --rpc-url {{ networks.moonriver.rpc_url }} \
+    --broadcast \
     --account deployer \
     --constructor-args 100
     ```
@@ -138,6 +140,7 @@ Deploying the contract with `forge create` takes a single command, but you must 
     ```bash
     forge create src/MyToken.sol:MyToken \
     --rpc-url {{ networks.moonbase.rpc_url }} \
+    --broadcast \
     --account deployer \
     --constructor-args 100
     ```
@@ -147,6 +150,7 @@ Deploying the contract with `forge create` takes a single command, but you must 
     ```bash
     forge create src/MyToken.sol:MyToken \
     --rpc-url {{ networks.development.rpc_url }} \
+    --broadcast \
     --account deployer \
     --constructor-args 100
     ```

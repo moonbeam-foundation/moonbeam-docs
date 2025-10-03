@@ -16,7 +16,7 @@ For starters, Ethereum transactions consume gas units based on their computation
 
 There are some key differences between the transaction fee model on Moonbeam and the one on Ethereum that developers should be mindful of when developing on Moonbeam:
 
-  - The [dynamic fee mechanism](https://forum.moonbeam.network/t/proposal-status-idea-dynamic-fee-mechanism-for-moonbeam-and-moonriver/241){target=\_blank} resembles that of [EIP-1559](https://eips.ethereum.org/EIPS/eip-1559){target=\_blank} but the implementation is different
+  - The [dynamic fee mechanism](https://forum.moonbeam.network/t/proposal-dynamic-fee-mechanism-for-moonbeam-and-moonriver/241){target=\_blank} resembles that of [EIP-1559](https://eips.ethereum.org/EIPS/eip-1559){target=\_blank} but the implementation is different
 
   - The amount of gas used in Moonbeam's transaction fee model is mapped from the transaction's Substrate extrinsic `refTime` component of the transaction weight via a fixed factor of `{{ networks.moonbase.tx_weight_to_gas_ratio }}` and `proofSize` component of the transaction weight via a fixed factor of `{{ xcm.generic_weights.proof_size.weight_per_gas }}`. The transaction weight vector is then multiplied with the unit gas price to calculate the transaction fee. This fee model means it can potentially be significantly cheaper to send transactions such as basic balance transfers via the Ethereum API than the Substrate API.
 
@@ -289,7 +289,7 @@ The following sections describe in more detail each of the components needed to 
 
 ### Base Fee {: #base-fee}
 
-The `BaseFee` is the minimum amount charged to send a transaction and is a value set by the network itself. It was introduced in [EIP-1559](https://eips.ethereum.org/EIPS/eip-1559){target=\_blank}. Moonbeam has its own [dynamic fee mechanism](https://forum.moonbeam.network/t/proposal-status-idea-dynamic-fee-mechanism-for-moonbeam-and-moonriver/241){target=\_blank} for calculating the base fee, which is adjusted based on block congestion. As of runtime 2300, the dynamic fee mechanism has been rolled out to all of the Moonbeam-based networks.
+The `BaseFee` is the minimum amount charged to send a transaction and is a value set by the network itself. It was introduced in [EIP-1559](https://eips.ethereum.org/EIPS/eip-1559){target=\_blank}. Moonbeam has its own [dynamic fee mechanism](https://forum.moonbeam.network/t/proposal-dynamic-fee-mechanism-for-moonbeam-and-moonriver/241){target=\_blank} for calculating the base fee, which is adjusted based on block congestion. As of runtime 2300, the dynamic fee mechanism has been rolled out to all of the Moonbeam-based networks.
 
 The minimum gas price for each network is as follows:
 
