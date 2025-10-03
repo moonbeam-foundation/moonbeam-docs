@@ -46,7 +46,7 @@ The following are the contracts that we'll be working with today:
 
 - `Batch.sol` - one of the precompile contracts on Moonbeam that allows you to combine multiple EVM calls into one. For more information on the available methods, please refer to the [Batch Solidity Interface](/builders/ethereum/precompiles/ux/batch/#the-batch-interface){target=\_blank} documentation
 
-- `DemoToken.sol` - an ERC-20 contract for the `DemoToken` (DTOK) token, which on deployment mints an initial supply and assigns them to the contract owner. It's a standard ERC-20 token, you can review the [IERC20 interface](https://docs.openzeppelin.com/contracts/2.x/api/token/erc20#IERC20){target=\_blank} for more information on the available methods
+- `DemoToken.sol` - an ERC-20 contract for the `DemoToken` (DTOK) token, which on deployment mints an initial supply and assigns them to the contract owner. It's a standard ERC-20 token, you can review the [IERC20 interface](https://docs.openzeppelin.com/contracts/4.x/api/token/ERC20#ierc20-2){target=\_blank} for more information on the available methods
 
 - `SimpleDex.sol` - a simple example of a DEX that on deployment deploys the `DemoToken` contract, which mints 1000 DTOKs, and allows you to swap DEV token for DTOKs and vice versa. **This contract is for demo purposes only**. The `SimpleDex` contract contains the following methods:
     - **token**() - a read-only method that returns the address of the `DemoToken` contract
