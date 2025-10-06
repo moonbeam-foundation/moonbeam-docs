@@ -134,7 +134,7 @@ The complete command for running a tracing node is as follows:
     {{ networks.moonriver.tracing_tag }} \
     --base-path /data \
     --chain {{ networks.moonriver.chain_spec }} \
-    --name INSERT_YOUR_NODE_NAME" \
+    --name "INSERT_YOUR_NODE_NAME" \
     --state-pruning archive \
     --trie-cache-size 1073741824 \
     --db-cache INSERT_RAM_IN_MB \
