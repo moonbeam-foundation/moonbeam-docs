@@ -20,18 +20,27 @@ Similarly to running a regular node, you can spin up a tracing node using Docker
 
 ## Tracing Node Flags {: #tracing-node-flags }
 
-Spinning up a `debug`, `txpool`, or `tracing` node is similar to [running a full node](/node-operators/networks/run-a-node/overview/){target=\_blank}. However, there are some additional flags that you may want to enable specific tracing features:
+Spinning up a `debug`, `txpool`, or `tracing` node is similar to [running a full node](/node-operators/networks/run-a-node/overview/){target=_blank}, but requires additional flags to enable the non-standard Ethereum RPC modules. These flags control tracing depth, caching, and runtime configuration.
 
-  - **`--ethapi debug`** - optional flag that enables `debug_traceTransaction`, `debug_traceBlockByNumber`, `debug_traceBlockByHash`, and `debug_traceCall`
-  - **`--ethapi trace`** - optional flag that enables `trace_filter`
-  - **`--ethapi txpool`** - optional flag that enables `txpool_content`, `txpool_inspect`, and `txpool_status`
-  - **`--wasm-runtime-overrides <path/to/overrides>`** - **required** flag for tracing that specifies the path where the local Wasm runtimes are stored. If you're using Docker, the path is as follows: `/moonbeam/<network>-substitutes-tracing`. Accepts the network as a parameter: `moonbeam`, `moonriver`, or `moonbase` (for development nodes and Moonbase Alpha)
-  - **`--runtime-cache-size 64`** - **required** flag that configures the number of different runtime versions preserved in the in-memory cache to 64
-  - **`--ethapi-trace-max-count <uint>`** — sets the maximum number of trace entries to be returned by the node. The default maximum number of trace entries a single request of `trace_filter` returns is `500`
-  - **`-ethapi-trace-cache-duration <uint>`** — sets the duration (in seconds) after which the cache of `trace_filter,` for a given block, is discarded. The default amount of time blocks are stored in the cache is `300` seconds
+- **`--ethapi debug`**: Enables the `debug` module with RPC methods such as `debug_traceTransaction`, `debug_traceBlockByNumber`, `debug_traceBlockByHash`, and `debug_traceCall`.
+- **`--ethapi trace`**: Enables the `trace` module and its associated RPC methods like `trace_filter`.
+- **`--ethapi txpool`**: Enables the `txpool` module, which provides `txpool_content`, `txpool_inspect`, and `txpool_status`.
+- **`--wasm-runtime-overrides <path/to/overrides>`**: **Required** for tracing. Specifies the path where local Wasm runtimes are stored.  
+  - For Docker setups, use `/moonbeam/<network>-substitutes-tracing`, where `<network>` is `moonbeam`, `moonriver`, or `moonbase` (for Moonbase Alpha or dev nodes).
+- **`--runtime-cache-size 64`**: **Required**. Configures the number of different runtime versions preserved in the in-memory cache to `64`.
+- **`--ethapi-max-permits <uint>`**: Sets the number of concurrent tracing tasks shared by tracing modules (`debug`, `trace`). Default: `10`.
+- **`--ethapi-trace-max-count <uint>`**: Sets the maximum number of trace entries that a single `trace_filter` request can return. Default: `500`.
+- **`--ethapi-trace-cache-duration <uint>`**: Duration (in seconds) after which cached `trace_filter` results for a block are discarded. Default: `300`.
+- **`--eth-log-block-cache <bytes>`**: Size of the LRU cache (in bytes) used for storing block data. Default: `300000000`.
+- **`--eth-statuses-cache <bytes>`**: Size of the LRU cache (in bytes) used for storing transaction status data. Default: `300000000`.
+- **`--fee-history-limit <uint>`**: Sets the maximum fee history cache size for `eth_feeHistory` requests. Default: `2048`.
+- **`--max-past-logs <uint>`**: Maximum number of logs returned by a single log query. Default: `10000`.
+- **`--max-block-range <uint>`**: Maximum block span allowed in a single log query. Default: `1024`.
+- **`--tracing-raw-max-memory-usage <bytes>`**: Upper bound for memory used by raw tracing requests (stack, storage, and memory data). Default: `20000000`.
 
 !!! note
-    If you want to run an RPC endpoint, to connect to Polkadot.js Apps, or to run your own application, use the `--unsafe-rpc-external` flag to run the full node with external access to the RPC ports.  More details are available by running `moonbeam --help`.  
+    If you want to run an RPC endpoint to connect to Polkadot.js Apps or your own dApp, use the `--unsafe-rpc-external` flag to allow external access to RPC ports. More details are available by running `moonbeam --help`.
+ 
 
 ## Run a Tracing Node with Docker {: #run-a-tracing-node-with-docker }
 
