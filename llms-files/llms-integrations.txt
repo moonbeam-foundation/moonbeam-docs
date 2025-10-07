@@ -34,9 +34,9 @@ categories: Integrations
 
 Developers on Moonriver and Moonbeam can use the [Dapplooker](https://dapplooker.com){target=\_blank} platform to analyze their on-chain data and run SQL queries. The integration gives projects the ability to create charts and dashboards to track their smart contracts and provide feedback on performance and adoption.
 
-Dapplooker analytics platform complements Moonbeam-based networks by helping users make sense of smart contracts without having to rely on an engineer or analyst. Dapplooker's intuitive Visual SQL helps browse smart contract data in tabular form and write SQL queries using easy to use editor. Users can create, fork, and share dashboards with everyone.
+Dapplooker analytics platform complements Moonbeam-based networks by helping users make sense of smart contracts without having to rely on an engineer or analyst. Dapplooker's intuitive Visual SQL helps browse smart contract data in tabular form and write SQL queries using easy-to-use editor. Users can create, fork, and share dashboards with everyone.
 
-For Moonbeam and Moonriver networks, DappLooker integration is supported through subgraphs, which provide efficient and reliable access to on-chain data.
+For Moonbeam and Moonriver networks, Dapplooker integration is supported through subgraphs, which provide efficient and reliable access to on-chain data.
 
 This guide will cover all of the details needed to register your project with the Dapplooker platform and how to build analytics using SQL editor. 
 
@@ -57,20 +57,20 @@ To get started with this guide, you'll need to create or have a Dapplooker accou
 
 To connect a subgraph to Dapplooker, you can click on the **My Projects** button at the top of the page.
 
-From the **Register Your Project** page, Select the **Subgraph** option. You can also browse and run analytics on already indexed Dapps from the menu.
+From the **Register Your Project** page, select the **Subgraph** option. You can also browse and run analytics on already indexed dApps from the menu.
 
-![Connect dapp](/images/builders/integrations/analytics/dapplooker/dapplooker-2.webp)
+![Connect dApp](/images/builders/integrations/analytics/dapplooker/dapplooker-2.webp)
 
 You'll be prompted to enter in details about your project and subgraph:
 
 1. Enter your project name
 2. Enter the network your project lives on. The network can be either **Moonbeam** or **Moonriver**
-3. If the Subgraph is part of the Graph's Decentralized Network, select the checkbox. If it is a legacy (hosted) Subgraph, leave the box unchecked
-4. Input your DApp subgraph endpoint. For Decentralized Network subgraphs, also enter your Graph API Key. For legacy hosted subgraphs, enter the hosted subgraph URL
+3. If the subgraph is part of the Graph's Decentralized Network, select the checkbox. If it is a legacy (hosted) subgraph, leave the box unchecked.
+4. Input your dApp subgraph endpoint. For Decentralized Network subgraphs, also enter your Graph API key. For legacy hosted subgraphs, enter the hosted subgraph URL.
 5. Optionally enter your project's website
 6. Click **Register** and subgraph entities data syncing will start. It can take some time for complete data to be synced
 
-![Register your dapp](/images/builders/integrations/analytics/dapplooker/dapplooker-3.webp)
+![Register your dApp](/images/builders/integrations/analytics/dapplooker/dapplooker-3.webp)
 
 Once syncing is complete, you will get an email notification. Clicking on the link in the email will take you directly to your indexed data.
 
