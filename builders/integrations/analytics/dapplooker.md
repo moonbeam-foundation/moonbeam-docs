@@ -14,7 +14,7 @@ Dapplooker analytics platform complements Moonbeam-based networks by helping use
 
 For Moonbeam and Moonriver networks, Dapplooker integration is supported through subgraphs, which provide efficient and reliable access to on-chain data.
 
-This guide will cover all of the details needed to register your project with the Dapplooker platform and how to build analytics using SQL editor. 
+This guide will cover all of the details needed to register your project with the Dapplooker platform and how to build analytics using SQL editor.
 
 --8<-- 'text/_disclaimers/third-party-content-intro.md'
 
