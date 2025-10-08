@@ -84,7 +84,7 @@ The following are the contracts that we'll be working with today:
 
 - `Batch.sol` - one of the precompile contracts on Moonbeam that allows you to combine multiple EVM calls into one. For more information on the available methods, please refer to the [Batch Solidity Interface](/builders/ethereum/precompiles/ux/batch/#the-batch-interface){target=\_blank} documentation
 
-- `DemoToken.sol` - an ERC-20 contract for the `DemoToken` (DTOK) token, which on deployment mints an initial supply and assigns them to the contract owner. It's a standard ERC-20 token, you can review the [IERC20 interface](https://docs.openzeppelin.com/contracts/4.x/api/token/ERC20#ierc20-2){target=\_blank} for more information on the available methods
+- `DemoToken.sol` - an ERC-20 contract for the `DemoToken` (DTOK) token, which on deployment mints an initial supply and assigns them to the contract owner. It's a standard ERC-20 token, you can review the [IERC20 interface](https://docs.openzeppelin.com/contracts/5.x/api/token/erc20#IERC20){target=\_blank} for more information on the available methods
 
 - `SimpleDex.sol` - a simple example of a DEX that on deployment deploys the `DemoToken` contract, which mints 1000 DTOKs, and allows you to swap DEV token for DTOKs and vice versa. **This contract is for demo purposes only**. The `SimpleDex` contract contains the following methods:
     - **token**() - a read-only method that returns the address of the `DemoToken` contract
@@ -1542,7 +1542,7 @@ Open the file and add the following to it:
 
 ```solidity
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.30;
 
 // Import OpenZeppelin Contract
 import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
@@ -1573,7 +1573,7 @@ Open the file and add the following to it:
 
 ```solidity
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.30;
 
 // Import OpenZeppelin Contract
 import {MyToken} from "./MyToken.sol";
@@ -1642,7 +1642,7 @@ By convention, all of your tests should end with `.t.sol` and start with the nam
 Let's start by writing a test for the token smart contract. Open up `MyToken.t.sol` and add:  
 
 ```solidity
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.30;
 
 import "forge-std/Test.sol";
 import "../src/MyToken.sol";
@@ -1676,7 +1676,7 @@ And add the following:
 
 ```solidity
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.30;
 
 import "forge-std/Test.sol";
 import {MyToken} from "../src/MyToken.sol";
@@ -1925,7 +1925,7 @@ That's it for testing! You can find the complete `Container.t.sol` and `MyToken.
 
     ```solidity
     // SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.30;
 
 import "forge-std/Test.sol";
 import {MyToken} from "../src/MyToken.sol";
@@ -1995,7 +1995,7 @@ contract ContainerHarness is Container {
 
     ```solidity
     // SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.30;
 
 import "forge-std/Test.sol";
 import "../src/MyToken.sol";
@@ -2045,7 +2045,7 @@ In this script, add:
 
 ```solidity
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.13;
+pragma solidity ^0.8.30;
 
 import "forge-std/Script.sol";
 import {MyToken} from "../src/MyToken.sol";
@@ -2139,7 +2139,7 @@ The entire deployment script is available below:
 
     ```solidity
     // SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.13;
+pragma solidity ^0.8.30;
 
 import "forge-std/Script.sol";
 import {MyToken} from "../src/MyToken.sol";
@@ -2315,7 +2315,7 @@ To get started, take the following steps:
         ```solidity
         // SPDX-License-Identifier: GPL-3.0-only
 // This is a PoC to use the staking precompile wrapper as a Solidity developer.
-pragma solidity >=0.8.0;
+pragma solidity ^0.8.30;
 
 import "./StakingInterface.sol";
 import "@openzeppelin/contracts/access/AccessControl.sol";
@@ -5449,7 +5449,7 @@ Congratulations! You've gone through the entire process of creating the `Lottery
 
     ```solidity
     // SPDX-License-Identifier: GPL-3.0-only
-pragma solidity >=0.8.0;
+pragma solidity ^0.8.30;
 
 import "./Randomness.sol";
 import {RandomnessConsumer} from "./RandomnessConsumer.sol";
@@ -6808,7 +6808,7 @@ Now we can edit the `MyTok.sol` file to include the following contract, which wi
 
     ```solidity
     // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.20;
+pragma solidity ^0.8.30;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
@@ -9943,7 +9943,7 @@ You can take the following steps to create our smart contract:
 
     ```solidity title="OracleClient.sol"
     // SPDX-License-Identifier: UNLICENSED
-pragma solidity 0.8.20;
+pragma solidity ^0.8.30;
 
 interface ISupraOraclePull {
     // Verified price data
@@ -10044,7 +10044,7 @@ contract OracleClient {
 
     ```solidity
     // SPDX-License-Identifier: UNLICENSED
-pragma solidity 0.8.20;
+pragma solidity ^0.8.30;
 
 interface ISupraOraclePull {
     // Verified price data
@@ -11099,7 +11099,7 @@ To create the contract, you can take the following steps:
 
     ```solidity title="FeedClient.sol"
     // SPDX-License-Identifier: UNLICENSED
-pragma solidity 0.8.20;
+pragma solidity ^0.8.30;
 
 interface ISupraSValueFeed {
     function getSvalue(uint64 _pairIndex) external view returns (bytes32, bool);
@@ -11173,7 +11173,7 @@ interface ISupraSValueFeed {
 
     ```solidity
     // SPDX-License-Identifier: UNLICENSED
-pragma solidity 0.8.20;
+pragma solidity ^0.8.30;
 
 interface ISupraSValueFeed {
     function getSvalue(uint64 _pairIndex) external view returns (bytes32, bool);
@@ -11889,7 +11889,7 @@ We will create a new file named `OFTVotes.sol`:
 ```solidity
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.30;
 
 import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Votes.sol";
 import "@openzeppelin/contracts/utils/introspection/IERC165.sol";
@@ -11937,7 +11937,7 @@ The `OFTVotes` contract is abstract, so let's create a final smart contract that
 
 ```solidity
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.30;
 
 import "./OFTVotes.sol";
 
@@ -12419,7 +12419,7 @@ We'll take the following steps to create the new `DAOSatellite` contract:
 
 ```solidity
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.30;
 
 import "@layerzerolabs/solidity-examples/contracts/lzApp/NonblockingLzApp.sol";
 import "@openzeppelin/contracts/utils/Timers.sol";
@@ -14112,7 +14112,7 @@ You can find the full code for the `CrossChainNFT.sol` below.
     ```solidity
     // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.9;
+pragma solidity ^0.8.30;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
@@ -15697,7 +15697,7 @@ To see how this MBIP differentiates Moonbeam from Ethereum firsthand, you can es
 
 ```solidity
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.30;
 
 contract SayHello {
     mapping(address => string) public addressToName;

@@ -40,13 +40,13 @@ For this guide, you'll need to install the Web3.js library and the Solidity comp
 === "npm"
 
     ```bash
-    npm install web3 solc@0.8.0
+    npm install web3 solc@0.8.30
     ```
 
 === "yarn"
 
     ```bash
-    yarn add web3 solc@0.8.0
+    yarn add web3 solc@0.8.30
     ```
 
 ## Setup Web3.js with Moonbeam {: #setup-web3-with-moonbeam }
