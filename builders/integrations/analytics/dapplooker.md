@@ -42,7 +42,7 @@ You'll be prompted to enter in details about your project and subgraph:
 3. If the subgraph is part of the Graph's Decentralized Network, select the checkbox. If it is a legacy (hosted) subgraph, leave the box unchecked.
 4. Input your dApp subgraph endpoint. For Decentralized Network subgraphs, also enter your Graph API key. For legacy hosted subgraphs, enter the hosted subgraph URL.
 5. Optionally enter your project's website.
-6. Click **Register** and subgraph entities data syncing will start. It can take some time for complete data to be synced
+6. Click **Register** and subgraph entities data syncing will start. It can take some time for complete data to be synced.
 
 ![Register your dApp](/images/builders/integrations/analytics/dapplooker/dapplooker-3.webp)
 
