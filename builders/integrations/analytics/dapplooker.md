@@ -10,7 +10,7 @@ categories: Integrations
 
 Developers on Moonriver and Moonbeam can use the [Dapplooker](https://dapplooker.com){target=\_blank} platform to analyze their on-chain data and run SQL queries. The integration gives projects the ability to create charts and dashboards to track their smart contracts and provide feedback on performance and adoption.
 
-Dapplooker analytics platform complements Moonbeam-based networks by helping users make sense of smart contracts without having to rely on an engineer or analyst. Dapplooker's intuitive Visual SQL helps browse smart contract data in tabular form and write SQL queries using easy-to-use editor. Users can create, fork, and share dashboards with everyone.
+The Dapplooker analytics platform complements Moonbeam-based networks by helping users make sense of smart contracts without relying on an engineer or analyst. Dapplooker's intuitive Visual SQL enables you to browse smart contract data in a tabular form and write SQL queries using an easy-to-use editor. Users can create, fork, and share dashboards with everyone.
 
 For Moonbeam and Moonriver networks, Dapplooker integration is supported through subgraphs, which provide efficient and reliable access to on-chain data.
 
