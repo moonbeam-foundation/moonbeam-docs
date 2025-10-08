@@ -26,9 +26,6 @@ To get started with this guide, you'll need to create or have a Dapplooker accou
 
 ## Connect Subgraphs {: #connect-subgraphs }
 
-!!! note
-    Connect Subgraphs is the supported method for integrating DappLooker with Moonbeam and Moonriver networks.
-
 To connect a subgraph to Dapplooker, you can click on the **My Projects** button at the top of the page.
 
 From the **Register Your Project** page, select the **Subgraph** option. You can also browse and run analytics on already indexed dApps from the menu.
