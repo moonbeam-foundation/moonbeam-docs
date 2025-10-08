@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: GPL-3.0-only
-pragma solidity >=0.8.0;
+pragma solidity ^0.8.30;
 
 import "./Randomness.sol";
 import {RandomnessConsumer} from "./RandomnessConsumer.sol";

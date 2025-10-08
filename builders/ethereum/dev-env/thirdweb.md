@@ -37,7 +37,7 @@ To create a new smart contract using the [thirdweb CLI](https://portal.thirdweb.
 
     ```solidity
     // SPDX-License-Identifier: MIT
-    pragma solidity ^0.8.0;
+    pragma solidity ^0.8.30;
 
     import '@thirdweb-dev/contracts/base/ERC721Base.sol';
 

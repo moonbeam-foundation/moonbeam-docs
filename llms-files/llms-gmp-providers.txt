@@ -769,7 +769,7 @@ You can find the full code for the `CrossChainNFT.sol` below.
     ```solidity
     // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.9;
+pragma solidity ^0.8.30;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
@@ -2354,7 +2354,7 @@ To see how this MBIP differentiates Moonbeam from Ethereum firsthand, you can es
 
 ```solidity
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.30;
 
 contract SayHello {
     mapping(address => string) public addressToName;

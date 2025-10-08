@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: GPL-3.0-only
 // This is a PoC to use the staking precompile wrapper as a Solidity developer.
-pragma solidity >=0.8.0;
+pragma solidity ^0.8.30;
 
 import "./StakingInterface.sol";
 import "@openzeppelin/contracts/access/AccessControl.sol";
