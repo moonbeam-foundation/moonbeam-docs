@@ -16,8 +16,8 @@ networks:
     chain_spec: alphanet
     block_explorer: https://moonbase.moonscan.io/
     spec_version: runtime-3900
-    parachain_release_tag: v0.47.1 # must be in this exact format for links to work
-    parachain_sha256sum: 4d790bb1bab1c2375dae13ff746a8efcc516ecfeb99f4a86ca64306359ad067b
+    parachain_release_tag: v0.47.2 # must be in this exact format for links to work
+    parachain_sha256sum: 4201728da5d694ed43976ca60285b9081836a8d82bc1f8f730785d4d2e5c9ba5
     tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.47.1-3900-b897
     gas_block: 60,000,000
     gas_block_numbers_only: 60000000 # this should match gas_block, just with no commas
@@ -378,8 +378,8 @@ networks:
     chain_id: 1285
     hex_chain_id: '0x505'
     node_directory: /var/lib/moonriver-data
-    parachain_release_tag: v0.47.1
-    parachain_sha256sum: 4d790bb1bab1c2375dae13ff746a8efcc516ecfeb99f4a86ca64306359ad067b
+    parachain_release_tag: v0.47.2
+    parachain_sha256sum: 4201728da5d694ed43976ca60285b9081836a8d82bc1f8f730785d4d2e5c9ba5
     tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.47.1-3900-b897
     chain_spec: moonriver
     block_explorer: https://moonriver.moonscan.io/
@@ -732,8 +732,8 @@ networks:
     chain_id: 1284
     hex_chain_id: '0x504'
     node_directory: /var/lib/moonbeam-data
-    parachain_release_tag: v0.47.1
-    parachain_sha256sum: 4d790bb1bab1c2375dae13ff746a8efcc516ecfeb99f4a86ca64306359ad067b
+    parachain_release_tag: v0.47.2
+    parachain_sha256sum: 4201728da5d694ed43976ca60285b9081836a8d82bc1f8f730785d4d2e5c9ba5
     tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.47.1-3900-b897
     chain_spec: moonbeam
     block_explorer: https://moonscan.io
