@@ -26,11 +26,11 @@ For the purposes of this guide, you'll need to have the following:
 
 If you followed the guides above, you should have a local Moonbeam node, which will begin to author blocks as transactions arrive.
 
-![The terminal logs of for a local Moonbeam development node that is producing blocks.](/images/builders/ethereum/dev-env/remix/remix-1.webp)
+--8<-- 'code/builders/ethereum/dev-env/remix/terminal/node.md'
 
 Your development node comes with 10 pre-funded accounts. You should have MetaMask connected to your Moonbeam development node and have imported at least one of the pre-funded accounts. You can refer to the [Import Accounts](/tokens/connect/metamask/#import-accounts){target=\_blank} section of the MetaMask docs for step-by-step instructions on how to import a development account.
 
-![The main screen of MetaMask, which shows an account connected to a Moonbeam development node and its balance.](/images/builders/ethereum/dev-env/remix/remix-2.webp)
+![The main screen of MetaMask, which shows an account connected to a Moonbeam development node and its balance.](/images/builders/ethereum/dev-env/remix/remix-1.webp)
 
 If you're adapting this guide for Moonbeam, Moonriver, or Moonbase Alpha, make sure you are connected to the correct network and have an account with funds.
 --8<-- 'text/_common/faucet/faucet-sentence.md'
@@ -44,7 +44,7 @@ If you navigate to [https://remix.ethereum.org/](https://remix.ethereum.org){tar
 3. The main panel
 4. The terminal
 
-![The layout of Remix IDE and its four sections.](/images/builders/ethereum/dev-env/remix/remix-3.webp)
+![The layout of Remix IDE and its four sections.](/images/builders/ethereum/dev-env/remix/remix-2.webp)
 
 The plugin panel displays icons for each of the preloaded plugins, the plugin manager, and the settings menu. You'll see a few icons there for each of the preloaded plugins, which are the **File explorer**, **Search in files**, **Solidity compiler**, and **Deploy and run transactions** plugins. As additional plugins are activated, their icons will appear in this panel.
 
@@ -63,7 +63,7 @@ From the **File explorer** tab on the plugin panel, you can create a new file by
 1. Click on the file icon
 2. Enter the name of the contract: `MyToken.sol`
 
-![Create a new file using the File explorer plugin in Remix.](/images/builders/ethereum/dev-env/remix/remix-4.webp)
+![Create a new file using the File explorer plugin in Remix.](/images/builders/ethereum/dev-env/remix/remix-3.webp)
 
 The main panel will switch to an empty file where you can add the Solidity code for the contract. Paste the `MyToken.sol` smart contract into the new file:
 
@@ -71,7 +71,7 @@ The main panel will switch to an empty file where you can add the Solidity code 
 --8<-- 'code/builders/ethereum/dev-env/remix/MyToken.sol'
 ```
 
-![Add the contract code to the newly created file in the main panel of Remix.](/images/builders/ethereum/dev-env/remix/remix-5.webp)
+![Add the contract code to the newly created file in the main panel of Remix.](/images/builders/ethereum/dev-env/remix/remix-4.webp)
 
 ## Compile a Solidity Smart Contract {: #compile-a-solidity-smart-contract }
 
@@ -85,7 +85,7 @@ Additionally, from the **Advanced Configurations** menu, you can change the EVM 
 
 For this example, no additional configurations are needed. To compile the `MyToken.sol` contract, simply click on the **Compile MyToken.sol** contract. If the compilation was successful, you'll see a green check mark appear on the plugin panel next to the **Solidity compiler** plugin.
 
-![The Solidity compiler plugin shown in the side panel in Remix.](/images/builders/ethereum/dev-env/remix/remix-6.webp)
+![The Solidity compiler plugin shown in the side panel in Remix.](/images/builders/ethereum/dev-env/remix/remix-5.webp)
 
 ### Debug Compilation Errors {: #debug-compilation-errors }
 
@@ -93,11 +93,11 @@ If you tried to compile your smart contract but there was an error or warning, y
 
 For example, if you only provided the token name to the ERC-20 constructor but forgot the token symbol and tried to compile the contract, an error would appear in the side panel. You can scroll down to read the error, and you'll see that there is also an **ASK GPT** button. To get help debugging the issue, you can click on **ASK GPT**, and a response will be returned in the Remix terminal that will guide you in the right direction to try and fix the issue. If you need additional help, you can go straight to the source and ask [ChatGPT](https://chatgpt.com/){target=\_blank} directly.
 
-![An error message shown in the side panel for the Solidity compiler plugin with an ASK GPT button for debugging.](/images/builders/ethereum/dev-env/remix/remix-7.webp)
+![An error message shown in the side panel for the Solidity compiler plugin with an ASK GPT button for debugging.](/images/builders/ethereum/dev-env/remix/remix-6.webp)
 
 Once you successfully fix the issue and recompile the contract, you'll see a green check mark appear on the plugin panel next to the **Solidity compiler** plugin.
 
-![The green check mark next to the Solidity compiler plugin in the plugin panel.](/images/builders/ethereum/dev-env/remix/remix-8.webp)
+![The green check mark next to the Solidity compiler plugin in the plugin panel.](/images/builders/ethereum/dev-env/remix/remix-7.webp)
 
 ## Deploy a Solidity Smart Contract {: #deploy-a-solidity-smart-contract }
 
@@ -123,7 +123,7 @@ For this example, MetaMask will be used. You should already have MetaMask instal
 
 From the **ENVIRONMENT** dropdown, select **Injected Provider - MetaMask**.
 
-![The environment dropdown on the Deploy and run transactions side panel expanded to reveal all of the available options.](/images/builders/ethereum/dev-env/remix/remix-9.webp)
+![The environment dropdown on the Deploy and run transactions side panel expanded to reveal all of the available options.](/images/builders/ethereum/dev-env/remix/remix-8.webp)
 
 MetaMask will pop up automatically and prompt you to connect to Remix. You'll need to:
 
@@ -131,11 +131,11 @@ MetaMask will pop up automatically and prompt you to connect to Remix. You'll ne
 2. Click **Next**
 3. Click **Connect** to connect your account to Remix
 
-![Two MetaMask screens that you must go through to connect to Remix: one that prompts you to choose an account to connect to and another that grants Remix permissions.](/images/builders/ethereum/dev-env/remix/remix-10.webp)
+![Two MetaMask screens that you must go through to connect to Remix: one that prompts you to choose an account to connect to and another that grants Remix permissions.](/images/builders/ethereum/dev-env/remix/remix-9.webp)
 
 Once you've connected MetaMask to Remix, the side panel will update to reveal the network and account you're connected to. For a Moonbeam development node, you should see **Custom (1281) network**.
 
-![The Deploy and run transactions side panel in Remix showing the environment connected to MetaMask, the connected network as 1281, and the connected account address.](/images/builders/ethereum/dev-env/remix/remix-11.webp)
+![The Deploy and run transactions side panel in Remix showing the environment connected to MetaMask, the connected network as 1281, and the connected account address.](/images/builders/ethereum/dev-env/remix/remix-10.webp)
 
 ### Deploy the Contract to Moonbeam {: #deploy-the-contract-to-moonbeam }
 
@@ -151,7 +151,7 @@ Now that you've connected your wallet, you're ready to deploy the contract. Sinc
 8. Click **transact** to send the deployment transaction
 9. MetaMask will pop up, and you can click **Confirm** to deploy the contract
 
-![The Deploy and run transactions side panel completely filled out to perform a contract deployment.](/images/builders/ethereum/dev-env/remix/remix-12.webp)
+![The Deploy and run transactions side panel completely filled out to perform a contract deployment.](/images/builders/ethereum/dev-env/remix/remix-11.webp)
 
 Once the transaction has been deployed, you'll see details about the deployment transaction in the Remix terminal. Additionally, the contract will appear under the **Deployed Contracts** section of the side panel.
 
@@ -171,7 +171,7 @@ If you expand the **MYTOKEN** contract dropdown, you'll be able to see all of th
 
 For example, if you wanted to call the `totalSupply` function, you wouldn't need to sign a transaction, as you'd get a response right away.
 
-![A view of the functions available in the deployed ERC-20 contract and the response from calling the totalSupply function.](/images/builders/ethereum/dev-env/remix/remix-13.webp)
+![A view of the functions available in the deployed ERC-20 contract and the response from calling the totalSupply function.](/images/builders/ethereum/dev-env/remix/remix-12.webp)
 
 On the other hand, if you call the `approve` function, which will approve an account as a spender of a given amount of MYTOK tokens, you'll need to submit the approval in MetaMask. To test this out, you can take the following steps:
 
@@ -180,7 +180,7 @@ On the other hand, if you call the `approve` function, which will approve an acc
 3. Press **transact**
 4. MetaMask will pop up and you'll need to review the details of the approval and submit the approval
 
-![The inputs for the approve function of the ERC-20 contract and the MetaMask pop-up for the approval.](/images/builders/ethereum/dev-env/remix/remix-14.webp)
+![The inputs for the approve function of the ERC-20 contract and the MetaMask pop-up for the approval.](/images/builders/ethereum/dev-env/remix/remix-13.webp)
 
 To view your balance or approvals, or transfer MYTOKs, you can add the MYTOK to your wallet. For information on how to add a token to MetaMask, you can refer to the [Add an ERC-20 Token](/tokens/connect/metamask/#add-erc20){target=\_blank} section of [our MetaMask documentation](/tokens/connect/metamask/){target=\_blank}.
 
