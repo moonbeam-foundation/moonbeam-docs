@@ -1,6 +1,6 @@
 networks:
   development:
-    build_tag: v0.47.1
+    build_tag: v0.47.2
     tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.47.2-3900-b897
     rpc_url: http://127.0.0.1:9944
     wss_url: ws://127.0.0.1:9944
