@@ -10294,9 +10294,9 @@ Using Docker enables you to spin up a node in a matter of seconds. Once you have
     The tail end of the console log should look like this:
 
     <div id="termynal" data-termynal>
-  <span data-ty="input"><span class="file-path"></span>docker pull moonbeamfoundation/moonbeam:v0.47.0</span>
+  <span data-ty="input"><span class="file-path"></span>docker pull moonbeamfoundation/moonbeam:v0.47.1</span>
   <br>
-  <span data-ty>v0.47.0: Pulling from moonbeamfoundation/moonbeam
+  <span data-ty>v0.47.1: Pulling from moonbeamfoundation/moonbeam
     <br> b0a0cf830b12: Pull complete
     <br> fbff687640dd: Pull complete
     <br> 58ea427410e2: Pull complete
@@ -10305,8 +10305,8 @@ Using Docker enables you to spin up a node in a matter of seconds. Once you have
     <br> 128693ce218e: Pull complete
     <br> a3ac90b88463: Pull complete
     <br> Digest: sha256:86421aca2381265cd2e5283cb98705e24be0bc92a73937363f79d9d6e0d62088
-    <br> Status: Downloaded newer image for moonbeamfoundation/moonbeam:v0.47.0
-    <br> docker.io/moonbeamfoundation/moonbeam:v0.47.0
+    <br> Status: Downloaded newer image for moonbeamfoundation/moonbeam:v0.47.1
+    <br> docker.io/moonbeamfoundation/moonbeam:v0.47.1
     <br> Status: Downloaded newer image for moonbeamfoundation/moonbeam:v0.46.0
     <br> docker.io/moonbeamfoundation/moonbeam:v0.46.0
   </span>
@@ -10357,13 +10357,13 @@ If successful, you should see an output showing an idle state waiting for blocks
 
 <div id="termynal" data-termynal>
   <span data-ty="input"><span class="file-path"></span>docker run --rm --name moonbeam_development --network host \
-    <br> moonbeamfoundation/moonbeam:v0.47.0 \
+    <br> moonbeamfoundation/moonbeam:v0.47.1 \
     <br> --dev --rpc-external
   </span>
   <br>
   <span data-ty>CLI parameter `--execution` has no effect anymore and will be removed in the future!
     <br> 2025-07-10 09:04:26 Moonbeam Parachain Collator
-    <br> 2025-07-10 09:04:26 ✌️  version 0.47.0-d7df89e7161
+    <br> 2025-07-10 09:04:26 ✌️  version 0.47.1-d7df89e7161
     <br> 2025-07-10 09:04:26 ❤️  by PureStake, 2019-2025
     <br> 2025-07-10 09:04:26 📋 Chain specification: Moonbase Development Testnet
     <br> 2025-07-10 09:04:26 🏷  Node name: black-and-white-sticks-9174
@@ -10491,7 +10491,7 @@ You should see an output that looks like the following, showing an idle state wa
   <span data-ty="input"><span class="file-path"></span>./target/release/moonbeam --dev</span>
   <br>
   <span data-ty> 2025-07-10 09:04:26 Moonbeam Parachain Collator
-    <br> 2025-07-10 09:04:26 ✌️  version 0.47.0-d7df89e7161
+    <br> 2025-07-10 09:04:26 ✌️  version 0.47.1-d7df89e7161
     <br> 2025-07-10 09:04:26 ❤️  by PureStake, 2019-2025
     <br> 2025-07-10 09:04:26 📋 Chain specification: Moonbase Development Testnet
     <br> 2025-07-10 09:04:26 🏷  Node name: black-and-white-sticks-9174
@@ -16427,7 +16427,7 @@ Not all runtime upgrades are released on each network, as sometimes after releas
 |                                 [3701](https://forum.moonbeam.network/t/runtime-rt3700-schedule/2129){target=\_blank}                                  |         [11426910](https://moonbeam.subscan.io/block/11426910)         | [12003279](https://moonriver.subscan.io/block/12003279){target=\_blank} | [12242104](https://moonbase.subscan.io/block/12242104){target=\_blank} |
 | [3702](https://forum.moonbeam.network/t/proposals-mr81-mb118-authorize-upgrade-to-rt3702-on-moonriver-and-moonbeam-via-whitelist/2173){target=\_blank} | [11499659](https://moonbeam.subscan.io/block/11499659){target=\_blank} | [12156948](https://moonriver.subscan.io/block/12156948){target=\_blank} | [12683255](https://moonbase.subscan.io/block/12683255){target=\_blank} |
 |                                 [3800](https://forum.moonbeam.network/t/runtime-rt3800-schedule/2188){target=\_blank}                                  | [12120762](https://moonbeam.subscan.io/block/12120762){target=\_blank} | [12540836](https://moonriver.subscan.io/block/12540836){target=\_blank} | [12853655](https://moonbase.subscan.io/block/12853655){target=\_blank} |
-|                                 [3900](https://forum.moonbeam.network/t/runtime-rt3900-schedule/2262){target=\_blank}                                  |                                   -                                    |                                    -                                    | [13744972](https://moonbase.subscan.io/block/13744972){target=\_blank} |
+|                                 [3900](https://forum.moonbeam.network/t/runtime-rt3900-schedule/2262){target=\_blank}                                  |                                   -                                    | [13423617](https://moonriver.subscan.io/block/13423617){target=\_blank} | [13744972](https://moonbase.subscan.io/block/13744972){target=\_blank} |
 --- END CONTENT ---
 
 Doc-Content: https://docs.moonbeam.network/builders/ethereum/canonical-contracts/
