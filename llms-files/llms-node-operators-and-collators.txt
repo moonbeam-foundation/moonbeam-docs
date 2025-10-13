@@ -1597,7 +1597,7 @@ If you want to run an RPC endpoint, connect to Polkadot.js Apps, or run your own
 
     === "Linux"
 
-        ```bash hl_lines="10"
+        ```bash hl_lines="11"
         docker run --network="host" -v "{{ networks.moonbeam.node_directory }}:/data" \
         -u $(id -u ${USER}):$(id -g ${USER}) \
         moonbeamfoundation/moonbeam:{{ networks.moonbeam.parachain_release_tag }} \
@@ -1616,7 +1616,7 @@ If you want to run an RPC endpoint, connect to Polkadot.js Apps, or run your own
 
     === "MacOS"
 
-        ```bash hl_lines="9"
+        ```bash hl_lines="10"
         docker run -p 9944:9944 -v "/var/lib/moonbeam-data:/data" \
         -u $(id -u ${USER}):$(id -g ${USER}) \
         moonbeamfoundation/moonbeam:{{ networks.moonbeam.parachain_release_tag }} \
@@ -1644,7 +1644,7 @@ There are additional flags you can use to configure the pool size, query timeout
 
     === "Linux"
 
-        ```bash hl_lines="11"
+        ```bash hl_lines="12"
         docker run --network="host" -v "{{ networks.moonbeam.node_directory }}:/data" \
         -u $(id -u ${USER}):$(id -g ${USER}) \
         moonbeamfoundation/moonbeam:{{ networks.moonbeam.parachain_release_tag }} \
@@ -1664,7 +1664,7 @@ There are additional flags you can use to configure the pool size, query timeout
 
     === "MacOS"
 
-        ```bash hl_lines="9"
+        ```bash hl_lines="10"
         docker run -p 9944:9944 -v "/var/lib/moonbeam-data:/data" \
         -u $(id -u ${USER}):$(id -g ${USER}) \
         moonbeamfoundation/moonbeam:{{ networks.moonbeam.parachain_release_tag }} \
