@@ -214,7 +214,7 @@ For an overview of the flags used in the following start-up commands, plus addit
 
     === "Linux"
 
-        ```bash hl_lines="10"
+        ```bash hl_lines="11"
         docker run --network="host" -v "{{ networks.moonbeam.node_directory }}:/data" \
         -u $(id -u ${USER}):$(id -g ${USER}) \
         moonbeamfoundation/moonbeam:{{ networks.moonbeam.parachain_release_tag }} \
@@ -233,7 +233,7 @@ For an overview of the flags used in the following start-up commands, plus addit
 
     === "MacOS"
 
-        ```bash hl_lines="9"
+        ```bash hl_lines="10"
         docker run -p 9944:9944 -v "/var/lib/moonbeam-data:/data" \
         -u $(id -u ${USER}):$(id -g ${USER}) \
         moonbeamfoundation/moonbeam:{{ networks.moonbeam.parachain_release_tag }} \
@@ -255,7 +255,7 @@ For an overview of the flags used in the following start-up commands, plus addit
 
     === "Linux"
 
-        ```bash hl_lines="11"
+        ```bash hl_lines="12"
         docker run --network="host" -v "{{ networks.moonbeam.node_directory }}:/data" \
         -u $(id -u ${USER}):$(id -g ${USER}) \
         moonbeamfoundation/moonbeam:{{ networks.moonbeam.parachain_release_tag }} \
@@ -275,7 +275,7 @@ For an overview of the flags used in the following start-up commands, plus addit
 
     === "MacOS"
 
-        ```bash hl_lines="9"
+        ```bash hl_lines="10"
         docker run -p 9944:9944 -v "/var/lib/moonbeam-data:/data" \
         -u $(id -u ${USER}):$(id -g ${USER}) \
         moonbeamfoundation/moonbeam:{{ networks.moonbeam.parachain_release_tag }} \
