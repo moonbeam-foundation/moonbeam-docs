@@ -113,6 +113,7 @@ For an overview of the flags used in the following start-up commands, plus addit
         --state-pruning archive \
         --trie-cache-size 1073741824 \
         --db-cache INSERT_RAM_IN_MB \
+        --pool-type=fork-aware \
         -- \
         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
         --sync fast
@@ -130,6 +131,7 @@ For an overview of the flags used in the following start-up commands, plus addit
         --state-pruning archive \
         --trie-cache-size 1073741824 \
         --db-cache INSERT_RAM_IN_MB \
+        --pool-type=fork-aware \
         -- \
         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
         --sync fast
@@ -147,6 +149,7 @@ For an overview of the flags used in the following start-up commands, plus addit
         --state-pruning archive \
         --trie-cache-size 1073741824 \
         --db-cache INSERT_RAM_IN_MB \
+        --pool-type=fork-aware \
         -- \
         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
         --sync fast
@@ -165,6 +168,7 @@ For an overview of the flags used in the following start-up commands, plus addit
         --name "INSERT_YOUR_NODE_NAME" \
         --state-pruning archive \
         --trie-cache-size 1073741824 \
+        --pool-type=fork-aware \
         -- \
         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
         --sync fast
@@ -181,6 +185,7 @@ For an overview of the flags used in the following start-up commands, plus addit
         --name "INSERT_YOUR_NODE_NAME" \
         --state-pruning archive \
         --trie-cache-size 1073741824 \
+        --pool-type=fork-aware \
         -- \
         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
         --sync fast
@@ -197,51 +202,13 @@ For an overview of the flags used in the following start-up commands, plus addit
         --name "INSERT_YOUR_NODE_NAME" \
         --state-pruning archive \
         --trie-cache-size 1073741824 \
+        --pool-type=fork-aware \
         -- \
         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
         --sync fast
         ```
 
 --8<-- 'text/node-operators/networks/run-a-node/external-access.md'
-
-??? code "Example start-up command for Moonbeam"
-
-    === "Linux"
-
-        ```bash hl_lines="10"
-        docker run --network="host" -v "{{ networks.moonbeam.node_directory }}:/data" \
-        -u $(id -u ${USER}):$(id -g ${USER}) \
-        moonbeamfoundation/moonbeam:{{ networks.moonbeam.parachain_release_tag }} \
-        --base-path /data \
-        --chain {{ networks.moonbeam.chain_spec }} \
-        --name "INSERT_YOUR_NODE_NAME" \
-        --state-pruning archive \
-        --trie-cache-size 1073741824 \
-        --db-cache INSERT_RAM_IN_MB \
-        --unsafe-rpc-external \
-        -- \
-        --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
-        --sync fast
-        ```
-
-    === "MacOS"
-
-        ```bash hl_lines="9"
-        docker run -p 9944:9944 -v "/var/lib/moonbeam-data:/data" \
-        -u $(id -u ${USER}):$(id -g ${USER}) \
-        moonbeamfoundation/moonbeam:{{ networks.moonbeam.parachain_release_tag }} \
-        --base-path /data \
-        --chain moonbeam \
-        --name "INSERT_YOUR_NODE_NAME" \
-        --state-pruning archive \
-        --trie-cache-size 1073741824 \
-        --unsafe-rpc-external \
-        -- \
-        --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
-        --sync fast
-        ```
-
---8<-- 'text/node-operators/networks/run-a-node/sql-backend.md'
 
 ??? code "Example start-up command for Moonbeam"
 
@@ -256,9 +223,9 @@ For an overview of the flags used in the following start-up commands, plus addit
         --name "INSERT_YOUR_NODE_NAME" \
         --state-pruning archive \
         --trie-cache-size 1073741824 \
-        # This is a comment
         --db-cache INSERT_RAM_IN_MB \
-        --frontier-backend-type sql \
+        --pool-type=fork-aware \
+        --unsafe-rpc-external \
         -- \
         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
         --sync fast
@@ -266,7 +233,7 @@ For an overview of the flags used in the following start-up commands, plus addit
 
     === "MacOS"
 
-        ```bash hl_lines="9"
+        ```bash hl_lines="10"
         docker run -p 9944:9944 -v "/var/lib/moonbeam-data:/data" \
         -u $(id -u ${USER}):$(id -g ${USER}) \
         moonbeamfoundation/moonbeam:{{ networks.moonbeam.parachain_release_tag }} \
@@ -275,6 +242,49 @@ For an overview of the flags used in the following start-up commands, plus addit
         --name "INSERT_YOUR_NODE_NAME" \
         --state-pruning archive \
         --trie-cache-size 1073741824 \
+        --pool-type=fork-aware \
+        --unsafe-rpc-external \
+        -- \
+        --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
+        --sync fast
+        ```
+
+--8<-- 'text/node-operators/networks/run-a-node/sql-backend.md'
+
+??? code "Example start-up command for Moonbeam"
+
+    === "Linux"
+
+        ```bash hl_lines="12"
+        docker run --network="host" -v "{{ networks.moonbeam.node_directory }}:/data" \
+        -u $(id -u ${USER}):$(id -g ${USER}) \
+        moonbeamfoundation/moonbeam:{{ networks.moonbeam.parachain_release_tag }} \
+        --base-path /data \
+        --chain {{ networks.moonbeam.chain_spec }} \
+        --name "INSERT_YOUR_NODE_NAME" \
+        --state-pruning archive \
+        --trie-cache-size 1073741824 \
+        # This is a comment
+        --db-cache INSERT_RAM_IN_MB \
+        --pool-type=fork-aware \
+        --frontier-backend-type sql \
+        -- \
+        --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
+        --sync fast
+        ```
+
+    === "MacOS"
+
+        ```bash hl_lines="10"
+        docker run -p 9944:9944 -v "/var/lib/moonbeam-data:/data" \
+        -u $(id -u ${USER}):$(id -g ${USER}) \
+        moonbeamfoundation/moonbeam:{{ networks.moonbeam.parachain_release_tag }} \
+        --base-path /data \
+        --chain moonbeam \
+        --name "INSERT_YOUR_NODE_NAME" \
+        --state-pruning archive \
+        --trie-cache-size 1073741824 \
+        --pool-type=fork-aware \
         --frontier-backend-type sql \
         -- \
         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
@@ -336,6 +346,7 @@ Now you can run your Docker start up commands:
         --collator \
         --trie-cache-size 1073741824 \
         --db-cache INSERT_RAM_IN_MB \
+        --pool-type=fork-aware \
         -- \
         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
         --sync fast
@@ -353,6 +364,7 @@ Now you can run your Docker start up commands:
         --collator \
         --trie-cache-size 1073741824 \
         --db-cache INSERT_RAM_IN_MB \
+        --pool-type=fork-aware \
         -- \
         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
         --sync fast
@@ -370,6 +382,7 @@ Now you can run your Docker start up commands:
         --collator \
         --trie-cache-size 1073741824 \
         --db-cache INSERT_RAM_IN_MB \
+        --pool-type=fork-aware \
         -- \
         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
         --sync fast
@@ -388,6 +401,7 @@ Now you can run your Docker start up commands:
         --name "INSERT_YOUR_NODE_NAME" \
         --collator \
         --trie-cache-size 1073741824 \
+        --pool-type=fork-aware \
         -- \
         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
         --sync fast
@@ -404,6 +418,7 @@ Now you can run your Docker start up commands:
         --name "INSERT_YOUR_NODE_NAME" \
         --collator \
         --trie-cache-size 1073741824 \
+        --pool-type=fork-aware \
         -- \
         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
         --sync fast
@@ -420,6 +435,7 @@ Now you can run your Docker start up commands:
         --name "INSERT_YOUR_NODE_NAME" \
         --collator \
         --trie-cache-size 1073741824 \
+        --pool-type=fork-aware \
         -- \
         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
         --sync fast
