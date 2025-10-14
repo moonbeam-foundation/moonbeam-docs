@@ -171,61 +171,185 @@ jobs:
     needs: gather-and-send
     environment: n8n-receiving
     steps:
-      
-      # 1. Checkout repository (fix for gh pr comment)
-      
+      # 1. Checkout repository
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      
       # 2. Download n8n response
-      
       - name: Download n8n response
         uses: actions/download-artifact@v4
         with:
           name: n8n-response
           path: .
 
-      
-      # 3. Validate receiving token from n8n response
-      
+
+      # 3. Validate receiving token
       - name: Validate receiving token
         env:
           EXPECTED_TOKEN: ${{ secrets.N8N_RECEIVING_TOKEN }}
         run: |
           RECEIVED_TOKEN=$(jq -r 'if type=="array" then .[0].receiving_token else .receiving_token end // empty' response_body.json)
-
           if [ -z "$RECEIVED_TOKEN" ]; then
             echo "No receiving_token provided by n8n"
             exit 1
           fi
-
           if [ "$RECEIVED_TOKEN" != "$EXPECTED_TOKEN" ]; then
             echo "Receiving token mismatch"
             exit 1
           fi
-
           echo "✅ Receiving token validated successfully"
 
-      # 4. Parse verification claims and post PR comments
-    
-      - name: Post PR comments
+      # 4. Post inline code suggestions (robust; supports deletions)
+      - name: Post inline suggestions via API (final)
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          RESPONSE_BODY=$(cat response_body.json)
-          PR_NUMBER=$(echo "$RESPONSE_BODY" | jq -r ".pr_number")
-          COMMENTS_JSON=$(echo "$RESPONSE_BODY" | jq -r ".comment")
+          set -euo pipefail
 
-          if [ -z "$COMMENTS_JSON" ] || [ "$COMMENTS_JSON" == "null" ]; then
-            echo "No comments to post."
+          RESPONSE_BODY=$(cat response_body.json)
+          OBJ=$(echo "$RESPONSE_BODY" | jq -c 'if type=="array" then .[0] else . end')
+
+          STATUS=$(echo "$OBJ" | jq -r '.status // empty')
+          if [ "$STATUS" != "completed" ]; then
+            echo "n8n output not completed (status='$STATUS')"
+            jq . response_body.json || true
+            exit 1
+          fi
+
+          OWNER=$(echo "$OBJ" | jq -r '.repo_owner // empty')
+          REPO=$(echo "$OBJ" | jq -r '.repo_name // empty')
+          PR=$(echo "$OBJ" | jq -r '.pr_number // empty')
+          if [ -z "$OWNER" ] || [ -z "$REPO" ] || [ -z "$PR" ]; then
+            echo "Missing repo context (owner='$OWNER' repo='$REPO' pr='$PR')"
+            jq . response_body.json || true
+            exit 1
+          fi
+
+          echo "Posting inline suggestions to $OWNER/$REPO#${PR}"
+
+          posted=0
+          echo "$OBJ" | jq -c '.prepared_comment_payloads // [] | .[]' | while read -r PAYLOAD; do
+            # Ensure commit_id exists (avoid 422)
+            CID=$(echo "$PAYLOAD" | jq -r '.commit_id // empty')
+            if [ -z "$CID" ]; then
+              echo "⚠️  Skipping payload without commit_id"
+              continue
+            fi
+
+            # If body is empty/whitespace, replace with an empty suggestion block (deletion)
+            BODY_TXT=$(echo "$PAYLOAD" | jq -r '.body // ""')
+            if [ -z "${BODY_TXT//[$'\t\r\n ']}" ]; then
+              PAYLOAD=$(echo "$PAYLOAD" | jq --rawfile emptySug <(printf '```suggestion\n```\n') '.body = $emptySug')
+            fi
+
+            RESP=$(curl -sS -w "%{http_code}" -X POST \
+              -H "Authorization: Bearer ${GH_TOKEN}" \
+              -H "Accept: application/vnd.github.v3+json" \
+              "https://api.github.com/repos/${OWNER}/${REPO}/pulls/${PR}/comments" \
+              -d "$PAYLOAD")
+
+            CODE="${RESP:(-3)}"
+            BODY="${RESP%$CODE}"
+
+            if [[ "$CODE" -lt 200 || "$CODE" -ge 300 ]]; then
+              echo "❌ Failed to post suggestion (HTTP $CODE)"
+              echo "$BODY"
+              exit 1
+            fi
+            posted=$((posted+1))
+            echo "✅ Posted suggestion #$posted"
+          done
+
+          echo "—— Skipped upstream (for visibility) ——"
+          echo "$OBJ" | jq -r '.skipped_comments // [] | .[] | "\(.file_path // "-")#L\(.line_number // "-"): \(.reason // "-")"'
+
+          echo "✅ Done. Suggestions posted."
+
+      - name: Post verification comments
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+
+          RESPONSE_BODY=$(cat response_body.json)
+
+          # Extract verification review markdown robustly from many shapes
+          VERIFS=$(
+            echo "$RESPONSE_BODY" | jq -c '
+              (if type=="array" then .[0] else . end) as $o
+              | def to_arr(x):
+                  if (x|type) == "array" then x
+                  elif (x|type) == "object" then [x]
+                  elif (x|type) == "string" then (try (x|fromjson) catch [])
+                  else [] end;
+
+              [
+                # Common direct locations
+                (to_arr($o.reviews) // []) as $r1
+                  | ($r1 | map(select(((.type? | tostring | ascii_downcase) == "verification")))
+                            | map(.formattedReview // .review // .body // .comment // .text // .content // "")),
+                (to_arr($o.review) // []) as $r2
+                  | ($r2 | map(select(((.type? | tostring | ascii_downcase) == "verification")))
+                            | map(.formattedReview // .review // .body // .comment // .text // .content // "")),
+
+                # Anywhere in the object tree: find objects with type=verification
+                ($o | .. | objects
+                  | select(((.type? | tostring | ascii_downcase) == "verification"))
+                  | (.formattedReview // .review // .body // .comment // .text // .content // ""))
+
+              ]
+              | flatten
+              | map(select(type == "string" and (.|length) > 0))
+              | unique
+            '
+          )
+
+          COUNT=$(echo "$VERIFS" | jq 'length')
+          if [ "$COUNT" -eq 0 ]; then
+            echo "No verification reviews found; skipping."
             exit 0
           fi
 
-          echo "$COMMENTS_JSON" | jq -c '.' | jq -c '.[]' | while read -r item; do
-            FORMATTED_REVIEW=$(echo "$item" | jq -r '.formattedReview')
-            if [ -n "$FORMATTED_REVIEW" ] && [ "$FORMATTED_REVIEW" != "null" ]; then
-              echo "Posting feedback to PR #$PR_NUMBER..."
-              gh pr comment "$PR_NUMBER" --body "$FORMATTED_REVIEW"
+          # Extract repo context (robust to array/object root)
+          OWNER=$(echo "$RESPONSE_BODY" | jq -r 'if type=="array" then .[0].repo_owner else .repo_owner end // empty')
+          REPO=$(echo "$RESPONSE_BODY" | jq -r 'if type=="array" then .[0].repo_name else .repo_name end // empty')
+          PR=$(echo "$RESPONSE_BODY" | jq -r 'if type=="array" then .[0].pr_number else .pr_number end // empty')
+
+          if [ -z "$OWNER" ] || [ -z "$REPO" ] || [ -z "$PR" ]; then
+            echo "Missing repo context; skipping verification comments."
+            exit 0
+          fi
+
+          echo "Found $COUNT verification review(s). Preview:"
+          echo "$VERIFS" | jq -r 'to_entries[] | "\(.key): " + (.value | .[0:160] + (if length>160 then "…" else "" end))'
+
+          # Post each block as a PR comment (not inline)
+          echo "$VERIFS" | jq -r '.[] + "\u0000"' | while IFS= read -r -d '' BODY; do
+            # Skip truly empty
+            if [ -z "${BODY//[$'\t\r\n ']}" ]; then
+              echo "Skipping empty verification body"
+              continue
             fi
+
+            RESP=$(curl -sS -w "%{http_code}" -X POST \
+              -H "Authorization: Bearer ${GH_TOKEN}" \
+              -H "Accept: application/vnd.github.v3+json" \
+              "https://api.github.com/repos/${OWNER}/${REPO}/issues/${PR}/comments" \
+              -d "$(jq -nc --arg b "$BODY" '{body:$b}')")
+
+            CODE="${RESP:(-3)}"
+            RBODY="${RESP%$CODE}"
+
+            if [[ "$CODE" -lt 200 || "$CODE" -ge 300 ]]; then
+              echo "❌ Failed to post verification comment (HTTP $CODE)"
+              echo "$RBODY"
+              exit 1
+            fi
+
+            url=$(echo "$RBODY" | jq -r '.html_url // empty')
+            echo "✅ Posted verification review ${url:+→ $url}"
           done
+
+          echo "✅ Done posting verification reviews."
+
+     
