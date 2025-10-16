@@ -1,9 +1,9 @@
 <div id="termynal" data-termynal>
     <span data-ty="input"><span class="file-path"></span>docker run --rm --name moonbeam_development -p 9944:9944 \</span>
-    <span data-ty>moonbeamfoundation/moonbeam:v0.47.2 \</span>
+    <span data-ty>moonbeamfoundation/moonbeam:v0.47.3 \</span>
     <span data-ty>--dev --rpc-external</span>
     <span data-ty>2025-07-10 09:04:26 Moonbeam Parachain Collator</span>
-    <span data-ty>2025-07-10 09:04:26 ✌️  version 0.47.2-d7df89e7161</span>
+    <span data-ty>2025-07-10 09:04:26 ✌️  version 0.47.3-d7df89e7161</span>
     <span data-ty>2025-07-10 09:04:26 ❤️  by PureStake, 2019-2025</span>
     <span data-ty>2025-07-10 09:04:26 📋 Chain specification: Moonbase Development Testnet</span>
     <span data-ty>2025-07-10 09:04:26 🏷  Node name: truthful-volcano-8206</span>
