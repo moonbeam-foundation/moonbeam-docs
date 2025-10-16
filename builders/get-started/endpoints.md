@@ -31,7 +31,6 @@ If you are looking for an API provider suitable for production use, you can chec
 You can create your own endpoint suitable for development or production use using any of the following API providers:
 
 - [1RPC](#1rpc)
-- [Blast](#blast)
 - [Chainstack](#chainstack)
 - [dRPC](#drpc)
 - [Dwellir](#dwellir)
@@ -50,20 +49,6 @@ Head over to [1RPC](https://www.1rpc.io){target=_blank} official site to set it 
 
 ![1RPC](/images/builders/get-started/endpoints/endpoints-1.webp)
 
-### Blast {: #blast}
-
-As a user of [Blast](https://blastapi.io){target=_blank} powered by Bware Labs, you will be able to obtain your own free endpoint allowing you to interact with Moonbeam, just by performing a few simple clicks within a user-friendly interface.
-
-To get started, you'll need to head to [Blast](https://blastapi.io){target=_blank}, and launch the app, and connect your wallet. Once your wallet is connected you will be able to create a project and then generate your own custom endpoint. To generate an endpoint:
-
-1. Create a new project
-2. Click on **Available Endpoints**
-3. Select Moonbeam network for your endpoint
-4. Confirm the selected network and Press **Activate**
-5. You'll now see Moonbeam under **Active Endpoints**. Click on the network and you'll see your custom RPC and WSS endpoints on the next page
-
-![Bware Labs](/images/builders/get-started/endpoints/endpoints-2.webp)
-
 ### Chainstack {: #chainstack }
 
 [Chainstack](https://chainstack.com/){target=_blank}, the Web3 infrastructure provider, offers free and paid endpoints for Moonbeam. The free Developer plan starts with 3 million monthly requests and 25 requests per second (RPS). You can easily scale with the paid plans.
@@ -74,7 +59,7 @@ To start with a free Developer plan endpoint, sign up using an email or any soci
 2. Sign up
 3. Deploy a Moonbeam node
 
-![Chainstack](/images/builders/get-started/endpoints/endpoints-3.webp)
+![Chainstack](/images/builders/get-started/endpoints/endpoints-2.webp)
 
 ### dRPC.org {: #drpc }
 
@@ -97,7 +82,7 @@ To get started with a developer endpoint or dedicated node, you'll need to conta
 1. Visit [Dwellir](https://www.dwellir.com/contact){target=_blank}
 2. Submit your **email** and your node request
 
-![Dwellir](/images/builders/get-started/endpoints/endpoints-4.webp)
+![Dwellir](/images/builders/get-started/endpoints/endpoints-3.webp)
 
 ### GetBlock {: #getblock }
 
@@ -112,7 +97,7 @@ Creating a new API/add-on based endpoint is simple, all you have to do is:
 3. Select **JSON-RPC** from the **API/Add-on** dropdown
 4. Click the **Get** button at the far right and you're all set to go! 
 
-![GetBlock](/images/builders/get-started/endpoints/endpoints-5.webp)
+![GetBlock](/images/builders/get-started/endpoints/endpoints-4.webp)
 
 ### Grove {: #grove }
 
@@ -125,7 +110,7 @@ Creating a new API/add-on based endpoint is simple, all you have to do is:
 
 Grove provides detailed analytics, request monitoring, and flexible rate limiting to help you optimize your application's performance.
 
-![Grove](/images/builders/get-started/endpoints/endpoints-6.webp)
+![Grove](/images/builders/get-started/endpoints/endpoints-5.webp)
 
 ### OnFinality {: #onfinality }
 
@@ -137,7 +122,7 @@ To create a custom OnFinality endpoint, go to [OnFinality](https://onfinality.io
 2. Select the network from the dropdown
 3. Your custom API endpoint will be generated automatically
 
-![OnFinality](/images/builders/get-started/endpoints/endpoints-7.webp)
+![OnFinality](/images/builders/get-started/endpoints/endpoints-6.webp)
 
 ### UnitedBloc {: #unitedbloc }
 
