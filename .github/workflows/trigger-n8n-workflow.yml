@@ -3,7 +3,12 @@ name: Trigger n8n Webhook with Complete PR Info
 on:
   pull_request:
     types: [opened, reopened]
-  workflow_dispatch: {} 
+  workflow_dispatch:
+    inputs:
+      pr_number:
+        description: "Pull request number to process (maintainer-triggered runs)"
+        required: true
+        type: string
 
 permissions:
   contents: write
@@ -11,24 +16,51 @@ permissions:
 
 jobs:
   gather-and-send:
+    # Manual dispatch is allowed, but we verify the actor has write access before continuing.
+    # Pull request runs still skip forks to avoid leaking secrets.
+    if: ${{ github.event_name == 'workflow_dispatch' || (github.event.pull_request != null && github.event.pull_request.head.repo.fork == false) }}
     runs-on: ubuntu-latest
     environment: n8n-sending
+    outputs:
+      filtered_file_count: ${{ steps.filter_files.outputs.file_count }}
+    env:
+      PR_NUMBER: ${{ github.event.pull_request.number || github.event.inputs.pr_number }}
+      IS_MANUAL_RUN: ${{ github.event_name == 'workflow_dispatch' }}
     steps:
-
-      # 1. Checkout repository
-
+      # Step 1: Checkout repository
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 2. Generate Run UUID
-
+      # Step 2: Generate unique run token
       - name: Generate Run UUID
         id: uuid
-        run: echo "run_token=$(uuidgen)" >> $GITHUB_OUTPUT
+        run: echo "run_token=$(uuidgen)" >> "$GITHUB_OUTPUT"
 
+      # Step 2b: Require dispatcher to have write/maintain/admin access
+      - name: Validate dispatcher permissions
+        if: ${{ github.event_name == 'workflow_dispatch' }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          ACTOR: ${{ github.actor }}
+        run: |
+          set -euo pipefail
+          PERMISSION=$(gh api \
+            -H "Accept: application/vnd.github+json" \
+            "repos/${REPO}/collaborators/${ACTOR}/permission" \
+            --jq '.permission // ""')
 
-      # 3. Pre-flight checks
+          case "$PERMISSION" in
+            admin|maintain|write)
+              echo "✅ ${ACTOR} has ${PERMISSION} permission."
+              ;;
+            *)
+              echo "❌ ${ACTOR} lacks write or maintain access (permission='${PERMISSION}')."
+              exit 1
+              ;;
+          esac
 
+      # Step 3: Pre-flight validation
       - name: Validate setup
         run: |
           if [[ -z "${{ secrets.GITHUB_TOKEN }}" ]]; then
@@ -36,8 +68,8 @@ jobs:
             exit 1
           fi
 
-          if [[ -z "${{ github.event.pull_request.number }}" ]]; then
-            echo "No PR number found in event payload."
+          if [[ -z "${PR_NUMBER}" ]]; then
+            echo "No PR number provided. For manual runs, supply pr_number input."
             exit 1
           fi
 
@@ -46,42 +78,144 @@ jobs:
             exit 1
           fi
 
-      # 4-6. Fetch PR metadata, files, commits
+          if [[ "${IS_MANUAL_RUN}" == "true" ]]; then
+            echo "ℹ️ Maintainer-triggered run for PR #${PR_NUMBER}"
+          fi
 
+      # Step 4: Fetch PR metadata, files, commits
       - name: Fetch PR metadata
         run: |
-          gh api repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }} > pr.json
+          gh api repos/${{ github.repository }}/pulls/${PR_NUMBER} > pr.json
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Fetch PR files
         run: |
-          gh api repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/files > files.json
+          gh api --paginate repos/${{ github.repository }}/pulls/${PR_NUMBER}/files --jq '.[]' | jq -s '.' > files.json
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Fetch PR commits
         run: |
-          gh api repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/commits > commits.json
+          gh api repos/${{ github.repository }}/pulls/${PR_NUMBER}/commits > commits.json
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # 7. Fetch PR diff and compress
-
-      - name: Fetch PR diff and compress
+      # Step 5: Download raw PR diff
+      - name: Fetch PR diff
         run: |
           curl -sSL \
             -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
             -H "Accept: application/vnd.github.v3.diff" \
-            "https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}" \
+            "https://api.github.com/repos/${{ github.repository }}/pulls/${PR_NUMBER}" \
             > pr.diff
 
+      # Step 6: Remove .ai and llms files from metadata
+      - name: Filter excluded files
+        id: filter_files
+        run: |
+          set -euo pipefail
+
+          python3 - <<'PY'
+          import json
+          import pathlib
+          import re
+          import sys
+
+          files_path = pathlib.Path("files.json")
+          try:
+              raw = files_path.read_text()
+          except FileNotFoundError:
+              print("files.json not found", file=sys.stderr)
+              sys.exit(1)
+
+          try:
+              data = json.loads(raw)
+          except json.JSONDecodeError as exc:
+              print(f"Unable to decode files.json as JSON: {exc}", file=sys.stderr)
+              print(raw)
+              data = []
+
+          if not isinstance(data, list):
+              print("files.json payload is not an array; logging contents and treating as empty list.")
+              print(raw)
+              data = []
+
+          pattern_ai_dir = re.compile(r'(^|/)\.ai(/|$)', re.IGNORECASE)
+          pattern_llms = re.compile(r'llms', re.IGNORECASE)
+
+          filtered = []
+          for item in data:
+              if not isinstance(item, dict):
+                  continue
+              filename = item.get("filename") or ""
+              status = (item.get("status") or "").lower()
+              if status == "removed":
+                  continue
+              if pattern_ai_dir.search(filename) or pattern_llms.search(filename):
+                  continue
+              filtered.append(item)
+
+          files_path.write_text(json.dumps(filtered))
+          pathlib.Path("file_count.txt").write_text(str(len(filtered)))
+          PY
+
+          FILE_COUNT=$(cat file_count.txt)
+          echo "file_count=${FILE_COUNT}" >> "$GITHUB_OUTPUT"
+          echo "Remaining files after filter: ${FILE_COUNT}"
+
+      # Step 7: Strip excluded paths from diff payload
+      - name: Filter diff to excluded paths
+        run: |
+          python3 - <<'PY'
+          import pathlib
+
+          diff_path = pathlib.Path("pr.diff")
+          if not diff_path.exists():
+              raise SystemExit("pr.diff missing")
+
+          def is_excluded(path: str) -> bool:
+              lower = path.lower()
+              if "/.ai/" in lower or lower.startswith(".ai/") or lower.endswith("/.ai"):
+                  return True
+              if "llms" in lower:
+                  return True
+              return False
+
+          out_lines = []
+          current_chunk = []
+          exclude_chunk = False
+
+          with diff_path.open("r", encoding="utf-8", errors="replace") as diff_file:
+              for line in diff_file:
+                  if line.startswith("diff --git "):
+                      if current_chunk and not exclude_chunk:
+                          out_lines.extend(current_chunk)
+                      current_chunk = [line]
+                      exclude_chunk = False
+                      parts = line.strip().split()
+                      if len(parts) >= 4:
+                          a_path = parts[2][2:]
+                          b_path = parts[3][2:]
+                          if is_excluded(a_path) or is_excluded(b_path):
+                              exclude_chunk = True
+                  else:
+                      current_chunk.append(line)
+
+          if current_chunk and not exclude_chunk:
+              out_lines.extend(current_chunk)
+
+          diff_path.write_text("".join(out_lines), encoding="utf-8")
+          PY
+
+      # Step 8: Compress & mask diff for payload
+      - name: Compress filtered diff
+        run: |
           gzip -c pr.diff > pr.diff.gz
           base64 -w 0 pr.diff.gz > diff.b64
           echo "::add-mask::$(cat diff.b64)"
 
-      # 8. Debug payload size
-
+      # Step 9: Inspect payload sizes for debugging
       - name: Debug payload size
         run: |
           echo "PR metadata size: $(stat -c%s pr.json) bytes"
@@ -89,34 +223,27 @@ jobs:
           echo "Commits metadata size: $(stat -c%s commits.json) bytes"
           echo "Compressed diff size: $(stat -c%s pr.diff.gz) bytes"
 
-      # 8b. Remove llms-related files before payload
-
-      - name: Remove llms-related files
-        run: |
-          jq 'map(select(.filename | test("llms"; "i") | not))' files.json > cleaned.json
-          mv cleaned.json files.json
-
-      # 9. Combine and send payload to n8n
-      
+      # Step 10: Send consolidated payload to n8n
       - name: Combine and send to n8n webhook
+        if: ${{ steps.filter_files.outputs.file_count != '0' }}
         env:
           N8N_WEBHOOK_URL: ${{ secrets.N8N_WEBHOOK_URL }}
           N8N_SENDING_TOKEN: ${{ secrets.N8N_SENDING_TOKEN }}
         run: |
-          set -e
+          set -euo pipefail
 
           jq -n \
             --slurpfile pr pr.json \
             --slurpfile files files.json \
             --slurpfile commits commits.json \
-            --arg diff_base64 "$(cat diff.b64)" \
+            --rawfile diff_base64 diff.b64 \
             --arg run_token "${{ steps.uuid.outputs.run_token }}" \
             --arg n8n_sending_token "$N8N_SENDING_TOKEN" \
             '{
               pr: $pr[0],
               files: $files[0],
               commits: $commits[0],
-              diff_base64: $diff_base64,
+              diff_base64: ($diff_base64 | gsub("\n"; "")),
               token: $run_token,
               n8n_sending_token: $n8n_sending_token
             }' > payload.json
@@ -153,9 +280,14 @@ jobs:
             exit 1
           fi
 
-      # 9b. Upload n8n response artifact
-      
+      # Step 11: Short-circuit when nothing qualifies
+      - name: No eligible files to send
+        if: ${{ steps.filter_files.outputs.file_count == '0' }}
+        run: echo "ℹ️ No eligible files after filtering llms/.ai paths. Skipping n8n send."
+
+      # Step 12: Archive n8n response for next job
       - name: Upload n8n response artifact
+        if: ${{ steps.filter_files.outputs.file_count != '0' }}
         uses: actions/upload-artifact@v4
         with:
           name: n8n-response
@@ -163,27 +295,24 @@ jobs:
           if-no-files-found: error
           retention-days: 1
 
-  
-  # Step 10 moved to a separate job under n8n-receiving env
-  
   receive-validate-and-comment:
     runs-on: ubuntu-latest
     needs: gather-and-send
+    if: ${{ needs.gather-and-send.result == 'success' && needs.gather-and-send.outputs.filtered_file_count != '0' }}
     environment: n8n-receiving
     steps:
-      # 1. Checkout repository
+      # Step 13: Re-checkout repo (fresh workspace)
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 2. Download n8n response
+      # Step 14: Retrieve n8n response artifact
       - name: Download n8n response
         uses: actions/download-artifact@v4
         with:
           name: n8n-response
           path: .
 
-
-      # 3. Validate receiving token
+      # Step 15: Confirm handshake token
       - name: Validate receiving token
         env:
           EXPECTED_TOKEN: ${{ secrets.N8N_RECEIVING_TOKEN }}
@@ -199,72 +328,143 @@ jobs:
           fi
           echo "✅ Receiving token validated successfully"
 
-      # 4. Post inline code suggestions (robust; supports deletions)
-      - name: Post inline suggestions via API (final)
+      # Step 16: Prepare grouped review batches
+      - name: Prepare batched review payloads
+        run: |
+          python3 - <<'PY'
+          import json
+          import pathlib
+
+          data = json.loads(pathlib.Path("response_body.json").read_text() or "null")
+          if isinstance(data, list):
+              data = data[0] if data else {}
+
+          payloads = data.get("prepared_comment_payloads") or []
+
+          def normalize(raw):
+              path = raw.get("path") or raw.get("file_path")
+              if not path:
+                  return None
+              body = (raw.get("body") or "").strip()
+              if not body:
+                  body = "```suggestion\n```\n"
+              comment = {"path": path, "body": body}
+
+              if "line" in raw and raw["line"] is not None:
+                  comment["line"] = raw["line"]
+                  if raw.get("side"):
+                      comment["side"] = raw["side"]
+                  if raw.get("start_line") is not None:
+                      comment["start_line"] = raw["start_line"]
+                      comment["start_side"] = raw.get("start_side", "RIGHT")
+              elif "position" in raw and raw["position"] is not None:
+                  comment["position"] = raw["position"]
+
+              commit_id = raw.get("commit_id")
+              return comment, commit_id
+
+          normalized = [normalize(raw) for raw in payloads]
+          normalized = [item for item in normalized if item is not None]
+          seen = set()
+          deduped = []
+          for comment, cid in normalized:
+              key = (cid or "", json.dumps(comment, sort_keys=True))
+              if key in seen:
+                  continue
+              seen.add(key)
+              deduped.append((comment, cid))
+
+          comments = [item[0] for item in deduped]
+          commit_ids = [item[1] for item in deduped]
+
+          chunk_size = 30
+          total = len(comments)
+          batches = []
+          for start in range(0, total, chunk_size):
+              chunk = comments[start:start + chunk_size]
+              summary = f"Automated style guide suggestions ({start + 1}-{start + len(chunk)} of {total})"
+              chunk_commit_ids = {cid for cid in commit_ids[start:start + chunk_size] if cid}
+              batch = {"body": summary, "comments": chunk}
+              if len(chunk_commit_ids) == 1:
+                  batch["commit_id"] = chunk_commit_ids.pop()
+              batches.append(batch)
+
+          output = {
+              "status": data.get("status"),
+              "owner": data.get("repo_owner"),
+              "repo": data.get("repo_name"),
+              "pr": data.get("pr_number"),
+              "batches": batches
+          }
+          pathlib.Path("review_batches.json").write_text(json.dumps(output, indent=2))
+          PY
+
+      # Step 17: Post grouped inline suggestions
+      - name: Post batched inline suggestions
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -euo pipefail
 
-          RESPONSE_BODY=$(cat response_body.json)
-          OBJ=$(echo "$RESPONSE_BODY" | jq -c 'if type=="array" then .[0] else . end')
-
-          STATUS=$(echo "$OBJ" | jq -r '.status // empty')
+          STATUS=$(jq -r '.status // empty' review_batches.json)
           if [ "$STATUS" != "completed" ]; then
             echo "n8n output not completed (status='$STATUS')"
             jq . response_body.json || true
             exit 1
           fi
 
-          OWNER=$(echo "$OBJ" | jq -r '.repo_owner // empty')
-          REPO=$(echo "$OBJ" | jq -r '.repo_name // empty')
-          PR=$(echo "$OBJ" | jq -r '.pr_number // empty')
+          OWNER=$(jq -r '.owner // empty' review_batches.json)
+          REPO=$(jq -r '.repo // empty' review_batches.json)
+          PR=$(jq -r '.pr // empty' review_batches.json)
           if [ -z "$OWNER" ] || [ -z "$REPO" ] || [ -z "$PR" ]; then
-            echo "Missing repo context (owner='$OWNER' repo='$REPO' pr='$PR')"
+            echo "Missing repo context."
             jq . response_body.json || true
             exit 1
           fi
 
-          echo "Posting inline suggestions to $OWNER/$REPO#${PR}"
+          BATCH_COUNT=$(jq '.batches | length' review_batches.json)
+          if [ "$BATCH_COUNT" -eq 0 ]; then
+            echo "No suggestions returned; nothing to post."
+            exit 0
+          fi
 
-          posted=0
-          echo "$OBJ" | jq -c '.prepared_comment_payloads // [] | .[]' | while read -r PAYLOAD; do
-            # Ensure commit_id exists (avoid 422)
-            CID=$(echo "$PAYLOAD" | jq -r '.commit_id // empty')
-            if [ -z "$CID" ]; then
-              echo "⚠️  Skipping payload without commit_id"
-              continue
-            fi
+          echo "Posting $BATCH_COUNT suggestion batch(es) to $OWNER/$REPO#${PR}"
 
-            # If body is empty/whitespace, replace with an empty suggestion block (deletion)
-            BODY_TXT=$(echo "$PAYLOAD" | jq -r '.body // ""')
-            if [ -z "${BODY_TXT//[$'\t\r\n ']}" ]; then
-              PAYLOAD=$(echo "$PAYLOAD" | jq --rawfile emptySug <(printf '```suggestion\n```\n') '.body = $emptySug')
+          for index in $(jq -r '.batches | keys[]' review_batches.json); do
+            BODY_SUMMARY=$(jq -r ".batches[$index].body" review_batches.json)
+            COMMENTS=$(jq ".batches[$index].comments" review_batches.json)
+            COMMIT_ID=$(jq -r ".batches[$index].commit_id // empty" review_batches.json)
+            if [ -n "$COMMIT_ID" ] && [ "$COMMIT_ID" != "null" ]; then
+              PAYLOAD=$(jq -n --arg body "$BODY_SUMMARY" --argjson comments "$COMMENTS" --arg commit "$COMMIT_ID" '{event:"COMMENT", body:$body, comments:$comments, commit_id:$commit}')
+            else
+              PAYLOAD=$(jq -n --arg body "$BODY_SUMMARY" --argjson comments "$COMMENTS" '{event:"COMMENT", body:$body, comments:$comments}')
             fi
 
             RESP=$(curl -sS -w "%{http_code}" -X POST \
               -H "Authorization: Bearer ${GH_TOKEN}" \
               -H "Accept: application/vnd.github.v3+json" \
-              "https://api.github.com/repos/${OWNER}/${REPO}/pulls/${PR}/comments" \
+              "https://api.github.com/repos/${OWNER}/${REPO}/pulls/${PR}/reviews" \
               -d "$PAYLOAD")
 
             CODE="${RESP:(-3)}"
             BODY="${RESP%$CODE}"
 
             if [[ "$CODE" -lt 200 || "$CODE" -ge 300 ]]; then
-              echo "❌ Failed to post suggestion (HTTP $CODE)"
+              echo "❌ Failed to post review batch (HTTP $CODE)"
               echo "$BODY"
               exit 1
             fi
-            posted=$((posted+1))
-            echo "✅ Posted suggestion #$posted"
+
+            URL=$(echo "$BODY" | jq -r '.html_url // empty')
+            echo "✅ Posted review batch ${index} ${URL:+→ $URL}"
           done
 
           echo "—— Skipped upstream (for visibility) ——"
-          echo "$OBJ" | jq -r '.skipped_comments // [] | .[] | "\(.file_path // "-")#L\(.line_number // "-"): \(.reason // "-")"'
+          jq -r 'if type=="array" then .[0] else . end | .skipped_comments // [] | .[] | "\(.file_path // "-")#L\(.line_number // "-"): \(.reason // "-")"' response_body.json
 
           echo "✅ Done. Suggestions posted."
 
+      # Step 18: Publish any verification reviews
       - name: Post verification comments
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -273,7 +473,6 @@ jobs:
 
           RESPONSE_BODY=$(cat response_body.json)
 
-          # Extract verification review markdown robustly from many shapes
           VERIFS=$(
             echo "$RESPONSE_BODY" | jq -c '
               (if type=="array" then .[0] else . end) as $o
@@ -284,7 +483,6 @@ jobs:
                   else [] end;
 
               [
-                # Common direct locations
                 (to_arr($o.reviews) // []) as $r1
                   | ($r1 | map(select(((.type? | tostring | ascii_downcase) == "verification")))
                             | map(.formattedReview // .review // .body // .comment // .text // .content // "")),
@@ -292,7 +490,6 @@ jobs:
                   | ($r2 | map(select(((.type? | tostring | ascii_downcase) == "verification")))
                             | map(.formattedReview // .review // .body // .comment // .text // .content // "")),
 
-                # Anywhere in the object tree: find objects with type=verification
                 ($o | .. | objects
                   | select(((.type? | tostring | ascii_downcase) == "verification"))
                   | (.formattedReview // .review // .body // .comment // .text // .content // ""))
@@ -310,7 +507,6 @@ jobs:
             exit 0
           fi
 
-          # Extract repo context (robust to array/object root)
           OWNER=$(echo "$RESPONSE_BODY" | jq -r 'if type=="array" then .[0].repo_owner else .repo_owner end // empty')
           REPO=$(echo "$RESPONSE_BODY" | jq -r 'if type=="array" then .[0].repo_name else .repo_name end // empty')
           PR=$(echo "$RESPONSE_BODY" | jq -r 'if type=="array" then .[0].pr_number else .pr_number end // empty')
@@ -323,9 +519,7 @@ jobs:
           echo "Found $COUNT verification review(s). Preview:"
           echo "$VERIFS" | jq -r 'to_entries[] | "\(.key): " + (.value | .[0:160] + (if length>160 then "…" else "" end))'
 
-          # Post each block as a PR comment (not inline)
           echo "$VERIFS" | jq -r '.[] + "\u0000"' | while IFS= read -r -d '' BODY; do
-            # Skip truly empty
             if [ -z "${BODY//[$'\t\r\n ']}" ]; then
               echo "Skipping empty verification body"
               continue
@@ -351,5 +545,3 @@ jobs:
           done
 
           echo "✅ Done posting verification reviews."
-
-     
