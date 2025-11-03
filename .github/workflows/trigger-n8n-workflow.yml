@@ -23,9 +23,19 @@ jobs:
     environment: n8n-sending
     outputs:
       filtered_file_count: ${{ steps.filter_files.outputs.file_count }}
+      should_send: ${{ steps.filter_files.outputs.file_count != '0' && steps.diff_threshold.outputs.skip_send != 'true' && steps.send_payload.outputs.cancelled != 'true' && steps.send_payload.outputs.error != 'true' }}
+      diff_char_count: ${{ steps.diff_threshold.outputs.diff_char_count }}
+      pr_number: ${{ steps.run_context.outputs.pr_number }}
+      repository: ${{ steps.run_context.outputs.repository }}
+      run_url: ${{ steps.run_context.outputs.run_url }}
+      response_payload: ${{ steps.capture_payload.outputs.payload }}
+      cancelled: ${{ steps.send_payload.outputs.cancelled }}
+      send_executed: ${{ steps.send_payload.outputs.executed }}
+      send_error: ${{ steps.send_payload.outputs.error }}
     env:
       PR_NUMBER: ${{ github.event.pull_request.number || github.event.inputs.pr_number }}
       IS_MANUAL_RUN: ${{ github.event_name == 'workflow_dispatch' }}
+      MIN_DIFF_CHAR_THRESHOLD: ${{ vars.N8N_MIN_DIFF_CHAR_THRESHOLD || '1000' }}
     steps:
       # Step 1: Checkout repository
       - name: Checkout repository
@@ -36,7 +46,14 @@ jobs:
         id: uuid
         run: echo "run_token=$(uuidgen)" >> "$GITHUB_OUTPUT"
 
-      # Step 2b: Require dispatcher to have write/maintain/admin access
+      - name: Capture run context
+        id: run_context
+        run: |
+          echo "pr_number=${PR_NUMBER}" >> "$GITHUB_OUTPUT"
+          echo "repository=${GITHUB_REPOSITORY}" >> "$GITHUB_OUTPUT"
+          echo "run_url=${GITHUB_SERVER_URL:-https://github.com}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}" >> "$GITHUB_OUTPUT"
+
+      # Step 2b: Require dispatcher to have access
       - name: Validate dispatcher permissions
         if: ${{ github.event_name == 'workflow_dispatch' }}
         env:
@@ -213,7 +230,16 @@ jobs:
         run: |
           gzip -c pr.diff > pr.diff.gz
           base64 -w 0 pr.diff.gz > diff.b64
-          echo "::add-mask::$(cat diff.b64)"
+          python3 - <<'PY'
+          from pathlib import Path
+
+          chunk_size = 8000 
+          diff_contents = Path("diff.b64").read_text()
+          for start in range(0, len(diff_contents), chunk_size):
+              chunk = diff_contents[start:start + chunk_size]
+              if chunk:
+                  print(f"::add-mask::{chunk}")
+          PY
 
       # Step 9: Inspect payload sizes for debugging
       - name: Debug payload size
@@ -223,38 +249,97 @@ jobs:
           echo "Commits metadata size: $(stat -c%s commits.json) bytes"
           echo "Compressed diff size: $(stat -c%s pr.diff.gz) bytes"
 
-      # Step 10: Send consolidated payload to n8n
-      - name: Combine and send to n8n webhook
-        if: ${{ steps.filter_files.outputs.file_count != '0' }}
-        env:
-          N8N_WEBHOOK_URL: ${{ secrets.N8N_WEBHOOK_URL }}
-          N8N_SENDING_TOKEN: ${{ secrets.N8N_SENDING_TOKEN }}
+      # Step 9b: Evaluate diff length against threshold
+      - name: Evaluate diff char threshold
+        id: diff_threshold
         run: |
           set -euo pipefail
 
-          jq -n \
-            --slurpfile pr pr.json \
-            --slurpfile files files.json \
-            --slurpfile commits commits.json \
-            --rawfile diff_base64 diff.b64 \
-            --arg run_token "${{ steps.uuid.outputs.run_token }}" \
-            --arg n8n_sending_token "$N8N_SENDING_TOKEN" \
-            '{
-              pr: $pr[0],
-              files: $files[0],
-              commits: $commits[0],
-              diff_base64: ($diff_base64 | gsub("\n"; "")),
-              token: $run_token,
-              n8n_sending_token: $n8n_sending_token
-            }' > payload.json
+          THRESHOLD="${MIN_DIFF_CHAR_THRESHOLD}"
+          if [[ ! "$THRESHOLD" =~ ^[0-9]+$ ]]; then
+            echo "Invalid MIN_DIFF_CHAR_THRESHOLD='$THRESHOLD'; defaulting to 0"
+            THRESHOLD=0
+          fi
+
+          CHAR_COUNT=$(wc -c < pr.diff | tr -d '[:space:]')
+          echo "diff_char_count=${CHAR_COUNT}" >> "$GITHUB_OUTPUT"
+          echo "threshold=${THRESHOLD}" >> "$GITHUB_OUTPUT"
+
+          if (( CHAR_COUNT < THRESHOLD )); then
+            echo "skip_send=true" >> "$GITHUB_OUTPUT"
+            echo "Filtered diff char count ${CHAR_COUNT} is below threshold ${THRESHOLD}; skipping downstream send."
+          else
+            echo "skip_send=false" >> "$GITHUB_OUTPUT"
+            echo "Filtered diff char count ${CHAR_COUNT} meets threshold ${THRESHOLD}; continuing."
+          fi
+
+      # Step 9c: Short-circuit when below threshold
+      - name: Diff below threshold
+        if: ${{ steps.filter_files.outputs.file_count != '0' && steps.diff_threshold.outputs.skip_send == 'true' }}
+        run: |
+          echo "ℹ️ Diff char count (${{ steps.diff_threshold.outputs.diff_char_count }}) is below threshold (${{ steps.diff_threshold.outputs.threshold }}). Skipping n8n send."
+
+      # Step 10: Send consolidated payload to n8n
+      - name: Combine and send to n8n webhook
+        id: send_payload
+        if: ${{ steps.filter_files.outputs.file_count != '0' && steps.diff_threshold.outputs.skip_send != 'true' }}
+        env:
+          N8N_WEBHOOK_URL: ${{ secrets.N8N_WEBHOOK_URL }}
+          N8N_SENDING_TOKEN: ${{ secrets.N8N_SENDING_TOKEN }}
+          RUN_TOKEN: ${{ steps.uuid.outputs.run_token }}
+        run: |
+          set -euo pipefail
+
+          echo "cancelled=false" >> "$GITHUB_OUTPUT"
+          echo "executed=true" >> "$GITHUB_OUTPUT"
+          echo "error=false" >> "$GITHUB_OUTPUT"
+
+          python3 - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          root = Path(".")
+
+          def read_json(filename):
+              path = root / filename
+              try:
+                  return json.loads(path.read_text())
+              except FileNotFoundError:
+                  raise SystemExit(f"{filename} not found")
+              except json.JSONDecodeError as exc:
+                  raise SystemExit(f"Unable to parse {filename}: {exc}")
+
+          pr = read_json("pr.json")
+          files = read_json("files.json")
+          commits = read_json("commits.json")
+
+          diff_path = root / "diff.b64"
+          try:
+              diff_base64 = diff_path.read_text().replace("\n", "")
+          except FileNotFoundError:
+              raise SystemExit("diff.b64 not found")
+
+          payload = {
+              "pr": pr,
+              "files": files,
+              "commits": commits,
+              "diff_base64": diff_base64,
+              "token": os.environ.get("RUN_TOKEN", ""),
+              "n8n_sending_token": os.environ.get("N8N_SENDING_TOKEN", "")
+          }
+
+          (root / "payload.json").write_text(json.dumps(payload))
+          PY
 
           echo "::add-mask::$N8N_SENDING_TOKEN"
 
           PAYLOAD_SIZE=$(stat -c%s payload.json)
           MAX_BYTES=$((10*1024*1024))
           if (( PAYLOAD_SIZE > MAX_BYTES )); then
-            echo "Payload too large ($PAYLOAD_SIZE bytes). Aborting send."
-            exit 1
+            echo "Payload too large ($PAYLOAD_SIZE bytes)."
+            echo "error=true" >> "$GITHUB_OUTPUT"
+            exit 0
           fi
 
           RESPONSE=$(curl -s -w "\n%{http_code}" -X POST \
@@ -271,46 +356,66 @@ jobs:
           STATUS=$(jq -r ".status" response_body.json)
           MATCHED=$(jq -r ".token" response_body.json)
           if [ "$MATCHED" != "${{ steps.uuid.outputs.run_token }}" ] || [ "$STATUS" != "completed" ]; then
+            if [ "$STATUS" = "cancelled" ]; then
+              echo "n8n workflow reported cancellation; skipping downstream processing."
+              echo "cancelled=true" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
             echo "n8n workflow failed or token mismatch"
-            exit 1
+            echo "error=true" >> "$GITHUB_OUTPUT"
+            exit 0
           fi
 
           if [ "$HTTP_STATUS" -lt 200 ] || [ "$HTTP_STATUS" -ge 300 ]; then
             echo "n8n workflow failed (HTTP $HTTP_STATUS)"
-            exit 1
+            echo "error=true" >> "$GITHUB_OUTPUT"
+            exit 0
           fi
+
+      - name: Capture response payload
+        id: capture_payload
+        if: ${{ steps.filter_files.outputs.file_count != '0' && steps.diff_threshold.outputs.skip_send != 'true' && steps.send_payload.outputs.cancelled != 'true' && steps.send_payload.outputs.error != 'true' }}
+        run: |
+          set -euo pipefail
+          if [ ! -s response_body.json ]; then
+            echo "payload=" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          base64 -w0 response_body.json > response_body.b64
+          echo "payload=$(cat response_body.b64)" >> "$GITHUB_OUTPUT"
+          rm -f response_body.b64
+
+      - name: Enforce n8n send failure
+        if: ${{ steps.send_payload.outputs.error == 'true' }}
+        run: |
+          echo "n8n send step reported failure. Marking job as failed."
+          exit 1
 
       # Step 11: Short-circuit when nothing qualifies
       - name: No eligible files to send
         if: ${{ steps.filter_files.outputs.file_count == '0' }}
         run: echo "ℹ️ No eligible files after filtering llms/.ai paths. Skipping n8n send."
 
-      # Step 12: Archive n8n response for next job
-      - name: Upload n8n response artifact
-        if: ${{ steps.filter_files.outputs.file_count != '0' }}
-        uses: actions/upload-artifact@v4
-        with:
-          name: n8n-response
-          path: response_body.json
-          if-no-files-found: error
-          retention-days: 1
-
   receive-validate-and-comment:
     runs-on: ubuntu-latest
     needs: gather-and-send
-    if: ${{ needs.gather-and-send.result == 'success' && needs.gather-and-send.outputs.filtered_file_count != '0' }}
+    if: ${{ needs.gather-and-send.result == 'success' && needs.gather-and-send.outputs.filtered_file_count != '0' && needs.gather-and-send.outputs.should_send == 'true' }}
     environment: n8n-receiving
     steps:
       # Step 13: Re-checkout repo (fresh workspace)
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Step 14: Retrieve n8n response artifact
-      - name: Download n8n response
-        uses: actions/download-artifact@v4
-        with:
-          name: n8n-response
-          path: .
+      # Step 14: Restore response payload from upstream output
+      - name: Restore response payload
+        run: |
+          set -euo pipefail
+          payload='${{ needs.gather-and-send.outputs.response_payload }}'
+          if [ -z "$payload" ]; then
+            echo "No response payload found; exiting."
+            exit 1
+          fi
+          printf '%s' "$payload" | base64 -d > response_body.json
 
       # Step 15: Confirm handshake token
       - name: Validate receiving token
@@ -545,3 +650,74 @@ jobs:
           done
 
           echo "✅ Done posting verification reviews."
+
+      # Step 18b: Clean up response artifacts
+      - name: Remove response payload
+        if: ${{ always() }}
+        run: |
+          rm -f response_body.json review_batches.json || true
+
+  notify-on-failure:
+    runs-on: ubuntu-latest
+    needs:
+      - gather-and-send
+      - receive-validate-and-comment
+    if: ${{ always() && ((needs.gather-and-send.result == 'failure' && (needs.gather-and-send.outputs.send_executed != 'true' || needs.gather-and-send.outputs.send_error == 'true')) || needs.receive-validate-and-comment.result == 'failure') }}
+    env:
+      GATHER_RESULT: ${{ needs.gather-and-send.result }}
+      RECEIVE_RESULT: ${{ needs.receive-validate-and-comment.result }}
+      PR_NUMBER: ${{ needs.gather-and-send.outputs.pr_number }}
+      REPOSITORY: ${{ needs.gather-and-send.outputs.repository || github.repository }}
+      RUN_URL: ${{ needs.gather-and-send.outputs.run_url || format('{0}/{1}/actions/runs/{2}', github.server_url, github.repository, github.run_id) }}
+      WORKFLOW_NAME: ${{ github.workflow }}
+      RUN_ID: ${{ github.run_id }}
+      RUN_ATTEMPT: ${{ github.run_attempt }}
+      ERROR_WEBHOOK_URL: ${{ secrets.ERROR_WEBHOOK_URL }}
+      ACTOR: ${{ github.actor }}
+      SEND_EXECUTED: ${{ needs.gather-and-send.outputs.send_executed }}
+      SEND_ERROR: ${{ needs.gather-and-send.outputs.send_error }}
+    steps:
+      - name: Evaluate failure state
+        id: alert
+        run: |
+          set -euo pipefail
+          gather="${GATHER_RESULT:-unknown}"
+          receive="${RECEIVE_RESULT:-skipped}"
+          if [[ "$gather" == "failure" || "$receive" == "failure" ]]; then
+            echo "alert=true" >> "$GITHUB_OUTPUT"
+            echo "Failure detected (gather=$gather, receive=$receive)."
+          else
+            echo "alert=false" >> "$GITHUB_OUTPUT"
+            echo "No downstream alert required (gather=$gather, receive=$receive)."
+          fi
+
+      - name: Send failure webhook
+        if: ${{ steps.alert.outputs.alert == 'true' }}
+        run: |
+          set -euo pipefail
+
+          if [[ -z "${ERROR_WEBHOOK_URL:-}" ]]; then
+            echo "Webhook URL secret not configured; skipping alert dispatch."
+            exit 0
+          fi
+
+          gather="${GATHER_RESULT:-unknown}"
+          receive="${RECEIVE_RESULT:-skipped}"
+          pr="${PR_NUMBER:-unknown}"
+          repo="${REPOSITORY:-${{ github.repository }}}"
+          payload=$(jq -n \
+            --arg repo "$repo" \
+            --arg pr "$pr" \
+            --arg gather_status "$gather" \
+            --arg receive_status "$receive" \
+            --arg run_url "$RUN_URL" \
+            --arg workflow "$WORKFLOW_NAME" \
+            --arg run_id "$RUN_ID" \
+            --arg run_attempt "$RUN_ATTEMPT" \
+            --arg actor "$ACTOR" \
+            '{repository:$repo, pr_number:$pr, gather_status:$gather_status, receive_status:$receive_status, run_url:$run_url, workflow:$workflow, run_id:$run_id, run_attempt:$run_attempt, actor:$actor}' )
+
+          curl -sS -X POST \
+            -H "Content-Type: application/json" \
+            --data "$payload" \
+            "$ERROR_WEBHOOK_URL"
