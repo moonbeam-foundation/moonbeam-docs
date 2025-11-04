@@ -20,7 +20,7 @@ For the examples in this guide, you will need to have the following:
   --8<-- 'text/_common/faucet/faucet-list-item.md'
  - 
   --8<-- 'text/_common/endpoint-examples-list-item.md'
- - Have [Rust installed](https://www.rust-lang.org/tools/install){target=\_blank} on your device
+ - Have [Rust installed](https://rust-lang.org/tools/install/){target=\_blank} on your device
  - Have [solc installed](https://docs.soliditylang.org/en/v0.8.9/installing-solidity.html) on your device. Using [solc-select](https://github.com/crytic/solc-select){target=\_blank} is recommended by the Ethers.rs package
 
 !!! note

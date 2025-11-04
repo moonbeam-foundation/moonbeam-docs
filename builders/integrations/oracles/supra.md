@@ -60,7 +60,7 @@ Still looking for answers? Supra's got them! Check out all the ways you can reac
 - Visit [Supra's websites at supraoracles.com](https://supra.com){target=\_blank}
 - Read their [docs](https://docs.supra.com/oracles/overview){target=\_blank}
 - Chat with them on [Telegram](https://t.me/SupraOracles){target=\_blank}
-- Follow them on [Twitter](https://twitter.com/SupraOracles){target=\_blank}
+- Follow them on [Twitter](https://x.com/SupraOracles){target=\_blank}
 - Join their [Discord](https://discord.com/invite/supraoracles){target=\_blank}
 - Check out their [Youtube](https://www.youtube.com/SupraOfficial){target=\_blank}
 
