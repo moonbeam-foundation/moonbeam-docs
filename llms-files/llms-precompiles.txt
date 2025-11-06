@@ -15860,7 +15860,7 @@ To build the binary file, you can take the following steps:
     !!! note
         Spaces in the installation file path will cause a compilation error.
 
-2. If you already have Rust installed, you can skip the next two steps. Otherwise, install Rust and its prerequisites [via Rust's recommended method](https://rust-lang.org/tools/install/){target=\_blank} by executing:
+2. Check if Rust is installed. If Rust is installed, skip the next two steps. Otherwise, install Rust and its prerequisites [via Rust's recommended method](https://rust-lang.org/tools/install/){target=\_blank} by executing:
 
     ```bash
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
@@ -17529,10 +17529,10 @@ Despite the distinction between the Moonbeam and Moonriver DApp directories, the
 
 There are four main sources of data that are used for a project's listing in the Moonbeam DApp Directory:
 
-- **Core Project Data** - core project data such as descriptions, logos, and screenshots. This data also includes IDs used to query data from external platforms
-- **Active Users and Transaction Volume** - on-chain data based on smart contract activity for all of the contracts associated with the project. Data is discovered via the use of contract labeling in Moonscan and is indexed and consumed by the DApp Directory
-- **TVL Data** - TVL data for the protocol, sourced from the project's listing on DefiLlama
-- **Project Token Information** - token information, which is sourced from the project's listing on CoinGecko
+- **Core project data**: Core project data such as descriptions, logos, and screenshots. This data also includes IDs used to query data from external platforms.
+- **Active users and transaction volume**: On-chain data based on smart contract activity for all of the contracts associated with the project. Data is discovered via the use of contract labeling in Moonscan and is indexed and consumed by the DApp Directory.
+- **TVL data**: TVL data for the protocol, sourced from the project's listing on DefiLlama.
+- **Project token information**: Token information, which is sourced from the project's listing on CoinGecko.
 
 ## Prerequisites for Using External Data Sources {: #configuring-external-data-sources }
 
@@ -17544,10 +17544,10 @@ For projects that have smart contracts deployed on Moonbeam or Moonriver, it is 
 
 The end-to-end flow for linking smart contract activity to the DApp Directory is as follows:
 
-1. The smart contract owner fills in the [form to label contracts on Moonscan](https://moonscan.io/contactus?id=5){target=\_blank}
-2. The contracts become labeled in Moonscan
-3. Labeled contracts can then be ingested by ecosystem analytics providers to index activity for your project
-4. (Recommended) Register your project with FiDi so your activity can be indexed and publicly viewable. See the FiDi registration section below
+1. The smart contract owner fills in the [form to label contracts on Moonscan](https://moonscan.io/contactus?id=5){target=\_blank}.
+2. The contracts become labeled in Moonscan.
+3. Labeled contracts can then be ingested by ecosystem analytics providers to index activity for your project.
+4. (Recommended) Register your project with FiDi so your activity can be indexed and publicly viewable. See the FiDi registration section below.
 
 To get your project's smart contracts properly labeled on [Moonscan](https://moonscan.io){target=\_blank}, submit the [Moonscan contract labeling form](https://moonscan.io/contactus?id=5){target=\_blank} with your project and contract details.
 
@@ -17561,23 +17561,23 @@ Required Project Information:
 
 Where possible, include a short purpose description for each contract to improve completeness.
 
-- **Core Smart Contracts** - addresses of main contracts that define core functionality and interact significantly with the network. Optionally, include a brief description of each contract's purpose
-- **Factory Contracts** - if applicable, addresses of any contracts that deploy other contracts as part of your dApp. Please also provide the creation topic (hash of the creation event) for each factory contract
-- **Deployer Wallets** - if applicable, addresses of wallets used to deploy your project's contracts
+- **Core smart contracts**: Addresses of main contracts that define core functionality and interact significantly with the network. Optionally, include a brief description of each contract's purpose.
+- **Factory contracts**: If applicable, addresses of any contracts that deploy other contracts as part of your dApp. Please also provide the creation topic (hash of the creation event) for each factory contract.
+- **Deployer wallets**: If applicable, addresses of wallets used to deploy your project's contracts.
 
 Additional Project-Specific Information (Optional):
 
-- **Treasury/Admin Wallets** - addresses of wallets with administrative control or funds. Optionally, include a brief description of each wallet's function
-- **Oracle Contracts** - addresses of any oracle contracts. Optionally, include a brief description of what data these oracles provide
-- **Bridge Contracts** - addresses of any bridge contracts and the list of connected chains
-- **Governance Contracts** - addresses of any contracts related to on-chain governance. Optionally, include a brief explanation of your governance model
+- **Treasury/Admin wallets**: Addresses of wallets with administrative control or funds. Optionally, include a brief description of each wallet's function.
+- **Oracle contracts**: Addresses of any oracle contracts. Optionally, include a brief description of what data these oracles provide.
+- **Bridge contracts**: Addresses of any bridge contracts and the list of connected chains.
+- **Governance contracts**: Addresses of any contracts related to on-chain governance. Optionally, include a brief explanation of your governance model.
 
 Additional considerations:
 
-- If your project batches transactions, consider using the Batch Precompile
-- Factory contracts should derive from or mimic the standard Uniswap factory
-- Diamond (multi-facet proxy) contracts are supported and will be indexed correctly
-- Typical listing time is 1–2 weeks; FiDi may reach out for clarifications
+- If your project batches transactions, consider using the Batch Precompile.
+- Factory contracts should derive from or mimic the standard Uniswap factory.
+- Diamond (multi-facet proxy) contracts are supported and will be indexed correctly.
+- Typical listing time is 1–2 weeks; FiDi may reach out for clarifications.
 
 Once you've labeled your smart contracts and are ready to submit your project to the DApp Directory, configuring the Directory to utilize your smart contract data becomes straightforward. You'll only need the **Project** component of your labeled contracts.
 
@@ -17628,9 +17628,9 @@ git clone https://github.com/moonbeam-foundation/app-directory-data.git
 
 Once you've cloned the project, you can create a new branch to which you will add all of your changes. To do this on the browser-based editor, take the following steps:
 
-1. Click on the current branch name in the bottom left corner
-2. A menu will appear at the top of the page. Enter the name of your branch
-3. Click **Create new branch...**
+1. Click on the current branch name in the bottom left corner.
+2. A menu will appear at the top of the page. Enter the name of your branch.
+3. Click **Create new branch...**.
 
 ![Create a new branch on GitHub's browser-based editor](/images/learn/dapps-list/directory-3.webp)
 
@@ -17640,13 +17640,13 @@ The page will reload, and your branch name will now be displayed in the bottom l
 
 If a project is deployed to both Moonbeam and Moonriver, there are two different options available:
 
-- Create a separate project structure for each deployment
-- Use a single project structure and modify the project data file for both projects
+- Create a separate project structure for each deployment.
+- Use a single project structure and modify the project data file for both projects.
 
 Separate project structures should be used if:
 
-- The two deployments have distinct representations in DefiLlama (i.e., two distinct identifiers)
-- The project has two different tokens, one native to Moonbeam and one native to Moonriver
+- The two deployments have distinct representations in DefiLlama (i.e., two distinct identifiers).
+- The project has two different tokens, one native to Moonbeam and one native to Moonriver.
 
 Otherwise, either option may be used.
 
@@ -17656,11 +17656,11 @@ All configurations for each project listed in the DApp Directory are stored in t
 
 To get started, you must have a name that uniquely and properly identifies your project. Using your project name, you can take the following steps:
 
-1. Create a new directory for your project using your unique project name
+1. Create a new directory for your project using your unique project name.
 2. In your project directory, you'll need to create:
-    1. A project data file is a JSON file that defines all your project data and contains references to the images stored in the `logos` and `screenshots` folders. The list of fields you can use to define your data, with descriptions, is outlined in the next section. The file must be named using your unique project name
-    2. A `logos` folder where your project logo images are stored
-    3. (Optional) A `screenshots` folder where screenshots for the project are stored
+    1. A project data file is a JSON file that defines all your project data and contains references to the images stored in the `logos` and `screenshots` folders. The list of fields you can use to define your data, with descriptions, is outlined in the next section. The file must be named using your unique project name.
+    2. A `logos` folder where your project logo images are stored.
+    3. (Optional) A `screenshots` folder where screenshots for the project are stored.
 
 ??? code "Example folder structure"
 
@@ -17876,7 +17876,7 @@ The following table lists the supported `urls` properties:
 |:-------------:|:------------------------------------------------------------------------------------------------------------------:|:-----------------------------------------------:|
 |   `website`   |                                          The main website for the project                                          |            https://moonbeam.network/            |
 |     `try`     | URL a user should visit if they want to try out the dApp. Typically, this page will have a link to launch the dApp |            https://moonbeam.network/            |
-|   `twitter`   |                                     The project's X (Twitter) profile                                      |       https://x.com/MoonbeamNetwork       |
+|   `X`   |                                     The project's X profile                                      |       https://x.com/MoonbeamNetwork       |
 |   `medium`    |                                             The project's Medium site                                              |       https://medium.com/moonbeam-network       |
 |  `telegram`   |                                               The project's Telegram                                               |         https://t.me/Moonbeam_Official          |
 |   `github`    |                                          The project's GitHub repository                                           | https://github.com/moonbeam-foundation/moonbeam |
@@ -18010,33 +18010,33 @@ After you've populated the project data file and added your logos and screenshot
 
 From the web-based editor, take the following steps to commit your changes to the `app-directory-data` repository:
 
-1. Click on the **Source Control** tab, which should show you how many pages have been added or changed
-2. Review the files under the **Changes** section. Click the **+** button next to **Changes**, or as you review each file, click the **+** button next to the file name to add them to the list of **Staged Changes**
+1. Click on the **Source Control** tab, which should show you how many pages have been added or changed.
+2. Review the files under the **Changes** section. Click the **+** button next to **Changes**, or as you review each file, click the **+** button next to the file name to add them to the list of **Staged Changes**.
 
 ![Staging the changed files on GitHub's browser-based editor](/images/learn/dapps-list/directory-6.webp)
 
 All of your files should now be under the **Staged Changes** section. All you have to commit and push the changes are:
 
-1. Enter a descriptive commit message, such as "Add My Project", making sure to use your actual project name
-2. Click **Commit & Push**
+1. Enter a descriptive commit message, such as "Add My Project", making sure to use your actual project name.
+2. Click **Commit & Push**.
 
 ![Committing the staged files on GitHub's browser-based editor](/images/learn/dapps-list/directory-7.webp)
 
 Now that you've committed the changes, you'll need to head over to the [`app-directory-data` repository](https://github.com/moonbeam-foundation/app-directory-data){target=\_blank} and open a pull request against the `develop` branch:
 
 1. At the top of the repository page, click **Compare and Pull** button displayed on the banner, or
-2. If the banner is not there anymore, you'll need to select your branch from the branches dropdown
-3. Click the **Contribute** dropdown
-4. Click the **Open pull request** button
+2. If the banner is not there anymore, you'll need to select your branch from the branches dropdown.
+3. Click the **Contribute** dropdown.
+4. Click the **Open pull request** button.
 
 ![The main page of the app-directory-data repository on GitHub](/images/learn/dapps-list/directory-8.webp)
 
 You'll be taken to the **Comparing changes** page, where you'll need to:
 
-1. Make sure that you are merging your branch into the `develop` branch, which is the **base** branch
-2. Add a title
-3. Add a description of the changes
-4. Click **Create pull request**
+1. Make sure that you are merging your branch into the `develop` branch, which is the **base** branch.
+2. Add a title.
+3. Add a description of the changes.
+4. Click **Create pull request**.
 
 ![Submit a pull request on the Comparing changes page of the app-directory-data repository on GitHub](/images/learn/dapps-list/directory-9.webp)
 

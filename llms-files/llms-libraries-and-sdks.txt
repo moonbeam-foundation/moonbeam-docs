@@ -993,8 +993,8 @@ For the examples in this guide, you will need to have the following:
   You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}
  - 
   To test out the examples in this guide on Moonbeam or Moonriver, you will need to have your own endpoint and API key, which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=\_blank}
- - Have [Rust installed](https://rust-lang.org/tools/install/){target=\_blank} on your device
- - Have [solc installed](https://docs.soliditylang.org/en/v0.8.9/installing-solidity.html) on your device. Using [solc-select](https://github.com/crytic/solc-select){target=\_blank} is recommended by the Ethers.rs package
+ - Have [Rust installed](https://rust-lang.org/tools/install/){target=\_blank} on your device.
+ - Have [solc installed](https://docs.soliditylang.org/en/v0.8.9/installing-solidity.html){target=\_blank} on your device. Using [solc-select](https://github.com/crytic/solc-select){target=\_blank} is recommended by the Ethers.rs package.
 
 !!! note
     The examples in this guide assumes you have a MacOS or Ubuntu 20.04-based environment and will need to be adapted accordingly for Windows.
@@ -1039,12 +1039,12 @@ To configure your project for Moonbeam or Moonriver, you will need to have your 
 
 There are multiple ways to create a provider and signer, but the easiest way is through `try_from`. In the `src/main.rs` file, you can take the following steps:
 
-1. Import `Provider` and `Http` from the `ethers` crate
-2. Add a `Client` type for convenience, which will be used once you start to create the functions for sending a transaction and deploying a contract
-3. Add a `tokio` attribute above `async fn main()` for asynchronous execution
-4. Use `try_from` to attempt to instantiate a JSON-RPC provider object from an RPC endpoint
-5. Use a private key to create a wallet object (the private key will be used to sign transactions). **Note: This is for example purposes only. Never store your private keys in a plain Rust file**
-6. Wrap the provider and wallet together into a client by providing them to a `SignerMiddleware` object
+1. Import `Provider` and `Http` from the `ethers` crate.
+2. Add a `Client` type for convenience, which will be used once you start to create the functions for sending a transaction and deploying a contract.
+3. Add a `tokio` attribute above `async fn main()` for asynchronous execution.
+4. Use `try_from` to attempt to instantiate a JSON-RPC provider object from an RPC endpoint.
+5. Use a private key to create a wallet object (the private key will be used to sign transactions). **Note: This is for example purposes only. Never store your private keys in a plain Rust file**.
+6. Wrap the provider and wallet together into a client by providing them to a `SignerMiddleware` object.
 
 === "Moonbeam"
 
@@ -1172,8 +1172,8 @@ During this section, you'll be creating a couple of functions, which will be con
 
 You should already have your provider and client set up in `main.rs` in the way described in the [previous section](#setting-up-the-ethers-provider-and-client). In order to send a transaction, you'll need to add a few more lines of code:
 
-1. Add `use ethers::{utils, prelude::*};` to your imports, which will provide you access to utility functions and the prelude imports all of the necessary data types and traits
-2. As you'll be sending a transaction from one address to another, you can specify the sending and receiving addresses in the `main` function. **Note: the `address_from` value should correspond to the private key that is used in the `main` function**
+1. Add `use ethers::{utils, prelude::*};` to your imports, which will provide you access to utility functions and the prelude imports all of the necessary data types and traits.
+2. As you'll be sending a transaction from one address to another, you can specify the sending and receiving addresses in the `main` function. **Note: the `address_from` value should correspond to the private key that is used in the `main` function**.
 
 ```rust
 // ...
@@ -1196,10 +1196,10 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
 Next, you will create the function for getting the sending and receiving accounts' balances by completing the following steps:
 
-1. Create a new asynchronous function named `print_balances` that takes a provider object's reference and the sending and receiving addresses as input
-2. Use the `provider` object's `get_balance` function to get the balances of the sending and receiving addresses of the transaction
-3. Print the resultant balances for the sending and receiving addresses
-4. Call the `print_balances` function in the `main` function
+1. Create a new asynchronous function named `print_balances` that takes a provider object's reference and the sending and receiving addresses as input.
+2. Use the `provider` object's `get_balance` function to get the balances of the sending and receiving addresses of the transaction.
+3. Print the resultant balances for the sending and receiving addresses.
+4. Call the `print_balances` function in the `main` function.
 
 ```rust
 // ...
@@ -1232,11 +1232,11 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
 For this example, you'll be transferring 1 DEV from an origin address (of which you hold the private key) to another address.  
 
-1. Create a new asynchronous function named `send_transaction` that takes a client object's reference and the sending and receiving addresses as input
-2. Create the transaction object, and include the `to`, `value`, and `from`. When writing the `value` input, use the `ethers::utils::parse_ether` function
-3. Use the `client` object to send the transaction
-4. Print the transaction after it is confirmed
-5. Call the `send_transaction` function in the `main` function
+1. Create a new asynchronous function named `send_transaction` that takes a client object's reference and the sending and receiving addresses as input.
+2. Create the transaction object, and include the `to`, `value`, and `from`. When writing the `value` input, use the `ethers::utils::parse_ether` function.
+3. Use the `client` object to send the transaction.
+4. Print the transaction after it is confirmed.
+5. Call the `send_transaction` function in the `main` function.
 
 ```rust
 // ...
@@ -1403,15 +1403,15 @@ The `ethers_solc` import will be used to compile the smart contract. The `prelud
 
 This example function will compile and deploy the `Incrementer.sol` smart contract you created in the previous section. The `Incrementer.sol` smart contract should be in the root directory. In the `main.rs` file, you can take the following steps:
 
-1. Create a new asynchronous function named `compile_deploy_contract` that takes a client object's reference as input, and returns an address in the form of `H160`
-2. Define a variable named `source` as the path for the directory that hosts all of the smart contracts that should be compiled, which is the root directory
-3. Use the `Solc` crate to compile all of the smart contracts in the root directory
-4. Get the ABI and bytecode from the compiled result, searching for the `Incrementer.sol` contract
-5. Create a contract factory for the smart contract using the ABI, bytecode, and client. The client must be wrapped into an `Arc` type for thread safety
-6. Use the factory to deploy. For this example, the value `5` is used as the initial value in the constructor
-7. Print out the address after the deployment
-8. Return the address
-9. Call the `compile_deploy_contract` function in `main`
+1. Create a new asynchronous function named `compile_deploy_contract` that takes a client object's reference as input, and returns an address in the form of `H160`.
+2. Define a variable named `source` as the path for the directory that hosts all of the smart contracts that should be compiled, which is the root directory.
+3. Use the `Solc` crate to compile all of the smart contracts in the root directory.
+4. Get the ABI and bytecode from the compiled result, searching for the `Incrementer.sol` contract.
+5. Create a contract factory for the smart contract using the ABI, bytecode, and client. The client must be wrapped into an `Arc` type for thread safety.
+6. Use the factory to deploy. For this example, the value `5` is used as the initial value in the constructor.
+7. Print out the address after the deployment.
+8. Return the address.
+9. Call the `compile_deploy_contract` function in `main`.
 
 ```rust
 // ...
@@ -1509,13 +1509,13 @@ The ABI for `Incrementer.sol` is below, which should be copied and pasted into t
 
 Then you can take the following steps to create a function that reads and returns the `number` method of the `Incrementer.sol` contract:
 
-1. Generate a type-safe interface for the `Incrementer` smart contract with the `abigen` macro
-2. Create a new asynchronous function named `read_number` that takes a client object's reference and a contract address reference as input, and returns a U256
-3. Create a new instance of the `Incrementer` object generated by the abigen macro with the client and contract address values
-4. Call the `number` function in the new `Incrementer` object
-5. Print out the resultant value
-6. Return the resultant value
-7. Call the `read_number` function in `main`
+1. Generate a type-safe interface for the `Incrementer` smart contract with the `abigen` macro.
+2. Create a new asynchronous function named `read_number` that takes a client object's reference and a contract address reference as input, and returns a U256.
+3. Create a new instance of the `Incrementer` object generated by the abigen macro with the client and contract address values.
+4. Call the `number` function in the new `Incrementer` object.
+5. Print out the resultant value.
+6. Return the resultant value.
+7. Call the `read_number` function in `main`.
 
 ```rust
 // ...
@@ -1689,11 +1689,11 @@ Send methods are the type of interaction that modify the contract's storage (cha
 
 Take the following steps to create the function to increment:
 
-1. Ensure that the abigen macro is called for the `Incrementer_ABI.json` somewhere in the `main.rs` file (if it is already in the `main.rs` file, you do not have to have a second one)
-2. Create a new asynchronous function named `increment_number` that takes a client object's reference and an address as input
-3. Create a new instance of the `Incrementer` object generated by the abigen macro with the client and contract address values
-4. Call the `increment` function in the new `Incrementer` object by including a `U256` object as input. In this instance, the value provided is `5`
-5. Call the `read_number` function in `main`
+1. Ensure that the abigen macro is called for the `Incrementer_ABI.json` somewhere in the `main.rs` file (if it is already in the `main.rs` file, you do not have to have a second one).
+2. Create a new asynchronous function named `increment_number` that takes a client object's reference and an address as input.
+3. Create a new instance of the `Incrementer` object generated by the abigen macro with the client and contract address values.
+4. Call the `increment` function in the new `Incrementer` object by including a `U256` object as input. In this instance, the value provided is `5`.
+5. Call the `read_number` function in `main`.
 
 ```rust
 // ...
@@ -1865,11 +1865,11 @@ If successful, the transaction receipt will be displayed in the terminal. You ca
 
 Next you can interact with the `reset` function:
 
-1. Ensure that the abigen macro is called for the `Incrementer_ABI.json` somewhere in the `main.rs` file (if it is already in the `main.rs` file, you do not have to have a second one)
-2. Create a new asynchronous function named `reset` that takes a client object's reference and an address as input
-3. Create a new instance of the `Incrementer` object generated by the abigen macro with the client and contract address values
-4. Call the `reset` function in the new `Incrementer` object
-5. Call the `reset` function in `main`
+1. Ensure that the abigen macro is called for the `Incrementer_ABI.json` somewhere in the `main.rs` file (if it is already in the `main.rs` file, you do not have to have a second one).
+2. Create a new asynchronous function named `reset` that takes a client object's reference and an address as input.
+3. Create a new instance of the `Incrementer` object generated by the abigen macro with the client and contract address values.
+4. Call the `reset` function in the new `Incrementer` object.
+5. Call the `reset` function in `main`.
 
 ```rust
 // ...
@@ -10421,7 +10421,7 @@ To build the binary file, you can take the following steps:
     !!! note
         Spaces in the installation file path will cause a compilation error.
 
-2. If you already have Rust installed, you can skip the next two steps. Otherwise, install Rust and its prerequisites [via Rust's recommended method](https://rust-lang.org/tools/install/){target=\_blank} by executing:
+2. Check if Rust is installed. If Rust is installed, skip the next two steps. Otherwise, install Rust and its prerequisites [via Rust's recommended method](https://rust-lang.org/tools/install/){target=\_blank} by executing:
 
     ```bash
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
@@ -12090,10 +12090,10 @@ Despite the distinction between the Moonbeam and Moonriver DApp directories, the
 
 There are four main sources of data that are used for a project's listing in the Moonbeam DApp Directory:
 
-- **Core Project Data** - core project data such as descriptions, logos, and screenshots. This data also includes IDs used to query data from external platforms
-- **Active Users and Transaction Volume** - on-chain data based on smart contract activity for all of the contracts associated with the project. Data is discovered via the use of contract labeling in Moonscan and is indexed and consumed by the DApp Directory
-- **TVL Data** - TVL data for the protocol, sourced from the project's listing on DefiLlama
-- **Project Token Information** - token information, which is sourced from the project's listing on CoinGecko
+- **Core project data**: Core project data such as descriptions, logos, and screenshots. This data also includes IDs used to query data from external platforms.
+- **Active users and transaction volume**: On-chain data based on smart contract activity for all of the contracts associated with the project. Data is discovered via the use of contract labeling in Moonscan and is indexed and consumed by the DApp Directory.
+- **TVL data**: TVL data for the protocol, sourced from the project's listing on DefiLlama.
+- **Project token information**: Token information, which is sourced from the project's listing on CoinGecko.
 
 ## Prerequisites for Using External Data Sources {: #configuring-external-data-sources }
 
@@ -12105,10 +12105,10 @@ For projects that have smart contracts deployed on Moonbeam or Moonriver, it is 
 
 The end-to-end flow for linking smart contract activity to the DApp Directory is as follows:
 
-1. The smart contract owner fills in the [form to label contracts on Moonscan](https://moonscan.io/contactus?id=5){target=\_blank}
-2. The contracts become labeled in Moonscan
-3. Labeled contracts can then be ingested by ecosystem analytics providers to index activity for your project
-4. (Recommended) Register your project with FiDi so your activity can be indexed and publicly viewable. See the FiDi registration section below
+1. The smart contract owner fills in the [form to label contracts on Moonscan](https://moonscan.io/contactus?id=5){target=\_blank}.
+2. The contracts become labeled in Moonscan.
+3. Labeled contracts can then be ingested by ecosystem analytics providers to index activity for your project.
+4. (Recommended) Register your project with FiDi so your activity can be indexed and publicly viewable. See the FiDi registration section below.
 
 To get your project's smart contracts properly labeled on [Moonscan](https://moonscan.io){target=\_blank}, submit the [Moonscan contract labeling form](https://moonscan.io/contactus?id=5){target=\_blank} with your project and contract details.
 
@@ -12122,23 +12122,23 @@ Required Project Information:
 
 Where possible, include a short purpose description for each contract to improve completeness.
 
-- **Core Smart Contracts** - addresses of main contracts that define core functionality and interact significantly with the network. Optionally, include a brief description of each contract's purpose
-- **Factory Contracts** - if applicable, addresses of any contracts that deploy other contracts as part of your dApp. Please also provide the creation topic (hash of the creation event) for each factory contract
-- **Deployer Wallets** - if applicable, addresses of wallets used to deploy your project's contracts
+- **Core smart contracts**: Addresses of main contracts that define core functionality and interact significantly with the network. Optionally, include a brief description of each contract's purpose.
+- **Factory contracts**: If applicable, addresses of any contracts that deploy other contracts as part of your dApp. Please also provide the creation topic (hash of the creation event) for each factory contract.
+- **Deployer wallets**: If applicable, addresses of wallets used to deploy your project's contracts.
 
 Additional Project-Specific Information (Optional):
 
-- **Treasury/Admin Wallets** - addresses of wallets with administrative control or funds. Optionally, include a brief description of each wallet's function
-- **Oracle Contracts** - addresses of any oracle contracts. Optionally, include a brief description of what data these oracles provide
-- **Bridge Contracts** - addresses of any bridge contracts and the list of connected chains
-- **Governance Contracts** - addresses of any contracts related to on-chain governance. Optionally, include a brief explanation of your governance model
+- **Treasury/Admin wallets**: Addresses of wallets with administrative control or funds. Optionally, include a brief description of each wallet's function.
+- **Oracle contracts**: Addresses of any oracle contracts. Optionally, include a brief description of what data these oracles provide.
+- **Bridge contracts**: Addresses of any bridge contracts and the list of connected chains.
+- **Governance contracts**: Addresses of any contracts related to on-chain governance. Optionally, include a brief explanation of your governance model.
 
 Additional considerations:
 
-- If your project batches transactions, consider using the Batch Precompile
-- Factory contracts should derive from or mimic the standard Uniswap factory
-- Diamond (multi-facet proxy) contracts are supported and will be indexed correctly
-- Typical listing time is 1–2 weeks; FiDi may reach out for clarifications
+- If your project batches transactions, consider using the Batch Precompile.
+- Factory contracts should derive from or mimic the standard Uniswap factory.
+- Diamond (multi-facet proxy) contracts are supported and will be indexed correctly.
+- Typical listing time is 1–2 weeks; FiDi may reach out for clarifications.
 
 Once you've labeled your smart contracts and are ready to submit your project to the DApp Directory, configuring the Directory to utilize your smart contract data becomes straightforward. You'll only need the **Project** component of your labeled contracts.
 
@@ -12189,9 +12189,9 @@ git clone https://github.com/moonbeam-foundation/app-directory-data.git
 
 Once you've cloned the project, you can create a new branch to which you will add all of your changes. To do this on the browser-based editor, take the following steps:
 
-1. Click on the current branch name in the bottom left corner
-2. A menu will appear at the top of the page. Enter the name of your branch
-3. Click **Create new branch...**
+1. Click on the current branch name in the bottom left corner.
+2. A menu will appear at the top of the page. Enter the name of your branch.
+3. Click **Create new branch...**.
 
 ![Create a new branch on GitHub's browser-based editor](/images/learn/dapps-list/directory-3.webp)
 
@@ -12201,13 +12201,13 @@ The page will reload, and your branch name will now be displayed in the bottom l
 
 If a project is deployed to both Moonbeam and Moonriver, there are two different options available:
 
-- Create a separate project structure for each deployment
-- Use a single project structure and modify the project data file for both projects
+- Create a separate project structure for each deployment.
+- Use a single project structure and modify the project data file for both projects.
 
 Separate project structures should be used if:
 
-- The two deployments have distinct representations in DefiLlama (i.e., two distinct identifiers)
-- The project has two different tokens, one native to Moonbeam and one native to Moonriver
+- The two deployments have distinct representations in DefiLlama (i.e., two distinct identifiers).
+- The project has two different tokens, one native to Moonbeam and one native to Moonriver.
 
 Otherwise, either option may be used.
 
@@ -12217,11 +12217,11 @@ All configurations for each project listed in the DApp Directory are stored in t
 
 To get started, you must have a name that uniquely and properly identifies your project. Using your project name, you can take the following steps:
 
-1. Create a new directory for your project using your unique project name
+1. Create a new directory for your project using your unique project name.
 2. In your project directory, you'll need to create:
-    1. A project data file is a JSON file that defines all your project data and contains references to the images stored in the `logos` and `screenshots` folders. The list of fields you can use to define your data, with descriptions, is outlined in the next section. The file must be named using your unique project name
-    2. A `logos` folder where your project logo images are stored
-    3. (Optional) A `screenshots` folder where screenshots for the project are stored
+    1. A project data file is a JSON file that defines all your project data and contains references to the images stored in the `logos` and `screenshots` folders. The list of fields you can use to define your data, with descriptions, is outlined in the next section. The file must be named using your unique project name.
+    2. A `logos` folder where your project logo images are stored.
+    3. (Optional) A `screenshots` folder where screenshots for the project are stored.
 
 ??? code "Example folder structure"
 
@@ -12437,7 +12437,7 @@ The following table lists the supported `urls` properties:
 |:-------------:|:------------------------------------------------------------------------------------------------------------------:|:-----------------------------------------------:|
 |   `website`   |                                          The main website for the project                                          |            https://moonbeam.network/            |
 |     `try`     | URL a user should visit if they want to try out the dApp. Typically, this page will have a link to launch the dApp |            https://moonbeam.network/            |
-|   `twitter`   |                                     The project's X (Twitter) profile                                      |       https://x.com/MoonbeamNetwork       |
+|   `X`   |                                     The project's X profile                                      |       https://x.com/MoonbeamNetwork       |
 |   `medium`    |                                             The project's Medium site                                              |       https://medium.com/moonbeam-network       |
 |  `telegram`   |                                               The project's Telegram                                               |         https://t.me/Moonbeam_Official          |
 |   `github`    |                                          The project's GitHub repository                                           | https://github.com/moonbeam-foundation/moonbeam |
@@ -12571,33 +12571,33 @@ After you've populated the project data file and added your logos and screenshot
 
 From the web-based editor, take the following steps to commit your changes to the `app-directory-data` repository:
 
-1. Click on the **Source Control** tab, which should show you how many pages have been added or changed
-2. Review the files under the **Changes** section. Click the **+** button next to **Changes**, or as you review each file, click the **+** button next to the file name to add them to the list of **Staged Changes**
+1. Click on the **Source Control** tab, which should show you how many pages have been added or changed.
+2. Review the files under the **Changes** section. Click the **+** button next to **Changes**, or as you review each file, click the **+** button next to the file name to add them to the list of **Staged Changes**.
 
 ![Staging the changed files on GitHub's browser-based editor](/images/learn/dapps-list/directory-6.webp)
 
 All of your files should now be under the **Staged Changes** section. All you have to commit and push the changes are:
 
-1. Enter a descriptive commit message, such as "Add My Project", making sure to use your actual project name
-2. Click **Commit & Push**
+1. Enter a descriptive commit message, such as "Add My Project", making sure to use your actual project name.
+2. Click **Commit & Push**.
 
 ![Committing the staged files on GitHub's browser-based editor](/images/learn/dapps-list/directory-7.webp)
 
 Now that you've committed the changes, you'll need to head over to the [`app-directory-data` repository](https://github.com/moonbeam-foundation/app-directory-data){target=\_blank} and open a pull request against the `develop` branch:
 
 1. At the top of the repository page, click **Compare and Pull** button displayed on the banner, or
-2. If the banner is not there anymore, you'll need to select your branch from the branches dropdown
-3. Click the **Contribute** dropdown
-4. Click the **Open pull request** button
+2. If the banner is not there anymore, you'll need to select your branch from the branches dropdown.
+3. Click the **Contribute** dropdown.
+4. Click the **Open pull request** button.
 
 ![The main page of the app-directory-data repository on GitHub](/images/learn/dapps-list/directory-8.webp)
 
 You'll be taken to the **Comparing changes** page, where you'll need to:
 
-1. Make sure that you are merging your branch into the `develop` branch, which is the **base** branch
-2. Add a title
-3. Add a description of the changes
-4. Click **Create pull request**
+1. Make sure that you are merging your branch into the `develop` branch, which is the **base** branch.
+2. Add a title.
+3. Add a description of the changes.
+4. Click **Create pull request**.
 
 ![Submit a pull request on the Comparing changes page of the app-directory-data repository on GitHub](/images/learn/dapps-list/directory-9.webp)
 
