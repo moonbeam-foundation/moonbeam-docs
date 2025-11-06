@@ -82,13 +82,13 @@ The price feeds included with the demo oracles are:
 
 The steps for accessing a price value on DIA oracles are as follows:
 
-1. Access your oracle smart contract on Moonbeam
-2. Call `getValue(pair_name)` with `pair_name` being the full pair name, such as `BTC/USD`. You can use the **Read Contract** functionality under the **Contract** tab of the contract on Moonscan to execute this call
+1. Access your oracle smart contract on Moonbeam.
+2. Call `getValue(pair_name)` with `pair_name` being the full pair name, such as `BTC/USD`. You can use the **Read Contract** functionality under the **Contract** tab of the contract on Moonscan to execute this call.
 
 The response contains two values:
 
-- The current asset price in USD with a fix-comma notation of 8 decimals
-- The UNIX timestamp of the last oracle update
+- The current asset price in USD with a fix-comma notation of 8 decimals.
+- The UNIX timestamp of the last oracle update.
 
 You can find DIA's oracle integration samples in Solidity and Vyper languages by visiting the [Fetch Price Data](https://www.diadata.org/docs/nexus/how-to-guides/fetch-price-data){target=\_blank} guide on DIA's documentation site.
 
@@ -264,9 +264,9 @@ contract DIARandomOracle {
 
 The steps for accessing a published random value are as follows:
 
-1. Access your randomness oracle smart contract on Moonbeam
-2. Call `getLastRound()`to obtain the ID of the latest published round. You can use the **Read Contract** functionality under the **Contract** tab of the contract on Moonscan to execute this call
-3. Call `getRandomValueFromRound(uint256 _round)` using the obtained round ID. Again, you can use Moonscan to quickly execute this call
+1. Access your randomness oracle smart contract on Moonbeam.
+2. Call `getLastRound()`to obtain the ID of the latest published round. You can use the **Read Contract** functionality under the **Contract** tab of the contract on Moonscan to execute this call.
+3. Call `getRandomValueFromRound(uint256 _round)` using the obtained round ID. Again, you can use Moonscan to quickly execute this call.
 
 The response contains the randomness value.
 
@@ -276,7 +276,7 @@ To learn how to deploy a randomness-consuming contract on Moonbeam, please refer
 
 ## Resources {: #resources }
 
-- [Twitter](https://x.com/DIAdata_org){target=\_blank}
+- [X](https://x.com/DIAdata_org){target=\_blank}
 - [Discord](https://discord.com/invite/ZvGjVY5uvs){target=\_blank}
 - [Website](https://www.diadata.org/){target=\_blank}
 - [Docs](https://www.diadata.org/docs/home){target=\_blank}

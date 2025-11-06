@@ -111,7 +111,7 @@ To build the binary file, you can take the following steps:
     !!! note
         Spaces in the installation file path will cause a compilation error.
 
-2. If you already have Rust installed, you can skip the next two steps. Otherwise, install Rust and its prerequisites [via Rust's recommended method](https://rust-lang.org/tools/install/){target=\_blank} by executing:
+2. Check if Rust is installed. If Rust is installed, skip the next two steps. Otherwise, install Rust and its prerequisites [via Rust's recommended method](https://rust-lang.org/tools/install/){target=\_blank} by executing:
 
     ```bash
     --8<-- 'code/builders/get-started/networks/moonbeam-dev/installrust.md'
