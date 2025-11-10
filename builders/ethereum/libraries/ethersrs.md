@@ -20,8 +20,8 @@ For the examples in this guide, you will need to have the following:
   --8<-- 'text/_common/faucet/faucet-list-item.md'
  - 
   --8<-- 'text/_common/endpoint-examples-list-item.md'
- - Have [Rust installed](https://www.rust-lang.org/tools/install){target=\_blank} on your device
- - Have [solc installed](https://docs.soliditylang.org/en/v0.8.9/installing-solidity.html) on your device. Using [solc-select](https://github.com/crytic/solc-select){target=\_blank} is recommended by the Ethers.rs package
+ - Have [Rust installed](https://rust-lang.org/tools/install/){target=\_blank} on your device.
+ - Have [solc installed](https://docs.soliditylang.org/en/v0.8.9/installing-solidity.html){target=\_blank} on your device. Using [solc-select](https://github.com/crytic/solc-select){target=\_blank} is recommended by the Ethers.rs package.
 
 !!! note
     The examples in this guide assumes you have a MacOS or Ubuntu 20.04-based environment and will need to be adapted accordingly for Windows.
@@ -66,12 +66,12 @@ Throughout this guide, you'll be writing multiple functions that provide differe
 
 There are multiple ways to create a provider and signer, but the easiest way is through `try_from`. In the `src/main.rs` file, you can take the following steps:
 
-1. Import `Provider` and `Http` from the `ethers` crate
-2. Add a `Client` type for convenience, which will be used once you start to create the functions for sending a transaction and deploying a contract
-3. Add a `tokio` attribute above `async fn main()` for asynchronous execution
-4. Use `try_from` to attempt to instantiate a JSON-RPC provider object from an RPC endpoint
-5. Use a private key to create a wallet object (the private key will be used to sign transactions). **Note: This is for example purposes only. Never store your private keys in a plain Rust file**
-6. Wrap the provider and wallet together into a client by providing them to a `SignerMiddleware` object
+1. Import `Provider` and `Http` from the `ethers` crate.
+2. Add a `Client` type for convenience, which will be used once you start to create the functions for sending a transaction and deploying a contract.
+3. Add a `tokio` attribute above `async fn main()` for asynchronous execution.
+4. Use `try_from` to attempt to instantiate a JSON-RPC provider object from an RPC endpoint.
+5. Use a private key to create a wallet object (the private key will be used to sign transactions). **Note: This is for example purposes only. Never store your private keys in a plain Rust file**.
+6. Wrap the provider and wallet together into a client by providing them to a `SignerMiddleware` object.
 
 === "Moonbeam"
 
@@ -199,8 +199,8 @@ During this section, you'll be creating a couple of functions, which will be con
 
 You should already have your provider and client set up in `main.rs` in the way described in the [previous section](#setting-up-the-ethers-provider-and-client). In order to send a transaction, you'll need to add a few more lines of code:
 
-1. Add `use ethers::{utils, prelude::*};` to your imports, which will provide you access to utility functions and the prelude imports all of the necessary data types and traits
-2. As you'll be sending a transaction from one address to another, you can specify the sending and receiving addresses in the `main` function. **Note: the `address_from` value should correspond to the private key that is used in the `main` function**
+1. Add `use ethers::{utils, prelude::*};` to your imports, which will provide you access to utility functions and the prelude imports all of the necessary data types and traits.
+2. As you'll be sending a transaction from one address to another, you can specify the sending and receiving addresses in the `main` function. **Note: the `address_from` value should correspond to the private key that is used in the `main` function**.
 
 ```rust
 // ...
@@ -223,10 +223,10 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
 Next, you will create the function for getting the sending and receiving accounts' balances by completing the following steps:
 
-1. Create a new asynchronous function named `print_balances` that takes a provider object's reference and the sending and receiving addresses as input
-2. Use the `provider` object's `get_balance` function to get the balances of the sending and receiving addresses of the transaction
-3. Print the resultant balances for the sending and receiving addresses
-4. Call the `print_balances` function in the `main` function
+1. Create a new asynchronous function named `print_balances` that takes a provider object's reference and the sending and receiving addresses as input.
+2. Use the `provider` object's `get_balance` function to get the balances of the sending and receiving addresses of the transaction.
+3. Print the resultant balances for the sending and receiving addresses.
+4. Call the `print_balances` function in the `main` function.
 
 ```rust
 // ...
@@ -259,11 +259,11 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
 For this example, you'll be transferring 1 DEV from an origin address (of which you hold the private key) to another address.  
 
-1. Create a new asynchronous function named `send_transaction` that takes a client object's reference and the sending and receiving addresses as input
-2. Create the transaction object, and include the `to`, `value`, and `from`. When writing the `value` input, use the `ethers::utils::parse_ether` function
-3. Use the `client` object to send the transaction
-4. Print the transaction after it is confirmed
-5. Call the `send_transaction` function in the `main` function
+1. Create a new asynchronous function named `send_transaction` that takes a client object's reference and the sending and receiving addresses as input.
+2. Create the transaction object, and include the `to`, `value`, and `from`. When writing the `value` input, use the `ethers::utils::parse_ether` function.
+3. Use the `client` object to send the transaction.
+4. Print the transaction after it is confirmed.
+5. Call the `send_transaction` function in the `main` function.
 
 ```rust
 // ...
@@ -338,15 +338,15 @@ The `ethers_solc` import will be used to compile the smart contract. The `prelud
 
 This example function will compile and deploy the `Incrementer.sol` smart contract you created in the previous section. The `Incrementer.sol` smart contract should be in the root directory. In the `main.rs` file, you can take the following steps:
 
-1. Create a new asynchronous function named `compile_deploy_contract` that takes a client object's reference as input, and returns an address in the form of `H160`
-2. Define a variable named `source` as the path for the directory that hosts all of the smart contracts that should be compiled, which is the root directory
-3. Use the `Solc` crate to compile all of the smart contracts in the root directory
-4. Get the ABI and bytecode from the compiled result, searching for the `Incrementer.sol` contract
-5. Create a contract factory for the smart contract using the ABI, bytecode, and client. The client must be wrapped into an `Arc` type for thread safety
-6. Use the factory to deploy. For this example, the value `5` is used as the initial value in the constructor
-7. Print out the address after the deployment
-8. Return the address
-9. Call the `compile_deploy_contract` function in `main`
+1. Create a new asynchronous function named `compile_deploy_contract` that takes a client object's reference as input, and returns an address in the form of `H160`.
+2. Define a variable named `source` as the path for the directory that hosts all of the smart contracts that should be compiled, which is the root directory.
+3. Use the `Solc` crate to compile all of the smart contracts in the root directory.
+4. Get the ABI and bytecode from the compiled result, searching for the `Incrementer.sol` contract.
+5. Create a contract factory for the smart contract using the ABI, bytecode, and client. The client must be wrapped into an `Arc` type for thread safety.
+6. Use the factory to deploy. For this example, the value `5` is used as the initial value in the constructor.
+7. Print out the address after the deployment.
+8. Return the address.
+9. Call the `compile_deploy_contract` function in `main`.
 
 ```rust
 // ...
@@ -444,13 +444,13 @@ The ABI for `Incrementer.sol` is below, which should be copied and pasted into t
 
 Then you can take the following steps to create a function that reads and returns the `number` method of the `Incrementer.sol` contract:
 
-1. Generate a type-safe interface for the `Incrementer` smart contract with the `abigen` macro
-2. Create a new asynchronous function named `read_number` that takes a client object's reference and a contract address reference as input, and returns a U256
-3. Create a new instance of the `Incrementer` object generated by the abigen macro with the client and contract address values
-4. Call the `number` function in the new `Incrementer` object
-5. Print out the resultant value
-6. Return the resultant value
-7. Call the `read_number` function in `main`
+1. Generate a type-safe interface for the `Incrementer` smart contract with the `abigen` macro.
+2. Create a new asynchronous function named `read_number` that takes a client object's reference and a contract address reference as input, and returns a U256.
+3. Create a new instance of the `Incrementer` object generated by the abigen macro with the client and contract address values.
+4. Call the `number` function in the new `Incrementer` object.
+5. Print out the resultant value.
+6. Return the resultant value.
+7. Call the `read_number` function in `main`.
 
 ```rust
 // ...
@@ -512,11 +512,11 @@ Send methods are the type of interaction that modify the contract's storage (cha
 
 Take the following steps to create the function to increment:
 
-1. Ensure that the abigen macro is called for the `Incrementer_ABI.json` somewhere in the `main.rs` file (if it is already in the `main.rs` file, you do not have to have a second one)
-2. Create a new asynchronous function named `increment_number` that takes a client object's reference and an address as input
-3. Create a new instance of the `Incrementer` object generated by the abigen macro with the client and contract address values
-4. Call the `increment` function in the new `Incrementer` object by including a `U256` object as input. In this instance, the value provided is `5`
-5. Call the `read_number` function in `main`
+1. Ensure that the abigen macro is called for the `Incrementer_ABI.json` somewhere in the `main.rs` file (if it is already in the `main.rs` file, you do not have to have a second one).
+2. Create a new asynchronous function named `increment_number` that takes a client object's reference and an address as input.
+3. Create a new instance of the `Incrementer` object generated by the abigen macro with the client and contract address values.
+4. Call the `increment` function in the new `Incrementer` object by including a `U256` object as input. In this instance, the value provided is `5`.
+5. Call the `read_number` function in `main`.
 
 ```rust
 // ...
@@ -573,11 +573,11 @@ If successful, the transaction receipt will be displayed in the terminal. You ca
 
 Next you can interact with the `reset` function:
 
-1. Ensure that the abigen macro is called for the `Incrementer_ABI.json` somewhere in the `main.rs` file (if it is already in the `main.rs` file, you do not have to have a second one)
-2. Create a new asynchronous function named `reset` that takes a client object's reference and an address as input
-3. Create a new instance of the `Incrementer` object generated by the abigen macro with the client and contract address values
-4. Call the `reset` function in the new `Incrementer` object
-5. Call the `reset` function in `main`
+1. Ensure that the abigen macro is called for the `Incrementer_ABI.json` somewhere in the `main.rs` file (if it is already in the `main.rs` file, you do not have to have a second one).
+2. Create a new asynchronous function named `reset` that takes a client object's reference and an address as input.
+3. Create a new instance of the `Incrementer` object generated by the abigen macro with the client and contract address values.
+4. Call the `reset` function in the new `Incrementer` object.
+5. Call the `reset` function in `main`.
 
 ```rust
 // ...

@@ -89,7 +89,7 @@ There are a few resources you can check out to help you select a collator to del
 === "Moonbeam"
     |           Variable           |                                      Value                                      |
     |:----------------------------:|:-------------------------------------------------------------------------------:|
-    |     Stake GLMR Dashboard     |              [Stake GLMR](https://stakeglmr.com){target=\_blank}               |
+    |     Stake GLMR Dashboard     |              [Stake GLMR](https://www.stakeglmr.com/){target=\_blank}               |
     |    Collators Leaderboard     |       [Moonscan](https://moonbeam.moonscan.io/collators){target=\_blank}       |
     |      Collator Dashboard      | [DappLooker](https://dapplooker.com/dashboard/moonbeam-collator-dashboard-91){target=\_blank} |
 

@@ -192,7 +192,7 @@ For the action to be executed, you'll be performing a contract interaction with 
 
 The encoded call data for the `increment` function is `0xd09de08a`, which is the function selector and is the first eight hexadecimal characters (or 4 bytes) of the keccak256 hash of `increment()`. If you choose to interact with a function that has input parameters, they also need to be encoded. The easiest way to get the encoded call data is to emulate a transaction either in [Remix](/builders/ethereum/dev-env/remix/#interacting-with-a-moonbeam-based-erc-20-from-metamask){target=\_blank} or [Moonscan](https://moonbase.moonscan.io/address/0xa72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8#code){target=\_blank}. Then, in Metamask, check the **HEX DATA: 4 BYTES** selector under the **HEX** tab to get the call data. You don't need to sign the transaction.
 
-Now that you have the encoded contract interaction data, you can determine the gas limit for this call using the [`eth_estimateGas` JSON-RPC method](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_estimategas){target=\_blank}. For this example, you can set the gas limit to `155000`.
+Now that you have the encoded contract interaction data, you can determine the gas limit for this call using the [`eth_estimateGas` JSON-RPC method](https://ethereum.org/developers/docs/apis/json-rpc/#eth_estimategas){target=\_blank}. For this example, you can set the gas limit to `155000`.
 
 For the value, you can set it to `0` since this particular interaction does not need DEV (or GLMR/MOVR for Moonbeam/Moonriver). For an interaction that requires DEV, you'll need to modify this value accordingly.
 

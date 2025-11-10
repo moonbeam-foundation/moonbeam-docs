@@ -20,9 +20,9 @@ This page provides everything you need to know to get started with Supra on Moon
 
 Supra uses a pull model as a customized approach that publishes price data upon request. It combines Web2 and Web3 methods to achieve low latency when sending data from Supra to destination chains. The process involves the following steps:
 
-1. Web2 methods are used to retrieve price data from Supra
-2. Smart contracts are utilized for cryptographically verifying and writing the latest price data on-chain, where it lives on immutable ledgers, using [Supra's Pull Oracle V1](https://docs.supra.com/oracles/data-feeds/pull-oracle){target=\_blank}
-3. Once the data has been written on-chain, the most recently published price feed data will be available in Supra's Storage contract
+1. Web2 methods are used to retrieve price data from Supra.
+2. Smart contracts are utilized for cryptographically verifying and writing the latest price data on-chain, where it lives on immutable ledgers, using [Supra's Pull Oracle V1](https://docs.supra.com/oracles/data-feeds/pull-oracle){target=\_blank}.
+3. Once the data has been written on-chain, the most recently published price feed data will be available in Supra's Storage contract.
 
 The addresses for Supra's contracts on Moonbeam are as follows:
 
@@ -57,11 +57,11 @@ Try out a basic example of how to fetch price data using Supra's pull model with
 
 Still looking for answers? Supra's got them! Check out all the ways you can reach the Supra team:
 
-- Visit [Supra's websites at supraoracles.com](https://supra.com){target=\_blank}
-- Read their [docs](https://docs.supra.com/oracles/overview){target=\_blank}
-- Chat with them on [Telegram](https://t.me/SupraOracles){target=\_blank}
-- Follow them on [Twitter](https://twitter.com/SupraOracles){target=\_blank}
-- Join their [Discord](https://discord.com/invite/supraoracles){target=\_blank}
-- Check out their [Youtube](https://www.youtube.com/SupraOfficial){target=\_blank}
+- Visit [Supra's websites at supraoracles.com](https://supra.com){target=\_blank}.
+- Read their [docs](https://docs.supra.com/oracles/overview){target=\_blank}.
+- Chat with them on [Telegram](https://t.me/SupraOracles){target=\_blank}.
+- Follow them on [X](https://x.com/SupraOracles){target=\_blank}.
+- Join their [Discord](https://discord.com/invite/supraoracles){target=\_blank}.
+- Check out their [Youtube](https://www.youtube.com/SupraOfficial){target=\_blank}.
 
 --8<-- 'text/_disclaimers/third-party-content.md'

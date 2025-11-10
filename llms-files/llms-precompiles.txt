@@ -11641,7 +11641,7 @@ While Moonbeam strives to be compatible with Ethereum's Web3 API and EVM, there 
 
 In short, consensus is a way for different parties to agree on a shared state. As blocks are created, nodes in the network must decide which block will represent the next valid state. Finality defines when that valid state cannot be altered or reversed.
 
-Ethereum began by using a consensus protocol based on [Proof-of-Work (PoW)](https://ethereum.org/en/developers/docs/consensus-mechanisms/pow){target=\_blank}, which provides probabilistic finality. However, in 2022, Ethereum switched to [Proof-of-Stake (PoS)](https://ethereum.org/en/developers/docs/consensus-mechanisms/pos){target=\_blank}, which provides deterministic finality, and no longer uses PoW. In contrast, Moonbeam uses a hybrid consensus protocol based on Delegated Proof-of-Stake (DPoS), which also provides deterministic finality. DPoS is an evolution of Polkadot's [Nominated Proof of Stake (NPoS)](https://docs.polkadot.com/polkadot-protocol/architecture/polkadot-chain/pos-consensus/){target=\_blank} concept, that puts more power into the hands of token holders by allowing delegators to choose which collator candidate they want to support and in what magnitude.
+Ethereum began by using a consensus protocol based on [Proof-of-Work (PoW)](https://ethereum.org/developers/docs/consensus-mechanisms/pow/){target=\_blank}, which provides probabilistic finality. However, in 2022, Ethereum switched to [Proof-of-Stake (PoS)](https://ethereum.org/developers/docs/consensus-mechanisms/pos/){target=\_blank}, which provides deterministic finality, and no longer uses PoW. In contrast, Moonbeam uses a hybrid consensus protocol based on Delegated Proof-of-Stake (DPoS), which also provides deterministic finality. DPoS is an evolution of Polkadot's [Nominated Proof of Stake (NPoS)](https://docs.polkadot.com/polkadot-protocol/architecture/polkadot-chain/pos-consensus/){target=\_blank} concept, that puts more power into the hands of token holders by allowing delegators to choose which collator candidate they want to support and in what magnitude.
 
 This guide will outline some of these main differences around consensus and finality, and what to expect when using Moonbeam for the first time.
 
@@ -11678,7 +11678,7 @@ Although the finality gadgets differ, you can use the same, fairly simple strate
  3. You compare it with the block number of your transaction. If your transaction was included in a previous block, it is finalized
  4. As a safety check, retrieve the block by number and verify that the given transaction hash is in the block
 
-The snippets below follow this strategy to check transaction finality. It uses the `finalized` option for the [default block parameter](https://ethereum.org/en/developers/docs/apis/json-rpc/#default-block){target=\_blank} to get the latest finalized block.
+The snippets below follow this strategy to check transaction finality. It uses the `finalized` option for the [default block parameter](https://ethereum.org/developers/docs/apis/json-rpc/#default-block){target=\_blank} to get the latest finalized block.
 
 To test out the examples in this guide on Moonbeam or Moonriver, you will need to have your own endpoint and API key, which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=\_blank}.
 
@@ -14129,7 +14129,7 @@ There are a few resources you can check out to help you select a collator to del
 === "Moonbeam"
     |           Variable           |                                      Value                                      |
     |:----------------------------:|:-------------------------------------------------------------------------------:|
-    |     Stake GLMR Dashboard     |              [Stake GLMR](https://stakeglmr.com){target=\_blank}               |
+    |     Stake GLMR Dashboard     |              [Stake GLMR](https://www.stakeglmr.com/){target=\_blank}               |
     |    Collators Leaderboard     |       [Moonscan](https://moonbeam.moonscan.io/collators){target=\_blank}       |
     |      Collator Dashboard      | [DappLooker](https://dapplooker.com/dashboard/moonbeam-collator-dashboard-91){target=\_blank} |
 
@@ -15860,7 +15860,7 @@ To build the binary file, you can take the following steps:
     !!! note
         Spaces in the installation file path will cause a compilation error.
 
-2. If you already have Rust installed, you can skip the next two steps. Otherwise, install Rust and its prerequisites [via Rust's recommended method](https://www.rust-lang.org/tools/install){target=\_blank} by executing:
+2. Check if Rust is installed. If Rust is installed, skip the next two steps. Otherwise, install Rust and its prerequisites [via Rust's recommended method](https://rust-lang.org/tools/install/){target=\_blank} by executing:
 
     ```bash
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
@@ -17529,10 +17529,10 @@ Despite the distinction between the Moonbeam and Moonriver DApp directories, the
 
 There are four main sources of data that are used for a project's listing in the Moonbeam DApp Directory:
 
-- **Core Project Data** - core project data such as descriptions, logos, and screenshots. This data also includes IDs used to query data from external platforms
-- **Active Users and Transaction Volume** - on-chain data based on smart contract activity for all of the contracts associated with the project. Data is discovered via the use of contract labeling in Moonscan and is indexed and consumed by the DApp Directory
-- **TVL Data** - TVL data for the protocol, sourced from the project's listing on DefiLlama
-- **Project Token Information** - token information, which is sourced from the project's listing on CoinGecko
+- **Core project data**: Core project data such as descriptions, logos, and screenshots. This data also includes IDs used to query data from external platforms.
+- **Active users and transaction volume**: On-chain data based on smart contract activity for all of the contracts associated with the project. Data is discovered via the use of contract labeling in Moonscan and is indexed and consumed by the DApp Directory.
+- **TVL data**: TVL data for the protocol, sourced from the project's listing on DefiLlama.
+- **Project token information**: Token information, which is sourced from the project's listing on CoinGecko.
 
 ## Prerequisites for Using External Data Sources {: #configuring-external-data-sources }
 
@@ -17544,10 +17544,10 @@ For projects that have smart contracts deployed on Moonbeam or Moonriver, it is 
 
 The end-to-end flow for linking smart contract activity to the DApp Directory is as follows:
 
-1. The smart contract owner fills in the [form to label contracts on Moonscan](https://moonscan.io/contactus?id=5){target=\_blank}
-2. The contracts become labeled in Moonscan
-3. Labeled contracts can then be ingested by ecosystem analytics providers to index activity for your project
-4. (Recommended) Register your project with FiDi so your activity can be indexed and publicly viewable. See the FiDi registration section below
+1. The smart contract owner fills in the [form to label contracts on Moonscan](https://moonscan.io/contactus?id=5){target=\_blank}.
+2. The contracts become labeled in Moonscan.
+3. Labeled contracts can then be ingested by ecosystem analytics providers to index activity for your project.
+4. (Recommended) Register your project with FiDi so your activity can be indexed and publicly viewable. See the FiDi registration section below.
 
 To get your project's smart contracts properly labeled on [Moonscan](https://moonscan.io){target=\_blank}, submit the [Moonscan contract labeling form](https://moonscan.io/contactus?id=5){target=\_blank} with your project and contract details.
 
@@ -17561,23 +17561,23 @@ Required Project Information:
 
 Where possible, include a short purpose description for each contract to improve completeness.
 
-- **Core Smart Contracts** - addresses of main contracts that define core functionality and interact significantly with the network. Optionally, include a brief description of each contract's purpose
-- **Factory Contracts** - if applicable, addresses of any contracts that deploy other contracts as part of your dApp. Please also provide the creation topic (hash of the creation event) for each factory contract
-- **Deployer Wallets** - if applicable, addresses of wallets used to deploy your project's contracts
+- **Core smart contracts**: Addresses of main contracts that define core functionality and interact significantly with the network. Optionally, include a brief description of each contract's purpose.
+- **Factory contracts**: If applicable, addresses of any contracts that deploy other contracts as part of your dApp. Please also provide the creation topic (hash of the creation event) for each factory contract.
+- **Deployer wallets**: If applicable, addresses of wallets used to deploy your project's contracts.
 
 Additional Project-Specific Information (Optional):
 
-- **Treasury/Admin Wallets** - addresses of wallets with administrative control or funds. Optionally, include a brief description of each wallet's function
-- **Oracle Contracts** - addresses of any oracle contracts. Optionally, include a brief description of what data these oracles provide
-- **Bridge Contracts** - addresses of any bridge contracts and the list of connected chains
-- **Governance Contracts** - addresses of any contracts related to on-chain governance. Optionally, include a brief explanation of your governance model
+- **Treasury/Admin wallets**: Addresses of wallets with administrative control or funds. Optionally, include a brief description of each wallet's function.
+- **Oracle contracts**: Addresses of any oracle contracts. Optionally, include a brief description of what data these oracles provide.
+- **Bridge contracts**: Addresses of any bridge contracts and the list of connected chains.
+- **Governance contracts**: Addresses of any contracts related to on-chain governance. Optionally, include a brief explanation of your governance model.
 
 Additional considerations:
 
-- If your project batches transactions, consider using the Batch Precompile
-- Factory contracts should derive from or mimic the standard Uniswap factory
-- Diamond (multi-facet proxy) contracts are supported and will be indexed correctly
-- Typical listing time is 1–2 weeks; FiDi may reach out for clarifications
+- If your project batches transactions, consider using the Batch Precompile.
+- Factory contracts should derive from or mimic the standard Uniswap factory.
+- Diamond (multi-facet proxy) contracts are supported and will be indexed correctly.
+- Typical listing time is 1–2 weeks; FiDi may reach out for clarifications.
 
 Once you've labeled your smart contracts and are ready to submit your project to the DApp Directory, configuring the Directory to utilize your smart contract data becomes straightforward. You'll only need the **Project** component of your labeled contracts.
 
@@ -17628,9 +17628,9 @@ git clone https://github.com/moonbeam-foundation/app-directory-data.git
 
 Once you've cloned the project, you can create a new branch to which you will add all of your changes. To do this on the browser-based editor, take the following steps:
 
-1. Click on the current branch name in the bottom left corner
-2. A menu will appear at the top of the page. Enter the name of your branch
-3. Click **Create new branch...**
+1. Click on the current branch name in the bottom left corner.
+2. A menu will appear at the top of the page. Enter the name of your branch.
+3. Click **Create new branch...**.
 
 ![Create a new branch on GitHub's browser-based editor](/images/learn/dapps-list/directory-3.webp)
 
@@ -17640,13 +17640,13 @@ The page will reload, and your branch name will now be displayed in the bottom l
 
 If a project is deployed to both Moonbeam and Moonriver, there are two different options available:
 
-- Create a separate project structure for each deployment
-- Use a single project structure and modify the project data file for both projects
+- Create a separate project structure for each deployment.
+- Use a single project structure and modify the project data file for both projects.
 
 Separate project structures should be used if:
 
-- The two deployments have distinct representations in DefiLlama (i.e., two distinct identifiers)
-- The project has two different tokens, one native to Moonbeam and one native to Moonriver
+- The two deployments have distinct representations in DefiLlama (i.e., two distinct identifiers).
+- The project has two different tokens, one native to Moonbeam and one native to Moonriver.
 
 Otherwise, either option may be used.
 
@@ -17656,11 +17656,11 @@ All configurations for each project listed in the DApp Directory are stored in t
 
 To get started, you must have a name that uniquely and properly identifies your project. Using your project name, you can take the following steps:
 
-1. Create a new directory for your project using your unique project name
+1. Create a new directory for your project using your unique project name.
 2. In your project directory, you'll need to create:
-    1. A project data file is a JSON file that defines all your project data and contains references to the images stored in the `logos` and `screenshots` folders. The list of fields you can use to define your data, with descriptions, is outlined in the next section. The file must be named using your unique project name
-    2. A `logos` folder where your project logo images are stored
-    3. (Optional) A `screenshots` folder where screenshots for the project are stored
+    1. A project data file is a JSON file that defines all your project data and contains references to the images stored in the `logos` and `screenshots` folders. The list of fields you can use to define your data, with descriptions, is outlined in the next section. The file must be named using your unique project name.
+    2. A `logos` folder where your project logo images are stored.
+    3. (Optional) A `screenshots` folder where screenshots for the project are stored.
 
 ??? code "Example folder structure"
 
@@ -17876,7 +17876,7 @@ The following table lists the supported `urls` properties:
 |:-------------:|:------------------------------------------------------------------------------------------------------------------:|:-----------------------------------------------:|
 |   `website`   |                                          The main website for the project                                          |            https://moonbeam.network/            |
 |     `try`     | URL a user should visit if they want to try out the dApp. Typically, this page will have a link to launch the dApp |            https://moonbeam.network/            |
-|   `twitter`   |                                     The project's X (Twitter) profile                                      |       https://twitter.com/MoonbeamNetwork       |
+|   `twitter`   |                                     The project's X (Twitter) profile                                      |       https://x.com/MoonbeamNetwork       |
 |   `medium`    |                                             The project's Medium site                                              |       https://medium.com/moonbeam-network       |
 |  `telegram`   |                                               The project's Telegram                                               |         https://t.me/Moonbeam_Official          |
 |   `github`    |                                          The project's GitHub repository                                           | https://github.com/moonbeam-foundation/moonbeam |
@@ -17888,7 +17888,7 @@ The format of the property name/value pairs should follow the JSON standard, for
 "urls": {
     "website": "https://moonbeam.network/",
     "try": "https://docs.moonbeam.network/",
-    "twitter": "https://twitter.com/MoonbeamNetwork"
+    "twitter": "https://x.com/MoonbeamNetwork"
 }
 ```
 
@@ -18010,33 +18010,33 @@ After you've populated the project data file and added your logos and screenshot
 
 From the web-based editor, take the following steps to commit your changes to the `app-directory-data` repository:
 
-1. Click on the **Source Control** tab, which should show you how many pages have been added or changed
-2. Review the files under the **Changes** section. Click the **+** button next to **Changes**, or as you review each file, click the **+** button next to the file name to add them to the list of **Staged Changes**
+1. Click on the **Source Control** tab, which should show you how many pages have been added or changed.
+2. Review the files under the **Changes** section. Click the **+** button next to **Changes**, or as you review each file, click the **+** button next to the file name to add them to the list of **Staged Changes**.
 
 ![Staging the changed files on GitHub's browser-based editor](/images/learn/dapps-list/directory-6.webp)
 
 All of your files should now be under the **Staged Changes** section. All you have to commit and push the changes are:
 
-1. Enter a descriptive commit message, such as "Add My Project", making sure to use your actual project name
-2. Click **Commit & Push**
+1. Enter a descriptive commit message, such as "Add My Project", making sure to use your actual project name.
+2. Click **Commit & Push**.
 
 ![Committing the staged files on GitHub's browser-based editor](/images/learn/dapps-list/directory-7.webp)
 
 Now that you've committed the changes, you'll need to head over to the [`app-directory-data` repository](https://github.com/moonbeam-foundation/app-directory-data){target=\_blank} and open a pull request against the `develop` branch:
 
 1. At the top of the repository page, click **Compare and Pull** button displayed on the banner, or
-2. If the banner is not there anymore, you'll need to select your branch from the branches dropdown
-3. Click the **Contribute** dropdown
-4. Click the **Open pull request** button
+2. If the banner is not there anymore, you'll need to select your branch from the branches dropdown.
+3. Click the **Contribute** dropdown.
+4. Click the **Open pull request** button.
 
 ![The main page of the app-directory-data repository on GitHub](/images/learn/dapps-list/directory-8.webp)
 
 You'll be taken to the **Comparing changes** page, where you'll need to:
 
-1. Make sure that you are merging your branch into the `develop` branch, which is the **base** branch
-2. Add a title
-3. Add a description of the changes
-4. Click **Create pull request**
+1. Make sure that you are merging your branch into the `develop` branch, which is the **base** branch.
+2. Add a title.
+3. Add a description of the changes.
+4. Click **Create pull request**.
 
 ![Submit a pull request on the Comparing changes page of the app-directory-data repository on GitHub](/images/learn/dapps-list/directory-9.webp)
 
@@ -22104,47 +22104,47 @@ Nevertheless, not all Ethereum JSON-RPC methods are supported; some of those sup
 
 The basic JSON-RPC methods from the Ethereum API supported by Moonbeam are:
 
-- **[eth_protocolVersion](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_protocolversion){target=\_blank}** — returns `1` by default
-- **[eth_syncing](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_syncing){target=\_blank}** — returns an object with data about the sync status or `false`
-- **[eth_hashrate](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_hashrate){target=\_blank}** — returns `"0x0"` by default
-- **[eth_coinbase](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_coinbase){target=\_blank}** — returns the latest block author. Not necessarily a finalized block
-- **[eth_mining](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_mining){target=\_blank}** — returns `false` by default
-- **[eth_chainId](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_chainid){target=\_blank}** — returns the chain ID used for signing at the current block
-- **[eth_gasPrice](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_gasprice){target=\_blank}** — returns the base fee per unit of gas used. This is currently the minimum gas price for each network
-- **[eth_accounts](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_accounts){target=\_blank}** — returns a list of addresses owned by the client
-- **[eth_blockNumber](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_blocknumber){target=\_blank}** — returns the highest available block number
-- **[eth_getBalance](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_getbalance){target=\_blank}** — returns the balance of the given address. Instead of providing a block number as a parameter, you can provide a [default block parameter](#default-block-parameters)
-- **[eth_getStorageAt](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_getstorageat){target=\_blank}** — returns the content of the storage at a given address. Instead of providing a block number as a parameter, you can provide a [default block parameter](#default-block-parameters)
-- **[eth_getBlockByHash](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_getblockbyhash){target=\_blank}** — returns information about the block of the given hash, including `baseFeePerGas` on post-London blocks
-- **[eth_getBlockByNumber](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_getblockbynumber){target=\_blank}** — returns information about the block specified by block number, including `baseFeePerGas` on post-London blocks. Instead of providing a block number as the first parameter, you can provide a [default block parameter](#default-block-parameters)
+- **[eth_protocolVersion](https://ethereum.org/developers/docs/apis/json-rpc/#eth_protocolversion){target=\_blank}** — returns `1` by default
+- **[eth_syncing](https://ethereum.org/developers/docs/apis/json-rpc/#eth_syncing){target=\_blank}** — returns an object with data about the sync status or `false`
+- **[eth_hashrate](https://ethereum.org/developers/docs/apis/json-rpc/#eth_hashrate){target=\_blank}** — returns `"0x0"` by default
+- **[eth_coinbase](https://ethereum.org/developers/docs/apis/json-rpc/#eth_coinbase){target=\_blank}** — returns the latest block author. Not necessarily a finalized block
+- **[eth_mining](https://ethereum.org/developers/docs/apis/json-rpc/#eth_mining){target=\_blank}** — returns `false` by default
+- **[eth_chainId](https://ethereum.org/developers/docs/apis/json-rpc/#eth_chainid){target=\_blank}** — returns the chain ID used for signing at the current block
+- **[eth_gasPrice](https://ethereum.org/developers/docs/apis/json-rpc/#eth_gasprice){target=\_blank}** — returns the base fee per unit of gas used. This is currently the minimum gas price for each network
+- **[eth_accounts](https://ethereum.org/developers/docs/apis/json-rpc/#eth_accounts){target=\_blank}** — returns a list of addresses owned by the client
+- **[eth_blockNumber](https://ethereum.org/developers/docs/apis/json-rpc/#eth_blocknumber){target=\_blank}** — returns the highest available block number
+- **[eth_getBalance](https://ethereum.org/developers/docs/apis/json-rpc/#eth_getbalance){target=\_blank}** — returns the balance of the given address. Instead of providing a block number as a parameter, you can provide a [default block parameter](#default-block-parameters)
+- **[eth_getStorageAt](https://ethereum.org/developers/docs/apis/json-rpc/#eth_getstorageat){target=\_blank}** — returns the content of the storage at a given address. Instead of providing a block number as a parameter, you can provide a [default block parameter](#default-block-parameters)
+- **[eth_getBlockByHash](https://ethereum.org/developers/docs/apis/json-rpc/#eth_getblockbyhash){target=\_blank}** — returns information about the block of the given hash, including `baseFeePerGas` on post-London blocks
+- **[eth_getBlockByNumber](https://ethereum.org/developers/docs/apis/json-rpc/#eth_getblockbynumber){target=\_blank}** — returns information about the block specified by block number, including `baseFeePerGas` on post-London blocks. Instead of providing a block number as the first parameter, you can provide a [default block parameter](#default-block-parameters)
 - **[eth_getBlockReceipts](https://www.alchemy.com/docs/node/ethereum/ethereum-api-endpoints/eth-get-block-receipts){target=\_blank}** — returns all transaction receipts for a given block
-- **[eth_getTransactionCount](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_gettransactioncount){target=\_blank}** — returns the number of transactions sent from the given address (nonce). Instead of providing a block number as a parameter, you can provide a [default block parameter](#default-block-parameters)
-- **[eth_getBlockTransactionCountByHash](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_getblocktransactioncountbyhash){target=\_blank}** — returns the number of transactions in a block with a given block hash
-- **[eth_getBlockTransactionCountByNumber](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_getblocktransactioncountbynumber){target=\_blank}** — returns the number of transactions in a block with a given block number
-- **[eth_getUncleCountByBlockHash](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_getunclecountbyblockhash){target=\_blank}** —  returns `"0x0"` by default
-- **[eth_getUncleCountByBlockNumber](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_getunclecountbyblocknumber){target=\_blank}** — returns `"0x0"` by default
-- **[eth_getCode](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_getcode){target=\_blank}** — returns the code at the given address at the given block number. Instead of providing a block number as a parameter, you can provide a [default block parameter](#default-block-parameters)
-- **[eth_sendTransaction](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_sendtransaction){target=\_blank}** — creates a new message call transaction or a contract creation, if the data field contains code. Returns the transaction hash or the zero hash if the transaction is not yet available
-- **[eth_sendRawTransaction](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_sendrawtransaction){target=\_blank}** — creates a new message call transaction or a contract creation for signed transactions. Returns the transaction hash or the zero hash if the transaction is not yet available
-- **[eth_call](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_call){target=\_blank}** — executes a new message call immediately without creating a transaction on the blockchain, returning the value of the executed call
+- **[eth_getTransactionCount](https://ethereum.org/developers/docs/apis/json-rpc/#eth_gettransactioncount){target=\_blank}** — returns the number of transactions sent from the given address (nonce). Instead of providing a block number as a parameter, you can provide a [default block parameter](#default-block-parameters)
+- **[eth_getBlockTransactionCountByHash](https://ethereum.org/developers/docs/apis/json-rpc/#eth_getblocktransactioncountbyhash){target=\_blank}** — returns the number of transactions in a block with a given block hash
+- **[eth_getBlockTransactionCountByNumber](https://ethereum.org/developers/docs/apis/json-rpc/#eth_getblocktransactioncountbynumber){target=\_blank}** — returns the number of transactions in a block with a given block number
+- **[eth_getUncleCountByBlockHash](https://ethereum.org/developers/docs/apis/json-rpc/#eth_getunclecountbyblockhash){target=\_blank}** —  returns `"0x0"` by default
+- **[eth_getUncleCountByBlockNumber](https://ethereum.org/developers/docs/apis/json-rpc/#eth_getunclecountbyblocknumber){target=\_blank}** — returns `"0x0"` by default
+- **[eth_getCode](https://ethereum.org/developers/docs/apis/json-rpc/#eth_getcode){target=\_blank}** — returns the code at the given address at the given block number. Instead of providing a block number as a parameter, you can provide a [default block parameter](#default-block-parameters)
+- **[eth_sendTransaction](https://ethereum.org/developers/docs/apis/json-rpc/#eth_sendtransaction){target=\_blank}** — creates a new message call transaction or a contract creation, if the data field contains code. Returns the transaction hash or the zero hash if the transaction is not yet available
+- **[eth_sendRawTransaction](https://ethereum.org/developers/docs/apis/json-rpc/#eth_sendrawtransaction){target=\_blank}** — creates a new message call transaction or a contract creation for signed transactions. Returns the transaction hash or the zero hash if the transaction is not yet available
+- **[eth_call](https://ethereum.org/developers/docs/apis/json-rpc/#eth_call){target=\_blank}** — executes a new message call immediately without creating a transaction on the blockchain, returning the value of the executed call
     - Moonbeam supports the use of the optional _state override set_ object. This address-to-state mapping object allows the user to specify some state to be ephemerally overridden before executing a call to `eth_call`. The state override set is commonly used for tasks like debugging smart contracts. Visit the [go-ethereum](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-eth#:~:text=Object%20%2D%20State%20override%20set){target=\_blank} documentation to learn more
     - Instead of providing a block number as a parameter, you can provide a [default block parameter](#default-block-parameters)
-- **[eth_estimateGas](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_estimategas){target=\_blank}** — returns an estimated amount of gas necessary for a given transaction to succeed. You can optionally specify a `gasPrice` or `maxFeePerGas` and `maxPriorityFeePerGas`. Instead of providing a block number as a parameter, you can provide a [default block parameter](#default-block-parameters)
+- **[eth_estimateGas](https://ethereum.org/developers/docs/apis/json-rpc/#eth_estimategas){target=\_blank}** — returns an estimated amount of gas necessary for a given transaction to succeed. You can optionally specify a `gasPrice` or `maxFeePerGas` and `maxPriorityFeePerGas`. Instead of providing a block number as a parameter, you can provide a [default block parameter](#default-block-parameters)
 - **[eth_maxPriorityFeePerGas](https://www.alchemy.com/docs/node/ethereum/ethereum-api-endpoints/eth-max-priority-fee-per-gas){target=\_blank}** - returns an estimate of how much priority fee, in Wei, is needed for inclusion in a block
 - **[eth_feeHistory](https://www.alchemy.com/docs/node/ethereum/ethereum-api-endpoints/eth-fee-history){target=\_blank}** — returns `baseFeePerGas`, `gasUsedRatio`, `oldestBlock`, and `reward` for a specified range of up to 1024 blocks
-- **[eth_getTransactionByHash](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_gettransactionbyhash){target=\_blank}** — returns the information about a transaction with a given hash. EIP-1559 transactions have `maxPriorityFeePerGas` and `maxFeePerGas` fields
-- **[eth_getTransactionByBlockHashAndIndex](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_gettransactionbyblockhashandindex){target=\_blank}** — returns information about a transaction at a given block hash and a given index position. EIP-1559 transactions have `maxPriorityFeePerGas` and `maxFeePerGas` fields
-- **[eth_getTransactionByBlockNumberAndIndex](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_gettransactionbyblocknumberandindex){target=\_blank}** — returns information about a transaction at a given block number and a given index position. EIP-1559 transactions have `maxPriorityFeePerGas` and `maxFeePerGas` fields. Instead of providing a block number as a parameter, you can provide a [default block parameter](#default-block-parameters)
-- **[eth_getTransactionReceipt](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_gettransactionreceipt){target=\_blank}** — returns the transaction receipt of a given transaction hash
-- **[eth_getUncleByBlockHashAndIndex](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_getunclebyblockhashandindex){target=\_blank}** — returns `null` by default
-- **[eth_getUncleByBlockNumberAndIndex](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_getunclebyblocknumberandindex){target=\_blank}** — returns `null` by default
-- **[eth_getLogs](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_getlogs){target=\_blank}** — returns an array of all logs matching a given filter object. Instead of providing a block number as a parameter, you can provide a [default block parameter](#default-block-parameters)
-- **[eth_newFilter](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_newfilter){target=\_blank}** — creates a filter object based on the input provided. Returns a filter ID
-- **[eth_newBlockFilter](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_newblockfilter){target=\_blank}** — creates a filter in the node to notify when a new block arrives. Returns a filter ID
-- **[eth_newPendingTransactionFilter](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_newpendingtransactionfilter){target=\_blank}** - creates a filter in the node to notify when new pending transactions arrive. Returns a filter ID
-- **[eth_getFilterChanges](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_getfilterchanges){target=\_blank}** — polling method for filters (see methods above). Returns an array of logs that occurred since the last poll
-- **[eth_getFilterLogs](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_getfilterlogs){target=\_blank}** — returns an array of all the logs matching the filter with a given ID
-- **[eth_uninstallFilter](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_uninstallfilter){target=\_blank}** — uninstall a filter with a given ID. It should be used when polling is no longer needed. Filters timeout when they are not requested using `eth_getFilterChanges` after some time
+- **[eth_getTransactionByHash](https://ethereum.org/developers/docs/apis/json-rpc/#eth_gettransactionbyhash){target=\_blank}** — returns the information about a transaction with a given hash. EIP-1559 transactions have `maxPriorityFeePerGas` and `maxFeePerGas` fields
+- **[eth_getTransactionByBlockHashAndIndex](https://ethereum.org/developers/docs/apis/json-rpc/#eth_gettransactionbyblockhashandindex){target=\_blank}** — returns information about a transaction at a given block hash and a given index position. EIP-1559 transactions have `maxPriorityFeePerGas` and `maxFeePerGas` fields
+- **[eth_getTransactionByBlockNumberAndIndex](https://ethereum.org/developers/docs/apis/json-rpc/#eth_gettransactionbyblocknumberandindex){target=\_blank}** — returns information about a transaction at a given block number and a given index position. EIP-1559 transactions have `maxPriorityFeePerGas` and `maxFeePerGas` fields. Instead of providing a block number as a parameter, you can provide a [default block parameter](#default-block-parameters)
+- **[eth_getTransactionReceipt](https://ethereum.org/developers/docs/apis/json-rpc/#eth_gettransactionreceipt){target=\_blank}** — returns the transaction receipt of a given transaction hash
+- **[eth_getUncleByBlockHashAndIndex](https://ethereum.org/developers/docs/apis/json-rpc/#eth_getunclebyblockhashandindex){target=\_blank}** — returns `null` by default
+- **[eth_getUncleByBlockNumberAndIndex](https://ethereum.org/developers/docs/apis/json-rpc/#eth_getunclebyblocknumberandindex){target=\_blank}** — returns `null` by default
+- **[eth_getLogs](https://ethereum.org/developers/docs/apis/json-rpc/#eth_getlogs){target=\_blank}** — returns an array of all logs matching a given filter object. Instead of providing a block number as a parameter, you can provide a [default block parameter](#default-block-parameters)
+- **[eth_newFilter](https://ethereum.org/developers/docs/apis/json-rpc/#eth_newfilter){target=\_blank}** — creates a filter object based on the input provided. Returns a filter ID
+- **[eth_newBlockFilter](https://ethereum.org/developers/docs/apis/json-rpc/#eth_newblockfilter){target=\_blank}** — creates a filter in the node to notify when a new block arrives. Returns a filter ID
+- **[eth_newPendingTransactionFilter](https://ethereum.org/developers/docs/apis/json-rpc/#eth_newpendingtransactionfilter){target=\_blank}** - creates a filter in the node to notify when new pending transactions arrive. Returns a filter ID
+- **[eth_getFilterChanges](https://ethereum.org/developers/docs/apis/json-rpc/#eth_getfilterchanges){target=\_blank}** — polling method for filters (see methods above). Returns an array of logs that occurred since the last poll
+- **[eth_getFilterLogs](https://ethereum.org/developers/docs/apis/json-rpc/#eth_getfilterlogs){target=\_blank}** — returns an array of all the logs matching the filter with a given ID
+- **[eth_uninstallFilter](https://ethereum.org/developers/docs/apis/json-rpc/#eth_uninstallfilter){target=\_blank}** — uninstall a filter with a given ID. It should be used when polling is no longer needed. Filters timeout when they are not requested using `eth_getFilterChanges` after some time
 
 ## Default Block Parameters {: #default-block-parameters }
 
@@ -22163,8 +22163,8 @@ Moonbeam does not support the following Ethereum API JSON-RPC methods:
  - **[eth_getProof](https://www.alchemy.com/docs/node/ethereum/ethereum-api-endpoints/eth-get-proof){target=\_blank}** - returns the account and storage values of the specified account including the Merkle-proof
  - **[eth_blobBaseFee](https://www.quicknode.com/docs/ethereum/eth_blobBaseFee){target=\_blank}** - returns the expected base fee for blobs in the next block
  - **[eth_createAccessList](https://www.alchemy.com/docs/node/ethereum/ethereum-api-endpoints/eth-create-access-list){target=\_blank}** - creates an EIP-2930 type `accessList` based on a given transaction object
- - **[eth_sign](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_sign){target=\_blank}** - allows the user to sign an arbitrary hash to be sent at a later time. Presents a [security risk](https://support.metamask.io/privacy-and-security/what-is-eth_sign-and-why-is-it-a-risk/){target=\_blank} as the arbitrary hash can be fraudulently applied to other transactions
- - **[eth_signTransaction](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_signtransaction){target=\_blank}** - allows the user to sign a transaction to be sent at a later time. It is rarely used due to associated security risks
+ - **[eth_sign](https://ethereum.org/developers/docs/apis/json-rpc/#eth_sign){target=\_blank}** - allows the user to sign an arbitrary hash to be sent at a later time. Presents a [security risk](https://support.metamask.io/privacy-and-security/what-is-eth_sign-and-why-is-it-a-risk/){target=\_blank} as the arbitrary hash can be fraudulently applied to other transactions
+ - **[eth_signTransaction](https://ethereum.org/developers/docs/apis/json-rpc/#eth_signtransaction){target=\_blank}** - allows the user to sign a transaction to be sent at a later time. It is rarely used due to associated security risks
 
 ## Additional RPC Methods {: #additional-rpc-methods }
 

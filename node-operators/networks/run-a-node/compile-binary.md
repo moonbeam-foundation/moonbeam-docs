@@ -20,32 +20,32 @@ Manually compiling the binary can take around 30 minutes and requires 32GB of me
 
 The following commands will build the latest release of the Moonbeam parachain.
 
-1. Clone the Moonbeam repo
+1. Clone the Moonbeam repo.
 
     ```bash
     git clone https://github.com/moonbeam-foundation/moonbeam
     cd moonbeam
     ```
 
-2. Check out the latest release
+2. Check out the latest release.
 
     ```bash
     git checkout tags/$(git describe --tags)
     ```
 
-3. If you already have Rust installed, you can skip the next two steps. Otherwise, install Rust and its prerequisites [via Rust's recommended method](https://www.rust-lang.org/tools/install){target=\_blank}
+3. Skip the next two steps if you already have Rust installed. Otherwise, install Rust and its prerequisites [via Rust's recommended method](https://rust-lang.org/tools/install/){target=\_blank}.
 
     ```bash
     --8<-- 'code/builders/get-started/networks/moonbeam-dev/installrust.md'
     ```
 
-4. Update your `PATH` environment variable
+4. Update your `PATH` environment variable.
 
     ```bash
     --8<-- 'code/builders/get-started/networks/moonbeam-dev/updatepath.md'
     ```
 
-5. Build the parachain binary
+5. Build the parachain binary.
 
     !!! note
         If you are using Ubuntu 20.04 or 22.04, then you will need to install these additional dependencies before building the binary:

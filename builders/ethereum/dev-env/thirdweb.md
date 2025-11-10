@@ -443,7 +443,7 @@ To host your static web application on decentralized storage, run:
 npx thirdweb deploy --app
 ```
 
-By running this command, your application is built for production and stored using [Storage](https://portal.thirdweb.com/infrastructure/storage/overview){target=\_blank}, thirdweb's decentralized file management solution. The built application is uploaded to IPFS, a decentralized storage network, and a unique URL is generated for your application. This URL serves as a permanent hosting location for your application on the web.
+By running this command, your application is built for production and stored using [Storage](https://portal.thirdweb.com/references/typescript/v5/functions#storage){target=\_blank}, thirdweb's decentralized file management solution. The built application is uploaded to IPFS, a decentralized storage network, and a unique URL is generated for your application. This URL serves as a permanent hosting location for your application on the web.
 
 If you have any further questions or encounter any issues during the process, please reach out to thirdweb support at [support.thirdweb.com](http://support.thirdweb.com){target=\_blank}.
 
