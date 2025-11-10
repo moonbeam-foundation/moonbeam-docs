@@ -390,7 +390,7 @@ The following table lists the supported `urls` properties:
 |:-------------:|:------------------------------------------------------------------------------------------------------------------:|:-----------------------------------------------:|
 |   `website`   |                                          The main website for the project                                          |            https://moonbeam.network/            |
 |     `try`     | URL a user should visit if they want to try out the dApp. Typically, this page will have a link to launch the dApp |            https://moonbeam.network/            |
-|   `X`   |                                     The project's X profile                                      |       https://x.com/MoonbeamNetwork       |
+|   `twitter`   |                                     The project's X (Twitter) profile                                      |       https://x.com/MoonbeamNetwork       |
 |   `medium`    |                                             The project's Medium site                                              |       https://medium.com/moonbeam-network       |
 |  `telegram`   |                                               The project's Telegram                                               |         https://t.me/Moonbeam_Official          |
 |   `github`    |                                          The project's GitHub repository                                           | https://github.com/moonbeam-foundation/moonbeam |
