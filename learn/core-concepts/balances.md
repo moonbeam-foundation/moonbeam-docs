@@ -77,6 +77,15 @@ You can also retrieve your balance locks using the Polkadot.js API.
 --8<-- 'code/learn/core-concepts/balances/locks.js'
 ```
 
+!!! note
+    As of runtime 4000, staking locks were replaced by balance freezes due to the `ParachainStaking` pallet migration from the deprecated `Currency` trait to the modern `Fungible` trait. Queries that previously read `Balances.Locks` with identifiers [`stkngcol`, `stkngdel`] must now read `Balances.Freezes` with freeze reasons [`StakingCollator`, `StakingDelegator`].
+
+You can retrieve your balance freezes using the Polkadot.js API as shown below.
+
+```js
+--8<-- 'code/learn/core-concepts/balances/freezes.js'
+```
+
 ## Main Differences {: #main-differences }
 
 The main difference between account balances on Ethereum and Moonbeam lies in the concept of locked and reserved balance on Moonbeam. These are tokens that are still owned by that account, but they are not spendable (yet).
