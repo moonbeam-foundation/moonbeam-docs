@@ -4509,24 +4509,26 @@ const main = async () => {
 main();
 ```
 
-You can also retrieve your balance locks using the Polkadot.js API.
+!!! note
+    As of runtime 4000, staking locks were replaced by balance freezes due to the `ParachainStaking` pallet migration from the deprecated `Currency` trait to the modern `Fungible` trait. Queries that previously read `Balances.Locks` with identifiers [`stkngcol`, `stkngdel`] must now read `Balances.Freezes` with freeze reasons [`StakingCollator`, `StakingDelegator`].
+
+You can retrieve your balance freezes using the Polkadot.js API as shown below.
 
 ```js
+// Query Balances.Freezes
 import { ApiPromise, WsProvider } from '@polkadot/api';
 
 const wsProvider = new WsProvider('wss://wss.api.moonbase.moonbeam.network');
 
 const main = async () => {
-  const polkadotApi = await ApiPromise.create({
-    provider: wsProvider,
-  });
-
-  const locks = await polkadotApi.query.balances.locks('INSERT_ADDRESS');
-  console.log(locks.toHuman());
+  const api = await ApiPromise.create({ provider: wsProvider });
+  const freezes = await api.query.balances.freezes('INSERT_ADDRESS_HERE');
+  console.log(freezes.toHuman());
 };
 
 main();
 ```
+
 
 ## Main Differences {: #main-differences }
 
@@ -14514,6 +14516,18 @@ This change took effect at the following runtimes and blocks:
 | Moonbase Alpha |      RT3300      |    9062316    |
 
 For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/2976){target=\_blank}.
+
+#### ParachainStaking: Currency → Fungible Migration {: #parachainstaking-currency-to-fungible }
+
+A migration was applied to move the `ParachainStaking` pallet from the deprecated Currency trait to the modern Fungible trait. Operationally, staking “locks” were replaced by balance “freezes”: queries that previously read `Balances.Locks` with identifiers [`stkngcol`, `stkngdel`] must now read `Balances.Freezes` with freeze reasons [`StakingCollator`, `StakingDelegator`]. The frozen balance shown in `System.Account` is unchanged by this migration. 
+
+This migration was executed at the following runtimes and blocks:
+
+|    Network     | Executed Runtime | Block Applied |
+|:--------------:|:----------------:|:-------------:|
+|    Moonbeam    |      RT4000      |       -       |
+|   Moonriver    |      RT4000      |       -       |
+| Moonbase Alpha |      RT4000      |    14191989    |
 
 ---
 

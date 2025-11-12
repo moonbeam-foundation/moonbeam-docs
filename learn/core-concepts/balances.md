@@ -71,11 +71,15 @@ You can check on your balances, including your free (or transferable) and reserv
 --8<-- 'code/learn/core-concepts/balances/balance.js'
 ```
 
-You can also retrieve your balance locks using the Polkadot.js API.
+!!! note
+    As of runtime 4000, staking locks were replaced by balance freezes due to the `ParachainStaking` pallet migration from the deprecated `Currency` trait to the modern `Fungible` trait. Queries that previously read `Balances.Locks` with identifiers [`stkngcol`, `stkngdel`] must now read `Balances.Freezes` with freeze reasons [`StakingCollator`, `StakingDelegator`].
+
+You can retrieve your balance freezes using the Polkadot.js API as shown below.
 
 ```js
---8<-- 'code/learn/core-concepts/balances/locks.js'
+--8<-- 'code/learn/core-concepts/balances/freezes.js'
 ```
+
 
 ## Main Differences {: #main-differences }
 

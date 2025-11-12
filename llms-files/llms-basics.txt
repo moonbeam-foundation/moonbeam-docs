@@ -136,24 +136,26 @@ const main = async () => {
 main();
 ```
 
-You can also retrieve your balance locks using the Polkadot.js API.
+!!! note
+    As of runtime 4000, staking locks were replaced by balance freezes due to the `ParachainStaking` pallet migration from the deprecated `Currency` trait to the modern `Fungible` trait. Queries that previously read `Balances.Locks` with identifiers [`stkngcol`, `stkngdel`] must now read `Balances.Freezes` with freeze reasons [`StakingCollator`, `StakingDelegator`].
+
+You can retrieve your balance freezes using the Polkadot.js API as shown below.
 
 ```js
+// Query Balances.Freezes
 import { ApiPromise, WsProvider } from '@polkadot/api';
 
 const wsProvider = new WsProvider('wss://wss.api.moonbase.moonbeam.network');
 
 const main = async () => {
-  const polkadotApi = await ApiPromise.create({
-    provider: wsProvider,
-  });
-
-  const locks = await polkadotApi.query.balances.locks('INSERT_ADDRESS');
-  console.log(locks.toHuman());
+  const api = await ApiPromise.create({ provider: wsProvider });
+  const freezes = await api.query.balances.freezes('INSERT_ADDRESS_HERE');
+  console.log(freezes.toHuman());
 };
 
 main();
 ```
+
 
 ## Main Differences {: #main-differences }
 
