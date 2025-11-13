@@ -755,6 +755,18 @@ This change took effect at the following runtimes and blocks:
 
 For more information, you can review the [relative PR on GitHub](https://github.com/moonbeam-foundation/moonbeam/pull/2976){target=\_blank}.
 
+#### ParachainStaking: Currency → Fungible Migration {: #parachainstaking-currency-to-fungible }
+
+A migration was applied to move the `ParachainStaking` pallet from the deprecated Currency trait to the modern Fungible trait. Operationally, staking “locks” were replaced by balance “freezes”: queries that previously read `Balances.Locks` with identifiers [`stkngcol`, `stkngdel`] must now read `Balances.Freezes` with freeze reasons [`StakingCollator`, `StakingDelegator`]. The frozen balance shown in `System.Account` is unchanged by this migration. 
+
+This migration was executed at the following runtimes and blocks:
+
+|    Network     | Executed Runtime | Block Applied |
+|:--------------:|:----------------:|:-------------:|
+|    Moonbeam    |      RT4000      |       -       |
+|   Moonriver    |      RT4000      |       -       |
+| Moonbase Alpha |      RT4000      |    14191989    |
+
 ---
 
 ### Referenda Pallet {: #referenda-pallet }
