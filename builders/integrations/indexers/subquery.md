@@ -302,7 +302,7 @@ Each property can be defined as follows:
 
 - `kind`: The kind of data source that you'll use, which for EVM data is the `substrate/FrontierEVM` source.
 - `startBlock` (optional): The block from which the indexer will start processing blocks.
-- `endBlock`(optional): After this block, the indexer will stop processing blocks.
+- `endBlock` (optional): After this block, the indexer will stop processing blocks.
 - `processor`: The Frontier EVM data processor configuration.
     - `file`: The file where the data processor code lives.
     - `options` (optional): The [processor options](https://subquery.network/doc/indexer/build/datasource-processors/substrate-evm.html#processor-options){target=\_blank} specific to the Frontier EVM processor.
