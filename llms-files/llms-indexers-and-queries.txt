@@ -1562,7 +1562,7 @@ To get started, you'll need to [create a SubQuery project](https://subquery.netw
 
 3. You'll be prompted to answer a series of questions:
 
-    1. For the **Select a network family** question, although Moonbeam is EVM compatible, the Moonbeam templates are under the **Polkadot** family, so you can choose **Polkadot**
+    1. For the **Select a network family** question, although Moonbeam is EVM compatible, the Moonbeam templates are under the **Polkadot** family, so you can choose **Polkadot**.
 
         <div id="termynal" data-termynal>
   <span data-ty="input"><span class="file-path"></span> subql init moonbeam-demo</span>
@@ -1576,10 +1576,10 @@ To get started, you'll need to [create a SubQuery project](https://subquery.netw
   <span data-ty>  Stellar</span>
 </div>
 
-    2. The next screen will prompt you to **Select a network**. You can choose between Moonbeam and Moonriver
+    2. The next screen will prompt you to **Select a network**. You can choose between Moonbeam and Moonriver.
 
         !!! note
-            To build a project on Moonbase Alpha, you can select either network and adapt it later on
+            To build a project on Moonbase Alpha, you can select either network and adapt it later on.
 
         <div id="termynal" data-termynal>
   <span data-ty="input"><span class="file-path"></span> subql init moonbeam-demo</span>
@@ -1608,7 +1608,7 @@ To get started, you'll need to [create a SubQuery project](https://subquery.netw
   <span data-ty>(Move up and down to reveal more choices)</span>
 </div>
 
-    3. You'll be prompted to **Select a template project**. Depending on the network you chose in the prior step, the template options may vary
+    3. You'll be prompted to **Select a template project**. Depending on the network you chose in the prior step, the template options may vary.
 
         === "Moonbeam"
 
@@ -1636,10 +1636,10 @@ To get started, you'll need to [create a SubQuery project](https://subquery.netw
   <span data-ty>  Other                         Enter a custom git endpoint</span>
 </div>
 
-    4. You'll be prompted to add additional information, such as the RPC endpoint, the project's author, and the description of the project. For these, you can just hit enter and accept the default or customize them as you see fit
+    4. You'll be prompted to add additional information, such as the RPC endpoint, the project's author, and the description of the project. For these, you can just hit enter and accept the default or customize them as you see fit.
 
         !!! note
-            To avoid hitting the rate limits of public RPC endpoints, it is recommended to have your own endpoint and API key, which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=\_blank}
+            To avoid hitting the rate limits of public RPC endpoints, it is recommended to have your own endpoint and API key, which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=\_blank}.
 
         <div id="termynal" data-termynal>
   <span data-ty="input"><span class="file-path"></span> subql init moonbeam-demo</span>
@@ -1789,21 +1789,21 @@ datasources: [
 
 Each property can be defined as follows:
 
-- `kind` - the kind of data source that you'll use, which for Substrate data is the `substrate/Runtime` source
-- `startBlock` - (optional) the block from which the indexer will start processing blocks
-- `endBlock` - (optional) after this block, the indexer will stop processing blocks
-- `mapping` - the data to be indexed and the handlers for the data
-    - `file` - the entry path for the mapping
-    - `handlers` - the handlers for specific kinds of data
-        - `kind` - the kind of handler. For Substrate data, there are three kinds: `substrateBlockHandler`, `substrate/EventHandler`, and `substrate/CallHandler`
-        - `handler` - the name of the handler function that will process this data
-        - `filter` - (optional) the filter type and data that will trigger a mapping handler. For example, what block, event, or extrinsic to index
+- `kind`: The kind of data source that you'll use, which for Substrate data is the `substrate/Runtime` source.
+- `startBlock`(optional): The block from which the indexer will start processing blocks.
+- `endBlock` (optional): After this block, the indexer will stop processing blocks.
+- `mapping`: The data to be indexed and the handlers for the data.
+    - `file`: The entry path for the mapping.
+    - `handlers`: The handlers for specific kinds of data.
+        - `kind`: The kind of handler. For Substrate data, there are three kinds: `substrateBlockHandler`, `substrate/EventHandler`, and `substrate/CallHandler`.
+        - `handler`: The name of the handler function that will process this data.
+        - `filter` (optional): The filter type and data that will trigger a mapping handler. For example, what block, event, or extrinsic to index.
 
 ### Substrate Mapping Handlers {: #substrate-mapping-handlers }
 
 Using only certain handlers and filters will improve your indexer's efficiency. The handlers available for Substrate data are as follows:
 
-- The [block handler](https://subquery.network/doc/indexer/build/mapping-functions/mapping/polkadot.html#block-handler){target=\_blank} is used to index block data and is called once for every block. As such, this type of handler will slow your project down significantly and should only be used if absolutely necessary. The supported filters for the block handler are: `specVersion`, `modulo`, and `timestamp`
+- The [block handler](https://subquery.network/doc/indexer/build/mapping-functions/mapping/polkadot.html#block-handler){target=\_blank} is used to index block data and is called once for every block. As such, this type of handler will slow your project down significantly and should only be used if absolutely necessary. The supported filters for the block handler are: `specVersion`, `modulo`, and `timestamp`.
 
     |    Filter     |                                                                    Description                                                                    |                                             Example                                             |
     |:-------------:|:-------------------------------------------------------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------:|
@@ -1811,14 +1811,14 @@ Using only certain handlers and filters will improve your indexer's efficiency. 
     |   `modulo`    |                                                         Filters the blocks at an interval                                                         |                             `modulo: 50 # Indexes every 50 blocks`                              |
     |  `timestamp`  | Filters the blocks at a time interval (in UTC). <br> Accepts a valid [cron expression](https://github.com/roccivic/cron-converter){target=\_blank} |               `timestamp: '*5/ * * * *'` <br> `# Indexes blocks every 5 minutes`                |
 
-- The [event handler](https://subquery.network/doc/indexer/build/mapping-functions/mapping/polkadot.html#event-handler){target=\_blank} is used to index certain Substrate events that are part of the runtime. The supported filters for the event handler are: `module` and `method`
+- The [event handler](https://subquery.network/doc/indexer/build/mapping-functions/mapping/polkadot.html#event-handler){target=\_blank} is used to index certain Substrate events that are part of the runtime. The supported filters for the event handler are: `module` and `method`.
 
     |  Filter  |                      Description                      |       Example        |
     |:--------:|:-----------------------------------------------------:|:--------------------:|
     | `module` | Filters the pallet (module) that the event belongs to | `module: 'balances'` |
     | `method` |                   Filters the event                   | `method: 'Transfer'` |
 
-- The [call handler](https://subquery.network/doc/indexer/build/mapping-functions/mapping/polkadot.html#call-handler){target=\_blank} is used to index certain Substrate extrinsics. The supported filters for the call handler are: `module`, `method`, `success`, and `isSigned`
+- The [call handler](https://subquery.network/doc/indexer/build/mapping-functions/mapping/polkadot.html#call-handler){target=\_blank} is used to index certain Substrate extrinsics. The supported filters for the call handler are: `module`, `method`, `success`, and `isSigned`.
 
     |   Filter   |                      Description                      |       Example        |
     |:----------:|:-----------------------------------------------------:|:--------------------:|
@@ -1875,34 +1875,34 @@ datasources: [
 
 Each property can be defined as follows:
 
-- `kind` - the kind of data source that you'll use, which for EVM data is the `substrate/FrontierEVM` source
-- `startBlock` - (optional) the block from which the indexer will start processing blocks
-- `endBlock` - (optional) after this block, the indexer will stop processing blocks
-- `processor` - the Frontier EVM data processor configuration
-    - `file` - the file where the data processor code lives
-    - `options` - (optional) the [processor options](https://subquery.network/doc/build/substrate-evm.html#processor-options){target=\_blank} specific to the Frontier EVM processor
-        - `abi` - (optional) the ABI that is used to parse arguments. The `abi` value must be a key in the `assets` configuration
-        - `address` - (optional) the contract address where the event is emitted from or the call is made to. Using `null` will capture contract creation calls
-    - `assets` - (optional) an object of external asset ABI files
-- `mapping` - the data to be indexed and the handlers for the data
-    - `file` - the entry path for the mapping
-    - `handlers` - the handlers for specific kinds of data
-        - `kind` - the kind of handler. For EVM data, there are two kinds: `substrate/FrontierEvmCall` and `substrate/FrontierEvmEvent`
-        - `handler` - the name of the handler function that will process this data
-        - `filter` - (optional) the filter type and data that will trigger a mapping handler. For example, what block, event, or extrinsic to index
+- `kind`: The kind of data source that you'll use, which for EVM data is the `substrate/FrontierEVM` source.
+- `startBlock` (optional): The block from which the indexer will start processing blocks.
+- `endBlock`(optional): After this block, the indexer will stop processing blocks.
+- `processor`: The Frontier EVM data processor configuration.
+    - `file`: The file where the data processor code lives.
+    - `options` (optional): The [processor options](https://subquery.network/doc/indexer/build/datasource-processors/substrate-evm.html#processor-options){target=\_blank} specific to the Frontier EVM processor.
+        - `abi` (optional): The ABI that is used to parse arguments. The `abi` value must be a key in the `assets` configuration.
+        - `address` (optional): The contract address where the event is emitted from or the call is made to. Using `null` will capture contract creation calls.
+    - `assets` (optional): An object of external asset ABI files.
+- `mapping`: The data to be indexed and the handlers for the data.
+    - `file`: The entry path for the mapping.
+    - `handlers`: The handlers for specific kinds of data.
+        - `kind`: The kind of handler. For EVM data, there are two kinds: `substrate/FrontierEvmCall` and `substrate/FrontierEvmEvent`.
+        - `handler`: The name of the handler function that will process this data.
+        - `filter` (optional): The filter type and data that will trigger a mapping handler. For example, what block, event, or extrinsic to index.
 
 ### Frontier EVM Mapping Handlers {: #evm-mapping-handlers }
 
 Using only certain handlers and filters will improve your indexer's efficiency. The handlers available for EVM data are as follows:
 
-- The [Frontier EVM call handler](https://subquery.network/doc/indexer/build/substrate-evm.html#call-handlers){target=\_blank} is used to index transactions that are formatted based on [Ethers `TransactionResponse` type](https://docs.ethers.org/v5/api/providers/types/#providers-TransactionResponse){target=\_blank}, but varies slightly. For information on the exact changes, please refer to [SubQuery's documentation](https://subquery.network/doc/indexer/build/substrate-evm.html#handler-functions){target=\_blank}. The supported filters for the call handler are: `function` and `from`
+- The [Frontier EVM call handler](https://subquery.network/doc/indexer/build/substrate-evm.html#call-handlers){target=\_blank} is used to index transactions that are formatted based on [Ethers `TransactionResponse` type](https://docs.ethers.org/v5/api/providers/types/#providers-TransactionResponse){target=\_blank}, but varies slightly. For information on the exact changes, please refer to [SubQuery's documentation](https://subquery.network/doc/indexer/build/substrate-evm.html#handler-functions){target=\_blank}. The supported filters for the call handler are: `function` and `from`.
 
     |   Filter   |                        Description                        |                                    Example                                    |
     |:----------:|:---------------------------------------------------------:|:-----------------------------------------------------------------------------:|
     | `function` |    Filters the call by function signature or selector     | `function: '0x095ea7b3'` <br> `function: 'approve(address to,uint256 value)'` |
     |   `from`   | Filters the call by the address that sent the transaction |             `from: '0x6bd193ee6d2104f14f94e2ca6efefae561a4334b'`              |
 
-- The [Frontier EVM event handler](https://subquery.network/doc/indexer/build/substrate-evm.html#event-handlers){target=\_blank} is used to index certain EVM events. The supported filter for the event handler is: `topics`
+- The [Frontier EVM event handler](https://subquery.network/doc/indexer/build/substrate-evm.html#event-handlers){target=\_blank} is used to index certain EVM events. The supported filter for the event handler is: `topics`.
 
     |  Filter  |                                                                  Description                                                                   |                                   Example                                   |
     |:--------:|:----------------------------------------------------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------:|
@@ -1970,7 +1970,7 @@ To run your indexer locally using Docker, you can take the following steps:
   <span data-ty>subquery-node_1  | 2025-04-07T04:29:52.864Z &lt;sandbox-#3&gt; INFO New transfer event</span>
 </div>
 
-3. Head to `http://localhost:3000` to open the GraphQL playground and submit queries. You can open up the **DOCS** or **SCHEMA** tab on the playground as a reference when creating your queries
+3. Head to `http://localhost:3000` to open the GraphQL playground and submit queries. You can open up the **DOCS** or **SCHEMA** tab on the playground as a reference when creating your queries.
 
     !!! note
         It may take a few minutes before the GraphQL server is ready. You'll be able to access the playground after you see the following log:
