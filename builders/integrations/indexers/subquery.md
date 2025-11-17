@@ -215,7 +215,7 @@ datasources: [
 Each property can be defined as follows:
 
 - `kind`: The kind of data source that you'll use, which for Substrate data is the `substrate/Runtime` source.
-- `startBlock`(optional): The block from which the indexer will start processing blocks.
+- `startBlock` (optional): The block from which the indexer will start processing blocks.
 - `endBlock` (optional): After this block, the indexer will stop processing blocks.
 - `mapping`: The data to be indexed and the handlers for the data.
     - `file`: The entry path for the mapping.
