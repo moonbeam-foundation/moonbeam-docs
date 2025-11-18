@@ -8453,7 +8453,6 @@ If you're looking for your own endpoints suitable for production use, you can ch
 === "HTTPS"
     |      Provider       |                              RPC URL                               |   Limits    |
     |:-------------------:|:------------------------------------------------------------------:|:-----------:|
-    |       Dwellir       |         <pre>```https://moonbase-rpc.dwellir.com```</pre>          | 20 req/sec  |
     |     OnFinality      |  <pre>```https://moonbeam-alpha.api.onfinality.io/public```</pre>  | 40 req/sec  |
     | Moonbeam Foundation |     <pre>```https://rpc.api.moonbase.moonbeam.network```</pre>     | 25 req/sec  |
     |     UnitedBloc      |          <pre>```https://moonbase.unitedbloc.com```</pre>          | 32 req/sec  |
@@ -8462,7 +8461,6 @@ If you're looking for your own endpoints suitable for production use, you can ch
 === "WSS"
     |      Provider       |                              RPC URL                              |   Limits    |
     |:-------------------:|:-----------------------------------------------------------------:|:-----------:|
-    |       Dwellir       |          <pre>```wss://moonbase-rpc.dwellir.com```</pre>          | 20 req/sec  |
     |     OnFinality      | <pre>```wss://moonbeam-alpha.api.onfinality.io/public-ws```</pre> | 40 req/sec  |
     | Moonbeam Foundation |     <pre>```wss://wss.api.moonbase.moonbeam.network```</pre>      | 25 req/sec  |
     |     UnitedBloc      |          <pre>```wss://moonbase.unitedbloc.com```</pre>           | 32 req/sec  |
@@ -8595,7 +8593,6 @@ If you're looking for your own endpoints suitable for production use, you can ch
 === "HTTPS"
     |  Provider   |                              RPC URL                               |   Limits    |
     |:-----------:|:------------------------------------------------------------------:|:-----------:|
-    |   Dwellir   |         <pre>```https://moonbeam-rpc.dwellir.com```</pre>          | 20 req/sec  |
     | OnFinality  |     <pre>```https://moonbeam.api.onfinality.io/public```</pre>     | 40 req/sec  |
     | UnitedBloc  |          <pre>```https://moonbeam.unitedbloc.com```</pre>          | 32 req/sec  |
     | RadiumBlock | <pre>```https://moonbeam.public.curie.radiumblock.co/http```</pre> | 200 req/sec |
@@ -8607,7 +8604,6 @@ If you're looking for your own endpoints suitable for production use, you can ch
 === "WSS"
     |  Provider   |                            RPC URL                             |   Limits    |
     |:-----------:|:--------------------------------------------------------------:|:-----------:|
-    |   Dwellir   |        <pre>```wss://moonbeam-rpc.dwellir.com```</pre>         | 20 req/sec  |
     | OnFinality  |  <pre>```wss://moonbeam.api.onfinality.io/public-ws```</pre>   | 40 req/sec  |
     | UnitedBloc  |         <pre>```wss://moonbeam.unitedbloc.com```</pre>         | 32 req/sec  |
     | RadiumBlock | <pre>```wss://moonbeam.public.curie.radiumblock.co/ws```</pre> | 200 req/sec |
@@ -8740,7 +8736,6 @@ If you're looking for your own endpoints suitable for production use, you can ch
 === "HTTPS"
       |  Provider   |                               RPC URL                               |   Limits    |
       |:-----------:|:-------------------------------------------------------------------:|:-----------:|
-      |   Dwellir   |         <pre>```https://moonriver-rpc.dwellir.com```</pre>          | 20 req/sec  |
       | OnFinality  |     <pre>```https://moonriver.api.onfinality.io/public```</pre>     | 40 req/sec  |
       | UnitedBloc  |          <pre>```https://moonriver.unitedbloc.com```</pre>          | 32 req/sec  |
       | RadiumBlock | <pre>```https://moonriver.public.curie.radiumblock.co/http```</pre> | 200 req/sec |
@@ -8749,7 +8744,6 @@ If you're looking for your own endpoints suitable for production use, you can ch
 === "WSS"
     |  Provider   |                             RPC URL                             |   Limits    |
     |:-----------:|:---------------------------------------------------------------:|:-----------:|
-    |   Dwellir   |        <pre>```wss://moonriver-rpc.dwellir.com```</pre>         | 20 req/sec  |
     | OnFinality  |  <pre>```wss://moonriver.api.onfinality.io/public-ws```</pre>   | 40 req/sec  |
     | UnitedBloc  |         <pre>```wss://moonriver.unitedbloc.com```</pre>         | 32 req/sec  |
     | RadiumBlock | <pre>```wss://moonriver.public.curie.radiumblock.co/ws```</pre> | 200 req/sec |
@@ -9499,7 +9493,6 @@ If you're looking for your own endpoints suitable for production use, you can ch
 === "HTTPS"
     |      Provider       |                              RPC URL                               |   Limits    |
     |:-------------------:|:------------------------------------------------------------------:|:-----------:|
-    |       Dwellir       |         <pre>```https://moonbase-rpc.dwellir.com```</pre>          | 20 req/sec  |
     |     OnFinality      |  <pre>```https://moonbeam-alpha.api.onfinality.io/public```</pre>  | 40 req/sec  |
     | Moonbeam Foundation |     <pre>```https://rpc.api.moonbase.moonbeam.network```</pre>     | 25 req/sec  |
     |     UnitedBloc      |          <pre>```https://moonbase.unitedbloc.com```</pre>          | 32 req/sec  |
@@ -9508,7 +9501,6 @@ If you're looking for your own endpoints suitable for production use, you can ch
 === "WSS"
     |      Provider       |                              RPC URL                              |   Limits    |
     |:-------------------:|:-----------------------------------------------------------------:|:-----------:|
-    |       Dwellir       |          <pre>```wss://moonbase-rpc.dwellir.com```</pre>          | 20 req/sec  |
     |     OnFinality      | <pre>```wss://moonbeam-alpha.api.onfinality.io/public-ws```</pre> | 40 req/sec  |
     | Moonbeam Foundation |     <pre>```wss://wss.api.moonbase.moonbeam.network```</pre>      | 25 req/sec  |
     |     UnitedBloc      |          <pre>```wss://moonbase.unitedbloc.com```</pre>           | 32 req/sec  |
@@ -10163,7 +10155,6 @@ If you're looking for your own endpoints suitable for production use, you can ch
 === "HTTPS"
     |  Provider   |                              RPC URL                               |   Limits    |
     |:-----------:|:------------------------------------------------------------------:|:-----------:|
-    |   Dwellir   |         <pre>```https://moonbeam-rpc.dwellir.com```</pre>          | 20 req/sec  |
     | OnFinality  |     <pre>```https://moonbeam.api.onfinality.io/public```</pre>     | 40 req/sec  |
     | UnitedBloc  |          <pre>```https://moonbeam.unitedbloc.com```</pre>          | 32 req/sec  |
     | RadiumBlock | <pre>```https://moonbeam.public.curie.radiumblock.co/http```</pre> | 200 req/sec |
@@ -10175,7 +10166,6 @@ If you're looking for your own endpoints suitable for production use, you can ch
 === "WSS"
     |  Provider   |                            RPC URL                             |   Limits    |
     |:-----------:|:--------------------------------------------------------------:|:-----------:|
-    |   Dwellir   |        <pre>```wss://moonbeam-rpc.dwellir.com```</pre>         | 20 req/sec  |
     | OnFinality  |  <pre>```wss://moonbeam.api.onfinality.io/public-ws```</pre>   | 40 req/sec  |
     | UnitedBloc  |         <pre>```wss://moonbeam.unitedbloc.com```</pre>         | 32 req/sec  |
     | RadiumBlock | <pre>```wss://moonbeam.public.curie.radiumblock.co/ws```</pre> | 200 req/sec |
@@ -10269,7 +10259,6 @@ If you're looking for your own endpoints suitable for production use, you can ch
 === "HTTPS"
       |  Provider   |                               RPC URL                               |   Limits    |
       |:-----------:|:-------------------------------------------------------------------:|:-----------:|
-      |   Dwellir   |         <pre>```https://moonriver-rpc.dwellir.com```</pre>          | 20 req/sec  |
       | OnFinality  |     <pre>```https://moonriver.api.onfinality.io/public```</pre>     | 40 req/sec  |
       | UnitedBloc  |          <pre>```https://moonriver.unitedbloc.com```</pre>          | 32 req/sec  |
       | RadiumBlock | <pre>```https://moonriver.public.curie.radiumblock.co/http```</pre> | 200 req/sec |
@@ -10278,7 +10267,6 @@ If you're looking for your own endpoints suitable for production use, you can ch
 === "WSS"
     |  Provider   |                             RPC URL                             |   Limits    |
     |:-----------:|:---------------------------------------------------------------:|:-----------:|
-    |   Dwellir   |        <pre>```wss://moonriver-rpc.dwellir.com```</pre>         | 20 req/sec  |
     | OnFinality  |  <pre>```wss://moonriver.api.onfinality.io/public-ws```</pre>   | 40 req/sec  |
     | UnitedBloc  |         <pre>```wss://moonriver.unitedbloc.com```</pre>         | 32 req/sec  |
     | RadiumBlock | <pre>```wss://moonriver.public.curie.radiumblock.co/ws```</pre> | 200 req/sec |
@@ -16480,7 +16468,6 @@ If you are looking for an API provider suitable for production use, you can chec
 === "HTTPS"
     |  Provider   |                              RPC URL                               |   Limits    |
     |:-----------:|:------------------------------------------------------------------:|:-----------:|
-    |   Dwellir   |         <pre>```https://moonbeam-rpc.dwellir.com```</pre>          | 20 req/sec  |
     | OnFinality  |     <pre>```https://moonbeam.api.onfinality.io/public```</pre>     | 40 req/sec  |
     | UnitedBloc  |          <pre>```https://moonbeam.unitedbloc.com```</pre>          | 32 req/sec  |
     | RadiumBlock | <pre>```https://moonbeam.public.curie.radiumblock.co/http```</pre> | 200 req/sec |
@@ -16492,7 +16479,6 @@ If you are looking for an API provider suitable for production use, you can chec
 === "WSS"
     |  Provider   |                            RPC URL                             |   Limits    |
     |:-----------:|:--------------------------------------------------------------:|:-----------:|
-    |   Dwellir   |        <pre>```wss://moonbeam-rpc.dwellir.com```</pre>         | 20 req/sec  |
     | OnFinality  |  <pre>```wss://moonbeam.api.onfinality.io/public-ws```</pre>   | 40 req/sec  |
     | UnitedBloc  |         <pre>```wss://moonbeam.unitedbloc.com```</pre>         | 32 req/sec  |
     | RadiumBlock | <pre>```wss://moonbeam.public.curie.radiumblock.co/ws```</pre> | 200 req/sec |
@@ -16503,7 +16489,6 @@ If you are looking for an API provider suitable for production use, you can chec
 === "HTTPS"
       |  Provider   |                               RPC URL                               |   Limits    |
       |:-----------:|:-------------------------------------------------------------------:|:-----------:|
-      |   Dwellir   |         <pre>```https://moonriver-rpc.dwellir.com```</pre>          | 20 req/sec  |
       | OnFinality  |     <pre>```https://moonriver.api.onfinality.io/public```</pre>     | 40 req/sec  |
       | UnitedBloc  |          <pre>```https://moonriver.unitedbloc.com```</pre>          | 32 req/sec  |
       | RadiumBlock | <pre>```https://moonriver.public.curie.radiumblock.co/http```</pre> | 200 req/sec |
@@ -16512,7 +16497,6 @@ If you are looking for an API provider suitable for production use, you can chec
 === "WSS"
     |  Provider   |                             RPC URL                             |   Limits    |
     |:-----------:|:---------------------------------------------------------------:|:-----------:|
-    |   Dwellir   |        <pre>```wss://moonriver-rpc.dwellir.com```</pre>         | 20 req/sec  |
     | OnFinality  |  <pre>```wss://moonriver.api.onfinality.io/public-ws```</pre>   | 40 req/sec  |
     | UnitedBloc  |         <pre>```wss://moonriver.unitedbloc.com```</pre>         | 32 req/sec  |
     | RadiumBlock | <pre>```wss://moonriver.public.curie.radiumblock.co/ws```</pre> | 200 req/sec |
@@ -16522,7 +16506,6 @@ If you are looking for an API provider suitable for production use, you can chec
 === "HTTPS"
     |      Provider       |                              RPC URL                               |   Limits    |
     |:-------------------:|:------------------------------------------------------------------:|:-----------:|
-    |       Dwellir       |         <pre>```https://moonbase-rpc.dwellir.com```</pre>          | 20 req/sec  |
     |     OnFinality      |  <pre>```https://moonbeam-alpha.api.onfinality.io/public```</pre>  | 40 req/sec  |
     | Moonbeam Foundation |     <pre>```https://rpc.api.moonbase.moonbeam.network```</pre>     | 25 req/sec  |
     |     UnitedBloc      |          <pre>```https://moonbase.unitedbloc.com```</pre>          | 32 req/sec  |
@@ -16531,7 +16514,6 @@ If you are looking for an API provider suitable for production use, you can chec
 === "WSS"
     |      Provider       |                              RPC URL                              |   Limits    |
     |:-------------------:|:-----------------------------------------------------------------:|:-----------:|
-    |       Dwellir       |          <pre>```wss://moonbase-rpc.dwellir.com```</pre>          | 20 req/sec  |
     |     OnFinality      | <pre>```wss://moonbeam-alpha.api.onfinality.io/public-ws```</pre> | 40 req/sec  |
     | Moonbeam Foundation |     <pre>```wss://wss.api.moonbase.moonbeam.network```</pre>      | 25 req/sec  |
     |     UnitedBloc      |          <pre>```wss://moonbase.unitedbloc.com```</pre>           | 32 req/sec  |
