@@ -393,7 +393,7 @@ Update the script with your deployed contract address before running it. The ful
 
 Replace `INSERT_CONTRACT_ADDRESS` with the address printed by Hardhat Ignition and adjust `VALUE_TO_STORE` if you want to store a different value.
 
-Once the script is saved, run it with:
+### Interact with the Console {: #hardhat-console }
 
 ```sh
 npx hardhat run --network moonbase scripts/box-console.ts
