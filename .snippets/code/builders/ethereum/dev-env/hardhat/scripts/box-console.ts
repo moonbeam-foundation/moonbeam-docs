@@ -32,8 +32,8 @@ async function main() {
   console.log(`Submitted tx ${tx.hash}, waiting for confirmation...`);
   await tx.wait();
 
-      const updated = (await box.retrieve()).toString();
-      console.log(`Updated stored value: ${updated}`);
+  const updated = (await box.retrieve()).toString();
+  console.log(`Updated stored value: ${updated}`);
 }
 
 main().catch((err) => {
