@@ -371,7 +371,7 @@ Congratulations, your contract is live! Save the address, as you will use it to 
 
 ## Interact with the Contract {: #interacting-with-the-contract }
 
-There are a couple of ways that you can interact with your newly deployed contract using Hardhat: you can run console-style commands from a helper script (recommended for Hardhat 3), or you can reuse that script to automate interactions via the `run` task.
+You can interact with your newly deployed contract using Hardhat in two ways: run console-style commands from a helper script (recommended for Hardhat 3), or reuse that script to automate interactions via the `run` task.
 
 ### Console-style Interaction {: #hardhat-console }
 
