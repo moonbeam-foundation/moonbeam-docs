@@ -1771,7 +1771,7 @@ Congratulations, your contract is live! Save the address, as you will use it to 
 
 ## Interact with the Contract {: #interacting-with-the-contract }
 
-There are a couple of ways that you can interact with your newly deployed contract using Hardhat: you can run console-style commands from a helper script (recommended for Hardhat 3), or you can reuse that script to automate interactions via the `run` task.
+You can interact with your newly deployed contract using Hardhat in two ways: run console-style commands from a helper script (recommended for Hardhat 3), or reuse that script to automate interactions via the `run` task.
 
 ### Console-style Interaction {: #hardhat-console }
 
@@ -1822,8 +1822,8 @@ async function main() {
   console.log(`Submitted tx ${tx.hash}, waiting for confirmation...`);
   await tx.wait();
 
-      const updated = (await box.retrieve()).toString();
-      console.log(`Updated stored value: ${updated}`);
+  const updated = (await box.retrieve()).toString();
+  console.log(`Updated stored value: ${updated}`);
 }
 
 main().catch((err) => {
@@ -1834,7 +1834,7 @@ main().catch((err) => {
 
 Replace `INSERT_CONTRACT_ADDRESS` with the address printed by Hardhat Ignition and adjust `VALUE_TO_STORE` if you want to store a different value.
 
-Once the script is saved, run it with:
+### Interact with the Console {: #hardhat-console }
 
 ```sh
 npx hardhat run --network moonbase scripts/box-console.ts
