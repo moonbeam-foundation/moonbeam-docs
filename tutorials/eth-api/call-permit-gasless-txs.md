@@ -284,7 +284,7 @@ We'll start off by calculating the `data` value. We can programmatically calcula
 
 If you take a look at the [`DPSCartographer.sol` contract's code](https://moonscan.io/address/0xD1A9bA3e61Ac676f58B29EA0a09Cf5D7f4f35138#code){target=\_blank}, you'll see the [`buyVoyages` function](https://moonscan.io/address/0xD1A9bA3e61Ac676f58B29EA0a09Cf5D7f4f35138#code#F1#L75){target=\_blank}. The `buyVoyages` function accepts three parameters:
 
-- *uint16* `_voyageType`: Apecifies the type of voyage to buy, i.e., easy, medium, hard, etc. This value corresponds to the index of the voyage in the [`VOYAGE_TYPE` enum](https://moonscan.io/address/0x72a33394f0652e2bf15d7901f3cd46863d968424#code){target=\_blank}. For this example, we'll do an easy voyage, so we'll pass in `0` as the value.
+- *uint16* `_voyageType`: Specifies the type of voyage to buy, i.e., easy, medium, hard, etc. This value corresponds to the index of the voyage in the [`VOYAGE_TYPE` enum](https://moonscan.io/address/0x72a33394f0652e2bf15d7901f3cd46863d968424#code){target=\_blank}. For this example, we'll do an easy voyage, so we'll pass in `0` as the value.
 - *uint256* `_amount`: Corresponds to the number of voyages to buy. We'll buy one voyage
 - *DPSVoyageIV2* `_voyage`: Represents the address of the `DPSVoyageV2.sol` contract, which is: `0x72A33394f0652e2Bf15d7901f3Cd46863d968424` on Moonbeam.
 
