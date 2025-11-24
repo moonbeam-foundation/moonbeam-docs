@@ -621,7 +621,7 @@ Doc-Content: https://docs.moonbeam.network/tutorials/eth-api/call-permit-gasless
 --- BEGIN CONTENT ---
 ---
 title: Gasless Transactions with the Call Permit Precompile
-description: Enable gas-less transactions in your DApp with Moonbeam's Call Permit Precompile! Learn how to implement the Call Permit Precompile to improve user experience.
+description: Enable gas-less transactions in your DApp with Moonbeam's Call Permit Precompile Learn how to implement the Call Permit Precompile to improve user experience.
 categories: Tutorials, Precompiles
 ---
 
@@ -643,9 +643,7 @@ Whereas a gasless transaction may look something like this:
 
 ![Flow of a gasless transaction](/images/tutorials/eth-api/call-permit-gasless-txs/gasless-2.webp)
 
-Gasless transactions can be especially beneficial for users that make small transactions frequently, as is the case with gaming dApps like [Damned Pirates Society](https://damnedpiratessociety.io){target=\_blank} (DPS). In DPS, users go on voyages in search of treasure and with the goal of growing their fleet. There are two in-game currencies that are used in DPS: Treasure Maps (TMAP) and Doubloons (DBL). TMAP are used to buy voyages, and DBL are used to maintain flagships and buy support ships and can be earned while on voyages. Currently, if a user wants to start a voyage, they'll need TMAP to buy the voyage and GLMR to pay for transaction fees. Wouldn't it be ideal to lower the barrier to entry by implementing gasless transactions so users wouldn't need to worry about keeping a GLMR balance on top of their TMAP and DBL balances? From a dApp's perspective, it would keep users on their platform, as their users wouldn't need to leave the dApp to fund their GLMR balance; they could keep on gaming.
-
-Gasless transactions can be implemented using Moonbeam's [Call Permit Precompile](/builders/ethereum/precompiles/ux/call-permit/){target=\_blank}, which is a Solidity interface that allows a user to sign a permit, an [EIP-712](https://eips.ethereum.org/EIPS/eip-712){target=\_blank} signed message, that can then be dispatched by your dApp. The Call Permit Precompile can be used to execute any EVM call. **The best part is that you don't need to modify your existing contracts!**
+Gasless transactions can be implemented using Moonbeam's [Call Permit Precompile](/builders/ethereum/precompiles/ux/call-permit/){target=\_blank}, which is a Solidity interface that allows a user to sign a permit, an [EIP-712](https://eips.ethereum.org/EIPS/eip-712){target=\_blank} signed message, that can then be dispatched by your dApp. The Call Permit Precompile can be used to execute any EVM call. **The best part is that you don't need to modify your existing contracts**
 
 In this tutorial, we'll walk through the process of implementing gasless transactions in a dApp. More specifically, we'll take a closer look at how we can implement gasless transactions to buy a voyage in DPS, as an example. We'll go over building an EIP-712 signed message, signing it, and dispatching it with the Call Permit Precompile.
 
@@ -663,19 +661,19 @@ For this tutorial, you'll need the following:
   You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}
 - A project with [Ethers](/builders/ethereum/libraries/ethersjs/){target=\_blank} installed:
 
-    ```bash
-    npm i ethers
-    ```
-- 
+  ```bash
+  npm i ethers
+  ```
+
  To test out the examples in this guide on Moonbeam or Moonriver, you will need to have your own endpoint and API key, which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=\_blank}
 
 ## Configure your Project {: #configure-your-project }
 
 To get started, make sure you have a project with Ethers installed, as specified in the [prerequisites](#checking-prerequisites). To configure Ethers for Moonbeam, you'll need to:
 
-1. Import `ethers`
-2. Define the network configurations
-3. Create an `ethers` provider
+1. Import `ethers`.
+2. Define the network configurations.
+3. Create an `ethers` provider.
 
 === "Moonbeam"
 
@@ -867,7 +865,7 @@ function dispatch(
 
 We'll need to add each of the above parameters to our typed data structure, with a couple of modifications. We don't need to include the signature-related parameters, but we do need to include a parameter for the `nonce` of the `from` account, which will be a *uint256*. The signature-related parameters aren't needed at this point because we're building the message data for the users to sign. We'll circle back to the signature-related parameters after we've finished building the message and requested the signature.
 
-So, if we grab the rest of the parameters, we can start to build our data structure. Some implementations of EIP-712 require a type for `EIP712Domain` to be specified, but this is not the case when using Ethers as it computes it for you! For our implementation, the only type we'll need is the `CallPermit` type. The `CallPermit` type will be an array of objects that correspond to each of the parameters and define the `name` and `type` for each one:
+So, if we grab the rest of the parameters, we can start to build our data structure. Some implementations of EIP-712 require a type for `EIP712Domain` to be specified, but this is not the case when using Ethers as it computes it for you. For our implementation, the only type we'll need is the `CallPermit` type. The `CallPermit` type will be an array of objects that correspond to each of the parameters and define the `name` and `type` for each one:
 
 ```js
 const types = {
@@ -889,13 +887,13 @@ Since we are going to implement gasless transactions for buying a voyage, we're 
 
 So, let's start by going over the arguments required to build the message data:
 
-- `from` - your user's address, which you can easily get from your user's Ethers signer using `signer.address`
-- `to` - the contract address that you want to interact with. For this example, we'll use the address of DPS's Cartographer V1 contract
-- `value` - the value to be transferred from the `from` account. This will be `0` as TMAP are used to buy voyages, not GLMR
-- `data` - the calldata to be executed, which we'll calculate in the following steps
-- `gaslimit`- the gas limit the call requires
-- `nonce` - the nonce of the `from` account. This isn't your standard nonce, but the nonce for permits dispatched through the Call Permit Precompile specifically. To get this nonce, you can call the Call Permit Precompile's `nonces` function and pass in the address of the `from` account
-- `deadline` - the deadline in UNIX seconds after which the permit will expire and no longer be valid
+- `from`: Your user's address, which you can easily get from your user's Ethers signer using `signer.address`.
+- `to`: The contract address that you want to interact with. For this example, we'll use the address of DPS's Cartographer V1 contract.
+- `value`: The value to be transferred from the `from` account. This will be `0` as TMAP are used to buy voyages, not GLMR.
+- `data`: The calldata to be executed, which we'll calculate in the following steps.
+- `gaslimit`: The gas limit the call requires.
+- `nonce`: The nonce of the `from` account. This isn't your standard nonce, but the nonce for permits dispatched through the Call Permit Precompile specifically. To get this nonce, you can call the Call Permit Precompile's `nonces` function and pass in the address of the `from` account.
+- `deadline`: The deadline in UNIX seconds after which the permit will expire and no longer be valid.
 
 The message will resemble the following:
 
@@ -919,9 +917,9 @@ We'll start off by calculating the `data` value. We can programmatically calcula
 
 If you take a look at the [`DPSCartographer.sol` contract's code](https://moonscan.io/address/0xD1A9bA3e61Ac676f58B29EA0a09Cf5D7f4f35138#code){target=\_blank}, you'll see the [`buyVoyages` function](https://moonscan.io/address/0xD1A9bA3e61Ac676f58B29EA0a09Cf5D7f4f35138#code#F1#L75){target=\_blank}. The `buyVoyages` function accepts three parameters:
 
-- *uint16* `_voyageType` - specifies the type of voyage to buy, i.e., easy, medium, hard, etc. This value corresponds to the index of the voyage in the [`VOYAGE_TYPE` enum](https://moonscan.io/address/0x72a33394f0652e2bf15d7901f3cd46863d968424#code){target=\_blank}. For this example, we'll do an easy voyage, so we'll pass in `0` as the value
-- *uint256* `_amount` - corresponds to the number of voyages to buy. We'll buy one voyage
-- *DPSVoyageIV2* `_voyage` - represents the address of the `DPSVoyageV2.sol` contract, which is: `0x72A33394f0652e2Bf15d7901f3Cd46863d968424` on Moonbeam
+- *uint16* `_voyageType`: Apecifies the type of voyage to buy, i.e., easy, medium, hard, etc. This value corresponds to the index of the voyage in the [`VOYAGE_TYPE` enum](https://moonscan.io/address/0x72a33394f0652e2bf15d7901f3cd46863d968424#code){target=\_blank}. For this example, we'll do an easy voyage, so we'll pass in `0` as the value.
+- *uint256* `_amount`: Corresponds to the number of voyages to buy. We'll buy one voyage
+- *DPSVoyageIV2* `_voyage`: Represents the address of the `DPSVoyageV2.sol` contract, which is: `0x72A33394f0652e2Bf15d7901f3Cd46863d968424` on Moonbeam.
 
 To create an interface using Ethers, we'll need to get the ABI of the Cartographer V1 contract. You can retrieve it in full from [Moonscan](https://moonscan.io/address/0xD1A9bA3e61Ac676f58B29EA0a09Cf5D7f4f35138#code){target=\_blank}, or for simplicity, you can use the following snippet, which is the part of the ABI we need for this example:
 
@@ -994,9 +992,9 @@ We'll get the nonce in the next section, and then put all of the arguments toget
 Lastly, we'll need to get the `nonce` of the `from` account. As previously mentioned, we can use the `nonces` function of the Call Permit Precompile to get this value. To do so, you'll need to create a contract instance for the Call Permit Precompile:
 
 1. Create a new file in your project that contains the ABI of the Call Permit Precompile. You can find the [ABI on GitHub](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/builders/ethereum/precompiles/ux/call-permit/abi.js){target=\_blank}
-2. Import the ABI into your Ethers file
-3. Create an instance of the Call Permit Precompile using the precompile's address and the ABI of the precompile. You can use either a provider or a signer. Since we are dispatching the permit later on in this tutorial, we'll use the signer associated with the third-party account for transaction fees, but if you only needed to access the `nonces` function, you could use a provider instead
-4. Call the `nonces` function and pass in the `signer.account` of the user, which is the same as the `from` account
+2. Import the ABI into your Ethers file.
+3. Create an instance of the Call Permit Precompile using the precompile's address and the ABI of the precompile. You can use either a provider or a signer. Since we are dispatching the permit later on in this tutorial, we'll use the signer associated with the third-party account for transaction fees, but if you only needed to access the `nonces` function, you could use a provider instead.
+4. Call the `nonces` function and pass in the `signer.account` of the user, which is the same as the `from` account.
 
 ```js
 ...
@@ -1090,11 +1088,11 @@ const nonce = await callPermit.nonces(userSigner.address);
     !!! remember
         Never store your private keys in a JavaScript or TypeScript file.
 
-So far, we've created the domain separator, defined the data structure of our EIP-712 message, and assembled the data for the message. Next, we'll need to request the signature for our EIP-712 typed message!
+So far, we've created the domain separator, defined the data structure of our EIP-712 message, and assembled the data for the message. Next, we'll need to request the signature for our EIP-712 typed message.
 
 ## Get Signature for EIP-712 Typed Messages {: #use-ethers-to-sign-eip712-messages }
 
-For this next step, we're going to use our Ethers signer and the `signer.signTypedData` function to prompt our users to sign the EIP-712 typed message we've assembled. This signature will allow the third-party account for transaction fees to call the `dispatch` function of the Call Permit Precompile. The third-party account will pay the transaction fees for us, and a voyage will be bought on our behalf!
+For this next step, we're going to use our Ethers signer and the `signer.signTypedData` function to prompt our users to sign the EIP-712 typed message we've assembled. This signature will allow the third-party account for transaction fees to call the `dispatch` function of the Call Permit Precompile. The third-party account will pay the transaction fees for us, and a voyage will be bought on our behalf.
 
 The `signTypedData` function will calculate a signature for our data using the following calculation:
 
@@ -1104,10 +1102,10 @@ sign(keccak256("\x19\x01" ‖ domainSeparator ‖ hashStruct(message)))
 
 The components of the hash can be broken down as follows:
 
-- **\x19** - makes the encoding deterministic
-- **\x01** - the version byte, which makes the hash compliant with [EIP-191](https://eips.ethereum.org/EIPS/eip-191){target=\_blank}
-- **domainSeparator** - the 32-byte domain separator, which was [previously covered](#define-the-domain-separator) and can be easily retrieved using the `DOMAIN_SEPARATOR` function of the Call Permit Precompile
-- **hashStruct(message)** - the 32-byte data to sign, which is based on the typed data structure and the actual data. For more information, please refer to the [EIP-712 specification](https://eips.ethereum.org/EIPS/eip-712#definition-of-hashstruct){target=\_blank}
+- **\x19**: Makes the encoding deterministic.
+- **\x01**: The version byte, which makes the hash compliant with [EIP-191](https://eips.ethereum.org/EIPS/eip-191){target=\_blank}.
+- **domainSeparator**: The 32-byte domain separator, which was [previously covered](#define-the-domain-separator) and can be easily retrieved using the `DOMAIN_SEPARATOR` function of the Call Permit Precompile.
+- **hashStruct(message)**: The 32-byte data to sign, which is based on the typed data structure and the actual data. For more information, please refer to the [EIP-712 specification](https://eips.ethereum.org/EIPS/eip-712#definition-of-hashstruct){target=\_blank}.
 
 Now that we have an understanding of what the `signTypedData` function does, we can go ahead and pass in the data we've assembled in the previous sections:
 
@@ -1252,14 +1250,14 @@ Once the transaction goes through, the gas fees will be deducted from the GLMR b
 
 You can view the transaction for the example that we covered in this guide on [Moonscan](https://moonbeam.moonscan.io/tx/0x2c16f1257f69eaa14486f89cedf600c25c0335086b640f2225468a244f10588a){target=\_blank}. You'll notice the following:
 
-- The `from` account is the third-party account: `0xd0ccb8d33530456f1d37e91a6ef5503b5dcd2ebc`
-- The contract interacted with is the Call Permit Precompile: `{{ networks.moonbeam.precompiles.call_permit }}`
-- A TMAP has been deducted from the user's account: `0xa165c7970886d4064b6cec9ab1db9d03202bda37`
-- A voyage with ID 622646 has been sent to the user's account
+- The `from` account is the third-party account: `0xd0ccb8d33530456f1d37e91a6ef5503b5dcd2ebc`.
+- The contract interacted with is the Call Permit Precompile: `{{ networks.moonbeam.precompiles.call_permit }}`.
+- A TMAP has been deducted from the user's account: `0xa165c7970886d4064b6cec9ab1db9d03202bda37`.
+- A voyage with ID 622646 has been sent to the user's account.
 
 ![Review the transaction details](/images/tutorials/eth-api/call-permit-gasless-txs/gasless-3.webp)
 
-And that's it! Congrats! You've learned how to implement gasless transactions using the Call Permit Precompile on Moonbeam. You can now adapt the logic in this tutorial for your own dApp!
+And that's it. You've learned how to implement gasless transactions using the Call Permit Precompile on Moonbeam. You can now adapt the logic in this tutorial for your own dApp.
 
 <div class="page-disclaimer">
     This tutorial is for educational purposes only. As such, any contracts or code created in this tutorial should not be used in production.
@@ -22189,7 +22187,7 @@ https://apps.moonbeam.network/api/ds/v1/app-dir/projects?category=nfts
             ],
             "updatedAt":1722548296818,
             "category":"nfts",
-            "description":"Moonbeans is a fully functional NFT marketplace launched on October 8th 2021, after releasing 465 Beanies into the Moonriver network to wreak havoc. The platform is still in beta, but has been performing incredibly well. With minimal fees for artists, traders, and project developers, Moonbeans aims to grow and aid the Moonrver network as a whole to develop, learn, and earn. With multiple collections now live (Beanies, Damned Pirates Society), minting (RivrMaids), Moonbeans is the heart of the Moonriver NFT ecosystem.",
+            "description":"Moonbeans is an NFT marketplace launched on October 8, 2021, featuring 465 Beanies on the Moonriver network. The platform offers NFT trading with fees for artists, traders, and project developers. Multiple collections are available, including Beanies and RivrMaids.",
             "usersChange1d":{
                 "moonbeam":0
             }
@@ -23604,94 +23602,9 @@ https://apps.moonbeam.network/api/ds/v1/app-dir/projects?category=nfts
                 "NFT",
                 "Bridges"
             ]
-        },
-        {
-            "urls":{
-                "website":"https://www.damnedpiratessociety.io/",
-                "try":"https://www.damnedpiratessociety.io/",
-                "twitter":"https://twitter.com/TheDPSproject",
-                "discord":"https://discord.com/invite/TheDamnedPiratesSociety"
-            },
-            "web3goContracts":[
-                {
-                    "name":"Damned Pirates Society: DPSArtifact Token",
-                    "chain":"moonriver",
-                    "contract":"0xcd84ddadc45a25b02e1a6a5520171487a98e6155"
-                },
-                {
-                    "name":"Damned Pirates Society: DPS Token",
-                    "chain":"moonriver",
-                    "contract":"0xb6e9e605aa159017173caa6181c522db455f6661"
-                },
-                {
-                    "name":"Damned Pirates Society: DSPFlagship Token",
-                    "chain":"moonriver",
-                    "contract":"0x3822063a3f1aad3fd0b894e2a8f238ccca7c2d00"
-                },
-                {
-                    "name":"Damned Pirates Society: DSPVoyage Token",
-                    "chain":"moonriver",
-                    "contract":"0x7b2e778453ab3a0d946c4620fb38a0530a434e15"
-                },
-                {
-                    "name":"Damned Pirates Society: DOUBLOON Token",
-                    "chain":"moonriver",
-                    "contract":"0xe413a631e8a9a10958d9b7c64157449eae7c2064"
-                }
-            ],
-            "currentTx":{
-                "moonriver":20402
-            },
-            "slug":"damned-pirates-society",
-            "web3goIDs":[
-                "Damned Pirates Society"
-            ],
-            "createdAt":1699292616058,
-            "logo":{
-                "small":{
-                    "width":36,
-                    "fileName":"damned-pirates-society-logo-small.jpeg",
-                    "mimeType":"image/jpeg",
-                    "height":36
-                },
-                "large":{
-                    "width":400,
-                    "fileName":"damned-pirates-society-logo-large.jpeg",
-                    "mimeType":"image/jpeg",
-                    "height":400
-                },
-                "full":{
-                    "width":3000,
-                    "fileName":"damned-pirates-society-logo-full.jpeg",
-                    "mimeType":"image/jpeg",
-                    "height":3000
-                }
-            },
-            "name":"Damned Pirates Society",
-            "chains":[
-                "moonriver"
-            ],
-            "defiLLamaTvlExist":false,
-            "currentUsers":{
-                "moonriver":2000
-            },
-            "projectCreationDate":1644828523000,
-            "shortDescription":"Eclectic pirate-based NFT project with utility",
-            "contracts":[
-                
-            ],
-            "updatedAt":1722547421801,
-            "category":"nfts",
-            "description":"A long time ago the Fortune’s Grasp was carrying families to settle on The Islands and start a new life. In the middle of their voyage they encountered a fearsome maelstrom. The Captain and his crew worked tirelessly to keep the ship afloat. Badly damaged, the Ship limped to the edges of the storm. It was taking on water and the cries of terrified children could be heard above the crashing waves. Another ship appeared on the horizon, it’s light glowing brightly against the dark night. The Captain of the Fortune’s Grasp ordered his crew to evacuate the families, but the fifty crew members ignored the Captain, abandoning ship, taking all means of escape with them. The Captain, left on the sinking ship, cursed the cowardly crew for damning those innocent souls to the watery depths. Those Forsaken Fifty were marked with The Black Spot, doomed to row the high seas until the Reaper came to claim his mutinous crew to serve on the Ship Of The Damned. However, if they could convince another soul to take their place at the oars, protection would be offered by those Pirates who’ve cheated the Reaper before. Those who’ve served and survived are welcome in the Damned Pirates Society.\r\n\r\nThe Damned Pirate Society is an Profile Picture NFT with inbuilt utility. Stake your Pirate for Treasure Maps(TMAP) and save these for your Doubloon farming voyages on our upcoming, skill based gamified contracts.",
-            "id":"damned-pirates-society",
-            "tags":[
-                "NFT",
-                "Gaming",
-                "GLMR Grants"
-            ]
         }
     ],
-    "count":40
+    "count":39
 }
     ```
 

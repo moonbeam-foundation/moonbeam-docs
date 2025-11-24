@@ -11129,7 +11129,7 @@ https://apps.moonbeam.network/api/ds/v1/app-dir/projects?category=nfts
             ],
             "updatedAt":1722548296818,
             "category":"nfts",
-            "description":"Moonbeans is a fully functional NFT marketplace launched on October 8th 2021, after releasing 465 Beanies into the Moonriver network to wreak havoc. The platform is still in beta, but has been performing incredibly well. With minimal fees for artists, traders, and project developers, Moonbeans aims to grow and aid the Moonrver network as a whole to develop, learn, and earn. With multiple collections now live (Beanies, Damned Pirates Society), minting (RivrMaids), Moonbeans is the heart of the Moonriver NFT ecosystem.",
+            "description":"Moonbeans is an NFT marketplace launched on October 8, 2021, featuring 465 Beanies on the Moonriver network. The platform offers NFT trading with fees for artists, traders, and project developers. Multiple collections are available, including Beanies and RivrMaids.",
             "usersChange1d":{
                 "moonbeam":0
             }
@@ -12544,94 +12544,9 @@ https://apps.moonbeam.network/api/ds/v1/app-dir/projects?category=nfts
                 "NFT",
                 "Bridges"
             ]
-        },
-        {
-            "urls":{
-                "website":"https://www.damnedpiratessociety.io/",
-                "try":"https://www.damnedpiratessociety.io/",
-                "twitter":"https://twitter.com/TheDPSproject",
-                "discord":"https://discord.com/invite/TheDamnedPiratesSociety"
-            },
-            "web3goContracts":[
-                {
-                    "name":"Damned Pirates Society: DPSArtifact Token",
-                    "chain":"moonriver",
-                    "contract":"0xcd84ddadc45a25b02e1a6a5520171487a98e6155"
-                },
-                {
-                    "name":"Damned Pirates Society: DPS Token",
-                    "chain":"moonriver",
-                    "contract":"0xb6e9e605aa159017173caa6181c522db455f6661"
-                },
-                {
-                    "name":"Damned Pirates Society: DSPFlagship Token",
-                    "chain":"moonriver",
-                    "contract":"0x3822063a3f1aad3fd0b894e2a8f238ccca7c2d00"
-                },
-                {
-                    "name":"Damned Pirates Society: DSPVoyage Token",
-                    "chain":"moonriver",
-                    "contract":"0x7b2e778453ab3a0d946c4620fb38a0530a434e15"
-                },
-                {
-                    "name":"Damned Pirates Society: DOUBLOON Token",
-                    "chain":"moonriver",
-                    "contract":"0xe413a631e8a9a10958d9b7c64157449eae7c2064"
-                }
-            ],
-            "currentTx":{
-                "moonriver":20402
-            },
-            "slug":"damned-pirates-society",
-            "web3goIDs":[
-                "Damned Pirates Society"
-            ],
-            "createdAt":1699292616058,
-            "logo":{
-                "small":{
-                    "width":36,
-                    "fileName":"damned-pirates-society-logo-small.jpeg",
-                    "mimeType":"image/jpeg",
-                    "height":36
-                },
-                "large":{
-                    "width":400,
-                    "fileName":"damned-pirates-society-logo-large.jpeg",
-                    "mimeType":"image/jpeg",
-                    "height":400
-                },
-                "full":{
-                    "width":3000,
-                    "fileName":"damned-pirates-society-logo-full.jpeg",
-                    "mimeType":"image/jpeg",
-                    "height":3000
-                }
-            },
-            "name":"Damned Pirates Society",
-            "chains":[
-                "moonriver"
-            ],
-            "defiLLamaTvlExist":false,
-            "currentUsers":{
-                "moonriver":2000
-            },
-            "projectCreationDate":1644828523000,
-            "shortDescription":"Eclectic pirate-based NFT project with utility",
-            "contracts":[
-                
-            ],
-            "updatedAt":1722547421801,
-            "category":"nfts",
-            "description":"A long time ago the Fortune’s Grasp was carrying families to settle on The Islands and start a new life. In the middle of their voyage they encountered a fearsome maelstrom. The Captain and his crew worked tirelessly to keep the ship afloat. Badly damaged, the Ship limped to the edges of the storm. It was taking on water and the cries of terrified children could be heard above the crashing waves. Another ship appeared on the horizon, it’s light glowing brightly against the dark night. The Captain of the Fortune’s Grasp ordered his crew to evacuate the families, but the fifty crew members ignored the Captain, abandoning ship, taking all means of escape with them. The Captain, left on the sinking ship, cursed the cowardly crew for damning those innocent souls to the watery depths. Those Forsaken Fifty were marked with The Black Spot, doomed to row the high seas until the Reaper came to claim his mutinous crew to serve on the Ship Of The Damned. However, if they could convince another soul to take their place at the oars, protection would be offered by those Pirates who’ve cheated the Reaper before. Those who’ve served and survived are welcome in the Damned Pirates Society.\r\n\r\nThe Damned Pirate Society is an Profile Picture NFT with inbuilt utility. Stake your Pirate for Treasure Maps(TMAP) and save these for your Doubloon farming voyages on our upcoming, skill based gamified contracts.",
-            "id":"damned-pirates-society",
-            "tags":[
-                "NFT",
-                "Gaming",
-                "GLMR Grants"
-            ]
         }
     ],
-    "count":40
+    "count":39
 }
     ```
 
