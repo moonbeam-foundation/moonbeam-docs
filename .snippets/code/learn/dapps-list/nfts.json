@@ -680,7 +680,7 @@
             ],
             "updatedAt":1722548296818,
             "category":"nfts",
-            "description":"Moonbeans is a fully functional NFT marketplace launched on October 8th 2021, after releasing 465 Beanies into the Moonriver network to wreak havoc. The platform is still in beta, but has been performing incredibly well. With minimal fees for artists, traders, and project developers, Moonbeans aims to grow and aid the Moonrver network as a whole to develop, learn, and earn. With multiple collections now live such as Beanies, minting (RivrMaids), Moonbeans is the heart of the Moonriver NFT ecosystem.",
+            "description":"Moonbeans is an NFT marketplace launched on October 8, 2021, featuring 465 Beanies on the Moonriver network. The platform offers NFT trading with fees for artists, traders, and project developers. Multiple collections are available, including Beanies and RivrMaids."
             "usersChange1d":{
                 "moonbeam":0
             }
