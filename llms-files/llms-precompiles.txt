@@ -9811,6 +9811,8 @@ Whereas a gasless transaction may look something like this:
 
 ![Flow of a gasless transaction](/images/tutorials/eth-api/call-permit-gasless-txs/gasless-2.webp)
 
+Gasless transactions can be especially beneficial for users that make small transactions frequently, as is the case with gaming dApps like Damned Pirates Society (DPS). In DPS, users go on voyages in search of treasure and with the goal of growing their fleet. There are two in-game currencies that are used in DPS: Treasure Maps (TMAP) and Doubloons (DBL). TMAP are used to buy voyages, and DBL are used to maintain flagships and buy support ships and can be earned while on voyages. Currently, if a user wants to start a voyage, they'll need TMAP to buy the voyage and GLMR to pay for transaction fees. Wouldn't it be ideal to lower the barrier to entry by implementing gasless transactions so users wouldn't need to worry about keeping a GLMR balance on top of their TMAP and DBL balances? From a dApp's perspective, it would keep users on their platform, as their users wouldn't need to leave the dApp to fund their GLMR balance; they could keep on gaming.
+
 Gasless transactions can be implemented using Moonbeam's [Call Permit Precompile](/builders/ethereum/precompiles/ux/call-permit/){target=\_blank}, which is a Solidity interface that allows a user to sign a permit, an [EIP-712](https://eips.ethereum.org/EIPS/eip-712){target=\_blank} signed message, that can then be dispatched by your dApp. The Call Permit Precompile can be used to execute any EVM call. **The best part is that you don't need to modify your existing contracts**
 
 In this tutorial, we'll walk through the process of implementing gasless transactions in a dApp. More specifically, we'll take a closer look at how we can implement gasless transactions to buy a voyage in DPS, as an example. We'll go over building an EIP-712 signed message, signing it, and dispatching it with the Call Permit Precompile.
@@ -10085,7 +10087,7 @@ We'll start off by calculating the `data` value. We can programmatically calcula
 
 If you take a look at the [`DPSCartographer.sol` contract's code](https://moonscan.io/address/0xD1A9bA3e61Ac676f58B29EA0a09Cf5D7f4f35138#code){target=\_blank}, you'll see the [`buyVoyages` function](https://moonscan.io/address/0xD1A9bA3e61Ac676f58B29EA0a09Cf5D7f4f35138#code#F1#L75){target=\_blank}. The `buyVoyages` function accepts three parameters:
 
-- *uint16* `_voyageType`: Apecifies the type of voyage to buy, i.e., easy, medium, hard, etc. This value corresponds to the index of the voyage in the [`VOYAGE_TYPE` enum](https://moonscan.io/address/0x72a33394f0652e2bf15d7901f3cd46863d968424#code){target=\_blank}. For this example, we'll do an easy voyage, so we'll pass in `0` as the value.
+- *uint16* `_voyageType`: Specifies the type of voyage to buy, i.e., easy, medium, hard, etc. This value corresponds to the index of the voyage in the [`VOYAGE_TYPE` enum](https://moonscan.io/address/0x72a33394f0652e2bf15d7901f3cd46863d968424#code){target=\_blank}. For this example, we'll do an easy voyage, so we'll pass in `0` as the value.
 - *uint256* `_amount`: Corresponds to the number of voyages to buy. We'll buy one voyage
 - *DPSVoyageIV2* `_voyage`: Represents the address of the `DPSVoyageV2.sol` contract, which is: `0x72A33394f0652e2Bf15d7901f3Cd46863d968424` on Moonbeam.
 
