@@ -851,7 +851,7 @@ To approve a spend or transfer external XC-20s via the ERC-20 interface, you wil
 - [MetaMask installed and connected to the Moonbase Alpha](/tokens/connect/metamask/){target=\_blank} TestNet
 - Create or have two accounts on Moonbase Alpha
 - At least one of the accounts will need to be funded with `DEV` tokens.
- You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}
+ You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}.
 
 ### Calculate External XC-20 Precompile Addresses {: #calculate-xc20-address }
 
@@ -1682,7 +1682,7 @@ You'll be transferring xcUNIT tokens, which are the [XC-20](/builders/interopera
 To follow along with the examples in this guide, you need to have the following:
 
 - An account with funds.
- You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}
+ You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}.
 - Some xcUNIT tokens. You can swap DEV tokens (Moonbase Alpha's native token) for xcUNITs on [Moonbeam-Swap](https://moonbeam-swap.netlify.app/#/swap){target=\_blank}, a demo Uniswap-V2 clone on Moonbase Alpha
 
     !!! note
@@ -2535,7 +2535,7 @@ To follow along with the examples in this guide, you need to have the following:
         ```
 
 - An account with funds.
- You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}
+ You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}.
 - Some xcUNIT tokens. You can swap DEV tokens (Moonbase Alpha's native token) for xcUNITs on [Moonbeam-Swap](https://moonbeam-swap.netlify.app/#/swap){target=\_blank}, a demo Uniswap-V2 clone on Moonbase Alpha
 
     !!! note

@@ -715,7 +715,7 @@ The examples in this guide are based on an Ubuntu 22.04 environment. You will al
 
 - MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}
 - An account with funds.
-  You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}
+  You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}.
 - To deploy your own ERC-20 token on Moonbase Alpha. You can do this by following [our Remix tutorial](/builders/ethereum/dev-env/remix/){target=\_blank} while first pointing MetaMask to Moonbase Alpha
 - Web3.js or the Ethereum library of your choice installed. You can install Web3.js via npm:
 

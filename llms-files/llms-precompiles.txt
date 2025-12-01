@@ -2183,7 +2183,7 @@ The below example is demonstrated on Moonbase Alpha, however, similar steps can 
 
  - Have MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}
  - Have an account with some DEV tokens.
-  You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}
+  You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}.
  - Have a second account that you control to use as a proxy account (funding optional)
 
 ### Remix Set Up {: #remix-set-up }
@@ -2360,7 +2360,7 @@ To get started, you will need to have the following:
 
  - Have MetaMask installed and [connected to one of the Moonbeam-based networks](/tokens/connect/metamask/){target=\_blank}
  - Have an account with funds. If using a Moonbeam development node, the development accounts are pre-funded. For Moonbeam, Moonriver, or Moonbase Alpha, you'll need to fund your account.
-  You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}
+  You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}.
 
 If you're using a Moonbeam development node and the development accounts, you'll also need to do the following:
 
@@ -2649,7 +2649,7 @@ The below example is demonstrated on Moonbase Alpha, however, similar steps can 
 
  - MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}
  - An account with some DEV tokens.
- You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}
+ You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}.
 
 ### Remix Set Up {: #remix-set-up }
 
@@ -2790,7 +2790,7 @@ The below example is demonstrated on Moonbase Alpha, however, similar steps can 
 
  - MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}
  - An account with some DEV tokens.
- You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}
+ You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}.
 
 ### Remix Set Up {: #remix-set-up }
 
@@ -3107,7 +3107,7 @@ The below example is demonstrated on Moonbase Alpha, however, similar steps can 
 
  - MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}
  - An account with some DEV tokens.
- You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}
+ You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}.
 
 ### Remix Set Up {: #remix-set-up }
 
@@ -3818,7 +3818,7 @@ For this guide, you will need to have the following:
 
 - [MetaMask installed and connected to Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}
 - An account funded with DEV tokens.
- You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}
+ You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}.
 
 ### Create a Random Number Generator Contract {: #create-random-generator-contract }
 
@@ -4498,7 +4498,7 @@ The below example is demonstrated on Moonbase Alpha, however, similar steps can 
 
  - Have MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}
  - Have an account with at least `{{networks.moonbase.staking.min_del_stake}}` token.
-  You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}
+  You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}.
 
 !!! note
     The example below requires more than `{{networks.moonbase.staking.min_del_stake}}` token due to the minimum delegation amount plus gas fees. If you need more than the faucet dispenses, please contact us on Discord and we will be happy to help you.
@@ -6250,7 +6250,7 @@ To follow along with this tutorial, you will need to have:
 
 - Create or have an account on Moonbase Alpha to test out the different features in the precompile
 - The account will need to be funded with `DEV` tokens. 
- You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}
+ You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}.
 
 ### Using Ethereum Libraries {: #using-ethereum-libraries }
 
@@ -6624,7 +6624,7 @@ To follow along with this tutorial, you will need to have:
 - [MetaMask installed and connected to Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}
 - Create or have two accounts on Moonbase Alpha to test out the different features in the batch precompile
 - At least one of the accounts will need to be funded with `DEV` tokens.
- You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}
+ You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}.
 
 ### Example Contract {: #example-contract}
 
@@ -6988,7 +6988,7 @@ To follow along with this tutorial, you will need to have:
 - [MetaMask installed and connected to Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}
 - Create or have two accounts on Moonbase Alpha to test out the different features in the Call Permit Precompile
 - At least one of the accounts will need to be funded with `DEV` tokens.
- You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}
+ You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}.
 
 ### Example Contract {: #example-contract }
 
@@ -7537,7 +7537,7 @@ To follow along with this tutorial, you will need to have:
 - [MetaMask installed and connected to Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}
 - Create or have two accounts on Moonbase Alpha to test out the different features in the ERC-20 precompile
 - At least one of the accounts will need to be funded with `DEV` tokens.
- You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}
+ You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}.
 
 ### Add Token to MetaMask {: #add-token-to-metamask }
 
@@ -8818,7 +8818,7 @@ To follow along with the examples in this guide, you need to have the following:
         ```
 
 - An account with funds.
- You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}
+ You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}.
 - Some xcUNIT tokens. You can swap DEV tokens (Moonbase Alpha's native token) for xcUNITs on [Moonbeam-Swap](https://moonbeam-swap.netlify.app/#/swap){target=\_blank}, a demo Uniswap-V2 clone on Moonbase Alpha
 
     !!! note
@@ -9226,10 +9226,10 @@ In this tutorial, we'll dive into the process of batching an approval and swap i
 For this tutorial, you'll need the following:
 
 - An account with funds.
-  You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}
+  You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}.
 - An empty Hardhat project that is configured for the Moonbase Alpha TestNet. For step-by-step instructions, please refer to the [Creating a Hardhat Project](/builders/ethereum/dev-env/hardhat/#creating-a-hardhat-project){target=\_blank} and the [Hardhat Configuration File](/builders/ethereum/dev-env/hardhat/#hardhat-configuration-file){target=\_blank} sections of our Hardhat documentation page
 - 
-  To test out the examples in this guide on Moonbeam or Moonriver, you will need to have your own endpoint and API key, which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=\_blank}
+  To test out the examples in this guide on Moonbeam or Moonriver, you will need to have your own endpoint and API key, which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=\_blank}.
 
 ### Install Dependencies {: #install-dependencies }
 
@@ -9825,14 +9825,14 @@ The EIP-712 standard specifies how the message data should be structured by requ
 For this tutorial, you'll need the following:
 
 - An account with funds.
-  You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}
+  You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}.
 - A project with [Ethers](/builders/ethereum/libraries/ethersjs/){target=\_blank} installed:
 
   ```bash
   npm i ethers
   ```
 
- To test out the examples in this guide on Moonbeam or Moonriver, you will need to have your own endpoint and API key, which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=\_blank}
+ To test out the examples in this guide on Moonbeam or Moonriver, you will need to have your own endpoint and API key, which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=\_blank}.
 
 ## Configure your Project {: #configure-your-project }
 
@@ -10464,7 +10464,7 @@ For this tutorial, you'll need the following:
 
 - Create or have three accounts on Moonbase Alpha to test out the lottery contract
 - All of the accounts will need to be funded with `DEV` tokens.
- You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}
+ You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}.
 - An empty Hardhat project that is configured for the Moonbase Alpha TestNet. For step-by-step instructions, please refer to the [Creating a Hardhat Project](/builders/ethereum/dev-env/hardhat/#creating-a-hardhat-project){target=\_blank} and the [Hardhat Configuration File](/builders/ethereum/dev-env/hardhat/#hardhat-configuration-file){target=\_blank} sections of our Hardhat documentation page
 - Install the [Hardhat Ethers plugin](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-ethers){target=\_blank}. This provides a convenient way to use the [Ethers.js](/builders/ethereum/libraries/ethersjs/){target=\_blank} library to interact with the network from your Hardhat project:
 

@@ -1198,7 +1198,7 @@ To get started with the GoldRush API, you will need to have the following:
  - A free [GoldRush API Key](https://goldrush.dev/platform/auth/register/){target=\_blank}
  - MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}
  - An account with funds.
-  You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}
+  You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}.
 
 ### Using Curl {: #using-curl }
 
