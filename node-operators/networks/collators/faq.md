@@ -16,7 +16,7 @@ Running a Moonbeam collator requires Linux systems administration skills, carefu
 
 **Q: Where can I get help?**
 
-**A:** There is an active and friendly [Discord](https://discord.com/invite/RyVefR79FA){target=\_blank} community for collators. Join the server and introduce yourself even before you need help. Send **gilmouta** or **artkaseman** a DM and let them know who you are, and they can reach out to you if they see any issues with your node.
+**A:** There is an active and friendly [Discord](https://discord.com/invite/PfpUATX){target=\_blank} community for collators. Join the server and introduce yourself even before you need help. Send **gilmouta** or **artkaseman** a DM and let them know who you are, and they can reach out to you if they see any issues with your node.
 
 ***
 
