@@ -22,11 +22,11 @@ Please note that although Hardhat comes with a [Hardhat Network](https://hardhat
 
 To get started, you will need the following:
 
-- Have [MetaMask installed](/tokens/connect/metamask/#install-the-metamask-extension){target=\_blank} and [connected to Moonbase Alpha](/tokens/connect/metamask/#connect-metamask-to-moonbeam){target=\_blank}
+- Have [MetaMask installed](/tokens/connect/metamask/#install-the-metamask-extension){target=\_blank} and [connected to Moonbase Alpha](/tokens/connect/metamask/#connect-metamask-to-moonbeam){target=\_blank}.
 - Have an account with funds.
-  --8<-- 'text/_common/faucet/faucet-list-item.md'
+  --8<-- 'text/_common/faucet/faucet-sentence.md'
 - 
-  --8<-- 'text/_common/endpoint-examples-list-item.md'
+  --8<-- 'text/_common/endpoint-examples.md'
 
 ## Create a Hardhat Project {: #creating-a-hardhat-project }
 
