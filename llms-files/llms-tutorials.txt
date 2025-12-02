@@ -9357,7 +9357,7 @@ Then, you can copy the following code snippets and add them to their respective 
 ]
         ```
 
-To work with these interfaces, you must install the [Ethereum library](/builders/ethereum/libraries/){target=\_blank} of your choice. For this example, we'll use [Web3.js](/builders/ethereum/libraries/web3js/){target=\_blank}.
+To work with these interfaces, you must install the [Ethereum library](/builders/ethereum/libraries/){target=\_blank} of your choice. For this example, we'll use [Ethers.js](/builders/ethereum/libraries/ethersjs/){target=\_blank}.
 
 ```bash
 npm i web3
@@ -10105,7 +10105,7 @@ contract OracleClient {
 
 ### Deploy the Contract {: #deploy-the-consumer-contract }
 
-With the contract created, you must next deploy the contract. Since we've already installed Web3.js, let's use it to deploy the contract. If you're unfamiliar with the process, you can reference the [Web3.js docs on deploying a smart contract](/builders/ethereum/libraries/web3js/#deploy-a-contract){target=\_blank}.
+With the contract created, you must next deploy the contract. Since we've already installed Ethers.js, let's use it to deploy the contract. If you're unfamiliar with the process, you can reference the [Ethers.js docs on deploying a smart contract](/builders/ethereum/libraries/ethersjs/#deploy-a-contract){target=\_blank}.
 
 To deploy the contract, take the following steps:
 
@@ -18351,7 +18351,7 @@ Depending on the wallet, when creating an account, you may be prompted to backup
 
 After saving your seed phrase, you can start developing on Moonbeam. Many wallets offer the option to export the private key linked to your account. By doing so, you can utilize your private key instead of the seed phrase during development. However, taking adequate precautions to securely store your private key or seed phrase while developing is essential.
 
-And that's it! Before sending your first transaction on a Moonbeam-based network, ensure you have the necessary [network configurations for your chosen network](/builders/get-started/networks/){target=\_blank} and an [RPC endpoint](/builders/get-started/endpoints/){target=\_blank} for the network. Once you have these items, you'll be able to follow along with tutorials like the [How to use Ethers.js](/builders/ethereum/libraries/ethersjs/){target=\_blank} or the [How to use Web3.js](/builders/ethereum/libraries/web3js/){target=\_blank} to send a transaction.
+And that's it! Before sending your first transaction on a Moonbeam-based network, ensure you have the necessary [network configurations for your chosen network](/builders/get-started/networks/){target=\_blank} and an [RPC endpoint](/builders/get-started/endpoints/){target=\_blank} for the network. Once you have these items, you'll be able to follow along with tutorials like the [How to use Ethers.js](/builders/ethereum/libraries/ethersjs/){target=\_blank} to send a transaction.
 --- END CONTENT ---
 
 Doc-Content: https://docs.moonbeam.network/builders/get-started/explorers/
@@ -19436,7 +19436,6 @@ As Moonbeam is a Substrate-based chain that is fully Ethereum-compatible, you ca
     |                                   Tool                                   |      Type       |
     |:------------------------------------------------------------------------:|:---------------:|
     |   [Ethers.js](/builders/ethereum/libraries/ethersjs/){target=\_blank}    |     Library     |
-    |     [Web3.js](/builders/ethereum/libraries/web3js/){target=\_blank}      |     Library     |
     |      [Hardhat](/builders/ethereum/dev-env/hardhat/){target=\_blank}      | Dev Environment |
     | [OpenZeppelin](/builders/ethereum/dev-env/openzeppelin/){target=\_blank} | Dev Environment |
     |        [Remix](/builders/ethereum/dev-env/remix/){target=\_blank}        | Dev Environment |
