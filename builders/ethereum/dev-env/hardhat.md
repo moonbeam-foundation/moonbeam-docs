@@ -67,7 +67,7 @@ You will need to create a Hardhat project if you don't already have one. You can
     - Confirm converting to ESM (required for Hardhat v3).
     - Select the type of project to initialize:
         - A TypeScript Hardhat project using Node Test Runner and viem
-        - A TypeScript Hardhat project using Mocha and Ethers.js.
+        - A TypeScript Hardhat project using Mocha and Ethers.js
 
     For this example, you can choose either option based on your preference. If you choose the Mocha and Ethers.js option, you'll get a project structure with:
     
