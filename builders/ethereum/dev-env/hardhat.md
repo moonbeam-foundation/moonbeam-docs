@@ -22,7 +22,7 @@ Please note that although Hardhat comes with a [Hardhat Network](https://hardhat
 
 To get started, you will need the following:
 
-- Have [MetaMask installed](/tokens/connect/metamask/#install-the-metamask-extension){target=\_blank} and [connected to Moonbase Alpha](/tokens/connect/metamask/#connect-metamask-to-moonbeam){target=\_blank}.
+- Have [MetaMask installed](/tokens/connect/metamask/#install-the-metamask-extension){target=\_blank} and [connected to Moonbase Alpha](/tokens/connect/metamask/#connect-metamask-to-moonbeam){target=\_blank}
 - Have an account with funds.
   --8<-- 'text/_common/faucet/faucet-list-item.md'
 - 
@@ -71,10 +71,10 @@ You will need to create a Hardhat project if you don't already have one. You can
 
     For this example, you can choose either option based on your preference. If you choose the Mocha and Ethers.js option, you'll get a project structure with:
     
-    - A sample contract in `contracts/Counter.sol`.
-    - A test file in `test/Counter.ts`.
-    - TypeScript configuration.
-    - Mocha and Ethers.js dependencies.
+    - A sample contract in `contracts/Counter.sol`
+    - A test file in `test/Counter.ts`
+    - TypeScript configuration
+    - Mocha and Ethers.js dependencies
 
     The project will be set up with all necessary dependencies and configurations for you to start developing.
 
@@ -97,9 +97,9 @@ For this example, you can leave the Solidity compiler version to `0.8.28`; howev
 
 Next, you'll need to modify your configuration file to add the network configurations for the network you want to deploy your contract to. For Moonbeam networks, you'll need to specify the following:
 
-- `url`: The [RPC endpoint](/builders/get-started/endpoints/){target=\_blank} of the node.
-- `chainId`: The chain ID, which is used to validate the network.
-- `accounts`: The accounts that can be used to deploy and interact with contracts. You can either enter an array of the private keys for your accounts or use an [HD Wallet](https://github.com/ethereumbook/ethereumbook/blob/develop/src/chapter_5.md#hierarchical-deterministic-wallets-bip-32bip-44){target=\_blank}.
+- **`url`**: The [RPC endpoint](/builders/get-started/endpoints/){target=\_blank} of the node.
+- **`chainId`**: The chain ID, which is used to validate the network.
+- **`accounts`**: The accounts that can be used to deploy and interact with contracts. You can either enter an array of the private keys for your accounts or use an [HD Wallet](https://github.com/ethereumbook/ethereumbook/blob/develop/src/chapter_5.md#hierarchical-deterministic-wallets-bip-32bip-44){target=\_blank}.
 
 Hardhat 3 includes an encrypted secrets manager that makes it easier to handle sensitive information like private keys. This ensures you don't have to hardcode secrets in your source code or store them in plain text.
 

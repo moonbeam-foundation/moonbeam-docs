@@ -61,10 +61,10 @@ In this tutorial, we'll dive into the process of batching an approval and swap i
 For this tutorial, you'll need the following:
 
 - An account with funds.
-  You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}.
+  You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}
 - An empty Hardhat project that is configured for the Moonbase Alpha TestNet. For step-by-step instructions, please refer to the [Creating a Hardhat Project](/builders/ethereum/dev-env/hardhat/#creating-a-hardhat-project){target=\_blank} and the [Hardhat Configuration File](/builders/ethereum/dev-env/hardhat/#hardhat-configuration-file){target=\_blank} sections of our Hardhat documentation page
 - 
-  To test out the examples in this guide on Moonbeam or Moonriver, you will need to have your own endpoint and API key, which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=\_blank}.
+  To test out the examples in this guide on Moonbeam or Moonriver, you will need to have your own endpoint and API key, which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=\_blank}
 
 ### Install Dependencies {: #install-dependencies }
 
@@ -660,14 +660,14 @@ The EIP-712 standard specifies how the message data should be structured by requ
 For this tutorial, you'll need the following:
 
 - An account with funds.
-  You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}.
+  You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}
 - A project with [Ethers](/builders/ethereum/libraries/ethersjs/){target=\_blank} installed:
 
   ```bash
   npm i ethers
   ```
 
- To test out the examples in this guide on Moonbeam or Moonriver, you will need to have your own endpoint and API key, which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=\_blank}.
+ To test out the examples in this guide on Moonbeam or Moonriver, you will need to have your own endpoint and API key, which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=\_blank}
 
 ## Configure your Project {: #configure-your-project }
 
@@ -1315,7 +1315,7 @@ For this tutorial, you'll need the following:
 
 - A free [OpenAI account to access ChatGPT](https://chatgpt.com/){target=\_blank}
 - An account funded with DEV tokens to be used on the Moonbase Alpha TestNet if you'd like to deploy any resulting contracts.
-  You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}.
+  You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}
 
 ## Sign up for an OpenAI Account {: #sign-up-for-an-openai-account }
 
@@ -1474,9 +1474,9 @@ In this demonstration, we will deploy two smart contracts. One is a token, and t
 To get started, you will need the following:
 
  - Have an account with funds.
-  You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}.
+  You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}
  - 
-To test out the examples in this guide on Moonbeam or Moonriver, you will need to have your own endpoint and API key, which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=\_blank}.
+To test out the examples in this guide on Moonbeam or Moonriver, you will need to have your own endpoint and API key, which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=\_blank}
  - Have [Foundry installed](https://getfoundry.sh/introduction/installation/){target=\_blank}
  - Have an [Etherscan API Key](/builders/ethereum/verify-contracts/api-verification/#generating-an-etherscan-api-key){target=\_blank}
 
@@ -2207,11 +2207,11 @@ We'll assemble the components of the staking DAO and compile the necessary contr
 To get started, you will need the following:
 
  - A Moonbase Alpha account funded with DEV.
-  You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}.
+  You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}
  - An [Etherscan API Key](/builders/ethereum/verify-contracts/etherscan-plugins/#generating-an-etherscan-api-key){target=\_blank}
  - For the [Testing section](#running-your-tests), you'll need to have [a local Moonbeam node up and running](/builders/get-started/networks/moonbeam-dev/){target=\_blank}
  - 
-  To test out the examples in this guide on Moonbeam or Moonriver, you will need to have your own endpoint and API key, which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=\_blank}.
+  To test out the examples in this guide on Moonbeam or Moonriver, you will need to have your own endpoint and API key, which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=\_blank}
 
 ## Creating a Hardhat Project {: #creating-a-hardhat-project }
 
@@ -3620,7 +3620,7 @@ In this tutorial, you'll come face-to-face with each major component by writing 
 To get started, you should have the following:
 
  - A Moonbase Alpha account funded with DEV. 
-  You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}.
+  You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}
  - [Node.js](https://nodejs.org/en/download/package-manager){target=\_blank} version 16 or newer installed
  - [VS Code](https://code.visualstudio.com){target=\_blank} with Juan Blanco's [Solidity extension](https://marketplace.visualstudio.com/items?itemName=JuanBlanco.solidity){target=\_blank} is a recommended IDE
  - Understanding of JavaScript and React
@@ -4762,7 +4762,7 @@ For this tutorial, you'll need the following:
 
 - Create or have three accounts on Moonbase Alpha to test out the lottery contract
 - All of the accounts will need to be funded with `DEV` tokens.
- You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}.
+ You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}
 - An empty Hardhat project that is configured for the Moonbase Alpha TestNet. For step-by-step instructions, please refer to the [Creating a Hardhat Project](/builders/ethereum/dev-env/hardhat/#creating-a-hardhat-project){target=\_blank} and the [Hardhat Configuration File](/builders/ethereum/dev-env/hardhat/#hardhat-configuration-file){target=\_blank} sections of our Hardhat documentation page
 - Install the [Hardhat Ethers plugin](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-ethers){target=\_blank}. This provides a convenient way to use the [Ethers.js](/builders/ethereum/libraries/ethersjs/){target=\_blank} library to interact with the network from your Hardhat project:
 
@@ -8435,7 +8435,7 @@ The addresses for Supra's contracts on Moonbeam are as follows:
 To follow along with this guide, you will need:
 
 - An account with funds.
-  You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}.
+  You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}
 
 ## Use Web2 Code to Retrieve Price Data {: #web2-retrieve-price-data }
 
@@ -12727,7 +12727,7 @@ The "happy path" of a remote batch EVM call dispatched via XCM is as follows:
 Considering all the steps summarized in the [introduction](#introduction), the following prerequisites need to be accounted for:
 
 - You need to have UNITs on the relay chain to pay for transaction fees when sending the XCM. If you have a Moonbase Alpha account funded with DEV tokens, you can swap some DEV for xcUNIT here on [Moonbeam Swap](https://moonbeam-swap.netlify.app/#/swap){target=\_blank}. Then withdraw the xcUNIT from Moonbase Alpha to [your account on the Moonbase relay chain](https://polkadot.js.org/apps/?rpc=wss://relay.api.moonbase.moonbeam.network#/accounts){target=\_blank} using [apps.moonbeam.network](https://apps.moonbeam.network/moonbase-alpha){target=\_blank}.
-  You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}.
+  You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}
 - Your [Computed Origin account](/builders/interoperability/xcm/remote-execution/computed-origins/){target=\_blank} must hold DEV tokens to fund the call to the Batch Precompile, and also pay for the XCM execution (although this could be paid in UNIT tokens as xcUNIT). We will calculate the Computed Origin account address in the next section
 
 ## Calculating your Computed Origin Account {: #calculating-your-computed-origin-account }
@@ -13165,7 +13165,7 @@ For development purposes this tutorial is written for Moonbase Alpha and Moonbas
 
 - A Moonbase Alpha relay chain account funded with some UNIT, the native token of the Moonbase relay chain. If you have a Moonbase Alpha account funded with DEV tokens, you can swap some DEV for xcUNIT here on [Moonbeam Swap](https://moonbeam-swap.netlify.app/#/swap){target=\_blank}. Then withdraw the xcUNIT from Moonbase Alpha to [your account on the Moonbase relay chain](https://polkadot.js.org/apps/?rpc=wss://relay.api.moonbase.moonbeam.network#/accounts){target=\_blank} using [apps.moonbeam.network](https://apps.moonbeam.network/moonbase-alpha){target=\_blank}
 - You'll need to [calculate the Computed Origin account](#calculating-your-computed-origin-account) of your Moonbase Alpha relay chain account and fund it with DEV tokens.
-You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}.
+You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}
 
 ## Calculating your Computed Origin Account {: #calculating-your-computed-origin-account }
 
@@ -13550,7 +13550,7 @@ Considering all the steps summarized in the [introduction](#introduction), the f
 - You need to have UNITs on the relay chain to pay for transaction fees when sending the XCM. If you have a Moonbase Alpha account funded with DEV tokens, you can swap some DEV for xcUNIT here on [Moonbeam Swap](https://moonbeam-swap.netlify.app/#/swap){target=\_blank}. Then withdraw the xcUNIT from Moonbase Alpha to [your account on the Moonbase relay chain](https://polkadot.js.org/apps/?rpc=wss://relay.api.moonbase.moonbeam.network#/accounts){target=\_blank} using [apps.moonbeam.network](https://apps.moonbeam.network/moonbase-alpha){target=\_blank}
 - Your [Computed Origin account](/builders/interoperability/xcm/remote-execution/computed-origins/){target=\_blank} must hold `DEV` tokens to fund the Uniswap V2 swap, and also pay for the XCM execution (although this could be paid in UNIT tokens as `xcUNIT`). We will calculate the Computed Origin account address in the next section
 
-You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}.
+You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}
 
 ## Calculating your Computed Origin Account {: #calculating-your-computed-origin-account }
 

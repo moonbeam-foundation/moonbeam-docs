@@ -50,9 +50,9 @@ To get started, ensure you have the following:
 
  - MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}
  - An account with funds.
-  You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}.
+  You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}
  - 
-To test out the examples in this guide on Moonbeam or Moonriver, you will need to have your own endpoint and API key, which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=\_blank}.
+To test out the examples in this guide on Moonbeam or Moonriver, you will need to have your own endpoint and API key, which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=\_blank}
 
 ## Creating an Ape Project {: #creating-an-ape-project }
 
@@ -598,9 +598,9 @@ This guide will cover how to use Foundry to compile, deploy, and debug Ethereum 
 To get started, you will need the following:
 
  - Have an account with funds.
-  You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}.
+  You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}
  - 
-To test out the examples in this guide on Moonbeam or Moonriver, you will need to have your own endpoint and API key, which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=\_blank}.
+To test out the examples in this guide on Moonbeam or Moonriver, you will need to have your own endpoint and API key, which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=\_blank}
  - Have [Foundry installed](https://getfoundry.sh/introduction/installation/){target=\_blank}
 
 ## Creating a Foundry Project {: #creating-a-foundry-project }
@@ -1370,11 +1370,11 @@ Please note that although Hardhat comes with a [Hardhat Network](https://hardhat
 
 To get started, you will need the following:
 
-- Have [MetaMask installed](/tokens/connect/metamask/#install-the-metamask-extension){target=\_blank} and [connected to Moonbase Alpha](/tokens/connect/metamask/#connect-metamask-to-moonbeam){target=\_blank}.
+- Have [MetaMask installed](/tokens/connect/metamask/#install-the-metamask-extension){target=\_blank} and [connected to Moonbase Alpha](/tokens/connect/metamask/#connect-metamask-to-moonbeam){target=\_blank}
 - Have an account with funds.
-  You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}.
+  You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}
 - 
-  To test out the examples in this guide on Moonbeam or Moonriver, you will need to have your own endpoint and API key, which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=\_blank}.
+  To test out the examples in this guide on Moonbeam or Moonriver, you will need to have your own endpoint and API key, which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=\_blank}
 
 ## Create a Hardhat Project {: #creating-a-hardhat-project }
 
@@ -1414,15 +1414,15 @@ You will need to create a Hardhat project if you don't already have one. You can
     - Choose where to initialize the project (default is current directory).
     - Confirm converting to ESM (required for Hardhat v3).
     - Select the type of project to initialize:
-        - A TypeScript Hardhat project using Node Test Runner and Viem.
-        - A TypeScript Hardhat project using Mocha and Ethers.js.
+        - A TypeScript Hardhat project using Node Test Runner and viem
+        - A TypeScript Hardhat project using Mocha and Ethers.js
 
     For this example, you can choose either option based on your preference. If you choose the Mocha and Ethers.js option, you'll get a project structure with:
     
-    - A sample contract in `contracts/Counter.sol`.
-    - A test file in `test/Counter.ts`.
-    - TypeScript configuration.
-    - Mocha and Ethers.js dependencies.
+    - A sample contract in `contracts/Counter.sol`
+    - A test file in `test/Counter.ts`
+    - TypeScript configuration
+    - Mocha and Ethers.js dependencies
 
     The project will be set up with all necessary dependencies and configurations for you to start developing.
 
@@ -1468,9 +1468,9 @@ For this example, you can leave the Solidity compiler version to `0.8.28`; howev
 
 Next, you'll need to modify your configuration file to add the network configurations for the network you want to deploy your contract to. For Moonbeam networks, you'll need to specify the following:
 
-- `url`: The [RPC endpoint](/builders/get-started/endpoints/){target=\_blank} of the node.
-- `chainId`: The chain ID, which is used to validate the network.
-- `accounts`: The accounts that can be used to deploy and interact with contracts. You can either enter an array of the private keys for your accounts or use an [HD Wallet](https://github.com/ethereumbook/ethereumbook/blob/develop/src/chapter_5.md#hierarchical-deterministic-wallets-bip-32bip-44){target=\_blank}.
+- **`url`**: The [RPC endpoint](/builders/get-started/endpoints/){target=\_blank} of the node.
+- **`chainId`**: The chain ID, which is used to validate the network.
+- **`accounts`**: The accounts that can be used to deploy and interact with contracts. You can either enter an array of the private keys for your accounts or use an [HD Wallet](https://github.com/ethereumbook/ethereumbook/blob/develop/src/chapter_5.md#hierarchical-deterministic-wallets-bip-32bip-44){target=\_blank}.
 
 Hardhat 3 includes an encrypted secrets manager that makes it easier to handle sensitive information like private keys. This ensures you don't have to hardcode secrets in your source code or store them in plain text.
 
@@ -2657,10 +2657,10 @@ This guide will walk through the steps to deploy and run the default example con
 To get started, you will need the following:
 
 - An account with funds.
-  You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}.
+  You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}
 - An [Etherscan API key](/builders/ethereum/verify-contracts/etherscan-plugins/#generating-an-etherscan-api-key){target=\_blank}
 - 
-  To test out the examples in this guide on Moonbeam or Moonriver, you will need to have your own endpoint and API key, which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=\_blank}.
+  To test out the examples in this guide on Moonbeam or Moonriver, you will need to have your own endpoint and API key, which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=\_blank}
 
 ### Installing Scaffold-ETH 2 {: #installing-scaffold-eth }
 
@@ -3562,9 +3562,9 @@ You will need to have the following:
 
  - MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}
  - An account with funds.
-  You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}.
+  You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}
  - 
-To test out the examples in this guide on Moonbeam or Moonriver, you will need to have your own endpoint and API key, which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=\_blank}.
+To test out the examples in this guide on Moonbeam or Moonriver, you will need to have your own endpoint and API key, which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=\_blank}
 
 Once you've created an account you'll need to export the private key to be used in this guide.
 
@@ -4375,9 +4375,9 @@ In this demonstration, we will deploy two smart contracts. One is a token, and t
 To get started, you will need the following:
 
  - Have an account with funds.
-  You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}.
+  You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}
  - 
-To test out the examples in this guide on Moonbeam or Moonriver, you will need to have your own endpoint and API key, which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=\_blank}.
+To test out the examples in this guide on Moonbeam or Moonriver, you will need to have your own endpoint and API key, which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=\_blank}
  - Have [Foundry installed](https://getfoundry.sh/introduction/installation/){target=\_blank}
  - Have an [Etherscan API Key](/builders/ethereum/verify-contracts/api-verification/#generating-an-etherscan-api-key){target=\_blank}
 
@@ -5108,11 +5108,11 @@ We'll assemble the components of the staking DAO and compile the necessary contr
 To get started, you will need the following:
 
  - A Moonbase Alpha account funded with DEV.
-  You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}.
+  You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}
  - An [Etherscan API Key](/builders/ethereum/verify-contracts/etherscan-plugins/#generating-an-etherscan-api-key){target=\_blank}
  - For the [Testing section](#running-your-tests), you'll need to have [a local Moonbeam node up and running](/builders/get-started/networks/moonbeam-dev/){target=\_blank}
  - 
-  To test out the examples in this guide on Moonbeam or Moonriver, you will need to have your own endpoint and API key, which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=\_blank}.
+  To test out the examples in this guide on Moonbeam or Moonriver, you will need to have your own endpoint and API key, which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=\_blank}
 
 ## Creating a Hardhat Project {: #creating-a-hardhat-project }
 

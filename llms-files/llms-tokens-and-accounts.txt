@@ -3573,7 +3573,7 @@ For this guide, you will need the following:
 - To connect to the [Moonbase Alpha TestNet](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network){target=\_blank} on the Polkadot.js Apps explorer. You can also follow along and adapt the instructions for [Moonbeam](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbeam.network){target=\_blank} or [Moonriver](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonriver.moonbeam.network){target=\_blank}.
 - To [create or import an account](/tokens/connect/polkadotjs/#creating-or-importing-an-h160-account) into Polkadot.js Apps
 - Make sure you have funded your account.
- You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}.
+ You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}
 
 ## Get Started {: #get-started }
 
@@ -3823,7 +3823,7 @@ For this guide, you will be creating a Safe on Moonbase Alpha to interact and ma
 
  - MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}
  - At least two accounts each loaded with funds.
- You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}.
+ You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}
 
 You will need at least two accounts because you will be setting up a multisig Safe with 3 owners, and 2/3 confirmations for any transaction to get executed. Therefore, throughout this guide you will need to switch back and forth between at least two of the accounts to be able to confirm and send transactions. 
 
@@ -4184,7 +4184,7 @@ To follow along with this tutorial, you will need to have:
 - [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/explorer){target=\_blank} open and connected to Moonbase Alpha
 - Create or have two accounts on Moonbase Alpha
 - At least one of the accounts must be funded with `DEV` tokens.
- You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}.
+ You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}
 
 If you need help importing your accounts into Polkadot.js Apps, please check out the [Interacting with Moonbeam using Polkadot.js Apps](/tokens/connect/polkadotjs/#creating-or-importing-an-h160-account){target=\_blank} guide.
 

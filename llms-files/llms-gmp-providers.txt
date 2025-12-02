@@ -206,7 +206,7 @@ To follow along with this tutorial, you will need to have:
 - [MetaMask installed and connected to Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}
 - [Docker installed](https://docs.docker.com/get-started/get-docker/){target=\_blank}
 - Have an account be funded with `DEV` tokens.
- You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}.
+ You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}
 - Have the same account be funded with native currency from a Wormhole connected EVM of your choice. Faucets [are in the table below](#deploying-the-wormhole-contract-with-remix-on-moonbase-alpha)
 
 ### Deploying the Wormhole Contract with Remix on Moonbase Alpha {:deploying-the-wormhole-contract-with-remix-on-moonbase-alpha}
