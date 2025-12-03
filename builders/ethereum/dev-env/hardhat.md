@@ -385,7 +385,7 @@ cd scripts && touch box-console.ts
 
 Update the script with your deployed contract address before running it. The full helper looks like this:
 
-??? code "Show full script"
+??? code "View the complete script"
 
     ```ts
     --8<-- 'code/builders/ethereum/dev-env/hardhat/scripts/box-console.ts'
