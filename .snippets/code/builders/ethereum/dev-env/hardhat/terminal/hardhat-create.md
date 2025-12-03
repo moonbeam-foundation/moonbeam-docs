@@ -9,7 +9,7 @@
   <span data-ty>888&nbsp;&nbsp;&nbsp;&nbsp;888&nbsp;888&nbsp;&nbsp;888&nbsp;888&nbsp;&nbsp;&nbsp;&nbsp;Y88b&nbsp;888&nbsp;888&nbsp;&nbsp;888&nbsp;888&nbsp;&nbsp;888&nbsp;Y88b.</span>
   <span data-ty>888&nbsp;&nbsp;&nbsp;&nbsp;888&nbsp;"Y888888&nbsp;888&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Y88888&nbsp;888&nbsp;&nbsp;888&nbsp;"Y888888&nbsp;&nbsp;"Y888</span>
     <br>
-  <span data-ty>👷 Welcome to Hardhat v3.0.4 👷‍</span>
+  <span data-ty>👷 Welcome to Hardhat v3.0.17 👷‍</span>
     <br>
   <span data-ty="input" data-ty-prompt="?">&nbsp;Which version of Hardhat would you like to use? …</span>
   <span data-ty="input" data-ty-prompt="❯">&nbsp;Hardhat 3 Beta (recommended for new projects)</span>
