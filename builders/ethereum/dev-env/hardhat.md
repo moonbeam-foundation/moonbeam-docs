@@ -373,7 +373,7 @@ Congratulations, your contract is live! Save the address, as you will use it to 
 
 You can interact with your newly deployed contract using Hardhat in two ways: run console-style commands from a helper script (recommended for Hardhat 3), or reuse that script to automate interactions via the `run` task.
 
-### Console-style Interaction {: #hardhat-console }
+### Console-Style Interaction {: #hardhat-console }
 
 Similarly to the deployment script, you can create a lightweight helper that mirrors the console workflow, save it under `scripts`, and run it with the built-in `run` task. This approach works even when your credentials are stored in the Hardhat keystore because `network.connect()` is executed inside a normal Hardhat task (which can unlock the keystore) instead of the console, which does not have access to the Hardhat keystore.
 
