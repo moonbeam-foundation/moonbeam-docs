@@ -2257,7 +2257,7 @@ From here, you can deploy new contracts to your forked instance of Moonbeam or i
 To interact with an already deployed contract, you can create a new script in the `scripts` directory using `ethers`. Because you'll be running it with Hardhat, you can import `ethers` directly from the Hardhat runtime without extra setup. Inside the script, you can access a live contract on the network using the following snippet:
 
 ```js
-import { ethers } from "ethers";
+import { ethers } from "hardhat";
 
 async function main() {
   const provider = new ethers.JsonRpcProvider("http://127.0.0.1:8545/");
