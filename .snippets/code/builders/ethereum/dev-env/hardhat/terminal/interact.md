@@ -1,7 +1,7 @@
 <div id="termynal" data-termynal>
     <span data-ty="input">npx hardhat console --network moonbase</span>
     <br>
-    <span data-ty>Welcome to Node.js v20.9.0.</span>
+    <span data-ty>Welcome to Node.js v22.10.0.</span>
     <span data-ty>Type ".help" for more information.</span>
     <span data-ty="input" data-ty-prompt=">"> const Box = await ethers.getContractFactory('Box');</span>
     <span data-ty>undefined</span>
