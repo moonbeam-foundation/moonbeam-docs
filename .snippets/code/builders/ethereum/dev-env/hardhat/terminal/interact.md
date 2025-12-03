@@ -1,5 +1,5 @@
 <div id="termynal" data-termynal>
-    <span data-ty="input"><span class="file-path"></span>% npx hardhat run --network moonbase scripts/box-console.ts</span>
+    <span data-ty="input"><span class="file-path"></span>npx hardhat run --network moonbase scripts/box-console.ts</span>
     <br>
     <span data-ty></span>
     <span data-ty>[hardhat-keystore] Enter the password: **********</span>
