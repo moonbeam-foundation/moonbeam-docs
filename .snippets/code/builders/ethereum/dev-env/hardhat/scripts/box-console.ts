@@ -1,5 +1,5 @@
 // scripts/box-console.ts
-import { network } from "hardhat";
+import { network } from 'hardhat';
 
 const CONTRACT_ADDRESS = "INSERT_CONTRACT_ADDRESS";
 const VALUE_TO_STORE = 5n;
