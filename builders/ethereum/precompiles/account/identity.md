@@ -10,7 +10,7 @@ categories: Precompiles, Ethereum Toolkit
 
 The Identity Precompile is a Solidity interface that allows you to create, manage, and retrieve information on on-chain identities. Identities are attached to accounts and include personal information, such as your legal name, display name, website, Twitter handle, Riot (now known as Element) name, and more. You can also take advantage of custom fields to include any other relevant information.
 
-The Identity Precompile interacts directly with Substrate's [Identity Pallet](/builders/substrate/interfaces/account/identity/){target=\_blank} to provide the functionality needed to create and manage identities. This pallet is coded in Rust and is normally not accessible from the Ethereum side of Moonbeam. However, the Identity Precompile allows you to access this functionality directly from the Solidity interface.
+The Identity Precompile interacts directly with Moonbeam's underlying Substrate identity runtime logic to provide the functionality needed to create and manage identities. This pallet is coded in Rust and is normally not accessible from the Ethereum side of Moonbeam. However, the Identity Precompile allows you to access this functionality directly from the Solidity interface.
 
 The Identity Precompile is located at the following address:
 

@@ -1,8 +1,10 @@
 ---
 title: Substrate Interfaces for Account Management
-description: Explore low-level Substrate interfaces for advanced account management, including proxy control, identity verification, and multisig transactions.
+description: This section previously covered low-level Substrate account interfaces. Content has been retired.
 template: subsection-index-page.html
 hide: 
  - toc
  - feedback
 ---
+
+The Substrate account interface guides have been removed.
