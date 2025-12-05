@@ -71,7 +71,7 @@ The smallest unit of Glimmer (GMLR), similarly to Ethereum, is a Wei. It takes 1
 
 ## Proof of Stake {: #proof-of-stake }
 
-The Moonriver network is a fully decentralized Delegated Proof of Stake network where users of the network can delegate collator candidates to produce blocks and earn rewards. It uses the Nimbus framework for parachain consensus. The number of candidates in the active set will be subject to governance. The active set will consist of the top candidates by stake, including delegations.
+Moonriver is a fully decentralized Delegated Proof of Stake network where users can delegate collator candidates to produce blocks and earn rewards. It uses the Nimbus framework for parachain consensus. The number of candidates in the active set will be subject to governance. The active set will consist of the top candidates by stake, including delegations.
 
 ## Limitations {: #limitations }
 
