@@ -3072,7 +3072,7 @@ Moonbeam utilizes verifiable random functions (VRF) to generate randomness that 
 
 There are two available sources of randomness that provide random inputs based on block producers' VRF keys and past randomness results: [local VRF](#local-vrf) and [BABE epoch randomness](#babe-epoch-randomness). Local VRF is determined directly within Moonbeam using the collator of the block's VRF key and the last block's VRF output. On the other hand, [BABE](https://docs.polkadot.com/polkadot-protocol/architecture/polkadot-chain/pos-consensus/#block-production-babe){target=\_blank} epoch randomness is based on all the VRF produced by the relay chain validators during a complete [epoch](https://wiki.polkadot.com/general/glossary/#epoch){target=\_blank}.
 
-You can interact with and request on-chain randomness using the Randomness Precompile contract, a Solidity interface that enables smart contract developers to access the randomness functionality through the Ethereum API. For more information, please check out the [Interacting with the Randomness Precompile](/builders/ethereum/precompiles/features/randomness/){target=\_blank} guide. You can also take a look at the [Randomness Pallet](/builders/substrate/interfaces/features/randomness/){target=\_blank}, which can be used to obtain current randomness requests and results.
+You can interact with and request on-chain randomness using the Randomness Precompile contract, a Solidity interface that enables smart contract developers to access the randomness functionality through the Ethereum API. For more information, please check out the [Interacting with the Randomness Precompile](/builders/ethereum/precompiles/features/randomness/){target=\_blank} guide.
 
 ## General Definitions {: #general-definitions }
 

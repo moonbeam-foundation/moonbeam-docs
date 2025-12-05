@@ -13,7 +13,7 @@ _by Kevin Neilson_
 
 In this tutorial, we’ll stake DEV tokens remotely by sending XCM instructions from an account on the Moonbase relay chain (equivalent to the Polkadot relay chain). This tutorial assumes a basic familiarity with [XCM](/builders/interoperability/xcm/overview/){target=\_blank} and [Remote Execution via XCM](/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-pallet/){target=\_blank}. You don’t have to be an expert on these topics but you may find it helpful to have some XCM knowledge as background.
 
-There are actually two possible approaches for staking on Moonbeam remotely via XCM. We could send a [remote EVM call](/builders/interoperability/xcm/remote-execution/remote-evm-calls/){target=\_blank} that calls the [staking precompile](/builders/ethereum/precompiles/features/staking/){target=\_blank}, or we could use XCM to call the [parachain staking pallet](/builders/substrate/interfaces/features/staking/){target=\_blank} directly without interacting with the EVM. For this tutorial, we’ll be taking the latter approach and interacting with the parachain staking pallet directly.
+There are actually two possible approaches for staking on Moonbeam remotely via XCM. We could send a [remote EVM call](/builders/interoperability/xcm/remote-execution/remote-evm-calls/){target=\_blank} that calls the [staking precompile](/builders/ethereum/precompiles/features/staking/){target=\_blank}, or we could use XCM to call the parachain staking pallet directly without interacting with the EVM. For this tutorial, we’ll be taking the latter approach and interacting with the parachain staking pallet directly.
 
 **Note that there are still limitations in what you can remotely execute through XCM messages.** In addition, **developers must understand that sending incorrect XCM messages can result in the loss of funds.** Consequently, it is essential to test XCM features on a TestNet before moving to a production environment.
 
@@ -47,7 +47,7 @@ This tutorial will cover the two-step process to perform remote staking operatio
 
 ### Generate the Encoded Call Data {: #generate-encoded-call-data }
 
-We'll be using the `delegateWithAutoCompound` function of the [Parachain Staking Pallet](/builders/substrate/interfaces/features/staking/){target=\_blank}, which accepts six parameters: `candidate`, `amount`, `autoCompound`, `candidateDelegationCount`, `candidateAutoCompoundingDelegationCount`, and `delegationCount`.
+We'll be using the `delegateWithAutoCompound` function of the Parachain Staking Pallet, which accepts six parameters: `candidate`, `amount`, `autoCompound`, `candidateDelegationCount`, `candidateAutoCompoundingDelegationCount`, and `delegationCount`.
 
 In order to generate the encoded call data, we'll need to assemble the arguments for each of the `delegateWithAutoCompound` parameters and use them to build a transaction which will call the `delegateWithAutoCompound` function. We are not submitting a transaction, but simply preparing one to get the encoded call data. We'll take the following steps to build our script:
 
@@ -143,6 +143,6 @@ Now that you have the values for each of the parameters, you can write the scrip
 
 In the above snippet, besides submitting the remote staking via XCM transaction, we also print out the transaction hash to assist with any debugging.
 
-And that’s it! To verify that your delegation was successful, you can visit [Subscan](https://moonbase.subscan.io){target=\_blank} to check your staking balance. Be advised that it may take a few minutes before your staking balance is visible on Subscan. Additionally, be aware that you will not be able to see this staking operation on Moonscan, because we initiated the delegation action directly via the [Parachain Staking Pallet](/builders/substrate/interfaces/features/staking/){target=\_blank} (on the Substrate side) rather than through the [Staking Precompile](/builders/ethereum/precompiles/features/staking/){target=\_blank} (on the EVM).
+And that’s it! To verify that your delegation was successful, you can visit [Subscan](https://moonbase.subscan.io){target=\_blank} to check your staking balance. Be advised that it may take a few minutes before your staking balance is visible on Subscan. Additionally, be aware that you will not be able to see this staking operation on Moonscan, because we initiated the delegation action directly via the Parachain Staking Pallet (on the Substrate side) rather than through the [Staking Precompile](/builders/ethereum/precompiles/features/staking/){target=\_blank} (on the EVM).
 
 --8<-- 'text/_disclaimers/educational-tutorial.md'
