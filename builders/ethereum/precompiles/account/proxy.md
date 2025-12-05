@@ -11,7 +11,7 @@ categories: Precompiles, Ethereum Toolkit
 
 The Proxy Precompile on Moonbeam allows accounts to set proxy accounts that can perform specific limited actions on their behalf, such as governance, staking, or balance transfers.
 
-If a user wanted to provide a second user access to a limited number of actions on their behalf, traditionally the only method to do so would be by providing the first account's private key to the second. However, Moonbeam includes native proxy functionality in the runtime, which enables proxy accounts. Proxy accounts ought to be used due to the additional layer of security that they provide, where many accounts can perform actions for a main account. This is best if, for example, a user wants to keep their wallet safe in cold storage but still wants to access parts of the wallet's functionality like governance or staking.  
+If a user wants to provide a second user access to a limited number of actions on their behalf, traditionally the only method to do so would be by providing the first account's private key to the second. However, Moonbeam includes native proxy functionality in the runtime, which enables proxy accounts. Proxy accounts should be used due to the additional layer of security that they provide, where many accounts can perform actions for a main account. This is best if, for example, a user wants to keep their wallet safe in cold storage but still wants to access parts of the wallet's functionality like governance or staking.
 
 **The Proxy Precompile can only be called from an Externally Owned Account (EOA) or by the [Batch Precompile](/builders/ethereum/precompiles/ux/batch/){target=\_blank}.**
 
