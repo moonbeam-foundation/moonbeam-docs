@@ -91,22 +91,17 @@ There are a few resources you can check out to help you select a collator to del
     |:----------------------------:|:-------------------------------------------------------------------------------:|
     |     Stake GLMR Dashboard     |              [Stake GLMR](https://www.stakeglmr.com/){target=\_blank}               |
     |    Collators Leaderboard     |       [Moonscan](https://moonbeam.moonscan.io/collators){target=\_blank}       |
-    |      Collator Dashboard      | [DappLooker](https://dapplooker.com/dashboard/moonbeam-collator-dashboard-91){target=\_blank} |
 
 === "Moonriver"
     |           Variable           |                                      Value                                       |
     |:----------------------------:|:--------------------------------------------------------------------------------:|
     |     Stake MOVR Dashboard     |               [Stake MOVR](https://stakemovr.com){target=\_blank}               |
     |    Collators Leaderboard     |       [Moonscan](https://moonriver.moonscan.io/collators){target=\_blank}       |
-    |      Collator Dashboard      | [DappLooker](https://dapplooker.com/dashboard/moonriver-collator-dashboard-28){target=\_blank} |
 
 === "Moonbase Alpha"
     |      Variable      |                                      Value                                       |
     |:------------------:|:--------------------------------------------------------------------------------:|
     | List of candidates | [Moonbase Alpha Subscan](https://moonbase.subscan.io/validator){target=\_blank} |
-
-!!! note
-    The DappLooker Collator dashboard for Moonriver is experimental beta software and may not accurately reflect collator performance. Be sure to do your own research before delegating to a collator.
 
 ### General Tips {: #general-tips }
 
