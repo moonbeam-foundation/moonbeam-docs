@@ -8,7 +8,7 @@ categories: Tokens and Accounts
 
 ## Introduction {: #introduction }
 
-The [Substrate](/learn/platform/technology/#substrate-framework){target=\_blank} Identity pallet is an out-of-the-box solution for adding personal information to your on-chain account. Personal information can include default fields such as your legal name, display name, website, Twitter handle, Riot (now known as Element) name. You can also take advantage of custom fields to include any other relevant information.
+The [Substrate](/learn/platform/glossary/#substrate){target=\_blank} Identity pallet is an out-of-the-box solution for adding personal information to your on-chain account. Personal information can include default fields such as your legal name, display name, website, Twitter handle, Riot (now known as Element) name. You can also take advantage of custom fields to include any other relevant information.
 
 Once your identity information is on-chain, you can request verification of your identity from a registrar. A registrar will perform proper due diligence to verify the submitted identity information and based on their findings will provide their judgement on-chain and a green check mark will appear next to your account.
 
@@ -261,4 +261,3 @@ If the registrar hasn't completed your judgement, you can cancel the request and
 ![Cancel judgement request](/images/tokens/manage/identity/identity-15.webp)
 
 You'll then be prompted to sign and send the transaction. Once it goes through, your locked funds will be returned to you.
-
