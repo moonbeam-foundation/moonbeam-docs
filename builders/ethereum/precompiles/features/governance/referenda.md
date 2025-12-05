@@ -10,7 +10,7 @@ categories: Precompiles, Ethereum Toolkit
 
 As a Polkadot parachain and decentralized network, Moonbeam features native on-chain governance that enables stakeholders to participate in the direction of the network. With the introduction of OpenGov, also referred to as Governance v2, the Referenda Pallet allows token holders to get information on existing referenda, submit a proposal to be put forth for referenda, and manage actions related to the Decision Deposit, which is required for a referenda to be decided on. To learn more about Moonbeam's governance system, such as an overview of related terminology, principles, mechanics, and more, please refer to the [Governance on Moonbeam](/learn/features/governance/){target=\_blank} page.
 
-The Referenda Precompile interacts directly with Substrate's Referenda Pallet. This pallet is coded in Rust and is normally not accessible from the Ethereum side of Moonbeam. However, the Referenda Precompile allows you to access functions needed to view referenda, submit referenda, and manage the required Decision Deposit, all of which are part of the Substrate Referenda Pallet, directly from a Solidity interface.
+The Referenda Precompile interacts directly with Substrate's Referenda Pallet. This pallet is coded in Rust and is normally not accessible from the Ethereum side of Moonbeam. However, it allows you to access functions needed to view referenda, submit referenda, and manage the required Decision Deposit. These functions are part of the Substrate Referenda Pallet and can be accessed directly from a Solidity interface.
 
 The Referenda Precompile is located at the following address:
 
