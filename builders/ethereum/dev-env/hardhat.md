@@ -373,7 +373,7 @@ Congratulations, your contract is live! Save the address, as you will use it to 
 
 You can interact with your newly deployed contract using Hardhat in two ways: run console-style commands from a helper script (recommended for Hardhat 3), or reuse that script to automate interactions via the `run` task.
 
-### Console-style Interaction {: #hardhat-console }
+### Console-Style Interaction {: #hardhat-console }
 
 Similarly to the deployment script, you can create a lightweight helper that mirrors the console workflow, save it under `scripts`, and run it with the built-in `run` task. This approach works even when your credentials are stored in the Hardhat keystore because `network.connect()` is executed inside a normal Hardhat task (which can unlock the keystore) instead of the console, which does not have access to the Hardhat keystore.
 
@@ -385,7 +385,7 @@ cd scripts && touch box-console.ts
 
 Update the script with your deployed contract address before running it. The full helper looks like this:
 
-??? code "Show full script"
+??? code "View the complete script"
 
     ```ts
     --8<-- 'code/builders/ethereum/dev-env/hardhat/scripts/box-console.ts'
