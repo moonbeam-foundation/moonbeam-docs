@@ -20231,7 +20231,7 @@ categories: Tokens and Accounts, Ethereum Toolkit
 
 Hardware wallets provide a safer way to store crypto funds because the private key (used for signing transactions) is stored offline. Ledger offers two hardware wallet solutions at the time of writing: Ledger Nano S and Ledger Nano X.
 
-For Moonbeam, Moonriver, and the Moonbase Alpha TestNet, you can use the Ethereum app on Ledger Live by setting the chain ID. For Moonbeam, the chain ID is 1284, for Moonriver it's 1285, and for Moonbase Alpha it's 1287. The Ethereum app covers all supported Moonbeam-based networks and is the recommended way to connect a Ledger device.
+For Moonbeam, Moonriver, and the Moonbase Alpha TestNet, you can use the Ethereum app on Ledger Live by setting the chain ID. For Moonbeam, the chain ID is 1284, for Moonriver it's 1285, and for Moonbase Alpha it's 1287. The Ethereum app covers all supported Moonbeam-based networks and can be used to connect a Ledger device.
 
 In this tutorial, you will learn how to get started with your Ledger hardware wallet on Moonbeam using the Ethereum app. This guide only illustrates the steps for a Ledger Nano X device, but you can follow along with a Ledger Nano S as well. 
 
@@ -20441,7 +20441,7 @@ The last step on Ledger Live is to verify that the transaction details are corre
 
 On Ledger Live, you should see that your transaction was sent, and you can view the details of the transaction. Once the transaction has been confirmed, your GLMR balance will update.
 
-And that is it! You've successfully used the Moonbeam Ledger Live integration to receive and send tokens with your Ledger device directly from Ledger Live!
+You've successfully used the Moonbeam Ledger Live integration to receive and send tokens with your Ledger device directly from Ledger Live.
 
 <div class="page-disclaimer">
   The information presented herein has been provided by third parties and is made available solely for general information purposes. Moonbeam does not endorse any project listed and described on the Moonbeam Doc Website (https://docs.moonbeam.network/). Moonbeam Foundation does not warrant the accuracy, completeness or usefulness of this information. Any reliance you place on such information is strictly at your own risk. Moonbeam Foundation disclaims all liability and responsibility arising from any reliance placed on this information by you or by anyone who may be informed of any of its contents. All statements and/or opinions expressed in these materials are solely the responsibility of the person or entity providing those materials and do not necessarily represent the opinion of Moonbeam Foundation. The information should not be construed as professional or financial advice of any kind. Advice from a suitably qualified professional should always be sought in relation to any particular matter or circumstance. The information herein may link to or integrate with other websites operated or content provided by third parties, and such other websites may link to this website. Moonbeam Foundation has no control over any such other websites or their content and will have no liability arising out of or related to such websites or their content. The existence of any such link does not constitute an endorsement of such websites, the content of the websites, or the operators of the websites. These links are being provided to you only as a convenience and you release and hold Moonbeam Foundation harmless from any and all liability arising from your use of this information or the information provided by any third-party website or service.
@@ -26189,7 +26189,7 @@ categories: Basics
 
 Moonbeam is a fully Ethereum-compatible smart contract platform on Polkadot. As such, you can interact with Moonbeam via the [Ethereum API](/builders/ethereum/){target=\_blank} and [Substrate API](/builders/substrate/){target=\_blank}.
 
-Although Moonbeam is a Substrate-based platform, Moonbeam uses a [unified accounts](/learn/core-concepts/unified-accounts/){target=\_blank} system, which replaces Substrate-style accounts and keys with Ethereum-style accounts and keys. As a result, you can interact with your Moonbeam account with [MetaMask](/tokens/connect/metamask/){target=\_blank}, [Ledger](/tokens/connect/ledger/ethereum/){target=\_blank}, and other Ethereum-compatible wallets by simply adding Moonbeam's network configurations. Similarly, you can develop on Moonbeam using Ethereum [libraries](/builders/ethereum/libraries/){target=\_blank} and [development environments](/builders/ethereum/dev-env/){target=\_blank}.
+Although Moonbeam is a Substrate-based platform, it uses a [unified accounts](/learn/core-concepts/unified-accounts/){target=\_blank} system, which replaces Substrate-style accounts and keys with Ethereum-style accounts and keys. As a result, you can interact with your Moonbeam account with [MetaMask](/tokens/connect/metamask/){target=\_blank}, [Ledger](/tokens/connect/ledger/ethereum/){target=\_blank}, and other Ethereum-compatible wallets by simply adding Moonbeam's network configurations. Similarly, you can develop on Moonbeam using Ethereum [libraries](/builders/ethereum/libraries/){target=\_blank} and [development environments](/builders/ethereum/dev-env/){target=\_blank}.
 
 ## Moonbeam Networks {: #moonbeam-networks }
 
