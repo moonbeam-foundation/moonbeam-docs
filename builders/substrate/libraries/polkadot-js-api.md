@@ -139,7 +139,7 @@ Where `<type>` can be either:
 - `rpc` - for endpoints specific to RPC calls
 - `consts` - for endpoints specific to runtime constants
 
-And therefore, none of the information contained in the `api.{query, tx, rpc, consts}.<module>.<method>` endpoints are hard-coded in the API. This allows parachains like Moonbeam to have custom endpoints through its pallets that can be directly accessed via the Polkadot.js API library.
+And therefore, none of the information contained in the `api.{query, tx, rpc, consts}.<module>.<method>` endpoints is hard-coded in the API. This allows parachains like Moonbeam to have custom endpoints through its pallets that can be directly accessed via the Polkadot.js API library.
 
 ## Query On-Chain Data on Moonbeam {: #querying-for-information }
 
