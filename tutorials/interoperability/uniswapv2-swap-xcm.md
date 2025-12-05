@@ -149,7 +149,7 @@ Let's go through each of the main components of the snippet shown above:
      - Moonbase Alpha endpoint URL to create the providers
      - [Uniswap V2 router address](https://moonbase.moonscan.io/address/0x8a1932d6e26433f3037bd6c3a40c816222a6ccd4#code){target=\_blank} which is the one the call interacts with
      - Encoded calldata for the Uniswap V2 swap that we calculated before
-2. Create the necessary providers. One is a [Polkadot.js API](/builders/substrate/libraries/polkadot-js-api/){target=\_blank} provider, through which we can call Moonbeam pallets directly. The other one is an Ethereum API provider through Ethers.js
+2. Create the necessary providers. One is a [Polkadot.js API](/builders/substrate/libraries/polkadot-js-api/){target=\_blank} provider, through which we can call Moonbeam pallets directly. The other one is an Ethereum API provider through ethers.js
  3. This step is mainly a best practice. Here, we are estimating the gas of the EVM call that will be executed via XCM, as this is needed later on. You can also hardcode the gas limit value, but it is not recommended
  4. [Build the remote EVM call](/builders/interoperability/xcm/remote-execution/remote-evm-calls/#build-remote-evm-call-xcm){target=\_blank}. We bumped the gas by `10000` units to provide a bit of room in case conditions change. The inputs are identical to those used for the gas estimation
  5. Create the Ethereum XCM pallet call to the `transact` method, providing the call parameters we previously built
