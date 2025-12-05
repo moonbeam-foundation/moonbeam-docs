@@ -132,7 +132,6 @@ Documentation: https://docs.moonbeam.network/
 [How to use Chopsticks to Fork Moonbeam](Substrate Toolkit, Dev Environments): (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/substrate/dev-env/chopsticks.md) (Learn the basics of how to use Chopsticks to replay blocks, dissect state changes, test XCM interactions, and locally fork the entirety of a Moonbeam network.)
 [Substrate Development Environments](No categories available.): (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/substrate/dev-env/index.md) (Explore development environments designed to facilitate access and interaction with the Substrate side of Moonbeam in a local development setting.)
 [Substrate API](No categories available.): (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/substrate/index.md) (Learn how to interact with the Substrate API when developing on Moonbeam, including how to use the Polkadot.js API for querying Moonbeam data.)
-[Substrate Interfaces for Account Management](No categories available.): (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/substrate/interfaces/account/index.md) (This section previously covered low-level Substrate account interfaces. Content has been retired.)
 [Conviction Voting Pallet](Substrate Toolkit): (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/substrate/interfaces/features/governance/conviction-voting.md) (This guide covers the available functions in the Conviction Voting Pallet on Moonbeam, which are used to vote, delegate votes, remove votes, and more.)
 [Governance-related Substrate Interfaces](No categories available.): (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/substrate/interfaces/features/governance/index.md) (Utilize low-level Substrate interfaces for robust governance capabilities, including submitting proposals and voting on referenda.)
 [Parameters Pallet](Substrate Toolkit): (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/substrate/interfaces/features/governance/parameters.md) (Learn how Moonbeam's Parameters Pallet safely and dynamically modifies network config items via on-chain governance, removing the need for runtime upgrades.)
@@ -38329,20 +38328,6 @@ hide:
  - toc
  - feedback
 ---
---- END CONTENT ---
-
-Doc-Content: https://docs.moonbeam.network/builders/substrate/interfaces/account/
---- BEGIN CONTENT ---
----
-title: Substrate Interfaces for Account Management
-description: This section previously covered low-level Substrate account interfaces. Content has been retired.
-template: subsection-index-page.html
-hide: 
- - toc
- - feedback
----
-
-The Substrate account interface guides have been removed.
 --- END CONTENT ---
 
 Doc-Content: https://docs.moonbeam.network/builders/substrate/interfaces/features/governance/conviction-voting/
