@@ -395,6 +395,8 @@ Replace `INSERT_CONTRACT_ADDRESS` with the address printed by Hardhat Ignition a
 
 ### Interact with the Console {: #hardhat-console }
 
+Use the `run` task to execute the helper script against your deployed `Box` contract so you can verify the keystore unlock flow works and confirm the contract stores the new value on Moonbase Alpha.
+
 ```sh
 npx hardhat run --network moonbase scripts/box-console.ts
 ```
