@@ -1,7 +1,6 @@
 title: Platform
 nav:
   - index.md
-  - networks
   - 'Vision': 'vision.md'
   - 'Why Polkadot': 'why-polkadot.md'
   - 'Technology & Architecture': 'technology.md'
