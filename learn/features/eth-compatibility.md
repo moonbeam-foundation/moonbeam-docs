@@ -16,10 +16,6 @@ This documentation overviews Moonbeam's Ethereum compatibility features and high
 
 Moonbeam incorporates a fully compatible EVM to execute smart contracts in Solidity or other EVM-compatible languages. This enables developers to deploy existing Ethereum smart contracts on Moonbeam with minimal modifications.
 
-Learn more:
-
-- [Moonbeam's Ethereum-compatibility architecture](/learn/platform/technology/#ethereum-compatibility-architecture){target=\_blank}
-
 ### Ethereum-style Accounts {: #ethereum-style-accounts }
 
 Moonbeam employs H160 Ethereum-style accounts and ECDSA keys, ensuring compatibility with existing Ethereum wallets and facilitating a smooth end-user experience. This is possible due to Moonbeam's unified accounts system, which modifies the underlying Substrate account system to use Ethereum accounts by default.
