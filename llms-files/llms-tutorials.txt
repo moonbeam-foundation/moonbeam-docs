@@ -5807,7 +5807,7 @@ _by Kevin Neilson_
 
 In this guide, we'll go step by step through the process of building an NFT marketplace DApp with thirdweb on Moonbeam. We'll deploy all of the associated contracts, including an ERC-721 NFT contract and a marketplace smart contract to Moonbase Alpha with thirdweb, and then we'll integrate them into the DApp.
 
-For a more nuts and bolts approach to thirdweb with information about available methods, the thirdweb CLI and deployment tools, be sure to check out the [thirdweb guide in the Builders section](/builders/ethereum/dev-env/thirdweb/). 
+For a more nuts and bolts approach to thirdweb with information about available methods, the thirdweb CLI and deployment tools, be sure to check out the [thirdweb documentation site](https://portal.thirdweb.com/){target=\_blank}. 
 
 ## Clone the Template {: #clone-the-template }
 
@@ -6192,7 +6192,7 @@ On the homepage you should see your newly added NFT contract. Click on the NFT c
 
 ![View finished product](/images/tutorials/eth-api/thirdweb/thirdweb-7.webp "Viewing the finished product of the NFT marketplace on thirdweb")
 
-For more information on what you can do with thirdweb on Moonbeam be sure to check out the [thirdweb guide in the Builders section](/builders/ethereum/dev-env/thirdweb/) or the [thirdweb documentation site](https://portal.thirdweb.com/){target=\_blank}.
+For more information on what you can do with thirdweb on Moonbeam be sure to check out the [thirdweb documentation site](https://portal.thirdweb.com/){target=\_blank}.
 
 <div class="page-disclaimer">
     This tutorial is for educational purposes only. As such, any contracts or code created in this tutorial should not be used in production.
@@ -19441,8 +19441,6 @@ As Moonbeam is a Substrate-based chain that is fully Ethereum-compatible, you ca
     | [OpenZeppelin](/builders/ethereum/dev-env/openzeppelin/){target=\_blank} | Dev Environment |
     |        [Remix](/builders/ethereum/dev-env/remix/){target=\_blank}        | Dev Environment |
     | [Scaffold-Eth](/builders/ethereum/dev-env/scaffold-eth/){target=\_blank} | Dev Environment |
-    |     [thirdweb](/builders/ethereum/dev-env/thirdweb/){target=\_blank}     | Dev Environment |
-    | [Waffle & Mars](/builders/ethereum/dev-env/waffle-mars/){target=\_blank} | Dev Environment |
 
 === "Substrate"
 
@@ -19457,7 +19455,6 @@ As Moonbeam is a Substrate-based chain that is fully Ethereum-compatible, you ca
     |                              Tool                               |      Type       |
     |:---------------------------------------------------------------:|:---------------:|
     | [Web3.py](/builders/ethereum/libraries/web3py/){target=\_blank} |     Library     |
-    |     [Ape](/builders/ethereum/dev-env/ape/){target=\_blank}      | Dev Environment |
 
 === "Substrate"
 
