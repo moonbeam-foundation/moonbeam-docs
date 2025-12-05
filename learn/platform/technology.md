@@ -47,10 +47,10 @@ Moonbeam uses the EVM and Ethereum pallets to achieve full Ethereum compatibilit
 
 ## Blockchain Runtime {: #blockchain-runtime }
 
-The core Moonbeam runtime specifies the state transition function and behavior of the Moonbeam blockchain. The runtime is built using [FRAME](/learn/platform/glossary/#substrate-frame-pallets){target=\_blank}, compiled to a [WebAssembly (Wasm)](/learn/platform/glossary/#webassemblywasm){target=\_blank} binary as well as a native binary. These compiled versions are executed in the Polkadot relay chain and Moonbeam node environments.
+The core Moonbeam runtime specifies the state transition function and behavior of the Moonbeam blockchain. The runtime is built using FRAME, compiled to a WebAssembly (Wasm) binary as well as a native binary. These compiled versions are executed in the Polkadot relay chain and Moonbeam node environments.
 
 !!! note
-    Substrate FRAME pallets are a collection of Rust-based modules that provide the functionality required when building a blockchain. WebAssembly is an open standard that defines a portable binary code format. Different programming languages, compilers, and browsers support it. Find more definitions [in our glossary](/learn/platform/glossary/){target=\_blank}.
+    Substrate FRAME pallets are a collection of Rust-based modules that provide the functionality required when building a blockchain. WebAssembly is an open standard that defines a portable binary code format. Different programming languages, compilers, and browsers support it.
 
 Some of the key Substrate FRAME pallets used in the Moonbeam runtime include:
 

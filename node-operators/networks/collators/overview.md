@@ -16,7 +16,7 @@ Candidates will need a minimum amount of tokens bonded (self-bonded) to be consi
 
 Once a candidate is selected to be in the active set of collators, they are eligible to produce blocks.
 
-Moonbeam uses the [Nimbus Parachain Consensus Framework](/learn/features/consensus/){target=\_blank}. This provides a two-step filter to allocate candidates to the active set of collators, then assign collators to a block production slot:
+Moonbeam uses the Nimbus Parachain Consensus Framework. This provides a two-step filter to allocate candidates to the active set of collators, then assign collators to a block production slot:
 
  - The parachain staking filter selects the top candidates in terms of tokens staked in each network. For the exact number of top candidates per each network and the minimum bond amount, you can check out the [Minimum Collator Bond](/node-operators/networks/collators/requirements/#minimum-collator-bond){target=\_blank} section of our documentation. This filtered pool is called selected candidates (also known as the active set), which are rotated every round
  - The fixed size subset filter picks a pseudo-random subset of the previously selected candidates for each block production slot
