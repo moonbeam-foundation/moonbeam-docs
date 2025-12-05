@@ -33,4 +33,4 @@ For this purpose, we use [Discord](https://discord.com/invite/moonbeam){target=\
  - **collators** — this is the general collator discussion channel. We are proud of having an active and friendly collator community so if you have any questions, this is the place to ask. We will also ping collators here for any issues that require their attention.
  - **meet-the-collators** — in this channel you can introduce yourself to potential delegators
 
-After you join our Discord, feel free to DM *gilmouta* or *artkaseman* and introduce yourself. This will let us know who to contact if we see an issue with your node, and will also let us assign the relevant Discord collator role, enabling you to post in *meet-the-collators*.
+After you join Discord, feel free to DM *gilmouta* or *artkaseman* and introduce yourself. This will help the team identify who to contact if issues arise with your node and will enable assignment of the relevant Discord collator role, allowing you to post in *meet-the-collators*.
