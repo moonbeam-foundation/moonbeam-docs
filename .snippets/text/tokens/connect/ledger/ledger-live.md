@@ -67,4 +67,4 @@ The last step on Ledger Live is to verify that the transaction details are corre
 
 On Ledger Live, you should see that your transaction was sent, and you can view the details of the transaction. Once the transaction has been confirmed, your GLMR balance will update.
 
-And that is it! You've successfully used the Moonbeam Ledger Live integration to receive and send tokens with your Ledger device directly from Ledger Live!
+You've successfully used the Moonbeam Ledger Live integration to receive and send tokens with your Ledger device directly from Ledger Live.
