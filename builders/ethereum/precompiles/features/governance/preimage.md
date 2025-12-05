@@ -44,7 +44,7 @@ The Preimage Precompile is located at the following address:
 
         - `encodedProposal` - bytes memory containing the encoded proposal to be registered. Returns the preimage hash
 
-??? function "**unnotePreimage**(*bytes32* hash) - clears an unrequested preimage from storage. Uses the `unnotePreimage` method of the preimage pallet"
+??? function "**unnotePreimage**(*bytes32* hash) - clears an unrequested preimage from storage."
 
     === "Parameters"
 
