@@ -22,8 +22,6 @@ const pageMappings = {
   '/builders/ethereum/dev-env/remix/': '/cn/builders/dev-env/remix/',
   '/builders/ethereum/dev-env/tenderly/': '/cn/builders/dev-env/tenderly/',
   '/builders/ethereum/dev-env/thirdweb/': '/cn/builders/dev-env/thirdweb/',
-  '/builders/ethereum/dev-env/openzeppelin/contracts/':
-    '/cn/builders/dev-env/oz-contracts/',
   '/builders/integrations/': '/cn/builders/integrations/',
   '/builders/integrations/wallets/metamask/':
     '/cn/builders/integrations/metamask/',
