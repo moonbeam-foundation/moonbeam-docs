@@ -95,20 +95,20 @@ The interface includes the following functions:
         - `aye` - uint256 balance to be locked for the "Aye" vote
         - `nay` - uint256 balance to be locked for the "Nay" vote
 
-??? function "**removeVote**(*uint32* pollIndex) - [removes a vote](/builders/substrate/interfaces/features/governance/conviction-voting/#extrinsics){target=\_blank} in a poll (referendum)"
+??? function "**removeVote**(*uint32* pollIndex) - removes a vote in a poll (referendum)"
 
     === "Parameters"
 
         - `pollIndex` - uint32 index of the poll (referendum)
 
-??? function "**removeVoteForTrack**(*uint32* pollIndex, *uint16* trackId) - [removes a vote](/builders/substrate/interfaces/features/governance/conviction-voting/#extrinsics){target=\_blank} from a specific track in a poll (referendum)"
+??? function "**removeVoteForTrack**(*uint32* pollIndex, *uint16* trackId) - removes a vote from a specific track in a poll (referendum)"
 
     === "Parameters"
 
         - `pollIndex` - uint32 index of the poll (referendum)
         - `trackId` - uint16 Track ID where the requested changes need to occur
 
-??? function "**removeOtherVote**(*address* target, *uint16* trackId, *uint32* pollIndex) - [removes a vote](/builders/substrate/interfaces/features/governance/conviction-voting/#extrinsics){target=\_blank} in a poll (referendum) for another voter"
+??? function "**removeOtherVote**(*address* target, *uint16* trackId, *uint32* pollIndex) - removes a vote in a poll (referendum) for another voter"
 
     === "Parameters"
 
