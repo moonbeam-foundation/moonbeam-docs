@@ -74,7 +74,7 @@ Note that as of late 2024, the X-Tokens precompile now uses the Polkadot XCM pal
 
 As an example, a brief overview of the entire process of sending MRL tokens from a parachain back through Wormhole to a destination chain is as follows:
 
-1. Send a batch transaction using the `batchAll` extrinsic of the [Utility Pallet](/builders/substrate/interfaces/utility/utility/){target=\_blank} that contains the following two calls:
+1. Send a batch transaction using the `batchAll` extrinsic of the Utility pallet that contains the following two calls.
     - **`xTokens.transferMultiassets`** - sends xcGLMR and the local XC-20 to the user’s [Computed Origin account](#calculate-computed-origin-account). The Computed Origin account is a keyless account on Moonbeam that an account on another parachain has control of via XCM
     - **`polkadotXcm.send`** - with the `Transact` instruction. Sends a [remote EVM call via XCM](/builders/interoperability/xcm/remote-execution/remote-evm-calls/){target=\_blank} to the Batch Precompile on Moonbeam, which batches the following two calls into a single remote EVM transaction using the `ethereumXcm.transact` extrinsic:
         - **`approve`** (of the local XC-20 contract) - approves the Wormhole relayer to transfer the local XC-20
