@@ -10,9 +10,7 @@ categories: Tokens and Accounts, Ethereum Toolkit
 
 Hardware wallets provide a safer way to store crypto funds because the private key (used for signing transactions) is stored offline. Ledger offers two hardware wallet solutions at the time of writing: Ledger Nano S and Ledger Nano X.
 
-For Moonbeam, Moonriver, and the Moonbase Alpha TestNet, you can use the Ethereum app on Ledger Live by setting the chain ID. For Moonbeam, the chain ID is 1284, for Moonriver it's 1285, and for Moonbase Alpha it's 1287.
-
-For Moonbeam and Moonriver you also have the option of using the dedicated [Moonbeam app](/tokens/connect/ledger/moonbeam/){target=\_blank} or [Moonriver app](/tokens/connect/ledger/moonriver/){target=\_blank} on Ledger Live, this way you do not have to worry about setting the chain ID and you know you are connected to the right network. Please note that you can only use the Moonbeam app to connect to the Moonbeam network, and the Moonriver app can only be used to connect to the Moonriver network. These dedicated apps will not work for other Moonbeam-based networks.
+For Moonbeam, Moonriver, and the Moonbase Alpha TestNet, you can use the Ethereum app on Ledger Live by setting the chain ID. For Moonbeam, the chain ID is 1284, for Moonriver it's 1285, and for Moonbase Alpha it's 1287. The Ethereum app covers all supported Moonbeam-based networks and is the recommended way to connect a Ledger device.
 
 In this tutorial, you will learn how to get started with your Ledger hardware wallet on Moonbeam using the Ethereum app. This guide only illustrates the steps for a Ledger Nano X device, but you can follow along with a Ledger Nano S as well. 
 
