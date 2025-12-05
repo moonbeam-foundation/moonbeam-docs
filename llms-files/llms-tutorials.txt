@@ -2290,7 +2290,7 @@ You will need to create a Hardhat project if you don't already have one. You can
 
 ## Add Smart Contracts {: #add-smart-contracts }
 
-The smart contract featured in this tutorial is more complex than the one in the [Introduction to Hardhat](/builders/ethereum/dev-env/hardhat/){target=\_blank} but the nature of the contract means it's perfect to demonstrate some of the advanced capabilities of Hardhat. [`DelegationDAO.sol`](https://github.com/moonbeam-foundation/moonbeam-intro-course-resources/blob/main/delegation-dao-lesson-one/DelegationDAO.sol){target=\_blank} is a pooled staking DAO that uses [`StakingInterface.sol`](/builders/ethereum/precompiles/features/staking/){target=\_blank} to autonomously delegate to a collator when it reaches a determined threshold. Pooled staking contracts such as [`DelegationDAO.sol`](https://github.com/moonbeam-foundation/moonbeam-intro-course-resources/blob/main/delegation-dao-lesson-one/DelegationDAO.sol){target=\_blank} allow delegators with less than the protocol minimum bond to join together to delegate their pooled funds and earn a share of staking rewards.
+The smart contract featured in this tutorial is more complex than the one in the [Introduction to Hardhat](/builders/ethereum/dev-env/hardhat/){target=\_blank} but the nature of the contract makes it well-suited to demonstrate some of the advanced capabilities of Hardhat. [`DelegationDAO.sol`](https://github.com/moonbeam-foundation/moonbeam-intro-course-resources/blob/main/delegation-dao-lesson-one/DelegationDAO.sol){target=\_blank} is a pooled staking DAO that uses [`StakingInterface.sol`](/builders/ethereum/precompiles/features/staking/){target=\_blank} to autonomously delegate to a collator when it reaches a determined threshold. Pooled staking contracts such as [`DelegationDAO.sol`](https://github.com/moonbeam-foundation/moonbeam-intro-course-resources/blob/main/delegation-dao-lesson-one/DelegationDAO.sol){target=\_blank} allow delegators with less than the protocol minimum bond to join together to delegate their pooled funds and earn a share of staking rewards.
 
 !!! note
     `DelegationDAO.sol` is unreviewed and unaudited. It is designed only for demonstration purposes and not intended for production use. It may contain bugs or logic errors that could result in loss of funds.
@@ -17421,7 +17421,7 @@ The smallest unit of Glimmer (GMLR), similarly to Ethereum, is a Wei. It takes 1
 
 ## Proof of Stake {: #proof-of-stake }
 
-The Moonriver network is a fully decentralized Delegated Proof of Stake network where users of the network can delegate collator candidates to produce blocks and earn rewards. It uses the Nimbus framework for parachain consensus. The number of candidates in the active set will be subject to governance. The active set will consist of the top candidates by stake, including delegations.
+Moonriver is a fully decentralized Delegated Proof of Stake network where users can delegate collator candidates to produce blocks and earn rewards. It uses the Nimbus framework for parachain consensus. The number of candidates in the active set will be subject to governance. The active set will consist of the top candidates by stake, including delegations.
 
 ## Limitations {: #limitations }
 
@@ -20033,7 +20033,7 @@ For this purpose, we use [Discord](https://discord.com/invite/moonbeam){target=\
  - **collators** — this is the general collator discussion channel. We are proud of having an active and friendly collator community so if you have any questions, this is the place to ask. We will also ping collators here for any issues that require their attention.
  - **meet-the-collators** — in this channel you can introduce yourself to potential delegators
 
-After you join our Discord, feel free to DM *gilmouta* or *artkaseman* and introduce yourself. This will let us know who to contact if we see an issue with your node, and will also let us assign the relevant Discord collator role, enabling you to post in *meet-the-collators*.
+After you join Discord, feel free to DM *gilmouta* or *artkaseman* and introduce yourself. This will help the team identify who to contact if issues arise with your node and will enable assignment of the relevant Discord collator role, allowing you to post in *meet-the-collators*.
 --- END CONTENT ---
 
 Doc-Content: https://docs.moonbeam.network/node-operators/networks/run-a-node/overview/
