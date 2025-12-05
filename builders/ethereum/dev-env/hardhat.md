@@ -393,7 +393,7 @@ Update the script with your deployed contract address before running it. The ful
 
 Replace `INSERT_CONTRACT_ADDRESS` with the address printed by Hardhat Ignition and adjust `VALUE_TO_STORE` if you want to store a different value.
 
-### Run the Helper Script {: #run-console-helper }
+### Run the Script {: #run-the-script }
 
 Use the `run` task to execute the helper script against your deployed `Box` contract so you can verify the keystore unlock flow works and confirm the contract stores the new value on Moonbase Alpha.
 
