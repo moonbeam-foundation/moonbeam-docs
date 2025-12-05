@@ -108,7 +108,7 @@ The interface includes the following functions:
         - `pollIndex` - uint32 index of the poll (referendum)
         - `trackId` - uint16 Track ID where the requested changes need to occur
 
-??? function "**removeOtherVote**(*address* target, *uint16* trackId, *uint32* pollIndex) - removes a vote in a poll (referendum) for another voter"
+??? function "**removeOtherVote**(*address* target, *uint16* trackId, *uint32* pollIndex) - removes a vote in a poll (referendum) for another voter."
 
     === "Parameters"
 
