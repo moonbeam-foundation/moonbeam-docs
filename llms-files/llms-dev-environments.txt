@@ -1773,7 +1773,7 @@ Congratulations, your contract is live! Save the address, as you will use it to 
 
 You can interact with your newly deployed contract using Hardhat in two ways: run console-style commands from a helper script (recommended for Hardhat 3), or reuse that script to automate interactions via the `run` task.
 
-### Console-style Interaction {: #hardhat-console }
+### Console-Style Interaction {: #hardhat-console }
 
 Similarly to the deployment script, you can create a lightweight helper that mirrors the console workflow, save it under `scripts`, and run it with the built-in `run` task. This approach works even when your credentials are stored in the Hardhat keystore because `network.connect()` is executed inside a normal Hardhat task (which can unlock the keystore) instead of the console, which does not have access to the Hardhat keystore.
 
@@ -1785,33 +1785,33 @@ cd scripts && touch box-console.ts
 
 Update the script with your deployed contract address before running it. The full helper looks like this:
 
-??? code "Show full script"
+??? code "View the complete script"
 
     ```ts
     // scripts/box-console.ts
-import { network } from "hardhat";
+import { network } from 'hardhat';
 
-const CONTRACT_ADDRESS = "INSERT_CONTRACT_ADDRESS";
+const CONTRACT_ADDRESS = 'INSERT_CONTRACT_ADDRESS';
 const VALUE_TO_STORE = 5n;
 
 async function main() {
-  if (CONTRACT_ADDRESS === "INSERT_CONTRACT_ADDRESS") {
+  if (CONTRACT_ADDRESS === 'INSERT_CONTRACT_ADDRESS') {
     throw new Error(
-      "Update CONTRACT_ADDRESS with the Box deployment address (0x...).",
+      'Update CONTRACT_ADDRESS with the Box deployment address (0x...).'
     );
   }
 
-  if (!CONTRACT_ADDRESS.startsWith("0x")) {
-    throw new Error("CONTRACT_ADDRESS must start with 0x.");
+  if (!CONTRACT_ADDRESS.startsWith('0x')) {
+    throw new Error('CONTRACT_ADDRESS must start with 0x.');
   }
 
-  const { ethers } = await network.connect("moonbase");
+  const { ethers } = await network.connect('moonbase');
   const [signer] = await ethers.getSigners();
 
   console.log(`Using signer ${signer.address}`);
   console.log(`Attaching to Box at ${CONTRACT_ADDRESS}`);
 
-  const Box = await ethers.getContractFactory("Box");
+  const Box = await ethers.getContractFactory('Box');
   const box = await Box.attach(CONTRACT_ADDRESS);
 
   const current = (await box.retrieve()).toString();
@@ -1836,6 +1836,8 @@ Replace `INSERT_CONTRACT_ADDRESS` with the address printed by Hardhat Ignition a
 
 ### Interact with the Console {: #hardhat-console }
 
+Use the `run` task to execute the helper script against your deployed `Box` contract so you can verify the keystore unlock flow works and confirm the contract stores the new value on Moonbase Alpha.
+
 ```sh
 npx hardhat run --network moonbase scripts/box-console.ts
 ```
@@ -1843,7 +1845,7 @@ npx hardhat run --network moonbase scripts/box-console.ts
 You'll be prompted for the Hardhat keystore password (if you're using encrypted secrets), after which the script connects to Moonbase Alpha, attaches to your deployed `Box` contract, and logs the values stored before and after calling `store(5n)`. Upon running it, you should see output similar to:
 
 <div id="termynal" data-termynal>
-    <span data-ty="input"><span class="file-path"></span>% npx hardhat run --network moonbase scripts/box-console.ts</span>
+    <span data-ty="input"><span class="file-path"></span>npx hardhat run --network moonbase scripts/box-console.ts</span>
     <br>
     <span data-ty></span>
     <span data-ty>[hardhat-keystore] Enter the password: **********</span>
