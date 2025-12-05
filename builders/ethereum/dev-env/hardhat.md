@@ -32,25 +32,25 @@ To get started, you will need the following:
 
 You will need to create a Hardhat project if you don't already have one. You can create one by completing the following steps:
 
-1. Create a directory for your project
+1. Create a directory for your project.
 
     ```sh
     mkdir hardhat && cd hardhat
     ```
 
-2. Initialize the project, which will create a `package.json` file
+2. Initialize the project, which will create a `package.json` file.
 
     ```sh
     npm init -y
     ```
 
-3. Install Hardhat
+3. Install Hardhat.
 
     ```sh
     npm install hardhat
     ```
 
-4. Create a Hardhat project
+4. Create a Hardhat project.
 
     ```sh
     npx hardhat --init
@@ -62,11 +62,11 @@ You will need to create a Hardhat project if you don't already have one. You can
 
 5. You'll be prompted with a series of questions to set up your project:
 
-    - Choose **Hardhat 3 Beta (recommended for new projects)** rather than Hardhat 2
-    - Choose where to initialize the project (default is current directory)
-    - Confirm converting to ESM (required for Hardhat v3)
+    - Choose **Hardhat 3 Beta (recommended for new projects)** rather than Hardhat 2.
+    - Choose where to initialize the project (default is current directory).
+    - Confirm converting to ESM (required for Hardhat v3).
     - Select the type of project to initialize:
-        - A TypeScript Hardhat project using Node Test Runner and Viem
+        - A TypeScript Hardhat project using Node Test Runner and viem
         - A TypeScript Hardhat project using Mocha and Ethers.js
 
     For this example, you can choose either option based on your preference. If you choose the Mocha and Ethers.js option, you'll get a project structure with:
@@ -97,9 +97,9 @@ For this example, you can leave the Solidity compiler version to `0.8.28`; howev
 
 Next, you'll need to modify your configuration file to add the network configurations for the network you want to deploy your contract to. For Moonbeam networks, you'll need to specify the following:
 
-- `url` - the [RPC endpoint](/builders/get-started/endpoints/){target=\_blank} of the node
-- `chainId` - the chain ID, which is used to validate the network
-- `accounts` - the accounts that can be used to deploy and interact with contracts. You can either enter an array of the private keys for your accounts or use an [HD Wallet](https://github.com/ethereumbook/ethereumbook/blob/develop/05wallets.asciidoc#hierarchical-deterministic-wallets-bip-32bip-44){target=\_blank}
+- **`url`**: The [RPC endpoint](/builders/get-started/endpoints/){target=\_blank} of the node.
+- **`chainId`**: The chain ID, which is used to validate the network.
+- **`accounts`**: The accounts that can be used to deploy and interact with contracts. You can either enter an array of the private keys for your accounts or use an [HD Wallet](https://github.com/ethereumbook/ethereumbook/blob/develop/src/chapter_5.md#hierarchical-deterministic-wallets-bip-32bip-44){target=\_blank}.
 
 Hardhat 3 includes an encrypted secrets manager that makes it easier to handle sensitive information like private keys. This ensures you don't have to hardcode secrets in your source code or store them in plain text.
 
@@ -262,13 +262,13 @@ Now that you've configured your project, you can begin the development process b
 
 To add the contract, you'll take the following steps:
 
-1. Change into the `contracts` directory
+1. Change into the `contracts` directory.
 
     ```sh
     cd contracts
     ```
 
-2. Create a `Box.sol` file
+2. Create a `Box.sol` file.
 
     ```sh
     touch Box.sol
@@ -328,11 +328,11 @@ cd ignition/modules && touch Box.js
 
 Next, you can write your Hardhat Ignition module. To get started, take the following steps:
 
-1. Import the `buildModule` function from the Hardhat Ignition module
-2. Export a module using `buildModule`
-3. Use the `getAccount` method to select the deployer account
-4. Deploy the `Box` contract
-5. Return an object from the module. This makes the `Box` contract accessible for interaction in Hardhat tests and scripts
+1. Import the `buildModule` function from the Hardhat Ignition module.
+2. Export a module using `buildModule`.
+3. Use the `getAccount` method to select the deployer account.
+4. Deploy the `Box` contract.
+5. Return an object from the module. This makes the `Box` contract accessible for interaction in Hardhat tests and scripts.
 
 ```js
 // 1. Import the `buildModule` function from the Hardhat Ignition module
@@ -393,7 +393,7 @@ Update the script with your deployed contract address before running it. The ful
 
 Replace `INSERT_CONTRACT_ADDRESS` with the address printed by Hardhat Ignition and adjust `VALUE_TO_STORE` if you want to store a different value.
 
-### Interact with the Console {: #hardhat-console }
+### Run the Helper Script {: #run-console-helper }
 
 Use the `run` task to execute the helper script against your deployed `Box` contract so you can verify the keystore unlock flow works and confirm the contract stores the new value on Moonbase Alpha.
 

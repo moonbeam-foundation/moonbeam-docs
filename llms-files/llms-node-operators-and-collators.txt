@@ -748,7 +748,7 @@ Running a Moonbeam collator requires Linux systems administration skills, carefu
 
 **Q: Where can I get help?**
 
-**A:** There is an active and friendly [Discord](https://discord.com/invite/RyVefR79FA){target=\_blank} community for collators. Join the server and introduce yourself even before you need help. Send **gilmouta** or **artkaseman** a DM and let them know who you are, and they can reach out to you if they see any issues with your node.
+**A:** There is an active and friendly [Discord](https://discord.com/invite/PfpUATX){target=\_blank} community for collators. Join the server and introduce yourself even before you need help. Send **gilmouta** or **artkaseman** a DM and let them know who you are, and they can reach out to you if they see any issues with your node.
 
 ***
 
@@ -6470,7 +6470,6 @@ If you're looking for your own endpoints suitable for production use, you can ch
 === "HTTPS"
     |      Provider       |                              RPC URL                               |   Limits    |
     |:-------------------:|:------------------------------------------------------------------:|:-----------:|
-    |       Dwellir       |         <pre>```https://moonbase-rpc.dwellir.com```</pre>          | 20 req/sec  |
     |     OnFinality      |  <pre>```https://moonbeam-alpha.api.onfinality.io/public```</pre>  | 40 req/sec  |
     | Moonbeam Foundation |     <pre>```https://rpc.api.moonbase.moonbeam.network```</pre>     | 25 req/sec  |
     |     UnitedBloc      |          <pre>```https://moonbase.unitedbloc.com```</pre>          | 32 req/sec  |
@@ -6479,7 +6478,6 @@ If you're looking for your own endpoints suitable for production use, you can ch
 === "WSS"
     |      Provider       |                              RPC URL                              |   Limits    |
     |:-------------------:|:-----------------------------------------------------------------:|:-----------:|
-    |       Dwellir       |          <pre>```wss://moonbase-rpc.dwellir.com```</pre>          | 20 req/sec  |
     |     OnFinality      | <pre>```wss://moonbeam-alpha.api.onfinality.io/public-ws```</pre> | 40 req/sec  |
     | Moonbeam Foundation |     <pre>```wss://wss.api.moonbase.moonbeam.network```</pre>      | 25 req/sec  |
     |     UnitedBloc      |          <pre>```wss://moonbase.unitedbloc.com```</pre>           | 32 req/sec  |
@@ -6612,7 +6610,6 @@ If you're looking for your own endpoints suitable for production use, you can ch
 === "HTTPS"
     |  Provider   |                              RPC URL                               |   Limits    |
     |:-----------:|:------------------------------------------------------------------:|:-----------:|
-    |   Dwellir   |         <pre>```https://moonbeam-rpc.dwellir.com```</pre>          | 20 req/sec  |
     | OnFinality  |     <pre>```https://moonbeam.api.onfinality.io/public```</pre>     | 40 req/sec  |
     | UnitedBloc  |          <pre>```https://moonbeam.unitedbloc.com```</pre>          | 32 req/sec  |
     | RadiumBlock | <pre>```https://moonbeam.public.curie.radiumblock.co/http```</pre> | 200 req/sec |
@@ -6624,7 +6621,6 @@ If you're looking for your own endpoints suitable for production use, you can ch
 === "WSS"
     |  Provider   |                            RPC URL                             |   Limits    |
     |:-----------:|:--------------------------------------------------------------:|:-----------:|
-    |   Dwellir   |        <pre>```wss://moonbeam-rpc.dwellir.com```</pre>         | 20 req/sec  |
     | OnFinality  |  <pre>```wss://moonbeam.api.onfinality.io/public-ws```</pre>   | 40 req/sec  |
     | UnitedBloc  |         <pre>```wss://moonbeam.unitedbloc.com```</pre>         | 32 req/sec  |
     | RadiumBlock | <pre>```wss://moonbeam.public.curie.radiumblock.co/ws```</pre> | 200 req/sec |
@@ -6757,7 +6753,6 @@ If you're looking for your own endpoints suitable for production use, you can ch
 === "HTTPS"
       |  Provider   |                               RPC URL                               |   Limits    |
       |:-----------:|:-------------------------------------------------------------------:|:-----------:|
-      |   Dwellir   |         <pre>```https://moonriver-rpc.dwellir.com```</pre>          | 20 req/sec  |
       | OnFinality  |     <pre>```https://moonriver.api.onfinality.io/public```</pre>     | 40 req/sec  |
       | UnitedBloc  |          <pre>```https://moonriver.unitedbloc.com```</pre>          | 32 req/sec  |
       | RadiumBlock | <pre>```https://moonriver.public.curie.radiumblock.co/http```</pre> | 200 req/sec |
@@ -6766,7 +6761,6 @@ If you're looking for your own endpoints suitable for production use, you can ch
 === "WSS"
     |  Provider   |                             RPC URL                             |   Limits    |
     |:-----------:|:---------------------------------------------------------------:|:-----------:|
-    |   Dwellir   |        <pre>```wss://moonriver-rpc.dwellir.com```</pre>         | 20 req/sec  |
     | OnFinality  |  <pre>```wss://moonriver.api.onfinality.io/public-ws```</pre>   | 40 req/sec  |
     | UnitedBloc  |         <pre>```wss://moonriver.unitedbloc.com```</pre>         | 32 req/sec  |
     | RadiumBlock | <pre>```wss://moonriver.public.curie.radiumblock.co/ws```</pre> | 200 req/sec |
@@ -7271,7 +7265,6 @@ The precompiled contracts are categorized by address and based on the origin net
     |                                                                                        Contract                                                                                        |                               Address                               |
     |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------:|
     |                  [Parachain Staking](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol){target=\_blank}                  |              {{networks.moonbeam.precompiles.staking}}              |
-    |                 [Crowdloan Rewards](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/crowdloan-rewards/CrowdloanInterface.sol){target=\_blank}                 |             {{networks.moonbeam.precompiles.crowdloan}}             |
     |                         [ERC-20 Interface](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/balances-erc20/ERC20.sol){target=\_blank}                          |               {{networks.moonbeam.precompiles.erc20}}               |
     |                                                                      Democracy [Removed]                                                                      |             {{networks.moonbeam.precompiles.democracy}}             |
     |                                [X-Tokens](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/xtokens/Xtokens.sol){target=\_blank}                                |              {{networks.moonbeam.precompiles.xtokens}}              |
@@ -7302,7 +7295,6 @@ The precompiled contracts are categorized by address and based on the origin net
     |                                                                           Contract                                                                            |                               Address                                |
     |:-------------------------------------------------------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
     |      [Parachain Staking](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol){target=\_blank}      |              {{networks.moonriver.precompiles.staking}}              |
-    |     [Crowdloan Rewards](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/crowdloan-rewards/CrowdloanInterface.sol){target=\_blank}     |             {{networks.moonriver.precompiles.crowdloan}}             |
     |             [ERC-20 Interface](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/balances-erc20/ERC20.sol){target=\_blank}              |               {{networks.moonriver.precompiles.erc20}}               |
     |                                                                     Democracy [Disabled]                                                                      |             {{networks.moonriver.precompiles.democracy}}             |
     |                    [X-Tokens](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/xtokens/Xtokens.sol){target=\_blank}                    |              {{networks.moonriver.precompiles.xtokens}}              |
@@ -7332,7 +7324,6 @@ The precompiled contracts are categorized by address and based on the origin net
     |                                                                            Contract                                                                            |                               Address                               |
     |:--------------------------------------------------------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------:|
     |      [Parachain Staking](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol){target=\_blank}      |              {{networks.moonbase.precompiles.staking}}              |
-    |     [Crowdloan Rewards](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/crowdloan-rewards/CrowdloanInterface.sol){target=\_blank}     |             {{networks.moonbase.precompiles.crowdloan}}             |
     |             [ERC-20 Interface](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/balances-erc20/ERC20.sol){target=\_blank}              |               {{networks.moonbase.precompiles.erc20}}               |
     |                                                                      Democracy [Removed]                                                                       |             {{networks.moonbase.precompiles.democracy}}             |
     |                    [X-Tokens](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/xtokens/Xtokens.sol){target=\_blank}                    |              {{networks.moonbase.precompiles.xtokens}}              |
@@ -7516,7 +7507,6 @@ If you're looking for your own endpoints suitable for production use, you can ch
 === "HTTPS"
     |      Provider       |                              RPC URL                               |   Limits    |
     |:-------------------:|:------------------------------------------------------------------:|:-----------:|
-    |       Dwellir       |         <pre>```https://moonbase-rpc.dwellir.com```</pre>          | 20 req/sec  |
     |     OnFinality      |  <pre>```https://moonbeam-alpha.api.onfinality.io/public```</pre>  | 40 req/sec  |
     | Moonbeam Foundation |     <pre>```https://rpc.api.moonbase.moonbeam.network```</pre>     | 25 req/sec  |
     |     UnitedBloc      |          <pre>```https://moonbase.unitedbloc.com```</pre>          | 32 req/sec  |
@@ -7525,7 +7515,6 @@ If you're looking for your own endpoints suitable for production use, you can ch
 === "WSS"
     |      Provider       |                              RPC URL                              |   Limits    |
     |:-------------------:|:-----------------------------------------------------------------:|:-----------:|
-    |       Dwellir       |          <pre>```wss://moonbase-rpc.dwellir.com```</pre>          | 20 req/sec  |
     |     OnFinality      | <pre>```wss://moonbeam-alpha.api.onfinality.io/public-ws```</pre> | 40 req/sec  |
     | Moonbeam Foundation |     <pre>```wss://wss.api.moonbase.moonbeam.network```</pre>      | 25 req/sec  |
     |     UnitedBloc      |          <pre>```wss://moonbase.unitedbloc.com```</pre>           | 32 req/sec  |
@@ -8180,7 +8169,6 @@ If you're looking for your own endpoints suitable for production use, you can ch
 === "HTTPS"
     |  Provider   |                              RPC URL                               |   Limits    |
     |:-----------:|:------------------------------------------------------------------:|:-----------:|
-    |   Dwellir   |         <pre>```https://moonbeam-rpc.dwellir.com```</pre>          | 20 req/sec  |
     | OnFinality  |     <pre>```https://moonbeam.api.onfinality.io/public```</pre>     | 40 req/sec  |
     | UnitedBloc  |          <pre>```https://moonbeam.unitedbloc.com```</pre>          | 32 req/sec  |
     | RadiumBlock | <pre>```https://moonbeam.public.curie.radiumblock.co/http```</pre> | 200 req/sec |
@@ -8192,7 +8180,6 @@ If you're looking for your own endpoints suitable for production use, you can ch
 === "WSS"
     |  Provider   |                            RPC URL                             |   Limits    |
     |:-----------:|:--------------------------------------------------------------:|:-----------:|
-    |   Dwellir   |        <pre>```wss://moonbeam-rpc.dwellir.com```</pre>         | 20 req/sec  |
     | OnFinality  |  <pre>```wss://moonbeam.api.onfinality.io/public-ws```</pre>   | 40 req/sec  |
     | UnitedBloc  |         <pre>```wss://moonbeam.unitedbloc.com```</pre>         | 32 req/sec  |
     | RadiumBlock | <pre>```wss://moonbeam.public.curie.radiumblock.co/ws```</pre> | 200 req/sec |
@@ -8286,7 +8273,6 @@ If you're looking for your own endpoints suitable for production use, you can ch
 === "HTTPS"
       |  Provider   |                               RPC URL                               |   Limits    |
       |:-----------:|:-------------------------------------------------------------------:|:-----------:|
-      |   Dwellir   |         <pre>```https://moonriver-rpc.dwellir.com```</pre>          | 20 req/sec  |
       | OnFinality  |     <pre>```https://moonriver.api.onfinality.io/public```</pre>     | 40 req/sec  |
       | UnitedBloc  |          <pre>```https://moonriver.unitedbloc.com```</pre>          | 32 req/sec  |
       | RadiumBlock | <pre>```https://moonriver.public.curie.radiumblock.co/http```</pre> | 200 req/sec |
@@ -8295,7 +8281,6 @@ If you're looking for your own endpoints suitable for production use, you can ch
 === "WSS"
     |  Provider   |                             RPC URL                             |   Limits    |
     |:-----------:|:---------------------------------------------------------------:|:-----------:|
-    |   Dwellir   |        <pre>```wss://moonriver-rpc.dwellir.com```</pre>         | 20 req/sec  |
     | OnFinality  |  <pre>```wss://moonriver.api.onfinality.io/public-ws```</pre>   | 40 req/sec  |
     | UnitedBloc  |         <pre>```wss://moonriver.unitedbloc.com```</pre>         | 32 req/sec  |
     | RadiumBlock | <pre>```wss://moonriver.public.curie.radiumblock.co/ws```</pre> | 200 req/sec |
@@ -11229,7 +11214,7 @@ https://apps.moonbeam.network/api/ds/v1/app-dir/projects?category=nfts
             ],
             "updatedAt":1722548296818,
             "category":"nfts",
-            "description":"Moonbeans is a fully functional NFT marketplace launched on October 8th 2021, after releasing 465 Beanies into the Moonriver network to wreak havoc. The platform is still in beta, but has been performing incredibly well. With minimal fees for artists, traders, and project developers, Moonbeans aims to grow and aid the Moonrver network as a whole to develop, learn, and earn. With multiple collections now live (Beanies, Damned Pirates Society), minting (RivrMaids), Moonbeans is the heart of the Moonriver NFT ecosystem.",
+            "description":"Moonbeans is an NFT marketplace launched on October 8, 2021, featuring 465 Beanies on the Moonriver network. The platform offers NFT trading with fees for artists, traders, and project developers. Multiple collections are available, including Beanies and RivrMaids.",
             "usersChange1d":{
                 "moonbeam":0
             }
@@ -12644,94 +12629,9 @@ https://apps.moonbeam.network/api/ds/v1/app-dir/projects?category=nfts
                 "NFT",
                 "Bridges"
             ]
-        },
-        {
-            "urls":{
-                "website":"https://www.damnedpiratessociety.io/",
-                "try":"https://www.damnedpiratessociety.io/",
-                "twitter":"https://twitter.com/TheDPSproject",
-                "discord":"https://discord.com/invite/TheDamnedPiratesSociety"
-            },
-            "web3goContracts":[
-                {
-                    "name":"Damned Pirates Society: DPSArtifact Token",
-                    "chain":"moonriver",
-                    "contract":"0xcd84ddadc45a25b02e1a6a5520171487a98e6155"
-                },
-                {
-                    "name":"Damned Pirates Society: DPS Token",
-                    "chain":"moonriver",
-                    "contract":"0xb6e9e605aa159017173caa6181c522db455f6661"
-                },
-                {
-                    "name":"Damned Pirates Society: DSPFlagship Token",
-                    "chain":"moonriver",
-                    "contract":"0x3822063a3f1aad3fd0b894e2a8f238ccca7c2d00"
-                },
-                {
-                    "name":"Damned Pirates Society: DSPVoyage Token",
-                    "chain":"moonriver",
-                    "contract":"0x7b2e778453ab3a0d946c4620fb38a0530a434e15"
-                },
-                {
-                    "name":"Damned Pirates Society: DOUBLOON Token",
-                    "chain":"moonriver",
-                    "contract":"0xe413a631e8a9a10958d9b7c64157449eae7c2064"
-                }
-            ],
-            "currentTx":{
-                "moonriver":20402
-            },
-            "slug":"damned-pirates-society",
-            "web3goIDs":[
-                "Damned Pirates Society"
-            ],
-            "createdAt":1699292616058,
-            "logo":{
-                "small":{
-                    "width":36,
-                    "fileName":"damned-pirates-society-logo-small.jpeg",
-                    "mimeType":"image/jpeg",
-                    "height":36
-                },
-                "large":{
-                    "width":400,
-                    "fileName":"damned-pirates-society-logo-large.jpeg",
-                    "mimeType":"image/jpeg",
-                    "height":400
-                },
-                "full":{
-                    "width":3000,
-                    "fileName":"damned-pirates-society-logo-full.jpeg",
-                    "mimeType":"image/jpeg",
-                    "height":3000
-                }
-            },
-            "name":"Damned Pirates Society",
-            "chains":[
-                "moonriver"
-            ],
-            "defiLLamaTvlExist":false,
-            "currentUsers":{
-                "moonriver":2000
-            },
-            "projectCreationDate":1644828523000,
-            "shortDescription":"Eclectic pirate-based NFT project with utility",
-            "contracts":[
-                
-            ],
-            "updatedAt":1722547421801,
-            "category":"nfts",
-            "description":"A long time ago the Fortune’s Grasp was carrying families to settle on The Islands and start a new life. In the middle of their voyage they encountered a fearsome maelstrom. The Captain and his crew worked tirelessly to keep the ship afloat. Badly damaged, the Ship limped to the edges of the storm. It was taking on water and the cries of terrified children could be heard above the crashing waves. Another ship appeared on the horizon, it’s light glowing brightly against the dark night. The Captain of the Fortune’s Grasp ordered his crew to evacuate the families, but the fifty crew members ignored the Captain, abandoning ship, taking all means of escape with them. The Captain, left on the sinking ship, cursed the cowardly crew for damning those innocent souls to the watery depths. Those Forsaken Fifty were marked with The Black Spot, doomed to row the high seas until the Reaper came to claim his mutinous crew to serve on the Ship Of The Damned. However, if they could convince another soul to take their place at the oars, protection would be offered by those Pirates who’ve cheated the Reaper before. Those who’ve served and survived are welcome in the Damned Pirates Society.\r\n\r\nThe Damned Pirate Society is an Profile Picture NFT with inbuilt utility. Stake your Pirate for Treasure Maps(TMAP) and save these for your Doubloon farming voyages on our upcoming, skill based gamified contracts.",
-            "id":"damned-pirates-society",
-            "tags":[
-                "NFT",
-                "Gaming",
-                "GLMR Grants"
-            ]
         }
     ],
-    "count":40
+    "count":39
 }
     ```
 
@@ -13870,7 +13770,8 @@ Not all runtime upgrades are released on each network, as sometimes after releas
 | [3702](https://forum.moonbeam.network/t/proposals-mr81-mb118-authorize-upgrade-to-rt3702-on-moonriver-and-moonbeam-via-whitelist/2173){target=\_blank} | [11499659](https://moonbeam.subscan.io/block/11499659){target=\_blank} | [12156948](https://moonriver.subscan.io/block/12156948){target=\_blank} | [12683255](https://moonbase.subscan.io/block/12683255){target=\_blank} |
 |                                 [3800](https://forum.moonbeam.network/t/runtime-rt3800-schedule/2188){target=\_blank}                                  | [12120762](https://moonbeam.subscan.io/block/12120762){target=\_blank} | [12540836](https://moonriver.subscan.io/block/12540836){target=\_blank} | [12853655](https://moonbase.subscan.io/block/12853655){target=\_blank} |
 |                                 [3900](https://forum.moonbeam.network/t/runtime-rt3900-schedule/2262){target=\_blank}                                  | [12960126](https://moonbeam.subscan.io/block/12960126){target=\_blank} | [13423618](https://moonriver.subscan.io/block/13423618){target=\_blank} | [13744975](https://moonbase.subscan.io/block/13744975){target=\_blank} |
-| [4000](https://forum.moonbeam.network/t/runtime-rt4000-schedule/2321){target=\_blank} | - | - | [14191989](https://moonbase.subscan.io/block/14191989){target=\_blank} |
+| [3901](https://forum.moonbeam.network/t/proposal-mb133-authorize-upgrade-to-rt3901-whitelist-track/2350){target=\_blank} | [13428709](https://moonbeam.subscan.io/block/13428709){target=\_blank} |                                    -                                    |                                   -                                    |
+| [4000](https://forum.moonbeam.network/t/runtime-rt4000-schedule/2321){target=\_blank} | - | [14078615](https://moonriver.subscan.io/block/14078615){target=\_blank} | [14191989](https://moonbase.subscan.io/block/14191989){target=\_blank} |
 --- END CONTENT ---
 
 Doc-Content: https://docs.moonbeam.network/builders/ethereum/canonical-contracts/
@@ -14003,7 +13904,6 @@ There are a set of precompiled contracts included on Moonbeam, Moonriver, and Mo
     |                                                                           Contract                                                                            |                               Address                               |
     |:-------------------------------------------------------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------:|
     |      [Parachain Staking](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol){target=\_blank}      |              {{networks.moonbeam.precompiles.staking}}              |
-    |     [Crowdloan Rewards](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/crowdloan-rewards/CrowdloanInterface.sol){target=\_blank}     |             {{networks.moonbeam.precompiles.crowdloan}}             |
     |             [ERC-20 Interface](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/balances-erc20/ERC20.sol){target=\_blank}              |               {{networks.moonbeam.precompiles.erc20}}               |
     |                                                                      Democracy [Removed]                                                                      |             {{networks.moonbeam.precompiles.democracy}}             |
     |                    [X-Tokens](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/xtokens/Xtokens.sol){target=\_blank}                    |              {{networks.moonbeam.precompiles.xtokens}}              |
@@ -14033,7 +13933,6 @@ There are a set of precompiled contracts included on Moonbeam, Moonriver, and Mo
     |                                                                           Contract                                                                            |                               Address                                |
     |:-------------------------------------------------------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
     |      [Parachain Staking](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol){target=\_blank}      |              {{networks.moonriver.precompiles.staking}}              |
-    |     [Crowdloan Rewards](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/crowdloan-rewards/CrowdloanInterface.sol){target=\_blank}     |             {{networks.moonriver.precompiles.crowdloan}}             |
     |             [ERC-20 Interface](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/balances-erc20/ERC20.sol){target=\_blank}              |               {{networks.moonriver.precompiles.erc20}}               |
     |                                                                      Democracy [Removed]                                                                      |             {{networks.moonriver.precompiles.democracy}}             |
     |                    [X-Tokens](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/xtokens/Xtokens.sol){target=\_blank}                    |              {{networks.moonriver.precompiles.xtokens}}              |
@@ -14063,7 +13962,6 @@ There are a set of precompiled contracts included on Moonbeam, Moonriver, and Mo
     |                                                                           Contract                                                                            |                               Address                               |
     |:-------------------------------------------------------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------:|
     |      [Parachain Staking](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol){target=\_blank}      |              {{networks.moonbase.precompiles.staking}}              |
-    |     [Crowdloan Rewards](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/crowdloan-rewards/CrowdloanInterface.sol){target=\_blank}     |             {{networks.moonbase.precompiles.crowdloan}}             |
     |             [ERC-20 Interface](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/balances-erc20/ERC20.sol){target=\_blank}              |               {{networks.moonbase.precompiles.erc20}}               |
     |                                                                      Democracy [Removed]                                                                      |             {{networks.moonbase.precompiles.democracy}}             |
     |                    [X-Tokens](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/xtokens/Xtokens.sol){target=\_blank}                    |              {{networks.moonbase.precompiles.xtokens}}              |
@@ -14386,7 +14284,6 @@ The precompiled contracts are categorized by address and based on the origin net
     |                                                                                        Contract                                                                                        |                               Address                               |
     |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------:|
     |                  [Parachain Staking](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol){target=\_blank}                  |              {{networks.moonbeam.precompiles.staking}}              |
-    |                 [Crowdloan Rewards](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/crowdloan-rewards/CrowdloanInterface.sol){target=\_blank}                 |             {{networks.moonbeam.precompiles.crowdloan}}             |
     |                         [ERC-20 Interface](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/balances-erc20/ERC20.sol){target=\_blank}                          |               {{networks.moonbeam.precompiles.erc20}}               |
     |                                                                      Democracy [Removed]                                                                      |             {{networks.moonbeam.precompiles.democracy}}             |
     |                                [X-Tokens](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/xtokens/Xtokens.sol){target=\_blank}                                |              {{networks.moonbeam.precompiles.xtokens}}              |
@@ -14417,7 +14314,6 @@ The precompiled contracts are categorized by address and based on the origin net
     |                                                                           Contract                                                                            |                               Address                                |
     |:-------------------------------------------------------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
     |      [Parachain Staking](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol){target=\_blank}      |              {{networks.moonriver.precompiles.staking}}              |
-    |     [Crowdloan Rewards](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/crowdloan-rewards/CrowdloanInterface.sol){target=\_blank}     |             {{networks.moonriver.precompiles.crowdloan}}             |
     |             [ERC-20 Interface](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/balances-erc20/ERC20.sol){target=\_blank}              |               {{networks.moonriver.precompiles.erc20}}               |
     |                                                                     Democracy [Disabled]                                                                      |             {{networks.moonriver.precompiles.democracy}}             |
     |                    [X-Tokens](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/xtokens/Xtokens.sol){target=\_blank}                    |              {{networks.moonriver.precompiles.xtokens}}              |
@@ -14447,7 +14343,6 @@ The precompiled contracts are categorized by address and based on the origin net
     |                                                                            Contract                                                                            |                               Address                               |
     |:--------------------------------------------------------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------:|
     |      [Parachain Staking](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol){target=\_blank}      |              {{networks.moonbase.precompiles.staking}}              |
-    |     [Crowdloan Rewards](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/crowdloan-rewards/CrowdloanInterface.sol){target=\_blank}     |             {{networks.moonbase.precompiles.crowdloan}}             |
     |             [ERC-20 Interface](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/balances-erc20/ERC20.sol){target=\_blank}              |               {{networks.moonbase.precompiles.erc20}}               |
     |                                                                      Democracy [Removed]                                                                       |             {{networks.moonbase.precompiles.democracy}}             |
     |                    [X-Tokens](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/xtokens/Xtokens.sol){target=\_blank}                    |              {{networks.moonbase.precompiles.xtokens}}              |
@@ -14497,7 +14392,6 @@ If you are looking for an API provider suitable for production use, you can chec
 === "HTTPS"
     |  Provider   |                              RPC URL                               |   Limits    |
     |:-----------:|:------------------------------------------------------------------:|:-----------:|
-    |   Dwellir   |         <pre>```https://moonbeam-rpc.dwellir.com```</pre>          | 20 req/sec  |
     | OnFinality  |     <pre>```https://moonbeam.api.onfinality.io/public```</pre>     | 40 req/sec  |
     | UnitedBloc  |          <pre>```https://moonbeam.unitedbloc.com```</pre>          | 32 req/sec  |
     | RadiumBlock | <pre>```https://moonbeam.public.curie.radiumblock.co/http```</pre> | 200 req/sec |
@@ -14509,7 +14403,6 @@ If you are looking for an API provider suitable for production use, you can chec
 === "WSS"
     |  Provider   |                            RPC URL                             |   Limits    |
     |:-----------:|:--------------------------------------------------------------:|:-----------:|
-    |   Dwellir   |        <pre>```wss://moonbeam-rpc.dwellir.com```</pre>         | 20 req/sec  |
     | OnFinality  |  <pre>```wss://moonbeam.api.onfinality.io/public-ws```</pre>   | 40 req/sec  |
     | UnitedBloc  |         <pre>```wss://moonbeam.unitedbloc.com```</pre>         | 32 req/sec  |
     | RadiumBlock | <pre>```wss://moonbeam.public.curie.radiumblock.co/ws```</pre> | 200 req/sec |
@@ -14520,7 +14413,6 @@ If you are looking for an API provider suitable for production use, you can chec
 === "HTTPS"
       |  Provider   |                               RPC URL                               |   Limits    |
       |:-----------:|:-------------------------------------------------------------------:|:-----------:|
-      |   Dwellir   |         <pre>```https://moonriver-rpc.dwellir.com```</pre>          | 20 req/sec  |
       | OnFinality  |     <pre>```https://moonriver.api.onfinality.io/public```</pre>     | 40 req/sec  |
       | UnitedBloc  |          <pre>```https://moonriver.unitedbloc.com```</pre>          | 32 req/sec  |
       | RadiumBlock | <pre>```https://moonriver.public.curie.radiumblock.co/http```</pre> | 200 req/sec |
@@ -14529,7 +14421,6 @@ If you are looking for an API provider suitable for production use, you can chec
 === "WSS"
     |  Provider   |                             RPC URL                             |   Limits    |
     |:-----------:|:---------------------------------------------------------------:|:-----------:|
-    |   Dwellir   |        <pre>```wss://moonriver-rpc.dwellir.com```</pre>         | 20 req/sec  |
     | OnFinality  |  <pre>```wss://moonriver.api.onfinality.io/public-ws```</pre>   | 40 req/sec  |
     | UnitedBloc  |         <pre>```wss://moonriver.unitedbloc.com```</pre>         | 32 req/sec  |
     | RadiumBlock | <pre>```wss://moonriver.public.curie.radiumblock.co/ws```</pre> | 200 req/sec |
@@ -14539,7 +14430,6 @@ If you are looking for an API provider suitable for production use, you can chec
 === "HTTPS"
     |      Provider       |                              RPC URL                               |   Limits    |
     |:-------------------:|:------------------------------------------------------------------:|:-----------:|
-    |       Dwellir       |         <pre>```https://moonbase-rpc.dwellir.com```</pre>          | 20 req/sec  |
     |     OnFinality      |  <pre>```https://moonbeam-alpha.api.onfinality.io/public```</pre>  | 40 req/sec  |
     | Moonbeam Foundation |     <pre>```https://rpc.api.moonbase.moonbeam.network```</pre>     | 25 req/sec  |
     |     UnitedBloc      |          <pre>```https://moonbase.unitedbloc.com```</pre>          | 32 req/sec  |
@@ -14548,7 +14438,6 @@ If you are looking for an API provider suitable for production use, you can chec
 === "WSS"
     |      Provider       |                              RPC URL                              |   Limits    |
     |:-------------------:|:-----------------------------------------------------------------:|:-----------:|
-    |       Dwellir       |          <pre>```wss://moonbase-rpc.dwellir.com```</pre>          | 20 req/sec  |
     |     OnFinality      | <pre>```wss://moonbeam-alpha.api.onfinality.io/public-ws```</pre> | 40 req/sec  |
     | Moonbeam Foundation |     <pre>```wss://wss.api.moonbase.moonbeam.network```</pre>      | 25 req/sec  |
     |     UnitedBloc      |          <pre>```wss://moonbase.unitedbloc.com```</pre>           | 32 req/sec  |

@@ -3018,7 +3018,6 @@ If you're looking for your own endpoints suitable for production use, you can ch
 === "HTTPS"
     |      Provider       |                              RPC URL                               |   Limits    |
     |:-------------------:|:------------------------------------------------------------------:|:-----------:|
-    |       Dwellir       |         <pre>```https://moonbase-rpc.dwellir.com```</pre>          | 20 req/sec  |
     |     OnFinality      |  <pre>```https://moonbeam-alpha.api.onfinality.io/public```</pre>  | 40 req/sec  |
     | Moonbeam Foundation |     <pre>```https://rpc.api.moonbase.moonbeam.network```</pre>     | 25 req/sec  |
     |     UnitedBloc      |          <pre>```https://moonbase.unitedbloc.com```</pre>          | 32 req/sec  |
@@ -3027,7 +3026,6 @@ If you're looking for your own endpoints suitable for production use, you can ch
 === "WSS"
     |      Provider       |                              RPC URL                              |   Limits    |
     |:-------------------:|:-----------------------------------------------------------------:|:-----------:|
-    |       Dwellir       |          <pre>```wss://moonbase-rpc.dwellir.com```</pre>          | 20 req/sec  |
     |     OnFinality      | <pre>```wss://moonbeam-alpha.api.onfinality.io/public-ws```</pre> | 40 req/sec  |
     | Moonbeam Foundation |     <pre>```wss://wss.api.moonbase.moonbeam.network```</pre>      | 25 req/sec  |
     |     UnitedBloc      |          <pre>```wss://moonbase.unitedbloc.com```</pre>           | 32 req/sec  |
@@ -3160,7 +3158,6 @@ If you're looking for your own endpoints suitable for production use, you can ch
 === "HTTPS"
     |  Provider   |                              RPC URL                               |   Limits    |
     |:-----------:|:------------------------------------------------------------------:|:-----------:|
-    |   Dwellir   |         <pre>```https://moonbeam-rpc.dwellir.com```</pre>          | 20 req/sec  |
     | OnFinality  |     <pre>```https://moonbeam.api.onfinality.io/public```</pre>     | 40 req/sec  |
     | UnitedBloc  |          <pre>```https://moonbeam.unitedbloc.com```</pre>          | 32 req/sec  |
     | RadiumBlock | <pre>```https://moonbeam.public.curie.radiumblock.co/http```</pre> | 200 req/sec |
@@ -3172,7 +3169,6 @@ If you're looking for your own endpoints suitable for production use, you can ch
 === "WSS"
     |  Provider   |                            RPC URL                             |   Limits    |
     |:-----------:|:--------------------------------------------------------------:|:-----------:|
-    |   Dwellir   |        <pre>```wss://moonbeam-rpc.dwellir.com```</pre>         | 20 req/sec  |
     | OnFinality  |  <pre>```wss://moonbeam.api.onfinality.io/public-ws```</pre>   | 40 req/sec  |
     | UnitedBloc  |         <pre>```wss://moonbeam.unitedbloc.com```</pre>         | 32 req/sec  |
     | RadiumBlock | <pre>```wss://moonbeam.public.curie.radiumblock.co/ws```</pre> | 200 req/sec |
@@ -3305,7 +3301,6 @@ If you're looking for your own endpoints suitable for production use, you can ch
 === "HTTPS"
       |  Provider   |                               RPC URL                               |   Limits    |
       |:-----------:|:-------------------------------------------------------------------:|:-----------:|
-      |   Dwellir   |         <pre>```https://moonriver-rpc.dwellir.com```</pre>          | 20 req/sec  |
       | OnFinality  |     <pre>```https://moonriver.api.onfinality.io/public```</pre>     | 40 req/sec  |
       | UnitedBloc  |          <pre>```https://moonriver.unitedbloc.com```</pre>          | 32 req/sec  |
       | RadiumBlock | <pre>```https://moonriver.public.curie.radiumblock.co/http```</pre> | 200 req/sec |
@@ -3314,7 +3309,6 @@ If you're looking for your own endpoints suitable for production use, you can ch
 === "WSS"
     |  Provider   |                             RPC URL                             |   Limits    |
     |:-----------:|:---------------------------------------------------------------:|:-----------:|
-    |   Dwellir   |        <pre>```wss://moonriver-rpc.dwellir.com```</pre>         | 20 req/sec  |
     | OnFinality  |  <pre>```wss://moonriver.api.onfinality.io/public-ws```</pre>   | 40 req/sec  |
     | UnitedBloc  |         <pre>```wss://moonriver.unitedbloc.com```</pre>         | 32 req/sec  |
     | RadiumBlock | <pre>```wss://moonriver.public.curie.radiumblock.co/ws```</pre> | 200 req/sec |
@@ -3819,7 +3813,6 @@ The precompiled contracts are categorized by address and based on the origin net
     |                                                                                        Contract                                                                                        |                               Address                               |
     |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------:|
     |                  [Parachain Staking](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol){target=\_blank}                  |              {{networks.moonbeam.precompiles.staking}}              |
-    |                 [Crowdloan Rewards](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/crowdloan-rewards/CrowdloanInterface.sol){target=\_blank}                 |             {{networks.moonbeam.precompiles.crowdloan}}             |
     |                         [ERC-20 Interface](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/balances-erc20/ERC20.sol){target=\_blank}                          |               {{networks.moonbeam.precompiles.erc20}}               |
     |                                                                      Democracy [Removed]                                                                      |             {{networks.moonbeam.precompiles.democracy}}             |
     |                                [X-Tokens](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/xtokens/Xtokens.sol){target=\_blank}                                |              {{networks.moonbeam.precompiles.xtokens}}              |
@@ -3850,7 +3843,6 @@ The precompiled contracts are categorized by address and based on the origin net
     |                                                                           Contract                                                                            |                               Address                                |
     |:-------------------------------------------------------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
     |      [Parachain Staking](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol){target=\_blank}      |              {{networks.moonriver.precompiles.staking}}              |
-    |     [Crowdloan Rewards](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/crowdloan-rewards/CrowdloanInterface.sol){target=\_blank}     |             {{networks.moonriver.precompiles.crowdloan}}             |
     |             [ERC-20 Interface](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/balances-erc20/ERC20.sol){target=\_blank}              |               {{networks.moonriver.precompiles.erc20}}               |
     |                                                                     Democracy [Disabled]                                                                      |             {{networks.moonriver.precompiles.democracy}}             |
     |                    [X-Tokens](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/xtokens/Xtokens.sol){target=\_blank}                    |              {{networks.moonriver.precompiles.xtokens}}              |
@@ -3880,7 +3872,6 @@ The precompiled contracts are categorized by address and based on the origin net
     |                                                                            Contract                                                                            |                               Address                               |
     |:--------------------------------------------------------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------:|
     |      [Parachain Staking](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol){target=\_blank}      |              {{networks.moonbase.precompiles.staking}}              |
-    |     [Crowdloan Rewards](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/crowdloan-rewards/CrowdloanInterface.sol){target=\_blank}     |             {{networks.moonbase.precompiles.crowdloan}}             |
     |             [ERC-20 Interface](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/balances-erc20/ERC20.sol){target=\_blank}              |               {{networks.moonbase.precompiles.erc20}}               |
     |                                                                      Democracy [Removed]                                                                       |             {{networks.moonbase.precompiles.democracy}}             |
     |                    [X-Tokens](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/xtokens/Xtokens.sol){target=\_blank}                    |              {{networks.moonbase.precompiles.xtokens}}              |
@@ -4064,7 +4055,6 @@ If you're looking for your own endpoints suitable for production use, you can ch
 === "HTTPS"
     |      Provider       |                              RPC URL                               |   Limits    |
     |:-------------------:|:------------------------------------------------------------------:|:-----------:|
-    |       Dwellir       |         <pre>```https://moonbase-rpc.dwellir.com```</pre>          | 20 req/sec  |
     |     OnFinality      |  <pre>```https://moonbeam-alpha.api.onfinality.io/public```</pre>  | 40 req/sec  |
     | Moonbeam Foundation |     <pre>```https://rpc.api.moonbase.moonbeam.network```</pre>     | 25 req/sec  |
     |     UnitedBloc      |          <pre>```https://moonbase.unitedbloc.com```</pre>          | 32 req/sec  |
@@ -4073,7 +4063,6 @@ If you're looking for your own endpoints suitable for production use, you can ch
 === "WSS"
     |      Provider       |                              RPC URL                              |   Limits    |
     |:-------------------:|:-----------------------------------------------------------------:|:-----------:|
-    |       Dwellir       |          <pre>```wss://moonbase-rpc.dwellir.com```</pre>          | 20 req/sec  |
     |     OnFinality      | <pre>```wss://moonbeam-alpha.api.onfinality.io/public-ws```</pre> | 40 req/sec  |
     | Moonbeam Foundation |     <pre>```wss://wss.api.moonbase.moonbeam.network```</pre>      | 25 req/sec  |
     |     UnitedBloc      |          <pre>```wss://moonbase.unitedbloc.com```</pre>           | 32 req/sec  |
@@ -4728,7 +4717,6 @@ If you're looking for your own endpoints suitable for production use, you can ch
 === "HTTPS"
     |  Provider   |                              RPC URL                               |   Limits    |
     |:-----------:|:------------------------------------------------------------------:|:-----------:|
-    |   Dwellir   |         <pre>```https://moonbeam-rpc.dwellir.com```</pre>          | 20 req/sec  |
     | OnFinality  |     <pre>```https://moonbeam.api.onfinality.io/public```</pre>     | 40 req/sec  |
     | UnitedBloc  |          <pre>```https://moonbeam.unitedbloc.com```</pre>          | 32 req/sec  |
     | RadiumBlock | <pre>```https://moonbeam.public.curie.radiumblock.co/http```</pre> | 200 req/sec |
@@ -4740,7 +4728,6 @@ If you're looking for your own endpoints suitable for production use, you can ch
 === "WSS"
     |  Provider   |                            RPC URL                             |   Limits    |
     |:-----------:|:--------------------------------------------------------------:|:-----------:|
-    |   Dwellir   |        <pre>```wss://moonbeam-rpc.dwellir.com```</pre>         | 20 req/sec  |
     | OnFinality  |  <pre>```wss://moonbeam.api.onfinality.io/public-ws```</pre>   | 40 req/sec  |
     | UnitedBloc  |         <pre>```wss://moonbeam.unitedbloc.com```</pre>         | 32 req/sec  |
     | RadiumBlock | <pre>```wss://moonbeam.public.curie.radiumblock.co/ws```</pre> | 200 req/sec |
@@ -4834,7 +4821,6 @@ If you're looking for your own endpoints suitable for production use, you can ch
 === "HTTPS"
       |  Provider   |                               RPC URL                               |   Limits    |
       |:-----------:|:-------------------------------------------------------------------:|:-----------:|
-      |   Dwellir   |         <pre>```https://moonriver-rpc.dwellir.com```</pre>          | 20 req/sec  |
       | OnFinality  |     <pre>```https://moonriver.api.onfinality.io/public```</pre>     | 40 req/sec  |
       | UnitedBloc  |          <pre>```https://moonriver.unitedbloc.com```</pre>          | 32 req/sec  |
       | RadiumBlock | <pre>```https://moonriver.public.curie.radiumblock.co/http```</pre> | 200 req/sec |
@@ -4843,7 +4829,6 @@ If you're looking for your own endpoints suitable for production use, you can ch
 === "WSS"
     |  Provider   |                             RPC URL                             |   Limits    |
     |:-----------:|:---------------------------------------------------------------:|:-----------:|
-    |   Dwellir   |        <pre>```wss://moonriver-rpc.dwellir.com```</pre>         | 20 req/sec  |
     | OnFinality  |  <pre>```wss://moonriver.api.onfinality.io/public-ws```</pre>   | 40 req/sec  |
     | UnitedBloc  |         <pre>```wss://moonriver.unitedbloc.com```</pre>         | 32 req/sec  |
     | RadiumBlock | <pre>```wss://moonriver.public.curie.radiumblock.co/ws```</pre> | 200 req/sec |

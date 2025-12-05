@@ -1,7 +1,7 @@
 networks:
   development:
     build_tag: v0.48.0
-    tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.48.0-4000-965a
+    tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.48.0-4001-1f18
     rpc_url: http://127.0.0.1:9944
     wss_url: ws://127.0.0.1:9944
     chain_id: 1281
@@ -18,7 +18,7 @@ networks:
     spec_version: runtime-4000
     parachain_release_tag: v0.48.0 # Required format for link generation system
     parachain_sha256sum: d824df3d6beed464585e98821e8fb746d5287bbee53da46c83325e045a300392
-    tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.48.0-4000-965a
+    tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.48.0-4001-1f18
     gas_block: 60,000,000
     gas_block_numbers_only: 60000000 # this should match gas_block, just with no commas
     gas_tx: 52,000,000 # EXTRINSIC_GAS_LIMIT in test/helpers/constants.ts
@@ -324,7 +324,6 @@ networks:
         hours: 4
     precompiles:
       staking: '0x0000000000000000000000000000000000000800'
-      crowdloan: '0x0000000000000000000000000000000000000801'
       erc20: '0x0000000000000000000000000000000000000802'
       democracy: '0x0000000000000000000000000000000000000803'
       xtokens: '0x0000000000000000000000000000000000000804'
@@ -380,7 +379,7 @@ networks:
     node_directory: /var/lib/moonriver-data
     parachain_release_tag: v0.48.0
     parachain_sha256sum: d824df3d6beed464585e98821e8fb746d5287bbee53da46c83325e045a300392
-    tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.48.0-4000-965a
+    tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.48.0-4001-1f18
     chain_spec: moonriver
     block_explorer: https://moonriver.moonscan.io/
     spec_version: runtime-4000
@@ -662,7 +661,6 @@ networks:
         hours: 48
     precompiles:
       staking: '0x0000000000000000000000000000000000000800'
-      crowdloan: '0x0000000000000000000000000000000000000801'
       erc20: '0x0000000000000000000000000000000000000802'
       democracy: '0x0000000000000000000000000000000000000803'
       xtokens: '0x0000000000000000000000000000000000000804'
@@ -734,10 +732,10 @@ networks:
     node_directory: /var/lib/moonbeam-data
     parachain_release_tag: v0.48.0
     parachain_sha256sum: d824df3d6beed464585e98821e8fb746d5287bbee53da46c83325e045a300392
-    tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.48.0-4000-965a
+    tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.48.0-4001-1f18
     chain_spec: moonbeam
     block_explorer: https://moonscan.io
-    spec_version: runtime-4000
+    spec_version: runtime-3901
     binary_name: moonbeam
     min_gas_price: 31.25
     block_time: 6
@@ -1031,7 +1029,6 @@ networks:
         hours: 168
     precompiles:
       staking: '0x0000000000000000000000000000000000000800'
-      crowdloan: '0x0000000000000000000000000000000000000801'
       erc20: '0x0000000000000000000000000000000000000802'
       democracy: '0x0000000000000000000000000000000000000803'
       xtokens: '0x0000000000000000000000000000000000000804'
