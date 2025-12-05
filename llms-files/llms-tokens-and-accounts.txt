@@ -6440,7 +6440,6 @@ Due to Moonbeam's native interoperability, ERC-20s can be sent cross-chain to ot
 
 Learn more:
 
-- [Create common OpenZeppelin contracts such as ERC-20, ERC-721, and ERC-1155 tokens](/builders/ethereum/dev-env/openzeppelin/contracts/){target=\_blank}
 - [XCM-enabled ERC-20s](/builders/interoperability/xcm/xc20/overview/#local-xc20s){target=\_blank} (also referred to as local XC-20s)
 
 ## Key Differences {: #key-differences }
@@ -8043,43 +8042,6 @@ We can also leverage any of the bridges that are independently built to connect 
 But perhaps just as important as the technical criteria above, we are impressed with the people in the Polkadot ecosystem. This includes individuals at Parity, the Web3 Foundation, and other projects in the ecosystem. We have built many valuable relationships and find the people to be both extremely talented and the kind of people we want to be around.
 --- END CONTENT ---
 
-Doc-Content: https://docs.moonbeam.network/builders/ethereum/dev-env/openzeppelin/overview/
---- BEGIN CONTENT ---
----
-title: An Overview of OpenZeppelin on Moonbeam
-description: Learn how to use OpenZeppelin products for creating and managing Solidity smart contracts on Moonbeam, thanks to its Ethereum compatibility features.
-categories: Basics, Ethereum Toolkit
----
-
-# OpenZeppelin
-
-## Introduction {: #introduction } 
-
-[OpenZeppelin](https://www.openzeppelin.com){target=\_blank} is well known in the Ethereum developer community as their set of audited smart contracts and libraries are a standard in the industry. For example, most of the tutorials that show developers how to deploy an ERC-20 token use OpenZeppelin contracts.
-
-You can find more information about OpenZeppelin on their [documentation site](https://docs.openzeppelin.com){target=\_blank}.
-
-As part of its Ethereum compatibility features, OpenZeppelin products can be seamlessly used on Moonbeam. This page will provide information on different OpenZeppelin solutions that you can test.
-
-## OpenZeppelin on Moonbeam {: #openzeppelin-on-moonbeam } 
-
-Currently, the following OpenZeppelin products/solutions work on the different networks available on Moonbeam:
-
-|      **Product**      | **Moonbeam** | **Moonriver** | **Moonbase Alpha** | **Moonbase Dev Node** |
-|:---------------------:|:------------:|:-------------:|:------------------:|:---------------------:|
-| Contracts & libraries |      ✓       |       ✓       |         ✓          |           ✓           |
-|   Contracts Wizard    |      ✓       |       ✓       |         ✓          |           ✓           |
-
-You will find a corresponding tutorial for each product in the following links:
-
- - [**Contracts Wizard**](/builders/ethereum/dev-env/openzeppelin/contracts/#openzeppelin-contract-wizard) — where you'll find a guide on how to use OpenZeppelin web-based wizard to create different token contracts with different functionalities
- - [**Contracts & libraries**](/builders/ethereum/dev-env/openzeppelin/contracts/#deploying-openzeppelin-contracts-on-moonbeam) — where you'll find tutorials to deploy the most common token contracts using OpenZeppelin's templates: ERC-20, ERC-721 and ERC-1155
- 
-<div class="page-disclaimer">
-  The information presented herein has been provided by third parties and is made available solely for general information purposes. Moonbeam does not endorse any project listed and described on the Moonbeam Doc Website (https://docs.moonbeam.network/). Moonbeam Foundation does not warrant the accuracy, completeness or usefulness of this information. Any reliance you place on such information is strictly at your own risk. Moonbeam Foundation disclaims all liability and responsibility arising from any reliance placed on this information by you or by anyone who may be informed of any of its contents. All statements and/or opinions expressed in these materials are solely the responsibility of the person or entity providing those materials and do not necessarily represent the opinion of Moonbeam Foundation. The information should not be construed as professional or financial advice of any kind. Advice from a suitably qualified professional should always be sought in relation to any particular matter or circumstance. The information herein may link to or integrate with other websites operated or content provided by third parties, and such other websites may link to this website. Moonbeam Foundation has no control over any such other websites or their content and will have no liability arising out of or related to such websites or their content. The existence of any such link does not constitute an endorsement of such websites, the content of the websites, or the operators of the websites. These links are being provided to you only as a convenience and you release and hold Moonbeam Foundation harmless from any and all liability arising from your use of this information or the information provided by any third-party website or service.
-</div>
---- END CONTENT ---
-
 Doc-Content: https://docs.moonbeam.network/builders/ethereum/precompiles/overview/
 --- BEGIN CONTENT ---
 ---
@@ -9399,7 +9361,6 @@ As Moonbeam is a Substrate-based chain that is fully Ethereum-compatible, you ca
     |   [Ethers.js](/builders/ethereum/libraries/ethersjs/){target=\_blank}    |     Library     |
     |     [Web3.js](/builders/ethereum/libraries/web3js/){target=\_blank}      |     Library     |
     |      [Hardhat](/builders/ethereum/dev-env/hardhat/){target=\_blank}      | Dev Environment |
-    | [OpenZeppelin](/builders/ethereum/dev-env/openzeppelin/){target=\_blank} | Dev Environment |
     |        [Remix](/builders/ethereum/dev-env/remix/){target=\_blank}        | Dev Environment |
     | [Scaffold-Eth](/builders/ethereum/dev-env/scaffold-eth/){target=\_blank} | Dev Environment |
     |     [thirdweb](/builders/ethereum/dev-env/thirdweb/){target=\_blank}     | Dev Environment |
