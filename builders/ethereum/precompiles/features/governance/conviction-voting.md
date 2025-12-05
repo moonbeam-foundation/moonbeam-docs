@@ -95,7 +95,7 @@ The interface includes the following functions:
         - `aye` - uint256 balance to be locked for the "Aye" vote
         - `nay` - uint256 balance to be locked for the "Nay" vote
 
-??? function "**removeVote**(*uint32* pollIndex) - removes a vote in a poll (referendum)"
+??? function "**removeVote**(*uint32* pollIndex) - removes a vote in a poll (referendum)."
 
     === "Parameters"
 
