@@ -10,7 +10,7 @@ We believe in a multi-chain future with many chains, and many users and assets o
 
 Existing smart contract platforms are designed to service the users and assets on a single, specific chain.  By providing cross-chain smart contract functionality, Moonbeam allows developers to shift existing workloads and logic to Moonbeam and extend the reach of their applications to new users and assets on other chains.
 
-Moonbeam's cross-chain integration is accomplished by becoming a [parachain](/learn/platform/glossary/#parachains) on the Polkadot network.  The [Polkadot network](/learn/platform/glossary/#polkadot) provides integration and connectivity between parachains that are connected to the network and to other non-Polkadot-based chains, such as Ethereum and Bitcoin, via bridges.
+Moonbeam's cross-chain integration is accomplished by becoming a parachain on the Polkadot network. The Polkadot network provides integration and connectivity between parachains that are connected to the network and to other non-Polkadot-based chains, such as Ethereum and Bitcoin, via bridges.
 
 ## Who Benefits From Moonbeam {: #who-benefits-from-moonbeam }
 
@@ -29,7 +29,7 @@ Projects that are struggling with cost and scalability challenges on Ethereum ca
 Ecosystem projects that need smart contract functionality can use Moonbeam to:  
 
  - Augment their existing parachains and parathreads.  
- - Add new functionality that is needed but not included on the main [Polkadot relay chain](/learn/platform/glossary/#relay-chain). For example, they could create a place where teams can crowdfund their projects, implement lockdrops, and process other, more complex financial transactions than are provided by base [Substrate](/learn/platform/glossary/#substrate) functionality.  
+ - Add new functionality that is needed but not included on the main Polkadot relay chain. For example, they could create a place where teams can crowdfund their projects, implement lockdrops, and process other, more complex financial transactions than are provided by base Substrate functionality.  
  - Leverage the mature and extensive Ethereum development toolchain.  
 
 ### Developers of New DApps {: #developers-of-new-dapps }

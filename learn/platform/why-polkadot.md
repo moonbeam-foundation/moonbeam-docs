@@ -6,7 +6,7 @@ categories: Basics
 
 # Why We're Building on Polkadot
 
-After extensive research, we decided to build Moonbeam using the [Substrate development framework](/learn/platform/glossary/#substrate) and to deploy Moonbeam as a [parachain](/learn/platform/glossary/#parachains) on the [Polkadot network](/learn/platform/glossary/#polkadot).
+After extensive research, we decided to build Moonbeam using the Substrate development framework and to deploy Moonbeam as a parachain on the Polkadot network.
 
 ## Substrate Blockchain Framework {: #substrate-blockchain-framework }
 
