@@ -38,7 +38,7 @@ The Preimage Precompile is located at the following address:
 
 [`Preimage.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/preimage/Preimage.sol){target=\_blank} is a Solidity interface that allows developers to interact with the precompile's two methods:
 
-??? function "**notePreimage**(*bytes memory* encodedPropsal) - registers a preimage on-chain for an upcoming proposal. This doesn't require the proposal to be in the dispatch queue but does require a deposit which is returned once enacted. Uses the `notePreimage` method of the preimage pallet"
+??? function "**notePreimage**(*bytes memory* encodedProposal) - registers a preimage on-chain for an upcoming proposal. This doesn't require the proposal to be in the dispatch queue but does require a deposit which is returned once enacted."
 
     === "Parameters"
 
