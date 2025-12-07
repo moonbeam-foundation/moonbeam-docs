@@ -1,10 +1,8 @@
 title: Interoperability
 hide: false
 nav:
-  - index.md
   - 'Create Connected Contracts with Cross-Chain Protocols':
     - protocols.index.md
-    - '[LayerZero] Creating a Cross-Chain DAO': 'cross-chain-dao.md'
     - '[Axelar] Minting a Cross-Chain NFT': 'using-axelar-sdk.md'
   - 'Build Cross-Chain Applications with XCM':
     - xcm.index.md
