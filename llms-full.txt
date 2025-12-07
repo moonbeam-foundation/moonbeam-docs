@@ -223,7 +223,6 @@ Documentation: https://docs.moonbeam.network/
 [Setting up a Proxy Account](Tokens and Accounts): (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/tokens/manage/proxy-accounts.md) (Learn how to set up a proxy account on Moonbeam-based networks so you can keep your underlying account safe in cold storage.)
 [How to Stake GLMR & MOVR Tokens](No categories available.): (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/tokens/staking/index.md) (Learn how to delegate collator candidates and stake your GLMR and MOVR tokens to earn staking rewards on Moonbeam and Moonriver.)
 [How to Stake your MOVR & GLMR Tokens](Staking): (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/tokens/staking/stake.md) (A guide that shows how you can stake your tokens and earn rewards on Moonbeam by delegating collator candidates.)
-[Write & Deploy Smart Contracts](No categories available.): (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/tutorials/eth-api/get-started.index.md) (Check out these tutorials to learn how to write, test, and deploy Solidity smart contracts on Moonbeam using tools like Ethers, Hardhat, Foundry, and more.)
 [Ethereum API Tutorials](No categories available.): (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/tutorials/eth-api/index.md) (Follow these step-by-step tutorials to learn how to use Ethereum libraries and development frameworks to create and interact with smart contracts on Moonbeam.)
 [Using Tenderly to Debug and Simulate Transactions](Tutorials): (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/tutorials/eth-api/using-tenderly.md) (Follow a step-by-step guide on getting started with Tenderly, including using the debugger, forking and simulating transactions, and monitoring smart contracts.)
 [Tutorials](No categories available.): (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/tutorials/index.md) (Dive into the Moonbeam smart contract platform through this compiled list of step-by-step tutorials on a variety of subjects.)
@@ -65600,18 +65599,6 @@ Delegators can choose to auto-compound their rewards so that their rewards are a
 *Staking MOVR/GLMR tokens is not free of risk.*
 *Staked MOVR/GLMR tokens are locked up, and retrieving them requires a {{ networks.moonriver.delegator_timings.del_bond_less.days }} day/{{ networks.moonbeam.delegator_timings.del_bond_less.days }} day waiting period .*
 *Additionally, if a collator fails to perform required functions or acts in bad faith, a portion of their total stake can be slashed (i.e. destroyed). This includes the stake of their delegators. If a collators behaves suspiciously or is too often offline, delegators can choose to unbond from them or switch to another collator. Delegators can also mitigate risk by electing to distribute their stake across multiple collators.*
---- END CONTENT ---
-
-Doc-Content: https://docs.moonbeam.network/tutorials/eth-api/get-started.index/
---- BEGIN CONTENT ---
----
-title: Write & Deploy Smart Contracts
-description: Check out these tutorials to learn how to write, test, and deploy Solidity smart contracts on Moonbeam using tools like Ethers, Hardhat, Foundry, and more.
-template: subsection-index-page.html
-hide: 
- - toc
- - feedback
----
 --- END CONTENT ---
 
 Doc-Content: https://docs.moonbeam.network/tutorials/eth-api/
