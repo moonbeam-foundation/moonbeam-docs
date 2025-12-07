@@ -33,11 +33,6 @@ const pageMappings = {
     '/cn/builders/integrations/walletconnect/',
   '/tutorials/': '/cn/tutorials/',
   '/tutorials/': '/cn/tutorials/eth-api/',
-  '/tutorials/eth-api/how-to-build-a-dapp/':
-    '/cn/tutorials/eth-api/how-to-build-a-dapp/',
-  '/tutorials/eth-api/batch-approve-swap/': '/cn/tutorials/eth-api/batch-approve-swap/',
-  '/tutorials/eth-api/call-permit-gasless-txs/':
-    '/cn/tutorials/eth-api/call-permit-gasless-txs/',
 };
 
 const processWindowLocation = (pathname, origin) => {
