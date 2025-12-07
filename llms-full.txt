@@ -65624,8 +65624,6 @@ categories: Tutorials
 
 # Using Tenderly to Simulate and Debug Transactions
 
-_by Kevin Neilson_
-
 ## Introduction {: #introduction }
 
 Tenderly is an all-in-one development platform for EVM networks that enables Web3 developers to build, test, monitor, and operate their smart contracts. Tenderly has a [full suite of product offerings](/builders/ethereum/dev-env/tenderly/) to help you as a developer throughout the lifecycle of a smart contract, from the earliest stages of development to maintenance and alerting on a live production dApp.
