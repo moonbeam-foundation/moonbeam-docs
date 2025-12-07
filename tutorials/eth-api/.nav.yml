@@ -3,11 +3,6 @@ hide: false
 nav:
   - index.md
   - 'Get Started with Smart Contracts':
-    - 'get-started.index.md'
-    - '[ChatGPT] Use GPT-4 to Write and Debug Smart Contracts': 'chat-gpt.md'
-    - '[Ethers.js] How to Build a DApp': 'how-to-build-a-dapp.md'
-    - '[Foundry] Development Life Cycle from Start to End': 'foundry-start-to-end.md'
-    - '[Hardhat] Development Life Cycle from Start to End': 'hardhat-start-to-end.md'
     - '[Tenderly] Using Tenderly to Debug and Simulate Transactions': 'using-tenderly.md'
     - '[thirdweb] Building a DApp with thirdweb': 'thirdweb.md'
   - 'Interact with Precompiles':
