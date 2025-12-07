@@ -224,7 +224,7 @@ Documentation: https://docs.moonbeam.network/
 [How to Stake GLMR & MOVR Tokens](No categories available.): (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/tokens/staking/index.md) (Learn how to delegate collator candidates and stake your GLMR and MOVR tokens to earn staking rewards on Moonbeam and Moonriver.)
 [How to Stake your MOVR & GLMR Tokens](Staking): (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/tokens/staking/stake.md) (A guide that shows how you can stake your tokens and earn rewards on Moonbeam by delegating collator candidates.)
 [Using Tenderly to Debug and Simulate Transactions](Tutorials): (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/tutorials/eth-api/using-tenderly.md) (Follow a step-by-step guide on getting started with Tenderly, including using the debugger, forking and simulating transactions, and monitoring smart contracts.)
-[Tutorials](No categories available.): (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/tutorials/index.md) (Dive into the Moonbeam smart contract platform through this compiled list of step-by-step tutorials on a variety of subjects.)
+[Tutorials](No categories available.): (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/tutorials/index.md) (Hands-on guides for the current Moonbeam tutorial set.)
 [Gasless Transactions with 0xGasless](Tutorials): (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/tutorials/integrations/0xgasless.md) (Learn how to implement gasless transactions on Moonbeam using 0xGasless, enabling users to interact with smart contracts without holding native tokens.)
 
 ## Full content for each doc page
@@ -65729,19 +65729,23 @@ Doc-Content: https://docs.moonbeam.network/tutorials/
 --- BEGIN CONTENT ---
 ---
 title: Tutorials
-description: Dive into the Moonbeam smart contract platform through this compiled list of step-by-step tutorials on a variety of subjects.
+description: Hands-on guides for the current Moonbeam tutorial set.
+dropdown_description: Get hands-on with gasless flows and debugging
 template: main-index-page.html
 hide: 
  - toc
  - feedback
 ---
 
-Welcome to the tutorials hub. Explore the remaining guides to debug transactions with Tenderly or add account-abstraction powered gasless flows.
+Welcome to the tutorials hub. Explore the remaining guides to add account-abstraction powered gasless flows or debug transactions with Tenderly.
 
-## Available Tutorials
+## Gasless Transactions
 
-- [Using Tenderly to Debug and Simulate Transactions](/tutorials/eth-api/using-tenderly/) — step-by-step setup for debugging, forking, and simulating smart contract interactions with Tenderly.
-- [Gasless Transactions with 0xGasless](/tutorials/integrations/0xgasless/) — configure a paymaster and dispatch ERC-4337 style gasless transactions on Moonbeam with 0xGasless.
+- [Send Gasless Transactions with 0xGasless](/tutorials/integrations/0xgasless/) — configure a paymaster and dispatch ERC-4337 style gasless transactions on Moonbeam with 0xGasless.
+
+## Simulate and Debug
+
+- [Use Tenderly to Simulate and Debug Transactions](/tutorials/eth-api/using-tenderly/) — step-by-step setup for debugging, forking, and simulating smart contract interactions with Tenderly.
 --- END CONTENT ---
 
 Doc-Content: https://docs.moonbeam.network/tutorials/integrations/0xgasless/
