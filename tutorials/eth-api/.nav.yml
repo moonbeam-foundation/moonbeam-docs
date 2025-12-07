@@ -4,9 +4,6 @@ nav:
   - index.md
   - 'Get Started with Smart Contracts':
     - '[Tenderly] Using Tenderly to Debug and Simulate Transactions': 'using-tenderly.md'
-    - '[thirdweb] Building a DApp with thirdweb': 'thirdweb.md'
   - 'Interact with Precompiles':
-    - 'precompiles.index.md'
     - '[Batch] Approve & Swap Tokens in a Single Transaction': 'batch-approve-swap.md'
-    - '[Randomness] Create a Lottery': 'randomness-lottery.md'
     - '[Call Permit] Send Gasless Transactions': 'call-permit-gasless-txs.md'
