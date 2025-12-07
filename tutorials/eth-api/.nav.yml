@@ -2,6 +2,5 @@ title: Ethereum API
 hide: false
 nav:
   - index.md
-  - 'Get Started with Smart Contracts':
-    - 'get-started.index.md'
-    - '[Tenderly] Using Tenderly to Debug and Simulate Transactions': 'using-tenderly.md'
+  - 'Get Started with Smart Contracts': 'get-started.index.md'
+  - '[Tenderly] Using Tenderly to Debug and Simulate Transactions': 'using-tenderly.md'
