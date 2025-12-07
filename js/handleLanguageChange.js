@@ -31,11 +31,6 @@ const pageMappings = {
     '/cn/builders/integrations/particle-network/',
   '/builders/integrations/wallets/walletconnect/':
     '/cn/builders/integrations/walletconnect/',
-  '/tutorials/': '/cn/tutorials/',
-  '/tutorials/': '/cn/tutorials/eth-api/',
-  '/tutorials/eth-api/batch-approve-swap/': '/cn/tutorials/eth-api/batch-approve-swap/',
-  '/tutorials/eth-api/call-permit-gasless-txs/':
-    '/cn/tutorials/eth-api/call-permit-gasless-txs/',
 };
 
 const processWindowLocation = (pathname, origin) => {

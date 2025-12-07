@@ -2,5 +2,5 @@ title: Tutorials
 hide: false
 nav:
   - index.md
-  - eth-api
-  - integrations
+  - '[Tenderly] Using Tenderly to Debug and Simulate Transactions': 'eth-api/using-tenderly.md'
+  - '[0xGasless] Enable Gasless Transactions': 'integrations/0xgasless.md'

@@ -1,9 +1,4 @@
 title: Ethereum API
 hide: false
 nav:
-  - index.md
-  - 'Get Started with Smart Contracts':
-    - '[Tenderly] Using Tenderly to Debug and Simulate Transactions': 'using-tenderly.md'
-  - 'Interact with Precompiles':
-    - '[Batch] Approve & Swap Tokens in a Single Transaction': 'batch-approve-swap.md'
-    - '[Call Permit] Send Gasless Transactions': 'call-permit-gasless-txs.md'
+  - '[Tenderly] Using Tenderly to Debug and Simulate Transactions': 'using-tenderly.md'
