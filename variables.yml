@@ -37,9 +37,6 @@ networks:
       cores: 8
       ram: 16
       hd: 2
-    thegraph:
-      lotto_contract: '0x44ddD2EC5BE2A7f3e4A465C21600bE8df644093f'
-      block_number: 132605
     razor:
       bridge_address: '0xC6F33c0F15FE5e3A51A019524ac43574cFF29EFB'
     supra:
