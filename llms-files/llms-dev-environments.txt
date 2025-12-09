@@ -3548,7 +3548,7 @@ categories: Dev Environments, Ethereum Toolkit
 
 ## Introduction {: #introduction }
 
-[Waffle](https://getwaffle.io){target=\_blank} is a library for compiling and testing smart contracts, and [Mars](https://github.com/TrueFiEng/Mars){target=\_blank} is a deployment manager. Together, Waffle and Mars can be used to write, compile, test, and deploy Ethereum smart contracts. Since Moonbeam is Ethereum compatible, Waffle and Mars can be used to deploy smart contracts to a [Moonbeam development node](/builders/get-started/networks/moonbeam-dev/){target=\_blank} or the [Moonbase Alpha TestNet](/builders/get-started/networks/moonbase/){target=\_blank}.
+[Waffle](https://ethereum-waffle.readthedocs.io/en/latest/getting-started.html){target=\_blank} is a library for compiling and testing smart contracts, and [Mars](https://github.com/TrueFiEng/Mars){target=\_blank} is a deployment manager. Together, Waffle and Mars can be used to write, compile, test, and deploy Ethereum smart contracts. Since Moonbeam is Ethereum compatible, Waffle and Mars can be used to deploy smart contracts to a [Moonbeam development node](/builders/get-started/networks/moonbeam-dev/){target=\_blank} or the [Moonbase Alpha TestNet](/builders/get-started/networks/moonbase/){target=\_blank}.
 
 Waffle uses minimal dependencies, has syntax that is easy to learn and extend, and provides fast execution times when compiling and testing smart contracts. Furthermore, it is [TypeScript](https://www.typescriptlang.org){target=\_blank} compatible and uses [Chai matchers](https://ethereum-waffle.readthedocs.io/en/latest/matchers.html){target=\_blank} to make tests easy to read and write.
 
