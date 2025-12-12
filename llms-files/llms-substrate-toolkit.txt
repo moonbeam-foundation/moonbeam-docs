@@ -13230,36 +13230,30 @@ First, ensure that you installed [Parity's `generate-types-bundle` package](http
 npm install -g @substrate/generate-type-bundle
 ```
 
-Then, navigate to the following directory within your project:
-
-```bash
-cd ./node_modules/@substrate/api-sidecar/build/src/
-```
-
 Then, run the following command to generate the types bundle for the respective network:
 
 === "Moonbeam"
 
     ```bash
-    generate-type-bundle -p . -s moonbeam
+    generate-type-bundle -p "$(pwd)" -s moonbeam
     ```
 
 === "Moonriver"
 
     ```bash
-    generate-type-bundle -p . -s moonriver
+    generate-type-bundle -p "$(pwd)" -s moonriver
     ```
 
 === "Moonbase Alpha"
 
     ```bash
-    generate-type-bundle -p . -s moonbase
+    generate-type-bundle -p "$(pwd)" -s moonbase
     ```
 
 Note that running subsequent commands will overwrite the existing `typesBundle.json.` You'll then need to set the `SAS_SUBSTRATE_TYPES_BUNDLE` environment variable as shown below. If you've renamed the `typesBundle.json,` ensure you use the correct file name. 
 
 ```bash
-export SAS_SUBSTRATE_TYPES_BUNDLE="./typesBundle.json"
+export SAS_SUBSTRATE_TYPES_BUNDLE="$(pwd)/typesBundle.json"
 ```
 
 After setting the environment variable, you can verify that you set it correctly by using the following `echo` command:
@@ -13269,12 +13263,6 @@ echo $SAS_SUBSTRATE_TYPES_BUNDLE
 ```
 
 ## Running Substrate API Sidecar {: #running-substrate-api-sidecar }
-
-Navigate back to the root directory of the project: 
-
-```bash
-cd ../../../../..
-```
 
 With the network endpoint environmental variable set, and from the installation directory root, run:
 
@@ -13300,7 +13288,7 @@ If the installation and configuration are successful, you should see this output
         <br>    ✅ WRITE_MAX_FILES: 5
         <br>📦 SUBSTRATE:
         <br>    ✅ URL: "wss://wss.api.moonbeam.network"
-        <br>    ✅ TYPES_BUNDLE: undefined
+        <br>    ✅ TYPES_BUNDLE: "/Users/alice/sidecar/typesBundle.json"
         <br>    ✅ TYPES_CHAIN: undefined
         <br>    ✅ TYPES_SPEC: undefined
         <br>    ✅ TYPES: undefined
@@ -13308,9 +13296,8 @@ If the installation and configuration are successful, you should see this output
         <br>    ✅ BIND_HOST: "127.0.0.1"
         <br>    ✅ PORT: 8080
         <br>    ✅ KEEP_ALIVE_TIMEOUT: 5000
-    <br>2024-05-07 11:29:54 info: Version: 18.0.0
-    <br>2024-05-07 11:29:55 warn: API/INIT: RPC methods not decorated: eth_getBlockReceipts, moon_isBlockFinalized, moon_isTxFinalized
-    <br>2024-05-07 11:29:55 warn: API/INIT: moonbeam/3300: Not decorating unknown runtime apis: 0xd0399cd053adda2b/1, 0xa33d43f58731ad84/2, 0xba8173bf23b2e6f8/1
+    <br>2024-05-07 11:29:54 info: Version: 20.12.0
+    ...
     <br>2024-05-07 11:29:55 info: Connected to chain Moonbeam on the moonbeam client at wss://wss.api.moonbeam.network
     <br>2024-05-07 11:29:55 info: Listening on http://127.0.0.1:8080/
     <br>2024-05-07 11:29:55 info: Check the root endpoint (http://127.0.0.1:8080) to see the available endpoints for the current node
@@ -23835,7 +23822,7 @@ Not all runtime upgrades are released on each network, as sometimes after releas
 |                                 [3800](https://forum.moonbeam.network/t/runtime-rt3800-schedule/2188){target=\_blank}                                  | [12120762](https://moonbeam.subscan.io/block/12120762){target=\_blank} | [12540836](https://moonriver.subscan.io/block/12540836){target=\_blank} | [12853655](https://moonbase.subscan.io/block/12853655){target=\_blank} |
 |                                 [3900](https://forum.moonbeam.network/t/runtime-rt3900-schedule/2262){target=\_blank}                                  | [12960126](https://moonbeam.subscan.io/block/12960126){target=\_blank} | [13423618](https://moonriver.subscan.io/block/13423618){target=\_blank} | [13744975](https://moonbase.subscan.io/block/13744975){target=\_blank} |
 | [3901](https://forum.moonbeam.network/t/proposal-mb133-authorize-upgrade-to-rt3901-whitelist-track/2350){target=\_blank} | [13428709](https://moonbeam.subscan.io/block/13428709){target=\_blank} |                                    -                                    |                                   -                                    |
-| [4000](https://forum.moonbeam.network/t/runtime-rt4000-schedule/2321){target=\_blank} | - | - | [14191989](https://moonbase.subscan.io/block/14191989){target=\_blank} |
+| [4000](https://forum.moonbeam.network/t/runtime-rt4000-schedule/2321){target=\_blank} | - | [14078615](https://moonriver.subscan.io/block/14078615){target=\_blank} | [14191989](https://moonbase.subscan.io/block/14191989){target=\_blank} |
 --- END CONTENT ---
 
 Doc-Content: https://docs.moonbeam.network/builders/ethereum/canonical-contracts/

@@ -1381,25 +1381,25 @@ To get started, you will need the following:
 
 You will need to create a Hardhat project if you don't already have one. You can create one by completing the following steps:
 
-1. Create a directory for your project
+1. Create a directory for your project.
 
     ```sh
     mkdir hardhat && cd hardhat
     ```
 
-2. Initialize the project, which will create a `package.json` file
+2. Initialize the project, which will create a `package.json` file.
 
     ```sh
     npm init -y
     ```
 
-3. Install Hardhat
+3. Install Hardhat.
 
     ```sh
     npm install --save-dev hardhat
     ```
 
-4. Create a Hardhat project
+4. Create a Hardhat project.
 
     ```sh
     npx hardhat init
@@ -1411,11 +1411,11 @@ You will need to create a Hardhat project if you don't already have one. You can
 
 5. You'll be prompted with a series of questions to set up your project:
 
-    - Choose **Hardhat 3 Beta (recommended for new projects)** rather than Hardhat 2 (legacy)
-    - Choose where to initialize the project (default is current directory)
-    - Confirm converting to ESM (required for Hardhat v3)
+    - Choose **Hardhat 3 Beta (recommended for new projects)** rather than Hardhat 2.
+    - Choose where to initialize the project (default is current directory).
+    - Confirm converting to ESM (required for Hardhat v3).
     - Select the type of project to initialize:
-        - A TypeScript Hardhat project using Node Test Runner and Viem
+        - A TypeScript Hardhat project using Node Test Runner and viem
         - A TypeScript Hardhat project using Mocha and Ethers.js
 
     For this example, you can choose either option based on your preference. If you choose the Mocha and Ethers.js option, you'll get a project structure with:
@@ -1476,10 +1476,10 @@ npm install --save-dev @nomicfoundation/hardhat-ethers @nomicfoundation/hardhat-
 
 Next, you'll need to modify your configuration file to add the network configurations for the network you want to deploy your contract to. For Moonbeam networks, you'll need to specify the following:
 
-- `url` - the [RPC endpoint](/builders/get-started/endpoints/){target=\_blank} of the node
-- `chainId` - the chain ID, which is used to validate the network
-- `accounts` - the accounts that can be used to deploy and interact with contracts. You can either enter an array of the private keys for your accounts or use an [HD Wallet](https://github.com/ethereumbook/ethereumbook/blob/develop/05wallets.asciidoc#hierarchical-deterministic-wallets-bip-32bip-44){target=\_blank}
-- `type` and `chainType` - in Hardhat 3, external RPC networks use `type: "http"` and `chainType: "l1"` for Moonbeam networks
+- **`url`**: The [RPC endpoint](/builders/get-started/endpoints/){target=\_blank} of the node.
+- **`chainId`**: The chain ID, which is used to validate the network.
+- **`accounts`**: The accounts that can be used to deploy and interact with contracts. You can either enter an array of the private keys for your accounts or use an [HD Wallet](https://github.com/ethereumbook/ethereumbook/blob/develop/src/chapter_5.md#hierarchical-deterministic-wallets-bip-32bip-44){target=\_blank}.
+- **`type`** and **`chainType`**: In Hardhat 3, external RPC networks use `type: "http"` and `chainType: "l1"` for Moonbeam networks.
 
 Hardhat 3 includes an encrypted secrets manager via the `@nomicfoundation/hardhat-keystore` plugin, which keeps sensitive data out of source control. After installing and importing the plugin, set your secrets with the keystore:
 
@@ -1620,13 +1620,13 @@ Now that you've configured your project, you can begin the development process b
 
 To add the contract, you'll take the following steps:
 
-1. Change into the `contracts` directory
+1. Change into the `contracts` directory.
 
     ```sh
     cd contracts
     ```
 
-2. Create a `Box.sol` file
+2. Create a `Box.sol` file.
 
     ```sh
     touch Box.sol
@@ -1693,11 +1693,11 @@ cd ignition/modules && touch Box.js
 
 Next, you can write your Hardhat Ignition module. To get started, take the following steps:
 
-1. Import the `buildModule` function from the Hardhat Ignition module
-2. Export a module using `buildModule`
-3. Use the `getAccount` method to select the deployer account
-4. Deploy the `Box` contract
-5. Return an object from the module. This makes the `Box` contract accessible for interaction in Hardhat tests and scripts
+1. Import the `buildModule` function from the Hardhat Ignition module.
+2. Export a module using `buildModule`.
+3. Use the `getAccount` method to select the deployer account.
+4. Deploy the `Box` contract.
+5. Return an object from the module. This makes the `Box` contract accessible for interaction in Hardhat tests and scripts.
 
 ```js
 // 1. Import the `buildModule` function from the Hardhat Ignition module
@@ -1769,19 +1769,19 @@ npx hardhat console --network moonbase
 
 Next, you can take the following steps, entering one line at a time:
 
-1. Create a local instance of the `Box.sol` contract
+1. Create a local instance of the `Box.sol` contract.
 
     ```js
     const Box = await ethers.getContractFactory('Box');
     ```
 
-2. Connect the local instance to the deployed contract, using the address of the contract shown in the prior step under **Deployed Addresses**
+2. Connect the local instance to the deployed contract, using the address of the contract shown in the prior step under **Deployed Addresses**.
 
     ```js
     const box = await Box.attach('INSERT-CONTRACT-ADDRESS');
     ```
 
-3. Interact with the attached contract. For this example, you can call the `store` method and store a simple value
+3. Interact with the attached contract. For this example, you can call the `store` method and store a simple value.
 
     ```js
     await box.store(5);
@@ -16655,7 +16655,7 @@ Not all runtime upgrades are released on each network, as sometimes after releas
 |                                 [3800](https://forum.moonbeam.network/t/runtime-rt3800-schedule/2188){target=\_blank}                                  | [12120762](https://moonbeam.subscan.io/block/12120762){target=\_blank} | [12540836](https://moonriver.subscan.io/block/12540836){target=\_blank} | [12853655](https://moonbase.subscan.io/block/12853655){target=\_blank} |
 |                                 [3900](https://forum.moonbeam.network/t/runtime-rt3900-schedule/2262){target=\_blank}                                  | [12960126](https://moonbeam.subscan.io/block/12960126){target=\_blank} | [13423618](https://moonriver.subscan.io/block/13423618){target=\_blank} | [13744975](https://moonbase.subscan.io/block/13744975){target=\_blank} |
 | [3901](https://forum.moonbeam.network/t/proposal-mb133-authorize-upgrade-to-rt3901-whitelist-track/2350){target=\_blank} | [13428709](https://moonbeam.subscan.io/block/13428709){target=\_blank} |                                    -                                    |                                   -                                    |
-| [4000](https://forum.moonbeam.network/t/runtime-rt4000-schedule/2321){target=\_blank} | - | - | [14191989](https://moonbase.subscan.io/block/14191989){target=\_blank} |
+| [4000](https://forum.moonbeam.network/t/runtime-rt4000-schedule/2321){target=\_blank} | - | [14078615](https://moonriver.subscan.io/block/14078615){target=\_blank} | [14191989](https://moonbase.subscan.io/block/14191989){target=\_blank} |
 --- END CONTENT ---
 
 Doc-Content: https://docs.moonbeam.network/builders/ethereum/canonical-contracts/
