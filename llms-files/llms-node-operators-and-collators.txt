@@ -1097,7 +1097,11 @@ Metrics will be assessed over seven day periods. The performance metrics are as 
 
 ## Leaving the Program {: #leaving-the-program }
 
-An orbiter may leave the program and receive their bond back without any delay. The only limitation on this is if the orbiter is currently active they cannot leave; once they are no longer active they can leave at any time by issuing the `moonbeamOrbiters.orbiterUnregister()` extrinsic.
+An orbiter may leave the program and receive their bond back without any delay. The only limitation on this is if the orbiter is currently active they cannot leave. Once they are no longer active they can leave at any time by following these steps: 
+
+1. Execute the `moonbeamOrbiters.orbiterLeaveCollatorPool(collator)` extrinsic where the `collator` param is the address of the collator pool you are in. 
+You can find its value by executing the chain state call `moonbeamOrbiters.collatorsPool()` with no arguments (Make sure to disable "include option" in [Polkadot.js](https://polkadot.js.org/apps/#/explorer){target=\_blank}). It should return a list of all collator pools. Just find your address there.
+2. Execute `moonbeamOrbiters.orbiterUnregister(collatorsPoolCount)` where `collatorsPoolCount` is the amount of pools (you can count on the previous chain state call. On Moonbeam it should be 5 as of writing this).
 --- END CONTENT ---
 
 Doc-Content: https://docs.moonbeam.network/node-operators/networks/collators/overview/
