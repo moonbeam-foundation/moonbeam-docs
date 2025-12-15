@@ -184,4 +184,4 @@ An orbiter may leave the program and receive their bond back without any delay. 
 
 1. Execute the `moonbeamOrbiters.orbiterLeaveCollatorPool(collator)` extrinsic where the `collator` param is the address of the collator pool you are in. 
 You can find its value by executing the chain state call `moonbeamOrbiters.collatorsPool()` with no arguments (Make sure to disable "include option" in [Polkadot.js](https://polkadot.js.org/apps/#/explorer){target=\_blank}). It should return a list of all collator pools. Just find your address there.
-2. Execute `moonbeamOrbiters.orbiterUnregister(collatorsPoolCount)` where `collatorsPoolCount` is the number of pools. You can count the number of pools via the previously mentioned chain state call. On Moonbeam, it should be five as of writing this.
+2. Execute `moonbeamOrbiters.orbiterUnregister(collatorsPoolCount)` where `collatorsPoolCount` is the number of pools. You can count the number of pools via the previously mentioned chain state call.
