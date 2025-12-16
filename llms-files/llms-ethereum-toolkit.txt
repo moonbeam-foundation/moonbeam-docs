@@ -10823,20 +10823,20 @@ The interface includes the following functions:
         - `aye` - uint256 balance to be locked for the "Aye" vote
         - `nay` - uint256 balance to be locked for the "Nay" vote
 
-??? function "**removeVote**(*uint32* pollIndex) - [removes a vote](/builders/substrate/interfaces/features/governance/conviction-voting/#extrinsics){target=\_blank} in a poll (referendum)"
+??? function "**removeVote**(*uint32* pollIndex) - removes a vote in a poll (referendum)."
 
     === "Parameters"
 
         - `pollIndex` - uint32 index of the poll (referendum)
 
-??? function "**removeVoteForTrack**(*uint32* pollIndex, *uint16* trackId) - [removes a vote](/builders/substrate/interfaces/features/governance/conviction-voting/#extrinsics){target=\_blank} from a specific track in a poll (referendum)"
+??? function "**removeVoteForTrack**(*uint32* pollIndex, *uint16* trackId) - removes a vote from a specific track in a poll (referendum)."
 
     === "Parameters"
 
         - `pollIndex` - uint32 index of the poll (referendum)
         - `trackId` - uint16 Track ID where the requested changes need to occur
 
-??? function "**removeOtherVote**(*address* target, *uint16* trackId, *uint32* pollIndex) - [removes a vote](/builders/substrate/interfaces/features/governance/conviction-voting/#extrinsics){target=\_blank} in a poll (referendum) for another voter"
+??? function "**removeOtherVote**(*address* target, *uint16* trackId, *uint32* pollIndex) - removes a vote in a poll (referendum) for another voter."
 
     === "Parameters"
 
@@ -11002,13 +11002,13 @@ The Preimage Precompile is located at the following address:
 
 [`Preimage.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/preimage/Preimage.sol){target=\_blank} is a Solidity interface that allows developers to interact with the precompile's two methods:
 
-??? function "**notePreimage**(*bytes memory* encodedPropsal) - registers a preimage on-chain for an upcoming proposal. This doesn't require the proposal to be in the dispatch queue but does require a deposit which is returned once enacted. Uses the [`notePreimage`](/builders/substrate/interfaces/features/governance/preimage/#:~:text=notePreimage(encodedProposal)){target=\_blank} method of the preimage pallet"
+??? function "**notePreimage**(*bytes memory* encodedProposal) - registers a preimage on-chain for an upcoming proposal. This doesn't require the proposal to be in the dispatch queue but does require a deposit which is returned once enacted."
 
     === "Parameters"
 
         - `encodedProposal` - bytes memory containing the encoded proposal to be registered. Returns the preimage hash
 
-??? function "**unnotePreimage**(*bytes32* hash) - clears an unrequested preimage from storage. Uses the [`unnotePreimage`](/builders/substrate/interfaces/features/governance/preimage/#:~:text=unnotePreimage(hash)){target=\_blank} method of the preimage pallet"
+??? function "**unnotePreimage**(*bytes32* hash) - clears an unrequested preimage from storage."
 
     === "Parameters"
 
@@ -11112,7 +11112,7 @@ categories: Precompiles, Ethereum Toolkit
 
 As a Polkadot parachain and decentralized network, Moonbeam features native on-chain governance that enables stakeholders to participate in the direction of the network. With the introduction of OpenGov, also referred to as Governance v2, the Referenda Pallet allows token holders to get information on existing referenda, submit a proposal to be put forth for referenda, and manage actions related to the Decision Deposit, which is required for a referenda to be decided on. To learn more about Moonbeam's governance system, such as an overview of related terminology, principles, mechanics, and more, please refer to the [Governance on Moonbeam](/learn/features/governance/){target=\_blank} page.
 
-The Referenda Precompile interacts directly with Substrate's [Referenda Pallet](/builders/substrate/interfaces/features/governance/referenda/){target=\_blank}. This pallet is coded in Rust and is normally not accessible from the Ethereum side of Moonbeam. However, the Referenda Precompile allows you to access functions needed to view referenda, submit referenda, and manage the required Decision Deposit, all of which are part of the Substrate Referenda Pallet, directly from a Solidity interface.
+The Referenda Precompile interacts directly with Substrate's Referenda Pallet. This pallet is coded in Rust and is normally not accessible from the Ethereum side of Moonbeam. However, it allows you to access functions needed to view referenda, submit referenda, and manage the required Decision Deposit. These functions are part of the Substrate Referenda Pallet and can be accessed directly from a Solidity interface.
 
 The Referenda Precompile is located at the following address:
 
