@@ -14,7 +14,6 @@ You are an AI developer assistant for Moonbeam (https://moonbeam.network/). Your
 
 ## List of doc pages:
 Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/ethereum/libraries/ethersjs.md [type: builders]
-Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/ethereum/libraries/ethersrs.md [type: builders]
 Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/ethereum/libraries/viem.md [type: builders]
 Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/ethereum/libraries/web3js.md [type: builders]
 Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/ethereum/libraries/web3py.md [type: builders]
@@ -963,1078 +962,6 @@ If successful, the transaction hash will be displayed in the terminal. You can u
     <span data-ty>Making a call to contract at address: 0x2B9c71fc2730B7353Dd3865ae26881Fa38FE598A</span>
     <span data-ty>The current number stored is: 0</span>
 </div>
-
-<div class="page-disclaimer">
-  The information presented herein has been provided by third parties and is made available solely for general information purposes. Moonbeam does not endorse any project listed and described on the Moonbeam Doc Website (https://docs.moonbeam.network/). Moonbeam Foundation does not warrant the accuracy, completeness or usefulness of this information. Any reliance you place on such information is strictly at your own risk. Moonbeam Foundation disclaims all liability and responsibility arising from any reliance placed on this information by you or by anyone who may be informed of any of its contents. All statements and/or opinions expressed in these materials are solely the responsibility of the person or entity providing those materials and do not necessarily represent the opinion of Moonbeam Foundation. The information should not be construed as professional or financial advice of any kind. Advice from a suitably qualified professional should always be sought in relation to any particular matter or circumstance. The information herein may link to or integrate with other websites operated or content provided by third parties, and such other websites may link to this website. Moonbeam Foundation has no control over any such other websites or their content and will have no liability arising out of or related to such websites or their content. The existence of any such link does not constitute an endorsement of such websites, the content of the websites, or the operators of the websites. These links are being provided to you only as a convenience and you release and hold Moonbeam Foundation harmless from any and all liability arising from your use of this information or the information provided by any third-party website or service.
-</div>
---- END CONTENT ---
-
-Doc-Content: https://docs.moonbeam.network/builders/ethereum/libraries/ethersrs/
---- BEGIN CONTENT ---
----
-title: How to use Ethers.rs Ethereum Library
-description: Learn how to use the Ethereum Ethers.rs Library to send transactions and deploy Solidity smart contracts to Moonbeam via the Rust language.
-categories: Libraries and SDKs, Ethereum Toolkit
----
-
-# Ethers.rs Rust Library
-
-## Introduction {: #introduction }
-
-The [Ethers.rs](https://ethers.rs){target=\_blank} library provides a set of tools to interact with Ethereum Nodes via the Rust programming language that works similar to [Ethers.js](/builders/ethereum/libraries/ethersjs/){target=\_blank}. Moonbeam has an Ethereum-like API available that is fully compatible with Ethereum-style JSON-RPC invocations. Therefore, developers can leverage this compatibility and use the Ethers.rs library to interact with a Moonbeam node as if they were doing so on Ethereum. You can read more about how to use Ethers.rs on their [official crate documentation](https://docs.rs/crate/ethers/latest){target=\_blank}.
-
-In this guide, you'll learn how to use the Ethers.rs library to send a transaction and deploy a contract on Moonbase Alpha. This guide can be adapted for [Moonbeam](/builders/get-started/networks/moonbeam/){target=\_blank}, [Moonriver](/builders/get-started/networks/moonriver/){target=\_blank}, or a [Moonbeam development node](/builders/get-started/networks/moonbeam-dev/){target=\_blank}.
-
-## Checking Prerequisites {: #checking-prerequisites }
-
-For the examples in this guide, you will need to have the following:
-
- - An account with funds.
-  You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}
- - 
-  To test out the examples in this guide on Moonbeam or Moonriver, you will need to have your own endpoint and API key, which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=\_blank}
- - Have [Rust installed](https://rust-lang.org/tools/install/){target=\_blank} on your device.
- - Have [solc installed](https://docs.soliditylang.org/en/v0.8.9/installing-solidity.html){target=\_blank} on your device. Using [solc-select](https://github.com/crytic/solc-select){target=\_blank} is recommended by the Ethers.rs package.
-
-!!! note
-    The examples in this guide assumes you have a MacOS or Ubuntu 20.04-based environment and will need to be adapted accordingly for Windows.
-
-## Create a Rust Project {: #create-a-rust-project }
-
-To get started, you can create a new Rust project with the Cargo tool:
-
-```bash
-cargo init ethers-examples && cd ethers-examples
-```
-
-For this guide, you'll need to install the Ethers.rs library among others. To tell the Rust project to install it, you must edit the `Cargo.toml` file that was created with the project:
-
-```toml
-[package]
-name = "ethers-examples"
-version = "0.1.0"
-edition = "2021"
-
-[dependencies]
-ethers = "1.0.2"
-ethers-solc = "1.0.2"
-tokio = { version = "1", features = ["full"] }
-serde_json = "1.0.89"
-serde = "1.0.149"
-```
-
-This example is using the `ethers` and `ethers-solc` crate versions `1.0.2` for RPC interactions and Solidity compiling. It also includes the `tokio` crate to run asynchronous Rust environments, since interacting with RPCs requires asynchronous code. Finally, it includes the `serde_json` and `serde` crates to help serialize/deserialize this example's code.
-
-If this is your first time using `solc-select`, you'll need to install and configure the Solidity version using the following commands:
-
-```bash
-solc-select install 0.8.17 && solc-select use 0.8.17
-```
-
-## Setting up the Ethers Provider and Client {: #setting-up-the-ethers-provider-and-client }
-
-Throughout this guide, you'll be writing multiple functions that provide different functionality such as sending a transaction, deploying a contract, and interacting with a deployed contract. In most of these scripts you'll need to use an [Ethers provider](https://docs.rs/ethers-providers/latest/ethers_providers/index.html){target=\_blank} or an [Ethers signer client](https://docs.rs/ethers/1.0.2/ethers/middleware/struct.SignerMiddleware.html){target=\_blank} to interact with the network.
-
-To configure your project for Moonbeam or Moonriver, you will need to have your own endpoint and API key, which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=\_blank}.
-
-There are multiple ways to create a provider and signer, but the easiest way is through `try_from`. In the `src/main.rs` file, you can take the following steps:
-
-1. Import `Provider` and `Http` from the `ethers` crate.
-2. Add a `Client` type for convenience, which will be used once you start to create the functions for sending a transaction and deploying a contract.
-3. Add a `tokio` attribute above `async fn main()` for asynchronous execution.
-4. Use `try_from` to attempt to instantiate a JSON-RPC provider object from an RPC endpoint.
-5. Use a private key to create a wallet object (the private key will be used to sign transactions). **Note: This is for example purposes only. Never store your private keys in a plain Rust file**.
-6. Wrap the provider and wallet together into a client by providing them to a `SignerMiddleware` object.
-
-=== "Moonbeam"
-
-    ```rust
-    // 1. Import ethers crate
-    use ethers::providers::{Provider, Http};
-
-    // 2. Add client type
-    type Client = SignerMiddleware<Provider<Http>, Wallet<k256::ecdsa::SigningKey>>;
-
-    // 3. Add annotation
-    #[tokio::main]
-    async fn main() -> Result<(), Box<dyn std::error::Error>> {
-        // 4. Use try_from with RPC endpoint
-        let provider = Provider::<Http>::try_from(
-            "{{ networks.moonbeam.rpc_url }}"
-        )?;
-        // 5. Use a private key to create a wallet
-        // Do not include the private key in plain text in any production code
-        // This is just for demonstration purposes
-        // Do not include '0x' at the start of the private key
-        let wallet: LocalWallet = "INSERT_YOUR_PRIVATE_KEY"
-            .parse::<LocalWallet>()?
-            .with_chain_id(Chain::Moonbeam);
-
-        // 6. Wrap the provider and wallet together to create a signer client
-        let client = SignerMiddleware::new(provider.clone(), wallet.clone());
-        Ok(())
-    }
-    ```
-
-=== "Moonriver"
-
-    ```rust
-    // 1. Import ethers crate
-    use ethers::providers::{Provider, Http};
-
-    // 2. Add client type
-    type Client = SignerMiddleware<Provider<Http>, Wallet<k256::ecdsa::SigningKey>>;
-
-    // 3. Add annotation
-    #[tokio::main]
-    async fn main() -> Result<(), Box<dyn std::error::Error>> {
-        // 4. Use try_from with RPC endpoint
-        let provider = Provider::<Http>::try_from(
-            "{{ networks.moonriver.rpc_url }}"
-        )?;
-        // 5. Use a private key to create a wallet
-        // Do not include the private key in plain text in any production code
-        // This is just for demonstration purposes
-        // Do not include '0x' at the start of the private key
-        let wallet: LocalWallet = "INSERT_YOUR_PRIVATE_KEY"
-            .parse::<LocalWallet>()?
-            .with_chain_id(Chain::Moonriver);
-
-        // 6. Wrap the provider and wallet together to create a signer client
-        let client = SignerMiddleware::new(provider.clone(), wallet.clone());
-        Ok(())
-    }
-    ```
-
-=== "Moonbase Alpha"
-
-    ```rust
-    // 1. Import ethers crate
-    use ethers::providers::{Provider, Http};
-
-    // 2. Add client type
-    type Client = SignerMiddleware<Provider<Http>, Wallet<k256::ecdsa::SigningKey>>;
-
-    // 3. Add annotation
-    #[tokio::main]
-    async fn main() -> Result<(), Box<dyn std::error::Error>> {
-        // 4. Use try_from with RPC endpoint
-        let provider = Provider::<Http>::try_from(
-            "{{ networks.moonbase.rpc_url }}"
-        )?;
-        // 5. Use a private key to create a wallet
-        // Do not include the private key in plain text in any production code
-        // This is just for demonstration purposes
-        // Do not include '0x' at the start of the private key
-        let wallet: LocalWallet = "INSERT_YOUR_PRIVATE_KEY"
-            .parse::<LocalWallet>()?
-            .with_chain_id(Chain::Moonbase);
-
-        // 6. Wrap the provider and wallet together to create a signer client
-        let client = SignerMiddleware::new(provider.clone(), wallet.clone());
-        Ok(())
-    }
-    ```
-
-=== "Moonbeam Dev Node"
-
-    ```rust
-    // 1. Import ethers crate
-    use ethers::providers::{Provider, Http};
-
-    // 2. Add client type
-    type Client = SignerMiddleware<Provider<Http>, Wallet<k256::ecdsa::SigningKey>>;
-
-    // 3. Add annotation
-    #[tokio::main]
-    async fn main() -> Result<(), Box<dyn std::error::Error>> {
-        // 4. Use try_from with RPC endpoint
-        let provider = Provider::<Http>::try_from(
-            "{{ networks.development.rpc_url }}"
-        )?;
-        // 5. Use a private key to create a wallet
-        // Do not include the private key in plain text in any production code
-        // This is just for demonstration purposes
-        // Do not include '0x' at the start of the private key
-        let wallet: LocalWallet = "INSERT_YOUR_PRIVATE_KEY"
-            .parse::<LocalWallet>()?
-            .with_chain_id(Chain::MoonbeamDev);
-
-        // 6. Wrap the provider and wallet together to create a signer client
-        let client = SignerMiddleware::new(provider.clone(), wallet.clone());
-        Ok(())
-    }
-    ```
-
-## Send a Transaction {: #send-a-transaction }
-
-During this section, you'll be creating a couple of functions, which will be contained in the same `main.rs` file to avoid additional complexity from implementing modules. The first function will be to check the balances of your accounts before trying to send a transaction. The second function will actually send the transaction. To run each of these functions, you will edit the `main` function and run the `main.rs` script.  
-
-You should already have your provider and client set up in `main.rs` in the way described in the [previous section](#setting-up-the-ethers-provider-and-client). In order to send a transaction, you'll need to add a few more lines of code:
-
-1. Add `use ethers::{utils, prelude::*};` to your imports, which will provide you access to utility functions and the prelude imports all of the necessary data types and traits.
-2. As you'll be sending a transaction from one address to another, you can specify the sending and receiving addresses in the `main` function. **Note: the `address_from` value should correspond to the private key that is used in the `main` function**.
-
-```rust
-// ...
-// 1. Add to imports
-use ethers::{utils, prelude::*};
-
-// ...
-
-#[tokio::main]
-async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    // ...
-
-    // 2. Add from and to address
-    let address_from = "YOUR_FROM_ADDRESS".parse::<Address>()?
-    let address_to = "YOUR_TO_ADDRESS".parse::<Address>()?
-}
-```
-
-### Check Balances Function {: #check-balances-function }
-
-Next, you will create the function for getting the sending and receiving accounts' balances by completing the following steps:
-
-1. Create a new asynchronous function named `print_balances` that takes a provider object's reference and the sending and receiving addresses as input.
-2. Use the `provider` object's `get_balance` function to get the balances of the sending and receiving addresses of the transaction.
-3. Print the resultant balances for the sending and receiving addresses.
-4. Call the `print_balances` function in the `main` function.
-
-```rust
-// ...
-
-// 1. Create an asynchronous function that takes a provider reference and from and to address as input
-async fn print_balances(provider: &Provider<Http>, address_from: Address, address_to: Address) -> Result<(), Box<dyn std::error::Error>> {
-    // 2. Use the get_balance function
-    let balance_from = provider.get_balance(address_from, None).await?;
-    let balance_to = provider.get_balance(address_to, None).await?;
-
-    // 3. Print the resultant balance
-    println!("{} has {}", address_from, balance_from);
-    println!("{} has {}", address_to, balance_to);
-
-    Ok(())
-}
-
-#[tokio::main]
-async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    // ...
-
-    // 4. Call print_balances function in main
-    print_balances(&provider).await?;
-
-    Ok(())
-}
-```
-
-### Send Transaction Script {: #send-transaction-script }
-
-For this example, you'll be transferring 1 DEV from an origin address (of which you hold the private key) to another address.  
-
-1. Create a new asynchronous function named `send_transaction` that takes a client object's reference and the sending and receiving addresses as input.
-2. Create the transaction object, and include the `to`, `value`, and `from`. When writing the `value` input, use the `ethers::utils::parse_ether` function.
-3. Use the `client` object to send the transaction.
-4. Print the transaction after it is confirmed.
-5. Call the `send_transaction` function in the `main` function.
-
-```rust
-// ...
-
-// 1. Define an asynchronous function that takes a client provider and the from and to addresses as input
-async fn send_transaction(client: &Client, address_from: Address, address_to: Address) -> Result<(), Box<dyn std::error::Error>> {
-    println!(
-        "Beginning transfer of 1 native currency from {} to {}.",
-        address_from, address_to
-    );
-
-    // 2. Create a TransactionRequest object
-    let tx = TransactionRequest::new()
-        .to(address_to)
-        .value(U256::from(utils::parse_ether(1)?))
-        .from(address_from);
-        
-    // 3. Send the transaction with the client
-    let tx = client.send_transaction(tx, None).await?.await?;
-
-    // 4. Print out the result
-    println!("Transaction Receipt: {}", serde_json::to_string(&tx)?);
-
-    Ok(())
-}
-
-#[tokio::main]
-async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    // ...
-
-    // 5. Call send_transaction function in main
-    send_transaction(&client, address_from, address_to).await?;
-
-    Ok(())
-}
-```
-
-??? code "View the complete script"
-    ```rust
-    use ethers::providers::{Provider, Http};
-use ethers::{utils, prelude::*};
-
-type Client = SignerMiddleware<Provider<Http>, Wallet<k256::ecdsa::SigningKey>>;
-
-#[tokio::main]
-async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let provider: Provider<Http> = Provider::<Http>::try_from("https://rpc.api.moonbase.moonbeam.network")?; // Change to correct network
-    // Do not include the private key in plain text in any production code. This is just for demonstration purposes
-    let wallet: LocalWallet = "INSERT_PRIVATE_KEY"
-        .parse::<LocalWallet>()?
-        .with_chain_id(Chain::Moonbase);  // Change to correct network
-    let client = SignerMiddleware::new(provider.clone(), wallet.clone());
-
-    let address_from = "INSERT_FROM_ADDRESS".parse::<Address>()?;
-    let address_to = "INSERT_TO_ADDRESS".parse::<Address>()?;
-
-    send_transaction(&client, &address_from, &address_to).await?;
-    print_balances(&provider, &address_from, &address_to).await?;
-
-    Ok(())
-}
-
-// Print the balance of a wallet
-async fn print_balances(provider: &Provider<Http>, address_from: &Address, address_to: &Address) -> Result<(), Box<dyn std::error::Error>> {
-    let balance_from = provider.get_balance(address_from.clone(), None).await?;
-    let balance_to = provider.get_balance(address_to.clone(), None).await?;
-
-    println!("{} has {}", address_from, balance_from);
-    println!("{} has {}", address_to, balance_to);
-    Ok(())
-}
-
-
-// Sends some native currency
-async fn send_transaction(client: &Client, address_from: &Address, address_to: &Address) -> Result<(), Box<dyn std::error::Error>> {
-    println!(
-        "Beginning transfer of 1 native currency {} to {}.",
-        address_from, address_to
-    );
-    let tx = TransactionRequest::new()
-        .to(address_to.clone())
-        .value(U256::from(utils::parse_ether(1)?))
-        .from(address_from.clone());
-    let tx = client.send_transaction(tx, None).await?.await?;
-
-    println!("Transaction Receipt: {}", serde_json::to_string(&tx)?);
-
-    Ok(())
-}
-    ```
-
-To run the script, which will send the transaction and then check the balances once the transaction has been sent, you can run the following command:
-
-```bash
-cargo run
-```
-
-If the transaction was successful, in your terminal you'll see the transaction details printed out along with the balance of your address.
-
-<div id="termynal" data-termynal>
-    <span data-ty="input"><span class="file-path"></span>cargo run</span>
-    <span data-ty>Compiling ethers-examples v0.1.0 (/Users/moonbeam/workspace/ethers-examples)</span>
-    <span data-ty>Finished dev [unoptimized + debuginfo] target(s) in 32.76s</span>
-    <span data-ty>Running `target/debug/ethers-examples`</span>
-    <span data-ty>Beginning transfer of 1 native currency 0x3b93…421e to 0xe773…8dde.</span>
-    <span data-ty>Transaction Receipt: {"transactionHash":"0x6f2338c63286f8b27951ddb6748191149d82647b44a00465f1f776624f490ce9","transactionIndex":"0x0","blockHash":"0x8234eb2083e649ab45c7c5fcdf2026d8f47676f7e29305023d1d00cc349ba215","blockNumber":"0x7ac12d","from":"0x3b939fead1557c741ff06492fd0127bd287a421e","to":"0xe773f740828a968c8a9e1e8e05db486937768dde","cumulativeGasUsed":"0x5208","gasUsed":"0x5208","contractAddress":null,"logs":[],"status":"0x1","logsBloom":"0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000","type":"0x0","effectiveGasPrice":"0x7735940"}</span>
-    <span data-ty>0x3b93…421e has 3601703984470865589125</span>
-    <span data-ty>0xe773…8dde has 1000000000000000000</span>
-    <span data-ty="input"><span class="file-path">
-</div>
-
-## Deploy a Contract {: #deploy-a-contract }
-
-The contract you'll be compiling and deploying in the next couple of sections is a simple incrementer contract, arbitrarily named `Incrementer.sol`. You can get started by creating a file for the contract:
-
-```bash
-touch Incrementer.sol
-```
-
-Next, you can add the Solidity code to the file:
-
-```solidity
-// SPDX-License-Identifier: MIT
-
-pragma solidity ^0.8.30;
-
-contract Incrementer {
-    uint256 public number;
-
-    constructor(uint256 _initialNumber) {
-        number = _initialNumber;
-    }
-
-    function increment(uint256 _value) public {
-        number = number + _value;
-    }
-
-    function reset() public {
-        number = 0;
-    }
-}
-```
-
-The `constructor` function, which runs when the contract is deployed, sets the initial value of the number variable stored on-chain (the default is `0`). The `increment` function adds the `_value` provided to the current number, but a transaction needs to be sent, which modifies the stored data. Lastly, the `reset` function resets the stored value to zero.
-
-!!! note
-    This contract is a simple example for illustration purposes only and does not handle values wrapping around.
-
-During the rest of this section, you'll be creating a couple of functions, which will be contained in the `main.rs` file to avoid additional complexity from implementing modules. The first function will be to compile and deploy the contract. The remaining functions will interact with the deployed contract.  
-
-You should already have your provider and client set up in `main.rs` in the way described in the [Setting up the Ethers Provider and Client section](#setting-up-the-ethers-provider-and-client).
-
-Before getting started with the contract deployment, you'll need to add a few more imports to your `main.rs` file:
-
-```rust
-use ethers_solc::Solc;
-use ethers::{prelude::*};
-use std::{path::Path, sync::Arc};
-```
-
-The `ethers_solc` import will be used to compile the smart contract. The `prelude` from Ethers imports some necessary data types and traits. Lastly, the `std` imports will enables you to store your smart contracts and wrap the client into an `Arc` type for thread safety.
-
-### Compile and Deploy Contract Script {: #compile-and-deploy-contract-script }
-
-This example function will compile and deploy the `Incrementer.sol` smart contract you created in the previous section. The `Incrementer.sol` smart contract should be in the root directory. In the `main.rs` file, you can take the following steps:
-
-1. Create a new asynchronous function named `compile_deploy_contract` that takes a client object's reference as input, and returns an address in the form of `H160`.
-2. Define a variable named `source` as the path for the directory that hosts all of the smart contracts that should be compiled, which is the root directory.
-3. Use the `Solc` crate to compile all of the smart contracts in the root directory.
-4. Get the ABI and bytecode from the compiled result, searching for the `Incrementer.sol` contract.
-5. Create a contract factory for the smart contract using the ABI, bytecode, and client. The client must be wrapped into an `Arc` type for thread safety.
-6. Use the factory to deploy. For this example, the value `5` is used as the initial value in the constructor.
-7. Print out the address after the deployment.
-8. Return the address.
-9. Call the `compile_deploy_contract` function in `main`.
-
-```rust
-// ...
-
-// 1. Define an asynchronous function that takes a client provider as input and returns H160
-async fn compile_deploy_contract(client: &Client) -> Result<H160, Box<dyn std::error::Error>> {
-    // 2. Define a path as the directory that hosts the smart contracts in the project
-    let source = Path::new(&env!("CARGO_MANIFEST_DIR"));
-
-    // 3. Compile all of the smart contracts
-    let compiled = Solc::default()
-        .compile_source(source)
-        .expect("Could not compile contracts");
-
-    // 4. Get ABI & Bytecode for Incrementer.sol
-    let (abi, bytecode, _runtime_bytecode) = compiled
-        .find("Incrementer")
-        .expect("could not find contract")
-        .into_parts_or_default();
-
-    // 5. Create a contract factory which will be used to deploy instances of the contract
-    let factory = ContractFactory::new(abi, bytecode, Arc::new(client.clone()));
-
-    // 6. Deploy
-    let contract = factory.deploy(U256::from(5))?.send().await?;
-    
-    // 7. Print out the address
-    let addr = contract.address();
-    println!("Incrementer.sol has been deployed to {:?}", addr);
-
-    // 8. Return the address
-    Ok(addr)
-}
-
-#[tokio::main]
-async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    // ...
-
-    // 9. Call compile_deploy_contract function in main
-    let addr = compile_deploy_contract(&client).await?;
-
-    Ok(())
-}
-```
-
-### Read Contract Data (Call Methods) {: #read-contract-data }
-
-Call methods are the type of interaction that don't modify the contract's storage (change variables), meaning no transaction needs to be sent. They simply read various storage variables of the deployed contract.  
-
-Rust is typesafe, which is why the ABI for the `Incrementer.sol` contract is required to generate a typesafe Rust struct. For this example, you should create a new file in the root of the Cargo project called `Incrementer_ABI.json`:
-
-```bash
-touch Incrementer_ABI.json
-```
-
-The ABI for `Incrementer.sol` is below, which should be copied and pasted into the `Incrementer_ABI.json` file:
-
-```json
-[
-    {
-        "inputs": [
-            {
-                "internalType": "uint256",
-                "name": "_value",
-                "type": "uint256"
-            }
-        ],
-        "name": "increment",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "number",
-        "outputs": [
-            {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "reset",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    }
-]
-```
-
-Then you can take the following steps to create a function that reads and returns the `number` method of the `Incrementer.sol` contract:
-
-1. Generate a type-safe interface for the `Incrementer` smart contract with the `abigen` macro.
-2. Create a new asynchronous function named `read_number` that takes a client object's reference and a contract address reference as input, and returns a U256.
-3. Create a new instance of the `Incrementer` object generated by the abigen macro with the client and contract address values.
-4. Call the `number` function in the new `Incrementer` object.
-5. Print out the resultant value.
-6. Return the resultant value.
-7. Call the `read_number` function in `main`.
-
-```rust
-// ...
-
-// 1. Generate a type-safe interface for the Incrementer smart contract
-abigen!(
-    Incrementer,
-    "./Incrementer_ABI.json",
-    event_derives(serde::Deserialize, serde::Serialize)
-);
-
-// 2. Define an asynchronous function that takes a client provider and address as input and returns a U256
-async fn read_number(client: &Client, contract_addr: &H160) -> Result<U256, Box<dyn std::error::Error>> {
-    // 3. Create contract instance
-    let contract = Incrementer::new(contract_addr.clone(), Arc::new(client.clone()));
-
-    // 4. Call contract's number function
-    let value = contract.number().call().await?;
-
-    // 5. Print out number
-    println!("Incrementer's number is {}", value);
-
-    // 6. Return the number
-    Ok(value)
-}
-
-// ...
-
-#[tokio::main]
-async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    // ...
-
-    // 7. Call read_number function in main
-    read_number(&client, &addr).await?;
-
-    Ok(())
-}
-```
-
-??? code "View the complete script"
-
-    ```rust
-    use ethers::providers::{Provider, Http};
-use ethers::{prelude::*};
-use ethers_solc::Solc;
-use std::{path::Path, sync::Arc};
-
-type Client = SignerMiddleware<Provider<Http>, Wallet<k256::ecdsa::SigningKey>>;
-
-#[tokio::main]
-async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let provider: Provider<Http> = Provider::<Http>::try_from("https://rpc.api.moonbase.moonbeam.network")?; // Change to correct network
-    // Do not include the private key in plain text in any production code. This is just for demonstration purposes
-    // Do not include '0x' at the start of the private key
-    let wallet: LocalWallet = "INSERT_PRIVATE_KEY"
-        .parse::<LocalWallet>()?
-        .with_chain_id(Chain::Moonbase);
-    let client = SignerMiddleware::new(provider.clone(), wallet.clone());
-
-    // Deploy contract and read initial incrementer value
-    let addr = compile_deploy_contract(&client).await?;
-    read_number(&client, &addr).await?;
-
-    // Increment and read the incremented number
-    increment_number(&client, &addr).await?;
-    read_number(&client, &addr).await?;
-
-    // Reset the incremented number and read it
-    reset(&client, &addr).await?;
-    read_number(&client, &addr).await?;
-
-    Ok(())
-}
-
-// Need to install solc for this tutorial: https://github.com/crytic/solc-select
-async fn compile_deploy_contract(client: &Client) -> Result<H160, Box<dyn std::error::Error>> {
-    // Incrementer.sol is located in the root directory
-    let source = Path::new(&env!("INSERT_CARGO_MANIFEST_DIR"));
-
-    // Compile it
-    let compiled = Solc::default()
-        .compile_source(source)
-        .expect("Could not compile contracts");
-
-    // Get ABI & Bytecode for Incrementer.sol
-    let (abi, bytecode, _runtime_bytecode) = compiled
-        .find("Incrementer")
-        .expect("could not find contract")
-        .into_parts_or_default();
-
-    // Create a contract factory which will be used to deploy instances of the contract
-    let factory = ContractFactory::new(abi, bytecode, Arc::new(client.clone()));
-
-    // Deploy
-    let contract = factory.deploy(U256::from(5))?.send().await?;
-    let addr = contract.address();
-
-    println!("Incrementer.sol has been deployed to {:?}", addr);
-
-    Ok(addr)
-}
-
-// Generates a type-safe interface for the Incrementer smart contract
-abigen!(
-    Incrementer,
-    "./Incrementer_ABI.json",
-    event_derives(serde::Deserialize, serde::Serialize)
-);
-
-async fn read_number(client: &Client, contract_addr: &H160) -> Result<U256, Box<dyn std::error::Error>> {
-    // Create contract instance
-    let contract = Incrementer::new(contract_addr.clone(), Arc::new(client.clone()));
-
-    // Call contract's number function
-    let value = contract.number().call().await?;
-
-    // Print out value
-    println!("Incrementer's number is {}", value);
-
-    Ok(value)
-}
-
-async fn increment_number(client: &Client, contract_addr: &H160) -> Result<(), Box<dyn std::error::Error>> {
-    println!("Incrementing number...");
-
-    // Create contract instance
-    let contract = Incrementer::new(contract_addr.clone(), Arc::new(client.clone()));
-
-    // Send contract transaction
-    let tx = contract.increment(U256::from(5)).send().await?.await?;
-    println!("Transaction Receipt: {}", serde_json::to_string(&tx)?);
-    
-    Ok(())
-}
-
-async fn reset(client: &Client, contract_addr: &H160) -> Result<(), Box<dyn std::error::Error>> {
-    println!("Resetting number...");
-
-    // Create contract instance
-    let contract = Incrementer::new(contract_addr.clone(), Arc::new(client.clone()));
-
-    // Send contract transaction
-    let tx = contract.reset().send().await?.await?;
-    println!("Transaction Receipt: {}", serde_json::to_string(&tx)?);
-    
-    Ok(())
-}
-    ```
-
-To run the script, which will deploy the contract and return the current value stored in the `Incrementer` contract, you can enter the following command into your terminal:
-
-```bash
-cargo run
-```
-
-If successful, you'll see the deployed contract's address and initial value set, which should be `5`, displayed in the terminal.
-
-<div id="termynal" data-termynal>
-    <span data-ty="input"><span class="file-path"></span>cargo run</span>
-    <span data-ty>Compiling ethers-examples v0.1.0 (/Users/moonbeam/workspace/ethers-examples)</span>
-    <span data-ty>Finished dev [unoptimized + debuginfo] target(s) in 1.09s</span>
-    <span data-ty>Running `/Users/moonbeam/workspace/ethers-examples/target/debug/ethers-examples`</span>
-    <span data-ty>Incrementer.sol has been deployed to 0xeb8a4d5c7cd56c65c9dbd25f793b50a2c917bb5d</span>
-    <span data-ty>Incrementer's number is 5</span>
-    <span data-ty="input"><span class="file-path">
-</div>
-
-### Interact with Contract (Send Methods) {: #interact-with-contract }
-
-Send methods are the type of interaction that modify the contract's storage (change variables), meaning a transaction needs to be signed and sent. In this section, you'll create two functions: one to increment and one to reset the incrementer. This section will also require the `Incrementer_ABI.json` file initialized when [reading from the smart contract](#read-contract-data).  
-
-Take the following steps to create the function to increment:
-
-1. Ensure that the abigen macro is called for the `Incrementer_ABI.json` somewhere in the `main.rs` file (if it is already in the `main.rs` file, you do not have to have a second one).
-2. Create a new asynchronous function named `increment_number` that takes a client object's reference and an address as input.
-3. Create a new instance of the `Incrementer` object generated by the abigen macro with the client and contract address values.
-4. Call the `increment` function in the new `Incrementer` object by including a `U256` object as input. In this instance, the value provided is `5`.
-5. Call the `read_number` function in `main`.
-
-```rust
-// ...
-
-// 1. Generate a type-safe interface for the Incrementer smart contract
-abigen!(
-    Incrementer,
-    "./Incrementer_ABI.json",
-    event_derives(serde::Deserialize, serde::Serialize)
-);
-
-// 2. Define an asynchronous function that takes a client provider and address as input
-async fn increment_number(client: &Client, contract_addr: &H160) -> Result<(), Box<dyn std::error::Error>> {
-    println!("Incrementing number...");
-
-    // 3. Create contract instance
-    let contract = Incrementer::new(contract_addr.clone(), Arc::new(client.clone()));
-
-    // 4. Send contract transaction
-    let tx = contract.increment(U256::from(5)).send().await?.await?;
-    println!("Transaction Receipt: {}", serde_json::to_string(&tx)?);
-    
-    Ok(())
-}
-
-// ...
-
-#[tokio::main]
-async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    // ...
-
-    // 5. Call increment_number function in main
-    increment_number(&client, &addr).await?;
-
-    Ok(())
-}
-```
-
-??? code "View the complete script"
-
-    ```rust
-    use ethers::providers::{Provider, Http};
-use ethers::{prelude::*};
-use ethers_solc::Solc;
-use std::{path::Path, sync::Arc};
-
-type Client = SignerMiddleware<Provider<Http>, Wallet<k256::ecdsa::SigningKey>>;
-
-#[tokio::main]
-async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let provider: Provider<Http> = Provider::<Http>::try_from("https://rpc.api.moonbase.moonbeam.network")?; // Change to correct network
-    // Do not include the private key in plain text in any production code. This is just for demonstration purposes
-    // Do not include '0x' at the start of the private key
-    let wallet: LocalWallet = "INSERT_PRIVATE_KEY"
-        .parse::<LocalWallet>()?
-        .with_chain_id(Chain::Moonbase);
-    let client = SignerMiddleware::new(provider.clone(), wallet.clone());
-
-    // Deploy contract and read initial incrementer value
-    let addr = compile_deploy_contract(&client).await?;
-    read_number(&client, &addr).await?;
-
-    // Increment and read the incremented number
-    increment_number(&client, &addr).await?;
-    read_number(&client, &addr).await?;
-
-    // Reset the incremented number and read it
-    reset(&client, &addr).await?;
-    read_number(&client, &addr).await?;
-
-    Ok(())
-}
-
-// Need to install solc for this tutorial: https://github.com/crytic/solc-select
-async fn compile_deploy_contract(client: &Client) -> Result<H160, Box<dyn std::error::Error>> {
-    // Incrementer.sol is located in the root directory
-    let source = Path::new(&env!("INSERT_CARGO_MANIFEST_DIR"));
-
-    // Compile it
-    let compiled = Solc::default()
-        .compile_source(source)
-        .expect("Could not compile contracts");
-
-    // Get ABI & Bytecode for Incrementer.sol
-    let (abi, bytecode, _runtime_bytecode) = compiled
-        .find("Incrementer")
-        .expect("could not find contract")
-        .into_parts_or_default();
-
-    // Create a contract factory which will be used to deploy instances of the contract
-    let factory = ContractFactory::new(abi, bytecode, Arc::new(client.clone()));
-
-    // Deploy
-    let contract = factory.deploy(U256::from(5))?.send().await?;
-    let addr = contract.address();
-
-    println!("Incrementer.sol has been deployed to {:?}", addr);
-
-    Ok(addr)
-}
-
-// Generates a type-safe interface for the Incrementer smart contract
-abigen!(
-    Incrementer,
-    "./Incrementer_ABI.json",
-    event_derives(serde::Deserialize, serde::Serialize)
-);
-
-async fn read_number(client: &Client, contract_addr: &H160) -> Result<U256, Box<dyn std::error::Error>> {
-    // Create contract instance
-    let contract = Incrementer::new(contract_addr.clone(), Arc::new(client.clone()));
-
-    // Call contract's number function
-    let value = contract.number().call().await?;
-
-    // Print out value
-    println!("Incrementer's number is {}", value);
-
-    Ok(value)
-}
-
-async fn increment_number(client: &Client, contract_addr: &H160) -> Result<(), Box<dyn std::error::Error>> {
-    println!("Incrementing number...");
-
-    // Create contract instance
-    let contract = Incrementer::new(contract_addr.clone(), Arc::new(client.clone()));
-
-    // Send contract transaction
-    let tx = contract.increment(U256::from(5)).send().await?.await?;
-    println!("Transaction Receipt: {}", serde_json::to_string(&tx)?);
-    
-    Ok(())
-}
-
-async fn reset(client: &Client, contract_addr: &H160) -> Result<(), Box<dyn std::error::Error>> {
-    println!("Resetting number...");
-
-    // Create contract instance
-    let contract = Incrementer::new(contract_addr.clone(), Arc::new(client.clone()));
-
-    // Send contract transaction
-    let tx = contract.reset().send().await?.await?;
-    println!("Transaction Receipt: {}", serde_json::to_string(&tx)?);
-    
-    Ok(())
-}
-    ```
-
-To run the script, you can enter the following command into your terminal:
-
-```bash
-cargo run
-```
-
-If successful, the transaction receipt will be displayed in the terminal. You can use the `read_number` function in the `main` function to make sure that value is changing as expected. If you're using the `read_number` function after incrementing, you'll also see the incremented number, which should be `10`.
-
-<div id="termynal" data-termynal>
-    <span data-ty="input">cargo run</span>
-    <span data-ty>Compiling ethers-examples v0.1.0 (/Users/moonbeam/workspace/ethers-examples)</span>
-    <span data-ty>Finished dev [unoptimized + debuginfo] target(s) in 1.09s</span>
-    <span data-ty>Running `/Users/moonbeam/workspace/ethers-examples/target/debug/ethers-examples`</span>
-    <span data-ty>Incrementer.sol has been deployed to 0xeb8a4d5c7cd56c65c9dbd25f793b50a2c917bb5d</span>
-    <span data-ty>Incrementer's number is 5</span>
-    <span data-ty>Incrementing number...</span>
-    <span data-ty>Transaction Receipt: {"transactionHash":"0x6f5c204e74b96b6cf6057512ba142ad727718646d4ebb7abe8bbabada198dafb","transactionIndex":"0x0","blockHash":"0x635a8a234b30c6ee907198ddda3a1478ae52c6adbcc4a67353dd9597ee626950","blockNumber":"0x7ac238","from":"0x3b939fead1557c741ff06492fd0127bd287a421e","to":"0xeb8a4d5c7cd56c65c9dbd25f793b50a2c917bb5d","cumulativeGasUsed":"0x68a6","gasUsed":"0x68a6","contractAddress":null,"logs":[],"status":"0x1","logsBloom":"0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000","type":"0x2","effectiveGasPrice":"0xba43b740"}</span>
-    <span data-ty>Incrementer's number is 10</span>
-    <span data-ty="input"><span class="file-path">
-</div>
-
-Next you can interact with the `reset` function:
-
-1. Ensure that the abigen macro is called for the `Incrementer_ABI.json` somewhere in the `main.rs` file (if it is already in the `main.rs` file, you do not have to have a second one).
-2. Create a new asynchronous function named `reset` that takes a client object's reference and an address as input.
-3. Create a new instance of the `Incrementer` object generated by the abigen macro with the client and contract address values.
-4. Call the `reset` function in the new `Incrementer` object.
-5. Call the `reset` function in `main`.
-
-```rust
-// ...
-
-// 1. Generate a type-safe interface for the Incrementer smart contract
-abigen!(
-    Incrementer,
-    "./Incrementer_ABI.json",
-    event_derives(serde::Deserialize, serde::Serialize)
-);
-
-// 2. Define an asynchronous function that takes a client provider and address as input
-async fn reset(client: &Client, contract_addr: &H160) -> Result<(), Box<dyn std::error::Error>> {
-    println!("Resetting number...");
-
-    // 3. Create contract instance
-    let contract = Incrementer::new(contract_addr.clone(), Arc::new(client.clone()));
-
-    // 4. Send contract transaction
-    let tx = contract.reset().send().await?.await?;
-    println!("Transaction Receipt: {}", serde_json::to_string(&tx)?);
-    
-    Ok(())
-}
-
-// ...
-
-#[tokio::main]
-async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    // ...
-
-    // 5. Call reset function in main
-    reset(&client, &addr).await?;
-
-    Ok(())
-}
-```
-
-If successful, the transaction receipt will be displayed in the terminal. You can use the `read_number` function in the `main` function to make sure that value is changing as expected. If you're using the `read_number` function after resetting the number, you should see `0` printed to the terminal.
-
-<div id="termynal" data-termynal>
-    <span data-ty="input">cargo run</span>
-    <span data-ty>Compiling ethers-examples v0.1.0 (/Users/moonbeam/workspace/ethers-examples)</span>
-    <span data-ty>Finished dev [unoptimized + debuginfo] target(s) in 1.09s</span>
-    <span data-ty>Running `/Users/moonbeam/workspace/ethers-examples/target/debug/ethers-examples`</span>
-    <span data-ty>Incrementer.sol has been deployed to 0xeb8a4d5c7cd56c65c9dbd25f793b50a2c917bb5d</span>
-    <span data-ty>Incrementer's number is 5</span>
-    <span data-ty>Incrementing number...</span>
-    <span data-ty>Transaction Receipt: {"transactionHash":"0x6f5c204e74b96b6cf6057512ba142ad727718646d4ebb7abe8bbabada198dafb","transactionIndex":"0x0","blockHash":"0x635a8a234b30c6ee907198ddda3a1478ae52c6adbcc4a67353dd9597ee626950","blockNumber":"0x7ac238","from":"0x3b939fead1557c741ff06492fd0127bd287a421e","to":"0xeb8a4d5c7cd56c65c9dbd25f793b50a2c917bb5d","cumulativeGasUsed":"0x68a6","gasUsed":"0x68a6","contractAddress":null,"logs":[],"status":"0x1","logsBloom":"0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000","type":"0x2","effectiveGasPrice":"0xba43b740"}</span>
-    <span data-ty>Incrementer's number is 10</span>
-    <span data-ty>Resetting number...</span>
-    <span data-ty>Transaction Receipt: {"transactionHash":"0xf1010597c6ab3d3cfcd6e8e68bf2eddf4ed38eb93a3052591c88b675ed1e83a4","transactionIndex":"0x0","blockHash":"0x5d4c09abf104cbd88e80487c170d8709aae7475ca84c1f3396f3e35222fbe87f","blockNumber":"0x7ac23b","from":"0x3b939fead1557c741ff06492fd0127bd287a421e","to":"0xeb8a4d5c7cd56c65c9dbd25f793b50a2c917bb5d","cumulativeGasUsed":"0x53c4","gasUsed":"0x53c4","contractAddress":null,"logs":[],"status":"0x1","logsBloom":"0x000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000","type":"0x2","effectiveGasPrice":"0xba43b740"}</span>
-    <span data-ty>Incrementer's number is 0</span>
-    <span data-ty="input"><span class="file-path">
-</div>
-
-??? code "View the complete script"
-
-    ```rust
-    use ethers::providers::{Provider, Http};
-use ethers::{prelude::*};
-use ethers_solc::Solc;
-use std::{path::Path, sync::Arc};
-
-type Client = SignerMiddleware<Provider<Http>, Wallet<k256::ecdsa::SigningKey>>;
-
-#[tokio::main]
-async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let provider: Provider<Http> = Provider::<Http>::try_from("https://rpc.api.moonbase.moonbeam.network")?; // Change to correct network
-    // Do not include the private key in plain text in any production code. This is just for demonstration purposes
-    // Do not include '0x' at the start of the private key
-    let wallet: LocalWallet = "INSERT_PRIVATE_KEY"
-        .parse::<LocalWallet>()?
-        .with_chain_id(Chain::Moonbase);
-    let client = SignerMiddleware::new(provider.clone(), wallet.clone());
-
-    // Deploy contract and read initial incrementer value
-    let addr = compile_deploy_contract(&client).await?;
-    read_number(&client, &addr).await?;
-
-    // Increment and read the incremented number
-    increment_number(&client, &addr).await?;
-    read_number(&client, &addr).await?;
-
-    // Reset the incremented number and read it
-    reset(&client, &addr).await?;
-    read_number(&client, &addr).await?;
-
-    Ok(())
-}
-
-// Need to install solc for this tutorial: https://github.com/crytic/solc-select
-async fn compile_deploy_contract(client: &Client) -> Result<H160, Box<dyn std::error::Error>> {
-    // Incrementer.sol is located in the root directory
-    let source = Path::new(&env!("INSERT_CARGO_MANIFEST_DIR"));
-
-    // Compile it
-    let compiled = Solc::default()
-        .compile_source(source)
-        .expect("Could not compile contracts");
-
-    // Get ABI & Bytecode for Incrementer.sol
-    let (abi, bytecode, _runtime_bytecode) = compiled
-        .find("Incrementer")
-        .expect("could not find contract")
-        .into_parts_or_default();
-
-    // Create a contract factory which will be used to deploy instances of the contract
-    let factory = ContractFactory::new(abi, bytecode, Arc::new(client.clone()));
-
-    // Deploy
-    let contract = factory.deploy(U256::from(5))?.send().await?;
-    let addr = contract.address();
-
-    println!("Incrementer.sol has been deployed to {:?}", addr);
-
-    Ok(addr)
-}
-
-// Generates a type-safe interface for the Incrementer smart contract
-abigen!(
-    Incrementer,
-    "./Incrementer_ABI.json",
-    event_derives(serde::Deserialize, serde::Serialize)
-);
-
-async fn read_number(client: &Client, contract_addr: &H160) -> Result<U256, Box<dyn std::error::Error>> {
-    // Create contract instance
-    let contract = Incrementer::new(contract_addr.clone(), Arc::new(client.clone()));
-
-    // Call contract's number function
-    let value = contract.number().call().await?;
-
-    // Print out value
-    println!("Incrementer's number is {}", value);
-
-    Ok(value)
-}
-
-async fn increment_number(client: &Client, contract_addr: &H160) -> Result<(), Box<dyn std::error::Error>> {
-    println!("Incrementing number...");
-
-    // Create contract instance
-    let contract = Incrementer::new(contract_addr.clone(), Arc::new(client.clone()));
-
-    // Send contract transaction
-    let tx = contract.increment(U256::from(5)).send().await?.await?;
-    println!("Transaction Receipt: {}", serde_json::to_string(&tx)?);
-    
-    Ok(())
-}
-
-async fn reset(client: &Client, contract_addr: &H160) -> Result<(), Box<dyn std::error::Error>> {
-    println!("Resetting number...");
-
-    // Create contract instance
-    let contract = Incrementer::new(contract_addr.clone(), Arc::new(client.clone()));
-
-    // Send contract transaction
-    let tx = contract.reset().send().await?.await?;
-    println!("Transaction Receipt: {}", serde_json::to_string(&tx)?);
-    
-    Ok(())
-}
-    ```
 
 <div class="page-disclaimer">
   The information presented herein has been provided by third parties and is made available solely for general information purposes. Moonbeam does not endorse any project listed and described on the Moonbeam Doc Website (https://docs.moonbeam.network/). Moonbeam Foundation does not warrant the accuracy, completeness or usefulness of this information. Any reliance you place on such information is strictly at your own risk. Moonbeam Foundation disclaims all liability and responsibility arising from any reliance placed on this information by you or by anyone who may be informed of any of its contents. All statements and/or opinions expressed in these materials are solely the responsibility of the person or entity providing those materials and do not necessarily represent the opinion of Moonbeam Foundation. The information should not be construed as professional or financial advice of any kind. Advice from a suitably qualified professional should always be sought in relation to any particular matter or circumstance. The information herein may link to or integrate with other websites operated or content provided by third parties, and such other websites may link to this website. Moonbeam Foundation has no control over any such other websites or their content and will have no liability arising out of or related to such websites or their content. The existence of any such link does not constitute an endorsement of such websites, the content of the websites, or the operators of the websites. These links are being provided to you only as a convenience and you release and hold Moonbeam Foundation harmless from any and all liability arising from your use of this information or the information provided by any third-party website or service.
@@ -4559,7 +3486,7 @@ Where `<type>` can be either:
 - `rpc` - for endpoints specific to RPC calls
 - `consts` - for endpoints specific to runtime constants
 
-And therefore, none of the information contained in the `api.{query, tx, rpc, consts}.<module>.<method>` endpoints are hard-coded in the API. This allows parachains like Moonbeam to have custom endpoints through its [pallets](/builders/substrate/interfaces/){target=\_blank} that can be directly accessed via the Polkadot.js API library.
+And therefore, none of the information contained in the `api.{query, tx, rpc, consts}.<module>.<method>` endpoints is hard-coded in the API. This allows parachains like Moonbeam to have custom endpoints through its pallets that can be directly accessed via the Polkadot.js API library.
 
 ## Query On-Chain Data on Moonbeam {: #querying-for-information }
 
@@ -5736,36 +4663,30 @@ First, ensure that you installed [Parity's `generate-types-bundle` package](http
 npm install -g @substrate/generate-type-bundle
 ```
 
-Then, navigate to the following directory within your project:
-
-```bash
-cd ./node_modules/@substrate/api-sidecar/build/src/
-```
-
 Then, run the following command to generate the types bundle for the respective network:
 
 === "Moonbeam"
 
     ```bash
-    generate-type-bundle -p . -s moonbeam
+    generate-type-bundle -p "$(pwd)" -s moonbeam
     ```
 
 === "Moonriver"
 
     ```bash
-    generate-type-bundle -p . -s moonriver
+    generate-type-bundle -p "$(pwd)" -s moonriver
     ```
 
 === "Moonbase Alpha"
 
     ```bash
-    generate-type-bundle -p . -s moonbase
+    generate-type-bundle -p "$(pwd)" -s moonbase
     ```
 
 Note that running subsequent commands will overwrite the existing `typesBundle.json.` You'll then need to set the `SAS_SUBSTRATE_TYPES_BUNDLE` environment variable as shown below. If you've renamed the `typesBundle.json,` ensure you use the correct file name. 
 
 ```bash
-export SAS_SUBSTRATE_TYPES_BUNDLE="./typesBundle.json"
+export SAS_SUBSTRATE_TYPES_BUNDLE="$(pwd)/typesBundle.json"
 ```
 
 After setting the environment variable, you can verify that you set it correctly by using the following `echo` command:
@@ -5775,12 +4696,6 @@ echo $SAS_SUBSTRATE_TYPES_BUNDLE
 ```
 
 ## Running Substrate API Sidecar {: #running-substrate-api-sidecar }
-
-Navigate back to the root directory of the project: 
-
-```bash
-cd ../../../../..
-```
 
 With the network endpoint environmental variable set, and from the installation directory root, run:
 
@@ -5806,7 +4721,7 @@ If the installation and configuration are successful, you should see this output
         <br>    ✅ WRITE_MAX_FILES: 5
         <br>📦 SUBSTRATE:
         <br>    ✅ URL: "wss://wss.api.moonbeam.network"
-        <br>    ✅ TYPES_BUNDLE: undefined
+        <br>    ✅ TYPES_BUNDLE: "/Users/alice/sidecar/typesBundle.json"
         <br>    ✅ TYPES_CHAIN: undefined
         <br>    ✅ TYPES_SPEC: undefined
         <br>    ✅ TYPES: undefined
@@ -5814,9 +4729,8 @@ If the installation and configuration are successful, you should see this output
         <br>    ✅ BIND_HOST: "127.0.0.1"
         <br>    ✅ PORT: 8080
         <br>    ✅ KEEP_ALIVE_TIMEOUT: 5000
-    <br>2024-05-07 11:29:54 info: Version: 18.0.0
-    <br>2024-05-07 11:29:55 warn: API/INIT: RPC methods not decorated: eth_getBlockReceipts, moon_isBlockFinalized, moon_isTxFinalized
-    <br>2024-05-07 11:29:55 warn: API/INIT: moonbeam/3300: Not decorating unknown runtime apis: 0xd0399cd053adda2b/1, 0xa33d43f58731ad84/2, 0xba8173bf23b2e6f8/1
+    <br>2024-05-07 11:29:54 info: Version: 20.12.0
+    ...
     <br>2024-05-07 11:29:55 info: Connected to chain Moonbeam on the moonbeam client at wss://wss.api.moonbeam.network
     <br>2024-05-07 11:29:55 info: Listening on http://127.0.0.1:8080/
     <br>2024-05-07 11:29:55 info: Check the root endpoint (http://127.0.0.1:8080) to see the available endpoints for the current node
@@ -8038,10 +6952,6 @@ This documentation overviews Moonbeam's Ethereum compatibility features and high
 
 Moonbeam incorporates a fully compatible EVM to execute smart contracts in Solidity or other EVM-compatible languages. This enables developers to deploy existing Ethereum smart contracts on Moonbeam with minimal modifications.
 
-Learn more:
-
-- [Moonbeam's Ethereum-compatibility architecture](/learn/platform/technology/#ethereum-compatibility-architecture){target=\_blank}
-
 ### Ethereum-style Accounts {: #ethereum-style-accounts }
 
 Moonbeam employs H160 Ethereum-style accounts and ECDSA keys, ensuring compatibility with existing Ethereum wallets and facilitating a smooth end-user experience. This is possible due to Moonbeam's unified accounts system, which modifies the underlying Substrate account system to use Ethereum accounts by default.
@@ -9184,7 +8094,6 @@ If you're looking for your own endpoints suitable for production use, you can ch
     | UnitedBloc  |          <pre>```https://moonbeam.unitedbloc.com```</pre>          | 32 req/sec  |
     | RadiumBlock | <pre>```https://moonbeam.public.curie.radiumblock.co/http```</pre> | 200 req/sec |
     |    1RPC     |               <pre>```https://1rpc.io/glmr```</pre>                | 10k req/day |
-    |    Grove    |         <pre>```https://moonbeam.rpc.grove.city/v1/01fdb492```</pre>         | 5k req/day  |
 
 
 
@@ -9326,7 +8235,6 @@ If you're looking for your own endpoints suitable for production use, you can ch
       | OnFinality  |     <pre>```https://moonriver.api.onfinality.io/public```</pre>     | 40 req/sec  |
       | UnitedBloc  |          <pre>```https://moonriver.unitedbloc.com```</pre>          | 32 req/sec  |
       | RadiumBlock | <pre>```https://moonriver.public.curie.radiumblock.co/http```</pre> | 200 req/sec |
-      |    Grove    |        <pre>```https://moonriver.rpc.grove.city/v1/01fdb492```</pre>        | 5k req/day  |
 
 === "WSS"
     |  Provider   |                             RPC URL                             |   Limits    |
@@ -9443,255 +8351,6 @@ This TestNet is a network hosted by OpsLayer. It features a parachain/relay chai
 [Learn more about Moonbase Alpha](/learn/platform/networks/moonbase/).
 --- END CONTENT ---
 
-Doc-Content: https://docs.moonbeam.network/learn/platform/technology/
---- BEGIN CONTENT ---
----
-title: Technology & Architecture
-description: Moonbeam is built using Rust and Polkadot's Substrate framework, enabling rich tools for implementation while allowing for specialization and optimization.
-categories: Basics
----
-
-# Technology & Architecture
-
-## The Moonbeam Development Stack {: #the-moonbeam-development-stack }
-
-Moonbeam is a smart contract blockchain platform built in the Rust programming language using the Substrate framework. Substrate, developed by [Parity Technologies](https://www.parity.io/){target=_blank} (the original founding contributors of Polkadot), is an open-source, modular SDK for creating blockchains. Substrate allows developers to customize their blockchains while still benefiting from features such as forkless upgrades, shared security (when connected as a parachain to Polkadot or Kusama), and an extensive library of pre-built runtime modules known as pallets.
-
-### Rust Programming Language {: #rust-programming-language }
-
-Rust is a good language for implementing a blockchain. It is highly performant like C and C++ but has built-in memory safety features enforced at compile time, preventing many common bugs and security issues arising from C and C++ implementations.
-
-### Substrate Framework {: #substrate-framework }
-
-Substrate provides a rich set of tools for creating blockchains, including a runtime execution environment that enables a generic state transition function and a pluggable set of modules (pallets) that implement various blockchain subsystems. By using Substrate, Moonbeam can leverage several key features offered to parachains launched on the Polkadot relay chain, including:
-
-- **Shared security** — Polkadot's validators secure all parachains  
-- **Cross-Consensus Messaging (XCM)** — native interoperability with other parachains  
-- **Flexible upgrades** — Substrate’s forkless upgrade mechanism
-
-Pallets are at the heart of Substrate-based chains, providing specific functionality in modular form. Examples include:
-
-- **Balances pallet** — manages account balances and transfers  
-- **Assets pallet** — handles the creation and management of on-chain fungible assets  
-- **Consensus pallets** — provide mechanisms like AURA or BABE for block production  
-- **Governance pallets** — facilitate on-chain governance  
-- **Frontier pallets** — the Ethereum compatibility layer pioneered by the Moonbeam team  
-- **Parachain Staking pallet** — enables Delegated Proof of Stake (DPoS)  
-
-In addition to these pallets provided by Polkadot's Substrate, developers can [create their own pallets](https://docs.polkadot.com/develop/parachains/customize-parachain/make-custom-pallet/){target=_blank} to add custom functionality. Moonbeam leverages multiple existing Substrate frame pallets as well as several custom pallets for features such as cross-chain token integration, the [Orbiter Program](/node-operators/networks/collators/orbiter/){target=_blank}, and more. You can find the Moonbeam runtime (built using Substrate) and related pallets in the [Moonbeam GitHub repository](https://github.com/moonbeam-foundation/moonbeam){target=_blank}.
-
-Moonbeam also uses the Cumulus library to facilitate integration with the Polkadot relay chain.
-
-### Frontier: Substrate's Ethereum Compatibility Layer {: #frontier }
-
-[Frontier](https://polkadot-evm.github.io/frontier){target=\_blank} serves as Substrate's Ethereum compatibility layer, facilitating the seamless operation of standard Ethereum DApps on Substrate-based chains without requiring modifications. This compatibility is achieved by integrating specialized Substrate pallets into the Substrate runtime. These pallets include:
-
-- **EVM pallet** — responsible for executing EVM operations  
-- **Ethereum pallet** — manages block data storage and offers RPC compatibility  
-- **Base Fee pallet and Dynamic Fee pallet** — provide EIP-1559 functionality (not used in Moonbeam)
-
-Moonbeam uses the EVM and Ethereum pallets to achieve full Ethereum compatibility. Instead of the Base Fee or Dynamic Fee pallets, Moonbeam has its own [dynamic fee mechanism](https://forum.moonbeam.network/t/proposal-dynamic-fee-mechanism-for-moonbeam-and-moonriver/241){target=\_blank} for base fee calculations. Basing the EVM implementation on the Substrate EVM Pallet provides a Rust-based EVM engine and support from the Parity engineering team.
-
-## Blockchain Runtime {: #blockchain-runtime }
-
-The core Moonbeam runtime specifies the state transition function and behavior of the Moonbeam blockchain. The runtime is built using [FRAME](/learn/platform/glossary/#substrate-frame-pallets){target=\_blank}, compiled to a [WebAssembly (Wasm)](/learn/platform/glossary/#webassemblywasm){target=\_blank} binary as well as a native binary. These compiled versions are executed in the Polkadot relay chain and Moonbeam node environments.
-
-!!! note
-    Substrate FRAME pallets are a collection of Rust-based modules that provide the functionality required when building a blockchain. WebAssembly is an open standard that defines a portable binary code format. Different programming languages, compilers, and browsers support it. Find more definitions [in our glossary](/learn/platform/glossary/){target=\_blank}.
-
-Some of the key Substrate FRAME pallets used in the Moonbeam runtime include:
-
- - **Balances** — support for accounts, balances, and transfers  
- - **EVM** — a full Rust-based EVM implementation based on SputnikVM (part of Frontier)  
- - **Ethereum** — provides emulation of Ethereum block processing for the EVM (part of Frontier)  
- - **Executive** — orchestration layer that dispatches calls to other runtime modules  
- - **Identity** — support for setting on-chain identities for account addresses  
- - **System** — provides low-level types, storage, and blockchain functions  
- - **Treasury** — on-chain treasury that can be used to fund public goods such as a parachain slot  
-
-In addition to these Substrate FRAME Pallets, Moonbeam implements custom pallets to achieve additional functionality, such as:
-
-- **Parachain Staking** — enables a Delegated Proof of Stake (DPoS) system  
-- **Moonbeam Orbiters** — supports the [Orbiter Program](/node-operators/networks/collators/orbiter/){target=\_blank}, which diversifies the collator pool  
-- **XCM Transactor** — simplifies remote cross-chain calls via [Cross-Consensus Messaging (XCM)](/builders/interoperability/xcm/overview/){target=\_blank}  
-- **Asset Manager** — registers XCM assets  
-
-### Forkless Upgrades {: #forkless-upgrades }
-
-One of the best things about developing on Polkadot with Substrate is the ability to introduce [forkless upgrades](https://docs.polkadot.com/develop/parachains/maintenance/runtime-upgrades/){target=_blank} to blockchain runtimes. In traditional blockchain architectures, substantial changes to the blockchain's rules often require a hard fork, which can be disruptive and contentious.  
-
-Substrate takes a different approach by separating the blockchain's state (data) from its logic (rules). Logic lives in the runtime, which is itself stored on-chain. Whenever a new runtime is uploaded (via FRAME's `set_code` call) and approved through on-chain governance, all nodes automatically switch to the new runtime at a specified block. This process is seamless and does not split the network.  
-
-Moonbeam regularly uses forkless upgrades to add features or fixes without requiring node operators to upgrade their software manually. You can keep track of and discuss upcoming Moonbeam upgrades on the [Moonbeam forum](https://forum.moonbeam.network){target=_blank}.
-
-## Ethereum Compatibility Architecture {: #ethereum-compatibility-architecture }
-
-Smart contracts on Moonbeam can be implemented using Solidity, Vyper, and any other language that compiles smart contracts to EVM-compatible bytecode. Moonbeam aims to provide a low-friction and secure environment for the development, testing, and execution of smart contracts while remaining compatible with the existing Ethereum developer toolchain.
-
-The execution behavior and semantics of Moonbeam-based smart contracts strive to be as close as possible to Ethereum Layer 1. Moonbeam is a single shard, so cross-contract calls have the same synchronous execution semantics as on Ethereum Layer 1.
-
-![Diagram showing the interactions made possible through Moonbeam's Ethereum compatibility](/images/learn/platform/technology-diagram.webp)
-
-A high-level interaction flow is shown above. A Web3 RPC call from a DApp or existing Ethereum developer tool, such as Hardhat, is received by a Moonbeam node. The node has both Web3 RPCs and Substrate RPCs available, meaning you can use Ethereum or Substrate tools when interacting with a Moonbeam node. Associated Substrate runtime functions handle these RPC calls. The Substrate runtime checks signatures and handles any extrinsics. Smart contract calls are ultimately passed to the EVM to execute the state transitions.
-
-### Ethereum Pallet {: #ethereum-pallet}
-
-The [Ethereum pallet](https://polkadot-evm.github.io/frontier/overview){target=\_blank} is responsible for handling blocks and transaction receipts and statuses. It enables sending and receiving Ethereum-formatted data to and from Moonbeam by storing an Ethereum-style block and its associated transaction hashes in the Substrate runtime.
-
-When a user submits a raw Ethereum transaction, it converts into a Substrate transaction through the Ethereum pallet's `transact` extrinsic—using the Ethereum pallet as the sole executor of the EVM pallet forces all of the data to be stored and transacted in an Ethereum-compatible way, which is how explorers like [Moonscan](/builders/get-started/explorers/#moonscan){target=\_blank} (built by Etherscan) can index block data.
-
-### EVM Pallet {: #evm-pallet }
-
-The [EVM pallet](https://polkadot-evm.github.io/frontier/overview){target=\_blank} implements a sandboxed virtual stack machine and uses the [SputnikVM](https://github.com/rust-ethereum/evm){target=\_blank} as the underlying EVM engine. It executes Ethereum smart contract bytecode in a manner similar to Ethereum mainnet, including gas metering and state changes.
-
-Moonbeam uses unified accounts, meaning an H160 (Ethereum-style) address is also a valid Substrate address, so you only need a single account to interact with the Substrate runtime and the EVM. Once a balance exists in the EVM, smart contracts can be created and interacted with through standard Ethereum RPC calls.  
-
-The EVM pallet should produce nearly identical execution results to Ethereum, such as gas cost and balance changes. However, there are some differences. Although the EVM pallet aims for near-identical behavior to Ethereum, some differences exist, for example, Moonbeam's [dynamic fee mechanism](https://forum.moonbeam.network/t/proposal-dynamic-fee-mechanism-for-moonbeam-and-moonriver/241){target=\_blank}. For more information, refer to the [Frontier EVM Pallet documentation](https://polkadot-evm.github.io/frontier/){target=\_blank}.
-
-Moonbeam includes additional EVM precompiles for functionalities like cryptographic operations (ECRecover, SHA256, BLAKE2, BN128) and dispatching Substrate calls directly from within the EVM. Moonbeam uses the following EVM precompiles:
-
-- **[pallet-evm-precompile-simple](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm_precompile_simple){target=\_blank}** - includes five basic precompiles: ECRecover, ECRecoverPublicKey, Identity, RIPEMD160, SHA256
-- **[pallet-evm-precompile-blake2](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm_precompile_blake2/struct.Blake2F.html){target=\_blank}** - includes the BLAKE2 precompile
-- **[pallet-evm-precompile-bn128](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm_precompile_bn128/index.html){target=\_blank}** - includes three BN128 precompiles: BN128Add, BN128Mul, and BN128Pairing
-- **[pallet-evm-precompile-modexp](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm_precompile_modexp/struct.Modexp.html){target=\_blank}** - includes the modular exponentiation precompile
-- **[pallet-evm-precompile-sha3fips](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm_precompile_sha3fips/struct.Sha3FIPS256.html){target=\_blank}** -includes the standard SHA3 precompile
-- **[pallet-evm-precompile-dispatch](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm_precompile_dispatch/struct.Dispatch.html){target=\_blank}** - includes the dispatch precompile
-
-You can find an overview of most of these precompiles on the [Ethereum MainNet Precompiled Contracts](/builders/ethereum/precompiles/utility/eth-mainnet/){target=\_blank} page.
-
-## Native Interoperability {: #native-interoperability }
-
-While Substrate allows developers to create blockchains, one of its most significant advantages is that it supports integration for native interoperability through relay chains like Polkadot and Kusama.  
-
-A relay chain is a central chain that connects several blockchains, known as parachains. Each parachain is a distinct blockchain with its runtime and state, but all are connected to and secured by the relay chain. Once connected, parachains can communicate via [Cross-Consensus Messaging (XCM)](/builders/interoperability/xcm/overview/){target=_blank} to exchange information and conduct transactions in the same language, enabling a wide range of interoperable applications.  
-
-Moonbeam and Moonriver have established XCM connections with a large number of parachains. You can see a visualization of all XCM integrations in this [XCM Channel Viewer](https://dotsama-channels.vercel.app/#/){target=_blank}.
---- END CONTENT ---
-
-Doc-Content: https://docs.moonbeam.network/learn/platform/tokens/
---- BEGIN CONTENT ---
----
-title: Utility Tokens
-description: Each of the Moonbeam networks require a utility token to function. Glimmer (GLMR) for Moonbeam on Polkadot and Moonriver (MOVR) for Moonriver on Kusama.
-categories: Basics
----
-
-# Introduction
-
-As a decentralized smart contract platform, Moonbeam requires a utility token to function.  
-
-This token is central to the design of Moonbeam and cannot be removed without sacrificing essential functionality. The Moonbeam token uses include:
-
- - Supporting the gas metering of smart contract execution
- - Incentivizing collators and powering the mechanics around the creation of a decentralized node infrastructure on which the platform can run
- - Facilitating the on-chain governance mechanism, including proposing referenda, electing council members, voting, etc.
- - Paying for network transaction fees
-
-## Glimmer Token {: #glimmer-token }
-
-In the Moonbeam deployment on Polkadot MainNet, this token is called Glimmer, as in, “that smart contract call will cost 0.3 Glimmer.”  The token symbol is GLMR.
-
-You can find more information about Glimmer on the [Moonbeam Foundation](https://moonbeam.foundation/glimmer-token-tokenomics) website.
-
-## Moonriver Token {: #moonriver-token }
-
-In the Moonbeam deployment on Kusama (called Moonriver), this token is called Moonriver, as in, “that smart contract call will cost 0.003 Moonriver.”  The token symbol will be MOVR.
-
-You can find more information about Moonriver on the [Moonbeam Foundation](https://moonbeam.foundation/moonriver-token-tokenomics) website.
-
-## DEV Token {: #dev-token }
-
-In the Moonbeam TestNet (called Moonbase Alpha), the token is called DEV. This token can be acquired freely, as its only purpose is to drive development and testing on Moonbase Alpha.
-
-You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}.
---- END CONTENT ---
-
-Doc-Content: https://docs.moonbeam.network/learn/platform/vision/
---- BEGIN CONTENT ---
----
-title: The Moonbeam Vision | Multi-chain
-description: Moonbeam is designed to enable a multi-chain future, where users and assets can move freely across many specialized and heterogeneous chains.
-categories: Basics
----
-
-# Our Vision for Moonbeam
-
-We believe in a multi-chain future with many chains, and many users and assets on those chains. In this context, we have created Moonbeam: a smart contract platform that provides an Ethereum-compatible environment for building decentralized applications. Moonbeam was designed to serve these new kinds of assets and users that exist across two or more chains.
-
-Existing smart contract platforms are designed to service the users and assets on a single, specific chain.  By providing cross-chain smart contract functionality, Moonbeam allows developers to shift existing workloads and logic to Moonbeam and extend the reach of their applications to new users and assets on other chains.
-
-Moonbeam's cross-chain integration is accomplished by becoming a [parachain](/learn/platform/glossary/#parachains) on the Polkadot network.  The [Polkadot network](/learn/platform/glossary/#polkadot) provides integration and connectivity between parachains that are connected to the network and to other non-Polkadot-based chains, such as Ethereum and Bitcoin, via bridges.
-
-## Who Benefits From Moonbeam {: #who-benefits-from-moonbeam }
-
-There are three main audiences who can most benefit from Moonbeam's cross-chain functionality:
-
-### Existing Ethereum-Based Projects {: #existing-ethereum-based-projects }
-
-Projects that are struggling with cost and scalability challenges on Ethereum can use Moonbeam to:
-
- - Move portions of their existing workloads and state off of Ethereum Layer 1 with minimal required changes.  
- - Implement a hybrid approach, where applications live on both Ethereum and Moonbeam simultaneously.  
- - Extend their reach to the Polkadot network and other chains that are connected to Polkadot.  
-
-### Polkadot Ecosystem Projects {: #polkadot-ecosystem-projects }
-
-Ecosystem projects that need smart contract functionality can use Moonbeam to:  
-
- - Augment their existing parachains and parathreads.  
- - Add new functionality that is needed but not included on the main [Polkadot relay chain](/learn/platform/glossary/#relay-chain). For example, they could create a place where teams can crowdfund their projects, implement lockdrops, and process other, more complex financial transactions than are provided by base [Substrate](/learn/platform/glossary/#substrate) functionality.  
- - Leverage the mature and extensive Ethereum development toolchain.  
-
-### Developers of New DApps {: #developers-of-new-dapps }
-
-Individuals and teams that want to try building on Polkadot can use Moonbeam to:
-
- - Leverage the specialized functionality from Polkadot parachains while reaching users and assets on other chains.  
- - Compose functionality from Polkadot parachains by using Moonbeam as a lightweight integration layer that aggregates network services before presenting them to end users. Implementing a composed service using pre-built integrations on a smart contract platform will be a lot faster and easier (in many cases) than building a full Substrate runtime and performing the integrations yourself in the runtime.  
-
-## Key Features and Functionality {: #key-features-and-functionality }
-
-Moonbeam achieves these goals with the following key features:  
-
- - **Decentralized and Permissionless** , providing a base requirement for censorship resistance and support for many existing and future DApp use cases.  
- - **Contains a Full EVM Implementation** , enabling Solidity-based smart contracts to be migrated with minimal change and with expected execution results.  
- - **Implements the Web3 RPC API** so that existing DApp front-ends can be migrated with minimal change required, and so existing Ethereum-based tools, such as Hardhat, Remix, and MetaMask, can be used without modification against Moonbeam.  
- - **Compatible with the Substrate Ecosystem Toolset** , including block explorers, front-end development libraries, and wallets, allowing developers and users to use the right tool for what they are trying to accomplish.  
- - **Native Cross-Chain Integration** via the Polkadot network and via token bridges, which allows for token movement, state visibility, and message passing with Ethereum and other chains.  
- - **On-Chain Governance** to allow stakeholders to quickly and forklessly evolve the base protocol according to developer and community needs.  
-
-This unique combination of elements fills a strategic market gap, while allowing Moonbeam to address future developer needs as the Polkadot network grows over time.  Building your own chain with Substrate is powerful, but also comes with a number of additional responsibilities, such as learning and implementing the chain’s runtime in Rust, creating a token economy, and incentivizing a community of node operators.
-
-For many developers and projects, an Ethereum-compatible smart contract approach will be much simpler and faster to implement.  And by building these smart contracts on Moonbeam, developers can still integrate with other chains and get value from Polkadot-based network effects.
---- END CONTENT ---
-
-Doc-Content: https://docs.moonbeam.network/learn/platform/why-polkadot/
---- BEGIN CONTENT ---
----
-title: Why Polkadot
-description: Moonbeam is built on the Substrate framework and connected to the Polkadot network, adding speed and security to the platform.
-categories: Basics
----
-
-# Why We're Building on Polkadot
-
-After extensive research, we decided to build Moonbeam using the [Substrate development framework](/learn/platform/glossary/#substrate) and to deploy Moonbeam as a [parachain](/learn/platform/glossary/#parachains) on the [Polkadot network](/learn/platform/glossary/#polkadot).
-
-## Substrate Blockchain Framework {: #substrate-blockchain-framework }
-
-Substrate is a good technical fit for Moonbeam. By building on top of this framework, we can leverage the extensive functionality that Substrate includes out-of-the-box, rather than building it ourselves. This includes peer-to-peer networking, consensus mechanisms, governance functionality, an EVM implementation, and more.
-
-Overall, using Substrate will dramatically reduce the time and implementation effort needed to implement Moonbeam. Substrate allows a great degree of customization, which is necessary in order to achieve our Ethereum compatibility goals. And, by using Rust, we benefit from both safety guarantees and performance gains.
-
-## Polkadot Network and Ecosystem {: #polkadot-network-and-ecosystem }
-
-The Polkadot network is also a good fit for Moonbeam. As a parachain on Polkadot, Moonbeam will be able to directly integrate with — and move tokens between — any other parachains and parathreads on the network.
-
-We can also leverage any of the bridges that are independently built to connect non-Polkadot chains to Polkadot, including bridges to Ethereum. Polkadot’s interoperability model uniquely supports Moonbeam’s cross-chain integration goals and is a key enabling technology to support the Moonbeam vision.
-
-But perhaps just as important as the technical criteria above, we are impressed with the people in the Polkadot ecosystem. This includes individuals at Parity, the Web3 Foundation, and other projects in the ecosystem. We have built many valuable relationships and find the people to be both extremely talented and the kind of people we want to be around.
---- END CONTENT ---
-
 Doc-Content: https://docs.moonbeam.network/builders/ethereum/dev-env/openzeppelin/overview/
 --- BEGIN CONTENT ---
 ---
@@ -9743,7 +8402,7 @@ categories: Reference, Basics
 
 On Moonbeam, a precompiled contract is native Substrate code that has an Ethereum-style address and can be called using the Ethereum API, like any other smart contract. The precompiles allow you to call the Substrate runtime directly which is not normally accessible from the Ethereum side of Moonbeam.
 
-The Substrate code responsible for implementing precompiles can be found in the [EVM pallet](/learn/platform/technology/#evm-pallet){target=\_blank}. The EVM pallet includes the [standard precompiles found on Ethereum and some additional precompiles that are not specific to Ethereum](https://github.com/polkadot-evm/frontier/tree/master/frame/evm/precompile){target=\_blank}. It also provides the ability to create and execute custom precompiles through the generic [`Precompiles` trait](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm/trait.Precompile.html){target=\_blank}. There are several custom Moonbeam-specific precompiles that have been created, all of which can be found in the [Moonbeam codebase](https://github.com/moonbeam-foundation/moonbeam/tree/master/precompiles){target=\_blank}. It is important to highlight that the precompiles from this list with the `CallableByContract` check are not callable inside the contract constructor.
+The Substrate code responsible for implementing precompiles can be found in the [EVM pallet](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm/){target=\_blank}. The EVM pallet includes the [standard precompiles found on Ethereum and some additional precompiles that are not specific to Ethereum](https://github.com/polkadot-evm/frontier/tree/master/frame/evm/precompile){target=\_blank}. It also provides the ability to create and execute custom precompiles through the generic [`Precompiles` trait](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm/trait.Precompile.html){target=\_blank}. There are several custom Moonbeam-specific precompiles that have been created, all of which can be found in the [Moonbeam codebase](https://github.com/moonbeam-foundation/moonbeam/tree/master/precompiles){target=\_blank}. It is important to highlight that the precompiles from this list with the `CallableByContract` check are not callable inside the contract constructor.
 
 The Ethereum precompiled contracts contain complex functionality that is computationally intensive, such as hashing and encryption. The custom precompiled contracts on Moonbeam provide access to Substrate-based functionality such as staking, governance, XCM-related functions, and more.
 
@@ -10285,9 +8944,9 @@ Using Docker enables you to spin up a node in a matter of seconds. Once you have
     The tail end of the console log should look like this:
 
     <div id="termynal" data-termynal>
-  <span data-ty="input"><span class="file-path"></span>docker pull moonbeamfoundation/moonbeam:v0.48.0</span>
+  <span data-ty="input"><span class="file-path"></span>docker pull moonbeamfoundation/moonbeam:v0.49.0</span>
   <br>
-  <span data-ty>v0.48.0: Pulling from moonbeamfoundation/moonbeam
+  <span data-ty>v0.49.0: Pulling from moonbeamfoundation/moonbeam
     <br> b0a0cf830b12: Pull complete
     <br> fbff687640dd: Pull complete
     <br> 58ea427410e2: Pull complete
@@ -10296,8 +8955,8 @@ Using Docker enables you to spin up a node in a matter of seconds. Once you have
     <br> 128693ce218e: Pull complete
     <br> a3ac90b88463: Pull complete
     <br> Digest: sha256:86421aca2381265cd2e5283cb98705e24be0bc92a73937363f79d9d6e0d62088
-    <br> Status: Downloaded newer image for moonbeamfoundation/moonbeam:v0.48.0
-    <br> docker.io/moonbeamfoundation/moonbeam:v0.48.0
+    <br> Status: Downloaded newer image for moonbeamfoundation/moonbeam:v0.49.0
+    <br> docker.io/moonbeamfoundation/moonbeam:v0.49.0
   </span>
 </div>
 
@@ -10346,13 +9005,13 @@ If successful, you should see an output showing an idle state waiting for blocks
 
 <div id="termynal" data-termynal>
   <span data-ty="input"><span class="file-path"></span>docker run --rm --name moonbeam_development --network host \
-    <br> moonbeamfoundation/moonbeam:v0.48.0 \
+    <br> moonbeamfoundation/moonbeam:v0.49.0 \
     <br> --dev --rpc-external
   </span>
   <br>
   <span data-ty>CLI parameter `--execution` has no effect anymore and will be removed in the future!
     <br> 2025-07-10 09:04:26 Moonbeam Parachain Collator
-    <br> 2025-07-10 09:04:26 ✌️  version 0.48.0-d7df89e7161
+    <br> 2025-07-10 09:04:26 ✌️  version 0.49.0
     <br> 2025-07-10 09:04:26 ❤️  by PureStake, 2019-2025
     <br> 2025-07-10 09:04:26 📋 Chain specification: Moonbase Development Testnet
     <br> 2025-07-10 09:04:26 🏷  Node name: black-and-white-sticks-9174
@@ -10480,7 +9139,7 @@ You should see an output that looks like the following, showing an idle state wa
   <span data-ty="input"><span class="file-path"></span>./target/release/moonbeam --dev</span>
   <br>
   <span data-ty> 2025-07-10 09:04:26 Moonbeam Parachain Collator
-    <br> 2025-07-10 09:04:26 ✌️  version 0.48.0-d7df89e7161
+    <br> 2025-07-10 09:04:26 ✌️  version 0.49.0
     <br> 2025-07-10 09:04:26 ❤️  by PureStake, 2019-2025
     <br> 2025-07-10 09:04:26 📋 Chain specification: Moonbase Development Testnet
     <br> 2025-07-10 09:04:26 🏷  Node name: black-and-white-sticks-9174
@@ -10743,7 +9402,6 @@ If you're looking for your own endpoints suitable for production use, you can ch
     | UnitedBloc  |          <pre>```https://moonbeam.unitedbloc.com```</pre>          | 32 req/sec  |
     | RadiumBlock | <pre>```https://moonbeam.public.curie.radiumblock.co/http```</pre> | 200 req/sec |
     |    1RPC     |               <pre>```https://1rpc.io/glmr```</pre>                | 10k req/day |
-    |    Grove    |         <pre>```https://moonbeam.rpc.grove.city/v1/01fdb492```</pre>         | 5k req/day  |
 
 
 
@@ -10846,7 +9504,6 @@ If you're looking for your own endpoints suitable for production use, you can ch
       | OnFinality  |     <pre>```https://moonriver.api.onfinality.io/public```</pre>     | 40 req/sec  |
       | UnitedBloc  |          <pre>```https://moonriver.unitedbloc.com```</pre>          | 32 req/sec  |
       | RadiumBlock | <pre>```https://moonriver.public.curie.radiumblock.co/http```</pre> | 200 req/sec |
-      |    Grove    |        <pre>```https://moonriver.rpc.grove.city/v1/01fdb492```</pre>        | 5k req/day  |
 
 === "WSS"
     |  Provider   |                             RPC URL                             |   Limits    |
@@ -16342,6 +14999,7 @@ Not all runtime upgrades are released on each network, as sometimes after releas
 |                                 [3900](https://forum.moonbeam.network/t/runtime-rt3900-schedule/2262){target=\_blank}                                  | [12960126](https://moonbeam.subscan.io/block/12960126){target=\_blank} | [13423618](https://moonriver.subscan.io/block/13423618){target=\_blank} | [13744975](https://moonbase.subscan.io/block/13744975){target=\_blank} |
 | [3901](https://forum.moonbeam.network/t/proposal-mb133-authorize-upgrade-to-rt3901-whitelist-track/2350){target=\_blank} | [13428709](https://moonbeam.subscan.io/block/13428709){target=\_blank} |                                    -                                    |                                   -                                    |
 | [4000](https://forum.moonbeam.network/t/runtime-rt4000-schedule/2321){target=\_blank} | - | [14078615](https://moonriver.subscan.io/block/14078615){target=\_blank} | [14191989](https://moonbase.subscan.io/block/14191989){target=\_blank} |
+| [4001](https://forum.moonbeam.network/t/runtime-rt4000-4001-schedule/2321){target=\_blank} | [13654437](https://moonbeam.subscan.io/block/13654437){target=\_blank} | - | - |
 --- END CONTENT ---
 
 Doc-Content: https://docs.moonbeam.network/builders/ethereum/canonical-contracts/
@@ -16570,7 +15228,7 @@ categories: JSON-RPC APIs, Reference, Ethereum Toolkit
 
 ## Introduction {: #introduction }
 
-The Moonbeam team has collaborated closely with [Parity](https://www.parity.io){target=\_blank} on developing [Frontier](/learn/platform/technology/#frontier){target=\_blank}, an Ethereum compatibility layer for Substrate-based chains. This layer enables developers to run unmodified Ethereum dApps on Moonbeam seamlessly.
+The Moonbeam team has collaborated closely with [Parity](https://www.parity.io){target=\_blank} on developing [Frontier](https://polkadot-evm.github.io/frontier/){target=\_blank}, an Ethereum compatibility layer for Substrate-based chains. This layer enables developers to run unmodified Ethereum dApps on Moonbeam seamlessly.
 
 Nevertheless, not all Ethereum JSON-RPC methods are supported; some of those supported return default values (those related to Ethereum's PoW consensus mechanism in particular). This guide provides a comprehensive list of supported Ethereum JSON-RPC methods on Moonbeam. Developers can quickly reference this list to understand the available functionality for interfacing with Moonbeam's Ethereum-compatible blockchain.
 
@@ -16762,7 +15420,7 @@ categories: Reference, Basics
 
 On Moonbeam, a precompiled contract is native Substrate code that has an Ethereum-style address and can be called using the Ethereum API, like any other smart contract. The precompiles allow you to call the Substrate runtime directly which is not normally accessible from the Ethereum side of Moonbeam.
 
-The Substrate code responsible for implementing precompiles can be found in the [EVM pallet](/learn/platform/technology/#evm-pallet){target=\_blank}. The EVM pallet includes the [standard precompiles found on Ethereum and some additional precompiles that are not specific to Ethereum](https://github.com/polkadot-evm/frontier/tree/master/frame/evm/precompile){target=\_blank}. It also provides the ability to create and execute custom precompiles through the generic [`Precompiles` trait](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm/trait.Precompile.html){target=\_blank}. There are several custom Moonbeam-specific precompiles that have been created, all of which can be found in the [Moonbeam codebase](https://github.com/moonbeam-foundation/moonbeam/tree/master/precompiles){target=\_blank}. It is important to highlight that the precompiles from this list with the `CallableByContract` check are not callable inside the contract constructor.
+The Substrate code responsible for implementing precompiles can be found in the [EVM pallet](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm/){target=\_blank}. The EVM pallet includes the [standard precompiles found on Ethereum and some additional precompiles that are not specific to Ethereum](https://github.com/polkadot-evm/frontier/tree/master/frame/evm/precompile){target=\_blank}. It also provides the ability to create and execute custom precompiles through the generic [`Precompiles` trait](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm/trait.Precompile.html){target=\_blank}. There are several custom Moonbeam-specific precompiles that have been created, all of which can be found in the [Moonbeam codebase](https://github.com/moonbeam-foundation/moonbeam/tree/master/precompiles){target=\_blank}. It is important to highlight that the precompiles from this list with the `CallableByContract` check are not callable inside the contract constructor.
 
 The Ethereum precompiled contracts contain complex functionality that is computationally intensive, such as hashing and encryption. The custom precompiled contracts on Moonbeam provide access to Substrate-based functionality such as staking, governance, XCM-related functions, and more.
 
@@ -16966,7 +15624,6 @@ If you are looking for an API provider suitable for production use, you can chec
     | UnitedBloc  |          <pre>```https://moonbeam.unitedbloc.com```</pre>          | 32 req/sec  |
     | RadiumBlock | <pre>```https://moonbeam.public.curie.radiumblock.co/http```</pre> | 200 req/sec |
     |    1RPC     |               <pre>```https://1rpc.io/glmr```</pre>                | 10k req/day |
-    |    Grove    |         <pre>```https://moonbeam.rpc.grove.city/v1/01fdb492```</pre>         | 5k req/day  |
 
 
 
@@ -16986,7 +15643,6 @@ If you are looking for an API provider suitable for production use, you can chec
       | OnFinality  |     <pre>```https://moonriver.api.onfinality.io/public```</pre>     | 40 req/sec  |
       | UnitedBloc  |          <pre>```https://moonriver.unitedbloc.com```</pre>          | 32 req/sec  |
       | RadiumBlock | <pre>```https://moonriver.public.curie.radiumblock.co/http```</pre> | 200 req/sec |
-      |    Grove    |        <pre>```https://moonriver.rpc.grove.city/v1/01fdb492```</pre>        | 5k req/day  |
 
 === "WSS"
     |  Provider   |                             RPC URL                             |   Limits    |
@@ -17031,7 +15687,6 @@ You can create your own endpoint suitable for development or production use usin
 - [dRPC](#drpc)
 - [Dwellir](#dwellir)
 - [GetBlock](#getblock)
-- [Grove](#grove)
 - [OnFinality](#onfinality)
 - [UnitedBloc](#unitedbloc)
 
@@ -17095,19 +15750,6 @@ Creating a new API/add-on based endpoint is simple, all you have to do is:
 
 ![GetBlock](/images/builders/get-started/endpoints/endpoints-4.webp)
 
-### Grove {: #grove }
-
-[Grove](https://grove.city){target=_blank} is a decentralized RPC network that provides reliable Web3 infrastructure with enterprise-grade performance and security. Grove offers both free and paid tiers, with the free tier providing generous limits for development use, while paid plans offer higher throughput, dedicated support, and advanced features for production applications. Grove's decentralized approach ensures high availability and censorship resistance by distributing requests across multiple node operators. The network supports both JSON-RPC and WebSocket connections for real-time applications. To get started with Grove:
-
-1. Visit the [Grove Portal](https://portal.grove.city/){target=_blank} and sign up for an account
-2. From your dashboard, create a new application
-3. Copy your Moonbeam or Moonriver endpoints
-4. Start making requests to your custom Grove endpoint
-
-Grove provides detailed analytics, request monitoring, and flexible rate limiting to help you optimize your application's performance.
-
-![Grove](/images/builders/get-started/endpoints/endpoints-5.webp)
-
 ### OnFinality {: #onfinality }
 
 [OnFinality](https://onfinality.io/en){target=_blank} provides a free API key based endpoint for customers in place of a public endpoint. Additionally, OnFinality offers paid tiers of service that offer increased rate limits and higher performance than those offered by the free tier. You also receive more in depth analytics of the usage of your application.
@@ -17118,7 +15760,7 @@ To create a custom OnFinality endpoint, go to [OnFinality](https://onfinality.io
 2. Select the network from the dropdown
 3. Your custom API endpoint will be generated automatically
 
-![OnFinality](/images/builders/get-started/endpoints/endpoints-6.webp)
+![OnFinality](/images/builders/get-started/endpoints/endpoints-5.webp)
 
 ### UnitedBloc {: #unitedbloc }
 
