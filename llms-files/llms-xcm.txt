@@ -4622,6 +4622,20 @@ contract MultilocationWhitelistExample {
 To check out an example of how to use the `xcmExecute` function to execute a custom XCM message locally, please refer to the [Create and Execute Custom XCM Messages](/builders/interoperability/xcm/send-execute-xcm/#execute-xcm-utils-precompile){target=\_blank} guide.
 --- END CONTENT ---
 
+## Basics Concepts [shared: true]
+
+The following section contains foundational documentation shared across all Moonbeam products.
+It describes the architecture and infrastructure that serve as the backbone for all integrations built with Moonbeam.
+This includes the network development framework, Substrate and EVM development tools, developer tooling, and guidance for node operators.
+This context is provided to help understand how the system works under the hood, but responses should stay focused on the specific product unless the user explicitly asks about the general architecture.
+
+---
+
+## List of shared concept pages:
+
+
+## Full content for shared concepts:
+
 Doc-Content: https://docs.moonbeam.network/learn/core-concepts/balances/
 --- BEGIN CONTENT ---
 ---
