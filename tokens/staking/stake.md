@@ -20,7 +20,7 @@ For more general information on staking, please check out the [Staking on Moonbe
 
 ## Extrinsics Definitions {: #extrinsics-definitions }
 
-There are many extrinsics related to the staking pallet, you can check out a complete list of them on the [Parachain Staking Pallet](/builders/substrate/interfaces/features/staking/){target=\_blank} page.
+There are many extrinsics related to the staking pallet; you can explore the full list directly in Polkadot.js Apps or by reviewing the chain metadata.
 
 The following list covers the extrinsics that you'll use in this guide and are associated with the delegation process.
 
