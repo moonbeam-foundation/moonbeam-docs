@@ -187,7 +187,7 @@ Documentation: https://docs.moonbeam.network/
 [Run a Tracing Node](Node Operators and Collators): (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/node-operators/networks/tracing-node.md) (Learn how to leverage Geth's Debug and Txpool APIs, and OpenEthereum's Trace module to run a tracing node on Moonbeam.)
 [Connect Coinbase Wallet to Moonbeam](Tokens and Accounts): (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/tokens/connect/coinbase-wallet.md) (This guide walks you through how to configure the Coinbase Wallet extension and mobile app for Moonbeam and how to create a wallet and send funds on Moonbeam.)
 [Connect your Wallet to Moonbeam](No categories available.): (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/tokens/connect/index.md) (Learn about some of the supported wallets available for Moonbeam, and how to connect your wallet and use it to interact with Moonbeam networks.)
-[Ethereum App](Tokens and Accounts, Ethereum Toolkit): (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/tokens/connect/ledger/ethereum.md) (This guide walks you through how to use your Ledger hardware wallet to sign transactions in Moonbeam-based networks using the Ethereum app on Ledger Live.)
+[Ethereum App](Tokens and Accounts, Ethereum Toolkit): (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/tokens/connect/ledger.md) (This guide walks you through how to use your Ledger hardware wallet to sign transactions in Moonbeam-based networks using the Ethereum app on Ledger Live.)
 [Connect & Use Ledger](No categories available.): (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/tokens/connect/ledger/index.md) (Learn how to use your Ledger hardware wallet to sign transactions on Moonbeam networks using the native Moonbeam and Moonriver apps and the Ethereum app.)
 [Moonbeam App](Tokens and Accounts, Ethereum Toolkit): (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/tokens/connect/ledger/moonbeam.md) (This guide walks you through how to use your Ledger hardware wallet to sign transactions in Moonbeam using the native Moonbeam Ledger Live app.)
 [Using the Moonriver Ledger App](Tokens and Accounts, Ethereum Toolkit): (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/tokens/connect/ledger/moonriver.md) (This guide walks you through how to use your Ledger hardware wallet to sign transactions on Moonriver using the native Moonriver Ledger Live app.)
@@ -76385,4 +76385,3 @@ hide:
  - feedback
 ---
 --- END CONTENT ---
-
