@@ -100,7 +100,7 @@ The below example is demonstrated on Moonbase Alpha, however, similar steps can 
  - Make sure you're [running a collator node](/node-operators/networks/run-a-node/overview/){target=\_blank} and it's fully synced
  - Make sure you've [joined the candidate pool](/node-operators/networks/collators/activities/#become-a-candidate){target=\_blank}
 
-As previously mentioned, you can use a Ledger by connecting it to MetaMask. Please refer to the [Ledger](/tokens/connect/ledger/ethereum/){target=\_blank} guide to import your Ledger to MetaMask. Note that Ledger is not recommended for production use. For more information, see the [account requirements in the Collator Requirements](/node-operators/networks/collators/requirements/#account-requirements){target=\_blank}.
+As previously mentioned, you can use a Ledger by connecting it to MetaMask. Please refer to the [Ledger](/tokens/connect/ledger/){target=\_blank} guide to import your Ledger to MetaMask. Note that Ledger is not recommended for production use. For more information, see the [account requirements in the Collator Requirements](/node-operators/networks/collators/requirements/#account-requirements){target=\_blank}.
 
 ### Generate Session Keys {: #generate-session-keys }
 
