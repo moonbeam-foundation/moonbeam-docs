@@ -13,7 +13,6 @@ You are an AI developer assistant for Moonbeam (https://moonbeam.network/). Your
 - If unsure, respond with “Not specified in the documentation.
 
 ## List of doc pages:
-Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/learn/features/xchain-plans.md [type: learn]
 Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/interoperability/mrl.md [type: builders]
 Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/interoperability/xcm/core-concepts/instructions.md [type: builders]
 Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/interoperability/xcm/core-concepts/multilocations.md [type: builders]
@@ -30,95 +29,6 @@ Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/re
 Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/tutorials/interoperability/uniswapv2-swap-xcm.md [type: tutorials]
 
 ## Full content for each doc page
-
-Doc-Content: https://docs.moonbeam.network/learn/features/xchain-plans/
---- BEGIN CONTENT ---
----
-title: Cross-Chain Communication
-description: This guide covers the ways you can build cross-chain dApps with Moonbeam, including via XCM, cross consensus messaging, and GMP, general message passing.
-categories: Basics, XCM
----
-
-# Cross-Chain Communication Methods
-
-Moonbeam makes it easy for developers to build smart contracts that connect across chains, both within the Polkadot ecosystem and outside the Polkadot ecosystem. This page will provide an overview of the underlying protocols that enable cross-chain communication and how you can leverage them to build connected contracts. For step-by-step guides of how to put these principles into practice, be sure to check out the [interoperability tutorials](/tutorials/interoperability/){target=\_blank}.
-
-Two key terms that will come up frequently in this guide are XCM and GMP. [XCM](/builders/interoperability/xcm/){target=\_blank} refers to cross-consensus messaging, and it's Polkadot's native interoperability language that facilitates communication between Polkadot blockchains. You can read more about the [standardized XCM message format](https://docs.polkadot.com/develop/interoperability/intro-to-xcm/){target=\_blank} and [How to Get Started Building with XCM](/builders/interoperability/xcm/){target=\_blank}.
-
-[GMP](https://moonbeam.network/news/seamless-blockchain-interoperability-the-power-of-general-message-passing-gmp){target=\_blank}, or general message passing, refers to the sending and receiving of messages within decentralized blockchain networks. While XCM is a type of general message passing, GMP colloquially refers to cross-chain communication between Moonbeam and blockchains outside of Polkadot. Similarly, in this guide, XCM refers to cross-chain messaging within Polkadot, and GMP refers to cross-chain messaging between Moonbeam and other ecosystems outside of Polkadot.
-
-## Quick Reference {: #quick-reference }  
-
-=== "Comparison of XCM vs GMP"
-|     Specification     |                                                                       XCM                                                                        |                                                                                                                                                       GMP                                                                                                                                                        |
-|:---------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-|       **Scope**       |                                                      Polkadot and its connected parachains                                                       |                                                                                                                                    Any blockchain supported by a GMP provider                                                                                                                                    |
-|     **Provider**      |                                                                     Polkadot                                                                     | [Axelar](/builders/interoperability/protocols/axelar/){target=\_blank}, [Wormhole](/builders/interoperability/protocols/wormhole/){target=\_blank}, [LayerZero](/builders/interoperability/protocols/layerzero/){target=\_blank}, [Hyperlane](/builders/interoperability/protocols/hyperlane/){target=\_blank}, etc. |
-|  **Implementation**   |                               [XCM Virtual Machine](https://wiki.polkadot.com/learn/learn-xcvm/){target=\_blank}                               |                                                                                                                                                 Smart contracts                                                                                                                                                  |
-|     **Security**      |                                                            Polkadot's shared security                                                            |                                                                                                                                 Proprietary consensus determined by GMP provider                                                                                                                                 |
-|       **Fees**        | [Purchased with `BuyExecution` XCM instruction with supported asset](/builders/interoperability/xcm/core-concepts/weights-fees/){target=\_blank} |                                                                                                                    User sends value with transaction to pay for gas on the destination chain                                                                                                                     |
-| **Adding New Chains** |                                            Requires creation of XCM channels by both connected chains                                            |                                                                                                                                       Requires GMP provider to add support                                                                                                                                       |
-
-## XCM Transport Methods {: #xcm-transport-methods }  
-
-XCMP is the protocol that carries messages conforming to the XCM standard. The difference between the two is easy to remember with the added letter "P" for protocol. While XCM is the language that defines the format of the message to send, XCMP can be thought of as the pipes that enable the delivery of said messages.
-
-XCMP is comprised of channels that enable communication between connected blockchains. When a parachain launches on Polkadot, two XCM channels are established automatically to allow for communication between the Polkadot relay chain and the parachain itself. XCM channels are omnidirectional, so two channels must be established for bidirectional communication. 
-
-Polkadot parachains can optionally choose to establish additional XCM channels with other parachains. Establishing XCM channels with other chains is a double opt-in process, so the receiving chain must also agree to have the channel established. Establishing XCM channels with another parachain allows for the exchange of XCM messages, enabling the flow of cross-chain assets and remote contract calls, to name a few examples. 
-
-There are several different subcategories of XCM transport methods, including:
-
-### VMP {: #vmp } 
-
-VMP, or [Vertical Message Passing](https://wiki.polkadot.com/learn/learn-xcm-transport/#vmp-vertical-message-passing){target=\_blank}, refers to message passing between the relay chain and a parachain. Given that XCM channels are one-way, there are two types of message passing that comprise VMP, namely:  
-
-- **UMP** - Upward Message Passing refers to message passing from a parachain to the relay chain
-- **DMP** - Downward Message Passing refers to message passing from the relay chain to a parachain
-
-### HRMP {: #HRMP } 
-
-[Horizontal Relay-routed Message Passing](https://wiki.polkadot.com/learn/learn-xcm-transport/#hrmp-xcmp-lite){target=\_blank} (HRMP) is a temporary protocol that is currently being used while XCMP (Cross-Chain Message Passing) is still under development. HRMP serves as a placeholder and provides the same functionality and interface as XCMP. However, HRMP is more resource-intensive because it stores all messages within the Relay Chain's storage. 
-
-When opening XCM channels with other parachains today, those channels are using HRMP in place of the aforementioned XCMP. Once the implementation of XCMP is complete, the plan is to phase out HRMP and replace it with XCMP gradually. For more information about each one, be sure to check out [Polkadot's Guide to XCM Transport](https://wiki.polkadot.com/learn/learn-xcm-transport/){target=\_blank}.
-
-## General Message Passing {: #general-message-passing } 
-
-As you know, GMP colloquially refers to cross-chain communication between Moonbeam and other blockchains outside of Polkadot. General message passing is enabled by cross-chain protocols that specialize in cross-chain communication. Each GMP provider takes a slightly different approach, but conceptually, they are quite similar. There are different contracts and functions for each provider, but each GMP provider has the same end goal: to provide secure and reliable cross-chain communication.  
-
-### Happy Path of a Cross-Chain Message {: #happy-path-of-a-cross-chain-message } 
-
-At a high level, the happy path of a message sent via GMP is as follows. A user or developer will call a contract specific to the GMP protocol, sometimes referred to as a mailbox contract or a gateway contract. This call typically includes parameters like the destination chain, the destination contract address, and includes sufficient value to pay for the transaction on the destination chain. A GMP provider listens for specific events on the origin blockchain pertaining to their gateway or mailbox contracts that indicate that a user wants to send a cross-chain message using their protocol. The GMP provider will validate certain parameters, including whether or not sufficient value was provided to pay for gas on the destination chain. In fact, the GMP provider may have a decentralized network of many nodes checking the authenticity of the message and verifying parameters. The GMP provider will not validate the integrity of the contract call to be delivered on the destination chain. E.g., the GMP provider will happily deliver a valid, paid-for message that contains a smart contract call that reverts on arrival. Finally, if everything checks out according to the consensus mechanism of the GMP provider, the message will be delivered to the destination chain, triggering the respective contract call at the destination.
-
-![Happy Path of a cross chain GMP message](/images/learn/features/xchain-plans/xchain-plans-1.webp) 
-
-### GMP Providers Integrated with Moonbeam {: #gmp-providers-integrated-with-moonbeam } 
-A large number of GMP providers have integrated with Moonbeam, which is beneficial for several reasons. For one, it enables you to work with whichever GMP provider you prefer. Second, it means that Moonbeam is connected to a rapidly growing number of chains. Whenever a GMP provider integrated with Moonbeam adds support for another chain, Moonbeam is automatically now connected with that chain. GMP providers are constantly adding support for new chains, and it's exciting to see those new integrations benefit the Moonbeam community. Additionally, having a variety of GMP providers allows for redundancy and backup. GMP providers have occasional maintenance windows or downtime; thus, it may make sense to add support for multiple GMP providers to ensure consistent uptime. 
-
-A significant number of GMP providers have integrated with Moonbeam, offering multiple benefits. Firstly, this integration allows users the flexibility to choose their preferred GMP provider. Secondly, Moonbeam's connectivity is enhanced as it automatically links with any new chains that its GMP providers support. Given that GMP providers frequently expand their support to new chains, the continuous roll out of new chains is a promising ongoing benefit for the Moonbeam community. Additionally, the diversity of GMP providers ensures better reliability and backup options. Since GMP providers can occasionally experience downtime or scheduled maintenance, the ability to integrate with multiple GMP providers is an important benefit.
-
-The following GMP providers have integrated with Moonbeam: 
-
-- [Axelar](/builders/interoperability/protocols/axelar/){target=\_blank}
-- [Hyperlane](/builders/interoperability/protocols/hyperlane/){target=\_blank}
-- [LayerZero](/builders/interoperability/protocols/layerzero/){target=\_blank} 
-- [Wormhole](/builders/interoperability/protocols/wormhole/){target=\_blank}
-
-## Implementing Both XCM and GMP {: #implementing-both-xcm-and-gmp } 
-
-Building with XCM or GMP does not preclude building with the other. As they suit different use cases, a team may seek to utilize XCM to handle interoperability needs within Polkadot, and GMP to deliver cross-chain messages to and from blockchains outside of Polkadot. As an example, several DEXes on Moonbeam support the trading of tokens migrated to Moonbeam via XCM, such as xcDOT, and assets bridged from ecosystems outside of Polkadot, such as USDC via Wormhole. 
-
-### Moonbeam Routed Liquidity {: #moonbeam-routed-liquidity }
-
-[Moonbeam Routed Liquidity](/builders/interoperability/mrl/) (MRL) enables seamless liquidity between external blockchains connected to Moonbeam via Wormhole to Polkadot parachains connected to Moonbeam via XCM. This combination of GMP and XCM means that any ERC-20 token on a chain that Wormhole has integrated with can be routed through Moonbeam to a destination parachain (and back). A diagram of the happy path of a token transfer to a parachain via MRL is shown below, and you can find more information at the [MRL docs](/builders/interoperability/mrl/). 
-
-![Happy Path of an MRL token transfer](/images/learn/features/xchain-plans/xchain-plans-2.webp) 
-
-
-<div class="page-disclaimer">
-  The information presented herein has been provided by third parties and is made available solely for general information purposes. Moonbeam does not endorse any project listed and described on the Moonbeam Doc Website (https://docs.moonbeam.network/). Moonbeam Foundation does not warrant the accuracy, completeness or usefulness of this information. Any reliance you place on such information is strictly at your own risk. Moonbeam Foundation disclaims all liability and responsibility arising from any reliance placed on this information by you or by anyone who may be informed of any of its contents. All statements and/or opinions expressed in these materials are solely the responsibility of the person or entity providing those materials and do not necessarily represent the opinion of Moonbeam Foundation. The information should not be construed as professional or financial advice of any kind. Advice from a suitably qualified professional should always be sought in relation to any particular matter or circumstance. The information herein may link to or integrate with other websites operated or content provided by third parties, and such other websites may link to this website. Moonbeam Foundation has no control over any such other websites or their content and will have no liability arising out of or related to such websites or their content. The existence of any such link does not constitute an endorsement of such websites, the content of the websites, or the operators of the websites. These links are being provided to you only as a convenience and you release and hold Moonbeam Foundation harmless from any and all liability arising from your use of this information or the information provided by any third-party website or service.
-</div>
---- END CONTENT ---
 
 Doc-Content: https://docs.moonbeam.network/builders/interoperability/mrl/
 --- BEGIN CONTENT ---
@@ -5629,7 +5539,7 @@ Finality is deterministic in Ethereum's PoS consensus protocol and is achieved t
 
 ## Moonbeam Consensus and Finality {: #moonbeam-consensus-and-finality }
 
-In Polkadot, there are collators and validators. [Collators](https://wiki.polkadot.com/learn/learn-collator/){target=\_blank} maintain parachains (in this case, Moonbeam) by collecting transactions from users and producing state transition proofs for the relay chain [validators](https://wiki.polkadot.com/learn/learn-validator/){target=\_blank}. The collator set (nodes that produce blocks) is selected based on the [stake they have in the network](/learn/features/consensus/){target=\_blank}.
+In Polkadot, there are collators and validators. [Collators](https://wiki.polkadot.com/learn/learn-collator/){target=\_blank} maintain parachains (in this case, Moonbeam) by collecting transactions from users and producing state transition proofs for the relay chain [validators](https://wiki.polkadot.com/learn/learn-validator/){target=\_blank}. The collator set (nodes that produce blocks) is selected based on the stake they have in the network.
 
 For finality, Polkadot and Kusama rely on [GRANDPA](https://docs.polkadot.com/polkadot-protocol/architecture/polkadot-chain/pos-consensus/#finality-gadget-grandpa){target=\_blank}. GRANDPA provides deterministic finality for any given transaction (block). In other words, when a block or transaction is marked as final, it can't be reverted except via on-chain governance or forking. Moonbeam follows this deterministic finality.
 
@@ -5639,7 +5549,7 @@ In terms of consensus, Moonbeam is based on Delegated Proof-of-Stake, while Ethe
 
 With PoS on Ethereum, validators are selected to produce and validate blocks based on their own stake in the network. As long as a validator has placed a validator deposit, they can be selected to produce and validate blocks. However, as previously mentioned, the greater the stake in the network, the higher the chances a validator has to be selected to produce and validate blocks.
 
-On the other hand, with DPoS on Moonbeam, collators become eligible to produce blocks based on their own stake plus their delegated stake in the network. Any token holder can choose to delegate their stake to a collator candidate. The top collator candidates by stake, including delegations, join the active set. The number of candidates in the active set is subject to [governance](/learn/features/governance/){target=\_blank}. Once in the active set, collators are randomly selected to produce blocks using the [Nimbus Consensus Framework](/learn/features/consensus/){target=\_blank}. It is important to note that once a collator is in the active set, their total stake does not impact their chances of being selected to produce blocks.
+On the other hand, with DPoS on Moonbeam, collators become eligible to produce blocks based on their own stake plus their delegated stake in the network. Any token holder can choose to delegate their stake to a collator candidate. The top collator candidates by stake, including delegations, join the active set. The number of candidates in the active set is subject to [governance](/learn/features/governance/){target=\_blank}. Once in the active set, collators are randomly selected to produce blocks using the Nimbus Consensus Framework. It is important to note that once a collator is in the active set, their total stake does not impact their chances of being selected to produce blocks.
 
 In terms of finality, blocks on Ethereum can take quite a bit longer to finalize than on Moonbeam due to the checkpoint finality system it uses. In Ethereum, validators determine finality at checkpoint blocks, which are always the first block in an epoch. Since an epoch has 32 slots and each slot is 12 seconds, it'll take at least 384 seconds, or 6.4 minutes for a block to be finalized.
 
@@ -7340,97 +7250,6 @@ The diagram for this new configuration looks as follows.
 That is it, Bob only holds one private key that matches one address. He does not need to move balances between 2 different accounts and is able to access all the features with a single account and private key. We have standardized this single account to conform to the Ethereum-style H160 address and ECDSA key standards.
 --- END CONTENT ---
 
-Doc-Content: https://docs.moonbeam.network/learn/features/consensus/
---- BEGIN CONTENT ---
----
-title: Moonbeam's Nimbus Consensus Framework
-description: Learn about all the parts of Moonbeam's Nimbus consensus framework and how it works as part of Polkadot's shared security model.
-categories: Basics
----
-
-# Nimbus Parachain Consensus Framework
-
-## Introduction {: #introduction }
-
-Polkadot relies on a [hybrid consensus model](https://docs.polkadot.com/polkadot-protocol/architecture/polkadot-chain/pos-consensus/). In such a scheme, the block finality gadget and the block production mechanism are separate. Consequently, parachains only have to worry about producing blocks and rely on the relay chain to validate the state transitions.
-
-At a parachain level, block producers are called [collators](https://wiki.polkadot.com/learn/learn-collator/). They maintain parachains (such as Moonbeam) by collecting transactions from users and offering blocks to the relay chain [validators](https://wiki.polkadot.com/learn/learn-validator/).
-
-However, parachains might find the following problems they need to solve in a trustless and decentralized matter (if applicable):
-
- - Amongst all of the nodes in the network, which ones are allowed to author blocks?
- - If multiple nodes are allowed, will they be eligible at the same time? Only one? Maybe a few?
-
-Enter Nimbus. Nimbus is a framework for building slot-based consensus algorithms on [Cumulus](https://github.com/paritytech/polkadot-sdk/tree/master/cumulus)-based parachains. It strives to provide standard implementations for the logistical parts of such consensus engines and helpful traits for implementing the elements (filters) that researchers and developers want to customize. These filters can be customizable to define what a block authorship slot is and can be composed, so block authorship is restricted to a subset of collators in multiple steps.
-
-For example, Moonbeam uses a two-layer approach. The first layer comprises the parachain staking filter, which helps select an active collator pool among all collator candidates using a staked-based ranking. The second layer adds another filter which narrows down the number of collators to a subset for each slot.
-
-Notice that Nimbus can only answer which collator(s) are eligible to produce a parachain block in the next available slot. It is the [Cumulus](https://docs.polkadot.com/develop/parachains/#cumulus) consensus mechanism that marks this parachain block as best, and ultimately the [BABE](https://docs.polkadot.com/polkadot-protocol/architecture/polkadot-chain/pos-consensus/#babe) and [GRANDPA](https://docs.polkadot.com/polkadot-protocol/architecture/polkadot-chain/pos-consensus/#grandpa-finality-gadget) hybrid consensus model (of the relay chain) that will include this parachain block in the relay chain and finalize it. Once any relay chain forks are resolved at a relay chain level, that parachain block is deterministically finalized.
-
-The following two sections go over the filtering strategy currently used on Moonbeam.
-
-## Parachain Staking Filtering {: #parachain-staking-filtering }
-
-Collators can join the candidate pool by simply bonding some tokens via an extrinsic. Once in the pool, token holders can add to the candidate's stake via delegation (also referred to as staking), that is, at a parachain level.
-
-Parachain staking is the first of the two Nimbus filters applied to the candidate pool. It selects the top {{ networks.moonbase.staking.max_candidates }} candidates in terms of tokens staked in the network, which includes the candidate's bond and delegations from token holders. This filtered pool is called selected candidates, and selected candidates are renewed every round (which lasts {{ networks.moonbase.staking.round_blocks }} blocks). For a given round, the following diagram describes the parachain staking filtering:
-
-![Nimbus Parachain Staking Filter](/images/learn/features/consensus/consensus-1.webp)
-
-From this pool, another filter is applied to retrieve a subset of eligible candidates for the next block authoring slot.
-
-If you want to learn more about staking, visit our [staking documentation](/learn/features/staking/).
-
-## Fixed Size Subset Filtering {: #fixed-size-subset-filtering }
-
-Once the parachain staking filter is applied and the selected candidates are retrieved, a second filter is applied on a block by block basis and helps narrow down the selected candidates to a smaller number of eligible collators for the next block authoring slot.
-
-In broad terms, this second filter picks a pseudo-random subset of the previously selected candidates. The eligibility ratio, a tunable parameter, defines the size of this subset.
-
-A high eligibility ratio results in fewer chances for the network to skip a block production slot, as more collators will be eligible to propose a block for a specific slot. However, only a certain number of validators are assigned to a parachain, meaning that most of these blocks will not be backed by a validator. For those that are, a higher number of backed blocks means that it might take longer for the relay chain to solve any possible forks and return a finalized block. Moreover, this might create an unfair advantage for certain collators that might be able to get their proposed block faster to relay chain validators, securing a higher portion of block rewards (if any).
-
-A lower eligibility ratio might provide faster block finalization times and a fairer block production distribution amongst collators. However, if the eligible collators are not able to propose a block (for whatever reason), the network will skip a block, affecting its stability.
-
-Once the size of the subset is defined, collators are randomly selected using a source of entropy. Currently, an internal coin-flipping algorithm is implemented, but this will later be migrated to use [Verifiable random function](https://docs.polkadot.com/polkadot-protocol/parachain-basics/randomness/){target=\_blank}. Consequently, a new subset of eligible collators is selected for every relay chain block. For a given round and a given block `XYZ`, the following diagram describes the fixed-size subset filtering:
-
-![Nimbus Parachain Staking Filter](/images/learn/features/consensus/consensus-2.webp)
-
-## Why Nimbus? {: #why-nimbus }
-
-You might ask yourself: but why Nimbus? Initially, it was not envisioned when Moonbeam was being developed. As Moonbeam progressed, the necessity for a more customizable but straightforward parachain consensus mechanism became clear, as the available methods presented some drawbacks or technical limitations.
-
-<!-- In the [relay chain provided consensus](https://github.com/paritytech/cumulus/blob/master/client/consensus/relay-chain/src/lib.rs), each node sees itself as a collator and can propose a parachain candidate block. It is then up to the relay chain to solve any possible forks and finalize a block. 
-
-[AuRa](https://crates.io/crates/sc-consensus-aura) (short for authority-round) consensus mechanism is based on a known list of authorities that take turns to produce blocks in every slot. Each authority can propose only one block per slot and builds on top of the longest chain.-->
-
-With Nimbus, writing a parachain consensus engine is as easy as writing a pallet! This simplicity and flexibility is the main value it adds.
-
-Some technical benefits of Nimbus are considered in the following sections.
-
-### Weight and Extra Execution {: #weight-and-extra-execution }
-
-Nimbus puts the author-checking execution in a [Substrate pallet](https://docs.polkadot.com/develop/parachains/customize-parachain/overview/). At first glance, you might think this adds a higher execution load to a single block compared to doing this check off-chain. But consider this from a validator’s perspective
-
-The validators will also have to check the author. By putting the author-checking execution logic in a pallet, the execution time can be benchmarked and quantified with weights. If this execution time is not accounted for, there is the risk of a block exceeding the relay chain Wasm execution limit (currently 0.5 seconds).
-
-In practice, this check will be fast and will most likely not push execution time over the limit. But from a theoretical perspective, accounting for its weight is better for implementation purposes.
-
-### Reusability {: #reusability }
-
-Another benefit of moving the author-checking execution to a pallet, rather than a custom executor, is that one single executor can be reused for any consensus that can be expressed in the Nimbus framework. That is slot-based, signature-sealed algorithms.
-
-For example, the [relay-chain provided consensus](https://github.com/paritytech/polkadot-sdk/blob/master/cumulus/client/consensus/relay-chain/src/lib.rs), [AuRa](https://crates.io/crates/sc-consensus-aura) and [BABE](https://crates.io/crates/sc-consensus-babe) each have their own custom executor. With Nimbus, these consensus mechanisms can reuse the same executor. The power of reusability is evidenced by the Nimbus implementation of AuRa in less than 100 lines of code.
-
-### Hot-Swapping Consensus {: #hot-swapping-consensus }
-
-Teams building parachains may want to change, tune, or adjust their consensus algorithm from time to time. Without nimbus, swapping consensus would require a client upgrade and hard fork.
-
-With the Nimbus framework, writing a consensus engine is as easy as writing a
-[Substrate pallet](https://docs.polkadot.com/develop/parachains/customize-parachain/make-custom-pallet/). Consequently, swapping consensus is as easy as upgrading a pallet.
-
-Nonetheless, hot swapping is still bounded by consensus engines (filters) that fit within Nimbus, but it might be helpful for teams that are yet confident on what consensus they want to implement in the long run.
---- END CONTENT ---
-
 Doc-Content: https://docs.moonbeam.network/learn/features/eth-compatibility/
 --- BEGIN CONTENT ---
 ---
@@ -8256,138 +8075,6 @@ Note that this process has changed significantly from prior Treasury processes, 
 For more information, see [How to Propose a Treasury Spend](/tokens/governance/treasury-spend/#next-steps){target=\_blank}
 --- END CONTENT ---
 
-Doc-Content: https://docs.moonbeam.network/learn/features/xchain-plans/
---- BEGIN CONTENT ---
----
-title: Cross-Chain Communication
-description: This guide covers the ways you can build cross-chain dApps with Moonbeam, including via XCM, cross consensus messaging, and GMP, general message passing.
-categories: Basics, XCM
----
-
-# Cross-Chain Communication Methods
-
-Moonbeam makes it easy for developers to build smart contracts that connect across chains, both within the Polkadot ecosystem and outside the Polkadot ecosystem. This page will provide an overview of the underlying protocols that enable cross-chain communication and how you can leverage them to build connected contracts. For step-by-step guides of how to put these principles into practice, be sure to check out the [interoperability tutorials](/tutorials/interoperability/){target=\_blank}.
-
-Two key terms that will come up frequently in this guide are XCM and GMP. [XCM](/builders/interoperability/xcm/){target=\_blank} refers to cross-consensus messaging, and it's Polkadot's native interoperability language that facilitates communication between Polkadot blockchains. You can read more about the [standardized XCM message format](https://docs.polkadot.com/develop/interoperability/intro-to-xcm/){target=\_blank} and [How to Get Started Building with XCM](/builders/interoperability/xcm/){target=\_blank}.
-
-[GMP](https://moonbeam.network/news/seamless-blockchain-interoperability-the-power-of-general-message-passing-gmp){target=\_blank}, or general message passing, refers to the sending and receiving of messages within decentralized blockchain networks. While XCM is a type of general message passing, GMP colloquially refers to cross-chain communication between Moonbeam and blockchains outside of Polkadot. Similarly, in this guide, XCM refers to cross-chain messaging within Polkadot, and GMP refers to cross-chain messaging between Moonbeam and other ecosystems outside of Polkadot.
-
-## Quick Reference {: #quick-reference }  
-
-=== "Comparison of XCM vs GMP"
-|     Specification     |                                                                       XCM                                                                        |                                                                                                                                                       GMP                                                                                                                                                        |
-|:---------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-|       **Scope**       |                                                      Polkadot and its connected parachains                                                       |                                                                                                                                    Any blockchain supported by a GMP provider                                                                                                                                    |
-|     **Provider**      |                                                                     Polkadot                                                                     | [Axelar](/builders/interoperability/protocols/axelar/){target=\_blank}, [Wormhole](/builders/interoperability/protocols/wormhole/){target=\_blank}, [LayerZero](/builders/interoperability/protocols/layerzero/){target=\_blank}, [Hyperlane](/builders/interoperability/protocols/hyperlane/){target=\_blank}, etc. |
-|  **Implementation**   |                               [XCM Virtual Machine](https://wiki.polkadot.com/learn/learn-xcvm/){target=\_blank}                               |                                                                                                                                                 Smart contracts                                                                                                                                                  |
-|     **Security**      |                                                            Polkadot's shared security                                                            |                                                                                                                                 Proprietary consensus determined by GMP provider                                                                                                                                 |
-|       **Fees**        | [Purchased with `BuyExecution` XCM instruction with supported asset](/builders/interoperability/xcm/core-concepts/weights-fees/){target=\_blank} |                                                                                                                    User sends value with transaction to pay for gas on the destination chain                                                                                                                     |
-| **Adding New Chains** |                                            Requires creation of XCM channels by both connected chains                                            |                                                                                                                                       Requires GMP provider to add support                                                                                                                                       |
-
-## XCM Transport Methods {: #xcm-transport-methods }  
-
-XCMP is the protocol that carries messages conforming to the XCM standard. The difference between the two is easy to remember with the added letter "P" for protocol. While XCM is the language that defines the format of the message to send, XCMP can be thought of as the pipes that enable the delivery of said messages.
-
-XCMP is comprised of channels that enable communication between connected blockchains. When a parachain launches on Polkadot, two XCM channels are established automatically to allow for communication between the Polkadot relay chain and the parachain itself. XCM channels are omnidirectional, so two channels must be established for bidirectional communication. 
-
-Polkadot parachains can optionally choose to establish additional XCM channels with other parachains. Establishing XCM channels with other chains is a double opt-in process, so the receiving chain must also agree to have the channel established. Establishing XCM channels with another parachain allows for the exchange of XCM messages, enabling the flow of cross-chain assets and remote contract calls, to name a few examples. 
-
-There are several different subcategories of XCM transport methods, including:
-
-### VMP {: #vmp } 
-
-VMP, or [Vertical Message Passing](https://wiki.polkadot.com/learn/learn-xcm-transport/#vmp-vertical-message-passing){target=\_blank}, refers to message passing between the relay chain and a parachain. Given that XCM channels are one-way, there are two types of message passing that comprise VMP, namely:  
-
-- **UMP** - Upward Message Passing refers to message passing from a parachain to the relay chain
-- **DMP** - Downward Message Passing refers to message passing from the relay chain to a parachain
-
-### HRMP {: #HRMP } 
-
-[Horizontal Relay-routed Message Passing](https://wiki.polkadot.com/learn/learn-xcm-transport/#hrmp-xcmp-lite){target=\_blank} (HRMP) is a temporary protocol that is currently being used while XCMP (Cross-Chain Message Passing) is still under development. HRMP serves as a placeholder and provides the same functionality and interface as XCMP. However, HRMP is more resource-intensive because it stores all messages within the Relay Chain's storage. 
-
-When opening XCM channels with other parachains today, those channels are using HRMP in place of the aforementioned XCMP. Once the implementation of XCMP is complete, the plan is to phase out HRMP and replace it with XCMP gradually. For more information about each one, be sure to check out [Polkadot's Guide to XCM Transport](https://wiki.polkadot.com/learn/learn-xcm-transport/){target=\_blank}.
-
-## General Message Passing {: #general-message-passing } 
-
-As you know, GMP colloquially refers to cross-chain communication between Moonbeam and other blockchains outside of Polkadot. General message passing is enabled by cross-chain protocols that specialize in cross-chain communication. Each GMP provider takes a slightly different approach, but conceptually, they are quite similar. There are different contracts and functions for each provider, but each GMP provider has the same end goal: to provide secure and reliable cross-chain communication.  
-
-### Happy Path of a Cross-Chain Message {: #happy-path-of-a-cross-chain-message } 
-
-At a high level, the happy path of a message sent via GMP is as follows. A user or developer will call a contract specific to the GMP protocol, sometimes referred to as a mailbox contract or a gateway contract. This call typically includes parameters like the destination chain, the destination contract address, and includes sufficient value to pay for the transaction on the destination chain. A GMP provider listens for specific events on the origin blockchain pertaining to their gateway or mailbox contracts that indicate that a user wants to send a cross-chain message using their protocol. The GMP provider will validate certain parameters, including whether or not sufficient value was provided to pay for gas on the destination chain. In fact, the GMP provider may have a decentralized network of many nodes checking the authenticity of the message and verifying parameters. The GMP provider will not validate the integrity of the contract call to be delivered on the destination chain. E.g., the GMP provider will happily deliver a valid, paid-for message that contains a smart contract call that reverts on arrival. Finally, if everything checks out according to the consensus mechanism of the GMP provider, the message will be delivered to the destination chain, triggering the respective contract call at the destination.
-
-![Happy Path of a cross chain GMP message](/images/learn/features/xchain-plans/xchain-plans-1.webp) 
-
-### GMP Providers Integrated with Moonbeam {: #gmp-providers-integrated-with-moonbeam } 
-A large number of GMP providers have integrated with Moonbeam, which is beneficial for several reasons. For one, it enables you to work with whichever GMP provider you prefer. Second, it means that Moonbeam is connected to a rapidly growing number of chains. Whenever a GMP provider integrated with Moonbeam adds support for another chain, Moonbeam is automatically now connected with that chain. GMP providers are constantly adding support for new chains, and it's exciting to see those new integrations benefit the Moonbeam community. Additionally, having a variety of GMP providers allows for redundancy and backup. GMP providers have occasional maintenance windows or downtime; thus, it may make sense to add support for multiple GMP providers to ensure consistent uptime. 
-
-A significant number of GMP providers have integrated with Moonbeam, offering multiple benefits. Firstly, this integration allows users the flexibility to choose their preferred GMP provider. Secondly, Moonbeam's connectivity is enhanced as it automatically links with any new chains that its GMP providers support. Given that GMP providers frequently expand their support to new chains, the continuous roll out of new chains is a promising ongoing benefit for the Moonbeam community. Additionally, the diversity of GMP providers ensures better reliability and backup options. Since GMP providers can occasionally experience downtime or scheduled maintenance, the ability to integrate with multiple GMP providers is an important benefit.
-
-The following GMP providers have integrated with Moonbeam: 
-
-- [Axelar](/builders/interoperability/protocols/axelar/){target=\_blank}
-- [Hyperlane](/builders/interoperability/protocols/hyperlane/){target=\_blank}
-- [LayerZero](/builders/interoperability/protocols/layerzero/){target=\_blank} 
-- [Wormhole](/builders/interoperability/protocols/wormhole/){target=\_blank}
-
-## Implementing Both XCM and GMP {: #implementing-both-xcm-and-gmp } 
-
-Building with XCM or GMP does not preclude building with the other. As they suit different use cases, a team may seek to utilize XCM to handle interoperability needs within Polkadot, and GMP to deliver cross-chain messages to and from blockchains outside of Polkadot. As an example, several DEXes on Moonbeam support the trading of tokens migrated to Moonbeam via XCM, such as xcDOT, and assets bridged from ecosystems outside of Polkadot, such as USDC via Wormhole. 
-
-### Moonbeam Routed Liquidity {: #moonbeam-routed-liquidity }
-
-[Moonbeam Routed Liquidity](/builders/interoperability/mrl/) (MRL) enables seamless liquidity between external blockchains connected to Moonbeam via Wormhole to Polkadot parachains connected to Moonbeam via XCM. This combination of GMP and XCM means that any ERC-20 token on a chain that Wormhole has integrated with can be routed through Moonbeam to a destination parachain (and back). A diagram of the happy path of a token transfer to a parachain via MRL is shown below, and you can find more information at the [MRL docs](/builders/interoperability/mrl/). 
-
-![Happy Path of an MRL token transfer](/images/learn/features/xchain-plans/xchain-plans-2.webp) 
-
-
-<div class="page-disclaimer">
-  The information presented herein has been provided by third parties and is made available solely for general information purposes. Moonbeam does not endorse any project listed and described on the Moonbeam Doc Website (https://docs.moonbeam.network/). Moonbeam Foundation does not warrant the accuracy, completeness or usefulness of this information. Any reliance you place on such information is strictly at your own risk. Moonbeam Foundation disclaims all liability and responsibility arising from any reliance placed on this information by you or by anyone who may be informed of any of its contents. All statements and/or opinions expressed in these materials are solely the responsibility of the person or entity providing those materials and do not necessarily represent the opinion of Moonbeam Foundation. The information should not be construed as professional or financial advice of any kind. Advice from a suitably qualified professional should always be sought in relation to any particular matter or circumstance. The information herein may link to or integrate with other websites operated or content provided by third parties, and such other websites may link to this website. Moonbeam Foundation has no control over any such other websites or their content and will have no liability arising out of or related to such websites or their content. The existence of any such link does not constitute an endorsement of such websites, the content of the websites, or the operators of the websites. These links are being provided to you only as a convenience and you release and hold Moonbeam Foundation harmless from any and all liability arising from your use of this information or the information provided by any third-party website or service.
-</div>
---- END CONTENT ---
-
-Doc-Content: https://docs.moonbeam.network/learn/platform/code/
---- BEGIN CONTENT ---
----
-title: Moonbeam Source Code
-description: Moonbeam is an open source project in the Polkadot ecosystem, with publicly available and auditable source code.
-categories: Basics
----
-
-# Moonbeam Source Code
-
-Moonbeam is an open source project.  The main Moonbeam repo can be found here:
-
-[:fontawesome-brands-github: https://github.com/moonbeam-foundation/moonbeam](https://github.com/moonbeam-foundation/moonbeam){target=\_blank}
-
-Moonbeam is implemented using the Substrate framework. The source code for Substrate can be found here:
-
-[:fontawesome-brands-github: https://github.com/paritytech/substrate](https://github.com/paritytech/polkadot-sdk/tree/master/substrate){target=\_blank}
-
-We also work on Ethereum compatibility features along with engineers from Parity as part of the Frontier project. Source code for Frontier can be found here:
-
-[:fontawesome-brands-github: https://github.com/polkadot-evm/frontier](https://github.com/polkadot-evm/frontier){target=\_blank}
-
-If you are interested in contributing code to Moonbeam, please raise an issue or PR on the [Moonbeam GitHub repository](https://github.com/moonbeam-foundation/moonbeam){target=\_blank}
---- END CONTENT ---
-
-Doc-Content: https://docs.moonbeam.network/learn/platform/links/
---- BEGIN CONTENT ---
----
-title: Important Moonbeam Related Links
-description: If you're new to Moonbeam or the Polkadot network, here are some important links to review, including compatible Ethereum tools.
-categories: Basics
----
-
-# Links
-
- - **[Polkadot Docs](https://docs.polkadot.com/){target=\_blank}** - starting point for learning about the [Polkadot SDK](https://docs.polkadot.com/develop/parachains/intro-polkadot-sdk/){target=\_blank}, a Rust-based framework for developing blockchains. Moonbeam is developed using Substrate and uses many of the modules that come with it
- - **[Polkadot.com](https://polkadot.com){target=\_blank}** - learn about Polkadot, including the vision behind the network and how the system works, i.e., staking, governance, etc.
- - **[Polkadot-JS Apps](https://polkadot.js.org/apps){target=\_blank}** - a web-based interface for interacting with Substrate based nodes, including Moonbeam
- - **[Solidity Docs](https://solidity.readthedocs.io){target=\_blank}** - Solidity is the main smart contract programming language supported by Ethereum and Moonbeam.  The Solidity docs site is very comprehensive
- - **[Remix](https://remix.ethereum.org){target=\_blank}** - web-based IDE for Solidity smart contract development that is compatible with Moonbeam
- - **[Hardhat](https://hardhat.org){target=\_blank}** - development tools for Solidity, including debugging, testing, and automated deployment that is compatible with Moonbeam
---- END CONTENT ---
-
 Doc-Content: https://docs.moonbeam.network/learn/platform/networks/moonbase/
 --- BEGIN CONTENT ---
 ---
@@ -8662,7 +8349,7 @@ The smallest unit of Glimmer (GMLR), similarly to Ethereum, is a Wei. It takes 1
 
 ## Proof of Stake {: #proof-of-stake }
 
-The Moonriver network is a fully decentralized Delegated Proof of Stake network where users of the network can delegate collator candidates to produce blocks and earn rewards. It uses the [Nimbus framework](/learn/features/consensus/){target=\_blank} framework for parachain consensus. The number of candidates in the active set will be subject to governance. The active set will consist of the top candidates by stake, including delegations.
+Moonriver is a fully decentralized Delegated Proof of Stake network where users can delegate collator candidates to produce blocks and earn rewards. It uses the Nimbus framework for parachain consensus. The number of candidates in the active set will be subject to governance. The active set will consist of the top candidates by stake, including delegations.
 
 ## Limitations {: #limitations }
 
@@ -8800,7 +8487,7 @@ The smallest unit of Moonriver, similarly to Ethereum, is a Wei. It takes 10^18 
 
 ## Proof of Stake {: #proof-of-stake }
 
-The Moonriver network is a fully decentralized Delegated Proof of Stake network where users of the network can delegate collator candidates to produce blocks and earn rewards. It uses the [Nimbus framework](/learn/features/consensus/){target=\_blank} framework for parachain consensus. The number of candidates in the active set will be subject to governance. The active set will consist of the top candidates by stake, including delegations.
+The Moonriver network is a fully decentralized Delegated Proof of Stake network where users of the network can delegate collator candidates to produce blocks and earn rewards. It uses the Nimbus framework for parachain consensus. The number of candidates in the active set will be subject to governance. The active set will consist of the top candidates by stake, including delegations.
 
 ## Limitations {: #limitations }
 
@@ -11005,7 +10692,7 @@ Candidates will need a minimum amount of tokens bonded (self-bonded) to be consi
 
 Once a candidate is selected to be in the active set of collators, they are eligible to produce blocks.
 
-Moonbeam uses the [Nimbus Parachain Consensus Framework](/learn/features/consensus/){target=\_blank}. This provides a two-step filter to allocate candidates to the active set of collators, then assign collators to a block production slot:
+Moonbeam uses the Nimbus Parachain Consensus Framework. This provides a two-step filter to allocate candidates to the active set of collators, then assign collators to a block production slot:
 
  - The parachain staking filter selects the top candidates in terms of tokens staked in each network. For the exact number of top candidates per each network and the minimum bond amount, you can check out the [Minimum Collator Bond](/node-operators/networks/collators/requirements/#minimum-collator-bond){target=\_blank} section of our documentation. This filtered pool is called selected candidates (also known as the active set), which are rotated every round
  - The fixed size subset filter picks a pseudo-random subset of the previously selected candidates for each block production slot
@@ -11022,7 +10709,7 @@ For this purpose, we use [Discord](https://discord.com/invite/moonbeam){target=\
  - **collators** — this is the general collator discussion channel. We are proud of having an active and friendly collator community so if you have any questions, this is the place to ask. We will also ping collators here for any issues that require their attention.
  - **meet-the-collators** — in this channel you can introduce yourself to potential delegators
 
-After you join our Discord, feel free to DM *gilmouta* or *artkaseman* and introduce yourself. This will let us know who to contact if we see an issue with your node, and will also let us assign the relevant Discord collator role, enabling you to post in *meet-the-collators*.
+After you join Discord, feel free to DM *gilmouta* or *artkaseman* and introduce yourself. This will help the team identify who to contact if issues arise with your node and will enable assignment of the relevant Discord collator role, allowing you to post in *meet-the-collators*.
 --- END CONTENT ---
 
 Doc-Content: https://docs.moonbeam.network/node-operators/networks/run-a-node/overview/
@@ -14412,7 +14099,7 @@ There's a great deal of terminology that's specific to Polkadot, Substrate, and 
 
 ### Collators {: #collators }
 
-One of the key network participants needed to support parachains within the Polkadot Network.  In Moonbeam, collators are the nodes that are responsible for block production and for submitting produced blocks up to the Polkadot relay chain for finalization.
+One of the key network participants needed to support parachains within the Polkadot Network. In Moonbeam, collators are the nodes that are responsible for block production and for submitting produced blocks up to the Polkadot relay chain for finalization.
 
 ### Delegators {: #delegators }
 
@@ -14432,15 +14119,15 @@ A blockchain which has a slot and is connected to Polkadot. Parachains receive s
 
 ### Parathreads {: #parathreads }
 
-A blockchain which can connect to Polkadot.  Parathreads are able to interact with other members of the Polkadot network, but they bid for block finalization (in DOT) on a block-to-block basis. They compete with other parathreads for block finalization, meaning that the block with the highest bid is selected to be finalize in that round.
+A blockchain which can connect to Polkadot. Parathreads are able to interact with other members of the Polkadot network, but they bid for block finalization (in DOT) on a block-to-block basis. They compete with other parathreads for block finalization, meaning that the block with the highest bid is selected to be finalize in that round.
 
 ### Polkadot {: #polkadot }
 
-A network of connected blockchains that provides shared security and the ability to interact between chains.  Polkadot is built using the Substrate development framework.  Chains that connect to Polkadot are called parachains.
+A network of connected blockchains that provides shared security and the ability to interact between chains. Polkadot is built using the Substrate development framework. Chains that connect to Polkadot are called parachains.
 
 ### Relay Chain {: #relay-chain }
 
-The backbone blockchain supporting the Polkadot network.  Parachains connect to the relay chain and use it for shared security and message passing.  Validators on the relay chain help secure the parachains.
+The backbone blockchain supporting the Polkadot network. Parachains connect to the relay chain and use it for shared security and message passing. Validators on the relay chain help secure the parachains.
 
 ### Smart Contract {: #smart-contract }
 
@@ -14448,11 +14135,11 @@ A [smart contract](https://en.wikipedia.org/wiki/Smart_contract){target=\_blank}
 
 ### Substrate {: #substrate }
 
-A Rust-based blockchain development framework created by Parity Technologies based on their experience implementing multiple blockchain clients.  Substrate comes with many modules and functionalities that are needed when building a blockchain, including P2P networking, consensus mechanisms, staking, cryptocurrency, on-chain governance modules, and more.  It dramatically reduces the time and engineering effort required to implement a blockchain. Substrate is now part of the [Polkadot SDK](https://polkadot.com/platform/sdk/){target=\_blank}.
+A Rust-based blockchain development framework created by Parity Technologies based on their experience implementing multiple blockchain clients. Substrate comes with many modules and functionalities that are needed when building a blockchain, including P2P networking, consensus mechanisms, staking, cryptocurrency, on-chain governance modules, and more. It dramatically reduces the time and engineering effort required to implement a blockchain. Substrate is now part of the [Polkadot SDK](https://polkadot.com/platform/sdk/){target=\_blank}.
 
 ### Substrate Frame Pallets {: #substrate-frame-pallets }
 
-Substrate Frame Pallets are a collection of Rust-based modules, providing the functionality required for building a blockchain.  
+Substrate Frame Pallets are a collection of Rust-based modules, providing the functionality required for building a blockchain.
 
 ### Validators {: #validators }
 
