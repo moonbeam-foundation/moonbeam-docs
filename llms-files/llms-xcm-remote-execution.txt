@@ -6514,7 +6514,6 @@ If you're looking for your own endpoints suitable for production use, you can ch
     | UnitedBloc  |          <pre>```https://moonbeam.unitedbloc.com```</pre>          | 32 req/sec  |
     | RadiumBlock | <pre>```https://moonbeam.public.curie.radiumblock.co/http```</pre> | 200 req/sec |
     |    1RPC     |               <pre>```https://1rpc.io/glmr```</pre>                | 10k req/day |
-    |    Grove    |         <pre>```https://moonbeam.rpc.grove.city/v1/01fdb492```</pre>         | 5k req/day  |
 
 
 
@@ -6656,7 +6655,6 @@ If you're looking for your own endpoints suitable for production use, you can ch
       | OnFinality  |     <pre>```https://moonriver.api.onfinality.io/public```</pre>     | 40 req/sec  |
       | UnitedBloc  |          <pre>```https://moonriver.unitedbloc.com```</pre>          | 32 req/sec  |
       | RadiumBlock | <pre>```https://moonriver.public.curie.radiumblock.co/http```</pre> | 200 req/sec |
-      |    Grove    |        <pre>```https://moonriver.rpc.grove.city/v1/01fdb492```</pre>        | 5k req/day  |
 
 === "WSS"
     |  Provider   |                             RPC URL                             |   Limits    |
@@ -8073,7 +8071,6 @@ If you're looking for your own endpoints suitable for production use, you can ch
     | UnitedBloc  |          <pre>```https://moonbeam.unitedbloc.com```</pre>          | 32 req/sec  |
     | RadiumBlock | <pre>```https://moonbeam.public.curie.radiumblock.co/http```</pre> | 200 req/sec |
     |    1RPC     |               <pre>```https://1rpc.io/glmr```</pre>                | 10k req/day |
-    |    Grove    |         <pre>```https://moonbeam.rpc.grove.city/v1/01fdb492```</pre>         | 5k req/day  |
 
 
 
@@ -8176,7 +8173,6 @@ If you're looking for your own endpoints suitable for production use, you can ch
       | OnFinality  |     <pre>```https://moonriver.api.onfinality.io/public```</pre>     | 40 req/sec  |
       | UnitedBloc  |          <pre>```https://moonriver.unitedbloc.com```</pre>          | 32 req/sec  |
       | RadiumBlock | <pre>```https://moonriver.public.curie.radiumblock.co/http```</pre> | 200 req/sec |
-      |    Grove    |        <pre>```https://moonriver.rpc.grove.city/v1/01fdb492```</pre>        | 5k req/day  |
 
 === "WSS"
     |  Provider   |                             RPC URL                             |   Limits    |
@@ -14296,7 +14292,6 @@ If you are looking for an API provider suitable for production use, you can chec
     | UnitedBloc  |          <pre>```https://moonbeam.unitedbloc.com```</pre>          | 32 req/sec  |
     | RadiumBlock | <pre>```https://moonbeam.public.curie.radiumblock.co/http```</pre> | 200 req/sec |
     |    1RPC     |               <pre>```https://1rpc.io/glmr```</pre>                | 10k req/day |
-    |    Grove    |         <pre>```https://moonbeam.rpc.grove.city/v1/01fdb492```</pre>         | 5k req/day  |
 
 
 
@@ -14316,7 +14311,6 @@ If you are looking for an API provider suitable for production use, you can chec
       | OnFinality  |     <pre>```https://moonriver.api.onfinality.io/public```</pre>     | 40 req/sec  |
       | UnitedBloc  |          <pre>```https://moonriver.unitedbloc.com```</pre>          | 32 req/sec  |
       | RadiumBlock | <pre>```https://moonriver.public.curie.radiumblock.co/http```</pre> | 200 req/sec |
-      |    Grove    |        <pre>```https://moonriver.rpc.grove.city/v1/01fdb492```</pre>        | 5k req/day  |
 
 === "WSS"
     |  Provider   |                             RPC URL                             |   Limits    |
