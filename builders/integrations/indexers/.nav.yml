@@ -3,6 +3,5 @@ hide: false
 nav:
   - index.md
   - 'GoldRush API': 'covalent.md'
-  - 'Moralis': 'moralis.md'
   - 'SubQuery': 'subquery.md'
   - 'SQD': 'subsquid.md'
