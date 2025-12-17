@@ -1,6 +1,6 @@
 ---
 title: Features
-description: Discover Moonbeam's core features including Ethereum compatibility for seamless dApp deployment, staking mechanisms for network security, governance models for community decision-making, and cross-chain interoperability solutions.
+description: Explore Moonbeam's core features: Ethereum compatibility, cross-chain interoperability, staking, and community governance tools.
 dropdown_description: Explore core features
 template: subsection-index-page.html
 hide: 
