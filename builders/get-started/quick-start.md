@@ -94,7 +94,6 @@ As Moonbeam is a Substrate-based chain that is fully Ethereum-compatible, you ca
     |     [Web3.js](/builders/ethereum/libraries/web3js/){target=\_blank}      |     Library     |
     |      [Hardhat](/builders/ethereum/dev-env/hardhat/){target=\_blank}      | Dev Environment |
     |        [Remix](/builders/ethereum/dev-env/remix/){target=\_blank}        | Dev Environment |
-    | [Scaffold-Eth](/builders/ethereum/dev-env/scaffold-eth/){target=\_blank} | Dev Environment |
 
 === "Substrate"
 
