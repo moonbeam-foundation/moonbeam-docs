@@ -23,12 +23,6 @@ const pageMappings = {
   '/builders/ethereum/dev-env/openzeppelin/contracts/':
     '/cn/builders/dev-env/oz-contracts/',
   '/builders/integrations/': '/cn/builders/integrations/',
-  '/builders/integrations/wallets/metamask/':
-    '/cn/builders/integrations/metamask/',
-  '/builders/integrations/wallets/particle-network/':
-    '/cn/builders/integrations/particle-network/',
-  '/builders/integrations/wallets/walletconnect/':
-    '/cn/builders/integrations/walletconnect/',
   '/tutorials/': '/cn/tutorials/',
   '/tutorials/': '/cn/tutorials/eth-api/',
   '/tutorials/eth-api/how-to-build-a-dapp/':
