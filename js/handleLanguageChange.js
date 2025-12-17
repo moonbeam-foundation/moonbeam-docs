@@ -11,8 +11,6 @@ const pageMappings = {
   '/builders/ethereum/libraries/': '/cn/builders/libraries/',
   '/builders/ethereum/libraries/ethersjs/':
     '/cn/builders/libraries/ethersjs/',
-  '/builders/ethereum/libraries/ethersrs/':
-    '/cn/builders/libraries/ethersrs/',
   '/builders/ethereum/libraries/viem/': '/cn/builders/libraries/viem/',
   '/builders/ethereum/libraries/web3js/': '/cn/builders/libraries/web3js/',
   '/builders/ethereum/libraries/web3py/': '/cn/builders/libraries/web3py/',

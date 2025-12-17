@@ -1,7 +1,7 @@
 networks:
   development:
-    build_tag: v0.48.0
-    tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.48.0-4001-1f18
+    build_tag: v0.49.0
+    tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.49.0-4100-4d7b
     rpc_url: http://127.0.0.1:9944
     wss_url: ws://127.0.0.1:9944
     chain_id: 1281
@@ -16,9 +16,9 @@ networks:
     chain_spec: alphanet
     block_explorer: https://moonbase.moonscan.io/
     spec_version: runtime-4000
-    parachain_release_tag: v0.48.0 # Required format for link generation system
-    parachain_sha256sum: d824df3d6beed464585e98821e8fb746d5287bbee53da46c83325e045a300392
-    tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.48.0-4001-1f18
+    parachain_release_tag: v0.49.0 # Required format for link generation system
+    parachain_sha256sum: ed9242f6b3c3d07a4b1e7492af08f50046a7e9e60ff2eebc4625be2e665cbc2f
+    tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.49.0-4100-4d7b
     gas_block: 60,000,000
     gas_block_numbers_only: 60000000 # this should match gas_block, just with no commas
     gas_tx: 52,000,000 # EXTRINSIC_GAS_LIMIT in test/helpers/constants.ts
@@ -37,9 +37,6 @@ networks:
       cores: 8
       ram: 16
       hd: 2
-    thegraph:
-      lotto_contract: '0x44ddD2EC5BE2A7f3e4A465C21600bE8df644093f'
-      block_number: 132605
     razor:
       bridge_address: '0xC6F33c0F15FE5e3A51A019524ac43574cFF29EFB'
     supra:
@@ -350,7 +347,7 @@ networks:
       relay_data_verifier: '0x0000000000000000000000000000000000000819'
       xcm_interface: '0x000000000000000000000000000000000000081A'
     substrate_api_sidecar:
-      stable_version: 20.2.0
+      stable_version: 20.12.0
     tx_weight_to_gas_ratio: 25000
     orbiter:
       max_orbiters_per_collator: 8
@@ -377,9 +374,9 @@ networks:
     chain_id: 1285
     hex_chain_id: '0x505'
     node_directory: /var/lib/moonriver-data
-    parachain_release_tag: v0.48.0
-    parachain_sha256sum: d824df3d6beed464585e98821e8fb746d5287bbee53da46c83325e045a300392
-    tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.48.0-4001-1f18
+    parachain_release_tag: v0.49.0
+    parachain_sha256sum: ed9242f6b3c3d07a4b1e7492af08f50046a7e9e60ff2eebc4625be2e665cbc2f
+    tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.49.0-4100-4d7b
     chain_spec: moonriver
     block_explorer: https://moonriver.moonscan.io/
     spec_version: runtime-4000
@@ -712,7 +709,7 @@ networks:
       epoch_expiration: 10000
       epoch_fulfillment_delay: 2
     substrate_api_sidecar:
-      stable_version: 20.2.0
+      stable_version: 20.12.0
     tx_weight_to_gas_ratio: 25000
     orbiter:
       max_orbiters_per_collator: 3
@@ -730,12 +727,12 @@ networks:
     chain_id: 1284
     hex_chain_id: '0x504'
     node_directory: /var/lib/moonbeam-data
-    parachain_release_tag: v0.48.0
-    parachain_sha256sum: d824df3d6beed464585e98821e8fb746d5287bbee53da46c83325e045a300392
-    tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.48.0-4001-1f18
+    parachain_release_tag: v0.49.0
+    parachain_sha256sum: ed9242f6b3c3d07a4b1e7492af08f50046a7e9e60ff2eebc4625be2e665cbc2f
+    tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.49.0-4100-4d7b
     chain_spec: moonbeam
     block_explorer: https://moonscan.io
-    spec_version: runtime-3901
+    spec_version: runtime-4001
     binary_name: moonbeam
     min_gas_price: 31.25
     block_time: 6
@@ -1083,7 +1080,7 @@ networks:
       epoch_expiration: 10000
       epoch_fulfillment_delay: 2
     substrate_api_sidecar:
-      stable_version: 20.2.0
+      stable_version: 20.12.0
       tx_weight_to_gas_ratio: 25000
     orbiter:
       max_orbiters_per_collator: 6
