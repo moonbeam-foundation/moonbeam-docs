@@ -1,7 +1,6 @@
 title: Dev Environments
 nav:
   - index.md
-  - openzeppelin
   - 'Foundry': 'foundry.md'
   - 'Hardhat': 'hardhat.md'
   - 'Remix': 'remix.md'
