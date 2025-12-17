@@ -20,7 +20,7 @@ To get started developing on Moonbeam, it's important to be aware of the various
 |:-----------------------------------------------------------------------------------------:|:-------------:|:--------------------------------------------------------------------------------:|:-------------------:|:---------------------:|
 |           [Moonbeam](/builders/get-started/networks/moonbeam/){target=\_blank}            |    MainNet    |                 [Polkadot](https://polkadot.com){target=\_blank}                 |        GLMR         |          18           |
 |          [Moonriver](/builders/get-started/networks/moonriver/){target=\_blank}           |    MainNet    |                 [Kusama](https://kusama.network){target=\_blank}                 |        MOVR         |          18           |
-|        [Moonbase Alpha](/builders/get-started/networks/moonbase/){target=\_blank}         |    TestNet    | [Alphanet relay](/learn/platform/networks/moonbase/#relay-chain){target=\_blank} |         DEV         |          18           |
+|        [Moonbase Alpha](/builders/get-started/networks/moonbase/){target=\_blank}         |    TestNet    |                           Alphanet relay (Westend-based)                         |         DEV         |          18           |
 | [Moonbeam Development Node](/builders/get-started/networks/moonbeam-dev/){target=\_blank} | Local TestNet |                                       None                                       |         DEV         |          18           |
 
 !!! note
@@ -95,8 +95,6 @@ As Moonbeam is a Substrate-based chain that is fully Ethereum-compatible, you ca
     |      [Hardhat](/builders/ethereum/dev-env/hardhat/){target=\_blank}      | Dev Environment |
     |        [Remix](/builders/ethereum/dev-env/remix/){target=\_blank}        | Dev Environment |
     | [Scaffold-Eth](/builders/ethereum/dev-env/scaffold-eth/){target=\_blank} | Dev Environment |
-    |     [thirdweb](/builders/ethereum/dev-env/thirdweb/){target=\_blank}     | Dev Environment |
-    | [Waffle & Mars](/builders/ethereum/dev-env/waffle-mars/){target=\_blank} | Dev Environment |
 
 === "Substrate"
 
@@ -111,7 +109,6 @@ As Moonbeam is a Substrate-based chain that is fully Ethereum-compatible, you ca
     |                              Tool                               |      Type       |
     |:---------------------------------------------------------------:|:---------------:|
     | [Web3.py](/builders/ethereum/libraries/web3py/){target=\_blank} |     Library     |
-    |     [Ape](/builders/ethereum/dev-env/ape/){target=\_blank}      | Dev Environment |
 
 === "Substrate"
 

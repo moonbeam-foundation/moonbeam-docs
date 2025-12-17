@@ -19,14 +19,7 @@ const pageMappings = {
   '/builders/ethereum/dev-env/foundry/': '/cn/builders/dev-env/foundry/',
   '/builders/ethereum/dev-env/remix/': '/cn/builders/dev-env/remix/',
   '/builders/ethereum/dev-env/tenderly/': '/cn/builders/dev-env/tenderly/',
-  '/builders/ethereum/dev-env/thirdweb/': '/cn/builders/dev-env/thirdweb/',
   '/builders/integrations/': '/cn/builders/integrations/',
-  '/builders/integrations/wallets/metamask/':
-    '/cn/builders/integrations/metamask/',
-  '/builders/integrations/wallets/particle-network/':
-    '/cn/builders/integrations/particle-network/',
-  '/builders/integrations/wallets/walletconnect/':
-    '/cn/builders/integrations/walletconnect/',
   '/tutorials/': '/cn/tutorials/',
   '/tutorials/': '/cn/tutorials/eth-api/',
   '/tutorials/eth-api/how-to-build-a-dapp/':
