@@ -133,14 +133,14 @@ Documentation: https://docs.moonbeam.network/
 [Unified Accounts](Basics): (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/learn/core-concepts/unified-accounts.md) (Moonbeam replaced the default Substrate account system with native support for the Ethereum-based H160 accounts and ECDSA keys. Find out more information!)
 [List your Dapp on the Moonbeam DApp Directory](Reference): (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/learn/dapp-directory.md) (Follow this tutorial to learn how to list your Moonbeam or Moonriver project or update a current listing on the Moonbeam Foundation DApp Directory.)
 [Ethereum Compatibility](Basics): (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/learn/features/eth-compatibility.md) (Transitioning from Ethereum to Moonbeam? Here's a brief overview of the key components and key differences of Moonbeam's Ethereum compatibility.)
+[Glossary](Reference): (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/learn/features/glossary.md) (We've compiled a glossary of terms related to Polkadot that'll make it easier to learn more about the ecosystem.)
 [Governance](Governance, Basics): (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/learn/features/governance.md) (As a Polkadot parachain, Moonbeam uses an on-chain governance system, allowing for a stake-weighted vote on public referenda.)
-[Untitled](No categories available.): (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/learn/features/index.md) (No description available.)
+[Features](No categories available.): (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/learn/features/index.md) (Explore Moonbeam's core features: Ethereum compatibility, cross-chain interoperability, staking, and community governance tools.)
 [Randomness](Basics): (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/learn/features/randomness.md) (Learn about the sources of VRF randomness on Moonbeam, the request and fulfillment process, and some security considerations when using on-chain randomness.)
 [Staking](Basics, Staking): (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/learn/features/staking.md) (Moonbeam provides staking features where token holders delegate collator candidates with their tokens and earn rewards.)
 [Treasury](Basics): (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/learn/features/treasury.md) (Moonbeam has an on-chain Treasury controlled by Treasury Council members, enabling stakeholders to submit proposals to further the network.)
 [Learn About Moonbeam](No categories available.): (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/learn/index.md) (Learn all about Moonbeam, including the basics about the Ethereum-compatible smart contract platform and its compelling features.)
-[Glossary](Reference): (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/learn/features/glossary.md) (We've compiled a glossary of terms related to Polkadot that'll make it easier to learn more about the ecosystem.)
-[Smart Contract Platform](No categories available.): (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/learn/platform/index.md) (Learn about the Moonbeam smart contract platform, including the Moonbeam networks, source code, key resources, and glossary terms.)
+[Smart Contract Platform](No categories available.): (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/learn/platform/index.md) (Learn about the Moonbeam smart contract platform, including the Moonbeam networks, source code, and key resources.)
 [Node Operators & Collators](No categories available.): (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/node-operators/index.md) (Learn how to become a node operator on Moonbeam, including running a Moonbeam full node or collator node, indexer nodes, and oracle nodes.)
 [Collator Account Management](Node Operators and Collators): (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/node-operators/networks/collators/account-management.md) (Learn how to manage your collator account, including generating session keys, mapping Nimbus IDs, setting an identity, and creating proxy accounts.)
 [Moonbeam Collator Activities](Node Operators and Collators): (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/node-operators/networks/collators/activities.md) (Instructions on how to dive in and learn about the related activities for becoming and maintaining a collator node in the Moonbeam Network.)
@@ -43611,6 +43611,71 @@ Learn more:
 - [Calculating transaction fees on Moonbeam](/learn/core-concepts/tx-fees/){target=\_blank}
 --- END CONTENT ---
 
+Doc-Content: https://docs.moonbeam.network/learn/features/glossary/
+--- BEGIN CONTENT ---
+---
+title: Glossary
+description: We've compiled a glossary of terms related to Polkadot that'll make it easier to learn more about the ecosystem.
+categories: Reference
+---
+
+# Glossary
+
+There's a great deal of terminology that's specific to Polkadot, Substrate, and the emerging Parity/Web3 ecosystem. We've compiled a list of terms we think you'll want to know as you review the Moonbeam documentation, plans, and tutorials.
+
+### Collators {: #collators }
+
+One of the key network participants needed to support parachains within the Polkadot Network. In Moonbeam, collators are the nodes that are responsible for block production and for submitting produced blocks up to the Polkadot relay chain for finalization.
+
+### Delegators {: #delegators }
+
+Moonbeam token holders who stake tokens, vouching for specific collator candidates on the parachain. Any user that holds a minimum amount of tokens as [free balance](https://wiki.polkadot.com/learn/learn-accounts/#balance-types#balance-types){target=\_blank} can become a delegator by staking their tokens.
+
+### Nominators {: #nominators }
+
+Relay chain token holders who select to "back" a validator. They can receive part of the validator's reward, but are subject to slashing of their staked tokens in case the validator misbehaves. A nominator can back up to 16 validators, and their bond is fully distributed between the backed validators that were selected for the validator set.
+
+### Nominated Proof of Stake {: #nominated-proof-of-stake }
+
+The mechanism used by Polkadot for selecting its block validator set to maximize chain security. At its core, it is a Proof-of-Stake system (PoS) in which nominators back validators. The latter with the highest backing are selected to be part of the validator set for a session. The stake of a validator is slashed in case of misbehavior. Thus, nominators are expected to do due diligence on the validators they nominate.
+
+### Parachains {: #parachains }
+
+A blockchain which has a slot and is connected to Polkadot. Parachains receive shared security from Polkadot and the ability to interact with other parachains on the Polkadot network. They must lock DOT, the native relay chain token, to secure a slot for a specific period (up two years).
+
+### Parathreads {: #parathreads }
+
+A blockchain which can connect to Polkadot. Parathreads are able to interact with other members of the Polkadot network, but they bid for block finalization (in DOT) on a block-to-block basis. They compete with other parathreads for block finalization, meaning that the block with the highest bid is selected to be finalize in that round.
+
+### Polkadot {: #polkadot }
+
+A network of connected blockchains that provides shared security and the ability to interact between chains. Polkadot is built using the Substrate development framework. Chains that connect to Polkadot are called parachains.
+
+### Relay Chain {: #relay-chain }
+
+The backbone blockchain supporting the Polkadot network. Parachains connect to the relay chain and use it for shared security and message passing. Validators on the relay chain help secure the parachains.
+
+### Smart Contract {: #smart-contract }
+
+A [smart contract](https://en.wikipedia.org/wiki/Smart_contract){target=\_blank} is a computer program or a transaction protocol that is intended to automatically execute, control, or document legally relevant events and actions according to the terms of a contract or an agreement. Smart contracts intend to reduce the need for trusted intermediators, arbitrations, and enforcement costs, as well as reduce fraud losses and malicious and accidental exceptions.
+
+### Substrate {: #substrate }
+
+A Rust-based blockchain development framework created by Parity Technologies based on their experience implementing multiple blockchain clients. Substrate comes with many modules and functionalities that are needed when building a blockchain, including P2P networking, consensus mechanisms, staking, cryptocurrency, on-chain governance modules, and more. It dramatically reduces the time and engineering effort required to implement a blockchain. Substrate is now part of the [Polkadot SDK](https://polkadot.com/platform/sdk/){target=\_blank}.
+
+### Substrate Frame Pallets {: #substrate-frame-pallets }
+
+Substrate Frame Pallets are a collection of Rust-based modules, providing the functionality required for building a blockchain.
+
+### Validators {: #validators }
+
+A node that secures the Polkadot relay chain by staking DOT in the network, which is slashed if they misbehave. They finalize blocks from collators on parachains and also participate on consensus for the next relay chain block with other validators.
+
+### WebAssembly/Wasm {: #webassemblywasm }
+
+WebAssembly is an open standard that defines a portable binary code format. It is supported by different programming languages, compilers, and browsers.
+--- END CONTENT ---
+
 Doc-Content: https://docs.moonbeam.network/learn/features/governance/
 --- BEGIN CONTENT ---
 ---
@@ -43949,7 +44014,7 @@ Doc-Content: https://docs.moonbeam.network/learn/features/
 --- BEGIN CONTENT ---
 ---
 title: Features
-description: Explore Moonbeam's core features: Ethereum compatibility, cross-chain interoperability, staking, and community governance tools.
+description: "Explore Moonbeam's core features: Ethereum compatibility, cross-chain interoperability, staking, and community governance tools."
 dropdown_description: Explore core features
 template: subsection-index-page.html
 hide: 
@@ -44336,76 +44401,11 @@ hide:
 ---
 --- END CONTENT ---
 
-Doc-Content: https://docs.moonbeam.network/learn/features/glossary/
---- BEGIN CONTENT ---
----
-title: Glossary
-description: We've compiled a glossary of terms related to Polkadot that'll make it easier to learn more about the ecosystem.
-categories: Reference
----
-
-# Glossary
-
-There's a great deal of terminology that's specific to Polkadot, Substrate, and the emerging Parity/Web3 ecosystem. We've compiled a list of terms we think you'll want to know as you review the Moonbeam documentation, plans, and tutorials.
-
-### Collators {: #collators }
-
-One of the key network participants needed to support parachains within the Polkadot Network. In Moonbeam, collators are the nodes that are responsible for block production and for submitting produced blocks up to the Polkadot relay chain for finalization.
-
-### Delegators {: #delegators }
-
-Moonbeam token holders who stake tokens, vouching for specific collator candidates on the parachain. Any user that holds a minimum amount of tokens as [free balance](https://wiki.polkadot.com/learn/learn-accounts/#balance-types#balance-types){target=\_blank} can become a delegator by staking their tokens.
-
-### Nominators {: #nominators }
-
-Relay chain token holders who select to "back" a validator. They can receive part of the validator's reward, but are subject to slashing of their staked tokens in case the validator misbehaves. A nominator can back up to 16 validators, and their bond is fully distributed between the backed validators that were selected for the validator set.
-
-### Nominated Proof of Stake {: #nominated-proof-of-stake }
-
-The mechanism used by Polkadot for selecting its block validator set to maximize chain security. At its core, it is a Proof-of-Stake system (PoS) in which nominators back validators. The latter with the highest backing are selected to be part of the validator set for a session. The stake of a validator is slashed in case of misbehavior. Thus, nominators are expected to do due diligence on the validators they nominate.
-
-### Parachains {: #parachains }
-
-A blockchain which has a slot and is connected to Polkadot. Parachains receive shared security from Polkadot and the ability to interact with other parachains on the Polkadot network. They must lock DOT, the native relay chain token, to secure a slot for a specific period (up two years).
-
-### Parathreads {: #parathreads }
-
-A blockchain which can connect to Polkadot. Parathreads are able to interact with other members of the Polkadot network, but they bid for block finalization (in DOT) on a block-to-block basis. They compete with other parathreads for block finalization, meaning that the block with the highest bid is selected to be finalize in that round.
-
-### Polkadot {: #polkadot }
-
-A network of connected blockchains that provides shared security and the ability to interact between chains. Polkadot is built using the Substrate development framework. Chains that connect to Polkadot are called parachains.
-
-### Relay Chain {: #relay-chain }
-
-The backbone blockchain supporting the Polkadot network. Parachains connect to the relay chain and use it for shared security and message passing. Validators on the relay chain help secure the parachains.
-
-### Smart Contract {: #smart-contract }
-
-A [smart contract](https://en.wikipedia.org/wiki/Smart_contract){target=\_blank} is a computer program or a transaction protocol that is intended to automatically execute, control, or document legally relevant events and actions according to the terms of a contract or an agreement. Smart contracts intend to reduce the need for trusted intermediators, arbitrations, and enforcement costs, as well as reduce fraud losses and malicious and accidental exceptions.
-
-### Substrate {: #substrate }
-
-A Rust-based blockchain development framework created by Parity Technologies based on their experience implementing multiple blockchain clients. Substrate comes with many modules and functionalities that are needed when building a blockchain, including P2P networking, consensus mechanisms, staking, cryptocurrency, on-chain governance modules, and more. It dramatically reduces the time and engineering effort required to implement a blockchain. Substrate is now part of the [Polkadot SDK](https://polkadot.com/platform/sdk/){target=\_blank}.
-
-### Substrate Frame Pallets {: #substrate-frame-pallets }
-
-Substrate Frame Pallets are a collection of Rust-based modules, providing the functionality required for building a blockchain.
-
-### Validators {: #validators }
-
-A node that secures the Polkadot relay chain by staking DOT in the network, which is slashed if they misbehave. They finalize blocks from collators on parachains and also participate on consensus for the next relay chain block with other validators.
-
-### WebAssembly/Wasm {: #webassemblywasm }
-
-WebAssembly is an open standard that defines a portable binary code format. It is supported by different programming languages, compilers, and browsers.
---- END CONTENT ---
-
 Doc-Content: https://docs.moonbeam.network/learn/platform/
 --- BEGIN CONTENT ---
 ---
 title: Smart Contract Platform
-description: Learn about the Moonbeam smart contract platform, including the Moonbeam networks, source code, key resources, and glossary terms.
+description: Learn about the Moonbeam smart contract platform, including the Moonbeam networks, source code, and key resources.
 dropdown_description: Dive into underlying technology and design aspects
 template: subsection-index-page.html
 hide: 
