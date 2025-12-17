@@ -198,7 +198,7 @@ Note that as of late 2024, the X-Tokens precompile now uses the Polkadot XCM pal
 
 As an example, a brief overview of the entire process of sending MRL tokens from a parachain back through Wormhole to a destination chain is as follows:
 
-1. Send a batch transaction using the `batchAll` extrinsic of the [Utility Pallet](/builders/substrate/interfaces/utility/utility/){target=\_blank} that contains the following two calls:
+1. Send a batch transaction using the `batchAll` extrinsic of the Utility pallet that contains the following two calls.
     - **`xTokens.transferMultiassets`** - sends xcGLMR and the local XC-20 to the user’s [Computed Origin account](#calculate-computed-origin-account). The Computed Origin account is a keyless account on Moonbeam that an account on another parachain has control of via XCM
     - **`polkadotXcm.send`** - with the `Transact` instruction. Sends a [remote EVM call via XCM](/builders/interoperability/xcm/remote-execution/remote-evm-calls/){target=\_blank} to the Batch Precompile on Moonbeam, which batches the following two calls into a single remote EVM transaction using the `ethereumXcm.transact` extrinsic:
         - **`approve`** (of the local XC-20 contract) - approves the Wormhole relayer to transfer the local XC-20
@@ -4641,7 +4641,7 @@ _by Kevin Neilson_
 
 In this tutorial, we’ll stake DEV tokens remotely by sending XCM instructions from an account on the Moonbase relay chain (equivalent to the Polkadot relay chain). This tutorial assumes a basic familiarity with [XCM](/builders/interoperability/xcm/overview/){target=\_blank} and [Remote Execution via XCM](/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-pallet/){target=\_blank}. You don’t have to be an expert on these topics but you may find it helpful to have some XCM knowledge as background.
 
-There are actually two possible approaches for staking on Moonbeam remotely via XCM. We could send a [remote EVM call](/builders/interoperability/xcm/remote-execution/remote-evm-calls/){target=\_blank} that calls the [staking precompile](/builders/ethereum/precompiles/features/staking/){target=\_blank}, or we could use XCM to call the [parachain staking pallet](/builders/substrate/interfaces/features/staking/){target=\_blank} directly without interacting with the EVM. For this tutorial, we’ll be taking the latter approach and interacting with the parachain staking pallet directly.
+There are actually two possible approaches for staking on Moonbeam remotely via XCM. We could send a [remote EVM call](/builders/interoperability/xcm/remote-execution/remote-evm-calls/){target=\_blank} that calls the [staking precompile](/builders/ethereum/precompiles/features/staking/){target=\_blank}, or we could use XCM to call the parachain staking pallet directly without interacting with the EVM. For this tutorial, we’ll be taking the latter approach and interacting with the parachain staking pallet directly.
 
 **Note that there are still limitations in what you can remotely execute through XCM messages.** In addition, **developers must understand that sending incorrect XCM messages can result in the loss of funds.** Consequently, it is essential to test XCM features on a TestNet before moving to a production environment.
 
@@ -4709,7 +4709,7 @@ This tutorial will cover the two-step process to perform remote staking operatio
 
 ### Generate the Encoded Call Data {: #generate-encoded-call-data }
 
-We'll be using the `delegateWithAutoCompound` function of the [Parachain Staking Pallet](/builders/substrate/interfaces/features/staking/){target=\_blank}, which accepts six parameters: `candidate`, `amount`, `autoCompound`, `candidateDelegationCount`, `candidateAutoCompoundingDelegationCount`, and `delegationCount`.
+We'll be using the `delegateWithAutoCompound` function of the Parachain Staking Pallet, which accepts six parameters: `candidate`, `amount`, `autoCompound`, `candidateDelegationCount`, `candidateAutoCompoundingDelegationCount`, and `delegationCount`.
 
 In order to generate the encoded call data, we'll need to assemble the arguments for each of the `delegateWithAutoCompound` parameters and use them to build a transaction which will call the `delegateWithAutoCompound` function. We are not submitting a transaction, but simply preparing one to get the encoded call data. We'll take the following steps to build our script:
 
@@ -4990,7 +4990,7 @@ performRemoteDelegation();
 
 In the above snippet, besides submitting the remote staking via XCM transaction, we also print out the transaction hash to assist with any debugging.
 
-And that’s it! To verify that your delegation was successful, you can visit [Subscan](https://moonbase.subscan.io){target=\_blank} to check your staking balance. Be advised that it may take a few minutes before your staking balance is visible on Subscan. Additionally, be aware that you will not be able to see this staking operation on Moonscan, because we initiated the delegation action directly via the [Parachain Staking Pallet](/builders/substrate/interfaces/features/staking/){target=\_blank} (on the Substrate side) rather than through the [Staking Precompile](/builders/ethereum/precompiles/features/staking/){target=\_blank} (on the EVM).
+And that’s it! To verify that your delegation was successful, you can visit [Subscan](https://moonbase.subscan.io){target=\_blank} to check your staking balance. Be advised that it may take a few minutes before your staking balance is visible on Subscan. Additionally, be aware that you will not be able to see this staking operation on Moonscan, because we initiated the delegation action directly via the Parachain Staking Pallet (on the Substrate side) rather than through the [Staking Precompile](/builders/ethereum/precompiles/features/staking/){target=\_blank} (on the EVM).
 
 <div class="page-disclaimer">
     This tutorial is for educational purposes only. As such, any contracts or code created in this tutorial should not be used in production.
@@ -5231,7 +5231,7 @@ Let's go through each of the main components of the snippet shown above:
      - Moonbase Alpha endpoint URL to create the providers
      - [Uniswap V2 router address](https://moonbase.moonscan.io/address/0x8a1932d6e26433f3037bd6c3a40c816222a6ccd4#code){target=\_blank} which is the one the call interacts with
      - Encoded calldata for the Uniswap V2 swap that we calculated before
- 2. Create the necessary providers. One is a [Polkadot.js API](/builders/substrate/libraries/polkadot-js-api/){target=\_blank} provider, through which we can call [Moonbeam pallets](/builders/substrate/interfaces/){target=\_blank} directly. The other one is an Ethereum API provider through Ethers.js
+2. Create the necessary providers. One is a [Polkadot.js API](/builders/substrate/libraries/polkadot-js-api/){target=\_blank} provider, through which we can call Moonbeam pallets directly. The other one is an Ethereum API provider through ethers.js
  3. This step is mainly a best practice. Here, we are estimating the gas of the EVM call that will be executed via XCM, as this is needed later on. You can also hardcode the gas limit value, but it is not recommended
  4. [Build the remote EVM call](/builders/interoperability/xcm/remote-execution/remote-evm-calls/#build-remote-evm-call-xcm){target=\_blank}. We bumped the gas by `10000` units to provide a bit of room in case conditions change. The inputs are identical to those used for the gas estimation
  5. Create the Ethereum XCM pallet call to the `transact` method, providing the call parameters we previously built
@@ -7451,10 +7451,6 @@ This documentation overviews Moonbeam's Ethereum compatibility features and high
 
 Moonbeam incorporates a fully compatible EVM to execute smart contracts in Solidity or other EVM-compatible languages. This enables developers to deploy existing Ethereum smart contracts on Moonbeam with minimal modifications.
 
-Learn more:
-
-- [Moonbeam's Ethereum-compatibility architecture](/learn/platform/technology/#ethereum-compatibility-architecture){target=\_blank}
-
 ### Ethereum-style Accounts {: #ethereum-style-accounts }
 
 Moonbeam employs H160 Ethereum-style accounts and ECDSA keys, ensuring compatibility with existing Ethereum wallets and facilitating a smooth end-user experience. This is possible due to Moonbeam's unified accounts system, which modifies the underlying Substrate account system to use Ethereum accounts by default.
@@ -7909,7 +7905,7 @@ Moonbeam utilizes verifiable random functions (VRF) to generate randomness that 
 
 There are two available sources of randomness that provide random inputs based on block producers' VRF keys and past randomness results: [local VRF](#local-vrf) and [BABE epoch randomness](#babe-epoch-randomness). Local VRF is determined directly within Moonbeam using the collator of the block's VRF key and the last block's VRF output. On the other hand, [BABE](https://docs.polkadot.com/polkadot-protocol/architecture/polkadot-chain/pos-consensus/#block-production-babe){target=\_blank} epoch randomness is based on all the VRF produced by the relay chain validators during a complete [epoch](https://wiki.polkadot.com/general/glossary/#epoch){target=\_blank}.
 
-You can interact with and request on-chain randomness using the Randomness Precompile contract, a Solidity interface that enables smart contract developers to access the randomness functionality through the Ethereum API. For more information, please check out the [Interacting with the Randomness Precompile](/builders/ethereum/precompiles/features/randomness/){target=\_blank} guide. You can also take a look at the [Randomness Pallet](/builders/substrate/interfaces/features/randomness/){target=\_blank}, which can be used to obtain current randomness requests and results.
+You can interact with and request on-chain randomness using the Randomness Precompile contract, a Solidity interface that enables smart contract developers to access the randomness functionality through the Ethereum API. For more information, please check out the [Interacting with the Randomness Precompile](/builders/ethereum/precompiles/features/randomness/){target=\_blank} guide.
 
 ## General Definitions {: #general-definitions }
 
@@ -8120,9 +8116,6 @@ There are a few resources you can check out to help you select a collator to del
     |      Variable      |                                      Value                                       |
     |:------------------:|:--------------------------------------------------------------------------------:|
     | List of candidates | [Moonbase Alpha Subscan](https://moonbase.subscan.io/validator){target=\_blank} |
-
-!!! note
-    The DappLooker Collator dashboard for Moonriver is experimental beta software and may not accurately reflect collator performance. Be sure to do your own research before delegating to a collator.
 
 ### General Tips {: #general-tips }
 
@@ -8392,755 +8385,6 @@ categories: Basics
  - **[Hardhat](https://hardhat.org){target=\_blank}** - development tools for Solidity, including debugging, testing, and automated deployment that is compatible with Moonbeam
 --- END CONTENT ---
 
-Doc-Content: https://docs.moonbeam.network/learn/platform/networks/moonbase/
---- BEGIN CONTENT ---
----
-title: Moonbase Alpha TestNet Overview
-description: An overview of the current configuration of the Moonbeam TestNet, Moonbase Alpha, and information on how to start building on it using Solidity.
-categories: Basics
----
-
-# The Moonbase Alpha TestNet
-
-## Goal {: #goal }
-
-The first Moonbeam TestNet, named Moonbase Alpha, aims to provide developers with a place to start experimenting and building on Moonbeam in a shared environment. Since Moonbeam is deployed as a parachain on Kusama and Polkadot, the goal of the TestNet is to reflect the production configurations. For this reason, it was decided that it needed to be a parachain-based configuration rather than a Substrate development setup.
-
-In order to collect as much feedback as possible and provide fast issue resolution, please join the [Moonbeam Discord](https://discord.com/invite/PfpUATX){target=\_blank}.
-
-## Initial Configuration {: #initial-configuration }
-
-Moonbase Alpha has the following configuration:
-
- - Runs as a parachain connected to a relay chain
- - Has an active set of {{ networks.moonbase.staking.max_candidates }} collator nodes run by the community
- - The relay chain hosts validators to finalize relay chain blocks. One of them is selected to finalize each block collated by Moonbeam's collators. This setup provides room to expand to a two-parachain configuration in the future
- - Has infrastructure providers that provide [API endpoints](/builders/get-started/endpoints/){target=\_blank} to connect to the network. Projects can also [run their own node](/node-operators/networks/run-a-node/){target=\_blank} to have access to their own private endpoints
-
-![TestNet Diagram](/images/learn/platform/networks/moonbase-diagram.webp)
-
-Some important variables/configurations to note include:
-
-=== "General"
-    |       Variable        |                   Value                    |
-    |:---------------------:|:------------------------------------------:|
-    |   Minimum gas price   | {{ networks.moonbase.min_gas_price }} Gwei |
-    |   Target block time   | {{ networks.moonbase.block_time }} seconds |
-    |    Block gas limit    |     {{ networks.moonbase.gas_block }}      |
-    | Transaction gas limit |       {{ networks.moonbase.gas_tx }}       |
-
-=== "Staking"
-    |             Variable              |                                                                    Value                                                                    |
-    |:---------------------------------:|:-------------------------------------------------------------------------------------------------------------------------------------------:|
-    |     Minimum delegation stake      |                                              {{ networks.moonbase.staking.min_del_stake }} DEV                                              |
-    | Maximum delegators per candidates |                                               {{ networks.moonbase.staking.max_del_per_can }}                                               |
-    |  Maximum delegations per account  |                                               {{ networks.moonbase.staking.max_del_per_del }}                                               |
-    |               Round               |                   {{ networks.moonbase.staking.round_blocks }} blocks ({{ networks.moonbase.staking.round_hours }} hour)                    |
-    |           Bond duration           |                                 Delegations take effect in the next round; funds are withdrawn immediately                                 |
-    |          Unbond duration          | {{ networks.moonbase.delegator_timings.del_bond_less.rounds }} rounds ({{ networks.moonbase.delegator_timings.del_bond_less.hours }} hours) |
-
-!!! note
-    As of runtime 3000, [asynchronous backing](https://wiki.polkadot.com/learn/learn-async-backing/#asynchronous-backing){target=\_blank} has been enabled on all Moonbeam networks. As a result, the target block time was reduced from 12 seconds to 6 seconds, which may break some timing-based assumptions.
-    
-    Additionally, as of runtime 2900, the block and transaction gas limits increased by 4x on Moonbase Alpha.
-
-## Network Endpoints {: #network-endpoints }
-
-Moonbase Alpha has two types of endpoints available for users to connect to: one for HTTPS and one for WSS.
-
-If you're looking for your own endpoints suitable for production use, you can check out the [Endpoint Providers](/builders/get-started/endpoints/#endpoint-providers){target=\_blank} section of our documentation. Otherwise, to get started quickly you can use one of the following public HTTPS or WSS endpoints.
-
-=== "HTTPS"
-    |      Provider       |                              RPC URL                               |   Limits    |
-    |:-------------------:|:------------------------------------------------------------------:|:-----------:|
-    |     OnFinality      |  <pre>```https://moonbeam-alpha.api.onfinality.io/public```</pre>  | 40 req/sec  |
-    | Moonbeam Foundation |     <pre>```https://rpc.api.moonbase.moonbeam.network```</pre>     | 25 req/sec  |
-    |     UnitedBloc      |          <pre>```https://moonbase.unitedbloc.com```</pre>          | 32 req/sec  |
-    |     RadiumBlock     | <pre>```https://moonbase.public.curie.radiumblock.co/http```</pre> | 200 req/sec |
-
-=== "WSS"
-    |      Provider       |                              RPC URL                              |   Limits    |
-    |:-------------------:|:-----------------------------------------------------------------:|:-----------:|
-    |     OnFinality      | <pre>```wss://moonbeam-alpha.api.onfinality.io/public-ws```</pre> | 40 req/sec  |
-    | Moonbeam Foundation |     <pre>```wss://wss.api.moonbase.moonbeam.network```</pre>      | 25 req/sec  |
-    |     UnitedBloc      |          <pre>```wss://moonbase.unitedbloc.com```</pre>           | 32 req/sec  |
-    |     RadiumBlock     |  <pre>```wss://moonbase.public.curie.radiumblock.co/ws```</pre>   | 200 req/sec |
-
-
-#### Relay Chain {: #relay-chain }
-
-To connect to the Moonbase Alpha relay chain, you can use the following WS Endpoint:
-
-| Provider |                          RPC URL                           |
-|:--------:|:----------------------------------------------------------:|
-| OpsLayer | <pre>```wss://relay.api.moonbase.moonbeam.network```</pre> |
-
-## Quick Start {: #quick-start }
-
-For the [Web3.js library](/builders/ethereum/libraries/web3js/){target=\_blank}, you can create a local Web3 instance and set the provider to connect to Moonbase Alpha (both HTTP and WS are supported):
-
-```js
-const { Web3 } = require('web3'); // Load Web3 library
-.
-.
-.
-// Create local Web3 instance - set Moonbase Alpha as provider
-const web3 = new Web3('https://rpc.api.moonbase.moonbeam.network'); 
-```
-
-For the [Ethers.js library](/builders/ethereum/libraries/ethersjs/){target=\_blank}, define the provider by using `ethers.JsonRpcProvider(providerURL, {object})` and setting the provider URL to Moonbase Alpha:
-
-```js
-const ethers = require('ethers'); // Load Ethers library
-
-const providerURL = 'https://rpc.api.moonbase.moonbeam.network';
-// Define provider
-const provider = new ethers.JsonRpcProvider(providerURL, {
-    chainId: 1287,
-    name: 'moonbase-alphanet'
-});
-```
-
-Any Ethereum wallet should be able to generate a valid address for Moonbeam (for example, [MetaMask](https://metamask.io){target=\_blank}).
-
-## Chain ID {: #chain-id }
-
-Moonbase Alpha TestNet chain ID is: `1287`, which is `0x507` in hex.
-
-## Alphanet Relay Chain {: #relay-chain }
-
-The Alphanet relay chain is connected to Moonbase Alpha and is [Westend](https://polkadot.com/blog/westend-introducing-a-new-testnet-for-polkadot-and-kusama){target=\_blank}-based but unique to the Moonbeam ecosystem. It resembles how you would interact with Kusama or Polkadot. The native tokens of the Alphanet relay chain are UNIT tokens, which are for testing purposes only and have no real value.
-
-## Telemetry {: #telemetry }
-
-You can see current Moonbase Alpha telemetry information by visiting [Polkadot's Telemetry dashboard](https://telemetry.polkadot.io/#list/0x91bc6e169807aaa54802737e1c504b2577d4fafedd5a02c10293b1cd60e39527){target=\_blank}.
-
-## Tokens {: #tokens }
-
-Tokens on Moonbase Alpha, named DEV, will be issued on demand. **DEV tokens hold no value and can be freely acquired**.
-
-You can enter your address to automatically request DEV tokens from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank} website. The faucet dispenses {{ networks.moonbase.website_faucet_amount }} every 24 hours.
-
-For token requests of more than the limited amount allowed by the faucet, contact a moderator directly via the [Moonbeam Discord server](https://discord.com/invite/PfpUATX){target=\_blank}. We are happy to provide the tokens needed to test your applications.
-
-## Proof of Stake {: #proof-of-stake }
-
-The Moonbase Alpha TestNet is a fully decentralized Delegated Proof of Stake network where users of the network can delegate collator candidates to produce blocks and "earn rewards" for testing purposes. Please note, that the Moonbase Alpha DEV tokens have no real value. The number of candidates in the active set will be subject to governance. The active set will consist of the top candidates by stake, including delegations.
-
-## Limitations {: #limitations }
-
-This is the first TestNet for Moonbeam, so there are some limitations.
-
-Some [precompiles](https://www.evm.codes/precompiled){target=\_blank} are yet to be included. You can check out the list of supported precompiles on the [Canonical Contract page](/builders/ethereum/precompiles/){target=\_blank}. However, all built-in functions are available.
-
-Since the release of Moonbase Alpha v6, the maximum gas limit per block has been set to {{ networks.moonbase.gas_block }}, with a maximum gas limit per transaction of {{ networks.moonbase.gas_tx }}.
---- END CONTENT ---
-
-Doc-Content: https://docs.moonbeam.network/learn/platform/networks/moonbeam/
---- BEGIN CONTENT ---
----
-title: Moonbeam Network Overview
-description: An overview of the current configuration of the Moonbeam deployment on Polkadot, Moonbeam, and information on how to start building on it using Solidity.
-categories: Basics
----
-
-# Moonbeam
-
-## Goal {: #goal }
-
-Moonbeam was onboarded as a parachain to Polkadot on December 17th 2021. Moonbeam is the most Ethereum compatible smart-contract parachain in the Polkadot ecosystem. It allows developers to port their projects with minimal to no code changes, enabling them to tap into the Polkadot ecosystem and all its assets.
-
-In order to collect as much feedback as possible and provide fast issue resolution, you can check out the dedicated [Moonbeam Network section on Discord](https://discord.com/invite/PfpUATX){target=\_blank}.
-
-## Initial Configurations {: #initial-configurations }
-
-Currently, Moonbeam has the following configurations:
-
-- Runs as a parachain connected to the Polkadot relay chain
-- Has an active set of {{ networks.moonbeam.staking.max_candidates }} collators
-- Has infrastructure providers that provide [API endpoints](/builders/get-started/endpoints/){target=\_blank} to connect to the network. Projects can also [run their own node](/node-operators/networks/run-a-node/){target=\_blank} to have access to their own private endpoints
-
-![Moonbeam Diagram](/images/learn/platform/networks/moonbeam-diagram.webp)
-
-Some important variables/configurations to note include (still subject to change):
-
-=== "General"
-    |       Variable        |                                  Value                                  |
-    |:---------------------:|:-----------------------------------------------------------------------:|
-    |   Minimum gas price   |               {{ networks.moonbeam.min_gas_price }} Gwei*               |
-    |   Target block time   |               {{ networks.moonbeam.block_time }} seconds                |
-    |    Block gas limit    | {{ networks.moonbeam.gas_block }}  |
-    | Transaction gas limit |  {{ networks.moonbeam.gas_tx }}    |
-
-=== "Staking"
-    |             Variable              |                                                  Value                                                  |
-    |:---------------------------------:|:-------------------------------------------------------------------------------------------------------:|
-    |     Minimum delegation stake      |                           {{ networks.moonbeam.staking.min_del_stake }} GLMR                            |
-    | Maximum delegators per candidates |                             {{ networks.moonbeam.staking.max_del_per_can }}                             |
-    |  Maximum delegations per account  |                             {{ networks.moonbeam.staking.max_del_per_del }}                             |
-    |               Round               | {{ networks.moonbeam.staking.round_blocks }} blocks ({{ networks.moonbeam.staking.round_hours }} hours) |
-    |           Bond duration           |               delegation takes effect in the next round (funds are withdrawn immediately)               |
-    |          Unbond duration          |                  {{ networks.moonbeam.delegator_timings.del_bond_less.rounds }} rounds                  |
-
-_*Read more about [token denominations](#token-denominations)_
-
-## Network Endpoints {: #network-endpoints }
-
-Moonbeam has two types of endpoints available for users to connect to: one for HTTPS and one for WSS.
-
-If you're looking for your own endpoints suitable for production use, you can check out the [Endpoint Providers](/builders/get-started/endpoints/#endpoint-providers){target=\_blank} section of our documentation. Otherwise, to get started quickly you can use one of the following public HTTPS or WSS endpoints:
-
-=== "HTTPS"
-    |  Provider   |                              RPC URL                               |   Limits    |
-    |:-----------:|:------------------------------------------------------------------:|:-----------:|
-    | OnFinality  |     <pre>```https://moonbeam.api.onfinality.io/public```</pre>     | 40 req/sec  |
-    | UnitedBloc  |          <pre>```https://moonbeam.unitedbloc.com```</pre>          | 32 req/sec  |
-    | RadiumBlock | <pre>```https://moonbeam.public.curie.radiumblock.co/http```</pre> | 200 req/sec |
-    |    1RPC     |               <pre>```https://1rpc.io/glmr```</pre>                | 10k req/day |
-    |    Grove    |         <pre>```https://moonbeam.rpc.grove.city/v1/01fdb492```</pre>         | 5k req/day  |
-
-
-
-=== "WSS"
-    |  Provider   |                            RPC URL                             |   Limits    |
-    |:-----------:|:--------------------------------------------------------------:|:-----------:|
-    | OnFinality  |  <pre>```wss://moonbeam.api.onfinality.io/public-ws```</pre>   | 40 req/sec  |
-    | UnitedBloc  |         <pre>```wss://moonbeam.unitedbloc.com```</pre>         | 32 req/sec  |
-    | RadiumBlock | <pre>```wss://moonbeam.public.curie.radiumblock.co/ws```</pre> | 200 req/sec |
-    |    1RPC     |              <pre>```wss://1rpc.io/glmr```</pre>               | 10k req/day |
-
-## Quick Start {: #quick-start }
-
-Before getting started, make sure you've retrieved your own endpoint and API key from one of the custom [Endpoint Providers](/builders/get-started/endpoints/){target=\_blank}. Then for the [Web3.js library](/builders/ethereum/libraries/web3js/){target=\_blank}, you can create a local Web3 instance and set the provider to connect to Moonbeam (both HTTP and WS are supported):
-
-```js
-const { Web3 } = require('web3'); // Load Web3 library
-.
-.
-.
-// Create local Web3 instance - set Moonbeam as provider
-const web3 = new Web3('INSERT_RPC_API_ENDPOINT'); // Insert your RPC URL here
-```
-
-For the [Ethers.js library](/builders/ethereum/libraries/ethersjs/){target=\_blank}, define the provider by using `ethers.JsonRpcProvider(providerURL, {object})` and setting the provider URL to Moonbeam:
-
-```js
-const ethers = require('ethers'); // Load Ethers library
-
-const providerURL = 'INSERT_RPC_API_ENDPOINT'; // Insert your RPC URL here
-
-// Define provider
-const provider = new ethers.JsonRpcProvider(providerURL, {
-    chainId: 1284,
-    name: 'moonbeam'
-});
-```
-
-Any Ethereum wallet should be able to generate a valid address for Moonbeam (for example, [MetaMask](https://metamask.io){target=\_blank}).
-
-## Chain ID {: #chain-id }
-
-Moonbeam chain ID is: `1284`, or `0x504` in hex.
-
-## Telemetry {: #telemetry }
-
-You can see current Moonbeam telemetry information by visiting [Polkadot's Telemetry dashboard](https://telemetry.polkadot.io/#list/0xfe58ea77779b7abda7da4ec526d14db9b1e9cd40a217c34892af80a9b332b76d){target=\_blank}.
-
-## Tokens {: #tokens }
-
-The tokens on Moonbeam are called Glimmer (GLMR). Check out the Moonbeam Foundation site for more information on the [Glimmer](https://moonbeam.foundation/glimmer-token-tokenomics){target=\_blank} token.
-
-### Token Denominations {: #token-denominations }
-
-The smallest unit of Glimmer (GMLR), similarly to Ethereum, is a Wei. It takes 10^18 Wei to make one Glimmer. The denominations are as follows:
-
-|   Unit    |    Glimmer (GLMR)    |              Wei              |
-|:---------:|:--------------------:|:-----------------------------:|
-|    Wei    | 0.000000000000000001 |               1               |
-|  Kilowei  |  0.000000000000001   |             1,000             |
-|  Megawei  |    0.000000000001    |           1,000,000           |
-|  Gigawei  |     0.000000001      |         1,000,000,000         |
-| Microglmr |       0.000001       |       1,000,000,000,000       |
-| Milliglmr |        0.001         |     1,000,000,000,000,000     |
-|   GLMR    |          1           |   1,000,000,000,000,000,000   |
-| Kiloglmr  |        1,000         | 1,000,000,000,000,000,000,000 |
-
-## Proof of Stake {: #proof-of-stake }
-
-The Moonriver network is a fully decentralized Delegated Proof of Stake network where users of the network can delegate collator candidates to produce blocks and earn rewards. It uses the [Nimbus framework](/learn/features/consensus/){target=\_blank} framework for parachain consensus. The number of candidates in the active set will be subject to governance. The active set will consist of the top candidates by stake, including delegations.
-
-## Limitations {: #limitations }
-
-Some [precompiles](https://www.evm.codes/precompiled){target=\_blank} are yet to be included. You can check a list of supported precompiles on the [Solidity Precompiles page](/builders/ethereum/precompiles/overview/){target=\_blank}. However, all built-in functions are available.
---- END CONTENT ---
-
-Doc-Content: https://docs.moonbeam.network/learn/platform/networks/moonriver/
---- BEGIN CONTENT ---
----
-title: Moonriver Overview
-description: An overview of the current configuration of the Moonbeam deployment on Kusama, Moonriver, and information on how to start building on it using Solidity.
-categories: Basics
----
-
-# Moonriver
-
-## Goal {: #goal }
-
-In June 2021, Moonriver was first launched as a parachain on the Kusama network. Moonriver is a sister network of Moonbeam, and provides an environment to test new code under real economic conditions. Developers now have access to start building on an incentivized canary network connected to Kusama.
-
-In order to collect as much feedback as possible and provide fast issue resolution, you can check out the dedicated [Moonriver section on Discord](https://discord.com/invite/5TaUvbRvgM){target=\_blank}.
-
-## Initial Configurations {: #initial-configurations }
-
-Currently, Moonriver has the following configurations:
-
-- Runs as a parachain connected to the Kusama relay chain
-- Has an active set of {{ networks.moonriver.staking.max_candidates }} collators
-- Has infrastructure providers that provide [API endpoints](/builders/get-started/endpoints/){target=\_blank} to connect to the network. Projects can also [run their own node](/node-operators/networks/run-a-node/){target=\_blank} to have access to their own private endpoints
-
-![Moonriver Diagram](/images/learn/platform/networks/moonriver-diagram.webp)
-
-Some important variables/configurations to note include:
-
-=== "General"
-    |       Variable        |                    Value                     |
-    |:---------------------:|:--------------------------------------------:|
-    |   Minimum gas price   | {{ networks.moonriver.min_gas_price }} Gwei* |
-    |   Target block time   | {{ networks.moonriver.block_time }} seconds  |
-    |    Block gas limit    |      {{ networks.moonriver.gas_block }}      |
-    | Transaction gas limit |       {{ networks.moonriver.gas_tx }}        |
-
-=== "Staking"
-    |             Variable              |                                                   Value                                                   |
-    |:---------------------------------:|:---------------------------------------------------------------------------------------------------------:|
-    |     Minimum delegation stake      |                            {{ networks.moonriver.staking.min_del_stake }} MOVR                            |
-    | Maximum delegators per candidates |                             {{ networks.moonriver.staking.max_del_per_can }}                              |
-    |  Maximum delegations per account  |                             {{ networks.moonriver.staking.max_del_per_del }}                              |
-    |               Round               | {{ networks.moonriver.staking.round_blocks }} blocks ({{ networks.moonriver.staking.round_hours }} hours) |
-    |           Bond duration           |                delegation takes effect in the next round (funds are withdrawn immediately)                |
-    |          Unbond duration          |                  {{ networks.moonriver.delegator_timings.del_bond_less.rounds }} rounds                   |
-
-_*Read more about [token denominations](#token-denominations)_
-
-!!! note
-    As of runtime 3000, [asynchronous backing](https://wiki.polkadot.com/learn/learn-async-backing/#asynchronous-backing){target=\_blank} has been enabled on all Moonbeam networks. As a result, the target block time was reduced from 12 seconds to 6 seconds, which may break some timing-based assumptions.
-
-    Additionally, the block and transaction gas limits increased by 4x on Moonriver.
-
-## Network Endpoints {: #network-endpoints }
-
-Moonriver has two types of endpoints available for users to connect to: one for HTTPS and one for WSS.
-
-If you're looking for your own endpoints suitable for production use, you can check out the [Endpoint Providers](/builders/get-started/endpoints/#endpoint-providers){target=\_blank} section of our documentation. Otherwise, to get started quickly you can use one of the following public HTTPS or WSS endpoints:
-
-=== "HTTPS"
-      |  Provider   |                               RPC URL                               |   Limits    |
-      |:-----------:|:-------------------------------------------------------------------:|:-----------:|
-      | OnFinality  |     <pre>```https://moonriver.api.onfinality.io/public```</pre>     | 40 req/sec  |
-      | UnitedBloc  |          <pre>```https://moonriver.unitedbloc.com```</pre>          | 32 req/sec  |
-      | RadiumBlock | <pre>```https://moonriver.public.curie.radiumblock.co/http```</pre> | 200 req/sec |
-      |    Grove    |        <pre>```https://moonriver.rpc.grove.city/v1/01fdb492```</pre>        | 5k req/day  |
-
-=== "WSS"
-    |  Provider   |                             RPC URL                             |   Limits    |
-    |:-----------:|:---------------------------------------------------------------:|:-----------:|
-    | OnFinality  |  <pre>```wss://moonriver.api.onfinality.io/public-ws```</pre>   | 40 req/sec  |
-    | UnitedBloc  |         <pre>```wss://moonriver.unitedbloc.com```</pre>         | 32 req/sec  |
-    | RadiumBlock | <pre>```wss://moonriver.public.curie.radiumblock.co/ws```</pre> | 200 req/sec |
-
-## Quick Start {: #quick-start }
-
-Before getting started, make sure you've retrieved your own endpoint and API key from one of the custom [Endpoint Providers](/builders/get-started/endpoints/){target=\_blank}. Then for the [Web3.js library](/builders/ethereum/libraries/web3js/){target=\_blank}, you can create a local Web3 instance and set the provider to connect to Moonriver (both HTTP and WS are supported):
-
-```js
-const { Web3 } = require('web3'); // Load Web3 library
-.
-.
-.
-// Create local Web3 instance - set Moonriver as provider
-const web3 = new Web3('INSERT_RPC_API_ENDPOINT'); // Insert your RPC URL here
-```
-
-For the [Ethers.js library](/builders/ethereum/libraries/ethersjs/){target=\_blank}, define the provider by using `ethers.JsonRpcProvider(providerURL, {object})` and setting the provider URL to Moonriver:
-
-```js
-const ethers = require('ethers'); // Load Ethers library
-
-const providerURL = 'INSERT_RPC_API_ENDPOINT'; // Insert your RPC URL here
-
-// Define provider
-const provider = new ethers.JsonRpcProvider(providerURL, {
-    chainId: 1285,
-    name: 'moonriver'
-});
-```
-
-Any Ethereum wallet should be able to generate a valid address for Moonbeam (for example, [MetaMask](https://metamask.io){target=\_blank}).
-
-## Chain ID {: #chain-id }
-
-Moonriver chain ID is: `1285`, or `0x505` in hex.
-
-## Telemetry {: #telemetry }
-
-You can see current Moonriver telemetry information by visiting [Polkadot's Telemetry dashboard](https://telemetry.polkadot.io/#list/0x401a1f9dca3da46f5c4091016c8a2f26dcea05865116b286f60f668207d1474b){target=\_blank}.
-
-## Tokens {: #tokens }
-
-The tokens on Moonriver will also be called Moonriver (MOVR). Check out the Moonbeam Foundation site for more information on the [Moonriver token](https://moonbeam.foundation/moonriver-token-tokenomics){target=\_blank}.
-
-### Token Denominations {: #token-denominations }
-
-The smallest unit of Moonriver, similarly to Ethereum, is a Wei. It takes 10^18 Wei to make one Moonriver. The denominations are as follows:
-
-|      Unit      |   Moonriver (MOVR)   |              Wei              |
-|:--------------:|:--------------------:|:-----------------------------:|
-|      Wei       | 0.000000000000000001 |               1               |
-|    Kilowei     |  0.000000000000001   |             1,000             |
-|    Megawei     |    0.000000000001    |           1,000,000           |
-|    Gigawei     |     0.000000001      |         1,000,000,000         |
-| Micromoonriver |       0.000001       |       1,000,000,000,000       |
-| Millimoonriver |        0.001         |     1,000,000,000,000,000     |
-|   Moonriver    |          1           |   1,000,000,000,000,000,000   |
-| Kilomoonriver  |        1,000         | 1,000,000,000,000,000,000,000 |
-
-## Proof of Stake {: #proof-of-stake }
-
-The Moonriver network is a fully decentralized Delegated Proof of Stake network where users of the network can delegate collator candidates to produce blocks and earn rewards. It uses the [Nimbus framework](/learn/features/consensus/){target=\_blank} framework for parachain consensus. The number of candidates in the active set will be subject to governance. The active set will consist of the top candidates by stake, including delegations.
-
-## Limitations {: #limitations }
-
-Some [precompiles](https://www.evm.codes/precompiled){target=\_blank} are yet to be included. You can check a list of supported precompiles on the [Canonical Contract page](/builders/ethereum/precompiles/){target=\_blank}. However, all built-in functions are available.
---- END CONTENT ---
-
-Doc-Content: https://docs.moonbeam.network/learn/platform/networks/overview/
---- BEGIN CONTENT ---
----
-title: Overview of Networks
-description: An overview of all of the MainNet and TestNet deployments of Moonbeam, an Ethereum-compatible smart contract parachain on Polkadot and Kusama.
-categories: Basics
----
-
-# Networks
-
-There are multiple long-lived Moonbeam-based networks. Most significantly, there is the Moonbeam deployment on Polkadot and Kusama.
-
-An overview of our parachain deployments is as follows:
-
- - Moonbeam: deployment on Polkadot (_December 2021_)
- - Moonriver: deployment on Kusama (_June 2021_)
- - Moonbase Alpha: Parachain TestNet for Moonbeam and Moonriver (_September 2020_)
-
-This strategy allows us to de-risk software upgrades to Moonbeam on the Polkadot MainNet while still maintaining a reasonable update velocity.
-
-## Moonbeam {: #moonbeam }
-
-The Moonbeam production MainNet is a parachain on Polkadot and has been since December 17th, 2021. Moonbeam features the highest levels of security and availability. Code running on the MainNet has generally been vetted through one or more of the other networks listed above.
-
-Moonbeam will offer parachain-related functionalities such as [XCMP](https://wiki.polkadot.com/learn/learn-xcm-transport/#xcmp-cross-chain-message-passing){target=\_blank} and [SPREE](https://wiki.polkadot.com/learn/learn-spree/){target=\_blank} as these features become available.
-
-[Learn more about Moonbeam](/learn/platform/networks/moonbeam/).
-
-## Moonriver {: #moonriver }
-
-In advance of deploying to the Polkadot MainNet, [Moonbeam launched Moonriver](https://moonbeam.network/news/moonriver-won-a-parachain-slot-and-is-now-producing-blocks-on-the-kusama-network){target=\_blank} as a parachain on the Kusama network. The parachain functionality is live on Kusama.
-
-Moonriver will offer parachain-related functionalities such as [XCMP](https://wiki.polkadot.com/learn/learn-xcm-transport/#xcmp-cross-chain-message-passing){target=\_blank} and [SPREE](https://wiki.polkadot.com/learn/learn-spree/){target=\_blank} as these features become available.
-
-[Learn more about Moonriver](/learn/platform/networks/moonriver/).
-
-## Moonbase Alpha {: #moonbase-alpha }
-
-This TestNet is a network hosted by OpsLayer. It features a parachain/relay chain scheme. The goal is to allow developers to test the Ethereum compatibility features of Moonbeam in a shared parachain environment without needing to run their own nodes or network.
-
-[Learn more about Moonbase Alpha](/learn/platform/networks/moonbase/).
---- END CONTENT ---
-
-Doc-Content: https://docs.moonbeam.network/learn/platform/technology/
---- BEGIN CONTENT ---
----
-title: Technology & Architecture
-description: Moonbeam is built using Rust and Polkadot's Substrate framework, enabling rich tools for implementation while allowing for specialization and optimization.
-categories: Basics
----
-
-# Technology & Architecture
-
-## The Moonbeam Development Stack {: #the-moonbeam-development-stack }
-
-Moonbeam is a smart contract blockchain platform built in the Rust programming language using the Substrate framework. Substrate, developed by [Parity Technologies](https://www.parity.io/){target=_blank} (the original founding contributors of Polkadot), is an open-source, modular SDK for creating blockchains. Substrate allows developers to customize their blockchains while still benefiting from features such as forkless upgrades, shared security (when connected as a parachain to Polkadot or Kusama), and an extensive library of pre-built runtime modules known as pallets.
-
-### Rust Programming Language {: #rust-programming-language }
-
-Rust is a good language for implementing a blockchain. It is highly performant like C and C++ but has built-in memory safety features enforced at compile time, preventing many common bugs and security issues arising from C and C++ implementations.
-
-### Substrate Framework {: #substrate-framework }
-
-Substrate provides a rich set of tools for creating blockchains, including a runtime execution environment that enables a generic state transition function and a pluggable set of modules (pallets) that implement various blockchain subsystems. By using Substrate, Moonbeam can leverage several key features offered to parachains launched on the Polkadot relay chain, including:
-
-- **Shared security** — Polkadot's validators secure all parachains  
-- **Cross-Consensus Messaging (XCM)** — native interoperability with other parachains  
-- **Flexible upgrades** — Substrate’s forkless upgrade mechanism
-
-Pallets are at the heart of Substrate-based chains, providing specific functionality in modular form. Examples include:
-
-- **Balances pallet** — manages account balances and transfers  
-- **Assets pallet** — handles the creation and management of on-chain fungible assets  
-- **Consensus pallets** — provide mechanisms like AURA or BABE for block production  
-- **Governance pallets** — facilitate on-chain governance  
-- **Frontier pallets** — the Ethereum compatibility layer pioneered by the Moonbeam team  
-- **Parachain Staking pallet** — enables Delegated Proof of Stake (DPoS)  
-
-In addition to these pallets provided by Polkadot's Substrate, developers can [create their own pallets](https://docs.polkadot.com/develop/parachains/customize-parachain/make-custom-pallet/){target=_blank} to add custom functionality. Moonbeam leverages multiple existing Substrate frame pallets as well as several custom pallets for features such as cross-chain token integration, the [Orbiter Program](/node-operators/networks/collators/orbiter/){target=_blank}, and more. You can find the Moonbeam runtime (built using Substrate) and related pallets in the [Moonbeam GitHub repository](https://github.com/moonbeam-foundation/moonbeam){target=_blank}.
-
-Moonbeam also uses the Cumulus library to facilitate integration with the Polkadot relay chain.
-
-### Frontier: Substrate's Ethereum Compatibility Layer {: #frontier }
-
-[Frontier](https://polkadot-evm.github.io/frontier){target=\_blank} serves as Substrate's Ethereum compatibility layer, facilitating the seamless operation of standard Ethereum DApps on Substrate-based chains without requiring modifications. This compatibility is achieved by integrating specialized Substrate pallets into the Substrate runtime. These pallets include:
-
-- **EVM pallet** — responsible for executing EVM operations  
-- **Ethereum pallet** — manages block data storage and offers RPC compatibility  
-- **Base Fee pallet and Dynamic Fee pallet** — provide EIP-1559 functionality (not used in Moonbeam)
-
-Moonbeam uses the EVM and Ethereum pallets to achieve full Ethereum compatibility. Instead of the Base Fee or Dynamic Fee pallets, Moonbeam has its own [dynamic fee mechanism](https://forum.moonbeam.network/t/proposal-dynamic-fee-mechanism-for-moonbeam-and-moonriver/241){target=\_blank} for base fee calculations. Basing the EVM implementation on the Substrate EVM Pallet provides a Rust-based EVM engine and support from the Parity engineering team.
-
-## Blockchain Runtime {: #blockchain-runtime }
-
-The core Moonbeam runtime specifies the state transition function and behavior of the Moonbeam blockchain. The runtime is built using [FRAME](/learn/platform/glossary/#substrate-frame-pallets){target=\_blank}, compiled to a [WebAssembly (Wasm)](/learn/platform/glossary/#webassemblywasm){target=\_blank} binary as well as a native binary. These compiled versions are executed in the Polkadot relay chain and Moonbeam node environments.
-
-!!! note
-    Substrate FRAME pallets are a collection of Rust-based modules that provide the functionality required when building a blockchain. WebAssembly is an open standard that defines a portable binary code format. Different programming languages, compilers, and browsers support it. Find more definitions [in our glossary](/learn/platform/glossary/){target=\_blank}.
-
-Some of the key Substrate FRAME pallets used in the Moonbeam runtime include:
-
- - **Balances** — support for accounts, balances, and transfers  
- - **EVM** — a full Rust-based EVM implementation based on SputnikVM (part of Frontier)  
- - **Ethereum** — provides emulation of Ethereum block processing for the EVM (part of Frontier)  
- - **Executive** — orchestration layer that dispatches calls to other runtime modules  
- - **Identity** — support for setting on-chain identities for account addresses  
- - **System** — provides low-level types, storage, and blockchain functions  
- - **Treasury** — on-chain treasury that can be used to fund public goods such as a parachain slot  
-
-In addition to these Substrate FRAME Pallets, Moonbeam implements custom pallets to achieve additional functionality, such as:
-
-- **Parachain Staking** — enables a Delegated Proof of Stake (DPoS) system  
-- **Moonbeam Orbiters** — supports the [Orbiter Program](/node-operators/networks/collators/orbiter/){target=\_blank}, which diversifies the collator pool  
-- **XCM Transactor** — simplifies remote cross-chain calls via [Cross-Consensus Messaging (XCM)](/builders/interoperability/xcm/overview/){target=\_blank}  
-- **Asset Manager** — registers XCM assets  
-
-### Forkless Upgrades {: #forkless-upgrades }
-
-One of the best things about developing on Polkadot with Substrate is the ability to introduce [forkless upgrades](https://docs.polkadot.com/develop/parachains/maintenance/runtime-upgrades/){target=_blank} to blockchain runtimes. In traditional blockchain architectures, substantial changes to the blockchain's rules often require a hard fork, which can be disruptive and contentious.  
-
-Substrate takes a different approach by separating the blockchain's state (data) from its logic (rules). Logic lives in the runtime, which is itself stored on-chain. Whenever a new runtime is uploaded (via FRAME's `set_code` call) and approved through on-chain governance, all nodes automatically switch to the new runtime at a specified block. This process is seamless and does not split the network.  
-
-Moonbeam regularly uses forkless upgrades to add features or fixes without requiring node operators to upgrade their software manually. You can keep track of and discuss upcoming Moonbeam upgrades on the [Moonbeam forum](https://forum.moonbeam.network){target=_blank}.
-
-## Ethereum Compatibility Architecture {: #ethereum-compatibility-architecture }
-
-Smart contracts on Moonbeam can be implemented using Solidity, Vyper, and any other language that compiles smart contracts to EVM-compatible bytecode. Moonbeam aims to provide a low-friction and secure environment for the development, testing, and execution of smart contracts while remaining compatible with the existing Ethereum developer toolchain.
-
-The execution behavior and semantics of Moonbeam-based smart contracts strive to be as close as possible to Ethereum Layer 1. Moonbeam is a single shard, so cross-contract calls have the same synchronous execution semantics as on Ethereum Layer 1.
-
-![Diagram showing the interactions made possible through Moonbeam's Ethereum compatibility](/images/learn/platform/technology-diagram.webp)
-
-A high-level interaction flow is shown above. A Web3 RPC call from a DApp or existing Ethereum developer tool, such as Hardhat, is received by a Moonbeam node. The node has both Web3 RPCs and Substrate RPCs available, meaning you can use Ethereum or Substrate tools when interacting with a Moonbeam node. Associated Substrate runtime functions handle these RPC calls. The Substrate runtime checks signatures and handles any extrinsics. Smart contract calls are ultimately passed to the EVM to execute the state transitions.
-
-### Ethereum Pallet {: #ethereum-pallet}
-
-The [Ethereum pallet](https://polkadot-evm.github.io/frontier/overview){target=\_blank} is responsible for handling blocks and transaction receipts and statuses. It enables sending and receiving Ethereum-formatted data to and from Moonbeam by storing an Ethereum-style block and its associated transaction hashes in the Substrate runtime.
-
-When a user submits a raw Ethereum transaction, it converts into a Substrate transaction through the Ethereum pallet's `transact` extrinsic—using the Ethereum pallet as the sole executor of the EVM pallet forces all of the data to be stored and transacted in an Ethereum-compatible way, which is how explorers like [Moonscan](/builders/get-started/explorers/#moonscan){target=\_blank} (built by Etherscan) can index block data.
-
-### EVM Pallet {: #evm-pallet }
-
-The [EVM pallet](https://polkadot-evm.github.io/frontier/overview){target=\_blank} implements a sandboxed virtual stack machine and uses the [SputnikVM](https://github.com/rust-ethereum/evm){target=\_blank} as the underlying EVM engine. It executes Ethereum smart contract bytecode in a manner similar to Ethereum mainnet, including gas metering and state changes.
-
-Moonbeam uses unified accounts, meaning an H160 (Ethereum-style) address is also a valid Substrate address, so you only need a single account to interact with the Substrate runtime and the EVM. Once a balance exists in the EVM, smart contracts can be created and interacted with through standard Ethereum RPC calls.  
-
-The EVM pallet should produce nearly identical execution results to Ethereum, such as gas cost and balance changes. However, there are some differences. Although the EVM pallet aims for near-identical behavior to Ethereum, some differences exist, for example, Moonbeam's [dynamic fee mechanism](https://forum.moonbeam.network/t/proposal-dynamic-fee-mechanism-for-moonbeam-and-moonriver/241){target=\_blank}. For more information, refer to the [Frontier EVM Pallet documentation](https://polkadot-evm.github.io/frontier/){target=\_blank}.
-
-Moonbeam includes additional EVM precompiles for functionalities like cryptographic operations (ECRecover, SHA256, BLAKE2, BN128) and dispatching Substrate calls directly from within the EVM. Moonbeam uses the following EVM precompiles:
-
-- **[pallet-evm-precompile-simple](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm_precompile_simple){target=\_blank}** - includes five basic precompiles: ECRecover, ECRecoverPublicKey, Identity, RIPEMD160, SHA256
-- **[pallet-evm-precompile-blake2](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm_precompile_blake2/struct.Blake2F.html){target=\_blank}** - includes the BLAKE2 precompile
-- **[pallet-evm-precompile-bn128](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm_precompile_bn128/index.html){target=\_blank}** - includes three BN128 precompiles: BN128Add, BN128Mul, and BN128Pairing
-- **[pallet-evm-precompile-modexp](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm_precompile_modexp/struct.Modexp.html){target=\_blank}** - includes the modular exponentiation precompile
-- **[pallet-evm-precompile-sha3fips](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm_precompile_sha3fips/struct.Sha3FIPS256.html){target=\_blank}** -includes the standard SHA3 precompile
-- **[pallet-evm-precompile-dispatch](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm_precompile_dispatch/struct.Dispatch.html){target=\_blank}** - includes the dispatch precompile
-
-You can find an overview of most of these precompiles on the [Ethereum MainNet Precompiled Contracts](/builders/ethereum/precompiles/utility/eth-mainnet/){target=\_blank} page.
-
-## Native Interoperability {: #native-interoperability }
-
-While Substrate allows developers to create blockchains, one of its most significant advantages is that it supports integration for native interoperability through relay chains like Polkadot and Kusama.  
-
-A relay chain is a central chain that connects several blockchains, known as parachains. Each parachain is a distinct blockchain with its runtime and state, but all are connected to and secured by the relay chain. Once connected, parachains can communicate via [Cross-Consensus Messaging (XCM)](/builders/interoperability/xcm/overview/){target=_blank} to exchange information and conduct transactions in the same language, enabling a wide range of interoperable applications.  
-
-Moonbeam and Moonriver have established XCM connections with a large number of parachains. You can see a visualization of all XCM integrations in this [XCM Channel Viewer](https://dotsama-channels.vercel.app/#/){target=_blank}.
---- END CONTENT ---
-
-Doc-Content: https://docs.moonbeam.network/learn/platform/tokens/
---- BEGIN CONTENT ---
----
-title: Utility Tokens
-description: Each of the Moonbeam networks require a utility token to function. Glimmer (GLMR) for Moonbeam on Polkadot and Moonriver (MOVR) for Moonriver on Kusama.
-categories: Basics
----
-
-# Introduction
-
-As a decentralized smart contract platform, Moonbeam requires a utility token to function.  
-
-This token is central to the design of Moonbeam and cannot be removed without sacrificing essential functionality. The Moonbeam token uses include:
-
- - Supporting the gas metering of smart contract execution
- - Incentivizing collators and powering the mechanics around the creation of a decentralized node infrastructure on which the platform can run
- - Facilitating the on-chain governance mechanism, including proposing referenda, electing council members, voting, etc.
- - Paying for network transaction fees
-
-## Glimmer Token {: #glimmer-token }
-
-In the Moonbeam deployment on Polkadot MainNet, this token is called Glimmer, as in, “that smart contract call will cost 0.3 Glimmer.”  The token symbol is GLMR.
-
-You can find more information about Glimmer on the [Moonbeam Foundation](https://moonbeam.foundation/glimmer-token-tokenomics) website.
-
-## Moonriver Token {: #moonriver-token }
-
-In the Moonbeam deployment on Kusama (called Moonriver), this token is called Moonriver, as in, “that smart contract call will cost 0.003 Moonriver.”  The token symbol will be MOVR.
-
-You can find more information about Moonriver on the [Moonbeam Foundation](https://moonbeam.foundation/moonriver-token-tokenomics) website.
-
-## DEV Token {: #dev-token }
-
-In the Moonbeam TestNet (called Moonbase Alpha), the token is called DEV. This token can be acquired freely, as its only purpose is to drive development and testing on Moonbase Alpha.
-
-You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}.
---- END CONTENT ---
-
-Doc-Content: https://docs.moonbeam.network/learn/platform/vision/
---- BEGIN CONTENT ---
----
-title: The Moonbeam Vision | Multi-chain
-description: Moonbeam is designed to enable a multi-chain future, where users and assets can move freely across many specialized and heterogeneous chains.
-categories: Basics
----
-
-# Our Vision for Moonbeam
-
-We believe in a multi-chain future with many chains, and many users and assets on those chains. In this context, we have created Moonbeam: a smart contract platform that provides an Ethereum-compatible environment for building decentralized applications. Moonbeam was designed to serve these new kinds of assets and users that exist across two or more chains.
-
-Existing smart contract platforms are designed to service the users and assets on a single, specific chain.  By providing cross-chain smart contract functionality, Moonbeam allows developers to shift existing workloads and logic to Moonbeam and extend the reach of their applications to new users and assets on other chains.
-
-Moonbeam's cross-chain integration is accomplished by becoming a [parachain](/learn/platform/glossary/#parachains) on the Polkadot network.  The [Polkadot network](/learn/platform/glossary/#polkadot) provides integration and connectivity between parachains that are connected to the network and to other non-Polkadot-based chains, such as Ethereum and Bitcoin, via bridges.
-
-## Who Benefits From Moonbeam {: #who-benefits-from-moonbeam }
-
-There are three main audiences who can most benefit from Moonbeam's cross-chain functionality:
-
-### Existing Ethereum-Based Projects {: #existing-ethereum-based-projects }
-
-Projects that are struggling with cost and scalability challenges on Ethereum can use Moonbeam to:
-
- - Move portions of their existing workloads and state off of Ethereum Layer 1 with minimal required changes.  
- - Implement a hybrid approach, where applications live on both Ethereum and Moonbeam simultaneously.  
- - Extend their reach to the Polkadot network and other chains that are connected to Polkadot.  
-
-### Polkadot Ecosystem Projects {: #polkadot-ecosystem-projects }
-
-Ecosystem projects that need smart contract functionality can use Moonbeam to:  
-
- - Augment their existing parachains and parathreads.  
- - Add new functionality that is needed but not included on the main [Polkadot relay chain](/learn/platform/glossary/#relay-chain). For example, they could create a place where teams can crowdfund their projects, implement lockdrops, and process other, more complex financial transactions than are provided by base [Substrate](/learn/platform/glossary/#substrate) functionality.  
- - Leverage the mature and extensive Ethereum development toolchain.  
-
-### Developers of New DApps {: #developers-of-new-dapps }
-
-Individuals and teams that want to try building on Polkadot can use Moonbeam to:
-
- - Leverage the specialized functionality from Polkadot parachains while reaching users and assets on other chains.  
- - Compose functionality from Polkadot parachains by using Moonbeam as a lightweight integration layer that aggregates network services before presenting them to end users. Implementing a composed service using pre-built integrations on a smart contract platform will be a lot faster and easier (in many cases) than building a full Substrate runtime and performing the integrations yourself in the runtime.  
-
-## Key Features and Functionality {: #key-features-and-functionality }
-
-Moonbeam achieves these goals with the following key features:  
-
- - **Decentralized and Permissionless** , providing a base requirement for censorship resistance and support for many existing and future DApp use cases.  
- - **Contains a Full EVM Implementation** , enabling Solidity-based smart contracts to be migrated with minimal change and with expected execution results.  
- - **Implements the Web3 RPC API** so that existing DApp front-ends can be migrated with minimal change required, and so existing Ethereum-based tools, such as Hardhat, Remix, and MetaMask, can be used without modification against Moonbeam.  
- - **Compatible with the Substrate Ecosystem Toolset** , including block explorers, front-end development libraries, and wallets, allowing developers and users to use the right tool for what they are trying to accomplish.  
- - **Native Cross-Chain Integration** via the Polkadot network and via token bridges, which allows for token movement, state visibility, and message passing with Ethereum and other chains.  
- - **On-Chain Governance** to allow stakeholders to quickly and forklessly evolve the base protocol according to developer and community needs.  
-
-This unique combination of elements fills a strategic market gap, while allowing Moonbeam to address future developer needs as the Polkadot network grows over time.  Building your own chain with Substrate is powerful, but also comes with a number of additional responsibilities, such as learning and implementing the chain’s runtime in Rust, creating a token economy, and incentivizing a community of node operators.
-
-For many developers and projects, an Ethereum-compatible smart contract approach will be much simpler and faster to implement.  And by building these smart contracts on Moonbeam, developers can still integrate with other chains and get value from Polkadot-based network effects.
---- END CONTENT ---
-
-Doc-Content: https://docs.moonbeam.network/learn/platform/why-polkadot/
---- BEGIN CONTENT ---
----
-title: Why Polkadot
-description: Moonbeam is built on the Substrate framework and connected to the Polkadot network, adding speed and security to the platform.
-categories: Basics
----
-
-# Why We're Building on Polkadot
-
-After extensive research, we decided to build Moonbeam using the [Substrate development framework](/learn/platform/glossary/#substrate) and to deploy Moonbeam as a [parachain](/learn/platform/glossary/#parachains) on the [Polkadot network](/learn/platform/glossary/#polkadot).
-
-## Substrate Blockchain Framework {: #substrate-blockchain-framework }
-
-Substrate is a good technical fit for Moonbeam. By building on top of this framework, we can leverage the extensive functionality that Substrate includes out-of-the-box, rather than building it ourselves. This includes peer-to-peer networking, consensus mechanisms, governance functionality, an EVM implementation, and more.
-
-Overall, using Substrate will dramatically reduce the time and implementation effort needed to implement Moonbeam. Substrate allows a great degree of customization, which is necessary in order to achieve our Ethereum compatibility goals. And, by using Rust, we benefit from both safety guarantees and performance gains.
-
-## Polkadot Network and Ecosystem {: #polkadot-network-and-ecosystem }
-
-The Polkadot network is also a good fit for Moonbeam. As a parachain on Polkadot, Moonbeam will be able to directly integrate with — and move tokens between — any other parachains and parathreads on the network.
-
-We can also leverage any of the bridges that are independently built to connect non-Polkadot chains to Polkadot, including bridges to Ethereum. Polkadot’s interoperability model uniquely supports Moonbeam’s cross-chain integration goals and is a key enabling technology to support the Moonbeam vision.
-
-But perhaps just as important as the technical criteria above, we are impressed with the people in the Polkadot ecosystem. This includes individuals at Parity, the Web3 Foundation, and other projects in the ecosystem. We have built many valuable relationships and find the people to be both extremely talented and the kind of people we want to be around.
---- END CONTENT ---
-
-Doc-Content: https://docs.moonbeam.network/builders/ethereum/dev-env/openzeppelin/overview/
---- BEGIN CONTENT ---
----
-title: An Overview of OpenZeppelin on Moonbeam
-description: Learn how to use OpenZeppelin products for creating and managing Solidity smart contracts on Moonbeam, thanks to its Ethereum compatibility features.
-categories: Basics, Ethereum Toolkit
----
-
-# OpenZeppelin
-
-## Introduction {: #introduction } 
-
-[OpenZeppelin](https://www.openzeppelin.com){target=\_blank} is well known in the Ethereum developer community as their set of audited smart contracts and libraries are a standard in the industry. For example, most of the tutorials that show developers how to deploy an ERC-20 token use OpenZeppelin contracts.
-
-You can find more information about OpenZeppelin on their [documentation site](https://docs.openzeppelin.com){target=\_blank}.
-
-As part of its Ethereum compatibility features, OpenZeppelin products can be seamlessly used on Moonbeam. This page will provide information on different OpenZeppelin solutions that you can test.
-
-## OpenZeppelin on Moonbeam {: #openzeppelin-on-moonbeam } 
-
-Currently, the following OpenZeppelin products/solutions work on the different networks available on Moonbeam:
-
-|      **Product**      | **Moonbeam** | **Moonriver** | **Moonbase Alpha** | **Moonbase Dev Node** |
-|:---------------------:|:------------:|:-------------:|:------------------:|:---------------------:|
-| Contracts & libraries |      ✓       |       ✓       |         ✓          |           ✓           |
-|   Contracts Wizard    |      ✓       |       ✓       |         ✓          |           ✓           |
-
-You will find a corresponding tutorial for each product in the following links:
-
- - [**Contracts Wizard**](/builders/ethereum/dev-env/openzeppelin/contracts/#openzeppelin-contract-wizard) — where you'll find a guide on how to use OpenZeppelin web-based wizard to create different token contracts with different functionalities
- - [**Contracts & libraries**](/builders/ethereum/dev-env/openzeppelin/contracts/#deploying-openzeppelin-contracts-on-moonbeam) — where you'll find tutorials to deploy the most common token contracts using OpenZeppelin's templates: ERC-20, ERC-721 and ERC-1155
- 
-<div class="page-disclaimer">
-  The information presented herein has been provided by third parties and is made available solely for general information purposes. Moonbeam does not endorse any project listed and described on the Moonbeam Doc Website (https://docs.moonbeam.network/). Moonbeam Foundation does not warrant the accuracy, completeness or usefulness of this information. Any reliance you place on such information is strictly at your own risk. Moonbeam Foundation disclaims all liability and responsibility arising from any reliance placed on this information by you or by anyone who may be informed of any of its contents. All statements and/or opinions expressed in these materials are solely the responsibility of the person or entity providing those materials and do not necessarily represent the opinion of Moonbeam Foundation. The information should not be construed as professional or financial advice of any kind. Advice from a suitably qualified professional should always be sought in relation to any particular matter or circumstance. The information herein may link to or integrate with other websites operated or content provided by third parties, and such other websites may link to this website. Moonbeam Foundation has no control over any such other websites or their content and will have no liability arising out of or related to such websites or their content. The existence of any such link does not constitute an endorsement of such websites, the content of the websites, or the operators of the websites. These links are being provided to you only as a convenience and you release and hold Moonbeam Foundation harmless from any and all liability arising from your use of this information or the information provided by any third-party website or service.
-</div>
---- END CONTENT ---
 
 Doc-Content: https://docs.moonbeam.network/builders/ethereum/precompiles/overview/
 --- BEGIN CONTENT ---
@@ -9156,7 +8400,7 @@ categories: Reference, Basics
 
 On Moonbeam, a precompiled contract is native Substrate code that has an Ethereum-style address and can be called using the Ethereum API, like any other smart contract. The precompiles allow you to call the Substrate runtime directly which is not normally accessible from the Ethereum side of Moonbeam.
 
-The Substrate code responsible for implementing precompiles can be found in the [EVM pallet](/learn/platform/technology/#evm-pallet){target=\_blank}. The EVM pallet includes the [standard precompiles found on Ethereum and some additional precompiles that are not specific to Ethereum](https://github.com/polkadot-evm/frontier/tree/master/frame/evm/precompile){target=\_blank}. It also provides the ability to create and execute custom precompiles through the generic [`Precompiles` trait](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm/trait.Precompile.html){target=\_blank}. There are several custom Moonbeam-specific precompiles that have been created, all of which can be found in the [Moonbeam codebase](https://github.com/moonbeam-foundation/moonbeam/tree/master/precompiles){target=\_blank}. It is important to highlight that the precompiles from this list with the `CallableByContract` check are not callable inside the contract constructor.
+The Substrate code responsible for implementing precompiles can be found in the [EVM pallet](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm/){target=\_blank}. The EVM pallet includes the [standard precompiles found on Ethereum and some additional precompiles that are not specific to Ethereum](https://github.com/polkadot-evm/frontier/tree/master/frame/evm/precompile){target=\_blank}. It also provides the ability to create and execute custom precompiles through the generic [`Precompiles` trait](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm/trait.Precompile.html){target=\_blank}. There are several custom Moonbeam-specific precompiles that have been created, all of which can be found in the [Moonbeam codebase](https://github.com/moonbeam-foundation/moonbeam/tree/master/precompiles){target=\_blank}. It is important to highlight that the precompiles from this list with the `CallableByContract` check are not callable inside the contract constructor.
 
 The Ethereum precompiled contracts contain complex functionality that is computationally intensive, such as hashing and encryption. The custom precompiled contracts on Moonbeam provide access to Substrate-based functionality such as staking, governance, XCM-related functions, and more.
 
@@ -9698,9 +8942,9 @@ Using Docker enables you to spin up a node in a matter of seconds. Once you have
     The tail end of the console log should look like this:
 
     <div id="termynal" data-termynal>
-  <span data-ty="input"><span class="file-path"></span>docker pull moonbeamfoundation/moonbeam:v0.48.0</span>
+  <span data-ty="input"><span class="file-path"></span>docker pull moonbeamfoundation/moonbeam:v0.49.0</span>
   <br>
-  <span data-ty>v0.48.0: Pulling from moonbeamfoundation/moonbeam
+  <span data-ty>v0.49.0: Pulling from moonbeamfoundation/moonbeam
     <br> b0a0cf830b12: Pull complete
     <br> fbff687640dd: Pull complete
     <br> 58ea427410e2: Pull complete
@@ -9709,8 +8953,8 @@ Using Docker enables you to spin up a node in a matter of seconds. Once you have
     <br> 128693ce218e: Pull complete
     <br> a3ac90b88463: Pull complete
     <br> Digest: sha256:86421aca2381265cd2e5283cb98705e24be0bc92a73937363f79d9d6e0d62088
-    <br> Status: Downloaded newer image for moonbeamfoundation/moonbeam:v0.48.0
-    <br> docker.io/moonbeamfoundation/moonbeam:v0.48.0
+    <br> Status: Downloaded newer image for moonbeamfoundation/moonbeam:v0.49.0
+    <br> docker.io/moonbeamfoundation/moonbeam:v0.49.0
   </span>
 </div>
 
@@ -9759,13 +9003,13 @@ If successful, you should see an output showing an idle state waiting for blocks
 
 <div id="termynal" data-termynal>
   <span data-ty="input"><span class="file-path"></span>docker run --rm --name moonbeam_development --network host \
-    <br> moonbeamfoundation/moonbeam:v0.48.0 \
+    <br> moonbeamfoundation/moonbeam:v0.49.0 \
     <br> --dev --rpc-external
   </span>
   <br>
   <span data-ty>CLI parameter `--execution` has no effect anymore and will be removed in the future!
     <br> 2025-07-10 09:04:26 Moonbeam Parachain Collator
-    <br> 2025-07-10 09:04:26 ✌️  version 0.48.0-d7df89e7161
+    <br> 2025-07-10 09:04:26 ✌️  version 0.49.0
     <br> 2025-07-10 09:04:26 ❤️  by PureStake, 2019-2025
     <br> 2025-07-10 09:04:26 📋 Chain specification: Moonbase Development Testnet
     <br> 2025-07-10 09:04:26 🏷  Node name: black-and-white-sticks-9174
@@ -9893,7 +9137,7 @@ You should see an output that looks like the following, showing an idle state wa
   <span data-ty="input"><span class="file-path"></span>./target/release/moonbeam --dev</span>
   <br>
   <span data-ty> 2025-07-10 09:04:26 Moonbeam Parachain Collator
-    <br> 2025-07-10 09:04:26 ✌️  version 0.48.0-d7df89e7161
+    <br> 2025-07-10 09:04:26 ✌️  version 0.49.0
     <br> 2025-07-10 09:04:26 ❤️  by PureStake, 2019-2025
     <br> 2025-07-10 09:04:26 📋 Chain specification: Moonbase Development Testnet
     <br> 2025-07-10 09:04:26 🏷  Node name: black-and-white-sticks-9174
@@ -10156,7 +9400,6 @@ If you're looking for your own endpoints suitable for production use, you can ch
     | UnitedBloc  |          <pre>```https://moonbeam.unitedbloc.com```</pre>          | 32 req/sec  |
     | RadiumBlock | <pre>```https://moonbeam.public.curie.radiumblock.co/http```</pre> | 200 req/sec |
     |    1RPC     |               <pre>```https://1rpc.io/glmr```</pre>                | 10k req/day |
-    |    Grove    |         <pre>```https://moonbeam.rpc.grove.city/v1/01fdb492```</pre>         | 5k req/day  |
 
 
 
@@ -10259,7 +9502,6 @@ If you're looking for your own endpoints suitable for production use, you can ch
       | OnFinality  |     <pre>```https://moonriver.api.onfinality.io/public```</pre>     | 40 req/sec  |
       | UnitedBloc  |          <pre>```https://moonriver.unitedbloc.com```</pre>          | 32 req/sec  |
       | RadiumBlock | <pre>```https://moonriver.public.curie.radiumblock.co/http```</pre> | 200 req/sec |
-      |    Grove    |        <pre>```https://moonriver.rpc.grove.city/v1/01fdb492```</pre>        | 5k req/day  |
 
 === "WSS"
     |  Provider   |                             RPC URL                             |   Limits    |
@@ -10350,7 +9592,7 @@ categories: Basics
 
 Moonbeam is a fully Ethereum-compatible smart contract platform on Polkadot. As such, you can interact with Moonbeam via the [Ethereum API](/builders/ethereum/){target=\_blank} and [Substrate API](/builders/substrate/){target=\_blank}.
 
-Although Moonbeam is a Substrate-based platform, Moonbeam uses a [unified accounts](/learn/core-concepts/unified-accounts/){target=\_blank} system, which replaces Substrate-style accounts and keys with Ethereum-style accounts and keys. As a result, you can interact with your Moonbeam account with [MetaMask](/tokens/connect/metamask/){target=\_blank}, [Ledger](/tokens/connect/ledger/){target=\_blank}, and other Ethereum-compatible wallets by simply adding Moonbeam's network configurations. Similarly, you can develop on Moonbeam using Ethereum [libraries](/builders/ethereum/libraries/){target=\_blank} and [development environments](/builders/ethereum/dev-env/){target=\_blank}.
+Although Moonbeam is a Substrate-based platform, it uses a [unified accounts](/learn/core-concepts/unified-accounts/){target=\_blank} system, which replaces Substrate-style accounts and keys with Ethereum-style accounts and keys. As a result, you can interact with your Moonbeam account with [MetaMask](/tokens/connect/metamask/){target=\_blank}, [Ledger](/tokens/connect/ledger/){target=\_blank}, and other Ethereum-compatible wallets by simply adding Moonbeam's network configurations. Similarly, you can develop on Moonbeam using Ethereum [libraries](/builders/ethereum/libraries/){target=\_blank} and [development environments](/builders/ethereum/dev-env/){target=\_blank}.
 
 ## Moonbeam Networks {: #moonbeam-networks }
 
@@ -10360,7 +9602,7 @@ To get started developing on Moonbeam, it's important to be aware of the various
 |:-----------------------------------------------------------------------------------------:|:-------------:|:--------------------------------------------------------------------------------:|:-------------------:|:---------------------:|
 |           [Moonbeam](/builders/get-started/networks/moonbeam/){target=\_blank}            |    MainNet    |                 [Polkadot](https://polkadot.com){target=\_blank}                 |        GLMR         |          18           |
 |          [Moonriver](/builders/get-started/networks/moonriver/){target=\_blank}           |    MainNet    |                 [Kusama](https://kusama.network){target=\_blank}                 |        MOVR         |          18           |
-|        [Moonbase Alpha](/builders/get-started/networks/moonbase/){target=\_blank}         |    TestNet    | [Alphanet relay](/learn/platform/networks/moonbase/#relay-chain){target=\_blank} |         DEV         |          18           |
+|        [Moonbase Alpha](/builders/get-started/networks/moonbase/){target=\_blank}         |    TestNet    |                           Alphanet relay (Westend-based)                         |         DEV         |          18           |
 | [Moonbeam Development Node](/builders/get-started/networks/moonbeam-dev/){target=\_blank} | Local TestNet |                                       None                                       |         DEV         |          18           |
 
 !!! note
@@ -10463,8 +9705,6 @@ As Moonbeam is a Substrate-based chain that is fully Ethereum-compatible, you ca
     | [OpenZeppelin](/builders/ethereum/dev-env/openzeppelin/){target=\_blank} | Dev Environment |
     |        [Remix](/builders/ethereum/dev-env/remix/){target=\_blank}        | Dev Environment |
     | [Scaffold-Eth](/builders/ethereum/dev-env/scaffold-eth/){target=\_blank} | Dev Environment |
-    |     [thirdweb](/builders/ethereum/dev-env/thirdweb/){target=\_blank}     | Dev Environment |
-    | [Waffle & Mars](/builders/ethereum/dev-env/waffle-mars/){target=\_blank} | Dev Environment |
 
 === "Substrate"
 
@@ -10479,7 +9719,6 @@ As Moonbeam is a Substrate-based chain that is fully Ethereum-compatible, you ca
     |                              Tool                               |      Type       |
     |:---------------------------------------------------------------:|:---------------:|
     | [Web3.py](/builders/ethereum/libraries/web3py/){target=\_blank} |     Library     |
-    |     [Ape](/builders/ethereum/dev-env/ape/){target=\_blank}      | Dev Environment |
 
 === "Substrate"
 
@@ -15753,7 +14992,8 @@ Not all runtime upgrades are released on each network, as sometimes after releas
 |                                 [3800](https://forum.moonbeam.network/t/runtime-rt3800-schedule/2188){target=\_blank}                                  | [12120762](https://moonbeam.subscan.io/block/12120762){target=\_blank} | [12540836](https://moonriver.subscan.io/block/12540836){target=\_blank} | [12853655](https://moonbase.subscan.io/block/12853655){target=\_blank} |
 |                                 [3900](https://forum.moonbeam.network/t/runtime-rt3900-schedule/2262){target=\_blank}                                  | [12960126](https://moonbeam.subscan.io/block/12960126){target=\_blank} | [13423618](https://moonriver.subscan.io/block/13423618){target=\_blank} | [13744975](https://moonbase.subscan.io/block/13744975){target=\_blank} |
 | [3901](https://forum.moonbeam.network/t/proposal-mb133-authorize-upgrade-to-rt3901-whitelist-track/2350){target=\_blank} | [13428709](https://moonbeam.subscan.io/block/13428709){target=\_blank} |                                    -                                    |                                   -                                    |
-| [4000](https://forum.moonbeam.network/t/runtime-rt4000-schedule/2321){target=\_blank} | - | - | [14191989](https://moonbase.subscan.io/block/14191989){target=\_blank} |
+| [4000](https://forum.moonbeam.network/t/runtime-rt4000-schedule/2321){target=\_blank} | - | [14078615](https://moonriver.subscan.io/block/14078615){target=\_blank} | [14191989](https://moonbase.subscan.io/block/14191989){target=\_blank} |
+| [4001](https://forum.moonbeam.network/t/runtime-rt4000-4001-schedule/2321){target=\_blank} | [13654437](https://moonbeam.subscan.io/block/13654437){target=\_blank} | - | - |
 --- END CONTENT ---
 
 Doc-Content: https://docs.moonbeam.network/builders/ethereum/canonical-contracts/
@@ -15982,7 +15222,7 @@ categories: JSON-RPC APIs, Reference, Ethereum Toolkit
 
 ## Introduction {: #introduction }
 
-The Moonbeam team has collaborated closely with [Parity](https://www.parity.io){target=\_blank} on developing [Frontier](/learn/platform/technology/#frontier){target=\_blank}, an Ethereum compatibility layer for Substrate-based chains. This layer enables developers to run unmodified Ethereum dApps on Moonbeam seamlessly.
+The Moonbeam team has collaborated closely with [Parity](https://www.parity.io){target=\_blank} on developing [Frontier](https://polkadot-evm.github.io/frontier/){target=\_blank}, an Ethereum compatibility layer for Substrate-based chains. This layer enables developers to run unmodified Ethereum dApps on Moonbeam seamlessly.
 
 Nevertheless, not all Ethereum JSON-RPC methods are supported; some of those supported return default values (those related to Ethereum's PoW consensus mechanism in particular). This guide provides a comprehensive list of supported Ethereum JSON-RPC methods on Moonbeam. Developers can quickly reference this list to understand the available functionality for interfacing with Moonbeam's Ethereum-compatible blockchain.
 
@@ -16174,7 +15414,7 @@ categories: Reference, Basics
 
 On Moonbeam, a precompiled contract is native Substrate code that has an Ethereum-style address and can be called using the Ethereum API, like any other smart contract. The precompiles allow you to call the Substrate runtime directly which is not normally accessible from the Ethereum side of Moonbeam.
 
-The Substrate code responsible for implementing precompiles can be found in the [EVM pallet](/learn/platform/technology/#evm-pallet){target=\_blank}. The EVM pallet includes the [standard precompiles found on Ethereum and some additional precompiles that are not specific to Ethereum](https://github.com/polkadot-evm/frontier/tree/master/frame/evm/precompile){target=\_blank}. It also provides the ability to create and execute custom precompiles through the generic [`Precompiles` trait](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm/trait.Precompile.html){target=\_blank}. There are several custom Moonbeam-specific precompiles that have been created, all of which can be found in the [Moonbeam codebase](https://github.com/moonbeam-foundation/moonbeam/tree/master/precompiles){target=\_blank}. It is important to highlight that the precompiles from this list with the `CallableByContract` check are not callable inside the contract constructor.
+The Substrate code responsible for implementing precompiles can be found in the [EVM pallet](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm/){target=\_blank}. The EVM pallet includes the [standard precompiles found on Ethereum and some additional precompiles that are not specific to Ethereum](https://github.com/polkadot-evm/frontier/tree/master/frame/evm/precompile){target=\_blank}. It also provides the ability to create and execute custom precompiles through the generic [`Precompiles` trait](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm/trait.Precompile.html){target=\_blank}. There are several custom Moonbeam-specific precompiles that have been created, all of which can be found in the [Moonbeam codebase](https://github.com/moonbeam-foundation/moonbeam/tree/master/precompiles){target=\_blank}. It is important to highlight that the precompiles from this list with the `CallableByContract` check are not callable inside the contract constructor.
 
 The Ethereum precompiled contracts contain complex functionality that is computationally intensive, such as hashing and encryption. The custom precompiled contracts on Moonbeam provide access to Substrate-based functionality such as staking, governance, XCM-related functions, and more.
 
@@ -16378,7 +15618,6 @@ If you are looking for an API provider suitable for production use, you can chec
     | UnitedBloc  |          <pre>```https://moonbeam.unitedbloc.com```</pre>          | 32 req/sec  |
     | RadiumBlock | <pre>```https://moonbeam.public.curie.radiumblock.co/http```</pre> | 200 req/sec |
     |    1RPC     |               <pre>```https://1rpc.io/glmr```</pre>                | 10k req/day |
-    |    Grove    |         <pre>```https://moonbeam.rpc.grove.city/v1/01fdb492```</pre>         | 5k req/day  |
 
 
 
@@ -16398,7 +15637,6 @@ If you are looking for an API provider suitable for production use, you can chec
       | OnFinality  |     <pre>```https://moonriver.api.onfinality.io/public```</pre>     | 40 req/sec  |
       | UnitedBloc  |          <pre>```https://moonriver.unitedbloc.com```</pre>          | 32 req/sec  |
       | RadiumBlock | <pre>```https://moonriver.public.curie.radiumblock.co/http```</pre> | 200 req/sec |
-      |    Grove    |        <pre>```https://moonriver.rpc.grove.city/v1/01fdb492```</pre>        | 5k req/day  |
 
 === "WSS"
     |  Provider   |                             RPC URL                             |   Limits    |
@@ -16443,7 +15681,6 @@ You can create your own endpoint suitable for development or production use usin
 - [dRPC](#drpc)
 - [Dwellir](#dwellir)
 - [GetBlock](#getblock)
-- [Grove](#grove)
 - [OnFinality](#onfinality)
 - [UnitedBloc](#unitedbloc)
 
@@ -16507,19 +15744,6 @@ Creating a new API/add-on based endpoint is simple, all you have to do is:
 
 ![GetBlock](/images/builders/get-started/endpoints/endpoints-4.webp)
 
-### Grove {: #grove }
-
-[Grove](https://grove.city){target=_blank} is a decentralized RPC network that provides reliable Web3 infrastructure with enterprise-grade performance and security. Grove offers both free and paid tiers, with the free tier providing generous limits for development use, while paid plans offer higher throughput, dedicated support, and advanced features for production applications. Grove's decentralized approach ensures high availability and censorship resistance by distributing requests across multiple node operators. The network supports both JSON-RPC and WebSocket connections for real-time applications. To get started with Grove:
-
-1. Visit the [Grove Portal](https://portal.grove.city/){target=_blank} and sign up for an account
-2. From your dashboard, create a new application
-3. Copy your Moonbeam or Moonriver endpoints
-4. Start making requests to your custom Grove endpoint
-
-Grove provides detailed analytics, request monitoring, and flexible rate limiting to help you optimize your application's performance.
-
-![Grove](/images/builders/get-started/endpoints/endpoints-5.webp)
-
 ### OnFinality {: #onfinality }
 
 [OnFinality](https://onfinality.io/en){target=_blank} provides a free API key based endpoint for customers in place of a public endpoint. Additionally, OnFinality offers paid tiers of service that offer increased rate limits and higher performance than those offered by the free tier. You also receive more in depth analytics of the usage of your application.
@@ -16530,7 +15754,7 @@ To create a custom OnFinality endpoint, go to [OnFinality](https://onfinality.io
 2. Select the network from the dropdown
 3. Your custom API endpoint will be generated automatically
 
-![OnFinality](/images/builders/get-started/endpoints/endpoints-6.webp)
+![OnFinality](/images/builders/get-started/endpoints/endpoints-5.webp)
 
 ### UnitedBloc {: #unitedbloc }
 

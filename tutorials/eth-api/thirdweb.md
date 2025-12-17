@@ -13,7 +13,7 @@ _by Kevin Neilson_
 
 In this guide, we'll go step by step through the process of building an NFT marketplace DApp with thirdweb on Moonbeam. We'll deploy all of the associated contracts, including an ERC-721 NFT contract and a marketplace smart contract to Moonbase Alpha with thirdweb, and then we'll integrate them into the DApp.
 
-For a more nuts and bolts approach to thirdweb with information about available methods, the thirdweb CLI and deployment tools, be sure to check out the [thirdweb guide in the Builders section](/builders/ethereum/dev-env/thirdweb/). 
+For a more nuts and bolts approach to thirdweb with information about available methods, the thirdweb CLI and deployment tools, be sure to check out the [thirdweb documentation site](https://portal.thirdweb.com/){target=\_blank}. 
 
 ## Clone the Template {: #clone-the-template }
 
@@ -274,7 +274,7 @@ On the homepage you should see your newly added NFT contract. Click on the NFT c
 
 ![View finished product](/images/tutorials/eth-api/thirdweb/thirdweb-7.webp "Viewing the finished product of the NFT marketplace on thirdweb")
 
-For more information on what you can do with thirdweb on Moonbeam be sure to check out the [thirdweb guide in the Builders section](/builders/ethereum/dev-env/thirdweb/) or the [thirdweb documentation site](https://portal.thirdweb.com/){target=\_blank}.
+For more information on what you can do with thirdweb on Moonbeam be sure to check out the [thirdweb documentation site](https://portal.thirdweb.com/){target=\_blank}.
 
 --8<-- 'text/_disclaimers/educational-tutorial.md'
 

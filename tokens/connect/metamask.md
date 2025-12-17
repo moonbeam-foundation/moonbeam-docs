@@ -29,8 +29,6 @@ If you already have MetaMask installed, you can easily connect MetaMask to the n
 !!! note
     MetaMask will pop up asking for permission to add a custom network. Once you approve permissions, MetaMask will switch your current network.
 
-Learn [how to integrate a Connect MetaMask button](/builders/integrations/wallets/metamask/){target=\_blank} into your dApp, so that users can connect to Moonbase Alpha with a simple click of a button. The guide can also be adapted for the other Moonbeam-based networks.
-
 --8<-- 'text/_disclaimers/third-party-content-intro.md'
 
 ## Install the MetaMask Extension {: #install-the-metamask-extension }
