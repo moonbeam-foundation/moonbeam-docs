@@ -3132,7 +3132,6 @@ Due to Moonbeam's native interoperability, ERC-20s can be sent cross-chain to ot
 
 Learn more:
 
-- [Create common OpenZeppelin contracts such as ERC-20, ERC-721, and ERC-1155 tokens](/builders/ethereum/dev-env/openzeppelin/contracts/){target=\_blank}
 - [XCM-enabled ERC-20s](/builders/interoperability/xcm/xc20/overview/#local-xc20s){target=\_blank} (also referred to as local XC-20s)
 
 ## Key Differences {: #key-differences }
@@ -4018,7 +4017,6 @@ categories: Basics
  - **[Remix](https://remix.ethereum.org){target=\_blank}** - web-based IDE for Solidity smart contract development that is compatible with Moonbeam
  - **[Hardhat](https://hardhat.org){target=\_blank}** - development tools for Solidity, including debugging, testing, and automated deployment that is compatible with Moonbeam
 --- END CONTENT ---
-
 
 Doc-Content: https://docs.moonbeam.network/builders/ethereum/precompiles/overview/
 --- BEGIN CONTENT ---
@@ -5337,7 +5335,6 @@ As Moonbeam is a Substrate-based chain that is fully Ethereum-compatible, you ca
     |   [Ethers.js](/builders/ethereum/libraries/ethersjs/){target=\_blank}    |     Library     |
     |     [Web3.js](/builders/ethereum/libraries/web3js/){target=\_blank}      |     Library     |
     |      [Hardhat](/builders/ethereum/dev-env/hardhat/){target=\_blank}      | Dev Environment |
-    | [OpenZeppelin](/builders/ethereum/dev-env/openzeppelin/){target=\_blank} | Dev Environment |
     |        [Remix](/builders/ethereum/dev-env/remix/){target=\_blank}        | Dev Environment |
     | [Scaffold-Eth](/builders/ethereum/dev-env/scaffold-eth/){target=\_blank} | Dev Environment |
 
@@ -10629,6 +10626,7 @@ Not all runtime upgrades are released on each network, as sometimes after releas
 | [3901](https://forum.moonbeam.network/t/proposal-mb133-authorize-upgrade-to-rt3901-whitelist-track/2350){target=\_blank} | [13428709](https://moonbeam.subscan.io/block/13428709){target=\_blank} |                                    -                                    |                                   -                                    |
 | [4000](https://forum.moonbeam.network/t/runtime-rt4000-schedule/2321){target=\_blank} | - | [14078615](https://moonriver.subscan.io/block/14078615){target=\_blank} | [14191989](https://moonbase.subscan.io/block/14191989){target=\_blank} |
 | [4001](https://forum.moonbeam.network/t/runtime-rt4000-4001-schedule/2321){target=\_blank} | [13654437](https://moonbeam.subscan.io/block/13654437){target=\_blank} | - | - |
+| [4100](https://forum.moonbeam.network/t/runtime-rt4100-schedule/2370){target=\_blank} | - | - | [14535211](https://moonbase.subscan.io/block/14535211){target=\_blank} |
 --- END CONTENT ---
 
 Doc-Content: https://docs.moonbeam.network/builders/ethereum/canonical-contracts/
