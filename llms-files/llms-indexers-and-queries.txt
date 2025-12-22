@@ -1811,7 +1811,7 @@ categories: Indexers and Queries
 
 SQD has native and full support for both Ethereum Virtual Machine (EVM) and Substrate data. Since Moonbeam is a Substrate-based smart contact platform that is EVM-compatible, SQD can be used to index both EVM and Substrate-based data. SQD offers a Substrate Archive and Processor and an EVM Archive and Processor. The Substrate Archive and Processor can be used to index both Substrate and EVM data. This allows developers to extract on-chain data from any of the Moonbeam networks and process EVM logs as well as Substrate entities (events, extrinsics, and storage items) in one single project and serve the resulting data with one single GraphQL endpoint. If you exclusively want to index EVM data, it is recommended to use the EVM Archive and Processor.
 
-This quick-start guide will show you how to create Substrate and EVM projects with SQD and configure it to index data on Moonbeam. For a more comprehensive end-to-end tutorial, be sure to check out [Index a Local Moonbeam Development Node with SQD](/tutorials/integrations/local-subsquid/){target=\_blank}.
+This quick-start guide will show you how to create Substrate and EVM projects with SQD and configure it to index data on Moonbeam.
 
 <div class="intro-disclaimer">
   The information presented herein is for informational purposes only and has been provided by third parties. Moonbeam does not endorse any project listed and described on the Moonbeam docs website (https://docs.moonbeam.network/).
@@ -2037,7 +2037,7 @@ These steps apply to both Substrate and EVM indexers. Running your SQD indexer a
         }
         ```
 
-If you're interested in a step-by-step tutorial to get started indexing data on Moonbeam, you can check out the [Index NFT Token Transfers on Moonbeam with SQD](/tutorials/integrations/nft-subsquid/){target=\_blank} tutorial!
+For additional examples and workflows, refer to the [SQD documentation](https://docs.sqd.dev/){target=\_blank}.
 
 <div class="page-disclaimer">
   The information presented herein has been provided by third parties and is made available solely for general information purposes. Moonbeam does not endorse any project listed and described on the Moonbeam Doc Website (https://docs.moonbeam.network/). Moonbeam Foundation does not warrant the accuracy, completeness or usefulness of this information. Any reliance you place on such information is strictly at your own risk. Moonbeam Foundation disclaims all liability and responsibility arising from any reliance placed on this information by you or by anyone who may be informed of any of its contents. All statements and/or opinions expressed in these materials are solely the responsibility of the person or entity providing those materials and do not necessarily represent the opinion of Moonbeam Foundation. The information should not be construed as professional or financial advice of any kind. Advice from a suitably qualified professional should always be sought in relation to any particular matter or circumstance. The information herein may link to or integrate with other websites operated or content provided by third parties, and such other websites may link to this website. Moonbeam Foundation has no control over any such other websites or their content and will have no liability arising out of or related to such websites or their content. The existence of any such link does not constitute an endorsement of such websites, the content of the websites, or the operators of the websites. These links are being provided to you only as a convenience and you release and hold Moonbeam Foundation harmless from any and all liability arising from your use of this information or the information provided by any third-party website or service.
@@ -4837,7 +4837,7 @@ categories: Basics, XCM
 
 # Cross-Chain Communication Methods
 
-Moonbeam makes it easy for developers to build smart contracts that connect across chains, both within the Polkadot ecosystem and outside the Polkadot ecosystem. This page will provide an overview of the underlying protocols that enable cross-chain communication and how you can leverage them to build connected contracts. For step-by-step guides of how to put these principles into practice, be sure to check out the [interoperability tutorials](/tutorials/interoperability/){target=\_blank}.
+Moonbeam makes it easy for developers to build smart contracts that connect across chains, both within the Polkadot ecosystem and outside the Polkadot ecosystem. This page provides an overview of the underlying protocols that enable cross-chain communication and how you can leverage them to build connected contracts.
 
 Two key terms that will come up frequently in this guide are XCM and GMP. [XCM](/builders/interoperability/xcm/){target=\_blank} refers to cross-consensus messaging, and it's Polkadot's native interoperability language that facilitates communication between Polkadot blockchains. You can read more about the [standardized XCM message format](https://docs.polkadot.com/develop/interoperability/intro-to-xcm/){target=\_blank} and [How to Get Started Building with XCM](/builders/interoperability/xcm/){target=\_blank}.
 
