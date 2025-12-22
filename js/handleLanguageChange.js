@@ -20,8 +20,6 @@ const pageMappings = {
   '/builders/ethereum/dev-env/remix/': '/cn/builders/dev-env/remix/',
   '/builders/ethereum/dev-env/tenderly/': '/cn/builders/dev-env/tenderly/',
   '/builders/integrations/': '/cn/builders/integrations/',
-  '/tutorials/': '/cn/tutorials/',
-  '/tutorials/': '/cn/tutorials/eth-api/',
 };
 
 const processWindowLocation = (pathname, origin) => {
