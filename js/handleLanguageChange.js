@@ -20,13 +20,6 @@ const pageMappings = {
   '/builders/ethereum/dev-env/remix/': '/cn/builders/dev-env/remix/',
   '/builders/ethereum/dev-env/tenderly/': '/cn/builders/dev-env/tenderly/',
   '/builders/integrations/': '/cn/builders/integrations/',
-  '/tutorials/': '/cn/tutorials/',
-  '/tutorials/': '/cn/tutorials/eth-api/',
-  '/tutorials/eth-api/how-to-build-a-dapp/':
-    '/cn/tutorials/eth-api/how-to-build-a-dapp/',
-  '/tutorials/eth-api/batch-approve-swap/': '/cn/tutorials/eth-api/batch-approve-swap/',
-  '/tutorials/eth-api/call-permit-gasless-txs/':
-    '/cn/tutorials/eth-api/call-permit-gasless-txs/',
 };
 
 const processWindowLocation = (pathname, origin) => {
