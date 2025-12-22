@@ -91,7 +91,6 @@ As Moonbeam is a Substrate-based chain that is fully Ethereum-compatible, you ca
     |                                   Tool                                   |      Type       |
     |:------------------------------------------------------------------------:|:---------------:|
     |   [Ethers.js](/builders/ethereum/libraries/ethersjs/){target=\_blank}    |     Library     |
-    |     [Web3.js](/builders/ethereum/libraries/web3js/){target=\_blank}      |     Library     |
     |      [Hardhat](/builders/ethereum/dev-env/hardhat/){target=\_blank}      | Dev Environment |
     |        [Remix](/builders/ethereum/dev-env/remix/){target=\_blank}        | Dev Environment |
 
