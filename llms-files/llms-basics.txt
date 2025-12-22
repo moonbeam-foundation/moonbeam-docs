@@ -180,7 +180,7 @@ Finality is deterministic in Ethereum's PoS consensus protocol and is achieved t
 
 ## Moonbeam Consensus and Finality {: #moonbeam-consensus-and-finality }
 
-In Polkadot, there are collators and validators. Collators maintain parachains (in this case, Moonbeam) by collecting transactions from users and producing state transition proofs for the relay chain validators. The collator set (nodes that produce blocks) is selected based on the stake they have in the network.
+In Polkadot, there are collators and validators. [Collators](https://wiki.polkadot.com/learn/learn-collator/){target=\_blank} maintain parachains (in this case, Moonbeam) by collecting transactions from users and producing state transition proofs for the relay chain [validators](https://wiki.polkadot.com/learn/learn-validator/){target=\_blank}. The collator set (nodes that produce blocks) is selected based on the stake they have in the network.
 
 For finality, Polkadot and Kusama rely on [GRANDPA](https://docs.polkadot.com/polkadot-protocol/architecture/polkadot-chain/pos-consensus/#finality-gadget-grandpa){target=\_blank}. GRANDPA provides deterministic finality for any given transaction (block). In other words, when a block or transaction is marked as final, it can't be reverted except via on-chain governance or forking. Moonbeam follows this deterministic finality.
 
@@ -190,7 +190,7 @@ In terms of consensus, Moonbeam is based on Delegated Proof-of-Stake, while Ethe
 
 With PoS on Ethereum, validators are selected to produce and validate blocks based on their own stake in the network. As long as a validator has placed a validator deposit, they can be selected to produce and validate blocks. However, as previously mentioned, the greater the stake in the network, the higher the chances a validator has to be selected to produce and validate blocks.
 
-On the other hand, with DPoS on Moonbeam, collators become eligible to produce blocks based on their own stake plus their delegated stake in the network. Any token holder can choose to delegate their stake to a collator candidate. The top collator candidates by stake, including delegations, join the active set. The number of candidates in the active set is subject to governance. Once in the active set, collators are randomly selected to produce blocks using the Nimbus Consensus Framework. It is important to note that once a collator is in the active set, their total stake does not impact their chances of being selected to produce blocks.
+On the other hand, with DPoS on Moonbeam, collators become eligible to produce blocks based on their own stake plus their delegated stake in the network. Any token holder can choose to delegate their stake to a collator candidate. The top collator candidates by stake, including delegations, join the active set. The number of candidates in the active set is subject to [governance](/learn/features/governance/){target=\_blank}. Once in the active set, collators are randomly selected to produce blocks using the Nimbus Consensus Framework. It is important to note that once a collator is in the active set, their total stake does not impact their chances of being selected to produce blocks.
 
 In terms of finality, blocks on Ethereum can take quite a bit longer to finalize than on Moonbeam due to the checkpoint finality system it uses. In Ethereum, validators determine finality at checkpoint blocks, which are always the first block in an epoch. Since an epoch has 32 slots and each slot is 12 seconds, it'll take at least 384 seconds, or 6.4 minutes for a block to be finalized.
 
@@ -2478,7 +2478,7 @@ categories: Basics, Staking
 
 ## Introduction {: #introduction }
 
-Moonbeam uses a block production mechanism based on [Polkadot's Proof-of-Stake model](https://docs.polkadot.com/polkadot-protocol/architecture/polkadot-chain/pos-consensus/){target=\_blank}, where there are collators and validators. [Collators maintain parachains (in this case, Moonbeam) by collecting transactions from users and producing state transition proofs for the relay chain validators.
+Moonbeam uses a block production mechanism based on [Polkadot's Proof-of-Stake model](https://docs.polkadot.com/polkadot-protocol/architecture/polkadot-chain/pos-consensus/){target=\_blank}, where there are collators and validators. [Collators](https://wiki.polkadot.com/learn/learn-collator/){target=\_blank} maintain parachains (in this case, Moonbeam) by collecting transactions from users and producing state transition proofs for the relay chain [validators](https://wiki.polkadot.com/learn/learn-validator/){target=\_blank}.
 
 The candidates in the active set of collators (nodes that produce blocks) are selected based on their stake in the network. And here is where staking comes in.
 
@@ -4797,7 +4797,7 @@ For this purpose, we use [Discord](https://discord.com/invite/moonbeam){target=\
  - **collators** — this is the general collator discussion channel. We are proud of having an active and friendly collator community so if you have any questions, this is the place to ask. We will also ping collators here for any issues that require their attention.
  - **meet-the-collators** — in this channel you can introduce yourself to potential delegators
 
-After you join our Discord, feel free to DM *gilmouta* or *artkaseman* and introduce yourself. This will let us know who to contact if we see an issue with your node, and will also let us assign the relevant Discord collator role, enabling you to post in *meet-the-collators*.
+After you join Discord, feel free to DM *gilmouta* or *artkaseman* and introduce yourself. This will help the team identify who to contact if issues arise with your node and will enable assignment of the relevant Discord collator role, allowing you to post in *meet-the-collators*.
 --- END CONTENT ---
 
 Doc-Content: https://docs.moonbeam.network/node-operators/networks/run-a-node/overview/
