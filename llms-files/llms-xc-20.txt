@@ -797,13 +797,13 @@ The interface also includes the following required events:
 
 ### The ERC-20 Permit Solidity Interface {: #the-erc20-permit-interface }
 
-External XC-20s also have the ERC-20 Permit interface. The [Permit.sol](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/assets-erc20/Permit.sol){target=\_blank} interface on Moonbeam follows the [EIP-2612 standard](https://eips.ethereum.org/EIPS/eip-2612){target=\_blank}, which extends the ERC-20 interface with the `permit` function. Permits are signed messages that can be used to change an account's ERC-20 allowance. Note that local XC-20s can have also the Permit interface, but it is not a requirement for them to be XCM-ready.
+External XC-20s also have the ERC-20 Permit interface. The [Permit.sol](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/balances-erc20/Permit.sol){target=\_blank} interface on Moonbeam follows the [EIP-2612 standard](https://eips.ethereum.org/EIPS/eip-2612){target=\_blank}, which extends the ERC-20 interface with the `permit` function. Permits are signed messages that can be used to change an account's ERC-20 allowance. Note that local XC-20s can have also the Permit interface, but it is not a requirement for them to be XCM-ready.
 
 The standard ERC-20 `approve` function is limited in its design as the `allowance` can only be modified by the sender of the transaction, the `msg.sender`. This can be seen in [OpenZeppelin's implementation of the ERC-20 interface](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/ERC20.sol#L136){target=\_blank}, which sets the `owner` through the [`msgSender` function](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/utils/Context.sol#L17){target=\_blank}, which ultimately sets it to `msg.sender`.
 
 Instead of signing the `approve` transaction, a user can sign a message, and that signature can be used to call the `permit` function to modify the `allowance`.  As such, it allows for gas-less token transfers. In addition, users no longer need to send two transactions to approve and transfer tokens. To see an example of the `permit` function, you can check out [OpenZeppelin's implementation of the ERC-20 Permit extension](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/4a9cc8b4918ef3736229a5cc5a310bdc17bf759f/contracts/token/ERC20/extensions/draft-ERC20Permit.sol#L41){target=\_blank}.
 
-The [Permit.sol](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/assets-erc20/Permit.sol){target=\_blank} interface includes the following functions:
+The [Permit.sol](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/balances-erc20/Permit.sol){target=\_blank} interface includes the following functions:
 
 - **permit**(*address* owner, *address* spender, *uint256*, value, *uint256*, deadline, *uint8* v, *bytes32* r, *bytes32* s) - consumes an approval permit, which can be called by anyone
 - **nonces**(*address* owner) - returns the current nonce for the given owner
@@ -842,7 +842,7 @@ This section of the guide will show you how to interact with XC-20s via the ERC-
 
 To interact with external XC-20s, you'll need to first calculate the precompile address of the XC-20 asset you want to interact with. Then, you can interact with the ERC-20 interface as you would with any other ERC-20.
 
-You can adapt the instructions in this section to be used with the [Permit.sol](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/assets-erc20/Permit.sol){target=\_blank} interface.
+You can adapt the instructions in this section to be used with the [Permit.sol](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/balances-erc20/Permit.sol){target=\_blank} interface.
 
 ### Checking Prerequisites {: #checking-prerequisites }
 
@@ -6044,7 +6044,6 @@ If you're looking for your own endpoints suitable for production use, you can ch
     | UnitedBloc  |          <pre>```https://moonbeam.unitedbloc.com```</pre>          | 32 req/sec  |
     | RadiumBlock | <pre>```https://moonbeam.public.curie.radiumblock.co/http```</pre> | 200 req/sec |
     |    1RPC     |               <pre>```https://1rpc.io/glmr```</pre>                | 10k req/day |
-    |    Grove    |         <pre>```https://moonbeam.rpc.grove.city/v1/01fdb492```</pre>         | 5k req/day  |
 
 
 
@@ -6186,7 +6185,6 @@ If you're looking for your own endpoints suitable for production use, you can ch
       | OnFinality  |     <pre>```https://moonriver.api.onfinality.io/public```</pre>     | 40 req/sec  |
       | UnitedBloc  |          <pre>```https://moonriver.unitedbloc.com```</pre>          | 32 req/sec  |
       | RadiumBlock | <pre>```https://moonriver.public.curie.radiumblock.co/http```</pre> | 200 req/sec |
-      |    Grove    |        <pre>```https://moonriver.rpc.grove.city/v1/01fdb492```</pre>        | 5k req/day  |
 
 === "WSS"
     |  Provider   |                             RPC URL                             |   Limits    |
@@ -7603,7 +7601,6 @@ If you're looking for your own endpoints suitable for production use, you can ch
     | UnitedBloc  |          <pre>```https://moonbeam.unitedbloc.com```</pre>          | 32 req/sec  |
     | RadiumBlock | <pre>```https://moonbeam.public.curie.radiumblock.co/http```</pre> | 200 req/sec |
     |    1RPC     |               <pre>```https://1rpc.io/glmr```</pre>                | 10k req/day |
-    |    Grove    |         <pre>```https://moonbeam.rpc.grove.city/v1/01fdb492```</pre>         | 5k req/day  |
 
 
 
@@ -7706,7 +7703,6 @@ If you're looking for your own endpoints suitable for production use, you can ch
       | OnFinality  |     <pre>```https://moonriver.api.onfinality.io/public```</pre>     | 40 req/sec  |
       | UnitedBloc  |          <pre>```https://moonriver.unitedbloc.com```</pre>          | 32 req/sec  |
       | RadiumBlock | <pre>```https://moonriver.public.curie.radiumblock.co/http```</pre> | 200 req/sec |
-      |    Grove    |        <pre>```https://moonriver.rpc.grove.city/v1/01fdb492```</pre>        | 5k req/day  |
 
 === "WSS"
     |  Provider   |                             RPC URL                             |   Limits    |
@@ -13826,7 +13822,6 @@ If you are looking for an API provider suitable for production use, you can chec
     | UnitedBloc  |          <pre>```https://moonbeam.unitedbloc.com```</pre>          | 32 req/sec  |
     | RadiumBlock | <pre>```https://moonbeam.public.curie.radiumblock.co/http```</pre> | 200 req/sec |
     |    1RPC     |               <pre>```https://1rpc.io/glmr```</pre>                | 10k req/day |
-    |    Grove    |         <pre>```https://moonbeam.rpc.grove.city/v1/01fdb492```</pre>         | 5k req/day  |
 
 
 
@@ -13846,7 +13841,6 @@ If you are looking for an API provider suitable for production use, you can chec
       | OnFinality  |     <pre>```https://moonriver.api.onfinality.io/public```</pre>     | 40 req/sec  |
       | UnitedBloc  |          <pre>```https://moonriver.unitedbloc.com```</pre>          | 32 req/sec  |
       | RadiumBlock | <pre>```https://moonriver.public.curie.radiumblock.co/http```</pre> | 200 req/sec |
-      |    Grove    |        <pre>```https://moonriver.rpc.grove.city/v1/01fdb492```</pre>        | 5k req/day  |
 
 === "WSS"
     |  Provider   |                             RPC URL                             |   Limits    |
@@ -13891,7 +13885,6 @@ You can create your own endpoint suitable for development or production use usin
 - [dRPC](#drpc)
 - [Dwellir](#dwellir)
 - [GetBlock](#getblock)
-- [Grove](#grove)
 - [OnFinality](#onfinality)
 - [UnitedBloc](#unitedbloc)
 
@@ -13955,19 +13948,6 @@ Creating a new API/add-on based endpoint is simple, all you have to do is:
 
 ![GetBlock](/images/builders/get-started/endpoints/endpoints-4.webp)
 
-### Grove {: #grove }
-
-[Grove](https://grove.city){target=_blank} is a decentralized RPC network that provides reliable Web3 infrastructure with enterprise-grade performance and security. Grove offers both free and paid tiers, with the free tier providing generous limits for development use, while paid plans offer higher throughput, dedicated support, and advanced features for production applications. Grove's decentralized approach ensures high availability and censorship resistance by distributing requests across multiple node operators. The network supports both JSON-RPC and WebSocket connections for real-time applications. To get started with Grove:
-
-1. Visit the [Grove Portal](https://portal.grove.city/){target=_blank} and sign up for an account
-2. From your dashboard, create a new application
-3. Copy your Moonbeam or Moonriver endpoints
-4. Start making requests to your custom Grove endpoint
-
-Grove provides detailed analytics, request monitoring, and flexible rate limiting to help you optimize your application's performance.
-
-![Grove](/images/builders/get-started/endpoints/endpoints-5.webp)
-
 ### OnFinality {: #onfinality }
 
 [OnFinality](https://onfinality.io/en){target=_blank} provides a free API key based endpoint for customers in place of a public endpoint. Additionally, OnFinality offers paid tiers of service that offer increased rate limits and higher performance than those offered by the free tier. You also receive more in depth analytics of the usage of your application.
@@ -13978,7 +13958,7 @@ To create a custom OnFinality endpoint, go to [OnFinality](https://onfinality.io
 2. Select the network from the dropdown
 3. Your custom API endpoint will be generated automatically
 
-![OnFinality](/images/builders/get-started/endpoints/endpoints-6.webp)
+![OnFinality](/images/builders/get-started/endpoints/endpoints-5.webp)
 
 ### UnitedBloc {: #unitedbloc }
 
