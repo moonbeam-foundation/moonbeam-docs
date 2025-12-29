@@ -85,36 +85,30 @@ First, ensure that you installed [Parity's `generate-types-bundle` package](http
 npm install -g @substrate/generate-type-bundle
 ```
 
-Then, navigate to the following directory within your project:
-
-```bash
-cd ./node_modules/@substrate/api-sidecar/build/src/
-```
-
 Then, run the following command to generate the types bundle for the respective network:
 
 === "Moonbeam"
 
     ```bash
-    generate-type-bundle -p . -s moonbeam
+    generate-type-bundle -p "$(pwd)" -s moonbeam
     ```
 
 === "Moonriver"
 
     ```bash
-    generate-type-bundle -p . -s moonriver
+    generate-type-bundle -p "$(pwd)" -s moonriver
     ```
 
 === "Moonbase Alpha"
 
     ```bash
-    generate-type-bundle -p . -s moonbase
+    generate-type-bundle -p "$(pwd)" -s moonbase
     ```
 
 Note that running subsequent commands will overwrite the existing `typesBundle.json.` You'll then need to set the `SAS_SUBSTRATE_TYPES_BUNDLE` environment variable as shown below. If you've renamed the `typesBundle.json,` ensure you use the correct file name. 
 
 ```bash
-export SAS_SUBSTRATE_TYPES_BUNDLE="./typesBundle.json"
+export SAS_SUBSTRATE_TYPES_BUNDLE="$(pwd)/typesBundle.json"
 ```
 
 After setting the environment variable, you can verify that you set it correctly by using the following `echo` command:
@@ -124,12 +118,6 @@ echo $SAS_SUBSTRATE_TYPES_BUNDLE
 ```
 
 ## Running Substrate API Sidecar {: #running-substrate-api-sidecar }
-
-Navigate back to the root directory of the project: 
-
-```bash
-cd ../../../../..
-```
 
 With the network endpoint environmental variable set, and from the installation directory root, run:
 

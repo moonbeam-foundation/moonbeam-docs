@@ -13,7 +13,6 @@ You are an AI developer assistant for Moonbeam (https://moonbeam.network/). Your
 - If unsure, respond with “Not specified in the documentation.
 
 ## List of doc pages:
-Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/learn/features/xchain-plans.md [type: learn]
 Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/interoperability/mrl.md [type: builders]
 Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/interoperability/xcm/core-concepts/instructions.md [type: builders]
 Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/interoperability/xcm/core-concepts/multilocations.md [type: builders]
@@ -26,99 +25,8 @@ Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/re
 Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/interoperability/xcm/xc-registration/xc-integration.md [type: builders]
 Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/interoperability/xcm/xc20/send-xc20s/eth-api.md [type: builders]
 Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/interoperability/xcm/xcm-utils.md [type: builders]
-Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/tutorials/interoperability/remote-staking-xcm.md [type: tutorials]
-Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/tutorials/interoperability/uniswapv2-swap-xcm.md [type: tutorials]
 
 ## Full content for each doc page
-
-Doc-Content: https://docs.moonbeam.network/learn/features/xchain-plans/
---- BEGIN CONTENT ---
----
-title: Cross-Chain Communication
-description: This guide covers the ways you can build cross-chain dApps with Moonbeam, including via XCM, cross consensus messaging, and GMP, general message passing.
-categories: Basics, XCM
----
-
-# Cross-Chain Communication Methods
-
-Moonbeam makes it easy for developers to build smart contracts that connect across chains, both within the Polkadot ecosystem and outside the Polkadot ecosystem. This page will provide an overview of the underlying protocols that enable cross-chain communication and how you can leverage them to build connected contracts. For step-by-step guides of how to put these principles into practice, be sure to check out the [interoperability tutorials](/tutorials/interoperability/){target=\_blank}.
-
-Two key terms that will come up frequently in this guide are XCM and GMP. [XCM](/builders/interoperability/xcm/){target=\_blank} refers to cross-consensus messaging, and it's Polkadot's native interoperability language that facilitates communication between Polkadot blockchains. You can read more about the [standardized XCM message format](https://docs.polkadot.com/develop/interoperability/intro-to-xcm/){target=\_blank} and [How to Get Started Building with XCM](/builders/interoperability/xcm/){target=\_blank}.
-
-[GMP](https://moonbeam.network/news/seamless-blockchain-interoperability-the-power-of-general-message-passing-gmp){target=\_blank}, or general message passing, refers to the sending and receiving of messages within decentralized blockchain networks. While XCM is a type of general message passing, GMP colloquially refers to cross-chain communication between Moonbeam and blockchains outside of Polkadot. Similarly, in this guide, XCM refers to cross-chain messaging within Polkadot, and GMP refers to cross-chain messaging between Moonbeam and other ecosystems outside of Polkadot.
-
-## Quick Reference {: #quick-reference }  
-
-=== "Comparison of XCM vs GMP"
-|     Specification     |                                                                       XCM                                                                        |                                                                                                                                                       GMP                                                                                                                                                        |
-|:---------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-|       **Scope**       |                                                      Polkadot and its connected parachains                                                       |                                                                                                                                    Any blockchain supported by a GMP provider                                                                                                                                    |
-|     **Provider**      |                                                                     Polkadot                                                                     | [Axelar](/builders/interoperability/protocols/axelar/){target=\_blank}, [Wormhole](/builders/interoperability/protocols/wormhole/){target=\_blank}, [LayerZero](/builders/interoperability/protocols/layerzero/){target=\_blank}, [Hyperlane](/builders/interoperability/protocols/hyperlane/){target=\_blank}, etc. |
-|  **Implementation**   |                               [XCM Virtual Machine](https://wiki.polkadot.com/learn/learn-xcvm/){target=\_blank}                               |                                                                                                                                                 Smart contracts                                                                                                                                                  |
-|     **Security**      |                                                            Polkadot's shared security                                                            |                                                                                                                                 Proprietary consensus determined by GMP provider                                                                                                                                 |
-|       **Fees**        | [Purchased with `BuyExecution` XCM instruction with supported asset](/builders/interoperability/xcm/core-concepts/weights-fees/){target=\_blank} |                                                                                                                    User sends value with transaction to pay for gas on the destination chain                                                                                                                     |
-| **Adding New Chains** |                                            Requires creation of XCM channels by both connected chains                                            |                                                                                                                                       Requires GMP provider to add support                                                                                                                                       |
-
-## XCM Transport Methods {: #xcm-transport-methods }  
-
-XCMP is the protocol that carries messages conforming to the XCM standard. The difference between the two is easy to remember with the added letter "P" for protocol. While XCM is the language that defines the format of the message to send, XCMP can be thought of as the pipes that enable the delivery of said messages.
-
-XCMP is comprised of channels that enable communication between connected blockchains. When a parachain launches on Polkadot, two XCM channels are established automatically to allow for communication between the Polkadot relay chain and the parachain itself. XCM channels are omnidirectional, so two channels must be established for bidirectional communication. 
-
-Polkadot parachains can optionally choose to establish additional XCM channels with other parachains. Establishing XCM channels with other chains is a double opt-in process, so the receiving chain must also agree to have the channel established. Establishing XCM channels with another parachain allows for the exchange of XCM messages, enabling the flow of cross-chain assets and remote contract calls, to name a few examples. 
-
-There are several different subcategories of XCM transport methods, including:
-
-### VMP {: #vmp } 
-
-VMP, or [Vertical Message Passing](https://wiki.polkadot.com/learn/learn-xcm-transport/#vmp-vertical-message-passing){target=\_blank}, refers to message passing between the relay chain and a parachain. Given that XCM channels are one-way, there are two types of message passing that comprise VMP, namely:  
-
-- **UMP** - Upward Message Passing refers to message passing from a parachain to the relay chain
-- **DMP** - Downward Message Passing refers to message passing from the relay chain to a parachain
-
-### HRMP {: #HRMP } 
-
-[Horizontal Relay-routed Message Passing](https://wiki.polkadot.com/learn/learn-xcm-transport/#hrmp-xcmp-lite){target=\_blank} (HRMP) is a temporary protocol that is currently being used while XCMP (Cross-Chain Message Passing) is still under development. HRMP serves as a placeholder and provides the same functionality and interface as XCMP. However, HRMP is more resource-intensive because it stores all messages within the Relay Chain's storage. 
-
-When opening XCM channels with other parachains today, those channels are using HRMP in place of the aforementioned XCMP. Once the implementation of XCMP is complete, the plan is to phase out HRMP and replace it with XCMP gradually. For more information about each one, be sure to check out [Polkadot's Guide to XCM Transport](https://wiki.polkadot.com/learn/learn-xcm-transport/){target=\_blank}.
-
-## General Message Passing {: #general-message-passing } 
-
-As you know, GMP colloquially refers to cross-chain communication between Moonbeam and other blockchains outside of Polkadot. General message passing is enabled by cross-chain protocols that specialize in cross-chain communication. Each GMP provider takes a slightly different approach, but conceptually, they are quite similar. There are different contracts and functions for each provider, but each GMP provider has the same end goal: to provide secure and reliable cross-chain communication.  
-
-### Happy Path of a Cross-Chain Message {: #happy-path-of-a-cross-chain-message } 
-
-At a high level, the happy path of a message sent via GMP is as follows. A user or developer will call a contract specific to the GMP protocol, sometimes referred to as a mailbox contract or a gateway contract. This call typically includes parameters like the destination chain, the destination contract address, and includes sufficient value to pay for the transaction on the destination chain. A GMP provider listens for specific events on the origin blockchain pertaining to their gateway or mailbox contracts that indicate that a user wants to send a cross-chain message using their protocol. The GMP provider will validate certain parameters, including whether or not sufficient value was provided to pay for gas on the destination chain. In fact, the GMP provider may have a decentralized network of many nodes checking the authenticity of the message and verifying parameters. The GMP provider will not validate the integrity of the contract call to be delivered on the destination chain. E.g., the GMP provider will happily deliver a valid, paid-for message that contains a smart contract call that reverts on arrival. Finally, if everything checks out according to the consensus mechanism of the GMP provider, the message will be delivered to the destination chain, triggering the respective contract call at the destination.
-
-![Happy Path of a cross chain GMP message](/images/learn/features/xchain-plans/xchain-plans-1.webp) 
-
-### GMP Providers Integrated with Moonbeam {: #gmp-providers-integrated-with-moonbeam } 
-A large number of GMP providers have integrated with Moonbeam, which is beneficial for several reasons. For one, it enables you to work with whichever GMP provider you prefer. Second, it means that Moonbeam is connected to a rapidly growing number of chains. Whenever a GMP provider integrated with Moonbeam adds support for another chain, Moonbeam is automatically now connected with that chain. GMP providers are constantly adding support for new chains, and it's exciting to see those new integrations benefit the Moonbeam community. Additionally, having a variety of GMP providers allows for redundancy and backup. GMP providers have occasional maintenance windows or downtime; thus, it may make sense to add support for multiple GMP providers to ensure consistent uptime. 
-
-A significant number of GMP providers have integrated with Moonbeam, offering multiple benefits. Firstly, this integration allows users the flexibility to choose their preferred GMP provider. Secondly, Moonbeam's connectivity is enhanced as it automatically links with any new chains that its GMP providers support. Given that GMP providers frequently expand their support to new chains, the continuous roll out of new chains is a promising ongoing benefit for the Moonbeam community. Additionally, the diversity of GMP providers ensures better reliability and backup options. Since GMP providers can occasionally experience downtime or scheduled maintenance, the ability to integrate with multiple GMP providers is an important benefit.
-
-The following GMP providers have integrated with Moonbeam: 
-
-- [Axelar](/builders/interoperability/protocols/axelar/){target=\_blank}
-- [Hyperlane](/builders/interoperability/protocols/hyperlane/){target=\_blank}
-- [LayerZero](/builders/interoperability/protocols/layerzero/){target=\_blank} 
-- [Wormhole](/builders/interoperability/protocols/wormhole/){target=\_blank}
-
-## Implementing Both XCM and GMP {: #implementing-both-xcm-and-gmp } 
-
-Building with XCM or GMP does not preclude building with the other. As they suit different use cases, a team may seek to utilize XCM to handle interoperability needs within Polkadot, and GMP to deliver cross-chain messages to and from blockchains outside of Polkadot. As an example, several DEXes on Moonbeam support the trading of tokens migrated to Moonbeam via XCM, such as xcDOT, and assets bridged from ecosystems outside of Polkadot, such as USDC via Wormhole. 
-
-### Moonbeam Routed Liquidity {: #moonbeam-routed-liquidity }
-
-[Moonbeam Routed Liquidity](/builders/interoperability/mrl/) (MRL) enables seamless liquidity between external blockchains connected to Moonbeam via Wormhole to Polkadot parachains connected to Moonbeam via XCM. This combination of GMP and XCM means that any ERC-20 token on a chain that Wormhole has integrated with can be routed through Moonbeam to a destination parachain (and back). A diagram of the happy path of a token transfer to a parachain via MRL is shown below, and you can find more information at the [MRL docs](/builders/interoperability/mrl/). 
-
-![Happy Path of an MRL token transfer](/images/learn/features/xchain-plans/xchain-plans-2.webp) 
-
-
-<div class="page-disclaimer">
-  The information presented herein has been provided by third parties and is made available solely for general information purposes. Moonbeam does not endorse any project listed and described on the Moonbeam Doc Website (https://docs.moonbeam.network/). Moonbeam Foundation does not warrant the accuracy, completeness or usefulness of this information. Any reliance you place on such information is strictly at your own risk. Moonbeam Foundation disclaims all liability and responsibility arising from any reliance placed on this information by you or by anyone who may be informed of any of its contents. All statements and/or opinions expressed in these materials are solely the responsibility of the person or entity providing those materials and do not necessarily represent the opinion of Moonbeam Foundation. The information should not be construed as professional or financial advice of any kind. Advice from a suitably qualified professional should always be sought in relation to any particular matter or circumstance. The information herein may link to or integrate with other websites operated or content provided by third parties, and such other websites may link to this website. Moonbeam Foundation has no control over any such other websites or their content and will have no liability arising out of or related to such websites or their content. The existence of any such link does not constitute an endorsement of such websites, the content of the websites, or the operators of the websites. These links are being provided to you only as a convenience and you release and hold Moonbeam Foundation harmless from any and all liability arising from your use of this information or the information provided by any third-party website or service.
-</div>
---- END CONTENT ---
 
 Doc-Content: https://docs.moonbeam.network/builders/interoperability/mrl/
 --- BEGIN CONTENT ---
@@ -198,7 +106,7 @@ Note that as of late 2024, the X-Tokens precompile now uses the Polkadot XCM pal
 
 As an example, a brief overview of the entire process of sending MRL tokens from a parachain back through Wormhole to a destination chain is as follows:
 
-1. Send a batch transaction using the `batchAll` extrinsic of the [Utility Pallet](/builders/substrate/interfaces/utility/utility/){target=\_blank} that contains the following two calls:
+1. Send a batch transaction using the `batchAll` extrinsic of the Utility pallet that contains the following two calls.
     - **`xTokens.transferMultiassets`** - sends xcGLMR and the local XC-20 to the user’s [Computed Origin account](#calculate-computed-origin-account). The Computed Origin account is a keyless account on Moonbeam that an account on another parachain has control of via XCM
     - **`polkadotXcm.send`** - with the `Transact` instruction. Sends a [remote EVM call via XCM](/builders/interoperability/xcm/remote-execution/remote-evm-calls/){target=\_blank} to the Batch Precompile on Moonbeam, which batches the following two calls into a single remote EVM transaction using the `ethereumXcm.transact` extrinsic:
         - **`approve`** (of the local XC-20 contract) - approves the Wormhole relayer to transfer the local XC-20
@@ -4624,851 +4532,6 @@ contract MultilocationWhitelistExample {
 To check out an example of how to use the `xcmExecute` function to execute a custom XCM message locally, please refer to the [Create and Execute Custom XCM Messages](/builders/interoperability/xcm/send-execute-xcm/#execute-xcm-utils-precompile){target=\_blank} guide.
 --- END CONTENT ---
 
-Doc-Content: https://docs.moonbeam.network/tutorials/interoperability/remote-staking-xcm/
---- BEGIN CONTENT ---
----
-title: Remote Staking on Moonbeam from Polkadot via XCM
-description: In this guide, we'll be leveraging remote execution to remotely stake GLMR on Moonbeam using a series of XCM instructions.
-template: main.html
-categories: Tutorials, XCM, Staking
----
-
-# Remote Staking via XCM
-
-_by Kevin Neilson_
-
-## Introduction {: #introduction }
-
-In this tutorial, we’ll stake DEV tokens remotely by sending XCM instructions from an account on the Moonbase relay chain (equivalent to the Polkadot relay chain). This tutorial assumes a basic familiarity with [XCM](/builders/interoperability/xcm/overview/){target=\_blank} and [Remote Execution via XCM](/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-pallet/){target=\_blank}. You don’t have to be an expert on these topics but you may find it helpful to have some XCM knowledge as background.
-
-There are actually two possible approaches for staking on Moonbeam remotely via XCM. We could send a [remote EVM call](/builders/interoperability/xcm/remote-execution/remote-evm-calls/){target=\_blank} that calls the [staking precompile](/builders/ethereum/precompiles/features/staking/){target=\_blank}, or we could use XCM to call the [parachain staking pallet](/builders/substrate/interfaces/features/staking/){target=\_blank} directly without interacting with the EVM. For this tutorial, we’ll be taking the latter approach and interacting with the parachain staking pallet directly.
-
-**Note that there are still limitations in what you can remotely execute through XCM messages.** In addition, **developers must understand that sending incorrect XCM messages can result in the loss of funds.** Consequently, it is essential to test XCM features on a TestNet before moving to a production environment.
-
-## Checking Prerequisites {: #checking-prerequisites }
-
-For development purposes this tutorial is written for Moonbase Alpha and Moonbase relay using TestNet funds. For prerequisites:
-
-- A Moonbase Alpha relay chain account funded with some UNIT, the native token of the Moonbase relay chain. If you have a Moonbase Alpha account funded with DEV tokens, you can swap some DEV for xcUNIT here on [Moonbeam Swap](https://moonbeam-swap.netlify.app/#/swap){target=\_blank}. Then withdraw the xcUNIT from Moonbase Alpha to [your account on the Moonbase relay chain](https://polkadot.js.org/apps/?rpc=wss://relay.api.moonbase.moonbeam.network#/accounts){target=\_blank} using [apps.moonbeam.network](https://apps.moonbeam.network/moonbase-alpha){target=\_blank}
-- You'll need to [calculate the Computed Origin account](#calculating-your-computed-origin-account) of your Moonbase Alpha relay chain account and fund it with DEV tokens.
-You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}
-
-## Calculating your Computed Origin Account {: #calculating-your-computed-origin-account }
-
-Copy the account of your existing or newly created account on the [Moonbase relay chain](https://polkadot.js.org/apps/?rpc=wss://relay.api.moonbase.moonbeam.network#/accounts){target=\_blank}. You're going to need it to calculate the corresponding Computed Origin account, which is a special type of account that’s keyless (the private key is unknown). Transactions from a Computed Origin account can be initiated only via valid XCM instructions from the corresponding account on the relay chain. In other words, you are the only one who can initiate transactions on your Computed Origin account, and if you lose access to your Moonbase relay account, you’ll also lose access to your Computed Origin account.
-
-To generate the Computed Origin account, first clone the [xcm-tools](https://github.com/Moonsong-Labs/xcm-tools){target=\_blank} repo. Run `yarn` to install the necessary packages, and then run:
-
-```sh
-yarn calculate-multilocation-derivative-account \
---ws-provider wss://wss.api.moonbase.moonbeam.network \
---address INSERT_MOONBASE_RELAY_ACCOUNT \
---para-id INSERT_ORIGIN_PARACHAIN_ID_IF_APPLIES \
---parents INSERT_PARENTS_VALUE_IF_APPLIES
-```
-
-Let's review the parameters passed along with this command:
-
-- The `--ws-provider` or `-w` flag corresponds to the endpoint we’re using to fetch this information
-- The `--address` or `-a` flag corresponds to your Moonbase relay chain address
-- The `--para-id` or `-p` flag corresponds to the parachain ID of the origin chain (if applicable). If you are sending the XCM from the relay chain, you don't need to provide this parameter
-- The `-parents` flag corresponds to the parents value of the origin chain in relation to the destination chain. If you're deriving a multi-location derivative account on a parachain destination from a relay chain origin, this value would be `1`. If left out, the parents value defaults to `0`
-
-Here, we have specified a parents value of `1` because the relay chain is the origin of the request (and the relay chain is considered a parent to the Moonbase alpha parachain). The relay chain does not have a parachain id so that field is omitted.
-
-<div id="termynal" data-termynal>
-    <span data-ty="input"><span class="file-path"></span>yarn calculate-multilocation-derivative-account \</span>
-    <span data-ty>--ws-provider wss://wss.api.moonbase.moonbeam.network \</span>
-    <span data-ty>--address 5DCvkTpkqo5AuvUFSrT76ABnm48iSBHpgsoDFNxFZAtesvWD \</span>
-    <span data-ty>--parents 1</span>
-    <br>
-    <span data-ty>yarn run v1.22.10</span>
-    <span data-ty>warning ../../../package.json: No license field</span>
-    <span data-ty>$ ts-node 'scripts/calculate-multilocation-derivative-account.ts' --ws-provider wss://wss.api.moonbase.moonbeam.network --address 5DCvkTpkqo5AuvUFSrT76ABnm48iSBHpgsoDFNxFZAtesvWD --parents 1</span>
-    <br>
-    <span data-ty>Remote Origin calculated as ParentChain</span>
-    <span data-ty>Parents 1</span>
-    <span data-ty>AccountId32: 5DCvkTpkqo5AuvUFSrT76ABnm48iSBHpgsoDFNxFZAtesvWD</span>
-    <span data-ty>32 byte address is 0x55738eb7227f27c9d55775f65ad261c5ac2894dcde73d913f77f69bf51e26279</span>
-    <span data-ty>20 byte address is 0x55738eb7227f27c9d55775f65ad261c5ac2894dc</span>
-    <span data-ty>✨  Done in 1.02s.</span>
-    <span data-ty="input"><span class="file-path"></span></span>
-</div>
-
-The script will return 32-byte and 20-byte addresses. We’re interested in the Ethereum-style account - the 20-byte one. Feel free to look up your Computed Origin account on [Moonscan](https://moonbase.moonscan.io){target=\_blank}. You’ll note that this account is empty. You’ll now need to fund this account with at least 1.1 DEV which you can get from [the faucet](https://faucet.moonbeam.network){target=\_blank}. And if you need more, you can always reach out to us on [Discord](https://discord.com/invite/amTRXQ9ZpW){target=\_blank} for additional DEV tokens.
-
-## Preparing to Stake on Moonbase Alpha {: #preparing-to-stake-on-moonbase-alpha }
-
-First and foremost, you’ll need the address of the collator you want to delegate to. To locate it, head to the [Moonbase Alpha Staking dApp](https://apps.moonbeam.network/moonbase-alpha/staking){target=\_blank} in a second window. Ensure you’re on the correct network, then press **Select a Collator**. Press the icon next to your desired collator to copy its address. You’ll also need to make a note of the number of delegations your collator has. The [Moonbeam Foundation 01 collator](https://moonbase.subscan.io/account/{{networks.moonbase.precompiles.staking}}){target=\_blank} shown below has `7` delegations at the time of writing.
-
-![Moonbeam Network Apps Dashboard](/images/tutorials/interoperability/remote-staking-via-xcm/xcm-stake-1.webp)
-
-## Remote Staking via XCM with the Polkadot.js API {: #remote-staking-via-xcm-with-the-polkadot-api }
-
-This tutorial will cover the two-step process to perform remote staking operations. The first step we'll take is to generate the encoded call data for delegating a collator. Secondly, we'll send the encoded call data via XCM from the relay chain to Moonbase Alpha, which will result in the execution of the delegation.
-
-### Generate the Encoded Call Data {: #generate-encoded-call-data }
-
-We'll be using the `delegateWithAutoCompound` function of the [Parachain Staking Pallet](/builders/substrate/interfaces/features/staking/){target=\_blank}, which accepts six parameters: `candidate`, `amount`, `autoCompound`, `candidateDelegationCount`, `candidateAutoCompoundingDelegationCount`, and `delegationCount`.
-
-In order to generate the encoded call data, we'll need to assemble the arguments for each of the `delegateWithAutoCompound` parameters and use them to build a transaction which will call the `delegateWithAutoCompound` function. We are not submitting a transaction, but simply preparing one to get the encoded call data. We'll take the following steps to build our script:
-
-1. Create a [Polkadot.js API](/builders/substrate/libraries/polkadot-js-api/){target=\_blank} provider
-2. Assemble the arguments for each of the parameters of the `delegateWithAutoCompound` function:
-
-    - `candidate`- for this example we'll use the [Moonbeam Foundation 01 collator](https://moonbase.subscan.io/account/{{networks.moonbase.staking.candidates.address1}}){target=\_blank}: `{{networks.moonbase.staking.candidates.address1}}`. To retrieve the entire list of candidates, you can refer back to the [Preparing to Stake](#preparing-to-stake-on-moonbase-alpha) section
-    - `amount` - we'll stake the minimum amount, which is 1 DEV or `1000000000000000000` Wei. You can find a [unit converter on Moonscan](https://moonscan.io/unitconverter){target=\_blank}
-    - `autoCompound` - we'll set this to `100` to auto-compound all rewards
-    - `candidateDelegationCount` - we'll retrieve using the `candidateInfo` function of the Parachain Staking Pallet to get the exact count. Alternatively, you can enter the upper bound of `300` because this estimation is only used to determine the weight of the call
-    - `candidateAutoCompoundingDelegationCount` - we'll retrieve using the `autoCompoundingDelegations` function of the Parachain Staking Pallet to get the exact count. Alternatively, you can enter the upper bound of `300` because this estimation is only used to determine the weight of the call
-    - `delegationCount` - we'll retrieve using the `delegatorState` function of the Parachain Staking Pallet to get the exact count. Alternatively, you can specify an upper bound here of `100`
-
-3. Craft the `parachainStaking.delegateWithAutoCompound` extrinsic with each of the required arguments
-4. Use the transaction to get the encoded call data for the delegation
-
-```js
-import { ApiPromise, WsProvider } from '@polkadot/api';
-const provider = new WsProvider('wss://wss.api.moonbase.moonbeam.network');
-
-const candidate = '0x12E7BCCA9b1B15f33585b5fc898B967149BDb9a5';
-const amount = '1000000000000000000';
-const autoCompound = 100;
-
-const main = async () => {
-  const api = await ApiPromise.create({ provider: provider });
-
-  // Fetch your existing number of delegations
-  let delegatorDelegationCount;
-  const delegatorInfo = await api.query.parachainStaking.delegatorState(
-    'INSERT_ACCOUNT' // Use the account you're delegating with
-  );
-
-  if (delegatorInfo.toHuman()) {
-    delegatorDelegationCount = delegatorInfo.toHuman()['delegations'].length;
-  } else {
-    delegatorDelegationCount = 0;
-  }
-
-  // Fetch the collators existing delegations
-  const collatorInfo = await api.query.parachainStaking.candidateInfo(
-    candidate
-  );
-  const candidateDelegationCount = collatorInfo.toHuman()['delegationCount'];
-
-  // Fetch the collators number of existing auto-compounding delegations
-  const autoCompoundingDelegationsInfo =
-    await api.query.parachainStaking.autoCompoundingDelegations(candidate);
-  const candidateAutoCompoundingDelegationCount =
-    autoCompoundingDelegationsInfo.length;
-
-  // Craft extrinsic
-  const tx = api.tx.parachainStaking.delegateWithAutoCompound(
-    candidate,
-    amount,
-    autoCompound,
-    candidateDelegationCount,
-    candidateAutoCompoundingDelegationCount,
-    delegatorDelegationCount
-  );
-
-  // Get SCALE encoded call data
-  const encodedCall = tx.method.toHex();
-  console.log(`Encoded Call Data: ${encodedCall}`);
-
-  api.disconnect();
-};
-main();
-```
-
-!!! note
-    If running this as a TypeScript project, be sure to set the `strict` flag under `compilerOptions` to `false` in your `tsconfig.json`.
-
-If you'd prefer not to set up a local environment, you can run a code snippet in the [JavaScript console of Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/js){target=\_blank}.
-
-??? code "Code to run in the Polkadot.js Apps JavaScript console"
-
-    ```javascript
-    const candidate = '0x12E7BCCA9b1B15f33585b5fc898B967149BDb9a5';
-const amount = '1000000000000000000';
-const autoCompound = 100;
-
-// Fetch your existing number of delegations
-let delegatorDelegationCount;
-// Use the account you're delegating with
-const delegatorInfo = await api.query.parachainStaking.delegatorState(
-  'INSERT_ACCOUNT'
-);
-
-if (delegatorInfo.toHuman()) {
-  delegatorDelegationCount = delegatorInfo.toHuman()['delegations'].length;
-} else {
-  delegatorDelegationCount = 0;
-}
-
-// Fetch the collators existing delegations
-const collatorInfo = await api.query.parachainStaking.candidateInfo(candidate);
-const candidateDelegationCount = collatorInfo.toHuman()['delegationCount'];
-
-// Fetch the collators number of existing auto-compounding delegations
-const autoCompoundingDelegationsInfo =
-  await api.query.parachainStaking.autoCompoundingDelegations(candidate);
-const candidateAutoCompoundingDelegationCount =
-  autoCompoundingDelegationsInfo.length;
-
-// Craft extrinsic
-const tx = api.tx.parachainStaking.delegateWithAutoCompound(
-  candidate,
-  amount,
-  autoCompound,
-  candidateDelegationCount,
-  candidateAutoCompoundingDelegationCount,
-  delegatorDelegationCount
-);
-
-// Get SCALE Encoded Call Data
-const encodedCall = tx.method.toHex();
-console.log(`Encoded Call Data: ${encodedCall}`);
-    ```
-
-### Assemble and Send XCM Instructions via the Polkadot.js API {: #sending-the-xcm-instructions-via-the-polkadot-api }
-
-In this section, we'll be using the [Polkadot.js API](/builders/substrate/libraries/polkadot-js-api/){target=\_blank} to construct and send XCM instructions via the `send` extrinsic of the XCM Pallet on the Moonbase relay chain. The XCM message will transport our remote execution instructions to the Moonbase Alpha parachain to ultimately stake our desired amount of DEV tokens to a chosen collator.
-
-The `send` function of the XCM Pallet accepts two parameters: `dest` and `message`. You can start assembling these parameters by taking the following steps:
-
-1. Build the multilocation of the DEV token on Moonbase Alpha for the `dest`:
-
-    ```javascript
-    const dest = { V4: { parents: 0, interior: { X1: [{ Parachain: 1000 }] } } };
-    ```
-
-2. Build the `WithdrawAsset` instruction, which will require you to define:
-    - The multilocation of the DEV token on Moonbase Alpha
-    - The amount of DEV tokens to withdraw
-
-    ```javascript
-    const instr1 = {
-  WithdrawAsset: [
-    {
-      id: {
-        parents: 0,
-        interior: { X1: [{ PalletInstance: 3 }] },
-      },
-      fun: { Fungible: 100000000000000000n },
-    },
-  ],
-};
-    ```
-
-3. Build the `BuyExecution` instruction, which will require you to define:
-    - The multilocation of the DEV token on Moonbase Alpha
-    - The amount of DEV tokens to buy for execution
-    - The weight limit
-
-    ```javascript
-    const instr2 = {
-  BuyExecution: [
-    {
-      id: {
-        parents: 0,
-        interior: { X1: [{ PalletInstance: 3 }] },
-      },
-      fun: { Fungible: 100000000000000000n },
-    },
-    { Unlimited: null },
-  ],
-};
-    ```
-
-4. Build the `Transact` instruction, which will require you to define:
-    - The origin type, which will be `SovereignAccount`
-    - The required weight for the transaction. You'll need to define a value for `refTime`, which is the amount of computational time that can be used for execution, and the `proofSize`, which is the amount of storage in bytes that can be used. It is recommended that the weight given to this instruction needs to be around 10% more of `25000` times the gas limit for the call you want to execute via XCM
-    - The encoded call data for delegating a collator, which we generated in the [previous section](#generate-encoded-call-data)
-
-    ```javascript
-    const instr3 = {
-  Transact: {
-    originKind: 'SovereignAccount',
-    requireWeightAtMost: { refTime: 40000000000n, proofSize: 900000n },
-    call: {
-      encoded:
-        '0x0c1212e7bcca9b1b15f33585b5fc898b967149bdb9a5000064a7b3b6e00d000000000000000064070000000700000000000000',
-    },
-  },
-};
-    ```
-
-5. Combine the XCM instructions into a versioned XCM message:
-
-    ```javascript
-    const message = { V4: [instr1, instr2, instr3] };
-    ```
-
-Now that you have the values for each of the parameters, you can write the script to send the XCM message. You'll take the following steps:
-
- 1. Provide the values for each of the parameters of the `send` function
- 2. Create the [Polkadot.js API](/builders/substrate/libraries/polkadot-js-api/){target=\_blank} provider using the WSS endpoint of the Alphanet relay chain
- 3. Create a Keyring instance using the mnemonic of your relay chain account, which will be used to send the transaction
- 4. Craft the `xcmPallet.send` extrinsic with the `dest` and `message`
- 5. Send the transaction using the `signAndSend` extrinsic and the Keyring instance you created in the third step
-
-!!! remember
-    This is for demo purposes only. Never store your private key in a JavaScript file.
-
-```javascript
-import { ApiPromise, WsProvider, Keyring } from '@polkadot/api';
-import { cryptoWaitReady } from '@polkadot/util-crypto';
-
-const privateKey = 'INSERT_PRIVATE_KEY_OR_MNEMONIC';
-
-// 1. Define the dest and message arguments
-const dest = { V4: { parents: 0, interior: { X1: [{ Parachain: 1000 }] } } };
-const instr1 = {
-  WithdrawAsset: [
-    {
-      id: {
-        parents: 0,
-        interior: { X1: [{ PalletInstance: 3 }] },
-      },
-      fun: { Fungible: 100000000000000000n },
-    },
-  ],
-};
-const instr2 = {
-  BuyExecution: [
-    {
-      id: {
-        parents: 0,
-        interior: { X1: [{ PalletInstance: 3 }] },
-      },
-      fun: { Fungible: 100000000000000000n },
-    },
-    { Unlimited: null },
-  ],
-};
-const instr3 = {
-  Transact: {
-    originKind: 'SovereignAccount',
-    requireWeightAtMost: { refTime: 40000000000n, proofSize: 900000n },
-    call: {
-      encoded:
-        '0x0c1212e7bcca9b1b15f33585b5fc898b967149bdb9a5000064a7b3b6e00d000000000000000064070000000700000000000000',
-    },
-  },
-};
-const message = { V4: [instr1, instr2, instr3] };
-
-const performRemoteDelegation = async () => {
-  // 2. Construct API provider
-  const wsProvider = new WsProvider(
-    'wss://relay.api.moonbase.moonbeam.network'
-  );
-  const api = await ApiPromise.create({ provider: wsProvider });
-
-  // 3. Initialize wallet key pairs
-  await cryptoWaitReady();
-  const keyring = new Keyring({ type: 'sr25519' });
-  // For demo purposes only. Never store your private key or mnemonic in a JavaScript file
-  const otherPair = keyring.addFromUri(privateKey);
-  console.log(`Derived Address from Private Key: ${otherPair.address}`);
-
-  // 4. Define the transaction using the send method of the xcm pallet
-  const tx = api.tx.xcmPallet.send(dest, message);
-
-  // 5. Sign and send the transaction
-  const txHash = await tx.signAndSend(otherPair);
-  console.log(`Submitted with hash ${txHash}`);
-
-  api.disconnect();
-};
-
-performRemoteDelegation();
-```
-
-!!! note
-    Remember that your Computed Origin account must be funded with at least 1.1 DEV or more to ensure you have enough to cover the stake amount and transaction fees.
-
-In the above snippet, besides submitting the remote staking via XCM transaction, we also print out the transaction hash to assist with any debugging.
-
-And that’s it! To verify that your delegation was successful, you can visit [Subscan](https://moonbase.subscan.io){target=\_blank} to check your staking balance. Be advised that it may take a few minutes before your staking balance is visible on Subscan. Additionally, be aware that you will not be able to see this staking operation on Moonscan, because we initiated the delegation action directly via the [Parachain Staking Pallet](/builders/substrate/interfaces/features/staking/){target=\_blank} (on the Substrate side) rather than through the [Staking Precompile](/builders/ethereum/precompiles/features/staking/){target=\_blank} (on the EVM).
-
-<div class="page-disclaimer">
-    This tutorial is for educational purposes only. As such, any contracts or code created in this tutorial should not be used in production.
-</div>
---- END CONTENT ---
-
-Doc-Content: https://docs.moonbeam.network/tutorials/interoperability/uniswapv2-swap-xcm/
---- BEGIN CONTENT ---
----
-title: Uniswap V2 Swap on Moonbeam from Polkadot via XCM
-description: In this guide, we'll use remote EVM execution via XCM to perform a Uniswap V2 swap to showcase how Moonbeam can be leveraged in a connected contracts approach.
-template: main.html
-categories: Tutorials, XCM
----
-
-# Uniswap V2 Swap from Polkadot via XCM
-
-_by Alberto Viera_
-
-## Introduction {: #introduction }
-
-In this tutorial, we’ll perform a Uniswap V2-styled swap from a relay chain (what Polkadot is to Moonbeam) using Polkadot's interoperability general message passing protocol called [XCM](/builders/interoperability/xcm/overview/){target=\_blank}. To do so, we'll be using a particular combination of XCM instructions that allow you to [call Moonbeam's EVM through an XCM message](/builders/interoperability/xcm/remote-execution/remote-evm-calls/){target=\_blank}. Consequently, any blockchain that is able to send an XCM message to Moonbeam can tap into its EVM and all the dApps built on top of it.
-
-**The content of this tutorial is for educational purposes only!**
-
-For this example, you'll be working on top of the Moonbase Alpha (Moonbeam TestNet), which has its own relay chain (similar to Polkadot). The relay chain token is called `UNIT`, while Moonbase Alpha's is called `DEV`. Doing this in TestNet is less fun than doing it in production, but **developers must understand that sending incorrect XCM messages can result in the loss of funds.** Consequently, it is essential to test XCM features on a TestNet before moving to a production environment.
-
-Throughout this tutorial, we will refer to the account performing the Uniswap V2 swap via XCM as Alice. The tutorial has a lot of moving parts, so let's summarize them in a list and a flow diagram:
-
-1. Alice has an account on the relay chain, and she wants to swap `DEV` tokens for `MARS` tokens (ERC-20 on Moonbase Alpha) on [Moonbeam-Swap](https://moonbeam-swap.netlify.app){target=\_blank}, a demo Uniswap V2 clone on Moonbase Alpha. Alice needs to send an XCM message to Moonbase Alpha from her relay chain account
-2. The XCM message will be received by Moonbase Alpha and its instructions executed. The instructions state Alice's intention to buy some block execution time in Moonbase Alpha and execute a call to Moonbase's EVM, specifically, the Uniswap V2 (Moonbeam-Swap) router contract. The EVM call is dispatched through a special account Alice controls on Moonbase Alpha via XCM messages. This account is known as the [Computed Origin account](/builders/interoperability/xcm/remote-execution/computed-origins/){target=\_blank}. Even though this is a keyless account (private key is unknown), the public address can be [calculated in a deterministic way](/builders/interoperability/xcm/remote-execution/computed-origins/#calculate-computed-origin){target=\_blank}
-3. The XCM execution will result in the swap being executed by the EVM, and Alice will receive her `MARS` tokens in her special account
-4. The execution of the remote EVM call through XCM will result in some EVM logs that are picked up by explorers. There is an EVM transaction and receipt that anyone can query to verify
-
-![Remote EVM Call Through XCM for Uniswap V2 Swap Diagram](/images/tutorials/interoperability/uniswapv2-swap-xcm/uniswapv2-swap-xcm-1.webp)
-
-With the steps outlined, some prerequisites need to be taken into account, let's jump right into it!
-
-## Checking Prerequisites {: #checking-prerequisites }
-
-Considering all the steps summarized in the [introduction](#introduction), the following prerequisites need to be accounted for:
-
-- You need to have UNITs on the relay chain to pay for transaction fees when sending the XCM. If you have a Moonbase Alpha account funded with DEV tokens, you can swap some DEV for xcUNIT here on [Moonbeam Swap](https://moonbeam-swap.netlify.app/#/swap){target=\_blank}. Then withdraw the xcUNIT from Moonbase Alpha to [your account on the Moonbase relay chain](https://polkadot.js.org/apps/?rpc=wss://relay.api.moonbase.moonbeam.network#/accounts){target=\_blank} using [apps.moonbeam.network](https://apps.moonbeam.network/moonbase-alpha){target=\_blank}
-- Your [Computed Origin account](/builders/interoperability/xcm/remote-execution/computed-origins/){target=\_blank} must hold `DEV` tokens to fund the Uniswap V2 swap, and also pay for the XCM execution (although this could be paid in UNIT tokens as `xcUNIT`). We will calculate the Computed Origin account address in the next section
-
-You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}
-
-## Calculating your Computed Origin Account {: #calculating-your-computed-origin-account }
-
-Copy the account of your existing or newly created account on the [Moonbase relay chain](https://polkadot.js.org/apps/?rpc=wss://relay.api.moonbase.moonbeam.network#/accounts){target=\_blank}. You're going to need it to calculate the corresponding Computed Origin account, which is a special type of account that’s keyless (the private key is unknown). Transactions from a Computed Origin account can be initiated only via valid XCM instructions from the corresponding account on the relay chain. In other words, you are the only one who can initiate transactions on your Computed Origin account, and if you lose access to your Moonbase relay account, you’ll also lose access to your Computed Origin account.
-
-To generate the Computed Origin account, first clone the [xcm-tools](https://github.com/Moonsong-Labs/xcm-tools){target=\_blank} repo. Run `yarn` to install the necessary packages, and then run:
-
-```sh
-yarn calculate-multilocation-derivative-account \
---ws-provider wss://wss.api.moonbase.moonbeam.network \
---address INSERT_MOONBASE_RELAY_ACCOUNT \
---para-id INSERT_ORIGIN_PARACHAIN_ID_IF_APPLIES \
---parents INSERT_PARENTS_VALUE_IF_APPLIES
-```
-
-Let's review the parameters passed along with this command:
-
-- The `--ws-provider` or `-w` flag corresponds to the endpoint we’re using to fetch this information
-- The `--address` or `-a` flag corresponds to your Moonbase relay chain address
-- The `--para-id` or `-p` flag corresponds to the parachain ID of the origin chain (if applicable). If you are sending the XCM from the relay chain, you don't need to provide this parameter
-- The `-parents` flag corresponds to the parents value of the origin chain in relation to the destination chain. If you're deriving a multi-location derivative account on a parachain destination from a relay chain origin, this value would be `1`. If left out, the parents value defaults to `0`
-
-For our case, we will send the remote EVM call via XCM from Alice's account, which is `5GKh9gMK5dn9SJp6qfMNcJiMMnY7LReYmgug2Fr5fKE64imn`, so the command and response would look like the following image.
-
-<div id="termynal" data-termynal>
-    <span data-ty="input"><span class="file-path"></span>yarn calculate-multilocation-derivative-account \</span>
-    <span data-ty>--ws-provider wss://wss.api.moonbase.moonbeam.network \</span>
-    <span data-ty>--address 5GKh9gMK5dn9SJp6qfMNcJiMMnY7LReYmgug2Fr5fKE64imn \</span>
-    <span data-ty>--parents 1</span>
-    <br>
-    <span data-ty>yarn run v1.22.10</span>
-    <span data-ty>warning ../../../package.json: No license field</span>
-    <span data-ty>$ ts-node 'scripts/calculate-multilocation-derivative-account.ts' --ws-provider wss://wss.api.moonbase.moonbeam.network --address 5GKh9gMK5dn9SJp6qfMNcJiMMnY7LReYmgug2Fr5fKE64imn --parents 1</span>
-    <br>
-    <span data-ty>Remote Origin calculated as ParentChain</span>
-    <span data-ty>Parents 1</span>
-    <span data-ty>AccountId32: 5GKh9gMK5dn9SJp6qfMNcJiMMnY7LReYmgug2Fr5fKE64imn</span>
-    <span data-ty>32 byte address is 0x61cd3e07fe7d7f6d4680e3e322986b7877f108ddb18ec02c2f17e82fe15f9016</span>
-    <span data-ty>20 byte address is 0x61cd3e07fe7d7f6d4680e3e322986b7877f108dd</span>
-    <span data-ty>✨  Done in 1.02s.</span>
-    <span data-ty="input"><span class="file-path"></span></span>
-</div>
-
-The values are all summarized in the following table:
-
-|                    Name                     |                                                                           Value                                                                           |
-|:-------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------------------------------------:|
-|        Origin Chain Encoded Address         |                                                    `5GKh9gMK5dn9SJp6qfMNcJiMMnY7LReYmgug2Fr5fKE64imn`                                                     |
-|        Origin Chain Decoded Address         |                                           `0xbc5f3c61709f218d983fc773a600958a07fb18047418df7eeb0501d0679e397a`                                            |
-| Computed Origin Account (32 bytes) |                                           `0x61cd3e07fe7d7f6d4680e3e322986b7877f108ddb18ec02c2f17e82fe15f9016`                                            |
-| Computed Origin Account (20 bytes) |                                                       `0x61cd3e07fe7d7f6d4680e3e322986b7877f108dd`                                                        |
-
-The script will return 32-byte and 20-byte addresses. We’re interested in the Ethereum-style account - the 20-byte one, which is `0x61cd3e07fe7d7f6d4680e3e322986b7877f108dd`. Feel free to look up your Computed Origin account on [Moonscan](https://moonbase.moonscan.io){target=\_blank}. Next, you can fund this account with DEV tokens.
-
-You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}.
-
-## Getting the Uniswap V2 Swap Calldata {: #getting-uniswapv2-swap-calldata }
-
-The following section will walk through the steps of getting the calldata for the Uniswap V2 swap, as we need to feed this calldata to the [remote EVM call](/builders/interoperability/xcm/remote-execution/remote-evm-calls/){target=\_blank} that we will build via XCM.
-
-The function being targeted here is one from the Uniswap V2 router, more specifically [swapExactETHForTokens](https://github.com/Uniswap/v2-periphery/blob/master/contracts/UniswapV2Router02.sol#L252){target=\_blank}. This function will swap an exact amount of protocol native tokens (in this case `DEV`) for another ERC-20 token. It has the following inputs:
-
- - Minimum amount of tokens that you expect out of the swap (accounting for slippage)
- - Path that the take will trade (if there is no direct pool, the swap might be routed through multiple pair pools)
- - Address of the recipient of the tokens swapped
- - The deadline (in Unix time) from which the trade is no longer valid
-
-The easiest way to get the calldata is through the [Moonbeam Uniswap V2 Demo](https://moonbeam-swap.netlify.app){target=\_blank} page. Once you go in the website, take the following steps:
-
- 1. Set the swap **from** value and token and also set the swap **to** token. For this example, we want to swap 1 `DEV` token for `MARS`
- 2. Click on the **Swap** button. Metamask should pop up, **do not sign the transaction**
- 3. In Metamask, click on the **hex** tab, and the encoded calldata should show up
- 4. Click on the **Copy raw transaction data** button. This will copy the encoded calldata to the clipboard
-
-![Calldata for Uniswap V2 swap](/images/tutorials/interoperability/uniswapv2-swap-xcm/uniswapv2-swap-xcm-2.webp)
-
-!!! note
-    Other wallets also offer the same capabilities of checking the encoded calldata before signing the transaction.
-
-Once you have the encoded calldata, feel free to reject the transaction in your wallet. The swap calldata that we obtained is encoded as follows (all but the function selector are expressed in 32 bytes or 64 hexadecimal characters blobs):
-
- 1. The function selector, which is 4 bytes long (8 hexadecimal characters) that represents the function you are calling
- 2. The minimum amount out of the swap that we want accounting for slippage, in this case, `10b3e6f66568aaee` is `1.2035` `MARS` tokens
- 3. The location (pointer) of the data part of the path parameter (which is of type dynamic). `80` in hex is `128` decimal, meaning that information about the path is presented after 128 bytes from the beginning (without counting on the function selector). Consequently, the next bit of information about the path is presented in element 6
- 4. The address receiving the tokens after the swap, in this case, is the `msg.sender` of the call
- 5. The deadline limit for the swap
- 6. The length of the address array representing the path
- 7. First token involved in the swap, which is wrapped `DEV`
- 8. Second token involved in the swap, `MARS`, so it is the last
-
-```text
-1. 0x7ff36ab5
-2. 00000000000000000000000000000000000000000000000010b3e6f66568aaee -> Min Amount Out
-3. 0000000000000000000000000000000000000000000000000000000000000080
-4. 000000000000000000000000d720165d294224a7d16f22ffc6320eb31f3006e1 -> Receiving Address
-5. 0000000000000000000000000000000000000000000000000000000063dbcda5 -> Deadline
-6. 0000000000000000000000000000000000000000000000000000000000000002
-7. 000000000000000000000000d909178cc99d318e4d46e7e66a972955859670e1
-8. 0000000000000000000000001fc56b105c4f0a1a8038c2b429932b122f6b631f
-```
-
-In the calldata, we need to change three fields to ensure our swap will go through:
-
- - The minimum amount out, to account for slippage as the pool may have a different `DEV/MARS` balance when you try this out
- - The receiving address to our Computed Origin account
- - The deadline to provide a bit more flexibility for our swap, so you don't have to submit this immediately
-
-**This is OK because we are just testing things :), do not use this code in production!** Our encoded calldata should look like this (the line breaks were left for visibility):
-
-```text
-0x7ff36ab5
-0000000000000000000000000000000000000000000000000de0b6b3a7640000 -> New Min Amount
-0000000000000000000000000000000000000000000000000000000000000080
-00000000000000000000000061cd3e07fe7d7f6d4680e3e322986b7877f108dd -> New Address
-00000000000000000000000000000000000000000000000000000000A036B1B9 -> New Deadline
-0000000000000000000000000000000000000000000000000000000000000002
-000000000000000000000000d909178cc99d318e4d46e7e66a972955859670e1
-0000000000000000000000001fc56b105c4f0a1a8038c2b429932b122f6b631f
-```
-
-Which, as one line, is:
-
-```text
-0x7ff36ab50000000000000000000000000000000000000000000000000de0b6b3a7640000000000000000000000000000000000000000000000000000000000000000008000000000000000000000000061cd3e07fe7d7f6d4680e3e322986b7877f108dd00000000000000000000000000000000000000000000000000000000A036B1B90000000000000000000000000000000000000000000000000000000000000002000000000000000000000000d909178cc99d318e4d46e7e66a972955859670e10000000000000000000000001fc56b105c4f0a1a8038c2b429932b122f6b631f
-```
-
-You can also get the calldata programmatically using the [Uniswap V2 SDK](https://docs.uniswap.org/sdk/v2/overview){target=\_blank}.
-
-## Generating the Moonbeam Encoded Calldata {: #generating-the-moonbeam-encoded-call-data }
-
-Now that we have the Uniswap V2 swap encoded calldata, we need to generate the bytes that the `Transact` XCM instruction from the XCM message will execute. Note that these bytes represent the action that will be executed in the remote chain. In this example, we want the XCM message execution to enter the EVM and perform the swap, from which we got the encoded calldata.
-
- To get the SCALE (encoding type) encoded calldata for the transaction parameters, we can leverage the following [Polkadot.js API](/builders/substrate/libraries/polkadot-js-api/){target=\_blank} script (note that it requires `@polkadot/api` and `ethers`).
-
-```js
-import { ApiPromise, WsProvider } from '@polkadot/api'; // Version 10.13.1
-import { ethers } from 'ethers'; // Version 6.12.0
-import BN from 'bn.js'; // Importing directly from bn.js
-
-// 1. Input Data
-const providerWsURL = 'wss://wss.api.moonbase.moonbeam.network';
-const uniswapV2Router = '0x8a1932D6E26433F3037bd6c3A40C816222a6Ccd4';
-const contractCall =
-  '0x7ff36ab50000000000000000000000000000000000000000000000000de0b6b3a7640000000000000000000000000000000000000000000000000000000000000000008000000000000000000000000061cd3e07fe7d7f6d4680e3e322986b7877f108dd00000000000000000000000000000000000000000000000000000000A036B1B90000000000000000000000000000000000000000000000000000000000000002000000000000000000000000d909178cc99d318e4d46e7e66a972955859670e10000000000000000000000001fc56b105c4f0a1a8038c2b429932b122f6b631f';
-
-const generateCallData = async () => {
-  // 2. Create Substrate API Provider
-  const substrateProvider = new WsProvider(providerWsURL);
-  const ethProvider = new ethers.WebSocketProvider(providerWsURL);
-  const api = await ApiPromise.create({ provider: substrateProvider });
-
-  // 3. Estimate Gas for EVM Call
-  const gasLimit = await ethProvider.estimateGas({
-    to: uniswapV2Router,
-    data: contractCall,
-    value: ethers.parseEther('0.01'),
-  });
-  console.log(`Gas required for call is ${gasLimit.toString()}`);
-
-  // Convert ethers' BigNumber to Polkadot's BN and add some extra
-  const totalGasLimit = new BN(gasLimit.toString()).add(new BN(10000));
-
-  // 4. Call Parameters
-  const callParams = {
-    V2: {
-      gasLimit: totalGasLimit, // Estimated plus some extra gas
-      action: { Call: uniswapV2Router }, // Uniswap V2 router address
-      value: new BN(ethers.parseEther('0.01').toString()), // 0.01 DEV
-      input: contractCall, // Swap encoded calldata
-    },
-  };
-
-  // 5. Create the Extrinsic
-  const tx = api.tx.ethereumXcm.transact(callParams);
-
-  // 6. Get SCALE Encoded Calldata
-  const encodedCall = tx.method.toHex();
-  console.log(`Encoded Calldata: ${encodedCall}`);
-
-  api.disconnect();
-};
-
-generateCallData();
-```
-
-!!! note
-    You can also get the SCALE encoded calldata by manually building the extrinsic in [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/extrinsics){target=\_blank}.
-
-Let's go through each of the main components of the snippet shown above:
-
- 1. Provide the input data for the call. This includes:
-     - Moonbase Alpha endpoint URL to create the providers
-     - [Uniswap V2 router address](https://moonbase.moonscan.io/address/0x8a1932d6e26433f3037bd6c3a40c816222a6ccd4#code){target=\_blank} which is the one the call interacts with
-     - Encoded calldata for the Uniswap V2 swap that we calculated before
- 2. Create the necessary providers. One is a [Polkadot.js API](/builders/substrate/libraries/polkadot-js-api/){target=\_blank} provider, through which we can call [Moonbeam pallets](/builders/substrate/interfaces/){target=\_blank} directly. The other one is an Ethereum API provider through Ethers.js
- 3. This step is mainly a best practice. Here, we are estimating the gas of the EVM call that will be executed via XCM, as this is needed later on. You can also hardcode the gas limit value, but it is not recommended
- 4. [Build the remote EVM call](/builders/interoperability/xcm/remote-execution/remote-evm-calls/#build-remote-evm-call-xcm){target=\_blank}. We bumped the gas by `10000` units to provide a bit of room in case conditions change. The inputs are identical to those used for the gas estimation
- 5. Create the Ethereum XCM pallet call to the `transact` method, providing the call parameters we previously built
- 6. Get the SCALE calldata of the specific transaction parameter, which we need to provide to the `Transact` XCM instruction later on. Note that in this particular scenario, because we need only the calldata of the transaction parameters, we have to use `tx.method.toHex()`
-
-Once you have the code set up, you can execute it with `node`, and you'll get the Moonbase Alpha remote EVM calldata:
-
-<div id="termynal" data-termynal>
-    <span data-ty="input"><span class="file-path"></span>node generate-call-data-swap.js</span>
-    <br>
-    <span data-ty>Gas required for call is 596363</span>
-    <span data-ty>Encoded Calldata: 0x2600019b40090000000000000000000000000000000000000000000000000000000000008a1932d6e26433f3037bd6c3a40c816222a6ccd40000c16ff286230000000000000000000000000000000000000000000000000091037ff36ab50000000000000000000000000000000000000000000000000de0b6b3a7640000000000000000000000000000000000000000000000000000000000000000008000000000000000000000000061cd3e07fe7d7f6d4680e3e322986b7877f108dd00000000000000000000000000000000000000000000000000000000a036b1b90000000000000000000000000000000000000000000000000000000000000002000000000000000000000000d909178cc99d318e4d46e7e66a972955859670e10000000000000000000000001fc56b105c4f0a1a8038c2b429932b122f6b631f00</span>
-    <span data-ty="input"><span class="file-path"></span></span>
-</div>
-
-The encoded calldata for this example is:
-
-```text
-0x2600019b40090000000000000000000000000000000000000000000000000000000000008a1932d6e26433f3037bd6c3a40c816222a6ccd40000c16ff286230000000000000000000000000000000000000000000000000091037ff36ab50000000000000000000000000000000000000000000000000de0b6b3a7640000000000000000000000000000000000000000000000000000000000000000008000000000000000000000000061cd3e07fe7d7f6d4680e3e322986b7877f108dd00000000000000000000000000000000000000000000000000000000a036b1b90000000000000000000000000000000000000000000000000000000000000002000000000000000000000000d909178cc99d318e4d46e7e66a972955859670e10000000000000000000000001fc56b105c4f0a1a8038c2b429932b122f6b631f00
-```
-
-And that is it! You have everything you need to start crafting the XCM message itself! It has been a long journey, but we are almost there.
-
-## Building the XCM Message from the Relay Chain {: #building-the-xcm-message-relay-chain }
-
-We are almost in the last part of this tutorial! In this section, we'll craft the XCM message using the [Polkadot.js API](/builders/substrate/libraries/polkadot-js-api/){target=\_blank}. We'll also dissect the message instruction per instruction to understand what is happening every step of the way.
-
-The XCM message we are about to build is composed of the following instructions:
-
- - [`WithdrawAsset`](/builders/interoperability/xcm/core-concepts/instructions/#withdraw-asset){target=\_blank} — takes funds from the account dispatching the XCM in the destination chain and puts them in holding, a special take where funds can be used for later actions
- - [`BuyExecution`](/builders/interoperability/xcm/core-concepts/instructions/#buy-execution){target=\_blank} — buy a certain amount of block execution time
- - [`Transact`](/builders/interoperability/xcm/core-concepts/instructions/#transact){target=\_blank} — use part of the block execution time bought with the previous instruction to execute some arbitrary bytes
- - [`DepositAsset`](/builders/interoperability/xcm/core-concepts/instructions/#deposit-asset){target=\_blank} — takes assets from holding and deposits them to a given account
-
-To build the XCM message, which will initiate the remote EVM call through XCM, and get its SCALE encoded calldata, you can use the following snippet:
-
-```js
-import { ApiPromise, WsProvider } from '@polkadot/api'; // Version 10.13.1
-
-// 1. Input Data
-const providerWsURL =
-  'wss://relay.api.moonbase.moonbeam.network';
-const amountToWithdraw = BigInt(1 * 10 ** 16); // 0.01 DEV
-const devMultiLocation = {
-  parents: 0,
-  interior: { X1: [{ PalletInstance: 3 }] },
-};
-const weightTransact = 40000000000n; // 25000 * Gas limit of EVM call
-const multiLocAccount = '0x61cd3e07fe7d7f6d4680e3e322986b7877f108dd';
-const transactBytes =
-  '0x2600019b40090000000000000000000000000000000000000000000000000000000000008a1932d6e26433f3037bd6c3a40c816222a6ccd40000c16ff286230000000000000000000000000000000000000000000000000091037ff36ab50000000000000000000000000000000000000000000000000de0b6b3a7640000000000000000000000000000000000000000000000000000000000000000008000000000000000000000000061cd3e07fe7d7f6d4680e3e322986b7877f108dd00000000000000000000000000000000000000000000000000000000a036b1b90000000000000000000000000000000000000000000000000000000000000002000000000000000000000000d909178cc99d318e4d46e7e66a972955859670e10000000000000000000000001fc56b105c4f0a1a8038c2b429932b122f6b631f00';
-
-// 2. XCM Destination (Moonbase Alpha Parachain ID 1000)
-const dest = { V4: { parents: 0, interior: { X1: [{ Parachain: 1000 }] } } };
-
-// 3. XCM Instruction 1
-const instr1 = {
-  WithdrawAsset: [
-    {
-      id: devMultiLocation,
-      fun: { Fungible: amountToWithdraw },
-    },
-  ],
-};
-
-// 4. XCM Instruction 2
-const instr2 = {
-  BuyExecution: {
-    fees: {
-      id: devMultiLocation,
-      fun: { Fungible: amountToWithdraw },
-    },
-    weightLimit: { Unlimited: null },
-  },
-};
-
-// 5. XCM Instruction 3
-const instr3 = {
-  Transact: {
-    originKind: 'SovereignAccount',
-    requireWeightAtMost: { refTime: weightTransact, proofSize: 700000n },
-    call: {
-      encoded: transactBytes,
-    },
-  },
-};
-
-// 6. XCM Instruction 4
-const instr4 = {
-  DepositAsset: {
-    assets: { Wild: 'All' },
-    beneficiary: {
-      parents: 0,
-      interior: { X1: [{ AccountKey20: { key: multiLocAccount } }] },
-    },
-  },
-};
-
-// 7. Build XCM Message
-const message = { V4: [instr1, instr2, instr3, instr4] };
-
-const generateCallData = async () => {
-  // 8. Create Substrate API Provider
-  const substrateProvider = new WsProvider(providerWsURL);
-  const api = await ApiPromise.create({ provider: substrateProvider });
-
-  // 9. Create the Extrinsic
-  const tx = api.tx.xcmPallet.send(dest, message);
-
-  // 10. Get SCALE Encoded Calldata
-  const encodedCall = tx.toHex();
-  console.log(`Encoded Calldata: ${encodedCall}`);
-
-  api.disconnect();
-};
-
-generateCallData();
-```
-
-!!! note
-    You can also get the SCALE encoded calldata by manually building the extrinsic in [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://relay.api.moonbase.moonbeam.network#/extrinsics){target=\_blank}.
-
-Let's go through each of the main components of the snippet shown above:
-
- 1. Provide the input data for the call. This includes:
-     - Moonbase Alpha relay chain endpoint URL to create the provider
-     - Amount of tokens (in Wei) to withdraw from the Computed Origin account. For this example, `0.01` tokens are more than enough. To understand how to get this value, please refer to the [XCM fee page](/builders/interoperability/xcm/core-concepts/weights-fees/#moonbeam-reserve-assets){target=\_blank}
-     - The [multilocation of the `DEV` token](/builders/interoperability/xcm/xc-registration/assets/#register-moonbeam-native-assets){target=\_blank} as seen by Moonbase Alpha
-     - The weight for the `transact` XCM instruction. This can be obtained by multiplying `25000` and the gas limit obtained before. It is recommended to add approximately 10% more of the estimated value. You can read more about this value in the [Remote EVM Calls through XCM](/builders/interoperability/xcm/remote-execution/remote-evm-calls/#build-xcm-remote-evm){target=\_blank} page
-     - The Computed Origin account as it will be needed later for an XCM instruction
-     - The bytes for the `transact` XCM instruction that we calculated in the previous section
- 2. Define the destination multilocation for the XCM message. In this case, it is the Moonbase Alpha parachain
- 3. First XCM instruction, `WithdrawAsset`. You need to provide the asset multilocation and the amount you want to withdraw. Both variables were already described before
- 4. Second XCM instruction, `BuyExecution`. Here, we are paying for Moonbase Alpha block execution time in `DEV` tokens by providing its multilocation and the amount we took out with the previous instruction. Next, we are buying all the execution we can (`Unlimited` weight) with `0.001 DEV` tokens which should be around 20 billion weight units, plenty for our example
- 5. Third XCM instruction, `Transact`. The instruction will use a portion of the weight bought (defined as `requireWeightAtMost`) and execute the arbitrary bytes that are provided (`transactBytes`)
- 6. Fourth XCM instruction, `DepositAsset`. Whatever is left in holding after the actions executed before (in this case, it should be only `DEV` tokens) is deposited to the Computed Origin account, set as the `beneficiary`.
- 7. Build the XCM message by concatenating the instructions inside a `V2` array
- 8. Create the [Polkadot.js API](/builders/substrate/libraries/polkadot-js-api/){target=\_blank} provider
- 9. Craft the `xcmPallet.send` extrinsic with the destination and XCM message. This method will append the [`DescendOrigin`](/builders/interoperability/xcm/core-concepts/instructions/#descend-origin){target=\_blank} XCM instruction to our XCM message, and it is the instruction that will provide the necessary information to calculate the Computed Origin account
- 10. Get the SCALE encoded calldata. Note that in this particular scenario, because we need the full SCALE encoded calldata, we have to use `tx.toHex()`. This is because we will submit this transaction using the calldata
-
-!!! challenge
-    Try a more straightforward example and perform a balance transfer from the Computed Origin account to any other account you like. You'll have to build the SCALE encoded calldata for a `balance.Transfer` extrinsic or create the Ethereum call as a balance transfer transaction.
-
-Once you have the code set up, you can execute it with `node`, and you'll get the relay chain XCM calldata:
-
-<div id="termynal" data-termynal>
-    <span data-ty="input"><span class="file-path"></span>node build-xcm-message-swap.js</span>
-    <span data-ty>Encoded Calldata: 0x450604630004000100a10f0410000400010403000f0000c16ff286231300010403000f0000c16ff286230006010700902f500982b92a00fd042600019b40090000000000000000000000000000000000000000000000000000000000008a1932d6e26433f3037bd6c3a40c816222a6ccd40000c16ff286230000000000000000000000000000000000000000000000000091037ff36ab50000000000000000000000000000000000000000000000000de0b6b3a7640000000000000000000000000000000000000000000000000000000000000000008000000000000000000000000061cd3e07fe7d7f6d4680e3e322986b7877f108dd00000000000000000000000000000000000000000000000000000000a036b1b90000000000000000000000000000000000000000000000000000000000000002000000000000000000000000d909178cc99d318e4d46e7e66a972955859670e10000000000000000000000001fc56b105c4f0a1a8038c2b429932b122f6b631f000d01000001030061cd3e07fe7d7f6d4680e3e322986b7877f108dd</span>
-    <span data-ty="input"><span class="file-path"></span></span>
-</div>
-
-The encoded calldata for this example is:
-
-```text
-0x450604630004000100a10f0410000400010403000f0000c16ff286231300010403000f0000c16ff286230006010700902f500982b92a00fd042600019b40090000000000000000000000000000000000000000000000000000000000008a1932d6e26433f3037bd6c3a40c816222a6ccd40000c16ff286230000000000000000000000000000000000000000000000000091037ff36ab50000000000000000000000000000000000000000000000000de0b6b3a7640000000000000000000000000000000000000000000000000000000000000000008000000000000000000000000061cd3e07fe7d7f6d4680e3e322986b7877f108dd00000000000000000000000000000000000000000000000000000000a036b1b90000000000000000000000000000000000000000000000000000000000000002000000000000000000000000d909178cc99d318e4d46e7e66a972955859670e10000000000000000000000001fc56b105c4f0a1a8038c2b429932b122f6b631f000d01000001030061cd3e07fe7d7f6d4680e3e322986b7877f108dd
-```
-
-Now that we have the SCALE encoded calldata, the last step is to submit the transaction, which will send our XCM message to Moonbase Alpha, and do the remote EVM call!
-
-## Sending the XCM Message from the Relay Chain {: #send-xcm-message-relay-chain }
-
-This section is where everything comes together and where the magic happens! Let's recap what we've done so far:
-
- - We've created a relay chain account that is funded with `UNIT` tokens (relay chain native tokens)
- - We determined its Computed Origin account on Moonbase Alpha and funded this new address with `DEV` tokens (Moonbase Alpha native token)
- - We obtained the Uniswap V2 swap calldata, in which we'll be swapping `0.01 DEV` token for `MARS`, an ERC-20 that exists in Moonbase Alpha. We had to modify a couple of fields to adapt it to this particular example
- - We built the SCALE encoded calldata in Moonbase Alpha to access its EVM via XCM
- - We crafted our transaction to send an XCM message to Moonbase Alpha, in which we will ask it to execute the SCALE encoded calldata that was previously built. This, in turn, will execute an EVM call which will perform the Uniswap V2 swap for the precious `MARS` tokens!
-
-To send the XCM message that we built in the previous section, you can use the following code snippet:
-
-```js
-import { ApiPromise, WsProvider, Keyring } from '@polkadot/api'; // Version 10.13.1
-import { cryptoWaitReady } from '@polkadot/util-crypto';
-
-// 1. Input Data
-const providerWsURL =
-  'wss://relay.api.moonbase.moonbeam.network';
-const MNEMONIC = 'INSERT_MNEMONIC'; // Not safe, only for testing
-const txCall =
-  '0x450604630004000100a10f0410000400010403000f0000c16ff286231300010403000f0000c16ff286230006010700902f500982b92a00fd042600019b40090000000000000000000000000000000000000000000000000000000000008a1932d6e26433f3037bd6c3a40c816222a6ccd40000c16ff286230000000000000000000000000000000000000000000000000091037ff36ab50000000000000000000000000000000000000000000000000de0b6b3a7640000000000000000000000000000000000000000000000000000000000000000008000000000000000000000000061cd3e07fe7d7f6d4680e3e322986b7877f108dd00000000000000000000000000000000000000000000000000000000a036b1b90000000000000000000000000000000000000000000000000000000000000002000000000000000000000000d909178cc99d318e4d46e7e66a972955859670e10000000000000000000000001fc56b105c4f0a1a8038c2b429932b122f6b631f000d01000001030061cd3e07fe7d7f6d4680e3e322986b7877f108dd';
-
-const sendXCM = async () => {
-  // 2. Create Substrate API Provider
-  const substrateProvider = new WsProvider(providerWsURL);
-  const api = await ApiPromise.create({ provider: substrateProvider });
-
-  // 3. Create Keyring Instance
-  await cryptoWaitReady();
-  const keyring = new Keyring({ type: 'sr25519' });
-  const alice = keyring.addFromUri(MNEMONIC);
-
-  // 4. Create the Extrinsic
-  const tx = await api.tx(txCall).signAndSend(alice, (result) => {
-    // 5. Check Transaction Status
-    if (result.status.isInBlock) {
-      console.log(
-        `Transaction included in blockHash ${result.status.asInBlock}`
-      );
-    }
-  });
-
-  api.disconnect();
-};
-
-sendXCM();
-```
-
-Once you have the code set up, you can execute it with `node`, and the XCM message will be sent to initiate your Uniswap V2 swap in Moonbase Alpha:
-
-<div id="termynal" data-termynal>
-    <span data-ty="input"><span class="file-path"></span>node send-xcm-message-swap.js</span>
-    <span data-ty="input">Transaction included in blockHash 0x4260e32a208dde976c704bb8b08eccd6cdd2cdd9796d79a572c40ba38ce48af6</span>
-    <span data-ty="input"><span class="file-path"></span></span>
-</div>
-
-And that is it! You've sent an XCM message, which performed a remote EVM call via XCM and resulted in a Uniswap V2-styled swap in Moonbase Alpha. But let's go into more detail about what happened.
-
-This action will emit different events. The first one is the only relevant [in the relay chain](https://polkadot.js.org/apps/?rpc=wss://relay.api.moonbase.moonbeam.network#/explorer/query/0x85cad5f3cef5d578f6acc60c721ece14842be332fa333c9b9eafdfe078bc0290){target=\_blank}, and it is named `xcmPallet.Sent`, which is from the `xcmPallet.send` extrinsic. In [Moonbase Alpha](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/explorer/query/0x1f60aeb1f2acbc2cf6e19b7ad969661f21f4847f7b40457c459e7d39f6bc0779){target=\_blank}, the following events emitted by the `parachainSystem.setValidationData` extrinsic (where all the inbound XCM messages are processed) are of interest:
-
- - `parachainSystem.DownwardMessagesReceived` — states that there was an XCM message received
- - `evm.Log` — internal events emitted by the different contract calls. The structure is the same: contract address, the topics, and relevant data
- - `ethereum.Executed` — contains information on the `from` address, the `to` address, and the transaction hash of an EVM call done
- - `polkadotXcm.AssetsTrapped` — flags that some assets were in holding and were not deposited to a given address. If the `Transact` XCM instruction does not exhaust the tokens allocated to it, it will execute a [`RefundSurplus`](/builders/interoperability/xcm/core-concepts/instructions/#refund-surplus){target=\_blank} after the XCM is processed. This instruction will take any leftover tokens from the execution bought and put them in holding. We could prevent this by adjusting the fee provided to the `Transact` instruction, or by adding the instruction right after the `Transact`
- - `dmpQueue.ExecutedDownward` — states the result of executing a message received from the relay chain (a DMP message). In this case, the `outcome` is marked as `Complete`
-
-Our XCM was successfully executed! If you visit [Moonbase Alpha Moonscan](https://moonbase.moonscan.io){target=\_blank} and search for [the transaction hash](https://moonbase.moonscan.io/tx/0x3fd96c5c7a82cd0b54c654f64d41879814d94a3ad9b66820f2be2fe7fc2a18eb){target=\_blank}, you'll find the Uniswap V2 swap that was executed via the XCM message.
-
-!!! challenge
-    Do a Uniswap V2 swap of `MARS` for any other token you want. Note that in this case, you'll have to remotely execute an ERC-20 `approve` via XCM first to allow the Uniswap V2 Router to spend the tokens on your behalf. Once the approval is done, you can send the XCM message for the swap itself.
-
-<div class="page-disclaimer">
-    This tutorial is for educational purposes only. As such, any contracts or code created in this tutorial should not be used in production.
-</div>
---- END CONTENT ---
-
 ## Basics Concepts [shared: true]
 
 The following section contains foundational documentation shared across all Moonbeam products.
@@ -5629,7 +4692,7 @@ Finality is deterministic in Ethereum's PoS consensus protocol and is achieved t
 
 ## Moonbeam Consensus and Finality {: #moonbeam-consensus-and-finality }
 
-In Polkadot, there are collators and validators. [Collators](https://wiki.polkadot.com/learn/learn-collator/){target=\_blank} maintain parachains (in this case, Moonbeam) by collecting transactions from users and producing state transition proofs for the relay chain [validators](https://wiki.polkadot.com/learn/learn-validator/){target=\_blank}. The collator set (nodes that produce blocks) is selected based on the [stake they have in the network](/learn/features/consensus/){target=\_blank}.
+In Polkadot, there are collators and validators. [Collators](https://wiki.polkadot.com/learn/learn-collator/){target=\_blank} maintain parachains (in this case, Moonbeam) by collecting transactions from users and producing state transition proofs for the relay chain [validators](https://wiki.polkadot.com/learn/learn-validator/){target=\_blank}. The collator set (nodes that produce blocks) is selected based on the stake they have in the network.
 
 For finality, Polkadot and Kusama rely on [GRANDPA](https://docs.polkadot.com/polkadot-protocol/architecture/polkadot-chain/pos-consensus/#finality-gadget-grandpa){target=\_blank}. GRANDPA provides deterministic finality for any given transaction (block). In other words, when a block or transaction is marked as final, it can't be reverted except via on-chain governance or forking. Moonbeam follows this deterministic finality.
 
@@ -5639,7 +4702,7 @@ In terms of consensus, Moonbeam is based on Delegated Proof-of-Stake, while Ethe
 
 With PoS on Ethereum, validators are selected to produce and validate blocks based on their own stake in the network. As long as a validator has placed a validator deposit, they can be selected to produce and validate blocks. However, as previously mentioned, the greater the stake in the network, the higher the chances a validator has to be selected to produce and validate blocks.
 
-On the other hand, with DPoS on Moonbeam, collators become eligible to produce blocks based on their own stake plus their delegated stake in the network. Any token holder can choose to delegate their stake to a collator candidate. The top collator candidates by stake, including delegations, join the active set. The number of candidates in the active set is subject to [governance](/learn/features/governance/){target=\_blank}. Once in the active set, collators are randomly selected to produce blocks using the [Nimbus Consensus Framework](/learn/features/consensus/){target=\_blank}. It is important to note that once a collator is in the active set, their total stake does not impact their chances of being selected to produce blocks.
+On the other hand, with DPoS on Moonbeam, collators become eligible to produce blocks based on their own stake plus their delegated stake in the network. Any token holder can choose to delegate their stake to a collator candidate. The top collator candidates by stake, including delegations, join the active set. The number of candidates in the active set is subject to [governance](/learn/features/governance/){target=\_blank}. Once in the active set, collators are randomly selected to produce blocks using the Nimbus Consensus Framework. It is important to note that once a collator is in the active set, their total stake does not impact their chances of being selected to produce blocks.
 
 In terms of finality, blocks on Ethereum can take quite a bit longer to finalize than on Moonbeam due to the checkpoint finality system it uses. In Ethereum, validators determine finality at checkpoint blocks, which are always the first block in an epoch. Since an epoch has 32 slots and each slot is 12 seconds, it'll take at least 384 seconds, or 6.4 minutes for a block to be finalized.
 
@@ -7340,97 +6403,6 @@ The diagram for this new configuration looks as follows.
 That is it, Bob only holds one private key that matches one address. He does not need to move balances between 2 different accounts and is able to access all the features with a single account and private key. We have standardized this single account to conform to the Ethereum-style H160 address and ECDSA key standards.
 --- END CONTENT ---
 
-Doc-Content: https://docs.moonbeam.network/learn/features/consensus/
---- BEGIN CONTENT ---
----
-title: Moonbeam's Nimbus Consensus Framework
-description: Learn about all the parts of Moonbeam's Nimbus consensus framework and how it works as part of Polkadot's shared security model.
-categories: Basics
----
-
-# Nimbus Parachain Consensus Framework
-
-## Introduction {: #introduction }
-
-Polkadot relies on a [hybrid consensus model](https://docs.polkadot.com/polkadot-protocol/architecture/polkadot-chain/pos-consensus/). In such a scheme, the block finality gadget and the block production mechanism are separate. Consequently, parachains only have to worry about producing blocks and rely on the relay chain to validate the state transitions.
-
-At a parachain level, block producers are called [collators](https://wiki.polkadot.com/learn/learn-collator/). They maintain parachains (such as Moonbeam) by collecting transactions from users and offering blocks to the relay chain [validators](https://wiki.polkadot.com/learn/learn-validator/).
-
-However, parachains might find the following problems they need to solve in a trustless and decentralized matter (if applicable):
-
- - Amongst all of the nodes in the network, which ones are allowed to author blocks?
- - If multiple nodes are allowed, will they be eligible at the same time? Only one? Maybe a few?
-
-Enter Nimbus. Nimbus is a framework for building slot-based consensus algorithms on [Cumulus](https://github.com/paritytech/polkadot-sdk/tree/master/cumulus)-based parachains. It strives to provide standard implementations for the logistical parts of such consensus engines and helpful traits for implementing the elements (filters) that researchers and developers want to customize. These filters can be customizable to define what a block authorship slot is and can be composed, so block authorship is restricted to a subset of collators in multiple steps.
-
-For example, Moonbeam uses a two-layer approach. The first layer comprises the parachain staking filter, which helps select an active collator pool among all collator candidates using a staked-based ranking. The second layer adds another filter which narrows down the number of collators to a subset for each slot.
-
-Notice that Nimbus can only answer which collator(s) are eligible to produce a parachain block in the next available slot. It is the [Cumulus](https://docs.polkadot.com/develop/parachains/#cumulus) consensus mechanism that marks this parachain block as best, and ultimately the [BABE](https://docs.polkadot.com/polkadot-protocol/architecture/polkadot-chain/pos-consensus/#babe) and [GRANDPA](https://docs.polkadot.com/polkadot-protocol/architecture/polkadot-chain/pos-consensus/#grandpa-finality-gadget) hybrid consensus model (of the relay chain) that will include this parachain block in the relay chain and finalize it. Once any relay chain forks are resolved at a relay chain level, that parachain block is deterministically finalized.
-
-The following two sections go over the filtering strategy currently used on Moonbeam.
-
-## Parachain Staking Filtering {: #parachain-staking-filtering }
-
-Collators can join the candidate pool by simply bonding some tokens via an extrinsic. Once in the pool, token holders can add to the candidate's stake via delegation (also referred to as staking), that is, at a parachain level.
-
-Parachain staking is the first of the two Nimbus filters applied to the candidate pool. It selects the top {{ networks.moonbase.staking.max_candidates }} candidates in terms of tokens staked in the network, which includes the candidate's bond and delegations from token holders. This filtered pool is called selected candidates, and selected candidates are renewed every round (which lasts {{ networks.moonbase.staking.round_blocks }} blocks). For a given round, the following diagram describes the parachain staking filtering:
-
-![Nimbus Parachain Staking Filter](/images/learn/features/consensus/consensus-1.webp)
-
-From this pool, another filter is applied to retrieve a subset of eligible candidates for the next block authoring slot.
-
-If you want to learn more about staking, visit our [staking documentation](/learn/features/staking/).
-
-## Fixed Size Subset Filtering {: #fixed-size-subset-filtering }
-
-Once the parachain staking filter is applied and the selected candidates are retrieved, a second filter is applied on a block by block basis and helps narrow down the selected candidates to a smaller number of eligible collators for the next block authoring slot.
-
-In broad terms, this second filter picks a pseudo-random subset of the previously selected candidates. The eligibility ratio, a tunable parameter, defines the size of this subset.
-
-A high eligibility ratio results in fewer chances for the network to skip a block production slot, as more collators will be eligible to propose a block for a specific slot. However, only a certain number of validators are assigned to a parachain, meaning that most of these blocks will not be backed by a validator. For those that are, a higher number of backed blocks means that it might take longer for the relay chain to solve any possible forks and return a finalized block. Moreover, this might create an unfair advantage for certain collators that might be able to get their proposed block faster to relay chain validators, securing a higher portion of block rewards (if any).
-
-A lower eligibility ratio might provide faster block finalization times and a fairer block production distribution amongst collators. However, if the eligible collators are not able to propose a block (for whatever reason), the network will skip a block, affecting its stability.
-
-Once the size of the subset is defined, collators are randomly selected using a source of entropy. Currently, an internal coin-flipping algorithm is implemented, but this will later be migrated to use [Verifiable random function](https://docs.polkadot.com/polkadot-protocol/parachain-basics/randomness/){target=\_blank}. Consequently, a new subset of eligible collators is selected for every relay chain block. For a given round and a given block `XYZ`, the following diagram describes the fixed-size subset filtering:
-
-![Nimbus Parachain Staking Filter](/images/learn/features/consensus/consensus-2.webp)
-
-## Why Nimbus? {: #why-nimbus }
-
-You might ask yourself: but why Nimbus? Initially, it was not envisioned when Moonbeam was being developed. As Moonbeam progressed, the necessity for a more customizable but straightforward parachain consensus mechanism became clear, as the available methods presented some drawbacks or technical limitations.
-
-<!-- In the [relay chain provided consensus](https://github.com/paritytech/cumulus/blob/master/client/consensus/relay-chain/src/lib.rs), each node sees itself as a collator and can propose a parachain candidate block. It is then up to the relay chain to solve any possible forks and finalize a block. 
-
-[AuRa](https://crates.io/crates/sc-consensus-aura) (short for authority-round) consensus mechanism is based on a known list of authorities that take turns to produce blocks in every slot. Each authority can propose only one block per slot and builds on top of the longest chain.-->
-
-With Nimbus, writing a parachain consensus engine is as easy as writing a pallet! This simplicity and flexibility is the main value it adds.
-
-Some technical benefits of Nimbus are considered in the following sections.
-
-### Weight and Extra Execution {: #weight-and-extra-execution }
-
-Nimbus puts the author-checking execution in a [Substrate pallet](https://docs.polkadot.com/develop/parachains/customize-parachain/overview/). At first glance, you might think this adds a higher execution load to a single block compared to doing this check off-chain. But consider this from a validator’s perspective
-
-The validators will also have to check the author. By putting the author-checking execution logic in a pallet, the execution time can be benchmarked and quantified with weights. If this execution time is not accounted for, there is the risk of a block exceeding the relay chain Wasm execution limit (currently 0.5 seconds).
-
-In practice, this check will be fast and will most likely not push execution time over the limit. But from a theoretical perspective, accounting for its weight is better for implementation purposes.
-
-### Reusability {: #reusability }
-
-Another benefit of moving the author-checking execution to a pallet, rather than a custom executor, is that one single executor can be reused for any consensus that can be expressed in the Nimbus framework. That is slot-based, signature-sealed algorithms.
-
-For example, the [relay-chain provided consensus](https://github.com/paritytech/polkadot-sdk/blob/master/cumulus/client/consensus/relay-chain/src/lib.rs), [AuRa](https://crates.io/crates/sc-consensus-aura) and [BABE](https://crates.io/crates/sc-consensus-babe) each have their own custom executor. With Nimbus, these consensus mechanisms can reuse the same executor. The power of reusability is evidenced by the Nimbus implementation of AuRa in less than 100 lines of code.
-
-### Hot-Swapping Consensus {: #hot-swapping-consensus }
-
-Teams building parachains may want to change, tune, or adjust their consensus algorithm from time to time. Without nimbus, swapping consensus would require a client upgrade and hard fork.
-
-With the Nimbus framework, writing a consensus engine is as easy as writing a
-[Substrate pallet](https://docs.polkadot.com/develop/parachains/customize-parachain/make-custom-pallet/). Consequently, swapping consensus is as easy as upgrading a pallet.
-
-Nonetheless, hot swapping is still bounded by consensus engines (filters) that fit within Nimbus, but it might be helpful for teams that are yet confident on what consensus they want to implement in the long run.
---- END CONTENT ---
-
 Doc-Content: https://docs.moonbeam.network/learn/features/eth-compatibility/
 --- BEGIN CONTENT ---
 ---
@@ -7450,10 +6422,6 @@ This documentation overviews Moonbeam's Ethereum compatibility features and high
 ### EVM Compatibility {: #evm }
 
 Moonbeam incorporates a fully compatible EVM to execute smart contracts in Solidity or other EVM-compatible languages. This enables developers to deploy existing Ethereum smart contracts on Moonbeam with minimal modifications.
-
-Learn more:
-
-- [Moonbeam's Ethereum-compatibility architecture](/learn/platform/technology/#ethereum-compatibility-architecture){target=\_blank}
 
 ### Ethereum-style Accounts {: #ethereum-style-accounts }
 
@@ -7502,7 +6470,6 @@ Due to Moonbeam's native interoperability, ERC-20s can be sent cross-chain to ot
 
 Learn more:
 
-- [Create common OpenZeppelin contracts such as ERC-20, ERC-721, and ERC-1155 tokens](/builders/ethereum/dev-env/openzeppelin/contracts/){target=\_blank}
 - [XCM-enabled ERC-20s](/builders/interoperability/xcm/xc20/overview/#local-xc20s){target=\_blank} (also referred to as local XC-20s)
 
 ## Key Differences {: #key-differences }
@@ -7909,7 +6876,7 @@ Moonbeam utilizes verifiable random functions (VRF) to generate randomness that 
 
 There are two available sources of randomness that provide random inputs based on block producers' VRF keys and past randomness results: [local VRF](#local-vrf) and [BABE epoch randomness](#babe-epoch-randomness). Local VRF is determined directly within Moonbeam using the collator of the block's VRF key and the last block's VRF output. On the other hand, [BABE](https://docs.polkadot.com/polkadot-protocol/architecture/polkadot-chain/pos-consensus/#block-production-babe){target=\_blank} epoch randomness is based on all the VRF produced by the relay chain validators during a complete [epoch](https://wiki.polkadot.com/general/glossary/#epoch){target=\_blank}.
 
-You can interact with and request on-chain randomness using the Randomness Precompile contract, a Solidity interface that enables smart contract developers to access the randomness functionality through the Ethereum API. For more information, please check out the [Interacting with the Randomness Precompile](/builders/ethereum/precompiles/features/randomness/){target=\_blank} guide. You can also take a look at the [Randomness Pallet](/builders/substrate/interfaces/features/randomness/){target=\_blank}, which can be used to obtain current randomness requests and results.
+You can interact with and request on-chain randomness using the Randomness Precompile contract, a Solidity interface that enables smart contract developers to access the randomness functionality through the Ethereum API. For more information, please check out the [Interacting with the Randomness Precompile](/builders/ethereum/precompiles/features/randomness/){target=\_blank} guide.
 
 ## General Definitions {: #general-definitions }
 
@@ -8120,9 +7087,6 @@ There are a few resources you can check out to help you select a collator to del
     |      Variable      |                                      Value                                       |
     |:------------------:|:--------------------------------------------------------------------------------:|
     | List of candidates | [Moonbase Alpha Subscan](https://moonbase.subscan.io/validator){target=\_blank} |
-
-!!! note
-    The DappLooker Collator dashboard for Moonriver is experimental beta software and may not accurately reflect collator performance. Be sure to do your own research before delegating to a collator.
 
 ### General Tips {: #general-tips }
 
@@ -9154,7 +8118,7 @@ categories: Reference, Basics
 
 On Moonbeam, a precompiled contract is native Substrate code that has an Ethereum-style address and can be called using the Ethereum API, like any other smart contract. The precompiles allow you to call the Substrate runtime directly which is not normally accessible from the Ethereum side of Moonbeam.
 
-The Substrate code responsible for implementing precompiles can be found in the [EVM pallet](/learn/platform/technology/#evm-pallet){target=\_blank}. The EVM pallet includes the [standard precompiles found on Ethereum and some additional precompiles that are not specific to Ethereum](https://github.com/polkadot-evm/frontier/tree/master/frame/evm/precompile){target=\_blank}. It also provides the ability to create and execute custom precompiles through the generic [`Precompiles` trait](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm/trait.Precompile.html){target=\_blank}. There are several custom Moonbeam-specific precompiles that have been created, all of which can be found in the [Moonbeam codebase](https://github.com/moonbeam-foundation/moonbeam/tree/master/precompiles){target=\_blank}. It is important to highlight that the precompiles from this list with the `CallableByContract` check are not callable inside the contract constructor.
+The Substrate code responsible for implementing precompiles can be found in the [EVM pallet](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm/){target=\_blank}. The EVM pallet includes the [standard precompiles found on Ethereum and some additional precompiles that are not specific to Ethereum](https://github.com/polkadot-evm/frontier/tree/master/frame/evm/precompile){target=\_blank}. It also provides the ability to create and execute custom precompiles through the generic [`Precompiles` trait](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm/trait.Precompile.html){target=\_blank}. There are several custom Moonbeam-specific precompiles that have been created, all of which can be found in the [Moonbeam codebase](https://github.com/moonbeam-foundation/moonbeam/tree/master/precompiles){target=\_blank}. It is important to highlight that the precompiles from this list with the `CallableByContract` check are not callable inside the contract constructor.
 
 The Ethereum precompiled contracts contain complex functionality that is computationally intensive, such as hashing and encryption. The custom precompiled contracts on Moonbeam provide access to Substrate-based functionality such as staking, governance, XCM-related functions, and more.
 
@@ -9329,50 +8293,6 @@ The precompiled contracts are categorized by address and based on the origin net
     |    [XCM Transactor V3](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/xcm-transactor/src/v3/XcmTransactorV3.sol){target=\_blank}     |         {{networks.moonbase.precompiles.xcm_transactor_v3}}         |
     |                               [XCM Interface](https://github.com/Moonsong-Labs/moonkit/blob/main/precompiles/pallet-xcm/XcmInterface.sol){target=\_blank}                               |             {{networks.moonbeam.precompiles.xcm_interface}}              |
     |                   [Identity](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/identity/Identity.sol){target=\_blank}                   |             {{networks.moonbase.precompiles.identity}}              |
---- END CONTENT ---
-
-Doc-Content: https://docs.moonbeam.network/builders/get-started/create-account/
---- BEGIN CONTENT ---
----
-title: Create an Account
-description: To begin developing on Moonbeam, you must create an account. This guide will provide you with the information needed to create one to use on Moonbeam.
-categories: Basics
----
-
-# Create an Account
-
-## Introduction {: #introduction }
-
-To get started developing on Moonbeam, developers must create an account. The most prevalent approach involves leveraging a wallet application, which facilitates generating and managing cryptographic keys essential for interacting with Moonbeam.
-
-Moonbeam uses H160 Ethereum-style accounts and ECDSA keys, represented in 20-byte addresses. If you already have an Ethereum account and its private key or mnemonic, you can use your account on Moonbeam.
-
-This guide will walk you through the step-by-step process of creating an account on Moonbeam. Whether you're new to blockchain technology or an experienced Ethereum user, this guide will provide all the information you need to get started.
-
-!!! note
-    This guide does not pertain to a local Moonbeam development node. If you are using a development node, you don't need to worry about creating an account, as the node comes with ten pre-funded accounts for testing purposes. Please refer to the [Getting Started with a Local Moonbeam Development Node](/builders/get-started/networks/moonbeam-dev/){target=\_blank} guide for more information.
-
-## Choose a Wallet {: #choose-a-wallet }
-
-A wallet is a software or hardware tool that allows you to securely store, manage, and interact with your digital assets, such as tokens or coins. Wallets store your private keys, which are essential for authorizing transactions on the network.
-
-You can review a list of wallets on the [Moonbeam DApp Directory](https://apps.moonbeam.network/moonbeam/app-dir?cat=wallets){target=\_blank}.
-
-![View list of wallets on the Moonbeam DApp](/images/builders/get-started/create-account/create-account-1.webp)
-
-The list of wallets on the dApp is not exhaustive and may only cover some of the available options. You should be able to use any Ethereum-compatible wallet to generate an address and its associated private key.
-
-You can also check out any of the wallets in the [Connect to Moonbeam](/tokens/connect/){target=\_blank} section of the docs.
-
-## Use Your Wallet to Create an Account {: #use-your-wallet-to-create-an-account }
-
-After you've selected a wallet and downloaded it, you'll most likely be prompted to create a new account or import an existing one the first time you open it. You'll want to create a new account.
-
-Depending on the wallet, when creating an account, you may be prompted to backup and restore a seed phrase, also referred to as a mnemonic or recovery phrase. This phrase is a sequence of generated words that serve as a backup mechanism for private keys. They typically consist of 12 to 24 words randomly selected from a predefined list. Seed phrases are used to derive private keys deterministically, meaning that the same sequence of words will always generate the same set of private keys. They are crucial for recovering access to a cryptocurrency wallet in case of loss or device failure. **Make sure you save the phrase in a safe place; if you lose access to this phrase, you'll lose access to any funds you hold in your account.**
-
-After saving your seed phrase, you can start developing on Moonbeam. Many wallets offer the option to export the private key linked to your account. By doing so, you can utilize your private key instead of the seed phrase during development. However, taking adequate precautions to securely store your private key or seed phrase while developing is essential.
-
-And that's it! Before sending your first transaction on a Moonbeam-based network, ensure you have the necessary [network configurations for your chosen network](/builders/get-started/networks/){target=\_blank} and an [RPC endpoint](/builders/get-started/endpoints/){target=\_blank} for the network. Once you have these items, you'll be able to follow along with tutorials like the [How to use Ethers.js](/builders/ethereum/libraries/ethersjs/){target=\_blank} or the [How to use Web3.js](/builders/ethereum/libraries/web3js/){target=\_blank} to send a transaction.
 --- END CONTENT ---
 
 Doc-Content: https://docs.moonbeam.network/builders/get-started/explorers/
@@ -9696,9 +8616,9 @@ Using Docker enables you to spin up a node in a matter of seconds. Once you have
     The tail end of the console log should look like this:
 
     <div id="termynal" data-termynal>
-  <span data-ty="input"><span class="file-path"></span>docker pull moonbeamfoundation/moonbeam:v0.48.0</span>
+  <span data-ty="input"><span class="file-path"></span>docker pull moonbeamfoundation/moonbeam:v0.49.2</span>
   <br>
-  <span data-ty>v0.48.0: Pulling from moonbeamfoundation/moonbeam
+  <span data-ty>v0.49.2: Pulling from moonbeamfoundation/moonbeam
     <br> b0a0cf830b12: Pull complete
     <br> fbff687640dd: Pull complete
     <br> 58ea427410e2: Pull complete
@@ -9707,8 +8627,8 @@ Using Docker enables you to spin up a node in a matter of seconds. Once you have
     <br> 128693ce218e: Pull complete
     <br> a3ac90b88463: Pull complete
     <br> Digest: sha256:86421aca2381265cd2e5283cb98705e24be0bc92a73937363f79d9d6e0d62088
-    <br> Status: Downloaded newer image for moonbeamfoundation/moonbeam:v0.48.0
-    <br> docker.io/moonbeamfoundation/moonbeam:v0.48.0
+    <br> Status: Downloaded newer image for moonbeamfoundation/moonbeam:v0.49.2
+    <br> docker.io/moonbeamfoundation/moonbeam:v0.49.2
   </span>
 </div>
 
@@ -9757,13 +8677,13 @@ If successful, you should see an output showing an idle state waiting for blocks
 
 <div id="termynal" data-termynal>
   <span data-ty="input"><span class="file-path"></span>docker run --rm --name moonbeam_development --network host \
-    <br> moonbeamfoundation/moonbeam:v0.48.0 \
+    <br> moonbeamfoundation/moonbeam:v0.49.2 \
     <br> --dev --rpc-external
   </span>
   <br>
   <span data-ty>CLI parameter `--execution` has no effect anymore and will be removed in the future!
     <br> 2025-07-10 09:04:26 Moonbeam Parachain Collator
-    <br> 2025-07-10 09:04:26 ✌️  version 0.48.0-d7df89e7161
+    <br> 2025-07-10 09:04:26 ✌️  version 0.49.2
     <br> 2025-07-10 09:04:26 ❤️  by PureStake, 2019-2025
     <br> 2025-07-10 09:04:26 📋 Chain specification: Moonbase Development Testnet
     <br> 2025-07-10 09:04:26 🏷  Node name: black-and-white-sticks-9174
@@ -9891,7 +8811,7 @@ You should see an output that looks like the following, showing an idle state wa
   <span data-ty="input"><span class="file-path"></span>./target/release/moonbeam --dev</span>
   <br>
   <span data-ty> 2025-07-10 09:04:26 Moonbeam Parachain Collator
-    <br> 2025-07-10 09:04:26 ✌️  version 0.48.0-d7df89e7161
+    <br> 2025-07-10 09:04:26 ✌️  version 0.49.2
     <br> 2025-07-10 09:04:26 ❤️  by PureStake, 2019-2025
     <br> 2025-07-10 09:04:26 📋 Chain specification: Moonbase Development Testnet
     <br> 2025-07-10 09:04:26 🏷  Node name: black-and-white-sticks-9174
@@ -10346,7 +9266,7 @@ categories: Basics
 
 Moonbeam is a fully Ethereum-compatible smart contract platform on Polkadot. As such, you can interact with Moonbeam via the [Ethereum API](/builders/ethereum/){target=\_blank} and [Substrate API](/builders/substrate/){target=\_blank}.
 
-Although Moonbeam is a Substrate-based platform, Moonbeam uses a [unified accounts](/learn/core-concepts/unified-accounts/){target=\_blank} system, which replaces Substrate-style accounts and keys with Ethereum-style accounts and keys. As a result, you can interact with your Moonbeam account with [MetaMask](/tokens/connect/metamask/){target=\_blank}, [Ledger](/tokens/connect/ledger/){target=\_blank}, and other Ethereum-compatible wallets by simply adding Moonbeam's network configurations. Similarly, you can develop on Moonbeam using Ethereum [libraries](/builders/ethereum/libraries/){target=\_blank} and [development environments](/builders/ethereum/dev-env/){target=\_blank}.
+Although Moonbeam is a Substrate-based platform, it uses a [unified accounts](/learn/core-concepts/unified-accounts/){target=\_blank} system, which replaces Substrate-style accounts and keys with Ethereum-style accounts and keys. As a result, you can interact with your Moonbeam account with [MetaMask](/tokens/connect/metamask/){target=\_blank}, [Ledger](/tokens/connect/ledger/){target=\_blank}, and other Ethereum-compatible wallets by simply adding Moonbeam's network configurations. Similarly, you can develop on Moonbeam using Ethereum [libraries](/builders/ethereum/libraries/){target=\_blank} and [development environments](/builders/ethereum/dev-env/){target=\_blank}.
 
 ## Moonbeam Networks {: #moonbeam-networks }
 
@@ -10356,7 +9276,7 @@ To get started developing on Moonbeam, it's important to be aware of the various
 |:-----------------------------------------------------------------------------------------:|:-------------:|:--------------------------------------------------------------------------------:|:-------------------:|:---------------------:|
 |           [Moonbeam](/builders/get-started/networks/moonbeam/){target=\_blank}            |    MainNet    |                 [Polkadot](https://polkadot.com){target=\_blank}                 |        GLMR         |          18           |
 |          [Moonriver](/builders/get-started/networks/moonriver/){target=\_blank}           |    MainNet    |                 [Kusama](https://kusama.network){target=\_blank}                 |        MOVR         |          18           |
-|        [Moonbase Alpha](/builders/get-started/networks/moonbase/){target=\_blank}         |    TestNet    | [Alphanet relay](/learn/platform/networks/moonbase/#relay-chain){target=\_blank} |         DEV         |          18           |
+|        [Moonbase Alpha](/builders/get-started/networks/moonbase/){target=\_blank}         |    TestNet    |                           Alphanet relay (Westend-based)                         |         DEV         |          18           |
 | [Moonbeam Development Node](/builders/get-started/networks/moonbeam-dev/){target=\_blank} | Local TestNet |                                       None                                       |         DEV         |          18           |
 
 !!! note
@@ -10455,13 +9375,8 @@ As Moonbeam is a Substrate-based chain that is fully Ethereum-compatible, you ca
     |                                   Tool                                   |      Type       |
     |:------------------------------------------------------------------------:|:---------------:|
     |   [Ethers.js](/builders/ethereum/libraries/ethersjs/){target=\_blank}    |     Library     |
-    |     [Web3.js](/builders/ethereum/libraries/web3js/){target=\_blank}      |     Library     |
     |      [Hardhat](/builders/ethereum/dev-env/hardhat/){target=\_blank}      | Dev Environment |
-    | [OpenZeppelin](/builders/ethereum/dev-env/openzeppelin/){target=\_blank} | Dev Environment |
     |        [Remix](/builders/ethereum/dev-env/remix/){target=\_blank}        | Dev Environment |
-    | [Scaffold-Eth](/builders/ethereum/dev-env/scaffold-eth/){target=\_blank} | Dev Environment |
-    |     [thirdweb](/builders/ethereum/dev-env/thirdweb/){target=\_blank}     | Dev Environment |
-    | [Waffle & Mars](/builders/ethereum/dev-env/waffle-mars/){target=\_blank} | Dev Environment |
 
 === "Substrate"
 
@@ -10476,7 +9391,6 @@ As Moonbeam is a Substrate-based chain that is fully Ethereum-compatible, you ca
     |                              Tool                               |      Type       |
     |:---------------------------------------------------------------:|:---------------:|
     | [Web3.py](/builders/ethereum/libraries/web3py/){target=\_blank} |     Library     |
-    |     [Ape](/builders/ethereum/dev-env/ape/){target=\_blank}      | Dev Environment |
 
 === "Substrate"
 
@@ -11258,7 +10172,7 @@ Candidates will need a minimum amount of tokens bonded (self-bonded) to be consi
 
 Once a candidate is selected to be in the active set of collators, they are eligible to produce blocks.
 
-Moonbeam uses the [Nimbus Parachain Consensus Framework](/learn/features/consensus/){target=\_blank}. This provides a two-step filter to allocate candidates to the active set of collators, then assign collators to a block production slot:
+Moonbeam uses the Nimbus Parachain Consensus Framework. This provides a two-step filter to allocate candidates to the active set of collators, then assign collators to a block production slot:
 
  - The parachain staking filter selects the top candidates in terms of tokens staked in each network. For the exact number of top candidates per each network and the minimum bond amount, you can check out the [Minimum Collator Bond](/node-operators/networks/collators/requirements/#minimum-collator-bond){target=\_blank} section of our documentation. This filtered pool is called selected candidates (also known as the active set), which are rotated every round
  - The fixed size subset filter picks a pseudo-random subset of the previously selected candidates for each block production slot
@@ -11275,7 +10189,7 @@ For this purpose, we use [Discord](https://discord.com/invite/moonbeam){target=\
  - **collators** — this is the general collator discussion channel. We are proud of having an active and friendly collator community so if you have any questions, this is the place to ask. We will also ping collators here for any issues that require their attention.
  - **meet-the-collators** — in this channel you can introduce yourself to potential delegators
 
-After you join our Discord, feel free to DM *gilmouta* or *artkaseman* and introduce yourself. This will let us know who to contact if we see an issue with your node, and will also let us assign the relevant Discord collator role, enabling you to post in *meet-the-collators*.
+After you join Discord, feel free to DM *gilmouta* or *artkaseman* and introduce yourself. This will help the team identify who to contact if issues arise with your node and will enable assignment of the relevant Discord collator role, allowing you to post in *meet-the-collators*.
 --- END CONTENT ---
 
 Doc-Content: https://docs.moonbeam.network/node-operators/networks/run-a-node/overview/
@@ -14651,7 +13565,7 @@ The following queries can be used to query all of the listed projects on Moonbea
 </div>
 --- END CONTENT ---
 
-Doc-Content: https://docs.moonbeam.network/learn/platform/glossary/
+Doc-Content: https://docs.moonbeam.network/learn/features/glossary/
 --- BEGIN CONTENT ---
 ---
 title: Glossary
@@ -14665,7 +13579,7 @@ There's a great deal of terminology that's specific to Polkadot, Substrate, and 
 
 ### Collators {: #collators }
 
-One of the key network participants needed to support parachains within the Polkadot Network.  In Moonbeam, collators are the nodes that are responsible for block production and for submitting produced blocks up to the Polkadot relay chain for finalization.
+One of the key network participants needed to support parachains within the Polkadot Network. In Moonbeam, collators are the nodes that are responsible for block production and for submitting produced blocks up to the Polkadot relay chain for finalization.
 
 ### Delegators {: #delegators }
 
@@ -14685,15 +13599,15 @@ A blockchain which has a slot and is connected to Polkadot. Parachains receive s
 
 ### Parathreads {: #parathreads }
 
-A blockchain which can connect to Polkadot.  Parathreads are able to interact with other members of the Polkadot network, but they bid for block finalization (in DOT) on a block-to-block basis. They compete with other parathreads for block finalization, meaning that the block with the highest bid is selected to be finalize in that round.
+A blockchain which can connect to Polkadot. Parathreads are able to interact with other members of the Polkadot network, but they bid for block finalization (in DOT) on a block-to-block basis. They compete with other parathreads for block finalization, meaning that the block with the highest bid is selected to be finalize in that round.
 
 ### Polkadot {: #polkadot }
 
-A network of connected blockchains that provides shared security and the ability to interact between chains.  Polkadot is built using the Substrate development framework.  Chains that connect to Polkadot are called parachains.
+A network of connected blockchains that provides shared security and the ability to interact between chains. Polkadot is built using the Substrate development framework. Chains that connect to Polkadot are called parachains.
 
 ### Relay Chain {: #relay-chain }
 
-The backbone blockchain supporting the Polkadot network.  Parachains connect to the relay chain and use it for shared security and message passing.  Validators on the relay chain help secure the parachains.
+The backbone blockchain supporting the Polkadot network. Parachains connect to the relay chain and use it for shared security and message passing. Validators on the relay chain help secure the parachains.
 
 ### Smart Contract {: #smart-contract }
 
@@ -14701,11 +13615,11 @@ A [smart contract](https://en.wikipedia.org/wiki/Smart_contract){target=\_blank}
 
 ### Substrate {: #substrate }
 
-A Rust-based blockchain development framework created by Parity Technologies based on their experience implementing multiple blockchain clients.  Substrate comes with many modules and functionalities that are needed when building a blockchain, including P2P networking, consensus mechanisms, staking, cryptocurrency, on-chain governance modules, and more.  It dramatically reduces the time and engineering effort required to implement a blockchain. Substrate is now part of the [Polkadot SDK](https://polkadot.com/platform/sdk/){target=\_blank}.
+A Rust-based blockchain development framework created by Parity Technologies based on their experience implementing multiple blockchain clients. Substrate comes with many modules and functionalities that are needed when building a blockchain, including P2P networking, consensus mechanisms, staking, cryptocurrency, on-chain governance modules, and more. It dramatically reduces the time and engineering effort required to implement a blockchain. Substrate is now part of the [Polkadot SDK](https://polkadot.com/platform/sdk/){target=\_blank}.
 
 ### Substrate Frame Pallets {: #substrate-frame-pallets }
 
-Substrate Frame Pallets are a collection of Rust-based modules, providing the functionality required for building a blockchain.  
+Substrate Frame Pallets are a collection of Rust-based modules, providing the functionality required for building a blockchain.
 
 ### Validators {: #validators }
 
@@ -15751,6 +14665,8 @@ Not all runtime upgrades are released on each network, as sometimes after releas
 |                                 [3900](https://forum.moonbeam.network/t/runtime-rt3900-schedule/2262){target=\_blank}                                  | [12960126](https://moonbeam.subscan.io/block/12960126){target=\_blank} | [13423618](https://moonriver.subscan.io/block/13423618){target=\_blank} | [13744975](https://moonbase.subscan.io/block/13744975){target=\_blank} |
 | [3901](https://forum.moonbeam.network/t/proposal-mb133-authorize-upgrade-to-rt3901-whitelist-track/2350){target=\_blank} | [13428709](https://moonbeam.subscan.io/block/13428709){target=\_blank} |                                    -                                    |                                   -                                    |
 | [4000](https://forum.moonbeam.network/t/runtime-rt4000-schedule/2321){target=\_blank} | - | [14078615](https://moonriver.subscan.io/block/14078615){target=\_blank} | [14191989](https://moonbase.subscan.io/block/14191989){target=\_blank} |
+| [4001](https://forum.moonbeam.network/t/runtime-rt4000-4001-schedule/2321){target=\_blank} | [13654437](https://moonbeam.subscan.io/block/13654437){target=\_blank} | - | - |
+| [4100](https://forum.moonbeam.network/t/runtime-rt4100-schedule/2370){target=\_blank} | - | - | [14535211](https://moonbase.subscan.io/block/14535211){target=\_blank} |
 --- END CONTENT ---
 
 Doc-Content: https://docs.moonbeam.network/builders/ethereum/canonical-contracts/
@@ -15979,7 +14895,7 @@ categories: JSON-RPC APIs, Reference, Ethereum Toolkit
 
 ## Introduction {: #introduction }
 
-The Moonbeam team has collaborated closely with [Parity](https://www.parity.io){target=\_blank} on developing [Frontier](/learn/platform/technology/#frontier){target=\_blank}, an Ethereum compatibility layer for Substrate-based chains. This layer enables developers to run unmodified Ethereum dApps on Moonbeam seamlessly.
+The Moonbeam team has collaborated closely with [Parity](https://www.parity.io){target=\_blank} on developing [Frontier](https://polkadot-evm.github.io/frontier/){target=\_blank}, an Ethereum compatibility layer for Substrate-based chains. This layer enables developers to run unmodified Ethereum dApps on Moonbeam seamlessly.
 
 Nevertheless, not all Ethereum JSON-RPC methods are supported; some of those supported return default values (those related to Ethereum's PoW consensus mechanism in particular). This guide provides a comprehensive list of supported Ethereum JSON-RPC methods on Moonbeam. Developers can quickly reference this list to understand the available functionality for interfacing with Moonbeam's Ethereum-compatible blockchain.
 
@@ -16171,7 +15087,7 @@ categories: Reference, Basics
 
 On Moonbeam, a precompiled contract is native Substrate code that has an Ethereum-style address and can be called using the Ethereum API, like any other smart contract. The precompiles allow you to call the Substrate runtime directly which is not normally accessible from the Ethereum side of Moonbeam.
 
-The Substrate code responsible for implementing precompiles can be found in the [EVM pallet](/learn/platform/technology/#evm-pallet){target=\_blank}. The EVM pallet includes the [standard precompiles found on Ethereum and some additional precompiles that are not specific to Ethereum](https://github.com/polkadot-evm/frontier/tree/master/frame/evm/precompile){target=\_blank}. It also provides the ability to create and execute custom precompiles through the generic [`Precompiles` trait](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm/trait.Precompile.html){target=\_blank}. There are several custom Moonbeam-specific precompiles that have been created, all of which can be found in the [Moonbeam codebase](https://github.com/moonbeam-foundation/moonbeam/tree/master/precompiles){target=\_blank}. It is important to highlight that the precompiles from this list with the `CallableByContract` check are not callable inside the contract constructor.
+The Substrate code responsible for implementing precompiles can be found in the [EVM pallet](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm/){target=\_blank}. The EVM pallet includes the [standard precompiles found on Ethereum and some additional precompiles that are not specific to Ethereum](https://github.com/polkadot-evm/frontier/tree/master/frame/evm/precompile){target=\_blank}. It also provides the ability to create and execute custom precompiles through the generic [`Precompiles` trait](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm/trait.Precompile.html){target=\_blank}. There are several custom Moonbeam-specific precompiles that have been created, all of which can be found in the [Moonbeam codebase](https://github.com/moonbeam-foundation/moonbeam/tree/master/precompiles){target=\_blank}. It is important to highlight that the precompiles from this list with the `CallableByContract` check are not callable inside the contract constructor.
 
 The Ethereum precompiled contracts contain complex functionality that is computationally intensive, such as hashing and encryption. The custom precompiled contracts on Moonbeam provide access to Substrate-based functionality such as staking, governance, XCM-related functions, and more.
 

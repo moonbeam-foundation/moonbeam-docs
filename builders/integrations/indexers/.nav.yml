@@ -2,8 +2,6 @@ title: Indexers
 hide: false
 nav:
   - index.md
-  - 'The Graph': 'thegraph.md'
   - 'GoldRush API': 'covalent.md'
-  - 'Moralis': 'moralis.md'
   - 'SubQuery': 'subquery.md'
   - 'SQD': 'subsquid.md'

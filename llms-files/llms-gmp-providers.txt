@@ -17,7 +17,6 @@ Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/re
 Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/interoperability/protocols/hyperlane.md [type: builders]
 Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/interoperability/protocols/layerzero.md [type: builders]
 Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/interoperability/protocols/wormhole.md [type: builders]
-Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/tutorials/interoperability/using-axelar-sdk.md [type: tutorials]
 
 ## Full content for each doc page
 
@@ -640,469 +639,6 @@ Wormhole will provide liquidity to parachains through the Moonbeam Routed Liquid
 </div>
 --- END CONTENT ---
 
-Doc-Content: https://docs.moonbeam.network/tutorials/interoperability/using-axelar-sdk/
---- BEGIN CONTENT ---
----
-title: Mint a Cross-Chain NFT with Axelar
-description: In this step-by-step tutorial, you'll learn how to use the Axelar SDK to send a message from Moonbeam to another connected chain to remotely mint an NFT.
-categories: Tutorials, GMP Providers
----
-
-# Minting a Cross-Chain NFT with the Axelar SDK
-_by Jeremy Boetticher & Kevin Neilson_
-
-## Introduction {: #introduction }
-
-Axelar’s [general message passing (GMP)](https://docs.axelar.dev/dev/general-message-passing/overview){target=\_blank} allows smart contracts to communicate securely across chains. This enables developers to build cross-chain connected applications on Moonbeam that can tap into functionality from Polkadot, Ethereum, Avalanche, Cosmos, and beyond. In this tutorial, we'll introduce the JavaScript SDK package Axelar packed with tools to aid developers in this cross-chain vision.
-
-The [AxelarJS SDK](https://github.com/axelarnetwork/axelarjs-sdk){target=\_blank}  allows developers to estimate fees, track and recover transactions, and quickly transfer tokens. To show off some of the SDK's tools, we will walk through a demo that deploys an NFT that can be minted across chains. Before following along with the tutorial, you may wish to first familiarize yourself with this [Overview of Axelar](/builders/interoperability/protocols/axelar/){target=\_blank}.
-
-In this tutorial, we'll mint an NFT on a remote chain by using Axelar to send a specific message to trigger the mint. We'll be using the AxelarJS SDK in conjunction with a minting script that will define the parameters of the cross-chain mint, such as the destination chain, destination contract address, and more.
- 
-<div class="intro-disclaimer">
-  The information presented herein is for informational purposes only and has been provided by third parties. Moonbeam does not endorse any project listed and described on the Moonbeam docs website (https://docs.moonbeam.network/).
-</div>
-
-## Axelar Refresher {: #axelar-refresher }
-
-[Axelar](https://www.axelar.network){target=\_blank} is a blockchain that connects blockchains, delivering secure cross-chain communication. Every validator in Axelar’s network runs light nodes on chains that Axelar supports. In this demo, we'll interact with two Axelar contracts, one of which is the [Axelar Gateway contract](https://github.com/axelarnetwork/axelar-cgp-solidity/blob/main/contracts/AxelarGateway.sol){target=\_blank}. The dynamic validator set uses this contract to monitor activity on each chain. Their role is crucial for achieving consensus, ensuring that messages are accurately transmitted from one chain to another
-
-![Axelar Diagram](/images/tutorials/interoperability/axelar-sdk/axelar-1.webp)
-
-The other contract we will be working with is the [Axelar Gas Receiver microservice](https://docs.axelar.dev/learn#gas-receiver){target=\_blank}. Whenever you use the Axelar Gateway to send a cross-chain transaction, the Gas Receiver lets you pay for the subsequent transaction on the destination chain. Although not mandatory, this feature enables the end user to send just a single transaction. This transaction automatically updates the destination chain and allows all transaction fees to be paid using the source-chain token already held by the user.
-
-## Building the Cross-Chain NFT Contract {: #building-the-cross-chain-nft-contract } 
-
-We'll be deploying a [simple contract](https://github.com/jboetticher/axelar-sdk-demo/blob/main/contracts/CrossChainNFT.sol){target=\_blank} that can only mint an NFT if it receives a specific cross-chain message. Minting the NFT will require a token payment, which will be wrapped DEV (Moonbase Alpha’s native currency). A wrapped token for a native currency like DEV will mint one ERC-20 WDEV token for each DEV sent to it, and gives the option to redeem one WDEV token for one DEV. Using WDEV instead of native DEV is required because Axelar requires all tokens sent to be ERC-20s.
-
-So to mint in the cross-chain message, it must receive at least 0.05 WDEV.
-
-We’re putting the same contract on two chains, so it must send and receive messages. From a high level, our contract does two things:
-
-1. Send an encoded address message with WDEV across chains via Axelar’s Gateway with the option to pay for its gas on the destination chain
-2. Receive an encoded address message from Axelar, and execute only if it received at least 0.05 WDEV
-
-You’ll be using a Hardhat project, but before we set it up, let’s first take a look at a few parts of the contract. I encourage you to follow along!
-
-Contracts executed by the Axelar Gateway, like ours here, inherit from [`IAxelarExecutable`](https://github.com/axelarnetwork/axelar-gmp-sdk-solidity/blob/main/contracts/executable/AxelarExecutable.sol){target=\_blank}. This parent contract has two overridable functions, `_execute` and `_executeWithToken`, that allow developers to change the logic when a contract receives a contract call from the Axelar Gateway. Both functions have the same inputs, but `_executeWithToken` also includes `tokenSymbol` and `amount` to describe the token being sent cross-chain.
-
-Now let’s finally take a look at our mint function. It takes three inputs: a destination address, a destination chain, and the amount of WDEV to send. Remember that this mint function is called on the origin chain (Moonbase Alpha), which mints an NFT on a different destination chain.
-
-???+ code "mintXCNFT function"
-
-    ```solidity
-    function mintXCNFT(
-    string memory destinationAddress,
-    string memory destinationChain,
-    uint256 amount
-) external payable {
-    // Create the payload
-    bytes memory payload = abi.encode(msg.sender);
-    
-    // Takes WDEV from the user and puts them into this contract for the Gateway to take        
-    wDev.transferFrom(msg.sender, address(this), amount);
-    wDev.approve(address(gateway), amount);
-
-    // Pay for gas
-    // This is a gas service SPECIFICALLY for sending with token
-    gasService.payNativeGasForContractCallWithToken{value: msg.value}(
-        address(this),
-        destinationChain,
-        destinationAddress,
-        payload,
-        "WDEV",
-        amount,
-        msg.sender
-    );
-
-    // Call remote contract
-    gateway.callContractWithToken(
-        destinationChain,
-        destinationAddress,
-        payload,
-        "WDEV",
-        amount
-    );
-}
-    ```
-
-The logic itself has three steps. First, it takes WDEV from the caller. The caller must approve our NFT contract to transfer their WDEV beforehand. Then, our NFT contract approves the gateway to transfer the WDEV from the caller since the gateway contract will try to transfer the tokens from our NFT contract in the final step.
-
-Next, to pay for gas on the destination chain, we make use of the [`IAxelarGasService` contract](https://github.com/axelarnetwork/axelar-cgp-solidity/blob/main/contracts/interfaces/IAxelarGasService.sol){target=\_blank}. This contract has many [different configurations to pay for gas](https://docs.axelar.dev/dev/gas-service/pricing){target=\_blank}, like paying for [`execute`](https://github.com/axelarnetwork/axelar-gmp-sdk-solidity/blob/main/contracts/executable/AxelarExecutable.sol#L17-L29){target=\_blank} versus [`executeWithToken`](https://github.com/axelarnetwork/axelar-gmp-sdk-solidity/blob/main/contracts/executable/AxelarExecutable.sol#L31-L53){target=\_blank} or using an ERC-20 token as payment versus using native currency. Be careful if you plan on writing your own contract later!
-
-In this case, since the origin chain is Moonbase Alpha, the native currency is DEV. We can use native DEV to pay for gas on the destination chain based on the conversion rates between Moonbase Alpha’s native currency and the destination chain’s native currency. Since we’re sending a contract call that includes a token to pay for destination gas in DEV, we will be using the `payNativeGasForContractCallWithToken` function.
-
-Finally, we call the gateway to send our cross-chain message with `callContractWithToken.` Notice that the payload (generic data that sent in a cross-chain call) that we’re sending is just the caller’s address. This data will need to be decoded by the destination contract.
-
-Now let’s take a look at what happens on the destination chain. Since we expect tokens to be sent as payment for an NFT mint, we will override `_executeWithToken` from `IAxelarExecutable.`
-
-???+ code "executeWithToken function"
-
-    ```solidity
-    // Mints the NFT for the user
-function _executeWithToken(
-    string memory, /*sourceChain*/
-    string memory, /*sourceAddress*/
-    bytes calldata payload,
-    string memory tokenSymbol,
-    uint256 amount
-) internal override {
-    require(
-        keccak256(abi.encodePacked(tokenSymbol)) == keccak256("WDEV"),
-        "Only WDEV is accepted"
-    );
-    require(amount >= 0.05 ether, "Not enough to mint!");
-
-    address user = abi.decode(payload, (address));
-
-    _mint(user, currentNFTID);
-    currentNFTID++;
-}
-    ```
-
-In our implementation of `_executeWithToken`, we first check to ensure that the `tokenSymbol` provided by Axelar is “WDEV”. Then we expect 0.05 WDEV tokens for payment and will revert if any other token or anything less than 0.05 WDEV gets sent. Afterwards, we decode the payload to get the address of the origin chain’s caller so that we can mint an NFT to that address. Finally, we finish the minting!
-
-You can find the full code for the `CrossChainNFT.sol` below.
-
-??? code "CrossChainNFT.sol"
-
-    ```solidity
-    // SPDX-License-Identifier: MIT
-
-pragma solidity ^0.8.30;
-
-import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IAxelarGasService.sol";
-import { AxelarExecutable } from '@axelar-network/axelar-gmp-sdk-solidity/contracts/executable/AxelarExecutable.sol';
-
-// Allows users to mint an NFT, but only cross chain
-contract CrossChainNFT is ERC721, AxelarExecutable {
-    constructor(
-        address _gateway,
-        IAxelarGasService _gasService,
-        IERC20 _wDev
-    ) ERC721("Cross Chain NFT", "XCNFT") AxelarExecutable(_gateway) {
-        gasService = _gasService;
-        wDev = _wDev;
-    }
-
-    uint256 currentNFTID;
-    IAxelarGasService gasService;
-    IERC20 wDev;
-
-    // Mints the NFT for the user
-    function _executeWithToken(
-        string memory, /*sourceChain*/
-        string memory, /*sourceAddress*/
-        bytes calldata payload,
-        string memory tokenSymbol,
-        uint256 amount
-    ) internal override {
-        require(
-            keccak256(abi.encodePacked(tokenSymbol)) == keccak256("WDEV"),
-            "Only WDEV is accepted"
-        );
-        require(amount >= 0.05 ether, "Not enough to mint!");
-
-        address user = abi.decode(payload, (address));
-
-        _mint(user, currentNFTID);
-        currentNFTID++;
-    }
-
-    function mintXCNFT(
-        string memory destinationAddress,
-        string memory destinationChain,
-        uint256 amount
-    ) external payable {
-        // Create the payload
-        bytes memory payload = abi.encode(msg.sender);
-        
-        // Takes WDEV from the user and puts them into this contract for the Gateway to take        
-        wDev.transferFrom(msg.sender, address(this), amount);
-        wDev.approve(address(gateway), amount);
-
-        // Pay for gas 
-        // This is a gas service SPECIFICALLY for sending with token
-        gasService.payNativeGasForContractCallWithToken{value: msg.value}(
-            address(this),
-            destinationChain,
-            destinationAddress,
-            payload,
-            "WDEV",
-            amount,
-            msg.sender
-        );
-
-        // Call remote contract
-        gateway.callContractWithToken(
-            destinationChain,
-            destinationAddress,
-            payload,
-            "WDEV",
-            amount
-        );
-    }
-}
-    ```
-
-## Setting Up the Repository {: #setting-up-the-repository} 
-
-Make sure to clone the [GitHub repository](https://github.com/jboetticher/axelar-sdk-demo/tree/main){target=\_blank} for this tutorial. We need to install some dependencies, including Hardhat, OpenZeppelin contracts, some Axelar contracts, and the Axelar SDK. To configure the dependencies properly, run the following command:
-
-```bash
-npm install
-```
-
-The repository contains two Solidity files. The first file is the `CrossChainNFT` as expected, and the second is an Axelar library `StringAddressUtils.sol` that doesn’t have an npm package yet but is still required for the Hardhat implementation.
-
-There are also four Hardhat scripts within the repository’s scripts folder.
-
-- `axelarStatus.js` - a Hardhat task that lets you view information about Axelar transactions
-- `deploy.js` - deploys the `CrossChainNFT` to the network provided by Hardhat
-- `gatewayGasReceiver.js` - returns hardcoded values for Axelar’s Gateway and gas service contracts
-- `mint.js` - mints the `CrossChainNFT` (only run on Moonbase Alpha)
-
-Before we get into the fun part, you will need to get an account with a [private key funded with DEV](https://faucet.moonbeam.network){target=\_blank} to deploy the contract and sign all future transactions. Place this within a `secrets.json` file within the repository’s main directory. You should format it as follows:
-
-```json
-{
-    "privateKey": "INSERT_PRIVATE_KEY"
-}
-```
-
-If everything goes well, you will be able to compile correctly:
-
-```bash
-npx hardhat compile
-```
-
-## Deploying the Cross-Chain Contract to Moonbase Alpha {: #deploying-the-cross-chain-contract-to-moonbase-alpha}
-
-This demo focuses on using the scripts, so it’s best to take a look at them, starting with `deploy.js`, which is similar to the [Ethers.js tutorial deployment contracts](/builders/ethereum/libraries/ethersjs/#deploy-contract-script){target=\_blank}.
-
-`gatewayGasReceiver.js` stores many of the contract addresses in this repo, which are necessary for the deployment. You likely will not have to change any of the hardcoded addresses. Try deploying your contract to the origin chain:
-
-```bash
-npx hardhat run scripts/deploy.js --network moonbase
-```
-
-You should see the address deployed and printed in the console. Be sure to copy it! You will need it to interact with the next script. You also need to deploy it to the destination chain. The choice of which destination network to use is up to you, but you will need its native currency to deploy. I’ve included some of the available networks and their faucets here:
-
-|                                 Network                       |       Faucet        |                   Deployment Command                   |
-|:------------------------------------------------------------------------:|:----------:|:------------------------------------------------------:|
-| Sepolia |      [Faucet Link](https://sepolia-faucet.pk910.de){target=\_blank}        | <pre>```npx hardhat run scripts/deploy.js --network sepolia```</pre> |
-|  Polygon Mumbai |   [Faucet Link](https://faucet.polygon.technology){target=\_blank}   |  <pre>```npx hardhat run scripts/deploy.js --network mumbai```</pre>  |
-| Avalanche Fuji |  [Faucet Link](https://core.app/tools/testnet-faucet){target=\_blank} |   <pre>```npx hardhat run scripts/deploy.js --network fuji```</pre>   |
-|   Fantom TestNet |    [Faucet Link](https://faucet.fantom.network){target=\_blank}     |  <pre>```npx hardhat run scripts/deploy.js --network fantom```</pre>  |
-
-After running a deployment command, you'll see output like the below. Be sure to copy the destination chain's contract address because you'll need to provide that later. 
-
-<div id="termynal" data-termynal>
-    <span data-ty="input"><span class="file-path"></span>npx hardhat run scripts/deploy.js --network moonbase</span>
-    <br>
-    <span data-ty>Compiled 1 Solidity file successfully</span>
-    <span data-ty>Nothing to compile</span>
-    <span data-ty>Deployed CrossChainNFT on moonbase at: 0xB1972a5487A0Af15C47d321f25E25E8E3c3e8462</span>
-</div>
-
-## Building the Mint.js Script {: #building-the-mint-js-script}
-
-The minting contract is quite exciting and will require Axelar’s SDK. At the top of the `mint.js` script, Ethers.js is initialized in a Hardhat script. The Axelar SDK is also initialized. There are multiple Axelar APIs available in the SDK, but in this case we will only be using the [Axelar Query API](https://docs.axelar.dev/dev/axelarjs-sdk/axelar-query-api#axelar-query-api){target=\_blank} since it includes all of the gas estimation functionality that we’ll need for paying gas fees across chains.
-
-```js
-const ethers = hre.ethers;
-const axelarSDK = new AxelarQueryAPI({
-  environment: Environment.TESTNET,
-});
-```
-
-There are also some constants for you to change right after. This walkthrough is using Fantom as the destination chain, but you can use whichever chains you deployed to. Note that even though we’re using a TestNet environment, Axelar refers to [the chain names](https://docs.axelar.dev/dev/reference/testnet-contract-addresses){target=\_blank} by their MainNet equivalents, hence why the origin chain is `moonbeam` and not `moonbase.`
-
-```js
-const ORIGIN_CHAIN = 'moonbeam';
-const DESTINATION_CHAIN = 'ethereum-sepolia';
-// Address of CrossChainNFT printed in the console after running deploy script
-const ORIGIN_CHAIN_ADDRESS = 'INSERT_CONTRACT_ADDRESS';
-// Address of AxelarAcceptEverything.sol on Sepolia, you can change this 
-// contract address to your own AxelarAcceptEverything.sol contract 
-const DESTINATION_CHAIN_ADDRESS = '0x89f801C7DB23439FDdBad4f913D788F13d1d7494';
-```
-
-Next, we have to work with wrapped DEV to send across chains. First, we must wrap our DEV, and then we approve the contract on the origin chain to take some of our WDEV. This is necessary because the origin chain’s contract has to send your WDEV to pay for minting the NFT on the destination chain.
-
-Note here that instead of hardcoding the WDEV contract address, we’re using the `IAxelarGateway` contract to find the address. We could have also done this in the smart contract, but I wanted to show off how you would do it with Ethers.js. As expected, we sign two transactions: first to wrap 0.13 WDEV, then to approve our `CrossChainNFT` contract to send that WDEV.
-
-You may be wondering why we’re wrapping 0.13 WDEV when the price of the mint is only 0.05. At the time of writing, Axelar collects a small fee (0.08 WDEV in this case) when transferring tokens between networks, which can be calculated on their website. Gateways do this automatically, but this responsibility may be delegated to the `IAxelarGasService`contract in the future.
-
-```js
-const MOONBASE_WDEV_ADDRESS = await gateway.tokenAddresses('WDEV');
-
-// Wrap + Approve WDEV to be used by the NFT contract
-// wrap => transfer to contract => contract transfers to Gateway
-const wDEVPayment = ethers.utils.parseUnits('0.13', 'ether');
-const wDEV = await ethers.getContractAt('WETH9', MOONBASE_WDEV_ADDRESS);
-
-const wrapTx = await wDEV.deposit({ value: wDEVPayment });
-console.log('Wrap transaction hash: ', wrapTx.hash);
-
-const approveTx = await wDEV.approve(ORIGIN_CHAIN_ADDRESS, wDEVPayment);
-console.log('Approve transaction hash: ', approveTx.hash);
-
-console.log('Awaiting transaction confirmations...');
-await ethers.provider.waitForTransaction(approveTx.hash, 1);
-```
-
-Now we have to estimate the amount of DEV that we send to the `mintXCNFT` function to pay for gas on the destination chain. This is where the Axelar SDK kicks in.
-
-We must estimate the amount of gas to spend on the destination chain because it is difficult to estimate a function that can only be called by a specific contract. In this case, we overestimate the amount of gas we will spend as `400,000`. In an actual production environment, you should benchmark the amount of gas that you spend. However, if you do end up overestimating by a lot, you will get refunded by Axelar’s gas services.
-
-The estimateGasFee function provided by the Axelar SDK will find the conversion between the origin chain’s native currency and the destination chain’s native currency to find the right amount to send to the destination chain.
-
-You, the astute reader, might wonder why we’re using `GLMR` instead of `DEV`. Similar to how Axelar uses the MainNet chain names instead of using the TestNet names, Axelar will interpret `GLMR` as `DEV` since we’re using the TestNet environment.
-
-```js
-const estimateGasUsed = 400000;
-const gasFee = await axelarSDK.estimateGasFee(
-  ORIGIN_CHAIN,
-  DESTINATION_CHAIN,
-  GasToken.GLMR,
-  estimateGasUsed
-);
-const gasFeeToHuman = ethers.utils.formatEther(ethers.BigNumber.from(gasFee));
-console.log(`Cross-Chain Gas Fee: ${gasFee} Wei / ${gasFeeToHuman} Ether`);
-```
-
-Calling this function from the SDK will return a string representing the amount of DEV WEI to pay, like `241760932800000`. That’s hard for us simple humans to understand, so we use Ethers.js to convert it into a more human-readable version to print to the console later.
-
-```js
-const gasFeeToHuman = ethers.utils.formatEther(ethers.BigNumber.from(gasFee));
-```
-
-Finally, we call the `mintXCNFT` contract function. The important takeaway here is that we’re sending the gas fee not as a gas limit but as value. Ethers.js can calculate how much gas to send on the origin chain. However, to pay for the destination chain, we have to calculate with the Axelar SDK and send it as value to the `IAxelarGasReceiver` contract.
-
-```js
-// Begin the minting
-const mintRes = await nft.mintXCNFT(
-  DESTINATION_CHAIN_ADDRESS,
-  DESTINATION_CHAIN,
-  wDEVPayment,
-  { value: gasFee }
-);
-console.log('Minting transaction hash: ', mintRes.hash);
-```
-
-That’s the entire script! Before we run the script, check again to make sure that the four constants (`ORIGIN_CHAIN`, `DESTINATION_CHAIN`, `ORIGIN_CHAIN_ADDRESS`, `DESTINATION_CHAIN_ADDRESS`) at the top of the script are set correctly.
-
-Here’s the command to mint your NFT!
-
-```bash
-npx hardhat run scripts/mint.js --network moonbase
-```
-
-The console should output something similar to this:
-
-<div id="termynal" data-termynal>
-    <span data-ty="input"><span class="file-path"></span>npx hardhat run scripts/mint.js --network moonbase</span>
-    <br>
-    <span data-ty>Nothing to compile</span>
-    <span data-ty>Wrap transaction hash:  0x89bd6c42c9b7791ce51a0ef74e83fa46fc063eefcd838def3664cb12970156cd</span>
-    <br>
-    <span data-ty>Approve transaction hash:  0x1594d43444d1f8abdadcab78098452d8b25a9eed72c89597c1b9822b5a8e1605</span>
-    <br>
-    <span data-ty>Awaiting transaction confirmations...</span>
-    <span data-ty>Cross-Chain Gas Fee: 1694247418108372848 Wei / 1.694247418108372848 Ether</span>
-    <span data-ty>Minting transaction hash:  0x9daa8c762dc3c60c5ef009486fbd6c4e91baa55baec79db2be6e7d10cfc06c4c</span>
-</div>
-
-The most important data here is the minting transaction because that’s how you track your transaction's status. So don’t lose it! But if you do, you can look at all of the recent transactions on [Axelar’s TestNet scanner](https://testnet.axelarscan.io){target=\_blank}.
-
-## Viewing Axelar Transaction Status {: #viewing-axelar-transaction-status}
-
-Axelar has a [TestNet explorer](https://testnet.axelarscan.io/gmp/search){target=\_blank}, and a successful transaction for the interaction you just completed would look something like this:
-
-![Viewing Transaction status on AxelarScan](/images/tutorials/interoperability/axelar-sdk/axelar-2.webp)
-
-It's a good idea to try out the SDK to view the status of your transactions because it gives more information about your transaction and any possible errors. To do this, I wrote a Hardhat task for us to use. You can view the code in `axelarStatus.js`, but we’ll take a dive here too.
-
-The main meat of the code is in these five lines. First, we initialize the SDK module that we will be using, the `AxelarGMPRecoveryAPI`. Unlike the `AxelarQueryAPI` that we used in the minting script, the `AxelarGMPRecoveryAPI` helps track and recover stalled transactions. Next, we have to query the transaction status, and the SDK takes care of it for us.
-
-```js
-const sdk = new AxelarGMPRecoveryAPI({
-  environment: Environment.TESTNET,
-});
-const txStatus = await axelarSDK.queryTransactionStatus(txHash);
-console.log(txStatus);
-```
-
-You can learn a bit more about the `AxelarGMPRecoveryAPI` in [Axelar’s documentation](https://docs.axelar.dev/dev/axelarjs-sdk/tx-status-query-recovery){target=\_blank}. It includes additional functionality in case a transaction goes wrong, especially if there isn’t enough gas sent along with the cross-chain transaction.
-
-The `axelarStatus.js` file is configured as a Hardhat task rather than a script, which means that the command to run it will differ slightly from the command style required to execute a script. Be sure to note these differences and carefully craft the below command, replacing `INSERT_TRANSACTION_HASH` with the transaction of hash on the origin chain that you sent a cross-chain message in:
-
-```bash
-npx hardhat axelarStatus --tx INSERT_TRANSACTION_HASH
-```
-
-If you run the Hardhat script, you’ll end up with something like this in your console (I didn’t include all of it since it’s so large). You’re likely most interested in the status, where a list of possible ones is in [Axelar’s documentation](https://docs.axelar.dev/dev/axelarjs-sdk/tx-status-query-recovery#query-transaction-status-by-txhash){target=\_blank}. You’re looking for `destination_executed` to indicate that it was received and executed correctly, but if you’re too early you might find `source_gateway_called` or `destination_gateway_approved`.
-
-<div id="termynal" data-termynal>
-    <span data-ty>Status: 'source_gateway_called'</span>
-    <span data-ty>Error: undefined</span>
-    <span data-ty>Total Time Spent: { total: 39 }</span>
-    <br>         
-    <span data-ty>Gas Paid Info:</span>
-    <span data-ty>Status: 'gas_paid'</span>
-    <span data-ty>Block Hash: '0x4e9ec37b8ebfb2acb7180aff401493dfb3025439c42225c2908f984b54131baa'</span>
-    <span data-ty>Chain: 'moonbeam'</span>
-    <span data-ty>Address: '0xbE406F0189A0B4cf3A05C286473D23791Dd44Cc6'</span>
-    <span data-ty>Transaction Hash: '0xeb3dc836b890bded6c9e9ce103cdbac69843c55fb19ade1771936d44b3bb9151'</span>
-    <span data-ty>Event: 'NativeGasPaidForContractCallWithToken'</span>
-    <span data-ty>Event Signature: 'NativeGasPaidForContractCallWithToken(address,string,string,bytes32,string,uint256,uint256,address)'</span>
-    <span data-ty>Transaction Index: 0</span>
-    <span data-ty>Event Index: 2</span>
-    <span data-ty>Block Number: 7963797</span>
-    <span data-ty>Block Timestamp: 1721782902</span>
-    <br>
-    <span data-ty>Call Transaction Details:</span>
-    <span data-ty>Chain: 'moonbeam'</span>
-    <span data-ty>Contract Address: '0x5769D84DD62a6fD969856c75c7D321b84d455929'</span>
-    <span data-ty>Transaction Hash: '0xeb3dc836b890bded6c9e9ce103cdbac69843c55fb19ade1771936d44b3bb9151'</span>
-    <span data-ty>Block Number: 7963797</span>
-    <span data-ty>Log Index: 4</span>
-    <span data-ty>Event: 'ContractCallWithToken'</span>
-    <span data-ty>Sender: '0x1AE99204240C92DE9B01207Ed5dF777E4e738e05'</span>
-    <span data-ty>Destination Chain: 'ethereum-sepolia'</span>
-    <span data-ty>Destination Contract Address: '0x89f801C7DB23439FDdBad4f913D788F13d1d7494'</span>
-    <span data-ty>Payload Hash: '0x4af6b315b6befdc046499484184d0fe2f273e733bfdb5927aeb5872b8a3761f7'</span>
-    <span data-ty>Symbol: 'WDEV'</span>
-    <span data-ty>Amount: '130000000000000000'</span>
-    <br>
-    <span data-ty>Transaction Receipt Details:</span>
-    <span data-ty>Block Hash: '0x4e9ec37b8ebfb2acb7180aff401493dfb3025439c42225c2908f984b54131baa'</span>
-    <span data-ty>Transaction Index: 0</span>
-    <span data-ty>Gas Used: 813360</span>
-    <span data-ty>Status: 1</span>
-    <span data-ty>From: '0x3b939fead1557c741ff06492fd0127bd287a421e'</span>
-    <span data-ty>To: '0x1ae99204240C92DE9B01207Ed5dF777E4e738e05'</span>
-    <span data-ty>Effective Gas Price: 125000000</span>
-</div>
-
-You can learn more about debugging contracts in [Axelar’s documentation](https://docs.axelar.dev/dev/general-message-passing/debug/error-debugging){target=\_blank}, where they go into depth on specific error messages and how to use tools like Tenderly for logic errors.
-
-## Conclusion {: #conclusion}
-
-You’re well on your way to creating your own connected contracts with Axelar! Learn more about Axelar on their [docs site](https://docs.axelar.dev){target=\_blank}, and read about how Moonbeam is shaping up to be the leader in blockchain interoperability in our introduction to connected contracts. For more information on the AxelarJS SDK, be sure to check out the [Axelar Docs](https://docs.axelar.dev/dev/axelarjs-sdk/intro){target=\_blank}.
-
-<div class="page-disclaimer">
-    This tutorial is for educational purposes only. As such, any contracts or code created in this tutorial should not be used in production.
-</div>
-
-<div class="page-disclaimer">
-  The information presented herein has been provided by third parties and is made available solely for general information purposes. Moonbeam does not endorse any project listed and described on the Moonbeam Doc Website (https://docs.moonbeam.network/). Moonbeam Foundation does not warrant the accuracy, completeness or usefulness of this information. Any reliance you place on such information is strictly at your own risk. Moonbeam Foundation disclaims all liability and responsibility arising from any reliance placed on this information by you or by anyone who may be informed of any of its contents. All statements and/or opinions expressed in these materials are solely the responsibility of the person or entity providing those materials and do not necessarily represent the opinion of Moonbeam Foundation. The information should not be construed as professional or financial advice of any kind. Advice from a suitably qualified professional should always be sought in relation to any particular matter or circumstance. The information herein may link to or integrate with other websites operated or content provided by third parties, and such other websites may link to this website. Moonbeam Foundation has no control over any such other websites or their content and will have no liability arising out of or related to such websites or their content. The existence of any such link does not constitute an endorsement of such websites, the content of the websites, or the operators of the websites. These links are being provided to you only as a convenience and you release and hold Moonbeam Foundation harmless from any and all liability arising from your use of this information or the information provided by any third-party website or service.
-</div>
---- END CONTENT ---
-
 ## Basics Concepts [shared: true]
 
 The following section contains foundational documentation shared across all Moonbeam products.
@@ -1263,7 +799,7 @@ Finality is deterministic in Ethereum's PoS consensus protocol and is achieved t
 
 ## Moonbeam Consensus and Finality {: #moonbeam-consensus-and-finality }
 
-In Polkadot, there are collators and validators. [Collators](https://wiki.polkadot.com/learn/learn-collator/){target=\_blank} maintain parachains (in this case, Moonbeam) by collecting transactions from users and producing state transition proofs for the relay chain [validators](https://wiki.polkadot.com/learn/learn-validator/){target=\_blank}. The collator set (nodes that produce blocks) is selected based on the [stake they have in the network](/learn/features/consensus/){target=\_blank}.
+In Polkadot, there are collators and validators. [Collators](https://wiki.polkadot.com/learn/learn-collator/){target=\_blank} maintain parachains (in this case, Moonbeam) by collecting transactions from users and producing state transition proofs for the relay chain [validators](https://wiki.polkadot.com/learn/learn-validator/){target=\_blank}. The collator set (nodes that produce blocks) is selected based on the stake they have in the network.
 
 For finality, Polkadot and Kusama rely on [GRANDPA](https://docs.polkadot.com/polkadot-protocol/architecture/polkadot-chain/pos-consensus/#finality-gadget-grandpa){target=\_blank}. GRANDPA provides deterministic finality for any given transaction (block). In other words, when a block or transaction is marked as final, it can't be reverted except via on-chain governance or forking. Moonbeam follows this deterministic finality.
 
@@ -1273,7 +809,7 @@ In terms of consensus, Moonbeam is based on Delegated Proof-of-Stake, while Ethe
 
 With PoS on Ethereum, validators are selected to produce and validate blocks based on their own stake in the network. As long as a validator has placed a validator deposit, they can be selected to produce and validate blocks. However, as previously mentioned, the greater the stake in the network, the higher the chances a validator has to be selected to produce and validate blocks.
 
-On the other hand, with DPoS on Moonbeam, collators become eligible to produce blocks based on their own stake plus their delegated stake in the network. Any token holder can choose to delegate their stake to a collator candidate. The top collator candidates by stake, including delegations, join the active set. The number of candidates in the active set is subject to [governance](/learn/features/governance/){target=\_blank}. Once in the active set, collators are randomly selected to produce blocks using the [Nimbus Consensus Framework](/learn/features/consensus/){target=\_blank}. It is important to note that once a collator is in the active set, their total stake does not impact their chances of being selected to produce blocks.
+On the other hand, with DPoS on Moonbeam, collators become eligible to produce blocks based on their own stake plus their delegated stake in the network. Any token holder can choose to delegate their stake to a collator candidate. The top collator candidates by stake, including delegations, join the active set. The number of candidates in the active set is subject to [governance](/learn/features/governance/){target=\_blank}. Once in the active set, collators are randomly selected to produce blocks using the Nimbus Consensus Framework. It is important to note that once a collator is in the active set, their total stake does not impact their chances of being selected to produce blocks.
 
 In terms of finality, blocks on Ethereum can take quite a bit longer to finalize than on Moonbeam due to the checkpoint finality system it uses. In Ethereum, validators determine finality at checkpoint blocks, which are always the first block in an epoch. Since an epoch has 32 slots and each slot is 12 seconds, it'll take at least 384 seconds, or 6.4 minutes for a block to be finalized.
 
@@ -2974,97 +2510,6 @@ The diagram for this new configuration looks as follows.
 That is it, Bob only holds one private key that matches one address. He does not need to move balances between 2 different accounts and is able to access all the features with a single account and private key. We have standardized this single account to conform to the Ethereum-style H160 address and ECDSA key standards.
 --- END CONTENT ---
 
-Doc-Content: https://docs.moonbeam.network/learn/features/consensus/
---- BEGIN CONTENT ---
----
-title: Moonbeam's Nimbus Consensus Framework
-description: Learn about all the parts of Moonbeam's Nimbus consensus framework and how it works as part of Polkadot's shared security model.
-categories: Basics
----
-
-# Nimbus Parachain Consensus Framework
-
-## Introduction {: #introduction }
-
-Polkadot relies on a [hybrid consensus model](https://docs.polkadot.com/polkadot-protocol/architecture/polkadot-chain/pos-consensus/). In such a scheme, the block finality gadget and the block production mechanism are separate. Consequently, parachains only have to worry about producing blocks and rely on the relay chain to validate the state transitions.
-
-At a parachain level, block producers are called [collators](https://wiki.polkadot.com/learn/learn-collator/). They maintain parachains (such as Moonbeam) by collecting transactions from users and offering blocks to the relay chain [validators](https://wiki.polkadot.com/learn/learn-validator/).
-
-However, parachains might find the following problems they need to solve in a trustless and decentralized matter (if applicable):
-
- - Amongst all of the nodes in the network, which ones are allowed to author blocks?
- - If multiple nodes are allowed, will they be eligible at the same time? Only one? Maybe a few?
-
-Enter Nimbus. Nimbus is a framework for building slot-based consensus algorithms on [Cumulus](https://github.com/paritytech/polkadot-sdk/tree/master/cumulus)-based parachains. It strives to provide standard implementations for the logistical parts of such consensus engines and helpful traits for implementing the elements (filters) that researchers and developers want to customize. These filters can be customizable to define what a block authorship slot is and can be composed, so block authorship is restricted to a subset of collators in multiple steps.
-
-For example, Moonbeam uses a two-layer approach. The first layer comprises the parachain staking filter, which helps select an active collator pool among all collator candidates using a staked-based ranking. The second layer adds another filter which narrows down the number of collators to a subset for each slot.
-
-Notice that Nimbus can only answer which collator(s) are eligible to produce a parachain block in the next available slot. It is the [Cumulus](https://docs.polkadot.com/develop/parachains/#cumulus) consensus mechanism that marks this parachain block as best, and ultimately the [BABE](https://docs.polkadot.com/polkadot-protocol/architecture/polkadot-chain/pos-consensus/#babe) and [GRANDPA](https://docs.polkadot.com/polkadot-protocol/architecture/polkadot-chain/pos-consensus/#grandpa-finality-gadget) hybrid consensus model (of the relay chain) that will include this parachain block in the relay chain and finalize it. Once any relay chain forks are resolved at a relay chain level, that parachain block is deterministically finalized.
-
-The following two sections go over the filtering strategy currently used on Moonbeam.
-
-## Parachain Staking Filtering {: #parachain-staking-filtering }
-
-Collators can join the candidate pool by simply bonding some tokens via an extrinsic. Once in the pool, token holders can add to the candidate's stake via delegation (also referred to as staking), that is, at a parachain level.
-
-Parachain staking is the first of the two Nimbus filters applied to the candidate pool. It selects the top {{ networks.moonbase.staking.max_candidates }} candidates in terms of tokens staked in the network, which includes the candidate's bond and delegations from token holders. This filtered pool is called selected candidates, and selected candidates are renewed every round (which lasts {{ networks.moonbase.staking.round_blocks }} blocks). For a given round, the following diagram describes the parachain staking filtering:
-
-![Nimbus Parachain Staking Filter](/images/learn/features/consensus/consensus-1.webp)
-
-From this pool, another filter is applied to retrieve a subset of eligible candidates for the next block authoring slot.
-
-If you want to learn more about staking, visit our [staking documentation](/learn/features/staking/).
-
-## Fixed Size Subset Filtering {: #fixed-size-subset-filtering }
-
-Once the parachain staking filter is applied and the selected candidates are retrieved, a second filter is applied on a block by block basis and helps narrow down the selected candidates to a smaller number of eligible collators for the next block authoring slot.
-
-In broad terms, this second filter picks a pseudo-random subset of the previously selected candidates. The eligibility ratio, a tunable parameter, defines the size of this subset.
-
-A high eligibility ratio results in fewer chances for the network to skip a block production slot, as more collators will be eligible to propose a block for a specific slot. However, only a certain number of validators are assigned to a parachain, meaning that most of these blocks will not be backed by a validator. For those that are, a higher number of backed blocks means that it might take longer for the relay chain to solve any possible forks and return a finalized block. Moreover, this might create an unfair advantage for certain collators that might be able to get their proposed block faster to relay chain validators, securing a higher portion of block rewards (if any).
-
-A lower eligibility ratio might provide faster block finalization times and a fairer block production distribution amongst collators. However, if the eligible collators are not able to propose a block (for whatever reason), the network will skip a block, affecting its stability.
-
-Once the size of the subset is defined, collators are randomly selected using a source of entropy. Currently, an internal coin-flipping algorithm is implemented, but this will later be migrated to use [Verifiable random function](https://docs.polkadot.com/polkadot-protocol/parachain-basics/randomness/){target=\_blank}. Consequently, a new subset of eligible collators is selected for every relay chain block. For a given round and a given block `XYZ`, the following diagram describes the fixed-size subset filtering:
-
-![Nimbus Parachain Staking Filter](/images/learn/features/consensus/consensus-2.webp)
-
-## Why Nimbus? {: #why-nimbus }
-
-You might ask yourself: but why Nimbus? Initially, it was not envisioned when Moonbeam was being developed. As Moonbeam progressed, the necessity for a more customizable but straightforward parachain consensus mechanism became clear, as the available methods presented some drawbacks or technical limitations.
-
-<!-- In the [relay chain provided consensus](https://github.com/paritytech/cumulus/blob/master/client/consensus/relay-chain/src/lib.rs), each node sees itself as a collator and can propose a parachain candidate block. It is then up to the relay chain to solve any possible forks and finalize a block. 
-
-[AuRa](https://crates.io/crates/sc-consensus-aura) (short for authority-round) consensus mechanism is based on a known list of authorities that take turns to produce blocks in every slot. Each authority can propose only one block per slot and builds on top of the longest chain.-->
-
-With Nimbus, writing a parachain consensus engine is as easy as writing a pallet! This simplicity and flexibility is the main value it adds.
-
-Some technical benefits of Nimbus are considered in the following sections.
-
-### Weight and Extra Execution {: #weight-and-extra-execution }
-
-Nimbus puts the author-checking execution in a [Substrate pallet](https://docs.polkadot.com/develop/parachains/customize-parachain/overview/). At first glance, you might think this adds a higher execution load to a single block compared to doing this check off-chain. But consider this from a validator’s perspective
-
-The validators will also have to check the author. By putting the author-checking execution logic in a pallet, the execution time can be benchmarked and quantified with weights. If this execution time is not accounted for, there is the risk of a block exceeding the relay chain Wasm execution limit (currently 0.5 seconds).
-
-In practice, this check will be fast and will most likely not push execution time over the limit. But from a theoretical perspective, accounting for its weight is better for implementation purposes.
-
-### Reusability {: #reusability }
-
-Another benefit of moving the author-checking execution to a pallet, rather than a custom executor, is that one single executor can be reused for any consensus that can be expressed in the Nimbus framework. That is slot-based, signature-sealed algorithms.
-
-For example, the [relay-chain provided consensus](https://github.com/paritytech/polkadot-sdk/blob/master/cumulus/client/consensus/relay-chain/src/lib.rs), [AuRa](https://crates.io/crates/sc-consensus-aura) and [BABE](https://crates.io/crates/sc-consensus-babe) each have their own custom executor. With Nimbus, these consensus mechanisms can reuse the same executor. The power of reusability is evidenced by the Nimbus implementation of AuRa in less than 100 lines of code.
-
-### Hot-Swapping Consensus {: #hot-swapping-consensus }
-
-Teams building parachains may want to change, tune, or adjust their consensus algorithm from time to time. Without nimbus, swapping consensus would require a client upgrade and hard fork.
-
-With the Nimbus framework, writing a consensus engine is as easy as writing a
-[Substrate pallet](https://docs.polkadot.com/develop/parachains/customize-parachain/make-custom-pallet/). Consequently, swapping consensus is as easy as upgrading a pallet.
-
-Nonetheless, hot swapping is still bounded by consensus engines (filters) that fit within Nimbus, but it might be helpful for teams that are yet confident on what consensus they want to implement in the long run.
---- END CONTENT ---
-
 Doc-Content: https://docs.moonbeam.network/learn/features/eth-compatibility/
 --- BEGIN CONTENT ---
 ---
@@ -3084,10 +2529,6 @@ This documentation overviews Moonbeam's Ethereum compatibility features and high
 ### EVM Compatibility {: #evm }
 
 Moonbeam incorporates a fully compatible EVM to execute smart contracts in Solidity or other EVM-compatible languages. This enables developers to deploy existing Ethereum smart contracts on Moonbeam with minimal modifications.
-
-Learn more:
-
-- [Moonbeam's Ethereum-compatibility architecture](/learn/platform/technology/#ethereum-compatibility-architecture){target=\_blank}
 
 ### Ethereum-style Accounts {: #ethereum-style-accounts }
 
@@ -3136,7 +2577,6 @@ Due to Moonbeam's native interoperability, ERC-20s can be sent cross-chain to ot
 
 Learn more:
 
-- [Create common OpenZeppelin contracts such as ERC-20, ERC-721, and ERC-1155 tokens](/builders/ethereum/dev-env/openzeppelin/contracts/){target=\_blank}
 - [XCM-enabled ERC-20s](/builders/interoperability/xcm/xc20/overview/#local-xc20s){target=\_blank} (also referred to as local XC-20s)
 
 ## Key Differences {: #key-differences }
@@ -3543,7 +2983,7 @@ Moonbeam utilizes verifiable random functions (VRF) to generate randomness that 
 
 There are two available sources of randomness that provide random inputs based on block producers' VRF keys and past randomness results: [local VRF](#local-vrf) and [BABE epoch randomness](#babe-epoch-randomness). Local VRF is determined directly within Moonbeam using the collator of the block's VRF key and the last block's VRF output. On the other hand, [BABE](https://docs.polkadot.com/polkadot-protocol/architecture/polkadot-chain/pos-consensus/#block-production-babe){target=\_blank} epoch randomness is based on all the VRF produced by the relay chain validators during a complete [epoch](https://wiki.polkadot.com/general/glossary/#epoch){target=\_blank}.
 
-You can interact with and request on-chain randomness using the Randomness Precompile contract, a Solidity interface that enables smart contract developers to access the randomness functionality through the Ethereum API. For more information, please check out the [Interacting with the Randomness Precompile](/builders/ethereum/precompiles/features/randomness/){target=\_blank} guide. You can also take a look at the [Randomness Pallet](/builders/substrate/interfaces/features/randomness/){target=\_blank}, which can be used to obtain current randomness requests and results.
+You can interact with and request on-chain randomness using the Randomness Precompile contract, a Solidity interface that enables smart contract developers to access the randomness functionality through the Ethereum API. For more information, please check out the [Interacting with the Randomness Precompile](/builders/ethereum/precompiles/features/randomness/){target=\_blank} guide.
 
 ## General Definitions {: #general-definitions }
 
@@ -3754,9 +3194,6 @@ There are a few resources you can check out to help you select a collator to del
     |      Variable      |                                      Value                                       |
     |:------------------:|:--------------------------------------------------------------------------------:|
     | List of candidates | [Moonbase Alpha Subscan](https://moonbase.subscan.io/validator){target=\_blank} |
-
-!!! note
-    The DappLooker Collator dashboard for Moonriver is experimental beta software and may not accurately reflect collator performance. Be sure to do your own research before delegating to a collator.
 
 ### General Tips {: #general-tips }
 
@@ -4788,7 +4225,7 @@ categories: Reference, Basics
 
 On Moonbeam, a precompiled contract is native Substrate code that has an Ethereum-style address and can be called using the Ethereum API, like any other smart contract. The precompiles allow you to call the Substrate runtime directly which is not normally accessible from the Ethereum side of Moonbeam.
 
-The Substrate code responsible for implementing precompiles can be found in the [EVM pallet](/learn/platform/technology/#evm-pallet){target=\_blank}. The EVM pallet includes the [standard precompiles found on Ethereum and some additional precompiles that are not specific to Ethereum](https://github.com/polkadot-evm/frontier/tree/master/frame/evm/precompile){target=\_blank}. It also provides the ability to create and execute custom precompiles through the generic [`Precompiles` trait](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm/trait.Precompile.html){target=\_blank}. There are several custom Moonbeam-specific precompiles that have been created, all of which can be found in the [Moonbeam codebase](https://github.com/moonbeam-foundation/moonbeam/tree/master/precompiles){target=\_blank}. It is important to highlight that the precompiles from this list with the `CallableByContract` check are not callable inside the contract constructor.
+The Substrate code responsible for implementing precompiles can be found in the [EVM pallet](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm/){target=\_blank}. The EVM pallet includes the [standard precompiles found on Ethereum and some additional precompiles that are not specific to Ethereum](https://github.com/polkadot-evm/frontier/tree/master/frame/evm/precompile){target=\_blank}. It also provides the ability to create and execute custom precompiles through the generic [`Precompiles` trait](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm/trait.Precompile.html){target=\_blank}. There are several custom Moonbeam-specific precompiles that have been created, all of which can be found in the [Moonbeam codebase](https://github.com/moonbeam-foundation/moonbeam/tree/master/precompiles){target=\_blank}. It is important to highlight that the precompiles from this list with the `CallableByContract` check are not callable inside the contract constructor.
 
 The Ethereum precompiled contracts contain complex functionality that is computationally intensive, such as hashing and encryption. The custom precompiled contracts on Moonbeam provide access to Substrate-based functionality such as staking, governance, XCM-related functions, and more.
 
@@ -4963,50 +4400,6 @@ The precompiled contracts are categorized by address and based on the origin net
     |    [XCM Transactor V3](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/xcm-transactor/src/v3/XcmTransactorV3.sol){target=\_blank}     |         {{networks.moonbase.precompiles.xcm_transactor_v3}}         |
     |                               [XCM Interface](https://github.com/Moonsong-Labs/moonkit/blob/main/precompiles/pallet-xcm/XcmInterface.sol){target=\_blank}                               |             {{networks.moonbeam.precompiles.xcm_interface}}              |
     |                   [Identity](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/identity/Identity.sol){target=\_blank}                   |             {{networks.moonbase.precompiles.identity}}              |
---- END CONTENT ---
-
-Doc-Content: https://docs.moonbeam.network/builders/get-started/create-account/
---- BEGIN CONTENT ---
----
-title: Create an Account
-description: To begin developing on Moonbeam, you must create an account. This guide will provide you with the information needed to create one to use on Moonbeam.
-categories: Basics
----
-
-# Create an Account
-
-## Introduction {: #introduction }
-
-To get started developing on Moonbeam, developers must create an account. The most prevalent approach involves leveraging a wallet application, which facilitates generating and managing cryptographic keys essential for interacting with Moonbeam.
-
-Moonbeam uses H160 Ethereum-style accounts and ECDSA keys, represented in 20-byte addresses. If you already have an Ethereum account and its private key or mnemonic, you can use your account on Moonbeam.
-
-This guide will walk you through the step-by-step process of creating an account on Moonbeam. Whether you're new to blockchain technology or an experienced Ethereum user, this guide will provide all the information you need to get started.
-
-!!! note
-    This guide does not pertain to a local Moonbeam development node. If you are using a development node, you don't need to worry about creating an account, as the node comes with ten pre-funded accounts for testing purposes. Please refer to the [Getting Started with a Local Moonbeam Development Node](/builders/get-started/networks/moonbeam-dev/){target=\_blank} guide for more information.
-
-## Choose a Wallet {: #choose-a-wallet }
-
-A wallet is a software or hardware tool that allows you to securely store, manage, and interact with your digital assets, such as tokens or coins. Wallets store your private keys, which are essential for authorizing transactions on the network.
-
-You can review a list of wallets on the [Moonbeam DApp Directory](https://apps.moonbeam.network/moonbeam/app-dir?cat=wallets){target=\_blank}.
-
-![View list of wallets on the Moonbeam DApp](/images/builders/get-started/create-account/create-account-1.webp)
-
-The list of wallets on the dApp is not exhaustive and may only cover some of the available options. You should be able to use any Ethereum-compatible wallet to generate an address and its associated private key.
-
-You can also check out any of the wallets in the [Connect to Moonbeam](/tokens/connect/){target=\_blank} section of the docs.
-
-## Use Your Wallet to Create an Account {: #use-your-wallet-to-create-an-account }
-
-After you've selected a wallet and downloaded it, you'll most likely be prompted to create a new account or import an existing one the first time you open it. You'll want to create a new account.
-
-Depending on the wallet, when creating an account, you may be prompted to backup and restore a seed phrase, also referred to as a mnemonic or recovery phrase. This phrase is a sequence of generated words that serve as a backup mechanism for private keys. They typically consist of 12 to 24 words randomly selected from a predefined list. Seed phrases are used to derive private keys deterministically, meaning that the same sequence of words will always generate the same set of private keys. They are crucial for recovering access to a cryptocurrency wallet in case of loss or device failure. **Make sure you save the phrase in a safe place; if you lose access to this phrase, you'll lose access to any funds you hold in your account.**
-
-After saving your seed phrase, you can start developing on Moonbeam. Many wallets offer the option to export the private key linked to your account. By doing so, you can utilize your private key instead of the seed phrase during development. However, taking adequate precautions to securely store your private key or seed phrase while developing is essential.
-
-And that's it! Before sending your first transaction on a Moonbeam-based network, ensure you have the necessary [network configurations for your chosen network](/builders/get-started/networks/){target=\_blank} and an [RPC endpoint](/builders/get-started/endpoints/){target=\_blank} for the network. Once you have these items, you'll be able to follow along with tutorials like the [How to use Ethers.js](/builders/ethereum/libraries/ethersjs/){target=\_blank} or the [How to use Web3.js](/builders/ethereum/libraries/web3js/){target=\_blank} to send a transaction.
 --- END CONTENT ---
 
 Doc-Content: https://docs.moonbeam.network/builders/get-started/explorers/
@@ -5330,9 +4723,9 @@ Using Docker enables you to spin up a node in a matter of seconds. Once you have
     The tail end of the console log should look like this:
 
     <div id="termynal" data-termynal>
-  <span data-ty="input"><span class="file-path"></span>docker pull moonbeamfoundation/moonbeam:v0.48.0</span>
+  <span data-ty="input"><span class="file-path"></span>docker pull moonbeamfoundation/moonbeam:v0.49.2</span>
   <br>
-  <span data-ty>v0.48.0: Pulling from moonbeamfoundation/moonbeam
+  <span data-ty>v0.49.2: Pulling from moonbeamfoundation/moonbeam
     <br> b0a0cf830b12: Pull complete
     <br> fbff687640dd: Pull complete
     <br> 58ea427410e2: Pull complete
@@ -5341,8 +4734,8 @@ Using Docker enables you to spin up a node in a matter of seconds. Once you have
     <br> 128693ce218e: Pull complete
     <br> a3ac90b88463: Pull complete
     <br> Digest: sha256:86421aca2381265cd2e5283cb98705e24be0bc92a73937363f79d9d6e0d62088
-    <br> Status: Downloaded newer image for moonbeamfoundation/moonbeam:v0.48.0
-    <br> docker.io/moonbeamfoundation/moonbeam:v0.48.0
+    <br> Status: Downloaded newer image for moonbeamfoundation/moonbeam:v0.49.2
+    <br> docker.io/moonbeamfoundation/moonbeam:v0.49.2
   </span>
 </div>
 
@@ -5391,13 +4784,13 @@ If successful, you should see an output showing an idle state waiting for blocks
 
 <div id="termynal" data-termynal>
   <span data-ty="input"><span class="file-path"></span>docker run --rm --name moonbeam_development --network host \
-    <br> moonbeamfoundation/moonbeam:v0.48.0 \
+    <br> moonbeamfoundation/moonbeam:v0.49.2 \
     <br> --dev --rpc-external
   </span>
   <br>
   <span data-ty>CLI parameter `--execution` has no effect anymore and will be removed in the future!
     <br> 2025-07-10 09:04:26 Moonbeam Parachain Collator
-    <br> 2025-07-10 09:04:26 ✌️  version 0.48.0-d7df89e7161
+    <br> 2025-07-10 09:04:26 ✌️  version 0.49.2
     <br> 2025-07-10 09:04:26 ❤️  by PureStake, 2019-2025
     <br> 2025-07-10 09:04:26 📋 Chain specification: Moonbase Development Testnet
     <br> 2025-07-10 09:04:26 🏷  Node name: black-and-white-sticks-9174
@@ -5525,7 +4918,7 @@ You should see an output that looks like the following, showing an idle state wa
   <span data-ty="input"><span class="file-path"></span>./target/release/moonbeam --dev</span>
   <br>
   <span data-ty> 2025-07-10 09:04:26 Moonbeam Parachain Collator
-    <br> 2025-07-10 09:04:26 ✌️  version 0.48.0-d7df89e7161
+    <br> 2025-07-10 09:04:26 ✌️  version 0.49.2
     <br> 2025-07-10 09:04:26 ❤️  by PureStake, 2019-2025
     <br> 2025-07-10 09:04:26 📋 Chain specification: Moonbase Development Testnet
     <br> 2025-07-10 09:04:26 🏷  Node name: black-and-white-sticks-9174
@@ -5980,7 +5373,7 @@ categories: Basics
 
 Moonbeam is a fully Ethereum-compatible smart contract platform on Polkadot. As such, you can interact with Moonbeam via the [Ethereum API](/builders/ethereum/){target=\_blank} and [Substrate API](/builders/substrate/){target=\_blank}.
 
-Although Moonbeam is a Substrate-based platform, Moonbeam uses a [unified accounts](/learn/core-concepts/unified-accounts/){target=\_blank} system, which replaces Substrate-style accounts and keys with Ethereum-style accounts and keys. As a result, you can interact with your Moonbeam account with [MetaMask](/tokens/connect/metamask/){target=\_blank}, [Ledger](/tokens/connect/ledger/){target=\_blank}, and other Ethereum-compatible wallets by simply adding Moonbeam's network configurations. Similarly, you can develop on Moonbeam using Ethereum [libraries](/builders/ethereum/libraries/){target=\_blank} and [development environments](/builders/ethereum/dev-env/){target=\_blank}.
+Although Moonbeam is a Substrate-based platform, it uses a [unified accounts](/learn/core-concepts/unified-accounts/){target=\_blank} system, which replaces Substrate-style accounts and keys with Ethereum-style accounts and keys. As a result, you can interact with your Moonbeam account with [MetaMask](/tokens/connect/metamask/){target=\_blank}, [Ledger](/tokens/connect/ledger/){target=\_blank}, and other Ethereum-compatible wallets by simply adding Moonbeam's network configurations. Similarly, you can develop on Moonbeam using Ethereum [libraries](/builders/ethereum/libraries/){target=\_blank} and [development environments](/builders/ethereum/dev-env/){target=\_blank}.
 
 ## Moonbeam Networks {: #moonbeam-networks }
 
@@ -5990,7 +5383,7 @@ To get started developing on Moonbeam, it's important to be aware of the various
 |:-----------------------------------------------------------------------------------------:|:-------------:|:--------------------------------------------------------------------------------:|:-------------------:|:---------------------:|
 |           [Moonbeam](/builders/get-started/networks/moonbeam/){target=\_blank}            |    MainNet    |                 [Polkadot](https://polkadot.com){target=\_blank}                 |        GLMR         |          18           |
 |          [Moonriver](/builders/get-started/networks/moonriver/){target=\_blank}           |    MainNet    |                 [Kusama](https://kusama.network){target=\_blank}                 |        MOVR         |          18           |
-|        [Moonbase Alpha](/builders/get-started/networks/moonbase/){target=\_blank}         |    TestNet    | [Alphanet relay](/learn/platform/networks/moonbase/#relay-chain){target=\_blank} |         DEV         |          18           |
+|        [Moonbase Alpha](/builders/get-started/networks/moonbase/){target=\_blank}         |    TestNet    |                           Alphanet relay (Westend-based)                         |         DEV         |          18           |
 | [Moonbeam Development Node](/builders/get-started/networks/moonbeam-dev/){target=\_blank} | Local TestNet |                                       None                                       |         DEV         |          18           |
 
 !!! note
@@ -6089,13 +5482,8 @@ As Moonbeam is a Substrate-based chain that is fully Ethereum-compatible, you ca
     |                                   Tool                                   |      Type       |
     |:------------------------------------------------------------------------:|:---------------:|
     |   [Ethers.js](/builders/ethereum/libraries/ethersjs/){target=\_blank}    |     Library     |
-    |     [Web3.js](/builders/ethereum/libraries/web3js/){target=\_blank}      |     Library     |
     |      [Hardhat](/builders/ethereum/dev-env/hardhat/){target=\_blank}      | Dev Environment |
-    | [OpenZeppelin](/builders/ethereum/dev-env/openzeppelin/){target=\_blank} | Dev Environment |
     |        [Remix](/builders/ethereum/dev-env/remix/){target=\_blank}        | Dev Environment |
-    | [Scaffold-Eth](/builders/ethereum/dev-env/scaffold-eth/){target=\_blank} | Dev Environment |
-    |     [thirdweb](/builders/ethereum/dev-env/thirdweb/){target=\_blank}     | Dev Environment |
-    | [Waffle & Mars](/builders/ethereum/dev-env/waffle-mars/){target=\_blank} | Dev Environment |
 
 === "Substrate"
 
@@ -6110,7 +5498,6 @@ As Moonbeam is a Substrate-based chain that is fully Ethereum-compatible, you ca
     |                              Tool                               |      Type       |
     |:---------------------------------------------------------------:|:---------------:|
     | [Web3.py](/builders/ethereum/libraries/web3py/){target=\_blank} |     Library     |
-    |     [Ape](/builders/ethereum/dev-env/ape/){target=\_blank}      | Dev Environment |
 
 === "Substrate"
 
@@ -6892,7 +6279,7 @@ Candidates will need a minimum amount of tokens bonded (self-bonded) to be consi
 
 Once a candidate is selected to be in the active set of collators, they are eligible to produce blocks.
 
-Moonbeam uses the [Nimbus Parachain Consensus Framework](/learn/features/consensus/){target=\_blank}. This provides a two-step filter to allocate candidates to the active set of collators, then assign collators to a block production slot:
+Moonbeam uses the Nimbus Parachain Consensus Framework. This provides a two-step filter to allocate candidates to the active set of collators, then assign collators to a block production slot:
 
  - The parachain staking filter selects the top candidates in terms of tokens staked in each network. For the exact number of top candidates per each network and the minimum bond amount, you can check out the [Minimum Collator Bond](/node-operators/networks/collators/requirements/#minimum-collator-bond){target=\_blank} section of our documentation. This filtered pool is called selected candidates (also known as the active set), which are rotated every round
  - The fixed size subset filter picks a pseudo-random subset of the previously selected candidates for each block production slot
@@ -6909,7 +6296,7 @@ For this purpose, we use [Discord](https://discord.com/invite/moonbeam){target=\
  - **collators** — this is the general collator discussion channel. We are proud of having an active and friendly collator community so if you have any questions, this is the place to ask. We will also ping collators here for any issues that require their attention.
  - **meet-the-collators** — in this channel you can introduce yourself to potential delegators
 
-After you join our Discord, feel free to DM *gilmouta* or *artkaseman* and introduce yourself. This will let us know who to contact if we see an issue with your node, and will also let us assign the relevant Discord collator role, enabling you to post in *meet-the-collators*.
+After you join Discord, feel free to DM *gilmouta* or *artkaseman* and introduce yourself. This will help the team identify who to contact if issues arise with your node and will enable assignment of the relevant Discord collator role, allowing you to post in *meet-the-collators*.
 --- END CONTENT ---
 
 Doc-Content: https://docs.moonbeam.network/node-operators/networks/run-a-node/overview/
@@ -10285,7 +9672,7 @@ The following queries can be used to query all of the listed projects on Moonbea
 </div>
 --- END CONTENT ---
 
-Doc-Content: https://docs.moonbeam.network/learn/platform/glossary/
+Doc-Content: https://docs.moonbeam.network/learn/features/glossary/
 --- BEGIN CONTENT ---
 ---
 title: Glossary
@@ -10299,7 +9686,7 @@ There's a great deal of terminology that's specific to Polkadot, Substrate, and 
 
 ### Collators {: #collators }
 
-One of the key network participants needed to support parachains within the Polkadot Network.  In Moonbeam, collators are the nodes that are responsible for block production and for submitting produced blocks up to the Polkadot relay chain for finalization.
+One of the key network participants needed to support parachains within the Polkadot Network. In Moonbeam, collators are the nodes that are responsible for block production and for submitting produced blocks up to the Polkadot relay chain for finalization.
 
 ### Delegators {: #delegators }
 
@@ -10319,15 +9706,15 @@ A blockchain which has a slot and is connected to Polkadot. Parachains receive s
 
 ### Parathreads {: #parathreads }
 
-A blockchain which can connect to Polkadot.  Parathreads are able to interact with other members of the Polkadot network, but they bid for block finalization (in DOT) on a block-to-block basis. They compete with other parathreads for block finalization, meaning that the block with the highest bid is selected to be finalize in that round.
+A blockchain which can connect to Polkadot. Parathreads are able to interact with other members of the Polkadot network, but they bid for block finalization (in DOT) on a block-to-block basis. They compete with other parathreads for block finalization, meaning that the block with the highest bid is selected to be finalize in that round.
 
 ### Polkadot {: #polkadot }
 
-A network of connected blockchains that provides shared security and the ability to interact between chains.  Polkadot is built using the Substrate development framework.  Chains that connect to Polkadot are called parachains.
+A network of connected blockchains that provides shared security and the ability to interact between chains. Polkadot is built using the Substrate development framework. Chains that connect to Polkadot are called parachains.
 
 ### Relay Chain {: #relay-chain }
 
-The backbone blockchain supporting the Polkadot network.  Parachains connect to the relay chain and use it for shared security and message passing.  Validators on the relay chain help secure the parachains.
+The backbone blockchain supporting the Polkadot network. Parachains connect to the relay chain and use it for shared security and message passing. Validators on the relay chain help secure the parachains.
 
 ### Smart Contract {: #smart-contract }
 
@@ -10335,11 +9722,11 @@ A [smart contract](https://en.wikipedia.org/wiki/Smart_contract){target=\_blank}
 
 ### Substrate {: #substrate }
 
-A Rust-based blockchain development framework created by Parity Technologies based on their experience implementing multiple blockchain clients.  Substrate comes with many modules and functionalities that are needed when building a blockchain, including P2P networking, consensus mechanisms, staking, cryptocurrency, on-chain governance modules, and more.  It dramatically reduces the time and engineering effort required to implement a blockchain. Substrate is now part of the [Polkadot SDK](https://polkadot.com/platform/sdk/){target=\_blank}.
+A Rust-based blockchain development framework created by Parity Technologies based on their experience implementing multiple blockchain clients. Substrate comes with many modules and functionalities that are needed when building a blockchain, including P2P networking, consensus mechanisms, staking, cryptocurrency, on-chain governance modules, and more. It dramatically reduces the time and engineering effort required to implement a blockchain. Substrate is now part of the [Polkadot SDK](https://polkadot.com/platform/sdk/){target=\_blank}.
 
 ### Substrate Frame Pallets {: #substrate-frame-pallets }
 
-Substrate Frame Pallets are a collection of Rust-based modules, providing the functionality required for building a blockchain.  
+Substrate Frame Pallets are a collection of Rust-based modules, providing the functionality required for building a blockchain.
 
 ### Validators {: #validators }
 
@@ -11385,6 +10772,8 @@ Not all runtime upgrades are released on each network, as sometimes after releas
 |                                 [3900](https://forum.moonbeam.network/t/runtime-rt3900-schedule/2262){target=\_blank}                                  | [12960126](https://moonbeam.subscan.io/block/12960126){target=\_blank} | [13423618](https://moonriver.subscan.io/block/13423618){target=\_blank} | [13744975](https://moonbase.subscan.io/block/13744975){target=\_blank} |
 | [3901](https://forum.moonbeam.network/t/proposal-mb133-authorize-upgrade-to-rt3901-whitelist-track/2350){target=\_blank} | [13428709](https://moonbeam.subscan.io/block/13428709){target=\_blank} |                                    -                                    |                                   -                                    |
 | [4000](https://forum.moonbeam.network/t/runtime-rt4000-schedule/2321){target=\_blank} | - | [14078615](https://moonriver.subscan.io/block/14078615){target=\_blank} | [14191989](https://moonbase.subscan.io/block/14191989){target=\_blank} |
+| [4001](https://forum.moonbeam.network/t/runtime-rt4000-4001-schedule/2321){target=\_blank} | [13654437](https://moonbeam.subscan.io/block/13654437){target=\_blank} | - | - |
+| [4100](https://forum.moonbeam.network/t/runtime-rt4100-schedule/2370){target=\_blank} | - | - | [14535211](https://moonbase.subscan.io/block/14535211){target=\_blank} |
 --- END CONTENT ---
 
 Doc-Content: https://docs.moonbeam.network/builders/ethereum/canonical-contracts/
@@ -11613,7 +11002,7 @@ categories: JSON-RPC APIs, Reference, Ethereum Toolkit
 
 ## Introduction {: #introduction }
 
-The Moonbeam team has collaborated closely with [Parity](https://www.parity.io){target=\_blank} on developing [Frontier](/learn/platform/technology/#frontier){target=\_blank}, an Ethereum compatibility layer for Substrate-based chains. This layer enables developers to run unmodified Ethereum dApps on Moonbeam seamlessly.
+The Moonbeam team has collaborated closely with [Parity](https://www.parity.io){target=\_blank} on developing [Frontier](https://polkadot-evm.github.io/frontier/){target=\_blank}, an Ethereum compatibility layer for Substrate-based chains. This layer enables developers to run unmodified Ethereum dApps on Moonbeam seamlessly.
 
 Nevertheless, not all Ethereum JSON-RPC methods are supported; some of those supported return default values (those related to Ethereum's PoW consensus mechanism in particular). This guide provides a comprehensive list of supported Ethereum JSON-RPC methods on Moonbeam. Developers can quickly reference this list to understand the available functionality for interfacing with Moonbeam's Ethereum-compatible blockchain.
 
@@ -11805,7 +11194,7 @@ categories: Reference, Basics
 
 On Moonbeam, a precompiled contract is native Substrate code that has an Ethereum-style address and can be called using the Ethereum API, like any other smart contract. The precompiles allow you to call the Substrate runtime directly which is not normally accessible from the Ethereum side of Moonbeam.
 
-The Substrate code responsible for implementing precompiles can be found in the [EVM pallet](/learn/platform/technology/#evm-pallet){target=\_blank}. The EVM pallet includes the [standard precompiles found on Ethereum and some additional precompiles that are not specific to Ethereum](https://github.com/polkadot-evm/frontier/tree/master/frame/evm/precompile){target=\_blank}. It also provides the ability to create and execute custom precompiles through the generic [`Precompiles` trait](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm/trait.Precompile.html){target=\_blank}. There are several custom Moonbeam-specific precompiles that have been created, all of which can be found in the [Moonbeam codebase](https://github.com/moonbeam-foundation/moonbeam/tree/master/precompiles){target=\_blank}. It is important to highlight that the precompiles from this list with the `CallableByContract` check are not callable inside the contract constructor.
+The Substrate code responsible for implementing precompiles can be found in the [EVM pallet](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm/){target=\_blank}. The EVM pallet includes the [standard precompiles found on Ethereum and some additional precompiles that are not specific to Ethereum](https://github.com/polkadot-evm/frontier/tree/master/frame/evm/precompile){target=\_blank}. It also provides the ability to create and execute custom precompiles through the generic [`Precompiles` trait](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm/trait.Precompile.html){target=\_blank}. There are several custom Moonbeam-specific precompiles that have been created, all of which can be found in the [Moonbeam codebase](https://github.com/moonbeam-foundation/moonbeam/tree/master/precompiles){target=\_blank}. It is important to highlight that the precompiles from this list with the `CallableByContract` check are not callable inside the contract constructor.
 
 The Ethereum precompiled contracts contain complex functionality that is computationally intensive, such as hashing and encryption. The custom precompiled contracts on Moonbeam provide access to Substrate-based functionality such as staking, governance, XCM-related functions, and more.
 

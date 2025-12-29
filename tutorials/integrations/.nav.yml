@@ -2,11 +2,4 @@ title: Integrations
 hide: false
 nav:
   - index.md
-  - 'Use Indexers to Query Chain Data':
-    - 'indexers.index.md'
-    - '[SQD] Index a Local Dev Node': 'local-subsquid.md'
-    - '[SQD] Index NFT Transfers': 'nft-subsquid.md'
-  - 'Use Oracles to Fetch Off-Chain Data':
-    - 'oracles.index.md'
-    - '[Supra] Fetch Price Data': 'supra.md'
   - 'Enable Gasless Transactions': '0xgasless.md'

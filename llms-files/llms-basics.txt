@@ -12,26 +12,12 @@ Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/re
 Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/learn/core-concepts/transfers-api.md [type: learn]
 Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/learn/core-concepts/tx-fees.md [type: learn]
 Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/learn/core-concepts/unified-accounts.md [type: learn]
-Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/learn/features/consensus.md [type: learn]
 Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/learn/features/eth-compatibility.md [type: learn]
 Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/learn/features/governance.md [type: learn]
 Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/learn/features/randomness.md [type: learn]
 Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/learn/features/staking.md [type: learn]
 Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/learn/features/treasury.md [type: learn]
-Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/learn/features/xchain-plans.md [type: learn]
-Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/learn/platform/code.md [type: learn]
-Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/learn/platform/links.md [type: learn]
-Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/learn/platform/networks/moonbase.md [type: learn]
-Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/learn/platform/networks/moonbeam.md [type: learn]
-Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/learn/platform/networks/moonriver.md [type: learn]
-Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/learn/platform/networks/overview.md [type: learn]
-Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/learn/platform/technology.md [type: learn]
-Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/learn/platform/tokens.md [type: learn]
-Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/learn/platform/vision.md [type: learn]
-Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/learn/platform/why-polkadot.md [type: learn]
-Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/ethereum/dev-env/openzeppelin/overview.md [type: builders]
 Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/ethereum/precompiles/overview.md [type: builders]
-Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/get-started/create-account.md [type: builders]
 Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/get-started/explorers.md [type: builders]
 Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/get-started/networks/moonbase.md [type: builders]
 Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/get-started/networks/moonbeam-dev.md [type: builders]
@@ -194,7 +180,7 @@ Finality is deterministic in Ethereum's PoS consensus protocol and is achieved t
 
 ## Moonbeam Consensus and Finality {: #moonbeam-consensus-and-finality }
 
-In Polkadot, there are collators and validators. [Collators](https://wiki.polkadot.com/learn/learn-collator/){target=\_blank} maintain parachains (in this case, Moonbeam) by collecting transactions from users and producing state transition proofs for the relay chain [validators](https://wiki.polkadot.com/learn/learn-validator/){target=\_blank}. The collator set (nodes that produce blocks) is selected based on the [stake they have in the network](/learn/features/consensus/){target=\_blank}.
+In Polkadot, there are collators and validators. [Collators](https://wiki.polkadot.com/learn/learn-collator/){target=\_blank} maintain parachains (in this case, Moonbeam) by collecting transactions from users and producing state transition proofs for the relay chain [validators](https://wiki.polkadot.com/learn/learn-validator/){target=\_blank}. The collator set (nodes that produce blocks) is selected based on the stake they have in the network.
 
 For finality, Polkadot and Kusama rely on [GRANDPA](https://docs.polkadot.com/polkadot-protocol/architecture/polkadot-chain/pos-consensus/#finality-gadget-grandpa){target=\_blank}. GRANDPA provides deterministic finality for any given transaction (block). In other words, when a block or transaction is marked as final, it can't be reverted except via on-chain governance or forking. Moonbeam follows this deterministic finality.
 
@@ -204,7 +190,7 @@ In terms of consensus, Moonbeam is based on Delegated Proof-of-Stake, while Ethe
 
 With PoS on Ethereum, validators are selected to produce and validate blocks based on their own stake in the network. As long as a validator has placed a validator deposit, they can be selected to produce and validate blocks. However, as previously mentioned, the greater the stake in the network, the higher the chances a validator has to be selected to produce and validate blocks.
 
-On the other hand, with DPoS on Moonbeam, collators become eligible to produce blocks based on their own stake plus their delegated stake in the network. Any token holder can choose to delegate their stake to a collator candidate. The top collator candidates by stake, including delegations, join the active set. The number of candidates in the active set is subject to [governance](/learn/features/governance/){target=\_blank}. Once in the active set, collators are randomly selected to produce blocks using the [Nimbus Consensus Framework](/learn/features/consensus/){target=\_blank}. It is important to note that once a collator is in the active set, their total stake does not impact their chances of being selected to produce blocks.
+On the other hand, with DPoS on Moonbeam, collators become eligible to produce blocks based on their own stake plus their delegated stake in the network. Any token holder can choose to delegate their stake to a collator candidate. The top collator candidates by stake, including delegations, join the active set. The number of candidates in the active set is subject to [governance](/learn/features/governance/){target=\_blank}. Once in the active set, collators are randomly selected to produce blocks using the Nimbus Consensus Framework. It is important to note that once a collator is in the active set, their total stake does not impact their chances of being selected to produce blocks.
 
 In terms of finality, blocks on Ethereum can take quite a bit longer to finalize than on Moonbeam due to the checkpoint finality system it uses. In Ethereum, validators determine finality at checkpoint blocks, which are always the first block in an epoch. Since an epoch has 32 slots and each slot is 12 seconds, it'll take at least 384 seconds, or 6.4 minutes for a block to be finalized.
 
@@ -1905,97 +1891,6 @@ The diagram for this new configuration looks as follows.
 That is it, Bob only holds one private key that matches one address. He does not need to move balances between 2 different accounts and is able to access all the features with a single account and private key. We have standardized this single account to conform to the Ethereum-style H160 address and ECDSA key standards.
 --- END CONTENT ---
 
-Doc-Content: https://docs.moonbeam.network/learn/features/consensus/
---- BEGIN CONTENT ---
----
-title: Moonbeam's Nimbus Consensus Framework
-description: Learn about all the parts of Moonbeam's Nimbus consensus framework and how it works as part of Polkadot's shared security model.
-categories: Basics
----
-
-# Nimbus Parachain Consensus Framework
-
-## Introduction {: #introduction }
-
-Polkadot relies on a [hybrid consensus model](https://docs.polkadot.com/polkadot-protocol/architecture/polkadot-chain/pos-consensus/). In such a scheme, the block finality gadget and the block production mechanism are separate. Consequently, parachains only have to worry about producing blocks and rely on the relay chain to validate the state transitions.
-
-At a parachain level, block producers are called [collators](https://wiki.polkadot.com/learn/learn-collator/). They maintain parachains (such as Moonbeam) by collecting transactions from users and offering blocks to the relay chain [validators](https://wiki.polkadot.com/learn/learn-validator/).
-
-However, parachains might find the following problems they need to solve in a trustless and decentralized matter (if applicable):
-
- - Amongst all of the nodes in the network, which ones are allowed to author blocks?
- - If multiple nodes are allowed, will they be eligible at the same time? Only one? Maybe a few?
-
-Enter Nimbus. Nimbus is a framework for building slot-based consensus algorithms on [Cumulus](https://github.com/paritytech/polkadot-sdk/tree/master/cumulus)-based parachains. It strives to provide standard implementations for the logistical parts of such consensus engines and helpful traits for implementing the elements (filters) that researchers and developers want to customize. These filters can be customizable to define what a block authorship slot is and can be composed, so block authorship is restricted to a subset of collators in multiple steps.
-
-For example, Moonbeam uses a two-layer approach. The first layer comprises the parachain staking filter, which helps select an active collator pool among all collator candidates using a staked-based ranking. The second layer adds another filter which narrows down the number of collators to a subset for each slot.
-
-Notice that Nimbus can only answer which collator(s) are eligible to produce a parachain block in the next available slot. It is the [Cumulus](https://docs.polkadot.com/develop/parachains/#cumulus) consensus mechanism that marks this parachain block as best, and ultimately the [BABE](https://docs.polkadot.com/polkadot-protocol/architecture/polkadot-chain/pos-consensus/#babe) and [GRANDPA](https://docs.polkadot.com/polkadot-protocol/architecture/polkadot-chain/pos-consensus/#grandpa-finality-gadget) hybrid consensus model (of the relay chain) that will include this parachain block in the relay chain and finalize it. Once any relay chain forks are resolved at a relay chain level, that parachain block is deterministically finalized.
-
-The following two sections go over the filtering strategy currently used on Moonbeam.
-
-## Parachain Staking Filtering {: #parachain-staking-filtering }
-
-Collators can join the candidate pool by simply bonding some tokens via an extrinsic. Once in the pool, token holders can add to the candidate's stake via delegation (also referred to as staking), that is, at a parachain level.
-
-Parachain staking is the first of the two Nimbus filters applied to the candidate pool. It selects the top {{ networks.moonbase.staking.max_candidates }} candidates in terms of tokens staked in the network, which includes the candidate's bond and delegations from token holders. This filtered pool is called selected candidates, and selected candidates are renewed every round (which lasts {{ networks.moonbase.staking.round_blocks }} blocks). For a given round, the following diagram describes the parachain staking filtering:
-
-![Nimbus Parachain Staking Filter](/images/learn/features/consensus/consensus-1.webp)
-
-From this pool, another filter is applied to retrieve a subset of eligible candidates for the next block authoring slot.
-
-If you want to learn more about staking, visit our [staking documentation](/learn/features/staking/).
-
-## Fixed Size Subset Filtering {: #fixed-size-subset-filtering }
-
-Once the parachain staking filter is applied and the selected candidates are retrieved, a second filter is applied on a block by block basis and helps narrow down the selected candidates to a smaller number of eligible collators for the next block authoring slot.
-
-In broad terms, this second filter picks a pseudo-random subset of the previously selected candidates. The eligibility ratio, a tunable parameter, defines the size of this subset.
-
-A high eligibility ratio results in fewer chances for the network to skip a block production slot, as more collators will be eligible to propose a block for a specific slot. However, only a certain number of validators are assigned to a parachain, meaning that most of these blocks will not be backed by a validator. For those that are, a higher number of backed blocks means that it might take longer for the relay chain to solve any possible forks and return a finalized block. Moreover, this might create an unfair advantage for certain collators that might be able to get their proposed block faster to relay chain validators, securing a higher portion of block rewards (if any).
-
-A lower eligibility ratio might provide faster block finalization times and a fairer block production distribution amongst collators. However, if the eligible collators are not able to propose a block (for whatever reason), the network will skip a block, affecting its stability.
-
-Once the size of the subset is defined, collators are randomly selected using a source of entropy. Currently, an internal coin-flipping algorithm is implemented, but this will later be migrated to use [Verifiable random function](https://docs.polkadot.com/polkadot-protocol/parachain-basics/randomness/){target=\_blank}. Consequently, a new subset of eligible collators is selected for every relay chain block. For a given round and a given block `XYZ`, the following diagram describes the fixed-size subset filtering:
-
-![Nimbus Parachain Staking Filter](/images/learn/features/consensus/consensus-2.webp)
-
-## Why Nimbus? {: #why-nimbus }
-
-You might ask yourself: but why Nimbus? Initially, it was not envisioned when Moonbeam was being developed. As Moonbeam progressed, the necessity for a more customizable but straightforward parachain consensus mechanism became clear, as the available methods presented some drawbacks or technical limitations.
-
-<!-- In the [relay chain provided consensus](https://github.com/paritytech/cumulus/blob/master/client/consensus/relay-chain/src/lib.rs), each node sees itself as a collator and can propose a parachain candidate block. It is then up to the relay chain to solve any possible forks and finalize a block. 
-
-[AuRa](https://crates.io/crates/sc-consensus-aura) (short for authority-round) consensus mechanism is based on a known list of authorities that take turns to produce blocks in every slot. Each authority can propose only one block per slot and builds on top of the longest chain.-->
-
-With Nimbus, writing a parachain consensus engine is as easy as writing a pallet! This simplicity and flexibility is the main value it adds.
-
-Some technical benefits of Nimbus are considered in the following sections.
-
-### Weight and Extra Execution {: #weight-and-extra-execution }
-
-Nimbus puts the author-checking execution in a [Substrate pallet](https://docs.polkadot.com/develop/parachains/customize-parachain/overview/). At first glance, you might think this adds a higher execution load to a single block compared to doing this check off-chain. But consider this from a validator’s perspective
-
-The validators will also have to check the author. By putting the author-checking execution logic in a pallet, the execution time can be benchmarked and quantified with weights. If this execution time is not accounted for, there is the risk of a block exceeding the relay chain Wasm execution limit (currently 0.5 seconds).
-
-In practice, this check will be fast and will most likely not push execution time over the limit. But from a theoretical perspective, accounting for its weight is better for implementation purposes.
-
-### Reusability {: #reusability }
-
-Another benefit of moving the author-checking execution to a pallet, rather than a custom executor, is that one single executor can be reused for any consensus that can be expressed in the Nimbus framework. That is slot-based, signature-sealed algorithms.
-
-For example, the [relay-chain provided consensus](https://github.com/paritytech/polkadot-sdk/blob/master/cumulus/client/consensus/relay-chain/src/lib.rs), [AuRa](https://crates.io/crates/sc-consensus-aura) and [BABE](https://crates.io/crates/sc-consensus-babe) each have their own custom executor. With Nimbus, these consensus mechanisms can reuse the same executor. The power of reusability is evidenced by the Nimbus implementation of AuRa in less than 100 lines of code.
-
-### Hot-Swapping Consensus {: #hot-swapping-consensus }
-
-Teams building parachains may want to change, tune, or adjust their consensus algorithm from time to time. Without nimbus, swapping consensus would require a client upgrade and hard fork.
-
-With the Nimbus framework, writing a consensus engine is as easy as writing a
-[Substrate pallet](https://docs.polkadot.com/develop/parachains/customize-parachain/make-custom-pallet/). Consequently, swapping consensus is as easy as upgrading a pallet.
-
-Nonetheless, hot swapping is still bounded by consensus engines (filters) that fit within Nimbus, but it might be helpful for teams that are yet confident on what consensus they want to implement in the long run.
---- END CONTENT ---
-
 Doc-Content: https://docs.moonbeam.network/learn/features/eth-compatibility/
 --- BEGIN CONTENT ---
 ---
@@ -2015,10 +1910,6 @@ This documentation overviews Moonbeam's Ethereum compatibility features and high
 ### EVM Compatibility {: #evm }
 
 Moonbeam incorporates a fully compatible EVM to execute smart contracts in Solidity or other EVM-compatible languages. This enables developers to deploy existing Ethereum smart contracts on Moonbeam with minimal modifications.
-
-Learn more:
-
-- [Moonbeam's Ethereum-compatibility architecture](/learn/platform/technology/#ethereum-compatibility-architecture){target=\_blank}
 
 ### Ethereum-style Accounts {: #ethereum-style-accounts }
 
@@ -2067,7 +1958,6 @@ Due to Moonbeam's native interoperability, ERC-20s can be sent cross-chain to ot
 
 Learn more:
 
-- [Create common OpenZeppelin contracts such as ERC-20, ERC-721, and ERC-1155 tokens](/builders/ethereum/dev-env/openzeppelin/contracts/){target=\_blank}
 - [XCM-enabled ERC-20s](/builders/interoperability/xcm/xc20/overview/#local-xc20s){target=\_blank} (also referred to as local XC-20s)
 
 ## Key Differences {: #key-differences }
@@ -2474,7 +2364,7 @@ Moonbeam utilizes verifiable random functions (VRF) to generate randomness that 
 
 There are two available sources of randomness that provide random inputs based on block producers' VRF keys and past randomness results: [local VRF](#local-vrf) and [BABE epoch randomness](#babe-epoch-randomness). Local VRF is determined directly within Moonbeam using the collator of the block's VRF key and the last block's VRF output. On the other hand, [BABE](https://docs.polkadot.com/polkadot-protocol/architecture/polkadot-chain/pos-consensus/#block-production-babe){target=\_blank} epoch randomness is based on all the VRF produced by the relay chain validators during a complete [epoch](https://wiki.polkadot.com/general/glossary/#epoch){target=\_blank}.
 
-You can interact with and request on-chain randomness using the Randomness Precompile contract, a Solidity interface that enables smart contract developers to access the randomness functionality through the Ethereum API. For more information, please check out the [Interacting with the Randomness Precompile](/builders/ethereum/precompiles/features/randomness/){target=\_blank} guide. You can also take a look at the [Randomness Pallet](/builders/substrate/interfaces/features/randomness/){target=\_blank}, which can be used to obtain current randomness requests and results.
+You can interact with and request on-chain randomness using the Randomness Precompile contract, a Solidity interface that enables smart contract developers to access the randomness functionality through the Ethereum API. For more information, please check out the [Interacting with the Randomness Precompile](/builders/ethereum/precompiles/features/randomness/){target=\_blank} guide.
 
 ## General Definitions {: #general-definitions }
 
@@ -2685,9 +2575,6 @@ There are a few resources you can check out to help you select a collator to del
     |      Variable      |                                      Value                                       |
     |:------------------:|:--------------------------------------------------------------------------------:|
     | List of candidates | [Moonbase Alpha Subscan](https://moonbase.subscan.io/validator){target=\_blank} |
-
-!!! note
-    The DappLooker Collator dashboard for Moonriver is experimental beta software and may not accurately reflect collator performance. Be sure to do your own research before delegating to a collator.
 
 ### General Tips {: #general-tips }
 
@@ -3719,7 +3606,7 @@ categories: Reference, Basics
 
 On Moonbeam, a precompiled contract is native Substrate code that has an Ethereum-style address and can be called using the Ethereum API, like any other smart contract. The precompiles allow you to call the Substrate runtime directly which is not normally accessible from the Ethereum side of Moonbeam.
 
-The Substrate code responsible for implementing precompiles can be found in the [EVM pallet](/learn/platform/technology/#evm-pallet){target=\_blank}. The EVM pallet includes the [standard precompiles found on Ethereum and some additional precompiles that are not specific to Ethereum](https://github.com/polkadot-evm/frontier/tree/master/frame/evm/precompile){target=\_blank}. It also provides the ability to create and execute custom precompiles through the generic [`Precompiles` trait](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm/trait.Precompile.html){target=\_blank}. There are several custom Moonbeam-specific precompiles that have been created, all of which can be found in the [Moonbeam codebase](https://github.com/moonbeam-foundation/moonbeam/tree/master/precompiles){target=\_blank}. It is important to highlight that the precompiles from this list with the `CallableByContract` check are not callable inside the contract constructor.
+The Substrate code responsible for implementing precompiles can be found in the [EVM pallet](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm/){target=\_blank}. The EVM pallet includes the [standard precompiles found on Ethereum and some additional precompiles that are not specific to Ethereum](https://github.com/polkadot-evm/frontier/tree/master/frame/evm/precompile){target=\_blank}. It also provides the ability to create and execute custom precompiles through the generic [`Precompiles` trait](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm/trait.Precompile.html){target=\_blank}. There are several custom Moonbeam-specific precompiles that have been created, all of which can be found in the [Moonbeam codebase](https://github.com/moonbeam-foundation/moonbeam/tree/master/precompiles){target=\_blank}. It is important to highlight that the precompiles from this list with the `CallableByContract` check are not callable inside the contract constructor.
 
 The Ethereum precompiled contracts contain complex functionality that is computationally intensive, such as hashing and encryption. The custom precompiled contracts on Moonbeam provide access to Substrate-based functionality such as staking, governance, XCM-related functions, and more.
 
@@ -3894,50 +3781,6 @@ The precompiled contracts are categorized by address and based on the origin net
     |    [XCM Transactor V3](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/xcm-transactor/src/v3/XcmTransactorV3.sol){target=\_blank}     |         {{networks.moonbase.precompiles.xcm_transactor_v3}}         |
     |                               [XCM Interface](https://github.com/Moonsong-Labs/moonkit/blob/main/precompiles/pallet-xcm/XcmInterface.sol){target=\_blank}                               |             {{networks.moonbeam.precompiles.xcm_interface}}              |
     |                   [Identity](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/identity/Identity.sol){target=\_blank}                   |             {{networks.moonbase.precompiles.identity}}              |
---- END CONTENT ---
-
-Doc-Content: https://docs.moonbeam.network/builders/get-started/create-account/
---- BEGIN CONTENT ---
----
-title: Create an Account
-description: To begin developing on Moonbeam, you must create an account. This guide will provide you with the information needed to create one to use on Moonbeam.
-categories: Basics
----
-
-# Create an Account
-
-## Introduction {: #introduction }
-
-To get started developing on Moonbeam, developers must create an account. The most prevalent approach involves leveraging a wallet application, which facilitates generating and managing cryptographic keys essential for interacting with Moonbeam.
-
-Moonbeam uses H160 Ethereum-style accounts and ECDSA keys, represented in 20-byte addresses. If you already have an Ethereum account and its private key or mnemonic, you can use your account on Moonbeam.
-
-This guide will walk you through the step-by-step process of creating an account on Moonbeam. Whether you're new to blockchain technology or an experienced Ethereum user, this guide will provide all the information you need to get started.
-
-!!! note
-    This guide does not pertain to a local Moonbeam development node. If you are using a development node, you don't need to worry about creating an account, as the node comes with ten pre-funded accounts for testing purposes. Please refer to the [Getting Started with a Local Moonbeam Development Node](/builders/get-started/networks/moonbeam-dev/){target=\_blank} guide for more information.
-
-## Choose a Wallet {: #choose-a-wallet }
-
-A wallet is a software or hardware tool that allows you to securely store, manage, and interact with your digital assets, such as tokens or coins. Wallets store your private keys, which are essential for authorizing transactions on the network.
-
-You can review a list of wallets on the [Moonbeam DApp Directory](https://apps.moonbeam.network/moonbeam/app-dir?cat=wallets){target=\_blank}.
-
-![View list of wallets on the Moonbeam DApp](/images/builders/get-started/create-account/create-account-1.webp)
-
-The list of wallets on the dApp is not exhaustive and may only cover some of the available options. You should be able to use any Ethereum-compatible wallet to generate an address and its associated private key.
-
-You can also check out any of the wallets in the [Connect to Moonbeam](/tokens/connect/){target=\_blank} section of the docs.
-
-## Use Your Wallet to Create an Account {: #use-your-wallet-to-create-an-account }
-
-After you've selected a wallet and downloaded it, you'll most likely be prompted to create a new account or import an existing one the first time you open it. You'll want to create a new account.
-
-Depending on the wallet, when creating an account, you may be prompted to backup and restore a seed phrase, also referred to as a mnemonic or recovery phrase. This phrase is a sequence of generated words that serve as a backup mechanism for private keys. They typically consist of 12 to 24 words randomly selected from a predefined list. Seed phrases are used to derive private keys deterministically, meaning that the same sequence of words will always generate the same set of private keys. They are crucial for recovering access to a cryptocurrency wallet in case of loss or device failure. **Make sure you save the phrase in a safe place; if you lose access to this phrase, you'll lose access to any funds you hold in your account.**
-
-After saving your seed phrase, you can start developing on Moonbeam. Many wallets offer the option to export the private key linked to your account. By doing so, you can utilize your private key instead of the seed phrase during development. However, taking adequate precautions to securely store your private key or seed phrase while developing is essential.
-
-And that's it! Before sending your first transaction on a Moonbeam-based network, ensure you have the necessary [network configurations for your chosen network](/builders/get-started/networks/){target=\_blank} and an [RPC endpoint](/builders/get-started/endpoints/){target=\_blank} for the network. Once you have these items, you'll be able to follow along with tutorials like the [How to use Ethers.js](/builders/ethereum/libraries/ethersjs/){target=\_blank} or the [How to use Web3.js](/builders/ethereum/libraries/web3js/){target=\_blank} to send a transaction.
 --- END CONTENT ---
 
 Doc-Content: https://docs.moonbeam.network/builders/get-started/explorers/
@@ -4261,9 +4104,9 @@ Using Docker enables you to spin up a node in a matter of seconds. Once you have
     The tail end of the console log should look like this:
 
     <div id="termynal" data-termynal>
-  <span data-ty="input"><span class="file-path"></span>docker pull moonbeamfoundation/moonbeam:v0.48.0</span>
+  <span data-ty="input"><span class="file-path"></span>docker pull moonbeamfoundation/moonbeam:v0.49.2</span>
   <br>
-  <span data-ty>v0.48.0: Pulling from moonbeamfoundation/moonbeam
+  <span data-ty>v0.49.2: Pulling from moonbeamfoundation/moonbeam
     <br> b0a0cf830b12: Pull complete
     <br> fbff687640dd: Pull complete
     <br> 58ea427410e2: Pull complete
@@ -4272,8 +4115,8 @@ Using Docker enables you to spin up a node in a matter of seconds. Once you have
     <br> 128693ce218e: Pull complete
     <br> a3ac90b88463: Pull complete
     <br> Digest: sha256:86421aca2381265cd2e5283cb98705e24be0bc92a73937363f79d9d6e0d62088
-    <br> Status: Downloaded newer image for moonbeamfoundation/moonbeam:v0.48.0
-    <br> docker.io/moonbeamfoundation/moonbeam:v0.48.0
+    <br> Status: Downloaded newer image for moonbeamfoundation/moonbeam:v0.49.2
+    <br> docker.io/moonbeamfoundation/moonbeam:v0.49.2
   </span>
 </div>
 
@@ -4322,13 +4165,13 @@ If successful, you should see an output showing an idle state waiting for blocks
 
 <div id="termynal" data-termynal>
   <span data-ty="input"><span class="file-path"></span>docker run --rm --name moonbeam_development --network host \
-    <br> moonbeamfoundation/moonbeam:v0.48.0 \
+    <br> moonbeamfoundation/moonbeam:v0.49.2 \
     <br> --dev --rpc-external
   </span>
   <br>
   <span data-ty>CLI parameter `--execution` has no effect anymore and will be removed in the future!
     <br> 2025-07-10 09:04:26 Moonbeam Parachain Collator
-    <br> 2025-07-10 09:04:26 ✌️  version 0.48.0-d7df89e7161
+    <br> 2025-07-10 09:04:26 ✌️  version 0.49.2
     <br> 2025-07-10 09:04:26 ❤️  by PureStake, 2019-2025
     <br> 2025-07-10 09:04:26 📋 Chain specification: Moonbase Development Testnet
     <br> 2025-07-10 09:04:26 🏷  Node name: black-and-white-sticks-9174
@@ -4456,7 +4299,7 @@ You should see an output that looks like the following, showing an idle state wa
   <span data-ty="input"><span class="file-path"></span>./target/release/moonbeam --dev</span>
   <br>
   <span data-ty> 2025-07-10 09:04:26 Moonbeam Parachain Collator
-    <br> 2025-07-10 09:04:26 ✌️  version 0.48.0-d7df89e7161
+    <br> 2025-07-10 09:04:26 ✌️  version 0.49.2
     <br> 2025-07-10 09:04:26 ❤️  by PureStake, 2019-2025
     <br> 2025-07-10 09:04:26 📋 Chain specification: Moonbase Development Testnet
     <br> 2025-07-10 09:04:26 🏷  Node name: black-and-white-sticks-9174
@@ -4911,7 +4754,7 @@ categories: Basics
 
 Moonbeam is a fully Ethereum-compatible smart contract platform on Polkadot. As such, you can interact with Moonbeam via the [Ethereum API](/builders/ethereum/){target=\_blank} and [Substrate API](/builders/substrate/){target=\_blank}.
 
-Although Moonbeam is a Substrate-based platform, Moonbeam uses a [unified accounts](/learn/core-concepts/unified-accounts/){target=\_blank} system, which replaces Substrate-style accounts and keys with Ethereum-style accounts and keys. As a result, you can interact with your Moonbeam account with [MetaMask](/tokens/connect/metamask/){target=\_blank}, [Ledger](/tokens/connect/ledger/){target=\_blank}, and other Ethereum-compatible wallets by simply adding Moonbeam's network configurations. Similarly, you can develop on Moonbeam using Ethereum [libraries](/builders/ethereum/libraries/){target=\_blank} and [development environments](/builders/ethereum/dev-env/){target=\_blank}.
+Although Moonbeam is a Substrate-based platform, it uses a [unified accounts](/learn/core-concepts/unified-accounts/){target=\_blank} system, which replaces Substrate-style accounts and keys with Ethereum-style accounts and keys. As a result, you can interact with your Moonbeam account with [MetaMask](/tokens/connect/metamask/){target=\_blank}, [Ledger](/tokens/connect/ledger/){target=\_blank}, and other Ethereum-compatible wallets by simply adding Moonbeam's network configurations. Similarly, you can develop on Moonbeam using Ethereum [libraries](/builders/ethereum/libraries/){target=\_blank} and [development environments](/builders/ethereum/dev-env/){target=\_blank}.
 
 ## Moonbeam Networks {: #moonbeam-networks }
 
@@ -4921,7 +4764,7 @@ To get started developing on Moonbeam, it's important to be aware of the various
 |:-----------------------------------------------------------------------------------------:|:-------------:|:--------------------------------------------------------------------------------:|:-------------------:|:---------------------:|
 |           [Moonbeam](/builders/get-started/networks/moonbeam/){target=\_blank}            |    MainNet    |                 [Polkadot](https://polkadot.com){target=\_blank}                 |        GLMR         |          18           |
 |          [Moonriver](/builders/get-started/networks/moonriver/){target=\_blank}           |    MainNet    |                 [Kusama](https://kusama.network){target=\_blank}                 |        MOVR         |          18           |
-|        [Moonbase Alpha](/builders/get-started/networks/moonbase/){target=\_blank}         |    TestNet    | [Alphanet relay](/learn/platform/networks/moonbase/#relay-chain){target=\_blank} |         DEV         |          18           |
+|        [Moonbase Alpha](/builders/get-started/networks/moonbase/){target=\_blank}         |    TestNet    |                           Alphanet relay (Westend-based)                         |         DEV         |          18           |
 | [Moonbeam Development Node](/builders/get-started/networks/moonbeam-dev/){target=\_blank} | Local TestNet |                                       None                                       |         DEV         |          18           |
 
 !!! note
@@ -5020,13 +4863,8 @@ As Moonbeam is a Substrate-based chain that is fully Ethereum-compatible, you ca
     |                                   Tool                                   |      Type       |
     |:------------------------------------------------------------------------:|:---------------:|
     |   [Ethers.js](/builders/ethereum/libraries/ethersjs/){target=\_blank}    |     Library     |
-    |     [Web3.js](/builders/ethereum/libraries/web3js/){target=\_blank}      |     Library     |
     |      [Hardhat](/builders/ethereum/dev-env/hardhat/){target=\_blank}      | Dev Environment |
-    | [OpenZeppelin](/builders/ethereum/dev-env/openzeppelin/){target=\_blank} | Dev Environment |
     |        [Remix](/builders/ethereum/dev-env/remix/){target=\_blank}        | Dev Environment |
-    | [Scaffold-Eth](/builders/ethereum/dev-env/scaffold-eth/){target=\_blank} | Dev Environment |
-    |     [thirdweb](/builders/ethereum/dev-env/thirdweb/){target=\_blank}     | Dev Environment |
-    | [Waffle & Mars](/builders/ethereum/dev-env/waffle-mars/){target=\_blank} | Dev Environment |
 
 === "Substrate"
 
@@ -5041,7 +4879,6 @@ As Moonbeam is a Substrate-based chain that is fully Ethereum-compatible, you ca
     |                              Tool                               |      Type       |
     |:---------------------------------------------------------------:|:---------------:|
     | [Web3.py](/builders/ethereum/libraries/web3py/){target=\_blank} |     Library     |
-    |     [Ape](/builders/ethereum/dev-env/ape/){target=\_blank}      | Dev Environment |
 
 === "Substrate"
 
@@ -5823,7 +5660,7 @@ Candidates will need a minimum amount of tokens bonded (self-bonded) to be consi
 
 Once a candidate is selected to be in the active set of collators, they are eligible to produce blocks.
 
-Moonbeam uses the [Nimbus Parachain Consensus Framework](/learn/features/consensus/){target=\_blank}. This provides a two-step filter to allocate candidates to the active set of collators, then assign collators to a block production slot:
+Moonbeam uses the Nimbus Parachain Consensus Framework. This provides a two-step filter to allocate candidates to the active set of collators, then assign collators to a block production slot:
 
  - The parachain staking filter selects the top candidates in terms of tokens staked in each network. For the exact number of top candidates per each network and the minimum bond amount, you can check out the [Minimum Collator Bond](/node-operators/networks/collators/requirements/#minimum-collator-bond){target=\_blank} section of our documentation. This filtered pool is called selected candidates (also known as the active set), which are rotated every round
  - The fixed size subset filter picks a pseudo-random subset of the previously selected candidates for each block production slot
@@ -5840,7 +5677,7 @@ For this purpose, we use [Discord](https://discord.com/invite/moonbeam){target=\
  - **collators** — this is the general collator discussion channel. We are proud of having an active and friendly collator community so if you have any questions, this is the place to ask. We will also ping collators here for any issues that require their attention.
  - **meet-the-collators** — in this channel you can introduce yourself to potential delegators
 
-After you join our Discord, feel free to DM *gilmouta* or *artkaseman* and introduce yourself. This will let us know who to contact if we see an issue with your node, and will also let us assign the relevant Discord collator role, enabling you to post in *meet-the-collators*.
+After you join Discord, feel free to DM *gilmouta* or *artkaseman* and introduce yourself. This will help the team identify who to contact if issues arise with your node and will enable assignment of the relevant Discord collator role, allowing you to post in *meet-the-collators*.
 --- END CONTENT ---
 
 Doc-Content: https://docs.moonbeam.network/node-operators/networks/run-a-node/overview/
