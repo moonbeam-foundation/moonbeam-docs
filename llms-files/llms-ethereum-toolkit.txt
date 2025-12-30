@@ -1067,13 +1067,13 @@ Please note that although Hardhat comes with a [Hardhat Network](https://hardhat
 
 ## Checking Prerequisites {: #checking-prerequisites }
 
-To get started, you will need the following:
+To get started, you will need the following.
 
-- Have [MetaMask installed](/tokens/connect/metamask/#install-the-metamask-extension){target=\_blank} and [connected to Moonbase Alpha](/tokens/connect/metamask/#connect-metamask-to-moonbeam){target=\_blank}
+- Have [MetaMask installed](/tokens/connect/metamask/#install-the-metamask-extension){target=\_blank} and [connected to Moonbase Alpha](/tokens/connect/metamask/#connect-metamask-to-moonbeam){target=\_blank}.
 - Have an account with funds.
-  You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}
+  You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}.
 - 
-  To test out the examples in this guide on Moonbeam or Moonriver, you will need to have your own endpoint and API key, which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=\_blank}
+  To test out the examples in this guide on Moonbeam or Moonriver, you will need to have your own endpoint and API key, which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=\_blank}.
 
 ## Create a Hardhat Project {: #creating-a-hardhat-project }
 
@@ -1470,136 +1470,94 @@ Congratulations, your contract is live! Save the address, as you will use it to 
 
 ## Interact with the Contract {: #interacting-with-the-contract }
 
-There are a couple of ways that you can interact with your newly deployed contract using Hardhat: you can use the `console` task, which spins up an interactive JavaScript console, or you can create another script and use the `run` task to execute it.
+You can interact with your newly deployed contract using Hardhat in two ways: run console-style commands from a helper script (recommended for Hardhat 3), or reuse that script to automate interactions via the `run` task.
 
-### Using the Hardhat Console {: #hardhat-console }
+### Console-Style Interaction {: #hardhat-console }
 
-The [Hardhat console](https://hardhat.org/hardhat-runner/docs/guides/hardhat-console){target=\_blank} uses the same execution environment as the tasks and scripts, so it automatically uses the configurations and plugins defined in the `hardhat.config.js`.
+Similarly to the deployment script, you can create a lightweight helper that mirrors the console workflow, save it under `scripts`, and run it with the built-in `run` task. This approach works even when your credentials are stored in the Hardhat keystore because `network.connect()` is executed inside a normal Hardhat task (which can unlock the keystore) instead of the console, which does not have access to the Hardhat keystore.
 
-To launch the Hardhat `console`, you can run:
-
-```sh
-npx hardhat console --network moonbase
-```
-
-Next, you can take the following steps, entering one line at a time:
-
-1. Create a local instance of the `Box.sol` contract.
-
-    ```js
-    const Box = await ethers.getContractFactory('Box');
-    ```
-
-2. Connect the local instance to the deployed contract, using the address of the contract shown in the prior step under **Deployed Addresses**.
-
-    ```js
-    const box = await Box.attach('INSERT-CONTRACT-ADDRESS');
-    ```
-
-3. Interact with the attached contract. For this example, you can call the `store` method and store a simple value.
-
-    ```js
-    await box.store(5);
-    ```
-
-The transaction will be signed by your account configured in the `hardhat.config.js` file and broadcasted to the network. The output should look similar to:
-
-<div id="termynal" data-termynal>
-    <span data-ty="input">npx hardhat console --network moonbase</span>
-    <br>
-    <span data-ty>Welcome to Node.js v20.9.0.</span>
-    <span data-ty>Type ".help" for more information.</span>
-    <span data-ty="input" data-ty-prompt=">"> const Box = await ethers.getContractFactory('Box');</span>
-    <span data-ty>undefined</span>
-    <br>
-    <span data-ty="input" data-ty-prompt=">"> const box = await Box.attach('0xfBD78CE8C9E1169851119754C4Ea2f70AB159289');</span>
-    <span data-ty>undefined</span>
-    <br>
-    <span data-ty="input" data-ty-prompt=">"> await box.store(5);</span>
-    <span data-ty>ContractTransactionResponse {<br>
-      provider: HardhatEthersProvider { ... },<br>
-      blockNumber: null,<br>
-      blockHash: null,<br>
-      index: undefined,<br>
-      hash: '0x1c49a64a601fc5dd184f0a368a91130cb49203ec0f533c6fcf20445c68e20264',<br>
-      type: 2,<br>
-      to: '0xa84caB60db6541573a091e5C622fB79e175E17be',<br>
-      from: '0x3B939FeaD1557C741Ff06492FD0127bd287A421e',<br>
-      nonce: 87,<br>
-      gasLimit: 45881n,<br>
-      gasPrice: 1107421875n,<br>
-      maxPriorityFeePerGas: 1n,<br>
-      maxFeePerGas: 1107421875n,<br>
-      data: '0x6057361d0000000000000000000000000000000000000000000000000000000000000005',<br>
-      value: 0n,<br>
-      chainId: 5678n,<br>
-      signature: Signature { r: "0x9233b9cc4ae6879b7e08b9f1a4bfb175c8216eee0099966eca4a305c7f369ecc", s: "0x7663688633006b5a449d02cb08311569fadf2f9696bd7fe65417860a3b5fc57d", yParity: 0, networkV: null },<br>
-      accessList: [],<br>
-      blobVersionedHashes: null<br>}</span>
-    <span data-ty="input" data-ty-prompt=">"> await box.retrieve();</span>
-    <span data-ty>5n</span>
-    <br>
-</div>
-
-Notice your address labeled `from`, the address of the contract, and the `data` that is being passed. Now, you can retrieve the value by running:
-
-```js
-await box.retrieve();
-```
-
-You should see `5`, or the value you initially stored.
-
-### Using a Script {: #using-a-script }
-
-Similarly to the deployment script, you can create a script to interact with your deployed contract, store it in the `scripts` directory, and run it using the built-in `run` task.
-
-To get started, create a `set-value.js` file in the `scripts` directory:
+To get started, create a `box-console.ts` file in the `scripts` directory:
 
 ```sh
-cd scripts && touch set-value.js
+cd scripts && touch box-console.ts
 ```
 
-Now paste the following contract into the `set-value.js` file:
+Update the script with your deployed contract address before running it. The full helper looks like this:
 
-```js
-// scripts/set-value.js
+??? code "View the complete script"
+
+    ```ts
+    // scripts/box-console.ts
+import { network } from 'hardhat';
+
+const CONTRACT_ADDRESS = 'INSERT_CONTRACT_ADDRESS';
+const VALUE_TO_STORE = 5n;
+
 async function main() {
-  // Create instance of the Box contract
+  if (CONTRACT_ADDRESS === 'INSERT_CONTRACT_ADDRESS') {
+    throw new Error(
+      'Update CONTRACT_ADDRESS with the Box deployment address (0x...).'
+    );
+  }
+
+  if (!CONTRACT_ADDRESS.startsWith('0x')) {
+    throw new Error('CONTRACT_ADDRESS must start with 0x.');
+  }
+
+  const { ethers } = await network.connect('moonbase');
+  const [signer] = await ethers.getSigners();
+
+  console.log(`Using signer ${signer.address}`);
+  console.log(`Attaching to Box at ${CONTRACT_ADDRESS}`);
+
   const Box = await ethers.getContractFactory('Box');
+  const box = await Box.attach(CONTRACT_ADDRESS);
 
-  // Connect the instance to the deployed contract
-  const box = await Box.attach('INSERT-CONTRACT-ADDRESS');
+  const current = (await box.retrieve()).toString();
+  console.log(`Current stored value: ${current}`);
 
-  // Store a new value
-  await box.store(2);
+  console.log(`Calling store(${VALUE_TO_STORE})...`);
+  const tx = await box.store(VALUE_TO_STORE);
+  console.log(`Submitted tx ${tx.hash}, waiting for confirmation...`);
+  await tx.wait();
 
-  // Retrieve the value
-  const value = await box.retrieve();
-  console.log(`The new value is: ${value}`);
+  const updated = (await box.retrieve()).toString();
+  console.log(`Updated stored value: ${updated}`);
 }
 
-main()
-  .then(() => process.exit(0))
-  .catch(error => {
-    console.error(error);
-    process.exit(1);
-  });
-```
+main().catch((err) => {
+  console.error(err);
+  process.exitCode = 1;
+});
+    ```
 
-To run the script, you can use the following command:
+Replace `INSERT_CONTRACT_ADDRESS` with the address printed by Hardhat Ignition and adjust `VALUE_TO_STORE` if you want to store a different value.
+
+### Run the Script {: #run-the-script }
+
+Use the `run` task to execute the helper script against your deployed `Box` contract so you can verify the keystore unlock flow works and confirm the contract stores the new value on Moonbase Alpha.
 
 ```sh
-npx hardhat run --network moonbase set-value.js
+npx hardhat run --network moonbase scripts/box-console.ts
 ```
 
-The script should return `2` as the value.
+You'll be prompted for the Hardhat keystore password (if you're using encrypted secrets), after which the script connects to Moonbase Alpha, attaches to your deployed `Box` contract, and logs the values stored before and after calling `store(5n)`. Upon running it, you should see output similar to:
 
 <div id="termynal" data-termynal>
-    <span data-ty="input"><span class="file-path"></span>npx hardhat run --network moonbase scripts/set-value.js</span>
+    <span data-ty="input"><span class="file-path"></span>npx hardhat run --network moonbase scripts/box-console.ts</span>
     <br>
-    <span data-ty>The new value is: 2</span>
-    <span data-ty="input"><span class="file-path"></span></span>
+    <span data-ty></span>
+    <span data-ty>[hardhat-keystore] Enter the password: **********</span>
+    <span data-ty>Using signer 0x3B939FeaD1557C741Ff06492FD0127bd287A421e</span>
+    <span data-ty>Attaching to Box at INSERT_CONTRACT_ADDRESS</span>
+    <span data-ty>Current stored value: 4</span>
+    <span data-ty>Calling store(5)...</span>
+    <span data-ty>Submitted tx 0xdb0a7bfe9caeae5fb590cde27ad156f9b2788434aa4a94b95d1c3a8ce3d58b30, waiting for confirmation...</span>
+    <span data-ty>Updated stored value: 5</span>
+    <span data-ty="input"><span class="file-path"></span>%</span>
 </div>
+
+The script prints the signer being used, the value stored before the transaction, the submitted transaction hash, and the updated value after calling `store(5n)`.
 
 ## Hardhat Forking {: #hardhat-forking }
 
