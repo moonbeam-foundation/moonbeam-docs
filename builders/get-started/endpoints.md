@@ -35,7 +35,6 @@ You can create your own endpoint suitable for development or production use usin
 - [dRPC](#drpc)
 - [Dwellir](#dwellir)
 - [GetBlock](#getblock)
-- [Grove](#grove)
 - [OnFinality](#onfinality)
 - [UnitedBloc](#unitedbloc)
 
@@ -99,19 +98,6 @@ Creating a new API/add-on based endpoint is simple, all you have to do is:
 
 ![GetBlock](/images/builders/get-started/endpoints/endpoints-4.webp)
 
-### Grove {: #grove }
-
-[Grove](https://grove.city){target=_blank} is a decentralized RPC network that provides reliable Web3 infrastructure with enterprise-grade performance and security. Grove offers both free and paid tiers, with the free tier providing generous limits for development use, while paid plans offer higher throughput, dedicated support, and advanced features for production applications. Grove's decentralized approach ensures high availability and censorship resistance by distributing requests across multiple node operators. The network supports both JSON-RPC and WebSocket connections for real-time applications. To get started with Grove:
-
-1. Visit the [Grove Portal](https://portal.grove.city/){target=_blank} and sign up for an account
-2. From your dashboard, create a new application
-3. Copy your Moonbeam or Moonriver endpoints
-4. Start making requests to your custom Grove endpoint
-
-Grove provides detailed analytics, request monitoring, and flexible rate limiting to help you optimize your application's performance.
-
-![Grove](/images/builders/get-started/endpoints/endpoints-5.webp)
-
 ### OnFinality {: #onfinality }
 
 [OnFinality](https://onfinality.io/en){target=_blank} provides a free API key based endpoint for customers in place of a public endpoint. Additionally, OnFinality offers paid tiers of service that offer increased rate limits and higher performance than those offered by the free tier. You also receive more in depth analytics of the usage of your application.
@@ -122,7 +108,7 @@ To create a custom OnFinality endpoint, go to [OnFinality](https://onfinality.io
 2. Select the network from the dropdown
 3. Your custom API endpoint will be generated automatically
 
-![OnFinality](/images/builders/get-started/endpoints/endpoints-6.webp)
+![OnFinality](/images/builders/get-started/endpoints/endpoints-5.webp)
 
 ### UnitedBloc {: #unitedbloc }
 

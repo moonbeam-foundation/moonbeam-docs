@@ -9,7 +9,7 @@ categories: Precompiles, Ethereum Toolkit
 
 ## Introduction {: #introduction }
 
-Moonbeam uses a Delegated Proof of Stake system through the [Parachain Staking](/builders/substrate/interfaces/features/staking/){target=\_blank} Pallet, allowing token holders (delegators) to express exactly which collator candidates they would like to support and with what quantity of stake. The design of the Parachain Staking Pallet is such that it enforces shared risk/reward on chain between delegators and candidates. For general information on staking, such as general terminology, staking variables, and more, please refer to the [Staking on Moonbeam](/learn/features/staking/){target=\_blank} page.
+Moonbeam uses a Delegated Proof of Stake system through the Parachain Staking Pallet, allowing token holders (delegators) to express exactly which collator candidates they would like to support and with what quantity of stake. The design of the Parachain Staking Pallet is such that it enforces shared risk/reward on chain between delegators and candidates. For general information on staking, such as general terminology, staking variables, and more, please refer to the [Staking on Moonbeam](/learn/features/staking/){target=\_blank} page.
 
 The staking module is coded in Rust and it is part of a pallet that is normally not accessible from the Ethereum side of Moonbeam. However, a staking precompile allows developers to access the staking features using the Ethereum API in a precompiled contract located at address:
 
@@ -72,7 +72,7 @@ Some of the Parachain Staking Pallet extrinsics include exit delays that you mus
 
 The Solidity interface includes the following functions:
 
-??? function "**isDelegator**(*address* delegator) - read-only function that checks whether the specified address is currently a staking delegator. Uses the [`delegatorState`](/builders/substrate/interfaces/features/staking/#:~:text=delegatorState(AccountId20)){target=\_blank} method of the Parachain Staking Pallet"
+??? function "**isDelegator**(*address* delegator) - read-only function that checks whether the specified address is currently a staking delegator. Uses the `delegatorState` method of the Parachain Staking Pallet"
 
     === "Parameters"
 
@@ -82,7 +82,7 @@ The Solidity interface includes the following functions:
 
         - `bool` whether the address is currently a delegator
 
-??? function "**isCandidate**(*address* candidate) - read-only function that checks whether the specified address is currently a collator candidate. Uses the [`candidateState`](/builders/substrate/interfaces/features/staking/#:~:text=candidateState(AccountId20)){target=\_blank} method of the Parachain Staking Pallet"
+??? function "**isCandidate**(*address* candidate) - read-only function that checks whether the specified address is currently a collator candidate. Uses the `candidateState` method of the Parachain Staking Pallet"
 
     === "Parameters"
 
@@ -92,7 +92,7 @@ The Solidity interface includes the following functions:
 
         - `bool` whether the address is currently a candidate
 
-??? function "**isSelectedCandidate**(*address* candidate) - read-only function that checks whether the specified address is currently part of the active collator set. Uses the [`selectedCandidates`](/builders/substrate/interfaces/features/staking/#:~:text=selectedCandidates()){target=\_blank} method of the Parachain Staking Pallet"
+??? function "**isSelectedCandidate**(*address* candidate) - read-only function that checks whether the specified address is currently part of the active collator set. Uses the `selectedCandidates` method of the Parachain Staking Pallet"
 
     === "Parameters"
 
@@ -102,7 +102,7 @@ The Solidity interface includes the following functions:
 
         - `bool` whether the address is currently an active collator
 
-??? function "**points**(*uint256* round) - read-only function that gets the total points awarded to all collators in a given round. Uses the [`points`](/builders/substrate/interfaces/features/staking/#:~:text=points(u32)){target=\_blank} method of the Parachain Staking Pallet"
+??? function "**points**(*uint256* round) - read-only function that gets the total points awarded to all collators in a given round. Uses the `points` method of the Parachain Staking Pallet"
 
     === "Parameters"
 
@@ -112,7 +112,7 @@ The Solidity interface includes the following functions:
 
         - `uint256` total points awarded in the specified round
 
-??? function "**awardedPoints**(*uint32* round, *address* candidate) - read-only function that returns the total points awarded in a given round to a given collator. If `0` is returned, it could be because no blocks were produced or the storage for that round has been removed. Uses the [`points`](/builders/substrate/interfaces/features/staking/#:~:text=awardedPts(u32, AccountId20)){target=\_blank} method of the Parachain Staking Pallet"
+??? function "**awardedPoints**(*uint32* round, *address* candidate) - read-only function that returns the total points awarded in a given round to a given collator. If `0` is returned, it could be because no blocks were produced or the storage for that round has been removed. Uses the `points` method of the Parachain Staking Pallet"
 
     === "Parameters"
 
@@ -123,7 +123,7 @@ The Solidity interface includes the following functions:
 
         - `uint256` points awarded to the collator in the specified round
 
-??? function "**delegationAmount**(*address* delegator, *address* candidate) - read-only function that returns the amount delegated by a given delegator in support of a given candidate. Uses the [`delegatorState`](/builders/substrate/interfaces/features/staking/#:~:text=delegatorState(AccountId20)){target=\_blank} method of the Parachain Staking Pallet"
+??? function "**delegationAmount**(*address* delegator, *address* candidate) - read-only function that returns the amount delegated by a given delegator in support of a given candidate. Uses the `delegatorState` method of the Parachain Staking Pallet"
 
     === "Parameters"
 
@@ -134,7 +134,7 @@ The Solidity interface includes the following functions:
 
         - `uint256` amount delegated
 
-??? function "**isInTopDelegations**(*address* delegator, *address* candidate) - read-only function that returns a boolean indicating whether the given delegator is in the top delegations for the given candidate. Uses the [`topDelegations`](/builders/substrate/interfaces/features/staking/#:~:text=topDelegations(AccountId20)){target=\_blank} method of the Parachain Staking Pallet"
+??? function "**isInTopDelegations**(*address* delegator, *address* candidate) - read-only function that returns a boolean indicating whether the given delegator is in the top delegations for the given candidate. Uses the `topDelegations` method of the Parachain Staking Pallet"
 
     === "Parameters"
 
@@ -145,7 +145,7 @@ The Solidity interface includes the following functions:
 
         - `bool` whether the delegator is in the top delegations
 
-??? function "**minDelegation**() - read-only function that gets the minimum delegation amount. Uses the [`minDelegation`](/builders/substrate/interfaces/features/staking/#:~:text=minDelegation()){target=\_blank} method of the Parachain Staking Pallet"
+??? function "**minDelegation**() - read-only function that gets the minimum delegation amount. Uses the `minDelegation` method of the Parachain Staking Pallet"
 
     === "Parameters"
 
@@ -155,7 +155,7 @@ The Solidity interface includes the following functions:
 
         - `uint256` minimum delegation amount
 
-??? function "**candidateCount**() - read-only function that gets the current amount of collator candidates. Uses the [`candidatePool`](/builders/substrate/interfaces/features/staking/#:~:text=candidatePool()){target=\_blank} method of the Parachain Staking Pallet"
+??? function "**candidateCount**() - read-only function that gets the current amount of collator candidates. Uses the `candidatePool` method of the Parachain Staking Pallet"
 
     === "Parameters"
 
@@ -165,7 +165,7 @@ The Solidity interface includes the following functions:
 
         - `uint256` current number of collator candidates
 
-??? function "**round**() - read-only function that returns the current round number. Uses the [`round`](/builders/substrate/interfaces/features/staking/#:~:text=round()){target=\_blank} method of the Parachain Staking Pallet"
+??? function "**round**() - read-only function that returns the current round number. Uses the `round` method of the Parachain Staking Pallet"
 
     === "Parameters"
 
@@ -175,7 +175,7 @@ The Solidity interface includes the following functions:
 
         - `uint256` current round number
 
-??? function "**candidateDelegationCount**(*address* candidate) - read-only function that returns the number of delegations for the specified collator candidate address. Uses the [`candidateInfo`](/builders/substrate/interfaces/features/staking/#:~:text=candidateInfo(AccountId20)){target=\_blank} method of the Parachain Staking Pallet"
+??? function "**candidateDelegationCount**(*address* candidate) - read-only function that returns the number of delegations for the specified collator candidate address. Uses the `candidateInfo` method of the Parachain Staking Pallet"
 
     === "Parameters"
 
@@ -185,7 +185,7 @@ The Solidity interface includes the following functions:
 
         - `uint256` number of delegations for the candidate
 
-??? function "**candidateAutoCompoundingDelegationCount**(*address* candidate) - a read-only function that returns the number of auto-compounding delegations for the specified candidate. Uses the [`autoCompoundingDelegations`](/builders/substrate/interfaces/features/staking/#:~:text=autoCompoundingDelegations(AccountId20)){target=\_blank} method of the Parachain Staking Pallet"
+??? function "**candidateAutoCompoundingDelegationCount**(*address* candidate) - a read-only function that returns the number of auto-compounding delegations for the specified candidate. Uses the `autoCompoundingDelegations` method of the Parachain Staking Pallet"
 
     === "Parameters"
 
@@ -195,7 +195,7 @@ The Solidity interface includes the following functions:
 
         - `uint256` number of auto-compounding delegations
 
-??? function "**delegatorDelegationCount**(*address* delegator) - read-only function that returns the number of delegations for the specified delegator address. Uses the [`delegatorState`](/builders/substrate/interfaces/features/staking/#:~:text=delegatorState(AccountId20)){target=\_blank} method of the Parachain Staking Pallet"
+??? function "**delegatorDelegationCount**(*address* delegator) - read-only function that returns the number of delegations for the specified delegator address. Uses the `delegatorState` method of the Parachain Staking Pallet"
 
     === "Parameters"
 
@@ -205,7 +205,7 @@ The Solidity interface includes the following functions:
 
         - `uint256` number of delegations for the delegator
 
-??? function "**selectedCandidates**() - read-only function that gets the selected candidates for the current round. Uses the [`selectedCandidates`](/builders/substrate/interfaces/features/staking/#:~:text=selectedCandidates()){target=\_blank} method of the Parachain Staking Pallet"
+??? function "**selectedCandidates**() - read-only function that gets the selected candidates for the current round. Uses the `selectedCandidates` method of the Parachain Staking Pallet"
 
     === "Parameters"
 
@@ -226,7 +226,7 @@ The Solidity interface includes the following functions:
 
         - `bool` whether there is a pending delegation request
 
-??? function "**candidateExitIsPending**(*address* candidate) - returns a boolean to indicate whether a pending exit exists for a specific candidate. Uses the [`candidateInfo`](/builders/substrate/interfaces/features/staking/#:~:text=candidateInfo(AccountId20)){target=\_blank} method of the Parachain Staking Pallet"
+??? function "**candidateExitIsPending**(*address* candidate) - returns a boolean to indicate whether a pending exit exists for a specific candidate. Uses the `candidateInfo` method of the Parachain Staking Pallet"
 
     === "Parameters"
 
@@ -236,7 +236,7 @@ The Solidity interface includes the following functions:
 
         - `bool` whether there is a pending exit request
 
-??? function "**candidateRequestIsPending**(*address* candidate) - returns a boolean to indicate whether there is a pending bond less request made by a given candidate. Uses the [`candidateInfo`](/builders/substrate/interfaces/features/staking/#:~:text=candidateInfo(AccountId20)){target=\_blank} method of the Parachain Staking Pallet"
+??? function "**candidateRequestIsPending**(*address* candidate) - returns a boolean to indicate whether there is a pending bond less request made by a given candidate. Uses the `candidateInfo` method of the Parachain Staking Pallet"
 
     === "Parameters"
 
@@ -257,7 +257,7 @@ The Solidity interface includes the following functions:
 
         - `uint256` auto-compound percentage
 
-??? function "**getDelegatorTotalStaked**(*address* delegator) - read-only function that returns the total staked amount of a given delegator, regardless of the candidate. Uses the [`delegatorState`](/builders/substrate/interfaces/features/staking/#:~:text=delegatorState(AccountId20)){target=\_blank} method of the Parachain Staking Pallet"
+??? function "**getDelegatorTotalStaked**(*address* delegator) - read-only function that returns the total staked amount of a given delegator, regardless of the candidate. Uses the `delegatorState` method of the Parachain Staking Pallet"
 
     === "Parameters"
 
@@ -267,7 +267,7 @@ The Solidity interface includes the following functions:
 
         - `uint256` total staked amount
 
-??? function "**getCandidateTotalCounted**(*address* candidate) - read-only function that returns the total amount staked for a given candidate. Uses the [`candidateInfo`](/builders/substrate/interfaces/features/staking/#:~:text=candidateInfo(AccountId20)){target=\_blank} method of the Parachain Staking Pallet"
+??? function "**getCandidateTotalCounted**(*address* candidate) - read-only function that returns the total amount staked for a given candidate. Uses the `candidateInfo` method of the Parachain Staking Pallet"
 
     === "Parameters"
 
@@ -277,7 +277,7 @@ The Solidity interface includes the following functions:
 
         - `uint256` total amount staked for the candidate
 
-??? function "**joinCandidates**(*uint256* amount, *uint256* candidateCount) - allows the account to join the set of collator candidates with the specified bond amount and the current candidate count. Uses the [`joinCandidates`](/builders/substrate/interfaces/features/staking/#:~:text=joinCandidates(bond, candidateCount)){target=\_blank} method of the Parachain Staking Pallet"
+??? function "**joinCandidates**(*uint256* amount, *uint256* candidateCount) - allows the account to join the set of collator candidates with the specified bond amount and the current candidate count. Uses the `joinCandidates` method of the Parachain Staking Pallet"
 
     === "Parameters"
 
@@ -288,7 +288,7 @@ The Solidity interface includes the following functions:
 
         None.
 
-??? function "**scheduleLeaveCandidates**(*uint256* candidateCount) - schedules a request for a candidate to remove themselves from the candidate pool. Scheduling the request does not automatically execute it. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `executeLeaveCandidates` extrinsic. Uses the [`scheduleLeaveCandidates`](/builders/substrate/interfaces/features/staking/#:~:text=scheduleLeaveCandidates(candidateCount)){target=\_blank} method of the Parachain Staking Pallet"
+??? function "**scheduleLeaveCandidates**(*uint256* candidateCount) - schedules a request for a candidate to remove themselves from the candidate pool. Scheduling the request does not automatically execute it. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `executeLeaveCandidates` extrinsic. Uses the `scheduleLeaveCandidates` method of the Parachain Staking Pallet"
 
     === "Parameters"
 
@@ -298,7 +298,7 @@ The Solidity interface includes the following functions:
 
         None.
 
-??? function "**executeLeaveCandidates**(*address* candidate, *uint256* candidateDelegationCount) - executes the due request to leave the set of collator candidates. Uses the [`executeLeaveCandidates`](/builders/substrate/interfaces/features/staking/#:~:text=executeLeaveCandidates(candidate, candidateDelegationCount)){target=\_blank} method of the Parachain Staking Pallet"
+??? function "**executeLeaveCandidates**(*address* candidate, *uint256* candidateDelegationCount) - executes the due request to leave the set of collator candidates. Uses the `executeLeaveCandidates` method of the Parachain Staking Pallet"
 
     === "Parameters"
 
@@ -309,7 +309,7 @@ The Solidity interface includes the following functions:
 
         None.
 
-??? function "**cancelLeaveCandidates**(*uint256* candidateCount) - allows a candidate to cancel a pending scheduled request to leave the candidate pool. Given the current number of candidates in the pool. Uses the [`cancelLeaveCandidates`](/builders/substrate/interfaces/features/staking/#:~:text=cancelLeaveCandidates(candidateCount)){target=\_blank} method of the Parachain Staking Pallet"
+??? function "**cancelLeaveCandidates**(*uint256* candidateCount) - allows a candidate to cancel a pending scheduled request to leave the candidate pool. Given the current number of candidates in the pool. Uses the `cancelLeaveCandidates` method of the Parachain Staking Pallet"
 
     === "Parameters"
 
@@ -319,7 +319,7 @@ The Solidity interface includes the following functions:
 
         None.
 
-??? function "**goOffline**() - temporarily leave the set of collator candidates without unbonding. Uses the [`goOffline`](/builders/substrate/interfaces/features/staking/#:~:text=goOffline()){target=\_blank} method of the Parachain Staking Pallet"
+??? function "**goOffline**() - temporarily leave the set of collator candidates without unbonding. Uses the `goOffline` method of the Parachain Staking Pallet"
 
     === "Parameters"
 
@@ -329,7 +329,7 @@ The Solidity interface includes the following functions:
 
         None.
 
-??? function "**goOnline**() - rejoin the set of collator candidates after previously calling `goOffline()`. Uses the [`goOnline`](/builders/substrate/interfaces/features/staking/#:~:text=goOnline()){target=\_blank} method of the Parachain Staking Pallet"
+??? function "**goOnline**() - rejoin the set of collator candidates after previously calling `goOffline()`. Uses the `goOnline` method of the Parachain Staking Pallet"
 
     === "Parameters"
 
@@ -339,7 +339,7 @@ The Solidity interface includes the following functions:
 
         None.
 
-??? function "**candidateBondMore**(*uint256* more) - collator candidate increases bond by the specified amount. Uses the [`candidateBondMore`](/builders/substrate/interfaces/features/staking/#:~:text=candidateBondMore(more)){target=\_blank} method of the Parachain Staking Pallet"
+??? function "**candidateBondMore**(*uint256* more) - collator candidate increases bond by the specified amount. Uses the `candidateBondMore` method of the Parachain Staking Pallet"
 
     === "Parameters"
 
@@ -349,7 +349,7 @@ The Solidity interface includes the following functions:
 
         None.
 
-??? function "**scheduleCandidateBondLess**(*uint256* less) - schedules a request to decrease a candidates bond by the specified amount. Scheduling the request does not automatically execute it. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `execute_candidate_bond_request` extrinsic. Uses the [`scheduleCandidateBondLess`](/builders/substrate/interfaces/features/staking/#:~:text=scheduleCandidateBondLess(less)){target=\_blank} method of the Parachain Staking Pallet"
+??? function "**scheduleCandidateBondLess**(*uint256* less) - schedules a request to decrease a candidates bond by the specified amount. Scheduling the request does not automatically execute it. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `execute_candidate_bond_request` extrinsic. Uses the `scheduleCandidateBondLess` method of the Parachain Staking Pallet"
 
     === "Parameters"
 
@@ -359,7 +359,7 @@ The Solidity interface includes the following functions:
 
         None.
 
-??? function "**executeCandidateBondLess**(*address* candidate) - executes any due requests to decrease a specified candidate's bond amount. Uses the [`executeCandidateBondLess`](/builders/substrate/interfaces/features/staking/#:~:text=executeCandidateBondLess(candidate)){target=\_blank} method of the Parachain Staking Pallet"
+??? function "**executeCandidateBondLess**(*address* candidate) - executes any due requests to decrease a specified candidate's bond amount. Uses the `executeCandidateBondLess` method of the Parachain Staking Pallet"
 
     === "Parameters"
 
@@ -369,7 +369,7 @@ The Solidity interface includes the following functions:
 
         None.
 
-??? function "**cancelCandidateBondLess**() - allows a candidate to cancel a pending scheduled request to decrease a candidates bond. Uses the [`cancelCandidateBondLess`](/builders/substrate/interfaces/features/staking/#:~:text=cancelCandidateBondLess()){target=\_blank} method of the Parachain Staking Pallet"
+??? function "**cancelCandidateBondLess**() - allows a candidate to cancel a pending scheduled request to decrease a candidates bond. Uses the `cancelCandidateBondLess` method of the Parachain Staking Pallet"
 
     === "Parameters"
 
@@ -379,7 +379,7 @@ The Solidity interface includes the following functions:
 
         None.
 
-??? function "**delegateWithAutoCompound**(*address* candidate, *uint256* amount, *uint8* autoCompound, *uint256* candidateDelegationCount, *uint256* candidateAutoCompoundingDelegationCount, *uint256* delegatorDelegationCount) - makes a delegation in support of a collator candidate and automatically sets the percent of rewards to auto-compound given an integer (no decimals) for `autoCompound` between 0-100. Uses the [`delegateWithAutoCompound`](/builders/substrate/interfaces/features/staking/#:~:text=delegateWithAutoCompound){target=\_blank} method of the Parachain Staking Pallet"
+??? function "**delegateWithAutoCompound**(*address* candidate, *uint256* amount, *uint8* autoCompound, *uint256* candidateDelegationCount, *uint256* candidateAutoCompoundingDelegationCount, *uint256* delegatorDelegationCount) - makes a delegation in support of a collator candidate and automatically sets the percent of rewards to auto-compound given an integer (no decimals) for `autoCompound` between 0-100. Uses the `delegateWithAutoCompound` method of the Parachain Staking Pallet"
 
     === "Parameters"
 
@@ -394,7 +394,7 @@ The Solidity interface includes the following functions:
 
         None.
 
-??? function "**scheduleRevokeDelegation**(*address* candidate) - schedules a request to revoke a delegation given the address of a candidate. Scheduling the request does not automatically execute it. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `executeDelegationRequest` extrinsic. Uses the [`scheduleRevokeDelegation`](/builders/substrate/interfaces/features/staking/#:~:text=scheduleRevokeDelegation(collator)){target=\_blank} method of the Parachain Staking Pallet"
+??? function "**scheduleRevokeDelegation**(*address* candidate) - schedules a request to revoke a delegation given the address of a candidate. Scheduling the request does not automatically execute it. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `executeDelegationRequest` extrinsic. Uses the `scheduleRevokeDelegation` method of the Parachain Staking Pallet"
 
     === "Parameters"
 
@@ -404,7 +404,7 @@ The Solidity interface includes the following functions:
 
         None.
 
-??? function "**delegatorBondMore**(*address* candidate, *uint256* more) - delegator increases bond to a collator by the specified amount. Uses the [`delegatorBondMore`](/builders/substrate/interfaces/features/staking/#:~:text=delegatorBondMore(candidate, more)){target=\_blank} method of the Parachain Staking Pallet"
+??? function "**delegatorBondMore**(*address* candidate, *uint256* more) - delegator increases bond to a collator by the specified amount. Uses the `delegatorBondMore` method of the Parachain Staking Pallet"
 
     === "Parameters"
 
@@ -415,7 +415,7 @@ The Solidity interface includes the following functions:
 
         None.
 
-??? function "**scheduleDelegatorBondLess**(*address* candidate, *uint256* less) - schedules a request for a delegator to bond less with respect to a specific candidate. Scheduling the request does not automatically execute it. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `executeDelegationRequest` extrinsic. Uses the [`scheduleDelegatorBondLess`](/builders/substrate/interfaces/features/staking/#:~:text=scheduleDelegatorBondLess(candidate, less)){target=\_blank} method of the Parachain Staking Pallet"
+??? function "**scheduleDelegatorBondLess**(*address* candidate, *uint256* less) - schedules a request for a delegator to bond less with respect to a specific candidate. Scheduling the request does not automatically execute it. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `executeDelegationRequest` extrinsic. Uses the `scheduleDelegatorBondLess` method of the Parachain Staking Pallet"
 
     === "Parameters"
 
@@ -426,7 +426,7 @@ The Solidity interface includes the following functions:
 
         None.
 
-??? function "**executeDelegationRequest**(*address* delegator, *address* candidate) - executes any due delegation requests provided the address of a delegator and a candidate. Uses the [`executeDelegationRequest`](/builders/substrate/interfaces/features/staking/#:~:text=executeDelegationRequest(delegator, candidate)){target=\_blank} method of the Parachain Staking Pallet"
+??? function "**executeDelegationRequest**(*address* delegator, *address* candidate) - executes any due delegation requests provided the address of a delegator and a candidate. Uses the `executeDelegationRequest` method of the Parachain Staking Pallet"
 
     === "Parameters"
 
@@ -437,7 +437,7 @@ The Solidity interface includes the following functions:
 
         None.
 
-??? function "**cancelDelegationRequest**(*address* candidate) - cancels any pending delegation requests provided the address of a candidate. Uses the [`cancelDelegationRequest`](/builders/substrate/interfaces/features/staking/#:~:text=cancelDelegationRequest(candidate)){target=\_blank} method of the Parachain Staking Pallet"
+??? function "**cancelDelegationRequest**(*address* candidate) - cancels any pending delegation requests provided the address of a candidate. Uses the `cancelDelegationRequest` method of the Parachain Staking Pallet"
 
     === "Parameters"
 
@@ -447,7 +447,7 @@ The Solidity interface includes the following functions:
 
         None.
 
-??? function "**setAutoCompound**(*address* candidate, *uint8* value, *uint256* candidateAutoCompoundingDelegationCount, *uint256* delegatorDelegationCount) - sets an auto-compound value for an existing delegation given an integer (no decimals) for the `value` between 0-100. Uses the [`setAutoCompound`](/builders/substrate/interfaces/features/staking/#:~:text=setAutoCompound){target=\_blank} method of the Parachain Staking Pallet"
+??? function "**setAutoCompound**(*address* candidate, *uint8* value, *uint256* candidateAutoCompoundingDelegationCount, *uint256* delegatorDelegationCount) - sets an auto-compound value for an existing delegation given an integer (no decimals) for the `value` between 0-100. Uses the `setAutoCompound` method of the Parachain Staking Pallet"
 
     === "Parameters"
 

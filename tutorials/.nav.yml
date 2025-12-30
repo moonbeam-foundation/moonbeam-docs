@@ -2,6 +2,5 @@ title: Tutorials
 hide: false
 nav:
   - index.md
-  - interoperability
   - eth-api
   - integrations

@@ -1,6 +1,6 @@
 ---
 title: Features
-description: Learn about some of the main features on Moonbeam, including Ethereum compatibility, interoperability, the consensus framework, staking, governance, and more.
+description: Explore Moonbeam's core features including Ethereum compatibility, cross-chain interoperability, staking, and community governance tools.
 dropdown_description: Explore core features
 template: subsection-index-page.html
 hide: 
