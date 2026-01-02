@@ -28730,13 +28730,13 @@ The interface also includes the following required events:
 
 ### The ERC-20 Permit Solidity Interface {: #the-erc20-permit-interface }
 
-External XC-20s also have the ERC-20 Permit interface. The [Permit.sol](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/assets-erc20/Permit.sol){target=\_blank} interface on Moonbeam follows the [EIP-2612 standard](https://eips.ethereum.org/EIPS/eip-2612){target=\_blank}, which extends the ERC-20 interface with the `permit` function. Permits are signed messages that can be used to change an account's ERC-20 allowance. Note that local XC-20s can have also the Permit interface, but it is not a requirement for them to be XCM-ready.
+External XC-20s also have the ERC-20 Permit interface. The [Permit.sol](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/balances-erc20/Permit.sol){target=\_blank} interface on Moonbeam follows the [EIP-2612 standard](https://eips.ethereum.org/EIPS/eip-2612){target=\_blank}, which extends the ERC-20 interface with the `permit` function. Permits are signed messages that can be used to change an account's ERC-20 allowance. Note that local XC-20s can have also the Permit interface, but it is not a requirement for them to be XCM-ready.
 
 The standard ERC-20 `approve` function is limited in its design as the `allowance` can only be modified by the sender of the transaction, the `msg.sender`. This can be seen in [OpenZeppelin's implementation of the ERC-20 interface](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/ERC20.sol#L136){target=\_blank}, which sets the `owner` through the [`msgSender` function](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/utils/Context.sol#L17){target=\_blank}, which ultimately sets it to `msg.sender`.
 
 Instead of signing the `approve` transaction, a user can sign a message, and that signature can be used to call the `permit` function to modify the `allowance`.  As such, it allows for gas-less token transfers. In addition, users no longer need to send two transactions to approve and transfer tokens. To see an example of the `permit` function, you can check out [OpenZeppelin's implementation of the ERC-20 Permit extension](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/4a9cc8b4918ef3736229a5cc5a310bdc17bf759f/contracts/token/ERC20/extensions/draft-ERC20Permit.sol#L41){target=\_blank}.
 
-The [Permit.sol](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/assets-erc20/Permit.sol){target=\_blank} interface includes the following functions:
+The [Permit.sol](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/balances-erc20/Permit.sol){target=\_blank} interface includes the following functions:
 
 - **permit**(*address* owner, *address* spender, *uint256*, value, *uint256*, deadline, *uint8* v, *bytes32* r, *bytes32* s) - consumes an approval permit, which can be called by anyone
 - **nonces**(*address* owner) - returns the current nonce for the given owner
@@ -28775,7 +28775,7 @@ This section of the guide will show you how to interact with XC-20s via the ERC-
 
 To interact with external XC-20s, you'll need to first calculate the precompile address of the XC-20 asset you want to interact with. Then, you can interact with the ERC-20 interface as you would with any other ERC-20.
 
-You can adapt the instructions in this section to be used with the [Permit.sol](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/assets-erc20/Permit.sol){target=\_blank} interface.
+You can adapt the instructions in this section to be used with the [Permit.sol](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/balances-erc20/Permit.sol){target=\_blank} interface.
 
 ### Checking Prerequisites {: #checking-prerequisites }
 
