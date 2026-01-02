@@ -12,14 +12,12 @@ const pageMappings = {
   '/builders/ethereum/libraries/ethersjs/':
     '/cn/builders/libraries/ethersjs/',
   '/builders/ethereum/libraries/viem/': '/cn/builders/libraries/viem/',
-  '/builders/ethereum/libraries/web3js/': '/cn/builders/libraries/web3js/',
   '/builders/ethereum/libraries/web3py/': '/cn/builders/libraries/web3py/',
   '/builders/ethereum/dev-env/': '/cn/builders/dev-env/',
   '/builders/ethereum/dev-env/hardhat/': '/cn/builders/dev-env/hardhat/',
   '/builders/ethereum/dev-env/foundry/': '/cn/builders/dev-env/foundry/',
   '/builders/ethereum/dev-env/remix/': '/cn/builders/dev-env/remix/',
   '/builders/ethereum/dev-env/tenderly/': '/cn/builders/dev-env/tenderly/',
-  '/builders/integrations/': '/cn/builders/integrations/',
 };
 
 const processWindowLocation = (pathname, origin) => {
