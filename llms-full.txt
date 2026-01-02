@@ -125,7 +125,7 @@ Documentation: https://docs.moonbeam.network/
 [Unified Accounts](Basics): (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/learn/core-concepts/unified-accounts.md) (Moonbeam replaced the default Substrate account system with native support for the Ethereum-based H160 accounts and ECDSA keys. Find out more information!)
 [List your Dapp on the Moonbeam DApp Directory](Reference): (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/learn/dapp-directory.md) (Follow this tutorial to learn how to list your Moonbeam or Moonriver project or update a current listing on the Moonbeam Foundation DApp Directory.)
 [Ethereum Compatibility](Basics): (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/learn/features/eth-compatibility.md) (Transitioning from Ethereum to Moonbeam? Here's a brief overview of the key components and key differences of Moonbeam's Ethereum compatibility.)
-[Glossary](Reference): (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/learn/features/glossary.md) (We've compiled a glossary of terms related to Polkadot that'll make it easier to learn more about the ecosystem.)
+[Glossary](Reference): (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/learn/core-concepts/glossary.md) (We've compiled a glossary of terms related to Polkadot that'll make it easier to learn more about the ecosystem.)
 [Governance](Governance, Basics): (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/learn/features/governance.md) (As a Polkadot parachain, Moonbeam uses an on-chain governance system, allowing for a stake-weighted vote on public referenda.)
 [Features](No categories available.): (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/learn/features/index.md) (Explore Moonbeam's core features including Ethereum compatibility, cross-chain interoperability, staking, and community governance tools.)
 [Randomness](Basics): (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/learn/features/randomness.md) (Learn about the sources of VRF randomness on Moonbeam, the request and fulfillment process, and some security considerations when using on-chain randomness.)
@@ -38601,7 +38601,7 @@ Learn more:
 - [Calculating transaction fees on Moonbeam](/learn/core-concepts/tx-fees/){target=\_blank}
 --- END CONTENT ---
 
-Doc-Content: https://docs.moonbeam.network/learn/features/glossary/
+Doc-Content: https://docs.moonbeam.network/learn/core-concepts/glossary/
 --- BEGIN CONTENT ---
 ---
 title: Glossary

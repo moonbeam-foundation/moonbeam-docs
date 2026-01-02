@@ -8792,7 +8792,7 @@ The following queries can be used to query all of the listed projects on Moonbea
 </div>
 --- END CONTENT ---
 
-Doc-Content: https://docs.moonbeam.network/learn/features/glossary/
+Doc-Content: https://docs.moonbeam.network/learn/core-concepts/glossary/
 --- BEGIN CONTENT ---
 ---
 title: Glossary

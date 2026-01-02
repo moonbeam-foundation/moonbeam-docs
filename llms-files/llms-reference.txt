@@ -7,7 +7,7 @@ This file includes documentation related to the category: Reference
 
 ## List of doc pages:
 Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/learn/dapp-directory.md [type: learn]
-Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/learn/features/glossary.md [type: learn]
+Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/learn/core-concepts/glossary.md [type: learn]
 Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/build/historical-updates.md [type: builders]
 Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/build/runtime-upgrades.md [type: builders]
 Doc-Page: https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/ethereum/canonical-contracts.md [type: builders]
@@ -3208,7 +3208,7 @@ The following queries can be used to query all of the listed projects on Moonbea
 </div>
 --- END CONTENT ---
 
-Doc-Content: https://docs.moonbeam.network/learn/features/glossary/
+Doc-Content: https://docs.moonbeam.network/learn/core-concepts/glossary/
 --- BEGIN CONTENT ---
 ---
 title: Glossary
