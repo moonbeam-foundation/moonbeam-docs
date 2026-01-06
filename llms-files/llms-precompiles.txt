@@ -712,7 +712,7 @@ The judgment-related functions that must be called by a registrar and the caller
 
 ## Interact with the Solidity Interface {: #interact-with-interface }
 
-The following sections will cover how to interact with the Identity Precompile using [Ethereum libraries](/builders/ethereum/libraries/){target=\_blank}, such as [Ethers.js](/builders/ethereum/libraries/ethersjs/){target=\_blank}, [Web3.js](/builders/ethereum/libraries/web3js/){target=\_blank}, and [Web3.py](/builders/ethereum/libraries/web3py/){target=\_blank}.
+The following sections will cover how to interact with the Identity Precompile using [Ethereum libraries](/builders/ethereum/libraries/){target=\_blank}, such as [Ethers.js](/builders/ethereum/libraries/ethersjs/){target=\_blank} and [Web3.py](/builders/ethereum/libraries/web3py/){target=\_blank}.
 
 The examples in this guide will be on Moonbase Alpha.
 To test out the examples in this guide on Moonbeam or Moonriver, you will need to have your own endpoint and API key, which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=\_blank}.
@@ -1877,99 +1877,6 @@ const setIdentity = async () => {
   console.log(`Deposit paid for this identity: ${identity[2]}`);
   console.log(`Identity information: ${identity[3]}`);
   console.log(`Display name: ${ethers.toUtf8String(identity[3][1][1])}`);
-};
-
-setIdentity();
-    ```
-
-=== "Web3.js"
-
-    ```js
-    import { Web3 } from 'web3';
-import ABI from './identityPrecompileABI.js'; // Import Identity Precompile ABI
-
-const from = {
-  privateKey: 'INSERT_PRIVATE_KEY',
-  address: 'INSERT_ADDRESS',
-};
-const identityPrecompileAddress = '0x0000000000000000000000000000000000000818';
-
-// Create provider
-const web3 = new Web3('https://rpc.api.moonbase.moonbeam.network');
-
-// Create interface for the Identity Precompile
-const identityPrecompile = new web3.eth.Contract(
-  ABI,
-  identityPrecompileAddress,
-  { from: from.address }
-);
-
-// Interact with the Precompile Registry
-const setIdentity = async () => {
-  // Assemble identity info
-  const identityInfo = {
-    additional: [],
-    display: {
-      hasData: true,
-      value: '0x416c696365', // Alice in hex
-    },
-    legal: {
-      hasData: false,
-      value: '0x',
-    },
-    web: {
-      hasData: false,
-      value: '0x',
-    },
-    riot: {
-      hasData: false,
-      value: '0x',
-    },
-    email: {
-      hasData: false,
-      value: '0x',
-    },
-    hasPgpFingerprint: false,
-    pgpFingerprint: '0x',
-    image: {
-      hasData: false,
-      value: '0x',
-    },
-    twitter: {
-      hasData: false,
-      value: '0x',
-    },
-  };
-
-  // Set the identity
-  const submitIdentity = await identityPrecompile.methods.setIdentity(
-    identityInfo
-  );
-  const sendTransaction = await web3.eth.accounts.signTransaction(
-    {
-      to: identityPrecompileAddress,
-      data: submitIdentity.encodeABI(),
-      gas: await submitIdentity.estimateGas(),
-      gasPrice: await web3.eth.getGasPrice(),
-      nonce: await web3.eth.getTransactionCount(from.address),
-    },
-    from.privateKey
-  );
-  // Sign and send the transaction to set the identity
-  const createReceipt = await web3.eth.sendSignedTransaction(
-    sendTransaction.rawTransaction
-  );
-  console.log(
-    `Identity set. Transaction hash: ${createReceipt.transactionHash}`
-  );
-
-  // Retrieve the identity
-  const identity = await identityPrecompile.methods.identity(address).call();
-  console.log(`Identity is valid: ${identity[0]}`);
-  console.log(`Judgements provided for this identity: ${identity[1]}`);
-  console.log(`Deposit paid for this identity: ${identity[2]}`);
-  console.log(`Identity information: ${identity[3]}`);
-  console.log(`Display name: ${web3.utils.hexToUtf8(identity[3][1][1])}`);
 };
 
 setIdentity();
@@ -5824,7 +5731,7 @@ The interface includes the following functions:
 
 ## Interact with the Precompile Registry Solidity Interface {: #interact-with-precompile-registry-interface }
 
-The following sections will cover how to interact with the Registry Precompile from [Remix](/builders/ethereum/dev-env/remix/){target=\_blank} and [Ethereum libraries](/builders/ethereum/libraries/){target=\_blank}, such as [Ethers.js](/builders/ethereum/libraries/ethersjs/){target=\_blank}, [Web3.js](/builders/ethereum/libraries/web3js/){target=\_blank}, and [Web3.py](/builders/ethereum/libraries/web3py/){target=\_blank}.
+The following sections will cover how to interact with the Registry Precompile from [Remix](/builders/ethereum/dev-env/remix/){target=\_blank} and [Ethereum libraries](/builders/ethereum/libraries/){target=\_blank}, such as [Ethers.js](/builders/ethereum/libraries/ethersjs/){target=\_blank} and [Web3.py](/builders/ethereum/libraries/web3py/){target=\_blank}.
 
 The examples in this guide will be on Moonbase Alpha.
 To test out the examples in this guide on Moonbeam or Moonriver, you will need to have your own endpoint and API key, which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=\_blank}.
@@ -5961,45 +5868,6 @@ const isActivePrecompile = async () => {
   );
   // Should return 'Address is an active precompile: true'
   console.log(`Address is an active precompile: ${isActivePrecompile}`);
-};
-
-isActivePrecompile();
-    ```
-
-=== "Web3.js"
-
-    ```js
-    import { Web3 } from 'web3';
-import ABI from './precompileRegistryABI.js'; // Import Precompile Registry ABI
-
-const privateKey = 'INSERT_PRIVATE_KEY';
-
-// Create provider
-const web3 = new Web3('https://rpc.api.moonbase.moonbeam.network');
-
-// Create interface for the Precompile Registry
-const precompileRegistry = new web3.eth.Contract(
-  ABI,
-  '0x0000000000000000000000000000000000000815',
-  { from: web3.eth.accounts.privateKeyToAccount(privateKey).address }
-);
-
-// Interact with the Precompile Registry
-const isActivePrecompile = async () => {
-  const proxyPrecompile = '0x000000000000000000000000000000000000080b';
-
-  // Check if the Proxy Precompile is a precompile
-  const isPrecompile = await precompileRegistry.methods.isPrecompile(
-    proxyPrecompile
-  ).call();
-  // Should return 'Address is a precompile: true'
-  console.log(`Address is a precompile: ${isPrecompile}`);
-
-  // Check if the Proxy Precompile is an active precompile
-  const isActivePrecompile =
-    await precompileRegistry.methods.isActivePrecompile(proxyPrecompile).call();
-  // Should return 'Address is an active precompile: true'
-  console.log(`Address is a precompile: ${isActivePrecompile}`);
 };
 
 isActivePrecompile();
@@ -6239,7 +6107,7 @@ A typical workflow to verify relay chain data involves the following steps:
 3. **Relay RPC call** - call the `state_getReadProof(keys, at)` RPC method to retrieve the storage proof, where `at` is the relay block hash obtained in step two, and `keys` is an array of strings which contains the keys for target storage items. For `@polkadot/api`, it can be obtained via `api.query.module.key()` function
 4. **Moonbeam RPC call** - submit an Ethereum transaction to call the `verifyEntry` or `verifyEntries` function to verify the data against the relay block number. The call data should contain the relay block number obtained in step one, the read proof generated in step three, and the key(s) to verify
 
-The following sections will cover how to interact with the Relay Data Verifier Precompile using Ethereum libraries, such as Ethers.js, Web3.js, and Web3.py. The examples in this guide will be on Moonbase Alpha.
+The following sections will cover how to interact with the Relay Data Verifier Precompile using Ethereum libraries, such as Ethers.js and Web3.py. The examples in this guide will be on Moonbase Alpha.
 
 ### Checking Prerequisites {: #checking-prerequisites }
 
@@ -6355,7 +6223,7 @@ To interact with the Solidity interface using an Ethereum library, you'll need t
 ];
     ```
 
-Once you have the ABI, you can interact with the precompile using the Ethereum library of your choice, such as [Ethers.js](/builders/ethereum/libraries/ethersjs/){target=\_blank}, [Web3.js](/builders/ethereum/libraries/web3js/){target=\_blank}, or [Web3.py](/builders/ethereum/libraries/web3py/){target=\_blank}. The general steps are as follows:
+Once you have the ABI, you can interact with the precompile using the Ethereum library of your choice, such as [Ethers.js](/builders/ethereum/libraries/ethersjs/){target=\_blank} or [Web3.py](/builders/ethereum/libraries/web3py/){target=\_blank}. The general steps are as follows:
 
 1. Create a provider
 2. Create a contract instance of the precompile
@@ -6407,70 +6275,6 @@ async function run() {
   const receipt = await precompileContract.verifyEntry(blockNum, proof, key);
   await receipt.wait();
   console.log(receipt.hash);
-}
-
-await run();
-     ```
-
-=== "Web3.js"
-
-     ```js
-     // For reading local ABI file
-import * as fs from 'fs';
-// Import web3js library, to interact with Moonbeam networks
-import { Web3 } from 'web3';
-// Import Polkadot library, to interact with relay chain
-import { ApiPromise, WsProvider } from '@polkadot/api';
-
-const abi = JSON.parse(fs.readFileSync('./RelayChainDataVerifierABI.json'));
-const privateKey = 'INSERT_PRIVATE_KEY';
-const precompileAddress = '0x0000000000000000000000000000000000000819';
-const moonbeamURL = 'https://rpc.api.moonbase.moonbeam.network';
-const relayURL = 'wss://relay.api.moonbase.moonbeam.network';
-
-// Create Web3js provider and signer
-const web3 = new Web3(moonbeamURL);
-const precompileContract = new web3.eth.Contract(abi, precompileAddress);
-
-const account = web3.eth.accounts.privateKeyToAccount(privateKey);
-
-async function run() {
-  // Create provider for relay chain
-  const wsProvider = new WsProvider(relayURL);
-  const api = await ApiPromise.create({ provider: wsProvider });
-
-  // Get the storage key for a random account on relay chain
-  const key = api.query.system.account.key(
-    '5CBATpb3yvEM4mhX9Dw3tyuqiWKhq9YBG6ugSbodRUSbodoU'
-  );
-  // Find the latest available relay chain block number from Moonbeam
-  const blockNum = await precompileContract.methods
-    .latestRelayBlockNumber()
-    .call();
-
-  // Get the block hash and storage proof from relay chain
-  const blockHash = await api.rpc.chain.getBlockHash(blockNum);
-  const proof = await api.rpc.state.getReadProof([key], blockHash);
-
-  const callObject = {
-    to: precompileAddress,
-    data: precompileContract.methods
-      .verifyEntry(blockNum, proof, key)
-      .encodeABI(),
-    gas: await precompileContract.methods
-      .verifyEntry(blockNum, proof, key)
-      .estimateGas(),
-    gasPrice: await web3.eth.getGasPrice(),
-    nonce: await web3.eth.getTransactionCount(account.address),
-  };
-
-  // This tx will be rejected if the verification failed
-  const tx = await web3.eth.accounts.signTransaction(
-    callObject,
-    account.privateKey
-  );
-  const receipt = await web3.eth.sendSignedTransaction(tx.rawTransaction);
-  console.log(receipt.transactionHash);
 }
 
 await run();
@@ -6818,7 +6622,7 @@ And that's it! You've successfully interacted with the ERC-20 precompile using M
 
 ## Ethereum Development Libraries {: #ethereum-development-libraries }
 
-If you have followed the [Ethers.js tutorial](/builders/ethereum/libraries/ethersjs/){target=\_blank} on Moonbeam, you may find it difficult to find the call data for a function. The answer is hidden within Ether's `Interface` object, where the [encodeFunctionData](https://docs.ethers.org/v6/api/abi/#Interface-encodeFunctionData){target=\_blank} function allows you to input your function name and inputs to receive the resultant call data. [Web3.js](/builders/ethereum/libraries/web3js/){target=\_blank} has a similar function, [encodeFunctionCall](https://web3js.readthedocs.io/en/v1.2.11/web3-eth-abi.html#encodefunctioncall){target=\_blank}.
+If you have followed the [Ethers.js tutorial](/builders/ethereum/libraries/ethersjs/){target=\_blank} on Moonbeam, you may find it difficult to find the call data for a function. The answer is hidden within Ether's `Interface` object, where the [encodeFunctionData](https://docs.ethers.org/v6/api/abi/#Interface-encodeFunctionData){target=\_blank} function allows you to input your function name and inputs to receive the resultant call data.
 
 !!! note
     The code snippets presented in the following sections are not meant for production environments. Please make sure you adapt it for each use-case.
@@ -12216,17 +12020,6 @@ To connect to the Moonbase Alpha relay chain, you can use the following WS Endpo
 
 ## Quick Start {: #quick-start }
 
-For the [Web3.js library](/builders/ethereum/libraries/web3js/){target=\_blank}, you can create a local Web3 instance and set the provider to connect to Moonbase Alpha (both HTTP and WS are supported):
-
-```js
-const { Web3 } = require('web3'); // Load Web3 library
-.
-.
-.
-// Create local Web3 instance - set Moonbase Alpha as provider
-const web3 = new Web3('https://rpc.api.moonbase.moonbeam.network'); 
-```
-
 For the [Ethers.js library](/builders/ethereum/libraries/ethersjs/){target=\_blank}, define the provider by using `ethers.JsonRpcProvider(providerURL, {object})` and setting the provider URL to Moonbase Alpha:
 
 ```js
@@ -12871,18 +12664,7 @@ If you're looking for your own endpoints suitable for production use, you can ch
 
 ## Quick Start {: #quick-start }
 
-Before getting started, make sure you've retrieved your own endpoint and API key from one of the custom [Endpoint Providers](/builders/get-started/endpoints/){target=\_blank}. Then for the [Web3.js library](/builders/ethereum/libraries/web3js/){target=\_blank}, you can create a local Web3 instance and set the provider to connect to Moonbeam (both HTTP and WS are supported):
-
-```js
-const { Web3 } = require('web3'); // Load Web3 library
-.
-.
-.
-// Create local Web3 instance - set Moonbeam as provider
-const web3 = new Web3('INSERT_RPC_API_ENDPOINT'); // Insert your RPC URL here
-```
-
-For the [Ethers.js library](/builders/ethereum/libraries/ethersjs/){target=\_blank}, define the provider by using `ethers.JsonRpcProvider(providerURL, {object})` and setting the provider URL to Moonbeam:
+Before getting started, make sure you've retrieved your own endpoint and API key from one of the custom [Endpoint Providers](/builders/get-started/endpoints/){target=\_blank}. For the [Ethers.js library](/builders/ethereum/libraries/ethersjs/){target=\_blank}, define the provider by using `ethers.JsonRpcProvider(providerURL, {object})` and setting the provider URL to Moonbeam:
 
 ```js
 const ethers = require('ethers'); // Load Ethers library
@@ -12970,18 +12752,7 @@ If you're looking for your own endpoints suitable for production use, you can ch
 
 ## Quick Start {: #quick-start }
 
-Before getting started, make sure you've retrieved your own endpoint and API key from one of the custom [Endpoint Providers](/builders/get-started/endpoints/){target=\_blank}. Then for the [Web3.js library](/builders/ethereum/libraries/web3js/){target=\_blank}, you can create a local Web3 instance and set the provider to connect to Moonriver (both HTTP and WS are supported):
-
-```js
-const { Web3 } = require('web3'); // Load Web3 library
-.
-.
-.
-// Create local Web3 instance - set Moonriver as provider
-const web3 = new Web3('INSERT_RPC_API_ENDPOINT'); // Insert your RPC URL here
-```
-
-For the [Ethers.js library](/builders/ethereum/libraries/ethersjs/){target=\_blank}, define the provider by using `ethers.JsonRpcProvider(providerURL, {object})` and setting the provider URL to Moonriver:
+Before getting started, make sure you've retrieved your own endpoint and API key from one of the custom [Endpoint Providers](/builders/get-started/endpoints/){target=\_blank}. For the [Ethers.js library](/builders/ethereum/libraries/ethersjs/){target=\_blank}, define the provider by using `ethers.JsonRpcProvider(providerURL, {object})` and setting the provider URL to Moonriver:
 
 ```js
 const ethers = require('ethers'); // Load Ethers library
