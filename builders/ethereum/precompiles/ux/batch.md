@@ -268,7 +268,7 @@ And that's it! You've successfully interacted with the ERC-20 precompile using M
 
 ## Ethereum Development Libraries {: #ethereum-development-libraries }
 
-If you have followed the [Ethers.js tutorial](/builders/ethereum/libraries/ethersjs/){target=\_blank} on Moonbeam, you may find it difficult to find the call data for a function. The answer is hidden within Ether's `Interface` object, where the [encodeFunctionData](https://docs.ethers.org/v6/api/abi/#Interface-encodeFunctionData){target=\_blank} function allows you to input your function name and inputs to receive the resultant call data. [Web3.js](/builders/ethereum/libraries/web3js/){target=\_blank} has a similar function, [encodeFunctionCall](https://web3js.readthedocs.io/en/v1.2.11/web3-eth-abi.html#encodefunctioncall){target=\_blank}.
+If you have followed the [Ethers.js tutorial](/builders/ethereum/libraries/ethersjs/){target=\_blank} on Moonbeam, you may find it difficult to find the call data for a function. The answer is hidden within Ether's `Interface` object, where the [encodeFunctionData](https://docs.ethers.org/v6/api/abi/#Interface-encodeFunctionData){target=\_blank} function allows you to input your function name and inputs to receive the resultant call data.
 
 !!! note
     The code snippets presented in the following sections are not meant for production environments. Please make sure you adapt it for each use-case.
