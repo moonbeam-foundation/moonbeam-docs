@@ -54,7 +54,7 @@ You will need to create a Hardhat project if you don't already have one. You can
 4. Create a Hardhat project.
 
     ```sh
-    npx hardhat init
+    npx hardhat --init
     ```
 
     !!! note
