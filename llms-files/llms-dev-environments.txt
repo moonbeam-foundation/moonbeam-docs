@@ -1126,7 +1126,7 @@ npx hardhat compile
     <span data-ty>Compiled 2 Solidity files with solc 0.8.28 (evm target: cancun)</span>
     <br>
     <span data-ty>Compiled 1 Solidity test file with solc 0.8.28 (evm target: cancun)</span>
-    <span data-ty>kevin@Kevins-MBP contracts %</span>
+    <span data-ty><span class="file-path"></span></span>
 </div>
 
 After compilation, an `artifacts` directory is created that holds the bytecode and metadata of the contract, which are `.json` files. It's a good idea to add this directory to a `.gitignore` file.
