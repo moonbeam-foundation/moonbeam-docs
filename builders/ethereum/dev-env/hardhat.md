@@ -95,7 +95,7 @@ export default defineConfig({
 });
 ```
 
-If you chose a TypeScript template, the file will be `hardhat.config.ts`; the config content is the same. For this example, you can leave the Solidity compiler version to `0.8.28`; however, if you are using a different contract that requires a newer version, don't forget to update the version here.
+If you chose a TypeScript template, the file will be `hardhat.config.ts`, and the config content will be the same. For this example, you can keep the Solidity compiler version at `0.8.28`; however, if you are using a contract that requires a newer version, don't forget to update it here.
 
 Install the plugins and libraries used in this guide if your project template did not add them:
 
