@@ -108,7 +108,8 @@ Next, you'll need to modify your configuration file to add the network configura
 - **`url`**: The [RPC endpoint](/builders/get-started/endpoints/){target=\_blank} of the node.
 - **`chainId`**: The chain ID, which is used to validate the network.
 - **`accounts`**: The accounts that can be used to deploy and interact with contracts. You can either enter an array of the private keys for your accounts or use an [HD Wallet](https://github.com/ethereumbook/ethereumbook/blob/develop/src/chapter_5.md#hierarchical-deterministic-wallets-bip-32bip-44){target=\_blank}.
-- **`type`** and **`chainType`**: In Hardhat 3, external RPC networks use `type: "http"` and `chainType: "l1"` for Moonbeam networks.
+- **`type`**: For external RPC networks on Moonbeam, set `type: "http"`.
+- **`chainType`**: For Moonbeam networks, set `chainType: "l1"`.
 
 Hardhat 3 includes an encrypted secrets manager via the `@nomicfoundation/hardhat-keystore` plugin, which keeps sensitive data out of source control. After installing and importing the plugin, set your secrets with the keystore:
 
