@@ -458,7 +458,6 @@ You can [fork](https://hardhat.org/hardhat-network/docs/guides/forking-other-net
 
 There are some limitations to be aware of when using Hardhat forking. You cannot interact with any of the Moonbeam precompiled contracts or their functions. Precompiles are a part of the Substrate implementation and therefore cannot be replicated in the simulated EVM environment. This prohibits you from interacting with cross-chain assets on Moonbeam and Substrate-based functionality such as staking and governance.
 
-Earlier versions of Hardhat required a manual patch to fork Moonbeam. Hardhat 3 includes the fix, so no manual patching is needed.
 
 ### Forking Moonbeam {: #forking-moonbeam }
 
