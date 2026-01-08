@@ -85,7 +85,7 @@ You will need to create a Hardhat project if you don't already have one. You can
 
 The Hardhat configuration file is the entry point into your Hardhat project. It defines various settings and options for your Hardhat project, such as the Solidity compiler version to use and the networks you can deploy your contracts to.
 
-Hardhat 3 is ESM-first. If you stay with JavaScript, keep `"type": "module"` in your `package.json`. A minimal `hardhat.config.js` looks like:
+If you are using JavaScript, keep `"type": "module"` in your `package.json`. A minimal `hardhat.config.js` looks like:
 
 ```js
 import { defineConfig } from "hardhat/config";
