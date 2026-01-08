@@ -111,7 +111,7 @@ Next, you'll need to modify your configuration file to add the network configura
 - **`type`**: For external RPC networks on Moonbeam, set `type: "http"`.
 - **`chainType`**: For Moonbeam networks, set `chainType: "l1"`.
 
-Hardhat 3 includes an encrypted secrets manager via the `@nomicfoundation/hardhat-keystore` plugin, which keeps sensitive data out of source control. After installing and importing the plugin, set your secrets with the keystore:
+Hardhat includes an encrypted secrets manager via the `@nomicfoundation/hardhat-keystore` plugin, which keeps sensitive data out of source control. After installing and importing the plugin, set your secrets with the keystore:
 
 === "Moonbeam"
 
