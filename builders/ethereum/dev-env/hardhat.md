@@ -108,8 +108,8 @@ Next, you'll need to modify your configuration file to add the network configura
 - **`url`**: The [RPC endpoint](/builders/get-started/endpoints/){target=\_blank} of the node.
 - **`chainId`**: The chain ID, which is used to validate the network.
 - **`accounts`**: The accounts that can be used to deploy and interact with contracts. You can either enter an array of the private keys for your accounts or use an [HD Wallet](https://github.com/ethereumbook/ethereumbook/blob/develop/src/chapter_5.md#hierarchical-deterministic-wallets-bip-32bip-44){target=\_blank}.
-- **`type`**: For external RPC networks on Moonbeam, set `type: "http"`.
-- **`chainType`**: For Moonbeam networks, set `chainType: "l1"`.
+- **`type`**: For external RPC networks on Moonbeam, set `type: 'http'`.
+- **`chainType`**: For Moonbeam networks, set `chainType: 'l1'`.
 
 Hardhat includes an encrypted secrets manager via the `@nomicfoundation/hardhat-keystore` plugin, which keeps sensitive data out of source control. After installing and importing the plugin, set your secrets with the keystore:
 
@@ -149,21 +149,21 @@ Then, update your configuration file to use the encrypted secrets and ESM syntax
 === "Moonbeam"
 
     ```js
-    import hardhatEthers from "@nomicfoundation/hardhat-ethers";
-    import hardhatIgnitionEthers from "@nomicfoundation/hardhat-ignition-ethers";
-    import hardhatKeystore from "@nomicfoundation/hardhat-keystore";
-    import { configVariable, defineConfig } from "hardhat/config";
+    import hardhatEthers from '@nomicfoundation/hardhat-ethers';
+    import hardhatIgnitionEthers from '@nomicfoundation/hardhat-ignition-ethers';
+    import hardhatKeystore from '@nomicfoundation/hardhat-keystore';
+    import { configVariable, defineConfig } from 'hardhat/config';
 
     export default defineConfig({
       plugins: [hardhatEthers, hardhatIgnitionEthers, hardhatKeystore],
-      solidity: "0.8.28",
+      solidity: '0.8.28',
       networks: {
         moonbeam: {
-          type: "http",
-          chainType: "l1",
-          url: configVariable("MOONBEAM_RPC_URL"),
+          type: 'http',
+          chainType: 'l1',
+          url: configVariable('MOONBEAM_RPC_URL'),
           chainId: {{ networks.moonbeam.chain_id }}, // (hex: {{ networks.moonbeam.hex_chain_id }}),
-          accounts: [configVariable("MOONBEAM_PRIVATE_KEY")],
+          accounts: [configVariable('MOONBEAM_PRIVATE_KEY')],
         },
       },
     });
@@ -172,21 +172,21 @@ Then, update your configuration file to use the encrypted secrets and ESM syntax
 === "Moonriver"
 
     ```js
-    import hardhatEthers from "@nomicfoundation/hardhat-ethers";
-    import hardhatIgnitionEthers from "@nomicfoundation/hardhat-ignition-ethers";
-    import hardhatKeystore from "@nomicfoundation/hardhat-keystore";
-    import { configVariable, defineConfig } from "hardhat/config";
+    import hardhatEthers from '@nomicfoundation/hardhat-ethers';
+    import hardhatIgnitionEthers from '@nomicfoundation/hardhat-ignition-ethers';
+    import hardhatKeystore from '@nomicfoundation/hardhat-keystore';
+    import { configVariable, defineConfig } from 'hardhat/config';
 
     export default defineConfig({
       plugins: [hardhatEthers, hardhatIgnitionEthers, hardhatKeystore],
-      solidity: "0.8.28",
+      solidity: '0.8.28',
       networks: {
         moonriver: {
-          type: "http",
-          chainType: "l1",
-          url: configVariable("MOONRIVER_RPC_URL"),
+          type: 'http',
+          chainType: 'l1',
+          url: configVariable('MOONRIVER_RPC_URL'),
           chainId: {{ networks.moonriver.chain_id }}, // (hex: {{ networks.moonriver.hex_chain_id }}),
-          accounts: [configVariable("MOONRIVER_PRIVATE_KEY")],
+          accounts: [configVariable('MOONRIVER_PRIVATE_KEY')],
         },
       },
     });
@@ -195,21 +195,21 @@ Then, update your configuration file to use the encrypted secrets and ESM syntax
 === "Moonbase Alpha"
 
     ```js
-    import hardhatEthers from "@nomicfoundation/hardhat-ethers";
-    import hardhatIgnitionEthers from "@nomicfoundation/hardhat-ignition-ethers";
-    import hardhatKeystore from "@nomicfoundation/hardhat-keystore";
-    import { configVariable, defineConfig } from "hardhat/config";
+    import hardhatEthers from '@nomicfoundation/hardhat-ethers';
+    import hardhatIgnitionEthers from '@nomicfoundation/hardhat-ignition-ethers';
+    import hardhatKeystore from '@nomicfoundation/hardhat-keystore';
+    import { configVariable, defineConfig } from 'hardhat/config';
 
     export default defineConfig({
       plugins: [hardhatEthers, hardhatIgnitionEthers, hardhatKeystore],
-      solidity: "0.8.28",
+      solidity: '0.8.28',
       networks: {
         moonbase: {
-          type: "http",
-          chainType: "l1",
-          url: configVariable("MOONBASE_RPC_URL"),
+          type: 'http',
+          chainType: 'l1',
+          url: configVariable('MOONBASE_RPC_URL'),
           chainId: {{ networks.moonbase.chain_id }}, // (hex: {{ networks.moonbase.hex_chain_id }}),
-          accounts: [configVariable("MOONBASE_PRIVATE_KEY")],
+          accounts: [configVariable('MOONBASE_PRIVATE_KEY')],
         },
       },
     });
@@ -218,21 +218,21 @@ Then, update your configuration file to use the encrypted secrets and ESM syntax
 === "Moonbeam Dev Node"
 
     ```js
-    import hardhatEthers from "@nomicfoundation/hardhat-ethers";
-    import hardhatIgnitionEthers from "@nomicfoundation/hardhat-ignition-ethers";
-    import hardhatKeystore from "@nomicfoundation/hardhat-keystore";
-    import { configVariable, defineConfig } from "hardhat/config";
+    import hardhatEthers from '@nomicfoundation/hardhat-ethers';
+    import hardhatIgnitionEthers from '@nomicfoundation/hardhat-ignition-ethers';
+    import hardhatKeystore from '@nomicfoundation/hardhat-keystore';
+    import { configVariable, defineConfig } from 'hardhat/config';
 
     export default defineConfig({
       plugins: [hardhatEthers, hardhatIgnitionEthers, hardhatKeystore],
-      solidity: "0.8.28",
+      solidity: '0.8.28',
       networks: {
         dev: {
-          type: "http",
-          chainType: "l1",
-          url: configVariable("DEV_RPC_URL"),
+          type: 'http',
+          chainType: 'l1',
+          url: configVariable('DEV_RPC_URL'),
           chainId: {{ networks.development.chain_id }}, // (hex: {{ networks.development.hex_chain_id }}),
-          accounts: [configVariable("DEV_PRIVATE_KEY")],
+          accounts: [configVariable('DEV_PRIVATE_KEY')],
         },
       },
     });
@@ -324,16 +324,16 @@ Next, you can write your Hardhat Ignition module. To get started, take the follo
 
 ```js
 // 1. Import the `buildModule` function from the Hardhat Ignition module
-import { buildModule } from "@nomicfoundation/hardhat-ignition/modules";
+import { buildModule } from '@nomicfoundation/hardhat-ignition/modules';
 
 // 2. Export a module using `buildModule`
 // Use `export default` instead of `module.exports`
-export default buildModule("BoxModule", (m) => {
+export default buildModule('BoxModule', (m) => {
   // 3. Use the `getAccount` method to select the deployer account
   const deployer = m.getAccount(0);
   
   // 4. Deploy the `Box` contract
-  const box = m.contract("Box", [], {
+  const box = m.contract('Box', [], {
     from: deployer, 
   });
   
@@ -384,7 +384,7 @@ Next, you can take the following steps, entering one line at a time:
 2. Connect the local instance to the deployed contract, using the address of the contract shown in the prior step under **Deployed Addresses**.
 
     ```js
-    const box = await Box.attach('INSERT-CONTRACT-ADDRESS');
+    const box = await Box.attach('INSERT_CONTRACT_ADDRESS');
     ```
 
 3. Interact with the attached contract. For this example, you can call the `store` method and store a simple value.
@@ -419,14 +419,14 @@ Now paste the following contract into the `set-value.js` file:
 
 ```js
 // scripts/set-value.js
-import { ethers } from "hardhat";
+import { ethers } from 'hardhat';
 
 async function main() {
   // Create instance of the Box contract
-  const Box = await ethers.getContractFactory("Box");
+  const Box = await ethers.getContractFactory('Box');
 
   // Connect the instance to the deployed contract
-  const box = await Box.attach("INSERT-CONTRACT-ADDRESS");
+  const box = await Box.attach('INSERT_CONTRACT_ADDRESS');
 
   // Store a new value
   await box.store(2);
@@ -545,14 +545,14 @@ From here, you can deploy new contracts to your forked instance of Moonbeam or i
 To interact with an already deployed contract, you can create a new script in the `scripts` directory using `ethers`. Because you'll be running it with Hardhat, you can import `ethers` directly from the Hardhat runtime without extra setup. Inside the script, you can access a live contract on the network using the following snippet:
 
 ```js
-import { ethers } from "hardhat";
+import { ethers } from 'hardhat';
 
 async function main() {
-  const provider = new ethers.JsonRpcProvider("http://127.0.0.1:8545/");
+  const provider = new ethers.JsonRpcProvider('http://127.0.0.1:8545/');
 
   const contract = new ethers.Contract(
-    "INSERT_CONTRACT_ADDRESS",
-    "INSERT_CONTRACT_ABI",
+    'INSERT_CONTRACT_ADDRESS',
+    'INSERT_CONTRACT_ABI',
     provider
   );
 }
