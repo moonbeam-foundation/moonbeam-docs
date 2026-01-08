@@ -3659,17 +3659,6 @@ To connect to the Moonbase Alpha relay chain, you can use the following WS Endpo
 
 ## Quick Start {: #quick-start }
 
-For the [Web3.js library](/builders/ethereum/libraries/web3js/){target=\_blank}, you can create a local Web3 instance and set the provider to connect to Moonbase Alpha (both HTTP and WS are supported):
-
-```js
-const { Web3 } = require('web3'); // Load Web3 library
-.
-.
-.
-// Create local Web3 instance - set Moonbase Alpha as provider
-const web3 = new Web3('https://rpc.api.moonbase.moonbeam.network'); 
-```
-
 For the [Ethers.js library](/builders/ethereum/libraries/ethersjs/){target=\_blank}, define the provider by using `ethers.JsonRpcProvider(providerURL, {object})` and setting the provider URL to Moonbase Alpha:
 
 ```js
@@ -4314,18 +4303,7 @@ If you're looking for your own endpoints suitable for production use, you can ch
 
 ## Quick Start {: #quick-start }
 
-Before getting started, make sure you've retrieved your own endpoint and API key from one of the custom [Endpoint Providers](/builders/get-started/endpoints/){target=\_blank}. Then for the [Web3.js library](/builders/ethereum/libraries/web3js/){target=\_blank}, you can create a local Web3 instance and set the provider to connect to Moonbeam (both HTTP and WS are supported):
-
-```js
-const { Web3 } = require('web3'); // Load Web3 library
-.
-.
-.
-// Create local Web3 instance - set Moonbeam as provider
-const web3 = new Web3('INSERT_RPC_API_ENDPOINT'); // Insert your RPC URL here
-```
-
-For the [Ethers.js library](/builders/ethereum/libraries/ethersjs/){target=\_blank}, define the provider by using `ethers.JsonRpcProvider(providerURL, {object})` and setting the provider URL to Moonbeam:
+Before getting started, make sure you've retrieved your own endpoint and API key from one of the custom [Endpoint Providers](/builders/get-started/endpoints/){target=\_blank}. For the [Ethers.js library](/builders/ethereum/libraries/ethersjs/){target=\_blank}, define the provider by using `ethers.JsonRpcProvider(providerURL, {object})` and setting the provider URL to Moonbeam:
 
 ```js
 const ethers = require('ethers'); // Load Ethers library
@@ -4413,18 +4391,7 @@ If you're looking for your own endpoints suitable for production use, you can ch
 
 ## Quick Start {: #quick-start }
 
-Before getting started, make sure you've retrieved your own endpoint and API key from one of the custom [Endpoint Providers](/builders/get-started/endpoints/){target=\_blank}. Then for the [Web3.js library](/builders/ethereum/libraries/web3js/){target=\_blank}, you can create a local Web3 instance and set the provider to connect to Moonriver (both HTTP and WS are supported):
-
-```js
-const { Web3 } = require('web3'); // Load Web3 library
-.
-.
-.
-// Create local Web3 instance - set Moonriver as provider
-const web3 = new Web3('INSERT_RPC_API_ENDPOINT'); // Insert your RPC URL here
-```
-
-For the [Ethers.js library](/builders/ethereum/libraries/ethersjs/){target=\_blank}, define the provider by using `ethers.JsonRpcProvider(providerURL, {object})` and setting the provider URL to Moonriver:
+Before getting started, make sure you've retrieved your own endpoint and API key from one of the custom [Endpoint Providers](/builders/get-started/endpoints/){target=\_blank}. For the [Ethers.js library](/builders/ethereum/libraries/ethersjs/){target=\_blank}, define the provider by using `ethers.JsonRpcProvider(providerURL, {object})` and setting the provider URL to Moonriver:
 
 ```js
 const ethers = require('ethers'); // Load Ethers library
