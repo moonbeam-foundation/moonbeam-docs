@@ -13,7 +13,7 @@ The batch precompiled contract on Moonbeam allows developers to combine multiple
 
 Currently, having users interact with multiple contracts would require multiple transaction confirmations in the user's wallet. An example would be approving a smart contract's access to a token, then transferring it. With the batch precompile, developers can enhance user experience with batched transactions as it minimizes the number of transactions a user is required to confirm to one. Additionally, gas fees can be reduced since batching avoids multiple base gas fees (the initial 21000 units of gas spent to begin a transaction).
 
-The precompile interacts directly with [Substrate's EVM pallet](/learn/platform/technology/#evm-pallet){target=\_blank}. The caller of the batch function will have their address act as the `msg.sender` for all subtransactions, but unlike [delegate calls](https://docs.soliditylang.org/en/v0.8.15/introduction-to-smart-contracts.html#delegatecall-callcode-and-libraries){target=\_blank}, the target contract will still affect its own storage. It is effectively the same as if the user signed multiple transactions, but with only one confirmation.
+The precompile interacts directly with [Substrate's EVM pallet](https://polkadot-evm.github.io/frontier/rustdocs/pallet_evm/){target=\_blank}. The caller of the batch function will have their address act as the `msg.sender` for all subtransactions, but unlike [delegate calls](https://docs.soliditylang.org/en/v0.8.15/introduction-to-smart-contracts.html#delegatecall-callcode-and-libraries){target=\_blank}, the target contract will still affect its own storage. It is effectively the same as if the user signed multiple transactions, but with only one confirmation.
 
 The precompile is located at the following address:
 
@@ -268,7 +268,7 @@ And that's it! You've successfully interacted with the ERC-20 precompile using M
 
 ## Ethereum Development Libraries {: #ethereum-development-libraries }
 
-If you have followed the [Ethers.js tutorial](/builders/ethereum/libraries/ethersjs/){target=\_blank} on Moonbeam, you may find it difficult to find the call data for a function. The answer is hidden within Ether's `Interface` object, where the [encodeFunctionData](https://docs.ethers.org/v6/api/abi/#Interface-encodeFunctionData){target=\_blank} function allows you to input your function name and inputs to receive the resultant call data. [Web3.js](/builders/ethereum/libraries/web3js/){target=\_blank} has a similar function, [encodeFunctionCall](https://web3js.readthedocs.io/en/v1.2.11/web3-eth-abi.html#encodefunctioncall){target=\_blank}.
+If you have followed the [Ethers.js tutorial](/builders/ethereum/libraries/ethersjs/){target=\_blank} on Moonbeam, you may find it difficult to find the call data for a function. The answer is hidden within Ether's `Interface` object, where the [encodeFunctionData](https://docs.ethers.org/v6/api/abi/#Interface-encodeFunctionData){target=\_blank} function allows you to input your function name and inputs to receive the resultant call data.
 
 !!! note
     The code snippets presented in the following sections are not meant for production environments. Please make sure you adapt it for each use-case.

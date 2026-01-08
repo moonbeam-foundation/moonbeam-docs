@@ -78,7 +78,7 @@ The interface includes the following functions:
 
 ## Interact with the Precompile Registry Solidity Interface {: #interact-with-precompile-registry-interface }
 
-The following sections will cover how to interact with the Registry Precompile from [Remix](/builders/ethereum/dev-env/remix/){target=\_blank} and [Ethereum libraries](/builders/ethereum/libraries/){target=\_blank}, such as [Ethers.js](/builders/ethereum/libraries/ethersjs/){target=\_blank}, [Web3.js](/builders/ethereum/libraries/web3js/){target=\_blank}, and [Web3.py](/builders/ethereum/libraries/web3py/){target=\_blank}.
+The following sections will cover how to interact with the Registry Precompile from [Remix](/builders/ethereum/dev-env/remix/){target=\_blank} and [Ethereum libraries](/builders/ethereum/libraries/){target=\_blank}, such as [Ethers.js](/builders/ethereum/libraries/ethersjs/){target=\_blank} and [Web3.py](/builders/ethereum/libraries/web3py/){target=\_blank}.
 
 The examples in this guide will be on Moonbase Alpha.
 --8<-- 'text/_common/endpoint-examples.md'
@@ -131,12 +131,6 @@ Once you have the ABI, you can interact with the Registry using the Ethereum lib
 
     ```js
     --8<-- 'code/builders/ethereum/precompiles/utility/registry/ethers.js'
-    ```
-
-=== "Web3.js"
-
-    ```js
-    --8<-- 'code/builders/ethereum/precompiles/utility/registry/web3.js'
     ```
 
 === "Web3.py"

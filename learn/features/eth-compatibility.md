@@ -16,10 +16,6 @@ This documentation overviews Moonbeam's Ethereum compatibility features and high
 
 Moonbeam incorporates a fully compatible EVM to execute smart contracts in Solidity or other EVM-compatible languages. This enables developers to deploy existing Ethereum smart contracts on Moonbeam with minimal modifications.
 
-Learn more:
-
-- [Moonbeam's Ethereum-compatibility architecture](/learn/platform/technology/#ethereum-compatibility-architecture){target=\_blank}
-
 ### Ethereum-style Accounts {: #ethereum-style-accounts }
 
 Moonbeam employs H160 Ethereum-style accounts and ECDSA keys, ensuring compatibility with existing Ethereum wallets and facilitating a smooth end-user experience. This is possible due to Moonbeam's unified accounts system, which modifies the underlying Substrate account system to use Ethereum accounts by default.
@@ -67,7 +63,6 @@ Due to Moonbeam's native interoperability, ERC-20s can be sent cross-chain to ot
 
 Learn more:
 
-- [Create common OpenZeppelin contracts such as ERC-20, ERC-721, and ERC-1155 tokens](/builders/ethereum/dev-env/openzeppelin/contracts/){target=\_blank}
 - [XCM-enabled ERC-20s](/builders/interoperability/xcm/xc20/overview/#local-xc20s){target=\_blank} (also referred to as local XC-20s)
 
 ## Key Differences {: #key-differences }

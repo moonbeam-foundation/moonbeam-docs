@@ -51,7 +51,7 @@ To interact with any of these data pairs, you'll need to take note of the pair's
 
 ### Try It Out {: #try-it-out }
 
-Try out a basic example of how to fetch price data using Supra's pull model with step-by-step instructions in the [Fetching Price Data with Supra Oracles](/tutorials/integrations/supra/){target=\_blank} tutorial. You'll learn how to tackle each of the three steps mentioned in the [previous section](#price-feeds).
+Try out a basic example of how to fetch price data using Supra's pull model by following the steps mentioned in the [previous section](#price-feeds) or by referencing the [Supra documentation](https://supra.com/developers/){target=\_blank}.
 
 ## Connect with Supra {: #connect-with-supra }
 
