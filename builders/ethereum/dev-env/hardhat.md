@@ -88,10 +88,10 @@ The Hardhat configuration file is the entry point into your Hardhat project. It 
 If you are using JavaScript, keep `"type": "module"` in your `package.json`. A minimal `hardhat.config.js` looks like:
 
 ```js
-import { defineConfig } from "hardhat/config";
+import { defineConfig } from 'hardhat/config';
 
 export default defineConfig({
-  solidity: "0.8.28",
+  solidity: '0.8.28',
 });
 ```
 
