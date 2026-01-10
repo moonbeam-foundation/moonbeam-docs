@@ -50,6 +50,8 @@ To request DEV tokens from the faucet, you can enter your address on the [Moonba
 
 ![Moonbase Alpha Faucet Website.](/images/builders/get-started/networks/moonbase/moonbase-1.webp)
 
+Alternatively, use [ethfaucet.com](https://ethfaucet.com?utm_source=moonbeam_docs&utm_medium=docs).
+
 !!! note
     Moonbase Alpha DEV tokens have no value. Please don't spam the faucet with unnecessary requests.
 
