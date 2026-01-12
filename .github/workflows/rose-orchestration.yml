@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       base_ref:
-        description: 'Baseref (main)'
+        description: 'Baseref (master)'
         required: true
         default: 'master'
       head_ref:

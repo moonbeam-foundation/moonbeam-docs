@@ -1,0 +1,240 @@
+# English translations for PROJECT.
+# Copyright (C) 2026 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2026-01-12 17:34-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.15.0\n"
+
+msgid "action.edit"
+msgstr "Edit"
+
+msgid "action.view"
+msgstr "View"
+
+msgid "clipboard.copied"
+msgstr "Copied"
+
+msgid "disclaimer.third_party"
+msgstr "All information made available, including claims, content, designs, algorithms, estimates, roadmaps, specifications, and performance measurements described in this project are provided for informational purposes only and Moonbeam does not endorse any project referenced here. It is up to the reader to check and validate the accuracy and truthfulness. Furthermore, nothing in this project information constitutes a solicitation for investment. No developer or entity involved in creating the Moonbeam Network or Moonriver Network or authoring this information will be liable for any claims or damages whatsoever associated with your use, inability to use, or your interaction with other users of, the Moonbeam Network or Moonriver Network or any information made available on this website, including any direct, indirect, incidental, special, exemplary, punitive or consequential damages, or loss of profits, cryptocurrencies, tokens, or anything else of value. All information contained herein is subject to modification without notice."
+
+msgid "footer.next"
+msgstr "Next"
+
+msgid "footer.previous"
+msgstr "Previous"
+
+msgid "footer.title"
+msgstr "Title"
+
+msgid "header.title"
+msgstr "Title"
+
+msgid "material_overrides.404.404_not_found"
+msgstr "404 - Not found"
+
+msgid "material_overrides.home.a_series_of_guides__141194"
+msgstr ""
+"A series of guides showing you how and where you can use your MOVR and GLMR tokens with\n"
+"          wallets/DApps or earn rewards through staking."
+
+msgid "material_overrides.home.ai_compatible_docs"
+msgstr "AI-Compatible Docs"
+
+msgid "material_overrides.home.bug_bounty"
+msgstr "Bug Bounty"
+
+msgid "material_overrides.home.builders"
+msgstr "builders"
+
+msgid "material_overrides.home.building_on_moonbeam"
+msgstr "Building on Moonbeam"
+
+msgid "material_overrides.home.canonical_contracts"
+msgstr "Canonical Contracts"
+
+msgid "material_overrides.home.dive_into_the_moonbeam__b76b96"
+msgstr ""
+"Dive into the Moonbeam ecosystem and learn what makes this approach to Ethereum compatibility\n"
+"          so compelling."
+
+msgid "material_overrides.home.dive_into_the_tools__9abd82"
+msgstr "Dive into the tools, integrations, and comprehensive tutorials to start using and building on Moonbeam."
+
+msgid "material_overrides.home.everything_you_need_to__0e7eae"
+msgstr ""
+"Everything you need to know about running a node on Moonbeam and Moonriver, how to become a\n"
+"          collator, and more."
+
+msgid "material_overrides.home.explore_the_dapp_directory"
+msgstr "Explore the DApp directory"
+
+msgid "material_overrides.home.grants_program"
+msgstr "Grants Program"
+
+msgid "material_overrides.home.historical_updates"
+msgstr "Historical Updates"
+
+msgid "material_overrides.home.how_to_connect_metamask__e5c8c5"
+msgstr "How to connect MetaMask to Moonbeam-based networks"
+
+msgid "material_overrides.home.how_to_get_your__d48411"
+msgstr "How to get your own API endpoint for Moonbeam-based networks"
+
+msgid "material_overrides.home.how_to_set_up__030179"
+msgstr "How to set up a Moonbeam-based node"
+
+msgid "material_overrides.home.how_to_stake_delegate__1d2881"
+msgstr "How to stake (delegate) a collator"
+
+msgid "material_overrides.home.how_to_use_ethereum__7f58d5"
+msgstr "How to use Ethereum tools to send transactions & deploy contracts"
+
+msgid "material_overrides.home.icon_of_a_page"
+msgstr "Icon of a page"
+
+msgid "material_overrides.home.in_this_section"
+msgstr "In this section"
+
+msgid "material_overrides.home.learn_about_collator_requirements__ad8f20"
+msgstr "Learn about collator requirements and how to spin up a collator node"
+
+msgid "material_overrides.home.learn_how_to_build__870c14"
+msgstr ""
+"Learn how to build a new application or deploy existing Solidity/Vyper smart contracts to\n"
+"          Moonbeam, Moonriver, or the Moonbase Alpha TestNet."
+
+msgid "material_overrides.home.learn_more"
+msgstr "Learn More"
+
+msgid "material_overrides.home.learning_about_moonbeam"
+msgstr "Learning About Moonbeam"
+
+msgid "material_overrides.home.moonbeam_combines_the_best__3448ca"
+msgstr ""
+"Moonbeam combines the best of both worlds: the familiar and easy-to-use tooling of Ethereum\n"
+"        and the scalable, interoperable architecture of Polkadot."
+
+msgid "material_overrides.home.moonbeam_docs"
+msgstr "Moonbeam Docs"
+
+msgid "material_overrides.home.moonbeam_network_overview"
+msgstr "Moonbeam network overview"
+
+msgid "material_overrides.home.moonbeam_network_resources_documentation"
+msgstr "Moonbeam Network Resources & Documentation"
+
+msgid "material_overrides.home.moonbeam_vs_ethereum"
+msgstr "Moonbeam vs Ethereum"
+
+msgid "material_overrides.home.network_endpoints"
+msgstr "Network Endpoints"
+
+msgid "material_overrides.home.node_operators"
+msgstr "node operators"
+
+msgid "material_overrides.home.operating_a_node"
+msgstr "Operating a Node"
+
+msgid "material_overrides.home.quick_references"
+msgstr "Quick References"
+
+msgid "material_overrides.home.representation_of_the_moonbeam__37d819"
+msgstr "representation of the Moonbeam docs site"
+
+msgid "material_overrides.home.security_considerations"
+msgstr "Security Considerations"
+
+msgid "material_overrides.home.start_building"
+msgstr "Start Building"
+
+msgid "material_overrides.home.tokens"
+msgstr "tokens"
+
+msgid "material_overrides.home.using_your_movr_glmr__4a127c"
+msgstr "Using Your MOVR & GLMR Tokens"
+
+msgid "material_overrides.main.as_of_runtime_3400__7cf49d"
+msgstr ""
+"As of Runtime 3400, the minimum gas price has been reduced by 4x to 31.25 Gwei. \n"
+"     Learn more about"
+
+msgid "material_overrides.main.documentation_for_the_moonbeam__bdfc98"
+msgstr "Documentation for the Moonbeam Smart Contract Platform"
+
+msgid "material_overrides.main.the_new_minimum_gas__85f959"
+msgstr "the new minimum gas price"
+
+msgid "material_overrides.partials.consent.center_section_title_and_description"
+msgstr "Center section title and description"
+
+msgid "material_overrides.partials.consent.consent_settings"
+msgstr "Consent settings"
+
+msgid "material_overrides.partials.consent.left_section_logo"
+msgstr "Left section logo"
+
+msgid "material_overrides.partials.consent.manage_settings_toggle"
+msgstr "Manage settings toggle"
+
+msgid "material_overrides.partials.consent.moonbeam_logo_for_cookie_consent"
+msgstr "Moonbeam logo for cookie consent"
+
+msgid "material_overrides.partials.consent.right_section_buttons"
+msgstr "Right section buttons"
+
+msgid "material_overrides.partials.feedback.divider"
+msgstr "Divider"
+
+msgid "material_overrides.partials.footer.llms_by_topic"
+msgstr "Llms by topic"
+
+msgid "material_overrides.partials.footer.llms_full_txt"
+msgstr "Llms full txt"
+
+msgid "material_overrides.partials.footer.llms_txt"
+msgstr "Llms txt"
+
+msgid "material_overrides.partials.footer.made_with_by"
+msgstr "Made with 🩵 by <a href=\"https://papermoon.io/\" target=\"_blank\">PaperMoon</a>"
+
+msgid "material_overrides.partials.footer.privacy_policy"
+msgstr "Privacy policy"
+
+msgid "material_overrides.partials.footer.terms_of_use"
+msgstr "Terms of use"
+
+msgid "material_overrides.partials.header.connect_wallet"
+msgstr "Connect wallet"
+
+msgid "material_overrides.partials.header.faucet"
+msgstr "Faucet"
+
+msgid "nav"
+msgstr "Nav"
+
+msgid "search"
+msgstr "Search"
+
+msgid "source.file.date.created"
+msgstr "Created"
+
+msgid "source.file.date.updated"
+msgstr "Updated"
+
+msgid "tabs"
+msgstr "Tabs"
+

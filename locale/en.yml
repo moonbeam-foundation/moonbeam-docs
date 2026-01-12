@@ -1,0 +1,106 @@
+material_overrides:
+  home:
+    explore_the_dapp_directory: Explore the DApp directory
+    icon_of_a_page: Icon of a page
+    moonbeam_network_overview: Moonbeam network overview
+    in_this_section: In this section
+    learn_more: Learn More
+    dive_into_the_moonbeam__b76b96: |-
+      Dive into the Moonbeam ecosystem and learn what makes this approach to Ethereum compatibility
+                so compelling.
+    learning_about_moonbeam: Learning About Moonbeam
+    how_to_stake_delegate__1d2881: How to stake (delegate) a collator
+    how_to_connect_metamask__e5c8c5: How to connect MetaMask to Moonbeam-based networks
+    a_series_of_guides__141194: |-
+      A series of guides showing you how and where you can use your MOVR and GLMR tokens with
+                wallets/DApps or earn rewards through staking.
+    tokens: tokens
+    using_your_movr_glmr__4a127c: Using Your MOVR & GLMR Tokens
+    learn_about_collator_requirements__ad8f20: Learn about collator requirements and how to spin up a collator node
+    how_to_set_up__030179: How to set up a Moonbeam-based node
+    everything_you_need_to__0e7eae: |-
+      Everything you need to know about running a node on Moonbeam and Moonriver, how to become a
+                collator, and more.
+    node_operators: node operators
+    operating_a_node: Operating a Node
+    how_to_use_ethereum__7f58d5: How to use Ethereum tools to send transactions & deploy contracts
+    how_to_get_your__d48411: How to get your own API endpoint for Moonbeam-based networks
+    learn_how_to_build__870c14: |-
+      Learn how to build a new application or deploy existing Solidity/Vyper smart contracts to
+                Moonbeam, Moonriver, or the Moonbase Alpha TestNet.
+    builders: builders
+    building_on_moonbeam: Building on Moonbeam
+    historical_updates: Historical Updates
+    security_considerations: Security Considerations
+    network_endpoints: Network Endpoints
+    canonical_contracts: Canonical Contracts
+    moonbeam_vs_ethereum: Moonbeam vs Ethereum
+    quick_references: Quick References
+    grants_program: Grants Program
+    bug_bounty: Bug Bounty
+    start_building: Start Building
+    representation_of_the_moonbeam__37d819: representation of the Moonbeam docs site
+    ai_compatible_docs: AI-Compatible Docs
+    dive_into_the_tools__9abd82: Dive into the tools, integrations, and comprehensive tutorials to start using and building
+      on Moonbeam.
+    moonbeam_combines_the_best__3448ca: |-
+      Moonbeam combines the best of both worlds: the familiar and easy-to-use tooling of Ethereum
+              and the scalable, interoperable architecture of Polkadot.
+    moonbeam_network_resources_documentation: Moonbeam Network Resources & Documentation
+    moonbeam_docs: Moonbeam Docs
+  '404':
+    404_not_found: 404 - Not found
+  main:
+    the_new_minimum_gas__85f959: the new minimum gas price
+    as_of_runtime_3400__7cf49d: "As of Runtime 3400, the minimum gas price has been reduced by 4x to 31.25 Gwei. \n     Learn\
+      \ more about"
+    documentation_for_the_moonbeam__bdfc98: Documentation for the Moonbeam Smart Contract Platform
+  partials:
+    consent:
+      center_section_title_and_description: Center section title and description
+      consent_settings: Consent settings
+      left_section_logo: Left section logo
+      manage_settings_toggle: Manage settings toggle
+      moonbeam_logo_for_cookie_consent: Moonbeam logo for cookie consent
+      right_section_buttons: Right section buttons
+    feedback:
+      divider: Divider
+    footer:
+      llms_by_topic: Llms by topic
+      llms_full_txt: Llms full txt
+      llms_txt: Llms txt
+      made_with_by: Made with 🩵 by <a href="https://papermoon.io/" target="_blank">PaperMoon</a>
+      privacy_policy: Privacy policy
+      terms_of_use: Terms of use
+    header:
+      connect_wallet: Connect wallet
+      faucet: Faucet
+disclaimer:
+  third_party: All information made available, including claims, content, designs, algorithms, estimates, roadmaps, specifications,
+    and performance measurements described in this project are provided for informational purposes only and Moonbeam does
+    not endorse any project referenced here. It is up to the reader to check and validate the accuracy and truthfulness. Furthermore,
+    nothing in this project information constitutes a solicitation for investment. No developer or entity involved in creating
+    the Moonbeam Network or Moonriver Network or authoring this information will be liable for any claims or damages whatsoever
+    associated with your use, inability to use, or your interaction with other users of, the Moonbeam Network or Moonriver
+    Network or any information made available on this website, including any direct, indirect, incidental, special, exemplary,
+    punitive or consequential damages, or loss of profits, cryptocurrencies, tokens, or anything else of value. All information
+    contained herein is subject to modification without notice.
+action:
+  edit: Edit
+  view: View
+clipboard:
+  copied: Copied
+footer:
+  next: Next
+  previous: Previous
+  title: Title
+header:
+  title: Title
+nav: Nav
+search: Search
+source:
+  file:
+    date:
+      created: Created
+      updated: Updated
+tabs: Tabs
