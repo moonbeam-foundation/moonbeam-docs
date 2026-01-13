@@ -250,10 +250,6 @@ def build_markdown(summary_path: Path) -> str:
     if locale_added_section:
         blocks.extend(locale_added_section)
         blocks.append("")
-    locale_unused_section = _format_unused(data.get("locale_unused_keys", []))
-    if locale_unused_section:
-        blocks.extend(locale_unused_section)
-        blocks.append("")
     validation_block = data.get("validation") or {
         "status": data.get("validation_status", "unknown"),
     }

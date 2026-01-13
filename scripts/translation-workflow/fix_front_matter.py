@@ -6,8 +6,9 @@ import argparse
 import os
 from pathlib import Path
 
-from paths import DOCS_ROOT, REPO_ROOT
+from paths import DOCS_ROOT, REPO_ROOT, repo_path
 from inject_translations import (
+    _is_language_dir,
     _restore_markdown_structure,
     _split_front_matter,
 )
@@ -23,6 +24,39 @@ def _iter_locale_files(language: str):
     for path in lang_root.rglob("*"):
         if path.suffix.lower() in MARKDOWN_SUFFIXES and path.is_file():
             yield path
+
+
+def _iter_target_files(paths: list[str]):
+    seen: set[Path] = set()
+    for raw in paths:
+        candidate = raw.strip()
+        if not candidate:
+            continue
+        path = repo_path(candidate)
+        if path in seen:
+            continue
+        seen.add(path)
+        if not path.exists():
+            continue
+        if path.suffix.lower() not in MARKDOWN_SUFFIXES:
+            continue
+        yield path
+
+
+def _detect_language(path: Path) -> str | None:
+    try:
+        rel = path.relative_to(DOCS_ROOT)
+    except ValueError:
+        return None
+    parts = rel.parts
+    if not parts:
+        return None
+    lang = parts[0].lower()
+    if lang == "en":
+        return None
+    if _is_language_dir(lang):
+        return lang
+    return None
 
 
 def _english_counterpart(translated: Path, language: str) -> Path:
@@ -92,18 +126,37 @@ def _dedupe_fences(text: str) -> str:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--languages", nargs="*", default=[])
+    parser.add_argument("--files", nargs="*", default=[])
+    parser.add_argument("--file-list", type=Path)
     args = parser.parse_args()
 
-    languages = args.languages or [p.name for p in DOCS_ROOT.iterdir() if p.is_dir()]
+    file_args: list[str] = []
+    if args.file_list and args.file_list.exists():
+        file_args.extend(
+            [line.strip() for line in args.file_list.read_text(encoding="utf-8").splitlines()]
+        )
+    if args.files:
+        file_args.extend(args.files)
+
     total = 0
-    for lang in languages:
-        lang_lower = lang.lower()
-        if lang_lower == "en":
-            continue
-        for path in _iter_locale_files(lang_lower):
-            english_path = _english_counterpart(path, lang_lower)
+    if file_args:
+        for path in _iter_target_files(file_args):
+            lang = _detect_language(path)
+            if not lang:
+                continue
+            english_path = _english_counterpart(path, lang)
             if _fix_file(path, english_path):
                 total += 1
+    else:
+        languages = args.languages or [p.name for p in DOCS_ROOT.iterdir() if p.is_dir()]
+        for lang in languages:
+            lang_lower = lang.lower()
+            if lang_lower == "en":
+                continue
+            for path in _iter_locale_files(lang_lower):
+                english_path = _english_counterpart(path, lang_lower)
+                if _fix_file(path, english_path):
+                    total += 1
     if not QUIET:
         print(f"Front matter fixes applied to {total} file(s)")
     return 0

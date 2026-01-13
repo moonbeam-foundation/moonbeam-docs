@@ -928,6 +928,19 @@ def _run_pipeline(args: argparse.Namespace) -> int:
                 entry["translated_content"] = _strip_code_fence(entry["translated_content"])
     PAYLOAD_PATH.write_text(json.dumps(translations, indent=2, ensure_ascii=False), encoding="utf-8")
     payload_entries = _payload_entries_list(translations)
+    target_files = _collect_target_files(translations)
+    markdown_suffixes = {".md", ".markdown", ".mkd"}
+    front_matter_targets = [
+        repo_relative_str(path)
+        for path in target_files
+        if path.suffix.lower() in markdown_suffixes
+    ]
+    front_matter_list = TRANSLATION_STAGE / "front_matter_targets.txt"
+    if front_matter_targets:
+        front_matter_list.write_text(
+            "\n".join(front_matter_targets) + "\n",
+            encoding="utf-8",
+        )
 
     _run_cmd([PYTHON_BIN, "-m", "pip", "install", "ruamel.yaml==0.18.16"])
     _run_cmd([PYTHON_BIN, str(CURRENT_DIR / "extract_strings.py"), "--payload", str(PAYLOAD_PATH)])
@@ -942,20 +955,17 @@ def _run_pipeline(args: argparse.Namespace) -> int:
         ]
     )
 
-    _run_cmd(
-        [
-            PYTHON_BIN,
-            str(CURRENT_DIR / "fix_front_matter.py"),
-            "--languages",
-            *args.languages,
-        ]
-    )
+    fix_front_matter_cmd = [PYTHON_BIN, str(CURRENT_DIR / "fix_front_matter.py")]
+    if front_matter_targets:
+        fix_front_matter_cmd += ["--file-list", str(front_matter_list)]
+    else:
+        fix_front_matter_cmd += ["--languages", *args.languages]
+    _run_cmd(fix_front_matter_cmd)
 
     _run_cmd([PYTHON_BIN, str(CURRENT_DIR / "format_locale_yaml.py")])
 
-    target_files = _collect_target_files(translations)
     payload_segments = _summarize_payload_segments(payload_entries)
-    markdown_suffixes = {".md", ".markdown", ".mkd"}
+
     def _normalize_lang_prefix(path: Path) -> Path:
         parts = list(path.parts)
         if parts:
@@ -992,14 +1002,12 @@ def _run_pipeline(args: argparse.Namespace) -> int:
     if validation_result.returncode != 0:
         _info("Structural validation reported issues; continuing so translations stay available.")
     _maybe_post_validation_comments(commit_sha)
-    _run_cmd(
-        [
-            PYTHON_BIN,
-            str(CURRENT_DIR / "fix_front_matter.py"),
-            "--languages",
-            *args.languages,
-        ]
-    )
+    fix_front_matter_cmd = [PYTHON_BIN, str(CURRENT_DIR / "fix_front_matter.py")]
+    if front_matter_targets:
+        fix_front_matter_cmd += ["--file-list", str(front_matter_list)]
+    else:
+        fix_front_matter_cmd += ["--languages", *args.languages]
+    _run_cmd(fix_front_matter_cmd)
     _run_cmd([PYTHON_BIN, str(CURRENT_DIR / "cleanup_tmp.py")])
 
     missing_report = _report_missing_translations(english_files, args.languages)

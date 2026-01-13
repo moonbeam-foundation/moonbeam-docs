@@ -4,9 +4,9 @@ on:
   workflow_dispatch:
     inputs:
       base_ref:
-        description: 'Baseref (master)'
+        description: 'Baseref (default branch)'
         required: true
-        default: 'master'
+        default: 'main'
       head_ref:
         description: 'Headref (feature branch)'
         required: true
@@ -31,7 +31,6 @@ on:
       - edited
   push:
     branches:
-      - main
       - master
   schedule:
     # Adjust time as needed (UTC).
@@ -199,12 +198,16 @@ jobs:
 
   process-queue:
     name: Process Rose PRs
-    if: ${{ github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.file_filter == 'run_queue') }}
+    needs: guard
+    if: ${{ github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.file_filter == 'run_queue' && needs.guard.outputs.allowed == 'true') }}
     runs-on: ubuntu-latest
+    outputs:
+      success_payload: ${{ steps.success_payload.outputs.payload }}
+      success_count: ${{ steps.process_queue.outputs.success_count }}
     permissions:
       actions: read
       contents: write
-      issues: write
+      issues: read
       pull-requests: read
     env:
       N8N_WEBHOOK_URL: ${{ secrets.N8N_WEBHOOK_URL_TR }}
@@ -550,6 +553,20 @@ jobs:
 
             await fs.promises.appendFile(process.env.GITHUB_STEP_SUMMARY, lines.join('\n'));
 
+      - name: Capture success payload
+        if: ${{ steps.process_queue.outputs.success_count != '0' }}
+        id: success_payload
+        shell: bash
+        env:
+          SUCCESS_FILE: ${{ steps.process_queue.outputs.success_file }}
+        run: |
+          if [[ -f "$SUCCESS_FILE" ]]; then
+            payload="$(base64 -w 0 "$SUCCESS_FILE")"
+            echo "payload=$payload" >> "$GITHUB_OUTPUT"
+          else
+            echo "payload=" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Prepare temporary summary directory
         if: ${{ steps.process_queue.outputs.success_count != '0' }}
         id: temp_summary
@@ -632,26 +649,43 @@ jobs:
           fi
           echo "pushed=true" >> "$GITHUB_OUTPUT"
 
+  mark-sent:
+    name: Mark PRs as Sent
+    if: ${{ needs.process-queue.result == 'success' && needs.process-queue.outputs.success_count != '0' }}
+    needs: process-queue
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+      pull-requests: write
+    env:
+      ROSE_QUEUE_LABEL: rose
+      ROSE_SENT_LABEL: rose-sent
+    steps:
       - name: Mark PRs as sent
-        if: ${{ steps.process_queue.outputs.success_count != '0' }}
         uses: actions/github-script@v7
         env:
-          SUCCESS_FILE: ${{ steps.process_queue.outputs.success_file }}
-          ROSE_QUEUE_LABEL: ${{ env.ROSE_QUEUE_LABEL }}
-          ROSE_SENT_LABEL: ${{ env.ROSE_SENT_LABEL }}
+          SUCCESS_PAYLOAD: ${{ needs.process-queue.outputs.success_payload }}
         with:
           script: |
-            const fs = require('fs');
-
-            const successFile = process.env.SUCCESS_FILE;
+            const payload = process.env.SUCCESS_PAYLOAD || '';
             const queueLabel = (process.env.ROSE_QUEUE_LABEL || 'rose').toLowerCase();
             const sentLabel = (process.env.ROSE_SENT_LABEL || 'rose-sent').toLowerCase();
 
-            if (!successFile || !fs.existsSync(successFile)) {
+            if (!payload) {
               core.info('No successful entries found; skipping label updates.');
               return;
             }
-            const successEntries = JSON.parse(fs.readFileSync(successFile, 'utf8'));
+
+            let successEntries = [];
+            try {
+              const decoded = Buffer.from(payload, 'base64').toString('utf8');
+              successEntries = JSON.parse(decoded);
+            } catch (error) {
+              core.warning(`Failed to decode success payload: ${error.message}`);
+              return;
+            }
+
             if (!successEntries.length) {
               core.info('No successful entries found; skipping label updates.');
               return;
@@ -730,6 +764,7 @@ jobs:
           git push origin "$TARGET_BRANCH"
 
   guard:
+    name: Permission Guard
     if: ${{ github.event_name == 'workflow_dispatch' }}
     runs-on: ubuntu-latest
     outputs:
@@ -1039,9 +1074,10 @@ jobs:
           } >> "$GITHUB_STEP_SUMMARY"
 
   notify-on-failure:
+    name: Notify on Failure
     runs-on: ubuntu-latest
-    needs: [run-pipeline]
-    if: ${{ always() && needs.run-pipeline.result == 'failure' }}
+    needs: [run-pipeline, process-queue]
+    if: ${{ always() && (needs.run-pipeline.result == 'failure' || needs.process-queue.result == 'failure') }}
     env:
       ERROR_WEBHOOK_URL: ${{ secrets.ERROR_WEBHOOK_URL }}
       RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
@@ -1051,6 +1087,9 @@ jobs:
       ACTOR: ${{ github.actor }}
       REPOSITORY: ${{ github.repository }}
       REF: ${{ github.ref }}
+      FAILED_JOB: ${{ needs.run-pipeline.result == 'failure' && 'run-pipeline' || needs.process-queue.result == 'failure' && 'process-queue' || '' }}
+      RUN_PIPELINE_STATUS: ${{ needs.run-pipeline.result }}
+      PROCESS_QUEUE_STATUS: ${{ needs.process-queue.result }}
     steps:
       - name: Send failure webhook
         run: |
@@ -1069,8 +1108,11 @@ jobs:
             --arg run_id "$RUN_ID" \
             --arg run_attempt "$RUN_ATTEMPT" \
             --arg actor "$ACTOR" \
-            --arg status "${{ needs.run-pipeline.result }}" \
-            '{repository:$repo, ref:$ref, status:$status, run_url:$run_url, workflow:$workflow, run_id:$run_id, run_attempt:$run_attempt, actor:$actor}')
+            --arg status "failure" \
+            --arg failed_job "$FAILED_JOB" \
+            --arg run_pipeline_status "$RUN_PIPELINE_STATUS" \
+            --arg process_queue_status "$PROCESS_QUEUE_STATUS" \
+            '{repository:$repo, ref:$ref, status:$status, failed_job:$failed_job, run_pipeline_status:$run_pipeline_status, process_queue_status:$process_queue_status, run_url:$run_url, workflow:$workflow, run_id:$run_id, run_attempt:$run_attempt, actor:$actor}')
 
           curl -sS --fail-with-body --proto '=https' --tlsv1.2 \
             --retry 2 --retry-all-errors \

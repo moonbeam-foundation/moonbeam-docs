@@ -19,3 +19,210 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.15.0\n"
 
+msgid "action.edit"
+msgstr "编辑"
+
+msgid "action.view"
+msgstr "查看"
+
+msgid "clipboard.copied"
+msgstr "已复制"
+
+msgid "disclaimer.third_party"
+msgstr "所有可用信息，包括本项目中描述的声明、内容、设计、算法、估算、路线图、规范和性能测量，仅供参考，Moonbeam 不认可此处引用的任何项目。读者有责任检查和验证其准确性和真实性。此外，本项目中的任何信息均不构成投资邀请。创建 Moonbeam 网络或 Moonriver 网络的任何开发者或实体或编写此信息的作者均不对因您使用、无法使用或您与其他用户的互动而引起的任何索赔或损害负责， 包括任何直接、间接、附带、特殊、惩戒性、惩罚性或后果性损害，或利润、加密货币、代币或任何其他有价值物品的损失。本文包含的所有信息如有更改，恕不另行通知。"
+
+msgid "footer.next"
+msgstr "下一个"
+
+msgid "footer.previous"
+msgstr "上一个"
+
+msgid "footer.title"
+msgstr "标题"
+
+msgid "header.title"
+msgstr "标题"
+
+msgid "material_overrides.404.404_not_found"
+msgstr "404 - 未找到"
+
+msgid "material_overrides.home.a_series_of_guides__141194"
+msgstr "一系列指南，向您展示如何以及在何处将您的 MOVR 和 GLMR 代币与钱包/DApp 一起使用，或者通过质押赚取奖励。"
+
+msgid "material_overrides.home.ai_compatible_docs"
+msgstr "AI 兼容文档"
+
+msgid "material_overrides.home.bug_bounty"
+msgstr "漏洞赏金"
+
+msgid "material_overrides.home.builders"
+msgstr "开发者"
+
+msgid "material_overrides.home.building_on_moonbeam"
+msgstr "在 Moonbeam 上构建"
+
+msgid "material_overrides.home.canonical_contracts"
+msgstr "标准合约"
+
+msgid "material_overrides.home.dive_into_the_moonbeam__b76b96"
+msgstr "深入了解 Moonbeam 生态系统，了解这种以太坊兼容性方法的引人之处。"
+
+msgid "material_overrides.home.dive_into_the_tools__9abd82"
+msgstr "深入了解工具、集成和全面的教程，开始使用 Moonbeam 并基于其构建。"
+
+msgid "material_overrides.home.everything_you_need_to__0e7eae"
+msgstr "运行 Moonbeam 和 Moonriver 节点所需的一切，如何成为收集人等等。"
+
+msgid "material_overrides.home.explore_the_dapp_directory"
+msgstr "探索 DApp 目录"
+
+msgid "material_overrides.home.grants_program"
+msgstr "资助计划"
+
+msgid "material_overrides.home.historical_updates"
+msgstr "历史更新"
+
+msgid "material_overrides.home.how_to_connect_metamask__e5c8c5"
+msgstr "如何将 MetaMask 连接到基于 Moonbeam 的网络"
+
+msgid "material_overrides.home.how_to_get_your__d48411"
+msgstr "如何获得基于 Moonbeam 的网络的 API 端点"
+
+msgid "material_overrides.home.how_to_set_up__030179"
+msgstr "如何设置基于 Moonbeam 的节点"
+
+msgid "material_overrides.home.how_to_stake_delegate__1d2881"
+msgstr "如何质押（委托）收集人"
+
+msgid "material_overrides.home.how_to_use_ethereum__7f58d5"
+msgstr "如何使用以太坊工具发送交易和部署合约"
+
+msgid "material_overrides.home.icon_of_a_page"
+msgstr "页面图标"
+
+msgid "material_overrides.home.in_this_section"
+msgstr "在本节中"
+
+msgid "material_overrides.home.learn_about_collator_requirements__ad8f20"
+msgstr "了解收集人的要求以及如何启动收集人节点"
+
+msgid "material_overrides.home.learn_how_to_build__870c14"
+msgstr "了解如何构建新应用程序或将现有的 Solidity/Vyper 智能合约部署到 Moonbeam、Moonriver 或 Moonbase Alpha 测试网。"
+
+msgid "material_overrides.home.learn_more"
+msgstr "了解更多"
+
+msgid "material_overrides.home.learning_about_moonbeam"
+msgstr "了解 Moonbeam"
+
+msgid "material_overrides.home.moonbeam_combines_the_best__3448ca"
+msgstr "Moonbeam 结合了两全其美的优势：以太坊熟悉且易于使用的工具，以及 Polkadot 可扩展、可互操作的架构。"
+
+msgid "material_overrides.home.moonbeam_docs"
+msgstr "Moonbeam 文档"
+
+msgid "material_overrides.home.moonbeam_network_overview"
+msgstr "Moonbeam 网络概览"
+
+msgid "material_overrides.home.moonbeam_network_resources_documentation"
+msgstr "Moonbeam 网络资源和文档"
+
+msgid "material_overrides.home.moonbeam_vs_ethereum"
+msgstr "Moonbeam vs Ethereum"
+
+msgid "material_overrides.home.network_endpoints"
+msgstr "网络端点"
+
+msgid "material_overrides.home.node_operators"
+msgstr "节点运营商"
+
+msgid "material_overrides.home.operating_a_node"
+msgstr "运营节点"
+
+msgid "material_overrides.home.quick_references"
+msgstr "快速参考"
+
+msgid "material_overrides.home.representation_of_the_moonbeam__37d819"
+msgstr "Moonbeam 文档站点的表示"
+
+msgid "material_overrides.home.security_considerations"
+msgstr "安全注意事项"
+
+msgid "material_overrides.home.start_building"
+msgstr "开始构建"
+
+msgid "material_overrides.home.tokens"
+msgstr "代币"
+
+msgid "material_overrides.home.using_your_movr_glmr__4a127c"
+msgstr "使用您的 MOVR 和 GLMR 代币"
+
+msgid "material_overrides.main.as_of_runtime_3400__7cf49d"
+msgstr "“截至 Runtime 3400，最低 gas 价格已降低 4 倍至 31.25 Gwei。\\n     了解更多关于\""
+
+msgid "material_overrides.main.documentation_for_the_moonbeam__bdfc98"
+msgstr "Moonbeam 智能合约平台文档"
+
+msgid "material_overrides.main.the_new_minimum_gas__85f959"
+msgstr "新的最低gas费"
+
+msgid "material_overrides.partials.consent.center_section_title_and_description"
+msgstr "中心区域标题和描述"
+
+msgid "material_overrides.partials.consent.consent_settings"
+msgstr "同意设置"
+
+msgid "material_overrides.partials.consent.left_section_logo"
+msgstr "左侧区域徽标"
+
+msgid "material_overrides.partials.consent.manage_settings_toggle"
+msgstr "管理设置切换"
+
+msgid "material_overrides.partials.consent.moonbeam_logo_for_cookie_consent"
+msgstr "用于 Cookie 同意的 Moonbeam 徽标"
+
+msgid "material_overrides.partials.consent.right_section_buttons"
+msgstr "右侧区域按钮"
+
+msgid "material_overrides.partials.feedback.divider"
+msgstr "分割线"
+
+msgid "material_overrides.partials.footer.llms_by_topic"
+msgstr "按主题分类的法学硕士"
+
+msgid "material_overrides.partials.footer.llms_full_txt"
+msgstr "法学硕士全文"
+
+msgid "material_overrides.partials.footer.llms_txt"
+msgstr "法学硕士文本"
+
+msgid "material_overrides.partials.footer.made_with_by"
+msgstr "由 <a href=\"https://papermoon.io/\" target=\"_blank\">PaperMoon</a> with 🩵 制作"
+
+msgid "material_overrides.partials.footer.privacy_policy"
+msgstr "隐私政策"
+
+msgid "material_overrides.partials.footer.terms_of_use"
+msgstr "使用条款"
+
+msgid "material_overrides.partials.header.connect_wallet"
+msgstr "连接钱包"
+
+msgid "material_overrides.partials.header.faucet"
+msgstr "水龙头"
+
+msgid "nav"
+msgstr "导航"
+
+msgid "search"
+msgstr "搜索"
+
+msgid "source.file.date.created"
+msgstr "创建时间"
+
+msgid "source.file.date.updated"
+msgstr "更新时间"
+
+msgid "tabs"
+msgstr "标签"
+
