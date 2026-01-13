@@ -13250,6 +13250,7 @@ Not all runtime upgrades are released on each network, as sometimes after releas
 | [4000](https://forum.moonbeam.network/t/runtime-rt4000-schedule/2321){target=\_blank} | - | [14078615](https://moonriver.subscan.io/block/14078615){target=\_blank} | [14191989](https://moonbase.subscan.io/block/14191989){target=\_blank} |
 | [4001](https://forum.moonbeam.network/t/runtime-rt4000-4001-schedule/2321){target=\_blank} | [13654437](https://moonbeam.subscan.io/block/13654437){target=\_blank} | - | - |
 | [4100](https://forum.moonbeam.network/t/runtime-rt4100-schedule/2370){target=\_blank} | - | [14623899](https://moonriver.subscan.io/block/14623899){target=\_blank} | [14535211](https://moonbase.subscan.io/block/14535211){target=\_blank} |
+| [4101](https://forum.moonbeam.network/t/runtime-rt4100-4101-schedule/2370/2){target=\_blank} | - | [14664970](https://moonriver.subscan.io/block/14664970){target=\_blank} | - |
 --- END CONTENT ---
 
 Doc-Content: https://docs.moonbeam.network/builders/ethereum/canonical-contracts/
@@ -13934,7 +13935,7 @@ You can create your own endpoint suitable for development or production use usin
 
 - [1RPC](#1rpc)
 - [Chainstack](#chainstack)
-- [dRPC](#drpc)
+- [dRPC NodeCloud](#drpc)
 - [Dwellir](#dwellir)
 - [GetBlock](#getblock)
 - [OnFinality](#onfinality)
@@ -13962,7 +13963,7 @@ To start with a free Developer plan endpoint, sign up using an email or any soci
 
 ![Chainstack](/images/builders/get-started/endpoints/endpoints-2.webp)
 
-### dRPC.org {: #drpc }
+### dRPC NodeCloud {: #drpc }
 
 dRPC.org offers public and paid [Moonbeam RPC](https://drpc.org/chainlist/moonbeam-mainnet-rpc){target=_blank} endpoints, providing an efficient, low-latency connection to blockchain nodes. The paid tiers include higher request limits, lower latency, and advanced analytics for optimized performance.
 
