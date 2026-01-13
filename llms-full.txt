@@ -2266,7 +2266,7 @@ Hardhat takes a task-based approach to development, where you can define and exe
 
 You can also extend Hardhat's functionality through the use of [plugins](https://hardhat.org/hardhat-runner/plugins){target=\_blank}. Plugins are external extensions that integrate with Hardhat to provide additional features and tools for your workflow. For example, there are plugins for common Ethereum libraries, like [Ethers.js](/builders/ethereum/libraries/ethersjs/){target=\_blank} and [viem](/builders/ethereum/libraries/viem/){target=\_blank}, a plugin that extends the Chai assertion library to include Ethereum-specific functionality, and more. All of these plugins can be used to extend your Hardhat project on Moonbeam.
 
-This guide will provide a brief introduction to Hardhat and show you how to use Hardhat to compile, deploy, and debug Ethereum smart contracts on the Moonbase Alpha TestNet. This guide can also be adapted for Moonbeam, Moonriver, or a Moonbeam development node.
+This guide will provide a brief introduction to Hardhat and show you how to use Hardhat to compile, deploy, and debug Ethereum smart contracts on the Moonbase Alpha TestNet. This guide can also be adapted for Moonbeam, Moonriver, or a Moonbeam development node. The content below targets Hardhat 3 (current release: 3.0.17).
 
 Please note that although Hardhat comes with a [Hardhat Network](https://hardhat.org/docs#hardhat-network){target=\_blank} component, which provides a local development environment, you should use a [local Moonbeam development node](/builders/get-started/networks/moonbeam-dev/){target=\_blank} instead. You can connect a Moonbeam development node to Hardhat just like you would with any other network.
 
@@ -2274,11 +2274,12 @@ Please note that although Hardhat comes with a [Hardhat Network](https://hardhat
 
 To get started, you will need the following:
 
+- Have Node.js 22.10.0 or later (Hardhat 3 only supports even-numbered LTS versions) and npm
 - Have [MetaMask installed](/tokens/connect/metamask/#install-the-metamask-extension){target=\_blank} and [connected to Moonbase Alpha](/tokens/connect/metamask/#connect-metamask-to-moonbeam){target=\_blank}.
 - Have an account with funds.
-  You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}.
+  You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}
 - 
-  To test out the examples in this guide on Moonbeam or Moonriver, you will need to have your own endpoint and API key, which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=\_blank}.
+  To test out the examples in this guide on Moonbeam or Moonriver, you will need to have your own endpoint and API key, which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=\_blank}
 
 ## Create a Hardhat Project {: #creating-a-hardhat-project }
 
@@ -2299,7 +2300,7 @@ You will need to create a Hardhat project if you don't already have one. You can
 3. Install Hardhat.
 
     ```sh
-    npm install hardhat
+    npm install --save-dev hardhat
     ```
 
 4. Create a Hardhat project.
@@ -2341,7 +2342,7 @@ You will need to create a Hardhat project if you don't already have one. You can
   <span data-ty>888&nbsp;&nbsp;&nbsp;&nbsp;888&nbsp;888&nbsp;&nbsp;888&nbsp;888&nbsp;&nbsp;&nbsp;&nbsp;Y88b&nbsp;888&nbsp;888&nbsp;&nbsp;888&nbsp;888&nbsp;&nbsp;888&nbsp;Y88b.</span>
   <span data-ty>888&nbsp;&nbsp;&nbsp;&nbsp;888&nbsp;"Y888888&nbsp;888&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Y88888&nbsp;888&nbsp;&nbsp;888&nbsp;"Y888888&nbsp;&nbsp;"Y888</span>
     <br>
-  <span data-ty>👷 Welcome to Hardhat v3.0.4 👷‍</span>
+  <span data-ty>👷 Welcome to Hardhat v3.0.17 👷‍</span>
     <br>
   <span data-ty="input" data-ty-prompt="?">&nbsp;Which version of Hardhat would you like to use? …</span>
   <span data-ty="input" data-ty-prompt="❯">&nbsp;Hardhat 3 Beta (recommended for new projects)</span>
@@ -2359,42 +2360,33 @@ You will need to create a Hardhat project if you don't already have one. You can
 
 The Hardhat configuration file is the entry point into your Hardhat project. It defines various settings and options for your Hardhat project, such as the Solidity compiler version to use and the networks you can deploy your contracts to.
 
-To start, your `hardhat.config.js` should resemble the following:
+If you are using JavaScript, keep `"type": "module"` in your `package.json`. A minimal `hardhat.config.js` looks like:
 
 ```js
-/** @type import('hardhat/config').HardhatUserConfig */
-module.exports = {
+import { defineConfig } from 'hardhat/config';
+
+export default defineConfig({
   solidity: '0.8.28',
-};
+});
 ```
 
-For this example, you can leave the Solidity compiler version to `0.8.28`; however, if you are using a different contract that requires a newer version, don't forget to update the version here.
+If you chose a TypeScript template, the file will be `hardhat.config.ts`, and the config content will be the same. For this example, you can keep the Solidity compiler version at `0.8.28`; however, if you are using a contract that requires a newer version, don't forget to update it here.
+
+Install the plugins and libraries used in this guide if your project template did not add them:
+
+```bash
+npm install --save-dev @nomicfoundation/hardhat-ethers @nomicfoundation/hardhat-ignition-ethers @nomicfoundation/hardhat-keystore ethers
+```
 
 Next, you'll need to modify your configuration file to add the network configurations for the network you want to deploy your contract to. For Moonbeam networks, you'll need to specify the following:
 
 - **`url`**: The [RPC endpoint](/builders/get-started/endpoints/){target=\_blank} of the node.
 - **`chainId`**: The chain ID, which is used to validate the network.
 - **`accounts`**: The accounts that can be used to deploy and interact with contracts. You can either enter an array of the private keys for your accounts or use an [HD Wallet](https://github.com/ethereumbook/ethereumbook/blob/develop/src/chapter_5.md#hierarchical-deterministic-wallets-bip-32bip-44){target=\_blank}.
+- **`type`**: For external RPC networks on Moonbeam, set `type: 'http'`.
+- **`chainType`**: For Moonbeam networks, set `chainType: 'l1'`.
 
-Hardhat 3 includes an encrypted secrets manager that makes it easier to handle sensitive information like private keys. This ensures you don't have to hardcode secrets in your source code or store them in plain text.
-
-!!! note
-    The encrypted secrets manager is only available in Hardhat 3 or higher. You can install the latest version with:
-
-    ```bash
-    npm install hardhat
-    ```
-
-    For the latest releases and updates, check the [Hardhat releases page](https://github.com/NomicFoundation/hardhat/releases/).
-
-To use encrypted secrets, you'll need to:
-
-1. Install Hardhat (latest version):
-```bash
-npm install hardhat
-```
-
-2. Set up your secrets using the keystore:
+Hardhat includes an encrypted secrets manager via the `@nomicfoundation/hardhat-keystore` plugin, which keeps sensitive data out of source control. After installing and importing the plugin, set your secrets with the keystore:
 
 === "Moonbeam"
 
@@ -2424,110 +2416,106 @@ npm install hardhat
     npx hardhat keystore set DEV_PRIVATE_KEY
     ```
 
-Then, update your configuration file to use the encrypted secrets:
+!!! warning
+    The Hardhat console task does not currently prompt for keystore secrets. Use environment variables for your config variables before running `npx hardhat console`, or interact through scripts/tasks instead of the console when using the keystore.
+
+Then, update your configuration file to use the encrypted secrets and ESM syntax:
 
 === "Moonbeam"
 
     ```js
-    module.exports = {
+    import hardhatEthers from '@nomicfoundation/hardhat-ethers';
+    import hardhatIgnitionEthers from '@nomicfoundation/hardhat-ignition-ethers';
+    import hardhatKeystore from '@nomicfoundation/hardhat-keystore';
+    import { configVariable, defineConfig } from 'hardhat/config';
+
+    export default defineConfig({
+      plugins: [hardhatEthers, hardhatIgnitionEthers, hardhatKeystore],
       solidity: '0.8.28',
       networks: {
         moonbeam: {
-          type: "http",
-          chainType: "generic",
-          url: configVariable("MOONBEAM_RPC_URL"),
+          type: 'http',
+          chainType: 'l1',
+          url: configVariable('MOONBEAM_RPC_URL'),
           chainId: {{ networks.moonbeam.chain_id }}, // (hex: {{ networks.moonbeam.hex_chain_id }}),
-          accounts: [configVariable("MOONBEAM_PRIVATE_KEY")],
+          accounts: [configVariable('MOONBEAM_PRIVATE_KEY')],
         },
       },
-    };
+    });
     ```
 
 === "Moonriver"
 
     ```js
-    module.exports = {
+    import hardhatEthers from '@nomicfoundation/hardhat-ethers';
+    import hardhatIgnitionEthers from '@nomicfoundation/hardhat-ignition-ethers';
+    import hardhatKeystore from '@nomicfoundation/hardhat-keystore';
+    import { configVariable, defineConfig } from 'hardhat/config';
+
+    export default defineConfig({
+      plugins: [hardhatEthers, hardhatIgnitionEthers, hardhatKeystore],
       solidity: '0.8.28',
       networks: {
         moonriver: {
-          type: "http",
-          chainType: "generic",
-          url: configVariable("MOONRIVER_RPC_URL"),
+          type: 'http',
+          chainType: 'l1',
+          url: configVariable('MOONRIVER_RPC_URL'),
           chainId: {{ networks.moonriver.chain_id }}, // (hex: {{ networks.moonriver.hex_chain_id }}),
-          accounts: [configVariable("MOONRIVER_PRIVATE_KEY")],
+          accounts: [configVariable('MOONRIVER_PRIVATE_KEY')],
         },
       },
-    };
+    });
     ```
 
 === "Moonbase Alpha"
 
     ```js
-    module.exports = {
+    import hardhatEthers from '@nomicfoundation/hardhat-ethers';
+    import hardhatIgnitionEthers from '@nomicfoundation/hardhat-ignition-ethers';
+    import hardhatKeystore from '@nomicfoundation/hardhat-keystore';
+    import { configVariable, defineConfig } from 'hardhat/config';
+
+    export default defineConfig({
+      plugins: [hardhatEthers, hardhatIgnitionEthers, hardhatKeystore],
       solidity: '0.8.28',
       networks: {
         moonbase: {
-          type: "http",
-          chainType: "generic",
-          url: configVariable("MOONBASE_RPC_URL"),
+          type: 'http',
+          chainType: 'l1',
+          url: configVariable('MOONBASE_RPC_URL'),
           chainId: {{ networks.moonbase.chain_id }}, // (hex: {{ networks.moonbase.hex_chain_id }}),
-          accounts: [configVariable("MOONBASE_PRIVATE_KEY")],
+          accounts: [configVariable('MOONBASE_PRIVATE_KEY')],
         },
       },
-    };
+    });
     ```
 
 === "Moonbeam Dev Node"
 
     ```js
-    module.exports = {
+    import hardhatEthers from '@nomicfoundation/hardhat-ethers';
+    import hardhatIgnitionEthers from '@nomicfoundation/hardhat-ignition-ethers';
+    import hardhatKeystore from '@nomicfoundation/hardhat-keystore';
+    import { configVariable, defineConfig } from 'hardhat/config';
+
+    export default defineConfig({
+      plugins: [hardhatEthers, hardhatIgnitionEthers, hardhatKeystore],
       solidity: '0.8.28',
       networks: {
         dev: {
-          type: "http",
-          chainType: "generic",
-          url: configVariable("DEV_RPC_URL"),
+          type: 'http',
+          chainType: 'l1',
+          url: configVariable('DEV_RPC_URL'),
           chainId: {{ networks.development.chain_id }}, // (hex: {{ networks.development.hex_chain_id }}),
-          accounts: [configVariable("DEV_PRIVATE_KEY")],
+          accounts: [configVariable('DEV_PRIVATE_KEY')],
         },
       },
-    };
+    });
     ```
 
 When you run tasks that require these secrets, Hardhat will prompt you for the password to decrypt them. The secrets are only decrypted when needed, meaning you only need to enter the password if a Hardhat task uses a secret.
 
-If you are planning on using any plugins with your project, you'll need to install the plugin and import it into the `hardhat.config.js` file. Once a plugin has been imported, it becomes part of the [Hardhat Runtime Environment](https://hardhat.org/hardhat-runner/docs/advanced/hardhat-runtime-environment){target=\_blank}, and you can leverage the plugin's functionality within tasks, scripts, and more.
-
-For this example, you can install the `hardhat-ethers` plugin and import it into the configuration file. This plugin provides a convenient way to use the [Ethers.js](/builders/ethereum/libraries/ethersjs/){target=\_blank} library to interact with the network.
-
-```bash
-npm install @nomicfoundation/hardhat-ethers ethers
-```
-
-Additionally, you'll need to install the `hardhat-ignition-ethers` plugin to enable deployment of smart contracts with Hardhat Ignition. You can install it with the following command:
-
-```sh
-npm install --save-dev @nomicfoundation/hardhat-ignition-ethers
-```
-
-To import both plugins, add the following `require` statements to the top of the Hardhat configuration file:
-
-```js hl_lines="2 3"
-/** @type import('hardhat/config').HardhatUserConfig */
-require('@nomicfoundation/hardhat-ethers');
-require('@nomicfoundation/hardhat-ignition-ethers');
-
-module.exports = {
-  solidity: '0.8.28',
-  networks: {
-    moonbase: {
-      url: configVariable("MOONBASE_RPC_URL"),
-      chainId: 1287, // 0x507 in hex,
-      accounts: [configVariable("MOONBASE_PRIVATE_KEY")]
-    }
-  }
-};
-```
+If you are planning on using any plugins with your project, you'll need to install the plugin and import it into your Hardhat config file (`hardhat.config.ts` or `hardhat.config.js`). Once a plugin has been imported, it becomes part of the [Hardhat Runtime Environment](https://hardhat.org/hardhat-runner/docs/advanced/hardhat-runtime-environment){target=\_blank}, and you can leverage the plugin's functionality within tasks, scripts, and more.
 
 For more information on the available configuration options, please refer to Hardhat's documentation on [Configuration](https://hardhat.org/hardhat-runner/docs/config#networks-configuration){target=\_blank}.
 
@@ -2577,7 +2565,7 @@ To add the contract, you'll take the following steps:
 
 ## Compile the Contract {: #compiling-solidity }
 
-The next step is to compile the `Box.sol` smart contract. For this, you can use the built-in `compile` task, which will look for Solidity files in the `contracts` directory and compile them using the version and compiler settings defined in the `hardhat.config.js` file.
+The next step is to compile the `Box.sol` smart contract. For this, you can use the built-in `compile` task, which will look for Solidity files in the `contracts` directory and compile them using the version and compiler settings defined in your Hardhat config file.
 
 To use the `compile` task, all you have to do is run:
 
@@ -2587,16 +2575,11 @@ npx hardhat compile
 
 <div id="termynal" data-termynal>
     <span data-ty="input"><span class="file-path"></span>npx hardhat compile</span>
-    <span data-ty>Compiled 1 Solidity files successfully (evm target: paris).</span>
-    <span data-ty="input"><span class="file-path"></span>ls -l</span>
-    <span data-ty>artifacts</span>
-    <span data-ty>cache</span>
-    <span data-ty>contracts</span>
-    <span data-ty>hardhat.config.js</span>
-    <span data-ty>node_modules</span>
-    <span data-ty>package.json</span>
-    <span data-ty>package-lock.json</span>
-    <span data-ty="input"><span class="file-path"></span></span>
+    <br>
+    <span data-ty>Compiled 2 Solidity files with solc 0.8.28 (evm target: cancun)</span>
+    <br>
+    <span data-ty>Compiled 1 Solidity test file with solc 0.8.28 (evm target: cancun)</span>
+    <span data-ty><span class="file-path"></span></span>
 </div>
 
 After compilation, an `artifacts` directory is created that holds the bytecode and metadata of the contract, which are `.json` files. It's a good idea to add this directory to a `.gitignore` file.
@@ -2623,16 +2606,16 @@ Next, you can write your Hardhat Ignition module. To get started, take the follo
 
 ```js
 // 1. Import the `buildModule` function from the Hardhat Ignition module
-import { buildModule } from "@nomicfoundation/hardhat-ignition/modules";
+import { buildModule } from '@nomicfoundation/hardhat-ignition/modules';
 
 // 2. Export a module using `buildModule`
 // Use `export default` instead of `module.exports`
-export default buildModule("BoxModule", (m) => {
+export default buildModule('BoxModule', (m) => {
   // 3. Use the `getAccount` method to select the deployer account
   const deployer = m.getAccount(0);
   
   // 4. Deploy the `Box` contract
-  const box = m.contract("Box", [], {
+  const box = m.contract('Box', [], {
     from: deployer, 
   });
   
@@ -2641,19 +2624,19 @@ export default buildModule("BoxModule", (m) => {
 });
 ```
 
-To run the script and deploy the `Box.sol` contract, use the following command, which requires you to specify the network name as defined in your `hardhat.config.js`. If you don't specify a network, hardhat will deploy the contract to a local Hardhat network by default. 
+To run the script and deploy the `Box.sol` contract, use the following command, which requires you to specify the network name as defined in your Hardhat config file. If you don't specify a network, hardhat will deploy the contract to a local Hardhat network by default. 
 
 ```sh
-npx hardhat ignition deploy ./Box.js --network moonbase
+npx hardhat ignition deploy ./ignition/modules/Box.js --network moonbase
 ```
 
 !!! note
-    If you're using another Moonbeam network, make sure that you specify the correct network. The network name needs to match the one defined in the `hardhat.config.js` file.
+    If you're using another Moonbeam network, make sure that you specify the correct network. The network name needs to match the one defined in your Hardhat config file.
 
 You'll be prompted to enter your password for the Hardhat secrets manager. Next, you'll be prompted to confirm the network you wish to deploy to. A few seconds after you confirm, the contract is deployed, and you'll see the contract address in the terminal.
 
 <div id="termynal" data-termynal>
-    <span data-ty="input"><span class="file-path"></span> npx hardhat ignition deploy ./Box.js --network moonbase</span>
+    <span data-ty="input"><span class="file-path"></span> npx hardhat ignition deploy ./ignition/modules/Box.js --network moonbase</span>
     <br>
     <span data-ty>✅ Confirm deploy to network moonbase (1287)? … yes</span>
     <span data-ty>Hardhat Ignition 🚀</span>
@@ -2770,117 +2753,10 @@ You can [fork](https://hardhat.org/hardhat-network/docs/guides/forking-other-net
 
 There are some limitations to be aware of when using Hardhat forking. You cannot interact with any of the Moonbeam precompiled contracts or their functions. Precompiles are a part of the Substrate implementation and therefore cannot be replicated in the simulated EVM environment. This prohibits you from interacting with cross-chain assets on Moonbeam and Substrate-based functionality such as staking and governance.
 
-There is currently an issue related to forking Moonbeam, so in order to fix the issue, you'll need to manually patch Hardhat first. You can find out more information by following the [issue on GitHub](https://github.com/NomicFoundation/hardhat/issues/2395#issuecomment-1043838164){target=\_blank} as well as the related [PR](https://github.com/NomicFoundation/hardhat/pull/2313){target=\_blank}.
-
-### Patching Hardhat {: #patching-hardhat }
-
-Before getting started, you'll need to apply a temporary patch to workaround an RPC error until Hardhat fixes the root issue. The error is as follows:
-
-```sh
-Error HH604: Error running JSON-RPC server: Invalid JSON-RPC response's result.
-
-Errors: Invalid value null supplied to : RpcBlockWithTransactions | null/transactions: RpcTransaction Array/0: RpcTransaction/accessList: Array<{ address: DATA, storageKeys: Array<DATA> | null }> | undefined, Invalid value null supplied to : RpcBlockWithTransactions | null/transactions: RpcTransaction Array/1: RpcTransaction/accessList: Array<{ address: DATA, storageKeys: Array<DATA> | null }> | undefined, Invalid value null supplied to : RpcBlockWithTransactions | null/transactions: RpcTransaction Array/2: RpcTransaction/accessList: Array<{ address: DATA, storageKeys: Array<DATA> | null }> | undefined
-```
-
-To patch Hardhat, you'll need to open the `node_modules/hardhat/internal/hardhat-network/jsonrpc/client.js` file of your project. Next, you'll add an `addAccessList` function and update the `_perform` and `_performBatch` functions.
-
-To get started, you can remove the preexisting `_perform` and `_performBatch` functions and, in their place, add the following code snippet:
-
-```js
-  addAccessList(method, rawResult) {
-    if (
-      method.startsWith('eth_getBlock') &&
-      rawResult &&
-      rawResult.transactions?.length
-    ) {
-      rawResult.transactions.forEach((t) => {
-        if (t.accessList == null) t.accessList = [];
-      });
-    }
-  }
-  async _perform(method, params, tType, getMaxAffectedBlockNumber) {
-    const cacheKey = this._getCacheKey(method, params);
-    const cachedResult = this._getFromCache(cacheKey);
-    if (cachedResult !== undefined) {
-      return cachedResult;
-    }
-    if (this._forkCachePath !== undefined) {
-      const diskCachedResult = await this._getFromDiskCache(
-        this._forkCachePath,
-        cacheKey,
-        tType
-      );
-      if (diskCachedResult !== undefined) {
-        this._storeInCache(cacheKey, diskCachedResult);
-        return diskCachedResult;
-      }
-    }
-    const rawResult = await this._send(method, params);
-    this.addAccessList(method, rawResult);
-    const decodedResult = (0, decodeJsonRpcResponse_1.decodeJsonRpcResponse)(
-      rawResult,
-      tType
-    );
-    const blockNumber = getMaxAffectedBlockNumber(decodedResult);
-    if (this._canBeCached(blockNumber)) {
-      this._storeInCache(cacheKey, decodedResult);
-      if (this._forkCachePath !== undefined) {
-        await this._storeInDiskCache(this._forkCachePath, cacheKey, rawResult);
-      }
-    }
-    return decodedResult;
-  }
-  async _performBatch(batch, getMaxAffectedBlockNumber) {
-    // Perform Batch caches the entire batch at once.
-    // It could implement something more clever, like caching per request
-    // but it's only used in one place, and those other requests aren't
-    // used anywhere else.
-    const cacheKey = this._getBatchCacheKey(batch);
-    const cachedResult = this._getFromCache(cacheKey);
-    if (cachedResult !== undefined) {
-      return cachedResult;
-    }
-    if (this._forkCachePath !== undefined) {
-      const diskCachedResult = await this._getBatchFromDiskCache(
-        this._forkCachePath,
-        cacheKey,
-        batch.map((b) => b.tType)
-      );
-      if (diskCachedResult !== undefined) {
-        this._storeInCache(cacheKey, diskCachedResult);
-        return diskCachedResult;
-      }
-    }
-    const rawResults = await this._sendBatch(batch);
-    const decodedResults = rawResults.map((result, i) => {
-      this.addAccessList(batch[i].method, result);
-      return (0, decodeJsonRpcResponse_1.decodeJsonRpcResponse)(
-        result,
-        batch[i].tType
-      );
-    });
-    const blockNumber = getMaxAffectedBlockNumber(decodedResults);
-    if (this._canBeCached(blockNumber)) {
-      this._storeInCache(cacheKey, decodedResults);
-      if (this._forkCachePath !== undefined) {
-        await this._storeInDiskCache(this._forkCachePath, cacheKey, rawResults);
-      }
-    }
-    return decodedResults;
-  }
-```
-
-Then you can use [patch-package](https://www.npmjs.com/package/patch-package){target=\_blank} to automatically patch the package by running the following command:
-
-```sh
-npx patch-package hardhat
-```
-
-A `patches` directory will be created, and now you should be all set to fork Moonbeam without running into any errors.
 
 ### Forking Moonbeam {: #forking-moonbeam }
 
-You can fork Moonbeam from the command line or configure your Hardhat project to always run the fork from your `hardhat.config.js` file. To fork Moonbeam or Moonriver, you will need to have your own endpoint and API key, which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=\_blank}.
+You can fork Moonbeam from the command line or configure your Hardhat project to always run the fork from your Hardhat config file. To fork Moonbeam or Moonriver, you will need to have your own endpoint and API key, which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=\_blank}.
 
 To fork Moonbeam from the command line, you can run the following command from within your Hardhat project directory:
 
@@ -2902,7 +2778,7 @@ To fork Moonbeam from the command line, you can run the following command from w
     npx hardhat node --fork {{ networks.moonbase.rpc_url }}
     ```
 
-If you prefer to configure your Hardhat project, you can update your `hardhat.config.js` file with the following configurations:
+If you prefer to configure your Hardhat project, you can update your Hardhat config file with the following configurations:
 
 === "Moonbeam"
 
@@ -2985,15 +2861,13 @@ If you convert the `result` from [hex to decimal](https://www.rapidtables.com/co
 
 From here, you can deploy new contracts to your forked instance of Moonbeam or interact with contracts already deployed by creating a local instance of the deployed contract.
 
-To interact with an already deployed contract, you can create a new script in the `scripts` directory using `ethers`. Because you'll be running it with Hardhat, you don't need to import any libraries. Inside the script, you can access a live contract on the network using the following snippet:
+To interact with an already deployed contract, you can create a new script in the `scripts` directory using `ethers`. Because you'll be running it with Hardhat, you can import `ethers` directly from the Hardhat runtime without extra setup. Inside the script, you can access a live contract on the network using the following snippet:
 
 ```js
-const hre = require('hardhat');
+import { ethers } from 'hardhat';
 
 async function main() {
-  const provider = new ethers.JsonRpcProvider(
-    'http://127.0.0.1:8545/'
-  );
+  const provider = new ethers.JsonRpcProvider('http://127.0.0.1:8545/');
 
   const contract = new ethers.Contract(
     'INSERT_CONTRACT_ADDRESS',
