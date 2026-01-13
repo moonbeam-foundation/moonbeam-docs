@@ -44,6 +44,7 @@ LOCALE_REPORT = TRANSLATION_STAGE / "locale_report.json"
 COVERAGE_REPORT = TRANSLATION_STAGE / "summary_report.json"
 VALIDATION_REPORT = TRANSLATION_STAGE / "validation_report.json"
 VALIDATION_PAYLOAD_SNAPSHOT = TRANSLATION_STAGE / "validation_payload_snapshot.json"
+PRUNED_REPORT = TRANSLATION_STAGE / "pruned_translations.json"
 LANGUAGE_CODE_PATTERN = re.compile(r"^[A-Za-z]{2}(?:[-_][A-Za-z]{2})?$")
 EXCLUDED_PREFIXES = (
     ".github/",
@@ -369,6 +370,86 @@ def _load_validation_findings(report_path: Path) -> dict[str, Any]:
         return {"status": "unknown", "issues": []}
     return json.loads(report_path.read_text(encoding="utf-8"))
 
+
+def _collect_deleted_files(base: str, head: str, paths: Iterable[str]) -> list[str]:
+    cmd = [
+        "git",
+        "-C",
+        str(REPO_ROOT),
+        "diff",
+        "--name-status",
+        "--diff-filter=D",
+        "-z",
+        f"{base}..{head}",
+    ]
+    cmd.extend(repo_relative_str(path) for path in paths)
+    result = subprocess.run(cmd, capture_output=True, text=True, check=True)
+    if not result.stdout:
+        return []
+    parts = result.stdout.split("\0")
+    deleted: list[str] = []
+    idx = 0
+    while idx < len(parts):
+        status = parts[idx]
+        if not status:
+            idx += 1
+            continue
+        if status.startswith("D"):
+            if idx + 1 < len(parts) and parts[idx + 1]:
+                deleted.append(repo_relative_str(parts[idx + 1]))
+            idx += 2
+        else:
+            idx += 1
+    return deleted
+
+
+def _prune_deleted_translations(
+    deleted_files: Iterable[str],
+    languages: list[str],
+    skip_llms: bool,
+    skip_ai: bool,
+) -> tuple[list[str], dict[str, list[str]]]:
+    pruned_sources: list[str] = []
+    pruned_by_lang: dict[str, list[str]] = {}
+    seen: set[str] = set()
+    for rel_path in deleted_files:
+        if not rel_path:
+            continue
+        normalized = repo_relative_str(rel_path)
+        if normalized in seen:
+            continue
+        seen.add(normalized)
+        if _should_skip_path(normalized, languages, skip_llms, skip_ai):
+            continue
+        pruned_sources.append(normalized)
+        for lang in languages:
+            target = _derive_target_path(normalized, lang)
+            target_rel = repo_relative_str(target)
+            target_abs = repo_path(target_rel)
+            if target_abs.is_file() or target_abs.is_symlink():
+                target_abs.unlink()
+                pruned_by_lang.setdefault(lang, []).append(target_rel)
+    pruned_sources.sort()
+    for lang, paths in pruned_by_lang.items():
+        pruned_by_lang[lang] = sorted(set(paths))
+    return pruned_sources, pruned_by_lang
+
+
+def _write_pruned_report(
+    pruned_sources: list[str],
+    pruned_by_lang: dict[str, list[str]],
+) -> None:
+    if not pruned_sources and not pruned_by_lang:
+        return
+    report = {
+        "deleted_sources": pruned_sources,
+        "pruned_translations": pruned_by_lang,
+        "pruned_total": sum(len(paths) for paths in pruned_by_lang.values()),
+    }
+    PRUNED_REPORT.write_text(
+        json.dumps(report, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
 
 def _build_document_records(entries: list[dict[str, Any]]) -> list[dict[str, str]]:
     documents: list[dict[str, str]] = []
@@ -768,16 +849,12 @@ def _run_pipeline(args: argparse.Namespace) -> int:
     _debug(f"Env include files: {env_include_files!r}")
     _debug(f"CLI include files: {sorted(include_files)}")
     _debug(f"Include full files: {args.include_full}")
+    skip_llms = _as_bool(args.filter_llms)
+    skip_ai = _as_bool(args.filter_ai_dir)
     if include_files:
         _info("Restricting translation to the following file(s):")
         for rel_path in sorted(include_files):
             _info(f"  - {rel_path}")
-
-    # Run locale sync before diff collection so locale keys stay in sync
-    subprocess.run(
-        [PYTHON_BIN, str(LOCALE_SYNC), "--report", str(LOCALE_REPORT)],
-        check=True,
-    )
 
     diff_text = _run_git_diff(args.base, args.head, args.paths)
     diff_map = _collect_sets(diff_text)
@@ -797,17 +874,31 @@ def _run_pipeline(args: argparse.Namespace) -> int:
         )
         if args.include_full:
             _inject_full_file_entries(diff_map, include_files)
-        if not diff_map:
-            _info("No diff entries matched include-files filter; exiting.")
-            return 0
+
+    deleted_files = _collect_deleted_files(args.base, args.head, args.paths)
+    if include_files:
+        deleted_files = [
+            path for path in deleted_files if _normalize_path(path) in include_files
+        ]
+    pruned_sources, pruned_translations = _prune_deleted_translations(
+        deleted_files,
+        args.languages,
+        skip_llms,
+        skip_ai,
+    )
+    _write_pruned_report(pruned_sources, pruned_translations)
+
+    if include_files and not diff_map:
+        _info("No diff entries matched include-files filter; exiting.")
+        return 0
 
     CHANGES_PATH.write_text(json.dumps(diff_map, indent=2), encoding="utf-8")
 
     entries, english_files = _build_payload_entries(
         diff_map,
         args.languages,
-        _as_bool(args.filter_llms),
-        _as_bool(args.filter_ai_dir),
+        skip_llms,
+        skip_ai,
         args.head,
     )
     _debug(f"Prepared {len(entries)} translation job(s) from {len(english_files)} English file(s).")
@@ -942,6 +1033,34 @@ def _run_pipeline(args: argparse.Namespace) -> int:
             encoding="utf-8",
         )
 
+    locale_yaml_targets: list[str] = []
+    for path in target_files:
+        if path.suffix.lower() not in {".yml", ".yaml"}:
+            continue
+        rel_path = repo_relative_str(path)
+        if "locale" not in Path(rel_path).parts:
+            continue
+        locale_yaml_targets.append(rel_path)
+    locale_yaml_list = TRANSLATION_STAGE / "locale_yaml_targets.txt"
+    if locale_yaml_targets:
+        locale_yaml_list.write_text(
+            "\n".join(locale_yaml_targets) + "\n",
+            encoding="utf-8",
+        )
+
+    if locale_yaml_targets:
+        subprocess.run(
+            [
+                PYTHON_BIN,
+                str(LOCALE_SYNC),
+                "--report",
+                str(LOCALE_REPORT),
+                "--file-list",
+                str(locale_yaml_list),
+            ],
+            check=True,
+        )
+
     _run_cmd([PYTHON_BIN, "-m", "pip", "install", "ruamel.yaml==0.18.16"])
     _run_cmd([PYTHON_BIN, str(CURRENT_DIR / "extract_strings.py"), "--payload", str(PAYLOAD_PATH)])
     _run_cmd(
@@ -962,7 +1081,15 @@ def _run_pipeline(args: argparse.Namespace) -> int:
         fix_front_matter_cmd += ["--languages", *args.languages]
     _run_cmd(fix_front_matter_cmd)
 
-    _run_cmd([PYTHON_BIN, str(CURRENT_DIR / "format_locale_yaml.py")])
+    if locale_yaml_targets:
+        _run_cmd(
+            [
+                PYTHON_BIN,
+                str(CURRENT_DIR / "format_locale_yaml.py"),
+                "--file-list",
+                str(locale_yaml_list),
+            ]
+        )
 
     payload_segments = _summarize_payload_segments(payload_entries)
 
@@ -1025,6 +1152,11 @@ def _run_pipeline(args: argparse.Namespace) -> int:
         "missing_per_language": missing_report,
         "locale_added_per_locale": locale_summary.get("added_per_locale", {}),
         "locale_unused_keys": locale_summary.get("unused_keys", []),
+        "pruned_sources": pruned_sources,
+        "pruned_translations": pruned_translations,
+        "pruned_translation_count": sum(
+            len(paths) for paths in pruned_translations.values()
+        ),
         "validation": validation_block,
         "validation_status": validation_block["status"],
         "validation_issue_count": validation_block["issue_count"],
