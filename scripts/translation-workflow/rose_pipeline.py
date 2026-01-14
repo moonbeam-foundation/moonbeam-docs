@@ -10,7 +10,6 @@ import hmac
 import json
 import os
 import re
-import shlex
 import sys
 import time
 import subprocess
@@ -74,22 +73,6 @@ def _debug(message: str) -> None:
 def _info(message: str) -> None:
     if not QUIET:
         print(message)
-
-
-def _strip_code_fence(text: str) -> str:
-    if not text:
-        return text
-    stripped = text.strip()
-    if stripped.startswith("```") and stripped.endswith("```") and len(stripped) >= 6:
-        lines = stripped.splitlines()
-        if lines:
-            fence_lang = lines[0].strip()
-            if fence_lang.startswith("```"):
-                lines = lines[1:]
-        if lines and lines[-1].strip().startswith("```"):
-            lines = lines[:-1]
-        return "\n".join(lines).strip()
-    return text
 
 
 def _read_lines(path: Path) -> list[str]:
@@ -1015,24 +998,9 @@ def _run_pipeline(args: argparse.Namespace) -> int:
                 and entry.get("kind") == "file"
             ):
                 entry["target_languages"] = list(args.languages)
-            if isinstance(entry, dict) and isinstance(entry.get("translated_content"), str):
-                entry["translated_content"] = _strip_code_fence(entry["translated_content"])
     PAYLOAD_PATH.write_text(json.dumps(translations, indent=2, ensure_ascii=False), encoding="utf-8")
     payload_entries = _payload_entries_list(translations)
     target_files = _collect_target_files(translations)
-    markdown_suffixes = {".md", ".markdown", ".mkd"}
-    front_matter_targets = [
-        repo_relative_str(path)
-        for path in target_files
-        if path.suffix.lower() in markdown_suffixes
-    ]
-    front_matter_list = TRANSLATION_STAGE / "front_matter_targets.txt"
-    if front_matter_targets:
-        front_matter_list.write_text(
-            "\n".join(front_matter_targets) + "\n",
-            encoding="utf-8",
-        )
-
     locale_yaml_targets: list[str] = []
     for path in target_files:
         if path.suffix.lower() not in {".yml", ".yaml"}:
@@ -1086,29 +1054,6 @@ def _run_pipeline(args: argparse.Namespace) -> int:
 
     payload_segments = _summarize_payload_segments(payload_entries)
 
-    def _normalize_lang_prefix(path: Path) -> Path:
-        parts = list(path.parts)
-        if parts:
-            parts[0] = parts[0].lower()
-        return Path(*parts)
-
-    mdformat_targets = [
-        _normalize_lang_prefix(path)
-        for path in target_files
-        if path.suffix.lower() in markdown_suffixes
-    ]
-    if mdformat_targets:
-        file_args = " ".join(shlex.quote(str(path)) for path in mdformat_targets)
-        repo_root_quoted = shlex.quote(str(REPO_ROOT))
-        _run_cmd([PYTHON_BIN, "-m", "pip", "install", "mdformat==0.7.17"])
-        _run_cmd(
-            [
-                "bash",
-                "-lc",
-                f"cd {repo_root_quoted} && {shlex.quote(PYTHON_BIN)} -m mdformat {file_args}",
-            ]
-        )
-
     _run_cmd([PYTHON_BIN, "-m", "pip", "install", "PyYAML==6.0.1"])
     validation_cmd = [
         PYTHON_BIN,
@@ -1122,12 +1067,6 @@ def _run_pipeline(args: argparse.Namespace) -> int:
     if validation_result.returncode != 0:
         _info("Structural validation reported issues; continuing so translations stay available.")
     _maybe_post_validation_comments(commit_sha)
-    fix_front_matter_cmd = [PYTHON_BIN, str(CURRENT_DIR / "fix_front_matter.py")]
-    if front_matter_targets:
-        fix_front_matter_cmd += ["--file-list", str(front_matter_list)]
-    else:
-        fix_front_matter_cmd += ["--languages", *args.languages]
-    _run_cmd(fix_front_matter_cmd)
     _run_cmd([PYTHON_BIN, str(CURRENT_DIR / "cleanup_tmp.py")])
 
     missing_report = _report_missing_translations(english_files, args.languages)
