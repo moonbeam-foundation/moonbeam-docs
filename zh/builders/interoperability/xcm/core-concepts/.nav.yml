@@ -1,0 +1,7 @@
+title: Core Concepts
+nav:
+  - index.md
+  - 'XCM Instructions': 'instructions.md'
+  - 'Multilocations': 'multilocations.md'
+  - 'Weights and Fees': 'weights-fees.md'
+  - 'Sovereign Accounts': 'sovereign-accounts.md'

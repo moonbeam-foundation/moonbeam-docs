@@ -1,0 +1,5 @@
+title: Remote Substrate Calls
+nav:
+  - index.md
+  - 'Using the Substrate API': 'xcm-transactor-pallet.md'
+  - 'Using the Ethereum API': 'xcm-transactor-precompile.md'

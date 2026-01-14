@@ -1,0 +1,6 @@
+title: Substrate Toolkit
+hide: false
+nav:
+  - index.md
+  - libraries
+  - dev-env

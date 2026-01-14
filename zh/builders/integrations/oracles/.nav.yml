@@ -1,0 +1,7 @@
+title: Oracles
+hide: false
+nav:
+  - index.md
+  - 'API3': 'api3.md'
+  - 'DIA': 'dia.md'
+  - 'Supra': 'supra.md'

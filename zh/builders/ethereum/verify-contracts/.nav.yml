@@ -1,0 +1,6 @@
+title: Verify Contracts
+nav:
+  - index.md
+  - 'Block Explorers': 'block-explorers.md'
+  - 'Etherscan Plugins': 'etherscan-plugins.md'
+  - 'API-based Verification': 'api-verification.md'

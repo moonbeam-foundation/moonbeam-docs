@@ -1,0 +1,6 @@
+title: Libraries
+nav:
+  - index.md
+  - 'Polkadot.js API': 'polkadot-js-api.md'
+  - 'Py Substrate Interface': 'py-substrate-interface.md'
+  - 'Sidecar': 'sidecar.md'
