@@ -1,0 +1,7 @@
+title: 核心概念
+nav:
+  - index.md
+  - 'XCM 指令': 'instructions.md'
+  - '多位置': 'multilocations.md'
+  - '权重和费用': 'weights-fees.md'
+  - '主权账户': 'sovereign-accounts.md'

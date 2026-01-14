@@ -1,0 +1,7 @@
+title: Governance
+nav:
+  - index.md
+  - 'Collective': 'collective.md'
+  - 'Conviction Voting': 'conviction-voting.md'
+  - 'Preimage': 'preimage.md'
+  - 'Referenda': 'referenda.md'
