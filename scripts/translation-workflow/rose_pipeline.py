@@ -37,6 +37,7 @@ PYTHON_BIN = sys.executable or shutil.which("python3") or "python3"
 PAYLOAD_PATH = TRANSLATION_STAGE / "payload.json"
 CHANGES_PATH = TRANSLATION_STAGE / "changed_segments.json"
 ALLOWED_EXTENSIONS = {".md", ".markdown", ".mkd", ".html", ".jinja", ".jinja2", ".j2", ".tpl", ".yml", ".yaml"}
+MARKDOWN_EXTENSIONS = {".md", ".markdown", ".mkd"}
 TAGGER_PATH = CURRENT_DIR / "tagger.js"
 LOCALE_SYNC = CURRENT_DIR / "locale_sync.py"
 LOCALE_REPORT = TRANSLATION_STAGE / "locale_report.json"
@@ -77,6 +78,46 @@ def _info(message: str) -> None:
 
 def _read_lines(path: Path) -> list[str]:
     return path.read_text(encoding="utf-8").splitlines()
+
+
+def _maybe_decode_translated_content(value: str) -> str:
+    if not value:
+        return value
+    candidate = value
+    for _ in range(2):
+        stripped = candidate.strip()
+        if not stripped or stripped[0] not in {'{', '[', '"'}:
+            return candidate
+        try:
+            parsed = json.loads(stripped)
+        except json.JSONDecodeError:
+            return candidate
+        if isinstance(parsed, str):
+            candidate = parsed
+            continue
+        if isinstance(parsed, dict):
+            inner = parsed.get("translated_content")
+            if isinstance(inner, str):
+                candidate = inner
+            return candidate
+        return candidate
+    return candidate
+
+
+def _normalize_translated_content(entry: dict[str, Any]) -> None:
+    path_hint = entry.get("target_path") or entry.get("source_path") or ""
+    try:
+        path = repo_relative(path_hint)
+    except ValueError:
+        path = Path(path_hint)
+    if path.suffix.lower() not in MARKDOWN_EXTENSIONS:
+        return
+    translated = entry.get("translated_content")
+    if not isinstance(translated, str):
+        return
+    normalized = _maybe_decode_translated_content(translated)
+    if normalized != translated:
+        entry["translated_content"] = normalized
 
 
 def _slice_block(lines: list[str], start: int, end: int) -> str:
@@ -998,6 +1039,8 @@ def _run_pipeline(args: argparse.Namespace) -> int:
                 and entry.get("kind") == "file"
             ):
                 entry["target_languages"] = list(args.languages)
+            if isinstance(entry, dict):
+                _normalize_translated_content(entry)
     PAYLOAD_PATH.write_text(json.dumps(translations, indent=2, ensure_ascii=False), encoding="utf-8")
     payload_entries = _payload_entries_list(translations)
     target_files = _collect_target_files(translations)
