@@ -1,0 +1,8 @@
+title: JSON-RPC 接口
+hide: false
+nav:
+  - index.md
+  - '标准以太坊': 'eth-rpc.md'
+  - '非标准以太坊: 追踪': 'debug-trace.md'
+  - '非标准以太坊: 发布订阅': 'pubsub.md'
+  - '自定义 Moonbeam': 'moonbeam-custom-api.md'
