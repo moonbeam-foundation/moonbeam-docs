@@ -621,6 +621,7 @@ jobs:
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch --prune origin
           git fetch origin "$TRANSLATION_BRANCH":"refs/remotes/origin/$TRANSLATION_BRANCH" || true
           git branch -D "$TRANSLATION_BRANCH" 2>/dev/null || true
           git checkout -B "$TRANSLATION_BRANCH"
@@ -1020,6 +1021,7 @@ jobs:
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch --prune origin
           git fetch origin "$TRANSLATION_BRANCH":"refs/remotes/origin/$TRANSLATION_BRANCH" || true
           git branch -D "$TRANSLATION_BRANCH" 2>/dev/null || true
           git checkout -B "$TRANSLATION_BRANCH"

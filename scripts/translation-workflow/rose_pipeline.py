@@ -1074,13 +1074,6 @@ def _run_pipeline(args: argparse.Namespace) -> int:
         ]
     )
 
-    fix_front_matter_cmd = [PYTHON_BIN, str(CURRENT_DIR / "fix_front_matter.py")]
-    if front_matter_targets:
-        fix_front_matter_cmd += ["--file-list", str(front_matter_list)]
-    else:
-        fix_front_matter_cmd += ["--languages", *args.languages]
-    _run_cmd(fix_front_matter_cmd)
-
     if locale_yaml_targets:
         _run_cmd(
             [
