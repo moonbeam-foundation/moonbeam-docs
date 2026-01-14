@@ -1,0 +1,7 @@
+title: 发送 XC-20s
+nav:
+  - index.md
+  - '概述': 'overview.md'
+  - '使用 Substrate API：Polkadot XCM Pallet' : 'xcm-pallet.md'
+  - '使用 Ethereum API：X-Tokens Precompile': 'xtokens-precompile.md'
+  - '使用 Ethereum API：XCM Precompile' : 'eth-api.md'
