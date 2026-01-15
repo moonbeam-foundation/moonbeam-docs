@@ -1,0 +1,6 @@
+title: 验证合约
+nav:
+  - index.md
+  - '区块浏览器': 'block-explorers.md'
+  - 'Etherscan 插件': 'etherscan-plugins.md'
+  - '基于 API 的验证': 'api-verification.md'
