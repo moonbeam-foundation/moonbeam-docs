@@ -1,0 +1,5 @@
+title: 远程 Substrate 调用
+nav:
+  - index.md
+  - '使用 Substrate API': 'xcm-transactor-pallet.md'
+  - '使用以太坊 API': 'xcm-transactor-precompile.md'
