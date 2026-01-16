@@ -1,0 +1,2 @@
+- **Preimage 哈希** - 要执行的提案的哈希。提出提案的第一步是提交一个 preimage。哈希只是它的标识符。preimage 的提议者可以与将该 preimage 作为正式提案的用户不同
+ - **Preimage 保证金** - 提议者在提交 preimage 时需要绑定的 token 数量。它计算为每个网络的基本保证金加上每个被提议 preimage 的字节费用的总和
