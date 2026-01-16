@@ -48,8 +48,6 @@ The Moonscan API URL for Moonbeam networks is as follows:
 
 To verify a deployed contract's source code using the Moonscan API, you must form a POST request containing all the relevant contract creation information, and send the request to Moonscan's REST API. The following is sample code using JavaScript and [Axios](https://axios-http.com/docs/intro){target=\_blank}, an HTTP client:
 
-<!-- ROSE:BEGIN_LITERAL_BLOCK id=moonscan-verify-moonbeam preserve=verbatim -->
-
 === "Moonbeam"
 
     ```javascript
@@ -101,7 +99,6 @@ To verify a deployed contract's source code using the Moonscan API, you must for
       );
     }
     ```
-<!-- ROSE:END_LITERAL_BLOCK id=moonscan-verify-moonbeam -->
 
 === "Moonriver"
 
