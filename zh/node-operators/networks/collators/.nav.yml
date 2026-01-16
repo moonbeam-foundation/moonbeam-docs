@@ -1,0 +1,10 @@
+title: 校对者
+nav:
+  - index.md
+  - '概述': 'overview.md'
+  - '常见问题': 'faq.md'
+  - '要求': 'requirements.md'
+  - '账户管理': 'account-management.md'
+  - '作者映射预编译': 'author-mapping.md'
+  - '校对者活动': 'activities.md'
+  - '轨道器计划': 'orbiter.md'
