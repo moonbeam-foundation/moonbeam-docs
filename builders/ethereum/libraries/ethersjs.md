@@ -1,8 +1,6 @@
----
-title: How to use Ethers.js Ethereum Library
-description: Follow this tutorial to learn how to use the Ethereum Ethers.js Library to send transactions and deploy Solidity smart contracts to Moonbeam.
-categories: Libraries and SDKs, Ethereum Toolkit
----
+______________________________________________________________________
+
+## title: How to use Ethers.js Ethereum Library description: Follow this tutorial to learn how to use the Ethereum Ethers.js Library to send transactions and deploy Solidity smart contracts to Moonbeam. categories: Libraries and SDKs, Ethereum Toolkit
 
 # Ethers.js JavaScript Library
 
@@ -17,11 +15,11 @@ In this guide, you'll learn how to use the Ethers.js library to send a transacti
 For the examples in this guide, you will need to have the following:
 
 - An account with funds.
-  --8<-- 'text/_common/faucet/faucet-list-item.md'
-- 
-  --8<-- 'text/_common/endpoint-examples-list-item.md'
+    --8<-- 'text/_common/faucet/faucet-list-item.md'
+- --8<-- 'text/_common/endpoint-examples-list-item.md'
 
 !!! note
+
     --8<-- 'text/_common/assumes-mac-or-ubuntu-env.md'
 
 ## Installing Ethers.js {: #install-ethersjs }
@@ -55,8 +53,8 @@ Throughout this guide, you'll be creating a bunch of scripts that provide differ
 To create a provider, you can take the following steps:
 
 1. Import the `ethers` library
-2. Define the `providerRPC` object, which can include the network configurations for any of the networks you want to send a transaction on. You'll include the `name`, `rpc`, and `chainId` for each network
-3. Create the `provider` using the `ethers.JsonRpcProvider` method
+1. Define the `providerRPC` object, which can include the network configurations for any of the networks you want to send a transaction on. You'll include the `name`, `rpc`, and `chainId` for each network
+1. Create the `provider` using the `ethers.JsonRpcProvider` method
 
 === "Moonbeam"
 
@@ -152,7 +150,7 @@ You can also use the balance script to check the account balances after the tran
 
 ### Check Balances Script {: #check-balances-script }
 
-You'll only need one file to check the balances of both addresses before and after the transaction is sent.  To get started, you can create a `balances.js` file by running:
+You'll only need one file to check the balances of both addresses before and after the transaction is sent. To get started, you can create a `balances.js` file by running:
 
 ```bash
 touch balances.js
@@ -161,10 +159,10 @@ touch balances.js
 Next, you will create the script for this file and complete the following steps:
 
 1. [Set up the Ethers provider](#setting-up-the-ethers-provider)
-2. Define the `addressFrom` and `addressTo` variables
-3. Create the asynchronous `balances` function which wraps the `provider.getBalance` method
-4. Use the `provider.getBalance` function to fetch the balances for the `addressFrom` and `addressTo` addresses. You can also leverage the `ethers.formatEther` function to transform the balance into a more readable number in ETH
-5. Lastly, run the `balances` function
+1. Define the `addressFrom` and `addressTo` variables
+1. Create the asynchronous `balances` function which wraps the `provider.getBalance` method
+1. Use the `provider.getBalance` function to fetch the balances for the `addressFrom` and `addressTo` addresses. You can also leverage the `ethers.formatEther` function to transform the balance into a more readable number in ETH
+1. Lastly, run the `balances` function
 
 ```js
 // 1. Add the Ethers provider logic here:
@@ -213,12 +211,12 @@ touch transaction.js
 Next, you will create the script for this file and complete the following steps:
 
 1. [Set up the Ethers provider](#setting-up-the-ethers-provider)
-2. Define the `privateKey` and the `addressTo` variables. The private key is required to create a wallet instance. **Note: This is for example purposes only. Never store your private keys in a JavaScript file**
-3. Create a wallet using the `privateKey` and `provider` from the previous steps. The wallet instance is used to sign transactions
-4. Create the asynchronous `send` function which wraps the transaction object and the `wallet.sendTransaction` method
-5. Create the transaction object which only requires the recipient's address and the amount to send. Note that `ethers.parseEther` can be used, which handles the necessary unit conversions from Ether to Wei - similar to using `ethers.parseUnits(value, 'ether')`
-6. Send the transaction using the `wallet.sendTransaction` method and then use `await` to wait until the transaction is processed and the transaction receipt is returned
-7. Lastly, run the `send` function
+1. Define the `privateKey` and the `addressTo` variables. The private key is required to create a wallet instance. **Note: This is for example purposes only. Never store your private keys in a JavaScript file**
+1. Create a wallet using the `privateKey` and `provider` from the previous steps. The wallet instance is used to sign transactions
+1. Create the asynchronous `send` function which wraps the transaction object and the `wallet.sendTransaction` method
+1. Create the transaction object which only requires the recipient's address and the amount to send. Note that `ethers.parseEther` can be used, which handles the necessary unit conversions from Ether to Wei - similar to using `ethers.parseUnits(value, 'ether')`
+1. Send the transaction using the `wallet.sendTransaction` method and then use `await` to wait until the transaction is processed and the transaction receipt is returned
+1. Lastly, run the `send` function
 
 ```js
 // 1. Add the Ethers provider logic here:
@@ -278,6 +276,7 @@ You can also use the `balances.js` script to check that the balances for the ori
 ### Compile Contract Script {: #compile-contract-script }
 
 --8<-- 'text/builders/ethereum/libraries/compile-js.md'
+
 --8<-- 'text/builders/ethereum/libraries/compile.md'
 
 ```js
@@ -295,14 +294,14 @@ touch deploy.js
 Next, you will create the script for this file and complete the following steps:
 
 1. Import the contract file from `compile.js`
-2. [Set up the Ethers provider](#setting-up-the-ethers-provider)
-3. Define the `privateKey` for the origin account. The private key is required to create a wallet instance. **Note: This is for example purposes only. Never store your private keys in a JavaScript file**
-4. Create a wallet using the `privateKey` and `provider` from the previous steps. The wallet instance is used to sign transactions
-5. Load the contract `bytecode` and `abi` for the compiled contract
-6. Create a contract instance with signer using the `ethers.ContractFactory` function, providing the `abi`, `bytecode`, and `wallet` as parameters
-7. Create the asynchronous `deploy` function that will be used to deploy the contract
-8. Within the `deploy` function, use the `incrementer` contract instance to call `deploy` and pass in the initial value. For this example, you can set the initial value to `5`. This will send the transaction for contract deployment. To wait for a transaction receipt you can use the `deployed` method of the contract deployment transaction
-9. Lastly, run the `deploy` function
+1. [Set up the Ethers provider](#setting-up-the-ethers-provider)
+1. Define the `privateKey` for the origin account. The private key is required to create a wallet instance. **Note: This is for example purposes only. Never store your private keys in a JavaScript file**
+1. Create a wallet using the `privateKey` and `provider` from the previous steps. The wallet instance is used to sign transactions
+1. Load the contract `bytecode` and `abi` for the compiled contract
+1. Create a contract instance with signer using the `ethers.ContractFactory` function, providing the `abi`, `bytecode`, and `wallet` as parameters
+1. Create the asynchronous `deploy` function that will be used to deploy the contract
+1. Within the `deploy` function, use the `incrementer` contract instance to call `deploy` and pass in the initial value. For this example, you can set the initial value to `5`. This will send the transaction for contract deployment. To wait for a transaction receipt you can use the `deployed` method of the contract deployment transaction
+1. Lastly, run the `deploy` function
 
 ```js
 // 1. Import the contract file
@@ -370,12 +369,12 @@ touch get.js
 Then you can take the following steps to create the script:
 
 1. Import the `abi` from the `compile.js` file
-2. [Set up the Ethers provider](#setting-up-the-ethers-provider)
-3. Create the `contractAddress` variable using the address of the deployed contract
-4. Create an instance of the contract using the `ethers.Contract` function and passing in the `contractAddress`, `abi`, and `provider`
-5. Create the asynchronous `get` function
-6. Use the contract instance to call one of the contract's methods and pass in any inputs if necessary. For this example, you will call the `number` method which doesn't require any inputs. You can use `await` which will return the value requested once the request promise resolves
-7. Lastly, call the `get` function
+1. [Set up the Ethers provider](#setting-up-the-ethers-provider)
+1. Create the `contractAddress` variable using the address of the deployed contract
+1. Create an instance of the contract using the `ethers.Contract` function and passing in the `contractAddress`, `abi`, and `provider`
+1. Create the asynchronous `get` function
+1. Use the contract instance to call one of the contract's methods and pass in any inputs if necessary. For this example, you will call the `number` method which doesn't require any inputs. You can use `await` which will return the value requested once the request promise resolves
+1. Lastly, call the `get` function
 
 ```js
 // 1. Import the ABI
@@ -429,13 +428,13 @@ touch increment.js reset.js
 Open the `increment.js` file and take the following steps to create the script:
 
 1. Import the `abi` from the `compile.js` file
-2. [Set up the Ethers provider](#setting-up-the-ethers-provider)
-3. Define the `privateKey` for the origin account, the `contractAddress` of the deployed contract, and the `_value` to increment by. The private key is required to create a wallet instance. **Note: This is for example purposes only. Never store your private keys in a JavaScript file**
-4. Create a wallet using the `privateKey` and `provider` from the previous steps. The wallet instance is used to sign transactions
-5. Create an instance of the contract using the `ethers.Contract` function and passing in the `contractAddress`, `abi`, and `provider`
-6. Create the asynchronous `increment` function
-7. Use the contract instance to call one of the contract's methods and pass in any inputs if necessary. For this example, you will call the `increment` method which requires the value to increment by as an input. You can use `await` which will return the value requested once the request promise resolves
-8. Lastly, call the `increment` function
+1. [Set up the Ethers provider](#setting-up-the-ethers-provider)
+1. Define the `privateKey` for the origin account, the `contractAddress` of the deployed contract, and the `_value` to increment by. The private key is required to create a wallet instance. **Note: This is for example purposes only. Never store your private keys in a JavaScript file**
+1. Create a wallet using the `privateKey` and `provider` from the previous steps. The wallet instance is used to sign transactions
+1. Create an instance of the contract using the `ethers.Contract` function and passing in the `contractAddress`, `abi`, and `provider`
+1. Create the asynchronous `increment` function
+1. Use the contract instance to call one of the contract's methods and pass in any inputs if necessary. For this example, you will call the `increment` method which requires the value to increment by as an input. You can use `await` which will return the value requested once the request promise resolves
+1. Lastly, call the `increment` function
 
 ```js
 // 1. Import the contract ABI
@@ -493,13 +492,13 @@ If successful, the transaction hash will be displayed in the terminal. You can u
 Next you can open the `reset.js` file and take the following steps to create the script:
 
 1. Import the `abi` from the `compile.js` file
-2. [Set up the Ethers provider](#setting-up-the-ethers-provider)
-3. Define the `privateKey` for the origin account and the `contractAddress` of the deployed contract. The private key is required to create a wallet instance. **Note: This is for example purposes only. Never store your private keys in a JavaScript file**
-4. Create a wallet using the `privateKey` and `provider` from the previous steps. The wallet instance is used to sign transactions
-5. Create an instance of the contract using the `ethers.Contract` function and passing in the `contractAddress`, `abi`, and `provider`
-6. Create the asynchronous `reset` function
-7. Use the contract instance to call one of the contract's methods and pass in any inputs if necessary. For this example, you will call the `reset` method which doesn't require any inputs. You can use `await` which will return the value requested once the request promise resolves
-8. Lastly, call the `reset` function
+1. [Set up the Ethers provider](#setting-up-the-ethers-provider)
+1. Define the `privateKey` for the origin account and the `contractAddress` of the deployed contract. The private key is required to create a wallet instance. **Note: This is for example purposes only. Never store your private keys in a JavaScript file**
+1. Create a wallet using the `privateKey` and `provider` from the previous steps. The wallet instance is used to sign transactions
+1. Create an instance of the contract using the `ethers.Contract` function and passing in the `contractAddress`, `abi`, and `provider`
+1. Create the asynchronous `reset` function
+1. Use the contract instance to call one of the contract's methods and pass in any inputs if necessary. For this example, you will call the `reset` method which doesn't require any inputs. You can use `await` which will return the value requested once the request promise resolves
+1. Lastly, call the `reset` function
 
 ```js
 // 1. Import the contract ABI

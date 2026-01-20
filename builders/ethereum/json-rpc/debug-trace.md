@@ -1,8 +1,6 @@
----
-title: Debug & Trace Transactions
-description: Check out the non-standard JSON-RPC methods included in Geth's Debug and Txpool APIs and OpenEthereum's Trace module, which are supported on Moonbeam.
-categories: JSON-RPC APIs, Ethereum Toolkit
----
+______________________________________________________________________
+
+## title: Debug & Trace Transactions description: Check out the non-standard JSON-RPC methods included in Geth's Debug and Txpool APIs and OpenEthereum's Trace module, which are supported on Moonbeam. categories: JSON-RPC APIs, Ethereum Toolkit
 
 # Debug API & Trace Module
 
@@ -27,20 +25,20 @@ If you wish to set up your own tracing node, you can follow the [Running a Traci
     === "Parameters"
 
         - `transaction_hash` *string* - the hash of the transaction to be traced
-        - `tracer_config` *string* - (optional) a JSON object for configuring the tracer that contains the following field: 
-            - `tracer` *string* - sets the type of tracer
-      
+        - `tracer_config` *string* - (optional) a JSON object for configuring the tracer that contains the following field:
+          - `tracer` *string* - sets the type of tracer
+
         If no `tracer_config` is provided, the opcode logger will be the default tracer. The opcode logger provides the following additional fields:
 
         - `opcode_config` *string* - (optional) a JSON object for configuring the opcode logger:
-            - `disableStorage` *boolean* — (optional, default: `false`) setting this to `true` disables storage capture
-            - `disableMemory` *boolean* — (optional, default: `false`) setting this to `true` disables memory capture
-            - `disableStack` *boolean* — (optional, default: `false`) setting this to `true` disables stack capture
+          - `disableStorage` *boolean* — (optional, default: `false`) setting this to `true` disables storage capture
+          - `disableMemory` *boolean* — (optional, default: `false`) setting this to `true` disables memory capture
+          - `disableStack` *boolean* — (optional, default: `false`) setting this to `true` disables stack capture
 
     === "Returns"
 
         If you supplied a `tracer_config`, the `result` object contains the following fields:
-        
+
         - `type` - the type of the call
         - `from` - the address the transaction is sent from
         - `to` - the address the transaction is directed to
@@ -95,13 +93,13 @@ If you wish to set up your own tracing node, you can follow the [Running a Traci
     === "Parameters"
 
         - `block_number` *string* - the block number of the block to be traced
-        - `tracer_config` *string* - a JSON object for configuring the tracer that contains the following field: 
-            - `tracer` *string* - sets the type of tracer. This must be set to `callTracer`, which only returns transactions and sub-calls. Otherwise, the tracer will attempt to default to the opcode logger, which is not supported at this time due to the heavy nature of the call
+        - `tracer_config` *string* - a JSON object for configuring the tracer that contains the following field:
+          - `tracer` *string* - sets the type of tracer. This must be set to `callTracer`, which only returns transactions and sub-calls. Otherwise, the tracer will attempt to default to the opcode logger, which is not supported at this time due to the heavy nature of the call
 
     === "Returns"
 
-        The method returns a JSON object with a top-level result property that is an array. Each element in this array corresponds to a single transaction in the block and includes a `txHash` and a `result` object as follows: 
-        
+        The method returns a JSON object with a top-level result property that is an array. Each element in this array corresponds to a single transaction in the block and includes a `txHash` and a `result` object as follows:
+
         - `txHash` - the transaction hash
 
         The `result` object contains the following fields:
@@ -137,13 +135,13 @@ If you wish to set up your own tracing node, you can follow the [Running a Traci
     === "Parameters"
 
         - `block_hash` *string* - the block hash of the block to be traced
-        - `tracer_config` *string* - a JSON object for configuring the tracer that contains the following field: 
-            - `tracer` *string* - sets the type of tracer. This must be set to `callTracer`, which only returns transactions and sub-calls. Otherwise, the tracer will attempt to default to the opcode logger, which is not supported at this time due to the heavy nature of the call
+        - `tracer_config` *string* - a JSON object for configuring the tracer that contains the following field:
+          - `tracer` *string* - sets the type of tracer. This must be set to `callTracer`, which only returns transactions and sub-calls. Otherwise, the tracer will attempt to default to the opcode logger, which is not supported at this time due to the heavy nature of the call
 
     === "Returns"
 
-        The method returns a JSON object with a top-level result property that is an array. Each element in this array corresponds to a single transaction in the block and includes a `txHash` and a `result` object as follows: 
-        
+        The method returns a JSON object with a top-level result property that is an array. Each element in this array corresponds to a single transaction in the block and includes a `txHash` and a `result` object as follows:
+
         - `txHash` - the transaction hash
 
         The `result` object contains the following fields:
@@ -172,16 +170,17 @@ If you wish to set up your own tracing node, you can follow the [Running a Traci
           }'
         ```
 
-
 ???+ function "debug_traceCall"
 
     This method executes an eth_call within the context of the given block using the final state of the parent block as the base. Refer to [Geth's documentation](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-debug#debugtracecall){target=\_blank} for more information.
 
     === "Parameters"
+
         - `call_object` *object* the transaction object to be executed
         - `block_hash` *string* - the block hash of the base block
 
     === "Returns"
+
         - `gas`- the integer of the gas provided for the transaction execution
         - `returnValue` - the output produced by the execution of the transaction
         - `structLogs` - an array of [objects containing a detailed log of each opcode](https://geth.ethereum.org/docs/developers/evm-tracing/built-in-tracers#struct-opcode-logger){target=\_blank} executed during the transaction
@@ -201,7 +200,6 @@ If you wish to set up your own tracing node, you can follow the [Running a Traci
                 }, "INSERT_BLOCK_HASH"]
           }'
         ```
-
 
 ???+ function "trace_filter"
 
@@ -226,7 +224,7 @@ If you wish to set up your own tracing node, you can follow the [Running a Traci
     === "Returns"
 
         The `result` array contains an array of objects for the block traces. All objects will contain the following fields:
-        
+
         - `blockHash`- the hash of the block where this transaction was in
         - `blockNumber` - the block number where this transaction was in
         - `subtraces` - the traces of contract calls made by the transaction
@@ -239,28 +237,28 @@ If you wish to set up your own tracing node, you can follow the [Running a Traci
         If the `type` of the transaction is a `call`, these additional fields will exist:
 
         - `action` - an object containing the call information:
-            - `from` - the address of the sender
-            - `callType` - the type of method, such as `call` and `delegatecall`
-            - `gas` - the gas provided by the sender, encoded as hexadecimal
-            - `input` - the data sent along with the transaction
-            - `to` - the address of the receiver
-            - `value` - the integer of the value sent with this transaction, encoded as hexadecimal
+          - `from` - the address of the sender
+          - `callType` - the type of method, such as `call` and `delegatecall`
+          - `gas` - the gas provided by the sender, encoded as hexadecimal
+          - `input` - the data sent along with the transaction
+          - `to` - the address of the receiver
+          - `value` - the integer of the value sent with this transaction, encoded as hexadecimal
         - `result` - an object containing the result of the transaction
-            - `gasUsed`- the amount of gas used by this specific transaction alone
-            - `output`- the value returned by the contract call, and it only contains the actual value sent by the return method. If the return method was not executed, the output is empty bytes
+          - `gasUsed`- the amount of gas used by this specific transaction alone
+          - `output`- the value returned by the contract call, and it only contains the actual value sent by the return method. If the return method was not executed, the output is empty bytes
 
         If the `type` of the transaction is a `create`, these additional fields will exist:
 
         - `action` - an object containing information on the contract creation:
-            - `from` - the address of the sender
-            - `creationMethod` - the creation method, such as `create`
-            - `gas` - the gas provided by the sender, encoded as hexadecimal
-            - `init` - the initialization code of the contract
-            - `value` - the integer of the value sent with this transaction, encoded as hexadecimal
+          - `from` - the address of the sender
+          - `creationMethod` - the creation method, such as `create`
+          - `gas` - the gas provided by the sender, encoded as hexadecimal
+          - `init` - the initialization code of the contract
+          - `value` - the integer of the value sent with this transaction, encoded as hexadecimal
         - `result` - an object containing the result of the transaction
-            - `address` - the address of the contract
-            - `code` - the bytecode of the contract
-            - `gasUsed`- the amount of gas used by this specific transaction alone
+          - `address` - the address of the contract
+          - `code` - the bytecode of the contract
+          - `gasUsed`- the amount of gas used by this specific transaction alone
 
     === "Example"
 
@@ -295,37 +293,37 @@ If you wish to set up your own tracing node, you can follow the [Running a Traci
         The `result` object contains the following fields:
 
         - `pending` - an object containing the pending transaction details, which maps an address to a batch of scheduled transactions
-            - `address` - the address initiating a transaction, which maps the addresses' associating nonces with their transactions
-                - `nonce` - the nonce of the sending address
-                    - `blockHash` - the hash of the block where this transaction was included. For pending transactions, this is an empty 32-byte string in hexadecimal format
-                    - `blockNumber` - the block number where this transaction was added encoded as a hexadecimal. For pending transactions, this is `null`
-                    - `from` - the address of the sender
-                    - `gas` - the total amount of gas units used in the transaction
-                    - `gasPrice` - the total amount in Wei the sender is willing to pay for the transaction
-                    - `maxFeePerGas` - the maximum amount of gas willing to be paid for the transaction
-                    - `maxPriorityFeePerGas` - the maximum amount of gas to be included as a tip to the miner
-                    - `hash` - the hash of the transaction
-                    - `input` - the encoded transaction input data
-                    - `nonce` - the number of transactions the sender has sent till now
-                    - `to` - the address of the receiver. `null` when it's a contract creation transaction
-                    - `transactionIndex` - an integer of the transactions index position in the block encoded as a hexadecimal format. For pending transactions, this is `null`
-                    - `value` - the value transferred in Wei encoded as a hexadecimal format
+          - `address` - the address initiating a transaction, which maps the addresses' associating nonces with their transactions
+            - `nonce` - the nonce of the sending address
+              - `blockHash` - the hash of the block where this transaction was included. For pending transactions, this is an empty 32-byte string in hexadecimal format
+              - `blockNumber` - the block number where this transaction was added encoded as a hexadecimal. For pending transactions, this is `null`
+              - `from` - the address of the sender
+              - `gas` - the total amount of gas units used in the transaction
+              - `gasPrice` - the total amount in Wei the sender is willing to pay for the transaction
+              - `maxFeePerGas` - the maximum amount of gas willing to be paid for the transaction
+              - `maxPriorityFeePerGas` - the maximum amount of gas to be included as a tip to the miner
+              - `hash` - the hash of the transaction
+              - `input` - the encoded transaction input data
+              - `nonce` - the number of transactions the sender has sent till now
+              - `to` - the address of the receiver. `null` when it's a contract creation transaction
+              - `transactionIndex` - an integer of the transactions index position in the block encoded as a hexadecimal format. For pending transactions, this is `null`
+              - `value` - the value transferred in Wei encoded as a hexadecimal format
         - `queued` - an object containing the queued transaction details, which maps an address to a batch of scheduled transactions
-            - `address` - the address initiating a transaction, which maps the addresses' associating nonces with their transactions
-                - `nonce` - the nonce of the sending address
-                    - `blockHash` - the hash of the block where this transaction was included. For queued transactions, this is an empty 32-byte string in hexadecimal format
-                    - `blockNumber` - the block number where this transaction was added encoded as a hexadecimal. For queued transactions, this is `null`
-                    - `from` - the address of the sender
-                    - `gas` - the total amount of gas units used in the transaction
-                    - `gasPrice` - the total amount in wei the sender is willing to pay for the transaction
-                    - `maxFeePerGas` - the maximum amount of gas willing to be paid for the transaction
-                    - `maxPriorityFeePerGas` - the maximum amount of gas to be included as a tip to the miner
-                    - `hash` - the hash of the transaction
-                    - `input` - the encoded transaction input data
-                    - `nonce` - the number of transactions the sender has sent till now
-                    - `to` - the address of the receiver. `null` when it's a contract creation transaction
-                    - `transactionIndex` - an integer of the transactions index position in the block encoded as a hexadecimal format. For queued transactions, this is `null`
-                    - `value` - the value transferred in Wei encoded as a hexadecimal format
+          - `address` - the address initiating a transaction, which maps the addresses' associating nonces with their transactions
+            - `nonce` - the nonce of the sending address
+              - `blockHash` - the hash of the block where this transaction was included. For queued transactions, this is an empty 32-byte string in hexadecimal format
+              - `blockNumber` - the block number where this transaction was added encoded as a hexadecimal. For queued transactions, this is `null`
+              - `from` - the address of the sender
+              - `gas` - the total amount of gas units used in the transaction
+              - `gasPrice` - the total amount in wei the sender is willing to pay for the transaction
+              - `maxFeePerGas` - the maximum amount of gas willing to be paid for the transaction
+              - `maxPriorityFeePerGas` - the maximum amount of gas to be included as a tip to the miner
+              - `hash` - the hash of the transaction
+              - `input` - the encoded transaction input data
+              - `nonce` - the number of transactions the sender has sent till now
+              - `to` - the address of the receiver. `null` when it's a contract creation transaction
+              - `transactionIndex` - an integer of the transactions index position in the block encoded as a hexadecimal format. For queued transactions, this is `null`
+              - `value` - the value transferred in Wei encoded as a hexadecimal format
 
     === "Example"
 
@@ -351,9 +349,9 @@ If you wish to set up your own tracing node, you can follow the [Running a Traci
         The `result` object contains the following fields:
 
         - `pending` - an object containing the pending transaction summary strings, which maps an address to a batch of scheduled transactions
-            - `address` - the address initiating a transaction, which maps the addresses' associating nonces with their transaction summary strings
+          - `address` - the address initiating a transaction, which maps the addresses' associating nonces with their transaction summary strings
         - `queued` - an object containing the queued transaction summary strings, which maps an address to a batch of scheduled transactions
-            - `address` - the address initiating a transaction, which maps the addresses' associating nonces with their transaction summary strings
+          - `address` - the address initiating a transaction, which maps the addresses' associating nonces with their transaction summary strings
 
     === "Example"
 

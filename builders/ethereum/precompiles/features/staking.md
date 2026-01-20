@@ -1,9 +1,6 @@
----
-title: Staking Precompile Contract
-description: Unlock the potential of staking with a specialized precompiled contract designed to streamline and optimize participation in Moonbeam.
-keywords: solidity, ethereum, staking, moonbeam, precompiled, contracts
-categories: Precompiles, Ethereum Toolkit
----
+______________________________________________________________________
+
+## title: Staking Precompile Contract description: Unlock the potential of staking with a specialized precompiled contract designed to streamline and optimize participation in Moonbeam. keywords: solidity, ethereum, staking, moonbeam, precompiled, contracts categories: Precompiles, Ethereum Toolkit
 
 # Interacting with the Staking Precompile
 
@@ -15,21 +12,21 @@ The staking module is coded in Rust and it is part of a pallet that is normally 
 
 === "Moonbeam"
 
-     ```text
-     {{networks.moonbeam.precompiles.staking}}
-     ```
+    ```text
+    {{networks.moonbeam.precompiles.staking}}
+    ```
 
 === "Moonriver"
 
-     ```text
-     {{networks.moonriver.precompiles.staking}}
-     ```
+    ```text
+    {{networks.moonriver.precompiles.staking}}
+    ```
 
 === "Moonbase Alpha"
 
-     ```text
-     {{networks.moonbase.precompiles.staking}}
-     ```
+    ```text
+    {{networks.moonbase.precompiles.staking}}
+    ```
 
 This guide will cover the available methods in the staking precompile interface. In addition, it will show you how to interact with the Parachain Staking Pallet through the staking precompile and the Ethereum API. The examples in this guide are done on Moonbase Alpha, but they can be adapted for Moonbeam or Moonriver.
 
@@ -40,8 +37,9 @@ This guide will cover the available methods in the staking precompile interface.
 Some of the Parachain Staking Pallet extrinsics include exit delays that you must wait before the request can be executed. The exit delays to note are as follows:
 
 === "Moonbeam"
+
     |        Variable         |                                                                         Value                                                                         |
-    |:-----------------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------:|
+    | :---------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------: |
     | Decrease candidate bond |       {{ networks.moonbeam.collator_timings.can_bond_less.rounds }} rounds ({{ networks.moonbeam.collator_timings.can_bond_less.hours }} hours)       |
     | Decrease delegator bond |      {{ networks.moonbeam.delegator_timings.del_bond_less.rounds }} rounds ({{ networks.moonbeam.delegator_timings.del_bond_less.hours }} hours)      |
     |    Revoke delegation    | {{ networks.moonbeam.delegator_timings.revoke_delegations.rounds }} rounds ({{ networks.moonbeam.delegator_timings.revoke_delegations.hours }} hours) |
@@ -49,8 +47,9 @@ Some of the Parachain Staking Pallet extrinsics include exit delays that you mus
     |    Leave delegators     |   {{ networks.moonbeam.delegator_timings.leave_delegators.rounds }} rounds ({{ networks.moonbeam.delegator_timings.leave_delegators.hours }} hours)   |
 
 === "Moonriver"
+
     |        Variable         |                                                                          Value                                                                          |
-    |:-----------------------:|:-------------------------------------------------------------------------------------------------------------------------------------------------------:|
+    | :---------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------: |
     | Decrease candidate bond |       {{ networks.moonriver.collator_timings.can_bond_less.rounds }} rounds ({{ networks.moonriver.collator_timings.can_bond_less.hours }} hours)       |
     | Decrease delegator bond |      {{ networks.moonriver.delegator_timings.del_bond_less.rounds }} rounds ({{ networks.moonriver.delegator_timings.del_bond_less.hours }} hours)      |
     |    Revoke delegation    | {{ networks.moonriver.delegator_timings.revoke_delegations.rounds }} rounds ({{ networks.moonriver.delegator_timings.revoke_delegations.hours }} hours) |
@@ -58,8 +57,9 @@ Some of the Parachain Staking Pallet extrinsics include exit delays that you mus
     |    Leave delegators     |   {{ networks.moonriver.delegator_timings.leave_delegators.rounds }} rounds ({{ networks.moonriver.delegator_timings.leave_delegators.hours }} hours)   |
 
 === "Moonbase Alpha"
+
     |        Variable         |                                                                         Value                                                                         |
-    |:-----------------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------:|
+    | :---------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------: |
     | Decrease candidate bond |       {{ networks.moonbase.collator_timings.can_bond_less.rounds }} rounds ({{ networks.moonbase.collator_timings.can_bond_less.hours }} hours)       |
     | Decrease delegator bond |      {{ networks.moonbase.delegator_timings.del_bond_less.rounds }} rounds ({{ networks.moonbase.delegator_timings.del_bond_less.hours }} hours)      |
     |    Revoke delegation    | {{ networks.moonbase.delegator_timings.revoke_delegations.rounds }} rounds ({{ networks.moonbase.delegator_timings.revoke_delegations.hours }} hours) |
@@ -466,34 +466,36 @@ The Solidity interface includes the following functions:
 
 The below example is demonstrated on Moonbase Alpha, however, similar steps can be taken for Moonbeam and Moonriver.
 
- - Have MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}
- - Have an account with at least `{{networks.moonbase.staking.min_del_stake}}` token.
-  --8<-- 'text/_common/faucet/faucet-list-item.md'
+- Have MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}
+- Have an account with at least `{{networks.moonbase.staking.min_del_stake}}` token.
+
+--8<-- 'text/_common/faucet/faucet-list-item.md'
 
 !!! note
+
     The example below requires more than `{{networks.moonbase.staking.min_del_stake}}` token due to the minimum delegation amount plus gas fees. If you need more than the faucet dispenses, please contact us on Discord and we will be happy to help you.
 
 ### Remix Set Up {: #remix-set-up }
 
 1. Click on the **File explorer** tab
-2. Get a copy of [`StakingInterface.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol){target=\_blank} and paste the file contents into a Remix file named `StakingInterface.sol`
+1. Get a copy of [`StakingInterface.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol){target=\_blank} and paste the file contents into a Remix file named `StakingInterface.sol`
 
 ![Copying and Pasting the Staking Interface into Remix](/images/builders/ethereum/precompiles/features/staking/staking-1.webp)
 
 ### Compile the Contract {: #compile-the-contract }
 
 1. Click on the **Compile** tab, second from top
-2. Then to compile the interface, click on **Compile StakingInterface.sol**
+1. Then to compile the interface, click on **Compile StakingInterface.sol**
 
 ![Compiling StakingInterface.sol](/images/builders/ethereum/precompiles/features/staking/staking-2.webp)
 
 ### Access the Contract {: #access-the-contract }
 
 1. Click on the **Deploy and Run** tab, directly below the **Compile** tab in Remix. Note: you are not deploying a contract here, instead you are accessing a precompiled contract that is already deployed
-2. Make sure **Injected Provider - Metamask** is selected in the **ENVIRONMENT** drop down
-3. Ensure **ParachainStaking - StakingInterface.sol** is selected in the **CONTRACT** dropdown. Since this is a precompiled contract there is no need to deploy, instead you are going to provide the address of the precompile in the **At Address** field
-4. Provide the address of the staking precompile for Moonbase Alpha: `{{networks.moonbase.precompiles.staking}}` and click **At Address**
-5. The Parachain Staking precompile will appear in the list of **Deployed Contracts**
+1. Make sure **Injected Provider - Metamask** is selected in the **ENVIRONMENT** drop down
+1. Ensure **ParachainStaking - StakingInterface.sol** is selected in the **CONTRACT** dropdown. Since this is a precompiled contract there is no need to deploy, instead you are going to provide the address of the precompile in the **At Address** field
+1. Provide the address of the staking precompile for Moonbase Alpha: `{{networks.moonbase.precompiles.staking}}` and click **At Address**
+1. The Parachain Staking precompile will appear in the list of **Deployed Contracts**
 
 ![Provide the address](/images/builders/ethereum/precompiles/features/staking/staking-3.webp)
 
@@ -508,41 +510,41 @@ In order to delegate a candidate, you'll need to determine the candidate's curre
 The candidate delegation count is the number of delegations backing a specific candidate. To obtain the candidate delegator count, you can call a function that the staking precompile provides. Expand the **PARACHAINSTAKING** contract found under the **Deployed Contracts** list, then:
 
 1. Find and expand the **candidateDelegationCount** function
-2. Enter the candidate address (`{{ networks.moonbase.staking.candidates.address1 }}`)
-3. Click **call**
-4. After the call is complete, the results will be displayed
+1. Enter the candidate address (`{{ networks.moonbase.staking.candidates.address1 }}`)
+1. Click **call**
+1. After the call is complete, the results will be displayed
 
 ![Call collator delegation count](/images/builders/ethereum/precompiles/features/staking/staking-4.webp)
 
 The auto-compounding delegation count is the amount of delegations that have auto-compounding configured. To determine the number of delegations that have auto-compounding set up, you can
 
 1. Find and expand the **candidateAutoCompoundingDelegationCount** function
-2. Enter the candidate address (`{{ networks.moonbase.staking.candidates.address1 }}`)
-3. Click **call**
-4. After the call is complete, the results will be displayed
+1. Enter the candidate address (`{{ networks.moonbase.staking.candidates.address1 }}`)
+1. Click **call**
+1. After the call is complete, the results will be displayed
 
 ![Get candidate auto-compounding delegation count](/images/builders/ethereum/precompiles/features/staking/staking-5.webp)
 
 The last item you'll need to retrieve is your delegation count. If you don't know your existing number of delegations, you can easily get them by following these steps:
 
 1. Find and expand the **delegatorDelegationCount** function
-2. Enter your address
-3. Click **call**
-4. After the call is complete, the results will be displayed
+1. Enter your address
+1. Click **call**
+1. After the call is complete, the results will be displayed
 
 ![Call delegator delegation count](/images/builders/ethereum/precompiles/features/staking/staking-6.webp)
 
-Now that you have obtained the [candidate delegator count](#:~:text=To obtain the candidate delegator count), the [auto-compounding delegation count](#:~:text=To determine the number of delegations that have auto-compounding set up), and your [number of existing delegations](#:~:text=If you don't know your existing number of delegations), you have all of the information you need to delegate a candidate and set up auto-compounding. To get started:
+Now that you have obtained the \[candidate delegator count\](#:~:text=To obtain the candidate delegator count), the \[auto-compounding delegation count\](#:~:text=To determine the number of delegations that have auto-compounding set up), and your \[number of existing delegations\](#:~:text=If you don't know your existing number of delegations), you have all of the information you need to delegate a candidate and set up auto-compounding. To get started:
 
 1. Find and expand the **delegateWithAutoCompound** function
-2. Enter the candidate address you would like to delegate. For this example you can use `{{ networks.moonbase.staking.candidates.address1 }}`
-3. Provide the amount to delegate in Wei. There is a minimum of `{{networks.moonbase.staking.min_del_stake}}` token to delegate, so the lowest amount in Wei is `{{networks.moonbase.staking.min_del_stake_wei}}`
-4. Enter an integer (no decimals) between 0-100 to represent the percentage of rewards to auto-compound
-5. Enter the delegation count for the candidate
-6. Enter the auto-compounding delegation count for the candidate
-7. Enter your delegation count
-8. Press **transact**
-9. MetaMask will pop up, you can review the details and confirm the transaction
+1. Enter the candidate address you would like to delegate. For this example you can use `{{ networks.moonbase.staking.candidates.address1 }}`
+1. Provide the amount to delegate in Wei. There is a minimum of `{{networks.moonbase.staking.min_del_stake}}` token to delegate, so the lowest amount in Wei is `{{networks.moonbase.staking.min_del_stake_wei}}`
+1. Enter an integer (no decimals) between 0-100 to represent the percentage of rewards to auto-compound
+1. Enter the delegation count for the candidate
+1. Enter the auto-compounding delegation count for the candidate
+1. Enter your delegation count
+1. Press **transact**
+1. MetaMask will pop up, you can review the details and confirm the transaction
 
 ![Delegate a Collator](/images/builders/ethereum/precompiles/features/staking/staking-7.webp)
 
@@ -555,20 +557,21 @@ To verify your delegation was successful, you can check the chain state in Polka
 Navigate to **Accounts** and then **Address Book**, click on **Add contact**, and enter the following information:
 
 1. Add your MetaMask address
-2. Provide a nickname for the account
-3. Click **Save**
+1. Provide a nickname for the account
+1. Click **Save**
 
 ![Add to Address Book](/images/builders/ethereum/precompiles/features/staking/staking-8.webp)
 
 To verify your delegation was successful, head to [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/chainstate){target=\_blank} and navigate to **Developer** and then **Chain State**
 
 1. Select the **parachainStaking** pallet
-2. Select the **delegatorState** query
-3. Enter your address
-4. Optionally, you can enable the **include option** slider if you want to provide a specific blockhash to query
-5. Click the **+** button to return the results and verify your delegation
+1. Select the **delegatorState** query
+1. Enter your address
+1. Optionally, you can enable the **include option** slider if you want to provide a specific blockhash to query
+1. Click the **+** button to return the results and verify your delegation
 
 !!! note
+
     You do not have to enter anything in the **blockhash to query at** field if you are looking for an overview of your delegations.
 
 ![Verify delegation](/images/builders/ethereum/precompiles/features/staking/staking-9.webp)
@@ -578,10 +581,10 @@ To verify your delegation was successful, head to [Polkadot.js Apps](https://pol
 You can confirm the percentage of rewards you've set to auto-compound in Remix using the `delegationAutoCompound` function of the Solidity interface:
 
 1. Find and expand the **delegationAutoCompound** function
-2. Enter your account you used to delegate with
-3. Enter the candidate you've delegated
-4. Click **call**
-5. The response will appear below the **call** button
+1. Enter your account you used to delegate with
+1. Enter the candidate you've delegated
+1. Click **call**
+1. The response will appear below the **call** button
 
 ![Verify auto-compound percentage](/images/builders/ethereum/precompiles/features/staking/staking-10.webp)
 
@@ -594,12 +597,12 @@ You'll need to get the number of delegations with auto-compounding set up for th
 Once you have the necessary information, you can take the following steps in Remix:
 
 1. Find and expand the **setAutoCompound** function
-2. Enter the candidate's account you want to set or update auto-compounding for
-3. Enter a number 0-100 to represent the percentage of rewards you want to auto-compound
-4. Enter the auto-compounding delegation count for the candidate
-5. Enter your delegation count
-6. Press **transact**
-7. MetaMask will pop up, you can review the details and confirm the transaction
+1. Enter the candidate's account you want to set or update auto-compounding for
+1. Enter a number 0-100 to represent the percentage of rewards you want to auto-compound
+1. Enter the auto-compounding delegation count for the candidate
+1. Enter your delegation count
+1. Press **transact**
+1. MetaMask will pop up, you can review the details and confirm the transaction
 
 ![Set or update auto-compound percentage](/images/builders/ethereum/precompiles/features/staking/staking-11.webp)
 
@@ -614,9 +617,9 @@ To revoke a delegation for a specific candidate and receive your tokens back, yo
 To revoke a delegation and receive your tokens back, head back over to Remix, then:
 
 1. Find and expand the **scheduleRevokeDelegation** function
-2. Enter the candidate address you would like to revoke the delegation for
-3. Click **transact**
-4. MetaMask will pop up, you can review the transaction details, and click **Confirm**
+1. Enter the candidate address you would like to revoke the delegation for
+1. Click **transact**
+1. MetaMask will pop up, you can review the transaction details, and click **Confirm**
 
 ![Revoke delegation](/images/builders/ethereum/precompiles/features/staking/staking-12.webp)
 
@@ -625,18 +628,18 @@ Once the transaction is confirmed, you must wait the duration of the exit delay 
 After the exit delay has passed, you can go back to Remix and follow these steps to execute the due request:
 
 1. Find and expand the **executeDelegationRequest** function
-2. Enter the address of the delegator you would like to revoke the delegation for
-3. Enter the candidate address you would like to revoke the delegation from
-4. Click **transact**
-5. MetaMask will pop up, you can review the transaction details, and click **Confirm**
+1. Enter the address of the delegator you would like to revoke the delegation for
+1. Enter the candidate address you would like to revoke the delegation from
+1. Click **transact**
+1. MetaMask will pop up, you can review the transaction details, and click **Confirm**
 
 After the call is complete, the results will be displayed and the delegation will be revoked for the given delegator and from the specified candidate. You can also check your delegator state again on Polkadot.js Apps to confirm.
 
 If for any reason you need to cancel a pending scheduled request to revoke a delegation, you can do so by following these steps in Remix:
 
 1. Find and expand the **cancelDelegationRequest** function
-2. Enter the candidate address you would like to cancel the pending request for
-3. Click **transact**
-4. MetaMask will pop up, you can review the transaction details, and click **Confirm**
+1. Enter the candidate address you would like to cancel the pending request for
+1. Click **transact**
+1. MetaMask will pop up, you can review the transaction details, and click **Confirm**
 
 You can check your delegator state again on Polkadot.js Apps to confirm that your delegation is still intact.

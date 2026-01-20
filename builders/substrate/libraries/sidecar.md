@@ -1,8 +1,6 @@
----
-title: Using Substrate API Sidecar with Moonbeam
-description: Learn how to use Sidecar, a Substrate-based REST service, with Moonbeam-based networks to access blocks, account balances, compute gas used, and more.
-categories: Substrate Toolkit, Libraries and SDKs
----
+______________________________________________________________________
+
+## title: Using Substrate API Sidecar with Moonbeam description: Learn how to use Sidecar, a Substrate-based REST service, with Moonbeam-based networks to access blocks, account balances, compute gas used, and more. categories: Substrate Toolkit, Libraries and SDKs
 
 # Using Substrate API Sidecar with Moonbeam
 
@@ -29,6 +27,7 @@ npm install @substrate/api-sidecar@{{ networks.moonbase.substrate_api_sidecar.st
 ```
 
 !!! note
+
     If the current folder does not already have a Node.js project structure, you need to manually create the `node_modules` directory by typing `mkdir node_modules`.
 
 Substrate API Sidecar v{{ networks.moonbase.substrate_api_sidecar.stable_version }} is the current stable version that has been tested to work with Moonbeam networks. You can verify the installation was successful by typing from the installation directory root:
@@ -77,7 +76,7 @@ And it should display the network endpoint you have just set.
 
 ## Generating the Types Bundle {: #generating-the-types-bundle }
 
-Moonbeam introduces custom types that differ from the standard Substrate types. For API clients like Substrate API Sidecar to properly understand and decode these custom types, you must provide Substrate API Sidecar with the corresponding custom types bundle for the respective network you're interacting with. Generating and associating the custom types bundle with Substrate API Sidecar is quick. 
+Moonbeam introduces custom types that differ from the standard Substrate types. For API clients like Substrate API Sidecar to properly understand and decode these custom types, you must provide Substrate API Sidecar with the corresponding custom types bundle for the respective network you're interacting with. Generating and associating the custom types bundle with Substrate API Sidecar is quick.
 
 First, ensure that you installed [Parity's `generate-types-bundle` package](https://github.com/paritytech/generate-type-bundle){target=\_blank}:
 
@@ -105,7 +104,7 @@ Then, run the following command to generate the types bundle for the respective 
     generate-type-bundle -p "$(pwd)" -s moonbase
     ```
 
-Note that running subsequent commands will overwrite the existing `typesBundle.json.` You'll then need to set the `SAS_SUBSTRATE_TYPES_BUNDLE` environment variable as shown below. If you've renamed the `typesBundle.json,` ensure you use the correct file name. 
+Note that running subsequent commands will overwrite the existing `typesBundle.json.` You'll then need to set the `SAS_SUBSTRATE_TYPES_BUNDLE` environment variable as shown below. If you've renamed the `typesBundle.json,` ensure you use the correct file name.
 
 ```bash
 export SAS_SUBSTRATE_TYPES_BUNDLE="$(pwd)/typesBundle.json"
@@ -133,12 +132,12 @@ If the installation and configuration are successful, you should see this output
 
 Some of the commonly used Substrate API Sidecar endpoints include:
 
- - **GET /blocks​/head** — Get the most recently finalized block. The optional parameter `finalized` can be set to `false` to the get the newest known block, which may not be finalized
- - **GET /blocks/head/header** — Get the most recently finalized block header. The optional parameter `finalized` can be set to `false` to the get the newest known block header, which may not be finalized
- - **GET /blocks/{blockId}** — Get a block by its height or hash
- - **GET /accounts/{accountId}/balance-info** — Get balance information for an account
- - **GET /node/version** — Get information about the Substrates node's implementation and versioning
- - **GET /runtime/metadata** — Get the runtime metadata in decoded, JSON form.
+- **GET /blocks​/head** — Get the most recently finalized block. The optional parameter `finalized` can be set to `false` to the get the newest known block, which may not be finalized
+- **GET /blocks/head/header** — Get the most recently finalized block header. The optional parameter `finalized` can be set to `false` to the get the newest known block header, which may not be finalized
+- **GET /blocks/{blockId}** — Get a block by its height or hash
+- **GET /accounts/{accountId}/balance-info** — Get balance information for an account
+- **GET /node/version** — Get information about the Substrates node's implementation and versioning
+- **GET /runtime/metadata** — Get the runtime metadata in decoded, JSON form.
 
 For a full list of API endpoints available on Substrate API Sidecar, please refer to the [official documentation](https://paritytech.github.io/substrate-api-sidecar/dist).
 
@@ -252,8 +251,9 @@ To obtain the EVM sender address, recipient address, and EVM hash of any EVM tra
 The EVM field mappings are then summarized as the following:
 
 === "EIP1559"
+
     |        EVM Field         |                               Block JSON Field                               |
-    |:------------------------:|:----------------------------------------------------------------------------:|
+    | :----------------------: | :--------------------------------------------------------------------------: |
     |         Chain ID         |       `extrinsics[extrinsic_number].args.transaction.eip1559.chainId`        |
     |          Nonce           |        `extrinsics[extrinsic_number].args.transaction.eip1559.nonce`         |
     | Max priority fee per gas | `extrinsics[extrinsic_number].args.transaction.eip1559.maxPriorityFeePerGas` |
@@ -267,8 +267,9 @@ The EVM field mappings are then summarized as the following:
     |   EVM execution status   |         `extrinsics[extrinsic_number].events[event_number].data[3]`          |
 
 === "Legacy"
+
     |      EVM Field       |                         Block JSON Field                         |
-    |:--------------------:|:----------------------------------------------------------------:|
+    | :------------------: | :--------------------------------------------------------------: |
     |        Nonce         |   `extrinsics[extrinsic_number].args.transaction.legacy.nonce`   |
     |      Gas price       | `extrinsics[extrinsic_number].args.transaction.legacy.gasPrice`  |
     |      Gas limit       | `extrinsics[extrinsic_number].args.transaction.legacy.gasLimit`  |
@@ -280,8 +281,9 @@ The EVM field mappings are then summarized as the following:
     | EVM execution status |   `extrinsics[extrinsic_number].events[event_number].data[3]`    |
 
 === "EIP2930"
+
     |      EVM Field       |                            Block JSON Field                            |
-    |:--------------------:|:----------------------------------------------------------------------:|
+    | :------------------: | :--------------------------------------------------------------------: |
     |       Chain ID       |    `extrinsics[extrinsic_number].args.transaction.eip2930.chainId`     |
     |        Nonce         |     `extrinsics[extrinsic_number].args.transaction.eip2930.nonce`      |
     |      Gas price       |    `extrinsics[extrinsic_number].args.transaction.eip2930.gasPrice`    |
@@ -295,6 +297,7 @@ The EVM field mappings are then summarized as the following:
     | EVM execution status |      `extrinsics[extrinsic_number].events[event_number].data[3]`       |
 
 !!! note
+
     For Substrate transactions, the "Nonce" and "Signature" fields are under `extrinsics[extrinsic_number]`. For EVM transactions, the "Nonce" and "Signature" fields are under `extrinsics[extrinsic_number].args.transaction[transaction_type]`, leaving the "Nonce" and "Signature" under `extrinsics[extrinsic_number]` to be `null`.
 
     A successfully executed EVM transaction will return either `succeed: "Stopped"` or `succeed: "Returned"` under the "EVM Execution Status" field.
@@ -337,7 +340,7 @@ RESPONSE JSON Block Object:
 Moonbeam ERC-20 token transfers will emit the [`Transfer`](https://eips.ethereum.org/EIPS/eip-20){target=\_blank} event which can be decoded as the following:
 
 |     Tx Information      |                           Block JSON Field                            |
-|:-----------------------:|:---------------------------------------------------------------------:|
+| :---------------------: | :-------------------------------------------------------------------: |
 | ERC-20 contract address |  `extrinsics[extrinsic_number].events[event_number].data[0].address`  |
 |  Event signature hash   | `extrinsics[extrinsic_number].events[event_number].data[0].topics[0]` |
 |     Sender address      | `extrinsics[extrinsic_number].events[event_number].data[0].topics[1]` |
@@ -347,6 +350,7 @@ Moonbeam ERC-20 token transfers will emit the [`Transfer`](https://eips.ethereum
 Other events emitted by EVM smart contracts can be decoded in a similar fashion, but the content of the topics and data fields will change depending on the definition of the specific event.
 
 !!! note
+
     The amount transferred is given in Wei and in hexadecimal format.
 
 ## Sample Code for Monitoring Native Token Transfers { #sample-code-for-monitoring-native-token-transfers }
