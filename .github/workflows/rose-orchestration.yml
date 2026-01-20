@@ -31,7 +31,7 @@ on:
       - edited
   push:
     branches:
-      - master
+      - '**'
   schedule:
     # Adjust time as needed (UTC).
     - cron: '0 20 * * 0'
@@ -243,6 +243,7 @@ jobs:
           ROSE_LANGS_RAW: ${{ env.ROSE_LANGS_RAW }}
           ROSE_QUEUE_LABEL: ${{ env.ROSE_QUEUE_LABEL }}
           ROSE_SENT_LABEL: ${{ env.ROSE_SENT_LABEL }}
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
         with:
           script: |
             const fs = require('fs');
@@ -275,11 +276,12 @@ jobs:
             const langsLower = languages.map((lang) => lang.toLowerCase());
             const langSet = new Set(langsLower);
 
+            const defaultBranch = process.env.DEFAULT_BRANCH || 'main';
             const searchQuery = [
               `repo:${context.repo.owner}/${context.repo.repo}`,
               'is:pr',
               'is:merged',
-              'base:update-trigger',
+              `base:${defaultBranch}`,
               `label:${queueLabel}`,
               `-label:${sentLabel}`,
             ].join(' ');
@@ -725,8 +727,8 @@ jobs:
             }
 
   sync-rose-branch:
-    name: Sync rose/translations with main
-    if: ${{ github.event_name == 'push' }}
+    name: Sync rose/translations with default branch
+    if: ${{ github.event_name == 'push' && github.ref == format('refs/heads/{0}', github.event.repository.default_branch) }}
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -738,7 +740,7 @@ jobs:
       - name: Merge default branch into rose/translations
         shell: bash
         env:
-          SOURCE_BRANCH: ${{ github.ref_name }}
+          SOURCE_BRANCH: ${{ github.event.repository.default_branch }}
           TARGET_BRANCH: rose/translations
         run: |
           set -euo pipefail

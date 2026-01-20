@@ -64,7 +64,14 @@ material_overrides:
       moonbeam_logo_for_cookie_consent: Moonbeam logo for cookie consent
       right_section_buttons: Right section buttons
     feedback:
-      divider: Divider
+      title: Was this page helpful?
+      rating_up_name: This page was helpful
+      rating_up_note: >-
+        Thanks for your feedback!
+      rating_down_name: This page could be improved
+      rating_down_note: >-
+        Thanks for your feedback! Help us improve this page by submitting
+        <a href="https://github.com/moonbeam-foundation/moonbeam-docs/issues/new/?title=[Feedback]+{title}+-+{url}" target="_blank" rel="noopener">additional feedback</a>.
     footer:
       llms_by_topic: Llms by topic
       llms_full_txt: Llms full txt
