@@ -346,6 +346,53 @@ def _normalize_path(path: str) -> str:
         return Path(raw).as_posix()
 
 
+def _load_docs_dir() -> str:
+    mkdocs_path = REPO_ROOT / "mkdocs.yml"
+    if mkdocs_path.exists():
+        try:
+            import yaml
+
+            cfg = yaml.safe_load(mkdocs_path.read_text(encoding="utf-8")) or {}
+            docs_dir = cfg.get("docs_dir")
+            if isinstance(docs_dir, str) and docs_dir.strip():
+                return docs_dir.strip()
+        except Exception:
+            pass
+        # Fallback: parse simple docs_dir: line
+        for line in mkdocs_path.read_text(encoding="utf-8").splitlines():
+            if line.lstrip().startswith("#"):
+                continue
+            match = re.match(r"^\\s*docs_dir:\\s*(.+?)\\s*$", line)
+            if match:
+                raw = match.group(1).split("#", 1)[0].strip().strip('\"\\' )
+                if raw:
+                    return raw
+    return "docs"
+
+
+def _normalize_include_path(path: str) -> str:
+    """Normalize include paths, allowing docs-relative inputs."""
+    norm = _normalize_path(path)
+    # If it exists as-is, keep it.
+    try:
+        candidate = repo_path(norm)
+        if candidate.exists():
+            return norm
+    except Exception:
+        pass
+    # Try prefixing with docs_dir if not already under it.
+    docs_dir = _load_docs_dir().rstrip("/").lstrip("/")
+    if docs_dir and not norm.startswith(f"{docs_dir}/") and norm != docs_dir:
+        with_prefix = f"{docs_dir}/{norm}"
+        try:
+            candidate = repo_path(with_prefix)
+            if candidate.exists():
+                return with_prefix
+        except Exception:
+            pass
+    return norm
+
+
 def _filter_diff_map(diff_map: dict[str, list[dict[str, Any]]], include: set[str]) -> dict[str, list[dict[str, Any]]]:
     if not include:
         return diff_map
@@ -921,6 +968,12 @@ def _run_pipeline(args: argparse.Namespace) -> int:
         for chunk in env_include_files.splitlines():
             tokens.extend(re.split(r"[,\s]+", chunk.strip()))
         args.include_files = [entry for entry in tokens if entry]
+
+    # Normalize include paths (allow docs-relative inputs)
+    if args.include_files:
+        args.include_files = [
+            _normalize_include_path(path) for path in args.include_files if path.strip()
+        ]
 
     include_files = {_normalize_path(path) for path in args.include_files if path.strip()}
     _debug(f"Base ref: {args.base}")
