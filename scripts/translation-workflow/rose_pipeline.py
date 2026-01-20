@@ -971,7 +971,7 @@ def _run_pipeline(args: argparse.Namespace) -> int:
                 "mdformat-tables",
             ]
         )
-        mdformat_failures = _run_mdformat_checks(md_targets)
+        mdformat_failures = _format_md_files(md_targets)
         if mdformat_failures:
             _info("mdformat failed on the following file(s):")
             for failure in mdformat_failures:
