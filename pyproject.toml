@@ -1,0 +1,3 @@
+[tool.mdformat]
+extensions = ["frontmatter", "mkdocs", "tables"]
+wrap = 88

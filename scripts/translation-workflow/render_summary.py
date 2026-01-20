@@ -100,6 +100,27 @@ def _format_unused(keys: list[str]) -> list[str]:
     return lines
 
 
+def _format_pruned(pruned_by_lang: dict[str, list[str]], pruned_sources: list[str]) -> list[str]:
+    if not pruned_by_lang:
+        return []
+    lines: list[str] = []
+    total = sum(len(paths) for paths in pruned_by_lang.values())
+    source_count = len(pruned_sources)
+    lines.append("#### Pruned translations")
+    lines.append(
+        f"- Removed {total} translated file(s) for {source_count} deleted source file(s)"
+    )
+    for lang, paths in sorted(pruned_by_lang.items()):
+        if not paths:
+            continue
+        lines.append(f"- `{lang}`: {len(paths)} file(s)")
+        for path in paths[:5]:
+            lines.append(f"  - `{path}`")
+        if len(paths) > 5:
+            lines.append("  - ...")
+    return lines
+
+
 def _group_validation_issues(validation: dict[str, Any]) -> dict[str, dict[str, list[dict[str, Any]]]]:
     grouped: dict[str, dict[str, list[dict[str, Any]]]] = {}
     issues: List[dict[str, Any]] = list(validation.get("issues") or [])
@@ -249,6 +270,13 @@ def build_markdown(summary_path: Path) -> str:
     locale_added_section = _format_locale_added(data.get("locale_added_per_locale", {}))
     if locale_added_section:
         blocks.extend(locale_added_section)
+        blocks.append("")
+    pruned_section = _format_pruned(
+        data.get("pruned_translations", {}),
+        data.get("pruned_sources", []),
+    )
+    if pruned_section:
+        blocks.extend(pruned_section)
         blocks.append("")
     validation_block = data.get("validation") or {
         "status": data.get("validation_status", "unknown"),

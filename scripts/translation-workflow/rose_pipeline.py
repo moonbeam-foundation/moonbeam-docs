@@ -10,7 +10,6 @@ import hmac
 import json
 import os
 import re
-import shlex
 import sys
 import time
 import subprocess
@@ -38,12 +37,14 @@ PYTHON_BIN = sys.executable or shutil.which("python3") or "python3"
 PAYLOAD_PATH = TRANSLATION_STAGE / "payload.json"
 CHANGES_PATH = TRANSLATION_STAGE / "changed_segments.json"
 ALLOWED_EXTENSIONS = {".md", ".markdown", ".mkd", ".html", ".jinja", ".jinja2", ".j2", ".tpl", ".yml", ".yaml"}
+MARKDOWN_EXTENSIONS = {".md", ".markdown", ".mkd"}
 TAGGER_PATH = CURRENT_DIR / "tagger.js"
 LOCALE_SYNC = CURRENT_DIR / "locale_sync.py"
 LOCALE_REPORT = TRANSLATION_STAGE / "locale_report.json"
 COVERAGE_REPORT = TRANSLATION_STAGE / "summary_report.json"
 VALIDATION_REPORT = TRANSLATION_STAGE / "validation_report.json"
 VALIDATION_PAYLOAD_SNAPSHOT = TRANSLATION_STAGE / "validation_payload_snapshot.json"
+PRUNED_REPORT = TRANSLATION_STAGE / "pruned_translations.json"
 LANGUAGE_CODE_PATTERN = re.compile(r"^[A-Za-z]{2}(?:[-_][A-Za-z]{2})?$")
 EXCLUDED_PREFIXES = (
     ".github/",
@@ -75,24 +76,66 @@ def _info(message: str) -> None:
         print(message)
 
 
-def _strip_code_fence(text: str) -> str:
-    if not text:
-        return text
-    stripped = text.strip()
-    if stripped.startswith("```") and stripped.endswith("```") and len(stripped) >= 6:
-        lines = stripped.splitlines()
-        if lines:
-            fence_lang = lines[0].strip()
-            if fence_lang.startswith("```"):
-                lines = lines[1:]
-        if lines and lines[-1].strip().startswith("```"):
-            lines = lines[:-1]
-        return "\n".join(lines).strip()
-    return text
-
-
 def _read_lines(path: Path) -> list[str]:
     return path.read_text(encoding="utf-8").splitlines()
+
+
+def _format_md_files(md_files: Iterable[str]) -> list[dict[str, str]]:
+    """Format Markdown files with mdformat, returning any failures."""
+    failures: list[dict[str, str]] = []
+    for rel_path in sorted(set(md_files)):
+        try:
+            path = repo_path(rel_path)
+        except ValueError:
+            continue
+        if not path.exists():
+            continue
+        cmd = [PYTHON_BIN, "-m", "mdformat", str(path)]
+        proc = subprocess.run(cmd, capture_output=True, text=True)
+        if proc.returncode != 0:
+            message = proc.stderr.strip() or proc.stdout.strip() or "mdformat check failed"
+            failures.append({"path": rel_path, "error": message})
+    return failures
+
+
+def _maybe_decode_translated_content(value: str) -> str:
+    if not value:
+        return value
+    candidate = value
+    for _ in range(2):
+        stripped = candidate.strip()
+        if not stripped or stripped[0] not in {'{', '[', '"'}:
+            return candidate
+        try:
+            parsed = json.loads(stripped)
+        except json.JSONDecodeError:
+            return candidate
+        if isinstance(parsed, str):
+            candidate = parsed
+            continue
+        if isinstance(parsed, dict):
+            inner = parsed.get("translated_content")
+            if isinstance(inner, str):
+                candidate = inner
+            return candidate
+        return candidate
+    return candidate
+
+
+def _normalize_translated_content(entry: dict[str, Any]) -> None:
+    path_hint = entry.get("target_path") or entry.get("source_path") or ""
+    try:
+        path = repo_relative(path_hint)
+    except ValueError:
+        path = Path(path_hint)
+    if path.suffix.lower() not in MARKDOWN_EXTENSIONS:
+        return
+    translated = entry.get("translated_content")
+    if not isinstance(translated, str):
+        return
+    normalized = _maybe_decode_translated_content(translated)
+    if normalized != translated:
+        entry["translated_content"] = normalized
 
 
 def _slice_block(lines: list[str], start: int, end: int) -> str:
@@ -303,17 +346,86 @@ def _normalize_path(path: str) -> str:
         return Path(raw).as_posix()
 
 
+def _load_docs_dir() -> str:
+    mkdocs_path = REPO_ROOT / "mkdocs.yml"
+    if mkdocs_path.exists():
+        try:
+            import yaml
+
+            cfg = yaml.safe_load(mkdocs_path.read_text(encoding="utf-8")) or {}
+            docs_dir = cfg.get("docs_dir")
+            if isinstance(docs_dir, str) and docs_dir.strip():
+                return docs_dir.strip()
+        except Exception:
+            pass
+        # Fallback: parse simple docs_dir: line
+        for line in mkdocs_path.read_text(encoding="utf-8").splitlines():
+            if line.lstrip().startswith("#"):
+                continue
+            match = re.match(r"^\\s*docs_dir:\\s*(.+?)\\s*$", line)
+            if match:
+                raw = match.group(1).split("#", 1)[0].strip().strip('\"\\' )
+                if raw:
+                    return raw
+    return "docs"
+
+
+def _normalize_include_path(path: str) -> str:
+    """Normalize include paths, allowing docs-relative inputs."""
+    norm = _normalize_path(path)
+    # If it exists as-is, keep it.
+    try:
+        candidate = repo_path(norm)
+        if candidate.exists():
+            return norm
+    except Exception:
+        pass
+    # Try prefixing with docs_dir if not already under it.
+    docs_dir = _load_docs_dir().rstrip("/").lstrip("/")
+    if docs_dir and not norm.startswith(f"{docs_dir}/") and norm != docs_dir:
+        with_prefix = f"{docs_dir}/{norm}"
+        try:
+            candidate = repo_path(with_prefix)
+            if candidate.exists():
+                return with_prefix
+        except Exception:
+            pass
+    return norm
+
+
 def _filter_diff_map(diff_map: dict[str, list[dict[str, Any]]], include: set[str]) -> dict[str, list[dict[str, Any]]]:
     if not include:
         return diff_map
     normalized_lookup: dict[str, str] = {}
     for rel_path in diff_map:
         normalized_lookup[_normalize_path(rel_path)] = rel_path
+
+    # Build directory prefixes from include entries that point to directories or end with "/".
+    dir_prefixes: set[str] = set()
+    file_targets: set[str] = set()
+    for item in include:
+        norm = _normalize_path(item)
+        if norm:
+            file_targets.add(norm)
+            try:
+                candidate = repo_path(norm)
+                if candidate.is_dir():
+                    dir_prefixes.add(f"{norm.rstrip('/')}/")
+            except Exception:
+                if norm.endswith("/"):
+                    dir_prefixes.add(norm)
+
     filtered: dict[str, list[dict[str, Any]]] = {}
     for normalized, original in normalized_lookup.items():
-        if normalized in include:
+        if normalized in file_targets or any(normalized.startswith(prefix) for prefix in dir_prefixes):
             filtered[original] = diff_map[original]
-    missing = sorted(include - set(normalized_lookup.keys()))
+
+    missing = sorted(
+        path
+        for path in include
+        if path not in file_targets
+        and not any(_normalize_path(existing).startswith(_normalize_path(path).rstrip("/") + "/") for existing in diff_map)
+    )
     if missing:
         _info("Requested file(s) not present in this diff:")
         for path in missing:
@@ -370,6 +482,86 @@ def _load_validation_findings(report_path: Path) -> dict[str, Any]:
     return json.loads(report_path.read_text(encoding="utf-8"))
 
 
+def _collect_deleted_files(base: str, head: str, paths: Iterable[str]) -> list[str]:
+    cmd = [
+        "git",
+        "-C",
+        str(REPO_ROOT),
+        "diff",
+        "--name-status",
+        "--diff-filter=D",
+        "-z",
+        f"{base}..{head}",
+    ]
+    cmd.extend(repo_relative_str(path) for path in paths)
+    result = subprocess.run(cmd, capture_output=True, text=True, check=True)
+    if not result.stdout:
+        return []
+    parts = result.stdout.split("\0")
+    deleted: list[str] = []
+    idx = 0
+    while idx < len(parts):
+        status = parts[idx]
+        if not status:
+            idx += 1
+            continue
+        if status.startswith("D"):
+            if idx + 1 < len(parts) and parts[idx + 1]:
+                deleted.append(repo_relative_str(parts[idx + 1]))
+            idx += 2
+        else:
+            idx += 1
+    return deleted
+
+
+def _prune_deleted_translations(
+    deleted_files: Iterable[str],
+    languages: list[str],
+    skip_llms: bool,
+    skip_ai: bool,
+) -> tuple[list[str], dict[str, list[str]]]:
+    pruned_sources: list[str] = []
+    pruned_by_lang: dict[str, list[str]] = {}
+    seen: set[str] = set()
+    for rel_path in deleted_files:
+        if not rel_path:
+            continue
+        normalized = repo_relative_str(rel_path)
+        if normalized in seen:
+            continue
+        seen.add(normalized)
+        if _should_skip_path(normalized, languages, skip_llms, skip_ai):
+            continue
+        pruned_sources.append(normalized)
+        for lang in languages:
+            target = _derive_target_path(normalized, lang)
+            target_rel = repo_relative_str(target)
+            target_abs = repo_path(target_rel)
+            if target_abs.is_file() or target_abs.is_symlink():
+                target_abs.unlink()
+                pruned_by_lang.setdefault(lang, []).append(target_rel)
+    pruned_sources.sort()
+    for lang, paths in pruned_by_lang.items():
+        pruned_by_lang[lang] = sorted(set(paths))
+    return pruned_sources, pruned_by_lang
+
+
+def _write_pruned_report(
+    pruned_sources: list[str],
+    pruned_by_lang: dict[str, list[str]],
+) -> None:
+    if not pruned_sources and not pruned_by_lang:
+        return
+    report = {
+        "deleted_sources": pruned_sources,
+        "pruned_translations": pruned_by_lang,
+        "pruned_total": sum(len(paths) for paths in pruned_by_lang.values()),
+    }
+    PRUNED_REPORT.write_text(
+        json.dumps(report, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
+
 def _build_document_records(entries: list[dict[str, Any]]) -> list[dict[str, str]]:
     documents: list[dict[str, str]] = []
     seen_paths: set[str] = set()
@@ -419,19 +611,36 @@ def _resolve_commit(ref: str) -> str:
 
 def _inject_full_file_entries(diff_map: dict[str, list[dict[str, Any]]], include_files: set[str]) -> None:
     for rel_path in include_files:
-        if rel_path in diff_map:
-            continue
-        abs_path = repo_path(rel_path)
-        if not abs_path.exists():
-            _info(f"Requested include file not found on disk: {rel_path}")
-            continue
-        lines = _read_lines(abs_path)
-        entry = {
-            "set_id": len(diff_map.get(rel_path, [])) + 1,
-            "added": {"start": 1, "end": len(lines)},
-        }
-        diff_map.setdefault(rel_path, []).append(entry)
-        _info(f"Added full-file translation entry for {rel_path}")
+        norm = _normalize_path(rel_path)
+        targets: list[str] = []
+        try:
+            abs_path = repo_path(norm)
+        except Exception:
+            abs_path = None
+        if abs_path and abs_path.exists() and abs_path.is_dir():
+            for child in abs_path.rglob("*"):
+                if child.is_file():
+                    targets.append(repo_relative_str(child))
+        else:
+            targets.append(norm)
+
+        for target in targets:
+            if target in diff_map:
+                continue
+            try:
+                abs_target = repo_path(target)
+            except Exception:
+                abs_target = None
+            if not abs_target or not abs_target.exists():
+                _info(f"Requested include file not found on disk: {target}")
+                continue
+            lines = _read_lines(abs_target)
+            entry = {
+                "set_id": len(diff_map.get(target, [])) + 1,
+                "added": {"start": 1, "end": len(lines)},
+            }
+            diff_map.setdefault(target, []).append(entry)
+            _info(f"Added full-file translation entry for {target}")
 
 
 def _compute_hmac(secret: str, data: bytes) -> str:
@@ -507,6 +716,12 @@ def _should_skip_path(rel_path: str, languages: list[str], skip_llms: bool, skip
         if parts and parts[0] == lang:
             return True
     return False
+
+
+def _is_translation_path(rel_path: str, languages: list[str]) -> bool:
+    """Return True if the path lives under one of the target language roots."""
+    parts = Path(rel_path).parts
+    return any(lang in parts for lang in languages)
 
 
 def _run_tagger(text: str) -> str:
@@ -753,11 +968,17 @@ def _run_pipeline(args: argparse.Namespace) -> int:
     if env_include_full and not args.include_full:
         args.include_full = env_include_full.lower() in {"1", "true", "yes", "on"}
     if env_include_files and not args.include_files:
+        import re
+
+        tokens = []
+        for chunk in env_include_files.splitlines():
+            tokens.extend(re.split(r"[,\s]+", chunk.strip()))
+        args.include_files = [entry for entry in tokens if entry]
+
+    # Normalize include paths (allow docs-relative inputs)
+    if args.include_files:
         args.include_files = [
-            entry.strip()
-            for chunk in env_include_files.splitlines()
-            for entry in chunk.split(",")
-            if entry.strip()
+            _normalize_include_path(path) for path in args.include_files if path.strip()
         ]
 
     include_files = {_normalize_path(path) for path in args.include_files if path.strip()}
@@ -768,16 +989,12 @@ def _run_pipeline(args: argparse.Namespace) -> int:
     _debug(f"Env include files: {env_include_files!r}")
     _debug(f"CLI include files: {sorted(include_files)}")
     _debug(f"Include full files: {args.include_full}")
+    skip_llms = _as_bool(args.filter_llms)
+    skip_ai = _as_bool(args.filter_ai_dir)
     if include_files:
         _info("Restricting translation to the following file(s):")
         for rel_path in sorted(include_files):
             _info(f"  - {rel_path}")
-
-    # Run locale sync before diff collection so locale keys stay in sync
-    subprocess.run(
-        [PYTHON_BIN, str(LOCALE_SYNC), "--report", str(LOCALE_REPORT)],
-        check=True,
-    )
 
     diff_text = _run_git_diff(args.base, args.head, args.paths)
     diff_map = _collect_sets(diff_text)
@@ -797,17 +1014,34 @@ def _run_pipeline(args: argparse.Namespace) -> int:
         )
         if args.include_full:
             _inject_full_file_entries(diff_map, include_files)
-        if not diff_map:
-            _info("No diff entries matched include-files filter; exiting.")
-            return 0
+
+    # Skip mdformat checks on diff_map (avoid touching English/front matter)
+    mdformat_failures: list[dict[str, str]] = []
+
+    deleted_files = _collect_deleted_files(args.base, args.head, args.paths)
+    if include_files:
+        deleted_files = [
+            path for path in deleted_files if _normalize_path(path) in include_files
+        ]
+    pruned_sources, pruned_translations = _prune_deleted_translations(
+        deleted_files,
+        args.languages,
+        skip_llms,
+        skip_ai,
+    )
+    _write_pruned_report(pruned_sources, pruned_translations)
+
+    if include_files and not diff_map:
+        _info("No diff entries matched include-files filter; exiting.")
+        return 0
 
     CHANGES_PATH.write_text(json.dumps(diff_map, indent=2), encoding="utf-8")
 
     entries, english_files = _build_payload_entries(
         diff_map,
         args.languages,
-        _as_bool(args.filter_llms),
-        _as_bool(args.filter_ai_dir),
+        skip_llms,
+        skip_ai,
         args.head,
     )
     _debug(f"Prepared {len(entries)} translation job(s) from {len(english_files)} English file(s).")
@@ -924,22 +1158,37 @@ def _run_pipeline(args: argparse.Namespace) -> int:
                 and entry.get("kind") == "file"
             ):
                 entry["target_languages"] = list(args.languages)
-            if isinstance(entry, dict) and isinstance(entry.get("translated_content"), str):
-                entry["translated_content"] = _strip_code_fence(entry["translated_content"])
+            if isinstance(entry, dict):
+                _normalize_translated_content(entry)
     PAYLOAD_PATH.write_text(json.dumps(translations, indent=2, ensure_ascii=False), encoding="utf-8")
     payload_entries = _payload_entries_list(translations)
     target_files = _collect_target_files(translations)
-    markdown_suffixes = {".md", ".markdown", ".mkd"}
-    front_matter_targets = [
-        repo_relative_str(path)
-        for path in target_files
-        if path.suffix.lower() in markdown_suffixes
-    ]
-    front_matter_list = TRANSLATION_STAGE / "front_matter_targets.txt"
-    if front_matter_targets:
-        front_matter_list.write_text(
-            "\n".join(front_matter_targets) + "\n",
+    locale_yaml_targets: list[str] = []
+    for path in target_files:
+        if path.suffix.lower() not in {".yml", ".yaml"}:
+            continue
+        rel_path = repo_relative_str(path)
+        if "locale" not in Path(rel_path).parts:
+            continue
+        locale_yaml_targets.append(rel_path)
+    locale_yaml_list = TRANSLATION_STAGE / "locale_yaml_targets.txt"
+    if locale_yaml_targets:
+        locale_yaml_list.write_text(
+            "\n".join(locale_yaml_targets) + "\n",
             encoding="utf-8",
+        )
+
+    if locale_yaml_targets:
+        subprocess.run(
+            [
+                PYTHON_BIN,
+                str(LOCALE_SYNC),
+                "--report",
+                str(LOCALE_REPORT),
+                "--file-list",
+                str(locale_yaml_list),
+            ],
+            check=True,
         )
 
     _run_cmd([PYTHON_BIN, "-m", "pip", "install", "ruamel.yaml==0.18.16"])
@@ -955,39 +1204,20 @@ def _run_pipeline(args: argparse.Namespace) -> int:
         ]
     )
 
-    fix_front_matter_cmd = [PYTHON_BIN, str(CURRENT_DIR / "fix_front_matter.py")]
-    if front_matter_targets:
-        fix_front_matter_cmd += ["--file-list", str(front_matter_list)]
-    else:
-        fix_front_matter_cmd += ["--languages", *args.languages]
-    _run_cmd(fix_front_matter_cmd)
-
-    _run_cmd([PYTHON_BIN, str(CURRENT_DIR / "format_locale_yaml.py")])
-
-    payload_segments = _summarize_payload_segments(payload_entries)
-
-    def _normalize_lang_prefix(path: Path) -> Path:
-        parts = list(path.parts)
-        if parts:
-            parts[0] = parts[0].lower()
-        return Path(*parts)
-
-    mdformat_targets = [
-        _normalize_lang_prefix(path)
-        for path in target_files
-        if path.suffix.lower() in markdown_suffixes
-    ]
-    if mdformat_targets:
-        file_args = " ".join(shlex.quote(str(path)) for path in mdformat_targets)
-        repo_root_quoted = shlex.quote(str(REPO_ROOT))
-        _run_cmd([PYTHON_BIN, "-m", "pip", "install", "mdformat==0.7.17"])
+    if locale_yaml_targets:
         _run_cmd(
             [
-                "bash",
-                "-lc",
-                f"cd {repo_root_quoted} && {shlex.quote(PYTHON_BIN)} -m mdformat {file_args}",
+                PYTHON_BIN,
+                str(CURRENT_DIR / "format_locale_yaml.py"),
+                "--file-list",
+                str(locale_yaml_list),
             ]
         )
+
+    # Skip mdformat formatting on translated files to avoid front matter issues
+    mdformat_failures: list[dict[str, str]] = []
+
+    payload_segments = _summarize_payload_segments(payload_entries)
 
     _run_cmd([PYTHON_BIN, "-m", "pip", "install", "PyYAML==6.0.1"])
     validation_cmd = [
@@ -1002,12 +1232,6 @@ def _run_pipeline(args: argparse.Namespace) -> int:
     if validation_result.returncode != 0:
         _info("Structural validation reported issues; continuing so translations stay available.")
     _maybe_post_validation_comments(commit_sha)
-    fix_front_matter_cmd = [PYTHON_BIN, str(CURRENT_DIR / "fix_front_matter.py")]
-    if front_matter_targets:
-        fix_front_matter_cmd += ["--file-list", str(front_matter_list)]
-    else:
-        fix_front_matter_cmd += ["--languages", *args.languages]
-    _run_cmd(fix_front_matter_cmd)
     _run_cmd([PYTHON_BIN, str(CURRENT_DIR / "cleanup_tmp.py")])
 
     missing_report = _report_missing_translations(english_files, args.languages)
@@ -1025,6 +1249,11 @@ def _run_pipeline(args: argparse.Namespace) -> int:
         "missing_per_language": missing_report,
         "locale_added_per_locale": locale_summary.get("added_per_locale", {}),
         "locale_unused_keys": locale_summary.get("unused_keys", []),
+        "pruned_sources": pruned_sources,
+        "pruned_translations": pruned_translations,
+        "pruned_translation_count": sum(
+            len(paths) for paths in pruned_translations.values()
+        ),
         "validation": validation_block,
         "validation_status": validation_block["status"],
         "validation_issue_count": validation_block["issue_count"],
@@ -1033,6 +1262,8 @@ def _run_pipeline(args: argparse.Namespace) -> int:
         "localized_file_changes": len(target_files),
         "diff_file_count": len(english_files),
         "payload_segments": payload_segments,
+        "mdformat_status": "failed" if mdformat_failures else "passed",
+        "mdformat_failures": mdformat_failures,
     }
     COVERAGE_REPORT.write_text(
         json.dumps(summary_payload, ensure_ascii=False, indent=2),
@@ -1040,8 +1271,11 @@ def _run_pipeline(args: argparse.Namespace) -> int:
     )
     _write_validation_snapshot(payload_entries, validation_summary, summary_payload)
 
-    _info("Rose pipeline completed successfully.")
-    return 0
+    if mdformat_failures:
+        _info("Rose pipeline completed with mdformat failures.")
+    else:
+        _info("Rose pipeline completed successfully.")
+    return 1 if mdformat_failures else 0
 
 
 if __name__ == "__main__":

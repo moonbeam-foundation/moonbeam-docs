@@ -57,7 +57,13 @@ material_overrides:
       moonbeam_logo_for_cookie_consent: 用于 Cookie 同意的 Moonbeam 徽标
       right_section_buttons: 右侧区域按钮
     feedback:
-      divider: 分割线
+      title: 这个页面有帮助吗？
+      rating_up_name: 这个页面有帮助
+      rating_up_note: 感谢您的反馈！
+      rating_down_name: 这个页面可以改进
+      rating_down_note: >-
+        感谢您的反馈！请提交
+        <a href="https://github.com/moonbeam-foundation/moonbeam-docs/issues/new/?title=[Feedback]+{title}+-+{url}" target="_blank" rel="noopener">更多反馈</a> 来帮助我们改进。
     footer:
       llms_by_topic: 按主题分类的法学硕士
       llms_full_txt: 法学硕士全文

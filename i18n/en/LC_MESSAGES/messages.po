@@ -17,7 +17,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.15.0\n"
+"Generated-By: Babel 2.17.0\n"
 
 msgid "action.edit"
 msgstr "Edit"
@@ -196,8 +196,20 @@ msgstr "Moonbeam logo for cookie consent"
 msgid "material_overrides.partials.consent.right_section_buttons"
 msgstr "Right section buttons"
 
-msgid "material_overrides.partials.feedback.divider"
-msgstr "Divider"
+msgid "material_overrides.partials.feedback.rating_down_name"
+msgstr "This page could be improved"
+
+msgid "material_overrides.partials.feedback.rating_down_note"
+msgstr "Thanks for your feedback! Help us improve this page by submitting <a href=\"https://github.com/moonbeam-foundation/moonbeam-docs/issues/new/?title=[Feedback]+{title}+-+{url}\" target=\"_blank\" rel=\"noopener\">additional feedback</a>."
+
+msgid "material_overrides.partials.feedback.rating_up_name"
+msgstr "This page was helpful"
+
+msgid "material_overrides.partials.feedback.rating_up_note"
+msgstr "Thanks for your feedback!"
+
+msgid "material_overrides.partials.feedback.title"
+msgstr "Was this page helpful?"
 
 msgid "material_overrides.partials.footer.llms_by_topic"
 msgstr "Llms by topic"

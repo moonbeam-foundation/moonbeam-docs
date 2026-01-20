@@ -1,0 +1,6 @@
+title: 账户管理
+nav:
+  - index.md
+  - '代理账户': 'proxy-accounts.md'
+  - 'Moonbeam Safe': 'multisig-safe.md'
+  - '身份管理': 'identity.md'

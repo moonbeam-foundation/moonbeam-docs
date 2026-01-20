@@ -1,0 +1,6 @@
+title: 网络特性
+nav:
+  - index.md
+  - governance
+  - '随机性': 'randomness.md'
+  - '质押功能': 'staking.md'

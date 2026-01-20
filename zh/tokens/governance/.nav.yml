@@ -1,0 +1,6 @@
+title: 治理
+nav:
+  - index.md
+  - '提交民主提案': 'proposals.md'
+  - '对提案投票': 'voting.md'
+  - '提交国库提案': 'treasury-spend.md'

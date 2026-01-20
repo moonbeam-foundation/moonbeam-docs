@@ -233,11 +233,19 @@ def _extract_front_matter_values(lines: list[str]) -> tuple[dict[str, str], list
 
 
 def _split_front_matter(lines: list[str]) -> tuple[list[str], list[str]]:
-    if not lines or lines[0].strip() != FRONT_MATTER_DELIM:
+    if not lines:
         return [], lines
-    for idx in range(1, len(lines)):
+    start_idx = 0
+    while start_idx < len(lines) and not lines[start_idx].strip():
+        start_idx += 1
+    if start_idx >= len(lines):
+        return [], lines
+    first = lines[start_idx].lstrip("\ufeff").strip()
+    if first != FRONT_MATTER_DELIM:
+        return [], lines
+    for idx in range(start_idx + 1, len(lines)):
         if lines[idx].strip() == FRONT_MATTER_DELIM:
-            return lines[: idx + 1], lines[idx + 1 :]
+            return lines[start_idx : idx + 1], lines[idx + 1 :]
     return [], lines
 
 
@@ -246,9 +254,10 @@ def _restore_front_matter(eng_lines: list[str], trans_lines: list[str]) -> list[
     if not eng_fm:
         return trans_lines
     trans_fm, trans_body = _split_front_matter(trans_lines)
-    trans_values, remainder = _extract_front_matter_values(trans_lines)
     if trans_fm:
-        remainder = trans_body
+        # Keep translated front matter as-is to avoid clobbering lists/values.
+        return trans_fm + trans_body
+    trans_values, remainder = _extract_front_matter_values(trans_lines)
     restored: list[str] = []
     for line in eng_fm:
         stripped = line.strip()
@@ -450,36 +459,14 @@ def main() -> int:
         if not path_hint:
             raise ValueError("Payload entry missing source_path/target_path")
         target = _derive_target_path(path_hint, lang_code)
-        translated_value = (
-            entry.get("translated_content")
-            or entry.get("content")
-            or ""
-        )
-        translated = translated_value.rstrip() + "\n"
-        if str(target).startswith("locale/"):
-            translated = _sanitize_locale_text(translated)
-            _write_locale_translation(target, translated)
-        else:
-            english_text = ""
-            source_path = entry.get("source_path")
-            if source_path:
-                try:
-                    eng_path = REPO_ROOT / repo_relative(source_path)
-                    if eng_path.exists():
-                        english_text = eng_path.read_text(encoding="utf-8")
-                except Exception:
-                    english_text = (
-                        entry.get("content_original")
-                        or entry.get("content")
-                        or ""
-                    )
-            if english_text:
-                translated = _restore_markdown_structure(target, english_text, translated)
-            translated = translated.rstrip("\n") + "\n"
-            dest = REPO_ROOT / target
-            dest.parent.mkdir(parents=True, exist_ok=True)
-            dest.write_text(translated, encoding="utf-8")
-        entry["translated_content"] = translated.rstrip("\n")
+        translated_value = entry.get("translated_content")
+        if not isinstance(translated_value, str):
+            translated_value = entry.get("content") or ""
+        translated = translated_value
+        dest = REPO_ROOT / target
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        dest.write_text(translated, encoding="utf-8")
+        entry["translated_content"] = translated
         written.setdefault(lang_code, 0)
         written[lang_code] += 1
 

@@ -1,0 +1,10 @@
+title: 核心概念
+nav:
+  - index.md
+  - '账户余额': 'balances.md'
+  - '余额转账': 'transfers-api.md'
+  - '共识与最终性': 'consensus-finality.md'
+  - '交易费用': 'tx-fees.md'
+  - '统一账户': 'unified-accounts.md'
+  - '安全注意事项': 'security.md'
+  - '术语表': 'glossary.md'
