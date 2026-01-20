@@ -1,64 +1,10 @@
-______________________________________________________________________
+---
+title: Call Permit Precompile Contract
+description: 了解如何在 Moonbeam 上使用 Call Permit Precompile 合约来签署任何 EVM 调用的许可，该调用可以由任何人或任何智能合约分派。
+keywords: solidity, ethereum, call permit, permit, gasless transaction, moonbeam, precompiled, contracts
+categories: Precompiles, Ethereum Toolkit
+---
 
-"""
-LITERAL BLOCK PRESERVATION (NON-NEGOTIABLE)
-
-输入可能包含受保护的“字面块”，这些字面块由 HTML 注释分隔：
-
-<!-- ROSE:BEGIN_LITERAL_BLOCK id=<id> preserve=verbatim -->
-
-...
-
-<!-- ROSE:END_LITERAL_BLOCK id=<id> -->
-
-规则：
-
-1. 您必须逐字复制 BEGIN_LITERAL_BLOCK 和 END_LITERAL_BLOCK 之间的全部内容，一个字符也不差。
-1. 请勿在字面块内翻译、改写、换行、规范化空格、更改缩进、重新排序行或修改标点符号。
-1. 请勿更改字面块内的 Markdown 语法（包括但不限于：MkDocs Material 选项卡标题，如 === “Label”、选项卡下的缩进、围栏代码块、表格、HTML 或模板占位符，如 {{ ... }}）。
-1. 您必须完全按照提供的形式保留分隔符行本身。
-1. 您可以自由地翻译/修改字面块之外的内容，但您不得移动字面块或更改它们的相对顺序。
-
-如果字面块出现格式错误（例如，缺少 END 分隔符），请勿尝试“修复”它——完全按原样复制它并继续。
-
-输出必须逐字保留字面块区域，并且仅将翻译/编辑应用于这些区域之外的文本。
-
-METADATA (必须完全复制到 JSON 输出中):
-
-- source_path: builders/ethereum/precompiles/ux/call-permit.md
-- source_language: EN
-- target_language: ZH
-- checksum: 7f811033f563cb43657301babb356f34b12cc90fc2999eecb3f218fdfa316f99
-- branch: origin/rose1
-- commit: dd18343c719f9c17cec2c6833eb13c617f846ccc
-- chunk_index: 1
-- chunk_total: 17
-
-OUTPUT FORMAT (至关重要):
-对象必须具有以下确切字段：
-
-{
-"source_path": "...",
-"source_language": "...",
-"target_language": "...",
-"checksum": "...",
-"content": "...",
-"translated_content": "...",
-"branch": "...",
-"commit": "...",
-"chunk_index": 1,
-"chunk_total": 10
-}
-
-规则：
-
-- “已翻译内容”列不应包含英文。
-- source_path、source_language、target_language、checksum、content、branch、commit、chunk_index、chunk_total 必须与上面的元数据完全一致。
-- translated_content 必须是 content 的完整翻译版本，使用中文。
-- 请勿包含 markdown 围栏（无 \`\`\`json）。
-- 请勿包含对象之外的任何解释或文本。
-
-## title: Call Permit Precompile Contract description: 了解如何在 Moonbeam 上使用 Call Permit Precompile 合约来签署任何 EVM 调用的许可，该调用可以由任何人或任何智能合约分派。 keywords: solidity, ethereum, call permit, permit, gasless transaction, moonbeam, precompiled, contracts categories: Precompiles, Ethereum Toolkit
 
 # 与调用许可预编译交互
 
@@ -72,29 +18,17 @@ Moonbeam 上的调用许可预编译允许用户为任何 EVM 调用签署许可
 
 调用许可预编译位于以下地址：
 
-\===
+=== "Moonbeam"
 
-````
-```text
-{{networks.moonbeam.precompiles.call_permit }}
-```
-````
+    `{{ networks.moonbeam.precompiles.call_permit }}`
 
-\===
+=== "Moonriver"
 
-````
-```text
-{{networks.moonriver.precompiles.call_permit }}
-```
-````
+    `{{ networks.moonriver.precompiles.call_permit }}`
 
-\===
+=== "Moonbase Alpha"
 
-````
-```text
-{{networks.moonbase.precompiles.call_permit }}
-```
-````
+    `{{ networks.moonbase.precompiles.call_permit }}`
 
 --8<-- 'text/builders/ethereum/precompiles/security.md'
 
@@ -160,24 +94,22 @@ Moonbeam 上的调用许可预编译允许用户为任何 EVM 调用签署许可
 
 `SetMessage.sol` 合约将用作使用调用许可的示例，但实际上，可以与任何合约进行交互。
 
-solidity
+```solidity
 // SPDX-License-Identifier: GPL-3.0
 pragma solidity 0.8.7;
 
 contract SetMessage {
-string storedMessage;
+    string storedMessage;
 
+    function set(string calldata x) public {
+        storedMessage = x;
+    }
+
+    function get() public view returns (string memory) {
+        return storedMessage;
+    }
+}
 ```
-function set(string calldata x) public {
-    storedMessage = x;
-}
-
-function get() public view returns (string memory) {
-    return storedMessage;
-}
-```
-
-}
 
 ### Remix 设置 {: #remix-set-up }
 
@@ -251,7 +183,7 @@ function get() public view returns (string memory) {
 - `to` - `SetMessage.sol` 合约的合约地址
 - `value` - 在此示例中可以为 `0`，因为您只需设置消息，而无需转移任何资金
 - `data` – 您可以发送任何您想要的消息，你只需要使用 `SetMessage.sol` 合约设置的消息的十六进制表示形式。这将包含 `set` 函数的函数选择器和消息字符串。对于此示例，您可以发送 `hello world`。为此，您可以使用此十六进制表示形式：
-    ```text
+    ```
     0x4ed3885e0000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000b68656c6c6f20776f726c64000000000000000000000000000000000000000000
     ```
 - `gasLimit` - `100000` 足以发送已调度的调用

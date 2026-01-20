@@ -26,8 +26,7 @@ Hardhat 采用基于任务的开发方法，您可以在其中定义和执行[�
 - 已[安装MetaMask](/tokens/connect/metamask/#install-the-metamask-extension){target=_blank}并[连接到Moonbase Alpha](/tokens/connect/metamask/#connect-metamask-to-moonbeam){target=_blank}。
 - 拥有一个有资金的帐户。
   --8<-- 'text/_common/faucet/faucet-list-item.md'
-- 
-  --8<-- 'text/_common/endpoint-examples-list-item.md'
+- --8<-- 'text/_common/endpoint-examples-list-item.md'
 
 ## 创建 Hardhat 项目 {: #creating-a-hardhat-project }
 
@@ -35,27 +34,27 @@ Hardhat 采用基于任务的开发方法，您可以在其中定义和执行[�
 
 1. 为您的项目创建一个目录。
 
-    sh
+    ```bash
     mkdir hardhat && cd hardhat
-    
+    ```
 
 2. 初始化项目，这将创建一个 `package.json` 文件。
 
-    sh
+    ```bash
     npm init -y
-    
+    ```
 
 3. 安装 Hardhat。
 
-    sh
+    ```bash
     npm install --save-dev hardhat
-    
+    ```
 
 4. 创建一个 Hardhat 项目。
 
-    sh
+    ```bash
     npx hardhat --init
-    
+    ```
 
     !!! note
         `npx` 用于运行本地安装在项目中的可执行文件。虽然 Hardhat 可以全局安装，但建议在每个项目中本地安装，以便您可以按项目控制版本。
@@ -86,19 +85,21 @@ Hardhat 配置文件是进入 Hardhat 项目的入口点。它定义了 Hardhat 
 
 如果您正在使用 JavaScript，请在您的 `package.json` 中保留 `"type": "module"`。一个最小的 `hardhat.config.js` 看起来像这样：
 
-js
+```js
 import { defineConfig } from 'hardhat/config';
 
 export default defineConfig({
   solidity: '0.8.28',
 });
+```
 
 如果您选择了 TypeScript 模板，则该文件将为 `hardhat.config.ts`，并且配置内容将相同。对于此示例，您可以将 Solidity 编译器版本保持在 `0.8.28`；但是，如果您正在使用需要更高版本的合约，请不要忘记在此处更新它。
 
 如果您的项目模板未添加本指南中使用的插件和库，请安装它们：
 
-bash
+```bash
 npm install --save-dev @nomicfoundation/hardhat-ethers @nomicfoundation/hardhat-ignition-ethers @nomicfoundation/hardhat-keystore ethers
+```
 
 接下来，您需要修改您的配置文件以添加要将合约部署到的网络的网络配置。对于 Moonbeam 网络，您需要指定以下内容：
 
@@ -110,130 +111,130 @@ npm install --save-dev @nomicfoundation/hardhat-ethers @nomicfoundation/hardhat-
 
 Hardhat 通过 `@nomicfoundation/hardhat-keystore` 插件包含一个加密的密钥管理器，它可以将敏感数据保存在源代码控制之外。安装并导入插件后，使用密钥库设置您的密钥：
 
-===
+=== "Moonbeam"
 
-    bash
+    ```bash
     npx hardhat keystore set MOONBEAM_RPC_URL
     npx hardhat keystore set MOONBEAM_PRIVATE_KEY
-    
+    ```
 
-===
+=== "Moonriver"
 
-    bash
+    ```bash
     npx hardhat keystore set MOONRIVER_RPC_URL
     npx hardhat keystore set MOONRIVER_PRIVATE_KEY
-    
+    ```
 
-===
+=== "Moonbase Alpha"
 
-    bash
+    ```bash
     npx hardhat keystore set MOONBASE_RPC_URL
     npx hardhat keystore set MOONBASE_PRIVATE_KEY
-    
+    ```
 
-===
+=== "Moonbeam Dev"
 
-    bash
+    ```bash
     npx hardhat keystore set DEV_RPC_URL
     npx hardhat keystore set DEV_PRIVATE_KEY
-    
+    ```
 
 !!! warning
     Hardhat 控制台任务当前不会提示输入密钥库密码。在运行 `npx hardhat console` 之前，请为您的配置变量使用环境变量，或者在使用密钥库时，通过脚本/任务而不是控制台进行交互。
 
 然后，更新您的配置文件以使用加密的密钥和 ESM 语法：
 
-===
+=== "Moonbeam"
 
-    js
-    import hardhatEthers from '@nomicfoundation/hardhat-ethers';
-    import hardhatIgnitionEthers from '@nomicfoundation/hardhat-ignition-ethers';
-    import hardhatKeystore from '@nomicfoundation/hardhat-keystore';
-    import { configVariable, defineConfig } from 'hardhat/config';
+```js
+import hardhatEthers from '@nomicfoundation/hardhat-ethers';
+import hardhatIgnitionEthers from '@nomicfoundation/hardhat-ignition-ethers';
+import hardhatKeystore from '@nomicfoundation/hardhat-keystore';
+import { configVariable, defineConfig } from 'hardhat/config';
 
-    export default defineConfig({
-      plugins: [hardhatEthers, hardhatIgnitionEthers, hardhatKeystore],
-      solidity: '0.8.28',
-      networks: {
-        moonbeam: {
-          type: 'http',
-          chainType: 'l1',
-          url: configVariable('MOONBEAM_RPC_URL'),
-          chainId: {{ networks.moonbeam.chain_id }}, // (hex: {{ networks.moonbeam.hex_chain_id }}),
-          accounts: [configVariable('MOONBEAM_PRIVATE_KEY')],
-        },
-      },
-    });
-    
+export default defineConfig({
+  plugins: [hardhatEthers, hardhatIgnitionEthers, hardhatKeystore],
+  solidity: '0.8.28',
+  networks: {
+    moonbeam: {
+      type: 'http',
+      chainType: 'l1',
+      url: configVariable('MOONBEAM_RPC_URL'),
+      chainId: {{ networks.moonbeam.chain_id }}, // (hex: {{ networks.moonbeam.hex_chain_id }}),
+      accounts: [configVariable('MOONBEAM_PRIVATE_KEY')],
+    },
+  },
+});
+```
 
-===
+=== "Moonriver"
 
-    js
-    import hardhatEthers from '@nomicfoundation/hardhat-ethers';
-    import hardhatIgnitionEthers from '@nomicfoundation/hardhat-ignition-ethers';
-    import hardhatKeystore from '@nomicfoundation/hardhat-keystore';
-    import { configVariable, defineConfig } from 'hardhat/config';
+```js
+import hardhatEthers from '@nomicfoundation/hardhat-ethers';
+import hardhatIgnitionEthers from '@nomicfoundation/hardhat-ignition-ethers';
+import hardhatKeystore from '@nomicfoundation/hardhat-keystore';
+import { configVariable, defineConfig } from 'hardhat/config';
 
-    export default defineConfig({
-      plugins: [hardhatEthers, hardhatIgnitionEthers, hardhatKeystore],
-      solidity: '0.8.28',
-      networks: {
-        moonriver: {
-          type: 'http',
-          chainType: 'l1',
-          url: configVariable('MOONRIVER_RPC_URL'),
-          chainId: {{ networks.moonriver.chain_id }}, // (hex: {{ networks.moonriver.hex_chain_id }}),
-          accounts: [configVariable('MOONRIVER_PRIVATE_KEY')],
-        },
-      },
-    });
-    
+export default defineConfig({
+  plugins: [hardhatEthers, hardhatIgnitionEthers, hardhatKeystore],
+  solidity: '0.8.28',
+  networks: {
+    moonriver: {
+      type: 'http',
+      chainType: 'l1',
+      url: configVariable('MOONRIVER_RPC_URL'),
+      chainId: {{ networks.moonriver.chain_id }}, // (hex: {{ networks.moonriver.hex_chain_id }}),
+      accounts: [configVariable('MOONRIVER_PRIVATE_KEY')],
+    },
+  },
+});
+```
 
-===
+=== "Moonbase Alpha"
 
-    js
-    import hardhatEthers from '@nomicfoundation/hardhat-ethers';
-    import hardhatIgnitionEthers from '@nomicfoundation/hardhat-ignition-ethers';
-    import hardhatKeystore from '@nomicfoundation/hardhat-keystore';
-    import { configVariable, defineConfig } from 'hardhat/config';
+```js
+import hardhatEthers from '@nomicfoundation/hardhat-ethers';
+import hardhatIgnitionEthers from '@nomicfoundation/hardhat-ignition-ethers';
+import hardhatKeystore from '@nomicfoundation/hardhat-keystore';
+import { configVariable, defineConfig } from 'hardhat/config';
 
-    export default defineConfig({
-      plugins: [hardhatEthers, hardhatIgnitionEthers, hardhatKeystore],
-      solidity: '0.8.28',
-      networks: {
-        moonbase: {
-          type: 'http',
-          chainType: 'l1',
-          url: configVariable('MOONBASE_RPC_URL'),
-          chainId: {{ networks.moonbase.chain_id }}, // (hex: {{ networks.moonbase.hex_chain_id }}),
-          accounts: [configVariable('MOONBASE_PRIVATE_KEY')],
-        },
-      },
-    });
-    
+export default defineConfig({
+  plugins: [hardhatEthers, hardhatIgnitionEthers, hardhatKeystore],
+  solidity: '0.8.28',
+  networks: {
+    moonbase: {
+      type: 'http',
+      chainType: 'l1',
+      url: configVariable('MOONBASE_RPC_URL'),
+      chainId: {{ networks.moonbase.chain_id }}, // (hex: {{ networks.moonbase.hex_chain_id }}),
+      accounts: [configVariable('MOONBASE_PRIVATE_KEY')],
+    },
+  },
+});
+```
 
-===
+=== "Moonbeam Dev"
 
-    js
-    import hardhatEthers from '@nomicfoundation/hardhat-ethers';
-    import hardhatIgnitionEthers from '@nomicfoundation/hardhat-ignition-ethers';
-    import hardhatKeystore from '@nomicfoundation/hardhat-keystore';
-    import { configVariable, defineConfig } from 'hardhat/config';
+```js
+import hardhatEthers from '@nomicfoundation/hardhat-ethers';
+import hardhatIgnitionEthers from '@nomicfoundation/hardhat-ignition-ethers';
+import hardhatKeystore from '@nomicfoundation/hardhat-keystore';
+import { configVariable, defineConfig } from 'hardhat/config';
 
-    export default defineConfig({
-      plugins: [hardhatEthers, hardhatIgnitionEthers, hardhatKeystore],
-      solidity: '0.8.28',
-      networks: {
-        dev: {
-          type: 'http',
-          chainType: 'l1',
-          url: configVariable('DEV_RPC_URL'),
-          chainId: {{ networks.development.chain_id }}, // (hex: {{ networks.development.hex_chain_id }}),
-          accounts: [configVariable('DEV_PRIVATE_KEY')],
-        },
-      },
-    });
-    
+export default defineConfig({
+  plugins: [hardhatEthers, hardhatIgnitionEthers, hardhatKeystore],
+  solidity: '0.8.28',
+  networks: {
+    dev: {
+      type: 'http',
+      chainType: 'l1',
+      url: configVariable('DEV_RPC_URL'),
+      chainId: {{ networks.development.chain_id }}, // (hex: {{ networks.development.hex_chain_id }}),
+      accounts: [configVariable('DEV_PRIVATE_KEY')],
+    },
+  },
+});
+```
 
 当您运行需要这些密钥的任务时，Hardhat 将提示您输入密码以解密它们。密钥仅在需要时才会被解密，这意味着只有当 Hardhat 任务使用密钥时，您才需要输入密码。
 
@@ -249,19 +250,19 @@ Hardhat 通过 `@nomicfoundation/hardhat-keystore` 插件包含一个加密的�
 
 1. 更改到 `contracts` 目录。
 
-    sh
+    ```bash
     cd contracts
-    
+    ```
 
 2. 创建一个 `Box.sol` 文件。
 
-    sh
+    ```bash
     touch Box.sol
-    
+    ```
 
 3. 打开文件并将以下合约添加到其中：
 
-    solidity
+    ```solidity
     // contracts/Box.sol
     // SPDX-License-Identifier: MIT
     pragma solidity ^0.8.1;
@@ -283,6 +284,7 @@ Hardhat 通过 `@nomicfoundation/hardhat-keystore` 插件包含一个加密的�
             return value;
         }
     }
+    ```
 
 ## 编译合约 {: #compiling-solidity }
 
@@ -290,8 +292,9 @@ Hardhat 通过 `@nomicfoundation/hardhat-keystore` 插件包含一个加密的�
 
 要使用 `compile` 任务，您只需运行：
 
-sh
+```bash
 npx hardhat compile
+```
 
 --8<-- 'code/builders/ethereum/dev-env/hardhat/terminal/compile.md'
 
@@ -305,8 +308,9 @@ npx hardhat compile
 
 要为您的 Ignition 模块设置正确的文件结构，请创建一个名为 `ignition` 的文件夹和一个名为 `modules` 的子目录。然后，在其中添加一个名为 `Box.js` 的新文件。您可以使用以下命令执行所有这三个步骤：
 
-sh
+```bash
 cd ignition/modules && touch Box.js
+```
 
 接下来，您可以编写 Hardhat Ignition 模块。要开始，请执行以下步骤：
 
@@ -316,7 +320,7 @@ cd ignition/modules && touch Box.js
 4. 部署 `Box` 合约。
 5. 从模块返回一个对象。这使得 `Box` 合约可以在 Hardhat 测试和脚本中进行交互。
 
-js
+```js
 // 1. Import the `buildModule` function from the Hardhat Ignition module
 import { buildModule } from '@nomicfoundation/hardhat-ignition/modules';
 
@@ -325,20 +329,22 @@ import { buildModule } from '@nomicfoundation/hardhat-ignition/modules';
 export default buildModule('BoxModule', (m) => {
   // 3. Use the `getAccount` method to select the deployer account
   const deployer = m.getAccount(0);
-  
+
   // 4. Deploy the `Box` contract
   const box = m.contract('Box', [], {
-    from: deployer, 
+    from: deployer,
   });
-  
+
   // 5. Return an object from the module
   return { box };
 });
+```
 
 要运行脚本并部署 `Box.sol` 合约，请使用以下命令，该命令要求您指定在 Hardhat 配置文件中定义的网络名称。如果您未指定网络，则 hardhat 默认会将合约部署到本地 Hardhat 网络。
 
-sh
+```bash
 npx hardhat ignition deploy ./ignition/modules/Box.js --network moonbase
+```
 
 !!! note
     如果您使用的是另一个 Moonbeam 网络，请确保指定正确的网络。网络名称需要与 Hardhat 配置文件中定义的名称匹配。

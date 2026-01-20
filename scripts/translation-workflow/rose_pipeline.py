@@ -718,6 +718,12 @@ def _should_skip_path(rel_path: str, languages: list[str], skip_llms: bool, skip
     return False
 
 
+def _is_translation_path(rel_path: str, languages: list[str]) -> bool:
+    """Return True if the path lives under one of the target language roots."""
+    parts = Path(rel_path).parts
+    return any(lang in parts for lang in languages)
+
+
 def _run_tagger(text: str) -> str:
     if not TAGGER_PATH.exists():
         raise FileNotFoundError(f"Tagger script missing: {TAGGER_PATH}")
@@ -1009,28 +1015,8 @@ def _run_pipeline(args: argparse.Namespace) -> int:
         if args.include_full:
             _inject_full_file_entries(diff_map, include_files)
 
+    # Skip mdformat checks on diff_map (avoid touching English/front matter)
     mdformat_failures: list[dict[str, str]] = []
-    md_targets = {path for path in diff_map if Path(path).suffix.lower() in MARKDOWN_EXTENSIONS}
-    if md_targets:
-        _info(f"Running mdformat checks on {len(md_targets)} Markdown file(s).")
-        _run_cmd(
-            [
-                PYTHON_BIN,
-                "-m",
-                "pip",
-                "install",
-                "mdformat",
-                "mdformat-mkdocs",
-                "mdformat-tables",
-            ]
-        )
-        mdformat_failures = _format_md_files(md_targets)
-        if mdformat_failures:
-            _info("mdformat failed on the following file(s):")
-            for failure in mdformat_failures:
-                _info(f"  - {failure['path']}: {failure['error']}")
-        else:
-            _info("mdformat checks passed.")
 
     deleted_files = _collect_deleted_files(args.base, args.head, args.paths)
     if include_files:
@@ -1228,28 +1214,8 @@ def _run_pipeline(args: argparse.Namespace) -> int:
             ]
         )
 
+    # Skip mdformat formatting on translated files to avoid front matter issues
     mdformat_failures: list[dict[str, str]] = []
-    md_targets = [p for p in target_files if p.suffix.lower() in MARKDOWN_EXTENSIONS]
-    if md_targets:
-        _info(f"Running mdformat on {len(md_targets)} translated Markdown file(s).")
-        _run_cmd(
-            [
-                PYTHON_BIN,
-                "-m",
-                "pip",
-                "install",
-                "mdformat",
-                "mdformat-mkdocs",
-                "mdformat-tables",
-            ]
-        )
-        mdformat_failures = _format_md_files(str(p) for p in md_targets)
-        if mdformat_failures:
-            _info("mdformat failed on the following file(s):")
-            for failure in mdformat_failures:
-                _info(f"  - {failure['path']}: {failure['error']}")
-        else:
-            _info("mdformat passed for all translated Markdown files.")
 
     payload_segments = _summarize_payload_segments(payload_entries)
 

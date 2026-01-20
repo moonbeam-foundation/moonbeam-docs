@@ -359,14 +359,14 @@ js
 
 请注意，相对价格值与 [中继链 XCM 费用计算](/builders/interoperability/xcm/core-concepts/weights-fees/#polkadot){target=_blank} 部分中估计的成本或 [每权重单位](/builders/interoperability/xcm/core-concepts/weights-fees/#moonbeam-reserve-assets){target=_blank} 部分中显示的成本相关（如果目标是另一个平行链）。您需要找到正确的值，以确保计算 Origin 账户持有的 Token 数量正确。计算相关的 XCM 执行费用就像将 `transactExtraWeightSigned` 乘以 `relativePrice` 一样简单（用于估算）：
 
-```text
+```
 XCM-Wei-Token-Cost = transactExtraWeightSigned * relativePrice
 XCM-Token-Cost = XCM-Wei-Token-Cost / DecimalConversion
 ```
 
 因此，通过派生调用进行一次 XCM Transactor 交易的实际计算如下：
 
-```text
+```
 XCM-Wei-Token-Cost = {{ networks.moonbase_beta.xcm_message.transact.weight.numbers_only }} * {{ networks.moonbase.xcm.units_per_second.xcbetadev.transact_numbers_only }}
 XCM-Token-Cost = {{ networks.moonbase_beta.xcm_message.transact.wei_betadev_cost }} / 10^18
 ```

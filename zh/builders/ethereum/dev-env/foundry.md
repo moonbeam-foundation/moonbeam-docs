@@ -1,41 +1,11 @@
-...
+---
+title: 使用 Foundry 部署合约
+description: 了解如何使用 Foundry（一个以太坊开发环境）在 Moonbeam 上编译、部署和调试 Solidity 智能合约。
+categories: 开发环境, 以太坊工具包
+---
 
-## title: 使用 Foundry 部署合约 description: 了解如何使用 Foundry（一个以太坊开发环境）在 Moonbeam 上编译、部署和调试 Solidity 智能合约。 categories: 开发环境, 以太坊工具包
 
 # 使用 Foundry 部署到 Moonbeam
-
-LITERAL BLOCK PRESERVATION (NON-NEGOTIABLE)
-
-输入可能包含受保护的“文字块”，这些文字块由 HTML 注释分隔：
-
-<!-- ROSE:BEGIN_LITERAL_BLOCK id=<id> preserve=verbatim -->
-
-...
-
-<!-- ROSE:END_LITERAL_BLOCK id=<id> -->
-
-Rules:
-
-1. You MUST copy the entire content between BEGIN_LITERAL_BLOCK and END_LITERAL_BLOCK exactly, character-for-character.
-1. Do NOT translate, rephrase, wrap lines, normalize whitespace, change indentation, reorder lines, or modify punctuation inside a literal block.
-1. Do NOT alter Markdown syntax inside a literal block (including but not limited to: MkDocs Material tab headers like === "Label", indentation under tabs, fenced code blocks, tables, HTML, or template placeholders such as {{ ... }}).
-1. You MUST preserve the delimiter lines themselves exactly as provided.
-1. You may freely translate/modify content outside literal blocks, but you must not move literal blocks or change their relative order.
-
-If a literal block appears malformed (e.g., missing an END delimiter), do not attempt to “fix” it—copy it exactly as-is and continue.
-
-Output must preserve the literal block regions verbatim and only apply translation/editing to text outside them.
-
-METADATA (must be copied EXACTLY into the JSON output):
-
-- source_path: builders/ethereum/dev-env/foundry.md
-- source_language: EN
-- target_language: ZH
-- checksum: 18512d13283a860f9ed7aed5e402167278545dccf33cb0b6e8e90ef79af2d7ba
-- branch: origin/rose1
-- commit: dd18343c719f9c17cec2c6833eb13c617f846ccc
-- chunk_index: 3
-- chunk_total: 15
 
 ## 简介 {: #introduction }
 
@@ -58,9 +28,7 @@ Foundry 由四个工具组成：
 
 --8<-- 'text/_common/faucet/faucet-list-item.md'
 
--
-
---8<-- 'text/_common/endpoint-examples-list-item.md'
+- --8<-- 'text/_common/endpoint-examples-list-item.md'
 
 - 安装了[Foundry](https://getfoundry.sh/introduction/installation/){target=\_blank}
 
@@ -104,8 +72,9 @@ Foundry 由四个工具组成：
 
 在部署之前，您需要通过导入您的私钥来设置您的密钥库。您可以使用 `cast wallet import` 命令，如下所示：
 
-bash
+```bash
 cast wallet import deployer --interactive
+```
 
 这将提示您：
 
@@ -116,49 +85,45 @@ cast wallet import deployer --interactive
 
 使用 `forge create` 部署合约只需要一个命令，但您必须包含 RPC 端点和构造函数参数。`MyToken.sol` 在其构造函数中要求提供初始令牌供应量，因此以下每个命令都包含 100 作为构造函数参数。 您可以使用以下命令为正确的网络部署 `MyToken.sol` 合约：
 
-\===
+=== "Moonbeam"
 
-```
-bash
-forge create src/MyToken.sol:MyToken \
---rpc-url {{ networks.moonbeam.rpc_url }} \
---broadcast \
---account deployer \
---constructor-args 100
-```
+    ```bash
+    forge create src/MyToken.sol:MyToken \
+    --rpc-url {{ networks.moonbeam.rpc_url }} \
+    --broadcast \
+    --account deployer \
+    --constructor-args 100
+    ```
 
-\===
+=== "Moonriver"
 
-```
-bash
-forge create src/MyToken.sol:MyToken \
---rpc-url {{ networks.moonriver.rpc_url }} \
---broadcast \
---account deployer \
---constructor-args 100
-```
+    ```bash
+    forge create src/MyToken.sol:MyToken \
+    --rpc-url {{ networks.moonriver.rpc_url }} \
+    --broadcast \
+    --account deployer \
+    --constructor-args 100
+    ```
 
-\===
+=== "Moonbase Alpha"
 
-```
-bash
-forge create src/MyToken.sol:MyToken \
---rpc-url {{ networks.moonbase.rpc_url }} \
---broadcast \
---account deployer \
---constructor-args 100
-```
+    ```bash
+    forge create src/MyToken.sol:MyToken \
+    --rpc-url {{ networks.moonbase.rpc_url }} \
+    --broadcast \
+    --account deployer \
+    --constructor-args 100
+    ```
 
-\===
+=== "Moonbeam Dev Node"
 
-```
-bash
-forge create src/MyToken.sol:MyToken \
---rpc-url {{ networks.development.rpc_url }} \
---broadcast \
---account deployer \
---constructor-args 100
-```
+    ```bash
+    forge create src/MyToken.sol:MyToken \
+    --rpc-url {{ networks.development.rpc_url }} \
+    --broadcast \
+    --account deployer \
+    --constructor-args 100
+    ```
 
 部署合约并在几秒钟后，您应该在终端中看到该地址。
 
@@ -172,33 +137,29 @@ Foundry 包含 cast，这是一个用于执行以太坊 RPC 调用的 CLI。
 
 尝试使用 Cast 检索您的令牌名称，其中 `INSERT_YOUR_CONTRACT_ADDRESS` 是您在上一节中部署的合约的地址：
 
-\===
+=== "Moonbeam"
 
-```
-bash
-cast call INSERT_YOUR_CONTRACT_ADDRESS "name()" --rpc-url {{ networks.moonbeam.rpc_url }}
-```
+    ```bash
+    cast call INSERT_YOUR_CONTRACT_ADDRESS "name()" --rpc-url {{ networks.moonbeam.rpc_url }}
+    ```
 
-\===
+=== "Moonriver"
 
-```
-bash
-cast call INSERT_YOUR_CONTRACT_ADDRESS "name()" --rpc-url {{ networks.moonriver.rpc_url }}
-```
+    ```bash
+    cast call INSERT_YOUR_CONTRACT_ADDRESS "name()" --rpc-url {{ networks.moonriver.rpc_url }}
+    ```
 
-\===
+=== "Moonbase Alpha"
 
-```
-bash
-cast call INSERT_YOUR_CONTRACT_ADDRESS "name()" --rpc-url {{ networks.moonbase.rpc_url }}
-```
+    ```bash
+    cast call INSERT_YOUR_CONTRACT_ADDRESS "name()" --rpc-url {{ networks.moonbase.rpc_url }}
+    ```
 
-\===
+=== "Moonbeam Dev Node"
 
-```
-bash
-cast call INSERT_YOUR_CONTRACT_ADDRESS "name()" --rpc-url {{ networks.development.rpc_url }}
-```
+    ```bash
+    cast call INSERT_YOUR_CONTRACT_ADDRESS "name()" --rpc-url {{ networks.development.rpc_url }}
+    ```
 
 您应该以十六进制格式获取此数据：
 
@@ -209,54 +170,51 @@ text
 
 --8<-- 'code/builders/ethereum/dev-env/foundry/terminal/cast.md'
 
-bash
+```bash
 cast --to-ascii 0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000074d79546f6b656e00000000000000000000000000000000000000000000000000
+```
 
 您也可以使用 cast 改变数据。 尝试通过将令牌发送到零地址来销毁令牌。
 
-\===
+=== "Moonbeam"
 
-```
-bash
-cast send --private-key INSERT_YOUR_PRIVATE_KEY \
---rpc-url {{ networks.moonbeam.rpc_url }} \
---chain {{ networks.moonbeam.chain_id }} \
-INSERT_YOUR_CONTRACT_ADDRESS \
-"transfer(address,uint256)" 0x0000000000000000000000000000000000000001 1
-```
+    ```bash
+    cast send --private-key INSERT_YOUR_PRIVATE_KEY \
+      --rpc-url {{ networks.moonbeam.rpc_url }} \
+      --chain {{ networks.moonbeam.chain_id }} \
+      INSERT_YOUR_CONTRACT_ADDRESS \
+      "transfer(address,uint256)" 0x0000000000000000000000000000000000000001 1
+    ```
 
-\===
+=== "Moonriver"
 
-```
-bash
-cast send --private-key INSERT_YOUR_PRIVATE_KEY \
---rpc-url {{ networks.moonriver.rpc_url }} \
---chain {{ networks.moonriver.chain_id }} \
-INSERT_YOUR_CONTRACT_ADDRESS \
-"transfer(address,uint256)" 0x0000000000000000000000000000000000000001 1
-```
+    ```bash
+    cast send --private-key INSERT_YOUR_PRIVATE_KEY \
+      --rpc-url {{ networks.moonriver.rpc_url }} \
+      --chain {{ networks.moonriver.chain_id }} \
+      INSERT_YOUR_CONTRACT_ADDRESS \
+      "transfer(address,uint256)" 0x0000000000000000000000000000000000000001 1
+    ```
 
-\===
+=== "Moonbase Alpha"
 
-```
-bash
-cast send --private-key INSERT_YOUR_PRIVATE_KEY \
---rpc-url {{ networks.moonbase.rpc_url }} \
---chain {{ networks.moonbase.chain_id }} \
-INSERT_YOUR_CONTRACT_ADDRESS \
-"transfer(address,uint256)" 0x0000000000000000000000000000000000000001 1
-```
+    ```bash
+    cast send --private-key INSERT_YOUR_PRIVATE_KEY \
+      --rpc-url {{ networks.moonbase.rpc_url }} \
+      --chain {{ networks.moonbase.chain_id }} \
+      INSERT_YOUR_CONTRACT_ADDRESS \
+      "transfer(address,uint256)" 0x0000000000000000000000000000000000000001 1
+    ```
 
-\===
+=== "Moonbeam Dev Node"
 
-```
-bash
-cast send --private-key INSERT_YOUR_PRIVATE_KEY \
---rpc-url {{ networks.development.rpc_url }} \
---chain {{ networks.development.chain_id }} \
-INSERT_YOUR_CONTRACT_ADDRESS \
-"transfer(address,uint256)" 0x0000000000000000000000000000000000000001 1
-```
+    ```bash
+    cast send --private-key INSERT_YOUR_PRIVATE_KEY \
+      --rpc-url {{ networks.development.rpc_url }} \
+      --chain {{ networks.development.chain_id }} \
+      INSERT_YOUR_CONTRACT_ADDRESS \
+      "transfer(address,uint256)" 0x0000000000000000000000000000000000000001 1
+    ```
 
 该事务将由您的 Moonbase 帐户签名并广播到网络。 输出应类似于：
 
@@ -274,32 +232,23 @@ INSERT_YOUR_CONTRACT_ADDRESS \
 
 要从命令行 fork Moonbeam，您可以从 Foundry 项目目录中运行以下命令：
 
-\===
+=== "Moonbeam"
 
-````
-```bash
-````
+    ```bash
+    anvil --fork-url {{ networks.moonbeam.rpc_url }}
+    ```
 
-anvil --fork-url {{ networks.moonbeam.rpc_url }}
-\`\`\`
+=== "Moonriver"
 
-\===
+    ```bash
+    anvil --fork-url {{ networks.moonriver.rpc_url }}
+    ```
 
-````
-```bash
-````
+=== "Moonbase Alpha"
 
-anvil --fork-url {{ networks.moonriver.rpc_url }}
-\`\`\`
-
-\===
-
-````
-```bash
-````
-
-anvil --fork-url {{ networks.moonbase.rpc_url }}
-\`\`\`
+    ```bash
+    anvil --fork-url {{ networks.moonbase.rpc_url }}
+    ```
 
 您的 fork 实例将拥有 10 个预先注资 10,000 个测试 token 的开发账户。fork 实例可在 `http://127.0.0.1:8545/` 上使用。终端中的输出应类似于以下内容：
 

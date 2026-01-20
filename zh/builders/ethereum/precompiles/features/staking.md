@@ -1,6 +1,10 @@
-...
+---
+title: Staking Precompile Contract
+description: 通过专门设计的预编译合约来简化和优化 Moonbeam 的参与，从而释放 Staking 的潜力。
+keywords: solidity, ethereum, staking, moonbeam, precompiled, contracts
+categories: Precompiles, Ethereum Toolkit
+---
 
-## title: Staking Precompile Contract description: 通过专门设计的预编译合约来简化和优化 Moonbeam 的参与，从而释放 Staking 的潜力。 keywords: solidity, ethereum, staking, moonbeam, precompiled, contracts categories: Precompiles, Ethereum Toolkit
 
 # 与 Staking 预编译交互
 
@@ -10,29 +14,17 @@ Moonbeam 通过 Parachain Staking Pallet 使用委托权益证明系统，允许
 
 Staking 模块是用 Rust 编写的，它是 pallet 的一部分，通常无法从 Moonbeam 的 Ethereum 端访问。但是，staking 预编译允许开发人员使用位于以下地址的预编译合约中的 Ethereum API 访问 Staking 功能：
 
-\===
+=== "Moonbeam"
 
-````
-```text
-{{networks.moonbeam.precompiles.staking}}
-```
-````
+    `{{ networks.moonbeam.precompiles.staking }}`
 
-\===
+=== "Moonriver"
 
-````
-```text
-{{networks.moonriver.precompiles.staking}}
-```
-````
+    `{{ networks.moonriver.precompiles.staking }}`
 
-\===
+=== "Moonbase Alpha"
 
-````
-```text
-{{networks.moonbase.precompiles.staking}}
-```
-````
+    `{{ networks.moonbase.precompiles.staking }}`
 
 本指南将介绍 staking 预编译接口中可用的方法。此外，它还将向您展示如何通过 staking 预编译和 Ethereum API 与 Parachain Staking Pallet 交互。本指南中的示例是在 Moonbase Alpha 上完成的，但它们可以适应 Moonbeam 或 Moonriver。
 
@@ -42,35 +34,35 @@ Staking 模块是用 Rust 编写的，它是 pallet 的一部分，通常无法�
 
 一些 Parachain Staking Pallet 的外部调用包含退出延迟，您必须等待才能执行请求。需要注意的退出延迟如下：
 
-\===
+=== "Moonbeam"
 
-|        Variable         |                                                                         Value                                                                         |
-| :---------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------: |
-| Decrease candidate bond |       {{ networks.moonbeam.collator_timings.can_bond_less.rounds }} rounds ({{ networks.moonbeam.collator_timings.can_bond_less.hours }} hours)       |
-| Decrease delegator bond |      {{ networks.moonbeam.delegator_timings.del_bond_less.rounds }} rounds ({{ networks.moonbeam.delegator_timings.del_bond_less.hours }} hours)      |
-|    Revoke delegation    | {{ networks.moonbeam.delegator_timings.revoke_delegations.rounds }} rounds ({{ networks.moonbeam.delegator_timings.revoke_delegations.hours }} hours) |
-|    Leave candidates     |    {{ networks.moonbeam.collator_timings.leave_candidates.rounds }} rounds ({{ networks.moonbeam.collator_timings.leave_candidates.hours }} hours)    |
-|    Leave delegators     |   {{ networks.moonbeam.delegator_timings.leave_delegators.rounds }} rounds ({{ networks.moonbeam.delegator_timings.leave_delegators.hours }} hours)   |
+    |        Variable         |                                                                         Value                                                                         |
+    | :---------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------: |
+    | Decrease candidate bond |       {{ networks.moonbeam.collator_timings.can_bond_less.rounds }} rounds ({{ networks.moonbeam.collator_timings.can_bond_less.hours }} hours)       |
+    | Decrease delegator bond |      {{ networks.moonbeam.delegator_timings.del_bond_less.rounds }} rounds ({{ networks.moonbeam.delegator_timings.del_bond_less.hours }} hours)      |
+    |    Revoke delegation    | {{ networks.moonbeam.delegator_timings.revoke_delegations.rounds }} rounds ({{ networks.moonbeam.delegator_timings.revoke_delegations.hours }} hours) |
+    |    Leave candidates     |    {{ networks.moonbeam.collator_timings.leave_candidates.rounds }} rounds ({{ networks.moonbeam.collator_timings.leave_candidates.hours }} hours)    |
+    |    Leave delegators     |   {{ networks.moonbeam.delegator_timings.leave_delegators.rounds }} rounds ({{ networks.moonbeam.delegator_timings.leave_delegators.hours }} hours)   |
 
-\===
+=== "Moonriver"
 
-|        Variable         |                                                                          Value                                                                          |
-| :---------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------: |
-| Decrease candidate bond |       {{ networks.moonriver.collator_timings.can_bond_less.rounds }} rounds ({{ networks.moonriver.collator_timings.can_bond_less.hours }} hours)       |
-| Decrease delegator bond |      {{ networks.moonriver.delegator_timings.del_bond_less.rounds }} rounds ({{ networks.moonriver.delegator_timings.del_bond_less.hours }} hours)      |
-|    Revoke delegation    | {{ networks.moonriver.delegator_timings.revoke_delegations.rounds }} rounds ({{ networks.moonriver.delegator_timings.revoke_delegations.hours }} hours) |
-|    Leave candidates     |    {{ networks.moonriver.collator_timings.leave_candidates.rounds }} rounds ({{ networks.moonriver.collator_timings.leave_candidates.hours }} hours)    |
-|    Leave delegators     |   {{ networks.moonriver.delegator_timings.leave_delegators.rounds }} rounds ({{ networks.moonriver.delegator_timings.leave_delegators.hours }} hours)   |
+    |        Variable         |                                                                          Value                                                                          |
+    | :---------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------: |
+    | Decrease candidate bond |       {{ networks.moonriver.collator_timings.can_bond_less.rounds }} rounds ({{ networks.moonriver.collator_timings.can_bond_less.hours }} hours)       |
+    | Decrease delegator bond |      {{ networks.moonriver.delegator_timings.del_bond_less.rounds }} rounds ({{ networks.moonriver.delegator_timings.del_bond_less.hours }} hours)      |
+    |    Revoke delegation    | {{ networks.moonriver.delegator_timings.revoke_delegations.rounds }} rounds ({{ networks.moonriver.delegator_timings.revoke_delegations.hours }} hours) |
+    |    Leave candidates     |    {{ networks.moonriver.collator_timings.leave_candidates.rounds }} rounds ({{ networks.moonriver.collator_timings.leave_candidates.hours }} hours)    |
+    |    Leave delegators     |   {{ networks.moonriver.delegator_timings.leave_delegators.rounds }} rounds ({{ networks.moonriver.delegator_timings.leave_delegators.hours }} hours)   |
 
-\===
+=== "Moonbase Alpha"
 
-|        Variable         |                                                                         Value                                                                         |
-| :---------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------: |
-| Decrease candidate bond |       {{ networks.moonbase.collator_timings.can_bond_less.rounds }} rounds ({{ networks.moonbase.collator_timings.can_bond_less.hours }} hours)       |
-| Decrease delegator bond |      {{ networks.moonbase.delegator_timings.del_bond_less.rounds }} rounds ({{ networks.moonbase.delegator_timings.del_bond_less.hours }} hours)      |
-|    Revoke delegation    | {{ networks.moonbase.delegator_timings.revoke_delegations.rounds }} rounds ({{ networks.moonbase.delegator_timings.revoke_delegations.hours }} hours) |
-|    Leave candidates     |    {{ networks.moonbase.collator_timings.leave_candidates.rounds }} rounds ({{ networks.moonbase.collator_timings.leave_candidates.hours }} hours)    |
-|    Leave delegators     |   {{ networks.moonbase.delegator_timings.leave_delegators.rounds }} rounds ({{ networks.moonbase.delegator_timings.leave_delegators.hours }} hours)   |
+    |        Variable         |                                                                         Value                                                                         |
+    | :---------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------: |
+    | Decrease candidate bond |       {{ networks.moonbase.collator_timings.can_bond_less.rounds }} rounds ({{ networks.moonbase.collator_timings.can_bond_less.hours }} hours)       |
+    | Decrease delegator bond |      {{ networks.moonbase.delegator_timings.del_bond_less.rounds }} rounds ({{ networks.moonbase.delegator_timings.del_bond_less.hours }} hours)      |
+    |    Revoke delegation    | {{ networks.moonbase.delegator_timings.revoke_delegations.rounds }} rounds ({{ networks.moonbase.delegator_timings.revoke_delegations.hours }} hours) |
+    |    Leave candidates     |    {{ networks.moonbase.collator_timings.leave_candidates.rounds }} rounds ({{ networks.moonbase.collator_timings.leave_candidates.hours }} hours)    |
+    |    Leave delegators     |   {{ networks.moonbase.delegator_timings.leave_delegators.rounds }} rounds ({{ networks.moonbase.delegator_timings.leave_delegators.hours }} hours)   |
 
 ## 与 Solidity 接口交互 {: #interact-with-solidity-interface }
 

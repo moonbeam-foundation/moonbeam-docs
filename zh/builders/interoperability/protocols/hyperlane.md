@@ -1,6 +1,9 @@
-...
+---
+title: 通过 Hyperlane 实现跨链
+description: 了解 Hyperlane，一种用于跨链资产转移的 GMP 协议，以及如何在 Moonbeam 上使用 Hyperlane 开始构建跨链应用程序。
+categories: GMP Providers
+---
 
-## title: 通过 Hyperlane 实现跨链 description: 了解 Hyperlane，一种用于跨链资产转移的 GMP 协议，以及如何在 Moonbeam 上使用 Hyperlane 开始构建跨链应用程序。 categories: GMP Providers
 
 # Hyperlane 协议
 

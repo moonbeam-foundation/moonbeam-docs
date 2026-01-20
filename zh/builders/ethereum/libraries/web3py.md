@@ -1,6 +1,9 @@
-...
+---
+title: 如何使用 Web3.py 以太坊库
+description: 按照本教程学习如何使用以太坊 Web3 Python 库将交易发送到 Moonbeam 并将 Solidity 智能合约部署到 Moonbeam。
+categories: 库和 SDK，以太坊工具包
+---
 
-## title: 如何使用 Web3.py 以太坊库 description: 按照本教程学习如何使用以太坊 Web3 Python 库将交易发送到 Moonbeam 并将 Solidity 智能合约部署到 Moonbeam。 categories: 库和 SDK，以太坊工具包
 
 # Web3.py Python库
 
@@ -18,9 +21,7 @@
 
 --8<-- 'text/_common/faucet/faucet-list-item.md'
 
--
-
---8<-- 'text/_common/endpoint-examples-list-item.md'
+- --8<-- 'text/_common/endpoint-examples-list-item.md'
 
 !!! note
 
@@ -30,13 +31,15 @@
 
 首先，您可以创建一个目录来存储您将在本指南中创建的所有文件：
 
-bash
+```bash
 mkdir web3-examples && cd web3-examples
+```
 
 对于本指南，您需要安装 Web3.py 库和 Solidity 编译器。 要安装这两个软件包，您可以运行以下命令：
 
-bash
+```bash
 pip3 install web3 py-solc-x solc-select
+```
 
 ## 使用 Moonbeam 设置 Web3.py {: #setup-web3-with-moonbeam }
 
@@ -101,8 +104,9 @@ pip3 install web3 py-solc-x solc-select
 
 您只需要一个文件来检查交易发送前后两个地址的余额。要开始，您可以运行以下命令创建一个 `balances.py` 文件：
 
-bash
+```bash
 touch balances.py
+```
 
 接下来，您将为此文件创建脚本并完成以下步骤：
 
@@ -110,14 +114,14 @@ touch balances.py
 1. 定义 `address_from` 和 `address_to` 变量
 1. 使用 `web3.eth.get_balance` 函数获取帐户余额，并使用 `web3.from_wei` 格式化结果
 
-python
 
 --8<-- 'code/builders/ethereum/libraries/web3-py/balances.py'
 
 要运行脚本并获取帐户余额，您可以运行以下命令：
 
-bash
+```bash
 python3 balances.py
+```
 
 如果成功，原始地址和接收地址的余额将以 ETH 显示在您的终端中。
 
@@ -129,8 +133,9 @@ python3 balances.py
 
 有了用于编译 `Incrementer.sol` 合约的脚本，您可以使用结果发送一个已签名的交易来部署它。为此，您可以创建一个名为 `deploy.py` 的部署脚本文件：
 
-bash
+```bash
 touch deploy.py
+```
 
 接下来，您将为该文件创建脚本并完成以下步骤：
 
@@ -142,14 +147,13 @@ touch deploy.py
 1. 使用 `web3.eth.account.sign_transaction` 函数签署交易，并传入构造函数交易和发送者的 `private_key`
 1. 使用已签名的交易，您可以使用 `web3.eth.send_raw_transaction` 函数发送它，并使用 `web3.eth.wait_for_transaction_receipt` 函数等待交易回执
 
-python
-
 --8<-- 'code/builders/ethereum/libraries/web3-py/deploy.py'
 
 要运行该脚本，您可以在终端中输入以下命令：
 
-bash
+```bash
 python3 deploy.py
+```
 
 如果成功，合约的地址将显示在终端中。
 
@@ -159,8 +163,9 @@ python3 deploy.py
 
 发送方法是修改合约存储（更改变量）的交互类型，这意味着需要签名并发送交易。在本节中，您将创建两个脚本：一个用于递增，另一个用于重置递增器。要开始，您可以为每个脚本创建一个文件，并将它们命名为 `increment.py` 和 `reset.py`：
 
-bash
+```bash
 touch increment.py reset.py
+```
 
 打开 `increment.py` 文件，并按照以下步骤创建脚本：
 
@@ -172,14 +177,13 @@ touch increment.py reset.py
 1. 使用 `web3.eth.account.sign_transaction` 函数签署交易，并传入递增交易和发送方的 `private_key`
 1. 使用已签名的交易，您可以使用 `web3.eth.send_raw_transaction` 函数发送它，并使用 `web3.eth.wait_for_transaction_receipt` 函数等待交易收据
 
-python
-
 --8<-- 'code/builders/ethereum/libraries/web3-py/increment.py'
 
 要运行该脚本，您可以在终端中输入以下命令：
 
-bash
+```bash
 python3 increment.py
+```
 
 如果成功，交易哈希将显示在终端中。您可以将 `get.py` 脚本与 `increment.py` 脚本一起使用，以确保该值按预期更改：
 
@@ -195,14 +199,13 @@ python3 increment.py
 1. 使用 `web3.eth.account.sign_transaction` 函数签署交易，并传入重置交易和发送方的 `private_key`
 1. 使用已签名的交易，您可以使用 `web3.eth.send_raw_transaction` 函数发送它，并使用 `web3.eth.wait_for_transaction_receipt` 函数等待交易收据
 
-python
-
 --8<-- 'code/builders/ethereum/libraries/web3-py/reset.py'
 
 要运行该脚本，您可以在终端中输入以下命令：
 
-bash
+```bash
 python3 reset.py
+```
 
 如果成功，交易哈希将显示在终端中。您可以将 `get.py` 脚本与 `reset.py` 脚本一起使用，以确保该值按预期更改：
 

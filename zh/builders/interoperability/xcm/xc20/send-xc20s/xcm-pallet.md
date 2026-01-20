@@ -222,7 +222,7 @@ Polkadot XCM pallet 没有常量部分。
 
 要检查您的 xcUNIT 余额，您可以将 XC-20 的 [预编译地址](/builders/interoperability/xcm/xc20/overview/#calculate-xc20-address){target=_blank} 添加到 MetaMask，地址如下：
 
-```text
+```
 0xFfFFfFff1FcaCBd218EDc0EbA20Fc2308C778080
 ```
 

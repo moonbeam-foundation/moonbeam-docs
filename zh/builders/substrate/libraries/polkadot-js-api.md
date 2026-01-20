@@ -127,8 +127,9 @@ categories: Substrate Toolkit, Libraries and SDKs
 
 当 Polkadot.js API 连接到节点时，它首先要做的事情之一是检索元数据，并根据元数据信息装饰 API。元数据有效地以以下形式提供数据：
 
-text
+```
 api.<类型>.<模块>.<部分>
+```
 
 其中 `<类型>` 可以是：
 
@@ -147,12 +148,13 @@ api.<类型>.<模块>.<部分>
 
 这类查询检索与链的当前状态相关的信息。这些端点通常采用 `api.query.<module>.<method>` 的形式，其中模块和方法装饰通过元数据生成。您可以通过检查 `api.query` 对象来查看所有可用端点的列表，例如通过：
 
-javascript
+```javascript
 console.log(api.query);
+```
 
 假设您已[初始化 API](#creating-an-API-provider-instance)，这是一个检索给定地址的基本帐户信息的代码示例：
 
-javascript
+```javascript
 // Define wallet address
 const addr = 'INSERT_ADDRESS';
 
@@ -165,6 +167,7 @@ const { nonce, data: balance } = await api.query.system.account(addr);
 console.log(
   `${now}: balance of ${balance.free} and a current nonce of ${nonce}`
 );
+```
 
 ??? code "View the complete script"
 
@@ -175,12 +178,13 @@ console.log(
 
 RPC 调用为节点之间的数据传输提供了主干。这意味着所有 API 端点（如 `api.query`、`api.tx` 或 `api.derive`）都只是对 RPC 调用的包装，以节点期望的编码格式提供信息。您可以通过检查 `api.rpc` 对象来查看所有可用端点的列表，例如通过：
 
-javascript
+```javascript
 console.log(api.rpc);
+```
 
 `api.rpc` 接口遵循与 `api.query` 类似的格式，例如：
 
-javascript
+```javascript
 // 检索链名称
 const chain = await api.rpc.system.chain();
 
@@ -191,17 +195,19 @@ const lastHeader = await api.rpc.chain.getHeader();
 console.log(
   `${chain}: last block #${lastHeader.number} has hash ${lastHeader.hash}`
 );
+```
 
 ??? code "查看完整脚本"
 
-    js
+    ```js
     --8<-- 'code/builders/substrate/libraries/polkadot-js-api/rpc-queries.js'
+    ```
 
 ### 查询订阅 {: #query-subscriptions }
 
 `rpc` API 也为订阅提供了端点。您可以调整前面的示例，开始使用订阅来侦听新区块。请注意，使用订阅时需要删除 API 断开连接，以避免 WSS 连接的正常关闭。
 
-javascript
+```javascript
 // 检索链名称
 const chain = await api.rpc.system.chain();
 
@@ -212,12 +218,13 @@ await api.rpc.chain.subscribeNewHeads((lastHeader) => {
   );
 });
 // 删除 await api.disconnect()!
+```
 
 `api.rpc.subscribe*` 函数的通用模式是将回调传递到订阅函数中，这将会在每次导入新条目时触发。
 
 `api.query.*` 下的其他调用可以以类似的方式进行修改以使用订阅，包括具有参数的调用。以下是如何订阅帐户中的余额更改的示例：
 
-javascript
+```javascript
 // 定义钱包地址
 const addr = 'INSERT_ADDRESS';
 
@@ -229,11 +236,13 @@ await api.query.system.account(addr, ({ nonce, data: balance }) => {
 });
 
 // 删除 await api.disconnect()!
+```
 
 ??? code "查看完整脚本"
 
-    js
+    ```js
     --8<-- 'code/builders/substrate/libraries/polkadot-js-api/query-subscriptions.js'
+    ```
 
 ## 为 Moonbeam 账户创建一个密钥环 {: #keyrings }
 
@@ -243,12 +252,13 @@ await api.query.system.account(addr, ({ nonce, data: balance }) => {
 
 您可以通过仅创建 Keyring 类的实例，并指定所使用的默认钱包地址类型来创建实例。对于 Moonbeam 网络，默认钱包类型应为 `ethereum`。
 
-javascript
+```javascript
 // 根据需要导入密钥环
 import Keyring from '@polkadot/keyring';
 
 // 创建密钥环实例
 const keyring = new Keyring({ type: 'ethereum' });
+```
 
 ### 向密钥环添加帐户 {: #adding-accounts }
 
@@ -256,14 +266,15 @@ const keyring = new Keyring({ type: 'ethereum' });
 
 ===
 
-    javascript
+    ```javascript
     --8<-- 'code/builders/substrate/libraries/polkadot-js-api/adding-accounts-mnemonic.js'
-    
+    ```
 
 ===
 
-    javascript
+    ```javascript
     --8<-- 'code/builders/substrate/libraries/polkadot-js-api/adding-accounts-private-key.js'
+    ```
 
 ## Dry Run API {: #dry-run-api }
 
@@ -292,67 +303,7 @@ const result = await api.call.dryRunApi.dryRunCall(
     --8<-- 'code/builders/substrate/libraries/polkadot-js-api/dry-run.js'
     ```
 
-调用 Dry Run API 后，此方法会告诉您调用是否会成功，并返回如果实际在链上提交调用将发出的事件数据。您可以在下面查看 `dryRunCall` 的初始输出。
-
-??? code "查看完整的输出"
-
-{
-  "source_path": "builders/substrate/libraries/polkadot-js-api.md",
-  "source_language": "EN",
-  "target_language": "ZH",
-  "checksum": "850323592f4d56f92a6e4ce65731f34a6cf6f773744d22a3ea1996b2dda1de7f",
-  "content": "## Send Transactions on Moonbeam  {: #transactions }\n\nTransaction endpoints are exposed on endpoints generally of the form `api.tx.<module>.<method>`, where the module and method decorations are generated through metadata. These allow you to submit transactions for inclusion in blocks, be it transfers, interacting with pallets, or anything else Moonbeam supports. You can see a list of all available endpoints by examining the `api.tx` object, for example via:\n\n```javascript
-console.log(api.tx);
-
-### 发送交易 {: #sending-basic-transactions }
-
-Polkadot.js API 库可用于将交易发送到网络。例如，假设您已[初始化 API](#creating-an-API-provider-instance) 和 [密钥环实例](#creating-a-keyring-instance)，则可以使用以下代码段发送基本交易（此代码示例还将检索交易的编码调用数据，以及提交后的交易哈希）：
-
-```javascript
-// 初始化钱包密钥对
-const alice = keyring.addFromUri('INSERT_ALICES_PRIVATE_KEY');
-const bob = 'INSERT_BOBS_ADDRESS';
-
-// 形成交易
-const tx = await api.tx.balances.transferAllowDeath(bob, 12345n);
-
-// 检索交易的编码调用数据
-const encodedCalldata = tx.method.toHex();
-console.log(`Encoded calldata: ${encodedCallData}`);
-
-// 签名并发送交易
-const txHash = await tx
-  .signAndSend(alice);
-
-// 显示交易哈希
-console.log(`Submitted with hash ${txHash}`);
-```
-
-??? code "查看完整脚本"
-
-    ```js
-    --8<-- 'code/builders/substrate/libraries/polkadot-js-api/basic-transactions.js'
-    ```
-
-!!! note
-    在客户端 v0.35.0 之前，用于执行简单余额转移的外部函数是 `balances.transfer` 外部函数。此后，它已被弃用，并替换为 `balances.transferAllowDeath` 外部函数。
-
-请注意，`signAndSend` 函数还可以接受可选参数，例如 `nonce`。例如，`signAndSend(alice, { nonce: aliceNonce })`。您可以使用 [状态查询](/builders/substrate/libraries/polkadot-js-api/#state-queries){target=_blank} 部分中的[示例代码]来检索正确的 nonce，包括内存池中的交易。
-
-{
-  "source_path": "builders/substrate/libraries/polkadot-js-api.md",
-  "source_language": "EN",
-  "target_language": "ZH",
-  "checksum": "850323592f4d56f92a6e4ce65731f34a6cf6f773744d22a3ea1996b2dda1de7f",
-  "content": "### Fee Information {: #fees }\n\nThe transaction endpoint also offers a method to obtain weight information for a given `api.tx.<module>.<method>`. To do so, you'll need to use the `paymentInfo` function after having built the entire transaction with the specific `module` and `method`.\n\nThe `paymentInfo` function returns weight information in terms of `refTime` and `proofSize`, which can be used to determine the transaction fee. This is extremely helpful when crafting [remote execution calls via XCM](/builders/interoperability/xcm/remote-execution/){target=\_blank}.\n\nFor example, assuming you've [initialized the API](#creating-an-API-provider-instance), the following snippet shows how you can get the weight information for a simple balance transfer between two accounts:\n\n```javascript
-// Transaction to get weight information
-const tx = api.tx.balances.transferAllowDeath('INSERT_BOBS_ADDRESS', BigInt(12345));
-
-// Get weight info
-const { partialFee, weight } = await tx.paymentInfo('INSERT_SENDERS_ADDRESS');
-
-console.log(`Transaction weight: ${weight}`);
-console.log(`Transaction fee: ${partialFee.toHuman()}`);
+调用 Dry Run API 后，此方法会告诉您调用是否会成功，并返回如果实际在链上提交调用将发出的事件数据。
 
 ### 交易事件 {: #transaction-events }
 
@@ -368,7 +319,7 @@ Polkadot.js API 允许通过 `api.tx.utility.batch` 方法批量处理交易。�
 
 例如，假设您已[初始化 API](#creating-an-API-provider-instance)、一个 [密钥环实例](#creating-a-keyring-instance) 并[添加了一个帐户](#adding-accounts)，以下示例进行了几个转账，并且还使用了 `api.tx.parachainStaking` 模块来安排一个请求，以减少特定 collator 候选者的绑定：
 
-javascript
+```javascript
 // Construct a list of transactions to batch
 const collator = 'INSERT_COLLATORS_ADDRESS';
 const txs = [
@@ -391,12 +342,13 @@ api.tx.utility.batch(txs).signAndSend(alice, ({ status }) => {
     // Disconnect API here!
   }
 });
+```
 
 ??? code "查看完整脚本"
 
-    js
+    ```js
     --8<-- 'code/builders/substrate/libraries/polkadot-js-api/batch-transactions.js'
-    
+    ```
 
 !!! note
     您可以通过将 `console.log(api.tx.parachainStaking);` 添加到您的代码中来查看 `parachainStaking` 模块的所有可用函数。

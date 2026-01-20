@@ -19,21 +19,15 @@ Moonbeam 上的批量预编译合约允许开发者将多个 EVM 调用合并为
 
 === "Moonbeam"
 
-     ```text
-     {{networks.moonbeam.precompiles.batch }}
-     ```
+    `{{ networks.moonbeam.precompiles.batch }}`
 
 === "Moonriver"
 
-     ```text
-     {{networks.moonriver.precompiles.batch }}
-     ```
+    `{{ networks.moonriver.precompiles.batch }}`
 
 === "Moonbase Alpha"
 
-     ```text
-     {{networks.moonbase.precompiles.batch }}
-     ```
+    `{{ networks.moonbase.precompiles.batch }}`
 
 --8<-- 'text/builders/ethereum/precompiles/security.md'
 
@@ -90,8 +84,9 @@ Moonbeam 上的批量预编译合约允许开发者将多个 EVM 调用合并为
 
 合约 `SimpleContract.sol` 将用作批量处理合约交互的示例，但实际上，任何合约都可以进行交互。
 
-solidity
+```solidity
 --8<-- 'code/builders/ethereum/precompiles/ux/batch/simple-contract.sol'
+```
 
 ### Remix 设置 {: #remix-set-up }
 

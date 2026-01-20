@@ -1,6 +1,9 @@
-______________________________________________________________________
+---
+title: Cross-Chain via Wormhole
+description: Learn how to bridge assets, set up a relayer, and other ways you can connect your Moonbeam DApp to assets and functions on multiple blockchains using Wormhole.
+categories: GMP Providers
+---
 
-## title: Cross-Chain via Wormhole description: Learn how to bridge assets, set up a relayer, and other ways you can connect your Moonbeam DApp to assets and functions on multiple blockchains using Wormhole. categories: GMP Providers
 
 # Wormhole Network
 

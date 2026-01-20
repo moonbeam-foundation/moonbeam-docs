@@ -1,6 +1,8 @@
-...
-
-## title: 如何使用 Chopsticks 将 Moonbeam 分叉 description: 了解如何使用 Chopsticks 重放区块、剖析状态更改、测试 XCM 交互以及在本地分叉整个 Moonbeam 网络的基础知识。categories: Substrate 工具包，开发环境
+---
+title: 如何使用 Chopsticks 将 Moonbeam 分叉
+description: 了解如何使用 Chopsticks 重放区块、剖析状态更改、测试 XCM 交互以及在本地分叉整个 Moonbeam 网络的基础知识。
+categories: Substrate 工具包，开发环境
+---
 
 # 如何使用 Chopsticks Fork Moonbeam
 
@@ -163,35 +165,32 @@ npx @acala-network/chopsticks@latest --endpoint {{ networks.moonbase.wss_url }} 
 
 复刻 Moonbeam 最简单的方法是通过存储在 Chopsticks GitHub 存储库中的配置文件：
 
-\===
+=== "Moonbeam"
 
-```
-bash
-npx @acala-network/chopsticks@latest \
---config=https://raw.githubusercontent.com/AcalaNetwork/chopsticks/master/configs/moonbeam.yml
-```
+    ```bash
+    npx @acala-network/chopsticks@latest \
+    --config=https://raw.githubusercontent.com/AcalaNetwork/chopsticks/master/configs/moonbeam.yml
+    ```
 
-\===
+=== "Moonriver"
 
-```
-bash
-npx @acala-network/chopsticks@latest \
---config=https://raw.githubusercontent.com/AcalaNetwork/chopsticks/master/configs/moonriver.yml
-```
+    ```bash
+    npx @acala-network/chopsticks@latest \
+    --config=https://raw.githubusercontent.com/AcalaNetwork/chopsticks/master/configs/moonriver.yml
+    ```
 
-\===
+=== "Moonbase Alpha"
 
-```
-bash
-npx @acala-network/chopsticks@latest \
---config=https://raw.githubusercontent.com/AcalaNetwork/chopsticks/master/configs/moonbase-alpha.yml
-```
+    ```bash
+    npx @acala-network/chopsticks@latest \
+    --config=https://raw.githubusercontent.com/AcalaNetwork/chopsticks/master/configs/moonbase-alpha.yml
+    ```
 
 ### 与分叉交互 {: #interacting-with-a-fork }
 
 当运行一个分叉时，默认情况下它将可以通过以下方式访问：
 
-```text
+```
 ws://localhost:8000
 ```
 
@@ -230,11 +229,12 @@ ws://localhost:8000
 
 例如，运行以下命令将重新运行 Moonbeam 的第 1000 个区块，并将存储差异和其他数据写入 `moonbeam-output.json` 文件中：
 
-bash
+```bash
 npx @acala-network/chopsticks@latest run-block \
---endpoint wss://wss.api.moonbeam.network \
---output-path=./moonbeam-output.json \
---block 1000
+  --endpoint wss://wss.api.moonbeam.network \
+  --output-path=./moonbeam-output.json \
+  --block 1000
+```
 
 ## WebSocket 命令 {: #websocket-commands }
 
@@ -255,13 +255,13 @@ Chopsticks的内部websocket服务器具有特殊的端点，允许操作本地S
 |    `values`    |              `Object`               | `{ "Sudo": { "Key": "0x6Be02d1d3665660d22FF9624b7BE0551ee1Ac91b" } }`  |
 |  `blockHash`   |              `string`               | `"0x1a34506b33e918a0106b100db027425a83681e2332fe311ee99d6156d2a91697"` |
 |     `date`     |               `Date`                |                        `"2030-08-15T00:00:00"`                         |
-| `hashOrNumber` |              \`number               |                                string\`                                |
+| `hashOrNumber` |            `number` 或 `string`            |                                `500`                                |
 
 - **`options` { "to": number, "count": number }** - 一个JSON对象，其中 `"to"` 将创建区块直到某个值，而 `"count"` 将按某个区块数递增。一次只能在JSON对象中使用一个条目
 - **`values` Object** - 一个JSON对象，类似于存储值的路径，类似于您通过Polkadot.js检索到的内容
 - **`blockHash` string** - 可选，更改存储值的区块哈希
 - **`date` Date** - 一个日期字符串（与JavaScript Date库兼容），它将更改创建的下一个区块的时间戳。所有未来的区块将按时间顺序排列在该时间点之后
-- **`hashOrNumber` number | string** - 如果找到，链头将被设置为具有此值的区块号或区块哈希的区块
+- **`hashOrNumber` number \| string** - 如果找到，链头将被设置为具有此值的区块号或区块哈希的区块
 
 每个方法都可以通过连接到websocket（默认为 `ws://localhost:8000`）并以下列格式发送数据和参数来调用。将 `METHOD_NAME` 替换为方法的名称，并将 `PARAMETER_1` 和 `PARAMETER_2` 替换为与该方法相关的参数数据，或将其删除：
 

@@ -36,24 +36,25 @@ categories: 代币和账户
 
 计算存款的公式为：
 
-text
+```text
 存款基数 + 存款因子 * 代理数量
+```
 
-===
+=== "Moonbeam"
     |    变量    |                       值                       |
     |:--------------:|:-------------------------------------------------:|
     |  存款基数  |  {{ networks.moonbeam.proxy.deposit_base }} GLMR  |
     | 存款因子 | {{ networks.moonbeam.proxy.deposit_factor }} GLMR |
     |  最大代理数   | {{ networks.moonbeam.proxy.max_proxies }} proxies |
 
-===
+=== "Moonriver"
     |    变量    |                       值                        |
     |:--------------:|:--------------------------------------------------:|
     |  存款基数  |  {{ networks.moonriver.proxy.deposit_base }} MOVR  |
     | 存款因子 | {{ networks.moonriver.proxy.deposit_factor }} MOVR |
     |  最大代理数   | {{ networks.moonriver.proxy.max_proxies }} proxies |
 
-===
+=== "Moonbase Alpha"
     |    变量    |                       值                       |
     |:--------------:|:-------------------------------------------------:|
     |  存款基数  |  {{ networks.moonbase.proxy.deposit_base }} DEV   |

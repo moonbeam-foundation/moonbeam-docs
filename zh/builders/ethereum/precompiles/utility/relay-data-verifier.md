@@ -17,23 +17,17 @@ Polkadot 独特的架构和平行链区块验证过程意味着像 Moonbeam 这�
 
 Moonbeam 的 [中继数据验证器预编译](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/relay-data-verifier/RelayDataVerifier.sol){target=_blank} 合约为智能合约提供了一种简便的方法，可以通过编程方式构建依赖于在合约调用中验证中继链状态的函数。因此，无需预言机将中继链数据馈送到 Moonbeam。此功能在以下合约地址中随时可用：
 
-===
+=== "Moonbeam"
 
-     ```text
-     {{networks.moonbeam.precompiles.relay_data_verifier }}
-     ```
+    `{{ networks.moonbeam.precompiles.relay_data_verifier }}`
 
-===
+=== "Moonriver"
 
-     ```text
-     {{networks.moonriver.precompiles.relay_data_verifier }}
-     ```
+    `{{ networks.moonriver.precompiles.relay_data_verifier }}`
 
-===
+=== "Moonbase Alpha"
 
-     ```text
-     {{networks.moonbase.precompiles.relay_data_verifier }}
-     ```
+    `{{ networks.moonbase.precompiles.relay_data_verifier }}`
 
 --8<-- 'text/builders/ethereum/precompiles/security.md'
 
@@ -149,15 +143,11 @@ Moonbeam 的 [中继数据验证器预编译](https://github.com/moonbeam-founda
 !!! note
      以下各节中提供的代码段不适用于生产环境。请确保针对每个用例进行调整。
 
-===
+=== "Ethers.js"
 
-     "Ethers.js"
-
-     ```js
-     --8<-- 'code/builders/ethereum/precompiles/utility/relay-data-verifier/ethers-relay-data-verifier.js'
-     ```
-
-===
+    ```js
+    --8<-- 'code/builders/ethereum/precompiles/utility/relay-data-verifier/ethers-relay-data-verifier.js'
+    ```
 
      "Web3.py"
 

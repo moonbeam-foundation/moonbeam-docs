@@ -73,7 +73,7 @@ const {
 } = require('@0xgasless/smart-account');
 ```
 
-接下来，我们将设置关键常量。我们必须定义 `CHAIN_ID`、`BUNDLER_URL` 和 `PAYMASTER_URL`。您可以从 [0xGasless 仪表板](https://dashboard.0xgasless.com/paymaster){target=_blank}上的支付方获取唯一的支付方 URL。
+接下来，我们将设置关键常量。我们必须定义 `CHAIN_ID`、`BUNDLER_URL` 和 `PAYMASTER_URL`。您可以从 [0xGasless 仪表板](https://dashboard.0xgasless.com/paymaster){target=\_blank}上的支付方获取唯一的支付方 URL。
 
 我们在此处定义的合约地址是 Moonbeam 上的 [Incrementer 合约](https://moonscan.io/address/0x3ae26f2c909eb4f1edf97bf60b36529744b09213) 的地址，我们将调用函数选择器指定的 increment 函数。这个简单的合约将使我们能够轻松地看到无 Gas 交易是否已成功分派。
 
@@ -108,9 +108,9 @@ const FUNCTION_SELECTOR = '0xd09de08a';
 
 --8<-- 'code/tutorials/integrations/0xgasless/output.md'
 
-由于我们发起的无 Gas 交易与 Moonbeam 上的 [Incrementer](https://moonscan.io/address/0x3ae26f2c909eb4f1edf97bf60b36529744b09213#readContract){target=_blank} 智能合约交互，因此很容易检查交易是否成功发起。您可以返回 [Moonscan 上的 Incrementer 合约的读取合约部分](https://moonscan.io/address/0x3ae26f2c909eb4f1edf97bf60b36529744b09213#readContract) 并检查存储在合约中的数字。或者，您可以前往**内部交易**选项卡，然后将高级模式切换为**开启**，以查看合约调用递增合约。
+由于我们发起的无 Gas 交易与 Moonbeam 上的 [Incrementer](https://moonscan.io/address/0x3ae26f2c909eb4f1edf97bf60b36529744b09213#readContract){target=\_blank} 智能合约交互，因此很容易检查交易是否成功发起。您可以返回 [Moonscan 上的 Incrementer 合约的读取合约部分](https://moonscan.io/address/0x3ae26f2c909eb4f1edf97bf60b36529744b09213#readContract) 并检查存储在合约中的数字。或者，您可以前往**内部交易**选项卡，然后将高级模式切换为**开启**，以查看合约调用递增合约。
 
-有关将对无 Gas 交易的支持集成到您的 dApp 中的更多信息，请务必查看 [0xGasless 文档](https://gitbook.0xgasless.com/){target=_blank}。
+有关将对无 Gas 交易的支持集成到您的 dApp 中的更多信息，请务必查看 [0xGasless 文档](https://gitbook.0xgasless.com/){target=\_blank}。
 
 --8<-- 'text/_disclaimers/educational-tutorial.md'
 

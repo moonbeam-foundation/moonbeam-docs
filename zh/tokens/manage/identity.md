@@ -22,24 +22,21 @@ Substrate Identity pallet 是一个开箱即用的解决方案，用于向您的
 
 - **自定义字段包括** - 任何其他相关信息。例如，您可以包括您的 Discord 句柄
 
-===
-    "Moonbeam"
+=== "Moonbeam"
     |       Variable        |                               Definition                                |                      Value                      |
     |:---------------------:|:-----------------------------------------------------------------------:|:-----------------------------------------------:|
     |     Basic deposit     |           The amount held on deposit for setting an identity            | {{ networks.moonbeam.identity.basic_dep }} GLMR |
     |     Field deposit     | The amount held on deposit per additional field for setting an identity | {{ networks.moonbeam.identity.field_dep }} GLMR |
     | Max additional fields |     Maximum number of additional fields that may be stored in an ID     |   {{ networks.moonbeam.identity.max_fields }}   |
 
-===
-    "Moonriver"
+=== "Moonriver"
     |       Variable        |                               Definition                                |                      Value                       |
     |:---------------------:|:-----------------------------------------------------------------------:|:------------------------------------------------:|
     |     Basic deposit     |           The amount held on deposit for setting an identity            | {{ networks.moonriver.identity.basic_dep }} MOVR |
     |     Field deposit     | The amount held on deposit per additional field for setting an identity | {{ networks.moonriver.identity.field_dep }} MOVR |
     | Max additional fields |     Maximum number of additional fields that may be stored in an ID     |   {{ networks.moonriver.identity.max_fields }}   |
 
-===
-    "Moonbase Alpha"
+=== "Moonbase Alpha"
     |       Variable        |                               Definition                                |                     Value                      |
     |:---------------------:|:-----------------------------------------------------------------------:|:----------------------------------------------:|
     |     Basic deposit     |           The amount held on deposit for setting an identity            | {{ networks.moonbase.identity.basic_dep }} DEV |

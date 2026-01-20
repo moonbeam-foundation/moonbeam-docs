@@ -21,23 +21,17 @@ Moonbeam 提供了一个随机性预编译合约，它是一个 Solidity 接口�
 
 随机性预编译合约位于以下地址：
 
-===
+=== "Moonbeam"
 
-     ```text
-     {{ networks.moonbeam.precompiles.randomness }}
-     ```
+    `{{ networks.moonbeam.precompiles.randomness }}`
 
-===
+=== "Moonriver"
 
-     ```text
-     {{ networks.moonriver.precompiles.randomness }}
-     ```
+    `{{ networks.moonriver.precompiles.randomness }}`
 
-===
+=== "Moonbase Alpha"
 
-     ```text
-     {{ networks.moonbase.precompiles.randomness }}
-     ```
+    `{{ networks.moonbase.precompiles.randomness }}`
 
 --8<-- 'text/builders/ethereum/precompiles/security.md'
 
@@ -169,7 +163,7 @@ Moonbeam 提供了一个随机性预编译合约，它是一个 Solidity 接口�
 - **maxBlockDelay** - 本地 VRF 请求可以满足的最大区块数
 - **deposit** - 请求随机字所需的存款金额。 每个请求都有一笔存款
 
-===
+=== "Moonbeam"
     |        Variable        |                              Value                              |
     |:----------------------:|:---------------------------------------------------------------:|
     |    MAX_RANDOM_WORDS    |    {{ networks.moonbeam.randomness.max_random_words }} words    |
@@ -177,7 +171,7 @@ Moonbeam 提供了一个随机性预编译合约，它是一个 Solidity 接口�
     |  MAX_VRF_BLOCKS_DELAY  | {{ networks.moonbeam.randomness.max_vrf_blocks_delay }} blocks  |
     | REQUEST_DEPOSIT_AMOUNT | {{ networks.moonbeam.randomness.req_deposit_amount.glmr }} GLMR |
 
-===
+=== "Moonriver"
     |        Variable        |                              Value                               |
     |:----------------------:|:----------------------------------------------------------------:|
     |    MAX_RANDOM_WORDS    |    {{ networks.moonriver.randomness.max_random_words }} words    |
@@ -185,7 +179,7 @@ Moonbeam 提供了一个随机性预编译合约，它是一个 Solidity 接口�
     |  MAX_VRF_BLOCKS_DELAY  | {{ networks.moonriver.randomness.max_vrf_blocks_delay }} blocks  |
     | REQUEST_DEPOSIT_AMOUNT | {{ networks.moonriver.randomness.req_deposit_amount.movr }} MOVR |
 
-===
+=== "Moonbase Alpha"
     |        Variable        |                             Value                              |
     |:----------------------:|:--------------------------------------------------------------:|
     |    MAX_RANDOM_WORDS    |   {{ networks.moonbase.randomness.max_random_words }} words    |

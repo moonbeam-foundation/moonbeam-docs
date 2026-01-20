@@ -1,3 +1,0 @@
-- Gerald:
-    - 公共地址: `0x6Be02d1d3665660d22FF9624b7BE0551ee1Ac91b`
-    - 私钥: `0x99b3c12287537e38c90a9219d4cb074a89a16e9cdb20bf85728ebd97c343e342`

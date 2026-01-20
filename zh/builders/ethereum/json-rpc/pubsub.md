@@ -36,14 +36,15 @@ Moonbeam 支持以太坊风格的事件订阅，允许您等待事件并相应�
 
     === "示例"
 
-        bash
+        ```bash
         wscat -c {{ networks.moonbase.wss_url }} -x '
           {
-            "jsonrpc": "2.0", 
-            "id": 1, 
-            "method": "eth_subscribe", 
+            "jsonrpc": "2.0",
+            "id": 1,
+            "method": "eth_subscribe",
             "params": ["INSERT_SUBSCRIPTION_NAME"]
           }'
+        ```
         
 
 ???+ function "eth_unsubscribe"
@@ -60,14 +61,15 @@ Moonbeam 支持以太坊风格的事件订阅，允许您等待事件并相应�
 
     === "示例"
 
-        bash
+        ```bash
         wscat -c {{ networks.moonbase.wss_url }} -x '
           {
-            "jsonrpc": "2.0", 
-            "id": 1, 
-            "method": "eth_unsubscribe", 
+            "jsonrpc": "2.0",
+            "id": 1,
+            "method": "eth_unsubscribe",
             "params": ["INSERT_SUBSCRIPTION_ID"]
           }'
+        ```
 
 ## 使用以太坊库订阅事件 {: #subscribe-to-events }
 

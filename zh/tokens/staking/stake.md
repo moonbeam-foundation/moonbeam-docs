@@ -165,7 +165,7 @@ console.log(autoCompoundingDelegations.toHuman().length);
 
 如果您想验证为特定委托设置自动复利的奖励百分比，您可以使用以下脚本查询 `autoCompoundingDelegations` extrinsic，并根据委托人的地址过滤结果：
 
-js
+```js
 // 简单的脚本来验证给定候选人的自动复利百分比。
 // 请记住将 INSERT_CANDIDATE_ADDRESS 替换为您要委托的候选人的地址，并将 INSERT_DELEGATOR_ADDRESS 替换为
 // 用于委托的地址
@@ -178,6 +178,7 @@ const delegation = autoCompoundingDelegations.find(
 );
 
 console.log(`${delegation.value}%`);
+```
 
 在 Polkadot.js Apps 中，您可以前往 **Developer** 选项卡，然后从下拉列表中选择 **JavaScript**。然后，您可以按照以下步骤操作：
 

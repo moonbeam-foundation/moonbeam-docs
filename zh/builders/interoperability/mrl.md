@@ -182,21 +182,17 @@ Wormhole 依赖于一组分布式节点，这些节点监控多个区块链上�
 
 要创建批量交易并将其包装在要在 Moonbeam 上执行的远程 EVM 调用中，您需要执行以下步骤：
 
-1. 创建本地 XC-20、[Wormhole 中继器](https://github.com/wormhole-foundation/example-token-bridge-relayer/blob/main/evm/src/token-bridge-relayer/TokenBridgeRelayer.sol){target=_blank} 和 [Batch Precompile](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/batch/Batch.sol){target=_blank} 的合约实例。为此，您需要每个合约的 ABI 和 Wormhole 中继器的地址。您可以使用 [xLabs 中继器](https://xlabs.xyz/){target=_blank}:
+    1. 创建本地 XC-20、[Wormhole 中继器](https://github.com/wormhole-foundation/example-token-bridge-relayer/blob/main/evm/src/token-bridge-relayer/TokenBridgeRelayer.sol){target=_blank} 和 [Batch Precompile](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/batch/Batch.sol){target=_blank} 的合约实例。为此，您需要每个合约的 ABI 和 Wormhole 中继器的地址。您可以使用 [xLabs 中继器](https://xlabs.xyz/){target=_blank}:
 
-    === "Moonbeam"
+        === "Moonbeam"
 
-        ```text
-        0xcafd2f0a35a4459fa40c0517e17e6fa2939441ca
-        ```
-    === "Moonbase Alpha"
+        - `0xcafd2f0a35a4459fa40c0517e17e6fa2939441ca`
+        === "Moonbase Alpha"
 
-        ```text
-        0x9563a59c15842a6f322b10f69d1dd88b41f2e97b
-        ```
+        - `0x9563a59c15842a6f322b10f69d1dd88b41f2e97b`
 
-2. 使用 Ether 的 `encodeFunctionData` 函数获取批量交易中两个调用的编码调用数据：`approve` 交易和 `transferTokensWithRelay` 交易
-3. 将两个交易合并成一个批量交易，并使用 Ether 的 `encodeFunctionData` 获取批量交易的编码调用数据
+    2. 使用 Ether 的 `encodeFunctionData` 函数获取批量交易中两个调用的编码调用数据：`approve` 交易和 `transferTokensWithRelay` 交易
+    3. 将两个交易合并成一个批量交易，并使用 Ether 的 `encodeFunctionData` 获取批量交易的编码调用数据
 4. 使用批量交易的编码调用数据，通过 `ethereumXcm.transact` extrinsic 创建远程 EVM 调用，它接受 `xcmTransaction` 作为参数。有关更多信息，请参阅 [远程 EVM 调用文档](/builders/interoperability/xcm/remote-execution/remote-evm-calls/#ethereum-xcm-pallet-interface){target=_blank}
 
 在 `build-remote-calldata.js` 文件中，添加以下代码：

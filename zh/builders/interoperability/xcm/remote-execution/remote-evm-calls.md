@@ -52,19 +52,19 @@ XCM 执行通过 [计算来源账户机制](/builders/interoperability/xcm/remot
 
 ===
 
-    ```text
+    ```
     125,000,000,000（0.125 秒的区块执行时间）
     ```
 
 ===
 
-    ```text
+    ```
     500,000,000,000（0.5 秒的区块执行时间）
     ```
 
 ===
 
-    ```text
+    ```
     500,000,000,000（0.5 秒的区块执行时间）
     ```
 
@@ -75,7 +75,7 @@ XCM 执行通过 [计算来源账户机制](/builders/interoperability/xcm/remot
 
 每个 XCM 消息的最大权重限制限制了通过 XCM 进行远程 EVM 调用可用的 gas 限制。对于所有基于 Moonbeam 的网络，每个权重单位的 gas 比率为 [`25,000`](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbase.spec_version }}/runtime/moonbase/src/lib.rs#L417){target=_blank} ([`WEIGHT_REF_TIME_PER_SECOND`](https://paritytech.github.io/substrate/master/frame_support/weights/constants/constant.WEIGHT_REF_TIME_PER_SECOND.html){target=_blank} / [`GAS_PER_SECOND`](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbase.spec_version }}/runtime/moonbase/src/lib.rs#L414){target=_blank})。考虑到您需要一些 XCM 消息权重来执行 XCM 指令，远程 EVM 调用可能会消耗 2,000,000,000 个单位。以下公式可用于确定远程 EVM 调用的最大 gas 单位数：
 
-```text
+```
 Maximum Gas Units = (Maximum Weight Units - Remote EVM Weight Units) / 25,000
 ```
 
@@ -83,21 +83,21 @@ Maximum Gas Units = (Maximum Weight Units - Remote EVM Weight Units) / 25,000
 
 ===
 
-    ```text
+    ```
     Maximum Gas Units = (125,000,000,000 - 2,000,000,000) / 25,000
     Maximum Gas Units = 4,920,000
     ```
 
 ===
 
-    ```text
+    ```
     Maximum Gas Units = (500,000,000,000 - 2,000,000,000) / 25,000
     Maximum Gas Units = 19,920,000
     ```
 
 ===
 
-    ```text
+    ```
     Maximum Gas Units = (500,000,000,000 - 2,000,000,000) / 25,000
     Maximum Gas Units = 19,920,000
     ```

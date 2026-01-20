@@ -1,24 +1,15 @@
-...
+---
+title: 运行 Moonbeam 开发节点
+description: 按照本教程学习如何启动您的第一个 Moonbeam 开发节点，如何为开发目的对其进行配置以及如何连接到它。
+categories: Basics
+---
 
-## title: 运行 Moonbeam 开发节点 description: 按照本教程学习如何启动您的第一个 Moonbeam 开发节点，如何为开发目的对其进行配置以及如何连接到它。 categories: Basics
 
 # Moonbeam本地开发节点入门
 
 <style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/-bRooBW2g0o' frameborder='0' allowfullscreen></iframe></div>
 
 <style>.caption { font-family: Open Sans, sans-serif; font-size: 0.9em; color: rgba(170, 170, 170, 1); font-style: italic; letter-spacing: 0px; position: relative;}</style>
-
-<!-- ROSE:BEGIN_LITERAL_BLOCK id=<id> preserve=verbatim -->
-
-...
-
-<!-- ROSE:END_LITERAL_BLOCK id=<id> -->
-
-规则：
-
-1. 您**必须**逐字逐句地复制 `BEGIN_LITERAL_BLOCK` 和 `END_LITERAL_BLOCK` 之间的全部内容。
-1. **请勿**翻译、改写、换行、规范空白、更改缩进、重新排序行或修改文字块内的标点符号。
-1. **请勿**更改文字块内的 Markdown 语法（包括但不限于：MkDocs Material 选项卡标题，例如 \`===
 
 ## 简介 {: #introduction }
 
@@ -42,8 +33,9 @@ Moonbeam 开发节点是您自己的个人开发环境，用于在 Moonbeam 上�
 
 1. 执行以下命令来下载最新的 Moonbeam 镜像：
 
-    bash
+    ```bash
     docker pull moonbeamfoundation/moonbeam:{{ networks.development.build_tag }}
+    ```
 
     控制台日志的尾部应如下所示：
 
@@ -52,37 +44,39 @@ Moonbeam 开发节点是您自己的个人开发环境，用于在 Moonbeam 上�
 1. 运行以下 Docker 命令启动 Moonbeam 开发节点，该命令将以即时密封模式启动节点以进行本地测试，以便在收到交易时立即生成区块：
 
     === "Ubuntu"
-
-        bash
-        docker run --rm --name {{ networks.development.container_name }} --network host \
-        moonbeamfoundation/moonbeam:{{ networks.development.build_tag }} \
-        --dev --rpc-external
+    ```bash
+    docker run --rm --name {{ networks.development.container_name }} --network host \
+      moonbeamfoundation/moonbeam:{{ networks.development.build_tag }} \
+      --dev --rpc-external
+    ```
 
     === "MacOS"
-
-        bash
-        docker run --rm --name {{ networks.development.container_name }} -p 9944:9944 \
-        moonbeamfoundation/moonbeam:{{ networks.development.build_tag }} \
-        --dev --rpc-external
+    ```bash
+    docker run --rm --name {{ networks.development.container_name }} -p 9944:9944 \
+      moonbeamfoundation/moonbeam:{{ networks.development.build_tag }} \
+      --dev --rpc-external
+    ```
 
     === "Windows"
-
-        bash
-        docker run --rm --name {{ networks.development.container_name }} -p 9944:9944 ^
-        moonbeamfoundation/moonbeam:{{ networks.development.build_tag }} ^
-        --dev --rpc-external
+    ```bash
+    docker run --rm --name {{ networks.development.container_name }} -p 9944:9944 ^
+      moonbeamfoundation/moonbeam:{{ networks.development.build_tag }} ^
+      --dev --rpc-external
+    ```
 
     !!! note "适用于 Apple Silicon 用户"
 
         如果 Docker 命令在 Apple Silicon 上失败或行为异常，请在 Docker Desktop 设置中启用 **Use Rosetta for x86_64/amd64 emulation on Apple Silicon**，并对 pull 和 run 命令使用 `amd64` 平台：
 
-        bash
+        ```bash
         docker pull --platform=linux/amd64 moonbeamfoundation/moonbeam:{{ networks.development.build_tag }}
+        ```
 
-        bash
+        ```bash
         docker run --rm --platform=linux/amd64 --name {{ networks.development.container_name }} -p 9944:9944 \
-        moonbeamfoundation/moonbeam:{{ networks.development.build_tag }} \
-        --dev --rpc-external
+          moonbeamfoundation/moonbeam:{{ networks.development.build_tag }} \
+          --dev --rpc-external
+        ```
 
         如果性能仍然不足，请考虑[使用二进制文件启动节点](#getting-started-with-the-binary-file)。
 
@@ -92,10 +86,11 @@ Moonbeam 开发节点是您自己的个人开发环境，用于在 Moonbeam 上�
 
 有关示例中使用的一些标志和选项的更多信息，请查看 [Flags](#node-flags) 和 [Options](#node-options)。如果您想查看所有标志、选项和子命令的完整列表，请运行以下命令打开帮助菜单：
 
-bash
+```bash
 docker run --rm --name {{ networks.development.container_name }} \
-moonbeamfoundation/moonbeam \
---help
+  moonbeamfoundation/moonbeam \
+  --help
+```
 
 要继续本教程，下一节不是必需的，因为您已经使用 Docker 启动了一个节点。您可以跳到 [配置您的 Moonbeam 开发节点](#configure-moonbeam-dev-node) 部分。
 
@@ -189,9 +184,9 @@ moonbeamfoundation/moonbeam \
 
 标志不接受参数。要使用标志，请将其添加到命令的末尾。例如：
 
-bash
-
+```bash
 --8<-- 'code/builders/get-started/networks/moonbeam-dev/runnode.md'
+```
 
 - **`--dev`** - 指定开发链
 - **`--tmp`** - 运行一个临时节点，在该节点中，所有配置将在进程结束时删除
@@ -227,39 +222,41 @@ bash
 
 该标志应以下列格式附加到启动命令：
 
-text
+```bash
 --sealing <interval>
+```
 
 如果您选择 `manual`，则需要手动创建区块，这可以通过 `engine_createBlock` JSON-RPC 方法来完成：
 
-text
+```
 engine_createBlock(createEmpty: *bool*, finalize: *bool*, parentHash?: *BlockHash*)
+```
 
 例如，您可以使用以下代码段通过 [Ethers.js](/builders/ethereum/libraries/ethersjs/){target=\_blank} 手动创建一个区块，这是一个以太坊库，可以轻松地与 JSON-RPC 方法进行交互：
 
-js
+```js
 import { ethers } from 'ethers';
 
 const produceBlock = async () => {
-// Connect to the Ethereum node (if applicable, replace the URL with your node's address)
-const provider = new ethers.JsonRpcProvider(
-'{{ networks.development.rpc_url }}'
-);
+  // Connect to the Ethereum node (if applicable, replace the URL with your node's address)
+  const provider = new ethers.JsonRpcProvider('{{ networks.development.rpc_url }}');
 
-// Set the custom JSON-RPC method and parameters
-const method = 'engine_createBlock';
-const params = [true, true, null];
+  // Set the custom JSON-RPC method and parameters
+  const method = 'engine_createBlock';
+  const params = [true, true, null];
 
-try {
-// Send the custom JSON-RPC call
-const result = await provider.send(method, params);
-} catch (error) {
-// Handle any errors that may occur
-console.error('Error:', error.message);
-}
+  try {
+    // Send the custom JSON-RPC call
+    const result = await provider.send(method, params);
+    console.log(result);
+  } catch (error) {
+    // Handle any errors that may occur
+    console.error('Error:', error.message);
+  }
 };
 
 produceBlock();
+```
 
 !!! note
 
@@ -271,8 +268,9 @@ Moonbeam 有一个[统一账户](/learn/core-concepts/unified-accounts/){target=
 
 您的 Moonbeam 开发节点附带十个已预先充值的以太坊风格的帐户，用于开发。这些地址源自 Substrate 的规范开发助记词：
 
-text
+```
 bottom drive obey lake curtain smoke basket hold race lonely fit walk
+```
 
 ??? note "开发账户地址和私钥"
 
@@ -288,19 +286,17 @@ bottom drive obey lake curtain smoke basket hold race lonely fit walk
 
 您可以使用以下 RPC 和 WSS 端点访问您的 Moonbeam 开发节点：
 
-\===
+=== "HTTP"
 
-```
-text
-{{ networks.development.rpc_url }}
-```
+    ```
+    {{ networks.development.rpc_url }}
+    ```
 
-\===
+=== "WSS"
 
-```
-text
-{{ networks.development.wss_url }}
-```
+    ```
+    {{ networks.development.wss_url }}
+    ```
 
 ## 区块浏览器 {: #block-explorers }
 

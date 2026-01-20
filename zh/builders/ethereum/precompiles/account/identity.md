@@ -14,23 +14,17 @@ categories: Precompiles, Ethereum Toolkit
 
 身份预编译位于以下地址：
 
-===
+=== "Moonbeam"
 
-     text
-     {{networks.moonbeam.precompiles.identity }}
-     
+    `{{ networks.moonbeam.precompiles.identity }}`
 
-===
+=== "Moonriver"
 
-     text
-     {{networks.moonriver.precompiles.identity }}
-     
+    `{{ networks.moonriver.precompiles.identity }}`
 
-===
+=== "Moonbase Alpha"
 
-     text
-     {{networks.moonbase.precompiles.identity }}
-     
+    `{{ networks.moonbase.precompiles.identity }}`
 
 --8<-- 'text/builders/ethereum/precompiles/security.md'
 
@@ -172,9 +166,9 @@ Identity Precompile包含一些可以由任何人调用的函数，以及一些�
 
 ??? code "Identity Precompile ABI"
 
-    js
+    ```js
     --8<-- 'code/builders/ethereum/precompiles/account/identity/abi.js'
-    
+    ```
 
 获得 ABI 后，您可以使用您选择的以太坊库与预编译合约进行交互。一般来说，您需要执行以下步骤：
 
@@ -187,13 +181,14 @@ Identity Precompile包含一些可以由任何人调用的函数，以及一些�
 !!! remember
     以下代码段仅用于演示目的。切勿将您的私钥存储在 JavaScript 或 Python 文件中。
 
-===
+=== "Ethers.js"
 
-    js
+    ```js
     --8<-- 'code/builders/ethereum/precompiles/account/identity/ethers.js'
-    
+    ```
 
-===
+=== "Web3.py"
 
-    py
+    ```py
     --8<-- 'code/builders/ethereum/precompiles/account/identity/web3.py'
+    ```

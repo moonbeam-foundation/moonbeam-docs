@@ -14,23 +14,17 @@ categories: 预编译, Ethereum 工具包
 
 注册表预编译合约位于以下地址：
 
-===
+=== "Moonbeam"
 
-     text
-     {{networks.moonbeam.precompiles.registry }}
-     
+    `{{ networks.moonbeam.precompiles.registry }}`
 
-===
+=== "Moonriver"
 
-     text
-     {{networks.moonriver.precompiles.registry }}
-     
+    `{{ networks.moonriver.precompiles.registry }}`
 
-===
+=== "Moonbase Alpha"
 
-     text
-     {{networks.moonbase.precompiles.registry }}
-     
+    `{{ networks.moonbase.precompiles.registry }}`
 
 --8<-- 'text/builders/ethereum/precompiles/security.md'
 
@@ -114,9 +108,9 @@ categories: 预编译, Ethereum 工具包
 
 ??? code "预编译注册表 ABI"
 
-    js
+    ```js
     --8<-- 'code/builders/ethereum/precompiles/utility/registry/abi.js'
-    
+    ```
 
 获得 ABI 后，您可以使用您选择的以太坊库与注册表进行交互。一般来说，您需要执行以下步骤：
 
@@ -127,13 +121,14 @@ categories: 预编译, Ethereum 工具包
 !!! remember
     以下代码段仅供演示使用。切勿将您的私钥存储在 JavaScript 或 Python 文件中。
 
-===
+=== "Ethers.js"
 
-    js
+    ```js
     --8<-- 'code/builders/ethereum/precompiles/utility/registry/ethers.js'
-    
+    ```
 
-===
+=== "Web3.py"
 
-    py
+    ```py
     --8<-- 'code/builders/ethereum/precompiles/utility/registry/web3.py'
+    ```
