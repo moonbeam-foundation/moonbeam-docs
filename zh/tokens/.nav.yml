@@ -1,7 +1,7 @@
 title: 代币
 nav:
   - index.md
-  - 连接
-  - 管理
-  - 质押
-  - 治理
+  - '连接': 'connect'
+  - '管理': 'manage'
+  - '质押': 'staking'
+  - '治理': 'governance'

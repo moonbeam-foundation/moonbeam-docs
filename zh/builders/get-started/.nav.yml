@@ -4,4 +4,5 @@ nav:
   - '快速开始': 'quick-start.md'
   - networks
   - '网络 RPC 端点': 'endpoints.md'
+  - '在 Moonscan 上添加 Token 信息': 'token-profile.md'
   - '区块浏览器': 'explorers.md'

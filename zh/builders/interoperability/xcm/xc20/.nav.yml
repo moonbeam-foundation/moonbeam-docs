@@ -3,4 +3,4 @@ nav:
   - index.md
   - '概览': 'overview.md'
   - '与 XC-20s 交互': 'interact.md'
-  - '发送 XC-20s'
+  - '发送 XC-20s': 'send-xc20s'
