@@ -34,7 +34,7 @@ Moonriver/Moonbeam XCM 集成的第一步是通过 Alphanet 中继链与 Moonbas
 6. （可选）在您的平行链上[注册 Moonbase Alpha 的 DEV 令牌](/builders/interoperability/xcm/xc-registration/assets/#register-moonbeam-native-assets){target=_blank}
 7. 为了测试 XCM 集成，请发送一些令牌到：
 
-   ```text
+   ```
    AccountId (Encoded): 5GWpSdqkkKGZmdKQ9nkSF7TmHp6JWt28BMGQNuG4MXtSvq3e
    Decoded (32-Bytes):  0xc4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a063
    ```
@@ -69,7 +69,7 @@ yarn calculate-sovereign-account --p 1000 --r moonbase
 
 这应该会产生以下响应：
 
-```text
+```
 Sovereign Account Address on Relay: 0x70617261e8030000000000000000000000000000000000000000000000000000
 Sovereign Account Address on other Parachains (Generic): 0x7369626ce8030000000000000000000000000000000000000000000000000000
 Sovereign Account Address on Moonbase Alpha: 0x7369626ce8030000000000000000000000000000
@@ -101,7 +101,7 @@ Sovereign Account Address on Moonbase Alpha: 0x7369626ce803000000000000000000000
 4. 在连接的平行链上接受来自 Moonriver/Moonbeam 的 HRMP 通道
 5. 交换价值 50 美元的代币以测试 XCM 集成。请将代币发送至：
 
-   ```text
+   ```
    AccountId (Encoded): 5E6kHM4zFdH5KEJE3YEzX5QuqoETVKUQadeY8LVmeh2HyHGt
    Decoded (32-Bytes):  0x5a071f642798f89d68b050384132eea7b65db483b00dbb05548d3ce472cfef48
    ```

@@ -1,0 +1,8 @@
+title: 特性
+nav:
+  - index.md
+  - '以太坊兼容性': 'eth-compatibility.md'
+  - '治理': 'governance.md'
+  - '随机性': 'randomness.md'
+  - '质押': 'staking.md'
+  - '国库': 'treasury.md'

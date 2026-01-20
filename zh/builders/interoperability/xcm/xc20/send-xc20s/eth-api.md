@@ -20,19 +20,19 @@ XCM 预编译合约位于以下地址：
 
 ===
 
-     ```text
+     ```
      {{networks.moonbeam.precompiles.xcm_interface }}
      ```
 
 ===
 
-     ```text
+     ```
      {{networks.moonriver.precompiles.xcm_interface }}
      ```
 
 ===
 
-     ```text
+     ```
      {{networks.moonbase.precompiles.xcm_interface }}
      ```
 

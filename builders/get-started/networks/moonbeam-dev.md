@@ -4,9 +4,11 @@ description: Follow this tutorial to learn how to spin up your first Moonbeam de
 categories: Basics
 ---
 
+
 # Getting Started with a Local Moonbeam Development Node
 
 <style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/-bRooBW2g0o' frameborder='0' allowfullscreen></iframe></div>
+
 <style>.caption { font-family: Open Sans, sans-serif; font-size: 0.9em; color: rgba(170, 170, 170, 1); font-style: italic; letter-spacing: 0px; position: relative;}</style>
 
 ## Introduction {: #introduction }
@@ -16,7 +18,9 @@ A Moonbeam development node is your own personal development environment for bui
 If you follow this guide to the end, you will have a Moonbeam development node running in your local environment with 10 prefunded [accounts](#pre-funded-development-accounts).
 
 !!! note
-    This tutorial was created using the {{ networks.development.build_tag }} tag of [Moonbase Alpha](https://github.com/moonbeam-foundation/moonbeam/releases/tag/{{ networks.development.build_tag }}){target=\_blank}. The Moonbeam platform and the [Frontier](https://github.com/polkadot-evm/frontier){target=\_blank} components it relies on for Substrate-based Ethereum compatibility are still under very active development.
+
+    This tutorial was created using the {{ networks.development.build_tag }} tag of \[Moonbase Alpha\](https://github.com/moonbeam-foundation/moonbeam/releases/tag/{{ networks.development.build_tag }}){target=\_blank}. The Moonbeam platform and the [Frontier](https://github.com/polkadot-evm/frontier){target=\_blank} components it relies on for Substrate-based Ethereum compatibility are still under very active development.
+
     --8<-- 'text/_common/assumes-mac-or-ubuntu-env.md'
 
 ## Spin Up a Moonbeam Development Node {: #spin-up-a-node }
@@ -37,7 +41,7 @@ Using Docker enables you to spin up a node in a matter of seconds. Once you have
 
     --8<-- 'code/builders/get-started/networks/moonbeam-dev/terminal/docker-pull.md'
 
-2. Spin up a Moonbeam development node by running the following Docker command, which will launch the node in instant seal mode for local testing so that blocks are authored instantly as transactions are received:
+1. Spin up a Moonbeam development node by running the following Docker command, which will launch the node in instant seal mode for local testing so that blocks are authored instantly as transactions are received:
 
     === "Ubuntu"
 
@@ -64,6 +68,7 @@ Using Docker enables you to spin up a node in a matter of seconds. Once you have
         ```
 
     !!! note "For Apple Silicon users"
+
         If the Docker commands fail or behave unexpectedly on Apple Silicon, enable **Use Rosetta for x86_64/amd64 emulation on Apple Silicon** in Docker Desktop settings and use the `amd64` platform for both pull and run commands:
 
         ```bash
@@ -97,6 +102,7 @@ To continue with the tutorial, the next section is not necessary, as you've alre
 As an alternative to using Docker, you can spin up a node using the Moonbeam binary. This method is more time-consuming. Depending on your hardware, the process could take around 30 minutes to complete.
 
 !!! note
+
     If you know what you are doing, you can directly download the precompiled binaries attached to each release on the [Moonbeam release page](https://github.com/moonbeam-foundation/moonbeam/releases){target=\_blank}. These will not work in all systems. For example, the binaries only work with x86-64 Linux with specific versions of dependencies. The safest way to ensure compatibility is to compile the binary on the system where it will be run.
 
 To build the binary file, you can take the following steps:
@@ -109,27 +115,29 @@ To build the binary file, you can take the following steps:
     ```
 
     !!! note
+
         Spaces in the installation file path will cause a compilation error.
 
-2. Check if Rust is installed. If Rust is installed, skip the next two steps. Otherwise, install Rust and its prerequisites [via Rust's recommended method](https://rust-lang.org/tools/install/){target=\_blank} by executing:
+1. Check if Rust is installed. If Rust is installed, skip the next two steps. Otherwise, install Rust and its prerequisites [via Rust's recommended method](https://rust-lang.org/tools/install/){target=\_blank} by executing:
 
     ```bash
     --8<-- 'code/builders/get-started/networks/moonbeam-dev/installrust.md'
     ```
 
-3. Update your PATH environment variable by running:
+1. Update your PATH environment variable by running:
 
     ```bash
     --8<-- 'code/builders/get-started/networks/moonbeam-dev/updatepath.md'
     ```
 
-4. Build the development node by running:
+1. Build the development node by running:
 
     !!! note
+
         If you are using Ubuntu 20.04 or 22.04, then you will need to make sure these additional dependencies have been installed before building the binary:
 
         ```bash
-        apt install clang protobuf-compiler libprotobuf-dev pkg-config libssl-dev -y 
+        apt install clang protobuf-compiler libprotobuf-dev pkg-config libssl-dev -y
         ```
 
         For MacOS users, these dependencies can be installed via Homebrew:
@@ -148,6 +156,7 @@ To build the binary file, you can take the following steps:
     --8<-- 'code/builders/get-started/networks/moonbeam-dev/terminal/compile.md'
 
 !!! note
+
     The initial build will take a while. Depending on your hardware, you should expect approximately 30 minutes for the build process to finish.
 
 Then, you will want to run the node in development mode using the following command:
@@ -157,6 +166,7 @@ Then, you will want to run the node in development mode using the following comm
 ```
 
 !!! note
+
     For people not familiar with Substrate, the `--dev` flag is a way to run a Substrate-based node in a single-node developer configuration for testing purposes. When you run your node with the `--dev` flag, your node is started in a fresh state, and its state does not persist.
 
 You should see an output that looks like the following, showing an idle state waiting for blocks to be produced:
@@ -194,7 +204,7 @@ Options accept an argument to the right of the option. For example:
 ```
 
 - **`-l <log pattern>` or `--log <log pattern>`** - sets a custom logging filter. The syntax for the log pattern is `<target>=<level>`. For example, to print all of the JSON-RPC logs, the command would look like this: `-l json=trace`
-- **`--sealing <interval>`** - when blocks should be sealed in the dev service. Accepted arguments for interval: `instant`, `manual`, or a number representing the timer interval in milliseconds (for example, `6000` will have the node produce blocks every 6 seconds). The default is `instant``. Please refer to the [Configure Block Production](#configure-block-production) section below for more information
+- **`--sealing <interval>`** - when blocks should be sealed in the dev service. Accepted arguments for interval: `instant`, `manual`, or a number representing the timer interval in milliseconds (for example, `6000` will have the node produce blocks every 6 seconds). The default is \`instant\`\`. Please refer to the [Configure Block Production](#configure-block-production) section below for more information
 - **`--rpc-port <port>`** - sets the unified port for HTTP and WS connections. Accepts a port as the argument. Default is {{ networks.parachain.rpc }}
 - **`--ws-port <port>`** - *deprecated as of [client v0.33.0](https://github.com/moonbeam-foundation/moonbeam/releases/tag/v0.33.0){target=\_blank}, use `--rpc-port` for HTTP and WS connections instead* - sets the WebSockets RPC server TCP port. As of [client v0.30.0](https://github.com/moonbeam-foundation/moonbeam/releases/tag/v0.30.0){target=\_blank}, it sets the unified port for both HTTP and WS connections. Accepts a port as the argument
 - **`--rpc-max-connections <connections>`** - specifies the combined HTTP and WS connection limit. The default is 100 connections
@@ -253,6 +263,7 @@ produceBlock();
 ```
 
 !!! note
+
     If you're unfamiliar with Ethers, please refer to the [Ethers.js](/builders/ethereum/libraries/ethersjs/){target=\_blank} documentation page to learn more.
 
 ## Prefunded Development Accounts {: #pre-funded-development-accounts }
@@ -266,6 +277,7 @@ bottom drive obey lake curtain smoke basket hold race lonely fit walk
 ```
 
 ??? note "Development account addresses and private keys"
+
     --8<-- 'code/builders/get-started/networks/moonbeam-dev/dev-accounts.md'
 
 Also included with the development node is an additional prefunded account used for testing purposes:
@@ -294,8 +306,8 @@ You can access your Moonbeam development node using the following RPC and WSS en
 
 For a Moonbeam development node, you can use any of the following block explorers:
 
- - **Substrate API** — [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=ws://127.0.0.1:9944#/explorer){target=\_blank} on WS port `{{ networks.parachain.ws }}`
- - **Ethereum API JSON-RPC-based** — [Moonbeam Basic Explorer](https://moonbeam-explorer.netlify.app/?network=MoonbeamDevNode){target=\_blank} on HTTP port `{{ networks.parachain.ws }}`
+- **Substrate API** — [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=ws://127.0.0.1:9944#/explorer){target=\_blank} on WS port `{{ networks.parachain.ws }}`
+- **Ethereum API JSON-RPC-based** — [Moonbeam Basic Explorer](https://moonbeam-explorer.netlify.app/?network=MoonbeamDevNode){target=\_blank} on HTTP port `{{ networks.parachain.ws }}`
 
 ## Debug, Trace, and TxPool APIs {: #debug-trace-txpool-apis }
 

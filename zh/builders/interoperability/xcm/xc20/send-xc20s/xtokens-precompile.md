@@ -157,7 +157,7 @@ X-Tokens 预编译合约位于以下地址：
 
     要检查您的xcUNIT余额，您可以将XC-20的[预编译地址](/builders/interoperability/xcm/xc20/interact/#calculate-xc20-address){target=_blank}添加到MetaMask，地址如下：
 
-    ```text
+    ```
     0xFfFFfFff1FcaCBd218EDc0EbA20Fc2308C778080
     ```
 

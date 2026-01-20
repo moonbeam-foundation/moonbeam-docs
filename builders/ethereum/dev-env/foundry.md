@@ -4,13 +4,14 @@ description: Learn how to use Foundry, an Ethereum development environment, to c
 categories: Dev Environments, Ethereum Toolkit
 ---
 
+
 # Using Foundry to Deploy To Moonbeam
 
 ## Introduction {: #introduction }
 
 [Foundry](https://github.com/foundry-rs/foundry){target=\_blank} is an Ethereum development environment written in Rust that helps developers manage dependencies, compile projects, run tests, deploy contracts, and interact with blockchains from the command line. Foundry can directly interact with Moonbeam's Ethereum API so it can be used to deploy smart contracts into Moonbeam.
 
-Four tools make up Foundry:  
+Four tools make up Foundry:
 
 - **[Forge](https://getfoundry.sh/forge/overview/){target=\_blank}** - compiles, tests, and deploys contracts
 - **[Cast](https://getfoundry.sh/cast/overview/){target=\_blank}** - a command line interface for interacting with contracts
@@ -23,18 +24,22 @@ This guide will cover how to use Foundry to compile, deploy, and debug Ethereum 
 
 To get started, you will need the following:
 
- - Have an account with funds.
-  --8<-- 'text/_common/faucet/faucet-list-item.md'
- - 
+- Have an account with funds.
+
+--8<-- 'text/_common/faucet/faucet-list-item.md'
+
+-
+
 --8<-- 'text/_common/endpoint-examples-list-item.md'
- - Have [Foundry installed](https://getfoundry.sh/introduction/installation/){target=\_blank}
+
+- Have [Foundry installed](https://getfoundry.sh/introduction/installation/){target=\_blank}
 
 ## Creating a Foundry Project {: #creating-a-foundry-project }
 
 You will need to create a Foundry project if you don't already have one. You can create one by completing the following steps:
 
 1. Install Foundry if you haven't already. If on Linux or MacOS, you can run these commands:
-  
+
     ```bash
     curl -L https://foundry.paradigm.xyz | bash
     foundryup
@@ -47,13 +52,13 @@ You will need to create a Foundry project if you don't already have one. You can
     cargo install --git https://github.com/foundry-rs/foundry foundry-cli anvil --bins --locked
     ```
 
-2. Create the project, which will create a folder with three folders within it, and open it:
+1. Create the project, which will create a folder with three folders within it, and open it:
 
     ```bash
     forge init foundry && cd foundry
     ```
 
-With the default project created, you should see three folders.  
+With the default project created, you should see three folders.
 
 - `lib` - all of the project's dependencies in the form of git submodules
 - `src` - where to put your smart contracts (with functionality)
@@ -109,9 +114,9 @@ cast wallet import deployer --interactive
 This will prompt you to:
 
 1. Enter your private key
-2. Enter a password to encrypt the keystore
+1. Enter a password to encrypt the keystore
 
-The account will be saved as "deployer" in your keystore. You can then use this account name in the deployment commands. You'll be prompted for your keystore password when deploying contracts or sending transactions. 
+The account will be saved as "deployer" in your keystore. You can then use this account name in the deployment commands. You'll be prompted for your keystore password when deploying contracts or sending transactions.
 
 Deploying the contract with `forge create` takes a single command, but you must include an RPC endpoint and constructor arguments. `MyToken.sol` asks for an initial supply of tokens in its constructor, so each of the following commands includes 100 as a constructor argument. You can deploy the `MyToken.sol` contract using the following command for the correct network:
 
@@ -161,18 +166,18 @@ After you've deployed the contract and a few seconds have passed, you should see
 
 Congratulations! Your contract is live! Save the address, as you will use it to interact with this contract instance in the next step.
 
-### Deploying via Solidity Scripting {: #deploying-via-solidity-scripting }  
+### Deploying via Solidity Scripting {: #deploying-via-solidity-scripting }
 
 Solidity scripting is a more powerful and flexible way to deploy contracts than [`forge create`](#deploying-the-contract). Writing a Solidity script is identical to writing a typical Solidity smart contract, though you won't ever deploy this contract.
 
 You can tailor the behavior of `forge script` with various parameters. All components are optional except for local simulation, which is a required part of every run. The `forge script` command will attempt to execute all applicable steps in the following order:
 
 1. **Local simulation** - simulate the transaction(s) in a local EVM
-2. **Onchain simulation** - simulate the transaction(s) via the provided RPC URL
-3. **Broadcasting** - when the `--broadcast` flag is provided, and simulations succeed, the transaction(s) are dispatched
-4. **Verification** - API-based smart contract verification when the `--verify` flag and a valid API key are provided
+1. **Onchain simulation** - simulate the transaction(s) via the provided RPC URL
+1. **Broadcasting** - when the `--broadcast` flag is provided, and simulations succeed, the transaction(s) are dispatched
+1. **Verification** - API-based smart contract verification when the `--verify` flag and a valid API key are provided
 
-Now, go ahead and write the script. In the script folder, create a file named `MyToken.s.sol`. Copy and paste the contents of the below file. 
+Now, go ahead and write the script. In the script folder, create a file named `MyToken.s.sol`. Copy and paste the contents of the below file.
 
 ```solidity
 --8<-- 'code/builders/ethereum/dev-env/foundry/MyToken-script.sol'
@@ -332,9 +337,9 @@ cast call INSERT_CONTRACT_ADDRESS  "balanceOf(address)(uint256)" INSERT_YOUR_ADD
 
 ## Using Chisel {: #using-chisel }
 
-Chisel is a Solidity REPL or shell. It allows a developer to write Solidity directly in the console for testing small snippets of code, letting developers skip the project setup and contract deployment steps for what should be a quick process.  
+Chisel is a Solidity REPL or shell. It allows a developer to write Solidity directly in the console for testing small snippets of code, letting developers skip the project setup and contract deployment steps for what should be a quick process.
 
-Since Chisel is mainly useful for quick testing, it can be used outside of a Foundry project. But, if executed within a Foundry project, it will keep the configurations within `foundry.toml` when running.  
+Since Chisel is mainly useful for quick testing, it can be used outside of a Foundry project. But, if executed within a Foundry project, it will keep the configurations within `foundry.toml` when running.
 
 For this example, you will be testing out some of the features of `abi` within Solidity because it is complex enough to demonstrate how Chisel could be useful. To get started using Chisel, run the following in the command line to start the shell:
 
@@ -358,7 +363,7 @@ Let's say you were interested in how `abi` encoded data because you're looking i
 
 --8<-- 'code/builders/ethereum/dev-env/foundry/terminal/memdump.md'
 
-Fortunately, Chisel lets you easily figure out where this information is stored. Using the `!rawstack` command, you can find the location in the stack where the value of a variable:  
+Fortunately, Chisel lets you easily figure out where this information is stored. Using the `!rawstack` command, you can find the location in the stack where the value of a variable:
 
 ```bash
 !rawstack myData
@@ -368,7 +373,7 @@ In this situation, since bytes is over 32 bytes in length, the memory pointer is
 
 --8<-- 'code/builders/ethereum/dev-env/foundry/terminal/rawstack.md'
 
-The `!rawstack` command shows that the `myData` variable is stored at `0x80`, so when comparing this with the memory dump retrieved from the `!memdump` command, it looks like `myData` is stored like this:  
+The `!rawstack` command shows that the `myData` variable is stored at `0x80`, so when comparing this with the memory dump retrieved from the `!memdump` command, it looks like `myData` is stored like this:
 
 ```text
 [0x80:0xa0]: 0x00000000000000000000000000000000000000000000000000000000000000a0
@@ -379,9 +384,9 @@ The `!rawstack` command shows that the `myData` variable is stored at `0x80`, so
 [0x120:0x140]: 0x446576656c6f70206f6e204d6f6f6e6265616d00000000000000000000000000
 ```
 
-At first glance, this makes sense, since `0xa0` has a value of `0x64` which is equal to 100, and `0xc0` has a value of `0x01` which is equal to true. If you want to learn more about how ABI-encoding works, the [Solidity documentation for ABI is helpful](https://docs.soliditylang.org/en/v0.8.18/abi-spec.html){target=\_blank}. In this case, there are a lot of zeros in this method of data packing, so as a smart contract developer you might instead try to use structs or pack the data together more efficiently with bitwise code.  
+At first glance, this makes sense, since `0xa0` has a value of `0x64` which is equal to 100, and `0xc0` has a value of `0x01` which is equal to true. If you want to learn more about how ABI-encoding works, the [Solidity documentation for ABI is helpful](https://docs.soliditylang.org/en/v0.8.18/abi-spec.html){target=\_blank}. In this case, there are a lot of zeros in this method of data packing, so as a smart contract developer you might instead try to use structs or pack the data together more efficiently with bitwise code.
 
-Since you're done with this code, you can clear the state of Chisel so that it doesn't mess with any future logic that you want to try out (while running the same instance of Chisel):  
+Since you're done with this code, you can clear the state of Chisel so that it doesn't mess with any future logic that you want to try out (while running the same instance of Chisel):
 
 ```bash
 !clear
@@ -393,25 +398,28 @@ There's an even easier way to test with Chisel. When writing code that ends with
 abi.encode(100, true, "Develop on Moonbeam")
 ```
 
-You should see something like the following:  
+You should see something like the following:
 
 --8<-- 'code/builders/ethereum/dev-env/foundry/terminal/expression.md'
 
-While it doesn't display the data in the same way, you still get the contents of the data, and it also further breaks down how the information is coded, such as letting you know that the `0xa0` value defines the length of the data.  
+While it doesn't display the data in the same way, you still get the contents of the data, and it also further breaks down how the information is coded, such as letting you know that the `0xa0` value defines the length of the data.
 
 By default, when you leave the Chisel shell, none of the data is persisted. But you can instruct chisel to do so. For example, you can take the following steps to store a variable:
 
 1. Store a `uint256` in Chisel
+
     ```bash
     uint256 myNumber = 101;
     ```
 
-2. Store the session with `!save`. For this example, you can use the number `1` as a save ID
+1. Store the session with `!save`. For this example, you can use the number `1` as a save ID
+
     ```bash
     !save 1
     ```
 
-3. Quit the session  
+1. Quit the session
+
     ```bash
     !quit
     ```
@@ -419,19 +427,22 @@ By default, when you leave the Chisel shell, none of the data is persisted. But 
 Then to view and interact with your stored Chisel states, you can take the following steps:
 
 1. View a list of saved Chisel states
-     ```bash
-     chisel list
-     ```
 
-2. Load your stored states
+    ```bash
+    chisel list
+    ```
+
+1. Load your stored states
+
     ```bash
     chisel load 1
     ```
 
-3. View the `uint256` saved in Chisel from the previous set of steps
+1. View the `uint256` saved in Chisel from the previous set of steps
+
     ```bash
     !rawstack myNumber
-    ```  
+    ```
 
 --8<-- 'code/builders/ethereum/dev-env/foundry/terminal/save-state.md'
 
@@ -441,7 +452,7 @@ You can even fork networks while using Chisel:
 !fork {{ networks.moonbase.rpc_url }}
 ```
 
-Then, for example, you can query the balance of one of Moonbase Alpha's collators:  
+Then, for example, you can query the balance of one of Moonbase Alpha's collators:
 
 ```text
 {{ networks.moonbase.staking.candidates.address1 }}.balance
@@ -451,11 +462,11 @@ Then, for example, you can query the balance of one of Moonbase Alpha's collator
 
 If you want to learn more about Chisel, download Foundry and refer to its [official reference page](https://getfoundry.sh/chisel/reference/){target=\_blank}.
 
-## Foundry With Hardhat {: #foundry-with-hardhat }  
+## Foundry With Hardhat {: #foundry-with-hardhat }
 
-Often, there will be the case where a project that you wish to integrate with has all of its setup within [Hardhat](/builders/ethereum/dev-env/hardhat/){target=\_blank}, making it an arduous task to convert the entirety of the project into Foundry. This additional work is avoidable by creating a hybrid project that uses both Hardhat and Foundry features together. This is possible with Hardhat's [hardhat-foundry plugin](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-foundry){target=\_blank}.  
+Often, there will be the case where a project that you wish to integrate with has all of its setup within [Hardhat](/builders/ethereum/dev-env/hardhat/){target=\_blank}, making it an arduous task to convert the entirety of the project into Foundry. This additional work is avoidable by creating a hybrid project that uses both Hardhat and Foundry features together. This is possible with Hardhat's [hardhat-foundry plugin](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-foundry){target=\_blank}.
 
-To convert your preexisting Foundry project to a hybrid project, you will essentially have to install a Hardhat project into the same folder:  
+To convert your preexisting Foundry project to a hybrid project, you will essentially have to install a Hardhat project into the same folder:
 
 ```bash
 npm init
@@ -467,7 +478,7 @@ For more information, please refer to our documentation on [Creating a Hardhat P
 
 After initializing the new Hardhat project, a few new folders and files should appear: `contracts`, `hardhat.config.js`, `scripts`, and `test/Lock.js`. You'll need to make a few modifications to create a hybrid project:
 
-1. Edit the `hardhat.config.js` file within your repository. Open it up, and at the top, add the following:  
+1. Edit the `hardhat.config.js` file within your repository. Open it up, and at the top, add the following:
 
     ```javascript
     require("@nomicfoundation/hardhat-foundry");
@@ -475,8 +486,9 @@ After initializing the new Hardhat project, a few new folders and files should a
 
     After adding the `hardhat-foundry` plugin, the typical `contracts` folders for Hardhat will not work because now Hardhat expects all smart contracts to be stored within Foundry's `src` folder
 
-2. Move all smart contracts within the `contracts` folder into the `src` folder, and then delete the `contracts` folder
-3. Edit the `foundry.toml` file to ensure that dependencies installed via Git submodules and npm can be compiled by the Forge tool. Edit the `profile.default` to ensure that the `libs` entry has both `lib` and `node_modules`:  
+1. Move all smart contracts within the `contracts` folder into the `src` folder, and then delete the `contracts` folder
+
+1. Edit the `foundry.toml` file to ensure that dependencies installed via Git submodules and npm can be compiled by the Forge tool. Edit the `profile.default` to ensure that the `libs` entry has both `lib` and `node_modules`:
 
     ```toml
     [profile.default]
@@ -487,9 +499,9 @@ After initializing the new Hardhat project, a few new folders and files should a
     evm_version = 'london'
     ```
 
-Now both `forge build` and `npx hardhat compile` should work regardless of the dependencies.  
+Now both `forge build` and `npx hardhat compile` should work regardless of the dependencies.
 
-Both `forge test` and `npx hardhat test` should now be able to access all smart contracts and dependencies. `forge test` will only test the Solidity tests, whereas `npx hardhat test` will only test the JavaScript tests. If you would like to use them in conjunction, then you can create a new script within your `package.json` file:  
+Both `forge test` and `npx hardhat test` should now be able to access all smart contracts and dependencies. `forge test` will only test the Solidity tests, whereas `npx hardhat test` will only test the JavaScript tests. If you would like to use them in conjunction, then you can create a new script within your `package.json` file:
 
 ```json
 "scripts": {
@@ -497,7 +509,7 @@ Both `forge test` and `npx hardhat test` should now be able to access all smart 
 }
 ```
 
-You can run this command with:  
+You can run this command with:
 
 ```bash
 npm run test

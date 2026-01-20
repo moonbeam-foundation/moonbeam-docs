@@ -41,8 +41,9 @@ GMP 预编译位于以下地址：
 
 ??? code "Gmp.sol"
 
-    solidity
+    ```solidity
     --8<-- 'code/builders/ethereum/precompiles/interoperability/gmp/gmp.sol'
+    ```
     
 
 GMP 预编译有一个方法：
@@ -75,7 +76,7 @@ Moonbeam 的 GMP 协议需要一个多位置来表示流动性路由的目的地
 
 以下多位置模板以 Moonbeam 作为相对原点，定位其他平行链上的帐户。要使用它们，请将 `INSERT_PARACHAIN_ID` 替换为您要将资金发送到的网络的平行链 ID，并将 `INSERT_ADDRESS` 替换为您要将资金发送到该平行链上的帐户地址。
 
-===
+=== "AccountId32"
 
     ```js
     {
@@ -95,7 +96,7 @@ Moonbeam 的 GMP 协议需要一个多位置来表示流动性路由的目的地
     };
     ```
 
-===
+=== "AccountKey20"
 
     ```js
     {
@@ -121,13 +122,13 @@ Moonbeam 的 GMP 协议需要一个多位置来表示流动性路由的目的地
 
 以下脚本展示了如何创建一个 `Uint8Array`，该 `Uint8Array` 可用作 GMP 预编译的有效负载：
 
-===
+=== "V1 有效载荷"
 
     ```typescript
     --8<-- 'code/builders/ethereum/precompiles/interoperability/gmp/v1-payload.ts'
     ```
 
-===
+=== "V2 有效载荷"
 
     ```typescript
     --8<-- 'code/builders/ethereum/precompiles/interoperability/gmp/v2-payload.ts'

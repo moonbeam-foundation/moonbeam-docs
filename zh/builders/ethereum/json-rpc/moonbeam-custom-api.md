@@ -34,13 +34,14 @@ Moonbeam 节点包括对自定义 JSON-RPC 端点的支持：
 
     === "示例"
 
-        bash
+        ```bash
         curl -H "Content-Type: application/json" -X POST --data '{
           "jsonrpc": "2.0",
           "id": "1",
           "method": "moon_isBlockFinalized",
           "params": ["INSERT_BLOCK_HASH"]
         }' {{ networks.moonbase.rpc_url }}
+        ```
         
 
 ???+ function "moon_isTxFinalized"
@@ -57,13 +58,14 @@ Moonbeam 节点包括对自定义 JSON-RPC 端点的支持：
 
     === "示例"
 
-        bash
+        ```bash
         curl -H "Content-Type: application/json" -X POST --data '{
           "jsonrpc": "2.0",
           "id": "1",
           "method": "moon_isTxFinalized",
           "params": ["INSERT_TRANSACTION_HASH"]
         }' {{ networks.moonbase.rpc_url }}
+        ```
         
 
 ???+ function "moon_getEthSyncBlockRange"
@@ -85,10 +87,11 @@ Moonbeam 节点包括对自定义 JSON-RPC 端点的支持：
 
     === "示例"
 
-        bash
+        ```bash
         curl -H "Content-Type: application/json" -X POST --data '{
           "jsonrpc": "2.0",
           "id": "1",
           "method": "moon_getEthSyncBlockRange",
           "params": []
         }' {{ networks.moonbase.rpc_url }}
+        ```

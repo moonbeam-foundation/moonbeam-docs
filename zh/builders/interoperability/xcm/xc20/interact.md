@@ -56,7 +56,7 @@ categories: XC-20
 
 **DOMAIN_SEPARATOR()** 在 [EIP-712 标准](https://eips.ethereum.org/EIPS/eip-712){target=_blank} 中定义，计算方法如下：
 
-```text
+```
 keccak256(PERMIT_DOMAIN, name, version, chain_id, address)
 ```
 

@@ -196,8 +196,20 @@ msgstr "Moonbeam logo for cookie consent"
 msgid "material_overrides.partials.consent.right_section_buttons"
 msgstr "Right section buttons"
 
-msgid "material_overrides.partials.feedback.divider"
-msgstr "Divider"
+msgid "material_overrides.partials.feedback.rating_down_name"
+msgstr "This page could be improved"
+
+msgid "material_overrides.partials.feedback.rating_down_note"
+msgstr "Thanks for your feedback! Help us improve this page by submitting <a href=\"https://github.com/moonbeam-foundation/moonbeam-docs/issues/new/?title=[Feedback]+{title}+-+{url}\" target=\"_blank\" rel=\"noopener\">additional feedback</a>."
+
+msgid "material_overrides.partials.feedback.rating_up_name"
+msgstr "This page was helpful"
+
+msgid "material_overrides.partials.feedback.rating_up_note"
+msgstr "Thanks for your feedback!"
+
+msgid "material_overrides.partials.feedback.title"
+msgstr "Was this page helpful?"
 
 msgid "material_overrides.partials.footer.llms_by_topic"
 msgstr "Llms by topic"

@@ -185,7 +185,7 @@ DIA 利用 Drand 公共随机信标，并使用 round 数字、随机性和签�
   "source_language": "EN",
   "target_language": "ZH",
   "checksum": "2d5c6fcb4a0319e82f20f72c8d15e51625082ec9497e86d8a5385a39f4506b93",
-  "content": "### Moonbeam Demo Randomness Oracle {: #moonbeam-demo-randomness-oracle }\n\nDIA has deployed a demo oracle on Moonbase Alpha, which can be accessed at the following address:\n\n```text
+  "content": "### Moonbeam Demo Randomness Oracle {: #moonbeam-demo-randomness-oracle }\n\nDIA has deployed a demo oracle on Moonbase Alpha, which can be accessed at the following address:\n\n```
 0x48d351ab7f8646239bbade95c3cc6de3ef4a6cec
 
 ### 如何使用 DIA 随机数预言机 {: #how-to-use-the-dia-randomness-oracle }

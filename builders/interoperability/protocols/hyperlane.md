@@ -4,11 +4,12 @@ description: Learn about Hyperlane, a GMP protocol for cross-chain asset transfe
 categories: GMP Providers
 ---
 
+
 # Hyperlane Protocol
 
 ## Introduction {: #introduction }
 
-[Hyperlane](https://hyperlane.xyz/){target=\_blank} is a security-modular cross-chain communication protocol for Web3. Hyperlane enables dApp users to interact with any asset or application, on any connected chain, with one click. It supports general asset transfer as well as custom cross-chain messaging.  
+[Hyperlane](https://hyperlane.xyz/){target=\_blank} is a security-modular cross-chain communication protocol for Web3. Hyperlane enables dApp users to interact with any asset or application, on any connected chain, with one click. It supports general asset transfer as well as custom cross-chain messaging.
 
 Using [Interchain Security Modules (ISMs)](https://docs.hyperlane.xyz/docs/protocol/ISM/modular-security){target=\_blank}, Hyperlane allows developers to configure the method by which messages are sent and validated across chains. Hyperlane is composed of validators, relayers, and watchtowers. [Validators](https://v2.hyperlane.xyz/docs/protocol/agents/validators){target=\_blank} will watch for and confirm cross-chain messages. [Relayers](https://v2.hyperlane.xyz/docs/protocol/agents/relayer){target=\_blank} spend the gas to send messages across chains. [Watchtowers](https://v2.hyperlane.xyz/docs/protocol/agents/processor){target=\_blank} perform checks to ensure that validators are good-faith actors, securing the protocol. Take a look at the tech stack diagram and their [protocol documentation](https://docs.hyperlane.xyz/docs/protocol/protocol-overview){target=\_blank} for more details.
 

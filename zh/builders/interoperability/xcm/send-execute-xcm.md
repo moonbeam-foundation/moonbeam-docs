@@ -246,7 +246,7 @@ const result = await api.call.dryRunApi.dryRunXcm(origin, message);
 
 在本节中，您将使用[XCM Utilities Precompile](/builders/interoperability/xcm/xcm-utils/){target=_blank}的 `xcmExecute` 函数，该函数仅在 Moonbase Alpha 上受支持，以在本地执行 XCM 消息。XCM Utilities Precompile 位于以下地址：
 
-```text
+```
 {{ networks.moonbase.precompiles.xcm_utils }}
 ```
 
@@ -390,7 +390,7 @@ Polkadot XCM Pallet 的 `send` 函数接受两个参数：`dest` 和 `message`�
 
 === "Moonbase Alpha"
 
-     ```text
+     ```
      {{ networks.moonbase.precompiles.xcm_utils }}
      ```
 

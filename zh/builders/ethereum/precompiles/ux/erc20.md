@@ -21,21 +21,15 @@ Moonbeam 上的原生代币 ERC-20 预编译合约允许开发者通过 ERC-20 �
 
 === "Moonbeam"
 
-     ```text
-     {{networks.moonbeam.precompiles.erc20 }}
-     ```
+    `{{ networks.moonbeam.precompiles.erc20 }}`
 
 === "Moonriver"
 
-     ```text
-     {{networks.moonriver.precompiles.erc20 }}
-     ```
+    `{{ networks.moonriver.precompiles.erc20 }}`
 
 === "Moonbase Alpha"
 
-     ```text
-     {{networks.moonriver.precompiles.erc20 }}
-     ```
+    `{{ networks.moonbase.precompiles.erc20 }}`
 
 --8<-- 'text/builders/ethereum/precompiles/security.md'
 

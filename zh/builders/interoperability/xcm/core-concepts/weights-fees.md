@@ -76,19 +76,19 @@ Polkadot上的总权重成本除了给定指令所需的权重外，还考虑了
 
 因此，要计算执行XCM指令的成本，可以使用以下公式：
 
-```text
+```
 XCM-DOT-Cost = XCMInstrWeight * DOTWeightToFeeCoefficient
 ```
 
 其中`DOTWeightToFeeCoefficient`是一个常数（映射到1美分），可以计算为：
 
-```text
+```
 DOTWeightToFeeCoefficient = 10^10 / ( 10 * 100 * DOTExtrinsicBaseWeight )
 ```
 
 现在，您可以开始计算以DOT为单位的最终费用，使用`DOTWeightToFeeCoefficient`作为常数，`TotalWeight`作为变量：
 
-```text
+```
 XCM-Planck-DOT-Cost = TotalWeight * DOTWeightToFeeCoefficient
 XCM-DOT-Cost = XCM-Planck-DOT-Cost / DOTDecimalConversion
 ```
@@ -103,19 +103,19 @@ Kusama上的总权重成本除了给定指令所需的权重外，还会考虑�
 
 要计算执行XCM指令的成本，可以使用以下公式：
 
-```text
+```
 XCM-KSM-Cost = XCMInstrWeight * KSMWeightToFeeCoefficient
 ```
 
 其中`KSMWeightToFeeCoefficient`是一个常数（映射到1美分），可以计算为：
 
-```text
+```
 KSMWeightToFeeCoefficient = 10^12 / ( 10 * 3000 * KSMExtrinsicBaseWeight )
 ```
 
 现在，您可以开始计算KSM中的最终费用，使用`KSMWeightToFeeCoefficient`作为常量，`TotalWeight`作为变量：
 
-```text
+```
 XCM-Planck-KSM-Cost = TotalWeight * KSMWeightToFeeCoefficient
 XCM-KSM-Cost = XCM-Planck-KSM-Cost / KSMDecimalConversion
 ```
@@ -153,14 +153,14 @@ Substrate 引入了一个权重系统，用于确定一个 extrinsic 从计算�
 
 这意味着，例如在 Moonbeam 上，计算储备资产中一个 XCM 指令成本的公式如下：
 
-```text
+```
 XCM-Wei-Cost = XCMInstrWeight * WeiPerWeight
 XCM-GLMR-Cost = XCM-Wei-Cost / 10^18
 ```
 
 因此，例如，可替代指令的实际计算如下：
 
-```text
+```
 XCM-Wei-Cost = {{ xcm.fungible_weights.numbers_only }} * {{ networks.moonbeam.xcm.instructions.wei_per_weight.numbers_only }}
 XCM-GLMR-Cost = {{ networks.moonbeam.xcm.transfer_glmr.wei_cost }} / 10^18
 ```
@@ -184,13 +184,13 @@ Moonbeam根据调用的权重对外部资产收取费用。权重是一个包含
 
 要确定 Alice 将 DOT 转移到 Moonbeam 的总权重，您需要转移所需的四个 XCM 指令中的每一个的权重。请注意，虽然前三个指令具有与这些指令相对应的特定 `refTime` 和 `proofSize` 值，可以通过 [`xcmPaymentApi` 的 `queryXcmWeight` 方法](#query-xcm-weight) 检索，但 `DepositAsset` 依赖于 EVM 操作 [`MintInto`](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbeam.spec_version }}/pallets/moonbeam-foreign-assets/src/evm.rs#L40){target=_blank} 和每个 gas 的 `WeightPerGas` 转换 `{{ xcm.generic_weights.weight_per_gas.display }}`。因此，`DepositAsset` 的 `refTime` 可以计算为：
 
-```text
+```
 {{ xcm.generic_weights.ref_time.mint_into_gas.numbers_only }} gas * {{ xcm.generic_weights.weight_per_gas.numbers_only }} weight per gas = {{ xcm.generic_weights.ref_time.deposit_asset.numbers_only }}
 ```
 
 `DepositAsset` 的 `proofSize` 可以计算为：
 
-```text
+```
 {{ xcm.generic_weights.ref_time.mint_into_gas.numbers_only }} gas * {{ xcm.generic_weights.proof_size.weight_per_gas }} weight per gas = {{ xcm.generic_weights.proof_size.deposit_asset.numbers_only }}
 ```
 
@@ -206,10 +206,11 @@ XCM 支付 API 方法提供了各种有用的方法来计算费用、评估可�
 
 此函数将XCM版本作为参数，并以多重定位形式返回可接受的手续费资产列表。
 
-javascript
+```js
 const allowedAssets =
   await api.call.xcmPaymentApi.queryAcceptablePaymentAssets(3);
 console.log(allowedAssets);
+```
 
 ??? code "查看完整脚本"
 
@@ -220,7 +221,7 @@ console.log(allowedAssets);
 
 此方法将权重转换为指定资产的费用。它接受权重和资产多重定位作为参数，并返回相应的费用金额。
 
-javascript
+```js
 const fee = await api.call.xcmPaymentApi.queryWeightToAssetFee(
   {
     refTime: 10_000_000_000n,
@@ -234,6 +235,7 @@ const fee = await api.call.xcmPaymentApi.queryWeightToAssetFee(
 );
 
 console.log(fee);
+```
 
 ??? code "查看完整脚本"
 
@@ -244,11 +246,12 @@ console.log(fee);
 
 此方法将 XCM 消息作为参数，并返回消息的权重。
 
-javascript
+```js
 const message = { V3: [instr1, instr2] };
 
 const theWeight = await api.call.xcmPaymentApi.queryXcmWeight(message);
 console.log(theWeight);
+```
 
 ??? code "查看完整脚本"
 

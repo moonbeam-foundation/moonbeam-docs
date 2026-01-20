@@ -29,7 +29,7 @@ categories: Precompiles, Ethereum Toolkit
 
 此代码将在终端中返回以下对象：
 
-```text
+```
 --8<-- 'code/builders/ethereum/precompiles/utility/eth-mainnet/ecrecoverresult.md'
 ```
 

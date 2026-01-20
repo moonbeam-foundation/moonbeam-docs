@@ -28,19 +28,19 @@ Moonbeam 网络的 Moonscan API URL 如下：
 
 === "Moonbeam"
 
-    ```text
+    ```
     https://api-moonbeam.moonscan.io/api
     ```
 
 === "Moonriver"
 
-    ```text
+    ```
     https://api-moonriver.moonscan.io/api
     ```
 
 === "Moonbase Alpha"
 
-    ```text
+    ```
     https://api-moonbase.moonscan.io/api
     ```
 
@@ -48,7 +48,7 @@ Moonbeam 网络的 Moonscan API URL 如下：
 
 要使用 Moonscan API 验证已部署合约的源代码，您必须创建一个包含所有相关合约创建信息的 POST 请求，并将该请求发送到 Moonscan 的 REST API。以下是使用 JavaScript 和 HTTP 客户端 [Axios](https://axios-http.com/docs/intro){target=_blank} 的示例代码：
 
-===
+=== "Moonbeam"
 
     ```javascript
     // 提交源代码以进行验证
@@ -100,7 +100,7 @@ Moonbeam 网络的 Moonscan API URL 如下：
     }
     ```
 
-===
+=== "Moonriver"
 
     ```javascript
     // 提交源代码以进行验证
@@ -152,7 +152,7 @@ Moonbeam 网络的 Moonscan API URL 如下：
     }
     ```
 
-===
+=== "Moonbase Alpha"
 
     ```javascript
     // 提交源代码以进行验证
@@ -206,7 +206,7 @@ Moonbeam 网络的 Moonscan API URL 如下：
 
 成功提交后，将返回一个 GUID 作为结果的一部分。此 GUID 可用于检查提交状态。
 
-===
+=== "Moonbeam"
 
     ```bash
     curl https://api-moonbeam.moonscan.io/api
@@ -216,7 +216,7 @@ Moonbeam 网络的 Moonscan API URL 如下：
       &apikey=INSERT_API_KEY
     ```
 
-===
+=== "Moonriver"
 
     ```bash
     curl https://api-moonriver.moonscan.io/api
@@ -226,7 +226,7 @@ Moonbeam 网络的 Moonscan API URL 如下：
       &apikey=INSERT_API_KEY
     ```
 
-===
+=== "Moonbase Alpha"
 
     ```bash
     curl https://api-moonbase.moonscan.io/api
@@ -240,67 +240,70 @@ Moonbeam 网络的 Moonscan API URL 如下：
 
 一旦您的合约在 Moonscan 上得到验证，您可以使用以下端点来检索合约 ABI：
 
-===
+=== "Moonbeam"
 
-    bash
-    curl https://api-moonbeam.moonscan.io/api
-      ?module=contract
-      &action=getabi
-      &address=INSERT_CONTRACT_ADDRESS
+    ```bash
+    curl https://api-moonbeam.moonscan.io/api \
+      ?module=contract \
+      &action=getabi \
+      &address=INSERT_CONTRACT_ADDRESS \
       &apikey=INSERT_API_KEY
+    ```
+
+=== "Moonriver"
+
+    ```bash
+    curl https://api-moonriver.moonscan.io/api \
+      ?module=contract \
+      &action=getabi \
+      &address=INSERT_CONTRACT_ADDRESS \
+      &apikey=INSERT_API_KEY
+    ```
     
 
-===
+=== "Moonbase Alpha"
 
-    bash
-    curl https://api-moonriver.moonscan.io/api
-      ?module=contract
-      &action=getabi
-      &address=INSERT_CONTRACT_ADDRESS
+    ```bash
+    curl https://api-moonbase.moonscan.io/api \
+      ?module=contract \
+      &action=getabi \
+      &address=INSERT_CONTRACT_ADDRESS \
       &apikey=INSERT_API_KEY
-    
-
-===
-
-    bash
-    curl https://api-moonbase.moonscan.io/api
-      ?module=contract
-      &action=getabi
-      &address=INSERT_CONTRACT_ADDRESS
-      &apikey=INSERT_API_KEY
+    ```
 
 ### 检索已验证合约的合约源代码 {: #retrieve-contract-source-code-for-verified-contracts }
 
 一旦您的合约在 Moonscan 上得到验证，您可以使用以下端点来检索合约源代码：
 
-===
+=== "Moonbeam"
 
-    bash
-    curl https://api-moonbeam.moonscan.io/api
-      ?module=contract
-      &action=getsourcecode
-      &address=INSERT_CONTRACT_ADDRESS
+    ```bash
+    curl https://api-moonbeam.moonscan.io/api \
+      ?module=contract \
+      &action=getsourcecode \
+      &address=INSERT_CONTRACT_ADDRESS \
       &apikey=INSERT_API_KEY
-    
+    ```
 
-===
+=== "Moonriver"
 
-    bash
-    curl https://api-moonriver.moonscan.io/api
-      ?module=contract
-      &action=getsourcecode
-      &address=INSERT_CONTRACT_ADDRESS
+    ```bash
+    curl https://api-moonriver.moonscan.io/api \
+      ?module=contract \
+      &action=getsourcecode \
+      &address=INSERT_CONTRACT_ADDRESS \
       &apikey=INSERT_API_KEY
-    
+    ```
 
-===
+=== "Moonbase Alpha"
 
-    bash
-    curl https://api-moonbase.moonscan.io/api
-      ?module=contract
-      &action=getsourcecode
-      &address=INSERT_CONTRACT_ADDRESS
+    ```bash
+    curl https://api-moonbase.moonscan.io/api \
+      ?module=contract \
+      &action=getsourcecode \
+      &address=INSERT_CONTRACT_ADDRESS \
       &apikey=INSERT_API_KEY
+    ```
 
 ## 使用 Sourcify API {: #using-sourcify-api }
 
@@ -325,22 +328,23 @@ Moonbeam 网络的 Moonscan API URL 如下：
 
 Sourcify使用链ID来识别请求的目标网络。Moonbeam网络的链ID如下：
 
-===
+=== "Moonbeam"
 
-    text
+    ```
     {{ networks.moonbeam.chain_id }}
-    
+    ```
 
-===
+=== "Moonriver"
 
-    text
+    ```
     {{ networks.moonriver.chain_id }}
-    
+    ```
 
-===
+=== "Moonbase Alpha"
 
-    bash
+    ```
     {{ networks.moonbase.chain_id }}
+    ```
 
 ### 完全匹配 vs. 部分匹配 {: #full-vs-partial-match }
 
@@ -354,7 +358,7 @@ Sourcify 支持两种类型的验证匹配结果。
 
 POST 请求用于在 Sourcify 上验证合约。以下是使用 JavaScript 的示例代码：
 
-===
+=== "Moonbeam"
 
     ```javascript
     // 提交合约源代码和元数据以进行验证
@@ -383,7 +387,7 @@ POST 请求用于在 Sourcify 上验证合约。以下是使用 JavaScript 的�
     }
     ```
 
-===
+=== "Moonriver"
 
     ```javascript
     // 提交合约源代码和元数据以进行验证
@@ -412,7 +416,7 @@ POST 请求用于在 Sourcify 上验证合约。以下是使用 JavaScript 的�
     }
     ```
 
-===
+=== "Moonbase Alpha"
 
     ```javascript
     // 提交合约源代码和元数据以进行验证
@@ -449,21 +453,21 @@ Sourcify 提供了用于一次性检查多个 EVM 链上合约验证状态的端
 
 此端点有两种变体，一种用于完全匹配，另一种用于部分匹配：
 
-===
+=== "完全匹配"
 
-    bash
-    curl https://sourcify.dev/server/check-by-addresses
-      ?addresses={INSERT_ADDRESS_1, INSERT_ADDRESS_2, ...}
+    ```bash
+    curl https://sourcify.dev/server/check-by-addresses \
+      ?addresses={INSERT_ADDRESS_1, INSERT_ADDRESS_2, ...} \
       &chainIds={INSERT_CHAIN_ID_1, INSERT_CHAIN_ID_2, ...}
-    
+    ```
 
-===
+=== "部分匹配"
 
-    bash
-    curl https://sourcify.dev/server/check-all-by-addresses
-      ?addresses={INSERT_ADDRESS_1, INSERT_ADDRESS_2, ...}
+    ```bash
+    curl https://sourcify.dev/server/check-all-by-addresses \
+      ?addresses={INSERT_ADDRESS_1, INSERT_ADDRESS_2, ...} \
       &chainIds={INSERT_CHAIN_ID_1, INSERT_CHAIN_ID_2, ...}
-    
+    ```
 
 一个示例响应将是一个具有以下结构的 JSON 对象：
 
@@ -491,42 +495,43 @@ Sourcify 提供了用于一次性检查多个 EVM 链上合约验证状态的端
 
 此端点有两种变体，一种用于完美匹配的源文件：
 
-===
+=== "Moonbeam"
 
-    bash
+    ```bash
     curl https://sourcify.dev/server/files/{{ networks.moonbeam.chain_id }}/INSERT_CONTRACT_ADDRESS
-    
+    ```
 
-===
+=== "Moonriver"
 
-    bash
+    ```bash
     curl https://sourcify.dev/server/files/{{ networks.moonriver.chain_id }}/INSERT_CONTRACT_ADDRESS
-    
+    ```
 
-===
+=== "Moonbase Alpha"
 
-    bash
+    ```bash
     curl https://sourcify.dev/server/files/{{ networks.moonbase.chain_id }}/INSERT_CONTRACT_ADDRESS
-    
+    ```
 
 还有一种用于完美匹配和部分匹配的源文件：
 
-===
+=== "Moonbeam"
 
-    bash
+    ```bash
     curl https://sourcify.dev/server/files/any/{{ networks.moonbeam.chain_id }}/INSERT_CONTRACT_ADDRESS
-    
+    ```
 
-===
+=== "Moonriver"
 
-    bash
+    ```bash
     curl https://sourcify.dev/server/files/any/{{ networks.moonriver.chain_id }}/INSERT_CONTRACT_ADDRESS
-    
+    ```
 
-===
+=== "Moonbase Alpha"
 
-    bash
+    ```bash
     curl https://sourcify.dev/server/files/any/{{ networks.moonbase.chain_id }}/INSERT_CONTRACT_ADDRESS
+    ```
 
 ### 将 Sourcify 与 Foundry 结合使用 {: #using-sourcify-with-foundry }
 
@@ -536,75 +541,75 @@ Foundry 的 Forge 工具内置了对 Sourcify 验证的支持，类似于它对[
 
 ```toml
 [profile.default]
-
-```
-
 # 在此处输入您的自定义或默认配置选项
 extra_output_files = ["metadata"]
+```
 
 如果您已经部署了示例合约，您可以使用 `verify-contract` 命令来验证它。在验证合约之前，您需要对构造函数参数进行 ABI 编码。要对示例合约执行此操作，您可以运行以下命令：
 
-bash
+```bash
 cast abi-encode "constructor(uint256)" 100
+```
 
 结果应该是 `0x0000000000000000000000000000000000000000000000000000000000000064`。然后，您可以使用以下命令来验证合约：
 
-===
+=== "Moonbeam"
 
-    bash
+    ```bash
     forge verify-contract --chain-id {{ networks.moonbeam.chain_id }} \
-    --constructor-args 0x0000000000000000000000000000000000000000000000000000000000000064 \
-    --verifier sourcify INSERT_CONTRACT_ADDRESS src/MyToken.sol:MyToken 
-    
+      --constructor-args 0x0000000000000000000000000000000000000000000000000000000000000064 \
+      --verifier sourcify INSERT_CONTRACT_ADDRESS src/MyToken.sol:MyToken
+    ```
 
-===
+=== "Moonriver"
 
-    bash
+    ```bash
     forge verify-contract --chain-id {{ networks.moonriver.chain_id }} \
-    --constructor-args 0x0000000000000000000000000000000000000000000000000000000000000064 \
-    --verifier sourcify INSERT_CONTRACT_ADDRESS src/MyToken.sol:MyToken 
-    
+      --constructor-args 0x0000000000000000000000000000000000000000000000000000000000000064 \
+      --verifier sourcify INSERT_CONTRACT_ADDRESS src/MyToken.sol:MyToken
+    ```
 
-===
+=== "Moonbase Alpha"
 
-    bash
+    ```bash
     forge verify-contract --chain-id {{ networks.moonbase.chain_id }} \
-    --constructor-args 0x0000000000000000000000000000000000000000000000000000000000000064 \
-    --verifier sourcify INSERT_CONTRACT_ADDRESS src/MyToken.sol:MyToken 
-    
+      --constructor-args 0x0000000000000000000000000000000000000000000000000000000000000064 \
+      --verifier sourcify INSERT_CONTRACT_ADDRESS src/MyToken.sol:MyToken
+    ```
 
 --8<-- 'code/builders/ethereum/verify-contracts/api/terminal/verify-original.md'
 
 如果您想同时部署示例合约并进行验证，那么您可以使用以下命令：
 
-===
+=== "Moonbeam"
 
-    bash
+    ```bash
     forge create --rpc-url {{ networks.moonbeam.rpc_url }} \
-    --constructor-args 100 \
-    --verify --verifier sourcify \
-    --private-key INSERT_YOUR_PRIVATE_KEY \
-    src/MyToken.sol:MyToken  
-    
+      --constructor-args 100 \
+      --verify --verifier sourcify \
+      --private-key INSERT_YOUR_PRIVATE_KEY \
+      src/MyToken.sol:MyToken
+    ```
 
-===
+=== "Moonriver"
 
-    bash
+    ```bash
     forge create --rpc-url {{ networks.moonriver.rpc_url }} \
-    --constructor-args 100 \
-    --verify --verifier sourcify \
-    --private-key INSERT_YOUR_PRIVATE_KEY \
-    src/MyToken.sol:MyToken  
-    
+      --constructor-args 100 \
+      --verify --verifier sourcify \
+      --private-key INSERT_YOUR_PRIVATE_KEY \
+      src/MyToken.sol:MyToken
+    ```
 
-===
+=== "Moonbase Alpha"
 
-    bash
+    ```bash
     forge create --rpc-url {{ networks.moonbase.rpc_url }} \
-    --constructor-args 100 \
-    --verify --verifier sourcify \
-    --private-key INSERT_YOUR_PRIVATE_KEY \
-    src/MyToken.sol:MyToken
+      --constructor-args 100 \
+      --verify --verifier sourcify \
+      --private-key INSERT_YOUR_PRIVATE_KEY \
+      src/MyToken.sol:MyToken
+    ```
     
 
 --8<-- 'code/builders/ethereum/verify-contracts/api/terminal/create.md'

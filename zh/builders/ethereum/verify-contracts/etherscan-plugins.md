@@ -115,68 +115,68 @@ cast abi-encode "constructor(uint256)" 100
 
 结果应为 `0x0000000000000000000000000000000000000000000000000000000000000064`。然后，您可以使用以下命令验证合约：
 
-===
+=== "Moonbeam"
 
     ```bash
     forge verify-contract --chain-id {{ networks.moonbeam.chain_id }} \
-    YOUR_CONTRACT_ADDRESS \
-    --constructor-args 0x0000000000000000000000000000000000000000000000000000000000000064 \
-    src/MyToken.sol:MyToken \
-    --etherscan-api-key INSERT_YOUR_ETHERSCAN_API_KEY
+      YOUR_CONTRACT_ADDRESS \
+      --constructor-args 0x0000000000000000000000000000000000000000000000000000000000000064 \
+      src/MyToken.sol:MyToken \
+      --etherscan-api-key INSERT_YOUR_ETHERSCAN_API_KEY
     ```
 
-===
+=== "Moonriver"
 
     ```bash
     forge verify-contract --chain-id {{ networks.moonriver.chain_id }} \
-    YOUR_CONTRACT_ADDRESS \
-    --constructor-args 0x0000000000000000000000000000000000000000000000000000000000000064 \
-    src/MyToken.sol:MyToken \
-    --etherscan-api-key INSERT_YOUR_ETHERSCAN_API_KEY
+      YOUR_CONTRACT_ADDRESS \
+      --constructor-args 0x0000000000000000000000000000000000000000000000000000000000000064 \
+      src/MyToken.sol:MyToken \
+      --etherscan-api-key INSERT_YOUR_ETHERSCAN_API_KEY
     ```
 
-===
+=== "Moonbase Alpha"
 
     ```bash
     forge verify-contract --chain-id {{ networks.moonbase.chain_id }} \
-    YOUR_CONTRACT_ADDRESS \
-    --constructor-args 0x0000000000000000000000000000000000000000000000000000000000000064 \
-    src/MyToken.sol:MyToken \
-    --etherscan-api-key INSERT_YOUR_ETHERSCAN_API_KEY
+      YOUR_CONTRACT_ADDRESS \
+      --constructor-args 0x0000000000000000000000000000000000000000000000000000000000000064 \
+      src/MyToken.sol:MyToken \
+      --etherscan-api-key INSERT_YOUR_ETHERSCAN_API_KEY
     ```
 
 --8<-- 'code/builders/ethereum/verify-contracts/etherscan-plugins/terminal/forge-verify.md'
 
 如果您想同时部署示例合约并进行验证，那么您可以使用以下命令：
 
-===
+=== "Moonbeam"
 
     ```bash
     forge create --rpc-url {{ networks.moonbeam.rpc_url }} \
-    --constructor-args 100 \
-    --etherscan-api-key INSERT_YOUR_ETHERSCAN_API_KEY \
-    --verify --private-key YOUR_PRIVATE_KEY \
-    src/MyToken.sol:MyToken
+      --constructor-args 100 \
+      --etherscan-api-key INSERT_YOUR_ETHERSCAN_API_KEY \
+      --verify --private-key YOUR_PRIVATE_KEY \
+      src/MyToken.sol:MyToken
     ```
 
-===
+=== "Moonriver"
 
     ```bash
     forge create --rpc-url {{ networks.moonriver.rpc_url }} \
-    --constructor-args 100 \
-    --etherscan-api-key INSERT_YOUR_ETHERSCAN_API_KEY \
-    --verify --private-key YOUR_PRIVATE_KEY \
-    src/MyToken.sol:MyToken
+      --constructor-args 100 \
+      --etherscan-api-key INSERT_YOUR_ETHERSCAN_API_KEY \
+      --verify --private-key YOUR_PRIVATE_KEY \
+      src/MyToken.sol:MyToken
     ```
 
-===
+=== "Moonbase Alpha"
 
     ```bash
     forge create --rpc-url {{ networks.moonbase.rpc_url }} \
-    --constructor-args 100 \
-    --etherscan-api-key INSERT_YOUR_ETHERSCAN_API_KEY \
-    --verify --private-key YOUR_PRIVATE_KEY \
-    src/MyToken.sol:MyToken
+      --constructor-args 100 \
+      --etherscan-api-key INSERT_YOUR_ETHERSCAN_API_KEY \
+      --verify --private-key YOUR_PRIVATE_KEY \
+      src/MyToken.sol:MyToken
     ```
 
 --8<-- 'code/builders/ethereum/verify-contracts/etherscan-plugins/terminal/forge-create-verify.md'

@@ -80,6 +80,24 @@ def _read_lines(path: Path) -> list[str]:
     return path.read_text(encoding="utf-8").splitlines()
 
 
+def _format_md_files(md_files: Iterable[str]) -> list[dict[str, str]]:
+    """Format Markdown files with mdformat, returning any failures."""
+    failures: list[dict[str, str]] = []
+    for rel_path in sorted(set(md_files)):
+        try:
+            path = repo_path(rel_path)
+        except ValueError:
+            continue
+        if not path.exists():
+            continue
+        cmd = [PYTHON_BIN, "-m", "mdformat", str(path)]
+        proc = subprocess.run(cmd, capture_output=True, text=True)
+        if proc.returncode != 0:
+            message = proc.stderr.strip() or proc.stdout.strip() or "mdformat check failed"
+            failures.append({"path": rel_path, "error": message})
+    return failures
+
+
 def _maybe_decode_translated_content(value: str) -> str:
     if not value:
         return value
@@ -328,17 +346,86 @@ def _normalize_path(path: str) -> str:
         return Path(raw).as_posix()
 
 
+def _load_docs_dir() -> str:
+    mkdocs_path = REPO_ROOT / "mkdocs.yml"
+    if mkdocs_path.exists():
+        try:
+            import yaml
+
+            cfg = yaml.safe_load(mkdocs_path.read_text(encoding="utf-8")) or {}
+            docs_dir = cfg.get("docs_dir")
+            if isinstance(docs_dir, str) and docs_dir.strip():
+                return docs_dir.strip()
+        except Exception:
+            pass
+        # Fallback: parse simple docs_dir: line
+        for line in mkdocs_path.read_text(encoding="utf-8").splitlines():
+            if line.lstrip().startswith("#"):
+                continue
+            match = re.match(r"^\\s*docs_dir:\\s*(.+?)\\s*$", line)
+            if match:
+                raw = match.group(1).split("#", 1)[0].strip().strip('\"\\' )
+                if raw:
+                    return raw
+    return "docs"
+
+
+def _normalize_include_path(path: str) -> str:
+    """Normalize include paths, allowing docs-relative inputs."""
+    norm = _normalize_path(path)
+    # If it exists as-is, keep it.
+    try:
+        candidate = repo_path(norm)
+        if candidate.exists():
+            return norm
+    except Exception:
+        pass
+    # Try prefixing with docs_dir if not already under it.
+    docs_dir = _load_docs_dir().rstrip("/").lstrip("/")
+    if docs_dir and not norm.startswith(f"{docs_dir}/") and norm != docs_dir:
+        with_prefix = f"{docs_dir}/{norm}"
+        try:
+            candidate = repo_path(with_prefix)
+            if candidate.exists():
+                return with_prefix
+        except Exception:
+            pass
+    return norm
+
+
 def _filter_diff_map(diff_map: dict[str, list[dict[str, Any]]], include: set[str]) -> dict[str, list[dict[str, Any]]]:
     if not include:
         return diff_map
     normalized_lookup: dict[str, str] = {}
     for rel_path in diff_map:
         normalized_lookup[_normalize_path(rel_path)] = rel_path
+
+    # Build directory prefixes from include entries that point to directories or end with "/".
+    dir_prefixes: set[str] = set()
+    file_targets: set[str] = set()
+    for item in include:
+        norm = _normalize_path(item)
+        if norm:
+            file_targets.add(norm)
+            try:
+                candidate = repo_path(norm)
+                if candidate.is_dir():
+                    dir_prefixes.add(f"{norm.rstrip('/')}/")
+            except Exception:
+                if norm.endswith("/"):
+                    dir_prefixes.add(norm)
+
     filtered: dict[str, list[dict[str, Any]]] = {}
     for normalized, original in normalized_lookup.items():
-        if normalized in include:
+        if normalized in file_targets or any(normalized.startswith(prefix) for prefix in dir_prefixes):
             filtered[original] = diff_map[original]
-    missing = sorted(include - set(normalized_lookup.keys()))
+
+    missing = sorted(
+        path
+        for path in include
+        if path not in file_targets
+        and not any(_normalize_path(existing).startswith(_normalize_path(path).rstrip("/") + "/") for existing in diff_map)
+    )
     if missing:
         _info("Requested file(s) not present in this diff:")
         for path in missing:
@@ -524,19 +611,36 @@ def _resolve_commit(ref: str) -> str:
 
 def _inject_full_file_entries(diff_map: dict[str, list[dict[str, Any]]], include_files: set[str]) -> None:
     for rel_path in include_files:
-        if rel_path in diff_map:
-            continue
-        abs_path = repo_path(rel_path)
-        if not abs_path.exists():
-            _info(f"Requested include file not found on disk: {rel_path}")
-            continue
-        lines = _read_lines(abs_path)
-        entry = {
-            "set_id": len(diff_map.get(rel_path, [])) + 1,
-            "added": {"start": 1, "end": len(lines)},
-        }
-        diff_map.setdefault(rel_path, []).append(entry)
-        _info(f"Added full-file translation entry for {rel_path}")
+        norm = _normalize_path(rel_path)
+        targets: list[str] = []
+        try:
+            abs_path = repo_path(norm)
+        except Exception:
+            abs_path = None
+        if abs_path and abs_path.exists() and abs_path.is_dir():
+            for child in abs_path.rglob("*"):
+                if child.is_file():
+                    targets.append(repo_relative_str(child))
+        else:
+            targets.append(norm)
+
+        for target in targets:
+            if target in diff_map:
+                continue
+            try:
+                abs_target = repo_path(target)
+            except Exception:
+                abs_target = None
+            if not abs_target or not abs_target.exists():
+                _info(f"Requested include file not found on disk: {target}")
+                continue
+            lines = _read_lines(abs_target)
+            entry = {
+                "set_id": len(diff_map.get(target, [])) + 1,
+                "added": {"start": 1, "end": len(lines)},
+            }
+            diff_map.setdefault(target, []).append(entry)
+            _info(f"Added full-file translation entry for {target}")
 
 
 def _compute_hmac(secret: str, data: bytes) -> str:
@@ -612,6 +716,12 @@ def _should_skip_path(rel_path: str, languages: list[str], skip_llms: bool, skip
         if parts and parts[0] == lang:
             return True
     return False
+
+
+def _is_translation_path(rel_path: str, languages: list[str]) -> bool:
+    """Return True if the path lives under one of the target language roots."""
+    parts = Path(rel_path).parts
+    return any(lang in parts for lang in languages)
 
 
 def _run_tagger(text: str) -> str:
@@ -858,11 +968,17 @@ def _run_pipeline(args: argparse.Namespace) -> int:
     if env_include_full and not args.include_full:
         args.include_full = env_include_full.lower() in {"1", "true", "yes", "on"}
     if env_include_files and not args.include_files:
+        import re
+
+        tokens = []
+        for chunk in env_include_files.splitlines():
+            tokens.extend(re.split(r"[,\s]+", chunk.strip()))
+        args.include_files = [entry for entry in tokens if entry]
+
+    # Normalize include paths (allow docs-relative inputs)
+    if args.include_files:
         args.include_files = [
-            entry.strip()
-            for chunk in env_include_files.splitlines()
-            for entry in chunk.split(",")
-            if entry.strip()
+            _normalize_include_path(path) for path in args.include_files if path.strip()
         ]
 
     include_files = {_normalize_path(path) for path in args.include_files if path.strip()}
@@ -898,6 +1014,9 @@ def _run_pipeline(args: argparse.Namespace) -> int:
         )
         if args.include_full:
             _inject_full_file_entries(diff_map, include_files)
+
+    # Skip mdformat checks on diff_map (avoid touching English/front matter)
+    mdformat_failures: list[dict[str, str]] = []
 
     deleted_files = _collect_deleted_files(args.base, args.head, args.paths)
     if include_files:
@@ -1095,6 +1214,9 @@ def _run_pipeline(args: argparse.Namespace) -> int:
             ]
         )
 
+    # Skip mdformat formatting on translated files to avoid front matter issues
+    mdformat_failures: list[dict[str, str]] = []
+
     payload_segments = _summarize_payload_segments(payload_entries)
 
     _run_cmd([PYTHON_BIN, "-m", "pip", "install", "PyYAML==6.0.1"])
@@ -1140,6 +1262,8 @@ def _run_pipeline(args: argparse.Namespace) -> int:
         "localized_file_changes": len(target_files),
         "diff_file_count": len(english_files),
         "payload_segments": payload_segments,
+        "mdformat_status": "failed" if mdformat_failures else "passed",
+        "mdformat_failures": mdformat_failures,
     }
     COVERAGE_REPORT.write_text(
         json.dumps(summary_payload, ensure_ascii=False, indent=2),
@@ -1147,8 +1271,11 @@ def _run_pipeline(args: argparse.Namespace) -> int:
     )
     _write_validation_snapshot(payload_entries, validation_summary, summary_payload)
 
-    _info("Rose pipeline completed successfully.")
-    return 0
+    if mdformat_failures:
+        _info("Rose pipeline completed with mdformat failures.")
+    else:
+        _info("Rose pipeline completed successfully.")
+    return 1 if mdformat_failures else 0
 
 
 if __name__ == "__main__":

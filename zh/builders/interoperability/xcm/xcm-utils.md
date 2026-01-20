@@ -15,21 +15,15 @@ XCM Utilities Precompile 合约为开发者提供了直接在 EVM 中的 XCM 相
 
 === "Moonbeam"
 
-     ```text
-     {{networks.moonbeam.precompiles.xcm_utils }}
-     ```
+    `{{ networks.moonbeam.precompiles.xcm_utils }}`
 
 === "Moonriver"
 
-     ```text
-     {{networks.moonriver.precompiles.xcm_utils }}
-     ```
+    `{{ networks.moonriver.precompiles.xcm_utils }}`
 
 === "Moonbase Alpha"
 
-     ```text
-     {{networks.moonbase.precompiles.xcm_utils}}
-     ```
+    `{{ networks.moonbase.precompiles.xcm_utils }}`
 
 --8<-- 'text/builders/ethereum/precompiles/security.md'
 
