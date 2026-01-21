@@ -3131,7 +3131,7 @@ The Tenderly platform provides the following features:
 
 - **[Simulator](https://docs.tenderly.co/simulator-ui){target=\_blank}** - simulate transactions in a TestNet development environment to learn how your transactions will behave without having to send them on-chain. This way, you can know the transaction's outcome and ensure it works as expected before sending it to the network. You can experiment with different parameters, simulate historical and current transactions, and edit the contract source code. You can access the simulator from the Tenderly dashboard, or you can use the [Tenderly Simulation API](https://docs.tenderly.co/reference/api#tag/Simulations){target=\_blank} to take advantage of the simulator programmatically
 
-- **[Virtual TestNets](https://docs.tenderly.co/virtual-testnets){target=\_blank}** - simulate the live Moonbeam network in an isolated environment to interact with deployed contracts and real-time on-chain data. These test environments enable controlled development, testing, and debugging across smart contracts, UI, backend, and data indexing. They support sequential transaction simulations for complex scenarios. There are some limitations to be aware of when using this feature. [Moonbeam precompiled contracts](/builders/ethereum/precompiles/overview){target=\_blank} are not supported, as they are part of the Substrate implementation and cannot be replicated in the simulated EVM environment, prohibiting you from interacting with cross-chain assets, staking, and governance.
+- **[Virtual TestNets](https://docs.tenderly.co/virtual-testnets){target=\_blank}** - simulate the live Moonbeam network in an isolated environment to interact with deployed contracts and real-time on-chain data. These test environments enable controlled development, testing, and debugging across smart contracts, UI, backend, and data indexing. They support sequential transaction simulations for complex scenarios. There are some limitations to be aware of when using this feature. [Moonbeam precompiled contracts](/builders/ethereum/precompiles/overview/){target=\_blank} are not supported, as they are part of the Substrate implementation and cannot be replicated in the simulated EVM environment, prohibiting you from interacting with cross-chain assets, staking, and governance.
 
 - **[Alerting](https://docs.tenderly.co/alerts/intro-to-alerts){target=\_blank}** - configure real-time alerts to notify you whenever a specific event occurs, allowing you to stay informed about what's going on with your smart contracts
 
@@ -30989,7 +30989,7 @@ The interface includes the following functions:
  - **getUnitsPerSecond**(*Multilocation memory* multilocation) — read-only function that gets the units per second for a given asset in the form of a `Multilocation`. The multilocation must describe an asset that can be supported as a fee payment, such as an [external XC-20](/builders/interoperability/xcm/xc20/overview/#external-xc20s){target=\_blank}, or else this function will revert. 
 
     !!! note
-        Note that this function still returns units per second data but units per second has been deprecated and replaced by the calculation of relative price. See [XC asset registration](/builders/interoperability/xcm/xc-registration/assets#generate-encoded-calldata-for-asset-registration){target=\_blank} for more details.
+        Note that this function still returns units per second data but units per second has been deprecated and replaced by the calculation of relative price. See [XC asset registration](/builders/interoperability/xcm/xc-registration/assets/#generate-encoded-calldata-for-asset-registration){target=\_blank} for more details.
 
  - **xcmExecute**(*bytes memory* message, *uint64* maxWeight) - **available on Moonbase Alpha only** -  executes a custom XCM message given the SCALE encoded versioned message to be executed and the maximum weight to be consumed. This function *cannot* be called from a smart contract due to the nature of the `Transact` instruction
  - **xcmSend**(*Multilocation memory* dest, *bytes memory* message) - **available on Moonbase Alpha only** - sends a custom XCM message given the multilocation of the destination chain to send the message to and the SCALE encoded versioned message to be sent
@@ -41287,7 +41287,7 @@ Upon spooling up a node with this feature, you'll see output like the following:
 </div>
 
 !!! note
-    Lazy loading a Moonbeam requires a large number of RPC requests. To avoid being rate-limited by a public endpoint, it's highly recommended to use a [dedicated endpoint](/builders/get-started/endpoints#endpoint-providers).  
+    Lazy loading a Moonbeam requires a large number of RPC requests. To avoid being rate-limited by a public endpoint, it's highly recommended to use a [dedicated endpoint](/builders/get-started/endpoints/#endpoint-providers).  
 
 You can further customize your use of the lazy loading functionality with the following optional parameters:
 

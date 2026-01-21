@@ -5266,7 +5266,7 @@ Upon spooling up a node with this feature, you'll see output like the following:
 </div>
 
 !!! note
-    Lazy loading a Moonbeam requires a large number of RPC requests. To avoid being rate-limited by a public endpoint, it's highly recommended to use a [dedicated endpoint](/builders/get-started/endpoints#endpoint-providers).  
+    Lazy loading a Moonbeam requires a large number of RPC requests. To avoid being rate-limited by a public endpoint, it's highly recommended to use a [dedicated endpoint](/builders/get-started/endpoints/#endpoint-providers).  
 
 You can further customize your use of the lazy loading functionality with the following optional parameters:
 
