@@ -7137,7 +7137,7 @@ If everything went correctly, the output should be `true`.
 
 ### Dispatch a Proxy Call {: #dispatch-proxy-call }
 
-Once you've registered a proxy, you can forward a call on behalf of the real account. In Remix, expand the Proxy Precompile contract and open **proxy** (or **proxyForceType** if you want to force the proxy type). The following example will use a Balances proxy (or `Any` with Balances allowed) to send value to an EOA with no contract code, keeping `callData` as `0x` for a plain transfer. Remember the runtime limits in [Proxy Dispatch Limitations](#proxy-dispatch-limitations) still apply.
+Once you've registered a proxy, you can forward a call on behalf of the real account. In Remix, expand the Proxy Precompile contract and open **proxy** (or **proxyForceType** if you want to force the proxy type). The following example will use a Balances proxy (or `Any` with Balances allowed) to send value to an EOA with no contract code, keeping `callData` as `0x` for a plain transfer. Remember that the runtime limits described in [Proxy Dispatch Limitations](#proxy-dispatch-limitations) apply.
 
 Ensure MetaMask is connected to the delegate/proxy account (the one authorized via `addProxy`), not the primary account, before dispatching. Then, take the following steps:
 
