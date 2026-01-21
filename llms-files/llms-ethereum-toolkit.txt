@@ -7139,9 +7139,11 @@ If everything went correctly, the output should be `true`.
 
 Once you've registered a proxy, you can forward a call on behalf of the real account. In Remix, expand the Proxy Precompile contract and open **proxy** (or **proxyForceType** if you want to force the proxy type). Use a Balances proxy (or `Any` with Balances allowed) to send value to an EOA with no contract code, keep `callData` as `0x` for a plain transfer, and remember the runtime limits in [Proxy Dispatch Limitations](#proxy-dispatch-limitations) still apply.
 
+Use `proxy` when the runtime can infer the correct proxy type; switch to `proxyForceType` when you need to enforce a specific role (for example, a governance-only delegate). Only EOAs (or the Batch precompile) can call the Proxy precompile—direct contract callers will revert. For Governance, Staking, and AuthorMapping calls, set `msg.value` to `0`; only Balances allows sending value.
+
 Ensure MetaMask is connected to the delegate/proxy account (the one authorized via `addProxy`), not the primary account, before dispatching.
 
-1. In Remix, set the amount to send in the **VALUE** field
+1. In Remix, set the amount to send in the **VALUE** field. Double-check the VALUE units (wei vs ether) before sending. 
 2. Enter the address of the account being proxied.
 3. Enter the callTo address (this is the receiving account).
 4. Enter `0x` for call data.
