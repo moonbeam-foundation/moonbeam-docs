@@ -77,7 +77,7 @@ Learn more:
 
 ### Finality {: #finality }
 
-Moonbeam and Ethereum have different finality processes. On Ethereum, there is a checkpoint system where validators determine finality at checkpoint blocks, which takes at least 6.4 minutes for a block to be finalized. Moonbeam relies on Polkadot's [GRANDPA](https://docs.polkadot.com/polkadot-protocol/architecture/polkadot-chain/pos-consensus/#finality-gadget-grandpa){target=\_blank} finality gadget, which expedites finality by completing the process parallel to block production and allowing relay chain validators to vote on the highest block, finalizing all blocks leading up to that block.
+Moonbeam and Ethereum have different finality processes. On Ethereum, there is a checkpoint system where validators determine finality at checkpoint blocks, which takes at least 6.4 minutes for a block to be finalized. Moonbeam relies on Polkadot's [GRANDPA](https://docs.polkadot.com/reference/polkadot-hub/consensus-and-security/pos-consensus/#finality-gadget-grandpa){target=\_blank} finality gadget, which expedites finality by completing the process parallel to block production and allowing relay chain validators to vote on the highest block, finalizing all blocks leading up to that block.
 
 Learn more:
 
