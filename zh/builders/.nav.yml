@@ -3,7 +3,6 @@ hide: false
 nav:
   - index.md
   - get-started
-  - build
   - ethereum
   - substrate
   - interoperability
