@@ -8415,14 +8415,14 @@ enum ProxyType {
 
 ## Proxy Types {: #proxy-types }
 
-There are multiple types of proxy roles that can be delegated to accounts, where are represented in `Proxy.sol` through the `ProxyType` enum. The following list includes all of the possible proxies and the type of transactions they can make on behalf of the primary account:
+There are multiple types of proxy roles that can be delegated to accounts, which are represented in `Proxy.sol` through the `ProxyType` enum. The following list includes all of the possible proxies and the type of transactions they can make on behalf of the primary account:
 
  - **Any** — allows the proxy account to dispatch the `Governance`, `Staking`, `Balances`, and `AuthorMapping` actions permitted by the runtime filter; arbitrary smart contract targets are not allowed, and balance transfers are limited to EOAs without contract code
- - **NonTransfer** — allows transactions through the `Governance`, `Staking` and `AuthorMapping` Precompiles, where the `msg.value` is checked to be zero; no contract calls outside those precompiles are permitted
+ - **NonTransfer** — allows transactions through the `Governance`, `Staking` and `AuthorMapping` precompiles, where the `msg.value` is checked to be zero; no contract calls outside those precompiles are permitted
  - **Governance** - the governance proxy will allow the proxy account to make any type of governance related transaction (includes both democracy or council pallets)
  - **Staking** - the staking proxy will allow the proxy account to make staking related transactions through the `Staking` Precompile, including calls to the `AuthorMapping` Precompile
  - **CancelProxy** - the cancel proxy will allow the proxy account to reject and remove delayed proxy announcements (of the primary account). Currently, this is not an action supported by the Proxy Precompile
- - **Balances** - allows only plain balance transfers to EOAs with no contract code and does not support calling contracts or Precompiles
+ - **Balances** - allows only plain balance transfers to EOAs with no contract code and does not support calling contracts or precompiles
  - **AuthorMapping** - this type of proxy account is used by collators to migrate services from one server to another
  - **IdentityJudgement** - the identity judgement proxy will allow the proxy account to judge and certify the personal information associated with accounts on Polkadot. Currently, this is not an action supported by the Proxy Precompile
 
@@ -8505,11 +8505,13 @@ If everything went correctly, the output should be `true`.
 
 Once you've registered a proxy, you can forward a call on behalf of the real account. In Remix, expand the Proxy Precompile contract and open **proxy** (or **proxyForceType** if you want to force the proxy type). Use a Balances proxy (or `Any` with Balances allowed) to send value to an EOA with no contract code, keep `callData` as `0x` for a plain transfer, and remember the runtime limits in [Proxy Dispatch Limitations](#proxy-dispatch-limitations) still apply.
 
-1. Set the value to send 
+Ensure MetaMask is connected to the delegate/proxy account (the one authorized via `addProxy`), not the primary account, before dispatching.
+
+1. In Remix, set the amount to send in the **VALUE** field
 2. Enter the address of the account being proxied.
-3. Enter the sendTo address.
-4. Enter 0x for call data.
-5. Press **Transact** to dispatch the call.  
+3. Enter the callTo address (this is the receiving account).
+4. Enter `0x` for call data.
+5. Press **Transact** to dispatch the call.
 
 ![Dispatching a proxied call](/images/builders/ethereum/precompiles/account/proxy/proxy-6.webp)
 
