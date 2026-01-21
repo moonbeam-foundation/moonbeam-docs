@@ -8,7 +8,7 @@ categories: Precompiles, Ethereum Toolkit
 
 ## 介绍 {: #introduction }
 
-作为一个 Polkadot 平行链和去中心化网络，Moonbeam 具有原生的链上治理功能，使利益相关者能够参与到网络的发展方向中。随着 OpenGov（也称为 Governance v2）的引入，Preimage Pallet 允许代币持有者通过提交 preimage 来创建提案，preimage 是提案中要执行的操作，在链上。提交提案需要 preimage 的哈希值。要了解更多关于 Moonbeam 治理系统的信息，例如相关术语的概述、提案的路线图等等，请参阅 [Moonbeam 上的治理](/learn/features/governance/){target=_blank} 页面。
+作为一个 Polkadot 平行链和去中心化网络，Moonbeam 具有原生的链上治理功能，使利益相关者能够参与到网络的发展方向中。随着 OpenGov（也称为 Governance v2）的引入，Preimage Pallet 允许代币持有者通过提交 preimage 来创建提案，preimage 是提案中要执行的操作，在链上。提交提案需要 preimage 的哈希值。要了解更多关于 Moonbeam 治理系统的信息，例如相关术语的概述、提案的路线图等等，请参阅 [Moonbeam 上的治理](learn/features/governance/){target=\_blank} 页面。
 
 Preimage Precompile 直接与 Substrate 的 Preimage Pallet 交互。该 pallet 是用 Rust 编写的，通常无法从 Moonbeam 的以太坊端访问。但是，Preimage Precompile 允许您访问创建和管理 preimage 所需的函数，所有这些函数都是 Substrate Preimage Pallet 的一部分，直接从 Solidity 接口访问。
 
@@ -16,21 +16,21 @@ Preimage Precompile 位于以下地址：
 
 === "Moonbeam"
 
-     text
+     ```text
      {{ networks.moonbeam.precompiles.preimage }}
-     
+     ```
 
 === "Moonriver"
 
-     text
+     ```text
      {{ networks.moonriver.precompiles.preimage }}
-     
+     ```
 
 === "Moonbase Alpha"
 
-     text
+     ```text
      {{ networks.moonbase.precompiles.preimage }}
-     
+     ```
 
 --8<-- 'text/builders/ethereum/precompiles/security.md'
 
@@ -61,14 +61,14 @@ Preimage Precompile 位于以下地址：
 
 以下示例在 Moonbase Alpha 上演示，但是，也可以对 Moonriver 采取类似的步骤。要按照本指南中的步骤进行操作，您需要具备以下条件：
 
- - 安装了 MetaMask 并[连接到 Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}
+ - 安装了 MetaMask 并[连接到 Moonbase Alpha](tokens/connect/metamask/){target=\_blank}
  - 一个包含一些 DEV 代币的帐户。
  --8<-- 'text/_common/faucet/faucet-list-item.md'
 
 ### Remix 设置 {: #remix-set-up }
 
 1. 点击**文件资源管理器**选项卡
-2. 将[`Preimage.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/preimage/Preimage.sol){target=_blank}的副本粘贴到名为 `Preimage.sol` 的 [Remix 文件](https://remix.ethereum.org){target=_blank}中
+2. 将[`Preimage.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/preimage/Preimage.sol){target=_blank}的副本粘贴到名为 `Preimage.sol` 的 [Remix 文件](https://remix.ethereum.org){target=\_blank}中
 
 ![复制粘贴 referenda Solidity 接口到 Remix 中。](/images/builders/ethereum/precompiles/features/governance/preimage/preimage-1.webp)
 
@@ -93,9 +93,9 @@ Preimage Precompile 位于以下地址：
 
 为了提交提案，您首先需要提交该提案的预映像，该预映像本质上定义了链上的拟议操作。您可以使用 Preimage 预编译的 `notePreimage` 函数提交预映像。`notePreimage` 函数接受编码后的提案，因此您需要采取的第一个步骤是获取编码后的提案，这可以使用 Polkadot.js Apps 轻松完成。
 
-在本节中，您将获取提案的预映像哈希和编码后的提案数据。要获取预映像哈希，您首先需要导航到 [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network%2Fpublic-ws#){target=_blank} 的 **Preimage** 页面：
+在本节中，您将获取提案的预映像哈希和编码后的提案数据。要获取预映像哈希，您首先需要导航到 [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network%2Fpublic-ws#){target=\_blank} 的 **Preimage** 页面：
 
- 1. 导航到 [**Governance** 选项卡](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network%2Fpublic-ws#/democracy){target=_blank}
+ 1. 导航到 [**Governance** 选项卡](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network%2Fpublic-ws#/democracy){target=\_blank}
  2. 从下拉列表中选择 **Preimages**
  3. 在 **Preimages** 页面中，单击 **+ Add preimage**
 
@@ -120,7 +120,7 @@ Preimage Precompile 位于以下地址：
 !!! note
      您不应在此处签名并提交交易。您将在下一步中通过 `notePreimage` 函数提交此信息。
 
-现在，您可以获取从 [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network%2Fpublic-ws#/democracy){target=_blank} 获取的编码提案的 **bytes**，并通过 Preimage 预编译的 `notePreimage` 函数提交它。要通过 `notePreimage` 函数提交预映像，请按照以下步骤操作：
+现在，您可以获取从 [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network%2Fpublic-ws#/democracy){target=\_blank} 获取的编码提案的 **bytes**，并通过 Preimage 预编译的 `notePreimage` 函数提交它。要通过 `notePreimage` 函数提交预映像，请按照以下步骤操作：
 
 1. 展开 Preimage 预编译合约以查看可用的函数
 2. 找到 **notePreimage** 函数，然后按下按钮以展开该部分
@@ -129,6 +129,6 @@ Preimage Precompile 位于以下地址：
 
 ![使用 Preimage 预编译的 notePreimage 函数提交预映像。](/images/builders/ethereum/precompiles/features/governance/preimage/preimage-7.webp)
 
-现在您已经提交了提案的预映像，您的提案就可以提交了！前往 [Referenda 预编译文档](/builders/ethereum/precompiles/features/governance/referenda/){target=_blank} 了解如何提交您的提案。
+现在您已经提交了提案的预映像，您的提案就可以提交了！前往 [Referenda 预编译文档](builders/ethereum/precompiles/features/governance/referenda/){target=\_blank} 了解如何提交您的提案。
 
 如果您希望删除预映像，您可以按照上面记录的相同步骤操作，除了使用 `unnotePreimage` 函数并传入预映像哈希而不是编码提案。

@@ -239,7 +239,7 @@ The interface also includes the following events:
 
 The below example is demonstrated on Moonbase Alpha, however, similar steps can be taken for Moonriver. To follow the steps in this guide, you'll need to have the following:
 
- - MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}
+ - MetaMask installed and [connected to Moonbase Alpha](tokens/connect/metamask/){target=\_blank}
  - An account with some DEV tokens.
  --8<-- 'text/_common/faucet/faucet-list-item.md'
 
@@ -269,18 +269,18 @@ The below example is demonstrated on Moonbase Alpha, however, similar steps can 
 
 ### Submit a Proposal {: #submit-a-proposal }
 
-In order to submit a proposal, you should have already submitted the preimage hash for the proposal. If you have not done so, please follow the steps outlined in the [Preimage Precompile](/builders/ethereum/precompiles/features/governance/preimage/){target=\_blank} documentation. There are two methods that can be used to submit a proposal: `submitAt` and `submitAfter`. The `submitAt` function submits a proposal to be executed *at* a given block and the `submitAfter` function submits a proposal to be executed *after* a specific block. For this example, `submitAt` will be used, but the same steps can be applied if you want to use `submitAfter` instead.
+In order to submit a proposal, you should have already submitted the preimage hash for the proposal. If you have not done so, please follow the steps outlined in the [Preimage Precompile](builders/ethereum/precompiles/features/governance/preimage/){target=\_blank} documentation. There are two methods that can be used to submit a proposal: `submitAt` and `submitAfter`. The `submitAt` function submits a proposal to be executed *at* a given block and the `submitAfter` function submits a proposal to be executed *after* a specific block. For this example, `submitAt` will be used, but the same steps can be applied if you want to use `submitAfter` instead.
 
-To submit the proposal, you'll need to determine which Track your proposal belongs to and the Track ID of that Track. For help with these requirements, you can refer to the [OpenGov section of the governance overview page](/learn/features/governance/#opengov){target=\_blank}.
+To submit the proposal, you'll need to determine which Track your proposal belongs to and the Track ID of that Track. For help with these requirements, you can refer to the [OpenGov section of the governance overview page](learn/features/governance/#opengov){target=\_blank}.
 
-You'll also need to make sure you have the preimage hash and the length of the preimage handy, both of which you should have received from following the steps in the [Preimage Precompile](/builders/ethereum/precompiles/features/governance/preimage/){target=\_blank} documentation. If you're unsure, you can find your preimage from the [Preimage page of Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/preimages){target=\_blank} and copy the preimage hash. To get the length of the preimage, you can then query the `preimage` pallet using the `preimageFor` method from the [Polkadot.js Apps Chain State page](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/chainstate){target=\_blank}.
+You'll also need to make sure you have the preimage hash and the length of the preimage handy, both of which you should have received from following the steps in the [Preimage Precompile](builders/ethereum/precompiles/features/governance/preimage/){target=\_blank} documentation. If you're unsure, you can find your preimage from the [Preimage page of Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/preimages){target=\_blank} and copy the preimage hash. To get the length of the preimage, you can then query the `preimage` pallet using the `preimageFor` method from the [Polkadot.js Apps Chain State page](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/chainstate){target=\_blank}.
 
 Once you have the Track ID, preimage hash, and preimage length, you can go ahead and submit the proposal using the Referenda Precompile. From Remix, you can take the following steps:
 
 1. Expand the Referenda Precompile contract to see the available functions
 2. Find the **submitAt** function and press the button to expand the section
 3. Enter the track ID that your proposal will be processed through
-4. Enter the preimage hash. You should have received this from following the steps in the [Preimage Precompile](/builders/ethereum/precompiles/features/governance/preimage/){target=\_blank} documentation
+4. Enter the preimage hash. You should have received this from following the steps in the [Preimage Precompile](builders/ethereum/precompiles/features/governance/preimage/){target=\_blank} documentation
 5. Enter the length of the preimage
 6. Enter the block you want the proposal to be executed at
 7. Press **transact** and confirm the transaction in MetaMask
@@ -291,9 +291,9 @@ After your transaction has been confirmed you'll be able to see the proposal lis
 
 ### Submit Decision Deposit {: #submit-decision-deposit }
 
-Now that you've submitted your proposal, the next step is to submit the Decision Deposit. The Decision Deposit is the minimum deposit amount required for a referendum to progress to the decision phase at the end of the Lead-in Period. For more information on the Decision Deposit, please refer to the [OpenGov section of the governance overview page](/learn/features/governance/#opengov){target=\_blank}.
+Now that you've submitted your proposal, the next step is to submit the Decision Deposit. The Decision Deposit is the minimum deposit amount required for a referendum to progress to the decision phase at the end of the Lead-in Period. For more information on the Decision Deposit, please refer to the [OpenGov section of the governance overview page](learn/features/governance/#opengov){target=\_blank}.
 
-You can submit the Decision Deposit using the `placeDecisionDeposit` function of the Referenda Precompile. You'll just need to have the index of the referendum and enough funds to do so. The Decision Deposit varies by Track, to find the minimum amount required you can take a look at the [General Parameters by Track table on the governance overview page](/learn/features/governance/#general-parameters-by-track){target=\_blank}.
+You can submit the Decision Deposit using the `placeDecisionDeposit` function of the Referenda Precompile. You'll just need to have the index of the referendum and enough funds to do so. The Decision Deposit varies by Track, to find the minimum amount required you can take a look at the [General Parameters by Track table on the governance overview page](learn/features/governance/#general-parameters-by-track){target=\_blank}.
 
 To submit the deposit, you can take the following steps:
 

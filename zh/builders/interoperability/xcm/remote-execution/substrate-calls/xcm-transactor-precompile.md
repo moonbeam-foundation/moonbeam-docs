@@ -236,8 +236,9 @@ XCM Transactor 预编译合约是一个 Solidity 接口，开发者可以通过�
 
 以下代码片段介绍了一些 `Multilocation` 结构的示例，因为它们需要馈送到 XCM 交易器预编译函数中：
 
-js
+```js
 --8<-- 'code/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-precompile/multilocations.js'
+```
 
 ## 通过计算来源账户进行交易 {: #xcmtransactor-transact-through-signed }
 

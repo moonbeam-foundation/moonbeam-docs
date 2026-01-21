@@ -89,8 +89,9 @@ Moonbeam 上的本地储备资产是一种代币，从 XCM 的角度来看，其
 2. 查询 `assets` pallet 以获取所有资产
 3. 迭代资产列表以获取所有资产 ID 及其关联的元数据
 
-js
+```js
 --8<-- 'code/builders/interoperability/xcm/xc20/overview/retrieve-xc20s.js'
+```
 
 结果将显示资产 ID 以及所有已注册的外部 XC-20 的一些其他信息。
 

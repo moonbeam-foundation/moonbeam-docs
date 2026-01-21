@@ -25,13 +25,13 @@ categories: Reference
 |   Moonriver    |    RT49    | RT600 |      0 - 455106      |
 | Moonbase Alpha |    RT40    | RT600 |      0 - 675175      |
 
-有关更多信息，您可以查看 [GitHub 上的相关 Frontier PR](https://github.com/polkadot-evm/frontier/pull/465){target=_blank}。
+有关更多信息，您可以查看 [GitHub 上的相关 Frontier PR](https://github.com/polkadot-evm/frontier/pull/465){target=\_blank}。
 
 ---
 
 #### 以太坊费用未发送至国库 {: #ethereum-fees-to-treasury }
 
-在 Runtime 3401 之前和[MB101](https://forum.moonbeam.network/t/proposal-mb101-burn-100-of-transaction-fees-on-moonbeam/2022){target=_blank} 通过之前，Moonbeam 交易费用模型规定将 20% 的费用分配给链上国库，80% 作为通货紧缩力量销毁。但是，在 runtime 800 之前，以太坊交易未正确地将 20% 的交易费用分配给链上国库。
+在 Runtime 3401 之前和[MB101](https://forum.moonbeam.network/t/proposal-mb101-burn-100-of-transaction-fees-on-moonbeam/2022){target=\_blank} 通过之前，Moonbeam 交易费用模型规定将 20% 的费用分配给链上国库，80% 作为通货紧缩力量销毁。但是，在 runtime 800 之前，以太坊交易未正确地将 20% 的交易费用分配给链上国库。
 
 此错误仅影响 Moonriver 和 Moonbase Alpha，并存在于以下运行时和区块范围中：
 
@@ -56,7 +56,7 @@ Moonbeam 配置为将存在性存款设置为 0，这意味着帐户不需要最
 |   Moonriver    |    RT49    | RT1001 |     0 - 1052241      |
 | Moonbase Alpha |    RT40    | RT1001 |     0 - 1285915      |
 
-有关更多信息，您可以查看[相关的 Frontier PR](https://github.com/polkadot-evm/frontier/pull/509){target=_blank}和 GitHub 上的[相关 Substrate PR](https://github.com/paritytech/substrate/issues/10117){target=_blank}。
+有关更多信息，您可以查看[相关的 Frontier PR](https://github.com/polkadot-evm/frontier/pull/509){target=\_blank}和 GitHub 上的[相关 Substrate PR](https://github.com/paritytech/substrate/issues/10117){target=_blank}。
 
 ---
 
@@ -72,7 +72,7 @@ Moonbeam 配置为将存在性存款设置为 0，这意味着帐户不需要最
 |   Moonriver    |    RT49    | RT1300 |     0 - 1541735      |
 | Moonbase Alpha |    RT40    | RT1300 |     0 - 1761128      |
 
-有关更多信息，您可以查看 [GitHub 上的相关 PR](https://github.com/moonbeam-foundation/moonbeam/pull/1291){target=_blank}。
+有关更多信息，您可以查看 [GitHub 上的相关 PR](https://github.com/moonbeam-foundation/moonbeam/pull/1291){target=\_blank}。
 
 ---
 
@@ -112,7 +112,7 @@ EIP-2612 和以太坊区块处理的时间戳以秒为单位；但是，Moonbeam
 |   Moonriver    |    RT49    | RT1605 |     0 - 2077598      |
 | Moonbase Alpha |    RT40    | RT1603 |     0 - 2285346      |
 
-有关更多信息，您可以查看 [GitHub 上的相关 PR](https://github.com/moonbeam-foundation/moonbeam/pull/1451){target=_blank}。
+有关更多信息，您可以查看 [GitHub 上的相关 PR](https://github.com/moonbeam-foundation/moonbeam/pull/1451){target=\_blank}。
 
 ---
 
@@ -120,7 +120,7 @@ EIP-2612 和以太坊区块处理的时间戳以秒为单位；但是，Moonbeam
 
 基于 Substrate 的交易的小费没有得到正确的处理。因为小费没有在运行时代码中处理，导致整个小费部分都被销毁了。我们应用了一个修复方案，将 20% 的小费支付给 Treasury，80% 的小费被销毁，这与当时所有其他的费用行为一致。
 
-请注意，RT3401 引入了一个参数 pallet 费用配置，允许治理调整费用在 Treasury 和销毁之间的分配方式。在该运行时升级与 [MB101](https://forum.moonbeam.network/t/proposal-mb101-burn-100-of-transaction-fees-on-moonbeam/2022){target=_blank} 通过后，Moonbeam 和 Moonriver 上的所有交易费用现在 100% 都会被销毁。
+请注意，RT3401 引入了一个参数 pallet 费用配置，允许治理调整费用在 Treasury 和销毁之间的分配方式。在该运行时升级与 [MB101](https://forum.moonbeam.network/t/proposal-mb101-burn-100-of-transaction-fees-on-moonbeam/2022){target=\_blank} 通过后，Moonbeam 和 Moonriver 上的所有交易费用现在 100% 都会被销毁。
 
 此错误存在于以下运行时和区块范围中：
 
@@ -130,7 +130,7 @@ EIP-2612 和以太坊区块处理的时间戳以秒为单位；但是，Moonbeam
 |   Moonriver    |    RT49    | RT2401 |     0 - 4668844      |
 | Moonbase Alpha |    RT40    | RT2401 |     0 - 4591616      |
 
-有关更多信息，您可以查看 [GitHub 上的相关 PR](https://github.com/moonbeam-foundation/moonbeam/pull/2291){target=_blank}。
+有关更多信息，您可以查看 [GitHub 上的相关 PR](https://github.com/moonbeam-foundation/moonbeam/pull/2291){target=\_blank}。
 
 ---
 
@@ -146,7 +146,7 @@ EIP-2612 和以太坊区块处理的时间戳以秒为单位；但是，Moonbeam
 |   Moonriver    |   RT1001   | RT1801 |  1052242 - 2572555   |
 | Moonbase Alpha |   RT1001   | RT1800 |  1285916 - 2748785   |
 
-您可以查看 [GitHub 上的相关 PR](https://github.com/moonbeam-foundation/moonbeam/pull/1719){target=_blank} 以获取更多信息。
+您可以查看 [GitHub 上的相关 PR](https://github.com/moonbeam-foundation/moonbeam/pull/1719){target=\_blank} 以获取更多信息。
 
 ---
 
@@ -162,7 +162,7 @@ EIP-2612 和以太坊区块处理的时间戳以秒为单位；但是，Moonbeam
 
 虽然根本问题已在 RT1201 中修复，但错误的哈希已在 RT2601 中更正。
 
-有关根本修复的更多信息，您可以查看[GitHub 上的相关 Frontier PR](https://github.com/polkadot-evm/frontier/pull/570/){target=_blank}。要查看父哈希的更正，请查看相应的 [GitHub 上的 Moonbeam PR](https://github.com/moonbeam-foundation/moonbeam/pull/2524){target=_blank}。
+有关根本修复的更多信息，您可以查看[GitHub 上的相关 Frontier PR](https://github.com/polkadot-evm/frontier/pull/570/){target=\_blank}。要查看父哈希的更正，请查看相应的 [GitHub 上的 Moonbeam PR](https://github.com/moonbeam-foundation/moonbeam/pull/2524){target=\_blank}。
 
 ---
 
@@ -178,7 +178,7 @@ EIP-2612 和以太坊区块处理的时间戳以秒为单位；但是，Moonbeam
 |   Moonriver    |   RT1201   | RT1401 |  1471037 - 1705939   |
 | Moonbase Alpha |   RT1200   | RT1400 |  1648994 - 1962557   |
 
-有关更多信息，您可以查看[相关的 Frontier PR](https://github.com/moonbeam-foundation/frontier/pull/45){target=_blank}。
+有关更多信息，您可以查看[相关的 Frontier PR](https://github.com/moonbeam-foundation/frontier/pull/45){target=\_blank}。
 
 ---
 
@@ -196,13 +196,13 @@ EIP-2612 和以太坊区块处理的时间戳以秒为单位；但是，Moonbeam
 |   Moonriver    |   RT1201   | RT1504 |  1471037 - 1910639   |
 | Moonbase Alpha |   RT1200   | RT1504 |  1648994 - 2221772   |
 
-有关更多信息，您可以查看 [GitHub 上的相关 PR](https://github.com/moonbeam-foundation/moonbeam/pull/1528){target=_blank}。
+有关更多信息，您可以查看 [GitHub 上的相关 PR](https://github.com/moonbeam-foundation/moonbeam/pull/1528){target=\_blank}。
 
 ---
 
 #### 错误的 State Root Hash {: #incorrect-state-root-hash }
 
-由于未考虑交易类型字节，因此非旧式交易的 State Root Hash 计算错误。在支持 [EIP-2930](https://eips.ethereum.org/EIPS/eip-2930){target=_blank} 和 [EIP-1559](https://eips.ethereum.org/EIPS/eip-1559){target=_blank} 的情况下，引入的交易类型分别为 `0x01` (1) 和 `0x02` (2)。这些交易类型在 State Root Hash 的计算中被省略。
+由于未考虑交易类型字节，因此非旧式交易的 State Root Hash 计算错误。在支持 [EIP-2930](https://eips.ethereum.org/EIPS/eip-2930){target=\_blank} 和 [EIP-1559](https://eips.ethereum.org/EIPS/eip-1559){target=\_blank} 的情况下，引入的交易类型分别为 `0x01` (1) 和 `0x02` (2)。这些交易类型在 State Root Hash 的计算中被省略。
 
 此错误存在于以下运行时和区块范围中：
 
@@ -212,7 +212,7 @@ EIP-2612 和以太坊区块处理的时间戳以秒为单位；但是，Moonbeam
 |   Moonriver    |   RT1201   | RT1701 |  1471037 - 2281722   |
 | Moonbase Alpha |   RT1200   | RT1700 |  1648994 - 2529735   |
 
-如需更多信息，您可以查看 [相关的 Frontier PR](https://github.com/moonbeam-foundation/frontier/pull/86){target=_blank} 和 [GitHub 上的 Moonbeam PR](https://github.com/moonbeam-foundation/moonbeam/pull/1678/files){target=_blank}。
+如需更多信息，您可以查看 [相关的 Frontier PR](https://github.com/moonbeam-foundation/frontier/pull/86){target=\_blank} 和 [GitHub 上的 Moonbeam PR](https://github.com/moonbeam-foundation/moonbeam/pull/1678/files){target=\_blank}。
 
 ---
 
@@ -270,7 +270,7 @@ EIP-2612 和以太坊区块处理的时间戳以秒为单位；但是，Moonbeam
 
 重複的交易屬於第一個區塊。 因此，在 Moonriver 上，交易屬於區塊 2077599，而在 Moonbase Alpha 上，受影響的交易屬於區塊 2285347。
 
-如需更多資訊，您可以查看 [GitHub 上的相關 Frontier PR](https://github.com/polkadot-evm/frontier/pull/638){target=_blank}。
+如需更多資訊，您可以查看 [GitHub 上的相關 Frontier PR](https://github.com/polkadot-evm/frontier/pull/638){target=\_blank}。
 
 ---
 
@@ -286,7 +286,7 @@ EIP-2612 和以太坊区块处理的时间戳以秒为单位；但是，Moonbeam
 |   Moonriver    |   RT1701   | RT1802 |  2281723 - 2616189   |
 | Moonbase Alpha |   RT1700   | RT1802 |  2529736 - 2879402   |
 
-您可以查看 [GitHub 上的相关 Frontier PR](https://github.com/polkadot-evm/frontier/pull/935){target=_blank} 以了解更多信息。
+您可以查看 [GitHub 上的相关 Frontier PR](https://github.com/polkadot-evm/frontier/pull/935){target=\_blank} 以了解更多信息。
 
 ---
 
@@ -300,13 +300,13 @@ EIP-2612 和以太坊区块处理的时间戳以秒为单位；但是，Moonbeam
 |:--------------:|:----------:|:------:|:--------------------:|
 | Moonbase Alpha |   RT1700   | RT1900 |  2529736 - 3069634   |
 
-您可以查看 [GitHub 上的相关 PR](https://github.com/moonbeam-foundation/moonbeam/pull/1790){target=_blank} 以获取更多信息。
+您可以查看 [GitHub 上的相关 PR](https://github.com/moonbeam-foundation/moonbeam/pull/1790){target=\_blank} 以获取更多信息。
 
 ---
 
 #### Gas 估计差异 {: #gas-estimation-discrepancy }
 
-在使用非交易调用（如 `eth_call`）估算交易的 Gas 与在链上执行交易之间存在差异。造成这种差异的原因是非交易调用没有正确计算 `maxFeePerGas` 和 `maxPriorityFeePerGas`，因此，Ethereum 交易消耗的（[有效性证明](https://wiki.polkadot.com/general/glossary/#proof-of-validity){target=_blank}）的计算方式不同。通过在估算链上交易规模时正确计算这些字段，此问题已得到修复。
+在使用非交易调用（如 `eth_call`）估算交易的 Gas 与在链上执行交易之间存在差异。造成这种差异的原因是非交易调用没有正确计算 `maxFeePerGas` 和 `maxPriorityFeePerGas`，因此，Ethereum 交易消耗的（[有效性证明](https://wiki.polkadot.com/general/glossary/#proof-of-validity){target=\_blank}）的计算方式不同。通过在估算链上交易规模时正确计算这些字段，此问题已得到修复。
 
 此错误存在于以下运行时和区块范围内：
 
@@ -316,7 +316,7 @@ EIP-2612 和以太坊区块处理的时间戳以秒为单位；但是，Moonbeam
 |   Moonriver    |   RT1201   | RT2500 |  1471037 - 5175574   |
 | Moonbase Alpha |   RT1200   | RT2500 |  1648994 - 5053547   |
 
-您可以查看 [GitHub 上的相关 PR](https://github.com/moonbeam-foundation/moonbeam/pull/1790/){target=_blank} 以获取更多信息。
+您可以查看 [GitHub 上的相关 PR](https://github.com/moonbeam-foundation/moonbeam/pull/1790/){target=\_blank} 以获取更多信息。
 
 ---
 
@@ -332,7 +332,7 @@ EIP-2612 和以太坊区块处理的时间戳以秒为单位；但是，Moonbeam
 |   Moonriver    |   RT1201   | RT2801 |  1471037 - 6411588   |
 | Moonbase Alpha |   RT1200   | RT2801 |  1648994 - 6209638   |
 
-您可以查看 [相关的 Frontier PR](https://github.com/polkadot-evm/frontier/pull/1280){target=_blank} 和 [GitHub 上的 Moonbeam PR](https://github.com/moonbeam-foundation/moonbeam/pull/2610){target=_blank} 以获取更多信息。
+您可以查看 [相关的 Frontier PR](https://github.com/polkadot-evm/frontier/pull/1280){target=\_blank} 和 [GitHub 上的 Moonbeam PR](https://github.com/moonbeam-foundation/moonbeam/pull/2610){target=\_blank} 以获取更多信息。
 
 ---
 
@@ -340,7 +340,7 @@ EIP-2612 和以太坊区块处理的时间戳以秒为单位；但是，Moonbeam
 
 启用了 `evm-tracing` 功能的运行时引入了额外的 `ref_time` 开销，这是由于追踪以太坊交易的特殊逻辑（为每个组件发出事件：gasometer、runtime、EVM），用于填充 RPC 调用（如 `debug_traceTransaction` 和 `trace_filter`）的信息。
 
-由于生产运行时中的实际 `ref_time` 较小，这可能导致在 EVM 追踪运行时中重放区块时达到区块权重限制，从而导致跳过交易追踪。这在 Moonbeam 区块 [9770044](https://moonbeam.subscan.io/block/9770044){target=_blank} 中观察到。
+由于生产运行时中的实际 `ref_time` 较小，这可能导致在 EVM 追踪运行时中重放区块时达到区块权重限制，从而导致跳过交易追踪。这在 Moonbeam 区块 [9770044](https://moonbeam.subscan.io/block/9770044){target=\_blank} 中观察到。
 
 修复方法是在追踪每个以太坊交易之前重置先前消耗的权重。重要的是要注意，此问题仅影响 `evm-tracing` 下的代码，该代码未包含在任何生产运行时中。
 
@@ -350,7 +350,7 @@ EIP-2612 和以太坊区块处理的时间戳以秒为单位；但是，Moonbeam
 |:--------------:|:------:|:--------------:|
 |    Moonbeam    | RT3501 |    9770044     |
 
-有关更多信息，您可以查看 [GitHub 上的相关 PR](https://github.com/moonbeam-foundation/moonbeam/pull/3210){target=_blank}。
+有关更多信息，您可以查看 [GitHub 上的相关 PR](https://github.com/moonbeam-foundation/moonbeam/pull/3210){target=\_blank}。
 
 ---
 
@@ -366,7 +366,7 @@ EIP-2612 和以太坊区块处理的时间戳以秒为单位；但是，Moonbeam
 |   Moonriver    |   RT2602   | RT3501 |  5638536 – 10665393  |
 |    Moonbeam    |   RT2602   | RT3501 |  4977160 – 10056989  |
 
-有关更多信息，您可以查看 [GitHub 上的相关 PR](https://github.com/moonbeam-foundation/moonbeam/pull/3128){target=_blank}。
+有关更多信息，您可以查看 [GitHub 上的相关 PR](https://github.com/moonbeam-foundation/moonbeam/pull/3128){target=\_blank}。
 ---
 
 ## 迁移 {: #migrations }
@@ -377,7 +377,7 @@ EIP-2612 和以太坊区块处理的时间戳以秒为单位；但是，Moonbeam
 
 #### 更新映射存储项 {: #update-mapping-storage-item }
 
-此迁移更新了作者映射 pallet 中现已弃用的 `Mapping` 存储项，以使用更安全的哈希类型。哈希类型已更新为 [Blake2_128Concat](https://paritytech.github.io/substrate/master/frame_support/struct.Blake2_128Concat.html){target=_blank} 而不是 [Twox64Concat](https://paritytech.github.io/substrate/master/frame_support/struct.Twox64Concat.html){target=_blank}。
+此迁移更新了作者映射 pallet 中现已弃用的 `Mapping` 存储项，以使用更安全的哈希类型。哈希类型已更新为 [Blake2_128Concat](https://paritytech.github.io/substrate/master/frame_support/struct.Blake2_128Concat.html){target=\_blank} 而不是 [Twox64Concat](https://paritytech.github.io/substrate/master/frame_support/struct.Twox64Concat.html){target=\_blank}。
 
 此迁移仅应用于 Moonriver 和 Moonbase Alpha，并在以下运行时和区块中执行：
 
@@ -386,7 +386,7 @@ EIP-2612 和以太坊区块处理的时间戳以秒为单位；但是，Moonbeam
 |   Moonriver    |      RT800       |    684728     |
 | Moonbase Alpha |      RT800       |    915684     |
 
-如需更多信息，您可以查看 [GitHub 上的相关 PR](https://github.com/moonbeam-foundation/moonbeam/pull/679){target=_blank}。
+如需更多信息，您可以查看 [GitHub 上的相关 PR](https://github.com/moonbeam-foundation/moonbeam/pull/679){target=\_blank}。
 
 ---
 
@@ -402,7 +402,7 @@ EIP-2612 和以太坊区块处理的时间戳以秒为单位；但是，Moonbeam
 |   Moonriver    |      RT1502      |    1814458    |
 | Moonbase Alpha |      RT1502      |    2112058    |
 
-有关更多信息，您可以查看 [GitHub 上的相关 PR](https://github.com/moonbeam-foundation/moonbeam/pull/1407){target=_blank}。
+有关更多信息，您可以查看 [GitHub 上的相关 PR](https://github.com/moonbeam-foundation/moonbeam/pull/1407){target=\_blank}。
 
 ---
 
@@ -418,7 +418,7 @@ EIP-2612 和以太坊区块处理的时间戳以秒为单位；但是，Moonbeam
 |   Moonriver    |      RT1605      |    2077599    |
 | Moonbase Alpha |      RT1603      |    2285347    |
 
-有关更多信息，您可以查看 [GitHub 上的相关 PR](https://github.com/moonbeam-foundation/moonbeam/pull/1525){target=_blank}。
+有关更多信息，您可以查看 [GitHub 上的相关 PR](https://github.com/moonbeam-foundation/moonbeam/pull/1525){target=\_blank}。
 
 ---
 
@@ -436,7 +436,7 @@ EIP-2612 和以太坊区块处理的时间戳以秒为单位；但是，Moonbeam
 |   Moonriver    |      RT1300      |    1541735    |
 | Moonbase Alpha |      RT1300      |    1761128    |
 
-有关更多信息，您可以查看 [GitHub 上的相关 PR](https://github.com/moonbeam-foundation/moonbeam/pull/1744){target=_blank}。
+有关更多信息，您可以查看 [GitHub 上的相关 PR](https://github.com/moonbeam-foundation/moonbeam/pull/1744){target=\_blank}。
 
 ---
 
@@ -444,7 +444,7 @@ EIP-2612 和以太坊区块处理的时间戳以秒为单位；但是，Moonbeam
 
 #### Preimage 存储已移至新的 Preimage Pallet
 
-已应用迁移，该迁移将存储在 democracy pallet 中的 preimage 移动到新的 preimage pallet。由于 [Polkadot 的上游更改](https://github.com/paritytech/substrate/pull/11649/){target=_blank}，因此需要在 Moonbeam 上进行此迁移。
+已应用迁移，该迁移将存储在 democracy pallet 中的 preimage 移动到新的 preimage pallet。由于 [Polkadot 的上游更改](https://github.com/paritytech/substrate/pull/11649/){target=\_blank}，因此需要在 Moonbeam 上进行此迁移。
 
 Moonbeam 中有一个 preimage 受到了影响，该 preimage 从调度队列中删除且从未执行：`0x14262a42aa6ccb3cae0a169b939ca5b185bc317bb7c449ca1741a0600008d306`。此 preimage 已由最初提交该 preimage 的帐户[手动删除](https://moonbeam.subscan.io/extrinsic/2693398-8){target=_blank}。
 
@@ -456,7 +456,7 @@ Moonbeam 中有一个 preimage 受到了影响，该 preimage 从调度队列中
 |   Moonriver    |      RT2000      |    3202604    |
 | Moonbase Alpha |      RT2000      |    2673234    |
 
-有关更多信息，您可以查看 [GitHub 上的相关 PR](https://github.com/moonbeam-foundation/moonbeam/pull/1962){target=_blank}。
+有关更多信息，您可以查看 [GitHub 上的相关 PR](https://github.com/moonbeam-foundation/moonbeam/pull/1962){target=\_blank}。
 
 ---
 
@@ -472,7 +472,7 @@ Moonbeam 中有一个 preimage 受到了影响，该 preimage 从调度队列中
 |   Moonriver    |      RT2801      |    6411588    |
 | Moonbase Alpha |      RT2801      |    6209638    |
 
-如需更多資訊，您可以查看 [GitHub 上的相關 PR](https://github.com/moonbeam-foundation/moonbeam/pull/2643){target=_blank}。
+如需更多資訊，您可以查看 [GitHub 上的相關 PR](https://github.com/moonbeam-foundation/moonbeam/pull/2643){target=\_blank}。
 
 需要進行後續遷移，以正確清除與 governance V1 集體關聯的存儲條目，該遷移在以下運行時和區塊中執行：
 
@@ -482,7 +482,7 @@ Moonbeam 中有一个 preimage 受到了影响，该 preimage 从调度队列中
 |   Moonriver    |      RT2901      |    6699589    |
 | Moonbase Alpha |      RT2901      |    6710531    |
 
-如需更多資訊，您可以查看 [GitHub 上的相關 PR](https://github.com/moonbeam-foundation/moonbeam/pull/2711){target=_blank}。
+如需更多資訊，您可以查看 [GitHub 上的相關 PR](https://github.com/moonbeam-foundation/moonbeam/pull/2711){target=\_blank}。
 
 ---
 
@@ -498,7 +498,7 @@ Moonbeam 中有一个 preimage 受到了影响，该 preimage 从调度队列中
 |   Moonriver    |      RT2901      |    6699589    |
 | Moonbase Alpha |      RT2901      |    6710531    |
 
-有关更多信息，您可以查看 [GitHub 上的相关 PR](https://github.com/moonbeam-foundation/moonbeam/pull/2685){target=_blank}。
+有关更多信息，您可以查看 [GitHub 上的相关 PR](https://github.com/moonbeam-foundation/moonbeam/pull/2685){target=\_blank}。
 
 ---
 
@@ -530,7 +530,7 @@ Moonbeam 中有一个 preimage 受到了影响，该 preimage 从调度队列中
 |   Moonriver    |      RT2602      |    5638536    |
 | Moonbase Alpha |      RT2601      |    5474345    |
 
-如需了解更多信息，您可以查看 [GitHub 上的相关 PR](https://github.com/moonbeam-foundation/moonbeam/pull/2526){target=_blank}。
+如需了解更多信息，您可以查看 [GitHub 上的相关 PR](https://github.com/moonbeam-foundation/moonbeam/pull/2526){target=\_blank}。
 
 ---
 
@@ -552,7 +552,7 @@ Moonbeam 中有一个 preimage 受到了影响，该 preimage 从调度队列中
 |   Moonriver    |       RT53       |     9696      |
 | Moonbase Alpha |       RT52       |    238827     |
 
-有关更多信息，您可以查看 [GitHub 上的相关 PR](https://github.com/moonbeam-foundation/moonbeam/pull/505){target=_blank}。
+有关更多信息，您可以查看 [GitHub 上的相关 PR](https://github.com/moonbeam-foundation/moonbeam/pull/505){target=\_blank}。
 
 ---
 
@@ -567,7 +567,7 @@ Moonbeam 中有一个 preimage 受到了影响，该 preimage 从调度队列中
 |   Moonriver    |       RT53       |     9696      |
 | Moonbase Alpha |       RT52       |    238827     |
 
-有关更多信息，您可以查看 [GitHub 上的相关 PR](https://github.com/moonbeam-foundation/moonbeam/pull/502){target=_blank}。
+有关更多信息，您可以查看 [GitHub 上的相关 PR](https://github.com/moonbeam-foundation/moonbeam/pull/502){target=\_blank}。
 
 ---
 
@@ -582,7 +582,7 @@ Moonbeam 中有一个 preimage 受到了影响，该 preimage 从调度队列中
 |   Moonriver    |      RT200       |    259002     |
 | Moonbase Alpha |      RT200       |    457614     |
 
-有关更多信息，您可以查看 [GitHub 上的相关 PR](https://github.com/moonbeam-foundation/moonbeam/pull/610){target=_blank}。
+有关更多信息，您可以查看 [GitHub 上的相关 PR](https://github.com/moonbeam-foundation/moonbeam/pull/610){target=\_blank}。
 
 ---
 
@@ -598,7 +598,7 @@ Moonbeam 中有一个 preimage 受到了影响，该 preimage 从调度队列中
 |   Moonriver    |      RT1001      |    1052242    |
 | Moonbase Alpha |      RT1001      |    1285916    |
 
-有关更多信息，您可以查看 [GitHub 上的相关 PR](https://github.com/moonbeam-foundation/moonbeam/pull/970){target=_blank}。
+有关更多信息，您可以查看 [GitHub 上的相关 PR](https://github.com/moonbeam-foundation/moonbeam/pull/970){target=\_blank}。
 
 ---
 
@@ -619,7 +619,7 @@ Parachain 质押 pallet 已更新，包含手动退出。如果候选人或委�
 |   Moonriver    |      RT1001      |    1052242    |
 | Moonbase Alpha |      RT1001      |    1285916    |
 
-有关更多信息，您可以查看 [GitHub 上的相关 PR](https://github.com/moonbeam-foundation/moonbeam/pull/810){target=_blank}。
+有关更多信息，您可以查看 [GitHub 上的相关 PR](https://github.com/moonbeam-foundation/moonbeam/pull/810){target=\_blank}。
 
 ---
 
@@ -635,7 +635,7 @@ Parachain 质押 pallet 已更新，包含手动退出。如果候选人或委�
 |   Moonriver    |      RT1101      |    1188000    |
 | Moonbase Alpha |      RT1100      |    1426319    |
 
-有关更多信息，您可以查看 [GitHub 上的相关 PR](https://github.com/moonbeam-foundation/moonbeam/pull/1096){target=_blank}。
+有关更多信息，您可以查看 [GitHub 上的相关 PR](https://github.com/moonbeam-foundation/moonbeam/pull/1096){target=\_blank}。
 
 ---
 
@@ -655,7 +655,7 @@ Parachain 质押 pallet 已更新，包含手动退出。如果候选人或委�
 |   Moonriver    |      RT1201      |    1471037    |
 | Moonbase Alpha |      RT1200      |    1648994    |
 
-有关更多信息，您可以查看 [GitHub 上的相关 PR](https://github.com/moonbeam-foundation/moonbeam/pull/1117){target=_blank}。
+有关更多信息，您可以查看 [GitHub 上的相关 PR](https://github.com/moonbeam-foundation/moonbeam/pull/1117){target=\_blank}。
 
 ---
 
@@ -671,7 +671,7 @@ Parachain 质押 pallet 已更新，包含手动退出。如果候选人或委�
 |   Moonriver    |      RT1300      |    1541735    |
 | Moonbase Alpha |      RT1300      |    1761128    |
 
-有关更多信息，您可以查看 [GitHub 上的相关 PR](https://github.com/moonbeam-foundation/moonbeam/pull/1291){target=_blank}。
+有关更多信息，您可以查看 [GitHub 上的相关 PR](https://github.com/moonbeam-foundation/moonbeam/pull/1291){target=\_blank}。
 
 ---
 
@@ -687,7 +687,7 @@ Parachain 质押 pallet 已更新，包含手动退出。如果候选人或委�
 |   Moonriver    |      RT1502      |    1814458    |
 | Moonbase Alpha |      RT1502      |    2112058    |
 
-有关更多信息，您可以查看 [GitHub 上的相关 PR](https://github.com/moonbeam-foundation/moonbeam/pull/1408){target=_blank}。
+有关更多信息，您可以查看 [GitHub 上的相关 PR](https://github.com/moonbeam-foundation/moonbeam/pull/1408){target=\_blank}。
 
 ---
 
@@ -703,7 +703,7 @@ Parachain 质押 pallet 已更新，包含手动退出。如果候选人或委�
 |   Moonriver    |      RT1701      |    2281723    |
 | Moonbase Alpha |      RT1700      |    2529736    |
 
-有关更多信息，您可以查看 [GitHub 上的相关 PR](https://github.com/moonbeam-foundation/moonbeam/pull/1604){target=_blank}。
+有关更多信息，您可以查看 [GitHub 上的相关 PR](https://github.com/moonbeam-foundation/moonbeam/pull/1604){target=\_blank}。
 
 ---
 
@@ -738,7 +738,7 @@ Parachain 质押 pallet 已更新，包含手动退出。如果候选人或委�
 |   Moonriver    |      RT2801      |    6411588    |
 | Moonbase Alpha |      RT2801      |    6209638    |
 
-有关更多信息，您可以查看 [GitHub 上的相关 PR](https://github.com/moonbeam-foundation/moonbeam/pull/2690){target=_blank}。
+有关更多信息，您可以查看 [GitHub 上的相关 PR](https://github.com/moonbeam-foundation/moonbeam/pull/2690){target=\_blank}。
 
 ---
 
@@ -754,7 +754,7 @@ Parachain 质押 pallet 已更新，包含手动退出。如果候选人或委�
 |   Moonriver    |      RT3300      |    8894417    |
 | Moonbase Alpha |      RT3300      |    9062316    |
 
-有关更多信息，您可以查看 [GitHub 上的相关 PR](https://github.com/moonbeam-foundation/moonbeam/pull/2976){target=_blank}。
+有关更多信息，您可以查看 [GitHub 上的相关 PR](https://github.com/moonbeam-foundation/moonbeam/pull/2976){target=\_blank}。
 
 #### ParachainStaking：货币 → 同质化代币迁移 {: #parachainstaking-currency-to-fungible }
 
@@ -776,7 +776,7 @@ Parachain 质押 pallet 已更新，包含手动退出。如果候选人或委�
 
 引入了一项迁移，以支持对已关闭的全民投票的提交保证金进行退款，该全民投票更新了 `ReferendumInfo` 类型。`ReferendumInfo` 的以下不变性已更改，以便第二个参数 `Deposit<AccountId, Balance>` 现在是可选的 `Option<Deposit<AccountId, Balance>>`：`Approved`、`Rejected`、`Cancelled` 和 `TimedOut`。
 
-这源于对 [Substrate](https://github.com/paritytech/substrate/pull/12788){target=_blank} 存储库的上游更改。
+这源于对 [Substrate](https://github.com/paritytech/substrate/pull/12788){target=\_blank} 存储库的上游更改。
 
 此迁移在以下运行时和区块执行：
 
@@ -786,7 +786,7 @@ Parachain 质押 pallet 已更新，包含手动退出。如果候选人或委�
 |   Moonriver    |      RT2302      |    4133065    |
 | Moonbase Alpha |      RT2301      |    4172407    |
 
-有关更多信息，您可以查看 [GitHub 上的相关 PR](https://github.com/moonbeam-foundation/moonbeam/pull/2134){target=_blank}。
+有关更多信息，您可以查看 [GitHub 上的相关 PR](https://github.com/moonbeam-foundation/moonbeam/pull/2134){target=\_blank}。
 
 ---
 
@@ -838,7 +838,7 @@ XCM 交易器 Pallet 的 `TransactInfo` 存储项已应用迁移，更改了以�
 |   Moonriver    |      RT1201      |    1471037    |
 | Moonbase Alpha |      RT1200      |    1648994    |
 
-有关更多信息，您可以查看 [GitHub 上的相关 PR](https://github.com/moonbeam-foundation/moonbeam/pull/1159){target=_blank}。
+有关更多信息，您可以查看 [GitHub 上的相关 PR](https://github.com/moonbeam-foundation/moonbeam/pull/1159){target=\_blank}。
 
 ---
 
@@ -870,7 +870,7 @@ XCM 交易器 Pallet 的 `TransactInfo` 存储项已应用迁移，更改了以�
 |   Moonriver    |      RT2302      |    4133065    |
 | Moonbase Alpha |      RT2301      |    4172407    |
 
-有关更多信息，您可以查看 [GitHub 上的相关 PR](https://github.com/moonbeam-foundation/moonbeam/pull/2145){target=_blank}。
+有关更多信息，您可以查看 [GitHub 上的相关 PR](https://github.com/moonbeam-foundation/moonbeam/pull/2145){target=\_blank}。
 
 ---
 
@@ -886,7 +886,7 @@ XCM 交易器 Pallet 的 `TransactInfo` 存储项已应用迁移，更改了以�
 |   Moonriver    |      RT2801      |    6411588    |
 | Moonbase Alpha |      RT2801      |    6209638    |
 
-有关更多信息，您可以查看 [GitHub 上的相关 PR](https://github.com/moonbeam-foundation/moonbeam/pull/2634){target=_blank}。
+有关更多信息，您可以查看 [GitHub 上的相关 PR](https://github.com/moonbeam-foundation/moonbeam/pull/2634){target=\_blank}。
 
 ---
 
@@ -908,7 +908,7 @@ XCM 交易器 Pallet 的 `TransactInfo` 存储项已应用迁移，更改了以�
 |   Moonriver    |      RT3501      |    10665393   |
 | Moonbase Alpha |      RT3500      |    10750816   |
 
-有关更多信息，您可以在 GitHub 上查看相关的 PR：[2869](https://github.com/moonbeam-foundation/moonbeam/pull/2869){target=_blank} 和 [3020](https://github.com/moonbeam-foundation/moonbeam/pull/3020){target=_blank}。
+有关更多信息，您可以在 GitHub 上查看相关的 PR：[2869](https://github.com/moonbeam-foundation/moonbeam/pull/2869){target=\_blank} 和 [3020](https://github.com/moonbeam-foundation/moonbeam/pull/3020){target=\_blank}。
 
 ---
 
@@ -926,4 +926,4 @@ Nimbus 存储库应用了一项重大更改，弃用了 `EligibleRatio`，转而
 |   Moonriver    |      RT1502      |    1814458    |
 | Moonbase Alpha |      RT1502      |    2112058    |
 
-有关更多信息，您可以查看[相关的 Nimbus PR](https://github.com/moonbeam-foundation/nimbus/pull/45){target=_blank} 和 [GitHub 上的 Moonbeam PR](https://github.com/moonbeam-foundation/moonbeam/pull/1400){target=_blank}。
+有关更多信息，您可以查看[相关的 Nimbus PR](https://github.com/moonbeam-foundation/nimbus/pull/45){target=\_blank} 和 [GitHub 上的 Moonbeam PR](https://github.com/moonbeam-foundation/moonbeam/pull/1400){target=\_blank}。

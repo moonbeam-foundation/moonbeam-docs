@@ -238,7 +238,9 @@ touch balances.ts
 1. 使用 `publicClient.getBalance` 函数获取 `addressFrom` 和 `addressTo` 地址的余额。您还可以利用 `formatEther` 函数将余额转换为更易于阅读的数字（以 GLMR、MOVR 或 DEV 为单位）
 1. 最后，运行 `balances` 函数
 
+```ts
 --8<-- 'code/builders/ethereum/libraries/viem/balances.ts'
+```
 
 要运行脚本并获取帐户余额，您可以运行以下命令：
 
@@ -249,6 +251,45 @@ npx ts-node balances.ts
 如果成功，则原始地址和接收地址的余额将以 DEV 形式显示在您的终端中。
 
 --8<-- 'code/builders/ethereum/libraries/viem/terminal/balances.md'
+
+### 发送交易脚本 {: #send-transaction-script }
+
+您只需要一个文件即可在账户之间执行交易。本示例将从源地址（您持有其私钥）向另一个地址转账 1 个 DEV 代币。首先，可以通过运行以下命令创建 `transaction.ts` 文件：
+
+```bash
+touch transaction.ts
+```
+
+接下来，创建该文件的脚本并完成以下步骤：
+
+1. 更新导入，包含来自 `viem` 的 `createWalletClient`、`http` 和 `parseEther`，来自 `viem/accounts` 的 `privateKeyToAccount`，以及来自 `viem/chains` 的目标网络
+1. [设置一个 viem 钱包客户端](#for-writing-chain-data) 用于写入链数据，它将与您的私钥一起用于发送交易。**注意：这仅用于示例目的。切勿将您的私钥存储在 TypeScript 文件中**
+1. [设置一个公共 viem 客户端](#for-reading-chain-data) 用于读取链数据，它将用于等待交易收据
+1. 定义 `addressTo` 变量
+1. 创建异步 `send` 函数，该函数包装交易对象和 `walletClient.sendTransaction` 方法
+1. 使用 `walletClient.sendTransaction` 函数签名并发送交易。需要传入交易对象，只需包含接收方地址和发送金额即可。注意可以使用 `parseEther`，它会处理从 Ether 到 Wei 的单位转换，类似于使用 `parseUnits(value, decimals)`。使用 `await` 等待交易处理完毕并返回交易哈希
+1. 使用 `publicClient.waitForTransactionReceipt` 函数等待交易收据，表示交易已完成。如果您需要交易收据，或者在此脚本之后直接运行 `balances.ts` 脚本以检查余额是否按预期更新，这将特别有用
+1. 最后，运行 `send` 函数
+
+```ts
+--8<-- 'code/builders/ethereum/libraries/viem/transaction.ts'
+```
+
+要运行该脚本，您可以在终端中运行以下命令：
+
+```bash
+npx ts-node transaction.ts
+```
+
+如果交易成功，您会在终端中看到交易哈希被打印出来。
+
+!!! note
+
+    viem 要求在私钥前加上 `0x` 前缀。许多钱包会省略这个 `0x`，因此在替换 `INSERT_PRIVATE_KEY` 时请确认已包含它。
+
+您还可以使用 `balances.ts` 脚本来检查源账户和接收账户的余额是否已更改。整个工作流程如下所示：
+
+--8<-- 'code/builders/ethereum/libraries/viem/terminal/transaction.md'
 
 ## 部署合约 {: #deploy-contract }
 
@@ -282,7 +323,9 @@ touch deploy.ts
 1. 使用 `publicClient.readContract` 函数获取部署的交易收据。使用 `await` 等待，直到处理完交易并返回合约地址
 1. 最后，运行 `deploy` 函数
 
+```ts
 --8<-- 'code/builders/ethereum/libraries/viem/deploy.ts'
+```
 
 要运行脚本，您可以在终端中输入以下命令：
 
@@ -293,6 +336,39 @@ npx ts-node deploy.ts
 如果成功，合约的地址将显示在终端中。
 
 --8<-- 'code/builders/ethereum/libraries/viem/terminal/deploy.md'
+
+### 读取合约数据（调用方法）{: #read-contract-data }
+
+调用方法不会修改合约存储（更改变量），因此无需发送交易。它们只是读取已部署合约的各种存储变量。
+
+要开始，您可以创建一个文件并命名为 `get.ts`：
+
+```bash
+touch get.ts
+```
+
+然后按照以下步骤创建脚本：
+
+1. 更新导入，包含来自 `viem` 的 `createPublicClient` 和 `http`，来自 `viem/chains` 的目标网络，以及您在[编译合约脚本](#compile-contract-script)部分创建的 `compile.ts` 文件中的 `contractFile`
+1. [设置一个公共 viem 客户端](#for-reading-chain-data) 用于读取链数据，将用于读取 `Incrementer` 合约的当前值
+1. 使用已部署合约的地址创建 `contractAddress` 变量，并使用 `compile.ts` 文件中的 `contractFile` 创建 `abi` 变量
+1. 创建异步 `get` 函数
+1. 使用 `publicClient.readContract` 调用合约，传入 `abi`、函数名称、`contractAddress` 以及任何参数（如需）。使用 `await`，在请求 promise 解析后返回所需的值
+1. 最后，调用 `get` 函数
+
+```ts
+--8<-- 'code/builders/ethereum/libraries/viem/get.ts'
+```
+
+要运行脚本，您可以在终端中输入以下命令：
+
+```bash
+npx ts-node get.ts
+```
+
+如果成功，该值将显示在终端中。
+
+--8<-- 'code/builders/ethereum/libraries/viem/terminal/get.md'
 
 ### 与合约交互（发送方法）{: #interact-with-contract }
 
@@ -313,7 +389,9 @@ touch increment.ts reset.ts
 1. 使用 `publicClient.waitForTransactionReceipt` 函数等待交易收据，表示交易已完成。如果您需要交易收据，或者如果您在此脚本之后直接运行 `get.ts` 脚本以检查当前数字是否已按预期更新，这将特别有用
 1. 最后，调用 `increment` 函数
 
+```js
 --8<-- 'code/builders/ethereum/libraries/viem/increment.ts'
+```
 
 要运行脚本，您可以在终端中输入以下命令：
 
@@ -336,8 +414,9 @@ npx ts-node increment.ts
 1. 使用 `publicClient.waitForTransactionReceipt` 函数等待交易收据，表示交易已完成。如果您需要交易收据，或者如果您在此脚本之后直接运行 `get.ts` 脚本以检查当前数字是否已重置为 `0`，这将特别有用
 1. 最后，调用 `reset` 函数
 
-
+```ts
 --8<-- 'code/builders/ethereum/libraries/viem/reset.ts'
+```
 
 要运行脚本，您可以在终端中输入以下命令：
 

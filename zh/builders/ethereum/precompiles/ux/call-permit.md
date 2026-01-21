@@ -223,6 +223,47 @@ Ethers.js 的 CDN 将出现在 **Resources** 下的库列表中。
 
 ![JSFiddle 控制台中的签名值](/images/builders/ethereum/precompiles/ux/call-permit/call-9.webp)
 
+### 使用 MetaMask 的 JavaScript 签名库 {: #use-metamasks-signing-library }
+
+要使用 JavaScript 和 MetaMask 的 [`@metamask/eth-sig-util` npm 包](https://www.npmjs.com/package/@metamask/eth-sig-util){target=_blank} 生成调用许可签名，首先需要在本地创建一个项目。可以使用以下命令完成：
+
+```bash
+mkdir call-permit-example && cd call-permit-example && touch getSignature.js
+npm init -y
+```
+
+此时你应该有一个可以编写脚本的文件以及一个 `package.json` 文件。打开 `package.json`，在 `"dependencies"` 部分下面添加：
+
+```json
+"type": "module"
+```
+
+接下来，安装 MetaMask 签名库和 [Ethers.js](https://docs.ethers.org/v6){target=_blank}：
+
+```bash
+npm i @metamask/eth-sig-util ethers
+```
+
+!!! note
+
+    请勿泄露私钥，私钥将直接访问你的资金。以下步骤仅用于演示。
+
+在 `getSignature.js` 文件中复制以下代码段：
+
+```js
+--8<-- 'code/builders/ethereum/precompiles/ux/call-permit/getSignature.js'
+```
+
+运行脚本：
+
+```bash
+node getSignature.js
+```
+
+在控制台中，你应该会看到连接签名以及包含 `v`、`r` 和 `s` 的值。在后续与调用许可预编译交互时需要用到这些值，请复制保存。
+
+--8<-- 'code/builders/ethereum/precompiles/ux/call-permit/signature-output.md'
+
 ## 与Solidity接口交互 {: #interact-with-the-solidity-interface }
 
 既然您已经生成了调用许可签名，您就可以测试调用调用许可预编译的`dispatch`函数了。
@@ -238,8 +279,9 @@ Ethers.js 的 CDN 将出现在 **Resources** 下的库列表中。
 1. 在 **value** 字段中输入 `0`
 
 1. 输入 `set` 函数的函数选择器的十六进制表示形式，以及您想要设置为 `SetMessage.sol` 合约消息的字符串。对于此示例，可以使用 `hello world`：
-    text
+    ```text
     0x4ed3885e0000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000b68656c6c6f20776f726c64000000000000000000000000000000000000000000
+    ```
 
 1. 在 **gasLimit** 字段中输入 `100000`
 

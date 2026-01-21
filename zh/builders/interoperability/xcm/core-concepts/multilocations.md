@@ -320,55 +320,60 @@ categories: XCM
 
 要从 Moonbeam 定位另一个平行链（例如，ID 为 1234 的平行链），您可以使用以下多重地址：
 
-===
+=== "Moonbeam"
 
-js
-{
-  parents: 1,
-  interior: {
-    X1: [{ Parachain: 1234 }],
-  },
-};
+    ```js
+    {
+      parents: 1,
+      interior: {
+        X1: [{ Parachain: 1234 }],
+      },
+    };
+    ```
 
-===
+=== "Moonriver"
 
-js
-{
-  parents: 1,
-  interior: {
-    X1: [{ Parachain: 1234 }],
-  },
-};
+    ```js
+    {
+      parents: 1,
+      interior: {
+        X1: [{ Parachain: 1234 }],
+      },
+    };
+    ```
 
-===
+=== "Moonbase Alpha"
 
-js
-{
-  parents: 1,
-  interior: {
-    X1: [{ Parachain: 1234 }],
-  },
-};
+    ```js
+    {
+      parents: 1,
+      interior: {
+        X1: [{ Parachain: 1234 }],
+      },
+    };
+    ```
 
 ### Location to Account API {: #location-to-account-api }
 
 Location to Account API 是一种将多重位置转换为 `AccountID20` 地址的简便方法。可以通过 Polkadot.js Apps **开发者**部分的[运行时调用](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbeam.network#/runtime){target=\_blank}选项卡访问 Location to Account API。Location to Account API 的 `convertLocation` 方法将多重位置作为参数，并返回 `AccountID20` 地址。
 
-javascript
+```javascript
 // 使用 convertLocation 方法查询 locationToAccountApi
 const result =
   await api.call.locationToAccountApi.convertLocation(multilocation);
 console.log('转换结果：', result.toHuman());
+```
 
 您可以在下方查看完整的脚本。
 
 ??? code "查看完整脚本"
 
-    js
+    ```js
     --8<-- 'code/builders/interoperability/xcm/core-concepts/location-to-account.js'
-    
+    ```
 
 该方法将返回与提供的多重位置对应的 `AccountID20` 地址，如下所示：
 
-bash
+```bash
 Conversion result: { Ok: '0x506172656E740000000000000000000000000000' }
+```

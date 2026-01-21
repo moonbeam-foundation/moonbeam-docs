@@ -38,7 +38,7 @@ The Conviction Voting Precompile is located at the following address:
 
 [`ConvictionVoting.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/conviction-voting/ConvictionVoting.sol){target=\_blank} is a Solidity interface that allows developers to interact with the precompile's methods.
 
-The interfaces includes a `Conviction` enum that defines the [Conviction multiplier](/learn/features/governance/#conviction-multiplier-v2){target=\_blank} types. The enum has the following variables:
+The interfaces includes a `Conviction` enum that defines the [Conviction multiplier](learn/features/governance/#conviction-multiplier-v2){target=\_blank} types. The enum has the following variables:
 
  - **None** -  0.1x votes, unlocked
  - **Locked1x** - 1x votes, locked for an Enactment Period following a successful vote
@@ -156,7 +156,7 @@ The interface also includes the following events:
 
 The below example is demonstrated on Moonbase Alpha, however, similar steps can be taken for Moonriver. To follow the steps in this guide, you'll need to have the following:
 
- - MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}
+ - MetaMask installed and [connected to Moonbase Alpha](tokens/connect/metamask/){target=\_blank}
  - An account with some DEV tokens.
  --8<-- 'text/_common/faucet/faucet-list-item.md'
 
@@ -186,7 +186,7 @@ The below example is demonstrated on Moonbase Alpha, however, similar steps can 
 
 ### Vote on a Referendum {: #vote-on-a-referendum }
 
-You can lock tokens and vote on a referendum at anytime during the Lead-in Period or the Decide Period. In order for a referendum to pass, it needs to garner minimum Approval and Support, which vary by track. For more information on each of the relative periods and the Approval and Support requirements by Track, please refer to the [OpenGov section of the governance overview page](/learn/features/governance/#opengov){target=\_blank}.
+You can lock tokens and vote on a referendum at anytime during the Lead-in Period or the Decide Period. In order for a referendum to pass, it needs to garner minimum Approval and Support, which vary by track. For more information on each of the relative periods and the Approval and Support requirements by Track, please refer to the [OpenGov section of the governance overview page](learn/features/governance/#opengov){target=\_blank}.
 
 First, you'll need to get the index of the referendum you wish to vote on. To get the index of a referendum, head to [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network%2Fpublic-ws#/referenda){target=\_blank} and take the following steps:
 
@@ -196,7 +196,7 @@ First, you'll need to get the index of the referendum you wish to vote on. To ge
 
 ![View the list of referenda on Polkadot.js Apps.](/images/builders/ethereum/precompiles/features/governance/conviction-voting/conviction-voting-4.webp)
 
-Now, you're ready to return to Remix to vote on the referendum via the Conviction Voting Precompile. There are two methods you can use to vote on a referendum: `voteYes` or `voteNo`. As you probably have already figured out, if you're in agreement with the proposal, you'll use `voteYes` and if in disagreement, you'll use `voteNo`. You'll specify the amount of tokens you want to lock with your vote and the Conviction, using index of the Conviction you want to vote with in the [aforementioned `Conviction` enum](#the-conviction-voting-solidity-interface). For example, if you wanted to lock your tokens for the duration of two Enactment Periods following a successful vote, you would enter `2` for the `Locked2x` Conviction. For more information on Convictions, you can check out the [Conviction Multiplier section of the Governance v2 documentation](/learn/features/governance/#conviction-multiplier-v2){target=\_blank}.
+Now, you're ready to return to Remix to vote on the referendum via the Conviction Voting Precompile. There are two methods you can use to vote on a referendum: `voteYes` or `voteNo`. As you probably have already figured out, if you're in agreement with the proposal, you'll use `voteYes` and if in disagreement, you'll use `voteNo`. You'll specify the amount of tokens you want to lock with your vote and the Conviction, using index of the Conviction you want to vote with in the [aforementioned `Conviction` enum](#the-conviction-voting-solidity-interface). For example, if you wanted to lock your tokens for the duration of two Enactment Periods following a successful vote, you would enter `2` for the `Locked2x` Conviction. For more information on Convictions, you can check out the [Conviction Multiplier section of the Governance v2 documentation](learn/features/governance/#conviction-multiplier-v2){target=\_blank}.
 
 To submit your vote, you can take the following steps:
 

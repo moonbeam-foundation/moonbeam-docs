@@ -16,7 +16,7 @@ Moonbeam 支持以太坊风格的事件订阅，允许您等待事件并相应�
 
 ## 支持的 Pubsub JSON-RPC 方法 {: #filter-rpc-methods }
 
-请注意，本节中的示例需要安装 [wscat](https://github.com/websockets/wscat){target=_blank}。
+请注意，本节中的示例需要安装 [wscat](https://github.com/websockets/wscat){target=\_blank}。
 
 ???+ function "eth_subscribe"
 
@@ -24,11 +24,11 @@ Moonbeam 支持以太坊风格的事件订阅，允许您等待事件并相应�
 
     === "参数"
 
-        - `subscription_name` *string* - 要订阅的事件类型。支持的[订阅](https://geth.ethereum.org/docs/interacting-with-geth/rpc/pubsub#create-subscriptions#supported-subscriptions){target=_blank} 类型有：
-            - [`newHeads`](https://geth.ethereum.org/docs/interacting-with-geth/rpc/pubsub#newheads){target=_blank} — 每次将新标头附加到链时触发通知
-            - [`logs`](https://geth.ethereum.org/docs/interacting-with-geth/rpc/pubsub#logs){target=_blank} — 返回包含在新的导入块中并符合给定筛选标准的日志
-            - [`newPendingTransactions`](https://geth.ethereum.org/docs/interacting-with-geth/rpc/pubsub#newpendingtransactions){target=_blank} — 返回添加到挂起状态的所有交易的哈希值
-            - [`syncing`](https://geth.ethereum.org/docs/interacting-with-geth/rpc/pubsub#syncing){target=_blank} — 指示节点何时开始或停止与网络同步
+        - `subscription_name` *string* - 要订阅的事件类型。支持的[订阅](https://geth.ethereum.org/docs/interacting-with-geth/rpc/pubsub#create-subscriptions#supported-subscriptions){target=\_blank} 类型有：
+            - [`newHeads`](https://geth.ethereum.org/docs/interacting-with-geth/rpc/pubsub#newheads){target=\_blank} — 每次将新标头附加到链时触发通知
+            - [`logs`](https://geth.ethereum.org/docs/interacting-with-geth/rpc/pubsub#logs){target=\_blank} — 返回包含在新的导入块中并符合给定筛选标准的日志
+            - [`newPendingTransactions`](https://geth.ethereum.org/docs/interacting-with-geth/rpc/pubsub#newpendingtransactions){target=\_blank} — 返回添加到挂起状态的所有交易的哈希值
+            - [`syncing`](https://geth.ethereum.org/docs/interacting-with-geth/rpc/pubsub#syncing){target=\_blank} — 指示节点何时开始或停止与网络同步
 
     === "返回值"
 
@@ -73,16 +73,16 @@ Moonbeam 支持以太坊风格的事件订阅，允许您等待事件并相应�
 
 ## 使用以太坊库订阅事件 {: #subscribe-to-events }
 
-本节将向您展示如何使用[以太坊库](/builders/ethereum/libraries/){target=_blank}（如[Ethers.js](/builders/ethereum/libraries/ethersjs/){target=_blank}）以编程方式订阅 Moonbeam 上的事件。
+本节将向您展示如何使用[以太坊库](/builders/ethereum/libraries/){target=\_blank}（如[Ethers.js](/builders/ethereum/libraries/ethersjs/){target=\_blank}）以编程方式订阅 Moonbeam 上的事件。
 
 ### 检查先决条件 {: #checking-prerequisites }
 
 本指南中的示例基于 Ubuntu 22.04 环境。您还需要以下内容：
 
-- 安装 MetaMask 并[连接到 Moonbase Alpha](/tokens/connect/metamask/){target=_blank}
+- 安装 MetaMask 并[连接到 Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}
 - 一个有资金的帐户。
   --8<-- 'text/_common/faucet/faucet-list-item.md'
-- 在 Moonbase Alpha 上部署您自己的 ERC-20 代币。您可以通过按照[我们的 Remix 教程](/builders/ethereum/dev-env/remix/){target=_blank}，同时首先将 MetaMask 指向 Moonbase Alpha 来做到这一点
+- 在 Moonbase Alpha 上部署您自己的 ERC-20 代币。您可以通过按照[我们的 Remix 教程](/builders/ethereum/dev-env/remix/){target=\_blank}，同时首先将 MetaMask 指向 Moonbase Alpha 来做到这一点
 - 安装 Ethers.js 或您选择的 Ethereum 库。您可以通过 npm 安装 Ethers.js：
 
     ```bash
@@ -113,7 +113,7 @@ Moonbeam 支持以太坊风格的事件订阅，允许您等待事件并相应�
 
     这转换为 `0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef`，并用作订阅过滤器中的第一个主题。
 
-如果您不提供任何主题，您将订阅合约发出的所有事件。有关主题的更多信息，请参见 [了解以太坊区块链上的事件日志](https://medium.com/mycrypto/understanding-event-logs-on-the-ethereum-blockchain-f4ae7ba50378){target=_blank} Medium 文章。
+如果您不提供任何主题，您将订阅合约发出的所有事件。有关主题的更多信息，请参见 [了解以太坊区块链上的事件日志](https://medium.com/mycrypto/understanding-event-logs-on-the-ethereum-blockchain-f4ae7ba50378){target=\_blank} Medium 文章。
 
 通过执行此代码，您将建立一个订阅来监视 Moonbeam 上的 ERC-20 代币转移事件。新事件发生时将记录到终端。
 
@@ -143,7 +143,7 @@ Moonbeam 支持以太坊风格的事件订阅，允许您等待事件并相应�
 
 索引主题（例如 `from` 和 `to` 地址）通常由 256 位（64 个十六进制字符）值表示。如有必要，它们会用零填充以达到完整长度。
 
-未索引的数据（例如转移的代币值）不包含在 `topics` 数组中。相反，它在日志的 `data` 字段中以 bytes32/hex 格式返回。要解码它，您可以使用例如这个 [Web3 类型转换器工具](https://web3-type-converter.onbrn.com){target=_blank} 并验证 `data` 是以 Wei 格式格式化的 1 DEV 代币。
+未索引的数据（例如转移的代币值）不包含在 `topics` 数组中。相反，它在日志的 `data` 字段中以 bytes32/hex 格式返回。要解码它，您可以使用例如这个 [Web3 类型转换器工具](https://web3-type-converter.onbrn.com){target=\_blank} 并验证 `data` 是以 Wei 格式格式化的 1 DEV 代币。
 
 如果事件返回多个未索引的值，它们将按照事件发出它们的相同顺序一个接一个地附加。因此，每个值都是通过将数据解构为单独的 32 字节（或 64 个十六进制字符长）的部分来获得的。
 
@@ -151,8 +151,9 @@ Moonbeam 支持以太坊风格的事件订阅，允许您等待事件并相应�
 
 使用与上一节相同的示例，您可以通过以下代码订阅 Transfer 事件，同时按特定发送者进行过滤：
 
-js
+```js
 --8<-- 'code/builders/ethereum/json-rpc/pubsub/use-wildcards.js'
+```
 
 在此，第一个索引参数 (`from`) 被过滤到提供的地址列表，而 `to` 设置为 `null` 以充当通配符。合约过滤器会为您处理主题格式，因此您无需手动填充地址。
 
@@ -185,4 +186,4 @@ js
 --8<-- 'code/builders/ethereum/json-rpc/pubsub/terminal/syncing.md'
 
 !!! note
-    [Frontier](https://github.com/polkadot-evm/frontier){target=_blank} 中的 pubsub 实现仍在积极开发中。当前版本允许用户订阅特定事件类型，但可能仍然存在一些限制。
+    [Frontier](https://github.com/polkadot-evm/frontier){target=\_blank} 中的 pubsub 实现仍在积极开发中。当前版本允许用户订阅特定事件类型，但可能仍然存在一些限制。

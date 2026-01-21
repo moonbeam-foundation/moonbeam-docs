@@ -149,8 +149,8 @@ Moonbeam 的 [中继数据验证器预编译](https://github.com/moonbeam-founda
     --8<-- 'code/builders/ethereum/precompiles/utility/relay-data-verifier/ethers-relay-data-verifier.js'
     ```
 
-     "Web3.py"
+=== "Web3.py"
 
-     ```py
-     --8<-- 'code/builders/ethereum/precompiles/utility/relay-data-verifier/web3py-relay-data-verifier.py'
-     ```
+    ```py
+    --8<-- 'code/builders/ethereum/precompiles/utility/relay-data-verifier/web3py-relay-data-verifier.py'
+    ```

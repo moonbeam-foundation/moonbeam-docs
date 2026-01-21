@@ -151,6 +151,127 @@ mkdir ethers-examples && cd ethers-examples && npm init --y
 
 您还可以使用余额脚本来检查交易发送后的帐户余额。
 
+### 检查余额脚本 {: #check-balances-script }
+
+您只需要一个文件即可在交易发送前后检查两个地址的余额。首先，可以通过运行以下命令创建一个 `balances.js` 文件：
+
+```bash
+touch balances.js
+```
+
+接下来，创建该文件的脚本并完成以下步骤：
+
+1. [设置 Ethers 提供程序](#setting-up-the-ethers-provider)
+1. 定义 `addressFrom` 和 `addressTo` 变量
+1. 创建异步 `balances` 函数，该函数包装了 `provider.getBalance` 方法
+1. 使用 `provider.getBalance` 获取 `addressFrom` 和 `addressTo` 的余额。你还可以使用 `ethers.formatEther` 将余额转换为更易读的 ETH 数值
+1. 最后，运行 `balances` 函数
+
+```js
+// 1. Add the Ethers provider logic here:
+// {...}
+
+// 2. Create address variables
+const addressFrom = 'INSERT_FROM_ADDRESS';
+const addressTo = 'INSERT_TO_ADDRESS';
+
+// 3. Create balances function
+const balances = async () => {
+  // 4. Fetch balances
+  const balanceFrom = ethers.formatEther(await provider.getBalance(addressFrom));
+  const balanceTo = ethers.formatEther(await provider.getBalance(addressTo));
+
+  console.log(`The balance of ${addressFrom} is: ${balanceFrom} DEV`);
+  console.log(`The balance of ${addressTo} is: ${balanceTo} DEV`);
+};
+
+// 5. Call the balances function
+balances();
+```
+
+??? code "查看完整脚本"
+
+    ```js
+    --8<-- 'code/builders/ethereum/libraries/ethers-js/balances.js'
+    ```
+
+要运行脚本并获取账户余额，可以运行以下命令：
+
+```bash
+node balances.js
+```
+
+如果成功，源地址和接收地址的余额将在终端中以 DEV 显示。
+
+### 发送交易脚本 {: #send-transaction-script }
+
+您只需要一个文件即可在账户间执行交易。此示例将从源地址（您拥有其私钥）向另一个地址转账 1 个 DEV 代币。首先，可以通过运行以下命令创建 `transaction.js` 文件：
+
+```bash
+touch transaction.js
+```
+
+接下来，创建该文件的脚本并完成以下步骤：
+
+1. [设置 Ethers 提供程序](#setting-up-the-ethers-provider)
+1. 定义 `privateKey` 和 `addressTo` 变量。私钥用于创建钱包实例。**注意：这仅用于示例目的。切勿将您的私钥存储在 JavaScript 文件中**
+1. 使用前面步骤中的 `privateKey` 和 `provider` 创建一个钱包。钱包实例用于签署交易
+1. 创建异步 `send` 函数，该函数包装交易对象和 `wallet.sendTransaction` 方法
+1. 创建交易对象，仅需要接收方地址和发送金额。注意可以使用 `ethers.parseEther`，它会处理将 Ether 转换为 Wei 的必要单位转换（类似于使用 `ethers.parseUnits(value, 'ether')`）
+1. 使用 `wallet.sendTransaction` 发送交易，并使用 `await` 等待交易处理完毕并返回交易回执
+1. 最后，运行 `send` 函数
+
+```js
+// 1. Add the Ethers provider logic here:
+// {...}
+
+// 2. Create account variables
+const accountFrom = {
+  privateKey: 'INSERT_YOUR_PRIVATE_KEY',
+};
+const addressTo = 'INSERT_TO_ADDRESS';
+
+// 3. Create wallet
+let wallet = new ethers.Wallet(accountFrom.privateKey, provider);
+
+// 4. Create send function
+const send = async () => {
+  console.log(`Attempting to send transaction from ${wallet.address} to ${addressTo}`);
+
+  // 5. Create tx object
+  const tx = {
+    to: addressTo,
+    value: ethers.parseEther('1'),
+  };
+
+  // 6. Sign and send tx - wait for receipt
+  const createReceipt = await wallet.sendTransaction(tx);
+  await createReceipt.wait();
+  console.log(`Transaction successful with hash: ${createReceipt.hash}`);
+};
+
+// 7. Call the send function
+send();
+```
+
+??? code "查看完整脚本"
+
+    ```js
+    --8<-- 'code/builders/ethereum/libraries/ethers-js/transaction.js'
+    ```
+
+要运行该脚本，您可以在终端中运行以下命令：
+
+```bash
+node transaction.js
+```
+
+如果交易成功，您会在终端中看到交易哈希被打印出来。
+
+您还可以使用 `balances.js` 脚本来检查源账户和接收账户的余额是否已更改。整个工作流程如下所示：
+
+--8<-- 'code/builders/ethereum/libraries/ethers-js/terminal/transaction.md'
+
 ## 部署合约 {: #deploy-a-contract }
 
 --8<-- 'text/builders/ethereum/libraries/contract.md'
@@ -161,8 +282,9 @@ mkdir ethers-examples && cd ethers-examples && npm init --y
 
 --8<-- 'text/builders/ethereum/libraries/compile.md'
 
-
+```js
 --8<-- 'code/builders/ethereum/libraries/compile.js'
+```
 
 ### 部署合约脚本 {: #deploy-contract-script }
 
@@ -223,7 +345,9 @@ deploy();
 
 ??? code "查看完整脚本"
 
+    ```js
     --8<-- 'code/builders/ethereum/libraries/ethers-js/deploy.js'
+    ```
 
 要运行该脚本，您可以在终端中输入以下命令：
 
@@ -284,8 +408,9 @@ get();
 
 ??? code "查看完整脚本"
 
-
+    ```js
     --8<-- 'code/builders/ethereum/libraries/ethers-js/get.js'
+    ```
 
 要运行该脚本，您可以在终端中输入以下命令：
 
@@ -353,8 +478,9 @@ increment();
 
 ??? code "查看完整脚本"
 
-
+    ```js
     --8<-- 'code/builders/ethereum/libraries/ethers-js/increment.js'
+    ```
 
 要运行该脚本，您可以在终端中输入以下命令：
 
@@ -386,7 +512,7 @@ const { abi } = require('./compile');
 
 // 3. Create variables
 const accountFrom = {
-privateKey: 'INSERT_YOUR_PRIVATE_KEY',
+  privateKey: 'INSERT_YOUR_PRIVATE_KEY',
 };
 const contractAddress = 'INSERT_CONTRACT_ADDRESS';
 

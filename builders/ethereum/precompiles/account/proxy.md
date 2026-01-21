@@ -104,13 +104,13 @@ There are multiple types of proxy roles that can be delegated to accounts, where
 
 ## Interact with the Solidity Interface {: #interact-with-the-solidity-interface }
 
-The following section will cover how to interact with the Proxy Precompile from Remix. Please note that **the Proxy Precompile can only be called from an EOA or by the [Batch Precompile](/builders/ethereum/precompiles/ux/batch/){target=\_blank}**.
+The following section will cover how to interact with the Proxy Precompile from Remix. Please note that **the Proxy Precompile can only be called from an EOA or by the [Batch Precompile](builders/ethereum/precompiles/ux/batch/){target=\_blank}**.
 
 ### Checking Prerequisites {: #checking-prerequisites }
 
 The below example is demonstrated on Moonbase Alpha, however, similar steps can be taken for Moonbeam and Moonriver. You should:  
 
- - Have MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}
+ - Have MetaMask installed and [connected to Moonbase Alpha](tokens/connect/metamask/){target=\_blank}
  - Have an account with some DEV tokens.
   --8<-- 'text/_common/faucet/faucet-list-item.md'
  - Have a second account that you control to use as a proxy account (funding optional)

@@ -15,22 +15,25 @@ categories: Precompiles, Ethereum Toolkit
 身份预编译位于以下地址：
 
 === "Moonbeam"
-
-    `{{ networks.moonbeam.precompiles.identity }}`
+        ```text
+        `{{ networks.moonbeam.precompiles.identity }}`
+        ```
 
 === "Moonriver"
-
-    `{{ networks.moonriver.precompiles.identity }}`
+        ```text
+        `{{ networks.moonriver.precompiles.identity }}`
+        ```
 
 === "Moonbase Alpha"
-
-    `{{ networks.moonbase.precompiles.identity }}`
+        ```text
+        `{{ networks.moonbase.precompiles.identity }}`
+        ```
 
 --8<-- 'text/builders/ethereum/precompiles/security.md'
 
 ## Identity Precompile Solidity接口 {: #the-solidity-interface }
 
-[`Identity.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/identity/Identity.sol){target=_blank} 是一个Solidity接口，允许开发人员与预编译的方法进行交互。
+[`Identity.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/identity/Identity.sol){target=\_blank} 是一个Solidity接口，允许开发人员与预编译的方法进行交互。
 
 ??? code "Identity.sol"
 
@@ -42,82 +45,82 @@ Identity Precompile包含一些可以由任何人调用的函数，以及一些�
 
 ??? function "**identity**(*address* who) - 返回给定帐户的注册信息"
 
-    === "Parameters"
+    === "参数"
 
         - `who` - 要查询身份信息的帐户地址
 
 ??? function "**superOf**(*address* who) - 检索子帐户的超级帐户。如果给定的帐户不是子帐户，则返回的地址是 `0x0000000000000000000000000000000000000000`"
 
-    === "Parameters"
+    === "参数"
 
         - `who` - 要查询超级帐户的帐户地址
 
 ??? function "**subsOf**(*address* who) - 返回给定帐户的子帐户。如果给定的帐户没有任何子帐户，则返回一个空数组 (`[]`)"
 
-    === "Parameters"
+    === "参数"
 
         - `who` - 要查询子帐户的帐户地址
 
 ??? function "**registrars**() - 返回注册员的列表"
 
-    === "Parameters"
+    === "参数"
 
-        无。
+        None。
 
 ??? function "**setIdentity**(*IdentityInfo memory* info) - 为调用者设置身份"
 
-    === "Parameters"
+    === "参数"
 
         - `info` - 包含要设置的身份信息的IdentityInfo memory结构体
 
 ??? function "**setSubs**(*SubAccount[] memory* subs) - 为调用者设置子帐户"
 
-    === "Parameters"
+    === "参数"
 
         - `subs` - 包含要设置的子帐户的 SubAccount[] memory 数组
 
 ??? function "**clearIdentity**() - 清除调用者的身份"
 
-    === "Parameters"
+    === "参数"
 
-        无。
+        None。
 
 ??? function "**requestJudgement**(*uint32* regIndex, *uint256* maxFee) - 从给定的注册员处请求判断，并提供调用者愿意支付的最高费用"
 
-    === "Parameters"
+    === "参数"
 
         - `regIndex` - 要从中请求判断的注册员的uint32索引
         - `maxFee` - 调用者愿意为判断支付的uint256最高费用
 
 ??? function "**cancelRequest**(*uint32* regIndex) - 取消调用者从给定注册员处发出的判断请求"
 
-    === "Parameters"
+    === "参数"
 
         - `regIndex` - 要从中取消判断请求的注册员的uint32索引
 
 ??? function "**addSub**(*address* sub, *Data memory* data) - 为调用者添加子身份帐户"
 
-    === "Parameters"
+    === "参数"
 
         - `sub` - 要添加的子帐户地址
         - `data` - 包含子帐户信息的 Data memory结构体
 
 ??? function "**renameSub**(*address* sub, *Data memory* data) - 为调用者重命名子身份帐户"
 
-    === "Parameters"
+    === "参数"
 
         - `sub` - 要重命名的子帐户地址
         - `data` - 包含新的子帐户信息的 Data memory结构体
 
 ??? function "**removeSub**(*address* sub) - 为调用者删除子身份帐户"
 
-    === "Parameters"
+    === "参数"
 
         - `sub` - 要删除的子帐户地址
 
 ??? function "**quitSub**(*address* sub) - 删除作为子身份帐户的调用者"
 
-    === "Parameters"
+    === "参数"
 
         - `sub` - 要退出的子帐户地址
 
@@ -125,28 +128,28 @@ Identity Precompile包含一些可以由任何人调用的函数，以及一些�
 
 ??? function "**setFee**(*uint32* regIndex, *uint256* fee) - 设置注册员的费用"
 
-    === "Parameters"
+    === "参数"
 
         - `regIndex` - 设置费用的注册员的uint32索引
         - `fee` - 要为注册员设置的uint256新费用金额
 
 ??? function "**setAccountId**(*uint32* regIndex, *address* newAccount) - 为注册员设置一个新帐户"
 
-    === "Parameters"
+    === "参数"
 
         - `regIndex` - 被更新的注册员的uint32索引
         - `newAccount` - 要为注册员设置的新帐户地址
 
 ??? function "**setFields**(*uint32* regIndex, *IdentityFields memory* fields) - 设置注册员的身份"
 
-    === "Parameters"
+    === "参数"
 
         - `regIndex` - 设置其身份字段的注册员的uint32索引
         - `fields` - 包含要设置的身份字段的IdentityFields memory结构体
 
 ??? function "**provideJudgement**(*uint32* regIndex, *address* target, *Judgement memory* judgement, *bytes32* identity) - 提供关于帐户身份的判断"
 
-    === "Parameters"
+    === "参数"
 
         - `regIndex` - 提供判断的注册员的uint32索引
         - `target` - 接收判断的帐户地址
@@ -155,7 +158,7 @@ Identity Precompile包含一些可以由任何人调用的函数，以及一些�
 
 ## 与Solidity接口交互 {: #interact-with-interface }
 
-以下部分将介绍如何使用[以太坊库](/builders/ethereum/libraries/){target=_blank}（例如[Ethers.js](/builders/ethereum/libraries/ethersjs/){target=_blank}和[Web3.py](/builders/ethereum/libraries/web3py/){target=_blank}）与身份预编译进行交互。
+以下部分将介绍如何使用[以太坊库](/builders/ethereum/libraries/){target=\_blank}（例如[Ethers.js](/builders/ethereum/libraries/ethersjs/){target=\_blank}和[Web3.py](/builders/ethereum/libraries/web3py/){target=\_blank}）与身份预编译进行交互。
 
 本指南中的示例将在Moonbase Alpha上进行。
 --8<-- 'text/_common/endpoint-examples.md'

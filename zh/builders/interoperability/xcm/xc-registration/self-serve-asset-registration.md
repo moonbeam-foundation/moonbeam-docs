@@ -89,21 +89,24 @@ xcDOT 的 XC-20 地址示例可以这样计算：
 
 公式
 
-ts
+```ts
 const xc20Address = `0xFFFFFFFF${hex(assetId).padStart(32, "0")}`;
+```
 
 ===
 示例
 
-bash
+```bash
 0xFFFFFFFF1FCACBD218EDC0EBA20FC2308C778080
+```
 
 ## 生成编码的调用数据 {: #generate-the-encoded-call-data }
 
 以下代码片段展示了如何构建需要发送到 Moonbeam 的调用，该调用会创建外部资产。保存生成的十六进制字符串，因为您会将其嵌入到从您的兄弟平行链分派的后续 XCM `Transact` 调用中。
 
-ts
+```ts
 --8<-- 'code/builders/interoperability/xcm/xc-registration/self-serve-asset-registration/generate-call-data.ts'
+```
 
 ### 使用 XCM Transact 调度调用 {: #dispatch-the-call-with-xcm-transact }
 

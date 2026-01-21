@@ -17,6 +17,26 @@ categories: Precompiles, Ethereum Toolkit
 
 在本指南中，您将学习如何使用和/或验证这些预编译。
 
+## 检查先决条件 {: #checking-prerequisites }
+
+--8<-- 'text/_common/install-nodejs.md'
+
+在撰写本指南时，分别使用的版本为 15.2.1 和 7.0.8。您还需要通过执行以下命令来安装 [Web3](https://web3js.readthedocs.io/en/latest){target=_blank} 包：
+
+```bash
+npm install --save web3
+```
+
+要验证已安装的 Web3 版本，您可以使用 `ls` 命令：
+
+```bash
+npm ls web3
+```
+
+在撰写本指南时，使用的版本是 1.3.0。您还将使用 [Remix](/builders/ethereum/dev-env/remix/){target=_blank}，通过 [MetaMask](/tokens/connect/metamask/){target=_blank} 连接到 Moonbase Alpha 测试网。
+
+--8<-- 'text/_common/endpoint-examples.md'
+
 ## 使用 ECRECOVER 验证签名 {: #verify-signatures-with-ecrecover }
 
 此预编译的主要功能是验证消息的签名。通常来说，您将交易的签名值提供给 `ecrecover`，它会返回一个地址。如果返回的地址与发送交易的公共地址相同，则签名已验证。

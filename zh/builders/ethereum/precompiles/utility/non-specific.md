@@ -37,8 +37,6 @@ npm install --save web3
 
 ```bash
 npm ls web3
-```
-
 本示例使用 4.11.1 版本。您还将使用 [Remix](/builders/ethereum/dev-env/remix/){target=_blank}，通过 [MetaMask](/tokens/connect/metamask/){target=_blank} 将其连接到 Moonbase Alpha TestNet。
 
 --8<-- 'text/_common/endpoint-examples.md'
@@ -49,18 +47,21 @@ npm ls web3
 
 在您的项目目录中创建一个名为 `signMessage.js` 的新文件：
 
-bash
+```bash
 touch signMessage.js
+```
 
 在您的代码编辑器中打开 `signMessage.js`，并添加以下脚本以使用 Moonbase Alpha TestNet 初始化 Web3，对消息进行签名和哈希处理，并返回签名值：
 
-js title="signMessage.js"
+```js title="signMessage.js"
 --8<-- 'code/builders/ethereum/precompiles/utility/nonspecific/signMessage.js'
+```
 
 返回到您的终端命令行，使用以下命令运行脚本：
 
-bash
+```bash
 node signMessage.js
+```
 
 此代码将在终端中返回以下对象：
 
@@ -72,8 +73,9 @@ node signMessage.js
 
 现在您可以访问 [Remix](https://remix.ethereum.org/){target=\_blank} 来测试预编译合约。请注意，您也可以使用 Web3.js 库，但在这种情况下，您可以转到 Remix 以确保它使用区块链上的预编译合约。您可以使用以下 Solidity 代码来检索公钥：
 
-solidity title="RecoverPublicKey.sol"
+```solidity title="RecoverPublicKey.sol"
 --8<-- 'code/builders/ethereum/precompiles/utility/nonspecific/RecoverPublicKey.sol'
+```
 
 使用 [Remix 编译器和部署](/builders/ethereum/dev-env/remix/){target=\_blank} 以及 [MetaMask 指向 Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}，您可以部署合约并调用 `recoverPublicKey()` 方法，该方法返回签署消息的帐户的公钥。现在您可以将此公钥值用于其他加密功能和验证。
 

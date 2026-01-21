@@ -82,6 +82,6 @@ Moonbeam does not support the following Ethereum API JSON-RPC methods:
 
 Check out some of the non-standard Ethereum and Moonbeam-specific RPC methods:
 
-- [Debug and Trace](/builders/ethereum/json-rpc/debug-trace/)
-- [Event Subscription](/builders/ethereum/json-rpc/pubsub/)
-- [Custom Moonbeam](/builders/ethereum/json-rpc/moonbeam-custom-api/)
+- [Debug and Trace](builders/ethereum/json-rpc/debug-trace/)
+- [Event Subscription](builders/ethereum/json-rpc/pubsub/)
+- [Custom Moonbeam](builders/ethereum/json-rpc/moonbeam-custom-api/)

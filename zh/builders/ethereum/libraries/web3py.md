@@ -125,9 +125,65 @@ python3 balances.py
 
 如果成功，原始地址和接收地址的余额将以 ETH 显示在您的终端中。
 
+### 发送交易脚本 {: #send-transaction-script }
+
+您只需要一个文件即可在账户之间执行交易。此示例将从源地址（您持有其私钥）向另一个地址转账 1 个 DEV 代币。首先，可以通过运行以下命令创建 `transaction.py` 文件：
+
+```bash
+touch transaction.py
+```
+
+接下来，为该文件创建脚本并完成以下步骤：
+
+1. 添加导入项，包括 Web3.py 和 `rpc_gas_price_strategy`，后续将用它来获取交易的 gas 价格
+1. [设置 Web3 提供程序](#setup-web3-with-moonbeam)
+1. 定义 `account_from`（包含 `private_key`）和接收方地址 `address_to`。私钥是签名交易所必需的。**注意：这仅用于示例目的。切勿将您的私钥存储在 Python 文件中**
+1. 使用 [Web3.py Gas Price API](https://web3py.readthedocs.io/en/stable/gas_price.html){target=\_blank} 设置 gas 价格策略。在本示例中，使用导入的 `rpc_gas_price_strategy`
+1. 使用 `web3.eth.account.sign_transaction` 创建并签署交易。传入交易的 `nonce`、`gas`、`gasPrice`、`to` 和 `value` 以及发送者的 `private_key`。`nonce` 可通过 `web3.eth.get_transaction_count` 获取，`gasPrice` 使用 `web3.eth.generate_gas_price` 预先确定，`value` 可用 `web3.to_wei` 将可读金额转换为 Wei
+1. 使用已签名的交易，调用 `web3.eth.send_raw_transaction` 发送交易，并使用 `web3.eth.wait_for_transaction_receipt` 等待交易回执
+
+```python
+--8<-- 'code/builders/ethereum/libraries/web3-py/transaction.py'
+```
+
+要运行该脚本，您可以在终端中运行以下命令：
+
+```bash
+python3 transaction.py
+```
+
+如果交易成功，您会在终端中看到交易哈希被打印出来。
+
+您还可以使用 `balances.py` 脚本来检查源账户和接收账户的余额是否已更改。整个工作流程如下所示：
+
+--8<-- 'code/builders/ethereum/libraries/web3-py/terminal/transaction.md'
+
 ## 部署合约 {: #deploy-a-contract }
 
 --8<-- 'text/builders/ethereum/libraries/contract.md'
+
+### 编译合约脚本 {: #compile-contract-script }
+
+在本节中，您将创建一个脚本，使用 Solidity 编译器输出 `Incrementer.sol` 合约的字节码和接口（ABI）。首先，可以通过运行以下命令创建 `compile.py` 文件：
+
+```bash
+touch compile.py
+```
+
+接下来，为该文件创建脚本并完成以下步骤：
+
+1. 导入 `solcx` 包
+1. **可选** - 如果尚未安装 Solidity 编译器，可以使用 `solcx.install_solc` 函数进行安装
+1. 使用 `solcx.compile_files` 函数编译 `Incrementer.sol` 合约
+1. 导出合约的 ABI 和字节码
+
+```python
+--8<-- 'code/builders/ethereum/libraries/web3-py/compile.py'
+```
+
+!!! note
+
+    如果遇到 “Solc is not installed” 错误，请取消注释代码片段中的第 2 步。
 
 ### 部署合约脚本 {: #deploy-contract-script }
 
@@ -158,6 +214,36 @@ python3 deploy.py
 如果成功，合约的地址将显示在终端中。
 
 --8<-- 'code/builders/ethereum/libraries/web3-py/terminal/deploy.md'
+
+### 读取合约数据（调用方法）{: #read-contract-data }
+
+调用方法不会修改合约存储（更改变量），因此无需发送交易。它们只是读取已部署合约的各种存储变量。
+
+要开始，您可以创建一个文件并命名为 `get.py`：
+
+```bash
+touch get.py
+```
+
+然后，您可以按照以下步骤创建脚本：
+
+1. 添加导入项，包括 Web3.py 和 `Incrementer.sol` 合约的 ABI
+1. [设置 Web3 提供程序](#setup-web3-with-moonbeam)
+1. 定义已部署合约的 `contract_address`
+1. 使用 `web3.eth.contract` 函数创建合约实例，并传入已部署合约的 ABI 和地址
+1. 使用合约实例调用 `number` 函数
+
+```python
+--8<-- 'code/builders/ethereum/libraries/web3-py/get.py'
+```
+
+要运行该脚本，您可以在终端中输入以下命令：
+
+```bash
+python3 get.py
+```
+
+如果成功，该值将显示在终端中。
 
 ### 与合约交互（发送方法）{: #interact-with-contract }
 

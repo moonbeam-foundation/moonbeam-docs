@@ -161,6 +161,31 @@ Moonbeam 上的批量预编译合约允许开发者将多个 EVM 调用合并为
 !!! note
      通常，如果您想将本地货币发送到合约或通过合约发送，则必须在整个交易对象中设置该值，并与可支付函数交互。但是，由于批量预编译直接与 Substrate 代码交互，因此这不是典型的以太坊交易，因此没有必要。
 
+### 查找合约交互的调用数据 {: #find-a-contract-interactions-call-data }
+
+[Remix](/builders/ethereum/dev-env/remix/){target=_blank} 等可视化界面和 [Ethers.js](/builders/ethereum/libraries/ethersjs/){target=_blank} 等实用库隐藏了以太坊交易与 Solidity 智能合约交互的方式。函数的名称和输入类型会被哈希为[函数选择器](https://docs.soliditylang.org/en/latest/abi-spec.html#function-selector-and-argument-encoding){target=_blank}，输入数据被编码。两部分组合后作为交易的调用数据发送。要在批量交易中发送子交易，发送方需要事先知道调用数据。
+
+尝试使用 Remix 查找交易的调用数据：
+
+1. 展开 **已部署合约** 下的 `SimpleContract.sol` 合约
+1. 展开 **setMessage** 函数
+1. 输入函数的输入。对于此示例，**id** 为 `1`，**message** 为 `"moonbeam"`
+1. 不要发送交易，而是单击 **transact** 按钮旁边的复制按钮以复制调用数据
+
+![交易调用数据](/images/builders/ethereum/precompiles/ux/batch/batch-5.webp)
+
+现在您已有交易的调用数据！考虑到示例值 `1` 和 `"moonbeam"`，我们可以在调用数据中留意它们的编码值：
+
+```text
+--8<-- 'code/builders/ethereum/precompiles/ux/batch/simple-message-call-data.md'
+```
+
+调用数据可以分为五行，其中：
+
+- 第一行是函数选择器
+- 第二行等于 1，即提供的 **id**
+- 剩下的与 **message** 输入有关。最后三行比较棘手，因为字符串是具有动态长度的[动态类型](https://docs.soliditylang.org/en/v0.8.15/abi-spec.html#use-of-dynamic-types){target=_blank}。第三行是指向字符串数据开始位置的偏移量；第四行是字符串长度，本例中为 8，因为 “moonbeam” 是 8 个字节；第五行是 “moonbeam” 的十六进制格式（8 个 ASCII 字符是 16 个十六进制字符），左对齐并用零填充
+
 ### 通过预编译进行函数交互 {: #function-interaction-via-precompile }
 
 本节的示例将使用 **batchAll** 函数，该函数可确保事务以原子方式解析。请记住，还有另外两个批量函数可以继续子事务（即使出现错误），或者停止后续子事务，但不恢复先前的子事务。
@@ -201,31 +226,35 @@ Moonbeam 上的批量预编译合约允许开发者将多个 EVM 调用合并为
 
 有三个子交易，因此 `to` 的输入数组中有三个地址。 第一个是公共 Gerald 帐户，接下来的两个是预先部署的 `SimpleContract.sol` 智能合约。 如果愿意，可以将最后两个替换为您自己的 `SimpleContract.sol` 实例。 或者，只替换一个：您可以在一条消息中与多个合约交互。
 
-text
+```text
 [
   "0x6Be02d1d3665660d22FF9624b7BE0551ee1Ac91b",
   "0xd14b70a55F6cBAc06d4FA49b99be0370D0e1BD39", 
   "0xd14b70a55F6cBAc06d4FA49b99be0370D0e1BD39"
 ]
+```
 
 `value` 数组也将有三个值。 `to` 输入数组中的第一个地址与发送 1 DEV 有关，因此 Wei 中的 1 DEV 在数组中。 以下两个值为 0，因为它们的子交易与之交互的函数不接受或不需要原生货币。
 
-text
+```text
 ["1000000000000000000", "0", "0"]
+```
 
 您将需要 `callData` 数组的三个值。 由于转移原生货币不需要调用数据，因此该字符串只是空白。 数组中的第二个和第三个值对应于将消息设置为 id 5 和 6 的 **setMessage** 的调用。
 
-text
+```text
 [
   "0x", 
   "0x648345c8000000000000000000000000000000000000000000000000000000000000000500000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000009796f752061726520610000000000000000000000000000000000000000000000", 
   "0x648345c800000000000000000000000000000000000000000000000000000000000000060000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000000e61206d6f6f6e6265616d2070726f000000000000000000000000000000000000"
 ]
+```
 
 最后的输入是 `gas_input`。此数组将留空，以将所有剩余 gas 转发到每个子交易。
 
-text
+```text
 []
+```
 
 尝试以相同的方式在 Remix 中使用这些输入发送批量交易[您批量调用函数的方式](#function-interaction-via-precompile)。
 
@@ -238,22 +267,22 @@ text
 !!! note
     以下各节中提供的代码片段不适用于生产环境。请确保针对每个用例进行调整。
 
-===
+=== "Ethers.js"
 
-     js
+     ```js
      --8<-- 'code/builders/ethereum/precompiles/ux/batch/ethers-batch.js'
-     
+     ```
 
-===
+=== "Web3.js"
 
-     js
+     ```js
      --8<-- 'code/builders/ethereum/precompiles/ux/batch/web3js-batch.js'
-     
+     ```
 
-===
+=== "Web3.py"
 
-     py
+     ```py
      --8<-- 'code/builders/ethereum/precompiles/ux/batch/web3py-batch.py'
-     
+     ```
 
 之后，您应该可以像通常与 [Ethers](/builders/ethereum/libraries/ethersjs/){target=_blank} 中的合约交互一样与批处理预编译进行交互。

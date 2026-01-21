@@ -14,10 +14,11 @@ categories: XC-20
 
 本指南中的示例使用了一个 CLI 工具，该工具旨在简化整个过程，您可以在 [xcm-tools GitHub 存储库](https://github.com/Moonsong-Labs/xcm-tools){target=_blank} 中找到它。
 
-bash
+```bash
 git clone https://github.com/Moonsong-Labs/xcm-tools && \
 cd xcm-tools && \
 yarn
+```
 
 ## 在 Moonbeam 上注册外部 XC-20 {: #register-xc-20s }
 

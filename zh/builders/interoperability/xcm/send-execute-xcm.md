@@ -80,9 +80,9 @@ Polkadot XCM Pallet 包含以下相关的只读存储方法：
 
     === "Polkadot.js API 示例"
 
-        js
+        ```js
         --8<-- 'code/builders/interoperability/xcm/send-execute-xcm/interface-examples/assets-trapped.js'
-        
+        ```
 
 ??? function "**palletVersion**() — 从存储返回当前 pallet 版本"
 
@@ -187,7 +187,7 @@ XCM Dry Run API 是一种简单方便的方式来测试 XCM 消息的完整性�
 
 此方法将 origin 和调用数据作为参数，并返回执行结果、实际权重和事件数据。
 
-javascript
+```javascript
 const testAccount = api.createType(
   'AccountId20',
   '0x88bcE0b038eFFa09e58fE6d24fDe4b5Af21aa798'
@@ -200,19 +200,21 @@ const result = await api.call.dryRunApi.dryRunCall(
   { system: { Signed: testAccount } },
   callDataU8a
 );
+```
 
 ??? code "查看完整脚本"
 
-    js
+    ```js
     --8<-- 'code/builders/interoperability/xcm/send-execute-xcm/dry-run/dry-run-call.js'
-    
+    ```
 
 调用 XCM Dry Run API 后，该方法将告诉您调用是否会成功，并返回如果实际在链上提交调用将会发出的事件数据。您可以在下面查看`dryRunCall`的初始输出。
 
 ??? code "查看完整输出"
 
-    
+    ```json
     --8<-- 'code/builders/interoperability/xcm/send-execute-xcm/dry-run/dry-run-call-return-data.json'
+    ```
 
 ### Dry Run XCM API 方法 {: #dry-run-xcm-api-method }
 
@@ -220,7 +222,7 @@ XCM Dry Run API 的 `dryRunXCM` 方法将完整的 XCM 消息作为参数，而�
 
 `dryRunXCM` 将来源和 XCM 消息作为参数，并返回执行结果、实际权重和事件数据。
 
-javascript
+```javascript
 // 定义来源
 const origin = { V4: { parents: 1, interior: 'Here' } };
 
@@ -228,6 +230,7 @@ const message = []; // 在此处插入 XCM 消息
 
 // 执行 dry run XCM 调用
 const result = await api.call.dryRunApi.dryRunXcm(origin, message);
+```
 
 ??? code "查看完整脚本"
 

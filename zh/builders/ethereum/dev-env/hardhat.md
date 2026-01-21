@@ -8,22 +8,22 @@ categories: Dev Environments, Ethereum Toolkit
 
 ## 简介 {: #introduction }
 
-[Hardhat](https://hardhat.org){target=_blank} 是一个灵活且可扩展的以太坊开发环境，可以简化智能合约的开发过程。由于 Moonbeam 与以太坊兼容，因此您可以使用 Hardhat 在 Moonbeam 上开发和部署智能合约。
+[Hardhat](https://hardhat.org){target=\_blank} 是一个灵活且可扩展的以太坊开发环境，可以简化智能合约的开发过程。由于 Moonbeam 与以太坊兼容，因此您可以使用 Hardhat 在 Moonbeam 上开发和部署智能合约。
 
-Hardhat 采用基于任务的开发方法，您可以在其中定义和执行[任务](https://hardhat.org/hardhat-runner/docs/advanced/create-task){target=_blank}，以执行特定操作。这些操作包括编译和部署合约、运行测试等等。任务是高度可配置的，因此您可以创建、自定义和执行适合您需求的任务。
+Hardhat 采用基于任务的开发方法，您可以在其中定义和执行[任务](https://hardhat.org/hardhat-runner/docs/advanced/create-task){target=\_blank}，以执行特定操作。这些操作包括编译和部署合约、运行测试等等。任务是高度可配置的，因此您可以创建、自定义和执行适合您需求的任务。
 
-您还可以通过使用[插件](https://hardhat.org/hardhat-runner/plugins){target=_blank}来扩展 Hardhat 的功能。插件是与 Hardhat 集成的外部扩展，可为您的工作流程提供额外的功能和工具。例如，有一些用于常见以太坊库的插件，例如 [Ethers.js](/builders/ethereum/libraries/ethersjs/){target=_blank} 和 [viem](/builders/ethereum/libraries/viem/){target=_blank}，一个扩展 Chai 断言库以包含以太坊特定功能的插件等等。所有这些插件都可用于扩展您在 Moonbeam 上的 Hardhat 项目。
+您还可以通过使用[插件](https://hardhat.org/hardhat-runner/plugins){target=_blank}来扩展 Hardhat 的功能。插件是与 Hardhat 集成的外部扩展，可为您的工作流程提供额外的功能和工具。例如，有一些用于常见以太坊库的插件，例如 [Ethers.js](/builders/ethereum/libraries/ethersjs/){target=\_blank} 和 [viem](/builders/ethereum/libraries/viem/){target=\_blank}，一个扩展 Chai 断言库以包含以太坊特定功能的插件等等。所有这些插件都可用于扩展您在 Moonbeam 上的 Hardhat 项目。
 
 本指南将简要介绍 Hardhat，并向您展示如何使用 Hardhat 在 Moonbase Alpha 测试网上编译、部署和调试以太坊智能合约。本指南也适用于 Moonbeam、Moonriver 或 Moonbeam 开发节点。以下内容针对的是 Hardhat 3（当前版本：3.0.17）。
 
-请注意，虽然 Hardhat 附带一个 [Hardhat Network](https://hardhat.org/docs#hardhat-network){target=_blank} 组件，该组件提供本地开发环境，但您应该改用[本地 Moonbeam 开发节点](/builders/get-started/networks/moonbeam-dev/){target=_blank}。您可以像连接任何其他网络一样，将 Moonbeam 开发节点连接到 Hardhat。
+请注意，虽然 Hardhat 附带一个 [Hardhat Network](https://hardhat.org/docs#hardhat-network){target=\_blank} 组件，该组件提供本地开发环境，但您应该改用[本地 Moonbeam 开发节点](/builders/get-started/networks/moonbeam-dev/){target=\_blank}。您可以像连接任何其他网络一样，将 Moonbeam 开发节点连接到 Hardhat。
 
 ## 检查先决条件 {: #checking-prerequisites }
 
 要开始，您需要以下内容：
 
 - 拥有 Node.js 22.10.0 或更高版本（Hardhat 3 仅支持偶数编号的 LTS 版本）和 npm
-- 已[安装MetaMask](/tokens/connect/metamask/#install-the-metamask-extension){target=_blank}并[连接到Moonbase Alpha](/tokens/connect/metamask/#connect-metamask-to-moonbeam){target=_blank}。
+- 已[安装MetaMask](/tokens/connect/metamask/#install-the-metamask-extension){target=\_blank}并[连接到Moonbase Alpha](/tokens/connect/metamask/#connect-metamask-to-moonbeam){target=\_blank}。
 - 拥有一个有资金的帐户。
   --8<-- 'text/_common/faucet/faucet-list-item.md'
 - --8<-- 'text/_common/endpoint-examples-list-item.md'
@@ -103,9 +103,9 @@ npm install --save-dev @nomicfoundation/hardhat-ethers @nomicfoundation/hardhat-
 
 接下来，您需要修改您的配置文件以添加要将合约部署到的网络的网络配置。对于 Moonbeam 网络，您需要指定以下内容：
 
-- **`url`**: 节点的 [RPC 端点](/builders/get-started/endpoints/){target=_blank}。
+- **`url`**: 节点的 [RPC 端点](/builders/get-started/endpoints/){target=\_blank}。
 - **`chainId`**: 链 ID，用于验证网络。
-- **`accounts`**: 可用于部署和与合约交互的帐户。您可以输入帐户私钥的数组，也可以使用 [HD 钱包](https://github.com/ethereumbook/ethereumbook/blob/develop/src/chapter_5.md#hierarchical-deterministic-wallets-bip-32bip-44){target=_blank}。
+- **`accounts`**: 可用于部署和与合约交互的帐户。您可以输入帐户私钥的数组，也可以使用 [HD 钱包](https://github.com/ethereumbook/ethereumbook/blob/develop/src/chapter_5.md#hierarchical-deterministic-wallets-bip-32bip-44){target=\_blank}。
 - **`type`**: 对于 Moonbeam 上的外部 RPC 网络，请设置 `type: 'http'`。
 - **`chainType`**: 对于 Moonbeam 网络，请设置 `chainType: 'l1'`。
 
@@ -169,78 +169,78 @@ export default defineConfig({
 
 === "Moonriver"
 
-```js
-import hardhatEthers from '@nomicfoundation/hardhat-ethers';
-import hardhatIgnitionEthers from '@nomicfoundation/hardhat-ignition-ethers';
-import hardhatKeystore from '@nomicfoundation/hardhat-keystore';
-import { configVariable, defineConfig } from 'hardhat/config';
+    ```js
+    import hardhatEthers from '@nomicfoundation/hardhat-ethers';
+    import hardhatIgnitionEthers from '@nomicfoundation/hardhat-ignition-ethers';
+    import hardhatKeystore from '@nomicfoundation/hardhat-keystore';
+    import { configVariable, defineConfig } from 'hardhat/config';
 
-export default defineConfig({
-  plugins: [hardhatEthers, hardhatIgnitionEthers, hardhatKeystore],
-  solidity: '0.8.28',
-  networks: {
-    moonriver: {
-      type: 'http',
-      chainType: 'l1',
-      url: configVariable('MOONRIVER_RPC_URL'),
-      chainId: {{ networks.moonriver.chain_id }}, // (hex: {{ networks.moonriver.hex_chain_id }}),
-      accounts: [configVariable('MOONRIVER_PRIVATE_KEY')],
-    },
-  },
-});
-```
+    export default defineConfig({
+      plugins: [hardhatEthers, hardhatIgnitionEthers, hardhatKeystore],
+      solidity: '0.8.28',
+      networks: {
+        moonriver: {
+          type: 'http',
+          chainType: 'l1',
+          url: configVariable('MOONRIVER_RPC_URL'),
+          chainId: {{ networks.moonriver.chain_id }}, // (hex: {{ networks.moonriver.hex_chain_id }}),
+          accounts: [configVariable('MOONRIVER_PRIVATE_KEY')],
+        },
+      },
+    });
+    ```
 
 === "Moonbase Alpha"
 
-```js
-import hardhatEthers from '@nomicfoundation/hardhat-ethers';
-import hardhatIgnitionEthers from '@nomicfoundation/hardhat-ignition-ethers';
-import hardhatKeystore from '@nomicfoundation/hardhat-keystore';
-import { configVariable, defineConfig } from 'hardhat/config';
+    ```js
+    import hardhatEthers from '@nomicfoundation/hardhat-ethers';
+    import hardhatIgnitionEthers from '@nomicfoundation/hardhat-ignition-ethers';
+    import hardhatKeystore from '@nomicfoundation/hardhat-keystore';
+    import { configVariable, defineConfig } from 'hardhat/config';
 
-export default defineConfig({
-  plugins: [hardhatEthers, hardhatIgnitionEthers, hardhatKeystore],
-  solidity: '0.8.28',
-  networks: {
-    moonbase: {
-      type: 'http',
-      chainType: 'l1',
-      url: configVariable('MOONBASE_RPC_URL'),
-      chainId: {{ networks.moonbase.chain_id }}, // (hex: {{ networks.moonbase.hex_chain_id }}),
-      accounts: [configVariable('MOONBASE_PRIVATE_KEY')],
-    },
-  },
-});
-```
+    export default defineConfig({
+      plugins: [hardhatEthers, hardhatIgnitionEthers, hardhatKeystore],
+      solidity: '0.8.28',
+      networks: {
+        moonbase: {
+          type: 'http',
+          chainType: 'l1',
+          url: configVariable('MOONBASE_RPC_URL'),
+          chainId: {{ networks.moonbase.chain_id }}, // (hex: {{ networks.moonbase.hex_chain_id }}),
+          accounts: [configVariable('MOONBASE_PRIVATE_KEY')],
+        },
+      },
+    });
+    ```
 
-=== "Moonbeam Dev"
+=== "Moonbeam Dev Node"
 
-```js
-import hardhatEthers from '@nomicfoundation/hardhat-ethers';
-import hardhatIgnitionEthers from '@nomicfoundation/hardhat-ignition-ethers';
-import hardhatKeystore from '@nomicfoundation/hardhat-keystore';
-import { configVariable, defineConfig } from 'hardhat/config';
+    ```js
+    import hardhatEthers from '@nomicfoundation/hardhat-ethers';
+    import hardhatIgnitionEthers from '@nomicfoundation/hardhat-ignition-ethers';
+    import hardhatKeystore from '@nomicfoundation/hardhat-keystore';
+    import { configVariable, defineConfig } from 'hardhat/config';
 
-export default defineConfig({
-  plugins: [hardhatEthers, hardhatIgnitionEthers, hardhatKeystore],
-  solidity: '0.8.28',
-  networks: {
-    dev: {
-      type: 'http',
-      chainType: 'l1',
-      url: configVariable('DEV_RPC_URL'),
-      chainId: {{ networks.development.chain_id }}, // (hex: {{ networks.development.hex_chain_id }}),
-      accounts: [configVariable('DEV_PRIVATE_KEY')],
-    },
-  },
-});
-```
+    export default defineConfig({
+      plugins: [hardhatEthers, hardhatIgnitionEthers, hardhatKeystore],
+      solidity: '0.8.28',
+      networks: {
+        dev: {
+          type: 'http',
+          chainType: 'l1',
+          url: configVariable('DEV_RPC_URL'),
+          chainId: {{ networks.development.chain_id }}, // (hex: {{ networks.development.hex_chain_id }}),
+          accounts: [configVariable('DEV_PRIVATE_KEY')],
+        },
+      },
+    });
+    ```
 
 当您运行需要这些密钥的任务时，Hardhat 将提示您输入密码以解密它们。密钥仅在需要时才会被解密，这意味着只有当 Hardhat 任务使用密钥时，您才需要输入密码。
 
 如果您计划在您的项目中使用任何插件，您需要安装该插件并将其导入到您的 Hardhat 配置文件 (`hardhat.config.ts` 或 `hardhat.config.js`) 中。一旦导入了插件，它就会成为 [Hardhat 运行时环境](https://hardhat.org/hardhat-runner/docs/advanced/hardhat-runtime-environment){target=_blank} 的一部分，并且您可以在任务、脚本等中利用该插件的功能。
 
-有关可用配置选项的更多信息，请参阅 Hardhat 关于 [配置](https://hardhat.org/hardhat-runner/docs/config#networks-configuration){target=_blank} 的文档。
+有关可用配置选项的更多信息，请参阅 Hardhat 关于 [配置](https://hardhat.org/hardhat-runner/docs/config#networks-configuration){target=\_blank} 的文档。
 
 ## 合约文件 {: #the-contract-file }
 
@@ -292,7 +292,7 @@ export default defineConfig({
 
 要使用 `compile` 任务，您只需运行：
 
-```bash
+```sh
 npx hardhat compile
 ```
 
@@ -308,7 +308,7 @@ npx hardhat compile
 
 要为您的 Ignition 模块设置正确的文件结构，请创建一个名为 `ignition` 的文件夹和一个名为 `modules` 的子目录。然后，在其中添加一个名为 `Box.js` 的新文件。您可以使用以下命令执行所有这三个步骤：
 
-```bash
+```sh
 cd ignition/modules && touch Box.js
 ```
 
@@ -342,7 +342,7 @@ export default buildModule('BoxModule', (m) => {
 
 要运行脚本并部署 `Box.sol` 合约，请使用以下命令，该命令要求您指定在 Hardhat 配置文件中定义的网络名称。如果您未指定网络，则 hardhat 默认会将合约部署到本地 Hardhat 网络。
 
-```bash
+```sh
 npx hardhat ignition deploy ./ignition/modules/Box.js --network moonbase
 ```
 
@@ -359,12 +359,33 @@ npx hardhat ignition deploy ./ignition/modules/Box.js --network moonbase
 
 您可以使用 Hardhat 通过两种方式与新部署的合约进行交互：从辅助脚本运行控制台样式的命令（推荐用于 Hardhat 3），或重用该脚本以通过 `run` 任务自动执行交互。
 
+### 控制台风格交互 {: #hardhat-console }
+
+与部署脚本类似，您可以创建一个轻量级的辅助脚本来模拟控制台工作流，将其保存在 `scripts` 目录下，并使用内置的 `run` 任务运行。即使您的凭证存储在 Hardhat 密钥库中，该方法也同样适用，因为 `network.connect()` 是在普通的 Hardhat 任务中执行（可以解锁密钥库），而控制台无法访问 Hardhat 密钥库。
+
+首先，在 `scripts` 目录下创建一个 `box-console.ts` 文件：
+
+```sh
+cd scripts && touch box-console.ts
+```
+
+在运行之前，用已部署合约的地址更新脚本。完整的辅助脚本如下：
+
+??? code "查看完整脚本"
+
+    ```ts
+    --8<-- 'code/builders/ethereum/dev-env/hardhat/scripts/box-console.ts'
+    ```
+
+将 `INSERT_CONTRACT_ADDRESS` 替换为 Hardhat Ignition 输出的地址；如果需要存储不同的值，请调整 `VALUE_TO_STORE`。
+
 ### 运行脚本 {: #run-the-script }
 
 使用 `run` 任务对已部署的 `Box` 合约执行辅助脚本，以便您可以验证密钥库解锁流程是否正常，并确认合约将新值存储在 Moonbase Alpha 上。
 
-sh
+```sh
 npx hardhat run --network moonbase scripts/box-console.ts
+```
 
 系统将提示您输入 Hardhat 密钥库密码（如果您使用的是加密密钥），之后脚本将连接到 Moonbase Alpha，附加到您部署的 `Box` 合约，并记录调用 `store(5n)` 前后存储的值。 运行后，您应该看到类似于以下的输出：
 
@@ -374,76 +395,76 @@ npx hardhat run --network moonbase scripts/box-console.ts
 
 ## Hardhat 分叉 {: #hardhat-forking }
 
-您可以使用 Hardhat [分叉](https://hardhat.org/hardhat-network/docs/guides/forking-other-networks){target=_blank} 任何与 EVM 兼容的链，包括 Moonbeam。分叉在本地模拟实时 Moonbeam 网络，使您能够在本地测试环境中与 Moonbeam 上部署的合约进行交互。由于 Hardhat 分叉基于 EVM 实现，您可以使用 [Moonbeam 支持的标准 Ethereum JSON-RPC 方法](/builders/ethereum/json-rpc/eth-rpc/){target=_blank} 和 [Hardhat](https://hardhat.org/hardhat-network/docs/reference#json-rpc-methods-support){target=_blank} 与分叉进行交互。
+您可以使用 Hardhat [分叉](https://hardhat.org/hardhat-network/docs/guides/forking-other-networks){target=\_blank} 任何与 EVM 兼容的链，包括 Moonbeam。分叉在本地模拟实时 Moonbeam 网络，使您能够在本地测试环境中与 Moonbeam 上部署的合约进行交互。由于 Hardhat 分叉基于 EVM 实现，您可以使用 [Moonbeam 支持的标准 Ethereum JSON-RPC 方法](/builders/ethereum/json-rpc/eth-rpc/){target=\_blank} 和 [Hardhat](https://hardhat.org/hardhat-network/docs/reference#json-rpc-methods-support){target=\_blank} 与分叉进行交互。
 
 使用 Hardhat 分叉时，需要注意一些限制。您无法与任何 Moonbeam 预编译合约或其函数进行交互。预编译是 Substrate 实现的一部分，因此无法在模拟的 EVM 环境中复制。这禁止您与 Moonbeam 上的跨链资产以及基于 Substrate 的功能（如质押和治理）进行交互。
 
 ### 分叉 Moonbeam {: #forking-moonbeam }
 
-您可以从命令行分叉 Moonbeam，或配置您的 Hardhat 项目以始终从您的 Hardhat 配置文件运行分叉。要分叉 Moonbeam 或 Moonriver，您需要拥有自己的端点和 API 密钥，您可以从支持的[端点提供商](/builders/get-started/endpoints/){target=_blank}之一获取。
+您可以从命令行分叉 Moonbeam，或配置您的 Hardhat 项目以始终从您的 Hardhat 配置文件运行分叉。要分叉 Moonbeam 或 Moonriver，您需要拥有自己的端点和 API 密钥，您可以从支持的[端点提供商](/builders/get-started/endpoints/){target=\_blank}之一获取。
 
 要从命令行分叉 Moonbeam，您可以从 Hardhat 项目目录中运行以下命令：
 
 ===
 
     ```sh
-npx hardhat node --fork {{ networks.moonbeam.rpc_url }}
+    npx hardhat node --fork {{ networks.moonbeam.rpc_url }}
     ```
 
 ===
 
     ```sh
-npx hardhat node --fork {{ networks.moonriver.rpc_url }}
+    npx hardhat node --fork {{ networks.moonriver.rpc_url }}
     ```
 
 ===
 
     ```sh
-npx hardhat node --fork {{ networks.moonbase.rpc_url }}
+    npx hardhat node --fork {{ networks.moonbase.rpc_url }}
     ```
 
 如果您喜欢配置您的 Hardhat 项目，您可以使用以下配置更新您的 Hardhat 配置文件：
 
-===
+=== "Moonbeam"
 
     ```js
-...
-networks: {
-  hardhat: {
-    forking: {
-      url: '{{ networks.moonbeam.rpc_url }}',
+    ...
+    networks: {
+      hardhat: {
+        forking: {
+          url: '{{ networks.moonbeam.rpc_url }}',
+        },
+      },
     },
-  },
-},
-...
+    ...
     ```
 
-===
+=== "Moonriver"
 
     ```js
-...
-networks: {
-  hardhat: {
-    forking: {
-      url: '{{ networks.moonriver.rpc_url }}',
+    ...
+    networks: {
+      hardhat: {
+        forking: {
+          url: '{{ networks.moonriver.rpc_url }}',
+        },
+      },
     },
-  },
-},
-...
+    ...
     ```
 
-===
+=== "Moonbase Alpha"
 
     ```js
-...
-networks: {
-  hardhat: {
-    forking: {
-      url: '{{ networks.moonbase.rpc_url }}',
+    ...
+    networks: {
+      hardhat: {
+        forking: {
+          url: '{{ networks.moonbase.rpc_url }}',
+        },
+      },
     },
-  },
-},
-...
+    ...
     ```
 
 当您启动 Hardhat 分叉时，您将拥有 20 个预先存入 10,000 个测试代币的开发帐户。 分叉实例可在 `http://127.0.0.1:8545/` 上找到。 终端中的输出应类似于以下内容：
@@ -456,7 +477,7 @@ networks: {
 curl --data '{"method":"eth_blockNumber","params":[],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json" -X POST localhost:8545 
 ```
 
-如果您将 `result` 从 [十六进制转换为十进制](https://www.rapidtables.com/convert/number/hex-to-decimal.html){target=_blank}，您应该从分叉网络的时间获取最新的区块号。 您可以使用[区块浏览器](/builders/get-started/explorers/){target=_blank}交叉引用区块号。
+如果您将 `result` 从 [十六进制转换为十进制](https://www.rapidtables.com/convert/number/hex-to-decimal.html){target=\_blank}，您应该从分叉网络的时间获取最新的区块号。 您可以使用[区块浏览器](/builders/get-started/explorers/){target=\_blank}交叉引用区块号。
 
 从这里，您可以将新合约部署到 Moonbeam 的分叉实例，或通过创建已部署合约的本地实例来与已部署的合约进行交互。
 
