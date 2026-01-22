@@ -49,15 +49,21 @@ SQD 本身完全支持以太坊虚拟机（EVM）和 Substrate 数据。由于 M
 
     === "Moonbeam"
 
-        
+        ```json
+        "specVersions": "https://v2.archive.subsquid.io/metadata/moonbeam",
+        ```
 
     === "Moonriver"
 
-        
+        ```json
+        "specVersions": "https://v2.archive.subsquid.io/metadata/moonriver",
+        ```
 
     === "Moonbase Alpha"
 
-        
+        ```json
+        "specVersions": "https://v2.archive.subsquid.io/metadata/moonbase",
+        ```
 
 4. 修改 `src/processor.ts` 文件，Squids 在其中实例化处理器、配置处理器并附加处理函数。处理器从 [Archive](https://docs.sqd.ai/glossary/#archives){target=\_blank} 中提取历史链上数据，这是一个专门的数据湖。您需要配置您的处理器以从与您正在索引数据的 [网络](http://docs.sqd.ai/substrate-indexing/supported-networks/){target=\_blank} 对应的 Archive 中提取数据：
 
@@ -121,15 +127,15 @@ SQD 本身完全支持以太坊虚拟机（EVM）和 Substrate 数据。由于 M
 
     === "EVM"
 
-        bash
+        ```bash
         sqd init INSERT_SQUID_NAME --template evm
-        
+        ```
 
-    ===
+    === "ABI"
 
-        bash
+        ```bash
         sqd init INSERT_SQUID_NAME --template abi
-        
+        ```
 
     有关开始使用这两个模板的更多信息，请查看以下 SQD 文档：
       
@@ -138,44 +144,44 @@ SQD 本身完全支持以太坊虚拟机（EVM）和 Substrate 数据。由于 M
 
 2. 导航到您的 Squid 项目的根目录，并通过运行以下命令安装依赖项：
 
-    bash
+    ```bash
     npm ci
-    
+    ```
 
 3. 修改 `src/processor.ts` 文件，Squid 在其中实例化处理器、配置处理器并附加处理函数。处理器从 [Archive](https://docs.sqd.ai/glossary/#archives){target=\_blank} 中获取历史链上数据，这是一个专门的数据湖。您需要配置您的处理器以从与您正在索引数据的 [网络](http://docs.sqd.ai/evm-indexing/supported-networks/){target=\_blank} 对应的 Archive 中提取数据：
 
-    === "Moonbeam"
+   === "Moonbeam"
 
-        ts
+        ```ts
         const processor = new EvmBatchProcessor();
         processor.setDataSource({
           chain: '{{ networks.moonbeam.rpc_url }}',
           // Resolves to 'https://v2.archive.subsquid.io/network/moonbeam-mainnet'
           archive: lookupArchive('moonbeam', { type: 'EVM' })
         })
-        
+        ```
 
     === "Moonriver"
 
-        ts
+        ```ts
         const processor = new EvmBatchProcessor();
         processor.setDataSource({
           chain: '{{ networks.moonriver.rpc_url }}',
           // Resolves to 'https://v2.archive.subsquid.io/network/moonriver-mainnet'
           archive: lookupArchive('moonriver', { type: 'EVM' }),
         })
-        
+        ```
 
     === "Moonbase Alpha"
 
-        ts
+        ```ts
         const processor = new EvmBatchProcessor();
         processor.setDataSource({
           chain: '{{ networks.moonbase.rpc_url }}',
           // Resolves to 'https://v2.archive.subsquid.io/network/moonbase-testnet'
           archive: lookupArchive('moonbase', { type: 'EVM' }),
         })
-        
+        ```
 
     !!! note
         --8<-- 'text/_common/endpoint-setup.md'

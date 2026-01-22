@@ -31,7 +31,7 @@ API3 是一个去中心化解决方案，旨在以易于访问和可扩展的方
 
 以下是从 Airnode 请求数据的基本请求者合约的示例：
 
-solidity
+```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.9;
 
@@ -90,26 +90,29 @@ contract Requester is RrpRequesterV0, Ownable {
         );
     }
 }
+```
 
-您还可以尝试[在 Remix 上部署示例合约](https://remix.ethereum.org/#url=https://github.com/api3-ecosystem/remix-contracts/blob/master/contracts/RequesterWithWithdrawal.sol&optimize=false&runs=200&evmVersion=null&version=soljson-v0.8.9+commit.e5eed63a.js){target=_blank}。
+您还可以尝试[在 Remix 上部署示例合约](https://remix.ethereum.org/#url=https://github.com/api3-ecosystem/remix-contracts/blob/master/contracts/RequesterWithWithdrawal.sol&optimize=false&runs=200&evmVersion=null&version=soljson-v0.8.9+commit.e5eed63a.js){target=\_blank}。
 
 ### 合约地址 {: #contract-addresses }
 
-`_rrpAddress` 是主要的 `airnodeRrpAddress`。RRP 合约已部署在链上。[`_rrpAddress` 的地址](https://airnode-docs.api3.org/reference/airnode/latest/){target=_blank} 在 Moonbeam 网络上如下所示：
+`_rrpAddress` 是主要的 `airnodeRrpAddress`。RRP 合约已部署在链上。[`_rrpAddress` 的地址](https://airnode-docs.api3.org/reference/airnode/latest/){target=\_blank} 在 Moonbeam 网络上如下所示：
 
-===
+=== "Moonbeam"
+
+    `{{ networks.moonbeam.api3.rrp }}`
 
 |   合约   |             地址              |
 |:------------:|:----------------------------------:|
 | AirnodeRrpV0 | `{{ networks.moonbeam.api3.rrp }}` |
-
-===
+ 
+=== "Moonriver"
 
 |   合约   |              地址              |
 |:------------:|:-----------------------------------:|
 | AirnodeRrpV0 | `{{ networks.moonriver.api3.rrp }}` |
 
-===
+=== "Moonbase Alpha"
 
 |   合约   |             地址              |
 |:------------:|:----------------------------------:|
@@ -119,10 +122,10 @@ contract Requester is RrpRequesterV0, Ownable {
 
 `makeRequest()` 函数需要以下参数才能发出有效的请求：
 
-- [**`airnode`**](https://airnode-docs.api3.org/reference/airnode/latest/concepts/airnode.html){target=_blank} - 指定 Airnode 地址
-- [**`endpointId`**](https://airnode-docs.api3.org/reference/airnode/latest/concepts/endpoint.html){target=_blank} - 指定要使用的端点
-- [**`sponsor`**](https://airnode-docs.api3.org/reference/airnode/latest/concepts/sponsor.html){target=_blank} 和 [**`sponsorWallet`**](https://airnode-docs.api3.org/reference/airnode/latest/concepts/sponsor.html#sponsorwallet){target=_blank} - 指定将用于完成请求的钱包
-- [**`parameters`**](https://airnode-docs.api3.org/reference/airnode/latest/specifications/reserved-parameters.html){target=_blank} - 指定 API 和预留参数（有关这些参数的编码方式，请参阅 [Airnode ABI 规范](https://airnode-docs.api3.org/reference/airnode/latest/specifications/airnode-abi.html){target=_blank}）。可以使用 `@airnode-abi` 库在链下对参数进行编码
+- [**`airnode`**](https://airnode-docs.api3.org/reference/airnode/latest/concepts/airnode.html){target=\_blank} - 指定 Airnode 地址
+- [**`endpointId`**](https://airnode-docs.api3.org/reference/airnode/latest/concepts/endpoint.html){target=\_blank} - 指定要使用的端点
+- [**`sponsor`**](https://airnode-docs.api3.org/reference/airnode/latest/concepts/sponsor.html){target=\_blank} 和 [**`sponsorWallet`**](https://airnode-docs.api3.org/reference/airnode/latest/concepts/sponsor.html#sponsorwallet){target=\_blank} - 指定将用于完成请求的钱包
+- [**`parameters`**](https://airnode-docs.api3.org/reference/airnode/latest/specifications/reserved-parameters.html){target=\_blank} - 指定 API 和预留参数（有关这些参数的编码方式，请参阅 [Airnode ABI 规范](https://airnode-docs.api3.org/reference/airnode/latest/specifications/airnode-abi.html){target=\_blank}）。可以使用 `@airnode-abi` 库在链下对参数进行编码
 
 ### 响应参数 {: #response-params }
 
@@ -136,20 +139,19 @@ contract Requester is RrpRequesterV0, Ownable {
 
 ## dAPIs：API3 数据馈送 {: #dapis }
 
-[dAPIs](https://docs.api3.org/oev-searchers/in-depth/data-feeds/){target=_blank} 是链下数据的持续更新流，例如最新的加密货币、股票和大宗商品价格。它们可以为去中心化应用程序提供支持，例如 DeFi 借贷、合成资产、稳定币、衍生品、NFT 等。
+[dAPIs](https://docs.api3.org/oev-searchers/in-depth/data-feeds/){target=\_blank} 是链下数据的持续更新流，例如最新的加密货币、股票和大宗商品价格。它们可以为去中心化应用程序提供支持，例如 DeFi 借贷、合成资产、稳定币、衍生品、NFT 等。
 
-数据馈送由[第一方预言机](https://docs.api3.org/oev-searchers/glossary.html#first-party-oracles){target=_blank}使用签名数据持续更新。DApp 所有者可以实时读取任何 dAPI 的链上值。
+数据馈送由[第一方预言机](https://docs.api3.org/oev-searchers/glossary.html#first-party-oracles){target=\_blank}使用签名数据持续更新。DApp 所有者可以实时读取任何 dAPI 的链上值。
 
 由于它们由第一方数据馈送组成，因此 dAPI 以统包方式提供安全性、透明度、成本效益和可扩展性。
 
 ![API3 市场仪表板。](/images/builders/integrations/oracles/api3/api3-3.webp)
 
-要了解有关 dAPI 工作原理的更多信息，请参阅 [API3 的文档](https://docs.api3.org/oev-searchers/in-depth/data-feeds/){target=_blank}。
+要了解有关 dAPI 工作原理的更多信息，请参阅 [API3 的文档](https://docs.api3.org/oev-searchers/in-depth/data-feeds/){target=\_blank}。
 
 ### 订阅 dAPI {: #subscribing-to-dapis }
 
-通过 [API3 市场](https://market.api3.org/){target=_blank}，用户可以在 [Moonbeam](https://market.api3.org/moonbeam){target=_blank}、[Moonriver](https://market.api3.org/moonriver){target=_blank} 和 [Moonbase Alpha TestNet](https://market.api3.org/moonbeam-testnet){target=_blank}（目前标记为 Moonbeam TestNet）上访问 dAPI。
-
+通过 [API3 市场](https://market.api3.org/){target=\_blank}，用户可以在 [Moonbeam](https://market.api3.org/moonbeam){target=\_blank}、[Moonriver](https://market.api3.org/moonriver){target=\_blank} 和 [Moonbase Alpha TestNet](https://market.api3.org/moonbeam-testnet){target=\_blank}（目前标记为 Moonbeam TestNet）上访问 dAPI。
 从 [API3 市场主页](https://market.api3.org/){target=_blank} 上，您可以搜索给定的链。选择链后，您可以查看可用 dAPI的列表，然后点击一个以获取更多信息。例如，您可以点击适用于 Moonbeam 的 `USDT/USD` 交易对，以查看 dAPI 的参数，包括偏差和心跳。
 
 dAPI 支持的参数包括：
@@ -184,7 +186,7 @@ dAPI 支持的参数包括：
 
 有了代理地址，您就可以将 dAPI 集成到智能合约中。这是一个从 dAPI 读取数据的基本合约示例：
 
-solidity
+```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.17;
 
@@ -213,22 +215,23 @@ contract DataFeedReaderExample is Ownable {
         // 请务必在从代理读取后验证它们
     }
 }
+```
 
 示例合约包含两个函数：
 
 - `setProxyAddress()` - 用于设置 dAPI 代理合约的地址
 - `readDataFeed()` - 一个 `view` 函数，它返回设置的 dAPI 的最新价格
 
-[尝试在 Remix 上部署它](https://remix.ethereum.org/#url=https://github.com/api3-ecosystem/remix-contracts/blob/master/contracts/DapiReader.sol&lang=en&optimize=false&runs=200&evmVersion=null&version=soljson-v0.8.18+commit.87f61d96.js){target=_blank}！
+[尝试在 Remix 上部署它](https://remix.ethereum.org/#url=https://github.com/api3-ecosystem/remix-contracts/blob/master/contracts/DapiReader.sol&lang=en&optimize=false&runs=200&evmVersion=null&version=soljson-v0.8.18+commit.87f61d96.js){target=\_blank}！
 
 ## 更多资源 {: #additional-resources }
 
 以下是一些额外的开发者资源：
 
-- [API3 市场](https://market.api3.org/moonbeam){target=_blank}
-- [API3 文档](https://docs.api3.org){target=_blank}
-- [API3 DAO GitHub](https://github.com/api3dao){target=_blank}
-- [API3 Medium](https://medium.com/api3){target=_blank}
-- [API3 YouTube](https://www.youtube.com/API3DAO){target=_blank}
+- [API3 市场](https://market.api3.org/moonbeam){target=\_blank}
+- [API3 文档](https://docs.api3.org){target=\_blank}
+- [API3 DAO GitHub](https://github.com/api3dao){target=\_blank}
+- [API3 Medium](https://medium.com/api3){target=\_blank}
+- [API3 YouTube](https://www.youtube.com/API3DAO){target=\_blank}
 
 --8<-- 'text/_disclaimers/third-party-content.md'

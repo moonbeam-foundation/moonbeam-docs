@@ -1,1 +1,1 @@
-You are responsible for checking and validating the accuracy and truthfulness of all content. You are also responsible for doing your own diligence to understand the applicable risks present, including selection, performance, security, accuracy, or use of any third-party information.  All information contained herein is subject to modification without notice.
+{{ trans("disclaimer.user_generated_content") }}

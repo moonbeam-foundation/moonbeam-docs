@@ -228,7 +228,7 @@ docker run --rm --name {{ networks.development.container_name }} \
 
 如果您选择 `manual`，则需要手动创建区块，这可以通过 `engine_createBlock` JSON-RPC 方法来完成：
 
-```
+```text
 engine_createBlock(createEmpty: *bool*, finalize: *bool*, parentHash?: *BlockHash*)
 ```
 
@@ -264,11 +264,11 @@ produceBlock();
 
 ## 预充值开发账户 {: #pre-funded-development-accounts }
 
-Moonbeam 有一个[统一账户](/learn/core-concepts/unified-accounts/){target=\_blank}系统，使用户能够拥有一个以太坊风格的 H160 账户，该账户可以与 Substrate API 和以太坊 API 交互。因此，您可以通过 [Polkadot.js Apps](/tokens/connect/polkadotjs/#connect-polkadotjs-apps){target=\_blank} 或 [MetaMask](/tokens/connect/metamask/){target=\_blank}（或任何其他 [EVM 钱包](/tokens/connect/){target=\_blank}）与您的账户进行交互。此外，您还可以使用其他[开发工具](/builders/ethereum/dev-env/){target=\_blank}，例如 [Remix](/builders/ethereum/dev-env/remix/){target=\_blank} 和 [Hardhat](/builders/ethereum/dev-env/hardhat/){target=\_blank}。
+Moonbeam 有一个[统一账户](learn/core-concepts/unified-accounts/){target=\_blank}系统，使用户能够拥有一个以太坊风格的 H160 账户，该账户可以与 Substrate API 和以太坊 API 交互。因此，您可以通过 [Polkadot.js Apps](tokens/connect/polkadotjs/#connect-polkadotjs-apps){target=\_blank} 或 [MetaMask](tokens/connect/metamask/){target=\_blank}（或任何其他 [EVM 钱包](tokens/connect/){target=\_blank}）与您的账户进行交互。此外，您还可以使用其他[开发工具](builders/ethereum/dev-env/){target=\_blank}，例如 [Remix](builders/ethereum/dev-env/remix/){target=\_blank} 和 [Hardhat](builders/ethereum/dev-env/hardhat/){target=\_blank}。
 
 您的 Moonbeam 开发节点附带十个已预先充值的以太坊风格的帐户，用于开发。这些地址源自 Substrate 的规范开发助记词：
 
-```
+```text
 bottom drive obey lake curtain smoke basket hold race lonely fit walk
 ```
 
@@ -314,3 +314,28 @@ bottom drive obey lake curtain smoke basket hold race lonely fit walk
 ## 清理开发节点 {: #purging-your-node }
 
 如果您想删除与您的节点相关联的数据，您可以清理它。清理节点的说明取决于您最初启动节点的方式。
+
+### 清除通过 Docker 启动的节点 {: #purge-docker-node }
+
+如果你使用 Docker 启动节点，并通过 `-v` 标志为容器指定了挂载目录，那么你需要清除该目录。为此，你可以运行以下命令：
+
+
+```bash
+sudo rm -rf {{ networks.moonbase.node_directory }}/*
+```
+
+如果你按照本指南的说明操作且未使用 `-v` 标志，你可以停止并移除 Docker 容器。相关数据也会随之一起删除。为此，你可以运行以下命令：
+
+```bash
+sudo docker stop `CONTAINER_ID` && docker rm `CONTAINER_ID`
+```
+### 清除通过二进制文件启动的节点 {: #purge-binary-node }
+
+通过二进制文件运行节点时，数据会存储在本地目录中，通常位于 `~/.local/shared/moonbeam/chains/development/db`。如果你想启动一个全新的节点实例，你可以删除该文件夹中的内容，或者在 `moonbeam` 文件夹内运行以下命令：
+
+
+```bash
+./target/release/moonbeam purge-chain --dev -y
+```
+
+这将删除数据文件夹。请注意，所有链数据都会因此丢失。如需了解所有可用的 `purge-chain` 命令，请参阅我们文档中的 [清除二进制数据](node-operators/networks/run-a-node/systemd/#purging-compiled-binary){target=\_blank} 部分。

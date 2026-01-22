@@ -8,16 +8,16 @@ categories: Oracle Nodes
 
 ## 简介 {: #introduction }
 
-[DIA](https://www.diadata.org){target=_blank} 提供可定制的预言机，这些预言机根据每个 dApp 的需求量身定制。每个预言机都可以通过多种方式进行定制，包括数据源、数据清理过滤器、定价和计算方法、更新机制等等。这确保了数据和预言机在市场条件下保持稳健和弹性，并提供全球市场价格以及特定的个人或跨链市场价格。
+[DIA](https://www.diadata.org){target=\_blank} 提供可定制的预言机，这些预言机根据每个 dApp 的需求量身定制。每个预言机都可以通过多种方式进行定制，包括数据源、数据清理过滤器、定价和计算方法、更新机制等等。这确保了数据和预言机在市场条件下保持稳健和弹性，并提供全球市场价格以及特定的个人或跨链市场价格。
 
 通过直接从 90 多个来源（包括 CEX、DEX 和 NFT 市场）收集数十亿条原始交易，DIA 能够在整个价值堆栈中实现完全透明、定制和控制。DIA 的数据和预言机套件包含 20,000 多种资产的价格馈送，包括加密货币、NFT 系列和流动性质押代币，以及随机数生成和其他数据馈送类型。
 
-您可以访问 DIA 的文档，了解如何[请求自定义预言机](https://www.diadata.org/docs/how-to-guides/request-a-custom-oracle#request-a-custom-oracle){target=_blank}。
+您可以访问 DIA 的文档，了解如何[请求自定义预言机](https://www.diadata.org/docs/how-to-guides/request-a-custom-oracle#request-a-custom-oracle){target=\_blank}。
 
 --8<-- 'text/_disclaimers/third-party-content-intro.md'
 
 ## Token Price Feeds {: #token-price-feeds }
-DIA 代币价格信息流为智能合约提供 [3,000 多种加密货币](https://www.diadata.org/app/price){target=_blank} 的实时价格信息，这些信息透明地来源于 [90 多个受信任的高交易量 DEX 和 CEX](https://www.diadata.org/app/source/defi){target=_blank}。
+DIA 代币价格信息流为智能合约提供 [3,000 多种加密货币](https://www.diadata.org/app/price){target=\_blank} 的实时价格信息，这些信息透明地来源于 [90 多个受信任的高交易量 DEX 和 CEX](https://www.diadata.org/app/source/defi){target=\_blank}。
 
 ### Moonbeam 演示价格预言机 {: #moonbeam-demo-price-oracles }
 
@@ -31,7 +31,7 @@ DIA 为 Moonbeam 社区部署了以下演示预言机，这些预言机提供有
 
 部署到 Moonbeam 的演示预言机合约是 [DIA 键值预言机合约 V2](https://www.diadata.org/docs/nexus/reference/smart-contracts/diaoraclev2.sol#diaoraclev2-sol){target=\_blank}。 合约结构如下：
 
-solidity
+```solidity
 pragma solidity 0.7.4;
 
 contract DIAOracleV2 {
@@ -65,6 +65,7 @@ contract DIAOracleV2 {
 		emit UpdaterAddressChange(newOracleUpdaterAddress);
 	}
 }
+```
 
 !!! note
     DIA 演示预言机不适用于生产环境。 开发人员可以请求具有自定义价格馈送和配置设置的专用、可用于生产的预言机。 要启动请求过程，您可以查看 [请求自定义预言机](https://www.diadata.org/docs/how-to-guides/request-a-custom-oracle#request-a-custom-oracle){target=\_blank} 文档。
@@ -73,9 +74,9 @@ contract DIAOracleV2 {
 
 演示 oracle 中包含的价格馈送是：
 
-- [DIA/USD](https://www.diadata.org/app/price/asset/Ethereum/0x84cA8bc7997272c7CfB4D0Cd3D55cd942B3c9419){target=_blank}
-- [BTC/USD](https://www.diadata.org/app/price/asset/Bitcoin/0x0000000000000000000000000000000000000000){target=_blank}
-- [USDC/USD](https://www.diadata.org/app/price/asset/Ethereum/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48){target=_blank}
+- [DIA/USD](https://www.diadata.org/app/price/asset/Ethereum/0x84cA8bc7997272c7CfB4D0Cd3D55cd942B3c9419){target=\_blank}
+- [BTC/USD](https://www.diadata.org/app/price/asset/Bitcoin/0x0000000000000000000000000000000000000000){target=\_blank}
+- [USDC/USD](https://www.diadata.org/app/price/asset/Ethereum/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48){target=\_blank}
 
 ### 如何访问 DIA 预言机 {: #how-to-access-dia-oracles }
 
@@ -97,7 +98,7 @@ DIA 还支持 Rest 和 GraphQL 端点以返回加密货币价格数据。您可�
 
 例如，您可以使用以下 JavaScript 脚本来访问 [BTC/USD 价格馈送](#price-feeds)：
 
-==="Rest"
+=== "Rest"
 
     ```js
     const axios = require('axios');
@@ -118,7 +119,7 @@ DIA 还支持 Rest 和 GraphQL 端点以返回加密货币价格数据。您可�
       });
     ```
 
-==="GraphQL"
+=== "GraphQL"
 
     ```js
     const axios = require('axios');
@@ -174,19 +175,88 @@ DIA NFT底价信息流为智能合约提供[18,000+ NFT藏品](https://www.diada
 
 ## 随机数生成 {: #random-number-generation }
 
-[DIA xRandom](https://www.diadata.org/docs/nexus/data-products/randomness#randomness){target=_blank} 为智能合约提供不可预测且无偏的随机数，从而促进链上用例的开发，例如彩票、预测市场、NFT 发布等。
+[DIA xRandom](https://www.diadata.org/docs/nexus/data-products/randomness#randomness){target=\_blank} 为智能合约提供不可预测且无偏的随机数，从而促进链上用例的开发，例如彩票、预测市场、NFT 发布等。
 
-DIA 利用 Drand 公共随机信标，并使用 round 数字、随机性和签名来更新其预言机。Drand 运行分布式节点以生成其随机信标。Drand 使用 [Pedersen 的 DKG（分布式密钥生成）协议](https://docs.drand.love/docs/cryptography/#distributed-key-generation-dkg){target=_blank} 来创建集体私钥和公钥。然后，他们的熵联盟的参与者会分轮生成随机数，并将其及其签名一起广播。
+DIA 利用 Drand 公共随机信标，并使用 round 数字、随机性和签名来更新其预言机。Drand 运行分布式节点以生成其随机信标。Drand 使用 [Pedersen 的 DKG（分布式密钥生成）协议](https://docs.drand.love/docs/cryptography/#distributed-key-generation-dkg){target=\_blank} 来创建集体私钥和公钥。然后，他们的熵联盟的参与者会分轮生成随机数，并将其及其签名一起广播。
 
-要了解有关 Drand 随机信标的更多信息，请观看 [链上随机预言机 | DIA 开发者教程](https://youtu.be/7HALDJr8V3g){target=_blank} 并阅读 [Drand 的文档](https://docs.drand.love/#how-drand-works){target=_blank}。
+要了解有关 Drand 随机信标的更多信息，请观看 [链上随机预言机 | DIA 开发者教程](https://youtu.be/7HALDJr8V3g){target=\_blank} 并阅读 [Drand 的文档](https://docs.drand.love/#how-drand-works){target=\_blank}。
 
-{
-  "source_path": "builders/integrations/oracles/dia.md",
-  "source_language": "EN",
-  "target_language": "ZH",
-  "checksum": "2d5c6fcb4a0319e82f20f72c8d15e51625082ec9497e86d8a5385a39f4506b93",
-  "content": "### Moonbeam Demo Randomness Oracle {: #moonbeam-demo-randomness-oracle }\n\nDIA has deployed a demo oracle on Moonbase Alpha, which can be accessed at the following address:\n\n```
+### Moonbeam Demo Randomness Oracle {: #moonbeam-demo-randomness-oracle }
+
+```text
 0x48d351ab7f8646239bbade95c3cc6de3ef4a6cec
+```
+DIA 随机性智能合约的结构如下：
+
+```solidity
+pragma solidity ^0.8.30;
+
+contract DIARandomOracle {
+  struct Random {
+    string randomness;
+    string signature;
+    string previousSignature;
+  }
+
+  mapping(uint256 => Random) public values;
+  uint256 public lastRound = 0;
+  address public oracleUpdater;
+  event OracleUpdate(string key, uint128 value, uint128 timestamp);
+  event UpdaterAddressChange(address newUpdater);
+
+  constructor() {
+      oracleUpdater = msg.sender;
+  }
+
+  function setRandomValue(
+    uint256 _round,
+    string memory _randomness,
+    string memory _signature,
+    string memory _previousSignature
+  ) public {
+    require(msg.sender == oracleUpdater, "not a updater");
+    require(lastRound < _round, "old round");
+    lastRound = _round;
+    values[_round] = Random(_randomness, _signature, _previousSignature);
+  }
+
+  function getValue(uint256 _round) external view returns (Random memory) {
+    return values[_round];
+  }
+
+  function updateOracleUpdaterAddress(address newOracleUpdaterAddress)
+    public
+  {
+    require(msg.sender == oracleUpdater, "not a updater");
+    oracleUpdater = newOracleUpdaterAddress;
+    emit UpdaterAddressChange(newOracleUpdaterAddress);
+  }
+
+  function getRandomValueFromRound(uint256 _round)
+    external
+    view
+    returns (string memory)
+  {
+    return values[_round].randomness;
+  }
+
+  function getRandomValueFromRoundWithSignature(uint256 _round)
+    external
+    view
+    returns (Random memory)
+  {
+    return values[_round];
+  }
+
+    function getLastRound() public view returns (uint256) {
+    return lastRound;
+  }
+}
+```
+
+!!! note
+    DIA 演示预言机并不适用于生产环境。开发者可以申请专用的、可用于生产环境的随机性预言机。如需开始申请流程，你可以通过 Telegram 联系 [集成团队](https://t.me/DIABDteam){target=\_blank}。
+
 
 ### 如何使用 DIA 随机数预言机 {: #how-to-use-the-dia-randomness-oracle }
 
@@ -200,14 +270,14 @@ DIA 利用 Drand 公共随机信标，并使用 round 数字、随机性和签�
 
 也可以通过调用 `getRandomValueFromRoundWithSignature(uint256 _round)` 来请求签名，这将返回一个包含随机数值、签名和上一轮签名的元组。
 
-要了解如何在 Moonbeam 上部署使用随机数的合约，请参阅[在 EVM 链上使用 DIA xRandom Oracle 部署使用随机数的智能合约](https://youtu.be/BzN-tBgW-xs){target=_blank}视频教程。
+要了解如何在 Moonbeam 上部署使用随机数的合约，请参阅[在 EVM 链上使用 DIA xRandom Oracle 部署使用随机数的智能合约](https://youtu.be/BzN-tBgW-xs){target=\_blank}视频教程。
 
 ## 资源 {: #resources }
 
-- [X](https://x.com/DIAdata_org){target=_blank}
-- [Discord](https://discord.com/invite/ZvGjVY5uvs){target=_blank}
-- [网站](https://www.diadata.org/){target=_blank}
-- [文档](https://www.diadata.org/docs/home){target=_blank}
-- [探索数据](https://www.diadata.org/app){target=_blank}
+- [X](https://x.com/DIAdata_org){target=\_blank}
+- [Discord](https://discord.com/invite/ZvGjVY5uvs){target=\_blank}
+- [网站](https://www.diadata.org/){target=\_blank}
+- [文档](https://www.diadata.org/docs/home){target=\_blank}
+- [探索数据](https://www.diadata.org/app){target=\_blank}
 
 --8<-- 'text/_disclaimers/third-party-content.md'

@@ -16,7 +16,7 @@ categories: Basics
  - **基于以太坊 API JSON-RPC** — [Moonbeam Basic Explorer](https://moonbeam-explorer.netlify.app/?network=MoonbaseAlpha){target=\_blank}
  - **Substrate API** — [Subscan](https://moonbase.subscan.io){target=\_blank} 或 [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/explorer){target=\_blank}
 
-有关每个可用区块浏览器的更多信息，请访问文档的 [区块浏览器](/builders/get-started/explorers/){target=\_blank} 部分。
+有关每个可用区块浏览器的更多信息，请访问文档的 [区块浏览器](builders/get-started/explorers/){target=\_blank} 部分。
 
 ## 连接 MetaMask
 
@@ -29,7 +29,7 @@ categories: Basics
 !!! note
     MetaMask 将弹出窗口，请求您授予权限以将 Moonbase Alpha 添加为自定义网络。批准权限后，MetaMask 会将您当前的网路切换到 Moonbase Alpha。
 
-如果您没有安装 MetaMask，或者想要按照教程开始操作，请查看[使用 MetaMask 与 Moonbeam 交互](/tokens/connect/metamask/){target=_blank} 指南。
+如果您没有安装 MetaMask，或者想要按照教程开始操作，请查看[使用 MetaMask 与 Moonbeam 交互](tokens/connect/metamask/){target=\_blank} 指南。
 
 ## 配置 {: #configuration }
 
@@ -64,9 +64,9 @@ Moonbase Alpha 上部署了各种 DApp，使您可以试验各种应用程序和
 |     [Moonbase ERC-20 Minter](https://moonbase-minterc20.netlify.app){target=_blank}      |   ERC-20 水龙头    |                 [https://github.com/papermoonio/moonbase-mintableERC20](https://github.com/papermoonio/moonbase-mintableERC20){target=_blank}                  |
 |        [Moonbeam Uniswap](https://moonbeam-swap.netlify.app/#/swap){target=_blank}        |  Uniswap V2 分叉   |                       [https://github.com/papermoonio/moonbeam-uniswap](https://github.com/papermoonio/moonbeam-uniswap){target=_blank}                        |
 
-|        [MoonLotto Lottery](https://moonbase-moonlotto.netlify.app){target=_blank}        |   TheGraph 演示    | [接口](https://github.com/papermoonio/moonlotto-interface){target=_blank}, [子图](https://github.com/papermoonio/moonlotto-subgraph){target=_blank} |
-| [Moonbeam WalletConnect](https://moonbeam-walletconnect-demo.netlify.app){target=_blank} | WalletConnect 演示 |            [https://github.com/papermoonio/moonbeam-walletconnect-demo](https://github.com/papermoonio/moonbeam-walletconnect-demo){target=_blank}             |
-|              [MoonGas](https://moonbeam-gasinfo.netlify.app){target=_blank}              | Gas 价格追踪器  |                    [https://github.com/albertov19/moonbeam-gas-station](https://github.com/albertov19/moonbeam-gas-station){target=_blank}                     |
+|        [MoonLotto Lottery](https://moonbase-moonlotto.netlify.app){target=\_blank}        |   TheGraph 演示    | [接口](https://github.com/papermoonio/moonlotto-interface){target=\_blank}, [子图](https://github.com/papermoonio/moonlotto-subgraph){target=\_blank} |
+| [Moonbeam WalletConnect](https://moonbeam-walletconnect-demo.netlify.app){target=\_blank} | WalletConnect 演示 |            [https://github.com/papermoonio/moonbeam-walletconnect-demo](https://github.com/papermoonio/moonbeam-walletconnect-demo){target=\_blank}             |
+|              [MoonGas](https://moonbeam-gasinfo.netlify.app){target=\_blank}              | Gas 价格追踪器  |                    [https://github.com/albertov19/moonbeam-gas-station](https://github.com/albertov19/moonbeam-gas-station){target=\_blank}                     |
 
 !!! note
     这些 DApp 仅用于演示目的，可能不完整或不适合生产部署。
@@ -79,7 +79,7 @@ Moonbase Alpha 上部署了各种 DApp，使您可以试验各种应用程序和
 
 ### Moonbeam Uniswap {: #moonbeam-uniswap }
 
-[Moonbeam Uniswap](https://moonbeam-swap.netlify.app/#/swap){target=_blank} 是部署到 Moonbase Alpha 的 [Uniswap-V2](https://blog.uniswap.org/uniswap-v2){target=_blank} 的一个分支。值得注意的是，Moonbeam Uniswap 允许开发人员轻松进行交易，以获取 [跨链资产](/builders/interoperability/xcm/xc20/){target=_blank}，例如用于 XCM 测试的 xcKarura 或 xcUNIT。要执行您的第一笔交易，请执行以下步骤：
+[Moonbeam Uniswap](https://moonbeam-swap.netlify.app/#/swap){target=\_blank} 是部署到 Moonbase Alpha 的 [Uniswap-V2](https://blog.uniswap.org/uniswap-v2){target=\_blank} 的一个分支。值得注意的是，Moonbeam Uniswap 允许开发人员轻松进行交易，以获取 [跨链资产](/builders/interoperability/xcm/xc20/){target=\_blank}，例如用于 XCM 测试的 xcKarura 或 xcUNIT。要执行您的第一笔交易，请执行以下步骤：
 
 1. 按下 **选择代币**
 2. 连接您的 MetaMask 钱包并确保您在 Moonbase Alpha 网络上
@@ -94,7 +94,7 @@ Moonbase Alpha 上部署了各种 DApp，使您可以试验各种应用程序和
 
 ### MoonLotto 彩票 {: #moonlotto-lottery }
 
-[MoonLotto](https://moonbase-moonlotto.netlify.app){target=_blank} 是 Moonbase Alpha 上的一个简单的彩票游戏，源自 [The Graph 的示例子图](https://github.com/graphprotocol/example-subgraph){target=_blank}。购买彩票需要 1 DEV，如果至少有 10 名参与者，则每半小时选出一名获胜者。[MoonLotto.sol](https://github.com/papermoonio/moonlotto-subgraph/blob/main/contracts/MoonLotto.sol){target=_blank} 包含了彩票的合约逻辑。要参与，请按照以下步骤操作：
+[MoonLotto](https://moonbase-moonlotto.netlify.app){target=\_blank} 是 Moonbase Alpha 上的一个简单的彩票游戏，源自 [The Graph 的示例子图](https://github.com/graphprotocol/example-subgraph){target=\_blank}。购买彩票需要 1 DEV，如果至少有 10 名参与者，则每半小时选出一名获胜者。[MoonLotto.sol](https://github.com/papermoonio/moonlotto-subgraph/blob/main/contracts/MoonLotto.sol){target=\_blank} 包含了彩票的合约逻辑。要参与，请按照以下步骤操作：
 
 1. 连接您的 MetaMask 钱包，并确保您在 Moonbase Alpha 网络上
 2. 输入彩票接收者的地址或选中**我想为我的地址购买彩票**
@@ -104,17 +104,17 @@ Moonbase Alpha 上部署了各种 DApp，使您可以试验各种应用程序和
 
 ### Moonbeam WalletConnect {: #moonbeam-walletconnect }
 
-[Moonbeam WalletConnect](https://moonbeam-walletconnect-demo.netlify.app){target=_blank} 展示了将 [WalletConnect](https://walletconnect.com){target=_blank} 集成到您的 DApps 中并解锁对各种加密钱包的支持是多么容易。请务必查看 [演示应用程序存储库](https://github.com/papermoonio/moonbeam-walletconnect-demo){target=_blank}，以了解 WalletConnect 集成是如何工作的。要开始使用，您可以按照以下步骤操作：
+[Moonbeam WalletConnect](https://moonbeam-walletconnect-demo.netlify.app){target=\_blank} 展示了将 [WalletConnect](https://walletconnect.com){target=\_blank} 集成到您的 DApps 中并解锁对各种加密钱包的支持是多么容易。请务必查看 [演示应用程序存储库](https://github.com/papermoonio/moonbeam-walletconnect-demo){target=\_blank}，以了解 WalletConnect 集成是如何工作的。要开始使用，您可以按照以下步骤操作：
 
 1. 按 **Connect Wallet**（连接钱包）
-2. 使用 [与 WalletConnect 兼容的钱包](https://walletguide.walletconnect.network/){target=_blank} 扫描二维码
+2. 使用 [与 WalletConnect 兼容的钱包](https://walletguide.walletconnect.network/){target=\_blank} 扫描二维码
 
 ![Moonbeam WalletConnect](/images/builders/get-started/networks/moonbase/moonbase-6.webp)
 
 ### MoonGas {: #moongas }
 
-[MoonGas](https://moonbeam-gasinfo.netlify.app){target=_blank} 是一个方便的仪表板，用于查看所有 Moonbeam 网络中前一个区块的交易的最低、最高和平均 Gas 价格。请注意，这些统计数据可能会因区块而异，偶尔会包含异常值。您可以查看 [MoonGas 的存储库](https://github.com/albertov19/moonbeam-gas-station){target=_blank}。
+[MoonGas](https://moonbeam-gasinfo.netlify.app){target=\_blank} 是一个方便的仪表板，用于查看所有 Moonbeam 网络中前一个区块的交易的最低、最高和平均 Gas 价格。请注意，这些统计数据可能会因区块而异，偶尔会包含异常值。您可以查看 [MoonGas 的存储库](https://github.com/albertov19/moonbeam-gas-station){target=\_blank}。
 
-您会注意到 Moonbeam 的最低 Gas 价格是 {{ networks.moonbeam.min_gas_price }} Gwei，而 Moonriver 的最低 Gas 价格是 {{ networks.moonriver.min_gas_price }} Gwei，Moonbase Alpha 的最低 Gas 价格是 {{ networks.moonbase.min_gas_price }} Gwei。这种差异源于 [GLMR 的 100 比 1 重新计价](https://moonbeam.network/news/moonbeam-foundation-announces-liquidity-programs-a-new-token-event-and-glmr-redenomination){target=_blank}，因此 Moonbeam 上的 {{ networks.moonbeam.min_gas_price }} Gwei 最低值对应于 Moonriver 上的 {{ networks.moonriver.min_gas_price }} Gwei 最低值和 Moonbase 上的 {{ networks.moonbase.min_gas_price }} Gwei。
+您会注意到 Moonbeam 的最低 Gas 价格是 {{ networks.moonbeam.min_gas_price }} Gwei，而 Moonriver 的最低 Gas 价格是 {{ networks.moonriver.min_gas_price }} Gwei，Moonbase Alpha 的最低 Gas 价格是 {{ networks.moonbase.min_gas_price }} Gwei。这种差异源于 [GLMR 的 100 比 1 重新计价](https://moonbeam.network/news/moonbeam-foundation-announces-liquidity-programs-a-new-token-event-and-glmr-redenomination){target=\_blank}，因此 Moonbeam 上的 {{ networks.moonbeam.min_gas_price }} Gwei 最低值对应于 Moonriver 上的 {{ networks.moonriver.min_gas_price }} Gwei 最低值和 Moonbase 上的 {{ networks.moonbase.min_gas_price }} Gwei。
 
 ![MoonGas](/images/builders/get-started/networks/moonbase/moonbase-7.webp)

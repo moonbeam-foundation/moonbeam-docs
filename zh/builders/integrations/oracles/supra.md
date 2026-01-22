@@ -26,42 +26,42 @@ Supra 采用拉取模型作为一种定制方法，可以根据请求发布价�
 
 Supra 在 Moonbeam 上的合约地址如下：
 
-==="Moonbeam"
+=== "Moonbeam"
 
     |  Contract   |                                                               Address                                                               |
     |:-----------:|:-----------------------------------------------------------------------------------------------------------------------------------:|
-    | Pull Oracle | [{{ networks.moonbeam.supra.pull_oracle }}](https://moonscan.io/address/{{ networks.moonbeam.supra.pull_oracle }}){target=_blank} |
-    |   Storage   |     [{{ networks.moonbeam.supra.storage }}](https://moonscan.io/address/{{ networks.moonbeam.supra.storage }}){target=_blank}     |
+    | Pull Oracle | [{{ networks.moonbeam.supra.pull_oracle }}](https://moonscan.io/address/{{ networks.moonbeam.supra.pull_oracle }}){target=\_blank} |
+    |   Storage   |     [{{ networks.moonbeam.supra.storage }}](https://moonscan.io/address/{{ networks.moonbeam.supra.storage }}){target=\_blank}     |
 
-==="Moonbase Alpha"
+=== "Moonbase Alpha"
 
     |  Contract   |                                                                   Address                                                                    |
     |:-----------:|:--------------------------------------------------------------------------------------------------------------------------------------------:|
-    | Pull Oracle | [{{ networks.moonbase.supra.pull_oracle }}](https://moonbase.moonscan.io/address/{{ networks.moonbase.supra.pull_oracle }}){target=_blank} |
-    |   Storage   |     [{{ networks.moonbase.supra.storage }}](https://moonbase.moonscan.io/address/{{ networks.moonbase.supra.storage }}){target=_blank}     |
+    | Pull Oracle | [{{ networks.moonbase.supra.pull_oracle }}](https://moonbase.moonscan.io/address/{{ networks.moonbase.supra.pull_oracle }}){target=\_blank} |
+    |   Storage   |     [{{ networks.moonbase.supra.storage }}](https://moonbase.moonscan.io/address/{{ networks.moonbase.supra.storage }}){target=\_blank}     |
 
 !!! note
     目前不支持 Moonriver。
 
 ### 可用价格信息列表 {: #list-of-available-price-feeds }
 
-要查看 Supra 提供的可用数据对的完整列表，请查看他们文档站点上的[数据信息目录](https://docs.supra.com/oracles/data-feeds/data-feeds-index)。
+要查看 Supra 提供的可用数据对的完整列表，请查看他们文档站点上的[数据信息目录](https://docs.supra.com/oracles/data-feeds/data-feeds-index){target=\_blank}。
 
 要与任何这些数据对进行交互，您需要记下该对的 **Pair ID**。
 
 ### 尝试一下 {: #try-it-out }
 
-按照[上一节](#price-feeds)中提到的步骤，或参考[Supra 文档](https://supra.com/developers/){target=_blank}，尝试一个使用 Supra 拉取模型获取价格数据的基本示例。
+按照[上一节](#price-feeds)中提到的步骤，或参考[Supra 文档](https://supra.com/developers/){target=\_blank}，尝试一个使用 Supra 拉取模型获取价格数据的基本示例。
 
 ## 与 Supra 建立连接 {: #connect-with-supra }
 
 仍在寻找答案？Supra 已经有了！查看您可以联系 Supra 团队的所有方式：
 
-- 访问 [Supra 的网站 supraoracles.com](https://supra.com){target=_blank}。
-- 阅读他们的[文档](https://docs.supra.com/oracles/overview){target=_blank}。
-- 在 [Telegram](https://t.me/SupraOracles){target=_blank} 上与他们聊天。
-- 在 [X](https://x.com/SupraOracles){target=_blank} 上关注他们。
-- 加入他们的 [Discord](https://discord.com/invite/supraoracles){target=_blank}。
-- 查看他们的 [Youtube](https://www.youtube.com/SupraOfficial){target=_blank}。
+- 访问 [Supra 的网站 supraoracles.com](https://supra.com){target=\_blank}。
+- 阅读他们的[文档](https://docs.supra.com/oracles/overview){target=\_blank}。
+- 在 [Telegram](https://t.me/SupraOracles){target=\_blank} 上与他们聊天。
+- 在 [X](https://x.com/SupraOracles){target=\_blank} 上关注他们。
+- 加入他们的 [Discord](https://discord.com/invite/supraoracles){target=\_blank}。
+- 查看他们的 [Youtube](https://www.youtube.com/SupraOfficial){target=\_blank}。
 
 --8<-- 'text/_disclaimers/third-party-content.md'

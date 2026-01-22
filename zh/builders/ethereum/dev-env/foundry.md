@@ -28,8 +28,6 @@ Foundry 由四个工具组成：
 
 --8<-- 'text/_common/faucet/faucet-list-item.md'
 
-- 
-
 --8<-- 'text/_common/endpoint-examples-list-item.md'
 
 - 安装了[Foundry](https://getfoundry.sh/introduction/installation/){target=\_blank}

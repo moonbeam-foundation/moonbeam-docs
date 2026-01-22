@@ -8,9 +8,9 @@ categories: 基础知识
 
 ## 快速概览 {: #overview }
 
-Moonbeam 是一个在 Polkadot 上的完全兼容以太坊的智能合约平台。因此，您可以通过 [Ethereum API](/builders/ethereum/){target=_blank} 和 [Substrate API](/builders/substrate/){target=_blank} 与 Moonbeam 进行交互。
+Moonbeam 是一个在 Polkadot 上的完全兼容以太坊的智能合约平台。因此，您可以通过 [Ethereum API](builders/ethereum/){target=\_blank} 和 [Substrate API](builders/substrate/){target=\_blank} 与 Moonbeam 进行交互。
 
-虽然 Moonbeam 是一个基于 Substrate 的平台，但它使用 [统一账户](/learn/core-concepts/unified-accounts/){target=_blank} 系统，该系统用以太坊样式的账户和密钥替换了 Substrate 样式的账户和密钥。因此，您可以通过简单地添加 Moonbeam 的网络配置，使用 [MetaMask](/tokens/connect/metamask/){target=_blank}、[Ledger](/tokens/connect/ledger/){target=_blank} 和其他兼容以太坊的钱包与您的 Moonbeam 帐户进行交互。同样，您可以使用以太坊 [库](/builders/ethereum/libraries/){target=_blank} 和 [开发环境](/builders/ethereum/dev-env/){target=_blank} 在 Moonbeam 上进行开发。
+虽然 Moonbeam 是一个基于 Substrate 的平台，但它使用 [统一账户](learn/core-concepts/unified-accounts/){target=\_blank} 系统，该系统用以太坊样式的账户和密钥替换了 Substrate 样式的账户和密钥。因此，您可以通过简单地添加 Moonbeam 的网络配置，使用 [MetaMask](tokens/connect/metamask/){target=\_blank}、[Ledger](tokens/connect/ledger/){target=\_blank} 和其他兼容以太坊的钱包与您的 Moonbeam 帐户进行交互。同样，您可以使用以太坊 [库](builders/ethereum/libraries/){target=\_blank} 和 [开发环境](builders/ethereum/dev-env/){target=\_blank} 在 Moonbeam 上进行开发。
 
 ## Moonbeam 网络 {: #moonbeam-networks }
 
@@ -30,7 +30,7 @@ Moonbeam 是一个在 Polkadot 上的完全兼容以太坊的智能合约平台�
 
 当使用开发者工具时，根据工具的不同，您可能需要配置 Moonbeam 以与网络进行交互。为此，您可以使用以下信息：
 
-===
+=== "Moonbeam"
 
     |    变量     |                                                 值                                                  |
     |:---------------:|:------------------------------------------------------------------------------------------------------:|
@@ -38,7 +38,7 @@ Moonbeam 是一个在 Polkadot 上的完全兼容以太坊的智能合约平台�
     | 公共 RPC URL | <pre>```https://rpc.api.moonbeam.network```</pre>  <pre>```https://moonbeam.unitedbloc.com```</pre> |
     | 公共 WSS URL |                           <pre>```wss://wss.api.moonbeam.network```</pre>                           |
 
-===
+=== "Moonriver"
 
     |    变量     |                                                  值                                                   |
     |:---------------:|:--------------------------------------------------------------------------------------------------------:|
@@ -46,7 +46,7 @@ Moonbeam 是一个在 Polkadot 上的完全兼容以太坊的智能合约平台�
     | 公共 RPC URL | <pre>```https://rpc.api.moonriver.moonbeam.network```</pre>  <pre>```https://moonriver.unitedbloc.com```</pre> |
     | 公共 WSS URL |                           <pre>```wss://wss.api.moonriver.moonbeam.network```</pre>                            |
 
-===
+=== "Moonbase Alpha"
 
     |    变量     |                                                    值                                                    |
     |:---------------:|:-----------------------------------------------------------------------------------------------------------:|
@@ -54,7 +54,7 @@ Moonbeam 是一个在 Polkadot 上的完全兼容以太坊的智能合约平台�
     | 公共 RPC URL | <pre>```{{ networks.moonbase.rpc_url }}```</pre> |
     | 公共 WSS URL |  <pre>```{{ networks.moonbase.wss_url }}```</pre>  |
 
-===
+=== "Moonbeam Dev Node"
 
     |   变量    |                        值                         |
     |:-------------:|:----------------------------------------------------:|
@@ -63,7 +63,7 @@ Moonbeam 是一个在 Polkadot 上的完全兼容以太坊的智能合约平台�
     | 本地 WSS URL | <pre>```{{ networks.development.wss_url }}```</pre>  |
 
 !!! note
-    您可以从[支持的 RPC 提供商](/builders/get-started/endpoints/#endpoint-providers){target=_blank}之一创建适合开发或生产的您自己的端点。
+    您可以从[支持的 RPC 提供商](/builders/get-started/endpoints/#endpoint-providers){target=\_blank}之一创建适合开发或生产的您自己的端点。
 
 ### 区块浏览器 {: #explorers }
 
@@ -77,8 +77,8 @@ Moonbeam 提供了两种不同的浏览器：一种用于查询以太坊 API，�
 
 |                                           测试网                                           |                                                                            从哪里获取代币                                                                            |
 |:------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-|         [Moonbase Alpha](/builders/get-started/networks/moonbase/){target=\_blank}          | [Moonbase Alpha 水龙头](https://faucet.moonbeam.network){target=\_blank} 网站。<br> 该水龙头每 24 小时分配 {{ networks.moonbase.website_faucet_amount }} |
-|  [Moonbeam 开发节点](/builders/get-started/networks/moonbeam-dev/){target=\_blank}  | 任何[十个预先注资的账户](/builders/get-started/networks/moonbeam-dev/#pre-funded-development-accounts){target=\_blank}，这些账户都随您的 <br> 开发节点一起提供 |
+|         [Moonbase Alpha](builders/get-started/networks/moonbase/){target=\_blank}          | [Moonbase Alpha 水龙头](https://faucet.moonbeam.network){target=\_blank} 网站。<br> 该水龙头每 24 小时分配 {{ networks.moonbase.website_faucet_amount }} |
+|  [Moonbeam 开发节点](builders/get-started/networks/moonbeam-dev/){target=\_blank}  | 任何[十个预先注资的账户](builders/get-started/networks/moonbeam-dev/#pre-funded-development-accounts){target=\_blank}，这些账户都随您的 <br> 开发节点一起提供 |
 
 ## 开发工具 {: #development-tools }
 
@@ -86,7 +86,7 @@ Moonbeam 提供了两种不同的浏览器：一种用于查询以太坊 API，�
 
 ### JavaScript 工具 {: #javascript }
 
-===
+=== "Ethereum"
 
     |                                   工具                                    |      类型       |
     |:------------------------------------------------------------------------:|:---------------:|
@@ -94,7 +94,7 @@ Moonbeam 提供了两种不同的浏览器：一种用于查询以太坊 API，�
     |      [Hardhat](/builders/ethereum/dev-env/hardhat/){target=_blank}      | 开发环境 |
     |        [Remix](/builders/ethereum/dev-env/remix/){target=_blank}        | 开发环境 |
 
-===
+=== "Substrate"
 
     |                                       工具                                         |  类型   |
     |:---------------------------------------------------------------------------------:|:-------:|

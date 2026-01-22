@@ -8,7 +8,7 @@ categories: 索引器和查询
 
 ## 简介 {: #introduction }
 
-[SubQuery](https://subquery.network){target=_blank} 是一个数据聚合层，它在第 1 层区块链（如 Moonbeam 和 Polkadot）和 DApp 之间运行。此服务解锁区块链数据并将其转换为可查询状态，以便在直观的应用程序中使用。它使 DApp 开发人员能够专注于其核心用例和前端，而无需浪费时间构建用于数据处理的自定义后端。
+[SubQuery](https://subquery.network){target=\_blank} 是一个数据聚合层，它在第 1 层区块链（如 Moonbeam 和 Polkadot）和 DApp 之间运行。此服务解锁区块链数据并将其转换为可查询状态，以便在直观的应用程序中使用。它使 DApp 开发人员能够专注于其核心用例和前端，而无需浪费时间构建用于数据处理的自定义后端。
 
 SubQuery 支持为任何 Moonbeam 网络索引以太坊虚拟机 (EVM) 和 Substrate 数据。使用 SubQuery 的一个主要优势是，您可以使用单个项目和工具灵活地跨 Moonbeam 的 EVM 和 Substrate 代码收集查询数据，然后使用 GraphQL 查询此数据。
 
@@ -22,11 +22,11 @@ SubQuery 支持为任何 Moonbeam 网络索引以太坊虚拟机 (EVM) 和 Subst
 
 在本指南的稍后部分，您可以选择将项目部署到本地运行的SubQuery节点。为此，您需要在系统上安装以下组件：
 
- - [Docker](https://docs.docker.com/get-started/get-docker/){target=_blank}
- - [Docker Compose](https://docs.docker.com/compose/install){target=_blank}
+ - [Docker](https://docs.docker.com/get-started/get-docker/){target=\_blank}
+ - [Docker Compose](https://docs.docker.com/compose/install){target=\_blank}
 
 !!! note
-    如果Docker Compose是通过`sudo apt install docker-compose`命令为Linux安装的，那么您可能会在本指南的稍后部分遇到一些错误。请务必按照官方[安装Docker Compose](https://docs.docker.com/compose/install){target=_blank}指南中的Linux说明进行操作。
+    如果Docker Compose是通过`sudo apt install docker-compose`命令为Linux安装的，那么您可能会在本指南的稍后部分遇到一些错误。请务必按照官方[安装Docker Compose](https://docs.docker.com/compose/install){target=\_blank}指南中的Linux说明进行操作。
 
 ## 创建一个项目 {: #create-a-project }
 
@@ -90,7 +90,7 @@ SubQuery 支持为任何 Moonbeam 网络索引以太坊虚拟机 (EVM) 和 Subst
     4. 系统将提示您添加其他信息，例如RPC终结点、项目作者和项目描述。 对于这些，您可以直接按Enter键并接受默认值，或者根据需要自定义它们。
 
         !!! note
-            为了避免达到公共RPC端点的速率限制，建议您拥有自己的端点和API密钥，您可以从支持的[端点提供商](/builders/get-started/endpoints/){target=_blank}处获得。
+            为了避免达到公共RPC端点的速率限制，建议您拥有自己的端点和API密钥，您可以从支持的[端点提供商](/builders/get-started/endpoints/){target=\_blank}处获得。
 
         --8<-- 'code/builders/integrations/indexers/subquery/terminal/select-rpc.md'
 
@@ -116,7 +116,7 @@ SubQuery 支持为任何 Moonbeam 网络索引以太坊虚拟机 (EVM) 和 Subst
 
 === "Moonbeam"
 
-    ts
+    ```ts
     network: {
       chainId: 
         '0xfe58ea77779b7abda7da4ec526d14db9b1e9cd40a217c34892af80a9b332b76d',
@@ -125,11 +125,11 @@ SubQuery 支持为任何 Moonbeam 网络索引以太坊虚拟机 (EVM) 和 Subst
         file: ./dist/chaintypes.js,
       },
     },
-    
+    ```
 
 === "Moonriver"
 
-    ts
+    ```ts
     network: {
       chainId: '0x401a1f9dca3da46f5c4091016c8a2f26dcea05865116b286f60f668207d1474b',
       endpoint: ['{{ networks.moonriver.rpc_url }}'],
@@ -137,11 +137,11 @@ SubQuery 支持为任何 Moonbeam 网络索引以太坊虚拟机 (EVM) 和 Subst
         file: ./dist/chaintypes.js,
       },
     },
-    
+    ```
 
 === "Moonbase Alpha"
 
-    ts
+    ```ts
     network: {
       chainId: '0x91bc6e169807aaa54802737e1c504b2577d4fafedd5a02c10293b1cd60e39527',
       endpoint: ['{{ networks.moonbase.rpc_url }}'],
@@ -149,7 +149,7 @@ SubQuery 支持为任何 Moonbeam 网络索引以太坊虚拟机 (EVM) 和 Subst
         file: ./dist/chaintypes.js,
       },
     },
-    
+    ```
 
  --8<-- 'text/_common/endpoint-examples.md'
 
@@ -159,15 +159,15 @@ SubQuery 支持为任何 Moonbeam 网络索引以太坊虚拟机 (EVM) 和 Subst
 
 === "npm"
 
-    bash
+    ```bash
     npm run codegen
-    
+    ```
 
 === "yarn"
 
-    bash
+    ```bash
     yarn codegen
-    
+    ```
 
 --8<-- 'code/builders/integrations/indexers/subquery/terminal/codegen.md'
 
@@ -182,14 +182,15 @@ SubQuery 支持为任何 Moonbeam 网络索引以太坊虚拟机 (EVM) 和 Subst
 
 要索引 Substrate 数据，您需要确保 `project` 的类型为 `SubstrateProject`。
 
-ts
+```ts
 const project: SubstrateProject = { ... }
+```
 
 ### Substrate 数据源 {: #the-substrate-data-source }
 
 在 `project.dataSources` 数组中，您将定义 Substrate 数据源和要索引的数据。数据源的格式如下：
 
-ts
+```ts
 datasources: [
   {
     kind: 'substrate/Runtime',
@@ -209,6 +210,7 @@ datasources: [
     },
   },
 ],
+```
 
 每个属性可以定义如下：
 
@@ -258,6 +260,7 @@ To index Substrate data, you'll need to ensure that the type of the `project` is
 
 ```ts
 const project: SubstrateProject<FrontierEvmDatasource> = { ... }
+```
 
 ### EVM数据源 {: #the-evm-data-source }
 
@@ -265,7 +268,7 @@ const project: SubstrateProject<FrontierEvmDatasource> = { ... }
 
 数据源的格式如下：
 
-ts
+```ts
 datasources: [
   {
     kind: 'substrate/FrontierEvm',
@@ -293,6 +296,7 @@ datasources: [
     },
   },
 ],
+```
 
 每个属性可以定义如下：
 
@@ -301,7 +305,7 @@ datasources: [
 - `endBlock`（可选）：在此区块之后，索引器将停止处理区块。
 - `processor`：Frontier EVM数据处理器配置。
     - `file`：数据处理器代码所在的⽂文件。
-    - `options` (可选)：Frontier EVM处理器特有的[处理器选项](https://subquery.network/doc/indexer/build/datasource-processors/substrate-evm.html#processor-options){target=_blank}。
+    - `options` (可选)：Frontier EVM处理器特有的[处理器选项](https://subquery.network/doc/indexer/build/datasource-processors/substrate-evm.html#processor-options){target=\_blank}。
         - `abi`（可选）：用于解析参数的ABI。`abi` 值必须是 `assets` 配置中的一个键。
         - `address`（可选）：事件发出的或调用发生的合约地址。使用 `null` 将捕获合约创建调用。
     - `assets` (可选)：外部资产ABI文件的对象。
@@ -316,19 +320,18 @@ datasources: [
 
 僅使用某些處理程序和篩選器將提高索引器的效率。EVM 數據可用的處理程序如下所示：
 
-- [Frontier EVM 呼叫處理程序](https://subquery.network/doc/indexer/build/substrate-evm.html#call-handlers){target=_blank} 用於索引基於 [Ethers `TransactionResponse` 類型](https://docs.ethers.org/v5/api/providers/types/#providers-TransactionResponse){target=_blank} 格式化的交易，但略有不同。有關確切變更的資訊，請參閱 [SubQuery 的文件](https://subquery.network/doc/indexer/build/substrate-evm.html#handler-functions){target=_blank}。呼叫處理程序支援的篩選器包括：`function` 和 `from`。
+- [Frontier EVM 呼叫處理程序](https://subquery.network/doc/indexer/build/substrate-evm.html#call-handlers){target=\_blank} 用於索引基於 [Ethers `TransactionResponse` 類型](https://docs.ethers.org/v5/api/providers/types/#providers-TransactionResponse){target=\_blank} 格式化的交易，但略有不同。有關確切變更的資訊，請參閱 [SubQuery 的文件](https://subquery.network/doc/indexer/build/substrate-evm.html#handler-functions){target=\_blank}。呼叫處理程序支援的篩選器包括：`function` 和 `from`。
 
     |   Filter   |                        Description                        |                                    Example                                    |
     |:----------:|:---------------------------------------------------------:|:-----------------------------------------------------------------------------:|
     | `function` |    依函式簽章或選取器篩選呼叫     | `function: '0x095ea7b3'` <br> `function: 'approve(address to,uint256 value)'` |
     |   `from`   | 依傳送交易的位址篩選呼叫 |             `from: '0x6bd193ee6d2104f14f94e2ca6efefae561a4334b'`              |
 
-- [Frontier EVM 事件處理程序](https://subquery.network/doc/indexer/build/substrate-evm.html#event-handlers){target=_blank} 用於索引特定 EVM 事件。事件處理程序支援的篩選器為：`topics`。
+- [Frontier EVM 事件處理程序](https://subquery.network/doc/indexer/build/substrate-evm.html#event-handlers){target=\_blank} 用於索引特定 EVM 事件。事件處理程序支援的篩選器為：`topics`。
 
     |  Filter  |                                                                  Description                                                                   |                                   Example                                   |
     |:--------:|:----------------------------------------------------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------:|
-    | `topics` | 依主題篩選事件日誌，這遵循 [Ethereum JSON-RPC 日誌篩選器](https://docs.ethers.org/v5/concepts/events/){target=_blank} | `topics: 'Transfer(address indexed from,address indexed to,uint256 value)'` |
-
+    | `topics` | 依主題篩選事件日誌，這遵循 [Ethereum JSON-RPC 日誌篩選器](https://docs.ethers.org/v5/concepts/events/){target=\_blank} | `topics: 'Transfer(address indexed from,address indexed to,uint256 value)'` |
 ## 运行你的索引器 {: #run-your-indexer }
 
 要使用 Docker 在本地运行你的索引器，你可以采取以下步骤：
@@ -379,6 +382,6 @@ datasources: [
 
     ![浏览器中的 GraphQL playground。](/images/builders/integrations/indexers/subquery/subquery-1.webp)
 
-就是这样！有关如何使用 `moonbeam-substrate-evm-starter` 模板项目的分步教程，你可以参考 [SubQuery 的 Moonbeam (EVM) 快速入门文档](https://subquery.network/doc/indexer/quickstart/quickstart_chains/polkadot-moonbeam.html){target=_blank}。
+就是这样！有关如何使用 `moonbeam-substrate-evm-starter` 模板项目的分步教程，你可以参考 [SubQuery 的 Moonbeam (EVM) 快速入门文档](https://subquery.network/doc/indexer/quickstart/quickstart_chains/polkadot-moonbeam.html){target=\_blank}。
 
 --8<-- 'text/_disclaimers/third-party-content.md'

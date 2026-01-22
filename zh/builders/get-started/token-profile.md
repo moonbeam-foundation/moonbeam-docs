@@ -8,7 +8,7 @@ categories: Tokens and Accounts, Ethereum Toolkit
 
 ## 简介 {: #introduction }
 
-本教程将指导您完成将您的 ERC-20、ERC-721 或 ERC-1155 代币的个人资料添加到 [Moonscan](https://moonscan.io){target=_blank} 的过程。
+本教程将指导您完成将您的 ERC-20、ERC-721 或 ERC-1155 代币的个人资料添加到 [Moonscan](https://moonscan.io){target=\_blank} 的过程。
 
 ​​Moonscan 是一个与 EVM 兼容的区块链浏览器和分析平台。它是 Moonbeam 和 Etherscan 的集成，它允许用户和开发人员访问开发工具和网络统计信息，这些信息提供了对 Moonriver 和 Moonbeam 的 EVM 的精细洞察。
 
@@ -22,7 +22,7 @@ categories: Tokens and Accounts, Ethereum Toolkit
 
 要学习本教程，您需要具备以下条件：
 
-- 一个 [Moonscan 帐户](https://moonscan.io/register){target=_blank}
+- 一个 [Moonscan 帐户](https://moonscan.io/register){target=\_blank}
 
 在本指南的后面，您需要验证代币合约地址的所有权。您可以手动或自动执行此操作，但如果您选择自动执行，您还需要以下内容：
 
@@ -33,21 +33,23 @@ categories: Tokens and Accounts, Ethereum Toolkit
 
 首先，您需要确保已登录到您的 Moonscan 帐户。登录帐户后，您可以转到要为其添加配置文件的令牌的令牌页面。对于 ERC-20，您可以在搜索栏中搜索令牌的名称。或者，对于任何令牌，您可以手动输入 URL。
 
-===
+=== "Moonbeam"
 
-    text
+    ```text
     https://moonscan.io/token/INSERT_CONTRACT_ADDRESS
-    
+    ```
 
-===
+=== "Moonriver"
 
-    text
+
+    ```text
     https://moonriver.moonscan.io/token/INSERT_CONTRACT_ADDRESS 
-    
+    ```
 
-===
+=== "Moonbase Alpha"
 
-    text
+
+    ```text
     https://moonbase.moonscan.io/token/INSERT_CONTRACT_ADDRESS
     
 
@@ -61,7 +63,7 @@ categories: Tokens and Accounts, Ethereum Toolkit
 
 ## 验证合约源代码 {: #verifying-contract-source-code }
 
-您可以通过几种方式验证您的合约源代码。您可以直接从 Moonscan 验证，或者如果您使用 Hardhat 或 Foundry 开发合约，您也可以使用它们对应的 [Etherscan 集成](/builders/ethereum/verify-contracts/etherscan-plugins/){target=_blank}。
+您可以通过几种方式验证您的合约源代码。您可以直接从 Moonscan 验证，或者如果您使用 Hardhat 或 Foundry 开发合约，您也可以使用它们对应的 [Etherscan 集成](builders/ethereum/verify-contracts/etherscan-plugins/){target=\_blank}。
 
 要直接从 Moonscan 验证您的合约源代码，您可以点击**工具**链接。
 

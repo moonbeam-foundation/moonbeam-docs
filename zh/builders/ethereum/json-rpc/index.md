@@ -4,6 +4,6 @@ description: Moonbeam 的 JSON-RPC API 提供了一系列方法，用于通过 J
 dropdown_description: 您可以通过 JSON-RPC 交互的方法
 template: subsection-index-page.html
 hide:
- - toc
- - feedback
+    - toc
+    - feedback
 ---

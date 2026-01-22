@@ -92,6 +92,77 @@ disclaimer:
     Network or any information made available on this website, including any direct, indirect, incidental, special, exemplary,
     punitive or consequential damages, or loss of profits, cryptocurrencies, tokens, or anything else of value. All information
     contained herein is subject to modification without notice.
+  third_party_content_intro: |-
+
+      The information presented herein is for informational purposes only and has been provided by third parties. Moonbeam does not endorse any project listed and described on the Moonbeam docs website (https://docs.moonbeam.network/).
+
+  third_party_content: |-
+
+      The information presented herein has been provided by third parties and is made available solely for general information purposes. Moonbeam does not endorse any project listed and described on the Moonbeam Doc Website (https://docs.moonbeam.network/). Moonbeam Foundation does not warrant the accuracy, completeness or usefulness of this information. Any reliance you place on such information is strictly at your own risk. Moonbeam Foundation disclaims all liability and responsibility arising from any reliance placed on this information by you or by anyone who may be informed of any of its contents. All statements and/or opinions expressed in these materials are solely the responsibility of the person or entity providing those materials and do not necessarily represent the opinion of Moonbeam Foundation. The information should not be construed as professional or financial advice of any kind. Advice from a suitably qualified professional should always be sought in relation to any particular matter or circumstance. The information herein may link to or integrate with other websites operated or content provided by third parties, and such other websites may link to this website. Moonbeam Foundation has no control over any such other websites or their content and will have no liability arising out of or related to such websites or their content. The existence of any such link does not constitute an endorsement of such websites, the content of the websites, or the operators of the websites. These links are being provided to you only as a convenience and you release and hold Moonbeam Foundation harmless from any and all liability arising from your use of this information or the information provided by any third-party website or service.
+
+  educational_tutorial: |-
+
+        This tutorial is for educational purposes only. As such, any contracts or code created in this tutorial should not be used in production.
+
+  staking_risks: |-
+    ## Risks {: #risks }
+
+    *Holders of MOVR/GLMR tokens should perform careful due diligence on collators before delegating. Being listed as a collator is not an endorsement or recommendation from the Moonbeam Network, the Moonriver Network, or Moonbeam Foundation. Neither the Moonbeam Network, Moonriver Network, nor Moonbeam Foundation has vetted the list collators and assumes no responsibility with regard to the selection, performance, security, accuracy, or use of any third-party offerings.  You alone are responsible for doing your own diligence to understand the applicable fees and all risks present, including actively monitoring the activity of your collators.*
+
+    *You agree and understand that neither the Moonbeam Network, the Moonriver Network, nor Moonbeam Foundation guarantees that you will receive staking rewards and any applicable percentage provided (i) is an estimate only and not guaranteed, (ii) may change at any time and (iii) may be more or less than the actual staking rewards you receive. The Moonbeam Foundation makes no representations as to the monetary value of any rewards at any time.*
+
+    *Staking MOVR/GLMR tokens is not free of risk.*
+  staking_risks_part_2: |-
+    *Additionally, if a collator fails to perform required functions or acts in bad faith, a portion of their total stake can be slashed (i.e. destroyed). This includes the stake of their delegators. If a collators behaves suspiciously or is too often offline, delegators can choose to unbond from them or switch to another collator. Delegators can also mitigate risk by electing to distribute their stake across multiple collators.*
+  user_generated_content: |-
+    You are responsible for checking and validating the accuracy and truthfulness of all content. You are also responsible for doing your own diligence to understand the applicable risks present, including selection, performance, security, accuracy, or use of any third-party information. All information contained herein is subject to modification without notice.
+common:
+  assumes_mac_or_ubuntu_env: |-
+    The examples in this guide assume you have a MacOS or Ubuntu 22.04-based environment and will need to be adapted accordingly for Windows.
+  async_backing: |-
+    !!! note
+        As of runtime 3000, [asynchronous backing](https://wiki.polkadot.com/learn/learn-async-backing/#asynchronous-backing){target=\_blank} has been enabled on all Moonbeam networks. As a result, the target block time was reduced from 12 seconds to 6 seconds, which may break some timing-based assumptions.
+  endpoint_examples_list_item: |-
+    To test out the examples in this guide on Moonbeam or Moonriver, you will need to have your own endpoint and API key, which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=\_blank}
+  endpoint_examples: |-
+    To test out the examples in this guide on Moonbeam or Moonriver, you will need to have your own endpoint and API key, which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=\_blank}.
+  endpoint_setup: |-
+    To configure your project for Moonbeam or Moonriver, you will need to have your own endpoint and API key, which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=\_blank}.
+  install_nodejs: |-
+    You need to install Node.js (for this example, you can use v16.x) and the npm package manager. You can download directly from [Node.js](https://nodejs.org/en/download/package-manager){target=\_blank} or in your terminal:
+
+    === "Ubuntu"
+
+        ```bash
+        curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+
+        sudo apt install -y nodejs
+        ```
+
+    === "MacOS"
+
+        ```bash
+        # You can use homebrew (https://docs.brew.sh/Installation)
+        brew install node
+
+        # Or you can use nvm (https://github.com/nvm-sh/nvm)
+        nvm install node
+        ```
+
+    You can verify that everything is installed correctly by querying the version for each package:
+
+    ```bash
+    node -v
+    ```
+
+    ```bash
+    npm -v
+    ```
+  faucet:
+    list_item: |-
+      You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}
+    sentence: |-
+      You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}.
 action:
   edit: Edit
   view: View

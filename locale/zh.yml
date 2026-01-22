@@ -76,6 +76,73 @@ material_overrides:
       faucet: 水龙头
 disclaimer:
   third_party: 所有可用信息，包括本项目中描述的声明、内容、设计、算法、估算、路线图、规范和性能测量，仅供参考，Moonbeam 不认可此处引用的任何项目。读者有责任检查和验证其准确性和真实性。此外，本项目中的任何信息均不构成投资邀请。创建 Moonbeam 网络或 Moonriver 网络的任何开发者或实体或编写此信息的作者均不对因您使用、无法使用或您与其他用户的互动而引起的任何索赔或损害负责， 包括任何直接、间接、附带、特殊、惩戒性、惩罚性或后果性损害，或利润、加密货币、代币或任何其他有价值物品的损失。本文包含的所有信息如有更改，恕不另行通知。
+  third_party_content_intro: |-
+
+      本文所述信息仅供参考，由第三方提供。Moonbeam 不认可 Moonbeam 文档网站（https://docs.moonbeam.network/）中列出并描述的任何项目。
+
+  third_party_content: |-
+      本文所述信息由第三方提供，仅供一般信息用途。Moonbeam 不认可 Moonbeam 文档网站（https://docs.moonbeam.network/）中列出并描述的任何项目。Moonbeam Foundation 不对该信息的准确性、完整性或有用性作任何保证。您对该信息的任何依赖均需自行承担风险。Moonbeam Foundation 对因您或任何知悉其内容的人依赖该信息而产生的任何责任与义务概不承担。上述材料中所有陈述和/或观点仅代表提供材料的个人或实体，不一定代表 Moonbeam Foundation 的观点。该信息不应被视为任何形式的专业或财务建议。涉及任何具体事项或情况时，始终应寻求具备资格的专业人士建议。本文信息可能链接至或整合第三方运营的网站或第三方提供的内容，这些网站也可能链接至本网站。Moonbeam Foundation 无法控制这些网站或其内容，并且不对因这些网站或其内容引起或与之相关的任何责任承担任何义务。任何此类链接的存在均不构成对这些网站、其内容或其运营者的认可。这些链接仅为便利您而提供，您同意免除并使 Moonbeam Foundation 免于因您使用本信息或任何第三方网站或服务所提供信息而产生的任何责任。
+  educational_tutorial: |-
+        本教程仅用于教育目的。因此，本教程中创建的任何合约或代码都不应在生产环境中使用。
+  staking_risks: |-
+    ## 风险 {: #risks }
+
+    *MOVR/GLMR 代币持有者在委托前应对收集人进行谨慎尽调。被列为收集人并不意味着 Moonbeam Network、Moonriver Network 或 Moonbeam Foundation 的认可或推荐。Moonbeam Network、Moonriver Network 及 Moonbeam Foundation 未对收集人列表进行审核，并且不对任何第三方服务的选择、表现、安全性、准确性或使用承担责任。您有责任自行尽调，以了解适用费用及所有风险，包括主动监控收集人的活动。*
+
+    *您同意并理解，Moonbeam Network、Moonriver Network 和 Moonbeam Foundation 不保证您会获得质押奖励，任何适用的百分比（i）仅为估算而非保证，（ii）可能随时变化，（iii）可能高于或低于您实际获得的质押奖励。Moonbeam Foundation 不对任何奖励在任何时候的货币价值作出陈述。*
+
+    *质押 MOVR/GLMR 代币并非没有风险。*
+  staking_risks_part_2: |-
+    *此外，如果收集人未能履行必要职责或存在恶意行为，其总质押的一部分可能会被削减（即销毁），其中也包括其委托人的质押。如果收集人行为可疑或经常离线，委托人可以选择解除委托或切换到其他收集人。委托人也可以通过将质押分散到多个收集人来降低风险。*
+  user_generated_content: |-
+    您有责任检查并验证所有内容的准确性和真实性。您还应自行尽调以了解适用的风险，包括任何第三方信息的选择、表现、安全性、准确性或使用。本文包含的所有信息如有更改，恕不另行通知。
+common:
+  assumes_mac_or_ubuntu_env: |-
+    本指南中的示例假设你使用的是 MacOS 或 Ubuntu 22.04 环境，如在 Windows 上使用需做相应调整。
+  async_backing: |-
+    !!! note
+        自 runtime 3000 起，[异步背书](https://wiki.polkadot.com/learn/learn-async-backing/#asynchronous-backing){target=\_blank} 已在所有 Moonbeam 网络启用。因此，目标区块时间从 12 秒缩短为 6 秒，这可能会破坏一些基于时间的假设。
+  endpoint_examples_list_item: |-
+    要在 Moonbeam 或 Moonriver 上测试本指南中的示例，你需要拥有自己的端点和 API 密钥，可从支持的[端点提供商](/builders/get-started/endpoints/){target=\_blank}获取
+  endpoint_examples: |-
+    要在 Moonbeam 或 Moonriver 上测试本指南中的示例，你需要拥有自己的端点和 API 密钥，可从支持的[端点提供商](/builders/get-started/endpoints/){target=\_blank}获取。
+  endpoint_setup: |-
+    要为 Moonbeam 或 Moonriver 配置你的项目，你需要拥有自己的端点和 API 密钥，可从支持的[端点提供商](/builders/get-started/endpoints/){target=\_blank}获取。
+  install_nodejs: |-
+    你需要安装 Node.js（本示例可使用 v16.x）和 npm 包管理器。你可以直接从 [Node.js](https://nodejs.org/en/download/package-manager){target=\_blank} 下载，或在终端中运行：
+
+    === "Ubuntu"
+
+        ```bash
+        curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+
+        sudo apt install -y nodejs
+        ```
+
+    === "MacOS"
+
+        ```bash
+        # You can use homebrew (https://docs.brew.sh/Installation)
+        brew install node
+
+        # Or you can use nvm (https://github.com/nvm-sh/nvm)
+        nvm install node
+        ```
+
+    你可以通过查看每个包的版本来验证是否安装正确：
+
+    ```bash
+    node -v
+    ```
+
+    ```bash
+    npm -v
+    ```
+  faucet:
+    list_item: |-
+      你可以每 24 小时从 [Moonbase Alpha 水龙头](https://faucet.moonbeam.network){target=\_blank} 获取一次 DEV 测试代币
+    sentence: |-
+      你可以每 24 小时从 [Moonbase Alpha 水龙头](https://faucet.moonbeam.network){target=\_blank} 获取一次 DEV 测试代币。
 action:
   edit: 编辑
   view: 查看

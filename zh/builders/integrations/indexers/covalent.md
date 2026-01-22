@@ -12,7 +12,7 @@ categories: Indexers and Queries
 
 - [统一 API](#unified-api-overview) - 通过熟悉的 REST API 将区块链数据整合到您的应用中
 
-本指南将介绍开始使用 [Foundational API](https://goldrush.dev/docs/goldrush-foundational-api/quickstart){target=_blank} 所需的所有详细信息，以及如何使用 curl 命令以及 JavaScript 和 Python 代码段访问 Moonbeam 的 API 端点。
+本指南将介绍开始使用 [Foundational API](https://goldrush.dev/docs/goldrush-foundational-api/quickstart){target=\_blank} 所需的所有详细信息，以及如何使用 curl 命令以及 JavaScript 和 Python 代码段访问 Moonbeam 的 API 端点。
 
 --8<-- 'text/_disclaimers/third-party-content-intro.md'
 
@@ -22,34 +22,34 @@ GoldRush 的统一 API 是一个强大但易于使用的 REST API，可提供跨
 
 ### 查询统一 API {: #querying-the-unified-api }
 
-在您获得 GoldRush API 密钥后，可以轻松开始查询统一 API。请确保您拥有[您的 API 密钥](https://goldrush.dev/platform/auth/register/){target=_blank}，该密钥以 `cqt_` 或 `ckey_` 开头。
+在您获得 GoldRush API 密钥后，可以轻松开始查询统一 API。请确保您拥有[您的 API 密钥](https://goldrush.dev/platform/auth/register/){target=\_blank}，该密钥以 `cqt_` 或 `ckey_` 开头。
 
-您可以在 GoldRush 文档的 Web 界面中与任何 API 方法进行交互。要试用代币余额 API，请访问[代币余额文档](https://goldrush.dev/docs/api-reference/foundational-api/balances/get-token-balances-for-address){target=_blank}，然后执行以下步骤：
+您可以在 GoldRush 文档的 Web 界面中与任何 API 方法进行交互。要试用代币余额 API，请访问[代币余额文档](https://goldrush.dev/docs/api-reference/foundational-api/balances/get-token-balances-for-address){target=\_blank}，然后执行以下步骤：
 
 1. 粘贴您的 API 密钥
 2. 输入所需的 `chainName`，例如 Moonbase Alpha 的 `moonbeam-moonbase-alpha`。如果您不确定所需网络的 chainName 应该是什么，请参考[快速入门部分](#quick-start)
 3. 输入您希望检查代币余额的地址
 4. 按**发送**
 
-[![JSON 中的 API 响应示例](/images/builders/integrations/indexers/covalent/covalent-1.webp)](https://goldrush.mintlify.app/docs/api/balances/get-token-balances-for-address){target=_blank}
+[![JSON 中的 API 响应示例](/images/builders/integrations/indexers/covalent/covalent-1.webp)](https://goldrush.mintlify.app/docs/api/balances/get-token-balances-for-address){target=\_blank}
 
 ### 快速开始 {: #quick-start }
 
 如果您熟悉 GoldRush 并准备好开始，您将需要 chainID 和网络名称才能开始。
 
-===
+=== "Moonbeam"
     |  Parameter  |               Value                |
     |:-----------:|:----------------------------------:|
     | `chainName` |         `moonbeam-mainnet`         |
     |  `chainID`  | `{{ networks.moonbeam.chain_id }}` |
 
-===
+=== "Moonriver"
     |  Parameter  |                Value                |
     |:-----------:|:-----------------------------------:|
     | `chainName` |        `moonbeam-moonriver`         |
     |  `chainID`  | `{{ networks.moonriver.chain_id }}` |
 
-===
+=== "Moonbase Alpha"
     |  Parameter  |               Value                |
     |:-----------:|:----------------------------------:|
     | `chainName` |     `moonbeam-moonbase-alpha`      |
@@ -60,8 +60,8 @@ GoldRush 的统一 API 是一个强大但易于使用的 REST API，可提供跨
  - GoldRush API 是 RESTful 风格的，它围绕着可以通过 Web 界面获得的主要资源而设计
  - API 的当前版本为版本 1
  - 所有端点的默认返回格式为 JSON
- - 所有请求都需要身份验证；您需要[一个 API 密钥](https://goldrush.dev/platform/auth/register/){target=_blank}才能使用 GoldRush API
- - API 调用的成本以积分计价，并且因特定调用而异。创建 API 密钥后，您将获得大量免费积分以开始使用（在撰写本文时为 25,000 个）。您可以在 [GoldRush 仪表板](https://goldrush.dev/platform/){target=_blank}上跟踪这些免费积分的使用情况
+ - 所有请求都需要身份验证；您需要[一个 API 密钥](https://goldrush.dev/platform/auth/register/){target=\_blank}才能使用 GoldRush API
+ - API 调用的成本以积分计价，并且因特定调用而异。创建 API 密钥后，您将获得大量免费积分以开始使用（在撰写本文时为 25,000 个）。您可以在 [GoldRush 仪表板](https://goldrush.dev/platform/){target=\_blank}上跟踪这些免费积分的使用情况
  - 请注意，免费开发 API 密钥的速率限制为每秒 `4` 个请求。专业计划的订阅者每秒最多可以发出 `50` 个请求。
  - API 的根 URL 为：`https://api.covalenthq.com/v1/`
  - 所有请求都通过 HTTPS 完成（通过纯 HTTP 的调用将失败）
@@ -77,7 +77,7 @@ GoldRush API 有三种类型的端点：
 
 ### 支持的示例端点 {: #sample-supported-endpoints }
 
-有关支持的端点的完整列表，请参阅 [GoldRush API 参考](https://goldrush.dev/docs/api-reference/foundational-api/cross-chain/get-address-activity){target=_blank}。支持的端点的子集包括：
+有关支持的端点的完整列表，请参阅 [GoldRush API 参考](https://goldrush.dev/docs/api-reference/foundational-api/cross-chain/get-address-activity){target=\_blank}。支持的端点的子集包括：
 
 - **代币余额**- 获取地址的所有代币余额（原生、ERC-20、ERC-721、ERC-1155）以及当前市场价格
 - **原生代币余额**- 检索地址的原生代币余额
@@ -95,13 +95,13 @@ GoldRush API 有三种类型的端点：
 
 ## 统一 API 方法 {: #unified-api-methods }
 
-要了解有关统一 API 的每种方法的更多信息，并获得尝试每种方法的交互式界面，请务必查看 [GoldRush 文档](https://goldrush.dev/docs/goldrush-foundational-api/overview){target=_blank}。
+要了解有关统一 API 的每种方法的更多信息，并获得尝试每种方法的交互式界面，请务必查看 [GoldRush 文档](https://goldrush.dev/docs/goldrush-foundational-api/overview){target=\_blank}。
 
 ### 余额 {: #balances }
 
 ???+ function "代币余额"
 
-    [代币余额端点](https://goldrush.dev/docs/api-reference/foundational-api/balances/get-token-balances-for-address){target=_blank} 检索与给定地址关联的本地代币、可替代代币 (ERC-20) 和不可替代代币 (ERC-721 & ERC-1155)。返回的数据包括当前市场价格和其他代币元数据。
+    [代币余额端点](https://goldrush.dev/docs/api-reference/foundational-api/balances/get-token-balances-for-address){target=\_blank} 检索与给定地址关联的本地代币、可替代代币 (ERC-20) 和不可替代代币 (ERC-721 & ERC-1155)。返回的数据包括当前市场价格和其他代币元数据。
 
     === "参数"
 
@@ -122,7 +122,7 @@ GoldRush API 有三种类型的端点：
 
 ??? function "本地代币余额"
 
-    [本地代币余额端点](https://goldrush.dev/docs/api-reference/foundational-api/balances/get-native-token-balance){target=_blank} 以简化的方式检索给定地址的本地代币余额。
+    [本地代币余额端点](https://goldrush.dev/docs/api-reference/foundational-api/balances/get-native-token-balance){target=\_blank} 以简化的方式检索给定地址的本地代币余额。
 
     === "参数"
 
@@ -143,7 +143,7 @@ GoldRush API 有三种类型的端点：
 
 ??? function "获取地址的 ERC-20 代币转移"
 
-    [获取地址的 ERC-20 代币转移](https://goldrush.dev/docs/api-reference/foundational-api/balances/get-erc20-token-transfers-for-address){target=_blank} 用于在提供钱包地址和 ERC-20 代币合约地址时，获取代币的转入和转出以及地址的历史价格
+    [获取地址的 ERC-20 代币转移](https://goldrush.dev/docs/api-reference/foundational-api/balances/get-erc20-token-transfers-for-address){target=\_blank} 用于在提供钱包地址和 ERC-20 代币合约地址时，获取代币的转入和转出以及地址的历史价格
 
     === "参数"
 
@@ -167,7 +167,7 @@ GoldRush API 有三种类型的端点：
 
 ???+ function "获取交易"
 
-    [获取交易](https://goldrush.dev/docs/api-reference/foundational-api/transactions/get-a-transaction){target=_blank} 用于获取和渲染单个交易，包括其解码的日志事件。
+    [获取交易](https://goldrush.dev/docs/api-reference/foundational-api/transactions/get-a-transaction){target=\_blank} 用于获取和渲染单个交易，包括其解码的日志事件。
 
     === "参数"
 
@@ -188,7 +188,7 @@ GoldRush API 有三种类型的端点：
 
 ??? function "获取地址的交易摘要"
 
-    [获取地址的交易摘要](https://goldrush.dev/docs/api-reference/foundational-api/transactions/get-transaction-summary-for-address){target=_blank} 检索关键钱包活动数据，包括第一笔和最近的交易以及总交易计数。 它能够快速分析钱包年龄、不活动周期和整体 Web3 参与度。
+    [获取地址的交易摘要](https://goldrush.dev/docs/api-reference/foundational-api/transactions/get-transaction-summary-for-address){target=\_blank} 检索关键钱包活动数据，包括第一笔和最近的交易以及总交易计数。 它能够快速分析钱包年龄、不活动周期和整体 Web3 参与度。
 
     === "参数"
 
@@ -209,7 +209,7 @@ GoldRush API 有三种类型的端点：
 
 ??? function "获取地址的最早交易 (v3)"
 
-    [获取地址的最早交易](https://goldrush.dev/docs/api-reference/foundational-api/transactions/get-earliest-transactions-for-address-v3){target=_blank} 检索涉及地址的最早交易。
+    [获取地址的最早交易](https://goldrush.dev/docs/api-reference/foundational-api/transactions/get-earliest-transactions-for-address-v3){target=\_blank} 检索涉及地址的最早交易。
 
     === "参数"
 
@@ -230,7 +230,7 @@ GoldRush API 有三种类型的端点：
 
 ??? function "获取地址的最近交易 (v3)"
 
-    [获取地址的最近交易](https://goldrush.dev/docs/api-reference/foundational-api/transactions/get-recent-transactions-for-address-v3){target=_blank} 检索涉及地址的最近交易。
+    [获取地址的最近交易](https://goldrush.dev/docs/api-reference/foundational-api/transactions/get-recent-transactions-for-address-v3){target=\_blank} 检索涉及地址的最近交易。
 
     === "参数"
 
@@ -251,7 +251,7 @@ GoldRush API 有三种类型的端点：
 
 ??? function "获取地址的分页交易 (v3)"
 
-    [获取地址的分页交易 (v3)](https://goldrush.dev/docs/api-reference/foundational-api/transactions/get-paginated-transactions-for-address-v3){target=_blank} 获取涉及地址和指定页面的交易，从 0 索引开始。
+    [获取地址的分页交易 (v3)](https://goldrush.dev/docs/api-reference/foundational-api/transactions/get-paginated-transactions-for-address-v3){target=\_blank} 获取涉及地址和指定页面的交易，从 0 索引开始。
 
     === "参数"
 
@@ -273,7 +273,7 @@ GoldRush API 有三种类型的端点：
 
 ??? function "获取地址的批量时间段交易 (v3)"
 
-    [获取地址的批量时间段交易 (v3)](https://goldrush.dev/docs/api-reference/foundational-api/transactions/get-time-bucket-transactions-for-address-v3){target=_blank} 用于获取所有交易，包括 15 分钟时间段间隔内解码的日志事件。
+    [获取地址的批量时间段交易 (v3)](https://goldrush.dev/docs/api-reference/foundational-api/transactions/get-time-bucket-transactions-for-address-v3){target=\_blank} 用于获取所有交易，包括 15 分钟时间段间隔内解码的日志事件。
 
     === "参数"
 
@@ -295,7 +295,7 @@ GoldRush API 有三种类型的端点：
 
 ??? function "按页面获取区块中的所有交易 (v3)"
 
-    [按页面获取区块中的所有交易 (v3)](https://goldrush.dev/docs/api-reference/foundational-api/transactions/get-all-transactions-in-a-block-by-page){target=_blank} 用于获取区块中包括其解码的日志事件的所有交易，并进一步标记有趣的钱包或交易。
+    [按页面获取区块中的所有交易 (v3)](https://goldrush.dev/docs/api-reference/foundational-api/transactions/get-all-transactions-in-a-block-by-page){target=\_blank} 用于获取区块中包括其解码的日志事件的所有交易，并进一步标记有趣的钱包或交易。
 
     === "参数"
 
@@ -317,7 +317,7 @@ GoldRush API 有三种类型的端点：
 
 ??? function "获取区块中的所有交易 (v3)"
 
-    [获取区块中的所有交易 (v3)](https://goldrush.dev/docs/api-reference/foundational-api/transactions/get-all-transactions-in-a-block){target=_blank} 用于获取区块中包括其解码的日志事件的所有交易，并进一步标记有趣的钱包或交易。 它以区块哈希作为参数，并且不接受页面参数。
+    [获取区块中的所有交易 (v3)](https://goldrush.dev/docs/api-reference/foundational-api/transactions/get-all-transactions-in-a-block){target=\_blank} 用于获取区块中包括其解码的日志事件的所有交易，并进一步标记有趣的钱包或交易。 它以区块哈希作为参数，并且不接受页面参数。
 
     === "参数"
 
@@ -348,14 +348,16 @@ GoldRush API 有三种类型的端点：
 
     === "示例请求"
 
-        bash
+        ```bash
         --8<-- 'code/builders/integrations/indexers/covalent/cross-chain/request.sh'
+        ```
         
 
     === "示例响应"
 
-        bash
+        ```bash
         --8<-- 'code/builders/integrations/indexers/covalent/cross-chain/response.sh'
+        ```
 
 ### 安全性 {: #security }
 
@@ -370,15 +372,15 @@ GoldRush API 有三种类型的端点：
 
     === "示例请求"
 
-        bash
+        ```bash
         --8<-- 'code/builders/integrations/indexers/covalent/erc20-approvals/request.sh'
-        
+        ```
 
     === "示例响应"
 
-        bash
+        ```bash
         --8<-- 'code/builders/integrations/indexers/covalent/erc20-approvals/response.sh'
-        
+        ```
 
 GoldRush API 提供了许多其他方法，包括 NFT、价格、比特币和实用程序方法。请务必查看 [GoldRush API](https://goldrush.dev/docs/api-reference/foundational-api/cross-chain/get-address-activity){target=\_blank}，以获取有关每种方法的更多信息。
 
@@ -415,8 +417,8 @@ GoldRush API 提供了许多其他方法，包括 NFT、价格、比特币和实
 
 ### API 资源 {: #api-resources }
 
-- [API 参考和浏览器内端点演示](https://goldrush.mintlify.app/docs/api/overview){target=_blank}
-- [GoldRush 快速入门](https://goldrush.mintlify.app/docs/quickstart){target=_blank}
+- [API 参考和浏览器内端点演示](https://goldrush.mintlify.app/docs/api/overview){target=\_blank}
+- [GoldRush 快速入门](https://goldrush.mintlify.app/docs/quickstart){target=\_blank}
 - [书面指南](https://goldrush.dev/docs/overview){target=_blank}
 
 ## 如何使用统一 API {: #how-to-use-the-unified-api }
@@ -428,17 +430,21 @@ GoldRush API 提供了许多其他方法，包括 NFT、价格、比特币和实
 要开始使用 GoldRush API，您需要具备以下条件：
 
  - 一个免费的 [GoldRush API 密钥](https://goldrush.dev/platform/auth/register/){target=_blank}
- - 安装 MetaMask 并[连接到 Moonbase Alpha](/tokens/connect/metamask/){target=_blank}
+ - 安装 MetaMask 并[连接到 Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}
  - 一个有资金的帐户。
+ 
   --8<-- 'text/_common/faucet/faucet-list-item.md'
 
-{
-  "source_path": "builders/integrations/indexers/covalent.md",
-  "source_language": "EN",
-  "target_language": "ZH",
-  "checksum": "b83ab75d8b266d76b90a928cfc1d14030a090f1b8dc98117f6c54db98eff18ca",
-  "content": "### Using Curl {: #using-curl }\n\nOne of the supported endpoints is the token holders endpoint, which returns a list of all the token holders of a particular token. For this example, you can check the token holders for the ERTH token. The contract address for the ERTH token on Moonbase Alpha is `0x08B40414525687731C23F430CEBb424b332b3d35`.\n\nTry running the command below in a terminal window after replacing the placeholder with your API key.\n\n```bash
+### 使用 Curl {: #using-curl }
+
+支持的端点之一是代币持有者（token holders）端点，它会返回某个代币的所有持有者列表。在本示例中，你可以查询 ERTH 代币的持有者。ERTH 代币在 Moonbase Alpha 上的合约地址为 `0x08B40414525687731C23F430CEBb424b332b3d35`。
+
+请在将占位符替换为你的 API Key 后，尝试在终端窗口中运行下面的命令。
+
+
+```bash
 curl https://api.covalenthq.com/v1/1287/tokens/\\\n0x08B40414525687731C23F430CEBb424b332b3d35/token_holders/ \\\n-u INSERT_YOUR_API_KEY:
+```
 
 ### 使用 Javascript {: #using-javascript }
 
