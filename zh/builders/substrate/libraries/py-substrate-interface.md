@@ -16,6 +16,7 @@ categories: Substrate Toolkit, Libraries and SDKs
 
 - 一个有资金的帐户。
   --8<-- 'text/_common/faucet/faucet-list-item.md'
+  --8<-- 'text/_common/endpoint-examples-list-item.md'
 - 安装了 [`pip`](https://pypi.org/project/pip){target=_blank}
 
 !!! note
@@ -137,7 +138,6 @@ block = ws_provider.get_block_header(finalized_only=True)
 # 检索给定其 Substrate 区块哈希的区块
 block_hash = "0xa499d4ebccdabe31218d232460c0f8b91bd08f72aca25f9b25b04b6dfb7a2acb"
 block = ws_provider.get_block(block_hash=block_hash)
-```
 
 # 迭代区块内的 extrinsics
 python
@@ -185,9 +185,9 @@ result = ws_provider.subscribe_block_headers(subscription_handler)
 
 ### 查询存储信息 {: #querying-for-storage-information }
 
-您可以使用 [`get_metadata_storage_functions`](https://jamdottech.github.io/py-polkadot-sdk/reference/base/#substrateinterface.base.SubstrateInterface.get_metadata_storage_functions){target=_blank} 来查看 Moonbeam 网络元数据中可用的存储函数列表。
+您可以使用 [`get_metadata_storage_functions`](https://jamdottech.github.io/py-polkadot-sdk/reference/base/#substrateinterface.base.SubstrateInterface.get_metadata_storage_functions){target=\_blank} 来查看 Moonbeam 网络元数据中可用的存储函数列表。
 
-通过存储函数在元数据中提供的链状态可以通过 [`query`](https://jamdottech.github.io/py-polkadot-sdk/reference/base/#substrateinterface.base.SubstrateInterface.query){target=_blank} 方法进行查询。
+通过存储函数在元数据中提供的链状态可以通过 [`query`](https://jamdottech.github.io/py-polkadot-sdk/reference/base/#substrateinterface.base.SubstrateInterface.query){target=\_blank} 方法进行查询。
 
 可以查询诸如 `System`、`Timestamp` 和 `Balances` 等 Substrate 系统模块，以提供诸如帐户随机数和余额等基本信息。可用的存储函数是从元数据中动态读取的，因此您还可以查询 Moonbeam 自定义模块（如 `ParachainStaking` 和 `Democracy`）上的存储信息，以获取特定于 Moonbeam 的状态信息。
 
@@ -301,7 +301,7 @@ try:
     )
 except SubstrateRequestException as e:
     print("发送失败: {}".format(e))
-
+```
 ### 离线签名 {: #offline-signing }
 
 您可以使用密钥对对象通过 [`sign`](https://jamdottech.github.io/py-polkadot-sdk/reference/keypair/#substrateinterface.keypair.Keypair.sign){target=\_blank} 方法对交易负载或任何任意数据进行签名。这可用于交易的离线签名。
@@ -393,8 +393,8 @@ except SubstrateRequestException as e:
 
 您还可以使用 [`rpc_request`](https://jamdottech.github.io/py-polkadot-sdk/reference/base/#substrateinterface.base.SubstrateInterface.rpc_request){target=_blank} 方法发出自定义 RPC 请求。
 
-这对于与 Moonbeam 的 [Ethereum JSON-RPC](/builders/ethereum/json-rpc/eth-rpc/){target=_blank} 端点或 Moonbeam 的 [自定义 RPC](/builders/ethereum/json-rpc/moonbeam-custom-api/){target=_blank} 端点进行交互特别有用。
+这对于与 Moonbeam 的 [Ethereum JSON-RPC](builders/ethereum/json-rpc/eth-rpc/){target=_blank} 端点或 Moonbeam 的 [自定义 RPC](builders/ethereum/json-rpc/moonbeam-custom-api/){target=_blank} 端点进行交互特别有用。
 
-[共识和最终性页面](/learn/core-concepts/consensus-finality/#checking-tx-finality-with-substrate-libraries){target=_blank} 提供了通过 Python Substrate Interface 使用自定义 RPC 调用来检查给定交易哈希的交易最终性的示例。
+[共识和最终性页面](learn/core-concepts/consensus-finality/#checking-tx-finality-with-substrate-libraries){target=\_blank} 提供了通过 Python Substrate Interface 使用自定义 RPC 调用来检查给定交易哈希的交易最终性的示例。
 
 --8<-- 'text/_disclaimers/third-party-content.md'

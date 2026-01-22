@@ -46,7 +46,7 @@ Polkadot用于选择其区块验证人集以最大化链安全性的机制。 �
 
 ### Substrate {: #substrate }
 
-一个基于 Rust 的区块链开发框架，由 Parity Technologies 根据他们实现多个区块链客户端的经验创建。Substrate 带有构建区块链所需的许多模块和功能，包括 P2P 网络、共识机制、质押、加密货币、链上治理模块等等。它大大减少了实现区块链所需的时间和工程工作。Substrate 现在是 [Polkadot SDK](https://polkadot.com/platform/sdk/){target=_blank} 的一部分。
+一个基于 Rust 的区块链开发框架，由 Parity Technologies 根据他们实现多个区块链客户端的经验创建。Substrate 带有构建区块链所需的许多模块和功能，包括 P2P 网络、共识机制、质押、加密货币、链上治理模块等等。它大大减少了实现区块链所需的时间和工程工作。Substrate 现在是 [Polkadot SDK](https://polkadot.com/platform/sdk/){target=\_blank} 的一部分。
 
 ### Substrate Frame Pallets {: #substrate-frame-pallets }
 

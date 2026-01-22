@@ -42,7 +42,7 @@ categories: 基础知识
 
 ## 监控原生代币余额转移 {: #monitor-transfers }
 
-以下代码示例将演示如何监听通过 Substrate 或 Ethereum API 发送的两种类型的原生代币转移，可以使用 [Polkadot.js API 库](https://polkadot.js.org/docs/api/start/){target=_blank} 或 [Substrate API Sidecar](https://github.com/paritytech/substrate-api-sidecar){target=_blank}。以下代码片段仅用于演示目的，未经修改和在生产环境中进一步测试，不应使用。
+以下代码示例将演示如何监听通过 Substrate 或 Ethereum API 发送的两种类型的原生代币转移，可以使用 [Polkadot.js API 库](https://polkadot.js.org/docs/api/start/){target=\_blank} 或 [Substrate API Sidecar](https://github.com/paritytech/substrate-api-sidecar){target=\_blank}。以下代码片段仅用于演示目的，未经修改和在生产环境中进一步测试，不应使用。
 
 ### 使用Polkadot.js API {: #using-polkadotjs-api }
 
@@ -54,7 +54,7 @@ categories: 基础知识
 --8<-- 'code/learn/core-concepts/transfers-api/balance-event.ts'
 ```
 
-此外，您可以在此 [GitHub 页面](https://gist.github.com/crystalin/b2ce44a208af60d62b5ecd1bad513bce){target=_blank}上找到与余额转账相关的更多特定案例的示例代码片段。
+此外，您可以在此 [GitHub 页面](https://gist.github.com/crystalin/b2ce44a208af60d62b5ecd1bad513bce){target=\_blank}上找到与余额转账相关的更多特定案例的示例代码片段。
 
 ### 使用 Substrate API Sidecar {: #using-substrate-api-sidecar }
 

@@ -8,7 +8,7 @@ categories: Substrate Toolkit, Libraries and SDKs
 
 ## 简介 {: #introduction }
 
-[Polkadot.js](https://wiki.polkadot.com/general/polkadotjs/){target=_blank} 是一系列工具，可让您与 Polkadot 及其平行链（如 Moonbeam）进行交互。[Polkadot.js API](https://polkadot.js.org/docs/api/){target=_blank} 是 Polkadot.js 的一个组件，是一个库，允许应用程序开发人员查询 Moonbeam 节点，并使用 JavaScript 与节点的 Substrate 接口进行交互，从而使您可以读取数据和将数据写入网络。
+[Polkadot.js](https://wiki.polkadot.com/general/polkadotjs/){target=\_blank} 是一系列工具，可让您与 Polkadot 及其平行链（如 Moonbeam）进行交互。[Polkadot.js API](https://polkadot.js.org/docs/api/){target=\_blank} 是 Polkadot.js 的一个组件，是一个库，允许应用程序开发人员查询 Moonbeam 节点，并使用 JavaScript 与节点的 Substrate 接口进行交互，从而使您可以读取数据和将数据写入网络。
 
 您可以使用 Polkadot.js API 查询链上数据，并从 Moonbeam 的 Substrate 端发送外部因素。您可以查询 Moonbeam 的运行时常量、链状态、事件、交易（外部）数据等。
 
@@ -26,17 +26,17 @@ categories: Substrate Toolkit, Libraries and SDKs
 
 首先，您需要通过诸如 `yarn` 之类的包管理器为您的项目安装 Polkadot.js API 库。使用以下命令将其安装在您的项目目录中：
 
-===
+=== "npm"
 
-    bash
+    ```bash
     npm i @polkadot/api
-    
+    ```
 
-===
+=== "yarn"
 
-    bash
+    ```bash
     yarn add @polkadot/api
-    
+    ```
 
 该库还包括其他核心组件，如用于帐户管理的 Keyring，或本指南中使用的某些实用程序。
 
@@ -46,9 +46,9 @@ categories: Substrate Toolkit, Libraries and SDKs
 
 --8<-- 'text/_common/endpoint-examples.md'
 
-===
+=== "Moonbeam"
 
-    javascript
+    ```javascript
     // Import
     import { ApiPromise, WsProvider } from '@polkadot/api';
 
@@ -63,11 +63,11 @@ categories: Substrate Toolkit, Libraries and SDKs
     }
 
     main();
-    
+    ```
 
-===
+=== "Moonriver"
 
-    javascript
+    ```javascript
     // Import
     import { ApiPromise, WsProvider } from '@polkadot/api';
 
@@ -82,11 +82,11 @@ categories: Substrate Toolkit, Libraries and SDKs
     }
 
     main();
-    
+    ```
 
-===
+=== "Moonbase Alpha"
 
-    javascript
+    ```javascript
     // Import
     import { ApiPromise, WsProvider } from '@polkadot/api';
 
@@ -101,11 +101,11 @@ categories: Substrate Toolkit, Libraries and SDKs
     }
 
     main();
-    
+    ```
 
-===
+=== "Moonbeam Dev Node"
 
-    javascript
+    ```javascript
     // Import
     import { ApiPromise, WsProvider } from '@polkadot/api';
 
@@ -120,6 +120,8 @@ categories: Substrate Toolkit, Libraries and SDKs
     }
 
     main();
+    ```
+
 
 ### 元数据和动态 API 装饰 {: #metadata-and-dynamic-api-decoration }
 
@@ -127,7 +129,7 @@ categories: Substrate Toolkit, Libraries and SDKs
 
 当 Polkadot.js API 连接到节点时，它首先要做的事情之一是检索元数据，并根据元数据信息装饰 API。元数据有效地以以下形式提供数据：
 
-```
+```text
 api.<类型>.<模块>.<部分>
 ```
 
@@ -171,8 +173,9 @@ console.log(
 
 ??? code "View the complete script"
 
-    js
+    ```js
     --8<-- 'code/builders/substrate/libraries/polkadot-js-api/state-queries.js'
+    ```
 
 ### Moonbeam RPC 查询 {: #rpc-queries }
 
@@ -264,13 +267,13 @@ const keyring = new Keyring({ type: 'ethereum' });
 
 有多种方法可以将帐户添加到密钥环实例，包括从助记词和简短格式的私钥。
 
-===
+=== "From Mnemonic"
 
     ```javascript
     --8<-- 'code/builders/substrate/libraries/polkadot-js-api/adding-accounts-mnemonic.js'
     ```
 
-===
+=== "From Private Key"
 
     ```javascript
     --8<-- 'code/builders/substrate/libraries/polkadot-js-api/adding-accounts-private-key.js'
@@ -278,7 +281,7 @@ const keyring = new Keyring({ type: 'ethereum' });
 
 ## Dry Run API {: #dry-run-api }
 
-Dry Run API 是一种简便的方法，用于测试调用的完整性，而不会产生任何交易费用。可以从 Polkadot.js Apps 的**开发者**部分的[运行时调用](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbeam.network#/runtime){target=_blank}选项卡访问 Dry Run API。虽然 Dry Run API 主要用于[测试 XCM 消息](/builders/interoperability/xcm/send-execute-xcm/#test-an-xcm-message-with-the-dry-run-api){target=_blank}，但它也可用于测试任何任意调用。
+Dry Run API 是一种简便的方法，用于测试调用的完整性，而不会产生任何交易费用。可以从 Polkadot.js Apps 的**开发者**部分的[运行时调用](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbeam.network#/runtime){target=_blank}选项卡访问 Dry Run API。虽然 Dry Run API 主要用于[测试 XCM 消息](builders/interoperability/xcm/send-execute-xcm/#test-an-xcm-message-with-the-dry-run-api){target=_blank}，但它也可用于测试任何任意调用。
 
 此方法将 origin 和调用数据作为参数，并返回执行结果和其他事件数据。
 
@@ -305,13 +308,80 @@ const result = await api.call.dryRunApi.dryRunCall(
 
 调用 Dry Run API 后，此方法会告诉您调用是否会成功，并返回如果实际在链上提交调用将发出的事件数据。
 
+## 在 Moonbeam 上发送交易 {: #transactions }
+
+交易端点通常以 `api.tx.<module>.<method>` 的形式暴露，其中模块（module）和方法（method）的装饰信息由元数据生成。通过这些端点，你可以提交交易以被打包进区块，例如转账、与各类 pallet 交互，或任何 Moonbeam 支持的操作。你可以通过查看 `api.tx` 对象来获取所有可用端点的列表，例如：
+
+```javascript
+console.log(api.tx);
+```
+
+### 发送交易 {: #sending-basic-transactions }
+
+Polkadot.js API 库可用于向网络发送交易。例如，假设你已经[初始化了 API](#creating-an-API-provider-instance) 并创建了 [keyring 实例](#creating-a-keyring-instance)，你可以使用以下代码片段来发送一笔基础交易（该示例在提交后还会获取交易的已编码 calldata，以及交易哈希）：
+
+```javascript
+// 初始化钱包密钥对
+const alice = keyring.addFromUri('INSERT_ALICES_PRIVATE_KEY');
+const bob = 'INSERT_BOBS_ADDRESS';
+
+// 构造交易
+const tx = await api.tx.balances.transferAllowDeath(bob, 12345n);
+
+// 获取交易的已编码 calldata
+const encodedCalldata = tx.method.toHex();
+console.log(`Encoded calldata: ${encodedCallData}`);
+
+// 签名并发送交易
+const txHash = await tx
+  .signAndSend(alice);
+
+// 显示交易哈希
+console.log(`Submitted with hash ${txHash}`);
+```
+
+??? code "查看完整脚本"
+
+    ```js
+    --8<-- 'code/builders/substrate/libraries/polkadot-js-api/basic-transactions.js'
+    ```
+
+!!! note
+    在客户端 v0.35.0 之前，用于执行简单余额转账的 extrinsic 是 `balances.transfer`。此后该 extrinsic 已被弃用，并由 `balances.transferAllowDeath` extrinsic 替代。
+
+请注意，`signAndSend` 函数也可以接受可选参数，例如 `nonce`。例如：`signAndSend(alice, { nonce: aliceNonce })`。你可以使用 [State Queries](/builders/substrate/libraries/polkadot-js-api/#state-queries){target=_blank} 章节中的示例代码来获取正确的 nonce（包括 mempool 中的交易）。
+
+### 手续费信息 {: #fees }
+
+交易端点也提供了一种方法，用于获取指定 `api.tx.<module>.<method>` 的 weight 信息。为此，你需要在使用特定的 `module` 和 `method` 构建完整交易之后，调用 `paymentInfo` 函数。
+
+`paymentInfo` 函数会返回以 `refTime` 和 `proofSize` 表示的 weight 信息，这些信息可用于确定交易手续费。在构建 [通过 XCM 进行远程执行调用](/builders/interoperability/xcm/remote-execution/){target=_blank} 时，这会非常有帮助。
+
+例如，假设你已经[初始化了 API](#creating-an-API-provider-instance)，下面的代码片段展示了如何获取两个账户之间一次简单余额转账的 weight 信息：
+
+```javascript
+// Transaction to get weight information
+const tx = api.tx.balances.transferAllowDeath('INSERT_BOBS_ADDRESS', BigInt(12345));
+
+// Get weight info
+const { partialFee, weight } = await tx.paymentInfo('INSERT_SENDERS_ADDRESS');
+
+console.log(`Transaction weight: ${weight}`);
+console.log(`Transaction fee: ${partialFee.toHuman()}`);
+```
+??? code "查看完整脚本"
+
+    ```js
+    --8<-- 'code/builders/substrate/libraries/polkadot-js-api/payment-info.js'
+    ```
+
 ### 交易事件 {: #transaction-events }
 
 任何交易都会发出事件，至少对于特定交易，始终会发出 `system.ExtrinsicSuccess` 或 `system.ExtrinsicFailed` 事件。这些事件提供了交易的整体执行结果，即执行成功或失败。
 
 根据发送的交易，可能会发出其他事件，例如，对于余额转移事件，可能包括一个或多个 `balance.Transfer` 事件。
 
-Transfer API 页面包含一个[示例代码段](/learn/core-concepts/transfers-api/#monitor-all-balance-transfers-with-the-substrate-api){target=\_blank}，用于订阅新的已完成区块头并检索所有 `balance.Transfer` 事件。
+Transfer API 页面包含一个[示例代码段](learn/core-concepts/transfers-api/#monitor-all-balance-transfers-with-the-substrate-api){target=\_blank}，用于订阅新的已完成区块头并检索所有 `balance.Transfer` 事件。
 
 ### 批量交易 {: #batching-transactions }
 

@@ -14,7 +14,7 @@ categories: Basics
 
 ## Substrate EVM 兼容区块链 {: #substrate-evm-compatible-blockchain }
 
-Polkadot 生态系统中的任何平行链都可以提供完整的 EVM 实现，从而可以在最小甚至无需更改的情况下执行基于 Solidity 的智能合约。Substrate 使这种集成成为可能 - 只需将 [EVM pallet](https://docs.rs/pallet-evm/2.0.1/pallet_evm){target=_blank} 插入到您的运行时中以获得 EVM 支持，并将 [带有 Frontier 的以太坊 Pallet](https://github.com/polkadot-evm/frontier){target=_blank} 用于获得以太坊 RPC 兼容性。Moonbeam 与 Parity 共同开发的这些开源模块的可用性已促使多个平行链在其链上提供以太坊兼容性。
+Polkadot 生态系统中的任何平行链都可以提供完整的 EVM 实现，从而可以在最小甚至无需更改的情况下执行基于 Solidity 的智能合约。Substrate 使这种集成成为可能 - 只需将 [EVM pallet](https://docs.rs/pallet-evm/2.0.1/pallet_evm){target=\_blank} 插入到您的运行时中以获得 EVM 支持，并将 [带有 Frontier 的以太坊 Pallet](https://github.com/polkadot-evm/frontier){target=\_blank} 用于获得以太坊 RPC 兼容性。Moonbeam 与 Parity 共同开发的这些开源模块的可用性已促使多个平行链在其链上提供以太坊兼容性。
 
 但这里有一个重要的注意事项。使用上述配置，用户（例如 Alice）可以在基于 Substrate 的链中拥有一个以太坊样式的地址（H160 格式），该地址的长度为 40+2 个十六进制字符。此地址与一个私钥匹配，该私钥可用于在链的以太坊端签署交易。此外，该地址被映射到 Substrate Balance pallet 中的存储槽，对应于 Substrate 样式的地址（H256 格式）。
 

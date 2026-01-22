@@ -8,7 +8,7 @@ categories: Basics
 
 ## 简介 {: #introduction }
 
-在 Moonbeam 上开发智能合约时，需要注意一些在以太坊上开发时不会遇到的安全问题。Moonbeam 具有多个[预编译合约](/builders/ethereum/precompiles/){target=_blank}，这些合约是 Solidity 接口，使开发人员可以通过以太坊 API 访问基于 Substrate 的功能，但绕过了 EVM。虽然预编译合约旨在改善开发人员的体验，但可能会有一些意想不到的后果需要考虑。
+在 Moonbeam 上开发智能合约时，需要注意一些在以太坊上开发时不会遇到的安全问题。Moonbeam 具有多个[预编译合约](builders/ethereum/precompiles/){target=_blank}，这些合约是 Solidity 接口，使开发人员可以通过以太坊 API 访问基于 Substrate 的功能，但绕过了 EVM。虽然预编译合约旨在改善开发人员的体验，但可能会有一些意想不到的后果需要考虑。
 
 本指南将概述并提供在 Moonbeam 上开发时需要注意的一些安全问题的示例。
 
@@ -24,7 +24,7 @@ categories: Basics
 
 如前所述，在Moonbeam上任意执行代码的一个主要问题是Moonbeam具有可调用的预编译合约，这可用于绕过通常在Ethereum上可用的一些保护措施。为了在Moonbeam上安全地使用任意代码执行，您应该考虑以下事项，这些事项**仅适用于允许任意代码执行的合约**：
 
-- Moonbeam[预编译合约](/builders/ethereum/precompiles/){target=_blank}，例如原生ERC-20预编译、XC-20预编译和XCM相关预编译，允许用户管理和转移资产，而无需访问EVM。相反，这些操作是使用原生Substrate代码完成的。因此，如果您的合约持有原生代币或XC-20，并允许任意代码执行，则可以使用这些预编译来耗尽合约的余额，绕过通常由EVM强制执行的任何安全检查
+- Moonbeam[预编译合约](builders/ethereum/precompiles/){target=_blank}，例如原生ERC-20预编译、XC-20预编译和XCM相关预编译，允许用户管理和转移资产，而无需访问EVM。相反，这些操作是使用原生Substrate代码完成的。因此，如果您的合约持有原生代币或XC-20，并允许任意代码执行，则可以使用这些预编译来耗尽合约的余额，绕过通常由EVM强制执行的任何安全检查
 - 当使用`call()`函数时，将交易对象的value属性设置为固定金额（例如，`call{value: 0}(...)`），可以通过调用原生资产预编译并在编码的调用数据中指定要转移的金额来绕过
 - 允许使用你合约的用户传入任意调用数据，这将在目标合约上执行任何函数，特别是如果目标合约是预编译合约，则**不**安全。为了安全起见，您可以为要允许执行的安全函数硬编码函数选择器
 - 在执行任意调用数据的函数中，将目标合约（包括预编译）列入黑名单**不**被认为是安全的，因为将来可能会添加其他预编译。在执行任意调用数据的函数中提供列入白名单的目标合约被认为是安全的，假设被调用的合约不是预编译，或者在它们是预编译的情况下，进行调用的合约不持有原生代币或任何XC-20
@@ -33,7 +33,7 @@ categories: Basics
 
 ### 预编译可以覆盖设置值 {: #setting-a-value }
 
-在以太坊上，允许任意代码执行的智能合约可以强制调用的值为特定数量（例如，`{value: 0}`），从而保证只有该数量的本地货币会随交易一起发送。而在 Moonbeam 上，[原生 ERC-20 预编译合约](/builders/ethereum/precompiles/ux/erc20/){target=_blank} 使您可以通过 Substrate API 与 Moonbeam 的本地货币进行交互，就像与 ERC-20 进行交互一样。因此，您可以通过设置调用的 `value` 以及通过原生 ERC-20 预编译来从智能合约转移 Moonbeam 本地资产。如果您设置了任意调用的 `value`，则可以通过定位 [原生 ERC-20 预编译合约](/builders/ethereum/precompiles/ux/erc20/){target=_blank} 并传入调用数据来转移本地资产，以此来覆盖该值。由于 ERC-20 和 XC-20 不是原生资产，因此设置 value 属性不能为以太坊或 Moonbeam 上的这些类型的资产提供任何保护。
+在以太坊上，允许任意代码执行的智能合约可以强制调用的值为特定数量（例如，`{value: 0}`），从而保证只有该数量的本地货币会随交易一起发送。而在 Moonbeam 上，[原生 ERC-20 预编译合约](builders/ethereum/precompiles/ux/erc20/){target=_blank} 使您可以通过 Substrate API 与 Moonbeam 的本地货币进行交互，就像与 ERC-20 进行交互一样。因此，您可以通过设置调用的 `value` 以及通过原生 ERC-20 预编译来从智能合约转移 Moonbeam 本地资产。如果您设置了任意调用的 `value`，则可以通过定位 [原生 ERC-20 预编译合约](builders/ethereum/precompiles/ux/erc20/){target=_blank} 并传入调用数据来转移本地资产，以此来覆盖该值。由于 ERC-20 和 XC-20 不是原生资产，因此设置 value 属性不能为以太坊或 Moonbeam 上的这些类型的资产提供任何保护。
 
 例如，如果您有一个允许任意代码执行的合约，并且您将编码的调用数据传递给它，该调用数据将合约的余额转移到另一个地址，那么您基本上可以耗尽给定合约的余额。
 

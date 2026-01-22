@@ -362,6 +362,6 @@ The [Transfers API page](/learn/core-concepts/transfers-api/#using-substrate-api
 
 ## Calculating Transaction Fees {: #calculating-transaction-fees }
 
-For more detailed information and sample code on how to calculate the transaction fees of Moonbeam transactions using Substrate Sidecar API, please check the [Calculating Transaction Fees on Moonbeam](/learn/core-concepts/tx-fees/){target=\_blank} page.
+For more detailed information and sample code on how to calculate the transaction fees of Moonbeam transactions using Substrate Sidecar API, please check the [Calculating Transaction Fees on Moonbeam](learn/core-concepts/tx-fees/){target=\_blank} page.
 
 --8<-- 'text/_disclaimers/third-party-content.md'

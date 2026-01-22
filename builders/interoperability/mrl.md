@@ -159,7 +159,7 @@ You can begin to tackle the `xTokens.transferMultiassets` extrinsic, which accep
 - `dest` - a multilocation that defines the Computed Origin account that you calculated in the previous section on Moonbase Alpha
 - `destWeightLimit` - the weight to be purchased to pay for XCM execution on the destination chain
 
-You can find more information on each parameter in the [X-Tokens Precompile page](/builders/interoperability/xcm/xc20/send-xc20s/xtokens-precompile/#xtokens-solidity-interface){target=\_blank} documentation.
+You can find more information on each parameter in the [X-Tokens Precompile page](builders/interoperability/xcm/xc20/send-xc20s/xtokens-precompile/#xtokens-solidity-interface){target=\_blank} documentation.
 
 In the `build-transfer-multiassets-call.js` file, you'll build the `xTokens.transferMultiassets` extrinsic and export it.
 

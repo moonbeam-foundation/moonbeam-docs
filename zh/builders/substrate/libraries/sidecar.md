@@ -30,6 +30,7 @@ npm install @substrate/api-sidecar@{{ networks.moonbase.substrate_api_sidecar.st
 ```
 
 !!! note
+
     如果当前文件夹还没有 Node.js 项目结构，需要先运行 `mkdir node_modules` 创建 `node_modules` 目录。
 
 Substrate API Sidecar v{{ networks.moonbase.substrate_api_sidecar.stable_version }} 是已在 Moonbeam 网络上测试过的稳定版本。安装完成后可通过以下命令验证：
@@ -44,27 +45,27 @@ node_modules/.bin/substrate-api-sidecar --version
 
 === "Moonbeam"
 
-```bash
+    ```bash
     export SAS_SUBSTRATE_URL=wss://wss.api.moonbeam.network
-```
+    ```
 
 === "Moonriver"
 
-```bash
+    ```bash
     export SAS_SUBSTRATE_URL=wss://wss.api.moonriver.moonbeam.network
-```
+    ```
 
 === "Moonbase Alpha"
 
-```bash
+    ```bash
     export SAS_SUBSTRATE_URL=wss://wss.api.moonbase.moonbeam.network
-```
+    ```
 
 === "Moonbeam Dev Node"
 
-```bash
+    ```bash
     export SAS_SUBSTRATE_URL=ws://127.0.0.1:9944
-```
+    ```
 
 请参考 [公共端点](/builders/get-started/endpoints/) 页面以获取 Moonbeam 网络端点的完整列表。
 
@@ -143,7 +144,7 @@ node_modules/.bin/substrate-api-sidecar
 
 Substrate API Sidecar 将 Moonbeam 区块作为 JSON 对象返回。与 Moonbeam 交易的 EVM 执行相关的信息位于顶层字段 `extrinsics` 下，其中各个外部因素以数字方式组织为嵌套的 JSON 对象。嵌套结构如下：
 
-```
+```text
 RESPONSE JSON Block Object:
     |--extrinsics
         |--{extrinsic_number}
@@ -171,7 +172,7 @@ RESPONSE JSON Block Object:
 
 Moonbeam EVM 交易可以通过当前外部对象下的 `method` 字段来识别，该字段设置为：
 
-```
+```text
 {extrinsic_number}.method.pallet = "ethereum"
 {extrinsic_number}.method.method = "transact"
 ```
@@ -240,7 +241,7 @@ Moonbeam EVM 当前支持三种交易标准：`legacy`、`eip1559` 和 `eip2930`
 
 要获取任何 EVM 交易类型的 EVM 发送者地址、接收者地址和 EVM 哈希，请检查当前外部对象下的 `events` 字段，并识别 `method` 字段设置为以下内容的事：
 
-```
+```text
 {event_number}.method.pallet: "ethereum"
 {event_number}.method.method: "Executed" 
 ```
@@ -303,7 +304,7 @@ Moonbeam EVM 当前支持三种交易标准：`legacy`、`eip1559` 和 `eip2930`
 
 由智能合约（如部署在 Moonbeam 上的 ERC-20 代币合约）发出的事件可以从 Sidecar 区块 JSON 对象中解码。嵌套结构如下：
 
-```
+```text
 RESPONSE JSON Block Object:
     |--extrinsics
         |--{extrinsic_number}
@@ -355,6 +356,6 @@ EVM 智能合约发出的其他事件也可以以类似的方式解码，但是�
 
 ## 计算交易费用 {: #calculating-transaction-fees }
 
-有关如何使用 Substrate Sidecar API 计算 Moonbeam 交易的交易费用的更多详细信息和示例代码，请查看 [Moonbeam 上的计算交易费用](/learn/core-concepts/tx-fees/){target=\_blank} 页面。
+有关如何使用 Substrate Sidecar API 计算 Moonbeam 交易的交易费用的更多详细信息和示例代码，请查看 [Moonbeam 上的计算交易费用](learn/core-concepts/tx-fees/){target=\_blank} 页面。
 
 --8<-- 'text/_disclaimers/third-party-content.md'

@@ -1,10 +1,11 @@
-solidity
+```solidity
  struct Multilocation {
     uint8 parents;
     bytes[] interior;
 }
+```
 
-与标准的 [multilocation](/builders/interoperability/xcm/core-concepts/multilocations/){target=\_blank} 一样，也有 `parents` 和 `interior` 元素。但是，以太坊库不是将多重地址定义为对象，而是将结构体定义为一个数组，该数组包含一个 `uint8` 作为 `parents` 的第一个元素，一个字节数组作为 `interior` 的第二个元素。
+与标准的 [multilocation](builders/interoperability/xcm/core-concepts/multilocations/){target=\_blank} 一样，也有 `parents` 和 `interior` 元素。但是，以太坊库不是将多重地址定义为对象，而是将结构体定义为一个数组，该数组包含一个 `uint8` 作为 `parents` 的第一个元素，一个字节数组作为 `interior` 的第二个元素。
 
 您通常会看到的 `parents` 元素的值为：
 

@@ -12,7 +12,7 @@ categories: 基础知识
 
 Moonbeam 的设计目标之一是创建一个尽可能接近以太坊的环境，并提供一组与以太坊兼容的 Web3 RPC 端点。然而，Moonbeam 也是一条基于 Substrate 的链，这意味着它公开了 Substrate RPC，并且它具有由 Substrate 提供支持的集成功能，例如 Staking、Governance 以及其他不属于以太坊 API 的功能。
 
-Moonbeam 的[统一账户](/learn/core-concepts/unified-accounts/){target=_blank}是 Moonbeam 实现以太坊兼容性的一种方式，它通过更改协议中底层的账户类型，使其类似于以太坊（H160 或以 `0x` 开头的 20 字节地址）。统一账户被 Substrate 和以太坊 API 使用，并映射到区块链上相同的底层数据存储。然而，通过以太坊 API 使用 Moonbeam 账户时，来自以太坊的用户应该了解一些重要的差异。
+Moonbeam 的[统一账户](learn/core-concepts/unified-accounts/){target=_blank}是 Moonbeam 实现以太坊兼容性的一种方式，它通过更改协议中底层的账户类型，使其类似于以太坊（H160 或以 `0x` 开头的 20 字节地址）。统一账户被 Substrate 和以太坊 API 使用，并映射到区块链上相同的底层数据存储。然而，通过以太坊 API 使用 Moonbeam 账户时，来自以太坊的用户应该了解一些重要的差异。
 
 本指南将概述这些主要差异中的一些，以及首次使用 Moonbeam 时的预期情况。
 
@@ -28,7 +28,7 @@ Moonbeam 的[统一账户](/learn/core-concepts/unified-accounts/){target=_blank
 
 Moonbeam 上的账户也是一个具有代币余额的实体（代币将取决于网络）。与以太坊一样，账户持有人可以在他们连接的 Moonbeam 网络上发送代币交易。此外，账户可以由用户（使用私钥进行签名）或智能合约控制。
 
-与以太坊一样，主要有两种类型的账户：用户拥有的和合约拥有的。但是，在 Moonbeam 上，在这两种账户类型中，还有[代理账户](https://wiki.polkadot.com/learn/learn-proxies/){target=_blank}，它们可以代表另一个账户执行有限数量的操作。在余额方面，所有 Moonbeam 账户类型都有五 (5) 种不同的[余额类型](https://wiki.polkadot.com/learn/learn-accounts/#balance-types#balance-types){target=_blank}：
+与以太坊一样，主要有两种类型的账户：用户拥有的和合约拥有的。但是，在 Moonbeam 上，在这两种账户类型中，还有[代理账户](https://wiki.polkadot.com/learn/learn-proxies/){target=\_blank}，它们可以代表另一个账户执行有限数量的操作。在余额方面，所有 Moonbeam 账户类型都有五 (5) 种不同的[余额类型](https://wiki.polkadot.com/learn/learn-accounts/#balance-types#balance-types){target=\_blank}：
 
  - **可用** — 指的是可以从 Substrate API 使用（未锁定/冻结）的余额。`可用`余额的概念取决于要执行的操作。例如，在民主投票中，不会从`可用`余额中扣除分配给投票的余额，但代币持有人将无法转移该余额
  - **可减少** — 指的是可以通过 Moonbeam 上的以太坊 API 使用（未锁定/冻结）的余额。例如，这是 MetaMask 引擎显示的余额。它是真正可消费的余额，用于核算所有民主锁定（在 Polkadot.js Apps 中显示为可转移）
@@ -42,24 +42,26 @@ Moonbeam 上的账户也是一个具有代币余额的实体（代币将取决�
 
 账户的可转移或可消费余额可以计算为可用余额减去 `0` 或冻结和保留代币之间的差额的最大值：
 
-text
+```text
 Transferable = free - max(0, frozen - reserved )
+```
 
 以下是计算可转移余额的两个示例：
 
 账户拥有 `1000` 个可用代币、`200` 个冻结代币和 `50` 个保留代币。可转移余额计算如下：
 
-text
+```text
 Transferable = 1000 - max(0, 200 - 50) = 1000 - 150 = 850
-
+```
 如果冻结的代币少于保留的代币，例如拥有 `1000` 个可用代币、`100` 个冻结代币和 `150` 个保留代币，则可转移余额将为：
 
-text
+```text
 Transferable = 1000 - max(0, 100 - 150) = 1000 - 0 = 1000
+```
 
 ### 检索您的余额 {: #retrieve-your-balance }
 
-您可以使用[Polkadot.js API](/builders/substrate/libraries/polkadot-js-api/){target=_blank}查看您的余额，包括您的可用（或可转账）余额和保留余额（如果存在）。
+您可以使用[Polkadot.js API](builders/substrate/libraries/polkadot-js-api/){target=_blank}查看您的余额，包括您的可用（或可转账）余额和保留余额（如果存在）。
 
 !!! note
     --8<-- 'text/_common/endpoint-examples.md'

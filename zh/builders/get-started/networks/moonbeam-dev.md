@@ -44,25 +44,28 @@ Moonbeam 开发节点是您自己的个人开发环境，用于在 Moonbeam 上�
 1. 运行以下 Docker 命令启动 Moonbeam 开发节点，该命令将以即时密封模式启动节点以进行本地测试，以便在收到交易时立即生成区块：
 
     === "Ubuntu"
-    ```bash
-    docker run --rm --name {{ networks.development.container_name }} --network host \
-      moonbeamfoundation/moonbeam:{{ networks.development.build_tag }} \
-      --dev --rpc-external
-    ```
+        
+        ```bash
+        docker run --rm --name {{ networks.development.container_name }} --network host \
+        moonbeamfoundation/moonbeam:{{ networks.development.build_tag }} \
+        --dev --rpc-external
+        ```
 
     === "MacOS"
-    ```bash
-    docker run --rm --name {{ networks.development.container_name }} -p 9944:9944 \
-      moonbeamfoundation/moonbeam:{{ networks.development.build_tag }} \
-      --dev --rpc-external
-    ```
+
+        ```bash
+        docker run --rm --name {{ networks.development.container_name }} -p 9944:9944 \
+        moonbeamfoundation/moonbeam:{{ networks.development.build_tag }} \
+        --dev --rpc-external
+        ```
 
     === "Windows"
-    ```bash
-    docker run --rm --name {{ networks.development.container_name }} -p 9944:9944 ^
-      moonbeamfoundation/moonbeam:{{ networks.development.build_tag }} ^
-      --dev --rpc-external
-    ```
+    
+        ```bash
+        docker run --rm --name {{ networks.development.container_name }} -p 9944:9944 ^
+          moonbeamfoundation/moonbeam:{{ networks.development.build_tag }} ^
+          --dev --rpc-external
+        ```
 
     !!! note "适用于 Apple Silicon 用户"
 

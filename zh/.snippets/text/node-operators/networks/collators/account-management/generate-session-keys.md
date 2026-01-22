@@ -1,6 +1,6 @@
-为了与 Substrate 标准匹配，Moonbeam 验证人的会话密钥是 [SR25519](https://wiki.polkadot.com/learn/learn-cryptography/#what-is-sr25519-and-where-did-it-come-from){target=_blank}。本指南将向您展示如何创建/轮换与您的验证人节点关联的会话密钥。
+为了与 Substrate 标准匹配，Moonbeam 验证人的会话密钥是 [SR25519](https://wiki.polkadot.com/learn/learn-cryptography/#what-is-sr25519-and-where-did-it-come-from){target=\_blank}。本指南将向您展示如何创建/轮换与您的验证人节点关联的会话密钥。
 
-首先，请确保您正在[运行验证人节点](/node-operators/networks/run-a-node/overview/){target=_blank}。一旦您的验证人节点运行起来，您的终端应该会打印类似的日志：
+首先，请确保您正在[运行验证人节点](node-operators/networks/run-a-node/overview/){target=\_blank}。一旦您的验证人节点运行起来，您的终端应该会打印类似的日志：
 
 --8<-- 'code/node-operators/networks/collators/account-management/log-output.md'
 

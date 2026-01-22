@@ -190,7 +190,7 @@ npx @acala-network/chopsticks@latest --endpoint {{ networks.moonbase.wss_url }} 
 
 当运行一个分叉时，默认情况下它将可以通过以下方式访问：
 
-```
+```text
 ws://localhost:8000
 ```
 
@@ -236,6 +236,33 @@ npx @acala-network/chopsticks@latest run-block \
   --block 1000
 ```
 
+## XCM 测试 {: #xcm-testing }
+
+要测试不同网络之间的 XCM 消息，你可以在本地 fork 多条平行链和一条中继链。例如，在你已下载源 GitHub 仓库中的 [`configs` 目录](https://github.com/AcalaNetwork/chopsticks/tree/master/configs){target=_blank} 的前提下，以下命令会 fork Moonriver、Karura 和 Kusama：
+
+```bash
+npx @acala-network/chopsticks@latest xcm \
+--r=kusama.yml \
+--p=moonriver.yml \
+--p=karura.yml
+```
+
+你应该会看到类似下面的输出：
+
+```text
+[13:50:57.807] INFO (rpc/64805): Loading config file https://raw.githubusercontent.com/AcalaNetwork/chopsticks/master/configs/moonriver.yml
+[13:50:59.655] INFO (rpc/64805): Moonriver RPC listening on port 8000
+[13:50:59.656] INFO (rpc/64805): Loading config file https://raw.githubusercontent.com/AcalaNetwork/chopsticks/master/configs/karura.yml
+[13:51:03.275] INFO (rpc/64805): Karura RPC listening on port 8001
+[13:51:03.586] INFO (xcm/64805): Connected parachains [2000,2023]
+[13:51:03.586] INFO (rpc/64805): Loading config file https://raw.githubusercontent.com/AcalaNetwork/chopsticks/master/configs/kusama.yml
+[13:51:07.241] INFO (rpc/64805): Kusama RPC listening on port 8002
+[13:51:07.700] INFO (xcm/64805): Connected relaychain 'Kusama' with parachain 'Moonriver'
+[13:51:08.386] INFO (xcm/64805): Connected relaychain 'Kusama' with parachain 'Karura'
+```
+
+是否包含 `r`（指定中继链）是可选的，因为 Chopsticks 会在网络之间自动模拟一条中继链。你也可以使用原始 GitHub URL 或某个常用分支名称，方式与基础命令类似。
+
 ## WebSocket 命令 {: #websocket-commands }
 
 Chopsticks的内部websocket服务器具有特殊的端点，允许操作本地Substrate链。以下是可以调用的方法：
@@ -264,5 +291,14 @@ Chopsticks的内部websocket服务器具有特殊的端点，允许操作本地S
 - **`hashOrNumber` number \| string** - 如果找到，链头将被设置为具有此值的区块号或区块哈希的区块
 
 每个方法都可以通过连接到websocket（默认为 `ws://localhost:8000`）并以下列格式发送数据和参数来调用。将 `METHOD_NAME` 替换为方法的名称，并将 `PARAMETER_1` 和 `PARAMETER_2` 替换为与该方法相关的参数数据，或将其删除：
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 1,
+    "method": "METHOD_NAME",
+    "params": ["PARAMETER_1", "PARAMETER_2", "..."]
+}
+```
 
 --8<-- 'text/_disclaimers/third-party-content.md'

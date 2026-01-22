@@ -12,7 +12,7 @@ categories: 基础
 
 简而言之，共识是不同参与方就共享状态达成一致的方式。当区块被创建时，网络中的节点必须决定哪个区块将代表下一个有效状态。最终性定义了该有效状态何时不能被更改或撤销。
 
-以太坊最初使用基于[工作量证明（PoW）](https://ethereum.org/developers/docs/consensus-mechanisms/pow/){target=_blank}的共识协议，该协议提供概率最终性。然而，在 2022 年，以太坊切换到[权益证明（PoS）](https://ethereum.org/developers/docs/consensus-mechanisms/pos/){target=_blank}，它提供确定性最终性，并且不再使用 PoW。相比之下，Moonbeam 使用基于委托权益证明（DPoS）的混合共识协议，该协议也提供确定性最终性。DPoS 是 Polkadot 的[提名权益证明（NPoS）](https://docs.polkadot.com/polkadot-protocol/architecture/polkadot-chain/pos-consensus/){target=_blank}概念的演变，它通过允许委托人选择他们想要支持的收集人候选者以及支持的幅度，从而将更多的权力交到代币持有者手中。
+以太坊最初使用基于[工作量证明（PoW）](https://ethereum.org/developers/docs/consensus-mechanisms/pow/){target=\_blank}的共识协议，该协议提供概率最终性。然而，在 2022 年，以太坊切换到[权益证明（PoS）](https://ethereum.org/developers/docs/consensus-mechanisms/pos/){target=\_blank}，它提供确定性最终性，并且不再使用 PoW。相比之下，Moonbeam 使用基于委托权益证明（DPoS）的混合共识协议，该协议也提供确定性最终性。DPoS 是 Polkadot 的[提名权益证明（NPoS）](https://docs.polkadot.com/polkadot-protocol/architecture/polkadot-chain/pos-consensus/){target=\_blank}概念的演变，它通过允许委托人选择他们想要支持的收集人候选者以及支持的幅度，从而将更多的权力交到代币持有者手中。
 
 本指南将概述围绕共识和最终性的一些主要差异，以及首次使用 Moonbeam 时的预期。
 
@@ -24,7 +24,7 @@ categories: 基础
 
 ## Moonbeam 共识和最终性 {: #moonbeam-consensus-and-finality }
 
-在 Polkadot 中，有收集人和验证人。[收集人](https://wiki.polkadot.com/learn/learn-collator/){target=_blank}通过收集用户的交易并为中继链[验证人](https://wiki.polkadot.com/learn/learn-validator/){target=_blank}生成状态转换证明来维护平行链（在本例中为 Moonbeam）。收集人集合（生成区块的节点）是根据他们在网络中拥有的权益来选择的。
+在 Polkadot 中，有收集人和验证人。[收集人](https://wiki.polkadot.com/learn/learn-collator/){target=\_blank}通过收集用户的交易并为中继链[验证人](https://wiki.polkadot.com/learn/learn-validator/){target=\_blank}生成状态转换证明来维护平行链（在本例中为 Moonbeam）。收集人集合（生成区块的节点）是根据他们在网络中拥有的权益来选择的。
 
 对于最终性，Polkadot 和 Kusama 依赖于 [GRANDPA](https://docs.polkadot.com/polkadot-protocol/architecture/polkadot-chain/pos-consensus/#finality-gadget-grandpa){target=_blank}。GRANDPA 为任何给定的交易（区块）提供确定性的最终性。换句话说，当一个区块或交易被标记为最终时，除非通过链上治理或分叉，否则它不能被撤销。Moonbeam 遵循这种确定性的最终性。
 
@@ -34,7 +34,7 @@ categories: 基础
 
 对于以太坊上的 PoS，验证者会根据其在网络中的权益被选中来生产和验证区块。只要验证者已存放验证者押金，他们就可以被选中来生产和验证区块。但是，如前所述，在网络中的权益越大，验证者被选中来生产和验证区块的机会就越高。
 
-另一方面，对于 Moonbeam 上的 DPoS，收集者有资格根据他们自己的权益加上他们在网络中委托的权益来生产区块。任何通证持有者都可以选择将其权益委托给收集者候选人。按权益（包括委托）排序靠前的收集者候选人将加入活跃集。活跃集中的候选人数量受[治理](/learn/features/governance/){target=_blank}的约束。一旦进入活跃集，就会随机选择收集者来使用 Nimbus 共识框架生产区块。重要的是要注意，一旦收集者进入活跃集，他们的总权益不会影响他们被选中生产区块的机会。
+另一方面，对于 Moonbeam 上的 DPoS，收集者有资格根据他们自己的权益加上他们在网络中委托的权益来生产区块。任何通证持有者都可以选择将其权益委托给收集者候选人。按权益（包括委托）排序靠前的收集者候选人将加入活跃集。活跃集中的候选人数量受[治理](learn/features/governance/){target=_blank}的约束。一旦进入活跃集，就会随机选择收集者来使用 Nimbus 共识框架生产区块。重要的是要注意，一旦收集者进入活跃集，他们的总权益不会影响他们被选中生产区块的机会。
 
 在最终性方面，由于以太坊使用的检查点最终性系统，以太坊上的区块完成最终确定所需的时间可能比 Moonbeam 上要长得多。在以太坊中，验证者在检查点区块处确定最终性，检查点区块始终是 epoch 中的第一个区块。由于一个 epoch 有 32 个 slot，每个 slot 为 12 秒，因此区块完成最终确定至少需要 384 秒或 6.4 分钟。
 
@@ -56,19 +56,19 @@ Moonbeam 不使用检查点区块，而是依赖于 Polkadot 的 GRANDPA 最终�
 !!! note
     以下各节中提供的代码段不适用于生产环境。请确保针对每种用例进行调整。
 
-===
+=== "Ethers.js"
 
     ```js
     --8<-- 'code/learn/core-concepts/consensus-finality/ethers.js'
     ```
 
-===
+=== "Web3.js"
 
     ```js
     --8<-- 'code/learn/core-concepts/consensus-finality/web3.js'
     ```
 
-===
+=== "Web3.py"
 
     ```py
     --8<-- 'code/learn/core-concepts/consensus-finality/web3.py'
@@ -78,9 +78,9 @@ Moonbeam 不使用检查点区块，而是依赖于 Polkadot 的 GRANDPA 最终�
 
 Moonbeam 增加了对两个自定义 RPC 端点 `moon_isBlockFinalized` 和 `moon_isTxFinalized` 的支持，它们可用于检查链上事件是否已最终确定。 这些方法更直接一些，因为您无需比较区块号来确保您的交易已最终确定。
 
-有关更多信息，您可以访问 Moonbeam 自定义 API 页面的[最终性 RPC 端点](/builders/ethereum/json-rpc/moonbeam-custom-api/#rpc-methods){target=_blank}部分。
+有关更多信息，您可以访问 Moonbeam 自定义 API 页面的[最终性 RPC 端点](builders/ethereum/json-rpc/moonbeam-custom-api/#rpc-methods){target=_blank}部分。
 
-您可以修改上面 Ethereum RPC 部分中的脚本，以使用 `moon_isBlockFinalized` 和 `moon_isTxFinalized`。 为此，您可以使用 [Web3.js](https://web3js.readthedocs.io){target=_blank} 和 [Ethers.js](https://docs.ethers.org/v6){target=_blank} 的 `send` 方法自定义调用 Substrate JSON-RPC。 也可以使用 [Web3.py](https://web3py.readthedocs.io){target=_blank} 和 `make_request` 方法进行自定义 RPC 请求。 您需要将方法名称和参数传递给自定义请求，您可以在 [Moonbeam 自定义 API](/builders/ethereum/json-rpc/moonbeam-custom-api/){target=_blank} 页面上找到它们。
+您可以修改上面 Ethereum RPC 部分中的脚本，以使用 `moon_isBlockFinalized` 和 `moon_isTxFinalized`。 为此，您可以使用 [Web3.js](https://web3js.readthedocs.io){target=_blank} 和 [Ethers.js](https://docs.ethers.org/v6){target=_blank} 的 `send` 方法自定义调用 Substrate JSON-RPC。 也可以使用 [Web3.py](https://web3py.readthedocs.io){target=_blank} 和 `make_request` 方法进行自定义 RPC 请求。 您需要将方法名称和参数传递给自定义请求，您可以在 [Moonbeam 自定义 API](builders/ethereum/json-rpc/moonbeam-custom-api/){target=_blank} 页面上找到它们。
 
 ???+ code "moon_isBlockFinalized"
 
@@ -134,13 +134,13 @@ Moonbeam 增加了对两个自定义 RPC 端点 `moon_isBlockFinalized` 和 `moo
 
 您可以在 [Polkadot.js 官方文档站点](https://polkadot.js.org/docs/substrate/rpc){target=_blank} 中找到有关 Polkadot.js 和 Substrate JSON-RPC 的更多信息，在 [PySubstrate 官方文档站点](https://jamdottech.github.io/py-polkadot-sdk/){target=_blank} 中找到有关 Python Substrate 接口的更多信息。
 
-===
+=== "Polkadot.js"
 
     ```js
     --8<-- 'code/learn/core-concepts/consensus-finality/polkadotjs.js'
     ```
 
-===
+=== "py-substrate-interface"
 
     ```py
     --8<-- 'code/learn/core-concepts/consensus-finality/pysubstrateinterface.py'
