@@ -11,7 +11,7 @@ categories: Libraries and SDKs, Ethereum Toolkit
 
 [Ethers.js](https://docs.ethers.org/v6){target=\_blank} 库提供了一组使用 JavaScript 与以太坊节点交互的工具，类似于 Web3.js。Moonbeam 有一个类似以太坊的 API，它与以太坊风格的 JSON-RPC 调用完全兼容。因此，开发人员可以利用这种兼容性，并使用 Ethers.js 库与 Moonbeam 节点交互，就像在以太坊上进行操作一样。有关 Ethers.js 的更多信息，请查看其[文档站点](https://docs.ethers.org/v6){target=\_blank}。
 
-在本指南中，您将学习如何使用 Ethers.js 库在 Moonbase Alpha 上发送交易和部署合约。本指南适用于 [Moonbeam](/builders/get-started/networks/moonbeam/){target=\_blank}、[Moonriver](/builders/get-started/networks/moonriver/){target=\_blank} 或 [Moonbeam 开发节点](/builders/get-started/networks/moonbeam-dev/){target=\_blank}。
+在本指南中，您将学习如何使用 Ethers.js 库在 Moonbase Alpha 上发送交易和部署合约。本指南适用于 [Moonbeam](builders/get-started/networks/moonbeam/){target=\_blank}、[Moonriver](builders/get-started/networks/moonriver/){target=\_blank} 或 [Moonbeam 开发节点](builders/get-started/networks/moonbeam-dev/){target=\_blank}。
 
 ## 检查先决条件 {: #checking-prerequisites }
 
