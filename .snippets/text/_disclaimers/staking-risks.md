@@ -1,1 +1,1 @@
-{{ trans("disclaimer.staking_risks") }}
+{{ t('disclaimer.staking_risks') }}

@@ -62,6 +62,9 @@ material_overrides:
       left_section_logo: Left section logo
       manage_settings_toggle: Manage settings toggle
       moonbeam_logo_for_cookie_consent: Moonbeam logo for cookie consent
+      popup_title: This website uses cookies
+      popup_description: >-
+        We use essential cookies to make the website work. We would also like to use cookies to understand how you use the website and how you interact with certain features. We may share this information with our analytics partners. For further details, please see our <a href="https://moonbeam.network/cookie-policy" target="_blank" rel="noopener">cookie policy</a>.
       right_section_buttons: Right section buttons
     feedback:
       title: Was this page helpful?

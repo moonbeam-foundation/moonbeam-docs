@@ -279,6 +279,12 @@ msgstr "Manage settings toggle"
 msgid "material_overrides.partials.consent.moonbeam_logo_for_cookie_consent"
 msgstr "Moonbeam logo for cookie consent"
 
+msgid "material_overrides.partials.consent.popup_description"
+msgstr "We use essential cookies to make the website work. We would also like to use cookies to understand how you use the website and how you interact with certain features. We may share this information with our analytics partners. For further details, please see our <a href=\"https://moonbeam.network/cookie-policy\" target=\"_blank\" rel=\"noopener\">cookie policy</a>."
+
+msgid "material_overrides.partials.consent.popup_title"
+msgstr "This website uses cookies"
+
 msgid "material_overrides.partials.consent.right_section_buttons"
 msgstr "Right section buttons"
 

@@ -20,7 +20,7 @@ on:
         required: false
         default: 'false'
       file_filter:
-        description: 'Separated list of files to translate (repo-relative paths)'
+        description: 'Separated list of files to translate (repo-relative paths). Special values: run_queue, first_run'
         required: false
         default: ''
   pull_request:
@@ -826,7 +826,7 @@ jobs:
     name: Rose's Translation Pipeline
     environment: translations
     needs: guard
-    if: ${{ github.event_name == 'workflow_dispatch' && needs.guard.outputs.allowed == 'true' && inputs.file_filter != 'run_queue' }}
+    if: ${{ github.event_name == 'workflow_dispatch' && needs.guard.outputs.allowed == 'true' && inputs.file_filter != 'run_queue' && inputs.file_filter != 'first_run' }}
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -1077,11 +1077,300 @@ jobs:
             fi
           } >> "$GITHUB_STEP_SUMMARY"
 
+  first-run:
+    name: Rose First Run (Batched)
+    environment: translations
+    needs: guard
+    if: ${{ github.event_name == 'workflow_dispatch' && needs.guard.outputs.allowed == 'true' && inputs.file_filter == 'first_run' }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    env:
+      N8N_WEBHOOK_URL: ${{ secrets.N8N_WEBHOOK_URL_TR }}
+      ROSE_N8N_SENDING_TOKEN: ${{ secrets.N8N_SENDING_TOKEN || '' }}
+      ROSE_N8N_RECEIVING_TOKEN: ${{ secrets.N8N_RECEIVING_TOKEN || '' }}
+      ROSE_N8N_ALLOWED_HOST: ${{ vars.N8N_ALLOWED_HOST || '' }}
+      ROSE_QUIET: "1"
+      ROSE_INCLUDE_FULL: "true"
+      ROSE_LANGUAGES: ${{ vars.ROSE_LANGUAGES }}
+      ROSE_TRANSLATION_BRANCH: rose/translations
+    steps:
+      - name: Determine translation parameters
+        id: refs
+        shell: bash
+        run: |
+          normalize_ref() {
+            local ref="$1"
+            if [[ -z "$ref" ]]; then
+              echo ""
+            elif [[ "$ref" == "HEAD" ]]; then
+              echo "$ref"
+            elif [[ "$ref" =~ ^[0-9a-f]{7,40}$ ]]; then
+              echo "$ref"
+            elif [[ "$ref" == refs/heads/* ]]; then
+              echo "origin/${ref#refs/heads/}"
+            elif [[ "$ref" == origin/* ]]; then
+              echo "$ref"
+            elif [[ "$ref" == refs/* ]]; then
+              echo "$ref"
+            else
+              echo "origin/$ref"
+            fi
+          }
+          raw_base="${{ inputs.base_ref }}"
+          raw_head="${{ inputs.head_ref }}"
+          if [[ -z "${{ inputs.languages }}" ]]; then
+            echo "languages input is required for manual dispatch (e.g., \"es fr pt\")" >&2
+            exit 1
+          fi
+          diff_base="$(normalize_ref "$raw_base")"
+          diff_head="$(normalize_ref "$raw_head")"
+          pr_base="$raw_head"
+          langs="${{ inputs.languages }}"
+          echo "diff_base=$diff_base" >> "$GITHUB_OUTPUT"
+          echo "diff_head=$diff_head" >> "$GITHUB_OUTPUT"
+          echo "pr_base=$pr_base" >> "$GITHUB_OUTPUT"
+          echo "languages=$langs" >> "$GITHUB_OUTPUT"
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Fetch manual dispatch refs
+        shell: bash
+        env:
+          RAW_BASE: ${{ inputs.base_ref }}
+          RAW_HEAD: ${{ inputs.head_ref }}
+          DIFF_BASE: ${{ steps.refs.outputs.diff_base }}
+          DIFF_HEAD: ${{ steps.refs.outputs.diff_head }}
+        run: |
+          set -euo pipefail
+          fetch_ref() {
+            local raw="$1"
+            local normalized="$2"
+            if [[ -z "$raw" || "$raw" == "HEAD" || "$raw" =~ ^[0-9a-f]{7,40}$ ]]; then
+              return
+            fi
+            if [[ "$normalized" == origin/* ]]; then
+              git fetch origin "${normalized#origin/}"
+            else
+              git fetch origin "$normalized:$normalized"
+            fi
+          }
+          fetch_ref "$RAW_BASE" "$DIFF_BASE"
+          fetch_ref "$RAW_HEAD" "$DIFF_HEAD"
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install translation workflow dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install PyYAML ruamel.yaml Babel
+
+      - name: Run Rose pipeline in first_run batches
+        shell: bash
+        run: |
+          set -uo pipefail
+
+          if [[ -z "${N8N_WEBHOOK_URL:-}" ]]; then
+            echo "N8N_WEBHOOK_URL_TR secret is required" >&2
+            exit 1
+          fi
+
+          export ROSE_PRESERVE_TRANSLATIONS=1
+
+          LANGS="${{ steps.refs.outputs.languages }}"
+          PLAN_PATH="$(python scripts/translation-workflow/first_run_batches.py --languages "$LANGS")"
+          echo "first_run plan: ${PLAN_PATH}"
+
+          FAIL_LOG="scripts/translations/first_run_failures.jsonl"
+          : > "$FAIL_LOG"
+          failures=0
+          batches=0
+
+          run_one() {
+            local lang="$1"
+            local batch_dirs_json="$2"
+            local include_files="$3"
+
+            export ROSE_INCLUDE_FILES="$include_files"
+            CMD=(python scripts/translation-workflow/rose_pipeline.py \
+              --base "${{ steps.refs.outputs.diff_base }}" \
+              --head "${{ steps.refs.outputs.diff_head }}" \
+              --n8n-webhook "$N8N_WEBHOOK_URL" \
+              --languages "$lang")
+
+            echo "Running batch for lang=${lang}"
+            echo "Include directories:"
+            printf '%s\n' "$include_files"
+            "${CMD[@]}"
+          }
+
+          for lang in $LANGS; do
+            batch_json_list="$(jq -c --arg lang "$lang" '.batches_by_language[$lang][]? // empty' "$PLAN_PATH")"
+            if [[ -z "$batch_json_list" ]]; then
+              echo "No missing directories detected for ${lang}; skipping."
+              continue
+            fi
+
+            while IFS= read -r batch_dirs_json; do
+              [[ -z "$batch_dirs_json" ]] && continue
+              batches=$((batches + 1))
+
+              include_files="$(python - <<PY\nimport json\narr=json.loads('''$batch_dirs_json''')\nprint('\\n'.join(str(x) for x in arr if str(x).strip()))\nPY\n)"
+              if [[ -z "$include_files" ]]; then
+                continue
+              fi
+
+              if run_one "$lang" "$batch_dirs_json" "$include_files"; then
+                continue
+              fi
+
+              echo "Batch failed; retrying once (lang=${lang})..." >&2
+              if run_one "$lang" "$batch_dirs_json" "$include_files"; then
+                echo "Retry succeeded (lang=${lang})."
+                continue
+              fi
+
+              failures=$((failures + 1))
+              printf '%s\n' "$(jq -nc --arg lang "$lang" --argjson dirs "$batch_dirs_json" '{language:$lang, batch_dirs:$dirs}')" >> "$FAIL_LOG"
+              echo "Batch failed twice; logged and continuing (lang=${lang})." >&2
+            done <<< "$batch_json_list"
+          done
+
+          echo "first_run batches processed: $batches"
+          echo "first_run batches failed: $failures"
+          if [[ "$failures" -gt 0 ]]; then
+            echo "Failures logged in $FAIL_LOG"
+          fi
+
+      - name: Prepare temporary summary directory
+        if: ${{ always() }}
+        id: temp_summary
+        run: |
+          TMP_DIR=$(mktemp -d)
+          echo "dir=$TMP_DIR" >> "$GITHUB_OUTPUT"
+
+      - name: Generate summary markdown
+        if: ${{ always() }}
+        shell: bash
+        run: |
+          SUMMARY_JSON="scripts/translations/summary_report.json"
+          SUMMARY_MD="${{ steps.temp_summary.outputs.dir }}/summary.md"
+          if [[ ! -f "$SUMMARY_JSON" ]]; then
+            echo '{}' > "$SUMMARY_JSON"
+          fi
+          python scripts/translation-workflow/render_summary.py \
+            --summary "$SUMMARY_JSON" \
+            --output "$SUMMARY_MD"
+
+      - name: Append translation summary to job summary
+        if: ${{ always() }}
+        shell: bash
+        run: |
+          SUMMARY_MD="${{ steps.temp_summary.outputs.dir }}/summary.md"
+          if [[ -f "$SUMMARY_MD" ]]; then
+            cat "$SUMMARY_MD" >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "Summary markdown not found; skipping job summary update."
+          fi
+          FAIL_LOG="scripts/translations/first_run_failures.jsonl"
+          if [[ -s "$FAIL_LOG" ]]; then
+            echo "" >> "$GITHUB_STEP_SUMMARY"
+            echo "### first_run failures" >> "$GITHUB_STEP_SUMMARY"
+            echo "" >> "$GITHUB_STEP_SUMMARY"
+            echo '```jsonl' >> "$GITHUB_STEP_SUMMARY"
+            cat "$FAIL_LOG" >> "$GITHUB_STEP_SUMMARY"
+            echo '```' >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Cleanup translation artifacts
+        if: ${{ always() }}
+        run: rm -rf scripts/translations
+
+      - name: Push translation branch
+        id: push_branch
+        shell: bash
+        env:
+          TRANSLATION_BRANCH: ${{ env.ROSE_TRANSLATION_BRANCH }}
+          COMMIT_MESSAGE: "chore(rose): first_run sync translations for ${{ steps.refs.outputs.languages }}"
+        run: |
+          set -euo pipefail
+          restore_commit="$(git rev-parse HEAD)"
+          restore_branch="$(git symbolic-ref --quiet --short HEAD || true)"
+          changes="$(git status --porcelain)"
+          echo "branch=${TRANSLATION_BRANCH}" >> "$GITHUB_OUTPUT"
+          if [[ -z "$changes" ]]; then
+            echo "No translation changes detected; skipping branch push."
+            echo "pushed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch --prune origin
+          git fetch origin "$TRANSLATION_BRANCH":"refs/remotes/origin/$TRANSLATION_BRANCH" || true
+          git branch -D "$TRANSLATION_BRANCH" 2>/dev/null || true
+          git checkout -B "$TRANSLATION_BRANCH"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No staged changes to commit; skipping branch push."
+            if [[ -n "$restore_branch" ]]; then
+              git checkout "$restore_branch"
+            else
+              git checkout --detach "$restore_commit"
+            fi
+            echo "pushed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git commit -m "$COMMIT_MESSAGE"
+          if git show-ref --verify --quiet "refs/remotes/origin/$TRANSLATION_BRANCH"; then
+            git merge --no-edit -X ours "refs/remotes/origin/$TRANSLATION_BRANCH"
+          else
+            echo "No existing remote branch $TRANSLATION_BRANCH; starting fresh."
+          fi
+          git push --force-with-lease origin "$TRANSLATION_BRANCH"
+          if [[ -n "$restore_branch" ]]; then
+            git checkout "$restore_branch"
+          else
+            git checkout --detach "$restore_commit"
+          fi
+          echo "pushed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Post translation branch instructions
+        if: ${{ always() }}
+        shell: bash
+        env:
+          TRANSLATION_BRANCH: ${{ steps.push_branch.outputs.branch }}
+          PUSHED: ${{ steps.push_branch.outputs.pushed }}
+          BASE_BRANCH: ${{ steps.refs.outputs.pr_base }}
+        run: |
+          if [[ -z "${TRANSLATION_BRANCH}" ]]; then
+            exit 0
+          fi
+          {
+            echo "### Translation branch"
+            echo ""
+            if [[ "${PUSHED}" == "true" ]]; then
+              echo "- Branch with translations: \`${TRANSLATION_BRANCH}\`"
+              echo "- Base branch: \`${BASE_BRANCH}\`"
+              echo "- Summary file: \`scripts/translations/summary_report.json\`"
+              echo ""
+              echo "Open a pull request manually from the rose/translations branch above"
+            else
+              echo "- No translation changes were committed during this run."
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
+
   notify-on-failure:
     name: Notify on Failure
     runs-on: ubuntu-latest
-    needs: [run-pipeline, process-queue]
-    if: ${{ always() && (needs.run-pipeline.result == 'failure' || needs.process-queue.result == 'failure') }}
+    needs: [run-pipeline, process-queue, first-run]
+    if: ${{ always() && (needs.run-pipeline.result == 'failure' || needs.process-queue.result == 'failure' || needs.first-run.result == 'failure') }}
     env:
       ERROR_WEBHOOK_URL: ${{ secrets.ERROR_WEBHOOK_URL }}
       RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
@@ -1091,9 +1380,10 @@ jobs:
       ACTOR: ${{ github.actor }}
       REPOSITORY: ${{ github.repository }}
       REF: ${{ github.ref }}
-      FAILED_JOB: ${{ needs.run-pipeline.result == 'failure' && 'run-pipeline' || needs.process-queue.result == 'failure' && 'process-queue' || '' }}
+      FAILED_JOB: ${{ needs.run-pipeline.result == 'failure' && 'run-pipeline' || needs.process-queue.result == 'failure' && 'process-queue' || needs.first-run.result == 'failure' && 'first-run' || '' }}
       RUN_PIPELINE_STATUS: ${{ needs.run-pipeline.result }}
       PROCESS_QUEUE_STATUS: ${{ needs.process-queue.result }}
+      FIRST_RUN_STATUS: ${{ needs.first-run.result }}
     steps:
       - name: Send failure webhook
         run: |

@@ -1,1 +1,1 @@
-{{trans("common.install_nodejs")}}
+{{ t('common.install_nodejs') }}

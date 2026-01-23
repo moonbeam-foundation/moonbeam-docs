@@ -1,1 +1,1 @@
-{{ trans("common.endpoint_examples") }} 
+{{ t('common.endpoint_examples') }}

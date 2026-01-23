@@ -1,1 +1,1 @@
-{{ trans("common.endpoint_examples_list_item") }} 
+{{ t('common.endpoint_examples_list_item') }}

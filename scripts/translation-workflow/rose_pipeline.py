@@ -699,6 +699,9 @@ def _as_bool(value: str) -> bool:
 def _should_skip_path(rel_path: str, languages: list[str], skip_llms: bool, skip_ai: bool) -> bool:
     normalized = repo_relative_str(rel_path)
     lower = normalized.lower()
+    if os.environ.get("ROSE_FIRST_RUN_LOCALE", "").strip().lower() in {"1", "true", "yes", "on"}:
+        if lower in {"locale/en.yml", "locale/en.yaml"}:
+            return False
     if lower in EXCLUDED_EXACT:
         return True
     for prefix in EXCLUDED_PREFIXES:

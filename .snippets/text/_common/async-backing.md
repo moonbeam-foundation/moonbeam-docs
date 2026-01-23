@@ -1,1 +1,1 @@
-{{ trans("common.async_backing") }}
+{{ t('common.async_backing') }}

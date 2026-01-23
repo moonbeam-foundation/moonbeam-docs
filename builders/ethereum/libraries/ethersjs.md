@@ -19,7 +19,7 @@ For the examples in this guide, you will need to have the following:
 
 - An account with funds.
     --8<-- 'text/_common/faucet/faucet-list-item.md'
-- --8<-- 'text/_common/endpoint-examples-list-item.md'
+    --8<-- 'text/_common/endpoint-examples-list-item.md'
 
 !!! note
 

@@ -1,1 +1,1 @@
-{{ trans("common.faucet.list_item") }}
+{{ t('common.faucet.list_item') }}

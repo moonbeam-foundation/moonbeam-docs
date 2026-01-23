@@ -19,7 +19,7 @@ categories: Libraries and SDKs, Ethereum Toolkit
 
 - 一个有资金的帐户。
     --8<-- 'text/_common/faucet/faucet-list-item.md'
-- --8<-- 'text/_common/endpoint-examples-list-item.md'
+    --8<-- 'text/_common/endpoint-examples-list-item.md'
 
 !!! note
 

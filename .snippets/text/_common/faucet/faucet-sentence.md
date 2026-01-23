@@ -1,1 +1,1 @@
-{{ trans("common.faucet.sentence") }}
+{{ t('common.faucet.sentence') }}

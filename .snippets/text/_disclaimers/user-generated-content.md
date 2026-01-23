@@ -1,1 +1,1 @@
-{{ trans("disclaimer.user_generated_content") }}
+{{ t('disclaimer.user_generated_content') }}
