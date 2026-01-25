@@ -1093,6 +1093,7 @@ jobs:
       ROSE_N8N_ALLOWED_HOST: ${{ vars.N8N_ALLOWED_HOST || '' }}
       ROSE_QUIET: "1"
       ROSE_INCLUDE_FULL: "true"
+      ROSE_FIRST_RUN_LOCALE: "1"
       ROSE_LANGUAGES: ${{ vars.ROSE_LANGUAGES }}
       ROSE_TRANSLATION_BRANCH: rose/translations
     steps:
@@ -1206,12 +1207,28 @@ jobs:
               --languages "$lang")
 
             echo "Running batch for lang=${lang}"
-            echo "Include directories:"
+            echo "Include paths:"
             printf '%s\n' "$include_files"
             "${CMD[@]}"
           }
 
           for lang in $LANGS; do
+            # Include locale/en.yml for first_run if the target locale file doesn't exist yet.
+            if [[ ! -f "locale/${lang}.yml" && ! -f "locale/${lang}.yaml" ]]; then
+              batches=$((batches + 1))
+              locale_batch_json='["locale/en.yml"]'
+              include_files="locale/en.yml"
+
+              if ! run_one "$lang" "$locale_batch_json" "$include_files"; then
+                echo "Locale batch failed; retrying once (lang=${lang})..." >&2
+                if ! run_one "$lang" "$locale_batch_json" "$include_files"; then
+                  failures=$((failures + 1))
+                  printf '%s\n' "$(jq -nc --arg lang "$lang" --argjson dirs "$locale_batch_json" '{language:$lang, batch_dirs:$dirs}')" >> "$FAIL_LOG"
+                  echo "Locale batch failed twice; logged and continuing (lang=${lang})." >&2
+                fi
+              fi
+            fi
+
             batch_json_list="$(jq -c --arg lang "$lang" '.batches_by_language[$lang][]? // empty' "$PLAN_PATH")"
             if [[ -z "$batch_json_list" ]]; then
               echo "No missing directories detected for ${lang}; skipping."

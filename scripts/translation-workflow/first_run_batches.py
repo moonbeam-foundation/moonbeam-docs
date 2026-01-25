@@ -22,6 +22,7 @@ DEFAULT_EXCLUDE_DIRS = {
     ".git",
     ".github",
     ".venv",
+    ".snippets",
     "locale",
     "node_modules",
     "scripts",
