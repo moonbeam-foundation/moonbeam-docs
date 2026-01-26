@@ -411,7 +411,7 @@ extrinsics[extrinsic_number].events[event_number].data[0].weight.ref_time
 
 ### Fee History Endpoint {: #eth-feehistory-endpoint }
 
-Moonbeam networks implement the [`eth_feeHistory`](https://www.alchemy.com/docs/chains/ethereum/ethereum-api-endpoints/eth-fee-history){target_blank} JSON-RPC endpoint as a part of the support for EIP-1559.
+Moonbeam networks implement the [`eth_feeHistory`](https://www.alchemy.com/docs/chains/ethereum/ethereum-api-endpoints/eth-fee-history){target=\_blank} JSON-RPC endpoint as a part of the support for EIP-1559.
 
 `eth_feeHistory` returns a collection of historical gas information from which you can reference and calculate what to set for the `MaxFeePerGas` and `MaxPriorityFeePerGas` fields when submitting EIP-1559 transactions.
 
