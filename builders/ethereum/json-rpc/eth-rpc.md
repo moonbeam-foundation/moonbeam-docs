@@ -74,7 +74,7 @@ Moonbeam does not support the following Ethereum API JSON-RPC methods:
 
  - **[eth_getProof](https://www.alchemy.com/docs/chains/ethereum/ethereum-api-endpoints/eth-get-proof){target=\_blank}** - returns the account and storage values of the specified account including the Merkle-proof
  - **[eth_blobBaseFee](https://www.quicknode.com/docs/ethereum/eth_blobBaseFee){target=\_blank}** - returns the expected base fee for blobs in the next block
- - **[eth_createAccessList](alchemy.com/docs/node/ethereum/ethereum-api-endpoints/eth-create-access-list){target=\_blank}** - creates an EIP-2930 type `accessList` based on a given transaction object
+ - **[eth_createAccessList](https://www.alchemy.com/docs/node/ethereum/ethereum-api-endpoints/eth-create-access-list){target=\_blank}** - creates an EIP-2930 type `accessList` based on a given transaction object
  - **[eth_sign](https://ethereum.org/developers/docs/apis/json-rpc/#eth_sign){target=\_blank}** - allows the user to sign an arbitrary hash to be sent at a later time. Presents a [security risk](https://support.metamask.io/privacy-and-security/what-is-eth_sign-and-why-is-it-a-risk/){target=\_blank} as the arbitrary hash can be fraudulently applied to other transactions
  - **[eth_signTransaction](https://ethereum.org/developers/docs/apis/json-rpc/#eth_signtransaction){target=\_blank}** - allows the user to sign a transaction to be sent at a later time. It is rarely used due to associated security risks
 
