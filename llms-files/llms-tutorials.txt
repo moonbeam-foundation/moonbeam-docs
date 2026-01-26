@@ -1940,7 +1940,7 @@ extrinsics[extrinsic_number].events[event_number].data[0].weight.ref_time
 
 ### Fee History Endpoint {: #eth-feehistory-endpoint }
 
-Moonbeam networks implement the [`eth_feeHistory`](https://www.alchemy.com/docs/chains/ethereum/ethereum-api-endpoints/eth-fee-history){target_blank} JSON-RPC endpoint as a part of the support for EIP-1559.
+Moonbeam networks implement the [`eth_feeHistory`](https://www.alchemy.com/docs/chains/ethereum/ethereum-api-endpoints/eth-fee-history){target=\_blank} JSON-RPC endpoint as a part of the support for EIP-1559.
 
 `eth_feeHistory` returns a collection of historical gas information from which you can reference and calculate what to set for the `MaxFeePerGas` and `MaxPriorityFeePerGas` fields when submitting EIP-1559 transactions.
 
@@ -2438,7 +2438,7 @@ Some of the main components of this governance model include:
  - **Council & Technical Committee Governance V1** — a group of community members who have special voting rights within the system. With the deprecation and removal of Governance v1, both of these committees were dissolved as of the [runtime 2800 release](https://forum.moonbeam.network/t/runtime-rt2801-schedule/1616/4){target=\_blank}
  - **OpenGov Technical Committee** — a group of community members who can add certain proposals to the Whitelisted Track
 
-For more details on how these Substrate frame pallets implement on-chain governance, you can checkout the [Polkadot Governance Wiki](https://wiki.polkadot.com/learn/learn-polkadot-opengov/){target=\_blank}.
+For more details on how these Substrate frame pallets implement on-chain governance, you can check out the [Polkadot Governance Wiki](https://wiki.polkadot.com/learn/learn-polkadot-opengov/){target=\_blank}.
 
 ## Governance v2: OpenGov {: #opengov }
 
@@ -5382,7 +5382,7 @@ A [smart contract](https://en.wikipedia.org/wiki/Smart_contract){target=\_blank}
 
 ### Substrate {: #substrate }
 
-A Rust-based blockchain development framework created by Parity Technologies based on their experience implementing multiple blockchain clients. Substrate comes with many modules and functionalities that are needed when building a blockchain, including P2P networking, consensus mechanisms, staking, cryptocurrency, on-chain governance modules, and more. It dramatically reduces the time and engineering effort required to implement a blockchain. Substrate is now part of the [Polkadot SDK](https://wiki.polkadot.com/general/glossary/#polkadot-sdk){target=\_blank}.
+A Rust-based blockchain development framework created by Parity Technologies based on their experience implementing multiple blockchain clients. Substrate comes with many modules and functionalities that are needed when building a blockchain, including P2P networking, consensus mechanisms, staking, cryptocurrency, on-chain governance modules, and more. It reduces the time and engineering effort required to implement a blockchain. Substrate is part of the [Polkadot SDK](https://wiki.polkadot.com/general/glossary/#polkadot-sdk){target=\_blank}.
 
 ### Substrate Frame Pallets {: #substrate-frame-pallets }
 
@@ -9919,7 +9919,7 @@ Moonbeam does not support the following Ethereum API JSON-RPC methods:
 
  - **[eth_getProof](https://www.alchemy.com/docs/chains/ethereum/ethereum-api-endpoints/eth-get-proof){target=\_blank}** - returns the account and storage values of the specified account including the Merkle-proof
  - **[eth_blobBaseFee](https://www.quicknode.com/docs/ethereum/eth_blobBaseFee){target=\_blank}** - returns the expected base fee for blobs in the next block
- - **[eth_createAccessList](alchemy.com/docs/node/ethereum/ethereum-api-endpoints/eth-create-access-list){target=\_blank}** - creates an EIP-2930 type `accessList` based on a given transaction object
+ - **[eth_createAccessList](https://www.alchemy.com/docs/node/ethereum/ethereum-api-endpoints/eth-create-access-list){target=\_blank}** - creates an EIP-2930 type `accessList` based on a given transaction object
  - **[eth_sign](https://ethereum.org/developers/docs/apis/json-rpc/#eth_sign){target=\_blank}** - allows the user to sign an arbitrary hash to be sent at a later time. Presents a [security risk](https://support.metamask.io/privacy-and-security/what-is-eth_sign-and-why-is-it-a-risk/){target=\_blank} as the arbitrary hash can be fraudulently applied to other transactions
  - **[eth_signTransaction](https://ethereum.org/developers/docs/apis/json-rpc/#eth_signtransaction){target=\_blank}** - allows the user to sign a transaction to be sent at a later time. It is rarely used due to associated security risks
 

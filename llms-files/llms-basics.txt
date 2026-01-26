@@ -1558,7 +1558,7 @@ extrinsics[extrinsic_number].events[event_number].data[0].weight.ref_time
 
 ### Fee History Endpoint {: #eth-feehistory-endpoint }
 
-Moonbeam networks implement the [`eth_feeHistory`](https://www.alchemy.com/docs/chains/ethereum/ethereum-api-endpoints/eth-fee-history){target_blank} JSON-RPC endpoint as a part of the support for EIP-1559.
+Moonbeam networks implement the [`eth_feeHistory`](https://www.alchemy.com/docs/chains/ethereum/ethereum-api-endpoints/eth-fee-history){target=\_blank} JSON-RPC endpoint as a part of the support for EIP-1559.
 
 `eth_feeHistory` returns a collection of historical gas information from which you can reference and calculate what to set for the `MaxFeePerGas` and `MaxPriorityFeePerGas` fields when submitting EIP-1559 transactions.
 
@@ -2056,7 +2056,7 @@ Some of the main components of this governance model include:
  - **Council & Technical Committee Governance V1** — a group of community members who have special voting rights within the system. With the deprecation and removal of Governance v1, both of these committees were dissolved as of the [runtime 2800 release](https://forum.moonbeam.network/t/runtime-rt2801-schedule/1616/4){target=\_blank}
  - **OpenGov Technical Committee** — a group of community members who can add certain proposals to the Whitelisted Track
 
-For more details on how these Substrate frame pallets implement on-chain governance, you can checkout the [Polkadot Governance Wiki](https://wiki.polkadot.com/learn/learn-polkadot-opengov/){target=\_blank}.
+For more details on how these Substrate frame pallets implement on-chain governance, you can check out the [Polkadot Governance Wiki](https://wiki.polkadot.com/learn/learn-polkadot-opengov/){target=\_blank}.
 
 ## Governance v2: OpenGov {: #opengov }
 
