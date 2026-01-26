@@ -46,7 +46,7 @@ A [smart contract](https://en.wikipedia.org/wiki/Smart_contract){target=\_blank}
 
 ### Substrate {: #substrate }
 
-A Rust-based blockchain development framework created by Parity Technologies based on their experience implementing multiple blockchain clients. Substrate comes with many modules and functionalities that are needed when building a blockchain, including P2P networking, consensus mechanisms, staking, cryptocurrency, on-chain governance modules, and more. It dramatically reduces the time and engineering effort required to implement a blockchain. Substrate is now part of the [Polkadot SDK](https://wiki.polkadot.com/general/glossary/#polkadot-sdk){target=\_blank}.
+A Rust-based blockchain development framework created by Parity Technologies based on their experience implementing multiple blockchain clients. Substrate comes with many modules and functionalities that are needed when building a blockchain, including P2P networking, consensus mechanisms, staking, cryptocurrency, on-chain governance modules, and more. It reduces the time and engineering effort required to implement a blockchain. Substrate is part of the [Polkadot SDK](https://wiki.polkadot.com/general/glossary/#polkadot-sdk){target=\_blank}.
 
 ### Substrate Frame Pallets {: #substrate-frame-pallets }
 
