@@ -6,7 +6,7 @@ categories: Basics
 
 # Moonriver入门
 
---8<-- 'text/builders/get-started/networks/moonriver/connect.md'
+--8<-- 'zh/text/builders/get-started/networks/moonriver/connect.md'
 
 ## 区块浏览器 {: #block-explorers }
 

@@ -32,11 +32,11 @@ Preimage Precompile 位于以下地址：
      {{ networks.moonbase.precompiles.preimage }}
      ```
 
---8<-- 'text/builders/ethereum/precompiles/security.md'
+--8<-- 'zh/text/builders/ethereum/precompiles/security.md'
 
 ## 预映像Solidity接口 {: #the-preimage-solidity-interface }
 
-[`Preimage.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/preimage/Preimage.sol){target=_blank} 是一个 Solidity 接口，允许开发人员与预编译的两种方法进行交互：
+[`Preimage.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/preimage/Preimage.sol){target=\_blank} 是一个 Solidity 接口，允许开发人员与预编译的两种方法进行交互：
 
 ??? function "**notePreimage**(*bytes memory* encodedProposal) - 在链上注册即将到来的提案的预映像。这不需要提案在调度队列中，但确实需要一旦颁布就会退还的存款。"
 
@@ -63,12 +63,12 @@ Preimage Precompile 位于以下地址：
 
  - 安装了 MetaMask 并[连接到 Moonbase Alpha](tokens/connect/metamask/){target=\_blank}
  - 一个包含一些 DEV 代币的帐户。
- --8<-- 'text/_common/faucet/faucet-list-item.md'
+ --8<-- 'zh/text/_common/faucet/faucet-list-item.md'
 
 ### Remix 设置 {: #remix-set-up }
 
 1. 点击**文件资源管理器**选项卡
-2. 将[`Preimage.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/preimage/Preimage.sol){target=_blank}的副本粘贴到名为 `Preimage.sol` 的 [Remix 文件](https://remix.ethereum.org){target=\_blank}中
+2. 将[`Preimage.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/preimage/Preimage.sol){target=\_blank}的副本粘贴到名为 `Preimage.sol` 的 [Remix 文件](https://remix.ethereum.org){target=\_blank}中
 
 ![复制粘贴 referenda Solidity 接口到 Remix 中。](/images/builders/ethereum/precompiles/features/governance/preimage/preimage-1.webp)
 

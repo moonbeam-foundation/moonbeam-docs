@@ -15,7 +15,7 @@ categories: 节点运营者和 Collator
 - **`--collator`**: 启用整理人候选人的整理人模式，如果符合条件，允许节点积极参与区块生产。
 - **`--port`**: 指定对等协议 TCP 端口。平行链的默认端口是 `{{ networks.parachain.p2p }}`，嵌入式中继链的默认端口是 `{{ networks.relay_chain.p2p }}`。
 - **`--rpc-port`**: 设置 HTTP 和 WS 连接的统一端口。平行链的默认端口是 `{{ networks.parachain.rpc }}`，嵌入式中继链的默认端口是 `{{ networks.relay_chain.ws }}`。
-- **`--ws-port`**: *自 [client v0.33.0](https://github.com/moonbeam-foundation/moonbeam/releases/tag/v0.33.0){target=_blank} 起已弃用，请改用 `--rpc-port` 进行 HTTP 和 WS 连接* - 设置 HTTP 和 WS 连接的统一端口。平行链的默认端口是 `{{ networks.parachain.ws }}`，嵌入式中继链的默认端口是 `{{ networks.relay_chain.ws }}`。
+- **`--ws-port`**: *自 [client v0.33.0](https://github.com/moonbeam-foundation/moonbeam/releases/tag/v0.33.0){target=\_blank} 起已弃用，请改用 `--rpc-port` 进行 HTTP 和 WS 连接* - 设置 HTTP 和 WS 连接的统一端口。平行链的默认端口是 `{{ networks.parachain.ws }}`，嵌入式中继链的默认端口是 `{{ networks.relay_chain.ws }}`。
 - **`--rpc-max-connections`**: 指定 HTTP 和 WS 服务器连接的最大数量。默认为 100。
 - **`--rpc-external`** — 监听所有接口以进行 JSON-RPC（HTTP 和 WS）。使用代理来过滤公共端点上的不安全方法。如果您接受风险，请使用 **`--unsafe-rpc-external`** 来禁止安全警告。
 - **`--rpc-methods`** — 要公开哪些 RPC 方法。选项：`auto` *（默认）*、`safe`、`unsafe`。
@@ -27,10 +27,10 @@ categories: 节点运营者和 Collator
 - **`--rpc-max-subscriptions-per-connection <N>`** — 每个连接的最大并发订阅数（默认为 `1024`）。
 - **`--rpc-message-buffer-capacity-per-connection <N>`** — 每个连接在反压之前的排队消息容量（默认为 `64`）。
 - **`--rpc-disable-batch-requests`** 和 **`--rpc-max-batch-request-len <N>`** — 禁用批量 RPC 或限制批处理长度。
-- **`--ws-max-connections`**: *自 [client v0.33.0](https://github.com/moonbeam-foundation/moonbeam/releases/tag/v0.33.0){target=_blank} 起已弃用，请改用 `--rpc-max-connections` 来调整组合的 HTTP 和 WS 连接限制* - 指定 HTTP 和 WS 服务器连接的最大数量。默认为 100。
+- **`--ws-max-connections`**: *自 [client v0.33.0](https://github.com/moonbeam-foundation/moonbeam/releases/tag/v0.33.0){target=\_blank} 起已弃用，请改用 `--rpc-max-connections` 来调整组合的 HTTP 和 WS 连接限制* - 指定 HTTP 和 WS 服务器连接的最大数量。默认为 100。
 - **`--wasm-execution`**: 指定执行 Wasm 运行时代码的方法。可用选项包括：
-    - **`compiled`**: 这是默认选项，使用 [Wasmtime](https://github.com/paritytech/wasmtime){target=_blank} 编译的运行时。
-    - **`interpreted-i-know-what-i-do`**: 使用 [wasmi 解释器](https://github.com/wasmi-labs/wasmi){target=_blank}。
+    - **`compiled`**: 这是默认选项，使用 [Wasmtime](https://github.com/paritytech/wasmtime){target=\_blank} 编译的运行时。
+    - **`interpreted-i-know-what-i-do`**: 使用 [wasmi 解释器](https://github.com/wasmi-labs/wasmi){target=\_blank}。
 - **`--wasmtime-instantiation-strategy`**: 控制 WASM 实例化。默认值为 `pooling-copy-on-write`（最快）。选项包括 `recreate-instance-copy-on-write`、`pooling`、`recreate-instance`。CoW 变体在不支持时会回退。
 - **`--max-runtime-instances <N>`**: 每个运行时的运行时实例缓存大小。默认为 `8`，最大为 `32`。
 - **`--runtime-cache-size <N>`**: 同时缓存的不同运行时的最大数量。默认为 `2`。
@@ -50,7 +50,7 @@ categories: 节点运营者和 Collator
 - **`--network-backend`**: 选择 P2P 堆栈。选项：
   - `litep2p`（默认）— 轻量级，CPU 使用率较低，生态系统正在迁移到此处。
   - `libp2p` — 为兼容性而保留的旧版后端。
-- **`--name`**: 指定节点的人类可读名称，如果启用，可以在 [遥测](https://telemetry.polkadot.io){target=_blank} 上看到。
+- **`--name`**: 指定节点的人类可读名称，如果启用，可以在 [遥测](https://telemetry.polkadot.io){target=\_blank} 上看到。
 - **`--telemetry-url`**: 指定要连接的遥测服务器的 URL。可以多次传递此标志，以指定多个遥测端点。此标志采用两个参数：URL 和详细级别。详细级别范围从 0 到 9，其中 0 表示最不详细。预期格式为“<URL VERBOSITY>”，例如 `--telemetry-url 'wss://foo/bar 0'`。
 - **`--no-telemetry`**: 完全禁用遥测（默认在全局链上启用）。
 - **`--prometheus-external`**: 在所有接口上公开 Prometheus 指标（默认为本地）。
@@ -73,7 +73,7 @@ categories: 节点运营者和 Collator
     - **`fast-unsafe`**: 与 `fast` 相同，但跳过下载状态证明。
     - **`warp`**: 下载最新状态和证明。
 - **`--prometheus-port`**: 指定自定义 Prometheus 端口。
-- **`--lazy-loading-remote-rpc`**: 允许通过依赖指定的 RPC 端点获取网络状态来进行[延迟加载](/node-operators/networks/run-a-node/overview/#lazy-loading){target=_blank}，直到节点完全同步，例如 `--lazy-loading-remote-rpc 'https://moonbeam.unitedbloc.com'`，只要指定的 RPC 端点具有足够的速率限制来处理预期的负载。强烈建议使用私有（API 密钥）端点，而不是公共端点。
+- **`--lazy-loading-remote-rpc`**: 允许通过依赖指定的 RPC 端点获取网络状态来进行[延迟加载](node-operators/networks/run-a-node/overview/#lazy-loading){target=\_blank}，直到节点完全同步，例如 `--lazy-loading-remote-rpc 'https://moonbeam.unitedbloc.com'`，只要指定的 RPC 端点具有足够的速率限制来处理预期的负载。强烈建议使用私有（API 密钥）端点，而不是公共端点。
 - **`--lazy-loading-block`**: 用于指定延迟加载的区块哈希的可选参数。此参数允许您指定一个区块哈希，从该哈希开始加载数据。如果未提供，将使用最新的区块。
 - **`--lazy-loading-state-overrides`**: 用于指定延迟加载期间的状态覆盖的可选参数。此参数允许您提供一个包含状态覆盖的文件的路径。该文件可以包含任何应应用的自定义状态修改。
 - **`--lazy-loading-runtime-override`**: 用于指定启动延迟加载时的运行时覆盖的可选参数。如果未提供，它将从正在分叉的区块中获取运行时。
@@ -117,57 +117,59 @@ categories: 节点运营者和 Collator
 
 === "Moonbeam"
 
-    bash
+    ```bash
     docker run --network="host" -v "{{ networks.moonbeam.node_directory }}:/data" \
     -u $(id -u ${USER}):$(id -g ${USER}) \
     moonbeamfoundation/moonbeam:{{ networks.moonbeam.parachain_release_tag }} \
     --help
-    
+    ```
 
 === "Moonriver"
 
-    bash
+    ```bash
     docker run --network="host" -v "{{ networks.moonriver.node_directory }}:/data" \
     -u $(id -u ${USER}):$(id -g ${USER}) \
     moonbeamfoundation/moonbeam:{{ networks.moonriver.parachain_release_tag }} \
     --help
-    
+    ```
 
 === "Moonbase Alpha"
 
-    bash
+    ```bash
     docker run --network="host" -v "{{ networks.moonbase.node_directory }}:/data" \
     -u $(id -u ${USER}):$(id -g ${USER}) \
     moonbeamfoundation/moonbeam:{{ networks.moonbase.parachain_release_tag }} \
     --help
+    ```
 
 ### Systemd {: #systemd }
 
 === "Moonbeam"
 
-    bash
+    ```bash
     # If you used the release binary
     ./{{ networks.moonbeam.binary_name }} --help
 
     # Or if you compiled the binary
     ./target/release/{{ networks.moonbeam.binary_name }} --help
-    
+    ```
 
 === "Moonriver"
 
-    bash
+    ```bash
     # If you used the release binary
     ./{{ networks.moonriver.binary_name }} --help
 
     # Or if you compiled the binary
     ./target/release/{{ networks.moonriver.binary_name }} --help
-    
+    ```
 
 === "Moonbase Alpha"
 
-    bash
+    ```bash
     # If you used the release binary
     ./{{ networks.moonbase.binary_name }} --help
 
     # Or if you compiled the binary
     ./target/release/{{ networks.moonbase.binary_name }} --help
+    ```

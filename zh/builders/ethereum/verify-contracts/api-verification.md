@@ -14,13 +14,13 @@ categories: Ethereum Toolkit
 
 ## 使用 Moonscan API {: #using-moonscan-api }
 
-[Moonscan](https://moonscan.io){target=_blank} 是 Etherscan 的官方分支，可用于查看和搜索链上数据，并提供一套开发者工具和分析功能，以便与 Moonbeam 网络上的数据进行交互。
+[Moonscan](https://moonscan.io){target=\_blank} 是 Etherscan 的官方分支，可用于查看和搜索链上数据，并提供一套开发者工具和分析功能，以便与 Moonbeam 网络上的数据进行交互。
 
-[Etherscan API](https://docs.etherscan.io){target=_blank} 提供了各种端点，用于验证智能合约、检索已验证的合约 ABI 和源代码，以及与 Moonbeam 网络上已验证的合约进行交互。
+[Etherscan API](https://docs.etherscan.io){target=\_blank} 提供了各种端点，用于验证智能合约、检索已验证的合约 ABI 和源代码，以及与 Moonbeam 网络上已验证的合约进行交互。
 
 ### 生成 Etherscan API 密钥 {: #generating-an-etherscan-api-key }
 
-在使用 Moonscan API 之前，您需要生成一个 Etherscan API 密钥。请按照 Etherscan 插件验证页面的[密钥生成部分](/builders/ethereum/verify-contracts/etherscan-plugins/#generating-an-etherscan-api-key){target=_blank}中的说明进行操作，因为生成的 API 密钥用于两者。
+在使用 Moonscan API 之前，您需要生成一个 Etherscan API 密钥。请按照 Etherscan 插件验证页面的[密钥生成部分](builders/ethereum/verify-contracts/etherscan-plugins/#generating-an-etherscan-api-key){target=\_blank}中的说明进行操作，因为生成的 API 密钥用于两者。
 
 ### Moonscan 公共 API URL {: #moonscan-public-api-url }
 
@@ -46,12 +46,12 @@ Moonbeam 网络的 Moonscan API URL 如下：
 
 ### 验证源代码 {: #verify-source-code }
 
-要使用 Moonscan API 验证已部署合约的源代码，您必须创建一个包含所有相关合约创建信息的 POST 请求，并将该请求发送到 Moonscan 的 REST API。以下是使用 JavaScript 和 HTTP 客户端 [Axios](https://axios-http.com/docs/intro){target=_blank} 的示例代码：
+要使用 Moonscan API 验证已部署合约的源代码，您必须创建一个包含所有相关合约创建信息的 POST 请求，并将该请求发送到 Moonscan 的 REST API。以下是使用 JavaScript 和 HTTP 客户端 [Axios](https://axios-http.com/docs/intro){target=\_blank} 的示例代码：
 
 === "Moonbeam"
 
     ```javascript
-    // 提交源代码以进行验证
+    // Submit Source Code for Verification
     const response = await axios.post(
       'https://api-moonbeam.moonscan.io/api',
       {
@@ -59,27 +59,27 @@ Moonbeam 网络的 Moonscan API URL 如下：
         module: 'contract',
         action: 'verifysourcecode',
         contractAddress: 'INSERT_CONTRACT_ADDRESS',
-        sourceCode: 'INSERT_SOURCE_CODE', // 必要时进行扁平化处理
-        codeformat: 'solidity-single-file', // 或者您可以使用 "solidity-standard-json-input"
-        contractname: 'INSERT_CONTRACT_NAME', // 如果 codeformat = solidity-standard-json-input，则输入合约名称，例如：erc20.sol:erc20
-        compilerversion: 'INSERT_COMPILER_VERSION', // 请参阅 https://etherscan.io/solcversions 获取支持版本列表
-        optimizationUsed: 0, // 0 = 未使用优化，1 = 使用了优化 (当 codeformat=solidity-single-file 时适用)
-        runs: 200, // 除非另有说明，否则默认设置为 200 (当 codeformat=solidity-single-file 时适用)
-        constructorArguments: 'INSERT_CONSTRUCTOR_ARGUMENTS', // 如果适用
-        evmversion: 'INSERT_EVM_VERSION', // 选项：homestead, tangerineWhistle, spuriousDragon, byzantium, constantinople, petersburg, istanbul (当 codeformat=solidity-single-file 时适用)
-        licenseType: 1, // 有效代码 1-14，其中 1=无许可证 ... 14=商业源代码许可证 1.1，请参阅 https://etherscan.io/contract-license-types
-        libraryname1: 'INSERT_LIBRARY_NAME', // 如果适用，输入使用的第一个库的名称，即 SafeMath（最多可以使用 10 个库）
-        libraryaddress1: 'INSERT_LIBRARY_ADDRESS', // 如果适用，输入使用的第一个库的地址
-        libraryname2: 'INSERT_LIBRARY_NAME', // 如果适用，输入使用的第二个库的名称
-        libraryaddress2: 'INSERT_LIBRARY_ADDRESS', // 如果适用，输入使用的第二个库的地址
+        sourceCode: 'INSERT_SOURCE_CODE', // flattened if necessary
+        codeformat: 'solidity-single-file', // or you can use "solidity-standard-json-input"
+        contractname: 'INSERT_CONTRACT_NAME', // if codeformat = solidity-standard-json-input, then enter contractname as ex: erc20.sol:erc20
+        compilerversion: 'INSERT_COMPILER_VERSION', // see https://etherscan.io/solcversions for list of support versions
+        optimizationUsed: 0, // 0 = no optimization, 1 = optimization was used (applicable when codeformat=solidity-single-file)
+        runs: 200, // set to 200 as default unless otherwise (applicable when codeformat=solidity-single-file)
+        constructorArguments: 'INSERT_CONSTRUCTOR_ARGUMENTS', // if applicable
+        evmversion: 'INSERT_EVM_VERSION', // options: homestead, tangerineWhistle, spuriousDragon, byzantium, constantinople, petersburg, istanbul (applicable when codeformat=solidity-single-file)
+        licenseType: 1, // valid codes 1-14 where 1=No License ... 14=Business Source License 1.1, see https://etherscan.io/contract-license-types
+        libraryname1: 'INSERT_LIBRARY_NAME', // if applicable, enter the name of the first library used, i.e. SafeMath (up to 10 libraries can be used)
+        libraryaddress1: 'INSERT_LIBRARY_ADDRESS', // if applicable, enter the address of the first library used
+        libraryname2: 'INSERT_LIBRARY_NAME', // if applicable, enter the name of the second library used
+        libraryaddress2: 'INSERT_LIBRARY_ADDRESS', // if applicable, enter the address of the second library used
         // ...
       },
       { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }
     );
 
     if (response.data.status == '1') {
-      // 1 = 提交成功，使用返回的 guid (response.data.result) 检查提交状态
-      // 平均处理时间为 30-60 秒
+      // 1 = submission success, use the guid returned (response.data.result) to check the status of your submission
+      // average time of processing is 30-60 seconds
       console.log(
         response.data.status +
           '; ' +
@@ -87,9 +87,9 @@ Moonbeam 网络的 Moonscan API URL 如下：
           '; ' +
           response.data.result
       );
-      // response.data.result 是提交的 GUID 收据，您可以使用此 guid 检查验证状态
+      // response.data.result is the GUID receipt for the submission, you can use this guid for checking the verification status
     } else {
-      // 0 = 错误
+      // 0 = error
       console.log(
         response.data.status +
           '; ' +
@@ -103,7 +103,7 @@ Moonbeam 网络的 Moonscan API URL 如下：
 === "Moonriver"
 
     ```javascript
-    // 提交源代码以进行验证
+    // Submit Source Code for Verification
     const response = await axios.post(
       'https://api-moonriver.moonscan.io/api', 
       {
@@ -111,27 +111,27 @@ Moonbeam 网络的 Moonscan API URL 如下：
         module: 'contract',
         action: 'verifysourcecode',
         contractAddress: 'INSERT_CONTRACT_ADDRESS',
-        sourceCode: 'INSERT_SOURCE_CODE', // 必要时进行扁平化处理
-        codeformat: 'solidity-single-file', // 或者您可以使用 "solidity-standard-json-input"
-        contractname: 'INSERT_CONTRACT_NAME', // 如果 codeformat = solidity-standard-json-input，则输入合约名称，例如：erc20.sol:erc20
-        compilerversion: 'INSERT_COMPILER_VERSION', // 请参阅 https://etherscan.io/solcversions 获取支持版本列表
-        optimizationUsed: 0, // 0 = 未使用优化，1 = 使用了优化 (当 codeformat=solidity-single-file 时适用)
-        runs: 200, // 除非另有说明，否则默认设置为 200 (当 codeformat=solidity-single-file 时适用)
-        constructorArguments: 'INSERT_CONSTRUCTOR_ARGUMENTS', // 如果适用
-        evmversion: 'INSERT_EVM_VERSION', // 选项：homestead, tangerineWhistle, spuriousDragon, byzantium, constantinople, petersburg, istanbul (当 codeformat=solidity-single-file 时适用)
-        licenseType: 1, // 有效代码 1-14，其中 1=无许可证 ... 14=商业源代码许可证 1.1，请参阅 https://etherscan.io/contract-license-types
-        libraryname1: 'INSERT_LIBRARY_NAME', // 如果适用，输入使用的第一个库的名称，即 SafeMath（最多可以使用 10 个库）
-        libraryaddress1: 'INSERT_LIBRARY_ADDRESS', // 如果适用，输入使用的第一个库的地址
-        libraryname2: 'INSERT_LIBRARY_NAME', // 如果适用，输入使用的第二个库的名称
-        libraryaddress2: 'INSERT_LIBRARY_ADDRESS', // 如果适用，输入使用的第二个库的地址
+        sourceCode: 'INSERT_SOURCE_CODE', // flattened if necessary
+        codeformat: 'solidity-single-file', // or you can use "solidity-standard-json-input"
+        contractname: 'INSERT_CONTRACT_NAME', // if codeformat = solidity-standard-json-input, then enter contractname as ex: erc20.sol:erc20
+        compilerversion: 'INSERT_COMPILER_VERSION', // see https://etherscan.io/solcversions for list of support versions
+        optimizationUsed: 0, // 0 = no optimization, 1 = optimization was used (applicable when codeformat=solidity-single-file)
+        runs: 200, // set to 200 as default unless otherwise (applicable when codeformat=solidity-single-file)
+        constructorArguments: 'INSERT_CONSTRUCTOR_ARGUMENTS', // if applicable
+        evmversion: 'INSERT_EVM_VERSION', // options: homestead, tangerineWhistle, spuriousDragon, byzantium, constantinople, petersburg, istanbul (applicable when codeformat=solidity-single-file)
+        licenseType: 1, // valid codes 1-14 where 1=No License ... 14=Business Source License 1.1, see https://etherscan.io/contract-license-types
+        libraryname1: 'INSERT_LIBRARY_NAME', // if applicable, enter the name of the first library used, i.e. SafeMath (up to 10 libraries can be used)
+        libraryaddress1: 'INSERT_LIBRARY_ADDRESS', // if applicable, enter the address of the first library used
+        libraryname2: 'INSERT_LIBRARY_NAME', // if applicable, enter the name of the second library used
+        libraryaddress2: 'INSERT_LIBRARY_ADDRESS', // if applicable, enter the address of the second library used
         // ...
       },
       { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }
     );
 
     if (response.data.status == '1') {
-      // 1 = 提交成功，使用返回的 guid (response.data.result) 检查提交状态
-      // 平均处理时间为 30-60 秒
+      // 1 = submission success, use the guid returned (response.data.result) to check the status of your submission
+      // average time of processing is 30-60 seconds
       console.log(
         response.data.status +
           '; ' +
@@ -139,9 +139,9 @@ Moonbeam 网络的 Moonscan API URL 如下：
           '; ' +
           response.data.result
       );
-      // response.data.result 是提交的 GUID 收据，您可以使用此 guid 检查验证状态
+      // response.data.result is the GUID receipt for the submission, you can use this guid for checking the verification status
     } else {
-      // 0 = 错误
+      // 0 = error
       console.log(
         response.data.status +
           '; ' +
@@ -155,7 +155,7 @@ Moonbeam 网络的 Moonscan API URL 如下：
 === "Moonbase Alpha"
 
     ```javascript
-    // 提交源代码以进行验证
+    // Submit Source Code for Verification
     const response = await axios.post(
       'https://api-moonbase.moonscan.io/api', 
       {
@@ -163,27 +163,27 @@ Moonbeam 网络的 Moonscan API URL 如下：
         module: 'contract',
         action: 'verifysourcecode',
         contractAddress: 'INSERT_CONTRACT_ADDRESS',
-        sourceCode: 'INSERT_SOURCE_CODE', // 必要时进行扁平化处理
-        codeformat: 'solidity-single-file', // 或者您可以使用 "solidity-standard-json-input"
-        contractname: 'INSERT_CONTRACT_NAME', // 如果 codeformat = solidity-standard-json-input，则输入合约名称，例如：erc20.sol:erc20
-        compilerversion: 'INSERT_COMPILER_VERSION', // 请参阅 https://etherscan.io/solcversions 获取支持版本列表
-        optimizationUsed: 0, // 0 = 未使用优化，1 = 使用了优化 (当 codeformat=solidity-single-file 时适用)
-        runs: 200, // 除非另有说明，否则默认设置为 200 (当 codeformat=solidity-single-file 时适用)
-        constructorArguments: 'INSERT_CONSTRUCTOR_ARGUMENTS', // 如果适用
-        evmversion: 'INSERT_EVM_VERSION', // 选项：homestead, tangerineWhistle, spuriousDragon, byzantium, constantinople, petersburg, istanbul (当 codeformat=solidity-single-file 时适用)
-        licenseType: 1, // 有效代码 1-14，其中 1=无许可证 ... 14=商业源代码许可证 1.1，请参阅 https://etherscan.io/contract-license-types
-        libraryname1: 'INSERT_LIBRARY_NAME', // 如果适用，输入使用的第一个库的名称，即 SafeMath（最多可以使用 10 个库）
-        libraryaddress1: 'INSERT_LIBRARY_ADDRESS', // 如果适用，输入使用的第一个库的地址
-        libraryname2: 'INSERT_LIBRARY_NAME', // 如果适用，输入使用的第二个库的名称
-        libraryaddress2: 'INSERT_LIBRARY_ADDRESS', // 如果适用，输入使用的第二个库的地址
+        sourceCode: 'INSERT_SOURCE_CODE', // flattened if necessary
+        codeformat: 'solidity-single-file', // or you can use "solidity-standard-json-input"
+        contractname: 'INSERT_CONTRACT_NAME', // if codeformat = solidity-standard-json-input, then enter contractname as ex: erc20.sol:erc20
+        compilerversion: 'INSERT_COMPILER_VERSION', // see https://etherscan.io/solcversions for list of support versions
+        optimizationUsed: 0, // 0 = no optimization, 1 = optimization was used (applicable when codeformat=solidity-single-file)
+        runs: 200, // set to 200 as default unless otherwise (applicable when codeformat=solidity-single-file)
+        constructorArguments: 'INSERT_CONSTRUCTOR_ARGUMENTS', // if applicable
+        evmversion: 'INSERT_EVM_VERSION', // options: homestead, tangerineWhistle, spuriousDragon, byzantium, constantinople, petersburg, istanbul (applicable when codeformat=solidity-single-file)
+        licenseType: 1, // valid codes 1-14 where 1=No License ... 14=Business Source License 1.1, see https://etherscan.io/contract-license-types
+        libraryname1: 'INSERT_LIBRARY_NAME', // if applicable, enter the name of the first library used, i.e. SafeMath (up to 10 libraries can be used)
+        libraryaddress1: 'INSERT_LIBRARY_ADDRESS', // if applicable, enter the address of the first library used
+        libraryname2: 'INSERT_LIBRARY_NAME', // if applicable, enter the name of the second library used
+        libraryaddress2: 'INSERT_LIBRARY_ADDRESS', // if applicable, enter the address of the second library used
         // ...
       },
       { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }
     );
 
     if (response.data.status == '1') {
-      // 1 = 提交成功，使用返回的 guid (response.data.result) 检查提交状态
-      // 平均处理时间为 30-60 秒
+      // 1 = submission success, use the guid returned (response.data.result) to check the status of your submission
+      // average time of processing is 30-60 seconds
       console.log(
         response.data.status +
           '; ' +
@@ -191,9 +191,9 @@ Moonbeam 网络的 Moonscan API URL 如下：
           '; ' +
           response.data.result
       );
-      // response.data.result 是提交的 GUID 收据，您可以使用此 guid 检查验证状态
+      // response.data.result is the GUID receipt for the submission, you can use this guid for checking the verification status
     } else {
-      // 0 = 错误
+      // 0 = error
       console.log(
         response.data.status +
           '; ' +
@@ -307,22 +307,23 @@ Moonbeam 网络的 Moonscan API URL 如下：
 
 ## 使用 Sourcify API {: #using-sourcify-api }
 
-[Sourcify](https://sourcify.dev){target=_blank} 是一个多链去中心化自动合约验证服务，并维护一个合约元数据的公共存储库。Sourcify 还提供了一个公共服务器 API 用于验证和检查合约是否已验证，以及一个存储库 API 用于检索元数据文件。
+[Sourcify](https://sourcify.dev){target=\_blank} 是一个多链去中心化自动合约验证服务，并维护一个合约元数据的公共存储库。Sourcify 还提供了一个公共服务器 API 用于验证和检查合约是否已验证，以及一个存储库 API 用于检索元数据文件。
 
 ### Sourcify 公共服务器 URL {: #sourcify-public-server-url }
 
 可以通过以下公共服务器访问 Soucify API 端点：
 
-==="Production" （生产环境）
+=== "Production"
 
-    text
+    ```text
     https://sourcify.dev/server
-    
+    ```
 
-==="Staging" （测试环境）
+=== "Staging"
 
-    text
+    ```text
     https://staging.sourcify.dev/server
+    ```
 
 ### Moonbeam网络链ID {: #moonbeam-network-chain-ids }
 
@@ -330,19 +331,19 @@ Sourcify使用链ID来识别请求的目标网络。Moonbeam网络的链ID如下
 
 === "Moonbeam"
 
-    ```
+    ```text
     {{ networks.moonbeam.chain_id }}
     ```
 
 === "Moonriver"
 
-    ```
+    ```text
     {{ networks.moonriver.chain_id }}
     ```
 
 === "Moonbase Alpha"
 
-    ```
+    ```text
     {{ networks.moonbase.chain_id }}
     ```
 
@@ -361,28 +362,28 @@ POST 请求用于在 Sourcify 上验证合约。以下是使用 JavaScript 的�
 === "Moonbeam"
 
     ```javascript
-    // 提交合约源代码和元数据以进行验证
+    // Submit Contract Source Code and Metadata for Verification
     const response = await axios.post('https://sourcify.dev/server/verify', {
       address: 'INSERT_CONTRACT_ADDRESS',
-      chain: {{ networks.moonbeam.chain_id }}, // Moonbeam 的链 ID
+      chain: {{ networks.moonbeam.chain_id }}, // chain ID of Moonbeam
       files: {
-        'metadata-1.json': 'INSERT_JSON_FILE', // 合约文件 1 的元数据文件
-        'metadata-2.json': 'INSERT_JSON_FILE', // 合约文件 2 的元数据文件
-        'file1-name.sol': 'INSERT_SOL_FILE', // 合约源文件 1
-        'file2-name.sol': 'INSERT_SOL_FILE', // 合约源文件 2
+        'metadata-1.json': 'INSERT_JSON_FILE', // metadata file for contract file 1
+        'metadata-2.json': 'INSERT_JSON_FILE', // metadata file for contract file 2
+        'file1-name.sol': 'INSERT_SOL_FILE', // contract source file 1
+        'file2-name.sol': 'INSERT_SOL_FILE', // contract source file 2
         //...
       },
-      chosenContract: 1, //（可选）合约的索引，如果提供的文件包含多个元数据文件
+      chosenContract: 1, // (optional) index of the contract, if the provided files contain multiple metadata files
     });
 
     if (result.status == 'perfect') {
-      // 完全匹配
+      // perfect match
       console.log(result.status + ';' + result.address);
     } else if (result.status == 'partial') {
-      // 部分匹配
+      // partial match
       console.log(result.status + ';' + result.address);
     } else {
-      // 不匹配
+      // non-matching
       console.log(result.status + ';' + result.address);
     }
     ```
@@ -390,28 +391,28 @@ POST 请求用于在 Sourcify 上验证合约。以下是使用 JavaScript 的�
 === "Moonriver"
 
     ```javascript
-    // 提交合约源代码和元数据以进行验证
+    // Submit Contract Source Code and Metadata for Verification
     const response = await axios.post('https://sourcify.dev/server/verify', {
       address: 'INSERT_CONTRACT_ADDRESS',
-      chain: {{ networks.moonriver.chain_id }}, // Moonriver 的链 ID
+      chain: {{ networks.moonriver.chain_id }}, // chain ID of Moonriver
       files: {
-        'metadata-1.json': 'INSERT_JSON_FILE', // 合约文件 1 的元数据文件
-        'metadata-2.json': 'INSERT_JSON_FILE', // 合约文件 2 的元数据文件
-        'file1-name.sol': 'INSERT_SOL_FILE', // 合约源文件 1
-        'file2-name.sol': 'INSERT_SOL_FILE', // 合约源文件 2
+        'metadata-1.json': 'INSERT_JSON_FILE', // metadata file for contract file 1
+        'metadata-2.json': 'INSERT_JSON_FILE', // metadata file for contract file 2
+        'file1-name.sol': 'INSERT_SOL_FILE', // contract source file 1
+        'file2-name.sol': 'INSERT_SOL_FILE', // contract source file 2
         //...
       },
-      chosenContract: 1, //（可选）合约的索引，如果提供的文件包含多个元数据文件
+      chosenContract: 1, // (optional) index of the contract, if the provided files contain multiple metadata files
     });
 
     if (result.status == 'perfect') {
-      // 完全匹配
+      // perfect match
       console.log(result.status + ';' + result.address);
     } else if (result.status == 'partial') {
-      // 部分匹配
+      // partial match
       console.log(result.status + ';' + result.address);
     } else {
-      // 不匹配
+      // non-matching
       console.log(result.status + ';' + result.address);
     }
     ```
@@ -419,33 +420,33 @@ POST 请求用于在 Sourcify 上验证合约。以下是使用 JavaScript 的�
 === "Moonbase Alpha"
 
     ```javascript
-    // 提交合约源代码和元数据以进行验证
+    // Submit Contract Source Code and Metadata for Verification
     const response = await axios.post('https://sourcify.dev/server/verify', {
       address: 'INSERT_CONTRACT_ADDRESS',
-      chain: {{ networks.moonbase.chain_id }}, // Moonbase Alpha 的链 ID
+      chain: {{ networks.moonbase.chain_id }}, // chain ID of Moonbase Alpha
       files: {
-        'metadata-1.json': 'INSERT_JSON_FILE', // 合约文件 1 的元数据文件
-        'metadata-2.json': 'INSERT_JSON_FILE', // 合约文件 2 的元数据文件
-        'file1-name.sol': 'INSERT_SOL_FILE', // 合约源文件 1
-        'file2-name.sol': 'INSERT_SOL_FILE', // 合约源文件 2
+        'metadata-1.json': 'INSERT_JSON_FILE', // metadata file for contract file 1
+        'metadata-2.json': 'INSERT_JSON_FILE', // metadata file for contract file 2
+        'file1-name.sol': 'INSERT_SOL_FILE', // contract source file 1
+        'file2-name.sol': 'INSERT_SOL_FILE', // contract source file 2
         //...
       },
-      chosenContract: 1, //（可选）合约的索引，如果提供的文件包含多个元数据文件
+      chosenContract: 1, // (optional) index of the contract, if the provided files contain multiple metadata files
     });
 
     if (result.status == 'perfect') {
-      // 完全匹配
+      // perfect match
       console.log(result.status + ';' + result.address);
     } else if (result.status == 'partial') {
-      // 部分匹配
+      // partial match
       console.log(result.status + ';' + result.address);
     } else {
-      // 不匹配
+      // non-matching
       console.log(result.status + ';' + result.address);
     }
     ```
 
-或者，您也可以使用 [Sourcify 托管的 GUI](https://sourcify.dev/#/verifier){target=_blank} 提交合约进行验证。
+或者，您也可以使用 [Sourcify 托管的 GUI](https://sourcify.dev/#/verifier){target=\_blank} 提交合约进行验证。
 
 ### 通过地址和链 ID 检查验证状态 {: check-verification-status-by-address-and-chain-id }
 
@@ -535,13 +536,13 @@ Sourcify 提供了用于一次性检查多个 EVM 链上合约验证状态的端
 
 ### 将 Sourcify 与 Foundry 结合使用 {: #using-sourcify-with-foundry }
 
-Foundry 的 Forge 工具内置了对 Sourcify 验证的支持，类似于它对[Etherscan 的内置支持](/builders/ethereum/verify-contracts/etherscan-plugins/#using-foundry-to-verify){target=_blank}。本指南的此部分中的示例将使用在[使用 Foundry 部署到 Moonbeam](/builders/ethereum/dev-env/foundry/){target=_blank} 指南中创建的 `MyToken.sol` 合约。
+Foundry 的 Forge 工具内置了对 Sourcify 验证的支持，类似于它对[Etherscan 的内置支持](builders/ethereum/verify-contracts/etherscan-plugins/#using-foundry-to-verify){target=\_blank}。本指南的此部分中的示例将使用在[使用 Foundry 部署到 Moonbeam](builders/ethereum/dev-env/foundry/){target=\_blank} 指南中创建的 `MyToken.sol` 合约。
 
 使用 Sourcify 的 Foundry 项目必须让其编译器发出元数据文件。这可以在 `foundry.toml` 文件中配置：
 
 ```toml
 [profile.default]
-# 在此处输入您的自定义或默认配置选项
+# Input your custom or default config options here
 extra_output_files = ["metadata"]
 ```
 

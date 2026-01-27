@@ -48,9 +48,9 @@ Substrate Identity pallet 是一个开箱即用的解决方案，用于向您的
 对于本指南，您将需要以下内容：
 
 - 要在 Polkadot.js Apps 浏览器上连接到 [Moonbase Alpha TestNet](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network){target=\_blank}。您也可以按照并调整 [Moonbeam](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbeam.network){target=\_blank} 或 [Moonriver](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonriver.moonbeam.network){target=\_blank} 的说明进行操作。
-- 要将 [创建或导入帐户](/tokens/connect/polkadotjs/#creating-or-importing-an-h160-account) 到 Polkadot.js Apps
+- 要将 [创建或导入帐户](tokens/connect/polkadotjs/#creating-or-importing-an-h160-account) 到 Polkadot.js Apps
 - 确保您已为您的帐户充值。
- --8<-- 'text/_common/faucet/faucet-list-item.md'
+ --8<-- 'zh/text/_common/faucet/faucet-list-item.md'
 
 ## 开始 {: #get-started }
 
@@ -65,7 +65,7 @@ Substrate Identity pallet 是一个开箱即用的解决方案，用于向您的
 
 ### 设置身份 {: #set-identity-accounts }
 
-要开始使用 Accounts UI 设置身份，请前往 Polkadot.js Apps 浏览器的[帐户选项卡](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/accounts){target=_blank}。
+要开始使用 Accounts UI 设置身份，请前往 Polkadot.js Apps 浏览器的[帐户选项卡](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/accounts){target=\_blank}。
 
 您应该已经连接了一个帐户，因此您可以继续单击您的帐户名称以验证并记下您的余额。 在您发送交易以设置身份后，您提交的存款将从您的可转让余额转移到您的预留余额。
 
@@ -99,7 +99,7 @@ Substrate Identity pallet 是一个开箱即用的解决方案，用于向您的
 
 ### 清除身份信息 {: #clear-identity-accounts }
 
-要从 Polkadot.js Apps UI 的[账户选项卡](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/accounts){target=_blank}中清除您的身份信息，您需要：
+要从 Polkadot.js Apps UI 的[账户选项卡](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/accounts){target=\_blank}中清除您的身份信息，您需要：
 
 1. 点击您想要添加身份信息的账户旁边的 3 个垂直点
 2. 将弹出一个菜单。点击 **设置链上身份**
@@ -153,7 +153,7 @@ Substrate Identity pallet 是一个开箱即用的解决方案，用于向您的
 
 ### 确认身份 {: #confirm-identity-extrinsics }
 
-要验证您的身份信息的添加，您可以点击**开发者**选项卡，然后导航至[链状态](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/chainstate){target=_blank}。
+要验证您的身份信息的添加，您可以点击**开发者**选项卡，然后导航至[链状态](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/chainstate){target=\_blank}。
 
 在**链状态**用户界面上，确保已选择“**存储**”。然后，您可以开始请求您的身份信息：
 
@@ -168,7 +168,7 @@ Substrate Identity pallet 是一个开箱即用的解决方案，用于向您的
 
 ### 清除身份信息 {: #clear-identity-extrinsics }
 
-要从 Polkadot.js Apps UI 的 [Extrinsics 选项卡](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/extrinsics){target=_blank} 中清除您的身份信息，您需要：
+要从 Polkadot.js Apps UI 的 [Extrinsics 选项卡](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/extrinsics){target=\_blank} 中清除您的身份信息，您需要：
 
 1. 从**使用所选账户**下拉列表中选择您的账户
 2. 从**提交以下 extrinsic** 下拉列表中选择 **identity**
@@ -208,21 +208,21 @@ Substrate Identity pallet 是一个开箱即用的解决方案，用于向您的
 === "Moonbeam"
     |                                                                注册人                                                                |                              运营商                               |                  地址                   | 索引 |
     |:---------------------------------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------:|:------------------------------------------:|:-----:|
-    |        [注册人 #0](https://forum.moonbeam.network/t/referendum-73-identity-registrar-0/208){target=_blank}        | [Moonbeam 基金会](https://moonbeam.foundation){target=_blank} | 0xbE6E642b25Fa7925AFA1600C48Ab9aA3461DC7f1 |   0   |
-    | [注册人 #1](https://forum.moonbeam.network/t/referendum-82-new-registrar-proposal-registrar-1/319){target=_blank} |         [Chevdor](https://www.chevdor.com){target=_blank}         | 0xeaB597B91b66d9C3EA5E3a39e22C524c287d61a5 |   1   |
+    |        [注册人 #0](https://forum.moonbeam.network/t/referendum-73-identity-registrar-0/208){target=\_blank}        | [Moonbeam 基金会](https://moonbeam.foundation){target=\_blank} | 0xbE6E642b25Fa7925AFA1600C48Ab9aA3461DC7f1 |   0   |
+    | [注册人 #1](https://forum.moonbeam.network/t/referendum-82-new-registrar-proposal-registrar-1/319){target=\_blank} |         [Chevdor](https://www.chevdor.com){target=\_blank}         | 0xeaB597B91b66d9C3EA5E3a39e22C524c287d61a5 |   1   |
 
 === "Moonriver"
     |                                                                注册人                                                                 |                              运营商                               |                  地址                   | 索引 |
     |:----------------------------------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------:|:------------------------------------------:|:-----:|
-    |         [注册人 #0](https://forum.moonbeam.network/t/referendum-120-identity-registrar-0/187){target=_blank}          | [Moonbeam 基金会](https://moonbeam.foundation){target=_blank} | 0x031590D13434CC554f7257A89B2E0B10d67CCCBa |   0   |
-    | [注册人 #1](https://forum.moonbeam.network/t/referendum-125-new-registrar-proposal-registrar-1/303){target=_blank} |         [Chevdor](https://www.chevdor.com){target=_blank}         | 0x2d18250E01312A155E81381F938B8bA8bb4d97B3 |   1   |
+    |         [注册人 #0](https://forum.moonbeam.network/t/referendum-120-identity-registrar-0/187){target=\_blank}          | [Moonbeam 基金会](https://moonbeam.foundation){target=\_blank} | 0x031590D13434CC554f7257A89B2E0B10d67CCCBa |   0   |
+    | [注册人 #1](https://forum.moonbeam.network/t/referendum-125-new-registrar-proposal-registrar-1/303){target=\_blank} |         [Chevdor](https://www.chevdor.com){target=\_blank}         | 0x2d18250E01312A155E81381F938B8bA8bb4d97B3 |   1   |
 
 === "Moonbase Alpha"
     |                                      注册人                                       |                      运营商                       |                  地址                   | 索引 |
     |:------------------------------------------------------------------------------------:|:---------------------------------------------------:|:------------------------------------------:|:-----:|
-    | [注册人 #1](https://www.chevdor.com/post/2020/07/14/reg-updates){target=_blank} | [Chevdor](https://www.chevdor.com){target=_blank} | 0x4aD549e07E96BaD335A8b99C8fd32e95EE538904 |   1   |
+    | [注册人 #1](https://www.chevdor.com/post/2020/07/14/reg-updates){target=\_blank} | [Chevdor](https://www.chevdor.com){target=\_blank} | 0x4aD549e07E96BaD335A8b99C8fd32e95EE538904 |   1   |
 
-您可以通过访问 [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network){target=_blank}，选择 **开发者** 选项卡，从下拉菜单中选择 **链状态**，并按照以下步骤操作，获取当前注册人的完整列表，包括每个注册人收取的费用：
+您可以通过访问 [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network){target=\_blank}，选择 **开发者** 选项卡，从下拉菜单中选择 **链状态**，并按照以下步骤操作，获取当前注册人的完整列表，包括每个注册人收取的费用：
 
 1. 选择 **identity** 托盘
 2. 选择 **registrars** 外部函数

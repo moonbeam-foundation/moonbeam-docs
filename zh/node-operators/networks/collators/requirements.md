@@ -25,15 +25,15 @@ categories: 节点运营商和区块收集人
 有必要对社区和网络做出一定程度的承诺，以赢得委托人社区的信任并吸引更多的委托。以下是一些为社区做贡献的建议：
 
 - 积极参与社区
-    - [加入 Discord](/node-operators/networks/collators/overview/#join-discord){target=_blank} 并进行自我介绍，根据需要提供更新，并帮助支持社区成员或其他收集人
+    - [加入 Discord](node-operators/networks/collators/overview/#join-discord){target=\_blank} 并进行自我介绍，根据需要提供更新，并帮助支持社区成员或其他收集人
 - 创建教程和教育内容
-- [成为 Moonbeam 大使](https://moonbeam.network/community/ambassador){target=_blank}
+- [成为 Moonbeam 大使](https://moonbeam.network/community/ambassador){target=\_blank}
 - 贡献与生态系统相关的开源软件
 - 积极参与治理并对提案进行投票
 
 ## 硬件要求 {: #hardware-requirements }
 
-整理人必须运行具有整理选项的完整节点。为此，请按照[运行节点](/node-operators/networks/run-a-node/overview/)教程和[使用 Systemd](/node-operators/networks/run-a-node/systemd/)的安装步骤进行操作。确保您使用整理人的特定代码片段。
+整理人必须运行具有整理选项的完整节点。为此，请按照[运行节点](node-operators/networks/run-a-node/overview/)教程和[使用 Systemd](node-operators/networks/run-a-node/systemd/)的安装步骤进行操作。确保您使用整理人的特定代码片段。
 
 !!! note
     运行 **整理人** 节点的 CPU 要求高于上述教程中提供的要求。为了使您的整理人节点能够跟上高交易吞吐量，具有高时钟速度和单核性能的 CPU 非常重要，因为区块生产/导入过程几乎完全是单线程的。
@@ -61,7 +61,7 @@ categories: 节点运营商和区块收集人
 
 - 写下您的密钥并进行塑封
 - 将您的密钥刻在金属板上
-- 使用像 [Horcrux](https://gitlab.com/unit410/horcrux){target=_blank} 这样的工具来分片您的密钥
+- 使用像 [Horcrux](https://gitlab.com/unit410/horcrux){target=\_blank} 这样的工具来分片您的密钥
 
 与往常一样，建议您自己进行研究并使用您认为是值得信赖的工具。
 
@@ -75,8 +75,9 @@ categories: 节点运营商和区块收集人
 
 对于基于 Linux 的系统（如 Ubuntu），打开终端并转到 moonkey 二进制文件所在的文件夹。到达那里后，您可以使用 sha256sum 工具来计算 SHA256 哈希值：
 
-text
+```text
 019c3de832ded3fccffae950835bb455482fca92714448cc0086a7c5f3d48d3e
+```
 
 验证哈希后，建议将二进制文件移动到气隙机器（无网络接口）。您也可以直接在气隙设备中检查文件的哈希值。
 
@@ -137,7 +138,7 @@ Moonkey 提供了一些额外的功能。可以提供以下标志：
 
 ### 密钥关联保证金 {: #key-association-bond }
 
-其次，您需要一个用于密钥关联的保证金。当[将您的作者 ID 映射](/node-operators/networks/collators/account-management/){target=_blank}（会话密钥）到您的帐户以获取区块奖励时，需要此保证金，并且每个注册的作者 ID 都需要。
+其次，您需要一个用于密钥关联的保证金。当[将您的作者 ID 映射](node-operators/networks/collators/account-management/){target=\_blank}（会话密钥）到您的帐户以获取区块奖励时，需要此保证金，并且每个注册的作者 ID 都需要。
 
 === "Moonbeam"
     |   变量   |                         值                          |
@@ -156,4 +157,4 @@ Moonkey 提供了一些额外的功能。可以提供以下标志：
 
 ## 收集人问卷调查表 {: #collator-questionnaire }
 
-这里有一份[收集人调查问卷](https://docs.google.com/forms/d/e/1FAIpQLSfjmcXdiOXWtquYlBhdgXBunCKWHadaQCgPuBtzih1fd0W3aA/viewform){target=_blank}，旨在评估 Moonbase Alpha 上所有收集人的状态。在填写此表格之前，您应该在 Moonbase Alpha 上运行一个收集人节点。您将能够提供您的联系方式以及一些基本的硬件规格。如果您的节点出现任何问题，这提供了一种在您和 Moonbeam 团队之间开通沟通渠道的方式。
+这里有一份[收集人调查问卷](https://docs.google.com/forms/d/e/1FAIpQLSfjmcXdiOXWtquYlBhdgXBunCKWHadaQCgPuBtzih1fd0W3aA/viewform){target=\_blank}，旨在评估 Moonbase Alpha 上所有收集人的状态。在填写此表格之前，您应该在 Moonbase Alpha 上运行一个收集人节点。您将能够提供您的联系方式以及一些基本的硬件规格。如果您的节点出现任何问题，这提供了一种在您和 Moonbeam 团队之间开通沟通渠道的方式。

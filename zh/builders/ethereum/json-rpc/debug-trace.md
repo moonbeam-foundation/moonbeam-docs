@@ -12,9 +12,9 @@ Geth 的 [debug](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-deb
 
 本指南将介绍 Moonbeam 上受支持的 RPC 方法，以及如何针对启用 debug、txpool 和 tracing 标志的追踪节点使用 curl 命令调用它们。你可以通过两种方式访问追踪节点：使用受支持的追踪 RPC 提供商，或自行启动追踪节点。
 
-要查看追踪 RPC 提供商列表，请查阅 [网络端点](/builders/get-started/endpoints/#tracing-providers){target=\_blank} 页面。
+要查看追踪 RPC 提供商列表，请查阅 [网络端点](builders/get-started/endpoints/#tracing-providers){target=\_blank} 页面。
 
-如果你希望搭建自己的追踪节点，可以参考[运行追踪节点](/node-operators/networks/tracing-node/){target=\_blank}指南。追踪节点的 RPC HTTP 端点应为 `{{ networks.development.rpc_url }}`，节点日志应类似于下方示例：
+如果你希望搭建自己的追踪节点，可以参考[运行追踪节点](node-operators/networks/tracing-node/){target=\_blank}指南。追踪节点的 RPC HTTP 端点应为 `{{ networks.development.rpc_url }}`，节点日志应类似于下方示例：
 
 --8<-- 'code/builders/ethereum/json-rpc/debug-trace/terminal/start-up-logs.md'
 
@@ -221,7 +221,7 @@ Geth 的 [debug](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-deb
         - 单次 `trace_filter` 请求最多返回 `500` 条追踪记录，超过该限制将返回错误
         - 请求处理的区块会在缓存中临时存储 `300` 秒，之后会被删除
 
-        你可以在启动追踪节点时配置[其他标志](/node-operators/networks/tracing-node/#additional-flags){target=\_blank}以调整默认值。
+        你可以在启动追踪节点时配置[其他标志](node-operators/networks/tracing-node/#additional-flags){target=\_blank}以调整默认值。
 
     === "返回值"
 
@@ -288,7 +288,7 @@ Geth 的 [debug](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-deb
 
     === "参数"
 
-        None
+        无
 
     === "返回值"
 

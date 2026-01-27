@@ -10,8 +10,13 @@ import shutil
 from pathlib import Path
 
 import yaml
-from ruamel.yaml import YAML
-from ruamel.yaml.comments import CommentedMap, CommentedSeq
+try:
+    from ruamel.yaml import YAML  # type: ignore
+    from ruamel.yaml.comments import CommentedMap, CommentedSeq  # type: ignore
+except Exception:  # pragma: no cover
+    YAML = None
+    CommentedMap = None
+    CommentedSeq = None
 
 from paths import DOCS_ROOT, REPO_ROOT, repo_relative
 
@@ -38,9 +43,11 @@ ROOT_FILE_ALLOW = {"index.md", ".nav.yml"}
 _SCAFFOLDED_LANGS: set[str] = set()
 QUIET = os.environ.get("ROSE_QUIET", "").strip().lower() in {"1", "true", "yes", "on"}
 
-YAML_PARSER = YAML()
-YAML_PARSER.indent(mapping=2, sequence=4, offset=2)
-YAML_PARSER.preserve_quotes = True
+YAML_PARSER = None
+if YAML is not None:
+    YAML_PARSER = YAML()
+    YAML_PARSER.indent(mapping=2, sequence=4, offset=2)
+    YAML_PARSER.preserve_quotes = True
 
 
 def _normalize_lang(code: str) -> str:
@@ -146,6 +153,8 @@ INLINE_FRONT_MATTER_RE = re.compile(
 FM_LINE_RE = re.compile(r'^(\s*)([^:#]+):(.*)$')
 INLINE_HEADER_RE = re.compile(r'^\s*##\s+(.*)$')
 DECOR_LINE_RE = re.compile(r'^_+$')
+ANCHOR_ID_RE = re.compile(r"\{:\s*[^}]*#([A-Za-z0-9][A-Za-z0-9_-]*)[^}]*\}")
+BOLD_RE = re.compile(r"\*\*([^\n]+?)\*\*")
 
 
 def _sanitize_locale_text(text: str) -> str:
@@ -192,6 +201,7 @@ def _restore_markdown_structure(path: Path, english: str, translated: str) -> st
     trans_lines = _ensure_mermaid_headers(eng_lines, trans_lines)
     restored = "\n".join(trans_lines)
     restored = _restore_inline_code(english, restored)
+    restored = _restore_bold_spans(english, restored)
     return restored
 
 
@@ -380,7 +390,7 @@ def _ensure_mermaid_headers(eng_lines: list[str], trans_lines: list[str]) -> lis
 
 
 def _overlay_locale(base, override):
-    if isinstance(base, CommentedMap):
+    if CommentedMap is not None and isinstance(base, CommentedMap):
         result = CommentedMap()
         override_map = override if isinstance(override, dict) else CommentedMap()
         for key in base.keys():
@@ -389,7 +399,7 @@ def _overlay_locale(base, override):
             if key not in result:
                 result[key] = value
         return result
-    if isinstance(base, CommentedSeq):
+    if CommentedSeq is not None and isinstance(base, CommentedSeq):
         if isinstance(override, list):
             return override
         return base
@@ -399,8 +409,14 @@ def _overlay_locale(base, override):
 
 
 def _write_locale_translation(target: Path, translated_text: str) -> None:
-    base_data = YAML_PARSER.load(EN_LOCALE.read_text(encoding="utf-8"))
     dest = REPO_ROOT / target
+    dest.parent.mkdir(parents=True, exist_ok=True)
+
+    if YAML_PARSER is None:
+        dest.write_text(translated_text, encoding="utf-8")
+        return
+
+    base_data = YAML_PARSER.load(EN_LOCALE.read_text(encoding="utf-8"))
     if dest.exists():
         existing = YAML_PARSER.load(dest.read_text(encoding="utf-8")) or CommentedMap()
     else:
@@ -417,6 +433,113 @@ def _write_locale_translation(target: Path, translated_text: str) -> None:
     dest.parent.mkdir(parents=True, exist_ok=True)
     with dest.open("w", encoding="utf-8") as handle:
         YAML_PARSER.dump(merged, handle)
+
+
+def _restore_bold_spans(english: str, translated: str) -> str:
+    """Restore bolded (**...**) text from English into translated Markdown.
+
+    Only applies when the number of bold spans matches. Skips fenced code blocks.
+    """
+    eng_bolds: list[str] = []
+    in_fence = False
+    for line in english.splitlines():
+        stripped = line.strip()
+        if stripped.startswith("```") or stripped.startswith("~~~"):
+            in_fence = not in_fence
+            continue
+        if in_fence:
+            continue
+        eng_bolds.extend([m.group(1) for m in BOLD_RE.finditer(line)])
+
+    if not eng_bolds:
+        return translated
+
+    trans_lines = translated.splitlines()
+    trans_bold_count = 0
+    in_fence = False
+    for line in trans_lines:
+        stripped = line.strip()
+        if stripped.startswith("```") or stripped.startswith("~~~"):
+            in_fence = not in_fence
+            continue
+        if in_fence:
+            continue
+        trans_bold_count += len(BOLD_RE.findall(line))
+
+    if trans_bold_count != len(eng_bolds):
+        return translated
+
+    idx = 0
+    in_fence = False
+    for i, line in enumerate(trans_lines):
+        stripped = line.strip()
+        if stripped.startswith("```") or stripped.startswith("~~~"):
+            in_fence = not in_fence
+            continue
+        if in_fence:
+            continue
+
+        def repl(match: re.Match[str]) -> str:
+            nonlocal idx
+            if idx >= len(eng_bolds):
+                return match.group(0)
+            inner = eng_bolds[idx]
+            idx += 1
+            return f"**{inner}**"
+
+        trans_lines[i] = BOLD_RE.sub(repl, line)
+
+    return "\n".join(trans_lines)
+
+
+def _anchor_present(text: str, anchor_id: str) -> bool:
+    return bool(re.search(rf"\{{:\s*[^}}]*#{re.escape(anchor_id)}\b", text))
+
+
+def _find_anchor_line(lines: list[str], anchor_id: str) -> int | None:
+    needle = f"#{anchor_id}"
+    in_fence = False
+    for idx, line in enumerate(lines):
+        stripped = line.strip()
+        if stripped.startswith("```") or stripped.startswith("~~~"):
+            in_fence = not in_fence
+            continue
+        if in_fence:
+            continue
+        if needle in line and ANCHOR_ID_RE.search(line):
+            match = ANCHOR_ID_RE.search(line)
+            if match and match.group(1) == anchor_id:
+                return idx
+    return None
+
+
+def _insert_section_by_anchor(
+    *,
+    dest_text: str,
+    missing_section_id: str,
+    insert_before_section_id: str | None,
+    translated_section: str,
+) -> str:
+    if _anchor_present(dest_text, missing_section_id):
+        return dest_text
+
+    insert_idx = None
+    lines = dest_text.splitlines()
+    if insert_before_section_id:
+        insert_idx = _find_anchor_line(lines, insert_before_section_id)
+
+    block = translated_section.rstrip() + "\n"
+    if insert_idx is None:
+        prefix = dest_text
+        if prefix and not prefix.endswith("\n"):
+            prefix += "\n"
+        if prefix and not prefix.endswith("\n\n"):
+            prefix += "\n"
+        return (prefix + block).rstrip() + "\n"
+
+    before = "\n".join(lines[:insert_idx]).rstrip() + "\n\n"
+    after = "\n".join(lines[insert_idx:]).lstrip()
+    return (before + block + "\n" + after).rstrip() + "\n"
 
 
 def main() -> int:
@@ -445,7 +568,8 @@ def main() -> int:
     written = {}
 
     for entry in payload:
-        if entry.get("kind") == "block":
+        kind = entry.get("kind") or "file"
+        if kind == "block":
             continue
         lang_code = _normalize_lang(entry.get("target_language", ""))
         if not lang_code:
@@ -465,8 +589,41 @@ def main() -> int:
         translated = translated_value
         dest = REPO_ROOT / target
         dest.parent.mkdir(parents=True, exist_ok=True)
-        dest.write_text(translated, encoding="utf-8")
-        entry["translated_content"] = translated
+
+        source_path = entry.get("source_path") or path_hint
+        english_source = ""
+        try:
+            english_path = REPO_ROOT / repo_relative(str(source_path))
+            if english_path.exists():
+                english_source = english_path.read_text(encoding="utf-8")
+        except Exception:
+            english_source = entry.get("content") or ""
+
+        # Backfill anchored sections without clobbering the whole file.
+        if kind in {"anchored_section", "missing_section"}:
+            missing_id = str(entry.get("missing_section_id") or "").strip()
+            insert_before = entry.get("insert_before_section_id")
+            if not missing_id:
+                raise ValueError("anchored_section entry missing missing_section_id")
+            existing = dest.read_text(encoding="utf-8") if dest.exists() else ""
+            injected = _restore_markdown_structure(dest, english_source, translated)
+            updated = _insert_section_by_anchor(
+                dest_text=existing,
+                missing_section_id=missing_id,
+                insert_before_section_id=str(insert_before).strip() if insert_before else None,
+                translated_section=injected,
+            )
+            dest.write_text(updated, encoding="utf-8")
+            entry["translated_content"] = injected
+        elif target.parts and target.parts[0] == "locale" and dest.suffix.lower() in {".yml", ".yaml"}:
+            translated = _sanitize_locale_text(translated)
+            _write_locale_translation(target, translated)
+            entry["translated_content"] = translated
+        else:
+            translated = _restore_markdown_structure(dest, english_source, translated)
+            dest.write_text(translated, encoding="utf-8")
+            entry["translated_content"] = translated
+
         written.setdefault(lang_code, 0)
         written[lang_code] += 1
 

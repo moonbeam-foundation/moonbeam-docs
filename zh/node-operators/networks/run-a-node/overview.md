@@ -60,7 +60,7 @@ Moonbeam 有多个部署，包括 Moonbase Alpha 测试网、Kusama 上的 Moonr
 
 唯一需要打开以允许传入流量的端口是那些指定用于 P2P 的端口。**收集人不得打开 RPC 或 WS 端口**。
 
---8<-- 'text/node-operators/networks/run-a-node/client-changes.md'
+--8<-- 'zh/text/node-operators/networks/run-a-node/client-changes.md'
 
 ### Parachain完整节点的默认端口 {: #default-ports-for-a-parachain-full-node }
 
@@ -82,12 +82,12 @@ Moonbeam 有多个部署，包括 Moonbase Alpha 测试网、Kusama 上的 Moonr
 
 这里有一些不同的指南可以帮助您开始运行基于 Moonbeam 的节点：
 
-- [使用 Docker](/node-operators/networks/run-a-node/docker/) - 此方法提供了一种快速简便的 Docker 容器入门方法
-- [使用 Systemd](/node-operators/networks/run-a-node/systemd/) - 建议有 Substrate 节点编译经验的用户使用此方法
+- [使用 Docker](node-operators/networks/run-a-node/docker/) - 此方法提供了一种快速简便的 Docker 容器入门方法
+- [使用 Systemd](node-operators/networks/run-a-node/systemd/) - 建议有 Substrate 节点编译经验的用户使用此方法
 
 ## Debug、Trace 和 TxPool API {: #debug-trace-txpool-apis }
 
-您还可以通过运行跟踪节点来访问某些非标准的 RPC 方法，这允许开发人员在运行时检查和调试交易。跟踪节点使用与标准 Moonbase Alpha、Moonriver 或 Moonbeam 节点不同的 Docker 镜像。请查看[运行跟踪节点](/node-operators/networks/tracing-node/)指南，并确保在整个说明中切换到正确的网络选项卡。然后，要与您的跟踪节点进行交互，请查看[Debug & Trace](/builders/ethereum/json-rpc/debug-trace/)指南。
+您还可以通过运行跟踪节点来访问某些非标准的 RPC 方法，这允许开发人员在运行时检查和调试交易。跟踪节点使用与标准 Moonbase Alpha、Moonriver 或 Moonbeam 节点不同的 Docker 镜像。请查看[运行跟踪节点](node-operators/networks/tracing-node/)指南，并确保在整个说明中切换到正确的网络选项卡。然后，要与您的跟踪节点进行交互，请查看[Debug & Trace](builders/ethereum/json-rpc/debug-trace/)指南。
 
 ## 延迟加载 {: #lazy-loading }
 
@@ -100,7 +100,7 @@ Moonbeam 有多个部署，包括 Moonbase Alpha 测试网、Kusama 上的 Moonr
 --8<-- 'code/node-operators/networks/run-a-node/terminal/lazy-loading.md'
 
 !!! note
-    Moonbeam 的延迟加载需要大量的 RPC 请求。为了避免受到公共端点的速率限制，强烈建议使用[专用端点](/builders/get-started/endpoints#endpoint-providers)。
+    Moonbeam 的延迟加载需要大量的 RPC 请求。为了避免受到公共端点的速率限制，强烈建议使用[专用端点](builders/get-started/endpoints#endpoint-providers)。
 
 您可以使用以下可选参数进一步自定义延迟加载功能：
 
@@ -136,9 +136,10 @@ Moonbeam 有多个部署，包括 Moonbase Alpha 测试网、Kusama 上的 Moonr
 
 Moonbase Alpha 测试网可能需要不时地进行清除和升级。因此，您可能会看到以下消息：
 
-text
-DATE [Relaychain] 具有 peer id `ID` 的 Bootnode 位于不同的链上
-chain (我们的 genesis: GENESIS_ID 他们的: OTHER_GENESIS_ID)
+```text
+DATE [Relaychain] Bootnode with peer id `ID` is on a different chain
+chain (our genesis: GENESIS_ID theirs: OTHER_GENESIS_ID)
+```
 
 这通常意味着您正在运行旧版本，需要升级。
 
@@ -146,5 +147,5 @@ chain (我们的 genesis: GENESIS_ID 他们的: OTHER_GENESIS_ID)
 
 清除链数据的说明会略有不同，具体取决于您启动节点的方式：
 
-  - 对于 Docker，您可以查看 [清除节点](/node-operators/networks/run-a-node/docker/#purge-your-node) 部分的 [使用 Docker](/node-operators/networks/run-a-node/docker/) 页面
-  - 对于 Systemd，您可以查看 [清除节点](/node-operators/networks/run-a-node/systemd/#purge-your-node) 部分的 [使用 Systemd](/node-operators/networks/run-a-node/systemd/) 页面
+  - 对于 Docker，您可以查看 [清除节点](node-operators/networks/run-a-node/docker/#purge-your-node) 部分的 [使用 Docker](node-operators/networks/run-a-node/docker/) 页面
+  - 对于 Systemd，您可以查看 [清除节点](node-operators/networks/run-a-node/systemd/#purge-your-node) 部分的 [使用 Systemd](node-operators/networks/run-a-node/systemd/) 页面

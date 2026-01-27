@@ -9,11 +9,11 @@ categories: Reference
 
 ## Moonbeam DApp 目录简介 {: #introduction-to-state-of-the-dapps }
 
-Moonbeam 生态系统包含两个不同的生产网络：Moonbeam 和 Moonriver。每个网络都有自己专门的 DApp 目录，由 Moonbeam 基金会维护：[Moonbeam](https://apps.moonbeam.network/moonbeam/app-dir){target=_blank} 和 [Moonriver](https://apps.moonbeam.network/moonriver/app-dir){target=_blank}。这些目录对从 DeFi 到 NFT 再到游戏的项目进行分类，为用户提供对各种应用程序的全面访问。
+Moonbeam 生态系统包含两个不同的生产网络：Moonbeam 和 Moonriver。每个网络都有自己专门的 DApp 目录，由 Moonbeam 基金会维护：[Moonbeam](https://apps.moonbeam.network/moonbeam/app-dir){target=\_blank} 和 [Moonriver](https://apps.moonbeam.network/moonriver/app-dir){target=\_blank}。这些目录对从 DeFi 到 NFT 再到游戏的项目进行分类，为用户提供对各种应用程序的全面访问。
 
 添加项目时，您需要提供核心项目详细信息，如名称、描述和相关链接。根据您的项目类型，您可以包含其他数据，如链上统计信息和代币信息。
 
-尽管 Moonbeam 和 Moonriver DApp 目录之间存在差异，但提交过程保持不变。要在 DApp 目录中列出您的项目，您必须向 [Moonbeam 基金会在 GitHub 上的 App Directory Data 存储库](https://github.com/moonbeam-foundation/app-directory-data){target=_blank} 提交拉取请求。本指南概述了提交所需的必要数据和格式细节。
+尽管 Moonbeam 和 Moonriver DApp 目录之间存在差异，但提交过程保持不变。要在 DApp 目录中列出您的项目，您必须向 [Moonbeam 基金会在 GitHub 上的 App Directory Data 存储库](https://github.com/moonbeam-foundation/app-directory-data){target=\_blank} 提交拉取请求。本指南概述了提交所需的必要数据和格式细节。
 
 ![Moonbeam DApp 目录主页](/images/learn/dapps-list/directory-1.webp)
 
@@ -36,18 +36,18 @@ Moonbeam 生态系统包含两个不同的生产网络：Moonbeam 和 Moonriver�
 
 将智能合约活动链接到 DApp Directory 的端到端流程如下：
 
-1. 智能合约所有者填写[在 Moonscan 上标记合约的表格](https://moonscan.io/contactus?id=5){target=_blank}。
+1. 智能合约所有者填写[在 Moonscan 上标记合约的表格](https://moonscan.io/contactus?id=5){target=\_blank}。
 2. 合约在 Moonscan 中被标记。
 3. 然后，生态系统分析提供商可以提取已标记的合约，以便为您的项目索引活动。
 4. （推荐）在 FiDi 注册您的项目，以便您的活动可以被索引并公开查看。请参阅下面的 FiDi 注册部分。
 
-要在 [Moonscan](https://moonscan.io){target=_blank} 上正确标记您项目的智能合约，请提交包含您的项目和合约详情的 [Moonscan 合约标记表格](https://moonscan.io/contactus?id=5){target=_blank}。
+要在 [Moonscan](https://moonscan.io){target=\_blank} 上正确标记您项目的智能合约，请提交包含您的项目和合约详情的 [Moonscan 合约标记表格](https://moonscan.io/contactus?id=5){target=\_blank}。
 
 ### 在 FiDi 注册以进行分析（推荐）{: #register-with-fidi }
 
-鼓励新的和现有的项目在 FiDi 上注册，以便您的项目活动可以被索引并在公共分析中显示。请使用 [FiDi 项目列表表格](https://docs.google.com/forms/d/e/1FAIpQLSc8c5iOzwIHhLJKRTnC48j7CAj9JY8i_lHxryNBdJdzIyDx3Q/viewform){target=_blank} 提交您的项目。
+鼓励新的和现有的项目在 FiDi 上注册，以便您的项目活动可以被索引并在公共分析中显示。请使用 [FiDi 项目列表表格](https://docs.google.com/forms/d/e/1FAIpQLSc8c5iOzwIHhLJKRTnC48j7CAj9JY8i_lHxryNBdJdzIyDx3Q/viewform){target=\_blank} 提交您的项目。
 
-提交后，可以在 [Moonbeam FiDi 仪表板](https://moonbeam.fidi.tech/dashboard/moonbeam){target=_blank} 上查看 Moonbeam FiDi 分析。
+提交后，可以在 [Moonbeam FiDi 仪表板](https://moonbeam.fidi.tech/dashboard/moonbeam){target=\_blank} 上查看 Moonbeam FiDi 分析。
 
 必需的项目信息：
 
@@ -88,7 +88,7 @@ Moonbeam 生态系统包含两个不同的生产网络：Moonbeam 和 Moonriver�
 
 如果项目代表一个带有 TVL 的 DeFi 协议（价值锁定在协议的智能合约中），则可以在 Moonbeam DApp 目录中显示 TVL。
 
-TVL 数据来自 [DefiLlama](https://defillama.com){target=_blank}，因此您必须在此处列出您的项目。要列出您的项目，请参阅 DefiLlama 关于[如何列出 DeFi 项目](https://docs.llama.fi/list-your-project/submit-a-project){target=_blank}的文档。
+TVL 数据来自 [DefiLlama](https://defillama.com){target=\_blank}，因此您必须在此处列出您的项目。要列出您的项目，请参阅 DefiLlama 关于[如何列出 DeFi 项目](https://docs.llama.fi/list-your-project/submit-a-project){target=\_blank}的文档。
 
 列出您的项目后，您可以轻松配置 DApp 目录以从 DefiLlama 获取数据。为此，您需要 DefiLlama 标识符，您可以在协议页面的 URL 中找到它。例如，Moonwell 页面的 URL 是 `https://defillama.com/protocol/moonwell`，因此标识符是 `moonwell`。
 
@@ -98,11 +98,35 @@ TVL 数据来自 [DefiLlama](https://defillama.com){target=_blank}，因此您�
 
 如果一个项目有 Token，则可以在 DApp 目录中显示该 Token 的名称、当前价格和合约。
 
-但是，这些数据是从 [CoinGecko](https://www.coingecko.com){target=_blank} 中提取的，因此项目的 Token 必须在那里列出。如果您的 Token 未在其中列出，您可以填写 [CoinGecko 的请求表](https://support.coingecko.com/hc/en-us/requests/new){target=_blank} 以启动列出过程。
+但是，这些数据是从 [CoinGecko](https://www.coingecko.com){target=\_blank} 中提取的，因此项目的 Token 必须在那里列出。如果您的 Token 未在其中列出，您可以填写 [CoinGecko 的请求表](https://support.coingecko.com/hc/en-us/requests/new){target=\_blank} 以启动列出过程。
 
-假设您的项目 Token 已在其中列出，您必须获得 CoinGecko **API ID** 值。您可以在 CoinGecko 上 Token 页面的 **信息** 部分找到 **API ID** 值。例如，[Moonwell 的 Token 页面](https://www.coingecko.com/en/coins/moonwell){target=_blank} 上的**API ID**是 `moonwell-artemis`。
+假设您的项目 Token 已在其中列出，您必须获得 CoinGecko **API ID** 值。您可以在 CoinGecko 上 Token 页面的 **信息** 部分找到 **API ID** 值。例如，[Moonwell 的 Token 页面](https://www.coingecko.com/en/coins/moonwell){target=\_blank} 上的**API ID**是 `moonwell-artemis`。
 
 如果您有 CoinGecko ID 并准备好将您的项目提交到 Moonbeam DApp 目录，您可以继续下一节。
+
+## 如何提交您的项目列表 {: #how-to-submit-your-project-listing }
+
+如前所述，您必须向包含 DApp 目录数据的 Moonbeam 基金会 GitHub 仓库提交一个 pull request。在开始之前，值得注意的是：为了加快审核流程，建议提交 pull request 的 GitHub 用户是该项目 GitHub 的主要贡献者，以便 Moonbeam 基金会能够快速验证其代表该项目。更多信息请参阅[审核流程](#review-process)部分。
+
+首先，您有两种方式将项目信息添加到 GitHub 上的 [`app-directory-data` 仓库](https://github.com/moonbeam-foundation/app-directory-data){target=\_blank}。您可以使用 [GitHub 的基于浏览器的编辑器](https://github.dev/moonbeam-foundation/app-directory-data){target=\_blank}，它提供了更友好的界面。
+
+![在 GitHub 的基于浏览器的编辑器中打开 app-directory-data 仓库](/images/learn/dapps-list/directory-2.webp)
+
+或者，您也可以在本地克隆该仓库，并使用您喜欢的代码编辑器进行修改。您可以使用以下命令克隆仓库：
+
+```bash
+git clone https://github.com/moonbeam-foundation/app-directory-data.git
+```
+
+克隆项目后，您可以创建一个新的分支，并在该分支上提交您的所有更改。要在基于浏览器的编辑器中创建新分支，请按照以下步骤操作：
+
+1. 点击左下角当前分支名称
+2. 页面顶部会出现一个菜单，输入分支名称
+3. 点击 **Create new branch...**
+
+![在 GitHub 的基于浏览器的编辑器中创建新分支](/images/learn/dapps-list/directory-3.webp)
+
+页面将重新加载，您的分支名称将显示在左下角。
 
 ### 在 Moonbeam 和 Moonriver 上部署的项目 {: #projects-with-deployments }
 
@@ -132,9 +156,9 @@ DApp 目录中列出的每个项目的所有配置都存储在 `projects` 文件
 
 ??? code "示例文件夹结构"
 
-    text
+    ```text
     --8<-- 'code/learn/dapps-list/folder-structure.md'
-    
+    ```
 
 ![GitHub 基于浏览器的编辑器上显示的文件结构](/images/learn/dapps-list/directory-4.webp)
 
@@ -163,8 +187,9 @@ DApp 目录中列出的每个项目的所有配置都存储在 `projects` 文件
 
 ??? code "示例项目数据文件"
 
-    
+    ```json
     --8<-- 'code/learn/dapps-list/project-data-file.json'
+    ```
 
 #### 类别和标签 {: #category-and-tags }
 
@@ -172,13 +197,15 @@ DApp 目录中列出的每个项目的所有配置都存储在 `projects` 文件
 
 目前支持的 `category` 值有：
 
-text
+```text
 --8<-- 'code/learn/dapps-list/categories.md'
+```
 
 目前支持的 `tag` 值有：
 
-text
+```text
 --8<-- 'code/learn/dapps-list/tags.md'
+```
 
 #### URLs {: #urls }
 
@@ -198,7 +225,9 @@ text
 
 属性名称/值对的格式应遵循 JSON 标准，例如：
 
+```json
 --8<-- 'code/learn/dapps-list/urls.json'
+```
 
 #### 标志 {: #logos }
 
@@ -217,7 +246,9 @@ text
 
 以下示例显示了提供 `small` 和 `full` 徽标的 `logo` 属性的结构：
 
+```json
 --8<-- 'code/learn/dapps-list/logo.json'
+```
 
 #### 屏幕截图 {: #screenshots }
 
@@ -236,6 +267,10 @@ text
 
 以下示例显示了两个屏幕截图（`screenshot1` 和 `screenshot2`）的 `screenshot` 属性的结构：
 
+```json
+--8<-- 'code/learn/dapps-list/screenshots.json'
+```
+
 #### 合约 {: #contracts }
 
 项目合约列表。目前，这仅用于代币合约。
@@ -251,6 +286,10 @@ text
 |   `name`   | String |                           合约名称                           |
 
 这是一个 `contracts` 数组，其中包含 WGLMR 代币的单个智能合约：
+
+```json
+--8<-- 'code/learn/dapps-list/contracts.json'
+```
 
 ### 提交 Pull Request {: #submit-a-pull-request }
 
@@ -272,7 +311,7 @@ text
 
 ![在 GitHub 基于浏览器的编辑器上提交暂存的文件](/images/learn/dapps-list/directory-7.webp)
 
-现在您已提交更改，您需要前往 [`app-directory-data` 存储库](https://github.com/moonbeam-foundation/app-directory-data){target=_blank} 并针对 `develop` 分支打开一个 pull request：
+现在您已提交更改，您需要前往 [`app-directory-data` 存储库](https://github.com/moonbeam-foundation/app-directory-data){target=\_blank} 并针对 `develop` 分支打开一个 pull request：
 
 1. 在存储库页面顶部，单击横幅上显示的 **Compare and Pull** 按钮，或者
 2. 如果横幅不再存在，您需要从分支下拉列表中选择您的分支。
@@ -302,49 +341,55 @@ text
 
 如果您不再使用徽标或屏幕截图，请记住将其从 `logos` 或 `screenshots` 目录中删除。
 
-完成更改后，您必须按照[提交拉取请求](#submit-a-pull-request)部分中的相同说明进行操作，以便 Moonbeam 基金会可以[审核](#review-process)这些更改。请注意，拉取请求是按双周审核一次，因此如果更新紧急，您可以创建一个[论坛帖子](https://forum.moonbeam.network){target=_blank}请求帮助。
+完成更改后，您必须按照[提交拉取请求](#submit-a-pull-request)部分中的相同说明进行操作，以便 Moonbeam 基金会可以[审核](#review-process)这些更改。请注意，拉取请求是按双周审核一次，因此如果更新紧急，您可以创建一个[论坛帖子](https://forum.moonbeam.network){target=\_blank}请求帮助。
 
 ## DApp Directory API {: #dapp-directory-api }
 
 DApp Directory 还提供了一个可查询的 API，您可以使用它将 Moonbeam 的 DApp Directory 中的数据集成到您的应用程序中。该 API 是公开的，目前不需要身份验证。该 API 的基本 URL 如下：
 
-bash
+```bash
 https://apps.moonbeam.network/api/ds/v1/app-dir/
+```
 
 ### 查询项目 {: #query-a-project}
 
 您可以通过将`/projects/INSERT_PROJECT_NAME`附加到基本 URL 来检索特定项目的所有信息。如果您需要明确项目名称，您可以省略项目名称，如下所示，以检索每个列出项目的数据并在响应中找到该项目。
 
-bash
+```bash
 https://apps.moonbeam.network/api/ds/v1/app-dir/projects
+```
 
 这是一个查询 StellaSwap 的 API 的示例，它返回项目描述、社交媒体信息、用户计数、相关智能合约地址、市场数据、图像等。
 
-bash
+```bash
 https://apps.moonbeam.network/api/ds/v1/app-dir/projects/stellaswap
+```
 
 您可以使用像 Postman 这样的工具在浏览器中访问查询 URL 目录，或直接从命令行使用 Curl，如下所示：
 
-bash
+```bash
 curl -H "Content-Type: application/json" -X GET 'https://apps.moonbeam.network/api/ds/v1/app-dir/projects/stellaswap'
+```
 
 ??? code "查询 StellaSwap 的 API 响应"
 
-    
+    ```json
     --8<-- 'code/learn/dapps-list/stellaswap.json'
+    ```
 
 ### 查询类别 {: #query-a-category}
 
 您还可以通过[类别](#category-and-tags)查询 API。例如，您可以使用以下查询检索有关所有 NFT 项目的信息：
 
-bash
+```bash
 https://apps.moonbeam.network/api/ds/v1/app-dir/projects?category=nfts
+```
 
 ??? code "用于查询 NFT 项目的 API 响应"
 
-    
+    ```json
     --8<-- 'code/learn/dapps-list/nfts.json'
-    
+    ```
 
 以下是所有可能的类别及其各自的参数，用于查询 API。请确保使用完全按照显示的小写格式设置的参数查询 API。
 
@@ -367,16 +412,16 @@ https://apps.moonbeam.network/api/ds/v1/app-dir/projects?category=nfts
 
 === "Moonbeam"
 
-    bash
+    ```bash
     https://apps.moonbeam.network/api/ds/v1/app-dir/projects?chain=moonbeam
-    
+    ```
 
 === "Moonriver"
 
-    bash
+    ```bash
     https://apps.moonbeam.network/api/ds/v1/app-dir/projects?chain=moonriver
-    
+    ```
 
 <div class="page-disclaimer">
-    --8<-- 'text/_disclaimers/user-generated-content.md'
+    --8<-- 'zh/text/_disclaimers/user-generated-content.md'
 </div>

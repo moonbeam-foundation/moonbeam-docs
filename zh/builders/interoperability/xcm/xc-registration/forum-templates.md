@@ -8,7 +8,7 @@ categories: XCM, Integrations
 
 ## 简介 {: #introduction }
 
-当在 Moonriver 或 Moonbeam MainNet 上启动 XCM 集成时，必须在 [Moonbeam 社区论坛](https://forum.moonbeam.network){target=_blank} 上发布两个初步帖子，以便投票社区有机会提供反馈。这两个初步帖子是 XCM 披露和 XCM 提案。**连接到 Moonbase Alpha 时，此步骤不是必需的。**
+当在 Moonriver 或 Moonbeam MainNet 上启动 XCM 集成时，必须在 [Moonbeam 社区论坛](https://forum.moonbeam.network){target=\_blank} 上发布两个初步帖子，以便投票社区有机会提供反馈。这两个初步帖子是 XCM 披露和 XCM 提案。**连接到 Moonbase Alpha 时，此步骤不是必需的。**
 
 如果仅注册资产，则必须已经建立跨链通道，因此仅需要 XCM 提案帖子即可注册资产。
 
@@ -16,7 +16,7 @@ categories: XCM, Integrations
 
 ## XCM披露 {: #xcm-disclosure }
 
-应该发布的第一个帖子是[XCM披露类别](https://forum.moonbeam.network/c/xcm-hrmp/xcm-disclosures/15){target=_blank}中的关键披露，其中突出显示了对投票者决策至关重要的关键信息。此帖子仅在建立XCM集成时才需要；如果集成已存在且您只需要注册资产，则不需要此帖子。
+应该发布的第一个帖子是[XCM披露类别](https://forum.moonbeam.network/c/xcm-hrmp/xcm-disclosures/15){target=\_blank}中的关键披露，其中突出显示了对投票者决策至关重要的关键信息。此帖子仅在建立XCM集成时才需要；如果集成已存在且您只需要注册资产，则不需要此帖子。
 
 点击**新主题**按钮后，将提供一个模板，其中包含要填写的相关信息。请使用Moonbeam/Moonriver标签，具体取决于您要集成的网络。
 
@@ -38,7 +38,7 @@ categories: XCM, Integrations
 
 ## XCM 提案 {: #xcm-proposals }
 
-第二篇文章是[XCM 提案类别](https://forum.moonbeam.network/c/xcm-hrmp/xcm-proposals/14){target=_blank}中提案的初步草案。一旦提案在链上提交并可供投票，您还必须在 [Moonbeam Polkassembly](https://moonbeam.polkassembly.io/opengov){target=_blank} 或 [Moonriver Polkassembly](https://moonriver.polkassembly.io/opengov){target=_blank} 中添加对其的描述。
+第二篇文章是[XCM 提案类别](https://forum.moonbeam.network/c/xcm-hrmp/xcm-proposals/14){target=\_blank}中提案的初步草案。一旦提案在链上提交并可供投票，您还必须在 [Moonbeam Polkassembly](https://moonbeam.polkassembly.io/opengov){target=\_blank} 或 [Moonriver Polkassembly](https://moonriver.polkassembly.io/opengov){target=\_blank} 中添加对其的描述。
 
 点击“**新主题**”按钮后，将提供一个模板，其中包含要填写的相关信息。请使用 Moonbeam 或 Moonriver 标签，具体取决于您要集成的网络。
 

@@ -8,7 +8,7 @@ categories: 预编译, Ethereum 工具包
 
 ## 简介 {: #introduction }
 
-预编译注册表是 Moonbeam 上可用[预编译合约](/builders/ethereum/precompiles/overview/){target=_blank}的单一数据源。预编译注册表可用于确定地址是否对应于预编译合约，以及预编译合约是处于活动状态还是已弃用状态。当 Substrate 和 Polkadot 生态系统中存在上游更改，从而导致与预编译合约的向后不兼容的更改时，这尤其有用。开发人员可以设计退出策略，以确保他们的 dApp 在这些情况下能够优雅地恢复。
+预编译注册表是 Moonbeam 上可用[预编译合约](builders/ethereum/precompiles/overview/){target=\_blank}的单一数据源。预编译注册表可用于确定地址是否对应于预编译合约，以及预编译合约是处于活动状态还是已弃用状态。当 Substrate 和 Polkadot 生态系统中存在上游更改，从而导致与预编译合约的向后不兼容的更改时，这尤其有用。开发人员可以设计退出策略，以确保他们的 dApp 在这些情况下能够优雅地恢复。
 
 预编译注册表还有另一个用途，因为它允许任何用户为预编译合约设置“虚拟代码”(`0x60006000fd`)，从而使预编译合约可以从 Solidity 调用。这是必要的，因为默认情况下，Moonbeam 上的预编译合约没有字节码。“虚拟代码”可以绕过 Solidity 中的检查，以确保合约字节码存在且非空。
 
@@ -26,11 +26,11 @@ categories: 预编译, Ethereum 工具包
 
     `{{ networks.moonbase.precompiles.registry }}`
 
---8<-- 'text/builders/ethereum/precompiles/security.md'
+--8<-- 'zh/text/builders/ethereum/precompiles/security.md'
 
 ## 预编译注册表 Solidity 接口 {: #the-solidity-interface }
 
-[`PrecompileRegistry.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/precompile-registry/PrecompileRegistry.sol){target=_blank} 是一个 Solidity 接口，允许开发者与预编译的方法进行交互。
+[`PrecompileRegistry.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/precompile-registry/PrecompileRegistry.sol){target=\_blank} 是一个 Solidity 接口，允许开发者与预编译的方法进行交互。
 
 ??? code "PrecompileRegistry.sol"
 
@@ -72,14 +72,14 @@ categories: 预编译, Ethereum 工具包
 
 ## 与预编译注册表Solidity接口交互 {: #interact-with-precompile-registry-interface }
 
-以下章节将介绍如何通过[Remix](/builders/ethereum/dev-env/remix/){target=_blank} 和 [以太坊库](/builders/ethereum/libraries/){target=_blank}（例如 [Ethers.js](/builders/ethereum/libraries/ethersjs/){target=_blank} 和 [Web3.py](/builders/ethereum/libraries/web3py/){target=_blank}）与注册表预编译进行交互。
+以下章节将介绍如何通过[Remix](builders/ethereum/dev-env/remix/){target=\_blank} 和 [以太坊库](builders/ethereum/libraries/){target=\_blank}（例如 [Ethers.js](builders/ethereum/libraries/ethersjs/){target=\_blank} 和 [Web3.py](builders/ethereum/libraries/web3py/){target=\_blank}）与注册表预编译进行交互。
 
 本指南中的示例将在Moonbase Alpha上进行。
---8<-- 'text/_common/endpoint-examples.md'
+--8<-- 'zh/text/_common/endpoint-examples.md'
 
 ### 使用 Remix 与预编译注册表交互 {: #use-remix }
 
-要快速开始使用 [Remix](/builders/ethereum/dev-env/remix/){target=_blank}，[预编译注册表合约已从 GitHub 加载](https://remix.ethereum.org/#url=https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/precompile-registry/PrecompileRegistry.sol){target=_blank}。您也可以在 Remix 中创建一个新文件，并手动粘贴 [`PrecompileRegistry.sol`](#the-solidity-interface) 合约的内容。
+要快速开始使用 [Remix](builders/ethereum/dev-env/remix/){target=\_blank}，[预编译注册表合约已从 GitHub 加载](https://remix.ethereum.org/#url=https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/precompile-registry/PrecompileRegistry.sol){target=\_blank}。您也可以在 Remix 中创建一个新文件，并手动粘贴 [`PrecompileRegistry.sol`](#the-solidity-interface) 合约的内容。
 
 ![将预编译注册表接口添加到 Remix](/images/builders/ethereum/precompiles/utility/registry/registry-1.webp)
 

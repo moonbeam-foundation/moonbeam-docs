@@ -27,6 +27,9 @@ MARKDOWN_SUFFIXES = {".md", ".markdown", ".mkd"}
 ADMONITION_RE = re.compile(r"^\s*(:::|!!!)\s*(.+)?$")
 IMAGE_LINK_RE = re.compile(r"!\[[^\]]*\]\(([^)\s]+)")
 REMOTE_IMAGE_PREFIXES = ("http://", "https://", "data:", "mailto:", "#")
+ANCHORED_HEADING_RE = re.compile(
+    r"^(?P<hashes>#{1,6})\s+.*?\{:\s*[^}]*#(?P<id>[A-Za-z0-9][A-Za-z0-9_-]*)[^}]*\}\s*$"
+)
 LOCALE_COLON_PATTERN = re.compile(r'^(\s*[^:\n]+):[ \t]*([^\n]+)$', re.MULTILINE)
 LOCALE_INLINE_COLON_REGEX = re.compile(r'(?<=\w):(?=\s)')
 QUIET = os.environ.get("ROSE_QUIET", "").strip().lower() in {"1", "true", "yes", "on"}
@@ -641,6 +644,86 @@ def _compare_line_breaks(
         )
 
 
+def _extract_anchored_headings(lines: list[str]) -> list[dict[str, Any]]:
+    """Return anchored headings (with {: #id }) from Markdown lines, excluding fenced code."""
+    headings: list[dict[str, Any]] = []
+    in_fence = False
+    for idx, line in enumerate(lines, start=1):
+        if CODE_FENCE_RE.match(line):
+            in_fence = not in_fence
+            continue
+        if in_fence:
+            continue
+        match = ANCHORED_HEADING_RE.match(line.rstrip())
+        if not match:
+            continue
+        anchor_id = match.group("id")
+        headings.append(
+            {
+                "id": anchor_id,
+                "line": idx,
+                "level": len(match.group("hashes")),
+                "raw": line,
+            }
+        )
+    return headings
+
+
+def _section_block_by_anchor(english_lines: list[str], anchor_id: str) -> tuple[str | None, str | None]:
+    """Extract the English section block that starts at anchor_id.
+
+    Returns (block_markdown, insert_before_section_id).
+    insert_before_section_id is the next anchored heading's id (if any).
+    """
+    headings = _extract_anchored_headings(english_lines)
+    start_idx = None
+    next_id = None
+    for i, h in enumerate(headings):
+        if h["id"] == anchor_id:
+            start_idx = h["line"]
+            if i + 1 < len(headings):
+                next_id = headings[i + 1]["id"]
+            break
+    if start_idx is None:
+        return None, None
+    end_line = len(english_lines) + 1
+    if next_id:
+        for h in headings:
+            if h["id"] == next_id:
+                end_line = h["line"]
+                break
+    block = "\n".join(english_lines[start_idx - 1 : end_line - 1]).rstrip() + "\n"
+    return block, next_id
+
+
+def _compare_anchored_headings(
+    entry: dict[str, Any], eng_lines: list[str], trans_lines: list[str], issues: list[dict[str, Any]]
+) -> None:
+    eng_headings = _extract_anchored_headings(eng_lines)
+    if not eng_headings:
+        return
+    trans_headings = _extract_anchored_headings(trans_lines)
+    trans_ids = {h["id"] for h in trans_headings}
+    for h in eng_headings:
+        anchor_id = h["id"]
+        if anchor_id in trans_ids:
+            continue
+        block, insert_before = _section_block_by_anchor(eng_lines, anchor_id)
+        issues.append(
+            _make_issue(
+                entry,
+                "missing_anchor_section",
+                f"Missing anchored section #{anchor_id}",
+                line=h["line"],
+                details={
+                    "missing_section_id": anchor_id,
+                    "insert_before_section_id": insert_before,
+                    "english_section": block,
+                },
+            )
+        )
+
+
 def _group_by_language(issues: list[dict[str, Any]]) -> dict[str, Any]:
     grouped: dict[str, Any] = {}
     tmp = defaultdict(lambda: {"count": 0, "files": defaultdict(list)})
@@ -723,6 +806,7 @@ def validate_entry(entry: dict[str, Any], issues: list[dict[str, Any]]) -> None:
         _compare_inline_code(entry, eng_lines, trans_lines, issues)
         _compare_admonitions(entry, eng_lines, trans_lines, issues)
         _validate_image_paths(entry, trans_lines, issues)
+        _compare_anchored_headings(entry, eng_lines, trans_lines, issues)
 
     if suffix in {".html", ".jinja", ".jinja2", ".j2"}:
         _compare_html(entry, eng_lines, trans_lines, issues)

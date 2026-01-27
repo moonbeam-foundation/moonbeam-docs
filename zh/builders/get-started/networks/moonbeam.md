@@ -6,7 +6,7 @@ categories: Basics
 
 # Moonbeam入门
 
---8<-- 'text/builders/get-started/networks/moonbeam/connect.md'
+--8<-- 'zh/text/builders/get-started/networks/moonbeam/connect.md'
 
 ## 区块浏览器 {: #block-explorers }
 
@@ -16,7 +16,7 @@ categories: Basics
  - **基于以太坊 API JSON-RPC** — [Moonbeam Basic Explorer](https://moonbeam-explorer.netlify.app/?network=Moonbeam){target=\_blank}
  - **Substrate API** — [Subscan](https://moonbeam.subscan.io){target=\_blank} 或 [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbeam.network#/explorer){target=\_blank}
 
-有关每个可用区块浏览器的更多信息，请访问文档的 [区块浏览器](/builders/get-started/explorers/){target=\_blank} 部分。
+有关每个可用区块浏览器的更多信息，请访问文档的 [区块浏览器](builders/get-started/explorers/){target=\_blank} 部分。
 
 ## 连接 MetaMask {: #connect-metamask }
 
@@ -29,7 +29,7 @@ categories: Basics
 !!! note
     MetaMask 将弹出窗口，请求允许将 Moonbeam 添加为自定义网络。一旦您批准权限，MetaMask 会将您当前的 网络切换到 Moonbeam。
 
-如果您没有安装 MetaMask，或者想按照教程开始操作，请查看[使用 MetaMask 与 Moonbeam 交互](/tokens/connect/metamask/){target=_blank} 指南。
+如果您没有安装 MetaMask，或者想按照教程开始操作，请查看[使用 MetaMask 与 Moonbeam 交互](tokens/connect/metamask/){target=\_blank} 指南。
 
 ## 配置 {: #configuration }
 

@@ -14,7 +14,7 @@ categories: Oracle Nodes
 
 您可以访问 DIA 的文档，了解如何[请求自定义预言机](https://www.diadata.org/docs/how-to-guides/request-a-custom-oracle#request-a-custom-oracle){target=\_blank}。
 
---8<-- 'text/_disclaimers/third-party-content-intro.md'
+--8<-- 'zh/text/_disclaimers/third-party-content-intro.md'
 
 ## Token Price Feeds {: #token-price-feeds }
 DIA 代币价格信息流为智能合约提供 [3,000 多种加密货币](https://www.diadata.org/app/price){target=\_blank} 的实时价格信息，这些信息透明地来源于 [90 多个受信任的高交易量 DEX 和 CEX](https://www.diadata.org/app/source/defi){target=\_blank}。
@@ -90,11 +90,11 @@ contract DIAOracleV2 {
 - 当前资产价格（美元），采用具有 8 位小数的定点逗号表示法。
 - 上次预言机更新的 UNIX 时间戳。
 
-您可以通过访问 DIA 文档站点上的[获取价格数据](https://www.diadata.org/docs/nexus/how-to-guides/fetch-price-data){target=_blank} 指南，找到 DIA 的 Solidity 和 Vyper 语言的预言机集成示例。
+您可以通过访问 DIA 文档站点上的[获取价格数据](https://www.diadata.org/docs/nexus/how-to-guides/fetch-price-data){target=\_blank} 指南，找到 DIA 的 Solidity 和 Vyper 语言的预言机集成示例。
 
 ### 支持的 Token API 端点 {: #supported-token-api-endpoints }
 
-DIA 还支持 Rest 和 GraphQL 端点以返回加密货币价格数据。您可以[访问 DIA 文档](https://www.diadata.org/docs/reference/apis/token-prices){target=_blank}以查看所有 API 端点。
+DIA 还支持 Rest 和 GraphQL 端点以返回加密货币价格数据。您可以[访问 DIA 文档](https://www.diadata.org/docs/reference/apis/token-prices){target=\_blank}以查看所有 API 端点。
 
 例如，您可以使用以下 JavaScript 脚本来访问 [BTC/USD 价格馈送](#price-feeds)：
 
@@ -165,13 +165,13 @@ DIA 还支持 Rest 和 GraphQL 端点以返回加密货币价格数据。您可�
       });
     ```
 
-您可以参考 DIA 关于 [Rest API 端点](https://www.diadata.org/docs/reference/apis/token-prices/api-endpoints){target=_blank}和 [GraphQL 端点](https://www.diadata.org/docs/reference/apis/token-prices/graphql){target=_blank}的文档，以获取有关参数和返回数据的信息。
+您可以参考 DIA 关于 [Rest API 端点](https://www.diadata.org/docs/reference/apis/token-prices/api-endpoints){target=\_blank}和 [GraphQL 端点](https://www.diadata.org/docs/reference/apis/token-prices/graphql){target=\_blank}的文档，以获取有关参数和返回数据的信息。
 
 ## NFT底价信息流 {: #nft-floor-price-feeds }
 
-DIA NFT底价信息流为智能合约提供[18,000+ NFT藏品](https://www.diadata.org/nft-api-oracle/){target=_blank}的实时价格信息，这些信息100%透明地来源于链上，数据出自[多个跨链NFT市场](https://www.diadata.org/app/source/nft){target=_blank}。
+DIA NFT底价信息流为智能合约提供[18,000+ NFT藏品](https://www.diadata.org/nft-api-oracle/){target=\_blank}的实时价格信息，这些信息100%透明地来源于链上，数据出自[多个跨链NFT市场](https://www.diadata.org/app/source/nft){target=\_blank}。
 
-请参考DIA的文档，了解如何为Moonbeam上的NFT[请求自定义NFT预言机](https://www.diadata.org/docs/request-a-custom-oracle#forum-request){target=_blank}。
+请参考DIA的文档，了解如何为Moonbeam上的NFT[请求自定义NFT预言机](https://www.diadata.org/docs/request-a-custom-oracle#forum-request){target=\_blank}。
 
 ## 随机数生成 {: #random-number-generation }
 
@@ -280,4 +280,4 @@ contract DIARandomOracle {
 - [文档](https://www.diadata.org/docs/home){target=\_blank}
 - [探索数据](https://www.diadata.org/app){target=\_blank}
 
---8<-- 'text/_disclaimers/third-party-content.md'
+--8<-- 'zh/text/_disclaimers/third-party-content.md'

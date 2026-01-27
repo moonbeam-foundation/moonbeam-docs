@@ -32,7 +32,7 @@ categories: Precompiles, Ethereum Toolkit
      {{ networks.moonbase.precompiles.conviction_voting }}
      ```
 
---8<-- 'text/builders/ethereum/precompiles/security.md'
+--8<-- 'zh/text/builders/ethereum/precompiles/security.md'
 
 ## 置信投票 Solidity 接口 {: #the-conviction-voting-solidity-interface }
 
@@ -156,9 +156,9 @@ categories: Precompiles, Ethereum Toolkit
 
 以下示例在 Moonbase Alpha 上演示，但是，对于 Moonriver，可以采取类似的步骤。要遵循本指南中的步骤，您需要具备以下条件：
 
- - 安装 MetaMask 并[连接到 Moonbase Alpha](tokens/connect/metamask/){target=_blank}
+ - 安装 MetaMask 并[连接到 Moonbase Alpha](tokens/connect/metamask/){target=\_blank}
  - 具有一些 DEV 代币的帐户。
- --8<-- 'text/_common/faucet/faucet-list-item.md'
+ --8<-- 'zh/text/_common/faucet/faucet-list-item.md'
 
 ### Remix 设置 {: #remix-set-up }
 
@@ -186,9 +186,9 @@ categories: Precompiles, Ethereum Toolkit
 
 ### 投票表决 {: #vote-on-a-referendum }
 
-您可以在引导期或决定期的任何时间锁定代币并对全民公投进行投票。为了使全民公投获得通过，它需要获得最低的批准和支持，这因轨道而异。有关每个相关期间以及各轨道批准和支持要求的更多信息，请参阅[治理概述页面的 OpenGov 部分](/learn/features/governance/#opengov){target=\_blank}。
+您可以在引导期或决定期的任何时间锁定代币并对全民公投进行投票。为了使全民公投获得通过，它需要获得最低的批准和支持，这因轨道而异。有关每个相关期间以及各轨道批准和支持要求的更多信息，请参阅[治理概述页面的 OpenGov 部分](learn/features/governance/#opengov){target=\_blank}。
 
-首先，您需要获取要投票的全民公投的索引。要获取全民公投的索引，请前往 [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network%2Fpublic-ws#/referenda){target=_blank} 并执行以下步骤：
+首先，您需要获取要投票的全民公投的索引。要获取全民公投的索引，请前往 [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network%2Fpublic-ws#/referenda){target=\_blank} 并执行以下步骤：
 
 1. 从**治理**选项卡下拉菜单中，选择**全民公投**
 2. 找到您想要投票的全民公投。您可以通过单击三角形图标查看有关特定全民公投的更多详细信息。如果没有三角形图标，则表示仅提交了提案哈希，尚未提交提案的预映像
@@ -218,7 +218,7 @@ categories: Precompiles, Ethereum Toolkit
 要开始，您可以采取以下步骤：
 
 1. 找到 **delegate** 函数并按下按钮以展开该部分
-2. 输入您希望委托使用的 Track 的 Track ID。Track ID 可以在 [Polkadot.js Apps 的 Referenda 页面](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network%2Fpublic-ws#/referenda){target=_blank} 中找到
+2. 输入您希望委托使用的 Track 的 Track ID。Track ID 可以在 [Polkadot.js Apps 的 Referenda 页面](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network%2Fpublic-ws#/referenda){target=\_blank} 中找到
 3. 输入将有权代表您投票的委托帐户
 4. 输入他们可以使用的 Wei 中的代币数量。避免在此处输入您的全部余额，因为您需要支付交易手续费
 5. 输入他们可以使用的信念

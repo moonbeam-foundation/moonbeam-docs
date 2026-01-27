@@ -73,16 +73,16 @@ Moonbeam 支持以太坊风格的事件订阅，允许您等待事件并相应�
 
 ## 使用以太坊库订阅事件 {: #subscribe-to-events }
 
-本节将向您展示如何使用[以太坊库](/builders/ethereum/libraries/){target=\_blank}（如[Ethers.js](/builders/ethereum/libraries/ethersjs/){target=\_blank}）以编程方式订阅 Moonbeam 上的事件。
+本节将向您展示如何使用[以太坊库](builders/ethereum/libraries/){target=\_blank}（如[Ethers.js](builders/ethereum/libraries/ethersjs/){target=\_blank}）以编程方式订阅 Moonbeam 上的事件。
 
 ### 检查先决条件 {: #checking-prerequisites }
 
 本指南中的示例基于 Ubuntu 22.04 环境。您还需要以下内容：
 
-- 安装 MetaMask 并[连接到 Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}
+- 安装 MetaMask 并[连接到 Moonbase Alpha](tokens/connect/metamask/){target=\_blank}
 - 一个有资金的帐户。
-  --8<-- 'text/_common/faucet/faucet-list-item.md'
-- 在 Moonbase Alpha 上部署您自己的 ERC-20 代币。您可以通过按照[我们的 Remix 教程](/builders/ethereum/dev-env/remix/){target=\_blank}，同时首先将 MetaMask 指向 Moonbase Alpha 来做到这一点
+  --8<-- 'zh/text/_common/faucet/faucet-list-item.md'
+- 在 Moonbase Alpha 上部署您自己的 ERC-20 代币。您可以通过按照[我们的 Remix 教程](builders/ethereum/dev-env/remix/){target=\_blank}，同时首先将 MetaMask 指向 Moonbase Alpha 来做到这一点
 - 安装 Ethers.js 或您选择的 Ethereum 库。您可以通过 npm 安装 Ethers.js：
 
     ```bash

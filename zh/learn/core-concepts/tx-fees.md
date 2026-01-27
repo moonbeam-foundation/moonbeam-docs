@@ -8,7 +8,7 @@ categories: Basics
 
 ## 简介 {: #introduction }
 
-与 Moonbeam 上的[用于发送转账的 Ethereum 和 Substrate API](/learn/core-concepts/transfers-api/){target=_blank}类似，Moonbeam 上的 Substrate 和 EVM 层也有不同的交易手续费模型，开发者在需要计算和跟踪交易手续费时应该注意。
+与 Moonbeam 上的[用于发送转账的 Ethereum 和 Substrate API](learn/core-concepts/transfers-api/){target=\_blank}类似，Moonbeam 上的 Substrate 和 EVM 层也有不同的交易手续费模型，开发者在需要计算和跟踪交易手续费时应该注意。
 
 首先，以太坊交易根据其计算复杂性和数据存储要求消耗 gas 单位。另一方面，Substrate 交易使用“权重”的概念来确定费用。在本指南中，您将学习如何计算 Substrate 和 Ethereum 交易的交易手续费。在以太坊交易方面，您还将了解 Moonbeam 和以太坊计算交易手续费方式之间的主要区别。
 
@@ -22,7 +22,7 @@ Moonbeam 上的交易费模型与以太坊上的交易费模型存在一些主�
 
   - EVM 的设计仅具有 gas 容量，而 Moonbeam 需要 gas 之外的额外指标。特别是，Moonbeam 需要能够记录证明大小，这是 Moonbeam 上中继链验证器验证状态转换所需的存储量。当当前区块的证明大小容量达到上限（即区块上限的 25%）时，将抛出“Out of Gas”错误。即使 gas 表中剩余*旧版* gas，也可能发生这种情况。此额外指标也会影响退款。退款基于执行后消耗的更多资源。换句话说，如果按比例消耗的证明大小多于旧版 gas，则将使用证明大小来计算退款
 
-  - Moonbeam 实施了 [MBIP-5](https://github.com/moonbeam-foundation/moonbeam/blob/master/MBIPS/MBIP-5.md){target=_blank} 中定义的新机制，该机制限制了区块存储，并增加了导致存储增加的交易的 gas 使用量
+  - Moonbeam 实施了 [MBIP-5](https://github.com/moonbeam-foundation/moonbeam/blob/master/MBIPS/MBIP-5.md){target=\_blank} 中定义的新机制，该机制限制了区块存储，并增加了导致存储增加的交易的 gas 使用量
 
 ## MBIP-5 概述 {: #overview-of-mbip-5 }
 
@@ -106,24 +106,24 @@ MBIP-5 引入了对 Moonbeam 的费用机制的更改，该机制考虑了网络
 
 === "Moonbeam"
 
-    text
+    ```text
     额外 Gas = {{ networks.moonbeam.mbip_5.example_storage }} * {{ networks.moonbeam.mbip_5.gas_storage_ratio }}
     额外 Gas = {{ networks.moonbeam.mbip_5.example_addtl_gas }}
-    
+    ```
 
 === "Moonriver"
 
-    text
+    ```text
     额外 Gas = {{ networks.moonriver.mbip_5.example_storage }} * {{ networks.moonriver.mbip_5.gas_storage_ratio }}
     额外 Gas = {{ networks.moonriver.mbip_5.example_addtl_gas }}
-    
+    ```
 
 === "Moonbase Alpha"
 
-    text
+    ```text
     额外 Gas = {{ networks.moonbase.mbip_5.example_storage }} * {{ networks.moonbase.mbip_5.gas_storage_ratio }}
     额外 Gas = {{ networks.moonbase.mbip_5.example_addtl_gas }}
-    
+    ```
 
 要亲身体验此 MBIP 如何区分 Moonbeam 和以太坊，您可以估算两个不同合约交互在两个网络上的 Gas：一个修改链状态中的项目，另一个不修改。例如，您可以使用一个问候合约，该合约允许您存储一个名称，然后使用该名称来说“Hello”。
 
@@ -291,7 +291,7 @@ contract SayHello {
 
 ### 基础费用 {: #base-fee}
 
-`BaseFee` 是发送交易收取的最低金额，是由网络本身设置的值。它是在 [EIP-1559](https://eips.ethereum.org/EIPS/eip-1559){target=_blank} 中引入的。Moonbeam 拥有自己的 [动态费用机制](https://forum.moonbeam.network/t/proposal-dynamic-fee-mechanism-for-moonbeam-and-moonriver/241){target=_blank}，用于计算基础费用，该费用会根据区块拥堵情况进行调整。截至 runtime 2300，动态费用机制已推广到所有基于 Moonbeam 的网络。
+`BaseFee` 是发送交易收取的最低金额，是由网络本身设置的值。它是在 [EIP-1559](https://eips.ethereum.org/EIPS/eip-1559){target=\_blank} 中引入的。Moonbeam 拥有自己的 [动态费用机制](https://forum.moonbeam.network/t/proposal-dynamic-fee-mechanism-for-moonbeam-and-moonriver/241){target=\_blank}，用于计算基础费用，该费用会根据区块拥堵情况进行调整。截至 runtime 2300，动态费用机制已推广到所有基于 Moonbeam 的网络。
 
 每个网络的最低 Gas 价格如下：
 
@@ -339,7 +339,7 @@ contract SayHello {
 GET /pallets/transaction-payment/storage/nextFeeMultiplier?at={blockId}
 ```
 
-Sidecar 的 pallets 端点返回与 pallet 相关的数据，例如 pallet 存储中的数据。您可以在 [官方 Sidecar 文档](https://paritytech.github.io/substrate-api-sidecar/dist/#operations-tag-pallets){target=_blank} 中阅读有关 pallets 端点的更多信息。从存储中获取所需的数据是 `nextFeeMultiplier`，它可以在 `transaction-payment` pallet 中找到。存储的 `nextFeeMultiplier` 值可以直接从 Sidecar 存储模式中读取。作为 JSON 对象读取，相关的嵌套结构如下：
+Sidecar 的 pallets 端点返回与 pallet 相关的数据，例如 pallet 存储中的数据。您可以在 [官方 Sidecar 文档](https://paritytech.github.io/substrate-api-sidecar/dist/#operations-tag-pallets){target=\_blank} 中阅读有关 pallets 端点的更多信息。从存储中获取所需的数据是 `nextFeeMultiplier`，它可以在 `transaction-payment` pallet 中找到。存储的 `nextFeeMultiplier` 值可以直接从 Sidecar 存储模式中读取。作为 JSON 对象读取，相关的嵌套结构如下：
 
 ```text
 RESPONSE JSON Storage Object:
@@ -357,13 +357,13 @@ RESPONSE JSON Storage Object:
 
 ### GasPrice、MaxFeePerGas 和 MaxPriorityFeePerGas {: #gasprice-maxfeepergas-maxpriorityfeepergas }
 
-`GasPrice` 用于指定在 [EIP-1559](https://eips.ethereum.org/EIPS/eip-1559){target=_blank} 之前的传统（legacy）交易的 gas 价格。`MaxFeePerGas` 和 `MaxPriorityFeePerGas` 都是在 EIP-1559 中与 `BaseFee` 一同引入的。`MaxFeePerGas` 定义了每单位 gas 允许支付的最高手续费，它等于 `BaseFee` 与 `MaxPriorityFeePerGas` 之和。`MaxPriorityFeePerGas` 则是交易发送方配置的最高手续费优先费（priority fee），用于激励区块中对该交易进行优先打包。
+`GasPrice` 用于指定在 [EIP-1559](https://eips.ethereum.org/EIPS/eip-1559){target=\_blank} 之前的传统（legacy）交易的 gas 价格。`MaxFeePerGas` 和 `MaxPriorityFeePerGas` 都是在 EIP-1559 中与 `BaseFee` 一同引入的。`MaxFeePerGas` 定义了每单位 gas 允许支付的最高手续费，它等于 `BaseFee` 与 `MaxPriorityFeePerGas` 之和。`MaxPriorityFeePerGas` 则是交易发送方配置的最高手续费优先费（priority fee），用于激励区块中对该交易进行优先打包。
 
 尽管 Moonbeam 与以太坊兼容，但其核心仍是一条基于 Substrate 的链，而 Substrate 中的优先级机制与以太坊不同。在 Substrate 中，交易并不是按 gas 价格来排序优先级的。为了解决这一点，Moonbeam 采用了经过修改的优先级系统，使用一种“以太坊优先”的方案对 Substrate 交易重新设定优先级。Substrate 交易仍会经过有效性（validity）流程，在该流程中会被分配交易标签（tags）、存活期（longevity）以及优先级（priority）。随后，原始优先级会被覆盖为一个新的优先级，该优先级基于交易的每 gas 手续费（fee per gas）计算得出，而该值又由交易的 tip 与 weight 推导而来。如果该交易是以太坊交易，则优先级会根据优先费（priority fee）来设定。
 
 需要注意的是，优先级并不是决定区块内交易排序的唯一因素。其他因素（例如交易的存活期 longevity）也会在排序过程中发挥作用。
 
-适用于相应交易类型的 `GasPrice`、`MaxFeePerGas` 和 `MaxPriorityFeePerGas` 的取值，可以根据 [Sidecar API 页面](/builders/substrate/libraries/sidecar/#evm-fields-mapping-in-block-json-object){target=_blank} 中描述的结构，从区块的 JSON 对象中读取。
+适用于相应交易类型的 `GasPrice`、`MaxFeePerGas` 和 `MaxPriorityFeePerGas` 的取值，可以根据 [Sidecar API 页面](builders/substrate/libraries/sidecar/#evm-fields-mapping-in-block-json-object){target=\_blank} 中描述的结构，从区块的 JSON 对象中读取。
 
 某个特定区块中的以太坊交易数据可以通过以下区块端点提取：
 
@@ -465,7 +465,7 @@ Moonbeam 网络实现了 [`eth_feeHistory`](https://www.alchemy.com/docs/node/et
     ```
 === "Moonbeam Dev Node"
 
-    sh
+    ```sh
     curl --location \
          --request POST '{{ networks.development.rpc_url }}' \
          --header 'Content-Type: application/json' \
@@ -479,7 +479,7 @@ Moonbeam 网络实现了 [`eth_feeHistory`](https://www.alchemy.com/docs/node/et
 
 ### 用于计算交易费的示例代码 {: #sample-code }
 
-以下代码片段使用 [Axios HTTP 客户端](https://axios-http.com){target=_blank} 查询 [Sidecar 端点 `/blocks/head`](https://paritytech.github.io/substrate-api-sidecar/dist/#operations-tag-blocks){target=_blank} 以获取最新的最终确定区块。然后，它根据交易类型（对于以太坊 API：legacy、EIP-1559 或 EIP-2930 标准，以及对于 Substrate API）计算区块中所有交易的交易费用，并计算区块中的总交易费用。
+以下代码片段使用 [Axios HTTP 客户端](https://axios-http.com){target=\_blank} 查询 [Sidecar 端点 `/blocks/head`](https://paritytech.github.io/substrate-api-sidecar/dist/#operations-tag-blocks){target=\_blank} 以获取最新的最终确定区块。然后，它根据交易类型（对于以太坊 API：legacy、EIP-1559 或 EIP-2930 标准，以及对于 Substrate API）计算区块中所有交易的交易费用，并计算区块中的总交易费用。
 
 !!! note
     Moonbeam 上的 EIP-1559 交易费用是使用前一个区块的基本费用计算的。
@@ -494,18 +494,19 @@ Moonbeam 网络实现了 [`eth_feeHistory`](https://www.alchemy.com/docs/node/et
 
 ## Substrate API 交易费用 {: #substrate-api-transaction-fees }
 
-本指南的这一部分假设您正在通过 [Substrate API Sidecar](/builders/substrate/libraries/sidecar/){target=_blank} 服务与 Moonbeam 区块进行交互。还有其他与 Moonbeam 区块交互的方式，例如使用 [Polkadot.js API 库](/builders/substrate/libraries/polkadot-js-api/){target=_blank}。一旦检索到区块，逻辑是相同的。
+本指南的这一部分假设您正在通过 [Substrate API Sidecar](/builders/substrate/libraries/sidecar/){target=\_blank} 服务与 Moonbeam 区块进行交互。还有其他与 Moonbeam 区块交互的方式，例如使用 [Polkadot.js API 库](/builders/substrate/libraries/polkadot-js-api/){target=\_blank}。一旦检索到区块，逻辑是相同的。
 
-您可以参考 [Substrate API Sidecar 页面](/builders/substrate/libraries/sidecar/){target=_blank}，获取有关安装和运行您自己的 Sidecar 服务实例的信息，以及有关如何解码 Sidecar 区块以进行 Moonbeam 交易的更多细节。
+您可以参考 [Substrate API Sidecar 页面](/builders/substrate/libraries/sidecar/){target=\_blank}，获取有关安装和运行您自己的 Sidecar 服务实例的信息，以及有关如何解码 Sidecar 区块以进行 Moonbeam 交易的更多细节。
 
 **请注意，本节中的信息假设您运行的是 Substrate Sidecar REST API 的 {{ networks.moonbase.substrate_api_sidecar.stable_version }} 版本。**
 
 通过 Substrate API 发送的交易的所有费用数据都可以从以下区块端点提取：
 
-text
+```text
 GET /blocks/{blockId}
+```
 
-区块端点将返回与一个或多个区块相关的数据。您可以在 [官方 Sidecar 文档](https://paritytech.github.io/substrate-api-sidecar/dist/#operations-tag-blocks){target=_blank} 上阅读有关区块端点的更多信息。以 JSON 对象读取时，相关的嵌套结构如下：
+区块端点将返回与一个或多个区块相关的数据。您可以在 [官方 Sidecar 文档](https://paritytech.github.io/substrate-api-sidecar/dist/#operations-tag-blocks){target=\_blank} 上阅读有关区块端点的更多信息。以 JSON 对象读取时，相关的嵌套结构如下：
 
 ```text
 RESPONSE JSON Block Object:
@@ -551,4 +552,4 @@ pallet: "transactionPayment", method: "TransactionFeePaid"
 ```text
 extrinsics[extrinsic_number].events[event_number].data[1]
 ```
---8<-- 'text/_disclaimers/third-party-content.md'
+--8<-- 'zh/text/_disclaimers/third-party-content.md'

@@ -15,11 +15,11 @@ categories: Tokens and Accounts
 
 为了解决这个问题，引入了多签名钱包（简称 multisig）。使用多重签名钱包时，会有多个所有者，因此一个所有者可能会丢失其密钥，而其他所有者仍然可以访问钱包和资金。此外，多重签名钱包可能需要阈值签名，只有在获得一定数量的批准后，提案才会作为交易执行。因此，创建了一个额外的安全层。
 
-为了帮助管理 singlesig 和 multisig 钱包，[Gnosis Safe](https://gnosis-safe.io){target=_blank} 被 fork 以创建 [Moonbeam Safe](https://multisig.moonbeam.network){target=_blank}。Safe 可以配置为多重签名合约，允许多个所有者持有资金并将其转移到 Safe 以及从 Safe 转移资金。您还可以将 Safe 配置为只有一个所有者的 singlesig 合约。
+为了帮助管理 singlesig 和 multisig 钱包，[Gnosis Safe](https://gnosis-safe.io){target=\_blank} 被 fork 以创建 [Moonbeam Safe](https://multisig.moonbeam.network){target=\_blank}。Safe 可以配置为多重签名合约，允许多个所有者持有资金并将其转移到 Safe 以及从 Safe 转移资金。您还可以将 Safe 配置为只有一个所有者的 singlesig 合约。
 
 本指南将向您展示如何在 Moonbase Alpha TestNet 上创建多重签名 Safe。您还将学习如何将 DEV 和 ERC-20 代币发送到 Safe 以及从 Safe 发送，以及如何使用 Safe 与智能合约交互。本指南适用于 Moonbeam 和 Moonriver。
 
---8<-- 'text/_disclaimers/third-party-content-intro.md'
+--8<-- 'zh/text/_disclaimers/third-party-content-intro.md'
 
 ## 检查先决条件 {: #checking-prerequisites }
 
@@ -29,9 +29,9 @@ categories: Tokens and Accounts
 
 在本指南中，你将在 Moonbase Alpha 上创建一个 Safe，以便进行交互和管理资金。要连接到 Safe，你需要具备以下条件：
 
- - 已安装 MetaMask 并[连接到 Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}
+ - 已安装 MetaMask 并[连接到 Moonbase Alpha](tokens/connect/metamask/){target=\_blank}
  - 至少有两个已加载资金的帐户。
- --8<-- 'text/_common/faucet/faucet-list-item.md'
+ --8<-- 'zh/text/_common/faucet/faucet-list-item.md'
 
 你至少需要两个帐户，因为你将设置一个具有 3 个所有者的多重签名 Safe，并且任何交易都需要 2/3 的确认才能执行。因此，在本指南中，你需要在至少两个帐户之间来回切换，才能确认和发送交易。
 
@@ -43,13 +43,13 @@ categories: Tokens and Accounts
 
 ### ERC-20 代币 {: #erc20-tokens }
 
-在本指南的后面部分，您将学习如何向 Safe 发送和接收 ERC-20 代币。因此，您需要部署一些 ERC-20 代币并将它们添加到您的 MetaMask 帐户中。为此，您可以查看[使用 Remix 部署到 Moonbeam](/builders/ethereum/dev-env/remix/){target=_blank} 指南，特别是[将合约部署到 Moonbeam](/builders/ethereum/dev-env/remix/#deploying-a-contract-to-moonbeam-using-remix){target=_blank}和[与基于 Moonbeam 的 ERC-20 交互](/builders/ethereum/dev-env/remix/#interacting-with-a-moonbeam-based-erc-20-from-metamask){target=_blank}部分将向您展示如何部署 ERC-20 代币并将其导入到 MetaMask 中。
+在本指南的后面部分，您将学习如何向 Safe 发送和接收 ERC-20 代币。因此，您需要部署一些 ERC-20 代币并将它们添加到您的 MetaMask 帐户中。为此，您可以查看[使用 Remix 部署到 Moonbeam](builders/ethereum/dev-env/remix/){target=\_blank} 指南，特别是[将合约部署到 Moonbeam](builders/ethereum/dev-env/remix/#deploying-a-contract-to-moonbeam-using-remix){target=\_blank}和[与基于 Moonbeam 的 ERC-20 交互](builders/ethereum/dev-env/remix/#interacting-with-a-moonbeam-based-erc-20-from-metamask){target=\_blank}部分将向您展示如何部署 ERC-20 代币并将其导入到 MetaMask 中。
 
 ### 部署的智能合约 {: #deployed-smart-contract }
 
-在本指南的结尾，您将学习如何使用 Safe 与智能合约进行交互。因此，您需要部署一个智能合约来进行交互。如果您需要详细的说明，可以参考[使用 Remix 将合约部署到 Moonbeam](/builders/ethereum/dev-env/remix/#deploying-a-contract-to-moonbeam){target=_blank} 指南。
+在本指南的结尾，您将学习如何使用 Safe 与智能合约进行交互。因此，您需要部署一个智能合约来进行交互。如果您需要详细的说明，可以参考[使用 Remix 将合约部署到 Moonbeam](builders/ethereum/dev-env/remix/#deploying-a-contract-to-moonbeam){target=\_blank} 指南。
 
-您可以前往 [Remix](https://remix.ethereum.org){target=_blank} 并为以下 `SetText.sol` 合约创建一个新文件：
+您可以前往 [Remix](https://remix.ethereum.org){target=\_blank} 并为以下 `SetText.sol` 合约创建一个新文件：
 
 ```solidity
 pragma solidity ^0.8.30;
@@ -69,11 +69,11 @@ contract SetText {
 
 ## 创建 Safe {: #create-a-safe }
 
-要开始创建 Safe，请导航至 [Moonbeam Safe](https://multisig.moonbeam.network/?chain=mbase){target=_blank}。在本指南中，您将在 Moonbase Alpha 上创建一个 Safe，但您也可以调整说明以在 [Moonbeam](https://multisig.moonbeam.network/?chain=mbeam){target=_blank} 或 [Moonriver](https://multisig.moonbeam.network/?chain=mriver){target=_blank} 上创建 Safe。要切换网络，只需单击页面右上角的网络下拉菜单。
+要开始创建 Safe，请导航至 [Moonbeam Safe](https://multisig.moonbeam.network/?chain=mbase){target=\_blank}。在本指南中，您将在 Moonbase Alpha 上创建一个 Safe，但您也可以调整说明以在 [Moonbeam](https://multisig.moonbeam.network/?chain=mbeam){target=\_blank} 或 [Moonriver](https://multisig.moonbeam.network/?chain=mriver){target=\_blank} 上创建 Safe。要切换网络，只需单击页面右上角的网络下拉菜单。
 
 ### 连接 MetaMask {: #connect-metamask }
 
-进入 [Moonbase Alpha](https://multisig.moonbeam.network/?chain=mbase){target=_blank} 页面后，您可以首先连接您的钱包，从而开始创建一个 Safe：
+进入 [Moonbase Alpha](https://multisig.moonbeam.network/?chain=mbase){target=\_blank} 页面后，您可以首先连接您的钱包，从而开始创建一个 Safe：
 
  1. 点击 **连接钱包**
  2. 选择一个钱包来连接到 Moonbeam Safe。在此示例中，您可以使用 MetaMask。如果 MetaMask 没有出现在选项列表中，请点击 **显示更多** 并选择 **MetaMask**
@@ -228,7 +228,7 @@ contract SetText {
  1. 切换到 “**资产**” 选项卡，然后从列表中选择 **MYTOK**
  2. 点击 **发送**
  3. 粘贴 Safe 的地址
- 4. 输入要发送的 MYTOK 数量。您应该已经在 [使用 Remix 部署到 Moonbeam](/builders/ethereum/dev-env/remix/){target=_blank} 指南中铸造了 800 万个 MYTOK 代币。因此，在本示例中，您可以输入 1000 个 MYTOK 作为要发送的数量
+ 4. 输入要发送的 MYTOK 数量。您应该已经在 [使用 Remix 部署到 Moonbeam](builders/ethereum/dev-env/remix/){target=\_blank} 指南中铸造了 800 万个 MYTOK 代币。因此，在本示例中，您可以输入 1000 个 MYTOK 作为要发送的数量
  5. 点击 **下一步**
  6. 查看交易详情，然后单击**确认**以发送交易。
 
@@ -322,23 +322,23 @@ contract SetText {
 
 有一些 API 可用于读取和与 Moonbeam、Moonriver 和 Moonbase Alpha 的 Moonbeam Safe 进行交互。
 
-===
+=== "Moonbeam"
 
-     text
+     ```text
      {{networks.moonbeam.multisig.api_page }}
-     
+     ```
 
-===
+=== "Moonriver"
 
-     text
+     ```text
      {{networks.moonriver.multisig.api_page}}
-     
+     ```
 
-===
+=== "Moonbase Alpha"
 
-     text
+     ```text
      {{networks.moonbase.multisig.api_page}}
-     
+     ```
 
 作为使用 API 的示例，请尝试从 Moonbeam Safe API 中检索有关 Safe 的信息。在 Safe 页面中，复制您的 Safe 地址：
 
@@ -362,4 +362,4 @@ contract SetText {
 
 恭喜！您已成功使用 Moonbeam Safe 的 API。还有许多其他端点可供使用，无论是为了方便还是添加到您自己的应用程序中。
 
---8<-- 'text/_disclaimers/third-party-content.md'
+--8<-- 'zh/text/_disclaimers/third-party-content.md'

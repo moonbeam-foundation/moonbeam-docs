@@ -14,14 +14,14 @@ Supra 提供去中心化的预言机价格 Feeds，可用于链上和链下用�
 
 本页面提供您在 Moonbeam 上开始使用 Supra 所需的一切。
 
---8<-- 'text/_disclaimers/third-party-content-intro.md'
+--8<-- 'zh/text/_disclaimers/third-party-content-intro.md'
 
 ## 如何使用 Supra 的价格 Feed {: #price-feeds }
 
 Supra 采用拉取模型作为一种定制方法，可以根据请求发布价格数据。它结合了 Web2 和 Web3 方法，以在将数据从 Supra 发送到目标链时实现低延迟。该过程包括以下步骤：
 
 1. Web2 方法用于从 Supra 检索价格数据。
-2. 智能合约用于以加密方式验证并将最新的价格数据写入链上，这些数据存储在使用 [Supra 的拉取 Oracle V1](https://docs.supra.com/oracles/data-feeds/pull-oracle){target=_blank} 的不可变账本上。
+2. 智能合约用于以加密方式验证并将最新的价格数据写入链上，这些数据存储在使用 [Supra 的拉取 Oracle V1](https://docs.supra.com/oracles/data-feeds/pull-oracle){target=\_blank} 的不可变账本上。
 3. 一旦数据被写入链上，最近发布的价格 Feed 数据将可以在 Supra 的存储合约中使用。
 
 Supra 在 Moonbeam 上的合约地址如下：
@@ -64,4 +64,4 @@ Supra 在 Moonbeam 上的合约地址如下：
 - 加入他们的 [Discord](https://discord.com/invite/supraoracles){target=\_blank}。
 - 查看他们的 [Youtube](https://www.youtube.com/SupraOfficial){target=\_blank}。
 
---8<-- 'text/_disclaimers/third-party-content.md'
+--8<-- 'zh/text/_disclaimers/third-party-content.md'

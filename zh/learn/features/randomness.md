@@ -14,7 +14,7 @@ Moonbeam 利用可验证随机函数（VRF）来生成可以在链上验证的�
 
 目前有两种可用的随机性来源，它们基于区块生产者的 VRF 密钥和过去的随机性结果来提供随机输入：[local VRF](#local-vrf) 和 [BABE epoch randomness](#babe-epoch-randomness)。Local VRF 直接在 Moonbeam 中确定，使用区块校验者的 VRF 密钥和上一个区块的 VRF 输出。另一方面，[BABE](https://docs.polkadot.com/polkadot-protocol/architecture/polkadot-chain/pos-consensus/#block-production-babe){target=\_blank} epoch 随机性基于中继链验证者在完整 [epoch](https://wiki.polkadot.com/general/glossary/#epoch){target=\_blank} 期间产生的所有 VRF。
 
-您可以使用随机性预编译合约与链上随机性进行交互和请求，这是一个 Solidity 接口，使智能合约开发者能够通过 Ethereum API 访问随机性功能。有关更多信息，请查看[与随机性预编译交互](builders/ethereum/precompiles/features/randomness/){target=_blank} 指南。
+您可以使用随机性预编译合约与链上随机性进行交互和请求，这是一个 Solidity 接口，使智能合约开发者能够通过 Ethereum API 访问随机性功能。有关更多信息，请查看[与随机性预编译交互](builders/ethereum/precompiles/features/randomness/){target=\_blank} 指南。
 
 ## 常规定义 {: #general-definitions }
 
@@ -66,7 +66,7 @@ Moonbeam 利用可验证随机函数（VRF）来生成可以在链上验证的�
 
 本地 VRF 随机数是在每个区块的开头，以区块为单位生成的，它使用前一个区块的 VRF 输出以及当前区块作者的 VRF 密钥的公钥。生成的随机数结果将被存储，并用于满足当前区块的所有随机数请求。
 
-您可以使用 [Randomness Precompile](builders/ethereum/precompiles/features/randomness/){target=_blank}的 [`requestLocalVRFRandomWords` 方法](builders/ethereum/precompiles/features/randomness/#:~:text=requestLocalVRFRandomWords){target=\_blank} 请求本地 VRF 随机数。
+您可以使用 [Randomness Precompile](builders/ethereum/precompiles/features/randomness/){target=\_blank}的 [`requestLocalVRFRandomWords` 方法](builders/ethereum/precompiles/features/randomness/#:~:text=requestLocalVRFRandomWords){target=\_blank} 请求本地 VRF 随机数。
 
 如果您的合约可能有并发请求打开，您可以使用从 `requestLocalVRFRandomWords` 方法返回的 `requestId` 来跟踪哪个响应与哪个随机数请求相关联。
 
@@ -76,7 +76,7 @@ BABE epoch 随机数基于倒数第二个中继链 epoch 中产生的区块的 V
 
 随机数在一个 epoch 期间保持不变。如果整理人跳过区块生产，则下一个符合条件的整理人可以使用相同的随机值来满足请求。
 
-您可以使用 [随机数预编译](builders/ethereum/precompiles/features/randomness/){target=_blank}的 [`requestRelayBabeEpochRandomWords` 方法](builders/ethereum/precompiles/features/randomness/#:~:text=requestRelayBabeEpochRandomWords){target=_blank} 来请求 BABE epoch 随机数。为了生成唯一的随机数，必须为 `requestRelayBabeEpochRandomWords` 函数提供不同的 salt。
+您可以使用 [随机数预编译](builders/ethereum/precompiles/features/randomness/){target=\_blank}的 [`requestRelayBabeEpochRandomWords` 方法](builders/ethereum/precompiles/features/randomness/#:~:text=requestRelayBabeEpochRandomWords){target=\_blank} 来请求 BABE epoch 随机数。为了生成唯一的随机数，必须为 `requestRelayBabeEpochRandomWords` 函数提供不同的 salt。
 
 在每个中继链 epoch 更改开始时，将从一个 epoch 前的随机数从中继链状态证明中读取，并用于满足当前区块中所有应有的随机数请求。
 

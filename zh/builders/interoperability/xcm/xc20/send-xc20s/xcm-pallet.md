@@ -12,9 +12,9 @@ categories: XC-20
 
     Polkadot XCM Pallet 取代了已弃用的 XTokens Pallet。因此，请确保您使用 Polkadot XCM Pallet 与 XC-20 交互。
 
-手动创建用于同质化资产转移的 XCM 消息是一项具有挑战性的任务。因此，开发人员可以利用包装器函数和 pallet 在 Polkadot 和 Kusama 上使用 XCM 功能。其中一个包装器的例子是 [XCM](https://docs.polkadot.com/develop/interoperability/send-messages/){target=_blank} Pallet，它提供了通过 XCM 转移同质化资产的不同方法。
+手动创建用于同质化资产转移的 XCM 消息是一项具有挑战性的任务。因此，开发人员可以利用包装器函数和 pallet 在 Polkadot 和 Kusama 上使用 XCM 功能。其中一个包装器的例子是 [XCM](https://docs.polkadot.com/develop/interoperability/send-messages/){target=\_blank} Pallet，它提供了通过 XCM 转移同质化资产的不同方法。
 
-本指南将向您展示如何利用 Polkadot XCM Pallet 将 [XC-20](/builders/interoperability/xcm/xc20/overview/){target=_blank} 从基于 Moonbeam 的网络发送到生态系统中的其他链（中继链/平行链）。
+本指南将向您展示如何利用 Polkadot XCM Pallet 将 [XC-20](builders/interoperability/xcm/xc20/overview/){target=\_blank} 从基于 Moonbeam 的网络发送到生态系统中的其他链（中继链/平行链）。
 
 **开发人员必须了解，发送不正确的 XCM 消息可能会导致资金损失。** 因此，在转移到生产环境之前，在测试网上测试 XCM 功能至关重要。
 
@@ -107,7 +107,7 @@ Polkadot XCM Pallet 提供了以下 extrinsics（函数）：
 
 ### 存储方法 {: #storage-methods }
 
-Polkadot XCM Pallet 包含以下只读存储方法。请注意，这并非详尽的列表。要查看当前可用的存储方法，请查看 [Polkadot.js Apps 的链状态](https://polkadot.js.org/apps/#/chainstate){target=_blank}。
+Polkadot XCM Pallet 包含以下只读存储方法。请注意，这并非详尽的列表。要查看当前可用的存储方法，请查看 [Polkadot.js Apps 的链状态](https://polkadot.js.org/apps/#/chainstate){target=\_blank}。
 
 ???+ function "**assetTraps**(h256 hash) — 返回给定哈希的被困资产的计数"
     === "参数"
@@ -115,7 +115,7 @@ Polkadot XCM Pallet 包含以下只读存储方法。请注意，这并非详尽
     === "返回值"
         返回一个 `U32`（无符号 32 位整数），表示资产在此哈希位置被困的次数。
         ```js
-        // 示例返回值显示哈希 → 计数映射
+        // Example return values showing hash → count mappings
         [
           [[0x0140f264543926e689aeefed15a8379f6e75a8c6884b0cef0832bb913a343b53], 1],
           [[0x0d14fd8859d8ff15dfe4d4002b402395129cdc4b69dea5575efa1dc205b96020], 425],
@@ -184,7 +184,7 @@ Polkadot XCM Pallet 包含以下只读存储方法。请注意，这并非详尽
         表示 pallet 当前版本的数字。
 
         ```js
-        // 如果使用 Polkadot.js API 并在未包装的值上调用 toJSON()
+        // If using Polkadot.js API and calling toJSON() on the unwrapped value
         0
         ```
 
@@ -205,22 +205,22 @@ Polkadot XCM pallet 没有常量部分。
 !!! note
     每个平行链都可以允许和禁止来自托盘的特定方法。因此，开发人员必须确保他们使用允许的方法，否则交易将失败，并出现类似于 `system.CallFiltered` 的错误。
 
-您将传输 xcUNIT 代币，它是 Alphanet 中继链代币 UNIT 的 [XC-20](/builders/interoperability/xcm/xc20/overview/){target=_blank} 表示形式。您可以针对任何其他 XC-20 调整本指南。
+您将传输 xcUNIT 代币，它是 Alphanet 中继链代币 UNIT 的 [XC-20](builders/interoperability/xcm/xc20/overview/){target=\_blank} 表示形式。您可以针对任何其他 XC-20 调整本指南。
 
 ### 检查先决条件 {: #polkadotxcm-check-prerequisites}
 
 要按照本指南中的示例进行操作，您需要具备以下条件：
 
 - 一个有资金的帐户。
- --8<-- 'text/_common/faucet/faucet-list-item.md'
-- 一些 xcUNIT 代币。您可以在 [Moonbeam-Swap](https://moonbeam-swap.netlify.app/#/swap){target=_blank} 上将 DEV 代币（Moonbase Alpha 的原生代币）兑换为 xcUNIT，这是一个 Moonbase Alpha 上的演示 Uniswap-V2 克隆
+ --8<-- 'zh/text/_common/faucet/faucet-list-item.md'
+- 一些 xcUNIT 代币。您可以在 [Moonbeam-Swap](https://moonbeam-swap.netlify.app/#/swap){target=\_blank} 上将 DEV 代币（Moonbase Alpha 的原生代币）兑换为 xcUNIT，这是一个 Moonbase Alpha 上的演示 Uniswap-V2 克隆
 
     !!! note
-        您可以调整本指南以转移另一个 [外部 XC-20 或本地 XC-20](/builders/interoperability/xcm/xc20/overview/){target=_blank}。对于外部 XC-20，您需要资产 ID 和资产具有的小数位数。对于本地 XC-20，您需要合约地址。
+        您可以调整本指南以转移另一个 [外部 XC-20 或本地 XC-20](builders/interoperability/xcm/xc20/overview/){target=\_blank}。对于外部 XC-20，您需要资产 ID 和资产具有的小数位数。对于本地 XC-20，您需要合约地址。
 
     ![Moonbeam Swap xcUNIT](/images/builders/interoperability/xcm/xc20/send-xc20s/xcm-pallet/xtokens-1.webp)
 
-要检查您的 xcUNIT 余额，您可以将 XC-20 的 [预编译地址](/builders/interoperability/xcm/xc20/overview/#calculate-xc20-address){target=_blank} 添加到 MetaMask，地址如下：
+要检查您的 xcUNIT 余额，您可以将 XC-20 的 [预编译地址](builders/interoperability/xcm/xc20/overview/#calculate-xc20-address){target=\_blank} 添加到 MetaMask，地址如下：
 
 ```
 0xFfFFfFff1FcaCBd218EDc0EbA20Fc2308C778080
@@ -228,7 +228,7 @@ Polkadot XCM pallet 没有常量部分。
 
 ### Polkadot XCM 转移资产函数 {: #polkadotxcm-transfer-assets-function}
 
-在此示例中，您将构建一条 XCM 消息，以通过 Polkadot XCM Pallet 的 `transferAssets` 函数，使用 [Polkadot.js API](/builders/substrate/libraries/polkadot-js-api/){target=_blank}，将 xcUNIT 从 Moonbase Alpha 转移回 Alphanet 中继链。
+在此示例中，您将构建一条 XCM 消息，以通过 Polkadot XCM Pallet 的 `transferAssets` 函数，使用 [Polkadot.js API](builders/substrate/libraries/polkadot-js-api/){target=\_blank}，将 xcUNIT 从 Moonbase Alpha 转移回 Alphanet 中继链。
 
 要使用 `polkadotXcm` pallet 执行有限的储备转移，请按照以下步骤操作：
 
@@ -260,7 +260,7 @@ Polkadot XCM pallet 没有常量部分。
     ```
 
 !!! note
-    您可以在 [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/extrinsics/decode/0x1c0b0401000400010100d4620637e11439598c5fbae0506dc68b9fb1edb33b316761bf99987a1034a96b0404010000070010a5d4e80000000000){target=_blank} 上查看上述脚本的示例，该脚本将 1 个 xcUNIT 发送到中继链上的 Alice 帐户，使用以下编码的 calldata：`0x1c0b0401000400010100d4620637e11439598c5fbae0506dc68b9fb1edb33b316761bf99987a1034a96b0404010000070010a5d4e80000000000`。
+    您可以在 [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/extrinsics/decode/0x1c0b0401000400010100d4620637e11439598c5fbae0506dc68b9fb1edb33b316761bf99987a1034a96b0404010000070010a5d4e80000000000){target=\_blank} 上查看上述脚本的示例，该脚本将 1 个 xcUNIT 发送到中继链上的 Alice 帐户，使用以下编码的 calldata：`0x1c0b0401000400010100d4620637e11439598c5fbae0506dc68b9fb1edb33b316761bf99987a1034a96b0404010000070010a5d4e80000000000`。
 
 交易处理完毕后，中继链上的目标帐户应已收到转移的金额，减去为在目标链上执行 XCM 而扣除的一小笔费用。
 
@@ -270,5 +270,5 @@ Polkadot XCM pallet 没有常量部分。
 
  - 确保您的发送账户中有足够的 DEV 代币
  - 确保您的发送账户中有足够的 xcUNIT 代币（或您指定的其他 XC-20 代币）
- - 在 Moonbase Alpha 上的 Polkadot.js Apps 上检查 [Explorer](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/explorer){target=_blank}，以确保在源链上成功完成交易
- - 在 Polkadot.js Apps 上检查 [Explorer](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Frelay.api.moonbase.moonbeam.network#/explorer){target=_blank}，并查看 Moonbase 中继链上收到的 XCM 消息
+ - 在 Moonbase Alpha 上的 Polkadot.js Apps 上检查 [Explorer](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/explorer){target=\_blank}，以确保在源链上成功完成交易
+ - 在 Polkadot.js Apps 上检查 [Explorer](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Frelay.api.moonbase.moonbeam.network#/explorer){target=\_blank}，并查看 Moonbase 中继链上收到的 XCM 消息

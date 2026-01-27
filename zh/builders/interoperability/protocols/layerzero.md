@@ -17,7 +17,7 @@ LayerZero 是一个传输层，它通过低级通信原语实现资产转移。�
 
 LayerZero API 提供了一套丰富的 Web3 应用程序开发工具，确保开发人员拥有构建所需的工具。借助这些工具和 API，开发人员可以使用 LayerZero 协议及其 API 编写可以轻松部署在所有 LayerZero 连接的生态系统中的 dApp。
 
---8<-- 'text/_disclaimers/third-party-content-intro.md'
+--8<-- 'zh/text/_disclaimers/third-party-content-intro.md'
 
 ## 入门 {: #getting-started }
 
@@ -34,4 +34,4 @@ LayerZero API 提供了一套丰富的 Web3 应用程序开发工具，确保开
 
 - **测试网合约** - [Moonbase Alpha](https://docs.layerzero.network/v2/developers/evm/technical-reference/deployed-contracts#moonbase){target=\_blank}
 
---8<-- 'text/_disclaimers/third-party-content.md'
+--8<-- 'zh/text/_disclaimers/third-party-content.md'

@@ -19,7 +19,7 @@ Substrate API Sidecar 允许应用程序通过 REST API 访问基于 Substrate �
 
 通过 NPM 在本地运行此服务需要安装 Node.js。
 
---8<-- 'text/_common/install-nodejs.md'
+--8<-- 'zh/text/_common/install-nodejs.md'
 
 ### 安装 Substrate API Sidecar {: #installing-the-substrate-api-sidecar }
 
@@ -67,7 +67,7 @@ node_modules/.bin/substrate-api-sidecar --version
     export SAS_SUBSTRATE_URL=ws://127.0.0.1:9944
     ```
 
-请参考 [公共端点](/builders/get-started/endpoints/) 页面以获取 Moonbeam 网络端点的完整列表。
+请参考 [公共端点](builders/get-started/endpoints/) 页面以获取 Moonbeam 网络端点的完整列表。
 
 设置环境变量后，您可以使用 `echo` 命令检查环境变量是否已正确设置，方法是输入：
 
@@ -352,10 +352,10 @@ EVM 智能合约发出的其他事件也可以以类似的方式解码，但是�
 
 ## 用于监控原生代币转移的示例代码 { #sample-code-for-monitoring-native-token-transfers }
 
-[Transfers API 页面](/learn/core-concepts/transfers-api/#using-substrate-api-sidecar){target=\_blank} 包含一个代码片段，演示了如何使用 Substrate API Sidecar 来检索和解码 Moonbeam 网络上通过 Substrate 和 Ethereum API 发送的原生代币转移。您可以参考该代码片段作为起点，构建利用 Sidecar 监听 Moonbeam 网络上转移的后端。
+[Transfers API 页面](learn/core-concepts/transfers-api/#using-substrate-api-sidecar){target=\_blank} 包含一个代码片段，演示了如何使用 Substrate API Sidecar 来检索和解码 Moonbeam 网络上通过 Substrate 和 Ethereum API 发送的原生代币转移。您可以参考该代码片段作为起点，构建利用 Sidecar 监听 Moonbeam 网络上转移的后端。
 
 ## 计算交易费用 {: #calculating-transaction-fees }
 
 有关如何使用 Substrate Sidecar API 计算 Moonbeam 交易的交易费用的更多详细信息和示例代码，请查看 [Moonbeam 上的计算交易费用](learn/core-concepts/tx-fees/){target=\_blank} 页面。
 
---8<-- 'text/_disclaimers/third-party-content.md'
+--8<-- 'zh/text/_disclaimers/third-party-content.md'

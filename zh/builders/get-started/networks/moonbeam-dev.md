@@ -21,7 +21,7 @@ Moonbeam 开发节点是您自己的个人开发环境，用于在 Moonbeam 上�
 
     本教程是使用 \[Moonbase Alpha\](https://github.com/moonbeam-foundation/moonbeam/releases/tag/{{ networks.development.build_tag }}){target=\_blank} 的 {{ networks.development.build_tag }} 标签创建的。Moonbeam 平台及其依赖的 [Frontier](https://github.com/polkadot-evm/frontier){target=\_blank} 组件来实现基于 Substrate 的以太坊兼容性，目前仍在非常积极的开发中。
 
-    --8<-- 'text/_common/assumes-mac-or-ubuntu-env.md'
+    --8<-- 'zh/text/_common/assumes-mac-or-ubuntu-env.md'
 
 ## 启动 Moonbeam 开发节点 {: #spin-up-a-node }
 
@@ -235,7 +235,7 @@ docker run --rm --name {{ networks.development.container_name }} \
 engine_createBlock(createEmpty: *bool*, finalize: *bool*, parentHash?: *BlockHash*)
 ```
 
-例如，您可以使用以下代码段通过 [Ethers.js](/builders/ethereum/libraries/ethersjs/){target=\_blank} 手动创建一个区块，这是一个以太坊库，可以轻松地与 JSON-RPC 方法进行交互：
+例如，您可以使用以下代码段通过 [Ethers.js](builders/ethereum/libraries/ethersjs/){target=\_blank} 手动创建一个区块，这是一个以太坊库，可以轻松地与 JSON-RPC 方法进行交互：
 
 ```js
 import { ethers } from 'ethers';
@@ -249,11 +249,11 @@ const produceBlock = async () => {
   const params = [true, true, null];
 
   try {
-    // Send the custom JSON-RPC call
+    
     const result = await provider.send(method, params);
     console.log(result);
   } catch (error) {
-    // Handle any errors that may occur
+    // Send the custom JSON-RPC call
     console.error('Error:', error.message);
   }
 };
@@ -263,7 +263,7 @@ produceBlock();
 
 !!! note
 
-    如果您不熟悉 Ethers，请参阅 [Ethers.js](/builders/ethereum/libraries/ethersjs/){target=\_blank} 文档页面以了解更多信息。
+    如果您不熟悉 Ethers，请参阅 [Ethers.js](builders/ethereum/libraries/ethersjs/){target=\_blank} 文档页面以了解更多信息。
 
 ## 预充值开发账户 {: #pre-funded-development-accounts }
 
@@ -283,7 +283,7 @@ bottom drive obey lake curtain smoke basket hold race lonely fit walk
 
 --8<-- 'code/builders/get-started/networks/moonbeam-dev/dev-testing-account.md'
 
-您可以使用这些账户的私钥将它们连接到 [MetaMask](/tokens/connect/metamask/){target=\_blank}、[Talisman](/tokens/connect/talisman/){target=\_blank}、[Polkadot.js Apps](/tokens/connect/polkadotjs/){target=\_blank} 等。
+您可以使用这些账户的私钥将它们连接到 [MetaMask](tokens/connect/metamask/){target=\_blank}、[Talisman](tokens/connect/talisman/){target=\_blank}、[Polkadot.js Apps](tokens/connect/polkadotjs/){target=\_blank} 等。
 
 ## 开发节点端点 {: #access-your-development-node }
 
@@ -312,7 +312,7 @@ bottom drive obey lake curtain smoke basket hold race lonely fit walk
 
 您还可以通过运行跟踪节点来访问一些非标准的 RPC 方法，这允许开发人员在运行时检查和调试交易。跟踪节点使用与标准 Moonbeam 开发节点不同的 Docker 镜像。
 
-要了解如何运行 Moonbeam 开发跟踪节点，请查看[运行跟踪节点](/node-operators/networks/tracing-node/){target=\_blank}指南，并确保在整个说明中切换到 **Moonbeam 开发节点**选项卡。然后，要使用跟踪节点访问非标准 RPC 方法，请查看[Debug & Trace](/builders/ethereum/json-rpc/debug-trace/){target=\_blank}指南。
+要了解如何运行 Moonbeam 开发跟踪节点，请查看[运行跟踪节点](node-operators/networks/tracing-node/){target=\_blank}指南，并确保在整个说明中切换到 **Moonbeam 开发节点**选项卡。然后，要使用跟踪节点访问非标准 RPC 方法，请查看[Debug & Trace](builders/ethereum/json-rpc/debug-trace/){target=\_blank}指南。
 
 ## 清理开发节点 {: #purging-your-node }
 

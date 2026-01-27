@@ -16,19 +16,19 @@ categories: 节点运营者和收集人
 
 **问：在哪里可以获得帮助？**
 
-**答：** 有一个活跃而友好的 [Discord](https://discord.com/invite/PfpUATX){target=_blank} 社区，专为整理者而设。加入服务器，即使在您需要帮助之前，也请先自我介绍。向 **gilmouta** 或 **artkaseman** 发送私信，让他们知道您是谁，如果他们发现您的节点有任何问题，他们可以与您联系。
+**答：** 有一个活跃而友好的 [Discord](https://discord.com/invite/PfpUATX){target=\_blank} 社区，专为整理者而设。加入服务器，即使在您需要帮助之前，也请先自我介绍。向 **gilmouta** 或 **artkaseman** 发送私信，让他们知道您是谁，如果他们发现您的节点有任何问题，他们可以与您联系。
 
 ***
 
 **问：如何随时了解最新信息？**
 
-**答：** 所有升级和重要的技术信息都会在 [Discord](https://discord.com/invite/PhfEbKYqak){target=_blank} 的 **#tech-upgrades-announcements** 频道中宣布。加入并关注此频道。如果 Slack 或 Telegram 是您首选的通信渠道，您可以设置集成。
+**答：** 所有升级和重要的技术信息都会在 [Discord](https://discord.com/invite/PhfEbKYqak){target=\_blank} 的 **#tech-upgrades-announcements** 频道中宣布。加入并关注此频道。如果 Slack 或 Telegram 是您首选的通信渠道，您可以设置集成。
 
 ***
 
 **问：如何注册我的节点？**
 
-**答：** 有一个 [问卷](https://docs.google.com/forms/d/e/1FAIpQLSfjmcXdiOXWtquYlBhdgXBunCKWHadaQCgPuBtzih1fd0W3aA/viewform){target=_blank}，您可以在其中提供您的联系信息以及一些基本的硬件规格。您必须在 Moonbase Alpha 上运行整理者节点才能填写问卷。
+**答：** 有一个 [问卷](https://docs.google.com/forms/d/e/1FAIpQLSfjmcXdiOXWtquYlBhdgXBunCKWHadaQCgPuBtzih1fd0W3aA/viewform){target=\_blank}，您可以在其中提供您的联系信息以及一些基本的硬件规格。您必须在 Moonbase Alpha 上运行整理者节点才能填写问卷。
 
 ***
 
@@ -86,7 +86,7 @@ categories: 节点运营者和收集人
 
 **问：是否有 CPU 优化的二进制文件？**
 
-**答：** 在每个 [发布页面](https://github.com/moonbeam-foundation/moonbeam/releases){target=_blank} 上都有 CPU 优化的二进制文件。选择适合您的 CPU 架构的二进制文件。
+**答：** 在每个 [发布页面](https://github.com/moonbeam-foundation/moonbeam/releases){target=\_blank} 上都有 CPU 优化的二进制文件。选择适合您的 CPU 架构的二进制文件。
 
 - **Moonbeam-znver3** - Ryzen 9
 - **Moonbeam-skylake** - Intel
@@ -96,7 +96,7 @@ categories: 节点运营者和收集人
 
 **问：关于监控我的节点的建议是什么？**
 
-**答：** 监控对于网络的健康状况和最大化您的奖励非常重要。我们建议使用 [Grafana Labs](https://grafana.com){target=_blank}。它们有一个免费层，应该可以处理 6+ 个 moonbeam 服务器。
+**答：** 监控对于网络的健康状况和最大化您的奖励非常重要。我们建议使用 [Grafana Labs](https://grafana.com){target=\_blank}。它们有一个免费层，应该可以处理 6+ 个 moonbeam 服务器。
 
 ***
 
@@ -108,25 +108,25 @@ categories: 节点运营者和收集人
 
 **问：我应该如何设置警报？**
 
-**答：** 警报对于保持您的 moonbeam 节点生成区块并获得奖励至关重要。我们推荐 [pagerduty.com](https://www.pagerduty.com){target=_blank}，它受到 [Grafana Labs](https://grafana.com){target=_blank} 的支持。使用上面的 [KPI 查询](#:~:text=substrate_proposer_block_constructed_count)，并在其降至 1 以下时设置警报。警报应全天候呼叫值班人员。
+**答：** 警报对于保持您的 moonbeam 节点生成区块并获得奖励至关重要。我们推荐 [pagerduty.com](https://www.pagerduty.com){target=\_blank}，它受到 [Grafana Labs](https://grafana.com){target=\_blank} 的支持。使用上面的 [KPI 查询](#:~:text=substrate_proposer_block_constructed_count)，并在其降至 1 以下时设置警报。警报应全天候呼叫值班人员。
 
 ***
 
 **问：什么是 Nimbus 密钥？**
 
-**答：** Nimbus 密钥就像 [Polkadot 中的会话密钥](https://wiki.polkadot.com/learn/learn-cryptography/#session-keys){target=_blank}。您应该在主服务器和备份服务器上拥有唯一的密钥。将密钥输出保存在安全的地方，如果您收到警报，可以在半夜访问它。要创建您的密钥，请参阅文档的 [会话密钥](/node-operators/networks/collators/account-management/#session-keys){target=_blank} 部分。
+**答：** Nimbus 密钥就像 [Polkadot 中的会话密钥](https://wiki.polkadot.com/learn/learn-cryptography/#session-keys){target=\_blank}。您应该在主服务器和备份服务器上拥有唯一的密钥。将密钥输出保存在安全的地方，如果您收到警报，可以在半夜访问它。要创建您的密钥，请参阅文档的 [会话密钥](node-operators/networks/collators/account-management/#session-keys){target=\_blank} 部分。
 
 ***
 
 **问：如果我的主节点发生故障，故障转移过程是什么？**
 
-**答：** 当主服务器发生故障时，执行故障转移到备份服务器的最佳方法是执行密钥关联更新。每个服务器都应已有一组唯一的[密钥](#:~:text=What are Nimbus keys)。运行 `setKeys` 作者映射外部函数。您可以按照 [映射外部函数](/node-operators/networks/collators/account-management/#mapping-extrinsic){target=_blank} 指令进行操作，并修改指令以使用 `setKeys` 外部函数。
+**答：** 当主服务器发生故障时，执行故障转移到备份服务器的最佳方法是执行密钥关联更新。每个服务器都应已有一组唯一的[密钥](#:~:text=What are Nimbus keys)。运行 `setKeys` 作者映射外部函数。您可以按照 [映射外部函数](node-operators/networks/collators/account-management/#mapping-extrinsic){target=\_blank} 指令进行操作，并修改指令以使用 `setKeys` 外部函数。
 
 ***
 
 **问：我应该设置集中式日志记录吗？**
 
-**答：** [Grafana Labs](https://grafana.com){target=_blank} 也可以配置为集中式日志记录，并且强烈推荐。您可以在一个地方看到所有节点。[Kibana](https://www.elastic.co/kibana){target=_blank} 提供了更强大的集中式日志记录功能，但 Grafana 简单且足以入门。
+**答：** [Grafana Labs](https://grafana.com){target=\_blank} 也可以配置为集中式日志记录，并且强烈推荐。您可以在一个地方看到所有节点。[Kibana](https://www.elastic.co/kibana){target=\_blank} 提供了更强大的集中式日志记录功能，但 Grafana 简单且足以入门。
 
 ***
 
@@ -153,13 +153,13 @@ categories: 节点运营者和收集人
 
 **答：** 您需要注意两个抵押品。在继续执行这些步骤之前，请确保您的节点已配置并同步。
 
-第一个是[加入整理者](/node-operators/networks/collators/activities/#become-a-candidate){target=_blank}池的抵押品：
+第一个是[加入整理者](node-operators/networks/collators/activities/#become-a-candidate){target=\_blank}池的抵押品：
 
 - **Moonbeam** - 至少 {{ networks.moonbeam.staking.min_can_stk }} GLMR
 - **Moonriver** - 至少 {{ networks.moonriver.staking.min_can_stk }} MOVR
 - **Moonbase Alpha** - 至少 {{ networks.moonbase.staking.min_can_stk }} DEV
 
-第二个是[用于密钥关联的抵押品](/node-operators/networks/collators/account-management/#mapping-bonds){target=_blank}：
+第二个是[用于密钥关联的抵押品](node-operators/networks/collators/account-management/#mapping-bonds){target=\_blank}：
 
 - **Moonbeam** - 至少 {{ networks.moonbeam.staking.collator_map_bond }} GLMR
 - **Moonriver** - 至少 {{ networks.moonriver.staking.collator_map_bond }} MOVR
@@ -169,4 +169,4 @@ categories: 节点运营者和收集人
 
 **问：如何在我的整理者账户上设置身份？**
 
-**答：** 在链上设置身份将有助于识别您的节点并吸引委托。您可以按照我们文档的[管理身份](/tokens/manage/identity/){target=_blank}页面上的说明设置身份。
+**答：** 在链上设置身份将有助于识别您的节点并吸引委托。您可以按照我们文档的[管理身份](tokens/manage/identity/){target=\_blank}页面上的说明设置身份。

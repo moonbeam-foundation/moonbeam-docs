@@ -26,9 +26,9 @@ Foundry 由四个工具组成：
 
 - 拥有一个有资金的帐户。
 
---8<-- 'text/_common/faucet/faucet-list-item.md'
+--8<-- 'zh/text/_common/faucet/faucet-list-item.md'
 
---8<-- 'text/_common/endpoint-examples-list-item.md'
+--8<-- 'zh/text/_common/endpoint-examples-list-item.md'
 
 - 安装了[Foundry](https://getfoundry.sh/introduction/installation/){target=\_blank}
 
@@ -293,7 +293,7 @@ cast --to-ascii 0x00000000000000000000000000000000000000000000000000000000000000
 
 使用 Anvil 进行 fork 时，需要注意一些限制。由于 Anvil 基于 EVM 实现，因此您无法与任何 Moonbeam 预编译合约及其功能进行交互。预编译是 Substrate 实现的一部分，因此无法在模拟的 EVM 环境中复制。这禁止您与 Moonbeam 上的跨链资产以及基于 Substrate 的功能（如质押和治理）进行交互。
 
-要 fork Moonbeam 或 Moonriver，您需要拥有自己的端点和 API 密钥，您可以从支持的[端点提供商](/builders/get-started/endpoints/){target=\_blank}之一处获得。
+要 fork Moonbeam 或 Moonriver，您需要拥有自己的端点和 API 密钥，您可以从支持的[端点提供商](builders/get-started/endpoints/){target=\_blank}之一处获得。
 
 要从命令行 fork Moonbeam，您可以从 Foundry 项目目录中运行以下命令：
 
@@ -325,7 +325,7 @@ cast --to-ascii 0x00000000000000000000000000000000000000000000000000000000000000
 curl --data '{"method":"eth_blockNumber","params":[],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json" -X POST localhost:8545 
 ```
 
-如果您将 `result` 从 [十六进制转换为十进制](https://www.rapidtables.com/convert/number/hex-to-decimal.html){target=\_blank}，您应该获得从您 fork 网络时开始的最新区块号。您可以使用 [区块浏览器](/builders/get-started/explorers/){target=\_blank} 交叉引用区块号。
+如果您将 `result` 从 [十六进制转换为十进制](https://www.rapidtables.com/convert/number/hex-to-decimal.html){target=\_blank}，您应该获得从您 fork 网络时开始的最新区块号。您可以使用 [区块浏览器](builders/get-started/explorers/){target=\_blank} 交叉引用区块号。
 
 从这里，您可以将新合约部署到您的 Moonbeam fork 实例，或者与已经部署的合约进行交互。在此指南的前一个示例的基础上，您可以使用 Cast 进行调用，以检查您部署合约的账户中已铸造的 MYTOK token 的余额：
 
@@ -462,7 +462,7 @@ abi.encode(100, true, "Develop on Moonbeam")
 
 ## 将 Foundry 与 Hardhat 结合使用 {: #foundry-with-hardhat }
 
-很多时候，您想要集成的项目全部基于 [Hardhat](/builders/ethereum/dev-env/hardhat/){target=\_blank} 搭建，要将整个项目转换为 Foundry 非常费力。通过创建同时使用 Hardhat 和 Foundry 功能的混合项目，可以避免这部分额外工作。借助 Hardhat 的 [hardhat-foundry 插件](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-foundry){target=\_blank} 可以实现。
+很多时候，您想要集成的项目全部基于 [Hardhat](builders/ethereum/dev-env/hardhat/){target=\_blank} 搭建，要将整个项目转换为 Foundry 非常费力。通过创建同时使用 Hardhat 和 Foundry 功能的混合项目，可以避免这部分额外工作。借助 Hardhat 的 [hardhat-foundry 插件](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-foundry){target=\_blank} 可以实现。
 
 要将现有的 Foundry 项目转换为混合项目，本质上需要在同一文件夹中安装一个 Hardhat 项目：
 
@@ -472,7 +472,7 @@ npm install --save-dev hardhat @nomicfoundation/hardhat-foundry
 npx hardhat init
 ```
 
-更多信息请参考我们关于[创建 Hardhat 项目](/builders/ethereum/dev-env/hardhat/#creating-a-hardhat-project){target=\_blank}的文档。
+更多信息请参考我们关于[创建 Hardhat 项目](builders/ethereum/dev-env/hardhat/#creating-a-hardhat-project){target=\_blank}的文档。
 
 初始化新的 Hardhat 项目后，会出现几个新的文件夹和文件：`contracts`、`hardhat.config.js`、`scripts` 和 `test/Lock.js`。您需要进行一些修改来创建混合项目：
 
@@ -515,4 +515,4 @@ npm run test
 
 最后，虽然非必需，但可以将 `scripts` 文件夹中的所有 JavaScript 脚本移到 Foundry 的 `script` 文件夹，并删除 `scripts` 文件夹，以避免有两个用途相同的文件夹。
 
---8<-- 'text/_disclaimers/third-party-content.md'
+--8<-- 'zh/text/_disclaimers/third-party-content.md'

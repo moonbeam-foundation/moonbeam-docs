@@ -14,9 +14,9 @@ categories: Ethereum Toolkit
 
 ## 部署合约 {: #deploying-the-contract }
 
-为了在区块浏览器上验证智能合约，必须首先将合约部署到目标网络。本教程将介绍如何将智能合约部署到 [Moonbase Alpha](/builders/get-started/networks/moonbase/){target=_blank}，但它也可以适用于 Moonbeam 或 Moonriver。
+为了在区块浏览器上验证智能合约，必须首先将合约部署到目标网络。本教程将介绍如何将智能合约部署到 [Moonbase Alpha](builders/get-started/networks/moonbase/){target=\_blank}，但它也可以适用于 Moonbeam 或 Moonriver。
 
-您可以查看此页面，获取有关使用 Moonbeam 上的 Ethereum 库[部署智能合约](/builders/ethereum/libraries/){target=_blank}的教程。您也可以使用开发者工具，例如 [Remix](/builders/ethereum/dev-env/remix/#deploying-a-contract-to-moonbeam-using-remix){target=_blank}、[Hardhat](/builders/ethereum/dev-env/hardhat/){target=_blank}，或者其他首选工具，将智能合约部署到 Moonbeam。
+您可以查看此页面，获取有关使用 Moonbeam 上的 Ethereum 库[部署智能合约](builders/ethereum/libraries/){target=\_blank}的教程。您也可以使用开发者工具，例如 [Remix](builders/ethereum/dev-env/remix/#deploying-a-contract-to-moonbeam-using-remix){target=\_blank}、[Hardhat](builders/ethereum/dev-env/hardhat/){target=\_blank}，或者其他首选工具，将智能合约部署到 Moonbeam。
 
 本教程将使用与上述部署教程相同的合约，用于合约验证示例。
 
@@ -80,7 +80,7 @@ categories: Ethereum Toolkit
 
 对于验证由多个文件组成的智能合约，该过程略有不同，需要进行一些预处理，以将目标智能合约的所有依赖项组合到一个 Solidity 文件中。
 
-此预处理通常称为智能合约扁平化。 有许多工具可用于将多部分智能合约扁平化为单个 Solidity 文件，例如 [Hardhat 的 Flatten 任务](https://hardhat.org/hardhat-runner/docs/advanced/flattening){target=_blank}。 有关其用法的更详细说明，请参阅相应的智能合约扁平化工具的文档。
+此预处理通常称为智能合约扁平化。 有许多工具可用于将多部分智能合约扁平化为单个 Solidity 文件，例如 [Hardhat 的 Flatten 任务](https://hardhat.org/hardhat-runner/docs/advanced/flattening){target=\_blank}。 有关其用法的更详细说明，请参阅相应的智能合约扁平化工具的文档。
 
 在扁平化多部分智能合约后，可以使用新的扁平化 Solidity 文件在区块浏览器上验证它，就像验证单文件智能合约一样，如本教程中所述。
 

@@ -16,15 +16,15 @@ categories: JSON-RPC APIs, Reference
 
 ### Moonbeam {: #moonbeam }
 
---8<-- 'text/builders/get-started/endpoints/moonbeam.md'
+--8<-- 'zh/text/builders/get-started/endpoints/moonbeam.md'
 
 ### Moonriver {: #moonriver }
 
---8<-- 'text/builders/get-started/endpoints/moonriver.md'
+--8<-- 'zh/text/builders/get-started/endpoints/moonriver.md'
 
 ### Moonbase Alpha {: #moonbase-alpha }
 
---8<-- 'text/builders/get-started/endpoints/moonbase.md'
+--8<-- 'zh/text/builders/get-started/endpoints/moonbase.md'
 
 ## RPC端点提供商 {: #endpoint-providers }
 
@@ -40,21 +40,21 @@ categories: JSON-RPC APIs, Reference
 
 ### 1RPC {: #1rpc}
 
-[1RPC](https://www.1rpc.io){target=_blank} 是一个免费且私密的 RPC 中继，通过防止数据收集、用户跟踪和其他方的网络钓鱼企图来保护用户隐私。它通过分布式中继将用户请求隧道传输到其他 RPC 提供商，同时使用安全 enclave 技术防止跟踪用户元数据，例如 IP 地址、设备信息和钱包可链接性。
+[1RPC](https://www.1rpc.io){target=\_blank} 是一个免费且私密的 RPC 中继，通过防止数据收集、用户跟踪和其他方的网络钓鱼企图来保护用户隐私。它通过分布式中继将用户请求隧道传输到其他 RPC 提供商，同时使用安全 enclave 技术防止跟踪用户元数据，例如 IP 地址、设备信息和钱包可链接性。
 
 创建 1RPC 的目的是为了成为区块链基础设施社区的一项开放倡议。 他们的动力来自于帮助构建更好的 Web3 的共同利益使命，并鼓励任何重视用户隐私的人加入到这项开放合作中来。
 
-前往 [1RPC](https://www.1rpc.io){target=_blank} 官方网站进行设置！
+前往 [1RPC](https://www.1rpc.io){target=\_blank} 官方网站进行设置！
 
 ![1RPC](/images/builders/get-started/endpoints/endpoints-1.webp)
 
 ### Chainstack {: #chainstack }
 
-[Chainstack](https://chainstack.com/){target=_blank}，Web3 基础设施提供商，为 Moonbeam 提供免费和付费的端点。免费的开发者计划起始于每月 300 万次请求和每秒 25 次请求 (RPS)。您可以使用付费计划轻松扩展。
+[Chainstack](https://chainstack.com/){target=\_blank}，Web3 基础设施提供商，为 Moonbeam 提供免费和付费的端点。免费的开发者计划起始于每月 300 万次请求和每秒 25 次请求 (RPS)。您可以使用付费计划轻松扩展。
 
 要开始使用免费的开发者计划端点，请使用电子邮件或任何社交帐户（如 GitHub 或 X (Twitter)）注册。
 
-1. 访问 [Chainstack](https://console.chainstack.com/){target=_blank}
+1. 访问 [Chainstack](https://console.chainstack.com/){target=\_blank}
 2. 注册
 3. 部署 Moonbeam 节点
 
@@ -99,9 +99,9 @@ dRPC.org 提供公共和付费的 [Moonbeam RPC](https://drpc.org/chainlist/moon
 
 ### OnFinality {: #onfinality }
 
-[OnFinality](https://onfinality.io/en){target=_blank} 为客户提供基于免费 API 密钥的端点，以代替公共端点。此外，OnFinality 还提供付费服务层级，与免费层级相比，这些层级提供更高的速率限制和更高的性能。您还可以获得更深入的应用程序使用情况分析。
+[OnFinality](https://onfinality.io/en){target=\_blank} 为客户提供基于免费 API 密钥的端点，以代替公共端点。此外，OnFinality 还提供付费服务层级，与免费层级相比，这些层级提供更高的速率限制和更高的性能。您还可以获得更深入的应用程序使用情况分析。
 
-要创建自定义 OnFinality 端点，请访问 [OnFinality](https://onfinality.io/en){target=_blank} 并注册，或者如果您已经注册，您可以直接登录。从 OnFinality **控制面板**，您可以：
+要创建自定义 OnFinality 端点，请访问 [OnFinality](https://onfinality.io/en){target=\_blank} 并注册，或者如果您已经注册，您可以直接登录。从 OnFinality **控制面板**，您可以：
 
 1. 单击 **API 服务**
 2. 从下拉列表中选择网络
@@ -111,7 +111,7 @@ dRPC.org 提供公共和付费的 [Moonbeam RPC](https://drpc.org/chainlist/moon
 
 ### UnitedBloc {: #unitedbloc }
 
-[UnitedBloc](https://medium.com/unitedbloc/unitedbloc-rpc-c84972f69457){target=_blank} 是来自 Moonbeam 和 Moonriver 的社区收集者的集合。为了给社区提供价值，他们为 Moonbeam、Moonriver 和 Moonbase Alpha 网络提供公共 RPC 服务。
+[UnitedBloc](https://medium.com/unitedbloc/unitedbloc-rpc-c84972f69457){target=\_blank} 是来自 Moonbeam 和 Moonriver 的社区收集者的集合。为了给社区提供价值，他们为 Moonbeam、Moonriver 和 Moonbase Alpha 网络提供公共 RPC 服务。
 
 公共端点服务由八个地理位置分散的裸机服务器提供，这些服务器通过 GeoDNS 进行全局负载均衡，并通过 NGINX 进行区域负载均衡。由于该服务是公共的，因此无需注册或管理 API 密钥。
 
@@ -137,7 +137,7 @@ dRPC.org 提供公共和付费的 [Moonbeam RPC](https://drpc.org/chainlist/moon
 
 ## 使用 RPC 端点提供程序进行延迟加载 {: #lazy-loading-with-RPC-Endpoint-Providers }
 
-通过延迟加载，Moonbeam 节点可以在后台下载网络状态的同时运行，从而无需等待完全同步即可使用。要使用延迟加载启动 Moonbeam 节点，您需要[下载 Moonbeam 发布二进制文件](/node-operators/networks/run-a-node/systemd/#the-release-binary){target=\_blank}或[编译二进制文件](/node-operators/networks/run-a-node/compile-binary/#compile-the-binary){target=\_blank}。您可以使用以下标志激活延迟加载：
+通过延迟加载，Moonbeam 节点可以在后台下载网络状态的同时运行，从而无需等待完全同步即可使用。要使用延迟加载启动 Moonbeam 节点，您需要[下载 Moonbeam 发布二进制文件](node-operators/networks/run-a-node/systemd/#the-release-binary){target=\_blank}或[编译二进制文件](node-operators/networks/run-a-node/compile-binary/#compile-the-binary){target=\_blank}。您可以使用以下标志激活延迟加载：
 
 `--lazy-loading-remote-rpc 'INSERT-RPC-URL'`
 
@@ -209,7 +209,7 @@ dRPC.org 提供公共和付费的 [Moonbeam RPC](https://drpc.org/chainlist/moon
     0x26aa394eea5630e07c48ae0c9558cef7b99d880ec681799c0cf30e8886371da9b882fedb4f75b055c709ec5b66b5d9933b939fead1557c741ff06492fd0127bd287a421e
     ```
 
-    请注意，此编码存储键将随着任何输入更改而更改，例如查询不同的账户。然后，转到 [Polkadot.js 应用程序](https://polkadot.js.org/apps/#/chainstate/raw){target=_blank} 上的 **Raw Storage** 选项卡。输入上述存储键并提交查询。响应是 SCALE 编码的账户结构，其中的一部分包含可用余额信息，将在本示例中修改：
+    请注意，此编码存储键将随着任何输入更改而更改，例如查询不同的账户。然后，转到 [Polkadot.js 应用程序](https://polkadot.js.org/apps/#/chainstate/raw){target=\_blank} 上的 **Raw Storage** 选项卡。输入上述存储键并提交查询。响应是 SCALE 编码的账户结构，其中的一部分包含可用余额信息，将在本示例中修改：
 
     ```text
     0x460c0000020000000100000006000000a4d92a6a4e6b3a5045000000000000000040a556b0e032de12000000000000004083a09e15c74c1b010000000000000000000000000000000000000000000080
@@ -219,15 +219,15 @@ dRPC.org 提供公共和付费的 [Moonbeam RPC](https://drpc.org/chainlist/moon
 
     ```text
     struct AccountInfo {
-        nonce: u32,             // 交易计数
-        consumers: u32,         // 消费者数量
-        providers: u32,         // 提供者数量
-        sufficients: u32,       // 充足数量
-        data: AccountData {     // 余额信息
-            free: u128,         // 可用余额
-            reserved: u128,     // 保留余额
-            frozen: u128,       // 冻结余额
-            flags: u128         // 账户标志
+        nonce: u32,             // Transaction count
+        consumers: u32,         // Number of consumers 
+        providers: u32,         // Number of providers
+        sufficients: u32,       // Number of sufficients
+        data: AccountData {     // The balance info
+            free: u128,         // Free balance
+            reserved: u128,     // Reserved balance
+            frozen: u128,       // Frozen balance
+            flags: u128         // Account flags
         }
     }
     ```
@@ -235,16 +235,16 @@ dRPC.org 提供公共和付费的 [Moonbeam RPC](https://drpc.org/chainlist/moon
     您可以将 SCALE 编码结构的每个部分与它所代表的 Alice 账户信息的相应部分相关联：
 
     ```text
-    0x460c0000        // nonce (u32): 3,142
+    0x460c0000        // nonce (u32): 3,142 
     02000000          // consumers (u32): 2
-    01000000          // providers (u32): 1
+    01000000          // providers (u32): 1  
     06000000          // sufficients (u32): 6
 
     a4d92a6a4e6b3a5045000000000000000
     // free (u128): 1,278,606,392,142,175,328,676
 
     40a556b0e032de1200000000000000000
-    // reserved (u128): 348,052,500,000,000,000,000
+    // reserved (u128): 348,052,500,000,000,000,000  
 
     4083a09e15c74c1b01000000000000000
     // frozen (u128): 20,413,910,106,633,175,872
@@ -258,16 +258,16 @@ dRPC.org 提供公共和付费的 [Moonbeam RPC](https://drpc.org/chainlist/moon
     在本示例中，现有的可用余额 `1,278,606,392,142,175,328,676` Wei 或大约 `1278.60` DEV 是 `a4d92a6a4e6b3a5045`。以下示例会将值更改为 `500,000` DEV，即 `500,000,000,000,000,000,000,000` Wei 或 `0x000080d07666e70de169` 编码为十六进制小端值。正确填充以适合 SCALE 编码的存储值时，它变为 `69e10de76676d08000000000000000000`，因此该表现在如下所示：
 
     ```text
-    0x460c0000        // nonce (u32): 3,142
+    0x460c0000        // nonce (u32): 3,142 
     02000000          // consumers (u32): 2
-    01000000          // providers (u32): 1
+    01000000          // providers (u32): 1  
     06000000          // sufficients (u32): 6
 
     69e10de76676d08000000000000000000
     // free (u128): 500,000,000,000,000,000,000,000
 
     40a556b0e032de1200000000000000000
-    // reserved (u128): 348,052,500,000,000,000,000
+    // reserved (u128): 348,052,500,000,000,000,000  
 
     4083a09e15c74c1b01000000000000000
     // frozen (u128): 20,413,910,106,633,175,872
@@ -434,7 +434,7 @@ console.log(getBalanceSlot(address));
 
 ### OnFinality {: #onfinality-tracing }
 
-[OnFinality](https://onfinality.io/en){target=_blank} 的 Trace API 可用于快速开始在 Moonbeam 和 Moonriver 上跟踪和调试交易。它仅适用于 [Growth 和 Ultimate 计划](https://onfinality.io/en/pricing){target=\_blank} 的用户。
+[OnFinality](https://onfinality.io/en){target=\_blank} 的 Trace API 可用于快速开始在 Moonbeam 和 Moonriver 上跟踪和调试交易。它仅适用于 [Growth 和 Ultimate 计划](https://onfinality.io/en/pricing){target=\_blank} 的用户。
 
 要使用 Trace API，您只需从您的 [私有 RPC 端点](#onfinality) 调用您选择的跟踪方法。有关支持的网络和跟踪方法的列表，请查看 [OnFinality 的 Trace API 文档](https://documentation.onfinality.io/support/trace-api#TraceAPI-SupportedNetworks){target=\_blank}。
 

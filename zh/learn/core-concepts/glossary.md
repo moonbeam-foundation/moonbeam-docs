@@ -14,7 +14,7 @@ categories: Reference
 
 ### 委托人 {: #delegators }
 
-Moonbeam 代币持有者，他们质押代币，为平行链上的特定收集人候选人担保。任何持有最低数量代币作为[自由余额](https://wiki.polkadot.com/learn/learn-accounts/#balance-types#balance-types){target=_blank}的用户都可以通过质押其代币成为委托人。
+Moonbeam 代币持有者，他们质押代币，为平行链上的特定收集人候选人担保。任何持有最低数量代币作为[自由余额](https://wiki.polkadot.com/learn/learn-accounts/#balance-types#balance-types){target=\_blank}的用户都可以通过质押其代币成为委托人。
 
 ### 提名人 {: #nominators }
 

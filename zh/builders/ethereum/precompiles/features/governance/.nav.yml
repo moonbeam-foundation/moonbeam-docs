@@ -1,7 +1,7 @@
-title: Governance
+title: 治理
 nav:
   - index.md
-  - 'Collective': 'collective.md'
-  - 'Conviction Voting': 'conviction-voting.md'
-  - 'Preimage': 'preimage.md'
-  - 'Referenda': 'referenda.md'
+  - '集体': 'collective.md'
+  - '确信投票': 'conviction-voting.md'
+  - '预映像': 'preimage.md'
+  - '公民投票': 'referenda.md'

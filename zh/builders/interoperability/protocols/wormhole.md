@@ -15,7 +15,7 @@ Wormhole 由多个模块化可互换组件组成，这些组件可以独立使�
 
 ![Wormhole Technology Stack diagram](/images/builders/interoperability/protocols/wormhole/wormhole-1.webp)
 
---8<-- 'text/_disclaimers/third-party-content-intro.md'
+--8<-- 'zh/text/_disclaimers/third-party-content-intro.md'
 
 ## 入门 {: #getting-started }
 
@@ -42,11 +42,11 @@ Relayer 的作用是为目标链的执行付费，并且在许多协议中，rel
 
 要学习本教程，您需要具备以下条件：
 
-- [已安装MetaMask并连接到Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}
+- [已安装MetaMask并连接到Moonbase Alpha](tokens/connect/metamask/){target=\_blank}
 - [已安装Docker](https://docs.docker.com/get-started/get-docker/){target=\_blank}
 - 拥有一个已获得`DEV`代币的帐户。
 
---8<-- 'text/_common/faucet/faucet-list-item.md'
+--8<-- 'zh/text/_common/faucet/faucet-list-item.md'
 
 - 让同一个帐户获得来自您选择的Wormhole连接的EVM的原生货币。水龙头[在下表中](#deploying-the-wormhole-contract-with-remix-on-moonbase-alpha)
 
@@ -138,9 +138,9 @@ zeros to add = 24
 
 现在你将为 Wormhole 运行一个 TestNet 中继器（relayer）！
 
-本教程基于 Wormhole 的 [relayer-engine](https://github.com/wormhole-foundation/relayer-engine){target=_blank} GitHub 仓库；截至撰写本文时，对应的提交为 [`cc0aad4`](https://github.com/wormhole-foundation/relayer-engine/commit/cc0aad43787a87ecd9f0d9893d8ccf92901d7adb){target=_blank}。该项目仍处于相对活跃的开发中，这可能会导致文件夹结构发生较大变化。
+本教程基于 Wormhole 的 [relayer-engine](https://github.com/wormhole-foundation/relayer-engine){target=\_blank} GitHub 仓库；截至撰写本文时，对应的提交为 [`cc0aad4`](https://github.com/wormhole-foundation/relayer-engine/commit/cc0aad43787a87ecd9f0d9893d8ccf92901d7adb){target=\_blank}。该项目仍处于相对活跃的开发中，这可能会导致文件夹结构发生较大变化。
 
-请克隆一个专门为与 `SimpleGeneralMessage` 交互而准备的 [relayer-engine 分叉仓库](https://github.com/jboetticher/relayer-engine-docs-example){target=_blank}。运行该中继器需要 [Docker](https://docs.docker.com/get-started/get-docker/){target=_blank} 和 [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=_blank}，请确保已在你的设备上安装它们。
+请克隆一个专门为与 `SimpleGeneralMessage` 交互而准备的 [relayer-engine 分叉仓库](https://github.com/jboetticher/relayer-engine-docs-example){target=\_blank}。运行该中继器需要 [Docker](https://docs.docker.com/get-started/get-docker/){target=\_blank} 和 [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank}，请确保已在你的设备上安装它们。
 
 首先进行环境配置。使用 npm 包管理器通过命令行安装依赖项（例如 ethers 以及 relayer engine 本身）：
 
@@ -222,7 +222,7 @@ npm run testnet-spy
 `nextStagingArea` 对象是一种让已使用事件（已过滤的 VAA）相互影响的方式。 例如，如果开发人员想要将两个 VAA 打包到一个工作流中，他们不会每次都返回 `workflowData`。
 
 ```ts
- // Receives VAAs and returns workflows.
+ // How the relayer injects the VAA filters.
   async consumeEvent(
     vaa: ParsedVaaWithBytes,
     stagingArea: StagingAreaKeyLock,
@@ -298,7 +298,7 @@ npm run redis
 ]
 ```
 
-现在 executor 的钱包已经配置完成，请查看 executor 本身的代码，它位于 `plugins/simplegeneralmessage_plugin/src/plugin.ts` 文件中。如果你之前没有跟着操作，也可以在其 [GitHub 仓库](https://github.com/jboetticher/relayer-engine-docs-example/blob/main/plugins/simplegeneralmessage_plugin/src/plugin.ts){target=_blank} 中访问该文件的完整内容。
+现在 executor 的钱包已经配置完成，请查看 executor 本身的代码，它位于 `plugins/simplegeneralmessage_plugin/src/plugin.ts` 文件中。如果你之前没有跟着操作，也可以在其 [GitHub 仓库](https://github.com/jboetticher/relayer-engine-docs-example/blob/main/plugins/simplegeneralmessage_plugin/src/plugin.ts){target=\_blank} 中访问该文件的完整内容。
 
 `handleWorkflow(workflow, providers, execute)` 函数包含了所有核心逻辑，虽然在它下面还有一些辅助函数。当 Redis 数据库中存在可用的 workflow 时，`relayer-engine` 包就会调用该函数。请注意该函数中注入的三个参数：`workflow`、`providers` 和 `execute`。
 
@@ -362,7 +362,7 @@ async handleWorkflow(
 };
 ```
 
-在回调函数中，它会使用 Ethers 包创建一个 [合约对象](https://docs.ethers.org/v6/api/contract/#Contract){target=_blank}。其导入的 ABI 来自 `SimpleGeneralMessage` 合约编译产物的导出内容，因此这段代码假设：VAA 中指定的消息接收方是一个 `SimpleGeneralMessage` 合约，或继承自 `SimpleGeneralMessage` 合约。
+在回调函数中，它会使用 Ethers 包创建一个 [合约对象](https://docs.ethers.org/v6/api/contract/#Contract){target=\_blank}。其导入的 ABI 来自 `SimpleGeneralMessage` 合约编译产物的导出内容，因此这段代码假设：VAA 中指定的消息接收方是一个 `SimpleGeneralMessage` 合约，或继承自 `SimpleGeneralMessage` 合约。
 
 接着，代码会尝试使用该 VAA 调用 `processMyMessage(bytes32 VAA)` 函数；该函数此前被定义为消息要被中继到的目标函数。请回顾一下，这个函数名是在智能合约中任意选取的，因为中继器可以指定要调用的任意函数。开发者能够修改该中继器的代码，正体现了这种自由度。
 
@@ -377,7 +377,7 @@ await execute.onEVM({
 });
 ```
 
-最后一步是检查 `relayer-engine-config/common.json`。该配置文件控制整个中继器（relayer）的执行。请确保你正在使用的 TestNet EVM 已列在该文件的 `supportedChains` 对象中；如果未列出，插件将无法正常运行。如果你使用的某条链未在列表中，你需要将 [Wormhole 开发者文档](https://wormhole.com/docs/products/reference/supported-networks/){target=_blank} 中的数据按如下格式导入到该配置文件中。
+最后一步是检查 `relayer-engine-config/common.json`。该配置文件控制整个中继器（relayer）的执行。请确保你正在使用的 TestNet EVM 已列在该文件的 `supportedChains` 对象中；如果未列出，插件将无法正常运行。如果你使用的某条链未在列表中，你需要将 [Wormhole 开发者文档](https://wormhole.com/docs/products/reference/supported-networks/){target=\_blank} 中的数据按如下格式导入到该配置文件中。
 
 该中继器还有其它可选配置。例如，`mode` 字符串被设置为 `"BOTH"`，以确保同时使用 listener 和 executor 插件，但开发者也可以根据需要选择只运行其中一个。此外，还可以指定多个日志级别，例如 `"error"` 仅输出错误信息。不过，在本演示中，请保持配置不变即可。
 
@@ -425,6 +425,6 @@ npm run start
 ## Moonbeam 路由流动性集成 {: #moonbeam-routed-liquidity-integration }
 
 Wormhole 将通过 Moonbeam 路由流动性 (MRL) 计划为平行链提供流动性。此计划允许通过 Moonbeam 网络发送流动性，从而将来自 Wormhole 连接链的流动性一键转移到平行链钱包。
-[MRL](/builders/interoperability/mrl/){target=\_blank} 利用 [GMP 预编译](/builders/ethereum/precompiles/interoperability/gmp/){target=\_blank}，其文档解释了应如何构造跨链消息以正确使用预编译。
+[MRL](builders/interoperability/mrl/){target=\_blank} 利用 [GMP 预编译](builders/ethereum/precompiles/interoperability/gmp/){target=\_blank}，其文档解释了应如何构造跨链消息以正确使用预编译。
 
---8<-- 'text/_disclaimers/third-party-content.md'
+--8<-- 'zh/text/_disclaimers/third-party-content.md'

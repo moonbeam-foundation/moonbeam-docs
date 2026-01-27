@@ -16,11 +16,11 @@ categories: Tokens and Accounts
 
 请注意，您的 Trezor 设备将签署连接到 MetaMask 的任何网络中的交易。
 
---8<-- 'text/_disclaimers/third-party-content-intro.md'
+--8<-- 'zh/text/_disclaimers/third-party-content-intro.md'
 
 ## 检查先决条件 {: #checking-prerequisites }
 
-在开始之前，请将 [Trezor Suite](https://suite.trezor.io){target=_blank} 更新到可用的最新版本。另外，请确保您的 Trezor 硬件钱包正在运行最新的固件。Trezor wiki 提供了关于如何更新 [Trezor One](https://trezor.io/guides/trezor-suite/update-trezor-firmware){target=_blank} 和 [Trezor Model T](https://trezor.io/guides/trezor-suite/update-trezor-firmware){target=_blank} 设备固件的教程。
+在开始之前，请将 [Trezor Suite](https://suite.trezor.io){target=\_blank} 更新到可用的最新版本。另外，请确保您的 Trezor 硬件钱包正在运行最新的固件。Trezor wiki 提供了关于如何更新 [Trezor One](https://trezor.io/guides/trezor-suite/update-trezor-firmware){target=\_blank} 和 [Trezor Model T](https://trezor.io/guides/trezor-suite/update-trezor-firmware){target=\_blank} 设备固件的教程。
 
 在撰写本文时，使用了以下版本：
 
@@ -28,7 +28,7 @@ categories: Tokens and Accounts
  - Trezor One 固件 v1.10.0
  - Trezor Model T 固件 v2.4.0
 
-此外，您需要 MetaMask 作为您的 Trezor 设备和 Moonbase Alpha 之间的媒介。请确保您的 MetaMask 已[连接到 Moonbase Alpha](/tokens/connect/metamask/){target=_blank}。请注意，您的 Trezor 设备将签署连接到 MetaMask 网络的交易。
+此外，您需要 MetaMask 作为您的 Trezor 设备和 Moonbase Alpha 之间的媒介。请确保您的 MetaMask 已[连接到 Moonbase Alpha](tokens/connect/metamask/){target=\_blank}。请注意，您的 Trezor 设备将签署连接到 MetaMask 网络的交易。
 
 ## 将您的 Trezor 帐户导入 MetaMask {: #importing-your-trezor-account-to-metamask }
 
@@ -62,7 +62,7 @@ categories: Tokens and Accounts
 
 ![Trezor 硬件钱包连接向导允许读取公钥](/images/tokens/connect/trezor/trezor-5.webp)
 
-接下来，系统会询问您是否要导出您的 Ethereum 帐户的公钥（选项卡被裁剪并在下图中标记为 1）。之后，系统会提示您选择是否使用 Trezor 的密码选项（选项卡被裁剪并在图像中标记为 2）。如果要使用默认钱包，只需点击 **进入**。否则，请参阅 [Trezor 关于密码钱包的指南文章](https://trezor.io/guides/backups-recovery/advanced-wallets/what-is-a-passphrase){target=_blank}。
+接下来，系统会询问您是否要导出您的 Ethereum 帐户的公钥（选项卡被裁剪并在下图中标记为 1）。之后，系统会提示您选择是否使用 Trezor 的密码选项（选项卡被裁剪并在图像中标记为 2）。如果要使用默认钱包，只需点击 **进入**。否则，请参阅 [Trezor 关于密码钱包的指南文章](https://trezor.io/guides/backups-recovery/advanced-wallets/what-is-a-passphrase){target=\_blank}。
 
 ![Trezor 硬件钱包连接向导允许导出和密码](/images/tokens/connect/trezor/trezor-6.webp)
 
@@ -85,7 +85,7 @@ categories: Tokens and Accounts
 
 如果您已成功地[将您的 Trezor 帐户导入到 MetaMask](#importing-your-trezor-account-to-metamask)，您就可以使用您的 Trezor 设备在 Moonbeam 上签署交易。本教程将向您展示如何在 Moonbase Alpha 测试网上发送一个简单的交易，但它也适用于其他的 Moonbeam 生态系统网络。
 
-首先，确保您的 Trezor 帐户已[充值 DEV 代币](/builders/get-started/networks/moonbase/#get-tokens){target=_blank}。接下来，点击 **发送** 按钮。
+首先，确保您的 Trezor 帐户已[充值 DEV 代币](builders/get-started/networks/moonbase/#get-tokens){target=\_blank}。接下来，点击 **发送** 按钮。
 
 ![MetaMask Trezor 帐户已充值](/images/tokens/connect/trezor/trezor-9.webp)
 
@@ -111,4 +111,4 @@ categories: Tokens and Accounts
 
 使用您的 Trezor 设备与智能合约交互的过程类似。在确认交易之前，请务必仔细检查您 Trezor 设备上正在签名的数据。
 
---8<-- 'text/_disclaimers/third-party-content.md'
+--8<-- 'zh/text/_disclaimers/third-party-content.md'

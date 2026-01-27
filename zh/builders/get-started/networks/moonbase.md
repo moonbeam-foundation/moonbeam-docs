@@ -6,7 +6,7 @@ categories: Basics
 
 # Moonbase Alpha 入门指南
 
---8<-- 'text/builders/get-started/networks/moonbase/connect.md'
+--8<-- 'zh/text/builders/get-started/networks/moonbase/connect.md'
 
 ## 区块浏览器
 
@@ -55,14 +55,14 @@ categories: Basics
 
 ## Demo DApps {: #Demo-DApps }
 
-Moonbase Alpha 上部署了各种 DApp，使您可以试验各种应用程序和集成。您还可以通过 [Moonbase ERC20 Minter](https://moonbase-minterc20.netlify.app){target=_blank} 或 [Moonbeam Uniswap](https://moonbeam-swap.netlify.app/#/swap){target=_blank} DApp 获取各种测试代币。例如，[Moonbeam Uniswap](https://moonbeam-swap.netlify.app/#/swap){target=_blank} 可以帮助您获取 cross-chain 资产，例如 xcUNIT 或 xcKarura，以测试与 XCM 相关的函数。在下表中，您将找到每个示例 DApp、其关联的 URL 和 GitHub 存储库。
+Moonbase Alpha 上部署了各种 DApp，使您可以试验各种应用程序和集成。您还可以通过 [Moonbase ERC20 Minter](https://moonbase-minterc20.netlify.app){target=\_blank} 或 [Moonbeam Uniswap](https://moonbeam-swap.netlify.app/#/swap){target=\_blank} DApp 获取各种测试代币。例如，[Moonbeam Uniswap](https://moonbeam-swap.netlify.app/#/swap){target=\_blank} 可以帮助您获取 cross-chain 资产，例如 xcUNIT 或 xcKarura，以测试与 XCM 相关的函数。在下表中，您将找到每个示例 DApp、其关联的 URL 和 GitHub 存储库。
 
 ### 快速链接 {: #quick-links }
 
 |                                            DApp                                            |    描述     |                                                                            存储库                                                                            |
 |:------------------------------------------------------------------------------------------:|:------------------:|:----------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-|     [Moonbase ERC-20 Minter](https://moonbase-minterc20.netlify.app){target=_blank}      |   ERC-20 水龙头    |                 [https://github.com/papermoonio/moonbase-mintableERC20](https://github.com/papermoonio/moonbase-mintableERC20){target=_blank}                  |
-|        [Moonbeam Uniswap](https://moonbeam-swap.netlify.app/#/swap){target=_blank}        |  Uniswap V2 分叉   |                       [https://github.com/papermoonio/moonbeam-uniswap](https://github.com/papermoonio/moonbeam-uniswap){target=_blank}                        |
+|     [Moonbase ERC-20 Minter](https://moonbase-minterc20.netlify.app){target=\_blank}      |   ERC-20 水龙头    |                 [https://github.com/papermoonio/moonbase-mintableERC20](https://github.com/papermoonio/moonbase-mintableERC20){target=\_blank}                  |
+|        [Moonbeam Uniswap](https://moonbeam-swap.netlify.app/#/swap){target=\_blank}        |  Uniswap V2 分叉   |                       [https://github.com/papermoonio/moonbeam-uniswap](https://github.com/papermoonio/moonbeam-uniswap){target=\_blank}                        |
 
 |        [MoonLotto Lottery](https://moonbase-moonlotto.netlify.app){target=\_blank}        |   TheGraph 演示    | [接口](https://github.com/papermoonio/moonlotto-interface){target=\_blank}, [子图](https://github.com/papermoonio/moonlotto-subgraph){target=\_blank} |
 | [Moonbeam WalletConnect](https://moonbeam-walletconnect-demo.netlify.app){target=\_blank} | WalletConnect 演示 |            [https://github.com/papermoonio/moonbeam-walletconnect-demo](https://github.com/papermoonio/moonbeam-walletconnect-demo){target=\_blank}             |
@@ -73,13 +73,13 @@ Moonbase Alpha 上部署了各种 DApp，使您可以试验各种应用程序和
 
 ### Moonbase ERC20 铸币器 {: #moonbase-erc20-minter }
 
-[Moonbase ERC-20 铸币器](https://moonbase-minterc20.netlify.app){target=_blank} 使您能够铸造各种 ERC-20 测试代币，这些代币分别对应太阳系的 8 个行星和冥王星。要铸造代币，首先按右上角的 **Connect MetaMask**。然后滚动到 **Mint Tokens** 部分，然后选择所需的 ERC-20 合约。按 **Submit Tx** 并在 MetaMask 中确认交易。每次铸造将授予您 100 个代币，并且您每小时可以为每个合约铸造一次代币。
+[Moonbase ERC-20 铸币器](https://moonbase-minterc20.netlify.app){target=\_blank} 使您能够铸造各种 ERC-20 测试代币，这些代币分别对应太阳系的 8 个行星和冥王星。要铸造代币，首先按右上角的 **Connect MetaMask**。然后滚动到 **Mint Tokens** 部分，然后选择所需的 ERC-20 合约。按 **Submit Tx** 并在 MetaMask 中确认交易。每次铸造将授予您 100 个代币，并且您每小时可以为每个合约铸造一次代币。
 
 ![ERC20 铸币器](/images/builders/get-started/networks/moonbase/moonbase-2.webp)
 
 ### Moonbeam Uniswap {: #moonbeam-uniswap }
 
-[Moonbeam Uniswap](https://moonbeam-swap.netlify.app/#/swap){target=\_blank} 是部署到 Moonbase Alpha 的 [Uniswap-V2](https://blog.uniswap.org/uniswap-v2){target=\_blank} 的一个分支。值得注意的是，Moonbeam Uniswap 允许开发人员轻松进行交易，以获取 [跨链资产](/builders/interoperability/xcm/xc20/){target=\_blank}，例如用于 XCM 测试的 xcKarura 或 xcUNIT。要执行您的第一笔交易，请执行以下步骤：
+[Moonbeam Uniswap](https://moonbeam-swap.netlify.app/#/swap){target=\_blank} 是部署到 Moonbase Alpha 的 [Uniswap-V2](https://blog.uniswap.org/uniswap-v2){target=\_blank} 的一个分支。值得注意的是，Moonbeam Uniswap 允许开发人员轻松进行交易，以获取 [跨链资产](builders/interoperability/xcm/xc20/){target=\_blank}，例如用于 XCM 测试的 xcKarura 或 xcUNIT。要执行您的第一笔交易，请执行以下步骤：
 
 1. 按下 **选择代币**
 2. 连接您的 MetaMask 钱包并确保您在 Moonbase Alpha 网络上

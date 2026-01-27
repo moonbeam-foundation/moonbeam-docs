@@ -12,7 +12,7 @@ categories: 基础知识
 
 Moonbeam 的设计目标之一是创建一个尽可能接近以太坊的环境，并提供一组与以太坊兼容的 Web3 RPC 端点。然而，Moonbeam 也是一条基于 Substrate 的链，这意味着它公开了 Substrate RPC，并且它具有由 Substrate 提供支持的集成功能，例如 Staking、Governance 以及其他不属于以太坊 API 的功能。
 
-Moonbeam 的[统一账户](learn/core-concepts/unified-accounts/){target=_blank}是 Moonbeam 实现以太坊兼容性的一种方式，它通过更改协议中底层的账户类型，使其类似于以太坊（H160 或以 `0x` 开头的 20 字节地址）。统一账户被 Substrate 和以太坊 API 使用，并映射到区块链上相同的底层数据存储。然而，通过以太坊 API 使用 Moonbeam 账户时，来自以太坊的用户应该了解一些重要的差异。
+Moonbeam 的[统一账户](learn/core-concepts/unified-accounts/){target=\_blank}是 Moonbeam 实现以太坊兼容性的一种方式，它通过更改协议中底层的账户类型，使其类似于以太坊（H160 或以 `0x` 开头的 20 字节地址）。统一账户被 Substrate 和以太坊 API 使用，并映射到区块链上相同的底层数据存储。然而，通过以太坊 API 使用 Moonbeam 账户时，来自以太坊的用户应该了解一些重要的差异。
 
 本指南将概述这些主要差异中的一些，以及首次使用 Moonbeam 时的预期情况。
 
@@ -61,10 +61,10 @@ Transferable = 1000 - max(0, 100 - 150) = 1000 - 0 = 1000
 
 ### 检索您的余额 {: #retrieve-your-balance }
 
-您可以使用[Polkadot.js API](builders/substrate/libraries/polkadot-js-api/){target=_blank}查看您的余额，包括您的可用（或可转账）余额和保留余额（如果存在）。
+您可以使用[Polkadot.js API](builders/substrate/libraries/polkadot-js-api/){target=\_blank}查看您的余额，包括您的可用（或可转账）余额和保留余额（如果存在）。
 
 !!! note
-    --8<-- 'text/_common/endpoint-examples.md'
+    --8<-- 'zh/text/_common/endpoint-examples.md'
 
 ```js
 --8<-- 'code/learn/core-concepts/balances/balance.js'

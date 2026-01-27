@@ -12,15 +12,15 @@ categories: XCM 远程执行
 
 计算来源是无密钥的（私钥未知）。因此，只能通过来自原始帐户的 XCM extrinsic 访问计算来源。换句话说，原始帐户是唯一可以启动在您的计算来源帐户上交易的帐户，如果您失去对原始帐户的访问权限，您也将失去对您的计算来源帐户的访问权限。
 
-计算来源是从用于在目标链中执行 XCM 的来源计算得出的。默认情况下，这是源链在目标链中的主权帐户。此来源可以通过 [`DescendOrigin`](/builders/interoperability/xcm/core-concepts/instructions/#descend-origin){target=_blank} XCM 指令进行更改。但是，目标链可以决定是否使用新更改的来源来执行 XCM。在 Moonbeam 上，计算来源帐户用于执行 XCM。
+计算来源是从用于在目标链中执行 XCM 的来源计算得出的。默认情况下，这是源链在目标链中的主权帐户。此来源可以通过 [`DescendOrigin`](builders/interoperability/xcm/core-concepts/instructions/#descend-origin){target=\_blank} XCM 指令进行更改。但是，目标链可以决定是否使用新更改的来源来执行 XCM。在 Moonbeam 上，计算来源帐户用于执行 XCM。
 
-基于 Moonbeam 的网络遵循 [Polkadot 设置的计算来源标准](https://github.com/paritytech/polkadot-sdk/blob/{{ polkadot_sdk }}/polkadot/xcm/xcm-builder/src/location_conversion.rs){target=_blank}，也就是说，通过一个 `blake2` 哈希，该哈希取决于 XCM 消息的来源的数据结构。但是，由于 Moonbeam 使用以太坊样式的帐户，因此计算来源被截断为 20 个字节。
+基于 Moonbeam 的网络遵循 [Polkadot 设置的计算来源标准](https://github.com/paritytech/polkadot-sdk/blob/{{ polkadot_sdk }}/polkadot/xcm/xcm-builder/src/location_conversion.rs){target=\_blank}，也就是说，通过一个 `blake2` 哈希，该哈希取决于 XCM 消息的来源的数据结构。但是，由于 Moonbeam 使用以太坊样式的帐户，因此计算来源被截断为 20 个字节。
 
 ## 原始转换 {: #origin-conversion }
 
-当执行 `Transact` 指令时，会发生远程调用的[原始转换](https://github.com/paritytech/polkadot-sdk/blob/{{ polkadot_sdk }}/polkadot/xcm/xcm-executor/src/lib.rs#L719){target=_blank}。目标链上的新原始地址是为目标链上 XCM 执行付费的地址。
+当执行 `Transact` 指令时，会发生远程调用的[原始转换](https://github.com/paritytech/polkadot-sdk/blob/{{ polkadot_sdk }}/polkadot/xcm/xcm-executor/src/lib.rs#L719){target=\_blank}。目标链上的新原始地址是为目标链上 XCM 执行付费的地址。
 
-例如，从 relay 链，[`DescendOrigin`](/builders/interoperability/xcm/core-concepts/instructions/#descend-origin){target=_blank} 指令由 [XCM Pallet](https://github.com/paritytech/polkadot-sdk/blob/{{ polkadot_sdk }}/polkadot/xcm/pallet-xcm/src/lib.rs){target=_blank} 本地注入。对于 Moonbase Alpha 的 relay 链（基于 Westend）而言，它具有以下格式（多位置连接）：
+例如，从 relay 链，[`DescendOrigin`](builders/interoperability/xcm/core-concepts/instructions/#descend-origin){target=\_blank} 指令由 [XCM Pallet](https://github.com/paritytech/polkadot-sdk/blob/{{ polkadot_sdk }}/polkadot/xcm/pallet-xcm/src/lib.rs){target=\_blank} 本地注入。对于 Moonbase Alpha 的 relay 链（基于 Westend）而言，它具有以下格式（多位置连接）：
 
 ```js
 {
@@ -62,7 +62,7 @@ const decodedAddress = decodeAddress('INSERT_ADDRESS');
 
 ## 如何计算导出的原始地址 {: #calculate-computed-origin }
 
-您可以通过 [xcm-tools](https://github.com/Moonsong-Labs/xcm-tools){target=_blank} 存储库中的 `calculate-multilocation-derivative-account` 或 `calculate-remote-origin` 脚本轻松计算导出的原始地址帐户。
+您可以通过 [xcm-tools](https://github.com/Moonsong-Labs/xcm-tools){target=\_blank} 存储库中的 `calculate-multilocation-derivative-account` 或 `calculate-remote-origin` 脚本轻松计算导出的原始地址帐户。
 
 该脚本接受以下输入：
 
@@ -73,7 +73,7 @@ const decodedAddress = decodeAddress('INSERT_ADDRESS');
 
 要使用该脚本，您可以采取以下步骤：
 
-1. 克隆 [xcm-tools](https://github.com/Moonsong-Labs/xcm-tools){target=_blank} 存储库
+1. 克隆 [xcm-tools](https://github.com/Moonsong-Labs/xcm-tools){target=\_blank} 存储库
 2. 运行 `yarn` 以安装必要的软件包
 3. 运行脚本
 
@@ -85,7 +85,7 @@ const decodedAddress = decodeAddress('INSERT_ADDRESS');
     --parents INSERT_PARENTS_VALUE_IF_APPLIES
     ```
 
-您还可以使用 [XCM 实用程序预编译](/builders/interoperability/xcm/xcm-utils/){target=_blank} 的 `multilocationToAddress` 函数来计算导出的原始地址帐户。
+您还可以使用 [XCM 实用程序预编译](builders/interoperability/xcm/xcm-utils/){target=\_blank} 的 `multilocationToAddress` 函数来计算导出的原始地址帐户。
 
 ### 计算基于 Moonbeam 的网络上的计算来源 {: #calculate-the-computed-origin-on-moonbeam }
 
@@ -99,7 +99,7 @@ yarn calculate-multilocation-derivative-account \
 ```
 
 !!! note
-    对于 Moonbeam 或 Moonriver，您将需要拥有自己的端点和 API 密钥，您可以从支持的 [端点提供商](/builders/get-started/endpoints/){target=_blank} 处获取。
+    对于 Moonbeam 或 Moonriver，您将需要拥有自己的端点和 API 密钥，您可以从支持的 [端点提供商](builders/get-started/endpoints/){target=\_blank} 处获取。
 
 返回的输出包括以下值：
 

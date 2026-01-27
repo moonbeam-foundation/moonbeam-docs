@@ -1,6 +1,6 @@
 title: 库
 nav:
   - index.md
-  - 'Polkadot.js API': 'polkadot-js-api.md'
-  - 'Py Substrate Interface': 'py-substrate-interface.md'
-  - 'Sidecar': 'sidecar.md'
+  - 'Polkadot.js API 库': 'polkadot-js-api.md'
+  - 'Python Substrate 接口库': 'py-substrate-interface.md'
+  - 'Sidecar 服务': 'sidecar.md'

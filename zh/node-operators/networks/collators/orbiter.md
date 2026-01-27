@@ -8,7 +8,7 @@ categories: 节点运营商和收集人
 
 ## 介绍 {: #introduction }
 
-Moonbeam 基金会宣布对轨道飞行器计划进行有限的试用。与[去中心化节点](https://nodes.web3.foundation/){target=_blank}类似，该计划允许收集人参与网络的多样性和安全性，即使他们没有足够的资金或支持以其他方式进入活跃集。该计划是在社区的投入下开发的。
+Moonbeam 基金会宣布对轨道飞行器计划进行有限的试用。与[去中心化节点](https://nodes.web3.foundation/){target=\_blank}类似，该计划允许收集人参与网络的多样性和安全性，即使他们没有足够的资金或支持以其他方式进入活跃集。该计划是在社区的投入下开发的。
 
 Moonbeam 基金会将在活跃集中维护轨道飞行器池，并将分配区块生产的权限给计划中的每个成员，这些成员被称为轨道飞行器。
 
@@ -37,62 +37,63 @@ Moonbeam 基金会将在活跃集中维护轨道飞行器池，并将分配区�
 
 Orbiter 池由 Moonbeam 基金会维护，并将区块生产权限分配给每个 orbiter。每个网络的每个 orbiter 池的 orbiter 最大数量如下：
 
-===
+=== "Moonbeam"
 
-    text
+    ```text
     {{ networks.moonbeam.orbiter.max_orbiters_per_collator }} 每个池的 orbiters
-    
+    ```
 
-===
+=== "Moonriver"
 
-    text
+    ```text
     {{ networks.moonriver.orbiter.max_orbiters_per_collator }} 每个池的 orbiters
-    
+    ```
 
-===
+=== "Moonbase Alpha"
 
-    text
+    ```text
     {{ networks.moonbase.orbiter.max_orbiters_per_collator }} 每个池的 orbiters
-    
+    ```
 
 对于 Moonbeam 和 Moonriver，活动集中允许的最大 orbiter 池数量也有限制。对于 Moonbase Alpha，将根据需要设置任意数量的 orbiter 池。最大数量如下：
 
-===
+=== "Moonbeam"
 
-    text
+    ```text
     {{ networks.moonbeam.orbiter.max_collators }} orbiter 池
-    
+    ```
 
-===
+=== "Moonriver"
 
-    text
+    ```text
     {{ networks.moonriver.orbiter.max_collators }} orbiter 池
-    
+    ```
 
-===
+=== "Moonbase Alpha"
 
-    text
+    ```text
     {{ networks.moonbase.orbiter.max_collators }} orbiter 池
-    
+    ```
 
 每个 orbiter 将在一定数量的轮次内处于活动状态，然后下一个 orbiter 将接管。每个网络的活动轮次数如下：
 
-===
+=== "Moonbeam"
 
-    text
+    ```text
     {{ networks.moonbeam.orbiter.active.rounds }} 轮（约 {{ networks.moonbeam.orbiter.active.hours }} 小时）
-    
+    ```
 
-===
+=== "Moonriver"
 
-    text
+    ```text
     {{ networks.moonriver.orbiter.active.rounds }} 轮（约 {{ networks.moonriver.orbiter.active.hours }} 小时）
-    
+    ```
 
-===
+=== "Moonbase Alpha"
 
-    text
+    ```text
     {{ networks.moonbase.orbiter.active.rounds }} 轮（约 {{ networks.moonbase.orbiter.active.hours }} 小时）
+    ```
 
 ## 应用程序和入职流程 {: #application-and-onboarding-process }
 
@@ -106,9 +107,9 @@ Orbiter 池由 Moonbeam 基金会维护，并将区块生产权限分配给每�
 
 入职流程的概要如下：
 
-- [通过同步准备您的节点](/node-operators/networks/run-a-node/overview/){target=_blank}
-- 完全同步后，您可以[生成会话密钥](/node-operators/networks/collators/account-management/#session-keys){target=_blank}
-- [注册您的会话密钥](/node-operators/networks/collators/account-management/#map-author-id-set-session-keys){target=_blank}并发布相关的[映射保证金](#mapping-bond)
+- [通过同步准备您的节点](node-operators/networks/run-a-node/overview/){target=\_blank}
+- 完全同步后，您可以[生成会话密钥](node-operators/networks/collators/account-management/#session-keys){target=\_blank}
+- [注册您的会话密钥](node-operators/networks/collators/account-management/#map-author-id-set-session-keys){target=\_blank}并发布相关的[映射保证金](#mapping-bond)
 - 准备就绪后，通过 `moonbeamOrbiters.orbiterRegister()` extrinsic 注册为轨道飞行器，并发布相关的[轨道飞行器保证金](#bond)
 - 轨道飞行器将被放置在每个网络的等待列表中，直到有可用插槽
 - 一旦插槽打开，您将开始在相应网络上生成区块并获得奖励
@@ -119,43 +120,45 @@ Orbiter 池由 Moonbeam 基金会维护，并将区块生产权限分配给每�
 
 当您将作者 ID 映射到您的帐户时，会发送一个保证金。此保证金是针对每个注册的作者 ID。保证金设置如下：
 
-===
+=== "Moonbeam"
 
-    text
+    ```text
     {{ networks.moonbeam.staking.collator_map_bond }} GLMR
-    
+    ```
 
-===
+=== "Moonriver"
 
-    text
+    ```text
     {{ networks.moonriver.staking.collator_map_bond }} MOVR
-    
+    ```
 
-===
+=== "Moonbase Alpha"
 
-    text
+    ```text
     {{ networks.moonbase.staking.collator_map_bond }} DEV
+    ```
 
 ### Orbiter 保证金 {: #orbiter-bond }
 
 如前所述，每个轨道器必须提交保证金才能加入该计划。此保证金与活动集合的保证金不同，因为它在绑定时不赚取任何委托奖励。当前的保证金如下：
 
-===
+=== "Moonbeam"
 
-    text
+    ```text
     {{ networks.moonbeam.orbiter.bond }} GLMR
-    
+    ```
 
-===
+=== "Moonriver"
 
-    text
+    ```text
     {{ networks.moonriver.orbiter.bond }} MOVR
-    
+    ```
 
-===
+=== "Moonbase Alpha"
 
-    text
+    ```text
     {{ networks.moonbase.orbiter.bond }} DEV
+    ```
 
 ## 奖励 {: #rewards }
 
@@ -163,7 +166,7 @@ Orbiter 池由 Moonbeam 基金会维护，并将区块生产权限分配给每�
 
 ## 性能指标 {: #performance-metrics }
 
-每个轨道器的性能将在一段时间内进行评估，以确定它们是否处于活动状态并生成区块，以及它们的性能是否在所有其他轨道器池整理者的范围内。预计轨道器将运行顶级硬件以保持在该范围内。有关硬件要求的更多信息，请查看[整理者要求页面](/node-operators/networks/collators/requirements/){target=_blank}。
+每个轨道器的性能将在一段时间内进行评估，以确定它们是否处于活动状态并生成区块，以及它们的性能是否在所有其他轨道器池整理者的范围内。预计轨道器将运行顶级硬件以保持在该范围内。有关硬件要求的更多信息，请查看[整理者要求页面](node-operators/networks/collators/requirements/){target=\_blank}。
 
 指标将在七天的时间内进行评估。性能指标如下：
 

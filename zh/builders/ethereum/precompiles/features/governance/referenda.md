@@ -8,7 +8,7 @@ categories: Precompiles, Ethereum Toolkit
 
 ## 简介 {: #introduction }
 
-作为 Polkadot 平行链和去中心化网络，Moonbeam 具有原生的链上治理功能，使利益相关者能够参与到网络的发展方向中。随着 OpenGov（也称为 Governance v2）的推出，Referenda Pallet 允许代币持有者获取有关现有公投的信息、提交提案以供公投，并管理与决策保证金相关的操作，决策保证金是决定公投所需的内容。要了解有关 Moonbeam 治理系统的更多信息，例如相关术语、原则、机制等的概述，请参阅[Moonbeam 上的治理](learn/features/governance/){target=_blank}页面。
+作为 Polkadot 平行链和去中心化网络，Moonbeam 具有原生的链上治理功能，使利益相关者能够参与到网络的发展方向中。随着 OpenGov（也称为 Governance v2）的推出，Referenda Pallet 允许代币持有者获取有关现有公投的信息、提交提案以供公投，并管理与决策保证金相关的操作，决策保证金是决定公投所需的内容。要了解有关 Moonbeam 治理系统的更多信息，例如相关术语、原则、机制等的概述，请参阅[Moonbeam 上的治理](learn/features/governance/){target=\_blank}页面。
 
 Referenda Precompile 直接与 Substrate 的 Referenda Pallet 交互。此 pallet 以 Rust 编写，通常无法从 Moonbeam 的以太坊端访问。但是，它允许您访问查看公投、提交公投和管理所需决策保证金所需的功能。这些功能是 Substrate Referenda Pallet 的一部分，可以直接从 Solidity 接口访问。
 
@@ -32,11 +32,11 @@ Referenda Precompile 位于以下地址：
      {{ networks.moonbase.precompiles.referenda }}
      ```
 
---8<-- 'text/builders/ethereum/precompiles/security.md'
+--8<-- 'zh/text/builders/ethereum/precompiles/security.md'
 
 ## Referenda Solidity接口 {: #the-referenda-solidity-interface }
 
-[`Referenda.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/referenda/Referenda.sol){target=_blank} 是一个Solidity接口，允许开发者与预编译的方法进行交互。
+[`Referenda.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/referenda/Referenda.sol){target=\_blank} 是一个Solidity接口，允许开发者与预编译的方法进行交互。
 
 方法如下：
 
@@ -44,7 +44,7 @@ Referenda Precompile 位于以下地址：
 
     === "参数"
 
-        None。
+        无。
 
     === "返回"
 
@@ -54,7 +54,7 @@ Referenda Precompile 位于以下地址：
 
     === "参数"
 
-        None。
+        无。
 
     === "返回"
 
@@ -74,7 +74,7 @@ Referenda Precompile 位于以下地址：
 
     === "参数"
 
-        None。
+        无。
 
     === "返回"
 
@@ -203,7 +203,7 @@ Referenda Precompile 位于以下地址：
 
     === "返回"
 
-        None。
+        无。
 
 ??? function "**refundDecisionDeposit**(*uint32* index) - 将已结束的全民公投的决策保证金退还给存款人"
 
@@ -213,7 +213,7 @@ Referenda Precompile 位于以下地址：
 
     === "返回"
 
-        None。
+        无。
 
 ??? function "**refundSubmissionDeposit**(*uint32* index) - 将已结束的全民公投的提交保证金退还给存款人"
 
@@ -223,7 +223,7 @@ Referenda Precompile 位于以下地址：
 
     === "返回"
 
-        None。
+        无。
 
 该接口还包括以下事件：
 
@@ -241,7 +241,7 @@ Referenda Precompile 位于以下地址：
 
  - 安装了 MetaMask 并[连接到 Moonbase Alpha](tokens/connect/metamask/){target=\_blank}
  - 一个拥有一些 DEV 代币的帐户。
- --8<-- 'text/_common/faucet/faucet-list-item.md'
+ --8<-- 'zh/text/_common/faucet/faucet-list-item.md'
 
 ### Remix 设置 {: #remix-set-up }
 
@@ -271,7 +271,7 @@ Referenda Precompile 位于以下地址：
 
 为了提交提案，您应该已经提交了提案的预映像哈希值。如果您还没有这样做，请按照[预映像预编译](builders/ethereum/precompiles/features/governance/preimage/){target=\_blank}文档中概述的步骤进行操作。有两种方法可以用来提交提案：`submitAt` 和 `submitAfter`。`submitAt` 函数提交一个提案，以便在给定的区块*执行*，而 `submitAfter` 函数提交一个提案，以便在特定的区块*之后*执行。在本示例中，将使用 `submitAt` ，但是如果您想使用 `submitAfter` ，也可以应用相同的步骤。
 
-要提交提案，您需要确定您的提案属于哪个 Track 以及该 Track 的 Track ID。如需这些要求的帮助，您可以参考[治理概述页面的 OpenGov 部分](learn/features/governance/#opengov){target=_blank}。
+要提交提案，您需要确定您的提案属于哪个 Track 以及该 Track 的 Track ID。如需这些要求的帮助，您可以参考[治理概述页面的 OpenGov 部分](learn/features/governance/#opengov){target=\_blank}。
 
 您还需要确保您手头有预映像哈希和预映像的长度，这两者都应该从遵循[预映像预编译](builders/ethereum/precompiles/features/governance/preimage/){target=\_blank}文档中的步骤获得。如果您不确定，您可以从 [Polkadot.js Apps 的预映像页面](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/preimages){target=\_blank}找到您的预映像，并复制预映像哈希。要获得预映像的长度，您可以从 [Polkadot.js Apps Chain State 页面](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/chainstate){target=\_blank}使用 `preimageFor` 方法查询 `preimage` pallet。
 

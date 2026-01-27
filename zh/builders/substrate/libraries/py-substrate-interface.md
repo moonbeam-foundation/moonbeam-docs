@@ -8,19 +8,19 @@ categories: Substrate Toolkit, Libraries and SDKs
 
 ## 简介 {: #introduction }
 
-[Python Substrate Interface](https://github.com/polkascan/py-substrate-interface){target=_blank} 库允许应用程序开发人员查询 Moonbeam 节点，并使用原生 Python 接口与节点的 Polkadot 或 Substrate 功能进行交互。在这里，您将找到可用功能的概述和一些常用的代码示例，以帮助您开始使用 Python Substrate Interface 与 Moonbeam 网络进行交互。
+[Python Substrate Interface](https://github.com/polkascan/py-substrate-interface){target=\_blank} 库允许应用程序开发人员查询 Moonbeam 节点，并使用原生 Python 接口与节点的 Polkadot 或 Substrate 功能进行交互。在这里，您将找到可用功能的概述和一些常用的代码示例，以帮助您开始使用 Python Substrate Interface 与 Moonbeam 网络进行交互。
 
 ## 检查先决条件 {: #checking-prerequisites }
 
 对于本指南中的示例，您需要具备以下条件：
 
 - 一个有资金的帐户。
-  --8<-- 'text/_common/faucet/faucet-list-item.md'
-  --8<-- 'text/_common/endpoint-examples-list-item.md'
-- 安装了 [`pip`](https://pypi.org/project/pip){target=_blank}
+  --8<-- 'zh/text/_common/faucet/faucet-list-item.md'
+  --8<-- 'zh/text/_common/endpoint-examples-list-item.md'
+- 安装了 [`pip`](https://pypi.org/project/pip){target=\_blank}
 
 !!! note
-    --8<-- 'text/_common/assumes-mac-or-ubuntu-env.md'
+    --8<-- 'zh/text/_common/assumes-mac-or-ubuntu-env.md'
 
 ### 安装 Python Substrate 接口 {: #installing-python-substrate-interface }
 
@@ -34,11 +34,11 @@ pip install substrate-interface
 
 与 ETH API 库类似，您必须首先实例化 Python Substrate Interface API 的 API 实例。使用您希望与之交互的 Moonbeam 网络的 websocket 端点创建 `WsProvider`。
 
---8<-- 'text/_common/endpoint-examples.md'
+--8<-- 'zh/text/_common/endpoint-examples.md'
 
 === "Moonbeam"
 
-    ```python
+    ```py
     # Imports
     from substrateinterface import SubstrateInterface
 
@@ -50,7 +50,7 @@ pip install substrate-interface
 
 === "Moonriver"
 
-    ```python
+    ```py
     # Imports
     from substrateinterface import SubstrateInterface
 
@@ -62,7 +62,7 @@ pip install substrate-interface
 
 === "Moonbase Alpha"
 
-    ```python
+    ```py
     # Imports
     from substrateinterface import SubstrateInterface
 
@@ -74,7 +74,7 @@ pip install substrate-interface
 
 === "Moonbeam Dev Node"
 
-    ```python
+    ```py
     # Import
     from substrateinterface import SubstrateInterface
 
@@ -90,24 +90,24 @@ pip install substrate-interface
 
 ### 访问运行时常量 {: #accessing-runtime-constants }
 
-所有运行时常量，例如 `BlockWeights`、`DefaultBlocksPerRound` 和 `ExistentialDeposit`，都在元数据中提供。您可以使用 [`get_metadata_constants`](https://jamdottech.github.io/py-polkadot-sdk/reference/base/#substrateinterface.base.SubstrateInterface.get_metadata_constants){target=_blank} 方法来查看 Moonbeam 网络元数据中可用的运行时常量列表。
+所有运行时常量，例如 `BlockWeights`、`DefaultBlocksPerRound` 和 `ExistentialDeposit`，都在元数据中提供。您可以使用 [`get_metadata_constants`](https://jamdottech.github.io/py-polkadot-sdk/reference/base/#substrateinterface.base.SubstrateInterface.get_metadata_constants){target=\_blank} 方法来查看 Moonbeam 网络元数据中可用的运行时常量列表。
 
-可以通过 [`get_constant`](https://jamdottech.github.io/py-polkadot-sdk/reference/base/#substrateinterface.base.SubstrateInterface.get_constant){target=_blank} 方法查询元数据中可用的运行时常量。
+可以通过 [`get_constant`](https://jamdottech.github.io/py-polkadot-sdk/reference/base/#substrateinterface.base.SubstrateInterface.get_constant){target=\_blank} 方法查询元数据中可用的运行时常量。
 
-```python
-# 导入
+```py
+# Imports
 from substrateinterface import SubstrateInterface
 
-# 构建API提供者
+# Construct the API provider
 ws_provider = SubstrateInterface(
     url="{{ networks.moonbase.wss_url }}",
 )
 
-# 元数据中可用的运行时常量列表
+# List of available runtime constants in the metadata
 constant_list = ws_provider.get_metadata_constants()
 print(constant_list)
 
-# 在 Moonbeam 上检索存在性存款常量，该常量为 0
+# Retrieve the Existential Deposit constant on Moonbeam, which is 0
 constant = ws_provider.get_constant("Balances", "ExistentialDeposit")
 print(constant.value)
 ```
@@ -120,26 +120,26 @@ print(constant.value)
 
 要检索区块头，您可以使用 [`get_block_header`](https://jamdottech.github.io/py-polkadot-sdk/reference/base/#substrateinterface.base.SubstrateInterface.get_block_header){target=\_blank} 方法。
 
-```python
-# 导入
+```py
+# Imports
 from substrateinterface import SubstrateInterface
 
-# 构建 API 提供程序
+# Construct the API provider
 ws_provider = SubstrateInterface(
     url="{{ networks.moonbase.wss_url }}",
 )
 
-# 检索最新区块
+# Retrieve the latest block
 block = ws_provider.get_block()
 
-# 检索最新的最终确定区块
+# Retrieve the latest finalized block
 block = ws_provider.get_block_header(finalized_only=True)
 
-# 检索给定其 Substrate 区块哈希的区块
+# Retrieve a block given its Substrate block hash
 block_hash = "0xa499d4ebccdabe31218d232460c0f8b91bd08f72aca25f9b25b04b6dfb7a2acb"
 block = ws_provider.get_block(block_hash=block_hash)
 
-# 迭代区块内的 extrinsics
+# Iterate through the extrinsics inside the block
 python
 for extrinsic in block["extrinsics"]:
     if "address" in extrinsic:
@@ -162,11 +162,11 @@ for extrinsic in block["extrinsics"]:
 
 您还可以调整之前的示例，以使用基于订阅的模型来监听新的区块头。
 
-```python
-# 导入
+```py
+# Imports
 from substrateinterface import SubstrateInterface
 
-# 构建 API 提供者
+# Construct the API provider
 ws_provider = SubstrateInterface(
     url="{{ networks.moonbase.wss_url }}",
 )
@@ -191,33 +191,33 @@ result = ws_provider.subscribe_block_headers(subscription_handler)
 
 可以查询诸如 `System`、`Timestamp` 和 `Balances` 等 Substrate 系统模块，以提供诸如帐户随机数和余额等基本信息。可用的存储函数是从元数据中动态读取的，因此您还可以查询 Moonbeam 自定义模块（如 `ParachainStaking` 和 `Democracy`）上的存储信息，以获取特定于 Moonbeam 的状态信息。
 
-```python
-# 导入
+```py
+# Imports
 from substrateinterface import SubstrateInterface
 
-# 构建 API 提供程序
+# Construct the API provider
 ws_provider = SubstrateInterface(
     url="{{ networks.moonbase.wss_url }}",
 )
 
-# 元数据中可用存储函数列表
+# List of available storage functions in the metadata
 method_list = ws_provider.get_metadata_storage_functions()
 print(method_list)
 
-# 查询基本帐户信息
+# Query basic account information
 account_info = ws_provider.query(
     module="System",
     storage_function="Account",
     params=["0x578002f699722394afc52169069a1FfC98DA36f1"],
 )
 
-# 记录帐户随机数
+# Log the account nonce
 print(account_info.value["nonce"])
 
-# 记录帐户可用余额
+
 print(account_info.value["data"]["free"])
 
-# 从 Moonbeam 的平行链 Staking 模块查询候选池信息
+# Log the account free balance
 candidate_pool_info = ws_provider.query(
     module="ParachainStaking", storage_function="CandidatePool", params=[]
 )
@@ -232,20 +232,20 @@ Python Substrate Interface 中的密钥对对象用于对所有数据进行签�
 
 您可以从简短格式私钥或助记词创建密钥对实例。对于 Moonbeam 网络，您还需要将 `KeypairType` 指定为 `KeypairType.ECDSA`。
 
-```python
-# 导入
+```py
+# Imports
 from substrateinterface import Keypair, KeypairType
 
-# 定义简短格式私钥
+# Define the shortform private key
 privatekey = bytes.fromhex("INSERT_PRIVATE_KEY_WITHOUT_0X_PREFIX")
 
-# 定义帐户助记词
+# Define the account mnemonic
 mnemonic = "INSERT_MNEMONIC"
 
-# 从简短格式私钥生成密钥对
+# Generate the keypair from shortform private key
 keypair = Keypair.create_from_private_key(privatekey, crypto_type=KeypairType.ECDSA)
 
-# 从助记词生成密钥对
+# Generate the keypair from mnemonic
 keypair = Keypair.create_from_mnemonic(mnemonic, crypto_type=KeypairType.ECDSA)
 ```
 
@@ -261,23 +261,23 @@ keypair = Keypair.create_from_mnemonic(mnemonic, crypto_type=KeypairType.ECDSA)
 
 以下示例代码将显示发送事务的完整示例。
 
-```python
-# 导入
+```py
+# Imports
 from substrateinterface import SubstrateInterface, Keypair, KeypairType
 from substrateinterface.exceptions import SubstrateRequestException
 
-# 构造 API 提供程序
+# Construct the API provider
 ws_provider = SubstrateInterface(
     url="{{ networks.moonbase.wss_url }}",
 )
 
-# 定义发送帐户的简短格式私钥
+# Define the shortform private key of the sending account
 privatekey = bytes.fromhex("INSERT_PRIVATE_KEY_WITHOUT_0X_PREFIX")
 
-# 生成密钥对
+# Generate the keypair
 keypair = Keypair.create_from_private_key(privatekey, crypto_type=KeypairType.ECDSA)
 
-# 形成交易调用
+# Form a transaction call
 call = ws_provider.compose_call(
     call_module="Balances",
     call_function="transfer_allow_death",
@@ -287,10 +287,10 @@ call = ws_provider.compose_call(
     },
 )
 
-# 形成签名的外生函数
+# Form a signed extrinsic
 extrinsic = ws_provider.create_signed_extrinsic(call=call, keypair=keypair)
 
-# 提交交易
+# Submit the extrinsic
 
 try:
     receipt = ws_provider.submit_extrinsic(extrinsic, wait_for_inclusion=True)
@@ -308,16 +308,16 @@ except SubstrateRequestException as e:
 
 1. 首先，在在线机器上生成签名负载：
 
-    ```python
-    # 导入
+    ```py
+    # Imports
     from substrateinterface import SubstrateInterface
 
-    # 构建 API 提供程序
+    # Construct the API provider
     ws_provider = SubstrateInterface(
         url="{{ networks.moonbase.wss_url }}",
     )
 
-    # 构建交易调用
+    # Construct a transaction call
     call = ws_provider.compose_call(
         call_module="Balances",
         call_function="transfer_allow_death",
@@ -327,47 +327,47 @@ except SubstrateRequestException as e:
         },
     )
 
-    # 生成签名负载
+    # Generate the signature payload
     signature_payload = ws_provider.generate_signature_payload(call=call)
     ```
 
 2. 在离线机器上，使用发送帐户的私钥创建一个密钥对，并对签名负载进行签名：
 
-    ```python
-    # 导入
+    ```py
+    # Imports
     from substrateinterface import Keypair, KeypairType
 
-    # 定义来自离线机器的签名负载
+    # Define the signature payload from the offline machine
     signature_payload = "INSERT_SIGNATURE_PAYLOAD"
 
-    # 定义发送帐户的简短格式私钥
+    # Define the shortform private key of the sender account
     privatekey = bytes.fromhex("INSERT_PRIVATE_KEY_WITHOUT_0X_PREFIX")
 
-    # 从简短格式私钥生成密钥对
+    # Generate the keypair from shortform private key
     keypair = Keypair.create_from_private_key(privatekey, crypto_type=KeypairType.ECDSA)
 
-    # 对 signature_payload 进行签名
+    # Sign the signature_payload 
     signature = keypair.sign(signature_payload)
     ```
 
 3. 在在线机器上，使用发送帐户的公钥创建一个密钥对，然后使用从离线机器生成的签名提交外部交易：
 
-    ```python
-    # 导入
+    ```py
+    # Imports
     from substrateinterface import SubstrateInterface, Keypair, KeypairType
 
-    # 构建 API 提供程序
+    # Construct the API provider
     ws_provider = SubstrateInterface(
         url="{{ networks.moonbase.wss_url }}",
     )
 
-    # 定义来自离线机器的签名
+    # Define the signature from the offline machine
     signature_payload = "INSERT_SIGNATURE_PAYLOAD"
 
-    # 使用发送帐户的以太坊风格钱包地址构建一个密钥对
+    # Construct a keypair with the Ethereum style wallet address of the sending account
     keypair = Keypair(public_key="INSERT_ADDRESS_WITHOUT_0X", crypto_type=KeypairType.ECDSA)
 
-    # 构建与已签名的相同交易调用
+    # Construct the same transaction call that was signed
     call = ws_provider.compose_call(
         call_module="Balances",
         call_function="transfer_allow_death",
@@ -377,24 +377,24 @@ except SubstrateRequestException as e:
         },
     )
 
-    # 使用生成的签名构建已签名的外部交易
+    # Construct the signed extrinsic with the generated signature
     extrinsic = ws_provider.create_signed_extrinsic(
         call=call, keypair=keypair, signature=signature
     )
 
-    # 提交已签名的外部交易
+    # Submit the signed extrinsic
     result = ws_provider.submit_extrinsic(extrinsic=extrinsic)
 
-    # 打印执行结果
+    # Print the execution result
     print(result.extrinsic_hash)
     ```
 
 ## 自定义 RPC 请求 {: #custom-rpc-requests }
 
-您还可以使用 [`rpc_request`](https://jamdottech.github.io/py-polkadot-sdk/reference/base/#substrateinterface.base.SubstrateInterface.rpc_request){target=_blank} 方法发出自定义 RPC 请求。
+您还可以使用 [`rpc_request`](https://jamdottech.github.io/py-polkadot-sdk/reference/base/#substrateinterface.base.SubstrateInterface.rpc_request){target=\_blank} 方法发出自定义 RPC 请求。
 
-这对于与 Moonbeam 的 [Ethereum JSON-RPC](builders/ethereum/json-rpc/eth-rpc/){target=_blank} 端点或 Moonbeam 的 [自定义 RPC](builders/ethereum/json-rpc/moonbeam-custom-api/){target=_blank} 端点进行交互特别有用。
+这对于与 Moonbeam 的 [Ethereum JSON-RPC](builders/ethereum/json-rpc/eth-rpc/){target=\_blank} 端点或 Moonbeam 的 [自定义 RPC](builders/ethereum/json-rpc/moonbeam-custom-api/){target=\_blank} 端点进行交互特别有用。
 
 [共识和最终性页面](learn/core-concepts/consensus-finality/#checking-tx-finality-with-substrate-libraries){target=\_blank} 提供了通过 Python Substrate Interface 使用自定义 RPC 调用来检查给定交易哈希的交易最终性的示例。
 
---8<-- 'text/_disclaimers/third-party-content.md'
+--8<-- 'zh/text/_disclaimers/third-party-content.md'

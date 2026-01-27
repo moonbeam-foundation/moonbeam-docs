@@ -11,7 +11,7 @@ categories: Precompiles, Ethereum Toolkit
 
 通过 Collective Precompile，用户可以直接从 Solidity 接口与 [Substrate 的 collective pallet](https://paritytech.github.io/substrate/master/pallet_collective/index.html){target=\_blank} 进行交互。
 
-Collective 是由一组负责特定民主相关操作的成员组成，例如提案、投票、执行和结束动议。每个集体都可以执行具有不同来源的不同操作。因此，可以创建具有非常具体范围的集体。目前有两个集体：财政委员会集体和 OpenGov 技术委员会集体。因此，每个集体都有一个预编译合约。有关 OpenGov 技术委员会的更多信息，请参阅 [Moonbeam 上的治理](learn/features/governance/){target=\_blank} 页面，有关财政委员会的更多信息，请参阅 [Moonbeam 上的财政](learn/features/treasury/){target=_blank} 页面。
+Collective 是由一组负责特定民主相关操作的成员组成，例如提案、投票、执行和结束动议。每个集体都可以执行具有不同来源的不同操作。因此，可以创建具有非常具体范围的集体。目前有两个集体：财政委员会集体和 OpenGov 技术委员会集体。因此，每个集体都有一个预编译合约。有关 OpenGov 技术委员会的更多信息，请参阅 [Moonbeam 上的治理](learn/features/governance/){target=\_blank} 页面，有关财政委员会的更多信息，请参阅 [Moonbeam 上的财政](learn/features/treasury/){target=\_blank} 页面。
 
 本指南将向您展示如何使用 Collective Precompile 提出、投票和结束提案。
 
@@ -35,7 +35,7 @@ Collective Precompile 位于以下地址：
      |      财政委员会       |        {{networks.moonbase.precompiles.collective_treasury }}        |
      | OpenGov 技术委员会 | {{networks.moonbase.precompiles.collective_opengov_tech_committee }} |
 
---8<-- 'text/builders/ethereum/precompiles/security.md'
+--8<-- 'zh/text/builders/ethereum/precompiles/security.md'
 
 ## 集体 Solidity 接口 {: #the-call-permit-interface }
 
@@ -90,7 +90,7 @@ Collective Precompile 位于以下地址：
 
 本节的示例将向您展示如何使用 Treasury Council Collective Precompile 提交 Treasury 提案。因此，该提案将受到满足 Treasury Council 投票要求的约束。接受 Treasury 提案的门槛是至少五分之三的 Treasury Council 成员。另一方面，拒绝提案的门槛是至少二分之一的 Treasury Council 成员。请记住，为了提出提案并对其进行投票，您必须是 Treasury Council 的成员。
 
-如果您不是 Moonbeam、Moonriver 或 Moonbase Alpha 上的 Treasury Council 成员，您可以使用 [Moonbeam 开发节点](/builders/get-started/networks/moonbeam-dev/){target=\_blank} 测试 Collective Precompile 的功能。Moonbeam 开发节点带有[十个预先资助的帐户](/builders/get-started/networks/moonbeam-dev/#pre-funded-development-accounts){target=\_blank}，其中 Baltathar、Charleth 和 Dorothy 会自动设置为 Treasury Council 集体的成员。您可以使用这三个帐户中的任何一个来按照本指南的其余部分进行操作。
+如果您不是 Moonbeam、Moonriver 或 Moonbase Alpha 上的 Treasury Council 成员，您可以使用 [Moonbeam 开发节点](builders/get-started/networks/moonbeam-dev/){target=\_blank} 测试 Collective Precompile 的功能。Moonbeam 开发节点带有[十个预先资助的帐户](builders/get-started/networks/moonbeam-dev/#pre-funded-development-accounts){target=\_blank}，其中 Baltathar、Charleth 和 Dorothy 会自动设置为 Treasury Council 集体的成员。您可以使用这三个帐户中的任何一个来按照本指南的其余部分进行操作。
 
 ### 检查先决条件 {: #checking-prerequisites }
 
@@ -98,20 +98,20 @@ Collective Precompile 位于以下地址：
 
 要开始使用，您需要具备以下条件：
 
- - 安装 MetaMask 并[连接到基于 Moonbeam 的网络之一](/tokens/connect/metamask/){target=\_blank}
+ - 安装 MetaMask 并[连接到基于 Moonbeam 的网络之一](tokens/connect/metamask/){target=\_blank}
  - 拥有一个有资金的账户。如果使用 Moonbeam 开发节点，则开发账户已预先充值。对于 Moonbeam、Moonriver 或 Moonbase Alpha，您需要为您的账户充值。
-  --8<-- 'text/_common/faucet/faucet-list-item.md'
+  --8<-- 'zh/text/_common/faucet/faucet-list-item.md'
 
 如果您使用的是 Moonbeam 开发节点和开发账户，您还需要执行以下操作：
 
 - 将您的开发节点设置为按时间间隔（例如每 6 秒（6000 毫秒））使用 `--sealing 6000` 标志来密封区块
-- [将 Polkadot.js 应用程序连接到您的本地 Moonbeam 开发节点](/builders/get-started/networks/moonbeam-dev/#connecting-polkadot-js-apps-to-a-local-moonbeam-node){target=\_blank}
-- 将 Baltathar、Charleth 和/或 Dorothy 的账户导入到 [Polkadot.js 应用程序](/tokens/connect/polkadotjs/#creating-or-importing-an-h160-account){target=\_blank} 和 [MetaMask](/tokens/connect/metamask/#import-accounts){target=\_blank}
+- [将 Polkadot.js 应用程序连接到您的本地 Moonbeam 开发节点](builders/get-started/networks/moonbeam-dev/#connecting-polkadot-js-apps-to-a-local-moonbeam-node){target=\_blank}
+- 将 Baltathar、Charleth 和/或 Dorothy 的账户导入到 [Polkadot.js 应用程序](tokens/connect/polkadotjs/#creating-or-importing-an-h160-account){target=\_blank} 和 [MetaMask](tokens/connect/metamask/#import-accounts){target=\_blank}
 
 ### Remix 设置 {: #remix-set-up }
 
 1. 获取 [`Collective.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/collective/Collective.sol){target=\_blank} 的副本
-2. 将文件内容复制并粘贴到名为 `Collective.sol` 的 [Remix 文件](https://remix.ethereum.org){target=_blank}中
+2. 将文件内容复制并粘贴到名为 `Collective.sol` 的 [Remix 文件](https://remix.ethereum.org){target=\_blank}中
 
 ![将 Collective 接口复制并粘贴到 Remix 中](/images/builders/ethereum/precompiles/features/governance/collective/collective-1.webp)
 

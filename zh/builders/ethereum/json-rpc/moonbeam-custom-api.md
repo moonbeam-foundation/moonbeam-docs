@@ -16,7 +16,7 @@ Moonbeam 节点包括对自定义 JSON-RPC 端点的支持：
 
 这些端点为检查链上事件的最终性提供了有价值的功能。
 
-要开始探索 Moonbeam 的自定义 JSON-RPC 端点，您可以尝试下面提供的 curl 示例。这些示例演示了如何查询 Moonbase Alpha 的公共 RPC 端点。但是，您可以通过更改 URL 和 API 密钥轻松地修改它们，以便与您自己的 Moonbeam 或 Moonriver 端点一起使用。如果您还没有这样做，您可以从我们支持的[端点提供商](/builders/get-started/endpoints/){target=_blank}处获取您的端点和 API 密钥。
+要开始探索 Moonbeam 的自定义 JSON-RPC 端点，您可以尝试下面提供的 curl 示例。这些示例演示了如何查询 Moonbase Alpha 的公共 RPC 端点。但是，您可以通过更改 URL 和 API 密钥轻松地修改它们，以便与您自己的 Moonbeam 或 Moonriver 端点一起使用。如果您还没有这样做，您可以从我们支持的[端点提供商](builders/get-started/endpoints/){target=\_blank}处获取您的端点和 API 密钥。
 
 ## 支持的自定义 RPC 方法 {: #rpc-methods }
 
@@ -74,7 +74,7 @@ Moonbeam 节点包括对自定义 JSON-RPC 端点的支持：
 
     === "参数"
 
-        None
+        无
 
     === "返回值"
 

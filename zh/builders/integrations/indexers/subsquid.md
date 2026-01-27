@@ -8,21 +8,21 @@ categories: Indexers and Queries
 
 ## 介绍 {: #introduction }
 
-[SQD（前身为 Subsquid）](https://www.sqd.ai/){target=_blank} 是一个数据网络，它允许使用 SQD 的去中心化数据湖和开源 SDK，从 100 多个链中快速且经济高效地检索区块链数据。简单来说，SQD 可以被认为是一个包含 GraphQL 服务器的 ETL（提取、转换和加载）工具。它支持全面的过滤、分页，甚至全文搜索功能。
+[SQD（前身为 Subsquid）](https://www.sqd.ai/){target=\_blank} 是一个数据网络，它允许使用 SQD 的去中心化数据湖和开源 SDK，从 100 多个链中快速且经济高效地检索区块链数据。简单来说，SQD 可以被认为是一个包含 GraphQL 服务器的 ETL（提取、转换和加载）工具。它支持全面的过滤、分页，甚至全文搜索功能。
 
 SQD 本身完全支持以太坊虚拟机（EVM）和 Substrate 数据。由于 Moonbeam 是一个基于 Substrate 且与 EVM 兼容的智能合约平台，因此 SQD 可用于索引基于 EVM 和 Substrate 的数据。SQD 提供 Substrate 存档和处理器以及 EVM 存档和处理器。Substrate 存档和处理器可用于索引 Substrate 和 EVM 数据。这允许开发人员从任何 Moonbeam 网络中提取链上数据，并在一个项目中处理 EVM 日志以及 Substrate 实体（事件、外部操作和存储项），并通过一个 GraphQL 端点提供结果数据。如果您只想索引 EVM 数据，建议使用 EVM 存档和处理器。
 
 本快速入门指南将向您展示如何使用 SQD 创建 Substrate 和 EVM 项目，并配置它以索引 Moonbeam 上的数据。
 
---8<-- 'text/_disclaimers/third-party-content-intro.md'
+--8<-- 'zh/text/_disclaimers/third-party-content-intro.md'
 
 ## 检查先决条件 {: #checking-prerequisites }
 
 要开始使用 SQD，您需要具备以下条件：
 
-- [Node.js](https://nodejs.org/en/download/package-manager){target=_blank} 16 或更高版本
-- [Docker](https://docs.docker.com/get-started/get-docker/){target=_blank}
-- [Squid CLI](https://docs.sqd.ai/squid-cli/installation/){target=_blank}
+- [Node.js](https://nodejs.org/en/download/package-manager){target=\_blank} 16 或更高版本
+- [Docker](https://docs.docker.com/get-started/get-docker/){target=\_blank}
+- [Squid CLI](https://docs.sqd.ai/squid-cli/installation/){target=\_blank}
 
 !!! note
     Squid 模板与 `yarn` 不兼容，因此您需要改用 `npm`。
@@ -101,7 +101,7 @@ SQD 本身完全支持以太坊虚拟机（EVM）和 Substrate 数据。由于 M
         ```
 
     !!! note
-        --8<-- 'text/_common/endpoint-setup.md'
+        --8<-- 'zh/text/_common/endpoint-setup.md'
 
 5. 还有一项快速更改需要对模板进行。SQD Substrate 模板配置为处理 Substrate 帐户类型，但 Moonbeam 使用以太坊样式的帐户。`src/main.ts` 文件中的 `getTransferEvents` 函数将迭代 `processor.ts` 提取的事件，并将相关的 `transfer` 事件存储在数据库中。在 `getTransferEvents` 函数中，删除 `from` 和 `to` 字段的 ss58 编码。在未修改的 Substrate 模板中，`from` 和 `to` 字段按如下所示进行 ss58 编码：
 
@@ -184,7 +184,7 @@ SQD 本身完全支持以太坊虚拟机（EVM）和 Substrate 数据。由于 M
         ```
 
     !!! note
-        --8<-- 'text/_common/endpoint-setup.md'
+        --8<-- 'zh/text/_common/endpoint-setup.md'
 
 这就是配置您的 SQD 项目以在 Moonbeam 上索引 EVM 数据所需的全部操作！现在您可以更新 `schema.graphql`、`src/main.ts` 和 `src/processor.ts` 文件，以索引您项目所需的数据！继续执行下一节中的步骤以运行您的索引器并查询您的 Squid。
 
@@ -236,6 +236,6 @@ SQD 本身完全支持以太坊虚拟机（EVM）和 Substrate 数据。由于 M
         }
         ```
 
-有关其他示例和工作流程，请参阅 [SQD 文档](https://docs.sqd.dev/){target=_blank}。
+有关其他示例和工作流程，请参阅 [SQD 文档](https://docs.sqd.dev/){target=\_blank}。
 
---8<-- 'text/_disclaimers/third-party-content.md'
+--8<-- 'zh/text/_disclaimers/third-party-content.md'

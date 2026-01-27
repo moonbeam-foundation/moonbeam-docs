@@ -10,7 +10,7 @@ categories: Ethereum Toolkit
 
 验证智能合约是提高部署在 Moonbeam 上的合约透明度和安全性的绝佳方法。Hardhat 和 Foundry 与 Etherscan 的合约验证服务集成，通过本地检测要验证的合约以及所需的 Solidity 库（如果有）来自动执行验证合约的过程。
 
-Hardhat 插件可以无缝集成到您的 [Hardhat](https://hardhat.org){target=_blank} 项目中。[Foundry](https://github.com/foundry-rs/foundry){target=_blank} 也具有 Etherscan 功能，但它们内置于其 Forge 工具中，而不是包含在单独的插件中。
+Hardhat 插件可以无缝集成到您的 [Hardhat](https://hardhat.org){target=\_blank} 项目中。[Foundry](https://github.com/foundry-rs/foundry){target=\_blank} 也具有 Etherscan 功能，但它们内置于其 Forge 工具中，而不是包含在单独的插件中。
 
 本指南将向您展示如何使用这两个插件来验证部署在 Moonbase Alpha 上的智能合约。本指南也适用于 Moonbeam 和 Moonriver。
 
@@ -18,17 +18,17 @@ Hardhat 插件可以无缝集成到您的 [Hardhat](https://hardhat.org){target=
 
 要学习本教程，您需要具备以下条件：
 
-- [MetaMask 已安装并连接到 Moonbase Alpha](/tokens/connect/metamask/){target=_blank} 测试网
+- [MetaMask 已安装并连接到 Moonbase Alpha](tokens/connect/metamask/){target=\_blank} 测试网
 - 一个已充值 `DEV` 代币的帐户。
- --8<-- 'text/_common/faucet/faucet-list-item.md'
+ --8<-- 'zh/text/_common/faucet/faucet-list-item.md'
 - 一个 Etherscan API 密钥
 - 已安装并配置 Git
 
 ## 生成 Etherscan API 密钥 {: generating-an-etherscan-api-key }
 
-要在 Moonbeam 网络的 Moonscan 上验证合约，您需要一个 [Etherscan API 密钥](https://docs.etherscan.io/etherscan-v2/getting-an-api-key){target=_blank}。由于 Moonscan 是 Etherscan 生态系统的一部分，因此单个密钥适用于所有支持的网络。
+要在 Moonbeam 网络的 Moonscan 上验证合约，您需要一个 [Etherscan API 密钥](https://docs.etherscan.io/etherscan-v2/getting-an-api-key){target=\_blank}。由于 Moonscan 是 Etherscan 生态系统的一部分，因此单个密钥适用于所有支持的网络。
 
-要创建 [Etherscan 帐户](https://etherscan.io/){target=_blank} 并生成您的密钥，请按照以下步骤操作：
+要创建 [Etherscan 帐户](https://etherscan.io/){target=\_blank} 并生成您的密钥，请按照以下步骤操作：
 
 1. 点击 **Sign In**（登录）
 2. 选择 **Click to sign up**（点击注册），然后注册您的新帐户
@@ -46,7 +46,7 @@ Hardhat 插件可以无缝集成到您的 [Hardhat](https://hardhat.org){target=
 
 ## 使用 Hardhat Etherscan 插件 {: #using-the-hardhat-verify-plugin }
 
-本指南本节中的示例将基于在[使用 Hardhat 部署到 Moonbeam](/builders/ethereum/dev-env/hardhat/){target=\_blank} 指南中创建的 `Box.sol` 合约。
+本指南本节中的示例将基于在[使用 Hardhat 部署到 Moonbeam](builders/ethereum/dev-env/hardhat/){target=\_blank} 指南中创建的 `Box.sol` 合约。
 
 要开始使用 Hardhat Etherscan 插件，您首先需要安装插件库：
 
@@ -103,9 +103,9 @@ npx hardhat verify --network moonbase INSERT_CONTRACT_ADDRESS INSERT_CONSTRUCTOR
 
 ## 使用 Foundry 进行验证 {: #using-foundry-to-verify }
 
-本指南此部分中的示例将使用在[使用 Foundry 部署到 Moonbeam](/builders/ethereum/dev-env/foundry/){target=_blank} 指南中创建的 `MyToken.sol` 合约。
+本指南此部分中的示例将使用在[使用 Foundry 部署到 Moonbeam](builders/ethereum/dev-env/foundry/){target=\_blank} 指南中创建的 `MyToken.sol` 合约。
 
-除了 Foundry 项目，您还需要一个 [Etherscan API 密钥](https://etherscan.io/){target=_blank} 来验证您的合约。
+除了 Foundry 项目，您还需要一个 [Etherscan API 密钥](https://etherscan.io/){target=\_blank} 来验证您的合约。
 
 如果您已经部署了示例合约，您可以使用 `verify-contract` 命令来验证它。在验证合约之前，您需要对构造函数参数进行 ABI 编码。要对示例合约执行此操作，您可以运行以下命令：
 

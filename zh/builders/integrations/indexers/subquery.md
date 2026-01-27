@@ -16,7 +16,7 @@ SubQuery 支持为任何 Moonbeam 网络索引以太坊虚拟机 (EVM) 和 Subst
 
 本快速入门指南将向您展示如何创建 SubQuery 项目并将其配置为在 Moonbeam 上索引 Substrate 和 EVM 数据。
 
---8<-- 'text/_disclaimers/third-party-content-intro.md'
+--8<-- 'zh/text/_disclaimers/third-party-content-intro.md'
 
 ## 检查先决条件 {: #checking-prerequisites }
 
@@ -30,9 +30,9 @@ SubQuery 支持为任何 Moonbeam 网络索引以太坊虚拟机 (EVM) 和 Subst
 
 ## 创建一个项目 {: #create-a-project }
 
-要开始使用，您需要[创建一个SubQuery项目](https://subquery.network/doc/quickstart/quickstart.html){target=_blank}：
+要开始使用，您需要[创建一个SubQuery项目](https://subquery.network/doc/quickstart/quickstart.html){target=\_blank}：
 
-1. 全局安装 [SubQuery CLI](https://subquery.network/doc/indexer/quickstart/quickstart.html#_1-install-the-subquery-cli){target=_blank}：
+1. 全局安装 [SubQuery CLI](https://subquery.network/doc/indexer/quickstart/quickstart.html#_1-install-the-subquery-cli){target=\_blank}：
 
     === "npm"
 
@@ -90,7 +90,7 @@ SubQuery 支持为任何 Moonbeam 网络索引以太坊虚拟机 (EVM) 和 Subst
     4. 系统将提示您添加其他信息，例如RPC终结点、项目作者和项目描述。 对于这些，您可以直接按Enter键并接受默认值，或者根据需要自定义它们。
 
         !!! note
-            为了避免达到公共RPC端点的速率限制，建议您拥有自己的端点和API密钥，您可以从支持的[端点提供商](/builders/get-started/endpoints/){target=\_blank}处获得。
+            为了避免达到公共RPC端点的速率限制，建议您拥有自己的端点和API密钥，您可以从支持的[端点提供商](builders/get-started/endpoints/){target=\_blank}处获得。
 
         --8<-- 'code/builders/integrations/indexers/subquery/terminal/select-rpc.md'
 
@@ -151,7 +151,7 @@ SubQuery 支持为任何 Moonbeam 网络索引以太坊虚拟机 (EVM) 和 Subst
     },
     ```
 
- --8<-- 'text/_common/endpoint-examples.md'
+ --8<-- 'zh/text/_common/endpoint-examples.md'
 
 ## 修改 GraphQL 模式 {: #modify-the-graphql-schema }
 
@@ -384,4 +384,4 @@ datasources: [
 
 就是这样！有关如何使用 `moonbeam-substrate-evm-starter` 模板项目的分步教程，你可以参考 [SubQuery 的 Moonbeam (EVM) 快速入门文档](https://subquery.network/doc/indexer/quickstart/quickstart_chains/polkadot-moonbeam.html){target=\_blank}。
 
---8<-- 'text/_disclaimers/third-party-content.md'
+--8<-- 'zh/text/_disclaimers/third-party-content.md'

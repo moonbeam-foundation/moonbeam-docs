@@ -15,7 +15,7 @@ Polkadot 依赖于状态证明来保证特定时间的数据完整性。状态�
 
 Polkadot 独特的架构和平行链区块验证过程意味着像 Moonbeam 这样的区块链在其状态中具有中继链存储根哈希值。因此，Moonbeam 可以提供一种机制，通过检查存储的存储根哈希值的证明来验证中继链状态。
 
-Moonbeam 的 [中继数据验证器预编译](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/relay-data-verifier/RelayDataVerifier.sol){target=_blank} 合约为智能合约提供了一种简便的方法，可以通过编程方式构建依赖于在合约调用中验证中继链状态的函数。因此，无需预言机将中继链数据馈送到 Moonbeam。此功能在以下合约地址中随时可用：
+Moonbeam 的 [中继数据验证器预编译](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/relay-data-verifier/RelayDataVerifier.sol){target=\_blank} 合约为智能合约提供了一种简便的方法，可以通过编程方式构建依赖于在合约调用中验证中继链状态的函数。因此，无需预言机将中继链数据馈送到 Moonbeam。此功能在以下合约地址中随时可用：
 
 === "Moonbeam"
 
@@ -29,11 +29,11 @@ Moonbeam 的 [中继数据验证器预编译](https://github.com/moonbeam-founda
 
     `{{ networks.moonbase.precompiles.relay_data_verifier }}`
 
---8<-- 'text/builders/ethereum/precompiles/security.md'
+--8<-- 'zh/text/builders/ethereum/precompiles/security.md'
 
 ## 中继数据验证器 Solidity 接口 {: #the-relay-data-verifier-solidity-interface }
 
-[`RelayDataVerifier.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/relay-data-verifier/RelayDataVerifier.sol){target=_blank} 是一个 Solidity 接口，允许开发者与预编译的方法进行交互。
+[`RelayDataVerifier.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/relay-data-verifier/RelayDataVerifier.sol){target=\_blank} 是一个 Solidity 接口，允许开发者与预编译的方法进行交互。
 
 ??? code "RelayDataVerifier.sol"
 
@@ -61,9 +61,9 @@ Moonbeam 的 [中继数据验证器预编译](https://github.com/moonbeam-founda
         - `readProof` - 预编译合约中定义的结构体，包含用于验证数据的存储证明。`ReadProof` 结构体定义如下：
           ```
           struct ReadProof {
-              // 生成证明所针对的区块哈希
+              // The block hash against which the proof is generated
               bytes32 at;
-              /// 存储证明
+              /// The storage proof
               bytes[] proof;
           }
           ```
@@ -71,7 +71,7 @@ Moonbeam 的 [中继数据验证器预编译](https://github.com/moonbeam-founda
     
     === "返回值"
 
-        在 `verifyEntry` 函数上执行[静态调用](https://docs.ethers.org/v6/api/contract/#BaseContractMethod-staticCall){target=_blank}时，您可以查看与十六进制格式的密钥关联的返回值。
+        在 `verifyEntry` 函数上执行[静态调用](https://docs.ethers.org/v6/api/contract/#BaseContractMethod-staticCall){target=\_blank}时，您可以查看与十六进制格式的密钥关联的返回值。
 
         ```js
          
@@ -86,9 +86,9 @@ Moonbeam 的 [中继数据验证器预编译](https://github.com/moonbeam-founda
         - `readProof` - 预编译合约中定义的结构体，包含用于验证数据的存储证明。`ReadProof` 结构体定义如下：
         ```
         struct ReadProof {
-            // 生成证明所针对的区块哈希
+            // The block hash against which the proof is generated
             bytes32 at;
-            /// 存储证明
+            /// The storage proof
             bytes[] proof;
         }
         ```
@@ -96,7 +96,7 @@ Moonbeam 的 [中继数据验证器预编译](https://github.com/moonbeam-founda
 
     === "返回值"
 
-        在 `verifyEntries` 函数上执行[静态调用](https://docs.ethers.org/v6/api/contract/#BaseContractMethod-staticCall){target=_blank}时，您可以查看包含映射到各自密钥的相应值的数组，以十六进制格式表示。
+        在 `verifyEntries` 函数上执行[静态调用](https://docs.ethers.org/v6/api/contract/#BaseContractMethod-staticCall){target=\_blank}时，您可以查看包含映射到各自密钥的相应值的数组，以十六进制格式表示。
 
         ```js
          
@@ -120,7 +120,7 @@ Moonbeam 的 [中继数据验证器预编译](https://github.com/moonbeam-founda
 
 - 在 Moonbase Alpha 上创建或拥有一个帐户，以测试预编译中的不同功能
 - 该帐户需要用 `DEV` 代币充值。
- --8<-- 'text/_common/faucet/faucet-list-item.md'
+ --8<-- 'zh/text/_common/faucet/faucet-list-item.md'
 
 ### 使用以太坊库 {: #using-ethereum-libraries }
 
@@ -132,7 +132,7 @@ Moonbeam 的 [中继数据验证器预编译](https://github.com/moonbeam-founda
     --8<-- 'code/builders/ethereum/precompiles/utility/relay-data-verifier/abi.js'
     ```
 
-获得ABI后，您可以使用您选择的以太坊库与预编译进行交互，例如[Ethers.js](/builders/ethereum/libraries/ethersjs/){target=_blank}或[Web3.py](/builders/ethereum/libraries/web3py/){target=_blank}。一般步骤如下：
+获得ABI后，您可以使用您选择的以太坊库与预编译进行交互，例如[Ethers.js](builders/ethereum/libraries/ethersjs/){target=\_blank}或[Web3.py](builders/ethereum/libraries/web3py/){target=\_blank}。一般步骤如下：
 
 1.  创建一个provider
 2.  创建预编译的合约实例

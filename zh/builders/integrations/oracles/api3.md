@@ -10,13 +10,13 @@ categories: Oracle Nodes
 
 API3 是一个去中心化解决方案，旨在以易于访问和可扩展的方式向智能合约平台提供传统的 API 服务。它由去中心化自治组织 (DAO) API3 DAO 管理。API3 使开发人员能够从他们的智能合约中访问链下资源，而无需担心安全问题。API3 通过 Airnode（第一方预言机）和来自这些预言机的链上数据流来实现这一点。
 
-开发人员可以使用 [Airnode](https://airnode-docs.api3.org/reference/airnode/latest/understand/){target=_blank} 在 Moonbeam 网络上的智能合约中请求链下数据。Airnode 是一种第一方预言机，可将链下 API 数据推送到您的链上合约。Airnode 让 API 提供商可以轻松运行自己的第一方预言机节点。这样，他们可以向任何对其服务感兴趣的链上 dApp 提供数据，而无需中介。
+开发人员可以使用 [Airnode](https://airnode-docs.api3.org/reference/airnode/latest/understand/){target=\_blank} 在 Moonbeam 网络上的智能合约中请求链下数据。Airnode 是一种第一方预言机，可将链下 API 数据推送到您的链上合约。Airnode 让 API 提供商可以轻松运行自己的第一方预言机节点。这样，他们可以向任何对其服务感兴趣的链上 dApp 提供数据，而无需中介。
 
-链上智能合约请求 [RRP（请求响应协议）](https://airnode-docs.api3.org/reference/airnode/latest/developers/){target=_blank} 合约（[`AirnodeRrpV0.sol`](https://github.com/api3dao/airnode/blob/v0.11/packages/airnode-protocol/contracts/rrp/AirnodeRrpV0.sol){target=_blank}），该合约将请求添加到事件日志中。然后，Airnode 访问事件日志，获取 API 数据，并使用所请求的数据对请求者执行回调。
+链上智能合约请求 [RRP（请求响应协议）](https://airnode-docs.api3.org/reference/airnode/latest/developers/){target=\_blank} 合约（[`AirnodeRrpV0.sol`](https://github.com/api3dao/airnode/blob/v0.11/packages/airnode-protocol/contracts/rrp/AirnodeRrpV0.sol){target=\_blank}），该合约将请求添加到事件日志中。然后，Airnode 访问事件日志，获取 API 数据，并使用所请求的数据对请求者执行回调。
 
 ![详细说明 Airnode 流程的图表。](/images/builders/integrations/oracles/api3/api3-1.webp)
 
---8<-- 'text/_disclaimers/third-party-content-intro.md'
+--8<-- 'zh/text/_disclaimers/third-party-content-intro.md'
 
 ## 从 Airnode 请求链下数据 {: #calling-an-airnode }
 
@@ -38,20 +38,20 @@ pragma solidity 0.8.9;
 import "@api3/airnode-protocol/contracts/rrp/requesters/RrpRequesterV0.sol";
 import "@openzeppelin/contracts@4.9.5/access/Ownable.sol";
 
-// 一个将通过调用指定的 Airnode 返回所请求数据的 Requester。
+// A Requester that will return the requested data by calling the specified Airnode.
 contract Requester is RrpRequesterV0, Ownable {
     mapping(bytes32 => bool) public incomingFulfillments;
     mapping(bytes32 => int256) public fulfilledData;
 
-    // 确保在部署合约时为您的链指定正确的 _rrpAddress。
+    // Make sure you specify the right _rrpAddress for your chain while deploying the contract.
     constructor(address _rrpAddress) RrpRequesterV0(_rrpAddress) {}
 
-    // 用于从赞助商钱包接收资金并将其发送给所有者。
+    // To receive funds from the sponsor wallet and send them to the owner.
     receive() external payable {
         payable(owner()).transfer(address(this).balance);
     }
 
-    // 将触发 Airnode 请求的主要 makeRequest 函数。
+    // The main makeRequest function that will trigger the Airnode request.
     function makeRequest(
         address airnode,
         bytes32 endpointId,
@@ -61,13 +61,13 @@ contract Requester is RrpRequesterV0, Ownable {
 
     ) external {
         bytes32 requestId = airnodeRrp.makeFullRequest(
-            airnode,                        // airnode 地址
+            airnode,                        // airnode address
             endpointId,                     // endpointId
-            sponsor,                        // 赞助商的地址
-            sponsorWallet,                  // 赞助商钱包
+            sponsor,                        // sponsor's address
+            sponsorWallet,                  // sponsorWallet
             address(this),                  // fulfillAddress
             this.fulfill.selector,          // fulfillFunctionId
-            parameters                      // 编码的 API 参数
+            parameters                      // encoded API parameters
         );
         incomingFulfillments[requestId] = true;
     }
@@ -82,7 +82,7 @@ contract Requester is RrpRequesterV0, Ownable {
         fulfilledData[requestId] = decodedData;
     }
 
-    // 用于从赞助商钱包中提款到合约。
+    // To withdraw funds from the sponsor wallet to the contract.
     function withdraw(address airnode, address sponsorWallet) external onlyOwner {
         airnodeRrp.requestWithdrawal(
         airnode,
@@ -131,7 +131,7 @@ contract Requester is RrpRequesterV0, Ownable {
 
 对请求者合约的回调包含两个参数：
 
-- [**`requestId`**](https://airnode-docs.api3.org/reference/airnode/latest/concepts/request.html#requestid){target=_blank} - 首次在发出请求时获得，并在此处传递，作为标识预期响应的请求的引用
+- [**`requestId`**](https://airnode-docs.api3.org/reference/airnode/latest/concepts/request.html#requestid){target=\_blank} - 首次在发出请求时获得，并在此处传递，作为标识预期响应的请求的引用
 - **`data`** - 如果响应成功，这是请求的数据编码，除了其他响应数据外，还包含时间戳。 使用 `abi` 对象中的 `decode()` 函数对其进行解码
 
 !!! note
@@ -152,7 +152,7 @@ contract Requester is RrpRequesterV0, Ownable {
 ### 订阅 dAPI {: #subscribing-to-dapis }
 
 通过 [API3 市场](https://market.api3.org/){target=\_blank}，用户可以在 [Moonbeam](https://market.api3.org/moonbeam){target=\_blank}、[Moonriver](https://market.api3.org/moonriver){target=\_blank} 和 [Moonbase Alpha TestNet](https://market.api3.org/moonbeam-testnet){target=\_blank}（目前标记为 Moonbeam TestNet）上访问 dAPI。
-从 [API3 市场主页](https://market.api3.org/){target=_blank} 上，您可以搜索给定的链。选择链后，您可以查看可用 dAPI的列表，然后点击一个以获取更多信息。例如，您可以点击适用于 Moonbeam 的 `USDT/USD` 交易对，以查看 dAPI 的参数，包括偏差和心跳。
+从 [API3 市场主页](https://market.api3.org/){target=\_blank} 上，您可以搜索给定的链。选择链后，您可以查看可用 dAPI的列表，然后点击一个以获取更多信息。例如，您可以点击适用于 Moonbeam 的 `USDT/USD` 交易对，以查看 dAPI 的参数，包括偏差和心跳。
 
 dAPI 支持的参数包括：
 
@@ -194,11 +194,11 @@ import "@openzeppelin/contracts@4.9.5/access/Ownable.sol";
 import "@api3/contracts/api3-server-v1/proxies/interfaces/IProxy.sol";
 
 contract DataFeedReaderExample is Ownable {
-    // 从 API3 Market UI 获取的代理合约地址
+    // The proxy contract address obtained from the API3 Market UI
     address public proxyAddress;
 
-    // 更新代理合约地址是一项安全性至关重要的操作。
-    // 在此示例中，只有所有者才能执行此操作
+    // Updating the proxy contract address is a security-critical
+    // action. In this example, only the owner is allowed to do so
     function setProxyAddress(address _proxyAddress) public onlyOwner {
         proxyAddress = _proxyAddress;
     }
@@ -208,11 +208,11 @@ contract DataFeedReaderExample is Ownable {
         view
         returns (int224 value, uint256 timestamp)
     {
-        // 使用 IProxy 接口通过其
-        // 代理合约读取 dAPI
+        // Use the IProxy interface to read a dAPI via its
+        // proxy contract
         (value, timestamp) = IProxy(proxyAddress).read();
-        // 如果您对“value”和“timestamp”有任何假设，
-        // 请务必在从代理读取后验证它们
+        // If you have any assumptions about `value` and `timestamp`,
+        // make sure to validate them after reading from the proxy
     }
 }
 ```
@@ -234,4 +234,4 @@ contract DataFeedReaderExample is Ownable {
 - [API3 Medium](https://medium.com/api3){target=\_blank}
 - [API3 YouTube](https://www.youtube.com/API3DAO){target=\_blank}
 
---8<-- 'text/_disclaimers/third-party-content.md'
+--8<-- 'zh/text/_disclaimers/third-party-content.md'

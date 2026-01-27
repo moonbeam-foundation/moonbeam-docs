@@ -11,7 +11,7 @@ categories: 库和 SDK，以太坊工具包
 
 [Web3.py](https://web3py.readthedocs.io) 是一组库，允许开发人员使用 Python 通过 HTTP、IPC 或 WebSocket 协议与以太坊节点进行交互。Moonbeam 有一个类似于以太坊的 API 可用，它与以太坊风格的 JSON-RPC 调用完全兼容。因此，开发人员可以利用这种兼容性，并使用 Web3.py 库与 Moonbeam 节点交互，就像在以太坊上进行交互一样。
 
-在本指南中，您将学习如何使用 Web3.py 库在 Moonbase Alpha 上发送交易和部署合约。本指南可以适用于 [Moonbeam](/builders/get-started/networks/moonbeam/){target=\_blank}、[Moonriver](/builders/get-started/networks/moonriver/){target=\_blank} 或 [Moonbeam 开发节点](/builders/get-started/networks/moonbeam-dev/){target=\_blank}。
+在本指南中，您将学习如何使用 Web3.py 库在 Moonbase Alpha 上发送交易和部署合约。本指南可以适用于 [Moonbeam](builders/get-started/networks/moonbeam/){target=\_blank}、[Moonriver](builders/get-started/networks/moonriver/){target=\_blank} 或 [Moonbeam 开发节点](builders/get-started/networks/moonbeam-dev/){target=\_blank}。
 
 ## 检查先决条件 {: #checking-prerequisites }
 
@@ -19,13 +19,13 @@ categories: 库和 SDK，以太坊工具包
 
 - 一个有资金的帐户。
 
---8<-- 'text/_common/faucet/faucet-list-item.md'
+--8<-- 'zh/text/_common/faucet/faucet-list-item.md'
 
-- --8<-- 'text/_common/endpoint-examples-list-item.md'
+- --8<-- 'zh/text/_common/endpoint-examples-list-item.md'
 
 !!! note
 
-    --8<-- 'text/_common/assumes-mac-or-ubuntu-env.md'
+    --8<-- 'zh/text/_common/assumes-mac-or-ubuntu-env.md'
 
 ## 创建 Python 项目 {: #create-a-python-project }
 
@@ -45,7 +45,7 @@ pip3 install web3 py-solc-x solc-select
 
 在本指南中，您将创建许多提供不同功能的脚本，例如发送交易、部署合约以及与已部署的合约进行交互。在大多数这些脚本中，您需要创建一个 [Web3.py provider](https://web3py.readthedocs.io/en/stable/providers.html){target=\_blank} 来与网络交互。
 
---8<-- 'text/_common/endpoint-setup.md'
+--8<-- 'zh/text/_common/endpoint-setup.md'
 
 要创建一个提供程序，您可以按照以下步骤操作：
 
@@ -160,7 +160,7 @@ python3 transaction.py
 
 ## 部署合约 {: #deploy-a-contract }
 
---8<-- 'text/builders/ethereum/libraries/contract.md'
+--8<-- 'zh/text/builders/ethereum/libraries/contract.md'
 
 ### 编译合约脚本 {: #compile-contract-script }
 
@@ -297,4 +297,4 @@ python3 reset.py
 
 --8<-- 'code/builders/ethereum/libraries/web3-py/terminal/reset.md'
 
---8<-- 'text/_disclaimers/third-party-content.md'
+--8<-- 'zh/text/_disclaimers/third-party-content.md'

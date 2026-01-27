@@ -17,7 +17,7 @@ categories: GMP Providers
 
 Hyperlane API 提供了一套丰富的 Web3 应用程序开发套件，确保开发人员拥有构建所需的工具。借助这些工具和 API，开发人员可以使用 Hyperlane 协议及其 API 来编写可以轻松部署到所有 Hyperlane 连接的生态系统中的 dApp。
 
---8<-- 'text/_disclaimers/third-party-content-intro.md'
+--8<-- 'zh/text/_disclaimers/third-party-content-intro.md'
 
 ## 入门 {: #getting-started }
 
@@ -32,4 +32,4 @@ Hyperlane API 提供了一套丰富的 Web3 应用程序开发套件，确保开
 
 - [主网和测试网合约](https://v2.hyperlane.xyz/docs/resources/addresses/permissionless){target=\_blank}
 
---8<-- 'text/_disclaimers/third-party-content.md'
+--8<-- 'zh/text/_disclaimers/third-party-content.md'

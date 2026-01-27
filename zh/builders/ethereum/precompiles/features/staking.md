@@ -34,7 +34,7 @@ Moonbeam 通过 Parachain Staking Pallet 使用委托权益证明（DPoS）系�
 
 本指南将涵盖质押预编译接口中的可用方法。此外，还会展示如何通过质押预编译和以太坊 API 与 Parachain Staking Pallet 交互。本指南示例在 Moonbase Alpha 上完成，但同样适用于 Moonbeam 或 Moonriver。
 
---8<-- 'text/builders/ethereum/precompiles/security.md'
+--8<-- 'zh/text/builders/ethereum/precompiles/security.md'
 
 ## 退出延迟 {: #exit-delays }
 
@@ -153,7 +153,7 @@ Parachain Staking Pallet 的部分 extrinsic 包含退出延迟，在请求可�
 
     === "参数"
 
-        None。
+        无。
 
     === "返回值"
 
@@ -163,7 +163,7 @@ Parachain Staking Pallet 的部分 extrinsic 包含退出延迟，在请求可�
 
     === "参数"
 
-        None。
+        无。
 
     === "返回值"
 
@@ -173,7 +173,7 @@ Parachain Staking Pallet 的部分 extrinsic 包含退出延迟，在请求可�
 
     === "参数"
 
-        None。
+        无。
 
     === "返回值"
 
@@ -213,7 +213,7 @@ Parachain Staking Pallet 的部分 extrinsic 包含退出延迟，在请求可�
 
     === "参数"
 
-        None。
+        无。
 
     === "返回值"
 
@@ -290,7 +290,7 @@ Parachain Staking Pallet 的部分 extrinsic 包含退出延迟，在请求可�
 
     === "返回值"
 
-        None。
+        无。
 
 ??? function "**scheduleLeaveCandidates**(*uint256* candidateCount) - 安排候选者退出候选者池的请求。安排请求不会自动执行。需要等待 [退出延迟](#exit-delays)，然后才能通过 `executeLeaveCandidates` extrinsic 执行请求。使用 Parachain Staking Pallet 的 `scheduleLeaveCandidates` 方法"
 
@@ -300,7 +300,7 @@ Parachain Staking Pallet 的部分 extrinsic 包含退出延迟，在请求可�
 
     === "返回值"
 
-        None。
+        无。
 
 ??? function "**executeLeaveCandidates**(*address* candidate, *uint256* candidateDelegationCount) - 执行到期的退出整理人候选者集合请求。使用 Parachain Staking Pallet 的 `executeLeaveCandidates` 方法"
 
@@ -311,7 +311,7 @@ Parachain Staking Pallet 的部分 extrinsic 包含退出延迟，在请求可�
 
     === "返回值"
 
-        None。
+        无。
 
 ??? function "**cancelLeaveCandidates**(*uint256* candidateCount) - 允许候选者取消待处理的退出候选者池请求。需要提供当前候选者池数量。使用 Parachain Staking Pallet 的 `cancelLeaveCandidates` 方法"
 
@@ -321,27 +321,27 @@ Parachain Staking Pallet 的部分 extrinsic 包含退出延迟，在请求可�
 
     === "返回值"
 
-        None。
+        无。
 
 ??? function "**goOffline**() - 在不解绑的情况下暂时离开整理人候选者集合。使用 Parachain Staking Pallet 的 `goOffline` 方法"
 
     === "参数"
 
-        None。
+        无。
 
     === "返回值"
 
-        None。
+        无。
 
 ??? function "**goOnline**() - 在之前调用 `goOffline()` 后重新加入整理人候选者集合。使用 Parachain Staking Pallet 的 `goOnline` 方法"
 
     === "参数"
 
-        None。
+        无。
 
     === "返回值"
 
-        None。
+        无。
 
 ??? function "**candidateBondMore**(*uint256* more) - 整理人候选者将保证金增加指定数量。使用 Parachain Staking Pallet 的 `candidateBondMore` 方法"
 
@@ -351,7 +351,7 @@ Parachain Staking Pallet 的部分 extrinsic 包含退出延迟，在请求可�
 
     === "返回值"
 
-        None。
+        无。
 
 ??? function "**scheduleCandidateBondLess**(*uint256* less) - 安排请求减少候选者保证金的指定数量。安排请求不会自动执行。需要等待 [退出延迟](#exit-delays)，然后才能通过 `execute_candidate_bond_request` extrinsic 执行请求。使用 Parachain Staking Pallet 的 `scheduleCandidateBondLess` 方法"
 
@@ -361,7 +361,7 @@ Parachain Staking Pallet 的部分 extrinsic 包含退出延迟，在请求可�
 
     === "返回值"
 
-        None。
+        无。
 
 ??? function "**executeCandidateBondLess**(*address* candidate) - 执行到期的请求，以减少指定候选者的保证金数量。使用 Parachain Staking Pallet 的 `executeCandidateBondLess` 方法"
 
@@ -371,17 +371,17 @@ Parachain Staking Pallet 的部分 extrinsic 包含退出延迟，在请求可�
 
     === "返回值"
 
-        None。
+        无。
 
 ??? function "**cancelCandidateBondLess**() - 允许候选者取消待处理的减少保证金请求。使用 Parachain Staking Pallet 的 `cancelCandidateBondLess` 方法"
 
     === "参数"
 
-        None。
+        无。
 
     === "返回值"
 
-        None。
+        无。
 
 ??? function "**delegateWithAutoCompound**(*address* candidate, *uint256* amount, *uint8* autoCompound, *uint256* candidateDelegationCount, *uint256* candidateAutoCompoundingDelegationCount, *uint256* delegatorDelegationCount) - 为整理人候选者进行委托，并自动设置奖励自动复投的百分比；`autoCompound` 为 0-100 的整数（无小数）。使用 Parachain Staking Pallet 的 `delegateWithAutoCompound` 方法"
 
@@ -396,7 +396,7 @@ Parachain Staking Pallet 的部分 extrinsic 包含退出延迟，在请求可�
 
     === "返回值"
 
-        None。
+        无。
 
 ??? function "**scheduleRevokeDelegation**(*address* candidate) - 安排根据候选者地址撤销委托的请求。安排请求不会自动执行。需要等待 [退出延迟](#exit-delays)，然后才能通过 `executeDelegationRequest` extrinsic 执行请求。使用 Parachain Staking Pallet 的 `scheduleRevokeDelegation` 方法"
 
@@ -406,7 +406,7 @@ Parachain Staking Pallet 的部分 extrinsic 包含退出延迟，在请求可�
 
     === "返回值"
 
-        None。
+        无。
 
 ??? function "**delegatorBondMore**(*address* candidate, *uint256* more) - 委托人向整理人增加指定数量的委托保证金。使用 Parachain Staking Pallet 的 `delegatorBondMore` 方法"
 
@@ -417,7 +417,7 @@ Parachain Staking Pallet 的部分 extrinsic 包含退出延迟，在请求可�
 
     === "返回值"
 
-        None。
+        无。
 
 ??? function "**scheduleDelegatorBondLess**(*address* candidate, *uint256* less) - 安排委托人针对特定候选者减少委托保证金的请求。安排请求不会自动执行。需要等待 [退出延迟](#exit-delays)，然后才能通过 `executeDelegationRequest` extrinsic 执行请求。使用 Parachain Staking Pallet 的 `scheduleDelegatorBondLess` 方法"
 
@@ -428,7 +428,7 @@ Parachain Staking Pallet 的部分 extrinsic 包含退出延迟，在请求可�
 
     === "返回值"
 
-        None。
+        无。
 
 ??? function "**executeDelegationRequest**(*address* delegator, *address* candidate) - 执行到期的委托请求，需要提供委托人和候选者地址。使用 Parachain Staking Pallet 的 `executeDelegationRequest` 方法"
 
@@ -439,7 +439,7 @@ Parachain Staking Pallet 的部分 extrinsic 包含退出延迟，在请求可�
 
     === "返回值"
 
-        None。
+        无。
 
 ??? function "**cancelDelegationRequest**(*address* candidate) - 取消待处理的委托请求，需要提供候选者地址。使用 Parachain Staking Pallet 的 `cancelDelegationRequest` 方法"
 
@@ -449,7 +449,7 @@ Parachain Staking Pallet 的部分 extrinsic 包含退出延迟，在请求可�
 
     === "返回值"
 
-        None。
+        无。
 
 ??? function "**setAutoCompound**(*address* candidate, *uint8* value, *uint256* candidateAutoCompoundingDelegationCount, *uint256* delegatorDelegationCount) - 为现有委托设置自动复投值；`value` 为 0-100 的整数（无小数）。使用 Parachain Staking Pallet 的 `setAutoCompound` 方法"
 
@@ -462,7 +462,7 @@ Parachain Staking Pallet 的部分 extrinsic 包含退出延迟，在请求可�
 
     === "返回值"
 
-        None。
+        无。
 
 ## 与 Solidity 接口交互 {: #interact-with-solidity-interface }
 
@@ -470,10 +470,10 @@ Parachain Staking Pallet 的部分 extrinsic 包含退出延迟，在请求可�
 
 以下示例在 Moonbase Alpha 上演示，但 Moonbeam 和 Moonriver 也可采用类似步骤。
 
-- 安装 MetaMask 并 [连接到 Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}
+- 安装 MetaMask 并 [连接到 Moonbase Alpha](tokens/connect/metamask/){target=\_blank}
 - 拥有至少 `{{networks.moonbase.staking.min_del_stake}}` 代币的账户。
 
---8<-- 'text/_common/faucet/faucet-list-item.md'
+--8<-- 'zh/text/_common/faucet/faucet-list-item.md'
 
 !!! note
 

@@ -72,7 +72,7 @@ categories: XCM
     ```
 
 - `OnlyChild` - 描述位置的子项（如果父项和子项之间只有一对一的关系）。当前，除了在派生上下文时作为后备之外，不使用此项
-- `Plurality` - 描述满足特定条件或共享共同特征的多个元素。这要求您指定 Junction 表示的 [Body ID](https://github.com/paritytech/polkadot-sdk/blob/{{ polkadot_sdk }}/polkadot/xcm/src/v3/junction.rs#L150-L176){target=_blank} 和 [Body Part](https://github.com/paritytech/polkadot-sdk/blob/{{ polkadot_sdk }}/polkadot/xcm/src/v3/junction.rs#L222-L251){target=_blank}
+- `Plurality` - 描述满足特定条件或共享共同特征的多个元素。这要求您指定 Junction 表示的 [Body ID](https://github.com/paritytech/polkadot-sdk/blob/{{ polkadot_sdk }}/polkadot/xcm/src/v3/junction.rs#L150-L176){target=\_blank} 和 [Body Part](https://github.com/paritytech/polkadot-sdk/blob/{{ polkadot_sdk }}/polkadot/xcm/src/v3/junction.rs#L222-L251){target=\_blank}
 
     ```js
     { Plurality: { id: INSERT_BODY_ID, part: INSERT_BODY_PART } }
@@ -98,45 +98,46 @@ categories: XCM
 
 要从另一个平行链定位基于 Moonbeam 的链，您需要使用以下多重定位：
 
-===
+=== "Moonbeam"
 
-    js
+    ```js
     {
       parents: 1,
       interior: {
         X1: [{ Parachain: 2004 }],
       },
     };
-    
+    ```
 
-===
+=== "Moonriver"
 
-    js
+    ```js
     {
       parents: 1,
       interior: {
         X1: [{ Parachain: 2023 }],
       },
     };
-    
+    ```
 
-===
+=== "Moonbase Alpha"
 
-    js
+    ```js
     {
       parents: 1,
       interior: {
         X1: [{ Parachain: 1000 }],
       },
     };
+    ```
 
-### 从另一个平行链定位 Moonbeam 上的帐户 {: #target_account_moonbeam_from_parachain }
+### 从另一个平行链定位 Moonbeam 上的帐户 {: #target-account-moonbeam-from-parachain }
 
 要从另一个平行链定位 Moonbeam 链上的特定帐户，您可以使用以下多重定位：
 
 === "Moonbeam"
 
-    js
+    ```js
     {
       parents: 1,
       interior: {
@@ -146,11 +147,11 @@ categories: XCM
         ],
       },
     };
-    
+    ```
 
 === "Moonriver"
 
-    js
+    ```js
     {
       parents: 1,
       interior: {
@@ -160,11 +161,11 @@ categories: XCM
         ],
       },
     };
-    
+    ```
 
 === "Moonbase Alpha"
 
-    js
+    ```js
     {
       parents: 1,
       interior: {
@@ -174,147 +175,152 @@ categories: XCM
         ],
       },
     };
+    ```
 
 ### 从另一个平行链定位 Moonbeam 的原生资产 {: #target-moonbeam-native-asset-from-parachain }
 
 要从另一个平行链定位 Moonbeam 的原生资产，您可以使用以下多重地址：
 
-===
+=== "Moonbeam"
 
-    js
+    ```js
     {
       parents: 1,
       interior: {
         X2: [
           { Parachain: 2004 },
-          { PalletInstance: 10 }, // Moonbeam 上 Balances Pallet 的索引
+          { PalletInstance: 10 }, // Index of the Balances Pallet on Moonbeam
         ],
       },
     };
-    
+    ```
 
-===
+=== "Moonriver"
 
-    js
+    ```js
     {
       parents: 1,
       interior: {
         X2: [
           { Parachain: 2023 },
-          { PalletInstance: 10 }, // Moonriver 上 Balances Pallet 的索引
+          { PalletInstance: 10 }, // Index of the Balances Pallet on Moonriver
         ],
       },
     };
-    
+    ```
 
-===
+=== "Moonbase Alpha"
 
-    js
+    ```js
     {
       parents: 1,
       interior: {
         X2: [
           { Parachain: 1000 },
-          { PalletInstance: 3 }, // Moonbase Alpha 上 Balances Pallet 的索引
+          { PalletInstance: 3 }, // Index of the Balances Pallet on Moonbase Alpha
         ],
       },
     };
+    ```
 
 ### 从中继链定位 Moonbeam {: #target-moonbeam-from-relay }
 
 要从中继链定位基于 Moonbeam 的链，您可以使用以下多重定位：
 
-===
+=== "Moonbeam"
 
-    js
+    ```js
     {
       parents: 0,
       interior: {
         X1: [{ Parachain: 2004 }],
       },
     };
-    
+    ```
 
-===
+=== "Moonriver"
 
-    js
+    ```js
     {
       parents: 0,
       interior: {
         X1: [{ Parachain: 2023 }],
       },
     };
-    
+    ```
 
-===
+=== "Moonbase Alpha"
 
-    js
+    ```js
     {
       parents: 0,
       interior: {
         X1: [{ Parachain: 1000 }],
       },
     };
+    ```
 
 ### 从 Moonbeam 定位中继链 {: #target-relay-from-moonbeam }
 
 要从基于 Moonbeam 的链定位中继链，您可以使用以下多重定位：
 
-===
+=== "Moonbeam"
 
-    js
+    ```js
     {
       parents: 1,
       interior: Here,
     };
-    
+    ```
 
-===
+=== "Moonriver"
 
-    js
+    ```js
     {
       parents: 1,
       interior: Here,
     };
-    
+    ```
 
-===
+=== "Moonbase Alpha"
 
-    js
+    ```js
     {
       parents: 1,
       interior: Here,
     };
+    ```
 
 ### 从 Moonbeam 定位中继链上的帐户 {: #target-account-relay-from-moonbeam }
 
 要定位中继链上的特定帐户，您将使用以下多重定位：
 
-===
+=== "Moonbeam"
 
-    js
+    ```js
     {
       parents: 1,
       interior: { X1: { AccountId32: { id: INSERT_RELAY_ADDRESS } } },
     };
-    
+    ```
 
-===
+=== "Moonriver"
 
-    js
+    ```js
     {
       parents: 1,
       interior: { X1: { AccountId32: { id: INSERT_RELAY_ADDRESS } } },
     };
-    
+    ```
 
-===
+=== "Moonbase Alpha"
 
-    js
+    ```js
     {
       parents: 1,
       interior: { X1: { AccountId32: { id: INSERT_RELAY_ADDRESS } } },
     };
+    ```
 
 ### 从 Moonbeam 定位另一个平行链 {: #target-parachain-from-moonbeam }
 
@@ -358,7 +364,7 @@ categories: XCM
 Location to Account API 是一种将多重位置转换为 `AccountID20` 地址的简便方法。可以通过 Polkadot.js Apps **开发者**部分的[运行时调用](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbeam.network#/runtime){target=\_blank}选项卡访问 Location to Account API。Location to Account API 的 `convertLocation` 方法将多重位置作为参数，并返回 `AccountID20` 地址。
 
 ```javascript
-// 使用 convertLocation 方法查询 locationToAccountApi
+// Query the locationToAccountApi using convertLocation method
 const result =
   await api.call.locationToAccountApi.convertLocation(multilocation);
 console.log('转换结果：', result.toHuman());

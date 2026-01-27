@@ -45,6 +45,7 @@ COVERAGE_REPORT = TRANSLATION_STAGE / "summary_report.json"
 VALIDATION_REPORT = TRANSLATION_STAGE / "validation_report.json"
 VALIDATION_PAYLOAD_SNAPSHOT = TRANSLATION_STAGE / "validation_payload_snapshot.json"
 PRUNED_REPORT = TRANSLATION_STAGE / "pruned_translations.json"
+RETRANSLATE_PAYLOAD = TRANSLATION_STAGE / "retranslate_payload.json"
 LANGUAGE_CODE_PATTERN = re.compile(r"^[A-Za-z]{2}(?:[-_][A-Za-z]{2})?$")
 EXCLUDED_PREFIXES = (
     ".github/",
@@ -260,6 +261,55 @@ def _summarize_payload_segments(entries: list[dict[str, Any]]) -> dict[str, list
                 }
             )
     return segments
+
+
+def _build_retranslate_payload_from_validation(report_path: Path) -> list[dict[str, Any]]:
+    """Build re-translation entries for missing anchored sections found in validation."""
+    if not report_path.exists():
+        return []
+    try:
+        report = json.loads(report_path.read_text(encoding="utf-8"))
+    except Exception:
+        return []
+    issues = report.get("issues") if isinstance(report, dict) else None
+    if not isinstance(issues, list):
+        return []
+
+    out: list[dict[str, Any]] = []
+    seen: set[tuple[str, str, str]] = set()
+    for issue in issues:
+        if not isinstance(issue, dict):
+            continue
+        if issue.get("issue_type") != "missing_anchor_section":
+            continue
+        lang = issue.get("target_language")
+        source_path = issue.get("source_path")
+        target_path = issue.get("target_path")
+        details = issue.get("details") or {}
+        if not isinstance(details, dict):
+            continue
+        missing_id = details.get("missing_section_id")
+        insert_before = details.get("insert_before_section_id")
+        english_section = details.get("english_section")
+        if not (lang and source_path and missing_id and isinstance(english_section, str) and english_section.strip()):
+            continue
+        key = (str(lang), str(source_path), str(missing_id))
+        if key in seen:
+            continue
+        seen.add(key)
+        out.append(
+            {
+                "kind": "anchored_section",
+                "source_path": source_path,
+                "target_path": target_path or None,
+                "source_language": "en",
+                "target_language": lang,
+                "content": english_section,
+                "missing_section_id": missing_id,
+                "insert_before_section_id": insert_before,
+            }
+        )
+    return out
 
 
 def _sanitize_payload_entry(entry: dict[str, Any]) -> dict[str, Any]:
@@ -1248,6 +1298,16 @@ def _run_pipeline(args: argparse.Namespace) -> int:
         ),
         "issues_by_language": validation_summary.get("issues_by_language", {}),
     }
+
+    retranslate_entries = _build_retranslate_payload_from_validation(VALIDATION_REPORT)
+    if retranslate_entries:
+        RETRANSLATE_PAYLOAD.write_text(
+            json.dumps(retranslate_entries, ensure_ascii=False, indent=2),
+            encoding="utf-8",
+        )
+        _info(
+            f"Wrote retranslation payload: {RETRANSLATE_PAYLOAD} ({len(retranslate_entries)} section(s))"
+        )
     summary_payload = {
         "missing_per_language": missing_report,
         "locale_added_per_locale": locale_summary.get("added_per_locale", {}),
@@ -1261,6 +1321,8 @@ def _run_pipeline(args: argparse.Namespace) -> int:
         "validation_status": validation_block["status"],
         "validation_issue_count": validation_block["issue_count"],
         "validation_issues": validation_summary.get("issues", []),
+        "retranslate_payload": str(RETRANSLATE_PAYLOAD) if retranslate_entries else None,
+        "retranslate_entry_count": len(retranslate_entries),
         "payload_entry_count": len(payload_entries),
         "localized_file_changes": len(target_files),
         "diff_file_count": len(english_files),

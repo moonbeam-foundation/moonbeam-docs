@@ -18,12 +18,12 @@ categories: Libraries and SDKs, Ethereum Toolkit
 对于本指南中的示例，您需要具备以下条件：
 
 - 一个有资金的帐户。
-    --8<-- 'text/_common/faucet/faucet-list-item.md'
-    --8<-- 'text/_common/endpoint-examples-list-item.md'
+    --8<-- 'zh/text/_common/faucet/faucet-list-item.md'
+    --8<-- 'zh/text/_common/endpoint-examples-list-item.md'
 
 !!! note
 
-    --8<-- 'text/_common/assumes-mac-or-ubuntu-env.md'
+    --8<-- 'zh/text/_common/assumes-mac-or-ubuntu-env.md'
 
 ## 安装 Ethers.js {: #install-ethersjs }
 
@@ -51,7 +51,7 @@ mkdir ethers-examples && cd ethers-examples && npm init --y
 
 在本指南中，您将创建许多脚本，这些脚本提供不同的功能，例如发送交易、部署合约以及与已部署的合约进行交互。在大多数这些脚本中，您需要创建一个 [Ethers 提供程序](https://docs.ethers.org/v6/api/providers/){target=\_blank} 以与网络进行交互。
 
---8<-- 'text/_common/endpoint-setup.md'
+--8<-- 'zh/text/_common/endpoint-setup.md'
 
 要创建提供程序，您可以按照以下步骤操作：
 
@@ -274,13 +274,13 @@ node transaction.js
 
 ## 部署合约 {: #deploy-a-contract }
 
---8<-- 'text/builders/ethereum/libraries/contract.md'
+--8<-- 'zh/text/builders/ethereum/libraries/contract.md'
 
 ### 编译合约脚本 {: #compile-contract-script }
 
---8<-- 'text/builders/ethereum/libraries/compile-js.md'
+--8<-- 'zh/text/builders/ethereum/libraries/compile-js.md'
 
---8<-- 'text/builders/ethereum/libraries/compile.md'
+--8<-- 'zh/text/builders/ethereum/libraries/compile.md'
 
 ```js
 --8<-- 'code/builders/ethereum/libraries/compile.js'
@@ -396,7 +396,7 @@ const incrementer = new ethers.Contract(contractAddress, abi, provider);
 const get = async () => {
   console.log(`Making a call to contract at address: ${contractAddress}`);
 
-  // 6. Call contract
+  // 6. Call contract 
   const data = await incrementer.number();
 
   console.log(`The current number stored is: ${data}`);
@@ -555,4 +555,4 @@ node reset.js
 
 --8<-- 'code/builders/ethereum/libraries/ethers-js/terminal/reset.md'
 
---8<-- 'text/_disclaimers/third-party-content.md'
+--8<-- 'zh/text/_disclaimers/third-party-content.md'

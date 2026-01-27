@@ -8,13 +8,13 @@ categories: 基础知识, 质押 (Staking)
 
 ## 简介 {: #introduction }
 
-Moonbeam 使用基于 [Polkadot 的权益证明模型](https://docs.polkadot.com/polkadot-protocol/architecture/polkadot-chain/pos-consensus/){target=_blank} 的区块生产机制，其中有收集人和验证人。[收集人](https://wiki.polkadot.com/learn/learn-collator/){target=\_blank} 通过从用户那里收集交易并为中继链[验证人](https://wiki.polkadot.com/learn/learn-validator/){target=\_blank}生成状态转换证明来维护平行链（在本例中为 Moonbeam）。
+Moonbeam 使用基于 [Polkadot 的权益证明模型](https://docs.polkadot.com/polkadot-protocol/architecture/polkadot-chain/pos-consensus/){target=\_blank} 的区块生产机制，其中有收集人和验证人。[收集人](https://wiki.polkadot.com/learn/learn-collator/){target=\_blank} 通过从用户那里收集交易并为中继链[验证人](https://wiki.polkadot.com/learn/learn-validator/){target=\_blank}生成状态转换证明来维护平行链（在本例中为 Moonbeam）。
 
 活跃收集人集合（生成区块的节点）中的候选者是根据他们在网络中的权益来选择的。这就是质押的用武之地。
 
 收集人候选者（以及如果他们委托，则为代币持有者）在网络中拥有权益。按质押数量排名的前 N 个候选者被选择来生成一组有效的交易区块，其中 N 是一个可配置的参数。每个区块奖励的一部分会分配给生成区块的收集人，然后收集人会根据委托人在收集人权益中所占的百分比，与委托人分享奖励。这样，网络成员就会被激励质押代币，以提高整体安全性。由于质押是在协议级别通过质押界面完成的，如果您选择委托，您委托的收集人将无法访问您的代币。
 
-要轻松管理与质押相关的操作，您可以访问 [Moonbeam 网络 DApp](https://apps.moonbeam.network){target=\_blank} 并使用页面顶部的网络选项卡在 Moonbeam 网络之间轻松切换。要了解如何使用 DApp，您可以查看[如何在 Moonriver 上质押 MOVR 代币](https://moonbeam.network/news/how-to-stake-movr-tokens-on-moonriver-and-earn-staking-rewards){target=_blank} 指南或[视频教程](https://www.youtube.com/watch?v=8GwetYmzEJM){target=\_blank}，两者都可以适用于 Moonbeam 和 Moonbase Alpha 测试网。
+要轻松管理与质押相关的操作，您可以访问 [Moonbeam 网络 DApp](https://apps.moonbeam.network){target=\_blank} 并使用页面顶部的网络选项卡在 Moonbeam 网络之间轻松切换。要了解如何使用 DApp，您可以查看[如何在 Moonriver 上质押 MOVR 代币](https://moonbeam.network/news/how-to-stake-movr-tokens-on-moonriver-and-earn-staking-rewards){target=\_blank} 指南或[视频教程](https://www.youtube.com/watch?v=8GwetYmzEJM){target=\_blank}，两者都可以适用于 Moonbeam 和 Moonbase Alpha 测试网。
 
 ## 常见定义 {: #general-definitions }
 
@@ -31,7 +31,7 @@ Moonbeam 使用基于 [Polkadot 的权益证明模型](https://docs.polkadot.com
  - **Reward payout delay（奖励支付延迟）**- 在 Staking 奖励自动分配到可用余额之前必须经过的轮次数
  - **Reward pool（奖励池）**- 预留给整理人和委托人的年度通货膨胀的一部分
  - **Collator commission（整理人佣金）**- 整理人从应付 Staking 奖励中提取的默认固定百分比。与奖励池无关
- - **Delegator rewards（委托人奖励）**— 在所有符合条件的委托人之间分配的累计委托人奖励，同时考虑到质押的相对大小（[了解更多](/learn/features/staking/#reward-distribution)）
+ - **Delegator rewards（委托人奖励）**— 在所有符合条件的委托人之间分配的累计委托人奖励，同时考虑到质押的相对大小（[了解更多](learn/features/staking/#reward-distribution)）
  - **Auto-compounding（自动复利）**- 一种设置，可自动将委托人奖励的百分比应用于其委托的总金额
  - **Slashing（罚没）**— 一种阻止整理人不良行为的机制，通常整理人及其委托人会被罚没，损失一定百分比的质押。目前，没有罚没，但可以通过治理来更改。未被中继链最终确认的区块的整理人将不会收到奖励
 
@@ -76,11 +76,11 @@ Moonbeam 使用基于 [Polkadot 的权益证明模型](https://docs.polkadot.com
     |     撤销委托延迟     | {{ networks.moonbase.delegator_timings.revoke_delegations.rounds }} 轮 ({{ networks.moonbase.delegator_timings.revoke_delegations.hours }} 小时) |
     |      离开委托人延迟      |   {{ networks.moonbase.delegator_timings.leave_delegators.rounds }} 轮 ({{ networks.moonbase.delegator_timings.leave_delegators.hours }} 小时)   |
 
---8<-- 'text/_common/async-backing.md'
+--8<-- 'zh/text/_common/async-backing.md'
 
-要了解如何获取有关质押的任何参数的当前值，请查看[检索质押参数](/tokens/staking/stake/#retrieving-staking-parameters){target=_blank}部分 [如何质押您的代币](/tokens/staking/stake/){target=_blank} 指南。
+要了解如何获取有关质押的任何参数的当前值，请查看[检索质押参数](tokens/staking/stake/#retrieving-staking-parameters){target=\_blank}部分 [如何质押您的代币](tokens/staking/stake/){target=\_blank} 指南。
 
-如果您正在寻找候选人或整理人特定的要求和信息，您可以查看[整理人](/node-operators/networks/collators/requirements/#bonding-requirements){target=_blank} 指南。
+如果您正在寻找候选人或整理人特定的要求和信息，您可以查看[整理人](node-operators/networks/collators/requirements/#bonding-requirements){target=\_blank} 指南。
 
 ## 选择 Collator 的资源 {: #resources-for-selecting-a-collator}
 
@@ -89,21 +89,21 @@ Moonbeam 使用基于 [Polkadot 的权益证明模型](https://docs.polkadot.com
 === "Moonbeam"
 |           变量           |                                      值                                      |
 |:----------------------------:|:-------------------------------------------------------------------------------:|
-|     质押 GLMR 仪表盘     |              [质押 GLMR](https://www.stakeglmr.com/){target=_blank}               |
-|    Collator 排行榜     |       [Moonscan](https://moonbeam.moonscan.io/collators){target=_blank}       |
-|      Collator 仪表盘      | [DappLooker](https://dapplooker.com/dashboard/moonbeam-collator-dashboard-91){target=_blank} |
+|     质押 GLMR 仪表盘     |              [质押 GLMR](https://www.stakeglmr.com/){target=\_blank}               |
+|    Collator 排行榜     |       [Moonscan](https://moonbeam.moonscan.io/collators){target=\_blank}       |
+|      Collator 仪表盘      | [DappLooker](https://dapplooker.com/dashboard/moonbeam-collator-dashboard-91){target=\_blank} |
 
 === "Moonriver"
 |           变量           |                                      值                                       |
 |:----------------------------:|:--------------------------------------------------------------------------------:|
-|     质押 MOVR 仪表盘     |               [质押 MOVR](https://stakemovr.com){target=_blank}               |
-|    Collator 排行榜     |       [Moonscan](https://moonriver.moonscan.io/collators){target=_blank}       |
-|      Collator 仪表盘      | [DappLooker](https://dapplooker.com/dashboard/moonriver-collator-dashboard-28){target=_blank} |
+|     质押 MOVR 仪表盘     |               [质押 MOVR](https://stakemovr.com){target=\_blank}               |
+|    Collator 排行榜     |       [Moonscan](https://moonriver.moonscan.io/collators){target=\_blank}       |
+|      Collator 仪表盘      | [DappLooker](https://dapplooker.com/dashboard/moonriver-collator-dashboard-28){target=\_blank} |
 
 === "Moonbase Alpha"
 |      变量      |                                      值                                       |
 |:------------------:|:--------------------------------------------------------------------------------:|
-| 候选人列表 | [Moonbase Alpha Subscan](https://moonbase.subscan.io/validator){target=_blank} |
+| 候选人列表 | [Moonbase Alpha Subscan](https://moonbase.subscan.io/validator){target=\_blank} |
 
 ### 一般提示 {: #general-tips }
 
@@ -165,8 +165,8 @@ Moonbeam 使用基于 [Polkadot 的权益证明模型](https://docs.polkadot.com
 
 其中 `amount_due` 是在特定区块中分配的相应通货膨胀，`stake` 对应于每个委托人绑定的代币数量，相对于该整理人的总权益。
 
---8<-- 'text/_disclaimers/staking-risks.md'
+--8<-- 'zh/text/_disclaimers/staking-risks.md'
 
 *抵押的MOVR/GLMR代币被锁定，取回它们需要等待 {{ networks.moonriver.delegator_timings.del_bond_less.days }} 天/{{ networks.moonbeam.delegator_timings.del_bond_less.days }} 天。*
 
---8<-- 'text/_disclaimers/staking-risks-part-2.md'
+--8<-- 'zh/text/_disclaimers/staking-risks-part-2.md'

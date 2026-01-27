@@ -40,7 +40,7 @@ categories: Reference
 |   Moonriver    |    RT49    | RT800 |      0 - 684728      |
 | Moonbase Alpha |    RT40    | RT800 |      0 - 915684      |
 
-有关更多信息，您可以查看 [GitHub 上的相关 PR](https://github.com/moonbeam-foundation/moonbeam/pull/732){target=_blank}。
+有关更多信息，您可以查看 [GitHub 上的相关 PR](https://github.com/moonbeam-foundation/moonbeam/pull/732){target=\_blank}。
 
 ---
 
@@ -56,7 +56,7 @@ Moonbeam 配置为将存在性存款设置为 0，这意味着帐户不需要最
 |   Moonriver    |    RT49    | RT1001 |     0 - 1052241      |
 | Moonbase Alpha |    RT40    | RT1001 |     0 - 1285915      |
 
-有关更多信息，您可以查看[相关的 Frontier PR](https://github.com/polkadot-evm/frontier/pull/509){target=\_blank}和 GitHub 上的[相关 Substrate PR](https://github.com/paritytech/substrate/issues/10117){target=_blank}。
+有关更多信息，您可以查看[相关的 Frontier PR](https://github.com/polkadot-evm/frontier/pull/509){target=\_blank}和 GitHub 上的[相关 Substrate PR](https://github.com/paritytech/substrate/issues/10117){target=\_blank}。
 
 ---
 
@@ -186,7 +186,7 @@ EIP-2612 和以太坊区块处理的时间戳以秒为单位；但是，Moonbeam
 
 对于包含应用了优先级费用的 EIP-1559 交易的区块，交易费用的计算不正确，并分配给了区块的收集人。Moonbeam 上交易和智能合约执行的费用模型之前是这样处理的：20% 的费用进入链上财政库，80% 被销毁以作为通货紧缩的力量。由于此错误，受影响交易的交易费用未按预期销毁。
 
-请注意，RT3401 引入了一个参数 pallet 费用配置，允许治理调整费用在财政库和销毁之间如何分配。在此运行时升级与 [MB101](https://forum.moonbeam.network/t/proposal-mb101-burn-100-of-transaction-fees-on-moonbeam/2022){target=_blank} 的通过相结合后，Moonbeam 和 Moonriver 上的所有交易费用现在 100% 都会被销毁。
+请注意，RT3401 引入了一个参数 pallet 费用配置，允许治理调整费用在财政库和销毁之间如何分配。在此运行时升级与 [MB101](https://forum.moonbeam.network/t/proposal-mb101-burn-100-of-transaction-fees-on-moonbeam/2022){target=\_blank} 的通过相结合后，Moonbeam 和 Moonriver 上的所有交易费用现在 100% 都会被销毁。
 
 此错误存在于以下运行时和区块范围内：
 
@@ -446,7 +446,7 @@ EIP-2612 和以太坊区块处理的时间戳以秒为单位；但是，Moonbeam
 
 已应用迁移，该迁移将存储在 democracy pallet 中的 preimage 移动到新的 preimage pallet。由于 [Polkadot 的上游更改](https://github.com/paritytech/substrate/pull/11649/){target=\_blank}，因此需要在 Moonbeam 上进行此迁移。
 
-Moonbeam 中有一个 preimage 受到了影响，该 preimage 从调度队列中删除且从未执行：`0x14262a42aa6ccb3cae0a169b939ca5b185bc317bb7c449ca1741a0600008d306`。此 preimage 已由最初提交该 preimage 的帐户[手动删除](https://moonbeam.subscan.io/extrinsic/2693398-8){target=_blank}。
+Moonbeam 中有一个 preimage 受到了影响，该 preimage 从调度队列中删除且从未执行：`0x14262a42aa6ccb3cae0a169b939ca5b185bc317bb7c449ca1741a0600008d306`。此 preimage 已由最初提交该 preimage 的帐户[手动删除](https://moonbeam.subscan.io/extrinsic/2693398-8){target=\_blank}。
 
 此迁移在以下运行时和区块中执行：
 
@@ -722,7 +722,7 @@ Parachain 质押 pallet 已更新，包含手动退出。如果候选人或委�
 |   Moonriver    |      RT1901      |    2911863    |
 | Moonbase Alpha |      RT1900      |    3069635    |
 
-有关更多信息，您可以查看 [GitHub 上的相关 PR](https://github.com/moonbeam-foundation/moonbeam/pull/1878){target=_blank}。
+有关更多信息，您可以查看 [GitHub 上的相关 PR](https://github.com/moonbeam-foundation/moonbeam/pull/1878){target=\_blank}。
 
 ---
 
@@ -824,7 +824,7 @@ XCM 交易器 Pallet 的 `TransactInfo` 存储项已应用迁移，更改了以�
 
 #### 添加对 Kusama Asset Hub (Statemine) 前缀重大更改的支持 {: #add-support-statemine-prefix }
 
-资产管理器 pallet 中添加了以下三个迁移，以避免 Kusama Asset Hub（之前称为 Statemine）[对其资产表示方式的重大更改](https://github.com/paritytech/cumulus/pull/831){target=_blank} 以及未来可能发生的重大更改导致的问题：
+资产管理器 pallet 中添加了以下三个迁移，以避免 Kusama Asset Hub（之前称为 Statemine）[对其资产表示方式的重大更改](https://github.com/paritytech/cumulus/pull/831){target=\_blank} 以及未来可能发生的重大更改导致的问题：
 
 - `UnitsWithAssetType` - 将 `AssetTypeUnitsPerSecond` 存储项目更新为 `AssetType` 到 `units_per_second` 的映射，而不是 `AssetId` 到 `units_per_second` 的映射。这样做是为了避免在发生重大更改时进行额外的迁移
 - `PopulateAssetTypeIdStorage` - 创建一个新的 `AssetTypeId` 存储项目，该项目保存 `AssetType` 到 `AssetId` 的映射，从而可以将 `assetIds` 和 `AssetTypes` 解耦
@@ -854,7 +854,7 @@ XCM 交易器 Pallet 的 `TransactInfo` 存储项已应用迁移，更改了以�
 |   Moonriver    |      RT1300      |    1541735    |
 | Moonbase Alpha |      RT1300      |    1761128    |
 
-有关更多信息，您可以查看 [GitHub 上的相关 PR](https://github.com/moonbeam-foundation/moonbeam/pull/1118){target=_blank}。
+有关更多信息，您可以查看 [GitHub 上的相关 PR](https://github.com/moonbeam-foundation/moonbeam/pull/1118){target=\_blank}。
 
 ---
 

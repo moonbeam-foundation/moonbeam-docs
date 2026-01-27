@@ -8,7 +8,7 @@ categories: 节点运营者和排序人
 
 ## 简介 {: #introduction }
 
-要成为基于 Moonbeam 的网络上的收集人，您需要满足[绑定要求](/node-operators/networks/collators/requirements/#bonding-requirements){target=_blank}并加入候选池。进入候选池后，您可以随时调整您的自抵押金额或决定离开池。
+要成为基于 Moonbeam 的网络上的收集人，您需要满足[绑定要求](node-operators/networks/collators/requirements/#bonding-requirements){target=\_blank}并加入候选池。进入候选池后，您可以随时调整您的自抵押金额或决定离开池。
 
 如果您希望减少您的自抵押金额或离开候选池，您需要先安排一个离开请求，然后在[延迟期](#collator-timings)过后执行该请求。
 
@@ -51,13 +51,13 @@ categories: 节点运营者和排序人
 !!! note
     先前表格中显示的值可能会在将来的版本中更改。
 
---8<-- 'text/_common/async-backing.md'
+--8<-- 'zh/text/_common/async-backing.md'
 
 ## 成为候选人 {: #become-a-candidate }
 
 ### 获取候选池的大小 {: #get-the-size-of-the-candidate-pool }
 
-首先，您需要获取 `candidatePool` 的大小（这可以通过治理来更改），因为您需要在稍后的交易中提交此参数。为此，您必须从 [Polkadot.js](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/js){target=_blank} 中运行以下 JavaScript 代码片段：
+首先，您需要获取 `candidatePool` 的大小（这可以通过治理来更改），因为您需要在稍后的交易中提交此参数。为此，您必须从 [Polkadot.js](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/js){target=\_blank} 中运行以下 JavaScript 代码片段：
 
 ```js
 // Simple script to get candidate pool size
@@ -75,12 +75,12 @@ console.log(`Candidate pool size is: ${candidatePool.length}`);
 
 ### 加入候选人池 {: #join-the-candidate-pool }
 
-一旦您的节点运行并与网络同步，您就成为候选人并加入候选人池。根据您连接到的网络，请转到 [Polkadot.js](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/accounts){target=_blank}，点击 **Developer** 选项卡，从下拉列表中选择 **Extrinsics**，然后执行以下步骤：
+一旦您的节点运行并与网络同步，您就成为候选人并加入候选人池。根据您连接到的网络，请转到 [Polkadot.js](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/accounts){target=\_blank}，点击 **Developer** 选项卡，从下拉列表中选择 **Extrinsics**，然后执行以下步骤：
 
- 1. 选择您要成为收集人的帐户。确认您的帐户已至少存入[所需的最低权益](/node-operators/networks/collators/requirements/#minimum-collator-bond){target=_blank}加上一些额外的交易费用
+ 1. 选择您要成为收集人的帐户。确认您的帐户已至少存入[所需的最低权益](node-operators/networks/collators/requirements/#minimum-collator-bond){target=\_blank}加上一些额外的交易费用
  2. 在 **submit the following extrinsic** 菜单下选择 **parachainStaking** pallet
  3. 打开下拉菜单，其中列出了所有与权益相关的可能的外部因素，然后选择 **joinCandidates** 函数
- 4. 将保证金设置为至少[最低金额](/node-operators/networks/collators/requirements/#minimum-collator-bond){target=_blank}，以便被视为候选人。您需要以 `Wei` 为单位输入此金额。例如，Moonbase Alpha 上的 {{ networks.moonbase.staking.min_can_stk }} DEV 的最低保证金为 `{{ networks.moonbase.staking.min_can_stk_wei }}` Wei ({{ networks.moonbase.staking.min_can_stk }} + 18 个额外的零)。只有备选保证金才会计入此检查。额外的委托不算数
+ 4. 将保证金设置为至少[最低金额](node-operators/networks/collators/requirements/#minimum-collator-bond){target=\_blank}，以便被视为候选人。您需要以 `Wei` 为单位输入此金额。例如，Moonbase Alpha 上的 {{ networks.moonbase.staking.min_can_stk }} DEV 的最低保证金为 `{{ networks.moonbase.staking.min_can_stk_wei }}` Wei ({{ networks.moonbase.staking.min_can_stk }} + 18 个额外的零)。只有备选保证金才会计入此检查。额外的委托不算数
  5. 将候选人计数设置为候选人池大小。要了解如何检索此值，请查看[获取候选人池大小](#get-the-size-of-the-candidate-pool)部分
  6. 提交交易。按照向导操作，并使用您为帐户设置的密码签署交易
 
@@ -89,7 +89,7 @@ console.log(`Candidate pool size is: ${candidatePool.length}`);
 !!! note
     函数名称和最低保证金要求可能会在未来的版本中更改。
 
-如前所述，只有委托权益最高的候选人才能进入活跃的收集人集合。每个网络中排名前列的候选人的确切数量和最低保证金金额可在[最低收集人保证金](/node-operators/networks/collators/requirements/#minimum-collator-bond){target=_blank}部分中找到。
+如前所述，只有委托权益最高的候选人才能进入活跃的收集人集合。每个网络中排名前列的候选人的确切数量和最低保证金金额可在[最低收集人保证金](node-operators/networks/collators/requirements/#minimum-collator-bond){target=\_blank}部分中找到。
 
 ## 停止整理 {: #stop-collating }
 
@@ -169,7 +169,7 @@ console.log(`Candidate pool size is: ${candidatePool.length}`);
 
 ### 增加保证金 {: #bond-more }
 
-作为候选人，有两种增加抵押的方法。第一种也是推荐的方法是将要抵押的资金发送到另一个拥有的地址，然后[委托给您的整理人](/tokens/staking/stake/#how-to-nominate-a-collator)。或者，已经抵押了至少[最低自抵押金额](/node-operators/networks/collators/requirements/#minimum-collator-bond){target=_blank}的整理人可以从 [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonriver.moonbeam.network#/accounts){target=_blank} 增加其保证金。导航到 **开发者** 选项卡，点击 **外部调用**，然后按照以下步骤操作：
+作为候选人，有两种增加抵押的方法。第一种也是推荐的方法是将要抵押的资金发送到另一个拥有的地址，然后[委托给您的整理人](tokens/staking/stake/#how-to-nominate-a-collator)。或者，已经抵押了至少[最低自抵押金额](node-operators/networks/collators/requirements/#minimum-collator-bond){target=\_blank}的整理人可以从 [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonriver.moonbeam.network#/accounts){target=\_blank} 增加其保证金。导航到 **开发者** 选项卡，点击 **外部调用**，然后按照以下步骤操作：
 
  1. 选择您的整理人帐户（并验证它是否包含要抵押的额外资金）
  2. 在 **提交以下外部调用** 菜单下选择 **parachainStaking** 托盘
@@ -181,7 +181,7 @@ console.log(`Candidate pool size is: ${candidatePool.length}`);
 
 ### 减少抵押 {: #bond-less}
 
-作为排序人或排序人候选人，只要在减少抵押后，您的抵押数量多于[最低自抵押数量](/node-operators/networks/collators/requirements/#minimum-collator-bond){target=_blank}，您就可以减少您的抵押数量。
+作为排序人或排序人候选人，只要在减少抵押后，您的抵押数量多于[最低自抵押数量](node-operators/networks/collators/requirements/#minimum-collator-bond){target=\_blank}，您就可以减少您的抵押数量。
 
 为了减少抵押，您必须首先安排一个请求，等待[退出延迟](#collator-timings)的持续时间，然后执行该请求。只要请求尚未执行，您可以随时[取消请求](#cancel-bond-less-request)。
 
@@ -240,7 +240,7 @@ console.log(`Candidate pool size is: ${candidatePool.length}`);
 
     {{ networks.moonbase.collator_timings.max_offline.rounds }} 轮（{{ networks.moonbase.collator_timings.max_offline.hours }} 小时）
 
-要将整理人标记为非活跃状态，您可以使用 `notifyInactiveCollator` extrinsic，它会在整理人处于非活跃状态时通知运行时，并且默认情况下将整理人标记为离线。为此，您可以前往 [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/accounts){target=_blank}，确保您已连接到正确的网络，然后点击 **Developer** 选项卡，从下拉菜单中选择 **Extrinsics**，然后执行以下步骤：
+要将整理人标记为非活跃状态，您可以使用 `notifyInactiveCollator` extrinsic，它会在整理人处于非活跃状态时通知运行时，并且默认情况下将整理人标记为离线。为此，您可以前往 [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/accounts){target=\_blank}，确保您已连接到正确的网络，然后点击 **Developer** 选项卡，从下拉菜单中选择 **Extrinsics**，然后执行以下步骤：
 
  1. 选择您的帐户
  2. 在 **submit the following extrinsic** 菜单下选择 **parachainStaking** pallet

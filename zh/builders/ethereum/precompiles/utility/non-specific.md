@@ -19,27 +19,28 @@ categories: Precompiles, Ethereum Toolkit
 
 ## 使用 ECRecoverPublicKey 检索公钥 {: verifying-signatures-ecrecoverpublickey }
 
-`ECRecoverPublicKey` 预编译的主要功能是从给定的消息哈希和签名中恢复用于创建数字签名的公钥。此预编译类似于 [ECRecover](/builders/ethereum/precompiles/utility/eth-mainnet/#verify-signatures-with-ecrecover/){target=_blank}，但区别在于它返回签署消息的帐户的公钥，而不是帐户地址。
+`ECRecoverPublicKey` 预编译的主要功能是从给定的消息哈希和签名中恢复用于创建数字签名的公钥。此预编译类似于 [ECRecover](builders/ethereum/precompiles/utility/eth-mainnet/#verify-signatures-with-ecrecover/){target=\_blank}，但区别在于它返回签署消息的帐户的公钥，而不是帐户地址。
 
 在以下部分中，您将学习如何使用 `ECRecoverPublicKey` 预编译。
 
 ### 检查先决条件 {: #checking-prerequisites }
 
---8<-- 'text/_common/install-nodejs.md'
+--8<-- 'zh/text/_common/install-nodejs.md'
 
-本示例中使用的版本为 v20.15.0 (Node.js) 和 10.7.0 (npm)。您还需要通过执行以下命令安装 [Web3](https://web3js.readthedocs.io/en/latest){target=_blank} 包：
+本示例中使用的版本为 v20.15.0 (Node.js) 和 10.7.0 (npm)。您还需要通过执行以下命令安装 [Web3](https://web3js.readthedocs.io/en/latest){target=\_blank} 包：
 
 ```bash
 npm install --save web3
 ```
 
-要验证已安装的 Web3 版本，您可以使用 `ls` 命令：
+要验证已安装的 Web3 版本，您可以使用 `npm ls` 命令：
 
 ```bash
 npm ls web3
-本示例使用 4.11.1 版本。您还将使用 [Remix](/builders/ethereum/dev-env/remix/){target=_blank}，通过 [MetaMask](/tokens/connect/metamask/){target=_blank} 将其连接到 Moonbase Alpha TestNet。
+```
+本示例使用 4.11.1 版本。您还将使用 [Remix](/builders/ethereum/dev-env/remix/){target=\_blank}，通过 [MetaMask](/tokens/connect/metamask/){target=\_blank} 将其连接到 Moonbase Alpha TestNet。
 
---8<-- 'text/_common/endpoint-examples.md'
+--8<-- 'zh/text/_common/endpoint-examples.md'
 
 ### 检索交易签名值
 
@@ -83,7 +84,7 @@ node signMessage.js
 
 ## 使用 SHA3FIPS256 创建哈希 {: #create-a-hash-with-sha3fips256 }
 
-SHA3-256 是 SHA-3 系列密码哈希算法的一部分，该算法在 [FIPS202](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf){target=_blank} 中进行了编码，可生成长度为 256 位的输出。尽管名称与 SHA256 相似，但 SHA-3 系列是使用完全不同的算法构建的，因此对于相同的输入，产生的哈希输出与 SHA256 不同。您可以使用此 [SHA3-256 哈希计算器工具](https://md5calc.com/hash/sha3-256){target=_blank}自行验证。计算出 SHA3-256 输出后，在下拉选择器中将算法更改为 SHA256，并注意生成的输出。
+SHA3-256 是 SHA-3 系列密码哈希算法的一部分，该算法在 [FIPS202](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf){target=\_blank} 中进行了编码，可生成长度为 256 位的输出。尽管名称与 SHA256 相似，但 SHA-3 系列是使用完全不同的算法构建的，因此对于相同的输入，产生的哈希输出与 SHA256 不同。您可以使用此 [SHA3-256 哈希计算器工具](https://md5calc.com/hash/sha3-256){target=\_blank}自行验证。计算出 SHA3-256 输出后，在下拉选择器中将算法更改为 SHA256，并注意生成的输出。
 
 目前，Solidity 中没有 SHA3-256 支持，因此需要使用内联汇编来调用它。以下示例代码可用于调用此预编译。
 
@@ -91,6 +92,6 @@ SHA3-256 是 SHA-3 系列密码哈希算法的一部分，该算法在 [FIPS202]
 --8<-- 'code/builders/ethereum/precompiles/utility/eth-mainnet/sha3fips.sol'
 ```
 
-使用 [Remix](/builders/ethereum/dev-env/remix/){target=_blank} 并通过 [MetaMask 指向 Moonbase Alpha](/tokens/connect/metamask/){target=_blank}，您可以部署合约并调用 `sha3fips(bytes memory data)` 方法以返回数据参数的编码字符串。
+使用 [Remix](/builders/ethereum/dev-env/remix/){target=\_blank} 并通过 [MetaMask 指向 Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}，您可以部署合约并调用 `sha3fips(bytes memory data)` 方法以返回数据参数的编码字符串。
 
---8<-- 'text/_disclaimers/third-party-content-intro.md'
+--8<-- 'zh/text/_disclaimers/third-party-content-intro.md'

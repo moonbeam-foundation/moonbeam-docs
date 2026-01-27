@@ -18,9 +18,9 @@ categories: Substrate Toolkit, Libraries and SDKs
 
 安装和使用 Polkadot.js API 库需要安装 Node.js。
 
---8<-- 'text/_common/install-nodejs.md'
+--8<-- 'zh/text/_common/install-nodejs.md'
 
---8<-- 'text/_common/endpoint-examples.md'
+--8<-- 'zh/text/_common/endpoint-examples.md'
 
 ### 安装 Polkadot.js API {: #installing-polkadot.js-api-library }
 
@@ -42,9 +42,9 @@ categories: Substrate Toolkit, Libraries and SDKs
 
 ## 创建 API 提供程序实例 {: #creating-an-API-provider-instance }
 
-类似于[以太坊 API 库](/builders/ethereum/libraries/){target=_blank}，您必须首先实例化 Polkadot.js API 的 API 实例。使用您希望与之交互的 Moonbeam 网络的 WebSocket 端点创建 `WsProvider`。
+类似于[以太坊 API 库](builders/ethereum/libraries/){target=\_blank}，您必须首先实例化 Polkadot.js API 的 API 实例。使用您希望与之交互的 Moonbeam 网络的 WebSocket 端点创建 `WsProvider`。
 
---8<-- 'text/_common/endpoint-examples.md'
+--8<-- 'zh/text/_common/endpoint-examples.md'
 
 === "Moonbeam"
 
@@ -188,13 +188,13 @@ console.log(api.rpc);
 `api.rpc` 接口遵循与 `api.query` 类似的格式，例如：
 
 ```javascript
-// 检索链名称
+// Retrieve the chain name
 const chain = await api.rpc.system.chain();
 
-// 检索最新的标头
+// Retrieve the latest header
 const lastHeader = await api.rpc.chain.getHeader();
 
-// 记录信息
+// Log the information
 console.log(
   `${chain}: last block #${lastHeader.number} has hash ${lastHeader.hash}`
 );
@@ -211,16 +211,16 @@ console.log(
 `rpc` API 也为订阅提供了端点。您可以调整前面的示例，开始使用订阅来侦听新区块。请注意，使用订阅时需要删除 API 断开连接，以避免 WSS 连接的正常关闭。
 
 ```javascript
-// 检索链名称
+// Retrieve the chain name
 const chain = await api.rpc.system.chain();
 
-// 订阅新区块头
+// Subscribe to the new headers
 await api.rpc.chain.subscribeNewHeads((lastHeader) => {
   console.log(
     `${chain}: last block #${lastHeader.number} has hash ${lastHeader.hash}`
   );
 });
-// 删除 await api.disconnect()!
+// Remove await api.disconnect()!
 ```
 
 `api.rpc.subscribe*` 函数的通用模式是将回调传递到订阅函数中，这将会在每次导入新条目时触发。
@@ -228,17 +228,17 @@ await api.rpc.chain.subscribeNewHeads((lastHeader) => {
 `api.query.*` 下的其他调用可以以类似的方式进行修改以使用订阅，包括具有参数的调用。以下是如何订阅帐户中的余额更改的示例：
 
 ```javascript
-// 定义钱包地址
+// Define wallet address
 const addr = 'INSERT_ADDRESS';
 
-// 订阅指定帐户的余额更改
+// Subscribe to balance changes for a specified account
 await api.query.system.account(addr, ({ nonce, data: balance }) => {
   console.log(
     `Free balance is ${balance.free} with ${balance.reserved} reserved and a nonce of ${nonce}`
   );
 });
 
-// 删除 await api.disconnect()!
+// Remove await api.disconnect()!
 ```
 
 ??? code "查看完整脚本"
@@ -256,10 +256,10 @@ await api.query.system.account(addr, ({ nonce, data: balance }) => {
 您可以通过仅创建 Keyring 类的实例，并指定所使用的默认钱包地址类型来创建实例。对于 Moonbeam 网络，默认钱包类型应为 `ethereum`。
 
 ```javascript
-// 根据需要导入密钥环
+// Import the keyring as required
 import Keyring from '@polkadot/keyring';
 
-// 创建密钥环实例
+// Create a keyring instance
 const keyring = new Keyring({ type: 'ethereum' });
 ```
 
@@ -267,13 +267,13 @@ const keyring = new Keyring({ type: 'ethereum' });
 
 有多种方法可以将帐户添加到密钥环实例，包括从助记词和简短格式的私钥。
 
-=== "From Mnemonic"
+=== "从助记词"
 
     ```javascript
     --8<-- 'code/builders/substrate/libraries/polkadot-js-api/adding-accounts-mnemonic.js'
     ```
 
-=== "From Private Key"
+=== "从私钥"
 
     ```javascript
     --8<-- 'code/builders/substrate/libraries/polkadot-js-api/adding-accounts-private-key.js'
@@ -281,7 +281,7 @@ const keyring = new Keyring({ type: 'ethereum' });
 
 ## Dry Run API {: #dry-run-api }
 
-Dry Run API 是一种简便的方法，用于测试调用的完整性，而不会产生任何交易费用。可以从 Polkadot.js Apps 的**开发者**部分的[运行时调用](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbeam.network#/runtime){target=_blank}选项卡访问 Dry Run API。虽然 Dry Run API 主要用于[测试 XCM 消息](builders/interoperability/xcm/send-execute-xcm/#test-an-xcm-message-with-the-dry-run-api){target=_blank}，但它也可用于测试任何任意调用。
+Dry Run API 是一种简便的方法，用于测试调用的完整性，而不会产生任何交易费用。可以从 Polkadot.js Apps 的**开发者**部分的[运行时调用](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbeam.network#/runtime){target=\_blank}选项卡访问 Dry Run API。虽然 Dry Run API 主要用于[测试 XCM 消息](builders/interoperability/xcm/send-execute-xcm/#test-an-xcm-message-with-the-dry-run-api){target=\_blank}，但它也可用于测试任何任意调用。
 
 此方法将 origin 和调用数据作为参数，并返回执行结果和其他事件数据。
 
@@ -308,6 +308,14 @@ const result = await api.call.dryRunApi.dryRunCall(
 
 调用 Dry Run API 后，此方法会告诉您调用是否会成功，并返回如果实际在链上提交调用将发出的事件数据。
 
+您可以在下方查看 `dryRunCall` 的初始输出。
+
+??? code "查看完整输出"
+
+    ```json
+    --8<-- 'code/builders/substrate/libraries/polkadot-js-api/dry-run-result.json'
+    ```
+
 ## 在 Moonbeam 上发送交易 {: #transactions }
 
 交易端点通常以 `api.tx.<module>.<method>` 的形式暴露，其中模块（module）和方法（method）的装饰信息由元数据生成。通过这些端点，你可以提交交易以被打包进区块，例如转账、与各类 pallet 交互，或任何 Moonbeam 支持的操作。你可以通过查看 `api.tx` 对象来获取所有可用端点的列表，例如：
@@ -321,22 +329,22 @@ console.log(api.tx);
 Polkadot.js API 库可用于向网络发送交易。例如，假设你已经[初始化了 API](#creating-an-API-provider-instance) 并创建了 [keyring 实例](#creating-a-keyring-instance)，你可以使用以下代码片段来发送一笔基础交易（该示例在提交后还会获取交易的已编码 calldata，以及交易哈希）：
 
 ```javascript
-// 初始化钱包密钥对
+// Initialize wallet key pairs
 const alice = keyring.addFromUri('INSERT_ALICES_PRIVATE_KEY');
 const bob = 'INSERT_BOBS_ADDRESS';
 
-// 构造交易
+// Form the transaction
 const tx = await api.tx.balances.transferAllowDeath(bob, 12345n);
 
-// 获取交易的已编码 calldata
+// Retrieve the encoded calldata of the transaction
 const encodedCalldata = tx.method.toHex();
 console.log(`Encoded calldata: ${encodedCallData}`);
 
-// 签名并发送交易
+// Sign and send the transaction
 const txHash = await tx
   .signAndSend(alice);
 
-// 显示交易哈希
+// Show the transaction hash
 console.log(`Submitted with hash ${txHash}`);
 ```
 
@@ -349,13 +357,13 @@ console.log(`Submitted with hash ${txHash}`);
 !!! note
     在客户端 v0.35.0 之前，用于执行简单余额转账的 extrinsic 是 `balances.transfer`。此后该 extrinsic 已被弃用，并由 `balances.transferAllowDeath` extrinsic 替代。
 
-请注意，`signAndSend` 函数也可以接受可选参数，例如 `nonce`。例如：`signAndSend(alice, { nonce: aliceNonce })`。你可以使用 [State Queries](/builders/substrate/libraries/polkadot-js-api/#state-queries){target=_blank} 章节中的示例代码来获取正确的 nonce（包括 mempool 中的交易）。
+请注意，`signAndSend` 函数也可以接受可选参数，例如 `nonce`。例如：`signAndSend(alice, { nonce: aliceNonce })`。你可以使用 [State Queries](builders/substrate/libraries/polkadot-js-api/#state-queries){target=\_blank} 章节中的示例代码来获取正确的 nonce（包括 mempool 中的交易）。
 
 ### 手续费信息 {: #fees }
 
 交易端点也提供了一种方法，用于获取指定 `api.tx.<module>.<method>` 的 weight 信息。为此，你需要在使用特定的 `module` 和 `method` 构建完整交易之后，调用 `paymentInfo` 函数。
 
-`paymentInfo` 函数会返回以 `refTime` 和 `proofSize` 表示的 weight 信息，这些信息可用于确定交易手续费。在构建 [通过 XCM 进行远程执行调用](/builders/interoperability/xcm/remote-execution/){target=_blank} 时，这会非常有帮助。
+`paymentInfo` 函数会返回以 `refTime` 和 `proofSize` 表示的 weight 信息，这些信息可用于确定交易手续费。在构建 [通过 XCM 进行远程执行调用](builders/interoperability/xcm/remote-execution/){target=\_blank} 时，这会非常有帮助。
 
 例如，假设你已经[初始化了 API](#creating-an-API-provider-instance)，下面的代码片段展示了如何获取两个账户之间一次简单余额转账的 weight 信息：
 
@@ -429,7 +437,7 @@ RPC 作为特定模块上的方法公开。这意味着一旦可用，您就可�
 
 通过 Polkadot.js API 接口提供的一些方法也可以在 Moonbeam 节点上作为 JSON-RPC 端点使用。本节将提供一些示例；您可以通过调用 `api.rpc.rpc.methods()` 或下面列出的 `rpc_methods` 端点来检查公开的 RPC 端点列表。
 
-- **[`methods()`](https://polkadot.js.org/docs/substrate/rpc/#methods-rpcmethods){target=_blank}**
+- **[`methods()`](https://polkadot.js.org/docs/substrate/rpc/#methods-rpcmethods){target=\_blank}**
     - **接口** - `api.rpc.rpc.methods`
     - **JSON-RPC** - `rpc_methods`
     - **返回值** - 节点公开的 RPC 方法列表
@@ -445,7 +453,7 @@ RPC 作为特定模块上的方法公开。这意味着一旦可用，您就可�
       }'
     ```
 
-- **[`getBlock(hash?: BlockHash)`](https://polkadot.js.org/docs/substrate/rpc/#getblockhash-blockhash-signedblock){target=_blank}**
+- **[`getBlock(hash?: BlockHash)`](https://polkadot.js.org/docs/substrate/rpc/#getblockhash-blockhash-signedblock){target=\_blank}**
     - **接口** - `api.rpc.chain.getBlock`
     - **JSON-RPC** - `chain_getBlock`
     - **返回值** - 由块哈希参数指定的块的头部和主体
@@ -461,7 +469,7 @@ RPC 作为特定模块上的方法公开。这意味着一旦可用，您就可�
       }'
     ```
 
-- **[`getFinalizedHead()`](https://polkadot.js.org/docs/substrate/rpc/#getfinalizedhead-blockhash){target=_blank}**
+- **[`getFinalizedHead()`](https://polkadot.js.org/docs/substrate/rpc/#getfinalizedhead-blockhash){target=\_blank}**
     - **接口** `api.rpc.chain.getFinalizedHead`
     - **JSON-RPC** `chain_getFinalizedHead`
     - **返回值** 规范链中最后一个最终确定块的块哈希值
@@ -477,13 +485,13 @@ RPC 作为特定模块上的方法公开。这意味着一旦可用，您就可�
       }'
     ```
 
-[共识和最终性页面](/learn/core-concepts/consensus-finality/){target=_blank} 包含用于使用公开的自定义和 Substrate RPC 调用来检查给定交易的最终性的示例代码。
+[共识和最终性页面](learn/core-concepts/consensus-finality/){target=\_blank} 包含用于使用公开的自定义和 Substrate RPC 调用来检查给定交易的最终性的示例代码。
 
 ## Polkadot.js API 实用程序函数 {: #utilities }
 
 Polkadot.js API 还包括许多实用程序库，用于计算常用的加密原语和哈希函数。
 
-以下示例通过首先计算其 RLP（[递归长度前缀](https://ethereum.org/developers/docs/data-structures-and-encoding/rlp/){target=_blank}）编码，然后使用 keccak256 对结果进行哈希，来计算原始以太坊旧版交易的确定性交易哈希。
+以下示例通过首先计算其 RLP（[递归长度前缀](https://ethereum.org/developers/docs/data-structures-and-encoding/rlp/){target=\_blank}）编码，然后使用 keccak256 对结果进行哈希，来计算原始以太坊旧版交易的确定性交易哈希。
 
 ```javascript
 import { encode } from '@polkadot/util-rlp';
@@ -515,6 +523,6 @@ var encoded_tx = encode(txDataArray);
 console.log(keccakAsHex(encoded_tx));
 ```
 
-您可以查看相应的 [NPM 存储库页面](https://www.npmjs.com/package/@polkadot/util-crypto/v/0.32.19){target=_blank}，以获取 `@polkadot/util-crypto` 库中可用方法及其描述的列表。
+您可以查看相应的 [NPM 存储库页面](https://www.npmjs.com/package/@polkadot/util-crypto/v/0.32.19){target=\_blank}，以获取 `@polkadot/util-crypto` 库中可用方法及其描述的列表。
 
---8<-- 'text/_disclaimers/third-party-content.md'
+--8<-- 'zh/text/_disclaimers/third-party-content.md'

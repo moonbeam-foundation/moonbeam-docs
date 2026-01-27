@@ -12,21 +12,21 @@ categories: Dev Environments, Ethereum Toolkit
 
 Hardhat 采用基于任务的开发方法，您可以在其中定义和执行[任务](https://hardhat.org/hardhat-runner/docs/advanced/create-task){target=\_blank}，以执行特定操作。这些操作包括编译和部署合约、运行测试等等。任务是高度可配置的，因此您可以创建、自定义和执行适合您需求的任务。
 
-您还可以通过使用[插件](https://hardhat.org/hardhat-runner/plugins){target=_blank}来扩展 Hardhat 的功能。插件是与 Hardhat 集成的外部扩展，可为您的工作流程提供额外的功能和工具。例如，有一些用于常见以太坊库的插件，例如 [Ethers.js](/builders/ethereum/libraries/ethersjs/){target=\_blank} 和 [viem](/builders/ethereum/libraries/viem/){target=\_blank}，一个扩展 Chai 断言库以包含以太坊特定功能的插件等等。所有这些插件都可用于扩展您在 Moonbeam 上的 Hardhat 项目。
+您还可以通过使用[插件](https://hardhat.org/hardhat-runner/plugins){target=\_blank}来扩展 Hardhat 的功能。插件是与 Hardhat 集成的外部扩展，可为您的工作流程提供额外的功能和工具。例如，有一些用于常见以太坊库的插件，例如 [Ethers.js](builders/ethereum/libraries/ethersjs/){target=\_blank} 和 [viem](builders/ethereum/libraries/viem/){target=\_blank}，一个扩展 Chai 断言库以包含以太坊特定功能的插件等等。所有这些插件都可用于扩展您在 Moonbeam 上的 Hardhat 项目。
 
 本指南将简要介绍 Hardhat，并向您展示如何使用 Hardhat 在 Moonbase Alpha 测试网上编译、部署和调试以太坊智能合约。本指南也适用于 Moonbeam、Moonriver 或 Moonbeam 开发节点。以下内容针对的是 Hardhat 3（当前版本：3.0.17）。
 
-请注意，虽然 Hardhat 附带一个 [Hardhat Network](https://hardhat.org/docs#hardhat-network){target=\_blank} 组件，该组件提供本地开发环境，但您应该改用[本地 Moonbeam 开发节点](/builders/get-started/networks/moonbeam-dev/){target=\_blank}。您可以像连接任何其他网络一样，将 Moonbeam 开发节点连接到 Hardhat。
+请注意，虽然 Hardhat 附带一个 [Hardhat Network](https://hardhat.org/docs#hardhat-network){target=\_blank} 组件，该组件提供本地开发环境，但您应该改用[本地 Moonbeam 开发节点](builders/get-started/networks/moonbeam-dev/){target=\_blank}。您可以像连接任何其他网络一样，将 Moonbeam 开发节点连接到 Hardhat。
 
 ## 检查先决条件 {: #checking-prerequisites }
 
 要开始，您需要以下内容：
 
 - 拥有 Node.js 22.10.0 或更高版本（Hardhat 3 仅支持偶数编号的 LTS 版本）和 npm
-- 已[安装MetaMask](/tokens/connect/metamask/#install-the-metamask-extension){target=\_blank}并[连接到Moonbase Alpha](/tokens/connect/metamask/#connect-metamask-to-moonbeam){target=\_blank}。
+- 已[安装MetaMask](tokens/connect/metamask/#install-the-metamask-extension){target=\_blank}并[连接到Moonbase Alpha](tokens/connect/metamask/#connect-metamask-to-moonbeam){target=\_blank}。
 - 拥有一个有资金的帐户。
-  --8<-- 'text/_common/faucet/faucet-list-item.md'
-- --8<-- 'text/_common/endpoint-examples-list-item.md'
+  --8<-- 'zh/text/_common/faucet/faucet-list-item.md'
+- --8<-- 'zh/text/_common/endpoint-examples-list-item.md'
 
 ## 创建 Hardhat 项目 {: #creating-a-hardhat-project }
 
@@ -103,7 +103,7 @@ npm install --save-dev @nomicfoundation/hardhat-ethers @nomicfoundation/hardhat-
 
 接下来，您需要修改您的配置文件以添加要将合约部署到的网络的网络配置。对于 Moonbeam 网络，您需要指定以下内容：
 
-- **`url`**: 节点的 [RPC 端点](/builders/get-started/endpoints/){target=\_blank}。
+- **`url`**: 节点的 [RPC 端点](builders/get-started/endpoints/){target=\_blank}。
 - **`chainId`**: 链 ID，用于验证网络。
 - **`accounts`**: 可用于部署和与合约交互的帐户。您可以输入帐户私钥的数组，也可以使用 [HD 钱包](https://github.com/ethereumbook/ethereumbook/blob/develop/src/chapter_5.md#hierarchical-deterministic-wallets-bip-32bip-44){target=\_blank}。
 - **`type`**: 对于 Moonbeam 上的外部 RPC 网络，请设置 `type: 'http'`。
@@ -238,7 +238,7 @@ export default defineConfig({
 
 当您运行需要这些密钥的任务时，Hardhat 将提示您输入密码以解密它们。密钥仅在需要时才会被解密，这意味着只有当 Hardhat 任务使用密钥时，您才需要输入密码。
 
-如果您计划在您的项目中使用任何插件，您需要安装该插件并将其导入到您的 Hardhat 配置文件 (`hardhat.config.ts` 或 `hardhat.config.js`) 中。一旦导入了插件，它就会成为 [Hardhat 运行时环境](https://hardhat.org/hardhat-runner/docs/advanced/hardhat-runtime-environment){target=_blank} 的一部分，并且您可以在任务、脚本等中利用该插件的功能。
+如果您计划在您的项目中使用任何插件，您需要安装该插件并将其导入到您的 Hardhat 配置文件 (`hardhat.config.ts` 或 `hardhat.config.js`) 中。一旦导入了插件，它就会成为 [Hardhat 运行时环境](https://hardhat.org/hardhat-runner/docs/advanced/hardhat-runtime-environment){target=\_blank} 的一部分，并且您可以在任务、脚本等中利用该插件的功能。
 
 有关可用配置选项的更多信息，请参阅 Hardhat 关于 [配置](https://hardhat.org/hardhat-runner/docs/config#networks-configuration){target=\_blank} 的文档。
 
@@ -395,29 +395,29 @@ npx hardhat run --network moonbase scripts/box-console.ts
 
 ## Hardhat 分叉 {: #hardhat-forking }
 
-您可以使用 Hardhat [分叉](https://hardhat.org/hardhat-network/docs/guides/forking-other-networks){target=\_blank} 任何与 EVM 兼容的链，包括 Moonbeam。分叉在本地模拟实时 Moonbeam 网络，使您能够在本地测试环境中与 Moonbeam 上部署的合约进行交互。由于 Hardhat 分叉基于 EVM 实现，您可以使用 [Moonbeam 支持的标准 Ethereum JSON-RPC 方法](/builders/ethereum/json-rpc/eth-rpc/){target=\_blank} 和 [Hardhat](https://hardhat.org/hardhat-network/docs/reference#json-rpc-methods-support){target=\_blank} 与分叉进行交互。
+您可以使用 Hardhat [分叉](https://hardhat.org/hardhat-network/docs/guides/forking-other-networks){target=\_blank} 任何与 EVM 兼容的链，包括 Moonbeam。分叉在本地模拟实时 Moonbeam 网络，使您能够在本地测试环境中与 Moonbeam 上部署的合约进行交互。由于 Hardhat 分叉基于 EVM 实现，您可以使用 [Moonbeam 支持的标准 Ethereum JSON-RPC 方法](builders/ethereum/json-rpc/eth-rpc/){target=\_blank} 和 [Hardhat](https://hardhat.org/hardhat-network/docs/reference#json-rpc-methods-support){target=\_blank} 与分叉进行交互。
 
 使用 Hardhat 分叉时，需要注意一些限制。您无法与任何 Moonbeam 预编译合约或其函数进行交互。预编译是 Substrate 实现的一部分，因此无法在模拟的 EVM 环境中复制。这禁止您与 Moonbeam 上的跨链资产以及基于 Substrate 的功能（如质押和治理）进行交互。
 
 ### 分叉 Moonbeam {: #forking-moonbeam }
 
-您可以从命令行分叉 Moonbeam，或配置您的 Hardhat 项目以始终从您的 Hardhat 配置文件运行分叉。要分叉 Moonbeam 或 Moonriver，您需要拥有自己的端点和 API 密钥，您可以从支持的[端点提供商](/builders/get-started/endpoints/){target=\_blank}之一获取。
+您可以从命令行分叉 Moonbeam，或配置您的 Hardhat 项目以始终从您的 Hardhat 配置文件运行分叉。要分叉 Moonbeam 或 Moonriver，您需要拥有自己的端点和 API 密钥，您可以从支持的[端点提供商](builders/get-started/endpoints/){target=\_blank}之一获取。
 
 要从命令行分叉 Moonbeam，您可以从 Hardhat 项目目录中运行以下命令：
 
-===
+=== "Moonbeam"
 
     ```sh
     npx hardhat node --fork {{ networks.moonbeam.rpc_url }}
     ```
 
-===
+=== "Moonriver"
 
     ```sh
     npx hardhat node --fork {{ networks.moonriver.rpc_url }}
     ```
 
-===
+=== "Moonbase Alpha"
 
     ```sh
     npx hardhat node --fork {{ networks.moonbase.rpc_url }}
@@ -477,7 +477,7 @@ npx hardhat run --network moonbase scripts/box-console.ts
 curl --data '{"method":"eth_blockNumber","params":[],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json" -X POST localhost:8545 
 ```
 
-如果您将 `result` 从 [十六进制转换为十进制](https://www.rapidtables.com/convert/number/hex-to-decimal.html){target=\_blank}，您应该从分叉网络的时间获取最新的区块号。 您可以使用[区块浏览器](/builders/get-started/explorers/){target=\_blank}交叉引用区块号。
+如果您将 `result` 从 [十六进制转换为十进制](https://www.rapidtables.com/convert/number/hex-to-decimal.html){target=\_blank}，您应该从分叉网络的时间获取最新的区块号。 您可以使用[区块浏览器](builders/get-started/explorers/){target=\_blank}交叉引用区块号。
 
 从这里，您可以将新合约部署到 Moonbeam 的分叉实例，或通过创建已部署合约的本地实例来与已部署的合约进行交互。
 
@@ -502,4 +502,4 @@ main().catch((error) => {
 });
 ```
 
---8<-- 'text/_disclaimers/third-party-content.md'
+--8<-- 'zh/text/_disclaimers/third-party-content.md'

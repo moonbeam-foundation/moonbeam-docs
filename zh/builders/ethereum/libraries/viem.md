@@ -11,19 +11,19 @@ categories: 库和 SDK, Ethereum Toolkit
 
 [viem](https://viem.sh){target=\_blank} 是一个模块化的 TypeScript 库，允许开发人员通过 JSON-RPC API 与抽象进行交互，从而轻松地与 Ethereum 节点进行交互。由于 Moonbeam 具有类似于 Ethereum 的 API，并且完全兼容 Ethereum 风格的 JSON RPC 调用，因此开发人员可以利用此兼容性与 Moonbeam 节点进行交互。有关 viem 的更多信息，请查看他们的[文档站点](https://viem.sh/docs/getting-started){target=\_blank}。
 
-在本指南中，您将学习如何使用 viem 在 Moonbase Alpha TestNet 上发送交易和部署合约。本指南适用于 [Moonbeam](/builders/get-started/networks/moonbeam/){target=\_blank}、[Moonriver](/builders/get-started/networks/moonriver/){target=\_blank} 或 [Moonbeam 开发节点](/builders/get-started/networks/moonbeam-dev/){target=\_blank}。
+在本指南中，您将学习如何使用 viem 在 Moonbase Alpha TestNet 上发送交易和部署合约。本指南适用于 [Moonbeam](builders/get-started/networks/moonbeam/){target=\_blank}、[Moonriver](builders/get-started/networks/moonriver/){target=\_blank} 或 [Moonbeam 开发节点](builders/get-started/networks/moonbeam-dev/){target=\_blank}。
 
 ## 检查先决条件 {: #checking-prerequisites }
 
 对于本指南中的示例，您需要具备以下条件：
 
 - 拥有资金的帐户。
-    --8<-- 'text/_common/faucet/faucet-list-item.md'
-- --8<-- 'text/_common/endpoint-examples-list-item.md'
+    --8<-- 'zh/text/_common/faucet/faucet-list-item.md'
+- --8<-- 'zh/text/_common/endpoint-examples-list-item.md'
 
 !!! note
 
-    --8<-- 'text/_common/assumes-mac-or-ubuntu-env.md'
+    --8<-- 'zh/text/_common/assumes-mac-or-ubuntu-env.md'
 
 ## 安装 viem {: #installing-viem }
 
@@ -61,7 +61,7 @@ npx tsc --init
 
 在本指南中，你将创建许多提供不同功能的脚本，例如发送交易、部署合约以及与已部署的合约进行交互。在大多数这些脚本中，你需要创建一个 [viem 客户端](https://docs.ethers.org/v6/api/providers/){target=\_blank} 以与网络进行交互。
 
---8<-- 'text/_common/endpoint-setup.md'
+--8<-- 'zh/text/_common/endpoint-setup.md'
 
 你可以使用 `createPublicClient` 函数创建一个 viem 客户端来读取链数据，例如余额或合约数据，或者你可以使用 `createWalletClient` 函数创建一个 viem 客户端来写入链数据，例如发送交易。
 
@@ -293,13 +293,13 @@ npx ts-node transaction.ts
 
 ## 部署合约 {: #deploy-contract }
 
---8<-- 'text/builders/ethereum/libraries/contract.md'
+--8<-- 'zh/text/builders/ethereum/libraries/contract.md'
 
 ### 编译合约脚本 {: #compile-contract-script }
 
---8<-- 'text/builders/ethereum/libraries/compile-ts.md'
+--8<-- 'zh/text/builders/ethereum/libraries/compile-ts.md'
 
---8<-- 'text/builders/ethereum/libraries/compile.md'
+--8<-- 'zh/text/builders/ethereum/libraries/compile.md'
 
 
 --8<-- 'code/builders/ethereum/libraries/compile.ts'
@@ -428,4 +428,4 @@ npx ts-node reset.ts
 
 --8<-- 'code/builders/ethereum/libraries/viem/terminal/reset.md'
 
---8<-- 'text/_disclaimers/third-party-content.md'
+--8<-- 'zh/text/_disclaimers/third-party-content.md'

@@ -8,13 +8,13 @@ categories: Indexers and Queries
 
 ## 简介 {: #introduction }
 
-[GoldRush](https://goldrush.dev/){target=_blank}，前身为 Covalent，是一种托管的区块链数据解决方案，可访问 [100 多个受支持的区块链](https://goldrush.dev/docs/chains/overview#supported-chains){target=_blank} 的历史和当前链上数据，包括 [Moonbeam](https://goldrush.dev/docs/chains/moonbeam){target=_blank}、[Moonriver](https://goldrush.dev/docs/chains/moonriver){target=_blank} 和 [Moonbase Alpha](https://goldrush.dev/docs/chains/moonbeam-moonbase-alpha){target=_blank}。GoldRush 维护每个受支持区块链的完整存档副本，这意味着每个余额、交易、日志事件和 NFT 资产数据都可以从创世区块获得。此数据可通过以下方式获得：
+[GoldRush](https://goldrush.dev/){target=\_blank}，前身为 Covalent，是一种托管的区块链数据解决方案，可访问 [100 多个受支持的区块链](https://goldrush.dev/docs/chains/overview#supported-chains){target=\_blank} 的历史和当前链上数据，包括 [Moonbeam](https://goldrush.dev/docs/chains/moonbeam){target=\_blank}、[Moonriver](https://goldrush.dev/docs/chains/moonriver){target=\_blank} 和 [Moonbase Alpha](https://goldrush.dev/docs/chains/moonbeam-moonbase-alpha){target=\_blank}。GoldRush 维护每个受支持区块链的完整存档副本，这意味着每个余额、交易、日志事件和 NFT 资产数据都可以从创世区块获得。此数据可通过以下方式获得：
 
 - [统一 API](#unified-api-overview) - 通过熟悉的 REST API 将区块链数据整合到您的应用中
 
 本指南将介绍开始使用 [Foundational API](https://goldrush.dev/docs/goldrush-foundational-api/quickstart){target=\_blank} 所需的所有详细信息，以及如何使用 curl 命令以及 JavaScript 和 Python 代码段访问 Moonbeam 的 API 端点。
 
---8<-- 'text/_disclaimers/third-party-content-intro.md'
+--8<-- 'zh/text/_disclaimers/third-party-content-intro.md'
 
 ## 统一 API 概述 {: #unified-api-overview }
 
@@ -419,21 +419,21 @@ GoldRush API 提供了许多其他方法，包括 NFT、价格、比特币和实
 
 - [API 参考和浏览器内端点演示](https://goldrush.mintlify.app/docs/api/overview){target=\_blank}
 - [GoldRush 快速入门](https://goldrush.mintlify.app/docs/quickstart){target=\_blank}
-- [书面指南](https://goldrush.dev/docs/overview){target=_blank}
+- [书面指南](https://goldrush.dev/docs/overview){target=\_blank}
 
 ## 如何使用统一 API {: #how-to-use-the-unified-api }
 
-首先，请确保您拥有[您的 API 密钥](https://goldrush.dev/platform/auth/register/){target=_blank}，该密钥以 `cqt_` 或 `ckey_` 开头。 拥有 API 密钥后，您可以访问任何受支持的端点。 要获取特定网络的信息，您必须提供链 ID。
+首先，请确保您拥有[您的 API 密钥](https://goldrush.dev/platform/auth/register/){target=\_blank}，该密钥以 `cqt_` 或 `ckey_` 开头。 拥有 API 密钥后，您可以访问任何受支持的端点。 要获取特定网络的信息，您必须提供链 ID。
 
 ### 检查先决条件 {: #checking-prerequisites }
 
 要开始使用 GoldRush API，您需要具备以下条件：
 
- - 一个免费的 [GoldRush API 密钥](https://goldrush.dev/platform/auth/register/){target=_blank}
- - 安装 MetaMask 并[连接到 Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}
+ - 一个免费的 [GoldRush API 密钥](https://goldrush.dev/platform/auth/register/){target=\_blank}
+ - 安装 MetaMask 并[连接到 Moonbase Alpha](tokens/connect/metamask/){target=\_blank}
  - 一个有资金的帐户。
  
-  --8<-- 'text/_common/faucet/faucet-list-item.md'
+  --8<-- 'zh/text/_common/faucet/faucet-list-item.md'
 
 ### 使用 Curl {: #using-curl }
 
@@ -448,7 +448,7 @@ curl https://api.covalenthq.com/v1/1287/tokens/\\\n0x08B40414525687731C23F430CEB
 
 ### 使用 Javascript {: #using-javascript }
 
-将下面的代码块复制并粘贴到您喜欢的环境或 [JSFiddle](https://jsfiddle.net){target=_blank} 中。设置 API 密钥后，设置地址常量。请记住，对于 Moonbase Alpha，链 ID 为 `{{ networks.moonbase.chain_id }}`。
+将下面的代码块复制并粘贴到您喜欢的环境或 [JSFiddle](https://jsfiddle.net){target=\_blank} 中。设置 API 密钥后，设置地址常量。请记住，对于 Moonbase Alpha，链 ID 为 `{{ networks.moonbase.chain_id }}`。
 
 === "使用 Fetch"
 
@@ -468,7 +468,7 @@ balances 端点返回所有 ERC-20 和 NFT token 余额的列表，包括 ERC-72
 
 ### 使用 Python {: #using-python }
 
-GoldRush 没有官方的 API 包装器。要直接查询 API，您必须使用 Python [requests 库](https://pypi.org/project/requests){target=_blank}。使用命令行 `pip install requests` 将 requests 安装到您的环境中。然后导入它并在您的代码中使用它。使用 HTTP 动词 get 方法从 API 返回信息。将下面的代码块复制并粘贴到您喜欢的环境中并运行它。输出应该与上面的屏幕截图类似，但是格式可能会因您的环境而异。
+GoldRush 没有官方的 API 包装器。要直接查询 API，您必须使用 Python [requests 库](https://pypi.org/project/requests){target=\_blank}。使用命令行 `pip install requests` 将 requests 安装到您的环境中。然后导入它并在您的代码中使用它。使用 HTTP 动词 get 方法从 API 返回信息。将下面的代码块复制并粘贴到您喜欢的环境中并运行它。输出应该与上面的屏幕截图类似，但是格式可能会因您的环境而异。
 
 python
 --8<-- 'code/builders/integrations/indexers/covalent/python-example.py'
@@ -476,4 +476,4 @@ python
 !!! note
     `auth` 的第二个参数为空，因为不需要密码 - 只需要您的 API 密钥。
 
---8<-- 'text/_disclaimers/third-party-content.md'
+--8<-- 'zh/text/_disclaimers/third-party-content.md'

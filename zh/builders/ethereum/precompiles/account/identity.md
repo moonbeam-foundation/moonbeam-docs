@@ -15,21 +15,21 @@ categories: Precompiles, Ethereum Toolkit
 身份预编译位于以下地址：
 
 === "Moonbeam"
-        ```text
+       
         `{{ networks.moonbeam.precompiles.identity }}`
-        ```
+        
 
 === "Moonriver"
-        ```text
+
         `{{ networks.moonriver.precompiles.identity }}`
-        ```
+
 
 === "Moonbase Alpha"
-        ```text
+      
         `{{ networks.moonbase.precompiles.identity }}`
-        ```
+       
 
---8<-- 'text/builders/ethereum/precompiles/security.md'
+--8<-- 'zh/text/builders/ethereum/precompiles/security.md'
 
 ## Identity Precompile Solidity接口 {: #the-solidity-interface }
 
@@ -65,7 +65,7 @@ Identity Precompile包含一些可以由任何人调用的函数，以及一些�
 
     === "参数"
 
-        None。
+        无。
 
 ??? function "**setIdentity**(*IdentityInfo memory* info) - 为调用者设置身份"
 
@@ -83,7 +83,7 @@ Identity Precompile包含一些可以由任何人调用的函数，以及一些�
 
     === "参数"
 
-        None。
+        无。
 
 ??? function "**requestJudgement**(*uint32* regIndex, *uint256* maxFee) - 从给定的注册员处请求判断，并提供调用者愿意支付的最高费用"
 
@@ -158,10 +158,10 @@ Identity Precompile包含一些可以由任何人调用的函数，以及一些�
 
 ## 与Solidity接口交互 {: #interact-with-interface }
 
-以下部分将介绍如何使用[以太坊库](/builders/ethereum/libraries/){target=\_blank}（例如[Ethers.js](/builders/ethereum/libraries/ethersjs/){target=\_blank}和[Web3.py](/builders/ethereum/libraries/web3py/){target=\_blank}）与身份预编译进行交互。
+以下部分将介绍如何使用[以太坊库](builders/ethereum/libraries/){target=\_blank}（例如[Ethers.js](builders/ethereum/libraries/ethersjs/){target=\_blank}和[Web3.py](builders/ethereum/libraries/web3py/){target=\_blank}）与身份预编译进行交互。
 
 本指南中的示例将在Moonbase Alpha上进行。
---8<-- 'text/_common/endpoint-examples.md'
+--8<-- 'zh/text/_common/endpoint-examples.md'
 
 ### 使用以太坊库 {: #use-ethereum-libraries }
 

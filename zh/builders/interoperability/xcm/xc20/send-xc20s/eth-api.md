@@ -10,37 +10,37 @@ categories: XCM, Precompiles
 
 作为 Polkadot 的平行链，Moonbeam 具有与其他连接的平行链通信和交换数据的固有能力。这种原生的跨链通信允许安全快速的代币转移，利用跨共识消息格式（简称 XCM），促进不同共识系统之间的通信。
 
-实现代币转移的通信协议构建在 [Substrate](/builders/substrate/){target=_blank} 之上，并且运行级别低于 EVM，这使得 EVM 开发者更难访问。
+实现代币转移的通信协议构建在 [Substrate](builders/substrate/){target=\_blank} 之上，并且运行级别低于 EVM，这使得 EVM 开发者更难访问。
 
 尽管如此，Moonbeam 网络具有一个 XCM 预编译合约，可以填补执行层之间的空白。这个预编译合约公开了一个智能合约接口，该接口抽象了底层复杂性，使得跨链代币转移的执行变得像任何其他智能合约调用一样简单。
 
-本指南将向您展示如何与 [XCM 接口](https://github.com/Moonsong-Labs/moonkit/blob/main/precompiles/pallet-xcm/XcmInterface.sol){target=_blank} 预编译合约交互，以通过 Ethereum API 执行跨链代币转移。
+本指南将向您展示如何与 [XCM 接口](https://github.com/Moonsong-Labs/moonkit/blob/main/precompiles/pallet-xcm/XcmInterface.sol){target=\_blank} 预编译合约交互，以通过 Ethereum API 执行跨链代币转移。
 
 XCM 预编译合约位于以下地址：
 
-===
+=== "Moonbeam"
 
-     ```
+     ```text
      {{networks.moonbeam.precompiles.xcm_interface }}
      ```
 
-===
+=== "Moonriver"
 
-     ```
+     ```text
      {{networks.moonriver.precompiles.xcm_interface }}
      ```
 
-===
+=== "Moonbase Alpha"
 
-     ```
+     ```text
      {{networks.moonbase.precompiles.xcm_interface }}
      ```
 
---8<-- 'text/builders/ethereum/precompiles/security.md'
+--8<-- 'zh/text/builders/ethereum/precompiles/security.md'
 
 ## XCM Solidity 接口 {: #the-xcm-solidity-interface }
 
-[`XCMInterface.sol`](https://github.com/Moonsong-Labs/moonkit/blob/main/precompiles/pallet-xcm/XcmInterface.sol){target=_blank} 是一个 Solidity 接口，允许开发者与 `pallet-xcm` 的方法进行交互。
+[`XCMInterface.sol`](https://github.com/Moonsong-Labs/moonkit/blob/main/precompiles/pallet-xcm/XcmInterface.sol){target=\_blank} 是一个 Solidity 接口，允许开发者与 `pallet-xcm` 的方法进行交互。
 
 ??? code "XCMInterface.sol"
 
@@ -176,13 +176,13 @@ XCM 预编译合约位于以下地址：
 
 ### 检查先决条件 {: #checking-prerequisites }
 
-要学习本教程，您必须配置好您首选的 EVM 钱包，并且账户中有原生代币。您可以按照本指南将 Moonbeam 添加到 MetaMask 钱包：[使用 MetaMask 与 Moonbeam 交互](/tokens/connect/metamask/){target=_blank}。
+要学习本教程，您必须配置好您首选的 EVM 钱包，并且账户中有原生代币。您可以按照本指南将 Moonbeam 添加到 MetaMask 钱包：[使用 MetaMask 与 Moonbeam 交互](tokens/connect/metamask/){target=\_blank}。
 
 ### Remix 设置 {: #remix-set-up }
 
-您可以使用 [Remix](https://remix.ethereum.org){target=_blank} 与 XCM 预编译合约进行交互。要将预编译合约添加到 Remix，您需要：
+您可以使用 [Remix](https://remix.ethereum.org){target=\_blank} 与 XCM 预编译合约进行交互。要将预编译合约添加到 Remix，您需要：
 
-1. 获取 [`XCMInterface.sol`](https://github.com/Moonsong-Labs/moonkit/blob/main/precompiles/pallet-xcm/XcmInterface.sol){target=_blank} 的副本
+1. 获取 [`XCMInterface.sol`](https://github.com/Moonsong-Labs/moonkit/blob/main/precompiles/pallet-xcm/XcmInterface.sol){target=\_blank} 的副本
 2. 将文件内容粘贴到名为 `XCMInterface.sol` 的 Remix 文件中
 
 ### 编译合约 {: #compile-the-contract }
@@ -235,7 +235,7 @@ XCM 预编译合约位于以下地址：
 3. 输入 sr25519 类型的目标帐户（受益人）
 4. 指定要转移的代币。请注意，此参数是一个数组，其中包含至少一个资产。每个资产都由其地址和要转移的总金额指定
 
-   --8<-- 'text/builders/ethereum/precompiles/security.md'
+   --8<-- 'zh/text/builders/ethereum/precompiles/security.md'
 
 5. 输入将用于支付费用的资产的索引。此索引从零开始，因此第一个元素是 `0`，第二个元素是 `1`，依此类推
 6. 点击 **transact**
@@ -253,7 +253,7 @@ XCM 预编译合约位于以下地址：
 2. 输入 sr25519 类型的目标帐户（受益人）
 3. 指定要转移的代币。请注意，此参数是一个数组，其中包含至少一项资产。每项资产都由其地址和要转移的总金额指定
 
-   --8<-- 'text/builders/ethereum/precompiles/security.md'
+   --8<-- 'zh/text/builders/ethereum/precompiles/security.md'
 
 4. 输入将用于支付费用的资产的索引。此索引从零开始，因此第一个元素是 `0`，第二个元素是 `1`，依此类推
 5. 点击 **transact**
@@ -273,7 +273,7 @@ XCM 预编译合约位于以下地址：
 2. 输入指定目标链的多位置。请注意，可以指定任何链，无论其配置或类型如何
 3. 输入要以地址格式发送的资产组合数组
 4. 输入将用于支付费用的资产的索引。此索引从零开始，因此第一个元素是 `0`，第二个元素是 `1`，依此类推
-5. 输入要在目标链上执行的 XCM 消息。有关创建 XCM 调用数据的更多信息，请参见[发送和执行 XCM 消息](/builders/interoperability/xcm/send-execute-xcm/)
+5. 输入要在目标链上执行的 XCM 消息。有关创建 XCM 调用数据的更多信息，请参见[发送和执行 XCM 消息](builders/interoperability/xcm/send-execute-xcm/)
 6. 输入远程储备，例如 `[1,[]]`
 7. 单击 **transact**
 8. MetaMask 将弹出，系统将提示您查看交易详细信息。单击**确认**以发送交易

@@ -16,7 +16,7 @@ Axelar 是一个全栈传输层，支持资产转移、[通用消息传递](http
 
 Axelar API 提供了一套丰富的 Web3 应用程序开发套件，确保开发人员拥有构建所需的工具。借助这些工具和 API，开发人员可以使用 Axelar 网络及其 API 编写可以轻松部署在所有 Axelar 连接的生态系统中的 dApp。
 
---8<-- 'text/_disclaimers/third-party-content-intro.md'
+--8<-- 'zh/text/_disclaimers/third-party-content-intro.md'
 
 ## 入门 {: #getting-started }
 
@@ -38,4 +38,4 @@ Axelar API 提供了一套丰富的 Web3 应用程序开发套件，确保开发
 
 - **TestNet 合约** - [Moonbase Alpha](https://docs.axelar.dev/dev/reference/testnet-contract-addresses){target=\_blank}
 
---8<-- 'text/_disclaimers/third-party-content.md'
+--8<-- 'zh/text/_disclaimers/third-party-content.md'

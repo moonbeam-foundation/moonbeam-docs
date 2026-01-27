@@ -20,17 +20,17 @@ Moonbeam 引入了一个新的专用 Origin，名为 `ForeignAssetOwnerOrigin`�
 
 存款是特定于网络的，可以通过 Moonbeam 治理通过 `parameters` pallet 进行调整：
 
-===
+=== "Moonbeam"
 
     |    Variable    |                       Value                       |
     |:--------------:|:-------------------------------------------------:|
     | Foreign Asset Deposit | {{ networks.moonbeam.xcm.foreign_asset_deposit.display }} GLMR |
-===
+=== "Moonriver"
 
     |    Variable    |                       Value                       |
     |:--------------:|:-------------------------------------------------:|
     | Foreign Asset Deposit | {{ networks.moonriver.xcm.foreign_asset_deposit.display }} MOVR |
-===
+=== "Moonbase Alpha"
 
     |    Variable    |                       Value                       |
     |:--------------:|:-------------------------------------------------:|
@@ -40,9 +40,9 @@ Moonbeam 引入了一个新的专用 Origin，名为 `ForeignAssetOwnerOrigin`�
 
 需要注意以下几个必备条件：
 
-- Moonbeam上的兄弟平行链的[主权账户](/builders/interoperability/xcm/core-concepts/sovereign-accounts/){target=_blank}必须有足够的资金来支付资产存款和交易费用。建议您预留额外的资金缓冲，以备后续交易之需。请参阅此[主权账户计算指南](/builders/interoperability/xcm/core-concepts/sovereign-accounts/){target=_blank}
+- Moonbeam上的兄弟平行链的[主权账户](builders/interoperability/xcm/core-concepts/sovereign-accounts/){target=\_blank}必须有足够的资金来支付资产存款和交易费用。建议您预留额外的资金缓冲，以备后续交易之需。请参阅此[主权账户计算指南](builders/interoperability/xcm/core-concepts/sovereign-accounts/){target=\_blank}
 - 您的平行链应支持 XCM V4
-- 您的平行链需要与 Moonbeam 建立双向 XCM 通道。请参阅此[关于打开与 Moonbeam 之间的 XCM 通道的信息指南](/builders/interoperability/xcm/xc-registration/xc-integration/){target=_blank}
+- 您的平行链需要与 Moonbeam 建立双向 XCM 通道。请参阅此[关于打开与 Moonbeam 之间的 XCM 通道的信息指南](builders/interoperability/xcm/xc-registration/xc-integration/){target=\_blank}
 
 ## 收集您的资产详细信息 {: #assemble-your-asset-details }
 
@@ -66,7 +66,7 @@ const NAME     = "Test Token";
 
 构造好您的多重定位后，请随手保存，因为下一步会用到它。典型的资产多重定位如下所示：
 
-XCM 工具仓库中有一个有用的[计算外部资产信息脚本](https://github.com/Moonsong-Labs/xcm-tools/blob/main/scripts/calculate-external-asset-info.ts){target=_blank}，您可以使用该脚本以编程方式生成资产 ID。该脚本接受两个参数，即资产的多重定位和目标网络（Moonbeam 或 Moonriver）。使用您资产的多重定位和目标网络调用 `calculate-external-asset-info.ts` 助手脚本，如下所示，以轻松生成其资产 ID。
+XCM 工具仓库中有一个有用的[计算外部资产信息脚本](https://github.com/Moonsong-Labs/xcm-tools/blob/main/scripts/calculate-external-asset-info.ts){target=\_blank}，您可以使用该脚本以编程方式生成资产 ID。该脚本接受两个参数，即资产的多重定位和目标网络（Moonbeam 或 Moonriver）。使用您资产的多重定位和目标网络调用 `calculate-external-asset-info.ts` 助手脚本，如下所示，以轻松生成其资产 ID。
 
 ```bash
 ts-node scripts/calculate-external-asset-info.ts \
@@ -80,21 +80,19 @@ ts-node scripts/calculate-external-asset-info.ts \
 
 将 `assetID` 转换为十六进制，在左侧填充到 32 个十六进制字符，并在前面加上八个 `F`，如下所示：
 
-text
+```text
 xc20Address = 0xFFFFFFFF + hex(assetId).padStart(32, '0')
+```
 
 xcDOT 的 XC-20 地址示例可以这样计算：
 
-===
-
-公式
+=== "公式"
 
 ```ts
 const xc20Address = `0xFFFFFFFF${hex(assetId).padStart(32, "0")}`;
 ```
 
-===
-示例
+=== "示例"
 
 ```bash
 0xFFFFFFFF1FCACBD218EDC0EBA20FC2308C778080
@@ -112,25 +110,28 @@ const xc20Address = `0xFFFFFFFF${hex(assetId).padStart(32, "0")}`;
 
 要注册您的资产，请将 SCALE 编码的 `createForeignAsset` 字节包装在从您的平行链的主权账户执行的单个 `Transact` 指令中。调用的基本结构如下所示：
 
-text
+```text
 Transact {
   originKind: SovereignAccount,
   requireWeightAtMost: <weight>,
   call: <encodedCall>
 }
+```
 
 通过 `xcmPallet.send` 发送 transact 指令，目标平行链对于 Moonbeam 为 `2004`（对于 Moonriver 为 `2023`）。
 
-rust
+```rust
 xcmPallet.send(
   dest: { Parachain: 2004 },
   message: VersionedXcm::V4(INSERT_TRANSACT_INSTRUCTION)
 );
+```
 
 最后，在 Moonbeam 上查找以下成功发出的事件：
 
-text
+```text
 EvmForeignAssets.ForeignAssetCreated(assetId, location, creator)
+```
 
 它的存在确认了 XC-20 资产已启动。
 

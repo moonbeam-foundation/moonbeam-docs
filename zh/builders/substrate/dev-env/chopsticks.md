@@ -238,7 +238,7 @@ npx @acala-network/chopsticks@latest run-block \
 
 ## XCM 测试 {: #xcm-testing }
 
-要测试不同网络之间的 XCM 消息，你可以在本地 fork 多条平行链和一条中继链。例如，在你已下载源 GitHub 仓库中的 [`configs` 目录](https://github.com/AcalaNetwork/chopsticks/tree/master/configs){target=_blank} 的前提下，以下命令会 fork Moonriver、Karura 和 Kusama：
+要测试不同网络之间的 XCM 消息，你可以在本地 fork 多条平行链和一条中继链。例如，在你已下载源 GitHub 仓库中的 [`configs` 目录](https://github.com/AcalaNetwork/chopsticks/tree/master/configs){target=\_blank} 的前提下，以下命令会 fork Moonriver、Karura 和 Kusama：
 
 ```bash
 npx @acala-network/chopsticks@latest xcm \
@@ -301,4 +301,4 @@ Chopsticks的内部websocket服务器具有特殊的端点，允许操作本地S
 }
 ```
 
---8<-- 'text/_disclaimers/third-party-content.md'
+--8<-- 'zh/text/_disclaimers/third-party-content.md'
