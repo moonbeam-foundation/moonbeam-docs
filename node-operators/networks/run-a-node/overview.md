@@ -10,7 +10,7 @@ categories: Basics, Node Operators and Collators
 
 Running a full node on a Moonbeam-based network allows you to connect to the network, sync with a bootnode, obtain local access to RPC endpoints, author blocks on the parachain, and more.
 
-There are multiple deployments of Moonbeam, including the Moonbase Alpha TestNet, Moonriver on Kusama, and Moonbeam on Polkadot. Here's how these environments are named and their corresponding [chain specification file](https://docs.polkadot.com/develop/parachains/deployment/generate-chain-specs/) names:
+There are multiple deployments of Moonbeam, including the Moonbase Alpha TestNet, Moonriver on Kusama, and Moonbeam on Polkadot. Here's how these environments are named and their corresponding [chain specification file](https://github.com/paritytech/chainspecs){target=\_blank} names:
 
 |    Network     |      Hosted By      |             Chain Name              |
 |:--------------:|:-------------------:|:-----------------------------------:|
@@ -100,7 +100,7 @@ Upon spooling up a node with this feature, you'll see output like the following:
 --8<-- 'code/node-operators/networks/run-a-node/terminal/lazy-loading.md'
 
 !!! note
-    Lazy loading a Moonbeam requires a large number of RPC requests. To avoid being rate-limited by a public endpoint, it's highly recommended to use a [dedicated endpoint](/builders/get-started/endpoints#endpoint-providers).  
+    Lazy loading a Moonbeam requires a large number of RPC requests. To avoid being rate-limited by a public endpoint, it's highly recommended to use a [dedicated endpoint](/builders/get-started/endpoints/#endpoint-providers).  
 
 You can further customize your use of the lazy loading functionality with the following optional parameters:
 

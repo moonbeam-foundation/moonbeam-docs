@@ -236,6 +236,6 @@ These steps apply to both Substrate and EVM indexers. Running your SQD indexer a
         }
         ```
 
-For additional examples and workflows, refer to the [SQD documentation](https://docs.sqd.dev/){target=\_blank}.
+For additional examples and workflows, refer to the [SQD documentation](https://docs.sqd.ai/){target=\_blank}.
 
 --8<-- 'text/_disclaimers/third-party-content.md'
