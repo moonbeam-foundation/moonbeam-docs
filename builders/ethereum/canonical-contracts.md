@@ -50,7 +50,7 @@ The following contracts addresses have been established:
 There are a set of precompiled contracts included on Moonbeam, Moonriver, and Moonbase Alpha that are categorized by address and based on the origin network. If you were to convert the precompiled addresses to decimal format, and break them into categories by numeric value, the categories are as follows:
 
 - **0-1023** - [Ethereum MainNet precompiles](#ethereum-mainnet-precompiles)
-- **1024-2047** - precompiles that are [not in Ethereum and not Moonbeam specific](#non-moonbeam-specific-nor-ethereum-precomiles)
+- **1024-2047** - precompiles that are [not in Ethereum and not Moonbeam specific](#non-moonbeam-specific-nor-ethereum-precompiles)
 - **2048-4095** - [Moonbeam specific precompiles](#moonbeam-specific-precompiles)
 
 --8<-- 'text/builders/ethereum/canonical-contracts/eth-mainnet.md'

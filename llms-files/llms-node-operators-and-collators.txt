@@ -362,7 +362,7 @@ As mentioned before, only the top candidates by delegated stake will be in the a
 
 To stop collating and leave the candidate pool, you must first schedule a request to leave the pool. Scheduling a request automatically removes you from the active set, so you will no longer be eligible to produce blocks or earn rewards. You must wait for the duration of the [exit delay](#collator-timings) before you can execute the request to leave. After the request has been executed, you will be removed from the candidate pool.
 
-Similar to [Polkadot's `chill()`](https://docs.polkadot.com/infrastructure/running-a-validator/operational-tasks/pause-validating/){target=\_blank} functionality, you can [temporarily leave the candidate pool](#temporarily-leave-the-candidate-pool) without unbonding your tokens.
+Similar to [Polkadot's `chill()`](https://docs.polkadot.com/node-infrastructure/run-a-validator/operational-tasks/pause-validating/){target=\_blank} functionality, you can [temporarily leave the candidate pool](#temporarily-leave-the-candidate-pool) without unbonding your tokens.
 
 ### Schedule Request to Leave Candidates {: #schedule-request-to-leave-candidates }
 
@@ -2159,7 +2159,7 @@ categories: Basics, Node Operators and Collators
 
 Running a full node on a Moonbeam-based network allows you to connect to the network, sync with a bootnode, obtain local access to RPC endpoints, author blocks on the parachain, and more.
 
-There are multiple deployments of Moonbeam, including the Moonbase Alpha TestNet, Moonriver on Kusama, and Moonbeam on Polkadot. Here's how these environments are named and their corresponding [chain specification file](https://docs.polkadot.com/develop/parachains/deployment/generate-chain-specs/) names:
+There are multiple deployments of Moonbeam, including the Moonbase Alpha TestNet, Moonriver on Kusama, and Moonbeam on Polkadot. Here's how these environments are named and their corresponding [chain specification file](https://github.com/paritytech/chainspecs){target=\_blank} names:
 
 |    Network     |      Hosted By      |             Chain Name              |
 |:--------------:|:-------------------:|:-----------------------------------:|
@@ -2262,7 +2262,7 @@ Upon spooling up a node with this feature, you'll see output like the following:
 </div>
 
 !!! note
-    Lazy loading a Moonbeam requires a large number of RPC requests. To avoid being rate-limited by a public endpoint, it's highly recommended to use a [dedicated endpoint](/builders/get-started/endpoints#endpoint-providers).  
+    Lazy loading a Moonbeam requires a large number of RPC requests. To avoid being rate-limited by a public endpoint, it's highly recommended to use a [dedicated endpoint](/builders/get-started/endpoints/#endpoint-providers).  
 
 You can further customize your use of the lazy loading functionality with the following optional parameters:
 
@@ -3634,7 +3634,7 @@ While Moonbeam strives to be compatible with Ethereum's Web3 API and EVM, there 
 
 In short, consensus is a way for different parties to agree on a shared state. As blocks are created, nodes in the network must decide which block will represent the next valid state. Finality defines when that valid state cannot be altered or reversed.
 
-Ethereum began by using a consensus protocol based on [Proof-of-Work (PoW)](https://ethereum.org/developers/docs/consensus-mechanisms/pow/){target=\_blank}, which provides probabilistic finality. However, in 2022, Ethereum switched to [Proof-of-Stake (PoS)](https://ethereum.org/developers/docs/consensus-mechanisms/pos/){target=\_blank}, which provides deterministic finality, and no longer uses PoW. In contrast, Moonbeam uses a hybrid consensus protocol based on Delegated Proof-of-Stake (DPoS), which also provides deterministic finality. DPoS is an evolution of Polkadot's [Nominated Proof of Stake (NPoS)](https://docs.polkadot.com/polkadot-protocol/architecture/polkadot-chain/pos-consensus/){target=\_blank} concept, that puts more power into the hands of token holders by allowing delegators to choose which collator candidate they want to support and in what magnitude.
+Ethereum began by using a consensus protocol based on [Proof-of-Work (PoW)](https://ethereum.org/developers/docs/consensus-mechanisms/pow/){target=\_blank}, which provides probabilistic finality. However, in 2022, Ethereum switched to [Proof-of-Stake (PoS)](https://ethereum.org/developers/docs/consensus-mechanisms/pos/){target=\_blank}, which provides deterministic finality, and no longer uses PoW. In contrast, Moonbeam uses a hybrid consensus protocol based on Delegated Proof-of-Stake (DPoS), which also provides deterministic finality. DPoS is an evolution of Polkadot's [Nominated Proof of Stake (NPoS)](https://docs.polkadot.com/reference/polkadot-hub/consensus-and-security/pos-consensus/){target=\_blank} concept, that puts more power into the hands of token holders by allowing delegators to choose which collator candidate they want to support and in what magnitude.
 
 This guide will outline some of these main differences around consensus and finality, and what to expect when using Moonbeam for the first time.
 
@@ -3648,7 +3648,7 @@ Finality is deterministic in Ethereum's PoS consensus protocol and is achieved t
 
 In Polkadot, there are collators and validators. [Collators](https://wiki.polkadot.com/learn/learn-collator/){target=\_blank} maintain parachains (in this case, Moonbeam) by collecting transactions from users and producing state transition proofs for the relay chain [validators](https://wiki.polkadot.com/learn/learn-validator/){target=\_blank}. The collator set (nodes that produce blocks) is selected based on the stake they have in the network.
 
-For finality, Polkadot and Kusama rely on [GRANDPA](https://docs.polkadot.com/polkadot-protocol/architecture/polkadot-chain/pos-consensus/#finality-gadget-grandpa){target=\_blank}. GRANDPA provides deterministic finality for any given transaction (block). In other words, when a block or transaction is marked as final, it can't be reverted except via on-chain governance or forking. Moonbeam follows this deterministic finality.
+For finality, Polkadot and Kusama rely on [GRANDPA](https://docs.polkadot.com/reference/polkadot-hub/consensus-and-security/pos-consensus/#finality-gadget-grandpa){target=\_blank}. GRANDPA provides deterministic finality for any given transaction (block). In other words, when a block or transaction is marked as final, it can't be reverted except via on-chain governance or forking. Moonbeam follows this deterministic finality.
 
 ## Main Differences Between PoS and DPoS {: #main-differences }
 
@@ -5024,7 +5024,7 @@ extrinsics[extrinsic_number].events[event_number].data[0].weight.ref_time
 
 ### Fee History Endpoint {: #eth-feehistory-endpoint }
 
-Moonbeam networks implement the [`eth_feeHistory`](https://www.alchemy.com/docs/node/ethereum/ethereum-api-endpoints/eth-fee-history){target_blank} JSON-RPC endpoint as a part of the support for EIP-1559.
+Moonbeam networks implement the [`eth_feeHistory`](https://www.alchemy.com/docs/chains/ethereum/ethereum-api-endpoints/eth-fee-history){target=\_blank} JSON-RPC endpoint as a part of the support for EIP-1559.
 
 `eth_feeHistory` returns a collection of historical gas information from which you can reference and calculate what to set for the `MaxFeePerGas` and `MaxPriorityFeePerGas` fields when submitting EIP-1559 transactions.
 
@@ -5438,7 +5438,7 @@ Learn more:
 
 ### Finality {: #finality }
 
-Moonbeam and Ethereum have different finality processes. On Ethereum, there is a checkpoint system where validators determine finality at checkpoint blocks, which takes at least 6.4 minutes for a block to be finalized. Moonbeam relies on Polkadot's [GRANDPA](https://docs.polkadot.com/polkadot-protocol/architecture/polkadot-chain/pos-consensus/#finality-gadget-grandpa){target=\_blank} finality gadget, which expedites finality by completing the process parallel to block production and allowing relay chain validators to vote on the highest block, finalizing all blocks leading up to that block.
+Moonbeam and Ethereum have different finality processes. On Ethereum, there is a checkpoint system where validators determine finality at checkpoint blocks, which takes at least 6.4 minutes for a block to be finalized. Moonbeam relies on Polkadot's [GRANDPA](https://docs.polkadot.com/reference/polkadot-hub/consensus-and-security/pos-consensus/#finality-gadget-grandpa){target=\_blank} finality gadget, which expedites finality by completing the process parallel to block production and allowing relay chain validators to vote on the highest block, finalizing all blocks leading up to that block.
 
 Learn more:
 
@@ -5492,7 +5492,7 @@ categories: Governance, Basics
 
 The goal of Moonbeam’s governance mechanism is to advance the protocol according to the desires of the community. In that shared mission, the governance process seeks to include all token holders. Any and all changes to the protocol must go through a referendum so that all token holders, weighted by stake, can have input on the decision.
 
-Governance forums like the [Moonbeam Community Forum](https://forum.moonbeam.network){target=\_blank} and [Polkassembly](https://moonbeam.polkassembly.io/opengov){target=\_blank} enable open discussion and allow proposals to be refined based on community input. Autonomous enactments and [forkless upgrades](https://docs.polkadot.com/develop/parachains/maintenance/runtime-upgrades/#forkless-upgrades){target=\_blank} unite the community towards a shared mission to advance the protocol.
+Governance forums like the [Moonbeam Community Forum](https://forum.moonbeam.network){target=\_blank} and [Polkassembly](https://moonbeam.polkassembly.io/opengov){target=\_blank} enable open discussion and allow proposals to be refined based on community input. Autonomous enactments and [forkless upgrades](https://wiki.polkadot.com/learn/learn-runtime-upgrades/#forkless-upgrades){target=\_blank} unite the community towards a shared mission to advance the protocol.
 
 With the rollout of OpenGov (originally referred to as Gov2), the second phase of governance in Polkadot, several modifications have been introduced to the governance process. You can read the [OpenGov: What is Polkadot Gov2](https://moonbeam.network/news/opengov-what-is-polkadot-gov2){target=\_blank} blog post, which provides an overview of all of the changes made in OpenGov.
 
@@ -5522,7 +5522,7 @@ Some of the main components of this governance model include:
  - **Council & Technical Committee Governance V1** — a group of community members who have special voting rights within the system. With the deprecation and removal of Governance v1, both of these committees were dissolved as of the [runtime 2800 release](https://forum.moonbeam.network/t/runtime-rt2801-schedule/1616/4){target=\_blank}
  - **OpenGov Technical Committee** — a group of community members who can add certain proposals to the Whitelisted Track
 
-For more details on how these Substrate frame pallets implement on-chain governance, you can checkout the [Walkthrough of Polkadot’s Governance](https://polkadot.com/blog/a-walkthrough-of-polkadots-governance){target=\_blank} blog post and the [Polkadot Governance Wiki](https://wiki.polkadot.com/learn/learn-polkadot-opengov/){target=\_blank}.
+For more details on how these Substrate frame pallets implement on-chain governance, you can check out the [Polkadot Governance Wiki](https://wiki.polkadot.com/learn/learn-polkadot-opengov/){target=\_blank}.
 
 ## Governance v2: OpenGov {: #opengov }
 
@@ -5829,7 +5829,7 @@ Randomness is necessary for a variety of blockchain applications to create unbia
 
 Moonbeam utilizes verifiable random functions (VRF) to generate randomness that can be verified on-chain. A VRF is a cryptographic function that takes some input and produces random values, along with a proof of authenticity that they were generated by the submitter. The proof can be verified by anyone to ensure that the random values were generated correctly.
 
-There are two available sources of randomness that provide random inputs based on block producers' VRF keys and past randomness results: [local VRF](#local-vrf) and [BABE epoch randomness](#babe-epoch-randomness). Local VRF is determined directly within Moonbeam using the collator of the block's VRF key and the last block's VRF output. On the other hand, [BABE](https://docs.polkadot.com/polkadot-protocol/architecture/polkadot-chain/pos-consensus/#block-production-babe){target=\_blank} epoch randomness is based on all the VRF produced by the relay chain validators during a complete [epoch](https://wiki.polkadot.com/general/glossary/#epoch){target=\_blank}.
+There are two available sources of randomness that provide random inputs based on block producers' VRF keys and past randomness results: [local VRF](#local-vrf) and [BABE epoch randomness](#babe-epoch-randomness). Local VRF is determined directly within Moonbeam using the collator of the block's VRF key and the last block's VRF output. On the other hand, [BABE](https://docs.polkadot.com/reference/polkadot-hub/consensus-and-security/pos-consensus/#block-production-babe){target=\_blank} epoch randomness is based on all the VRF produced by the relay chain validators during a complete [epoch](https://wiki.polkadot.com/general/glossary/#epoch){target=\_blank}.
 
 You can interact with and request on-chain randomness using the Randomness Precompile contract, a Solidity interface that enables smart contract developers to access the randomness functionality through the Ethereum API. For more information, please check out the [Interacting with the Randomness Precompile](/builders/ethereum/precompiles/features/randomness/){target=\_blank} guide.
 
@@ -5945,13 +5945,13 @@ categories: Basics, Staking
 
 ## Introduction {: #introduction }
 
-Moonbeam uses a block production mechanism based on [Polkadot's Proof-of-Stake model](https://docs.polkadot.com/polkadot-protocol/architecture/polkadot-chain/pos-consensus/){target=\_blank}, where there are collators and validators. [Collators](https://wiki.polkadot.com/learn/learn-collator/){target=\_blank} maintain parachains (in this case, Moonbeam) by collecting transactions from users and producing state transition proofs for the relay chain [validators](https://wiki.polkadot.com/learn/learn-validator/){target=\_blank}.
+Moonbeam uses a block production mechanism based on [Polkadot's Proof-of-Stake model](https://docs.polkadot.com/reference/polkadot-hub/consensus-and-security/pos-consensus/){target=\_blank}, where there are collators and validators. [Collators](https://wiki.polkadot.com/learn/learn-collator/){target=\_blank} maintain parachains (in this case, Moonbeam) by collecting transactions from users and producing state transition proofs for the relay chain [validators](https://wiki.polkadot.com/learn/learn-validator/){target=\_blank}.
 
 The candidates in the active set of collators (nodes that produce blocks) are selected based on their stake in the network. And here is where staking comes in.
 
 Collator candidates (and token holders if they delegate) have a stake in the network. The top N candidates by staked amount are chosen to produce blocks with a valid set of transactions, where N is a configurable parameter. Part of each block reward goes to the collators that produced the block, who then share it with the delegators considering their percental contributions towards the collator's stake. In such a way, network members are incentivized to stake tokens to improve the overall security. Since staking is done at a protocol level through the staking interface, if you choose to delegate, the collators you delegate to do not have access to your tokens.
 
-To easily manage staking related actions, you can visit the [Moonbeam Network DApp](https://apps.moonbeam.network){target=\_blank} and use the network tabs at the top of the page to easily switch between Moonbeam networks. To learn how to use the DApp, you can check out the [How to Stake MOVR Tokens](https://moonbeam.network/news/how-to-stake-movr-tokens-on-moonriver-and-earn-staking-rewards){target=\_blank} guide or [video tutorial](https://www.youtube.com/watch?v=8GwetYmzEJM){target=\_blank}, both of which can be adapted for the Moonbeam and the Moonbase Alpha TestNet.
+To easily manage staking related actions, you can visit the [Moonbeam DApp](https://apps.moonbeam.network/moonbeam){target=\_blank} and use the network tabs at the top of the page to easily switch between Moonbeam networks. To learn how to use the DApp, you can check out the [How to Stake MOVR Tokens](https://moonbeam.network/news/how-to-stake-movr-tokens-on-moonriver-and-earn-staking-rewards){target=\_blank} guide or [video tutorial](https://www.youtube.com/watch?v=8GwetYmzEJM){target=\_blank}, both of which can be adapted for the Moonbeam and the Moonbase Alpha TestNet.
 
 ## General Definitions {: #general-definitions }
 
@@ -6034,7 +6034,7 @@ There are a few resources you can check out to help you select a collator to del
 === "Moonriver"
     |           Variable           |                                      Value                                       |
     |:----------------------------:|:--------------------------------------------------------------------------------:|
-    |     Stake MOVR Dashboard     |               [Stake MOVR](https://stakemovr.com){target=\_blank}               |
+    |     Stake MOVR Dashboard     |               [Stake MOVR](https://stakemovr.com/){target=\_blank}               |
     |    Collators Leaderboard     |       [Moonscan](https://moonriver.moonscan.io/collators){target=\_blank}       |
     |      Collator Dashboard      | [DappLooker](https://dapplooker.com/dashboard/moonriver-collator-dashboard-28){target=\_blank} |
 
@@ -6209,7 +6209,7 @@ The Moonbeam-specific precompiles can be interacted with through familiar and ea
 The precompiled contracts are categorized by address and based on the origin network. If you were to convert the precompiled addresses to decimal format, and break them into categories by numeric value, the categories are as follows:
 
 - **0-1023** - [Ethereum MainNet precompiles](#ethereum-mainnet-precompiles)
-- **1024-2047** - precompiles that are [not in Ethereum and not Moonbeam specific](#non-moonbeam-specific-nor-ethereum-precomiles)
+- **1024-2047** - precompiles that are [not in Ethereum and not Moonbeam specific](#non-moonbeam-specific-nor-ethereum-precompiles)
 - **2048-4095** - [Moonbeam specific precompiles](#moonbeam-specific-precompiles)
 
 ### Ethereum MainNet Precompiles {: #ethereum-mainnet-precompiles }
@@ -8248,7 +8248,7 @@ categories: Basics, Node Operators and Collators
 
 Running a full node on a Moonbeam-based network allows you to connect to the network, sync with a bootnode, obtain local access to RPC endpoints, author blocks on the parachain, and more.
 
-There are multiple deployments of Moonbeam, including the Moonbase Alpha TestNet, Moonriver on Kusama, and Moonbeam on Polkadot. Here's how these environments are named and their corresponding [chain specification file](https://docs.polkadot.com/develop/parachains/deployment/generate-chain-specs/) names:
+There are multiple deployments of Moonbeam, including the Moonbase Alpha TestNet, Moonriver on Kusama, and Moonbeam on Polkadot. Here's how these environments are named and their corresponding [chain specification file](https://github.com/paritytech/chainspecs){target=\_blank} names:
 
 |    Network     |      Hosted By      |             Chain Name              |
 |:--------------:|:-------------------:|:-----------------------------------:|
@@ -8351,7 +8351,7 @@ Upon spooling up a node with this feature, you'll see output like the following:
 </div>
 
 !!! note
-    Lazy loading a Moonbeam requires a large number of RPC requests. To avoid being rate-limited by a public endpoint, it's highly recommended to use a [dedicated endpoint](/builders/get-started/endpoints#endpoint-providers).  
+    Lazy loading a Moonbeam requires a large number of RPC requests. To avoid being rate-limited by a public endpoint, it's highly recommended to use a [dedicated endpoint](/builders/get-started/endpoints/#endpoint-providers).  
 
 You can further customize your use of the lazy loading functionality with the following optional parameters:
 
@@ -8467,7 +8467,7 @@ A [smart contract](https://en.wikipedia.org/wiki/Smart_contract){target=\_blank}
 
 ### Substrate {: #substrate }
 
-A Rust-based blockchain development framework created by Parity Technologies based on their experience implementing multiple blockchain clients. Substrate comes with many modules and functionalities that are needed when building a blockchain, including P2P networking, consensus mechanisms, staking, cryptocurrency, on-chain governance modules, and more. It dramatically reduces the time and engineering effort required to implement a blockchain. Substrate is now part of the [Polkadot SDK](https://polkadot.com/platform/sdk/){target=\_blank}.
+A Rust-based blockchain development framework created by Parity Technologies based on their experience implementing multiple blockchain clients. Substrate comes with many modules and functionalities that are needed when building a blockchain, including P2P networking, consensus mechanisms, staking, cryptocurrency, on-chain governance modules, and more. It reduces the time and engineering effort required to implement a blockchain. Substrate is part of the [Polkadot SDK](https://wiki.polkadot.com/general/glossary/#polkadot-sdk){target=\_blank}.
 
 ### Substrate Frame Pallets {: #substrate-frame-pallets }
 
@@ -12766,7 +12766,7 @@ The following contracts addresses have been established:
 There are a set of precompiled contracts included on Moonbeam, Moonriver, and Moonbase Alpha that are categorized by address and based on the origin network. If you were to convert the precompiled addresses to decimal format, and break them into categories by numeric value, the categories are as follows:
 
 - **0-1023** - [Ethereum MainNet precompiles](#ethereum-mainnet-precompiles)
-- **1024-2047** - precompiles that are [not in Ethereum and not Moonbeam specific](#non-moonbeam-specific-nor-ethereum-precomiles)
+- **1024-2047** - precompiles that are [not in Ethereum and not Moonbeam specific](#non-moonbeam-specific-nor-ethereum-precompiles)
 - **2048-4095** - [Moonbeam specific precompiles](#moonbeam-specific-precompiles)
 
 ### Ethereum MainNet Precompiles {: #ethereum-mainnet-precompiles }
@@ -12959,7 +12959,7 @@ The basic JSON-RPC methods from the Ethereum API supported by Moonbeam are:
 - **[eth_getStorageAt](https://ethereum.org/developers/docs/apis/json-rpc/#eth_getstorageat){target=\_blank}** — returns the content of the storage at a given address. Instead of providing a block number as a parameter, you can provide a [default block parameter](#default-block-parameters)
 - **[eth_getBlockByHash](https://ethereum.org/developers/docs/apis/json-rpc/#eth_getblockbyhash){target=\_blank}** — returns information about the block of the given hash, including `baseFeePerGas` on post-London blocks
 - **[eth_getBlockByNumber](https://ethereum.org/developers/docs/apis/json-rpc/#eth_getblockbynumber){target=\_blank}** — returns information about the block specified by block number, including `baseFeePerGas` on post-London blocks. Instead of providing a block number as the first parameter, you can provide a [default block parameter](#default-block-parameters)
-- **[eth_getBlockReceipts](https://www.alchemy.com/docs/node/ethereum/ethereum-api-endpoints/eth-get-block-receipts){target=\_blank}** — returns all transaction receipts for a given block
+- **[eth_getBlockReceipts](https://www.alchemy.com/docs/chains/ethereum/ethereum-api-endpoints/eth-get-block-receipts){target=\_blank}** — returns all transaction receipts for a given block
 - **[eth_getTransactionCount](https://ethereum.org/developers/docs/apis/json-rpc/#eth_gettransactioncount){target=\_blank}** — returns the number of transactions sent from the given address (nonce). Instead of providing a block number as a parameter, you can provide a [default block parameter](#default-block-parameters)
 - **[eth_getBlockTransactionCountByHash](https://ethereum.org/developers/docs/apis/json-rpc/#eth_getblocktransactioncountbyhash){target=\_blank}** — returns the number of transactions in a block with a given block hash
 - **[eth_getBlockTransactionCountByNumber](https://ethereum.org/developers/docs/apis/json-rpc/#eth_getblocktransactioncountbynumber){target=\_blank}** — returns the number of transactions in a block with a given block number
@@ -12972,8 +12972,8 @@ The basic JSON-RPC methods from the Ethereum API supported by Moonbeam are:
     - Moonbeam supports the use of the optional _state override set_ object. This address-to-state mapping object allows the user to specify some state to be ephemerally overridden before executing a call to `eth_call`. The state override set is commonly used for tasks like debugging smart contracts. Visit the [go-ethereum](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-eth#:~:text=Object%20%2D%20State%20override%20set){target=\_blank} documentation to learn more
     - Instead of providing a block number as a parameter, you can provide a [default block parameter](#default-block-parameters)
 - **[eth_estimateGas](https://ethereum.org/developers/docs/apis/json-rpc/#eth_estimategas){target=\_blank}** — returns an estimated amount of gas necessary for a given transaction to succeed. You can optionally specify a `gasPrice` or `maxFeePerGas` and `maxPriorityFeePerGas`. Instead of providing a block number as a parameter, you can provide a [default block parameter](#default-block-parameters)
-- **[eth_maxPriorityFeePerGas](https://www.alchemy.com/docs/node/ethereum/ethereum-api-endpoints/eth-max-priority-fee-per-gas){target=\_blank}** - returns an estimate of how much priority fee, in Wei, is needed for inclusion in a block
-- **[eth_feeHistory](https://www.alchemy.com/docs/node/ethereum/ethereum-api-endpoints/eth-fee-history){target=\_blank}** — returns `baseFeePerGas`, `gasUsedRatio`, `oldestBlock`, and `reward` for a specified range of up to 1024 blocks
+- **[eth_maxPriorityFeePerGas](https://www.alchemy.com/docs/chains/ethereum/ethereum-api-endpoints/eth-max-priority-fee-per-gas){target=\_blank}** - returns an estimate of how much priority fee, in Wei, is needed for inclusion in a block
+- **[eth_feeHistory](https://www.alchemy.com/docs/chains/ethereum/ethereum-api-endpoints/eth-fee-history){target=\_blank}** — returns `baseFeePerGas`, `gasUsedRatio`, `oldestBlock`, and `reward` for a specified range of up to 1024 blocks
 - **[eth_getTransactionByHash](https://ethereum.org/developers/docs/apis/json-rpc/#eth_gettransactionbyhash){target=\_blank}** — returns the information about a transaction with a given hash. EIP-1559 transactions have `maxPriorityFeePerGas` and `maxFeePerGas` fields
 - **[eth_getTransactionByBlockHashAndIndex](https://ethereum.org/developers/docs/apis/json-rpc/#eth_gettransactionbyblockhashandindex){target=\_blank}** — returns information about a transaction at a given block hash and a given index position. EIP-1559 transactions have `maxPriorityFeePerGas` and `maxFeePerGas` fields
 - **[eth_getTransactionByBlockNumberAndIndex](https://ethereum.org/developers/docs/apis/json-rpc/#eth_gettransactionbyblocknumberandindex){target=\_blank}** — returns information about a transaction at a given block number and a given index position. EIP-1559 transactions have `maxPriorityFeePerGas` and `maxFeePerGas` fields. Instead of providing a block number as a parameter, you can provide a [default block parameter](#default-block-parameters)
@@ -13002,7 +13002,7 @@ Moonbeam supports several default block parameters that allow you to query a sub
 
 Moonbeam does not support the following Ethereum API JSON-RPC methods:
 
- - **[eth_getProof](https://www.alchemy.com/docs/node/ethereum/ethereum-api-endpoints/eth-get-proof){target=\_blank}** - returns the account and storage values of the specified account including the Merkle-proof
+ - **[eth_getProof](https://www.alchemy.com/docs/chains/ethereum/ethereum-api-endpoints/eth-get-proof){target=\_blank}** - returns the account and storage values of the specified account including the Merkle-proof
  - **[eth_blobBaseFee](https://www.quicknode.com/docs/ethereum/eth_blobBaseFee){target=\_blank}** - returns the expected base fee for blobs in the next block
  - **[eth_createAccessList](https://www.alchemy.com/docs/node/ethereum/ethereum-api-endpoints/eth-create-access-list){target=\_blank}** - creates an EIP-2930 type `accessList` based on a given transaction object
  - **[eth_sign](https://ethereum.org/developers/docs/apis/json-rpc/#eth_sign){target=\_blank}** - allows the user to sign an arbitrary hash to be sent at a later time. Presents a [security risk](https://support.metamask.io/privacy-and-security/what-is-eth_sign-and-why-is-it-a-risk/){target=\_blank} as the arbitrary hash can be fraudulently applied to other transactions
@@ -13146,7 +13146,7 @@ The Moonbeam-specific precompiles can be interacted with through familiar and ea
 The precompiled contracts are categorized by address and based on the origin network. If you were to convert the precompiled addresses to decimal format, and break them into categories by numeric value, the categories are as follows:
 
 - **0-1023** - [Ethereum MainNet precompiles](#ethereum-mainnet-precompiles)
-- **1024-2047** - precompiles that are [not in Ethereum and not Moonbeam specific](#non-moonbeam-specific-nor-ethereum-precomiles)
+- **1024-2047** - precompiles that are [not in Ethereum and not Moonbeam specific](#non-moonbeam-specific-nor-ethereum-precompiles)
 - **2048-4095** - [Moonbeam specific precompiles](#moonbeam-specific-precompiles)
 
 ### Ethereum MainNet Precompiles {: #ethereum-mainnet-precompiles }
